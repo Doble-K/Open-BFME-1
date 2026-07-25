@@ -2630,12 +2630,17 @@ void WorldHeightMap::setupAlphaTiles(void)
 }
 
 
-Bool  WorldHeightMap::getRawTileData(Short tileNdx, Int width, 
+// BFME's m_sourceTiles sits at this+0xa4 (not the ZH header's declared offset)
+// and NUM_SOURCE_TILES is 4096 here, not ZH's 1024 - same drift already
+// proven from getTerrainColorAt's retail body (RVA 0x7477E0); reproduced
+// again from this function's own retail body (RVA 0x747D70): `cmp eax,0x1000`
+// / `mov edi,[ecx+eax*4+0xa4]`. Read via the raw retail offset directly.
+Bool  WorldHeightMap::getRawTileData(Short tileNdx, Int width,
 																				 UnsignedByte *buffer, Int bufLen)
 {
 	TileData *pSrc = NULL;
-	if (tileNdx/4 < NUM_SOURCE_TILES) {
-		pSrc = m_sourceTiles[tileNdx/4];
+	if (tileNdx/4 < 4096) {
+		pSrc = *(TileData **)((unsigned char *)this + 0xa4 + (tileNdx/4)*4);
 	}
 	if (bufLen < (width*width*TILE_BYTES_PER_PIXEL)) {
 		return(false);

@@ -10807,7 +10807,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getRankLevel@Player@@QBEHXZ,,0x001BFBE0,7,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Ghidra-bound unique accessor
 ?getRankLevelCount@RankInfoStore@@QBEHXZ,,0x003A0610,10,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp,matched,
 ?getRankPoints@CampaignManager@@QBEHXZ,,0x006CF680,3,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getRawTileData@WorldHeightMap@@QAE_NFHPAEH@Z,,0x00747D70,217,Code/masm_dumps/WorldHeightMap_getRawTileData.asm,matched,Ghidra-bound BFME source-tile copy body
+?getRawTileData@WorldHeightMap@@QAE_NFHPAEH@Z,,0x00747D70,217,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,clean C++; BFME m_sourceTiles@+0xa4 raw-offset access and NUM_SOURCE_TILES=4096 (retail drift vs ZH header proven from getTerrainColorAt)
 ?getRayEffectData@RayEffectSystem@@QAEXPBVDrawable@@PAURayEffectData@@@Z,,0x005D35F0,42,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
 ?getReal@Dict@@QBEMW4NameKeyType@@PA_N@Z,,0x00067EC0,56,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?getRebuildHoleBehaviorInterface@BehaviorModule@@UAEPAVRebuildHoleBehaviorInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
