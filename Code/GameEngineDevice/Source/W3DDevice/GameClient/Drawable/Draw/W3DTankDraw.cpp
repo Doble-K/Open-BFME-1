@@ -235,13 +235,21 @@ void W3DTankDraw::setFullyObscuredByShroud(Bool fullyObscured)
 }
 
 /**Update uv coordinates on each tread object to simulate movement*/
-// ?updateTreadPositions@W3DTankDraw@@ present-unmatched
 void W3DTankDraw::updateTreadPositions(Real uvDelta)
 {
-	Real offset_u;
-	TreadObjectInfo *pTread=m_treads;
+	// BFME's W3DTankDraw carries ~0x20c bytes of extra interior fields before
+	// m_treads/m_treadCount that the ZH reference header doesn't declare
+	// (unreconstructed base-class drift, out of this track's scope) - proven
+	// from this function's own retail body (RVA 0x77E0C0): m_treads at
+	// this+0x298 (ZH header type puts it at this+0x8c), m_treadCount right
+	// after the 4-element array at this+0x2e8 (ZH: this+0xdc). Read via the
+	// proven retail offsets directly instead of through the drifted members.
+	unsigned char *self = (unsigned char *)this;
+	TreadObjectInfo *pTread = (TreadObjectInfo *)(self + 0x298);
 
-	for (Int i=0; i<m_treadCount; i++)
+	Real offset_u;
+
+	for (Int i=0; i<*(Int *)(self + 0x2e8); i++)
 	{
 		if (pTread->m_type == TREAD_LEFT)	//this tread needs to scroll forwards
 			offset_u = pTread->m_materialSettings.customUVOffset.X + uvDelta;

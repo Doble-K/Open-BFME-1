@@ -2410,34 +2410,65 @@ TXTextureClass WorldHeightMap::getTextureFromIndex( Int textureIndex )
 	return m_textureClasses[textureIndex];
 }
 
-// ?getTerrainColorAt@WorldHeightMap@@QAEXMMPAURGBColor@@@Z present-unmatched
+// Retail's REAL_TO_INT_FLOOR here calls the CRT floor() through the import
+// table (fld;fmul;fstp qword;call [__imp__floor];fistp) instead of WWLib
+// basetype.h's fast_float_floor bit-trick (which never calls out) - see
+// reference/shims/pathfind's identical fix. TU-scoped to just this function:
+// grep confirms no already-matched function in this TU uses REAL_TO_INT_FLOOR.
+extern "C" __declspec(dllimport) double __cdecl floor(double);
+#undef REAL_TO_INT_FLOOR
+#define REAL_TO_INT_FLOOR(x) (fast_float2long_round((Real)floor((double)(x))))
+
+// BFME's WorldHeightMap interior drifted from the ZH reference header in this
+// region: m_width/m_height/m_borderSize/m_dataSize sit 4 bytes EARLIER than
+// the declared class (retail 0x08/0x0c/0x10/0x20 vs ZH 0x0c/0x10/0x14/0x24 -
+// one fewer leading 4B field, unreconstructed), while m_tileNdxes/m_sourceTiles
+// sit much LATER (retail 0x8c/0xa4 vs ZH 0x44/0x60 - BFME's seismic/cliff
+// fields in between differ from ZH's, unreconstructed) and NUM_SOURCE_TILES is
+// 4096 here, not ZH's 1024 (retail's inlined getSourceTile bound check is
+// `cmp eax,0x1000`). getRGBDataForWidth(1) is also fully inlined in retail
+// (no CALL at all - straight from the `pTile != NULL` check to reading bytes
+// at pTile+0x5558/0x5559/0x555a), so this reconstructs its 1x1-mip body
+// in place rather than declaring it out-of-line. All offsets proven directly
+// from this function's own retail body (RVA 0x7477E0); the rest of the class
+// interior is left unreconstructed (out of this track's scope) - access via
+// raw retail offsets instead of the (wrong) declared members.
 void WorldHeightMap::getTerrainColorAt(Real x, Real y, RGBColor *pColor)
 {
+	unsigned char *self = (unsigned char *)this;
 	Int xIndex = REAL_TO_INT_FLOOR(x/MAP_XY_FACTOR);
 	Int yIndex = REAL_TO_INT_FLOOR(y/MAP_XY_FACTOR);
-	xIndex += m_borderSize;
-	yIndex += m_borderSize;
+	Int borderSize = *(Int *)(self + 0x10);
+	xIndex += borderSize;
+	yIndex += borderSize;
 	pColor->red = pColor->green = pColor->blue = 0;
 	if (xIndex<0) xIndex = 0;
 	if (yIndex<0) yIndex = 0;
-	if (xIndex >= m_width) xIndex = m_width-1;
-	if (yIndex >= m_height) yIndex = m_height-1;
-	Int ndx = (yIndex*m_width)+xIndex;
-	if (ndx<0 || ndx >= this->m_dataSize) return;
-	Int tileNdx = m_tileNdxes[ndx];
+	Int width = *(Int *)(self + 0x08);
+	if (xIndex >= width) xIndex = width-1;
+	Int height = *(Int *)(self + 0x0c);
+	if (yIndex >= height) yIndex = height-1;
+	Int ndx = (yIndex*width)+xIndex;
+	Int dataSize = *(Int *)(self + 0x20);
+	if (ndx<0 || ndx >= dataSize) return;
+	Short *tileNdxes = *(Short **)(self + 0x8c);
+	Int tileNdx = tileNdxes[ndx];
 	tileNdx = tileNdx>>2;	 // We pack 4 grids into a tile.
 
-	TileData *pTile = getSourceTile(tileNdx);
+	TileData *pTile = ((UnsignedInt)tileNdx < 4096) ? *(TileData **)(self + 0xa4 + tileNdx*4) : NULL;
 	if (pTile) {
 		// pTile contains the bitmap data for 4 squares.
 		// Get the data mipped down to one pixel for the tile.
-		UnsignedByte *pData = pTile->getRGBDataForWidth(1);
+		UnsignedByte *pData = (UnsignedByte *)pTile + 0x5558;
 		// Data is in microsoft bgra format.
 		pColor->red = pData[2]/255.0;
 		pColor->green = pData[1]/255.0;
 		pColor->blue = pData[0]/255.0;
 	}
-}	
+}
+
+#undef REAL_TO_INT_FLOOR
+#define REAL_TO_INT_FLOOR(x)			(fast_float2long_round(fast_float_floor(x)))
 
 // ?getTerrainNameAt@WorldHeightMap@@QAE?AVAsciiString@@MM@Z present-unmatched
 AsciiString WorldHeightMap::getTerrainNameAt(Real x, Real y)
