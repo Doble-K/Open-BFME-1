@@ -2626,5 +2626,6 @@ void LocomotorSet::addLocomotor(const LocomotorTemplate* lt)
 }
 
 //-------------------------------------------------------------------------------------------------
-// findLocomotor: matched via Code/masm_dumps/LocomotorSet_findLocomotor.asm
-// (retail 0x001B5CF0/73B; m_template@+4 blocks ZH C++ layout - see asm notes).
+// findLocomotor: matched via Code/GameEngine/Source/GameLogic/Object/LocomotorAccessors.cpp
+// (retail 0x001B5CF0/73B; m_template@+4 blocks ZH C++ layout in THIS file's
+// header -- landed in a separate TU-scoped-shim source, see that file).
