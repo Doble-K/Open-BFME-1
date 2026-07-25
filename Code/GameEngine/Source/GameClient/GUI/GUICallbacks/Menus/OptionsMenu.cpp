@@ -240,7 +240,9 @@ OptionPreferences::OptionPreferences( void )
 	load("Options.ini");
 }
 
-// ??1OptionPreferences@@UAE@XZ present-unmatched
+// Thunk-dump converted to clean C++ (0x90450, 11B): sets the OptionPreferences
+// vtable then tail-jumps into the already-matched UserPreferences dtor
+// (0x3F25B) -- proven via retail disasm, no new RE.
 OptionPreferences::~OptionPreferences()
 {
 }
