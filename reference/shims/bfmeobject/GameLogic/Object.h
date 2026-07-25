@@ -56,6 +56,8 @@ class PartitionData;
 class SpecialPowerUpdateInterface;
 class ThingTemplate;
 class UpgradeTemplate;
+class CountermeasuresBehaviorInterface;
+class ProjectileUpdateInterface;
 
 // BFME UpgradeMaskType is six 32-bit words, not ZH's four: removeUpgrade
 // (0x1CA020) builds a 0x18-byte stack temp, and m_objectUpgradesCompleted@0x224
@@ -118,6 +120,9 @@ public:
 
 	ProductionUpdateInterface* getProductionUpdateInterface( void );
 	DockUpdateInterface* getDockUpdateInterface( void );
+	ProjectileUpdateInterface* getProjectileUpdateInterface( void ) const;
+	CountermeasuresBehaviorInterface* getCountermeasuresBehaviorInterface( void );
+	const CountermeasuresBehaviorInterface* getCountermeasuresBehaviorInterface( void ) const;
 
 	void giveUpgrade( const UpgradeTemplate *upgradeT );
 	void removeUpgrade( const UpgradeTemplate *upgradeT );

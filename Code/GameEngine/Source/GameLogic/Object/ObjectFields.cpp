@@ -48,6 +48,15 @@ class UpgradeModuleInterface;
 class DockUpdateInterface;
 class ProductionUpdateInterface;
 
+// BehaviorModuleInterface find-loops beyond getSpawnBehaviorInterface (slot 29,
+// +0x74, landed in Object.cpp): slots 31/32 (+0x7c/+0x80, const/non-const pair,
+// identified via ActionManager::canRepairObject calling +0x7c on its
+// `const Object *objectToRepair` parameter) and slot 37 (+0x94, the remaining
+// candidate, called from ~20 distinct sites consistent with the ubiquity of
+// weapon/projectile queries).
+class CountermeasuresBehaviorInterface;
+class ProjectileUpdateInterface;
+
 class BehaviorModuleInterface
 {
 public:
@@ -79,6 +88,19 @@ public:
 	virtual void _bfme_bmi_slot25() = 0;
 	virtual void _bfme_bmi_slot26() = 0;
 	virtual ProductionUpdateInterface* getProductionUpdateInterface() = 0;	///< +0x6c
+	virtual void _bfme_bmi_slot28() = 0;
+	virtual void _bfme_bmi_slot29() = 0;
+	virtual void _bfme_bmi_slot30() = 0;
+	// MSVC 7.1 groups a same-named overload pair at its first slot and emits it in
+	// REVERSE declaration order (docs/matching.md); declaring non-const first here
+	// is what puts const at +0x7c and non-const at +0x80, matching retail bytes.
+	virtual CountermeasuresBehaviorInterface* getCountermeasuresBehaviorInterface() = 0;	///< +0x80
+	virtual const CountermeasuresBehaviorInterface* getCountermeasuresBehaviorInterface() const = 0;	///< +0x7c
+	virtual void _bfme_bmi_slot33() = 0;
+	virtual void _bfme_bmi_slot34() = 0;
+	virtual void _bfme_bmi_slot35() = 0;
+	virtual void _bfme_bmi_slot36() = 0;
+	virtual ProjectileUpdateInterface* getProjectileUpdateInterface() = 0;	///< +0x94
 };
 
 //-------------------------------------------------------------------------------------------------
@@ -311,6 +333,48 @@ DockUpdateInterface* Object::getDockUpdateInterface( void )
 		DockUpdateInterface* dock = (*b)->getDockUpdateInterface();
 		if( dock )
 			return dock;
+	}
+	return NULL;
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?getCountermeasuresBehaviorInterface@Object@@QAEPAVCountermeasuresBehaviorInterface@@XZ
+CountermeasuresBehaviorInterface* Object::getCountermeasuresBehaviorInterface( void )
+{
+	for( BehaviorModule** b = m_behaviors; *b; ++b )
+	{
+		CountermeasuresBehaviorInterface* cbi = (*b)->getCountermeasuresBehaviorInterface();
+		if( cbi )
+			return cbi;
+	}
+	return NULL;
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?getCountermeasuresBehaviorInterface@Object@@QBEPBVCountermeasuresBehaviorInterface@@XZ
+const CountermeasuresBehaviorInterface* Object::getCountermeasuresBehaviorInterface( void ) const
+{
+	// A const module pointer forces the const-qualified BehaviorModuleInterface
+	// overload (+0x7c), not the non-const one (+0x80) the mutable loop above hits.
+	for( BehaviorModule** b = m_behaviors; *b; ++b )
+	{
+		const BehaviorModule* module = *b;
+		const CountermeasuresBehaviorInterface* cbi = module->getCountermeasuresBehaviorInterface();
+		if( cbi )
+			return cbi;
+	}
+	return NULL;
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?getProjectileUpdateInterface@Object@@QBEPAVProjectileUpdateInterface@@XZ
+ProjectileUpdateInterface* Object::getProjectileUpdateInterface( void ) const
+{
+	for( BehaviorModule** b = m_behaviors; *b; ++b )
+	{
+		ProjectileUpdateInterface* pui = (*b)->getProjectileUpdateInterface();
+		if( pui )
+			return pui;
 	}
 	return NULL;
 }
