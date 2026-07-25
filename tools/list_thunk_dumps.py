@@ -17,6 +17,16 @@ import build
 
 
 def klass(name):
+    # ctor/dtor/operator special names (??0Class@@, ??1Class@@, ??_GClass@@):
+    # the owning class follows the ??<code> prefix, NOT the first @Ident@@ (which
+    # is a parameter type — grouping ctors under their arg types was a real bug).
+    m = re.match(r"^\?\?(?:[0-9]|_[A-Za-z])([A-Za-z][A-Za-z0-9_]*)@@", name)
+    if m:
+        return m.group(1)
+    # normal method ?method@Class@@sig
+    m = re.match(r"^\?[A-Za-z0-9_]+@([A-Za-z0-9_]+)@@", name)
+    if m:
+        return m.group(1)
     m = re.search(r"@([A-Za-z0-9_]+)@@", name)
     return m.group(1) if m else "(free function)"
 
