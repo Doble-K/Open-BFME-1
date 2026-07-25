@@ -241,12 +241,40 @@ const ScienceInfo* ScienceStore::findScienceInfo(ScienceType st) const
 }
 
 //-----------------------------------------------------------------------------
+// BFME-only global reads, proven byte-identical against the already-matched
+// GameLogic.cpp (TheGameLogic->m_gameMode lives at +0x10c there too, see
+// GameLogic::isInSinglePlayerGame) and against retail bytes at 0x49F8B0
+// (ControlBar::setControlBarSchemeByPlayer, matched) which reference the same
+// TheGameLogic global address 0x12F0898. TheRecorder lives at 0x12ED62C
+// (proven the same way against GameLogic::isInSinglePlayerGame's retail
+// bytes). Declared locally rather than pulling in the real GameLogic.h /
+// Recorder.h (heavy, unrelated dependencies) -- only the mangled names need
+// to match.
+class GameLogic;
+extern GameLogic* TheGameLogic;
+class RecorderClass
+{
+public:
+	Bool isMultiplayer(void);
+};
+extern RecorderClass* TheRecorder;
+
 // ?getSciencePurchaseCost@ScienceStore@@ present-unmatched
 Int ScienceStore::getSciencePurchaseCost(ScienceType st) const
 {
 	const ScienceInfo* si = findScienceInfo(st);
 	if (si)
 	{
+		// ZH GameLogic.h unnamed enum: GAME_SINGLE_PLAYER=0, GAME_LAN=1,
+		// GAME_SKIRMISH=2, GAME_REPLAY=3, GAME_SHELL=4, GAME_INTERNET=5,
+		// GAME_NONE=6. Online modes (and a multiplayer replay of one) use the
+		// BFME-added alt cost field; everything else uses the normal cost.
+		const Int mode = *reinterpret_cast<const Int*>(reinterpret_cast<const char*>(TheGameLogic) + 0x10c);
+		if (mode == 1 /*GAME_LAN*/ || mode == 5 /*GAME_INTERNET*/ || mode == 2 /*GAME_SKIRMISH*/ ||
+			(mode == 3 /*GAME_REPLAY*/ && TheRecorder && TheRecorder->isMultiplayer()))
+		{
+			return si->_bfme_unknownCost28;
+		}
 		return si->m_sciencePurchasePointCost;
 	}
 	else
@@ -286,25 +314,41 @@ Bool ScienceStore::getNameAndDescription(ScienceType st, UnicodeString& name, Un
 }
 
 //-----------------------------------------------------------------------------
-// ?playerHasPrereqsForScience@ScienceStore@@ present-unmatched
+// BFME layout drift (see Science.h): m_prereqSciences is not ZH's flat
+// ScienceVec here -- retail stores an OR-of-AND group structure at the same
+// [this+0x18]/[this+0x1c] begin/end slot: an outer std::vector<ScienceVec>
+// (0xc-byte/group stride) of inner std::vector<ScienceType> groups (4-byte/
+// item stride). A player qualifies if ANY one group is fully satisfied.
+// Reinterpreted in place rather than reshaping ScienceInfo's declared
+// (ZH-flat) field type, which other still-unmatched accessors still rely on.
 Bool ScienceStore::playerHasPrereqsForScience(const Player* player, ScienceType st) const
 {
 	const ScienceInfo* si = findScienceInfo(st);
 	if (si)
 	{
-		for (ScienceVec::const_iterator it2 = si->m_prereqSciences.begin(); it2 != si->m_prereqSciences.end(); ++it2)
+		struct RawGroup { ScienceType *begin, *end, *capEnd; };
+		typedef const RawGroup* GroupIter;
+		const char* base = reinterpret_cast<const char*>(si);
+		GroupIter group = *reinterpret_cast<GroupIter const*>(base + 0x18);
+		// The group-end pointer is re-read from [si+0x1c] at each test (not
+		// hoisted into a local) to match retail's loop-rotated codegen, which
+		// re-loads it both at loop entry and at the do-while back-edge.
+		if (group != *reinterpret_cast<GroupIter const*>(base + 0x1c))
 		{
-			if (!player->hasScience(*it2))
+			do
 			{
-				return false;
-			}
+				for (ScienceType* item = group->begin;; ++item)
+				{
+					if (item == group->end)
+						return true;
+					if (!player->hasScience(*item))
+						break;
+				}
+				++group;
+			} while (group != *reinterpret_cast<GroupIter const*>(base + 0x1c));
 		}
-		return true;
 	}
-	else
-	{
-		return false;
-	}
+	return false;
 }
 
 //-----------------------------------------------------------------------------

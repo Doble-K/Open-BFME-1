@@ -10809,7 +10809,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getRestPos@AnimateWindow@@QAE?AUICoord2D@@XZ,,0x003D4D50,18,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?getRopeDrawInterface@DrawModule@@UAEPAVRopeDrawInterface@@XZ,,0x006CF680,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getRopeDrawInterface@DrawModule@@UBEPBVRopeDrawInterface@@XZ,,0x006CF680,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getSciencePurchaseCost@ScienceStore@@QBEHW4ScienceType@@@Z,,0x00002BFD,5,Code/masm_dumps/_getSciencePurchaseCost_ScienceStore__QBEHW4ScienceType___Z_2BFD.asm,matched,MASM exact retail dump
+?getSciencePurchaseCost@ScienceStore@@QBEHW4ScienceType@@@Z,,0x000E6D70,88,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,thunk-dump converted to clean C++; true body 0xE6D70 (88B before int3 pad at 0xE6DC8); TheGameLogic mode branch + TheRecorder isMultiplayer pinned to 0x4A7A5 thunk
 ?getScrollFactor@OptionPreferences@@QAEMXZ,,0x000906C0,147,Code/masm_dumps/_sa13__getScrollFactor_OptionPreferences__QAEMXZ_906C0.asm,matched,multi-xref Open-BFME4+Grok ScrollFactor
 ?getSelectedSaveFileInfo@@YAPAUAvailableGameInfo@@PAVGameWindow@@@Z,,0x004DF060,39,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,matched,
 ?getShouldFade@AudioEventRTS@@QBE_NXZ,,0x0006B3B0,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Ghidra-bound BFME should-fade getter
@@ -11642,7 +11642,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?pickBridge@Bridge@@QAE_NABVVector3@@0PAV2@@Z,,0x001A73D0,265,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?pingTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z,,0x004F14F0,150,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp,matched,
 ?play@TintEnvelope@@QAEXPBURGBColor@@III@Z,,0x004156D0,23,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
-?playerHasPrereqsForScience@ScienceStore@@QBE_NPBVPlayer@@W4ScienceType@@@Z,,0x0000DCDD,5,Code/masm_dumps/_playerHasPrereqsForScience_ScienceStore__QBE_NPBVPlayer__W4ScienceType___Z_DCDD.asm,matched,MASM exact retail dump
+?playerHasPrereqsForScience@ScienceStore@@QBE_NPBVPlayer@@W4ScienceType@@@Z,,0x000E6E50,86,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,thunk-dump converted to clean C++; true body 0xE6E50 (86B before int3 pad at 0xE6EA6); OR-of-AND prereq group walk; hasScience pinned to 0x943F thunk
 ?playerIndexToColorIndex@@YAHH@Z,,0x007115D0,39,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 ?playerTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z,,0x004FA800,1517,Code/masm_dumps/playerTooltip.asm,matched,Correct retail body installed by WOLLobbyMenuInit and anchored by eleven tooltip strings
 ?pop@?$queue@VGameResultsRequest@@V?$deque@VGameResultsRequest@@V?$allocator@VGameResultsRequest@@@_STL@@@_STL@@@_STL@@QAEXXZ,,0x00641880,75,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,icf-owner=?pop_front@?$deque@VGameResultsRequest@@V?$allocator@VGameResultsRequest@@@_STL@@@_STL@@QAEXXZ
