@@ -10521,7 +10521,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getHost@LANPlayer@@QAE?AVUnicodeString@@XZ,,0x00098FD0,32,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,
 ?getID@AIGroup@@QAEIXZ,,0x000131DD,5,Code/masm_dumps/_getID_AIGroup__QAEIXZ_131DD.asm,matched,MASM exact retail dump
 ?getID@DataChunkTableOfContents@@QAEIABVAsciiString@@@Z,,0x00103D40,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
-?getID@Drawable@@QBE?AW4DrawableID@@XZ,,0x00009B01,5,Code/masm_dumps/_getID_Drawable__QBE_AW4DrawableID__XZ_9B01.asm,matched,MASM exact retail dump
 ?getID@SpecialPowerTemplate@@QBEIXZ,,0x000BA900,27,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
 ?getIdealStaticGameDetail@OptionPreferences@@QAEHXZ,,0x0007E0F0,942,Code/masm_dumps/_sa13__getIdealStaticGameDetail_OptionPreferences__QAEHXZ_7E0F0.asm,matched,multi-xref Open-BFME4+Grok IdealStaticGameLOD
 ?getInstance@?$ConcreteModuleClass@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@SAABV12@XZ,0x0000B686,0x5e0b00,111,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -10951,7 +10950,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getWaypointID@MapObject@@QAE?AW4WaypointID@@XZ,,0x00087E00,26,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?getWaypointName@MapObject@@QAE?AVAsciiString@@XZ,,0x00088AE0,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?getWeaponInWeaponSlot@WeaponSet@@QBEPAVWeapon@@W4WeaponSlotType@@@Z,,0x001EAF90,11,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
-?getWheelInfo@Drawable@@QBEPBUTWheelInfo@@XZ,,0x0077F6B0,17,Code/masm_dumps/_rn14__getWheelInfo_Drawable__QBEPBUTWheelInfo__XZ_77F6B0.asm,matched,reloc-needle Open-BFME4+Grok
 ?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/masm_dumps/_rn5__getWhichTurretForCurWeapon_AIUpdateInterface__QBE_AW4WhichTurretType__26EB70.asm,matched,reloc-needle Open-BFME4+Grok
 ?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/masm_dumps/_rn3__getWhichTurretForWeaponSlot_AIUpdateInterface__QBE_AW4WhichTurretType_26EBB0.asm,matched,reloc-needle Open-BFME4+Grok
 ?getWidth@W3DDisplayString@@UAEHH@Z,,0x006F53A0,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,
@@ -13559,3 +13557,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getTerrainColorAt@WorldHeightMap@@QAEXMMPAURGBColor@@@Z,,0x007477E0,272,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,clean C++; BFME floor-via-IAT plus reconstructed retail field offsets (raw access) inlined getRGBDataForWidth
 ?updateContextPurchaseScience@ControlBar@@IAEXXZ,,0x0049CAE0,139,Code/masm_dumps/_updateContextPurchaseScience_ControlBar__IAEXXZ_49CAE0.asm,matched,MASM exact retail dump; fixed boundary (was 0x49CAE3/136 mid-instruction of preceding function true start 0x49CAE0/139)
 ?getSpawnBehaviorInterface@Object@@QBEPAVSpawnBehaviorInterface@@XZ,,0x001BF5F0,42,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,BFME behavior-interface loop at m_behaviors+0x1f0 secondary vtable slot +0x74; confirmed via ActionManager::getCanAttackObject getClosestSlave call chain
+?getID@Drawable@@QBE?AW4DrawableID@@XZ,,0x004116B0,7,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; retail Drawable field load at +0x100
+?getWheelInfo@Drawable@@QBEPBUTWheelInfo@@XZ,,0x0077F6B0,17,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; m_locoInfo@+0x138; DrawableLocoInfo layout unchanged from ZH
