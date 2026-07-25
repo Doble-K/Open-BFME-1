@@ -240,10 +240,25 @@ static void removeSelection( ListboxData *list, Int i )
 	list->selections[(list->listLength - 1)] = -1;
 }
 
+static void adjustDisplay( GameWindow *window, Int adjustment, Bool updateSlider );
+
+// adjustDisplay (2-arg overload) =============================================
+// BFME retail gives computeTotalHeight's own always-zero-adjustment call site
+// a dedicated 2-arg entry point (RVA 0x4B7B20, proven from computeTotalHeight's
+// retail bytes: 2 stack dwords pushed + `add esp,8`) distinct from the general
+// 3-arg adjustDisplay@0x4B7CA0 addEntry calls (3 dwords + `add esp,0xc`) - a
+// genuine C++ overload, not a naming coincidence. Never itself byte-verified
+// (only the pin/call site at computeTotalHeight is); body is a passthrough.
+//=============================================================================
+__declspec(noinline) void __cdecl adjustDisplay( GameWindow *window, Bool updateSlider )
+{
+	adjustDisplay( window, 0, updateSlider );
+}
+
 // adjustDisplay ==============================================================
 /** Update Display List information inlcuding scrollbar */
 //=============================================================================
-static void adjustDisplay( GameWindow *window, Int adjustment, 
+static void adjustDisplay( GameWindow *window, Int adjustment,
 													 Bool updateSlider )
 {
 	Int entry;
@@ -296,25 +311,35 @@ static void adjustDisplay( GameWindow *window, Int adjustment,
 
 // computeTotalHeight =========================================================
 /** Compute Total Height and fill in listHeight values */
-//=============================================================================
+// BFME ListboxData field offsets (see moveRowsDown above): listData@+0x18
+// endPos@+0x2c totalHeight@+0x28 (columns@+0x2 is ZH-native, unshifted) -
+// keep expression shape of ZH body for MSVC 7.1. DisplayString::getSize is
+// retail vtbl slot 15 (0x3c) here, not the displaystring shim's natural
+// slot 12 - proven by this function's OWN retail bytes (call [edx+0x3c])
+// and independently by addEntry's retail bytes (0x4B86B0, same call
+// [edx+0x3c]); slots 0-9 of the shim (dtor..setWordWrapCentered) are
+// independently proven correct by other call sites in this same file, so
+// only the getSize slot is overridden here via the same hand-cast
+// convention GadgetListBoxSetFont already uses for setFont@slot6.
 static void computeTotalHeight( GameWindow *window )
 {
 	Int i, height = 0;
 	Int tempHeight;
 	ListboxData *list = (ListboxData *)window->winGetUserData();
 	WinInstanceData *instData = window->winGetInstanceData();
+	typedef void (DisplayString::*BFMEGetSizeFn)( Int *, Int * );
 
-	for( i=0; i<list->endPos; i++ )
+	for( i=0; i<*(Short *)((char *)list + 0x2C); i++ )
 	{
-		
-		if(!list->listData[i].cell)
+
+		if(!(*(ListEntryRow **)((char *)list + 0x18))[i].cell)
 			continue;
 		tempHeight = 0;
-		
+
 		for (Int j = 0; j < list->columns; j++)
 		{
 			Int cellHeight = 0;
-			if(list->listData[i].cell[j].cellType == LISTBOX_TEXT)
+			if((*(ListEntryRow **)((char *)list + 0x18))[i].cell[j].cellType == LISTBOX_TEXT)
 			{
 				if( BitTest( window->winGetStatus(), WIN_STATUS_ONE_LINE ) == TRUE )
 				{
@@ -322,29 +347,29 @@ static void computeTotalHeight( GameWindow *window )
 				}
 				else
 				{
-					DisplayString *displayString = (DisplayString *)list->listData[i].cell[j].data;
+					DisplayString *displayString = (DisplayString *)(*(ListEntryRow **)((char *)list + 0x18))[i].cell[j].data;
 					if(displayString)
-						displayString->getSize( NULL, &cellHeight );		
+						(displayString->*(*(BFMEGetSizeFn *)&(*(void ***)displayString)[15]))( NULL, &cellHeight );
 				}//else
 			}//if
-			else if(list->listData[i].cell[j].cellType == LISTBOX_IMAGE)
+			else if((*(ListEntryRow **)((char *)list + 0x18))[i].cell[j].cellType == LISTBOX_IMAGE)
 			{
-				if(list->listData[i].cell[j].height > 0)
-					cellHeight = list->listData[i].cell[j].height + 1;
+				if((*(ListEntryRow **)((char *)list + 0x18))[i].cell[j].height > 0)
+					cellHeight = (*(ListEntryRow **)((char *)list + 0x18))[i].cell[j].height + 1;
 				else
 					cellHeight = TheWindowManager->winFontHeight( instData->getFont() );
 			}
 			if(cellHeight > tempHeight)
 				tempHeight = cellHeight;
 		}//for
-		list->listData[i].height = tempHeight;
-		height += (list->listData[i].height + 1);
-		list->listData[i].listHeight = height;
+		*(Int *)((char *)(*(ListEntryRow **)((char *)list + 0x18) + i) + 4) = tempHeight;
+		height += (*(Int *)((char *)(*(ListEntryRow **)((char *)list + 0x18) + i) + 4) + 1);
+		(*(ListEntryRow **)((char *)list + 0x18))[i].listHeight = height;
 	}
 
-	list->totalHeight = height;
+	*(Int *)((char *)list + 0x28) = height;
 
-	adjustDisplay( window, 0, TRUE );
+	adjustDisplay( window, TRUE );
 }
 
 // addImageEntry ==============================================================
