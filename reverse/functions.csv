@@ -6982,7 +6982,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Notify_Removed@RenderObjClass@@UAEXPAVSceneClass@@@Z,,0x0091FC00,13,Code/masm_dumps/_Notify_Removed_RenderObjClass__UAEXPAVSceneClass___Z_91FC00.asm,matched,MASM exact retail dump
 ?Num_Trees@HTreeManagerClass@@QAEHXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Obj_Look_At@Matrix3D@@QAEXABVVector3@@0M@Z,,0x008D6D60,622,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
-?OnEnd@DownloadManager@@UAEJXZ,,0x000044E4,5,Code/masm_dumps/_OnEnd_DownloadManager__UAEJXZ_44E4.asm,matched,MASM exact retail dump
+?OnEnd@DownloadManager@@UAEJXZ,,0x00626960,7,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,thunk-dump converted to clean C++; DEBUG_LOG compiles out under NDEBUG
 ?OnEnd@DownloadManagerMunkee@@UAEJXZ,,0x004C7A50,217,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,gametext vtable fix
 ?OnError@DownloadManager@@UAEJH@Z,,0x00031EC1,5,Code/masm_dumps/_OnError_DownloadManager__UAEJH_Z_31EC1.asm,matched,MASM exact retail dump
 ?OnError@DownloadManagerMunkee@@UAEJH@Z,,0x004C79A0,129,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,gametext vtable fix
@@ -10464,7 +10464,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getEnergy@Player@@QAEPAVEnergy@@XZ,,0x007EA6B0,7,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,Ghidra-bound Player accessor
 ?getEnergyBonus@ThingTemplate@@QBEHXZ,,0x00478E40,7,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,Ghidra-bound ThingTemplate accessor
 ?getEnergyProduction@ThingTemplate@@QBEHXZ,,0x00478E30,7,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,Ghidra-bound ThingTemplate accessor
-?getErrorString@DownloadManager@@QAE?AVUnicodeString@@XZ,,0x0000ECCD,5,Code/masm_dumps/_getErrorString_DownloadManager__QAE_AVUnicodeString__XZ_ECCD.asm,matched,MASM exact retail dump
+?getErrorString@DownloadManager@@QAE?AVUnicodeString@@XZ,,0x004C7970,32,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,thunk-dump converted; inline header accessor ODR-used by DownloadManagerMunkee::OnError; icf-owner=?GetMyName@LANAPI@@UAE?AVUnicodeString@@XZ
 ?getErrorStringFromReturnType@LANAPIInterface@@QAE?AVUnicodeString@@W4ReturnType@1@@Z,,0x00688B50,304,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
 ?getEventFX@LifeEventModuleInfo@FXParticleSystem@@QAEPBVFXList@@XZ,0x0003E96E,0x5fc780,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?getEventFX@TerrainCollisionModuleInfo@FXParticleSystem@@QAEPBVFXList@@XZ,0x0002B9A9,0x5fd2b0,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
