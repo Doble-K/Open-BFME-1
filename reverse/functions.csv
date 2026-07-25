@@ -12224,7 +12224,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setObjectTimestamp@BuildListInfo@@QAEXI@Z,,0x0015E6E0,10,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
 ?setOnScreenParticleCount@ParticleSystemManager@@UAEXH@Z,,0x0051D030,13,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ?setOptimalExtrusionPadding@W3DVolumetricShadow@@IAEXM@Z,,0x0061E9D0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
-?setOrRestoreTeam@Object@@IAEXPAVTeam@@_N@Z,,0x0002BF2B,5,Code/masm_dumps/_thunk_a74b8e6dd098_2BF2B.asm,matched,thunk accessor of ported class (icf alias)
 ?setOrientation@Thing@@QAEXM@Z,,0x000399A5,5,Code/masm_dumps/_setOrientation_Thing__QAEXM_Z_399A5.asm,matched,MASM exact retail dump
 ?setOrigin@View@@UAEXHH@Z,,0x0045BA60,17,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setParentCell@PathfindCell@@QAEXPAV1@@Z,,0x003F69A0,14,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
@@ -13559,3 +13558,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?updateTreadPositions@W3DTankDraw@@IAEXM@Z,,0x0077E0C0,124,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp,matched,clean C++; retail m_treads/m_treadCount offsets +0x20c vs ZH header (raw-offset access); floorf->floor via dllimport IAT under /MD
 ?getTerrainColorAt@WorldHeightMap@@QAEXMMPAURGBColor@@@Z,,0x007477E0,272,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,clean C++; BFME floor-via-IAT plus reconstructed retail field offsets (raw access) inlined getRGBDataForWidth
 ?updateContextPurchaseScience@ControlBar@@IAEXXZ,,0x0049CAE0,139,Code/masm_dumps/_updateContextPurchaseScience_ControlBar__IAEXXZ_49CAE0.asm,matched,MASM exact retail dump; fixed boundary (was 0x49CAE3/136 mid-instruction of preceding function true start 0x49CAE0/139)
+?getSpawnBehaviorInterface@Object@@QBEPAVSpawnBehaviorInterface@@XZ,,0x001BF5F0,42,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,BFME behavior-interface loop at m_behaviors+0x1f0 secondary vtable slot +0x74; confirmed via ActionManager::getCanAttackObject getClosestSlave call chain

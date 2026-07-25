@@ -5868,12 +5868,62 @@ SpecialPowerModuleInterface* Object::findAnyShortcutSpecialPowerModuleInterface(
 // ------------------------------------------------------------------------------------------------
 /** Get spawn behavior interface from object */
 // ------------------------------------------------------------------------------------------------
-// ?getSpawnBehaviorInterface@Object@@QBEPAVSpawnBehaviorInterface@@XZ present-unmatched
+// BFME m_behaviors at +0x1f0 (see findModule above). Each module's
+// SpawnBehaviorInterface query dispatches through a SECOND vtable at
+// module+0xc (a distinct multiple-inheritance base from the primary Module
+// vtable findModule uses), at slot +0x74 -- not the header's computed slot.
+// Confirmed via retail ActionManager::getCanAttackObject (0x5A88E0/0x5A8967):
+// the pointer this call returns has its OWN vtable slot +0x8 (index 2) called
+// next with a Coord3D*, which is exactly SpawnBehaviorInterface::getClosestSlave.
 SpawnBehaviorInterface* Object::getSpawnBehaviorInterface() const
 {
-	for (BehaviorModule** m = m_behaviors; *m; ++m)
+	struct BFMEObjectBehaviorsField
 	{
-		SpawnBehaviorInterface *sbi = (*m)->getSpawnBehaviorInterface();
+		unsigned char pad[0x1f0];
+		BehaviorModule *const *behaviors;
+	};
+	BehaviorModule *const *behaviors =
+		reinterpret_cast<const BFMEObjectBehaviorsField *>(this)->behaviors;
+
+	struct BFMESpawnVtableShim
+	{
+		virtual void bfmeSlot00() = 0;
+		virtual void bfmeSlot01() = 0;
+		virtual void bfmeSlot02() = 0;
+		virtual void bfmeSlot03() = 0;
+		virtual void bfmeSlot04() = 0;
+		virtual void bfmeSlot05() = 0;
+		virtual void bfmeSlot06() = 0;
+		virtual void bfmeSlot07() = 0;
+		virtual void bfmeSlot08() = 0;
+		virtual void bfmeSlot09() = 0;
+		virtual void bfmeSlot10() = 0;
+		virtual void bfmeSlot11() = 0;
+		virtual void bfmeSlot12() = 0;
+		virtual void bfmeSlot13() = 0;
+		virtual void bfmeSlot14() = 0;
+		virtual void bfmeSlot15() = 0;
+		virtual void bfmeSlot16() = 0;
+		virtual void bfmeSlot17() = 0;
+		virtual void bfmeSlot18() = 0;
+		virtual void bfmeSlot19() = 0;
+		virtual void bfmeSlot20() = 0;
+		virtual void bfmeSlot21() = 0;
+		virtual void bfmeSlot22() = 0;
+		virtual void bfmeSlot23() = 0;
+		virtual void bfmeSlot24() = 0;
+		virtual void bfmeSlot25() = 0;
+		virtual void bfmeSlot26() = 0;
+		virtual void bfmeSlot27() = 0;
+		virtual void bfmeSlot28() = 0;
+		virtual SpawnBehaviorInterface* getSpawnBehaviorInterface() = 0;
+	};
+
+	for (BehaviorModule *const *m = behaviors; *m; ++m)
+	{
+		char *adjusted = reinterpret_cast<char *>(*m) + 0xc;
+		SpawnBehaviorInterface *sbi =
+			reinterpret_cast<BFMESpawnVtableShim *>(adjusted)->getSpawnBehaviorInterface();
 		if( sbi )
 		{
 			return sbi;
