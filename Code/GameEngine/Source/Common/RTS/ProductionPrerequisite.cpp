@@ -109,15 +109,18 @@ void ProductionPrerequisite::resolveNames()
 }
 
 //-----------------------------------------------------------------------------
-// ?calcNumPrereqUnitsOwned@ProductionPrerequisite@@ABEHPBVPlayer@@QAH@Z present-unmatched
 Int ProductionPrerequisite::calcNumPrereqUnitsOwned(const Player *player, Int counts[MAX_PREREQ]) const
 {
 	const ThingTemplate *tmpls[MAX_PREREQ];
-	Int cnt = m_prereqUnits.size();
+	UnsignedInt cnt = m_prereqUnits.size();
 	if (cnt > MAX_PREREQ)
 		cnt = MAX_PREREQ;
-	for (int i = 0; i < cnt; i++)
+	UnsignedInt i;
+	for (i = 0; i < cnt; i++)
 		tmpls[i] = m_prereqUnits[i].unit;
+	int j;
+	for (j = cnt; j < MAX_PREREQ; j++)
+		tmpls[j] = NULL;
 	player->countObjectsByThingTemplate(cnt, tmpls, false, counts);
 	return cnt;
 }
