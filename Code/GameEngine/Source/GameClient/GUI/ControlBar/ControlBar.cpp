@@ -3355,12 +3355,6 @@ void ControlBar::showSpecialPowerShortcut( void )
 		
 }
 
-// ?hideSpecialPowerShortcut@ControlBar@@QAEXXZ present-unmatched
-void ControlBar::hideSpecialPowerShortcut( void )
-{
-	if(!m_specialPowerShortcutParent)
-		return;
-	
-	m_specialPowerShortcutParent->winHide(TRUE);
-		
-}
+// ControlBar::hideSpecialPowerShortcut moved to ControlBarFields.cpp: it
+// needs the reconstructed-offset shim (reference/shims/controlbar), which
+// this TU does not use (see ControlBarFields.cpp for why).
