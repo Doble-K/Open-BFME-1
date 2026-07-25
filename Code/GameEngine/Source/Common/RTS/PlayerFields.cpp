@@ -39,3 +39,63 @@ Bool Player::hasRadar() const
 	// Otherwise, check if I actually do have it.
 	return m_radarCount > 0;
 }
+
+// hasScience/hasPrereqsForScience have no standalone body proven at this RVA;
+// they are defined here ONLY so /O2 inlines them into isCapableOfPurchasingScience
+// below exactly as retail does (retail's own body goes straight from the
+// hasScience find to the playerHasPrereqsForScience call, no intervening call
+// instructions -- see the comment on isCapableOfPurchasingScience). hasScience
+// itself has no known standalone retail call site (see reverse/re_attempts.log);
+// hasPrereqsForScience already has its own row (Player.cpp, natural header --
+// it never dereferences a Player field, so layout drift doesn't affect it).
+// ?hasScience@Player@@QBE_NW4ScienceType@@@Z present-unmatched
+Bool Player::hasScience(ScienceType t) const
+{
+	return std::find(m_sciences.begin(), m_sciences.end(), t) != m_sciences.end();
+}
+
+Bool Player::hasPrereqsForScience(ScienceType t) const
+{
+	return TheScienceStore->playerHasPrereqsForScience(this, t);
+}
+
+// isCapableOfPurchasingScience's own body (0xCFDF0, behind ILT thunk 0x449e45)
+// reads m_sciences.begin()/end() at [this+0x234]/[this+0x238] (inlined
+// hasScience) and m_sciencePurchasePoints at [this+0x264] (inlined
+// getSciencePurchasePoints) -- both proven in reference/shims/player's
+// second BFME-only insertion writeup. TheScienceStore->playerHasPrereqsForScience
+// (0xDCDD, inlined from hasPrereqsForScience) and ->getSciencePurchaseCost
+// (0x2BFD) are both already pinned in reverse/symbols.csv.
+//
+// BFME identity differs from the ZH source here: retail has NO
+// isScienceDisabled()/isScienceHidden() check between hasScience() and
+// hasPrereqsForScience() -- confirmed by exhaustive disassembly of the 110B
+// body (0xCFDF0-0xCFE5E), which goes straight from the hasScience find to
+// the prereqs call. Written to match retail exactly, not the ZH source.
+// ?isCapableOfPurchasingScience@Player@@QBE_NW4ScienceType@@@Z
+Bool Player::isCapableOfPurchasingScience(ScienceType science) const
+{
+	if (science == SCIENCE_INVALID)
+	{
+		return false;
+	}
+
+	if (hasScience(science))
+	{
+		return false;
+	}
+
+	if (!hasPrereqsForScience(science))
+	{
+		return false;
+	}
+
+	Int cost = TheScienceStore->getSciencePurchaseCost(science);
+	// purchase cost of zero means "not purchasable!"
+	if (cost == 0 || cost > getSciencePurchasePoints())
+	{
+		return false;
+	}
+
+	return true;
+}
