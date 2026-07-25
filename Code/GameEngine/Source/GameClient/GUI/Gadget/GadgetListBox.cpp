@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/displaystring /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -120,6 +120,12 @@ static void doAudioFeedback(GameWindow *window)
 	}
 }
 
+// BFME ListboxData field offsets (see moveRowsDown above): listData@+0x18
+// endPos@+0x2c columnWidth@+0x14; the two Short fields read here are
+// swapped/reordered vs ZH's displayHeight-then-displayPos declaration order
+// (retail reads +0x3c in the displayPos+displayHeight sum first, then +0x44
+// alone for the second "+ list->displayPos" use) - keep expression shape of
+// ZH body for MSVC 7.1.
 static Int getListboxEntryBasedOnCoord(GameWindow *window, Int x, Int y, Int &row, Int &column)
 {
 	Int pos;
@@ -138,31 +144,31 @@ static Int getListboxEntryBasedOnCoord(GameWindow *window, Int x, Int y, Int &ro
 	for( i=0; ; i++ )
 	{
 		if( i > 0 )
-			if( list->listData[ i - 1 ].listHeight > 
-					(list->displayPos + list->displayHeight ) )
+			if( (*(ListEntryRow **)((char *)list + 0x18))[ i - 1 ].listHeight >
+					(*(Short *)((char *)list + 0x3C) + *(Short *)((char *)list + 0x44) ) )
 			{
 				pos = -1;
 				break;
 			}
 
-		if( i == list->endPos )						
+		if( i == *(Short *)((char *)list + 0x2C) )
 		{
 			pos = -1;
 			break;
 		}
 
-		if( list->listData[i].listHeight > (y - winy + list->displayPos) )
+		if( (*(ListEntryRow **)((char *)list + 0x18))[i].listHeight > (y - winy + *(Short *)((char *)list + 0x44)) )
 			break;
 	}
 
 	column = -1;
 	if( pos == -2 )
-	{ 
+	{
 		pos = i;
 		Int total = 0;
 		for( i = 0; i < list->columns ;i++)
 		{
-			total += list->columnWidth[i];
+			total += (*(Int **)((char *)list + 0x14))[i];
 			if(x - winx < total)
 			{
 				column = i;

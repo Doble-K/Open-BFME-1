@@ -10581,7 +10581,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getListBoxDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getListBoxImageDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getListboxBottomEntry@@YAHPAU_ListboxData@@@Z,,0x004B6BA0,63,Code/masm_dumps/_getListboxBottomEntry__YAHPAU_ListboxData___Z_4B6BA0.asm,matched,MASM exact retail dump
-?getListboxEntryBasedOnCoord@@YAHPAVGameWindow@@HHAAH1@Z,,0x004B69D0,273,Code/masm_dumps/__getListboxEntryBasedOnCoord__YAHPAVGameWindow__HH_4B69D0.asm,matched,
+?getListboxEntryBasedOnCoord@@YAHPAVGameWindow@@HHAAH1@Z,,0x004B69D0,273,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,clean C++; DisplayString vtable TU-shim (reference/shims/displaystring) drops ZH MEMORY_POOL_GLUE extra getObjectMemoryPool slot so getTextLength lands at retail vtbl+0xC; ListboxData raw-offset casts (listData@+0x18 endPos@+0x2c columnWidth@+0x14 displayPos/displayHeight@+0x3c/+0x44)
 ?getListboxTopEntry@@YAHPAU_ListboxData@@@Z,,0x004B6B60,44,Code/masm_dumps/_getListboxTopEntry__YAHPAU_ListboxData___Z_4B6B60.asm,matched,MASM exact retail dump
 ?getLoadScreen@GameLogic@@AAEPAVLoadScreen@@_N@Z,,0x006BACD7,83,Code/GameEngine/Source/GameLogic/System/GameLogic_getLoadScreen.asm,matched,exact 487B via MASM
 ?getLocalAddr@UDP@@QAEHAAIAAG@Z,,0x006845C0,25,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
