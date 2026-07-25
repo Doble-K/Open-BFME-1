@@ -10586,7 +10586,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getLoadScreen@GameLogic@@AAEPAVLoadScreen@@_N@Z,,0x006BACD7,83,Code/GameEngine/Source/GameLogic/System/GameLogic_getLoadScreen.asm,matched,exact 487B via MASM
 ?getLocalAddr@UDP@@QAEHAAIAAG@Z,,0x006845C0,25,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?getLocalLadders@LadderList@@QAEPBV?$list@PAVLadderInfo@@V?$allocator@PAVLadderInfo@@@_STL@@@_STL@@XZ,,0x0062A160,3,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,Ghidra-bound unique accessor
-?getLocalPlayerID@ConnectionManager@@QAEIXZ,,0x0004A291,5,Code/masm_dumps/_getLocalPlayerID_ConnectionManager__QAEIXZ_4A291.asm,matched,MASM exact retail dump
+?getLocalPlayerID@ConnectionManager@@QAEIXZ,,0x00663740,7,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
 ?getLocalProfileID@GameSpyBuddyMessageQueue@@UAEHXZ,,0x004EBE30,1771,Code/masm_dumps/_sa14__getLocalProfileID_GameSpyBuddyMessageQueue__UAEHXZ_4EBE30.asm,matched,sa14 Open-BFME4+Grok Loading
 ?getLocale@GameSpyMiscPreferences@@QAEHXZ,,0x000A99A0,33,Code/masm_dumps/GameSpyMiscPreferences_getLocale.asm,matched,Unique Locale-string preference getter
 ?getMOTD@GameSpyInfo@@UAEABVAsciiString@@XZ,,0x006306B0,4,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,Vtable-bound GameSpyInfo accessor
@@ -11228,10 +11228,10 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isOccupied@GameSlot@@QBE_NXZ,,0x0061E590,32,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?isOpen@GameSlot@@QBE_NXZ,,0x0061E630,11,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,tiny-locate
 ?isOverride@WeaponTemplate@@QAE_NXZ,,0x001E0B60,11,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
-?isPacketRouter@ConnectionManager@@QAE_NXZ,,0x00044139,5,Code/masm_dumps/_isPacketRouter_ConnectionManager__QAE_NXZ_44139.asm,matched,MASM exact retail dump
+?isPacketRouter@ConnectionManager@@QAE_NXZ,,0x006638F0,18,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
 ?isPacketRouter@Network@@UAE_NXZ,,0x00681B20,25,Code/GameEngine/Source/GameNetwork/Network.cpp,matched,
 ?isPlayerConnected@BFMEConnectionManager@@QAE_NH@Z,,0x00662A50,138,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check using GlobalData NetworkPlayerTimeoutTime at +0xcbc
-?isPlayerConnected@ConnectionManager@@QAE_NH@Z,,0x0001514A,5,Code/masm_dumps/_isPlayerConnected_ConnectionManager__QAE_NH_Z_1514A.asm,matched,MASM exact retail dump
+?isPlayerConnected@ConnectionManager@@QAE_NH@Z,,0x00662BB0,38,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
 ?isPlayerConnectedForTimeout@BFMEConnectionManager@@QAE_NHI@Z,,0x00662B00,132,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check with explicit timeout and startup NetworkPlayerTimeoutTime fallback
 ?isPlayerInGame@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z,,0x0066BC90,95,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?isPlayerPreorder@GameInfo@@QAE_NH@Z,,0x0061E650,39,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
