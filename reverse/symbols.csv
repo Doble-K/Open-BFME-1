@@ -3466,3 +3466,4 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ??1Nugget@ModuleInfo@@QAE@XZ,0x0002F487,STLport callee exact retail rel32 target (incremental-link thunk); resolves repointed STL template thunk-dump
 ??1ParticleSysBoneInfo@@QAE@XZ,0x0004A462,STLport callee exact retail rel32 target (incremental-link thunk); resolves repointed STL template thunk-dump
 ??1W3DAnimationInfo@@QAE@XZ,0x00034AE0,STLport callee exact retail rel32 target (incremental-link thunk); resolves repointed STL template thunk-dump
+?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z,0x00005696,BoneFXUpdate::killRunningParticleSystems/stopAllBoneFX call target (ILT thunk -> body 0x5C3C10)

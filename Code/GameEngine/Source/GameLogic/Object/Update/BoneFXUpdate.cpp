@@ -480,13 +480,12 @@ void BoneFXUpdate::computeNextLogicFXTime(const BaseBoneListInfo *info, Int &nex
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?killRunningParticleSystems@BoneFXUpdate@@IAEXXZ present-unmatched
 void BoneFXUpdate::killRunningParticleSystems() {
+	// retail calls the combined find+destroy convenience method here, not the
+	// separate findParticleSystem()/destroy() pair the ZH source used
 	for (std::vector<ParticleSystemID>::iterator it = m_particleSystemIDs.begin(); it != m_particleSystemIDs.end(); ++it)
 	{
-		ParticleSystem *sys = TheParticleSystemManager->findParticleSystem(*it);
-		if( sys )
-			sys->destroy();
+		TheParticleSystemManager->destroyParticleSystemByID(*it);
 	}
 
 	m_particleSystemIDs.clear();
@@ -538,7 +537,6 @@ void BoneFXUpdate::resolveBoneLocations() {
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?stopAllBoneFX@BoneFXUpdate@@QAEXXZ present-unmatched
 void BoneFXUpdate::stopAllBoneFX() {
 	int i, j;
 	for (i = 0; i < BODYDAMAGETYPE_COUNT; ++i) {

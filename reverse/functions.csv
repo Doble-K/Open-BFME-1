@@ -11250,7 +11250,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?keyToFunc@FunctionLexicon@@IAEPAXW4NameKeyType@@PAUTableEntry@1@@Z,,0x00105240,42,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,
 ?keyToName@NameKeyGenerator@@QAE?AVAsciiString@@W4NameKeyType@@@Z,,0x0003EC7A,5,Code/masm_dumps/_keyToName_NameKeyGenerator__QAE_AVAsciiString__W4NameKeyType___Z_3EC7A.asm,matched,MASM exact retail dump
 ?killDeliveryDecal@DeliverPayloadAIUpdate@@QAEXXZ,,0x00C02149,11,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DeliverPayloadAIUpdate.cpp,matched,
-?killRunningParticleSystems@BoneFXUpdate@@IAEXXZ,,0x0000628F,5,Code/masm_dumps/_killRunningParticleSystems_BoneFXUpdate__IAEXXZ_628F.asm,matched,MASM exact retail dump
+?killRunningParticleSystems@BoneFXUpdate@@IAEXXZ,,0x00288ED0,83,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,thunk-dump converted to clean C++; retail calls destroyParticleSystemByID directly
 ?killStaticImages@Drawable@@SAXXZ,,0x00410AC0,29,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?killThemKillThemAllWrapper@@YA_NPAVDrawable@@PAX@Z,,0x005B7940,23,Code/GameEngine/Source/GameClient/MessageStream/SelectionXlat.cpp,matched,
 ?legalRadarPoint@@YA_NHH@Z,,0x006C1BB0,37,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar.cpp,matched,
@@ -12412,7 +12412,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?staticInitModules@FXParticleSystem@@YAXXZ,0x0000261C,0x005EB400,125,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,initializes all module category static data
 ?statusCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyStatusArg@@@Z,,0x0003BD8B,5,Code/masm_dumps/_statusCallback_BuddyThreadClass__QAEXPAVGPConnection__PAUGPRecvBuddyStatusArg___Z_3BD8B.asm,matched,MASM exact retail dump
 ?stdAngleDiff@@YAMMM@Z,,0x0016A310,19,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
-?stopAllBoneFX@BoneFXUpdate@@QAEXXZ,,0x0002728C,5,Code/masm_dumps/_stopAllBoneFX_BoneFXUpdate__QAEXXZ_2728C.asm,matched,MASM exact retail dump
+?stopAllBoneFX@BoneFXUpdate@@QAEXXZ,,0x00288F40,131,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,thunk-dump converted to clean C++; killRunningParticleSystems() inlined by compiler
 ?stopAndRemoveMovie@WindowVideoManager@@QAEXPAVGameWindow@@@Z,,0x00498D10,107,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
 ?stopBurningSound@FlammableUpdate@@IAEXXZ,,0x00293010,31,Code/GameEngine/Source/GameLogic/Object/Update/FlammableUpdate.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?storeImage@Anim2DTemplate@@QAEXPBVImage@@@Z,,0x005BAF20,201,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_parse_walls.asm,matched,
