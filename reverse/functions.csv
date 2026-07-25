@@ -9495,7 +9495,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?freeBytes@AsciiString@@AAEXXZ,,0x00887940,134,Code/masm_dumps/_icf2__freeBytes_AsciiString__AAEXXZ_887940.asm,matched,ICF of ??1AIUpdateModuleData@@UAE@XZ Open-BFME4+Grok
 ?freeFromW3DMemPool@@YAXPAX0@Z,,0x00132AB0,15,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,
 ?freeMessageResources@InGameUI@@QAEXXZ,,0x0043CDC0,64,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,cached-obj2 Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
-?freeSockets@NameKeyGenerator@@AAEXXZ,,0x000226E7,5,Code/masm_dumps/_thunk_022ca91e9d30_226E7.asm,matched,thunk accessor of ported class
+?freeSockets@NameKeyGenerator@@AAEXXZ,,0x0008FCE0,64,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,thunk-dump (0x226E7) converted to clean C++; real body tail-jumps into BFME-only hash_map aux clear()
 ?freeZones@ZoneBlock@@IAEXXZ,,0x00012968,5,Code/masm_dumps/_thunk_18d4d4c1ba98_12968.asm,matched,thunk accessor of ported class
 ?friend_addToList@CommandButton@@QAEXPAPAV1@@Z,,0x0049C9E0,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?friend_awakenUpdateModule@GameLogic@@QAEXPAVObject@@PAVUpdateModule@@I@Z,,0x00009944,5,Code/masm_dumps/_friend_awakenUpdateModule_GameLogic__QAEXPAVObject__PAVUpdateModule__I_Z_9944.asm,matched,MASM exact retail dump
