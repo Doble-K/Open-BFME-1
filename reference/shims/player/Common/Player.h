@@ -785,14 +785,56 @@ private:
 	ResourceGatheringManager*		m_resourceGatheringManager;		///< Keeps track of all Supply Centers and Warehouses
 	TunnelTracker*							m_tunnelSystem;								///< All TunnelContain buildings use this part of me for actual conatinment
 	Team*												m_defaultTeam;								///< our "default" team.
+	// NOTE: the 20 named fields above (m_bombardBattlePlans..m_defaultTeam) keep
+	// their ZH-natural RELATIVE layout, landing at natural-offset+0x14 (the radar
+	// pad above) in THIS header -- unverified against retail (nothing in this TU
+	// reads them by name; they exist only so the class's other inline methods,
+	// e.g. getNumBattlePlansActive()/getEnergy()/getDefaultTeam(), still compile).
 
-	ScienceVec						m_sciences;					///< (SAVE) sciences that we know (either intrinsically or via later purchases)
-	ScienceVec						m_sciencesDisabled;	///< (SAVE) sciences that we are not permitted to purchase "yet". Controlled by mission scripts.
-	ScienceVec						m_sciencesHidden;		///< (SAVE) sciences that aren't shown. Controlled by mission scripts.
-	
-	Int										m_rankLevel;			///< (SAVE) our RankLevel, 1...n
-	Int										m_skillPoints;		///< (SAVE) our cumulative SkillPoint total
-	Int										m_sciencePurchasePoints;		///< (SAVE) our unspent SciencePurchasePoint total
+	// BFME layout drift #2 (proven from retail lotrbfme.exe against an
+	// offsetof() probe of the unmodified ZH reference header): addScience@Player
+	// (thunk 0x36057 -> body 0xD5380) reads/writes m_sciences' begin/end/cap
+	// triple at [this+0x234/+0x238/+0x23c]; the already-landed setScienceAvailability
+	// MASM dump (Player_setScienceAvailability.asm) independently proves
+	// m_sciencesDisabled @ [this+0x240] and m_sciencesHidden @ [this+0x24c];
+	// isCapableOfPurchasingScience (ILT 0x449e45 -> body 0xCFDF0) proves
+	// m_sciencePurchasePoints @ [this+0x264]. ZH-natural offsets (via the
+	// offsetof probe, private-public reference header, zero BFME edits) are
+	// m_sciences=0x164 .. m_defaultTeam=0x160 immediately before it, so relative
+	// to this header's natural-plus-radar-pad position for m_defaultTeam's end
+	// (0x164+0x14=0x178) there is a SECOND, separate ~0xBC-byte (188 byte)
+	// insertion immediately before m_sciences -- distinct from the +0x14 radar
+	// pad and NOT accounted for by the named fields above. The ALREADY-MATCHED
+	// getRankLevel@Player (ScriptActions.cpp, unshimmed/natural header) proves
+	// m_rankLevel sits at UNSHIFTED natural offset 0x188 in retail -- i.e. LOWER
+	// than retail m_sciences (0x234) despite m_rankLevel being declared AFTER
+	// the science vectors in this (ZH-derived) header. Declaration order and
+	// offset order must agree in C++, so BFME's actual Player class declares
+	// the m_rankLevel/m_skillPoints group BEFORE the science vectors (reordered
+	// relative to ZH) -- this is a reorder, not a pure insertion, for that pair.
+	// The exact contents of the 0xBC-byte gap are NOT reconstructed; nothing in
+	// this TU reads through it, so one opaque pad is sufficient and correct.
+	unsigned char								_bfme_preSciencePad[0xBC]; ///< unresolved second BFME-only insertion, immediately before m_sciences
+
+	ScienceVec						m_sciences;					///< @0x234 (SAVE) sciences that we know (either intrinsically or via later purchases)
+	ScienceVec						m_sciencesDisabled;	///< @0x240 (SAVE) sciences that we are not permitted to purchase "yet". Controlled by mission scripts.
+	ScienceVec						m_sciencesHidden;		///< @0x24c (SAVE) sciences that aren't shown. Controlled by mission scripts.
+
+	// m_rankLevel/m_skillPoints keep their ZH-natural types/names here (so
+	// getRankLevel()/getSkillPoints() still compile) but land at a BOGUS,
+	// unverified offset in this header -- real retail m_rankLevel is at the
+	// UNSHIFTED natural 0x188 (see above), not here. Nothing in this TU reads
+	// them through this shim. The trailing 4-byte pad is opaque filler sized
+	// only to land m_sciencePurchasePoints at its proven [this+0x264].
+	Int										m_rankLevel;			///< (SAVE) our RankLevel, 1...n -- BOGUS offset in this shim, see comment above
+	Int										m_skillPoints;		///< (SAVE) our cumulative SkillPoint total -- BOGUS offset in this shim, see comment above
+	unsigned char								_bfme_preSciencePurchasePad[4]; ///< opaque filler to reach m_sciencePurchasePoints@0x264
+
+	Int										m_sciencePurchasePoints;		///< @0x264 (SAVE) our unspent SciencePurchasePoint total
+
+	// Fields below this point keep their ZH-natural RELATIVE layout; this TU
+	// does not read them, so their absolute offsets are NOT verified against
+	// retail and must not be trusted without independent proof.
 	Int										m_levelUp, m_levelDown;			///< (NO-SAVE) skill points to go up/down a level (runtime only)
 	UnicodeString					m_generalName;		///< (SAVE) This is the name of the general the player is allowed to change.
 	
