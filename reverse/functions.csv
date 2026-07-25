@@ -10126,7 +10126,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getCampaignDifficulty@OptionPreferences@@QAEHXZ,,0x00032B5A,5,Code/masm_dumps/_getCampaignDifficulty_OptionPreferences__QAEHXZ_32B5A.asm,matched,MASM exact retail dump
 ?getCaveInterface@BehaviorModule@@UAEPAVCaveInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getCell@CellAndObjectIntersection@@QAEPAVPartitionCell@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
-?getCell@Pathfinder@@QAEPAVPathfindCell@@W4PathfindLayerEnum@@HH@Z,,0x00020671,5,Code/masm_dumps/_getCell_Pathfinder__QAEPAVPathfindCell__W4PathfindLayerEnum__HH_Z_20671.asm,matched,MASM exact retail dump
 ?getCell@Pathfinder@@QAEPAVPathfindCell@@W4PathfindLayerEnum@@PBUCoord3D@@@Z,,0x003D7F90,65,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?getCharAt@?$StringBase@D@@QBEDH@Z,0x00038A14,0x0007FB80,18,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns character at index
 ?getCharAt@?$StringBase@G@@QBEGH@Z,0x0001588E,0x0043D590,18,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns character at index
@@ -13562,3 +13561,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?winSetTooltipFunc@GameWindow@@QAEHP6AXPAV1@PAVWinInstanceData@@I@Z@Z,,0x00478EB0,15,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_tooltip@0x1ec
 ?getWrappedCommandID@NetWrapperCommandMsg@@QAEGXZ,,0x00673F60,5,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor
 ?setWrappedCommandID@NetWrapperCommandMsg@@QAEXG@Z,,0x00673F70,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor (icf alias of GameSlot::setPort)
+?getCell@PathfindLayer@@QAEPAVPathfindCell@@HH@Z,,0x003FBAB0,78,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,new PathfindLayer::getCell absent from ledger; landed via reference/shims/pathfind retail layout
+?getCell@Pathfinder@@QAEPAVPathfindCell@@W4PathfindLayerEnum@@HH@Z,,0x003D4E80,95,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,thunk-dump 0x20671 converted; real body already needed PathfindLayer::getCell in same TU
