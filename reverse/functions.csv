@@ -5914,7 +5914,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GadgetTabControlGetHiliteImageTabZero@@YAPBVImage@@PAVGameWindow@@@Z,,0x0047B5F0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DTabControl.cpp,matched,
 ?GadgetTabControlInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004BDDA0,173,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetTabControl.cpp,matched,
 ?GadgetTabControlResizeSubPanes@@YAXPAVGameWindow@@@Z,,0x004BDB60,120,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetTabControl.cpp,matched,
-?GadgetTabControlShowSubPane@@YAXPAVGameWindow@@H@Z,,0x00008936,5,Code/masm_dumps/_GadgetTabControlShowSubPane__YAXPAVGameWindow__H_Z_8936.asm,matched,MASM exact retail dump
 ?GadgetTabControlSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004BDC70,127,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetTabControl.cpp,matched,
 ?GadgetTextEntryGetDisabledBorderColor@@YAHPAVGameWindow@@@Z,,0x0047B4C0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp,matched,
 ?GadgetTextEntryGetDisabledColor@@YAHPAVGameWindow@@@Z,,0x00790380,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DTextEntry.cpp,matched,
@@ -13559,3 +13558,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getSpawnBehaviorInterface@Object@@QBEPAVSpawnBehaviorInterface@@XZ,,0x001BF5F0,42,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,BFME behavior-interface loop at m_behaviors+0x1f0 secondary vtable slot +0x74; confirmed via ActionManager::getCanAttackObject getClosestSlave call chain
 ?getID@Drawable@@QBE?AW4DrawableID@@XZ,,0x004116B0,7,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; retail Drawable field load at +0x100
 ?getWheelInfo@Drawable@@QBEPBUTWheelInfo@@XZ,,0x0077F6B0,17,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; m_locoInfo@+0x138; DrawableLocoInfo layout unchanged from ZH
+?GadgetTabControlShowSubPane@@YAXPAVGameWindow@@H@Z,,0x004BDD10,105,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetTabControl.cpp,matched,thunk-dump converted to clean C++; pointer-select min idiom matches retail inlined by-ref min not STL macro

@@ -3450,3 +3450,5 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ?makeDirty@PartitionData@@QAEXXZ,0x008F7B30,BFME PartitionData::makeDirty() takes no argument; pinned from setScriptStatus 0x1D01D0
 ?clearDisabled@Object@@QAE_NW4DisabledType@@@Z,0x0003C06A,ILT thunk used by setScriptStatus call site
 ?updateUpgradeModules@Object@@QAEXXZ,0x00027FCF,ILT thunk used by giveUpgrade call site
+??1?$_Rb_tree@PAVGameSpyStagingRoom@@PAV1@U?$_Identity@PAVGameSpyStagingRoom@@@_STL@@U?$less@PAVGameSpyStagingRoom@@@3@V?$allocator@PAVGameSpyStagingRoom@@@3@@_STL@@QAE@XZ,0x00018EF3,RefreshGameListBox EH-unwind cleanup dtor for sgl (default less<T*> comparator instantiation)
+??1?$_Rb_tree@PAVGameSpyStagingRoom@@PAV1@U?$_Identity@PAVGameSpyStagingRoom@@@_STL@@UGameSortStruct@@V?$allocator@PAVGameSpyStagingRoom@@@3@@_STL@@QAE@XZ,0x000471DB,RefreshGameListBox normal-exit dtor for sgl (GameSortStruct comparator)

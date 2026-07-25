@@ -292,7 +292,9 @@ void GadgetTabControlShowSubPane( GameWindow *tabControl, Int whichPane)
 	else
 		tabData->activeTab = 0;
 
-	tabData->activeTab = min( tabData->activeTab, tabData->tabCount - 1 );
+	Int tabCountMinusOne = tabData->tabCount - 1;
+	Int *activeTabSrc = (tabData->activeTab < tabCountMinusOne) ? &tabData->activeTab : &tabCountMinusOne;
+	tabData->activeTab = *activeTabSrc;
 
 	tabData->subPanes[tabData->activeTab]->winHide( false );
 }
