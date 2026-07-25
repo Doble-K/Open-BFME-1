@@ -2779,7 +2779,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ObjectCreationUpgradeModuleData@@UAE@XZ,,0x002D7660,109,Code/masm_dumps/ObjectCreationUpgradeModuleData_destructor.asm,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1OneRingPenaltyUpdateModuleData@@UAE@XZ,,0x00298D60,113,Code/masm_dumps/OneRingPenaltyUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory 0x11A460 ctor 0x298D30 prove ownership
 ??1OpenContain@@UAE@XZ,,0x002262E0,278,Code/masm_dumps/OpenContain_destructor.asm,matched,Exact 278B @ 0x002262E0; Exact retail MASM; instance factory->vtable dtor; del 0x227B30 ctor 0x2277A0 vt 0xCAC2B8
-??1OptionPreferences@@UAE@XZ,,0x00001307,5,Code/masm_dumps/__1OptionPreferences__UAE_XZ_1307.asm,matched,MASM exact retail dump
+??1OptionPreferences@@UAE@XZ,,0x00090450,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,matched,thunk-dump converted to clean C++
 ??1OrthoEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x000346BC,0x005D6D90,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
 ??1OrthoEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D6FC0,50,Code/masm_dumps/__1OrthoEmissionVelocityModuleTemplate_FXParticleSystem__UAE_XZ_5D6FC0.asm,matched,MASM exact retail dump
 ??1OutwardEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x000206CB,0x005D7B10,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
@@ -2822,7 +2822,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1QuadDrawModuleInfo@FXParticleSystem@@UAE@XZ,0x0001C5CB,0x005D88A0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1QuadDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x000459F8,0x005D8A00,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/QuadDrawModuleTemplate_dtor.asm,matched,exact 50B dtor via MASM (was inflated 688)
 ??1QueueProductionExitUpdate@@UAE@XZ,,0x001F8D10,141,Code/masm_dumps/QueueProductionExitUpdate_destructor.asm,matched,Exact 141B SEH dtor Open-BFME4
-??1QuickMatchPreferences@@UAE@XZ,,0x00010073,5,Code/masm_dumps/__1QuickMatchPreferences__UAE_XZ_10073.asm,matched,MASM exact retail dump
+??1QuickMatchPreferences@@UAE@XZ,,0x000AAFA0,11,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,thunk-dump converted to clean C++
 ??1RAMFile@@MAE@XZ,,0x009D19A0,93,Code/masm_dumps/_icf2___1RAMFile__MAE_XZ_9D19A0.asm,matched,ICF of ??1SubsystemInterface@@UAE@XZ Open-BFME4+Grok
 ??1RTS3DScene@@UAE@XZ,,0x00C5FD7E,328,Code/masm_dumps/__1RTS3DScene__UAE_XZ.asm,matched,
 ??1Radar@@UAE@XZ,,0x00107620,118,Code/masm_dumps/Radar_destructor.asm,matched,Exact retail MASM; dual-vtable wrapper chain proves ownership; preserves BFME vector-destructor machinery absent from ZH layout

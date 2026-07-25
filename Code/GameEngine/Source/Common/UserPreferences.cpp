@@ -251,7 +251,10 @@ QuickMatchPreferences::QuickMatchPreferences()
 	load(userPrefFilename);
 }
 
-// ??1QuickMatchPreferences@@UAE@XZ present-unmatched
+// Thunk-dump converted to clean C++ (0xAAFA0, 11B): sets the
+// QuickMatchPreferences vtable then tail-jumps into the already-matched
+// UserPreferences dtor (0x3F25B) -- same ICF-adjacent shape as
+// OptionPreferences::~OptionPreferences, proven via retail disasm.
 QuickMatchPreferences::~QuickMatchPreferences()
 {
 }
@@ -914,7 +917,6 @@ IgnorePrefMap IgnorePreferences::getIgnores(void)
 // LadderPreferences base class 
 //-----------------------------------------------------------------------------
 
-// ??0LadderPreferences@@QAE@XZ present-unmatched
 LadderPreferences::LadderPreferences()
 {
 }
