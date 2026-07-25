@@ -11364,7 +11364,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?mulVector3@Matrix3D@@QBEXABVVector3@@AAV2@@Z,,0x001BD8B0,92,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
 ?mulVector3Array@Matrix3D@@QBEXPBVVector3@@PAV2@H@Z,,0x00918680,112,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?mute@GameSlot@@QAEX_N@Z,,0x004C3130,10,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
-?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@ABVAsciiString@@@Z,,0x0004A1DD,5,Code/masm_dumps/_thunk_2b53a506675d_4A1DD.asm,matched,thunk accessor of ported class
+?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@ABVAsciiString@@@Z,,0x00066F40,36,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,thunk-dump converted to clean C++ forwarding overload; tail-jumps into nameToKey(const char*)
 ?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,,0x0001EDE9,5,Code/masm_dumps/_thunk_0bb8e89c48f3_1EDE9.asm,matched,thunk accessor of ported class
 ?newBenchProfile@RetailGameLODManager@?1??parseBenchProfile@INI@@SAXPAV3@@Z@QAEPAUBenchProfile@@XZ,,0x0007C160,32,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ?newBridge@TerrainRoadCollection@@QAEPAVTerrainRoadType@@XZ,,0x00602830,779,Code/masm_dumps/_sa3__newBridge_TerrainRoadCollection__QAEPAVTerrainRoa_602830.asm,matched,Exact 779B string-anchored Open-BFME4
