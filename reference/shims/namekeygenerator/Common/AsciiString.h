@@ -16,652 +16,127 @@
 **	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-////////////////////////////////////////////////////////////////////////////////
-//																																						//
-//  (c) 2001-2003 Electronic Arts Inc.																				//
-//																																						//
-////////////////////////////////////////////////////////////////////////////////
-
-// FILE: AsciiString.h 
+// FILE: AsciiString.h
 //-----------------------------------------------------------------------------
-//                                                                          
-//                       Westwood Studios Pacific.                          
-//                                                                          
-//                       Confidential Information					         
-//                Copyright (C) 2001 - All Rights Reserved                  
-//                                                                          
-//-----------------------------------------------------------------------------
-//
-// Project:    RTS3
-//
-// File name:  AsciiString.h
-//
-// Created:    Steven Johnson, October 2001
-//
-// Desc:       General-purpose string classes
-//
-//-----------------------------------------------------------------------------
-///////////////////////////////////////////////////////////////////////////////
 
 // BFME shadow shim (TU-scoped; only Common/NameKeyGenerator.cpp uses this -I path).
-// Proven byte-exact via nameToKey(const AsciiString&)@0x4a1dd (retail `add eax,8`
-// to reach the char buffer, i.e. an 8-byte AsciiStringData header) -- retail's
-// AsciiStringData always carries the extra debug pointer that the reference
-// header only adds under _DEBUG/_INTERNAL. Defining _INTERNAL for the whole TU
-// instead (see Win32LocalFileSystem.cpp) is NOT usable here: it also flips on
-// GameCommon.h's DUMP_PERF_STATS, which adds real data members to
-// SubsystemInterface (NameKeyGenerator's base) and shifts every field after
-// them -- so patch just this one struct instead.
+//
+// SUPERSEDES the earlier debugptr/AsciiStringData-header model (see
+// docs/lessons.md / reverse/re_attempts.log for that history). keyToName/
+// nameToKey(const char*)'s retail bodies were disassembled directly
+// (build.read_target_bytes @0x8FD30/0x8FFC0) and PROVEN to call straight out
+// to WWLib's already-matched StringBase<char> members:
+//   - keyToName's `return bucket->m_nameString;` / `return TheEmptyString;`
+//     both compile to `push &src; mov ecx,&dest; call 0x887b60` -- i.e. a
+//     direct, out-of-line call to ?0?$StringBase@D@@AAE@ABV0@@Z (already
+//     matched byte-exact, naked-asm guarded copy ctor, in
+//     Code/Libraries/Source/WWVegas/WWLib/string_base.cpp).
+//   - nameToKey(const char*)'s `b->m_nameString = nameString;` compiles the
+//     strlen inline then calls 0x887d20 == ?set@?$StringBase@D@@QAEXPBDH@Z
+//     (already matched, same file) directly with the explicit length -- NOT
+//     a 1-arg AsciiString::set(const char*).
+// This is exactly the same StringBase<char>-backed design already landed for
+// the REAL (non-shimmed) AsciiString at
+// Code/Libraries/Source/WWVegas/WWLib/ascii_string.h/.cpp (see its "Delegate
+// so a caller inlines a `call StringBase<char>::method`" comment) -- that
+// file's own ctor/operator= are defined OUT-OF-LINE, though, so cross-TU
+// calls to them land on THEIR OWN matched addresses, not on StringBase's.
+// Here the copy ctor / operator=(const char*) are instead defined INLINE
+// (in-header), so the compiler inlines this thin wrapper AT NameKeyGenerator
+// .cpp's call sites and emits the direct StringBase<char> call retail has --
+// matching the disassembly above.
+//
+// AsciiString's data member is a single pointer (matches the already-proven
+// "chars @ m_data+8" header size: StringBase<char>::Header is
+// {int ref_count; ushort length; ushort capacity; T data[]} = 8 bytes), so
+// Bucket's layout (vtbl@0, m_nextInSocket@4, m_key@8, m_nameString@0xc,
+// sizeof 0x10) is UNCHANGED from the prior shim.
 
 #pragma once
 
 #ifndef ASCIISTRING_H
 #define ASCIISTRING_H
 
-#include <stdarg.h>
-#include <stdio.h>
 #include <string.h>
-#include "Lib/BaseType.h"
-#include "Common/Debug.h"
-#include "Common/Errors.h"
+
+// The real WWLib template this TU's AsciiString delegates to (already
+// byte-matched via Code/Libraries/Source/WWVegas/WWLib/string_base.cpp).
+// `friend class AsciiString;` inside it binds to whichever class named
+// AsciiString this TU goes on to define below (standard not-yet-defined-
+// friend idiom) -- so our reinterpret_cast + explicit-ctor-call pattern
+// below gets access to StringBase<char>'s private ctors/dtor/releaseBuffer.
+#include "../../../../Code/Libraries/Source/WWVegas/WWLib/string_base.h"
 
 class UnicodeString;
 
-#include "windows.h"
-
-// -----------------------------------------------------
-/**
-	AsciiString is the fundamental single-byte string type used in the Generals
-	code base, and should be preferred over all other string constructions
-	(e.g., array of char, STL string<>, WWVegas StringClass, etc.)
-
-	Of course, other string setups may be used when necessary or appropriate!
-
-	AsciiString is modeled after the MFC CString class, with some minor
-	syntactic differences to keep in line with our coding conventions.
-
-	Basically, AsciiString allows you to treat a string as an intrinsic
-	type, rather analogous to 'int' -- when passed by value, a new string
-	is created, and modifying the new string doesn't modify the original.
-	This is done fairly efficiently, so that no new memory allocation is done
-	unless the string is actually modified. 
-
-	Naturally, AsciiString handles all memory issues, so there's no need
-	to do anything to free memory... just allow the AsciiString's
-	destructor to run.
-
-	AsciiStrings are suitable for use as automatic, member, or static variables.
-*/
-
 class AsciiString
 {
-private:
-	
-	// Note, this is a Plain Old Data Structure... don't
-	// add a ctor/dtor, 'cuz they won't ever be called.
-	struct AsciiStringData
-	{
-		// BFME: retail always carries this field (proven above), regardless of
-		// _DEBUG/_INTERNAL.
-		const char* m_debugptr;	// just makes it easier to read in the debugger
-		unsigned short	m_refCount;						// reference count
-		unsigned short	m_numCharsAllocated;  // length of data allocated
-		// char m_stringdata[];
-
-		inline char* peek() { return (char*)(this+1); }
-	};
-
-	#ifdef _DEBUG
-	void validate() const;
-	#else
-	inline void validate() const { }
-	#endif
-
-  void freeBytes(void);
-
-protected:
-	AsciiStringData* m_data;   // pointer to ref counted string data
-
-	char* peek() const;
-	void releaseBuffer();
-	void ensureUniqueBufferOfSize(int numCharsNeeded, Bool preserveData, const char* strToCpy, const char* strToCat);
-
 public:
+	AsciiString() { m_text = 0; }
 
-	enum 
-	{ 
-		MAX_FORMAT_BUF_LEN = 2048,		///< max total len of string created by format/format_va
-		MAX_LEN = 32767							///< max total len of any AsciiString, in chars
-	};
+	AsciiString(const AsciiString& that)
+	{
+		((StringBase<char>*)this)->StringBase<char>::StringBase(*(const StringBase<char>*)&that);
+	}
 
+	// Only needed so reference/shims/sweep/Common/SubsystemInterface.h's
+	// `AsciiString name=""` default argument (SubsystemInterfaceList::
+	// initSubsystem, pulled in transitively but never called from this TU)
+	// type-checks; not a call shape byte-verified against any retail body.
+	AsciiString(const char* s)
+	{
+		((StringBase<char>*)this)->StringBase<char>::StringBase(s);
+	}
 
-	/**
-		This is a convenient global used to indicate the empty
-		string, so we don't need to construct temporaries
-		for such a common thing.
-	*/
+	~AsciiString()
+	{
+		((StringBase<char>*)this)->releaseBuffer();
+	}
+
+	AsciiString& operator=(const char* s)
+	{
+		((StringBase<char>*)this)->set(s, s ? (int)strlen(s) : 0);
+		return *this;
+	}
+
+	// Dead code in this TU (never called from NameKeyGenerator.cpp) -- exists
+	// only so SubsystemInterface::setName() and STLTypedefs.h's
+	// rts::hash<AsciiString>/equal_to<AsciiString>/less_than_nocase<AsciiString>
+	// full specializations (eagerly compiled, not lazily instantiated, since
+	// they're non-template) type-check.
+	AsciiString& operator=(const AsciiString& that)
+	{
+		((StringBase<char>*)this)->set(*(const StringBase<char>*)&that);
+		return *this;
+	}
+
+	int compareNoCase(const AsciiString& that) const
+	{
+		return ((const StringBase<char>*)this)->compareNoCase(*(const StringBase<char>*)&that);
+	}
+
+	// NOT delegated to StringBase<char>::str() (unlike the real
+	// Code/Libraries/Source/WWVegas/WWLib/ascii_string.h): that method has no
+	// standalone body anywhere in retail (zero matched rows for
+	// ?str@?$StringBase@D@@) -- it is always fully inlined at its call sites,
+	// which this TU-scoped delegation (calling an out-of-line, unseen .cpp
+	// definition) can't reproduce. nameToKey(const char*)'s
+	// `b->m_nameString.str()` disassembles to exactly this inline shape
+	// (`mov eax,[bucket+0xc]; test eax,eax; lea esi,[eax+8]; jne ...; mov
+	// esi,<empty-string literal>` -- no call at all), so inline the same
+	// ternary here directly instead of forwarding.
+	const char* str() const { return m_text ? (const char*)(m_text + 8) : ""; }
+
 	static AsciiString TheEmptyString;
 
-	/**
-		Default constructor -- construct a new, empty AsciiString.
-	*/
-	AsciiString();
-	/**
-		Copy constructor -- make this AsciiString identical to the
-		other AsciiString. (This is actually quite efficient, because
-		they will simply share the same string and increment the
-		refcount.)
-	*/
-	AsciiString(const AsciiString& stringSrc);
-	/**
-		Constructor -- from a literal string. Constructs an AsciiString
-		with the given string. Note that a copy of the string is made;
-		the input ptr is not saved. 
-		Note that this is no longer explicit, as the conversion is almost
-		always wanted, anyhow.
-	*/
-	AsciiString(const char* s);
-
-	/**
-		Destructor. Not too exciting... clean up the works and such.
-	*/
-	~AsciiString();
-
-	/**
-		Return the length, in characters (not bytes!), of the string.
-	*/
-	int getLength() const;
-	/**
-		Return true iff the length of the string is zero. Equivalent
-		to (getLength() == 0) but slightly more efficient.
-	*/
-	Bool isEmpty() const;
-	/**
-		Make the string empty. Equivalent to (str = "") but slightly more efficient.
-	*/
-	void clear();
-
-	/**
-		Return the character and the given (zero-based) index into the string.
-		No range checking is done (except in debug mode).
-	*/
-	char getCharAt(int index) const;
-	/**
-		Return a pointer to the (null-terminated) string. Note that this is 
-		a const pointer: do NOT change this! It is imperative that it be 
-		impossible (or at least, really difficuly) for someone to change our
-		private data, since it might be shared amongst other AsciiStrings.
-	*/
-	const char* str() const;
-
-	/**
-		Makes sure there is room for a string of len+1 characters, and
-		returns a pointer to the string buffer.  This ensures that the
-		string buffer is NOT shared.  This is intended for the file reader, 
-		that is reading new strings in from a file. jba.
-	*/
-	char* getBufferForRead(Int len);
-
-	/**
-		Replace the contents of self with the given string.
-		(This is actually quite efficient, because
-		they will simply share the same string and increment the
-		refcount.)
-	*/
-	void set(const AsciiString& stringSrc);
-	/**
-		Replace the contents of self with the given string.
-		Note that a copy of the string is made; the input ptr is not saved.
-	*/
-	void set(const char* s);
-
-	/**
-		replace contents of self with the given string. Note the
-		nomenclature is translate rather than set; this is because
-		not all single-byte strings translate one-for-one into
-		UnicodeStrings, so some data manipulation may be necessary,
-		and the resulting strings may not be equivalent.
-	*/
-	void translate(const UnicodeString& stringSrc);
-
-	/**
-		Concatenate the given string onto self.
-	*/
-	void concat(const AsciiString& stringSrc);
-	/**
-		Concatenate the given string onto self.
-	*/
-	void concat(const char* s);
-	/**
-		Concatenate the given character onto self.
-	*/
-	void concat(const char c);
-
-	/**
-	  Remove leading and trailing whitespace from the string.
-	*/
-	void trim( void );
-
-	/**
-	  Make the string lowercase
-	*/
-	void toLower( void );
-
-	/**
-		Remove the final character in the string. If the string is empty,
-		do nothing. (This is a rather dorky method, but used a lot in 
-		text editing, thus its presence here.)
-	*/
-	void removeLastChar();
-
-	/**
-		Analogous to sprintf() -- this formats a string according to the
-		given sprintf-style format string (and the variable argument list)
-		and stores the result in self.
-	*/
-	void format(AsciiString format, ...);
-	void format(const char* format, ...);
-	/**
-		Identical to format(), but takes a va_list rather than
-		a variable argument list. (i.e., analogous to vsprintf.)
-	*/
-	void format_va(const AsciiString& format, va_list args);
-	void format_va(const char* format, va_list args);
-
-	/**
-		Conceptually identical to strcmp().
-	*/
-	int compare(const AsciiString& stringSrc) const;
-	/**
-		Conceptually identical to strcmp().
-	*/
-	int compare(const char* s) const;
-	/**
-		Conceptually identical to _stricmp().
-	*/
-	int compareNoCase(const AsciiString& stringSrc) const;
-	/**
-		Conceptually identical to _stricmp().
-	*/
-	int compareNoCase(const char* s) const;
-
-	/**
-		Conceptually identical to strchr().
-	*/
-	const char* find(char c) const;
-
-	/**
-		Conceptually identical to strrchr().
-	*/
-	const char* reverseFind(char c) const;
-
-	/**
-		return true iff self starts with the given string.
-	*/
-	Bool startsWith(const char* p) const;
-	inline Bool startsWith(const AsciiString& stringSrc) const { return startsWith(stringSrc.str()); }
-
-	/**
-		return true iff self starts with the given string. (case insensitive)
-	*/
-	Bool startsWithNoCase(const char* p) const;
-	inline Bool startsWithNoCase(const AsciiString& stringSrc) const { return startsWithNoCase(stringSrc.str()); }
-
-	/**
-		return true iff self ends with the given string.
-	*/
-	Bool endsWith(const char* p) const;
-	Bool endsWith(const AsciiString& stringSrc) const { return endsWith(stringSrc.str()); }
-
-	/**
-		return true iff self ends with the given string. (case insensitive)
-	*/
-	Bool endsWithNoCase(const char* p) const;
-	Bool endsWithNoCase(const AsciiString& stringSrc) const { return endsWithNoCase(stringSrc.str()); }
-
-	/**
-		conceptually similar to strtok():
-
-		extract the next seps-delimited token from the front
-		of 'this' and copy it into 'token', returning true if a nonempty
-		token was found. (note that this modifies 'this' as well, stripping
-		the token off!)
-	*/
-	Bool nextToken(AsciiString* token, const char* seps = NULL);
-
-	/**
-		return true iff the string is "NONE" (case-insensitive).
-		Hey, hokey, but we use it a ton.
-	*/
-	Bool isNone() const;
-
-	Bool isNotEmpty() const { return !isEmpty(); }
-	Bool isNotNone() const { return !isNone(); }
-
-//
-// You might think it would be a good idea to overload the * operator
-// to allow for an implicit conversion to an char*. This is
-// (in theory) a good idea, but in practice, there's lots of code
-// that assumes it should check text fields for null, which
-// is meaningless for us, since we never return a null ptr.
-//
-//	operator const char*() const { return str(); }
-//
-
-	AsciiString& operator=(const AsciiString& stringSrc);	///< the same as set()
-	AsciiString& operator=(const char* s);				///< the same as set()
-
-	void debugIgnoreLeaks();
-
+private:
+	char* m_text;
 };
 
-// -----------------------------------------------------
-inline char* AsciiString::peek() const
+// Dead code in this TU -- see the compareNoCase comment above.
+inline bool operator==(const AsciiString& a, const AsciiString& b)
 {
-	DEBUG_ASSERTCRASH(m_data, ("null string ptr"));
-	validate();
-	return m_data->peek();
-}
-
-// -----------------------------------------------------
-inline AsciiString::AsciiString() : m_data(0)
-{
-	validate();
-}
-
-// -----------------------------------------------------
-inline AsciiString::AsciiString(const char* s) : m_data(0)
-{
-	//DEBUG_ASSERTCRASH(isMemoryManagerOfficiallyInited(), ("Initializing AsciiStrings prior to main (ie, as static vars) can cause memory leak reporting problems. Are you sure you want to do this?\n"));
-	int len = (s)?strlen(s):0;
-	if (len)
-	{
-		ensureUniqueBufferOfSize(len + 1, false, s, NULL);
-	}
-	validate();
-}
-
-// -----------------------------------------------------
-inline AsciiString::AsciiString(const AsciiString& stringSrc) : m_data(stringSrc.m_data)
-{
-  // don't need this if we're using InterlockedIncrement
-  // FastCriticalSectionClass::LockClass lock(TheAsciiStringCriticalSection);
-	if (m_data)
-		// ++m_data->m_refCount;
-    // yes, I know it's not a DWord but we're incrementing so we're safe
-    InterlockedIncrement((long *)&m_data->m_refCount);
-	validate();
-}
-
-// -----------------------------------------------------
-inline void AsciiString::releaseBuffer()
-{
-  // FastCriticalSectionClass::LockClass lock(TheAsciiStringCriticalSection);
-
-	validate();
-	if (m_data)
-	{
-    InterlockedDecrement((long *)&m_data->m_refCount);
-		if (!m_data->m_refCount)
-			freeBytes();
-		m_data = 0;
-	}
-	validate();
-}
-
-// -----------------------------------------------------
-inline AsciiString::~AsciiString()
-{
-	validate();
-	releaseBuffer();
-}
-
-// -----------------------------------------------------
-inline int AsciiString::getLength() const
-{
-	validate();
-	return m_data ? strlen(peek()) : 0;
-}
-
-// -----------------------------------------------------
-inline Bool AsciiString::isEmpty() const
-{
-	validate();
-	return m_data == NULL || peek()[0] == 0;
-}
-
-// -----------------------------------------------------
-inline void AsciiString::clear()
-{
-	validate();
-	releaseBuffer();
-	validate();
-}
-
-// -----------------------------------------------------
-inline char AsciiString::getCharAt(int index) const
-{
-	DEBUG_ASSERTCRASH(index >= 0 && index < getLength(), ("bad index in getCharAt"));
-	validate();
-	return m_data ? peek()[index] : 0;
-}
-
-// -----------------------------------------------------
-inline const char* AsciiString::str() const
-{
-	validate();
-	static const char TheNullChr = 0;
-	return m_data ? peek() : &TheNullChr;
-}
-
-// -----------------------------------------------------
-inline void AsciiString::set(const AsciiString& stringSrc)
-{
-  //FastCriticalSectionClass::LockClass lock(TheAsciiStringCriticalSection);
-
-	validate();
-	if (&stringSrc != this)
-	{
-    // do not call releaseBuffer(); here, it locks the CS twice
-    // from the same thread which is illegal using fast CS's
-		if (m_data)
-    {
-      InterlockedDecrement((long *)&m_data->m_refCount);
-		  if (!m_data->m_refCount)
-			  freeBytes();
-    }
-
-		m_data = stringSrc.m_data;
-		if (m_data)
-      InterlockedIncrement((long *)&m_data->m_refCount);
-	}
-	validate();
-}
-
-// -----------------------------------------------------
-inline void AsciiString::set(const char* s)
-{
-	validate();
-	if (!m_data || s != peek())
-	{
-		int len = s ? strlen(s) : 0;
-		if (len)
-		{
-			ensureUniqueBufferOfSize(len + 1, false, s, NULL);
-		}
-		else
-		{
-			releaseBuffer();
-		}
-	}
-	validate();
-}
-
-// -----------------------------------------------------
-inline AsciiString& AsciiString::operator=(const AsciiString& stringSrc)
-{
-	validate();
-	set(stringSrc);
-	validate();
-	return *this;
-}
-
-// -----------------------------------------------------
-inline AsciiString& AsciiString::operator=(const char* s)
-{
-	validate();
-	set(s);
-	validate();
-	return *this;
-}
-
-// -----------------------------------------------------
-inline void AsciiString::concat(const char* s)
-{
-	validate();
-	int addlen = strlen(s);
-	if (addlen == 0)
-		return;	// my, that was easy
-
-	if (m_data)
-	{
-		ensureUniqueBufferOfSize(getLength() + addlen + 1, true, NULL, s);
-	}
-	else
-	{
-		set(s);
-	}
-	validate();
-}
-
-// -----------------------------------------------------
-inline void AsciiString::concat(const AsciiString& stringSrc)
-{
-	validate();
-	concat(stringSrc.str());
-	validate();
-}
-
-// -----------------------------------------------------
-inline void AsciiString::concat(const char c)
-{
-	validate();
-	/// this can probably be made more efficient, if necessary
-	char tmp[2] = { c, 0 };
-	concat(tmp);
-	validate();
-}
-
-// -----------------------------------------------------
-inline int AsciiString::compare(const AsciiString& stringSrc) const
-{
-	validate();
-	return strcmp(this->str(), stringSrc.str());
-}
-
-// -----------------------------------------------------
-inline int AsciiString::compare(const char* s) const
-{
-	validate();
-	return strcmp(this->str(), s);
-}
-
-// -----------------------------------------------------
-inline int AsciiString::compareNoCase(const AsciiString& stringSrc) const
-{
-	validate();
-	return _stricmp(this->str(), stringSrc.str());
-}
-
-// -----------------------------------------------------
-inline int AsciiString::compareNoCase(const char* s) const
-{
-	validate();
-	return _stricmp(this->str(), s);
-}
-
-// -----------------------------------------------------
-inline const char* AsciiString::find(char c) const
-{
-	return strchr(this->str(), c);
-}
-
-// -----------------------------------------------------
-inline const char* AsciiString::reverseFind(char c) const
-{
-	return strrchr(this->str(), c);
-}
-
-// -----------------------------------------------------
-inline Bool operator==(const AsciiString& s1, const AsciiString& s2)
-{
-	return strcmp(s1.str(), s2.str()) == 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator!=(const AsciiString& s1, const AsciiString& s2)
-{
-	return strcmp(s1.str(), s2.str()) != 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator<(const AsciiString& s1, const AsciiString& s2)
-{
-	return strcmp(s1.str(), s2.str()) < 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator<=(const AsciiString& s1, const AsciiString& s2)
-{
-	return strcmp(s1.str(), s2.str()) <= 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator>(const AsciiString& s1, const AsciiString& s2)
-{
-	return strcmp(s1.str(), s2.str()) > 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator>=(const AsciiString& s1, const AsciiString& s2)
-{
-	return strcmp(s1.str(), s2.str()) >= 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator==(const AsciiString& s1, const char* s2)
-{
-	return strcmp(s1.str(), s2) == 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator!=(const AsciiString& s1, const char* s2)
-{
-	return strcmp(s1.str(), s2) != 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator<(const AsciiString& s1, const char* s2)
-{
-	return strcmp(s1.str(), s2) < 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator<=(const AsciiString& s1, const char* s2)
-{
-	return strcmp(s1.str(), s2) <= 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator>(const AsciiString& s1, const char* s2)
-{
-	return strcmp(s1.str(), s2) > 0;
-}
-
-// -----------------------------------------------------
-inline Bool operator>=(const AsciiString& s1, const char* s2)
-{
-	return strcmp(s1.str(), s2) >= 0;
+	return strcmp(a.str(), b.str()) == 0;
 }
 
 #endif // ASCIISTRING_H

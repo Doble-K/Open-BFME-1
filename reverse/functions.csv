@@ -1133,7 +1133,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BridgeTowerBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/BridgeTowerBehaviorModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0BroadcastStealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00289880,244,Code/masm_dumps/BroadcastStealthUpdate_constructor.asm,matched,Exact 244B @ 0x00289880; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B370
 ??0BroadcastStealthUpdateModuleData@@QAE@XZ,,0x0012A2E0,79,Code/masm_dumps/BroadcastStealthUpdateModuleData_constructor.asm,matched,Exact 79B unique factory Open-BFME4
-??0Bucket@@QAE@XZ,,0x000CBA50,20,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,
+??0Bucket@@QAE@XZ,,0x0008F6F0,20,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,corrected misattribution (was 0xCBA50 -- a coincidental same-size/shape ctor for an unrelated class with vtable 0x1083cfc; true Bucket ctor lives in the NameKeyGenerator aux cluster 0x8F6F0-0x90061 and uses vtable 0x107f980 -- cross-confirmed by nameToKey(const char*)'s allocate path and ~Bucket()@0x8F840)
 ??0BuddyControls@@QAE@XZ,,0x004E9B50,25,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp,matched,
 ??0BuddyInfo@@QAE@ABV0@@Z,,0x00887B60,121,Code/masm_dumps/_icf2___0BuddyInfo__QAE_ABV0__Z_887B60.asm,matched,ICF of ??0PSPlayerStats@@QAE@ABV0@@Z Open-BFME4+Grok
 ??0BuddyInfo@@QAE@XZ,,0x004EA130,20,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp,matched,
@@ -11365,7 +11365,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?mulVector3Array@Matrix3D@@QBEXPBVVector3@@PAV2@H@Z,,0x00918680,112,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?mute@GameSlot@@QAEX_N@Z,,0x004C3130,10,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@ABVAsciiString@@@Z,,0x00066F40,36,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,thunk-dump converted to clean C++ forwarding overload; tail-jumps into nameToKey(const char*)
-?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,,0x0001EDE9,5,Code/masm_dumps/_thunk_0bb8e89c48f3_1EDE9.asm,matched,thunk accessor of ported class
+?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,,0x0008FFC0,299,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,thunk-dump (0x1EDE9) converted to clean C++; real body inserts into the BFME-only hash_map aux via StringBase<char>::set
 ?newBenchProfile@RetailGameLODManager@?1??parseBenchProfile@INI@@SAXPAV3@@Z@QAEPAUBenchProfile@@XZ,,0x0007C160,32,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ?newBridge@TerrainRoadCollection@@QAEPAVTerrainRoadType@@XZ,,0x00602830,779,Code/masm_dumps/_sa3__newBridge_TerrainRoadCollection__QAEPAVTerrainRoa_602830.asm,matched,Exact 779B string-anchored Open-BFME4
 ?newCommandButtonOverride@ControlBar@@IAEPAVCommandButton@@PAV2@@Z,,0x004A2150,249,Code/masm_dumps/_sa6__newCommandButtonOverride_ControlBar__IAEPAVComman_4A2150.asm,matched,Exact 249B Open-BFME4+Grok
