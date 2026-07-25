@@ -1,4 +1,12 @@
 #pragma once
+
+// Retail calls the CRT floor() through the import table directly at the call
+// site (`call dword ptr [__imp__floor]`, FF 15) rather than through a plain
+// `e8`-to-ILT-thunk extern call that <math.h>'s ordinary declaration would
+// produce here (see docs/lessons.md: "most TUs use ff 15 [IAT] ... but some
+// use e8->ILT-thunk"). A `dllimport` prototype forces MSVC to emit the same
+// indirect-through-IAT call shape at every use, matching retail's codegen.
+extern "C" __declspec(dllimport) double __cdecl floor(double);
 // TU-scoped shim: retail-accurate PathfindCell/PathfindLayer/Pathfinder layout,
 // proven byte-for-byte from retail bytes (not the ZH reference tree, which
 // packs PathfindCell into 8B with a nibble@+7 instead of retail's 16B struct
@@ -35,9 +43,41 @@
 
 typedef int Int;
 typedef bool Bool;
+typedef float Real;
 
 struct ICoord2D { Int x, y; };
 struct IRegion2D { ICoord2D lo, hi; };
+struct Coord3D { Real x, y, z; };
+
+// BFME redefines fast_float_floor to call the CRT floor() (fld;fmul;fstp
+// qword;call [__imp__floor];fistp - see re_attempts.log worldToCell entry),
+// NOT ZH BaseType.h's bit-trick (which never calls out). fast_float2long_round
+// is unchanged (still the plain fld/fistp x87 round). TU-scoped here rather
+// than in WWLib/basetype.h: every REAL_TO_INT_FLOOR call site in the tree is
+// present-unmatched, so nothing byte-matched depends on the ZH bit-trick, but
+// the fix belongs with the shim that proved it, not a blind global edit.
+#define PATHFIND_CELL_SIZE 10
+#define PATHFIND_CELL_SIZE_F 10.0f
+
+extern Bool ClipLine2D(ICoord2D *p1, ICoord2D *p2, ICoord2D *c1, ICoord2D *c2,
+                        IRegion2D *clipRegion);
+
+__forceinline Real fast_float_floor(Real f)
+{
+	return (Real)floor((double)f);
+}
+
+__forceinline long fast_float2long_round(Real f)
+{
+	long i;
+	__asm {
+		fld [f]
+		fistp [i]
+	}
+	return i;
+}
+
+#define REAL_TO_INT_FLOOR(x) (fast_float2long_round(fast_float_floor(x)))
 
 // Ordinal-only: mangling needs the enum's name, not its enumerators. Retail's
 // range check (Pathfinder::getCell) accepts 2..15 inclusive - LAYER_LAST is
@@ -80,6 +120,8 @@ class Pathfinder
 {
 public:
 	PathfindCell *getCell(PathfindLayerEnum layer, Int x, Int y);
+	Bool worldToCell(const Coord3D *pos, ICoord2D *cell);
+	void clip(Coord3D *from, Coord3D *to);
 
 private:
 	unsigned char  m_prefix[0x10]; // opaque: base vtable slots + m_blockOfMapCells

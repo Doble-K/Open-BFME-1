@@ -12652,7 +12652,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winSetStatus@GameWindow@@QAEII@Z,,0x00840FC0,19,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winTextLabelToText@GameWindowManager@@QAE?AVUnicodeString@@VAsciiString@@@Z,,0x0047E1B0,175,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_winTextLabelToText.asm,matched,exact 175B via MASM (SEH)
 ?windowHiding@GameWindowManager@@UAEXPAVGameWindow@@@Z,,0x0047C7E0,109,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
-?worldToCell@Pathfinder@@QAE_NPBUCoord3D@@PAUICoord2D@@@Z,,0x000171E8,5,Code/masm_dumps/_worldToCell_Pathfinder__QAE_NPBUCoord3D__PAUICoord2D___Z_171E8.asm,matched,MASM exact retail dump
 ?worldToGridSpace@WaterRenderObjClass@@QAE_NMMAAM0@Z,,0x007303B0,184,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?worldToRadar@Radar@@QAE_NPBUCoord3D@@PAUICoord2D@@@Z,,0x00106D20,120,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
 ?wouldIgnite@FlammableUpdate@@QAE_NXZ,,0x00293040,9,Code/GameEngine/Source/GameLogic/Object/Update/FlammableUpdate.cpp,matched,
@@ -13408,7 +13407,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parse@ViewShakeFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C320,244,Code/masm_dumps/parse_ViewShakeFXNugget_SAXPAVINI_PAX1PBX_Z_0042C320_4717cc22.asm,matched,Certified packet 167 db-only MASM SHA256 4717cc225abc96cd5fa449fec9f04c8cca2043a94891684368ad9e8ca82d40ed
 ??1GameWindow@@MAE@XZ,,0x00479CD0,203,Code/masm_dumps/GameWindow_destructor.asm,matched,Certified complete destructor via vtable wrapper constructor ownership and ret boundary
 ?findPath@Pathfinder@@EAEPAVPath@@PAVObject@@ABVLocomotorSet@@PBUCoord3D@@2@Z,,0x003F2F60,1016,Code/masm_dumps/findPath_Pathfinder_003F2F60_packet170.asm,matched,Certified packet 170 reviewed Ghidra entry vtable ownership diagnostics and internalFindPath call; SHA256 4cb112faf57f32084f6377380a5490b0232d9f2880632d4b3f03cbf3d3275973
-?clip@Pathfinder@@QAEXPAUCoord3D@@0@Z,,0x003D5DE0,373,Code/masm_dumps/Pathfinder_clip_3D5DE0.asm,matched,Certified packet 171 exact retail db body with reviewed Ghidra boundary caller thunk and call graph evidence
 ??1TerrainLogic@@UAE@XZ,,0x001ADD90,285,Code/masm_dumps/TerrainLogic_destructor_1ADD90.asm,matched,certified packet 172 exact db-only retail recovery sha256 024971c8cfc8c88bfd3e1380b4d81f7847bcbd909ebb2f33965b3c0adba3ebbd
 ?messageColor@InGameUI@@UAAXPBURGBColor@@VUnicodeString@@ZZ,,0x0043DEF0,9,Code/masm_dumps/InGameUI_messageColor_RGBColor_43DEF0.asm,matched,Certified packet 174 db-only MASM recovery
 ?computeApproachTarget@Weapon@@QBE_NPBVObject@@0PBUCoord3D@@MAAU3@@Z,,0x001E43D0,1042,Code/masm_dumps/computeApproachTarget_Weapon_001E43D0_packet175.asm,matched,Certified packet 175 sealed RVA and SHA-256 ab0690c840949900faa36b2070211d492a9cddcc0b55b6d18e047dc300b6db58
@@ -13556,3 +13554,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getCell@PathfindLayer@@QAEPAVPathfindCell@@HH@Z,,0x003FBAB0,78,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,new PathfindLayer::getCell absent from ledger; landed via reference/shims/pathfind retail layout
 ?getCell@Pathfinder@@QAEPAVPathfindCell@@W4PathfindLayerEnum@@HH@Z,,0x003D4E80,95,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,thunk-dump 0x20671 converted; real body already needed PathfindLayer::getCell in same TU
 ?winHide@GameWindow@@QAEH_N@Z,,0x00478390,98,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; supersedes mislabeled QAEHH row (real param is bool not int); winSendSystemMsg@+0xd4 verified
+?worldToCell@Pathfinder@@QAE_NPBUCoord3D@@PAUICoord2D@@@Z,,0x003D7EC0,156,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,clean C++; BFME fast_float_floor calls CRT floor() via dllimport IAT not ZH bit-trick
+?clip@Pathfinder@@QAEXPAUCoord3D@@0@Z,,0x003D5DE0,373,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,clean C++; MASM dump superseded; BFME floor-via-IAT + int-scale clip codegen
