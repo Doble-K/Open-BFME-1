@@ -57,6 +57,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$_Construct@VW3DAnimationInfo@@V1@@_STL@@YAXPAVW3DAnimationInfo@@ABV1@@Z,,0x00033AAA,5,Code/masm_dumps/____Construct_VW3DAnimationInfo__V1___STL__YAXPAVW3DAnimationInfo__ABV1__Z_33AAA.asm,matched,MASM exact retail dump
 ??$_Construct@VWeaponTemplateSet@@V1@@_STL@@YAXPAVWeaponTemplateSet@@ABV1@@Z,,0x002E2F30,24,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ??$_Destroy@PAUHideShowSubObjInfo@ModelConditionInfo@@@_STL@@YAXPAUHideShowSubObjInfo@ModelConditionInfo@@0@Z,,0x000413AD,5,Code/masm_dumps/____Destroy_PAUHideShowSubObjInfo_ModelConditionInfo____STL__YAXPAUHideShowSubObjInfo_ModelConditionInfo__0_Z_413AD.asm,matched,MASM exact retail dump
+??$_Destroy@PAUNugget@ModuleInfo@@@_STL@@YAXPAUNugget@ModuleInfo@@0@Z,,0x0004883D,5,Code/masm_dumps/____Destroy_PAUNugget_ModuleInfo____STL__YAXPAUNugget_ModuleInfo__0_Z_4883D.asm,matched,MASM exact retail dump
+??$_Destroy@PAUParticleSysBoneInfo@@@_STL@@YAXPAUParticleSysBoneInfo@@0@Z,,0x0001C19D,5,Code/masm_dumps/_thunk_b2ca9d1b1066_1C19D.asm,matched,thunk accessor of ported class
 ??$_Destroy@PAVAsciiString@@@_STL@@YAXPAVAsciiString@@0@Z,,0x006FA4C0,25,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ??$_Destroy@PAVPlayerTemplate@@@_STL@@YAXPAVPlayerTemplate@@0@Z,,0x000E3D50,36,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ??$_Destroy@PAVProductionPrerequisite@@@_STL@@YAXPAVProductionPrerequisite@@0@Z,,0x00011D47,5,Code/masm_dumps/____Destroy_PAVProductionPrerequisite____STL__YAXPAVProductionPrerequisite__0_Z_11D47.asm,matched,MASM exact retail dump
