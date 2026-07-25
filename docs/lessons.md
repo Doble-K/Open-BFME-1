@@ -3,7 +3,6 @@
 Operational facts agents paid for once already. Append ONE line per lesson
 (what + the working alternative). Keep entries that stay true; delete ones a
 tool fix has made obsolete.
-
 * `land_zh.py` takes reference BASENAMES (`Dict`), not paths; 1-2 per call — batching many files blows the subprocess timeout and hides which succeeded.
 * `sweep_generalsmd.py --files` also wants basenames without `.cpp`.
 * The sweep report's `located` counts are an upper bound from sweep time: sub-`--min-size` functions and rows other agents landed since make `land_zh` return "nothing landed" — that's stale data, not a bug.
