@@ -12605,12 +12605,12 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?width@Region2D@@QBEMXZ,0x00011CB1,0x00160B20,6,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,returns float width
 ?width@Region3D@@QBEMXZ,0x00012EA4,0x001066B0,6,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,returns float width
 ?width@VideoStream@@UAEHXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/VideoPlayer.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?winBringToTop@GameWindow@@QAEHXZ,,0x0000FE66,5,Code/masm_dumps/_winBringToTop_GameWindow__QAEHXZ_FE66.asm,matched,MASM exact retail dump
+?winBringToTop@GameWindow@@QAEHXZ,,0x004794F0,133,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; addWindowToParentAtEnd@vtable+0xcc winGetWindowList@+0x80 verified
 ?winCapture@GameWindowManager@@UAEHPAVGameWindow@@@Z,,0x0047C910,27,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?winCreate@GameWindowManager@@UAEPAVGameWindow@@PAV2@IHHHHP6A?AW4WindowMsgHandledType@@0III@ZPAVWinInstanceData@@@Z,,0x006F5A90,269,Code/masm_dumps/GameWindowManager_winCreate.asm,matched,Exact retail MASM; true body confirmed by GameWindow caller and Times New Roman fallback; avoids wrong 56-byte COMDAT extraction
 ?winCreateFromScript@GameWindowManager@@QAEPAVGameWindow@@VAsciiString@@PAPAV2@@Z,,0x00488B80,1212,Code/masm_dumps/_sa3__winCreateFromScript_GameWindowManager__QAEPAVGame_488B80.asm,matched,Exact 1212B string-anchored Open-BFME4
 ?winDestroy@GameWindowManager@@UAEHPAVGameWindow@@@Z,,0x0047CE30,226,Code/masm_dumps/_rn5__winDestroy_GameWindowManager__UAEHPAVGameWindow___Z_47CE30.asm,matched,reloc-needle Open-BFME4+Grok
-?winEnable@GameWindow@@QAEH_N@Z,,0x0004A1FB,5,Code/masm_dumps/_winEnable_GameWindow__QAEH_N_Z_4A1FB.asm,matched,MASM exact retail dump
+?winEnable@GameWindow@@QAEH_N@Z,,0x004782E0,135,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; winGetFocus@+0xac winSetFocus@+0xb0 winSendSystemMsg@+0xd4 verified
 ?winFontHeight@GameWindowManager@@UAEHPAVGameFont@@@Z,,0x0047A060,10,Code/GameEngine/Source/GameClient/GUI/GameWindowGlobal.cpp,matched,
 ?winGetDisabledBorderColor@GameWindow@@QAEHH@Z,,0x0047A2A0,17,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?winGetDisabledColor@GameWindow@@QAEHH@Z,,0x0059E4A0,14,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
@@ -12622,7 +12622,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winGetPosition@GameWindow@@QAEHPAH0@Z,,0x000179BD,5,Code/masm_dumps/_thunk_948195a838a4_179BD.asm,matched,thunk accessor of ported class
 ?winGetTextSize@GameWindowManager@@QAEXPAVGameFont@@VUnicodeString@@PAH2H@Z,,0x0047A150,40,Code/GameEngine/Source/GameClient/GUI/GameWindowGlobal.cpp,matched,
 ?winGetWindowFromId@GameWindowManager@@UAEPAVGameWindow@@PAV2@H@Z,,0x0047C970,87,Code/masm_dumps/_rn5__winGetWindowFromId_GameWindowManager__UAEPAVGameWindow__PAV2_H_Z_47C970.asm,matched,reloc-needle Open-BFME4+Grok
-?winHide@GameWindow@@QAEHH@Z,,0x00027F2A,5,Code/masm_dumps/_winHide_GameWindow__QAEHH_Z_27F2A.asm,matched,MASM exact retail dump
 ?winIsChild@GameWindow@@QAE_NPAV1@@Z,,0x00478D30,34,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?winMakeColor@GameWindowManager@@UAEHEEEE@Z,,0x0047A070,33,Code/GameEngine/Source/GameClient/GUI/GameWindowGlobal.cpp,matched,
 ?winNextTab@GameWindowManager@@UAEXPAVGameWindow@@@Z,,0x004838E0,126,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
@@ -12645,7 +12644,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winSetNextInLayout@GameWindow@@QAEHPAV1@@Z,,0x00035CF6,5,Code/masm_dumps/_winSetNextInLayout_GameWindow__QAEHPAV1__Z_35CF6.asm,matched,MASM exact retail dump
 ?winSetNextInLayout@GameWindow@@QAEXPAV1@@Z,,0x001BD6A0,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winSetParent@GameWindow@@QAEHPAV1@@Z,,0x00478CB0,84,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,cached-obj2 Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
-?winSetPosition@GameWindow@@QAEHHH@Z,,0x0001949D,5,Code/masm_dumps/_winSetPosition_GameWindow__QAEHHH_Z_1949D.asm,matched,MASM exact retail dump
+?winSetPosition@GameWindow@@QAEHHH@Z,,0x004780D0,85,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; m_bfmeAnchor vtable+0x8 reposition call verified
 ?winSetPrev@GameWindow@@QAEXPAV1@@Z,,0x00478EB0,15,Code/masm_dumps/_rn13__winSetPrev_GameWindow__QAEXPAV1__Z_478EB0.asm,matched,reloc-needle Open-BFME4+Grok
 ?winSetPrevInLayout@GameWindow@@QAEHPAV1@@Z,,0x00015FB4,5,Code/masm_dumps/_winSetPrevInLayout_GameWindow__QAEHPAV1__Z_15FB4.asm,matched,MASM exact retail dump
 ?winSetPrevInLayout@GameWindow@@QAEXPAV1@@Z,,0x00478DD0,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
@@ -13556,3 +13555,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setWrappedCommandID@NetWrapperCommandMsg@@QAEXG@Z,,0x00673F70,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor (icf alias of GameSlot::setPort)
 ?getCell@PathfindLayer@@QAEPAVPathfindCell@@HH@Z,,0x003FBAB0,78,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,new PathfindLayer::getCell absent from ledger; landed via reference/shims/pathfind retail layout
 ?getCell@Pathfinder@@QAEPAVPathfindCell@@W4PathfindLayerEnum@@HH@Z,,0x003D4E80,95,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,thunk-dump 0x20671 converted; real body already needed PathfindLayer::getCell in same TU
+?winHide@GameWindow@@QAEH_N@Z,,0x00478390,98,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; supersedes mislabeled QAEHH row (real param is bool not int); winSendSystemMsg@+0xd4 verified

@@ -12,6 +12,7 @@
 // true BFME offsets, so converting these leaves does not disturb GameWindow.cpp.
 #include "PreRTS.h"
 #include "GameClient/GameWindow.h"
+#include "GameClient/GameWindowManager.h"  // TheWindowManager
 #include "GameClient/Gadget.h"          // GWS_COMBO_BOX
 #include "GameClient/GadgetComboBox.h"  // GadgetComboBoxSet*TextColors
 
@@ -253,6 +254,146 @@ Int GameWindow::winSetDisabledImage( Int index, const Image *image )
 		return WIN_ERR_INVALID_PARAMETER;
 
 	m_instData.m_hiliteDrawData[ index ].image = image;
+
+	return WIN_ERR_OK;
+}
+
+// GameWindow::winSetPosition ==================================================
+// Retail (0x4780d0) does not call the ZH normalizeWindowRegion() helper out of
+// line -- the swap logic is inlined directly into this body, so it is written
+// out here rather than as a call.
+// ?winSetPosition@GameWindow@@QAEHHH@Z
+Int GameWindow::winSetPosition( Int x, Int y )
+{
+	// BFME: notify the anchor of the old->new position before overwriting it
+	if( m_bfmeAnchor )
+		m_bfmeAnchor->bfme_anchor_reposition( m_region.lo.x, m_region.lo.y, x, y );
+
+	m_region.lo.x = x;
+	m_region.lo.y = y;
+
+	m_region.hi.x = x + m_size.x;
+	m_region.hi.y = y + m_size.y;
+
+	if( m_region.lo.x > m_region.hi.x )
+	{
+		Int t = m_region.lo.x;
+		m_region.lo.x = m_region.hi.x;
+		m_region.hi.x = t;
+	}
+
+	if( m_region.lo.y > m_region.hi.y )
+	{
+		Int t = m_region.lo.y;
+		m_region.lo.y = m_region.hi.y;
+		m_region.hi.y = t;
+	}
+
+	return WIN_ERR_OK;
+}
+
+// GameWindow::winBringToTop ====================================================
+// BFME uses addWindowToParentAtEnd here where ZH's commented-out line shows it
+// once used addWindowToParent (retail call is [vtable+0xcc], the manager's
+// addWindowToParentAtEnd slot -- see GameWindowManager.h).
+// ?winBringToTop@GameWindow@@QAEHXZ
+Int GameWindow::winBringToTop( void )
+{
+	GameWindow *current;
+	GameWindow *parent = winGetParent();
+
+	if( parent )
+	{
+		TheWindowManager->unlinkChildWindow( this );
+		TheWindowManager->addWindowToParentAtEnd( this, parent );
+	}
+	else
+	{
+		// sanity, make sure this window is in the window list
+		for( current = TheWindowManager->winGetWindowList();
+				 current != this;
+				 current = current->m_next)
+			if (current == NULL)
+				return WIN_ERR_INVALID_PARAMETER;
+
+		// move to head of windowList
+		TheWindowManager->unlinkWindow( this );
+		TheWindowManager->linkWindow( this );
+	}
+
+	// if the window is part of a screen layout, move it to the top of the
+	// screen layout to reflect the new position of the window in the real
+	// window list
+	if( m_layout )
+	{
+		WindowLayout *saveLayout = m_layout;
+
+		saveLayout->removeWindow( this );
+		saveLayout->addWindow( this );
+	}
+
+	return WIN_ERR_OK;
+}
+
+// GameWindow::winEnable ========================================================
+// BFME adds a winGetFocus() check when disabling (clears focus if this window
+// had it) and only messages the manager when m_status actually changed.
+// ?winEnable@GameWindow@@QAEH_N@Z
+Int GameWindow::winEnable( Bool enable )
+{
+	GameWindow *child;
+	UnsignedInt oldStatus = m_status;
+
+	if( enable )
+		BitSet( m_status, WIN_STATUS_ENABLED );
+	else
+	{
+		BitClear( m_status, WIN_STATUS_ENABLED );
+
+		// BFME: if this window currently has focus and is being disabled, drop focus
+		if( TheWindowManager->winGetFocus() == this )
+			TheWindowManager->winSetFocus( NULL );
+	}
+
+	if( m_child )
+	{
+		for( child = m_child; child; child = child->m_next)
+			child->winEnable( enable );
+	}
+
+	// BFME: only notify the manager if the status word actually changed
+	if( m_status != oldStatus )
+		TheWindowManager->winSendSystemMsg( this, 0x1c, enable, 0 );
+
+	return WIN_ERR_OK;
+}
+
+// GameWindow::winHide ==========================================================
+// BFME-modified: messages the manager with winSendSystemMsg(this, 0x1b, !hide, 0)
+// when the status actually changed, and unconditionally clears status bit
+// 0x10000000 on every call (both absent from ZH).
+// ?winHide@GameWindow@@QAEH_N@Z
+Int GameWindow::winHide( Bool hide )
+{
+	UnsignedInt oldStatus = m_status;
+
+	if( hide )
+	{
+		BitSet( m_status, WIN_STATUS_HIDDEN );
+
+		// notify the window manger we are hiding
+		TheWindowManager->windowHiding( this );
+	}
+	else
+	{
+		BitClear( m_status, WIN_STATUS_HIDDEN );
+	}
+
+	if( m_status != oldStatus )
+		TheWindowManager->winSendSystemMsg( this, 0x1b, !hide, 0 );
+
+	// BFME-only: unconditionally clear this status bit on every call
+	m_status &= ~0x10000000;
 
 	return WIN_ERR_OK;
 }

@@ -411,62 +411,8 @@ Int GameWindow::winPrevTab( void )
 
 }  // end WinPrevTab
 
-// GameWindow::winBringToTop ==================================================
-/** Bring this window to the top of the window list, if we have a parent
-	* we will go to the top of the child list for that parent */
-//=============================================================================
-// ?winBringToTop@GameWindow@@QAEHXZ present-unmatched
-Int GameWindow::winBringToTop( void )
-{
-	GameWindow *current;
-	GameWindow *parent = winGetParent();
-
-	if( parent )
-	{
-
-		TheWindowManager->unlinkChildWindow( this );
-		TheWindowManager->addWindowToParent( this, parent );
-//		TheWindowManager->addWindowToParentAtEnd( this, parent );
-
-	}  // end if
-	else
-	{
-
-		// sanity, make sure this window is in the window list
-		for( current = TheWindowManager->winGetWindowList(); 
-				 current != this; 
-				 current = current->m_next)
-			if (current == NULL)
-				return WIN_ERR_INVALID_PARAMETER;
-
-		// move to head of windowList
-		TheWindowManager->unlinkWindow( this );
-		TheWindowManager->linkWindow( this );
-
-	}  // end else
-
-	//
-	// if the window is part of a screen layout, move it to the top
-	// of the screen layout to reflect the new position of the window
-	// in the real window list (it's all about draw order :) )
-	//
-	if( m_layout )
-	{
-		WindowLayout *saveLayout = m_layout;
-
-		//
-		// note we must use saveScreen because removing the window from the
-		// screen will clear the m_screen member (as it should for removing
-		// a window from a screen)
-		//
-		saveLayout->removeWindow( this );
-		saveLayout->addWindow( this );
-
-	}  // end if
-
-	return WIN_ERR_OK;
-
-}  // end winBringToTop
+// GameWindow::winBringToTop moved to GameWindowFields.cpp (needs the true BFME
+// field offsets; that TU privately includes reference/shims/gamewindow).
 
 // GameWindow::winActivate ====================================================
 /** Pop window to top of window list AND activate it */
@@ -489,24 +435,8 @@ Int GameWindow::winActivate( void )
 
 }  // end WinActivate
 
-// GameWindow::winSetPosition =================================================
-/** Set the window's position */
-//=============================================================================
-// ?winSetPosition@GameWindow@@QAEHHH@Z present-unmatched
-Int GameWindow::winSetPosition( Int x, Int y )
-{
-
-	m_region.lo.x = x;
-	m_region.lo.y = y;
-
-	m_region.hi.x = x + m_size.x;
-	m_region.hi.y = y + m_size.y;
-
-	normalizeWindowRegion();
-
-	return WIN_ERR_OK;
-
-}  // end WinSetPosition
+// GameWindow::winSetPosition moved to GameWindowFields.cpp (needs the true BFME
+// field offsets and m_bfmeAnchor).
 
 // WinGetPosition =============================================================
 /** Get the window's postion */
@@ -660,27 +590,8 @@ Int GameWindow::winGetSize( Int *width, Int *height )
 /** Enable or disable a window based on the enable parameter.
 	* A disabled window can be seen but accepts no input. */
 //=============================================================================
-// ?winEnable@GameWindow@@QAEH_N@Z present-unmatched
-Int GameWindow::winEnable( Bool enable )
-{
-	GameWindow *child;
-
-	if( enable )
-		BitSet( m_status, WIN_STATUS_ENABLED );
-	else
-		BitClear( m_status, WIN_STATUS_ENABLED );
-
-	if( m_child ) 
-	{
-
-		for( child = m_child; child; child = child->m_next)
-			child->winEnable( enable );
-
-	}  // end if
-
-	return WIN_ERR_OK;
-
-}  // end WinEnable
+// GameWindow::winEnable moved to GameWindowFields.cpp (needs the true BFME
+// field offsets and TheWindowManager).
 
 // GameWindow::winGetEnabled ======================================================
 /** Enable or disable a window based on the enable parameter.
@@ -697,37 +608,9 @@ Bool GameWindow::winGetEnabled( void )
 /** Hide or show a window based on the hide parameter.
 	* A hidden window can't be seen and accepts no input. */
 //=============================================================================
-// ?winHide@GameWindow@@QAEH_N@Z present-unmatched
-Int GameWindow::winHide( Bool hide )
-{
-
-	if( hide )
-	{
-
-		//
-		// if we're running in small game window mode and this window becomes
-		// invisible then there's a good chance that the black border around
-		// the game window needs redrawing
-		//
-		if( !BitTest( m_status, WIN_STATUS_NO_FLUSH ) )
-			freeImages();
-
-		BitSet( m_status, WIN_STATUS_HIDDEN );
-
-		// notify the window manger we are hiding
-		TheWindowManager->windowHiding( this );
-
-	}  // end if
-	else
-	{
-
-		BitClear( m_status, WIN_STATUS_HIDDEN );
-
-	}  // end else
-
-	return WIN_ERR_OK;
-
-}  // end WinHide
+// GameWindow::winHide moved to GameWindowFields.cpp (needs the true BFME field
+// offsets and TheWindowManager; retail's decorated name also takes an int, not
+// ZH's bool).
 
 // GameWindow::winIsHidden ====================================================
 /** Am I hidden? */

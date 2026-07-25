@@ -67,6 +67,20 @@ class WindowLayout;
 class GameFont;
 struct GameWindowEditData;
 
+// GameWindowAnchor -------------------------------------------------------------
+// BFME-only helper object referenced by GameWindow::m_bfmeAnchor. Its real name/
+// class is unidentified; only vtable slot +0x8 is proven, called from retail
+// winSetPosition@0x4780d0 with (regionLo.x, regionLo.y, newX, newY) before the
+// window's region is overwritten. Two dummy slots reproduce that offset; nothing
+// else about this type is used.
+class GameWindowAnchor
+{
+public:
+	virtual void bfme_anchor_0( void ) = 0;
+	virtual void bfme_anchor_4( void ) = 0;
+	virtual void bfme_anchor_reposition( Int oldLoX, Int oldLoY, Int newX, Int newY ) = 0;
+};
+
 ///////////////////////////////////////////////////////////////////////////////
 // TYPE DEFINES ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -400,7 +414,7 @@ protected:
 	//     +0x1dc m_bfmeInputExtra    (gap between m_inputData@0x1d8 and m_input@0x1e0)
 	//     +0x1f0 m_bfmeCallbackExtra (setter body @0x478ed0 writes it; before m_next)
 	//     +0x1f4 m_bfmeCallbackExtra2
-	void *m_bfmeAnchor;									// @0x04 (BFME-only)
+	GameWindowAnchor *m_bfmeAnchor;			// @0x04 (BFME-only; see GameWindowAnchor above)
 
 	Int m_status;      									// @0x08 Status bits for this window
 	ICoord2D  m_size;						     	  // @0x0c Width and height of the window
