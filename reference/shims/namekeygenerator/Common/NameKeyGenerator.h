@@ -53,6 +53,7 @@
 #include "Common/SubsystemInterface.h"
 #include "Common/GameMemory.h"
 #include "Common/AsciiString.h"
+#include "Common/STLTypedefs.h"		// BFME-only: rts::hash<NameKeyType>/rts::equal_to<NameKeyType> + <hash_map>, for the aux key->Bucket index below
 
 //-------------------------------------------------------------------------------------------------
 /**
@@ -72,15 +73,34 @@ enum NameKeyType
 //-------------------------------------------------------------------------------------------------
 /** A bucket entry for the name key generator */
 //-------------------------------------------------------------------------------------------------
-class Bucket : public MemoryPoolObject
+// BFME: NOT a MemoryPoolObject. Retail's freeSockets/keyToName/nameToKey bodies
+// (0x8FCE0/0x8FD30/0x8FFC0) delete/construct Bucket with a SINGLE virtual call
+// (`push 1; call [vtbl]`) with no separate getObjectMemoryPool() virtual call --
+// i.e. plain `delete b;` through a lone virtual dtor slot, not
+// MemoryPoolObject::deleteInstance()'s getObjectMemoryPool()+dtor+freeBlock 3-call
+// sequence. Matches the already-documented BFME model (this file's own
+// MP_GLUE_ALLOCATE comment: "BFME's retail exe has no pool-backed allocations at
+// newInstance sites") and the DisplayString precedent (reference/shims/displaystring)
+// of retail dropping MEMORY_POOL_GLUE's extra getObjectMemoryPool vtable slot.
+// Keep the already-matched placement operator new/delete (??2Bucket/??3Bucket,
+// 14B/12B) verbatim -- only the base class + the extra virtual are dropped.
+class Bucket
 {
-
-	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE( Bucket, "NameKeyBucketPool" );
-
 public:
 
+	enum BucketMagicEnum { Bucket_GLUE_NOT_IMPLEMENTED = 0 };
+
+	inline void *operator new(size_t s, BucketMagicEnum e)
+	{
+		return ::operator new(s);
+	}
+	inline void operator delete(void *p, BucketMagicEnum e)
+	{
+		::operator delete(p);
+	}
+
 	Bucket();
-//~Bucket();
+	virtual ~Bucket();
 
 	Bucket				*m_nextInSocket;
 	NameKeyType		m_key;
@@ -145,6 +165,34 @@ private:
 
 	Bucket*				m_sockets[SOCKET_COUNT];			///< Catalog of all Buckets already generated
 	UnsignedInt		m_nextID;											///< Next available ID
+
+	// BFME-only O(1) reverse key->Bucket index (this+0x2bf48, right after m_nextID;
+	// NO ZH equivalent). Proven from retail bytes: ctor (0x90380) placement-constructs
+	// it via a helper at 0x8FF00 that is textually std::hash_map's default ctor
+	// (_M_ht(100,...) -- pushes literal 100); freeSockets (0x8FCE0) tail-jumps into
+	// its clear() (0x8f880: per-bucket node delete + zero + m_num_elements=0, exactly
+	// stl/_hashtable.c's hashtable<>::clear(), never frees the bucket vector's own
+	// buffer); keyToName (0x8FD30) inlines hashtable<>::_M_find's `_M_hash(k) %
+	// buckets.size()` bucket-array walk with NO separate hash call (matches
+	// rts::hash<NameKeyType> forwarding to the identity std::hash<UnsignedInt>);
+	// nameToKey(const char*) (0x8FFC0) calls resize(count+1) then insert_unique_noresize
+	// (0x8FB70/0x8FAB0), i.e. hash_map::insert(value_type(key,bucket)). Node layout
+	// {next@0,key@4,Bucket*@8}=0xC matches _Hashtable_node<pair<const NameKeyType,Bucket*>>
+	// exactly; struct sizeof=0x14 (3-word vector<void*> bucket array @+4/+8/+0xc,
+	// flanked by the empty hasher/equal/get_key functors folded into the leading 4B
+	// and the num_elements counter trailing @+0x10) matches STLport's hashtable<> member
+	// order (_M_hash,_M_equals,_M_get_key,_M_buckets,_M_num_elements) exactly.
+	//
+	// It is modeled as raw storage rather than a real hash_map member because the
+	// ALREADY-MATCHED clean-C++ ~NameKeyGenerator (0x168710, 79B) is just
+	// freeSockets() with no member-dtor call -- a normal hash_map member would force
+	// the compiler to emit an implicit ~hash_map() call there and grow the dtor past
+	// 79B. Retail leaks the bucket-vector buffer at destruction (never observed being
+	// freed anywhere); this storage does too, by construction. Same technique as
+	// WWDebug/wwmemlog.cpp's `char _MemLogCriticalSectionHandle[sizeof(CRITICAL_SECTION)]`.
+	typedef std::hash_map<NameKeyType, Bucket*, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > KeyToBucketMap;
+	UnsignedInt		m_keyToBucketStorage[(sizeof(KeyToBucketMap) + sizeof(UnsignedInt) - 1) / sizeof(UnsignedInt)];
+	KeyToBucketMap& keyToBucketMap() { return *reinterpret_cast<KeyToBucketMap*>(m_keyToBucketStorage); }
 
 };  // end class NameKeyGenerator
 

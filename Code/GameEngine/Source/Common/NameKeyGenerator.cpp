@@ -68,7 +68,6 @@ void NameKeyGenerator::reset()
 }  // end reset
 
 //-------------------------------------------------------------------------------------------------
-// ?freeSockets@NameKeyGenerator@@ present-unmatched
 void NameKeyGenerator::freeSockets()
 {
 	for (Int i = 0; i < SOCKET_COUNT; ++i)
@@ -77,10 +76,13 @@ void NameKeyGenerator::freeSockets()
 		for (Bucket *b = m_sockets[i]; b; b = next)
 		{
 			next = b->m_nextInSocket;
-			b->deleteInstance();
+			delete b;
 		}
 		m_sockets[i] = NULL;
 	}
+
+	// BFME-only: also drop the reverse key->Bucket index (see shim header).
+	reinterpret_cast<KeyToBucketMap*>(m_keyToBucketStorage)->clear();
 
 }  // end freeSockets
 
@@ -112,6 +114,17 @@ NameKeyType NameKeyGenerator::nameToKey(const AsciiString& name)
 
 //-------------------------------------------------------------------------------------------------
 // ?keyToName@NameKeyGenerator@@ present-unmatched
+// BFME's real body (0x8FD30) does NOT walk m_sockets -- it looks the key up in the
+// reverse key->Bucket hash_map instead (see shim header; find()/end() match
+// hashtable<>::_M_find's inlined `_M_hash(k) % buckets.size()` shape exactly). That
+// part reconstructs byte-for-byte. What blocks the full function is the RETURN:
+// retail's `return bucket->m_nameString;` calls an OUT-OF-LINE AsciiString copy
+// constructor (0x887B60) that guards the refcount++ with a lazily-initialized
+// magic-static critical section; our shim's copy ctor is a plain inline
+// (`AsciiString.h:385`) with no such guard, so the compiled bytes diverge from the
+// call site onward. Reconstructing retail's real (thread-safety-guarded?) AsciiString
+// copy ctor is AsciiString-ABI work, out of scope for this shim. Left
+// present-unmatched rather than landing a near-miss.
 AsciiString NameKeyGenerator::keyToName(NameKeyType key)
 {
 	for (Int i = 0; i < SOCKET_COUNT; ++i)
@@ -125,8 +138,20 @@ AsciiString NameKeyGenerator::keyToName(NameKeyType key)
 	return AsciiString::TheEmptyString;
 }
 
-//------------------------------------------------------------------------------------------------- 
+//-------------------------------------------------------------------------------------------------
 // ?nameToKey@NameKeyGenerator@@ present-unmatched
+// BFME's real body (0x8FFC0) additionally inserts into the reverse key->Bucket
+// hash_map (see shim header) after `m_sockets[hash] = b;` via
+// keyToBucketMap().insert(KeyToBucketMap::value_type(b->m_key, b)); -- that part is
+// proven byte-for-byte (resize()@0x8FB70 / insert_unique_noresize()@0x8FAB0 pins
+// verify) but the string-insert path just above it needs AsciiString::operator= to
+// route through the SAME AsciiString::set(const char*) proven for this file
+// (0x887D20), and separately keyToName's `it->second->m_nameString` return proved
+// retail's AsciiString COPY CTOR is out-of-line (0x887B60) with a lazily-initialized
+// thread-safety guard (magic-static critical section around the refcount++) that
+// our shim's `inline AsciiString::AsciiString(const AsciiString&)` doesn't reproduce
+// -- reconstructing that is real AsciiString-ABI work, out of scope for this shim.
+// Left present-unmatched rather than landing a near-miss.
 NameKeyType NameKeyGenerator::nameToKey(const char* nameString)
 {
 	Bucket *b;
@@ -137,7 +162,7 @@ NameKeyType NameKeyGenerator::nameToKey(const char* nameString)
 	for (b = m_sockets[hash]; b; b = b->m_nextInSocket)
 	{
 		if (strcmp(nameString, b->m_nameString.str()) == 0)
-			return b->m_key; 
+			return b->m_key;
 	}
 
 	// nope, guess not. let's allocate it.
