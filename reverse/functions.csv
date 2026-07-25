@@ -10423,7 +10423,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getDisallowNonAsianText@CustomMatchPreferences@@QAE_NXZ,,0x000AC610,95,Code/masm_dumps/CustomMatchPreferences_getDisallowNonAsianText.asm,matched,Unique DisallowNonAsianText preference getter
 ?getDisallowNonAsianText@GameSpyInfo@@UAE_NXZ,,0x00630790,7,Code/masm_dumps/GameSpyInfo_getDisallowNonAsianText.asm,matched,Vtable-bound BFME layout accessor
 ?getDisplayModeCount@Display@@UAEHXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/Display.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getDisplayName@PlayerTemplate@@QBE?AVUnicodeString@@XZ,,0x000300D5,5,Code/masm_dumps/_getDisplayName_PlayerTemplate__QBE_AVUnicodeString__XZ_300D5.asm,matched,MASM exact retail dump
+?getDisplayName@PlayerTemplate@@QBE?AVUnicodeString@@XZ,,0x000DFBA0,32,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,thunk-dump converted to clean C++; inline getter body ODR-used from GameSlot::getApparentPlayerTemplateDisplayName
 ?getDistanceCovered@W3DAnimationInfo@@QBEMXZ,,0x0010BD90,4,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,icf-owner=?getMinimumValue@GameClientRandomVariable@@QBEMXZ
 ?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ,0x0010BDB0,0x0010BDB0,3,Code/GameEngine/Source/Common/System/game_client_random_variable.cpp,matched,get distribution type
 ?getDockPoint@WorkerAIUpdate@@UAEPBUCoord3D@@W4DozerTask@@W4DozerDockPoint@@@Z,,0x002C8070,55,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,
@@ -11333,7 +11333,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?minf@@YAMMM@Z,,0x0075B460,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?missionSave@GameState@@QAE?AW4SaveCode@@XZ,,0x00110600,311,Code/masm_dumps/_sa4__missionSave_GameState__QAE_AW4SaveCode__XZ_110600.asm,matched,Exact 311B Open-BFME4
 ?move@?$__char_traits_base@GG@_STL@@SAPAGPAGPBGI@Z,,0x004D4100,25,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
-?moveRoadSegTo@W3DRoadBuffer@@IAEXHH@Z,,0x0003283F,5,Code/masm_dumps/_moveRoadSegTo_W3DRoadBuffer__IAEXHH_Z_3283F.asm,matched,MASM exact retail dump
+?moveRoadSegTo@W3DRoadBuffer@@IAEXHH@Z,,0x0070B040,223,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,thunk-dump converted to clean C++ (source already ported from ZH reference)
 ?mp_quo_digit@@YAGPAG@Z,,0x009E8BC0,129,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
 ?mul@Matrix3D@@QAEXABV1@0@Z,,0x00131F60,306,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?mulVector3@Matrix3D@@QBEXAAVVector3@@@Z,,0x001C0D10,88,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,

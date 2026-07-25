@@ -574,7 +574,7 @@ the road vector gives the direction of the road, and the road normal is perpendi
 to the road normal.  */
 //=============================================================================
 // ?loadFloat4PtSection@W3DRoadBuffer@@ present-unmatched
-void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc, 
+void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *pRoad, Vector2 loc,
 														Vector2 roadNormal, Vector2 roadVector,
 														Vector2 *cornersP, 
 														Real uOffset, Real vOffset, Real uScale, Real vScale)
@@ -1391,9 +1391,11 @@ void W3DRoadBuffer::loadRoadSegment(UnsignedShort *ib, VertexFormatXYZDUV1 *vb, 
 //=============================================================================
 /** Moves a road segment. */
 //=============================================================================
-// ?moveRoadSegTo@W3DRoadBuffer@@IAEXHH@Z present-unmatched
 void W3DRoadBuffer::moveRoadSegTo(Int fromNdx, Int toNdx)
 {
+	// BFME added a guard vs ZH: refuses to shuffle m_roads before init (proven
+	// by target byte read of this+0xc, m_initialized's proven offset).
+	if (!m_initialized) return;
 	if (fromNdx<0 || fromNdx>=m_numRoads || toNdx<0 || toNdx>=m_numRoads) {
 #ifdef _DEBUG
 		DEBUG_LOG(("bad moveRoadSegTo\n"));
