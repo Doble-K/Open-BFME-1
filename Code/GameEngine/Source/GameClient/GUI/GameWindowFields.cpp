@@ -368,6 +368,50 @@ Int GameWindow::winEnable( Bool enable )
 	return WIN_ERR_OK;
 }
 
+// GameWindow::winSetSize =======================================================
+// BFME body is byte-identical to ZH (same GGM_RESIZED=0x4004 enum ordering).
+// ?winSetSize@GameWindow@@QAEHHH@Z
+Int GameWindow::winSetSize( Int width, Int height )
+{
+	m_size.x = width;
+	m_size.y = height;
+	m_region.hi.x = m_region.lo.x + width;
+	m_region.hi.y = m_region.lo.y + height;
+
+	TheWindowManager->winSendSystemMsg( this,
+																			GGM_RESIZED,
+																			(WindowMsgData)width,
+																			(WindowMsgData)height );
+
+	return WIN_ERR_OK;
+}
+
+// GameWindow::winSetNextInLayout / winSetPrevInLayout / winSetLayout =========
+// BFME changed these three from ZH's void return to Int: the retail body is
+// 'mov eax,[esp+4]; mov [ecx+off],eax; ret 4' -- it returns the same pointer
+// it was just given, reinterpreted as Int. See the shim declaration for why
+// these can't just stay void.
+// ?winSetNextInLayout@GameWindow@@QAEHPAV1@@Z
+Int GameWindow::winSetNextInLayout( GameWindow *next )
+{
+	m_nextLayout = next;
+	return (Int)next;
+}
+
+// ?winSetPrevInLayout@GameWindow@@QAEHPAV1@@Z
+Int GameWindow::winSetPrevInLayout( GameWindow *prev )
+{
+	m_prevLayout = prev;
+	return (Int)prev;
+}
+
+// ?winSetLayout@GameWindow@@QAEHPAVWindowLayout@@@Z
+Int GameWindow::winSetLayout( WindowLayout *layout )
+{
+	m_layout = layout;
+	return (Int)layout;
+}
+
 // GameWindow::winHide ==========================================================
 // BFME-modified: messages the manager with winSendSystemMsg(this, 0x1b, !hide, 0)
 // when the status actually changed, and unconditionally clears status bit

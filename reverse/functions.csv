@@ -12632,17 +12632,17 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winSetHiliteBorderColor@GameWindow@@QAEHHH@Z,,0x00479150,40,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winSetHiliteColor@GameWindow@@QAEHHH@Z,,0x00479120,37,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winSetHiliteImage@GameWindow@@QAEHHPBVImage@@@Z,,0x00479120,37,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_instData.m_hiliteDrawData[i].image@0x130
-?winSetLayout@GameWindow@@QAEHPAVWindowLayout@@@Z,,0x00031881,5,Code/masm_dumps/_winSetLayout_GameWindow__QAEHPAVWindowLayout___Z_31881.asm,matched,MASM exact retail dump
+?winSetLayout@GameWindow@@QAEHPAVWindowLayout@@@Z,,0x00478E10,13,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; ILT thunk 0x31881 -> body 0x478e10
 ?winSetLayout@GameWindow@@QAEXPAVWindowLayout@@@Z,,0x0026ED70,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winSetLoneWindow@GameWindowManager@@UAEXPAVGameWindow@@@Z,,0x0047D040,51,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
-?winSetNextInLayout@GameWindow@@QAEHPAV1@@Z,,0x00035CF6,5,Code/masm_dumps/_winSetNextInLayout_GameWindow__QAEHPAV1__Z_35CF6.asm,matched,MASM exact retail dump
+?winSetNextInLayout@GameWindow@@QAEHPAV1@@Z,,0x00478DF0,13,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; ILT thunk 0x35CF6 -> body 0x478df0
 ?winSetNextInLayout@GameWindow@@QAEXPAV1@@Z,,0x001BD6A0,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winSetParent@GameWindow@@QAEHPAV1@@Z,,0x00478CB0,84,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,cached-obj2 Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?winSetPosition@GameWindow@@QAEHHH@Z,,0x004780D0,85,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; m_bfmeAnchor vtable+0x8 reposition call verified
 ?winSetPrev@GameWindow@@QAEXPAV1@@Z,,0x00478EB0,15,Code/masm_dumps/_rn13__winSetPrev_GameWindow__QAEXPAV1__Z_478EB0.asm,matched,reloc-needle Open-BFME4+Grok
-?winSetPrevInLayout@GameWindow@@QAEHPAV1@@Z,,0x00015FB4,5,Code/masm_dumps/_winSetPrevInLayout_GameWindow__QAEHPAV1__Z_15FB4.asm,matched,MASM exact retail dump
+?winSetPrevInLayout@GameWindow@@QAEHPAV1@@Z,,0x00478E00,13,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; ILT thunk 0x15FB4 -> body 0x478e00
 ?winSetPrevInLayout@GameWindow@@QAEXPAV1@@Z,,0x00478DD0,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
-?winSetSize@GameWindow@@QAEHHH@Z,,0x000482AC,5,Code/masm_dumps/_winSetSize_GameWindow__QAEHHH_Z_482AC.asm,matched,MASM exact retail dump
+?winSetSize@GameWindow@@QAEHHH@Z,,0x00478250,63,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; ILT thunk 0x482AC -> body 0x478250
 ?winSetStatus@GameWindow@@QAEII@Z,,0x00840FC0,19,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winTextLabelToText@GameWindowManager@@QAE?AVUnicodeString@@VAsciiString@@@Z,,0x0047E1B0,175,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_winTextLabelToText.asm,matched,exact 175B via MASM (SEH)
 ?windowHiding@GameWindowManager@@UAEXPAVGameWindow@@@Z,,0x0047C7E0,109,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,

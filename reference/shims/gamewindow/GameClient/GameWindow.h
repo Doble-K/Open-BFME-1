@@ -352,9 +352,11 @@ public:
 	GameWindow *winGetPrev( void );  ///< get previous window in window list
 
 	// these are for interacting with a group of windows as a shell "screen"
-	void winSetNextInLayout( GameWindow *next );  ///< set next in layout
-	void winSetPrevInLayout( GameWindow *prev );  ///< set prev in layout 
-	void winSetLayout( WindowLayout *layout );  ///< set layout
+	// BFME: these three return Int (the cast pointer arg), not void -- retail
+	// mangled names are QAEH... not QAEX...; see GameWindowFields.cpp.
+	Int winSetNextInLayout( GameWindow *next );  ///< set next in layout
+	Int winSetPrevInLayout( GameWindow *prev );  ///< set prev in layout
+	Int winSetLayout( WindowLayout *layout );  ///< set layout
 	WindowLayout *winGetLayout( void );  ///< get layout layout
 	GameWindow *winGetNextInLayout( void );  ///< get next window in layout
 	GameWindow *winGetPrevInLayout( void );  ///< get prev window in layout
