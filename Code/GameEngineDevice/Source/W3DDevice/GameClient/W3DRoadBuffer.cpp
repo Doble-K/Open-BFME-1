@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /MD /EHsc /Ireference/shims/w3droadbuffer /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -1809,6 +1809,9 @@ void W3DRoadBuffer::updateCountsAndFlags()
 // ?insertTee@W3DRoadBuffer@@IAEXVVector2@@HM@Z present-unmatched
 void W3DRoadBuffer::insertTee(Vector2 loc, Int index1, Real scale)
 {
+	// BFME added a guard vs ZH: refuses to insert before init (proven by
+	// target byte read of this+0xc, m_initialized's proven offset).
+	if (!m_initialized) return;
 
 	if (insertY(loc,index1, scale)) {
 		return;
@@ -2455,9 +2458,12 @@ void W3DRoadBuffer::offset4Way(TRoadPt *pc1, TRoadPt *pc2, TRoadPt *pc3, TRoadPt
 //=============================================================================
 /** Inserts a 4 way intersection. */
 //=============================================================================
-// ?insert4Way@W3DRoadBuffer@@IAEXVVector2@@HM@Z present-unmatched
 void W3DRoadBuffer::insert4Way(Vector2 loc, Int index1, Real scale)
 {
+	// BFME added a guard vs ZH: refuses to insert before init (proven by
+	// target byte read of this+0xc, m_initialized's proven offset).
+	if (!m_initialized) return;
+
 	// pr1-4 point to the points on the segments that form the tee.
 	// They are the points on the segments that are != loc.
 	TRoadPt *pr1=NULL;
