@@ -10,7 +10,6 @@
 // uniform +0x14 (5 dwords) inserted somewhere between m_playerIndex (proven
 // UNSHIFTED at [this+0x24] via the matched getPlayerMask@Player) and
 // m_radarCount. See the shim header for the full offset writeup.
-//
 // hasRadar's own standalone body (0xC9A80, immediately after
 // okToPlayRadarEdgeSound's body at 0xC9A20 in the same retail compiland) is a
 // pure field read with no external calls, so it lands cleanly. disableRadar/
@@ -21,7 +20,6 @@
 // track's scope (Player-side field reads were proven byte-identical up to
 // that point; see reverse/re_attempts.log). Left unconverted rather than
 // landed with an unresolved call.
-//
 // This lives here rather than in Common/RTS/Player.cpp because that TU
 // resolves Common/Player.h to the ZH-layout reference header (m_radarDisabled
 // @0x4c); the private /Ireference/shims/player above makes only this TU see
@@ -35,11 +33,9 @@ Bool Player::hasRadar() const
 {
 	if( m_radarDisabled  && (m_disableProofRadarCount == 0) )
 		return FALSE;// Nope, no matter how many you have, if I say no, you don't have it
-
 	// Otherwise, check if I actually do have it.
 	return m_radarCount > 0;
 }
-
 // hasScience/hasPrereqsForScience have no standalone body proven at this RVA;
 // they are defined here ONLY so /O2 inlines them into isCapableOfPurchasingScience
 // below exactly as retail does (retail's own body goes straight from the
@@ -50,15 +46,9 @@ Bool Player::hasRadar() const
 // it never dereferences a Player field, so layout drift doesn't affect it).
 // ?hasScience@Player@@QBE_NW4ScienceType@@@Z present-unmatched
 Bool Player::hasScience(ScienceType t) const
-{
 	return std::find(m_sciences.begin(), m_sciences.end(), t) != m_sciences.end();
-}
-
 Bool Player::hasPrereqsForScience(ScienceType t) const
-{
 	return TheScienceStore->playerHasPrereqsForScience(this, t);
-}
-
 // isCapableOfPurchasingScience's own body (0xCFDF0, behind ILT thunk 0x449e45)
 // reads m_sciences.begin()/end() at [this+0x234]/[this+0x238] (inlined
 // hasScience) and m_sciencePurchasePoints at [this+0x264] (inlined
@@ -66,7 +56,6 @@ Bool Player::hasPrereqsForScience(ScienceType t) const
 // second BFME-only insertion writeup. TheScienceStore->playerHasPrereqsForScience
 // (0xDCDD, inlined from hasPrereqsForScience) and ->getSciencePurchaseCost
 // (0x2BFD) are both already pinned in reverse/symbols.csv.
-//
 // BFME identity differs from the ZH source here: retail has NO
 // isScienceDisabled()/isScienceHidden() check between hasScience() and
 // hasPrereqsForScience() -- confirmed by exhaustive disassembly of the 110B
@@ -74,28 +63,13 @@ Bool Player::hasPrereqsForScience(ScienceType t) const
 // the prereqs call. Written to match retail exactly, not the ZH source.
 // ?isCapableOfPurchasingScience@Player@@QBE_NW4ScienceType@@@Z
 Bool Player::isCapableOfPurchasingScience(ScienceType science) const
-{
 	if (science == SCIENCE_INVALID)
 	{
 		return false;
 	}
-
 	if (hasScience(science))
-	{
-		return false;
-	}
-
 	if (!hasPrereqsForScience(science))
-	{
-		return false;
-	}
-
 	Int cost = TheScienceStore->getSciencePurchaseCost(science);
 	// purchase cost of zero means "not purchasable!"
 	if (cost == 0 || cost > getSciencePurchasePoints())
-	{
-		return false;
-	}
-
 	return true;
-}
