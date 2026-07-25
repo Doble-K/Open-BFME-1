@@ -1,0 +1,373 @@
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /Ireference/shims/bfmeobject /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
+/*
+**	Command & Conquer Generals Zero Hour(tm)
+**	Copyright 2025 Electronic Arts Inc.
+**
+**	This program is free software: you can redistribute it and/or modify
+**	it under the terms of the GNU General Public License as published by
+**	the Free Software Foundation, either version 3 of the License, or
+**	(at your option) any later version.
+**
+**	This program is distributed in the hope that it will be useful,
+**	but WITHOUT ANY WARRANTY; without even the implied warranty of
+**	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+**	GNU General Public License for more details.
+**
+**	You should have received a copy of the GNU General Public License
+**	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+// Object leaf members compiled against the reconstructed BFME Object layout
+// (reference/shims/bfmeobject/GameLogic/Object.h, m_behaviors@0x1f0,
+// m_ai@0x204). Object.cpp itself still resolves GameLogic/Object.h to the
+// ZH-layout sweep shim, so these bodies live here where the private
+// /Ireference/shims/bfmeobject is the first include dir.
+//
+// The module interfaces below are BFME-slot skeletons, not the ZH classes:
+// BehaviorModule reaches its BehaviorModuleInterface sub-object at +0x0c
+// (ZH: +0x10) and getSpecialPowerUpdateInterface is vtable slot 24 / +0x60
+// (ZH: 26 / +0x68); SpecialPowerUpdateInterface reaches
+// doesSpecialPowerHaveOverridableDestinationActive at slot 4 / +0x10
+// (ZH: 7 / +0x1c).
+
+#include "GameLogic/Object.h"
+
+//-------------------------------------------------------------------------------------------------
+class SpecialPowerUpdateInterface
+{
+public:
+	virtual void _bfme_spu_slot0() = 0;
+	virtual void _bfme_spu_slot1() = 0;
+	virtual void _bfme_spu_slot2() = 0;
+	virtual void _bfme_spu_slot3() = 0;
+	virtual Bool doesSpecialPowerHaveOverridableDestinationActive() const = 0;	///< +0x10
+};
+
+//-------------------------------------------------------------------------------------------------
+class UpgradeModuleInterface;
+class DockUpdateInterface;
+class ProductionUpdateInterface;
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void _bfme_bmi_slot00() = 0;
+	virtual void _bfme_bmi_slot01() = 0;
+	virtual void _bfme_bmi_slot02() = 0;
+	virtual void _bfme_bmi_slot03() = 0;
+	virtual void _bfme_bmi_slot04() = 0;
+	virtual void _bfme_bmi_slot05() = 0;
+	virtual void _bfme_bmi_slot06() = 0;
+	virtual void _bfme_bmi_slot07() = 0;
+	virtual void _bfme_bmi_slot08() = 0;
+	virtual UpgradeModuleInterface* getUpgrade() = 0;	///< +0x24
+	virtual void _bfme_bmi_slot10() = 0;
+	virtual void _bfme_bmi_slot11() = 0;
+	virtual void _bfme_bmi_slot12() = 0;
+	virtual void _bfme_bmi_slot13() = 0;
+	virtual void _bfme_bmi_slot14() = 0;
+	virtual void _bfme_bmi_slot15() = 0;
+	virtual void _bfme_bmi_slot16() = 0;
+	virtual void _bfme_bmi_slot17() = 0;
+	virtual void _bfme_bmi_slot18() = 0;
+	virtual void _bfme_bmi_slot19() = 0;
+	virtual void _bfme_bmi_slot20() = 0;
+	virtual DockUpdateInterface* getDockUpdateInterface() = 0;	///< +0x54
+	virtual void _bfme_bmi_slot22() = 0;
+	virtual void _bfme_bmi_slot23() = 0;
+	virtual SpecialPowerUpdateInterface* getSpecialPowerUpdateInterface() = 0;	///< +0x60
+	virtual void _bfme_bmi_slot25() = 0;
+	virtual void _bfme_bmi_slot26() = 0;
+	virtual ProductionUpdateInterface* getProductionUpdateInterface() = 0;	///< +0x6c
+};
+
+//-------------------------------------------------------------------------------------------------
+/// ObjectModule stand-in: vptr + two words, so the second base lands at +0x0c.
+class _BFMEObjectModule
+{
+public:
+	virtual void _bfme_om_slot0() = 0;
+private:
+	UnsignedInt _bfme_om_data[2];
+};
+
+//-------------------------------------------------------------------------------------------------
+class BehaviorModule : public _BFMEObjectModule, public BehaviorModuleInterface
+{
+};
+
+//-------------------------------------------------------------------------------------------------
+/// PartitionData stand-in: BFME makeDirty() takes no argument (ZH: makeDirty(Bool)).
+class PartitionData
+{
+public:
+	void makeDirty( void );														///< retail 0x008F7B30
+};
+
+//-------------------------------------------------------------------------------------------------
+// ?setScriptStatus@Object@@QAEXW4ObjectScriptStatusBit@@_N@Z
+void Object::setScriptStatus( ObjectScriptStatusBit bit, Bool set )
+{
+	UnsignedInt oldScriptStatus = m_scriptStatus;
+
+	if( set )
+	{
+		m_scriptStatus |= bit;
+	}
+	else
+	{
+		m_scriptStatus &= ~bit;
+	}
+
+	if( m_scriptStatus != oldScriptStatus )
+	{
+		if( (m_scriptStatus & OBJECT_STATUS_SCRIPT_DISABLED) != (oldScriptStatus & OBJECT_STATUS_SCRIPT_DISABLED) )
+		{
+			if( m_partitionData )
+			{
+				m_partitionData->makeDirty();
+			}
+			if( m_scriptStatus & OBJECT_STATUS_SCRIPT_DISABLED )
+			{
+				setDisabled( DISABLED_SCRIPT_DISABLED );
+			}
+			else
+			{
+				clearDisabled( DISABLED_SCRIPT_DISABLED );
+			}
+		}
+		if( (m_scriptStatus & OBJECT_STATUS_SCRIPT_UNPOWERED) != (oldScriptStatus & OBJECT_STATUS_SCRIPT_UNPOWERED) )
+		{
+			if( m_partitionData )
+			{
+				m_partitionData->makeDirty();
+			}
+			if( m_scriptStatus & OBJECT_STATUS_SCRIPT_UNPOWERED )
+			{
+				setDisabled( DISABLED_SCRIPT_UNDERPOWERED );
+			}
+			else
+			{
+				clearDisabled( DISABLED_SCRIPT_UNDERPOWERED );
+			}
+		}
+	}
+}
+
+//-------------------------------------------------------------------------------------------------
+/// Overridable stand-in: MemoryPoolObject vtable pointer, then m_nextOverride@+0x04.
+class Overridable
+{
+public:
+	const Overridable* getFinalOverride( void ) const	///< out-of-line copy is retail 0x000022BB
+	{
+		if (m_nextOverride)
+			return m_nextOverride->getFinalOverride();
+		return this;
+	}
+
+	void*					_bfme_ov_vptr;
+	Overridable*	m_nextOverride;
+};
+
+//-------------------------------------------------------------------------------------------------
+class LocomotorTemplate : public Overridable
+{
+public:
+	UnsignedInt		_bfme_lt_pad[2];
+	Int						m_surfaces;												///< +0x10, LOCOMOTORSURFACE_AIR = (1 << 3)
+};
+
+//-------------------------------------------------------------------------------------------------
+class Locomotor
+{
+public:
+	const LocomotorTemplate* getTemplate( void ) const
+	{
+		const Overridable* o = m_template;
+		if (o != NULL)
+			o = o->getFinalOverride();
+		return (const LocomotorTemplate*)o;
+	}
+
+	Int getLegalSurfaces( void ) const { return getTemplate()->m_surfaces; }
+
+	void*											_bfme_loco_vptr;
+	const LocomotorTemplate*	m_template;							///< +0x04
+};
+
+//-------------------------------------------------------------------------------------------------
+/// ThingTemplate stand-in: an Overridable with a flag word at +0xd4.
+class ThingTemplate : public Overridable
+{
+public:
+	UnsignedByte	_bfme_tt_pad[0xcc];
+	UnsignedInt		_bfme_tt_flags;										///< +0xd4, bit 0x1000 gates the upgrade broadcast
+};
+
+//-------------------------------------------------------------------------------------------------
+/// The interface the contain module hands out, whose slot +0xb0 takes the upgrade mask.
+class _BFMEUpgradeSink
+{
+public:
+	virtual void _bfme_us_slot00() = 0;	virtual void _bfme_us_slot01() = 0;
+	virtual void _bfme_us_slot02() = 0;	virtual void _bfme_us_slot03() = 0;
+	virtual void _bfme_us_slot04() = 0;	virtual void _bfme_us_slot05() = 0;
+	virtual void _bfme_us_slot06() = 0;	virtual void _bfme_us_slot07() = 0;
+	virtual void _bfme_us_slot08() = 0;	virtual void _bfme_us_slot09() = 0;
+	virtual void _bfme_us_slot10() = 0;	virtual void _bfme_us_slot11() = 0;
+	virtual void _bfme_us_slot12() = 0;	virtual void _bfme_us_slot13() = 0;
+	virtual void _bfme_us_slot14() = 0;	virtual void _bfme_us_slot15() = 0;
+	virtual void _bfme_us_slot16() = 0;	virtual void _bfme_us_slot17() = 0;
+	virtual void _bfme_us_slot18() = 0;	virtual void _bfme_us_slot19() = 0;
+	virtual void _bfme_us_slot20() = 0;	virtual void _bfme_us_slot21() = 0;
+	virtual void _bfme_us_slot22() = 0;	virtual void _bfme_us_slot23() = 0;
+	virtual void _bfme_us_slot24() = 0;	virtual void _bfme_us_slot25() = 0;
+	virtual void _bfme_us_slot26() = 0;	virtual void _bfme_us_slot27() = 0;
+	virtual void _bfme_us_slot28() = 0;	virtual void _bfme_us_slot29() = 0;
+	virtual void _bfme_us_slot30() = 0;	virtual void _bfme_us_slot31() = 0;
+	virtual void _bfme_us_slot32() = 0;	virtual void _bfme_us_slot33() = 0;
+	virtual void _bfme_us_slot34() = 0;	virtual void _bfme_us_slot35() = 0;
+	virtual void _bfme_us_slot36() = 0;	virtual void _bfme_us_slot37() = 0;
+	virtual void _bfme_us_slot38() = 0;	virtual void _bfme_us_slot39() = 0;
+	virtual void _bfme_us_slot40() = 0;	virtual void _bfme_us_slot41() = 0;
+	virtual void _bfme_us_slot42() = 0;	virtual void _bfme_us_slot43() = 0;
+	virtual void applyUpgradeMask( const UpgradeMaskType& mask, Bool set ) = 0;	///< +0xb0
+};
+
+//-------------------------------------------------------------------------------------------------
+class ContainModuleInterface
+{
+public:
+	virtual void _bfme_cmi_slot00() = 0;	virtual void _bfme_cmi_slot01() = 0;
+	virtual void _bfme_cmi_slot02() = 0;	virtual void _bfme_cmi_slot03() = 0;
+	virtual void _bfme_cmi_slot04() = 0;	virtual void _bfme_cmi_slot05() = 0;
+	virtual void _bfme_cmi_slot06() = 0;	virtual void _bfme_cmi_slot07() = 0;
+	virtual void _bfme_cmi_slot08() = 0;	virtual void _bfme_cmi_slot09() = 0;
+	virtual void _bfme_cmi_slot10() = 0;	virtual void _bfme_cmi_slot11() = 0;
+	virtual void _bfme_cmi_slot12() = 0;	virtual void _bfme_cmi_slot13() = 0;
+	virtual void _bfme_cmi_slot14() = 0;	virtual void _bfme_cmi_slot15() = 0;
+	virtual void _bfme_cmi_slot16() = 0;	virtual void _bfme_cmi_slot17() = 0;
+	virtual void _bfme_cmi_slot18() = 0;	virtual void _bfme_cmi_slot19() = 0;
+	virtual void _bfme_cmi_slot20() = 0;	virtual void _bfme_cmi_slot21() = 0;
+	virtual void _bfme_cmi_slot22() = 0;	virtual void _bfme_cmi_slot23() = 0;
+	virtual void _bfme_cmi_slot24() = 0;	virtual void _bfme_cmi_slot25() = 0;
+	virtual _BFMEUpgradeSink* getUpgradeSink() = 0;								///< +0x68
+};
+
+//-------------------------------------------------------------------------------------------------
+class UpgradeTemplate
+{
+public:
+	UnsignedInt getUpgradeIndex( void ) const { return _bfme_ut_index; }
+
+	UnsignedByte	_bfme_ut_head[0x20];
+	UnsignedInt		_bfme_ut_index;										///< +0x20
+};
+
+//-------------------------------------------------------------------------------------------------
+// ?giveUpgrade@Object@@QAEXPBVUpgradeTemplate@@@Z
+void Object::giveUpgrade( const UpgradeTemplate *upgradeT )
+{
+	if (upgradeT)
+	{
+		UnsignedInt idx = upgradeT->getUpgradeIndex();
+		m_objectUpgradesCompleted.m_bits[idx >> 5] |= (1 << (idx & 31));
+
+		updateUpgradeModules();
+
+		// Thing::getTemplate(): the template is an Overridable, so walk to its final override.
+		const Overridable* tmpl = m_template;
+		if (tmpl != NULL)
+			tmpl = tmpl->getFinalOverride();
+
+		if (((const ThingTemplate*)tmpl)->_bfme_tt_flags & 0x1000)
+		{
+			if (getContain() && getContain()->getUpgradeSink())
+				getContain()->getUpgradeSink()->applyUpgradeMask( m_objectUpgradesCompleted, FALSE );
+		}
+	}
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?getProductionUpdateInterface@Object@@QAEPAVProductionUpdateInterface@@XZ
+ProductionUpdateInterface* Object::getProductionUpdateInterface( void )
+{
+	for( BehaviorModule** b = m_behaviors; *b; ++b )
+	{
+		ProductionUpdateInterface* pu = (*b)->getProductionUpdateInterface();
+		if( pu )
+			return pu;
+	}
+	return NULL;
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?getDockUpdateInterface@Object@@QAEPAVDockUpdateInterface@@XZ
+DockUpdateInterface* Object::getDockUpdateInterface( void )
+{
+	for( BehaviorModule** b = m_behaviors; *b; ++b )
+	{
+		DockUpdateInterface* dock = (*b)->getDockUpdateInterface();
+		if( dock )
+			return dock;
+	}
+	return NULL;
+}
+
+//-------------------------------------------------------------------------------------------------
+class UpgradeModuleInterface
+{
+public:
+	virtual void _bfme_umi_slot0() = 0;
+	virtual void _bfme_umi_slot1() = 0;
+	virtual void _bfme_umi_slot2() = 0;
+	virtual void resetUpgrade( const UpgradeMaskType& keyMask ) = 0;	///< +0x0c
+};
+
+//-------------------------------------------------------------------------------------------------
+// ?removeUpgrade@Object@@QAEXPBVUpgradeTemplate@@@Z
+void Object::removeUpgrade( const UpgradeTemplate *upgradeT )
+{
+	UnsignedInt idx = upgradeT->getUpgradeIndex();
+	m_objectUpgradesCompleted.m_bits[idx >> 5] &= ~(1 << (idx & 31));
+
+	for (BehaviorModule** module = m_behaviors; *module; ++module)
+	{
+		UpgradeModuleInterface* upgrade = (*module)->getUpgrade();
+		if (!upgrade)
+			continue;
+
+		upgrade->resetUpgrade( UpgradeMaskType( UpgradeMaskType::kInit, upgradeT->getUpgradeIndex() ) );
+	}
+}
+
+//-------------------------------------------------------------------------------------------------
+class AIUpdateInterface
+{
+public:
+	Locomotor* getCurLocomotor( void ) const { return m_curLocomotor; }
+
+	UnsignedByte	_bfme_ai_head[0x1cc];
+	Locomotor*		m_curLocomotor;										///< +0x1cc
+};
+
+//-------------------------------------------------------------------------------------------------
+// ?isUsingAirborneLocomotor@Object@@QBE_NXZ
+Bool Object::isUsingAirborneLocomotor( void ) const
+{
+	return ( m_ai && m_ai->getCurLocomotor() && ((m_ai->getCurLocomotor()->getLegalSurfaces() & (1 << 3)) != 0) );
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?findSpecialPowerWithOverridableDestinationActive@Object@@QBEPAVSpecialPowerUpdateInterface@@W4SpecialPowerType@@@Z
+SpecialPowerUpdateInterface* Object::findSpecialPowerWithOverridableDestinationActive( SpecialPowerType type ) const
+{
+	for( BehaviorModule** b = m_behaviors; *b; ++b )
+	{
+		SpecialPowerUpdateInterface* spuInterface = (*b)->getSpecialPowerUpdateInterface();
+		if( spuInterface && spuInterface->doesSpecialPowerHaveOverridableDestinationActive() )
+			return spuInterface;
+	}
+	return NULL;
+}

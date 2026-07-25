@@ -9451,7 +9451,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findSpareSocketByPort@FirewallHelperClass@@AAEPAUSpareSocketStruct@@G@Z,,0x0066E490,44,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?findSpecialPowerCompletionDie@Object@@QBEPAVSpecialPowerCompletionDie@@XZ,,0x001BF8C0,111,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?findSpecialPowerTemplateByID@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@I@Z,,0x000EB690,101,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
-?findSpecialPowerWithOverridableDestinationActive@Object@@QBEPAVSpecialPowerUpdateInterface@@W4SpecialPowerType@@@Z,,0x00039766,5,Code/masm_dumps/_findSpecialPowerWithOverridableDestinationActive_Object__QBEPAVSpecialPowerUpdateInterface__W4SpecialPowerTyp_39766.asm,matched,MASM exact retail dump
+?findSpecialPowerWithOverridableDestinationActive@Object@@QBEPAVSpecialPowerUpdateInterface@@W4SpecialPowerType@@@Z,,0x001BF6F0,65,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME Object layout shim (m_behaviors@0x1f0)
 ?findStagingRoomByID@GameSpyInfo@@UAEPAVGameSpyStagingRoom@@H@Z,,0x00632B40,46,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?findStaticLODLevel@GameLODManager@@QAE?AW4StaticGameLODLevel@@XZ,,0x00090970,106,Code/masm_dumps/_sa14__findStaticLODLevel_GameLODManager__QAE_AW4StaticGameLODLevel__XZ_90970.asm,matched,sa14 Open-BFME4+Grok StaticGameLOD
 ?findTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z,,0x005BB330,155,Code/GameEngine/Source/GameClient/System/Anim2DCollection_walls.asm,matched,
@@ -10967,7 +10967,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?get_sort_flags@MeshModelClass@@IBEIH@Z,,0x0096DCB0,137,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?get_sort_flags@MeshModelClass@@IBEIXZ,,0x0096DD40,50,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?getframe@AdaptiveDeltaMotionChannelClass@@AAEMKK@Z,,0x00977FF0,330,Code/masm_dumps/__getframe_AdaptiveDeltaMotionChannelClass__AAEMKK__977FF0.asm,matched,
-?giveUpgrade@Object@@QAEXPBVUpgradeTemplate@@@Z,,0x0001A97E,5,Code/masm_dumps/_giveUpgrade_Object__QAEXPBVUpgradeTemplate___Z_1A97E.asm,matched,MASM exact retail dump
+?giveUpgrade@Object@@QAEXPBVUpgradeTemplate@@@Z,,0x001C9F70,137,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME m_objectUpgradesCompleted@0x224 (6 words) m_contain@0x1fc Thing m_template@0x04
 ?gogoGadgetComboBox@GameWindowManager@@UAEPAVGameWindow@@PAV2@IHHHHPAVWinInstanceData@@PAU_ComboBoxData@@PAVGameFont@@_N@Z,,0x0047F757,1121,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoGadgetComboBox.asm,matched,exact 1121B via MASM
 ?gogoMessageBox@GameWindowManager@@,,0x0047EF70,1518,Code/masm_dumps/_str2__gogoMessageBox_GameWindowManager__47EF70.asm,matched,
 ?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/masm_dumps/_gotInternalAddress_NAT__IAEXHI_Z_670D70.asm,matched,MASM exact retail dump
@@ -11263,7 +11263,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isThreadRunning@GameSpyPeerMessageQueue@@UAE_NXZ,,0x00642C60,15,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?isTrueHordeMember@HordeUpdate@@UBE_NXZ,,0x00297510,23,Code/GameEngine/Source/GameLogic/Object/Update/HordeUpdate.cpp,matched,
 ?isTurretInNaturalPosition@BattlePlanUpdate@@IAE_NXZ,,0x002858E0,40,Code/masm_dumps/_rn9__isTurretInNaturalPosition_BattlePlanUpdate__IAE_NXZ_2858E0.asm,matched,reloc-needle Open-BFME4+Grok
-?isUsingAirborneLocomotor@Object@@QBE_NXZ,,0x0000A001,5,Code/masm_dumps/_isUsingAirborneLocomotor_Object__QBE_NXZ_A001.asm,matched,MASM exact retail dump
+?isUsingAirborneLocomotor@Object@@QBE_NXZ,,0x001C1770,54,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME Object m_ai@0x204 + AIUpdateInterface m_curLocomotor@0x1cc
 ?isValidINIFilename@INI@@KA_NPBD@Z,,0x008507C0,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?isValidObjectTarget@CommandButton@@QBE_NPBVDrawable@@0@Z,,0x0049AE20,67,Code/masm_dumps/CommandButton_isValidObjectTarget_Drawable.asm,matched,Ghidra-corrected BFME Drawable target overload
 ?isValidObjectTarget@CommandButton@@QBE_NPBVObject@@0@Z,,0x0049ACF0,43,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
@@ -12278,7 +12278,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setSDEnabled@StealthDetectorUpdate@@QAEX_N@Z,,0x002AB650,34,Code/masm_dumps/_rn9__setSDEnabled_StealthDetectorUpdate__QAEX_N_Z_2AB650.asm,matched,reloc-needle Open-BFME4+Grok
 ?setSafeOcclusionFrame@Object@@QAEXI@Z,,0x0066AF40,13,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,
 ?setSawCompleteGameList@PeerThreadClass@@QAEX_N@Z,,0x0020FB00,13,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
-?setScriptStatus@Object@@QAEXW4ObjectScriptStatusBit@@_N@Z,,0x0002BF2B,5,Code/masm_dumps/_thunk_b209cbfebb47_2BF2B.asm,matched,thunk accessor of ported class
+?setScriptStatus@Object@@QAEXW4ObjectScriptStatusBit@@_N@Z,,0x001D01D0,181,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME m_scriptStatus@0x343 m_partitionData@0x3b0 DISABLED_SCRIPT_DISABLED=9
 ?setSecondMaterialPassOpacity@Drawable@@QAEXM@Z,,0x0077E040,13,Code/GameEngine/Source/GameLogic/Object/Update/StealthDetectorUpdate.cpp,matched,
 ?setSeed@GameInfo@@QAEXH@Z,,0x000C8F50,10,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setSelectable@Drawable@@QAEX_N@Z,,0x00411F80,23,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
@@ -13556,3 +13556,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?winHide@GameWindow@@QAEH_N@Z,,0x00478390,98,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; supersedes mislabeled QAEHH row (real param is bool not int); winSendSystemMsg@+0xd4 verified
 ?worldToCell@Pathfinder@@QAE_NPBUCoord3D@@PAUICoord2D@@@Z,,0x003D7EC0,156,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,clean C++; BFME fast_float_floor calls CRT floor() via dllimport IAT not ZH bit-trick
 ?clip@Pathfinder@@QAEXPAUCoord3D@@0@Z,,0x003D5DE0,373,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,clean C++; MASM dump superseded; BFME floor-via-IAT + int-scale clip codegen
+?removeUpgrade@Object@@QAEXPBVUpgradeTemplate@@@Z,,0x001CA020,157,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,BFME Object m_objectUpgradesCompleted@0x224; BehaviorModuleInterface getUpgrade slot 9 (+0x24)
+?getProductionUpdateInterface@Object@@QAEPAVProductionUpdateInterface@@XZ,,0x001BF570,42,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,BFME BehaviorModuleInterface getProductionUpdateInterface slot 27 (+0x6c); identified via AIPlayer::startTraining/buildUpgrade call sites
+?getDockUpdateInterface@Object@@QAEPAVDockUpdateInterface@@XZ,,0x001BF5B0,42,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,BFME BehaviorModuleInterface getDockUpdateInterface slot 21 (+0x54); identified via AIDockProcessDockState::onEnter call site
