@@ -1035,12 +1035,20 @@ const Weapon* WeaponSet::findAmmoPipShowingWeapon() const
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?findWaypointFollowingCapableWeapon@WeaponSet@@QAEPAVWeapon@@XZ present-unmatched
+// BFME WeaponSet carries a 4th weapon slot (ZH WEAPONSLOT_COUNT=3; retail loop inits i=3 and
+// reads m_weapons@this+0x14 for it, confirmed against the dtor's 4-iteration scalar-delete loop
+// too). m_weapons[] itself is still at the ZH-natural +8, so indexing past the ZH array bound
+// still lands on the real 4th slot's storage; only the loop bound needs the BFME literal.
+// BFME's Weapon carries only ONE vtable (ZH's MemoryPoolObject+Snapshot double-base layout puts
+// m_template at the ZH-compiled +8, but retail reads +4 here) so m_template must be read
+// raw rather than through the ZH-shaped this+8 field. WeaponTemplate::m_capableOfFollowingWaypoint
+// is proven at retail offset +0x4FA (byte), also drifted from its ZH declared offset, so read
+// it directly too rather than through the ZH-shaped inline accessor.
 Weapon* WeaponSet::findWaypointFollowingCapableWeapon()
 {
-	for( Int i = WEAPONSLOT_COUNT - 1; i >= PRIMARY_WEAPON; i-- )
+	for( Int i = 3; i >= PRIMARY_WEAPON; i-- )
 	{
-		if( m_weapons[i] && m_weapons[i]->isCapableOfFollowingWaypoint() )
+		if( m_weapons[i] && *reinterpret_cast<const unsigned char*>(*reinterpret_cast<const char* const*>(reinterpret_cast<const char*>(m_weapons[i]) + 4) + 0x4FA) )
 		{
 			return m_weapons[i];
 		}
