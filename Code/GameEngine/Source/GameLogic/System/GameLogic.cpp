@@ -88,6 +88,252 @@
 #include "GameLogic/GameLogic.h"
 #include "GameLogic/Locomotor.h"
 #include "GameLogic/Object.h"
+
+// ================================================================================================
+// TU-local TerrainLogic facade (retail layout, this file only).
+// Retail evidence (GameLogic vtable @0xD1CA5C, stored by GameLogic ctor @0x6BAD0D):
+//   slot 9  = createTerrainLogic factory @0x6BAD40 -> pushes sizeof 0x1904, stores TheTerrainLogic
+//             global 0x012EF4CC at GameLogic::init +0x215, followed by init/setName("TheTerrainLogic")
+//   slot 11 = createGhostObjectManager @0x6BAE20 (matched)
+// The shared shim header models ZH sizeof 0x540; retail BFME TerrainLogic is 0x1904. Its vtable
+// order below is the shim's (already retail-tuned against matched call sites); the member tail
+// beyond the ZH prefix is opaque in this TU and padded to the retail size. Guard-blocked so the
+// later include chain (AIUpdate.h -> AIStateMachine.h -> TerrainLogic.h) becomes a no-op.
+// ================================================================================================
+#define __TERRAINLOGIC_H_
+
+typedef std::vector<ICoord2D> VecICoord2D;
+
+enum WaypointID
+{
+	INVALID_WAYPOINT_ID = 0x7FFFFFFF
+};
+
+class Waypoint : public MemoryPoolObject
+{
+	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(Waypoint, "Waypoint")		
+public:
+	Waypoint(WaypointID id, AsciiString name, const Coord3D *pLoc, AsciiString label1, 
+					AsciiString label2, AsciiString label3, Bool biDirectional);
+	enum {MAX_LINKS=8};
+
+protected:
+	WaypointID	m_id;						///< Unique integer identifier.
+	AsciiString m_name;						///< Name.
+	Coord3D			m_location;					///< Location.
+	Waypoint*		m_pNext;					///< Linked list of all waypoints.
+	Waypoint*		m_links[MAX_LINKS]; ///< Directed graph of waypoints.
+	Int				m_numLinks;					///< Number of links in m_links.
+	AsciiString m_pathLabel1;
+	AsciiString m_pathLabel2;
+	AsciiString m_pathLabel3;
+	Bool			m_biDirectional;
+
+public:
+	void setNext(Waypoint *pNext) {m_pNext = pNext; }
+	void addLink(Waypoint* pLink) 
+	{
+		if (m_numLinks < MAX_LINKS) 
+		{
+			m_links[m_numLinks] = pLink; 
+			++m_numLinks; 		
+		}
+	}
+
+public:
+	Waypoint *getNext(void) const {return m_pNext; }
+	Int getNumLinks(void) const {return m_numLinks; }
+	Waypoint *getLink(Int ndx) const {if (ndx>=0 && ndx <= MAX_LINKS) return m_links[ndx]; return NULL; }
+	AsciiString getName(void) const {return m_name; }
+	WaypointID getID(void) const {return m_id; }
+	const Coord3D *getLocation( void ) const { return &m_location;  }
+	AsciiString getPathLabel1( void ) const { return m_pathLabel1;  }
+	AsciiString getPathLabel2( void ) const { return m_pathLabel2;  }
+	AsciiString getPathLabel3( void ) const { return m_pathLabel3;  }
+	Bool getBiDirectional( void ) const { return m_biDirectional; }
+
+	void setLocationZ(Real z) { m_location.z = z; }
+};
+
+class BridgeInfo 
+{
+public:
+	BridgeInfo();
+
+public:
+	Coord3D					from, to; /// The points that the bridge was drawn using.
+	Real						bridgeWidth; /// Width of the bridge.
+	Coord3D					fromLeft, fromRight, toLeft, toRight; /// The 4 corners of the rectangle that the bridge covers.
+	Int							bridgeIndex;	///< The index to the drawable bridges.
+	BodyDamageType	curDamageState;
+	ObjectID				bridgeObjectID;
+	ObjectID				towerObjectID[ BRIDGE_MAX_TOWERS ];
+	Bool						damageStateChanged;
+
+};
+
+class Bridge : public MemoryPoolObject
+{
+	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(Bridge, "Bridge")		
+public:
+
+	Bridge(BridgeInfo &theInfo, Dict *props, AsciiString bridgeTemplateName);
+	Bridge(Object *bridgeObj);
+
+protected:
+	Bridge*						m_next;		///< Link for traversing all bridges in the current map.
+	AsciiString				m_templateName;			///< bridge template name
+	BridgeInfo				m_bridgeInfo;
+	Region2D					m_bounds; /// 2d bounds for quick screening.
+	PathfindLayerEnum	m_layer;  ///< Pathfind layer for this bridge.
+
+public:
+	void setNext(Bridge *pNext) {m_next = pNext; }
+	Object *createTower( Coord3D *worldPos, BridgeTowerType towerPos, 
+											 const ThingTemplate *towerTemplate, Object *bridge );
+	
+public:
+	AsciiString getBridgeTemplateName( void ) { return m_templateName; }
+	Bridge	*getNext(void) {return m_next; }
+	Real getBridgeHeight(const Coord3D *pLoc, Coord3D* normal);
+	void getBridgeInfo(class BridgeInfo *pInfo) {*pInfo = m_bridgeInfo; }
+	Bool isPointOnBridge(const Coord3D *pLoc);
+	Drawable *pickBridge(const Vector3 &from, const Vector3 &to, Vector3 *pos);
+	void updateDamageState(void); ///< Updates a bridge's damage info.
+	inline const BridgeInfo *peekBridgeInfo(void) const {return &m_bridgeInfo;}
+	inline PathfindLayerEnum getLayer(void) const {return m_layer;}
+	inline void setLayer(PathfindLayerEnum layer) {m_layer = layer;}
+	const Region2D *getBounds(void) const {return &m_bounds;}
+	Bool isCellOnEnd(const Region2D *cell);	 // Is pathfind cell on the sides of the bridge
+	Bool isCellOnSide(const Region2D *cell); // Is pathfind cell on the end of the bridge
+	Bool isCellEntryPoint(const Region2D *cell); // Is pathfind cell an entry point to the bridge
+	
+	inline void setBridgeObjectID( ObjectID id ) { m_bridgeInfo.bridgeObjectID = id; }
+	inline void setTowerObjectID( ObjectID id, BridgeTowerType which ) { m_bridgeInfo.towerObjectID[ which ] = id; }
+
+};
+
+class TerrainLogic : public Snapshot,
+										 public SubsystemInterface
+{
+
+public:
+
+	TerrainLogic();
+	virtual ~TerrainLogic();
+
+	virtual void init( void );		///< Init
+	virtual void reset( void );		///< Reset
+	virtual void update( void );	///< Update
+
+	virtual Bool loadMap( AsciiString filename, Bool query );
+	virtual void newMap( Bool saveGame );	///< Initialize the logic for new map.
+
+	virtual Real getGroundHeight( Real x, Real y, Coord3D* normal = NULL )  const;
+	virtual Real getLayerHeight(Real x, Real y, PathfindLayerEnum layer, Coord3D* normal = NULL, Bool clip = true) const;
+
+	virtual void _bfme_tl_v0( void ) {}
+
+	virtual void getExtent( Region3D *extent ) const { DEBUG_CRASH(("not implemented"));  }		///< @todo This should not be a stub - this should own this functionality
+	virtual void getExtentIncludingBorder( Region3D *extent ) const { DEBUG_CRASH(("not implemented"));  }		///< @todo This should not be a stub - this should own this functionality
+	virtual void getMaximumPathfindExtent( Region3D *extent ) const { DEBUG_CRASH(("not implemented"));  }		///< @todo This should not be a stub - this should own this functionality
+	virtual Coord3D findClosestEdgePoint( const Coord3D *closestTo ) const ;
+	virtual Coord3D findFarthestEdgePoint( const Coord3D *farthestFrom ) const ;
+	virtual Bool isClearLineOfSight(const Coord3D& pos, const Coord3D& posOther) const;
+
+	virtual AsciiString getSourceFilename( void ) { return m_filenameString; }
+
+	virtual PathfindLayerEnum alignOnTerrain( Real angle, const Coord3D& pos, Bool stickToGround, Matrix3D& mtx);
+
+	virtual Bool isUnderwater( Real x, Real y, Real *waterZ = NULL, Real *terrainZ = NULL );			///< is point under water
+	virtual Bool isCliffCell( Real x, Real y) const;			///< is point cliff cell
+	virtual const WaterHandle* getWaterHandle( Real x, Real y );				///< get water handle at this location
+	virtual const WaterHandle* getWaterHandleByName( AsciiString name );	///< get water handle by name
+	virtual Real getWaterHeight( const WaterHandle *water );							///< get height of water table
+	virtual void setWaterHeight( const WaterHandle *water, 
+															 Real height, 
+															 Real damageAmount,
+															 Bool forcePathfindUpdate );	///< set height of water table
+	virtual void changeWaterHeightOverTime( const WaterHandle *water,
+																					Real finalHeight,
+																					Real transitionTimeInSeconds,
+																					Real damageAmount );///< change water height over time
+
+	virtual Waypoint *getFirstWaypoint(void) { return m_waypointListHead; }
+
+	virtual Waypoint *getWaypointByName( AsciiString name );
+	virtual Waypoint *getWaypointByID( UnsignedInt id );
+	virtual Waypoint *getClosestWaypointOnPath( const Coord3D *pos, AsciiString label );
+	virtual Bool isPurposeOfPath( Waypoint *pWay, AsciiString label );
+	virtual PolygonTrigger *getTriggerAreaByName( AsciiString name );
+
+	virtual void _bfme_tl_v1( void ) {}
+	virtual void _bfme_tl_v2( void ) {}
+	virtual void _bfme_tl_v3( void ) {}
+	virtual void _bfme_tl_v4( void ) {}
+	virtual void _bfme_tl_v5( void ) {}
+	virtual void _bfme_tl_v6( void ) {}
+	virtual void _bfme_tl_v7( void ) {}
+	virtual void _bfme_tl_v8( void ) {}
+
+	virtual Bridge *getFirstBridge(void) const { return m_bridgeListHead; }
+	virtual Bridge *findBridgeAt(const Coord3D *pLoc) const;
+	virtual Bridge *findBridgeLayerAt(const Coord3D *pLoc, PathfindLayerEnum layer, Bool clip = true) const;
+	virtual Bool objectInteractsWithBridgeLayer(Object *obj, Int layer, Bool considerBridgeHealth = true) const;
+	virtual Bool objectInteractsWithBridgeEnd(Object *obj, Int layer) const;
+
+	virtual Drawable *pickBridge(const Vector3 &from, const Vector3 &to, Vector3 *pos);
+
+	virtual void addBridgeToLogic(BridgeInfo *pInfo, Dict *props, AsciiString bridgeTemplateName); ///< Adds a bridge's logical info.
+	virtual void addLandmarkBridgeToLogic(Object *bridgeObj); ///< Adds a bridge's logical info.
+	virtual void deleteBridge( Bridge *bridge );	///< remove a bridge
+
+	virtual void updateBridgeDamageStates(void); ///< Updates bridge's damage info.
+
+	Bool anyBridgesDamageStatesChanged(void) {return m_bridgeDamageStatesChanged; } ///< Bridge damage states updated.
+	Bool isBridgeRepaired(const Object *bridge); ///< Is bridge repaired?
+	Bool isBridgeBroken(const Object *bridge); ///< Is bridge Broken?
+
+	PathfindLayerEnum getLayerForDestination(const Coord3D *pos);
+
+	Int getActiveBoundary(void) { return m_activeBoundary; }
+	void setActiveBoundary(Int newActiveBoundary);
+
+protected:
+
+	// snapshot methods
+	virtual void crc( Xfer *xfer );
+	virtual void xfer( Xfer *xfer );
+	virtual void loadPostProcess( void );
+
+ 	static Bool parseWaypointDataChunk(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	Bool parseWaypointData(DataChunkInput &file, DataChunkInfo *info, void *userData);
+	void addWaypoint(MapObject *pMapObj);
+	void addWaypointLink(Int id1, Int id2);
+	void deleteWaypoints(void);
+	void deleteBridges(void);
+	void findAxisAlignedBoundingRect( const WaterHandle *waterHandle, Region3D *region );
+
+	// ZH member prefix kept for the inline accessors above; retail BFME TerrainLogic is
+	// 0x1904 bytes (createTerrainLogic factory @0x6BAD40), so the tail -- ZH water-grid
+	// arrays plus all BFME additions -- is opaque padding in this TU.
+	UnsignedByte	*m_mapData;
+	Int	m_mapDX;
+	Int	m_mapDY;
+	VecICoord2D m_boundaries;
+	Int m_activeBoundary;
+	Waypoint *m_waypointListHead;
+	Bridge *m_bridgeListHead;
+	Bool		m_bridgeDamageStatesChanged;
+	AsciiString m_filenameString;
+	Bool m_waterGridEnabled;
+	UnsignedByte m_bfmeRetailPad[ 0x1904 - 0x3C ];
+
+};  // end class TerrainLogic
+
+// EXTERNALS //////////////////////////////////////////////////////////////////////////////////////
+extern TerrainLogic *TheTerrainLogic;   ///< singleton definition
+
 #include "GameLogic/Module/AIUpdate.h"
 #include "GameLogic/Module/BodyModule.h"
 #include "GameLogic/Module/CreateModule.h"
@@ -4396,7 +4642,6 @@ GhostObjectManager *GameLogic::createGhostObjectManager(void)
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?createTerrainLogic@GameLogic@@EAEPAVTerrainLogic@@XZ present-unmatched
 TerrainLogic *GameLogic::createTerrainLogic( void )
 {
 	return NEW TerrainLogic;

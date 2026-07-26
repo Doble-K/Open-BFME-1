@@ -3471,3 +3471,5 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ?isMultiplayer@RecorderClass@@QAE_NXZ,0x0004A7A5,retail target of getSciencePurchaseCost REPLAY-mode check; thunk-table entry (real body FUN_00497800); Bool RecorderClass::isMultiplayer(void) per reference Recorder.h
 ?insertY@W3DRoadBuffer@@IAE_NVVector2@@HM@Z,0x00017977,ILT thunk -> body 0x7073D0; called by insertTee (decode_calls.py)
 ??0DirectInputKeyboard@@QAE@XZ,0x000120D0,DirectInputKeyboard ctor thunk; createKeyboard@W3DGameClient factory REL32
+??0TerrainLogic@@QAE@XZ,0x00011C75,createTerrainLogic REL32 pin (thunk); body 0x6BE070 inits [esi+0xC] and [esi+0x18FC], sizeof 0x1904
+??0TerrainLogic@@QAE@XZ,0x006BE070,createTerrainLogic REL32 pin (body)
