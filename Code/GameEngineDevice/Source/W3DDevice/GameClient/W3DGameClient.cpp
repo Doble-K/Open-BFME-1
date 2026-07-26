@@ -176,6 +176,39 @@ protected:
 	Bool loadFontData( GameFont *font );
 };
 
+#define __KEYBOARD_H_
+class Keyboard : public SubsystemInterface
+{
+public:
+	Keyboard();
+	virtual ~Keyboard();
+	virtual void init();
+	virtual void reset();
+	virtual void update();
+	virtual Bool getCapsState() = 0;
+
+private:
+	unsigned char m_retailData[ 0xe14 ];
+};
+
+#define __WIN32DIKEYBOARD_H_
+class DirectInputKeyboard : public Keyboard
+{
+public:
+	DirectInputKeyboard();
+	virtual ~DirectInputKeyboard();
+	virtual void init();
+	virtual void reset();
+	virtual void update();
+	virtual Bool getCapsState();
+
+private:
+	unsigned char m_retailData[ 8 ];
+};
+
+typedef char BFMERetailKeyboardSizeCheck[ sizeof( Keyboard ) == 0xe1c ? 1 : -1 ];
+typedef char BFMERetailDirectInputKeyboardSizeCheck[ sizeof( DirectInputKeyboard ) == 0xe24 ? 1 : -1 ];
+
 #include "W3DDevice/GameClient/W3DGameClient.h"
 #include "W3DDevice/GameClient/W3DStatusCircle.h"
 #include "W3DDevice/GameClient/W3DScene.h"

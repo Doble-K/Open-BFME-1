@@ -50,6 +50,9 @@ def main():
         old, new = rows_at(f"{old_ref}:{LEDGER}"), rows_at(f"{new_ref}:{LEDGER}")
 
     sources = {r[4] for r in (new - old) if len(r) >= 5 and r[4]}
+    # Hooks consume this via mapfile/<(...) - force LF-only output or
+    # Windows text-mode stdout appends CR to every path and -f "$s" fails.
+    sys.stdout.reconfigure(newline="\n")
     for s in sorted(sources):
         print(s)
 

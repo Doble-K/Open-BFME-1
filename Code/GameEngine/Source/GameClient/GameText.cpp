@@ -160,12 +160,19 @@ class GameTextManager : public GameTextInterface
 
 	protected:
 
-		Int							m_textCount;
-		Int							m_maxLabelLen;
+		Int						m_textCount;
+		// BFME retail has no m_maxLabelLen member: retail ctor @ 0x438350 zeros exactly
+		// one Int (@0x08) before the buffer region, and sizeof(GameTextManager)==0x7840
+		// requires one fewer Int than ZH. ZH's write-only max-label tracking is kept as
+		// function locals in the parse bodies below.
+
 		Char						m_buffer[MAX_UITEXT_LENGTH];
 		Char						m_buffer2[MAX_UITEXT_LENGTH];
 		Char						m_buffer3[MAX_UITEXT_LENGTH];
-		WideChar				m_tbuffer[MAX_UITEXT_LENGTH*2];
+		// BFME retail has no m_tbuffer member: retail sizeof(GameTextManager)==0x7840
+		// (ctor @ 0x438350 stores/zeros members 0x780C..0x783C, CreateGameTextInterface
+		// @ 0x4385A0 pushes size 0x7840). ZH's m_tbuffer[MAX_UITEXT_LENGTH*2] (0xA000
+		// bytes) does not exist here; ZH bodies that used it now use a local scratch.
 		
 		StringInfo			*m_stringInfo;
 		StringLookUp		*m_stringLUT;
@@ -278,7 +285,7 @@ void GameTextManager::init( void )
 
 	m_initialized = TRUE;
 
-	m_maxLabelLen = 0;
+	// BFME retail has no m_maxLabelLen (see class comment above); ZH zeroed it here.
 #if defined(_DEBUG) || defined(_INTERNAL)
 	if(TheGlobalData)
 	{
@@ -893,6 +900,8 @@ Bool GameTextManager::parseCSF( const Char *filename )
 	Int listCount = 0;
 	Bool ok = FALSE;
 	CSFHeader header;
+	WideChar tbuffer[MAX_UITEXT_LENGTH*2];	// ZH used member m_tbuffer; BFME retail has no such member
+	Int maxLabelLen = 0;	// ZH member m_maxLabelLen; BFME retail has no such member
 
 	file = TheFileSystem->openFile(filename, File::READ | File::BINARY);
 
@@ -930,9 +939,9 @@ Bool GameTextManager::parseCSF( const Char *filename )
 		m_stringInfo[listCount].label = m_buffer;
 
 
-		if ( len > m_maxLabelLen )
+		if ( len > maxLabelLen )
 		{
-			m_maxLabelLen = len;
+			maxLabelLen = len;
 		}
 
 		num = 0;
@@ -950,28 +959,28 @@ Bool GameTextManager::parseCSF( const Char *filename )
 
 			if ( len )
 			{
-				file->read ( m_tbuffer, len*sizeof(WideChar) );
+				file->read ( tbuffer, len*sizeof(WideChar) );
 			}
 
 			if ( num == 0 )
 			{
 				// only use the first string found
-				m_tbuffer[len] = 0;
-				
+				tbuffer[len] = 0;
+
 				{
 					WideChar *ptr;
-				
-					ptr = m_tbuffer;
-				
+
+					ptr = tbuffer;
+
 					while ( *ptr )
 					{
 						*ptr = ~*ptr;
 						ptr++;
 					}
 				}
-				
-				stripSpaces ( m_tbuffer );
-				m_stringInfo[listCount].text = m_tbuffer;
+
+				stripSpaces ( tbuffer );
+				m_stringInfo[listCount].text = tbuffer;
 			}
 
 			if ( id == CSF_STRINGWITHWAVE )
@@ -1017,6 +1026,8 @@ Bool GameTextManager::parseStringFile( const char *filename )
 {
 	Int listCount = 0;
 	Int ok = TRUE;
+	WideChar tbuffer[MAX_UITEXT_LENGTH*2];	// ZH used member m_tbuffer; BFME retail has no such member
+	Int maxLabelLen = 0;	// ZH member m_maxLabelLen; BFME retail has no such member
 
 	File *file = TheFileSystem->openFile(filename, File::READ | File::TEXT);
 	
@@ -1052,9 +1063,9 @@ Bool GameTextManager::parseStringFile( const char *filename )
 		len = strlen ( m_buffer );
 
 
-		if ( len > m_maxLabelLen )
+		if ( len > maxLabelLen )
 		{
-			m_maxLabelLen = len;
+			maxLabelLen = len;
 		}
 
 		Bool readString = FALSE;
@@ -1085,10 +1096,10 @@ Bool GameTextManager::parseStringFile( const char *filename )
 				else
 				{
 					// Copy string into new home
-					translateCopy( m_tbuffer, m_buffer2 );
-					stripSpaces ( m_tbuffer );
-					
-					m_stringInfo[listCount].text = m_tbuffer ;
+					translateCopy( tbuffer, m_buffer2 );
+					stripSpaces ( tbuffer );
+
+					m_stringInfo[listCount].text = tbuffer ;
 					m_stringInfo[listCount].speech = m_buffer3;
 					readString = TRUE;
 				}
@@ -1149,6 +1160,8 @@ Bool GameTextManager::parseMapStringFile( const char *filename )
 {
 	Int listCount = 0;
 	Int ok = TRUE;
+	WideChar tbuffer[MAX_UITEXT_LENGTH*2];	// ZH used member m_tbuffer; BFME retail has no such member
+	Int maxLabelLen = 0;	// ZH member m_maxLabelLen; BFME retail has no such member
 
 	File *file;
 
@@ -1185,9 +1198,9 @@ Bool GameTextManager::parseMapStringFile( const char *filename )
 		len = strlen ( m_buffer );
 
 
-		if ( len > m_maxLabelLen )
+		if ( len > maxLabelLen )
 		{
-			m_maxLabelLen = len;
+			maxLabelLen = len;
 		}
 
 		Bool readString = FALSE;
@@ -1218,10 +1231,10 @@ Bool GameTextManager::parseMapStringFile( const char *filename )
 				else
 				{
 					// Copy string into new home
-					translateCopy( m_tbuffer, m_buffer2 );
-					stripSpaces ( m_tbuffer );
+					translateCopy( tbuffer, m_buffer2 );
+					stripSpaces ( tbuffer );
 
-					UnicodeString text = UnicodeString(m_tbuffer);
+					UnicodeString text = UnicodeString(tbuffer);
 					if (TheLanguageFilter)
 						TheLanguageFilter->filterLine(text);
 					
