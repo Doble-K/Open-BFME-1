@@ -18,10 +18,10 @@ def rva_to_off(data: bytes, rva: int) -> int:
     assert data[:2] == b"MZ"
     e_lfanew = struct.unpack_from("<I", data, 0x3C)[0]
     assert data[e_lfanew:e_lfanew + 4] == b"PE\x00\x00"
-    # Optional header starts at e_lfanew+24; NumberOfSections at +6
-    num_sec = struct.unpack_from("<H", data, e_lfanew + 24 - 4 + 2)[0]
-    # section table starts at e_lfanew + 24 + SizeOfOptionalHeader
-    opt_hdr_size = struct.unpack_from("<H", data, e_lfanew + 24 - 4 + 16)[0]
+    # COFF header starts at e_lfanew+4 (after the 4-byte PE signature);
+    # NumberOfSections at COFF+2, SizeOfOptionalHeader at COFF+16.
+    num_sec = struct.unpack_from("<H", data, e_lfanew + 4 + 2)[0]
+    opt_hdr_size = struct.unpack_from("<H", data, e_lfanew + 4 + 16)[0]
     sec_off = e_lfanew + 24 + opt_hdr_size
     for i in range(num_sec):
         base = sec_off + i * 40
