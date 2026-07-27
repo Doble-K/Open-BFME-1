@@ -9477,7 +9477,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_awakenUpdateModule@GameLogic@@QAEXPAVObject@@PAVUpdateModule@@I@Z,,0x00009944,5,Code/masm_dumps/_friend_awakenUpdateModule_GameLogic__QAEXPAVObject__PAVUpdateModule__I_Z_9944.asm,matched,MASM exact retail dump
 ?friend_clearNextTemplate@WeaponTemplate@@QAEPAV1@XZ,,0x001E0B50,11,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?friend_getEffectiveStealthOpacity@Drawable@@QAEMXZ,,0x006CF980,4,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,icf-owner=?Get_Native_Screen_Size@RenderObjClass@@UBEMXZ
-?friend_getFinalOverride@Overridable@@QAEPAV1@XZ,,0x00048C61,5,Code/masm_dumps/_friend_getFinalOverride_Overridable__QAEPAV1_XZ_48C61.asm,matched,MASM exact retail dump
 ?friend_getFinalOverride@Overridable@@QBEPBV1@XZ,,0x000978A0,24,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?friend_getIndexInLogic@UpdateModule@@QBEHXZ,,0x00674250,4,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?friend_getNthData@ModuleInfo@@QAEPAVModuleData@@H@Z,,0x0013EF50,57,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
@@ -10452,7 +10451,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getFO@SpecialPowerTemplate@@ABEPBV1@XZ,,0x00097EA0,24,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?getField@WeaponBonus@@QBEMW4Field@1@@Z,,0x001DE220,10,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?getFileInfo@Win32LocalFileSystem@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CDE50,105,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,
-?getFinalOverride@Overridable@@QBEPBV1@XZ,,0x000022BB,5,Code/masm_dumps/_getFinalOverride_Overridable__QBEPBV1_XZ_22BB.asm,matched,MASM exact retail dump
 ?getFirewallBehavior@FirewallHelperClass@@QAE?AW4tFirewallBehaviorType@1@XZ,,0x0066E830,14,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?getFirewallHardness@FirewallHelperClass@@QAEHW4tFirewallBehaviorType@1@@Z,,0x0066E9A0,57,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?getFirewallRetries@FirewallHelperClass@@QAEHW4tFirewallBehaviorType@1@@Z,,0x0066E9F0,42,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
@@ -13568,3 +13566,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0GameResultsRequest@@QAE@ABV0@@Z,,0x006417E0,89,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
 ??1GameResultsRequest@@QAE@XZ,,0x004E5C60,155,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
 ??1GameResultsResponse@@QAE@XZ,,0x00641300,39,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
+?friend_getFinalOverride@Overridable@@QAEPAV1@XZ,,0x00097880,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
+?getFinalOverride@Overridable@@QBEPBV1@XZ,,0x00087A80,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
