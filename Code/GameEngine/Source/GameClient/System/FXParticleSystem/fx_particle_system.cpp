@@ -1,5 +1,6 @@
 // cl: /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include/Common /ICode/Libraries/Source/WWVegas/WWMath /ICode/Libraries/Source/WWVegas/WWLib
 #define FX_PARTICLE_SYSTEM_CPP
+#define FXPS_V virtual
 #include "fx_particle_system.h"
 
 #include "string_base.h"
@@ -1078,5 +1079,89 @@ template class ModuleTag<7, DefaultModuleKey_7::VALUE, DefaultModuleName_7::VALU
 template class ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate>;
 template class ModuleTag<8, TERRAIN_COLLISION_MODULE_KEY, TERRAIN_COLLISION_MODULE_NAME, TerrainCollisionModule, TerrainCollisionModuleTemplate, ParticleTerrainCollisionModule, ParticleTerrainCollisionModuleTemplate>;
 template class ModuleTag<0, DefaultModuleKey_0::VALUE, DefaultModuleName_0::VALUE, DefaultModule_0, DefaultModuleTemplate_0, DefaultParticleModule_0, DefaultParticleModuleTemplate_0>;
+
+#define FXPS_GET_CLASS(TAG) \
+	const ConcreteModuleClass< TAG > &ConcreteModuleTemplate< TAG >::getClass() const \
+	{ return ConcreteModuleClass< TAG >::getInstance(); }
+
+FXPS_GET_CLASS(DefaultModuleTag<0>)
+FXPS_GET_CLASS(DefaultModuleTag<1>)
+FXPS_GET_CLASS(DefaultModuleTag<2>)
+FXPS_GET_CLASS(DefaultModuleTag<3>)
+FXPS_GET_CLASS(DefaultModuleTag<6>)
+FXPS_GET_CLASS(DefaultModuleTag<7>)
+FXPS_GET_CLASS(OrthoEmissionVelocityModuleTag)
+FXPS_GET_CLASS(PointEmissionVolumeModuleTag)
+
+typedef ModuleTag<5, BOX_EMISSION_VOLUME_MODULE_KEY, BOX_EMISSION_VOLUME_MODULE_NAME,
+	BoxEmissionVolumeModule, BoxEmissionVolumeModuleTemplate,
+	DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > BoxEmissionVolumeTag;
+typedef ModuleTag<6, BUTTERFLY_DRAW_MODULE_KEY, BUTTERFLY_DRAW_MODULE_NAME,
+	ButterflyDrawModule, ButterflyDrawModuleTemplate,
+	DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > ButterflyDrawTag;
+typedef ModuleTag<5, CYLINDER_EMISSION_VOLUME_MODULE_KEY, CYLINDER_EMISSION_VOLUME_MODULE_NAME,
+	CylinderEmissionVolumeModule, CylinderEmissionVolumeModuleTemplate,
+	DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > CylinderEmissionVolumeTag;
+typedef ModuleTag<4, CYLINDRICAL_EMISSION_VELOCITY_MODULE_KEY, CYLINDRICAL_EMISSION_VELOCITY_MODULE_NAME,
+	CylindricalEmissionVelocityModule, CylindricalEmissionVelocityModuleTemplate,
+	DefaultParticleModule<4>, DefaultParticleModuleTemplate<4> > CylindricalEmissionVelocityTag;
+typedef ModuleTag<4, HEMISPHERICAL_EMISSION_VELOCITY_MODULE_KEY, HEMISPHERICAL_EMISSION_VELOCITY_MODULE_NAME,
+	HemisphericalEmissionVelocityModule, HemisphericalEmissionVelocityModuleTemplate,
+	DefaultParticleModule<4>, DefaultParticleModuleTemplate<4> > HemisphericalEmissionVelocityTag;
+typedef ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME,
+	LifeEventModule, LifeEventModuleTemplate,
+	ParticleLifeEventModule, ParticleLifeEventModuleTemplate> LifeEventTag;
+typedef ModuleTag<6, LIGHTNING_DRAW_MODULE_KEY, LIGHTNING_DRAW_MODULE_NAME,
+	LightningDrawModule, LightningDrawModuleTemplate,
+	DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > LightningDrawTag;
+typedef ModuleTag<5, LIGHTNING_EMISSION_MODULE_KEY, LIGHTNING_EMISSION_MODULE_NAME,
+	LightningEmissionModule, LightningEmissionModuleTemplate,
+	DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > LightningEmissionTag;
+typedef ModuleTag<5, LINE_EMISSION_VOLUME_MODULE_KEY, LINE_EMISSION_VOLUME_MODULE_NAME,
+	LineEmissionVolumeModule, LineEmissionVolumeModuleTemplate,
+	DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > LineEmissionVolumeTag;
+typedef ModuleTag<4, OUTWARD_EMISSION_VELOCITY_MODULE_KEY, OUTWARD_EMISSION_VELOCITY_MODULE_NAME,
+	OutwardEmissionVelocityModule, OutwardEmissionVelocityModuleTemplate,
+	DefaultParticleModule<4>, DefaultParticleModuleTemplate<4> > OutwardEmissionVelocityTag;
+typedef ModuleTag<6, QUAD_DRAW_MODULE_KEY, QUAD_DRAW_MODULE_NAME,
+	QuadDrawModule, QuadDrawModuleTemplate,
+	DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > QuadDrawTag;
+typedef ModuleTag<6, RENDEROBJECT_DRAW_MODULE_KEY, RENDEROBJECT_DRAW_MODULE_NAME,
+	RenderObjectDrawModule, RenderObjectDrawModuleTemplate,
+	DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > RenderObjectDrawTag;
+typedef ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME,
+	RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate,
+	RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> RenderObjectUpdateTag;
+typedef ModuleTag<5, SPHERE_EMISSION_VOLUME_MODULE_KEY, SPHERE_EMISSION_VOLUME_MODULE_NAME,
+	SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate,
+	DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > SphereEmissionVolumeTag;
+typedef ModuleTag<4, SPHERICAL_EMISSION_VELOCITY_MODULE_KEY, SPHERICAL_EMISSION_VELOCITY_MODULE_NAME,
+	SphericalEmissionVelocityModule, SphericalEmissionVelocityModuleTemplate,
+	DefaultParticleModule<4>, DefaultParticleModuleTemplate<4> > SphericalEmissionVelocityTag;
+typedef ModuleTag<6, STREAK_DRAW_MODULE_KEY, STREAK_DRAW_MODULE_NAME,
+	StreakDrawModule, StreakDrawModuleTemplate,
+	DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > StreakDrawTag;
+typedef ModuleTag<8, TERRAIN_COLLISION_MODULE_KEY, TERRAIN_COLLISION_MODULE_NAME,
+	TerrainCollisionModule, TerrainCollisionModuleTemplate,
+	ParticleTerrainCollisionModule, ParticleTerrainCollisionModuleTemplate> TerrainCollisionTag;
+
+FXPS_GET_CLASS(BoxEmissionVolumeTag)
+FXPS_GET_CLASS(ButterflyDrawTag)
+FXPS_GET_CLASS(CylinderEmissionVolumeTag)
+FXPS_GET_CLASS(CylindricalEmissionVelocityTag)
+FXPS_GET_CLASS(HemisphericalEmissionVelocityTag)
+FXPS_GET_CLASS(LifeEventTag)
+FXPS_GET_CLASS(LightningDrawTag)
+FXPS_GET_CLASS(LightningEmissionTag)
+FXPS_GET_CLASS(LineEmissionVolumeTag)
+FXPS_GET_CLASS(OutwardEmissionVelocityTag)
+FXPS_GET_CLASS(QuadDrawTag)
+FXPS_GET_CLASS(RenderObjectDrawTag)
+FXPS_GET_CLASS(RenderObjectUpdateTag)
+FXPS_GET_CLASS(SphereEmissionVolumeTag)
+FXPS_GET_CLASS(SphericalEmissionVelocityTag)
+FXPS_GET_CLASS(StreakDrawTag)
+FXPS_GET_CLASS(TerrainCollisionTag)
+#undef FXPS_GET_CLASS
 
 }
