@@ -11977,7 +11977,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setAnimType@AnimateWindow@@QAEXW4AnimTypes@@@Z,,0x001B49AE,10,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?setAreaToGuard@AIGuardMachine@@QAEXPBVPolygonTrigger@@@Z,,0x001BD2E0,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setAttackInfo@AIUpdateInterface@@QAEXPBVAttackPriorityInfo@@@Z,,0x001F1EF0,10,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-?setAudioPriority@AudioEventRTS@@QAEXW4AudioPriority@@@Z,,0x000B23A0,10,Code/masm_dumps/AudioEventRTS_setAudioPriority.asm,matched,Ghidra-bound BFME audio priority setter
 ?setBackCrushed@ActiveBody@@UAEX_N@Z,,0x007AE650,13,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,
 ?setBool@Dict@@QAEXW4NameKeyType@@_N@Z,,0x000687D0,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setBoundingBox@Geometry@@QAEXABVAABoxClass@@@Z,,0x007BA190,42,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
@@ -12083,7 +12082,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setGridTransform@WaterRenderObjClass@@QAEXPBVMatrix3D@@@Z,,0x0079FB30,24,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
 ?setGuardMode@AIGuardMachine@@QAEXW4GuardMode@@@Z,,0x0016AEB0,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setGuardMode@AITNGuardMachine@@QAEXW4GuardMode@@@Z,,0x00150010,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?setHandleToKill@AudioEventRTS@@QAEXI@Z,,0x000B2310,10,Code/masm_dumps/AudioEventRTS_setHandleToKill.asm,matched,Ghidra-bound BFME audio kill-handle setter
 ?setHealth@BuildListInfo@@QAEXH@Z,,0x00265BC0,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?setHeight@GameLogic@@QAEXM@Z,,0x00336640,10,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?setHeight@View@@UAEXH@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/View.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
@@ -12182,7 +12180,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPlayerStatus@EstablishConnectionsMenu@@QAEXHW4NATConnectionState@@@Z,,0x004B2DC0,268,Code/GameEngine/Source/GameClient/GUI/EstablishConnectionsMenu/EstablishConnectionsMenu.cpp,matched,
 ?setPlayerTemplate@GameSlot@@QAEXH@Z,,0x003827E0,22,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setPlayingAudioIndex@AudioEventRTS@@QAEXH@Z,,0x004F9500,10,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,
-?setPlayingHandle@AudioEventRTS@@QAEXI@Z,,0x000B2200,10,Code/masm_dumps/AudioEventRTS_setPlayingHandle.asm,matched,Ghidra-bound BFME audio handle setter
 ?setPort@GameSlot@@QAEXG@Z,,0x00673F70,12,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setPortraitByImage@ControlBar@@IAEXPBVImage@@@Z,,0x0049CF10,164,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?setPortraitByObject@ControlBar@@IAEXPAVObject@@@Z,,0x0059A664,739,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setPortraitByObject.asm,matched,exact 739B via MASM
@@ -12297,7 +12294,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setVisible@SnowManager@@QAEX_N@Z,,0x0045A9A0,10,Code/GameEngine/Source/GameClient/Snow.cpp,matched,
 ?setVisibleState@Geometry@@QAEXW4VisibleState@1@@Z,,0x004F9510,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?setVisionRange@Object@@QAEXM@Z,,0x0098D2C0,13,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-?setVolume@AudioEventRTS@@QAEXM@Z,,0x000B23B0,10,Code/masm_dumps/AudioEventRTS_setVolume.asm,matched,Ghidra-bound BFME audio volume setter
 ?setWaitTime@QuickMatchPreferences@@QAEXH@Z,,0x000AD500,169,Code/masm_dumps/_sa12__setWaitTime_QuickMatchPreferences__QAEXH_Z_AD500.asm,matched,string-anchor Open-BFME4+Grok WaitTime
 ?setWakeFrame@UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,,0x002B2040,30,Code/GameEngine/Source/GameLogic/Object/Update/UpdateModule.cpp,matched,
 ?setWaterAttenuationFactors@W3DTerrainVisual@@UAEXPBVWaterHandle@@MMMM@Z,,0x00730A20,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
@@ -13568,3 +13564,7 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?erase@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEPADPAD0@Z,,0x000A35B0,57,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ??$_M_assign_dispatch@PAD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEAAV01@PAD0ABU__false_type@1@@Z,,0x000A5780,105,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?assign@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEAAV12@PBD0@Z,,0x000A5810,152,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+?setAudioPriority@AudioEventRTS@@QAEXW4AudioPriority@@@Z,,0x000B23A0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
+?setHandleToKill@AudioEventRTS@@QAEXI@Z,,0x000B2310,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
+?setPlayingHandle@AudioEventRTS@@QAEXI@Z,,0x000B2200,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
+?setVolume@AudioEventRTS@@QAEXM@Z,,0x000B23B0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
