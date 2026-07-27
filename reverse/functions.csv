@@ -1397,7 +1397,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GameMessageParser@@QAE@XZ,,0x00013FCA,5,Code/masm_dumps/__0GameMessageParser__QAE_XZ_13FCA.asm,matched,MASM exact retail dump
 ??0GameMessageParserArgumentType@@QAE@W4GameMessageArgumentDataType@@H@Z,,0x00623570,32,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,
 ??0GameResultsQueue@@QAE@XZ,,0x0000DAFD,5,Code/masm_dumps/__0GameResultsQueue__QAE_XZ_DAFD.asm,matched,MASM exact retail dump
-??0GameResultsRequest@@QAE@ABV0@@Z,,0x0004355E,5,Code/masm_dumps/__0GameResultsRequest__QAE_ABV0__Z_4355E.asm,matched,MASM exact retail dump
 ??0GameResultsRequest@@QAE@XZ,,0x004E5C00,68,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ??0GameResultsResponse@@QAE@ABV0@@Z,,0x00641850,35,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ??0GameSpyBuddyMessageQueue@@QAE@XZ,,0x0063E080,190,Code/masm_dumps/_rn7___0GameSpyBuddyMessageQueue__QAE_XZ_63E080.asm,matched,reloc-needle Open-BFME4+Grok
@@ -2658,8 +2657,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1FrameData@@QAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf6___1FrameData__QAE_XZ_AFF130.asm,matched,ICF Open-BFME4+Grok
 ??1GameEngine@@UAE@XZ,,0x0007AC33,63,Code/masm_dumps/_sa14___1GameEngine__UAE_XZ_7AC33.asm,matched,sa14 Open-BFME4+Grok Uncaught Exception during init
 ??1GameMessageList@@UAE@XZ,,0x0000E421,5,Code/masm_dumps/__1GameMessageList__UAE_XZ_E421.asm,matched,MASM exact retail dump
-??1GameResultsRequest@@QAE@XZ,,0x00049288,5,Code/masm_dumps/__1GameResultsRequest__QAE_XZ_49288.asm,matched,MASM exact retail dump
-??1GameResultsResponse@@QAE@XZ,,0x00024352,5,Code/masm_dumps/__1GameResultsResponse__QAE_XZ_24352.asm,matched,MASM exact retail dump
 ??1GameState@@UAE@XZ,,0x00110DF0,503,Code/GameEngine/Source/Common/System/SaveGame/GameState_dtor.asm,matched,
 ??1GameStateMap@@,,0x00112BF0,343,Code/masm_dumps/_sa9___1GameStateMap___112BF0.asm,matched,Exact 343B Open-BFME4
 ??1GameTextInterface@@UAE@XZ,,0x009A1A40,14,Code/masm_dumps/GameText_GameTextInterface_destructor.asm,matched,ICF alias; exact retail base-interface destructor via MASM
@@ -13568,3 +13565,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?friend_newModuleInstance@CashHackSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011FD70,96,Code/masm_dumps/CashHackSpecialPower_friend_newModuleInstance.asm,matched,retail ModuleFactory registration ordinal 0xD6; unique (single push of proc thunk 0x262D3 in .text); ctor thunk 0x14245 -> ctor 0x258250 stores vtbls 0x10B39C4/0x10B3900/0x10B3888; alloc 0x2C
 ?createKeyboard@W3DGameClient@@MAEPAVKeyboard@@XZ,,0x006FB9E0,89,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,true RVA via W3DGameClient vtable slot 40 (GameClient::init call [eax+0xA0] -> TheKeyboard); TU-local BFME Keyboard/DirectInputKeyboard ABI facades (0xE1C/0xE24); ctor thunk pinned
 ?createTerrainLogic@GameLogic@@EAEPAVTerrainLogic@@XZ,,0x006BAD40,89,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,true RVA via GameLogic vtable slot 9 (0xD1CA5C+0x24) stored to TheTerrainLogic global 0x12EF4CC in init; queue 0xB026E0 was bogus snap; TU-local TerrainLogic facade retail sizeof 0x1904 (ZH prefix + pad); REL32 pins for TerrainLogic ctor; verified via ./build.sh (Win add_match cannot spawn .sh)
+??0GameResultsRequest@@QAE@ABV0@@Z,,0x006417E0,89,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
+??1GameResultsRequest@@QAE@XZ,,0x004E5C60,155,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
+??1GameResultsResponse@@QAE@XZ,,0x00641300,39,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++

@@ -10,7 +10,12 @@ survives unverified (unless you explicitly pass --no-verify).
 
 Usage:
   python3 tools/add_match.py <mangled-name> <target_rva> <target_size> <source> \\
-      [--notes TEXT] [--no-verify] [--root DIR]
+      [--notes TEXT] [--replace-existing] [--no-verify] [--root DIR]
+
+`--replace-existing` safely repoints the symbol's one existing ledger row before
+verification.  This is the supported path for replacing a 5-byte MASM thunk
+claim with the clean C++ body it jumps to; the original row is restored if the
+new claim does not byte-verify.
 """
 import argparse
 import csv
@@ -110,6 +115,9 @@ def main():
     parser.add_argument("--notes", default="", help="notes column text (no commas)")
     parser.add_argument("--icf-owner", help="existing matched symbol at the same RVA and size; "
                         "allows a verified identical-code-folding alias")
+    parser.add_argument("--replace-existing", action="store_true",
+                        help="replace the symbol's one existing row instead of rejecting it; "
+                             "the old row is restored if verification fails")
     parser.add_argument("--no-verify", action="store_true",
                         help="skip ./build.sh verification (row lands UNVERIFIED — "
                              "verify before committing)")
@@ -168,6 +176,20 @@ def main():
              "fix the ledger before appending")
 
     rows = parse_ledger(raw)
+    claims = [row for row in rows if row["name"] == name]
+    replaced = None
+    if args.replace_existing:
+        if len(claims) != 1:
+            fail(f"--replace-existing requires exactly one existing row for {name}; "
+                 f"found {len(claims)}")
+        replaced = claims[0]
+    elif claims:
+        addresses = ", ".join(f"0x{row['rva']:08X} ({row['source']}, {row['status']})"
+                              for row in claims)
+        fail(f"{name} is already in the ledger at {addresses}",
+             "one name = one address; use --replace-existing only when deliberately "
+             "repointing that claim")
+
     new_end = rva + size
     icf_owner = None
     if args.icf_owner:
@@ -180,6 +202,8 @@ def main():
             fail(f"--icf-owner {args.icf_owner} is not a matched {size}-byte claim "
                  f"at 0x{rva:08X}")
     for row in rows:
+        if row is replaced:
+            continue
         same_icf_group = (icf_owner is not None and row["status"] == "matched" and
                           row["rva"] == rva and row["size"] == size)
         if row["rva"] == rva:
@@ -193,14 +217,6 @@ def main():
             fail(f"range [0x{rva:08X}, 0x{new_end:08X}) overlaps matched row "
                  f"{row['name']} [0x{row['rva']:08X}, 0x{row['rva'] + row['size']:08X}) "
                  f"({row['source']}, line {row['line']})")
-    claims = [row for row in rows if row["name"] == name]
-    if claims:
-        addresses = ", ".join(f"0x{row['rva']:08X} ({row['source']}, {row['status']})"
-                              for row in claims)
-        fail(f"{name} is already in the ledger at {addresses}",
-             "one name = one address; the only legit double-linked names "
-             "(realcrc.cpp) already have both rows")
-
     export_rva = lookup_export_rva(root, name)
     ledger_row = f"{name},{export_rva},0x{rva:08X},{size},{source_rel},matched,{args.notes}"
 
@@ -209,9 +225,20 @@ def main():
     if new_source is not None:
         source_path.write_bytes(new_source)
 
-    with functions_csv.open("ab") as handle:
-        handle.write(ledger_row.encode("utf-8") + b"\r\n")
-    print(f"add_match: appended: {ledger_row}")
+    if replaced is not None:
+        lines = raw.splitlines(keepends=True)
+        old_index = replaced["line"] - 1
+        if not (0 <= old_index < len(lines)):
+            fail(f"internal error: existing row line {replaced['line']} is out of range")
+        new_raw = b"".join(lines[:old_index] + lines[old_index + 1:])
+        functions_csv.write_bytes(new_raw + ledger_row.encode("utf-8") + b"\r\n")
+        print(f"add_match: replaced line {replaced['line']}: "
+              f"0x{replaced['rva']:08X}/{replaced['size']}B {replaced['source']}")
+        print(f"add_match: with: {ledger_row}")
+    else:
+        with functions_csv.open("ab") as handle:
+            handle.write(ledger_row.encode("utf-8") + b"\r\n")
+        print(f"add_match: appended: {ledger_row}")
 
     if args.no_verify:
         print("add_match: --no-verify: row is UNVERIFIED — run "
