@@ -4425,7 +4425,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_G?$VectorClass@U_ArcInfoStruct@VehicleCurveClass@@@@UAEPAXI@Z,,0x00415D20,36,Code/Libraries/Source/WWVegas/WWMath/vehiclecurve.cpp,matched,
 ??_G?$VectorClass@U_ENUM_VALUE@EnumParameterClass@@@@UAEPAXI@Z,,0x0093E930,94,Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp,matched,
 ??_G?$VectorClass@VActiveCategoryStackClass@@@@UAEPAXI@Z,,0x00AFF080,90,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
-??_G?$VectorClass@VRenderDeviceDescClass@@@@UAEPAXI@Z,,0x0090B580,97,Code/masm_dumps/_rn1____G__VectorClass_VRenderDeviceDescClass____UAEPAXI_Z_90B580.asm,matched,reloc-needle Open-BFME4+Grok
 ??_G?$VectorClass@VStringClass@@@@UAEPAXI@Z,,0x0013B800,94,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,
 ??_G?$VectorClass@VTCBClass@TCBSpline3DClass@@@@UAEPAXI@Z,,0x00415D20,36,Code/Libraries/Source/WWVegas/WWMath/tcbspline.cpp,matched,
 ??_G?$VectorClass@VTangentsClass@HermiteSpline1DClass@@@@UAEPAXI@Z,,0x00415D20,36,Code/Libraries/Source/WWVegas/WWMath/cardinalspline.cpp,matched,
@@ -5117,7 +5116,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Clear@?$DynamicVectorClass@VKeyClass@Curve1DClass@@@@UAEXXZ,,0x007BB8D0,42,Code/Libraries/Source/WWVegas/WWMath/curve.cpp,matched,
 ?Clear@?$DynamicVectorClass@VKeyClass@Curve3DClass@@@@UAEXXZ,,0x007BB8D0,42,Code/Libraries/Source/WWVegas/WWMath/curve.cpp,matched,
 ?Clear@?$DynamicVectorClass@VModelNodeClass@HLodClass@@@@UAEXXZ,,0x0094E2E0,42,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
-?Clear@?$DynamicVectorClass@VRenderDeviceDescClass@@@@UAEXXZ,,0x0090B440,67,Code/masm_dumps/_rn3__Clear___DynamicVectorClass_VRenderDeviceDescClass____UAEXXZ_90B440.asm,matched,reloc-needle Open-BFME4+Grok
 ?Clear@?$DynamicVectorClass@VResolutionDescClass@@@@UAEXXZ,,0x007BB8D0,42,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Clear@?$DynamicVectorClass@VShaderClass@@@@UAEXXZ,,0x009744B0,42,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
 ?Clear@?$DynamicVectorClass@VStringClass@@@@UAEXXZ,,0x0013B770,64,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,
@@ -5143,7 +5141,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Clear@?$VectorClass@U_ArcInfoStruct@VehicleCurveClass@@@@UAEXXZ,,0x0000B9CE,5,Code/masm_dumps/_thunk_90bc90015b5f_B9CE.asm,matched,thunk accessor of ported class
 ?Clear@?$VectorClass@U_ENUM_VALUE@EnumParameterClass@@@@UAEXXZ,,0x0093D920,61,Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp,matched,
 ?Clear@?$VectorClass@VActiveCategoryStackClass@@@@UAEXXZ,,0x00AFEC60,67,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
-?Clear@?$VectorClass@VRenderDeviceDescClass@@@@UAEXXZ,,0x0090AB20,64,Code/masm_dumps/_rn3__Clear___VectorClass_VRenderDeviceDescClass____UAEXXZ_90AB20.asm,matched,reloc-needle Open-BFME4+Grok
 ?Clear@?$VectorClass@VStringClass@@@@UAEXXZ,,0x0013AC30,61,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,
 ?Clear@?$VectorClass@VTCBClass@TCBSpline3DClass@@@@UAEXXZ,,0x0000DBA7,5,Code/masm_dumps/_thunk_37007bb9f1da_DBA7.asm,matched,thunk accessor of ported class
 ?Clear@?$VectorClass@VTangentsClass@HermiteSpline1DClass@@@@UAEXXZ,,0x0000B9CE,5,Code/masm_dumps/_thunk_ab25ea3f8ed3_B9CE.asm,matched,thunk accessor of ported class (icf alias)
@@ -6294,7 +6291,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Radius@Vector3SolidSphereRandomizer@@UBEMXZ,,0x0010BD90,4,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,icf-owner=?getMinimumValue@GameClientRandomVariable@@QBEMXZ
 ?Get_Random_Float_Minus1_To_1@Vector3Randomizer@@IAEMXZ,,0x00B02120,25,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,
 ?Get_Rect@INIClass@@QBE?BV?$TRect@H@@PBD0ABV2@@Z,,0x009E5940,258,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
-?Get_Render_Device_Desc@DX8Wrapper@@KAABVRenderDeviceDescClass@@H@Z,,0x00903E80,41,Code/masm_dumps/_rn4__Get_Render_Device_Desc_DX8Wrapper__KAABVRenderDeviceDescClass__H_Z_903E80.asm,matched,reloc-needle Open-BFME4+Grok
 ?Get_Render_Device_Name@DX8Wrapper@@KAPBDH@Z,,0x00903EB0,20,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_Render_Mode@ParticleEmitterClass@@QBEHXZ,,0x0097E200,13,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Get_Render_Target_Resolution@WW3D@@SAXAAH00AA_N@Z,,0x008FD1F0,5,Code/masm_dumps/_Get_Render_Target_Resolution_WW3D__SAXAAH00AA_N_Z_8FD1F0.asm,matched,MASM exact retail dump
@@ -8304,7 +8300,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addWaypointLink@TerrainLogic@@IAEXHH@Z,,0x00038B77,5,Code/masm_dumps/_addWaypointLink_TerrainLogic__IAEXHH_Z_38B77.asm,matched,MASM exact retail dump
 ?addWindow@WindowLayout@@QAEXPAVGameWindow@@@Z,,0x00497B00,99,Code/GameEngine/Source/GameClient/GUI/WindowLayout.cpp,matched,
 ?addWindow@WindowLayout@@UAEXPAVGameWindow@@@Z,,0x00497B00,99,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,
-?add_resolution@RenderDeviceDescClass@@AAEXHHH@Z,,0x00906440,164,Code/masm_dumps/_rn1__add_resolution_RenderDeviceDescClass__AAEXHHH_Z_906440.asm,matched,reloc-needle Open-BFME4+Grok
 ?adjustCoordToCell@Pathfinder@@IAEXHH_NAAUCoord3D@@W4PathfindLayerEnum@@@Z,,0x003D6040,116,Code/masm_dumps/_rn3__adjustCoordToCell_Pathfinder__IAEXHH_NAAUCoord3D__W4PathfindLayerEnum_3D6040.asm,matched,reloc-needle Open-BFME4+Grok
 ?adjustModelConditionForWeaponStatus@Object@@QAEXXZ,,0x000276D3,5,Code/masm_dumps/_thunk_6a9d42ce54ed_276D3.asm,matched,thunk accessor of ported class
 ?adjustVector@@YAXPAUCoord3D@@PBVMatrix3D@@@Z,,0x00429350,84,Code/GameEngine/Source/GameClient/FXList.cpp,matched,identical-bytes drift row; string-anchored; ICF-folded template instantiation
@@ -13568,3 +13563,8 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?friend_newModuleInstance@W3DDebrisDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BEF40,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@W3DRopeDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF2E0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@W3DTreeDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF710,107,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
+??_G?$VectorClass@VRenderDeviceDescClass@@@@UAEPAXI@Z,,0x0090B580,97,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,BFME RenderDeviceDesc layout shim
+?Get_Render_Device_Desc@DX8Wrapper@@KAABVRenderDeviceDescClass@@H@Z,,0x00903E80,41,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,BFME RenderDeviceDesc layout shim
+?Clear@?$VectorClass@VRenderDeviceDescClass@@@@UAEXXZ,,0x0090AB20,64,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,BFME RenderDeviceDesc layout shim
+?Clear@?$DynamicVectorClass@VRenderDeviceDescClass@@@@UAEXXZ,,0x0090B440,67,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,BFME RenderDeviceDesc layout shim
+?add_resolution@RenderDeviceDescClass@@AAEXHHH@Z,,0x00906440,164,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,BFME RenderDeviceDesc layout shim
