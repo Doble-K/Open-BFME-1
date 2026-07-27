@@ -2733,7 +2733,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MemLogClass@@QAE@XZ,,0x00AFF270,82,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??1MeshLoadContextClass@@AAE@XZ,,0x0096FD30,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??1MessageStream@@UAE@XZ,,0x0008AD50,116,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
-??1MetaEventTranslator@@UAE@XZ,,0x005B6A70,7,Code/masm_dumps/MetaEvent_MetaEventTranslator_destructor.asm,matched,
 ??1MetaMapRec@@QAE@XZ,,0x005B6FC0,77,Code/masm_dumps/MetaEvent_MetaMapRec_retail_destructor.asm,matched,
 ??1MinefieldBehaviorModuleData@@UAE@XZ,,0x0036CE20,100,Code/masm_dumps/MinefieldBehaviorModuleData_destructor.asm,matched,Exact retail MASM; factory 0x1145D0 ctor 0x36CDD0 ownership
 ??1MissingAnimClass@@UAE@XZ,,0x007BB7F0,73,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
@@ -4673,7 +4672,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GMemLogClass@@QAEPAXI@Z,,0x00AFF810,30,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??_GMemoryPoolObject@@MAEPAXI@Z,,0x00712E80,11,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,
 ??_GMessageStream@@UAEPAXI@Z,,0x0008DD80,30,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
-??_GMetaEventTranslator@@UAEPAXI@Z,,0x005B6B70,30,Code/masm_dumps/MetaEvent_MetaEventTranslator_scalar_deleting_destructor.asm,matched,
 ??_GMetaMapRec@@QAEPAXI@Z,,0x005B70E0,30,Code/masm_dumps/MetaEvent_MetaMapRec_retail_scalar_deleting_destructor.asm,matched,
 ??_GMinefieldBehaviorModuleData@@UAEPAXI@Z,,0x0036DBD0,30,Code/GameEngine/Source/GameLogic/Object/Behavior/MinefieldBehavior.cpp,matched,
 ??_GMissileLauncherBuildingUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/masm_dumps/_icf____GMissileLauncherBuildingUpdateModuleData__UAEPAXI_Z_5BF290.asm,matched,ICF alias of ??_G?$CategoryModuleTemplate@$00@FXParti Open-BFME4+Grok
@@ -13568,3 +13566,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?friend_newModuleData@CashBountyPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D7C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
 ?friend_newModuleData@CostModifierUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
 ?friend_newModuleData@NeutronMissileUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118460,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
+??1MetaEventTranslator@@UAE@XZ,,0x005B6A70,7,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
+??_GMetaEventTranslator@@UAEPAXI@Z,,0x005B6B70,30,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++

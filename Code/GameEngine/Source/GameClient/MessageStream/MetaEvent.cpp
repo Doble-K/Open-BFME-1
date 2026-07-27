@@ -387,7 +387,6 @@ MetaEventTranslator::MetaEventTranslator() :
 }
 
 //-------------------------------------------------------------------------------------------------
-// ??1MetaEventTranslator@@UAE@XZ present-unmatched
 MetaEventTranslator::~MetaEventTranslator()
 {
 }
