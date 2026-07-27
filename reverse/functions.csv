@@ -11856,7 +11856,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setForceWantingState@SupplyTruckAIUpdate@@UAEX_N@Z,,0x003BC6B0,10,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/ChinookAIUpdate.cpp,matched,
 ?setFrameCommandCount@FrameDataManager@@QAEXII@Z,,0x00670750,34,Code/masm_dumps/_rn9__setFrameCommandCount_FrameDataManager__QAEXII_Z_670750.asm,matched,reloc-needle Open-BFME4+Grok
 ?setFrameToEvaluate@Script@@QAEXI@Z,,0x00191490,10,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
-?setFramesPerSecondLimit@GameEngine@@UAEXH@Z,,0x0006B6F0,10,Code/masm_dumps/GameEngine_setFramesPerSecondLimit.asm,matched,Ghidra-bound BFME FPS-limit setter
 ?setFromInt@RGBColor@@QAEXH@Z,0x0002CDC7,0x00083370,84,Code/Libraries/Source/WWVegas/WWMath/color.cpp,matched,sets RGB channels from packed int
 ?setFrontCrushed@ActiveBody@@UAEX_N@Z,,0x007AE630,13,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,
 ?setGameInProgress@GameInfo@@QAEX_N@Z,,0x0006B6C0,10,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?parseUpgradeTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BB040,119,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseParticleSystemTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAF00,163,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseAndTranslateLabel@INI@@SAXPAV1@PAX1PBX@Z,,0x000BA9B0,181,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
+?setFramesPerSecondLimit@GameEngine@@UAEXH@Z,,0x0006B6F0,10,Code/GameEngine/Source/Common/GameEngine.cpp,matched,BFME FPS-limit setter
