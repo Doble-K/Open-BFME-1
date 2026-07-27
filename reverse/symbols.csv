@@ -3483,3 +3483,4 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@0PBVVector2@@PBVVector4@@II@Z,0x0091EB40,DX8VertexBufferClass ctor copy helper
 ?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@PBVVector2@@II@Z,0x0091E690,DX8VertexBufferClass ctor copy helper
 ?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@PBVVector2@@PBVVector4@@II@Z,0x0091EDE0,DX8VertexBufferClass ctor copy helper
+??0GameWindowManager@@QAE@XZ,0x00041489,W3DGameWindowManager base constructor retail thunk
