@@ -3526,3 +3526,6 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ??0INIException@@QAA@HPBDZZ,0x00850600,INI retail variadic exception constructor
 __CxxThrowException@8,0x009F6D00,MSVC retail exception throw helper
 ?findTemplate@BFMEThingFactory@@QAEPBVThingTemplate@@ABVAsciiString@@@Z,0x00028560,INI retail ThingFactory facade
+?processDisconnectPlayer@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,0x0066C760
+?processDisconnectFrame@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,0x0066BD80
+?processDisconnectScreenOff@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,0x0066B890
