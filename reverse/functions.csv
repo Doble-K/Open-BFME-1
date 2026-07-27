@@ -1656,7 +1656,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0NotifyWeaponFiredInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,ICF alias of existing matched body
 ??0Null3DObjClass@@QAE@ABV0@@Z,,0x009726E0,54,Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp,matched,
 ??0Null3DObjClass@@QAE@PBD@Z,,0x009726A0,49,Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp,matched,
-??0OBBoxClass@@QAE@ABV0@@Z,,0x00931420,97,Code/masm_dumps/__0OBBoxClass__QAE_ABV0__Z_931420.asm,matched,MASM exact retail dump
 ??0OBBoxClass@@QAE@ABVVector3@@0@Z,,0x0075B300,80,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
 ??0OBBoxClass@@QAE@PBVVector3@@H@Z,,0x005C18B0,5,Code/Libraries/Source/WWVegas/WWMath/obbox.cpp,matched,icf-owner=??0?$CategoryModuleClassBase@$07$0A@@FXParticleSystem@@QAE@ABV?$CategoryModuleCl
 ??0OBBoxIntersectionTestClass@@QAE@ABVAABoxIntersectionTestClass@@ABVMatrix3D@@@Z,,0x0092D8E0,176,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?DebugFreeMemory@@YAXPAX@Z,,0x0088EAD0,19,Code/Libraries/Source/WWVegas/WWDebug/debug_internal.cpp,matched,MASM converted to clean C++
 ?Add_To_Static_Sort_List@WW3D@@SAXPAVRenderObjClass@@I@Z,,0x008FD4C0,22,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,MASM converted to clean C++
 ?Add@?$DynamicVectorClass@VShaderClass@@@@QAE_NABVShaderClass@@@Z,,0x0092FA60,78,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,MASM converted to clean C++
+??0OBBoxClass@@QAE@ABV0@@Z,,0x00931420,97,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,MASM converted to clean C++
