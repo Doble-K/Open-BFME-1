@@ -718,7 +718,7 @@ void ScriptGroup::crc( Xfer *xfer )
 	* 2: m_isGroupActive, since it is twiddled by other scripts.  Only its initial state is determined by the map.
 */
 // ------------------------------------------------------------------------------------------------
-// ?xfer@ScriptGroup@@MAEXPAVXfer@@@Z present-unmatched
+// Matched body: ScriptGroupXfer.cpp @ 0x350E90 (not this ZH list-walk; queue 0xAF9B24 was jmp-table).
 void ScriptGroup::xfer( Xfer *xfer )
 {
 
