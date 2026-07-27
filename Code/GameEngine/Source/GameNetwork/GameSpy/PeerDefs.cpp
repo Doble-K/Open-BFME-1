@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/WWLib
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -52,6 +52,7 @@
 #include "GameNetwork/GameSpyOverlay.h"
 #include "GameNetwork/RankPointValue.h"
 #include "GameLogic/GameLogic.h"
+#include "string_base.h"
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -150,8 +151,11 @@ void GameSpyInfo::setLocalIPs(UnsignedInt internalIP, UnsignedInt externalIP)
 
 void GameSpyInfo::readAdditionalDisconnects( void )
 {
-	m_additionalDisconnects = GetAdditionalDisconnectsFromUserFile(m_localProfileID);
-	DEBUG_LOG(("GameSpyInfo::readAdditionalDisconnects() found %d disconnects.\n", m_additionalDisconnects));
+	*reinterpret_cast<Int *>(reinterpret_cast<char *>(this) + 0x6f8) =
+		GetAdditionalDisconnectsFromUserFile(
+			*reinterpret_cast<Int *>(reinterpret_cast<char *>(this) + 0x70));
+	DEBUG_LOG(("GameSpyInfo::readAdditionalDisconnects() found %d disconnects.\n",
+		*reinterpret_cast<Int *>(reinterpret_cast<char *>(this) + 0x6f8)));
 }
 
 // ?getAdditionalDisconnects@GameSpyInfo@@UAEHXZ
@@ -163,7 +167,7 @@ Int GameSpyInfo::getAdditionalDisconnects( void )
 
 void GameSpyInfo::clearAdditionalDisconnects( void )
 {
-	m_additionalDisconnects = 0;
+	*reinterpret_cast<Int *>(reinterpret_cast<char *>(this) + 0x6f8) = 0;
 }
 
 // ?createNewGameSpyInfoInterface@GameSpyInfoInterface@@SAPAV1@XZ present-unmatched
@@ -174,15 +178,17 @@ GameSpyInfoInterface* GameSpyInfoInterface::createNewGameSpyInfoInterface( void 
 
 Bool GameSpyInfo::amIHost( void )
 {
-	return m_isHosting;
+	return *reinterpret_cast<const Bool *>(reinterpret_cast<const char *>(this) + 0x258);
 }
 
 GameSpyStagingRoom* GameSpyInfo::getCurrentStagingRoom( void )
 {
-	if (m_isHosting || m_joinedStagingRoom)
-		return &m_localStagingRoom;
+	if (*reinterpret_cast<const Bool *>(reinterpret_cast<const char *>(this) + 0x258) ||
+		*reinterpret_cast<const Int *>(reinterpret_cast<const char *>(this) + 0x254))
+		return reinterpret_cast<GameSpyStagingRoom *>(reinterpret_cast<char *>(this) + 0x25c);
 
-	StagingRoomMap::iterator it = m_stagingRooms.find(m_joinedStagingRoom);
+	StagingRoomMap::iterator it = m_stagingRooms.find(
+		*reinterpret_cast<const Int *>(reinterpret_cast<const char *>(this) + 0x254));
 	if (it != m_stagingRooms.end())
 		return it->second;
 
@@ -449,7 +455,8 @@ void PeerDefs_force_GameSpyStagingRoom_CRC(GameSpyStagingRoom *room, UnsignedInt
 
 void GameSpyInfo::setMOTD( const AsciiString& motd )
 {
-	m_rawMotd = motd;
+	reinterpret_cast<StringBase<char> *>(reinterpret_cast<char *>(this) + 0x0c)->set(
+		*reinterpret_cast<const StringBase<char> *>(&motd));
 }
 
 const AsciiString& GameSpyInfo::getMOTD( void )
@@ -459,7 +466,8 @@ const AsciiString& GameSpyInfo::getMOTD( void )
 
 void GameSpyInfo::setConfig( const AsciiString& config )
 {
-	m_rawConfig = config;
+	reinterpret_cast<StringBase<char> *>(reinterpret_cast<char *>(this) + 0x10)->set(
+		*reinterpret_cast<const StringBase<char> *>(&config));
 }
 
 const AsciiString& GameSpyInfo::getConfig( void )
@@ -585,21 +593,21 @@ Bool PlayerInfo::isIgnored( void )
 
 void GameSpyInfo::setDisallowAsianText( Bool val )
 {
-	m_disallowAsainText = val;
+	*reinterpret_cast<Bool *>(reinterpret_cast<char *>(this) + 0x244) = val;
 }
 
 void GameSpyInfo::setDisallowNonAsianText( Bool val )
 {
-	m_disallowNonAsianText = val;
+	*reinterpret_cast<Bool *>(reinterpret_cast<char *>(this) + 0x245) = val;
 }
 
 Bool GameSpyInfo::getDisallowAsianText( void )
 {
-	return m_disallowAsainText;
+	return *reinterpret_cast<const Bool *>(reinterpret_cast<const char *>(this) + 0x244);
 }
 Bool GameSpyInfo::getDisallowNonAsianText(void )
 {
-	return m_disallowNonAsianText;
+	return *reinterpret_cast<const Bool *>(reinterpret_cast<const char *>(this) + 0x245);
 }
 
 void GameSpyInfo::setMaxMessagesPerUpdate( Int num )
@@ -609,7 +617,7 @@ void GameSpyInfo::setMaxMessagesPerUpdate( Int num )
 
 Int GameSpyInfo::getMaxMessagesPerUpdate( void )
 {
-	return m_maxMessagesPerUpdate;
+	return *reinterpret_cast<const Int *>(reinterpret_cast<const char *>(this) + 0x250);
 }
 
 /**This function is used to force an update of player's gamespy stats with an additional
