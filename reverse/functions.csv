@@ -7454,7 +7454,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?SetIdentity@Matrix4D@@QAEAAV1@XZ,0x00018345,0x007E6060,57,Code/Libraries/Source/WWVegas/WWMath/matrix4d.cpp,matched,sets identity matrix
 ?SetIndexBuffer@RoadSegment@@QAEXPAGH@Z,,0x00703FA0,102,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?SetInputBuffer@UDP@@QAEHI@Z,,0x006847A0,42,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
-?SetLobbyAttemptHostJoin@@YAX_N@Z,,0x0000362A,5,Code/masm_dumps/_SetLobbyAttemptHostJoin__YAX_N_Z_362A.asm,matched,MASM exact retail dump
 ?SetMaxVect@Coord2D@@QAEAAV1@XZ,0x00047442,0x007E5C70,16,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,sets x/y to maximum float bit pattern
 ?SetMaxVect@Coord3D@@QAEAAV1@XZ,0x000437E8,0x007E6030,16,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,sets x/y/z to maximum float bit pattern
 ?SetMinVect@Coord2D@@QAEAAV1@XZ,0x000481B7,0x007E5C50,16,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,sets x/y to minimum float bit pattern
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??1LockClass@CriticalSectionClass@@QAE@XZ,,0x009DB4D0,15,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,MASM converted to clean C++
 ??0?$_STLP_alloc_proxy@PAPAPAVSightingInfo@@PAPAV1@V?$allocator@PAPAVSightingInfo@@@_STL@@@_STL@@QAE@ABV?$allocator@PAPAVSightingInfo@@@1@PAPAPAVSightingInfo@@@Z,,0x009ED3E0,11,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,MASM converted to clean C++
 ??8?$VectorClass@H@@UBE_NABV0@@Z,,0x00AFEDF0,68,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,MASM converted to clean C++
+?SetLobbyAttemptHostJoin@@YAX_N@Z,,0x004F9610,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,thunk-dump converted to clean C++
