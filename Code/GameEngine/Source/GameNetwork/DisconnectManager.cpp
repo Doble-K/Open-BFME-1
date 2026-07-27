@@ -278,22 +278,36 @@ void DisconnectManager::updateWaitForPacketRouter(ConnectionManager *conMgr) {
 */
 }
 
-// ?processDisconnectCommand@DisconnectManager@@QAEXPAVNetCommandRef@@PAVConnectionManager@@@Z present-unmatched
+// BFME body @ 0x66C810/145 (queue 0x66C9FB is INSIDE FUN_00a6c8d0 mega-fn).
+// Retail: *(NetCommandMsg**)ref (m_msg@+0 quirk, same as processWrapper); types
+// 0x18..0x1c only (KA inline, Player, Vote, Frame, ScreenOff) — no QUERY/ACK;
+// KA inlines translatedSlotPosition + stores timeGetTime at m_playerTimeouts@+0x14.
 void DisconnectManager::processDisconnectCommand(NetCommandRef *ref, ConnectionManager *conMgr) {
-	NetCommandMsg *msg = ref->getCommand();
-	if (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTKEEPALIVE) {
-		processDisconnectKeepAlive(msg, conMgr);
-	} else if (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTPLAYER) {
+	// BFME quirk: retail reads *(void**)ref (m_msg@+0), not getCommand() ([ref+4]).
+	// Load msg before any other work so MSVC keeps it in eax like retail.
+	NetCommandMsg *msg = *(NetCommandMsg **)ref;
+	Int cmdType = (Int)msg->getNetCommandType();
+	if (cmdType == 0x18) {
+		// Inlined KeepAlive: translatedSlotPosition + resetPlayerTimeout @ +0x14
+		// Shape must match retail: one getLocalPlayerID, then jl/je/dec on slot.
+		Int slot = (Int)msg->getPlayerID();
+		Int localSlot = (Int)conMgr->getLocalPlayerID();
+		if (slot >= localSlot) {
+			if (slot == localSlot) {
+				return;
+			}
+			--slot;
+		}
+		if (slot != -1) {
+			((time_t *)((char *)this + 0x14))[slot] = timeGetTime();
+		}
+	} else if (cmdType == 0x19) {
 		processDisconnectPlayer(msg, conMgr);
-	} else if (msg->getNetCommandType() == NETCOMMANDTYPE_PACKETROUTERQUERY) {
-		processPacketRouterQuery(msg, conMgr);
-	} else if (msg->getNetCommandType() == NETCOMMANDTYPE_PACKETROUTERACK) {
-		processPacketRouterAck(msg, conMgr);
-	} else if (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTVOTE) {
+	} else if (cmdType == 0x1a) {
 		processDisconnectVote(msg, conMgr);
-	} else if (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTFRAME) {
+	} else if (cmdType == 0x1b) {
 		processDisconnectFrame(msg, conMgr);
-	} else if (msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTSCREENOFF) {
+	} else if (cmdType == 0x1c) {
 		processDisconnectScreenOff(msg, conMgr);
 	}
 }
@@ -308,7 +322,7 @@ void DisconnectManager::processDisconnectKeepAlive(NetCommandMsg *msg, Connectio
 }
 
 // ?processDisconnectPlayer@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z present-unmatched
-void DisconnectManager::processDisconnectPlayer(NetCommandMsg *msg, ConnectionManager *conMgr) {
+__declspec(noinline) void DisconnectManager::processDisconnectPlayer(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectPlayerCommandMsg *cmdMsg = (NetDisconnectPlayerCommandMsg *)msg;
 	DEBUG_LOG(("DisconnectManager::processDisconnectPlayer - Got disconnect player command from player %d.  Disconnecting player %d on frame %d\n", msg->getPlayerID(), cmdMsg->getDisconnectSlot(), cmdMsg->getDisconnectFrame()));
 	DEBUG_ASSERTCRASH(TheGameLogic->getFrame() == cmdMsg->getDisconnectFrame(), ("disconnecting player on the wrong frame!!!"));
@@ -372,7 +386,7 @@ void DisconnectManager::processDisconnectVote(NetCommandMsg *msg, ConnectionMana
 }
 
 // ?processDisconnectFrame@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z present-unmatched
-void DisconnectManager::processDisconnectFrame(NetCommandMsg *msg, ConnectionManager *conMgr) {
+__declspec(noinline) void DisconnectManager::processDisconnectFrame(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectFrameCommandMsg *cmdMsg = (NetDisconnectFrameCommandMsg *)msg;
 	UnsignedInt playerID = cmdMsg->getPlayerID();
 	if (m_disconnectFrames[playerID] >= cmdMsg->getDisconnectFrame()) {
@@ -413,7 +427,7 @@ void DisconnectManager::processDisconnectFrame(NetCommandMsg *msg, ConnectionMan
 }
 
 // ?processDisconnectScreenOff@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z present-unmatched
-void DisconnectManager::processDisconnectScreenOff(NetCommandMsg *msg, ConnectionManager *conMgr) {
+__declspec(noinline) void DisconnectManager::processDisconnectScreenOff(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectScreenOffCommandMsg *cmdMsg = (NetDisconnectScreenOffCommandMsg *)msg;
 	UnsignedInt playerID = cmdMsg->getPlayerID();
 
