@@ -6314,7 +6314,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Polygon_Array@GapFillerClass@@QBEPBVVector3i16@@XZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Get_Polygon_Count@LineGroupClass@@QAEHXZ,,0x0098E970,28,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,
 ?Get_Polygon_Count@PointGroupClass@@QAEHXZ,,0x00912150,27,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
-?Get_Position@RenderObjClass@@QBE?AVVector3@@XZ,,0x009202C0,33,Code/masm_dumps/__Get_Position_RenderObjClass__QBE_AVVector3__XZ_9202C0.asm,matched,
 ?Get_Post_Increment_Value@HLodClass@@UBEMXZ,,0x00978DD0,17,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Get_Post_Increment_Value@ParticleBufferClass@@UBEMXZ,,0x00983810,20,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Get_Post_Increment_Value@SegmentedLineClass@@UBEMXZ,,0x009508D0,71,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
@@ -6944,14 +6943,12 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Notify_Added@LightClass@@UAEXPAVSceneClass@@@Z,,0x0093BE20,29,Code/Libraries/Source/WWVegas/WW3D2/light.cpp,matched,
 ?Notify_Added@ParticleBufferClass@@UAEXPAVSceneClass@@@Z,,0x006C8E20,29,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Notify_Added@ParticleEmitterClass@@UAEXPAVSceneClass@@@Z,,0x0097DE00,65,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
-?Notify_Added@RenderObjClass@@UAEXPAVSceneClass@@@Z,,0x0091FBF0,13,Code/masm_dumps/_Notify_Added_RenderObjClass__UAEXPAVSceneClass___Z_91FBF0.asm,matched,MASM exact retail dump
 ?Notify_Loaded_DIG_Chunk@MeshLoadContextClass@@AAEX_N@Z,,0x0096C990,13,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Notify_Removed@CompositeRenderObjClass@@UAEXPAVSceneClass@@@Z,,0x00983070,77,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
 ?Notify_Removed@HLodClass@@UAEXPAVSceneClass@@@Z,,0x00979DE0,121,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Notify_Removed@LightClass@@UAEXPAVSceneClass@@@Z,,0x0093BE40,31,Code/Libraries/Source/WWVegas/WW3D2/light.cpp,matched,
 ?Notify_Removed@ParticleBufferClass@@UAEXPAVSceneClass@@@Z,,0x00983770,31,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Notify_Removed@ParticleEmitterClass@@UAEXPAVSceneClass@@@Z,,0x0097DE50,45,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
-?Notify_Removed@RenderObjClass@@UAEXPAVSceneClass@@@Z,,0x0091FC00,13,Code/masm_dumps/_Notify_Removed_RenderObjClass__UAEXPAVSceneClass___Z_91FC00.asm,matched,MASM exact retail dump
 ?Num_Trees@HTreeManagerClass@@QAEHXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Obj_Look_At@Matrix3D@@QAEXABVVector3@@0M@Z,,0x008D6D60,622,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
 ?OnEnd@DownloadManager@@UAEJXZ,,0x00626960,7,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,thunk-dump converted to clean C++; DEBUG_LOG compiles out under NDEBUG
@@ -13568,3 +13565,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getOriginalPlayerID@NetAckStage2CommandMsg@@QAEEXZ,,0x00673A20,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,thunk-dump converted to clean C++
 ?getPercentage@NetProgressCommandMsg@@QAEEXZ,,0x00673DB0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,thunk-dump converted to clean C++
 ?setPercentage@NetProgressCommandMsg@@QAEXE@Z,,0x00673DC0,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,thunk-dump converted to clean C++
+?Get_Position@RenderObjClass@@QBE?AVVector3@@XZ,,0x009202C0,33,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,MASM converted to clean C++
+?Notify_Added@RenderObjClass@@UAEXPAVSceneClass@@@Z,,0x0091FBF0,13,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,MASM converted to clean C++
+?Notify_Removed@RenderObjClass@@UAEXPAVSceneClass@@@Z,,0x0091FC00,13,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,MASM converted to clean C++
