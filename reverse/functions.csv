@@ -2107,7 +2107,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0UnicodeString@@QAE@PBG@Z,0x00036953,0x00065410,19,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,UnicodeString(const wchar_t *)
 ??0UnicodeString@@QAE@PBGH@Z,0x0003CB05,0x00434610,26,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,UnicodeString(const wchar_t *
 ??0UnicodeString@@QAE@XZ,0x00041C95,0x00083D10,9,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,default constructor
-??0UnitCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00009AED,5,Code/masm_dumps/__0UnitCrateCollide__QAE_PAVThing__PBVModuleData___Z_9AED.asm,matched,MASM exact retail dump
 ??0UnitCrateCollideModuleData@@QAE@XZ,,0x00125EA0,88,Code/masm_dumps/UnitCrateCollideModuleData_constructor.asm,matched,Exact 88B @ 0x00125EA0; Exact retail MASM ModuleData ctor; unique factory 0x125F10; Open-BFME4+Grok
 ??0UnpauseSpecialPowerUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00048635,5,Code/masm_dumps/__0UnpauseSpecialPowerUpgrade__QAE_PAVThing__PBVModuleData___Z_48635.asm,matched,MASM exact retail dump
 ??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ,,0x002D99B0,29,Code/masm_dumps/UnpauseSpecialPowerUpgradeModuleData_constructor.asm,matched,Exact 29B unique factory Open-BFME4
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0MoneyCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00217D10,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/MoneyCrateCollide.cpp,matched,MASM converted to clean C++
 ??0SalvageCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218030,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SalvageCrateCollide.cpp,matched,MASM converted to clean C++
 ??0ShroudCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218620,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ShroudCrateCollide.cpp,matched,MASM converted to clean C++
+??0UnitCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218870,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/UnitCrateCollide.cpp,matched,MASM converted to clean C++
