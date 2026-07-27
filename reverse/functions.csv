@@ -2131,7 +2131,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Vector3i@Strip@@QAE@HHH@Z,,0x000642F0,25,Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp,matched,
 ??0Vector4@@QAE@ABV0@@Z,,0x008D6350,31,Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp,matched,
 ??0Vector4@@QAE@MMMM@Z,,0x006E6F00,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
-??0VeterancyCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0003C37B,5,Code/masm_dumps/__0VeterancyCrateCollide__QAE_PAVThing__PBVModuleData___Z_3C37B.asm,matched,MASM exact retail dump
 ??0VeterancyGainCreateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/VeterancyGainCreateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0VictoryConditionsInterface@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/GameLogic/ScriptEngine/VictoryConditions.cpp,matched,
 ??0VideoPlayer@@QAE@XZ,,0x000EB9D0,32,Code/GameEngine/Source/GameClient/VideoPlayer.cpp,matched,icf-owner=??0SpecialPowerStore@@QAE@XZ
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0SalvageCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218030,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SalvageCrateCollide.cpp,matched,MASM converted to clean C++
 ??0ShroudCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218620,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ShroudCrateCollide.cpp,matched,MASM converted to clean C++
 ??0UnitCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218870,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/UnitCrateCollide.cpp,matched,MASM converted to clean C++
+??0VeterancyCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218BE0,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/VeterancyCrateCollide.cpp,matched,MASM converted to clean C++
