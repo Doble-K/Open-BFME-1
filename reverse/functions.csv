@@ -2446,7 +2446,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$SimpleVecClass@VVector4@@@@UAE@XZ,,0x0078C7E0,41,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ??1?$StringBase@D@@AAE@XZ,0x00004A34,0x0005E490,5,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,destroy char string base; size trimmed: trailing int3 padding
 ??1?$StringBase@G@@AAE@XZ,0x000160F9,0x0005E4E0,5,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,destroy wide string base; size trimmed: trailing int3 padding
-??1?$VectorClass@E@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_E__UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
 ??1?$VectorClass@H@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_H__UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
 ??1?$VectorClass@M@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_M__UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
 ??1?$VectorClass@PAUtThreadInfoType@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_PAUtThreadInfoType____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
@@ -6359,7 +6358,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Shader@ParticleBufferClass@@QBE?AVShaderClass@@XZ,,0x00988FD0,94,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Get_Shader@ParticleEmitterClass@@QBE?AVShaderClass@@XZ,,0x0097E3D0,23,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Get_Shader@ParticleEmitterDefClass@@QBEXAAVShaderClass@@@Z,,0x0097E620,23,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
-?Get_Shader@PointGroupClass@@QAE?AVShaderClass@@XZ,,0x00912870,12,Code/masm_dumps/_Get_Shader_PointGroupClass__QAE_AVShaderClass__XZ_912870.asm,matched,MASM exact retail dump
 ?Get_Shader@SegLineRendererClass@@QBE?AVShaderClass@@XZ,,0x009187A0,12,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Get_Shader@SegmentedLineClass@@QAE?AVShaderClass@@XZ,,0x0094FB70,15,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ?Get_Shader_Array@MeshMatDescClass@@QAEPAVShaderClass@@H_N@Z,,0x0092BF50,187,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
@@ -7688,13 +7686,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Outwards_Velocity@ParticleEmitterClass@@QAEXM@Z,,0x0097DF70,19,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Set_Pass_Count@DynamicMeshModel@@QAEXH@Z,,0x0096CFB0,15,Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp,matched,
 ?Set_Pass_Count@MeshModelClass@@QAEXH@Z,,0x0096CFB0,15,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,ICF alias of existing matched body
-?Set_Point_Alpha@PointGroupClass@@QAEXM@Z,,0x00912020,10,Code/masm_dumps/_Set_Point_Alpha_PointGroupClass__QAEXM_Z_912020.asm,matched,MASM exact retail dump
 ?Set_Point_Color@PointGroupClass@@QAEXVVector3@@@Z,,0x009127B0,24,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
-?Set_Point_Frame@PointGroupClass@@QAEXE@Z,,0x00912060,10,Code/masm_dumps/_Set_Point_Frame_PointGroupClass__QAEXE_Z_912060.asm,matched,MASM exact retail dump
 ?Set_Point_Location@SegmentedLineClass@@QAEXIABVVector3@@@Z,,0x0094FAB0,56,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
-?Set_Point_Mode@PointGroupClass@@QAEXW4PointModeEnum@1@@Z,,0x00912080,10,Code/masm_dumps/_Set_Point_Mode_PointGroupClass__QAEXW4PointModeEnum_1__Z_912080.asm,matched,MASM exact retail dump
-?Set_Point_Orientation@PointGroupClass@@QAEXE@Z,,0x00912040,10,Code/masm_dumps/_Set_Point_Orientation_PointGroupClass__QAEXE_Z_912040.asm,matched,MASM exact retail dump
-?Set_Point_Size@PointGroupClass@@QAEXM@Z,,0x00912000,10,Code/masm_dumps/_Set_Point_Size_PointGroupClass__QAEXM_Z_912000.asm,matched,MASM exact retail dump
 ?Set_Poly0@CullNodeStruct@AABTreeClass@@QAEXK@Z,,0x0096A810,15,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ?Set_Poly_Count@CullNodeStruct@AABTreeClass@@QAEXK@Z,,0x00674240,10,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,ICF alias of existing matched body
 ?Set_Position@Animatable3DObjClass@@UAEXABVVector3@@@Z,,0x00982130,24,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
@@ -7725,7 +7718,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Shader@MeshMatDescClass@@QAEXHVShaderClass@@H@Z,,0x0092C200,26,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ?Set_Shader@MeshModelClass@@QAEXHVShaderClass@@H@Z,,0x0096CFC0,33,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Set_Shader@ParticleEmitterDefClass@@UAEXABVShaderClass@@@Z,,0x0098D3C0,23,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
-?Set_Shader@PointGroupClass@@QAEXVShaderClass@@@Z,,0x009120E0,10,Code/masm_dumps/_Set_Shader_PointGroupClass__QAEXVShaderClass___Z_9120E0.asm,matched,MASM exact retail dump
 ?Set_Shader@SegmentedLineClass@@QAEXVShaderClass@@@Z,,0x0094FC70,13,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ?Set_Single_Material@MeshMatDescClass@@QAEXPAVVertexMaterialClass@@H@Z,,0x009298C0,53,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ?Set_Single_Material@MeshModelClass@@QAEXPAVVertexMaterialClass@@H@Z,,0x0094DF90,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
@@ -13568,3 +13560,11 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Set_Line_Mode@LineGroupClass@@QAEXW4LineModeType@1@@Z,,0x0098E950,10,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
 ?Set_Line_Size@LineGroupClass@@QAEXM@Z,,0x0098E8A0,10,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
 ?Set_Line_UCoord@LineGroupClass@@QAEXM@Z,,0x0098E8E0,10,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
+?Get_Shader@PointGroupClass@@QAE?AVShaderClass@@XZ,,0x00912870,12,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
+?Set_Point_Alpha@PointGroupClass@@QAEXM@Z,,0x00912020,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
+?Set_Point_Frame@PointGroupClass@@QAEXE@Z,,0x00912060,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
+?Set_Point_Mode@PointGroupClass@@QAEXW4PointModeEnum@1@@Z,,0x00912080,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
+?Set_Point_Orientation@PointGroupClass@@QAEXE@Z,,0x00912040,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
+?Set_Point_Size@PointGroupClass@@QAEXM@Z,,0x00912000,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
+?Set_Shader@PointGroupClass@@QAEXVShaderClass@@@Z,,0x009120E0,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
+??1?$VectorClass@E@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
