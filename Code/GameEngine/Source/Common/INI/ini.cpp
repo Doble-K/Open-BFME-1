@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ob1 /Ireference/shims/ini /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -61,6 +61,12 @@
 #include "GameLogic/ObjectCreationList.h"
 #include "GameLogic/ScriptEngine.h"
 #include "GameLogic/Weapon.h"
+
+class BFMEThingFactory
+{
+public:
+	const ThingTemplate *findTemplate(const AsciiString &name);
+};
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -671,7 +677,6 @@ void INI::parseBitInInt32( INI *ini, void *instance, void *store, const void* us
 //-------------------------------------------------------------------------------------------------
 /** Parse an *ASCII* string from buffer and assign at location 'store' */
 //-------------------------------------------------------------------------------------------------
-// ?parseAsciiString@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseAsciiString( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	AsciiString* asciiString = (AsciiString *)store;
@@ -684,7 +689,6 @@ We don't really need this function, but parseString() is broken and we want to l
 maintain existing code.
  */
 //-------------------------------------------------------------------------------------------------
-// ?parseQuotedAsciiString@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseQuotedAsciiString( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	AsciiString* asciiString = (AsciiString *)store;
@@ -833,27 +837,29 @@ AsciiString INI::getNextAsciiString()
 /** Parse a string label, get the *translated* actual text from the label and store
 	* into a *UNICODE* string. */
 //-------------------------------------------------------------------------------------------------
-// ?parseAndTranslateLabel@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseAndTranslateLabel( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+void INI::parseAndTranslateLabel(INI *ini, void *, void *store, const void *)
 {
+	struct BFMEUnicodeData
+	{
+		int refCount;
+		unsigned short length;
+		unsigned short capacity;
+		WideChar text[1];
+	};
+
 	const char *token = ini->getNextToken();
-
-	// translate
-	UnicodeString translated = TheGameText->fetch( token );
-	if( translated.isEmpty() )
-		throw INI_INVALID_DATA;
-
-	// save the translated text
-	UnicodeString *theString = (UnicodeString *)store;
-	theString->set( translated.str() );
-
-}  // end parseAndTranslateLabel
+	UnicodeString translated = TheGameText->fetch(token);
+	BFMEUnicodeData *data = *(BFMEUnicodeData **)&translated;
+	if (translated.isEmpty())
+		throw INIException(3, "Label '%s' not found in game text", token);
+	const WideChar *text = data->text;
+	((StringBase<WideChar> *)store)->set(text, text ? (int)wcslen(text) : 0);
+}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a string label assumed as an image as part of the image collection.  Translate
 	* to an image pointer for storage */
 //-------------------------------------------------------------------------------------------------
-// ?parseMappedImage@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseMappedImage( INI *ini, void * /*instance*/, void *store, const void *userData )
 {
 	const char *token = ini->getNextToken();
@@ -1135,7 +1141,6 @@ void INI::parseColorInt( INI* ini, void * /*instance*/, void *store, const void*
 /** Parse a 3D coordinate of reals in the form of:
 	* FIELD_NAME = X:400 Y:-214.3 Z:8.6 */
 //-------------------------------------------------------------------------------------------------
-// ?parseCoord3D@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseCoord3D( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	Coord3D *theCoord = (Coord3D *)store;
@@ -1150,7 +1155,6 @@ void INI::parseCoord3D( INI* ini, void * /*instance*/, void *store, const void* 
 /** Parse a 2D coordinate of reals in the form of:
 	* FIELD_NAME = X:400 Y:-214.3 */
 //-------------------------------------------------------------------------------------------------
-// ?parseCoord2D@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseCoord2D( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	Coord2D *theCoord = (Coord2D *)store;
@@ -1224,33 +1228,21 @@ void INI::parseAudioEventRTS( INI *ini, void * /*instance*/, void *store, const 
 //-------------------------------------------------------------------------------------------------
 /** Parse an ThingTemplate and assign to the 'ThingTemplate *' at store */
 //-------------------------------------------------------------------------------------------------
-// ?parseThingTemplate@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseThingTemplate( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+void INI::parseThingTemplate(INI *ini, void *, void *store, const void *)
 {
 	const char *token = ini->getNextToken();
-
 	if (!TheThingFactory)
-	{
-		DEBUG_CRASH(("TheThingFactory not inited yet"));
 		throw ERROR_BUG;
-	}
-
-	typedef const ThingTemplate *ConstThingTemplatePtr;
-	ConstThingTemplatePtr* theThingTemplate = (ConstThingTemplatePtr*)store;		
-
 	if (stricmp(token, "None") == 0)
 	{
-		*theThingTemplate = NULL;
+		*(const ThingTemplate **)store = NULL;
 	}
 	else
 	{
-		const ThingTemplate *tt = TheThingFactory->findTemplate(token);	// could be null!
-		DEBUG_ASSERTCRASH(tt, ("ThingTemplate %s not found!\n",token));
-		// assign it, even if null!
-		*theThingTemplate = tt;
+		const ThingTemplate *thing = ((BFMEThingFactory *)TheThingFactory)->findTemplate(AsciiString(token));
+		*(const ThingTemplate **)store = thing;
 	}
-
-} 
+}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse an ArmorTemplate and assign to the 'ArmorTemplate *' at store */
@@ -1298,38 +1290,27 @@ void INI::parseWeaponTemplate( INI* ini, void * /*instance*/, void *store, const
 //-------------------------------------------------------------------------------------------------
 /** Parse an FXList and assign to the 'FXList *' at store */
 //-------------------------------------------------------------------------------------------------
-// ?parseFXList@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseFXList( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+void INI::parseFXList(INI *ini, void *, void *store, const void *)
 {
 	const char *token = ini->getNextToken();
-
-	typedef const FXList *ConstFXListPtr;
-	ConstFXListPtr* theFXList = (ConstFXListPtr*)store;		
-
-	const FXList *fxl = TheFXListStore->findFXList(token);	// could be null!
-	DEBUG_ASSERTCRASH(fxl != NULL || stricmp(token, "None") == 0, ("FXList %s not found!\n",token));
-	// assign it, even if null!
-	*theFXList = fxl;
-
-} 
+	const FXList *fxl = TheFXListStore->findFXList(token);
+	if (fxl == NULL && token != NULL && stricmp(token, "none") != 0)
+		throw INIException(3, "iniParseFXList -- FXList %s not found! Either add the FXList or remove the reference to it.", token);
+	*(const FXList **)store = fxl;
+}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a particle system and assign to 'ParticleSystemTemplate *' at store */
 //-------------------------------------------------------------------------------------------------
-// ?parseParticleSystemTemplate@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseParticleSystemTemplate( INI *ini, void * /*instance*/, void *store, const void *userData )
+void INI::parseParticleSystemTemplate(INI *ini, void *, void *store, const void *)
 {
 	const char *token = ini->getNextToken();
-
-	const ParticleSystemTemplate *pSystemT = TheParticleSystemManager->findTemplate( AsciiString( token ) );
-	DEBUG_ASSERTCRASH( pSystemT || stricmp( token, "None" ) == 0, ("ParticleSystem %s not found!\n",token) );
-
-	typedef const ParticleSystemTemplate* ConstParticleSystemTemplatePtr;
-	ConstParticleSystemTemplatePtr* theParticleSystemTemplate = (ConstParticleSystemTemplatePtr*)store;		
-
-	*theParticleSystemTemplate = pSystemT;
-
-}  // end parseParticleSystemTemplate
+	const ParticleSystemTemplate *particle = TheParticleSystemManager->findTemplate(AsciiString(token));
+	if (particle != NULL && stricmp(token, "None") != 0)
+		*(const ParticleSystemTemplate **)store = particle;
+	else
+		*(const ParticleSystemTemplate **)store = NULL;
+}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse an DamageFX and assign to the 'DamageFX *' at store */
@@ -1377,24 +1358,14 @@ void INI::parseObjectCreationList( INI* ini, void * /*instance*/, void *store, c
 //-------------------------------------------------------------------------------------------------
 /** Parse a upgrade template string and store as template pointer */
 //-------------------------------------------------------------------------------------------------
-// ?parseUpgradeTemplate@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseUpgradeTemplate( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+void INI::parseUpgradeTemplate(INI *ini, void *, void *store, const void *)
 {
 	const char *token = ini->getNextToken();
-
 	if (!TheUpgradeCenter)
-	{
-		DEBUG_CRASH(("TheUpgradeCenter not inited yet"));
-		throw ERROR_BUG;
-	}
-
-	const UpgradeTemplate *uu = TheUpgradeCenter->findUpgrade( AsciiString( token ) );
-	DEBUG_ASSERTCRASH( uu || stricmp( token, "None" ) == 0, ("Upgrade %s not found!\n",token) );
-
-	typedef const UpgradeTemplate* ConstUpgradeTemplatePtr;
-	ConstUpgradeTemplatePtr* theUpgradeTemplate = (ConstUpgradeTemplatePtr *)store;		
-	*theUpgradeTemplate = uu;
-} 
+		return;
+	const UpgradeTemplate *upgrade = TheUpgradeCenter->findUpgrade(AsciiString(token));
+	*(const UpgradeTemplate **)store = upgrade;
+}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a special power template string and store as template pointer */
@@ -1424,18 +1395,12 @@ void INI::parseSpecialPowerTemplate( INI* ini, void * /*instance*/, void *store,
 //-------------------------------------------------------------------------------------------------
 /** Parse a science string and store as science type */
 //-------------------------------------------------------------------------------------------------
-/* static */void INI::parseScience( INI *ini, void * /*instance*/, void *store, const void *userData )
+void INI::parseScience(INI *ini, void *, void *store, const void *)
 {
 	const char *token = ini->getNextToken();
-
 	if (!TheScienceStore)
-	{
-		DEBUG_CRASH(("TheScienceStore not inited yet"));
 		throw ERROR_BUG;
-	}
-
-	*((ScienceType *)store) = INI::scanScience(token);
-
+	*((ScienceType *)store) = TheScienceStore->friend_lookupScience(token);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -1739,7 +1704,6 @@ const char* INI::getNextSubToken(const char* expected)
  * Parse a "random variable".
  * The format is "FIELD = low high [distribution]".
  */
-// ?parseGameClientRandomVariable@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseGameClientRandomVariable( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	GameClientRandomVariable *var = static_cast<GameClientRandomVariable *>(store);
@@ -1764,7 +1728,6 @@ void INI::parseGameClientRandomVariable( INI* ini, void * /*instance*/, void *st
 
 //-------------------------------------------------------------------------------------------------
 // parse a duration in msec and convert to duration in frames
-// ?parseDurationReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseDurationReal( INI *ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	Real val = scanReal(ini->getNextToken());
@@ -1773,7 +1736,6 @@ void INI::parseDurationReal( INI *ini, void * /*instance*/, void *store, const v
 
 //-------------------------------------------------------------------------------------------------
 // parse a duration in msec and convert to duration in integral number of frames, (unsignedint) rounding UP
-// ?parseDurationUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseDurationUnsignedInt( INI *ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	UnsignedInt val = scanUnsignedInt(ini->getNextToken());
@@ -1811,40 +1773,28 @@ void INI::parseAccelerationReal( INI *ini, void * /*instance*/, void *store, con
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?parseVeterancyLevelFlags@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseVeterancyLevelFlags(INI* ini, void* /*instance*/, void* store, const void* /*userData*/)
+void INI::parseVeterancyLevelFlags(INI *ini, void *, void *store, const void *)
 {
 	VeterancyLevelFlags flags = VETERANCY_LEVEL_FLAGS_ALL;
-	for (const char* token = ini->getNextToken(); token; token = ini->getNextTokenOrNull())
+	for (const char *token = ini->getNextToken(); token; token = ini->getNextTokenOrNull())
 	{
-		if (stricmp(token, "ALL") == 0)
+		if (stricmp(token, "ALL") == 0) { flags = VETERANCY_LEVEL_FLAGS_ALL; continue; }
+		if (stricmp(token, "NONE") == 0) { flags = VETERANCY_LEVEL_FLAGS_NONE; continue; }
+		if (token[0] == '+')
 		{
-			flags = VETERANCY_LEVEL_FLAGS_ALL;
-			continue;
-		}
-		else if (stricmp(token, "NONE") == 0)
-		{
-			flags = VETERANCY_LEVEL_FLAGS_NONE;
-			continue;
-		}
-		else if (token[0] == '+')
-		{
-			VeterancyLevel dt = (VeterancyLevel)INI::scanIndexList(token+1, TheVeterancyNames);
+			VeterancyLevel dt = (VeterancyLevel)INI::scanIndexList(token + 1, TheVeterancyNames);
 			flags = setVeterancyLevelFlag(flags, dt);
 			continue;
 		}
-		else if (token[0] == '-')
+		if (token[0] == '-')
 		{
-			VeterancyLevel dt = (VeterancyLevel)INI::scanIndexList(token+1, TheVeterancyNames);
+			VeterancyLevel dt = (VeterancyLevel)INI::scanIndexList(token + 1, TheVeterancyNames);
 			flags = clearVeterancyLevelFlag(flags, dt);
 			continue;
 		}
-		else
-		{
-			throw INI_UNKNOWN_TOKEN;
-		}
+		throw INIException(5, "ALL, NONE, + or - expected");
 	}
-	*(VeterancyLevelFlags*)store = flags;
+	*(VeterancyLevelFlags *)store = flags;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -1866,75 +1816,54 @@ void INI::parseSoundsList( INI* ini, void *instance, void *store, const void* /*
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?parseDamageTypeFlags@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseDamageTypeFlags(INI* ini, void* /*instance*/, void* store, const void* /*userData*/)
+void INI::parseDamageTypeFlags(INI *ini, void *, void *store, const void *)
 {
-	DamageTypeFlags flags = DAMAGE_TYPE_FLAGS_NONE;
-	flags.flip();
-
-	for (const char* token = ini->getNextToken(); token; token = ini->getNextTokenOrNull())
+	UnsignedInt flags = 0xFFFFFFFF;
+	for (const char *token = ini->getNextToken(); token; token = ini->getNextTokenOrNull())
 	{
-		if (stricmp(token, "ALL") == 0)
-		{
-			flags = DAMAGE_TYPE_FLAGS_NONE;
-			flags.flip();
-			continue;
-		}
-		if (stricmp(token, "NONE") == 0)
-		{
-			flags = DAMAGE_TYPE_FLAGS_NONE;
-			continue;
-		}
+		if (stricmp(token, "ALL") == 0) { flags = 0xFFFFFFFF; continue; }
+		if (stricmp(token, "NONE") == 0) { flags = 0; continue; }
 		if (token[0] == '+')
 		{
-			DamageType dt = (DamageType)DamageTypeFlags::getSingleBitFromName(token+1);
-			flags = setDamageTypeFlag(flags, dt);
+			Int dt = INI::scanIndexList(token + 1, DamageTypeFlags::getBitNames());
+			flags |= 1 << (dt - 1);
 			continue;
 		}
 		if (token[0] == '-')
 		{
-			DamageType dt = (DamageType)DamageTypeFlags::getSingleBitFromName(token+1);
-			flags = clearDamageTypeFlag(flags, dt);
+			Int dt = INI::scanIndexList(token + 1, DamageTypeFlags::getBitNames());
+			flags &= ~(1 << (dt - 1));
 			continue;
 		}
-		throw INI_UNKNOWN_TOKEN;
+		throw INIException(5, "ALL, NONE, + or - expected");
 	}
-	*(DamageTypeFlags*)store = flags;
+	*(UnsignedInt *)store = flags;
 }
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?parseDeathTypeFlags@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseDeathTypeFlags(INI* ini, void* /*instance*/, void* store, const void* /*userData*/)
+void INI::parseDeathTypeFlags(INI *ini, void *, void *store, const void *)
 {
 	DeathTypeFlags flags = DEATH_TYPE_FLAGS_ALL;
-	for (const char* token = ini->getNextToken(); token; token = ini->getNextTokenOrNull())
+	for (const char *token = ini->getNextToken(); token; token = ini->getNextTokenOrNull())
 	{
-		if (stricmp(token, "ALL") == 0)
-		{
-			flags = DEATH_TYPE_FLAGS_ALL;
-			continue;
-		}
-		if (stricmp(token, "NONE") == 0)
-		{
-			flags = DEATH_TYPE_FLAGS_NONE;
-			continue;
-		}
+		if (stricmp(token, "ALL") == 0) { flags = DEATH_TYPE_FLAGS_ALL; continue; }
+		if (stricmp(token, "NONE") == 0) { flags = DEATH_TYPE_FLAGS_NONE; continue; }
 		if (token[0] == '+')
 		{
-			DeathType dt = (DeathType)INI::scanIndexList(token+1, TheDeathNames);
+			DeathType dt = (DeathType)INI::scanIndexList(token + 1, TheDeathNames);
 			flags = setDeathTypeFlag(flags, dt);
 			continue;
 		}
 		if (token[0] == '-')
 		{
-			DeathType dt = (DeathType)INI::scanIndexList(token+1, TheDeathNames);
+			DeathType dt = (DeathType)INI::scanIndexList(token + 1, TheDeathNames);
 			flags = clearDeathTypeFlag(flags, dt);
 			continue;
 		}
-		throw INI_UNKNOWN_TOKEN;
+		throw INIException(5, "ALL, NONE, +, or - expected");
 	}
-	*(DeathTypeFlags*)store = flags;
+	*(DeathTypeFlags *)store = flags;
 }
 
 //-------------------------------------------------------------------------------------------------
