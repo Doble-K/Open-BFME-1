@@ -3475,3 +3475,5 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ??0TerrainLogic@@QAE@XZ,0x006BE070,createTerrainLogic REL32 pin (body)
 ??$append@PAD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEAAV01@PAD0ABUforward_iterator_tag@1@@Z,0x00011522,PeerDefs basic_string assign dispatch retail call target
 ??$append@PBD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEAAV01@PBD0ABUforward_iterator_tag@1@@Z,0x00036DE0,PeerDefs basic_string assign retail call target
+??0CrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x00217660,BFME CrateCollide ctor body; ILT 0x0002AC43 used by legacy crate constructors
+??0CrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0024F450,late-layout CrateCollide ctor body; ILT 0x00026CAB used by constructor group at 0x0024FC20
