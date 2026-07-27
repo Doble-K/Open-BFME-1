@@ -11,6 +11,26 @@
 #include <assert.h>
 
 
+uint32 ChunkLoadClass::Cur_Chunk_ID()
+{
+	int index = *(int *)((char *)this + 0x08);
+	return *(uint32 *)((char *)this + 0x404 + index * 8);
+}
+
+
+uint32 ChunkLoadClass::Cur_Chunk_Length()
+{
+	int index = *(int *)((char *)this + 0x08);
+	return *(uint32 *)((char *)this + 0x408 + index * 8) & 0x7FFFFFFF;
+}
+
+
+uint32 ChunkLoadClass::Cur_Micro_Chunk_ID()
+{
+	return *(unsigned char *)((char *)this + 0xC14);
+}
+
+
 ChunkSaveClass::ChunkSaveClass(FileClass * file) :
 	File(file),
 	StackIndex(0),
