@@ -2700,7 +2700,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1LightningEmissionModuleTemplate@FXParticleSystem@@UAE@XZ,0x0003612E,0x005D6B60,50,Code/masm_dumps/1LightningEmissionModuleTemplate_FXParticleSystem_UAE_XZ_005D6B60_00c8567f.asm,matched,icf-owner=??1?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?CYLINDER_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?CYLINDER_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVCylinderEmissionVolumeModule@2@VCylinderEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ; MASM exact retail export dump
 ??1LineEmissionVolumeInfo@FXParticleSystem@@UAE@XZ,0x0002F03B,0x005D5A80,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,resets vtable pointer
 ??1LineEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D5C20,50,Code/masm_dumps/__1LineEmissionVolumeModuleTemplate_FXParticleSystem__UAE_XZ_5D5C20.asm,matched,MASM exact retail dump
-??1LockClass@CriticalSectionClass@@QAE@XZ,,0x009DB4D0,15,Code/masm_dumps/__1LockClass_CriticalSectionClass__QAE_XZ_9DB4D0.asm,matched,MASM exact retail dump
 ??1LockClass@MutexClass@@QAE@XZ,,0x009DB400,22,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,icf-owner=??1BFMEAutoLockRef@@QAE@XZ
 ??1Locomotor@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
 ??1LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0002A08B,5,Code/masm_dumps/_thunk_cfc7de1816f7_2A08B.asm,matched,thunk accessor of ported class
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?Get_Bone_Index@HTreeClass@@QBEHPBD@Z,,0x00952260,73,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,MASM converted to clean C++
 ?Start@ParticleEmitterClass@@QAEXXZ,,0x0097F090,174,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,MASM converted to clean C++
 ??0SubsystemInterface@@QAE@XZ,,0x009A1A30,16,Code/GameEngine/Source/Common/System/SubsystemInterface.cpp,matched,MASM converted to clean C++
+??1LockClass@CriticalSectionClass@@QAE@XZ,,0x009DB4D0,15,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,MASM converted to clean C++
