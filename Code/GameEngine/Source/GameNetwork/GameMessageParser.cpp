@@ -80,7 +80,6 @@ GameMessageParser::~GameMessageParser()
 }
 
 //----------------------------------------------------------------------------
-// ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z present-unmatched
 void GameMessageParser::addArgType(GameMessageArgumentDataType type, Int argCount) 
 {
 	if (m_first == NULL) {
