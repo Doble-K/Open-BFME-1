@@ -1237,11 +1237,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DLINK_TeamReadyQueue@TeamInQueue@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
 ??0DX8FVFCategoryContainer@@QAE@I_N@Z,,0x009469B0,126,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??0DX8MeshRendererClass@@QAE@XZ,,0x00947680,101,Code/masm_dumps/_rn4___0DX8MeshRendererClass__QAE_XZ_947680.asm,matched,reloc-needle Open-BFME4+Grok
-??0DX8VertexBufferClass@@QAE@IGW4UsageType@0@I@Z,,0x0091F2F0,106,Code/masm_dumps/_rn4___0DX8VertexBufferClass__QAE_IGW4UsageType_0_I_Z_91F2F0.asm,matched,reloc-needle Open-BFME4+Grok
-??0DX8VertexBufferClass@@QAE@PBVVector3@@0PBVVector2@@GW4UsageType@0@@Z,,0x0091F380,131,Code/masm_dumps/_rn4___0DX8VertexBufferClass__QAE_PBVVector3__0PBVVector2__GW4UsageType_0___91F380.asm,matched,reloc-needle Open-BFME4+Grok
-??0DX8VertexBufferClass@@QAE@PBVVector3@@0PBVVector4@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F410,136,Code/masm_dumps/_rn4___0DX8VertexBufferClass__QAE_PBVVector3__0PBVVector4__PBVVector2__GW4U_91F410.asm,matched,reloc-needle Open-BFME4+Grok
-??0DX8VertexBufferClass@@QAE@PBVVector3@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F530,126,Code/masm_dumps/_rn4___0DX8VertexBufferClass__QAE_PBVVector3__PBVVector2__GW4UsageType_0__Z_91F530.asm,matched,reloc-needle Open-BFME4+Grok
-??0DX8VertexBufferClass@@QAE@PBVVector3@@PBVVector4@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F4A0,131,Code/masm_dumps/_rn4___0DX8VertexBufferClass__QAE_PBVVector3__PBVVector4__PBVVector2__GW4Us_91F4A0.asm,matched,reloc-needle Open-BFME4+Grok
 ??0DX8_CleanupHook@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,ICF alias of existing matched body
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/masm_dumps/DamDie_constructor.asm,matched,Exact 46B ICF alias Open-BFME4
 ??0DamDieModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/DamDieModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
@@ -13568,3 +13563,8 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0ShroudCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218620,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ShroudCrateCollide.cpp,matched,MASM converted to clean C++
 ??0UnitCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218870,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/UnitCrateCollide.cpp,matched,MASM converted to clean C++
 ??0VeterancyCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218BE0,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/VeterancyCrateCollide.cpp,matched,MASM converted to clean C++
+??0DX8VertexBufferClass@@QAE@IGW4UsageType@0@I@Z,,0x0091F2F0,106,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
+??0DX8VertexBufferClass@@QAE@PBVVector3@@0PBVVector2@@GW4UsageType@0@@Z,,0x0091F380,131,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
+??0DX8VertexBufferClass@@QAE@PBVVector3@@0PBVVector4@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F410,136,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
+??0DX8VertexBufferClass@@QAE@PBVVector3@@PBVVector4@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F4A0,131,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
+??0DX8VertexBufferClass@@QAE@PBVVector3@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F530,126,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
