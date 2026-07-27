@@ -5317,7 +5317,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?DEREncode@?$Int@$0EA@@@QBEHPAE@Z,,0x009E21F0,19,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,ghidra-unknown callee + identical DERDecode wrapper; disambiguated by call target; build.sh exact
 ?DX8_ErrorCode@@YAXI@Z,,0x0087ADF0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/TerrainTex.cpp,matched,
 ?DebugAllocMemory@@YAPAXI@Z,,0x0088EB30,82,Code/masm_dumps/_DebugAllocMemory__YAPAXI_Z_88EB30.asm,matched,MASM exact retail dump
-?DebugFreeMemory@@YAXPAX@Z,,0x0088EAD0,19,Code/masm_dumps/_DebugFreeMemory__YAXPAX_Z_88EAD0.asm,matched,MASM exact retail dump
 ?DebugInternalAssert@@YAXPBDH0@Z,,0x0088EA70,89,Code/Libraries/Source/WWVegas/WWDebug/debug_internal.cpp,matched,
 ?Decode@@YAXPAKPAEI@Z,,0x0086A470,57,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,
 ?Decode_Exponent@PKey@@QAEXPAX@Z,,0x009EAAE0,25,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,locate ghidra-unknown callee; build.sh exact match
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?setMOTD@GameSpyInfo@@UAEXABVAsciiString@@@Z,,0x00630DF0,8,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?setConfig@GameSpyInfo@@UAEXABVAsciiString@@@Z,,0x00630E00,8,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?getCurrentStagingRoom@GameSpyInfo@@UAEPAVGameSpyStagingRoom@@XZ,,0x006327B0,72,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+?DebugFreeMemory@@YAXPAX@Z,,0x0088EAD0,19,Code/Libraries/Source/WWVegas/WWDebug/debug_internal.cpp,matched,MASM converted to clean C++
