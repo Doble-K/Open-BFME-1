@@ -4019,7 +4019,6 @@ void Drawable::changedTeam()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?setPosition@Drawable@@QAEXPBUCoord3D@@@Z present-unmatched
 void Drawable::setPosition(const Coord3D *pos) 
 {
 	// extend

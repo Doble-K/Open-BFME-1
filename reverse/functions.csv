@@ -12088,7 +12088,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPortraitByObject@ControlBar@@IAEXPAVObject@@@Z,,0x0059A664,739,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setPortraitByObject.asm,matched,exact 739B via MASM
 ?setPosition@AudioEventRTS@@QAEXPBUCoord3D@@@Z,,0x000B2210,51,Code/masm_dumps/AudioEventRTS_setPosition.asm,matched,Ghidra-bound BFME audio positional setter
 ?setPosition@DirectInputMouse@@UAEXHH@Z,,0x006BB980,70,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
-?setPosition@Drawable@@QAEXPBUCoord3D@@@Z,,0x0001742C,5,Code/masm_dumps/_thunk_23f71fef1431_1742C.asm,matched,thunk accessor of ported class
 ?setPosition@PathNode@@QAEXPBUCoord3D@@@Z,,0x0034FF25,26,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?setPosition@View@@IAEXPBUCoord3D@@@Z,,0x003D4E50,26,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setPositions@BridgeScaffoldBehavior@@UAEXPBUCoord3D@@00@Z,,0x001F5860,74,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?setSortMode@@YAXW4GameSortType@@@Z,,0x0062E560,32,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,thunk-dump converted to clean C++
 ??4TRoadSegInfo@@QAEAAU0@ABU0@@Z,,0x00706F70,109,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,thunk-dump converted to clean C++
 ??0W3DGameWindowManager@@QAE@XZ,,0x006C05D0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp,matched,thunk-dump converted to clean C++
+?setPosition@Drawable@@QAEXPBUCoord3D@@@Z,,0x004116F0,5,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,thunk-dump converted to clean C++
