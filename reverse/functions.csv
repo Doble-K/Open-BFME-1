@@ -5288,9 +5288,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Cull@RayCollisionTestClass@@QAE_NABVVector3@@0@Z,,0x0096AC80,31,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ?Cull_Box@CameraClass@@QBE_NABVAABoxClass@@@Z,,0x006F7C80,38,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
 ?Cull_Sphere@CameraClass@@QBE_NABVSphereClass@@@Z,,0x006F7C80,38,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,exact after camera shim (RenderObjClass +0x34)
-?Cur_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E1440,11,Code/masm_dumps/_Cur_Chunk_ID_ChunkLoadClass__QAEKXZ_9E1440.asm,matched,MASM exact retail dump
-?Cur_Chunk_Length@ChunkLoadClass@@QAEKXZ,,0x009E1450,16,Code/masm_dumps/_thunk_9bb3fc80fbfd_9E1450.asm,matched,accessor/leaf of ported class
-?Cur_Micro_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E14E0,8,Code/masm_dumps/_Cur_Micro_Chunk_ID_ChunkLoadClass__QAEKXZ_9E14E0.asm,matched,MASM exact retail dump
 ?Current@ActiveCategoryClass@@QAEHXZ,,0x00AFF680,16,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Current@ActiveCategoryStackClass@@QAEHXZ,,0x00AFED10,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Current_Item@SimpleSceneIterator@@UAEPAVRenderObjClass@@XZ,,0x00943950,17,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
@@ -13568,3 +13565,6 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?friend_newModuleInstance@TunnelContain@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00116530,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@WanderAIUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011BE60,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@WorkerAIUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011C060,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
+?Cur_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E1440,11,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
+?Cur_Chunk_Length@ChunkLoadClass@@QAEKXZ,,0x009E1450,16,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
+?Cur_Micro_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E14E0,8,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
