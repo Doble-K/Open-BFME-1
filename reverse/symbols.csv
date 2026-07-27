@@ -3513,3 +3513,12 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ??0?$BFMEFactoryModuleData@VUnitCrateCollideModuleData@@$0FM@@@QAE@XZ,0x0000DA4E,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VUpgradeDieModuleData@@$0DI@@@QAE@XZ,0x0001B905,ModuleFactory retail data facade
 ??0?$BFMEW3DFactoryModuleData@VW3DTreeDrawModuleData@@$0GE@@@QAE@XZ,0x00046B5A,W3DModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VCashHackSpecialPowerModuleData@@$0CCA@@@QAE@XZ,0x00026FF3,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VCrushDieModuleData@@$0CAE@@@QAE@XZ,0x0002124C,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VGarrisonContainModuleData@@$0DDM@@@QAE@XZ,0x0001B9F5,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VOCLSpecialPowerModuleData@@$0CDA@@@QAE@XZ,0x0003EFB8,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VSlowDeathBehaviorModuleData@@$0BKI@@@QAE@XZ,0x000076DA,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VSpecialAbilityUpdateModuleData@@$0CFE@@@QAE@XZ,0x0003F503,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VTransitionDamageFXModuleData@@$0BAEA@@@QAE@XZ,0x00020A95,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VTunnelContainModuleData@@$0CEI@@@QAE@XZ,0x00002315,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VWorkerAIUpdateModuleData@@$0BAA@@@QAE@XZ,0x00036232,ModuleFactory retail data facade
