@@ -9458,7 +9458,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@AIUpdateInterface@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@PropagandaTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@AODHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00122FD0,116,Code/masm_dumps/AODHordeContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@ActiveBody@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F420,107,Code/masm_dumps/ActiveBody_friend_newModuleData.asm,matched,canonical data factory shared by four body registrations
-?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/masm_dumps/_icf__friend_newModuleData_ActiveShroudUpgrade__SAPAVModuleD_1153E0.asm,matched,ICF alias of ?friend_newModuleData@InstantDeathBehavi Open-BFME4+Grok
 ?friend_newModuleData@AimWeaponBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001151B0,107,Code/masm_dumps/AimWeaponBehavior_friend_newModuleData.asm,matched,Retail registration dp016 proves AimWeaponBehavior data factory
 ?friend_newModuleData@AnimalAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00116A10,155,Code/masm_dumps/AnimalAIUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x8D; Ghidra confirmed
 ?friend_newModuleData@AnimationSoundClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121DA0,107,Code/masm_dumps/AnimationSoundClientBehavior_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xF3 Ghidra confirmed
@@ -9487,7 +9486,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@BridgeTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00125220,50,Code/masm_dumps/BridgeTowerBehavior_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@BroadcastStealthUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0012A350,54,Code/masm_dumps/BroadcastStealthUpdate_friend_newModuleData.asm,matched,Registration-bound BFME factory body
 ?friend_newModuleData@BunkerBusterBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@PropagandaTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z
-?friend_newModuleData@CashBountyPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D7C0,107,Code/masm_dumps/_icf__friend_newModuleData_CashBountyPower__SAPAVModuleData__11D7C0.asm,matched,ICF alias of ?friend_newModuleData@UnpauseSpecialPowe Open-BFME4+Grok
 ?friend_newModuleData@CashHackSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FDF0,110,Code/masm_dumps/CashHackSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xD6 Ghidra confirmed
 ?friend_newModuleData@CastleUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BA80,65,Code/masm_dumps/CastleUpgrade_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xAB; CC-delimited body
 ?friend_newModuleData@CaveContain@@SAPAVModuleData@@PAVINI@@@Z,,0x0012ABC0,125,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME CaveContain layout
@@ -9503,7 +9501,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@CommandSetUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012B0B0,107,Code/masm_dumps/CommandSetUpgrade_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@ContestableContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00116140,110,Code/masm_dumps/ContestableContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@ConvertToCarBombCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00125FD0,129,Code/GameEngine/Source/Common/Thing/ConvertToCarBombCrateCollide_friend_newModuleData.asm,matched,Ghidra-corrected 129-byte factory helper boundary
-?friend_newModuleData@CostModifierUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DB70,107,Code/masm_dumps/_icf__friend_newModuleData_CostModifierUpgrade__SAPAVModuleD_11DB70.asm,matched,ICF alias of ?friend_newModuleData@ExperienceScalarUp Open-BFME4+Grok
 ?friend_newModuleData@CountermeasuresBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00117420,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@BattlePlanUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@CreateCrateDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00129A30,107,Code/masm_dumps/CreateCrateDie_friend_newModuleData.asm,matched,retail ModuleFactory dp057 Ghidra confirmed
 ?friend_newModuleData@CreateObjectDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00117860,107,Code/masm_dumps/CreateObjectDie_friend_newModuleData.asm,matched,retail ModuleFactory dp059 Ghidra confirmed
@@ -9600,7 +9597,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@ModelConditionUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DD90,110,Code/masm_dumps/ModelConditionUpgrade_friend_newModuleData.asm,matched,Retail registration dp169 proves ModelConditionUpgrade data factory
 ?friend_newModuleData@MoneyCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00127020,120,Code/masm_dumps/MoneyCrateCollide_friend_newModuleData.asm,matched,Ghidra-bound BFME crate module-data factory
 ?friend_newModuleData@MonsterDockUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011B1E0,107,Code/masm_dumps/MonsterDockUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x7E; Ghidra confirmed
-?friend_newModuleData@NeutronMissileUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118460,107,Code/masm_dumps/_icf__friend_newModuleData_NeutronMissileUpdate__SAPAVModule_118460.asm,matched,ICF alias of ?friend_newModuleData@FlammableUpdate@@S Open-BFME4+Grok
 ?friend_newModuleData@OCLSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120230,110,Code/masm_dumps/OCLSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xDA Ghidra confirmed
 ?friend_newModuleData@OCLUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011A840,107,Code/masm_dumps/OCLUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x78; Ghidra confirmed
 ?friend_newModuleData@OathbreakersFadeAwayBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00125D70,107,Code/masm_dumps/OathbreakersFadeAwayBehavior_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
@@ -13568,3 +13564,7 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??4SplitChoiceStruct@AABTreeBuilderClass@@QAEAAU01@ABU01@@Z,,0x0096B6B0,109,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,MASM converted to clean C++
 ?_M_destroy_nodes@?$_Deque_base@VGameResultsRequest@@V?$allocator@VGameResultsRequest@@@_STL@@@_STL@@IAEXPAPAVGameResultsRequest@@0@Z,,0x006404B0,45,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,MASM converted to clean C++
 ?getRequest@GameResultsQueue@@UAE_NAAVGameResultsRequest@@@Z,,0x00642440,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,MASM converted to clean C++
+?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
+?friend_newModuleData@CashBountyPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D7C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
+?friend_newModuleData@CostModifierUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
+?friend_newModuleData@NeutronMissileUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118460,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
