@@ -2022,7 +2022,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SubObjectArrayClass@HLodDefClass@@QAE@XZ,,0x009789F0,20,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ??0SubObjectsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D83A0,69,Code/masm_dumps/SubObjectsUpgrade_constructor.asm,matched,Exact 69B unique factory Open-BFME4
 ??0SubObjectsUpgradeModuleData@@QAE@XZ,,0x0012B6C0,194,Code/masm_dumps/SubObjectsUpgradeModuleData_constructor.asm,matched,Exact 194B @ 0x0012B6C0; Exact retail MASM ModuleData ctor; unique factory 0x12B7F0
-??0SubsystemInterface@@QAE@XZ,,0x009A1A30,16,Code/masm_dumps/__0SubsystemInterface__QAE_XZ_9A1A30.asm,matched,MASM exact retail dump
 ??0SubsystemInterfaceList@@QAE@XZ,,0x0040D800,22,Code/GameEngine/Source/Common/System/SubsystemInterface.cpp,matched,
 ??0SupplyCenterDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00021CE2,5,Code/masm_dumps/__0SupplyCenterDockUpdate__QAE_PAVThing__PBVModuleData___Z_21CE2.asm,matched,MASM exact retail dump
 ??0SupplyCenterDockUpdateModuleData@@QAE@XZ,,0x002CF5A0,36,Code/masm_dumps/SupplyCenterDockUpdateModuleData_constructor.asm,matched,Exact 36B unique factory Open-BFME4
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0OBBoxClass@@QAE@ABV0@@Z,,0x00931420,97,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,MASM converted to clean C++
 ?Get_Bone_Index@HTreeClass@@QBEHPBD@Z,,0x00952260,73,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,MASM converted to clean C++
 ?Start@ParticleEmitterClass@@QAEXXZ,,0x0097F090,174,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,MASM converted to clean C++
+??0SubsystemInterface@@QAE@XZ,,0x009A1A30,16,Code/GameEngine/Source/Common/System/SubsystemInterface.cpp,matched,MASM converted to clean C++

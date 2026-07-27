@@ -45,7 +45,6 @@ Real SubsystemInterface::s_msConsumed = 0;
 #endif
 
 //-----------------------------------------------------------------------------
-// ??0SubsystemInterface@@QAE@XZ present-unmatched
 SubsystemInterface::SubsystemInterface()
 #ifdef DUMP_PERF_STATS
 :m_curDrawTime(0),
