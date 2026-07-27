@@ -8321,7 +8321,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?add@Coord3D@@QAEXPBUCoord3DBase@@@Z,0x00022688,0x000B6570,31,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,adds Coord3DBase pointer
 ?add@LList@@QAEXPAVLListNode@@@Z,,0x00105A90,180,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/masm_dumps/_leaf2__add_MultiIniFieldParse__QAEXPBUFieldPar_850920.asm,matched,Exact 64B present-unmatched Open-BFME4
-?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,,0x0000B569,5,Code/masm_dumps/_addArgType_GameMessageParser__QAEXW4GameMessageArgumentDataType__H_Z_B569.asm,matched,MASM exact retail dump
 ?addBib@W3DBibBuffer@@QAEXQAVVector3@@W4ObjectID@@_N@Z,,0x006D7090,220,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?addBibDrawable@W3DBibBuffer@@QAEXQAVVector3@@W4DrawableID@@_N@Z,,0x006D71B0,220,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?addDynamicShadowTask@W3DVolumetricShadowManager@@QAEXPAUW3DVolumetricShadowRenderTask@@@Z,,0x007B7D20,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
@@ -13568,3 +13567,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?friend_getFinalOverride@Overridable@@QAEPAV1@XZ,,0x00097880,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
 ?getFinalOverride@Overridable@@QBEPBV1@XZ,,0x00087A80,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
 ??1CustomMatchPreferences@@UAE@XZ,,0x000AAFB0,11,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,thunk-dump converted to clean C++
+?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,,0x006235E0,152,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
