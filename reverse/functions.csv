@@ -7809,7 +7809,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Spheres_Intersect@@YA_NABVSphereClass@@0@Z,,0x00704920,73,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?Split_Polys@AABTreeBuilderClass@@AAEXHPAHABUSplitChoiceStruct@1@PAUSplitArraysStruct@1@@Z,,0x0096B890,160,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ?Sqrt@WWMath@@SAMM@Z,,0x001EF4C0,15,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
-?Start@ParticleEmitterClass@@QAEXXZ,,0x0097F090,174,Code/masm_dumps/__Start_ParticleEmitterClass__QAEXXZ_97F090.asm,matched,
 ?Start_Movie_Capture@WW3D@@SAXPBDM@Z,,0x009E7FD0,53,Code/masm_dumps/_leaf2__Start_Movie_Capture_WW3D__SAXPBDM_Z_9E7FD0.asm,matched,Exact 53B present-unmatched Open-BFME4
 ?Start_Single_Frame_Movie_Capture@WW3D@@SAXPBD@Z,,0x009E2150,16,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,
 ?Stop@ParticleEmitterClass@@QAEXXZ,,0x0097DE80,8,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?Add@?$DynamicVectorClass@VShaderClass@@@@QAE_NABVShaderClass@@@Z,,0x0092FA60,78,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,MASM converted to clean C++
 ??0OBBoxClass@@QAE@ABV0@@Z,,0x00931420,97,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,MASM converted to clean C++
 ?Get_Bone_Index@HTreeClass@@QBEHPBD@Z,,0x00952260,73,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,MASM converted to clean C++
+?Start@ParticleEmitterClass@@QAEXXZ,,0x0097F090,174,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,MASM converted to clean C++
