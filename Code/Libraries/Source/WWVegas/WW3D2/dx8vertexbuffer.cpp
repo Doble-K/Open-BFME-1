@@ -325,18 +325,16 @@ SortingVertexBufferClass::~SortingVertexBufferClass()
 
 //	bool dynamic=false,bool softwarevp=false);
 
-// ??0DX8VertexBufferClass@@ present-unmatched
 DX8VertexBufferClass::DX8VertexBufferClass(unsigned FVF, unsigned short vertex_count_, UsageType usage, unsigned vertex_size)
 	:
-	VertexBufferClass(BUFFER_TYPE_DX8, FVF, vertex_count_, vertex_size),
-	VertexBuffer(NULL)
+	VertexBufferClass(BUFFER_TYPE_DX8, FVF, vertex_count_, vertex_size)
 {
+	*reinterpret_cast<IDirect3DVertexBuffer8 **>(reinterpret_cast<char *>(this) + 0x1c) = NULL;
 	Create_Vertex_Buffer(usage);
 }
 
 // ----------------------------------------------------------------------------
 
-// ??0DX8VertexBufferClass@@ present-unmatched
 DX8VertexBufferClass::DX8VertexBufferClass(
 	const Vector3* vertices,
 	const Vector3* normals, 
@@ -344,9 +342,9 @@ DX8VertexBufferClass::DX8VertexBufferClass(
 	unsigned short VertexCount,
 	UsageType usage)
 	:
-	VertexBufferClass(BUFFER_TYPE_DX8, D3DFVF_XYZ|D3DFVF_TEX1|D3DFVF_NORMAL, VertexCount),
-	VertexBuffer(NULL)
+	VertexBufferClass(BUFFER_TYPE_DX8, D3DFVF_XYZ|D3DFVF_TEX1|D3DFVF_NORMAL, VertexCount)
 {
+	*reinterpret_cast<IDirect3DVertexBuffer8 **>(reinterpret_cast<char *>(this) + 0x1c) = NULL;
 	WWASSERT(vertices);
 	WWASSERT(normals);
 	WWASSERT(tex_coords);
@@ -357,7 +355,6 @@ DX8VertexBufferClass::DX8VertexBufferClass(
 
 // ----------------------------------------------------------------------------
 
-// ??0DX8VertexBufferClass@@ present-unmatched
 DX8VertexBufferClass::DX8VertexBufferClass(
 	const Vector3* vertices,
 	const Vector3* normals, 
@@ -366,9 +363,9 @@ DX8VertexBufferClass::DX8VertexBufferClass(
 	unsigned short VertexCount,
 	UsageType usage)
 	:
-	VertexBufferClass(BUFFER_TYPE_DX8, D3DFVF_XYZ|D3DFVF_TEX1|D3DFVF_NORMAL|D3DFVF_DIFFUSE, VertexCount),
-	VertexBuffer(NULL)
+	VertexBufferClass(BUFFER_TYPE_DX8, D3DFVF_XYZ|D3DFVF_TEX1|D3DFVF_NORMAL|D3DFVF_DIFFUSE, VertexCount)
 {
+	*reinterpret_cast<IDirect3DVertexBuffer8 **>(reinterpret_cast<char *>(this) + 0x1c) = NULL;
 	WWASSERT(vertices);
 	WWASSERT(normals);
 	WWASSERT(tex_coords);
@@ -380,7 +377,6 @@ DX8VertexBufferClass::DX8VertexBufferClass(
 
 // ----------------------------------------------------------------------------
 
-// ??0DX8VertexBufferClass@@ present-unmatched
 DX8VertexBufferClass::DX8VertexBufferClass(
 	const Vector3* vertices,
 	const Vector4* diffuse,
@@ -388,9 +384,9 @@ DX8VertexBufferClass::DX8VertexBufferClass(
 	unsigned short VertexCount,
 	UsageType usage)
 	:
-	VertexBufferClass(BUFFER_TYPE_DX8, D3DFVF_XYZ|D3DFVF_TEX1|D3DFVF_DIFFUSE, VertexCount),
-	VertexBuffer(NULL)
+	VertexBufferClass(BUFFER_TYPE_DX8, D3DFVF_XYZ|D3DFVF_TEX1|D3DFVF_DIFFUSE, VertexCount)
 {
+	*reinterpret_cast<IDirect3DVertexBuffer8 **>(reinterpret_cast<char *>(this) + 0x1c) = NULL;
 	WWASSERT(vertices);
 	WWASSERT(tex_coords);
 	WWASSERT(diffuse);
@@ -401,16 +397,15 @@ DX8VertexBufferClass::DX8VertexBufferClass(
 
 // ----------------------------------------------------------------------------
 
-// ??0DX8VertexBufferClass@@ present-unmatched
 DX8VertexBufferClass::DX8VertexBufferClass(
 	const Vector3* vertices,
 	const Vector2* tex_coords, 
 	unsigned short VertexCount,
 	UsageType usage)
 	:
-	VertexBufferClass(BUFFER_TYPE_DX8, D3DFVF_XYZ|D3DFVF_TEX1, VertexCount),
-	VertexBuffer(NULL)
+	VertexBufferClass(BUFFER_TYPE_DX8, D3DFVF_XYZ|D3DFVF_TEX1, VertexCount)
 {
+	*reinterpret_cast<IDirect3DVertexBuffer8 **>(reinterpret_cast<char *>(this) + 0x1c) = NULL;
 	WWASSERT(vertices);
 	WWASSERT(tex_coords);
 
@@ -946,4 +941,3 @@ unsigned short DynamicVBAccessClass::Get_Default_Vertex_Count(void)
 {
 	return _DynamicDX8VertexBufferSize;
 }
-

@@ -3477,3 +3477,9 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ??$append@PBD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEAAV01@PBD0ABUforward_iterator_tag@1@@Z,0x00036DE0,PeerDefs basic_string assign retail call target
 ??0CrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x00217660,BFME CrateCollide ctor body; ILT 0x0002AC43 used by legacy crate constructors
 ??0CrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0024F450,late-layout CrateCollide ctor body; ILT 0x00026CAB used by constructor group at 0x0024FC20
+??0VertexBufferClass@@IAE@IIGI@Z,0x0091DC50,DX8VertexBufferClass ctor base call
+?Create_Vertex_Buffer@DX8VertexBufferClass@@IAEXW4UsageType@1@@Z,0x0091E0C0,DX8VertexBufferClass ctor helper
+?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@0PBVVector2@@II@Z,0x0091E1D0,DX8VertexBufferClass ctor copy helper
+?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@0PBVVector2@@PBVVector4@@II@Z,0x0091EB40,DX8VertexBufferClass ctor copy helper
+?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@PBVVector2@@II@Z,0x0091E690,DX8VertexBufferClass ctor copy helper
+?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@PBVVector2@@PBVVector4@@II@Z,0x0091EDE0,DX8VertexBufferClass ctor copy helper
