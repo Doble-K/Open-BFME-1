@@ -60,9 +60,13 @@ template <class T> struct BFMEFactoryModuleDataChoice
 	typedef T Type;
 };
 
+class AIUpdateInterface;
+class AssaultTransportAIUpdate;
 class AssistedTargetingUpdate;
+class BattlePlanUpdate;
 class BridgeBehavior;
 class BridgeTowerBehavior;
+class CaveContain;
 class CashHackSpecialPower;
 class CostModifierUpgrade;
 class CreateCrateDie;
@@ -70,18 +74,24 @@ class CreateObjectDie;
 class CrushDie;
 class DeployStyleAIUpdate;
 class DestroyDie;
+class DozerAIUpdate;
+class DynamicShroudClearingRangeUpdate;
 class FXListDie;
 class FireWeaponCollide;
 class FireWeaponUpdate;
 class FlammableUpdate;
+class GarrisonContain;
+class HealContain;
 class InactiveBody;
 class InstantDeathBehavior;
 class KeepObjectDie;
 class LaserUpdate;
 class LifetimeUpdate;
 class OCLUpdate;
+class OpenContain;
 class ProductionUpdate;
 class RadiusDecalUpdate;
+class RiderChangeContain;
 class SlavedUpdate;
 class SlowDeathBehavior;
 class SpawnBehavior;
@@ -90,13 +100,23 @@ class SpecialPowerCompletionDie;
 class StealthUpdate;
 class StructureCollapseUpdate;
 class SubObjectsUpgrade;
+class SupplyTruckAIUpdate;
 class SwayClientUpdate;
 class ToppleUpdate;
+class TransportAIUpdate;
+class TransportContain;
+class TunnelContain;
 class UpgradeDie;
+class WanderAIUpdate;
+class WorkerAIUpdate;
 
+template <> struct BFMEFactoryInstanceSize<AIUpdateInterface> { enum { VALUE = 0x340 }; };
+template <> struct BFMEFactoryInstanceSize<AssaultTransportAIUpdate> { enum { VALUE = 0x3A0 }; };
 template <> struct BFMEFactoryInstanceSize<AssistedTargetingUpdate> { enum { VALUE = 0x20 }; };
+template <> struct BFMEFactoryInstanceSize<BattlePlanUpdate> { enum { VALUE = 0x748 }; };
 template <> struct BFMEFactoryInstanceSize<BridgeBehavior> { enum { VALUE = 0x488 }; };
 template <> struct BFMEFactoryInstanceSize<BridgeTowerBehavior> { enum { VALUE = 0x24 }; };
+template <> struct BFMEFactoryInstanceSize<CaveContain> { enum { VALUE = 0xE4 }; };
 template <> struct BFMEFactoryInstanceSize<CashHackSpecialPower> { enum { VALUE = 0x2C }; };
 template <> struct BFMEFactoryInstanceSize<CostModifierUpgrade> { enum { VALUE = 0x24 }; };
 template <> struct BFMEFactoryInstanceSize<CreateCrateDie> { enum { VALUE = 0x14 }; };
@@ -104,18 +124,24 @@ template <> struct BFMEFactoryInstanceSize<CreateObjectDie> { enum { VALUE = 0x1
 template <> struct BFMEFactoryInstanceSize<CrushDie> { enum { VALUE = 0x14 }; };
 template <> struct BFMEFactoryInstanceSize<DeployStyleAIUpdate> { enum { VALUE = 0x408 }; };
 template <> struct BFMEFactoryInstanceSize<DestroyDie> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<DozerAIUpdate> { enum { VALUE = 0x46C }; };
+template <> struct BFMEFactoryInstanceSize<DynamicShroudClearingRangeUpdate> { enum { VALUE = 0x230 }; };
 template <> struct BFMEFactoryInstanceSize<FXListDie> { enum { VALUE = 0x14 }; };
 template <> struct BFMEFactoryInstanceSize<FireWeaponCollide> { enum { VALUE = 0x1C }; };
 template <> struct BFMEFactoryInstanceSize<FireWeaponUpdate> { enum { VALUE = 0x24 }; };
 template <> struct BFMEFactoryInstanceSize<FlammableUpdate> { enum { VALUE = 0x50 }; };
+template <> struct BFMEFactoryInstanceSize<GarrisonContain> { enum { VALUE = 0x9B8 }; };
+template <> struct BFMEFactoryInstanceSize<HealContain> { enum { VALUE = 0xD4 }; };
 template <> struct BFMEFactoryInstanceSize<InactiveBody> { enum { VALUE = 0x1C }; };
 template <> struct BFMEFactoryInstanceSize<InstantDeathBehavior> { enum { VALUE = 0x14 }; };
 template <> struct BFMEFactoryInstanceSize<KeepObjectDie> { enum { VALUE = 0x14 }; };
 template <> struct BFMEFactoryInstanceSize<LaserUpdate> { enum { VALUE = 0x54 }; };
 template <> struct BFMEFactoryInstanceSize<LifetimeUpdate> { enum { VALUE = 0x28 }; };
 template <> struct BFMEFactoryInstanceSize<OCLUpdate> { enum { VALUE = 0x28 }; };
+template <> struct BFMEFactoryInstanceSize<OpenContain> { enum { VALUE = 0xD4 }; };
 template <> struct BFMEFactoryInstanceSize<ProductionUpdate> { enum { VALUE = 0xE8 }; };
 template <> struct BFMEFactoryInstanceSize<RadiusDecalUpdate> { enum { VALUE = 0x34 }; };
+template <> struct BFMEFactoryInstanceSize<RiderChangeContain> { enum { VALUE = 0x110 }; };
 template <> struct BFMEFactoryInstanceSize<SlavedUpdate> { enum { VALUE = 0x44 }; };
 template <> struct BFMEFactoryInstanceSize<SlowDeathBehavior> { enum { VALUE = 0x50 }; };
 template <> struct BFMEFactoryInstanceSize<SpawnBehavior> { enum { VALUE = 0x60 }; };
@@ -124,34 +150,49 @@ template <> struct BFMEFactoryInstanceSize<SpecialPowerCompletionDie> { enum { V
 template <> struct BFMEFactoryInstanceSize<StealthUpdate> { enum { VALUE = 0x44 }; };
 template <> struct BFMEFactoryInstanceSize<StructureCollapseUpdate> { enum { VALUE = 0x44 }; };
 template <> struct BFMEFactoryInstanceSize<SubObjectsUpgrade> { enum { VALUE = 0x24 }; };
+template <> struct BFMEFactoryInstanceSize<SupplyTruckAIUpdate> { enum { VALUE = 0x3D4 }; };
 template <> struct BFMEFactoryInstanceSize<SwayClientUpdate> { enum { VALUE = 0x2C }; };
 template <> struct BFMEFactoryInstanceSize<ToppleUpdate> { enum { VALUE = 0x58 }; };
+template <> struct BFMEFactoryInstanceSize<TransportAIUpdate> { enum { VALUE = 0x340 }; };
+template <> struct BFMEFactoryInstanceSize<TransportContain> { enum { VALUE = 0xE4 }; };
+template <> struct BFMEFactoryInstanceSize<TunnelContain> { enum { VALUE = 0xD8 }; };
 template <> struct BFMEFactoryInstanceSize<UpgradeDie> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<WanderAIUpdate> { enum { VALUE = 0x340 }; };
+template <> struct BFMEFactoryInstanceSize<WorkerAIUpdate> { enum { VALUE = 0x508 }; };
 
 class ActiveBodyModuleData;
 class AutoDepositUpdateModuleData;
 class BattlePlanUpdateModuleData;
 class BoneFXUpdateModuleData;
+class CashHackSpecialPowerModuleData;
 class CommandSetUpgradeModuleData;
 class CreateCrateDieModuleData;
 class CreateObjectDieModuleData;
+class CrushDieModuleData;
 class DemoTrapUpdateModuleData;
 class DynamicShroudClearingRangeUpdateModuleData;
 class FireWeaponUpdateModuleData;
 class FireWeaponWhenDeadBehaviorModuleData;
+class GarrisonContainModuleData;
 class LaserUpdateModuleData;
 class MaxHealthUpgradeModuleData;
+class OCLSpecialPowerModuleData;
 class OCLUpdateModuleData;
 class OpenContainModuleData;
 class PhysicsBehaviorModuleData;
 class ProductionUpdateModuleData;
+class SlowDeathBehaviorModuleData;
+class SpecialAbilityUpdateModuleData;
 class StealthDetectorUpdateModuleData;
 class StructureCollapseUpdateModuleData;
 class StructureToppleUpdateModuleData;
 class SupplyCenterDockUpdateModuleData;
 class SupplyTruckAIUpdateModuleData;
 class ToppleUpdateModuleData;
+class TransitionDamageFXModuleData;
 class TransportContainModuleData;
+class TunnelContainModuleData;
+class WorkerAIUpdateModuleData;
 class UnitCrateCollideModuleData;
 class UpgradeDieModuleData;
 
@@ -159,26 +200,35 @@ template <> struct BFMEFactoryInstanceSize<ActiveBodyModuleData> { enum { VALUE 
 template <> struct BFMEFactoryInstanceSize<AutoDepositUpdateModuleData> { enum { VALUE = 0x20 }; };
 template <> struct BFMEFactoryInstanceSize<BattlePlanUpdateModuleData> { enum { VALUE = 0xA0 }; };
 template <> struct BFMEFactoryInstanceSize<BoneFXUpdateModuleData> { enum { VALUE = 0xD94 }; };
+template <> struct BFMEFactoryInstanceSize<CashHackSpecialPowerModuleData> { enum { VALUE = 0x220 }; };
 template <> struct BFMEFactoryInstanceSize<CommandSetUpgradeModuleData> { enum { VALUE = 0x74 }; };
 template <> struct BFMEFactoryInstanceSize<CreateCrateDieModuleData> { enum { VALUE = 0x38 }; };
 template <> struct BFMEFactoryInstanceSize<CreateObjectDieModuleData> { enum { VALUE = 0x3C }; };
+template <> struct BFMEFactoryInstanceSize<CrushDieModuleData> { enum { VALUE = 0x204 }; };
 template <> struct BFMEFactoryInstanceSize<DemoTrapUpdateModuleData> { enum { VALUE = 0x3C }; };
 template <> struct BFMEFactoryInstanceSize<DynamicShroudClearingRangeUpdateModuleData> { enum { VALUE = 0x58 }; };
 template <> struct BFMEFactoryInstanceSize<FireWeaponUpdateModuleData> { enum { VALUE = 0x10 }; };
 template <> struct BFMEFactoryInstanceSize<FireWeaponWhenDeadBehaviorModuleData> { enum { VALUE = 0xB4 }; };
+template <> struct BFMEFactoryInstanceSize<GarrisonContainModuleData> { enum { VALUE = 0x33C }; };
 template <> struct BFMEFactoryInstanceSize<LaserUpdateModuleData> { enum { VALUE = 0x1C }; };
 template <> struct BFMEFactoryInstanceSize<MaxHealthUpgradeModuleData> { enum { VALUE = 0x78 }; };
+template <> struct BFMEFactoryInstanceSize<OCLSpecialPowerModuleData> { enum { VALUE = 0x230 }; };
 template <> struct BFMEFactoryInstanceSize<OCLUpdateModuleData> { enum { VALUE = 0x18 }; };
 template <> struct BFMEFactoryInstanceSize<OpenContainModuleData> { enum { VALUE = 0x168 }; };
 template <> struct BFMEFactoryInstanceSize<PhysicsBehaviorModuleData> { enum { VALUE = 0x5C }; };
 template <> struct BFMEFactoryInstanceSize<ProductionUpdateModuleData> { enum { VALUE = 0x48 }; };
+template <> struct BFMEFactoryInstanceSize<SlowDeathBehaviorModuleData> { enum { VALUE = 0x1A8 }; };
+template <> struct BFMEFactoryInstanceSize<SpecialAbilityUpdateModuleData> { enum { VALUE = 0x254 }; };
 template <> struct BFMEFactoryInstanceSize<StealthDetectorUpdateModuleData> { enum { VALUE = 0x13C }; };
 template <> struct BFMEFactoryInstanceSize<StructureCollapseUpdateModuleData> { enum { VALUE = 0xF8 }; };
 template <> struct BFMEFactoryInstanceSize<StructureToppleUpdateModuleData> { enum { VALUE = 0xB8 }; };
 template <> struct BFMEFactoryInstanceSize<SupplyCenterDockUpdateModuleData> { enum { VALUE = 0x1C }; };
 template <> struct BFMEFactoryInstanceSize<SupplyTruckAIUpdateModuleData> { enum { VALUE = 0xF4 }; };
 template <> struct BFMEFactoryInstanceSize<ToppleUpdateModuleData> { enum { VALUE = 0x2C }; };
+template <> struct BFMEFactoryInstanceSize<TransitionDamageFXModuleData> { enum { VALUE = 0x1040 }; };
 template <> struct BFMEFactoryInstanceSize<TransportContainModuleData> { enum { VALUE = 0x17C }; };
+template <> struct BFMEFactoryInstanceSize<TunnelContainModuleData> { enum { VALUE = 0x248 }; };
+template <> struct BFMEFactoryInstanceSize<WorkerAIUpdateModuleData> { enum { VALUE = 0x100 }; };
 template <> struct BFMEFactoryInstanceSize<UnitCrateCollideModuleData> { enum { VALUE = 0x5C }; };
 template <> struct BFMEFactoryInstanceSize<UpgradeDieModuleData> { enum { VALUE = 0x38 }; };
 
@@ -192,28 +242,37 @@ BFME_FACTORY_DATA_CHOICE(ActiveBodyModuleData)
 BFME_FACTORY_DATA_CHOICE(AutoDepositUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(BattlePlanUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(BoneFXUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(CashHackSpecialPowerModuleData)
 BFME_FACTORY_DATA_CHOICE(CommandSetUpgradeModuleData)
 BFME_FACTORY_DATA_CHOICE(CreateCrateDieModuleData)
 BFME_FACTORY_DATA_CHOICE(CreateObjectDieModuleData)
+BFME_FACTORY_DATA_CHOICE(CrushDieModuleData)
 BFME_FACTORY_DATA_CHOICE(DemoTrapUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(DynamicShroudClearingRangeUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(FireWeaponUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(FireWeaponWhenDeadBehaviorModuleData)
+BFME_FACTORY_DATA_CHOICE(GarrisonContainModuleData)
 BFME_FACTORY_DATA_CHOICE(LaserUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(MaxHealthUpgradeModuleData)
+BFME_FACTORY_DATA_CHOICE(OCLSpecialPowerModuleData)
 BFME_FACTORY_DATA_CHOICE(OCLUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(OpenContainModuleData)
 BFME_FACTORY_DATA_CHOICE(PhysicsBehaviorModuleData)
 BFME_FACTORY_DATA_CHOICE(ProductionUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(SlowDeathBehaviorModuleData)
+BFME_FACTORY_DATA_CHOICE(SpecialAbilityUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(StealthDetectorUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(StructureCollapseUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(StructureToppleUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(SupplyCenterDockUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(SupplyTruckAIUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(ToppleUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(TransitionDamageFXModuleData)
 BFME_FACTORY_DATA_CHOICE(TransportContainModuleData)
+BFME_FACTORY_DATA_CHOICE(TunnelContainModuleData)
 BFME_FACTORY_DATA_CHOICE(UnitCrateCollideModuleData)
 BFME_FACTORY_DATA_CHOICE(UpgradeDieModuleData)
+BFME_FACTORY_DATA_CHOICE(WorkerAIUpdateModuleData)
 
 #undef BFME_FACTORY_DATA_CHOICE
 
@@ -543,6 +602,10 @@ ModuleData* bfmeFactoryAnchorSupplyTruckAIUpdateModuleData() { return ::new Supp
 ModuleData* bfmeFactoryAnchorUnitCrateCollideModuleData() { return ::new UnitCrateCollideModuleData; }
 ModuleData* bfmeFactoryAnchorUpgradeDieModuleData() { return ::new UpgradeDieModuleData; }
 ModuleData* bfmeFactoryAnchorBoneFXUpdateModuleData() { return ::new BoneFXUpdateModuleData; }
+ModuleData* bfmeFactoryAnchorCrushDieModuleData() { return ::new CrushDieModuleData; }
+ModuleData* bfmeFactoryAnchorSpecialAbilityUpdateModuleData() { return ::new SpecialAbilityUpdateModuleData; }
+ModuleData* bfmeFactoryAnchorTunnelContainModuleData() { return ::new TunnelContainModuleData; }
+ModuleData* bfmeFactoryAnchorWorkerAIUpdateModuleData() { return ::new WorkerAIUpdateModuleData; }
 
 // PUBLIC DATA ////////////////////////////////////////////////////////////////////////////////////
 ModuleFactory *TheModuleFactory = NULL;  ///< the module factory singleton
