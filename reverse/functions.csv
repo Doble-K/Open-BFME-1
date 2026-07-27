@@ -8681,7 +8681,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clearUnseenMaps@MapCache@@AAE_NVAsciiString@@@Z,,0x004578EB,1059,Code/masm_dumps/_sa14__clearUnseenMaps_MapCache__AAE_NVAsciiString___Z_4578EB.asm,matched,sa14 Open-BFME4+Grok %s\%s%s
 ?clearVeterancyLevelFlag@@YAIIW4VeterancyLevel@@@Z,,0x000B8DD0,21,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?clearVisibleSkinList@DX8SkinFVFCategoryContainer@@AAEXXZ,,0x00945D60,72,Code/masm_dumps/_rn10__clearVisibleSkinList_DX8SkinFVFCategoryContainer__AAEXXZ_945D60.asm,matched,reloc-needle Open-BFME4+Grok
-?clearWinList@@YAXAAV?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@@Z,,0x0045D660,53,Code/masm_dumps/_sym3__clearWinList__YAXAAV__list_PAVAnimateWindow__V__allocator_PAVAnimateW_45D660.asm,matched,symbol-pin Open-BFME4+Grok
 ?clientOnly_getRenderObjBoneTransform@W3DModelDraw@@UBE_NABVAsciiString@@PAVMatrix3D@@@Z,,0x00763520,193,Code/masm_dumps/_rn4__clientOnly_getRenderObjBoneTransform_W3DModelDraw__UBE_NABVAsciiStrin_763520.asm,matched,reloc-needle Open-BFME4+Grok
 ?clientSafeQuickDoesPathExistForUI@Pathfinder@@QAE_NABVLocomotorSet@@PBUCoord3D@@1@Z,,0x003D96A3,375,Code/GameEngine/Source/GameLogic/AI/AIPathfind_clientSafeQuickDoesPathExistForUI.asm,matched,exact 375B via MASM
 ?clipToTerrainExtent@@YAXAAUCoord3D@@@Z,,0x001E18B0,127,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,terrainlogic getExtent slot fix
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??1PeerResponse@@QAE@XZ,,0x004DAC70,649,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
 ??_GGameTextManager@@UAEPAXI@Z,,0x00438610,30,Code/GameEngine/Source/GameClient/GameText.cpp,matched,MASM converted to clean C++
 ??0UserPreferences@@QAE@XZ,,0x000AB650,59,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,MASM converted to clean C++
+?clearWinList@@YAXAAV?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@@Z,,0x0045D660,53,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,MASM converted to clean C++
