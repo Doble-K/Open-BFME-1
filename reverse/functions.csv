@@ -4631,7 +4631,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GKindOfPercentProductionChange@@MAEPAXI@Z,,0x005BF290,30,Code/masm_dumps/_icf____GKindOfPercentProductionChange__MAEPAXI_Z_5BF290.asm,matched,ICF alias of ??_G?$CategoryModuleTemplate@$00@FXParti Open-BFME4+Grok
 ??_GLANGameInfo@@QAEPAXI@Z,,0x006870C0,30,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,
 ??_GLANPlayer@@QAEPAXI@Z,,0x00686CA0,30,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
-??_GLadderInfo@@QAEPAXI@Z,,0x0062AAE0,30,Code/masm_dumps/LadderInfo_scalar_destructor.asm,matched,Ghidra-bound deleting destructor
 ??_GLadderList@@QAEPAXI@Z,,0x006306D0,30,Code/masm_dumps/LadderList_scalar_destructor.asm,matched,Ghidra-bound deleting destructor
 ??_GLadderPreferences@@UAEPAXI@Z,,0x000ACC10,30,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ??_GLanguageFilter@@UAEPAXI@Z,,0x0044E600,30,Code/GameEngine/Source/GameClient/LanguageFilter.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0UserPreferences@@QAE@XZ,,0x000AB650,59,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,MASM converted to clean C++
 ?clearWinList@@YAXAAV?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@@Z,,0x0045D660,53,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,MASM converted to clean C++
 ?clear@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@@3@@_STL@@QAEXXZ,,0x005B3370,51,Code/GameEngine/Source/GameClient/MessageStream/HotKey.cpp,matched,MASM converted to clean C++
+??_GLadderInfo@@QAEPAXI@Z,,0x0062AAE0,30,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,MASM converted to clean C++
