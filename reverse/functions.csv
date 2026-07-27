@@ -2125,7 +2125,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0UpgradeModuleModuleData@@QAE@XZ,,0x00128D20,92,Code/masm_dumps/UpgradeModuleModuleData_constructor.asm,matched,Exact 92B @ 0x00128D20; Exact retail MASM ModuleData ctor; unique factory 0x128DA0; Open-BFME4+Grok
 ??0UpgradeSoundSelectorClientBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00113DA0,131,Code/masm_dumps/UpgradeSoundSelectorClientBehavior_constructor.asm,matched,Exact 131B ICF alias Open-BFME4
 ??0UpgradeSoundSelectorClientBehaviorModuleData@@QAE@XZ,,0x00608DC0,20,Code/masm_dumps/UpgradeSoundSelectorClientBehaviorModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory ownership
-??0UserPreferences@@QAE@XZ,,0x000AB650,59,Code/masm_dumps/_rn5___0UserPreferences__QAE_XZ_AB650.asm,matched,reloc-needle Open-BFME4+Grok
 ??0Vector2@@QAE@ABV0@@Z,,0x007E59E0,19,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,ICF alias of existing matched body
 ??0Vector2@@QAE@MM@Z,,0x0016A160,18,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,ICF alias of existing matched body
 ??0Vector2i@@QAE@HH@Z,,0x0016A160,18,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,ICF alias of existing matched body
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0PeerResponse@@QAE@XZ,,0x004DAB40,235,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
 ??1PeerResponse@@QAE@XZ,,0x004DAC70,649,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
 ??_GGameTextManager@@UAEPAXI@Z,,0x00438610,30,Code/GameEngine/Source/GameClient/GameText.cpp,matched,MASM converted to clean C++
+??0UserPreferences@@QAE@XZ,,0x000AB650,59,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,MASM converted to clean C++
