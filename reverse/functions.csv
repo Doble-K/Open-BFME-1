@@ -13555,7 +13555,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Set_Point_Orientation@PointGroupClass@@QAEXE@Z,,0x00912040,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
 ?Set_Point_Size@PointGroupClass@@QAEXM@Z,,0x00912000,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
 ?Set_Shader@PointGroupClass@@QAEXVShaderClass@@@Z,,0x009120E0,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
-??1?$VectorClass@E@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
 ??0?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAE@XZ,,0x004D4F40,99,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ??0?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAE@XZ,,0x004D4EC0,101,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ??0PeerRequest@@QAE@XZ,,0x004D51B0,220,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
@@ -13568,3 +13567,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setHandleToKill@AudioEventRTS@@QAEXI@Z,,0x000B2310,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
 ?setPlayingHandle@AudioEventRTS@@QAEXI@Z,,0x000B2200,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
 ?setVolume@AudioEventRTS@@QAEXM@Z,,0x000B23B0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
+??1?$VectorClass@E@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_E__UAE_XZ_AFF130.asm,matched,ICF Open-BFME4+Grok; restored after cross-source DIR32 audit
