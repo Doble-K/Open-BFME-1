@@ -169,7 +169,6 @@ void GameResultsQueue::addRequest( const GameResultsRequest& req )
 	m_requests.push(req);
 }
 
-// ?getRequest@GameResultsQueue@@UAE_NAAVGameResultsRequest@@@Z present-unmatched
 Bool GameResultsQueue::getRequest( GameResultsRequest& req )
 {
 	MutexClass::LockClass m(m_requestMutex, 0);
