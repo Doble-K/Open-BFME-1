@@ -3531,3 +3531,4 @@ __CxxThrowException@8,0x009F6D00,MSVC retail exception throw helper
 ?processDisconnectScreenOff@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,0x0066B890
 ?TheGameEngine@@3PAVGameEngine@@A,0x012ED524,BFME TheGameEngine*; DataChunk Sleep(0)+serviceWindowsOS yield sites
 ?getBufferForRead@UnicodeString@@QAEPAGH@Z,0x00888480,ICF with StringBase<unsigned short>::getBufferForRead; readUnicodeString callee
+??A?$map@VAsciiString@@V1@U?$less@VAsciiString@@@_STL@@V?$allocator@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@@_STL@@QAEAAVAsciiString@@ABV2@@Z,0x0003E6DA,FirewallHelper flagNeedToRefresh site-decoded map operator[] thunk

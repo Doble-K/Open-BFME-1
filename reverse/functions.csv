@@ -13577,3 +13577,4 @@ _$E11,,0x00C71070,59,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,obj
 ?update@AIPanicState@@UAE?AW4StateReturnType@@XZ,,0x0017B840,399,Code/masm_dumps/AIPanicState_update.asm,matched,true body @0x17B840 (399B); drift 0x77B0E1 mid-noise; vtbl 0x109A988 slot6; C++ blocked by layout; MASM exact
 ?xfer@ScriptGroup@@MAEXPAVXfer@@@Z,,0x00350E90,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptGroupXfer.cpp,matched,True body ScriptGroup vtbl slot3 0x350E90/66; queue 0xAF9B24 is jmp-table; BFME Version1+bool@+0xc only (no ZH script-list walk)
 ?placeBuildAvailable@InGameUI@@UAEXPBVThingTemplate@@PAVDrawable@@@Z,,0x0043AF60,363,Code/masm_dumps/placeBuildAvailable_InGameUI_0043AF60.asm,matched,MASM exact dump; ghidra 363B true body (queue 402 was int3 pad); place fields +0x534/+0x538 mouseMode +0x824
+?flagNeedToRefresh@FirewallHelperClass@@QAEX_N@Z,,0x0066FFD0,274,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
