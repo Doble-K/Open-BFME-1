@@ -1896,7 +1896,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RubbleRiseUpdateModuleData@@QAE@XZ,,0x00127AD0,202,Code/masm_dumps/RubbleRiseUpdateModuleData_constructor.asm,matched,Exact 202B @ 0x00127AD0; Exact retail MASM ModuleData ctor; unique factory 0x127BD0
 ??0RunOffMapBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205060,60,Code/masm_dumps/RunOffMapBehavior_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/masm_dumps/RunOffMapBehaviorModuleData_constructor.asm,matched,Exact 96B @ 0x00126760; Exact retail MASM ModuleData ctor; unique factory 0x1267E0; Open-BFME4+Grok
-??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/masm_dumps/SabotageCommandCenterCrateCollide_constructor.asm,matched,Exact 46B ICF alias Open-BFME4
 ??0SabotageFakeBuildingCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/masm_dumps/SabotageFakeBuildingCrateCollide_constructor.asm,matched,Exact 46B ICF alias Open-BFME4
 ??0SabotageInternetCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/masm_dumps/SabotageInternetCenterCrateCollide_constructor.asm,matched,Exact 46B ICF alias Open-BFME4
 ??0SabotageMilitaryFactoryCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/masm_dumps/SabotageMilitaryFactoryCrateCollide_constructor.asm,matched,Exact 46B ICF alias Open-BFME4
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?clearWinList@@YAXAAV?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@@Z,,0x0045D660,53,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,MASM converted to clean C++
 ?clear@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@@3@@_STL@@QAEXXZ,,0x005B3370,51,Code/GameEngine/Source/GameClient/MessageStream/HotKey.cpp,matched,MASM converted to clean C++
 ??_GLadderInfo@@QAEPAXI@Z,,0x0062AAE0,30,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,MASM converted to clean C++
+??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,MASM converted to clean C++
