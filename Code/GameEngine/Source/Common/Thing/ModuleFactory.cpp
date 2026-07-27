@@ -40,6 +40,197 @@
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include "Common/Module.h"
+
+template <class T> struct BFMEFactoryInstanceSize
+{
+	enum { VALUE = sizeof(T) };
+};
+
+template <class T, unsigned int SIZE> class BFMEFactoryModuleData : public ModuleData
+{
+public:
+	BFMEFactoryModuleData();
+
+private:
+	char m_storage[SIZE - sizeof(ModuleData)];
+};
+
+template <class T> struct BFMEFactoryModuleDataChoice
+{
+	typedef T Type;
+};
+
+class AssistedTargetingUpdate;
+class BridgeBehavior;
+class BridgeTowerBehavior;
+class CashHackSpecialPower;
+class CostModifierUpgrade;
+class CreateCrateDie;
+class CreateObjectDie;
+class CrushDie;
+class DeployStyleAIUpdate;
+class DestroyDie;
+class FXListDie;
+class FireWeaponCollide;
+class FireWeaponUpdate;
+class FlammableUpdate;
+class InactiveBody;
+class InstantDeathBehavior;
+class KeepObjectDie;
+class LaserUpdate;
+class LifetimeUpdate;
+class OCLUpdate;
+class ProductionUpdate;
+class RadiusDecalUpdate;
+class SlavedUpdate;
+class SlowDeathBehavior;
+class SpawnBehavior;
+class SpecialAbilityUpdate;
+class SpecialPowerCompletionDie;
+class StealthUpdate;
+class StructureCollapseUpdate;
+class SubObjectsUpgrade;
+class SwayClientUpdate;
+class ToppleUpdate;
+class UpgradeDie;
+
+template <> struct BFMEFactoryInstanceSize<AssistedTargetingUpdate> { enum { VALUE = 0x20 }; };
+template <> struct BFMEFactoryInstanceSize<BridgeBehavior> { enum { VALUE = 0x488 }; };
+template <> struct BFMEFactoryInstanceSize<BridgeTowerBehavior> { enum { VALUE = 0x24 }; };
+template <> struct BFMEFactoryInstanceSize<CashHackSpecialPower> { enum { VALUE = 0x2C }; };
+template <> struct BFMEFactoryInstanceSize<CostModifierUpgrade> { enum { VALUE = 0x24 }; };
+template <> struct BFMEFactoryInstanceSize<CreateCrateDie> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<CreateObjectDie> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<CrushDie> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<DeployStyleAIUpdate> { enum { VALUE = 0x408 }; };
+template <> struct BFMEFactoryInstanceSize<DestroyDie> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<FXListDie> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<FireWeaponCollide> { enum { VALUE = 0x1C }; };
+template <> struct BFMEFactoryInstanceSize<FireWeaponUpdate> { enum { VALUE = 0x24 }; };
+template <> struct BFMEFactoryInstanceSize<FlammableUpdate> { enum { VALUE = 0x50 }; };
+template <> struct BFMEFactoryInstanceSize<InactiveBody> { enum { VALUE = 0x1C }; };
+template <> struct BFMEFactoryInstanceSize<InstantDeathBehavior> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<KeepObjectDie> { enum { VALUE = 0x14 }; };
+template <> struct BFMEFactoryInstanceSize<LaserUpdate> { enum { VALUE = 0x54 }; };
+template <> struct BFMEFactoryInstanceSize<LifetimeUpdate> { enum { VALUE = 0x28 }; };
+template <> struct BFMEFactoryInstanceSize<OCLUpdate> { enum { VALUE = 0x28 }; };
+template <> struct BFMEFactoryInstanceSize<ProductionUpdate> { enum { VALUE = 0xE8 }; };
+template <> struct BFMEFactoryInstanceSize<RadiusDecalUpdate> { enum { VALUE = 0x34 }; };
+template <> struct BFMEFactoryInstanceSize<SlavedUpdate> { enum { VALUE = 0x44 }; };
+template <> struct BFMEFactoryInstanceSize<SlowDeathBehavior> { enum { VALUE = 0x50 }; };
+template <> struct BFMEFactoryInstanceSize<SpawnBehavior> { enum { VALUE = 0x60 }; };
+template <> struct BFMEFactoryInstanceSize<SpecialAbilityUpdate> { enum { VALUE = 0xE8 }; };
+template <> struct BFMEFactoryInstanceSize<SpecialPowerCompletionDie> { enum { VALUE = 0x1C }; };
+template <> struct BFMEFactoryInstanceSize<StealthUpdate> { enum { VALUE = 0x44 }; };
+template <> struct BFMEFactoryInstanceSize<StructureCollapseUpdate> { enum { VALUE = 0x44 }; };
+template <> struct BFMEFactoryInstanceSize<SubObjectsUpgrade> { enum { VALUE = 0x24 }; };
+template <> struct BFMEFactoryInstanceSize<SwayClientUpdate> { enum { VALUE = 0x2C }; };
+template <> struct BFMEFactoryInstanceSize<ToppleUpdate> { enum { VALUE = 0x58 }; };
+template <> struct BFMEFactoryInstanceSize<UpgradeDie> { enum { VALUE = 0x14 }; };
+
+class ActiveBodyModuleData;
+class AutoDepositUpdateModuleData;
+class BattlePlanUpdateModuleData;
+class BoneFXUpdateModuleData;
+class CommandSetUpgradeModuleData;
+class CreateCrateDieModuleData;
+class CreateObjectDieModuleData;
+class DemoTrapUpdateModuleData;
+class DynamicShroudClearingRangeUpdateModuleData;
+class FireWeaponUpdateModuleData;
+class FireWeaponWhenDeadBehaviorModuleData;
+class LaserUpdateModuleData;
+class MaxHealthUpgradeModuleData;
+class OCLUpdateModuleData;
+class OpenContainModuleData;
+class PhysicsBehaviorModuleData;
+class ProductionUpdateModuleData;
+class StealthDetectorUpdateModuleData;
+class StructureCollapseUpdateModuleData;
+class StructureToppleUpdateModuleData;
+class SupplyCenterDockUpdateModuleData;
+class SupplyTruckAIUpdateModuleData;
+class ToppleUpdateModuleData;
+class TransportContainModuleData;
+class UnitCrateCollideModuleData;
+class UpgradeDieModuleData;
+
+template <> struct BFMEFactoryInstanceSize<ActiveBodyModuleData> { enum { VALUE = 0x5C }; };
+template <> struct BFMEFactoryInstanceSize<AutoDepositUpdateModuleData> { enum { VALUE = 0x20 }; };
+template <> struct BFMEFactoryInstanceSize<BattlePlanUpdateModuleData> { enum { VALUE = 0xA0 }; };
+template <> struct BFMEFactoryInstanceSize<BoneFXUpdateModuleData> { enum { VALUE = 0xD94 }; };
+template <> struct BFMEFactoryInstanceSize<CommandSetUpgradeModuleData> { enum { VALUE = 0x74 }; };
+template <> struct BFMEFactoryInstanceSize<CreateCrateDieModuleData> { enum { VALUE = 0x38 }; };
+template <> struct BFMEFactoryInstanceSize<CreateObjectDieModuleData> { enum { VALUE = 0x3C }; };
+template <> struct BFMEFactoryInstanceSize<DemoTrapUpdateModuleData> { enum { VALUE = 0x3C }; };
+template <> struct BFMEFactoryInstanceSize<DynamicShroudClearingRangeUpdateModuleData> { enum { VALUE = 0x58 }; };
+template <> struct BFMEFactoryInstanceSize<FireWeaponUpdateModuleData> { enum { VALUE = 0x10 }; };
+template <> struct BFMEFactoryInstanceSize<FireWeaponWhenDeadBehaviorModuleData> { enum { VALUE = 0xB4 }; };
+template <> struct BFMEFactoryInstanceSize<LaserUpdateModuleData> { enum { VALUE = 0x1C }; };
+template <> struct BFMEFactoryInstanceSize<MaxHealthUpgradeModuleData> { enum { VALUE = 0x78 }; };
+template <> struct BFMEFactoryInstanceSize<OCLUpdateModuleData> { enum { VALUE = 0x18 }; };
+template <> struct BFMEFactoryInstanceSize<OpenContainModuleData> { enum { VALUE = 0x168 }; };
+template <> struct BFMEFactoryInstanceSize<PhysicsBehaviorModuleData> { enum { VALUE = 0x5C }; };
+template <> struct BFMEFactoryInstanceSize<ProductionUpdateModuleData> { enum { VALUE = 0x48 }; };
+template <> struct BFMEFactoryInstanceSize<StealthDetectorUpdateModuleData> { enum { VALUE = 0x13C }; };
+template <> struct BFMEFactoryInstanceSize<StructureCollapseUpdateModuleData> { enum { VALUE = 0xF8 }; };
+template <> struct BFMEFactoryInstanceSize<StructureToppleUpdateModuleData> { enum { VALUE = 0xB8 }; };
+template <> struct BFMEFactoryInstanceSize<SupplyCenterDockUpdateModuleData> { enum { VALUE = 0x1C }; };
+template <> struct BFMEFactoryInstanceSize<SupplyTruckAIUpdateModuleData> { enum { VALUE = 0xF4 }; };
+template <> struct BFMEFactoryInstanceSize<ToppleUpdateModuleData> { enum { VALUE = 0x2C }; };
+template <> struct BFMEFactoryInstanceSize<TransportContainModuleData> { enum { VALUE = 0x17C }; };
+template <> struct BFMEFactoryInstanceSize<UnitCrateCollideModuleData> { enum { VALUE = 0x5C }; };
+template <> struct BFMEFactoryInstanceSize<UpgradeDieModuleData> { enum { VALUE = 0x38 }; };
+
+#define BFME_FACTORY_DATA_CHOICE(T) \
+	template <> struct BFMEFactoryModuleDataChoice<T> \
+	{ \
+		typedef BFMEFactoryModuleData<T, BFMEFactoryInstanceSize<T>::VALUE> Type; \
+	};
+
+BFME_FACTORY_DATA_CHOICE(ActiveBodyModuleData)
+BFME_FACTORY_DATA_CHOICE(AutoDepositUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(BattlePlanUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(BoneFXUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(CommandSetUpgradeModuleData)
+BFME_FACTORY_DATA_CHOICE(CreateCrateDieModuleData)
+BFME_FACTORY_DATA_CHOICE(CreateObjectDieModuleData)
+BFME_FACTORY_DATA_CHOICE(DemoTrapUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(DynamicShroudClearingRangeUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(FireWeaponUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(FireWeaponWhenDeadBehaviorModuleData)
+BFME_FACTORY_DATA_CHOICE(LaserUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(MaxHealthUpgradeModuleData)
+BFME_FACTORY_DATA_CHOICE(OCLUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(OpenContainModuleData)
+BFME_FACTORY_DATA_CHOICE(PhysicsBehaviorModuleData)
+BFME_FACTORY_DATA_CHOICE(ProductionUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(StealthDetectorUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(StructureCollapseUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(StructureToppleUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(SupplyCenterDockUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(SupplyTruckAIUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(ToppleUpdateModuleData)
+BFME_FACTORY_DATA_CHOICE(TransportContainModuleData)
+BFME_FACTORY_DATA_CHOICE(UnitCrateCollideModuleData)
+BFME_FACTORY_DATA_CHOICE(UpgradeDieModuleData)
+
+#undef BFME_FACTORY_DATA_CHOICE
+
+#undef MAKE_STANDARD_MODULE_MACRO
+#undef MP_GLUE_ALLOCATE
+#define MP_GLUE_ALLOCATE(ARGCLASS) ::operator new(BFMEFactoryInstanceSize<ARGCLASS>::VALUE)
+#define MAKE_STANDARD_MODULE_MACRO( cls ) \
+public: \
+	static Module* friend_newModuleInstance( Thing *thing, const ModuleData* moduleData ) \
+	{ \
+		return new(cls::cls##_GLUE_NOT_IMPLEMENTED) cls(thing, moduleData); \
+	} \
+	virtual NameKeyType getModuleNameKey() const { static NameKeyType nk = NAMEKEY(#cls); return nk; } \
+protected: \
+	virtual void crc( Xfer *xfer ); \
+	virtual void xfer( Xfer *xfer ); \
+	virtual void loadPostProcess( void );
 #include "Common/ModuleFactory.h"
 #include "Common/NameKeyGenerator.h"
 #include "../../../Include/GameLogic/Module/DamageModule.h"
@@ -81,9 +272,10 @@ private: \
 public: \
 	static ModuleData* friend_newModuleData(INI* ini) \
 	{ \
-		clsmd* data = MSGNEW( "AllModuleData" ) clsmd; \
+		typedef BFMEFactoryModuleDataChoice<clsmd>::Type RetailModuleDataType; \
+		RetailModuleDataType* data = ::new RetailModuleDataType; \
 		if (ini) ini->initFromINIMultiProc(data, clsmd::buildFieldParse); \
-		return data; \
+		return (ModuleData*)data; \
 	}
 
 // behavior includes
@@ -339,6 +531,18 @@ public: \
 #include "GameClient/Module/AnimatedParticleSysBoneClientUpdate.h"
 #include "GameClient/Module/SwayClientUpdate.h"
 #include "GameClient/Module/BeaconClientUpdate.h"
+
+ModuleData* bfmeFactoryAnchorAutoDepositUpdateModuleData() { return ::new AutoDepositUpdateModuleData; }
+ModuleData* bfmeFactoryAnchorCommandSetUpgradeModuleData() { return ::new CommandSetUpgradeModuleData; }
+ModuleData* bfmeFactoryAnchorCreateCrateDieModuleData() { return ::new CreateCrateDieModuleData; }
+ModuleData* bfmeFactoryAnchorFireWeaponWhenDeadBehaviorModuleData() { return ::new FireWeaponWhenDeadBehaviorModuleData; }
+ModuleData* bfmeFactoryAnchorStealthDetectorUpdateModuleData() { return ::new StealthDetectorUpdateModuleData; }
+ModuleData* bfmeFactoryAnchorStructureCollapseUpdateModuleData() { return ::new StructureCollapseUpdateModuleData; }
+ModuleData* bfmeFactoryAnchorStructureToppleUpdateModuleData() { return ::new StructureToppleUpdateModuleData; }
+ModuleData* bfmeFactoryAnchorSupplyTruckAIUpdateModuleData() { return ::new SupplyTruckAIUpdateModuleData; }
+ModuleData* bfmeFactoryAnchorUnitCrateCollideModuleData() { return ::new UnitCrateCollideModuleData; }
+ModuleData* bfmeFactoryAnchorUpgradeDieModuleData() { return ::new UpgradeDieModuleData; }
+ModuleData* bfmeFactoryAnchorBoneFXUpdateModuleData() { return ::new BoneFXUpdateModuleData; }
 
 // PUBLIC DATA ////////////////////////////////////////////////////////////////////////////////////
 ModuleFactory *TheModuleFactory = NULL;  ///< the module factory singleton
