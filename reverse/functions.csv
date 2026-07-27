@@ -4605,7 +4605,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GGameState@@UAEPAXI@Z,,0x001112A0,30,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??_GGameStateMap@@UAEPAXI@Z,,0x005BF290,30,Code/masm_dumps/_icf____GGameStateMap__UAEPAXI_Z_5BF290.asm,matched,ICF alias of ??_G?$CategoryModuleTemplate@$00@FXParti Open-BFME4+Grok
 ??_GGameTextInterface@@UAEPAXI@Z,,0x00435E00,30,Code/GameEngine/Source/GameClient/GameText.cpp,matched,exact C++ scalar-deleting destructor after retail destructor-thunk pin
-??_GGameTextManager@@UAEPAXI@Z,,0x00438610,30,Code/masm_dumps/GameText_GameTextManager_scalar_deleting_destructor.asm,matched,exact retail scalar-deleting destructor via MASM; Ghidra-vtable anchored
 ??_GGameWindowEditData@@QAEPAXI@Z,,0x005BF290,30,Code/masm_dumps/_icf____GGameWindowEditData__QAEPAXI_Z_5BF290.asm,matched,ICF alias of ??_G?$CategoryModuleTemplate@$00@FXParti Open-BFME4+Grok
 ??_GGameWindowManager@@UAEPAXI@Z,,0x00483C90,30,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ??_GGarrisonContainModuleData@@UAEPAXI@Z,,0x00247570,30,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0?$_STLP_alloc_proxy@IPAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVMapObject@@@1@I@Z,,0x008F9A30,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,MASM converted to clean C++
 ??0PeerResponse@@QAE@XZ,,0x004DAB40,235,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
 ??1PeerResponse@@QAE@XZ,,0x004DAC70,649,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
+??_GGameTextManager@@UAEPAXI@Z,,0x00438610,30,Code/GameEngine/Source/GameClient/GameText.cpp,matched,MASM converted to clean C++
