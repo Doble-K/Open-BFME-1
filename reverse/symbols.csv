@@ -3522,3 +3522,4 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ??0?$BFMEFactoryModuleData@VTransitionDamageFXModuleData@@$0BAEA@@@QAE@XZ,0x00020A95,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VTunnelContainModuleData@@$0CEI@@@QAE@XZ,0x00002315,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VWorkerAIUpdateModuleData@@$0BAA@@@QAE@XZ,0x00036232,ModuleFactory retail data facade
+?isFinished@GameWindowTransitionsHandler@@QAE_NXZ,0x00042E6F,Shell retail transition handler

@@ -732,7 +732,6 @@ void Shell::shutdownComplete( WindowLayout *screen, Bool impendingPush )
 }  // end shutdownComplete
 
 
-// ?registerWithAnimateManager@Shell@@QAEXPAVGameWindow@@W4AnimTypes@@_NI@Z present-unmatched
 void Shell::registerWithAnimateManager( GameWindow *win, AnimTypes animType, Bool needsToFinish, UnsignedInt delayMS)
 {
 	if(!m_animateWindowManager)
@@ -740,11 +739,10 @@ void Shell::registerWithAnimateManager( GameWindow *win, AnimTypes animType, Boo
 		DEBUG_CRASH(("We called registerWithAnimateManager and we don't have an Animate Manager created"));
 		return;
 	}
-	if (TheGlobalData->m_animateWindows)
+	if (*(const Bool*)((const char*)TheGlobalData + 0xBC4))
 		m_animateWindowManager->registerGameWindow(win,animType,needsToFinish, 500,delayMS);
 }
 
-// ?isAnimFinished@Shell@@QAE_NXZ present-unmatched
 Bool Shell::isAnimFinished( void )
 {
 	// check the new way also.
@@ -756,13 +754,12 @@ Bool Shell::isAnimFinished( void )
 		DEBUG_CRASH(("We called registerWithAnimateManager and we don't have an Animate Manager created"));
 		return TRUE;
 	}
-	if (TheGlobalData->m_animateWindows)
+	if (*(const Bool*)((const char*)TheGlobalData + 0xBC4))
 		return m_animateWindowManager->isFinished();
 	else
 		return TRUE;
 }
 
-// ?reverseAnimatewindow@Shell@@QAEXXZ present-unmatched
 void Shell::reverseAnimatewindow( void )
 {
 	if(!m_animateWindowManager)
@@ -770,7 +767,7 @@ void Shell::reverseAnimatewindow( void )
 		DEBUG_CRASH(("We called registerWithAnimateManager and we don't have an Animate Manager created"));
 		return;
 	}
-	if (TheGlobalData->m_animateWindows)
+	if (*(const Bool*)((const char*)TheGlobalData + 0xBC4))
 		m_animateWindowManager->reverseAnimateWindow();
 }
 
