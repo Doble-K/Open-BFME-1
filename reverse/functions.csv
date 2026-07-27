@@ -3879,7 +3879,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4TColumn@?5??loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV4@MMMM@Z@QAEAAU02@ABU02@@Z,,0x007041B0,291,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ??4TColumn@?BB@??loadLit4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@PAGPAUVertexFormatXYZDUV1@@PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z@QAEAAU02@ABU02@@Z,,0x00704330,291,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ??4TRoadPt@@QAEAAU0@ABU0@@Z,,0x00707030,73,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
-??4TRoadSegInfo@@QAEAAU0@ABU0@@Z,,0x000015EB,5,Code/masm_dumps/__4TRoadSegInfo__QAEAAU0_ABU0__Z_15EB.asm,matched,MASM exact retail dump
 ??4TScorch@@QAEAAU0@ABU0@@Z,,0x00979200,37,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ??4TangentsClass@HermiteSpline3DClass@@QAEAAV01@ABV01@@Z,,0x000BEC90,43,Code/Libraries/Source/WWVegas/WWMath/hermitespline.cpp,matched,
 ??4TerrainCollisionModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x00010BDB,0x5d9850,61,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??1?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UAE@XZ,0x0003DAAA,0x00044E31,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_virtual_destructors.cpp,matched,thunk-dump converted to clean C++
 ??1?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@FXParticleSystem@@3QBDB$E?TERRAIN_COLLISION_MODULE_NAME@2@3QBDBVTerrainCollisionModule@2@VTerrainCollisionModuleTemplate@2@VParticleTerrainCollisionModule@2@VParticleTerrainCollisionModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UAE@XZ,0x0001BA81,0x00038410,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_virtual_destructors.cpp,matched,thunk-dump converted to clean C++
 ?setSortMode@@YAXW4GameSortType@@@Z,,0x0062E560,32,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,thunk-dump converted to clean C++
+??4TRoadSegInfo@@QAEAAU0@ABU0@@Z,,0x00706F70,109,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,thunk-dump converted to clean C++
