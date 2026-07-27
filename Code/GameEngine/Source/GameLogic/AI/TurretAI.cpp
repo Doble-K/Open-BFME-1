@@ -218,7 +218,8 @@ void TurretAIData::parseTurretSweep(INI* ini, void *instance, void * /*store*/, 
 {
 	TurretAIData* self = (TurretAIData*)instance;
 	WeaponSlotType wslot = (WeaponSlotType)INI::scanIndexList(ini->getNextToken(), TheWeaponSlotTypeNames);
-	INI::parseAngleReal( ini, instance, &self->m_turretFireAngleSweep[wslot], NULL );
+	Real* retailTurretFireAngleSweep = (Real*)((char*)self + 0x10);
+	INI::parseAngleReal( ini, instance, &retailTurretFireAngleSweep[wslot], NULL );
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -884,10 +885,10 @@ Bool TurretAI::friend_isAnyWeaponInRangeOf(const Object* o) const
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?friend_isSweepEnabled@TurretAI@@QBE_NXZ present-unmatched
 Bool TurretAI::friend_isSweepEnabled() const 
 { 
-	if (m_enableSweepUntil != 0 && m_enableSweepUntil > TheGameLogic->getFrame())
+	const UnsignedInt enableSweepUntil = *(const UnsignedInt*)((const char*)this + 0x90);
+	if (enableSweepUntil != 0 && enableSweepUntil > TheGameLogic->getFrame())
 		return true;
 
 	return false;

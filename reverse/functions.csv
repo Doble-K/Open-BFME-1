@@ -9402,7 +9402,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_getRadarData@Object@@QAEPAVRadarObject@@XZ,,0x00478750,7,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,Ghidra-bound Object accessor
 ?friend_getRider@OpenContain@@UBEPBVObject@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?friend_getThingTemplate@WeaponTemplateSet@@QBEPBVThingTemplate@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
-?friend_isSweepEnabled@TurretAI@@QBE_NXZ,,0x0018C9F0,27,Code/masm_dumps/_rn12__friend_isSweepEnabled_TurretAI__QBE_NXZ_18C9F0.asm,matched,reloc-needle Open-BFME4+Grok
 ?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z,,0x000E7240,85,Code/masm_dumps/Science_ScienceStore_friend_lookupScience.asm,matched,
 ?friend_newModuleData@AIUpdateInterface@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@PropagandaTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@AODHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00122FD0,116,Code/masm_dumps/AODHordeContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
@@ -11397,7 +11396,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseTooltipDelay@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484BD0,45,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseTransitionToFX@TerrainRoadType@@KAXPAVINI@@PAX1PBX@Z,,0x00601E90,263,Code/masm_dumps/_parseTransitionToFX_TerrainRoadType__KAXPAVINI__PAX1PBX_Z_601E90.asm,matched,
 ?parseTransitionToOCL@TerrainRoadType@@KAXPAVINI@@PAX1PBX@Z,,0x00601D40,263,Code/masm_dumps/_parseTransitionToOCL_TerrainRoadType__KAXPAVINI__PAX1PBX_Z_601D40.asm,matched,
-?parseTurretSweep@TurretAIData@@SAXPAVINI@@PAX1PBX@Z,,0x0018C3E0,48,Code/masm_dumps/TurretAIData_parseTurretSweep.asm,matched,Ghidra-owned BFME turret-angle parser
 ?parseTurretSweepSpeed@TurretAIData@@SAXPAVINI@@PAX1PBX@Z,,0x0018C420,48,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
 ?parseUnsignedByte@INI@@SAXPAV1@PAX1PBX@Z,,0x008528E0,120,Code/masm_dumps/parseUnsignedByte_INI_SAXPAV1_PAX1PBX_Z_8528E0.asm,matched,Ghidra neighborhood and CC-bounded retail body; scanInt with 0..255 range and byte store
 ?parseUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852AC0,86,Code/masm_dumps/_parseUnsignedInt_INI__SAXPAV1_PAX1PBX_Z_852AC0.asm,matched,MASM exact retail dump
@@ -13568,3 +13566,5 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?Cur_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E1440,11,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Cur_Chunk_Length@ChunkLoadClass@@QAEKXZ,,0x009E1450,16,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Cur_Micro_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E14E0,8,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
+?parseTurretSweep@TurretAIData@@SAXPAVINI@@PAX1PBX@Z,,0x0018C3E0,48,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
+?friend_isSweepEnabled@TurretAI@@QBE_NXZ,,0x0018C9F0,27,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
