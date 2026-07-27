@@ -4973,7 +4973,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Add_Tail@GenericList@@QAEXPAVGenericNode@@@Z,,0x009E2A30,78,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Add_To_Collection@CullSystemClass@@IAEXPAVCullableClass@@@Z,,0x008E21D0,16,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,
 ?Add_To_List@DefaultStaticSortListClass@@UAEXPAVRenderObjClass@@I@Z,,0x009580D0,56,Code/Libraries/Source/WWVegas/WW3D2/static_sort_list.cpp,matched,
-?Add_To_Static_Sort_List@WW3D@@SAXPAVRenderObjClass@@I@Z,,0x008FD4C0,22,Code/masm_dumps/_Add_To_Static_Sort_List_WW3D__SAXPAVRenderObjClass__I_Z_8FD4C0.asm,matched,MASM exact retail dump
 ?Add_Uninitialized_New_Particle@ParticleBufferClass@@QAEPAUNewParticleStruct@@XZ,,0x00983A90,105,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Add_Vertex@ClipPolyClass@@QAEXABVVector3@@@Z,,0x00702080,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DPoly.cpp,matched,
 ?Add_Vertex@VisPolyClass@@QAEXABVVector3@@@Z,,0x00702080,15,Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?setConfig@GameSpyInfo@@UAEXABVAsciiString@@@Z,,0x00630E00,8,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?getCurrentStagingRoom@GameSpyInfo@@UAEPAVGameSpyStagingRoom@@XZ,,0x006327B0,72,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?DebugFreeMemory@@YAXPAX@Z,,0x0088EAD0,19,Code/Libraries/Source/WWVegas/WWDebug/debug_internal.cpp,matched,MASM converted to clean C++
+?Add_To_Static_Sort_List@WW3D@@SAXPAVRenderObjClass@@I@Z,,0x008FD4C0,22,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,MASM converted to clean C++
