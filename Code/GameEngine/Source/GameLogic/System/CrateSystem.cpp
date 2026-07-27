@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -30,6 +30,8 @@
 // Desc:   System responsible for Crates as code objects - ini, new/delete etc
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+#define __PLACEMENT_VEC_NEW_INLINE
+#include <vector>	// before PreRTS.h so node_alloc freelist is used (not NEWALLOC)
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #define DEFINE_VETERANCY_NAMES				// for TheVeterancyNames[]
@@ -44,7 +46,20 @@ CrateSystem::CrateSystem()
 	m_crateTemplateVector.clear();
 }
 
-// ??1CrateSystem@@UAE@XZ present-unmatched
+// BFME CrateSystem::~CrateSystem uses polymorphic `delete` (vtbl[0] + flag 1),
+// not MemoryPoolObject::deleteInstance(). Pool-glue keeps ~CrateTemplate /
+// operator delete protected; a local derived helper is the minimal access path.
+namespace {
+class CrateTemplateDeleteHelper : public CrateTemplate
+{
+public:
+	static void destroy(CrateTemplate *p)
+	{
+		delete static_cast<CrateTemplateDeleteHelper *>(p);
+	}
+};
+}
+
 CrateSystem::~CrateSystem()
 {
 	Int count = m_crateTemplateVector.size();
@@ -53,7 +68,7 @@ CrateSystem::~CrateSystem()
 		CrateTemplate *currentTemplate = m_crateTemplateVector[templateIndex];
 		if( currentTemplate )
 		{
-			currentTemplate->deleteInstance();
+			CrateTemplateDeleteHelper::destroy(currentTemplate);
 		}
 	}
 	m_crateTemplateVector.clear();
