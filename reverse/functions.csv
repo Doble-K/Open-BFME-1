@@ -1901,7 +1901,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SabotageSuperweaponCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/masm_dumps/SabotageSuperweaponCrateCollide_constructor.asm,matched,Exact 46B ICF alias Open-BFME4
 ??0SabotageSupplyCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/masm_dumps/SabotageSupplyCenterCrateCollide_constructor.asm,matched,Exact 46B ICF alias Open-BFME4
 ??0SabotageSupplyDropzoneCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/masm_dumps/SabotageSupplyDropzoneCrateCollide_constructor.asm,matched,Exact 46B ICF alias Open-BFME4
-??0SalvageCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00038668,5,Code/masm_dumps/__0SalvageCrateCollide__QAE_PAVThing__PBVModuleData___Z_38668.asm,matched,MASM exact retail dump
 ??0SaveDate@@QAE@XZ,,0x0010CE70,36,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0SaveGameInfo@@QAE@XZ,,0x0010D680,92,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0ScaleTextureMapperClass@@QAE@ABV0@@Z,,0x00964710,46,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,MASM converted to clean C++
 ??0HealCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00217AD0,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/HealCrateCollide.cpp,matched,MASM converted to clean C++
 ??0MoneyCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00217D10,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/MoneyCrateCollide.cpp,matched,MASM converted to clean C++
+??0SalvageCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218030,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SalvageCrateCollide.cpp,matched,MASM converted to clean C++
