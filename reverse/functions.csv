@@ -2533,7 +2533,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CachedFileInputStream@@QAE@XZ,,0x00102340,34,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ??1CameraClass@@UAE@XZ,,0x009312D0,18,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,Ghidra vtable xrefs identified exact function
 ??1CameraShakeSystemClass@@QAE@XZ,,0x006D1900,116,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
-??1CameraShakerClass@CameraShakeSystemClass@@UAE@XZ,,0x0001E394,5,Code/masm_dumps/_thunk_0bde8e90dbaf_1E394.asm,matched,thunk accessor of ported class
 ??1CashHackSpecialPowerModuleData@@UAE@XZ,,0x00258E20,120,Code/masm_dumps/CashHackSpecialPowerModuleData_destructor.asm,matched,Exact 120B ModuleData SEH dtor Open-BFME4
 ??1CastleBehavior@@UAE@XZ,,0x003728E0,433,Code/masm_dumps/CastleBehavior_destructor.asm,matched,Exact 433B @ 0x003728E0; Exact retail MASM; instance factory->vtable dtor; del 0x374EF0 ctor 0x376250 vt 0xCE9BFC
 ??1CivilianSpawnCollideModuleData@@UAE@XZ,,0x002175C0,67,Code/masm_dumps/CivilianSpawnCollideModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0?$_STLP_alloc_proxy@PAPAPAVSightingInfo@@PAPAV1@V?$allocator@PAPAVSightingInfo@@@_STL@@@_STL@@QAE@ABV?$allocator@PAPAVSightingInfo@@@1@PAPAPAVSightingInfo@@@Z,,0x009ED3E0,11,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,MASM converted to clean C++
 ??8?$VectorClass@H@@UBE_NABV0@@Z,,0x00AFEDF0,68,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,MASM converted to clean C++
 ?SetLobbyAttemptHostJoin@@YAX_N@Z,,0x004F9610,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,thunk-dump converted to clean C++
+??1CameraShakerClass@CameraShakeSystemClass@@UAE@XZ,,0x006D1290,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,thunk-dump converted to clean C++
