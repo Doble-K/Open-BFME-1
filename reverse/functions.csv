@@ -3923,7 +3923,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??6Debug@@QAEAAV0@AAVRepeatChar@0@@Z,,0x0088B2B0,117,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??6Debug@@QAEAAV0@_N@Z,,0x008897C0,30,Code/masm_dumps/_rn10___6Debug__QAEAAV0__N_Z_8897C0.asm,matched,reloc-needle Open-BFME4+Grok
 ??8?$VectorClass@E@@UBE_NABV0@@Z,,0x00912F30,65,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
-??8?$VectorClass@H@@UBE_NABV0@@Z,,0x00AFEDF0,68,Code/masm_dumps/__8__VectorClass_H__UBE_NABV0__Z_AFEDF0.asm,matched,MASM exact retail dump
 ??8?$VectorClass@K@@UBE_NABV0@@Z,,0x00980C90,68,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ??8?$VectorClass@M@@UBE_NABV0@@Z,,0x00913440,74,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
 ??8?$VectorClass@PAD@@UBE_NABV0@@Z,,0x0005E6F0,68,Code/Libraries/Source/WWVegas/WW3D2/collect.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0SubsystemInterface@@QAE@XZ,,0x009A1A30,16,Code/GameEngine/Source/Common/System/SubsystemInterface.cpp,matched,MASM converted to clean C++
 ??1LockClass@CriticalSectionClass@@QAE@XZ,,0x009DB4D0,15,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,MASM converted to clean C++
 ??0?$_STLP_alloc_proxy@PAPAPAVSightingInfo@@PAPAV1@V?$allocator@PAPAVSightingInfo@@@_STL@@@_STL@@QAE@ABV?$allocator@PAPAVSightingInfo@@@1@PAPAPAVSightingInfo@@@Z,,0x009ED3E0,11,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,MASM converted to clean C++
+??8?$VectorClass@H@@UBE_NABV0@@Z,,0x00AFEDF0,68,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,MASM converted to clean C++
