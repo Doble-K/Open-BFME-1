@@ -96,3 +96,43 @@ void NetFileCommandMsg::setFileData(UnsignedByte *data, UnsignedInt dataLength)
 	m_data = NEW UnsignedByte[dataLength];
 	memcpy(m_data, data, dataLength);
 }
+
+UnsignedShort NetAckBothCommandMsg::getCommandID()
+{
+	return m_commandID;
+}
+
+UnsignedByte NetAckBothCommandMsg::getOriginalPlayerID()
+{
+	return m_originalPlayerID;
+}
+
+UnsignedShort NetAckStage1CommandMsg::getCommandID()
+{
+	return m_commandID;
+}
+
+UnsignedByte NetAckStage1CommandMsg::getOriginalPlayerID()
+{
+	return m_originalPlayerID;
+}
+
+UnsignedShort NetAckStage2CommandMsg::getCommandID()
+{
+	return m_commandID;
+}
+
+UnsignedByte NetAckStage2CommandMsg::getOriginalPlayerID()
+{
+	return m_originalPlayerID;
+}
+
+UnsignedByte NetProgressCommandMsg::getPercentage()
+{
+	return m_percent;
+}
+
+void NetProgressCommandMsg::setPercentage(UnsignedByte percent)
+{
+	m_percent = percent;
+}
