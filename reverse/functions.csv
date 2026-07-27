@@ -2137,7 +2137,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DDependencyModelDrawModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/W3DDependencyModelDrawModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0W3DDisplay@@QAE@XZ,,0x00002432,5,Code/masm_dumps/__0W3DDisplay__QAE_XZ_2432.asm,matched,MASM exact retail dump
 ??0W3DDisplayStringManager@@QAE@XZ,,0x006F5600,53,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp,matched,
-??0W3DGameWindowManager@@QAE@XZ,,0x00021701,5,Code/masm_dumps/__0W3DGameWindowManager__QAE_XZ_21701.asm,matched,MASM exact retail dump
 ??0W3DGhostObjectManager@@QAE@XZ,,0x006BC8C0,26,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DGhostObject.cpp,matched,
 ??0W3DLaserDrawModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/W3DLaserDrawModuleData_constructor.asm,matched,Exact 162B ICF alias MD Open-BFME4
 ??0W3DModelDrawModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/W3DModelDrawModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??1?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@FXParticleSystem@@3QBDB$E?TERRAIN_COLLISION_MODULE_NAME@2@3QBDBVTerrainCollisionModule@2@VTerrainCollisionModuleTemplate@2@VParticleTerrainCollisionModule@2@VParticleTerrainCollisionModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UAE@XZ,0x0001BA81,0x00038410,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_virtual_destructors.cpp,matched,thunk-dump converted to clean C++
 ?setSortMode@@YAXW4GameSortType@@@Z,,0x0062E560,32,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,thunk-dump converted to clean C++
 ??4TRoadSegInfo@@QAEAAU0@ABU0@@Z,,0x00706F70,109,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,thunk-dump converted to clean C++
+??0W3DGameWindowManager@@QAE@XZ,,0x006C05D0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp,matched,thunk-dump converted to clean C++
