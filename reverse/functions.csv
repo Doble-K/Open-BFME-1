@@ -1220,7 +1220,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CrushDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254B90,60,Code/masm_dumps/CrushDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0CrushDieModuleData@@QAE@XZ,,0x00123380,135,Code/masm_dumps/CrushDieModuleData_constructor.asm,matched,Exact 135B @ 0x00123380; Exact retail MASM ModuleData ctor; unique factory 0x123460
 ??0CullLinkClass@@QAE@PAVCullSystemClass@@@Z,,0x00087A50,18,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,ICF alias of existing matched body
-??0CullNodeStruct@AABTreeBuilderClass@@QAE@XZ,,0x0096B500,37,Code/masm_dumps/__0CullNodeStruct_AABTreeBuilderClass__QAE_XZ_96B500.asm,matched,MASM exact retail dump
 ??0CullSystemClass@@QAE@XZ,,0x008E2140,16,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,
 ??0CullableClass@@QAE@XZ,,0x008E21F0,47,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,
 ??0CustomMatchPreferences@@QAE@XZ,,0x0000B0F5,5,Code/masm_dumps/__0CustomMatchPreferences__QAE_XZ_B0F5.asm,matched,MASM exact retail dump
@@ -3900,7 +3899,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4SphereEmissionVolumeModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0001A8D9,0x5d6310,45,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??4SphericalEmissionVelocityInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0002CA7F,0x5d7220,33,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??4SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0001CE22,0x5d7410,44,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??4SplitChoiceStruct@AABTreeBuilderClass@@QAEAAU01@ABU01@@Z,,0x0096B6B0,109,Code/masm_dumps/___4SplitChoiceStruct_AABTreeBuilderClass__QAEAAU01_96B6B0.asm,matched,
 ??4SplitChoiceStruct@AABTreeNodeClass@@QAEAAU01@ABU01@@Z,,0x00706F70,109,Code/Libraries/Source/WWVegas/WWMath/aabtreecull.cpp,matched,
 ??4StreakDrawModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0000E86D,0x005D8610,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty assignment returns this
 ??4StreakDrawModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0001013B,0x005D87E0,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty assignment returns this
@@ -13568,3 +13566,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Get_Position@RenderObjClass@@QBE?AVVector3@@XZ,,0x009202C0,33,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,MASM converted to clean C++
 ?Notify_Added@RenderObjClass@@UAEXPAVSceneClass@@@Z,,0x0091FBF0,13,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,MASM converted to clean C++
 ?Notify_Removed@RenderObjClass@@UAEXPAVSceneClass@@@Z,,0x0091FC00,13,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,MASM converted to clean C++
+??0CullNodeStruct@AABTreeBuilderClass@@QAE@XZ,,0x0096B500,37,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,MASM converted to clean C++
+??4SplitChoiceStruct@AABTreeBuilderClass@@QAEAAU01@ABU01@@Z,,0x0096B6B0,109,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,MASM converted to clean C++
