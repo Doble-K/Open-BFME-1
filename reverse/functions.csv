@@ -1750,7 +1750,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PassiveAreaEffectBehaviorModuleData@@QAE@XZ,,0x002027A0,123,Code/masm_dumps/PassiveAreaEffectBehaviorModuleData_constructor.asm,matched,Exact 123B @ 0x002027A0; Exact retail MASM ModuleData ctor; unique factory 0x117650
 ??0PathfindServicesInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,ICF alias of existing matched body
 ??0Payload@DeliverPayloadNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
-??0PeerResponse@@QAE@XZ,,0x004DAB40,235,Code/masm_dumps/_rn6___0PeerResponse__QAE_XZ_4DAB40.asm,matched,reloc-needle Open-BFME4+Grok
 ??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000328C6,5,Code/masm_dumps/__0PhysicsBehavior__QAE_PAVThing__PBVModuleData___Z_328C6.asm,matched,MASM exact retail dump
 ??0PhysicsBehaviorModuleData@@QAE@XZ,,0x0029A090,126,Code/masm_dumps/PhysicsBehaviorModuleData_constructor.asm,matched,Exact 126B @ 0x0029A090; Exact retail MASM ModuleData ctor; unique factory 0x11AA70
 ??0PilotFindVehicleUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/PilotFindVehicleUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
@@ -2783,7 +2782,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1PassiveAreaEffectBehaviorModuleData@@UAE@XZ,,0x00202870,80,Code/masm_dumps/PassiveAreaEffectBehaviorModuleData_destructor.asm,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
 ??1Payload@DeliverPayloadNugget@@QAE@XZ,,0x0004B10A,5,Code/masm_dumps/_thunk_eb7f4717a782_4B10A.asm,matched,thunk accessor of ported class
 ??1PeerRequest@@QAE@XZ,,0x004D52D0,555,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
-??1PeerResponse@@QAE@XZ,,0x004DAC70,649,Code/masm_dumps/_rn6___1PeerResponse__QAE_XZ_4DAC70.asm,matched,reloc-needle Open-BFME4+Grok
 ??1PendingSurfaceStruct@Render2DSentenceClass@@QAE@XZ,,0x00001F96,5,Code/masm_dumps/_thunk_3b873742305f_1F96.asm,matched,thunk accessor of ported class
 ??1Pipe@@UAE@XZ,,0x009E78C0,50,Code/Libraries/Source/WWVegas/WWLib/pipe.cpp,matched,
 ??1PivotMapClass@@UAE@XZ,,0x00974730,62,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
@@ -13568,3 +13566,5 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??0Vector3HollowSphereRandomizer@@QAE@M@Z,,0x00B02350,49,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,MASM converted to clean C++
 ??0?$_STLP_alloc_proxy@PAPAPAVMapObject@@PAPAV1@V?$allocator@PAPAVMapObject@@@_STL@@@_STL@@QAE@ABV?$allocator@PAPAVMapObject@@@1@PAPAPAVMapObject@@@Z,,0x008F9A20,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,MASM converted to clean C++
 ??0?$_STLP_alloc_proxy@IPAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVMapObject@@@1@I@Z,,0x008F9A30,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,MASM converted to clean C++
+??0PeerResponse@@QAE@XZ,,0x004DAB40,235,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
+??1PeerResponse@@QAE@XZ,,0x004DAC70,649,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
