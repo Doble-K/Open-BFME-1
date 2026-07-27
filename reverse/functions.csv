@@ -12671,8 +12671,6 @@ _XMP_Encode,,0x009E82E0,132,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,match
 _XMP_Encode_Bounded,,0x009E9000,141,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
 _XMP_Exponent_Mod,,0x009E9F60,627,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
 _XMP_Fermat_Test,,0x009EA1E0,233,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
-_XMP_Fetch_Prime_Size,,0x009E8140,6,Code/masm_dumps/_XMP_Fetch_Prime_Size_9E8140.asm,matched,MASM exact retail dump
-_XMP_Fetch_Prime_Table,,0x009E8130,6,Code/masm_dumps/_XMP_Fetch_Prime_Table_9E8130.asm,matched,MASM exact retail dump
 _XMP_Inc,,0x009E8420,19,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
 _XMP_Init,,0x009E8720,23,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
 _XMP_Inverse_A_Mod_B,,0x009E9740,508,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
@@ -13568,3 +13566,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?friend_newModuleData@NeutronMissileUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118460,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
 ??1MetaEventTranslator@@UAE@XZ,,0x005B6A70,7,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
 ??_GMetaEventTranslator@@UAEPAXI@Z,,0x005B6B70,30,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
+_XMP_Fetch_Prime_Table,,0x009E8130,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,MASM converted to clean C++
+_XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,MASM converted to clean C++
