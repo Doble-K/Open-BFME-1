@@ -37,9 +37,40 @@
 #include "Common/DataChunk.h"
 #include "Common/File.h"
 #include "Common/FileSystem.h"
+#include "Common/GameEngine.h"
 
 // If verbose, lots of debug logging.
 #define not_VERBOSE
+
+// BFME retail GameEngine vtable: serviceWindowsOS is slot 16 (+0x40).
+// ZH GameEngine.h places it earlier; force the retail slot for DataChunk yield sites.
+class BFME_GameEngineServiceWindowsOS {
+public:
+	virtual void _bfme_ge_slot00() = 0;
+	virtual void _bfme_ge_slot01() = 0;
+	virtual void _bfme_ge_slot02() = 0;
+	virtual void _bfme_ge_slot03() = 0;
+	virtual void _bfme_ge_slot04() = 0;
+	virtual void _bfme_ge_slot05() = 0;
+	virtual void _bfme_ge_slot06() = 0;
+	virtual void _bfme_ge_slot07() = 0;
+	virtual void _bfme_ge_slot08() = 0;
+	virtual void _bfme_ge_slot09() = 0;
+	virtual void _bfme_ge_slot10() = 0;
+	virtual void _bfme_ge_slot11() = 0;
+	virtual void _bfme_ge_slot12() = 0;
+	virtual void _bfme_ge_slot13() = 0;
+	virtual void _bfme_ge_slot14() = 0;
+	virtual void _bfme_ge_slot15() = 0;
+	virtual void serviceWindowsOS() = 0;
+};
+
+static inline void bfmeDataChunkYieldToOS(void)
+{
+	::Sleep(0);
+	if (TheGameEngine)
+		reinterpret_cast<BFME_GameEngineServiceWindowsOS *>(TheGameEngine)->serviceWindowsOS();
+}
 
 // ??0CachedFileInputStream@@QAE@XZ present-unmatched
 CachedFileInputStream::CachedFileInputStream(void):m_buffer(NULL),m_size(0)
@@ -887,9 +918,10 @@ AsciiString DataChunkInput::readAsciiString(void)
 	return theString; 
 }
 
-// ?readUnicodeString@DataChunkInput@@QAE?AVUnicodeString@@XZ present-unmatched
 UnicodeString DataChunkInput::readUnicodeString(void) 
 { 
+	bfmeDataChunkYieldToOS();
+
 	UnsignedShort len;	
 	DEBUG_ASSERTCRASH(m_chunkStack->dataLeft>=sizeof(UnsignedShort), ("Read past end of chunk."));
 	m_file->read( &len, sizeof(UnsignedShort) );
