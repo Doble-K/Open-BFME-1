@@ -10923,7 +10923,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isActive@BattlePlanUpdate@@UBE_NXZ,,0x00285760,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,
 ?isAlt@Keyboard@@QAE_NXZ,,0x005A3260,12,Code/GameEngine/Source/GameClient/Input/Keyboard.cpp,matched,
 ?isAngleDifferent@@YA_NMM@Z,,0x001BE650,29,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-?isAnimFinished@Shell@@QAE_NXZ,,0x0057F3C0,61,Code/masm_dumps/_rn7__isAnimFinished_Shell__QAE_NXZ_57F3C0.asm,matched,reloc-needle Open-BFME4+Grok
 ?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0HE@@@@Z,,0x00132AE0,41,Code/masm_dumps/Thing_isAnyKindOf.asm,matched,Exact retail MASM; Thing template-mask flow and any-intersection helper prove ownership
 ?isAnyTaskPending@DozerAIUpdate@@UAE_NXZ,,0x002B68D0,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,
 ?isAnyTaskPending@WorkerAIUpdate@@UAE_NXZ,,0x002C7F80,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,
@@ -11610,7 +11609,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?registerGameWindow@AnimateWindowManager@@QAEXPAVGameWindow@@W4AnimTypes@@_NII@Z,,0x0045DB50,165,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?registerMissing@W3DShadowTextureManager@@QAEXPBD@Z,,0x007B1190,102,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?registerNewCave@CaveSystem@@QAEXH@Z,,0x00378970,193,Code/masm_dumps/_rn6__registerNewCave_CaveSystem__QAEXH_Z_378970.asm,matched,reloc-needle Open-BFME4+Grok
-?registerWithAnimateManager@Shell@@QAEXPAVGameWindow@@W4AnimTypes@@_NI@Z,,0x0057F370,55,Code/masm_dumps/_rn7__registerWithAnimateManager_Shell__QAEXPAVGameWindow__W4AnimTypes___NI_57F370.asm,matched,reloc-needle Open-BFME4+Grok
 ?releaseAudioEventRTS@AudioManager@@UAEXPAVAudioEventRTS@@@Z,,0x0045DD60,23,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,
 ?releaseBuffer@?$StringBase@D@@AAEXXZ,0x00887940,0x887940,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?releaseBuffer@?$StringBase@G@@AAEXXZ,0x008881D0,0x8881d0,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
@@ -11707,7 +11705,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reverse@MainMenuMediumScaleUpTransition@@UAEXXZ,,0x0059E0E0,23,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?reverse@TextOnFrameTransition@@UAEXXZ,,0x005A0380,36,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?reverseAnimateWindow@AnimateWindowManager@@QAEXXZ,,0x0045D3E0,210,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
-?reverseAnimatewindow@Shell@@QAEXXZ,,0x0057F410,28,Code/masm_dumps/_rn12__reverseAnimatewindow_Shell__QAEXXZ_57F410.asm,matched,reloc-needle Open-BFME4+Grok
 ?reverseFind@?$StringBase@D@@QBEPBDD@Z,0x0000C342,0x00072C40,49,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,reverse find char in string
 ?reverseFind@?$StringBase@G@@QBEPBGG@Z,0x00887090,0x00887090,49,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,reverse find wchar_t in string
 ?reverseMotion@BridgeScaffoldBehavior@@UAEXXZ,,0x001F5940,68,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
@@ -13568,3 +13565,6 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?Cur_Micro_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E14E0,8,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?parseTurretSweep@TurretAIData@@SAXPAVINI@@PAX1PBX@Z,,0x0018C3E0,48,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
 ?friend_isSweepEnabled@TurretAI@@QBE_NXZ,,0x0018C9F0,27,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
+?registerWithAnimateManager@Shell@@QAEXPAVGameWindow@@W4AnimTypes@@_NI@Z,,0x0057F370,55,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
+?isAnimFinished@Shell@@QAE_NXZ,,0x0057F3C0,61,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
+?reverseAnimatewindow@Shell@@QAEXXZ,,0x0057F410,28,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
