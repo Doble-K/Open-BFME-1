@@ -9635,7 +9635,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@W3DRopeDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/masm_dumps/W3DRopeDraw_friend_newModuleData.asm,matched,Ghidra-bound BFME W3D factory body
 ?friend_newModuleData@W3DScienceModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DSupplyDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
-?friend_newModuleData@W3DTreeDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF710,107,Code/masm_dumps/W3DTreeDraw_friend_newModuleData.asm,matched,Ghidra-bound BFME W3D module-data factory
 ?friend_newModuleData@W3DTruckDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FAD0,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@WanderAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BEE0,128,Code/masm_dumps/WanderAIUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME update module-data factory
 ?friend_newModuleData@WeaponBonusUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001236C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
@@ -9841,10 +9840,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@UnpauseSpecialPowerUpgrade@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D740,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
 ?friend_newModuleInstance@UpgradeSoundSelectorClientBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00124B30,104,Code/masm_dumps/UpgradeSoundSelectorClientBehavior_friend_newModuleInstance.asm,matched,retail ModuleFactory registration ordinal 0xF5 Ghidra confirmed
 ?friend_newModuleInstance@VeterancyCrateCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F0E0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
-?friend_newModuleInstance@W3DDebrisDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BEF40,96,Code/masm_dumps/W3DDebrisDraw_friend_newModuleInstance.asm,matched,retail W3DModuleFactory registration ordinal 1; Ghidra confirmed
 ?friend_newModuleInstance@W3DDefaultDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@W3DProjectileStreamDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001194C0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
-?friend_newModuleInstance@W3DRopeDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF2E0,96,Code/masm_dumps/W3DRopeDraw_friend_newModuleInstance.asm,matched,retail W3D factory registration; Ghidra confirmed
 ?friend_newModuleInstance@W3DTankDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F690,99,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@W3DTracerDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00114200,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@WallUpgradeUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011C170,96,Code/masm_dumps/WallUpgradeUpdate_friend_newModuleInstance.asm,matched,retail ModuleFactory registration ordinal 0x90; Ghidra confirmed
@@ -13568,3 +13565,6 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ?friend_newModuleInstance@ToppleUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011BB50,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@UpgradeDie@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00117B40,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@CashHackSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011FD70,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
+?friend_newModuleInstance@W3DDebrisDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BEF40,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
+?friend_newModuleInstance@W3DRopeDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF2E0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
+?friend_newModuleData@W3DTreeDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF710,107,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade

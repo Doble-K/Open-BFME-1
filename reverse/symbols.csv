@@ -3512,3 +3512,4 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ??0?$BFMEFactoryModuleData@VTransportContainModuleData@@$0BHM@@@QAE@XZ,0x00014565,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VUnitCrateCollideModuleData@@$0FM@@@QAE@XZ,0x0000DA4E,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VUpgradeDieModuleData@@$0DI@@@QAE@XZ,0x0001B905,ModuleFactory retail data facade
+??0?$BFMEW3DFactoryModuleData@VW3DTreeDrawModuleData@@$0GE@@@QAE@XZ,0x00046B5A,W3DModuleFactory retail data facade
