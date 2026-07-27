@@ -115,7 +115,6 @@ static AsciiString realAsStr(Real val)
 // UserPreferences Class 
 //-----------------------------------------------------------------------------
 
-// ??0UserPreferences@@QAE@XZ present-unmatched
 UserPreferences::UserPreferences( void )
 {
 }
