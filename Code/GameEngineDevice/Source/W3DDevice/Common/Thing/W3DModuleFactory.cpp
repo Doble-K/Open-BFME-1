@@ -34,6 +34,57 @@
 
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "W3DDevice/Common/W3DModuleFactory.h"
+template <class T> struct BFMEW3DFactorySize { enum { VALUE = sizeof(T) }; };
+
+class W3DDebrisDraw;
+class W3DRopeDraw;
+class W3DTreeDrawModuleData;
+template <> struct BFMEW3DFactorySize<W3DDebrisDraw> { enum { VALUE = 0x48 }; };
+template <> struct BFMEW3DFactorySize<W3DRopeDraw> { enum { VALUE = 0x54 }; };
+template <> struct BFMEW3DFactorySize<W3DTreeDrawModuleData> { enum { VALUE = 0x64 }; };
+
+template <class T, unsigned int SIZE> class BFMEW3DFactoryModuleData : public ModuleData
+{
+public:
+	BFMEW3DFactoryModuleData();
+private:
+	char m_storage[SIZE - sizeof(ModuleData)];
+};
+
+template <class T> struct BFMEW3DFactoryDataChoice { typedef T Type; };
+template <> struct BFMEW3DFactoryDataChoice<W3DTreeDrawModuleData>
+{
+	typedef BFMEW3DFactoryModuleData<W3DTreeDrawModuleData, 0x64> Type;
+};
+
+#undef MP_GLUE_ALLOCATE
+#define MP_GLUE_ALLOCATE(ARGCLASS) ::operator new(BFMEW3DFactorySize<ARGCLASS>::VALUE)
+
+#undef MAKE_STANDARD_MODULE_MACRO
+#define MAKE_STANDARD_MODULE_MACRO( cls ) \
+public: \
+	static Module* friend_newModuleInstance( Thing *thing, const ModuleData* moduleData ) \
+	{ \
+		return new(cls::cls##_GLUE_NOT_IMPLEMENTED) cls(thing, moduleData); \
+	} \
+	virtual NameKeyType getModuleNameKey() const { static NameKeyType nk = NAMEKEY(#cls); return nk; } \
+protected: \
+	virtual void crc( Xfer *xfer ); \
+	virtual void xfer( Xfer *xfer ); \
+	virtual void loadPostProcess( void );
+
+#undef MAKE_STANDARD_MODULE_DATA_MACRO_ABC
+#define MAKE_STANDARD_MODULE_DATA_MACRO_ABC( cls, clsmd ) \
+private: \
+	const clsmd* get##clsmd() const { return (clsmd*)getModuleData(); } \
+public: \
+	static ModuleData* friend_newModuleData(INI* ini) \
+	{ \
+		typedef BFMEW3DFactoryDataChoice<clsmd>::Type RetailModuleDataType; \
+		RetailModuleDataType* data = ::new RetailModuleDataType; \
+		if (ini) ini->initFromINIMultiProc(data, clsmd::buildFieldParse); \
+		return (ModuleData*)data; \
+	}
 #include "W3DDevice/GameClient/Module/W3DDebrisDraw.h"
 #include "W3DDevice/GameClient/Module/W3DDefaultDraw.h"
 #include "W3DDevice/GameClient/Module/W3DDependencyModelDraw.h"
