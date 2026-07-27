@@ -353,7 +353,6 @@ void GameSpyInfo::playerLeftGroupRoom( AsciiString nick )
 	}
 }
 
-// ?clearStagingRoomList@GameSpyInfo@@UAEXXZ present-unmatched
 void GameSpyInfo::clearStagingRoomList( void )
 {
 	Int numRoomsRemoved = 0;

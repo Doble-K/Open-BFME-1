@@ -3473,3 +3473,5 @@ _ShowControlBar,0x00024848,ShowControlBar letterbox
 ??0DirectInputKeyboard@@QAE@XZ,0x000120D0,DirectInputKeyboard ctor thunk; createKeyboard@W3DGameClient factory REL32
 ??0TerrainLogic@@QAE@XZ,0x00011C75,createTerrainLogic REL32 pin (thunk); body 0x6BE070 inits [esi+0xC] and [esi+0x18FC], sizeof 0x1904
 ??0TerrainLogic@@QAE@XZ,0x006BE070,createTerrainLogic REL32 pin (body)
+??$append@PAD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEAAV01@PAD0ABUforward_iterator_tag@1@@Z,0x00011522,PeerDefs basic_string assign dispatch retail call target
+??$append@PBD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEAAV01@PBD0ABUforward_iterator_tag@1@@Z,0x00036DE0,PeerDefs basic_string assign retail call target

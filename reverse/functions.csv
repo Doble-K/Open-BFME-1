@@ -78,7 +78,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$_M_allocate_and_copy@PBUParticleSysBoneInfo@@@?$vector@UParticleSysBoneInfo@@V?$allocator@UParticleSysBoneInfo@@@_STL@@@_STL@@IAEPAUParticleSysBoneInfo@@IPBU2@0@Z,,0x000286AA,5,Code/masm_dumps/_thunk_dadf8e25bec0_286AA.asm,matched,thunk accessor of ported class
 ??$_M_allocate_and_copy@PBVProductionPrerequisite@@@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@IAEPAVProductionPrerequisite@@IPBV2@0@Z,,0x00014961,5,Code/masm_dumps/____M_allocate_and_copy_PBVProductionPrerequisite_____vector_VProductionPrerequisite__V__allocator_VProduction_14961.asm,matched,MASM exact retail dump
 ??$_M_allocate_and_copy@PBVW3DAnimationInfo@@@?$vector@VW3DAnimationInfo@@V?$allocator@VW3DAnimationInfo@@@_STL@@@_STL@@IAEPAVW3DAnimationInfo@@IPBV2@0@Z,,0x0003D3C5,5,Code/masm_dumps/____M_allocate_and_copy_PBVW3DAnimationInfo_____vector_VW3DAnimationInfo__V__allocator_VW3DAnimationInfo____ST_3D3C5.asm,matched,MASM exact retail dump
-??$_M_assign_dispatch@PAD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEAAV01@PAD0ABU__false_type@1@@Z,,0x000A5780,105,Code/masm_dumps/_rn6_____M_assign_dispatch_PAD___basic_string_DV__char_traits_D__STL__V__al_A5780.asm,matched,reloc-needle Open-BFME4+Grok
 ??$_M_find@G@?$_Rb_tree@GU?$pair@$$CBGE@_STL@@U?$_Select1st@U?$pair@$$CBGE@_STL@@@2@U?$less@G@2@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@1@ABG@Z,,0x00003071,5,Code/masm_dumps/____M_find_G____Rb_tree_GU__pair___CBGE__STL__U___Select1st_U__pair___CBGE__STL___2_U__less_G_2_V__allocator_U_3071.asm,matched,MASM exact retail dump
 ??$_M_find@V?$BitFlags@$0BB@@@@?$_Rb_tree@$$CBV?$BitFlags@$0BB@@@U?$pair@$$CBV?$BitFlags@$0BB@@@PBVWeaponTemplateSet@@@_STL@@U?$_Select1st@U?$pair@$$CBV?$BitFlags@$0BB@@@PBVWeaponTemplateSet@@@_STL@@@3@UMapHelper@?$SparseMatchFinder@VWeapon,,0x00042D1B,5,Code/masm_dumps/____M_find_V__BitFlags__0BB_______Rb_tree___CBV__BitFlags__0BB___U__pair___CBV__BitFlags__0BB___PBVWeaponTempl_42D1B.asm,matched,MASM exact retail dump
 ??$_M_find@VAsciiString@@@?$hashtable@U?$pair@$$CBVAsciiString@@PAVParticleSystemTemplate@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@PAVParticleSystemTemplate@@@_STL@@@2@U?$equal_to@VAsciiStrin,,0x0000F727,5,Code/masm_dumps/____M_find_VAsciiString_____hashtable_U__pair___CBVAsciiString__PAVParticleSystemTemplate____STL__VAsciiString_F727.asm,matched,MASM exact retail dump
@@ -913,8 +912,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$_Vector_base@PAVObjectCreationNugget@@V?$allocator@PAVObjectCreationNugget@@@_STL@@@_STL@@QAE@IABV?$allocator@PAVObjectCreationNugget@@@1@@Z,,0x0003F418,5,Code/masm_dumps/__0___Vector_base_PAVObjectCreationNugget__V__allocator_PAVObjectCreationNugget____STL____STL__QAE_IABV__alloc_3F418.asm,matched,MASM exact retail dump
 ??0?$_Vector_base@PBVLocomotorTemplate@@V?$allocator@PBVLocomotorTemplate@@@_STL@@@_STL@@QAE@IABV?$allocator@PBVLocomotorTemplate@@@1@@Z,,0x0001D949,5,Code/masm_dumps/_thunk_b6346f2d9e3e_1D949.asm,matched,thunk accessor of ported class
 ??0?$_Vector_base@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAE@IABV?$allocator@VAsciiString@@@1@@Z,,0x001D95B0,97,Code/masm_dumps/_rn4___0___Vector_base_VAsciiString__V__allocator_VAsciiString____STL____ST_1D95B0.asm,matched,reloc-needle Open-BFME4+Grok
-??0?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAE@XZ,,0x004D4F40,99,Code/masm_dumps/_rn6___0__basic_string_DV__char_traits_D__STL__V__allocator_D_2___STL__QAE__4D4F40.asm,matched,reloc-needle Open-BFME4+Grok
-??0?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAE@XZ,,0x004D4EC0,101,Code/masm_dumps/_rn6___0__basic_string_GV__char_traits_G__STL__V__allocator_G_2___STL__QAE__4D4EC0.asm,matched,reloc-needle Open-BFME4+Grok
 ??0?$bitset@$0BB@@_STL@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,ICF alias of existing matched body
 ??0?$bitset@$0CG@@_STL@@QAE@XZ,,0x005818F0,12,Code/GameEngine/Source/GameLogic/Object/Body/HiveStructureBody.cpp,matched,
 ??0?$bitset@$0CN@@_STL@@QAE@XZ,,0x005818F0,12,Code/GameEngine/Source/GameLogic/Object/Behavior/DumbProjectileBehavior.cpp,matched,
@@ -1756,7 +1753,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PassiveAreaEffectBehaviorModuleData@@QAE@XZ,,0x002027A0,123,Code/masm_dumps/PassiveAreaEffectBehaviorModuleData_constructor.asm,matched,Exact 123B @ 0x002027A0; Exact retail MASM ModuleData ctor; unique factory 0x117650
 ??0PathfindServicesInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,ICF alias of existing matched body
 ??0Payload@DeliverPayloadNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
-??0PeerRequest@@QAE@XZ,,0x004D51B0,220,Code/masm_dumps/_rn7___0PeerRequest__QAE_XZ_4D51B0.asm,matched,reloc-needle Open-BFME4+Grok
 ??0PeerResponse@@QAE@XZ,,0x004DAB40,235,Code/masm_dumps/_rn6___0PeerResponse__QAE_XZ_4DAB40.asm,matched,reloc-needle Open-BFME4+Grok
 ??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000328C6,5,Code/masm_dumps/__0PhysicsBehavior__QAE_PAVThing__PBVModuleData___Z_328C6.asm,matched,MASM exact retail dump
 ??0PhysicsBehaviorModuleData@@QAE@XZ,,0x0029A090,126,Code/masm_dumps/PhysicsBehaviorModuleData_constructor.asm,matched,Exact 126B @ 0x0029A090; Exact retail MASM ModuleData ctor; unique factory 0x11AA70
@@ -8409,7 +8405,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?asObjectMeth@Thing@@MAEPAVObject@@XZ,,0x006CF680,3,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?asObjectMeth@Thing@@MBEPBVObject@@XZ,,0x006CF680,3,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?asin@@YAMM@Z,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,icf-owner=?ASin@@YAMM@Z
-?assign@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEAAV12@PBD0@Z,,0x000A5810,152,Code/masm_dumps/_rn6__assign___basic_string_DV__char_traits_D__STL__V__allocator_D_2___STL__A5810.asm,matched,reloc-needle Open-BFME4+Grok
 ?assign@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAEAAV12@PBG0@Z,,0x004D5600,174,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
 ?assignDefaultGadgetLook@GameWindowManager@@UAEXPAVGameWindow@@PAVGameFont@@_N@Z,,0x004800FC,7853,Code/masm_dumps/_assignDefaultGadgetLook_GameWindowManager__UAEXPA.asm,matched,
 ?asyncGethostbynameThreadFunc@@YGKPAX@Z,,0x0062E6D0,34,Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp,matched,
@@ -8696,7 +8691,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clearPingMap@Pinger@@UAEXXZ,,0x00660B50,132,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?clearScriptStatus@Object@@QAEXW4ObjectScriptStatusBit@@@Z,,0x001D27D0,15,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?clearSlotList@GameInfo@@QAEXXZ,,0x0061F520,218,Code/GameEngine/Source/GameNetwork/GameInfo_clearSlotList.asm,matched,
-?clearStagingRoomList@GameSpyInfo@@UAEXXZ,,0x00632940,102,Code/masm_dumps/_rn7__clearStagingRoomList_GameSpyInfo__UAEXXZ_632940.asm,matched,reloc-needle Open-BFME4+Grok
 ?clearStatus@Anim2D@@QAEXE@Z,,0x005BA2F0,17,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?clearStatus@Image@@QAEII@Z,,0x005D1C30,17,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
 ?clearStatus@Object@@QAEXV?$BitFlags@$0CN@@@@Z,,0x0019A720,20,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
@@ -8798,7 +8792,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?constructVolume@W3DVolumetricShadow@@IAEXPAVVector3@@MHH@Z,,0x007B82A2,1397,Code/masm_dumps/_constructVolume_W3DVolumetricShadow__IAEXPAVVector3__MHH_Z.asm,matched,
 ?containsMessageOfType@GameMessageList@@UAE_NW4Type@GameMessage@@@Z,,0x0008A5D0,35,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?convertBonePosToWorldPos@Thing@@QBEXPBUCoord3D@@PBVMatrix3D@@PAU2@PAV3@@Z,,0x00132530,468,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,
-?copy@?$__char_traits_base@DH@_STL@@SAPADPADPBDI@Z,,0x000A3210,42,Code/masm_dumps/_rn6__copy_____char_traits_base_DH__STL__SAPADPADPBDI_Z_A3210.asm,matched,reloc-needle Open-BFME4+Grok
 ?copy@?$__char_traits_base@GG@_STL@@SAPAGPAGPBGI@Z,,0x004D4030,45,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
 ?copyChunkData@NetCommandWrapperListNode@@QAEXPAVNetWrapperCommandMsg@@@Z,,0x006764A0,122,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ?copyFrom@DictPair@Dict@@QAEXPAU12@@Z,,0x000682E0,180,Code/GameEngine/Source/Common/Dict.cpp,matched,BFME body; was ILT thunk at 0x13E94
@@ -9283,7 +9276,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?erase@?$_Rb_tree@JU?$pair@$$CBJVLadderPref@@@_STL@@U?$_Select1st@U?$pair@$$CBJVLadderPref@@@_STL@@@2@U?$less@J@2@V?$allocator@U?$pair@$$CBJVLadderPref@@@_STL@@@2@@_STL@@QAEXU?$_Rb_tree_iterator@U?$pair@$$CBJVLadderPref@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBJVLadderPref@@@_STL@@@2@@2@@Z,,0x00455DC0,66,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ?erase@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@V1@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@@_STL@@QAEIABVAsciiString@@@Z,,0x00456690,74,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ?erase@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@V1@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@@_STL@@QAEXU?$_Rb_tree_iterator@U?$pair@$$CBVAsciiString@@V1@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBVAsciiString@@V1@@_STL@@@2@@2@0@Z,,0x00456570,151,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
-?erase@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEPADPAD0@Z,,0x000A35B0,57,Code/masm_dumps/_rn6__erase___basic_string_DV__char_traits_D__STL__V__allocator_D_2___STL___A35B0.asm,matched,reloc-needle Open-BFME4+Grok
 ?erase@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAEPAGPAG0@Z,,0x004D4440,65,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
 ?erase@?$hash_map@HW4Relationship@@U?$hash@H@_STL@@U?$equal_to@H@3@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@3@@_STL@@QAEXU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@2@@Z,,0x000D2FF0,33,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?erase@?$hash_map@IW4Relationship@@U?$hash@I@_STL@@U?$equal_to@I@3@V?$allocator@U?$pair@$$CBIW4Relationship@@@_STL@@@3@@_STL@@QAEXU?$_Ht_iterator@U?$pair@$$CBIW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIW4Relationship@@@_STL@@@2@IU?$hash@I@2@U?$_Select1st@U?$pair@$$CBIW4Relationship@@@_STL@@@2@U?$equal_to@I@2@V?$allocator@U?$pair@$$CBIW4Relationship@@@_STL@@@2@@2@@Z,,0x000D2FF0,33,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
@@ -13568,3 +13560,11 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Set_Point_Size@PointGroupClass@@QAEXM@Z,,0x00912000,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
 ?Set_Shader@PointGroupClass@@QAEXVShaderClass@@@Z,,0x009120E0,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
 ??1?$VectorClass@E@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
+??0?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAE@XZ,,0x004D4F40,99,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+??0?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAE@XZ,,0x004D4EC0,101,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+??0PeerRequest@@QAE@XZ,,0x004D51B0,220,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+?clearStagingRoomList@GameSpyInfo@@UAEXXZ,,0x00632940,102,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+?copy@?$__char_traits_base@DH@_STL@@SAPADPADPBDI@Z,,0x000A3210,42,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+?erase@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEPADPAD0@Z,,0x000A35B0,57,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+??$_M_assign_dispatch@PAD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEAAV01@PAD0ABU__false_type@1@@Z,,0x000A5780,105,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+?assign@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEAAV12@PBD0@Z,,0x000A5810,152,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
