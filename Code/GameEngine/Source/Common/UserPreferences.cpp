@@ -461,7 +461,6 @@ CustomMatchPreferences::CustomMatchPreferences()
 	load(userPrefFilename);
 }
 
-// ??1CustomMatchPreferences@@UAE@XZ present-unmatched
 CustomMatchPreferences::~CustomMatchPreferences()
 {
 }
