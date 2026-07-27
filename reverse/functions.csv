@@ -2134,10 +2134,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Vector2i@@QAE@HH@Z,,0x0016A160,18,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,ICF alias of existing matched body
 ??0Vector3@@QAE@ABV0@@Z,,0x000FBAB0,25,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ??0Vector3@@QAE@MMM@Z,,0x000693F0,25,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
-??0Vector3HollowSphereRandomizer@@QAE@M@Z,,0x00B02350,49,Code/masm_dumps/__0Vector3HollowSphereRandomizer__QAE_M_Z_B02350.asm,matched,MASM exact retail dump
 ??0Vector3SolidBoxRandomizer@@QAE@ABVVector3@@@Z,,0x00B02150,109,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,
 ??0Vector3SolidCylinderRandomizer@@QAE@MM@Z,,0x00B02480,81,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,
-??0Vector3SolidSphereRandomizer@@QAE@M@Z,,0x00B02250,49,Code/masm_dumps/__0Vector3SolidSphereRandomizer__QAE_M_Z_B02250.asm,matched,MASM exact retail dump
 ??0Vector3i16@@QAE@GGG@Z,,0x00956C50,31,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ??0Vector3i@@QAE@HHH@Z,,0x0014E5C0,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??0Vector3i@Strip@@QAE@HHH@Z,,0x000642F0,25,Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp,matched,
@@ -13568,3 +13566,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??_GMetaEventTranslator@@UAEPAXI@Z,,0x005B6B70,30,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
 _XMP_Fetch_Prime_Table,,0x009E8130,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,MASM converted to clean C++
 _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,MASM converted to clean C++
+??0Vector3SolidSphereRandomizer@@QAE@M@Z,,0x00B02250,49,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,MASM converted to clean C++
+??0Vector3HollowSphereRandomizer@@QAE@M@Z,,0x00B02350,49,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,MASM converted to clean C++
