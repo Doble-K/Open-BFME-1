@@ -250,7 +250,6 @@ void ToppleUpdate::applyTopplingForce( const Coord3D* toppleDirection, Real topp
 //-------------------------------------------------------------------------------------------------
 ///< Ask if this module is able to be toppled
 //-------------------------------------------------------------------------------------------------
-// ?isAbleToBeToppled@ToppleUpdate@@QBE_NXZ present-unmatched
 Bool ToppleUpdate::isAbleToBeToppled() const
 {
 	return m_toppleState == TOPPLE_UPRIGHT;

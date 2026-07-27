@@ -11043,7 +11043,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?invalidateCachedLightPositions@W3DShadowTextureManager@@QAEXXZ,,0x007AEFC0,107,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?isAGoodIdeaToBuildTeam@AIPlayer@@MAE_NPAVTeamPrototype@@@Z,,0x00167E80,786,Code/masm_dumps/_sa14__isAGoodIdeaToBuildTeam_AIPlayer__MAE_NPAVTeamPrototype___Z_167E80.asm,matched,sa14 Open-BFME4+Grok Team '
 ?isAI@GameSlot@@QBE_NXZ,,0x0061E5C0,27,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
-?isAbleToBeToppled@ToppleUpdate@@QBE_NXZ,,0x0000678A,5,Code/masm_dumps/_isAbleToBeToppled_ToppleUpdate__QBE_NXZ_678A.asm,matched,MASM exact retail dump
 ?isAboveTerrain@Thing@@QBE_NXZ,,0x000C3F00,27,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,
 ?isAboveTerrainOrWater@Thing@@QBE_NXZ,,0x000C3F00,27,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?isActive@BattlePlanUpdate@@UBE_NXZ,,0x00285760,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,
@@ -13568,3 +13567,4 @@ _XMP_Fetch_Prime_Size,,0x009E8140,6,Code/Libraries/Source/WWVegas/WWLib/mpmath.c
 ??8?$VectorClass@H@@UBE_NABV0@@Z,,0x00AFEDF0,68,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,MASM converted to clean C++
 ?SetLobbyAttemptHostJoin@@YAX_N@Z,,0x004F9610,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,thunk-dump converted to clean C++
 ??1CameraShakerClass@CameraShakeSystemClass@@UAE@XZ,,0x006D1290,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,thunk-dump converted to clean C++
+?isAbleToBeToppled@ToppleUpdate@@QBE_NXZ,,0x002B0FE0,11,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdate.cpp,matched,thunk-dump converted to clean C++
