@@ -6354,7 +6354,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Screen_Size@RenderObjClass@@UAEMAAVCameraClass@@@Z,,0x00920580,268,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,drift-voted candidate; unblocked by ctor shrink
 ?Get_Secondary_Gradient@ShaderClass@@QBE?AW4SecGradientType@1@XZ,,0x00910D80,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
 ?Get_Shader@DX8TextureCategoryClass@@QAE?AVShaderClass@@XZ,,0x009454D0,12,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
-?Get_Shader@LineGroupClass@@QAE?AVShaderClass@@XZ,,0x0098ED00,12,Code/masm_dumps/_Get_Shader_LineGroupClass__QAE_AVShaderClass__XZ_98ED00.asm,matched,MASM exact retail dump
 ?Get_Shader@MeshMatDescClass@@QBE?AVShaderClass@@HH@Z,,0x00929990,50,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ?Get_Shader@MeshModelClass@@QBE?AVShaderClass@@HH@Z,,0x006DAB80,33,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ?Get_Shader@ParticleBufferClass@@QBE?AVShaderClass@@XZ,,0x00988FD0,94,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
@@ -7644,12 +7643,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Light@DX8Wrapper@@SAXIPBU_D3DLIGHT8@@@Z,,0x00902500,72,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Set_Lighting@VertexMaterialClass@@QAEX_N@Z,,0x00710E40,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
 ?Set_Lighting_LOD_Cutoff@LightEnvironmentClass@@SAXM@Z,,0x0094A890,26,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,matched,
-?Set_Line_Alpha@LineGroupClass@@QAEXM@Z,,0x0098E8C0,10,Code/masm_dumps/_Set_Line_Alpha_LineGroupClass__QAEXM_Z_98E8C0.asm,matched,MASM exact retail dump
-?Set_Line_Color@LineGroupClass@@QAEXABVVector3@@@Z,,0x0098EC00,24,Code/masm_dumps/_Set_Line_Color_LineGroupClass__QAEXABVVector3___Z_98EC00.asm,matched,MASM exact retail dump
-?Set_Line_Mode@LineGroupClass@@QAEXW4LineModeType@1@@Z,,0x0098E950,10,Code/masm_dumps/_Set_Line_Mode_LineGroupClass__QAEXW4LineModeType_1__Z_98E950.asm,matched,MASM exact retail dump
-?Set_Line_Size@LineGroupClass@@QAEXM@Z,,0x0098E8A0,10,Code/masm_dumps/_Set_Line_Size_LineGroupClass__QAEXM_Z_98E8A0.asm,matched,MASM exact retail dump
 ?Set_Line_Texture_Mapping_Mode@ParticleEmitterDefClass@@UAEXH@Z,,0x0098D520,31,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
-?Set_Line_UCoord@LineGroupClass@@QAEXM@Z,,0x0098E8E0,10,Code/masm_dumps/_Set_Line_UCoord_LineGroupClass__QAEXM_Z_98E8E0.asm,matched,MASM exact retail dump
 ?Set_Location@Render2DSentenceClass@@QAEXABVVector2@@@Z,,0x0093DD40,18,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,
 ?Set_Looping@Curve1DClass@@UAEX_N@Z,,0x003606F0,10,Code/Libraries/Source/WWVegas/WWMath/curve.cpp,matched,
 ?Set_Looping@Curve3DClass@@UAEX_N@Z,,0x003606F0,10,Code/Libraries/Source/WWVegas/WWMath/curve.cpp,matched,
@@ -13568,3 +13562,9 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getFinalOverride@Overridable@@QBEPBV1@XZ,,0x00087A80,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
 ??1CustomMatchPreferences@@UAE@XZ,,0x000AAFB0,11,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,thunk-dump converted to clean C++
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,,0x006235E0,152,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
+?Get_Shader@LineGroupClass@@QAE?AVShaderClass@@XZ,,0x0098ED00,12,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
+?Set_Line_Alpha@LineGroupClass@@QAEXM@Z,,0x0098E8C0,10,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
+?Set_Line_Color@LineGroupClass@@QAEXABVVector3@@@Z,,0x0098EC00,24,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
+?Set_Line_Mode@LineGroupClass@@QAEXW4LineModeType@1@@Z,,0x0098E950,10,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
+?Set_Line_Size@LineGroupClass@@QAEXM@Z,,0x0098E8A0,10,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
+?Set_Line_UCoord@LineGroupClass@@QAEXM@Z,,0x0098E8E0,10,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,MASM converted to clean C++
