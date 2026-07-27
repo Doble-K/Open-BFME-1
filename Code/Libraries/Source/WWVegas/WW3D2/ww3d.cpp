@@ -2045,7 +2045,6 @@ int WW3D::Get_Texture_Bitdepth()
 	return DX8Wrapper::Get_Texture_Bitdepth();
 }
 
-// ?Add_To_Static_Sort_List@WW3D@@ present-unmatched
 void WW3D::Add_To_Static_Sort_List(RenderObjClass *robj, unsigned int sort_level)
 {
 	CurrentStaticSortLists->Add_To_List(robj, sort_level);
