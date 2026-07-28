@@ -4469,21 +4469,37 @@ void ScriptActions::doTransferTeamToPlayer(const AsciiString& teamName, const As
 //-------------------------------------------------------------------------------------------------
 /** doSetMoney */
 //-------------------------------------------------------------------------------------------------
-// ?doSetMoney@ScriptActions@@IAEXABVAsciiString@@H@Z present-unmatched
+// BFME resolves player-name selectors (incl. multi-player masks like "<All Players>")
+// via a 2-arg non-virtual helper that returns PlayerMaskType, then walks players with
+// getEachPlayerFromMask. Money lives at Player+0x48 (ZH natural +0x34 + 0x14 insert).
+class BfmeScriptEngine_getPlayerMaskFromAsciiString {
+public:
+	PlayerMaskType getPlayerMaskFromAsciiString(const AsciiString& name, Bool* outFlag);
+};
+struct BfmePlayerMoney {
+	UnsignedByte _pad[0x48];
+	Money m_money;
+};
+
+// ?doSetMoney@ScriptActions@@IAEXABVAsciiString@@H@Z
 void ScriptActions::doSetMoney(const AsciiString& playerName, Int money)
 {
-	Player* player = TheScriptEngine->getPlayerFromAsciiString(playerName);
-
-	if (!player) {
+	PlayerMaskType mask = ((BfmeScriptEngine_getPlayerMaskFromAsciiString *)TheScriptEngine)
+		->getPlayerMaskFromAsciiString(playerName, NULL);
+	if (!mask) {
 		return;
 	}
 
-	Money *m = player->getMoney();
-	if (!m)
-		return;
-
-	m->withdraw(m->countMoney());
-	m->deposit(money);
+	do {
+		Player* player = ThePlayerList->getEachPlayerFromMask(mask);
+		if (player) {
+			Money *m = &((BfmePlayerMoney *)player)->m_money;
+			if (m) {
+				m->withdraw(m->countMoney());
+				m->deposit(money);
+			}
+		}
+	} while (mask);
 }
 
 //-------------------------------------------------------------------------------------------------

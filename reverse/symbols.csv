@@ -3535,3 +3535,9 @@ __CxxThrowException@8,0x009F6D00,MSVC retail exception throw helper
 ??$_M_find@VAsciiString@@@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@V1@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@V1@@_STL@@@1@ABVAsciiString@@@Z,0x0000AEAC,getDateForEmail map find thunk (ILT->0x80600)
 ?updateMeshVolume@W3DVolumetricShadow@@IAEXHHPBVMatrix3D@@ABVAABoxClass@@M@Z,0x007BE000,certified packet 348; updateMeshVolume body 0x7BE000 (thunk 0xC392 from updateVolumes)
 ?notifyModelConditionChanged@Object@@QAEXXZ,0x0002191D,Object model-condition notify ILT (body 0x1BE1C0); inlined clearModelConditionState(PANICKING) sites
+?getPlayerMaskFromAsciiString@BfmeScriptEngine_getPlayerMaskFromAsciiString@@QAEGABVAsciiString@@PA_N@Z,0x0004B290,ILT doSetMoney player-mask resolver (body 0x34CB60)
+?getPlayerMaskFromAsciiString@BfmeScriptEngine_getPlayerMaskFromAsciiString@@QAEGABVAsciiString@@PA_N@Z,0x0034CB60,body BFME ScriptEngine multi-player mask from name
+?getEachPlayerFromMask@PlayerList@@QAEPAVPlayer@@AAG@Z,0x0002EE60,ILT getEachPlayerFromMask (body 0xDF4A0)
+?getEachPlayerFromMask@PlayerList@@QAEPAVPlayer@@AAG@Z,0x000DF4A0,body PlayerList::getEachPlayerFromMask
+?withdraw@Money@@QAEII_N@Z,0x00041894,ILT Money::withdraw (body 0xC8610)
+?withdraw@Money@@QAEII_N@Z,0x000C8610,body Money::withdraw
