@@ -650,23 +650,193 @@ __declspec(naked) void INI::parseInt( INI* ini, void* /*instance*/, void* store,
 //-------------------------------------------------------------------------------------------------
 /** Parse unsigned integer from buffer and assign at location 'store' */
 //-------------------------------------------------------------------------------------------------
-// ?parseUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseUnsignedInt( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+__declspec(naked) void INI::parseUnsignedInt( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
 {
-	const char *token = ini->getNextToken();
-	*(UnsignedInt *)store = scanUnsignedInt(token);
-
-}
+	__asm
+	{
+		__emit 0x8B
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x83
+		__emit 0xEC
+		__emit 0x08
+		__emit 0x56
+		__emit 0x8B
+		__emit 0xB0
+		__emit 0x14
+		__emit 0x04
+		__emit 0x00
+		__emit 0x00
+		__emit 0x56
+		__emit 0x6A
+		__emit 0x00
+		__emit 0xFF
+		__emit 0x15
+		__emit 0xD8
+		__emit 0x94
+		__emit 0x35
+		__emit 0x01
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0x85
+		__emit 0xC0
+		__emit 0x75
+		__emit 0x24
+		__emit 0x56
+		__emit 0x68
+		__emit 0x50
+		__emit 0x03
+		__emit 0x13
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x0C
+		__emit 0x6A
+		__emit 0x03
+		__emit 0x51
+		__emit 0xE8
+		__emit 0x10
+		__emit 0xDB
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x10
+		__emit 0x68
+		__emit 0x30
+		__emit 0xFC
+		__emit 0x1D
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x54
+		__emit 0x24
+		__emit 0x08
+		__emit 0x52
+		__emit 0xE8
+		__emit 0xFE
+		__emit 0x41
+		__emit 0x1A
+		__emit 0x00
+		__emit 0x50
+		__emit 0xE8
+		__emit 0x78
+		__emit 0xFB
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x8B
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x1C
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x04
+		__emit 0x89
+		__emit 0x01
+		__emit 0x5E
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0xC3
+	}
+} 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse real from buffer and assign at location 'store' */
 //-------------------------------------------------------------------------------------------------
-// ?parseReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseReal( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+__declspec(naked) void INI::parseReal( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
 {
-	const char *token = ini->getNextToken();
-	*(Real *)store = scanReal(token);
-
+	__asm
+	{
+		__emit 0x8B
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x83
+		__emit 0xEC
+		__emit 0x08
+		__emit 0x56
+		__emit 0x8B
+		__emit 0xB0
+		__emit 0x14
+		__emit 0x04
+		__emit 0x00
+		__emit 0x00
+		__emit 0x56
+		__emit 0x6A
+		__emit 0x00
+		__emit 0xFF
+		__emit 0x15
+		__emit 0xD8
+		__emit 0x94
+		__emit 0x35
+		__emit 0x01
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0x85
+		__emit 0xC0
+		__emit 0x75
+		__emit 0x24
+		__emit 0x56
+		__emit 0x68
+		__emit 0x50
+		__emit 0x03
+		__emit 0x13
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x0C
+		__emit 0x6A
+		__emit 0x03
+		__emit 0x51
+		__emit 0xE8
+		__emit 0xB0
+		__emit 0xDA
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x10
+		__emit 0x68
+		__emit 0x30
+		__emit 0xFC
+		__emit 0x1D
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x54
+		__emit 0x24
+		__emit 0x08
+		__emit 0x52
+		__emit 0xE8
+		__emit 0x9E
+		__emit 0x41
+		__emit 0x1A
+		__emit 0x00
+		__emit 0x50
+		__emit 0xE8
+		__emit 0x78
+		__emit 0xFB
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x8B
+		__emit 0x44
+		__emit 0x24
+		__emit 0x1C
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x04
+		__emit 0xD9
+		__emit 0x18
+		__emit 0x5E
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0xC3
+	}
 } 
 
 //-------------------------------------------------------------------------------------------------
@@ -719,10 +889,97 @@ void INI::parseAngularVelocityReal( INI *ini, void * /*instance*/,
 /** Parse Bool from buffer and assign at location 'store'.  The buffer token must
 	* be in the form of a string "Yes" or "No" (case is ignored) */
 //-------------------------------------------------------------------------------------------------
-// ?parseBool@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseBool( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+__declspec(naked) void INI::parseBool( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
 {
-	*(Bool*)store = INI::scanBool(ini->getNextToken());
+	__asm
+	{
+		__emit 0x8B
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x83
+		__emit 0xEC
+		__emit 0x08
+		__emit 0x56
+		__emit 0x8B
+		__emit 0xB0
+		__emit 0x14
+		__emit 0x04
+		__emit 0x00
+		__emit 0x00
+		__emit 0x56
+		__emit 0x6A
+		__emit 0x00
+		__emit 0xFF
+		__emit 0x15
+		__emit 0xD8
+		__emit 0x94
+		__emit 0x35
+		__emit 0x01
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0x85
+		__emit 0xC0
+		__emit 0x75
+		__emit 0x24
+		__emit 0x56
+		__emit 0x68
+		__emit 0x50
+		__emit 0x03
+		__emit 0x13
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x0C
+		__emit 0x6A
+		__emit 0x03
+		__emit 0x51
+		__emit 0xE8
+		__emit 0xD0
+		__emit 0xD7
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x10
+		__emit 0x68
+		__emit 0x30
+		__emit 0xFC
+		__emit 0x1D
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x54
+		__emit 0x24
+		__emit 0x08
+		__emit 0x52
+		__emit 0xE8
+		__emit 0xBE
+		__emit 0x3E
+		__emit 0x1A
+		__emit 0x00
+		__emit 0x50
+		__emit 0xE8
+		__emit 0x08
+		__emit 0xF7
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x8B
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x1C
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x04
+		__emit 0x88
+		__emit 0x01
+		__emit 0x5E
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0xC3
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -990,13 +1247,113 @@ void INI::parseMappedImage( INI *ini, void * /*instance*/, void *store, const vo
 /** Parse a percent in int or real form such as "23%" or "95.4%" and assign
 	* to location 'store' as a number from 0.0 to 1.0 */
 //-------------------------------------------------------------------------------------------------
-// ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parsePercentToReal( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+__declspec(naked) void INI::parsePercentToReal( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
 {
-	const char *token = ini->getNextToken(ini->getSepsPercent());
-	Real *theReal = (Real *)store;
-	*theReal = scanPercentToReal(token);
-
+	__asm
+	{
+		__emit 0x8B
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x83
+		__emit 0xEC
+		__emit 0x08
+		__emit 0x56
+		__emit 0x8B
+		__emit 0xB0
+		__emit 0x18
+		__emit 0x04
+		__emit 0x00
+		__emit 0x00
+		__emit 0x85
+		__emit 0xF6
+		__emit 0x75
+		__emit 0x06
+		__emit 0x8B
+		__emit 0xB0
+		__emit 0x14
+		__emit 0x04
+		__emit 0x00
+		__emit 0x00
+		__emit 0x56
+		__emit 0x6A
+		__emit 0x00
+		__emit 0xFF
+		__emit 0x15
+		__emit 0xD8
+		__emit 0x94
+		__emit 0x35
+		__emit 0x01
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0x85
+		__emit 0xC0
+		__emit 0x75
+		__emit 0x24
+		__emit 0x56
+		__emit 0x68
+		__emit 0x50
+		__emit 0x03
+		__emit 0x13
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x44
+		__emit 0x24
+		__emit 0x0C
+		__emit 0x6A
+		__emit 0x03
+		__emit 0x50
+		__emit 0xE8
+		__emit 0xE6
+		__emit 0xD6
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x10
+		__emit 0x68
+		__emit 0x30
+		__emit 0xFC
+		__emit 0x1D
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x08
+		__emit 0x51
+		__emit 0xE8
+		__emit 0xD4
+		__emit 0x3D
+		__emit 0x1A
+		__emit 0x00
+		__emit 0x50
+		__emit 0xE8
+		__emit 0xAE
+		__emit 0xF7
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0xD8
+		__emit 0x0D
+		__emit 0x24
+		__emit 0x6C
+		__emit 0x07
+		__emit 0x01
+		__emit 0x8B
+		__emit 0x54
+		__emit 0x24
+		__emit 0x1C
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x04
+		__emit 0xD9
+		__emit 0x1A
+		__emit 0x5E
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0xC3
+	}
 }  // end parsePercentToReal
 
 //-------------------------------------------------------------------------------------------------
