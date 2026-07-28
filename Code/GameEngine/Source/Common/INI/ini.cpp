@@ -1168,7 +1168,6 @@ void INI::parseCoord2D( INI* ini, void * /*instance*/, void *store, const void* 
 /** Parse a 2D coordinate of Ints in the form of:
 	* FIELD_NAME = X:400 Y:-214 */
 //-------------------------------------------------------------------------------------------------
-// ?parseICoord2D@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseICoord2D( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	ICoord2D *theCoord = (ICoord2D *)store;

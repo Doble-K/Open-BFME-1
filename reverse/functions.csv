@@ -10997,7 +10997,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseGameClientRandomDelay@@YAXPAVINI@@PAXPAVGameClientRandomVariable@@@Z,,0x00287700,59,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,
 ?parseGameLogicRandomDelay@@YAXPAVINI@@PAXPAVGameLogicRandomVariable@@@Z,,0x00287750,59,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,
 ?parseGeneralPersona@ChallengeGenerals@@CAXPAVINI@@PAX1PBX@Z,,0x004582D0,20,Code/GameEngine/Source/GameClient/GUI/ChallengeGenerals.cpp,matched,
-?parseICoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853420,60,Code/masm_dumps/parseICoord2D_INI_SAXPAV1_PAX1PBX_Z_853420.asm,matched,Ghidra-bounded gap with X Y sub-token flow verified scanInt calls and two integer stores
 ?parseImage@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BB110,43,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?parseImageCoords@Image@@SAXPAVINI@@PAX1PBX@Z,,0x005D1E90,286,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,Ghidra
 ?parseImageOffset@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004846A0,67,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
@@ -13580,3 +13579,4 @@ _$E11,,0x00C71070,59,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,obj
 ??1FileInfoStruct@MixFileCreator@@QAE@XZ,,0x005DBEA0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;C++ alias
 ?scanPercentToReal@INI@@SAMPBD@Z,,0x00852740,20,Code/GameEngine/Source/Common/INI/ini.cpp,matched,call scanReal multiply by 0.01f
 ?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00038708,5,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,asm jmp to parseFrictionPerSec
+?parseICoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853420,60,Code/GameEngine/Source/Common/INI/ini.cpp,matched,C++ match via getNextSubToken + scanInt
