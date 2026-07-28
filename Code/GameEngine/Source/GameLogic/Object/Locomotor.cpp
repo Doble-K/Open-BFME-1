@@ -441,6 +441,11 @@ static void parseFrictionPerSec( INI* ini, void * /*instance*/, void *store, con
 	Real fricPerSec = INI::scanReal(ini->getNextToken());
 	Real fricPerFrame = fricPerSec * SECONDS_PER_LOGICFRAME_REAL;
 	*(Real *)store = fricPerFrame;
+}
+
+__declspec(naked) void INI::parseVelocityReal(INI* ini, void* instance, void* store, const void* userData)
+{
+	__asm { jmp parseFrictionPerSec }
 } 
 
 //-------------------------------------------------------------------------------------------------

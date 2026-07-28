@@ -11077,7 +11077,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852AC0,86,Code/masm_dumps/_parseUnsignedInt_INI__SAXPAV1_PAX1PBX_Z_852AC0.asm,matched,MASM exact retail dump
 ?parseUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x008529E0,121,Code/masm_dumps/parseUnsignedShort_INI_SAXPAV1_PAX1PBX_Z_8529E0.asm,matched,Ghidra neighborhood and CC-bounded retail body; scanInt with 0..65535 range and word store
 ?parseUpdate@@YA_NPAD0IPAVWindowLayoutInfo@@@Z,,0x004876C0,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Retail layout table and StringBase ABI
-?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00038708,5,Code/masm_dumps/parseVelocityReal_INI_SAXPAV1_PAX1PBX_Z_38708.asm,matched,Ghidra-adjacent public thunk; velocity-field table xrefs and canonical scanReal frame conversion body
 ?parseWaypointData@TerrainLogic@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A7860,60,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?parseWaypointDataChunk@TerrainLogic@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A8BB0,21,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,icf-owner=?ParseBlendTileDataChunk@WorldHeightMap@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z
 ?parseWeapon@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EAC70,48,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
@@ -13580,3 +13579,4 @@ _$E11,,0x00C71070,59,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,obj
 ??0?$pair@$$CBVAsciiString@@VArchivedFileInfo@@@_STL@@QAE@ABU01@@Z,,0x0075EA00,91,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,object-symbol=??0?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@QAE@ABU01@@Z;C++ alias
 ??1FileInfoStruct@MixFileCreator@@QAE@XZ,,0x005DBEA0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;C++ alias
 ?scanPercentToReal@INI@@SAMPBD@Z,,0x00852740,20,Code/GameEngine/Source/Common/INI/ini.cpp,matched,call scanReal multiply by 0.01f
+?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00038708,5,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,asm jmp to parseFrictionPerSec
