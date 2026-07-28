@@ -1343,15 +1343,24 @@ void GameState::iterateSaveFiles( IterateSaveFileCallback callback, void *userDa
 // ------------------------------------------------------------------------------------------------
 /** Save game to xfer or load game using xfer */
 // ------------------------------------------------------------------------------------------------
-// ?friend_xferSaveDataForCRC@GameState@@QAEXPAVXfer@@W4SnapshotType@@@Z present-unmatched
+// BFME string clears call out-of-line StringBase::releaseBuffer. ZH AsciiString::clear
+// inlines InterlockedDecrement; a local StringBase view (friend of GameState) emits the
+// retail call shape. UnicodeString::releaseBuffer is already out-of-line in the ZH header.
+template <typename T>
+class StringBase {
+	friend class GameState;
+	void releaseBuffer();
+};
+
 void GameState::friend_xferSaveDataForCRC( Xfer *xfer, SnapshotType which )
 {
-	DEBUG_LOG(("GameState::friend_xferSaveDataForCRC() - SnapshotType %d\n", which));
 	SaveGameInfo *gameInfo = getSaveGameInfo();
-	gameInfo->description.clear();
+	// description is UnicodeString @ m_gameInfo+0x24 (GameState+0x3C)
+	reinterpret_cast<StringBase<unsigned short> *>(&gameInfo->description)->releaseBuffer();
 	gameInfo->saveFileType = SAVE_FILE_TYPE_NORMAL;
-	gameInfo->missionMapName.clear();
-	gameInfo->pristineMapName.clear();
+	// missionMapName AsciiString @ GameState+0x44; pristineMapName @ +0x1C
+	reinterpret_cast<StringBase<char> *>(&gameInfo->missionMapName)->releaseBuffer();
+	reinterpret_cast<StringBase<char> *>(&gameInfo->pristineMapName)->releaseBuffer();
 
 	xferSaveData(xfer, which);
 }

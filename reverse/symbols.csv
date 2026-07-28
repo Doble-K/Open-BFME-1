@@ -3541,3 +3541,4 @@ __CxxThrowException@8,0x009F6D00,MSVC retail exception throw helper
 ?getEachPlayerFromMask@PlayerList@@QAEPAVPlayer@@AAG@Z,0x000DF4A0,body PlayerList::getEachPlayerFromMask
 ?withdraw@Money@@QAEII_N@Z,0x00041894,ILT Money::withdraw (body 0xC8610)
 ?withdraw@Money@@QAEII_N@Z,0x000C8610,body Money::withdraw
+?xferSaveData@GameState@@AAEXPAVXfer@@W4SnapshotType@@@Z,0x0010FBD0,GameState save-data walker (CHUNK_GameState/Campaign/LivingWorldLogic/Palantir/Audio); thunk 0x36674
