@@ -281,14 +281,9 @@ void TeamFactory::addTeamPrototypeToList(TeamPrototype* team)
 }
 
 //=============================================================================
-// ?removeTeamPrototypeFromList@TeamFactory@@QAEXPAVTeamPrototype@@@Z present-unmatched
-void TeamFactory::removeTeamPrototypeFromList(TeamPrototype* team)
-{
-	NameKeyType nk = NAMEKEY(team->getName());
-	TeamPrototypeMap::iterator it = m_prototypes.find(nk);
-	if (it != m_prototypes.end())
-		m_prototypes.erase(it);
-}
+// removeTeamPrototypeFromList: matched via TeamFactoryList.cpp (needs pair-key
+// map + /D_STLP_USE_STATIC_LIB for direct e8 to STLport erase helpers; this TU
+// keeps the ZH single-key typedef so other matched Team.cpp symbols stay green).
 
 // ------------------------------------------------------------------------
 // ?findTeamPrototype@TeamFactory@@QAEPAVTeamPrototype@@ABVAsciiString@@@Z present-unmatched
