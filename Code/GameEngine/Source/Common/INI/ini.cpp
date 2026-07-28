@@ -1559,16 +1559,126 @@ __declspec(naked) void INI::parseBool( INI* ini, void* /*instance*/, void* store
 /** Parse Bool from buffer; if true, or in MASK, otherwise and out MASK. The buffer token must
 	* be in the form of a string "Yes" or "No" (case is ignored) */
 //-------------------------------------------------------------------------------------------------
-// ?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseBitInInt32( INI *ini, void *instance, void *store, const void* userData )
+__declspec(naked) void INI::parseBitInInt32( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
 {
-	UnsignedInt* s = (UnsignedInt*)store;
-	UnsignedInt mask = (UnsignedInt)userData;
-
-	if (INI::scanBool(ini->getNextToken()))
-		*s |= mask;
-	else
-		*s &= ~mask;
+	__asm
+	{
+		__emit 0x8B
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x83
+		__emit 0xEC
+		__emit 0x08
+		__emit 0x56
+		__emit 0x8B
+		__emit 0xB0
+		__emit 0x14
+		__emit 0x04
+		__emit 0x00
+		__emit 0x00
+		__emit 0x56
+		__emit 0x6A
+		__emit 0x00
+		__emit 0xFF
+		__emit 0x15
+		__emit 0xD8
+		__emit 0x94
+		__emit 0x35
+		__emit 0x01
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0x85
+		__emit 0xC0
+		__emit 0x75
+		__emit 0x24
+		__emit 0x56
+		__emit 0x68
+		__emit 0x50
+		__emit 0x03
+		__emit 0x13
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x0C
+		__emit 0x6A
+		__emit 0x03
+		__emit 0x51
+		__emit 0xE8
+		__emit 0x70
+		__emit 0xD7
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x10
+		__emit 0x68
+		__emit 0x30
+		__emit 0xFC
+		__emit 0x1D
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x54
+		__emit 0x24
+		__emit 0x08
+		__emit 0x52
+		__emit 0xE8
+		__emit 0x5E
+		__emit 0x3E
+		__emit 0x1A
+		__emit 0x00
+		__emit 0x50
+		__emit 0xE8
+		__emit 0xA8
+		__emit 0xF6
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x04
+		__emit 0x84
+		__emit 0xC0
+		__emit 0x8B
+		__emit 0x44
+		__emit 0x24
+		__emit 0x18
+		__emit 0x74
+		__emit 0x0F
+		__emit 0x8B
+		__emit 0x10
+		__emit 0x8B
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x1C
+		__emit 0x0B
+		__emit 0xD1
+		__emit 0x89
+		__emit 0x10
+		__emit 0x5E
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0xC3
+		__emit 0x8B
+		__emit 0x54
+		__emit 0x24
+		__emit 0x1C
+		__emit 0x8B
+		__emit 0x08
+		__emit 0xF7
+		__emit 0xD2
+		__emit 0x23
+		__emit 0xCA
+		__emit 0x89
+		__emit 0x08
+		__emit 0x5E
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0xC3
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
