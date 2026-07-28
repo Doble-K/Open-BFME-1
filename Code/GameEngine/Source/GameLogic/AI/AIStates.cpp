@@ -2458,16 +2458,9 @@ Bool AIMoveAwayFromRepulsorsState::computePath()
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?onExit@AIMoveAwayFromRepulsorsState@@UAEXW4StateExitType@@@Z present-unmatched
-void AIMoveAwayFromRepulsorsState::onExit( StateExitType status )
-{
-	AIInternalMoveToState::onExit( status );
-	Object *obj = getMachineOwner();
-	if (obj)
-	{
-		obj->clearModelConditionState(MODELCONDITION_PANICKING);
-	}
-}
+// AIMoveAwayFromRepulsorsState::onExit lives in AIMoveAwayFromRepulsorsState_onExit.cpp
+// (BFME State/Object layout TU-scoped shim; ZH getMachineOwner offsets diverge).
+// void AIMoveAwayFromRepulsorsState::onExit( StateExitType status );
 
 
 //----------------------------------------------------------------------------------------------------------
