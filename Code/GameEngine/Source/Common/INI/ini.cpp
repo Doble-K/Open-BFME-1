@@ -1630,10 +1630,7 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 //-------------------------------------------------------------------------------------------------
 /*static*/ Real INI::scanPercentToReal(const char* token)
 {
-	Real value;
-	if (sscanf( token, "%f", &value ) != 1)
-		throw INI_INVALID_DATA;
-	return value / 100.0f;
+	return scanReal(token) * 0.01f;
 }
 
 //-------------------------------------------------------------------------------------------------

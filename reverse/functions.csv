@@ -11404,7 +11404,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?scanIndexList@INI@@SAHPBDPBQBD@Z,,0x008509E0,102,Code/masm_dumps/__scanIndexList_INI__SAHPBDPBQBD_Z_8509E0.asm,matched,
 ?scanInt@INI@@SAHPBD@Z,,0x00852620,86,Code/masm_dumps/_scanInt_INI__SAHPBD_Z_852620.asm,matched,MASM exact retail dump
 ?scanLookupList@INI@@SAHPBDPBULookupListRec@@@Z,,0x00850A70,136,Code/masm_dumps/_sym2__scanLookupList_INI__SAHPBDPBULookupListRec___Z_850A70.asm,matched,symbol-pin Open-BFME4+Grok
-?scanPercentToReal@INI@@SAMPBD@Z,,0x00852740,20,Code/masm_dumps/scanPercentToReal_INI_SAMPBD_Z_852740.asm,matched,Ghidra body calls verified scanReal then multiplies by retail 0.01 constant
 ?scanReal@INI@@SAMPBD@Z,,0x008526E0,86,Code/masm_dumps/_scanReal_INI__SAMPBD_Z_8526E0.asm,matched,MASM exact retail dump
 ?scanScience@INI@@SA?AW4ScienceType@@PBD@Z,,0x000B8F40,17,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?scanShort@@YAHPBDAAF@Z,,0x004844B0,41,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
@@ -13580,3 +13579,4 @@ _$E11,,0x00C71070,59,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,obj
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,,0x00701FB0,103,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,object-symbol=?Add@?$SimpleDynVecClass@VVector3@@@@QAE_NABVVector3@@H@Z;C++ alias
 ??0?$pair@$$CBVAsciiString@@VArchivedFileInfo@@@_STL@@QAE@ABU01@@Z,,0x0075EA00,91,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,object-symbol=??0?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@QAE@ABU01@@Z;C++ alias
 ??1FileInfoStruct@MixFileCreator@@QAE@XZ,,0x005DBEA0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;C++ alias
+?scanPercentToReal@INI@@SAMPBD@Z,,0x00852740,20,Code/GameEngine/Source/Common/INI/ini.cpp,matched,call scanReal multiply by 0.01f
