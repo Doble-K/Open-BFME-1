@@ -10950,7 +10950,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAllVetLevelsPSys@@YAXPAVINI@@PAX1PBX@Z,,0x001E1190,51,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseAmount@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066020,138,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseAngleFX@@YAXPAVINI@@PAX1PBX@Z,,0x002B0990,23,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate.cpp,matched,
-?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852D30,92,Code/masm_dumps/parseAngleReal_INI_SAXPAV1_PAX1PBX_Z_852D30.asm,matched,Ghidra bounded retail body; scanReal call and PI/180 degree-to-radian constant
 ?parseAngularVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000114D7,5,Code/masm_dumps/parseAngularVelocityReal_INI_SAXPAV1_PAX1PBX_Z_114D7.asm,matched,Ghidra-adjacent public thunk; table xrefs from angular-rate fields and canonical scanReal conversion body
 ?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/masm_dumps/parseAnim2DTemplate_INI_SAXPAV1_PAX1PBX_Z_4B556.asm,matched,Unique BFME crash string anchors Anim2D collection lookup body and public thunk
 ?parseArmorTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0003EF6D,5,Code/masm_dumps/parseArmorTemplate_INI_SAXPAV1_PAX1PBX_Z_3EF6D.asm,matched,Retail ArmorTemplateSet table xref; public thunk to None-aware armor-store lookup body
@@ -11026,7 +11025,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parsePercentToReal@@YAXPAVINI@@PAX1PBX@Z,,0x000B81B0,64,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
 ?parsePlayerKVPairs@GameSpyPSMessageQueueInterface@@,,0x00659670,3856,Code/masm_dumps/_sa7__parsePlayerKVPairs_GameSpyPSMessageQueueInterface_659670.asm,matched,Exact 3856B Open-BFME4
 ?parsePlayerTemplateDefinition@PlayerTemplateStore@@SAXPAVINI@@@Z,,0x000E4210,284,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
-?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B80,144,Code/masm_dumps/parsePositiveNonZeroReal_INI_SAXPAV1_PAX1PBX_Z_852B80.asm,matched,Ghidra bounded retail body; scanReal call and exact expected > 0 diagnostic
 ?parsePreferredAgainst@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x0010FE90,204,Code/masm_dumps/_sa14__parsePreferredAgainst_WeaponTemplateSet__CAXPAVINI__PAX1PBX_Z_10FE90.asm,matched,sa14 Open-BFME4+Grok Weapon
 ?parseProductionCostChange@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E2650,83,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,BFME PlayerTemplate production-cost map is at offset 0x60
 ?parseProductionTimeChange@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E2DA0,134,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,BFME uses an AsciiString production-time key map at offset 0x6C
@@ -11042,7 +11040,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseScorchType@TerrainScorchFXNugget@@KAXPAVINI@@PAX1PBX@Z,,0x00427610,32,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?parseScreenRect@@YA_NPAD0PAH111@Z,,0x004854F0,453,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseShakeType@ViewShakeFXNugget@@KAXPAVINI@@PAX1PBX@Z,,0x00427610,32,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
-?parseShort@INI@@SAXPAV1@PAX1PBX@Z,,0x00852960,124,Code/masm_dumps/parseShort_INI_SAXPAV1_PAX1PBX_Z_852960.asm,matched,Ghidra neighborhood and CC-bounded retail body; scanInt with signed 16-bit range and word store
 ?parseShutdown@@YA_NPAD0IPAVWindowLayoutInfo@@@Z,,0x00487750,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Retail layout table and StringBase ABI
 ?parseSideInfo@AI@@SAXPAVINI@@PAX1PBX@Z,,0x009A15C0,516,Code/GameEngine/Source/GameLogic/AI/ai_parseSideInfo.asm,matched,exact 516B via MASM
 ?parseSingleBitFromINI@?$BitFlags@$0CG@@@SAXPAVINI@@PAX1PBX@Z,,0x0081D410,32,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
@@ -11068,8 +11065,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseTransitionToFX@TerrainRoadType@@KAXPAVINI@@PAX1PBX@Z,,0x00601E90,263,Code/masm_dumps/_parseTransitionToFX_TerrainRoadType__KAXPAVINI__PAX1PBX_Z_601E90.asm,matched,
 ?parseTransitionToOCL@TerrainRoadType@@KAXPAVINI@@PAX1PBX@Z,,0x00601D40,263,Code/masm_dumps/_parseTransitionToOCL_TerrainRoadType__KAXPAVINI__PAX1PBX_Z_601D40.asm,matched,
 ?parseTurretSweepSpeed@TurretAIData@@SAXPAVINI@@PAX1PBX@Z,,0x0018C420,48,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
-?parseUnsignedByte@INI@@SAXPAV1@PAX1PBX@Z,,0x008528E0,120,Code/masm_dumps/parseUnsignedByte_INI_SAXPAV1_PAX1PBX_Z_8528E0.asm,matched,Ghidra neighborhood and CC-bounded retail body; scanInt with 0..255 range and byte store
-?parseUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x008529E0,121,Code/masm_dumps/parseUnsignedShort_INI_SAXPAV1_PAX1PBX_Z_8529E0.asm,matched,Ghidra neighborhood and CC-bounded retail body; scanInt with 0..65535 range and word store
 ?parseUpdate@@YA_NPAD0IPAVWindowLayoutInfo@@@Z,,0x004876C0,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Retail layout table and StringBase ABI
 ?parseWaypointData@TerrainLogic@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A7860,60,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?parseWaypointDataChunk@TerrainLogic@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A8BB0,21,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,icf-owner=?ParseBlendTileDataChunk@WorldHeightMap@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z
@@ -13585,3 +13580,8 @@ _$E11,,0x00C71070,59,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,obj
 ?doSetMoney@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002EF8B0,96,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Certified packet 360 sealed SHA256 7b53fde6b4fbb94f96b2ac1166c6e3751280b212a26f79ebd078d1a1c1ec3707; BFME mask-resolve + withdraw-all then deposit
 ?friend_xferSaveDataForCRC@GameState@@QAEXPAVXfer@@W4SnapshotType@@@Z,,0x00110CF0,55,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,CRC wrapper clears SaveGameInfo strings+saveFileType then xferSaveData; sealed 55B @ 0x00110CF0
 ?removeTeamPrototypeFromList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000EFD50,149,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,BFME pair-key map erase; TeamPrototype +0x10/+0x14 name keys; node 0x1C; certified packet 362
+?parseUnsignedByte@INI@@SAXPAV1@PAX1PBX@Z,,0x008528E0,120,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
+?parseShort@INI@@SAXPAV1@PAX1PBX@Z,,0x00852960,124,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
+?parseUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x008529E0,121,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
+?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B80,144,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
+?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852D30,92,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
