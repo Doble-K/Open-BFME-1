@@ -506,396 +506,49 @@ void INI::readLine( void )
 //-------------------------------------------------------------------------------------------------
 /** Parse UnsignedByte from buffer and assign at location 'store' */
 //-------------------------------------------------------------------------------------------------
-__declspec(naked) void INI::parseUnsignedByte( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
+// ?parseUnsignedByte@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
+void INI::parseUnsignedByte( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
-	__asm
+	const char *token = ini->getNextToken();
+	Int value = scanInt(token);
+	if (value < 0 || value > 255)
 	{
-		__emit 0x8B
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x83
-		__emit 0xEC
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8B
-		__emit 0xB0
-		__emit 0x14
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x6A
-		__emit 0x00
-		__emit 0xFF
-		__emit 0x15
-		__emit 0xD8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xC0
-		__emit 0x75
-		__emit 0x24
-		__emit 0x56
-		__emit 0x68
-		__emit 0x50
-		__emit 0x03
-		__emit 0x13
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x6A
-		__emit 0x03
-		__emit 0x51
-		__emit 0xE8
-		__emit 0xF0
-		__emit 0xDC
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x10
-		__emit 0x68
-		__emit 0x30
-		__emit 0xFC
-		__emit 0x1D
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xE8
-		__emit 0xDE
-		__emit 0x43
-		__emit 0x1A
-		__emit 0x00
-		__emit 0x50
-		__emit 0xE8
-		__emit 0xF8
-		__emit 0xFC
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x04
-		__emit 0x85
-		__emit 0xC0
-		__emit 0x7C
-		__emit 0x12
-		__emit 0x3D
-		__emit 0xFF
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x7F
-		__emit 0x0B
-		__emit 0x8B
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x18
-		__emit 0x88
-		__emit 0x01
-		__emit 0x5E
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0xC3
-		__emit 0x68
-		__emit 0xC0
-		__emit 0x54
-		__emit 0x24
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xC7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xE8
-		__emit 0xA8
-		__emit 0x43
-		__emit 0x1A
-		__emit 0x00
+		DEBUG_CRASH(("Bad value INI::parseUnsignedByte"));
+		throw ERROR_BUG;
 	}
+	*(Byte *)store = (Byte)value;
 } 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse signed short from buffer and assign at location 'store' */
 //-------------------------------------------------------------------------------------------------
-__declspec(naked) void INI::parseShort( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
+// ?parseShort@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
+void INI::parseShort( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
-	__asm
+	const char *token = ini->getNextToken();
+	Int value = scanInt(token);
+	if (value < -32768 || value > 32767)
 	{
-		__emit 0x8B
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x83
-		__emit 0xEC
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8B
-		__emit 0xB0
-		__emit 0x14
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x6A
-		__emit 0x00
-		__emit 0xFF
-		__emit 0x15
-		__emit 0xD8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xC0
-		__emit 0x75
-		__emit 0x24
-		__emit 0x56
-		__emit 0x68
-		__emit 0x50
-		__emit 0x03
-		__emit 0x13
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x6A
-		__emit 0x03
-		__emit 0x51
-		__emit 0xE8
-		__emit 0x70
-		__emit 0xDC
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x10
-		__emit 0x68
-		__emit 0x30
-		__emit 0xFC
-		__emit 0x1D
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xE8
-		__emit 0x5E
-		__emit 0x43
-		__emit 0x1A
-		__emit 0x00
-		__emit 0x50
-		__emit 0xE8
-		__emit 0x78
-		__emit 0xFC
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x04
-		__emit 0x3D
-		__emit 0x00
-		__emit 0x80
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x7C
-		__emit 0x13
-		__emit 0x3D
-		__emit 0xFF
-		__emit 0x7F
-		__emit 0x00
-		__emit 0x00
-		__emit 0x7F
-		__emit 0x0C
-		__emit 0x8B
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x18
-		__emit 0x66
-		__emit 0x89
-		__emit 0x01
-		__emit 0x5E
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0xC3
-		__emit 0x68
-		__emit 0xC0
-		__emit 0x54
-		__emit 0x24
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xC7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xE8
-		__emit 0x24
-		__emit 0x43
-		__emit 0x1A
-		__emit 0x00
+		DEBUG_CRASH(("Bad value INI::parseShort"));
+		throw ERROR_BUG;
 	}
+	*(Short *)store = (Short)value;
 } 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse unsigned short from buffer and assign at location 'store' */
 //-------------------------------------------------------------------------------------------------
-__declspec(naked) void INI::parseUnsignedShort( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
+// ?parseUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
+void INI::parseUnsignedShort( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
-	__asm
+	const char *token = ini->getNextToken();
+	Int value = scanInt(token);
+	if (value < 0 || value > 65535)
 	{
-		__emit 0x8B
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x83
-		__emit 0xEC
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8B
-		__emit 0xB0
-		__emit 0x14
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x6A
-		__emit 0x00
-		__emit 0xFF
-		__emit 0x15
-		__emit 0xD8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xC0
-		__emit 0x75
-		__emit 0x24
-		__emit 0x56
-		__emit 0x68
-		__emit 0x50
-		__emit 0x03
-		__emit 0x13
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x6A
-		__emit 0x03
-		__emit 0x51
-		__emit 0xE8
-		__emit 0xF0
-		__emit 0xDB
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x10
-		__emit 0x68
-		__emit 0x30
-		__emit 0xFC
-		__emit 0x1D
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xE8
-		__emit 0xDE
-		__emit 0x42
-		__emit 0x1A
-		__emit 0x00
-		__emit 0x50
-		__emit 0xE8
-		__emit 0xF8
-		__emit 0xFB
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x04
-		__emit 0x85
-		__emit 0xC0
-		__emit 0x7C
-		__emit 0x13
-		__emit 0x3D
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x00
-		__emit 0x00
-		__emit 0x7F
-		__emit 0x0C
-		__emit 0x8B
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x18
-		__emit 0x66
-		__emit 0x89
-		__emit 0x01
-		__emit 0x5E
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0xC3
-		__emit 0x68
-		__emit 0xC0
-		__emit 0x54
-		__emit 0x24
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xC7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xE8
-		__emit 0xA7
-		__emit 0x42
-		__emit 0x1A
-		__emit 0x00
+		DEBUG_CRASH(("Bad value INI::parseUnsignedShort"));
+		throw ERROR_BUG;
 	}
+	*(UnsignedShort *)store = (UnsignedShort)value;
 } 
 
 //-------------------------------------------------------------------------------------------------
@@ -1189,258 +842,32 @@ __declspec(naked) void INI::parseReal( INI* ini, void* /*instance*/, void* store
 //-------------------------------------------------------------------------------------------------
 /** Parse real from buffer and assign at location 'store' */
 //-------------------------------------------------------------------------------------------------
-__declspec(naked) void INI::parsePositiveNonZeroReal( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
+// ?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
+void INI::parsePositiveNonZeroReal( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
-	__asm
+	const char *token = ini->getNextToken();
+	*(Real *)store = scanReal(token);
+	if (*(Real *)store <= 0.0f)
 	{
-		__emit 0x8B
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x83
-		__emit 0xEC
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8B
-		__emit 0xB0
-		__emit 0x14
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x6A
-		__emit 0x00
-		__emit 0xFF
-		__emit 0x15
-		__emit 0xD8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xC0
-		__emit 0x75
-		__emit 0x24
-		__emit 0x56
-		__emit 0x68
-		__emit 0x50
-		__emit 0x03
-		__emit 0x13
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x6A
-		__emit 0x03
-		__emit 0x51
-		__emit 0xE8
-		__emit 0x50
-		__emit 0xDA
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x10
-		__emit 0x68
-		__emit 0x30
-		__emit 0xFC
-		__emit 0x1D
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xE8
-		__emit 0x3E
-		__emit 0x41
-		__emit 0x1A
-		__emit 0x00
-		__emit 0x50
-		__emit 0xE8
-		__emit 0x18
-		__emit 0xFB
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0xD9
-		__emit 0xC0
-		__emit 0x8B
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1C
-		__emit 0xD9
-		__emit 0x18
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x04
-		__emit 0xD8
-		__emit 0x15
-		__emit 0x50
-		__emit 0x53
-		__emit 0x07
-		__emit 0x01
-		__emit 0xDF
-		__emit 0xE0
-		__emit 0xF6
-		__emit 0xC4
-		__emit 0x41
-		__emit 0x7A
-		__emit 0x29
-		__emit 0x83
-		__emit 0xEC
-		__emit 0x08
-		__emit 0xDD
-		__emit 0x1C
-		__emit 0x24
-		__emit 0x68
-		__emit 0xF4
-		__emit 0x07
-		__emit 0x13
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x10
-		__emit 0x6A
-		__emit 0x03
-		__emit 0x51
-		__emit 0xE8
-		__emit 0x09
-		__emit 0xDA
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x14
-		__emit 0x68
-		__emit 0x30
-		__emit 0xFC
-		__emit 0x1D
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xE8
-		__emit 0xF7
-		__emit 0x40
-		__emit 0x1A
-		__emit 0x00
-		__emit 0xDD
-		__emit 0xD8
-		__emit 0x5E
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0xC3
+		DEBUG_CRASH(("invalid Real value %f -- expected > 0\n",*(Real*)store));
+		throw INI_INVALID_DATA;
 	}
+
 }
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a degree value (0 to 360) and store the radian value of that degree
 	* in a Real */
 //-------------------------------------------------------------------------------------------------
-__declspec(naked) void INI::parseAngleReal( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
+// ?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
+void INI::parseAngleReal( INI *ini, void * /*instance*/, 
+																			void *store, const void *userData )
 {
-	__asm
-	{
-		__emit 0x8B
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x83
-		__emit 0xEC
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8B
-		__emit 0xB0
-		__emit 0x14
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x6A
-		__emit 0x00
-		__emit 0xFF
-		__emit 0x15
-		__emit 0xD8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xC0
-		__emit 0x75
-		__emit 0x24
-		__emit 0x56
-		__emit 0x68
-		__emit 0x50
-		__emit 0x03
-		__emit 0x13
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x6A
-		__emit 0x03
-		__emit 0x51
-		__emit 0xE8
-		__emit 0xA0
-		__emit 0xD8
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x10
-		__emit 0x68
-		__emit 0x30
-		__emit 0xFC
-		__emit 0x1D
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xE8
-		__emit 0x8E
-		__emit 0x3F
-		__emit 0x1A
-		__emit 0x00
-		__emit 0x50
-		__emit 0xE8
-		__emit 0x68
-		__emit 0xF9
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0xD8
-		__emit 0x0D
-		__emit 0x54
-		__emit 0x59
-		__emit 0x07
-		__emit 0x01
-		__emit 0x8B
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1C
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x04
-		__emit 0xD9
-		__emit 0x18
-		__emit 0x5E
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0xC3
-	}
+	const char *token = ini->getNextToken();
+
+	const Real RADS_PER_DEGREE = PI / 180.0f;
+	*(Real *)store = scanReal( token ) * RADS_PER_DEGREE;
+
 }
 
 //-------------------------------------------------------------------------------------------------
