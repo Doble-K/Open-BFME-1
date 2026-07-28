@@ -11005,7 +11005,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseInGameUIDefinition@INI@@SAXPAV1@@Z,,0x0043AAA0,36,Code/masm_dumps/INI_parseInGameUIDefinition.asm,matched,Ghidra-owned BFME UI parser dispatch
 ?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851050,91,Code/masm_dumps/parseIndexList_INI_SAXPAV1_PAX1PBX_Z_851050.asm,matched,Retail TerrainLOD table xref identifies Ghidra FUN_00c51050 index-list parser
 ?parseInt@@YAXPAVINI@@PAX1PBX@Z,,0x000B8160,55,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
-?parseInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852A60,86,Code/masm_dumps/_parseInt_INI__SAXPAV1_PAX1PBX_Z_852A60.asm,matched,MASM exact retail dump
 ?parseLanguageDefinition@INI@@SAXPAV1@@Z,,0x0040BFC0,25,Code/GameEngine/Source/GameClient/GlobalLanguage.cpp,matched,
 ?parseListboxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484760,166,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851130,91,Code/masm_dumps/parseLookupList_INI_SAXPAV1_PAX1PBX_Z_851130.asm,matched,Retail ButtonBorderType xref and padding-bounded scanner body identify lookup-list parser
@@ -13580,3 +13579,4 @@ _$E11,,0x00C71070,59,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,obj
 ?scanPercentToReal@INI@@SAMPBD@Z,,0x00852740,20,Code/GameEngine/Source/Common/INI/ini.cpp,matched,call scanReal multiply by 0.01f
 ?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00038708,5,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,asm jmp to parseFrictionPerSec
 ?parseICoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853420,60,Code/GameEngine/Source/Common/INI/ini.cpp,matched,C++ match via getNextSubToken + scanInt
+?parseInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852A60,86,Code/GameEngine/Source/Common/INI/ini.cpp,matched,

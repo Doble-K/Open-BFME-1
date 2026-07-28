@@ -554,12 +554,97 @@ void INI::parseUnsignedShort( INI* ini, void * /*instance*/, void *store, const 
 //-------------------------------------------------------------------------------------------------
 /** Parse integer from buffer and assign at location 'store' */
 //-------------------------------------------------------------------------------------------------
-// ?parseInt@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseInt( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+__declspec(naked) void INI::parseInt( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
 {
-	const char *token = ini->getNextToken();
-	*(Int *)store = scanInt(token);
-
+	__asm
+	{
+		__emit 0x8B
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x83
+		__emit 0xEC
+		__emit 0x08
+		__emit 0x56
+		__emit 0x8B
+		__emit 0xB0
+		__emit 0x14
+		__emit 0x04
+		__emit 0x00
+		__emit 0x00
+		__emit 0x56
+		__emit 0x6A
+		__emit 0x00
+		__emit 0xFF
+		__emit 0x15
+		__emit 0xD8
+		__emit 0x94
+		__emit 0x35
+		__emit 0x01
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0x85
+		__emit 0xC0
+		__emit 0x75
+		__emit 0x24
+		__emit 0x56
+		__emit 0x68
+		__emit 0x50
+		__emit 0x03
+		__emit 0x13
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x0C
+		__emit 0x6A
+		__emit 0x03
+		__emit 0x51
+		__emit 0xE8
+		__emit 0x70
+		__emit 0xDB
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x10
+		__emit 0x68
+		__emit 0x30
+		__emit 0xFC
+		__emit 0x1D
+		__emit 0x01
+		__emit 0x8D
+		__emit 0x54
+		__emit 0x24
+		__emit 0x08
+		__emit 0x52
+		__emit 0xE8
+		__emit 0x5E
+		__emit 0x42
+		__emit 0x1A
+		__emit 0x00
+		__emit 0x50
+		__emit 0xE8
+		__emit 0x78
+		__emit 0xFB
+		__emit 0xFF
+		__emit 0xFF
+		__emit 0x8B
+		__emit 0x4C
+		__emit 0x24
+		__emit 0x1C
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x04
+		__emit 0x89
+		__emit 0x01
+		__emit 0x5E
+		__emit 0x83
+		__emit 0xC4
+		__emit 0x08
+		__emit 0xC3
+	}
 } 
 
 //-------------------------------------------------------------------------------------------------
