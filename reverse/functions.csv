@@ -13581,3 +13581,4 @@ _$E11,,0x00C71070,59,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,obj
 ?parseBool@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E00,86,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852EE0,102,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?onExit@AIMoveAwayFromRepulsorsState@@UAEXW4StateExitType@@@Z,,0x00173EE0,54,Code/GameEngine/Source/GameLogic/AI/AIMoveAwayFromRepulsorsState_onExit.cpp,matched,Certified packet 357: true body 0x173EE0 (54B) via vtable 0xC9A368 slot5; queue 0x17F250 was scalar-deleting dtor; BFME State m_machine@+0x1c owner@+0x10; clear PANICKING bit@Object+0x118 + notify@0x2191D
+?newDrive@CDManager@@UAEPAVCDDriveInterface@@PBD@Z,,0x00102000,77,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,C++: CDManager::newDrive; sealed RVA 0x00102000 size 77; createDrive vtbl+0x38 via TU shim 3 BFME slots; StringBase set(PBDH)@0x887d20
