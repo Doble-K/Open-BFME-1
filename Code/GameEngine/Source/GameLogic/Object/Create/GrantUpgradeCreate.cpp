@@ -40,6 +40,22 @@
 #include "GameLogic/Module/GrantUpgradeCreate.h"
 #include "GameLogic/Object.h"
 
+// BFME tests ExemptStatus / object status with Generals-style ObjectStatusBits
+// masks (UNDER_CONSTRUCTION = 1<<2), not ZH BitFlags indices.
+enum
+{
+	BFME_OBJECT_STATUS_UNDER_CONSTRUCTION = (1 << 2)
+};
+
+// Retail onCreate materializes 12 bytes from Object::m_status @ +0x90 even though
+// the live BitFlags field is 8 bytes (over-read of the next field).
+struct GrantUpgradeStatusBits12
+{
+	UnsignedInt d0;
+	UnsignedInt d1;
+	UnsignedInt d2;
+};
+
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // ??0GrantUpgradeCreateModuleData@@QAE@XZ present-unmatched
@@ -87,15 +103,22 @@ GrantUpgradeCreate::~GrantUpgradeCreate( void )
 //-------------------------------------------------------------------------------------------------
 /** The create callback. */
 //-------------------------------------------------------------------------------------------------
-// ?onCreate@GrantUpgradeCreate@@UAEXXZ present-unmatched
+// ?onCreate@GrantUpgradeCreate@@UAEXXZ
 void GrantUpgradeCreate::onCreate( void )
 {
-
-	ObjectStatusMaskType exemptStatus = getGrantUpgradeCreateModuleData()->m_exemptStatus;
-	ObjectStatusMaskType currentStatus = getObject()->getStatusBits();
-	if( exemptStatus.test( OBJECT_STATUS_UNDER_CONSTRUCTION ) )
+	// Evaluate object status first so MSVC 7.1 matches the retail load order.
+	// Retail tests Generals-style mask 0x4 (UNDER_CONSTRUCTION), not ZH BitFlags index 3.
+	// m_exemptStatus is ObjectStatusMaskType in the ZH header; BFME stores/tests it as a
+	// Generals bitmask in the first dword (test byte [moduleData+0xc], 4).
+	GrantUpgradeStatusBits12 currentStatus =
+		*reinterpret_cast<const GrantUpgradeStatusBits12 *>(
+			reinterpret_cast<const char *>( getObject() ) + 0x90 );
+	UnsignedInt exemptStatus =
+		*reinterpret_cast<const UnsignedInt *>(
+			&getGrantUpgradeCreateModuleData()->m_exemptStatus );
+	if( BitTest( exemptStatus, BFME_OBJECT_STATUS_UNDER_CONSTRUCTION ) == TRUE )
 	{
-		if(	!currentStatus.test( OBJECT_STATUS_UNDER_CONSTRUCTION ) ) 
+		if( BitTest( currentStatus.d0, BFME_OBJECT_STATUS_UNDER_CONSTRUCTION ) == FALSE )
 		{
 			const UpgradeTemplate *upgradeTemplate = TheUpgradeCenter->findUpgrade( getGrantUpgradeCreateModuleData()->m_upgradeName );
 			if( !upgradeTemplate )
@@ -104,18 +127,16 @@ void GrantUpgradeCreate::onCreate( void )
 				return;
 			}
 
-			Player *player = getObject()->getControllingPlayer();
 			if( upgradeTemplate->getUpgradeType() == UPGRADE_TYPE_PLAYER )
 			{
 				// get the player
+				Player *player = getObject()->getControllingPlayer();
 				player->addUpgrade( upgradeTemplate, UPGRADE_STATUS_COMPLETE );
 			}
 			else
 			{
 				getObject()->giveUpgrade( upgradeTemplate );
 			}
-			
-			player->getAcademyStats()->recordUpgrade( upgradeTemplate, TRUE );
 		}
 	}
 
