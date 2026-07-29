@@ -8302,24 +8302,8 @@ struct TightenPathStruct
 	return 0;	// keep going
 }
 
-/* Returns the cost, which is in the same units as coord3d distance. */
-// ?tightenPath@Pathfinder@@IAEXPAVObject@@ABVLocomotorSet@@PAUCoord3D@@PBU4@@Z present-unmatched
-void Pathfinder::tightenPath(Object *obj, const LocomotorSet& locomotorSet, Coord3D *from, 
-		const Coord3D *to)
-{
-	TightenPathStruct info;
-
-	getRadiusAndCenter(obj, info.radius, info.center);
-	info.layer = TheTerrainLogic->getLayerForDestination(from);
-	info.obj = obj;
-	info.locomotorSet = &locomotorSet;
-	info.foundDest = false;
-	iterateCellsAlongLine(*from, *to, info.layer, tightenPathCallback, &info);
-	if (info.foundDest) {
-		*from = info.destPos;
-	}
-}
-
+/* Pathfinder::tightenPath — landed as clean C++ in pathfind_tightenPath.cpp
+   (retail RVA 0x003F5FD0 size 143; BFME layout/iterate differs from ZH). */
 
 /* Returns the cost, which is in the same units as coord3d distance. */
 // ?checkPathCost@Pathfinder@@ present-unmatched
