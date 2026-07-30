@@ -2128,6 +2128,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SubObjectsUpgradeModuleData@@QAE@XZ,,0x0012B6C0,194,Code/masm_dumps/SubObjectsUpgradeModuleData_constructor.asm,matched,Exact 194B @ 0x0012B6C0; Exact retail MASM ModuleData ctor; unique factory 0x12B7F0
 ??0SubsystemInterface@@QAE@XZ,,0x009A1A30,16,Code/GameEngine/Source/Common/System/SubsystemInterface.cpp,matched,MASM converted to clean C++
 ??0SubsystemInterfaceList@@QAE@XZ,,0x0040D800,22,Code/GameEngine/Source/Common/System/SubsystemInterface.cpp,matched,
+??0SubsystemLegend@@QAE@XZ,,0x00078AD0,85,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,BFME-only subsystem; base ctor 0x009A1A30 + list<Entry> node (0x38)
 ??0SuperweaponInfo@@QAE@W4ObjectID@@I_N111ABVAsciiString@@H1HPBVSpecialPowerTemplate@@@Z,,0x0043D8C0,236,Code/masm_dumps/SuperweaponInfo_ctor_43D8C0.asm,matched,true body via addSuperweapon call; queue 0x57CF1B was int3 pad; MASM exact bytes
 ??0SupplyCenterDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00021CE2,5,Code/masm_dumps/__0SupplyCenterDockUpdate__QAE_PAVThing__PBVModuleData___Z_21CE2.asm,matched,MASM exact retail dump
 ??0SupplyCenterDockUpdateModuleData@@QAE@XZ,,0x002CF5A0,36,Code/masm_dumps/SupplyCenterDockUpdateModuleData_constructor.asm,matched,Exact 36B unique factory Open-BFME4
@@ -3049,6 +3050,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1StructureToppleUpdateModuleData@@UAE@XZ,,0x0012C180,163,Code/masm_dumps/StructureToppleUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x12C150 ctor 0x12BF50 vt 0xC8F700
 ??1SubObjectsUpgradeModuleData@@UAE@XZ,,0x002D8A60,343,Code/masm_dumps/SubObjectsUpgradeModuleData_destructor.asm,matched,Exact 343B @ 0x002D8A60; Exact retail MASM; factory->vtable dtor; del 0x12B7C0 ctor 0x12B6C0 vt 0xC8F548
 ??1SubsystemInterface@@UAE@XZ,,0x009D19A0,93,Code/masm_dumps/_leaf2___1SubsystemInterface__UAE_XZ_9D19A0.asm,matched,Exact 93B present-unmatched Open-BFME4
+??1SubsystemLegend@@UAE@XZ,,0x009A1540,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,explicit m_entries.clear() then implicit member+base dtor (base dtor 0x009A1A40)
 ??1SupplyCenterProductionExitUpdateModuleData@@UAE@XZ,,0x0037CC50,222,Code/masm_dumps/SupplyCenterProductionExitUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x37CE80 ctor 0x37CC20 vt 0xCEA8D4
 ??1SupplyTruckAIUpdate@@UAE@XZ,,0x002C5580,154,Code/masm_dumps/SupplyTruckAIUpdate_destructor.asm,matched,Exact 154B @ 0x002C5580; Exact retail MASM; instance factory->vtable dtor; del 0x2C5E30 ctor 0x2C6AE0 vt 0xCC8FE8
 ??1SupplyTruckAIUpdateModuleData@@UAE@XZ,,0x00124430,79,Code/masm_dumps/SupplyTruckAIUpdateModuleData_destructor.asm,matched,Exact 79B @ 0x00124430; Exact retail MASM; factory->vtable dtor; del 0x124400 ctor 0x11B860 vt 0xC8A3A8
@@ -5016,6 +5018,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GStructureToppleUpdateModuleData@@UAEPAXI@Z,,0x0012C150,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??_GSubObjectsUpgradeModuleData@@UAEPAXI@Z,,0x0012B7C0,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??_GSubsystemInterface@@UAEPAXI@Z,,0x009A1D00,30,Code/GameEngine/Source/Common/System/SubsystemInterface.cpp,matched,
+??_GSubsystemLegend@@UAEPAXI@Z,,0x00078B50,30,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,scalar deleting dtor (vtable slot 0)
 ??_GSupplyCenterProductionExitUpdateModuleData@@UAEPAXI@Z,,0x0037CE80,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??_GSupplyTruckAIUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSupplyTruckAIUpdateModuleData@@UAEPAXI@Z,,0x00124400,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
@@ -8970,6 +8973,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clear@?$StringBase@D@@QAEXXZ,0x00041A38,0x000680C0,5,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,clears string by releasing buffer; size trimmed: trailing int3 padding
 ?clear@?$StringBase@G@@QAEXXZ,0x00024C85,0x00068090,5,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,clears wide string by releasing buffer; size trimmed: trailing int3 padding
 ?clear@?$_List_base@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXXZ,,0x00075BD0,49,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,
+?clear@?$_List_base@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAEXXZ,,0x000788C0,58,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport list<Entry> clear(); tail-called by init/reset via thunk 0x00005BFF
 ?clear@?$_List_base@VBuddyMessage@@V?$allocator@VBuddyMessage@@@_STL@@@_STL@@QAEXXZ,,0x00633A80,58,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?clear@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@VHotKey@@@_STL@@@3@@_STL@@QAEXXZ,,0x005B3370,51,Code/GameEngine/Source/GameClient/MessageStream/HotKey.cpp,matched,MASM converted to clean C++
 ?clear@?$hashtable@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QB,,0x000458BD,5,Code/masm_dumps/_clear___hashtable_U__pair_QBVGameWindow__PAVWindowVideo____STL__PBVGameWindow__UhashConstGameWindowPtr_Window_458BD.asm,matched,MASM exact retail dump
@@ -11541,6 +11545,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@ShellGameLoadScreen@@,,0x004920E0,517,Code/masm_dumps/_s4__init_ShellGameLoadScreen__4920E0.asm,matched,Exact string-anchored Open-BFME4+Grok
 ?init@ShellMenuSchemeManager@@QAEXXZ,,0x00580290,1,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp,matched,Retail manager init is a no-op; Shell init caller and unique thunk prove ownership
 ?init@SnowManager@@UAEXXZ,,0x0045A970,34,Code/masm_dumps/_rn9__init_SnowManager__UAEXXZ_45A970.asm,matched,reloc-needle Open-BFME4+Grok
+?init@SubsystemLegend@@UAEXXZ,,0x009A14B0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 1)
 ?init@TeamsInfo@@QAEXPBVDict@@@Z,,0x00191410,28,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?init@TerrainShaderPixelShader@@EAEHXZ,,0x007E1F60,146,Code/masm_dumps/_sa12__init_TerrainShaderPixelShader__EAEHXZ_7E1F60.asm,matched,string-anchor Open-BFME4+Grok shaders\terrainnoise2.pso
 ?init@TextOnFrameTransition@@UAEXPAVGameWindow@@@Z,,0x005A02B0,23,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
@@ -11972,6 +11977,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onBodyDamageStateChange@SpawnBehavior@@UAEXPBVDamageInfo@@W4BodyDamageType@@1@Z,,0x006CF660,3,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehavior.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
 ?onBuildComplete@GrantUpgradeCreate@@UAEXXZ,,0x0024F9D0,78,Code/GameEngine/Source/GameLogic/Object/Create/GrantUpgradeCreate.cpp,matched,
 ?onCollide@ToppleUpdate@@UAEXPAVObject@@PBUCoord3D@@1@Z,,0x002B12C0,161,Code/masm_dumps/onCollide_ToppleUpdate_UAEXPAVObject_PBUCoord3D_1_Z_002B12C0_e8785e1b.asm,matched,Certified packet 32; vtable slot thunk 0x00028948 to body; retail sha256 e8785e1bacdd68f43b7ed8db67c515f1a9957f6e0fd9ad890a919711e3a93870
+?onCreate@GrantUpgradeCreate@@UAEXXZ,,0x0024FB90,109,Code/GameEngine/Source/GameLogic/Object/Create/GrantUpgradeCreate.cpp,matched,certified packet id 363; true body RVA 0x0024FB90 size 109
 ?onDie@SlowDeathBehavior@@UAEXPBVDamageInfo@@@Z,,0x0020A150,842,Code/masm_dumps/SlowDeathBehavior_onDie.asm,matched,Certified packet 11 vtable slot thunk ownership exact retail body SHA256 2699d9d667d933d9a257987982a7662d56ffa05a35eb5f4e98db40369fe831df
 ?onDie@StructureToppleUpdate@@UAEXPBVDamageInfo@@@Z,,0x002AE520,145,Code/masm_dumps/_sa13__onDie_StructureToppleUpdate__UAEXPBVDamageInfo___Z_2AE520.asm,matched,multi-xref Open-BFME4+Grok BoneFXUpdate
 ?onDisabledEdge@Object@@IAEX_N@Z,,0x001C3550,259,Code/masm_dumps/_onDisabledEdge_Object__IAEX_N_Z_1C3550.asm,matched,Exact 259B MASM @ 0x1C3550; setDisabledUntil/clearDisabled via ILT 0x45430; RadarUpgrade+power; queue 0x76D8A9 misplaced
@@ -12571,6 +12577,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reset@SimpleObjectIterator@@AAEXXZ,,0x001DDD50,7,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,Unique padded iterator reset
 ?reset@SmudgeManager@@UAEXXZ,,0x005D3F90,163,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ?reset@SmudgeSet@@QAEXXZ,,0x005D3D50,126,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
+?reset@SubsystemLegend@@UAEXXZ,,0x009A14C0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 4)
 ?reset@TeamFactory@@UAEXXZ,,0x000F7570,13,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
 ?reset@W3DRadar@@UAEXXZ,,0x006C1890,205,Code/masm_dumps/reset_W3DRadar_UAEXXZ_006C1890_packet323.asm,matched,Certified packet 323 exact retail bytes SHA256 2251962adb7e00fb76a9ab1e8f9efd79e757ddc1df0ddbfc69b9858dd35161d8
 ?reset@WindowVideoManager@@UAEXXZ,,0x00498F90,149,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
@@ -13155,6 +13162,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?testGrab@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x0047D750,13,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?testMinSpecRequirements@Display@@UAE_NPA_N00PAW4StaticGameLODLevel@@PAM@Z,,0x0040F5B0,26,Code/GameEngine/Source/GameClient/Display.cpp,matched,
 ?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,,0x00019BCD,5,Code/masm_dumps/_thunk_8d4ed024ffb4_19BCD.asm,matched,thunk accessor of ported class
+?tightenPath@Pathfinder@@IAEXPAVObject@@ABVLocomotorSet@@PAUCoord3D@@PBU4@@Z,,0x003F5FD0,143,Code/GameEngine/Source/GameLogic/AI/pathfind_tightenPath.cpp,matched,clean C++; BFME 0x34 TightenPathStruct + 2-arg getLayer + 4-arg iterate; sealed RVA 0x3F5FD0 size 143
 ?tintAllColors@DefaultColorModuleInfo@FXParticleSystem@@QAEXH@Z,0x0002C228,0x5ef6c0,283,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?toAngle@Coord2D@@QBEMXZ,0x00046e52,0x001a5cb0,148,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,
 ?toLower@?$StringBase@D@@QAEXXZ,0x00887DA0,0x887da0,229,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
@@ -13251,6 +13259,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@StealthDetectorUpdate@@,,0x002AB690,1954,Code/masm_dumps/_str__update_StealthDetectorUpdate__2AB690.asm,matched,
 ?update@StructureCollapseUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002AE950,944,Code/masm_dumps/StructureCollapseUpdate_update.asm,matched,retail MASM; ctor vtable 0x10C4644 slot 0 via thunk 0x002E4C9; Ghidra ENTRY 944
 ?update@StructureToppleUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x008F7E80,769,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate_update.asm,matched,exact 769B via MASM
+?update@SubsystemLegend@@UAEXXZ,,0x00078B40,1,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,empty override (base slot 5)
 ?update@SupplyTruckBusyState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@SupplyTruckIdleState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@TextTypeTransition@@UAEXH@Z,,0x005A0910,180,Code/masm_dumps/TextTypeTransition_update.asm,matched,Exact retail MASM; true body 0x5A0910/180 via TextType vtable@0x110CCFC slot2; queue 0x4A2737 wrong; C++ blocked by +0x10/+0x14 layout + no GUITypeText
@@ -13585,12 +13594,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?onCreate@GrantUpgradeCreate@@UAEXXZ,,0x0024FB90,109,Code/GameEngine/Source/GameLogic/Object/Create/GrantUpgradeCreate.cpp,matched,certified packet id 363; true body RVA 0x0024FB90 size 109
-?tightenPath@Pathfinder@@IAEXPAVObject@@ABVLocomotorSet@@PAUCoord3D@@PBU4@@Z,,0x003F5FD0,143,Code/GameEngine/Source/GameLogic/AI/pathfind_tightenPath.cpp,matched,clean C++; BFME 0x34 TightenPathStruct + 2-arg getLayer + 4-arg iterate; sealed RVA 0x3F5FD0 size 143
-?clear@?$_List_base@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAEXXZ,,0x000788C0,58,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport list<Entry> clear(); tail-called by init/reset via thunk 0x00005BFF
-??0SubsystemLegend@@QAE@XZ,,0x00078AD0,85,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,BFME-only subsystem; base ctor 0x009A1A30 + list<Entry> node (0x38)
-?update@SubsystemLegend@@UAEXXZ,,0x00078B40,1,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,empty override (base slot 5)
-?init@SubsystemLegend@@UAEXXZ,,0x009A14B0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 1)
-?reset@SubsystemLegend@@UAEXXZ,,0x009A14C0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 4)
-??1SubsystemLegend@@UAE@XZ,,0x009A1540,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,explicit m_entries.clear() then implicit member+base dtor (base dtor 0x009A1A40)
-??_GSubsystemLegend@@UAEPAXI@Z,,0x00078B50,30,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,scalar deleting dtor (vtable slot 0)

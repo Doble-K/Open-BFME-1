@@ -1200,6 +1200,7 @@ name,address,notes
 ??0TerrainLogic@@QAE@XZ,0x00011C75,createTerrainLogic REL32 pin (thunk); body 0x6BE070 inits [esi+0xC] and [esi+0x18FC], sizeof 0x1904
 ??0TerrainLogic@@QAE@XZ,0x006BE070,createTerrainLogic REL32 pin (body)
 ??0TexBufferClass@@QAE@HPBD@Z,0x0092BA60
+??0TightenPathStruct@@QAE@PAVPathfinder@@PAVObject@@PBVLocomotorSet@@W4PathfindLayerEnum@@PBUCoord3D@@@Z,0x0002D7F9,tightenPath info init (thunk->0x003E1720)
 ??0TileData@@QAE@XZ,0x0003B6B5
 ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00006780,pinharvest x1 (thunk)
 ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002CD4F,pinharvest x1 (thunk)
@@ -1543,6 +1544,7 @@ name,address,notes
 ??1SubsystemInterface@@UAE@XZ,0x0003692B,pinharvest x2 (thunk)
 ??1SubsystemInterface@@UAE@XZ,0x009A1A40
 ??1SubsystemInterface@@UAE@XZ,0x009D19A0,pinharvest x2 (body)
+??1SubsystemLegendEntry@@QAE@XZ,0x00078210,SubsystemLegend.cpp element dtor; retail body inlines nothing of AsciiString::~AsciiString (out-of-line 0x00887940) so ours is not byte-equal yet
 ??1TeamsInfo@@QAE@XZ,0x00008CBA,pinharvest x1 (thunk)
 ??1TeamsInfo@@QAE@XZ,0x00030652,pinharvest x1 (thunk)
 ??1TeamsInfo@@QAE@XZ,0x0003B304,pinharvest x1 (thunk)
@@ -2934,6 +2936,7 @@ name,address,notes
 ?getHeightAboveTerrainOrWater@Thing@@QBEMXZ,0x00005948,pinharvest x1 (thunk)
 ?getID@AIGroup@@QAEIXZ,0x000131DD
 ?getID@Drawable@@QBE?AW4DrawableID@@XZ,0x00009B01
+?getLayerForDestination@TerrainLogic@@QAE?AW4PathfindLayerEnum@@PAVObject@@PBUCoord3D@@@Z,0x0001C675,tightenPath 2-arg BFME getLayer (thunk->0x001A7C20)
 ?getListboxBottomEntry@@YAHPAU_ListboxData@@@Z,0x004B6BA0
 ?getListboxEntryBasedOnCoord@@YAHPAVGameWindow@@HHAAH1@Z,0x004B69D0
 ?getListboxTopEntry@@YAHPAU_ListboxData@@@Z,0x004B6B60
@@ -3075,6 +3078,7 @@ name,address,notes
 ?isScienceGrantable@ScienceStore@@QBE_NW4ScienceType@@@Z,0x0003882A
 ?isSlotLocalAlly@@YA_NPBVGameSlot@@@Z,0x0061ED20
 ?isUsingAirborneLocomotor@Object@@QBE_NXZ,0x0000A001,ILT thunk to 0x001C1770
+?iterateCellsAlongLine@Pathfinder@@IAEHABUICoord2D@@0W4PathfindLayerEnum@@PAX@Z,0x000190B0,tightenPath 4-arg iterate (thunk->0x003F1F00)
 ?iterateObjects@Player@@QBEXP6AXPAVObject@@PAX@Z1@Z,0x0002F1CB
 ?keyToName@NameKeyGenerator@@QAE?AVAsciiString@@W4NameKeyType@@@Z,0x0003EC7A
 ?killRunningParticleSystems@BoneFXUpdate@@IAEXXZ,0x0000628F
@@ -3542,7 +3546,3 @@ _atexit,0x009F6E26,CRT atexit (registers static destructors)
 _bfme_acos,0x009F7256,internal acos helper called by ACos
 _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
-?getLayerForDestination@TerrainLogic@@QAE?AW4PathfindLayerEnum@@PAVObject@@PBUCoord3D@@@Z,0x0001C675,tightenPath 2-arg BFME getLayer (thunk->0x001A7C20)
-??0TightenPathStruct@@QAE@PAVPathfinder@@PAVObject@@PBVLocomotorSet@@W4PathfindLayerEnum@@PBUCoord3D@@@Z,0x0002D7F9,tightenPath info init (thunk->0x003E1720)
-?iterateCellsAlongLine@Pathfinder@@IAEHABUICoord2D@@0W4PathfindLayerEnum@@PAX@Z,0x000190B0,tightenPath 4-arg iterate (thunk->0x003F1F00)
-??1SubsystemLegendEntry@@QAE@XZ,0x00078210,SubsystemLegend.cpp element dtor; retail body inlines nothing of AsciiString::~AsciiString (out-of-line 0x00887940) so ours is not byte-equal yet

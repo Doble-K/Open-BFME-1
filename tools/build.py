@@ -308,7 +308,9 @@ def compiler_environment(root, source=None):
             include = str(stlport) + os.pathsep + include
         env["INCLUDE"] = include
         env["LIB"] = str(root / "Vc7" / "lib")
-        env["PATH"] = os.pathsep.join([str(bin_dir), str(ide_dir), env.get("PATH", "")])
+        # MSVC 7.1 runtime DLLs (msvcp71.dll) live in the toolchain root, not
+        # bin/ or Common7/IDE/. Add base_dir so the compiler back-ends load.
+        env["PATH"] = os.pathsep.join([str(bin_dir), str(ide_dir), str(base_dir), env.get("PATH", "")])
         return env
 
     include = wine_path(root / "Vc7" / "include")
@@ -331,7 +333,9 @@ def source_extra_flags(source):
     with source.open("r", encoding="utf-8", errors="replace") as handle:
         for line in handle.read(2048).splitlines():
             if line.startswith("// cl:"):
-                return line[len("// cl:") :].split()
+                # Use '-' style options so MSYS/Cygwin shells don't rewrite
+                # leading '/' arguments as Windows paths.
+                return [f.replace("/", "-", 1) if f.startswith("/") else f for f in line[len("// cl:") :].split()]
     return []
 
 
@@ -352,10 +356,10 @@ def compiler_command(source, output):
         assembler = root / "Vc7" / "bin" / "ml.exe"
         command += [
             str(assembler),
-            "/nologo",
-            "/c",
-            "/Cx",
-            f"/Fo{output_arg}",
+            "-nologo",
+            "-c",
+            "-Cx",
+            f"-Fo{output_arg}",
             source_arg,
         ]
         return command, compiler_environment(root, source)
@@ -363,15 +367,15 @@ def compiler_command(source, output):
     compiler = root / "Vc7" / "bin" / "cl.exe"
     command += [
         str(compiler),
-        "/nologo",
-        "/c",
-        "/O2",
-        "/GR-",
-        "/EHsc-",
+        "-nologo",
+        "-c",
+        "-O2",
+        "-GR-",
+        "-EHsc-",
     ]
     command += source_extra_flags(source)
     command += [
-        f"/Fo{output_arg}",
+        f"-Fo{output_arg}",
         source_arg,
     ]
     return command, compiler_environment(root, source)
@@ -611,7 +615,7 @@ def compile_source(source, output):
     fingerprint = _cmd_fingerprint(command, env)
     for attempt in range(3):
         result = subprocess.run(
-            command + (["/showIncludes"] if is_cl else []),
+            command + (["-showIncludes"] if is_cl else []),
             cwd=ROOT,
             env=env,
             stdout=subprocess.PIPE,
@@ -629,7 +633,7 @@ def compile_source(source, output):
                 env = dict(env)
                 extra = ";".join(wine_path(d) for d in _SWEEP_INCLUDE_DIRS if d.exists())
                 env["INCLUDE"] = env["INCLUDE"] + ";" + extra
-                command = list(command) + [f"/I{wine_path(d)}" for d in _SWEEP_INCLUDE_DIRS if d.exists()]
+                command = list(command) + [f"-I{wine_path(d)}" for d in _SWEEP_INCLUDE_DIRS if d.exists()]
                 continue
         transient = (not result.stdout.strip()
                      or "Application could not be started" in result.stdout
