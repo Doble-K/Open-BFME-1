@@ -13594,3 +13594,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parseReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B20,86,Code/masm_dumps/parseReal_INI_SAXPAV1_PAX1PBX_Z_852B20.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
 ?parseBool@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E00,86,Code/masm_dumps/parseBool_INI_SAXPAV1_PAX1PBX_Z_852E00.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
 ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852EE0,102,Code/masm_dumps/parsePercentToReal_INI_SAXPAV1_PAX1PBX_Z_852EE0.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
+??1SubsystemLegendEntry@@QAE@XZ,,0x00078210,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,element dtor; stand-in members keep AsciiString/vector release out-of-line (pins 0x00887940 / 0x000658A0)
