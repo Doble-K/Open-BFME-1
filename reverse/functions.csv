@@ -13587,3 +13587,10 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?onCreate@GrantUpgradeCreate@@UAEXXZ,,0x0024FB90,109,Code/GameEngine/Source/GameLogic/Object/Create/GrantUpgradeCreate.cpp,matched,certified packet id 363; true body RVA 0x0024FB90 size 109
 ?tightenPath@Pathfinder@@IAEXPAVObject@@ABVLocomotorSet@@PAUCoord3D@@PBU4@@Z,,0x003F5FD0,143,Code/GameEngine/Source/GameLogic/AI/pathfind_tightenPath.cpp,matched,clean C++; BFME 0x34 TightenPathStruct + 2-arg getLayer + 4-arg iterate; sealed RVA 0x3F5FD0 size 143
+?clear@?$_List_base@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAEXXZ,,0x000788C0,58,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport list<Entry> clear(); tail-called by init/reset via thunk 0x00005BFF
+??0SubsystemLegend@@QAE@XZ,,0x00078AD0,85,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,BFME-only subsystem; base ctor 0x009A1A30 + list<Entry> node (0x38)
+?update@SubsystemLegend@@UAEXXZ,,0x00078B40,1,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,empty override (base slot 5)
+?init@SubsystemLegend@@UAEXXZ,,0x009A14B0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 1)
+?reset@SubsystemLegend@@UAEXXZ,,0x009A14C0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 4)
+??1SubsystemLegend@@UAE@XZ,,0x009A1540,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,explicit m_entries.clear() then implicit member+base dtor (base dtor 0x009A1A40)
+??_GSubsystemLegend@@UAEPAXI@Z,,0x00078B50,30,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,scalar deleting dtor (vtable slot 0)
