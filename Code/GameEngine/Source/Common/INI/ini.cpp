@@ -1732,12 +1732,7 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 /*static*/ Int INI::scanIndexList(const char* token, ConstCharPtrArray nameList)
 {
 	if( nameList == NULL || nameList[ 0 ] == NULL )
-	{
-
-		DEBUG_ASSERTCRASH( 0, ("INTERNAL ERROR! scanIndexList, invalid name list\n") );
-		throw INI_INVALID_NAME_LIST;
-
-	}
+		throw INIException(2, "INTERNAL ERROR! scanIndexList: No name list provided!");
 
 	// search for matching name
 	Int count = 0;
@@ -1749,36 +1744,26 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 		}
 	}
 
-	DEBUG_CRASH(("token %s is not a valid member of the index list\n",token));
-	throw INI_INVALID_DATA;
-	return 0;	// never executed, but keeps compiler happy
-
+	throw INIException(3, "Token '%s' is not a valid member of the index list", token);
 }
 //-------------------------------------------------------------------------------------------------
+// BFME reports both failures as INIException with a formatted message rather
+// than ZH's bare error codes; the two message strings below are transcribed
+// from retail (0x011303E0 and 0x01130418), and the leading count is the
+// argument count the varargs ctor takes.
 /*static*/ Int INI::scanLookupList(const char* token, ConstLookupListRecArray lookupList)
 {
 	if( lookupList == NULL || lookupList[ 0 ].name == NULL )
-	{
-		DEBUG_ASSERTCRASH( 0, ("INTERNAL ERROR! scanLookupList, invalid name list\n") );
-		throw INI_INVALID_NAME_LIST;
-	}
+		throw INIException(2, "INTERNAL ERROR! scanLookupList: No name list provided!");
 
 	// search for matching name
-	Bool found = false;
 	for( const LookupListRec* lookup = &lookupList[0]; lookup->name; lookup++ )
 	{
 		if( stricmp( lookup->name, token ) == 0 )
-		{
 			return lookup->value;
-			found = true;
-			break;
-		}
 	}
 
-	DEBUG_CRASH(("token %s is not a valid member of the lookup list\n",token));
-	throw INI_INVALID_DATA;
-	return 0;	// never executed, but keeps compiler happy
-
+	throw INIException(3, "Token '%s' is not a valid member of the lookup list", token);
 }
 
 //-------------------------------------------------------------------------------------------------
