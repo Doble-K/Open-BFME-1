@@ -51,3 +51,25 @@ public:
 };
 
 extern SubsystemInterfaceList *TheSubsystemList;
+
+// The eight-byte polymorphic holder the initSubsystem template news for every
+// subsystem: a vptr (retail 0x01075D8C) plus the address of the global the
+// subsystem was stored into. Handed to SubsystemInterfaceList::initSubsystem as
+// its second argument and parked alongside the subsystem in m_subsystems, which
+// is why that vector holds pairs.
+class SubsystemSlot
+{
+public:
+	SubsystemSlot(void *slot) : m_slot(slot) {}
+	virtual ~SubsystemSlot();
+	void *m_slot;
+};
+
+// GameEngine::init calls this once per subsystem; ZH has the same helper.
+template<class SUBSYSTEM>
+void initSubsystem(SUBSYSTEM *&sysref, AsciiString name, SUBSYSTEM *sys, Xfer *pXfer,
+				   const char *path1 = 0, const char *path2 = 0, const char *dirpath = 0)
+{
+	sysref = sys;
+	TheSubsystemList->initSubsystem(sys, new SubsystemSlot(&sysref), path1, path2, dirpath, pXfer, name);
+}

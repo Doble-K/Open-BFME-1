@@ -15,21 +15,28 @@ AsciiString bfme_force_ascii_string_default_ctor_emission()
 {
     return AsciiString();
 }
+
+// Likewise for the copy ctor, which is inline in the header (see there) but
+// still has its own 19-byte out-of-line COMDAT in retail.
+AsciiString bfme_force_ascii_string_copy_ctor_emission(const AsciiString &that)
+{
+    return AsciiString(that);
+}
+
+AsciiString bfme_force_ascii_string_cstr_ctor_emission(const char *str)
+{
+    return AsciiString(str);
+}
+
+void bfme_force_ascii_string_assign_emission(AsciiString &dst, const AsciiString &src)
+{
+    dst = src;
+}
 #pragma auto_inline(on)
 
 AsciiString::AsciiString(char c)
 {
     ((StringBase<char> *)this)->StringBase<char>::StringBase(c);
-}
-
-AsciiString::AsciiString(const char *str)
-{
-    ((StringBase<char> *)this)->StringBase<char>::StringBase(str);
-}
-
-AsciiString::AsciiString(const AsciiString &that)
-{
-    ((StringBase<char> *)this)->StringBase<char>::StringBase(*(const StringBase<char> *)&that);
 }
 
 AsciiString::AsciiString(const AsciiString &that, int start, int len)
@@ -51,12 +58,6 @@ AsciiString &AsciiString::operator=(char c)
 {
     char ch = c;
     ((StringBase<char> *)this)->set(&ch, 1);
-    return *this;
-}
-
-AsciiString &AsciiString::operator=(const AsciiString &that)
-{
-    ((StringBase<char> *)this)->set(*(const StringBase<char> *)&that);
     return *this;
 }
 

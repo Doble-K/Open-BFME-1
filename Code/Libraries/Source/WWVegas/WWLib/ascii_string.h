@@ -2,6 +2,9 @@
 
 #include "string_base.h"
 
+extern "C" int __cdecl memcmp(const void *buf1, const void *buf2, unsigned int count);
+#pragma intrinsic(memcmp)
+
 class UnicodeString;
 
 class AsciiString {
@@ -11,13 +14,34 @@ public:
     // still emits the out-of-line COMDAT at 0x00062030 for its 10 callers.
     AsciiString() { m_text = 0; }
     AsciiString(char c);
-    AsciiString(const AsciiString &that);
-    AsciiString(const char *str);
+    // Inline for the same reason as the default ctor, and provably so: retail
+    // call sites that copy an AsciiString emit `call StringBase<char>::StringBase`
+    // directly rather than a call to this ctor, which only happens if the
+    // delegation is visible. It also changes how MSVC schedules the unwind-esp
+    // record for by-value AsciiString arguments (retail records esp before
+    // loading it into ecx), which is what several callers depend on to match.
+    AsciiString(const AsciiString &that)
+    {
+        ((StringBase<char> *)this)->StringBase<char>::StringBase(*(const StringBase<char> *)&that);
+    }
+    // Inline for the same reason, and by the same evidence: retail's
+    // INI::loadSubsystemFiles (0x000BB310) builds its AsciiString temp with a
+    // direct `call StringBase<char>::StringBase(const char *)`.
+    AsciiString(const char *str)
+    {
+        ((StringBase<char> *)this)->StringBase<char>::StringBase(str);
+    }
     AsciiString(const char *str, int len);
     AsciiString(const AsciiString &that, int start, int len);
     AsciiString(const UnicodeString &that);
     ~AsciiString();
-    AsciiString &operator=(const AsciiString &that);
+    // Same story again: SubsystemInterfaceList::initSubsystem (0x009A20B0)
+    // inlines setName and lands a direct `call StringBase<char>::set`.
+    AsciiString &operator=(const AsciiString &that)
+    {
+        ((StringBase<char> *)this)->set(*(const StringBase<char> *)&that);
+        return *this;
+    }
     AsciiString &operator=(char c);
     AsciiString &operator=(const char *str);
     AsciiString &operator=(const UnicodeString &that);
@@ -56,7 +80,24 @@ public:
     bool endsWithNoCase(const char *p) const { return ((const StringBase<char>*)this)->endsWithNoCase(p); }
     int compare(const char *p) const { return ((const StringBase<char>*)this)->compare(p); }
     int compareNoCase(const char *p) const { return ((const StringBase<char>*)this)->compareNoCase(p); }
-    int compare(const AsciiString &s) const { return ((const StringBase<char>*)this)->compare(*(const StringBase<char>*)&s); }
+    // Real body rather than a delegation: retail inlines this comparison at every
+    // call site (there is no out-of-line call to 0x0005FEB0 anywhere in the image),
+    // and SubsystemLegend::findEntry (0x009A11A0) only matches with the repe cmpsb
+    // in line. StringBase<char>::compare keeps its own out-of-line COMDAT.
+    int compare(const AsciiString &s) const
+    {
+        const StringBase<char> *self = (const StringBase<char> *)this;
+        const StringBase<char> *that = (const StringBase<char> *)&s;
+        int thatLen = that->m_data ? that->m_data->length : 0;
+        const char *thatData = that->m_data ? &that->m_data->data[0] : (const char *)"";
+        int thisLen = self->m_data ? self->m_data->length : 0;
+        const char *thisData = self->m_data ? &self->m_data->data[0] : (const char *)"";
+        int n = thisLen < thatLen ? thisLen : thatLen;
+        int c = memcmp(thisData, thatData, n);
+        if (c != 0)
+            return c;
+        return thisLen - thatLen;
+    }
     int compareNoCase(const AsciiString &s) const { return ((const StringBase<char>*)this)->compareNoCase(*(const StringBase<char>*)&s); }
 
     friend AsciiString operator+(AsciiString left, const char *right);

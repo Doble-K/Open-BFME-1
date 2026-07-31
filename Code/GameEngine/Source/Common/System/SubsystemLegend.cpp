@@ -97,11 +97,22 @@ Int SubsystemLegend::getEntryCount() const
 	return m_entries.size();
 }
 
-// findEntry (0x009A11A0) is NOT here. Its C++ reconstruction reached 262 of 264
-// bytes and was deleted with the rest of the non-1:1 code; the byte-exact MASM
-// dump in Code/masm_dumps/ owns that address. Restoring the C++ would also
-// restore _List_iterator<Entry>::operator* and operator-> (0x009A1090 /
-// 0x009A10A0), which only that body instantiates — they went with it.
+// ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z
+// The lookup the whole legend exists for: SubsystemInterface::loadIniFilesFromLegend
+// calls this with the subsystem's own name. It is also the only body in the TU
+// that instantiates _List_iterator<Entry>::operator* and operator->.
+SubsystemLegendEntry *SubsystemLegend::findEntry(AsciiString name)
+{
+	std::list<SubsystemLegendEntry>::iterator it;
+	for (it = m_entries.begin(); it != m_entries.end(); ++it)
+	{
+		AsciiString entryName = it->m_name;
+		if (entryName.compare(name) == 0)
+			return &(*it);
+	}
+	return NULL;
+}
+
 // ?addEntry@SubsystemLegend@@QAEXABUSubsystemLegendEntry@@@Z
 void SubsystemLegend::addEntry(const SubsystemLegendEntry &entry)
 {
