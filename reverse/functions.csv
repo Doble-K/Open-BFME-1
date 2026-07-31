@@ -5480,7 +5480,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Copy@VectorProcessorClass@@SAXPAIPBIH@Z,,0x00AFFB40,23,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?Copy@VectorProcessorClass@@SAXPAVVector2@@PBV2@H@Z,,0x00AFFB20,26,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?Copy@VectorProcessorClass@@SAXPAVVector3@@PBV2@H@Z,,0x00AFFB60,41,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
-?Copy@VectorProcessorClass@@SAXPAVVector4@@ABVVector3@@PBMH@Z,,0x00AFFD00,223,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?Copy@VectorProcessorClass@@SAXPAVVector4@@PBV2@H@Z,,0x00AFFB90,38,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?Copy@VectorProcessorClass@@SAXPAVVector4@@PBVVector3@@MH@Z,,0x00AFFCC0,57,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?Copy@VectorProcessorClass@@SAXPAVVector4@@PBVVector3@@PBMH@Z,,0x00AFFBC0,245,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
@@ -5488,8 +5487,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?CopyIndexed@VectorProcessorClass@@SAXPAIPBI1H@Z,,0x00AFFDF0,41,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?CopyIndexed@VectorProcessorClass@@SAXPAM0PBIH@Z,,0x00AFFE60,151,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?CopyIndexed@VectorProcessorClass@@SAXPAVVector2@@PBV2@PBIH@Z,,0x00B009D0,179,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
-?CopyIndexed@VectorProcessorClass@@SAXPAVVector3@@PBV2@PBIH@Z,,0x00B005F0,244,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
-?CopyIndexed@VectorProcessorClass@@SAXPAVVector4@@PBV2@PBIH@Z,,0x00B006F0,270,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?Copy_3x3_Matrix@Matrix3D@@QAEXQAY02M@Z,,0x008D7080,72,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
 ?Cos@@YAMM@Z,0x00873920,0x00873920,7,Code/GameEngine/Source/Common/System/Trig.cpp,matched,returns cosine of radians
 ?Cos@WWMath@@SAMM@Z,,0x005F0990,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
@@ -6690,7 +6687,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Grow_Unicode_Array@FontCharsClass@@AAEXG@Z,,0x0093D320,252,Code/masm_dumps/_rn4__Grow_Unicode_Array_FontCharsClass__AAEXG_Z_93D320.asm,matched,reloc-needle Open-BFME4+Grok
 ?Guess_Sort_Level@ShaderClass@@QBEHXZ,,0x00910E90,38,Code/masm_dumps/_Guess_Sort_Level_ShaderClass__QBEHXZ_910E90.asm,matched,MASM exact retail dump
 ?HSV_To_RGB@@YAXAAVVector3@@ABV1@@Z,,0x001068B0,358,Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp,matched,
-?HUFF_analysis@@YAXPAUHuffEncodeContext@@II@Z,,0x0081FB50,453,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,
 ?HUFF_deltabytes@@YAXPBXPAXH@Z,,0x0081F490,36,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,
 ?HUFF_init@@YAXPAUHuffEncodeContext@@@Z,,0x0081FA20,292,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,
 ?HUFF_maketree@@YAXPAUHuffEncodeContext@@@Z,,0x0081F5E0,398,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,
@@ -11559,7 +11555,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?initialize@GridTextureMapperClass@@IAEXMI@Z,,0x00964930,226,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ?initializeBonePositions@SpawnPointProductionExitUpdate@@AAEXXZ,,0x0003B566,5,Code/masm_dumps/_initializeBonePositions_SpawnPointProductionExitUpdate__AAEXXZ_3B566.asm,matched,MASM exact retail dump
 ?initiateIntentToDoSpecialPower@SpecialPowerModule@@IAE_NPBVObject@@PBUCoord3D@@PBVWaypoint@@I@Z,,0x0026A2E0,488,Code/masm_dumps/SpecialPowerModule_initiateIntentToDoSpecialPower.asm,matched,Exact 488B @ 0x26A2E0; queue 0x76E966 INSIDE mid-lea; 5x ILT callers from doSpecialPower* family; BFME-expanded SPU loop
-?insert4Way@W3DRoadBuffer@@IAEXVVector2@@HM@Z,,0x00706310,1964,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,thunk-dump converted to clean C++ (m_initialized guard + w3droadbuffer layout shim)
 ?insert@?$map@$$CBV?$BitFlags@$0BB@@@PBVWeaponTemplateSet@@UMapHelper@?$SparseMatchFinder@VWeaponTemplateSet@@V?$BitFlags@$0BB@@@@@V?$allocator@U?$pair@$$CBV?$BitFlags@$0BB@@@PBVWeaponTemplateSet@@@_STL@@@_STL@@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBV?$BitFlags@$0BB@@@PBVWeaponTemplateSet@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBV?$BitFlags@$0BB@@@PBVWeaponTemplateSet@@@_STL@@@2@@2@U32@ABU?$pair@$$CBV?$BitFlags@$0BB@@@PBVWeaponTemplateSet@@@2@@Z,,0x001444A0,31,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?insert@?$map@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@UMapHelper@?$SparseMatchFinder@VArmorTemplateSet@@V?$BitFlags@$0L@@@@@V?$allocator@U?$pair@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@@_STL@@@_STL@@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@@_STL@@@2@@2@U32@ABU?$pair@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@@2@@Z,,0x00144450,31,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?insert@?$map@GEU?$less@G@_STL@@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBGE@_STL@@U?$_Nonconst_traits@U?$pair@$$CBGE@_STL@@@2@@2@U32@ABU?$pair@$$CBGE@2@@Z,,0x00668A30,31,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,
@@ -12014,7 +12009,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@CylinderEmissionVolumeModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00034B35,0x5f9360,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@CylindricalEmissionVelocityModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002DE7A,0x5f8ed0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@DataChunkInput@@QAE_NPAX@Z,,0x009D22F0,1006,Code/GameEngine/Source/Common/System/DataChunk_parse.asm,matched,exact 1006B via MASM
-?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,23,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ?parse@LifeEventModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0003F553,0x5fc300,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@LightPulseFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042BE30,224,Code/masm_dumps/LightPulseFXNugget_parse_42BE30.asm,matched,Certified packet 31; LightPulse parser table ILT and Ghidra ret boundary; retail sha256 794285f856fbf02b8bb4305437cadc3c7f955c41640c3f12f132ec9ffea92e38
 ?parse@LightningDrawModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0003CBC3,0x5f4140,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -13625,3 +13619,9 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?normAngle@@YAXAAM@Z,,0x0073A900,134,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,true size 134B; row claimed 118B
 ?Set_LOD_Level@HLodClass@@UAEXH@Z,,0x0097A6A0,239,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,true size 239B; row claimed 222B
 ?HUFF_decompress@@YAHPAE0@Z,,0x00822110,3195,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,true size 3195B; row claimed 3161B
+?Copy@VectorProcessorClass@@SAXPAVVector4@@ABVVector3@@PBMH@Z,,0x00AFFD00,226,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,true size 226B; row claimed 223B
+?CopyIndexed@VectorProcessorClass@@SAXPAVVector3@@PBV2@PBIH@Z,,0x00B005F0,247,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,true size 247B; row claimed 244B
+?CopyIndexed@VectorProcessorClass@@SAXPAVVector4@@PBV2@PBIH@Z,,0x00B006F0,273,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,true size 273B; row claimed 270B
+?HUFF_analysis@@YAXPAUHuffEncodeContext@@II@Z,,0x0081FB50,2599,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,true size 2599B; row claimed 453B
+?insert4Way@W3DRoadBuffer@@IAEXVVector2@@HM@Z,,0x00706310,2178,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,true size 2178B; row claimed 1964B
+?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,55,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,true size 55B; row claimed 23B
