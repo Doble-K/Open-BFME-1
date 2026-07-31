@@ -13668,3 +13668,6 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?parseSpecialPowerTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BB210,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,was a 5B thunk claim at 0x0001D77D
 ?resendFrameRangeToPlayer@BFMEConnectionManager@@QAEXHII@Z,,0x00664B40,384,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processDisconnectScreenOff@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066B890,92,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
+?update@BFMEConnectionManager@@QAEXXZ,,0x0066AB30,814,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?runRelayPass@BFMEConnectionManager@@QAEXXZ,,0x0066A740,792,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?update@BFMEDisconnectManager@@QAEXPAX@Z,,0x0066C8D0,1122,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,

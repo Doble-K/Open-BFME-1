@@ -33,6 +33,8 @@ public:
 	Bool isPlayerSlotActive(int slot);
 	void markPlayerInGame(void *msg);
 	void relayCommand(void *ref);
+	void update();
+	void runRelayPass();
 	void resendFrameRangeToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame);
 };
 
@@ -40,6 +42,7 @@ class BFMEDisconnectManager
 {
 public:
 	Bool hasDisconnectScreenNotifyTimedOut(int playerID);
+	void update(void *conMgr);
 };
 
 __declspec(naked) Bool BFMEConnectionManager::isPlayerConnected(int playerID)
@@ -2673,5 +2676,1431 @@ L03_664CAC:
 		mov dword ptr fs:[0h], ecx
 		add esp, 10h
 		ret 0Ch
+	}
+}
+
+// The per-tick network update, and what drives the delay cadence: it is the
+// only caller of sendFrameInfo, so the frame ceiling is published from here.
+// It also runs the relay pass (0x0066A740) and the disconnect/timeout sweep
+// (0x0066C8D0), builds keep-alive and progress commands, and touches the tail
+// scalars at this+0x12050, +0x12054, +0x120E0, +0x12114 and +0x12115. Nothing
+// in .text calls it directly and it is in no recovered vtable, so retail must
+// reach it through a stored function pointer.
+__declspec(naked) void BFMEConnectionManager::update()
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104473Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 44h
+		push ebx
+		push ebp
+		mov ebp, ecx
+		mov eax, dword ptr [ebp+12050h]
+		xor ebx, ebx
+		cmp eax, ebx
+		push esi
+		push edi
+		mov dword ptr [esp+10h], ebx
+		jne L00_66AB6B
+		cmp word ptr [ebp+12054h], bx
+		je L01_66AE49
+L00_66AB6B:
+		mov ecx, dword ptr [ebp+12024h]
+		cmp ecx, ebx
+		je L02_66AB7A
+		__emit 0E8h
+		__emit 055h
+		__emit 0E5h
+		__emit 099h
+		__emit 0FFh   // call 0x90CF
+L02_66AB7A:
+		mov al, byte ptr [esp+64h]
+		test al, al
+		je L03_66ABCA
+		mov ecx, dword ptr [ebp+120E0h]
+		cmp ecx, ebx
+		je L04_66AB92
+		push ebp
+		__emit 0E8h
+		__emit 0EEh
+		__emit 0E4h
+		__emit 09Dh
+		__emit 0FFh   // call 0x49080
+L04_66AB92:
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 0E5h
+		__emit 0FAh
+		__emit 09Dh
+		__emit 0FFh   // call 0x4A67E
+		cmp dword ptr [esp+68h], ebx
+		je L03_66ABCA
+		__emit 08Bh
+		__emit 00Dh
+		__emit 014h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7714]
+		cmp ecx, ebx
+		je L05_66ABC3
+		mov eax, dword ptr [ecx]
+		call dword ptr [eax+0DCh]
+		test al, al
+		je L05_66ABC3
+		mov ecx, dword ptr [ebp+12028h]
+		cmp ecx, dword ptr [ebp+1202Ch]
+		je L03_66ABCA
+L05_66ABC3:
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 043h
+		__emit 04Bh
+		__emit 09Bh
+		__emit 0FFh   // call 0x1F70D
+L03_66ABCA:
+		__emit 0A1h
+		__emit 098h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f7198]
+		cmp eax, ebx
+		je L06_66AD90
+		__emit 039h
+		__emit 01Dh
+		__emit 0B4h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // cmp dword ptr [0x12f71b4], ebx
+		je L06_66AD90
+		mov cl, byte ptr [ebp+12115h]
+		test cl, cl
+		je L06_66AD90
+		mov cl, byte ptr [eax+43Ch]
+		test cl, cl
+		je L07_66AD89
+		mov edx, dword ptr [eax+464h]
+		push edx
+		mov edi, 111A2C0h
+		__emit 0E8h
+		__emit 090h
+		__emit 08Dh
+		__emit 036h
+		__emit 000h   // call 0x9D39A0
+		add esp, 4h
+		mov esi, eax
+		mov ecx, 9h
+		xor eax, eax
+		repe cmpsb
+		je L06_66AD90
+		__emit 08Bh
+		__emit 00Dh
+		__emit 098h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7198]
+		mov edx, dword ptr [ecx+464h]
+		push edx
+		__emit 0E8h
+		__emit 06Ah
+		__emit 08Dh
+		__emit 036h
+		__emit 000h   // call 0x9D39A0
+		push eax
+		__emit 0E8h
+		__emit 074h
+		__emit 097h
+		__emit 01Eh
+		__emit 000h   // call 0x8543B0
+		push 20h
+		mov ebx, eax
+		__emit 0E8h
+		__emit 0EBh
+		__emit 072h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 0Ch
+		mov dword ptr [esp+64h], eax
+		xor esi, esi
+		cmp eax, esi
+		mov dword ptr [esp+5Ch], esi
+		je L08_66AC5F
+		mov ecx, eax
+		__emit 0E8h
+		__emit 00Dh
+		__emit 0E3h
+		__emit 09Bh
+		__emit 0FFh   // call 0x28F6A
+		mov esi, eax
+L08_66AC5F:
+		mov ecx, dword ptr [ebp+12028h]
+		or eax, 0FFFFFFFFh
+		mov dword ptr [esp+5Ch], eax
+		mov dword ptr [esi+8h], eax
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov dword ptr [esi+0Ch], ecx
+		__emit 0E8h
+		__emit 0F7h
+		__emit 0AEh
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L09_66AC8B
+		__emit 0E8h
+		__emit 0D1h
+		__emit 058h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L09_66AC8B:
+		push ecx
+		mov ecx, esp
+		mov dword ptr [esp+68h], esp
+		push ebx
+		__emit 0E8h
+		__emit 0AAh
+		__emit 07Fh
+		__emit 09Ah
+		__emit 0FFh   // call 0x12C42
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0C6h
+		__emit 0FDh
+		__emit 099h
+		__emit 0FFh   // call 0xAA65
+		mov ecx, dword ptr [ebp+12028h]
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, ebp
+		not dl
+		push edx
+		push esi
+		__emit 0E8h
+		__emit 021h
+		__emit 065h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0E7h
+		__emit 053h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0B4h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f71b4]
+		mov eax, dword ptr [ecx]
+		call dword ptr [eax+30h]
+		push eax
+		__emit 0E8h
+		__emit 0E2h
+		__emit 096h
+		__emit 01Eh
+		__emit 000h   // call 0x8543B0
+		lea ecx,  [esp+18h]
+		push ecx
+		mov edi, eax
+		push edi
+		push ebx
+		__emit 0E8h
+		__emit 0D4h
+		__emit 07Dh
+		__emit 036h
+		__emit 000h   // call 0x9D2AB0
+		__emit 08Bh
+		__emit 00Dh
+		__emit 098h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7198]
+		mov edx, dword ptr [ecx]
+		add esp, 10h
+		call dword ptr [edx+14h]
+		__emit 08Bh
+		__emit 00Dh
+		__emit 098h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7198]
+		push eax
+		__emit 0E8h
+		__emit 0E0h
+		__emit 0B4h
+		__emit 099h
+		__emit 0FFh   // call 0x61D6
+		mov esi, eax
+		test esi, esi
+		je L10_66AD22
+		lea eax,  [esp+68h]
+		push eax
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0D0h
+		__emit 0C0h
+		__emit 09Ah
+		__emit 0FFh   // call 0x16DD8
+		mov eax, dword ptr [eax]
+		test eax, eax
+		mov ecx, 1h
+		je L11_66AD1B
+		movzx eax, word ptr [eax+4h]
+		test eax, eax
+		jne L12_66AD26
+L11_66AD1B:
+		mov byte ptr [esp+64h], 1h
+		jmp L13_66AD2B
+L10_66AD22:
+		mov cl, byte ptr [esp+10h]
+L12_66AD26:
+		mov byte ptr [esp+64h], 0h
+L13_66AD2B:
+		test cl, 1h
+		je L14_66AD39
+		lea ecx,  [esp+68h]
+		__emit 0E8h
+		__emit 007h
+		__emit 0CCh
+		__emit 021h
+		__emit 000h   // call 0x887940
+L14_66AD39:
+		mov al, byte ptr [esp+64h]
+		test al, al
+		je L15_66AD78
+		push ecx
+		lea edx,  [esp+18h]
+		mov dword ptr [esp+68h], esp
+		mov ecx, esp
+		push edx
+		__emit 0E8h
+		__emit 06Eh
+		__emit 0DEh
+		__emit 021h
+		__emit 000h   // call 0x888BC0
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0F9h
+		__emit 0DBh
+		__emit 09Bh
+		__emit 0FFh   // call 0x28952
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0B4h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f71b4]
+		mov eax, dword ptr [ecx]
+		call dword ptr [eax+2Ch]
+		push ecx
+		mov ecx, esp
+		mov dword ptr [esp+68h], esp
+		push eax
+		__emit 0E8h
+		__emit 0D1h
+		__emit 07Eh
+		__emit 09Ah
+		__emit 0FFh   // call 0x12C42
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0B9h
+		__emit 0BFh
+		__emit 09Ch
+		__emit 0FFh   // call 0x36D31
+L15_66AD78:
+		__emit 08Bh
+		__emit 035h
+		__emit 0D4h
+		__emit 093h
+		__emit 035h
+		__emit 001h   // mov esi, dword ptr [0x13593d4]
+		push ebx
+		call esi
+		push edi
+		call esi
+		add esp, 8h
+		xor ebx, ebx
+L07_66AD89:
+		mov byte ptr [ebp+12115h], 0h
+L06_66AD90:
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 022h
+		__emit 0A3h
+		__emit 09Ah
+		__emit 0FFh   // call 0x150B9
+		lea esi,  [ebp+4h]
+		mov dword ptr [esp+64h], 8h
+L20_66ADA2:
+		mov ecx, dword ptr [esi]
+		cmp ecx, ebx
+		je L16_66ADE6
+		xor edx, edx
+		mov dl, byte ptr [ebp+12114h]
+		push edx
+		__emit 0E8h
+		__emit 07Dh
+		__emit 088h
+		__emit 09Ah
+		__emit 0FFh   // call 0x13633
+		mov ecx, dword ptr [esi]
+		__emit 08Bh
+		__emit 015h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov edx, dword ptr [0x12f0898]
+		mov eax, dword ptr [ecx]
+		cmp eax, dword ptr [edx+3Ch]
+		ja L16_66ADE6
+		__emit 0E8h
+		__emit 0EEh
+		__emit 02Fh
+		__emit 09Bh
+		__emit 0FFh   // call 0x1DDB8
+		test al, al
+		je L16_66ADE6
+		mov edi, dword ptr [esi]
+		cmp edi, ebx
+		je L17_66ADE4
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0F4h
+		__emit 020h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3CECF
+		push edi
+		__emit 0E8h
+		__emit 0CFh
+		__emit 070h
+		__emit 021h
+		__emit 000h   // call 0x881EB0
+		add esp, 4h
+L17_66ADE4:
+		mov dword ptr [esi], ebx
+L16_66ADE6:
+		mov ecx, dword ptr [esi+120E0h]
+		cmp ecx, ebx
+		je L18_66AE26
+		__emit 0E8h
+		__emit 0E7h
+		__emit 088h
+		__emit 09Bh
+		__emit 0FFh   // call 0x236DC
+		test al, al
+		je L18_66AE26
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		mov ecx, dword ptr [esi+120E0h]
+		mov edi, dword ptr [eax+3Ch]
+		__emit 0E8h
+		__emit 0ADh
+		__emit 009h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3B7B9
+		cmp eax, edi
+		jne L18_66AE26
+		mov ecx, dword ptr [esi+120E0h]
+		cmp ecx, ebx
+		je L19_66AE20
+		mov edx, dword ptr [ecx]
+		push 1h
+		call dword ptr [edx]
+L19_66AE20:
+		mov dword ptr [esi+120E0h], ebx
+L18_66AE26:
+		mov eax, dword ptr [esp+64h]
+		add esi, 4h
+		dec eax
+		mov dword ptr [esp+64h], eax
+		jne L20_66ADA2
+		mov ebp, dword ptr [ebp+12024h]
+		cmp ebp, ebx
+		je L01_66AE49
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 0F5h
+		__emit 0AEh
+		__emit 09Ah
+		__emit 0FFh   // call 0x15D3E
+L01_66AE49:
+		mov ecx, dword ptr [esp+54h]
+		pop edi
+		pop esi
+		pop ebp
+		mov dword ptr fs:[0h], ecx
+		pop ebx
+		add esp, 50h
+		ret 8h
+	}
+}
+
+// The relay pass update() drives. Off the packet router it does nothing; as
+// router it walks the eight per-player states at this+0x12080 with a 0x20C-byte
+// packet buffer on an eight-aligned stack frame, feeding what it reads to
+// processIncomingCommand and relayCommand and fanning the results back out with
+// sendLocalCommand.
+__declspec(naked) void BFMEConnectionManager::runRelayPass()
+{
+	__asm {
+		push ebp
+		mov ebp, esp
+		and esp, 0FFFFFFF8h
+		push 0FFFFFFFFh
+		push 1044717h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 20Ch
+		push ebx
+		push ebp
+		push esi
+		push edi
+		mov edi, ecx
+		mov eax, dword ptr [edi+12028h]
+		cmp eax, dword ptr [edi+1202Ch]
+		jne L00_66A8AE
+		xor ebx, ebx
+		lea ebp,  [edi+12080h]
+		cmp ebx, 8h
+L08_66A784:
+		jae L01_66A8A1
+		cmp dword ptr [ebp], 1h
+		jne L01_66A8A1
+		cmp ebx, dword ptr [edi+12028h]
+		je L02_66A7B3
+		mov eax, dword ptr [ebp-1207Ch]
+		test eax, eax
+		je L01_66A8A1
+		cmp dword ptr [eax], 0FFFFFFFFh
+		jne L01_66A8A1
+L02_66A7B3:
+		push 20h
+		__emit 0E8h
+		__emit 076h
+		__emit 077h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+10h], eax
+		xor esi, esi
+		cmp eax, esi
+		mov dword ptr [esp+224h], esi
+		je L03_66A7D7
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0B8h
+		__emit 0A4h
+		__emit 09Dh
+		__emit 0FFh   // call 0x44C8D
+		mov esi, eax
+L03_66A7D7:
+		push ebx
+		mov ecx, esi
+		mov dword ptr [esp+228h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 063h
+		__emit 01Ch
+		__emit 09Dh
+		__emit 0FFh   // call 0x3C44D
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov dword ptr [esi+8h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 078h
+		__emit 0B3h
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L04_66A80A
+		__emit 0E8h
+		__emit 052h
+		__emit 05Dh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L04_66A80A:
+		mov eax, dword ptr [edi+12028h]
+		push 0FFh
+		push esi
+		mov ecx, edi
+		mov dword ptr [esi+0Ch], eax
+		__emit 0E8h
+		__emit 05Ah
+		__emit 049h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		mov ecx, esi
+		__emit 0E8h
+		__emit 07Dh
+		__emit 058h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		push 20h
+		__emit 0E8h
+		__emit 002h
+		__emit 077h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+10h], eax
+		test eax, eax
+		mov dword ptr [esp+224h], 1h
+		je L05_66A84F
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0B9h
+		__emit 010h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2B904
+		mov esi, eax
+		jmp L06_66A851
+L05_66A84F:
+		xor esi, esi
+L06_66A851:
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov dword ptr [esp+228h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 00Dh
+		__emit 0B3h
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L07_66A875
+		__emit 0E8h
+		__emit 0E7h
+		__emit 05Ch
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L07_66A875:
+		mov eax, dword ptr [edi+12028h]
+		push ebx
+		mov ecx, esi
+		mov dword ptr [esi+0Ch], eax
+		__emit 0E8h
+		__emit 0ADh
+		__emit 0C3h
+		__emit 09Bh
+		__emit 0FFh   // call 0x26C33
+		push 0FFh
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0E7h
+		__emit 048h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		mov ecx, esi
+		__emit 0E8h
+		__emit 00Ah
+		__emit 058h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov dword ptr [ebp], 2h
+L01_66A8A1:
+		inc ebx
+		add ebp, 4h
+		cmp ebx, 8h
+		jl L08_66A784
+L00_66A8AE:
+		xor ebx, ebx
+L15_66A8B0:
+		mov eax, dword ptr [edi+12024h]
+		mov ecx, dword ptr [ebx+eax+20B04h]
+		test ecx, ecx
+		je L09_66A9AE
+		lea ecx,  [ebx+eax+20700h]
+		push ecx
+		lea ecx,  [esp+1Ch]
+		__emit 0E8h
+		__emit 0BAh
+		__emit 0E8h
+		__emit 09Bh
+		__emit 0FFh   // call 0x29190
+		mov edx, dword ptr [edi+12024h]
+		lea ecx,  [esp+18h]
+		mov dword ptr [esp+224h], 2h
+		mov dword ptr [ebx+edx+20B04h], 0h
+		__emit 0E8h
+		__emit 040h
+		__emit 002h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1AB3B
+		mov ecx, dword ptr [esp+200h]
+		mov ebp, eax
+		mov esi, dword ptr [ebp+4h]
+		test esi, esi
+		mov eax, dword ptr [esp+1FCh]
+		mov dword ptr [esp+10h], eax
+		mov dword ptr [esp+14h], ecx
+		je L10_66A991
+		__emit 08Dh
+		__emit 09Bh
+		__emit 000h
+		__emit 000h
+		__emit 000h
+		__emit 000h   // lea ebx, [ebx]
+L14_66A920:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 014h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7714]
+		test ecx, ecx
+		je L11_66A94C
+		mov edx, dword ptr [ecx]
+		call dword ptr [edx+0DCh]
+		test al, al
+		je L11_66A94C
+		mov eax, dword ptr [edi+12028h]
+		cmp eax, dword ptr [edi+1202Ch]
+		jne L11_66A94C
+		mov eax, dword ptr [esi]
+		cmp dword ptr [eax+14h], 3h
+		jne L12_66A98A
+L11_66A94C:
+		mov eax, dword ptr [esi]
+		push eax
+		__emit 0E8h
+		__emit 029h
+		__emit 077h
+		__emit 09Dh
+		__emit 0FFh   // call 0x4207D
+		add esp, 4h
+		test al, al
+		je L13_66A968
+		lea ecx,  [esp+10h]
+		push ecx
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0DBh
+		__emit 0E3h
+		__emit 09Ch
+		__emit 0FFh   // call 0x38D43
+L13_66A968:
+		mov eax, dword ptr [esi]
+		push eax
+		mov ecx, edi
+		__emit 0E8h
+		__emit 001h
+		__emit 0EEh
+		__emit 099h
+		__emit 0FFh   // call 0x9773
+		test al, al
+		jne L12_66A98A
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0F9h
+		__emit 0C6h
+		__emit 099h
+		__emit 0FFh   // call 0x7077
+		test al, al
+		je L12_66A98A
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 050h
+		__emit 0D6h
+		__emit 09Ah
+		__emit 0FFh   // call 0x17FDA
+L12_66A98A:
+		mov esi, dword ptr [esi+4h]
+		test esi, esi
+		jne L14_66A920
+L10_66A991:
+		mov edx, dword ptr [ebp]
+		push 1h
+		mov ecx, ebp
+		call dword ptr [edx]
+		lea ecx,  [esp+18h]
+		mov dword ptr [esp+224h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 0A9h
+		__emit 026h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1D057
+L09_66A9AE:
+		add ebx, 40Eh
+		cmp ebx, 20700h
+		jl L15_66A8B0
+		mov ecx, dword ptr [edi+1210Ch]
+		test ecx, ecx
+		je L16_66AA48
+		__emit 0E8h
+		__emit 070h
+		__emit 03Ah
+		__emit 09Ah
+		__emit 0FFh   // call 0xE43F
+		mov ebx, eax
+		mov esi, dword ptr [ebx+4h]
+		test esi, esi
+		je L17_66AA40
+		jmp L18_66A9E0
+		__emit 08Dh
+		__emit 09Bh
+		__emit 000h
+		__emit 000h
+		__emit 000h
+		__emit 000h   // lea ebx, [ebx]
+L18_66A9E0:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 014h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7714]
+		test ecx, ecx
+		je L19_66AA0C
+		mov eax, dword ptr [ecx]
+		call dword ptr [eax+0DCh]
+		test al, al
+		je L19_66AA0C
+		mov ecx, dword ptr [edi+12028h]
+		cmp ecx, dword ptr [edi+1202Ch]
+		jne L19_66AA0C
+		mov edx, dword ptr [esi]
+		cmp dword ptr [edx+14h], 3h
+		jne L20_66AA39
+L19_66AA0C:
+		mov eax, dword ptr [esi]
+		push eax
+		__emit 0E8h
+		__emit 069h
+		__emit 076h
+		__emit 09Dh
+		__emit 0FFh   // call 0x4207D
+		add esp, 4h
+		test al, al
+		je L21_66AA25
+		push 0h
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 01Eh
+		__emit 0E3h
+		__emit 09Ch
+		__emit 0FFh   // call 0x38D43
+L21_66AA25:
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 04Ah
+		__emit 0C6h
+		__emit 099h
+		__emit 0FFh   // call 0x7077
+		test al, al
+		je L20_66AA39
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0A1h
+		__emit 0D5h
+		__emit 09Ah
+		__emit 0FFh   // call 0x17FDA
+L20_66AA39:
+		mov esi, dword ptr [esi+4h]
+		test esi, esi
+		jne L18_66A9E0
+L17_66AA40:
+		mov eax, dword ptr [ebx]
+		push 1h
+		mov ecx, ebx
+		call dword ptr [eax]
+L16_66AA48:
+		mov ecx, dword ptr [esp+21Ch]
+		pop edi
+		mov dword ptr fs:[0h], ecx
+		pop esi
+	}
+}
+
+// The disconnect and timeout sweep, run once per tick from
+// BFMEConnectionManager::update. It reaches every timing gate already matched
+// in this file -- isPlayerConnected, isPlayerConnectedForTimeout,
+// isPlayerSlotActive -- and maintains the blame-assignment tail of
+// DisconnectManager: m_timeOfDisconnectScreenOn at +0x25C, m_pingsSent at
+// +0x260, m_pingsRecieved at +0x264 and m_pingFrame at +0x268, which is the
+// same tail the disconnectmanager shim pins. Ghidra sizes it 1119, three bytes
+// short of its ret.
+__declspec(naked) void BFMEDisconnectManager::update(void *conMgr)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 1044848h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 34h
+		push ebx
+		push ebp
+		push esi
+		push edi
+		mov esi, ecx
+		__emit 0E8h
+		__emit 009h
+		__emit 06Eh
+		__emit 099h
+		__emit 0FFh   // call 0x36FC
+		mov ebx, dword ptr [esp+54h]
+		xor edi, edi
+		mov ecx, ebx
+		mov dword ptr [esp+14h], edi
+		mov byte ptr [esp+13h], 0h
+		__emit 0E8h
+		__emit 088h
+		__emit 0D9h
+		__emit 09Dh
+		__emit 0FFh   // call 0x4A291
+		mov ebp, eax
+		mov dword ptr [esp+54h], ebp
+		nop
+L08_66C910:
+		push edi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 09Ah
+		__emit 0BDh
+		__emit 09Dh
+		__emit 0FFh   // call 0x486B2
+		test al, al
+		jne L00_66C93E
+		push edi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 026h
+		__emit 088h
+		__emit 09Ah
+		__emit 0FFh   // call 0x1514A
+		test al, al
+		je L00_66C93E
+		push 1388h
+		push edi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 026h
+		__emit 08Eh
+		__emit 09Ch
+		__emit 0FFh   // call 0x3575B
+		test al, al
+		jne L00_66C93E
+		mov byte ptr [esp+13h], 1h
+L00_66C93E:
+		push edi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 0F0h
+		__emit 027h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1F136
+		test al, al
+		jne L01_66C9AC
+		push edi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 060h
+		__emit 0BDh
+		__emit 09Dh
+		__emit 0FFh   // call 0x486B2
+		test al, al
+		jne L01_66C9AC
+		push edi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 0ECh
+		__emit 087h
+		__emit 09Ah
+		__emit 0FFh   // call 0x1514A
+		test al, al
+		je L01_66C9AC
+		inc dword ptr [esp+14h]
+		mov eax, dword ptr [esi+260h]
+		test eax, eax
+		mov ecx, edi
+		mov dword ptr [esp+18h], eax
+		jle L02_66C98F
+		fild dword ptr [esi+264h]
+		fidiv dword ptr [esp+18h]
+		__emit 0D8h
+		__emit 01Dh
+		__emit 070h
+		__emit 05Ch
+		__emit 007h
+		__emit 001h   // fcomp dword ptr [0x1075c70]
+		fnstsw ax
+		test ah, 5h
+		jp L02_66C98F
+		mov ecx, ebp
+L02_66C98F:
+		mov al, byte ptr [ecx+esi+282h]
+		test al, al
+		jne L03_66C9ED
+		mov byte ptr [ecx+esi+282h], 1h
+		inc word ptr [esi+ecx*2+272h]
+		jmp L03_66C9ED
+L01_66C9AC:
+		cmp edi, ebp
+		je L04_66C9B8
+		mov byte ptr [edi+esi+282h], 0h
+L04_66C9B8:
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 0D2h
+		__emit 0D8h
+		__emit 09Dh
+		__emit 0FFh   // call 0x4A291
+		cmp edi, eax
+		jge L05_66C9CE
+		mov eax, edi
+		__emit 08Dh
+		__emit 02Ch
+		__emit 0BDh
+		__emit 000h
+		__emit 000h
+		__emit 000h
+		__emit 000h   // lea ebp, [edi*4]
+		jmp L06_66C9DA
+L05_66C9CE:
+		je L03_66C9ED
+		lea eax,  [edi-1h]
+		lea ebp,  [edi*4-4h]
+L06_66C9DA:
+		cmp eax, 0FFFFFFFFh
+		je L07_66C9E9
+		__emit 0FFh
+		__emit 015h
+		__emit 044h
+		__emit 095h
+		__emit 035h
+		__emit 001h   // call dword ptr [0x1359544]
+		mov dword ptr [esi+ebp+14h], eax
+L07_66C9E9:
+		mov ebp, dword ptr [esp+54h]
+L03_66C9ED:
+		inc edi
+		cmp edi, 8h
+		jl L08_66C910
+		mov eax, dword ptr [esp+14h]
+		test eax, eax
+		jne L09_66CA78
+		mov byte ptr [esi+ebp+282h], al
+L15_66CA06:
+		mov eax, dword ptr [esi+0Ch]
+		test eax, eax
+		mov byte ptr [esi+270h], 0h
+		jne L10_66CA4B
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 076h
+		__emit 0D8h
+		__emit 09Dh
+		__emit 0FFh   // call 0x4A291
+		mov edi, eax
+		cmp dword ptr [esi+0Ch], 1h
+		je L10_66CA4B
+		__emit 0E8h
+		__emit 043h
+		__emit 083h
+		__emit 09Bh
+		__emit 0FFh   // call 0x24D6B
+		mov dword ptr [esi+0Ch], 1h
+		lea eax,  [esi+edi*8+30h]
+		mov ecx, 8h
+L11_66CA38:
+		mov byte ptr [eax], 0h
+		add eax, 40h
+		dec ecx
+		jne L11_66CA38
+		mov dword ptr [esi+25Ch], 0h
+L10_66CA4B:
+		cmp dword ptr [esi+8h], 0FFFFFFFFh
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		je L12_66CA62
+		mov ecx, dword ptr [eax+3Ch]
+		cmp dword ptr [esi+4h], ecx
+		je L13_66CB1D
+L12_66CA62:
+		mov eax, dword ptr [eax+3Ch]
+		__emit 08Bh
+		__emit 02Dh
+		__emit 044h
+		__emit 095h
+		__emit 035h
+		__emit 001h   // mov ebp, dword ptr [0x1359544]
+		mov dword ptr [esi+4h], eax
+		call ebp
+		mov dword ptr [esi+8h], eax
+		jmp L14_66CB23
+L09_66CA78:
+		jle L15_66CA06
+		mov byte ptr [esi+270h], 1h
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		test eax, eax
+		je L16_66CA94
+		mov ecx, dword ptr [eax+118h]
+		test ecx, ecx
+		jne L17_66CB10
+L16_66CA94:
+		cmp dword ptr [esi+0Ch], 1h
+		jne L17_66CB10
+		cmp word ptr [esi+ebp*2+272h], 5h
+		jb L18_66CAAF
+		__emit 08Bh
+		__emit 00Dh
+		__emit 014h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7714]
+		test ecx, ecx
+		jne L19_66CB0B
+L18_66CAAF:
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 0A7h
+		__emit 06Ah
+		__emit 099h
+		__emit 0FFh   // call 0x355D
+		cmp eax, 2h
+		jl L20_66CB01
+		__emit 08Bh
+		__emit 00Dh
+		__emit 09Ch
+		__emit 007h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f079c]
+		test ecx, ecx
+		je L21_66CAEC
+		mov edx, dword ptr [ecx]
+		call dword ptr [edx+38h]
+		test al, al
+		jne L20_66CB01
+		__emit 08Bh
+		__emit 00Dh
+		__emit 09Ch
+		__emit 007h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f079c]
+		mov eax, dword ptr [ecx]
+		call dword ptr [eax+34h]
+		test al, al
+		jne L20_66CB01
+		__emit 08Bh
+		__emit 00Dh
+		__emit 09Ch
+		__emit 007h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f079c]
+		mov edx, dword ptr [ecx]
+		call dword ptr [edx+40h]
+		test al, al
+		jne L20_66CB01
+L21_66CAEC:
+		push ebx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 00Ch
+		__emit 07Eh
+		__emit 09Ch
+		__emit 0FFh   // call 0x34900
+		push ebx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 01Ch
+		__emit 0CDh
+		__emit 099h
+		__emit 0FFh   // call 0x9818
+		jmp L10_66CA4B
+L20_66CB01:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 014h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7714]
+		test ecx, ecx
+		je L17_66CB10
+L19_66CB0B:
+		mov eax, dword ptr [ecx]
+		call dword ptr [eax+78h]
+L17_66CB10:
+		push ebx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 000h
+		__emit 0CDh
+		__emit 099h
+		__emit 0FFh   // call 0x9818
+		jmp L10_66CA4B
+L13_66CB1D:
+		__emit 08Bh
+		__emit 02Dh
+		__emit 044h
+		__emit 095h
+		__emit 035h
+		__emit 001h   // mov ebp, dword ptr [0x1359544]
+L14_66CB23:
+		cmp dword ptr [esi+0Ch], 1h
+		je L22_66CB31
+		push ebx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0E4h
+		__emit 0AAh
+		__emit 09Bh
+		__emit 0FFh   // call 0x27615
+L22_66CB31:
+		mov al, byte ptr [esp+13h]
+		test al, al
+		mov ebx, 7D0h
+		je L23_66CC5E
+		__emit 0A1h
+		__emit 0F4h
+		__emit 076h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f76f4]
+		test eax, eax
+		je L24_66CD1D
+		call ebp
+		sub eax, dword ptr [esi+268h]
+		cmp eax, 0BB8h
+		jbe L25_66CC72
+		mov eax, dword ptr [esp+14h]
+		test eax, eax
+		je L26_66CB7D
+		call ebp
+		sub eax, dword ptr [esi+25Ch]
+		cmp eax, 1388h
+		jae L25_66CC72
+L26_66CB7D:
+		lea ecx,  [esp+1Ch]
+		__emit 0E8h
+		__emit 004h
+		__emit 039h
+		__emit 09Dh
+		__emit 0FFh   // call 0x4048A
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0E4h
+		__emit 070h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f70e4]
+		mov edx, dword ptr [ecx]
+		lea eax,  [esp+54h]
+		push eax
+		mov dword ptr [esp+50h], 0h
+		call dword ptr [edx+4h]
+		mov ecx, dword ptr [eax]
+		mov eax, dword ptr [ecx]
+		mov eax, dword ptr [eax+8h]
+		test eax, eax
+		mov byte ptr [esp+4Ch], 1h
+		lea ecx,  [eax+8h]
+		jne L27_66CBB6
+		mov ecx, 107388Bh
+L27_66CBB6:
+		mov eax, ecx
+		lea edi,  [eax+1h]
+		jmp L28_66CBC0
+		__emit 08Dh
+		__emit 049h
+		__emit 000h   // lea ecx, [ecx]
+L28_66CBC0:
+		mov dl, byte ptr [eax]
+		inc eax
+		test dl, dl
+		jne L28_66CBC0
+		sub eax, edi
+		add eax, ecx
+		push eax
+		push ecx
+		lea ecx,  [esp+24h]
+		__emit 0E8h
+		__emit 0C1h
+		__emit 0E6h
+		__emit 09Bh
+		__emit 0FFh   // call 0x2B297
+		lea ecx,  [esp+54h]
+		mov byte ptr [esp+4Ch], 0h
+		__emit 0E8h
+		__emit 027h
+		__emit 0C4h
+		__emit 09Ah
+		__emit 0FFh   // call 0x1900B
+		mov eax, dword ptr [esp+54h]
+		test eax, eax
+		je L29_66CBF7
+		push 0Ch
+		push eax
+		__emit 0E8h
+		__emit 0FCh
+		__emit 019h
+		__emit 01Ch
+		__emit 000h   // call 0x82E5F0
+		add esp, 8h
+L29_66CBF7:
+		mov ecx, dword ptr [esi+260h]
+		mov eax, 5h
+		add ecx, eax
+		mov dword ptr [esp+28h], eax
+		mov dword ptr [esi+260h], ecx
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0F4h
+		__emit 076h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f76f4]
+		lea eax,  [esp+1Ch]
+		mov dword ptr [esp+2Ch], ebx
+		mov edx, dword ptr [ecx]
+		push eax
+		call dword ptr [edx+10h]
+		call ebp
+		mov ecx, dword ptr [esp+1Ch]
+		mov dword ptr [esi+268h], eax
+		mov eax, dword ptr [esp+24h]
+		sub eax, ecx
+		test ecx, ecx
+		mov dword ptr [esp+4Ch], 0FFFFFFFFh
+		je L25_66CC72
+		cmp eax, 80h
+		jbe L30_66CC52
+		push ecx
+		__emit 0E8h
+		__emit 063h
+		__emit 052h
+		__emit 021h
+		__emit 000h   // call 0x881EB0
+		add esp, 4h
+		jmp L25_66CC72
+L30_66CC52:
+		push eax
+		push ecx
+		__emit 0E8h
+		__emit 097h
+		__emit 019h
+		__emit 01Ch
+		__emit 000h   // call 0x82E5F0
+		add esp, 8h
+		jmp L25_66CC72
+L23_66CC5E:
+		xor eax, eax
+		mov dword ptr [esi+260h], eax
+		mov dword ptr [esi+264h], eax
+		mov dword ptr [esi+268h], eax
+L25_66CC72:
+		__emit 0A1h
+		__emit 0F4h
+		__emit 076h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f76f4]
+		test eax, eax
+		je L24_66CD1D
+		lea ecx,  [esp+30h]
+		__emit 0E8h
+		__emit 002h
+		__emit 038h
+		__emit 09Dh
+		__emit 0FFh   // call 0x4048A
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0F4h
+		__emit 076h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f76f4]
+		mov edx, dword ptr [ecx]
+		lea eax,  [esp+30h]
+		push eax
+		mov dword ptr [esp+50h], 2h
+		call dword ptr [edx+1Ch]
+		test al, al
+		je L31_66CCD8
+L33_66CCA4:
+		mov al, byte ptr [esp+13h]
+		test al, al
+		je L32_66CCC4
+		cmp dword ptr [esp+3Ch], ebx
+		jge L32_66CCC4
+		mov eax, dword ptr [esi+264h]
+		mov ecx, dword ptr [esp+40h]
+		add eax, ecx
+		mov dword ptr [esi+264h], eax
+L32_66CCC4:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0F4h
+		__emit 076h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f76f4]
+		mov edx, dword ptr [ecx]
+		lea eax,  [esp+30h]
+		push eax
+		call dword ptr [edx+1Ch]
+		test al, al
+		jne L33_66CCA4
+L31_66CCD8:
+		mov ecx, dword ptr [esp+30h]
+		mov eax, dword ptr [esp+38h]
+		sub eax, ecx
+		test ecx, ecx
+		mov dword ptr [esp+4Ch], 0FFFFFFFFh
+		je L24_66CD1D
+		cmp eax, 80h
+		jbe L34_66CD13
+		push ecx
+		__emit 0E8h
+		__emit 0B5h
+		__emit 051h
+		__emit 021h
+		__emit 000h   // call 0x881EB0
+		add esp, 4h
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		mov ecx, dword ptr [esp+34h]
+		mov dword ptr fs:[0h], ecx
+		add esp, 40h
+		ret 4h
+L34_66CD13:
+		push eax
+		push ecx
+		__emit 0E8h
+		__emit 0D6h
+		__emit 018h
+		__emit 01Ch
+		__emit 000h   // call 0x82E5F0
+		add esp, 8h
+L24_66CD1D:
+		mov ecx, dword ptr [esp+44h]
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 40h
+		ret 4h
 	}
 }
