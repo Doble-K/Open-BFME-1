@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ob1 /Ireference/shims/ini /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ob1 /Ireference/shims/ini /Ireference/shims/gameaudio /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -826,21 +826,15 @@ void INI::parseDynamicAudioEventRTS( INI *ini, void * /*instance*/, void *store,
 //-------------------------------------------------------------------------------------------------
 /** Parse an audio event and assign to the 'AudioEventRTS*' at store */
 //-------------------------------------------------------------------------------------------------
-// ?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 // 0x000BBB60, 181 bytes -- the most-referenced field parser in the game, bound
-// to 45 tokens across 5 INI blocks. Bytes 0..56 match; the rest needs three
-// things this TU cannot express yet:
-//   1. a REL32 pin for AudioEventRTS::setEventName (retail calls thunk 0x25266)
-//   2. AsciiString::isEmpty inline as m_data && m_data->numChars, which is what
-//      retail emits (mov eax,[edi+0x14]; test; cmp word [eax+4],0); the shim
-//      here calls out of line instead
-//   3. an AudioManager vtable whose slots match BFME's. getInfoForAudioEvent is
-//      at +0xac in retail and +0x68 against the Zero Hour header, and
-//      isValidAudioEvent at +0x5c vs +0x40, so BFME's manager has a different
-//      set of virtuals ahead of them. That is the real blocker, and it needs a
-//      TU-scoped GameAudio.h shim built from the retail vtable.
-// Its size was also mis-measured as 47 bytes until tools/dump_ini_schema.py
-// stopped sizing bodies by scanning for the first 0xCC.
+// to 45 tokens across 5 INI blocks. Zero Hour's version ends at
+// getInfoForAudioEvent; BFME adds the validation tail below, so an event the
+// audio manager could not resolve is a hard error instead of silence.
+// Matching it needed three things: a REL32 pin for AudioEventRTS::setEventName
+// (retail calls thunk 0x25266), AsciiString::isEmpty inlined the way retail
+// emits it, and reference/shims/gameaudio for the AudioManager vtable, whose
+// slots BFME reordered -- getInfoForAudioEvent is at +0xac here against +0x68
+// from the stock header, and isValidAudioEvent at +0x5c against +0x40.
 void INI::parseAudioEventRTS( INI *ini, void * /*instance*/, void *store, const void* userData )
 {
 	const char *token = ini->getNextToken();

@@ -12023,7 +12023,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseArbitraryFXIntoMap@@YAXPAVINI@@PAX1PBX@Z,,0x00145C80,206,Code/masm_dumps/parseArbitraryFXIntoMap_145C80.asm,matched,Certified packet 102 exact retail db recovery SHA256 f52d6a9a486b056efae3eb40e18809aec02d98b1b9ad8df6ebb50df1679f3b84
 ?parseArmorTemplateSet@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x00146020,218,Code/masm_dumps/_rn5__parseArmorTemplateSet_ThingTemplate__KAXPAVINI__PAX1PBX_Z_146020.asm,matched,reloc-needle Open-BFME4+Grok
 ?parseAsciiString@INI@@SAXPAV1@PAX1PBX@Z,,0x00851EE0,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x00009E94,5,Code/masm_dumps/parseAudioEventRTS_INI_SAXPAV1_PAX1PBX_Z_9E94.asm,matched,Multiple retail audio-field xrefs and canonical NoSound event lookup body identify parser
 ?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EACB0,51,Code/GameEngine/Source/GameLogic/Object/WeaponTemplateSet_parseAutoChoose.asm,matched,Corrected one-byte-early queue RVA using INT3 and RET boundaries
 ?parseBenchProfile@INI@@SAXPAV1@@Z,,0x0007C7F0,131,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME retail GameLOD layout
 ?parseBitFlag@@YA_NPBDPAIPAPBD@Z,,0x004842E0,81,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
@@ -13667,3 +13666,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?relayCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00663100,237,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendFrameDataToPlayer@BFMEConnectionManager@@QAEXHII@Z,,0x00664B40,384,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ??$_M_find@G@?$_Rb_tree@GU?$pair@$$CBGE@_STL@@U?$_Select1st@U?$pair@$$CBGE@_STL@@@2@U?$less@G@2@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@1@ABG@Z,,0x0037B060,60,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,STLport _Rb_tree G pair-const-G-E _M_find; 3 ICF clones 37B060/6651C0/93DCE0
+?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x000BBB60,181,Code/GameEngine/Source/Common/INI/ini.cpp,matched,field table binds 45 tokens across 5 INI blocks here - was a 5B thunk claim

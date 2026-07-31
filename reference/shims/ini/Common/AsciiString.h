@@ -45,7 +45,12 @@ public:
 	const char *str() const { return m_text ? m_text + 8 : ""; }
 	int getLength() const { return ((const StringBase<char> *)this)->getLength(); }
 	char getCharAt(int i) const { return ((const StringBase<char> *)this)->getCharAt(i); }
-	bool isEmpty() const { return ((const StringBase<char> *)this)->isEmpty(); }
+	// Inline in BFME, like str() above. INI::parseAudioEventRTS at 0x000BBB60
+	// emits it as  mov eax,[..]; test eax,eax; je; cmp word ptr [eax+4],0; je
+	// -- that is m_data == NULL || m_data->length == 0 against StringBase's
+	// Header {int ref_count; unsigned short length; unsigned short capacity;},
+	// which is the same header str()'s +8 comes from.
+	bool isEmpty() const { return m_text == 0 || *(const unsigned short *)(m_text + 4) == 0; }
 	bool isNotEmpty() const { return ((const StringBase<char> *)this)->isNotEmpty(); }
 	bool isNone() const { return ((const StringBase<char> *)this)->isNone(); }
 	bool isNotNone() const { return ((const StringBase<char> *)this)->isNotNone(); }
