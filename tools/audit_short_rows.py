@@ -11,9 +11,14 @@ An unconditional jmp can legitimately leave a function (tail call), but a jcc
 cannot: both of its successors belong to the same function. Targets that are the
 start of another claimed row are ignored, since those are real tail positions.
 
+Branch targets that land inside ANY claimed row are ignored, not just row
+starts: those are a neighbour's code, since retail packs functions back to back
+with no padding in places.
+
 Candidates, not verdicts: capstone can desync on embedded data or jump tables
-and invent a branch. Confirm by hand -- disassemble from target_rva and find
-where the int3 padding actually starts.
+and invent a branch. Confirm by hand -- disassemble from target_rva and check
+whether the byte at target_rva+size is int3 padding or the start of the next
+claimed function.
 
 Usage:
   python3 tools/audit_short_rows.py [--masm-only] [--min-gap N] [--limit N]
@@ -54,6 +59,11 @@ def main():
             except ValueError:
                 pass
     starts = {a for a, _, _, _ in rows}
+    # every byte any row already claims -- a branch landing in one of those is a
+    # neighbour's code (or a desync), not evidence that this row is short
+    claimed = set()
+    for a, n, _, _ in rows:
+        claimed.update(range(a, a + n))
 
     hits = []
     for addr, size, name, source in rows:
@@ -69,7 +79,7 @@ def main():
                 continue
             target = int(ins.op_str, 16)
             gap = target - (addr + size)
-            if args.min_gap <= gap < 4096 and target not in starts:
+            if args.min_gap <= gap < 4096 and target not in starts and target not in claimed:
                 hits.append((gap, addr, size, name, source))
                 break
 
