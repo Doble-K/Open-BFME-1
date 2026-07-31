@@ -1002,7 +1002,6 @@ void INI::parseUpgradeTemplate(INI *ini, void *, void *store, const void *)
 //-------------------------------------------------------------------------------------------------
 /** Parse a special power template string and store as template pointer */
 //-------------------------------------------------------------------------------------------------
-// ?parseSpecialPowerTemplate@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseSpecialPowerTemplate( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	const char *token = ini->getNextToken();
@@ -1014,10 +1013,11 @@ void INI::parseSpecialPowerTemplate( INI* ini, void * /*instance*/, void *store,
 	}
 
 	const SpecialPowerTemplate *sPowerT = TheSpecialPowerStore->findSpecialPowerTemplate( AsciiString( token ) );
-	if( !sPowerT && stricmp( token, "None" ) != 0 )
-	{
-		DEBUG_CRASH( ("[LINE: %d in '%s'] Specialpower %s not found!\n", ini->getLineNum(), ini->getFilename().str(), token) );
-	}
+
+	// Zero Hour follows the lookup with a DEBUG_CRASH guarded by
+	// !sPowerT && stricmp(token, "None"). Retail has no trace of it -- not even
+	// the stricmp, which a release build would still have had to call -- so the
+	// check is not merely compiled out here, it is absent.
 
 	typedef const SpecialPowerTemplate* ConstSpecialPowerTemplatePtr;
 	ConstSpecialPowerTemplatePtr* theSpecialPowerTemplate = (ConstSpecialPowerTemplatePtr *)store;		
