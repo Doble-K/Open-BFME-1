@@ -20,9 +20,13 @@
 //     TheMessageStream / TheFXParticleSystemManager -- built by a factory call
 //     rather than new+ctor, so there is no ctor to read a name from.
 //   TheWritableGlobalData, TheGlobalLanguageData, TheMultiplayerSettings,
-//     TheGlobalWeatherSystem, TheCaveSystem, ThePlayerTemplateStore,
-//     TheFXListStore -- have their own ctor, but it is unclaimed, so the name is
-//     not established yet. These become landable the day those ctors are named.
+//     TheGlobalWeatherSystem, TheFXListStore -- have their own ctor, but it is
+//     unclaimed and their vtables contain no class-specific named slot, so
+//     nothing names them yet.
+//   TheCaveSystem -- its ctor sits between ?getTunnelTrackerForCaveIndex@CaveSystem@@
+//     and ?registerNewCave@CaveSystem@@ in the same TU, which is suggestive but
+//     is only TU locality; its vtable slots are all unclaimed. Left out until
+//     something binds the ctor to the class directly.
 //
 // The stubs are abstract on purpose: initSubsystem<T> only forms a T* and
 // converts it to SubsystemInterface*, so it never instantiates T.
@@ -31,3 +35,8 @@ class TerrainRoadCollection    : public SubsystemInterface {};   // TheTerrainRo
 class SidesList                : public SubsystemInterface {};   // TheSidesList,               ctor 0x0019EA80
 class WeaponStore              : public SubsystemInterface {};   // TheWeaponStore,             ctor 0x001E5290
 class ObjectCreationListStore  : public SubsystemInterface {};   // TheObjectCreationListStore, ctor 0x001DAD50
+// ThePlayerTemplateStore, ctor 0x000E3F50: proven by the vtable that ctor installs
+// (0x01084BA0), whose slot 1 is ?init@PlayerTemplateStore@@UAEXXZ -- a
+// class-specific virtual. Slot 0 is an ICF-folded ??_GFileSystem@@ and is NOT
+// evidence; slot 1 is.
+class PlayerTemplateStore : public SubsystemInterface {};

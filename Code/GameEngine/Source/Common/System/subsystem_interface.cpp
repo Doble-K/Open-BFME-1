@@ -113,3 +113,4 @@ template void initSubsystem<TerrainRoadCollection>(TerrainRoadCollection *&, Asc
 template void initSubsystem<SidesList>(SidesList *&, AsciiString, SidesList *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<WeaponStore>(WeaponStore *&, AsciiString, WeaponStore *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<ObjectCreationListStore>(ObjectCreationListStore *&, AsciiString, ObjectCreationListStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<PlayerTemplateStore>(PlayerTemplateStore *&, AsciiString, PlayerTemplateStore *, Xfer *, const char *, const char *, const char *);
