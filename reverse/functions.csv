@@ -13663,7 +13663,6 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?isPlayerSlotActive@BFMEConnectionManager@@QAE_NH@Z,,0x00662C30,60,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?markPlayerInGame@BFMEConnectionManager@@QAEXPAX@Z,,0x00662D90,61,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?relayCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00663100,237,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?sendFrameDataToPlayer@BFMEConnectionManager@@QAEXHII@Z,,0x00664B40,384,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ??$_M_find@G@?$_Rb_tree@GU?$pair@$$CBGE@_STL@@U?$_Select1st@U?$pair@$$CBGE@_STL@@@2@U?$less@G@2@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@1@ABG@Z,,0x0037B060,60,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,STLport _Rb_tree G pair-const-G-E _M_find; 3 ICF clones 37B060/6651C0/93DCE0
 ?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x000BBB60,181,Code/GameEngine/Source/Common/INI/ini.cpp,matched,field table binds 45 tokens across 5 INI blocks here - was a 5B thunk claim
 ?parseSpecialPowerTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BB210,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,was a 5B thunk claim at 0x0001D77D
