@@ -2286,7 +2286,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DVolumetricShadowManager@@QAE@XZ,,0x007BB520,259,Code/masm_dumps/W3DVolumetricShadowManager_constructor.asm,matched,Certified packet 211 exact retail db recovery
 ??0W3DWaypointBuffer@@,,0x007468B0,297,Code/masm_dumps/_sa7___0W3DWaypointBuffer___7468B0.asm,matched,Exact 297B Open-BFME4
 ??0WSClassicEnvironmentMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x009214E0,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
-??0WSEnvMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00965920,167,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0WSEnvironmentMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00921570,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0WSYS_String@@QAE@PBD@Z,,0x0010A280,25,Code/GameEngine/Source/Common/System/String.cpp,matched,
 ??0WallUpgradeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B2270,169,Code/masm_dumps/WallUpgradeUpdate_constructor.asm,matched,Exact 169B @ 0x002B2270; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C170
@@ -6295,7 +6294,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Current_UV_Offset@LinearOffsetTextureMapperClass@@QAEXAAVVector2@@@Z,,0x00946440,18,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Get_D3D_Projection_Matrix@CameraClass@@QAEXPAVMatrix4@@@Z,,0x009323C0,241,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,RenderObjClass +0x34 (camera shim)
 ?Get_DCG_Source@MeshMatDescClass@@QAE?AW4ColorSourceType@VertexMaterialClass@@H@Z,,0x0096CF50,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
-?Get_DX8_Blend_Name@DX8Wrapper@@SAPBDI@Z,,0x00902D40,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Blend_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C00,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Cmp_Func_Name@DX8Wrapper@@SAPBDI@Z,,0x00902E10,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Cull_Mode_Name@DX8Wrapper@@SAPBDI@Z,,0x00902DE0,37,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
@@ -6310,11 +6308,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_DX8_Shade_Mode_Name@DX8Wrapper@@SAPBDI@Z,,0x00902D10,37,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Stencil_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902E10,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Texture_Address_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C00,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
-?Get_DX8_Texture_Arg_Name@DX8Wrapper@@SAPBDI@Z,,0x00902B20,23,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Texture_Filter_Name@DX8Wrapper@@,,0x00902EC0,71,Code/masm_dumps/_sa10__Get_DX8_Texture_Filter_Name_DX8Wrapper___902EC0.asm,matched,Exact 71B Open-BFME4
 ?Get_DX8_Texture_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902A00,21,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Texture_Stage_State_Value_Name@DX8Wrapper@@,,0x00906FE0,264,Code/masm_dumps/_sa5__Get_DX8_Texture_Stage_State_Value_Name_DX8Wrapper_906FE0.asm,matched,Exact 264B Open-BFME4
-?Get_DX8_Texture_Transform_Flag_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C50,25,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Vertex_Blend_Flag_Name@DX8Wrapper@@SAPBDI@Z,,0x00902F60,74,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_ZBuffer_Type_Name@DX8Wrapper@@SAPBDI@Z,,0x00902CB0,39,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_Date_Time@DDSFileClass@@QBEKXZ,,0x00674250,4,Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
@@ -6899,7 +6895,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Initialize@HLodDefClass@@QAEXAAVHLodClass@@@Z,,0x0097CA80,485,Code/masm_dumps/_sym1__Initialize_HLodDefClass__QAEXAAVHLodClass___Z_97CA80.asm,matched,symbol-pin Open-BFME4+Grok
 ?Initialize@INIClass@@AAEXXZ,,0x009E3640,98,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Initialize_Particle@ParticleEmitterClass@@AAEXPAUNewParticleStruct@@IABVQuaternion@@ABVVector3@@@Z,,0x0097F1F0,850,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
-?Initialize_Randomizer_Struct@ParticleEmitterDefClass@@MAEXABVVector3Randomizer@@AAUW3dVolumeRandomizerStruct@@@Z,,0x0098DAF0,49,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
 ?Initialize_To_Ver2@ParticleEmitterDefClass@@MAEXXZ,,0x0098C2E0,166,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
 ?Insert_After@?$DLNodeClass@USmudge@@@@QAEXPAV1@@Z,,0x005D3980,42,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ?Insert_After@?$DLNodeClass@USmudgeSet@@@@QAEXPAV1@@Z,,0x005D3A20,42,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
@@ -7457,7 +7452,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Render_FVF_Category_Container_List@@YAXAAV?$MultiListClass@VDX8FVFCategoryContainer@@@@@Z,,0x00947AC0,34,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Render_FVF_Category_Container_List_Delayed_Passes@@YAXAAV?$MultiListClass@VDX8FVFCategoryContainer@@@@@Z,,0x00947AF0,34,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Render_Line@ParticleBufferClass@@IAEXAAVRenderInfoClass@@@Z,,0x0098AD00,1763,Code/Libraries/Source/WWVegas/WW3D2/ParticleBufferClass_Render_Line.asm,matched,exact 1763B via MASM (SEH+reg-coloring wall)
-?Render_Line_Group@ParticleBufferClass@@IAEXAAVRenderInfoClass@@@Z,,0x0098B950,350,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Render_Particles@ParticleBufferClass@@IAEXAAVRenderInfoClass@@@Z,,0x0098B800,332,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Render_Seg_Line@SegmentedLineClass@@IAEXAAVRenderInfoClass@@@Z,,0x00950960,78,Code/masm_dumps/__Render_Seg_Line_SegmentedLineClass__IAEXAAVRender_950960.asm,matched,
 ?Render_Sorted@DX8PolygonRendererClass@@QAEXHABVSphereClass@@@Z,,0x00945740,79,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
@@ -13147,7 +13141,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@ActAsDozerState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@ActAsSupplyTruckState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@Anim2DCollection@@UAEXXZ,,0x005BAD50,30,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
-?update@AnimateWindowManager@@UAEXXZ,,0x0045D250,139,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?update@BoneFXUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x00289580,467,Code/masm_dumps/BoneFXUpdate_update.asm,matched,Exact retail MASM; true body 0x289580 size 467 (queue was off-by-one 0x289581/337 compiled size); initTimes@0x2F775 + FX/OCL/PS loops prove BoneFXUpdate::update
 ?update@BridgeBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x001F38A0,721,Code/masm_dumps/_sa11__update_BridgeBehavior__UAE_AW4UpdateSleepTime__XZ_1F38A0.asm,matched,string-anchor Open-BFME4+Grok ParentObject
 ?update@BridgeScaffoldBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x0073327B,580,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior_update.asm,matched,exact 580B via MASM
@@ -13625,3 +13618,10 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?setRankLevel@Player@@QAE_NH@Z,,0x000D93AC,487,Code/GameEngine/Source/Common/RTS/Player_setRankLevel.asm,matched,true size 487B; row claimed 395B
 ?update@StructureToppleUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x008F7E80,1211,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate_update.asm,matched,true size 1211B; row claimed 769B
 ?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,23,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,reverted to 23B: extending to 55B tripped DIR32 consistency
+??0WSEnvMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00965920,275,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,true size 275B; row claimed 167B (switch dispatch + case bodies)
+?Get_DX8_Blend_Name@DX8Wrapper@@SAPBDI@Z,,0x00902D40,156,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 156B; row claimed 17B (switch dispatch + case bodies)
+?Get_DX8_Texture_Arg_Name@DX8Wrapper@@SAPBDI@Z,,0x00902B20,157,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 157B; row claimed 23B (switch dispatch + case bodies)
+?Get_DX8_Texture_Transform_Flag_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C50,88,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 88B; row claimed 25B (switch dispatch + case bodies)
+?Initialize_Randomizer_Struct@ParticleEmitterDefClass@@MAEXABVVector3Randomizer@@AAUW3dVolumeRandomizerStruct@@@Z,,0x0098DAF0,164,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,true size 164B; row claimed 49B (switch dispatch + case bodies)
+?Render_Line_Group@ParticleBufferClass@@IAEXAAVRenderInfoClass@@@Z,,0x0098B950,908,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,true size 908B; row claimed 350B (switch dispatch + case bodies)
+?update@AnimateWindowManager@@UAEXXZ,,0x0045D250,316,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,true size 316B; row claimed 139B (switch dispatch + case bodies)
