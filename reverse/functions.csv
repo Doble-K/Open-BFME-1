@@ -13671,3 +13671,7 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?runRelayPass@BFMEConnectionManager@@QAEXXZ,,0x0066A740,792,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?update@BFMEDisconnectManager@@QAEXPAX@Z,,0x0066C8D0,1122,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ??0GameMessageParser@@QAE@XZ,,0x00623510,20,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
+?destroy@BFMEConnectionManager@@QAEXXZ,,0x00668D90,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?processWrappedCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00669C50,366,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?processAckCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00665700,387,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?beginPlayerLeave@BFMEConnectionManager@@QAEXPAX@Z,,0x00667320,526,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
