@@ -5389,7 +5389,6 @@ Bool PartitionFilterRelationship::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-// ??0PartitionFilterAcceptOnTeam@@QAE@PBVTeam@@@Z present-unmatched
 PartitionFilterAcceptOnTeam::PartitionFilterAcceptOnTeam(const Team *team) : m_team(team)
 {
 }
@@ -5406,7 +5405,6 @@ Bool PartitionFilterAcceptOnTeam::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-// ??0PartitionFilterAcceptOnSquad@@QAE@PBVSquad@@@Z present-unmatched
 PartitionFilterAcceptOnSquad::PartitionFilterAcceptOnSquad(const Squad *squad) : m_squad(squad)
 {
 }
@@ -5455,7 +5453,6 @@ Bool PartitionFilterAlive::allow( Object *objOther )
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-// ??0PartitionFilterRejectBehind@@QAE@PAVObject@@@Z present-unmatched
 PartitionFilterRejectBehind::PartitionFilterRejectBehind( Object *obj )
 {
 	m_obj = obj;
@@ -5488,7 +5485,6 @@ Bool PartitionFilterRejectBehind::allow( Object *other )
 
 
 //-----------------------------------------------------------------------------
-// ??0PartitionFilterLineOfSight@@QAE@PBVObject@@@Z present-unmatched
 PartitionFilterLineOfSight::PartitionFilterLineOfSight(const Object *obj)
 {
 	m_obj = obj;
@@ -5543,7 +5539,6 @@ Bool PartitionFilterPossibleToAttack::allow(Object *objOther)
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-// ??0PartitionFilterPossibleToEnter@@QAE@PBVObject@@W4CommandSourceType@@@Z present-unmatched
 PartitionFilterPossibleToEnter::PartitionFilterPossibleToEnter(const Object *obj, CommandSourceType commandSource) :
 	m_obj(obj),
 	m_commandSource(commandSource)
@@ -5566,7 +5561,6 @@ Bool PartitionFilterPossibleToEnter::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-// ??0PartitionFilterPossibleToHijack@@QAE@PBVObject@@W4CommandSourceType@@@Z present-unmatched
 PartitionFilterPossibleToHijack::PartitionFilterPossibleToHijack(const Object *obj, CommandSourceType commandSource) :
 	m_obj(obj),
 	m_commandSource(commandSource)
@@ -6024,7 +6018,6 @@ void SightingInfo::loadPostProcess()
 }  // end loadPostProcess
 
 // ------------------------------------------------------------------------------------------------
-// ??1SightingInfo@@MAE@XZ present-unmatched
 SightingInfo::~SightingInfo()
 {
 

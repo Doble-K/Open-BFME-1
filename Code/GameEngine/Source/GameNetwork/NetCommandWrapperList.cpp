@@ -141,7 +141,6 @@ NetCommandWrapperList::~NetCommandWrapperList() {
 	}
 }
 
-// ?init@NetCommandWrapperList@@QAEXXZ present-unmatched
 void NetCommandWrapperList::init() {
 	m_list = NULL;
 }

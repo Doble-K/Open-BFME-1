@@ -159,7 +159,6 @@ void	VideoBuffer::free( void )
 // VideoPlayer::VideoPlayer
 //============================================================================
 
-// ??0VideoPlayer@@QAE@XZ present-unmatched
 VideoPlayer::VideoPlayer()
 : m_firstStream(NULL)
 {
@@ -493,7 +492,6 @@ void VideoStream::frameNext( void )
 // VideoStream::frameIndex
 //============================================================================
 
-// ?frameIndex@VideoStream@@UAEHXZ present-unmatched
 Int VideoStream::frameIndex( void )
 {
 	return 0;
@@ -503,7 +501,6 @@ Int VideoStream::frameIndex( void )
 // VideoStream::totalFrames
 //============================================================================
 
-// ?frameCount@VideoStream@@UAEHXZ present-unmatched
 Int	VideoStream::frameCount( void )
 {
 	return 0;
@@ -523,7 +520,6 @@ void VideoStream::frameGoto( Int index )
 // VideoStream::height
 //============================================================================
 
-// ?height@VideoStream@@UAEHXZ present-unmatched
 Int		VideoStream::height( void )
 {
 	return 0;
@@ -533,7 +529,6 @@ Int		VideoStream::height( void )
 // VideoStream::width
 //============================================================================
 
-// ?width@VideoStream@@UAEHXZ present-unmatched
 Int		VideoStream::width( void )
 {
 	return 0;

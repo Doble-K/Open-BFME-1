@@ -204,7 +204,6 @@ void WinInstanceData::setText( UnicodeString text )
 // WinInstanceData:setText ====================================================
 /** Set the text for this window instance data */
 //=============================================================================
-// ?setVideoBuffer@WinInstanceData@@QAEXPAVVideoBuffer@@@Z present-unmatched
 void WinInstanceData::setVideoBuffer( VideoBuffer * videoBuffer )
 {
 	m_videoBuffer = videoBuffer;

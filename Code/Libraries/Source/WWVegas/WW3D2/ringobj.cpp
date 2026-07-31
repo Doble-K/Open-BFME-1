@@ -632,7 +632,6 @@ void RingRenderObjClass::render_ring(RenderInfoClass & rinfo,const Vector3 & cen
  * HISTORY:                                                                                    *
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
-// ?vis_render_ring@RingRenderObjClass@@IAEXAAVSpecialRenderInfoClass@@ABVVector3@@1@Z present-unmatched
 void RingRenderObjClass::vis_render_ring(SpecialRenderInfoClass & rinfo,const Vector3 & center,const Vector3 & extent)
 {
 	WWASSERT(0);

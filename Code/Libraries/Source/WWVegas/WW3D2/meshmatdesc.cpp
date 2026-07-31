@@ -81,7 +81,6 @@ void MatBufferClass::Set_Element(int index,VertexMaterialClass * mat)
 	REF_PTR_SET(Array[index],mat);
 }
 
-// ?Get_Element@MatBufferClass@@QAEPAVVertexMaterialClass@@H@Z present-unmatched
 VertexMaterialClass * MatBufferClass::Get_Element(int index)
 {
 	if (Array[index]) {
@@ -137,7 +136,6 @@ TextureClass * TexBufferClass::Get_Element(int index)
 	return Array[index];
 }
 
-// ?Peek_Element@TexBufferClass@@QAEPAVTextureClass@@H@Z present-unmatched
 TextureClass * TexBufferClass::Peek_Element(int index)
 {
 	return Array[index];

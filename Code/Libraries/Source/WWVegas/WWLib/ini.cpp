@@ -2136,7 +2136,6 @@ void INIClass::Strip_Comments(char * buffer)
  * HISTORY:                                                                                    *
  *   12/8/97    EHC : Created.                                                                 *
  *=============================================================================================*/
-// ?CRC@INIClass@@SAHPBD@Z absent-from-retail
 int INIClass::CRC(const char *string)
 {
 	// simply call the CRC class string evaluator.

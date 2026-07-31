@@ -323,7 +323,6 @@ Int UDP::Read(unsigned char *msg,UnsignedInt len,sockaddr_in *from)
 }
 
 
-// ?ClearStatus@UDP@@QAEXXZ present-unmatched
 void UDP::ClearStatus(void)
 {
   #ifndef _WINDOWS

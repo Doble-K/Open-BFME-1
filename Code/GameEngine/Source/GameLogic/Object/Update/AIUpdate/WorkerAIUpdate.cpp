@@ -1293,7 +1293,6 @@ Bool WorkerStateMachine::supplyTruckSubMachineReadyToLeave( State *thisState, vo
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?onEnter@ActAsDozerState@@UAE?AW4StateReturnType@@XZ present-unmatched
 StateReturnType ActAsDozerState::onEnter()
 {
 	return STATE_CONTINUE;
@@ -1301,7 +1300,6 @@ StateReturnType ActAsDozerState::onEnter()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?update@ActAsDozerState@@UAE?AW4StateReturnType@@XZ present-unmatched
 StateReturnType ActAsDozerState::update()
 {
 	return STATE_CONTINUE;
@@ -1327,7 +1325,6 @@ StateReturnType ActAsDozerState::onExit()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?onEnter@ActAsSupplyTruckState@@UAE?AW4StateReturnType@@XZ present-unmatched
 StateReturnType ActAsSupplyTruckState::onEnter()
 {
 	return STATE_CONTINUE;
@@ -1335,7 +1332,6 @@ StateReturnType ActAsSupplyTruckState::onEnter()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?update@ActAsSupplyTruckState@@UAE?AW4StateReturnType@@XZ present-unmatched
 StateReturnType ActAsSupplyTruckState::update()
 {
 	return STATE_CONTINUE;

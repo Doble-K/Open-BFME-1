@@ -989,7 +989,6 @@ Int ScreenMotionBlurFilter::init(void)
 	return true;
 }
 
-// ?preRender@ScreenMotionBlurFilter@@UAE_NAA_NAAW4CustomScenePassModes@@@Z present-unmatched
 Bool ScreenMotionBlurFilter::preRender(Bool &skipRender, CustomScenePassModes &scenePassMode)
 {
 	skipRender = m_skipRender;

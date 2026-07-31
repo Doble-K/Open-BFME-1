@@ -75,7 +75,6 @@
 //=============================================================================
 /** Destructor. Releases w3d assets. */
 //=============================================================================
-// ??1TerrainTracksRenderObjClass@@UAE@XZ present-unmatched
 TerrainTracksRenderObjClass::~TerrainTracksRenderObjClass(void)
 {
 	freeTerrainTracksResources();
@@ -139,7 +138,6 @@ Int TerrainTracksRenderObjClass::Class_ID(void) const
 //=============================================================================
 /** Not used, but required virtual method. */
 //=============================================================================
-// ?Clone@TerrainTracksRenderObjClass@@UBEPAVRenderObjClass@@XZ present-unmatched
 RenderObjClass *	 TerrainTracksRenderObjClass::Clone(void) const
 {
 	assert(false);

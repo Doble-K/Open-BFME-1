@@ -978,7 +978,7 @@ def verify_source_claims():
     whitelist = load_claims_whitelist()
 
     problems = []
-    sources = sorted((ROOT / "src").rglob("*.cpp"))
+    sources = sorted((ROOT / "Code").rglob("*.cpp"))
     for path in sources:
         rel = path.relative_to(ROOT).as_posix()
         text = path.read_text(encoding="utf-8", errors="replace")

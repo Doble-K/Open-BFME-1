@@ -287,7 +287,6 @@ Bool GameSlot::isPlayer( UnsignedInt ip ) const
 	return (m_state == SLOT_PLAYER && m_IP == ip);
 }
 
-// ?isOpen@GameSlot@@QBE_NXZ present-unmatched
 Bool GameSlot::isOpen( void ) const
 {
 	return m_state == SLOT_OPEN;

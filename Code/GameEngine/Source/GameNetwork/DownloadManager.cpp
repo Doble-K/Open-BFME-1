@@ -179,7 +179,6 @@ HRESULT DownloadManager::OnError( Int error )
 	return S_OK;
 }
 
-// ?OnEnd@DownloadManager@@UAEJXZ present-unmatched
 HRESULT DownloadManager::OnEnd()
 {
 	m_sawEnd = true;

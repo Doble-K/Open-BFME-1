@@ -430,7 +430,6 @@ RandomTextureMapperClass::RandomTextureMapperClass(const RandomTextureMapperClas
 	randomize();
 }
 
-// ?randomize@RandomTextureMapperClass@@IAEXXZ absent-from-retail
 // Kept so the Random ctors above inline it byte-identically; the retail image has no
 // standalone copy (fully inlined, address never taken).
 void RandomTextureMapperClass::randomize(void)

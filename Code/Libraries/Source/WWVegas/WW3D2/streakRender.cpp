@@ -165,7 +165,6 @@ void StreakRendererClass::Init(const W3dEmitterLinePropertiesStruct & props)
 }
 
 
-// ?Set_Texture@StreakRendererClass@@QAEXPAVTextureClass@@@Z present-unmatched
 void StreakRendererClass::Set_Texture(TextureClass *texture)
 { 
 	REF_PTR_SET(Texture,texture); 
