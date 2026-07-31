@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD /EHsc /Ireference/shims/science /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/science /Ireference/shims/iniexception /Ireference/shims/ini_noinline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
 // stlport
 /*
 **	Command & Conquer Generals Zero Hour(tm)
@@ -130,6 +130,10 @@ std::vector<AsciiString> ScienceStore::friend_getScienceNames() const
 
 //-----------------------------------------------------------------------------
 // ?addRootSciences@ScienceInfo@@ present-unmatched
+// Still here, unlike its Zero Hour caller: friend_parseScienceDefinition does
+// not call this in BFME, but the TU still instantiates std::find over a
+// ScienceVec, which is where the matched __find/find at 0x0018B470/0x0018B590
+// come from. Nothing else in this file emits them.
 void ScienceInfo::addRootSciences(ScienceVec& v) const
 {
 	if (m_prereqSciences.empty())
@@ -175,10 +179,11 @@ const ScienceInfo* ScienceStore::findScienceInfo(ScienceType st) const
 	if (TheScienceStore)
 	{
 
-		static const FieldParse myFieldParse[] = 
+		static const FieldParse myFieldParse[] =
 		{
 			{ "PrerequisiteSciences", INI::parseScienceVector, NULL, offsetof( ScienceInfo, m_prereqSciences ) },
 			{ "SciencePurchasePointCost", INI::parseInt, NULL, offsetof( ScienceInfo, m_sciencePurchasePointCost ) },
+			{ "SciencePurchasePointCostMP", INI::parseInt, NULL, offsetof( ScienceInfo, m_sciencePurchasePointCostMP ) },
 			{ "IsGrantable", INI::parseBool, NULL, offsetof( ScienceInfo, m_grantable ) },
 			{ "DisplayName", INI::parseAndTranslateLabel, NULL, offsetof( ScienceInfo, m_name) },
 			{ "Description", INI::parseAndTranslateLabel, NULL, offsetof( ScienceInfo, m_description) },
@@ -227,8 +232,10 @@ const ScienceInfo* ScienceStore::findScienceInfo(ScienceType st) const
 		{
 			if (info != NULL)
 			{
-				DEBUG_CRASH(("duplicate science %s!\n",c));
-				throw INI_INVALID_DATA;
+				// Zero Hour logs this with DEBUG_CRASH and then throws the bare
+				// INI_INVALID_DATA; BFME carries the message into the exception,
+				// so it survives into a release build.
+				throw INIException(3, "duplicate science %s!\n", c);
 			}
 			info = newInstance(ScienceInfo);
 			TheScienceStore->m_sciences.push_back(info);
@@ -236,7 +243,7 @@ const ScienceInfo* ScienceStore::findScienceInfo(ScienceType st) const
 
 		ini->initFromINI(info, myFieldParse);
 		info->m_science = st;
-		info->addRootSciences(info->m_rootSciences);
+		// no addRootSciences here: BFME has no m_rootSciences (see Science.h)
 	}
 }
 
@@ -273,7 +280,7 @@ Int ScienceStore::getSciencePurchaseCost(ScienceType st) const
 		if (mode == 1 /*GAME_LAN*/ || mode == 5 /*GAME_INTERNET*/ || mode == 2 /*GAME_SKIRMISH*/ ||
 			(mode == 3 /*GAME_REPLAY*/ && TheRecorder && TheRecorder->isMultiplayer()))
 		{
-			return si->_bfme_unknownCost28;
+			return si->m_sciencePurchasePointCostMP;
 		}
 		return si->m_sciencePurchasePointCost;
 	}
@@ -352,59 +359,11 @@ Bool ScienceStore::playerHasPrereqsForScience(const Player* player, ScienceType 
 }
 
 //-----------------------------------------------------------------------------
-// ?playerHasRootPrereqsForScience@ScienceStore@@ present-unmatched
-Bool ScienceStore::playerHasRootPrereqsForScience(const Player* player, ScienceType st) const
-{
-	const ScienceInfo* si = findScienceInfo(st);
-	if (si)
-	{
-		for (ScienceVec::const_iterator it2 = si->m_rootSciences.begin(); it2 != si->m_rootSciences.end(); ++it2)
-		{
-			if (!player->hasScience(*it2))
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-//-----------------------------------------------------------------------------
-/** return a list of the sciences the given player can purchase now, and a list he might be able to purchase in the future, 
-	but currently lacks prereqs or points for. (either might be an empty list) */
-void ScienceStore::getPurchasableSciences(const Player* player, ScienceVec& purchasable, ScienceVec& potentiallyPurchasable) const
-{
-	purchasable.clear();
-	potentiallyPurchasable.clear();
-	for (ScienceInfoVec::const_iterator it = m_sciences.begin(); it != m_sciences.end(); ++it)
-	{
-		const ScienceInfo* si = (const ScienceInfo*)(*it)->getFinalOverride();
-		
-		if (si->m_sciencePurchasePointCost == 0)
-		{
-			// 0 means "cannot be purchased"
-			continue;
-		}
-
-		if (player->hasScience(si->m_science))
-		{
-			continue;
-		}
-
-		if (playerHasPrereqsForScience(player, si->m_science))
-		{
-			purchasable.push_back(si->m_science);
-		}
-		else if (playerHasRootPrereqsForScience(player, si->m_science))
-		{
-			potentiallyPurchasable.push_back(si->m_science);
-		}
-	}
-}
+// Zero Hour's playerHasRootPrereqsForScience and getPurchasableSciences used to
+// sit here. Both are built on ScienceInfo::m_rootSciences, which BFME does not
+// have (Science.h has the proof: retail's ScienceInfo is exactly 0x30 bytes and
+// friend_parseScienceDefinition never fills one in), so neither body can be
+// right as written. Left out rather than guessed at.
 
 //-----------------------------------------------------------------------------
 // this is intended ONLY for use by INI::scanScience.

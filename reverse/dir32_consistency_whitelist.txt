@@ -173,3 +173,13 @@ _m_boundaries
 # correct. It only became visible when parseAngularVelocityReal was repointed off
 # its 5-byte ILT thunk (which carried no relocations) onto its real body.
 __real@3c8efa35
+#
+# _staticTextStatus is two unrelated file-scope statics that happen to share a
+# name: DownloadMenu.cpp's single GameWindow* at 0x12F399C (referenced by the
+# matched DownloadMenuInit, DownloadMenuShutdown and
+# DownloadManagerMunkee::OnStatusUpdate) and Diplomacy.cpp's GameWindow*
+# [MAX_SLOTS] array at 0x12F3818 (referenced by the matched
+# releaseWindowPointers). Internal linkage means retail allocates each its own
+# storage, so two bases is correct, not a discrepancy. Surfaced on the first
+# full gate after both TUs had rows referencing it.
+_staticTextStatus

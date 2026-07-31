@@ -13644,3 +13644,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?parseArmorDefinition@ArmorStore@@SAXPAVINI@@@Z,,0x001B09B0,144,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,INI block table node binds keyword Armor to this address
 ?parseArmorCoefficients@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x001AFC30,165,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,FieldParse token Armor at 0x0109C874 slot 1 - ZH name
 ?parseDamageScalar@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x001AFD00,28,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,FieldParse token DamageScalar at 0x0109C874 slot 0 - BFME-only name from token
+?friend_parseScienceDefinition@ScienceStore@@SAXPAVINI@@@Z,,0x000E8630,445,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,INI block table node binds keyword Science to this address
