@@ -626,19 +626,8 @@ __declspec(naked) void INI::parseInt( INI* ini, void* /*instance*/, void* store,
 
 //-------------------------------------------------------------------------------------------------
 /** Parse real from buffer and assign at location 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parsePositiveNonZeroReal( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char *token = ini->getNextToken();
-	*(Real *)store = scanReal(token);
-	if (*(Real *)store <= 0.0f)
-	{
-		DEBUG_CRASH(("invalid Real value %f -- expected > 0\n",*(Real*)store));
-		throw INI_INVALID_DATA;
-	}
+// INI::parsePositiveNonZeroReal lives in ini_parsers.cpp (retail's other INI TU)
 
-}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a degree value (0 to 360) and store the radian value of that degree
@@ -920,15 +909,8 @@ void INI::parseMappedImage( INI *ini, void * /*instance*/, void *store, const vo
 //-------------------------------------------------------------------------------------------------
 /** Parse a percent in int or real form such as "23%" or "95.4%" and assign
 	* to location 'store' as a number from 0.0 to 1.0 */
-//-------------------------------------------------------------------------------------------------
-// ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parsePercentToReal( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char *token = ini->getNextToken(ini->getSepsPercent());
-	Real *theReal = (Real *)store;
-	*theReal = scanPercentToReal(token);
-
-}  // end parsePercentToReal
+// INI::parsePercentToReal lives in ini_parsers.cpp (retail's other INI TU)
+  // end parsePercentToReal
 
 //-------------------------------------------------------------------------------------------------
 /** 'store' points to an 32 bit unsigned integer.  We will zero that integer, parse each token
@@ -1677,15 +1659,8 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 	throw INIException(3, "Token '%s' is not a valid member of the lookup list", token);
 }
 
-//-------------------------------------------------------------------------------------------------
-// ?getNextSubToken@INI@@QAEPBDPBD@Z present-unmatched
-const char* INI::getNextSubToken(const char* expected)
-{
-	const char* token = getNextToken(getSepsColon());
-	if (stricmp(token, expected) != 0)
-		throw INI_INVALID_DATA;
-	return getNextToken(getSepsColon());
-}
+// INI::getNextSubToken lives in ini_parsers.cpp (retail's other INI TU)
+
 
 //-------------------------------------------------------------------------------------------------
 /**

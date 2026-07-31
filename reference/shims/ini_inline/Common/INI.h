@@ -390,7 +390,10 @@ public:
 		an exception if not of the right form.
 	*/
 	static Real scanReal(const char* token);
-	static Real scanPercentToReal(const char* token);
+	// Inline in this TU: retail's parsePercentToReal (0x00852EE0) calls scanReal
+	// and then multiplies by the 0.01f constant at 0x01076C24 in line, rather
+	// than calling out to scanPercentToReal.
+	static Real scanPercentToReal(const char* token) { return scanReal(token) * 0.01f; }
 
 	static Int scanIndexList(const char* token, ConstCharPtrArray nameList);
 	static Int scanLookupList(const char* token, ConstLookupListRecArray lookupList);

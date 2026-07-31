@@ -137,3 +137,36 @@ void INI::parseBitInInt32( INI *ini, void *instance, void *store, const void* us
 	else
 		*s &= ~mask;
 }
+
+//-------------------------------------------------------------------------------------------------
+void INI::parsePercentToReal( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+{
+	const char *token = ini->getNextToken(ini->getSepsPercent());
+	Real *theReal = (Real *)store;
+	*theReal = scanPercentToReal(token);
+
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
+void INI::parsePositiveNonZeroReal( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+{
+	const char *token = ini->getNextToken();
+	*(Real *)store = scanReal(token);
+	if (*(Real *)store <= 0.0f)
+	{
+		DEBUG_CRASH(("invalid Real value %f -- expected > 0\n",*(Real*)store));
+		throw INI_INVALID_DATA;
+	}
+
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?getNextSubToken@INI@@QAEPBDPBD@Z present-unmatched
+const char* INI::getNextSubToken(const char* expected)
+{
+	const char* token = getNextToken(getSepsColon());
+	if (stricmp(token, expected) != 0)
+		throw INI_INVALID_DATA;
+	return getNextToken(getSepsColon());
+}
