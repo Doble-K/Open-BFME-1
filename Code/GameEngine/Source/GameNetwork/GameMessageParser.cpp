@@ -31,10 +31,10 @@
 #include "GameNetwork/GameMessageParser.h"
 
 //----------------------------------------------------------------------------
-// ??0GameMessageParser@@ present-unmatched
 GameMessageParser::GameMessageParser() 
 {
 	m_first = NULL;
+	m_last = NULL;
 	m_argTypeCount = 0;
 }
 

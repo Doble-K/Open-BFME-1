@@ -1460,7 +1460,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GameFont@@QAE@XZ,,0x00102DF0,16,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
 ??0GameMessage@@QAE@W4Type@0@@Z,,0x000359E5,5,Code/masm_dumps/__0GameMessage__QAE_W4Type_0__Z_359E5.asm,matched,MASM exact retail dump
 ??0GameMessageParser@@QAE@PAVGameMessage@@@Z,,0x006236D0,142,Code/masm_dumps/GameMessageParser_constructor_6236D0.asm,matched,Certified packet 82 exact retail db body SHA256 dff2813593a796ae89878de4cb840cc2c0771774c9ab0e621261b0671e0562f7
-??0GameMessageParser@@QAE@XZ,,0x00013FCA,5,Code/masm_dumps/__0GameMessageParser__QAE_XZ_13FCA.asm,matched,MASM exact retail dump
 ??0GameMessageParserArgumentType@@QAE@W4GameMessageArgumentDataType@@H@Z,,0x00623570,32,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,
 ??0GameResultsQueue@@QAE@XZ,,0x0000DAFD,5,Code/masm_dumps/__0GameResultsQueue__QAE_XZ_DAFD.asm,matched,MASM exact retail dump
 ??0GameResultsRequest@@QAE@ABV0@@Z,,0x006417E0,89,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
@@ -13671,3 +13670,5 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?update@BFMEConnectionManager@@QAEXXZ,,0x0066AB30,814,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?runRelayPass@BFMEConnectionManager@@QAEXXZ,,0x0066A740,792,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?update@BFMEDisconnectManager@@QAEXPAX@Z,,0x0066C8D0,1122,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendFrameDataToPlayer@BFMEConnectionManager@@QAEXHII@Z,,0x00664B40,384,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+??0GameMessageParser@@QAE@XZ,,0x00623510,20,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
