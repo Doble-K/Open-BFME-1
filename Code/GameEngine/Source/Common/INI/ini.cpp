@@ -827,6 +827,20 @@ void INI::parseDynamicAudioEventRTS( INI *ini, void * /*instance*/, void *store,
 /** Parse an audio event and assign to the 'AudioEventRTS*' at store */
 //-------------------------------------------------------------------------------------------------
 // ?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
+// 0x000BBB60, 181 bytes -- the most-referenced field parser in the game, bound
+// to 45 tokens across 5 INI blocks. Bytes 0..56 match; the rest needs three
+// things this TU cannot express yet:
+//   1. a REL32 pin for AudioEventRTS::setEventName (retail calls thunk 0x25266)
+//   2. AsciiString::isEmpty inline as m_data && m_data->numChars, which is what
+//      retail emits (mov eax,[edi+0x14]; test; cmp word [eax+4],0); the shim
+//      here calls out of line instead
+//   3. an AudioManager vtable whose slots match BFME's. getInfoForAudioEvent is
+//      at +0xac in retail and +0x68 against the Zero Hour header, and
+//      isValidAudioEvent at +0x5c vs +0x40, so BFME's manager has a different
+//      set of virtuals ahead of them. That is the real blocker, and it needs a
+//      TU-scoped GameAudio.h shim built from the retail vtable.
+// Its size was also mis-measured as 47 bytes until tools/dump_ini_schema.py
+// stopped sizing bodies by scanning for the first 0xCC.
 void INI::parseAudioEventRTS( INI *ini, void * /*instance*/, void *store, const void* userData )
 {
 	const char *token = ini->getNextToken();
@@ -839,6 +853,17 @@ void INI::parseAudioEventRTS( INI *ini, void * /*instance*/, void *store, const 
 	}
 
 	TheAudio->getInfoForAudioEvent(theSound);
+
+	// BFME addition: a named event that the audio manager could not resolve is a
+	// hard error rather than a silent miss. "NoSound" is exempt because it is the
+	// sentinel for "deliberately nothing", and an empty name means the field was
+	// never set.
+	if (!theSound->getEventName().isEmpty() &&
+			theSound->getEventName().compareNoCase("NoSound") != 0 &&
+			!TheAudio->isValidAudioEvent(theSound))
+	{
+		throw INIException(3, "Invalid Sound '%s'", theSound->getEventName().str());
+	}
 }
 
 //-------------------------------------------------------------------------------------------------
