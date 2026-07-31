@@ -97,39 +97,11 @@ Int SubsystemLegend::getEntryCount() const
 	return m_entries.size();
 }
 
-// ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z present-unmatched
-// The ledger row for 0x009A11A0 points at
-// Code/masm_dumps/SubsystemLegend_findEntry_9A11A0.asm, so the marker here is
-// deliberate: those 264 bytes are owned by another file. This body still belongs
-// in this TU and must stay — it is the only thing that instantiates
-// _List_iterator<Entry>::operator* and operator-> (0x009A1090 and 0x009A10A0,
-// matched from here), which is itself evidence that retail's TU carries findEntry
-// as C++ rather than as a blob.
-//
-// It compiles to 262 of the 264 retail bytes. The two that differ are one
-// register in the loop latch at 0x009A123C: retail reloads the spilled `this`
-// into eax (reading [eax+8]), MSVC 7.1 here picks ecx. Frame, EH states, the
-// inlined StringBase compare and both epilogues are byte-identical. The eax form
-// is not beyond this toolchain — ?update@ControlBarScheme@@QAEXXZ (0x004AD484)
-// is matched from C++ and emits it — but there the loop body is call-free, so the
-// iterator lives in ecx and pushes `this` into eax; ours has calls, so the
-// iterator takes ebp, leaves ecx free, and MSVC takes it. Across the image the
-// same ebp-iterator-with-calls latch resolves eax x3 / ecx x2 / edx x1, so
-// retail's choice here is close to a coin flip rather than a rule. ~190 source
-// variants, every codegen flag and every STLport config macro land on exactly
-// these two bytes. Delete the dump and repoint the row the day that gap closes.
-SubsystemLegendEntry *SubsystemLegend::findEntry(AsciiString name)
-{
-	std::list<SubsystemLegendEntry>::iterator it;
-	for (it = m_entries.begin(); it != m_entries.end(); ++it)
-	{
-		AsciiString entryName = it->m_name;
-		if (entryName.compare(name) == 0)
-			return &(*it);
-	}
-	return NULL;
-}
-
+// findEntry (0x009A11A0) is NOT here. Its C++ reconstruction reached 262 of 264
+// bytes and was deleted with the rest of the non-1:1 code; the byte-exact MASM
+// dump in Code/masm_dumps/ owns that address. Restoring the C++ would also
+// restore _List_iterator<Entry>::operator* and operator-> (0x009A1090 /
+// 0x009A10A0), which only that body instantiates — they went with it.
 // ?addEntry@SubsystemLegend@@QAEXABUSubsystemLegendEntry@@@Z
 void SubsystemLegend::addEntry(const SubsystemLegendEntry &entry)
 {

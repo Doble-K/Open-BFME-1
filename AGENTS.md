@@ -45,7 +45,8 @@ Repeat this loop while manual reverse-engineering work remains:
 3. Reconcile one function. Resolve REL32 pins only while call sites still
    align; after early shape drift, bogus decoded calls are not evidence.
 4. Exact match: `tools/add_match.py`, focused `build.sh`, commit, pull-push-pull.
-   No match: revert source edits, `tools/log_attempt.py`, commit, pull-push-pull.
+   No match: revert source edits (do NOT leave a non-matching body in the tree),
+   `tools/log_attempt.py` to record the evidence, commit, pull-push-pull.
 5. Re-run the queue. Logged candidates sort behind fresh work; never hand-pick
    yesterday's blocker while an untried candidate remains.
 
@@ -63,7 +64,9 @@ C++ for any field/logic body — dump only x87/SEH/codegen-blocked ones.
 3. `python3 tools/land_ambiguous.py` — string-anchored drift copies.
 4. Structural RE: `tools/next_work.py --tier structural`, per
    `docs/structural.md`; 30-60 min/function, log EVERY attempt
-   (`tools/log_attempt.py`), 3 strikes → move on.
+   (`tools/log_attempt.py`), 3 strikes → move on. Logging an attempt records
+   evidence and sorts the candidate down; it never removes it from the queue,
+   and it is not licence to leave the non-matching source behind.
 5. REL32 pin (`reverse/symbols.csv`, docs/matching.md), or a small
    `__asm`/export → C++ (`tools/list_naked_candidates.py Code --limit 20`).
 
@@ -119,7 +122,10 @@ gate output or the PR gets rebuilt from scratch (no server CI).
   create subtle bugs that cost more time than they save. If the original
   toolchain matters, use the original toolchain.
 * Progress = matched functions.csv rows backed by real source. Landing
-  `present-unmatched` markers is not work; gates reject zero-matched sources.
+  `present-unmatched` markers is not work; gates reject zero-matched sources,
+  with NO exception list. Source that nothing has byte-verified is a
+  reconstruction, not a port: delete it and keep the evidence in
+  `docs/lessons.md` / `reverse/re_attempts.log`.
 * Never read `reverse/functions.csv`, `reverse/ghidra_functions.csv`, or
   `reverse/exports.csv` into your context — they are huge. Query them with
   the tools or grep/python.

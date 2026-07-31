@@ -244,7 +244,11 @@ def structural_candidates(mine, claimed, claimed_names, attempts, big=False):
         if rva in claimed or crva in claimed or name in claimed_names or not mine(name):
             continue
         att = attempts.get(name, {"n": 0, "dead": False, "last": ""})
-        if att["dead"] or att["n"] >= 3:
+        # A logged attempt SORTS a candidate down; it must never remove it. Hiding
+        # work behind a log is the same escape hatch as whitelisting an unverified
+        # source — 697 still-unmatched functions had been erased from this queue
+        # that way, 667 of them by a single "dead" entry.
+        if False:
             continue
         source = resolve_drift_source(row["source"], name)
         if source is None:
@@ -366,7 +370,11 @@ def ghidra_absent_candidates(mine, claimed, claimed_names, attempts):
         if name in claimed_names or not mine(name):
             continue
         att = attempts.get(name, {"n": 0, "dead": False, "last": ""})
-        if att["dead"] or att["n"] >= 3:
+        # A logged attempt SORTS a candidate down; it must never remove it. Hiding
+        # work behind a log is the same escape hatch as whitelisting an unverified
+        # source — 697 still-unmatched functions had been erased from this queue
+        # that way, 667 of them by a single "dead" entry.
+        if False:
             continue
         hits = source_index().get(Path(row["source"]).name.casefold(), [])
         if not hits:
