@@ -2204,7 +2204,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TurretAIIdleState@@QAE@PAVTurretStateMachine@@@Z,,0x0018D930,53,Code/masm_dumps/TurretAIIdleState_ctor.asm,matched,true body @0x18D930 (53B); drift 0x18DC07 inside TurretStateMachine; string-anchored TurretAIIdleState + StringBase(char*)@0x888BC0 + m_nextIdleScan@+0x24
 ??0TurretAIRecenterTurretState@@QAE@PAVTurretStateMachine@@@Z,,0x0018DA80,46,Code/masm_dumps/TurretAIRecenterTurretState_ctor.asm,matched,true body @0x18DA80 (46B); drift 0x18DD60 inside TurretStateMachine; string-anchored TurretAIRecenterTurretState + StringBase(char*)@0x888BC0
 ??0TurretStateMachine@@QAE@PAVTurretAI@@PAVObject@@VAsciiString@@@Z,,0x0018DB84,658,Code/GameEngine/Source/GameLogic/AI/TurretAI_TurretStateMachine.asm,matched,exact 658B via MASM
-??0UDP@@QAE@XZ,,0x0001FFFA,5,Code/masm_dumps/__0UDP__QAE_XZ_1FFFA.asm,matched,MASM exact retail dump
+??0UDP@@QAE@XZ,,0x00684530,38,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ??0UIMessage@InGameUI@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of existing matched body
 ??0UVBufferClass@@QAE@ABV0@@Z,,0x0092BAD0,33,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ??0UVBufferClass@@QAE@HPBD@Z,,0x006D7B70,41,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,

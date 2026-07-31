@@ -122,10 +122,15 @@ AsciiString GetWSAErrorString( Int error )
 
 //-------------------------------------------------------------------------
 
-// ??0UDP@@QAE@XZ present-unmatched
 UDP::UDP()
 {
-  fd=0;
+  fd=-1;
+  addr.sin_family=AF_INET;
+  addr.sin_port=0;
+  addr.sin_addr.s_addr=0;
+  m_lastError=10000;
+  myIP=0;
+  myPort=0;
 }
 
 UDP::~UDP()
