@@ -701,17 +701,8 @@ void INI::parseQuotedAsciiString( INI* ini, void * /*instance*/, void *store, co
 	*asciiString = ini->getNextQuotedAsciiString();
 }
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-void INI::parseAsciiStringVector( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	// Empty the vector, then reuse the append parser rather than re-reading the
-	// tokens here: retail calls vector<AsciiString>::erase(begin, end) and then
-	// tail-calls parseAsciiStringVectorAppend with the same four arguments.
-	std::vector<AsciiString>* asv = (std::vector<AsciiString>*)store;
-	asv->erase(asv->begin(), asv->end());
-	INI::parseAsciiStringVectorAppend(ini, NULL, store, NULL);
-}
+// INI::parseAsciiStringVector lives in ini_parsers.cpp (retail's other INI TU)
+
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
@@ -744,55 +735,8 @@ void INI::parseAsciiStringVectorAppend( INI* ini, void * /*instance*/, void *sto
 	}
 }
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-// ?getNextQuotedAsciiString@INI@@QAE?AVAsciiString@@XZ present-unmatched
-AsciiString INI::getNextQuotedAsciiString()
-{
-	AsciiString result;
-	char buff[INI_MAX_CHARS_PER_LINE];
+// INI::getNextQuotedAsciiString lives in ini_parsers.cpp (retail's other INI TU)
 
-	const char *token = getNextTokenOrNull();	// if null, just leave an empty string
-	if (token != NULL)
-	{
-		if (token[0] != '\"') 
-		{	
-			// if token is simply "
-			result.set( token );	// Start following the "
-		}
-		else
-		{	int strLen=0;
-			Bool done=FALSE;
-			if ((strLen=strlen(token)) > 1)
-			{
-				strcpy(buff, &token[1]);	//skip the starting quote
-				//Check for end of quoted string.  Checking here fixes cases where quoted string on same line with other data.
-				if (buff[strLen-2]=='"')	//skip ending quote if present
-				{	buff[strLen-2]='\0';
-					done=TRUE;
-				}
-			}
-
-			if (!done)
-			{
-				token = getNextToken(getSepsQuote());
-				
-				if (strlen(token) > 1 && token[1] != '\t')
-				{
-					strcat(buff, " ");
-					strcat(buff, token);
-				}
-				else
-				{	Int buflen=strlen(buff);
-					if (buff[buflen-1]=='\"')
-						buff[buflen-1]='\0';
-				}
-			}
-			result.set(buff);
-		}
-	}
-	return result;
-}
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
@@ -916,230 +860,39 @@ void INI::parseMappedImage( INI *ini, void * /*instance*/, void *store, const vo
 /** 'store' points to an 32 bit unsigned integer.  We will zero that integer, parse each token
 	* in the buffer, if the token is in the userData table of strings, we will set the
 	* according bit flag for it */
-//-------------------------------------------------------------------------------------------------
-void INI::parseBitString8( INI* ini, void * /*instance*/, void *store, const void* userData )
-{
-	UnsignedInt tmp;
-	INI::parseBitString32(ini, NULL, &tmp, userData);
-	if (tmp & 0xffffff00)
-	{
-		DEBUG_CRASH(("Bad bitstring list INI::parseBitString8"));
-	// Retail throws a plain int 1 here, not ZH's ERROR_BUG. Both are proven, not
-	// assumed: the ThrowInfo this site pushes (0x012454C0) has one catchable type
-	// whose TypeDescriptor spells ".H" (int), and every one of the 19 sites that
-	// use it image-wide throws the value 1; meanwhile ERROR_BUG really is
-	// 0xdead0001 in BFME -- INI::parseScience and INI::parseThingTemplate are
-	// matched from this file carrying that immediate. So this is a distinct BFME
-	// code; its name in BFME's source is not recoverable from the binary.
-	throw 1;
-	}
-	*(Byte*)store = (Byte)tmp;
-}
+// INI::parseBitString8 lives in ini_parsers.cpp (retail's other INI TU)
+
 
 //-------------------------------------------------------------------------------------------------
 /** 'store' points to an 32 bit unsigned integer.  We will zero that integer, parse each token
 	* in the buffer, if the token is in the userData table of strings, we will set the
 	* according bit flag for it */
-//-------------------------------------------------------------------------------------------------
-// ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseBitString32( INI* ini, void * /*instance*/, void *store, const void* userData )
-{
-	ConstCharPtrArray flagList = (ConstCharPtrArray)userData;
-	UnsignedInt *bits = (UnsignedInt *)store;
+// INI::parseBitString32 lives in ini_parsers.cpp (retail's other INI TU)
 
-	if( flagList == NULL || flagList[ 0 ] == NULL)
-	{
-		DEBUG_ASSERTCRASH( flagList, ("INTERNAL ERROR! parseBitString32: No flag list provided!\n") );
-		throw INI_INVALID_NAME_LIST;
-	}
-
-	Bool foundNormal = false;
-	Bool foundAddOrSub = false;
-
-	// loop through all tokens
-	for (const char *token = ini->getNextTokenOrNull(); token != NULL; token = ini->getNextTokenOrNull())
-	{
-		if (stricmp(token, "NONE") == 0)
-		{
-			if (foundNormal || foundAddOrSub)
-			{
-				DEBUG_CRASH(("you may not mix normal and +- ops in bitstring lists"));
-				throw INI_INVALID_NAME_LIST;
-			}
-			*bits = 0;
-			break;
-		}
-
-		if (token[0] == '+')
-		{
-			if (foundNormal)
-			{
-				DEBUG_CRASH(("you may not mix normal and +- ops in bitstring lists"));
-				throw INI_INVALID_NAME_LIST;
-			}
-			Int bitIndex = INI::scanIndexList(token+1, flagList);	// this throws if the token is not found
-			*bits |= (1 << bitIndex);
-			foundAddOrSub = true;
-		}
-		else if (token[0] == '-')
-		{
-			if (foundNormal)
-			{
-				DEBUG_CRASH(("you may not mix normal and +- ops in bitstring lists"));
-				throw INI_INVALID_NAME_LIST;
-			}
-			Int bitIndex = INI::scanIndexList(token+1, flagList);	// this throws if the token is not found
-			*bits &= ~(1 << bitIndex);
-			foundAddOrSub = true;
-		}
-		else
-		{
-			if (foundAddOrSub)
-			{
-				DEBUG_CRASH(("you may not mix normal and +- ops in bitstring lists"));
-				throw INI_INVALID_NAME_LIST;
-			}
-
-			if (!foundNormal)
-				*bits = 0;
-
-			Int bitIndex = INI::scanIndexList(token, flagList);	// this throws if the token is not found
-			*bits |= (1 << bitIndex);
-			foundNormal = true;
-		}
-	}
-}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a color in the form of
 	*
 	* RGB_COLOR = R:100 G:114 B:245
 	* and store in "RGBColor" structure pointed to by 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parseRGBColor@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseRGBColor( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char* names[3] = { "R", "G", "B" };
-	Int colors[3];
-	for( Int i = 0; i < 3; i++ )
-	{
-		colors[i] = scanInt(ini->getNextSubToken(names[i]));
-		if( colors[ i ] < 0 )
-			throw INI_INVALID_DATA;
-		if( colors[ i ] > 255 )
-			throw INI_INVALID_DATA;
-	}
+// INI::parseRGBColor lives in ini_parsers.cpp (retail's other INI TU)
 
-	// assign the color components to the "RGBColor" pointer at 'store'
-	RGBColor *theColor = (RGBColor *)store;
-	theColor->red		= (Real)colors[ 0 ] / 255.0f;
-	theColor->green = (Real)colors[ 1 ] / 255.0f;
-	theColor->blue	= (Real)colors[ 2 ] / 255.0f;
-
-}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a color in the form of
 	*
 	* RGB_COLOR = R:100 G:114 B:245 [A:233]
 	* and store in "RGBAColorInt" structure pointed to by 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parseRGBAColorInt@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseRGBAColorInt( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char* names[4] = { "R", "G", "B", "A" };
-	Int colors[4];
-	for( Int i = 0; i < 4; i++ )
-	{
-		const char* token = ini->getNextTokenOrNull(ini->getSepsColon());
-		if (token == NULL)
-		{
-			if (i < 3)
-			{
-				throw INI_INVALID_DATA;
-			}
-			else
-			{
-				// it's ok for A to be omitted.
-				colors[i] = 255;
-			}
-		}
-		else
-		{
-			// if present, the token must match.
-			if (stricmp(token, names[i]) != 0)
-			{
-				throw INI_INVALID_DATA;				
-			}
-			colors[i] = scanInt(ini->getNextToken(ini->getSepsColon()));
-		}
-		if( colors[ i ] < 0 )
-			throw INI_INVALID_DATA;
-		if( colors[ i ] > 255 )
-			throw INI_INVALID_DATA;
-	}
-
-	//
-	// assign the color components to the "RGBColorInt" pointer at 'store', keep
-	// the numbers as between 0 and 255
-	//
-	RGBAColorInt *theColor = (RGBAColorInt *)store;
-	theColor->red		= colors[ 0 ];
-	theColor->green = colors[ 1 ];
-	theColor->blue	= colors[ 2 ];
-	theColor->alpha = colors[ 3 ];
-
-}  // end parseRGBAColorInt
+// INI::parseRGBAColorInt lives in ini_parsers.cpp (retail's other INI TU)
+  // end parseRGBAColorInt
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a color in the form of
 	*
 	* RGB_COLOR = R:100 G:114 B:245 [A:233]
 	* and store in "Color" structure pointed to by 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parseColorInt@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseColorInt( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char* names[4] = { "R", "G", "B", "A" };
-	Int colors[4];
-	for( Int i = 0; i < 4; i++ )
-	{
-		const char* token = ini->getNextTokenOrNull(ini->getSepsColon());
-		if (token == NULL)
-		{
-			if (i < 3)
-			{
-				throw INI_INVALID_DATA;
-			}
-			else
-			{
-				// it's ok for A to be omitted.
-				colors[i] = 255;
-			}
-		}
-		else
-		{
-			// if present, the token must match.
-			if (stricmp(token, names[i]) != 0)
-			{
-				throw INI_INVALID_DATA;				
-			}
-			colors[i] = scanInt(ini->getNextToken(ini->getSepsColon()));
-		}
-		if( colors[ i ] < 0 )
-			throw INI_INVALID_DATA;
-		if( colors[ i ] > 255 )
-			throw INI_INVALID_DATA;
-	}
-
-	//
-	// assign the color components to the "Color" pointer at 'store', keep
-	// the numbers as between 0 and 255
-	//
-	Color *theColor = (Color *)store;
-	*theColor = GameMakeColor(colors[0], colors[1], colors[2], colors[3]);
-
-}  // end parseColorInt
+// INI::parseColorInt lives in ini_parsers.cpp (retail's other INI TU)
+  // end parseColorInt
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a 3D coordinate of reals in the form of:
@@ -1438,46 +1191,14 @@ void INI::parseScience(INI *ini, void *, void *store, const void *)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 	
-//-------------------------------------------------------------------------------------------------
-void MultiIniFieldParse::add(const FieldParse* f, UnsignedInt e)
-{
-	if (m_count < MAX_MULTI_FIELDS)
-	{
-		m_fieldParse[m_count] = f;
-		m_extraOffset[m_count] = e;
-		++m_count;
-	}
-	else
-	{
-		DEBUG_CRASH(("too many multi-fields in INI::initFromINIMultiProc"));
-	// Retail throws a plain int 1 here, not ZH's ERROR_BUG. Both are proven, not
-	// assumed: the ThrowInfo this site pushes (0x012454C0) has one catchable type
-	// whose TypeDescriptor spells ".H" (int), and every one of the 19 sites that
-	// use it image-wide throws the value 1; meanwhile ERROR_BUG really is
-	// 0xdead0001 in BFME -- INI::parseScience and INI::parseThingTemplate are
-	// matched from this file carrying that immediate. So this is a distinct BFME
-	// code; its name in BFME's source is not recoverable from the binary.
-	throw 1;
-	}
-}
+// MultiIniFieldParse::add lives in ini_parsers.cpp (retail's other INI TU)
 
-//-------------------------------------------------------------------------------------------------
-// ?initFromINI@INI@@QAEXPAXPBUFieldParse@@@Z present-unmatched
-void INI::initFromINI( void *what, const FieldParse* parseTable )
-{
-	MultiIniFieldParse p;
-	p.add(parseTable);
-	initFromINIMulti(what, p);
-}
 
-//-------------------------------------------------------------------------------------------------
-// ?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z present-unmatched
-void INI::initFromINIMultiProc( void *what, BuildMultiIniFieldProc proc )
-{
-	MultiIniFieldParse p;
-	(*proc)(p);
-	initFromINIMulti(what, p);
-}
+// INI::initFromINI lives in ini_parsers.cpp (retail's other INI TU)
+
+
+// INI::initFromINIMultiProc lives in ini_parsers.cpp (retail's other INI TU)
+
 
 //-------------------------------------------------------------------------------------------------
 // ?initFromINIMulti@INI@@QAEXPAXABVMultiIniFieldParse@@@Z present-unmatched
@@ -1621,43 +1342,10 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 	return scanReal(token) * 0.01f;
 }
 
-//-------------------------------------------------------------------------------------------------
-/*static*/ Int INI::scanIndexList(const char* token, ConstCharPtrArray nameList)
-{
-	if( nameList == NULL || nameList[ 0 ] == NULL )
-		throw INIException(2, "INTERNAL ERROR! scanIndexList: No name list provided!");
+// INI::scanIndexList lives in ini_parsers.cpp (retail's other INI TU)
 
-	// search for matching name
-	Int count = 0;
-	for(ConstCharPtrArray name = nameList; *name; name++, count++ )
-	{
-		if( stricmp( *name, token ) == 0 )
-		{
-			return count;
-		}
-	}
+// INI::scanLookupList lives in ini_parsers.cpp (retail's other INI TU)
 
-	throw INIException(3, "Token '%s' is not a valid member of the index list", token);
-}
-//-------------------------------------------------------------------------------------------------
-// BFME reports both failures as INIException with a formatted message rather
-// than ZH's bare error codes; the two message strings below are transcribed
-// from retail (0x011303E0 and 0x01130418), and the leading count is the
-// argument count the varargs ctor takes.
-/*static*/ Int INI::scanLookupList(const char* token, ConstLookupListRecArray lookupList)
-{
-	if( lookupList == NULL || lookupList[ 0 ].name == NULL )
-		throw INIException(2, "INTERNAL ERROR! scanLookupList: No name list provided!");
-
-	// search for matching name
-	for( const LookupListRec* lookup = &lookupList[0]; lookup->name; lookup++ )
-	{
-		if( stricmp( lookup->name, token ) == 0 )
-			return lookup->value;
-	}
-
-	throw INIException(3, "Token '%s' is not a valid member of the lookup list", token);
-}
 
 // INI::getNextSubToken lives in ini_parsers.cpp (retail's other INI TU)
 

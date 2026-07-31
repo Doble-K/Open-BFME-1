@@ -11136,7 +11136,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getNextMission@Campaign@@QAEPAVMission@@PAV2@@Z,,0x0003236C,5,Code/masm_dumps/_getNextMission_Campaign__QAEPAVMission__PAV2__Z_3236C.asm,matched,MASM exact retail dump
 ?getNextPlayPortion@AudioEventRTS@@QBE?AW4PortionToPlay@@XZ,,0x000B2420,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Retail thunk-bound BFME next-portion getter
 ?getNextQuotedAsciiString@INI@@QAE?AVAsciiString@@XZ,,0x00851540,401,Code/masm_dumps/getNextQuotedAsciiString_INI_QAE_AVAsciiString_XZ_851540.asm,matched,Ghidra boundary plus 0x40C quoted-token buffer flow
-?getNextSubToken@INI@@QAEPBDPBD@Z,,0x00850B00,157,Code/masm_dumps/__getNextSubToken_INI__QAEPBDPBD_Z_850B00.asm,matched,
 ?getNextTemplate@Anim2DCollection@@QBEPAVAnim2DTemplate@@PAV2@@Z,,0x005BA430,19,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?getNextTemporarySourcePort@FirewallHelperClass@@QAEGH@Z,,0x0066EE80,100,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?getNextToken@INI@@QAEPBDPBD@Z,,0x00850970,77,Code/masm_dumps/_getNextToken_INI__QAEPBDPBD_Z_850970.asm,matched,MASM exact retail dump
@@ -12179,7 +12178,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parsePercentToReal@@YAXPAVINI@@PAX1PBX@Z,,0x000B81B0,64,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
 ?parsePlayerKVPairs@GameSpyPSMessageQueueInterface@@,,0x00659670,3856,Code/masm_dumps/_sa7__parsePlayerKVPairs_GameSpyPSMessageQueueInterface_659670.asm,matched,Exact 3856B Open-BFME4
 ?parsePlayerTemplateDefinition@PlayerTemplateStore@@SAXPAVINI@@@Z,,0x000E4210,284,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
-?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B80,144,Code/masm_dumps/parsePositiveNonZeroReal_INI_SAXPAV1_PAX1PBX_Z_852B80.asm,matched,Ghidra bounded retail body; scanReal call and exact expected > 0 diagnostic
 ?parsePreferredAgainst@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x0010FE90,204,Code/masm_dumps/_sa14__parsePreferredAgainst_WeaponTemplateSet__CAXPAVINI__PAX1PBX_Z_10FE90.asm,matched,sa14 Open-BFME4+Grok Weapon
 ?parsePrerequisiteScience@@YAXPAVINI@@PAX1PBX@Z,,0x00147320,220,Code/masm_dumps/parsePrerequisiteScience_YAXPAVINI_147320.asm,matched,MASM exact; PP sizeof 0x24 blocks C++
 ?parsePrerequisites@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x001485B0,63,Code/masm_dumps/parsePrerequisites_ThingTemplate_001485B0.asm,matched,Certified packet 63 parser-table ownership via ILT 0x000223FE; sealed SHA256 646ffc9279ecebbc7d80b1bdc86091965407a4715e7a89131f8f85d8bd4aec61
@@ -13608,11 +13606,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z,,0x009A11A0,264,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,the legend lookup; inlines the AsciiString compare
 ??D?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QBEAAUSubsystemLegendEntry@@XZ,,0x009A1090,6,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,instantiated by findEntry
 ??C?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QBEPAUSubsystemLegendEntry@@XZ,,0x009A10A0,6,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,instantiated by findEntry
-?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,retail throws int 1 here not ERROR_BUG
-?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/ini.cpp,matched,retail throws int 1 here not ERROR_BUG
-?parseAsciiStringVector@INI@@SAXPAV1@PAX1PBX@Z,,0x008542B0,39,Code/GameEngine/Source/Common/INI/ini.cpp,matched,clears the vector then delegates to parseAsciiStringVectorAppend
-?scanLookupList@INI@@SAHPBDPBULookupListRec@@@Z,,0x00850A70,136,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME throws INIException with a formatted message not a bare code
-?scanIndexList@INI@@SAHPBDPBQBD@Z,,0x008509E0,102,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME throws INIException with a formatted message not a bare code
 ?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851050,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseByteSizedIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x008510B0,125,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851130,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
@@ -13625,3 +13618,10 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parseBool@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E00,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E60,115,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852EE0,102,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,scanPercentToReal inlined in this TU
+?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B80,144,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,BFME throws INIException with a formatted message
+?getNextSubToken@INI@@QAEPBDPBD@Z,,0x00850B00,157,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,BFME throws INIException with a formatted message
+?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?scanIndexList@INI@@SAHPBDPBQBD@Z,,0x008509E0,102,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?scanLookupList@INI@@SAHPBDPBULookupListRec@@@Z,,0x00850A70,136,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?parseAsciiStringVector@INI@@SAXPAV1@PAX1PBX@Z,,0x008542B0,39,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
