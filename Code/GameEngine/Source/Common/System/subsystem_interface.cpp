@@ -16,6 +16,7 @@
 #include "subsystem_interface.h"
 #include "subsystem_legend.h"
 #include "Common/INI/INI.h"
+#include "game_engine_subsystems.h"
 
 SubsystemInterfaceList *TheSubsystemList;		// 0x0134C6C8
 
@@ -104,3 +105,11 @@ void SubsystemInterfaceList::initSubsystem(SubsystemInterface *sys, void *slot, 
 // Force the SubsystemLegend instantiation retail carries at 0x00072DD0.
 template void initSubsystem<SubsystemLegend>(SubsystemLegend *&, AsciiString, SubsystemLegend *,
 											 Xfer *, const char *, const char *, const char *);
+
+// The other instantiations GameEngine::init carries, one per subsystem, laid out
+// consecutively from 0x00072DD0 at 192 bytes apiece.
+template void initSubsystem<UpgradeCenter>(UpgradeCenter *&, AsciiString, UpgradeCenter *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<TerrainRoadCollection>(TerrainRoadCollection *&, AsciiString, TerrainRoadCollection *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<SidesList>(SidesList *&, AsciiString, SidesList *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<WeaponStore>(WeaponStore *&, AsciiString, WeaponStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<ObjectCreationListStore>(ObjectCreationListStore *&, AsciiString, ObjectCreationListStore *, Xfer *, const char *, const char *, const char *);

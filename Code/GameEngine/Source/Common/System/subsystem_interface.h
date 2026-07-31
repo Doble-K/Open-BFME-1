@@ -57,6 +57,13 @@ extern SubsystemInterfaceList *TheSubsystemList;
 // subsystem was stored into. Handed to SubsystemInterfaceList::initSubsystem as
 // its second argument and parked alongside the subsystem in m_subsystems, which
 // is why that vector holds pairs.
+// One instantiation per subsystem, not one shared class: each initSubsystem<T>
+// stores a DIFFERENT vtable pointer here (0x1075D8C, 0x1075DA8, 0x1075DB4,
+// 0x1075DCC, 0x1075DE8, 0x1075DEC for the six landed so far), which is only
+// possible if the slot is parameterised on the same T. Modelling it as a plain
+// class makes every instantiation claim one vtable symbol and trips the DIR32
+// consistency check.
+template<class SUBSYSTEM>
 class SubsystemSlot
 {
 public:
@@ -71,5 +78,5 @@ void initSubsystem(SUBSYSTEM *&sysref, AsciiString name, SUBSYSTEM *sys, Xfer *p
 				   const char *path1 = 0, const char *path2 = 0, const char *dirpath = 0)
 {
 	sysref = sys;
-	TheSubsystemList->initSubsystem(sys, new SubsystemSlot(&sysref), path1, path2, dirpath, pXfer, name);
+	TheSubsystemList->initSubsystem(sys, new SubsystemSlot<SUBSYSTEM>(&sysref), path1, path2, dirpath, pXfer, name);
 }
