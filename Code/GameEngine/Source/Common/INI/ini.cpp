@@ -188,37 +188,11 @@ Bool INI::isValidINIFilename( const char *filename )
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-// ??0INI@@QAE@XZ present-unmatched
-INI::INI( void )
-{
+// INI::INI lives in ini_parsers.cpp (retail's other INI TU)
+  // end INI
 
-	m_file							= NULL;
-  m_readBufferNext=m_readBufferUsed=0;
-	m_filename					= "None";
-	m_loadType					= INI_LOAD_INVALID;
-	m_lineNum						= 0;
-	m_seps							= " \n\r\t=";			///< make sure you update m_sepsPercent/m_sepsColon as well
-	m_sepsPercent				= " \n\r\t=%%";
-	m_sepsColon					= " \n\r\t=:";
-	m_sepsQuote					= "\"\n=";				///< stop at " = EOL
-	m_blockEndToken			= "END";
-	m_endOfFile					= FALSE;
-	m_buffer[0]					= 0;
-#if defined(_DEBUG) || defined(_INTERNAL)
-	m_curBlockStart[0]	= 0;
-#endif
-
-}  // end INI
-
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-// ??1INI@@QAE@XZ present-unmatched
-INI::~INI( void )
-{
-
-}  // end ~INI
+// INI::~INI lives in ini_parsers.cpp (retail's other INI TU)
+  // end ~INI
 
 //-------------------------------------------------------------------------------------------------
 /** Load all INI files in the specified directory (and subdirectories if indicated).

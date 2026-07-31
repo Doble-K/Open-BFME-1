@@ -403,7 +403,6 @@ AsciiString INI::getNextQuotedAsciiString()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?initFromINI@INI@@QAEXPAXPBUFieldParse@@@Z present-unmatched
 void INI::initFromINI( void *what, const FieldParse* parseTable )
 {
 	MultiIniFieldParse p;
@@ -412,7 +411,6 @@ void INI::initFromINI( void *what, const FieldParse* parseTable )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z present-unmatched
 void INI::initFromINIMultiProc( void *what, BuildMultiIniFieldProc proc )
 {
 	MultiIniFieldParse p;
@@ -492,24 +490,43 @@ void INI::parseAsciiStringVector( INI* ini, void * /*instance*/, void *store, co
 }
 
 //-------------------------------------------------------------------------------------------------
-void MultiIniFieldParse::add(const FieldParse* f, UnsignedInt e)
+// MultiIniFieldParse::add is inline in this TU's Common/INI.h; force the
+// out-of-line COMDAT retail keeps at 0x00850920.
+#pragma auto_inline(off)
+void bfme_force_multi_ini_field_parse_add_emission(MultiIniFieldParse &p, const FieldParse *f, UnsignedInt e)
 {
-	if (m_count < MAX_MULTI_FIELDS)
-	{
-		m_fieldParse[m_count] = f;
-		m_extraOffset[m_count] = e;
-		++m_count;
-	}
-	else
-	{
-		DEBUG_CRASH(("too many multi-fields in INI::initFromINIMultiProc"));
-	// Retail throws a plain int 1 here, not ZH's ERROR_BUG. Both are proven, not
-	// assumed: the ThrowInfo this site pushes (0x012454C0) has one catchable type
-	// whose TypeDescriptor spells ".H" (int), and every one of the 19 sites that
-	// use it image-wide throws the value 1; meanwhile ERROR_BUG really is
-	// 0xdead0001 in BFME -- INI::parseScience and INI::parseThingTemplate are
-	// matched from this file carrying that immediate. So this is a distinct BFME
-	// code; its name in BFME's source is not recoverable from the binary.
-	throw 1;
-	}
+	p.add(f, e);
+}
+#pragma auto_inline(on)
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+// ??0INI@@QAE@XZ present-unmatched
+INI::INI( void )
+{
+
+	m_file							= NULL;
+  m_readBufferNext=m_readBufferUsed=0;
+	m_filename					= "None";
+	m_loadType					= INI_LOAD_INVALID;
+	m_lineNum						= 0;
+	m_seps							= " \n\r\t=";			///< make sure you update m_sepsPercent/m_sepsColon as well
+	m_sepsPercent				= " \n\r\t=%%";
+	m_sepsColon					= " \n\r\t=:";
+	m_sepsQuote					= "\"\n=";				///< stop at " = EOL
+	m_blockEndToken			= "END";
+	m_endOfFile					= FALSE;
+	m_buffer[0]					= 0;
+#if defined(_DEBUG) || defined(_INTERNAL)
+	m_curBlockStart[0]	= 0;
+#endif
+
+}
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+// ??1INI@@QAE@XZ present-unmatched
+INI::~INI( void )
+{
+
 }

@@ -141,17 +141,34 @@ private:
 	Int								m_count;
 
 public:
-	MultiIniFieldParse() : m_count(0) 
-	{ 
-		//Added By Sadullah Nader
-		//Initializations missing and needed
+	// BFME zeroes BOTH arrays in one loop, where ZH only clears m_extraOffset:
+	// retail's INI::initFromINI (0x008520A0) emits a 16-iteration loop storing
+	// zero to [esp+eax*4+4] and [esp+eax*4+0x44], not an unrolled run of stores.
+	MultiIniFieldParse() : m_count(0)
+	{
 		for(Int i = 0; i < MAX_MULTI_FIELDS; i++)
+		{
 			m_extraOffset[i] = 0;
-		//
-
+			m_fieldParse[i] = 0;
+		}
 	}
-	
-	void add(const FieldParse* f, UnsignedInt e = 0);
+
+	// Inline here (retail inlines it into initFromINI) while keeping its
+	// out-of-line COMDAT at 0x00850920; ini_parsers.cpp forces that copy.
+	void add(const FieldParse* f, UnsignedInt e = 0)
+	{
+		if (m_count < MAX_MULTI_FIELDS)
+		{
+			m_fieldParse[m_count] = f;
+			m_extraOffset[m_count] = e;
+			++m_count;
+		}
+		else
+		{
+			// retail throws a plain int 1 here; see INI::parseBitString8
+			throw 1;
+		}
+	}
 
 	inline Int getCount() const { return m_count; }
 	inline const FieldParse* getNthFieldParse(Int i) const { return m_fieldParse[i]; }
