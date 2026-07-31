@@ -115,3 +115,9 @@ template void initSubsystem<WeaponStore>(WeaponStore *&, AsciiString, WeaponStor
 template void initSubsystem<ObjectCreationListStore>(ObjectCreationListStore *&, AsciiString, ObjectCreationListStore *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<PlayerTemplateStore>(PlayerTemplateStore *&, AsciiString, PlayerTemplateStore *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<ArmorStore>(ArmorStore *&, AsciiString, ArmorStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<DamageFXStore>(DamageFXStore *&, AsciiString, DamageFXStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<AI>(AI *&, AsciiString, AI *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<TeamFactory>(TeamFactory *&, AsciiString, TeamFactory *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<CrateSystem>(CrateSystem *&, AsciiString, CrateSystem *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<PlayerList>(PlayerList *&, AsciiString, PlayerList *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<GameState>(GameState *&, AsciiString, GameState *, Xfer *, const char *, const char *, const char *);

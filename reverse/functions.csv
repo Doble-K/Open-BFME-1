@@ -13633,3 +13633,9 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9CC0,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAEC0,44,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D20,37,Code/GameEngine/Source/Common/INI/ini.cpp,matched,ICF-folded with parseFrictionPerSec; row previously pointed at the 5B thunk
+??$initSubsystem@VDamageFXStore@@@@YAXAAPAVDamageFXStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00074210,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0DamageFXStore@@QAE@XZ
+??$initSubsystem@VAI@@@@YAXAAPAVAI@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00074990,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: vtable slot 3 = ?crc@AI@@UAEXPAVXfer@@@Z
+??$initSubsystem@VTeamFactory@@@@YAXAAPAVTeamFactory@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00074F90,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0TeamFactory@@QAE@XZ
+??$initSubsystem@VCrateSystem@@@@YAXAAPAVCrateSystem@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075050,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0CrateSystem@@QAE@XZ
+??$initSubsystem@VPlayerList@@@@YAXAAPAVPlayerList@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075110,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0PlayerList@@QAE@XZ
+??$initSubsystem@VGameState@@@@YAXAAPAVGameState@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075960,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0GameState@@QAE@XZ

@@ -51,3 +51,13 @@ class PlayerTemplateStore : public SubsystemInterface {};
 // hash_map of templates, lives in Armor.cpp against the ZH header tree. They are
 // separate on purpose -- this header is the registration manifest, not a port.
 class ArmorStore : public SubsystemInterface {};
+
+// Proven the same two ways as the entries above -- a ctor already decorated with
+// the class name, or a class-specific virtual in the vtable that ctor installs.
+class DamageFXStore : public SubsystemInterface {};	// 0x00074210, ctor ??0DamageFXStore@@QAE@XZ
+class AI : public SubsystemInterface {};	// 0x00074990, vtable slot 3 = ?crc@AI@@UAEXPAVXfer@@@Z
+class TeamFactory : public SubsystemInterface {};	// 0x00074F90, ctor ??0TeamFactory@@QAE@XZ
+class CrateSystem : public SubsystemInterface {};	// 0x00075050, ctor ??0CrateSystem@@QAE@XZ
+class PlayerList : public SubsystemInterface {};	// 0x00075110, ctor ??0PlayerList@@QAE@XZ
+class GameState : public SubsystemInterface {};	// 0x00075960, ctor ??0GameState@@QAE@XZ
+
