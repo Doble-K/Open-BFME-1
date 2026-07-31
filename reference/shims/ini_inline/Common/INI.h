@@ -362,7 +362,15 @@ public:
 		(rather than throwing an exception). usually you should call getNextToken(),
 		but for some cases this is handier (ie, parsing a variable-length number of tokens).
 	*/
-	const char* getNextTokenOrNull(const char* seps = NULL);
+	// Inline in this TU too: retail's parseColorInt (0x008531E0) and
+	// parseRGBAColorInt open with the m_sepsColon/m_seps fallback and the strtok
+	// call in line rather than calling out.
+	const char* getNextTokenOrNull(const char* seps = NULL)
+	{
+		if (seps == NULL)
+			seps = m_seps;
+		return strtok(NULL, seps);
+	}
 
 	/**
 		This is called when the next thing you expect is something like:
@@ -401,7 +409,14 @@ public:
 	// error message; ZH has no such feature.
 	static const char *preprocessMacro(const char *token);
 
-	static Int scanInt(const char* token);
+	static Int scanInt(const char* token)
+	{
+		Int value;
+		const char *text = preprocessMacro(token);
+		if (sscanf(text, "%d", &value) != 1)
+			throw INIException(3, "Expected signed integer value or predefined macro, but found '%s'", text);
+		return value;
+	}
 
 	/**
 		utility routine that does a sscanf() on the string to get the unsigned int, and throws

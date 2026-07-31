@@ -237,7 +237,6 @@ void INI::parseBitString32( INI* ini, void * /*instance*/, void *store, const vo
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?parseRGBColor@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseRGBColor( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	const char* names[3] = { "R", "G", "B" };
@@ -245,22 +244,19 @@ void INI::parseRGBColor( INI* ini, void * /*instance*/, void *store, const void*
 	for( Int i = 0; i < 3; i++ )
 	{
 		colors[i] = scanInt(ini->getNextSubToken(names[i]));
-		if( colors[ i ] < 0 )
-			throw INI_INVALID_DATA;
-		if( colors[ i ] > 255 )
-			throw INI_INVALID_DATA;
+		if( colors[ i ] < 0 || colors[ i ] > 255 )
+			throw INIException(3, "color value %s=%i out of range (0..255)", names[i], colors[i]);
 	}
 
-	// assign the color components to the "RGBColor" pointer at 'store'
+	// Retail multiplies by the 1/255 constant at 0x0107C64C rather than dividing.
 	RGBColor *theColor = (RGBColor *)store;
-	theColor->red		= (Real)colors[ 0 ] / 255.0f;
-	theColor->green = (Real)colors[ 1 ] / 255.0f;
-	theColor->blue	= (Real)colors[ 2 ] / 255.0f;
+	theColor->red		= (Real)colors[ 0 ] * (1.0f / 255.0f);
+	theColor->green = (Real)colors[ 1 ] * (1.0f / 255.0f);
+	theColor->blue	= (Real)colors[ 2 ] * (1.0f / 255.0f);
 
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?parseRGBAColorInt@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseRGBAColorInt( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	const char* names[4] = { "R", "G", "B", "A" };
@@ -271,9 +267,7 @@ void INI::parseRGBAColorInt( INI* ini, void * /*instance*/, void *store, const v
 		if (token == NULL)
 		{
 			if (i < 3)
-			{
-				throw INI_INVALID_DATA;
-			}
+				throw INIException(3, "can't omit value for color %s", names[i]);
 			else
 			{
 				// it's ok for A to be omitted.
@@ -284,15 +278,11 @@ void INI::parseRGBAColorInt( INI* ini, void * /*instance*/, void *store, const v
 		{
 			// if present, the token must match.
 			if (stricmp(token, names[i]) != 0)
-			{
-				throw INI_INVALID_DATA;				
-			}
+				throw INIException(3, "expected '%s'", names[i]);
 			colors[i] = scanInt(ini->getNextToken(ini->getSepsColon()));
 		}
-		if( colors[ i ] < 0 )
-			throw INI_INVALID_DATA;
-		if( colors[ i ] > 255 )
-			throw INI_INVALID_DATA;
+		if( colors[ i ] < 0 || colors[ i ] > 255 )
+			throw INIException(3, "color value %s=%i out of range (0..255)", names[i], colors[i]);
 	}
 
 	//
@@ -308,7 +298,6 @@ void INI::parseRGBAColorInt( INI* ini, void * /*instance*/, void *store, const v
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?parseColorInt@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseColorInt( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	const char* names[4] = { "R", "G", "B", "A" };
@@ -319,9 +308,7 @@ void INI::parseColorInt( INI* ini, void * /*instance*/, void *store, const void*
 		if (token == NULL)
 		{
 			if (i < 3)
-			{
-				throw INI_INVALID_DATA;
-			}
+				throw INIException(3, "can't omit value for color %s", names[i]);
 			else
 			{
 				// it's ok for A to be omitted.
@@ -332,15 +319,11 @@ void INI::parseColorInt( INI* ini, void * /*instance*/, void *store, const void*
 		{
 			// if present, the token must match.
 			if (stricmp(token, names[i]) != 0)
-			{
-				throw INI_INVALID_DATA;				
-			}
+				throw INIException(3, "expected '%s'", names[i]);
 			colors[i] = scanInt(ini->getNextToken(ini->getSepsColon()));
 		}
-		if( colors[ i ] < 0 )
-			throw INI_INVALID_DATA;
-		if( colors[ i ] > 255 )
-			throw INI_INVALID_DATA;
+		if( colors[ i ] < 0 || colors[ i ] > 255 )
+			throw INIException(3, "color value %s=%i out of range (0..255)", names[i], colors[i]);
 	}
 
 	//
@@ -545,14 +528,9 @@ void INI::parseInt( INI* ini, void * /*instance*/, void *store, const void* /*us
 // Every integer INI field lands here. BFME first runs the token through the
 // macro table (see INI::preprocessMacro) and reports the SUBSTITUTED text in the
 // error, not the original token.
-/*static*/ Int INI::scanInt(const char* token)
-{
-	Int value;
-	const char *text = preprocessMacro(token);
-	if (sscanf(text, "%d", &value) != 1)
-		throw INIException(3, "Expected signed integer value or predefined macro, but found '%s'", text);
-	return value;
-}
+#pragma auto_inline(off)
+Int bfme_force_ini_scan_int_emission(const char *token) { return INI::scanInt(token); }
+#pragma auto_inline(on)
 
 //-------------------------------------------------------------------------------------------------
 /*static*/ Real INI::scanReal(const char* token)
