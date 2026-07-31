@@ -4,58 +4,87 @@ Goal: recover the original BFME 1 multiplayer command-delay path, byte-verify it
 and document the exact BFME addresses needed for any future opt-in patch. This
 track does not change gameplay behavior.
 
-## Current hypothesis
+## The answer: a router-published frame ceiling
 
-Zero Hour schedules synchronized network commands for a future logic frame:
+The delay is recovered and byte-matched. It is not Zero Hour's run-ahead. BFME
+clamps every client to a shared **frame ceiling** stored on the connection
+manager at `+0x1205C`, which the packet router republishes from its own current
+frame on a fixed timer.
 
-- `Network::GetCommandsFromCommandList` forwards local network `GameMessage`s.
-- `Network::getExecutionFrame` returns `TheGameLogic->getFrame() + m_runAhead`.
-- `ConnectionManager::sendLocalGameMessage` stores that future frame on the
-  generated `NetGameCommandMsg`.
-- `ConnectionManager::allCommandsReady` gates logic-frame advancement until
-  every player has command data for the current frame.
-- `ConnectionManager::updateRunAhead` computes and broadcasts later run-ahead
-  values from latency/FPS metrics.
-- `Network::processRunAheadCommand` applies those values and adjusts packet
-  frame grouping.
-
-BFME does not keep this command-message path verbatim. ZH remains useful as an
-intent map, but the BFME binary is the source of truth.
-
-## ZH delay map
-
-| Area | Function | BFME RVA | Status |
+| Item | RVA | Size | Role |
 | --- | --- | --- | --- |
-| constants | `MAX_FRAMES_AHEAD`, `MIN_RUNAHEAD`, `FRAME_DATA_LENGTH`, `FRAMES_TO_KEEP` | TBD | not recovered |
-| scheduling | `Network::getExecutionFrame` | TBD | not recovered |
-| setup | `Network::init` | TBD | not recovered |
-| local commands | `ConnectionManager::sendLocalGameMessage` | TBD | not recovered |
-| command relay | `ConnectionManager::sendLocalCommand` | TBD | not recovered |
-| readiness gate | `ConnectionManager::allCommandsReady` | TBD | not recovered |
-| dynamic delay | `ConnectionManager::updateRunAhead` | TBD | not recovered; ZH command path disproven for BFME |
-| apply delay | `Network::processRunAheadCommand` | TBD | not recovered; BFME has no run-ahead command type |
-| frame pacing | `Network::timeForNewFrame` | TBD | not recovered |
+| `BFMENativeNetwork::getFrameAdvanceCount` | `0x00681F70` | 395 | native vtable `0x0111A968` slot `+0x3C`; how many logic frames may run now |
+| `BFMENativeNetwork::getFramePacingStatus` | `0x00682160` | 214 | slot `+0x40`; same two paths, returns 0/1/2 |
+| `BFMEConnectionManager::update` | `0x0066AB30` | 814 | the per-tick pass; the only caller of sendFrameInfo |
+| `BFMEConnectionManager::sendFrameInfo` | `0x00665D10` | 354 | builds command type 3 and, as router, sets the ceiling |
+| `BFMEConnectionManager::processIncomingCommand` | `0x0066A3F0` | 580 | case 3 raises a client's ceiling to the announced frame |
+| `BFMEConnectionManager::areFrameCommandsComplete` | `0x006633E0` | 89 | the readiness gate |
+| `BFMEConnectionManager::getFrameHeadroom` | `0x00664320` | 142 | ceiling minus current frame, for both roles |
+| `BFMEConnectionManager::runRelayPass` | `0x0066A740` | 792 | the router's receive-and-relay pass |
+| `BFMEDisconnectManager::update` | `0x0066C8D0` | 1122 | the timeout sweep update runs alongside it |
 
-These names are useful search targets, but the current evidence says the BFME
-runtime path is not the ZH `Network`/`ConnectionManager` path verbatim:
+### How a frame is released
 
-- `ConnectionManager::sendLocalCommandDirect`,
-  `ConnectionManager::setFrameGrouping`,
-  `ConnectionManager::sendLocalCommand`,
-  `ConnectionManager::sendLocalGameMessage`,
-  `ConnectionManager::allCommandsReady`,
-  `Network::processRunAheadCommand`,
-  `Network::timeForNewFrame`,
-  `Network::GetCommandsFromCommandList`, and `Network::update` classify as
-  absent from the ZH sweep.
-- `Network::init` and `ConnectionManager::updateRunAhead` classify as weak
-  structural matches only. They are not byte-level anchors.
-- `Network::getExecutionFrame` has no useful anchor, and
-  `GameLogic::getFrame` is an inline load (`mov eax, [ecx+0x3c]; ret`) in the
-  current build, so it does not pin the retail path by itself.
+`getFrameAdvanceCount` returns 1 when `+0x0C` says we are not in a network game,
+and 1 again on frame 0. Otherwise it splits on the virtual predicate at native
+slot `+0x8C`:
 
-If the delay code is not in ZH, that is still actionable: use ZH for intent and
-recover BFME's native wrapper/backend path directly from the retail binary.
+* **Not the packet router.** `allowance = connectionManager->+0x1205C - TheGameLogic->getFrame() + 1`.
+  If that is positive it consults `areFrameCommandsComplete`; when the frame's
+  commands are not yet in it calls its own slot `+0x24` and returns 0, otherwise
+  it clears the stall flag at `+0x28` and returns the allowance. When the
+  allowance is already non-positive it bumps the stall counter at `+0x2C`,
+  records the frame in the `0x012F7728` global, and returns the non-positive
+  value.
+* **Packet router.** If `hasPacketRouterFrameStall` (`0x00664260`) it zeroes the
+  QPC accumulator at `+0x20` and returns 0. Otherwise it adds the
+  `QueryPerformanceCounter` delta to that accumulator and compares it against
+  **`QueryPerformanceFrequency / 5`** -- a fixed 200ms, five logic ticks per
+  second, independent of ping and of frame rate. Below the quantum it returns 0;
+  at or above it subtracts one quantum, clamps a backlog of more than two quanta
+  (bumping `0x012F7724`, the counter behind the string "Total # of times we've
+  hit the run-ahead ceiling" at `0x006EE800`), and returns 1.
+
+### How the ceiling is published
+
+`update` is the only caller of `sendFrameInfo`, so the cadence above is exactly
+the cadence of the ceiling. `sendFrameInfo` allocates a `0x28`-byte command type
+3, stamps `TheGameLogic->getFrame()` at `+0x1C`, sums `getCommandCount(frame)`
+over the eight `FrameDataManager`s at `+0x120E4`, records that total on the local
+manager with `setFrameCommandCount` and copies it into the message at `+0x24`.
+Then, as packet router, it broadcasts with relay `~(1 << localSlot)` and sets
+`+0x1205C` to **its own current frame**; as a client it sends only to the router.
+
+`processIncomingCommand` case 3 is the receiving half: it updates
+`m_playerLatestFrame[sender]` at `+0x12060` and the aux dword at `+0x120A0`, and
+-- only when it is *not* the router -- raises its own `+0x1205C` to the announced
+frame. If that frame is not behind the current one and the message's count at
+`+0x24` is not `-1`, it stores the count on the local manager as the expected
+total.
+
+So the host runs free and every other player is clamped to a frame the host
+published at most 200ms ago. **That is BFME's off-host delay, and it is a
+property of the fixed quantum rather than of latency**, which is why it does not
+shrink on a LAN. Any future opt-in patch has to change that quantum or the
+ceiling it feeds, not hunt for a run-ahead value.
+
+### Readiness
+
+`areFrameCommandsComplete` sums `FrameDataManager::getCommandCount(frame)` over
+the eight managers at `+0x120E4`, skipping null and quitting ones, and returns
+whether that total equals the local manager's `getFrameCommandCount(frame)`.
+BFME therefore tracks one aggregate expected count where Zero Hour matches
+counts per player.
+
+### Ruled out
+
+The ZH `Network`/`ConnectionManager` run-ahead path is not merely unmatched, it
+is absent: `sendLocalGameMessage`, `allCommandsReady`, `updateRunAhead`,
+`setFrameGrouping`, `processRunAheadCommand`, `timeForNewFrame`,
+`GetCommandsFromCommandList` and `Network::update` all classify absent in the ZH
+sweep, a locate-only probe of the 256-byte `timeForNewFrame` body returned
+`0 located`, and BFME has no code xrefs to the `NetworkRunAheadSlack` or
+`NetworkRunAheadMetricsTime` strings beyond their INI parse rows.
 
 ## BFME command-type correction
 
@@ -207,17 +236,18 @@ slot `+0x40` to `0x00682160`. Slot `+0x40` is now byte-matched as
 | --- | --- | --- |
 | `BFMENativeNetwork::getFramePacingStatus` | `0x00682160` | returns `1` when not in active network status; without packet-router timing mode, returns `connectionManager->+0x1205C - currentFrame + 1`; otherwise accumulates QPC ticks and returns `0`, `1`, or `2` based on elapsed budget |
 
-The remaining slot `+0x3C` at `0x00681F70` also uses connection manager
-`+0x1205C`, current game frame `TheGameLogic + 0x3C`, and globals
-`0x012F7718`, `0x012F771C`, `0x012F7724`, and `0x012F7728`.
+Slot `+0x3C` at `0x00681F70` is now byte-matched as
+`BFMENativeNetwork::getFrameAdvanceCount` -- see the first section, which is
+where the QPF/5 quantum and the four globals `0x012F7718`, `0x012F771C`,
+`0x012F7724` and `0x012F7728` are described.
 
 ## Landed evidence
 
-- `src/zh/connectionmanager.cpp`, `src/zh/network.cpp`,
-  `src/zh/netcommandmsg.cpp`, and `src/zh/messagestream.cpp` are now trimmed to
+- `ConnectionManager.cpp`, `Network.cpp`, `NetCommandMsg.cpp` and
+  `MessageStream.cpp` are now trimmed to
   byte-matched surfaces only; the previous unclaimed ZH bodies were removed
   rather than treated as progress.
-- `src/game/native_network.cpp` contains the first byte-matched BFME-native
+- `Code/GameEngine/Source/GameNetwork/native_network.cpp` contains the first byte-matched BFME-native
   wrapper/backend code:
   - `BFMENetworkBackend::construct` at `0x006547F0` (constructor body).
   - `BFMENetworkBackend::destroyAndMaybeDelete` at `0x00654890`.
@@ -240,18 +270,18 @@ The remaining slot `+0x3C` at `0x00681F70` also uses connection manager
   - `BFMENetwork::findList90` at `0x0065AEB0`.
   - `BFMENetwork::copyState6C`, `copyState78`, and `copyState84` at
     `0x00655060`, `0x00655090`, and `0x006550C0`.
-- `src/game/native_network_callback.cpp` contains `BFMENetworkRegisteredCallback`
+- `Code/GameEngine/Source/GameNetwork/native_network_callback.cpp` contains `BFMENetworkRegisteredCallback`
   at `0x0065C260`.
-- `src/game/native_network_dispatcher.cpp` contains `BFMENetworkBackend::dispatchEvents`
+- `Code/GameEngine/Source/GameNetwork/native_network_dispatcher.cpp` contains `BFMENetworkBackend::dispatchEvents`
   at `0x0065CA50` and its EH catch thunk at `0x0065D6F3`.
-- `src/game/native_netcommandmsg.cpp` contains the BFME command type `7`
+- `Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp` contains the BFME command type `7`
   request-player-leave constructor/destructor and its single dword payload
   setter/getter at `0x006741F0`, `0x00674230`, `0x00674240`, and `0x00674250`.
-- `src/game/native_connection_timing.cpp` contains the first byte-matched BFME
+- `Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp` contains the first byte-matched BFME
   player-timeout, packet-router stall, disconnect-screen timeout, and request
   frame-data handler checks at `0x00662A50`, `0x00662B00`, `0x00664260`,
   `0x0066B510`, and `0x006659B0`.
-- `src/game/native_network_interface.cpp` contains the native BFME `Network`
+- `Code/GameEngine/Source/GameNetwork/native_network_interface.cpp` contains the native BFME `Network`
   constructor body at `0x006818B0`, anchoring the QPC frame-pacing fields, and
   the QPC-backed pacing-status helper at `0x00682160`.
 - The current matched network rows are:
@@ -261,6 +291,91 @@ The remaining slot `+0x3C` at `0x00681F70` also uses connection manager
   - Three STL helper/template rows emitted from `connectionmanager.cpp`.
 - The old ZH delay functions are not proven BFME code. Treat ZH as an intent map
   and the BFME-native rows above as the patchable evidence.
+
+## Object layouts pinned by the matched bodies
+
+### ConnectionManager
+
+| Offset | Field |
+| --- | --- |
+| `+0x00004` | `Connection *m_connections[8]` |
+| `+0x12028` | `m_localSlot` |
+| `+0x1202C` | `m_packetRouterSlot` |
+| `+0x12030` | per-player dword[8], init `-1` |
+| `+0x12050` / `+0x12054` / `+0x12058` | dword / word / dword |
+| `+0x1205C` | **frame ceiling** |
+| `+0x12060` | per-player latest frame[8] |
+| `+0x12080` | per-player state[8]: 0 empty, 1 in game, 2-3 leaving |
+| `+0x120A0` | per-player dword[8], from FRAMEINFO `+0x20` |
+| `+0x120C0` | per-player dword[8] |
+| `+0x120E4` | `FrameDataManager *m_frameData[8]` |
+| `+0x12104` / `+0x12108` | the two pending-command lists the ack path searches |
+| `+0x1210C` .. `+0x12130` | further owned objects, all released by `destroy` |
+
+The constructor (`0x00669630`) and init (`0x00669050`) write the whole tail; the
+destructor (`0x00668D90`) releases it. Note the constructor stores **no vtable**
+at `+0x00`, so whatever occupies that dword is not a vptr.
+
+### DisconnectManager
+
+36 bytes smaller than the ZH reference: no `m_packetRouterFallback[8]`, no
+`m_currentPacketRouterIndex`, no `m_packetRouterTimeout` -- the same edit that
+removed PACKETROUTERQUERY and PACKETROUTERACK from its command block.
+
+| Offset | Field |
+| --- | --- |
+| `+0x000` | vptr |
+| `+0x004` | `m_lastFrame` |
+| `+0x008` | `m_lastFrameTime` |
+| `+0x00C` | `m_disconnectState` |
+| `+0x010` | `m_lastKeepAliveSendTime` |
+| `+0x014` | `m_playerTimeouts[7]` |
+| `+0x030` | `m_playerVotes[8][8]`, row stride 0x40 |
+| `+0x230` | `m_disconnectFrames[8]` |
+| `+0x250` | `m_disconnectFramesReceived[8]` |
+| `+0x258` | `m_haveNotifiedOtherPlayersOfCurrentFrame` |
+| `+0x25C` | `m_timeOfDisconnectScreenOn` |
+| `+0x260` / `+0x264` / `+0x268` | `m_pingsSent` / `m_pingsRecieved` / `m_pingFrame` |
+
+Carried by `reference/shims/disconnectmanager`. `turnOffScreen` (`0x0066B270`)
+is a BFME addition with no ZH counterpart, called unconditionally at the end of
+`processDisconnectScreenOff`.
+
+### FrameData
+
+20 bytes, not the ZH reference's 24 -- ZH's leading `m_frame` is gone because the
+ring index already is the frame. `m_frameCommandCount` `+0x00`,
+`m_commandCount` `+0x04`, `m_commandList` `+0x08`, `m_lastFailedCC` `+0x0C`,
+`m_lastFailedFrameCC` `+0x10`. `FrameDataManager` keeps the ZH layout.
+`FRAME_DATA_LENGTH` is the runtime global at VA `0x012BA088`. Carried by
+`reference/shims/framedata`.
+
+### NetCommandRef
+
+De-pooled and 20 bytes: `m_msg` `+0x00` (where ZH has a vptr), `m_next` `+0x04`,
+`m_prev` `+0x08`, `m_relay` `+0x0C`. Proven by `relayCommand` (`0x00663100`) and
+`NetCommandList::reset` (`0x006731A0`), which plain-deletes its nodes rather than
+returning them to a pool.
+
+## Corrections to earlier notes in this file
+
+* `0x00655360` and `0x006386F0` are **GameSpy persistent-storage serialization**
+  (`\wins%d\%d`, `\desyncs%d\%d`), not the lockstep desync reporter. The real
+  desync writer is `0x00065470`, which recomputes `GameLogic::getCRC`, compares
+  it against a stored value, and on mismatch formats `CLIENT_DESYNC_%s.txt` and
+  "Desync detected on frame %d on %u-%u-%u %u:%u:%u". Its only caller is
+  `0x0006B910`.
+* The `0x0080E000`-`0x0081A000` band is EA's DirtySock middleware -- `commudp`,
+  `commtcp`, `protoadvt`, `NetGameUtil`, `comm/datamodem` -- with no counterpart
+  in the Zero Hour reference. It carries the GameSpy/online transport, not the
+  lockstep path, which still runs through SAGE's own `udp.cpp`.
+* `NetCommandList::reset` was pointed at ILT thunk `0x00015479`, which jumps to
+  `0x0040AD80`, a different function. Retail's call sites reach the real body at
+  `0x006731A0` through thunk `0x0000B9CE`.
+* `ConnectionManager::sendFrameDataToPlayer` (`0x00664D20`, two arguments) only
+  raises a per-player watermark at `+0x12060`. The three-argument resend that
+  actually re-sends stored commands is a different function, `0x00664B40`,
+  recorded here as `resendFrameRangeToPlayer`.
 
 ## Work plan
 
@@ -276,12 +391,16 @@ The remaining slot `+0x3C` at `0x00681F70` also uses connection manager
 6. DONE: match the first BFME timing/readiness gates that consume
    `NetworkPlayerTimeoutTime`, `NetworkKeepAliveDelay`, and
    `NetworkDisconnectScreenNotifyTime`.
-7. NEXT: trace the BFME frame scheduler that sends/consumes frame info, request
-   frame-data, inform-player-leave-frame, and keep-alive commands. Command type
-   `9` request-frame-data handling is matched; command type `8` and the frame
-   tick sender remain next. Native QPC frame pacing is anchored, and slot
-   `0x00682160` is matched; slot `0x00681F70` still needs a name/match before
-   patch design.
+7. DONE: trace the BFME frame scheduler end to end. Both halves are matched --
+   the router publishes the ceiling in `sendFrameInfo` on a
+   `QueryPerformanceFrequency / 5` quantum driven by `update`, and clients raise
+   theirs in `processIncomingCommand` case 3. `getFrameAdvanceCount` at native
+   slot `+0x3C` is the gate that reads it.
+8. NEXT: the pieces around the scheduler that are still unclaimed -- the desync
+   writer at `0x00065470` and its caller `0x0006B910`, `GameLogic::getCRC`
+   (matched only as a MASM dump), and the remaining unnamed bodies in
+   `0x00660000`-`0x00672000`, most of which are GameSpy/lobby rather than
+   lockstep.
 
 ## Non-goals
 
