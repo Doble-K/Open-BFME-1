@@ -33,7 +33,7 @@ public:
 	Bool isPlayerSlotActive(int slot);
 	void markPlayerInGame(void *msg);
 	void relayCommand(void *ref);
-	void sendFrameDataToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame);
+	void resendFrameRangeToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame);
 };
 
 class BFMEDisconnectManager
@@ -2480,14 +2480,16 @@ L00_6631E8:
 	}
 }
 
-// The frame-data resender, and the far end of the REQUESTFRAMEDATA round trip:
+// The frame-data resender, and the far end of the REQUESTFRAMEDATA round trip.
+// Distinct from retail's own two-argument ConnectionManager::sendFrameDataToPlayer
+// (0x00664D20), which only raises a per-player watermark:
 // the matched processRequestFrameDataCommand (0x006659B0) reaches it through the
 // ILT thunk at 0x0000D8CD after clamping the requested window. It walks the
 // eight FrameDataManagers at this+0x120E4 over the requested frame range,
 // re-sends each stored command to the requesting slot alone, and issues a
 // FRAMEINFO carrying getFrameCommandCount so the receiver knows how many to
 // expect.
-__declspec(naked) void BFMEConnectionManager::sendFrameDataToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame)
+__declspec(naked) void BFMEConnectionManager::resendFrameRangeToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame)
 {
 	__asm {
 		push 0FFFFFFFFh

@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/disconnectmanager /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -281,7 +281,8 @@ void DisconnectManager::updateWaitForPacketRouter(ConnectionManager *conMgr) {
 // BFME body @ 0x66C810/145 (queue 0x66C9FB is INSIDE FUN_00a6c8d0 mega-fn).
 // Retail: *(NetCommandMsg**)ref (m_msg@+0 quirk, same as processWrapper); types
 // 0x18..0x1c only (KA inline, Player, Vote, Frame, ScreenOff) — no QUERY/ACK;
-// KA inlines translatedSlotPosition + stores timeGetTime at m_playerTimeouts@+0x14.
+// KA inlines translatedSlotPosition + resetPlayerTimeout; m_playerTimeouts is
+// at +0x14 in BFME, which is why this TU uses the disconnectmanager shim.
 void DisconnectManager::processDisconnectCommand(NetCommandRef *ref, ConnectionManager *conMgr) {
 	// BFME quirk: retail reads *(void**)ref (m_msg@+0), not getCommand() ([ref+4]).
 	// Load msg before any other work so MSVC keeps it in eax like retail.
@@ -299,7 +300,7 @@ void DisconnectManager::processDisconnectCommand(NetCommandRef *ref, ConnectionM
 			--slot;
 		}
 		if (slot != -1) {
-			((time_t *)((char *)this + 0x14))[slot] = timeGetTime();
+			m_playerTimeouts[slot] = timeGetTime();
 		}
 	} else if (cmdType == 0x19) {
 		processDisconnectPlayer(msg, conMgr);
@@ -403,6 +404,10 @@ __declspec(noinline) void DisconnectManager::processDisconnectFrame(NetCommandMs
 
 	m_disconnectFrames[playerID] = cmdMsg->getDisconnectFrame();
 	m_disconnectFramesReceived[playerID] = TRUE;
+
+	// BFME addition: raise this player's watermark straight away, before the
+	// local-versus-remote split below.
+	conMgr->sendFrameDataToPlayer(playerID, cmdMsg->getDisconnectFrame());
 	DEBUG_LOG(("DisconnectManager::processDisconnectFrame - Got a disconnect frame for player %d, frame = %d, local player is %d, local disconnect frame = %d, command id = %d\n", cmdMsg->getPlayerID(), cmdMsg->getDisconnectFrame(), conMgr->getLocalPlayerID(), m_disconnectFrames[conMgr->getLocalPlayerID()], cmdMsg->getID()));
 
 	if (playerID == conMgr->getLocalPlayerID()) {
@@ -426,7 +431,6 @@ __declspec(noinline) void DisconnectManager::processDisconnectFrame(NetCommandMs
 	}
 }
 
-// ?processDisconnectScreenOff@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z present-unmatched
 __declspec(noinline) void DisconnectManager::processDisconnectScreenOff(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectScreenOffCommandMsg *cmdMsg = (NetDisconnectScreenOffCommandMsg *)msg;
 	UnsignedInt playerID = cmdMsg->getPlayerID();
@@ -446,6 +450,9 @@ __declspec(noinline) void DisconnectManager::processDisconnectScreenOff(NetComma
 		DEBUG_LOG(("DisconnectManager::processDisconnectScreenOff - about to call resetPlayersVotes for player %d\n", playerID));
 		resetPlayersVotes(playerID, cmdMsg->getNewFrame(), conMgr);
 	}
+
+	// BFME addition: the screen comes down whether or not the frame was new.
+	turnOffScreen(conMgr->getLocalPlayerID());
 }
 
 // ?applyDisconnectVote@DisconnectManager@@IAEXHIHPAVConnectionManager@@@Z present-unmatched
