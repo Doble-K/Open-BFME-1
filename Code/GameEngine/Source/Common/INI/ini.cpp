@@ -505,51 +505,18 @@ void INI::readLine( void )
 
 //-------------------------------------------------------------------------------------------------
 /** Parse UnsignedByte from buffer and assign at location 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parseUnsignedByte@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseUnsignedByte( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char *token = ini->getNextToken();
-	Int value = scanInt(token);
-	if (value < 0 || value > 255)
-	{
-		DEBUG_CRASH(("Bad value INI::parseUnsignedByte"));
-		throw ERROR_BUG;
-	}
-	*(Byte *)store = (Byte)value;
-} 
+// INI::parseUnsignedByte lives in ini_parsers.cpp (retail's other INI TU)
+ 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse signed short from buffer and assign at location 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parseShort@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseShort( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char *token = ini->getNextToken();
-	Int value = scanInt(token);
-	if (value < -32768 || value > 32767)
-	{
-		DEBUG_CRASH(("Bad value INI::parseShort"));
-		throw ERROR_BUG;
-	}
-	*(Short *)store = (Short)value;
-} 
+// INI::parseShort lives in ini_parsers.cpp (retail's other INI TU)
+ 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse unsigned short from buffer and assign at location 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parseUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseUnsignedShort( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char *token = ini->getNextToken();
-	Int value = scanInt(token);
-	if (value < 0 || value > 65535)
-	{
-		DEBUG_CRASH(("Bad value INI::parseUnsignedShort"));
-		throw ERROR_BUG;
-	}
-	*(UnsignedShort *)store = (UnsignedShort)value;
-} 
+// INI::parseUnsignedShort lives in ini_parsers.cpp (retail's other INI TU)
+ 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse integer from buffer and assign at location 'store' */
@@ -649,25 +616,13 @@ __declspec(naked) void INI::parseInt( INI* ini, void* /*instance*/, void* store,
 
 //-------------------------------------------------------------------------------------------------
 /** Parse unsigned integer from buffer and assign at location 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parseUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseUnsignedInt( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char *token = ini->getNextToken();
-	*(UnsignedInt *)store = scanUnsignedInt(token);
+// INI::parseUnsignedInt lives in ini_parsers.cpp (retail's other INI TU)
 
-}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse real from buffer and assign at location 'store' */
-//-------------------------------------------------------------------------------------------------
-// ?parseReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseReal( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	const char *token = ini->getNextToken();
-	*(Real *)store = scanReal(token);
-
-} 
+// INI::parseReal lives in ini_parsers.cpp (retail's other INI TU)
+ 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse real from buffer and assign at location 'store' */
@@ -688,17 +643,8 @@ void INI::parsePositiveNonZeroReal( INI* ini, void * /*instance*/, void *store, 
 //-------------------------------------------------------------------------------------------------
 /** Parse a degree value (0 to 360) and store the radian value of that degree
 	* in a Real */
-//-------------------------------------------------------------------------------------------------
-// ?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseAngleReal( INI *ini, void * /*instance*/, 
-																			void *store, const void *userData )
-{
-	const char *token = ini->getNextToken();
+// INI::parseAngleReal lives in ini_parsers.cpp (retail's other INI TU)
 
-	const Real RADS_PER_DEGREE = PI / 180.0f;
-	*(Real *)store = scanReal( token ) * RADS_PER_DEGREE;
-
-}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse an angular velocity in degrees-per-sec and store the rads-per-frame value of that degree
@@ -718,28 +664,14 @@ void INI::parseAngularVelocityReal( INI *ini, void * /*instance*/,
 //-------------------------------------------------------------------------------------------------
 /** Parse Bool from buffer and assign at location 'store'.  The buffer token must
 	* be in the form of a string "Yes" or "No" (case is ignored) */
-//-------------------------------------------------------------------------------------------------
-// ?parseBool@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseBool( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	*(Bool*)store = INI::scanBool(ini->getNextToken());
-}
+// INI::parseBool lives in ini_parsers.cpp (retail's other INI TU)
+
 
 //-------------------------------------------------------------------------------------------------
 /** Parse Bool from buffer; if true, or in MASK, otherwise and out MASK. The buffer token must
 	* be in the form of a string "Yes" or "No" (case is ignored) */
-//-------------------------------------------------------------------------------------------------
-// ?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseBitInInt32( INI *ini, void *instance, void *store, const void* userData )
-{
-	UnsignedInt* s = (UnsignedInt*)store;
-	UnsignedInt mask = (UnsignedInt)userData;
+// INI::parseBitInInt32 lives in ini_parsers.cpp (retail's other INI TU)
 
-	if (INI::scanBool(ini->getNextToken()))
-		*s |= mask;
-	else
-		*s &= ~mask;
-}
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
@@ -1498,13 +1430,8 @@ void INI::parseScience(INI *ini, void *, void *store, const void *)
 	*
 	* NOTE: Is is assumed that we are going to store the index into
 	*				a 4 byte integer.  This works well for INT and ENUM definitions */
-//-------------------------------------------------------------------------------------------------
-// ?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseIndexList( INI* ini, void * /*instance*/, void *store, const void* userData )
-{
-	ConstCharPtrArray nameList = (ConstCharPtrArray)userData;
-	*(Int *)store = scanIndexList(ini->getNextToken(), nameList);
-} 
+// INI::parseIndexList lives in ini_parsers.cpp (retail's other INI TU)
+ 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a single string token, check for that token in the index list
@@ -1512,19 +1439,8 @@ void INI::parseIndexList( INI* ini, void * /*instance*/, void *store, const void
 	*
 	* NOTE: Is is assumed that we are going to store the index into
 	*				a 4 byte integer.  This works well for INT and ENUM definitions */
-//-------------------------------------------------------------------------------------------------
-// ?parseByteSizedIndexList@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseByteSizedIndexList( INI* ini, void * /*instance*/, void *store, const void* userData )
-{
-	ConstCharPtrArray nameList = (ConstCharPtrArray)userData;
-	Int value = scanIndexList(ini->getNextToken(), nameList);
-	if (value < 0 || value > 255)
-	{
-		DEBUG_CRASH(("Bad index list INI::parseByteSizedIndexList"));
-		throw ERROR_BUG;
-	}
-	*(Byte *)store = (Byte)value;
-} 
+// INI::parseByteSizedIndexList lives in ini_parsers.cpp (retail's other INI TU)
+ 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse a single string token, check for that token in the index list
@@ -1532,13 +1448,8 @@ void INI::parseByteSizedIndexList( INI* ini, void * /*instance*/, void *store, c
 	*
 	* NOTE: Is is assumed that we are going to store the index into
 	*				a 4 byte integer.  This works well for INT and ENUM definitions */
-//-------------------------------------------------------------------------------------------------
-// ?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseLookupList( INI* ini, void * /*instance*/, void *store, const void* userData )
-{
-	ConstLookupListRecArray lookupList = (ConstLookupListRecArray)userData;
-	*(Int *)store = scanLookupList(ini->getNextToken(), lookupList);
-}
+// INI::parseLookupList lives in ini_parsers.cpp (retail's other INI TU)
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // PRIVATE FUNCTIONS //////////////////////////////////////////////////////////////////////////////

@@ -12068,7 +12068,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAmount@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066020,138,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseAndTranslateLabel@INI@@SAXPAV1@PAX1PBX@Z,,0x000BA9B0,181,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseAngleFX@@YAXPAVINI@@PAX1PBX@Z,,0x002B0990,23,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate.cpp,matched,
-?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852D30,92,Code/masm_dumps/parseAngleReal_INI_SAXPAV1_PAX1PBX_Z_852D30.asm,matched,Ghidra bounded retail body; scanReal call and PI/180 degree-to-radian constant
 ?parseAngularVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000114D7,5,Code/masm_dumps/parseAngularVelocityReal_INI_SAXPAV1_PAX1PBX_Z_114D7.asm,matched,Ghidra-adjacent public thunk; table xrefs from angular-rate fields and canonical scanReal conversion body
 ?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/masm_dumps/parseAnim2DTemplate_INI_SAXPAV1_PAX1PBX_Z_4B556.asm,matched,Unique BFME crash string anchors Anim2D collection lookup body and public thunk
 ?parseAnimatingPart@ControlBarSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x004AEA00,219,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme_parseAnimatingPart.asm,matched,True body 0x4AEA00/219 (queue 0xB026D6 was pad/epilogue). FieldParse FinalPos@0xcfd0a8; MASM exact like parseImagePart sibling
@@ -12082,10 +12081,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EACB0,51,Code/GameEngine/Source/GameLogic/Object/WeaponTemplateSet_parseAutoChoose.asm,matched,Corrected one-byte-early queue RVA using INT3 and RET boundaries
 ?parseBenchProfile@INI@@SAXPAV1@@Z,,0x0007C7F0,131,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME retail GameLOD layout
 ?parseBitFlag@@YA_NPBDPAIPAPBD@Z,,0x004842E0,81,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
-?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E60,115,Code/masm_dumps/parseBitInInt32_INI_SAXPAV1_PAX1PBX_Z_852E60.asm,matched,Ghidra bounded retail body; scanBool call with OR or AND-not mask update
 ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z,,0x00850E70,297,Code/masm_dumps/__parseBitString32_INI__SAXPAV1_PAX1PBX_Z_850E70.asm,matched,
 ?parseBitString@@YAXPBDPAIPAPBD@Z,,0x00484350,113,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
-?parseByteSizedIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x008510B0,125,Code/masm_dumps/parseByteSizedIndexList_INI_SAXPAV1_PAX1PBX_Z_8510B0.asm,matched,Retail RadarPriority xref and padding-bounded range-check body identify byte-sized index parser
 ?parseCSF@GameTextManager@@IAE_NPBD@Z,,0x00437570,672,Code/masm_dumps/GameTextManager_parseCSF.asm,matched,exact 672B via MASM; true body 0x437570 (SEH memory-buffer CSF parse); queue 0x9D2189 misplaced
 ?parseCampaignDefinition@INI@@SAXPAV1@@Z,,0x005BCF20,172,Code/masm_dumps/INI_parseCampaignDefinition_5BCF20.asm,matched,INI theTypeTable Campaign entry; true body 0x5BCF20/172 (drift 0x5EE360 was 7B stub)
 ?parseCashHackUpgradePair@@YAXPAVINI@@PAX1PBX@Z,,0x00258F10,120,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CashHackSpecialPower.cpp,matched,
@@ -12146,7 +12143,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseImageSequence@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BB150,381,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_parse_walls.asm,matched,
 ?parseImageStatus@Image@@SAXPAVINI@@PAX1PBX@Z,,0x005D2000,51,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
 ?parseInGameUIDefinition@INI@@SAXPAV1@@Z,,0x0043AAA0,36,Code/masm_dumps/INI_parseInGameUIDefinition.asm,matched,Ghidra-owned BFME UI parser dispatch
-?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851050,91,Code/masm_dumps/parseIndexList_INI_SAXPAV1_PAX1PBX_Z_851050.asm,matched,Retail TerrainLOD table xref identifies Ghidra FUN_00c51050 index-list parser
 ?parseInitialRoster@GarrisonContainModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x001230B0,104,Code/masm_dumps/GarrisonContainModuleData_parseInitialRoster.asm,matched,Exact 104B @ 0x001230B0; FieldParse InitialRoster thunk 0x26B61->body; m_initialRoster @+0x174/+0x178; queue RVA 0x29FCD6 was ProductionUpdate parseAppendQuantityModifier INSIDE
 ?parseInputCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486900,130,Code/masm_dumps/parseInputCallback_YA_NPADPAVWinInstanceData_0PAX_Z.asm,matched,parse table INPUTCALLBACK->0x486900; queue 0x4877E5 was wrong body; exact 130B MASM
 ?parseInt@@YAXPAVINI@@PAX1PBX@Z,,0x000B8160,55,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
@@ -12157,7 +12153,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseLinePart@ShellMenuSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x00581540,124,Code/masm_dumps/parseLinePart_ShellMenuSchemeManager_581540.asm,matched,Certified packet 146; LinePart parser-table callback via ILT thunk; SHA256 8861c93a0273b919427ad0c960277df77ac80f4c557894cb8fa23ac31c22b7a1
 ?parseListboxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484760,166,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseLocomotorTemplateDefinition@LocomotorStore@@SAXPAVINI@@@Z,,0x001BAEC0,362,Code/masm_dumps/parseLocomotorTemplateDefinition_LocomotorStore_1BAEC0.asm,matched,Certified recovery packet 239 reviewed parser-table wrapper and call-graph identity
-?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851130,91,Code/masm_dumps/parseLookupList_INI_SAXPAV1_PAX1PBX_Z_851130.asm,matched,Retail ButtonBorderType xref and padding-bounded scanner body identify lookup-list parser
 ?parseMajorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x000660D0,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMappedImage@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAAA0,113,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseMetaMapDefinition@INI@@SAXPAV1@@Z,,0x005B71A0,143,Code/GameEngine/Source/GameClient/MessageStream/INI_parseMetaMapDefinition.asm,matched,CommandMap INI table pointer and Ghidra-confirmed inlined parser body
@@ -12210,7 +12205,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseScreenRect@@YA_NPAD0PAH111@Z,,0x004854F0,453,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseShakeType@ViewShakeFXNugget@@KAXPAVINI@@PAX1PBX@Z,,0x00427610,32,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?parseShellMenuSchemeDefinition@INI@@SAXPAV1@@Z,,0x00581790,171,Code/masm_dumps/INI_parseShellMenuSchemeDefinition_581790.asm,matched,MASM exact; true body via ShellMenuScheme typeTable; queue 0x7D46F was parseDynamicGameLODDefinition
-?parseShort@INI@@SAXPAV1@PAX1PBX@Z,,0x00852960,124,Code/masm_dumps/parseShort_INI_SAXPAV1_PAX1PBX_Z_852960.asm,matched,Ghidra neighborhood and CC-bounded retail body; scanInt with signed 16-bit range and word store
 ?parseShutdown@@YA_NPAD0IPAVWindowLayoutInfo@@@Z,,0x00487750,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Retail layout table and StringBase ABI
 ?parseSingleBitFromINI@?$BitFlags@$0CG@@@SAXPAVINI@@PAX1PBX@Z,,0x0081D410,32,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseSingleBitFromINI@?$BitFlags@$0CN@@@SAXPAVINI@@PAX1PBX@Z,,0x0081D410,32,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,icf-owner=?parseSingleBitFromINI@?$BitFlags@$0HF@@@SAXPAVINI@@PAX1PBX@Z
@@ -12237,8 +12231,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseTransitionToOCL@TerrainRoadType@@KAXPAVINI@@PAX1PBX@Z,,0x00601D40,263,Code/masm_dumps/_parseTransitionToOCL_TerrainRoadType__KAXPAVINI__PAX1PBX_Z_601D40.asm,matched,
 ?parseTurretSweep@TurretAIData@@SAXPAVINI@@PAX1PBX@Z,,0x0018C3E0,48,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
 ?parseTurretSweepSpeed@TurretAIData@@SAXPAVINI@@PAX1PBX@Z,,0x0018C420,48,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
-?parseUnsignedByte@INI@@SAXPAV1@PAX1PBX@Z,,0x008528E0,120,Code/masm_dumps/parseUnsignedByte_INI_SAXPAV1_PAX1PBX_Z_8528E0.asm,matched,Ghidra neighborhood and CC-bounded retail body; scanInt with 0..255 range and byte store
-?parseUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x008529E0,121,Code/masm_dumps/parseUnsignedShort_INI_SAXPAV1_PAX1PBX_Z_8529E0.asm,matched,Ghidra neighborhood and CC-bounded retail body; scanInt with 0..65535 range and word store
 ?parseUpdate@@YA_NPAD0IPAVWindowLayoutInfo@@@Z,,0x004876C0,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Retail layout table and StringBase ABI
 ?parseUpgradeDefinition@UpgradeCenter@@SAXPAVINI@@@Z,,0x0010B280,172,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
 ?parseUpgradeTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BB040,119,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
@@ -13583,9 +13575,6 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?parseUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852AC0,86,Code/masm_dumps/_parseUnsignedInt_INI__SAXPAV1_PAX1PBX_Z_852AC0.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
-?parseReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B20,86,Code/masm_dumps/parseReal_INI_SAXPAV1_PAX1PBX_Z_852B20.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
-?parseBool@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E00,86,Code/masm_dumps/parseBool_INI_SAXPAV1_PAX1PBX_Z_852E00.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
 ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852EE0,102,Code/masm_dumps/parsePercentToReal_INI_SAXPAV1_PAX1PBX_Z_852EE0.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
 ??1SubsystemLegendEntry@@QAE@XZ,,0x00078210,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,element dtor; stand-in members keep AsciiString/vector release out-of-line (pins 0x00887940 / 0x000658A0)
 ??_GSubsystemLegendEntry@@QAEPAXI@Z,,0x00078420,30,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,scalar deleting dtor for the list element
@@ -13625,3 +13614,14 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parseAsciiStringVector@INI@@SAXPAV1@PAX1PBX@Z,,0x008542B0,39,Code/GameEngine/Source/Common/INI/ini.cpp,matched,clears the vector then delegates to parseAsciiStringVectorAppend
 ?scanLookupList@INI@@SAHPBDPBULookupListRec@@@Z,,0x00850A70,136,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME throws INIException with a formatted message not a bare code
 ?scanIndexList@INI@@SAHPBDPBQBD@Z,,0x008509E0,102,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME throws INIException with a formatted message not a bare code
+?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851050,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseByteSizedIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x008510B0,125,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851130,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseUnsignedByte@INI@@SAXPAV1@PAX1PBX@Z,,0x008528E0,120,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseShort@INI@@SAXPAV1@PAX1PBX@Z,,0x00852960,124,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x008529E0,121,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852AC0,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B20,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852D30,92,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseBool@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E00,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E60,115,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
