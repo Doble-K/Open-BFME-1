@@ -2,61 +2,41 @@
 .model flat
 
 ; ?getLANIPAddress@OptionPreferences@@QAEIXZ
-; Exact 403 retail bytes @ 0x00092436
+; Exact 488 retail bytes @ 0x00092436
 _TEXT SEGMENT
 public ?getLANIPAddress@OptionPreferences@@QAEIXZ
 ?getLANIPAddress@OptionPreferences@@QAEIXZ PROC
-    db 68h,0E4h,0FBh,07h,01h,0C7h,44h,24h
-    db 28h,00h,00h,00h,00h,0E8h,78h,67h
-    db 7Fh,00h,8Dh,54h,24h,18h,52h,0E8h
-    db 9Eh,6Bh,7Fh,00h,83h,0C4h,18h,68h
-    db 0D8h,0FBh,07h,01h,8Dh,4Ch,24h,1Ch
-    db 0E8h,5Dh,67h,7Fh,00h,8Dh,44h,24h
-    db 18h,50h,8Dh,4Eh,04h,0C6h,44h,24h
-    db 14h,01h,0E8h,65h,0C2h,0FAh,0FFh,8Dh
-    db 4Ch,24h,04h,51h,8Bh,0C8h,0E8h,0Fh
-    db 58h,7Fh,00h,8Dh,4Ch,24h,18h,0C6h
-    db 44h,24h,10h,00h,0E8h,0B1h,54h,7Fh
-    db 00h,8Dh,4Ch,24h,04h,0C7h,44h,24h
-    db 10h,0FFh,0FFh,0FFh,0FFh,0E8h,0A0h,54h
-    db 7Fh,00h,8Bh,4Ch,24h,08h,64h,89h
-    db 0Dh,00h,00h,00h,00h,5Eh,83h,0C4h
-    db 10h,0C2h,04h,00h,0CCh,0CCh,0CCh,0CCh
-    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
-    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
-    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
-    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
-    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
-    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
-    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
-    db 0CCh,0CCh,6Ah,0FFh,68h,38h,5Bh,0FFh
-    db 00h,64h,0A1h,00h,00h,00h,00h,50h
-    db 64h,89h,25h,00h,00h,00h,00h,83h
-    db 0ECh,14h,53h,55h,56h,57h,8Bh,0F1h
-    db 68h,0F4h,0FBh,07h,01h,8Dh,4Ch,24h
-    db 18h,0E8h,0A4h,66h,7Fh,00h,8Dh,44h
-    db 24h,14h,50h,8Dh,4Eh,04h,0C7h,44h
-    db 24h,30h,00h,00h,00h,00h,0E8h,0A9h
-    db 0C1h,0FAh,0FFh,50h,8Dh,4Ch,24h,14h
-    db 0E8h,25h,56h,7Fh,00h,8Dh,4Ch,24h
-    db 14h,0C6h,44h,24h,2Ch,02h,0E8h,0F7h
-    db 53h,7Fh,00h,8Dh,4Ch,24h,1Ch,0E8h
-    db 4Dh,3Fh,0F9h,0FFh,8Dh,4Ch,24h,1Ch
-    db 0C6h,44h,24h,2Ch,03h,0E8h,0BAh,0F8h
-    db 0F6h,0FFh,8Bh,0E8h,85h,0EDh,74h,73h
-    db 8Dh,4Ch,24h,18h,51h,8Bh,0CDh,0E8h
-    db 0Ah,45h,0F8h,0FFh,8Bh,00h,85h,0C0h
-    db 74h,06h,0Fh,0B7h,78h,04h,0EBh,02h
-    db 33h,0FFh,85h,0C0h,8Dh,50h,08h,75h
-    db 05h,0BAh,8Bh,38h,07h,01h,8Bh,4Ch
-    db 24h,10h,85h,0C9h,74h,09h,0Fh,0B7h
-    db 71h,04h,83h,0C1h,08h,0EBh,07h,33h
-    db 0F6h,0B9h,8Bh,38h,07h,01h,3Bh,0F7h
-    db 8Bh,0C6h,7Ch,02h,8Bh,0C7h,50h,52h
-    db 51h,0FFh,15h,10h,93h,35h,01h,83h
-    db 0C4h,0Ch,85h,0C0h,75h,06h,2Bh,0F7h
-    db 8Bh,0C6h,85h,0C0h,8Dh,4Ch,24h,18h
-    db 0Fh,94h,0C3h
+    db 068h,0E4h,0FBh,007h,001h,0C7h,044h,024h,028h,000h,000h,000h,000h,0E8h,078h,067h
+    db 07Fh,000h,08Dh,054h,024h,018h,052h,0E8h,09Eh,06Bh,07Fh,000h,083h,0C4h,018h,068h
+    db 0D8h,0FBh,007h,001h,08Dh,04Ch,024h,01Ch,0E8h,05Dh,067h,07Fh,000h,08Dh,044h,024h
+    db 018h,050h,08Dh,04Eh,004h,0C6h,044h,024h,014h,001h,0E8h,065h,0C2h,0FAh,0FFh,08Dh
+    db 04Ch,024h,004h,051h,08Bh,0C8h,0E8h,00Fh,058h,07Fh,000h,08Dh,04Ch,024h,018h,0C6h
+    db 044h,024h,010h,000h,0E8h,0B1h,054h,07Fh,000h,08Dh,04Ch,024h,004h,0C7h,044h,024h
+    db 010h,0FFh,0FFh,0FFh,0FFh,0E8h,0A0h,054h,07Fh,000h,08Bh,04Ch,024h,008h,064h,089h
+    db 00Dh,000h,000h,000h,000h,05Eh,083h,0C4h,010h,0C2h,004h,000h,0CCh,0CCh,0CCh,0CCh
+    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
+    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
+    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh
+    db 0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,0CCh,06Ah,0FFh,068h,038h,05Bh,0FFh
+    db 000h,064h,0A1h,000h,000h,000h,000h,050h,064h,089h,025h,000h,000h,000h,000h,083h
+    db 0ECh,014h,053h,055h,056h,057h,08Bh,0F1h,068h,0F4h,0FBh,007h,001h,08Dh,04Ch,024h
+    db 018h,0E8h,0A4h,066h,07Fh,000h,08Dh,044h,024h,014h,050h,08Dh,04Eh,004h,0C7h,044h
+    db 024h,030h,000h,000h,000h,000h,0E8h,0A9h,0C1h,0FAh,0FFh,050h,08Dh,04Ch,024h,014h
+    db 0E8h,025h,056h,07Fh,000h,08Dh,04Ch,024h,014h,0C6h,044h,024h,02Ch,002h,0E8h,0F7h
+    db 053h,07Fh,000h,08Dh,04Ch,024h,01Ch,0E8h,04Dh,03Fh,0F9h,0FFh,08Dh,04Ch,024h,01Ch
+    db 0C6h,044h,024h,02Ch,003h,0E8h,0BAh,0F8h,0F6h,0FFh,08Bh,0E8h,085h,0EDh,074h,073h
+    db 08Dh,04Ch,024h,018h,051h,08Bh,0CDh,0E8h,00Ah,045h,0F8h,0FFh,08Bh,000h,085h,0C0h
+    db 074h,006h,00Fh,0B7h,078h,004h,0EBh,002h,033h,0FFh,085h,0C0h,08Dh,050h,008h,075h
+    db 005h,0BAh,08Bh,038h,007h,001h,08Bh,04Ch,024h,010h,085h,0C9h,074h,009h,00Fh,0B7h
+    db 071h,004h,083h,0C1h,008h,0EBh,007h,033h,0F6h,0B9h,08Bh,038h,007h,001h,03Bh,0F7h
+    db 08Bh,0C6h,07Ch,002h,08Bh,0C7h,050h,052h,051h,0FFh,015h,010h,093h,035h,001h,083h
+    db 0C4h,00Ch,085h,0C0h,075h,006h,02Bh,0F7h,08Bh,0C6h,085h,0C0h,08Dh,04Ch,024h,018h
+    db 00Fh,094h,0C3h,0E8h,072h,053h,07Fh,000h,084h,0DBh,075h,047h,08Bh,06Dh,008h,085h
+    db 0EDh,075h,08Dh,08Bh,015h,0C8h,0D5h,02Eh,001h,08Bh,0B2h,010h,00Bh,000h,000h,08Dh
+    db 04Ch,024h,01Ch,0C6h,044h,024h,02Ch,002h,0E8h,098h,0A8h,0F8h,0FFh,08Dh,04Ch,024h
+    db 010h,0C7h,044h,024h,02Ch,0FFh,0FFh,0FFh,0FFh,0E8h,03Ch,053h,07Fh,000h,08Bh,04Ch
+    db 024h,024h,05Fh,08Bh,0C6h,05Eh,05Dh,05Bh,064h,089h,00Dh,000h,000h,000h,000h,083h
+    db 0C4h,020h,0C3h,08Bh,075h,004h,0EBh,0C7h
 ?getLANIPAddress@OptionPreferences@@QAEIXZ ENDP
 _TEXT ENDS
 END

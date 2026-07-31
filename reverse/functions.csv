@@ -5227,7 +5227,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?As_Named_Pivot_Map@PivotMapClass@@UAEPAVNamedPivotMapClass@@XZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?As_TextureClass@TextureBaseClass@@UAEPAVTextureClass@@XZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WW3D2/texture.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?As_VolumeTextureClass@TextureBaseClass@@UAEPAVVolumeTextureClass@@XZ,,0x006CF680,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/TerrainTex.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?AssertBegin@Debug@@SAAAV1@PBDH0@Z,,0x0088B530,749,Code/masm_dumps/_sa3__AssertBegin_Debug__SAAAV1_PBDH0_Z_88B530.asm,matched,Exact 749B string-anchored Open-BFME4
 ?Assign_Index@AABTreeBuilderClass@@AAEHPAUCullNodeStruct@1@H@Z,,0x0096B370,52,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ?Atan2@WWMath@@SAMMM@Z,,0x005F0980,11,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
 ?Atan@WWMath@@SAMM@Z,,0x0045B6F0,9,Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp,matched,icf-owner=_atanf
@@ -5674,7 +5673,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?ExceptionFilter@DebugExceptionhandler@@SGJPAU_EXCEPTION_POINTERS@@@Z,,0x0088E5F0,728,Code/masm_dumps/_sym1__ExceptionFilter_DebugExceptionhandler__SGJPAU_EXCEPTION_POINTERS___Z_88E5F0.asm,matched,symbol-pin Open-BFME4+Grok
 ?ExecCommand@Debug@@AAEXPBD0@Z,,0x0088ABA0,788,Code/masm_dumps/_s4__ExecCommand_Debug_AAEXPBD0_Z_88ABA0.asm,matched,Exact string-anchored Open-BFME4+Grok
 ?Execute@DebugIOCon@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00891200,239,Code/masm_dumps/_cache__Execute_DebugIOCon__UAEXAAVDebug__PBD_NIPBQBD_Z_891200.asm,matched,cached-obj needle Open-BFME4+Grok
-?Execute@DebugIOFlat@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00890810,1250,Code/masm_dumps/_str__Execute_DebugIOFlat_UAEXAAVDebug_PBD_NIPBQBD_Z_890810.asm,matched,
 ?Execute@DebugIONet@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x0088FCE0,283,Code/Libraries/Source/WWVegas/WWDebug/DebugIONet_Execute.asm,matched,
 ?Exists@RegistryClass@@SA_NPBD@Z,,0x009DC1C0,50,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
 ?ExpandMagic@DebugIOFlat@@CAXPBD0PAD@Z,,0x008900A0,701,Code/Libraries/Source/WWVegas/WWDebug/DebugIOFlat_ExpandMagic.asm,matched,
@@ -7188,7 +7186,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Open@RawFileClass@@UAEHPBDH@Z,,0x009E6580,31,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Open_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E1380,96,Code/masm_dumps/__Open_Chunk_ChunkLoadClass__QAE_NXZ_9E1380.asm,matched,
 ?Open_Micro_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E17C0,46,Code/masm_dumps/_Open_Micro_Chunk_ChunkLoadClass__QAE_NXZ_9E17C0.asm,matched,MASM exact retail dump
-?OptionsMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x00560280,6966,Code/masm_dumps/_OptionsMenuInit__YAXPAVWindowLayout__PAX_Z_560280.asm,matched,Exact 6966B string-anchored Open-BFME4
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVAABoxClass@@0@Z,,0x008DD740,274,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVAABoxClass@@ABVLineSegClass@@@Z,,0x008D9B30,909,Code/Libraries/Source/WWVegas/WWMath/colmathaabox.cpp,matched,
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVAABoxClass@@ABVOBBoxClass@@@Z,,0x008E22F0,27,Code/Libraries/Source/WWVegas/WWMath/colmathobbox.cpp,matched,
@@ -8926,7 +8923,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?capacity@?$vector@VArmorTemplateSet@@V?$allocator@VArmorTemplateSet@@@_STL@@@_STL@@QBEIXZ,,0x000E6B90,24,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?capacity@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@QBEIXZ,,0x0022FEE0,25,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?capacity@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QBEIXZ,,0x002CB3E0,21,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
-?castRay@RTS3DScene@@QAE_NAAVRayCollisionTestClass@@_NH@Z,,0x00956670,578,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_castRay.asm,matched,exact 578B via MASM
 ?ceil@@YAMM@Z,,0x000B8E60,20,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyWarehouseDockUpdate.cpp,matched,
 ?changeBodyDamageState@BoneFXUpdate@@QAEXW4BodyDamageType@@0@Z,,0x00289160,29,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,
 ?changeGridHeight@WaterRenderObjClass@@QAEXMMM@Z,,0x0079F850,530,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
@@ -9511,7 +9507,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F95A0,144,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamAttackNamed.asm,matched,exact 144B MASM; true body 0x2F95A0 (drift 0x3992C6 was mid logicMessageDispatcher)
 ?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/masm_dumps/_sa7__doTeamDecreasePriority_ScriptActions__IAEXABVAsci_2F3A60.asm,matched,Exact 196B Open-BFME4
 ?doTeamFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002F3E90,282,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamFlash.asm,matched,exact 282B MASM; true body 0x2F3E90 (drift 0x933119 mid-fn x87)
-?doTeamHuntWithCommandButton@ScriptActions@@,,0x002F7B80,211,Code/masm_dumps/_sa6__doTeamHuntWithCommandButton_ScriptActions___2F7B80.asm,matched,Exact 211B Open-BFME4+Grok
 ?doTeamIncreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3960,196,Code/masm_dumps/_sa7__doTeamIncreasePriority_ScriptActions__IAEXABVAsci_2F3960.asm,matched,Exact 196B Open-BFME4
 ?doTeamRadarCreateEvent@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002F4140,96,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamRadarCreateEvent.asm,matched,exact 96B MASM; true body 0x2F4140 (drift 0x6036AB was mid-fn FUN_00a03520)
 ?doTeamUseCommandButtonOnNamed@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002F54C0,204,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamUseCommandButtonOnNamed.asm,matched,exact 204B via MASM; true body @ 0x2F54C0 (queue 0x614F9B was INSIDE mislocated NearestKindof/INI parser)
@@ -10965,7 +10960,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getKey@?$CategoryModuleClass@$06@FXParticleSystem@@QBEPBDXZ,0x00010A55,0x005C17F0,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns module key string
 ?getKey@?$CategoryModuleClass@$07@FXParticleSystem@@QBEPBDXZ,0x00032E57,0x005C1890,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns module key string
 ?getKey@?$CategoryModuleClass@$0A@@FXParticleSystem@@QBEPBDXZ,0x0000631B,0x005C1210,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns module key string
-?getLANIPAddress@OptionPreferences@@QAEIXZ,,0x00092436,403,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu_getLANIPAddress.asm,matched,exact 403B via MASM
 ?getLandMineInterface@BehaviorModule@@UAEPAVLandMineInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getLaserDrawInterface@DrawModule@@UAEPAVLaserDrawInterface@@XZ,,0x006CF680,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getLaserDrawInterface@DrawModule@@UBEPBVLaserDrawInterface@@XZ,,0x006CF680,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -11779,7 +11773,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?load@GameSpyLoginPreferences@@UAE_NVAsciiString@@@Z,,0x00082190,977,Code/masm_dumps/GameSpyLoginPreferences_load.asm,matched,Exact retail MASM; date nick and password key literals prove ownership
 ?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z,,0x00853610,1037,Code/masm_dumps/load_INI_QAEXVAsciiString_W4INILoadType_PAVXfer_Z_853610.asm,matched,Ghidra boundary and inlined prepFile flow-identified body
 ?load@ImageCollection@@QAEXH@Z,,0x005D23A0,600,Code/masm_dumps/_sa11__load_ImageCollection__QAEXH_Z_5D23A0.asm,matched,string-anchor Open-BFME4+Grok Data\INI\MappedImages\TextureSize_%d
-?load@W3DBridge@@QAE_NW4BodyDamageType@@@Z,,0x006D8C10,2808,Code/masm_dumps/_sa3__load_W3DBridge__QAE_NW4BodyDamageType___Z_6D8C10.asm,matched,Exact 2808B string-anchored Open-BFME4
 ?load@WaterRenderObjClass@@QAEXXZ,,0x0079F160,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
 ?loadAlphaJoin@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1M@Z,,0x0070ED90,566,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?loadBridgesInVertexAndIndexBuffers@W3DBridgeBuffer@@IAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,,0x000367EB,5,Code/masm_dumps/_loadBridgesInVertexAndIndexBuffers_W3DBridgeBuffer__IAEXPAV__RefMultiListIterator_VRenderObjClass_____Z_367EB.asm,matched,MASM exact retail dump
@@ -11811,7 +11804,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?localPixelToRadar@Radar@@QAE_NPBUICoord2D@@PAU2@@Z,,0x00004D59,5,Code/masm_dumps/_localPixelToRadar_Radar__QAE_NPBUICoord2D__PAU2__Z_4D59.asm,matched,MASM exact retail dump
 ?lockGhostObjects@GhostObjectManager@@QAEX_N@Z,,0x00427440,10,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?locoSetMatches@@YA_NHI@Z,,0x000EC7E0,24,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
-?locoUpdate_moveTowardsPosition@Locomotor@@QAEXPAVObject@@ABUCoord3D@@MMPA_N@Z,,0x002BAFB8,1103,Code/GameEngine/Source/GameLogic/Object/Locomotor_locoUpdate_moveTowardsPosition.asm,matched,exact 1103B via MASM
 ?log10@@YAMM@Z,,0x00799CF0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp,matched,
 ?log@@YAMM@Z,,0x0045B380,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched,
 ?logN@@YAMMM@Z,,0x00799F70,27,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp,matched,
@@ -12505,7 +12497,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reset@Anim2D@@QAEXXZ,,0x005BA250,96,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?reset@AnimateWindowManager@@UAEXXZ,,0x0045DAB0,36,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?reset@BaseHeightMapRenderObjClass@@UAEXXZ,,0x006D03B0,372,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_reset.asm,matched,MASM exact 372B @ 0x006D03B0; queue 0x006D041C was INSIDE (+0x6C)
-?reset@ControlBar@@UAEXXZ,,0x004A2F80,583,Code/masm_dumps/_cache__reset_ControlBar__UAEXXZ_4A2F80.asm,matched,cached-obj needle Open-BFME4+Grok
 ?reset@DisplayString@@UAEXXZ,,0x0040FFB0,20,Code/GameEngine/Source/GameClient/DisplayString.cpp,matched,
 ?reset@FirewallHelperClass@@QAEXXZ,,0x0066EBF0,66,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?reset@GameInfo@@UAEXXZ,,0x0061F440,168,Code/masm_dumps/GameInfo_reset.asm,matched,Exact retail MASM; NOMAP anchor and reset semantics prove ownership
@@ -12853,7 +12844,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPlayingHandle@AudioEventRTS@@QAEXI@Z,,0x000B2200,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
 ?setPort@GameSlot@@QAEXG@Z,,0x00673F70,12,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setPortraitByImage@ControlBar@@IAEXPBVImage@@@Z,,0x0049CF10,164,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
-?setPortraitByObject@ControlBar@@IAEXPAVObject@@@Z,,0x0059A664,739,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setPortraitByObject.asm,matched,exact 739B via MASM
 ?setPosition@AudioEventRTS@@QAEXPBUCoord3D@@@Z,,0x000B2210,51,Code/masm_dumps/AudioEventRTS_setPosition.asm,matched,Ghidra-bound BFME audio positional setter
 ?setPosition@DirectInputMouse@@UAEXHH@Z,,0x006BB980,70,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?setPosition@Drawable@@QAEXPBUCoord3D@@@Z,,0x004116F0,5,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,thunk-dump converted to clean C++
@@ -12875,7 +12865,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setRallyPoint@SupplyCenterProductionExitUpdate@@UAEXPBUCoord3D@@@Z,,0x002CFCA0,32,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SupplyCenterProductionExitUpdate.cpp,matched,
 ?setRange@GameClientRandomVariable@@QAEXMMW4DistributionType@1@@Z,0x00006C58,0x00096F40,23,Code/GameEngine/Source/Common/System/game_client_random_variable.cpp,matched,sets distribution/minimum/maximum
 ?setRange@GameLogicRandomVariable@@QAEXMMW4DistributionType@1@@Z,,0x00097000,23,Code/GameEngine/Source/Common/System/random_value.cpp,matched,
-?setRankLevel@Player@@QAE_NH@Z,,0x000D93AC,395,Code/GameEngine/Source/Common/RTS/Player_setRankLevel.asm,matched,exact 395B via MASM
 ?setRawTextureData@Image@@QAEXPAX@Z,,0x0029BC50,10,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar.cpp,matched,
 ?setReal@Dict@@QAEXW4NameKeyType@@M@Z,,0x00068830,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setRelay@NetCommandRef@@QAEXE@Z,,0x003BC6B0,10,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,
@@ -13193,7 +13182,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@ScaleUpTransition@@UAEXH@Z,,0x0059F060,144,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@StealthDetectorUpdate@@,,0x002AB690,1954,Code/masm_dumps/_str__update_StealthDetectorUpdate__2AB690.asm,matched,
 ?update@StructureCollapseUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002AE950,944,Code/masm_dumps/StructureCollapseUpdate_update.asm,matched,retail MASM; ctor vtable 0x10C4644 slot 0 via thunk 0x002E4C9; Ghidra ENTRY 944
-?update@StructureToppleUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x008F7E80,769,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate_update.asm,matched,exact 769B via MASM
 ?update@SubsystemLegend@@UAEXXZ,,0x00078B40,1,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,empty override (base slot 5)
 ?update@SupplyTruckBusyState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@SupplyTruckIdleState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -13625,3 +13613,15 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?HUFF_analysis@@YAXPAUHuffEncodeContext@@II@Z,,0x0081FB50,2599,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,true size 2599B; row claimed 453B
 ?insert4Way@W3DRoadBuffer@@IAEXVVector2@@HM@Z,,0x00706310,2178,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,true size 2178B; row claimed 1964B
 ?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,55,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,true size 55B; row claimed 23B
+?AssertBegin@Debug@@SAAAV1@PBDH0@Z,,0x0088B530,948,Code/masm_dumps/_sa3__AssertBegin_Debug__SAAAV1_PBDH0_Z_88B530.asm,matched,true size 948B; row claimed 749B
+?Execute@DebugIOFlat@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00890810,1460,Code/masm_dumps/_str__Execute_DebugIOFlat_UAEXAAVDebug_PBD_NIPBQBD_Z_890810.asm,matched,true size 1460B; row claimed 1250B
+?OptionsMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x00560280,7212,Code/masm_dumps/_OptionsMenuInit__YAXPAVWindowLayout__PAX_Z_560280.asm,matched,true size 7212B; row claimed 6966B
+?castRay@RTS3DScene@@QAE_NAAVRayCollisionTestClass@@_NH@Z,,0x00956670,734,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_castRay.asm,matched,true size 734B; row claimed 578B
+?doTeamHuntWithCommandButton@ScriptActions@@,,0x002F7B80,895,Code/masm_dumps/_sa6__doTeamHuntWithCommandButton_ScriptActions___2F7B80.asm,matched,true size 895B; row claimed 211B
+?getLANIPAddress@OptionPreferences@@QAEIXZ,,0x00092436,488,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu_getLANIPAddress.asm,matched,true size 488B; row claimed 403B
+?load@W3DBridge@@QAE_NW4BodyDamageType@@@Z,,0x006D8C10,2836,Code/masm_dumps/_sa3__load_W3DBridge__QAE_NW4BodyDamageType___Z_6D8C10.asm,matched,true size 2836B; row claimed 2808B
+?locoUpdate_moveTowardsPosition@Locomotor@@QAEXPAVObject@@ABUCoord3D@@MMPA_N@Z,,0x002BAFB8,1701,Code/GameEngine/Source/GameLogic/Object/Locomotor_locoUpdate_moveTowardsPosition.asm,matched,true size 1701B; row claimed 1103B
+?reset@ControlBar@@UAEXXZ,,0x004A2F80,684,Code/masm_dumps/_cache__reset_ControlBar__UAEXXZ_4A2F80.asm,matched,true size 684B; row claimed 583B
+?setPortraitByObject@ControlBar@@IAEXPAVObject@@@Z,,0x0059A664,832,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setPortraitByObject.asm,matched,true size 832B; row claimed 739B
+?setRankLevel@Player@@QAE_NH@Z,,0x000D93AC,487,Code/GameEngine/Source/Common/RTS/Player_setRankLevel.asm,matched,true size 487B; row claimed 395B
+?update@StructureToppleUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x008F7E80,1211,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate_update.asm,matched,true size 1211B; row claimed 769B
