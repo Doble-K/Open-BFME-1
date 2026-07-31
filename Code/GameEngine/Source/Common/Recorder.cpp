@@ -35,11 +35,20 @@ public:
 extern GlobalData *TheWritableGlobalData;
 #define TheGlobalData ((const GlobalData *)TheWritableGlobalData)
 
+enum RecorderModeType {
+    RECORDERMODETYPE_RECORD,
+    RECORDERMODETYPE_PLAYBACK,
+    RECORDERMODETYPE_NONE
+};
+
 class RecorderClass {
 public:
+    char m_pad[0x18];
+    RecorderModeType m_mode;
     static AsciiString getReplayDir();
     static AsciiString getReplayExtention();
     AsciiString getLastReplayFileName();
+    RecorderModeType getMode();
 };
 
 AsciiString RecorderClass::getReplayDir()
@@ -58,4 +67,9 @@ AsciiString RecorderClass::getReplayExtention()
 AsciiString RecorderClass::getLastReplayFileName()
 {
     return AsciiString(lastReplayFileName);
+}
+
+RecorderModeType RecorderClass::getMode()
+{
+    return m_mode;
 }

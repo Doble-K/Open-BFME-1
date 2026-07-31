@@ -11000,7 +11000,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getMinimumRequiredGameLOD@ModuleData@@UBE?AW4StaticGameLODLevel@@XZ,,0x006CF680,3,Code/GameEngine/Source/Common/Thing/Module.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getMinimumValue@GameClientRandomVariable@@QBEMXZ,0x0010BD90,0x0010BD90,4,Code/GameEngine/Source/Common/System/game_client_random_variable.cpp,matched,get minimum value
 ?getMod3@Stripify@Strip@@CAHH@Z,,0x0013A450,12,Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp,matched,
-?getMode@RecorderClass@@QAE?AW4RecorderModeType@@XZ,,0x00043EEB,5,Code/masm_dumps/_getMode_RecorderClass__QAE_AW4RecorderModeType__XZ_43EEB.asm,matched,MASM exact retail dump
 ?getModelVertices@W3DBridge@@IAEHPAUVertexFormatXYZNDUV1@@HMAAVVector3@@111ABVMatrix3D@@PAVMeshClass@@PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,,0x0001B14E,5,Code/masm_dumps/_getModelVertices_W3DBridge__IAEHPAUVertexFormatXYZNDUV1__HMAAVVector3__111ABVMatrix3D__PAVMeshClass__PAV__Ref_1B14E.asm,matched,MASM exact retail dump
 ?getModelVerticesFixed@W3DBridge@@IAEHPAUVertexFormatXYZNDUV1@@HABVMatrix3D@@PAVMeshClass@@PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,,0x006D84F0,532,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp,matched,
 ?getModuleNameKey@ActiveBody@@UBE?AW4NameKeyType@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
@@ -13662,3 +13661,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?construct@BFMEConnectionManager@@QAEPAXXZ,,0x00669630,643,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?init@BFMEConnectionManager@@QAEXXZ,,0x00669050,694,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?computePlayerFrameRatios@BFMEConnectionManager@@QAEXXZ,,0x00666000,454,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?getMode@RecorderClass@@QAE?AW4RecorderModeType@@XZ,,0x000977F0,4,Code/GameEngine/Source/Common/Recorder.cpp,matched,exact
