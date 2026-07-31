@@ -24,13 +24,33 @@
 #include <vector>
 #include "PreRTS.h"
 #include "subsystem_legend.h"
+#include <stddef.h>
 #include "Common/INI/INI.h"
 
-// Retail's table lives at 0x011415C0 and is not ported yet; its six rows are, in
-// order: InitFile/InitPath/Extension -> parseAsciiStringVectorAppend at +0x04/
-// +0x10/+0x1c, Loader -> parseLookupList at +0x28 (list 0x012D7758), then
-// InitFileDebug and ExcludePathDebug -> parseAsciiString, both at +0x2c.
-extern const FieldParse TheSubsystemLegendFieldParse[];
+// The "Loader" field's lookup table (retail 0x012D7758). Only two names exist.
+// Note the retail bytes are ptr("INI"), ptr("STR"), 0, 0 — read as the 8-byte
+// LookupListRec that INI::scanLookupList walks, that is one usable record whose
+// value happens to be the address of "STR". Reproduced as-is rather than guessed.
+static const LookupListRec TheSubsystemLegendLoaderNames[] =
+{
+	{ "INI", 0 },
+	{ NULL,  0 }
+};
+
+// The FieldParse table retail keeps at 0x011415C0 and parseLoadSubsystem hands to
+// INI::initFromINI. This is the INI schema of a "LoadSubsystem" block, and it is
+// what names the entry fields. Data, not code — build.sh byte-verifies functions,
+// so this table is not gate-checked; it is transcribed from the retail bytes.
+const FieldParse TheSubsystemLegendFieldParse[] =
+{
+	{ "InitFile",         INI::parseAsciiStringVectorAppend, NULL,                            offsetof(SubsystemLegendEntry, m_initFile)      },
+	{ "InitPath",         INI::parseAsciiStringVectorAppend, NULL,                            offsetof(SubsystemLegendEntry, m_initPath)      },
+	{ "Extension",        INI::parseAsciiStringVectorAppend, NULL,                            offsetof(SubsystemLegendEntry, m_extension)     },
+	{ "Loader",           INI::parseLookupList,              TheSubsystemLegendLoaderNames,   offsetof(SubsystemLegendEntry, m_loader)        },
+	{ "InitFileDebug",    INI::parseAsciiString,             NULL,                            offsetof(SubsystemLegendEntry, m_initFileDebug) },
+	{ "ExcludePathDebug", INI::parseAsciiString,             NULL,                            offsetof(SubsystemLegendEntry, m_initFileDebug) },
+	{ NULL,               NULL,                              NULL,                            0                                               }
+};
 
 // ??0SubsystemLegendEntry@@QAE@XZ
 SubsystemLegendEntry::SubsystemLegendEntry()
