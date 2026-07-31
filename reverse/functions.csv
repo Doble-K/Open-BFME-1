@@ -12565,8 +12565,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?sendDisconnectCommand@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,,0x0066B9F0,180,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?sendGameResults@GameResultsThreadClass@@AAEHIGABV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@Z,,0x00640830,223,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B2D0,187,Code/masm_dumps/_rn5__sendKeepAlive_DisconnectManager__IAEXPAVConnectionManager___Z_66B2D0.asm,matched,reloc-needle Open-BFME4+Grok
-?sendLocalCommand@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x0003F17A,5,Code/masm_dumps/_thunk_c9f666291949_3F17A.asm,matched,thunk accessor of ported class
-?sendLocalCommandDirect@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x000411D7,5,Code/masm_dumps/_thunk_6d1105248c5a_411D7.asm,matched,thunk accessor of ported class
 ?sendPlayerDestruct@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,,0x0066B550,159,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,structural: true body 0x66B550 not drift 0x9F2463; BFME enum 11 no setExecutionFrame sendLocalCommandDirect
 ?sendToManglerFromPort@FirewallHelperClass@@QAE_NIGG_N@Z,,0x00022C00,5,Code/masm_dumps/_sendToManglerFromPort_FirewallHelperClass__QAE_NIGG_N_Z_22C00.asm,matched,MASM exact retail dump
 ?sendVoteCommand@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,,0x0066B420,185,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
@@ -13662,3 +13660,5 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?init@BFMEConnectionManager@@QAEXXZ,,0x00669050,694,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?computePlayerFrameRatios@BFMEConnectionManager@@QAEXXZ,,0x00666000,454,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?getMode@RecorderClass@@QAE?AW4RecorderModeType@@XZ,,0x000977F0,4,Code/GameEngine/Source/Common/Recorder.cpp,matched,exact
+?sendLocalCommandDirect@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x00663300,172,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendLocalCommand@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x00664740,277,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,

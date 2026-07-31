@@ -2,6 +2,18 @@
 
 typedef bool Bool;
 
+class NetCommandMsg;
+
+// Retail's real ConnectionManager, named so these two bodies carry their true
+// mangled names; the BFME-native helpers below keep the BFMEConnectionManager
+// name because theirs are unknown.
+class ConnectionManager
+{
+public:
+	void sendLocalCommand(NetCommandMsg *msg, unsigned char relay);
+	void sendLocalCommandDirect(NetCommandMsg *msg, unsigned char relay);
+};
+
 class BFMEConnectionManager
 {
 public:
@@ -1976,5 +1988,262 @@ L08_6661B3:
 		mov dword ptr fs:[0h], ecx
 		add esp, 38h
 		ret
+	}
+}
+
+// Real body, reached in retail through the ILT thunk at 0x0003F17A that the
+// ledger used to claim on its own. Attaches the message, and when its execution
+// frame is still -1 stamps max(TheGameLogic->getFrame(), 2) into it, then clears
+// the local slot out of the relay mask before queueing.
+__declspec(naked) void ConnectionManager::sendLocalCommandDirect(NetCommandMsg *msg, unsigned char relay)
+{
+	__asm {
+		push ebx
+		push ebp
+		mov ebp, dword ptr [esp+0Ch]
+		push esi
+		push edi
+		mov edi, ecx
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 08Fh
+		__emit 0A0h
+		__emit 09Ah
+		__emit 0FFh   // call 0xD3A0
+		cmp dword ptr [ebp+8h], 0FFFFFFFFh
+		jne L00_66332C
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		mov eax, dword ptr [eax+3Ch]
+		cmp eax, 2h
+		ja L01_663329
+		mov eax, 2h
+L01_663329:
+		mov dword ptr [ebp+8h], eax
+L00_66332C:
+		mov ecx, dword ptr [edi+12028h]
+		movzx ebx, byte ptr [esp+18h]
+		mov edx, 1h
+		shl edx, cl
+		__emit 085h
+		__emit 0D3h   // test ebx, edx
+		je L02_66336E
+		mov eax, dword ptr [ebp+14h]
+		push eax
+		__emit 0E8h
+		__emit 06Eh
+		__emit 0ECh
+		__emit 099h
+		__emit 0FFh   // call 0x1FB9
+		add esp, 4h
+		test al, al
+		je L02_66336E
+		mov eax, dword ptr [edi+12028h]
+		cmp eax, 8h
+		jae L02_66336E
+		mov ecx, dword ptr [edi+eax*4+120E4h]
+		test ecx, ecx
+		je L02_66336E
+		push ebp
+		__emit 0E8h
+		__emit 0EFh
+		__emit 0C7h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2FB5D
+L02_66336E:
+		xor esi, esi
+		add edi, 4h
+L04_663373:
+		mov eax, 1h
+		mov ecx, esi
+		shl eax, cl
+		__emit 085h
+		__emit 0C3h   // test ebx, eax
+		je L03_663395
+		mov eax, dword ptr [edi]
+		test eax, eax
+		je L03_663395
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, eax
+		push edx
+		push ebp
+		__emit 0E8h
+		__emit 0A7h
+		__emit 039h
+		__emit 09Ch
+		__emit 0FFh   // call 0x26D3C
+L03_663395:
+		inc esi
+		add edi, 4h
+		cmp esi, 8h
+		jl L04_663373
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 0FFh
+		__emit 0CCh
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		ret 8h
+	}
+}
+
+// Real body, reached in retail through the ILT thunk at 0x000411D7. Drops the
+// message if the filter at 0x00682E80 rejects it or the packet router's slot has
+// no Connection, otherwise attaches it and splits: when we ARE the router it
+// stamps max(TheGameLogic->getFrame(), 2) as the execution frame and fans the
+// message out directly, and when we are not it hands it to the router alone.
+__declspec(naked) void ConnectionManager::sendLocalCommand(NetCommandMsg *msg, unsigned char relay)
+{
+	__asm {
+		push esi
+		mov esi, dword ptr [esp+8h]
+		push edi
+		push esi
+		mov edi, ecx
+		__emit 0E8h
+		__emit 006h
+		__emit 0AAh
+		__emit 09Bh
+		__emit 0FFh   // call 0x1F154
+		add esp, 4h
+		test al, al
+		jne L00_664843
+		mov eax, dword ptr [edi+1202Ch]
+		cmp eax, 8h
+		jae L00_664843
+		mov ecx, dword ptr [edi+eax*4+4h]
+		test ecx, ecx
+		je L00_664843
+		mov ecx, esi
+		__emit 0E8h
+		__emit 025h
+		__emit 08Ch
+		__emit 09Ah
+		__emit 0FFh   // call 0xD3A0
+		mov eax, dword ptr [edi+1202Ch]
+		cmp dword ptr [edi+12028h], eax
+		jne L01_66481D
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		mov eax, dword ptr [eax+3Ch]
+		cmp eax, 2h
+		ja L02_66479F
+		mov eax, 2h
+L02_66479F:
+		push ebx
+		movzx ebx, byte ptr [esp+14h]
+		push ebp
+		mov dword ptr [esi+8h], eax
+		xor esi, esi
+		lea ebp,  [edi+4h]
+		mov edi, edi
+L04_6647B0:
+		mov edx, 1h
+		mov ecx, esi
+		shl edx, cl
+		__emit 085h
+		__emit 0D3h   // test ebx, edx
+		je L03_6647D7
+		mov eax, dword ptr [ebp]
+		test eax, eax
+		je L03_6647D7
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, dword ptr [esp+14h]
+		push edx
+		push ecx
+		mov ecx, eax
+		__emit 0E8h
+		__emit 065h
+		__emit 025h
+		__emit 09Ch
+		__emit 0FFh   // call 0x26D3C
+L03_6647D7:
+		inc esi
+		add ebp, 4h
+		cmp esi, 8h
+		jl L04_6647B0
+		mov ecx, dword ptr [edi+12028h]
+		cmp ecx, 8h
+		jae L05_66480B
+		mov edx, 1h
+		shl edx, cl
+		__emit 085h
+		__emit 0D3h   // test ebx, edx
+		je L05_66480B
+		mov ecx, dword ptr [edi+ecx*4+120E4h]
+		test ecx, ecx
+		je L05_66480B
+		mov eax, dword ptr [esp+14h]
+		push eax
+		__emit 0E8h
+		__emit 052h
+		__emit 0B3h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2FB5D
+L05_66480B:
+		mov esi, dword ptr [esp+14h]
+		pop ebp
+		pop ebx
+L06_664811:
+		mov ecx, esi
+		__emit 0E8h
+		__emit 08Ch
+		__emit 0B8h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		pop edi
+		pop esi
+		ret 8h
+L01_66481D:
+		cmp eax, 8h
+		jae L06_664811
+		mov eax, dword ptr [edi+eax*4+4h]
+		test eax, eax
+		je L06_664811
+		mov ecx, dword ptr [esp+10h]
+		push ecx
+		push esi
+		mov ecx, eax
+		__emit 0E8h
+		__emit 005h
+		__emit 025h
+		__emit 09Ch
+		__emit 0FFh   // call 0x26D3C
+		mov ecx, esi
+		__emit 0E8h
+		__emit 066h
+		__emit 0B8h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		pop edi
+		pop esi
+		ret 8h
+L00_664843:
+		mov edx, dword ptr [esp+10h]
+		push edx
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 087h
+		__emit 0C9h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		pop edi
+		pop esi
+		ret 8h
 	}
 }
