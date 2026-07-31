@@ -4537,7 +4537,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_EEntry@?$HashTemplateClass@VStringClass@@PAVTextureClass@@@@QAEPAXI@Z,,0x0005E420,84,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,
 ??_EEntry@?$HashTemplateClass@VStringClass@@PAVThumbnailClass@@@@QAEPAXI@Z,,0x0005E420,84,Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp,matched,
 ??_EFileInfoStruct@MixFileCreator@@QAEPAXI@Z,,0x003D5710,84,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
-??_EFrameData@@QAEPAXI@Z,,0x005D7480,84,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ??_ELODHeapNode@@QAEPAXI@Z,,0x00881390,77,Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp,matched,
 ??_ELogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAEPAXI@Z,,0x005D7480,84,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,
 ??_EModelArrayClass@HLodClass@@UAEPAXI@Z,,0x005D5D90,84,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -13645,3 +13644,11 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?parseDamageScalar@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x001AFD00,28,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,FieldParse token DamageScalar at 0x0109C874 slot 0 - BFME-only name from token
 ?friend_parseScienceDefinition@ScienceStore@@SAXPAVINI@@@Z,,0x000E8630,445,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,INI block table node binds keyword Science to this address
 ?normalizeAngle@@YAMM@Z,,0x001056F0,69,Code/GameEngine/Source/Common/System/GameCommon.cpp,matched,exact
+?getQuitFrame@FrameDataManager@@QAEIXZ,,0x00670870,4,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?getIsQuitting@FrameDataManager@@QAE_NXZ,,0x00670880,4,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?getFrameCommandCount@FrameData@@QAEIXZ,,0x006702D0,3,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?getCommandCount@FrameData@@QAEIXZ,,0x006702E0,4,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?getCommandList@FrameData@@QAEPAVNetCommandList@@XZ,,0x00670340,4,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?setFrameCommandCount@FrameData@@QAEXI@Z,,0x006702C0,9,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?getCommandCount@FrameDataManager@@QAEII@Z,,0x00670720,29,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?getFrameCommandCount@FrameDataManager@@QAEII@Z,,0x00670780,29,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
