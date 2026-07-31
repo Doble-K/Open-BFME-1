@@ -8587,7 +8587,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?add@Coord3D@@QAEXPBU1@@Z,,0x007AF300,31,Code/GameEngine/Source/Common/bezier_segment.cpp,matched,
 ?add@Coord3D@@QAEXPBUCoord3DBase@@@Z,0x00022688,0x000B6570,31,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,adds Coord3DBase pointer
 ?add@LList@@QAEXPAVLListNode@@@Z,,0x00105A90,180,Code/GameEngine/Source/Common/System/List.cpp,matched,
-?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/masm_dumps/_leaf2__add_MultiIniFieldParse__QAEXPBUFieldPar_850920.asm,matched,Exact 64B present-unmatched Open-BFME4
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,,0x006235E0,152,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
 ?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z,,0x006B9A40,19,Code/masm_dumps/AudioManager_addAudioEvent_6B9A40.asm,matched,Certified packet 156 vtable slot +0x44 and call-graph recovery
 ?addBib@W3DBibBuffer@@QAEXQAVVector3@@W4ObjectID@@_N@Z,,0x006D7090,220,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
@@ -12086,7 +12085,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseBitFlag@@YA_NPBDPAIPAPBD@Z,,0x004842E0,81,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E60,115,Code/masm_dumps/parseBitInInt32_INI_SAXPAV1_PAX1PBX_Z_852E60.asm,matched,Ghidra bounded retail body; scanBool call with OR or AND-not mask update
 ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z,,0x00850E70,297,Code/masm_dumps/__parseBitString32_INI__SAXPAV1_PAX1PBX_Z_850E70.asm,matched,
-?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/masm_dumps/parseBitString8_INI_SAXPAV1_PAX1PBX_Z_851870.asm,matched,CC-bounded retail body; calls matched parseBitString32 rejects high bits and stores one byte
 ?parseBitString@@YAXPBDPAIPAPBD@Z,,0x00484350,113,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseByteSizedIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x008510B0,125,Code/masm_dumps/parseByteSizedIndexList_INI_SAXPAV1_PAX1PBX_Z_8510B0.asm,matched,Retail RadarPriority xref and padding-bounded range-check body identify byte-sized index parser
 ?parseCSF@GameTextManager@@IAE_NPBD@Z,,0x00437570,672,Code/masm_dumps/GameTextManager_parseCSF.asm,matched,exact 672B via MASM; true body 0x437570 (SEH memory-buffer CSF parse); queue 0x9D2189 misplaced
@@ -13625,3 +13623,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z,,0x009A11A0,264,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,the legend lookup; inlines the AsciiString compare
 ??D?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QBEAAUSubsystemLegendEntry@@XZ,,0x009A1090,6,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,instantiated by findEntry
 ??C?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QBEPAUSubsystemLegendEntry@@XZ,,0x009A10A0,6,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,instantiated by findEntry
+?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,retail throws int 1 here not ERROR_BUG
+?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/ini.cpp,matched,retail throws int 1 here not ERROR_BUG

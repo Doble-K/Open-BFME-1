@@ -1004,7 +1004,6 @@ void INI::parsePercentToReal( INI* ini, void * /*instance*/, void *store, const 
 	* in the buffer, if the token is in the userData table of strings, we will set the
 	* according bit flag for it */
 //-------------------------------------------------------------------------------------------------
-// ?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseBitString8( INI* ini, void * /*instance*/, void *store, const void* userData )
 {
 	UnsignedInt tmp;
@@ -1012,7 +1011,14 @@ void INI::parseBitString8( INI* ini, void * /*instance*/, void *store, const voi
 	if (tmp & 0xffffff00)
 	{
 		DEBUG_CRASH(("Bad bitstring list INI::parseBitString8"));
-		throw ERROR_BUG;
+	// Retail throws a plain int 1 here, not ZH's ERROR_BUG. Both are proven, not
+	// assumed: the ThrowInfo this site pushes (0x012454C0) has one catchable type
+	// whose TypeDescriptor spells ".H" (int), and every one of the 19 sites that
+	// use it image-wide throws the value 1; meanwhile ERROR_BUG really is
+	// 0xdead0001 in BFME -- INI::parseScience and INI::parseThingTemplate are
+	// matched from this file carrying that immediate. So this is a distinct BFME
+	// code; its name in BFME's source is not recoverable from the binary.
+	throw 1;
 	}
 	*(Byte*)store = (Byte)tmp;
 }
@@ -1541,7 +1547,6 @@ void INI::parseLookupList( INI* ini, void * /*instance*/, void *store, const voi
 
 	
 //-------------------------------------------------------------------------------------------------
-// ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z present-unmatched
 void MultiIniFieldParse::add(const FieldParse* f, UnsignedInt e)
 {
 	if (m_count < MAX_MULTI_FIELDS)
@@ -1553,7 +1558,14 @@ void MultiIniFieldParse::add(const FieldParse* f, UnsignedInt e)
 	else
 	{
 		DEBUG_CRASH(("too many multi-fields in INI::initFromINIMultiProc"));
-		throw ERROR_BUG;
+	// Retail throws a plain int 1 here, not ZH's ERROR_BUG. Both are proven, not
+	// assumed: the ThrowInfo this site pushes (0x012454C0) has one catchable type
+	// whose TypeDescriptor spells ".H" (int), and every one of the 19 sites that
+	// use it image-wide throws the value 1; meanwhile ERROR_BUG really is
+	// 0xdead0001 in BFME -- INI::parseScience and INI::parseThingTemplate are
+	// matched from this file carrying that immediate. So this is a distinct BFME
+	// code; its name in BFME's source is not recoverable from the binary.
+	throw 1;
 	}
 }
 
