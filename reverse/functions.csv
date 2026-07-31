@@ -13656,3 +13656,5 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?getFrameHeadroom@BFMEConnectionManager@@QAEHXZ,,0x00664320,142,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processInformPlayerLeaveFrameCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00664430,307,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendFrameInfo@BFMEConnectionManager@@QAEXXZ,,0x00665D10,354,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?findBlockParse@@YAP6AXPAVINI@@@ZPBD@Z,,0x00850820,93,Code/GameEngine/Source/Common/INI/ini.cpp,matched,walks the block registration list at 0x0130CE50
+??0BlockParse@@QAE@PBDP6AXPAVINI@@@Z@Z,,0x0007BCA0,32,Code/GameEngine/Source/Common/INI/ini.cpp,matched,self-registering node ctor - prepends to the list head at 0x0130CE50

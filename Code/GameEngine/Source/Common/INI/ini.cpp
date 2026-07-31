@@ -85,78 +85,101 @@ static Xfer *s_xfer = NULL;
 	* block make a new entry in this table and add an appropriate parsing function */
 //-------------------------------------------------------------------------------------------------
 extern void parseReallyLowMHz( INI* ini);		// yeah, so sue me (srj)
+// BFME turns Zero Hour's flat lookup table into a self-registering singly-linked
+// list: each node's constructor runs at static-init time and pushes it onto a
+// global head, and findBlockParse walks that list instead of indexing an array.
+// The nodes are 12 bytes and contiguous in .data (0x012A7460, 0x012A746C, ...),
+// so they are still consecutive file-scope objects.
 struct BlockParse
 {
+	BlockParse *next;
 	const char *token;
 	INIBlockParse parse;
+
+	BlockParse( const char *token, INIBlockParse parse );
 };
-static const BlockParse theTypeTable[] =
+
+// Head of the registration list -- 0x0130CE50. External linkage, not static:
+// with internal linkage MSVC hoists the load of it above findBlockParse's
+// prologue (the compiler can see every writer), and retail loads it after all
+// four pushes. That is also what the list is for -- registrations outside this
+// TU have to reach the same head.
+BlockParse *theBlockParseList = NULL;
+
+// ??0BlockParse@@QAE@PBDP6AXPAVINI@@@Z@Z
+BlockParse::BlockParse( const char *token, INIBlockParse parse ) :
+	next(theBlockParseList), token(token), parse(parse)
 {
-	{ "AIData",							INI::parseAIDataDefinition },
-	{ "Animation",					INI::parseAnim2DDefinition },
-	{ "Armor",							INI::parseArmorDefinition },
-	{ "AudioEvent",					INI::parseAudioEventDefinition },
-	{ "AudioSettings",			INI::parseAudioSettingsDefinition },
-	{ "Bridge",							INI::parseTerrainBridgeDefinition },
-	{ "Campaign",						INI::parseCampaignDefinition },
- 	{ "ChallengeGenerals",				INI::parseChallengeModeDefinition },
-	{ "CommandButton",			INI::parseCommandButtonDefinition },
-	{ "CommandMap",					INI::parseMetaMapDefinition },
-	{ "CommandSet",					INI::parseCommandSetDefinition },
-	{ "ControlBarScheme",		INI::parseControlBarSchemeDefinition },
-	{ "ControlBarResizer",	INI::parseControlBarResizerDefinition },
-	{ "CrateData",					INI::parseCrateTemplateDefinition },
-	{ "Credits",						INI::parseCredits},
-	{ "WindowTransition",		INI::parseWindowTransitions},
-	{ "DamageFX",						INI::parseDamageFXDefinition },
-	{ "DialogEvent",				INI::parseDialogDefinition },
-	{ "DrawGroupInfo",		INI::parseDrawGroupNumberDefinition },
-	{ "EvaEvent",						INI::parseEvaEvent },
-	{ "FXList",							INI::parseFXListDefinition },
-	{ "GameData",						INI::parseGameDataDefinition },
-	{ "InGameUI",						INI::parseInGameUIDefinition },
-	{ "Locomotor",					INI::parseLocomotorTemplateDefinition },
-	{ "Language",						INI::parseLanguageDefinition },
-	{ "MapCache",						INI::parseMapCacheDefinition },
-	{ "MapData",						INI::parseMapDataDefinition },
-	{ "MappedImage",				INI::parseMappedImageDefinition },
-	{ "MiscAudio",					INI::parseMiscAudio},
-	{ "Mouse",							INI::parseMouseDefinition },
-	{ "MouseCursor",				INI::parseMouseCursorDefinition },
-	{ "MultiplayerColor",		INI::parseMultiplayerColorDefinition },
-  { "MultiplayerStartingMoneyChoice",		INI::parseMultiplayerStartingMoneyChoiceDefinition },
-	{ "OnlineChatColors",		INI::parseOnlineChatColorDefinition },
-	{ "MultiplayerSettings",INI::parseMultiplayerSettingsDefinition },
-	{ "MusicTrack",					INI::parseMusicTrackDefinition },
-	{ "Object",							INI::parseObjectDefinition },
-	{ "ObjectCreationList",	INI::parseObjectCreationListDefinition },
-	{ "ObjectReskin",				INI::parseObjectReskinDefinition },
-	{ "ParticleSystem",			INI::parseParticleSystemDefinition },
-	{ "PlayerTemplate",			INI::parsePlayerTemplateDefinition },
-	{ "Road",								INI::parseTerrainRoadDefinition },
-	{ "Science",						INI::parseScienceDefinition },
-	{ "Rank",								INI::parseRankDefinition },
-	{ "SpecialPower",				INI::parseSpecialPowerDefinition },
-	{ "ShellMenuScheme",		INI::parseShellMenuSchemeDefinition },
-	{ "Terrain",						INI::parseTerrainDefinition },
-	{ "Upgrade",						INI::parseUpgradeDefinition },
-	{ "Video",							INI::parseVideoDefinition },
-	{ "WaterSet",						INI::parseWaterSettingDefinition },
-	{ "WaterTransparency",	INI::parseWaterTransparencyDefinition},
-	{ "Weather",	INI::parseWeatherDefinition},
-	{ "Weapon",							INI::parseWeaponTemplateDefinition },
-	{ "WebpageURL",					INI::parseWebpageURLDefinition },
-	{ "HeaderTemplate",			INI::parseHeaderTemplateDefinition },
-	{ "StaticGameLOD",			INI::parseStaticGameLODDefinition },
-	{ "DynamicGameLOD",			INI::parseDynamicGameLODDefinition },
-	{ "LODPreset",					INI::parseLODPreset },
-	{	"BenchProfile",				INI::parseBenchProfile },
-	{	"ReallyLowMHz",				parseReallyLowMHz },
-	{	"ScriptAction",				ScriptEngine::parseScriptAction },
-	{	"ScriptCondition",		ScriptEngine::parseScriptCondition },
-	
-	{ NULL,									NULL },		// keep this last!
-};
+	theBlockParseList = this;
+}
+
+// Declared one at a time rather than as an array with an initializer list: MSVC
+// 7.1 rejects that for a type with a user-declared constructor ("non-aggregates
+// cannot be initialized with initializer list"), so retail cannot have written
+// it that way either, and consecutive file-scope statics lay out the same.
+#define REGISTER_BLOCK(tag, token, fn) static BlockParse theBlockParse_##tag( token, fn )
+REGISTER_BLOCK( AIData, "AIData", INI::parseAIDataDefinition );
+REGISTER_BLOCK( Animation, "Animation", INI::parseAnim2DDefinition );
+REGISTER_BLOCK( Armor, "Armor", INI::parseArmorDefinition );
+REGISTER_BLOCK( AudioEvent, "AudioEvent", INI::parseAudioEventDefinition );
+REGISTER_BLOCK( AudioSettings, "AudioSettings", INI::parseAudioSettingsDefinition );
+REGISTER_BLOCK( Bridge, "Bridge", INI::parseTerrainBridgeDefinition );
+REGISTER_BLOCK( Campaign, "Campaign", INI::parseCampaignDefinition );
+REGISTER_BLOCK( ChallengeGenerals, "ChallengeGenerals", INI::parseChallengeModeDefinition );
+REGISTER_BLOCK( CommandButton, "CommandButton", INI::parseCommandButtonDefinition );
+REGISTER_BLOCK( CommandMap, "CommandMap", INI::parseMetaMapDefinition );
+REGISTER_BLOCK( CommandSet, "CommandSet", INI::parseCommandSetDefinition );
+REGISTER_BLOCK( ControlBarScheme, "ControlBarScheme", INI::parseControlBarSchemeDefinition );
+REGISTER_BLOCK( ControlBarResizer, "ControlBarResizer", INI::parseControlBarResizerDefinition );
+REGISTER_BLOCK( CrateData, "CrateData", INI::parseCrateTemplateDefinition );
+REGISTER_BLOCK( Credits, "Credits", INI::parseCredits );
+REGISTER_BLOCK( WindowTransition, "WindowTransition", INI::parseWindowTransitions );
+REGISTER_BLOCK( DamageFX, "DamageFX", INI::parseDamageFXDefinition );
+REGISTER_BLOCK( DialogEvent, "DialogEvent", INI::parseDialogDefinition );
+REGISTER_BLOCK( DrawGroupInfo, "DrawGroupInfo", INI::parseDrawGroupNumberDefinition );
+REGISTER_BLOCK( EvaEvent, "EvaEvent", INI::parseEvaEvent );
+REGISTER_BLOCK( FXList, "FXList", INI::parseFXListDefinition );
+REGISTER_BLOCK( GameData, "GameData", INI::parseGameDataDefinition );
+REGISTER_BLOCK( InGameUI, "InGameUI", INI::parseInGameUIDefinition );
+REGISTER_BLOCK( Locomotor, "Locomotor", INI::parseLocomotorTemplateDefinition );
+REGISTER_BLOCK( Language, "Language", INI::parseLanguageDefinition );
+REGISTER_BLOCK( MapCache, "MapCache", INI::parseMapCacheDefinition );
+REGISTER_BLOCK( MapData, "MapData", INI::parseMapDataDefinition );
+REGISTER_BLOCK( MappedImage, "MappedImage", INI::parseMappedImageDefinition );
+REGISTER_BLOCK( MiscAudio, "MiscAudio", INI::parseMiscAudio );
+REGISTER_BLOCK( Mouse, "Mouse", INI::parseMouseDefinition );
+REGISTER_BLOCK( MouseCursor, "MouseCursor", INI::parseMouseCursorDefinition );
+REGISTER_BLOCK( MultiplayerColor, "MultiplayerColor", INI::parseMultiplayerColorDefinition );
+REGISTER_BLOCK( MultiplayerStartingMoneyChoice, "MultiplayerStartingMoneyChoice", INI::parseMultiplayerStartingMoneyChoiceDefinition );
+REGISTER_BLOCK( OnlineChatColors, "OnlineChatColors", INI::parseOnlineChatColorDefinition );
+REGISTER_BLOCK( MultiplayerSettings, "MultiplayerSettings", INI::parseMultiplayerSettingsDefinition );
+REGISTER_BLOCK( MusicTrack, "MusicTrack", INI::parseMusicTrackDefinition );
+REGISTER_BLOCK( Object, "Object", INI::parseObjectDefinition );
+REGISTER_BLOCK( ObjectCreationList, "ObjectCreationList", INI::parseObjectCreationListDefinition );
+REGISTER_BLOCK( ObjectReskin, "ObjectReskin", INI::parseObjectReskinDefinition );
+REGISTER_BLOCK( ParticleSystem, "ParticleSystem", INI::parseParticleSystemDefinition );
+REGISTER_BLOCK( PlayerTemplate, "PlayerTemplate", INI::parsePlayerTemplateDefinition );
+REGISTER_BLOCK( Road, "Road", INI::parseTerrainRoadDefinition );
+REGISTER_BLOCK( Science, "Science", INI::parseScienceDefinition );
+REGISTER_BLOCK( Rank, "Rank", INI::parseRankDefinition );
+REGISTER_BLOCK( SpecialPower, "SpecialPower", INI::parseSpecialPowerDefinition );
+REGISTER_BLOCK( ShellMenuScheme, "ShellMenuScheme", INI::parseShellMenuSchemeDefinition );
+REGISTER_BLOCK( Terrain, "Terrain", INI::parseTerrainDefinition );
+REGISTER_BLOCK( Upgrade, "Upgrade", INI::parseUpgradeDefinition );
+REGISTER_BLOCK( Video, "Video", INI::parseVideoDefinition );
+REGISTER_BLOCK( WaterSet, "WaterSet", INI::parseWaterSettingDefinition );
+REGISTER_BLOCK( WaterTransparency, "WaterTransparency", INI::parseWaterTransparencyDefinition );
+REGISTER_BLOCK( Weather, "Weather", INI::parseWeatherDefinition );
+REGISTER_BLOCK( Weapon, "Weapon", INI::parseWeaponTemplateDefinition );
+REGISTER_BLOCK( WebpageURL, "WebpageURL", INI::parseWebpageURLDefinition );
+REGISTER_BLOCK( HeaderTemplate, "HeaderTemplate", INI::parseHeaderTemplateDefinition );
+REGISTER_BLOCK( StaticGameLOD, "StaticGameLOD", INI::parseStaticGameLODDefinition );
+REGISTER_BLOCK( DynamicGameLOD, "DynamicGameLOD", INI::parseDynamicGameLODDefinition );
+REGISTER_BLOCK( LODPreset, "LODPreset", INI::parseLODPreset );
+REGISTER_BLOCK( BenchProfile, "BenchProfile", INI::parseBenchProfile );
+REGISTER_BLOCK( ReallyLowMHz, "ReallyLowMHz", parseReallyLowMHz );
+REGISTER_BLOCK( ScriptAction, "ScriptAction", ScriptEngine::parseScriptAction );
+REGISTER_BLOCK( ScriptCondition, "ScriptCondition", ScriptEngine::parseScriptCondition );
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -296,9 +319,12 @@ void INI::unPrepFile()
 }
 
 //-------------------------------------------------------------------------------------------------
+// ?findBlockParse@@YAP6AXPAVINI@@@ZPBD@Z
+// Walks the registration list rather than Zero Hour's array, so the terminator
+// is a null next pointer instead of a null token.
 static INIBlockParse findBlockParse(const char* token)
 {
-	for (const BlockParse* parse = theTypeTable; parse->token; ++parse)
+	for (const BlockParse* parse = theBlockParseList; parse; parse = parse->next)
 	{
 		if (strcmp( parse->token, token ) == 0)
 		{
