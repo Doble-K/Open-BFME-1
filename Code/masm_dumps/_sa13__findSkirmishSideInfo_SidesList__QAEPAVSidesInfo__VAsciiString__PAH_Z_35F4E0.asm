@@ -1,24 +1,26 @@
 .386
 .model flat
+
 ; ?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z
-; Exact 224B @ 0x35F4E0; multi-xref string Open-BFME4+Grok
+; Exact 231 retail bytes @ 0x0035F4E0
 _TEXT SEGMENT
 public ?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z
 ?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z PROC
-    db 83h, 0ECh, 08h, 55h, 8Bh, 0E9h, 8Bh, 0Dh, 2Ch, 0D6h, 2Eh, 01h, 89h, 6Ch, 24h, 04h
-    db 0E8h, 0B0h, 0B2h, 0CEh, 0FFh, 84h, 0C0h, 0Fh, 84h, 0C5h, 00h, 00h, 00h, 8Bh, 0Dh, 00h
-    db 0D6h, 2Eh, 01h, 53h, 57h, 68h, 0FCh, 8Dh, 0Eh, 01h, 33h, 0DBh, 0E8h, 0C6h, 0B8h, 0CDh
-    db 0FFh, 8Bh, 0Dh, 50h, 0D7h, 2Eh, 01h, 50h, 0E8h, 6Eh, 0D8h, 0CCh, 0FFh, 33h, 0FFh, 89h
-    db 44h, 24h, 10h, 83h, 0C5h, 14h, 56h, 0EBh, 07h, 8Dh, 0A4h, 24h, 00h, 00h, 00h, 00h
-    db 8Bh, 0Dh, 48h, 0D7h, 2Eh, 01h, 57h, 0E8h, 0F4h, 59h, 0CEh, 0FFh, 8Bh, 0F0h, 85h, 0F6h
-    db 74h, 3Eh, 0A1h, 48h, 0D7h, 2Eh, 01h, 3Bh, 70h, 14h, 74h, 34h, 8Bh, 46h, 04h, 85h
-    db 0C0h, 74h, 2Dh, 3Bh, 44h, 24h, 14h, 74h, 27h, 8Bh, 0CEh, 0E8h, 0A1h, 17h, 0CCh, 0FFh
-    db 84h, 0C0h, 75h, 1Ch, 8Bh, 0CEh, 89h, 75h, 00h, 0E8h, 09h, 43h, 0CBh, 0FFh, 84h, 0C0h
-    db 74h, 0Ah, 8Bh, 4Ch, 24h, 10h, 89h, 99h, 94h, 00h, 00h, 00h, 43h, 83h, 0C5h, 04h
-    db 47h, 83h, 0FFh, 20h, 7Ch, 0AAh, 83h, 0FBh, 20h, 8Bh, 54h, 24h, 10h, 5Eh, 7Dh, 0Fh
-    db 0B9h, 20h, 00h, 00h, 00h, 2Bh, 0CBh, 8Dh, 7Ch, 9Ah, 14h, 33h, 0C0h, 0F3h, 0ABh, 8Bh
-    db 82h, 94h, 00h, 00h, 00h, 85h, 0C0h, 5Fh, 5Bh, 7Dh, 17h, 0B0h, 01h, 88h, 82h, 0BCh
-    db 00h, 00h, 00h, 8Bh, 0Dh, 0E4h, 0F0h, 2Eh, 01h, 88h, 41h, 0Dh, 88h, 82h, 0BEh, 00h
+    db 083h,0ECh,008h,055h,08Bh,0E9h,08Bh,00Dh,02Ch,0D6h,02Eh,001h,089h,06Ch,024h,004h
+    db 0E8h,0B0h,0B2h,0CEh,0FFh,084h,0C0h,00Fh,084h,0C5h,000h,000h,000h,08Bh,00Dh,000h
+    db 0D6h,02Eh,001h,053h,057h,068h,0FCh,08Dh,00Eh,001h,033h,0DBh,0E8h,0C6h,0B8h,0CDh
+    db 0FFh,08Bh,00Dh,050h,0D7h,02Eh,001h,050h,0E8h,06Eh,0D8h,0CCh,0FFh,033h,0FFh,089h
+    db 044h,024h,010h,083h,0C5h,014h,056h,0EBh,007h,08Dh,0A4h,024h,000h,000h,000h,000h
+    db 08Bh,00Dh,048h,0D7h,02Eh,001h,057h,0E8h,0F4h,059h,0CEh,0FFh,08Bh,0F0h,085h,0F6h
+    db 074h,03Eh,0A1h,048h,0D7h,02Eh,001h,03Bh,070h,014h,074h,034h,08Bh,046h,004h,085h
+    db 0C0h,074h,02Dh,03Bh,044h,024h,014h,074h,027h,08Bh,0CEh,0E8h,0A1h,017h,0CCh,0FFh
+    db 084h,0C0h,075h,01Ch,08Bh,0CEh,089h,075h,000h,0E8h,009h,043h,0CBh,0FFh,084h,0C0h
+    db 074h,00Ah,08Bh,04Ch,024h,010h,089h,099h,094h,000h,000h,000h,043h,083h,0C5h,004h
+    db 047h,083h,0FFh,020h,07Ch,0AAh,083h,0FBh,020h,08Bh,054h,024h,010h,05Eh,07Dh,00Fh
+    db 0B9h,020h,000h,000h,000h,02Bh,0CBh,08Dh,07Ch,09Ah,014h,033h,0C0h,0F3h,0ABh,08Bh
+    db 082h,094h,000h,000h,000h,085h,0C0h,05Fh,05Bh,07Dh,017h,0B0h,001h,088h,082h,0BCh
+    db 000h,000h,000h,08Bh,00Dh,0E4h,0F0h,02Eh,001h,088h,041h,00Dh,088h,082h,0BEh,000h
+    db 000h,000h,05Dh,083h,0C4h,008h,0C3h
 ?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z ENDP
 _TEXT ENDS
 END

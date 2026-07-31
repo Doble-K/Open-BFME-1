@@ -5241,7 +5241,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?BTREE_decompress@@YAHPAE0@Z,,0x00822FF0,258,Code/masm_dumps/_sym1__BTREE_decompress__YAHPAE0_Z_822FF0.asm,matched,symbol-pin Open-BFME4+Grok
 ?BTREE_findbest@@YAIPAFPAEPAI2H@Z,,0x00821090,357,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,
 ?BTREE_joinnodes@@YAXPAUBTreeEncodeContext@@PAE11I@Z,,0x00820FF0,154,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,
-?BTREE_treepack@@YAXPAUBTreeEncodeContext@@PAUBTREEMemStruct@@IIIH@Z,,0x00821200,2560,Code/masm_dumps/_sym1__BTREE_treepack__YAXPAUBTreeEncodeContext__PAUBTREEMemStruct__IIIH_Z_821200.asm,matched,symbol-pin Open-BFME4+Grok
 ?BTREE_writebits@@YAXPAUBTreeEncodeContext@@PAUBTREEMemStruct@@II@Z,,0x00820D80,137,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,
 ?Base64_Decode@@YAHPBXHPAXH@Z,,0x009EB670,286,Code/Libraries/Source/WWVegas/WWLib/base64.cpp,matched,
 ?Base64_Encode@@YAHPBXHPAXH@Z,,0x009EB560,264,Code/Libraries/Source/WWVegas/WWLib/base64.cpp,matched,
@@ -5495,7 +5494,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Cos@@YAMM@Z,0x00873920,0x00873920,7,Code/GameEngine/Source/Common/System/Trig.cpp,matched,returns cosine of radians
 ?Cos@WWMath@@SAMM@Z,,0x005F0990,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?Count@GenericMultiListClass@@QAEHXZ,,0x009DBF10,25,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
-?CrashDone@Debug@@QAE_N_N@Z,,0x0088BB60,955,Code/masm_dumps/_sa7__CrashDone_Debug__QAE_N_N_Z_88BB60.asm,matched,Exact 955B Open-BFME4
 ?Create@?$SimpleDefinitionFactoryClass@VTwiddlerClass@@$0OAAA@$1?TwiddlerClassName@@3PADA@@UBEPAVDefinitionClass@@XZ,,0x006FB600,86,Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp,matched,
 ?Create@RawFileClass@@UAEHXZ,,0x009E65A0,56,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Create@ResourceFileClass@@UAEHXZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WWLib/rcfile.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -6205,7 +6203,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GetSnapshotName@WindModuleInfo@FXParticleSystem@@UAEPBDXZ,0x00003CA1,0x005BD950,6,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,returns class name
 ?GetStatus@UDP@@QAE?AW4sockStat@1@XZ,,0x006846F0,138,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?GetSymbol@Signature@DebugStackwalk@@SAXIPADI@Z,,0x0088C6E0,635,Code/Libraries/Source/WWVegas/WWDebug/debug_stack.cpp,matched,signed comparison fix
-?GetSymbol@Signature@DebugStackwalk@@SAXIPADIPAI0I10I11@Z,,0x0088C960,729,Code/Libraries/Source/WWVegas/WWDebug/DebugStackwalk_GetSymbol.asm,matched,
 ?GetTranslationVector@Matrix4D@@QBEAAVCoord3D@@AAV2@@Z,0x00017210,0x007E6CE0,24,Code/Libraries/Source/WWVegas/WWMath/matrix4d.cpp,matched,copies translation vector
 ?GetValue@?$DefaultModuleKey@$00@FXParticleSystem@@CAPBDXZ,,0x005DFB50,193,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_module_keys.cpp,matched,DefaultModuleKey<1> key = Default+GetKey(1)
 ?GetValue@?$DefaultModuleKey@$01@FXParticleSystem@@CAPBDXZ,,0x005E0300,193,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_module_keys.cpp,matched,DefaultModuleKey<2> key = Default+GetKey(2)
@@ -9571,7 +9568,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?drawSkinnyBorder@@YAXHHHH@Z,,0x0079BCA0,2304,Code/masm_dumps/drawSkinnyBorder_YAXHHHH_Z_0079BCA0_packet353.asm,matched,certified packet 353 sealed RVA and SHA-256 reviewed identity evidence
 ?drawUIText@Drawable@@QAEXXZ,,0x009991EE,509,Code/GameEngine/Source/GameClient/Drawable_drawUIText.asm,matched,exact 509B via MASM
 ?drawViewBox@W3DRadar@@IAEXHHHH@Z,,0x00784783,984,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar_drawViewBox.asm,matched,exact 984B via MASM
-?drawViews@Display@@UAEXXZ,,0x0040DA30,38,Code/masm_dumps/_rn9__drawViews_Display__UAEXXZ_40DA30.asm,matched,reloc-needle Open-BFME4+Grok
 ?drawWindow@GameWindowManager@@IAEHPAVGameWindow@@@Z,,0x0047CBE0,193,Code/masm_dumps/_rn5__drawWindow_GameWindowManager__IAEHPAVGameWindow___Z_47CBE0.asm,matched,reloc-needle Open-BFME4+Grok
 ?drawableIconNameToIndex@@YA?AW4DrawableIconType@@PBD@Z,,0x00410A80,51,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?dumpPacketToLog@NetPacket@@IAEXXZ,,0x00679560,83,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
@@ -9834,7 +9830,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findSWInfo@InGameUI@@IAEPAVSuperweaponInfo@@HABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x00449E70,75,Code/masm_dumps/_rn3__findSWInfo_InGameUI__IAEPAVSuperweaponInfo__HABVAsciiString__W4Object_449E70.asm,matched,reloc-needle Open-BFME4+Grok
 ?findScienceInfo@ScienceStore@@ABEPBVScienceInfo@@W4ScienceType@@@Z,,0x000E6D30,51,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ?findSingleBone@@YA_NPAVRenderObjClass@@ABVAsciiString@@AAVMatrix3D@@AAH@Z,,0x00761E90,135,Code/masm_dumps/_rn4__findSingleBone__YA_NPAVRenderObjClass__ABVAsciiString__AAVMatrix3D__A_761E90.asm,matched,reloc-needle Open-BFME4+Grok
-?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z,,0x0035F4E0,224,Code/masm_dumps/_sa13__findSkirmishSideInfo_SidesList__QAEPAVSidesInfo__VAsciiString__PAH_Z_35F4E0.asm,matched,multi-xref Open-BFME4+Grok FactionCivilian
 ?findSpareSocketByPort@FirewallHelperClass@@AAEPAUSpareSocketStruct@@G@Z,,0x0066E490,44,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?findSpecialPowerCompletionDie@Object@@QBEPAVSpecialPowerCompletionDie@@XZ,,0x001BF8C0,111,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?findSpecialPowerTemplateByID@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@I@Z,,0x000EB690,101,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
@@ -13049,7 +13044,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?size@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@QBEIXZ,,0x001DE420,25,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?size@?$vector@VWeaponTemplateSet@@V?$allocator@VWeaponTemplateSet@@@_STL@@@_STL@@QBEIXZ,,0x002E2E40,25,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?size@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QBEIXZ,,0x002CB260,26,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
-?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,277,Code/masm_dumps/_rn6__sizeWindowsAlt_ControlBarResizer__QAEXXZ_4AB1A0.asm,matched,reloc-needle Open-BFME4+Grok
 ?sizeWindowsDefault@ControlBarResizer@@QAEXXZ,,0x004AB100,122,Code/masm_dumps/sizeWindowsDefault_ControlBarResizer_4AB100_packet229.asm,matched,Certified recovery packet 229 exact retail bytes SHA256 8e769ae3b84ff3a81f7e98fc36c10a362f552c8361f9009c7c08338860f40cb7
 ?skip@ButtonFlashTransition@@UAEXXZ,,0x0059AA80,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@ControlBarArrowTransition@@UAEXXZ,,0x0059B850,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
@@ -13060,7 +13054,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?skip@ReverseSoundTransition@@UAEXXZ,,0x0059EF40,15,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@ScaleUpTransition@@UAEXXZ,,0x0059EAF0,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,tiny-locate
 ?skip@ScoreScaleUpTransition@@UAEXXZ,,0x0059EAF0,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,tiny-locate
-?snapClosestGoalPosition@Pathfinder@@QAEXPAVObject@@PAUCoord3D@@@Z,,0x003F89A0,788,Code/GameEngine/Source/GameLogic/AI/AIPathfind_snapClosestGoalPosition.asm,matched,exact 788B via MASM
 ?sort@?$list@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@V?$allocator@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@@_STL@@QAEXXZ,,0x0037FCB0,15,Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp,matched,icf-owner=?unique@?$list@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@V?$allocator@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@@_STL@@QAEXXZ
 ?sort@SimpleObjectIterator@@QAEXW4IterOrderType@@@Z,,0x001DDDC0,282,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,
 ?sortByBuddies@@YAX_N@Z,,0x0062E590,32,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
@@ -13625,3 +13618,10 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getNthFieldParse@MultiIniFieldParse@@QBEPBUFieldParse@@H@Z,,0x00850700,10,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,emitted by the parser TU now that initFromINIMulti lives there
 ?assignDefaultGadgetLook@GameWindowManager@@UAEXPAVGameWindow@@PAVGameFont@@_N@Z,,0x004800FC,9955,Code/masm_dumps/_assignDefaultGadgetLook_GameWindowManager__UAEXPA.asm,matched,true size 9955B; previous row claimed 7853B
 ?findClosestPath@Pathfinder@@EAEPAVPath@@PAVObject@@ABVLocomotorSet@@PBUCoord3D@@PAU5@_NM4@Z,,0x003F3460,2701,Code/masm_dumps/findClosestPath_Pathfinder_3F3460.asm,matched,true size 2701B; previous row claimed 1747B
+?CrashDone@Debug@@QAE_N_N@Z,,0x0088BB60,1353,Code/masm_dumps/_sa7__CrashDone_Debug__QAE_N_N_Z_88BB60.asm,matched,true size 1353B; previous row claimed 955B
+?GetSymbol@Signature@DebugStackwalk@@SAXIPADIPAI0I10I11@Z,,0x0088C960,1105,Code/Libraries/Source/WWVegas/WWDebug/DebugStackwalk_GetSymbol.asm,matched,true size 1105B; previous row claimed 729B
+?snapClosestGoalPosition@Pathfinder@@QAEXPAVObject@@PAUCoord3D@@@Z,,0x003F89A0,1007,Code/GameEngine/Source/GameLogic/AI/AIPathfind_snapClosestGoalPosition.asm,matched,true size 1007B; previous row claimed 788B
+?BTREE_treepack@@YAXPAUBTreeEncodeContext@@PAUBTREEMemStruct@@IIIH@Z,,0x00821200,2593,Code/masm_dumps/_sym1__BTREE_treepack__YAXPAUBTreeEncodeContext__PAUBTREEMemStruct__IIIH_Z_821200.asm,matched,true size 2593B; previous row claimed 2560B
+?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z,,0x0035F4E0,231,Code/masm_dumps/_sa13__findSkirmishSideInfo_SidesList__QAEPAVSidesInfo__VAsciiString__PAH_Z_35F4E0.asm,matched,true size 231B; previous row claimed 224B
+?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,284,Code/masm_dumps/_rn6__sizeWindowsAlt_ControlBarResizer__QAEXXZ_4AB1A0.asm,matched,true size 284B; previous row claimed 277B
+?drawViews@Display@@UAEXXZ,,0x0040DA30,44,Code/masm_dumps/_rn9__drawViews_Display__UAEXXZ_40DA30.asm,matched,true size 44B; previous row claimed 38B
