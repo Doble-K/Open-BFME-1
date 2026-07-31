@@ -103,9 +103,9 @@
 // LList::LList
 //============================================================================
 
-// ?LList::LList present-unmatched
 LList::LList( )
-: m_sortMode(DESCENDING)
+: m_sortMode(DESCENDING),
+	m_addToEndOfGroup(FALSE)
 { 
 	m_head.setItem( &m_head.m_item);
 };

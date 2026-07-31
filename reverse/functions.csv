@@ -1594,7 +1594,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Keyframe@FXParticleSystem@@QAE@XZ,0x0002F21B,0x0005C6C0,16,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor zeroes frame and value
 ??0LANGameInfo@@QAE@XZ,,0x0068E980,176,Code/masm_dumps/__0LANGameInfo__QAE_XZ_68E980.asm,matched,Exact 176B; queue 0xC6DD00 CRT pad; true body 8x0x68 slots@+0x58 match dtor layout
 ??0LANPreferences@@,,0x00086480,92,Code/masm_dumps/_sa9___0LANPreferences___86480.asm,matched,Exact 92B Open-BFME4
-??0LList@@QAE@XZ,,0x000057B8,5,Code/masm_dumps/__0LList__QAE_XZ_57B8.asm,matched,MASM exact retail dump
+??0LList@@QAE@XZ,,0x00105A60,31,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ??0LListNode@@QAE@XZ,,0x001058D0,19,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ??0LODHeapNode@@QAE@PAVRenderObjClass@@M@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp,matched,tiny-locate
 ??0LadderInfo@@QAE@XZ,,0x0062A910,161,Code/masm_dumps/LadderInfo_constructor.asm,matched,Ghidra-bound retail constructor
