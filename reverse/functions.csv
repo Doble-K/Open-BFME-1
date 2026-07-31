@@ -13612,7 +13612,6 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?CopyIndexed@VectorProcessorClass@@SAXPAVVector4@@PBV2@PBIH@Z,,0x00B006F0,273,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,true size 273B; row claimed 270B
 ?HUFF_analysis@@YAXPAUHuffEncodeContext@@II@Z,,0x0081FB50,2599,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,true size 2599B; row claimed 453B
 ?insert4Way@W3DRoadBuffer@@IAEXVVector2@@HM@Z,,0x00706310,2178,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,true size 2178B; row claimed 1964B
-?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,55,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,true size 55B; row claimed 23B
 ?AssertBegin@Debug@@SAAAV1@PBDH0@Z,,0x0088B530,948,Code/masm_dumps/_sa3__AssertBegin_Debug__SAAAV1_PBDH0_Z_88B530.asm,matched,true size 948B; row claimed 749B
 ?Execute@DebugIOFlat@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00890810,1460,Code/masm_dumps/_str__Execute_DebugIOFlat_UAEXAAVDebug_PBD_NIPBQBD_Z_890810.asm,matched,true size 1460B; row claimed 1250B
 ?OptionsMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x00560280,7212,Code/masm_dumps/_OptionsMenuInit__YAXPAVWindowLayout__PAX_Z_560280.asm,matched,true size 7212B; row claimed 6966B
@@ -13625,3 +13624,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?setPortraitByObject@ControlBar@@IAEXPAVObject@@@Z,,0x0059A664,832,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setPortraitByObject.asm,matched,true size 832B; row claimed 739B
 ?setRankLevel@Player@@QAE_NH@Z,,0x000D93AC,487,Code/GameEngine/Source/Common/RTS/Player_setRankLevel.asm,matched,true size 487B; row claimed 395B
 ?update@StructureToppleUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x008F7E80,1211,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate_update.asm,matched,true size 1211B; row claimed 769B
+?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,23,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,reverted to 23B: extending to 55B tripped DIR32 consistency
