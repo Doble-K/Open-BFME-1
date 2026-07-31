@@ -40,3 +40,14 @@ class ObjectCreationListStore  : public SubsystemInterface {};   // TheObjectCre
 // class-specific virtual. Slot 0 is an ICF-folded ??_GFileSystem@@ and is NOT
 // evidence; slot 1 is.
 class PlayerTemplateStore : public SubsystemInterface {};
+// TheArmorStore, ctor at its registration site: the class name is proven the
+// strongest way available -- Code/GameEngine/Source/GameLogic/Object/Armor.cpp
+// owns a byte-verified ?findArmorTemplate@ArmorStore@@ row, so the name is not
+// an inference at all.
+//
+// Note these declarations are deliberately minimal and are NOT the ported class.
+// initSubsystem<T> only forms a T* and converts it to SubsystemInterface*, so
+// all it needs is the name and the base; the real ArmorStore, with its
+// hash_map of templates, lives in Armor.cpp against the ZH header tree. They are
+// separate on purpose -- this header is the registration manifest, not a port.
+class ArmorStore : public SubsystemInterface {};
