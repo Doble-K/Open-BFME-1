@@ -2,48 +2,40 @@
 .model flat
 
 ; ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z
-; Retail @ 0x00850E70 size 297
+; Exact 472 retail bytes @ 0x00850E70
 _TEXT SEGMENT
 public ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z
 ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z PROC
-    db 83h,0ECh,08h,55h,8Bh,6Ch,24h,1Ch
-    db 85h,0EDh,0Fh,84h,0A5h,01h,00h,00h
-    db 83h,7Dh,00h,00h,0Fh,84h,9Bh,01h
-    db 00h,00h,8Bh,44h,24h,10h,8Bh,80h
-    db 14h,04h,00h,00h,53h,56h,50h,6Ah
-    db 00h,0C6h,44h,24h,2Ch,00h,32h,0DBh
-    db 0FFh,15h,0D8h,94h,35h,01h,8Bh,0F0h
-    db 83h,0C4h,08h,85h,0F6h,0Fh,84h,0C5h
-    db 00h,00h,00h,57h,8Bh,7Ch,24h,24h
-    db 0EBh,06h,8Dh,9Bh,00h,00h,00h,00h
-    db 68h,0D8h,36h,07h,01h,56h,0FFh,15h
-    db 3Ch,93h,35h,01h,83h,0C4h,08h,85h
-    db 0C0h,0Fh,84h,0A8h,00h,00h,00h,8Ah
-    db 06h,3Ch,2Bh,75h,18h,8Ah,44h,24h
-    db 28h,84h,0C0h,0Fh,85h,0D3h,00h,00h
-    db 00h,46h,55h,56h,0E8h,0EFh,0FAh,0FFh
-    db 0FFh,0B3h,01h,0EBh,50h,3Ch,2Dh,75h
-    db 2Ah,8Ah,44h,24h,28h,84h,0C0h,0Fh
-    db 85h,0DAh,00h,00h,00h,55h,46h,56h
-    db 0E8h,0D3h,0FAh,0FFh,0FFh,8Bh,0C8h,8Bh
-    db 07h,0BAh,01h,00h,00h,00h,0D3h,0E2h
-    db 83h,0C4h,08h,0B3h,01h,0F7h,0D2h,23h
-    db 0C2h,0EBh,32h,84h,0DBh,0Fh,85h,0D7h
-    db 00h,00h,00h,8Ah,44h,24h,28h,84h
-    db 0C0h,75h,06h,0C7h,07h,00h,00h,00h
-    db 00h,55h,56h,0E8h,0A0h,0FAh,0FFh,0FFh
-    db 0C6h,44h,24h,30h,01h,8Bh,0C8h,8Bh
-    db 07h,0BAh,01h,00h,00h,00h,0D3h,0E2h
-    db 83h,0C4h,08h,0Bh,0C2h,89h,07h,8Bh
-    db 44h,24h,1Ch,8Bh,80h,14h,04h,00h
-    db 00h,50h,6Ah,00h,0FFh,15h,0D8h,94h
-    db 35h,01h,8Bh,0F0h,83h,0C4h,08h,85h
-    db 0F6h,0Fh,85h,49h,0FFh,0FFh,0FFh,5Fh
-    db 5Eh,5Bh,5Dh,83h,0C4h,08h,0C3h,8Ah
-    db 44h,24h,28h,84h,0C0h,75h,12h,84h
-    db 0DBh,75h,0Eh,0C7h,07h,00h,00h,00h
-    db 00h,5Fh,5Eh,5Bh,5Dh,83h,0C4h,08h
-    db 0C3h
+    db 083h,0ECh,008h,055h,08Bh,06Ch,024h,01Ch,085h,0EDh,00Fh,084h,0A5h,001h,000h,000h
+    db 083h,07Dh,000h,000h,00Fh,084h,09Bh,001h,000h,000h,08Bh,044h,024h,010h,08Bh,080h
+    db 014h,004h,000h,000h,053h,056h,050h,06Ah,000h,0C6h,044h,024h,02Ch,000h,032h,0DBh
+    db 0FFh,015h,0D8h,094h,035h,001h,08Bh,0F0h,083h,0C4h,008h,085h,0F6h,00Fh,084h,0C5h
+    db 000h,000h,000h,057h,08Bh,07Ch,024h,024h,0EBh,006h,08Dh,09Bh,000h,000h,000h,000h
+    db 068h,0D8h,036h,007h,001h,056h,0FFh,015h,03Ch,093h,035h,001h,083h,0C4h,008h,085h
+    db 0C0h,00Fh,084h,0A8h,000h,000h,000h,08Ah,006h,03Ch,02Bh,075h,018h,08Ah,044h,024h
+    db 028h,084h,0C0h,00Fh,085h,0D3h,000h,000h,000h,046h,055h,056h,0E8h,0EFh,0FAh,0FFh
+    db 0FFh,0B3h,001h,0EBh,050h,03Ch,02Dh,075h,02Ah,08Ah,044h,024h,028h,084h,0C0h,00Fh
+    db 085h,0DAh,000h,000h,000h,055h,046h,056h,0E8h,0D3h,0FAh,0FFh,0FFh,08Bh,0C8h,08Bh
+    db 007h,0BAh,001h,000h,000h,000h,0D3h,0E2h,083h,0C4h,008h,0B3h,001h,0F7h,0D2h,023h
+    db 0C2h,0EBh,032h,084h,0DBh,00Fh,085h,0D7h,000h,000h,000h,08Ah,044h,024h,028h,084h
+    db 0C0h,075h,006h,0C7h,007h,000h,000h,000h,000h,055h,056h,0E8h,0A0h,0FAh,0FFh,0FFh
+    db 0C6h,044h,024h,030h,001h,08Bh,0C8h,08Bh,007h,0BAh,001h,000h,000h,000h,0D3h,0E2h
+    db 083h,0C4h,008h,00Bh,0C2h,089h,007h,08Bh,044h,024h,01Ch,08Bh,080h,014h,004h,000h
+    db 000h,050h,06Ah,000h,0FFh,015h,0D8h,094h,035h,001h,08Bh,0F0h,083h,0C4h,008h,085h
+    db 0F6h,00Fh,085h,049h,0FFh,0FFh,0FFh,05Fh,05Eh,05Bh,05Dh,083h,0C4h,008h,0C3h,08Ah
+    db 044h,024h,028h,084h,0C0h,075h,012h,084h,0DBh,075h,00Eh,0C7h,007h,000h,000h,000h
+    db 000h,05Fh,05Eh,05Bh,05Dh,083h,0C4h,008h,0C3h,068h,0A4h,0EBh,008h,001h,08Dh,04Ch
+    db 024h,014h,06Ah,002h,051h,0E8h,056h,0F6h,0FFh,0FFh,083h,0C4h,00Ch,068h,030h,0FCh
+    db 01Dh,001h,08Dh,054h,024h,014h,052h,0E8h,044h,05Dh,01Ah,000h,068h,0A4h,0EBh,008h
+    db 001h,08Dh,044h,024h,014h,06Ah,002h,050h,0E8h,033h,0F6h,0FFh,0FFh,083h,0C4h,00Ch
+    db 068h,030h,0FCh,01Dh,001h,08Dh,04Ch,024h,014h,051h,0E8h,021h,05Dh,01Ah,000h,068h
+    db 0A4h,0EBh,008h,001h,08Dh,054h,024h,014h,06Ah,002h,052h,0E8h,010h,0F6h,0FFh,0FFh
+    db 083h,0C4h,00Ch,068h,030h,0FCh,01Dh,001h,08Dh,044h,024h,014h,050h,0E8h,0FEh,05Ch
+    db 01Ah,000h,068h,0A4h,0EBh,008h,001h,08Dh,04Ch,024h,014h,06Ah,002h,051h,0E8h,0EDh
+    db 0F5h,0FFh,0FFh,083h,0C4h,00Ch,068h,030h,0FCh,01Dh,001h,08Dh,054h,024h,014h,052h
+    db 0E8h,0DBh,05Ch,01Ah,000h,068h,06Ch,004h,013h,001h,08Dh,044h,024h,008h,06Ah,002h
+    db 050h,0E8h,0CAh,0F5h,0FFh,0FFh,083h,0C4h,00Ch,068h,030h,0FCh,01Dh,001h,08Dh,04Ch
+    db 024h,008h,051h,0E8h,0B8h,05Ch,01Ah,000h
 ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z ENDP
 _TEXT ENDS
 END
