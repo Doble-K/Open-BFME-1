@@ -27,6 +27,34 @@ struct SubsystemLegendEntry
 // A BFME-only subsystem with no ZH counterpart. GameEngine::init registers it as
 // "TheSubsystemLegend" and feeds it Data\INI\Default\SubsystemLegend.ini; the
 // initSubsystem site (0x00079272) news 0x0c bytes and calls the ctor.
+//
+// Why this class matters out of proportion to its size: GameEngine::init
+// (0x00079060) registers 62 subsystems, and the legend is registered FIRST so
+// everything after it can look itself up. Of those 62, exactly two are handed
+// hard-coded INI paths —
+//     TheWritableGlobalData : Data\INI\Default\Water.ini, Data\INI\Water.ini,
+//                             Data\INI\Default\Environment.ini, Data\INI\Environment.ini
+//     TheVictorySystem      : Lang\%s\CommandMap.ini
+// — and the other 60 pass none at all. They get their INI files solely from this
+// legend, via SubsystemInterface::loadIniFilesFromLegend (vtable slot 2). So
+// SubsystemLegend.ini is the single control point for almost all of the engine's
+// data loading, and its registration order is override precedence:
+//   TheSubsystemLegend TheWritableGlobalData TheGlobalLanguageData TheGameText
+//   TheAudio TheEva TheScienceStore TheUpgradeCenter TheMultiplayerSettings
+//   TheTerrainTypes TheTerrainRoads TheCDManager TheGlobalWeatherSystem
+//   TheFunctionLexicon TheModuleFactory TheMessageStream TheSidesList
+//   TheCaveSystem TheRankInfoStore ThePlayerAITypeSet ThePlayerTemplateStore
+//   TheFXParticleSystemManager TheFXListStore TheWeaponStore
+//   TheObjectCreationListStore TheLocomotorStore TheSpecialPowerStore
+//   TheDamageFXStore TheArmorStore TheBuildAssistant TheEmotionSystem
+//   TheThingFactory TheLightPointSystem TheExperienceLevelSystem TheAptPlayer
+//   TheLivingWorldManager TheGameClient TheAI TheAerialPathfinder
+//   TheLivingWorldLogic TheSplineService TheAttributeModifierStore
+//   TheTaintManager TheScriptEngine TheLuaScriptEngine TheTeamFactory
+//   TheCrateSystem ThePlayerList TheGameLogic TheRecorder TheRadar
+//   TheVictoryConditions TheMetaMap TheHouseColorSystem
+//   TheLivingWorldCampaignManager TheVictorySystem TheActionManager
+//   TheGameStateMap TheGameState TheGameResultsQueue
 class SubsystemLegend : public SubsystemInterface
 {
 public:
