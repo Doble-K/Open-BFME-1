@@ -494,99 +494,8 @@ void INI::readLine( void )
 
 //-------------------------------------------------------------------------------------------------
 /** Parse integer from buffer and assign at location 'store' */
-//-------------------------------------------------------------------------------------------------
-__declspec(naked) void INI::parseInt( INI* ini, void* /*instance*/, void* store, const void* /*userData*/ )
-{
-	__asm
-	{
-		__emit 0x8B
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x83
-		__emit 0xEC
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8B
-		__emit 0xB0
-		__emit 0x14
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x6A
-		__emit 0x00
-		__emit 0xFF
-		__emit 0x15
-		__emit 0xD8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xC0
-		__emit 0x75
-		__emit 0x24
-		__emit 0x56
-		__emit 0x68
-		__emit 0x50
-		__emit 0x03
-		__emit 0x13
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x0C
-		__emit 0x6A
-		__emit 0x03
-		__emit 0x51
-		__emit 0xE8
-		__emit 0x70
-		__emit 0xDB
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x10
-		__emit 0x68
-		__emit 0x30
-		__emit 0xFC
-		__emit 0x1D
-		__emit 0x01
-		__emit 0x8D
-		__emit 0x54
-		__emit 0x24
-		__emit 0x08
-		__emit 0x52
-		__emit 0xE8
-		__emit 0x5E
-		__emit 0x42
-		__emit 0x1A
-		__emit 0x00
-		__emit 0x50
-		__emit 0xE8
-		__emit 0x78
-		__emit 0xFB
-		__emit 0xFF
-		__emit 0xFF
-		__emit 0x8B
-		__emit 0x4C
-		__emit 0x24
-		__emit 0x1C
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x04
-		__emit 0x89
-		__emit 0x01
-		__emit 0x5E
-		__emit 0x83
-		__emit 0xC4
-		__emit 0x08
-		__emit 0xC3
-	}
-} 
+// INI::parseInt lives in ini_parsers.cpp (retail's other INI TU), as C++
+ 
 
 //-------------------------------------------------------------------------------------------------
 /** Parse unsigned integer from buffer and assign at location 'store' */
@@ -636,23 +545,8 @@ void INI::parseAngularVelocityReal( INI *ini, void * /*instance*/,
 // INI::parseBitInInt32 lives in ini_parsers.cpp (retail's other INI TU)
 
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-/*static*/ Bool INI::scanBool(const char* token)
-{
-	// translate string yes/no into TRUE/FALSE
-	if( stricmp( token, "yes" ) == 0 )
-		return TRUE;
-	else if( stricmp( token, "no" ) == 0 )
-		return FALSE;
-	else
-	{
-		DEBUG_CRASH(("invalid boolean token %s -- expected Yes or No\n",token));
-		throw INI_INVALID_DATA;
-		return false;	// keep compiler happy
-	}
+// INI::scanBool lives in ini_parsers.cpp (retail's other INI TU)
 
-}
 
 //-------------------------------------------------------------------------------------------------
 /** Parse an *ASCII* string from buffer and assign at location 'store' */
@@ -1283,32 +1177,14 @@ void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList
 	return TheScienceStore->friend_lookupScience( token );
 }
 
-//-------------------------------------------------------------------------------------------------
-/*static*/ Int INI::scanInt(const char* token)
-{
-	Int value;
-	if (sscanf( token, "%d", &value ) != 1)
-		throw INI_INVALID_DATA;
-	return value;
-}
+// INI::scanInt lives in ini_parsers.cpp (retail's other INI TU)
 
-//-------------------------------------------------------------------------------------------------
-/*static*/ UnsignedInt INI::scanUnsignedInt(const char* token)
-{
-	UnsignedInt value;
-	if (sscanf( token, "%u", &value ) != 1)	// unsigned int is %u, not %d
-		throw INI_INVALID_DATA;
-	return value;
-}
 
-//-------------------------------------------------------------------------------------------------
-/*static*/ Real INI::scanReal(const char* token)
-{
-	Real value;
-	if (sscanf( token, "%f", &value ) != 1)
-		throw INI_INVALID_DATA;
-	return value;
-}
+// INI::scanUnsignedInt lives in ini_parsers.cpp (retail's other INI TU)
+
+
+// INI::scanReal lives in ini_parsers.cpp (retail's other INI TU)
+
 
 //-------------------------------------------------------------------------------------------------
 /*static*/ Real INI::scanPercentToReal(const char* token)

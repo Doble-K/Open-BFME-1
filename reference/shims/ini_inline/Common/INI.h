@@ -394,6 +394,13 @@ public:
 		utility routine that does a sscanf() on the string to get the int, and throws
 		an exception if not of the right form.
 	*/
+	// BFME-only, and the name is provisional (pinned in reverse/symbols.csv):
+	// 0x008524B0 takes a token, and if it does not start with a digit or '-'
+	// hashes it and looks it up in the macro table at 0x0130CE5C, returning the
+	// substituted text. That is the "or predefined macro" half of scanInt's
+	// error message; ZH has no such feature.
+	static const char *preprocessMacro(const char *token);
+
 	static Int scanInt(const char* token);
 
 	/**

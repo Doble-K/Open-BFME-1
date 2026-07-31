@@ -530,3 +530,60 @@ INI::~INI( void )
 {
 
 }
+
+//-------------------------------------------------------------------------------------------------
+// Was a __declspec(naked) byte dump in ini.cpp. Retail inlines getNextToken here
+// (the body carries m_seps at +0x414 and getNextToken's own "Expected additional
+// data after '%s'" throw) but calls scanInt out of line at 0x00852620, which is
+// exactly what this TU's header gives.
+void INI::parseInt( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+{
+	*(Int *)store = scanInt(ini->getNextToken());
+}
+
+//-------------------------------------------------------------------------------------------------
+// Every integer INI field lands here. BFME first runs the token through the
+// macro table (see INI::preprocessMacro) and reports the SUBSTITUTED text in the
+// error, not the original token.
+/*static*/ Int INI::scanInt(const char* token)
+{
+	Int value;
+	const char *text = preprocessMacro(token);
+	if (sscanf(text, "%d", &value) != 1)
+		throw INIException(3, "Expected signed integer value or predefined macro, but found '%s'", text);
+	return value;
+}
+
+//-------------------------------------------------------------------------------------------------
+/*static*/ Real INI::scanReal(const char* token)
+{
+	Real value;
+	const char *text = preprocessMacro(token);
+	if (sscanf(text, "%f", &value) != 1)
+		throw INIException(3, "Expected floating point value or predefined macro, but found '%s'", text);
+	return value;
+}
+
+//-------------------------------------------------------------------------------------------------
+/*static*/ UnsignedInt INI::scanUnsignedInt(const char* token)
+{
+	UnsignedInt value;
+	const char *text = preprocessMacro(token);
+	if (sscanf(text, "%u", &value) != 1)
+		throw INIException(3, "Expected unsigned integer value or predefined macro, but found '%s'", text);
+	return value;
+}
+
+//-------------------------------------------------------------------------------------------------
+// Note the error reports the ORIGINAL token, not the macro-substituted text --
+// retail pushes the incoming argument here where scanInt/scanReal push the
+// substituted string.
+/*static*/ Bool INI::scanBool(const char* token)
+{
+	const char *text = preprocessMacro(token);
+	if (stricmp(text, "yes") == 0)
+		return TRUE;
+	if (stricmp(text, "no") == 0)
+		return FALSE;
+	throw INIException(3, "invalid boolean token %s -- expected Yes or No", token);
+}
