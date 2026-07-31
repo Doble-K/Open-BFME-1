@@ -8716,7 +8716,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?asin@@YAMM@Z,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,icf-owner=?ASin@@YAMM@Z
 ?assign@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@QAEAAV12@PBD0@Z,,0x000A5810,152,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?assign@?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@QAEAAV12@PBG0@Z,,0x004D5600,174,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
-?assignDefaultGadgetLook@GameWindowManager@@UAEXPAVGameWindow@@PAVGameFont@@_N@Z,,0x004800FC,7853,Code/masm_dumps/_assignDefaultGadgetLook_GameWindowManager__UAEXPA.asm,matched,
 ?asyncGethostbynameThreadFunc@@YGKPAX@Z,,0x0062E6D0,34,Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp,matched,
 ?atEndOfChunk@DataChunkInput@@QAE_NXZ,,0x00102760,19,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?atEndOfFile@DataChunkInput@@QAE_NXZ,,0x00102320,13,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
@@ -9790,7 +9789,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findBridgeLayerAt@TerrainLogic@@UBEPAVBridge@@PBUCoord3D@@W4PathfindLayerEnum@@_N@Z,,0x001A6640,95,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?findBuildableStatusOverride@GameLogic@@QBE_NPBVThingTemplate@@AAW4BuildableStatus@@@Z,,0x00391A10,43,Code/masm_dumps/_rn5__findBuildableStatusOverride_GameLogic__QBE_NPBVThingTemplate__AAW4Bui_391A10.asm,matched,reloc-needle Open-BFME4+Grok
 ?findByTemplateID@ThingFactory@@QAEPBVThingTemplate@@G@Z,,0x00133CC0,40,Code/GameEngine/Source/Common/Thing/ThingFactory.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
-?findClosestPath@Pathfinder@@EAEPAVPath@@PAVObject@@ABVLocomotorSet@@PBUCoord3D@@PAU5@_NM4@Z,,0x003F3460,1747,Code/masm_dumps/findClosestPath_Pathfinder_3F3460.asm,matched,MASM exact retail; true body 0x3F3460/1747 (queue 0x4A2AA9 was mid-neighbor ret+122B); ret 0x1c isHuman getClippedCell
 ?findCommandButton@ControlBar@@QAEPBVCommandButton@@ABVAsciiString@@@Z,,0x004A0310,29,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?findCommandSet@ControlBar@@QAEPBVCommandSet@@ABVAsciiString@@@Z,,0x004A0310,29,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?findControlBarOverride@GameLogic@@QBE_NABVAsciiString@@HAAPBVCommandButton@@@Z,,0x00002509,5,Code/masm_dumps/_findControlBarOverride_GameLogic__QBE_NABVAsciiString__HAAPBVCommandButton___Z_2509.asm,matched,MASM exact retail dump
@@ -13625,3 +13623,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?findFieldParse@@YAP6AXPAVINI@@PAX1PBX@ZPBUFieldParse@@PBDAAHAAPBX@Z,,0x00850880,128,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,moved with initFromINIMulti to the parser TU
 ?getNthExtraOffset@MultiIniFieldParse@@QBEIH@Z,,0x00850710,11,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,emitted by the parser TU now that initFromINIMulti lives there
 ?getNthFieldParse@MultiIniFieldParse@@QBEPBUFieldParse@@H@Z,,0x00850700,10,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,emitted by the parser TU now that initFromINIMulti lives there
+?assignDefaultGadgetLook@GameWindowManager@@UAEXPAVGameWindow@@PAVGameFont@@_N@Z,,0x004800FC,9955,Code/masm_dumps/_assignDefaultGadgetLook_GameWindowManager__UAEXPA.asm,matched,true size 9955B; previous row claimed 7853B
+?findClosestPath@Pathfinder@@EAEPAVPath@@PAVObject@@ABVLocomotorSet@@PBUCoord3D@@PAU5@_NM4@Z,,0x003F3460,2701,Code/masm_dumps/findClosestPath_Pathfinder_3F3460.asm,matched,true size 2701B; previous row claimed 1747B
