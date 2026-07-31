@@ -492,9 +492,11 @@ protected:
 	const char *m_sepsQuote;									///< token to represent a quoted ascii string
 	const char *m_blockEndToken;							///< token to represent end of data block
 	Bool m_endOfFile;													///< TRUE when we've hit EOF
-#if defined(_DEBUG) || defined(_INTERNAL)
+	// NOT #if _DEBUG here, unlike ZH: retail's release build carries this. Its
+	// address is taken at +0x42d by initFromINIMulti (lea eax,[edi+0x42d]) and
+	// the 4-arg INI::load copies the block keyword into it before invoking the
+	// per-block callback, then resets it to "NO_BLOCK".
 	char m_curBlockStart[ INI_MAX_CHARS_PER_LINE ];	///< first line of cur block
-#endif
 
   enum
   {
