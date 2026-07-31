@@ -61,3 +61,41 @@ class CrateSystem : public SubsystemInterface {};	// 0x00075050, ctor ??0CrateSy
 class PlayerList : public SubsystemInterface {};	// 0x00075110, ctor ??0PlayerList@@QAE@XZ
 class GameState : public SubsystemInterface {};	// 0x00075960, ctor ??0GameState@@QAE@XZ
 
+// The next block is named a third way, which needed no new byte-matching at all.
+// initSubsystem<T> takes its subsystem by REFERENCE -- T*& -- so the pointer the
+// registration site passes as the first argument has to be declared exactly T*;
+// a reference will not bind through a conversion. Each site in GameEngine::init
+// pushes the address of one global, those addresses are already proven by the
+// DIR32 relocations of matched functions that read the same globals, and the
+// global's own declared type is therefore the template argument.
+//
+// The method self-checks: of the 14 registrations already claimed above, every
+// one whose global resolves agrees with the name it was given, with no
+// contradictions.
+//
+// Each class below additionally has at least one byte-verified ledger row
+// carrying its decorated name, so the name is not resting on the global alone.
+// Two candidates are deliberately absent -- TheGameText's GameTextInterface at
+// 0x00073010 and TheGameClient's GameClient at 0x000748D0 -- because neither
+// class appears in any ledger row, which would leave our own header as the only
+// authority for the name.
+
+class GlobalData : public SubsystemInterface {};	// 0x00072E90, TheWritableGlobalData; name from ?getPath_UserData@GlobalData@@QBE?AVAsciiString@@XZ
+class AudioManager : public SubsystemInterface {};	// 0x000730D0, TheAudio; name from ?releaseAudioEventRTS@AudioManager@@UAEXPAVAudioEven
+class MultiplayerSettings : public SubsystemInterface {};	// 0x000733D0, TheMultiplayerSettings; name from ?getColor@MultiplayerSettings@@QAEPAVMultiplayerColo
+class FunctionLexicon : public SubsystemInterface {};	// 0x00073790, TheFunctionLexicon; name from ?gameWinDrawFunc@FunctionLexicon@@QAEP6AXPAVGameWind
+class MessageStream : public SubsystemInterface {};	// 0x00073910, TheMessageStream; name from ??0TranslatorData@MessageStream@@QAE@XZ
+class ParticleSystemManager : public SubsystemInterface {};	// 0x00073D90, TheParticleSystemManager; name from ?findTemplate@ParticleSystemManager@@QBEPAVParticleS
+class FXListStore : public SubsystemInterface {};	// 0x00073E50, TheFXListStore; name from ?findFXList@FXListStore@@QBEPBVFXList@@PBD@Z
+class LocomotorStore : public SubsystemInterface {};	// 0x00074090, TheLocomotorStore; name from ?findLocomotorTemplate@LocomotorStore@@QAEPAVLocomot
+class SpecialPowerStore : public SubsystemInterface {};	// 0x00074150, TheSpecialPowerStore; name from ?findSpecialPowerTemplateByID@SpecialPowerStore@@QAE
+class ThingFactory : public SubsystemInterface {};	// 0x00074510, TheThingFactory; name from ?findByTemplateID@ThingFactory@@QAEPBVThingTemplate@
+class ScriptEngine : public SubsystemInterface {};	// 0x00074E10, TheScriptEngine; name from ?doFreezeTime@ScriptEngine@@QAEXXZ
+class GameLogic : public SubsystemInterface {};	// 0x000751D0, TheGameLogic; name from ?createGhostObjectManager@GameLogic@@EAEPAVGhostObje
+class RecorderClass : public SubsystemInterface {};	// 0x00075290, TheRecorder; name from ?appendNextCommand@RecorderClass@@IAEXXZ
+// TheRadar / Radar at 0x00075350 is left out: the global names it the same way,
+// but its body is 167 bytes where every other instantiation is 154, so the
+// T*-to-SubsystemInterface* conversion there is not the trivial one a
+// single-inheritance stub emits. Whatever Radar really derives from has to be
+// recovered before the instantiation can be reproduced.
+class ActionManager : public SubsystemInterface {};	// 0x000757E0, TheActionManager; name from ?canOverrideSpecialPowerDestination@ActionManager@@Q

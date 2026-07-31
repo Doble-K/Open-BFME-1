@@ -121,3 +121,20 @@ template void initSubsystem<TeamFactory>(TeamFactory *&, AsciiString, TeamFactor
 template void initSubsystem<CrateSystem>(CrateSystem *&, AsciiString, CrateSystem *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<PlayerList>(PlayerList *&, AsciiString, PlayerList *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<GameState>(GameState *&, AsciiString, GameState *, Xfer *, const char *, const char *, const char *);
+
+// Named from the global each GameEngine::init registration site passes by
+// reference -- see game_engine_subsystems.h for why that is proof.
+template void initSubsystem<GlobalData>(GlobalData *&, AsciiString, GlobalData *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<AudioManager>(AudioManager *&, AsciiString, AudioManager *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<MultiplayerSettings>(MultiplayerSettings *&, AsciiString, MultiplayerSettings *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<FunctionLexicon>(FunctionLexicon *&, AsciiString, FunctionLexicon *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<MessageStream>(MessageStream *&, AsciiString, MessageStream *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<ParticleSystemManager>(ParticleSystemManager *&, AsciiString, ParticleSystemManager *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<FXListStore>(FXListStore *&, AsciiString, FXListStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<LocomotorStore>(LocomotorStore *&, AsciiString, LocomotorStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<SpecialPowerStore>(SpecialPowerStore *&, AsciiString, SpecialPowerStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<ThingFactory>(ThingFactory *&, AsciiString, ThingFactory *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<ScriptEngine>(ScriptEngine *&, AsciiString, ScriptEngine *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<GameLogic>(GameLogic *&, AsciiString, GameLogic *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<RecorderClass>(RecorderClass *&, AsciiString, RecorderClass *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<ActionManager>(ActionManager *&, AsciiString, ActionManager *, Xfer *, const char *, const char *, const char *);
