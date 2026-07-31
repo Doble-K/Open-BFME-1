@@ -12014,7 +12014,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@TerrainCollisionModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0001EA60,0x5fcef0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@TerrainScorchFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C600,245,Code/masm_dumps/TerrainScorchFXNugget_parse_42C600.asm,matched,Exact 245B MASM; FX table TerrainScorch ILT 0x1E3AD; drift 0x9A15F0 was interior of parseSideInfo@AI
 ?parse@ViewShakeFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C320,244,Code/masm_dumps/parse_ViewShakeFXNugget_SAXPAVINI_PAX1PBX_Z_0042C320_4717cc22.asm,matched,Certified packet 167 db-only MASM SHA256 4717cc225abc96cd5fa449fec9f04c8cca2043a94891684368ad9e8ca82d40ed
-?parseAccelerationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00034969,5,Code/masm_dumps/parseAccelerationReal_INI_SAXPAV1_PAX1PBX_Z_34969.asm,matched,Ghidra-adjacent public thunk; Gravity table xref and canonical squared frame-conversion body
 ?parseAddModule@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x0013E210,88,Code/masm_dumps/parseAddModule_ThingTemplate_13E210.asm,matched,FieldParse AddModule true body; drift 0x9A15E8 misplaced
 ?parseAiDataDefinition@AI@@SAXPAVINI@@@Z,,0x0014E580,50,Code/GameEngine/Source/GameLogic/AI/ai_parseAiDataDefinition.asm,matched,exact 50B MASM; true body via FieldParse table xref (drift 0x9A15F2 was mid-parseSideInfo); INI m_loadType+8 blocks C++
 ?parseAllVetLevelsFXList@@YAXPAVINI@@PAX1PBX@Z,,0x001E10F0,51,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
@@ -12022,12 +12021,10 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAmount@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066020,138,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseAndTranslateLabel@INI@@SAXPAV1@PAX1PBX@Z,,0x000BA9B0,181,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseAngleFX@@YAXPAVINI@@PAX1PBX@Z,,0x002B0990,23,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate.cpp,matched,
-?parseAngularVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000114D7,5,Code/masm_dumps/parseAngularVelocityReal_INI_SAXPAV1_PAX1PBX_Z_114D7.asm,matched,Ghidra-adjacent public thunk; table xrefs from angular-rate fields and canonical scanReal conversion body
 ?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/masm_dumps/parseAnim2DTemplate_INI_SAXPAV1_PAX1PBX_Z_4B556.asm,matched,Unique BFME crash string anchors Anim2D collection lookup body and public thunk
 ?parseAnimatingPart@ControlBarSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x004AEA00,219,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme_parseAnimatingPart.asm,matched,True body 0x4AEA00/219 (queue 0xB026D6 was pad/epilogue). FieldParse FinalPos@0xcfd0a8; MASM exact like parseImagePart sibling
 ?parseAnimatingPartImage@ControlBarSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x004ACE60,102,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ?parseArbitraryFXIntoMap@@YAXPAVINI@@PAX1PBX@Z,,0x00145C80,206,Code/masm_dumps/parseArbitraryFXIntoMap_145C80.asm,matched,Certified packet 102 exact retail db recovery SHA256 f52d6a9a486b056efae3eb40e18809aec02d98b1b9ad8df6ebb50df1679f3b84
-?parseArmorTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0003EF6D,5,Code/masm_dumps/parseArmorTemplate_INI_SAXPAV1_PAX1PBX_Z_3EF6D.asm,matched,Retail ArmorTemplateSet table xref; public thunk to None-aware armor-store lookup body
 ?parseArmorTemplateSet@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x00146020,218,Code/masm_dumps/_rn5__parseArmorTemplateSet_ThingTemplate__KAXPAVINI__PAX1PBX_Z_146020.asm,matched,reloc-needle Open-BFME4+Grok
 ?parseAsciiString@INI@@SAXPAV1@PAX1PBX@Z,,0x00851EE0,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x00009E94,5,Code/masm_dumps/parseAudioEventRTS_INI_SAXPAV1_PAX1PBX_Z_9E94.asm,matched,Multiple retail audio-field xrefs and canonical NoSound event lookup body identify parser
@@ -12050,7 +12047,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseCoord3D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853380,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseCrateCreationEntry@CrateTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x00379F80,258,Code/masm_dumps/parseCrateCreationEntry_CrateTemplate_00379F80_packet305.asm,matched,Certified packet 305 sealed retail body
 ?parseCredits@INI@@SAXPAV1@@Z,,0x0040BFC0,25,Code/GameEngine/Source/GameClient/Credits.cpp,matched,
-?parseDamageFX@INI@@SAXPAV1@PAX1PBX@Z,,0x00012026,5,Code/masm_dumps/parseDamageFX_INI_SAXPAV1_PAX1PBX_Z_12026.asm,matched,Retail ArmorTemplateSet DamageFX xref; public thunk to None-aware damage-FX store lookup
 ?parseDamageFXDefinition@DamageFXStore@@SAXPAVINI@@@Z,,0x00067A60,77,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseDamageTypeFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B8FF0,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDeathTypeFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9100,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
@@ -12061,7 +12057,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseDrawGroupNumberDefinition@INI@@SAXPAV1@@Z,,0x000B8200,66,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo_parseDrawGroupNumberDefinition.asm,matched,INI parse-table pointer via DrawGroupInfo string and import thunk 0x416EBE
 ?parseDurationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9C30,33,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDurationUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9C60,67,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x0002BA94,5,Code/masm_dumps/parseDurationUnsignedShort_INI_SAXPAV1_PAX1PBX_Z_2BA94.asm,matched,Ghidra-adjacent public thunk; AnimationDelay table xref and canonical unsigned duration conversion body
 ?parseDynamicAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E2DA,5,Code/masm_dumps/parseDynamicAudioEventRTS_INI_SAXPAV1_PAX1PBX_Z_2E2DA.asm,matched,109 retail Voice-field xrefs and canonical dynamic audio lifecycle body identify parser
 ?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007D470,191,Code/masm_dumps/INI_parseDynamicGameLODDefinition_7d470.asm,matched,MASM exact retail dump; type-table DynamicGameLOD->0x7d470; queue RVA was int3 pad
 ?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C390,105,Code/masm_dumps/INI_parseDynamicGameLODLevel_7c390.asm,matched,MASM exact retail dump; DynamicGameLODNames count=5 VeryLow..VeryHigh; queue RVA 0x9A15D7 was mid-SEH-fn
@@ -12181,7 +12176,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseUpdate@@YA_NPAD0IPAVWindowLayoutInfo@@@Z,,0x004876C0,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Retail layout table and StringBase ABI
 ?parseUpgradeDefinition@UpgradeCenter@@SAXPAVINI@@@Z,,0x0010B280,172,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
 ?parseUpgradeTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BB040,119,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00038708,5,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,asm jmp to parseFrictionPerSec
 ?parseVeterancyLevelFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D90,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseWaypointData@TerrainLogic@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A7860,60,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?parseWaypointDataChunk@TerrainLogic@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A8BB0,21,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,icf-owner=?ParseBlendTileDataChunk@WorldHeightMap@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z
@@ -12190,7 +12184,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseWeaponBonusSet@WeaponBonusSet@@QAEXPAVINI@@@Z,,0x001E1C20,55,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseWeaponBonusSet@WeaponBonusSet@@SAXPAVINI@@PAX1PBX@Z,,0x001E3910,15,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseWeaponBonusSetPtr@WeaponBonusSet@@SAXPAVINI@@PAX1PBX@Z,,0x001E3930,17,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
-?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0000CBDF,5,Code/masm_dumps/parseWeaponTemplate_INI_SAXPAV1_PAX1PBX_Z_CBDF.asm,matched,Retail CollideWeapon table xref; public thunk to weapon-store lookup body
 ?parseWeaponTemplateDefinition@WeaponStore@@SAXPAVINI@@@Z,,0x001E9C40,223,Code/GameEngine/Source/GameLogic/Object/WeaponStore_parseWeaponTemplateDefinition.asm,matched,Certified packet 178 db-only retail recovery SHA256 da43851aa11804b5070b0273f73a23217690057e7b934ba66d66deb312c45aab
 ?parseWeaponTemplateSet@WeaponTemplateSet@@QAEXPAVINI@@PBVThingTemplate@@@Z,,0x001ECE50,28,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
 ?parseWin@@YAHQAPADH@Z,,0x00061050,19,Code/GameEngine/Source/Common/CommandLine.cpp,matched,
@@ -13633,3 +13626,10 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ??$initSubsystem@VPlayerTemplateStore@@@@YAXAAPAVPlayerTemplateStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00073CD0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven by vtable 0x01084BA0 slot 1 = init@PlayerTemplateStore
 ?findArmorTemplate@ArmorStore@@QBEPBVArmorTemplate@@VAsciiString@@@Z,,0x001B05E0,192,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,first ArmorStore row; entry point is INI::parseArmorTemplate at 0x000BAE50
 ??$initSubsystem@VArmorStore@@@@YAXAAPAVArmorStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x000742D0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven by the byte-verified findArmorTemplate@ArmorStore row
+?parseArmorTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAE50,80,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at the 5B ILT thunk 0x0003EF6D; real body is here
+?parseAccelerationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D50,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseAngularVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9BA0,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseDamageFX@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAFD0,80,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9CC0,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAEC0,44,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D20,37,Code/GameEngine/Source/Common/INI/ini.cpp,matched,ICF-folded with parseFrictionPerSec; row previously pointed at the 5B thunk
