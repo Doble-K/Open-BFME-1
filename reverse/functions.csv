@@ -13641,3 +13641,6 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ??$initSubsystem@VGameState@@@@YAXAAPAVGameState@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075960,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0GameState@@QAE@XZ
 ?releaseWindowPointers@@YAXXZ,,0x004C3170,294,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,address+name proven from a matched callers relocation
 ?getFrameAdvanceCount@BFMENativeNetwork@@QAEHXZ,,0x00681F70,395,Code/GameEngine/Source/GameNetwork/native_network_interface.cpp,matched,native vtable 0x0111A968 slot +0x3C; frame allowance = connMgr +0x1205C ceiling - TheGameLogic frame + 1 gated by 0x6633E0; router path consumes QPF/5 200ms quantum
+?parseArmorDefinition@ArmorStore@@SAXPAVINI@@@Z,,0x001B09B0,144,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,INI block table node binds keyword Armor to this address
+?parseArmorCoefficients@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x001AFC30,165,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,FieldParse token Armor at 0x0109C874 slot 1 - ZH name
+?parseDamageScalar@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x001AFD00,28,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,FieldParse token DamageScalar at 0x0109C874 slot 0 - BFME-only name from token

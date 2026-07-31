@@ -6,33 +6,107 @@
 // against the NameKeyGenerator shim, because this TU needs the same AsciiString
 // ABI that file established: an inline str() and an out-of-line release.
 //
-// Entry point into it is INI::parseArmorTemplate (0x000BAE50), which reads
-// TheArmorStore from 0x012EF4E8 and calls findArmorTemplate at 0x001B05E0.
+// parseArmorDefinition is what BFME's INI block table registers for the "Armor"
+// keyword: a static node in .data holds {next, "Armor", &parse} and its parse
+// slot points at 0x001B09B0. That binding is what identified this TU.
 #include "PreRTS.h"
 #include "Common/NameKeyGenerator.h"
 #include "Common/STLTypedefs.h"
 
-// DAMAGE_NUM_TYPES is 24 in BFME, not ZH's count: ArmorStore::parseArmorDefinition
-// inlines clear() as exactly 24 stores of 1.0f (0x3F800000) at +0x00..+0x5C.
-enum { DAMAGE_NUM_TYPES = 24 };
+// BFME replaced Zero Hour's damage list wholesale. The 23 names below are read
+// straight out of the scanIndexList table at 0x012ACC70 (NULL-terminated at
+// [23]), and they are exactly the keys an Armor block accepts besides the
+// "Default" wildcard. Three independent counts agree on 23: that table, the 23
+// stores clear() emits at +0x00..+0x58, and the "Default" branch of
+// parseArmorCoefficients, which writes those same 23 slots and stops.
+enum DamageType
+{
+	DAMAGE_FORCE = 0,
+	DAMAGE_CRUSH,
+	DAMAGE_SLASH,
+	DAMAGE_PIERCE,
+	DAMAGE_SIEGE,
+	DAMAGE_STRUCTURAL,
+	DAMAGE_FLAME,
+	DAMAGE_HEALING,
+	DAMAGE_UNRESISTABLE,
+	DAMAGE_WATER,
+	DAMAGE_PENALTY,
+	DAMAGE_FALLING,
+	DAMAGE_TOPPLING,
+	DAMAGE_REFLECTED,
+	DAMAGE_PASSENGER,
+	DAMAGE_MAGIC,
+	DAMAGE_CHOP,
+	DAMAGE_HERO,
+	DAMAGE_SPECIALIST,
+	DAMAGE_URUK,
+	DAMAGE_HERO_RANGED,
+	DAMAGE_FLY_INTO,
+	DAMAGE_UNDEFINED,
+
+	DAMAGE_NUM_TYPES		// keep last
+};
+
+extern const char *TheDamageNames[];		// 0x012ACC70
 
 class ArmorTemplate
 {
 public:
 	void clear();
 	static void parseArmorCoefficients( INI* ini, void *instance, void *store, const void* userData );
+	static void parseDamageScalar( INI* ini, void *instance, void *store, const void* userData );
 private:
-	Real m_damageCoefficient[DAMAGE_NUM_TYPES];
+	Real m_damageCoefficient[DAMAGE_NUM_TYPES];		// +0x00 .. +0x58
+	Real m_damageScalar;							// +0x5C
 	friend class ArmorStore;
 };
 
 // ?clear@ArmorTemplate@@QAEXXZ present-unmatched
-// Retail always inlines this (parseArmorDefinition carries its 24 stores), so
-// there is no standalone body to claim; it is here because that caller needs it.
+// Retail always inlines this, so there is no standalone body to claim. It is
+// here because parseArmorDefinition carries it, and it is what proves
+// m_damageScalar is a separate member rather than a 24th coefficient: the loop
+// stores through a base register copied out of the map lookup, while the
+// trailing scalar store reuses the lookup's own result register.
 void ArmorTemplate::clear()
 {
 	for (Int i = 0; i < DAMAGE_NUM_TYPES; ++i)
 		m_damageCoefficient[i] = 1.0f;
+	m_damageScalar = 1.0f;
+}
+
+// ?parseArmorCoefficients@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z
+// One line of an Armor block: "<DamageType> <Percent>%". "Default" fills every
+// coefficient; anything else is looked up positionally in TheDamageNames and
+// overwrites that one slot. BFME resolves the name with INI::scanIndexList,
+// where Zero Hour used the DamageTypeFlags bit lookup.
+/*static*/ void ArmorTemplate::parseArmorCoefficients( INI* ini, void *instance, void * /* store */, const void * /* userData */ )
+{
+	ArmorTemplate* self = (ArmorTemplate*) instance;
+
+	const char* damageName = ini->getNextToken();
+	Real pct = INI::scanPercentToReal(ini->getNextToken());
+
+	if (stricmp(damageName, "Default") == 0)
+	{
+		for (Int i = 0; i < DAMAGE_NUM_TYPES; i++)
+		{
+			self->m_damageCoefficient[i] = pct;
+		}
+		return;
+	}
+
+	DamageType dt = (DamageType)INI::scanIndexList(damageName, TheDamageNames);
+	self->m_damageCoefficient[dt] = pct;
+}
+
+// ?parseDamageScalar@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z
+// The "DamageScalar" field, which BFME added and Zero Hour has no counterpart
+// for: a flat multiplier at +0x5C that sits alongside the per-type coefficients.
+/*static*/ void ArmorTemplate::parseDamageScalar( INI* ini, void *instance, void * /* store */, const void * /* userData */ )
+{
+	ArmorTemplate* self = (ArmorTemplate*) instance;
+	self->m_damageScalar = INI::scanPercentToReal(ini->getNextToken());
 }
 
 class ArmorStore;
@@ -64,23 +138,16 @@ const ArmorTemplate *ArmorStore::findArmorTemplate(AsciiString name) const
 	return &(*it).second;
 }
 
-// ?parseArmorDefinition@ArmorStore@@SAXPAVINI@@@Z present-unmatched
-// 143 of retail's 144 bytes at 0x001B09B0. The one byte that differs is the base
-// register of the LAST of the 24 stores: retail peels it out and issues it
-// through eax (the untouched operator[] result) interleaved with the FieldParse
-// push, where we keep using the edx copy the other 23 went through -- 0x48 vs
-// 0x4A at +131. Unmoved by loop form (for/while/reverse/pointer-walk), by
-// clear() being inline or its own call, by ref vs pointer, or by the table being
-// function-static vs file-scope. Same scheduling family as the latch divergences
-// in docs/lessons.md.
-//
+// ?parseArmorDefinition@ArmorStore@@SAXPAVINI@@@Z
 // The "Armor" INI block: name the armor, default every coefficient to 1.0, then
 // let the field parser overwrite the ones the block lists.
 /*static*/ void ArmorStore::parseArmorDefinition(INI *ini)
 {
 	static const FieldParse myFieldParse[] =
 	{
-		{ "Armor", ArmorTemplate::parseArmorCoefficients, NULL, 0 }
+		{ "DamageScalar", ArmorTemplate::parseDamageScalar, NULL, 0 },
+		{ "Armor", ArmorTemplate::parseArmorCoefficients, NULL, 0 },
+		{ NULL, NULL, NULL, 0 }
 	};
 
 	const char *c = ini->getNextToken();
