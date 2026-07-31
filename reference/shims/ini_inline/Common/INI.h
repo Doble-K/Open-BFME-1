@@ -197,6 +197,14 @@ public:
 	void loadDirectory( AsciiString dirName, Bool subdirs, INILoadType loadType, Xfer *pXfer );  ///< load directory of INI files
 	void load( AsciiString filename, INILoadType loadType, Xfer *pXfer );		///< load INI file
 
+	// Provisional names, pinned in reverse/symbols.csv. loadFile (0x00853A20) is
+	// the entry point GameEngine::init uses six times and the legend path uses
+	// for every InitFile; it drives the block loop itself, calling parseBlock
+	// (0x00851350, which strtoks the line, looks the block keyword up and records
+	// m_curBlockStart) once per block until m_endOfFile.
+	void loadFile( AsciiString filename, INILoadType loadType, Xfer *pXfer );
+	void parseBlock( AsciiString filename );
+
 	static Bool isDeclarationOfType( AsciiString blockType, AsciiString blockName, char *bufferToCheck );
 	static Bool isEndOfBlock( char *bufferToCheck );
 
