@@ -1,13 +1,13 @@
 .386
 .model flat
-; ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@UBfmeLegendString@@@Z
+; ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z
 ; Exact 264B @ 0x009A11A0. Byte dump, not source: the C++ body lives in
 ; Code/GameEngine/Source/Common/System/SubsystemLegend.cpp and is correct to
 ; 262 of these 264 bytes -- MSVC 7.1 reloads the spilled `this` into ecx at
 ; 0x009A123C where retail used eax. See that file and docs/lessons.md.
 _TEXT SEGMENT
-public ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@UBfmeLegendString@@@Z
-?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@UBfmeLegendString@@@Z PROC
+public ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z
+?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z PROC
     db 6Ah, 0FFh, 68h, 50h, 00h, 06h, 01h, 64h, 0A1h, 00h, 00h, 00h, 00h, 50h, 64h, 89h
     db 25h, 00h, 00h, 00h, 00h, 83h, 0ECh, 08h, 53h, 55h, 56h, 57h, 89h, 4Ch, 24h, 14h
     db 8Bh, 41h, 08h, 8Bh, 28h, 3Bh, 0E8h, 0C7h, 44h, 24h, 20h, 00h, 00h, 00h, 00h, 74h
@@ -25,6 +25,6 @@ public ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@UBfmeLegendString
     db 8Dh, 4Ch, 24h, 28h, 0C7h, 44h, 24h, 20h, 0FFh, 0FFh, 0FFh, 0FFh, 0E8h, 0AFh, 66h, 0EEh
     db 0FFh, 8Bh, 4Ch, 24h, 18h, 5Fh, 8Bh, 0C6h, 5Eh, 5Dh, 5Bh, 64h, 89h, 0Dh, 00h, 00h
     db 00h, 00h, 83h, 0C4h, 14h, 0C2h, 04h, 00h
-?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@UBfmeLegendString@@@Z ENDP
+?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z ENDP
 _TEXT ENDS
 END

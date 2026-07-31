@@ -3,6 +3,7 @@
 class INI {
 public:
 	const char* getNextToken(const char* seps = 0);
+	void initFromINI(void* what, const struct FieldParse* parseTable);
 	const char* getNextTokenOrNull(const char* seps = 0);
 	static float scanReal(const char* token);
 	static int scanInt(const char* token);

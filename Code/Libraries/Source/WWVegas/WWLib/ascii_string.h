@@ -6,7 +6,10 @@ class UnicodeString;
 
 class AsciiString {
 public:
-    AsciiString();
+    // Retail inlines the default ctor (the entry ctor at 0x009A1390 zeroes
+    // m_text with a single store rather than calling out); ascii_string.cpp
+    // still emits the out-of-line COMDAT at 0x00062030 for its 10 callers.
+    AsciiString() { m_text = 0; }
     AsciiString(char c);
     AsciiString(const AsciiString &that);
     AsciiString(const char *str);
