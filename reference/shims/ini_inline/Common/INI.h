@@ -458,6 +458,22 @@ protected:
 	// m_seps landing at +0x414 in retail (every field parser loads it from
 	// there). The read-buffer trio is parked at the end of the class so readLine
 	// still compiles; only the offsets up to m_seps are load-bearing.
+	//
+	// INI::INI (0x00851230) writes the whole prefix and confirms it field by
+	// field: m_file at +0x00, m_filename at +0x04 (constructed from "None"),
+	// +0x08 and +0x0c zeroed, and a byte store at +0x10 -- that byte is
+	// m_buffer[0], which is what puts m_seps at +0x414. It then fills
+	//   +0x414 m_seps          " \n\r\t="
+	//   +0x418 m_sepsPercent   " \n\r\t=%%"
+	//   +0x41c m_sepsColon     " \n\r\t=:"
+	//   +0x420 m_sepsQuote     "\"\n="
+	//   +0x424 m_blockEndToken "END"
+	//   +0x428 <unnamed>       "ENDSCRIPT"   <-- BFME-only, ZH has m_endOfFile here
+	//   +0x42c, +0x42d         two Bools
+	//   +0x834                 an object with its own ctor/dtor (0x009CBDC0 /
+	//                          0x009CBFE0, both still unidentified)
+	// Those separator sets are the tokenizer every INI file is read with, and
+	// the extra "ENDSCRIPT" terminator has no ZH counterpart.
 	char m_buffer[ INI_MAX_CHARS_PER_LINE ];  ///< buffer to read file contents into
 	const char *m_seps;												///< for strtok parsing
 	const char *m_sepsPercent;								///< m_seps with percent delimiter as well
