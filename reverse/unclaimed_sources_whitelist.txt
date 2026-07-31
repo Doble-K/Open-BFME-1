@@ -25,3 +25,12 @@ Code/GameEngine/Source/GameLogic/Object/Behavior/GrantStealthBehavior.cpp
 Code/GameEngine/Source/Common/RTS/Handicap.cpp
 Code/GameEngine/Source/GameClient/water_transparency.cpp
 # Third beyond-ZH probe target from r1s4; drafts parked with attempt evidence.
+
+# The subsystem loader (0x000BB310): looks a subsystem up in SubsystemLegend by
+# name and INI::loads every file its "LoadSubsystem" block lists. 181/214 bytes;
+# the residue is the same MSVC unwind-esp/EH-state ordering divergence parked on
+# Handicap.cpp above (record-then-load vs load-then-record). Retail's home for it
+# is ini.cpp — same arena, same EH funcinfo run as INI::parseThingTemplate et al
+# — but that file is still a ZH-tree port whose AsciiString inlines its release
+# path, so this lives in a native sibling until ini.cpp is converted.
+Code/GameEngine/Source/Common/INI/ini_subsystem.cpp
