@@ -782,15 +782,14 @@ void INI::parseQuotedAsciiString( INI* ini, void * /*instance*/, void *store, co
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?parseAsciiStringVector@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseAsciiStringVector( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
+	// Empty the vector, then reuse the append parser rather than re-reading the
+	// tokens here: retail calls vector<AsciiString>::erase(begin, end) and then
+	// tail-calls parseAsciiStringVectorAppend with the same four arguments.
 	std::vector<AsciiString>* asv = (std::vector<AsciiString>*)store;
-	asv->clear();
-	for (const char *token = ini->getNextTokenOrNull(); token != NULL; token = ini->getNextTokenOrNull())
-	{
-		asv->push_back(token);
-	}
+	asv->erase(asv->begin(), asv->end());
+	INI::parseAsciiStringVectorAppend(ini, NULL, store, NULL);
 }
 
 //-------------------------------------------------------------------------------------------------

@@ -12077,7 +12077,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseArmorTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0003EF6D,5,Code/masm_dumps/parseArmorTemplate_INI_SAXPAV1_PAX1PBX_Z_3EF6D.asm,matched,Retail ArmorTemplateSet table xref; public thunk to None-aware armor-store lookup body
 ?parseArmorTemplateSet@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x00146020,218,Code/masm_dumps/_rn5__parseArmorTemplateSet_ThingTemplate__KAXPAVINI__PAX1PBX_Z_146020.asm,matched,reloc-needle Open-BFME4+Grok
 ?parseAsciiString@INI@@SAXPAV1@PAX1PBX@Z,,0x00851EE0,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseAsciiStringVector@INI@@SAXPAV1@PAX1PBX@Z,,0x008542B0,39,Code/masm_dumps/parseAsciiStringVector_INI_SAXPAV1_PAX1PBX_Z_8542B0.asm,matched,Retail BuildVariations and TriggeredBy table xrefs identify Ghidra FUN_00c542b0
 ?parseAsciiStringVectorAppend@INI@@SAXPAV1@PAX1PBX@Z,,0x008541E0,200,Code/masm_dumps/parseAsciiStringVectorAppend_INI_SAXPAV1_PAX1PBX_Z_8541E0.asm,matched,Retail StandardPublicBone table xref identifies Ghidra FUN_00c541e0 append-only vector parser
 ?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x00009E94,5,Code/masm_dumps/parseAudioEventRTS_INI_SAXPAV1_PAX1PBX_Z_9E94.asm,matched,Multiple retail audio-field xrefs and canonical NoSound event lookup body identify parser
 ?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EACB0,51,Code/GameEngine/Source/GameLogic/Object/WeaponTemplateSet_parseAutoChoose.asm,matched,Corrected one-byte-early queue RVA using INT3 and RET boundaries
@@ -13625,3 +13624,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??C?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QBEPAUSubsystemLegendEntry@@XZ,,0x009A10A0,6,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,instantiated by findEntry
 ?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,retail throws int 1 here not ERROR_BUG
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/ini.cpp,matched,retail throws int 1 here not ERROR_BUG
+?parseAsciiStringVector@INI@@SAXPAV1@PAX1PBX@Z,,0x008542B0,39,Code/GameEngine/Source/Common/INI/ini.cpp,matched,clears the vector then delegates to parseAsciiStringVectorAppend
