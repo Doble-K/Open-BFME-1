@@ -469,7 +469,10 @@ protected:
 	//   +0x420 m_sepsQuote     "\"\n="
 	//   +0x424 m_blockEndToken "END"
 	//   +0x428 <unnamed>       "ENDSCRIPT"   <-- BFME-only, ZH has m_endOfFile here
-	//   +0x42c, +0x42d         two Bools
+	//   +0x42c                 m_endOfFile (Bool)
+	//   +0x42d                 m_curBlockStart, a char array -- initFromINIMulti
+	//                          takes its ADDRESS (lea eax,[edi+0x42d]), so this
+	//                          is not a second Bool
 	//   +0x834                 an object with its own ctor/dtor (0x009CBDC0 /
 	//                          0x009CBFE0, both still unidentified)
 	// Those separator sets are the tokenizer every INI file is read with, and

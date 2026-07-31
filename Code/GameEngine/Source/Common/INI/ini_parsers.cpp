@@ -394,6 +394,31 @@ void INI::initFromINI( void *what, const FieldParse* parseTable )
 }
 
 //-------------------------------------------------------------------------------------------------
+static INIFieldParseProc findFieldParse(const FieldParse* parseTable, const char* token, int& offset, const void*& userData)
+{
+	for (const FieldParse* parse = parseTable; parse->token; ++parse)
+	{
+		if (strcmp( parse->token, token ) == 0)
+		{
+			offset = parse->offset;
+			userData = parse->userData;
+			return parse->parse;
+		}
+	}
+
+	if (!parse->token && parse->parse) 
+	{
+		offset = parse->offset;
+		userData = token;
+		return parse->parse;
+	}
+	else
+	{
+		return NULL;
+	}
+}
+
+//-------------------------------------------------------------------------------------------------
 void INI::initFromINIMultiProc( void *what, BuildMultiIniFieldProc proc )
 {
 	MultiIniFieldParse p;
@@ -577,4 +602,89 @@ void INI::parseAsciiStringVectorAppend( INI* ini, void * /*instance*/, void *sto
 	{
 		asv->push_back(token);
 	}
+}
+
+//-------------------------------------------------------------------------------------------------
+// ?initFromINIMulti@INI@@QAEXPAXABVMultiIniFieldParse@@@Z present-unmatched
+void INI::initFromINIMulti( void *what, const MultiIniFieldParse& parseTableList )
+{
+	Bool done = FALSE;
+
+	if( what == NULL )
+	{
+		DEBUG_ASSERTCRASH( 0, ("INI::initFromINI - Invalid parameters supplied!\n") );
+		throw INI_INVALID_PARAMS;
+	}
+
+	// read each of the data fields
+	while( !done )
+	{
+
+		// read next line
+		readLine();
+
+		// check for end token
+		const char* field = strtok( m_buffer, INI::getSeps() );
+		if( field )
+		{
+
+			if( stricmp( field, m_blockEndToken ) == 0 )
+			{
+				done = TRUE;
+			}
+			else
+			{
+				Bool found = false;
+				for (int ptIdx = 0; ptIdx < parseTableList.getCount(); ++ptIdx)
+				{
+					int offset = 0;
+					void* userData = 0;
+					INIFieldParseProc parse = findFieldParse(parseTableList.getNthFieldParse(ptIdx), field, offset, userData);
+					if (parse)
+					{
+						// parse this block and check for parse errors
+						try {
+
+						(*parse)( this, what, (char *)what + offset + parseTableList.getNthExtraOffset(ptIdx), userData );
+
+						} catch (...) {
+							DEBUG_CRASH( ("[LINE: %d - FILE: '%s'] Error reading field '%s' of block '%s'\n",
+																 INI::getLineNum(), INI::getFilename().str(), field, m_curBlockStart) );
+
+
+							char buff[1024];
+							sprintf(buff, "[LINE: %d - FILE: '%s'] Error reading field '%s'\n", INI::getLineNum(), INI::getFilename().str(), field);
+							throw INIException(buff);
+						}
+						
+						found = true;
+						break;
+						
+					}
+				}
+
+				if (!found)
+				{
+					DEBUG_ASSERTCRASH( 0, ("[LINE: %d - FILE: '%s'] Unknown field '%s' in block '%s'\n",
+														 INI::getLineNum(), INI::getFilename().str(), field, m_curBlockStart) );
+					throw INI_UNKNOWN_TOKEN;
+				}
+
+			}  // end else
+
+		}  // end if
+
+		// sanity check for reaching end of file with no closing end token
+		if( done == FALSE && INI::isEOF() == TRUE )
+		{
+
+			done = TRUE;
+			DEBUG_ASSERTCRASH( 0, ("Error parsing block '%s', in INI file '%s'.  Missing '%s' token\n",
+												 m_curBlockStart, getFilename().str(), m_blockEndToken) );
+			throw INI_MISSING_END_TOKEN;
+
+		}  // end if
+
+	}  // end while
+
 }
