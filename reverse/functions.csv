@@ -13639,3 +13639,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ??$initSubsystem@VCrateSystem@@@@YAXAAPAVCrateSystem@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075050,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0CrateSystem@@QAE@XZ
 ??$initSubsystem@VPlayerList@@@@YAXAAPAVPlayerList@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075110,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0PlayerList@@QAE@XZ
 ??$initSubsystem@VGameState@@@@YAXAAPAVGameState@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075960,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0GameState@@QAE@XZ
+?releaseWindowPointers@@YAXXZ,,0x004C3170,294,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,address+name proven from a matched callers relocation
