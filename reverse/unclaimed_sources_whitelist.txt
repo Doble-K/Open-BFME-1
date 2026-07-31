@@ -34,3 +34,12 @@ Code/GameEngine/Source/GameClient/water_transparency.cpp
 # — but that file is still a ZH-tree port whose AsciiString inlines its release
 # path, so this lives in a native sibling until ini.cpp is converted.
 Code/GameEngine/Source/Common/INI/ini_subsystem.cpp
+
+# GameEngine::init (0x00079060) reconstruction. Emits 4026 of retail's 6689 bytes
+# with ~660 agreeing; the 60-subsystem registration sequence is faithful and comes
+# from reverse/gameengine_init_subsystems.tsv, but retail does un-named setup
+# allocations before the first registration, our operator new resolves elsewhere,
+# and ~1700 bytes of init are not registrations and are not reversed yet. Kept for
+# the registration order and the evidence trail; 0x00079060 still belongs to the
+# MASM dump. Its stub classes carry provisional names — see the header.
+Code/GameEngine/Source/Common/System/game_engine_init.cpp
