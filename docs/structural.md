@@ -42,11 +42,11 @@ most of what remains of this game.
 4. Byte-verify: candidate matches -> `python3 tools/add_match.py '<sym>' <rva> <size> <src>`
    (validates, appends, strips the marker, re-verifies). Then the loop's
    commit-pull-push from AGENTS.md.
-5. **Log the attempt WHATEVER happened** (this is not optional — unlogged
-   failures get re-paid by the next agent):
-   `python3 tools/log_attempt.py '<sym>' <landed|no-match|dead|blocked> 'note'`
-   For `dead`, the note must carry the proof (e.g. "inlined at all 3 call
-   sites, no standalone body" / "SEH prologue not emittable from C++").
+5. **If it did not land, revert the source and write down anything that
+   generalises** — one line in `docs/lessons.md`. A blocked function is worth
+   recording only when the reason transfers to other functions (e.g. "inlined
+   at all 3 call sites, no standalone body" / "SEH prologue not emittable from
+   C++"); per-function noise is not worth the file it sits in.
 
 ## Judging "dead"
 

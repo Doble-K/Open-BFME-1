@@ -36,7 +36,6 @@ ROOT = Path(__file__).resolve().parents[1]
 # retired ZH source-porting sweep) — it feeds the drift/structural/ghidra tiers.
 DRIFT = ROOT / "reverse" / "zh_sweep" / "drift_report.csv"
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
-ATTEMPTS = ROOT / "reverse" / "re_attempts.log"
 GHIDRA_FUNCTIONS = ROOT / "reverse" / "ghidra_functions.csv"
 STRING_XREFS = ROOT / "reverse" / "string_xrefs.tsv"
 _SOURCE_INDEX = None
@@ -117,25 +116,6 @@ def drift_quick_wins(mine):
                     "candidate_rva": row["candidate_rva"], "hint": row["hint"],
                     "command": f"python3 tools/build.py {rel}"})
     out.sort(key=lambda c: (-c["aligned_pct"], c["function"]))
-    return out
-
-
-def read_attempts():
-    """reverse/re_attempts.log (TSV: function, outcome, note — tools/log_attempt.py).
-    Returns {function: {"n": count, "dead": bool, "last": note}}."""
-    out = {}
-    if not ATTEMPTS.exists():
-        return out
-    for line in ATTEMPTS.read_text(encoding="utf-8").splitlines():
-        parts = line.split("\t")
-        if len(parts) < 2:
-            continue
-        entry = out.setdefault(parts[0], {"n": 0, "dead": False, "last": ""})
-        entry["n"] += 1
-        if parts[1] == "dead":
-            entry["dead"] = True
-        if len(parts) > 2:
-            entry["last"] = parts[2]
     return out
 
 
@@ -226,7 +206,7 @@ def snap_rva(rva):
     return rva, None
 
 
-def structural_candidates(mine, claimed, claimed_names, attempts, big=False):
+def structural_candidates(mine, claimed, claimed_names, big=False):
     """The manual-RE tier: drifted functions whose source exists but whose code
     shape differs (class structural / register-swap). Workflow: docs/structural.md."""
     _, rows = read_csv(DRIFT, "python3 tools/drift_classify.py")
@@ -243,7 +223,6 @@ def structural_candidates(mine, claimed, claimed_names, attempts, big=False):
         crva, snap_note = snap_rva(rva)
         if rva in claimed or crva in claimed or name in claimed_names or not mine(name):
             continue
-        att = attempts.get(name, {"n": 0, "dead": False, "last": ""})
         # A logged attempt SORTS a candidate down; it must never remove it. Hiding
         # work behind a log is the same escape hatch as whitelisting an unverified
         # source — 697 still-unmatched functions had been erased from this queue
@@ -260,17 +239,16 @@ def structural_candidates(mine, claimed, claimed_names, attempts, big=False):
         out.append({"function": name, "source": source, "class": row["class"],
                     "aligned_pct": int(row["aligned_pct"]), "size": int(row["size"]),
                     "candidate_rva": crva_hex, "hint": hint,
-                    "attempts": att["n"], "last_attempt": att["last"],
                     "command": (f"python3 tools/explain_mismatch.py '{name}' "
                                 f"--rva {crva_hex} --size {row['size']} "
                                 f"--source {source}")})
     if big:
         # byte-yield mode: biggest functions first (still gated by alignment)
-        out.sort(key=lambda c: (c["attempts"], -c["size"],
+        out.sort(key=lambda c: (-c["size"],
                                 -c["aligned_pct"], c["function"]))
     else:
         # highest alignment first (closest to matching), small before big at equal alignment
-        out.sort(key=lambda c: (c["attempts"], -c["aligned_pct"],
+        out.sort(key=lambda c: (-c["aligned_pct"],
                                 c["size"], c["function"]))
     return out
 
@@ -349,7 +327,7 @@ def read_string_xrefs():
     return out
 
 
-def ghidra_absent_candidates(mine, claimed, claimed_names, attempts):
+def ghidra_absent_candidates(mine, claimed, claimed_names):
     """Map ZH functions classified `absent` to BFME functions through rare
     string literals found inside the marked source body. Ghidra already gives
     each literal's referencing function RVA, exact boundary, and size."""
@@ -369,7 +347,6 @@ def ghidra_absent_candidates(mine, claimed, claimed_names, attempts):
     for name, row in last.items():
         if name in claimed_names or not mine(name):
             continue
-        att = attempts.get(name, {"n": 0, "dead": False, "last": ""})
         # A logged attempt SORTS a candidate down; it must never remove it. Hiding
         # work behind a log is the same escape hatch as whitelisting an unverified
         # source — 697 still-unmatched functions had been erased from this queue
@@ -419,12 +396,11 @@ def ghidra_absent_candidates(mine, claimed, claimed_names, attempts):
             "target_rva": f"0x{rva:08X}", "target_size": target_size,
             "ghidra_name": functions[rva]["name"], "confidence": confidence,
             "anchors": sorted(anchors), "anchor_score": round(anchor_score, 3),
-            "alternates": len(viable) - 1, "attempts": att["n"],
-            "last_attempt": att["last"],
+            "alternates": len(viable) - 1,
             "command": (f"python3 tools/explain_mismatch.py '{name}' --rva 0x{rva:08X} "
                         f"--size {target_size} --source {source}"),
         })
-    out.sort(key=lambda c: (c["attempts"], c["confidence"] != "high",
+    out.sort(key=lambda c: (c["confidence"] != "high",
                             -len(c["anchors"]), -c["anchor_score"], c["target_size"],
                             abs(c["target_size"] - c["source_size"]), c["function"]))
     return out, (f"{len(functions)} Ghidra functions + {len(xrefs)} string literals loaded")
@@ -499,12 +475,11 @@ def main():
             if row["target_rva"]:
                 claimed.add(int(row["target_rva"], 16))
                 claimed_names.add(row["name"])
-    attempts = read_attempts()
-    structural = (structural_candidates(mine, claimed, claimed_names, attempts, big=args.big)
+    structural = (structural_candidates(mine, claimed, claimed_names, big=args.big)
                   if args.tier not in ("harvest", "ghidra") else [])
     if args.tier not in ("harvest", "structural"):
         ghidra_absent, ghidra_meta = ghidra_absent_candidates(
-            mine, claimed, claimed_names, attempts)
+            mine, claimed, claimed_names)
     else:
         ghidra_absent, ghidra_meta = [], "Ghidra tier not requested"
 
@@ -537,13 +512,9 @@ def main():
         print(f"\n== 2. structural reconciliation — manual RE ({len(structural)}; "
               f"workflow: docs/structural.md) ==")
         for c in shown:
-            tried = f"  [tried {c['attempts']}x: {c['last_attempt']}]" if c["attempts"] else ""
-            print(f"  {c['aligned_pct']:>3}% {c['size']:>5}B {c['function']}{tried}")
+            print(f"  {c['aligned_pct']:>3}% {c['size']:>5}B {c['function']}")
             print(f"       {c['source']} @ {c['candidate_rva']}  hint: {c['hint']}")
             print(f"       start: {c['command']}")
-        if structural:
-            print("       log every attempt: python3 tools/log_attempt.py '<symbol>' "
-                  "<landed|no-match|dead|blocked> 'what you tried'")
 
     if args.tier in (None, "ghidra"):
         shown = ghidra_absent[:args.limit if args.tier != "ghidra" else args.limit * 3]
@@ -551,9 +522,8 @@ def main():
               f"workflow: docs/structural.md) ==")
         print(f"  {ghidra_meta}")
         for c in shown:
-            tried = f"  [tried {c['attempts']}x: {c['last_attempt']}]" if c["attempts"] else ""
             anchors = ", ".join(repr(value) for value in c["anchors"][:3])
-            print(f"  {c['confidence']:<6} {c['target_size']:>5}B {c['function']}{tried}")
+            print(f"  {c['confidence']:<6} {c['target_size']:>5}B {c['function']}")
             print(f"       {c['source']} -> {c['target_rva']} {c['ghidra_name']} "
                   f"({len(c['anchors'])} anchor(s): {anchors}; "
                   f"{c['alternates']} alternate(s))")
