@@ -565,3 +565,16 @@ Int bfme_force_ini_scan_int_emission(const char *token) { return INI::scanInt(to
 		return FALSE;
 	throw INIException(3, "invalid boolean token %s -- expected Yes or No", token);
 }
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+void INI::parseAsciiStringVectorAppend( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
+{
+	std::vector<AsciiString>* asv = (std::vector<AsciiString>*)store;
+	// nope, don't clear. duh.
+	// asv->clear();
+	for (const char *token = ini->getNextTokenOrNull(); token != NULL; token = ini->getNextTokenOrNull())
+	{
+		asv->push_back(token);
+	}
+}

@@ -12073,7 +12073,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseArmorTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0003EF6D,5,Code/masm_dumps/parseArmorTemplate_INI_SAXPAV1_PAX1PBX_Z_3EF6D.asm,matched,Retail ArmorTemplateSet table xref; public thunk to None-aware armor-store lookup body
 ?parseArmorTemplateSet@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x00146020,218,Code/masm_dumps/_rn5__parseArmorTemplateSet_ThingTemplate__KAXPAVINI__PAX1PBX_Z_146020.asm,matched,reloc-needle Open-BFME4+Grok
 ?parseAsciiString@INI@@SAXPAV1@PAX1PBX@Z,,0x00851EE0,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseAsciiStringVectorAppend@INI@@SAXPAV1@PAX1PBX@Z,,0x008541E0,200,Code/masm_dumps/parseAsciiStringVectorAppend_INI_SAXPAV1_PAX1PBX_Z_8541E0.asm,matched,Retail StandardPublicBone table xref identifies Ghidra FUN_00c541e0 append-only vector parser
 ?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x00009E94,5,Code/masm_dumps/parseAudioEventRTS_INI_SAXPAV1_PAX1PBX_Z_9E94.asm,matched,Multiple retail audio-field xrefs and canonical NoSound event lookup body identify parser
 ?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EACB0,51,Code/GameEngine/Source/GameLogic/Object/WeaponTemplateSet_parseAutoChoose.asm,matched,Corrected one-byte-early queue RVA using INT3 and RET boundaries
 ?parseBenchProfile@INI@@SAXPAV1@@Z,,0x0007C7F0,131,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME retail GameLOD layout
@@ -13625,3 +13624,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parseRGBColor@INI@@SAXPAV1@PAX1PBX@Z,,0x00852F50,241,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,true size is 241B not 238B; scanInt inlined here
 ?parseColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x008531E0,409,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
 ?parseRGBAColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00853050,399,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
+?parseAsciiStringVectorAppend@INI@@SAXPAV1@PAX1PBX@Z,,0x008541E0,200,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,the legend InitFile/InitPath/Extension parser

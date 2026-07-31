@@ -572,19 +572,8 @@ void INI::parseQuotedAsciiString( INI* ini, void * /*instance*/, void *store, co
 // INI::parseAsciiStringVector lives in ini_parsers.cpp (retail's other INI TU)
 
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-// ?parseAsciiStringVectorAppend@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
-void INI::parseAsciiStringVectorAppend( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
-{
-	std::vector<AsciiString>* asv = (std::vector<AsciiString>*)store;
-	// nope, don't clear. duh.
-	// asv->clear();
-	for (const char *token = ini->getNextTokenOrNull(); token != NULL; token = ini->getNextTokenOrNull())
-	{
-		asv->push_back(token);
-	}
-}
+// INI::parseAsciiStringVectorAppend lives in ini_parsers.cpp (retail's other INI TU)
+
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
