@@ -13,8 +13,8 @@ is given. `Offset` is the field's byte offset into the block's own struct, so
 these tables double as the class layouts.
 
 - **96** registered block keywords
-- **79** with a decodable field table
-- **1655** field entries
+- **80** with a decodable field table
+- **1668** field entries
 
 ## Blocks
 
@@ -898,6 +898,16 @@ Field table `0x010F2118` — 18 fields
 | `RadiusAsPercentOfObjectSize` | `0x0C4` | `PercentToReal` |
 | `IncreaseTime` | `0x0C8` | `DurationUnsignedInt` |
 | `DecreaseTime` | `0x0CC` | `DurationUnsignedInt` |
+
+</details>
+
+<details><summary><code>CameraShakerVolume</code> sub-block — 3 fields</summary>
+
+| Field | Offset | Type |
+|---|---|---|
+| `Radius` | `0x0C0` | `Real` |
+| `Duration_Seconds` | `0x0C4` | `Real` |
+| `Amplitude_Degrees` | `0x0C8` | `Real` |
 
 </details>
 
@@ -2550,7 +2560,7 @@ Field table `0x01114BB0` — 3 fields
 
 ### `Science`
 
-Parsed by `0x000E8630`
+Parsed by `0x000E8630` — `?friend_parseScienceDefinition@ScienceStore@@SAXPAVINI@@@Z`
 
 Field table `0x01084D40` — 6 fields
 
@@ -2639,7 +2649,23 @@ Field table `0x010F1638` — 5 fields
 
 Parsed by `0x000EBE90` — `?parseSpecialPowerDefinition@SpecialPowerStore@@`
 
-_No field table: this block parses its body directly._
+Field table `0x012A8FA0` — 13 fields
+
+| Field | Offset | Type |
+|---|---|---|
+| `ReloadTime` | `0x018` | `DurationUnsignedInt` |
+| `RequiredScience` | `0x01C` | `Science` |
+| `LightPointCost` | `0x020` | `Int` |
+| `InitiateSound` | `0x024` | `0x000BBB60` |
+| `InitiateAtLocationSound` | `0x094` | `0x000BBB60` |
+| `PublicTimer` | `0x114` | `Bool` |
+| `Enum` | `0x014` | `IndexList` |
+| `DetectionTime` | `0x104` | `DurationUnsignedInt` |
+| `SharedSyncedTimer` | `0x115` | `Bool` |
+| `ViewObjectDuration` | `0x108` | `DurationUnsignedInt` |
+| `ViewObjectRange` | `0x10C` | `Real` |
+| `RadiusCursorRadius` | `0x110` | `Real` |
+| `PalantirMovie` | `0x118` | `AsciiString` |
 
 ### `StaticGameLOD`
 

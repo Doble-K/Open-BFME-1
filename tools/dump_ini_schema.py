@@ -37,6 +37,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build as B
+import capstone
+
+_MD = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+_BRANCH = {"jmp", "je", "jne", "jg", "jge", "jl", "jle", "ja", "jae", "jb",
+           "jbe", "js", "jns", "jo", "jno", "jp", "jnp", "jecxz", "loop"}
 
 BLOCK_LIST_HEAD = 0x0130CE50    # INI::findBlockParse walks the list rooted here
 IMAGE_BASE = 0x00400000
@@ -79,20 +84,30 @@ class Image:
         return rva
 
     def body_size(self, rva, limit=8192):
-        """Length of the int3-padded body at rva, or None if unbounded."""
+        """Length of the function at rva, by disassembly rather than int3 scanning.
+
+        Scanning for the first 0xCC is wrong: 0xCC occurs inside instructions
+        (immediates, displacements, ModRM bytes), and truncating there silently
+        under-reports. INI::parseAudioEventRTS at 0x000BBB60 measures 47 bytes
+        that way and is really 181 -- and a short body means the tail's field
+        tables are never seen. So walk instructions instead, tracking the
+        furthest branch target, and stop at the first ret/tail-jmp that no
+        branch reaches past.
+        """
         o = rva - self.tbase
         if not (0 <= o < len(self.text)):
             return None
-        d = self.text[o:o + limit]
-        i = 0
-        while i < len(d):
-            if d[i] == 0xCC:
-                j = i
-                while j < len(d) and d[j] == 0xCC:
-                    j += 1
-                if (rva + j) % 16 == 0:
-                    return i
-            i += 1
+        furthest = rva
+        for ins in _MD.disasm(self.text[o:o + limit], rva):
+            if ins.op_str.startswith("0x") and ins.mnemonic in _BRANCH:
+                furthest = max(furthest, int(ins.op_str, 16))
+            end = ins.address + ins.size
+            if ins.mnemonic in ("ret", "retf") and ins.address >= furthest:
+                return end - rva
+            if ins.mnemonic == "jmp" and ins.address >= furthest:
+                return end - rva          # tail call
+            if ins.mnemonic == "int3" and ins.address >= furthest:
+                return ins.address - rva  # ran into padding
         return None
 
 
