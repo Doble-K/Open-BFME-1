@@ -11508,7 +11508,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@FlashTransition@@UAEXPAVGameWindow@@@Z,,0x0059C310,68,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?init@FlatTerrainShaderPixelShader@@UAEHXZ,,0x007C7DC0,212,Code/masm_dumps/_sa11__init_FlatTerrainShaderPixelShader__UAEHXZ_7C7DC0.asm,matched,string-anchor Open-BFME4+Grok shaders\fterrainnoise2.pso
 ?init@FullFadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059D420,95,Code/masm_dumps/_sa__init_FullFadeTransition_UAEXPAVGameWindow_Z_59D420.asm,matched,
-?init@GameEngine@@,,0x00079060,6689,Code/masm_dumps/_str2__init_GameEngine__79060.asm,matched,
 ?init@GameLODManager@@QAEXXZ,,0x0007EF1B,967,Code/GameEngine/Source/Common/GameLOD_init.asm,matched,exact 967B via MASM
 ?init@GameLogic@@UAEXXZ,,0x0038A1F0,1014,Code/masm_dumps/_sa11__init_GameLogic__UAEXXZ_38A1F0.asm,matched,string-anchor Open-BFME4+Grok ThePartitionManager
 ?init@GameSpyLoadScreen@@,,0x00493120,2717,Code/masm_dumps/_str2__init_GameSpyLoadScreen__493120.asm,matched,
@@ -13625,3 +13624,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parseRGBAColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00853050,399,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
 ?parseAsciiStringVectorAppend@INI@@SAXPAV1@PAX1PBX@Z,,0x008541E0,200,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,the legend InitFile/InitPath/Extension parser
 ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z,,0x00850E70,472,Code/masm_dumps/__parseBitString32_INI__SAXPAV1_PAX1PBX_Z_850E70.asm,matched,true size is 472B; the previous row claimed only 297B of it
+?init@GameEngine@@,,0x00079060,7123,Code/masm_dumps/_str2__init_GameEngine__79060.asm,matched,true size 7123B; previous row claimed only 6689B (no padding before ~GameEngine)
