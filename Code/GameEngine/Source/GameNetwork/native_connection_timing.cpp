@@ -29,6 +29,11 @@ public:
 	void *construct();
 	void init();
 	void computePlayerFrameRatios();
+	Bool isPlayerInGame(int slot);
+	Bool isPlayerSlotActive(int slot);
+	void markPlayerInGame(void *msg);
+	void relayCommand(void *ref);
+	void sendFrameDataToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame);
 };
 
 class BFMEDisconnectManager
@@ -2245,5 +2250,426 @@ L00_664843:
 		pop edi
 		pop esi
 		ret 8h
+	}
+}
+
+// A slot is in the game when its per-player state at this+0x12080 is exactly 1
+// and either it is our own slot or its Connection at this+0x04 is open (the
+// dword at Connection+0 is the -1 sentinel).
+__declspec(naked) Bool BFMEConnectionManager::isPlayerInGame(int slot)
+{
+	__asm {
+		mov eax, dword ptr [esp+4h]
+		cmp eax, 8h
+		jae L00_662C10
+		cmp dword ptr [ecx+eax*4+12080h], 1h
+		jne L00_662C10
+		cmp eax, dword ptr [ecx+12028h]
+		je L01_662C08
+		mov eax, dword ptr [ecx+eax*4+4h]
+		test eax, eax
+		je L00_662C10
+		cmp dword ptr [eax], 0FFFFFFFFh
+		jne L00_662C10
+L01_662C08:
+		mov eax, 1h
+		ret 4h
+L00_662C10:
+		xor eax, eax
+		ret 4h
+	}
+}
+
+// Same test as isPlayerInGame but accepting states 1 through 3, so a player who
+// is on the way out still counts. Together the two bound the state values:
+// 0 is an empty slot, 1 is in the game, 2 and 3 are leaving.
+__declspec(naked) Bool BFMEConnectionManager::isPlayerSlotActive(int slot)
+{
+	__asm {
+		mov eax, dword ptr [esp+4h]
+		cmp eax, 8h
+		jae L00_662C67
+		mov edx, dword ptr [ecx+eax*4+12080h]
+		cmp edx, 1h
+		jl L00_662C67
+		cmp edx, 3h
+		jg L00_662C67
+		cmp eax, dword ptr [ecx+12028h]
+		je L01_662C5F
+		mov eax, dword ptr [ecx+eax*4+4h]
+		test eax, eax
+		je L00_662C67
+		cmp dword ptr [eax], 0FFFFFFFFh
+		jne L00_662C67
+L01_662C5F:
+		mov eax, 1h
+		ret 4h
+L00_662C67:
+		xor eax, eax
+		ret 4h
+	}
+}
+
+// Moves a slot from empty to in-game: reads the message's player id (retail
+// re-reads it through the accessor all three times rather than keeping it in a
+// register) and, if the state at this+0x12080 is still 0, sets it to 1.
+__declspec(naked) void BFMEConnectionManager::markPlayerInGame(void *msg)
+{
+	__asm {
+		push esi
+		push edi
+		mov edi, dword ptr [esp+0Ch]
+		mov esi, ecx
+		mov ecx, edi
+		__emit 0E8h
+		__emit 08Fh
+		__emit 016h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2442E
+		cmp eax, 8h
+		jae L00_662DC8
+		mov ecx, edi
+		__emit 0E8h
+		__emit 083h
+		__emit 016h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2442E
+		mov ecx, dword ptr [esi+eax*4+12080h]
+		test ecx, ecx
+		jne L00_662DC8
+		mov ecx, edi
+		__emit 0E8h
+		__emit 071h
+		__emit 016h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2442E
+		mov dword ptr [esi+eax*4+12080h], 1h
+L00_662DC8:
+		pop edi
+		pop esi
+		ret 4h
+	}
+}
+
+// Relays one queued command. Reads the message straight off the reference's
+// first dword -- BFME de-pooled NetCommandRef, so m_msg is at +0 where ZH has a
+// vptr -- stamps TheGameLogic's frame into the message when its execution frame
+// is still -1, drops it when that frame plus NetworkKeepAliveDelay has already
+// passed, and then tests the reference's relay byte at +0x0C against our own
+// slot bit. Together with NetCommandList::reset this pins the 20-byte
+// NetCommandRef: m_msg +0, m_next +4, m_prev +8, m_relay +0x0C.
+__declspec(naked) void BFMEConnectionManager::relayCommand(void *ref)
+{
+	__asm {
+		mov eax, dword ptr [esp+4h]
+		push ebx
+		push edi
+		mov edi, dword ptr [eax]
+		test edi, edi
+		mov ebx, ecx
+		je L00_6631E8
+		cmp dword ptr [edi+8h], 0FFFFFFFFh
+		jne L01_663124
+		__emit 08Bh
+		__emit 00Dh
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f0898]
+		mov edx, dword ptr [ecx+3Ch]
+		mov dword ptr [edi+8h], edx
+L01_663124:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0C8h
+		__emit 0D5h
+		__emit 02Eh
+		__emit 001h   // mov ecx, dword ptr [0x12ed5c8]
+		mov edx, dword ptr [ecx+0CB4h]
+		__emit 08Bh
+		__emit 00Dh
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f0898]
+		push ebp
+		mov ebp, dword ptr [edi+8h]
+		push esi
+		mov esi, dword ptr [ecx+3Ch]
+		add edx, ebp
+		cmp edx, esi
+		jb L02_6631E6
+		mov ecx, dword ptr [ebx+12028h]
+		movzx eax, byte ptr [eax+0Ch]
+		mov edx, 1h
+		shl edx, cl
+		mov dword ptr [esp+14h], eax
+		__emit 085h
+		__emit 0D0h   // test eax, edx
+		je L02_6631E6
+		mov eax, dword ptr [edi+0Ch]
+		mov ecx, dword ptr [ebx+eax*4+120E4h]
+		test ecx, ecx
+		je L02_6631E6
+		mov eax, dword ptr [edi+14h]
+		push eax
+		__emit 0E8h
+		__emit 03Dh
+		__emit 0EEh
+		__emit 099h
+		__emit 0FFh   // call 0x1FB9
+		add esp, 4h
+		test al, al
+		je L02_6631E6
+		mov ecx, dword ptr [edi+0Ch]
+		cmp ecx, dword ptr [ebx+12028h]
+		jne L03_66319B
+		cmp dword ptr [edi+14h], 0Ah
+		je L03_66319B
+		mov edx, dword ptr [edi]
+		mov ecx, edi
+		call dword ptr [edx+8h]
+L03_66319B:
+		mov eax, dword ptr [edi+0Ch]
+		mov ecx, dword ptr [ebx+eax*4+120E4h]
+		push edi
+		__emit 0E8h
+		__emit 0B2h
+		__emit 0C9h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2FB5D
+		test eax, eax
+		je L02_6631E6
+		xor esi, esi
+		lea ebp,  [ebx+4h]
+L05_6631B4:
+		mov ecx, esi
+		mov eax, 1h
+		shl eax, cl
+		mov ecx, dword ptr [esp+14h]
+		__emit 085h
+		__emit 0C1h   // test ecx, eax
+		je L04_6631DD
+		mov eax, dword ptr [ebp]
+		test eax, eax
+		je L04_6631DD
+		xor edx, edx
+		mov dl, 1h
+		mov ecx, esi
+		shl dl, cl
+		mov ecx, eax
+		push edx
+		push edi
+		__emit 0E8h
+		__emit 05Fh
+		__emit 03Bh
+		__emit 09Ch
+		__emit 0FFh   // call 0x26D3C
+L04_6631DD:
+		inc esi
+		add ebp, 4h
+		cmp esi, 8h
+		jl L05_6631B4
+L02_6631E6:
+		pop esi
+		pop ebp
+L00_6631E8:
+		pop edi
+		pop ebx
+		ret 4h
+	}
+}
+
+// The frame-data resender, and the far end of the REQUESTFRAMEDATA round trip:
+// the matched processRequestFrameDataCommand (0x006659B0) reaches it through the
+// ILT thunk at 0x0000D8CD after clamping the requested window. It walks the
+// eight FrameDataManagers at this+0x120E4 over the requested frame range,
+// re-sends each stored command to the requesting slot alone, and issues a
+// FRAMEINFO carrying getFrameCommandCount so the receiver knows how many to
+// expect.
+__declspec(naked) void BFMEConnectionManager::sendFrameDataToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104414Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		mov eax, dword ptr [eax+3Ch]
+		push ebp
+		push esi
+		push edi
+		dec eax
+		mov edi, ecx
+		mov ecx, dword ptr [esp+28h]
+		mov dword ptr [esp+0Ch], eax
+		cmp eax, ecx
+		lea eax,  [esp+0Ch]
+		jb L00_664B78
+		lea eax,  [esp+28h]
+L00_664B78:
+		mov edx, dword ptr [eax]
+		__emit 08Bh
+		__emit 00Dh
+		__emit 08Ch
+		__emit 0A0h
+		__emit 02Bh
+		__emit 001h   // mov ecx, dword ptr [0x12ba08c]
+		mov eax, dword ptr [esp+24h]
+		__emit 08Dh
+		__emit 034h
+		__emit 001h   // lea esi, [ecx + eax]
+		cmp esi, edx
+		mov dword ptr [esp+0Ch], edx
+		jae L01_664B9B
+		cmp edx, ecx
+		jbe L02_664B99
+		mov eax, edx
+		sub eax, ecx
+		jmp L01_664B9B
+L02_664B99:
+		xor eax, eax
+L01_664B9B:
+		cmp eax, edx
+		mov ebp, eax
+		ja L03_664CAC
+		mov ecx, dword ptr [esp+20h]
+		mov dl, 1h
+		shl dl, cl
+		push ebx
+		mov byte ptr [esp+2Ch], dl
+		mov ebx, dword ptr [esp+2Ch]
+L10_664BB6:
+		lea eax,  [edi+120E4h]
+		mov dword ptr [esp+2Ch], eax
+		mov dword ptr [esp+28h], 8h
+L06_664BC8:
+		mov ecx, dword ptr [eax]
+		test ecx, ecx
+		je L04_664BF2
+		push ebp
+		__emit 0E8h
+		__emit 0FDh
+		__emit 0EEh
+		__emit 09Dh
+		__emit 0FFh   // call 0x43AD1
+		test eax, eax
+		je L04_664BF2
+		mov esi, dword ptr [eax+4h]
+		test esi, esi
+		je L04_664BF2
+		nop
+L05_664BE0:
+		mov eax, dword ptr [esi]
+		push ebx
+		push eax
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0ECh
+		__emit 0C5h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		mov esi, dword ptr [esi+4h]
+		test esi, esi
+		jne L05_664BE0
+L04_664BF2:
+		mov eax, dword ptr [esp+2Ch]
+		mov ecx, dword ptr [esp+28h]
+		add eax, 4h
+		dec ecx
+		mov dword ptr [esp+2Ch], eax
+		mov dword ptr [esp+28h], ecx
+		jne L06_664BC8
+		push 28h
+		__emit 0E8h
+		__emit 021h
+		__emit 0D3h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		mov esi, eax
+		add esp, 4h
+		mov dword ptr [esp+2Ch], esi
+		test esi, esi
+		mov dword ptr [esp+1Ch], 0h
+		je L07_664C49
+		mov ecx, esi
+		__emit 0E8h
+		__emit 089h
+		__emit 0E6h
+		__emit 09Ah
+		__emit 0FFh   // call 0x132B4
+		xor eax, eax
+		mov dword ptr [esi], 111A220h
+		mov dword ptr [esi+1Ch], eax
+		mov dword ptr [esi+20h], eax
+		mov dword ptr [esi+24h], 0FFFFFFFFh
+		mov dword ptr [esi+14h], 3h
+		jmp L08_664C4B
+L07_664C49:
+		xor esi, esi
+L08_664C4B:
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov dword ptr [esp+20h], 0FFFFFFFFh
+		mov dword ptr [esi+1Ch], ebp
+		__emit 0E8h
+		__emit 013h
+		__emit 00Fh
+		__emit 09Bh
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L09_664C6F
+		__emit 0E8h
+		__emit 0EDh
+		__emit 0B8h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L09_664C6F:
+		mov eax, dword ptr [edi+12028h]
+		mov dword ptr [esi+0Ch], eax
+		mov ecx, dword ptr [edi+12028h]
+		mov ecx, dword ptr [edi+ecx*4+120E4h]
+		push ebp
+		__emit 0E8h
+		__emit 018h
+		__emit 08Bh
+		__emit 09Dh
+		__emit 0FFh   // call 0x3D7A3
+		push ebx
+		push esi
+		mov ecx, edi
+		mov dword ptr [esi+24h], eax
+		__emit 0E8h
+		__emit 040h
+		__emit 0C5h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		mov ecx, esi
+		__emit 0E8h
+		__emit 006h
+		__emit 0B4h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov eax, dword ptr [esp+10h]
+		inc ebp
+		cmp ebp, eax
+		jbe L10_664BB6
+		pop ebx
+L03_664CAC:
+		mov ecx, dword ptr [esp+10h]
+		pop edi
+		pop esi
+		pop ebp
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret 0Ch
 	}
 }

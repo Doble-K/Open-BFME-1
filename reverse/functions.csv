@@ -13662,3 +13662,8 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?getMode@RecorderClass@@QAE?AW4RecorderModeType@@XZ,,0x000977F0,4,Code/GameEngine/Source/Common/Recorder.cpp,matched,exact
 ?sendLocalCommandDirect@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x00663300,172,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendLocalCommand@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x00664740,277,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?isPlayerInGame@BFMEConnectionManager@@QAE_NH@Z,,0x00662BE0,53,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?isPlayerSlotActive@BFMEConnectionManager@@QAE_NH@Z,,0x00662C30,60,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?markPlayerInGame@BFMEConnectionManager@@QAEXPAX@Z,,0x00662D90,61,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?relayCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00663100,237,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendFrameDataToPlayer@BFMEConnectionManager@@QAEXHII@Z,,0x00664B40,384,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
