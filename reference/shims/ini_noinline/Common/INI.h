@@ -189,6 +189,30 @@ typedef void (*BuildMultiIniFieldProc)(MultiIniFieldParse& p);
 //-------------------------------------------------------------------------------------------------
 /** INI Reader interface */
 //-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+// One line of an INI file, as BFME's loader stores them: the text and the line
+// number it came from. Eight bytes, which is the stride readLine divides by.
+struct INILine
+{
+	const char *m_text;
+	Int m_number;
+};
+
+// The array INI::load fills and readLine walks. Both accessors are bounds-checked
+// and return 0 past the end.
+class INILineBuffer
+{
+public:
+	const char *getText( Int index ) const;		// 0x009CBC60
+	Int getNumber( Int index ) const;			// 0x009CBC90
+
+private:
+	void *m_unknown0;			// +0x00
+	void *m_unknown4;			// +0x04
+	INILine *m_begin;			// +0x08
+	INILine *m_end;				// +0x0c
+};
+
 class INI
 {
   INI(const INI&);
@@ -481,12 +505,27 @@ protected:
 	const char *m_sepsColon;									///< m_seps with colon delimiter as well
 	const char *m_sepsQuote;									///< token to represent a quoted ascii string
 	const char *m_blockEndToken;							///< token to represent end of data block
+	// The "ENDSCRIPT" terminator, BFME-only. It was documented in the layout note
+	// above but never declared, which left everything after it four bytes low --
+	// m_endOfFile in particular, which readLine sets and retail reads at +0x42c.
+	const char *m_endScriptToken;							///< second block terminator, "ENDSCRIPT"
 	Bool m_endOfFile;													///< TRUE when we've hit EOF
 	// NOT #if _DEBUG here, unlike ZH: retail's release build carries this. Its
 	// address is taken at +0x42d by initFromINIMulti (lea eax,[edi+0x42d]) and
 	// the 4-arg INI::load copies the block keyword into it before invoking the
 	// per-block callback, then resets it to "NO_BLOCK".
 	char m_curBlockStart[ INI_MAX_CHARS_PER_LINE ];	///< first line of cur block
+
+	// +0x834. BFME does not stream the file a line at a time the way Zero Hour
+	// does; INI::load reads it in and splits it here, and readLine just copies the
+	// next entry into m_buffer. Elements are eight bytes -- a pointer to the line
+	// text and the line's own number -- with begin at +8 and end at +0xc of the
+	// object, so the two accessors bounds-check with (end - begin) >> 3.
+	//
+	// The class and accessor names are ours; nothing in the binary names them.
+	// What is proven is the layout, the element size, and that both accessors are
+	// out-of-line calls that return 0 when the index is past the end.
+	INILineBuffer m_lines;
 
   enum
   {
