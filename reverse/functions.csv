@@ -4969,7 +4969,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Add@?$DynamicVectorClass@PAVTextureClass@@@@QAE_NABQAVTextureClass@@@Z,,0x00973CC0,78,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
 ?Add@?$DynamicVectorClass@PAVVertexMaterialClass@@@@QAE_NABQAVVertexMaterialClass@@@Z,,0x0096E110,78,Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp,matched,
 ?Add@?$DynamicVectorClass@PAX@@QAE_NABQAX@Z,,0x00906150,78,Code/Libraries/Source/WWVegas/WWLib/msgloop.cpp,matched,
-?Add@?$DynamicVectorClass@UPtrPairStruct@PointerRemapClass@@@@QAE_NABUPtrPairStruct@PointerRemapClass@@@Z,,0x00002A36,5,Code/masm_dumps/_thunk_f945c502413c_2A36.asm,matched,thunk accessor of ported class
 ?Add@?$DynamicVectorClass@UPtrRemapStruct@PointerRemapClass@@@@QAE_NABUPtrRemapStruct@PointerRemapClass@@@Z,,0x00906150,78,Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp,matched,
 ?Add@?$DynamicVectorClass@UWeightInfoStruct@NamedPivotMapClass@@@@QAE_NABUWeightInfoStruct@NamedPivotMapClass@@@Z,,0x00973A90,112,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Add@?$DynamicVectorClass@VModelNodeClass@HLodClass@@@@QAE_NABVModelNodeClass@HLodClass@@@Z,,0x0097B080,107,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,template COMDAT
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?_M_push_back_aux_v@?$deque@PAVSightingInfo@@V?$allocator@PAVSightingInfo@@@_STL@@@_STL@@IAEXABQAVSightingInfo@@@Z,,0x00036C82,5,Code/Libraries/Source/WWVegas/WWLib/DequePushBackAuxVThunk.cpp,matched,object-symbol=?_M_push_back_aux_v@?$deque@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@IAEXABQAVMapObject@@@Z;ICF alias converted to focused C++ thunk TU
 ?findMapping@DataChunkTableOfContents@@AAEPAVMapping@@ABVAsciiString@@@Z,,0x0001587A,5,Code/GameEngine/Source/Common/RTS/DataChunkTableOfContentsFindMappingThunk.cpp,matched,retail target bytes corrected from stale thunk dump; DataChunkTableOfContents private member converted to focused C++ source
 ?findUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@ABVAsciiString@@@Z,,0x0002F95A,5,Code/GameEngine/Source/Common/RTS/UpgradeCenterFindUpgradeThunk.cpp,matched,5-byte incremental-link UpgradeCenter const member thunk converted to focused C++ source
+?Add@?$DynamicVectorClass@UPtrPairStruct@PointerRemapClass@@@@QAE_NABUPtrPairStruct@PointerRemapClass@@@Z,,0x00002A36,5,Code/Libraries/Source/WWVegas/WWLib/DynamicVectorAddPtrPairThunk.cpp,matched,Focused C++ template thunk for DynamicVectorClass<PointerRemapClass::PtrPairStruct>::Add
