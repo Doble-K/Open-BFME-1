@@ -3900,7 +3900,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4ParticleSystemTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0001C639,0x5d0290,67,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??4PivotClass@@QAEAAU0@ABU0@@Z,,0x00972EF0,395,Code/masm_dumps/_rn4___4PivotClass__QAEAAU0_ABU0__Z_972EF0.asm,matched,reloc-needle Open-BFME4+Grok
 ??4PlaneClass@@QAEAAV0@ABV0@@Z,,0x00924380,31,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
-??4PlayerTemplate@@QAEAAV0@ABV0@@Z,,0x000050F6,5,Code/masm_dumps/__4PlayerTemplate__QAEAAV0_ABV0__Z_50F6.asm,matched,MASM exact retail dump
 ??4PointEmissionVolumeModuleTag@FXParticleSystem@@QAEAAU01@ABU01@@Z,0x0002E9CE,0x005D45E0,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty assignment returns this
 ??4PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x000277A0,0x5d5980,33,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??4PristineBoneInfo@@QAEAAU0@ABU0@@Z,,0x006C6350,85,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAE@ABV?$allocator@VAsciiString@@@1@@Z,,0x00008DCD,5,Code/Libraries/Source/WWVegas/WWLib/AsciiStringVectorConstructorThunk.cpp,matched,5-byte incremental-link STL vector constructor converted to focused C++ thunk TU
 ??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004A345,5,Code/GameEngine/Source/Common/RTS/StructureCollapseUpdateCtorThunk.cpp,matched,5-byte incremental-link StructureCollapseUpdate constructor thunk converted to focused C++ source
 ??4StringClass@@QAEABV0@ABV0@@Z,,0x00035FDF,5,Code/GameEngine/Source/Common/RTS/StringClassAssignmentThunk.cpp,matched,5-byte incremental-link StringClass assignment thunk converted to focused C++ source
+??4PlayerTemplate@@QAEAAV0@ABV0@@Z,,0x000050F6,5,Code/GameEngine/Source/Common/RTS/PlayerTemplateAssignmentThunk.cpp,matched,5-byte incremental-link PlayerTemplate assignment thunk converted to focused C++ source
