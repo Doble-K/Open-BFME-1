@@ -8773,6 +8773,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?atEndOfFile@DataChunkInput@@QAE_NXZ,,0x00102320,13,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?atan2@@YAMMM@Z,,0x001486F0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?atan@@YAMM@Z,,0x0045B6F0,9,Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp,matched,icf-owner=_atanf
+?attachPlayersFromGameInfo@BFMEConnectionManager@@QAEXPAX@Z,,0x00666610,597,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?attachToDrawable@ParticleSystem@@QAEXPBVDrawable@@@Z,,0x005BE130,40,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?attachTranslator@MessageStream@@QAEIPAVGameMessageTranslator@@I@Z,,0x0008A7B0,184,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?attemptDamage@Object@@QAEXPAVDamageInfo@@@Z,,0x001D0490,108,Code/masm_dumps/Object_attemptDamage_001D0490.asm,matched,Certified packet 114 exact db-only retail body SHA256 cb23f3ede890543aafd15c80d7bc495177f22aa5f690018a7b8253569d5e629a
@@ -8935,6 +8936,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?buildFieldParse@TransitionDamageFXModuleData@@SAXAAVMultiIniFieldParse@@@Z,,0x00124740,35,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?buildFieldParse@UpgradeDieModuleData@@SAXAAVMultiIniFieldParse@@@Z,,0x00123560,36,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?buildFieldParse@UpgradeModuleData@@SAXAAVMultiIniFieldParse@@@Z,,0x00122DC0,17,Code/GameEngine/Source/GameLogic/Object/Upgrade/ModelConditionUpgrade.cpp,matched,
+?buildPlayerStatusText@BFMEConnectionManager@@QAEXPAX@Z,,0x00666300,578,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?buildPolygonNormals@W3DShadowGeometryMesh@@QAEXXZ,,0x007BD320,209,Code/masm_dumps/W3DShadowGeometryMesh_buildPolygonNormals.asm,matched,Certified packet 257 retail SHA256 8fd89af23d5f32c09cc02e84cbcc82d2aa677cab918bdf9124838831ccbc7ddd
 ?buildRegion@@YAXPBUICoord2D@@0PAUIRegion2D@@@Z,,0x0008AA00,69,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?buildRegion@InGameUI@@UAEXPBUICoord2D@@0PAUIRegion2D@@@Z,,0x0043B7F0,73,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
@@ -11510,6 +11512,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?gogoGadgetTabControl@GameWindowManager@@UAEPAVGameWindow@@PAV2@IHHHHPAVWinInstanceData@@PAU_TabControlData@@PAVGameFont@@_N@Z,,0x0047D090,150,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoGadgetTabControl.asm,matched,exact 150B via MASM; true start 0x47D090 (queue 0x47D071 was post-winSetLoneWindow padding)
 ?gogoMessageBox@GameWindowManager@@,,0x0047EF70,1518,Code/masm_dumps/_str2__gogoMessageBox_GameWindowManager__47EF70.asm,matched,
 ?gogoMessageBox@GameWindowManager@@UAEPAVGameWindow@@HHHHGVUnicodeString@@0P6AXXZ111_N@Z,,0x0047EF70,1518,Code/masm_dumps/gogoMessageBox_GameWindowManager_UAE_47EF70.asm,matched,icf-owner=?gogoMessageBox@GameWindowManager@@; full mangling MASM alias of string-anchored land; queue had off-by-1 RVA+pad size
+?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
 ?gotMangledPort@NAT@@IAEXHG@Z,,0x00671EB0,179,Code/masm_dumps/_gotMangledPort_NAT__IAEXHG_Z_671EB0.asm,matched,MASM exact retail dump
 ?gotoNextMission@CampaignManager@@QAEPAVMission@@XZ,,0x005BC5A0,32,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
 ?grabHexInt@@YAHPBD@Z,,0x0050B030,54,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
@@ -12192,6 +12195,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseCommonStuff@@YAXPAVINI@@PBQBDAAW4VeterancyLevel@@2AAW4DamageType@@3@Z,,0x00065F80,125,Code/masm_dumps/__parseCommonStuff__YAXPAVINI__PBQBDAAW4VeterancyLe_65F80.asm,matched,
 ?parseConditionState@W3DModelDrawModuleData@@,,0x0077C860,748,Code/masm_dumps/_str3__parseConditionState_W3DModelDrawModuleData__77C860.asm,matched,
 ?parseConditionState@W3DModelDrawModuleData@@CAXPAVINI@@PAX1PBX@Z,,0x0077C860,748,Code/masm_dumps/_str3__parseConditionState_W3DModelDrawModuleData__77C860.asm,matched,object-symbol=?parseConditionState@W3DModelDrawModuleData@@;ICF alias of MASM body; structural queue RVA 0x852F4C is int3 pad before already-matched parseRGBColor@0x852F50
+?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z,,0x004AAD10,1,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,INI block table node binds keyword ControlBarResizer to this address
 ?parseCoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x008533E0,60,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseCoord3D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853380,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseCrateCreationEntry@CrateTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x00379F80,258,Code/masm_dumps/parseCrateCreationEntry_CrateTemplate_00379F80_packet305.asm,matched,Certified packet 305 sealed retail body
@@ -12210,6 +12214,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseDurationUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9C60,67,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9CC0,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseDynamicAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E2DA,5,Code/masm_dumps/parseDynamicAudioEventRTS_INI_SAXPAV1_PAX1PBX_Z_2E2DA.asm,matched,109 retail Voice-field xrefs and canonical dynamic audio lifecycle body identify parser
+?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007D470,191,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table binds keyword DynamicGameLOD here - was a MASM dump
 ?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C390,105,Code/masm_dumps/INI_parseDynamicGameLODLevel_7c390.asm,matched,MASM exact retail dump; DynamicGameLODNames count=5 VeryLow..VeryHigh; queue RVA 0x9A15D7 was mid-SEH-fn
 ?parseEvaMessageFromIni@Eva@@SAXPAVINI@@PAX1PBX@Z,,0x00004B65,5,Code/masm_dumps/parseEvaMessageFromIni_Eva_SAXPAVINI_PAX1PBX_Z_4B65.asm,matched,16 retail Eva-field xrefs and canonical token-map body 0x425B80 identify parser
 ?parseEventFXListName@LifeEventModuleTemplate@FXParticleSystem@@SAXPAVINI@@PAX1PBX@Z,0x00045804,0x5fc2f0,13,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -12219,7 +12224,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseFXList@BoneFXUpdateModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00033C2B,5,Code/masm_dumps/parseFXList_BoneFXUpdateModuleData_SAXPAVINI_PAX1PBX_Z_33C2B.asm,matched,32 retail bone-FX field xrefs and Ghidra FUN_00687BC0 identify BoneFX parser
 ?parseFXList@INI@@SAXPAV1@PAX1PBX@Z,,0x000B8E80,107,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseFXList@TransitionDamageFXModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x0000A5AB,5,Code/masm_dumps/parseFXList_TransitionDamageFXModuleData_SAXPAVINI_PAX1PBX_Z_A5AB.asm,matched,36 retail damage-FX field xrefs and Ghidra FUN_00651ED0 identify TransitionDamageFX parser
-?parseFXListDefinition@FXListStore@@SAXPAVINI@@@Z,,0x00067A60,77,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?parseFont@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485B60,293,Code/masm_dumps/_parseFont__YA_NPADPAVWinInstanceData__0PAX_Z.asm,matched,
 ?parseFontDesc@GlobalLanguage@@SAXPAVINI@@PAX1PBX@Z,,0x0000B41F,5,Code/masm_dumps/parseFontDesc_GlobalLanguage_SAXPAVINI_PAX1PBX_Z_B41F.asm,matched,22 retail font-field xrefs and Ghidra FUN_00839150 identify font descriptor parser
 ?parseFrictionPerSec@@YAXPAVINI@@PAX1PBX@Z,,0x000B9D20,37,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
@@ -12246,6 +12250,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseInt@@YAXPAVINI@@PAX1PBX@Z,,0x000B8160,55,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
 ?parseInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852A60,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,was a naked byte dump; now C++ with getNextToken inlined
 ?parseLODPreset@INI@@SAXPAV1@@Z,,0x0007D2D0,325,Code/masm_dumps/INI_parseLODPreset_7d2d0.asm,matched,MASM exact retail dump; true start 0x7D2D0 (queue 0x7D2FE was mid-body after SEH); size 325
+?parseLanguageDefinition@INI@@SAXPAV1@@Z,,0x00438F70,25,Code/GameEngine/Source/GameClient/GlobalLanguage.cpp,matched,block table binds keyword Language here - reads TheGlobalLanguageData 0x012F1484
 ?parseLayoutBlock@@YA_NPAVFile@@PADIPAVWindowLayoutInfo@@@Z,,0x00488600,526,Code/masm_dumps/GameWindowManagerScript_parseLayoutBlock.asm,matched,Exact 526B MASM; true size strips int3 (queue 606); STARTLAYOUTBLOCK string; File scanString +0x24 blocks ZH C++
 ?parseLinePart@ShellMenuSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x00581540,124,Code/masm_dumps/parseLinePart_ShellMenuSchemeManager_581540.asm,matched,Certified packet 146; LinePart parser-table callback via ILT thunk; SHA256 8861c93a0273b919427ad0c960277df77ac80f4c557894cb8fa23ac31c22b7a1
 ?parseListboxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484760,166,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
@@ -12258,6 +12263,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseMinorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066180,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMissionPart@CampaignManager@@SAXPAVINI@@PAX1PBX@Z,,0x005BCB20,161,Code/masm_dumps/CampaignManager_parseMissionPart_5BCB20.asm,matched,MASM exact; true body string-anchored Mission FieldParse@0x110F778; drift 0x9A15B3 was int3 before unrelated parse
 ?parseModuleName@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x001458A0,772,Code/masm_dumps/_sa__parseModuleName_ThingTemplate__KAXPAVINI__PAX1PBX_1458A0.asm,matched,Exact 772B string-anchored Open-BFME4
+?parseMouseCursorDefinition@INI@@SAXPAV1@@Z,,0x005A5FA0,185,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,INI block table node binds keyword MouseCursor to this address
 ?parseMouseDefinition@INI@@SAXPAV1@@Z,,0x005A4690,25,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,
 ?parseName@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004866F0,139,Code/masm_dumps/parseName_YA_NPADPAVWinInstanceData_0PAX_Z.asm,matched,
 ?parseNumImages@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BAE50,158,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_parse_walls.asm,matched,
@@ -12267,6 +12273,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseObjectCreationList@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C370,14,Code/GameEngine/Source/Common/GameLOD.cpp,matched,object-symbol=?getStaticGameLODLevelName@GameLODManager@@QAEPBDW4StaticGameLODLevel@@@Z;C++ alias
 ?parseObjectCreationList@TransitionDamageFXModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x000041FB,5,Code/masm_dumps/parseObjectCreationList_TransitionDamageFXModuleData_SAXPAVINI_PAX1PBX_Z_41FB.asm,matched,36 retail damage-OCL field xrefs and Ghidra FUN_00651F70 identify TransitionDamageFX parser
 ?parseObjectCreationListDefinition@ObjectCreationListStore@@SAXPAVINI@@@Z,,0x001DB050,124,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
+?parseOnlineChatColorDefinition@INI@@SAXPAV1@@Z,,0x006250A0,20,Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp,matched,INI block table node binds keyword OnlineChatColors to this address
 ?parseParticleSystem@BoneFXUpdateModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00016A04,5,Code/masm_dumps/parseParticleSystem_BoneFXUpdateModuleData_SAXPAVINI_PAX1PBX_Z_16A04.asm,matched,32 retail bone-particle field xrefs and Ghidra FUN_00687E40 identify BoneFX parser
 ?parseParticleSystem@TransitionDamageFXModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00020C43,5,Code/masm_dumps/parseParticleSystem_TransitionDamageFXModuleData_SAXPAVINI_PAX1PBX_Z_20C43.asm,matched,36 retail damage-particle field xrefs and Ghidra FUN_00652010 identify TransitionDamageFX parser
 ?parseParticleSystemTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAF00,163,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
@@ -12343,6 +12350,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseUpgradeTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BB040,119,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D20,37,Code/GameEngine/Source/Common/INI/ini.cpp,matched,ICF-folded with parseFrictionPerSec; row previously pointed at the 5B thunk
 ?parseVeterancyLevelFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D90,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
+?parseWaterSettingDefinition@INI@@SAXPAV1@@Z,,0x000C37E0,261,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,INI block table node binds keyword WaterSet to this address
+?parseWaterTransparencyDefinition@INI@@SAXPAV1@@Z,,0x000C3A00,287,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,INI block table node binds keyword WaterTransparency to this address
 ?parseWaypointData@TerrainLogic@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A7860,60,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?parseWaypointDataChunk@TerrainLogic@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A8BB0,21,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,icf-owner=?ParseBlendTileDataChunk@WorldHeightMap@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z
 ?parseWeapon@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EAC70,48,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
@@ -12507,6 +12516,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?qmProfileIDCallback@@YAXPAXHPBDH0@Z,,0x00642F40,31,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?queueDozer@AIPlayer@@MAEXXZ,,0x001657E0,490,Code/masm_dumps/_sa__queueDozer_AIPlayer__MAEXXZ_1657E0.asm,matched,Exact 490B string-anchored Open-BFME4
 ?queueForPath@Pathfinder@@QAE_NW4ObjectID@@@Z,,0x003D5540,96,Code/masm_dumps/_rn3__queueForPath_Pathfinder__QAE_NW4ObjectID___Z_3D5540.asm,matched,reloc-needle Open-BFME4+Grok
+?queueLocalCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00662E80,484,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?queueParticleRender@W3DParticleSystemManager@@UAEXXZ,,0x0024A270,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DParticleSys.cpp,matched,
 ?queueSupplyTruck@AIPlayer@@,,0x00165D50,2330,Code/masm_dumps/_str__queueSupplyTruck_AIPlayer__165D50.asm,matched,
 ?rad2deg@@YAMM@Z,0x00008BF2,0x007E5950,11,Code/GameEngine/Source/Common/System/Trig.cpp,matched,converts radians to degrees
@@ -12700,6 +12710,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?resize@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAEXI_N@Z,,0x002CD080,182,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?resolveBlockZones@@YIXHHPAGH@Z,,0x00402760,58,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?resolveFX@BridgeBehavior@@IAEXXZ,,0x001F2AF0,723,Code/masm_dumps/BridgeBehavior_resolveFX.asm,matched,Exact 723B @ 0x1F2AF0; queue 0x776416 INSIDE ModelConditionInfo ctor; true SEH body BODY x4 FX x3 OCL/FX/sound m_fxResolved@+0x47c
+?resolvePlayerFromName@BFMEConnectionManager@@QAEXPAX@Z,,0x00667060,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?revalidateOccupiers@SpawnPointProductionExitUpdate@@AAEXXZ,,0x0002374A,5,Code/masm_dumps/_revalidateOccupiers_SpawnPointProductionExitUpdate__AAEXXZ_2374A.asm,matched,MASM exact retail dump
 ?reverse@CountUpTransition@@UAEXXZ,,0x0059BCA0,39,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?reverse@MainMenuMediumScaleUpTransition@@UAEXXZ,,0x0059E0E0,23,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
@@ -12766,6 +12777,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?selectTeamToReinforce@AIPlayer@@MAE_NH@Z,,0x00167080,1243,Code/masm_dumps/_str__selectTeamToReinforce_AIPlayer_MAE_NH_Z_167080.asm,matched,
 ?sendAProbe@NAT@@IAEXIGH@Z,,0x00671020,179,Code/masm_dumps/_sa14__sendAProbe_NAT__IAEXIGH_Z_671020.asm,matched,sa14 Open-BFME4+Grok PROBE%d
 ?sendDisconnectCommand@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,,0x0066B9F0,180,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
+?sendFileAnnouncement@BFMEConnectionManager@@QAEXPBDH@Z,,0x0066A170,509,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendFileChunk@BFMEConnectionManager@@QAEXPBDHH@Z,,0x00666A10,435,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendFileToPlayers@BFMEConnectionManager@@QAEXPBD@Z,,0x00669E20,418,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendFrameInfo@BFMEConnectionManager@@QAEXXZ,,0x00665D10,354,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendGameResults@GameResultsThreadClass@@AAEHIGABV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@Z,,0x00640830,223,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B2D0,187,Code/masm_dumps/_rn5__sendKeepAlive_DisconnectManager__IAEXPAVConnectionManager___Z_66B2D0.asm,matched,reloc-needle Open-BFME4+Grok
@@ -13407,6 +13421,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?updateDefaults@ScriptList@@SAXXZ,,0x0035C8A0,183,Code/masm_dumps/ScriptList_updateDefaults.asm,matched,MASM exact dump; true body at 0x35C8A0 (183B) not drift 0x853E95; sides loop + inline ScriptList ctor sizeof 0x4c
 ?updateDisconnectStatus@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066C3B0,750,Code/masm_dumps/DisconnectManager_updateDisconnectStatus.asm,matched,Exact MASM dump BFME rewrite 750B (ZH shape 370B); ENTRY+call-graph identity
 ?updateFadeLevel@ScreenCrossFadeFilter@@IAE_NXZ,,0x00006D0C,5,Code/masm_dumps/_thunk_b9971e87b766_6D0C.asm,matched,thunk accessor of ported class
+?updateFileProgress@BFMEConnectionManager@@QAEXXZ,,0x00669A00,265,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?updateGenericScripts@Team@@QAEXXZ,,0x000F1430,412,Code/masm_dumps/_sa__updateGenericScripts_Team__QAEXXZ_F1430.asm,matched,Exact 412B string-anchored Open-BFME4
 ?updateInternal@AIAttackApproachTargetState@@AAE?AW4StateReturnType@@XZ,,0x001827C0,1398,Code/masm_dumps/updateInternal_AIAttackApproachTargetState_1827C0.asm,matched,Certified packet 136 exact retail MASM recovery SHA256 a13136e89bddbc2c431f9e79dd5212fc9bbbb670ddb5ccede62740f11a06198c
 ?updateLoadProgress@GameLogic@@QAEXH@Z,,0x000DB020,3751,Code/masm_dumps/_sa16__updateLoadProgress_GameLogic__QAEXH_Z_DB020.asm,matched,sa16 Open-BFME4+Grok ReplayObserver
@@ -13648,6 +13663,15 @@ _CommUdpProcess,,0x00817B30,2207,Code/Libraries/Source/DirtySock/commudp.cpp,mat
 _CommUdpSetup,,0x00818400,253,Code/Libraries/Source/DirtySock/commudp.cpp,matched,
 _D3DXMatrixInverse@12,,0x009FB321,979,Code/masm_dumps/__D3DXMatrixInverse_12_9FB321.asm,matched,
 _D3DXVec4Transform@12,,0x009FAA48,600,Code/masm_dumps/__D3DXVec4Transform_12_9FAA48.asm,matched,
+_DoAnyMapTransfers,,0x0066E070,659,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetArtPreviewFromMap,,0x0066D820,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetAssetUsageFromMap,,0x0066DE50,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetINIFromMap,,0x0066DB20,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetPicPreviewFromMap,,0x0066D9A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetPreviewFromMap,,0x0066D6A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetReadmeFromMap,,0x0066DF60,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetSoloINIFromMap,,0x0066DD40,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetStrFileFromMap,,0x0066DC30,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _HUFF_decode@12,,0x00822EB0,20,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,
 _InitStatsConnection,,0x009D58C0,47,Code/masm_dumps/_sym3__InitStatsConnection_9D58C0.asm,matched,symbol-pin Open-BFME4+Grok
 _IsStatsConnected,,0x009D2B60,15,Code/masm_dumps/_sym4__IsStatsConnected_9D2B60.asm,matched,symbol Open-BFME4+Grok
@@ -13728,6 +13752,7 @@ _atanf,,0x0045B6F0,9,Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp,matched,
 _atexit,,0x009F6E26,18,Code/masm_dumps/_atexit_9F6E26.asm,matched,MASM exact retail dump
 _ceilf,,0x00069750,20,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyWarehouseDockUpdate.cpp,matched,
 _cosf,,0x00873920,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Cos@@YAMM@Z
+_doFileTransfer,,0x0066CE60,814,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _floorf,,0x001066D0,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 _fmodf,,0x00097070,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,
 _log10f,,0x00799CE0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp,matched,
@@ -13735,29 +13760,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007D470,191,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table binds keyword DynamicGameLOD here - was a MASM dump
-?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
-?sendFileChunk@BFMEConnectionManager@@QAEXPBDHH@Z,,0x00666A10,435,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?updateFileProgress@BFMEConnectionManager@@QAEXXZ,,0x00669A00,265,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?parseMouseCursorDefinition@INI@@SAXPAV1@@Z,,0x005A5FA0,185,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,INI block table node binds keyword MouseCursor to this address
-?buildPlayerStatusText@BFMEConnectionManager@@QAEXPAX@Z,,0x00666300,578,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?queueLocalCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00662E80,484,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?attachPlayersFromGameInfo@BFMEConnectionManager@@QAEXPAX@Z,,0x00666610,597,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?resolvePlayerFromName@BFMEConnectionManager@@QAEXPAX@Z,,0x00667060,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?sendFileToPlayers@BFMEConnectionManager@@QAEXPBD@Z,,0x00669E20,418,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?sendFileAnnouncement@BFMEConnectionManager@@QAEXPBDH@Z,,0x0066A170,509,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?parseLanguageDefinition@INI@@SAXPAV1@@Z,,0x00438F70,25,Code/GameEngine/Source/GameClient/GlobalLanguage.cpp,matched,block table binds keyword Language here - reads TheGlobalLanguageData 0x012F1484
-_GetPreviewFromMap,,0x0066D6A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetArtPreviewFromMap,,0x0066D820,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetPicPreviewFromMap,,0x0066D9A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z,,0x004AAD10,1,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,INI block table node binds keyword ControlBarResizer to this address
-?parseOnlineChatColorDefinition@INI@@SAXPAV1@@Z,,0x006250A0,20,Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp,matched,INI block table node binds keyword OnlineChatColors to this address
-_GetINIFromMap,,0x0066DB20,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetStrFileFromMap,,0x0066DC30,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetSoloINIFromMap,,0x0066DD40,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetAssetUsageFromMap,,0x0066DE50,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetReadmeFromMap,,0x0066DF60,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_doFileTransfer,,0x0066CE60,814,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_DoAnyMapTransfers,,0x0066E070,659,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-?parseWaterTransparencyDefinition@INI@@SAXPAV1@@Z,,0x000C3A00,287,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,INI block table node binds keyword WaterTransparency to this address
-?parseWaterSettingDefinition@INI@@SAXPAV1@@Z,,0x000C37E0,261,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,INI block table node binds keyword WaterSet to this address

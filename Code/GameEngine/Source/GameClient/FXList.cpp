@@ -868,6 +868,14 @@ const FXList *FXListStore::findFXList(const char* name) const
 }
 
 //-------------------------------------------------------------------------------------------------
+// ?parseFXListDefinition@FXListStore@@SAXPAVINI@@@Z present-unmatched
+// The FXList block's parser is 0x0042E130 (319 bytes), not the 77-byte body this
+// file used to claim -- that one reads TheDamageFXStore and is
+// DamageFXStore::parseDamageFXDefinition, now in Common/DamageFX.cpp. The two
+// are interchangeable under byte comparison because a store-map parser's only
+// distinguishing operands are DIR32 slots, which the verifier fills from the
+// target. The real body is much larger and builds an AsciiString, so this
+// transcription is not it either.
 /*static */ void FXListStore::parseFXListDefinition(INI *ini)
 {
 	// read the FXList name
