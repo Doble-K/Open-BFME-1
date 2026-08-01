@@ -4174,7 +4174,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??6@YAAAVDebug@@AAV0@ABVCoord2D@@@Z,0x000158FC,0x007E7130,72,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,Debug output for Coord2D
 ??6@YAAAVDebug@@AAV0@ABVCoord3D@@@Z,0x00005420,0x003D5280,95,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,Debug output for Coord3D
 ??6Debug@@QAEAAV0@AAVRepeatChar@0@@Z,,0x0088B2B0,117,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
-??6Debug@@QAEAAV0@_N@Z,,0x008897C0,30,Code/masm_dumps/_rn10___6Debug__QAEAAV0__N_Z_8897C0.asm,matched,reloc-needle Open-BFME4+Grok
 ??8?$VectorClass@E@@UBE_NABV0@@Z,,0x00912F30,65,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
 ??8?$VectorClass@H@@UBE_NABV0@@Z,,0x00AFEDF0,68,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,MASM converted to clean C++
 ??8?$VectorClass@K@@UBE_NABV0@@Z,,0x00980C90,68,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??0?$pair@$$CBJVLadderPref@@@_STL@@QAE@ABJABVLadderPref@@@Z,,0x000A9D50,30,Code/GameEngine/Source/Common/UserPreferencesPairLadderPrefCtorThunk.cpp,matched,Open-BFME5 exact C++ STL pair constructor thunk; ICF-owned 30-byte body
 ?beginAreaSelectHint@InGameUI@@UAEXPBVGameMessage@@@Z,,0x0043AC30,51,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,converted exact MASM method dump to clean C++ with retail message null guard
 ??_GLadderList@@QAEPAXI@Z,,0x006306D0,30,Code/GameNetwork/Source/GameSpy/LadderListScalarDestructorThunk.cpp,matched,Open-BFME5 exact C++ compiler-generated scalar deleting destructor; out-of-line LadderList destructor
+??6Debug@@QAEAAV0@_N@Z,,0x008897C0,30,Code/Libraries/Source/WWVegas/WWDebug/debug_operator_bool.cpp,matched,Open-BFME5 exact C++ operator<< bool body
