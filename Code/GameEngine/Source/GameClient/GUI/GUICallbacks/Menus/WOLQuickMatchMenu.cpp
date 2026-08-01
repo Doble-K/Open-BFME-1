@@ -69,6 +69,48 @@
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
 #include "GameNetwork/RankPointValue.h"
 #include "GameNetwork/GameSpy/LadderDefs.h"
+
+struct BFMEFindStringHeader
+{
+ int refCount;
+ unsigned short length;
+ unsigned short capacity;
+ char data[1];
+};
+
+struct BFMEFindAsciiStringView
+{
+ BFMEFindStringHeader *m_data;
+
+ int compare(const BFMEFindAsciiStringView &string) const
+ {
+  const BFMEFindAsciiStringView *self = this;
+  const BFMEFindAsciiStringView *that = &string;
+  int thatLen = that->m_data ? that->m_data->length : 0;
+  const char *thatData = that->m_data ? &that->m_data->data[0] : (const char *)"";
+  int thisLen = self->m_data ? self->m_data->length : 0;
+  const char *thisData = self->m_data ? &self->m_data->data[0] : (const char *)"";
+  int n = thisLen < thatLen ? thisLen : thatLen;
+  int c = memcmp(thisData, thatData, n);
+  if (c != 0)
+   return c;
+  return thisLen - thatLen;
+ }
+};
+
+inline bool operator==(const BFMEFindAsciiStringView &a, const BFMEFindAsciiStringView &b)
+{
+ return a.compare(b) == 0;
+}
+
+__declspec(noinline) std::list<BFMEFindAsciiStringView>::const_iterator bfme_reconstructAsciiStringConstFind(
+ std::list<BFMEFindAsciiStringView>::const_iterator first,
+ std::list<BFMEFindAsciiStringView>::const_iterator last,
+ const BFMEFindAsciiStringView &value)
+{
+ return std::find(first, last, value);
+}
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
