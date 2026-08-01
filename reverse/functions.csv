@@ -13759,3 +13759,4 @@ _GetAssetUsageFromMap,,0x0066DE50,211,Code/GameEngine/Source/GameNetwork/FileTra
 _GetReadmeFromMap,,0x0066DF60,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _doFileTransfer,,0x0066CE60,814,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _DoAnyMapTransfers,,0x0066E070,659,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+?parseWaterTransparencyDefinition@INI@@SAXPAV1@@Z,,0x000C3A00,287,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,INI block table node binds keyword WaterTransparency to this address

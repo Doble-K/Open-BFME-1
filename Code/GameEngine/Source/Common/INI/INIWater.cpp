@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/water /Ireference/shims/iniexception /Ireference/shims/ini_noinline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -38,6 +38,7 @@
 #define DEFINE_TIME_OF_DAY_NAMES
 
 #include "Common/INI.h"
+#include "Common/INIException.h"
 #include "Common/GameType.h"
 
 #include "GameClient/TerrainVisual.h"
@@ -92,10 +93,19 @@ void INI::parseWaterSettingDefinition( INI* ini )
 }  // end parseWaterSetting
 
 //-------------------------------------------------------------------------------------------------
-// ?parseWaterTransparencyDefinition@INI@@ present-unmatched
+// ?parseWaterTransparencyDefinition@INI@@SAXPAV1@@Z
+// BFME stops after initFromINI. Zero Hour follows it with the skybox-texture
+// fix-up that walks the original and the override side by side; retail has no
+// trace of that, so it is gone rather than compiled out.
+//
+// The opening test is the OVERRIDE<T> conversion rather than a raw null check --
+// it recurses to the final override first, which is why retail loads the raw
+// pointer, tests that, and only then walks the chain.
 void INI::parseWaterTransparencyDefinition( INI *ini )
 {
-	if (TheWaterTransparency == NULL) {
+	const WaterTransparencySetting *existing = TheWaterTransparency;
+
+	if (existing == NULL) {
 		TheWaterTransparency = newInstance(WaterTransparencySetting);
 	} else if (ini->getLoadType() == INI_LOAD_CREATE_OVERRIDES) {
 		WaterTransparencySetting* wt = (WaterTransparencySetting*) (TheWaterTransparency.getNonOverloadedPointer());
@@ -107,45 +117,13 @@ void INI::parseWaterTransparencyDefinition( INI *ini )
 
 		wt->friend_getFinalOverride()->setNextOverride(wtOverride);
 	} else {
-		throw INI_INVALID_DATA;
+		throw INIException(3, "WaterTransparency found twice");
 	}
 
 	WaterTransparencySetting* waterTrans = (WaterTransparencySetting*) (TheWaterTransparency.getNonOverloadedPointer());
 	waterTrans = (WaterTransparencySetting*) (waterTrans->friend_getFinalOverride());
 	// parse the data
-	ini->initFromINI( waterTrans, TheWaterTransparency->getFieldParse() );
-	
-	// If we overrode any skybox textures, then call the W3D Water stuff.
-	if (ini->getLoadType() == INI_LOAD_CREATE_OVERRIDES) {
-		// Check to see if we overrode any skybox textures.
-		// If we did, then we need to replace them in the model.
-		// Copy/Paste monkeys PLEASE TAKE NOTE. This technique only works for the skybox because we
-		// know that there will never be more than one sky box. If you were to use this technique for
-		// technicals, for instance, it would make all technicals in the level have the same new
-		// texture.
-
-		const WaterTransparencySetting* wtOriginal = TheWaterTransparency.getNonOverloadedPointer();
-		OVERRIDE<WaterTransparencySetting> wtOverride = TheWaterTransparency;
-
-		if (wtOriginal == wtOverride) 
-			return;
-
-		const AsciiString *oldTextures[5],*newTextures[5];
-
-		//Copy current texture names into arrays
-		oldTextures[0]=&wtOriginal->m_skyboxTextureN;
-		newTextures[0]=&wtOverride->m_skyboxTextureN;
-		oldTextures[1]=&wtOriginal->m_skyboxTextureE;
-		newTextures[1]=&wtOverride->m_skyboxTextureE;
-		oldTextures[2]=&wtOriginal->m_skyboxTextureS;
-		newTextures[2]=&wtOverride->m_skyboxTextureS;
-		oldTextures[3]=&wtOriginal->m_skyboxTextureW;
-		newTextures[3]=&wtOverride->m_skyboxTextureW;
-		oldTextures[4]=&wtOriginal->m_skyboxTextureT;
-		newTextures[4]=&wtOverride->m_skyboxTextureT;
-
-		TheTerrainVisual->replaceSkyboxTextures(oldTextures, newTextures);
-	}
+	ini->initFromINI( waterTrans, waterTrans->getFieldParse() );
 }
 
 
