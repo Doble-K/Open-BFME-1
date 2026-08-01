@@ -1502,7 +1502,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GettingBuiltBehaviorModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/GettingBuiltBehaviorModuleData_constructor.asm,matched,Exact 162B ICF primary MD Open-BFME4
 ??0GhostObjectManager@@QAE@XZ,,0x001B3AA0,20,Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp,matched,converted thunk to TU-scoped C++ constructor
 ??0GiantBirdAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C2430,418,Code/masm_dumps/GiantBirdAIUpdate_constructor.asm,matched,Exact 418B @ 0x002C2430; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x118910
-??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/GiantBirdAIUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0GiantBirdSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FFB40,137,Code/masm_dumps/GiantBirdSlowDeathBehavior_constructor.asm,matched,Exact 137B @ 0x001FFB40; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1157D0
 ??0GiantBirdSlowDeathBehaviorModuleData@@QAE@XZ,,0x001FFE40,171,Code/masm_dumps/GiantBirdSlowDeathBehaviorModuleData_constructor.asm,matched,Exact 171B @ 0x001FFE40; Exact retail MASM ModuleData ctor; unique factory 0x115850
 ??0GiveUpgradeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D9A0,73,Code/masm_dumps/GiveUpgradeUpdate_constructor.asm,matched,Exact 73B unique factory Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?iniParseObjectFilter@@YAXPAVINI@@PAX1PBX@Z,,0x00039865,5,Code/GameEngine/Source/GameLogic/ScriptEngine/iniParseObjectFilter.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,,0x0003EE32,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/xferRandomVariable.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
+??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
