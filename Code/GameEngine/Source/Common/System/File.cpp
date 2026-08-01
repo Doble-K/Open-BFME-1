@@ -6,10 +6,19 @@
 // layout is Zero Hour's 15 File slots with two appended -- so slots 0..14 mean
 // exactly what Zero Hour's file.h declares them to mean:
 //
-//   0x01143A38  17 slots
-//   0x01143AA8  17 slots
+//   0x01143A38  17 slots  MemoryReadFile
+//   0x01143AA8  17 slots  MemoryWriteFile
 //   0x01143AF8  40 slots  (slots 3..9 share one stub, so read/write/seek and
 //                          friends are pure in that class)
+//
+// The first two are named by their own constructors. 0x009CB3D0 installs
+// 0x01143A38 and then sets the file's name to "<MemoryReadFile>"; 0x009CB4E0
+// installs 0x01143AA8 and sets "<MemoryWriteFile>". That is the same kind of
+// evidence "<no file>" gives for File itself -- a literal the object's own
+// constructor uses to identify it -- and both classes are BFME-only, appearing
+// nowhere in the Zero Hour tree. The 40-slot class is still unnamed: its two
+// constructors at 0x009CB7A0 and 0x009CB8C0 set only "<no file>", which they
+// inherit from File and which therefore says nothing about them.
 //
 // Slots holding the same address in all three are File's own un-overridden
 // implementations: slot 2 close (0x009CB880), slot 10 print (0x009CB6C0), and
@@ -27,9 +36,25 @@
 class File
 {
 public:
-	virtual ~File();
-	virtual Bool open( const char *filename, Int access = 0 );
-	virtual void close( void );
+	enum { TEXT = 0x20 };		// the bit print() tests: retail is test byte ptr [esi+8], 0x20
+
+	virtual ~File();							// slot 0
+	virtual Bool open( const char *filename, Int access = 0 );	// slot 1
+	virtual void close( void );					// slot 2
+	virtual Int read( void *buffer, Int bytes );			// slot 3
+	virtual Int write( const void *buffer, Int bytes );		// slot 4
+	virtual Int seek( Int bytes, Int mode );				// slot 5
+	virtual void nextLine( char *buf, Int bufSize );		// slot 6
+	virtual Bool scanInt( Int &newInt );				// slot 7
+	virtual Bool scanReal( Real &newReal );				// slot 8
+	virtual Bool scanString( AsciiString &newString );		// slot 9
+	virtual Bool print( const char *format, ... );			// slot 10
+	virtual Int size( void );					// slot 11
+	virtual Int position( void );					// slot 12
+	virtual char *readEntireAndClose( void );			// slot 13
+	virtual File *convertToRAMFile( void );				// slot 14
+	// slots 15 and 16 are BFME additions (0x009CB760, 0x009CB790); Zero Hour has
+	// no name for either, so they are absent here rather than guessed at.
 
 protected:
 	void setName( const char *name ) { m_nameStr = name; }
@@ -57,4 +82,30 @@ void File::close( void )
 			delete this;
 		}
 	}
+}
+
+// ?print@File@@UAA_NPBDZZ
+// Slot 10, and the same address in all three vtables, so this is File's own.
+// TEXT is 0x20 in m_access, read straight off retail's test byte ptr [esi+8], 0x20.
+Bool File::print( const char *format, ... )
+{
+	char buffer[10*1024];
+	Int len;
+
+	if ( ! (m_access & TEXT ) )
+	{
+		return FALSE;
+	}
+
+	va_list args;
+	va_start( args, format );
+	len = vsprintf( buffer, format, args );
+	va_end( args );
+
+	if ( len >= sizeof(buffer) )
+	{
+		return FALSE;
+	}
+
+	return (write ( buffer, len ) == len);
 }
