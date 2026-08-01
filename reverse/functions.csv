@@ -1744,7 +1744,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MeshLoadContextClass@@AAE@XZ,,0x00970180,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??0MeshMatDescClass@@QAE@XZ,,0x0092A2B0,267,Code/masm_dumps/_leaf___0MeshMatDescClass__QAE_XZ_92A2B0.asm,matched,Exact 267B present-unmatched leaf Open-BFME4
 ??0MeshSaveContextClass@@QAE@XZ,,0x0096CAD0,28,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
-??0MetaEventTranslator@@QAE@XZ,,0x005B6B30,42,Code/masm_dumps/MetaEvent_MetaEventTranslator_constructor.asm,matched,
 ??0MetaMap@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,
 ??0MetaMapRec@@QAE@XZ,,0x005B7020,11,Code/GameEngine/Source/GameClient/MessageStream/MetaMapRecConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0MetaMapRec@@QAE@XZ
 ??0MilitarySubtitleData@InGameUI@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of existing matched body
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0TerrainCollisionModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,,0x005DE6B0,115,Code/GameEngine/Source/GameClient/System/FXParticleSystem/TerrainCollisionModuleInfoCopyCtorThunk.cpp,matched,Open-BFME5 exact C++ TerrainCollisionModuleInfo copy constructor;object-symbol=??0TerrainCollisionModuleInfo@FXParticleSystem@@QAE@ABV01@@Z;MASM comment size 276 was stale and ledger target is 115
 ?getViewObjectDuration@SpecialPowerTemplate@@QBEIXZ,,0x00268950,33,Code/GameEngine/Source/Common/RTS/SpecialPowerTemplate.cpp,matched,Open-BFME5 exact C++ raw getter; target field offset 0x108 and Overridable final-override call preserved
 ?getRollDamping@Locomotor@@QBEMXZ,,0x00413180,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,Exact inline accessor via Locomotor retail-layout shim; MASM dump removed
+??0MetaEventTranslator@@QAE@XZ,,0x005B6B30,42,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,retail BFME layout offsets + loop; clean C++

@@ -374,16 +374,17 @@ static const FieldParse TheMetaMapFieldParseTable[] =
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////////////////////////
 
 //-------------------------------------------------------------------------------------------------
-// ??0MetaEventTranslator@@QAE@XZ present-unmatched
 MetaEventTranslator::MetaEventTranslator() : 
 	m_lastKeyDown(MK_NONE),
 	m_lastModState(0)
 {
+	UnsignedByte *base = (UnsignedByte *)this;
 	for (Int i = 0; i < NUM_MOUSE_BUTTONS; ++i) {
-		m_nextUpShouldCreateDoubleClick[i] = FALSE;
+		*(Bool *)(base + 0x24 + i) = FALSE;
+		Int *mousePosition = (Int *)(base + 0x10 + i * 8);
+		mousePosition[-1] = 0;
+		mousePosition[0] = 0;
 	}
-
-
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -730,4 +731,3 @@ MetaMapRec *MetaMap::getMetaMapRec(GameMessage::Type t)
 {
 	MetaMap::parseMetaMap(ini);
 }
-
