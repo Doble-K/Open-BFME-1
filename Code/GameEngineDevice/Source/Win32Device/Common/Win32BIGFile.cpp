@@ -106,37 +106,22 @@ File* Win32BIGFile::openFile( const Char *filename, Int access )
 // Win32BIGFile::closeAllFiles
 //============================================================================
 
-// ?closeAllFiles@Win32BIGFile@@UAEXXZ present-unmatched
 void Win32BIGFile::closeAllFiles( void )
 {
 
 }
 
 //============================================================================
-// Win32BIGFile::getName
-//============================================================================
-
-// ?getName@Win32BIGFile@@UAE?AVAsciiString@@XZ present-unmatched
-AsciiString Win32BIGFile::getName( void )
-{
-	return m_name;
-}
-
-//============================================================================
-// Win32BIGFile::getPath
-//============================================================================
-
-// ?getPath@Win32BIGFile@@UAE?AVAsciiString@@XZ present-unmatched
-AsciiString Win32BIGFile::getPath( void )
-{
-	return m_path;
-}
-
+// Win32BIGFile::getName and Win32BIGFile::getPath live in the sibling
+// Win32BIGFileNames.cpp. Both are one `return m_name;`, but retail reaches
+// StringBase<char>'s copy constructor by a call where this file's Zero Hour
+// Common/AsciiString.h inlines the refcount bump, so they only match against a
+// delegating AsciiString -- which the rest of this file's matched rows do not
+// want. See that file's header comment.
 //============================================================================
 // Win32BIGFile::setSearchPriority
 //============================================================================
 
-// ?setSearchPriority@Win32BIGFile@@UAEXH@Z present-unmatched
 void Win32BIGFile::setSearchPriority( Int new_priority )
 {
 
@@ -146,7 +131,6 @@ void Win32BIGFile::setSearchPriority( Int new_priority )
 // Win32BIGFile::close
 //============================================================================
 
-// ?close@Win32BIGFile@@UAEXXZ present-unmatched
 void Win32BIGFile::close( void )
 {
 

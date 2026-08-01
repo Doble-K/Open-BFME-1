@@ -13772,3 +13772,10 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?lock@File@@UAEXXZ,,0x009CB760,36,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 15; CreateMutexA/WaitForSingleObject; vtable 0x01143AF8
+?unlock@File@@UAEXXZ,,0x009CB790,15,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 16; ReleaseMutex; vtable 0x01143AF8
+?closeAllFiles@Win32BIGFile@@UAEXXZ,,0x009D14B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 4; empty body
+?setSearchPriority@Win32BIGFile@@UAEXH@Z,,0x009D14C0,3,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 7; empty body
+?close@Win32BIGFile@@UAEXXZ,,0x009D14D0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 8; empty body
+?getName@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D16F0,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 5; m_name at this+0x24; StringBase<char> copy ctor call shape
+?getPath@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D1710,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 6; m_path at this+0x28
