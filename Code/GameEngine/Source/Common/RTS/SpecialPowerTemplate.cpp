@@ -6,6 +6,7 @@ class SpecialPowerTemplate
 {
 public:
     AsciiString getName() const;
+    UnsignedInt getViewObjectDuration() const;
 };
 
 __declspec(naked) AsciiString SpecialPowerTemplate::getName() const
@@ -63,5 +64,44 @@ __declspec(naked) AsciiString SpecialPowerTemplate::getName() const
         _emit 0C2h
         _emit 004h
         _emit 000h
+    }
+}
+
+__declspec(naked) UnsignedInt SpecialPowerTemplate::getViewObjectDuration() const
+{
+    __asm {
+        _emit 08Bh
+        _emit 041h
+        _emit 004h
+        _emit 085h
+        _emit 0C0h
+        _emit 074h
+        _emit 013h
+        _emit 08Bh
+        _emit 048h
+        _emit 004h
+        _emit 085h
+        _emit 0C9h
+        _emit 074h
+        _emit 005h
+        _emit 0E8h
+        _emit 0FEh
+        _emit 002h
+        _emit 0DEh
+        _emit 0FFh
+        _emit 08Bh
+        _emit 080h
+        _emit 008h
+        _emit 001h
+        _emit 000h
+        _emit 000h
+        _emit 0C3h
+        _emit 08Bh
+        _emit 081h
+        _emit 008h
+        _emit 001h
+        _emit 000h
+        _emit 000h
+        _emit 0C3h
     }
 }
