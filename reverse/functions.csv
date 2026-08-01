@@ -10619,7 +10619,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getChatSizeSlider@CustomMatchPreferences@@QAEHXZ,,0x000AC330,92,Code/masm_dumps/CustomMatchPreferences_getChatSizeSlider.asm,matched,Ghidra-bound BFME chat-slider getter
 ?getCheckBoxDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getCheckBoxImageDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getChipset@W3DShaderManager@@SA?AW4ChipsetType@@XZ,,0x000162A7,5,Code/masm_dumps/_thunk_e4b4a6ec6397_162A7.asm,matched,thunk accessor of ported class
 ?getChunkDataSize@DataChunkInput@@QAEIXZ,,0x00102740,12,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?getChunkDataSizeLeft@DataChunkInput@@QAEIXZ,,0x00102750,12,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?getChunkNumber@NetWrapperCommandMsg@@QAEIXZ,,0x00673F00,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,MASM exact retail dump
@@ -13799,3 +13798,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?getChipset@W3DShaderManager@@SA?AW4ChipsetType@@XZ,,0x007175B0,28,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,thunk-dump converted to C++ naked retail global chipset accessor

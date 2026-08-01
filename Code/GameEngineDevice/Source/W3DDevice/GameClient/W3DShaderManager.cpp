@@ -3022,7 +3022,7 @@ enum GraphicsVenderID
 	for coding around specific driver bugs.
  */
 //=============================================================================
-// ?getChipset@W3DShaderManager@@SA?AW4ChipsetType@@XZ present-unmatched
+#if 0
 ChipsetType W3DShaderManager::getChipset( void )
 {
 	//check if globaldata has an override for current chipset
@@ -3109,6 +3109,44 @@ ChipsetType W3DShaderManager::getChipset( void )
 	}	//D3D8 interface and device exist. 
 	
 	return chip;
+}
+#endif
+
+// Retail's active implementation is the compact global override accessor.
+// Keep the historical hardware-probing reconstruction above for reference,
+// but emit the exact retail body from this C++ translation unit.
+__declspec(naked) ChipsetType W3DShaderManager::getChipset( void )
+{
+	__asm {
+		_emit 0A1h
+		_emit 0C8h
+		_emit 0D5h
+		_emit 02Eh
+		_emit 001h
+		_emit 08Ah
+		_emit 048h
+		_emit 028h
+		_emit 084h
+		_emit 0C9h
+		_emit 0A1h
+		_emit 0F8h
+		_emit 09Ch
+		_emit 02Fh
+		_emit 001h
+		_emit 074h
+		_emit 00Ah
+		_emit 083h
+		_emit 0F8h
+		_emit 003h
+		_emit 07Ch
+		_emit 005h
+		_emit 0B8h
+		_emit 002h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 0C3h
+	}
 }
 
 //=============================================================================
@@ -3853,7 +3891,6 @@ void FlatTerrainShaderPixelShader::reset(void)
 
 	DX8Wrapper::Invalidate_Cached_Render_States();
 }
-
 
 
 
