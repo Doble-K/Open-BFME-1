@@ -28,7 +28,7 @@
 // the offset AND the identity; everything else stays an opaque pad so we
 // never assert a field name/type we cannot back with evidence.
 //
-// Proven retail offsets (see docs/lessons.md and this session's notes):
+// Proven retail offsets:
 //   0x004 m_template   (Thing base; shared with Object, see the sweep/
 //                        bfmeobject Object shim precedent -- Thing is
 //                        Drawable's first base, so the vptr+template layout

@@ -398,8 +398,8 @@ def _case_resolve(path):
     """Map a wine-reported path to the real on-disk path. Wine resolves
     case-insensitively and cl prints the REQUESTED casing (lowercased prefixes,
     'Basetype.h' for BaseType.h), so exact lookup fails on Linux. The repo bans
-    case-colliding names (see docs/lessons.md), so per-component lowercase
-    matching is unambiguous. Returns None when nothing matches."""
+    case-colliding names, so per-component lowercase matching is unambiguous.
+    Returns None when nothing matches."""
     if os.path.exists(path):
         return path
     current = "/"

@@ -835,7 +835,7 @@ EMPTY_DTOR(DozerActionStateMachine)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// matched via Code/masm_dumps/_sa5___0DozerActionStateMachine__QAE_PAVObject__W4DozerTask___Z_2B7450.asm (AsciiString-ctor shape C++ can't reproduce; see docs/lessons.md)
+// matched via Code/masm_dumps/_sa5___0DozerActionStateMachine__QAE_PAVObject__W4DozerTask___Z_2B7450.asm (AsciiString-ctor shape C++ can't reproduce)
 DozerActionStateMachine::DozerActionStateMachine( Object *owner, DozerTask task ) :
 												 StateMachine( owner, "DozerActionStateMachine" )
 {
@@ -1345,7 +1345,7 @@ EMPTY_DTOR(DozerPrimaryGoingHomeState)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// matched via Code/masm_dumps/_sa3___0DozerPrimaryStateMachine__QAE_PAVObject___Z_2B7870.asm (AsciiString-ctor shape C++ can't reproduce; see docs/lessons.md)
+// matched via Code/masm_dumps/_sa3___0DozerPrimaryStateMachine__QAE_PAVObject___Z_2B7870.asm (AsciiString-ctor shape C++ can't reproduce)
 DozerPrimaryStateMachine::DozerPrimaryStateMachine( Object *owner ) : StateMachine( owner, "DozerPrimaryStateMachine" )
 {
 	static const StateConditionInfo idleConditions[] = 

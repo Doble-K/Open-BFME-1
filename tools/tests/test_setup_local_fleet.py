@@ -31,26 +31,33 @@ def main():
 
         origin = "https://example.invalid/Open-BFME.git"
         first = run(sys.executable, str(TOOL), "--source", str(source),
-                    "--root", str(fleet), "--workers", "2", "--pool", "5",
+                    "--root", str(fleet), "--workers", "2",
                     "--origin", origin)
+
+        repos = (source, fleet / "writer-2", fleet / "writer-3")
+        for repo in repos:
+            gitdir = Path(run("git", "-C", str(repo), "rev-parse",
+                              "--path-format=absolute", "--git-dir"))
+            (gitdir / "openbfme-worker.json").write_text(
+                '{"slot": 1, "pool": 5}\n', encoding="utf-8")
+
         second = run(sys.executable, str(TOOL), "--source", str(source),
-                     "--root", str(fleet), "--workers", "2", "--pool", "5",
+                     "--root", str(fleet), "--workers", "2",
                      "--origin", origin)
         assert first and second
 
         manifest = json.loads((fleet / "fleet.json").read_text())
-        assert [w["slot"] for w in manifest["workers"]] == [1, 2, 3, 4, 5]
         assert [w["role"] for w in manifest["workers"]] == [
-            "writer-primary", "writer", "writer", "scout", "scout"]
-        for slot, repo in ((1, source), (2, fleet / "writer-2"),
-                           (3, fleet / "writer-3")):
+            "primary", "writer", "writer"]
+        assert [w["path"] for w in manifest["workers"]] == [str(r) for r in repos]
+        assert all("slot" not in w and "pool" not in w for w in manifest["workers"])
+        for repo in repos:
             gitdir = Path(run("git", "-C", str(repo), "rev-parse",
                               "--path-format=absolute", "--git-dir"))
-            config = json.loads((gitdir / "openbfme-worker.json").read_text())
-            assert (config["slot"], config["pool"]) == (slot, 5)
+            assert not (gitdir / "openbfme-worker.json").exists()
             assert run("git", "-C", str(repo), "remote", "get-url", "origin") == origin
             assert run("git", "-C", str(repo), "config", "pull.rebase") == "true"
-    print("PASS local fleet: idempotent setup, isolated writers, deterministic slots")
+    print("PASS local fleet: idempotent setup, isolated independent writers")
 
 
 if __name__ == "__main__":

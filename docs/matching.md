@@ -2,11 +2,10 @@
 
 1. Write the C++ under `Code/` at its official-tree path (see below), add a row to
    `reverse/functions.csv`, then verify.
-   - Iterate fast: `./build.sh Code/path/to/your_file.cpp` (or a function name) compiles+byte-compares
-     just that source in a few seconds.
-   - Before committing: `./build.sh` (no args) runs the full check — every function, plus the
-     baseline hash and the no-op patch that confirms the rebuilt exe is identical.
-   It compiles with MSVC 7.1 and fails loudly on any mismatch.
+   - `./build.sh Code/path/to/file.cpp` (or a function name) compiles and byte-compares that source.
+   - The commit hook runs the full gate for header/reference changes; run it once after a
+     resolved merge. Normal commits and pushes gate their delta.
+   Builds use MSVC 7.1 and fail on any mismatch.
 
 2. Relocations the patcher fills in for you (so don't worry about matching these bytes):
    - **DIR32** (constants, vtables, string literals): the address slot is copied from the target
@@ -26,9 +25,9 @@ Useful iteration tools:
 
 - `python3 tools/explain_mismatch.py <decorated-symbol>` compiles that function's source and prints
   the first byte difference, byte windows, and side-by-side target/compiled disassembly.
-- `python3 tools/list_naked_candidates.py src --limit 30` ranks tracked naked asm blocks that are
-  likely good C++ conversion candidates and prints the exact `./build.sh '<symbol>'` command.
-  Add `--groups` to find repeated byte patterns, or `--all` to include untracked naked functions.
+- `python3 tools/list_naked_candidates.py Code` selects one tracked naked-asm block and prints its
+  exact `./build.sh '<symbol>'` command. Add `--ranked --groups` for repeated byte patterns or
+  `--all` for untracked functions.
 
 ## MSVC 7.1 shaping notes
 

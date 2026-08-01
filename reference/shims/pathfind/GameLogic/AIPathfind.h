@@ -3,8 +3,7 @@
 // Retail calls the CRT floor() through the import table directly at the call
 // site (`call dword ptr [__imp__floor]`, FF 15) rather than through a plain
 // `e8`-to-ILT-thunk extern call that <math.h>'s ordinary declaration would
-// produce here (see docs/lessons.md: "most TUs use ff 15 [IAT] ... but some
-// use e8->ILT-thunk"). A `dllimport` prototype forces MSVC to emit the same
+// produce here. A `dllimport` prototype forces MSVC to emit the same
 // indirect-through-IAT call shape at every use, matching retail's codegen.
 extern "C" __declspec(dllimport) double __cdecl floor(double);
 // TU-scoped shim: retail-accurate PathfindCell/PathfindLayer/Pathfinder layout,
@@ -17,8 +16,7 @@ extern "C" __declspec(dllimport) double __cdecl floor(double);
 // from TUs that need the retail layout - never from the shared AIPathfind.cpp,
 // whose many already-matched functions rely on the ZH header instead.
 //
-// Proven facts (docs/lessons.md #96-98, re-verified against retail bytes for
-// this shim):
+// Proven facts, re-verified against retail bytes for this shim:
 //   PathfindCell   sizeof 0x10. Packed dword@+0x0c: type:3@0, layer:6@6,
 //                  connect:6@12 (ZH instead packs an 8B struct, nibble@+7).
 //                  m_info (MemoryPoolObject-owned side table) stays @+0x00,

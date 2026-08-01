@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Rank naked asm functions that look like good C++ decompilation candidates."""
+"""Choose one naked asm function to decompile to clean C++.
+
+The default randomly chooses among the best-ranked distinct source files. Use
+``--ranked`` to inspect the full ranking.
+"""
 import argparse
 from collections import defaultdict
 import re
 
 import build
+from work_selection import choose_ranked
 
 
 NAKED_RE = re.compile(r"__declspec\s*\(\s*naked\s*\)")
@@ -131,14 +136,48 @@ def score_candidate(data, sig):
     return score, reasons
 
 
+def rank_candidates(candidates):
+    candidates.sort(key=lambda item: (-item["score"], item["size"],
+                                      item["path"], item["line"]))
+    return candidates
+
+
+def select_candidate(candidates, root=build.ROOT, include_untracked=False):
+    rank_candidates(candidates)
+    namespace = "naked-candidates:all" if include_untracked else "naked-candidates:tracked"
+    return choose_ranked(
+        candidates, lambda item: item["path"],
+        lambda item: (item["path"], item["line"], item.get("symbol")),
+        namespace, root)
+
+
+def print_candidate(item):
+    location = f"{item['path']}:{item['line']}"
+    reasons = ", ".join(item["reasons"])
+    print(f"  {item['score']:4d}  {item['size']:4d} bytes  {location}  {item['status']}")
+    print(f"        {item['signature']}")
+    if item["symbol"]:
+        print(f"        symbol: {item['symbol']}")
+    if item["tracked"]:
+        print(f"        verify: ./build.sh '{item['symbol']}'")
+    print(f"        {reasons}; file has {item['unmatched_count']} unmatched csv row(s)")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("paths", nargs="*", default=["src"], help="source files or directories to scan")
+    parser.add_argument("paths", nargs="*", default=["Code"],
+                        help="source files or directories to scan (default: Code)")
     parser.add_argument("--all", action="store_true", help="include untracked naked functions")
-    parser.add_argument("--groups", action="store_true", help="show repeated naked byte patterns instead of individual functions")
-    parser.add_argument("--limit", type=int, default=30)
+    parser.add_argument("--ranked", action="store_true",
+                        help="show the complete ranking for humans/debugging")
+    parser.add_argument("--groups", action="store_true",
+                        help="with --ranked, group repeated naked byte patterns")
+    parser.add_argument("--limit", type=int, default=30,
+                        help="max items/groups with --ranked (default 30)")
     parser.add_argument("--max-bytes", type=int, default=160)
     args = parser.parse_args()
+    if args.groups and not args.ranked:
+        parser.error("--groups requires --ranked")
 
     row_by_source, rows_by_name = collect_rows()
     body_index = matched_body_index(row_by_source, args.max_bytes)
@@ -199,9 +238,19 @@ def main():
                 }
             )
 
+    rank_candidates(candidates)
+    if not args.ranked:
+        selected, meta = select_candidate(candidates, include_untracked=args.all)
+        if selected is None:
+            print("No validated naked-asm candidates remain in the requested paths.")
+            return
+        print("== selected naked-asm conversion ==")
+        print(f"  randomized across {meta['pool_groups']} top-ranked source group(s)")
+        print_candidate(selected)
+        return
+
     if already_matched:
         print(f"{already_matched} excluded as already matched in reverse/functions.csv")
-    candidates.sort(key=lambda item: (-item["score"], item["size"], item["path"], item["line"]))
     if args.groups:
         groups = defaultdict(list)
         for item in candidates:
@@ -224,15 +273,7 @@ def main():
         return
 
     for item in candidates[: args.limit]:
-        location = f"{item['path']}:{item['line']}"
-        reasons = ", ".join(item["reasons"])
-        print(f"{item['score']:4d}  {item['size']:4d} bytes  {location}  {item['status']}")
-        print(f"      {item['signature']}")
-        if item["symbol"]:
-            print(f"      symbol: {item['symbol']}")
-        if item["tracked"]:
-            print(f"      verify: ./build.sh '{item['symbol']}'")
-        print(f"      {reasons}; file has {item['unmatched_count']} unmatched csv row(s)")
+        print_candidate(item)
 
 
 if __name__ == "__main__":

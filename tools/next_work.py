@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-"""Answer "what should I work on right now": print only VALIDATED candidates, ranked,
-each with the exact command that lands it. No network, no compiling — runs in seconds.
+"""Answer "what should I work on right now" with one validated candidate.
+
+The default randomly chooses one of the best-ranked distinct source groups, so
+independent contributors naturally spread out. ``--ranked`` is the human/debug
+view of the complete queues. No network, no compiling — runs in seconds.
 
 Sections, in priority order:
   0. Ledger health   tools/check_csv.py — a corrupt ledger aborts everything (exit 2)
@@ -9,15 +12,9 @@ Sections, in priority order:
   3. Ghidra-anchored absent  source literals identify an unclaimed retail function
   4. Rest of the ladder (pointer commands only, nothing computed)
 
-Parallel agents: export AGENT_SLOT=1..AGENT_POOL (pool defaults to 7), or let
-tools/setup_local_fleet.py install the same values in the worktree's private
-.git/openbfme-worker.json. Ranked sections show only this agent's deterministic
-slice (zlib.crc32 of the item key mod pool). Pass --any when your slot runs dry.
---json emits every section machine-readable (full lists; --limit shapes only
-the text output).
-
 Usage:
-  python3 tools/next_work.py [--limit 10] [--json] [--any]
+  python3 tools/next_work.py [--tier structural]
+  python3 tools/next_work.py --ranked [--limit 10] [--json]
 
 Exit codes: 0 ok, 1 missing/bad inputs, 2 ledger corrupt.
 """
@@ -25,11 +22,12 @@ import argparse
 import ast
 import csv
 import json
-import os
 import subprocess
 import sys
-import zlib
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from work_selection import choose_ranked
 
 ROOT = Path(__file__).resolve().parents[1]
 # drift_report.csv is the shared drift classification (general RE infra, not the
@@ -44,8 +42,8 @@ _SOURCE_TEXT = {}
 POINTERS = [
     ("python3 tools/land_ambiguous.py",
      "land string-anchored exact-ambiguous drift copies"),
-    ("python3 tools/list_naked_candidates.py Code --limit 20",
-     "rank naked-asm functions worth decompiling to C++"),
+    ("python3 tools/list_naked_candidates.py Code",
+     "choose one naked-asm function worth decompiling to C++"),
 ]
 
 FIX_INSTRUCTIONS = """\
@@ -90,7 +88,7 @@ def to_int(value, base, what):
         raise SystemExit(f"{what}: bad value {value!r} — regenerate the report")
 
 
-def drift_quick_wins(mine):
+def drift_quick_wins():
     _, rows = read_csv(DRIFT, "python3 tools/drift_classify.py")
     claimed = set()
     with FUNCTIONS.open(newline="") as fh:
@@ -104,7 +102,7 @@ def drift_quick_wins(mine):
     out = []
     for name, row in last.items():
         rva = to_int(row["candidate_rva"], 16, f"drift_report.csv candidate_rva for {name}")
-        if rva in claimed or not mine(name):
+        if rva in claimed:
             continue
         rel = resolve_drift_source(row["source"], name)
         if rel is None:
@@ -206,7 +204,7 @@ def snap_rva(rva):
     return rva, None
 
 
-def structural_candidates(mine, claimed, claimed_names, big=False):
+def structural_candidates(claimed, claimed_names, big=False):
     """The manual-RE tier: drifted functions whose source exists but whose code
     shape differs (class structural / register-swap). Workflow: docs/structural.md."""
     _, rows = read_csv(DRIFT, "python3 tools/drift_classify.py")
@@ -221,13 +219,7 @@ def structural_candidates(mine, claimed, claimed_names, big=False):
         # the real ghidra start so the printed command is usable, and skip if either
         # the raw or corrected rva is already matched (the name filter catches the rest).
         crva, snap_note = snap_rva(rva)
-        if rva in claimed or crva in claimed or name in claimed_names or not mine(name):
-            continue
-        # A logged attempt SORTS a candidate down; it must never remove it. Hiding
-        # work behind a log is the same escape hatch as whitelisting an unverified
-        # source — 697 still-unmatched functions had been erased from this queue
-        # that way, 667 of them by a single "dead" entry.
-        if False:
+        if rva in claimed or crva in claimed or name in claimed_names:
             continue
         source = resolve_drift_source(row["source"], name)
         if source is None:
@@ -327,7 +319,7 @@ def read_string_xrefs():
     return out
 
 
-def ghidra_absent_candidates(mine, claimed, claimed_names):
+def ghidra_absent_candidates(claimed, claimed_names):
     """Map ZH functions classified `absent` to BFME functions through rare
     string literals found inside the marked source body. Ghidra already gives
     each literal's referencing function RVA, exact boundary, and size."""
@@ -345,13 +337,7 @@ def ghidra_absent_candidates(mine, claimed, claimed_names):
     source_text = {}
     out = []
     for name, row in last.items():
-        if name in claimed_names or not mine(name):
-            continue
-        # A logged attempt SORTS a candidate down; it must never remove it. Hiding
-        # work behind a log is the same escape hatch as whitelisting an unverified
-        # source — 697 still-unmatched functions had been erased from this queue
-        # that way, 667 of them by a single "dead" entry.
-        if False:
+        if name in claimed_names:
             continue
         hits = source_index().get(Path(row["source"]).name.casefold(), [])
         if not hits:
@@ -406,87 +392,126 @@ def ghidra_absent_candidates(mine, claimed, claimed_names):
     return out, (f"{len(functions)} Ghidra functions + {len(xrefs)} string literals loaded")
 
 
-def worker_config(root=ROOT):
-    """Read a worktree-private slot without adding generated files to the tree."""
-    dotgit = root / ".git"
-    if dotgit.is_file():
-        line = dotgit.read_text(encoding="utf-8").strip()
-        if not line.startswith("gitdir: "):
-            raise SystemExit(f"{dotgit}: expected a gitdir pointer")
-        dotgit = Path(line[8:])
-        if not dotgit.is_absolute():
-            dotgit = (root / dotgit).resolve()
-    path = dotgit / "openbfme-worker.json"
-    if not path.exists():
-        return None
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-        return str(data["slot"]), str(data["pool"])
-    except (OSError, ValueError, KeyError, TypeError) as exc:
-        raise SystemExit(f"{path}: invalid worker configuration ({exc})")
+def selected_queue(tier, drifts, structural, ghidra_absent):
+    queues = {
+        "harvest": ("drift quick win", drifts),
+        "structural": ("structural reconciliation", structural),
+        "ghidra": ("Ghidra-anchored absent function", ghidra_absent),
+    }
+    if tier:
+        return queues[tier]
+    for name in ("harvest", "structural", "ghidra"):
+        label, candidates = queues[name]
+        if candidates:
+            return label, candidates
+    return "validated queue", []
 
 
-def partition_env(root=ROOT):
-    slot_s = os.environ.get("AGENT_SLOT")
-    if slot_s is None:
-        configured = worker_config(root)
-        if configured is None:
-            return None, None
-        slot_s, configured_pool = configured
+def print_candidate(label, candidate, meta):
+    print(f"== selected work: {label} ==")
+    print(f"  randomized across {meta['pool_groups']} top-ranked source group(s)")
+    if label == "drift quick win":
+        print(f"  {candidate['aligned_pct']:>3}% {candidate['class']:<14} "
+              f"{candidate['function']}")
+        print(f"       {candidate['source']} @ {candidate['candidate_rva']}  "
+              f"hint: {candidate['hint']}")
+        print(f"       fix the literal in source, then byte-verify: {candidate['command']}")
+    elif label == "structural reconciliation":
+        print(f"  {candidate['aligned_pct']:>3}% {candidate['size']:>5}B "
+              f"{candidate['function']}")
+        print(f"       {candidate['source']} @ {candidate['candidate_rva']}  "
+              f"hint: {candidate['hint']}")
+        print(f"       start: {candidate['command']}")
     else:
-        configured_pool = "7"
-    pool_s = os.environ.get("AGENT_POOL", configured_pool)
-    try:
-        slot, pool = int(slot_s), int(pool_s)
-    except ValueError:
-        raise SystemExit(f"AGENT_SLOT/AGENT_POOL must be integers "
-                         f"(got AGENT_SLOT={slot_s!r}, AGENT_POOL={pool_s!r})")
-    if pool < 1 or not 1 <= slot <= pool:
-        raise SystemExit(f"need 1 <= AGENT_SLOT <= AGENT_POOL (got slot={slot}, pool={pool})")
-    return slot, pool
+        anchors = ", ".join(repr(value) for value in candidate["anchors"][:3])
+        print(f"  {candidate['confidence']:<6} {candidate['target_size']:>5}B "
+              f"{candidate['function']}")
+        print(f"       {candidate['source']} -> {candidate['target_rva']} "
+              f"{candidate['ghidra_name']} ({len(candidate['anchors'])} anchor(s): "
+              f"{anchors}; {candidate['alternates']} alternate(s))")
+        print(f"       start: {candidate['command']}")
+
+
+def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent):
+    print("== 0. ledger health ==")
+    print(f"  {ledger}")
+
+    if args.tier not in ("structural", "ghidra"):
+        print(f"\n== 1. drift quick wins: literal-only diffs ({len(drifts)}) ==")
+        for candidate in drifts[:args.limit]:
+            print(f"  {candidate['aligned_pct']:>3}% {candidate['class']:<14} "
+                  f"{candidate['function']}")
+            print(f"       {candidate['source']} @ {candidate['candidate_rva']}  "
+                  f"hint: {candidate['hint']}")
+            print("       fix the literal in source, then byte-verify: "
+                  f"{candidate['command']}")
+
+    if args.tier not in ("harvest", "ghidra"):
+        shown = structural[:args.limit]
+        print(f"\n== 2. structural reconciliation — manual RE ({len(structural)}; "
+              f"workflow: docs/structural.md) ==")
+        for candidate in shown:
+            print(f"  {candidate['aligned_pct']:>3}% {candidate['size']:>5}B "
+                  f"{candidate['function']}")
+            print(f"       {candidate['source']} @ {candidate['candidate_rva']}  "
+                  f"hint: {candidate['hint']}")
+            print(f"       start: {candidate['command']}")
+
+    if args.tier in (None, "ghidra"):
+        shown = ghidra_absent[:args.limit]
+        print(f"\n== 3. Ghidra-anchored absent functions ({len(ghidra_absent)}; "
+              f"workflow: docs/structural.md) ==")
+        print(f"  {ghidra_meta}")
+        for candidate in shown:
+            anchors = ", ".join(repr(value) for value in candidate["anchors"][:3])
+            print(f"  {candidate['confidence']:<6} {candidate['target_size']:>5}B "
+                  f"{candidate['function']}")
+            print(f"       {candidate['source']} -> {candidate['target_rva']} "
+                  f"{candidate['ghidra_name']} ({len(candidate['anchors'])} anchor(s): "
+                  f"{anchors}; {candidate['alternates']} alternate(s))")
+            print(f"       start: {candidate['command']}")
+
+    if args.tier in ("structural", "ghidra"):
+        return
+    print("\n== 4. rest of the ladder ==")
+    for command, why in POINTERS:
+        print(f"  {command:<55} # {why}")
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--limit", type=int, default=10,
-                    help="max items printed per section (text output only; default 10)")
+                    help="max items per section with --ranked (default 10)")
     ap.add_argument("--json", action="store_true",
-                    help="machine-readable dump of all sections (full lists, no --limit)")
-    ap.add_argument("--any", action="store_true",
-                    help="ignore AGENT_SLOT partitioning (when your slot runs dry)")
+                    help="machine-readable selected item (or full queues with --ranked)")
+    ap.add_argument("--ranked", action="store_true",
+                    help="show complete ranked queues for humans/debugging")
     ap.add_argument("--tier", choices=("harvest", "structural", "ghidra"),
-                    help="show only that tier's sections (structural agents pass "
-                         "--tier structural; reverse-engineering agents pass --tier ghidra)")
+                    help="choose from only this task lane")
     ap.add_argument("--big", action="store_true",
                     help="sort structural candidates by size (byte yield) instead of alignment")
     args = ap.parse_args()
 
     ledger = check_ledger()  # exit 2 happens in there; nothing below matters if red
-    slot, pool = partition_env()
-    filtered = slot is not None and not args.any
-    mine = (lambda key: zlib.crc32(key.encode("utf-8")) % pool == slot - 1) if filtered \
-        else (lambda key: True)
-
-    drifts = drift_quick_wins(mine) if args.tier not in ("structural", "ghidra") else []
+    drifts = drift_quick_wins() if args.tier not in ("structural", "ghidra") else []
     claimed, claimed_names = set(), set()
     with FUNCTIONS.open(newline="") as fh:
         for row in csv.DictReader(fh):
             if row["target_rva"]:
                 claimed.add(int(row["target_rva"], 16))
                 claimed_names.add(row["name"])
-    structural = (structural_candidates(mine, claimed, claimed_names, big=args.big)
+    structural = (structural_candidates(claimed, claimed_names, big=args.big)
                   if args.tier not in ("harvest", "ghidra") else [])
     if args.tier not in ("harvest", "structural"):
         ghidra_absent, ghidra_meta = ghidra_absent_candidates(
-            mine, claimed, claimed_names)
+            claimed, claimed_names)
     else:
         ghidra_absent, ghidra_meta = [], "Ghidra tier not requested"
 
-    if args.json:
+    if args.ranked and args.json:
         print(json.dumps({
             "ledger": ledger,
-            "slot": slot, "pool": pool, "filtered": filtered,
             "drift_quick_wins": drifts,
             "structural": structural,
             "ghidra_meta": ghidra_meta, "ghidra_absent": ghidra_absent,
@@ -494,50 +519,27 @@ def main():
         }, indent=2))
         return
 
-    print("== 0. ledger health ==")
-    print(f"  {ledger}")
-    if filtered:
-        print(f"  [slot {slot}/{pool}: ranked sections show only this agent's slice; "
-              f"--any shows everything]")
-
-    if args.tier not in ("structural", "ghidra"):
-        print(f"\n== 1. drift quick wins: literal-only diffs ({len(drifts)}) ==")
-        for c in drifts[:args.limit]:
-            print(f"  {c['aligned_pct']:>3}% {c['class']:<14} {c['function']}")
-            print(f"       {c['source']} @ {c['candidate_rva']}  hint: {c['hint']}")
-            print(f"       fix the literal in source, then byte-verify: {c['command']}")
-
-    if args.tier not in ("harvest", "ghidra"):
-        shown = structural[:args.limit if args.tier != "structural" else args.limit * 3]
-        print(f"\n== 2. structural reconciliation — manual RE ({len(structural)}; "
-              f"workflow: docs/structural.md) ==")
-        for c in shown:
-            print(f"  {c['aligned_pct']:>3}% {c['size']:>5}B {c['function']}")
-            print(f"       {c['source']} @ {c['candidate_rva']}  hint: {c['hint']}")
-            print(f"       start: {c['command']}")
-
-    if args.tier in (None, "ghidra"):
-        shown = ghidra_absent[:args.limit if args.tier != "ghidra" else args.limit * 3]
-        print(f"\n== 3. Ghidra-anchored absent functions ({len(ghidra_absent)}; "
-              f"workflow: docs/structural.md) ==")
-        print(f"  {ghidra_meta}")
-        for c in shown:
-            anchors = ", ".join(repr(value) for value in c["anchors"][:3])
-            print(f"  {c['confidence']:<6} {c['target_size']:>5}B {c['function']}")
-            print(f"       {c['source']} -> {c['target_rva']} {c['ghidra_name']} "
-                  f"({len(c['anchors'])} anchor(s): {anchors}; "
-                  f"{c['alternates']} alternate(s))")
-            print(f"       start: {c['command']}")
-        if ghidra_absent:
-            print("       inspect/decompile the target in Ghidra, verify with add_match.py, "
-                  "and log every attempt")
-
-    if args.tier in ("structural", "ghidra"):
+    if args.ranked:
+        print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent)
         return
 
-    print("\n== 4. rest of the ladder ==")
-    for cmd, why in POINTERS:
-        print(f"  {cmd:<55} # {why}")
+    label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent)
+    namespace = f"next-work:{args.tier or label}:{'big' if args.big else 'normal'}"
+    candidate, meta = choose_ranked(
+        candidates, lambda item: item["source"],
+        lambda item: (item["function"], item.get("candidate_rva"),
+                      item.get("target_rva")), namespace, ROOT)
+    if args.json:
+        print(json.dumps({"ledger": ledger, "tier": label,
+                          "selection": candidate, "selection_meta": meta}, indent=2))
+        return
+    print("== ledger health ==")
+    print(f"  {ledger}")
+    if candidate is None:
+        print(f"\nNo {label} candidates remain.")
+        return
+    print()
+    print_candidate(label, candidate, meta)
 
 
 if __name__ == "__main__":

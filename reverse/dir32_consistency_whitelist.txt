@@ -182,8 +182,8 @@ _W3DFilters
 __PresentParameters
 _m_boundaries
 #
-# __real@3c8efa35 is pi/180, and BFME compiles INI in two translation units
-# (see docs/lessons.md): ?parseAngleReal@INI@@ lives in the parser TU at
+# __real@3c8efa35 is pi/180, and BFME compiles INI in two translation units:
+# ?parseAngleReal@INI@@ lives in the parser TU at
 # 0x00852D30 and ?parseAngularVelocityReal@INI@@ in the template/store TU at
 # 0x000B9BA0. Each TU emits its own COMDAT copy of the literal, so two bases is
 # correct. It only became visible when parseAngularVelocityReal was repointed off

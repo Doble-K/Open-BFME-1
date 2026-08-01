@@ -1,22 +1,19 @@
 # Local reverse-engineering fleet
 
-This machine can sustain three focused writer/build roots. Create the two
-additional roots once:
+Create two additional writer/build roots with:
 
     python3 tools/setup_local_fleet.py
 
-The primary checkout becomes queue slot 1, the clones under
-`~/Projects/open-bfme-local-fleet/` become slots 2 and 3, and slots 4-8 are
-reserved for read-only Ghidra scouts. `tools/next_work.py` reads each writer's
-private slot configuration automatically. Scouts set `AGENT_SLOT` and
-`AGENT_POOL=8` explicitly.
+The primary checkout and clones under `~/Projects/open-bfme-local-fleet/` have
+independent build directories. Each default `tools/next_work.py` invocation
+chooses one randomized candidate; no fixed slots or worker configuration are
+installed.
 
-Every writer still follows `AGENTS.md`: one function, focused verification,
-specific staging, commit hook, pull/rebase, push, and re-pull. Do not run full
-gates concurrently; use one writer as the integrator for those. The clones have
-independent build directories, but all writers publish to the same branch, so
-serialize the final pull/push step and retry after any rejected push.
+Every writer follows `AGENTS.md`: finish one unit, verify it, stage specific
+files, commit, pull with rebase, push, then pull again. Writers publish
+optimistically to the same branch. If a push loses a race, rebase and retry.
+Run long full gates in only one writer at a time.
 
 The fleet manifest is machine-local at
-`~/Projects/open-bfme-local-fleet/fleet.json`. Re-running setup is safe and
-refreshes configuration without deleting or resetting an existing clone.
+`~/Projects/open-bfme-local-fleet/fleet.json`. It lists only the primary and
+writer clones. Re-running setup refreshes configuration without resetting them.

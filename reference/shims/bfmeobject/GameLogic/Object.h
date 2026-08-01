@@ -24,7 +24,7 @@
 // members can be byte-matched without disturbing the ~100 rows that compile
 // against reference/shims/sweep/GameLogic/Object.h (ZH layout).
 //
-// Proven retail offsets (see docs/lessons.md):
+// Proven retail offsets:
 //   0x074 m_id                 setProducer 0x1BE450  mov eax,[eax+0x74]
 //   0x078 m_producerID         setProducer 0x1BE450  mov [ecx+0x78],eax
 //   0x07c m_builderID          setBuilder  0x1BE470  mov [ecx+0x7c],eax

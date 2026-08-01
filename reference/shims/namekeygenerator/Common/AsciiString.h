@@ -21,9 +21,8 @@
 
 // BFME shadow shim (TU-scoped; only Common/NameKeyGenerator.cpp uses this -I path).
 //
-// SUPERSEDES the earlier debugptr/AsciiStringData-header model (see
-// docs/lessons.md / reverse/re_attempts.log for that history). keyToName/
-// nameToKey(const char*)'s retail bodies were disassembled directly
+// This supersedes the earlier debugptr/AsciiStringData-header model.
+// keyToName/nameToKey(const char*)'s retail bodies were disassembled directly
 // (build.read_target_bytes @0x8FD30/0x8FFC0) and PROVEN to call straight out
 // to WWLib's already-matched StringBase<char> members:
 //   - keyToName's `return bucket->m_nameString;` / `return TheEmptyString;`

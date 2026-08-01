@@ -223,7 +223,7 @@ protected:
 	// (not deleting) those 3 fields below m_riverAlphaEdge keeps every
 	// present-unmatched function in this TU that still names them compiling,
 	// while giving m_disableRiver (and everything through m_riverAlphaEdge)
-	// its proven retail offset. See docs/lessons.md.
+	// its proven retail offset.
 	TextureClass *m_waterSparklesTexture;
 	Real m_riverXOffset;
 	Real m_riverYOffset;

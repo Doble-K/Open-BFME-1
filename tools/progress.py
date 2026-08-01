@@ -1,31 +1,38 @@
 #!/usr/bin/env python3
-"""Count matched-row deltas in reverse/functions.csv between two repo states.
+"""Report exact-match coverage of the retail executable's .text section.
 
-The ONLY numbers that count as progress are matched rows in reverse/functions.csv,
-and rows only become trustworthy when ./build.sh byte-verifies them — this tool
-compiles nothing and verifies nothing, it counts ledger rows. Source text,
-present-unmatched markers, docs, and prose claims are NOT progress. Use this to
-size any session's "done" claim in seconds, then run ./build.sh for proof:
+Every retail byte is counted once. Clean C++ ownership wins when it overlaps an
+assembly-backed row (including ICF aliases), leaving "ASM-only" as actionable
+porting debt. This reads the ledger but compiles nothing; build.sh is proof.
 
   python3 tools/progress.py                # HEAD vs worktree
   python3 tools/progress.py REF            # REF vs worktree
   python3 tools/progress.py REF1..REF2     # between two commits
+  python3 tools/progress.py --details REF  # include ledger diagnostics
 """
 import argparse
 import csv
+import re
 import subprocess
-import sys
 from collections import Counter
+from functools import lru_cache
 from pathlib import Path
+
+import build
+from list_naked_candidates import NAKED_RE, block_bytes, symbol_comment
 
 ROOT = Path(__file__).resolve().parents[1]
 FUNCTIONS = "reverse/functions.csv"
+CPP_SUFFIXES = {".c", ".cc", ".cpp", ".cxx"}
+ASM_SUFFIXES = {".asm", ".s"}
+EMIT_RE = re.compile(
+    r"\b_{1,2}emit\s+(?:0x([0-9a-fA-F]{1,2})|([0-9a-fA-F]{1,3})h)\b",
+    re.IGNORECASE,
+)
 
 
 def matched_at(ref):
-    """(name, target_rva) -> (size, source) for matched rows at a git ref, or the
-    worktree if ref is None. Keyed by address too: exact-ambiguous template copies
-    are distinct rows sharing one mangled name, and an auditor must not collapse them."""
+    """Return {(name, target_rva): (size, source)} for one repository state."""
     if ref is None:
         text = (ROOT / FUNCTIONS).read_text(encoding="utf-8")
     else:
@@ -39,13 +46,274 @@ def matched_at(ref):
     out = {}
     for row in csv.DictReader(text.splitlines()):
         if row["status"] == "matched":
-            out[(row["name"], row["target_rva"])] = (int(row["target_size"]), row["source"])
+            out[(row["name"], row["target_rva"])] = (
+                int(row["target_size"]), row["source"])
     return out
 
 
+def retail_text():
+    """Return (start RVA, byte size) using the build gate's PE parser/baseline."""
+    sections = build.pe_sections(build.EXE.read_bytes())
+    text = next((section for section in sections if section["name"] == ".text"), None)
+    if text is None:
+        raise SystemExit(f"{build.EXE}: no .text section")
+    return text["rva"], text["size"]
+
+
+def merge_intervals(intervals):
+    """Return sorted, non-overlapping half-open intervals."""
+    merged = []
+    for start, end in sorted(intervals):
+        if start >= end:
+            continue
+        if merged and start <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], end))
+        else:
+            merged.append((start, end))
+    return merged
+
+
+def interval_bytes(intervals):
+    return sum(end - start for start, end in merge_intervals(intervals))
+
+
+def source_kind(source):
+    suffix = Path(source).suffix.lower()
+    if suffix in CPP_SUFFIXES:
+        return "cpp"
+    if suffix in ASM_SUFFIXES:
+        return "asm"
+    raise SystemExit(
+        f"matched source has unsupported suffix {suffix or '<none>'}: {source}")
+
+
+def _is_naked_declaration(lines, index):
+    """True for an explicit-instantiation declaration with no function body."""
+    for line in lines[index:]:
+        brace = line.find("{")
+        semicolon = line.find(";")
+        if semicolon >= 0 and (brace < 0 or semicolon < brace):
+            return True
+        if brace >= 0:
+            return False
+    return True
+
+
+def _signature_identity(name):
+    """Return a conservative source-level Class::method spelling, when simple."""
+    special = re.match(r"^\?\?([014])([A-Za-z_][A-Za-z0-9_]*)@@", name)
+    if special:
+        code, cls = special.groups()
+        method = {"0": cls, "1": f"~{cls}", "4": "operator="}[code]
+        return f"{cls}::{method}"
+    normal = re.match(r"^\?([A-Za-z_][A-Za-z0-9_]*)@([A-Za-z_][A-Za-z0-9_]*)@@", name)
+    if normal:
+        return f"{normal.group(2)}::{normal.group(1)}"
+    c_name = re.match(r"^_([A-Za-z_][A-Za-z0-9_]*)$", name)
+    return c_name.group(1) if c_name else None
+
+
+@lru_cache(maxsize=None)
+def scan_naked_bodies(text):
+    """Return proven naked implementation evidence without treating a file as a unit."""
+    lines = text.splitlines()
+    bodies = []
+    for index, line in enumerate(lines):
+        if not NAKED_RE.search(line) or _is_naked_declaration(lines, index):
+            continue
+        _, end = block_bytes(lines, index)
+        emitted = []
+        for body_line in lines[index:end + 1]:
+            for match in EMIT_RE.finditer(body_line):
+                emitted.append(int(match.group(1) or match.group(2), 16))
+        declaration = []
+        for declaration_line in lines[index:end + 1]:
+            before_brace, brace, _ = declaration_line.partition("{")
+            declaration.append(before_brace)
+            if brace:
+                break
+        bodies.append({
+            "symbol": symbol_comment(lines, index),
+            "signature": " ".join(" ".join(declaration).split()),
+            "emitted": bytes(emitted),
+        })
+    return tuple(bodies)
+
+
+def naked_cpp_rows(matched, source_texts, target_reader=build.read_target_bytes):
+    """Return matched-row keys proven to be naked assembly inside C/C++ files."""
+    rows_by_source = {}
+    for key, value in matched.items():
+        if Path(value[1]).suffix.lower() in CPP_SUFFIXES:
+            rows_by_source.setdefault(value[1], []).append((key, value))
+
+    naked = set()
+    target_cache = {}
+    for source, text in source_texts.items():
+        rows = rows_by_source.get(source, [])
+        bodies = scan_naked_bodies(text)
+        if not rows or not bodies:
+            continue
+        symbols = {body["symbol"] for body in bodies if body["symbol"]}
+        emitted = {body["emitted"] for body in bodies if body["emitted"]}
+        signatures = [body["signature"] for body in bodies]
+        for key, (size, _) in rows:
+            name, target_rva = key
+            identity = _signature_identity(name)
+            proven = name in symbols or (
+                identity is not None and any(
+                    re.search(rf"(?<![A-Za-z0-9_]){re.escape(identity)}\s*\(", signature)
+                    for signature in signatures))
+            if not proven and emitted:
+                target_key = (int(target_rva, 16), size)
+                if target_key not in target_cache:
+                    target_cache[target_key] = target_reader(*target_key)
+                proven = target_cache[target_key] in emitted
+            if proven or (len(rows) == 1 and len(bodies) == 1):
+                naked.add(key)
+    return naked
+
+
+def _batch_git_texts(ref, paths):
+    if not paths:
+        return {}
+    request = "".join(f"{ref}:{path}\n" for path in paths).encode()
+    proc = subprocess.run(
+        ["git", "cat-file", "--batch"], cwd=ROOT, input=request,
+        capture_output=True,
+    )
+    if proc.returncode != 0:
+        raise SystemExit(f"cannot read naked sources at {ref}: {proc.stderr.decode().strip()}")
+    output = proc.stdout
+    offset = 0
+    texts = {}
+    for path in paths:
+        line_end = output.find(b"\n", offset)
+        if line_end < 0:
+            raise SystemExit(f"cannot read {path} at {ref}: malformed git cat-file output")
+        header = output[offset:line_end].decode(errors="replace")
+        offset = line_end + 1
+        fields = header.rsplit(" ", 2)
+        if len(fields) != 3 or fields[1] != "blob":
+            raise SystemExit(f"cannot read {path} at {ref}: {header}")
+        size = int(fields[2])
+        texts[path] = output[offset:offset + size].decode("utf-8", errors="replace")
+        offset += size + 1  # blob plus cat-file's separating newline
+    return texts
+
+
+def naked_source_texts(matched, ref):
+    """Read only matched C/C++ sources containing naked bodies at one state."""
+    sources = {
+        source for _, source in matched.values()
+        if Path(source).suffix.lower() in CPP_SUFFIXES
+    }
+    if ref is None:
+        grep = subprocess.run(
+            ["git", "grep", "-l", "-E",
+             r"__declspec[[:space:]]*\([[:space:]]*naked", "--", "Code"],
+            cwd=ROOT, capture_output=True, text=True,
+        )
+        if grep.returncode not in (0, 1):
+            raise SystemExit(f"cannot scan worktree naked sources: {grep.stderr.strip()}")
+        paths = set(grep.stdout.splitlines()) & sources
+        tracked = set(subprocess.run(
+            ["git", "ls-files", "-z", "--", "Code"], cwd=ROOT,
+            capture_output=True, check=True,
+        ).stdout.decode(errors="replace").split("\0"))
+        changed = set(subprocess.run(
+            ["git", "diff", "--name-only", "-z", "HEAD", "--", "Code"],
+            cwd=ROOT, capture_output=True, check=True,
+        ).stdout.decode(errors="replace").split("\0"))
+        disk_paths = paths & (changed | (sources - tracked))
+        for source in (changed & sources) | (sources - tracked):
+            if not (ROOT / source).is_file():
+                raise SystemExit(f"cannot read matched source {source}")
+        texts = _batch_git_texts("HEAD", sorted(paths - disk_paths))
+        for source in sources - tracked:
+            text = (ROOT / source).read_bytes().decode("utf-8", errors="replace")
+            if NAKED_RE.search(text):
+                disk_paths.add(source)
+        for source in disk_paths:
+            texts[source] = (ROOT / source).read_bytes().decode("utf-8", errors="replace")
+        return texts
+
+    proc = subprocess.run(
+        ["git", "grep", "-l", "-E",
+         r"__declspec[[:space:]]*\([[:space:]]*naked", ref, "--", "Code"],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    if proc.returncode not in (0, 1):
+        raise SystemExit(f"cannot scan naked sources at {ref}: {proc.stderr.strip()}")
+    prefix = f"{ref}:"
+    paths = []
+    for line in proc.stdout.splitlines():
+        path = line[len(prefix):] if line.startswith(prefix) else line.split(":", 1)[-1]
+        if path in sources:
+            paths.append(path)
+    return _batch_git_texts(ref, sorted(paths))
+
+
+def naked_cpp_rows_at(matched, ref):
+    return naked_cpp_rows(matched, naked_source_texts(matched, ref))
+
+
+def coverage(matched, text_start, text_size, naked_rows=()):
+    """Return absolute .text-byte ownership for clean C++ and assembly rows."""
+    text_end = text_start + text_size
+    cpp = []
+    asm = []
+    naked_rows = set(naked_rows)
+    for key, (size, source) in matched.items():
+        _, target_rva = key
+        kind = source_kind(source)
+        if kind == "cpp" and key in naked_rows:
+            kind = "asm"
+        start = max(int(target_rva, 16), text_start)
+        end = min(int(target_rva, 16) + size, text_end)
+        if start >= end:
+            continue
+        (asm if kind == "asm" else cpp).append((start, end))
+
+    cpp_bytes = interval_bytes(cpp)
+    exact_bytes = interval_bytes(cpp + asm)
+    return {
+        "cpp": cpp_bytes,
+        "asm_only": exact_bytes - cpp_bytes,
+        "unmatched": text_size - exact_bytes,
+        "exact": exact_bytes,
+        "text": text_size,
+    }
+
+
+def percent(count, total):
+    return 100.0 * count / total if total else 0.0
+
+
+def format_delta(current, previous, total):
+    byte_delta = current - previous
+    return f"{byte_delta:+,} bytes, {percent(byte_delta, total):+.2f} pp"
+
+
+def print_scorecard(ref1, label2, old_stats, new_stats):
+    total = new_stats["text"]
+    print(f"retail .text exact coverage {ref1} -> {label2} ({total:,} bytes)")
+    rows = (
+        ("C++ exact", "cpp"),
+        ("ASM-only exact", "asm_only"),
+        ("Unmatched", "unmatched"),
+        ("Total exact", "exact"),
+    )
+    for label, key in rows:
+        value = new_stats[key]
+        delta = format_delta(value, old_stats[key], total)
+        print(f"  {label:<15} {value:>10,} bytes ({percent(value, total):6.2f}%)"
+              f"  delta {delta}")
+
+
 def marker_delta(ref1, ref2):
-    """Net present-unmatched/absent-from-retail marker lines added between the states."""
-    cmd = ["git", "diff", ref1] + ([ref2] if ref2 else []) + ["--", "src"]
+    """Net present-unmatched/absent-from-retail markers added between states."""
+    cmd = ["git", "diff", ref1] + ([ref2] if ref2 else []) + ["--", "Code"]
     diff = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True).stdout
     added = removed = 0
     for line in diff.splitlines():
@@ -64,57 +332,80 @@ def area(source):
     return "/".join(parts[:2]) if len(parts) > 1 else source
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__,
-                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("range", nargs="?", default="HEAD",
-                    help="REF (vs worktree) or REF1..REF2 (default: HEAD vs worktree)")
-    args = ap.parse_args()
+def asm_diagnostics(matched, naked_rows):
+    naked_rows = set(naked_rows)
+    sources = {
+        source for key, (_, source) in matched.items()
+        if Path(source).suffix.lower() in ASM_SUFFIXES or key in naked_rows
+    }
+    rows = sum(
+        1 for key, (_, source) in matched.items()
+        if Path(source).suffix.lower() in ASM_SUFFIXES or key in naked_rows
+    )
+    return rows, len(sources)
 
-    if ".." in args.range:
-        ref1, _, ref2 = args.range.partition("..")
-        ref2 = ref2 or None
-    else:
-        ref1, ref2 = args.range, None
 
-    old = matched_at(ref1)
-    new = matched_at(ref2)
-
-    added = {n: new[n] for n in new.keys() - old.keys()}
-    removed = {n: old[n] for n in old.keys() - new.keys()}
-    markers = marker_delta(ref1, ref2)
-
-    label2 = ref2 or "worktree"
-    print(f"matched-row delta {ref1} -> {label2}")
-    print(f"  +{len(added)}, -{len(removed)} matched rows (not byte-verified — build.sh is proof)")
-    print(f"  matched rows total: {len(old)} -> {len(new)}")
-    # Rows exceed distinct addresses: MSVC ICF folds identical template bodies
-    # onto one address, so several mangled names legitimately share a target_rva.
-    # Distinct addresses is the honest "how much of the binary" number.
-    # int() normalizes casing/width so a row written 0x00AB and 0x00ab counts once.
-    print(f"  distinct addresses: {len({int(rva, 16) for _, rva in old})}"
-          f" -> {len({int(rva, 16) for _, rva in new})}")
-    print(f"  claimed bytes:      +{sum(s for s, _ in added.values())}"
-          f"{'' if not removed else f'  (-{sum(s for s, _ in removed.values())} removed)'}")
-    print(f"  unclaimed markers:  {markers:+d}")
+def print_details(ref1, ref2, old, new, old_naked=(), new_naked=()):
+    added = {name: new[name] for name in new.keys() - old.keys()}
+    removed = {name: old[name] for name in old.keys() - new.keys()}
+    print("\nledger details (diagnostics, not unique-byte progress)")
+    print(f"  matched rows:      {len(old):,} -> {len(new):,}"
+          f"  (+{len(added):,}, -{len(removed):,})")
+    print(f"  distinct RVAs:     {len({int(rva, 16) for _, rva in old}):,}"
+          f" -> {len({int(rva, 16) for _, rva in new}):,}")
+    old_asm_rows, old_asm_files = asm_diagnostics(old, old_naked)
+    new_asm_rows, new_asm_files = asm_diagnostics(new, new_naked)
+    print(f"  ASM-backed rows:   {old_asm_rows:,} -> {new_asm_rows:,}")
+    print(f"  ASM-bearing files: {old_asm_files:,} -> {new_asm_files:,}")
+    print(f"  unclaimed markers: {marker_delta(ref1, ref2):+d}")
 
     if added:
         by_area = Counter()
         by_file = Counter()
-        for size, source in added.values():
+        for _, source in added.values():
             by_area[area(source)] += 1
             by_file[source] += 1
-        print("  by area: " + ", ".join(f"{a} +{n}" for a, n in by_area.most_common()))
-        print("  top files:")
-        for source, n in by_file.most_common(10):
-            print(f"    +{n:<4d} {source}")
+        print("  added by area: "
+              + ", ".join(f"{name} +{count}" for name, count in by_area.most_common()))
+        print("  top added files:")
+        for source, count in by_file.most_common(10):
+            print(f"    +{count:<4d} {source}")
     if removed:
-        print("  removed claims:")
-        for (name, rva), (size, source) in sorted(removed.items())[:10]:
+        print("  removed rows:")
+        for (name, _), (size, source) in sorted(removed.items())[:10]:
             print(f"    -{size:<5d} {source}  {name[:60]}")
 
-    print("\nthese are ledger row counts, nothing here was compiled or byte-verified;"
-          "\na clean ./build.sh run is the only proof the rows are real.")
+
+def parse_range(value):
+    if ".." in value:
+        ref1, _, ref2 = value.partition("..")
+        return ref1, ref2 or None
+    return value, None
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("range", nargs="?", default="HEAD",
+                        help="REF (vs worktree) or REF1..REF2")
+    parser.add_argument("--details", action="store_true",
+                        help="show row, RVA, marker, area, and file diagnostics")
+    args = parser.parse_args()
+
+    ref1, ref2 = parse_range(args.range)
+    old = matched_at(ref1)
+    new = matched_at(ref2)
+    text_start, text_size = retail_text()
+    old_naked = naked_cpp_rows_at(old, ref1)
+    new_naked = naked_cpp_rows_at(new, ref2)
+    old_stats = coverage(old, text_start, text_size, old_naked)
+    new_stats = coverage(new, text_start, text_size, new_naked)
+    label2 = ref2 or "worktree"
+
+    print_scorecard(ref1, label2, old_stats, new_stats)
+    if args.details:
+        print_details(ref1, ref2, old, new, old_naked, new_naked)
+    print("\nledger-derived; a clean build.sh run is the byte-match proof.")
 
 
 if __name__ == "__main__":

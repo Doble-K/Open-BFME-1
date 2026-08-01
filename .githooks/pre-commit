@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# Fast commit gate: static ledger integrity + byte-verify of exactly what this
-# commit changes. The full multi-minute gate (./build.sh with no args) is NOT
-# run here — run it at session start and after merges; pre-push re-checks the
-# outgoing delta. Never bypass with --no-verify: this hook takes seconds, and
-# a bad row committed here becomes every other agent's red build.
+# Commit gate: static ledger integrity plus byte-verification of the delta.
+# Header and shim changes automatically receive the full gate; pre-push checks
+# the outgoing delta again. Never bypass this hook.
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel)"

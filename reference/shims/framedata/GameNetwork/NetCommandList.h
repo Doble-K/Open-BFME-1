@@ -4,7 +4,7 @@
 #define __NETCOMMANDLIST_H
 
 // TU-scoped stand-in for the real GameNetwork/NetCommandList.h. BFME dropped the
-// MemoryPoolObject base from the Net* wrapper classes (docs/lessons.md), so the
+// MemoryPoolObject base from the Net* wrapper classes, so the
 // ZH header's MEMORY_POOL_GLUE is wrong here in two ways: it makes operator new
 // and operator delete protected, which stops FrameData::init from writing
 // `new NetCommandList`, and it implies a pool free where retail plain-deletes.
