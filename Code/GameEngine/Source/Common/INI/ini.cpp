@@ -340,7 +340,58 @@ static INIBlockParse findBlockParse(const char* token)
 //-------------------------------------------------------------------------------------------------
 /** Load and parse an INI file */
 //-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+// ?parseLine@INI@@IAEXVAsciiString@@@Z present-unmatched
+// 0x00851350, 362 bytes. BFME factors this out of load; Zero Hour writes it
+// inline there. The name is ours -- there is nothing to take it from, since the
+// function does not exist upstream.
+//
+// It also keeps findBlockParse alive: that function is file-static, so with the
+// dispatch moved out of load and nothing else calling it, the compiler drops it
+// and its matched row loses its definition.
+void INI::parseLine( AsciiString filename )
+{
+	// the first word is the type of data we're processing
+	const char *token = strtok( m_buffer, m_seps );
+	if( token )
+	{
+		INIBlockParse parse = findBlockParse(token);
+		if (parse)
+		{
+			strcpy(m_curBlockStart, m_buffer);
+			try
+			{
+				(*parse)( this );
+			}
+			catch (...)
+			{
+				char buff[1024];
+				sprintf(buff, "Error parsing INI file '%s' (Line: '%s')\n", filename.str(), m_buffer);
+				throw INIException(buff);
+			}
+			strcpy(m_curBlockStart, "NO_BLOCK");
+		}
+		else
+		{
+			throw INI_UNKNOWN_TOKEN;
+		}
+	}
+}
+
 // ?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z present-unmatched
+// BFME's load is 0x00853A20, not the 0x00853610 the ledger used to point at --
+// that one is prepFile. The shape is also different from Zero Hour's: the
+// per-line work (strtok, findBlockParse, invoke) is factored out into the
+// 362-byte function at 0x00851350 rather than written inline here, and the
+// filename is passed down to it for the error message.
+//
+// 106 of 259 bytes. The content lines up instruction for instruction --
+// setFPMode, store the Xfer, construct the filename temporary, prepFile, the
+// loop, parseLine, the catch that unPrepFiles and rethrows. Two things differ.
+// Retail reserves eight more bytes of locals than we do, and it materialises
+// zero into ebx to serve both the EH state store and the m_endOfFile compare
+// where we use immediates and a byte test. That second one is the same MSVC
+// heuristic that keeps friend_parseRankDefinition apart, pointing the other way.
 void INI::load( AsciiString filename, INILoadType loadType, Xfer *pXfer )
 {
 	setFPMode(); // so we have consistent Real values for GameLogic -MDC
@@ -350,50 +401,11 @@ void INI::load( AsciiString filename, INILoadType loadType, Xfer *pXfer )
 
 	try
 	{
-
-		// read all lines in the file
-		DEBUG_ASSERTCRASH( m_endOfFile == FALSE, ("INI::load, EOF at the beginning!\n") );
 		while( m_endOfFile == FALSE )
 		{
-			// read this line
 			readLine();
-
-			AsciiString currentLine = m_buffer;
-
-			// the first word is the type of data we're processing
-			const char *token = strtok( m_buffer, m_seps );
-			if( token )
-			{
-				INIBlockParse parse = findBlockParse(token);
-				if (parse)
-				{
-					#if defined(_DEBUG) || defined(_INTERNAL)
-					strcpy(m_curBlockStart, m_buffer);
-					#endif
-					try {
-						(*parse)( this );
-
-					} catch (...) {
-						DEBUG_CRASH(("Error parsing block '%s' in INI file '%s'\n", token, m_filename.str()) );
-						char buff[1024];
-						sprintf(buff, "Error parsing INI file '%s' (Line: '%s')\n", m_filename.str(), currentLine.str());
-
-						throw INIException(buff);
-					}
-					#if defined(_DEBUG) || defined(_INTERNAL)
-						strcpy(m_curBlockStart, "NO_BLOCK");
-					#endif
-				}
-				else
-				{
-					DEBUG_ASSERTCRASH( 0, ("[LINE: %d - FILE: '%s'] Unknown block '%s'\n",
-														 getLineNum(), getFilename().str(), token ) );
-					throw INI_UNKNOWN_TOKEN;
-				}
-				
-			}  // end if 
-				
-		}  // end while
+			parseLine( filename );
+		}
 	}
 	catch (...)
 	{

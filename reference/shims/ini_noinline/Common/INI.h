@@ -474,6 +474,13 @@ protected:
 	void prepFile( AsciiString filename, INILoadType loadType );
 	void unPrepFile();
 
+	// BFME factors the per-line block dispatch out of load: strtok the buffer,
+	// findBlockParse the first token, copy the line into m_curBlockStart and
+	// invoke. The filename comes along for the error message. 0x00851350, and the
+	// name is ours -- Zero Hour writes this inline in load, so there is nothing to
+	// take it from.
+	void parseLine( AsciiString filename );
+
 	void readLine( void );
 
 	File *m_file;															///< file pointer of file currently loading
