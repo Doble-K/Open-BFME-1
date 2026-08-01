@@ -11991,7 +11991,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?maxf@@YAMMM@Z,,0x0075B480,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?memrev@@YAXPADI@Z,,0x009E8C50,33,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
 ?merge@LList@@QAEXPAV1@@Z,,0x00105890,49,Code/GameEngine/Source/Common/System/List.cpp,matched,
-?message@InGameUI@@UAAXVUnicodeString@@ZZ,,0x0043DEE0,9,Code/GameEngine/Source/GameClient/InGameUI_message_UnicodeString.asm,matched,Certified packet 113 reviewed vtable UnicodeString cleanup tail stub
 ?messageCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyMessageArg@@@Z,,0x0000E43A,5,Code/GameEngine/Source/Common/RTS/BuddyThreadClassMessageCallbackThunk.cpp,matched,5-byte incremental-link BuddyThreadClass message callback thunk converted to focused C++ source
 ?militarySubtitle@InGameUI@@UAEXABVAsciiString@@H@Z,,0x00441D30,585,Code/masm_dumps/militarySubtitle_InGameUI_UAEXABVAsciiString_H_Z_00441D30_packet349.asm,matched,Certified packet 349 exact retail db body SHA-256 0497b9effcf396d5176dbffe01f01b9bc6576d950b93804954a1d8c24b372472
 ?minInt@@YAHHH@Z,,0x0094A8C0,15,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,ICF alias of existing matched body
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??_GMetaMapRec@@QAEPAXI@Z,,0x005B70E0,30,Code/GameEngine/Source/GameClient/MessageStream/MetaMapRecDestructorThunks.cpp,matched,Open-BFME5 exact compiler-generated scalar deleting destructor;object-symbol=??_GMetaMapRec@@QAEPAXI@Z
 ?clearVisibleSkinList@DX8SkinFVFCategoryContainer@@AAEXXZ,,0x00945D60,72,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail field shim
 ?message@InGameUI@@UAAXVAsciiString@@ZZ,,0x0043DED0,9,Code/GameEngine/Source/GameClient/InGameUI_message_AsciiString.cpp,matched,Open-BFME5 exact C++ virtual tail stub
+?message@InGameUI@@UAAXVUnicodeString@@ZZ,,0x0043DEE0,9,Code/GameEngine/Source/GameClient/InGameUI_message_UnicodeString.cpp,matched,Open-BFME5 exact C++ virtual tail stub
