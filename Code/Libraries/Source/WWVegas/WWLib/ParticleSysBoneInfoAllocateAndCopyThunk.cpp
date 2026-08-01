@@ -15,6 +15,7 @@ namespace _STL
 	protected:
 		template <class Iterator>
 		Type *_M_allocate_and_copy(unsigned int, Iterator, Iterator);
+		void _M_clear();
 	};
 
 	template <class Type, class Allocator>
@@ -34,4 +35,15 @@ namespace _STL
 	template ParticleSysBoneInfo *vector<ParticleSysBoneInfo,
 		allocator<ParticleSysBoneInfo> >::_M_allocate_and_copy<ParticleSysBoneInfo const *>(
 		unsigned int, ParticleSysBoneInfo const *, ParticleSysBoneInfo const *);
+
+	__declspec(naked) void vector<ParticleSysBoneInfo, allocator<ParticleSysBoneInfo> >::_M_clear()
+	{
+		__asm {
+			_emit 0E9h
+			_emit 02Dh
+			_emit 0F1h
+			_emit 009h
+			_emit 000h
+		}
+	}
 }
