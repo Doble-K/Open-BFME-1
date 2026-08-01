@@ -1087,7 +1087,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Anim2DTemplate@@QAE@VAsciiString@@@Z,,0x005BAD80,124,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_ctor_dtor.asm,matched,
 ??0AnimSet@GenericObjectCreationNugget@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
 ??0AnimalAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B3090,118,Code/masm_dumps/AnimalAIUpdate_constructor.asm,matched,Exact 118B; factory ownership Open-BFME4
-??0AnimalAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/AnimalAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF primary MD Open-BFME4
 ??0Animatable3DObjClass@@QAE@ABV0@@Z,,0x00982D10,193,Code/masm_dumps/_sym2___0Animatable3DObjClass__QAE_ABV0__Z_982D10.asm,matched,symbol-pin Open-BFME4+Grok
 ??0Animatable3DObjClass@@QAE@PBD@Z,,0x00981EF0,393,Code/masm_dumps/_sym1___0Animatable3DObjClass__QAE_PBD_Z_981EF0.asm,matched,symbol-pin Open-BFME4+Grok
 ??0AnimateWindow@@QAE@XZ,,0x0045CEE0,62,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AIFollowWaypointPathExactState@@QAE@PAVStateMachine@@_N@Z,,0x0017FA90,60,Code/GameEngine/Source/GameLogic/AI/AIFollowWaypointPathExactStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIAttackThenIdleStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x00184A40,347,Code/GameEngine/Source/GameLogic/AI/AIAttackThenIdleStateMachineCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state-machine constructor
 ??0AimWeaponBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ECF40,134,Code/GameEngine/Source/GameLogic/AI/AimWeaponBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw module constructor
+??0AnimalAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
