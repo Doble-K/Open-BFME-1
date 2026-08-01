@@ -1466,7 +1466,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FindPositionOptions@@QAE@XZ,,0x00160B40,36,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ??0FireOCLAfterWeaponCooldownUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001EE950,276,Code/masm_dumps/FireOCLAfterWeaponCooldownUpdate_constructor.asm,matched,Exact 276B ICF alias Open-BFME4
 ??0FireSpreadUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004B510,5,Code/masm_dumps/__0FireSpreadUpdate__QAE_PAVThing__PBVModuleData___Z_4B510.asm,matched,MASM exact retail dump
-??0FireSpreadUpdateModuleData@@QAE@XZ,,0x000104B5,5,Code/masm_dumps/__0FireSpreadUpdateModuleData__QAE_XZ_104B5.asm,matched,MASM exact retail dump
 ??0FireWeaponCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00216430,151,Code/masm_dumps/FireWeaponCollide_constructor.asm,matched,Exact 151B @ 0x00216430; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11EB20
 ??0FireWeaponCollideModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/FireWeaponCollideModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0FireWeaponNugget@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getNextVertexBuffer@W3DBufferManager@@QAEPAUW3DVertexBuffer@1@PAU21@W4VBM_FVF_TYPES@1@@Z,,0x007B7CF0,28,Code/Libraries/Source/WWVegas/WW3D2/W3DBufferManagerVertexBuffer.cpp,matched,Exact retail W3DBufferManager accessor emitted in dedicated C++ TU.
 _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConnection.cpp,matched,Exact retail stats connection query emitted in dedicated C++ TU.
 ?preloadAssets@ControlBar@@QAEXW4TimeOfDay@@@Z,,0x0026FD50,13,Code/GameEngine/Source/GameClient/ControlBarPreloadAssets.cpp,matched,Exact retail ControlBar preload thunk emitted in dedicated C++ TU.
+??0FireSpreadUpdateModuleData@@QAE@XZ,,0x00292680,23,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdateModuleData.cpp,matched,incremental thunk @0x104B5; standalone codegen-blocked C++ emits exact 23B retail constructor body

@@ -78,15 +78,6 @@ Bool PartitionFilterFlammable::allow(Object *objOther)
 //-------------------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------------------------
-FireSpreadUpdateModuleData::FireSpreadUpdateModuleData()
-{
-	m_minSpreadTryDelayData = 0;
-	m_maxSpreadTryDelayData = 0;
-	m_oclEmbers = NULL;
-	m_spreadTryRange = 0;
-}
-
-//-------------------------------------------------------------------------------------------------
 /*static*/ void FireSpreadUpdateModuleData::buildFieldParse(MultiIniFieldParse& p) 
 {
   UpdateModuleData::buildFieldParse(p);
@@ -111,6 +102,7 @@ FireSpreadUpdate::FireSpreadUpdate( Thing *thing, const ModuleData* moduleData )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
+// ??1FireSpreadUpdate@@UAE@XZ present-unmatched
 FireSpreadUpdate::~FireSpreadUpdate( void )
 {
 }
@@ -163,6 +155,7 @@ UpdateSleepTime FireSpreadUpdate::update( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
+// ?startFireSpreading@FireSpreadUpdate@@QAEXXZ present-unmatched
 void FireSpreadUpdate::startFireSpreading()
 {
 	if( !getObject()->getStatusBits().test( OBJECT_STATUS_AFLAME ) )
@@ -173,6 +166,7 @@ void FireSpreadUpdate::startFireSpreading()
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
+// ?calcNextSpreadDelay@FireSpreadUpdate@@QAEIXZ present-unmatched
 UnsignedInt FireSpreadUpdate::calcNextSpreadDelay()
 {
 	const FireSpreadUpdateModuleData* d = getFireSpreadUpdateModuleData();
@@ -185,6 +179,7 @@ UnsignedInt FireSpreadUpdate::calcNextSpreadDelay()
 // ------------------------------------------------------------------------------------------------
 /** CRC */
 // ------------------------------------------------------------------------------------------------
+// ?crc@FireSpreadUpdate@@QAEXPAVXfer@@@Z present-unmatched
 void FireSpreadUpdate::crc( Xfer *xfer )
 {
 
@@ -198,6 +193,7 @@ void FireSpreadUpdate::crc( Xfer *xfer )
 	* Version Info:
 	* 1: Initial version */
 // ------------------------------------------------------------------------------------------------
+// ?xfer@FireSpreadUpdate@@QAEXPAVXfer@@@Z present-unmatched
 void FireSpreadUpdate::xfer( Xfer *xfer )
 {
 
@@ -214,6 +210,7 @@ void FireSpreadUpdate::xfer( Xfer *xfer )
 // ------------------------------------------------------------------------------------------------
 /** Load post process */
 // ------------------------------------------------------------------------------------------------
+// ?loadPostProcess@FireSpreadUpdate@@UAEXXZ present-unmatched
 void FireSpreadUpdate::loadPostProcess( void )
 {
 
