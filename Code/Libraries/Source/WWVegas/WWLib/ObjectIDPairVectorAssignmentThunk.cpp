@@ -21,6 +21,12 @@ namespace _STL
 	{
 	public:
 		vector &operator=(const vector &);
+	protected:
+		void _M_insert_overflow(Type *, const Type &, const struct __false_type &, unsigned int, bool);
+	};
+
+	struct __false_type
+	{
 	};
 
 	__declspec(naked) vector<pair<ObjectID, unsigned int>, allocator<pair<ObjectID, unsigned int> > > &vector<pair<ObjectID, unsigned int>, allocator<pair<ObjectID, unsigned int> > >::operator=(const vector<pair<ObjectID, unsigned int>, allocator<pair<ObjectID, unsigned int> > > &)
@@ -29,6 +35,17 @@ namespace _STL
 			_emit 0E9h
 			_emit 08Ch
 			_emit 080h
+			_emit 006h
+			_emit 000h
+		}
+	}
+
+	__declspec(naked) void vector<pair<ObjectID, unsigned int>, allocator<pair<ObjectID, unsigned int> > >::_M_insert_overflow(pair<ObjectID, unsigned int> *, pair<ObjectID, unsigned int> const &, const __false_type &, unsigned int, bool)
+	{
+		__asm {
+			_emit 0E9h
+			_emit 057h
+			_emit 0B5h
 			_emit 006h
 			_emit 000h
 		}
