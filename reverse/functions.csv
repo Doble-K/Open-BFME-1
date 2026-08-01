@@ -2050,7 +2050,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StructureBodyModuleData@@QAE@XZ,,0x001293C0,118,Code/masm_dumps/StructureBodyModuleData_constructor.asm,matched,Exact 118B @ 0x001293C0; Exact retail MASM ModuleData ctor; unique factory 0x1294A0
 ??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004A345,5,Code/masm_dumps/__0StructureCollapseUpdate__QAE_PAVThing__PBVModuleData___Z_4A345.asm,matched,retail factory call binds constructor thunk to StructureCollapseUpdate
 ??0StructureCollapseUpdateModuleData@@QAE@XZ,,0x00128940,224,Code/masm_dumps/StructureCollapseUpdateModuleData_constructor.asm,matched,Exact 224B @ 0x00128940; Exact retail MASM ModuleData ctor; unique factory 0x128B10
-??0StructureToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00034711,5,Code/masm_dumps/__0StructureToppleUpdate__QAE_PAVThing__PBVModuleData___Z_34711.asm,matched,MASM exact retail dump
 ??0StructureToppleUpdateModuleData@@QAE@XZ,,0x0012BF50,398,Code/masm_dumps/StructureToppleUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x12C250
 ??0SubObjectArrayClass@HLodDefClass@@QAE@XZ,,0x009789F0,20,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ??0SubObjectsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D83A0,69,Code/masm_dumps/SubObjectsUpgrade_constructor.asm,matched,Exact 69B unique factory Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@GV?$allocator@G@_STL@@@_STL@@IAEXPAGABGABU__true_type@2@I_N@Z,,0x0000791E,5,Code/Libraries/Source/WWVegas/WWLib/UnsignedShortVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0StealthUpdateModuleData@@QAE@XZ,,0x00049AA3,5,Code/GameEngine/Source/GameLogic/Object/Update/StealthUpdateModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@HV?$allocator@H@_STL@@@_STL@@IAEXPAHABHABU__true_type@2@I_N@Z,,0x0001CBFC,5,Code/Libraries/Source/WWVegas/WWLib/UnsignedShortVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0StructureToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00034711,5,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
