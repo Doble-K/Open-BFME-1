@@ -6373,7 +6373,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Device_Name@RenderDeviceDescClass@@QBEPBDXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Get_Device_Resolution@DX8Wrapper@@KAXAAH00AA_N@Z,,0x00902170,48,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_Diffuse@LightClass@@QBEXPAVVector3@@@Z,,0x006C5520,37,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,matched,exact after camera shim (RenderObjClass +0x34)
-?Get_Diffuse@VertexMaterialClass@@QBEXPAVVector3@@@Z,,0x009219F0,28,Code/masm_dumps/_rn12__Get_Diffuse_VertexMaterialClass__QBEXPAVVector3___Z_9219F0.asm,matched,reloc-needle Open-BFME4+Grok
 ?Get_Draw_Call_Count@MeshClass@@QBEHXZ,,0x0092D470,62,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Get_Dst_Blend_Func@ShaderClass@@QBE?AW4DstBlendFuncType@1@XZ,,0x0090F2A0,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
 ?Get_Element@?$ShareBufferClass@VShaderClass@@@@QAEAAVShaderClass@@H@Z,,0x00929040,13,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??1?$ShareBufferClass@G@@UAE@XZ,,0x009240D0,29,Code/Libraries/Source/WWVegas/WWLib/ShareBufferUnsignedShort.cpp,matched,object-symbol=??1ShareBufferClassUnsignedShort@@QAE@XZ;Exact retail ShareBuffer<unsigned short> destructor emitted in dedicated C++ TU.
 ?repairStructure@Player@@UAEXW4ObjectID@@@Z,,0x000C9720,20,Code/GameEngine/Source/Common/RTS/PlayerRepairStructure.cpp,matched,Exact retail Player::repairStructure emitted in dedicated C++ TU.
 ??0HTreeClass@@QAE@XZ,,0x00952210,20,Code/Libraries/Source/WWVegas/WW3D2/HTreeClass.cpp,matched,Exact retail HTreeClass constructor emitted in dedicated C++ TU.
+?Get_Diffuse@VertexMaterialClass@@QBEXPAVVector3@@@Z,,0x009219F0,28,Code/Libraries/Source/WWVegas/WW3D2/VertexMaterialDiffuse.cpp,matched,Exact retail VertexMaterialClass::Get_Diffuse emitted in dedicated C++ TU.
