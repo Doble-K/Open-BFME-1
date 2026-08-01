@@ -3881,7 +3881,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4?$DefaultModuleName@$0A@@FXParticleSystem@@QAEAAU01@ABU01@@Z,0x0001CC2E,0x005D4870,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty assignment returns this
 ??4?$DefaultModuleTemplate@$02@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0003FAA3,0x005D80B0,74,Code/masm_dumps/___4__DefaultModuleTemplate__02_FXParticleSystem__Q_5D80B0.asm,matched,
 ??4?$DefaultModuleTemplate@$05@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x00020D06,0x005D57F0,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty assignment returns this
-??4?$DefaultModuleTemplate@$06@FXParticleSystem@@QAEAAV01@ABV01@@Z,,0x005DB370,46,Code/masm_dumps/__4__DefaultModuleTemplate__06_FXParticleSystem__QAEAAV01_ABV01__Z_5DB370.asm,matched,MASM exact retail dump
 ??4?$DynamicVectorClass@H@@QAEAAV0@ABV0@@Z,,0x00907320,33,Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp,matched,
 ??4?$DynamicVectorClass@PAVRender2DClass@@@@QAEAAV0@ABV0@@Z,,0x00907320,33,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,
 ??4?$DynamicVectorClass@U_ENUM_VALUE@EnumParameterClass@@@@QAEAAV0@ABV0@@Z,,0x00907320,33,Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??4?$DefaultModuleTemplate@$00@FXParticleSystem@@QAEAAV01@ABV01@@Z,,0x005D51F0,46,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate00AssignThunk.cpp,matched,Open-BFME5 exact C++ isolated raw default template assignment
 ??4?$DefaultModuleTemplate@$01@FXParticleSystem@@QAEAAV01@ABV01@@Z,,0x005D8450,46,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate01AssignThunk.cpp,matched,Open-BFME5 exact C++ isolated raw default template assignment
 ??4?$DefaultModuleTemplate@$0A@@FXParticleSystem@@QAEAAV01@ABV01@@Z,,0x005D55B0,46,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate0AAssignThunk.cpp,matched,Open-BFME5 exact C++ isolated raw default template assignment
+??4?$DefaultModuleTemplate@$06@FXParticleSystem@@QAEAAV01@ABV01@@Z,,0x005DB370,46,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate06AssignThunk.cpp,matched,Open-BFME5 exact C++ isolated raw default template assignment
