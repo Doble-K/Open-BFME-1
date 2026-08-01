@@ -1776,7 +1776,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0NameKeyGenerator@@QAE@XZ,,0x00090380,120,Code/masm_dumps/NameKeyGenerator_ctor.asm,matched,True SEH ctor via static-init push; queue 0x9F274A was mid ControlBar ctor
 ??0NetCommandList@@QAE@XZ,,0x000659C0,20,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,
 ??0NetCommandWrapperListNode@@QAE@PAVNetWrapperCommandMsg@@@Z,,0x00676380,119,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
-??0Network@@QAE@XZ,,0x00029C12,5,Code/masm_dumps/__0Network__QAE_XZ_29C12.asm,matched,MASM exact retail dump
 ??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/masm_dumps/NeutronMissileSlowDeathBehavior_constructor.asm,matched,Exact 74B ICF alias Open-BFME4
 ??0NeutronMissileUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00048F2C,5,Code/masm_dumps/__0NeutronMissileUpdate__QAE_PAVThing__PBVModuleData___Z_48F2C.asm,matched,MASM exact retail dump
 ??0NoString@@QAE@XZ,,0x0010DB40,10,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
@@ -13707,3 +13706,190 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??1SubsystemLegendEntry@@QAE@XZ,,0x00078210,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,element dtor; stand-in members keep AsciiString/vector release out-of-line (pins 0x00887940 / 0x000658A0)
+??_GSubsystemLegendEntry@@QAEPAXI@Z,,0x00078420,30,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,scalar deleting dtor for the list element
+??1?$_List_base@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAE@XZ,,0x000789A0,27,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport list<Entry> base dtor: clear() then node deallocate
+??1?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAE@XZ,,0x00078A60,27,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport list<Entry> dtor; body identical to the base dtor but a separate COMDAT
+??0SubsystemLegendEntry@@QAE@ABU0@@Z,,0x009A12B0,138,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,implicit copy ctor; members copied in declaration order with m_value as a plain dword
+??$_Construct@USubsystemLegendEntry@@U1@@_STL@@YAXPAUSubsystemLegendEntry@@ABU1@@Z,,0x009A1340,66,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport placement-new construct helper for the list element
+?_M_create_node@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@IAEPAU?$_List_node@USubsystemLegendEntry@@@2@ABUSubsystemLegendEntry@@@Z,,0x009A1440,33,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,no _STLP_TRY frame; retail built STLport with _STLP_NO_EXCEPTIONS
+?addEntry@SubsystemLegend@@QAEXABUSubsystemLegendEntry@@@Z,,0x009A1500,49,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,m_entries.push_back(entry) fully inlined; proves m_entries sits at +0x08
+?insert@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAE?AU?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@2@U32@ABUSubsystemLegendEntry@@@Z,,0x009A1470,54,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,list<Entry>::insert(pos x) returning an iterator through the hidden return pointer
+?push_back@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAEXABUSubsystemLegendEntry@@@Z,,0x009A14D0,48,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,insert(end() x) with _M_create_node inlined
+??0SubsystemLegendEntry@@QAE@XZ,,0x009A1390,166,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,default ctor: members zero-init then clear() each; needs the alloc-proxy subobject to schedule the EH-state store
+?parseLoadSubsystem@SubsystemLegend@@QAEXPAVINI@@@Z,,0x009A15C0,219,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,parses one LoadSubsystem INI block into an entry and appends it; FieldParse table 0x011415C0
+?parseSubsystemLegendDefinition@@YAXPAVINI@@@Z,,0x009A16A0,21,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,INI block callback registered under the keyword LoadSubsystem (table row 0x00ED7768)
+?getEntryCount@SubsystemLegend@@QBEHXZ,,0x009A1180,24,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,m_entries.size() inlined; the [ecx+8] load is what identifies it as a SubsystemLegend member
+?size@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QBEIXZ,,0x009A1160,24,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport list<Entry>::size() = distance(begin() end())
+??$__distance@U?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@_STL@@@_STL@@YAHABU?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@0@0ABUinput_iterator_tag@0@@Z,,0x009A10F0,26,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,__distance for the list iterator; identical body to distance below so the pair is assigned in COMDAT emission order
+??$distance@U?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@_STL@@@_STL@@YAHABU?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@0@0@Z,,0x009A1140,26,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,distance for the list iterator; see the __distance note at 0x009A10F0
+?end@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAE?AU?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@2@XZ,,0x009A1110,11,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,list<Entry>::end(); identical body to the const overload so the pair is assigned in COMDAT emission order
+?end@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QBE?AU?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@2@XZ,,0x009A1130,11,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,list<Entry>::end() const; see the note at 0x009A1110
+??0?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QAE@PAU?$_List_node@USubsystemLegendEntry@@@1@@Z,,0x009A10B0,11,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,iterator ctor from node; the const overload is the identical body at 0x009A10E0 and the pair follows COMDAT emission order
+??0?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QAE@PAU?$_List_node@USubsystemLegendEntry@@@1@@Z,,0x009A10E0,11,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,const iterator ctor from node; see the note at 0x009A10B0
+??0?$allocator@USubsystemLegendEntry@@@_STL@@QAE@XZ,,0x009A10C0,3,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,ICF alias of the iterator default ctor
+??E?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QAEAAU01@XZ,,0x009A10D0,9,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,ICF alias of the iterator operator++
+?begin@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QBE?AU?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@2@XZ,,0x009A1120,13,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,ICF alias of list<Entry>::begin()
+??1SubsystemInterface@@UAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,empty body; vptr then tail-jump to destroy m_name. Base vtable slot 0 (??_G at 0x009A1D00) calls THIS - the old 0x009D19A0 claim was a mislabel
+?getName@SubsystemInterface@@QAE?AVAsciiString@@XZ,,0x009A19A0,32,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,returns m_name by value through the hidden return pointer
+?loadSubsystemFiles@INI@@SA_NPBDPAX@Z,,0x000BB310,214,Code/GameEngine/Source/Common/INI/ini_subsystem.cpp,matched,legend-driven INI loader; retail home is ini.cpp
+?loadIniFilesFromLegend@SubsystemInterface@@UAE_NXZ,,0x009A1A50,286,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,vtable slot 2 - the legend lookup every subsystem inherits
+?initSubsystem@SubsystemInterfaceList@@QAEXPAVSubsystemInterface@@PAXPBD22PAVXfer@@VAsciiString@@@Z,,0x009A20B0,271,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,registers a subsystem; legend takes precedence over the hard-coded paths
+??$initSubsystem@VSubsystemLegend@@@@YAXAAPAVSubsystemLegend@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00072DD0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,GameEngine::init helper - SubsystemLegend instantiation
+?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z,,0x009A11A0,264,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,the legend lookup; inlines the AsciiString compare
+??D?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QBEAAUSubsystemLegendEntry@@XZ,,0x009A1090,6,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,instantiated by findEntry
+??C?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@_STL@@QBEPAUSubsystemLegendEntry@@XZ,,0x009A10A0,6,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,instantiated by findEntry
+?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851050,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseByteSizedIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x008510B0,125,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851130,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseUnsignedByte@INI@@SAXPAV1@PAX1PBX@Z,,0x008528E0,120,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseShort@INI@@SAXPAV1@PAX1PBX@Z,,0x00852960,124,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x008529E0,121,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852AC0,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B20,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852D30,92,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseBool@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E00,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E60,115,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
+?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852EE0,102,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,scanPercentToReal inlined in this TU
+?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B80,144,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,BFME throws INIException with a formatted message
+?getNextSubToken@INI@@QAEPBDPBD@Z,,0x00850B00,157,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,BFME throws INIException with a formatted message
+?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?scanIndexList@INI@@SAHPBDPBQBD@Z,,0x008509E0,102,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?scanLookupList@INI@@SAHPBDPBULookupListRec@@@Z,,0x00850A70,136,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?parseAsciiStringVector@INI@@SAXPAV1@PAX1PBX@Z,,0x008542B0,39,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
+?initFromINI@INI@@QAEXPAXPBUFieldParse@@@Z,,0x008520A0,109,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,MultiIniFieldParse ctor+add inlined in this TU
+?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,MultiIniFieldParse ctor inlined in this TU; ICF-folded with the AIUpdateInterfaceModuleData ctor
+?parseInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852A60,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,was a naked byte dump; now C++ with getNextToken inlined
+?scanInt@INI@@SAHPBD@Z,,0x00852620,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
+?scanReal@INI@@SAMPBD@Z,,0x008526E0,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
+?scanUnsignedInt@INI@@SAIPBD@Z,,0x00852680,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
+?scanBool@INI@@SA_NPBD@Z,,0x00852550,108,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
+?parseRGBColor@INI@@SAXPAV1@PAX1PBX@Z,,0x00852F50,241,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,true size is 241B not 238B; scanInt inlined here
+?parseColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x008531E0,409,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
+?parseRGBAColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00853050,399,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
+?parseAsciiStringVectorAppend@INI@@SAXPAV1@PAX1PBX@Z,,0x008541E0,200,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,the legend InitFile/InitPath/Extension parser
+?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z,,0x00850E70,472,Code/masm_dumps/__parseBitString32_INI__SAXPAV1_PAX1PBX_Z_850E70.asm,matched,true size is 472B; the previous row claimed only 297B of it
+?init@GameEngine@@,,0x00079060,7123,Code/masm_dumps/_str2__init_GameEngine__79060.asm,matched,true size 7123B; previous row claimed only 6689B (no padding before ~GameEngine)
+?findFieldParse@@YAP6AXPAVINI@@PAX1PBX@ZPBUFieldParse@@PBDAAHAAPBX@Z,,0x00850880,128,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,moved with initFromINIMulti to the parser TU
+?getNthExtraOffset@MultiIniFieldParse@@QBEIH@Z,,0x00850710,11,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,emitted by the parser TU now that initFromINIMulti lives there
+?getNthFieldParse@MultiIniFieldParse@@QBEPBUFieldParse@@H@Z,,0x00850700,10,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,emitted by the parser TU now that initFromINIMulti lives there
+?assignDefaultGadgetLook@GameWindowManager@@UAEXPAVGameWindow@@PAVGameFont@@_N@Z,,0x004800FC,9955,Code/masm_dumps/_assignDefaultGadgetLook_GameWindowManager__UAEXPA.asm,matched,true size 9955B; previous row claimed 7853B
+?findClosestPath@Pathfinder@@EAEPAVPath@@PAVObject@@ABVLocomotorSet@@PBUCoord3D@@PAU5@_NM4@Z,,0x003F3460,2701,Code/masm_dumps/findClosestPath_Pathfinder_3F3460.asm,matched,true size 2701B; previous row claimed 1747B
+?CrashDone@Debug@@QAE_N_N@Z,,0x0088BB60,1353,Code/masm_dumps/_sa7__CrashDone_Debug__QAE_N_N_Z_88BB60.asm,matched,true size 1353B; previous row claimed 955B
+?GetSymbol@Signature@DebugStackwalk@@SAXIPADIPAI0I10I11@Z,,0x0088C960,1105,Code/Libraries/Source/WWVegas/WWDebug/DebugStackwalk_GetSymbol.asm,matched,true size 1105B; previous row claimed 729B
+?snapClosestGoalPosition@Pathfinder@@QAEXPAVObject@@PAUCoord3D@@@Z,,0x003F89A0,1007,Code/GameEngine/Source/GameLogic/AI/AIPathfind_snapClosestGoalPosition.asm,matched,true size 1007B; previous row claimed 788B
+?BTREE_treepack@@YAXPAUBTreeEncodeContext@@PAUBTREEMemStruct@@IIIH@Z,,0x00821200,2593,Code/masm_dumps/_sym1__BTREE_treepack__YAXPAUBTreeEncodeContext__PAUBTREEMemStruct__IIIH_Z_821200.asm,matched,true size 2593B; previous row claimed 2560B
+?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z,,0x0035F4E0,231,Code/masm_dumps/_sa13__findSkirmishSideInfo_SidesList__QAEPAVSidesInfo__VAsciiString__PAH_Z_35F4E0.asm,matched,true size 231B; previous row claimed 224B
+?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,284,Code/masm_dumps/_rn6__sizeWindowsAlt_ControlBarResizer__QAEXXZ_4AB1A0.asm,matched,true size 284B; previous row claimed 277B
+?drawViews@Display@@UAEXXZ,,0x0040DA30,44,Code/masm_dumps/_rn9__drawViews_Display__UAEXXZ_40DA30.asm,matched,true size 44B; previous row claimed 38B
+?Get_Length@StringClass@@QBEHXZ,,0x0013B660,46,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,true size 46B; row claimed 43B
+?getSlotIndex@@YAHPBVGameSlot@@@Z,,0x0061ECE0,48,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,true size 48B; row claimed 45B
+_XMP_Count_Bits,,0x009E8740,73,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,true size 73B; row claimed 70B
+_XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,true size 30B; row claimed 27B
+?Reset@HashTableClass@@QAEXXZ,,0x009DFFE0,34,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,true size 34B; row claimed 28B
+?winIsChild@GameWindow@@QAE_NPAV1@@Z,,0x00478D30,40,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,true size 40B; row claimed 34B
+?Decrement_LOD@HLodClass@@UAEXXZ,,0x0097A5D0,204,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,true size 204B; row claimed 197B
+?find@?$StringBase@D@@QBEPBDD@Z,0x0001CA8A,0x000628B0,52,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,true size 52B; row claimed 45B
+?find@?$StringBase@G@@QBEPBGG@Z,0x00046623,0x00450B30,55,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,true size 55B; row claimed 48B
+?reverseFind@?$StringBase@D@@QBEPBDD@Z,0x0000C342,0x00072C40,56,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,true size 56B; row claimed 49B
+?Increment_LOD@HLodClass@@UAEXXZ,,0x0097A500,204,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,true size 204B; row claimed 196B
+?addVelocity@WaterRenderObjClass@@QAEXMMMM@Z,,0x0079F5F0,480,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,true size 480B; row claimed 471B
+?Get_Num_Polys@HLodClass@@UBEHXZ,,0x00979B30,181,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,true size 181B; row claimed 170B
+?normAngle@@YAXAAM@Z,,0x0073A900,134,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,true size 134B; row claimed 118B
+?Set_LOD_Level@HLodClass@@UAEXH@Z,,0x0097A6A0,239,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,true size 239B; row claimed 222B
+?HUFF_decompress@@YAHPAE0@Z,,0x00822110,3195,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,true size 3195B; row claimed 3161B
+?Copy@VectorProcessorClass@@SAXPAVVector4@@ABVVector3@@PBMH@Z,,0x00AFFD00,226,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,true size 226B; row claimed 223B
+?CopyIndexed@VectorProcessorClass@@SAXPAVVector3@@PBV2@PBIH@Z,,0x00B005F0,247,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,true size 247B; row claimed 244B
+?CopyIndexed@VectorProcessorClass@@SAXPAVVector4@@PBV2@PBIH@Z,,0x00B006F0,273,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,true size 273B; row claimed 270B
+?HUFF_analysis@@YAXPAUHuffEncodeContext@@II@Z,,0x0081FB50,2599,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,true size 2599B; row claimed 453B
+?insert4Way@W3DRoadBuffer@@IAEXVVector2@@HM@Z,,0x00706310,2178,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,true size 2178B; row claimed 1964B
+?AssertBegin@Debug@@SAAAV1@PBDH0@Z,,0x0088B530,948,Code/masm_dumps/_sa3__AssertBegin_Debug__SAAAV1_PBDH0_Z_88B530.asm,matched,true size 948B; row claimed 749B
+?Execute@DebugIOFlat@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00890810,1460,Code/masm_dumps/_str__Execute_DebugIOFlat_UAEXAAVDebug_PBD_NIPBQBD_Z_890810.asm,matched,true size 1460B; row claimed 1250B
+?OptionsMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x00560280,7212,Code/masm_dumps/_OptionsMenuInit__YAXPAVWindowLayout__PAX_Z_560280.asm,matched,true size 7212B; row claimed 6966B
+?castRay@RTS3DScene@@QAE_NAAVRayCollisionTestClass@@_NH@Z,,0x00956670,734,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_castRay.asm,matched,true size 734B; row claimed 578B
+?doTeamHuntWithCommandButton@ScriptActions@@,,0x002F7B80,895,Code/masm_dumps/_sa6__doTeamHuntWithCommandButton_ScriptActions___2F7B80.asm,matched,true size 895B; row claimed 211B
+?getLANIPAddress@OptionPreferences@@QAEIXZ,,0x00092436,488,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu_getLANIPAddress.asm,matched,true size 488B; row claimed 403B
+?load@W3DBridge@@QAE_NW4BodyDamageType@@@Z,,0x006D8C10,2836,Code/masm_dumps/_sa3__load_W3DBridge__QAE_NW4BodyDamageType___Z_6D8C10.asm,matched,true size 2836B; row claimed 2808B
+?locoUpdate_moveTowardsPosition@Locomotor@@QAEXPAVObject@@ABUCoord3D@@MMPA_N@Z,,0x002BAFB8,1701,Code/GameEngine/Source/GameLogic/Object/Locomotor_locoUpdate_moveTowardsPosition.asm,matched,true size 1701B; row claimed 1103B
+?reset@ControlBar@@UAEXXZ,,0x004A2F80,684,Code/masm_dumps/_cache__reset_ControlBar__UAEXXZ_4A2F80.asm,matched,true size 684B; row claimed 583B
+?setPortraitByObject@ControlBar@@IAEXPAVObject@@@Z,,0x0059A664,832,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setPortraitByObject.asm,matched,true size 832B; row claimed 739B
+?setRankLevel@Player@@QAE_NH@Z,,0x000D93AC,487,Code/GameEngine/Source/Common/RTS/Player_setRankLevel.asm,matched,true size 487B; row claimed 395B
+?update@StructureToppleUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x008F7E80,1211,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate_update.asm,matched,true size 1211B; row claimed 769B
+?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,23,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,reverted to 23B: extending to 55B tripped DIR32 consistency
+??0WSEnvMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00965920,275,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,true size 275B; row claimed 167B (switch dispatch + case bodies)
+?Get_DX8_Blend_Name@DX8Wrapper@@SAPBDI@Z,,0x00902D40,156,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 156B; row claimed 17B (switch dispatch + case bodies)
+?Get_DX8_Texture_Arg_Name@DX8Wrapper@@SAPBDI@Z,,0x00902B20,157,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 157B; row claimed 23B (switch dispatch + case bodies)
+?Get_DX8_Texture_Transform_Flag_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C50,88,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 88B; row claimed 25B (switch dispatch + case bodies)
+?Initialize_Randomizer_Struct@ParticleEmitterDefClass@@MAEXABVVector3Randomizer@@AAUW3dVolumeRandomizerStruct@@@Z,,0x0098DAF0,164,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,true size 164B; row claimed 49B (switch dispatch + case bodies)
+?Render_Line_Group@ParticleBufferClass@@IAEXAAVRenderInfoClass@@@Z,,0x0098B950,908,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,true size 908B; row claimed 350B (switch dispatch + case bodies)
+?update@AnimateWindowManager@@UAEXXZ,,0x0045D250,316,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,true size 316B; row claimed 139B (switch dispatch + case bodies)
+??$initSubsystem@VUpgradeCenter@@@@YAXAAPAVUpgradeCenter@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00073310,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,GameEngine::init registers TheUpgradeCenter; class name proven by its ctor
+??$initSubsystem@VTerrainRoadCollection@@@@YAXAAPAVTerrainRoadCollection@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00073550,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,GameEngine::init registers TheTerrainRoadCollection; class name proven by its ctor
+??$initSubsystem@VSidesList@@@@YAXAAPAVSidesList@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x000739D0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,GameEngine::init registers TheSidesList; class name proven by its ctor
+??$initSubsystem@VWeaponStore@@@@YAXAAPAVWeaponStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00073F10,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,GameEngine::init registers TheWeaponStore; class name proven by its ctor
+??$initSubsystem@VObjectCreationListStore@@@@YAXAAPAVObjectCreationListStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00073FD0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,GameEngine::init registers TheObjectCreationListStore; class name proven by its ctor
+??$initSubsystem@VPlayerTemplateStore@@@@YAXAAPAVPlayerTemplateStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00073CD0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven by vtable 0x01084BA0 slot 1 = init@PlayerTemplateStore
+?findArmorTemplate@ArmorStore@@QBEPBVArmorTemplate@@VAsciiString@@@Z,,0x001B05E0,192,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,first ArmorStore row; entry point is INI::parseArmorTemplate at 0x000BAE50
+??$initSubsystem@VArmorStore@@@@YAXAAPAVArmorStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x000742D0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven by the byte-verified findArmorTemplate@ArmorStore row
+?parseArmorTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAE50,80,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at the 5B ILT thunk 0x0003EF6D; real body is here
+?parseAccelerationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D50,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseAngularVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9BA0,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseDamageFX@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAFD0,80,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9CC0,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAEC0,44,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
+?parseVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D20,37,Code/GameEngine/Source/Common/INI/ini.cpp,matched,ICF-folded with parseFrictionPerSec; row previously pointed at the 5B thunk
+??$initSubsystem@VDamageFXStore@@@@YAXAAPAVDamageFXStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00074210,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0DamageFXStore@@QAE@XZ
+??$initSubsystem@VAI@@@@YAXAAPAVAI@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00074990,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: vtable slot 3 = ?crc@AI@@UAEXPAVXfer@@@Z
+??$initSubsystem@VTeamFactory@@@@YAXAAPAVTeamFactory@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00074F90,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0TeamFactory@@QAE@XZ
+??$initSubsystem@VCrateSystem@@@@YAXAAPAVCrateSystem@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075050,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0CrateSystem@@QAE@XZ
+??$initSubsystem@VPlayerList@@@@YAXAAPAVPlayerList@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075110,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0PlayerList@@QAE@XZ
+??$initSubsystem@VGameState@@@@YAXAAPAVGameState@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075960,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,class proven: ctor ??0GameState@@QAE@XZ
+?releaseWindowPointers@@YAXXZ,,0x004C3170,294,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,address+name proven from a matched callers relocation
+?getFrameAdvanceCount@BFMENativeNetwork@@QAEHXZ,,0x00681F70,395,Code/GameEngine/Source/GameNetwork/native_network_interface.cpp,matched,native vtable 0x0111A968 slot +0x3C; frame allowance = connMgr +0x1205C ceiling - TheGameLogic frame + 1 gated by 0x6633E0; router path consumes QPF/5 200ms quantum
+?parseArmorDefinition@ArmorStore@@SAXPAVINI@@@Z,,0x001B09B0,144,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,INI block table node binds keyword Armor to this address
+?parseArmorCoefficients@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x001AFC30,165,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,FieldParse token Armor at 0x0109C874 slot 1 - ZH name
+?parseDamageScalar@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x001AFD00,28,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,FieldParse token DamageScalar at 0x0109C874 slot 0 - BFME-only name from token
+?friend_parseScienceDefinition@ScienceStore@@SAXPAVINI@@@Z,,0x000E8630,445,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,INI block table node binds keyword Science to this address
+?normalizeAngle@@YAMM@Z,,0x001056F0,69,Code/GameEngine/Source/Common/System/GameCommon.cpp,matched,exact
+?getQuitFrame@FrameDataManager@@QAEIXZ,,0x00670870,4,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?getIsQuitting@FrameDataManager@@QAE_NXZ,,0x00670880,4,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?getFrameCommandCount@FrameData@@QAEIXZ,,0x006702D0,3,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?getCommandCount@FrameData@@QAEIXZ,,0x006702E0,4,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?getCommandList@FrameData@@QAEPAVNetCommandList@@XZ,,0x00670340,4,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?setFrameCommandCount@FrameData@@QAEXI@Z,,0x006702C0,9,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?getCommandCount@FrameDataManager@@QAEII@Z,,0x00670720,29,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?getFrameCommandCount@FrameDataManager@@QAEII@Z,,0x00670780,29,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?areFrameCommandsComplete@BFMEConnectionManager@@QAE_NI_N@Z,,0x006633E0,89,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?getFrameHeadroom@BFMEConnectionManager@@QAEHXZ,,0x00664320,142,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?processInformPlayerLeaveFrameCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00664430,307,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendFrameInfo@BFMEConnectionManager@@QAEXXZ,,0x00665D10,354,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?findBlockParse@@YAP6AXPAVINI@@@ZPBD@Z,,0x00850820,93,Code/GameEngine/Source/Common/INI/ini.cpp,matched,walks the block registration list at 0x0130CE50
+??0BlockParse@@QAE@PBDP6AXPAVINI@@@Z@Z,,0x0007BCA0,32,Code/GameEngine/Source/Common/INI/ini.cpp,matched,self-registering node ctor - prepends to the list head at 0x0130CE50
+?processIncomingCommand@BFMEConnectionManager@@QAE_NPAX@Z,,0x0066A3F0,580,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?construct@BFMEConnectionManager@@QAEPAXXZ,,0x00669630,643,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?init@BFMEConnectionManager@@QAEXXZ,,0x00669050,694,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?computePlayerFrameRatios@BFMEConnectionManager@@QAEXXZ,,0x00666000,454,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?getMode@RecorderClass@@QAE?AW4RecorderModeType@@XZ,,0x000977F0,4,Code/GameEngine/Source/Common/Recorder.cpp,matched,exact
+?sendLocalCommandDirect@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x00663300,172,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendLocalCommand@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x00664740,277,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?isPlayerInGame@BFMEConnectionManager@@QAE_NH@Z,,0x00662BE0,53,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?isPlayerSlotActive@BFMEConnectionManager@@QAE_NH@Z,,0x00662C30,60,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?markPlayerInGame@BFMEConnectionManager@@QAEXPAX@Z,,0x00662D90,61,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?relayCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00663100,237,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+??$_M_find@G@?$_Rb_tree@GU?$pair@$$CBGE@_STL@@U?$_Select1st@U?$pair@$$CBGE@_STL@@@2@U?$less@G@2@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@1@ABG@Z,,0x0037B060,60,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,STLport _Rb_tree G pair-const-G-E _M_find; 3 ICF clones 37B060/6651C0/93DCE0
+?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x000BBB60,181,Code/GameEngine/Source/Common/INI/ini.cpp,matched,field table binds 45 tokens across 5 INI blocks here - was a 5B thunk claim
+?parseSpecialPowerTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BB210,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,was a 5B thunk claim at 0x0001D77D
+?resendFrameRangeToPlayer@BFMEConnectionManager@@QAEXHII@Z,,0x00664B40,384,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?processDisconnectScreenOff@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066B890,92,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
+?update@BFMEConnectionManager@@QAEXXZ,,0x0066AB30,814,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?runRelayPass@BFMEConnectionManager@@QAEXXZ,,0x0066A740,792,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?update@BFMEDisconnectManager@@QAEXPAX@Z,,0x0066C8D0,1122,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+??0GameMessageParser@@QAE@XZ,,0x00623510,20,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
+?destroy@BFMEConnectionManager@@QAEXXZ,,0x00668D90,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?processWrappedCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00669C50,366,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?processAckCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00665700,387,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?beginPlayerLeave@BFMEConnectionManager@@QAEXPAX@Z,,0x00667320,526,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+??$_Construct@U?$pair@W4ObjectID@@W41@@_STL@@U12@@_STL@@YAXPAU?$pair@W4ObjectID@@W41@@0@ABU10@@Z,,0x007850E0,23,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,23B reloc-free ICF clone; real body not SEH 768C40
+??0Network@@QAE@XZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,object-symbol=?construct@BFMENetwork@@QAEPAXXZ;C++ ICF alias of Network ctor
