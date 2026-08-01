@@ -214,6 +214,7 @@ public:
 
 	Int getLegalSurfaces( void ) const { return getTemplate()->m_surfaces; }
 	Real getRollDamping( void ) const;
+	Real getRudderCorrectionDegree( void ) const;
 
 	void*											_bfme_loco_vptr;
 	const LocomotorTemplate*	m_template;							///< +0x04
@@ -251,6 +252,45 @@ __declspec(naked) Real Locomotor::getRollDamping( void ) const
 		_emit 0D9h
 		_emit 080h
 		_emit 098h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 0C3h
+	}
+}
+
+__declspec(naked) Real Locomotor::getRudderCorrectionDegree( void ) const
+{
+	__asm {
+		_emit 08Bh
+		_emit 041h
+		_emit 004h
+		_emit 085h
+		_emit 0C0h
+		_emit 075h
+		_emit 007h
+		_emit 0D9h
+		_emit 080h
+		_emit 0DCh
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 0C3h
+		_emit 08Bh
+		_emit 048h
+		_emit 004h
+		_emit 085h
+		_emit 0C9h
+		_emit 074h
+		_emit 005h
+		_emit 0E8h
+		_emit 091h
+		_emit 0F0h
+		_emit 0BEh
+		_emit 0FFh
+		_emit 0D9h
+		_emit 080h
+		_emit 0DCh
 		_emit 000h
 		_emit 000h
 		_emit 000h
