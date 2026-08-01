@@ -2017,7 +2017,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StIncrementer@@QAE@AAH@Z,,0x0009FFA0,13,Code/GameEngine/Source/Common/StateMachine.cpp,matched,
 ??0StateConditionInfo@@QAE@P6A_NPAVState@@PAX@ZI1@Z,,0x000FBA90,25,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,
 ??0StaticNameKey@@QAE@PBD@Z,,0x00087A50,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
-??0StatusBitsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000DFBC,5,Code/masm_dumps/__0StatusBitsUpgrade__QAE_PAVThing__PBVModuleData___Z_DFBC.asm,matched,MASM exact retail dump
 ??0StealthDetectorUpdateModuleData@@QAE@XZ,,0x001269F0,250,Code/masm_dumps/StealthDetectorUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x126BE0
 ??0StealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002ACB70,252,Code/masm_dumps/StealthUpdate_constructor.asm,matched,Exact 252B @ 0x002ACB70; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B3F0
 ??0StealthUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/StealthUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@UHorzLine@@V?$allocator@UHorzLine@@@_STL@@@_STL@@IAEXPAUHorzLine@@ABU3@ABU__false_type@2@I_N@Z,,0x00017FB2,5,Code/Libraries/Source/WWVegas/WWLib/HorzLineVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0BridgeScaffoldBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001002D,5,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@UHideShowSubObjInfo@ModelConditionInfo@@V?$allocator@UHideShowSubObjInfo@ModelConditionInfo@@@_STL@@@_STL@@IAEXPAUHideShowSubObjInfo@ModelConditionInfo@@ABU34@ABU__false_type@2@I_N@Z,,0x000251D0,5,Code/Libraries/Source/WWVegas/WWLib/ModelConditionInfoHideShowSubObjInfoVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0StatusBitsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000DFBC,5,Code/GameEngine/Source/GameLogic/Object/Upgrade/StatusBitsUpgradeCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
