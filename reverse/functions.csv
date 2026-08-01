@@ -1929,7 +1929,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RubbleRiseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A3640,175,Code/masm_dumps/RubbleRiseUpdate_constructor.asm,matched,Exact 175B @ 0x002A3640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B6C0
 ??0RubbleRiseUpdateModuleData@@QAE@XZ,,0x00127AD0,202,Code/masm_dumps/RubbleRiseUpdateModuleData_constructor.asm,matched,Exact 202B @ 0x00127AD0; Exact retail MASM ModuleData ctor; unique factory 0x127BD0
 ??0RunOffMapBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205060,60,Code/masm_dumps/RunOffMapBehavior_constructor.asm,matched,Exact 60B unique factory Open-BFME4
-??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/masm_dumps/RunOffMapBehaviorModuleData_constructor.asm,matched,Exact 96B @ 0x00126760; Exact retail MASM ModuleData ctor; unique factory 0x1267E0; Open-BFME4+Grok
 ??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,MASM converted to clean C++
 ??0SabotageFakeBuildingCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
 ??0SabotageInternetCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ModelConditionSpecialAbilityUpdateModuleData@@QAE@XZ,,0x002982D0,52,Code/GameEngine/Source/GameLogic/AI/ModelConditionSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0RainOfFireUpdateModuleData@@QAE@XZ,,0x002A08B0,62,Code/GameEngine/Source/GameLogic/AI/RainOfFireUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0DemoTrapUpdateModuleData@@QAE@XZ,,0x0028C9E0,58,Code/GameEngine/Source/GameLogic/AI/DemoTrapUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/GameEngine/Source/GameLogic/AI/RunOffMapBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
