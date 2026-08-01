@@ -13152,7 +13152,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setTargetPositionToGuard@AIGuardMachine@@QAEXPBUCoord3D@@@Z,,0x0079E400,26,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setTeamColor@W3DGameClient@@UAEXHHH@Z,,0x006FBD00,37,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?setTemporaryTeam@Object@@QAEXPAVTeam@@@Z,,0x001D27D0,15,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-?setTerrainDecalOpacity@W3DModelDraw@@UAEXM@Z,,0x0075BDD0,35,Code/masm_dumps/W3DModelDraw_setTerrainDecalOpacity.asm,matched,Vtable-bound BFME terrain-decal layout body
 ?setTerrainDecalSize@W3DModelDraw@@UAEXMM@Z,,0x002DAD60,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?setTerrainHeightUnderCamera@View@@UAEXM@Z,,0x005A7350,10,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setText@WinInstanceData@@QAEXVUnicodeString@@@Z,,0x00499D60,123,Code/masm_dumps/setText_WinInstanceData_QAEXVUnicodeString_Z_499D60.asm,matched,Exact 123B MASM; true body 0x499D60 (ghidra ENTRY); queue 0x665642 inside FUN_00a655c0; C++ blocked DisplayStringManager/DisplayString vtbl slots
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setPosition@AudioEventRTS@@QAEXPBUCoord3D@@@Z,,0x000B2210,51,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ positional audio setter with retail layout offsets replaces MASM dump
 ?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z,,0x00105280,76,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,thunk-dump converted to clean C++ lookup; retail table count is 12
 ?setSDEnabled@StealthDetectorUpdate@@QAEX_N@Z,,0x002AB650,34,Code/GameEngine/Source/GameLogic/Object/Update/StealthDetectorUpdate.cpp,matched,direct C++ stealth-detector enable setter with retail object offset replaces MASM dump
+?setTerrainDecalOpacity@W3DModelDraw@@UAEXM@Z,,0x0075BDD0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,direct C++ terrain-decal opacity setter with retail decal offset replaces MASM dump

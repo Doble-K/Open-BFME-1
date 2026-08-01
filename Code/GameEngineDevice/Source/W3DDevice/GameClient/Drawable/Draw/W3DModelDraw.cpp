@@ -2852,9 +2852,10 @@ void W3DModelDraw::setTerrainDecalSize(Real x, Real y)
 //-------------------------------------------------------------------------------------------------
 void W3DModelDraw::setTerrainDecalOpacity(Real o)
 {
-	if (m_terrainDecal)
+	Shadow *terrainDecal = *reinterpret_cast<Shadow **>(reinterpret_cast<unsigned char *>(this) + 0x40);
+	if (terrainDecal)
 	{
-		m_terrainDecal->setOpacity((Int)(255.0f * o));
+		terrainDecal->setOpacity((Int)(255.0f * o));
 	}
 }
 
