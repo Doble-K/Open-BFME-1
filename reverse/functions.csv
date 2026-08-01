@@ -13003,7 +13003,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?updateContextPurchaseScience@ControlBar@@IAEXXZ,,0x0049CAE0,139,Code/masm_dumps/_updateContextPurchaseScience_ControlBar__IAEXXZ_49CAE0.asm,matched,MASM exact retail dump; fixed boundary (was 0x49CAE3/136 mid-instruction of preceding function true start 0x49CAE0/139)
 ?updateDefaults@ScriptList@@SAXXZ,,0x0035C8A0,183,Code/masm_dumps/ScriptList_updateDefaults.asm,matched,MASM exact dump; true body at 0x35C8A0 (183B) not drift 0x853E95; sides loop + inline ScriptList ctor sizeof 0x4c
 ?updateDisconnectStatus@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066C3B0,750,Code/masm_dumps/DisconnectManager_updateDisconnectStatus.asm,matched,Exact MASM dump BFME rewrite 750B (ZH shape 370B); ENTRY+call-graph identity
-?updateFadeLevel@ScreenCrossFadeFilter@@IAE_NXZ,,0x00006D0C,5,Code/masm_dumps/_thunk_b9971e87b766_6D0C.asm,matched,thunk accessor of ported class
 ?updateFileProgress@BFMEConnectionManager@@QAEXXZ,,0x00669A00,265,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?updateGenericScripts@Team@@QAEXXZ,,0x000F1430,412,Code/masm_dumps/_sa__updateGenericScripts_Team__QAEXXZ_F1430.asm,matched,Exact 412B string-anchored Open-BFME4
 ?updateInternal@AIAttackApproachTargetState@@AAE?AW4StateReturnType@@XZ,,0x001827C0,1398,Code/masm_dumps/updateInternal_AIAttackApproachTargetState_1827C0.asm,matched,Certified packet 136 exact retail MASM recovery SHA256 a13136e89bddbc2c431f9e79dd5212fc9bbbb670ddb5ccede62740f11a06198c
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?doNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001FC3F,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ScriptEngine::doNamedMapReveal
 ?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001019A,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ScriptEngine::undoNamedMapReveal
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,,0x00017503,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ControlBar::showBuildTooltipLayout
+?updateFadeLevel@ScreenCrossFadeFilter@@IAE_NXZ,,0x00006D0C,5,Code/GameEngine/Source/Common/RTS/ScreenCrossFadeFilterUpdateFadeLevelThunk.cpp,matched,5-byte incremental-link ScreenCrossFadeFilter protected member thunk converted to focused C++ source
