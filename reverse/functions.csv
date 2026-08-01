@@ -36,7 +36,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$_Construct@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@0@ABU10@@Z,,0x00261530,66,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ??$_Construct@U?$pair@$$CB_KUModelConditionInfo@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CB_KUModelConditionInfo@@@0@ABU10@@Z,,0x000E5170,82,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ??$_Construct@U?$pair@UICoord2D@@UCoord3D@@@_STL@@U12@@_STL@@YAXPAU?$pair@UICoord2D@@UCoord3D@@@0@ABU10@@Z,,0x0001BE23,5,Code/masm_dumps/_thunk_0214896ed3a5_1BE23.asm,matched,thunk accessor of ported class
-??$_Construct@U?$pair@W4ObjectID@@W41@@_STL@@U12@@_STL@@YAXPAU?$pair@W4ObjectID@@W41@@0@ABU10@@Z,,0x0001FA1E,5,Code/masm_dumps/_thunk_d18ef9982fc7_1FA1E.asm,matched,thunk accessor of ported class
 ??$_Construct@UAnimSet@GenericObjectCreationNugget@@U12@@_STL@@YAXPAUAnimSet@GenericObjectCreationNugget@@ABU12@@Z,,0x0000DDAF,5,Code/masm_dumps/____Construct_UAnimSet_GenericObjectCreationNugget__U12___STL__YAXPAUAnimSet_GenericObjectCreationNugget__ABU1_DDAF.asm,matched,MASM exact retail dump
 ??$_Construct@UDetonatorInfo@MinefieldBehavior@@U12@@_STL@@YAXPAUDetonatorInfo@MinefieldBehavior@@ABU12@@Z,,0x00233490,35,Code/GameEngine/Source/GameLogic/Object/Behavior/MinefieldBehavior.cpp,matched,
 ??$_Construct@UEvaCheck@@U1@@_STL@@YAXPAUEvaCheck@@ABU1@@Z,,0x00233490,35,Code/GameEngine/Source/GameClient/Eva.cpp,matched,
@@ -13674,3 +13673,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?processAckCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00665700,387,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?beginPlayerLeave@BFMEConnectionManager@@QAEXPAX@Z,,0x00667320,526,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+??$_Construct@U?$pair@W4ObjectID@@W41@@_STL@@U12@@_STL@@YAXPAU?$pair@W4ObjectID@@W41@@0@ABU10@@Z,,0x007850E0,23,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,23B reloc-free ICF clone; real body not SEH 768C40
