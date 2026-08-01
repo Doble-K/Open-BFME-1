@@ -46,6 +46,11 @@ __declspec(noinline) void reconstructPingRequest(void *dest, const void *src)
 	new (dest) PingRequest(*reinterpret_cast<const PingRequest *>(src));
 }
 
+__declspec(noinline) void reconstructPingResponse(void *dest, const void *src)
+{
+	new (dest) PingResponse(*reinterpret_cast<const PingResponse *>(src));
+}
+
 //-------------------------------------------------------------------------
 
 static const Int NumWorkerThreads = 10;
