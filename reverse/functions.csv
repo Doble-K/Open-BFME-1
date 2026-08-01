@@ -13806,3 +13806,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0?$SimpleParameterClass@H$0A@@@QAE@PAXPBD@Z,,0x00002874,5,Code/Libraries/Source/WWVegas/WWLib/SimpleParameterClassConstructorThunk.cpp,matched,Focused C++ template thunk for SimpleParameterClass int flags 0 constructor
 ?parseFromINI@?$BitFlags@$0CN@@@SAXPAVINI@@PAX1PBX@Z,,0x00029B9A,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsParseFromINIThunk.cpp,matched,
 ?parseFromINI@?$BitFlags@$0HE@@@SAXPAVINI@@PAX1PBX@Z,,0x0002032E,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsParseFromINIThunk.cpp,matched,5-byte static BitFlags parser thunk converted to focused C++ source
+?setProgress@NetFileProgressCommandMsg@@QAEXH@Z,,0x000153B6,5,Code/GameEngine/Source/GameNetwork/NetFileProgressCommandMsgSetProgressThunk.cpp,matched,Open-BFME5 C++ conversion of retail incremental-link thunk; real body 0xA740B0
