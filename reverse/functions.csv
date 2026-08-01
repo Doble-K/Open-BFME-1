@@ -12820,8 +12820,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?showShellMap@Shell@@QAEX_N@Z,,0x0057FB40,289,Code/masm_dumps/Shell_showShellMap_57FB40.asm,matched,Certified packet 95 exact retail MASM recovery SHA256 6186002125eb74db24866f36a7d75780d63447886bc347a55b354a442d6c6f8e
 ?showSortIcons@@YAXXZ,,0x0062C4D0,163,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
 ?showSpecialPowerShortcut@ControlBar@@QAEXXZ,,0x004A07D0,153,Code/masm_dumps/ControlBar_showSpecialPowerShortcut_4A07D0.asm,matched,MASM exact retail dump; certified thunk and matched-caller ownership
-?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0002C6E7,5,Code/masm_dumps/_shutdown_TerrainTracksRenderObjClassSystem__QAEXXZ_2C6E7.asm,matched,MASM exact retail dump
-?shutdown@WaterTracksRenderSystem@@QAEXXZ,,0x000319CB,5,Code/masm_dumps/_shutdown_WaterTracksRenderSystem__QAEXXZ_319CB.asm,matched,MASM exact retail dump
 ?sin@@YAMM@Z,,0x00873910,7,Code/GameEngine/Source/Common/System/BuildAssistant.cpp,matched,icf-owner=?Sin@@YAMM@Z
 ?size@?$deque@PAVSightingInfo@@V?$allocator@PAVSightingInfo@@@_STL@@@_STL@@QBEIXZ,,0x0069E4A0,42,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,
 ?size@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QBEIXZ,,0x009A1160,24,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport list<Entry>::size() = distance(begin() end())
@@ -13804,3 +13802,5 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,,0x0002FF6D,5,Code/GameEngine/Source/Common/RTS/DictGetAsciiStringThunk.cpp,matched,5-byte incremental-link Dict const member thunk converted to focused C++ source
 ?ReAcquireResources@W3DVolumetricShadowManager@@QAE_NXZ,,0x0000F9B6,5,Code/Libraries/Source/WWVegas/WWLib/W3DVolumetricShadowManagerReAcquireThunk.cpp,matched,Focused C++ thunk for W3DVolumetricShadowManager::ReAcquireResources
 ?readDict@DataChunkInput@@QAE?AVDict@@XZ,,0x00022683,5,Code/GameEngine/Source/Common/RTS/DataChunkInputReadDictThunk.cpp,matched,5-byte incremental-link DataChunkInput member thunk converted to focused C++ source
+?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0002C6E7,5,Code/Libraries/Source/WWVegas/WWLib/TracksRenderSystemShutdownThunks.cpp,matched,Focused C++ thunk for TerrainTracksRenderObjClassSystem::shutdown
+?shutdown@WaterTracksRenderSystem@@QAEXXZ,,0x000319CB,5,Code/Libraries/Source/WWVegas/WWLib/TracksRenderSystemShutdownThunks.cpp,matched,Focused C++ thunk for WaterTracksRenderSystem::shutdown
