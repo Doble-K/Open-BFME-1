@@ -1,5 +1,6 @@
 class ArmorTemplateSet;
 class WeaponTemplateSet;
+class WeaponTemplateSet;
 
 template<int Bits>
 class BitFlags
@@ -30,3 +31,25 @@ __declspec(naked) bool SparseMatchFinder<Set, Flags>::MapHelper::operator()(cons
 }
 
 template class SparseMatchFinder<ArmorTemplateSet, BitFlags<11> >;
+
+template<>
+class SparseMatchFinder<WeaponTemplateSet, BitFlags<17> >
+{
+public:
+	class MapHelper
+	{
+	public:
+		bool operator()(const BitFlags<17> &, const BitFlags<17> &) const;
+	};
+};
+
+__declspec(naked) bool SparseMatchFinder<WeaponTemplateSet, BitFlags<17> >::MapHelper::operator()(const BitFlags<17> &, const BitFlags<17> &) const
+{
+	__asm {
+		_emit 0E9h
+		_emit 07Eh
+		_emit 0FCh
+		_emit 012h
+		_emit 000h
+	}
+}
