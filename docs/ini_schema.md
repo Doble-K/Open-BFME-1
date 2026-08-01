@@ -113,7 +113,7 @@ Field table `0x010813F8` — 21 fields
 
 ### `AudioLOD`
 
-Parsed by `0x0007D560`
+Parsed by `0x0007D560` — `?parseAudioLODDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x010768D0` — 3 fields
 
@@ -286,7 +286,7 @@ Field table `0x0110F590` — 4 fields
 | `ObjectiveLine2` | `0x01C` | `AsciiString` |
 | `ObjectiveLine3` | `0x020` | `AsciiString` |
 | `ObjectiveLine4` | `0x024` | `AsciiString` |
-| `BriefingVoice` | `0x028` | `0x000BBB60` |
+| `BriefingVoice` | `0x028` | `AudioEventRTS` |
 | `UnitNames0` | `0x09C` | `AsciiString` |
 | `UnitNames1` | `0x0A0` | `AsciiString` |
 | `UnitNames2` | `0x0A4` | `AsciiString` |
@@ -367,7 +367,7 @@ Field table `0x010FA3B8` — 54 fields
 | `FlagsUsedForToggle` | `0x07C` | `0x001EB560` |
 | `MaxShotsToFire` | `0x080` | `Int` |
 | `Science` | `0x084` | `0x000BCD80` |
-| `SpecialPower` | `0x034` | `0x000BB210` |
+| `SpecialPower` | `0x034` | `SpecialPowerTemplate` |
 | `TextLabel` | `0x044` | `AsciiStringVector` |
 | `DescriptLabel` | `0x050` | `AsciiStringVector` |
 | `PurchasedLabel` | `0x05C` | `AsciiString` |
@@ -456,7 +456,7 @@ Field table `0x010FB5E0` — 20 fields
 
 ### `ControlBarResizer`
 
-Parsed by `0x004AAD10`
+Parsed by `0x004AAD10` — `?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z`
 
 _No field table: this block parses its body directly._
 
@@ -1563,7 +1563,7 @@ Field table `0x010EBD84` — 2 fields
 
 ### `Language`
 
-Parsed by `0x00438F70`
+Parsed by `0x00438F70` — `?parseLanguageDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x010F3AD8` — 31 fields
 
@@ -2033,38 +2033,38 @@ Field table `0x01083310` — 32 fields
 
 | Field | Offset | Type |
 |---|---|---|
-| `RadarNotifyHarvesterUnderAttackSound` | `0x000` | `0x000BBB60` |
-| `RadarNotifyStructureUnderAttackSound` | `0x070` | `0x000BBB60` |
-| `RadarNotifyInfiltrationSound` | `0x0E0` | `0x000BBB60` |
-| `RadarNotifyOnlineSound` | `0x150` | `0x000BBB60` |
-| `RadarNotifyOfflineSound` | `0x1C0` | `0x000BBB60` |
-| `DefectorTimerTickSound` | `0x230` | `0x000BBB60` |
-| `DefectorTimerDingSound` | `0x2A0` | `0x000BBB60` |
-| `AllCheerSound` | `0x310` | `0x000BBB60` |
-| `BattleCrySound` | `0x380` | `0x000BBB60` |
-| `NoCanDoSound` | `0x3F0` | `0x000BBB60` |
-| `StealthDiscoveredSound` | `0x460` | `0x000BBB60` |
-| `StealthNeutralizedSound` | `0x4D0` | `0x000BBB60` |
-| `MoneyDepositSound` | `0x540` | `0x000BBB60` |
-| `MoneyWithdrawSound` | `0x5B0` | `0x000BBB60` |
-| `BuildingDisabled` | `0x620` | `0x000BBB60` |
-| `BuildingReenabled` | `0x690` | `0x000BBB60` |
-| `VehicleDisabled` | `0x700` | `0x000BBB60` |
-| `VehicleReenabled` | `0x770` | `0x000BBB60` |
-| `SplatterVehiclePilotsBrain` | `0x7E0` | `0x000BBB60` |
-| `CrateHeal` | `0x850` | `0x000BBB60` |
-| `CrateShroud` | `0x8C0` | `0x000BBB60` |
-| `CrateSalvage` | `0x930` | `0x000BBB60` |
-| `CrateFreeUnit` | `0x9A0` | `0x000BBB60` |
-| `CrateMoney` | `0xA10` | `0x000BBB60` |
-| `UnitPromoted` | `0xA80` | `0x000BBB60` |
-| `RepairSparks` | `0xAF0` | `0x000BBB60` |
-| `EnterCloseCombat` | `0xB60` | `0x000BBB60` |
-| `ExitCloseCombat` | `0xBD0` | `0x000BBB60` |
-| `IncomingChatNotification` | `0xC40` | `0x000BBB60` |
-| `EnabledHotKeyPressed` | `0xCB0` | `0x000BBB60` |
-| `DisabledHotKeyPressed` | `0xD20` | `0x000BBB60` |
-| `LowLODShellMusic` | `0xD90` | `0x000BBB60` |
+| `RadarNotifyHarvesterUnderAttackSound` | `0x000` | `AudioEventRTS` |
+| `RadarNotifyStructureUnderAttackSound` | `0x070` | `AudioEventRTS` |
+| `RadarNotifyInfiltrationSound` | `0x0E0` | `AudioEventRTS` |
+| `RadarNotifyOnlineSound` | `0x150` | `AudioEventRTS` |
+| `RadarNotifyOfflineSound` | `0x1C0` | `AudioEventRTS` |
+| `DefectorTimerTickSound` | `0x230` | `AudioEventRTS` |
+| `DefectorTimerDingSound` | `0x2A0` | `AudioEventRTS` |
+| `AllCheerSound` | `0x310` | `AudioEventRTS` |
+| `BattleCrySound` | `0x380` | `AudioEventRTS` |
+| `NoCanDoSound` | `0x3F0` | `AudioEventRTS` |
+| `StealthDiscoveredSound` | `0x460` | `AudioEventRTS` |
+| `StealthNeutralizedSound` | `0x4D0` | `AudioEventRTS` |
+| `MoneyDepositSound` | `0x540` | `AudioEventRTS` |
+| `MoneyWithdrawSound` | `0x5B0` | `AudioEventRTS` |
+| `BuildingDisabled` | `0x620` | `AudioEventRTS` |
+| `BuildingReenabled` | `0x690` | `AudioEventRTS` |
+| `VehicleDisabled` | `0x700` | `AudioEventRTS` |
+| `VehicleReenabled` | `0x770` | `AudioEventRTS` |
+| `SplatterVehiclePilotsBrain` | `0x7E0` | `AudioEventRTS` |
+| `CrateHeal` | `0x850` | `AudioEventRTS` |
+| `CrateShroud` | `0x8C0` | `AudioEventRTS` |
+| `CrateSalvage` | `0x930` | `AudioEventRTS` |
+| `CrateFreeUnit` | `0x9A0` | `AudioEventRTS` |
+| `CrateMoney` | `0xA10` | `AudioEventRTS` |
+| `UnitPromoted` | `0xA80` | `AudioEventRTS` |
+| `RepairSparks` | `0xAF0` | `AudioEventRTS` |
+| `EnterCloseCombat` | `0xB60` | `AudioEventRTS` |
+| `ExitCloseCombat` | `0xBD0` | `AudioEventRTS` |
+| `IncomingChatNotification` | `0xC40` | `AudioEventRTS` |
+| `EnabledHotKeyPressed` | `0xCB0` | `AudioEventRTS` |
+| `DisabledHotKeyPressed` | `0xD20` | `AudioEventRTS` |
+| `LowLODShellMusic` | `0xD90` | `AudioEventRTS` |
 
 ### `MiscEvaData`
 
@@ -2116,7 +2116,7 @@ Field table `0x0110D140` — 21 fields
 
 ### `MouseCursor`
 
-Parsed by `0x005A5FA0`
+Parsed by `0x005A5FA0` — `?parseMouseCursorDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x0110D070` — 34 fields
 
@@ -2331,7 +2331,7 @@ Field table `0x0109EEF8` — 5 fields
 | `OkToChangeModelColor` | `0x115` | `Bool` |
 | `MinLODRequired` | `0x06C` | `0x0007BCF0` |
 | `Shadow` | `0x068` | `BitString32` |
-| `BounceSound` | `0x094` | `0x000BBB60` |
+| `BounceSound` | `0x094` | `AudioEventRTS` |
 
 </details>
 
@@ -2373,7 +2373,7 @@ _No field table: this block parses its body directly._
 
 ### `OnlineChatColors`
 
-Parsed by `0x006250A0`
+Parsed by `0x006250A0` — `?parseOnlineChatColorDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x01117700` — 29 fields
 
@@ -2656,8 +2656,8 @@ Field table `0x012A8FA0` — 13 fields
 | `ReloadTime` | `0x018` | `DurationUnsignedInt` |
 | `RequiredScience` | `0x01C` | `Science` |
 | `LightPointCost` | `0x020` | `Int` |
-| `InitiateSound` | `0x024` | `0x000BBB60` |
-| `InitiateAtLocationSound` | `0x094` | `0x000BBB60` |
+| `InitiateSound` | `0x024` | `AudioEventRTS` |
+| `InitiateAtLocationSound` | `0x094` | `AudioEventRTS` |
 | `PublicTimer` | `0x114` | `Bool` |
 | `Enum` | `0x014` | `IndexList` |
 | `DetectionTime` | `0x104` | `DurationUnsignedInt` |
@@ -2669,7 +2669,7 @@ Field table `0x012A8FA0` — 13 fields
 
 ### `StaticGameLOD`
 
-Parsed by `0x0007CEC0`
+Parsed by `0x0007CEC0` — `?parseStaticGameLODDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x01076760` — 26 fields
 
@@ -2760,8 +2760,8 @@ Field table `0x01088B60` — 12 fields
 | `BuildTime` | `0x018` | `Real` |
 | `BuildCost` | `0x01C` | `Int` |
 | `ButtonImage` | `0x110` | `AsciiString` |
-| `ResearchSound` | `0x028` | `0x000BBB60` |
-| `UnitSpecificSound` | `0x098` | `0x000BBB60` |
+| `ResearchSound` | `0x028` | `AudioEventRTS` |
+| `UnitSpecificSound` | `0x098` | `AudioEventRTS` |
 | `UpgradeFX` | `0x024` | `AsciiString` |
 | `Cursor` | `0x118` | `AsciiString` |
 | `PersistsInCampaign` | `0x11C` | `Bool` |
@@ -2859,7 +2859,7 @@ Field table `0x0109FE18` — 112 fields
 | `MinTargetPitch` | `0x078` | `AngleReal` |
 | `MaxTargetPitch` | `0x07C` | `AngleReal` |
 | `PreferredTargetBone` | `0x080` | `AsciiString` |
-| `FireSound` | `0x0B4` | `0x000BBB60` |
+| `FireSound` | `0x0B4` | `AudioEventRTS` |
 | `FireSoundLoopTime` | `0x124` | `DurationUnsignedInt` |
 | `FireFX` | `0x094` | `AllVetLevelsFXList` |
 | `PreAttackFX` | `0x0A4` | `AllVetLevelsFXList` |
@@ -2898,14 +2898,14 @@ Field table `0x0109FE18` — 112 fields
 | `PassengerProportionalAttack` | `0x508` | `Bool` |
 | `MaxAttackPassengers` | `0x509` | `Int` |
 | `FinishAttackOnceStarted` | `0x529` | `Bool` |
-| `OverrideVoiceAttackSound` | `0x128` | `0x000BBB60` |
-| `OverrideVoiceAttackGroupSound` | `0x198` | `0x000BBB60` |
-| `OverrideVoiceAttack2Sound` | `0x208` | `0x000BBB60` |
-| `OverrideVoiceAttackGroup2Sound` | `0x278` | `0x000BBB60` |
-| `OverrideVoiceEnterStateAttackSound` | `0x2E8` | `0x000BBB60` |
-| `OverrideVoiceEnterStateAttackGroupSound` | `0x358` | `0x000BBB60` |
-| `OverrideVoiceEnterStateAttack2Sound` | `0x3C8` | `0x000BBB60` |
-| `OverrideVoiceEnterStateAttackGroup2Sound` | `0x438` | `0x000BBB60` |
+| `OverrideVoiceAttackSound` | `0x128` | `AudioEventRTS` |
+| `OverrideVoiceAttackGroupSound` | `0x198` | `AudioEventRTS` |
+| `OverrideVoiceAttack2Sound` | `0x208` | `AudioEventRTS` |
+| `OverrideVoiceAttackGroup2Sound` | `0x278` | `AudioEventRTS` |
+| `OverrideVoiceEnterStateAttackSound` | `0x2E8` | `AudioEventRTS` |
+| `OverrideVoiceEnterStateAttackGroupSound` | `0x358` | `AudioEventRTS` |
+| `OverrideVoiceEnterStateAttack2Sound` | `0x3C8` | `AudioEventRTS` |
+| `OverrideVoiceEnterStateAttackGroup2Sound` | `0x438` | `AudioEventRTS` |
 | `RestrictedHeightRange` | `0x52C` | `Real` |
 | `CannotTargetCastleVictims` | `0x530` | `Bool` |
 | `RequireFollowThru` | `0x531` | `Bool` |
