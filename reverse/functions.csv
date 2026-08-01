@@ -1499,7 +1499,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HemisphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0002DB50,0x005D7560,39,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??0HemisphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ,0x0002BF67,0x005D74F0,32,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??0HeroDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255670,60,Code/masm_dumps/HeroDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
-??0HeroDieModuleData@@QAE@XZ,,0x00255600,82,Code/masm_dumps/HeroDieModuleData_constructor.asm,matched,Exact 82B @ 0x00255600; Exact retail MASM ModuleData ctor; unique factory 0x124950; Open-BFME4+Grok
 ??0HeroModeSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025F8A0,53,Code/masm_dumps/HeroModeSpecialAbilityUpdate_constructor.asm,matched,Exact 53B unique factory Open-BFME4
 ??0HeroModeSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0025FAC0,112,Code/masm_dumps/HeroModeSpecialAbilityUpdateModuleData_constructor.asm,matched,Exact 112B @ 0x0025FAC0; Exact retail MASM ModuleData ctor; unique factory 0x1191B0
 ??0HideShowSubObjInfo@ModelConditionInfo@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,ICF alias of existing matched body
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0PhysicsBehaviorModuleData@@QAE@XZ,,0x0029A090,126,Code/GameEngine/Source/GameLogic/AI/PhysicsBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0LargeGroupAudioUpdateModuleData@@QAE@XZ,,0x002971F0,142,Code/GameEngine/Source/GameLogic/AI/LargeGroupAudioUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0EnragedBehaviorModuleData@@QAE@XZ,,0x00203E60,117,Code/GameEngine/Source/GameLogic/AI/EnragedBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0HeroDieModuleData@@QAE@XZ,,0x00255600,82,Code/GameEngine/Source/GameLogic/AI/HeroDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
