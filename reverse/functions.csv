@@ -2926,7 +2926,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MeshLoadContextClass@@AAE@XZ,,0x0096FD30,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??1MessageStream@@UAE@XZ,,0x0008AD50,116,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??1MetaEventTranslator@@UAE@XZ,,0x005B6A70,7,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
-??1MetaMapRec@@QAE@XZ,,0x005B6FC0,77,Code/masm_dumps/MetaEvent_MetaMapRec_retail_destructor.asm,matched,
 ??1MinefieldBehaviorModuleData@@UAE@XZ,,0x0036CE20,100,Code/masm_dumps/MinefieldBehaviorModuleData_destructor.asm,matched,Exact retail MASM; factory 0x1145D0 ctor 0x36CDD0 ownership
 ??1MiscAudio@@QAE@XZ,,0x006952F0,556,Code/masm_dumps/__1MiscAudio__QAE_XZ_6952F0.asm,matched,MASM exact retail: misplaced queue RVA 0xFB23E; true body 556B@0x6952F0; 32x AudioEventRTS step 0x70 FieldParse-proven
 ??1MissingAnimClass@@UAE@XZ,,0x007BB7F0,73,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
@@ -4920,7 +4919,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GMemoryWriteFile@@UAEPAXI@Z,,0x009CB650,30,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 0 of vtable 0x01143AA8
 ??_GMessageStream@@UAEPAXI@Z,,0x0008DD80,30,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??_GMetaEventTranslator@@UAEPAXI@Z,,0x005B6B70,30,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
-??_GMetaMapRec@@QAEPAXI@Z,,0x005B70E0,30,Code/masm_dumps/MetaEvent_MetaMapRec_retail_scalar_deleting_destructor.asm,matched,
 ??_GMinefieldBehaviorModuleData@@UAEPAXI@Z,,0x0036DBD0,30,Code/GameEngine/Source/GameLogic/Object/Behavior/MinefieldBehavior.cpp,matched,
 ??_GMissileLauncherBuildingUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GMissingAnimClass@@UAEPAXI@Z,,0x007BB7C0,28,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
@@ -13840,3 +13838,5 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z,,0x0043A520,29,Code/GameEngine/Source/Common/System/RadarIsRadarWindowThunk.cpp,matched,Open-BFME5 exact C++ Radar window predicate thunk replacing MASM dump;object-symbol=?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z
 ?Enable_Fog@ShaderClass@@QAEXPBD@Z,,0x00910F90,116,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,converted exact MASM method dump to clean C++
 ?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z,,0x002EF2E0,30,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionsDoAmbientSoundsPauseThunk.cpp,matched,Open-BFME5 exact C++ ScriptActions audio pause/resume thunk replacing MASM dump;object-symbol=?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z
+??1MetaMapRec@@QAE@XZ,,0x005B6FC0,77,Code/GameEngine/Source/GameClient/MessageStream/MetaMapRecDestructorThunks.cpp,matched,Open-BFME5 exact C++ destructor body;object-symbol=??1MetaMapRec@@QAE@XZ
+??_GMetaMapRec@@QAEPAXI@Z,,0x005B70E0,30,Code/GameEngine/Source/GameClient/MessageStream/MetaMapRecDestructorThunks.cpp,matched,Open-BFME5 exact compiler-generated scalar deleting destructor;object-symbol=??_GMetaMapRec@@QAEPAXI@Z
