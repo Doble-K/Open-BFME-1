@@ -13840,3 +13840,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getViewObjectDuration@SpecialPowerTemplate@@QBEIXZ,,0x00268950,33,Code/GameEngine/Source/Common/RTS/SpecialPowerTemplate.cpp,matched,Open-BFME5 exact C++ raw getter; target field offset 0x108 and Overridable final-override call preserved
 ?getRollDamping@Locomotor@@QBEMXZ,,0x00413180,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,Exact inline accessor via Locomotor retail-layout shim; MASM dump removed
 ??0MetaEventTranslator@@QAE@XZ,,0x005B6B30,42,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,retail BFME layout offsets + loop; clean C++
+?getRollDamping@Locomotor@@QBEMXZ,,0x00413180,33,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,Open-BFME5 exact C++ raw getter; Locomotor template override field +0x98
