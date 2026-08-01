@@ -1195,7 +1195,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ButterflyDrawModuleInfo@FXParticleSystem@@QAE@XZ,0x000116C6,0x005F0C60,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable pointer
 ??0ButterflyDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x00019CB3,0x005D8CF0,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0ButterflyDrawModuleTemplate@FXParticleSystem@@QAE@XZ,0x0003E8F1,0x005D8C20,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??0CDDrive@@QAE@XZ,,0x0002E997,5,Code/masm_dumps/__0CDDrive__QAE_XZ_2E997.asm,matched,MASM exact retail dump
 ??0CDManager@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
 ??0CDownload@@QAE@PAVIDownload@@@Z,,0x006267A0,229,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
 ??0CPUDetectInitClass@@QAE@XZ,,0x009DFF40,120,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,
@@ -13594,3 +13593,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9CC0,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,thunk-dump repointed to real body; COMDAT emitted by landed ini.cpp byte-matches retail
 ?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAEC0,44,Code/GameEngine/Source/Common/INI/ini.cpp,matched,thunk-dump repointed to real body; COMDAT emitted by landed ini.cpp byte-matches retail
 ?parseArmorTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAE50,80,Code/GameEngine/Source/Common/INI/ini.cpp,matched,thunk-dump repointed to real body; COMDAT emitted by landed ini.cpp byte-matches retail; findArmorTemplate pinned
+??0CDDrive@@QAE@XZ,,0x00101E20,113,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,thunk-dump repointed to real body; COMDAT emitted by landed CDManager.cpp; StringBase clear pinned

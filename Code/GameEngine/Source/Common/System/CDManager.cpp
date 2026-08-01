@@ -102,7 +102,6 @@ CDManagerInterface* TheCDManager = NULL;
 // CDDrive::CDDrive
 //============================================================================
 
-// ??0CDDrive@@ present-unmatched
 CDDrive::CDDrive()
 : m_disk(CD::UNKNOWN_DISK)
 {
