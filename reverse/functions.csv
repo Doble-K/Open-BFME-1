@@ -12255,7 +12255,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?renderObjectList@W3DRadar@@IAEXPBVRadarObject@@PAVTextureClass@@_N@Z,,0x006C43F0,1296,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar_renderObjectList.asm,matched,exact 1296B MASM; true body via draw call-pair; queue RVA misplaced
 ?renderShadows@W3DProjectedShadowManager@@QAEHAAVRenderInfoClass@@@Z,,0x007B6D30,1333,Code/masm_dumps/renderShadows_W3DProjectedShadowManager_007B6D30_packet226.asm,matched,Certified packet 226 exact db-only MASM recovery
 ?renderShoreLines@BaseHeightMapRenderObjClass@@IAEXPAVCameraClass@@@Z,,0x006CCE70,2268,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_renderShoreLines.asm,matched,MASM exact 2268B @ 0x006CCE70; queue 0x00935424 INSIDE foreign; Render@0x6D3480->ILT 0x21463; soft-water+batch 2048/3072; C++ layout/WB/REL32 blocked
-?renderTrees@BaseHeightMapRenderObjClass@@QAEXPAVCameraClass@@@Z,,0x0003FE36,5,Code/masm_dumps/_renderTrees_BaseHeightMapRenderObjClass__QAEXPAVCameraClass___Z_3FE36.asm,matched,MASM exact retail dump
 ?render_box@BoxRenderObjClass@@IAEXAAVRenderInfoClass@@ABVVector3@@1@Z,,0x00956F40,1681,Code/masm_dumps/_leaf__render_box_BoxRenderObjClass__IAEXAAVRe_956F40.asm,matched,Exact 1681B present-unmatched leaf Open-BFME4
 ?reorderInBuildList@SidesInfo@@QAEXPAVBuildListInfo@@H@Z,,0x00192600,32,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?resendFrameRangeToPlayer@BFMEConnectionManager@@QAEXHII@Z,,0x00664B40,384,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?deleteAllFonts@FontLibrary@@IAEXXZ,,0x000309CC,5,Code/Libraries/Source/WWVegas/WWLib/MiscThunkGroup.cpp,matched,Focused C++ thunk for FontLibrary::deleteAllFonts
 ?insertTee@W3DRoadBuffer@@IAEXVVector2@@HM@Z,,0x00007522,5,Code/GameEngine/Source/Common/RTS/W3DRoadBufferInsertTeeThunk.cpp,matched,5-byte incremental-link W3DRoadBuffer protected member thunk converted to focused C++ source
 ?applyTopplingForce@ToppleUpdate@@QAEXPBUCoord3D@@MI@Z,,0x0003FC97,5,Code/GameEngine/Source/Common/RTS/ToppleUpdateApplyTopplingForceThunk.cpp,matched,5-byte incremental-link ToppleUpdate member thunk converted to focused C++ source
+?renderTrees@BaseHeightMapRenderObjClass@@QAEXPAVCameraClass@@@Z,,0x0003FE36,5,Code/Libraries/Source/WWVegas/WWLib/PhysicsRenderThunks.cpp,matched,Focused C++ thunk for BaseHeightMapRenderObjClass::renderTrees
