@@ -1116,7 +1116,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BFMEPlayerTemplateAsciiString@@QAE@PBD@Z,,0x00888BC0,72,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@PBD@Z;C++ alias
 ??0BFMERetailAsciiString@@QAE@PBD@Z,,0x00888BC0,72,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@PBD@Z;C++ alias
 ??0BTIntersectStruct@@QAE@ABVOBBoxClass@@ABVTriClass@@@Z,,0x008E6760,367,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
-??0BannerCarrierUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00285F10,164,Code/masm_dumps/BannerCarrierUpdate_constructor.asm,matched,Exact retail MASM module ctor; factory 0x119BC0
 ??0Base64Pipe@@QAE@W4CodeControl@0@@Z,,0x009E1EE0,29,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling (vtable ptr copied from target)
 ??0Base64Straw@@QAE@W4CodeControl@0@@Z,,0x009E1F20,29,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling
 ??0BaseHeightMapRenderObjClass@@QAE@XZ,,0x006CFAE0,1304,Code/masm_dumps/BaseHeightMapRenderObjClass_ctor_006CFAE0.asm,matched,exact 1304B MASM @ 0x006CFAE0; queue 0x00A3B6FB MISPLACED (00 00 00); true SEH ENTRY; mislabeled LightMap void-ctor twin (ZH is 2-arg); vtbls match ??1BaseHeightMap; TheTerrainRenderObject@0x12F7FE0; size twin of owner (true ret +1306/1307)
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AttributeModifierAuraUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002800D0,218,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0AutoAbilityBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ED8A0,155,Code/GameEngine/Source/GameLogic/AI/AutoAbilityBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0AutoPickUpUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00281AB0,175,Code/GameEngine/Source/GameLogic/AI/AutoPickUpUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
+??0BannerCarrierUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00285F10,164,Code/GameEngine/Source/GameLogic/AI/BannerCarrierUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
