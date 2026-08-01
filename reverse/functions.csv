@@ -9477,7 +9477,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?destroyBackend@BFMENetwork@@QAEXXZ,,0x00652AB0,74,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper slot +0x08; releases backend helper at +0x64
 ?destroyGameMessages@FrameData@@QAEXXZ,,0x00670370,24,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
 ?destroyLightsIterator@RTS3DScene@@QAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,,0x007118D0,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
-?destroyObject@GameLogic@@QAEXPAVObject@@@Z,,0x0001D0DE,5,Code/masm_dumps/_thunk_6e29353ef7bd_1D0DE.asm,matched,thunk accessor of ported class
+?destroyObject@GameLogic@@QAEXPAVObject@@@Z,,0x0038B0C0,190,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,converted chained incremental-link thunk to exact codegen-blocked C++ naked body
 ?destroyWindows@WindowLayout@@UAEXXZ,,0x00497A50,40,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,BFME rewrote: direct m_windowList loop
 ?destruct@BFMENetRequestPlayerLeaveCommandMsg@@QAEXXZ,,0x00674230,7,Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp,matched,native BFME request-player-leave command destructor body
 ?detach@NetCommandMsg@@QAEXXZ,,0x00673610,16,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,codegen-blocked retail reference-count body; exact small __asm escape hatch in official C++ source

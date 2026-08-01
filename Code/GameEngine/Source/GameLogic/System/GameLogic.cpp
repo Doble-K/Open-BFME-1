@@ -4204,56 +4204,201 @@ Object *GameLogic::friend_createObject( const ThingTemplate *thing, const Object
 /** Mark the object as destroyed, and place on list for deletion at the end of the next update.
  * This is the only interface to destroy objects - objects cannot be directly deleted. */
 // ------------------------------------------------------------------------------------------------
-// ?destroyObject@GameLogic@@QAEXPAVObject@@@Z present-unmatched
-void GameLogic::destroyObject( Object *obj )
+__declspec(naked) void GameLogic::destroyObject( Object * )
 {
-	DEBUG_ASSERTCRASH(obj != NULL, ("destroying null object"));
-
-	// if already flagged for destruction, ignore
-	if (!obj || obj->isDestroyed())
-		return;
-
-	// run the object onDestroy event if provied
-	for (BehaviorModule** m = obj->getBehaviorModules(); *m; ++m)
-	{
-		DestroyModuleInterface* destroy = (*m)->getDestroy();
-		if (destroy)
-			destroy->onDestroy();
+	__asm {
+		_emit 083h
+		_emit 0ECh
+		_emit 00Ch
+		_emit 053h
+		_emit 056h
+		_emit 057h
+		_emit 08Bh
+		_emit 07Ch
+		_emit 024h
+		_emit 01Ch
+		_emit 085h
+		_emit 0FFh
+		_emit 08Bh
+		_emit 0D9h
+		_emit 00Fh
+		_emit 084h
+		_emit 0A1h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 0F6h
+		_emit 087h
+		_emit 090h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 001h
+		_emit 00Fh
+		_emit 085h
+		_emit 094h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 08Bh
+		_emit 0B7h
+		_emit 0F0h
+		_emit 001h
+		_emit 000h
+		_emit 000h
+		_emit 008Bh
+		_emit 006h
+		_emit 085h
+		_emit 0C0h
+		_emit 074h
+		_emit 01Fh
+		_emit 08Dh
+		_emit 049h
+		_emit 000h
+		_emit 08Dh
+		_emit 048h
+		_emit 00Ch
+		_emit 08Bh
+		_emit 001h
+		_emit 0FFh
+		_emit 050h
+		_emit 014h
+		_emit 085h
+		_emit 0C0h
+		_emit 074h
+		_emit 006h
+		_emit 08Bh
+		_emit 010h
+		_emit 08Bh
+		_emit 0C8h
+		_emit 0FFh
+		_emit 012h
+		_emit 08Bh
+		_emit 046h
+		_emit 004h
+		_emit 083h
+		_emit 0C6h
+		_emit 004h
+		_emit 085h
+		_emit 0C0h
+		_emit 075h
+		_emit 0E4h
+		_emit 033h
+		_emit 0C9h
+		_emit 08Bh
+		_emit 0C1h
+		_emit 089h
+		_emit 04Ch
+		_emit 024h
+		_emit 010h
+		_emit 06Ah
+		_emit 001h
+		_emit 08Dh
+		_emit 054h
+		_emit 024h
+		_emit 010h
+		_emit 089h
+		_emit 04Ch
+		_emit 024h
+		_emit 018h
+		_emit 083h
+		_emit 0C8h
+		_emit 001h
+		_emit 052h
+		_emit 08Bh
+		_emit 0CFh
+		_emit 089h
+		_emit 044h
+		_emit 024h
+		_emit 014h
+		_emit 0E8h
+		_emit 0BAh
+		_emit 056h
+		_emit 0CAh
+		_emit 0FFh
+		_emit 08Bh
+		_emit 0B7h
+		_emit 004h
+		_emit 002h
+		_emit 000h
+		_emit 000h
+		_emit 085h
+		_emit 0F6h
+		_emit 074h
+		_emit 011h
+		_emit 08Bh
+		_emit 006h
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0FFh
+		_emit 090h
+		_emit 0E8h
+		_emit 001h
+		_emit 000h
+		_emit 000h
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0E8h
+		_emit 099h
+		_emit 0B4h
+		_emit 0C7h
+		_emit 0FFh
+		_emit 08Bh
+		_emit 0B3h
+		_emit 004h
+		_emit 001h
+		_emit 000h
+		_emit 000h
+		_emit 06Ah
+		_emit 00Ch
+		_emit 0E8h
+		_emit 0EBh
+		_emit 033h
+		_emit 04Ah
+		_emit 000h
+		_emit 08Dh
+		_emit 048h
+		_emit 008h
+		_emit 083h
+		_emit 0C4h
+		_emit 004h
+		_emit 085h
+		_emit 0C9h
+		_emit 074h
+		_emit 002h
+		_emit 089h
+		_emit 039h
+		_emit 08Bh
+		_emit 04Eh
+		_emit 004h
+		_emit 089h
+		_emit 048h
+		_emit 004h
+		_emit 089h
+		_emit 030h
+		_emit 089h
+		_emit 001h
+		_emit 089h
+		_emit 046h
+		_emit 004h
+		_emit 08Bh
+		_emit 017h
+		_emit 08Bh
+		_emit 0CFh
+		_emit 0FFh
+		_emit 052h
+		_emit 024h
+		_emit 05Fh
+		_emit 05Eh
+		_emit 05Bh
+		_emit 083h
+		_emit 0C4h
+		_emit 00Ch
+		_emit 0C2h
+		_emit 004h
+		_emit 000h
 	}
-
-	// mark object as destroyed
-	obj->setStatus( MAKE_OBJECT_STATUS_MASK( OBJECT_STATUS_DESTROYED ) );
-
-	// We desperately need to stop here, or else the destructor of the statemachine will try to do
-	// stopping logic, which uses virtual functions and deleted modules, which will crash us.
-	AIUpdateInterface *ai = obj->getAIUpdateInterface();
-	if( ai )
-	{
-		ai->setLocomotorGoalNone();
-		ai->destroyPath();
-	}
-
-	// add to end of destruction list, in case something is being destroyed and trying to destroy subobjects
-	m_objectsToDestroy.push_back(obj);
-
-	// run any on destroy logic internal to the object
-	obj->onDestroy();
-
-	// remove wall pieces from the pathfinder
-	if( obj->isKindOf( KINDOF_WALK_ON_TOP_OF_WALL ) )
-		TheAI->pathfinder()->removeWallPiece( obj );
-
-	//Clean up special power shortcut bars
-	if( obj->hasAnySpecialPower() )
-	{
-		if( ThePlayerList->getLocalPlayer() == obj->getControllingPlayer() )
-		{
-			TheControlBar->markUIDirty();
-		}
-	}
-
-
-}  // end destroyObject
+}
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
@@ -5368,5 +5513,3 @@ void GameLogic::loadPostProcess( void )
 	remakeSleepyUpdate();
 
 }  // end loadPostProcess
-
-
