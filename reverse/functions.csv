@@ -11100,7 +11100,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getLocale@GameSpyMiscPreferences@@QAEHXZ,,0x000A99A0,33,Code/masm_dumps/GameSpyMiscPreferences_getLocale.asm,matched,Unique Locale-string preference getter
 ?getMOTD@GameSpyInfo@@UAEABVAsciiString@@XZ,,0x006306B0,4,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,Vtable-bound GameSpyInfo accessor
 ?getManglerLocation@GameSpyConfig@@UAE_NHAAVAsciiString@@AAG@Z,,0x00628580,68,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,
-?getManglerResponse@FirewallHelperClass@@QAEGGH@Z,,0x00025A7C,5,Code/masm_dumps/_getManglerResponse_FirewallHelperClass__QAEGGH_Z_25A7C.asm,matched,MASM exact retail dump
+?getManglerResponse@FirewallHelperClass@@QAEGGH@Z,,0x0066E570,521,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,thunk-dump converted to clean C++ body at destination 0x0066E570
 ?getMapPreviewImage@@YAPAVImage@@VAsciiString@@@Z,,0x004516E0,1212,Code/masm_dumps/getMapPreviewImage_YAPAVImage_VAsciiString_Z_004516E0_packet354.asm,matched,certified packet 354 sealed RVA and SHA-256 reviewed identity evidence
 ?getMaxCellHeight@BaseHeightMapRenderObjClass@@QBEMMM@Z,,0x006C6CB0,290,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_getMaxCellHeight.asm,matched,exact 290B MASM @ 0x006C6CB0; queue 0x008B440D misplaced (mid foreign epilogue); m_map+0x2FF4 field-offset + no TheTerrainVisual path blocks C++
 ?getMaxDisconnectFrame@DisconnectManager@@IAEIXZ,,0x0066B620,99,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,repointed off its 5B ILT thunk onto the real body
@@ -12626,7 +12626,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?remove@LListNode@@QAEXXZ,,0x00105930,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?removeAllBibs@W3DTerrainVisual@@UAEXXZ,,0x00731000,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ,,0x007AEA90,95,Code/masm_dumps/removeAllShadows_W3DProjectedShadowManager_QAEXXZ_007AEA90_f24fcc50.asm,matched,exact MASM dump; true body 0x7AEA90/95 (drift 0xC4D39D was int3 pad+COMDAT); BFME mark-only next@0xD4 lists +0xC/+4/+8
-?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ,,0x0000CC8E,5,Code/masm_dumps/_thunk_f3c9c7f00414_CC8E.asm,matched,thunk accessor of ported class (icf alias)
 ?removeBib@W3DBibBuffer@@QAEXW4ObjectID@@@Z,,0x006D6B20,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?removeBibDrawable@W3DBibBuffer@@QAEXW4DrawableID@@@Z,,0x006D6B80,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?removeBibHighlighting@W3DTerrainVisual@@UAEXXZ,,0x00731000,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0UpgradeSoundSelectorClientBehaviorModuleData@@QAE@XZ,,0x00608DC0,20,Code/GameEngine/Source/GameLogic/Object/Behavior/UpgradeSoundSelector.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0DestroyEnvironmentUpdateModuleData@@QAE@XZ,,0x0028CD30,23,Code/GameEngine/Source/GameLogic/Object/Update/DestroyEnvironmentUpdate.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0FireWeaponUpdateModuleData@@QAE@XZ,,0x00292CB0,23,Code/GameEngine/Source/GameLogic/Object/Update/FireWeaponUpdate.cpp,matched,Exact retail ModuleData constructor emitted as C++.
+?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,object-symbol=?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ;thunk-dump converted to clean C++ ICF alias at destination 0x006CB050

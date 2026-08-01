@@ -2208,7 +2208,6 @@ void BaseHeightMapRenderObjClass::removeTerrainBibHighlighting()
 //=============================================================================
 /** Removes all terrainBibs from the bib buffer.*/
 //=============================================================================
-// ?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ present-unmatched
 void BaseHeightMapRenderObjClass::removeAllTerrainBibs()
 {
 	m_bibBuffer->clearAllBibs(  ); 

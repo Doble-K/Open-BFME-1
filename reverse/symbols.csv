@@ -1853,6 +1853,7 @@ name,address,notes
 ?Build_Sentence_Not_Centered@Render2DSentenceClass@@AAE?AVVector2@@PBGPAH1_N@Z,0x00942430
 ?Build_Textures@Render2DSentenceClass@@AAEXXZ,0x0093DD60
 ?CRC_Memory@@YAKPBEKK@Z,0x009E19C0,second realcrc link (Install_UV / Update_CRC)
+?CRC_Memory@@YAKPBEKK@Z,0x0000A984,FirewallHelper getManglerResponse CRC helper thunk; body 0x00465250
 ?Cast_AABox_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVAABoxCollisionTestClass@@@Z,0x0096AEE0
 ?Cast_OBBox_Recursive@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxCollisionTestClass@@@Z,0x0096B100,derived-ICF
 ?Cast_OBBox_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxCollisionTestClass@@@Z,0x0096AEE0,derived-ICF

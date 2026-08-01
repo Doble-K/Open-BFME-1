@@ -444,10 +444,10 @@ void FirewallHelperClass::byteAdjust(ManglerData *data) {
  * HISTORY:                                                                                    *
  *   3/15/01 12:51PM ST : Created                                                              *
  *=============================================================================================*/
-// ?getManglerResponse@FirewallHelperClass@@QAEGGH@Z present-unmatched
 UnsignedShort FirewallHelperClass::getManglerResponse(UnsignedShort packetID, Int time)
 {
 	ManglerMessage *msg = NULL;
+	extern unsigned long CRC_Memory(const unsigned char *data, unsigned long length, unsigned long crc);
 
 //	SpareSocketStruct *spareSocket = NULL;
 
@@ -461,10 +461,9 @@ UnsignedShort FirewallHelperClass::getManglerResponse(UnsignedShort packetID, In
 			}
 			Int retval = m_spareSockets[i].udp->Read((unsigned char *)message, sizeof(ManglerData), &addr);
 			if (retval > 0) {
-				CRC crc;
-				crc.computeCRC((unsigned char *)(&(message->data.magic)), sizeof(ManglerData) - sizeof(unsigned int));
-				if (crc.get() != htonl(message->data.CRC)) {
-					DEBUG_LOG(("FirewallHelperClass::getManglerResponse - Saw message, CRC mismatch.  Expected CRC %u, computed CRC %u\n", message->data.CRC, crc.get()));
+				UnsignedInt crc = CRC_Memory((const unsigned char *)(&(message->data.magic)), sizeof(ManglerData) - sizeof(unsigned int), 0);
+				if (crc != htonl(message->data.CRC)) {
+					DEBUG_LOG(("FirewallHelperClass::getManglerResponse - Saw message, CRC mismatch.  Expected CRC %u, computed CRC %u\n", message->data.CRC, crc));
 					continue;
 				}
 				byteAdjust(&(message->data));
