@@ -11018,7 +11018,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getReal@Dict@@QBEMW4NameKeyType@@PA_N@Z,,0x00067EC0,56,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?getRebuildHoleBehaviorInterface@BehaviorModule@@UAEPAVRebuildHoleBehaviorInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getReferenceThingTemplate@SpecialPowerModule@@UBEPBVThingTemplate@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/SpecialPower/BaikonurLaunchPower.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getRelationship@Object@@QBE?AW4Relationship@@PBV1@@Z,,0x0004A719,5,Code/masm_dumps/_getRelationship_Object__QBE_AW4Relationship__PBV1__Z_4A719.asm,matched,MASM exact retail dump
 ?getReloadTime@SpecialPowerTemplate@@QBEIXZ,,0x000CD590,27,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule.cpp,matched,
 ?getReplayDir@RecorderClass@@SA?AVAsciiString@@XZ,0x00023F74,0x98a50,145,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getReplayExtention@RecorderClass@@SA?AVAsciiString@@XZ,0x000427F8,0x98b10,31,Code/GameEngine/Source/Common/Recorder.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_clear@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@IAEXXZ,,0x000481E9,5,Code/Libraries/Source/WWVegas/WWLib/ModuleInfoNuggetVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector clear thunk converted alongside focused C++ template TU
 ?setLowControlBarConfig@ControlBar@@IAEXXZ,,0x0002FA6D,5,Code/GameEngine/Source/Common/RTS/ControlBarSetLowConfigThunk.cpp,matched,5-byte incremental-link ControlBar protected member thunk converted to focused C++ source
 ?_M_clear@?$vector@UParticleSysBoneInfo@@V?$allocator@UParticleSysBoneInfo@@@_STL@@@_STL@@IAEXXZ,,0x0000903E,5,Code/Libraries/Source/WWVegas/WWLib/ParticleSysBoneInfoAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector clear thunk converted alongside focused C++ template TU
+?getRelationship@Object@@QBE?AW4Relationship@@PBV1@@Z,,0x0004A719,5,Code/GameEngine/Source/Common/RTS/ObjectGetRelationshipThunk.cpp,matched,5-byte incremental-link Object const member thunk converted to focused C++ source
