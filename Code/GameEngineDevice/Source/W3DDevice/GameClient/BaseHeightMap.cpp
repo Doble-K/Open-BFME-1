@@ -2018,12 +2018,11 @@ void BaseHeightMapRenderObjClass::unitMoved( Object *unit )
 //=============================================================================
 /** Tell that a unit moved.*/
 //=============================================================================
-// ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z present-unmatched
 void BaseHeightMapRenderObjClass::removeTreesAndPropsForConstruction(const Coord3D* pos, const GeometryInfo& geom, Real angle )
 {
-	if (m_treeBuffer) {
-		m_treeBuffer->removeTreesForConstruction(pos, geom, angle);
-	}
+	// BFME: retail's 18B body null-checks and tail-calls only the PROP buffer
+	// (callee body 0x7039E0 sits inside the W3DPropBuffer.cpp region; BFME
+	// trees are props, so there is no separate tree-buffer call)
 	if (m_propBuffer) {
 		m_propBuffer->removePropsForConstruction(pos, geom, angle);
 	}

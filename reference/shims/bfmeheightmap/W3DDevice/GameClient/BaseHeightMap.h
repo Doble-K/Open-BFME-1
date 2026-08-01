@@ -293,7 +293,15 @@ protected:
 	AsciiString m_macroTextureName; ///< Name for stage 3 texture.
 	TextureClass *m_destAlphaTexture;	///< Texture holding destination alpha LUT for water depth.
 
+	// BFME members between the texture block and the buffer block are not yet
+	// identified. Retail pins: m_treeBuffer@0x3094 (renderTrees @0x6CD990
+	// draw block 1), an unidentified buffer @0x3098 (renderTrees draw block 2,
+	// callee body 0x71EEC0), m_propBuffer@0x309C
+	// (removeTreesAndPropsForConstruction @0x6C8930 tail-calls into the
+	// W3DPropBuffer.cpp region body 0x7039E0).
+	char _bfme_pad_pre_treebuffer[0x48];
 	W3DTreeBuffer *m_treeBuffer; ///< Class for drawing trees and other alpha objects.
+	void *_bfme_buffer_3098;     ///< drawn by renderTrees block 2; class unidentified
 	W3DPropBuffer *m_propBuffer; ///< Class for drawing trees and other alpha objects.
 	W3DBibBuffer *m_bibBuffer; ///< Class for drawing trees and other alpha objects.
 	W3DWaypointBuffer *m_waypointBuffer; ///< Draws waypoints.

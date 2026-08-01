@@ -165,3 +165,5 @@ _W3DFilters
 ?TheNullChr@?1??str@UnicodeString@@QBEPBGXZ@4GB
 __PresentParameters
 _m_boundaries
+# pi/180 float const, doubly-linked like __real@3f800000: 0x1075954 (GameEngine TUs incl. ini.cpp parseAngularVelocityReal/parseAccelerationReal) and 0x1082c40 both hold 35 fa 8e 3c.
+__real@3c8efa35
