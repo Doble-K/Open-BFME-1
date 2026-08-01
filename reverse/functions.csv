@@ -13487,7 +13487,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?xfer@ScriptList@@MAEXPAVXfer@@@Z,,0x003556A0,400,Code/masm_dumps/xfer_ScriptList_MAEXPAVXfer_Z_003556A0_76e94c51.asm,matched,Certified packet 106 vtable thunk identity; retail sha256 76e94c51960571955350c1034dad16ec4d08b4264a953c395ab3c33077191aca
 ?xfer@TerrainLogic@@MAEXPAVXfer@@@Z,,0x006BE430,45,Code/masm_dumps/TerrainLogic_xfer_6BE430.asm,matched,Certified packet 26 vtable-owned TerrainLogic xfer wrapper exact retail bytes SHA256 bbd9812128df694a4baf5174941c9d9f267c4d3364b406b26c6cbbb97edced32
 ?xferDrawableModules@Drawable@@IAEXPAVXfer@@@Z,,0x00417E20,530,Code/masm_dumps/xferDrawableModules_Drawable_IAEXPAVXfer_Z_417E20.asm,matched,Exact 530B MASM; true body 0x417E20 (queue 0x79CD36 int3); m_modules+0x150 NUM=3; callee of Drawable::xfer@0x41D290
-?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,,0x0003EE32,5,Code/masm_dumps/_xferRandomVariable__YAXAAVXfer__AAVGameClientRandomVariable___Z_3EE32.asm,matched,MASM exact retail dump
 ?xferReal@Xfer@@QAEXPAM@Z,,0x006CF3A0,5,Code/GameEngine/Source/Common/System/Geometry.cpp,matched,icf-owner=?_bfme_ro_v28@RenderObjClass@@UBEHXZ
 ?xpSign@@YAHABVVector2@@0@Z,,0x00703F00,55,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?zero@Coord3D@@QAEXXZ,0x00029226,0x00083340,11,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,sets x/y/z to zero
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0DynamicGeometryInfoUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?iniParseObjectFilter@@YAXPAVINI@@PAX1PBX@Z,,0x00039865,5,Code/GameEngine/Source/GameLogic/ScriptEngine/iniParseObjectFilter.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,,0x0003EE32,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/xferRandomVariable.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
