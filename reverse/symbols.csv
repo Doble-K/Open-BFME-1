@@ -1,7 +1,4 @@
 name,address,notes
-??0Nugget@ModuleInfo@@QAE@ABU01@@Z,0x0004ABEC,retail ILT target of ModuleInfo Nugget copy-constructor call
-??0BFME_ModuleInfoNuggetCopyLayout@@QAE@ABU0@@Z,0x0004ABEC,retail ILT target for isolated ModuleInfo Nugget copy helper
-?_M_erase@?$_Rb_tree@JU?$pair@$$CBJVLadderPref@@@_STL@@U?$_Select1st@U?$pair@$$CBJVLadderPref@@@_STL@@@2@U?$less@J@2@V?$allocator@U?$pair@$$CBJVLadderPref@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBJVLadderPref@@@_STL@@@2@@Z,0x00033000,retail ILT target of LadderPref tree destructor thunk 0x000192CC
 ?$S103@?1??getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ@4IA,0x00EEFE34,pool-glue cascade static (back-solved)
 ?$S105@?1??getClassMemoryPool@PoisonedBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF830,pool-glue cascade static (back-solved)
 ?$S107@?1??getClassMemoryPool@SupplyWarehouseCripplingBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF91C,pool-glue cascade static (back-solved)
@@ -486,6 +483,7 @@ name,address,notes
 ??0BFMEPlayerTemplateAsciiString@@QAE@PBD@Z,0x00888BC0,PlayerTemplate time-change retail AsciiString constructor owner
 ??0BFMERetailAsciiString@@QAE@PBD@Z,0x00888BC0
 ??0BFMERetailFontLibrary@@QAE@XZ,0x0000FDF3
+??0BFME_ModuleInfoNuggetCopyLayout@@QAE@ABU0@@Z,0x0004ABEC,retail ILT target for isolated ModuleInfo Nugget copy helper
 ??0BaikonurLaunchPowerModuleData@@QAE@XZ,0x0001ABF9,pinharvest x1 (thunk)
 ??0BaikonurLaunchPowerModuleData@@QAE@XZ,0x00037A51,pinharvest x1 (thunk)
 ??0BaikonurLaunchPowerModuleData@@QAE@XZ,0x0003BDE5,pinharvest x1 (thunk)
@@ -910,6 +908,7 @@ name,address,notes
 ??0NeutronMissileUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048F2C
 ??0NeutronMissileUpdateModuleData@@QAE@XZ,0x0003AE86,pinharvest x1 (thunk)
 ??0NeutronMissileUpdateModuleData@@QAE@XZ,0x000441CA,pinharvest x1 (thunk)
+??0Nugget@ModuleInfo@@QAE@ABU01@@Z,0x0004ABEC,retail ILT target of ModuleInfo Nugget copy-constructor call
 ??0OBBoxClass@@QAE@ABV0@@Z,0x00931420
 ??0OCLSpecialPowerModuleData@@QAE@XZ,0x0003025B,derived-ICF
 ??0OCLUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000EF5C,pinharvest x1 (thunk)
@@ -1853,8 +1852,8 @@ name,address,notes
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3D@@@Z,0x008DBA40,rel32 pin for exact-ambiguous landing
 ?Build_Sentence_Not_Centered@Render2DSentenceClass@@AAE?AVVector2@@PBGPAH1_N@Z,0x00942430
 ?Build_Textures@Render2DSentenceClass@@AAEXXZ,0x0093DD60
-?CRC_Memory@@YAKPBEKK@Z,0x009E19C0,second realcrc link (Install_UV / Update_CRC)
 ?CRC_Memory@@YAKPBEKK@Z,0x0000A984,FirewallHelper getManglerResponse CRC helper thunk; body 0x00465250
+?CRC_Memory@@YAKPBEKK@Z,0x009E19C0,second realcrc link (Install_UV / Update_CRC)
 ?Cast_AABox_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVAABoxCollisionTestClass@@@Z,0x0096AEE0
 ?Cast_OBBox_Recursive@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxCollisionTestClass@@@Z,0x0096B100,derived-ICF
 ?Cast_OBBox_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxCollisionTestClass@@@Z,0x0096AEE0,derived-ICF
@@ -2481,6 +2480,7 @@ name,address,notes
 ?_M_destroy_nodes@?$_Deque_base@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@IAEXPAPAVGameResultsResponse@@0@Z,0x0003689F
 ?_M_erase@?$_Rb_tree@GU?$pair@$$CBGE@_STL@@U?$_Select1st@U?$pair@$$CBGE@_STL@@@2@U?$less@G@2@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@2@@Z,0x00042FDC,resweep callee back-solved
 ?_M_erase@?$_Rb_tree@HU?$pair@$$CBHI@_STL@@U?$_Select1st@U?$pair@$$CBHI@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHI@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBHI@_STL@@@2@@Z,0x0004887E,ILT thunk; real body 0x4AA7B0
+?_M_erase@?$_Rb_tree@JU?$pair@$$CBJVLadderPref@@@_STL@@U?$_Select1st@U?$pair@$$CBJVLadderPref@@@_STL@@@2@U?$less@J@2@V?$allocator@U?$pair@$$CBJVLadderPref@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBJVLadderPref@@@_STL@@@2@@Z,0x00033000,retail ILT target of LadderPref tree destructor thunk 0x000192CC
 ?_M_erase@?$_Rb_tree@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@U?$pair@$$CBV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@H@2@U?$_Select1st@U?$pair@$$CBV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@H@_STL@@@2@U?$less@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@H@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@H@_STL@@@2@@Z,0x0003120F
 ?_M_erase@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@PBVFXList@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@PBVFXList@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@PBVFXList@@@_STL@@@3@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@PBVFXList@@@_STL@@@2@@Z,0x0000D4E0,pinharvest x1 (thunk)
 ?_M_erase@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@PBVFXList@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@PBVFXList@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@PBVFXList@@@_STL@@@3@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@PBVFXList@@@_STL@@@2@@Z,0x0000E363,pinharvest x1 (thunk)
