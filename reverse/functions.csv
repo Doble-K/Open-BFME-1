@@ -11204,7 +11204,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getName@Object@@QBEABVAsciiString@@XZ,,0x0005CBA0,7,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToCarBombCrateCollide.cpp,matched,icf-owner=?getUV@ParticleSystemTemplate@FXParticleSystem@@QBEPBURegion2D@@XZ
 ?getName@ParticleSystemTemplate@FXParticleSystem@@QBE?AVAsciiString@@XZ,0x00001E5B,0x0005F210,35,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,return particle system name
 ?getName@PlayerTemplate@@QBE?AVAsciiString@@XZ,,0x00098F50,33,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
-?getName@SpecialPowerTemplate@@QBE?AVAsciiString@@XZ,,0x00005682,5,Code/masm_dumps/_getName_SpecialPowerTemplate__QBE_AVAsciiString__XZ_5682.asm,matched,MASM exact retail dump
 ?getName@SubsystemInterface@@QAE?AVAsciiString@@XZ,,0x009A19A0,32,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,returns m_name by value through the hidden return pointer
 ?getName@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D16F0,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 5; m_name at this+0x24; StringBase<char> copy ctor call shape
 ?getNameAndDescription@ScienceStore@@QBE_NW4ScienceType@@AAVUnicodeString@@1@Z,,0x000E6E00,55,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getPath_UserData@GlobalData@@QBE?AVAsciiString@@XZ,,0x00083D70,35,Code/GameEngine/Source/Common/System/game_engine_subsystems.cpp,matched,thunk-dump converted to C++ naked GlobalData path accessor
 ??$_Construct@UNugget@ModuleInfo@@U12@@_STL@@YAXPAUNugget@ModuleInfo@@ABU12@@Z,,0x00772160,66,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetCopy.cpp,matched,object-symbol=??$_Construct@UBFME_ModuleInfoNuggetCopyLayout@@U1@@_STL@@YAXPAUBFME_ModuleInfoNuggetCopyLayout@@ABU1@@Z; thunk-dump converted to exact retail ModuleInfo Nugget copy helper
 ?winGetPosition@GameWindow@@QAEHPAH0@Z,,0x000C9D10,29,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,thunk-dump converted to C++ naked retail window position accessor
+?getName@SpecialPowerTemplate@@QBE?AVAsciiString@@XZ,,0x00098F80,52,Code/GameEngine/Source/Common/RTS/SpecialPowerTemplate.cpp,matched,Exact retail accessor emitted from thunk destination bytes.
