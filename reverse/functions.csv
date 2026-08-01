@@ -9612,7 +9612,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?freeSockets@NameKeyGenerator@@AAEXXZ,,0x0008FCE0,64,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,thunk-dump (0x226E7) converted to clean C++; real body tail-jumps into BFME-only hash_map aux clear()
 ?freeZones@ZoneBlock@@IAEXXZ,,0x005D65B0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?BOX_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?BOX_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVBoxEmissionVolumeModule@2@VBoxEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;ICF thunk converted to C++ alias
 ?friend_addToList@CommandButton@@QAEXPAPAV1@@Z,,0x0049C9E0,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
-?friend_awakenUpdateModule@GameLogic@@QAEXPAVObject@@PAVUpdateModule@@I@Z,,0x00009944,5,Code/masm_dumps/_friend_awakenUpdateModule_GameLogic__QAEXPAVObject__PAVUpdateModule__I_Z_9944.asm,matched,MASM exact retail dump
 ?friend_clearNextTemplate@WeaponTemplate@@QAEPAV1@XZ,,0x001E0B50,11,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?friend_getEffectiveStealthOpacity@Drawable@@QAEMXZ,,0x006CF980,4,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,icf-owner=?Get_Native_Screen_Size@RenderObjClass@@UBEMXZ
 ?friend_getFinalOverride@Overridable@@QAEPAV1@XZ,,0x00097880,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?shutdown@WaterTracksRenderSystem@@QAEXXZ,,0x000319CB,5,Code/Libraries/Source/WWVegas/WWLib/TracksRenderSystemShutdownThunks.cpp,matched,Focused C++ thunk for WaterTracksRenderSystem::shutdown
 ?openDataChunk@DataChunkOutput@@QAEXPADG@Z,,0x0003A256,5,Code/GameEngine/Source/Common/RTS/DataChunkOutputOpenDataChunkThunk.cpp,matched,5-byte incremental-link DataChunkOutput member thunk converted to focused C++ source
 ?clear@TeamFactory@@QAEXXZ,,0x000284A7,5,Code/Libraries/Source/WWVegas/WWLib/TeamFactoryClearThunk.cpp,matched,Focused C++ thunk for TeamFactory::clear
+?friend_awakenUpdateModule@GameLogic@@QAEXPAVObject@@PAVUpdateModule@@I@Z,,0x00009944,5,Code/GameEngine/Source/Common/RTS/GameLogicAwakenUpdateModuleThunk.cpp,matched,5-byte incremental-link GameLogic member thunk converted to focused C++ source
