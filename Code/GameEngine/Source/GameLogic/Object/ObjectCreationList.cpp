@@ -59,6 +59,41 @@
 #include "GameLogic/Module/BodyModule.h"
 #include "GameLogic/Module/ContainModule.h"
 #include "GameLogic/Module/DeliverPayloadAIUpdate.h"
+#define AsciiString BFMERetailPayloadString
+#include "../../../../Libraries/Source/WWVegas/WWLib/string_base.h"
+#undef AsciiString
+
+// Retail's DeliverPayload payload copy body uses the count-before-name layout.
+// Keep this reconstruction isolated from the live nugget layout above.
+class BFMERetailPayloadString
+{
+public:
+	BFMERetailPayloadString() : m_text(NULL) {}
+	BFMERetailPayloadString(const BFMERetailPayloadString &that)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(
+			*(const StringBase<char> *)&that);
+	}
+	~BFMERetailPayloadString()
+	{
+		((StringBase<char> *)this)->releaseBuffer();
+	}
+
+private:
+	char *m_text;
+};
+
+struct BFMEPayloadCopyLayout
+{
+	Int m_payloadCount;
+	BFMERetailPayloadString m_payloadName;
+};
+
+__declspec(noinline) void bfmeConstructDeliverPayloadNuggetPayload(
+	BFMEPayloadCopyLayout *dest, const BFMEPayloadCopyLayout &src)
+{
+	std::_Construct(dest, src);
+}
 #include "GameLogic/Module/FloatUpdate.h"
 #include "GameLogic/Module/PhysicsUpdate.h"
 #include "GameLogic/Module/SpecialPowerCompletionDie.h"
