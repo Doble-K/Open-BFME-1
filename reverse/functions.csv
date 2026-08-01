@@ -5246,7 +5246,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Add_Vertex_Material@MaterialCollectorClass@@QAEXPAVVertexMaterialClass@@@Z,,0x00930130,78,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Add_Vertex_Material@MaterialInfoClass@@QAEHPAVVertexMaterialClass@@@Z,,0x0096E2D0,85,Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp,matched,
 ?Add_Vertex_Material@MeshLoadContextClass@@AAEHPAVVertexMaterialClass@@@Z,,0x0096E990,90,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
-?Add_Visible_Skin@DX8SkinFVFCategoryContainer@@QAEXPAVMeshClass@@@Z,,0x00945DB0,68,Code/masm_dumps/_rn10__Add_Visible_Skin_DX8SkinFVFCategoryContainer__QAEXPAVMeshClass___Z_945DB0.asm,matched,reloc-needle Open-BFME4+Grok
+?Add_Visible_Skin@DX8SkinFVFCategoryContainer@@QAEXPAVMeshClass@@@Z,,0x00945DB0,68,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,reloc-needle Open-BFME4+Grok
 ?Adjust_Translation@Matrix3D@@QAEXABVVector3@@@Z,,0x000FBBB0,33,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,
 ?Adjust_X_Translation@Matrix3D@@QAEXM@Z,,0x002A0A30,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?Adjust_Z_Translation@Matrix3D@@QAEXM@Z,,0x0077F740,13,Code/GameEngine/Source/GameLogic/Object/Update/PhysicsUpdate.cpp,matched,

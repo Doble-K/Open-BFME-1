@@ -1506,19 +1506,20 @@ void DX8SkinFVFCategoryContainer::clearVisibleSkinList()
 	fields->visibleVertexCount = 0;
 	fields->visibleSkinCount = 0;
 }
-// ?Add_Visible_Skin@DX8SkinFVFCategoryContainer@@QAEXPAVMeshClass@@@Z present-unmatched
+// ?Add_Visible_Skin@DX8SkinFVFCategoryContainer@@QAEXPAVMeshClass@@@Z
 void DX8SkinFVFCategoryContainer::Add_Visible_Skin(MeshClass * mesh) 
 {
-	if (mesh->Peek_Next_Visible_Skin() != NULL || mesh == VisibleSkinTail)
+	if (mesh->Peek_Next_Visible_Skin() != NULL || mesh == *(MeshClass **)((char *)this + 0xfc))
 	{
 		DEBUG_CRASH(("Mesh %s is already a visible skin, and we tried to add it again... please notify Mark W or Steven J immediately!\n",mesh->Get_Name()));
 		return;
 	}
-	if (VisibleSkinHead == NULL)
-		VisibleSkinTail = mesh;
-	mesh->Set_Next_Visible_Skin(VisibleSkinHead);
-	VisibleSkinHead = mesh;
-	VisibleVertexCount += mesh->Peek_Model()->Get_Vertex_Count();
+	MeshClass *visibleSkinHead = *(MeshClass **)((char *)this + 0xf8);
+	if (visibleSkinHead == NULL)
+		*(MeshClass **)((char *)this + 0xfc) = mesh;
+	mesh->Set_Next_Visible_Skin(visibleSkinHead);
+	*(MeshClass **)((char *)this + 0xf8) = mesh;
+	*(unsigned int *)((char *)this + 0xf0) += *(unsigned int *)(*(char **)((char *)mesh + 0xc8) + 0x28);
 }
 
 
@@ -2238,6 +2239,3 @@ void DX8MeshRendererClass::Invalidate( bool shutdown)
 
 	texture_category_container_lists_rigid.Delete_All();
 }
-
-
-
