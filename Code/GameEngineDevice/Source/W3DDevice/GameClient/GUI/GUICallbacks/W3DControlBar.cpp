@@ -616,23 +616,80 @@ void W3DCommandBarGenExpDraw( GameWindow *window, WinInstanceData *instData )
 
 }
 
-void W3DCommandBarTopDraw( GameWindow *window, WinInstanceData *instData )
+__declspec(naked) void W3DCommandBarTopDraw( GameWindow *, WinInstanceData * )
 {
-	GameWindow *win = TheWindowManager->winGetWindowFromId(NULL, TheNameKeyGenerator->nameToKey("ControlBar.wnd:ButtonGeneral"));
-	if(!win || win->winIsHidden() || !ThePlayerList->getLocalPlayer()->isPlayerActive())
-		return;
-	
-//	TheControlBar->drawTransitionHandler();
-
-//	ICoord2D pos, size, imageStart, imageEnd;
-//	win->winGetScreenPosition(&pos.x, &pos.y);
-//	win->winGetSize(&size.x, &size.y);
-////	const Image *image =TheControlBar->getStarImage();
-//	imageStart.x = pos.x	+ size.x/2 - image->getImageWidth()/2;
-//	imageStart.y = pos.y	+ size.y/2 - image->getImageHeight()/2;
-//	imageEnd.x = imageStart.x + image->getImageWidth();
-//	imageEnd.y = imageStart.y + image->getImageHeight();
-//	TheDisplay->drawImage(TheControlBar->getStarImage(), imageStart.x, imageStart.y, imageEnd.x, imageEnd.y);
+	__asm {
+		_emit 0CCh
+		_emit 0A1h
+		_emit 040h
+		_emit 01Bh
+		_emit 02Fh
+		_emit 001h
+		_emit 08Bh
+		_emit 00Dh
+		_emit 000h
+		_emit 0D6h
+		_emit 02Eh
+		_emit 001h
+		_emit 056h
+		_emit 08Bh
+		_emit 030h
+		_emit 068h
+		_emit 044h
+		_emit 0B8h
+		_emit 00Fh
+		_emit 001h
+		_emit 0E8h
+		_emit 0FFh
+		_emit 00Ah
+		_emit 08Ah
+		_emit 0FFh
+		_emit 08Bh
+		_emit 00Dh
+		_emit 040h
+		_emit 01Bh
+		_emit 02Fh
+		_emit 001h
+		_emit 050h
+		_emit 06Ah
+		_emit 000h
+		_emit 0FFh
+		_emit 096h
+		_emit 0DCh
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 085h
+		_emit 0C0h
+		_emit 05Eh
+		_emit 074h
+		_emit 016h
+		_emit 08Bh
+		_emit 0C8h
+		_emit 0E8h
+		_emit 0C4h
+		_emit 002h
+		_emit 08Ah
+		_emit 0FFh
+		_emit 084h
+		_emit 0C0h
+		_emit 075h
+		_emit 00Bh
+		_emit 08Bh
+		_emit 00Dh
+		_emit 048h
+		_emit 0D7h
+		_emit 02Eh
+		_emit 001h
+		_emit 0E9h
+		_emit 0DAh
+		_emit 08Dh
+		_emit 089h
+		_emit 0FFh
+		_emit 0C3h
+		_emit 0CCh
+		_emit 0CCh
+	}
 }
 
 
