@@ -1915,7 +1915,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RayCollisionTestClass@@QAE@ABVLineSegClass@@PAUCastResultStruct@@H_N2@Z,,0x00609A20,120,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
 ??0RebuildHoleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F8B80,107,Code/masm_dumps/RebuildHoleBehavior_constructor.asm,matched,Exact 107B ICF alias Open-BFME4
 ??0RebuildHoleExposeDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
-??0RebuildHoleExposeDieModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/RebuildHoleExposeDieModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0RectClass@@QAE@ABV0@@Z,,0x00232470,31,Code/GameEngine/Source/GameClient/VideoPlayer.cpp,matched,
 ??0RectClass@@QAE@ABVVector2@@0@Z,,0x0061BA60,34,Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp,matched,
 ??0RectClass@@QAE@MMMM@Z,,0x0005BA90,32,Code/GameEngine/Source/GameClient/VideoPlayer.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0RailedTransportDockUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0RebuildHoleBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$_Construct@U?$pair@UICoord2D@@UCoord3D@@@_STL@@U12@@_STL@@YAXPAU?$pair@UICoord2D@@UCoord3D@@@0@ABU10@@Z,,0x0001BE23,5,Code/GameEngine/Source/GameClient/Coord3DPairConstruct.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
+??0RebuildHoleExposeDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
