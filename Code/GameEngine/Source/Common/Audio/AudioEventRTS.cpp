@@ -629,12 +629,14 @@ const Coord3D* AudioEventRTS::getPosition( void )
 //-------------------------------------------------------------------------------------------------
 void AudioEventRTS::setObjectID( ObjectID objID )
 {
-	if (!(m_ownerType == OT_Object || m_ownerType == OT_INVALID)) {
+	unsigned char *self = reinterpret_cast<unsigned char *>(this);
+	Int ownerType = *reinterpret_cast<Int *>(self + 0x30);
+	if (!(ownerType == OT_Object || ownerType == OT_INVALID)) {
 		return;
 	}
 
-	m_objectID = objID;
-	m_ownerType = OT_Object;
+	*reinterpret_cast<ObjectID *>(self + 0x2C) = objID;
+	*reinterpret_cast<Int *>(self + 0x30) = OT_Object;
 }
 
 //-------------------------------------------------------------------------------------------------

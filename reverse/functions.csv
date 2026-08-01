@@ -13056,7 +13056,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setNumChunks@NetWrapperCommandMsg@@QAEXI@Z,,0x00673F30,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor thunk
 ?setNumPlayers@QuickMatchPreferences@@QAEXH@Z,,0x000AD5E0,169,Code/masm_dumps/_sa13__setNumPlayers_QuickMatchPreferences__QAEXH_Z_AD5E0.asm,matched,multi-xref Open-BFME4+Grok NumPlayers
 ?setNumRebuilds@BuildListInfo@@QAEXI@Z,,0x0016A630,10,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
-?setObjectID@AudioEventRTS@@QAEXW4ObjectID@@@Z,,0x000B2250,30,Code/masm_dumps/AudioEventRTS_setObjectID.asm,matched,Ghidra-bound BFME audio object setter
 ?setObjectID@BuildListInfo@@QAEXW4ObjectID@@@Z,,0x0036B9A0,10,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?setObjectIDCounter@GameLogic@@QAEXW4ObjectID@@@Z,,0x0051D030,13,Code/GameEngine/Source/Common/System/SaveGame/GameStateMap.cpp,matched,
 ?setObjectTimestamp@BuildListInfo@@QAEXI@Z,,0x0015E6E0,10,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
@@ -13799,3 +13798,4 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??$_Construct@VW3DAnimationInfo@@V1@@_STL@@YAXPAVW3DAnimationInfo@@ABV1@@Z,,0x00784DD0,19,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,object-symbol=?reconstructW3DAnimationInfo@@YAXPAXPBX@Z;clean C++ copy helper; REL32-pinned copy ctor
 ?findNonConstCommandSet@ControlBar@@AAEPAVCommandSet@@ABVAsciiString@@@Z,,0x004A0270,126,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarFields.cpp,matched,object-symbol=?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z; C++ ICF alias replaces direct thunk dump
+?setObjectID@AudioEventRTS@@QAEXW4ObjectID@@@Z,,0x000B2250,30,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ object-ID setter with retail layout offsets replaces MASM dump
