@@ -13076,7 +13076,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPort@GameSlot@@QAEXG@Z,,0x00673F70,12,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setPortraitByImage@ControlBar@@IAEXPBVImage@@@Z,,0x0049CF10,164,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?setPortraitByObject@ControlBar@@IAEXPAVObject@@@Z,,0x0059A664,832,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setPortraitByObject.asm,matched,true size 832B; row claimed 739B
-?setPosition@AudioEventRTS@@QAEXPBUCoord3D@@@Z,,0x000B2210,51,Code/masm_dumps/AudioEventRTS_setPosition.asm,matched,Ghidra-bound BFME audio positional setter
 ?setPosition@DirectInputMouse@@UAEXHH@Z,,0x006BB980,70,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?setPosition@Drawable@@QAEXPBUCoord3D@@@Z,,0x004116F0,5,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,thunk-dump converted to clean C++
 ?setPosition@PathNode@@QAEXPBUCoord3D@@@Z,,0x0034FF25,26,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setDrawableID@AudioEventRTS@@QAEXW4DrawableID@@@Z,,0x000B2290,30,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ drawable-ID setter with retail layout offsets replaces MASM dump
 ?getColor@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@H@Z,,0x0008F250,67,Code/GameEngine/Source/Common/MultiplayerSettings.cpp,matched,retail-layout C++ accessor; explicit +0x30/+0x34/+0x3c/+0x40/+0x64 offsets; REL32-pinned map lookup
 ?getDrawableID@AudioEventRTS@@QAE?AW4DrawableID@@XZ,,0x000B22C0,13,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ drawable-ID getter with retail layout offsets replaces MASM dump
+?setPosition@AudioEventRTS@@QAEXPBUCoord3D@@@Z,,0x000B2210,51,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ positional audio setter with retail layout offsets replaces MASM dump

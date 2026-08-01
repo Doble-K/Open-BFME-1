@@ -606,12 +606,14 @@ void AudioEventRTS::setPosition( const Coord3D *pos )
 		return;
 	}
 
-	if (!(m_ownerType == OT_Positional || m_ownerType == OT_INVALID)) {
+	unsigned char *self = reinterpret_cast<unsigned char *>(this);
+	Int ownerType = *reinterpret_cast<Int *>(self + 0x30);
+	if (!(ownerType == OT_Positional || ownerType == OT_INVALID)) {
 		return;
 	}
 
-	m_positionOfAudio = *pos;
-	m_ownerType = OT_Positional;
+	*reinterpret_cast<Coord3D *>(self + 0x34) = *pos;
+	*reinterpret_cast<Int *>(self + 0x30) = OT_Positional;
 }
 
 //-------------------------------------------------------------------------------------------------
