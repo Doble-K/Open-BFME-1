@@ -8445,7 +8445,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addResponse@GameSpyBuddyMessageQueue@@UAEXABVBuddyResponse@@@Z,,0x0063E3A0,185,Code/masm_dumps/_rn7__addResponse_GameSpyBuddyMessageQueue__UAEXABVBuddyResponse___Z_63E3A0.asm,matched,reloc-needle Open-BFME4+Grok
 ?addResponse@GameSpyPeerMessageQueue@@UAEXABVPeerResponse@@@Z,,0x0064D950,136,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?addResponse@Pinger@@UAEXABVPingResponse@@@Z,,0x006615B0,192,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
-?addScience@Player@@AAE_NW4ScienceType@@@Z,,0x00036057,5,Code/masm_dumps/_addScience_Player__AAE_NW4ScienceType___Z_36057.asm,matched,MASM exact retail dump
 ?addSciencePrereq@ProductionPrerequisite@@QAEXW4ScienceType@@@Z,,0x00145190,53,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?addScorch@BaseHeightMapRenderObjClass@@QAEXVVector3@@MW4Scorches@@@Z,,0x006C8640,276,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,clean C++ BFME layout proxy; exact 276B body at thunk destination 0x006C8640
 ?addScorch@W3DGameClient@@UAEXPBUCoord3D@@MW4Scorches@@@Z,,0x006FBBB0,58,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0BezierSegment@@QAE@XZ,,0x00043A9A,5,Code/GameEngine/Source/Common/Bezier/BezierSegmentCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@UWeaponBarrelInfo@ModelConditionInfo@@V?$allocator@UWeaponBarrelInfo@ModelConditionInfo@@@_STL@@@_STL@@IAEXPAUWeaponBarrelInfo@ModelConditionInfo@@ABU34@ABU__false_type@2@I_N@Z,,0x0003D7B2,5,Code/Libraries/Source/WWVegas/WWLib/ModelConditionInfoWeaponBarrelInfoVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ?_M_insert_overflow@?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@IAEXPAVAsciiString@@ABV3@ABU__false_type@2@I_N@Z,,0x000112C0,5,Code/Libraries/Source/WWVegas/WWLib/AsciiStringVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+?addScience@Player@@AAE_NW4ScienceType@@@Z,,0x00036057,5,Code/GameEngine/Source/Common/RTS/PlayerAddScienceThunk.cpp,matched,5-byte incremental-link Player member thunk converted to focused C++ source
