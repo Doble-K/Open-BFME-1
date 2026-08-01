@@ -7154,7 +7154,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Lock@MutexClass@@AAE_NH@Z,,0x009DB360,43,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ?Log@DX8PolygonRendererClass@@QAEXXZ,,0x00972CD0,158,Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp,matched,
 ?Log_Container_List@@YAXAAV?$MultiListClass@VDX8FVFCategoryContainer@@@@_N@Z,,0x00947B20,35,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
-?Log_DX8_ErrorCode@@YAXI@Z,,0x0087CAC0,25,Code/masm_dumps/_sym4__Log_DX8_ErrorCode__YAXI_Z_87CAC0.asm,matched,symbol Open-BFME4+Grok
 ?Log_Statistics_String@DX8MeshRendererClass@@QAEX_N@Z,,0x00947B50,122,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Look_At@Matrix3D@@QAEXABVVector3@@0M@Z,,0x008D6970,584,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
 ?LookupGameByListOffset@LANAPI@@UAEPAVLANGameInfo@@H@Z,,0x00685150,36,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,clean LAN game list offset lookup through retail LANGameInfo layout
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z,,0x0043B280,20,Code/GameEngine/Source/GameLogic/ScriptEngine/BfmeInGameUISetInputEnabledThunk.cpp,matched,Open-BFME5 exact C++ BFME vtable thunk replacing MASM dump;object-symbol=?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z
 ??1MaterialCollectorClass@@QAE@XZ,,0x00C5C6A8,21,Code/Libraries/Source/WWVegas/WW3D2/MaterialCollectorClassDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1MaterialCollectorClass@@QAE@XZ
 ?Guess_Sort_Level@ShaderClass@@QBEHXZ,,0x00910E90,38,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,converted exact MASM method dump to clean C++
+?Log_DX8_ErrorCode@@YAXI@Z,,0x0087CAC0,25,Code/Libraries/Source/WWVegas/WW3D2/LogDX8ErrorCodeThunk.cpp,matched,Open-BFME5 exact C++ DX8 logging thunk replacing MASM dump;object-symbol=?Log_DX8_ErrorCode@@YAXI@Z;retail 25-byte target authoritative over stale dump listing
