@@ -1213,7 +1213,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ChunkSaveClass@@QAE@PAVFileClass@@@Z,,0x009E1690,91,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ??0CivilianSpawnCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002173E0,60,Code/masm_dumps/CivilianSpawnCollide_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0CivilianSpawnUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028A2F0,149,Code/masm_dumps/CivilianSpawnUpdate_constructor.asm,matched,Exact 149B @ 0x0028A2F0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116AE0
-??0CivilianSpawnUpdateModuleData@@QAE@XZ,,0x0028A480,92,Code/masm_dumps/CivilianSpawnUpdateModuleData_constructor.asm,matched,Exact 92B @ 0x0028A480; Exact retail MASM ModuleData ctor; unique factory 0x116B60; Open-BFME4+Grok
 ??0ClassicEnvironmentMapperClass@@QAE@I@Z,,0x00921390,25,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0CleanupHazardUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D0620,125,Code/masm_dumps/CleanupHazardUpdate_constructor.asm,matched,Exact 125B; factory ownership Open-BFME4
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0GiveUpgradeUpdateModuleData@@QAE@XZ,,0x0025DCF0,72,Code/GameEngine/Source/GameLogic/AI/GiveUpgradeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ElvenWoodSpecialPowerModuleData@@QAE@XZ,,0x0025CA40,72,Code/GameEngine/Source/GameLogic/AI/ElvenWoodSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CivilianSpawnCollideModuleData@@QAE@XZ,,0x00217360,69,Code/GameEngine/Source/GameLogic/AI/CivilianSpawnCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0CivilianSpawnUpdateModuleData@@QAE@XZ,,0x0028A480,92,Code/GameEngine/Source/GameLogic/AI/CivilianSpawnUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
