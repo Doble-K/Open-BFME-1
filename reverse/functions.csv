@@ -2132,7 +2132,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TimeAndLocationInfo@@QAE@XZ,,0x001F2410,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ??0TimeCodedMotionChannelClass@@QAE@XZ,,0x005CD350,28,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??0ToggleHiddenSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026BFD0,63,Code/masm_dumps/ToggleHiddenSpecialAbilityUpdate_constructor.asm,matched,Exact 63B unique factory Open-BFME4
-??0ToggleHiddenSpecialAbilityUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/ToggleHiddenSpecialAbilityUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0ToggleMountedSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026C730,73,Code/masm_dumps/ToggleMountedSpecialAbilityUpdate_constructor.asm,matched,Exact 73B unique factory Open-BFME4
 ??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/masm_dumps/ToggleMountedSpecialAbilityUpdateModuleData_constructor.asm,matched,Exact 38B unique factory Open-BFME4
 ??0TooltipUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D93E0,53,Code/masm_dumps/TooltipUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0StatusBitsUpgradeModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$__copy@PAVW3DAnimationInfo@@PAV1@H@_STL@@YAPAVW3DAnimationInfo@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x00024023,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoCopy.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
 ??0TemporarilyDefectUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0ToggleHiddenSpecialAbilityUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
