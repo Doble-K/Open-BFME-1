@@ -9885,7 +9885,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z,,0x009A11A0,264,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,the legend lookup; inlines the AsciiString compare
 ?findFXList@FXListStore@@QBEPBVFXList@@PBD@Z,,0x0042B660,96,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?findFieldParse@@YAP6AXPAVINI@@PAX1PBX@ZPBUFieldParse@@PBDAAHAAPBX@Z,,0x00850880,128,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,moved with initFromINIMulti to the parser TU
-?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z,,0x00025CD4,5,Code/masm_dumps/_findFunction_FunctionLexicon__IAEPAXW4NameKeyType__W4TableIndex_1__Z_25CD4.asm,matched,MASM exact retail dump
 ?findGameMessageMetaType@MetaMap@@IAE?AW4Type@GameMessage@@PBD@Z,,0x005B6AD0,69,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,
 ?findGoodBuildOrRepairPosition@DozerAIUpdate@@SA_NPBVObject@@0AAUCoord3D@@@Z,,0x002B6C40,445,Code/masm_dumps/_findGoodBuildOrRepairPosition_DozerAIUpdate_SA_2B6C40.asm,matched,Exact 445B @ 0x2B6C40; queue 0x2B6C20 was prior-fn tail; BFME thiscall; callers in AndTarget@0x2B8890
 ?findGroundPath@Pathfinder@@QAEPAVPath@@PBUCoord3D@@0H_N@Z,,0x003F2160,2045,Code/GameEngine/Source/GameLogic/AI/AIPathfind_findGroundPath.asm,matched,MASM exact retail; true body 0x3F2160/2045 (queue 0x9DE1BB was int3+CPUDetect Init_AMD); ret 0x10 zoneMgr@+0xc9c clearPassable hierarchical
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getColor@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@H@Z,,0x0008F250,67,Code/GameEngine/Source/Common/MultiplayerSettings.cpp,matched,retail-layout C++ accessor; explicit +0x30/+0x34/+0x3c/+0x40/+0x64 offsets; REL32-pinned map lookup
 ?getDrawableID@AudioEventRTS@@QAE?AW4DrawableID@@XZ,,0x000B22C0,13,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ drawable-ID getter with retail layout offsets replaces MASM dump
 ?setPosition@AudioEventRTS@@QAEXPBUCoord3D@@@Z,,0x000B2210,51,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ positional audio setter with retail layout offsets replaces MASM dump
+?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z,,0x00105280,76,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,thunk-dump converted to clean C++ lookup; retail table count is 12

@@ -441,7 +441,6 @@ void *FunctionLexicon::keyToFunc( NameKeyType key, TableEntry *table )
 	* is TABLE_ANY, then ALL tables will be searched.  Otherwise index refers
 	* to only a single table index to be searched */
 //-------------------------------------------------------------------------------------------------
-// ?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z present-unmatched
 void *FunctionLexicon::findFunction( NameKeyType key, TableIndex index )
 {
 	void *func = NULL;
@@ -455,7 +454,7 @@ void *FunctionLexicon::findFunction( NameKeyType key, TableIndex index )
 	{
 
 		Int i;
-		for( i = 0; i < MAX_FUNCTION_TABLES; i++ )
+		for( i = 0; i < 12; i++ )
 		{
 
 			func = keyToFunc( key, m_tables[ i ] );
