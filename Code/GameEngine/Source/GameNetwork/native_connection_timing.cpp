@@ -37,6 +37,8 @@ public:
 	void runRelayPass();
 	void destroy();
 	void processWrappedCommand(void *msg);
+	void sendFileChunk(const char *path, int playerMask, int chunk);
+	void updateFileProgress();
 	void processAckCommand(void *msg);
 	void beginPlayerLeave(void *msg);
 	void resendFrameRangeToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame);
@@ -5258,6 +5260,363 @@ L00_66BE97:
 		pop edi
 		pop esi
 		pop ebp
+		ret 8h
+	}
+}
+
+// Reads a slice of a file through TheFileSystem and ships it as a
+// NetFileCommandMsg -- it is the only caller of NetFileCommandMsg::setFileData
+// in this band -- then hands the message to sendLocalCommand. The progress text
+// it formats goes out as a UnicodeString.
+__declspec(naked) void BFMEConnectionManager::sendFileChunk(const char *path, int playerMask, int chunk)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 10443B3h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 0Ch
+		push ebx
+		push ebp
+		push esi
+		push edi
+		mov ebx, ecx
+		mov eax, dword ptr [esp+2Ch]
+		xor edi, edi
+		cmp eax, edi
+		mov dword ptr [esp+24h], edi
+		je L00_666A41
+		add eax, 8h
+		jmp L01_666A46
+L00_666A41:
+		mov eax, 107388Bh
+L01_666A46:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 048h
+		__emit 0CBh
+		__emit 034h
+		__emit 001h   // mov ecx, dword ptr [0x134cb48]
+		push edi
+		push eax
+		__emit 0E8h
+		__emit 00Dh
+		__emit 01Eh
+		__emit 036h
+		__emit 000h   // call 0x9C8860
+		mov esi, eax
+		cmp esi, edi
+		je L02_666AFC
+		mov eax, dword ptr [esi]
+		mov ecx, esi
+		call dword ptr [eax+2Ch]
+		test eax, eax
+		je L02_666AFC
+		mov edx, dword ptr [esi]
+		mov ecx, esi
+		call dword ptr [edx+2Ch]
+		mov ebp, eax
+		mov eax, dword ptr [esi]
+		mov ecx, esi
+		call dword ptr [eax+34h]
+		push 28h
+		mov edi, eax
+		__emit 0E8h
+		__emit 0ABh
+		__emit 0B4h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+10h], eax
+		test eax, eax
+		mov byte ptr [esp+24h], 3h
+		je L03_666AA0
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0AFh
+		__emit 0BEh
+		__emit 099h
+		__emit 0FFh   // call 0x294B
+		mov esi, eax
+		jmp L04_666AA2
+L03_666AA0:
+		xor esi, esi
+L04_666AA2:
+		mov cx, word ptr [esp+34h]
+		mov eax, dword ptr [ebx+12028h]
+		mov word ptr [esi+10h], cx
+		lea edx,  [esp+2Ch]
+		mov byte ptr [esp+24h], 0h
+		mov dword ptr [esi+0Ch], eax
+		push ecx
+		mov dword ptr [esp+14h], esp
+		mov ecx, esp
+		push edx
+		__emit 0E8h
+		__emit 096h
+		__emit 010h
+		__emit 022h
+		__emit 000h   // call 0x887B60
+		mov ecx, esi
+		__emit 0E8h
+		__emit 025h
+		__emit 046h
+		__emit 09Eh
+		__emit 0FFh   // call 0x4B0F6
+		push ebp
+		push edi
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0FBh
+		__emit 028h
+		__emit 09Bh
+		__emit 0FFh   // call 0x193D5
+		push edi
+		__emit 0E8h
+		__emit 010h
+		__emit 0B4h
+		__emit 021h
+		__emit 000h   // call 0x881EF0
+		mov eax, dword ptr [esp+34h]
+		add esp, 4h
+		push eax
+		push esi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 08Ah
+		__emit 086h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0ADh
+		__emit 095h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		jmp L05_666B9D
+L02_666AFC:
+		mov dword ptr [esp+34h], edi
+		movzx ecx, byte ptr [esp+30h]
+		mov eax, dword ptr [esp+2Ch]
+		cmp eax, edi
+		mov bl, 1h
+		mov byte ptr [esp+24h], bl
+		push ecx
+		je L06_666B19
+		add eax, 8h
+		jmp L07_666B1E
+L06_666B19:
+		mov eax, 107388Bh
+L07_666B1E:
+		push eax
+		push ecx
+		mov dword ptr [esp+3Ch], esp
+		mov ecx, esp
+		push 111A268h
+		__emit 0E8h
+		__emit 0B0h
+		__emit 022h
+		__emit 022h
+		__emit 000h   // call 0x888DE0
+		lea edx,  [esp+40h]
+		push edx
+		__emit 0E8h
+		__emit 056h
+		__emit 026h
+		__emit 022h
+		__emit 000h   // call 0x889190
+		__emit 0A1h
+		__emit 030h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f7730]
+		add esp, 10h
+		cmp eax, edi
+		je L08_666B8F
+		push 2h
+		push ecx
+		lea eax,  [esp+3Ch]
+		mov dword ptr [esp+38h], esp
+		mov ecx, esp
+		push eax
+		__emit 0E8h
+		__emit 0A7h
+		__emit 018h
+		__emit 022h
+		__emit 000h   // call 0x888400
+		lea ecx,  [esp+1Ch]
+		push ecx
+		push ecx
+		mov dword ptr [esp+20h], esp
+		mov ecx, esp
+		push 111A250h
+		mov byte ptr [esp+38h], 2h
+		mov dword ptr [esp+28h], edi
+		mov word ptr [esp+2Ch], di
+		__emit 0E8h
+		__emit 063h
+		__emit 022h
+		__emit 022h
+		__emit 000h   // call 0x888DE0
+		__emit 08Bh
+		__emit 00Dh
+		__emit 030h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7730]
+		mov edx, dword ptr [ecx]
+		mov byte ptr [esp+34h], bl
+		call dword ptr [edx+8Ch]
+L08_666B8F:
+		lea ecx,  [esp+34h]
+		mov byte ptr [esp+24h], 0h
+		__emit 0E8h
+		__emit 033h
+		__emit 016h
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+L05_666B9D:
+		lea ecx,  [esp+2Ch]
+		mov dword ptr [esp+24h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 092h
+		__emit 00Dh
+		__emit 022h
+		__emit 000h   // call 0x887940
+		mov ecx, dword ptr [esp+1Ch]
+		pop edi
+		pop esi
+		pop ebp
+		mov dword ptr fs:[0h], ecx
+		pop ebx
+		add esp, 18h
+		ret 0Ch
+	}
+}
+
+// Walks the per-transfer map at this+0x12130 with the STL red-black tree
+// iterator and refreshes the progress bookkeeping at this+0x12118, releasing
+// the AsciiString buffers it built along the way.
+__declspec(naked) void BFMEConnectionManager::updateFileProgress()
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 1044608h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push ebx
+		push ebp
+		push esi
+		push edi
+		mov dword ptr [esp+10h], ecx
+		mov ecx, dword ptr [ecx+12118h]
+		mov eax, dword ptr [ecx+8h]
+		cmp eax, ecx
+		mov dword ptr [esp+1Ch], 0h
+		je L00_669A9C
+L10_669A33:
+		mov ecx, dword ptr [esp+28h]
+		test ecx, ecx
+		je L01_669A44
+		movzx ebp, word ptr [ecx+4h]
+		lea edi,  [ecx+8h]
+		jmp L02_669A4B
+L01_669A44:
+		xor ebp, ebp
+		mov edi, 107388Bh
+L02_669A4B:
+		mov ecx, dword ptr [eax+14h]
+		test ecx, ecx
+		je L03_669A58
+		movzx ebx, word ptr [ecx+4h]
+		jmp L04_669A5A
+L03_669A58:
+		xor ebx, ebx
+L04_669A5A:
+		test ecx, ecx
+		lea esi,  [ecx+8h]
+		jne L05_669A66
+		mov esi, 107388Bh
+L05_669A66:
+		cmp ebx, ebp
+		mov ecx, ebx
+		jl L06_669A6E
+		mov ecx, ebp
+L06_669A6E:
+		xor edx, edx
+		repe cmpsb
+		je L07_669A79
+		sbb edx, edx
+		sbb edx, 0FFFFFFFFh
+L07_669A79:
+		test edx, edx
+		jne L08_669A85
+		sub ebx, ebp
+		mov edx, ebx
+		test edx, edx
+		je L09_669AC4
+L08_669A85:
+		push eax
+		__emit 0E8h
+		__emit 0E5h
+		__emit 01Dh
+		__emit 01Ch
+		__emit 000h   // call 0x82B870
+		mov ecx, dword ptr [esp+14h]
+		mov edx, dword ptr [ecx+12118h]
+		add esp, 4h
+		cmp eax, edx
+		jne L10_669A33
+L00_669A9C:
+		lea ecx,  [esp+28h]
+		mov dword ptr [esp+1Ch], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 093h
+		__emit 0DEh
+		__emit 021h
+		__emit 000h   // call 0x887940
+		pop edi
+		pop esi
+		pop ebp
+		xor eax, eax
+		pop ebx
+		mov ecx, dword ptr [esp+4h]
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret 8h
+L09_669AC4:
+		add eax, 10h
+		push eax
+		mov eax, dword ptr [esp+28h]
+		__emit 08Dh
+		__emit 014h
+		__emit 040h   // lea edx, [eax + eax*2]
+		mov eax, dword ptr [esp+14h]
+		lea ecx,  [eax+edx*4+12130h]
+		__emit 0E8h
+		__emit 012h
+		__emit 068h
+		__emit 09Ch
+		__emit 0FFh   // call 0x302F1
+		mov esi, dword ptr [eax]
+		lea ecx,  [esp+28h]
+		mov dword ptr [esp+1Ch], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 04Eh
+		__emit 0DEh
+		__emit 021h
+		__emit 000h   // call 0x887940
+		mov ecx, dword ptr [esp+14h]
+		pop edi
+		mov eax, esi
+		pop esi
+		pop ebp
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
 		ret 8h
 	}
 }
