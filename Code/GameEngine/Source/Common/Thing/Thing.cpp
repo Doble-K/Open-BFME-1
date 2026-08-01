@@ -326,10 +326,9 @@ struct Thing_BFME_Retail_ThingTemplateKindOf
 };
 static Bool (*volatile _bfme_force_test_kindof_any)(const KindOfMaskType&, const KindOfMaskType&) = &TEST_KINDOFMASK_ANY;
 
-// ?isKindOfMulti@Thing@@QBE_NABV?$BitFlags@$0HE@@@0@Z present-unmatched
 Bool Thing::isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) const 
 { 
-	return getTemplate()->isKindOfMulti(mustBeSet, mustBeClear); 
+	return reinterpret_cast<const Thing_BFME_Retail_ThingTemplateKindOf *>(getTemplate())->kindof.testSetAndClear(mustBeSet, mustBeClear);
 }
 
 // ------------------------------------------------------------------------------------------------
