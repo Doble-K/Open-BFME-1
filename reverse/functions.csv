@@ -2225,7 +2225,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ToggleHiddenSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026BFD0,63,Code/masm_dumps/ToggleHiddenSpecialAbilityUpdate_constructor.asm,matched,Exact 63B unique factory Open-BFME4
 ??0ToggleHiddenSpecialAbilityUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0ToggleMountedSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026C730,73,Code/masm_dumps/ToggleMountedSpecialAbilityUpdate_constructor.asm,matched,Exact 73B unique factory Open-BFME4
-??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/masm_dumps/ToggleMountedSpecialAbilityUpdateModuleData_constructor.asm,matched,Exact 38B unique factory Open-BFME4
 ??0TooltipUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D93E0,53,Code/masm_dumps/TooltipUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
 ??0TooltipUpgradeModuleData@@QAE@XZ,,0x0012BAE0,116,Code/masm_dumps/TooltipUpgradeModuleData_constructor.asm,matched,Exact 116B @ 0x0012BAE0; Exact retail MASM ModuleData ctor; unique factory 0x12BC30
 ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B1060,187,Code/masm_dumps/ToppleUpdate_constructor.asm,matched,Exact 187B @ 0x002B1060; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11BB50
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0FreezingRainSpecialPowerModuleData@@QAE@XZ,,0x0025D8C0,38,Code/GameEngine/Source/Common/RTS/FreezingRainSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ?allow@PartitionFilterPolygonTrigger@@MAE_NPAVObject@@@Z,,0x001DD490,64,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,exact C++ polygon check with BFME field offset and pinned call
 ??0GloriousChargeUpdateModuleData@@QAE@XZ,,0x0025E7C0,38,Code/GameEngine/Source/Common/RTS/GloriousChargeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/GameEngine/Source/Common/RTS/ToggleMountedSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
