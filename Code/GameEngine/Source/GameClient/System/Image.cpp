@@ -200,7 +200,6 @@ UnsignedInt Image::clearStatus( UnsignedInt bit )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0ImageCollection@@QAE@XZ present-unmatched
 ImageCollection::ImageCollection( void )
 {
 }  // end ImageCollection
