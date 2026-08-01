@@ -1528,9 +1528,9 @@ void WeaponTemplate::dealDamageInternal(ObjectID sourceID, ObjectID victimID, co
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// Matched body is WeaponStore_ctor.asm (exact retail @ 0x001E5290). Keep this C++ empty
-// definition so Weapon.cpp still emits the vector<_STLP_alloc_proxy<WeaponTemplate*>> COMDAT
-// already claimed on this TU; without it, file-level verify loses that symbol.
+// Matched body is WeaponStoreCtorThunk.cpp (exact retail @ 0x001E5290). Keep
+// this C++ empty definition so Weapon.cpp still emits the vector
+// <_STLP_alloc_proxy<WeaponTemplate*>> COMDAT already claimed on this TU.
 WeaponStore::WeaponStore()
 {
 }

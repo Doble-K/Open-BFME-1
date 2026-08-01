@@ -2362,7 +2362,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WeaponSetSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026DC50,53,Code/masm_dumps/WeaponSetSpecialAbilityUpdate_constructor.asm,matched,Exact 53B unique factory Open-BFME4
 ??0WeaponSetSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026DC20,32,Code/masm_dumps/WeaponSetSpecialAbilityUpdateModuleData_constructor.asm,matched,Exact 32B unique factory Open-BFME4
 ??0WeaponSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002DA4E0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/WeaponSetUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2DA4E0
-??0WeaponStore@@QAE@XZ,,0x001E5290,29,Code/GameEngine/Source/GameLogic/Object/WeaponStore_ctor.asm,matched,structural true-start 0x1E5290/29 (queue 0x9F2731 was ControlBar); MASM vector-only; Open-BFME4+Grok
 ??0WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,ICF alias of existing matched body
 ??0Win32BIGFile@@QAE@XZ,,0x009D14E0,26,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,
 ??0WinInstanceData@@QAE@XZ,,0x00499B40,111,Code/GameEngine/Source/GameClient/GUI/WinInstanceData.cpp,matched,
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ?message@InGameUI@@UAAXVAsciiString@@ZZ,,0x0043DED0,9,Code/GameEngine/Source/GameClient/InGameUI_message_AsciiString.cpp,matched,Open-BFME5 exact C++ virtual tail stub
 ?message@InGameUI@@UAAXVUnicodeString@@ZZ,,0x0043DEE0,9,Code/GameEngine/Source/GameClient/InGameUI_message_UnicodeString.cpp,matched,Open-BFME5 exact C++ virtual tail stub
 ?doFreezeTime@ScriptActions@@IAEXXZ,,0x002EF680,11,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doFreezeTime.cpp,matched,Open-BFME5 exact C++ tail-jump stub
+??0WeaponStore@@QAE@XZ,,0x001E5290,29,Code/GameEngine/Source/GameLogic/Object/WeaponStoreCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk; Weapon.cpp retains STL COMDAT carrier
