@@ -1322,7 +1322,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DelayedLuaEventUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028BEF0,161,Code/masm_dumps/DelayedLuaEventUpdate_constructor.asm,matched,Exact 161B @ 0x0028BEF0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11BC70
 ??0DelayedLuaEventUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DelayedUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D4D20,53,Code/masm_dumps/DelayedUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
-??0DelayedUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/DelayedUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
 ??0DeletionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00016C52,5,Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0DeletionUpdateModuleData@@QAE@XZ,,0x0008A950,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0DemoTrapUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028C7F0,80,Code/GameEngine/Source/GameLogic/Object/Update/DemoTrapUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x28C7F0
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0FlammableUpdateModuleData@@QAE@XZ,,0x00294B20,180,Code/GameEngine/Source/GameLogic/AI/FlammableUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AttributeModifierAuraUpdateModuleData@@QAE@XZ,,0x00280B20,189,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CashHackSpecialPowerModuleData@@QAE@XZ,,0x00258D70,98,Code/GameEngine/Source/GameLogic/AI/CashHackSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0DelayedUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/DelayedUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
