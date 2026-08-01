@@ -18,6 +18,7 @@ namespace _STL
 	protected:
 		template <class Iterator>
 		Type *_M_allocate_and_copy(unsigned int, Iterator, Iterator);
+		void _M_clear();
 	};
 
 	template <class Type, class Allocator>
@@ -40,4 +41,16 @@ namespace _STL
 	>::_M_allocate_and_copy<ProductionPrerequisite::PrereqUnitRec const *>(
 		unsigned int, ProductionPrerequisite::PrereqUnitRec const *,
 		ProductionPrerequisite::PrereqUnitRec const *);
+
+	__declspec(naked) void vector<ProductionPrerequisite::PrereqUnitRec,
+		allocator<ProductionPrerequisite::PrereqUnitRec> >::_M_clear()
+	{
+		__asm {
+			_emit 0E9h
+			_emit 001h
+			_emit 050h
+			_emit 039h
+			_emit 000h
+		}
+	}
 }
