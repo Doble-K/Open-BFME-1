@@ -9193,7 +9193,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doMoveUnitTowardsNearest@ScriptActions@@IAEXABVAsciiString@@0V2@@Z,,0x00302D70,314,Code/masm_dumps/ScriptActions_doMoveUnitTowardsNearest.asm,matched,reviewed packet 19 sealed RVA size hash and executeAction thunk identity
 ?doNamedEmoticon@ScriptActions@@IAEXABVAsciiString@@0M@Z,,0x002F04F0,66,Code/masm_dumps/ScriptActions_doNamedEmoticon.asm,matched,exact 66B MASM true body 0x2F04F0 (queue 0x9DE812 profiler misplaced); getUnitNamed+getDrawable virt + setEmoticon
 ?doNamedFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002EE7C0,124,Code/masm_dumps/ScriptActions_doNamedFlash_2EE7C0.asm,matched,Certified packet 197; Ghidra entry and matched executeAction caller; retail SHA256 8260b90f66aec4db1c975d1c241e980c0c8e2428db104e201c9c6c94a6fc13d0
-?doNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001FC3F,5,Code/masm_dumps/_doNamedMapReveal_ScriptEngine__QAEXABVAsciiString___Z_1FC3F.asm,matched,MASM exact retail dump
 ?doNamedUseCommandButtonAbility@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F9DA0,122,Code/masm_dumps/ScriptActions_doNamedUseCommandButtonAbility_2F9DA0.asm,matched,Certified packet 253; matched caller and Ghidra entry/ret boundary; retail sha256 982cde4cabdf53c7592ab644458262cdc4b654bff547dba1c03b8327cde92f15
 ?doNamedUseCommandButtonAbilityAtWaypoint@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002F9F10,169,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doNamedUseCommandButtonAbilityAtWaypoint.asm,matched,exact 169B via MASM; true body @ 0x2F9F10 (queue 0x5AF3BD was INSIDE mega FUN_009ade90 mid-call)
 ?doNamedUseCommandButtonAbilityOnNamed@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002F9E40,166,Code/masm_dumps/ScriptActions_doNamedUseCommandButtonAbilityOnNamed_2F9E40.asm,matched,Certified recovery packet 328 reviewed dispatcher ownership and retail SHA-256 df7d8c4a5de645bcbd734ae036553645284d93dad49342eea5045c8ab789f1ca
@@ -12782,7 +12781,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?set_identity@TimeCodedMotionChannelClass@@AAEXPAM@Z,,0x00977AC0,39,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ?setupAlphaTiles@WorldHeightMap@@SAXXZ,,0x00747AC0,515,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?shouldExit@TunnelNetworkExitConditions@@UBE_NPBVStateMachine@@@Z,,0x00189AE0,18,Code/GameEngine/Source/GameLogic/AI/AITNGuard.cpp,matched,
-?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,,0x00017503,5,Code/masm_dumps/_thunk_a5ef29268998_17503.asm,matched,thunk accessor of ported class
 ?showGameSpyGameOptionsUnderlyingGUIElements@@YAX_N@Z,,0x00503E80,92,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp,matched,
 ?showIdleWorkerLayout@InGameUI@@EAEXXZ,,0x0043B970,86,Code/masm_dumps/InGameUI_showIdleWorkerLayout.asm,matched,Ghidra-corrected BFME idle-worker body
 ?showLANGameOptionsUnderlyingGUIElements@@YAX_N@Z,,0x004D00E0,92,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp,matched,
@@ -12913,7 +12911,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?unAccept@GameSlot@@QAEXXZ,,0x0061EE60,11,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?unRegisterAnimation@Anim2DCollection@@QAEXPAVAnim2D@@@Z,,0x005BA480,53,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?unbindTrack@WaterTracksRenderSystem@@QAEXPAVWaterTracksObj@@@Z,,0x007AB940,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
-?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001019A,5,Code/masm_dumps/_thunk_90d5ac9abb8f_1019A.asm,matched,thunk accessor of ported class
 ?unique@?$list@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@V?$allocator@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@@_STL@@QAEXXZ,,0x0037FCB0,15,Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp,matched,
 ?unitMoved@W3DTreeBuffer@@QAEXPAVObject@@@Z,,0x008EA400,234,Code/masm_dumps/_sa6__unitMoved_W3DTreeBuffer__QAEXPAVObject___Z_8EA400.asm,matched,Exact 234B Open-BFME4+Grok
 ?unlinkFont@FontLibrary@@IAEXPAVGameFont@@@Z,,0x00472520,101,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
@@ -13804,3 +13801,6 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?clearAndSetModelConditionState@Drawable@@QAEXW4ModelConditionFlagType@@0@Z,,0x0001C8D2,5,Code/GameEngine/Source/Common/RTS/DrawableClearAndSetModelConditionStateThunk.cpp,matched,5-byte incremental-link Drawable member thunk converted to focused C++ source
 ?popFront@BFMENetworkQueue1@@QAEXXZ,,0x00023592,5,Code/Libraries/Source/WWVegas/WWLib/BFMENetworkQueuePopThunks.cpp,matched,Focused C++ thunk for BFMENetworkQueue1::popFront
 ?popFront@BFMENetworkQueue@@QAEXXZ,,0x0002491A,5,Code/Libraries/Source/WWVegas/WWLib/BFMENetworkQueuePopThunks.cpp,matched,Focused C++ thunk for BFMENetworkQueue::popFront
+?doNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001FC3F,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ScriptEngine::doNamedMapReveal
+?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001019A,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ScriptEngine::undoNamedMapReveal
+?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,,0x00017503,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ControlBar::showBuildTooltipLayout
