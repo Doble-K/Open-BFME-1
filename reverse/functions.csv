@@ -1119,7 +1119,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AutoHealBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00048B9E,5,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0AutoHealBehaviorModuleData@@QAE@XZ,,0x000287C7,5,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0AutoPickUpUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00281AB0,175,Code/masm_dumps/AutoPickUpUpdate_constructor.asm,matched,Exact 175B @ 0x00281AB0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x119AB0
-??0AutoPickUpUpdateModuleData@@QAE@XZ,,0x002827E0,242,Code/masm_dumps/AutoPickUpUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x119B30
 ??0AvailableGameInfo@@QAE@XZ,,0x0010DB60,19,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0BFMEAutoLockRef@@QAE@PAVBFMENetworkLock@@I@Z,,0x009DB3B0,72,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,object-symbol=??0LockClass@MutexClass@@QAE@AAV1@H@Z;C++ alias
 ??0BFMEPlayerTemplateAsciiString@@QAE@PBD@Z,,0x00888BC0,72,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@PBD@Z;C++ alias
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ArmorUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/ArmorUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0AttributeModifierUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/AttributeModifierUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0AutoDepositUpdateModuleData@@QAE@XZ,,0x00123E90,86,Code/GameEngine/Source/GameLogic/AI/AutoDepositUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0AutoPickUpUpdateModuleData@@QAE@XZ,,0x002827E0,242,Code/GameEngine/Source/GameLogic/AI/AutoPickUpUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
