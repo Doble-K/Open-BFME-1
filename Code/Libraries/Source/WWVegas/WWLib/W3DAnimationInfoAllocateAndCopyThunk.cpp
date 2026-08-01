@@ -15,6 +15,7 @@ namespace _STL
 	protected:
 		template <class Iterator>
 		Type *_M_allocate_and_copy(unsigned int, Iterator, Iterator);
+		void _M_clear();
 	};
 
 	template <class Type, class Allocator>
@@ -34,4 +35,15 @@ namespace _STL
 	template W3DAnimationInfo *vector<W3DAnimationInfo,
 		allocator<W3DAnimationInfo> >::_M_allocate_and_copy<W3DAnimationInfo const *>(
 		unsigned int, W3DAnimationInfo const *, W3DAnimationInfo const *);
+
+	__declspec(naked) void vector<W3DAnimationInfo, allocator<W3DAnimationInfo> >::_M_clear()
+	{
+		__asm {
+			_emit 0E9h
+			_emit 054h
+			_emit 086h
+			_emit 03Ah
+			_emit 000h
+		}
+	}
 }
