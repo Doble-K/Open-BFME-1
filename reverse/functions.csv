@@ -11447,7 +11447,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?inList@@YA_NHHQBH@Z,,0x002A3570,37,Code/GameEngine/Source/GameLogic/Object/Update/StructureCollapseUpdate.cpp,matched,
 ?inList@LListNode@@QAE_NXZ,,0x00105820,11,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?inWeaponRangeObject@@YA_NPAVState@@PAX@Z,,0x00171FD0,24,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?iniParseObjectFilter@@YAXPAVINI@@PAX1PBX@Z,,0x00039865,5,Code/masm_dumps/iniParseObjectFilter_YAXPAVINI_PAX1PBX_Z_39865.asm,matched,40 retail object-filter field xrefs strings and Ghidra FUN_0079F470 identify parser
 ?init@AnimateWindowManager@@UAEXXZ,,0x0045DA80,31,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?init@AudioManager@@,,0x006B8220,953,Code/masm_dumps/_s6__init_AudioManager__6B8220.asm,matched,Exact 953B 'AudioSettings.ini' Open-BFME4+Grok
 ?init@BFMEConnectionManager@@QAEXXZ,,0x00669050,694,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0FireWeaponWhenDamagedBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?GetGameLogicRandomValueReal@@YAMMMPADH@Z,,0x0002CCA5,5,Code/GameEngine/Source/GameLogic/ScriptEngine/GetGameLogicRandomValueReal.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0DynamicGeometryInfoUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+?iniParseObjectFilter@@YAXPAVINI@@PAX1PBX@Z,,0x00039865,5,Code/GameEngine/Source/GameLogic/ScriptEngine/iniParseObjectFilter.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
