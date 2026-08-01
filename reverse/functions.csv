@@ -13816,7 +13816,6 @@ _XMP_Unsigned_Div_Int,,0x009E89C0,176,Code/Libraries/Source/WWVegas/WWLib/mpmath
 _XMP_Unsigned_Mult,,0x009E9100,298,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
 _XMP_Unsigned_Mult_Int,,0x009E8980,61,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matched,
 __CIacos,,0x009F7256,654,Code/masm_dumps/___CIacos_9F7256.asm,matched,
-__CIasin,,0x009F7D86,6,Code/masm_dumps/__CIasin_9F7D86.asm,matched,MASM exact retail dump
 __CxxThrowException@8,,0x00850600,103,Code/masm_dumps/___CxxThrowException_8_850600.asm,matched,
 __alloca_probe,,0x009F6C60,61,Code/masm_dumps/___alloca_probe_9F6C60.asm,matched,
 __chkstk,,0x009F6C60,61,Code/masm_dumps/_icf3___chkstk_9F6C60.asm,matched,ICF Open-BFME4+Grok
@@ -13840,3 +13839,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 __CIpow,,0x009F6FB2,6,Code/Libraries/Source/WWVegas/WWMath/CIpowThunk.cpp,matched,Open-BFME5 exact C++ CRT import thunk replacing MASM dump;object-symbol=___CIpow
+__CIasin,,0x009F7D86,6,Code/Libraries/Source/WWVegas/WWMath/CIasinThunk.cpp,matched,Open-BFME5 exact C++ CRT import thunk replacing MASM dump;object-symbol=___CIasin
