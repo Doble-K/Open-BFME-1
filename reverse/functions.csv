@@ -1587,7 +1587,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0InputStream@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,ICF alias of existing matched body
 ??0InstantDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200BA0,60,Code/masm_dumps/InstantDeathBehavior_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0InstantDeathBehaviorModuleData@@QAE@XZ,,0x00201650,111,Code/masm_dumps/InstantDeathBehaviorModuleData_constructor.asm,matched,Exact 111B @ 0x00201650; Exact retail MASM ModuleData ctor; unique factory 0x1153E0
-??0JetAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/JetAIUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0KeepObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255870,60,Code/masm_dumps/KeepObjectDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0KeepObjectDieModuleData@@QAE@XZ,,0x00122ED0,69,Code/masm_dumps/KeepObjectDieModuleData_constructor.asm,matched,Exact 69B unique factory Open-BFME4
 ??0KeyClass@?$PrimitiveAnimationChannelClass@M@@QAE@XZ,,0x0037E190,10,Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0GrantUpgradeCreateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0HiveStructureBodyModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0HordeGarrisonContainModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0JetAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
