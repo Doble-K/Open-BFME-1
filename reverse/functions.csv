@@ -1779,7 +1779,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PeerRequest@@QAE@XZ,,0x004D51B0,220,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ??0PeerResponse@@QAE@XZ,,0x004DAB40,235,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
 ??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000328C6,5,Code/GameEngine/Source/GameLogic/Object/Update/PhysicsBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
-??0PhysicsBehaviorModuleData@@QAE@XZ,,0x0029A090,126,Code/masm_dumps/PhysicsBehaviorModuleData_constructor.asm,matched,Exact 126B @ 0x0029A090; Exact retail MASM ModuleData ctor; unique factory 0x11AA70
 ??0PilotFindVehicleUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0Pinger@@QAE@XZ,,0x00660FD0,317,Code/masm_dumps/_rn7___0Pinger__QAE_XZ_660FD0.asm,matched,reloc-needle Open-BFME4+Grok
 ??0PivotClass@@QAE@ABU0@@Z,,0x00972D70,383,Code/masm_dumps/___0PivotClass__QAE_ABU0__Z_972D70.asm,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0PartTheHeavensUpdateModuleData@@QAE@XZ,,0x00299E10,217,Code/GameEngine/Source/GameLogic/AI/PartTheHeavensUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ProductionSpeedBonusModuleData@@QAE@XZ,,0x00264690,107,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonusModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ProductionUpdateModuleData@@QAE@XZ,,0x0029FB70,159,Code/GameEngine/Source/GameLogic/AI/ProductionUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0PhysicsBehaviorModuleData@@QAE@XZ,,0x0029A090,126,Code/GameEngine/Source/GameLogic/AI/PhysicsBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
