@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/ini /Ireference/shims/weapon /Ireference/shims/iniexception /Ireference/shims/ini_noinline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -1729,16 +1729,32 @@ void WeaponStore::postProcessLoad()
 }  // end postProcessLoad
 
 //-------------------------------------------------------------------------------------------------
+// ?parseWeaponTemplateDefinition@WeaponStore@@SAXPAVINI@@@Z present-unmatched
+// 176 of 223 bytes; the row still points at the MASM dump. Everything through
+// the findWeaponTemplatePrivate call matches, which took three fixes: the name
+// is assigned rather than set() so the strlen inlines, the key goes through
+// nameToKey's const char* overload (retail inlines str() first), and getLoadType
+// reads INI+0x08, so this TU now uses reference/shims/ini_noinline.
+//
+// What is left is one instruction. Retail calls newOverride as
+// "push weapon; call" with no this in ecx and no caller cleanup -- it is relying
+// on ecx still holding TheWeaponStore from the findWeaponTemplatePrivate call
+// immediately before, which the callee at 0x001E9AF0 does read as this
+// (mov ebx, ecx at +30). We emit the mov ecx, [TheWeaponStore] reload that the
+// language requires, six bytes retail does not have, and everything after shifts.
+// Declaring newOverride static removes the reload but then the caller cleans the
+// stack, which retail also does not do -- so neither spelling is right and it
+// wants whatever source shape lets the compiler prove ecx is already live.
 /*static*/ void WeaponStore::parseWeaponTemplateDefinition(INI* ini)
 {
 	AsciiString name;
 
 	// read the weapon name
-	const char* c = ini->getNextToken();
-	name.set(c);	
+	name = ini->getNextToken();
 
-	// find existing item if present
-	WeaponTemplate *weapon = TheWeaponStore->findWeaponTemplatePrivate( TheNameKeyGenerator->nameToKey( name ) );
+	// find existing item if present -- through the const char* overload, which is
+	// what retail inlines (str() then nameToKey), not the AsciiString one
+	WeaponTemplate *weapon = TheWeaponStore->findWeaponTemplatePrivate( TheNameKeyGenerator->nameToKey( name.str() ) );
 	if (weapon)
 	{
 		if (ini->getLoadType() == INI_LOAD_CREATE_OVERRIDES)
