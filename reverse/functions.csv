@@ -1131,7 +1131,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BattlePlanUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286260,383,Code/masm_dumps/BattlePlanUpdate_constructor.asm,matched,Exact 383B @ 0x00286260; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x119CD0
 ??0BattlePlanUpdateModuleData@@QAE@XZ,,0x0003025B,5,Code/masm_dumps/__0BattlePlanUpdateModuleData__QAE_XZ_3025B.asm,matched,MASM exact retail dump
 ??0BeaconClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
-??0BeaconClientUpdateModuleData@@QAE@XZ,,0x000286C3,5,Code/masm_dumps/__0BeaconClientUpdateModuleData__QAE_XZ_286C3.asm,matched,MASM exact retail dump
 ??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00121F60,46,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate.cpp,matched,
 ??0BenchProfile@@QAE@XZ,,0x0007BC10,30,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ??0BezFwdIterator@@QAE@HPBVBezierSegment@@@Z,,0x000B65C0,81,Code/GameEngine/Source/Common/Bezier/BezFwdIterator.cpp,matched,
@@ -1236,7 +1235,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CombineHordeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002596F0,46,Code/masm_dumps/CombineHordeSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0CombineHordeSpecialPowerModuleData@@QAE@XZ,,0x002598A0,28,Code/masm_dumps/CombineHordeSpecialPowerModuleData_constructor.asm,matched,Exact 28B unique factory Open-BFME4
 ??0CommandButtonHuntUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00020DCE,5,Code/masm_dumps/__0CommandButtonHuntUpdate__QAE_PAVThing__PBVModuleData___Z_20DCE.asm,matched,MASM exact retail dump
-??0CommandButtonHuntUpdateModuleData@@QAE@XZ,,0x0002E500,5,Code/masm_dumps/__0CommandButtonHuntUpdateModuleData__QAE_XZ_2E500.asm,matched,MASM exact retail dump
 ??0CommandSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0003BB65,5,Code/masm_dumps/__0CommandSetUpgrade__QAE_PAVThing__PBVModuleData___Z_3BB65.asm,matched,MASM exact retail dump
 ??0CommandSetUpgradeModuleData@@QAE@XZ,,0x0012AF80,93,Code/masm_dumps/CommandSetUpgradeModuleData_constructor.asm,matched,Exact 93B @ 0x0012AF80; Exact retail MASM ModuleData ctor; unique factory 0x12B0B0; Open-BFME4+Grok
 ??0CompositeRenderObjClass@@QAE@ABV0@@Z,,0x00983550,206,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
@@ -1355,6 +1353,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DistLODPrototypeClass@@QAE@PAVDistLODDefClass@@@Z,,0x00149E30,25,Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp,matched,
 ??0DockUpdateInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,ICF alias of existing matched body
 ??0DockUpdateModuleData@@QAE@XZ,,0x0002C54D,5,Code/masm_dumps/__0DockUpdateModuleData__QAE_XZ_2C54D.asm,matched,MASM exact retail dump
+??0DownloadManager@@QAE@XZ,,0x0001958D,5,Code/masm_dumps/__0DownloadManager__QAE_XZ_1958D.asm,matched,MASM exact retail dump
 ??0DownloadManagerMunkee@@QAE@XZ,,0x004C7490,22,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
 ??0DozerAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B8680,272,Code/masm_dumps/DozerAIUpdate_constructor.asm,matched,Exact 272B @ 0x002B8680; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x117FA0
 ??0DozerAIUpdateModuleData@@QAE@XZ,,0x0002BFF8,5,Code/masm_dumps/__0DozerAIUpdateModuleData__QAE_XZ_2BFF8.asm,matched,MASM exact retail dump
@@ -1439,7 +1438,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FlightDeckBehaviorModuleData@@QAE@XZ,,0x0000CC3E,5,Code/masm_dumps/__0FlightDeckBehaviorModuleData__QAE_XZ_CC3E.asm,matched,MASM exact retail dump
 ??0FlightDeckInfo@FlightDeckBehavior@@QAE@XZ,,0x001DE7E0,22,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,
 ??0FloatUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001DF84,5,Code/masm_dumps/__0FloatUpdate__QAE_PAVThing__PBVModuleData___Z_1DF84.asm,matched,MASM exact retail dump
-??0FloatUpdateModuleData@@QAE@XZ,,0x0004601A,5,Code/masm_dumps/__0FloatUpdateModuleData__QAE_XZ_4601A.asm,matched,MASM exact retail dump
 ??0FloatingTextData@@QAE@XZ,,0x0043F4D0,101,Code/masm_dumps/__0FloatingTextData__QAE_XZ_43F4D0.asm,matched,MASM exact: true body via addFloatingText@0x4435A0 (global new 0x24 + ILT 0xCD88); drift 0x9DB099 was subtitle mid-fn; DisplayStringManager newDisplayString vtbl+0x24
 ??0FontLibrary@@QAE@XZ,,0x0008A430,26,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
 ??0Format@Debug@@QAA@PBDZZ,,0x008895F0,35,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
@@ -1641,7 +1639,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LockClass@CriticalSectionClass@@QAE@AAV1@@Z,,0x009DB4B0,29,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0LockClass@FastCriticalSectionClass@@QAE@AAV1@@Z,,0x006D1140,20,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,
 ??0LockClass@MutexClass@@QAE@AAV1@H@Z,,0x009DB3B0,72,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
-??0LockWeaponCreateModuleData@@QAE@XZ,,0x000283F3,5,Code/masm_dumps/__0LockWeaponCreateModuleData__QAE_XZ_283F3.asm,matched,MASM exact retail dump
 ??0Locomotor@@IAE@PBVLocomotorTemplate@@@Z,,0x001B60E0,539,Code/GameEngine/Source/GameLogic/Object/Locomotor_ctor_template.asm,matched,exact 539B via MASM; true start 0x1B60E0 (queue was mid-body +0x2D/432)
 ??0LocomotorSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000078B5,5,Code/masm_dumps/__0LocomotorSetUpgrade__QAE_PAVThing__PBVModuleData___Z_78B5.asm,matched,MASM exact retail dump
 ??0LocomotorSetUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/LocomotorSetUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
@@ -1861,7 +1858,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@XZ,0x0003160B,0x005D58B0,41,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0PointGroupClass@@QAE@XZ,,0x00912580,91,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
 ??0PoisonedBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B0AD0,146,Code/masm_dumps/__0PoisonedBehavior__QAE_PAVThing__PBVModuleData__.asm,matched,
-??0PoisonedBehaviorModuleData@@QAE@XZ,,0x0002EA73,5,Code/masm_dumps/__0PoisonedBehaviorModuleData__QAE_XZ_2EA73.asm,matched,MASM exact retail dump
 ??0PolyRemover@@QAE@XZ,,0x003FD390,16,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,ICF alias of existing matched body
 ??0PolyRenderTaskClass@@QAE@PAVDX8PolygonRendererClass@@PAVMeshClass@@@Z,,0x00945790,28,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??0PorcupineFormationBodyModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00214170,46,Code/masm_dumps/PorcupineFormationBodyModule_constructor.asm,matched,Exact 46B unique factory Open-BFME4
@@ -1884,7 +1880,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ProductionUpdateModuleData@@QAE@XZ,,0x0029FB70,159,Code/masm_dumps/ProductionUpdateModuleData_constructor.asm,matched,Exact 159B @ 0x0029FB70; Exact retail MASM ModuleData ctor; unique factory 0x11AC90
 ??0ProjectedShadowManager@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,ICF alias of existing matched body
 ??0ProneUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000425DC,5,Code/masm_dumps/__0ProneUpdate__QAE_PAVThing__PBVModuleData___Z_425DC.asm,matched,MASM exact retail dump
-??0ProneUpdateModuleData@@QAE@XZ,,0x0002DABA,5,Code/masm_dumps/__0ProneUpdateModuleData__QAE_XZ_2DABA.asm,matched,MASM exact retail dump
 ??0PropagandaTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000EF5C,5,Code/masm_dumps/__0PropagandaTowerBehavior__QAE_PAVThing__PBVModuleData___Z_EF5C.asm,matched,MASM exact retail dump
 ??0PropagandaTowerBehaviorModuleData@@QAE@XZ,,0x00010B2C,5,Code/masm_dumps/__0PropagandaTowerBehaviorModuleData__QAE_XZ_10B2C.asm,matched,MASM exact retail dump
 ??0PrototypeClass@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,ICF alias of existing matched body
@@ -1909,7 +1904,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RTS3DScene@@QAE@XZ,,0x00A1FDCD,940,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_0RTS3DScene.asm,matched,exact 940B via MASM
 ??0Radar@@QAE@XZ,,0x00107FE0,237,Code/masm_dumps/Radar_constructor.asm,matched,True body 0x107FE0/237 (queue 0x9F271F pad); dual Radar vtables match dtor; MASM exact
 ??0RadarUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0002A013,5,Code/masm_dumps/__0RadarUpdate__QAE_PAVThing__PBVModuleData___Z_2A013.asm,matched,MASM exact retail dump
-??0RadarUpdateModuleData@@QAE@XZ,,0x0001670C,5,Code/masm_dumps/__0RadarUpdateModuleData__QAE_XZ_1670C.asm,matched,MASM exact retail dump
 ??0RadarUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00020306,5,Code/masm_dumps/__0RadarUpgrade__QAE_PAVThing__PBVModuleData___Z_20306.asm,matched,MASM exact retail dump
 ??0RadarUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/RadarUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
 ??0RadiusDecalUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A0640,168,Code/masm_dumps/RadiusDecalUpdate_constructor.asm,matched,Exact 168B @ 0x002A0640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A580
@@ -13706,3 +13700,11 @@ _NetGameUtilControl,,0x0080E5E0,219,Code/Libraries/Source/DirtySock/netgameutil.
 ??0DownloadManager@@QAE@XZ,,0x006275C0,289,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,thunk-dump converted to clean C++
 _ProtoMangleCreate,,0x00804150,245,Code/Libraries/Source/DirtySock/protomangle.cpp,matched,
 _ProtoMangleDestroy,,0x00804330,80,Code/Libraries/Source/DirtySock/protomangle.cpp,matched,
+??0FloatUpdateModuleData@@QAE@XZ,,0x00294F60,13,Code/GameEngine/Source/GameLogic/Object/Update/FloatUpdate.cpp,matched,exact 13B no-call ModuleData ctor; private shim reference/shims/moduledata (inline Snapshot base ctor); replaces 5B thunk @0x4601A
+??0LockWeaponCreateModuleData@@QAE@XZ,,0x0024FE00,13,Code/GameEngine/Source/GameLogic/Object/Create/LockWeaponCreate.cpp,matched,exact 13B no-call ModuleData ctor; moduledata shim; replaces 5B thunk @0x283F3
+??0ProneUpdateModuleData@@QAE@XZ,,0x0029FE30,13,Code/GameEngine/Source/GameLogic/Object/Update/ProneUpdate.cpp,matched,exact 13B no-call ModuleData ctor (m_damageToFramesRatio=1.0f); moduledata shim; replaces 5B thunk @0x2DABA
+??0RadarUpdateModuleData@@QAE@XZ,,0x002A01C0,13,Code/GameEngine/Source/GameLogic/Object/Update/RadarUpdate.cpp,matched,exact 13B no-call ModuleData ctor (m_radarExtendTime=0); moduledata shim; replaces 5B thunk @0x1670C
+??0PoisonedBehaviorModuleData@@QAE@XZ,,0x002029B0,17,Code/GameEngine/Source/GameLogic/Object/Behavior/PoisonedBehavior.cpp,matched,exact 17B no-call ModuleData ctor; two zeroed dwords; moduledata shim; replaces 5B thunk @0x2EA73
+??0DockUpdateModuleData@@QAE@XZ,,0x002CAAF0,15,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,exact 15B no-call ModuleData ctor; m_numberApproachPositionsData=0 m_isAllowPassthrough=TRUE; moduledata shim; replaces 5B thunk @0x2C54D
+??0CommandButtonHuntUpdateModuleData@@QAE@XZ,,0x0028AAE0,17,Code/GameEngine/Source/GameLogic/Object/Update/CommandButtonHuntUpdate.cpp,matched,exact 17B no-call ModuleData ctor; m_scanFrames=5(BFME) m_scanRange=9999f; moduledata shim; replaces 5B thunk @0x2E500
+??0BeaconClientUpdateModuleData@@QAE@XZ,,0x006031C0,15,Code/GameEngine/Source/GameClient/Drawable/Update/BeaconClientUpdate.cpp,matched,exact 15B no-call ModuleData ctor; m_framesBetweenRadarPulses=30 m_radarPulseDuration=15; moduledata shim; replaces 5B thunk @0x286C3
