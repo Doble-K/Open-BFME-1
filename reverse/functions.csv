@@ -4320,7 +4320,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??RCRCEngine@@QAEJPBXH@Z,,0x009E8070,184,Code/Libraries/Source/WWVegas/WWLib/crc.cpp,matched,
 ??RCRCEngine@@QAEXD@Z,,0x009E8040,47,Code/Libraries/Source/WWVegas/WWLib/crc.cpp,matched,
 ??RCRCEngine@@QBEJXZ,,0x009E8020,17,Code/Libraries/Source/WWVegas/WWLib/crcpipe.cpp,matched,
-??RGameSortStruct@@QAE_NPAVGameSpyStagingRoom@@0@Z,,0x000317D7,5,Code/masm_dumps/__RGameSortStruct__QAE_NPAVGameSpyStagingRoom__0_Z_317D7.asm,matched,MASM exact retail dump
 ??RMapHelper@?$SparseMatchFinder@VArmorTemplateSet@@V?$BitFlags@$0L@@@@@QBE_NABV?$BitFlags@$0L@@@0@Z,,0x0000A9A2,5,Code/masm_dumps/__RMapHelper___SparseMatchFinder_VArmorTemplateSet__V__BitFlags__0L_____QBE_NABV__BitFlags__0L___0_Z_A9A2.asm,matched,MASM exact retail dump
 ??RMapHelper@?$SparseMatchFinder@VWeaponTemplateSet@@V?$BitFlags@$0BB@@@@@QBE_NABV?$BitFlags@$0BB@@@0@Z,,0x00010B1D,5,Code/masm_dumps/__RMapHelper___SparseMatchFinder_VWeaponTemplateSet__V__BitFlags__0BB_____QBE_NABV__BitFlags__0BB___0_Z_10B1D.asm,matched,MASM exact retail dump
 ??RRandom2Class@@QAEHXZ,,0x009E5E60,69,Code/Libraries/Source/WWVegas/WWLib/random.cpp,matched,
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?setDisabledUntil@Object@@QAEXW4DisabledType@@I@Z,,0x0003364A,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Object::setDisabledUntil
 ?friend_setDamageToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,,0x00024E0B,5,Code/GameEngine/Source/Common/RTS/TerrainRoadTypeSetDamageToFXStringThunk.cpp,matched,5-byte incremental-link TerrainRoadType member thunk converted to focused C++ source
 ?friend_setRepairedToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,,0x0001C693,5,Code/GameEngine/Source/Common/RTS/TerrainRoadTypeSetRepairedToFXStringThunk.cpp,matched,5-byte incremental-link TerrainRoadType member thunk converted to focused C++ source
+??RGameSortStruct@@QAE_NPAVGameSpyStagingRoom@@0@Z,,0x000317D7,5,Code/GameEngine/Source/Common/RTS/GameSortStructCallOperatorThunk.cpp,matched,5-byte incremental-link GameSortStruct call operator thunk converted to focused C++ source
