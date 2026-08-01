@@ -9513,7 +9513,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?dlink_isInList_TeamReadyQueue@TeamInQueue@@QBE_NPBQAV1@@Z,,0x000EC2D0,35,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
 ?dlink_prependTo_TeamReadyQueue@TeamInQueue@@QAEXPAPAV1@@Z,,0x000EC300,23,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
 ?dlink_removeFrom_TeamReadyQueue@TeamInQueue@@QAEXPAPAV1@@Z,,0x000EC320,58,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
-?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z,,0x002EF2E0,30,Code/masm_dumps/ScriptActions_doAmbientSoundsPause.asm,matched,Exact retail MASM Audio+0x70 pauseAmbient-like
 ?doAudioFeedback@@YAXPAVGameWindow@@@Z,,0x004B85F0,153,Code/masm_dumps/doAudioFeedback_YAXPAVGameWindow_Z_4B85F0.asm,matched,Exact retail body; queue RVA 0xC6C420 was CRT stubs misplace
 ?doAudioSetVolume@ScriptActions@@IAEXW4AudioAffect@@M@Z,,0x002EF830,91,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Audio vtable+0xd4 setVolume clamp /100
 ?doBorderSwitch@ScriptActions@@IAEXH@Z,,0x002EFC50,102,Code/masm_dumps/_rn5__doBorderSwitch_ScriptActions__IAEXH_Z_2EFC50.asm,matched,reloc-needle Open-BFME4+Grok
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??0DualWeaponBehaviorModuleData@@QAE@XZ,,0x001F7E20,26,Code/GameEngine/Source/GameLogic/Object/Update/DualWeaponBehaviorModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ ModuleData constructor thunk replacing MASM dump;object-symbol=??0DualWeaponBehaviorModuleData@@QAE@XZ
 ?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z,,0x0043A520,29,Code/GameEngine/Source/Common/System/RadarIsRadarWindowThunk.cpp,matched,Open-BFME5 exact C++ Radar window predicate thunk replacing MASM dump;object-symbol=?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z
 ?Enable_Fog@ShaderClass@@QAEXPBD@Z,,0x00910F90,116,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,converted exact MASM method dump to clean C++
+?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z,,0x002EF2E0,30,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionsDoAmbientSoundsPauseThunk.cpp,matched,Open-BFME5 exact C++ ScriptActions audio pause/resume thunk replacing MASM dump;object-symbol=?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z
