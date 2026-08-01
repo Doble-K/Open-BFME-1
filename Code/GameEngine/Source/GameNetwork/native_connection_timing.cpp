@@ -39,6 +39,8 @@ public:
 	void processWrappedCommand(void *msg);
 	void sendFileChunk(const char *path, int playerMask, int chunk);
 	void updateFileProgress();
+	void buildPlayerStatusText(void *out);
+	void queueLocalCommand(void *msg);
 	void processAckCommand(void *msg);
 	void beginPlayerLeave(void *msg);
 	void resendFrameRangeToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame);
@@ -5617,6 +5619,521 @@ L09_669AC4:
 		pop ebx
 		mov dword ptr fs:[0h], ecx
 		add esp, 10h
+		ret 8h
+	}
+}
+
+// Composes the per-player status line the disconnect and load screens show. It
+// reads the slot list through GameInfo::getConstSlot, asks each
+// FrameDataManager at this+0x120E4 whether it is quitting, consults the id
+// array at this+0x12030 and the state array at this+0x12080, and assembles the
+// result as a UnicodeString.
+__declspec(naked) void BFMEConnectionManager::buildPlayerStatusText(void *out)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 10442F0h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 0Ch
+		push ebx
+		mov ebx, dword ptr [esp+20h]
+		push ebp
+		push esi
+		push edi
+		xor edi, edi
+		cmp ebx, edi
+		mov ebp, ecx
+		mov dword ptr [esp+10h], edi
+		__emit 00Fh
+		__emit 08Ch
+		__emit 0F8h
+		__emit 001h
+		__emit 000h
+		__emit 000h   // jl 0x666528
+		cmp ebx, 8h
+		__emit 00Fh
+		__emit 08Dh
+		__emit 0EFh
+		__emit 001h
+		__emit 000h
+		__emit 000h   // jge 0x666528
+		__emit 08Bh
+		__emit 00Dh
+		__emit 08Ch
+		__emit 070h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f708c]
+		cmp ecx, edi
+		je L01_66635E
+		push ebx
+		__emit 0E8h
+		__emit 0CFh
+		__emit 088h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1EC18
+		cmp eax, edi
+		je L01_66635E
+		cmp dword ptr [eax+3Ch], edi
+		jne L01_66635E
+		__emit 08Bh
+		__emit 00Dh
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f0898]
+		mov edx, dword ptr [ecx+3Ch]
+		mov dword ptr [eax+3Ch], edx
+L01_66635E:
+		mov dword ptr [esp+2Ch], edi
+		push ebx
+		lea eax,  [esp+18h]
+		push eax
+		mov ecx, ebp
+		mov dword ptr [esp+2Ch], edi
+		__emit 0E8h
+		__emit 0EFh
+		__emit 0C6h
+		__emit 09Ah
+		__emit 0FFh   // call 0x12A62
+		push eax
+		lea ecx,  [esp+30h]
+		mov byte ptr [esp+28h], 1h
+		__emit 0E8h
+		__emit 0AEh
+		__emit 021h
+		__emit 022h
+		__emit 000h   // call 0x888530
+		lea ecx,  [esp+14h]
+		mov byte ptr [esp+24h], 0h
+		__emit 0E8h
+		__emit 040h
+		__emit 01Eh
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		mov eax, dword ptr [esp+2Ch]
+		cmp eax, edi
+		je L02_6663CE
+		movzx ecx, word ptr [eax+4h]
+		cmp ecx, edi
+		jle L02_6663CE
+		cmp dword ptr [ebp+ebx*4+4h], edi
+		je L02_6663CE
+		add eax, 8h
+		push eax
+		push ecx
+		mov dword ptr [esp+20h], esp
+		mov ecx, esp
+		push 1104E54h
+		__emit 0E8h
+		__emit 005h
+		__emit 028h
+		__emit 022h
+		__emit 000h   // call 0x888BC0
+		__emit 0A1h
+		__emit 08Ch
+		__emit 014h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f148c]
+		mov ecx, dword ptr [eax]
+		push eax
+		call dword ptr [ecx+3Ch]
+		add esp, 0Ch
+		__emit 0E8h
+		__emit 012h
+		__emit 0C9h
+		__emit 0FFh
+		__emit 0FFh   // call 0x662CE0
+L02_6663CE:
+		mov ecx, dword ptr [ebp+ebx*4+120E4h]
+		cmp ecx, edi
+		je L03_6663FA
+		__emit 0E8h
+		__emit 0FEh
+		__emit 0D2h
+		__emit 09Bh
+		__emit 0FFh   // call 0x236DC
+		test al, al
+		jne L03_6663FA
+		mov ecx, dword ptr [ebp+ebx*4+120E4h]
+		cmp ecx, edi
+		je L04_6663F3
+		mov edx, dword ptr [ecx]
+		push 1h
+		call dword ptr [edx]
+L04_6663F3:
+		mov dword ptr [ebp+ebx*4+120E4h], edi
+L03_6663FA:
+		mov esi, dword ptr [ebp+ebx*4+4h]
+		cmp esi, edi
+		je L05_66641B
+		cmp dword ptr [esi], 0FFFFFFFFh
+		jne L05_66641B
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0C1h
+		__emit 06Ah
+		__emit 09Dh
+		__emit 0FFh   // call 0x3CECF
+		push esi
+		__emit 0E8h
+		__emit 09Ch
+		__emit 0BAh
+		__emit 021h
+		__emit 000h   // call 0x881EB0
+		add esp, 4h
+		mov dword ptr [ebp+ebx*4+4h], edi
+L05_66641B:
+		mov dword ptr [ebp+ebx*4+12080h], 3h
+		mov eax, dword ptr [ebp+1202Ch]
+		cmp ebx, eax
+		__emit 00Fh
+		__emit 085h
+		__emit 07Dh
+		__emit 000h
+		__emit 000h
+		__emit 000h   // jne 0x6664b1
+		cmp eax, 8h
+		jae L07_66644B
+		shl eax, 0Dh
+		lea edi,  [eax+ebp+24h]
+		xor eax, eax
+		mov ecx, 800h
+		rep stosd
+		xor edi, edi
+L07_66644B:
+		xor eax, eax
+		lea ecx,  [ebp+12030h]
+L09_666453:
+		mov edx, dword ptr [ecx]
+		cmp edx, dword ptr [ebp+1202Ch]
+		je L08_666466
+		inc eax
+		add ecx, 4h
+		cmp eax, 7h
+		jb L09_666453
+L08_666466:
+		mov eax, dword ptr [ebp+eax*4+12034h]
+		cmp eax, 8h
+		mov dword ptr [ebp+1202Ch], eax
+		jae L10_66648A
+		shl eax, 0Dh
+		lea edi,  [eax+ebp+24h]
+		xor eax, eax
+		mov ecx, 800h
+		rep stosd
+		xor edi, edi
+L10_66648A:
+		mov eax, dword ptr [ebp+12028h]
+		cmp eax, dword ptr [ebp+1202Ch]
+		je L11_6664A9
+		xor eax, eax
+		mov ecx, 800h
+		lea edi,  [ebp+10024h]
+		rep stosd
+		xor edi, edi
+L11_6664A9:
+		mov dword ptr [esp+10h], 2h
+L06_6664B1:
+		cmp dword ptr [ebp+12028h], ebx
+		jne L12_6664C1
+		mov dword ptr [esp+10h], 1h
+L12_6664C1:
+		xor eax, eax
+		lea ecx,  [ebp+12030h]
+		__emit 08Dh
+		__emit 0A4h
+		__emit 024h
+		__emit 000h
+		__emit 000h
+		__emit 000h
+		__emit 000h   // lea esp, [esp]
+L14_6664D0:
+		cmp dword ptr [ecx], ebx
+		je L13_6664DD
+		inc eax
+		add ecx, 4h
+		cmp eax, 8h
+		jl L14_6664D0
+L13_6664DD:
+		cmp eax, 7h
+		jge L15_6664F9
+		mov ecx, 7h
+		lea edi,  [ebp+eax*4+12030h]
+		lea esi,  [ebp+eax*4+12034h]
+		sub ecx, eax
+		rep movsd
+L15_6664F9:
+		or eax, 0FFFFFFFFh
+		lea ecx,  [esp+2Ch]
+		mov dword ptr [ebp+1204Ch], eax
+		mov dword ptr [esp+24h], eax
+		__emit 0E8h
+		__emit 0C1h
+		__emit 01Ch
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		mov eax, dword ptr [esp+10h]
+		mov ecx, dword ptr [esp+1Ch]
+		mov dword ptr fs:[0h], ecx
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		add esp, 18h
+		ret 4h
+L00_666528:
+		mov ecx, dword ptr [esp+1Ch]
+		pop edi
+		pop esi
+		pop ebp
+		mov eax, 3h
+		mov dword ptr fs:[0h], ecx
+		pop ebx
+		add esp, 18h
+		ret 4h
+	}
+}
+
+// Builds a command message and puts it on the outgoing path. It runs the same
+// filter at 0x00682E80 that sendLocalCommand uses, branches on whether
+// m_localSlot equals m_packetRouterSlot, and hands the result to the packet
+// assembler at 0x006624A0.
+__declspec(naked) void BFMEConnectionManager::queueLocalCommand(void *msg)
+{
+	__asm {
+		mov eax, dword ptr fs:[0h]
+		push 0FFFFFFFFh
+		push 1043FA6h
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ebx
+		push ebp
+		push esi
+		mov esi, ecx
+		mov eax, dword ptr [esi+4h]
+		push edi
+		mov edi, dword ptr [esp+20h]
+		mov ebx, dword ptr [edi]
+		xor cl, cl
+		or ebp, 0FFFFFFFFh
+		test eax, eax
+		je L00_662EB3
+		cmp dword ptr [eax], ebp
+		jne L00_662EB3
+		mov cl, 1h
+L00_662EB3:
+		mov eax, dword ptr [esi+8h]
+		test eax, eax
+		je L01_662EC1
+		cmp dword ptr [eax], ebp
+		jne L01_662EC1
+		or cl, 2h
+L01_662EC1:
+		mov eax, dword ptr [esi+0Ch]
+		test eax, eax
+		je L02_662ECF
+		cmp dword ptr [eax], ebp
+		jne L02_662ECF
+		or cl, 4h
+L02_662ECF:
+		mov eax, dword ptr [esi+10h]
+		test eax, eax
+		je L03_662EDD
+		cmp dword ptr [eax], ebp
+		jne L03_662EDD
+		or cl, 8h
+L03_662EDD:
+		mov eax, dword ptr [esi+14h]
+		test eax, eax
+		je L04_662EEB
+		cmp dword ptr [eax], ebp
+		jne L04_662EEB
+		or cl, 10h
+L04_662EEB:
+		mov eax, dword ptr [esi+18h]
+		test eax, eax
+		je L05_662EF9
+		cmp dword ptr [eax], ebp
+		jne L05_662EF9
+		or cl, 20h
+L05_662EF9:
+		mov eax, dword ptr [esi+1Ch]
+		test eax, eax
+		je L06_662F07
+		cmp dword ptr [eax], ebp
+		jne L06_662F07
+		or cl, 40h
+L06_662F07:
+		mov eax, dword ptr [esi+20h]
+		test eax, eax
+		je L07_662F15
+		cmp dword ptr [eax], ebp
+		jne L07_662F15
+		or cl, 80h
+L07_662F15:
+		and cl, byte ptr [edi+0Ch]
+		push 24h
+		jne L08_662F40
+		__emit 0E8h
+		__emit 00Fh
+		__emit 0F0h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+20h], eax
+		test eax, eax
+		mov dword ptr [esp+18h], 0h
+		je L09_662F64
+		mov edx, dword ptr [edi]
+		push edx
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0CAh
+		__emit 054h
+		__emit 09Bh
+		__emit 0FFh   // call 0x18408
+		jmp L10_662F66
+L08_662F40:
+		__emit 0E8h
+		__emit 0EBh
+		__emit 0EFh
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+20h], eax
+		test eax, eax
+		mov dword ptr [esp+18h], 1h
+		je L09_662F64
+		mov ecx, dword ptr [edi]
+		push ecx
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0B1h
+		__emit 0E2h
+		__emit 09Dh
+		__emit 0FFh   // call 0x41213
+		jmp L10_662F66
+L09_662F64:
+		xor eax, eax
+L10_662F66:
+		mov dword ptr [esp+18h], ebp
+		mov ebp, eax
+		mov eax, dword ptr [esi+12028h]
+		push ebx
+		mov dword ptr [ebp+0Ch], eax
+		__emit 0E8h
+		__emit 0D9h
+		__emit 0C1h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1F154
+		add esp, 4h
+		test al, al
+		je L11_662FA8
+		mov eax, dword ptr [ebx+0Ch]
+		cmp eax, 8h
+		jae L12_663048
+		mov ecx, dword ptr [esi+eax*4+4h]
+		test ecx, ecx
+		je L12_663048
+		xor edx, edx
+		mov dl, 1h
+		mov ecx, eax
+		shl dl, cl
+		push edx
+		jmp L13_66303E
+L11_662FA8:
+		mov edi, dword ptr [esp+24h]
+		xor dl, dl
+		mov edi, edi
+L16_662FB0:
+		movzx eax, dl
+		mov eax, dword ptr [esi+eax*4+4h]
+		test eax, eax
+		je L14_662FCF
+		test edi, edi
+		je L14_662FCF
+		mov ecx, dword ptr [eax+0Ch]
+		cmp ecx, dword ptr [edi]
+		mov eax, dword ptr [eax+10h]
+		jne L14_662FCF
+		cmp ax, word ptr [edi+4h]
+		je L15_662FF4
+L14_662FCF:
+		inc dl
+		cmp dl, 8h
+		jb L16_662FB0
+		mov ecx, dword ptr [esi+1202Ch]
+		cmp ecx, 8h
+		jae L12_663048
+		mov eax, dword ptr [esi+ecx*4+4h]
+		test eax, eax
+		je L17_66301D
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, eax
+		push edx
+		jmp L18_663042
+L15_662FF4:
+		movzx ecx, dl
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, dword ptr [esi+ecx*4+4h]
+		push edx
+		push ebp
+		__emit 0E8h
+		__emit 034h
+		__emit 03Dh
+		__emit 09Ch
+		__emit 0FFh   // call 0x26D3C
+		mov ecx, dword ptr [esp+10h]
+		mov dword ptr fs:[0h], ecx
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		add esp, 0Ch
+		ret 8h
+L17_66301D:
+		cmp dword ptr [esi+12028h], ecx
+		jne L12_663048
+		mov eax, dword ptr [ebx+0Ch]
+		cmp eax, 8h
+		jae L12_663048
+		mov ecx, dword ptr [esi+eax*4+4h]
+		test ecx, ecx
+		je L12_663048
+		mov ecx, eax
+		xor eax, eax
+		mov al, 1h
+		shl al, cl
+		push eax
+L13_66303E:
+		mov ecx, dword ptr [esi+ecx*4+4h]
+L18_663042:
+		push ebp
+		__emit 0E8h
+		__emit 0F4h
+		__emit 03Ch
+		__emit 09Ch
+		__emit 0FFh   // call 0x26D3C
+L12_663048:
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 055h
+		__emit 0D0h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+10h]
+		pop edi
+		pop esi
+		pop ebp
+		mov dword ptr fs:[0h], ecx
+		pop ebx
+		add esp, 0Ch
 		ret 8h
 	}
 }
