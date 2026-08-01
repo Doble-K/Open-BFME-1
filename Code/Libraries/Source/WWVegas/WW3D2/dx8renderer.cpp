@@ -1481,18 +1481,30 @@ bool DX8SkinFVFCategoryContainer::Check_If_Mesh_Fits(MeshModelClass* mmc)
 	return false;
 }
 
-// ?clearVisibleSkinList@DX8SkinFVFCategoryContainer@@AAEXXZ present-unmatched
+struct DX8SkinFVFCategoryContainer_BFME_Retail_VisibleSkinFields
+{
+	unsigned char pad[0xf0];
+	unsigned int visibleVertexCount;
+	unsigned int visibleSkinCount;
+	MeshClass *visibleSkinHead;
+	MeshClass *visibleSkinTail;
+};
+
+// ?clearVisibleSkinList@DX8SkinFVFCategoryContainer@@AAEXXZ
 void DX8SkinFVFCategoryContainer::clearVisibleSkinList() 
 {
-	while (VisibleSkinHead != NULL)
+	DX8SkinFVFCategoryContainer_BFME_Retail_VisibleSkinFields *fields =
+		reinterpret_cast<DX8SkinFVFCategoryContainer_BFME_Retail_VisibleSkinFields *>(this);
+	while (fields->visibleSkinHead != NULL)
 	{
-		MeshClass* next = VisibleSkinHead->Peek_Next_Visible_Skin();
-		VisibleSkinHead->Set_Next_Visible_Skin(NULL);
-		VisibleSkinHead = next;
+		MeshClass* next = fields->visibleSkinHead->Peek_Next_Visible_Skin();
+		fields->visibleSkinHead->Set_Next_Visible_Skin(NULL);
+		fields->visibleSkinHead = next;
 	}
-	VisibleSkinHead = NULL;
-	VisibleSkinTail = NULL;
-	VisibleVertexCount = 0;
+	fields->visibleSkinHead = NULL;
+	fields->visibleSkinTail = NULL;
+	fields->visibleVertexCount = 0;
+	fields->visibleSkinCount = 0;
 }
 // ?Add_Visible_Skin@DX8SkinFVFCategoryContainer@@QAEXPAVMeshClass@@@Z present-unmatched
 void DX8SkinFVFCategoryContainer::Add_Visible_Skin(MeshClass * mesh) 
@@ -2227,7 +2239,6 @@ void DX8MeshRendererClass::Invalidate( bool shutdown)
 
 	texture_category_container_lists_rigid.Delete_All();
 }
-
 
 
 
