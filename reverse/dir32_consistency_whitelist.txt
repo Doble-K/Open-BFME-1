@@ -206,3 +206,7 @@ _staticTextStatus
 ?CompactLog@CPUDetectClass@@0VStringClass@@A
 _$E10
 _$E8
+
+# DX8Caps is linked at two retail sites; its file-scope CapsWorkString and
+# static initializer resolve to the corresponding duplicate globals.
+_CapsWorkString

@@ -147,6 +147,7 @@ private:
 	*/
 	AsciiString								m_name;
 	LocomotorSurfaceTypeMask	m_surfaces;							///< flags indicating the kinds of surfaces we can use
+	char								m_bfmeTemplatePadding[0x1c];
 	Real											m_maxSpeed;							///< max speed
 	Real											m_maxSpeedDamaged;			///< max speed when "damaged"
 	Real											m_minSpeed;							///< we should never brake past this
@@ -532,4 +533,3 @@ private:
 extern LocomotorStore *TheLocomotorStore;
 
 #endif // __Locomotor_H_
-
