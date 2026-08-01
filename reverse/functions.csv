@@ -12275,7 +12275,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeFromList@Drawable@@QAEXPAPAV1@@Z,,0x00411C80,62,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,cached-obj2 Open-BFME4+Grok asm->cpp Open-BFME4+Grok
 ?removeFromList@NetCommandWrapperList@@IAEXPAVNetCommandWrapperListNode@@@Z,,0x006766D0,85,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ?removeFromSavedIgnoreList@GameSpyInfo@@UAEXH@Z,,0x00635730,118,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs_removeFromSavedIgnoreList.asm,matched,
-?removeGoal@Pathfinder@@QAEXPAVObject@@@Z,,0x0002248F,5,Code/masm_dumps/_thunk_be4d67fa3023_2248F.asm,matched,thunk accessor of ported class (icf alias)
 ?removeHighlighting@W3DBibBuffer@@QAEXXZ,,0x006D6AF0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?removeLastChar@?$StringBase@D@@QAEXXZ,0x00887F80,0x887f80,224,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?removeLastChar@?$StringBase@G@@QAEXXZ,0x00888840,0x888840,237,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?parseScienceVector@INI@@SAXPAV1@PAX1PBX@Z,,0x00042609,5,Code/GameEngine/Source/Common/RTS/INIParseScienceVectorThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z,,0x0002248F,5,Code/Libraries/Source/WWVegas/WWLib/W3DRadarBuildTerrainTextureThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
 ?parseEvaMessageFromIni@Eva@@SAXPAVINI@@PAX1PBX@Z,,0x00004B65,5,Code/GameEngine/Source/Common/RTS/EvaParseMessageFromIniThunk.cpp,matched,5-byte incremental-link static Eva parser thunk converted to focused C++ source
+?removeGoal@Pathfinder@@QAEXPAVObject@@@Z,,0x0002248F,5,Code/Libraries/Source/WWVegas/WWLib/W3DRadarBuildTerrainTextureThunk.cpp,matched,object-symbol=?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
