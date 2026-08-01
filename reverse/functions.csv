@@ -13752,3 +13752,10 @@ _GetArtPreviewFromMap,,0x0066D820,300,Code/GameEngine/Source/GameNetwork/FileTra
 _GetPicPreviewFromMap,,0x0066D9A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 ?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z,,0x004AAD10,1,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,INI block table node binds keyword ControlBarResizer to this address
 ?parseOnlineChatColorDefinition@INI@@SAXPAV1@@Z,,0x006250A0,20,Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp,matched,INI block table node binds keyword OnlineChatColors to this address
+_GetINIFromMap,,0x0066DB20,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetStrFileFromMap,,0x0066DC30,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetSoloINIFromMap,,0x0066DD40,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetAssetUsageFromMap,,0x0066DE50,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetReadmeFromMap,,0x0066DF60,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_doFileTransfer,,0x0066CE60,814,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_DoAnyMapTransfers,,0x0066E070,659,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
