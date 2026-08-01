@@ -29,6 +29,7 @@
 // Ping thread
 // Author: Matthew D. Campbell, August 2002
 
+#define _STLP_USE_STATIC_LIB
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include <winsock.h>	// This one has to be here. Prevents collisions with windsock2.h
@@ -39,6 +40,11 @@
 
 #include "Common/StackDump.h"
 #include "Common/SubsystemInterface.h"
+
+__declspec(noinline) void reconstructPingRequest(void *dest, const void *src)
+{
+	new (dest) PingRequest(*reinterpret_cast<const PingRequest *>(src));
+}
 
 //-------------------------------------------------------------------------
 
