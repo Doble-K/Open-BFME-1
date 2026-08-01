@@ -1378,10 +1378,9 @@ void WaterRenderObjClass::replaceSkyboxTexture(const AsciiString& oldTexName, co
 //-------------------------------------------------------------------------------------------------
 /** Adjusts various water/sky rendering settings that depend on time of day. */
 //-------------------------------------------------------------------------------------------------
-// ?setTimeOfDay@WaterRenderObjClass@@QAEXW4TimeOfDay@@@Z present-unmatched
 void WaterRenderObjClass::setTimeOfDay(TimeOfDay tod)
 {
-	m_tod=tod;
+	*reinterpret_cast<TimeOfDay *>(reinterpret_cast<unsigned char *>(this) + 0x400) = tod;
 	if (m_waterType == WATER_TYPE_2_PVSHADER)
 		generateVertexBuffer(PATCH_SIZE,PATCH_SIZE,sizeof(SEA_PATCH_VERTEX),true);	//update the water mesh with new lighting/alpha
 }
@@ -3589,4 +3588,3 @@ void WaterRenderObjClass::loadPostProcess( void )
 {
 
 }  // end loadPostProcess
-

@@ -13161,7 +13161,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setTimeOfDay@AudioEventRTS@@QAEXW4TimeOfDay@@@Z,,0x000873F0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,
 ?setTimeOfDay@W3DGameClient@@UAEXW4TimeOfDay@@@Z,,0x006FBCB0,56,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient_setTimeOfDay.asm,matched,W3DGameClient vtable slot via matched createRayEffect addScorch and setTeamColor anchors
 ?setTimeOfDay@W3DShadowManager@@QAEXW4TimeOfDay@@@Z,,0x007B7B70,198,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp,matched,
-?setTimeOfDay@WaterRenderObjClass@@QAEXW4TimeOfDay@@@Z,,0x0079F590,35,Code/masm_dumps/_rn8__setTimeOfDay_WaterRenderObjClass__QAEXW4TimeOfDay___Z_79F590.asm,matched,reloc-needle Open-BFME4+Grok
 ?setTooltipDelay@GameWindow@@QAEXH@Z,,0x0098D2B0,13,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?setTotalDataLength@NetWrapperCommandMsg@@QAEXI@Z,,0x00673F50,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor thunk
 ?setTower@BridgeBehavior@@UAEXW4BridgeTowerType@@PAVObject@@@Z,,0x001F1F70,42,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z,,0x00105280,76,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,thunk-dump converted to clean C++ lookup; retail table count is 12
 ?setSDEnabled@StealthDetectorUpdate@@QAEX_N@Z,,0x002AB650,34,Code/GameEngine/Source/GameLogic/Object/Update/StealthDetectorUpdate.cpp,matched,direct C++ stealth-detector enable setter with retail object offset replaces MASM dump
 ?setTerrainDecalOpacity@W3DModelDraw@@UAEXM@Z,,0x0075BDD0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,direct C++ terrain-decal opacity setter with retail decal offset replaces MASM dump
+?setTimeOfDay@WaterRenderObjClass@@QAEXW4TimeOfDay@@@Z,,0x0079F590,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,direct C++ water time-of-day setter with retail layout offset replaces MASM dump
