@@ -8790,7 +8790,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clearAdditionalDisconnects@GameSpyInfo@@UAEXXZ,,0x00630680,11,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?clearAllBibs@W3DBibBuffer@@QAEXXZ,,0x006D6AD0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?clearAllEvents@Radar@@IAEXXZ,,0x001076F0,135,Code/GameEngine/Source/Common/System/Radar.cpp,matched,converted incremental-link thunk to exact codegen-blocked C++ naked body
-?clearAndSetModelConditionState@Drawable@@QAEXW4ModelConditionFlagType@@0@Z,,0x0001C8D2,5,Code/masm_dumps/_clearAndSetModelConditionState_Drawable__QAEXW4ModelConditionFlagType__0_Z_1C8D2.asm,matched,MASM exact retail dump
 ?clearAvailableGames@GameState@@AAEXXZ,,0x0051E900,136,Code/masm_dumps/_sa13__clearAvailableGames_GameState__AAEXXZ_51E900.asm,matched,multi-xref Open-BFME4+Grok 00000000.sav
 ?clearBuddyGames@@YAXXZ,,0x0062CFC0,39,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
 ?clearDeathTypeFlag@@YAIIW4DeathType@@@Z,,0x000B8E10,21,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?insertTee@W3DRoadBuffer@@IAEXVVector2@@HM@Z,,0x00007522,5,Code/GameEngine/Source/Common/RTS/W3DRoadBufferInsertTeeThunk.cpp,matched,5-byte incremental-link W3DRoadBuffer protected member thunk converted to focused C++ source
 ?applyTopplingForce@ToppleUpdate@@QAEXPBUCoord3D@@MI@Z,,0x0003FC97,5,Code/GameEngine/Source/Common/RTS/ToppleUpdateApplyTopplingForceThunk.cpp,matched,5-byte incremental-link ToppleUpdate member thunk converted to focused C++ source
 ?renderTrees@BaseHeightMapRenderObjClass@@QAEXPAVCameraClass@@@Z,,0x0003FE36,5,Code/Libraries/Source/WWVegas/WWLib/PhysicsRenderThunks.cpp,matched,Focused C++ thunk for BaseHeightMapRenderObjClass::renderTrees
+?clearAndSetModelConditionState@Drawable@@QAEXW4ModelConditionFlagType@@0@Z,,0x0001C8D2,5,Code/GameEngine/Source/Common/RTS/DrawableClearAndSetModelConditionStateThunk.cpp,matched,5-byte incremental-link Drawable member thunk converted to focused C++ source
