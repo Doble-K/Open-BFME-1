@@ -225,7 +225,8 @@ GameWindowManager::~GameWindowManager( void )
 // ?init@GameWindowManager@@UAEXXZ present-unmatched
 void GameWindowManager::init( void )
 {
-	TheTransitionHandler = NEW GameWindowTransitionsHandler;
+	if(!TheTransitionHandler)
+		TheTransitionHandler = NEW GameWindowTransitionsHandler;
 	TheTransitionHandler->load();
 	TheTransitionHandler->init();
 }  // end init
