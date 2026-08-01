@@ -3894,9 +3894,9 @@ Bool W3DVolumetricShadowManager::ReAcquireResources(void)
 // Init =======================================================================
 // User called initialization
 // ============================================================================
-// ?init@W3DVolumetricShadowManager@@QAE_NXZ present-unmatched
 Bool W3DVolumetricShadowManager::init( void )
 {
+	ReAcquireResources();
 	return TRUE;
 }  // end Init
 

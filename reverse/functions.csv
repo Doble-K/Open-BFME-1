@@ -11646,7 +11646,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@W3DShadowGeometry@@QAEHPAVRenderObjClass@@@Z,,0x00464830,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,tiny-locate
 ?init@W3DShadowManager@@QAE_NXZ,,0x007B751E,63,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp,matched,
 ?init@W3DView@@UAEXXZ,,0x00742700,432,Code/masm_dumps/_saG__init_W3DView__UAEXXZ_742700.asm,matched,string-anchor MASM unique Open-BFME4+Grok
-?init@W3DVolumetricShadowManager@@QAE_NXZ,,0x0001EAA6,5,Code/masm_dumps/_thunk_3da637bb0556_1EAA6.asm,matched,thunk accessor of ported class
 ?init@WaterRenderObjClass@@QAEHMMMPAVSceneClass@@W4WaterType@@@Z,,0x007A5200,1383,Code/masm_dumps/_sa3__init_WaterRenderObjClass__QAEHMMMPAVSceneClass__W_7A5200.asm,matched,Exact 1383B string-anchored Open-BFME4
 ?init@WaterTracksObj@@QAEXMAAVVector2@@0PAD@Z,,0x007AB6B0,520,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ?init@WinInstanceData@@QAEXXZ,,0x00021EC7,5,Code/masm_dumps/_init_WinInstanceData__QAEXXZ_21EC7.asm,matched,MASM exact retail dump
@@ -13797,3 +13796,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0DisplayStringManager@@QAE@XZ,,0x00410240,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=??0LifetimeUpdateModuleData@@QAE@XZ;Thunk-dump converted to clean C++ ICF alias
 ?createMemoryPool@MemoryPoolFactory@@QAEPAVMemoryPool@@PBDHHH@Z,,0x0008FFC0,299,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,object-symbol=?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z;Thunk-dump converted to clean C++ ICF alias
 ?doSkyBoxSet@@YAX_N@Z,,0x0079E490,29,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,clean C++ body; retail GlobalData m_drawSkyBox offset pinned at +0x180
+?init@W3DVolumetricShadowManager@@QAE_NXZ,,0x007C19E0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,clean C++ body calls ReAcquireResources; exact retail call/return bytes
