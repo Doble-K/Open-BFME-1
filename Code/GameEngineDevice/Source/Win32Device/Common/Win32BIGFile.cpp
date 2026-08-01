@@ -60,8 +60,15 @@ Win32BIGFile::~Win32BIGFile()
 // Win32BIGFile::openFile
 //============================================================================
 
-// ?openFile@Win32BIGFile@@UAEPAVFile@@PBDH@Z present-unmatched
-File* Win32BIGFile::openFile( const Char *filename, Int access ) 
+// The signature Zero Hour declares is BFME's two-argument openFile, and that one
+// is matched from Win32BIGFileOpen.cpp -- it is a bare forward, not this. What
+// stands here is the body BFME moved into its four-argument overload
+// (0x009D1560), which Zero Hour's header has no declaration for, so it carries
+// no marker of its own until that overload can be declared. Retail does two
+// things this does not: it calls Win32BIGFile's own tenth vtable slot with the
+// filename first, and it selects StreamingArchiveFile over RAMFile on bit 8 of
+// access rather than on the caller having asked for streaming.
+File* Win32BIGFile::openFile( const Char *filename, Int access )
 {
 	const ArchivedFileInfo *fileInfo = getArchivedFileInfo(AsciiString(filename));
 
