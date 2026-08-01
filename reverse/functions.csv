@@ -2184,7 +2184,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DBridgeBuffer@@QAE@XZ,,0x006D8B60,139,Code/masm_dumps/W3DBridgeBuffer_ctor_006D8B60.asm,matched,Certified packet 124 exact retail bytes SHA-256 9e17d15da229af3c63833afcdaecdeb75ce975b705ed266f3a424f43e592f2d2
 ??0W3DDebrisDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x007505C0,94,Code/masm_dumps/W3DDebrisDraw_constructor.asm,matched,Exact 94B unique factory Open-BFME4
 ??0W3DDefaultDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
-??0W3DDisplay@@QAE@XZ,,0x00002432,5,Code/masm_dumps/__0W3DDisplay__QAE_XZ_2432.asm,matched,MASM exact retail dump
 ??0W3DDisplayStringManager@@QAE@XZ,,0x006F5600,53,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp,matched,
 ??0W3DGameWindowManager@@QAE@XZ,,0x006C05D0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp,matched,thunk-dump converted to clean C++
 ??0W3DGhostObjectManager@@QAE@XZ,,0x006BC8C0,26,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DGhostObject.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@IAEXPAU?$pair@W4ObjectID@@W41@@2@ABU32@ABU__false_type@2@I_N@Z,,0x00022AF7,5,Code/Libraries/Source/WWVegas/WWLib/ObjectIDPairVectorAssignmentThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0FlightDeckBehaviorModuleData@@QAE@XZ,,0x0000CC3E,5,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@W4ObjectID@@V?$allocator@W4ObjectID@@@_STL@@@_STL@@IAEXPAW4ObjectID@@ABW43@ABU__false_type@2@I_N@Z,,0x00033DAC,5,Code/Libraries/Source/WWVegas/WWLib/ObjectIDPairVectorAssignmentThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0W3DDisplay@@QAE@XZ,,0x00002432,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
