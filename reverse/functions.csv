@@ -9658,7 +9658,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?drawableIconNameToIndex@@YA?AW4DrawableIconType@@PBD@Z,,0x00410A80,51,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?dumpPacketToLog@NetPacket@@IAEXXZ,,0x00679560,83,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?duplicate@BuildListInfo@@QAEPAV1@XZ,,0x001944D0,194,Code/masm_dumps/duplicate_BuildListInfo_QAEPAV1_XZ_001944D0_6d7e0f9b.asm,matched,Certified packet 163 exact retail db recovery SHA256 6d7e0f9b3bcca298be35f6b13d8b6e1f0175f79c1cf4a03289786dea5ed3258a
-?duplicate@Condition@@QBEPAV1@XZ,,0x0001C189,5,Code/masm_dumps/_thunk_b5f1b2e7e95e_1C189.asm,matched,thunk accessor of ported class
 ?duplicate@OrCondition@@QBEPAV1@XZ,,0x0035A460,140,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?duplicate@ScriptAction@@QBEPAV1@XZ,,0x003560A0,532,Code/masm_dumps/duplicate_ScriptAction_003560A0_packet335.asm,matched,Certified packet 335 sealed SHA-256 b1b57dfc8fa47f49ebe2bdc67213543a27a2d9b45e9bdada25241478a55489d1
 ?emit_ArmorUpgrade@ModulePoolGlueBulk@@YAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D090,96,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,icf-owner=friend_newModuleInstance@ArmorUpgrade; Ghidra boundary
@@ -13804,3 +13803,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?getNextMission@Campaign@@QAEPAVMission@@PAV2@@Z,,0x0003236C,5,Code/Libraries/Source/WWVegas/WWLib/CampaignMissionThunk.cpp,matched,Focused C++ thunk for Campaign::getNextMission
+?duplicate@Condition@@QBEPAV1@XZ,,0x0001C189,5,Code/GameEngine/Source/Common/RTS/ConditionDuplicateThunk.cpp,matched,5-byte incremental-link Condition const member thunk converted to focused C++ source
