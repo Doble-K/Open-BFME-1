@@ -12282,7 +12282,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeObject@Radar@@QAEXPAVObject@@@Z,,0x00106C20,49,Code/GameEngine/Source/Common/System/Radar.cpp,matched,direct C++ radar object removal with retail object offset replaces MASM dump
 ?removeObjectFromPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,,0x001D27D0,15,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?removePlayer@LANAPI@@IAEXPAVLANPlayer@@@Z,,0x00685290,62,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
-?removePos@Pathfinder@@QAEXPAVObject@@@Z,,0x0002F8DD,5,Code/masm_dumps/_thunk_12502b758d10_2F8DD.asm,matched,thunk accessor of ported class (icf alias)
 ?removeRadar@Player@@QAEX_N@Z,,0x000CC0B0,215,Code/masm_dumps/_removeRadar_Player__QAEX_N_Z_CC0B0.asm,matched,MASM exact retail body; true entry 0xCC0B0 (queue 0xFB3CF was int3 pad); Player radar field cluster
 ?removeSide@SidesList@@QAEXH@Z,,0x000C31B0,363,Code/masm_dumps/_sa14__removeSide_SidesList__QAEXH_Z_C31B0.asm,matched,sa14 Open-BFME4+Grok neutral
 ?removeSmudgeFromSet@SmudgeSet@@QAEXAAUSmudge@@@Z,,0x005D40A0,115,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?removeGoal@Pathfinder@@QAEXPAVObject@@@Z,,0x0002248F,5,Code/Libraries/Source/WWVegas/WWLib/W3DRadarBuildTerrainTextureThunk.cpp,matched,object-symbol=?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
 ??8@YA_NABVAsciiString@@0@Z,,0x00046803,5,Code/GameEngine/Source/Common/RTS/AsciiStringEqualityThunk.cpp,matched,5-byte incremental-link AsciiString equality thunk converted to focused C++ source
 ?refreshTerrain@Radar@@UAEXPAVTerrainLogic@@@Z,,0x0002F8DD,5,Code/Libraries/Source/WWVegas/WWLib/RadarRefreshTerrainThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
+?removePos@Pathfinder@@QAEXPAVObject@@@Z,,0x0002F8DD,5,Code/Libraries/Source/WWVegas/WWLib/RadarRefreshTerrainThunk.cpp,matched,object-symbol=?refreshTerrain@Radar@@UAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
