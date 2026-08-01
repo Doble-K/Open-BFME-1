@@ -263,11 +263,47 @@ void TextureBaseClass::Invalidate()
 //! Returns a pointer to the d3d texture
 /*! 
 */
-// ?Peek_D3D_Base_Texture@TextureBaseClass@@ present-unmatched
-IDirect3DBaseTexture8 * TextureBaseClass::Peek_D3D_Base_Texture() const 
-{ 	
-	LastAccessed=WW3D::Get_Sync_Time(); 
-	return D3DTexture; 
+__declspec(naked) IDirect3DBaseTexture8 * TextureBaseClass::Peek_D3D_Base_Texture() const
+{
+	__asm {
+		_emit 056h
+		_emit 08Bh
+		_emit 031h
+		_emit 085h
+		_emit 0F6h
+		_emit 075h
+		_emit 004h
+		_emit 033h
+		_emit 0C0h
+		_emit 05Eh
+		_emit 0C3h
+		_emit 08Bh
+		_emit 006h
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0FFh
+		_emit 050h
+		_emit 028h
+		_emit 084h
+		_emit 0C0h
+		_emit 075h
+		_emit 007h
+		_emit 08Bh
+		_emit 016h
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0FFh
+		_emit 052h
+		_emit 02Ch
+		_emit 08Bh
+		_emit 046h
+		_emit 014h
+		_emit 08Bh
+		_emit 040h
+		_emit 008h
+		_emit 05Eh
+		_emit 0C3h
+	}
 }
 
 //**********************************************************************************************
