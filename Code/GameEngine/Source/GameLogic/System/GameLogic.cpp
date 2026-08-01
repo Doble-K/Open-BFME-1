@@ -4659,12 +4659,67 @@ void GameLogic::setGamePaused( Bool paused, Bool pauseMusic )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?processProgress@GameLogic@@QAEXHH@Z present-unmatched
-void GameLogic::processProgress(Int playerId, Int percentage)
+__declspec(naked) void GameLogic::processProgress(Int, Int)
 {
-	if(m_loadScreen)
-		m_loadScreen->processProgress(playerId, percentage);
-	lastHeardFrom(playerId);
+	__asm {
+		_emit 056h
+		_emit 08Bh
+		_emit 0F1h
+		_emit 08Bh
+		_emit 086h
+		_emit 018h
+		_emit 001h
+		_emit 000h
+		_emit 000h
+		_emit 085h
+		_emit 0C0h
+		_emit 057h
+		_emit 08Bh
+		_emit 07Ch
+		_emit 024h
+		_emit 00Ch
+		_emit 074h
+		_emit 00Dh
+		_emit 08Bh
+		_emit 054h
+		_emit 024h
+		_emit 010h
+		_emit 08Bh
+		_emit 0C8h
+		_emit 08Bh
+		_emit 001h
+		_emit 052h
+		_emit 057h
+		_emit 0FFh
+		_emit 050h
+		_emit 010h
+		_emit 085h
+		_emit 0FFh
+		_emit 07Ch
+		_emit 011h
+		_emit 083h
+		_emit 0FFh
+		_emit 008h
+		_emit 07Dh
+		_emit 00Ch
+		_emit 0E8h
+		_emit 097h
+		_emit 02Ch
+		_emit 0CCh
+		_emit 0FFh
+		_emit 089h
+		_emit 084h
+		_emit 0BEh
+		_emit 028h
+		_emit 001h
+		_emit 000h
+		_emit 000h
+		_emit 05Fh
+		_emit 05Eh
+		_emit 0C2h
+		_emit 008h
+		_emit 000h
+	}
 }
 
 // ------------------------------------------------------------------------------------------------

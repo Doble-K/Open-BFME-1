@@ -12444,7 +12444,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?processIncomingCommand@BFMEConnectionManager@@QAE_NPAX@Z,,0x0066A3F0,580,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processInformPlayerLeaveFrameCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00664430,307,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processProgress@ConnectionManager@@AAEXPAVNetProgressCommandMsg@@@Z,,0x00662D20,33,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,
-?processProgress@GameLogic@@QAEXHH@Z,,0x0002E66D,5,Code/masm_dumps/_processProgress_GameLogic__QAEXHH_Z_2E66D.asm,matched,MASM exact retail dump
+?processProgress@GameLogic@@QAEXHH@Z,,0x00385520,57,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,converted incremental-link thunk to exact codegen-blocked C++ naked body
 ?processRequestAssistance@Weapon@@IAEXPBVObject@@PAV2@@Z,,0x001E4BF0,83,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,BFME Weapon and WeaponTemplate layout offsets
 ?processRequestFrameDataCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x006659B0,152,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME command type 9 handler; clamps requested frame-data resend range with NetworkKeepAliveDelay before sending frame data
 ?processTimeout@MapTransferLoadScreen@@,,0x00510130,262,Code/masm_dumps/_sa5__processTimeout_MapTransferLoadScreen___510130.asm,matched,Exact 262B Open-BFME4
