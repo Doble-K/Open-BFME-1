@@ -281,7 +281,6 @@ void ShaderClass::Init_From_Material3(const W3dMaterial3Struct & mat3)
  *		05/02/00    IML : Created.																					  *	
  *=============================================================================================*/
 
-// ?Enable_Fog@ShaderClass@@QAEXPBD@Z present-unmatched
 void ShaderClass::Enable_Fog (const char *source)
 {
 	// Enable the appropriate fog mode based on shader's source and destination blends.
