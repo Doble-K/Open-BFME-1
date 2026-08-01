@@ -1240,7 +1240,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ButterflyDrawModuleInfo@FXParticleSystem@@QAE@XZ,0x000116C6,0x005F0C60,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable pointer
 ??0ButterflyDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x00019CB3,0x005D8CF0,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0ButterflyDrawModuleTemplate@FXParticleSystem@@QAE@XZ,0x0003E8F1,0x005D8C20,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??0CDDrive@@QAE@XZ,,0x0002E997,5,Code/masm_dumps/__0CDDrive__QAE_XZ_2E997.asm,matched,MASM exact retail dump
 ??0CDManager@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
 ??0CDownload@@QAE@PAVIDownload@@@Z,,0x006267A0,229,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
 ??0CPUDetectInitClass@@QAE@XZ,,0x009DFF40,120,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ,,0x002D99B0,29,Code/GameEngine/Source/GameLogic/Object/SpecialPower/UnpauseSpecialPowerUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0PorcupineFormationBodyModuleModuleData@@QAE@XZ,,0x00214470,26,Code/GameEngine/Source/GameLogic/Object/Behavior/PorcupineFormationBodyModuleModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0ExperienceScalarUpgradeModuleData@@QAE@XZ,,0x002D5180,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/ExperienceScalarUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
+??0CDDrive@@QAE@XZ,,0x00101E20,113,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,incremental thunk @0x2E997 to CDDrive constructor body @0x101E20; exact clean C++
