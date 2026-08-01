@@ -54,7 +54,6 @@ SnowManager::SnowManager()
 	m_isVisible = TRUE;	//default to showing if it's enabled via INI.
 }
 
-// ?init@SnowManager@@ present-unmatched
 void SnowManager::init( void )
 {
 	//starting heights of each particle

@@ -11659,7 +11659,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@Shell@@UAEXXZ,,0x0057F0A0,13,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
 ?init@ShellGameLoadScreen@@,,0x004920E0,517,Code/masm_dumps/_s4__init_ShellGameLoadScreen__4920E0.asm,matched,Exact string-anchored Open-BFME4+Grok
 ?init@ShellMenuSchemeManager@@QAEXXZ,,0x00580290,1,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp,matched,Retail manager init is a no-op; Shell init caller and unique thunk prove ownership
-?init@SnowManager@@UAEXXZ,,0x0045A970,34,Code/masm_dumps/_rn9__init_SnowManager__UAEXXZ_45A970.asm,matched,reloc-needle Open-BFME4+Grok
 ?init@SubsystemLegend@@UAEXXZ,,0x009A14B0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 1)
 ?init@TeamsInfo@@QAEXPBVDict@@@Z,,0x00191410,28,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?init@TerrainShaderPixelShader@@EAEHXZ,,0x007E1F60,146,Code/masm_dumps/_sa12__init_TerrainShaderPixelShader__EAEHXZ_7E1F60.asm,matched,string-anchor Open-BFME4+Grok shaders\terrainnoise2.pso
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Scale@SegLineRendererClass@@QAEXM@Z,,0x0095FF30,33,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,Exact C++ scales BFME unknown member in retail order; MASM dump removed
 ?clone@?$ConcreteModuleTemplate@V?$DefaultModuleTag@$00@FXParticleSystem@@@FXParticleSystem@@UBEPAV?$DefaultModuleTemplate@$00@2@XZ,,0x005DCC20,34,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTag0ConcreteModuleTemplateCloneThunk.cpp,matched,Open-BFME5 exact C++ raw clone thunk; retail $00 decoration mapped to template category 1
 ?clone@?$ConcreteModuleTemplate@V?$DefaultModuleTag@$0A@@FXParticleSystem@@@FXParticleSystem@@UBEPAV?$DefaultModuleTemplate@$0A@@2@XZ,,0x005DCC50,34,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTag0AConcreteModuleTemplateCloneThunk.cpp,matched,Open-BFME5 exact C++ raw clone thunk; retail $0A decoration mapped to template category 0
+?init@SnowManager@@UAEXXZ,,0x0045A970,34,Code/GameEngine/Source/GameClient/Snow.cpp,matched,Exact clean C++ SnowManager::init; MASM dump removed
