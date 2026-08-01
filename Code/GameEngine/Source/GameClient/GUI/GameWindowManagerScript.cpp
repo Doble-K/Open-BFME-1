@@ -257,6 +257,15 @@ static void parseBitString( const char *inBuffer, UnsignedInt *bits, const char 
 
 // readUntilSemicolon =========================================================
 //=============================================================================
+class File_BFME_RetailRead
+{
+public:
+	virtual ~File_BFME_RetailRead() = 0;
+	virtual Bool open(const Char *filename, Int access = 0) = 0;
+	virtual void close(void) = 0;
+	virtual Int read(void *buffer, Int bytes) = 0;
+};
+
 static void readUntilSemicolon( File *fp, char *buffer, int maxBufLen )
 {
 	int i = 0;
@@ -266,7 +275,7 @@ static void readUntilSemicolon( File *fp, char *buffer, int maxBufLen )
 	{
 
 		// get next character
-		fp->read(buffer + i, 1);
+		reinterpret_cast<File_BFME_RetailRead *>(fp)->read(buffer + i, 1);
 
 		// make all whitespace characters spaces
 		if( isspace( buffer[ i ] ) ) 
