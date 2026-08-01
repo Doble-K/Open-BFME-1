@@ -6207,7 +6207,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GenerateNextCommandID@@YAGXZ,,0x00030558,5,Code/GameEngine/Source/GameNetwork/GenerateNextCommandIDThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0xA82D10
 ?Generate_APT@ParticleBufferClass@@IAEXPAPAV?$ShareBufferClass@I@@AAI@Z,,0x00984BD0,205,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Generate_Culling_Tree@MeshClass@@QAEXXZ,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
-?Generate_Culling_Tree@MeshGeometryClass@@IAEXXZ,,0x00924C30,14,Code/masm_dumps/_thunk_5715a60bcbdb_924C30.asm,matched,accessor/leaf of ported class (icf alias)
 ?Get@Base64Straw@@UAEHPAXH@Z,,0x009E7B80,253,Code/Libraries/Source/WWVegas/WWLib/b64straw.cpp,matched,
 ?Get@BufferStraw@@UAEHPAXH@Z,,0x009E1B90,82,Code/Libraries/Source/WWVegas/WWLib/xstraw.cpp,matched,
 ?Get@CacheStraw@@UAEHPAXH@Z,,0x009E7CA0,148,Code/Libraries/Source/WWVegas/WWLib/cstraw.cpp,matched,
@@ -6702,7 +6701,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_UV_Offset_Rate@SegmentedLineClass@@QAE?AVVector2@@XZ,,0x0094FC00,36,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ?Get_User_String@ParticleEmitterClass@@UBEPBDXZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?Get_User_Text@MeshClass@@QBEPBDXZ,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
-?Get_User_Text@MeshGeometryClass@@QAEPBDXZ,,0x00924C30,14,Code/masm_dumps/_thunk_6949b75546b3_924C30.asm,matched,accessor/leaf of ported class (icf alias)
 ?Get_User_Type@ParticleEmitterClass@@UBEHXZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?Get_Value@HLodClass@@UBEMXZ,,0x00978DC0,16,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Get_Value@ParticleBufferClass@@UBEMXZ,,0x009837F0,20,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
@@ -7541,9 +7539,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Render_Seg_Line@SegmentedLineClass@@IAEXAAVRenderInfoClass@@@Z,,0x00950960,78,Code/masm_dumps/__Render_Seg_Line_SegmentedLineClass__IAEXAAVRender_950960.asm,matched,
 ?Render_Sorted@DX8PolygonRendererClass@@QAEXHABVSphereClass@@@Z,,0x00945740,79,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Replace_Texture@MeshClass@@QAEXPAVTextureClass@@0@Z,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
-?Replace_Texture@MeshModelClass@@QAEXPAVTextureClass@@0@Z,,0x00924C30,14,Code/masm_dumps/_thunk_78b6d8b2ecd1_924C30.asm,matched,accessor/leaf of ported class
 ?Replace_VertexMaterial@MeshClass@@QAEXPAVVertexMaterialClass@@0@Z,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
-?Replace_VertexMaterial@MeshModelClass@@QAEXPAVVertexMaterialClass@@0@Z,,0x00924C30,14,Code/masm_dumps/_thunk_b2720241ccfb_924C30.asm,matched,accessor/leaf of ported class (icf alias)
 ?ReplayControlInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ReplayControls.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?ReplayControlSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C6A20,16,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ReplayControls.cpp,matched,
 ?ReplayMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,matched,
@@ -13840,3 +13836,7 @@ __CIasin,,0x009F7D86,6,Code/Libraries/Source/WWVegas/WWMath/CIasinThunk.cpp,matc
 ??1OCLUpdateModuleData@@UAE@XZ,,0x00298B70,7,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1OCLUpdateModuleData@@QAE@XZ
 ?messageColor@InGameUI@@UAAXPBURGBColor@@VUnicodeString@@ZZ,,0x0043DEF0,9,Code/GameEngine/Source/GameClient/InGameUIMessageColorThunk.cpp,matched,Open-BFME5 exact C++ ABI thunk replacing MASM dump;object-symbol=?messageColor@InGameUI@@UAAXPBURGBColor@@VUnicodeString@@ZZ
 ??0MetaMapRec@@QAE@XZ,,0x005B7020,11,Code/GameEngine/Source/GameClient/MessageStream/MetaMapRecConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0MetaMapRec@@QAE@XZ
+?Generate_Culling_Tree@MeshGeometryClass@@IAEXXZ,,0x00924C30,14,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryMeshModelLeafThunks.cpp,matched,Open-BFME5 exact C++ ICF leaf thunk replacing MASM dump;object-symbol=?Generate_Culling_Tree@MeshGeometryClass@@IAEXXZ
+?Get_User_Text@MeshGeometryClass@@QAEPBDXZ,,0x00924C30,14,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryMeshModelLeafThunks.cpp,matched,Open-BFME5 exact C++ ICF leaf thunk replacing MASM dump;object-symbol=?Get_User_Text@MeshGeometryClass@@QAEPBDXZ
+?Replace_Texture@MeshModelClass@@QAEXPAVTextureClass@@0@Z,,0x00924C30,14,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryMeshModelLeafThunks.cpp,matched,Open-BFME5 exact C++ ICF leaf thunk replacing MASM dump;object-symbol=?Replace_Texture@MeshModelClass@@QAEXPAVTextureClass@@0@Z
+?Replace_VertexMaterial@MeshModelClass@@QAEXPAVVertexMaterialClass@@0@Z,,0x00924C30,14,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryMeshModelLeafThunks.cpp,matched,Open-BFME5 exact C++ ICF leaf thunk replacing MASM dump;object-symbol=?Replace_VertexMaterial@MeshModelClass@@QAEXPAVVertexMaterialClass@@0@Z
