@@ -577,7 +577,7 @@ Field table `0x010EA270` — 6 fields
 
 ### `DamageFX`
 
-Parsed by `0x00067A60` — `?parseFXListDefinition@FXListStore@@SAXPAVINI@@@Z`
+Parsed by `0x00067A60` — `?parseDamageFXDefinition@DamageFXStore@@SAXPAVINI@@@Z`
 
 Field table `0x010757C0` — 8 fields
 
@@ -2027,7 +2027,7 @@ Field table `0x0110FF08` — 5 fields
 
 ### `MiscAudio`
 
-Parsed by `0x000C25B0`
+Parsed by `0x000C25B0` — `?parseMiscAudio@INI@@SAXPAV1@@Z`
 
 Field table `0x01083310` — 32 fields
 
@@ -2782,7 +2782,7 @@ Field table `0x0109FC28` — 4 fields
 
 ### `WaterSet`
 
-Parsed by `0x000C37E0`
+Parsed by `0x000C37E0` — `?parseWaterSettingDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x010F6C00` — 12 fields
 
@@ -2813,7 +2813,7 @@ Field table `0x0108132C` — 1 fields
 
 ### `WaterTransparency`
 
-Parsed by `0x000C3A00`
+Parsed by `0x000C3A00` — `?parseWaterTransparencyDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x010F6CD0` — 7 fields
 
@@ -2950,7 +2950,7 @@ Field table `0x0109FE18` — 112 fields
 
 ### `Weather`
 
-Parsed by `0x0045B130`
+Parsed by `0x0045B130` — `?parseWeatherDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x010F6540` — 24 fields
 

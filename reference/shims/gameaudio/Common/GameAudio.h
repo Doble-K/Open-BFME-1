@@ -151,6 +151,8 @@ enum
 	-December 2002
 */
 
+class MiscAudio;
+
 class AudioManager : public SubsystemInterface
 {
 	public:
@@ -232,6 +234,44 @@ class AudioManager : public SubsystemInterface
 	virtual void _bfme_unknownVirtual_b_9() = 0;
 
 		virtual void getInfoForAudioEvent( const AudioEventRTS *eventToFindAndFill ) const;	// Note: m_eventInfo is Mutable, and so this function will overwrite it if found
+
+	// 31 more virtuals between getInfoForAudioEvent and friend_getMiscAudio.
+	// Retail reaches friend_getMiscAudio through slot 75 (+0x12C) from
+	// INI::parseMiscAudio; Zero Hour does not have it as a virtual at all.
+	// Only the index is proven.
+	virtual void _bfme_miscAudioPad_0() = 0;
+	virtual void _bfme_miscAudioPad_1() = 0;
+	virtual void _bfme_miscAudioPad_2() = 0;
+	virtual void _bfme_miscAudioPad_3() = 0;
+	virtual void _bfme_miscAudioPad_4() = 0;
+	virtual void _bfme_miscAudioPad_5() = 0;
+	virtual void _bfme_miscAudioPad_6() = 0;
+	virtual void _bfme_miscAudioPad_7() = 0;
+	virtual void _bfme_miscAudioPad_8() = 0;
+	virtual void _bfme_miscAudioPad_9() = 0;
+	virtual void _bfme_miscAudioPad_10() = 0;
+	virtual void _bfme_miscAudioPad_11() = 0;
+	virtual void _bfme_miscAudioPad_12() = 0;
+	virtual void _bfme_miscAudioPad_13() = 0;
+	virtual void _bfme_miscAudioPad_14() = 0;
+	virtual void _bfme_miscAudioPad_15() = 0;
+	virtual void _bfme_miscAudioPad_16() = 0;
+	virtual void _bfme_miscAudioPad_17() = 0;
+	virtual void _bfme_miscAudioPad_18() = 0;
+	virtual void _bfme_miscAudioPad_19() = 0;
+	virtual void _bfme_miscAudioPad_20() = 0;
+	virtual void _bfme_miscAudioPad_21() = 0;
+	virtual void _bfme_miscAudioPad_22() = 0;
+	virtual void _bfme_miscAudioPad_23() = 0;
+	virtual void _bfme_miscAudioPad_24() = 0;
+	virtual void _bfme_miscAudioPad_25() = 0;
+	virtual void _bfme_miscAudioPad_26() = 0;
+	virtual void _bfme_miscAudioPad_27() = 0;
+	virtual void _bfme_miscAudioPad_28() = 0;
+	virtual void _bfme_miscAudioPad_29() = 0;
+	virtual void _bfme_miscAudioPad_30() = 0;
+	virtual MiscAudio *friend_getMiscAudio( void );
+
 
 		///< Return whether the current audio is playing or not. 
 		///< NOTE NOTE NOTE !!DO NOT USE THIS IN FOR GAMELOGIC PURPOSES!! NOTE NOTE NOTE
@@ -315,7 +355,8 @@ class AudioManager : public SubsystemInterface
 
 		// For INI
 		AudioSettings *friend_getAudioSettings( void );
-		MiscAudio *friend_getMiscAudio( void );
+		// friend_getMiscAudio is declared above as a virtual: BFME calls it through
+		// the vtable at +0x12C (slot 75), where Zero Hour has it non-virtual.
 		const FieldParse *getFieldParseTable( void ) const;
 
 		const AudioEventRTS *getValidSilentAudioEvent() const { return m_silentAudioEvent; }

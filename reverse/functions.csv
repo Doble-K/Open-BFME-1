@@ -5694,6 +5694,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?DoXfer@TerrainCollisionModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z,0x000320A1,0x5fcf10,75,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?DoXfer@WindModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z,0x0000B235,0x5fe750,242,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?Do_Mappers_Need_Normals@MeshMatDescClass@@QAE_NXZ,,0x00929AD0,267,Code/masm_dumps/_leaf__Do_Mappers_Need_Normals_MeshMatDescClas_929AD0.asm,matched,Exact 267B present-unmatched leaf Open-BFME4
+?DoesCommandRequireACommandID@@YAHW4NetCommandType@@@Z,,0x00682D20,113,Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp,matched,
 ?DotProduct@VectorProcessorClass@@SAXPAMABVVector3@@PBV2@H@Z,,0x00B008F0,213,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?Dot_Product@Vector2@@SAMABV1@0@Z,,0x00703E00,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?Dot_Product@Vector3@@SAMABV1@0@Z,,0x001A1C20,29,Code/Libraries/Source/WWVegas/WWMath/lineseg.cpp,matched,
@@ -11927,6 +11928,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?loadUserMaps@MapCache@@AAE_NXZ,,0x00028FF1,5,Code/masm_dumps/_loadUserMaps_MapCache__AAE_NXZ_28FF1.asm,matched,MASM exact retail dump
 ?loadY@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1M@Z,,0x0070F060,575,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?localPixelToRadar@Radar@@QAE_NPBUICoord2D@@PAU2@@Z,,0x00004D59,5,Code/masm_dumps/_localPixelToRadar_Radar__QAE_NPBUICoord2D__PAU2__Z_4D59.asm,matched,MASM exact retail dump
+?lock@File@@UAEXXZ,,0x009CB760,36,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 15; CreateMutexA/WaitForSingleObject; vtable 0x01143AF8
 ?lockGhostObjects@GhostObjectManager@@QAEX_N@Z,,0x00427440,10,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?locoSetMatches@@YA_NHI@Z,,0x000EC7E0,24,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
 ?locoUpdate_moveTowardsPosition@Locomotor@@QAEXPAVObject@@ABUCoord3D@@MMPA_N@Z,,0x002BAFB8,1701,Code/GameEngine/Source/GameLogic/Object/Locomotor_locoUpdate_moveTowardsPosition.asm,matched,true size 1701B; row claimed 1103B
@@ -12176,6 +12178,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAsciiStringVectorAppend@INI@@SAXPAV1@PAX1PBX@Z,,0x008541E0,200,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,the legend InitFile/InitPath/Extension parser
 ?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x000BBB60,181,Code/GameEngine/Source/Common/INI/ini.cpp,matched,field table binds 45 tokens across 5 INI blocks here - was a 5B thunk claim
 ?parseAudioLODDefinition@INI@@SAXPAV1@@Z,,0x0007D560,209,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table node binds keyword AudioLOD to this address
+?parseAudioLowMHz@@YAXPAVINI@@@Z,,0x0007BE70,43,Code/GameEngine/Source/Common/GameLOD.cpp,matched,AudioLowMHz block; sibling of parseReallyLowMHz -- GameLODManager m_audioLowMHz at +0x1738 right after m_reallyLowMHz at +0x1734
 ?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EACB0,51,Code/GameEngine/Source/GameLogic/Object/WeaponTemplateSet_parseAutoChoose.asm,matched,Corrected one-byte-early queue RVA using INT3 and RET boundaries
 ?parseBenchProfile@INI@@SAXPAV1@@Z,,0x0007C7F0,131,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME retail GameLOD layout
 ?parseBitFlag@@YA_NPBDPAIPAPBD@Z,,0x004842E0,81,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
@@ -12263,6 +12266,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseMappedImage@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAAA0,113,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseMetaMapDefinition@INI@@SAXPAV1@@Z,,0x005B71A0,143,Code/GameEngine/Source/GameClient/MessageStream/INI_parseMetaMapDefinition.asm,matched,CommandMap INI table pointer and Ghidra-confirmed inlined parser body
 ?parseMinorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066180,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
+?parseMiscAudio@INI@@SAXPAV1@@Z,,0x000C25B0,30,Code/GameEngine/Source/Common/INI/INIMiscAudio.cpp,matched,MiscAudio block parser; forwards to TheAudio->friend_getMiscAudio() through AudioManager vtable slot 75 (+0x12C) which ZH has non-virtual
 ?parseMissionPart@CampaignManager@@SAXPAVINI@@PAX1PBX@Z,,0x005BCB20,161,Code/masm_dumps/CampaignManager_parseMissionPart_5BCB20.asm,matched,MASM exact; true body string-anchored Mission FieldParse@0x110F778; drift 0x9A15B3 was int3 before unrelated parse
 ?parseModuleName@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x001458A0,772,Code/masm_dumps/_sa__parseModuleName_ThingTemplate__KAXPAVINI__PAX1PBX_1458A0.asm,matched,Exact 772B string-anchored Open-BFME4
 ?parseMouseCursorDefinition@INI@@SAXPAV1@@Z,,0x005A5FA0,185,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,INI block table node binds keyword MouseCursor to this address
@@ -13342,6 +13346,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?unloadAll@RailedTransportDockUpdate@@UAEXXZ,,0x002CE7C0,26,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RailedTransportDockUpdate.cpp,matched,
 ?unloadNext@RailedTransportDockUpdate@@IAEXXZ,,0x0000C27F,5,Code/masm_dumps/_unloadNext_RailedTransportDockUpdate__IAEXXZ_C27F.asm,matched,MASM exact retail dump
 ?unloadSingleObject@RailedTransportDockUpdate@@UAEXPAVObject@@@Z,,0x002CE7E0,21,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RailedTransportDockUpdate.cpp,matched,
+?unlock@File@@UAEXXZ,,0x009CB790,15,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 16; ReleaseMutex; vtable 0x01143AF8
 ?unselectOtherRadioOfGroup@@YAXHHPAVGameWindow@@@Z,,0x004BCF70,68,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetRadioButton.cpp,matched,
 ?update256@AlphaEdgeTextureClass@@IAEHPAVWorldHeightMap@@@Z,,0x00464830,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/TerrainTex.cpp,matched,tiny-locate
 ?update@AIAttackFireWeaponState@@UAE?AW4StateReturnType@@XZ,,0x0017C250,979,Code/masm_dumps/AIAttackFireWeaponState_update.asm,matched,Exact 979B MASM vtable-anchored AIAttackFireWeaponState vt@0xC97DC0 slot6; queue 0x76E86C mid-insn
@@ -13767,6 +13772,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?lock@File@@UAEXXZ,,0x009CB760,36,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 15; CreateMutexA/WaitForSingleObject; vtable 0x01143AF8
-?unlock@File@@UAEXXZ,,0x009CB790,15,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 16; ReleaseMutex; vtable 0x01143AF8
-?DoesCommandRequireACommandID@@YAHW4NetCommandType@@@Z,,0x00682D20,113,Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp,matched,

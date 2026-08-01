@@ -175,6 +175,23 @@ void parseReallyLowMHz(INI* ini)
 	}
 }
 
+void parseAudioLowMHz(INI* ini)
+{
+	// m_audioLowMHz sits immediately after m_reallyLowMHz above; the two INI
+	// keywords are a pair ("ReallyLowMHz" / "AudioLowMHz") and so are the fields.
+	struct RetailGameLODManager
+	{
+		char m_pad[0x1738];
+		Int m_audioLowMHz;
+	};
+	Int mhz;
+	INI::parseInt(ini,NULL,&mhz,NULL);
+	if (TheGameLODManager)
+	{
+		reinterpret_cast<RetailGameLODManager *>(TheGameLODManager)->m_audioLowMHz = mhz;
+	}
+}
+
 void INI::parseBenchProfile( INI* ini)
 {
 	struct RetailGameLODManager
