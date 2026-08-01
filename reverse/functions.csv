@@ -1253,7 +1253,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CompositeRenderObjClass@@QAE@XZ,,0x00982E10,148,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
 ??0Condition@@IAE@XZ,,0x0034FDA0,65,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ??0ContestableContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021BEE0,292,Code/masm_dumps/ContestableContain_constructor.asm,matched,Exact 292B @ 0x0021BEE0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1165C0
-??0ContestableContainModuleData@@QAE@XZ,,0x00249B50,86,Code/masm_dumps/ContestableContainModuleData_constructor.asm,matched,Exact 86B @ 0x00249B50; Exact retail MASM ModuleData ctor; unique factory 0x116140; Open-BFME4+Grok
 ??0ControlBar@@QAE@XZ,,0x009F2730,146,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_ctor.asm,matched,Ghidra-confirmed SEH constructor boundary
 ??0ConvertToCarBombCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
 ??0ConvertToCarBombCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/masm_dumps/ConvertToCarBombCrateCollideModuleData_constructor.asm,matched,Exact 147B ICF primary MD Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0OpenContainModuleData@@QAE@XZ,,0x00227200,398,Code/GameEngine/Source/GameLogic/AI/OpenContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0CaveContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00219B90,129,Code/GameEngine/Source/GameLogic/AI/CaveContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0GarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021D820,312,Code/GameEngine/Source/GameLogic/AI/GarrisonContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
+??0ContestableContainModuleData@@QAE@XZ,,0x00249B50,86,Code/GameEngine/Source/GameLogic/AI/ContestableContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
