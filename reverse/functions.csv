@@ -13703,3 +13703,4 @@ _CommSRPSend,,0x008158B0,498,Code/Libraries/Source/DirtySock/commsrp.cpp,matched
 _CommSRPListen,,0x00816660,577,Code/Libraries/Source/DirtySock/commsrp.cpp,matched,
 _CommSRPConnect,,0x00816970,547,Code/Libraries/Source/DirtySock/commsrp.cpp,matched,
 _NetGameUtilControl,,0x0080E5E0,219,Code/Libraries/Source/DirtySock/netgameutil.cpp,matched,
+?processDisconnectFrame@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066BD80,285,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,

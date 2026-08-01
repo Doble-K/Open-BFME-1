@@ -386,50 +386,15 @@ void DisconnectManager::processDisconnectVote(NetCommandMsg *msg, ConnectionMana
 	applyDisconnectVote(cmdMsg->getSlot(), cmdMsg->getVoteFrame(), cmdMsg->getPlayerID(), conMgr);
 }
 
-// ?processDisconnectFrame@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z present-unmatched
-__declspec(noinline) void DisconnectManager::processDisconnectFrame(NetCommandMsg *msg, ConnectionManager *conMgr) {
-	NetDisconnectFrameCommandMsg *cmdMsg = (NetDisconnectFrameCommandMsg *)msg;
-	UnsignedInt playerID = cmdMsg->getPlayerID();
-	if (m_disconnectFrames[playerID] >= cmdMsg->getDisconnectFrame()) {
-		// this message isn't valid, we have a disconnect frame that is later than this already.
-		return;
-	}
+// processDisconnectFrame lives in native_connection_timing.cpp as naked asm.
+// BFME's version differs from ZH's in two places: it calls
+// conMgr->sendFrameDataToPlayer(playerID, frame) unconditionally right after
+// setting m_disconnectFramesReceived, and in the remote branch it uses the
+// three-argument resend at 0x00664B40 -- (playerID, m_disconnectFrames[playerID],
+// TheGameLogic->getFrame()) -- rather than ZH's two-argument call. Writing it as
+// C++ from this TU needs that three-argument method declared on
+// ConnectionManager, which the real header does not have.
 
-	if (m_disconnectFramesReceived[playerID] == TRUE) {
-		DEBUG_LOG(("DisconnectManager::processDisconnectFrame - Got two disconnect frames without an intervening disconnect screen off command from player %d. Frames are %d and %d\n", playerID, m_disconnectFrames[playerID], cmdMsg->getDisconnectFrame()));
-	}
-
-	DEBUG_LOG(("DisconnectManager::processDisconnectFrame - about to call resetPlayersVotes for player %d\n", playerID));
-	resetPlayersVotes(playerID, cmdMsg->getDisconnectFrame()-1, conMgr);
-
-	m_disconnectFrames[playerID] = cmdMsg->getDisconnectFrame();
-	m_disconnectFramesReceived[playerID] = TRUE;
-
-	// BFME addition: raise this player's watermark straight away, before the
-	// local-versus-remote split below.
-	conMgr->sendFrameDataToPlayer(playerID, cmdMsg->getDisconnectFrame());
-	DEBUG_LOG(("DisconnectManager::processDisconnectFrame - Got a disconnect frame for player %d, frame = %d, local player is %d, local disconnect frame = %d, command id = %d\n", cmdMsg->getPlayerID(), cmdMsg->getDisconnectFrame(), conMgr->getLocalPlayerID(), m_disconnectFrames[conMgr->getLocalPlayerID()], cmdMsg->getID()));
-
-	if (playerID == conMgr->getLocalPlayerID()) {
-		DEBUG_LOG(("DisconnectManager::processDisconnectFrame - player %d is the local player\n", playerID));
-		// we just got the message from the local player, check to see if we need to send
-		// commands to anyone we already have heard from.
-		for (Int i = 0; i < MAX_SLOTS; ++i) {
-			if (i != playerID) {
-				Int transSlot = translatedSlotPosition(i, conMgr->getLocalPlayerID());
-				if (isPlayerInGame(transSlot, conMgr) == TRUE) {
-					if ((m_disconnectFrames[i] < m_disconnectFrames[playerID]) && (m_disconnectFramesReceived[i] == TRUE)) {
-						DEBUG_LOG(("DisconnectManager::processDisconnectFrame - I have more frames than player %d, my frame = %d, their frame = %d\n", i, m_disconnectFrames[conMgr->getLocalPlayerID()], m_disconnectFrames[i]));
-						conMgr->sendFrameDataToPlayer(i, m_disconnectFrames[i]);
-					}
-				}
-			}
-		}
-	} else if ((m_disconnectFrames[playerID] < m_disconnectFrames[conMgr->getLocalPlayerID()]) && (m_disconnectFramesReceived[playerID] == TRUE)) {
-		DEBUG_LOG(("DisconnectManager::processDisconnectFrame - I have more frames than player %d, my frame = %d, their frame = %d\n", playerID, m_disconnectFrames[conMgr->getLocalPlayerID()], m_disconnectFrames[playerID]));
-		conMgr->sendFrameDataToPlayer(playerID, m_disconnectFrames[playerID]);
-	}
-}
 
 __declspec(noinline) void DisconnectManager::processDisconnectScreenOff(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectScreenOffCommandMsg *cmdMsg = (NetDisconnectScreenOffCommandMsg *)msg;
