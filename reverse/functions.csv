@@ -11869,7 +11869,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isPointOnWall@PathfindLayer@@QAE_NPAW4ObjectID@@HPBUCoord3D@@@Z,,0x00299080,257,Code/masm_dumps/PathfindLayer_isPointOnWall.asm,matched,Ghidra-bound BFME wall-layer geometry body
 ?isPosDifferent@@YA_NPBUCoord3D@@0@Z,,0x001BE5F0,75,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?isPriorityVisible@Radar@@QBE_NW4RadarPriorityType@@@Z,,0x00107280,23,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
-?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z,,0x0043A520,29,Code/masm_dumps/_rn11__isRadarWindow_Radar__QAE_NPAVGameWindow___Z_43A520.asm,matched,reloc-needle Open-BFME4+Grok
 ?isReady@CommandButton@@QBE_NPBVObject@@@Z,,0x0049AD65,93,Code/masm_dumps/_isReady_CommandButton__QBE_NPBVObject___Z.asm,matched,
 ?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/masm_dumps/_rn5__isRepairMostImportant_DozerPrimaryStateMachine__SA_NPAVState__PAX_Z_2B64E0.asm,matched,reloc-needle Open-BFME4+Grok
 ?isSamePosition@@YA_NPBUCoord3D@@00@Z,,0x0016AA70,69,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ?Guess_Sort_Level@ShaderClass@@QBEHXZ,,0x00910E90,38,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,converted exact MASM method dump to clean C++
 ?Log_DX8_ErrorCode@@YAXI@Z,,0x0087CAC0,25,Code/Libraries/Source/WWVegas/WW3D2/LogDX8ErrorCodeThunk.cpp,matched,Open-BFME5 exact C++ DX8 logging thunk replacing MASM dump;object-symbol=?Log_DX8_ErrorCode@@YAXI@Z;retail 25-byte target authoritative over stale dump listing
 ??0DualWeaponBehaviorModuleData@@QAE@XZ,,0x001F7E20,26,Code/GameEngine/Source/GameLogic/Object/Update/DualWeaponBehaviorModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ ModuleData constructor thunk replacing MASM dump;object-symbol=??0DualWeaponBehaviorModuleData@@QAE@XZ
+?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z,,0x0043A520,29,Code/GameEngine/Source/Common/System/RadarIsRadarWindowThunk.cpp,matched,Open-BFME5 exact C++ Radar window predicate thunk replacing MASM dump;object-symbol=?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z
