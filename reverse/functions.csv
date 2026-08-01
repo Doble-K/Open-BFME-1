@@ -11998,8 +11998,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?playerIndexToColorIndex@@YAHH@Z,,0x007115D0,39,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 ?playerTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z,,0x004FA800,1517,Code/masm_dumps/playerTooltip.asm,matched,Correct retail body installed by WOLLobbyMenuInit and anchored by eleven tooltip strings
 ?pop@?$queue@VGameResultsRequest@@V?$deque@VGameResultsRequest@@V?$allocator@VGameResultsRequest@@@_STL@@@_STL@@@_STL@@QAEXXZ,,0x00641880,75,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,icf-owner=?pop_front@?$deque@VGameResultsRequest@@V?$allocator@VGameResultsRequest@@@_STL@@@_STL@@QAEXXZ
-?popFront@BFMENetworkQueue1@@QAEXXZ,,0x00023592,5,Code/masm_dumps/_popFront_BFMENetworkQueue1__QAEXXZ_23592.asm,matched,MASM exact retail dump
-?popFront@BFMENetworkQueue@@QAEXXZ,,0x0002491A,5,Code/masm_dumps/_popFront_BFMENetworkQueue__QAEXXZ_2491A.asm,matched,MASM exact retail dump
 ?popQueue0@BFMENetwork@@QAE_NPAVBFMENetworkQueueItem@@@Z,,0x0065ADE0,164,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper slot +0x14; pops dispatcher queue +0x14
 ?popQueue1@BFMENetwork@@QAE_NPAVBFMENetworkQueueItem1@@@Z,,0x00658E20,164,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper slot +0x1c; pops callback queue +0x3c
 ?popSleepyUpdate@GameLogic@@AAEXXZ,,0x0038C1E0,2876,Code/masm_dumps/_sa11__popSleepyUpdate_GameLogic__AAEXXZ_38C1E0.asm,matched,string-anchor Open-BFME4+Grok GLAInfantryAngryMobNexus
@@ -13804,3 +13802,5 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?applyTopplingForce@ToppleUpdate@@QAEXPBUCoord3D@@MI@Z,,0x0003FC97,5,Code/GameEngine/Source/Common/RTS/ToppleUpdateApplyTopplingForceThunk.cpp,matched,5-byte incremental-link ToppleUpdate member thunk converted to focused C++ source
 ?renderTrees@BaseHeightMapRenderObjClass@@QAEXPAVCameraClass@@@Z,,0x0003FE36,5,Code/Libraries/Source/WWVegas/WWLib/PhysicsRenderThunks.cpp,matched,Focused C++ thunk for BaseHeightMapRenderObjClass::renderTrees
 ?clearAndSetModelConditionState@Drawable@@QAEXW4ModelConditionFlagType@@0@Z,,0x0001C8D2,5,Code/GameEngine/Source/Common/RTS/DrawableClearAndSetModelConditionStateThunk.cpp,matched,5-byte incremental-link Drawable member thunk converted to focused C++ source
+?popFront@BFMENetworkQueue1@@QAEXXZ,,0x00023592,5,Code/Libraries/Source/WWVegas/WWLib/BFMENetworkQueuePopThunks.cpp,matched,Focused C++ thunk for BFMENetworkQueue1::popFront
+?popFront@BFMENetworkQueue@@QAEXXZ,,0x0002491A,5,Code/Libraries/Source/WWVegas/WWLib/BFMENetworkQueuePopThunks.cpp,matched,Focused C++ thunk for BFMENetworkQueue::popFront
