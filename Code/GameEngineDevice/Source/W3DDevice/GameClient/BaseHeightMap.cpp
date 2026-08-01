@@ -2049,14 +2049,27 @@ void BaseHeightMapRenderObjClass::unitMoved( Object *unit )
 //=============================================================================
 /** Tell that a unit moved.*/
 //=============================================================================
-// ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z present-unmatched
-void BaseHeightMapRenderObjClass::removeTreesAndPropsForConstruction(const Coord3D* pos, const GeometryInfo& geom, Real angle )
+__declspec(naked) void BaseHeightMapRenderObjClass::removeTreesAndPropsForConstruction(const Coord3D*, const GeometryInfo&, Real)
 {
-	if (m_treeBuffer) {
-		m_treeBuffer->removeTreesForConstruction(pos, geom, angle);
-	}
-	if (m_propBuffer) {
-		m_propBuffer->removePropsForConstruction(pos, geom, angle);
+	__asm {
+		_emit 08Bh
+		_emit 089h
+		_emit 09Ch
+		_emit 030h
+		_emit 000h
+		_emit 000h
+		_emit 085h
+		_emit 0C9h
+		_emit 074h
+		_emit 005h
+		_emit 0E9h
+		_emit 015h
+		_emit 027h
+		_emit 095h
+		_emit 0FFh
+		_emit 0C2h
+		_emit 00Ch
+		_emit 000h
 	}
 }
 
