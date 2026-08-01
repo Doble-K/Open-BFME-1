@@ -11136,7 +11136,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getMaxDisconnectFrame@DisconnectManager@@IAEIXZ,,0x0066B620,99,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,repointed off its 5B ILT thunk onto the real body
 ?getMaxManglerRetries@GameSpyConfig@@UAEHXZ,,0x00674250,4,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?getMaxMessagesPerUpdate@GameSpyInfo@@UAEHXZ,,0x006307B0,7,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
-?getMaxMessagesPerUpdate@GameSpyMiscPreferences@@QAEHXZ,,0x000A9B30,33,Code/masm_dumps/GameSpyMiscPreferences_getMaxMessagesPerUpdate.asm,matched,Unique MaxMessagesPerUpdate preference getter
 ?getMaxPing@QuickMatchPreferences@@QAEHXZ,,0x000AC140,85,Code/masm_dumps/QuickMatchPreferences_getMaxPing.asm,matched,Exact retail MASM; true body @0xAC140 (queue 0xAD707 was INSIDE setMaxPing); MaxPing string-anchor; default -1
 ?getMaxPoints@QuickMatchPreferences@@QAEHXZ,,0x000ABF80,87,Code/masm_dumps/QuickMatchPreferences_getMaxPoints.asm,matched,Certified packet 255 sealed 87-byte MASM recovery sha256 1930aa5f324a58715c557897dbbbfc7039e031250254289fcd7784bfbf624129
 ?getMaxTargetPitch@WeaponTemplate@@QBEMXZ,,0x006CF980,4,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,icf-owner=?Get_Native_Screen_Size@RenderObjClass@@UBEMXZ
@@ -13840,3 +13839,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?getMaxMessagesPerUpdate@GameSpyMiscPreferences@@QAEHXZ,,0x000A9B30,33,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,Open-BFME5 exact C++ raw getter; MaxMessagesPerUpdate preference and default 100 preserved
