@@ -13740,3 +13740,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
 ?sendFileChunk@BFMEConnectionManager@@QAEXPBDHH@Z,,0x00666A10,435,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?updateFileProgress@BFMEConnectionManager@@QAEXXZ,,0x00669A00,265,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?parseMouseCursorDefinition@INI@@SAXPAV1@@Z,,0x005A5FA0,185,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,INI block table node binds keyword MouseCursor to this address
