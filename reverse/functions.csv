@@ -2520,7 +2520,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$deque@VGameResultsRequest@@V?$allocator@VGameResultsRequest@@@_STL@@@_STL@@QAE@XZ,,0x006418E0,249,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ??1?$deque@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@QAE@XZ,,0x00641A30,249,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ??1?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAE@XZ,,0x00078A60,27,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,STLport list<Entry> dtor; body identical to the base dtor but a separate COMDAT
-??1?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@QAE@XZ,,0x000200FE,5,Code/masm_dumps/__1__pair___CBVAsciiString__UCoord3D____STL__QAE_XZ_200FE.asm,matched,MASM exact retail dump
 ??1?$pair@$$CBVUnicodeString@@V1@@_STL@@QAE@XZ,,0x0068E6D0,76,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,
 ??1?$pair@$$CBVUnicodeString@@VAsciiString@@@_STL@@QAE@XZ,,0x000A9B80,76,Code/GameEngine/Source/GameClient/MapUtil_pair_UnicodeString_AsciiString_dtor.asm,matched,exact 76B MASM; drift 0x9DB088 mid FUN_00dd9d90; retail A then U pair dtor
 ??1?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@QAE@XZ,,0x00009525,5,Code/masm_dumps/_thunk_1b8256c667f0_9525.asm,matched,thunk accessor of ported class
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?WriteConditionDataChunk@Condition@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x0003DA91,5,Code/GameEngine/Source/GameLogic/ScriptEngine/ConditionWriteChunkThunk.cpp,matched,5-byte incremental-link static member thunk converted to focused C++ source
 ??1Entry@?$HashTemplateClass@VStringClass@@PAVTextureClass@@@@QAE@XZ,,0x00013101,5,Code/Libraries/Source/WWVegas/WWLib/HashTemplateEntryDestructorThunk.cpp,matched,object-symbol=??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ;ICF alias converted to focused C++ thunk TU
 ??1Entry@?$HashTemplateClass@VStringClass@@PAVThumbnailClass@@@@QAE@XZ,,0x00013101,5,Code/Libraries/Source/WWVegas/WWLib/HashTemplateEntryDestructorThunk.cpp,matched,object-symbol=??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ;ICF alias converted to focused C++ thunk TU
+??1?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@QAE@XZ,,0x000200FE,5,Code/Libraries/Source/WWVegas/WWLib/AsciiStringCoord3DPairDestructorThunk.cpp,matched,5-byte incremental-link STL destructor thunk converted to focused C++ thunk TU
