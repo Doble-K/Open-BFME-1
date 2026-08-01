@@ -13765,3 +13765,30 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getNextToken@INI@@QAEPBDPBD@Z,,0x00850970,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,reads m_seps from this at +0x414 - was a MASM dump
 ?getNextTokenOrNull@INI@@QAEPBDPBD@Z,,0x008509C0,29,Code/GameEngine/Source/Common/INI/ini.cpp,matched,same but returns NULL instead of throwing - was a MASM dump
 ?readLine@INI@@IAEXXZ,,0x008514C0,121,Code/GameEngine/Source/Common/INI/ini.cpp,matched,copies the next preloaded line and hashes it - was a MASM dump
+?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007D470,191,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table binds keyword DynamicGameLOD here - was a MASM dump
+?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
+?sendFileChunk@BFMEConnectionManager@@QAEXPBDHH@Z,,0x00666A10,435,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?updateFileProgress@BFMEConnectionManager@@QAEXXZ,,0x00669A00,265,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?parseMouseCursorDefinition@INI@@SAXPAV1@@Z,,0x005A5FA0,185,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,INI block table node binds keyword MouseCursor to this address
+?buildPlayerStatusText@BFMEConnectionManager@@QAEXPAX@Z,,0x00666300,578,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?queueLocalCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00662E80,484,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?attachPlayersFromGameInfo@BFMEConnectionManager@@QAEXPAX@Z,,0x00666610,597,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?resolvePlayerFromName@BFMEConnectionManager@@QAEXPAX@Z,,0x00667060,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendFileToPlayers@BFMEConnectionManager@@QAEXPBD@Z,,0x00669E20,418,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendFileAnnouncement@BFMEConnectionManager@@QAEXPBDH@Z,,0x0066A170,509,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?parseLanguageDefinition@INI@@SAXPAV1@@Z,,0x00438F70,25,Code/GameEngine/Source/GameClient/GlobalLanguage.cpp,matched,block table binds keyword Language here - reads TheGlobalLanguageData 0x012F1484
+_GetPreviewFromMap,,0x0066D6A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetArtPreviewFromMap,,0x0066D820,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetPicPreviewFromMap,,0x0066D9A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z,,0x004AAD10,1,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,INI block table node binds keyword ControlBarResizer to this address
+?parseOnlineChatColorDefinition@INI@@SAXPAV1@@Z,,0x006250A0,20,Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp,matched,INI block table node binds keyword OnlineChatColors to this address
+_GetINIFromMap,,0x0066DB20,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetStrFileFromMap,,0x0066DC30,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetSoloINIFromMap,,0x0066DD40,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetAssetUsageFromMap,,0x0066DE50,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetReadmeFromMap,,0x0066DF60,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_doFileTransfer,,0x0066CE60,814,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_DoAnyMapTransfers,,0x0066E070,659,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetFileFromPath,,0x0066D3C0,152,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetBaseFileFromFile,,0x0066D540,276,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetBasePathFromPath,,0x0066D260,276,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,

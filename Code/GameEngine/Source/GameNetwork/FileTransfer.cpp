@@ -21,6 +21,9 @@ extern "C" {
 	void *GetReadmeFromMap(void *out, void *path);
 	int doFileTransfer(void *filename, void *ls, int mask);
 	int DoAnyMapTransfers(void *game);
+	void *GetFileFromPath(void *out, void *path);
+	void *GetBaseFileFromFile(void *out, void *fname);
+	void *GetBasePathFromPath(void *out, void *path);
 }
 
 // Builds "%s\\%s.tga" from the map path's directory and base filename.
@@ -1841,6 +1844,341 @@ L05_66E2F7:
 		pop ebp
 		mov al, bl
 		pop ebx
+		ret
+	}
+}
+
+// The part of a path after the last separator. First of the three helpers
+// GetPreviewFromMap calls, matching the ZH reference's
+// GetBaseFileFromFile(GetFileFromPath(path)) nesting. BFME's version tests for
+// '.' as well as '\\', which the reference does not.
+__declspec(naked) void *GetFileFromPath(void *out, void *path)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 10448E1h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		mov dword ptr [esp], 0h
+		mov eax, dword ptr [esp+18h]
+		test eax, eax
+		mov dword ptr [esp+0Ch], 1h
+		je L00_66D3F6
+		lea ecx,  [eax+8h]
+		movzx eax, word ptr [eax+4h]
+		jmp L01_66D3FD
+L00_66D3F6:
+		mov ecx, 107388Bh
+		xor eax, eax
+L01_66D3FD:
+		add eax, ecx
+		cmp eax, ecx
+		push esi
+		je L02_66D411
+L04_66D404:
+		mov dl, byte ptr [eax-1h]
+		dec eax
+		cmp dl, 5Ch
+		je L03_66D449
+		cmp eax, ecx
+		jne L04_66D404
+L02_66D411:
+		mov esi, dword ptr [esp+18h]
+		lea eax,  [esp+1Ch]
+		push eax
+		mov ecx, esi
+		__emit 0E8h
+		__emit 03Fh
+		__emit 0A7h
+		__emit 021h
+		__emit 000h   // call 0x887B60
+L05_66D421:
+		lea ecx,  [esp+1Ch]
+		mov byte ptr [esp+10h], 0h
+		mov dword ptr [esp+4h], 1h
+		__emit 0E8h
+		__emit 009h
+		__emit 0A5h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		mov ecx, dword ptr [esp+8h]
+		mov eax, esi
+		pop esi
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret
+L03_66D449:
+		mov esi, dword ptr [esp+18h]
+		inc eax
+		push eax
+		mov ecx, esi
+		__emit 0E8h
+		__emit 06Ah
+		__emit 0B7h
+		__emit 021h
+		__emit 000h   // call 0x888BC0
+		jmp L05_66D421
+	}
+}
+
+// A filename with its extension removed: reverseFind('.'), then copy the prefix
+// through getBufferForRead. Second of GetPreviewFromMap's three calls.
+__declspec(naked) void *GetBaseFileFromFile(void *out, void *path)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 1044969h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 8h
+		push ebx
+		push esi
+		xor ebx, ebx
+		push edi
+		mov dword ptr [esp+10h], ebx
+		mov edx, dword ptr [esp+28h]
+		cmp edx, ebx
+		mov edi, 1h
+		mov dword ptr [esp+1Ch], edi
+		je L00_66D57B
+		movzx eax, word ptr [edx+4h]
+		lea ecx,  [edx+8h]
+		jmp L01_66D582
+L00_66D57B:
+		mov ecx, 107388Bh
+		xor eax, eax
+L01_66D582:
+		add eax, ecx
+		cmp eax, ecx
+		je L02_66D592
+L04_66D588:
+		dec eax
+		cmp byte ptr [eax], 2Eh
+		je L03_66D5C7
+		cmp eax, ecx
+		jne L04_66D588
+L02_66D592:
+		mov esi, dword ptr [esp+24h]
+		push 1336E50h
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0BEh
+		__emit 0A5h
+		__emit 021h
+		__emit 000h   // call 0x887B60
+		lea ecx,  [esp+28h]
+		mov dword ptr [esp+10h], edi
+		mov byte ptr [esp+1Ch], bl
+		__emit 0E8h
+		__emit 08Dh
+		__emit 0A3h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		pop edi
+		mov eax, esi
+		pop esi
+		pop ebx
+		mov ecx, dword ptr [esp+8h]
+		mov dword ptr fs:[0h], ecx
+		add esp, 14h
+		ret
+L03_66D5C7:
+		cmp edx, ebx
+		lea ecx,  [edx+8h]
+		jne L05_66D5D3
+		mov ecx, 107388Bh
+L05_66D5D3:
+		sub eax, ecx
+		push ebp
+		mov ebp, eax
+		mov dword ptr [esp+10h], ebx
+		push ebp
+		lea ecx,  [esp+14h]
+		mov byte ptr [esp+24h], 2h
+		__emit 0E8h
+		__emit 0F5h
+		__emit 0A5h
+		__emit 021h
+		__emit 000h   // call 0x887BE0
+		mov ecx, dword ptr [esp+2Ch]
+		cmp ecx, ebx
+		lea esi,  [ecx+8h]
+		jne L06_66D5FB
+		mov esi, 107388Bh
+L06_66D5FB:
+		mov ecx, ebp
+		mov edx, ecx
+		shr ecx, 2h
+		mov edi, eax
+		rep movsd
+		mov ecx, edx
+		and ecx, 3h
+		rep movsb
+		mov esi, dword ptr [esp+28h]
+		push eax
+		mov ecx, esi
+		mov byte ptr [eax+ebp], bl
+		__emit 0E8h
+		__emit 0A4h
+		__emit 0B5h
+		__emit 021h
+		__emit 000h   // call 0x888BC0
+		lea ecx,  [esp+10h]
+		mov dword ptr [esp+14h], 1h
+		mov byte ptr [esp+20h], 1h
+		__emit 0E8h
+		__emit 00Eh
+		__emit 0A3h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		lea ecx,  [esp+2Ch]
+		mov byte ptr [esp+20h], bl
+		__emit 0E8h
+		__emit 001h
+		__emit 0A3h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		mov ecx, dword ptr [esp+18h]
+		pop ebp
+		pop edi
+		mov eax, esi
+		pop esi
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 14h
+		ret
+	}
+}
+
+// A path with its filename removed: reverseFind('\\'), then copy the prefix
+// through getBufferForRead. Third of GetPreviewFromMap's three calls.
+__declspec(naked) void *GetBasePathFromPath(void *out, void *path)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 10448A9h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 8h
+		push ebx
+		push esi
+		xor ebx, ebx
+		push edi
+		mov dword ptr [esp+10h], ebx
+		mov edx, dword ptr [esp+28h]
+		cmp edx, ebx
+		mov edi, 1h
+		mov dword ptr [esp+1Ch], edi
+		je L00_66D29B
+		movzx eax, word ptr [edx+4h]
+		lea ecx,  [edx+8h]
+		jmp L01_66D2A2
+L00_66D29B:
+		mov ecx, 107388Bh
+		xor eax, eax
+L01_66D2A2:
+		add eax, ecx
+		cmp eax, ecx
+		je L02_66D2B2
+L04_66D2A8:
+		dec eax
+		cmp byte ptr [eax], 5Ch
+		je L03_66D2E7
+		cmp eax, ecx
+		jne L04_66D2A8
+L02_66D2B2:
+		mov esi, dword ptr [esp+24h]
+		push 1336E50h
+		mov ecx, esi
+		__emit 0E8h
+		__emit 09Eh
+		__emit 0A8h
+		__emit 021h
+		__emit 000h   // call 0x887B60
+		lea ecx,  [esp+28h]
+		mov dword ptr [esp+10h], edi
+		mov byte ptr [esp+1Ch], bl
+		__emit 0E8h
+		__emit 06Dh
+		__emit 0A6h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		pop edi
+		mov eax, esi
+		pop esi
+		pop ebx
+		mov ecx, dword ptr [esp+8h]
+		mov dword ptr fs:[0h], ecx
+		add esp, 14h
+		ret
+L03_66D2E7:
+		cmp edx, ebx
+		lea ecx,  [edx+8h]
+		jne L05_66D2F3
+		mov ecx, 107388Bh
+L05_66D2F3:
+		sub eax, ecx
+		push ebp
+		mov ebp, eax
+		mov dword ptr [esp+10h], ebx
+		push ebp
+		lea ecx,  [esp+14h]
+		mov byte ptr [esp+24h], 2h
+		__emit 0E8h
+		__emit 0D5h
+		__emit 0A8h
+		__emit 021h
+		__emit 000h   // call 0x887BE0
+		mov ecx, dword ptr [esp+2Ch]
+		cmp ecx, ebx
+		lea esi,  [ecx+8h]
+		jne L06_66D31B
+		mov esi, 107388Bh
+L06_66D31B:
+		mov ecx, ebp
+		mov edx, ecx
+		shr ecx, 2h
+		mov edi, eax
+		rep movsd
+		mov ecx, edx
+		and ecx, 3h
+		rep movsb
+		mov esi, dword ptr [esp+28h]
+		push eax
+		mov ecx, esi
+		mov byte ptr [eax+ebp], bl
+		__emit 0E8h
+		__emit 084h
+		__emit 0B8h
+		__emit 021h
+		__emit 000h   // call 0x888BC0
+		lea ecx,  [esp+10h]
+		mov dword ptr [esp+14h], 1h
+		mov byte ptr [esp+20h], 1h
+		__emit 0E8h
+		__emit 0EEh
+		__emit 0A5h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		lea ecx,  [esp+2Ch]
+		mov byte ptr [esp+20h], bl
+		__emit 0E8h
+		__emit 0E1h
+		__emit 0A5h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		mov ecx, dword ptr [esp+18h]
+		pop ebp
+		pop edi
+		mov eax, esi
+		pop esi
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 14h
 		ret
 	}
 }
