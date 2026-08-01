@@ -2254,7 +2254,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0UnitCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218870,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/UnitCrateCollide.cpp,matched,MASM converted to clean C++
 ??0UnitCrateCollideModuleData@@QAE@XZ,,0x00125EA0,88,Code/masm_dumps/UnitCrateCollideModuleData_constructor.asm,matched,Exact 88B @ 0x00125EA0; Exact retail MASM ModuleData ctor; unique factory 0x125F10; Open-BFME4+Grok
 ??0UnpauseSpecialPowerUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00048635,5,Code/masm_dumps/__0UnpauseSpecialPowerUpgrade__QAE_PAVThing__PBVModuleData___Z_48635.asm,matched,MASM exact retail dump
-??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ,,0x002D99B0,29,Code/masm_dumps/UnpauseSpecialPowerUpgradeModuleData_constructor.asm,matched,Exact 29B unique factory Open-BFME4
 ??0UpdateModuleInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,ICF alias of existing matched body
 ??0UpdateModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/UpdateModuleModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0UpgradeCenter@@QAE@XZ,,0x0010A6A0,29,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0GameMessage@@QAE@W4Type@0@@Z,,0x0008A2A0,53,Code/GameEngine/Source/Common/System/message_stream.cpp,matched,incremental thunk @0x359E5 to GameMessage constructor body @0x8A2A0; exact C++ retail layout reconstruction
 ??0StopSpecialPowerModuleData@@QAE@XZ,,0x0026B5B0,28,Code/GameEngine/Source/GameLogic/Object/SpecialPower/StopSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0SiegeDeployHordeSpecialPowerModuleData@@QAE@XZ,,0x00265D90,25,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SiegeDeployHordeSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
+??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ,,0x002D99B0,29,Code/GameEngine/Source/GameLogic/Object/SpecialPower/UnpauseSpecialPowerUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
