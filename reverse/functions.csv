@@ -12089,7 +12089,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onEnter@AIDockProcessDockState@@UAE?AW4StateReturnType@@XZ,,0x0014EEB0,44,Code/masm_dumps/_rn9__onEnter_AIDockProcessDockState__UAE_AW4StateReturnType__XZ_14EEB0.asm,matched,reloc-needle Open-BFME4+Grok
 ?onEnter@AIDockWaitForClearanceState@@UAE?AW4StateReturnType@@XZ,,0x0014E860,14,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
 ?onEnter@AIFollowWaypointPathState@@UAE?AW4StateReturnType@@XZ,,0x0017A8E0,622,Code/masm_dumps/AIFollowWaypointPathState_onEnter.asm,matched,certified packet 13 raw retail bytes sha256 3d454ccd5b18194a6e03c6913e0130409a6e30e15e2cc2eecae97c7c6f0fd6e6
-?onEnter@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00021E27,5,Code/masm_dumps/_onEnter_AIInternalMoveToState__UAE_AW4StateReturnType__XZ_21E27.asm,matched,MASM exact retail dump
 ?onEnter@AIMoveAndTightenState@@UAE?AW4StateReturnType@@XZ,,0x00173A80,124,Code/masm_dumps/AIMoveAndTightenState_onEnter_173A80.asm,matched,Certified packet 141 vtable slot thunk and exact retail SHA-256 3ac29c81d9079a97b9f1ebd1668a7ed0222c911ebf743a0a19dba0046e55a3b7
 ?onEnter@AIMoveAwayFromRepulsorsState@@UAE?AW4StateReturnType@@XZ,,0x00173D50,197,Code/masm_dumps/AIMoveAwayFromRepulsorsState_onEnter.asm,matched,vtable slot4 AIMoveAwayFromRepulsorsState @0xC9A368; drift 0x189924 misplaced
 ?onEnter@AIMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00173470,322,Code/masm_dumps/AIMoveToState_onEnter_173470.asm,matched,Certified packet 232 Ghidra ENTRY and vtable ownership SHA256 e2876b4e400b5cadb8d7797239cf72807c4c529335140bf490640b97308be799
@@ -12106,7 +12105,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onExit@AIAttackPursueTargetState@@UAEXW4StateExitType@@@Z,,0x00176560,21,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?onExit@AIAttackState@@UAEXW4StateExitType@@@Z,,0x00184C00,99,Code/masm_dumps/_sa9__onExit_AIAttackState__UAEXW4StateExitType___Z_184C00.asm,matched,Exact 99B Open-BFME4
 ?onExit@AIEnterState@@UAEXW4StateExitType@@@Z,,0x0017DA00,103,Code/masm_dumps/AIEnterState_onExit.asm,matched,MASM exact retail dump; true body via AIEnterState vtbl@0x109ABD0 slot5 (queue 0x17F217 was INSIDE AIPanicState::onExit)
-?onExit@AIInternalMoveToState@@UAEXW4StateExitType@@@Z,,0x00029311,5,Code/masm_dumps/_onExit_AIInternalMoveToState__UAEXW4StateExitType___Z_29311.asm,matched,MASM exact retail dump
 ?onExit@AIMoveAwayFromRepulsorsState@@UAEXW4StateExitType@@@Z,,0x00173EE0,54,Code/GameEngine/Source/GameLogic/AI/AIMoveAwayFromRepulsorsState_onExit.cpp,matched,Certified packet 357: true body 0x173EE0 (54B) via vtable 0xC9A368 slot5; queue 0x17F250 was scalar-deleting dtor; BFME State m_machine@+0x1c owner@+0x10; clear PANICKING bit@Object+0x118 + notify@0x2191D
 ?onExit@AIPanicState@@UAEXW4StateExitType@@@Z,,0x0017F1E0,84,Code/masm_dumps/AIPanicState_onExit.asm,matched,Ghidra-bound BFME panic-exit body
 ?onExit@DozerPrimaryIdleState@@UAEXW4StateExitType@@@Z,,0x002B6350,50,Code/masm_dumps/_rn5__onExit_DozerPrimaryIdleState__UAEXW4StateExitType___Z_2B6350.asm,matched,reloc-needle Open-BFME4+Grok
@@ -13370,7 +13368,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@AIFollowWaypointPathExactState@@UAE?AW4StateReturnType@@XZ,,0x0017AE10,35,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?update@AIFollowWaypointPathState@@UAE?AW4StateReturnType@@XZ,,0x001888D9,794,Code/GameEngine/Source/GameLogic/AI/AIStates_update.asm,matched,exact 794B via MASM
 ?update@AIHuntState@@UAE?AW4StateReturnType@@XZ,,0x0017E480,800,Code/masm_dumps/AIHuntState_update_17E480.asm,matched,Certified packet 152 exact retail MASM SHA256 80b88dde9572dbde5a8ad4b63b7d6ec0817a76928ab797f5922d383a00fad311
-?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x000488F6,5,Code/masm_dumps/_update_AIInternalMoveToState__UAE_AW4StateReturnType__XZ_488F6.asm,matched,MASM exact retail dump
 ?update@AIMoveAndDeleteState@@UAE?AW4StateReturnType@@XZ,,0x0017A530,152,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?update@AIMoveOutOfTheWayState@@UAE?AW4StateReturnType@@XZ,,0x00173A10,5,Code/masm_dumps/update_AIMoveOutOfTheWayState_00173A10_packet246.asm,matched,certified packet 246 constructor-owned vtable slot 6 tail-jump to matched AIInternalMoveToState update
 ?update@AIMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00188290,522,Code/masm_dumps/AIMoveToState_update_188290.asm,matched,Certified packet 18 constructor-vtable recovery SHA256 a1d50190e6650677c3f9dadf8807b1aefc023cef7b8c339d3ecb0f2a2dc33a03
@@ -13811,3 +13808,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?downloadNextQueuedFile@DownloadManager@@QAEJXZ,,0x00038F00,5,Code/GameEngine/Source/GameClient/DownloadManagerThunks.cpp,matched,Focused C++ thunk for DownloadManager queue advance
 ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,,0x000119E1,5,Code/GameEngine/Source/GameLogic/Object/LocomotorStoreNewLocomotorThunk.cpp,matched,5-byte const LocomotorStore factory thunk converted to focused C++ source
 ?getDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEIXZ,,0x0003D5F0,5,Code/GameEngine/Source/GameNetwork/NetDisconnectFrameCommandMsgGetDisconnectFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x674110
+?onEnter@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00021E27,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState onEnter
+?onExit@AIInternalMoveToState@@UAEXW4StateExitType@@@Z,,0x00029311,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState onExit
+?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x000488F6,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState update
