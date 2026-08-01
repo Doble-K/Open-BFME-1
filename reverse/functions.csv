@@ -4882,7 +4882,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GLANGameInfo@@QAEPAXI@Z,,0x006870C0,30,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,
 ??_GLANPlayer@@QAEPAXI@Z,,0x00686CA0,30,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ??_GLadderInfo@@QAEPAXI@Z,,0x0062AAE0,30,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,MASM converted to clean C++
-??_GLadderList@@QAEPAXI@Z,,0x006306D0,30,Code/masm_dumps/LadderList_scalar_destructor.asm,matched,Ghidra-bound deleting destructor
 ??_GLadderPreferences@@UAEPAXI@Z,,0x000ACC10,30,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ??_GLanguageFilter@@UAEPAXI@Z,,0x0044E600,30,Code/GameEngine/Source/GameClient/LanguageFilter.cpp,matched,
 ??_GLaserUpdateModuleData@@UAEPAXI@Z,,0x006043B0,30,Code/GameEngine/Source/GameLogic/Object/Update/LaserUpdate.cpp,matched,
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??0WeaponStore@@QAE@XZ,,0x001E5290,29,Code/GameEngine/Source/GameLogic/Object/WeaponStoreCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk; Weapon.cpp retains STL COMDAT carrier
 ??0?$pair@$$CBJVLadderPref@@@_STL@@QAE@ABJABVLadderPref@@@Z,,0x000A9D50,30,Code/GameEngine/Source/Common/UserPreferencesPairLadderPrefCtorThunk.cpp,matched,Open-BFME5 exact C++ STL pair constructor thunk; ICF-owned 30-byte body
 ?beginAreaSelectHint@InGameUI@@UAEXPBVGameMessage@@@Z,,0x0043AC30,51,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,converted exact MASM method dump to clean C++ with retail message null guard
+??_GLadderList@@QAEPAXI@Z,,0x006306D0,30,Code/GameNetwork/Source/GameSpy/LadderListScalarDestructorThunk.cpp,matched,Open-BFME5 exact C++ compiler-generated scalar deleting destructor; out-of-line LadderList destructor
