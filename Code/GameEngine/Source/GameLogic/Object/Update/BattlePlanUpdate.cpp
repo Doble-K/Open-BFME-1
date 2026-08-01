@@ -716,10 +716,20 @@ void BattlePlanUpdate::recenterTurret()
 }
 
 //------------------------------------------------------------------------------------------------
-// ?isTurretInNaturalPosition@BattlePlanUpdate@@IAE_NXZ present-unmatched
 Bool BattlePlanUpdate::isTurretInNaturalPosition()
 {
-	AIUpdateInterface *ai = getObject()->getAI();
+	#pragma pack(push, 1)
+	struct RetailBattlePlanLayout {
+		char padding[8];
+		Object *object;
+	};
+	struct RetailObjectLayout {
+		char padding[0x204];
+		AIUpdateInterface *ai;
+	};
+	#pragma pack(pop)
+	const RetailBattlePlanLayout *retail = reinterpret_cast<const RetailBattlePlanLayout *>(this);
+	AIUpdateInterface *ai = reinterpret_cast<const RetailObjectLayout *>(retail->object)->ai;
 	if( ai )
 	{
 		WhichTurretType tur = ai->getWhichTurretForCurWeapon();
