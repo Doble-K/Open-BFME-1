@@ -1114,7 +1114,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AutoAbilityBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ED8A0,155,Code/masm_dumps/AutoAbilityBehavior_constructor.asm,matched,Exact 155B @ 0x001ED8A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114F10
 ??0AutoAbilityBehaviorModuleData@@QAE@XZ,,0x001ED6A0,16,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoAbilityBehavior.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0AutoDepositUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00280D90,98,Code/GameEngine/Source/GameLogic/Object/Update/AutoDepositUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x280D90
-??0AutoDepositUpdateModuleData@@QAE@XZ,,0x00123E90,86,Code/masm_dumps/AutoDepositUpdateModuleData_constructor.asm,matched,Exact 86B @ 0x00123E90; Exact retail MASM ModuleData ctor; unique factory 0x123F20; Open-BFME4+Grok
 ??0AutoFindHealingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00281480,77,Code/GameEngine/Source/GameLogic/Object/Update/AutoFindHealingUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x281480
 ??0AutoFindHealingUpdateModuleData@@QAE@XZ,,0x00281430,31,Code/GameEngine/Source/GameLogic/Object/Update/AutoFindHealingUpdate.cpp,matched,converted thunk to TU-scoped C++ constructor
 ??0AutoHealBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00048B9E,5,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ArrowStormUpdateModuleData@@QAE@XZ,,0x002575D0,61,Code/GameEngine/Source/GameLogic/AI/ArrowStormUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ArmorUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/ArmorUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0AttributeModifierUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/AttributeModifierUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
+??0AutoDepositUpdateModuleData@@QAE@XZ,,0x00123E90,86,Code/GameEngine/Source/GameLogic/AI/AutoDepositUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
