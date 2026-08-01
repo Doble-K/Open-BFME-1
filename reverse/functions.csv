@@ -13802,3 +13802,5 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 _$E28,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp,matched,Open-BFME5 exact static initializer after +1B pad correction
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,,0x00019BCD,5,Code/Libraries/Source/WWVegas/WWLib/BitsetSetBitFlagsTestThunk.cpp,matched,ICF-group owner converted to focused C++ template thunk; remaining alias retains shared target
 ?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,,0x00019BCD,5,Code/Libraries/Source/WWVegas/WWLib/BitsetSetBitFlagsTestThunk.cpp,matched,object-symbol=?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z;ICF alias converted to focused C++ thunk TU
+_$E4,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Open-BFME5 ICF alias at corrected +1B entry
+_$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Open-BFME5 ICF alias at corrected +1B entry
