@@ -8476,7 +8476,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?animateSpecialPowerShortcut@ControlBar@@QAEX_N@Z,,0x0049D3F0,138,Code/masm_dumps/_animateSpecialPowerShortcut_ControlBar__QAEX_N_Z_49D3F0.asm,matched,Certified packet 52 exact retail db recovery SHA256 95668f392b888d19f05278bba0785edc983cc70ffb3339b60a3aa98dc91baea5
 ?any@?$BitFlags@$0ED@@@QBE_NXZ,,0x002083B0,20,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?any@?$bitset@$0ED@@_STL@@QBE_NXZ,,0x001DD630,20,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,,0x0003291B,5,Code/masm_dumps/_thunk_8212ee1ff6ac_3291B.asm,matched,thunk accessor of ported class (icf alias)
 ?anyIntersectionWith@?$BitFlags@$0N@@@QBE_NABV1@@Z,,0x00203420,17,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?append@LListNode@@QAEXPAV1@@Z,,0x00105910,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?appendBooleanArgument@GameMessage@@QAEX_N@Z,,0x0008AB90,22,Code/GameEngine/Source/Common/System/message_stream.cpp,matched,thunk-dump converted to clean C++ field accessor; allocArg() REL32-pinned
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining aliases retain shared target
 ?evaluateTeamInsideAreaPartially@ScriptConditions@@IAE_NPAVParameter@@00@Z,,0x0004A8E0,5,Code/GameEngine/Source/Common/RTS/ScriptConditionsEvaluateTeamInsideAreaPartiallyThunk.cpp,matched,5-byte incremental-link ScriptConditions protected member thunk converted to focused C++ source
 ?countIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
+?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
