@@ -12658,7 +12658,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?renderTrees@BaseHeightMapRenderObjClass@@QAEXPAVCameraClass@@@Z,,0x0003FE36,5,Code/masm_dumps/_renderTrees_BaseHeightMapRenderObjClass__QAEXPAVCameraClass___Z_3FE36.asm,matched,MASM exact retail dump
 ?render_box@BoxRenderObjClass@@IAEXAAVRenderInfoClass@@ABVVector3@@1@Z,,0x00956F40,1681,Code/masm_dumps/_leaf__render_box_BoxRenderObjClass__IAEXAAVRe_956F40.asm,matched,Exact 1681B present-unmatched leaf Open-BFME4
 ?reorderInBuildList@SidesInfo@@QAEXPAVBuildListInfo@@H@Z,,0x00192600,32,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
-?repairStructure@Player@@UAEXW4ObjectID@@@Z,,0x000C9720,20,Code/masm_dumps/_rn11__repairStructure_Player__UAEXW4ObjectID___Z_C9720.asm,matched,reloc-needle Open-BFME4+Grok
 ?requestCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyRequestArg@@@Z,,0x00031D9F,5,Code/masm_dumps/_requestCallback_BuddyThreadClass__QAEXPAVGPConnection__PAUGPRecvBuddyRequestArg___Z_31D9F.asm,matched,MASM exact retail dump
 ?resendFrameRangeToPlayer@BFMEConnectionManager@@QAEXHII@Z,,0x00664B40,384,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?reserve@?$vector@UHorzLine@@V?$allocator@UHorzLine@@@_STL@@@_STL@@QAEXI@Z,,0x0000DE95,5,Code/masm_dumps/_reserve___vector_UHorzLine__V__allocator_UHorzLine____STL____STL__QAEXI_Z_DE95.asm,matched,MASM exact retail dump
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ExperienceScalarUpgradeModuleData@@QAE@XZ,,0x002D5180,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/ExperienceScalarUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0CDDrive@@QAE@XZ,,0x00101E20,113,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,incremental thunk @0x2E997 to CDDrive constructor body @0x101E20; exact clean C++
 ??1?$ShareBufferClass@G@@UAE@XZ,,0x009240D0,29,Code/Libraries/Source/WWVegas/WWLib/ShareBufferUnsignedShort.cpp,matched,object-symbol=??1ShareBufferClassUnsignedShort@@QAE@XZ;Exact retail ShareBuffer<unsigned short> destructor emitted in dedicated C++ TU.
+?repairStructure@Player@@UAEXW4ObjectID@@@Z,,0x000C9720,20,Code/GameEngine/Source/Common/RTS/PlayerRepairStructure.cpp,matched,Exact retail Player::repairStructure emitted in dedicated C++ TU.
