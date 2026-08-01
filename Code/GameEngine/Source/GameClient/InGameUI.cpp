@@ -2212,11 +2212,11 @@ void InGameUI::removeMessageAtIndex( Int i )
 //-------------------------------------------------------------------------------------------------
 /** An area selection is occurring, start graphical "hint". */
 //-------------------------------------------------------------------------------------------------
-// ?beginAreaSelectHint@InGameUI@@UAEXPBVGameMessage@@@Z present-unmatched
 void InGameUI::beginAreaSelectHint( const GameMessage *msg )
 {
 	m_isDragSelecting = true;
-	m_dragSelectRegion = msg->getArgument( 0 )->pixelRegion;
+	if (msg)
+		m_dragSelectRegion = msg->getArgument( 0 )->pixelRegion;
 }
 
 //-------------------------------------------------------------------------------------------------

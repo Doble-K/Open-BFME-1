@@ -8905,7 +8905,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?begin@?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@QBEPBW4ScienceType@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?begin@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAE?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@XZ,,0x002CABF0,17,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,
 ?begin@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QBE?AU?$_Bit_iter@_NPB_N@2@XZ,,0x002CAC10,17,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,
-?beginAreaSelectHint@InGameUI@@UAEXPBVGameMessage@@@Z,,0x0043AC30,51,Code/masm_dumps/beginAreaSelectHint_InGameUI_0043AC30_packet318.asm,matched,Certified packet 318 sealed RVA size and SHA-256 exact retail byte dump
 ?beginAssault@AssaultTransportAIUpdate@@UBEXPBVObject@@@Z,,0x002B4450,17,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/AssaultTransportAIUpdate.cpp,matched,
 ?beginBlock@XferSave@@,,0x0082B820,78,Code/masm_dumps/_sa10__beginBlock_XferSave___82B820.asm,matched,Exact 78B Open-BFME4
 ?beginPlayerLeave@BFMEConnectionManager@@QAEXPAX@Z,,0x00667320,526,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ?doFreezeTime@ScriptActions@@IAEXXZ,,0x002EF680,11,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doFreezeTime.cpp,matched,Open-BFME5 exact C++ tail-jump stub
 ??0WeaponStore@@QAE@XZ,,0x001E5290,29,Code/GameEngine/Source/GameLogic/Object/WeaponStoreCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk; Weapon.cpp retains STL COMDAT carrier
 ??0?$pair@$$CBJVLadderPref@@@_STL@@QAE@ABJABVLadderPref@@@Z,,0x000A9D50,30,Code/GameEngine/Source/Common/UserPreferencesPairLadderPrefCtorThunk.cpp,matched,Open-BFME5 exact C++ STL pair constructor thunk; ICF-owned 30-byte body
+?beginAreaSelectHint@InGameUI@@UAEXPBVGameMessage@@@Z,,0x0043AC30,51,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,converted exact MASM method dump to clean C++ with retail message null guard
