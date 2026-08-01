@@ -1511,7 +1511,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GrabPassengerSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025F0E0,46,Code/masm_dumps/GrabPassengerSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0GrabPassengerSpecialPowerModuleData@@QAE@XZ,,0x0025F260,35,Code/masm_dumps/GrabPassengerSpecialPowerModuleData_constructor.asm,matched,Exact 35B unique factory Open-BFME4
 ??0GrantStealthBehaviorModuleData@@QAE@XZ,,0x002978A0,105,Code/masm_dumps/GrantStealthBehaviorModuleData_constructor.asm,matched,Exact 105B ICF primary MD Open-BFME4
-??0GrantUpgradeCreateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/GrantUpgradeCreateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0GridClassicEnvironmentMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00922070,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0GridCullSystemClass@@QAE@XZ,,0x008DF190,222,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ??0GridEnvironmentMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x009215C0,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,,0x0003EE32,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/xferRandomVariable.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0GrantUpgradeCreateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
