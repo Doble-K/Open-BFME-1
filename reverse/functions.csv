@@ -12972,7 +12972,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?startsWithNoCase@?$StringBase@G@@QBE_NPBG@Z,0x008873E0,0x8873e0,90,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?startsWithNoCase@?$StringBase@G@@QBE_NPBGH@Z,0x00887120,0x887120,69,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?staticInitModules@FXParticleSystem@@YAXXZ,0x0000261C,0x005EB400,125,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,initializes all module category static data
-?statusCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyStatusArg@@@Z,,0x0003BD8B,5,Code/masm_dumps/_statusCallback_BuddyThreadClass__QAEXPAVGPConnection__PAUGPRecvBuddyStatusArg___Z_3BD8B.asm,matched,MASM exact retail dump
 ?stdAngleDiff@@YAMMM@Z,,0x0016A310,19,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ?stopAllBoneFX@BoneFXUpdate@@QAEXXZ,,0x00288F40,131,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,thunk-dump converted to clean C++; killRunningParticleSystems() inlined by compiler
 ?stopAndRemoveMovie@WindowVideoManager@@QAEXPAVGameWindow@@@Z,,0x00498D10,107,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?messageCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyMessageArg@@@Z,,0x0000E43A,5,Code/GameEngine/Source/Common/RTS/BuddyThreadClassMessageCallbackThunk.cpp,matched,5-byte incremental-link BuddyThreadClass message callback thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@IAEXPAVProductionPrerequisite@@ABV3@ABU__false_type@2@I_N@Z,,0x00041F1F,5,Code/Libraries/Source/WWVegas/WWLib/ProductionPrerequisiteVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ?requestCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyRequestArg@@@Z,,0x00031D9F,5,Code/GameEngine/Source/Common/RTS/BuddyThreadClassRequestCallbackThunk.cpp,matched,5-byte incremental-link BuddyThreadClass request callback thunk converted to focused C++ source
+?statusCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyStatusArg@@@Z,,0x0003BD8B,5,Code/GameEngine/Source/Common/RTS/BuddyThreadClassStatusCallbackThunk.cpp,matched,5-byte incremental-link BuddyThreadClass status callback thunk converted to focused C++ source
