@@ -13779,7 +13779,7 @@ __alloca_probe,,0x009F6C60,61,Code/masm_dumps/___alloca_probe_9F6C60.asm,matched
 __chkstk,,0x009F6C60,61,Code/masm_dumps/_icf3___chkstk_9F6C60.asm,matched,ICF Open-BFME4+Grok
 __ftol2,,0x009F6E38,117,Code/masm_dumps/___ftol2_9F6E38.asm,matched,
 __purecall,,0x006CF680,3,Code/Libraries/Source/WWVegas/WWLib/Except.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-__stringbase_isnone_cmp_wchar,,0x00041F3D,5,Code/masm_dumps/__stringbase_isnone_cmp_wchar_41F3D.asm,matched,MASM exact retail dump
+__stringbase_isnone_cmp_wchar,,0x004EA730,89,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=?compareNoCase@?$StringBase@G@@QBEHPBG@Z;Thunk-dump converted to clean C++ ICF alias
 _acosf,,0x00873940,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,icf-owner=?ACos@@YAMM@Z
 _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,icf-owner=?ASin@@YAMM@Z
 _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
