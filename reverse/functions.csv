@@ -2208,7 +2208,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DGhostObjectManager@@QAE@XZ,,0x006BC8C0,26,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DGhostObject.cpp,matched,
 ??0W3DLaserDrawModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/W3DLaserDrawModuleData_constructor.asm,matched,Exact 162B ICF alias MD Open-BFME4
 ??0W3DProjectileStreamDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00369FD0,252,Code/masm_dumps/W3DProjectileStreamDraw_constructor.asm,matched,Exact 252B @ 0x00369FD0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1194C0
-??0W3DProjectileStreamDrawModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/W3DProjectileStreamDrawModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0W3DPropBuffer@@QAE@XZ,,0x00702FF0,328,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DPropBuffer_ctor.asm,matched,Certified packet 191 reviewed RVA and retail SHA-256
 ??0W3DPropDrawModuleData@@QAE@XZ,,0x000A71C0,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DPropDraw.cpp,matched,
 ??0W3DQuadrupedDrawModuleData@@QAE@XZ,,0x006BFE00,92,Code/masm_dumps/W3DQuadrupedDrawModuleData_constructor.asm,matched,Exact 92B @ 0x006BFE00; Exact retail MASM ModuleData ctor; unique factory 0x6BFEB0; Open-BFME4+Grok
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??$__copy@PAUNugget@ModuleInfo@@PAU12@H@_STL@@YAPAUNugget@ModuleInfo@@PAU12@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x0001F735,5,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetCopyThunk.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
 ??0W3DOverlordAircraftDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$__copy@PAUHideShowSubObjInfo@ModelConditionInfo@@PAU12@H@_STL@@YAPAUHideShowSubObjInfo@ModelConditionInfo@@PAU12@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x00018674,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/ModelConditionInfoCopyThunk.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
+??0W3DProjectileStreamDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
