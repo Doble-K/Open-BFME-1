@@ -1141,9 +1141,14 @@ LANGameInfo * LANAPI::LookupGame( UnicodeString gameName )
 	return theGame; // NULL means we didn't find anything.
 }
 
-// ?LookupGameByListOffset@LANAPI@@UAEPAVLANGameInfo@@H@Z present-unmatched
 LANGameInfo * LANAPI::LookupGameByListOffset( Int offset )
 {
+	#pragma pack(push, 1)
+	struct RetailLANGameInfoLayout {
+		char padding[0x398];
+		LANGameInfo *next;
+	};
+	#pragma pack(pop)
 	LANGameInfo *theGame = m_games;
 
 	if (offset < 0)
@@ -1151,7 +1156,7 @@ LANGameInfo * LANAPI::LookupGameByListOffset( Int offset )
 
 	while (offset-- && theGame)
 	{
-		theGame = theGame->getNext();
+		theGame = reinterpret_cast<RetailLANGameInfoLayout *>(theGame)->next;
 	}
 
 	return theGame; // NULL means we didn't find anything.

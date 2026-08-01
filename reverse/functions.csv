@@ -7161,7 +7161,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Log_DX8_ErrorCode@@YAXI@Z,,0x0087CAC0,25,Code/masm_dumps/_sym4__Log_DX8_ErrorCode__YAXI_Z_87CAC0.asm,matched,symbol Open-BFME4+Grok
 ?Log_Statistics_String@DX8MeshRendererClass@@QAEX_N@Z,,0x00947B50,122,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Look_At@Matrix3D@@QAEXABVVector3@@0M@Z,,0x008D6970,584,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
-?LookupGameByListOffset@LANAPI@@UAEPAVLANGameInfo@@H@Z,,0x00685150,36,Code/masm_dumps/_rn9__LookupGameByListOffset_LANAPI__UAEPAVLANGameInfo__H_Z_685150.asm,matched,reloc-needle Open-BFME4+Grok
 ?LookupSmallRankImage@@YAPBVImage@@HH@Z,,0x004F9CE0,302,Code/masm_dumps/LookupSmallRankImage.asm,matched,true body @0x4F9CE0 (302B); drift 0xC6C3EF is int3+CRT stubs; MASM exact; BFME side switch 2/3/4 only
 ?MD5Final@@YAXQAEPAUMD5_CTX@@@Z,,0x0086AEE0,174,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,
 ?MD5Init@@YAXPAUMD5_CTX@@@Z,,0x0086A400,40,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,
@@ -13799,3 +13798,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?getChipset@W3DShaderManager@@SA?AW4ChipsetType@@XZ,,0x007175B0,28,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,thunk-dump converted to C++ naked retail global chipset accessor
+?LookupGameByListOffset@LANAPI@@UAEPAVLANGameInfo@@H@Z,,0x00685150,36,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,clean LAN game list offset lookup through retail LANGameInfo layout
