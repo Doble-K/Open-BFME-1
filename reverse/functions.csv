@@ -7197,7 +7197,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Random_Float@WWMath@@SAMXZ,,0x008D8E00,26,Code/Libraries/Source/WWVegas/WWMath/wwmath.cpp,matched,
 ?Randomize@?$Int@$0EA@@@QAEXAAVStraw@@ABV1@1@Z,,0x009EA7D0,40,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,
 ?Raw_Seek@RawFileClass@@IAEHHH@Z,,0x009E6910,115,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
-?ReAcquireResources@W3DVolumetricShadowManager@@QAE_NXZ,,0x0000F9B6,5,Code/masm_dumps/_thunk_e2160ab9ee74_F9B6.asm,matched,thunk accessor of ported class
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/masm_dumps/_sa11__ReAcquireResources_WaterRenderObjClass__QAEXXZ_7A0500.asm,matched,string-anchor Open-BFME4+Grok shaders\wave.pso
 ?Re_Color@Line3DClass@@QAEXMMM@Z,,0x00951840,45,Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp,matched,
 ?Re_Orthogonalize@Matrix3@@QAEXXZ,,0x008D96B0,525,Code/Libraries/Source/WWVegas/WWMath/matrix3.cpp,matched,
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?Add@?$DynamicVectorClass@UPtrPairStruct@PointerRemapClass@@@@QAE_NABUPtrPairStruct@PointerRemapClass@@@Z,,0x00002A36,5,Code/Libraries/Source/WWVegas/WWLib/DynamicVectorAddPtrPairThunk.cpp,matched,Focused C++ template thunk for DynamicVectorClass<PointerRemapClass::PtrPairStruct>::Add
 ?releaseData@Dict@@AAEXXZ,,0x00014475,5,Code/GameEngine/Source/Common/RTS/DictReleaseDataThunk.cpp,matched,5-byte incremental-link Dict private member thunk converted to focused C++ source
 ?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,,0x0002FF6D,5,Code/GameEngine/Source/Common/RTS/DictGetAsciiStringThunk.cpp,matched,5-byte incremental-link Dict const member thunk converted to focused C++ source
+?ReAcquireResources@W3DVolumetricShadowManager@@QAE_NXZ,,0x0000F9B6,5,Code/Libraries/Source/WWVegas/WWLib/W3DVolumetricShadowManagerReAcquireThunk.cpp,matched,Focused C++ thunk for W3DVolumetricShadowManager::ReAcquireResources
