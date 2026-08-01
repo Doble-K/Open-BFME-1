@@ -10211,7 +10211,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getAsInt@RGBColor@@QBEHXZ,0x0002D989,0x0008E050,60,Code/Libraries/Source/WWVegas/WWMath/color.cpp,matched,packs RGB channels into a hex int
 ?getAsW3DModelDrawModuleData@ModuleData@@UBEPBVW3DModelDrawModuleData@@XZ,,0x006CF680,3,Code/GameEngine/Source/Common/Thing/Module.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getAsW3DTreeDrawModuleData@ModuleData@@UBEPBVW3DTreeDrawModuleData@@XZ,,0x006CF680,3,Code/GameEngine/Source/Common/Thing/Module.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,,0x0002FF6D,5,Code/masm_dumps/_getAsciiString_Dict__QBE_AVAsciiString__W4NameKeyType__PA_N_Z_2FF6D.asm,matched,MASM exact retail dump
 ?getAssaultTransportAIInterface@AIUpdateInterface@@UAEPAVAssaultTransportAIInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getAssaultTransportAIInterface@AIUpdateInterface@@UBEPBVAssaultTransportAIInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getAudioLengthMS@AudioManager@@UAEMPBVAudioEventRTS@@@Z,,0x0069FA00,323,Code/masm_dumps/getAudioLengthMS_AudioManager_69FA00.asm,matched,Certified packet 237 exact retail MASM SHA256 5cefa1c7f3e5e7d6fe3ad2dd58ec5f53ff3b21752dedfdbc12def2fb535e355b
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?findUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@ABVAsciiString@@@Z,,0x0002F95A,5,Code/GameEngine/Source/Common/RTS/UpgradeCenterFindUpgradeThunk.cpp,matched,5-byte incremental-link UpgradeCenter const member thunk converted to focused C++ source
 ?Add@?$DynamicVectorClass@UPtrPairStruct@PointerRemapClass@@@@QAE_NABUPtrPairStruct@PointerRemapClass@@@Z,,0x00002A36,5,Code/Libraries/Source/WWVegas/WWLib/DynamicVectorAddPtrPairThunk.cpp,matched,Focused C++ template thunk for DynamicVectorClass<PointerRemapClass::PtrPairStruct>::Add
 ?releaseData@Dict@@AAEXXZ,,0x00014475,5,Code/GameEngine/Source/Common/RTS/DictReleaseDataThunk.cpp,matched,5-byte incremental-link Dict private member thunk converted to focused C++ source
+?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,,0x0002FF6D,5,Code/GameEngine/Source/Common/RTS/DictGetAsciiStringThunk.cpp,matched,5-byte incremental-link Dict const member thunk converted to focused C++ source
