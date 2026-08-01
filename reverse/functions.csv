@@ -8958,7 +8958,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?countConditionInverseIntersection@?$SparseMatchFinder@VWeaponTemplateSet@@V?$BitFlags@$0BB@@@@@CAHABV?$BitFlags@$0BB@@@0@Z,,0x00132AB0,15,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?countIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z,,0x0013E870,42,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?countIntersection@?$BitFlags@$0L@@@QBEHABV1@@Z,,0x0013E8C0,42,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
-?countInverseIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,,0x00003873,5,Code/masm_dumps/_thunk_58073e49f2c5_3873.asm,matched,thunk accessor of ported class
 ?countInverseIntersection@?$BitFlags@$0L@@@QBEHABV1@@Z,,0x00140900,56,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?countTiles@WorldHeightMap@@SAHPAVInputStream@@PA_N@Z,,0x00747010,44,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?crc@AI@@UAEXPAVXfer@@@Z,,0x0014B8C0,303,Code/masm_dumps/_sa4__crc_AI__UAEXPAVXfer___Z_14B8C0.asm,matched,Exact 303B Open-BFME4
@@ -13804,3 +13803,4 @@ _$E28,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp,matched,Ope
 ?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,,0x00019BCD,5,Code/Libraries/Source/WWVegas/WWLib/BitsetSetBitFlagsTestThunk.cpp,matched,object-symbol=?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z;ICF alias converted to focused C++ thunk TU
 _$E4,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Open-BFME5 ICF alias at corrected +1B entry
 _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Open-BFME5 ICF alias at corrected +1B entry
+?countInverseIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,,0x00003873,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsHFCountInverseIntersectionThunk.cpp,matched,Focused C++ template thunk for BitFlags<0x75>::countInverseIntersection
