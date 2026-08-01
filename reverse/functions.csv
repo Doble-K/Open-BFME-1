@@ -12605,7 +12605,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setLastHeard@LANGameInfo@@QAEXI@Z,,0x0020CC20,13,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ?setLastHeard@LANGameSlot@@QAEXI@Z,,0x000B23C0,10,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
 ?setLastLadder@CustomMatchPreferences@@QAEXABVAsciiString@@G@Z,,0x000AD7A0,223,Code/masm_dumps/CustomMatchPreferences_setLastLadder.asm,matched,Ghidra ENTRY 223B LastLadderAddr/Port format+map assign MASM
-?setLastLadder@QuickMatchPreferences@@QAEXABVAsciiString@@G@Z,,0x00029B36,5,Code/masm_dumps/_setLastLadder_QuickMatchPreferences__QAEXABVAsciiString__G_Z_29B36.asm,matched,MASM exact retail dump
 ?setLateralSpeed@BridgeScaffoldBehavior@@UAEXM@Z,,0x00131DB0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setLayer@Bridge@@QAEXW4PathfindLayerEnum@@@Z,,0x0045BF90,13,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?setLeechRangeActive@Weapon@@QAEX_N@Z,,0x003BBAE0,10,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?Free_Object_Memory@?$ObjectPoolClass@VAABTreeNodeClass@@$0BAA@@@QAEXPAVAABTreeNodeClass@@@Z,,0x00011103,5,Code/Libraries/Source/WWVegas/WWLib/ObjectPoolFreeObjectMemoryThunk.cpp,matched,object-symbol=?Free_Object_Memory@?$ObjectPoolClass@VAABTreeLinkClass@@$0BAA@@@QAEXPAVAABTreeLinkClass@@@Z;ICF alias converted to focused C++ thunk TU
 ?Free_Object_Memory@?$ObjectPoolClass@VCameraShakerClass@CameraShakeSystemClass@@$0BAA@@@QAEXPAVCameraShakerClass@CameraShakeSystemClass@@@Z,,0x00011103,5,Code/Libraries/Source/WWVegas/WWLib/ObjectPoolFreeObjectMemoryThunk.cpp,matched,object-symbol=?Free_Object_Memory@?$ObjectPoolClass@VAABTreeLinkClass@@$0BAA@@@QAEXPAVAABTreeLinkClass@@@Z;ICF alias converted to focused C++ thunk TU
 ?Free_Object_Memory@?$ObjectPoolClass@VGenericSLNode@@$0BAA@@@QAEXPAVGenericSLNode@@@Z,,0x00011103,5,Code/Libraries/Source/WWVegas/WWLib/ObjectPoolFreeObjectMemoryThunk.cpp,matched,object-symbol=?Free_Object_Memory@?$ObjectPoolClass@VAABTreeLinkClass@@$0BAA@@@QAEXPAVAABTreeLinkClass@@@Z;ICF alias converted to focused C++ thunk TU
+?setLastLadder@QuickMatchPreferences@@QAEXABVAsciiString@@G@Z,,0x00029B36,5,Code/GameEngine/Source/Common/RTS/QuickMatchPreferencesSetLastLadderThunk.cpp,matched,5-byte incremental-link QuickMatchPreferences member thunk converted to focused C++ source
