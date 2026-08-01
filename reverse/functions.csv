@@ -1101,7 +1101,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AsciiString@@QAE@XZ,0x00017BD9,0x00062030,9,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,default constructor sets text pointer to null
 ??0AssetIterator@@IAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
 ??0AssistanceRequestData@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,ICF alias of existing matched body
-??0AssistedTargetingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0027FB60,134,Code/masm_dumps/AssistedTargetingUpdate_constructor.asm,matched,Exact 134B @ 0x0027FB60; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x117C40
 ??0AssistedTargetingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0AttackStateMachine@@QAE@PAVObject@@PAVAIAttackState@@VAsciiString@@_N33@Z,,0x0017F570,103,Code/masm_dumps/_sa8___0AttackStateMachine__QAE_PAVObject__PAVAIAttackS_17F570.asm,matched,Exact 103B Open-BFME4
 ??0AttributeModifierAuraUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002800D0,218,Code/masm_dumps/AttributeModifierAuraUpdate_constructor.asm,matched,Exact 218B @ 0x002800D0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A8D0
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0CritterEmitterUpdateModuleData@@QAE@XZ,,0x001FA3A0,414,Code/GameEngine/Source/GameLogic/AI/CritterEmitterUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AnimationSoundClientBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00605380,245,Code/GameEngine/Source/GameLogic/AI/AnimationSoundClientBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0ArrowStormUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002576E0,207,Code/GameEngine/Source/GameLogic/AI/ArrowStormUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
+??0AssistedTargetingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0027FB60,134,Code/GameEngine/Source/GameLogic/AI/AssistedTargetingUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
