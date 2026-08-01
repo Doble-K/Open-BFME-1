@@ -1088,14 +1088,14 @@ void ShaderClass::Invert_Backface_Culling(bool onoff)
  * HISTORY:                                                                                    *
  *   7/13/2001  hy : Created.                                                                  *
  *=============================================================================================*/
-// ?Get_SS_Category@ShaderClass@@QBE?AW4StaticSortCategoryType@1@XZ present-unmatched
+// ?Get_SS_Category@ShaderClass@@QBE?AW4StaticSortCategoryType@1@XZ
 ShaderClass::StaticSortCategoryType ShaderClass::Get_SS_Category(void) const
 {
 	// category: Opaque
 	if ( (ALPHATEST_DISABLE==Get_Alpha_Test()) && (DSTBLEND_ZERO==Get_Dst_Blend_Func()) )
 		return SSCAT_OPAQUE;
 	// category: Alpha Test
-	if (ALPHATEST_ENABLE==Get_Alpha_Test())	{
+	if ((ALPHATEST_ENABLE==Get_Alpha_Test()) || (ALPHATEST_MAX==Get_Alpha_Test()))	{
 		if (DSTBLEND_ZERO==Get_Dst_Blend_Func()) return SSCAT_ALPHA_TEST;
 		if ( (SRCBLEND_SRC_ALPHA==Get_Src_Blend_Func()) &&
 			  (DSTBLEND_ONE_MINUS_SRC_ALPHA==Get_Dst_Blend_Func()) )
@@ -1266,4 +1266,3 @@ const StringClass& ShaderClass::Get_Description(StringClass& str) const
 	}
 	return str;
 }
-

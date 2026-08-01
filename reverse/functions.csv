@@ -6614,7 +6614,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Rotation_Key_Frames@ParticleEmitterClass@@QBEXAAU?$ParticlePropertyStruct@M@@@Z,,0x0097E420,11,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Get_Rotation_Keyframes@ParticleEmitterDefClass@@UBEXAAU?$ParticlePropertyStruct@M@@@Z,,0x0098E600,23,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
 ?Get_S3_Device@DX8Caps@@CA?AW4DeviceTypeS3@1@I@Z,,0x0091B490,47,Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp,matched,
-?Get_SS_Category@ShaderClass@@QBE?AW4StaticSortCategoryType@1@XZ,,0x00910E10,126,Code/masm_dumps/_Get_SS_Category_ShaderClass__QBE_AW4StaticSortCategoryType_1_XZ_910E10.asm,matched,MASM exact retail dump
+?Get_SS_Category@ShaderClass@@QBE?AW4StaticSortCategoryType@1@XZ,,0x00910E10,126,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,MASM exact retail dump
 ?Get_Scene@RenderObjClass@@UAEPAVSceneClass@@XZ,,0x00920180,20,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
 ?Get_Scene_ID@SceneClass@@UBEHXZ,,0x006CF680,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?Get_Screen_Size@RenderObjClass@@UAEMAAVCameraClass@@@Z,,0x00920580,268,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,drift-voted candidate; unblocked by ctor shrink
