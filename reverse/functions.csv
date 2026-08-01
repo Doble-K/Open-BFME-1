@@ -11302,7 +11302,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPointOrad@LightEnvironmentClass@@QBEMH@Z,,0x00903370,14,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?getPointerToTileData@WorldHeightMap@@QAEPAEHHH@Z,,0x0074C920,273,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?getPointsForRank@GameSpyConfig@@UAEHH@Z,,0x006282F0,34,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,
-?getPopupReplayLayout@Shell@@QAEPAVWindowLayout@@XZ,,0x0057FEC0,48,Code/masm_dumps/_sa15__getPopupReplayLayout_Shell__QAEPAVWindowLayout__XZ_57FEC0.asm,matched,sa15 Open-BFME4+Grok Menus/PopupReplay.wnd
 ?getPosUnit@PathfindCell@@QBE?AW4ObjectID@@XZ,,0x003D4BF0,13,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?getPosition@BFMERopeDrawable@@QBEPBUCoord3D@@XZ,,0x0004B12D,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/BFMERopeDrawableGetPositionThunk.cpp,matched,Open-BFME5 exact ILT thunk; retail Drawable::getPosition body
 ?getPosition@ParticleSystem@@QAEXPAUCoord3D@@@Z,,0x005BDDB0,63,Code/masm_dumps/_rn5__getPosition_ParticleSystem__QAEXPAUCoord3D___Z_5BDDB0.asm,matched,reloc-needle Open-BFME4+Grok
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?onEnter@AIDockProcessDockState@@UAE?AW4StateReturnType@@XZ,,0x0014EEB0,44,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 exact C++ raw dock process state entry
 ?NAMEKEY@@YA?AW4NameKeyType@@ABVAsciiString@@@Z,,0x000A3AB0,44,Code/GameEngine/Source/Common/NameKeyHelperThunk.cpp,matched,Open-BFME5 exact C++ raw AsciiString name-key helper
 ?setAsciiString@Dict@@QAEXW4NameKeyType@@ABVAsciiString@@@Z,,0x00068860,41,Code/GameEngine/Source/Common/Dict.cpp,matched,Open-BFME5 exact C++ raw Dict ASCII setter
+?getPopupReplayLayout@Shell@@QAEPAVWindowLayout@@XZ,,0x0057FEC0,48,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,exact C++ popup layout with retail field offset and AsciiString shim
