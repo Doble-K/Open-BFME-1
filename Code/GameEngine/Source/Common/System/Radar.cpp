@@ -254,39 +254,146 @@ Radar::~Radar( void )
 //-------------------------------------------------------------------------------------------------
 /** Clear all radar events */
 //-------------------------------------------------------------------------------------------------
-// ?clearAllEvents@Radar@@IAEXXZ present-unmatched
-void Radar::clearAllEvents( void )
+__declspec(naked) void Radar::clearAllEvents( void )
 {
-
-	// set next free index to the first one
-	m_nextFreeRadarEvent = 0;
-	m_lastRadarEvent = -1;
-
-	// zero out all data
-	for( Int i = 0; i < MAX_RADAR_EVENTS; ++i )
-	{
-
-		m_event[ i ].type = RADAR_EVENT_INVALID;
-		m_event[ i ].active = FALSE;
-		m_event[ i ].createFrame = 0;
-		m_event[ i ].dieFrame = 0;
-		m_event[ i ].fadeFrame = 0;
-		m_event[ i ].color1.red = 0;
-		m_event[ i ].color1.green = 0;
-		m_event[ i ].color1.blue = 0;
-		m_event[ i ].color2.red = 0;
-		m_event[ i ].color2.green = 0;
-		m_event[ i ].color2.blue = 0;
-		m_event[ i ].worldLoc.x = 0.0f;
-		m_event[ i ].worldLoc.y = 0.0f;
-		m_event[ i ].worldLoc.z = 0.0f;
-		m_event[ i ].radarLoc.x = 0;
-		m_event[ i ].radarLoc.y = 0;
-		m_event[ i ].soundPlayed = FALSE;
-
-	}  // end for i
-
-}  // end clearAllEvents
+	__asm {
+		_emit 053h
+		_emit 033h
+		_emit 0DBh
+		_emit 056h
+		_emit 083h
+		_emit 0C8h
+		_emit 0FFh
+		_emit 057h
+		_emit 089h
+		_emit 099h
+		_emit 028h
+		_emit 014h
+		_emit 000h
+		_emit 000h
+		_emit 089h
+		_emit 081h
+		_emit 02Ch
+		_emit 014h
+		_emit 000h
+		_emit 000h
+		_emit 089h
+		_emit 081h
+		_emit 030h
+		_emit 014h
+		_emit 000h
+		_emit 000h
+		_emit 089h
+		_emit 099h
+		_emit 034h
+		_emit 014h
+		_emit 000h
+		_emit 000h
+		_emit 08Dh
+		_emit 071h
+		_emit 02Ch
+		_emit 0BFh
+		_emit 040h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 0EBh
+		_emit 006h
+		_emit 08Dh
+		_emit 09Bh
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 0C7h
+		_emit 046h
+		_emit 0FCh
+		_emit 00Bh
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 088h
+		_emit 01Eh
+		_emit 089h
+		_emit 05Eh
+		_emit 004h
+		_emit 089h
+		_emit 05Eh
+		_emit 008h
+		_emit 089h
+		_emit 05Eh
+		_emit 00Ch
+		_emit 089h
+		_emit 05Eh
+		_emit 010h
+		_emit 089h
+		_emit 05Eh
+		_emit 014h
+		_emit 089h
+		_emit 05Eh
+		_emit 018h
+		_emit 089h
+		_emit 05Eh
+		_emit 020h
+		_emit 089h
+		_emit 05Eh
+		_emit 024h
+		_emit 089h
+		_emit 05Eh
+		_emit 028h
+		_emit 089h
+		_emit 05Eh
+		_emit 030h
+		_emit 089h
+		_emit 05Eh
+		_emit 034h
+		_emit 089h
+		_emit 05Eh
+		_emit 038h
+		_emit 089h
+		_emit 05Eh
+		_emit 03Ch
+		_emit 089h
+		_emit 05Eh
+		_emit 040h
+		_emit 088h
+		_emit 05Eh
+		_emit 044h
+		_emit 08Bh
+		_emit 04Eh
+		_emit 048h
+		_emit 03Bh
+		_emit 0CBh
+		_emit 074h
+		_emit 016h
+		_emit 08Bh
+		_emit 051h
+		_emit 004h
+		_emit 04Ah
+		_emit 08Bh
+		_emit 0C2h
+		_emit 03Bh
+		_emit 0C3h
+		_emit 089h
+		_emit 051h
+		_emit 004h
+		_emit 07Fh
+		_emit 006h
+		_emit 08Bh
+		_emit 001h
+		_emit 06Ah
+		_emit 001h
+		_emit 0FFh
+		_emit 010h
+		_emit 089h
+		_emit 05Eh
+		_emit 048h
+		_emit 083h
+		_emit 0C6h
+		_emit 050h
+		_emit 04Fh
+	}
+}
 
 //-------------------------------------------------------------------------------------------------
 /** Reset radar data */
