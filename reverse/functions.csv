@@ -11854,7 +11854,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?lower_bound@?$map@GEU?$less@G@_STL@@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@QBE?AU?$_Rb_tree_iterator@U?$pair@$$CBGE@_STL@@U?$_Const_traits@U?$pair@$$CBGE@_STL@@@2@@2@ABG@Z,,0x00667AD0,45,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,
 ?makeAlignToNormalMatrix@@YAXMABUCoord3D@@0AAVMatrix3D@@@Z,,0x001A2E00,338,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?makeArmor@ArmorStore@@QBE?AVArmor@@PBVArmorTemplate@@@Z,,0x0020DD40,13,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,
-?makeDecoratedNameKey@ModuleFactory@@KA?AW4NameKeyType@@ABVAsciiString@@W4ModuleType@@@Z,,0x0004B439,5,Code/masm_dumps/_makeDecoratedNameKey_ModuleFactory__KA_AW4NameKeyType__ABVAsciiString__W4ModuleType___Z_4B439.asm,matched,MASM exact retail dump
 ?makeEmpty@SimpleObjectIterator@@QAEXXZ,,0x00015479,5,Code/masm_dumps/_thunk_596536e4ef08_15479.asm,matched,thunk accessor of ported class
 ?makeLowerCase@WSYS_String@@QAEXXZ,,0x0010A250,38,Code/GameEngine/Source/Common/System/String.cpp,matched,
 ?makeStateMachine@SupplyTruckAIUpdate@@,,0x002C5DB0,99,Code/masm_dumps/_sa9__makeStateMachine_SupplyTruckAIUpdate___2C5DB0.asm,matched,Exact 99B Open-BFME4
@@ -13594,3 +13593,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0CDDrive@@QAE@XZ,,0x00101E20,113,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,thunk-dump repointed to real body; COMDAT emitted by landed CDManager.cpp; StringBase clear pinned
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,,0x006C8930,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,thunk-dump converted to clean C++; BFME routes props via tree buffer; m_treeBuffer@0x309C pinned by this body; callee thunk pinned
 ?findImageByName@ImageCollection@@QAEPBVImage@@ABVAsciiString@@@Z,,0x005D2CF0,84,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,thunk-dump converted to clean C++; needs BFME 8-byte string header (reference/shims/asciistring8) for the inlined AsciiString::str()
+?makeDecoratedNameKey@ModuleFactory@@KA?AW4NameKeyType@@ABVAsciiString@@W4ModuleType@@@Z,,0x00126260,80,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,thunk-dump converted to clean C++; needs BFME 8-byte string header (reference/shims/asciistring8) for the inlined AsciiString::str()
