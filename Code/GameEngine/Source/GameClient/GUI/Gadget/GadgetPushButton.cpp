@@ -74,6 +74,31 @@
 
 // PRIVATE FUNCTIONS //////////////////////////////////////////////////////////
 
+struct RetailPushButtonData
+{
+	UnsignedByte field0;
+	UnsignedByte padding1[3];
+	Int field4;
+	Int field8;
+	UnsignedByte drawClock;
+	UnsignedByte paddingD[3];
+	Int field10;
+	Int field14;
+	Int field18;
+	Int field1C;
+	UnsignedByte field20;
+	UnsignedByte padding21[7];
+	UnsignedByte field28;
+	UnsignedByte padding29[3];
+	Int field2C;
+	Int field30;
+};
+
+__declspec(noinline) PushButtonData *retainPushButtonDataConstructor()
+{
+	return NEW PushButtonData;
+}
+
 static Bool buttonTriggersOnMouseDown(GameWindow *window)
 {
 	// Buttons with the on down status set trigger on mouse down. jba. [8/6/2003]
@@ -601,17 +626,22 @@ void GadgetButtonSetText( GameWindow *g, UnicodeString text )
 
 }  // end GadgetButtonSetText
 
-PushButtonData * getNewPushButtonData( void )
+__declspec(noinline) PushButtonData * getNewPushButtonData( void )
 {
-	PushButtonData *p = NEW PushButtonData;
-	if(!p)
-		return NULL;
-	
-	p->userData = NULL;
-	p->drawBorder = FALSE;
-	p->drawClock = NO_CLOCK;
-	p->overlayImage = NULL;
-	return p;
+	RetailPushButtonData *p = NEW RetailPushButtonData;
+	if (p) {
+		p->field1C = 0;
+		p->field14 = 0;
+		p->drawClock = NO_CLOCK;
+		p->field0 = 0;
+		p->field18 = 0;
+		p->field28 = 0;
+		p->field2C = 0;
+		p->field30 = 0;
+		p->field20 = 0;
+		return reinterpret_cast<PushButtonData *>(p);
+	}
+	return NULL;
 }
 
 // GadgetButtonSetBorder ======================================================
@@ -726,4 +756,3 @@ void *GadgetButtonGetData(GameWindow *g)
 // CS-locked in retail; ZH header inlines releaseBuffer and cannot match):
 // Code/masm_dumps/GadgetButtonSetAltSound_4BC770.asm @ 0x004BC770 size 90
 // void GadgetButtonSetAltSound(GameWindow *g, AsciiString altSound );
-
