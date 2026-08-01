@@ -1866,7 +1866,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RailedTransportAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0RailedTransportDockUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0RainOfFireUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000A0E2,5,Code/GameEngine/Source/Common/RTS/RainOfFireUpdateCtorThunk.cpp,matched,5-byte incremental-link RainOfFireUpdate constructor thunk converted to focused C++ source
-??0RainOfFireUpdateModuleData@@QAE@XZ,,0x002A08B0,62,Code/masm_dumps/RainOfFireUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x11C390
 ??0RampageBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00203C20,144,Code/masm_dumps/RampageBehavior_constructor.asm,matched,Exact 144B @ 0x00203C20; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1149C0
 ??0Random2Class@@QAE@I@Z,,0x009E63C0,76,Code/Libraries/Source/WWVegas/WWLib/random.cpp,matched,verbatim Generals WWLib
 ??0Random3Class@@QAE@II@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,tiny-locate
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0FXListDieModuleData@@QAE@XZ,,0x001234F0,86,Code/GameEngine/Source/GameLogic/AI/FXListDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0KeepObjectDieModuleData@@QAE@XZ,,0x00122ED0,69,Code/GameEngine/Source/GameLogic/AI/KeepObjectDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ModelConditionSpecialAbilityUpdateModuleData@@QAE@XZ,,0x002982D0,52,Code/GameEngine/Source/GameLogic/AI/ModelConditionSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0RainOfFireUpdateModuleData@@QAE@XZ,,0x002A08B0,62,Code/GameEngine/Source/GameLogic/AI/RainOfFireUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
