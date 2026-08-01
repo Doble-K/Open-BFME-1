@@ -2783,7 +2783,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1LockClass@MutexClass@@QAE@XZ,,0x009DB400,22,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,icf-owner=??1BFMEAutoLockRef@@QAE@XZ
 ??1Locomotor@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
 ??1LocomotorStore@@UAE@XZ,,0x005D2C10,139,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,structural: true body via ctor vtable; map+delete ICF ImageCollection; pin Rb_tree dtor 0x5D2900
-??1LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0002A08B,5,Code/masm_dumps/_thunk_cfc7de1816f7_2A08B.asm,matched,thunk accessor of ported class
 ??1LookAtTranslator@@UAE@XZ,,0x005A63A0,31,Code/GameEngine/Source/GameClient/MessageStream/LookAtXlat.cpp,matched,
 ??1ManTheWallsSpecialPower@@UAE@XZ,,0x00268F30,232,Code/masm_dumps/ManTheWallsSpecialPower_destructor.asm,matched,Exact 232B SEH dtor Open-BFME4
 ??1MapCache@@QAE@XZ,,0x00078E90,89,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?Bind@UDP@@QAEHIG@Z,,0x00047FA0,5,Code/Libraries/Source/DirtySock/UDPBindThunk.cpp,matched,5-byte incremental-link UDP member thunk converted to focused C++ source
 ??1HideShowSubObjInfo@ModelConditionInfo@@QAE@XZ,,0x0000466F,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/HideShowSubObjInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ?GameSpyOpenOverlay@@YAXW4GSOverlayType@@@Z,,0x0002BA21,5,Code/GameEngine/Source/GameNetwork/GameSpyOpenOverlayThunk.cpp,matched,5-byte incremental-link global thunk converted to focused C++ source
+??1LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0002A08B,5,Code/Libraries/Source/WWVegas/WW3D2/LogicalDecalDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
