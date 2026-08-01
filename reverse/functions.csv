@@ -13007,7 +13007,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setIgnoreObstacleID@Pathfinder@@QAEXW4ObjectID@@@Z,,0x0015E6E0,10,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,
 ?setImageSize@Image@@QAEXPAUICoord2D@@@Z,,0x005D1BD0,18,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar.cpp,matched,
 ?setIniCRC@GameSpyStagingRoom@@QAEXI@Z,,0x00684BF0,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
-?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z,,0x0043B280,20,Code/masm_dumps/_sym4__setInputEnabled_BfmeInGameUI_setInputEnabled__QAEX_N_Z_43B280.asm,matched,symbol Open-BFME4+Grok
 ?setInstanceScale@Drawable@@QAEXM@Z,,0x00955C20,13,Code/GameEngine/Source/GameLogic/Object/Update/EMPUpdate.cpp,matched,
 ?setInt@Dict@@QAEXW4NameKeyType@@H@Z,,0x00068800,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setInteractsWithBridge@ZoneBlock@@QAEX_N@Z,,0x0009FF30,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
@@ -13840,3 +13839,4 @@ __CIasin,,0x009F7D86,6,Code/Libraries/Source/WWVegas/WWMath/CIasinThunk.cpp,matc
 ??0Cftp@@QAE@XZ,,0x00885AD0,18,Code/GameEngine/Source/GameNetwork/CftpConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0Cftp@@QAE@XZ
 _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,matched,Open-BFME5 exact C++ CRT thunk replacing MASM dump;object-symbol=__atexit
 ?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z,,0x006B9A40,19,Code/Libraries/Source/WWVegas/WWAudio/AudioManagerAddAudioEventThunk.cpp,matched,Open-BFME5 exact C++ AudioManager vtable thunk replacing MASM dump;object-symbol=?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z
+?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z,,0x0043B280,20,Code/GameEngine/Source/GameLogic/ScriptEngine/BfmeInGameUISetInputEnabledThunk.cpp,matched,Open-BFME5 exact C++ BFME vtable thunk replacing MASM dump;object-symbol=?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z
