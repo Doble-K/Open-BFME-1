@@ -2025,7 +2025,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ShroudCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/masm_dumps/ShroudCrateCollideModuleData_constructor.asm,matched,Exact 147B ICF alias MD Open-BFME4
 ??0SidesInfo@@QAE@XZ,,0x001985B0,34,Code/GameEngine/Source/GameLogic/Map/SidesInfoConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; retail SidesInfo layout initializes vector at +0x0c
 ??0SidesList@@QAE@XZ,,0x0019EA80,365,Code/masm_dumps/SidesList_ctor.asm,matched,Correct retail body from GameEngine init thunk 0x00032EC5 and TheSidesList naming sequence
-??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/masm_dumps/SiegeAIUpdate_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0SiegeAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0SiegeDeployHordeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00265B20,77,Code/GameEngine/Source/GameLogic/Object/Update/DynamicGeometryInfoUpdateConstructor.cpp,matched,shared ICF owner converted to clean C++ body at destination 0x265B20
 ??0SiegeDeployHordeSpecialPowerModuleData@@QAE@XZ,,0x00265D90,25,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SiegeDeployHordeSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0AssaultTransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B46F0,97,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0DeployStyleAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
+??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
