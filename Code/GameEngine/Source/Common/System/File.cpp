@@ -59,7 +59,10 @@
 class File
 {
 public:
-	enum { TEXT = 0x20 };		// the bit print() tests: retail is test byte ptr [esi+8], 0x20
+	// Access flags. TEXT is the bit print() tests -- retail is
+	// test byte ptr [esi+8], 0x20 -- and READ|BINARY is what MemoryReadFile's
+	// constructor stores (0x41).
+	enum { READ = 0x01, WRITE = 0x02, TEXT = 0x20, BINARY = 0x40 };
 
 	File();
 	virtual ~File();							// slot 0
@@ -161,11 +164,27 @@ public:
 	virtual char *readEntireAndClose( void );
 	virtual File *convertToRAMFile( void );
 
+public:
+	MemoryReadFile( char *data, Int size );
+
 private:
 	char *m_data;			// +0x14
 	Int m_size;				// +0x18
 	Int m_pos;				// +0x1c
 };
+
+// ??0MemoryReadFile@@QAE@PADH@Z
+// Wraps a block the caller already owns: nothing is copied, and the file reports
+// itself as READ|BINARY and already open.
+MemoryReadFile::MemoryReadFile( char *data, Int size )
+{
+	m_data = data;
+	m_size = size;
+	m_pos = 0;
+	m_open = TRUE;
+	m_access = READ | BINARY;
+	setName( "<MemoryReadFile>" );
+}
 
 // ?open@MemoryReadFile@@UAE_NPBDH@Z
 Bool MemoryReadFile::open( const char * /*filename*/, Int /*access*/ )
@@ -326,12 +345,46 @@ public:
 	virtual char *readEntireAndClose( void );
 	virtual File *convertToRAMFile( void );
 
+public:
+	MemoryWriteFile( const char *name );
+
 private:
 	char *m_data;			// +0x14
 	Int m_size;				// +0x18
 	Int m_pos;				// +0x1c
 	Int m_capacity;			// +0x20
+	AsciiString m_pendingName;	// +0x24 -- the destructor releases it
 };
+
+// ??0MemoryWriteFile@@QAE@PBD@Z present-unmatched
+// 71 of 173 bytes. Content matches -- same stores, same fallback, same 0x42 --
+// but retail keeps its zero in edx, a caller-saved register it can use freely
+// because nothing between the File::File call and the name test is a call. We
+// put the zero in ebx, which costs a third callee-saved push, because the
+// implicit m_pendingName construction lands before the body assignments in our
+// schedule and after them in retail's. Same class of difference as
+// friend_parseRankDefinition.
+// Starts with no buffer at all; the first write allocates. Reports itself as
+// WRITE|BINARY and already open. A null name falls back to the placeholder, the
+// same way File's own constructor uses "<no file>".
+MemoryWriteFile::MemoryWriteFile( const char *name )
+{
+	m_data = NULL;
+	m_size = 0;
+	m_pos = 0;
+	m_capacity = 0;
+	m_open = TRUE;
+	m_access = WRITE | BINARY;
+
+	if( name )
+	{
+		setName( name );
+	}
+	else
+	{
+		setName( "<MemoryWriteFile>" );
+	}
+}
 
 // ?open@MemoryWriteFile@@UAE_NPBDH@Z
 Bool MemoryWriteFile::open( const char * /*filename*/, Int /*access*/ )
