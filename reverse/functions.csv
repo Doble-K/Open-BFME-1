@@ -12164,7 +12164,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?readAsciiString@RecorderClass@@IAE?AVAsciiString@@XZ,0x0003C1D2,0x98610,220,Code/GameEngine/Source/Common/System/recorder_strings.cpp,matched,
 ?readByte@DataChunkInput@@QAEDXZ,,0x00102830,48,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?readDestroyPlayerMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678C40,108,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
-?readDict@DataChunkInput@@QAE?AVDict@@XZ,,0x00022683,5,Code/masm_dumps/_readDict_DataChunkInput__QAE_AVDict__XZ_22683.asm,matched,MASM exact retail dump
 ?readDisconnectFrameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678C40,108,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readDisconnectKeepAliveMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readDisconnectPlayerMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678DB0,136,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?releaseData@Dict@@AAEXXZ,,0x00014475,5,Code/GameEngine/Source/Common/RTS/DictReleaseDataThunk.cpp,matched,5-byte incremental-link Dict private member thunk converted to focused C++ source
 ?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,,0x0002FF6D,5,Code/GameEngine/Source/Common/RTS/DictGetAsciiStringThunk.cpp,matched,5-byte incremental-link Dict const member thunk converted to focused C++ source
 ?ReAcquireResources@W3DVolumetricShadowManager@@QAE_NXZ,,0x0000F9B6,5,Code/Libraries/Source/WWVegas/WWLib/W3DVolumetricShadowManagerReAcquireThunk.cpp,matched,Focused C++ thunk for W3DVolumetricShadowManager::ReAcquireResources
+?readDict@DataChunkInput@@QAE?AVDict@@XZ,,0x00022683,5,Code/GameEngine/Source/Common/RTS/DataChunkInputReadDictThunk.cpp,matched,5-byte incremental-link DataChunkInput member thunk converted to focused C++ source
