@@ -7705,7 +7705,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_DX8_Light@DX8Wrapper@@SAXHPAU_D3DLIGHT8@@@Z,,0x00903490,144,Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp,matched,
 ?Set_DX8_Material@DX8Wrapper@@SAXPBU_D3DMATERIAL8@@@Z,,0x009217E0,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ?Set_DX8_Render_State@DX8Wrapper@@SAXKI@Z,,0x006C5740,193,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
-?Set_DX8_Texture_Stage_State@DX8Wrapper@@SAXIKI@Z,,0x000261E3,5,Code/masm_dumps/_thunk_f555873840eb_261E3.asm,matched,thunk accessor of ported class
 ?Set_Date_Time@RawFileClass@@UAE_NK@Z,,0x009E6690,99,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Set_Default_Global_Render_States@DX8Wrapper@@KAXXZ,,0x009081D0,211,Code/masm_dumps/_rn1__Set_Default_Global_Render_States_DX8Wrapper__KAXXZ_9081D0.asm,matched,reloc-needle Open-BFME4+Grok
 ?Set_Depth_Compare@ShaderClass@@QAEXW4DepthCompareType@1@@Z,,0x006C5250,16,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
@@ -10345,7 +10344,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getAIUpdateInterface@BehaviorModule@@UAEPAVAIUpdateInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getActiveBattlePlan@BattlePlanUpdate@@QBE?AW4BattlePlanStatus@@XZ,,0x000B2280,13,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,
 ?getAdditionalDisconnects@GameSpyInfo@@UAEHXZ,,0x006CF680,3,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getAdjustedVisionRangeForObject@AI@@SAMPBVObject@@H@Z,,0x0002481B,5,Code/masm_dumps/_thunk_378e2fbbc5f2_2481B.asm,matched,thunk accessor of ported class
 ?getAiEnemy@AIPlayer@@UAEPAVPlayer@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getAllPossibleBuildFacilityTemplates@ProductionPrerequisite@@QBEHQAPBVThingTemplate@@H@Z,,0x000E4770,103,Code/GameEngine/Source/Common/RTS/ProductionPrerequisite.cpp,matched,
 ?getAlternateMouseModeEnabled@OptionPreferences@@QAE_NXZ,,0x00092670,126,Code/masm_dumps/_sa13__getAlternateMouseModeEnabled_OptionPreferences__QAE_NXZ_92670.asm,matched,multi-xref Open-BFME4+Grok GameSpyIPAddress
@@ -10546,7 +10544,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getClassMemoryPool@NetCommandRef@@CAPAVMemoryPool@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
 ?getClassMemoryPool@OCLSpecialPower@@CAPAVMemoryPool@@XZ,,0x00262AF0,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,pool-glue cascade; copy proven by verify_string_refs
 ?getClassMemoryPool@ObjectCreationUpgrade@@CAPAVMemoryPool@@XZ,,0x002D6C60,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,pool-glue cascade; copy proven by verify_string_refs
-?getClassMemoryPool@ObjectDefectionHelper@@SAPAVMemoryPool@@XZ,,0x0000B9CE,5,Code/masm_dumps/_thunk_df0f11fba4f0_B9CE.asm,matched,thunk accessor of ported class (icf alias)
 ?getClassMemoryPool@OpenContain@@CAPAVMemoryPool@@XZ,,0x00226460,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,pool-glue cascade; copy proven by verify_string_refs
 ?getClassMemoryPool@Overridable@@CAPAVMemoryPool@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
 ?getClassMemoryPool@ParticleSystemFXNugget@@CAPAVMemoryPool@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
@@ -10655,7 +10652,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getCommandOption@SpectreGunshipUpdate@@UBE?AW4CommandOption@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/SpectreGunshipUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getCommandType@AICommandParmsStorage@@QBE?AW4AICommandType@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/JetAIUpdate.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?getCommandTypeAsAsciiString@GameMessage@@QAE?AVAsciiString@@W4Type@1@@Z,,0x0008B600,7143,Code/GameEngine/Source/Common/System/message_stream.cpp,matched,naked-asm whale: message-name; C++ capped at 64% by global regalloc
-?getCommandTypeAsAsciiString@GameMessage@@SA?AVAsciiString@@W4Type@1@@Z,,0x00040A1B,5,Code/masm_dumps/_getCommandTypeAsAsciiString_GameMessage__SA_AVAsciiString__W4Type_1__Z_40A1B.asm,matched,MASM exact retail dump
 ?getConfig@GameSpyInfo@@UAEABVAsciiString@@XZ,,0x006306C0,4,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,Vtable-bound GameSpyInfo accessor
 ?getConstSlot@GameInfo@@QBEPBVGameSlot@@H@Z,,0x0061E900,25,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?getContain@BehaviorModule@@UAEPAVContainModuleInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -13048,7 +13044,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?startMoveSound@AIInternalMoveToState@@AAEXXZ,,0x0016E6C0,566,Code/masm_dumps/AIInternalMoveToState_startMoveSound_16E6C0.asm,matched,MASM exact retail dump; true body via onEnter last call (queue 0xFB2BC was int3 pad)
 ?startNewGame@GameLogic@@QAEX_N@Z,,0x00394260,7640,Code/masm_dumps/_startNewGame_GameLogic__QAEX_N_Z_394260.asm,matched,Exact 7640B string-anchored Open-BFME4
 ?startPowerRecharge@SpecialPowerModule@@UAEXXZ,,0x0026AE00,112,Code/masm_dumps/_rn7__startPowerRecharge_SpecialPowerModule__UAEXXZ_26AE00.asm,matched,reloc-needle Open-BFME4+Grok
-?startRenderToTexture@W3DShaderManager@@SAXXZ,,0x000154E7,5,Code/masm_dumps/_thunk_b574341ed006_154E7.asm,matched,thunk accessor of ported class
 ?startThread@GameSpyBuddyMessageQueue@@UAEXXZ,,0x0063C650,222,Code/masm_dumps/GameSpyBuddyMessageQueue_startThread.asm,matched,vtable-slot1; true body 0x63C650/222; drift 0xB026CF false (dtor region); Open-BFME fleet
 ?startTraining@AIPlayer@@MAE_NPAVWorkOrder@@_NVAsciiString@@@Z,,0x00166EF0,313,Code/masm_dumps/_str__startTraining_AIPlayer_MAE_NPAVWorkOrder__NVAsciiString_Z_166EF0.asm,matched,str Queuing true body 0x166ef0 not drift 0xC6C3D3 Open-BFME structural
 ?startsWith@?$StringBase@D@@QBE_NABV1@@Z,0x0004B6A0,0x0033CB50,50,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
@@ -13800,3 +13795,8 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??$__find@U?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@_STL@@VAsciiString@@@_STL@@YA?AU?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@0@U10@0ABVAsciiString@@ABUinput_iterator_tag@0@@Z,,0x00027BAB,5,Code/Libraries/Source/WWVegas/WWLib/AsciiStringListFindThunk.cpp,matched,5-byte incremental-link STL find thunk converted to focused C++ template instantiation
 ??1?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@QAE@XZ,,0x00009525,5,Code/Libraries/Source/WWVegas/WWLib/NameKeyTypeObjectCreationPairDestructorThunk.cpp,matched,5-byte incremental-link STL destructor thunk converted to focused C++ thunk TU
 ??1?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAE@XZ,,0x0001642D,5,Code/Libraries/Source/WWVegas/WWLib/Coord2DVectorDestructorThunk.cpp,matched,5-byte incremental-link STL destructor thunk converted to focused C++ thunk TU
+?getCommandTypeAsAsciiString@GameMessage@@SA?AVAsciiString@@W4Type@1@@Z,,0x00040A1B,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
+?getAdjustedVisionRangeForObject@AI@@SAMPBVObject@@H@Z,,0x0002481B,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
+?startRenderToTexture@W3DShaderManager@@SAXXZ,,0x000154E7,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
+?Set_DX8_Texture_Stage_State@DX8Wrapper@@SAXIKI@Z,,0x000261E3,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
+?getClassMemoryPool@ObjectDefectionHelper@@SAPAVMemoryPool@@XZ,,0x0000B9CE,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted alongside existing ICF target
