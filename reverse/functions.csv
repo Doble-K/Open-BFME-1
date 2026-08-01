@@ -13674,3 +13674,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?beginPlayerLeave@BFMEConnectionManager@@QAEXPAX@Z,,0x00667320,526,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ??$_Construct@U?$pair@W4ObjectID@@W41@@_STL@@U12@@_STL@@YAXPAU?$pair@W4ObjectID@@W41@@0@ABU10@@Z,,0x007850E0,23,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,23B reloc-free ICF clone; real body not SEH 768C40
+?writeReportIfMismatched@BFMEDesyncCheck@@QAEXXZ,,0x00065470,501,Code/GameEngine/Source/GameNetwork/native_desync_report.cpp,matched,
