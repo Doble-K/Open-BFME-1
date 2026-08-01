@@ -11232,7 +11232,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getNextAsciiString@INI@@QAE?AVAsciiString@@XZ,,0x008516E0,393,Code/masm_dumps/getNextAsciiString_INI_QAE_AVAsciiString_XZ_8516E0.asm,matched,Ghidra boundary plus static quoted-token buffer flow
 ?getNextFormationID@AI@@QAE?AW4FormationID@@XZ,,0x0014A570,10,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,
 ?getNextHeader@HeaderTemplateManager@@QAEPAVHeaderTemplate@@PAV2@@Z,,0x0048C440,42,Code/GameEngine/Source/GameClient/GUI/HeaderTemplate.cpp,matched,
-?getNextMission@Campaign@@QAEPAVMission@@PAV2@@Z,,0x0003236C,5,Code/masm_dumps/_getNextMission_Campaign__QAEPAVMission__PAV2__Z_3236C.asm,matched,MASM exact retail dump
 ?getNextPlayPortion@AudioEventRTS@@QBE?AW4PortionToPlay@@XZ,,0x000B2420,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Retail thunk-bound BFME next-portion getter
 ?getNextQuotedAsciiString@INI@@QAE?AVAsciiString@@XZ,,0x00851540,401,Code/masm_dumps/getNextQuotedAsciiString_INI_QAE_AVAsciiString_XZ_851540.asm,matched,Ghidra boundary plus 0x40C quoted-token buffer flow
 ?getNextSubToken@INI@@QAEPBDPBD@Z,,0x00850B00,157,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,BFME throws INIException with a formatted message
@@ -13804,3 +13803,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?getNextMission@Campaign@@QAEPAVMission@@PAV2@@Z,,0x0003236C,5,Code/Libraries/Source/WWVegas/WWLib/CampaignMissionThunk.cpp,matched,Focused C++ thunk for Campaign::getNextMission
