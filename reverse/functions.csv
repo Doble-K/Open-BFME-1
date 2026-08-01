@@ -1832,7 +1832,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ProductionUpdateModuleData@@QAE@XZ,,0x0029FB70,159,Code/masm_dumps/ProductionUpdateModuleData_constructor.asm,matched,Exact 159B @ 0x0029FB70; Exact retail MASM ModuleData ctor; unique factory 0x11AC90
 ??0ProjectedShadowManager@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,ICF alias of existing matched body
 ??0ProneUpdateModuleData@@QAE@XZ,,0x0029FE30,13,Code/GameEngine/Source/GameLogic/Object/Update/ProneUpdate.cpp,matched,exact 13B no-call ModuleData ctor (m_damageToFramesRatio=1.0f); moduledata shim; replaces 5B thunk @0x2DABA
-??0PropagandaTowerBehaviorModuleData@@QAE@XZ,,0x00010B2C,5,Code/masm_dumps/__0PropagandaTowerBehaviorModuleData__QAE_XZ_10B2C.asm,matched,MASM exact retail dump
 ??0PrototypeClass@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,ICF alias of existing matched body
 ??0PrototypeLoaderClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,ICF alias of existing matched body
 ??0ProxyArrayClass@@QAE@H@Z,,0x0097B780,48,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@UHideShowSubObjInfo@ModelConditionInfo@@V?$allocator@UHideShowSubObjInfo@ModelConditionInfo@@@_STL@@@_STL@@IAEXPAUHideShowSubObjInfo@ModelConditionInfo@@ABU34@ABU__false_type@2@I_N@Z,,0x000251D0,5,Code/Libraries/Source/WWVegas/WWLib/ModelConditionInfoHideShowSubObjInfoVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0StatusBitsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000DFBC,5,Code/GameEngine/Source/GameLogic/Object/Upgrade/StatusBitsUpgradeCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@UPrereqUnitRec@ProductionPrerequisite@@V?$allocator@UPrereqUnitRec@ProductionPrerequisite@@@_STL@@@_STL@@IAEXPAUPrereqUnitRec@ProductionPrerequisite@@ABU34@ABU__false_type@2@I_N@Z,,0x0000F277,5,Code/Libraries/Source/WWVegas/WWLib/ProductionPrerequisitePrereqUnitRecVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0PropagandaTowerBehaviorModuleData@@QAE@XZ,,0x00010B2C,5,Code/GameEngine/Source/GameLogic/Object/Behavior/PropagandaTowerBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
