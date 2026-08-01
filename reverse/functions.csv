@@ -595,7 +595,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$DefaultModuleTemplate@$05@FXParticleSystem@@QAE@ABV01@@Z,,0x005D57A0,62,Code/masm_dumps/__0__DefaultModuleTemplate__05_FXParticleSystem__QAE_ABV01__Z_5D57A0.asm,matched,MASM exact retail dump
 ??0?$DefaultModuleTemplate@$05@FXParticleSystem@@QAE@XZ,0x0002FC2A,0x005DD5D0,106,Code/masm_dumps/___0__DefaultModuleTemplate__05_FXParticleSystem__Q_5DD5D0.asm,matched,
 ??0?$DefaultModuleTemplate@$06@FXParticleSystem@@QAE@ABV01@@Z,,0x005DB340,39,Code/masm_dumps/__0__DefaultModuleTemplate__06_FXParticleSystem__QAE_ABV01__Z_5DB340.asm,matched,MASM exact retail dump
-??0?$DefaultModuleTemplate@$06@FXParticleSystem@@QAE@XZ,0x000266B1,0x005DEA80,32,Code/masm_dumps/0_DefaultModuleTemplate_06_FXParticleSystem_QAE_XZ_005DEA80_83675bb8.asm,matched,MASM exact retail export dump; Ghidra boundary
 ??0?$DefaultModuleTemplate@$0A@@FXParticleSystem@@QAE@ABV01@@Z,,0x005D5560,62,Code/masm_dumps/__0__DefaultModuleTemplate__0A__FXParticleSystem__QAE_ABV01__Z_5D5560.asm,matched,MASM exact retail dump
 ??0?$DefaultModuleTemplate@$0A@@FXParticleSystem@@QAE@XZ,0x00041AB5,0x005DD4C0,106,Code/masm_dumps/___0__DefaultModuleTemplate__0A__FXParticleSystem___5DD4C0.asm,matched,
 ??0?$DynamicVectorClass@H@@QAE@IPBH@Z,,0x00907440,93,Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp,matched,
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??0HealContainModuleData@@QAE@XZ,,0x0028B9E0,32,Code/GameEngine/Source/GameLogic/Object/Update/HealContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0HE@@@@Z,,0x00132AE0,41,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail ThingTemplate kindof shim and REL32 pin
 ??0OneRingPenaltyUpdateModuleData@@QAE@XZ,,0x00298D30,32,Code/GameEngine/Source/GameLogic/Object/Update/OneRingPenaltyUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
+??0?$DefaultModuleTemplate@$06@FXParticleSystem@@QAE@XZ,,0x005DEA80,32,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate6CtorThunk.cpp,matched,Open-BFME5 exact C++ template constructor thunk; retail ordinal $06 is template 7
