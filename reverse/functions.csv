@@ -11750,7 +11750,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isAlt@Keyboard@@QAE_NXZ,,0x005A3260,12,Code/GameEngine/Source/GameClient/Input/Keyboard.cpp,matched,
 ?isAngleDifferent@@YA_NMM@Z,,0x001BE650,29,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?isAnimFinished@Shell@@QAE_NXZ,,0x0057F3C0,61,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
-?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0HE@@@@Z,,0x00132AE0,41,Code/masm_dumps/Thing_isAnyKindOf.asm,matched,Exact retail MASM; Thing template-mask flow and any-intersection helper prove ownership
 ?isAnyTaskPending@DozerAIUpdate@@UAE_NXZ,,0x002B68D0,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,
 ?isAnyTaskPending@WorkerAIUpdate@@UAE_NXZ,,0x002C7F80,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,
 ?isAttackViewBlockedByObstacle@Pathfinder@@QAE_NPBVObject@@ABUCoord3D@@01@Z,,0x003EA980,501,Code/masm_dumps/isAttackViewBlockedByObstacle_Pathfinder_QAE_NPBVObject_ABUCoord3D_01_Z_003EA980_c355d0a8.asm,matched,Ghidra-proven true body; queue RVA 0x3EAA5D was inside
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??0FellBeastSwoopPowerModuleData@@QAE@XZ,,0x0025CF10,32,Code/GameEngine/Source/GameLogic/Object/Update/FellBeastSwoopPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ??0WeaponSetSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026DC20,32,Code/GameEngine/Source/GameLogic/Object/Update/WeaponSetSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ??0HealContainModuleData@@QAE@XZ,,0x0028B9E0,32,Code/GameEngine/Source/GameLogic/Object/Update/HealContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
+?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0HE@@@@Z,,0x00132AE0,41,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail ThingTemplate kindof shim and REL32 pin

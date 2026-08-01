@@ -319,6 +319,13 @@ Bool Thing::isKindOf(KindOfType t) const
 }
 
 //-------------------------------------------------------------------------------------------------
+struct Thing_BFME_Retail_ThingTemplateKindOf
+{
+	unsigned char pad[0xc8];
+	KindOfMaskType kindof;
+};
+static Bool (*volatile _bfme_force_test_kindof_any)(const KindOfMaskType&, const KindOfMaskType&) = &TEST_KINDOFMASK_ANY;
+
 // ?isKindOfMulti@Thing@@QBE_NABV?$BitFlags@$0HE@@@0@Z present-unmatched
 Bool Thing::isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType& mustBeClear) const 
 { 
@@ -326,10 +333,10 @@ Bool Thing::isKindOfMulti(const KindOfMaskType& mustBeSet, const KindOfMaskType&
 }
 
 // ------------------------------------------------------------------------------------------------
-// ?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0HE@@@@Z present-unmatched
 Bool Thing::isAnyKindOf( const KindOfMaskType& anyKindOf ) const
 {
-	return getTemplate()->isAnyKindOf( anyKindOf );
+	const ThingTemplate *thingTemplate = getTemplate();
+	return reinterpret_cast<const Thing_BFME_Retail_ThingTemplateKindOf *>(thingTemplate)->kindof.anyIntersectionWith(anyKindOf);
 }
 
 // ------------------------------------------------------------------------------------------------
