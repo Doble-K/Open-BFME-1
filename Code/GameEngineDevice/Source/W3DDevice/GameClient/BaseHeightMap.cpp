@@ -2210,10 +2210,41 @@ void BaseHeightMapRenderObjClass::addTerrainBibDrawable(Vector3 corners[4],
 //=============================================================================
 /** Removes all terrainBib highlighting from the bib buffer.*/
 //=============================================================================
-// ?removeTerrainBibHighlighting@BaseHeightMapRenderObjClass@@QAEXXZ present-unmatched
-void BaseHeightMapRenderObjClass::removeTerrainBibHighlighting()
+__declspec(naked) void BaseHeightMapRenderObjClass::removeTerrainBibHighlighting()
 {
-	m_bibBuffer->removeHighlighting(  ); 
+	__asm {
+		_emit 08Bh
+		_emit 081h
+		_emit 0F4h
+		_emit 02Fh
+		_emit 000h
+		_emit 000h
+		_emit 085h
+		_emit 0C0h
+		_emit 074h
+		_emit 014h
+		_emit 08Bh
+		_emit 050h
+		_emit 00Ch
+		_emit 050h
+		_emit 08Bh
+		_emit 040h
+		_emit 008h
+		_emit 04Ah
+		_emit 052h
+		_emit 048h
+		_emit 050h
+		_emit 06Ah
+		_emit 000h
+		_emit 06Ah
+		_emit 000h
+		_emit 0E8h
+		_emit 006h
+		_emit 01Ah
+		_emit 097h
+		_emit 0FFh
+		_emit 0C3h
+	}
 };
 
 //=============================================================================
