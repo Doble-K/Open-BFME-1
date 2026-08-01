@@ -1324,7 +1324,6 @@ void BaseHeightMapRenderObjClass::worldBuilderUpdateBridgeTowers( W3DAssetManage
 
 }
 
-// ?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ present-unmatched
 void BaseHeightMapRenderObjClass::setShoreLineDetail(void)
 {
 	if (!m_map)

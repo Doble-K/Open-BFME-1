@@ -12956,7 +12956,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setShader@W3DShaderManager@@SAHW4ShaderTypes@1@H@Z,,0x00716980,61,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
 ?setShadowLengthScale@W3DVolumetricShadow@@IAEXM@Z,,0x00321FB0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?setShadowObj@MapObject@@QAEXPAVShadow@@@Z,,0x00087470,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
-?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ,,0x0000CC8E,5,Code/masm_dumps/_thunk_f5d49d3fcf9f_CC8E.asm,matched,thunk accessor of ported class (icf alias)
 ?setShoreLineDetail@W3DTerrainVisual@@UAEXXZ,,0x00731000,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?setShouldFade@AudioEventRTS@@QAEX_N@Z,,0x0018F237,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,
 ?setShowBehindBuildingMarkers@GameLogic@@QAEX_N@Z,,0x001FFAF0,10,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
@@ -13594,3 +13593,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852EE0,102,Code/masm_dumps/parsePercentToReal_INI_SAXPAV1_PAX1PBX_Z_852EE0.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
 ?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,thunk-dump converted to clean C++; BFME drops ZH bib call and does full-map updateShorelineTiles refresh; m_map@0x2FF4 + no-interface WorldHeightMap via reference/shims/bfmeheightmap
 ?removeTerrainBibHighlighting@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,ICF twin of removeAllTerrainBibs; byte-identical full-map updateShorelineTiles refresh in BFME
+?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,ICF triplet: ZH body (full-map updateShorelineTiles refresh) compiles byte-identical to the two converted TerrainBib functions
