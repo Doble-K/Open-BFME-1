@@ -188,17 +188,30 @@ Int GadgetListBoxGetEntryBasedOnXY( GameWindow *listbox, Int x, Int y, Int &row,
 
 // getListboxTopEntry =========================================================
 //=============================================================================
-static Int getListboxTopEntry( ListboxData *list )
+#pragma pack(push, 1)
+struct BFMEListboxTopLayout
+{
+	unsigned char pad0[0x18];
+	ListEntryRow *listData;
+	unsigned char pad1[0x10];
+	Short endPos;
+	unsigned char pad2[0x16];
+	Short displayPos;
+};
+#pragma pack(pop)
+
+__declspec(noinline) static Int getListboxTopEntry( ListboxData *list )
 {
 	Int entry;
+	const BFMEListboxTopLayout *retail = reinterpret_cast<const BFMEListboxTopLayout *>(list);
 
 	// determin which entry is at the top of the display area
 	for( entry=0; ; entry++ )
 	{
-		if( list->listData[entry].listHeight > list->displayPos )
+		if( retail->listData[entry].listHeight > retail->displayPos )
 			return entry;
 
-		if( entry >= list->endPos )
+		if( entry >= retail->endPos )
 			return 0;
 	}
 

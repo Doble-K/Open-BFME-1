@@ -11097,7 +11097,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getListBoxImageDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getListboxBottomEntry@@YAHPAU_ListboxData@@@Z,,0x004B6BA0,63,Code/masm_dumps/_getListboxBottomEntry__YAHPAU_ListboxData___Z_4B6BA0.asm,matched,MASM exact retail dump
 ?getListboxEntryBasedOnCoord@@YAHPAVGameWindow@@HHAAH1@Z,,0x004B69D0,273,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,clean C++; DisplayString vtable TU-shim (reference/shims/displaystring) drops ZH MEMORY_POOL_GLUE extra getObjectMemoryPool slot so getTextLength lands at retail vtbl+0xC; ListboxData raw-offset casts (listData@+0x18 endPos@+0x2c columnWidth@+0x14 displayPos/displayHeight@+0x3c/+0x44)
-?getListboxTopEntry@@YAHPAU_ListboxData@@@Z,,0x004B6B60,44,Code/masm_dumps/_getListboxTopEntry__YAHPAU_ListboxData___Z_4B6B60.asm,matched,MASM exact retail dump
 ?getLoadScreen@GameLogic@@AAEPAVLoadScreen@@_N@Z,,0x006BACD7,83,Code/GameEngine/Source/GameLogic/System/GameLogic_getLoadScreen.asm,matched,exact 487B via MASM
 ?getLocalAddr@UDP@@QAEHAAIAAG@Z,,0x006845C0,25,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?getLocalLadders@LadderList@@QAEPBV?$list@PAVLadderInfo@@V?$allocator@PAVLadderInfo@@@_STL@@@_STL@@XZ,,0x0062A160,3,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,Ghidra-bound unique accessor
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setFrameCommandCount@FrameDataManager@@QAEXII@Z,,0x00670750,34,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,direct C++ frame command-count setter replaces MASM dump
 ?detach@NetCommandMsg@@QAEXXZ,,0x00673610,16,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,codegen-blocked retail reference-count body; exact small __asm escape hatch in official C++ source
 ?removeObject@Radar@@QAEXPAVObject@@@Z,,0x00106C20,49,Code/GameEngine/Source/Common/System/Radar.cpp,matched,direct C++ radar object removal with retail object offset replaces MASM dump
+?getListboxTopEntry@@YAHPAU_ListboxData@@@Z,,0x004B6B60,44,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,direct C++ listbox top-entry helper with packed retail layout replaces MASM dump
