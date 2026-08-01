@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/ini /Ireference/shims/gamelod /Ireference/shims/ini_noinline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
 // stlport
 /*
 **	Command & Conquer Generals Zero Hour(tm)
@@ -36,6 +36,8 @@
 #include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
 
 #include "Common/GameLOD.h"
+#include "Common/INI.h"
+#include "Common/INIException.h"
 #include "GameClient/TerrainVisual.h"
 #include "GameClient/GameClient.h"
 #include "Common/UserPreferences.h"
@@ -316,25 +318,50 @@ Int GameLODManager::getStaticGameLODIndex(AsciiString name)
 }
 
 /**Parse a description of all the LOD settings for a given detail level*/
-// ?parseStaticGameLODDefinition@INI@@SAXPAV1@@Z present-unmatched
-void INI::parseStaticGameLODDefinition( INI* ini )
+// ?parseStaticGameLODDefinition@INI@@SAXPAV1@@Z
+// The "StaticGameLOD" block. BFME's field set is not Zero Hour's, so this table
+// carries the offsets retail's own table at 0x01076760 holds rather than
+// offsetof against a reconstructed struct: the element is 0x30 bytes (the parse
+// function indexes it as index*0x30) but not every member type past the offset
+// is pinned yet. m_staticGameLODInfo sits at offset 0 of GameLODManager --
+// retail computes the element address as TheGameLODManager + index*0x30 with
+// nothing added.
+static const FieldParse TheBFMEStaticGameLODFieldParseTable[] =
 {
-	const char *c;
-	AsciiString name;
+	{ "MaxParticleCount",			INI::parseInt,			NULL,	0x00 },
+	{ "UseShadowVolumes",			INI::parseBool,			NULL,	0x04 },
+	{ "UseShadowDecals",			INI::parseBool,			NULL,	0x05 },
+	{ "UseAnisotropic",				INI::parseBool,			NULL,	0x06 },
+	{ "UsePixelShaders",			INI::parseBool,			NULL,	0x07 },
+	{ "UseLightMap",				INI::parseBool,			NULL,	0x08 },
+	{ "ShowSoftWaterEdge",			INI::parseBool,			NULL,	0x09 },
+	{ "MaxTankTrackEdges",			INI::parseInt,			NULL,	0x0c },
+	{ "MaxTankTrackOpaqueEdges",	INI::parseInt,			NULL,	0x10 },
+	{ "MaxTankTrackFadeDelay",		INI::parseInt,			NULL,	0x14 },
+	{ "UseBuildupScaffolds",		INI::parseBool,			NULL,	0x18 },
+	{ "UseTreeSway",				INI::parseBool,			NULL,	0x19 },
+	{ "GrassDrawSkip",				INI::parseInt,			NULL,	0x1a },
+	{ "ShowProps",					INI::parseBool,			NULL,	0x22 },
+	{ "TextureReductionFactor",		INI::parseInt,			NULL,	0x1c },
+	{ "UseHighQualityVideo",		INI::parseBool,			NULL,	0x23 },
+	{ "AnimationDetail",			INI::parseStaticGameLODLevel,	NULL,	0x24 },
+	{ "MinParticlePriority",		INI::parseIndexList,	NULL,	0x28 },
+	{ "MinParticleSkipPriority",	INI::parseIndexList,	NULL,	0x2c },
+	{ 0, 0, 0, 0 }
+};
 
-	// read the name
-	c = ini->getNextToken();
-	name.set( c );	
+/*static*/ void INI::parseStaticGameLODDefinition( INI* ini )
+{
+	AsciiString name;
+	name = ini->getNextToken();
 
 	if( TheGameLODManager )
 	{
-		Int index = TheGameLODManager->getStaticGameLODIndex(name);
-		if (index != STATIC_GAME_LOD_UNKNOWN)
+		Int index = TheGameLODManager->getStaticGameLODIndex( name );
+		if( index != STATIC_GAME_LOD_UNKNOWN )
 		{
-			StaticGameLODInfo *lodInfo = &(TheGameLODManager->m_staticGameLODInfo[index]);
-
-			// parse the ini definition
-			ini->initFromINI( lodInfo, TheStaticGameLODFieldParseTable );
+			void *lodInfo = (char *)TheGameLODManager + index * 0x30;
+			ini->initFromINI( lodInfo, TheBFMEStaticGameLODFieldParseTable );
 		}
 	}
 }
@@ -636,3 +663,43 @@ Bool GameLODManager::didMemPass( void )
 { 
 	return m_memPassed;	
 }
+
+//-------------------------------------------------------------------------------------------------
+// ?parseAudioLODDefinition@INI@@SAXPAV1@@Z
+// The "AudioLOD" block, which BFME adds and Zero Hour has no counterpart for.
+// Three fields, eight bytes per level, and the array sits at +0x170 in
+// GameLODManager: retail addresses the element as
+// TheGameLODManager + index*8 + 0x170.
+//
+// Unlike the static and dynamic variants, an unknown level name is fatal here
+// rather than silently ignored.
+static const FieldParse TheBFMEAudioLODFieldParseTable[] =
+{
+	{ "MaximumAmbientStreams",	INI::parseInt,	NULL,	0x00 },
+	{ "AllowDolby",				INI::parseBool,	NULL,	0x04 },
+	{ "AllowReverb",			INI::parseBool,	NULL,	0x05 },
+	{ 0, 0, 0, 0 }
+};
+
+/*static*/ void INI::parseAudioLODDefinition( INI* ini )
+{
+	AsciiString name;
+
+	const char *token = ini->getNextToken();
+	name = token;
+
+	if( TheGameLODManager )
+	{
+		Int index = TheGameLODManager->getAudioLODIndex( name );
+		if( index == -1 )
+		{
+			// the raw token, not name.str(): retail keeps the pointer in esi across
+			// the lookup precisely so it can hand it to the exception.
+			throw INIException( 8, "Unknown Audio LOD level '%s'", token );
+		}
+
+		void *lodInfo = (char *)TheGameLODManager + index * 8 + 0x170;
+		ini->initFromINI( lodInfo, TheBFMEAudioLODFieldParseTable );
+	}
+}
+
