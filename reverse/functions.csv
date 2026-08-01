@@ -1169,7 +1169,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BoxRenderObjClass@@QAE@XZ,,0x00956C70,127,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0Bridge@@,,0x001A98A0,861,Code/masm_dumps/_sa___0Bridge___1A98A0.asm,matched,Exact 861B string-anchored Open-BFME4
 ??0BridgeBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F3390,379,Code/masm_dumps/BridgeBehavior_constructor.asm,matched,Exact 379B @ 0x001F3390; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114790
-??0BridgeBehaviorModuleData@@QAE@XZ,,0x0001F7F3,5,Code/masm_dumps/__0BridgeBehaviorModuleData__QAE_XZ_1F7F3.asm,matched,MASM exact retail dump
 ??0BridgeFXInfo@@QAE@XZ,,0x000ED560,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ??0BridgeInfo@@QAE@XZ,,0x001A1EC0,85,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ??0BridgeOCLInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0RepairDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001E8D0,5,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@IAEXPAW4ScienceType@@ABW43@ABU__false_type@2@I_N@Z,,0x00023588,5,Code/Libraries/Source/WWVegas/WWLib/ScienceTypeVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0AutoHealBehaviorModuleData@@QAE@XZ,,0x000287C7,5,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
+??0BridgeBehaviorModuleData@@QAE@XZ,,0x0001F7F3,5,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
