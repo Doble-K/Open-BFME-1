@@ -1553,7 +1553,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HijackerUpdateModuleData@@QAE@XZ,,0x0006E2B0,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0HitReactionBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200200,137,Code/masm_dumps/HitReactionBehavior_constructor.asm,matched,Exact 137B @ 0x00200200; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114BE0
 ??0HitReactionBehaviorModuleData@@QAE@XZ,,0x00291950,114,Code/masm_dumps/HitReactionBehaviorModuleData_constructor.asm,matched,Exact 114B @ 0x00291950; Exact retail MASM ModuleData ctor; unique factory 0x11D000
-??0HiveStructureBodyModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/HiveStructureBodyModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0HordeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C43A0,141,Code/masm_dumps/HordeAIUpdate_constructor.asm,matched,Exact 141B @ 0x002C43A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A680
 ??0HordeAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/HordeAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0HordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0023EAF0,819,Code/masm_dumps/HordeContain_constructor.asm,matched,Exact 819B @ 0x0023EAF0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115D60
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,,0x0003EE32,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/xferRandomVariable.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0GrantUpgradeCreateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0HiveStructureBodyModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
