@@ -1355,7 +1355,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DefaultUpdateModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x000052AE,0x005D81C0,135,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0DefaultUpdateModuleInfo@FXParticleSystem@@QAE@XZ,0x0004506B,0x005FF750,181,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultUpdateModuleInfo_ctor.asm,matched,exact 181B SEH ctor via MASM (was inflated 2400)
 ??0DeflectSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025A1B0,82,Code/masm_dumps/DeflectSpecialPower_constructor.asm,matched,Exact 82B unique factory Open-BFME4
-??0DeflectSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/DeflectSpecialPowerModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0DelayedLuaEventUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028BEF0,161,Code/masm_dumps/DelayedLuaEventUpdate_constructor.asm,matched,Exact 161B @ 0x0028BEF0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11BC70
 ??0DelayedLuaEventUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/DelayedLuaEventUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0DelayedUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D4D20,53,Code/masm_dumps/DelayedUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0DamDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?ReleaseWindowLayout@@YAXPAVWindowLayout@@@Z,,0x00049AD0,5,Code/GameEngine/Source/GameLogic/ScriptEngine/ReleaseWindowLayout.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0DefaultProductionExitUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0DeflectSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
