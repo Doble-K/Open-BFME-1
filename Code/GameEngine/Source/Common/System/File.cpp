@@ -17,6 +17,25 @@
 // uses to identify it -- and both classes are BFME-only, appearing nowhere in
 // the Zero Hour tree.
 //
+// There are seven File vtables in all, found by looking for the ones that carry
+// File::print (0x009CB6C0) at slot 10, which every subclass here inherits:
+//
+//   0x01143A38  MemoryReadFile      dtor 0x009CB440
+//   0x01143AA8  MemoryWriteFile     dtor 0x009CB650
+//   0x01143AF8  File                dtor 0x009CB950
+//   0x01143C10  unnamed             dtor 0x009D1960   (see below)
+//   0x01143C58  unnamed             dtor 0x009D1C30   -- the only one that also
+//                                                        overrides close
+//   0x01143CA8  unnamed             dtor 0x009D22B0
+//   0x01143D38  unnamed             dtor 0x009D26C0
+//
+// So the family runs past 0x009CE000 into 0x009D2xxx. The four unnamed ones set
+// no identifying literal the way MemoryReadFile and MemoryWriteFile do. The
+// 0x01143C10 one is constructed near the string "Streaming from a compressed
+// archive file is not supported", which points at Zero Hour's
+// StreamingArchiveFile -- but that text is BFME's own, appearing nowhere in the
+// Zero Hour tree, so it is a lead and not a name.
+//
 // 0x01143AF8 is File's own: MemoryReadFile's constructor calls 0x009CB7A0 first,
 // and that is what stores 0x01143AF8 and sets "<no file>", so 0x009CB7A0 is
 // File::File and 0x009CB8C0 (which MemoryReadFile's deleting destructor calls)
