@@ -1445,7 +1445,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GameMessageParser@@QAE@PAVGameMessage@@@Z,,0x006236D0,142,Code/masm_dumps/GameMessageParser_constructor_6236D0.asm,matched,Certified packet 82 exact retail db body SHA256 dff2813593a796ae89878de4cb840cc2c0771774c9ab0e621261b0671e0562f7
 ??0GameMessageParser@@QAE@XZ,,0x00623510,20,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
 ??0GameMessageParserArgumentType@@QAE@W4GameMessageArgumentDataType@@H@Z,,0x00623570,32,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,
-??0GameResultsQueue@@QAE@XZ,,0x0000DAFD,5,Code/masm_dumps/__0GameResultsQueue__QAE_XZ_DAFD.asm,matched,MASM exact retail dump
 ??0GameResultsRequest@@QAE@ABV0@@Z,,0x006417E0,89,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
 ??0GameResultsRequest@@QAE@XZ,,0x004E5C00,68,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ??0GameResultsResponse@@QAE@ABV0@@Z,,0x00641850,35,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??1?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@QAE@XZ,,0x0001481C,5,Code/Libraries/Source/WWVegas/WWLib/PlayerTemplateVectorDestructorThunk.cpp,matched,5-byte incremental-link STL destructor thunk converted to focused C++ thunk TU
 ??4?$vector@U?$pair@W4ObjectID@@I@_STL@@V?$allocator@U?$pair@W4ObjectID@@I@_STL@@@2@@_STL@@QAEAAV01@ABV01@@Z,,0x0002DC9F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectIDPairVectorAssignmentThunk.cpp,matched,5-byte incremental-link STL assignment thunk converted to focused C++ thunk TU
 ??0OptionPreferences@@QAE@XZ,,0x0003713C,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
+??0GameResultsQueue@@QAE@XZ,,0x0000DAFD,5,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsQueueCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
