@@ -1774,6 +1774,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
 ??0MutexClass@@QAE@PBD@Z,,0x009DB320,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0NameKeyGenerator@@QAE@XZ,,0x00090380,120,Code/masm_dumps/NameKeyGenerator_ctor.asm,matched,True SEH ctor via static-init push; queue 0x9F274A was mid ControlBar ctor
+??0NetCommandList@@QAE@XZ,,0x00672EA0,20,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,real ctor; 0x000659C0 was a same-shaped ctor of another class - only the vtable differs and that is a DIR32 slot copied from the target
 ??0NetCommandWrapperListNode@@QAE@PAVNetWrapperCommandMsg@@@Z,,0x00676380,119,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ??0Network@@QAE@XZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,object-symbol=?construct@BFMENetwork@@QAEPAXXZ;C++ ICF alias of Network ctor
 ??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/masm_dumps/NeutronMissileSlowDeathBehavior_constructor.asm,matched,Exact 74B ICF alias Open-BFME4
@@ -8638,6 +8639,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addBib@W3DBibBuffer@@QAEXQAVVector3@@W4ObjectID@@_N@Z,,0x006D7090,220,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?addBibDrawable@W3DBibBuffer@@QAEXQAVVector3@@W4DrawableID@@_N@Z,,0x006D71B0,220,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?addBridge@W3DBridgeBuffer@@IAEXVVector3@@0VAsciiString@@PAVW3DTerrainLogic@@PAVDict@@@Z,,0x006DA0B0,364,Code/masm_dumps/W3DBridgeBuffer_addBridge_006DA0B0.asm,matched,Certified packet 47 exact retail MASM SHA256 33b8e76ca10052635be7a1570f5fdec1c2e3c0e4c218a4e3fd394ab81620aaa2
+?addCommand@FrameData@@QAEPAVNetCommandRef@@PAVNetCommandMsg@@@Z,,0x006702F0,61,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
 ?addDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z,,0x00712030,74,Code/masm_dumps/_addDynamicLight_RTS3DScene_QAEXPAVW3DDynamicLight_712030.asm,matched,Exact 74B MASM; true body 0x712030 (queue 0x7124C0 INSIDE getADynamicLight); dual Add m_dynamicLightList@+0x110 UpdateList@+0x74
 ?addDynamicShadowTask@W3DVolumetricShadowManager@@QAEXPAUW3DVolumetricShadowRenderTask@@@Z,,0x007B7D20,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?addEntry@@YAHPAVUnicodeString@@HHHPAVGameWindow@@_N@Z,,0x004B86B0,518,Code/masm_dumps/_addEntry__YAHPAVUnicodeString__HHHPAVGameWindow___N_Z_4B86B0.asm,matched,MASM exact retail dump; true body 0x4B86B0 (queue 0x4B86AF was int3 pad); BFME ListboxData offsets + ebx-convention moveRowsDown
@@ -9138,6 +9140,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clone@?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@,,0x005E2110,99,Code/masm_dumps/__clone___ConcreteModuleTemplate_V__ModuleTag__07_E_5E2110.asm,matched,
 ?clone@?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@FXParticleSystem@@3QBDB$E?TERRAIN_COLLISION_MODULE_NAME@2@3QBDBVTerrainCollisionModule@2@VTerrainCollisionModuleTemplate@2@VParticleTerrainCollisionModule@2@VParticleTerrainCollisionModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVTerrainCollisionModuleTemplate@2@XZ,0x00023A92,0x005E2110,99,Code/masm_dumps/clone_ConcreteModuleTemplate_V_ModuleTag_07_E_TERRAIN_COLLISION_MODULE_K_005E2110_7bbaca43.asm,matched,object-symbol=_bfme_export_7bbaca43;icf-owner=?clone@?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@;MASM exact retail export dump
 ?close@CachedFileInputStream@@QAEXXZ,,0x00102370,34,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
+?close@File@@UAEXXZ,,0x009CB880,50,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 2 of all three File vtables - repointed off its MASM dump onto C++
 ?closeAllSpareSockets@FirewallHelperClass@@QAEXXZ,,0x0066EB60,64,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?closeDataChunk@DataChunkOutput@@QAEXXZ,,0x001024A0,118,Code/GameEngine/Source/Common/System/DataChunk_closeDataChunk.asm,matched,exact 118B via MASM
 ?closeLiveHandle@BFMENetworkBackend@@QAEXXZ,,0x009DB5A0,35,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network backend wait/clear for handle fields +0x48/+0x44
@@ -9463,6 +9466,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?destroyAndMaybeDelete@BFMENetwork@@QAEPAXI@Z,,0x0065ADB0,30,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper vtable slot +0x00; scalar deleting destructor wrapper
 ?destroyAndMaybeDelete@BFMENetworkBackend@@QAEPAXI@Z,,0x00654890,30,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME backend vtable slot +0x00; scalar deleting destructor wrapper
 ?destroyBackend@BFMENetwork@@QAEXXZ,,0x00652AB0,74,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper slot +0x08; releases backend helper at +0x64
+?destroyGameMessages@FrameData@@QAEXXZ,,0x00670370,24,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
 ?destroyLightsIterator@RTS3DScene@@QAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,,0x007118D0,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 ?destroyObject@GameLogic@@QAEXPAVObject@@@Z,,0x0001D0DE,5,Code/masm_dumps/_thunk_6e29353ef7bd_1D0DE.asm,matched,thunk accessor of ported class
 ?destroyWindows@WindowLayout@@UAEXXZ,,0x00497A50,40,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,BFME rewrote: direct m_windowList loop
@@ -10982,6 +10986,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getFrameAdvanceCount@BFMENativeNetwork@@QAEHXZ,,0x00681F70,395,Code/GameEngine/Source/GameNetwork/native_network_interface.cpp,matched,native vtable 0x0111A968 slot +0x3C; frame allowance = connMgr +0x1205C ceiling - TheGameLogic frame + 1 gated by 0x6633E0; router path consumes QPF/5 200ms quantum
 ?getFrameCommandCount@FrameData@@QAEIXZ,,0x006702D0,3,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
 ?getFrameCommandCount@FrameDataManager@@QAEII@Z,,0x00670780,29,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?getFrameCommandList@FrameDataManager@@QAEPAVNetCommandList@@I@Z,,0x006706A0,29,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ?getFrameHeadroom@BFMEConnectionManager@@QAEHXZ,,0x00664320,142,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?getFramePacingStatus@BFMENativeNetwork@@QAEHXZ,,0x00682160,214,Code/GameEngine/Source/GameNetwork/native_network_interface.cpp,matched,native BFME QPC-backed frame pacing/readiness status helper; returns 0/1/2 and uses connection manager frame ceiling +0x1205c
 ?getGeneralImage@PlayerTemplate@@QBEPBVImage@@XZ,,0x000E0B60,19,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
@@ -11577,6 +11582,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@FadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059C960,68,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?init@FlashTransition@@UAEXPAVGameWindow@@@Z,,0x0059C310,68,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?init@FlatTerrainShaderPixelShader@@UAEHXZ,,0x007C7DC0,212,Code/masm_dumps/_sa11__init_FlatTerrainShaderPixelShader__UAEHXZ_7C7DC0.asm,matched,string-anchor Open-BFME4+Grok shaders\fterrainnoise2.pso
+?init@FrameData@@QAEXXZ,,0x00670170,135,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
 ?init@FullFadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059D420,95,Code/masm_dumps/_sa__init_FullFadeTransition_UAEXPAVGameWindow_Z_59D420.asm,matched,
 ?init@GameEngine@@,,0x00079060,7123,Code/masm_dumps/_str2__init_GameEngine__79060.asm,matched,true size 7123B; previous row claimed only 6689B (no padding before ~GameEngine)
 ?init@GameLODManager@@QAEXXZ,,0x0007EF1B,967,Code/GameEngine/Source/Common/GameLOD_init.asm,matched,exact 967B via MASM
@@ -12407,6 +12413,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?prepareNewGame@GameLogic@@QAEXHW4GameDifficulty@@H@Z,,0x00397190,234,Code/masm_dumps/prepareNewGame_GameLogic_QAEXHW4GameDifficulty_H_Z_00397190_9e4285aa.asm,matched,Certified packet 219 exact retail db body SHA-256 9e4285aae608dfc21d9a51be758f7c3009ca5f1388ed72633e4fe430fda42019
 ?prependViewToList@View@@MAEPAV1@PAV1@@Z,,0x0006F0C0,12,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?prev@LListNode@@QAEPAV1@XZ,,0x00105970,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
+?print@File@@UAA_NPBDZZ,,0x009CB6C0,115,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 10 and the same address in all three File vtables
 ?privateIdle@SupplyTruckAIUpdate@@MAEXW4CommandSourceType@@@Z,,0x002C57E0,42,Code/masm_dumps/_rn9__privateIdle_SupplyTruckAIUpdate__MAEXW4CommandSourceType___Z_2C57E0.asm,matched,reloc-needle Open-BFME4+Grok
 ?probed@NAT@@IAEXH@Z,,0x00671DE0,155,Code/masm_dumps/_probed_NAT__IAEXH_Z_671DE0.asm,matched,MASM exact retail dump
 ?processAckCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00665700,387,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
@@ -12668,6 +12675,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reset@TeamFactory@@UAEXXZ,,0x000F7570,13,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
 ?reset@W3DRadar@@UAEXXZ,,0x006C1890,205,Code/masm_dumps/reset_W3DRadar_UAEXXZ_006C1890_packet323.asm,matched,Certified packet 323 exact retail bytes SHA256 2251962adb7e00fb76a9ab1e8f9efd79e757ddc1df0ddbfc69b9858dd35161d8
 ?reset@WindowVideoManager@@UAEXXZ,,0x00498F90,149,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
+?resetFrame@FrameDataManager@@QAEXI_N@Z,,0x006706D0,56,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ?resetIdleWorker@InGameUI@@EAEXXZ,,0x0043FAF0,121,Code/masm_dumps/InGameUI_resetIdleWorker.asm,matched,True body post-hideIdleWorkerLayout at 0x43FAF0 (queue 0x81D754 was int3 pad); field anchors +0x139c/+0x13a0/+0x131c; MASM byte-verified
 ?resetPlayersVotes@DisconnectManager@@IAEXHIPAVConnectionManager@@@Z,,0x0066B7B0,89,Code/masm_dumps/resetPlayersVotes_DisconnectManager_IAEXHIPAVConnectionManager_Z_0066B7B0_packet249.asm,matched,Certified packet 249 sealed SHA256 467f4dede1a623bf4da01a1c4f2b80fe2d96e72d760a513b6dbf5286ecee2a76
 ?resetRank@Player@@QAEXXZ,,0x000D7CA0,319,Code/GameEngine/Source/Common/RTS/Player_resetRank.asm,matched,exact 319B via MASM; true start 0xD7CA0 (queue 0xD7CAE mid-SEH); SCIENCE:GeneralName unique
