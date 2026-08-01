@@ -1167,7 +1167,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BridgeTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F6000,96,Code/masm_dumps/BridgeTowerBehavior_constructor.asm,matched,Exact 96B unique factory Open-BFME4
 ??0BridgeTowerBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0BroadcastStealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00289880,244,Code/masm_dumps/BroadcastStealthUpdate_constructor.asm,matched,Exact 244B @ 0x00289880; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B370
-??0BroadcastStealthUpdateModuleData@@QAE@XZ,,0x0012A2E0,79,Code/masm_dumps/BroadcastStealthUpdateModuleData_constructor.asm,matched,Exact 79B unique factory Open-BFME4
 ??0Bucket@@QAE@XZ,,0x0008F6F0,20,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,corrected misattribution (was 0xCBA50 -- a coincidental same-size/shape ctor for an unrelated class with vtable 0x1083cfc; true Bucket ctor lives in the NameKeyGenerator aux cluster 0x8F6F0-0x90061 and uses vtable 0x107f980 -- cross-confirmed by nameToKey(const char*)'s allocate path and ~Bucket()@0x8F840)
 ??0BuddyControls@@QAE@XZ,,0x004E9B50,25,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp,matched,
 ??0BuddyInfo@@QAE@ABV0@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0BaseUpgradeModuleData@@QAE@XZ,,0x002D3C50,127,Code/GameEngine/Source/GameLogic/AI/BaseUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0BezierProjectileBehaviorModuleData@@QAE@XZ,,0x001EFD50,197,Code/GameEngine/Source/GameLogic/AI/BezierProjectileBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0BoneFXUpdateModuleData@@QAE@XZ,,0x00288340,225,Code/GameEngine/Source/GameLogic/AI/BoneFXUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0BroadcastStealthUpdateModuleData@@QAE@XZ,,0x0012A2E0,79,Code/GameEngine/Source/GameLogic/AI/BroadcastStealthUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
