@@ -2016,7 +2016,13 @@ Bool ActionManager::canFireWeaponAtObject( const Object *obj, const Object *targ
 }
 
 //------------------------------------------------------------------------------------------------
-// ?canFireWeapon@ActionManager@@QAE_NPBVObject@@W4WeaponSlotType@@W4CommandSourceType@@@Z present-unmatched
+struct ActionManager_BFME_Object_WeaponSetField
+{
+	unsigned char pad[0x264];
+	WeaponSet weaponSet;
+};
+
+// ?canFireWeapon@ActionManager@@QAE_NPBVObject@@W4WeaponSlotType@@W4CommandSourceType@@@Z
 Bool ActionManager::canFireWeapon( const Object *obj, const WeaponSlotType slot, CommandSourceType commandSource )
 {
 	//Sanity check
@@ -2026,7 +2032,7 @@ Bool ActionManager::canFireWeapon( const Object *obj, const WeaponSlotType slot,
 	}
 
 	//Make sure we have the right weapon.
-	Weapon *weapon = obj->getWeaponInWeaponSlot( slot );
+	Weapon *weapon = reinterpret_cast<const ActionManager_BFME_Object_WeaponSetField *>(obj)->weaponSet.getWeaponInWeaponSlot( slot );
 	if( !weapon )
 	{
 		return false;
