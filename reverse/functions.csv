@@ -6725,7 +6725,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Height@RectClass@@QBEMXZ,,0x00160B30,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,icf-owner=?height@Region2D@@QBEMXZ
 ?Height@ViewportClass@@QBEMXZ,,0x00160B30,7,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,icf-owner=?height@Region2D@@QBEMXZ
 ?HideGameInfoWindow@@YAX_N@Z,,0x004C87A0,21,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow.cpp,matched,
-?HideInGameChat@@YAXXZ,,0x00019583,5,Code/masm_dumps/_HideInGameChat__YAXXZ_19583.asm,matched,MASM exact retail dump
 ?HideListBox@@YAXPAVGameWindow@@@Z,,0x004B3D60,162,Code/masm_dumps/HideListBox_004B3D60_packet290.asm,matched,Certified packet 290 exact retail db recovery SHA256 2f3ff304806bb5fa9ead3ac061d668be9f7f29992386eec6d2d6a74cb567bf95
 ?ID@?$DynamicVectorClass@H@@UAEHABH@Z,,0x009074A0,38,Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp,matched,
 ?ID@?$DynamicVectorClass@K@@UAEHABK@Z,,0x00974640,38,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0BridgeTowerBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0BunkerBusterBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+?HideInGameChat@@YAXXZ,,0x00019583,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/HideInGameChat.cpp,matched,5-byte thunk converted from MASM dump to focused C++ source
