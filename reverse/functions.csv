@@ -733,7 +733,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$SimpleDynVecClass@VVector3i16@@@@QAE@H@Z,,0x0078CAD0,56,Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp,matched,
 ??0?$SimpleDynVecClass@VVector4@@@@QAE@ABV0@@Z,,0x00918A20,39,Code/Libraries/Source/WWVegas/WW3D2/streak.cpp,matched,
 ??0?$SimpleDynVecClass@VVector4@@@@QAE@H@Z,,0x0078CAD0,56,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
-??0?$SimpleParameterClass@H$0A@@@QAE@PAXPBD@Z,,0x00002874,5,Code/masm_dumps/_thunk_98b45ef21d28_2874.asm,matched,thunk accessor of ported class
 ??0?$SimpleVecClass@E@@QAE@H@Z,,0x00984660,39,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??0?$SimpleVecClass@K@@QAE@H@Z,,0x00945120,39,Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp,matched,
 ??0?$SimpleVecClass@M@@QAE@ABV0@@Z,,0x000E1540,27,Code/Libraries/Source/WWVegas/WW3D2/streak.cpp,matched,
@@ -13806,3 +13805,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??0?$SimpleParameterClass@H$0A@@@QAE@PAXPBD@Z,,0x00002874,5,Code/Libraries/Source/WWVegas/WWLib/SimpleParameterClassConstructorThunk.cpp,matched,Focused C++ template thunk for SimpleParameterClass int flags 0 constructor
