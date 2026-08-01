@@ -12644,7 +12644,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setObjectTimestamp@BuildListInfo@@QAEXI@Z,,0x0015E6E0,10,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
 ?setOnScreenParticleCount@ParticleSystemManager@@UAEXH@Z,,0x0051D030,13,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ?setOptimalExtrusionPadding@W3DVolumetricShadow@@IAEXM@Z,,0x0061E9D0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
-?setOrientation@Thing@@QAEXM@Z,,0x000399A5,5,Code/masm_dumps/_setOrientation_Thing__QAEXM_Z_399A5.asm,matched,MASM exact retail dump
 ?setOrigin@View@@UAEXHH@Z,,0x0045BA60,17,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setParentCell@PathfindCell@@QAEXPAV1@@Z,,0x003F69A0,14,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?setParentCellHierarchical@PathfindCell@@QAEXPAV1@@Z,,0x003F69A0,14,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,ICF alias of existing matched body
@@ -12717,7 +12716,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setShroudClearFrame@Drawable@@QAEXI@Z,,0x00410860,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 ?setShroudLevel@W3DRadar@@UAEXHHW4CellShroudStatus@@@Z,,0x006C2710,626,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar_setShroudLevel.asm,matched,exact MASM body via W3DRadar ctor vtable slot 11; queue RVA misplaced
 ?setShroudRange@Object@@QAEXM@Z,,0x00918ED0,13,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-?setSize@Shadow@@QAEXMM@Z,,0x0002133C,5,Code/masm_dumps/_thunk_43273cb50a42_2133C.asm,matched,thunk accessor of ported class
 ?setSkillPointsModifier@Player@@QAEXM@Z,,0x00360740,13,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?setSkipParentXfrm@ParticleSystem@@QAEX_N@Z,,0x0016A830,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?setSlaveSystemName@ParticleSystemTemplate@FXParticleSystem@@QAEXABVAsciiString@@@Z,0x00041F47,0x005BE690,28,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,assigns slave system name and clears flag
@@ -12755,7 +12753,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setTotalDataLength@NetWrapperCommandMsg@@QAEXI@Z,,0x00673F50,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor thunk
 ?setTower@BridgeBehavior@@UAEXW4BridgeTowerType@@PAVObject@@@Z,,0x001F1F70,42,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ?setTowerObjectID@Bridge@@QAEXW4ObjectID@@W4BridgeTowerType@@@Z,,0x001F1F00,15,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
-?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z,,0x00023D49,5,Code/masm_dumps/_setTransformMatrix_Thing__QAEXPBVMatrix3D___Z_23D49.asm,matched,MASM exact retail dump
 ?setTriggerAreaFlagsForChangeInPosition@Object@@IAEXXZ,,0x001C8E7D,749,Code/GameEngine/Source/GameLogic/Object/Object_setTriggerAreaFlagsForChangeInPosition.asm,matched,exact 749B via MASM
 ?setTurning@PhysicsBehavior@@QAEXW4PhysicsTurningType@@@Z,,0x005BD440,10,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ?setUV@Image@@QAEXPAURegion2D@@@Z,,0x0044F5A0,36,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
@@ -13804,3 +13801,6 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?openDataChunk@DataChunkOutput@@QAEXPADG@Z,,0x0003A256,5,Code/GameEngine/Source/Common/RTS/DataChunkOutputOpenDataChunkThunk.cpp,matched,5-byte incremental-link DataChunkOutput member thunk converted to focused C++ source
 ?clear@TeamFactory@@QAEXXZ,,0x000284A7,5,Code/Libraries/Source/WWVegas/WWLib/TeamFactoryClearThunk.cpp,matched,Focused C++ thunk for TeamFactory::clear
 ?friend_awakenUpdateModule@GameLogic@@QAEXPAVObject@@PAVUpdateModule@@I@Z,,0x00009944,5,Code/GameEngine/Source/Common/RTS/GameLogicAwakenUpdateModuleThunk.cpp,matched,5-byte incremental-link GameLogic member thunk converted to focused C++ source
+?setOrientation@Thing@@QAEXM@Z,,0x000399A5,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Thing::setOrientation
+?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z,,0x00023D49,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Thing::setTransformMatrix
+?setSize@Shadow@@QAEXMM@Z,,0x0002133C,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Shadow::setSize
