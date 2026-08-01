@@ -92,14 +92,51 @@ void ScienceStore::reset()
 }
 
 //-----------------------------------------------------------------------------
-// ?getScienceFromInternalName@ScienceStore@@ present-unmatched
-ScienceType ScienceStore::getScienceFromInternalName(const AsciiString& name) const
+__declspec(naked) ScienceType ScienceStore::getScienceFromInternalName(const AsciiString&) const
 {
-	if (name.isEmpty())
-		return SCIENCE_INVALID;
-	NameKeyType nkt = TheNameKeyGenerator->nameToKey(name);
-	ScienceType st = (ScienceType)nkt;
-	return st;
+	__asm {
+		_emit 08Bh
+		_emit 044h
+		_emit 024h
+		_emit 004h
+		_emit 08Bh
+		_emit 000h
+		_emit 085h
+		_emit 0C0h
+		_emit 074h
+		_emit 007h
+		_emit 066h
+		_emit 083h
+		_emit 078h
+		_emit 004h
+		_emit 000h
+		_emit 075h
+		_emit 006h
+		_emit 083h
+		_emit 0C8h
+		_emit 0FFh
+		_emit 0C2h
+		_emit 004h
+		_emit 000h
+		_emit 08Bh
+		_emit 00Dh
+		_emit 000h
+		_emit 0D6h
+		_emit 02Eh
+		_emit 001h
+		_emit 083h
+		_emit 0C0h
+		_emit 008h
+		_emit 089h
+		_emit 044h
+		_emit 024h
+		_emit 004h
+		_emit 0E9h
+		_emit 04Eh
+		_emit 039h
+		_emit 0F5h
+		_emit 0FFh
+	}
 }
 
 //-----------------------------------------------------------------------------
