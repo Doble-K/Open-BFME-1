@@ -12300,7 +12300,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeSmudgeSet@SmudgeManager@@QAEXAAUSmudgeSet@@@Z,,0x005D4060,40,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ?removeStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00632A50,187,Code/masm_dumps/_rn7__removeStagingRoom_GameSpyInfo__UAEXVGameSpyStagingRoom___Z_632A50.asm,matched,reloc-needle Open-BFME4+Grok
 ?removeTeam@SidesList@@QAEXH@Z,,0x00C2787D,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
-?removeTeam@TeamsInfoRec@@QAEXH@Z,,0x0000D828,5,Code/masm_dumps/_thunk_b63b5588148b_D828.asm,matched,thunk accessor of ported class (icf alias)
 ?removeTeamPrototypeFromList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000EFD50,149,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,BFME pair-key map erase; TeamPrototype +0x10/+0x14 name keys; node 0x1C; certified packet 362
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,,0x006C8930,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,converted incremental-link thunk to exact codegen-blocked C++ naked body
 ?removeTranslator@MessageStream@@QAEXI@Z,,0x0008A8D0,96,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?parseFXList@TransitionDamageFXModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x0000A5AB,5,Code/GameEngine/Source/Common/RTS/TransitionDamageFXModuleDataParseFXListThunk.cpp,matched,5-byte incremental-link static TransitionDamageFXModuleData thunk converted to focused C++ source
 ?parseFXList@BoneFXUpdateModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00033C2B,5,Code/GameEngine/Source/Common/RTS/BoneFXUpdateModuleDataParseFXListThunk.cpp,matched,5-byte incremental-link static BoneFXUpdateModuleData thunk converted to focused C++ source
 ?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining aliases retain shared target
+?removeTeam@TeamsInfoRec@@QAEXH@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,object-symbol=?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z;ICF alias converted to focused C++ thunk TU
