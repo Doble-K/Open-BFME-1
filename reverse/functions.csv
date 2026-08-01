@@ -1797,7 +1797,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PlayerHealSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002639D0,46,Code/masm_dumps/PlayerHealSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0PlayerHealSpecialPowerModuleData@@QAE@XZ,,0x00263BE0,92,Code/masm_dumps/PlayerHealSpecialPowerModuleData_constructor.asm,matched,Exact 92B @ 0x00263BE0; Exact retail MASM ModuleData ctor; unique factory 0x121480; Open-BFME4+Grok
 ??0PlayerList@@QAE@XZ,,0x000DFBD0,162,Code/masm_dumps/PlayerList_constructor_000DFBD0_2fb354f7.asm,matched,certified packet 217 sealed SHA-256 2fb354f7 constructor ownership reviewed
-??0PlayerTemplate@@QAE@ABV0@@Z,,0x0001449D,5,Code/masm_dumps/__0PlayerTemplate__QAE_ABV0__Z_1449D.asm,matched,MASM exact retail dump
 ??0PlayerTemplate@@QAE@XZ,,0x000E3760,824,Code/masm_dumps/__0PlayerTemplate__QAE_XZ_E3760.asm,matched,MASM exact; true body 0xE3760/824 via symbols ILT 0x3E6E4; queue 0xC6DCD5 int3 pad
 ??0PlayerTemplateStore@@QAE@XZ,,0x00076F30,29,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ??0PlayerUpgradeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00263F50,46,Code/masm_dumps/PlayerUpgradeSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@IAEXPAUNugget@ModuleInfo@@ABU34@ABU__false_type@2@I_N@Z,,0x0001ADBB,5,Code/Libraries/Source/WWVegas/WWLib/ModuleInfoNuggetVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0BoneFXUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000264E,5,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@UPayload@DeliverPayloadNugget@@V?$allocator@UPayload@DeliverPayloadNugget@@@_STL@@@_STL@@IAEXPAUPayload@DeliverPayloadNugget@@ABU34@ABU__false_type@2@I_N@Z,,0x00004F93,5,Code/Libraries/Source/WWVegas/WWLib/DeliverPayloadNuggetPayloadVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0PlayerTemplate@@QAE@ABV0@@Z,,0x0001449D,5,Code/GameEngine/Source/Common/RTS/PlayerTemplateCopyCtorThunk.cpp,matched,5-byte incremental-link copy constructor thunk converted to focused C++ source
