@@ -9511,7 +9511,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?erase@?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@QAEPAW4ScienceType@@PAW43@0@Z,,0x000BB700,52,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?erase@?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@QAEPAW4ScienceType@@PAW43@@Z,,0x000CEA00,65,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?erase@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAE?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@U32@0@Z,,0x002CC200,106,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
-?errorCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPErrorArg@@@Z,,0x0000BEE2,5,Code/masm_dumps/_errorCallback_BuddyThreadClass__QAEXPAVGPConnection__PAUGPErrorArg___Z_BEE2.asm,matched,MASM exact retail dump
 ?estimateWeaponDamage@Weapon@@IAEMPBVObject@@0PBUCoord3D@@@Z,,0x0001366F,5,Code/masm_dumps/_thunk_01b1855ee818_1366F.asm,matched,thunk accessor of ported class (icf alias)
 ?estimateWeaponDamage@Weapon@@QAEMPBVObject@@0@Z,,0x0019A720,20,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,
 ?eval_A0_point@@YAXABUBTCollisionStruct@@PAMH@Z,,0x008E5DA0,520,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@VWeaponTemplateSet@@V?$allocator@VWeaponTemplateSet@@@_STL@@@_STL@@IAEXPAVWeaponTemplateSet@@ABV3@ABU__false_type@2@I_N@Z,,0x0001636F,5,Code/Libraries/Source/WWVegas/WWLib/WeaponTemplateSetVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ?connectCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPConnectResponseArg@@@Z,,0x000314AD,5,Code/GameEngine/Source/Common/RTS/BuddyThreadClassConnectCallbackThunk.cpp,matched,5-byte incremental-link BuddyThreadClass callback thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@UtConnInfoStruct@@V?$allocator@UtConnInfoStruct@@@_STL@@@_STL@@IAEXPAUtConnInfoStruct@@ABU3@ABU__false_type@2@I_N@Z,,0x0004ABF6,5,Code/Libraries/Source/WWVegas/WWLib/tConnInfoStructVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+?errorCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPErrorArg@@@Z,,0x0000BEE2,5,Code/GameEngine/Source/Common/RTS/BuddyThreadClassErrorCallbackThunk.cpp,matched,5-byte incremental-link BuddyThreadClass error callback thunk converted to focused C++ source
