@@ -203,6 +203,12 @@ Bool GameSpyInfo::isBuddy( Int id )
 	return m_buddyMap.find(id) != m_buddyMap.end();
 }
 
+// Keep the BuddyInfoMap find COMDAT emitted for the retail STL body.
+BuddyInfoMap::iterator PeerDefs_force_BuddyInfoMapFind(BuddyInfoMap *map, Int id)
+{
+	return map->find(id);
+}
+
 // ?addGroupRoom@GameSpyInfo@@UAEXVGameSpyGroupRoom@@@Z present-unmatched
 void GameSpyInfo::addGroupRoom( GameSpyGroupRoom room )
 {
