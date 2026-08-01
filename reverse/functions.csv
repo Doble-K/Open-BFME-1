@@ -1443,7 +1443,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ExitConditions@@QAE@XZ,,0x0015BEB0,29,Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp,matched,
 ??0ExperienceLevelCreate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024F560,46,Code/masm_dumps/ExperienceLevelCreate_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0ExperienceScalarUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000380D2,5,Code/masm_dumps/__0ExperienceScalarUpgrade__QAE_PAVThing__PBVModuleData___Z_380D2.asm,matched,MASM exact retail dump
-??0ExperienceScalarUpgradeModuleData@@QAE@XZ,,0x002D5180,28,Code/masm_dumps/ExperienceScalarUpgradeModuleData_constructor.asm,matched,Exact 28B unique factory Open-BFME4
 ??0FXDamageFXListInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXDamageOCLInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXDamageParticleSystemInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0SiegeDeployHordeSpecialPowerModuleData@@QAE@XZ,,0x00265D90,25,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SiegeDeployHordeSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ,,0x002D99B0,29,Code/GameEngine/Source/GameLogic/Object/SpecialPower/UnpauseSpecialPowerUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0PorcupineFormationBodyModuleModuleData@@QAE@XZ,,0x00214470,26,Code/GameEngine/Source/GameLogic/Object/Behavior/PorcupineFormationBodyModuleModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
+??0ExperienceScalarUpgradeModuleData@@QAE@XZ,,0x002D5180,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/ExperienceScalarUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
