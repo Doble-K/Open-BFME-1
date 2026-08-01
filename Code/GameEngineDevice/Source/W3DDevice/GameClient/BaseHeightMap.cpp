@@ -1334,17 +1334,18 @@ void BaseHeightMapRenderObjClass::worldBuilderUpdateBridgeTowers( W3DAssetManage
 
 }
 
-// ?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ present-unmatched
 void BaseHeightMapRenderObjClass::setShoreLineDetail(void)
 {
-	if (!m_map)
+	WorldHeightMap *retailMap = *reinterpret_cast<WorldHeightMap **>(
+		reinterpret_cast<unsigned char *>(this) + 0x2ff4);
+	if (!retailMap)
 		return;
 
-	Int m_mapDX=m_map->getXExtent();
-	Int m_mapDY=m_map->getYExtent();
+	Int m_mapDX = *reinterpret_cast<Int *>(reinterpret_cast<unsigned char *>(retailMap) + 0x8);
+	Int m_mapDY = *reinterpret_cast<Int *>(reinterpret_cast<unsigned char *>(retailMap) + 0xc);
 
 	//Find all shoreline tiles so they can get extra alpha blend
-	updateShorelineTiles(0,0,m_mapDX-1,m_mapDY-1,m_map);
+	updateShorelineTiles(0, 0, m_mapDX - 1, m_mapDY - 1, retailMap);
 }
 
 /** This is an extra pre-process of shoreline data to make it more efficient for runtime culling.  It is not
