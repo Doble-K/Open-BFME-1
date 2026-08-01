@@ -1827,7 +1827,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PeerResponse@@QAE@XZ,,0x004DAB40,235,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
 ??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000328C6,5,Code/masm_dumps/__0PhysicsBehavior__QAE_PAVThing__PBVModuleData___Z_328C6.asm,matched,MASM exact retail dump
 ??0PhysicsBehaviorModuleData@@QAE@XZ,,0x0029A090,126,Code/masm_dumps/PhysicsBehaviorModuleData_constructor.asm,matched,Exact 126B @ 0x0029A090; Exact retail MASM ModuleData ctor; unique factory 0x11AA70
-??0PilotFindVehicleUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/PilotFindVehicleUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0Pinger@@QAE@XZ,,0x00660FD0,317,Code/masm_dumps/_rn7___0Pinger__QAE_XZ_660FD0.asm,matched,reloc-needle Open-BFME4+Grok
 ??0PivotClass@@QAE@ABU0@@Z,,0x00972D70,383,Code/masm_dumps/___0PivotClass__QAE_ABU0__Z_972D70.asm,matched,
 ??0PivotClass@@QAE@XZ,,0x009733F0,187,Code/masm_dumps/_rn4___0PivotClass__QAE_XZ_9733F0.asm,matched,reloc-needle Open-BFME4+Grok
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??$_Construct@UPrereqUnitRec@ProductionPrerequisite@@U12@@_STL@@YAXPAUPrereqUnitRec@ProductionPrerequisite@@ABU12@@Z,,0x00028957,5,Code/GameEngine/Source/Common/RTS/PrereqUnitRecConstruct.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
 ??0MissileLauncherBuildingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$_Construct@VProductionPrerequisite@@V1@@_STL@@YAXPAVProductionPrerequisite@@ABV1@@Z,,0x0003AA26,5,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteConstruct.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
+??0PilotFindVehicleUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
