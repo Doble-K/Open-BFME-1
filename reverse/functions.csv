@@ -1754,7 +1754,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ParticleSystemInfo@FXParticleSystem@@QAE@XZ,0x0003128C,0x005C1DD0,168,Code/masm_dumps/___0ParticleSystemInfo_FXParticleSystem__QAE_XZ_5C1DD0.asm,matched,
 ??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x00024E01,0x005D01F0,126,Code/masm_dumps/___0ParticleSystemTemplate_FXParticleSystem__QAE_AB_5D01F0.asm,matched,
 ??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABVAsciiString@@@Z,0x0002677E,0x005CEB90,156,Code/masm_dumps/___0ParticleSystemTemplate_FXParticleSystem__QAE_AB_5CEB90.asm,matched,
-??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,,0x002A2520,287,Code/masm_dumps/ParticleUplinkCannonUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x11CC80
 ??0PartitionContactListNode@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,ICF alias of existing matched body
 ??0PartitionFilter@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,ICF alias of existing matched body
 ??0PartitionFilterAcceptOnSquad@@QAE@PBVSquad@@@Z,,0x00087A50,18,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,ICF alias of existing matched body
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ModelConditionUpgradeModuleData@@QAE@XZ,,0x002D6A20,158,Code/GameEngine/Source/GameLogic/AI/ModelConditionUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/GameEngine/Source/GameLogic/AI/GeometryUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/GameEngine/Source/GameLogic/AI/OCLSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,,0x002A2520,287,Code/GameEngine/Source/GameLogic/AI/ParticleUplinkCannonUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
