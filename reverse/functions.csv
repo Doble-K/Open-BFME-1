@@ -1129,7 +1129,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BenchProfile@@QAE@XZ,,0x0007BC10,30,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ??0BezFwdIterator@@QAE@HPBVBezierSegment@@@Z,,0x000B65C0,81,Code/GameEngine/Source/Common/Bezier/BezFwdIterator.cpp,matched,
 ??0BezFwdIterator@@QAE@XZ,,0x000B6880,60,Code/GameEngine/Source/Common/bez_fwd_iterator.cpp,matched,
-??0BezierProjectileBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F1470,297,Code/masm_dumps/BezierProjectileBehavior_constructor.asm,matched,Exact 297B @ 0x001F1470; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115240
 ??0BezierSegment@@QAE@MMMMMMMMMMMM@Z,,0x008D64A0,88,Code/GameEngine/Source/Common/Bezier/BezierSegment.cpp,matched,
 ??0BezierSegment@@QAE@QAM@Z,,0x00131DE0,79,Code/GameEngine/Source/Common/Bezier/BezierSegment.cpp,matched,
 ??0BezierSegment@@QAE@XZ,,0x00043A9A,5,Code/GameEngine/Source/Common/Bezier/BezierSegmentCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AutoAbilityBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ED8A0,155,Code/GameEngine/Source/GameLogic/AI/AutoAbilityBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0AutoPickUpUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00281AB0,175,Code/GameEngine/Source/GameLogic/AI/AutoPickUpUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0BannerCarrierUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00285F10,164,Code/GameEngine/Source/GameLogic/AI/BannerCarrierUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
+??0BezierProjectileBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F1470,297,Code/GameEngine/Source/GameLogic/AI/BezierProjectileBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
