@@ -2850,7 +2850,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1PartitionManager@@UAE@XZ,,0x009F2800,115,Code/masm_dumps/PartitionManager_dtor.asm,matched,True owner via PartitionManager getName string; ICF-alias of mislabeled TeamFactory dtor @0x9F2800
 ??1PassiveAreaEffectBehavior@@UAE@XZ,,0x002022B0,116,Code/masm_dumps/PassiveAreaEffectBehavior_destructor.asm,matched,Exact 116B @ 0x002022B0; Exact retail MASM; instance factory->vtable dtor; del 0x202390 ctor 0x202100 vt 0xCA5304
 ??1PassiveAreaEffectBehaviorModuleData@@UAE@XZ,,0x00202870,80,Code/masm_dumps/PassiveAreaEffectBehaviorModuleData_destructor.asm,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
-??1Payload@DeliverPayloadNugget@@QAE@XZ,,0x0004B10A,5,Code/masm_dumps/_thunk_eb7f4717a782_4B10A.asm,matched,thunk accessor of ported class
 ??1PeerRequest@@QAE@XZ,,0x004D52D0,555,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ??1PeerResponse@@QAE@XZ,,0x004DAC70,649,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
 ??1Pipe@@UAE@XZ,,0x009E78C0,50,Code/Libraries/Source/WWVegas/WWLib/pipe.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?GameSpyOpenOverlay@@YAXW4GSOverlayType@@@Z,,0x0002BA21,5,Code/GameEngine/Source/GameNetwork/GameSpyOpenOverlayThunk.cpp,matched,5-byte incremental-link global thunk converted to focused C++ source
 ??1LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0002A08B,5,Code/Libraries/Source/WWVegas/WW3D2/LogicalDecalDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ?GameSpyCloseOverlay@@YAXW4GSOverlayType@@@Z,,0x00040E94,5,Code/GameEngine/Source/GameNetwork/GameSpyOpenOverlayThunk.cpp,matched,5-byte incremental-link global thunk converted alongside paired overlay thunk
+??1Payload@DeliverPayloadNugget@@QAE@XZ,,0x0004B10A,5,Code/GameEngine/Source/GameLogic/Object/DeliverPayloadDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
