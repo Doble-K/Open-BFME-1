@@ -487,7 +487,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$CategoryModuleTemplate@$06@FXParticleSystem@@QAE@ABV01@@Z,0x0000CC4D,0x005C1B00,62,Code/masm_dumps/___0__CategoryModuleTemplate__06_FXParticleSystem___5C1B00.asm,matched,
 ??0?$CategoryModuleTemplate@$06@FXParticleSystem@@QAE@XZ,0x000366EC,0x005C1A30,106,Code/masm_dumps/___0__CategoryModuleTemplate__06_FXParticleSystem___5C1A30.asm,matched,
 ??0?$CategoryModuleTemplate@$07@FXParticleSystem@@QAE@ABV01@@Z,0x0000A14B,0x0005E3A0,52,Code/masm_dumps/___0__CategoryModuleTemplate__07_FXParticleSystem___5E3A0.asm,matched,
-??0?$CategoryModuleTemplate@$07@FXParticleSystem@@QAE@XZ,,0x0005E340,31,Code/masm_dumps/__0__CategoryModuleTemplate__07_FXParticleSystem__QAE_XZ_5E340.asm,matched,MASM exact retail dump
 ??0?$CategoryModuleTemplate@$0A@@FXParticleSystem@@QAE@ABV01@@Z,0x00025CA7,0x0005D9A0,32,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,calls TemplateBase copy ctor then sets derived vtables
 ??0?$CategoryModuleTemplate@$0A@@FXParticleSystem@@QAE@XZ,0x00007252,0x0005D950,23,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,vtable setup for two bases
 ??0?$CategoryModuleTemplateBase@$00@FXParticleSystem@@QAE@ABV01@@Z,0x00046DE9,0x005BF130,25,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,vtable setup for two bases
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ?beginAreaSelectHint@InGameUI@@UAEXPBVGameMessage@@@Z,,0x0043AC30,51,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,converted exact MASM method dump to clean C++ with retail message null guard
 ??_GLadderList@@QAEPAXI@Z,,0x006306D0,30,Code/GameNetwork/Source/GameSpy/LadderListScalarDestructorThunk.cpp,matched,Open-BFME5 exact C++ compiler-generated scalar deleting destructor; out-of-line LadderList destructor
 ??6Debug@@QAEAAV0@_N@Z,,0x008897C0,30,Code/Libraries/Source/WWVegas/WWDebug/debug_operator_bool.cpp,matched,Open-BFME5 exact C++ operator<< bool body
+??0?$CategoryModuleTemplate@$07@FXParticleSystem@@QAE@XZ,,0x0005E340,31,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplate8CtorThunk.cpp,matched,Open-BFME5 exact C++ template constructor thunk; retail ordinal $07 is Category 8
