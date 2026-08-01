@@ -1754,7 +1754,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MeshSaveContextClass@@QAE@XZ,,0x0096CAD0,28,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??0MetaEventTranslator@@QAE@XZ,,0x005B6B30,42,Code/masm_dumps/MetaEvent_MetaEventTranslator_constructor.asm,matched,
 ??0MetaMap@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,
-??0MetaMapRec@@QAE@XZ,,0x005B7020,11,Code/masm_dumps/MetaEvent_MetaMapRec_retail_constructor.asm,matched,
 ??0MilitarySubtitleData@InGameUI@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of existing matched body
 ??0MinMaxAABoxClass@@QAE@ABVVector3@@0@Z,,0x006C9EB0,46,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ??0MinefieldBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
@@ -13840,3 +13839,4 @@ __CIpow,,0x009F6FB2,6,Code/Libraries/Source/WWVegas/WWMath/CIpowThunk.cpp,matche
 __CIasin,,0x009F7D86,6,Code/Libraries/Source/WWVegas/WWMath/CIasinThunk.cpp,matched,Open-BFME5 exact C++ CRT import thunk replacing MASM dump;object-symbol=___CIasin
 ??1OCLUpdateModuleData@@UAE@XZ,,0x00298B70,7,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1OCLUpdateModuleData@@QAE@XZ
 ?messageColor@InGameUI@@UAAXPBURGBColor@@VUnicodeString@@ZZ,,0x0043DEF0,9,Code/GameEngine/Source/GameClient/InGameUIMessageColorThunk.cpp,matched,Open-BFME5 exact C++ ABI thunk replacing MASM dump;object-symbol=?messageColor@InGameUI@@UAAXPBURGBColor@@VUnicodeString@@ZZ
+??0MetaMapRec@@QAE@XZ,,0x005B7020,11,Code/GameEngine/Source/GameClient/MessageStream/MetaMapRecConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0MetaMapRec@@QAE@XZ
