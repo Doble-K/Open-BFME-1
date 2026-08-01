@@ -1735,6 +1735,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MemoryPoolFactory@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
 ??0MemoryPoolObject@@QAE@ABV0@@Z,,0x00712E80,11,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,ICF alias of existing matched body
 ??0MemoryPoolObject@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,ICF alias of existing matched body
+??0MemoryReadFile@@QAE@PADH@Z,,0x009CB3D0,109,Code/GameEngine/Source/Common/System/File.cpp,matched,installs vtable 0x01143A38 and names itself MemoryReadFile
 ??0MeshLoadContextClass@@AAE@XZ,,0x00970180,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??0MeshMatDescClass@@QAE@XZ,,0x0092A2B0,267,Code/masm_dumps/_leaf___0MeshMatDescClass__QAE_XZ_92A2B0.asm,matched,Exact 267B present-unmatched leaf Open-BFME4
 ??0MeshSaveContextClass@@QAE@XZ,,0x0096CAD0,28,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
@@ -4822,6 +4823,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GFXListDieModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GFXListStore@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GFadeTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
+??_GFile@@UAEPAXI@Z,,0x009CB950,30,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 0 of vtable 0x01143AF8
 ??_GFilePipe@@UAEPAXI@Z,,0x009E20E0,30,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??_GFileStraw@@UAEPAXI@Z,,0x009E1CC0,30,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??_GFileSystem@@UAEPAXI@Z,,0x000E4170,30,Code/GameEngine/Source/Common/System/FileSystem.cpp,matched,icf-owner=??_GPlayerTemplateStore@@UAEPAXI@Z
@@ -4906,6 +4908,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GMaxHealthUpgradeModuleData@@UAEPAXI@Z,,0x002D65C0,30,Code/GameEngine/Source/GameLogic/Object/Upgrade/MaxHealthUpgrade.cpp,matched,
 ??_GMemLogClass@@QAEPAXI@Z,,0x00AFF810,30,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??_GMemoryPoolObject@@MAEPAXI@Z,,0x00712E80,11,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,
+??_GMemoryReadFile@@UAEPAXI@Z,,0x009CB440,30,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 0 of vtable 0x01143A38
+??_GMemoryWriteFile@@UAEPAXI@Z,,0x009CB650,30,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 0 of vtable 0x01143AA8
 ??_GMessageStream@@UAEPAXI@Z,,0x0008DD80,30,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??_GMetaEventTranslator@@UAEPAXI@Z,,0x005B6B70,30,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
 ??_GMetaMapRec@@QAEPAXI@Z,,0x005B70E0,30,Code/masm_dumps/MetaEvent_MetaMapRec_retail_scalar_deleting_destructor.asm,matched,
@@ -11217,6 +11221,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getNextSubToken@INI@@QAEPBDPBD@Z,,0x00850B00,157,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,BFME throws INIException with a formatted message
 ?getNextTemplate@Anim2DCollection@@QBEPAVAnim2DTemplate@@PAV2@@Z,,0x005BA430,19,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?getNextTemporarySourcePort@FirewallHelperClass@@QAEGH@Z,,0x0066EE80,100,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
+?getNextToken@INI@@QAEPBDPBD@Z,,0x00850970,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,reads m_seps from this at +0x414 - was a MASM dump
+?getNextTokenOrNull@INI@@QAEPBDPBD@Z,,0x008509C0,29,Code/GameEngine/Source/Common/INI/ini.cpp,matched,same but returns NULL instead of throwing - was a MASM dump
 ?getNextVertexBuffer@W3DBufferManager@@QAEPAUW3DVertexBuffer@1@PAU21@W4VBM_FVF_TYPES@1@@Z,,0x007B7CF0,28,Code/masm_dumps/_rn12__getNextVertexBuffer_W3DBufferManager__QAEPAUW3DVertexBuffer_1_PAU21_W_7B7CF0.asm,matched,reloc-needle Open-BFME4+Grok
 ?getNode@LList@@QAEPAVLListNode@@H@Z,,0x00105D10,57,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?getNonOverloadedPointer@?$OVERRIDE@VWaterTransparencySetting@@@@QBEPBVWaterTransparencySetting@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
@@ -11889,7 +11895,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?link_object@GridCullSystemClass@@IAEXPAVCullableClass@@H@Z,,0x008DDBE0,121,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?link_object_to_list@GridCullSystemClass@@IAEXPAPAVCullableClass@@PAV2@@Z,,0x008DD8D0,42,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?load@GameSpyLoginPreferences@@UAE_NVAsciiString@@@Z,,0x00082190,977,Code/masm_dumps/GameSpyLoginPreferences_load.asm,matched,Exact retail MASM; date nick and password key literals prove ownership
-?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z,,0x00853610,1037,Code/masm_dumps/prepFile_INI_IAEXVAsciiString_W4INILoadType_Z_853610.asm,matched,ret 8 - two args - and it tests m_file on entry; load is 0x00853A20
 ?load@ImageCollection@@QAEXH@Z,,0x005D23A0,600,Code/masm_dumps/_sa11__load_ImageCollection__QAEXH_Z_5D23A0.asm,matched,string-anchor Open-BFME4+Grok Data\INI\MappedImages\TextureSize_%d
 ?load@W3DBridge@@QAE_NW4BodyDamageType@@@Z,,0x006D8C10,2836,Code/masm_dumps/_sa3__load_W3DBridge__QAE_NW4BodyDamageType___Z_6D8C10.asm,matched,true size 2836B; row claimed 2808B
 ?load@WaterRenderObjClass@@QAEXXZ,,0x0079F160,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
@@ -12360,6 +12365,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAEC0,44,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseWeaponTemplateDefinition@WeaponStore@@SAXPAVINI@@@Z,,0x001E9C40,223,Code/GameEngine/Source/GameLogic/Object/WeaponStore_parseWeaponTemplateDefinition.asm,matched,Certified packet 178 db-only retail recovery SHA256 da43851aa11804b5070b0273f73a23217690057e7b934ba66d66deb312c45aab
 ?parseWeaponTemplateSet@WeaponTemplateSet@@QAEXPAVINI@@PBVThingTemplate@@@Z,,0x001ECE50,28,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
+?parseWeatherDefinition@INI@@SAXPAV1@@Z,,0x0045B130,306,Code/GameEngine/Source/GameClient/Snow.cpp,matched,INI block table node binds keyword Weather to this address
 ?parseWin@@YAHQAPADH@Z,,0x00061050,19,Code/GameEngine/Source/Common/CommandLine.cpp,matched,
 ?parseWindow@@YAPAVGameWindow@@PAVFile@@PAD@Z,,0x00487F80,1328,Code/masm_dumps/GameWindowManagerScript_parseWindow.asm,matched,Exact 1328B MASM; true start 0x487F80 after int3 pad; cold tail past main ret
 ?pauseCountdown@SpecialPowerModule@@UAEX_N@Z,,0x0026A770,84,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule.cpp,matched,recovered from Open-BFME4 overnight session (deepseek)
@@ -12424,6 +12430,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?preloadAssets@ControlBar@@QAEXW4TimeOfDay@@@Z,,0x0026FD50,13,Code/masm_dumps/_rn13__preloadAssets_ControlBar__QAEXW4TimeOfDay___Z_26FD50.asm,matched,reloc-needle Open-BFME4+Grok
 ?preloadRoadSegment@W3DRoadBuffer@@IAEXPAVRoadSegment@@@Z,,0x0070AD70,285,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?preloadRoadsInVertexAndIndexBuffers@W3DRoadBuffer@@IAEXXZ,,0x0070FDA0,184,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
+?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z,,0x00853610,1037,Code/masm_dumps/prepFile_INI_IAEXVAsciiString_W4INILoadType_Z_853610.asm,matched,ret 8 - two args - and it tests m_file on entry; load is 0x00853A20
 ?prepareForMP_or_Skirmish@SidesList@@QAEXXZ,,0x00352810,153,Code/masm_dumps/_sa12__prepareForMP_or_Skirmish_SidesList__QAEXXZ_352810.asm,matched,string-anchor Open-BFME4+Grok PlayerScriptsList
 ?prepareNewGame@GameLogic@@QAEXHW4GameDifficulty@@H@Z,,0x00397190,234,Code/masm_dumps/prepareNewGame_GameLogic_QAEXHW4GameDifficulty_H_Z_00397190_9e4285aa.asm,matched,Certified packet 219 exact retail db body SHA-256 9e4285aae608dfc21d9a51be758f7c3009ca5f1388ed72633e4fe430fda42019
 ?prependViewToList@View@@MAEPAV1@PAV1@@Z,,0x0006F0C0,12,Code/GameEngine/Source/GameClient/View.cpp,matched,
@@ -12549,6 +12556,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?readGameMessageArgumentFromPacket@NetPacket@@KAXW4GameMessageArgumentDataType@@PAVNetGameCommandMsg@@PAEAAH@Z,,0x0067CE30,26,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readInt@DataChunkInput@@QAEHXZ,,0x001027F0,49,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?readKeepAliveMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
+?readLine@INI@@IAEXXZ,,0x008514C0,121,Code/GameEngine/Source/Common/INI/ini.cpp,matched,copies the next preloaded line and hashes it - was a MASM dump
 ?readLoadCompleteMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readNameKey@DataChunkInput@@QAE?AW4NameKeyType@@XZ,,0x001038D0,186,Code/masm_dumps/readNameKey_DataChunkInput_QAE_AW4NameKeyType_XZ_001038D0_packet293.asm,matched,Certified packet 293 SHA256 77443a9b046abf545b23fee7b77cf01414a46bd80d0c06ff54424e18e0fb9f7f
 ?readNextFrame@RecorderClass@@IAEXXZ,0x0000A2D1,0x98730,97,Code/GameEngine/Source/Common/System/recorder_strings.cpp,matched,
@@ -13663,6 +13671,9 @@ _D3DXVec4Transform@12,,0x009FAA48,600,Code/masm_dumps/__D3DXVec4Transform_12_9FA
 _DoAnyMapTransfers,,0x0066E070,659,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _GetArtPreviewFromMap,,0x0066D820,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _GetAssetUsageFromMap,,0x0066DE50,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetBaseFileFromFile,,0x0066D540,276,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetBasePathFromPath,,0x0066D260,276,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetFileFromPath,,0x0066D3C0,152,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _GetINIFromMap,,0x0066DB20,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _GetPicPreviewFromMap,,0x0066D9A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _GetPreviewFromMap,,0x0066D6A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
@@ -13757,38 +13768,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?parseWeatherDefinition@INI@@SAXPAV1@@Z,,0x0045B130,306,Code/GameEngine/Source/GameClient/Snow.cpp,matched,INI block table node binds keyword Weather to this address
-??0MemoryReadFile@@QAE@PADH@Z,,0x009CB3D0,109,Code/GameEngine/Source/Common/System/File.cpp,matched,installs vtable 0x01143A38 and names itself MemoryReadFile
-??_GMemoryReadFile@@UAEPAXI@Z,,0x009CB440,30,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 0 of vtable 0x01143A38
-??_GMemoryWriteFile@@UAEPAXI@Z,,0x009CB650,30,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 0 of vtable 0x01143AA8
-??_GFile@@UAEPAXI@Z,,0x009CB950,30,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 0 of vtable 0x01143AF8
-?getNextToken@INI@@QAEPBDPBD@Z,,0x00850970,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,reads m_seps from this at +0x414 - was a MASM dump
-?getNextTokenOrNull@INI@@QAEPBDPBD@Z,,0x008509C0,29,Code/GameEngine/Source/Common/INI/ini.cpp,matched,same but returns NULL instead of throwing - was a MASM dump
-?readLine@INI@@IAEXXZ,,0x008514C0,121,Code/GameEngine/Source/Common/INI/ini.cpp,matched,copies the next preloaded line and hashes it - was a MASM dump
-?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007D470,191,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table binds keyword DynamicGameLOD here - was a MASM dump
-?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
-?sendFileChunk@BFMEConnectionManager@@QAEXPBDHH@Z,,0x00666A10,435,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?updateFileProgress@BFMEConnectionManager@@QAEXXZ,,0x00669A00,265,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?parseMouseCursorDefinition@INI@@SAXPAV1@@Z,,0x005A5FA0,185,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,INI block table node binds keyword MouseCursor to this address
-?buildPlayerStatusText@BFMEConnectionManager@@QAEXPAX@Z,,0x00666300,578,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?queueLocalCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00662E80,484,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?attachPlayersFromGameInfo@BFMEConnectionManager@@QAEXPAX@Z,,0x00666610,597,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?resolvePlayerFromName@BFMEConnectionManager@@QAEXPAX@Z,,0x00667060,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?sendFileToPlayers@BFMEConnectionManager@@QAEXPBD@Z,,0x00669E20,418,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?sendFileAnnouncement@BFMEConnectionManager@@QAEXPBDH@Z,,0x0066A170,509,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?parseLanguageDefinition@INI@@SAXPAV1@@Z,,0x00438F70,25,Code/GameEngine/Source/GameClient/GlobalLanguage.cpp,matched,block table binds keyword Language here - reads TheGlobalLanguageData 0x012F1484
-_GetPreviewFromMap,,0x0066D6A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetArtPreviewFromMap,,0x0066D820,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetPicPreviewFromMap,,0x0066D9A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z,,0x004AAD10,1,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,INI block table node binds keyword ControlBarResizer to this address
-?parseOnlineChatColorDefinition@INI@@SAXPAV1@@Z,,0x006250A0,20,Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp,matched,INI block table node binds keyword OnlineChatColors to this address
-_GetINIFromMap,,0x0066DB20,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetStrFileFromMap,,0x0066DC30,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetSoloINIFromMap,,0x0066DD40,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetAssetUsageFromMap,,0x0066DE50,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetReadmeFromMap,,0x0066DF60,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_doFileTransfer,,0x0066CE60,814,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_DoAnyMapTransfers,,0x0066E070,659,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetFileFromPath,,0x0066D3C0,152,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetBaseFileFromFile,,0x0066D540,276,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
-_GetBasePathFromPath,,0x0066D260,276,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
