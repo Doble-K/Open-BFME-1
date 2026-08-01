@@ -1107,7 +1107,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AssistedTargetingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0AttackStateMachine@@QAE@PAVObject@@PAVAIAttackState@@VAsciiString@@_N33@Z,,0x0017F570,103,Code/masm_dumps/_sa8___0AttackStateMachine__QAE_PAVObject__PAVAIAttackS_17F570.asm,matched,Exact 103B Open-BFME4
 ??0AttributeModifierAuraUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002800D0,218,Code/masm_dumps/AttributeModifierAuraUpdate_constructor.asm,matched,Exact 218B @ 0x002800D0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A8D0
-??0AttributeModifierAuraUpdateModuleData@@QAE@XZ,,0x00280B20,189,Code/masm_dumps/AttributeModifierAuraUpdateModuleData_constructor.asm,matched,Exact 189B @ 0x00280B20; Exact retail MASM ModuleData ctor; unique factory 0x11A950
 ??0AttributeModifierUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D2EB0,53,Code/masm_dumps/AttributeModifierUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
 ??0AudioSettings@@QAE@XZ,,0x000B4E00,725,Code/masm_dumps/AudioSettings_ctor_000B4E00.asm,matched,Certified packet 142 exact retail db recovery
 ??0AutoAbilityBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ED8A0,155,Code/masm_dumps/AutoAbilityBehavior_constructor.asm,matched,Exact 155B @ 0x001ED8A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114F10
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0BoneFXUpdateModuleData@@QAE@XZ,,0x00288340,225,Code/GameEngine/Source/GameLogic/AI/BoneFXUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0BroadcastStealthUpdateModuleData@@QAE@XZ,,0x0012A2E0,79,Code/GameEngine/Source/GameLogic/AI/BroadcastStealthUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0FlammableUpdateModuleData@@QAE@XZ,,0x00294B20,180,Code/GameEngine/Source/GameLogic/AI/FlammableUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0AttributeModifierAuraUpdateModuleData@@QAE@XZ,,0x00280B20,189,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
