@@ -1086,7 +1086,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Animatable3DObjClass@@QAE@PBD@Z,,0x00981EF0,393,Code/masm_dumps/_sym1___0Animatable3DObjClass__QAE_PBD_Z_981EF0.asm,matched,symbol-pin Open-BFME4+Grok
 ??0AnimateWindow@@QAE@XZ,,0x0045CEE0,62,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??0AnimateWindowManager@@QAE@XZ,,0x0045D6B0,537,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
-??0AnimationSoundClientBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00605380,245,Code/masm_dumps/AnimationSoundClientBehavior_constructor.asm,matched,Exact 245B @ 0x00605380; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x121D20
 ??0AnimationSteeringUpdateModuleData@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/GameLogic/Object/Update/AnimationSteeringUpdate.cpp,matched,
 ??0ArchiveFile@@QAE@XZ,,0x009D10B0,87,Code/masm_dumps/__0ArchiveFile__QAE_XZ_9D10B0.asm,matched,MASM exact retail dump
 ??0ArchivedDirectoryInfo@@QAE@ABV0@@Z,,0x009CA8F0,98,Code/masm_dumps/_sym3___0ArchivedDirectoryInfo__QAE_ABV0__Z_9CA8F0.asm,matched,symbol-pin Open-BFME4+Grok
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0HeroDieModuleData@@QAE@XZ,,0x00255600,82,Code/GameEngine/Source/GameLogic/AI/HeroDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0EmotionTrackerUpdateModuleData@@QAE@XZ,,0x0028F910,537,Code/GameEngine/Source/GameLogic/AI/EmotionTrackerUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CritterEmitterUpdateModuleData@@QAE@XZ,,0x001FA3A0,414,Code/GameEngine/Source/GameLogic/AI/CritterEmitterUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0AnimationSoundClientBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00605380,245,Code/GameEngine/Source/GameLogic/AI/AnimationSoundClientBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
