@@ -2188,7 +2188,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SupplyTruckAIUpdateModuleData@@QAE@XZ,,0x0011B860,123,Code/masm_dumps/SupplyTruckAIUpdateModuleData_constructor.asm,matched,Exact 123B @ 0x0011B860; Exact retail MASM ModuleData ctor; unique factory 0x11B9B0
 ??0SupplyTruckStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x002C6430,1153,Code/masm_dumps/_sa3___0SupplyTruckStateMachine__QAE_PAVObject__VAsciiS_2C6430.asm,matched,Exact 1153B string-anchored Open-BFME4
 ??0SupplyWarehouseCripplingBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00037619,5,Code/masm_dumps/__0SupplyWarehouseCripplingBehavior__QAE_PAVThing__PBVModuleData___Z_37619.asm,matched,MASM exact retail dump
-??0SupplyWarehouseCripplingBehaviorModuleData@@QAE@XZ,,0x000261CA,5,Code/masm_dumps/__0SupplyWarehouseCripplingBehaviorModuleData__QAE_XZ_261CA.asm,matched,MASM exact retail dump
 ??0SupplyWarehouseDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001E902,5,Code/masm_dumps/__0SupplyWarehouseDockUpdate__QAE_PAVThing__PBVModuleData___Z_1E902.asm,matched,MASM exact retail dump
 ??0SupplyWarehouseDockUpdateModuleData@@QAE@XZ,,0x002CFB00,29,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyWarehouseDockUpdate.cpp,matched,
 ??0Surface@@QAE@HH@Z,,0x0043CD10,25,Code/Libraries/Source/WWVegas/WW3D2/txt.cpp,matched,
@@ -13797,3 +13796,5 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??0GhostObjectManager@@QAE@XZ,,0x001B3AA0,20,Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp,matched,converted thunk to TU-scoped C++ constructor
+??0SupplyWarehouseCripplingBehaviorModuleData@@QAE@XZ,,0x0020D580,20,Code/GameEngine/Source/GameLogic/Object/Behavior/SupplyWarehouseCripplingBehavior.cpp,matched,converted thunk to TU-scoped C++ constructor
