@@ -2140,7 +2140,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SupplyCenterDockUpdateModuleData@@QAE@XZ,,0x002CF5A0,36,Code/GameEngine/Source/GameLogic/Object/Update/SupplyCenterDockUpdateModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; retail factory field initialization preserved
 ??0SupplyCenterProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00027B06,5,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SupplyCenterProductionExitUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0SupplyCenterProductionExitUpdateModuleData@@QAE@XZ,,0x0037CC20,38,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-??0SupplyTruckAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C6AE0,280,Code/masm_dumps/SupplyTruckAIUpdate_constructor.asm,matched,Exact 280B @ 0x002C6AE0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B930
 ??0SupplyTruckAIUpdateModuleData@@QAE@XZ,,0x0011B860,123,Code/masm_dumps/SupplyTruckAIUpdateModuleData_constructor.asm,matched,Exact 123B @ 0x0011B860; Exact retail MASM ModuleData ctor; unique factory 0x11B9B0
 ??0SupplyTruckStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x002C6430,1153,Code/masm_dumps/_sa3___0SupplyTruckStateMachine__QAE_PAVObject__VAsciiS_2C6430.asm,matched,Exact 1153B string-anchored Open-BFME4
 ??0SupplyWarehouseCripplingBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00037619,5,Code/GameEngine/Source/GameLogic/Object/Behavior/SupplyWarehouseCripplingBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AssaultTransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B46F0,97,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0DeployStyleAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0SupplyTruckAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C6AE0,280,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
