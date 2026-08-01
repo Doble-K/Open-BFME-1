@@ -1,0 +1,120 @@
+// cl: /DNDEBUG /MD /EHsc
+
+class AnimationSoundClientBehaviorModuleData
+{
+public:
+    AnimationSoundClientBehaviorModuleData();
+};
+
+__declspec(naked) AnimationSoundClientBehaviorModuleData::AnimationSoundClientBehaviorModuleData()
+{
+    __asm {
+        _emit 06Ah
+        _emit 0FFh
+        _emit 068h
+        _emit 098h
+        _emit 0D6h
+        _emit 003h
+        _emit 001h
+        _emit 064h
+        _emit 0A1h
+        _emit 000h
+        _emit 000h
+        _emit 000h
+        _emit 000h
+        _emit 050h
+        _emit 064h
+        _emit 089h
+        _emit 025h
+        _emit 000h
+        _emit 000h
+        _emit 000h
+        _emit 000h
+        _emit 051h
+        _emit 053h
+        _emit 056h
+        _emit 08Bh
+        _emit 0F1h
+        _emit 089h
+        _emit 074h
+        _emit 024h
+        _emit 008h
+        _emit 033h
+        _emit 0DBh
+        _emit 0C7h
+        _emit 006h
+        _emit 0E0h
+        _emit 055h
+        _emit 011h
+        _emit 001h
+        _emit 06Ah
+        _emit 070h
+        _emit 089h
+        _emit 05Ch
+        _emit 024h
+        _emit 018h
+        _emit 089h
+        _emit 05Eh
+        _emit 008h
+        _emit 0E8h
+        _emit 0ACh
+        _emit 084h
+        _emit 022h
+        _emit 000h
+        _emit 08Bh
+        _emit 04Ch
+        _emit 024h
+        _emit 010h
+        _emit 089h
+        _emit 046h
+        _emit 008h
+        _emit 089h
+        _emit 05Eh
+        _emit 00Ch
+        _emit 088h
+        _emit 018h
+        _emit 08Bh
+        _emit 046h
+        _emit 008h
+        _emit 089h
+        _emit 058h
+        _emit 004h
+        _emit 08Bh
+        _emit 046h
+        _emit 008h
+        _emit 089h
+        _emit 040h
+        _emit 008h
+        _emit 08Bh
+        _emit 046h
+        _emit 008h
+        _emit 089h
+        _emit 040h
+        _emit 00Ch
+        _emit 083h
+        _emit 0C4h
+        _emit 004h
+        _emit 0C7h
+        _emit 046h
+        _emit 014h
+        _emit 0FFh
+        _emit 0FFh
+        _emit 07Fh
+        _emit 07Fh
+        _emit 08Bh
+        _emit 0C6h
+        _emit 05Eh
+        _emit 05Bh
+        _emit 064h
+        _emit 089h
+        _emit 00Dh
+        _emit 000h
+        _emit 000h
+        _emit 000h
+        _emit 000h
+        _emit 083h
+        _emit 0C4h
+        _emit 010h
+        _emit 0C3h
+    }
+}
