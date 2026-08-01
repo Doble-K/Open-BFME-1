@@ -72,6 +72,16 @@
 #include "WW3D2/MeshMdl.h"
 #include "Common/BitFlagsIO.h"
 
+__declspec(noinline) void reconstructHideShowSubObjInfo(void *dest, const void *src)
+{
+	if (dest == NULL)
+		return;
+
+	*reinterpret_cast<unsigned int *>(dest) = *reinterpret_cast<const unsigned int *>(src);
+	*reinterpret_cast<unsigned int *>(reinterpret_cast<unsigned char *>(dest) + 4) =
+		*reinterpret_cast<const unsigned int *>(reinterpret_cast<const unsigned char *>(src) + 4);
+}
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
