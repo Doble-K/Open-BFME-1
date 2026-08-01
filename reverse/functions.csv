@@ -1314,7 +1314,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DeletionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00016C52,5,Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0DeletionUpdateModuleData@@QAE@XZ,,0x0008A950,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0DemoTrapUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028C7F0,80,Code/GameEngine/Source/GameLogic/Object/Update/DemoTrapUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x28C7F0
-??0DemoTrapUpdateModuleData@@QAE@XZ,,0x0028C9E0,58,Code/masm_dumps/DemoTrapUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x119A20
 ??0DestroyDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254F80,60,Code/masm_dumps/DestroyDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0DestroyEnvironmentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028CD70,101,Code/masm_dumps/DestroyEnvironmentUpdate_constructor.asm,matched,Exact 101B; factory ownership Open-BFME4
 ??0DestroyEnvironmentUpdateModuleData@@QAE@XZ,,0x0028CD30,23,Code/GameEngine/Source/GameLogic/Object/Update/DestroyEnvironmentUpdate.cpp,matched,Exact retail ModuleData constructor emitted as C++.
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0KeepObjectDieModuleData@@QAE@XZ,,0x00122ED0,69,Code/GameEngine/Source/GameLogic/AI/KeepObjectDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ModelConditionSpecialAbilityUpdateModuleData@@QAE@XZ,,0x002982D0,52,Code/GameEngine/Source/GameLogic/AI/ModelConditionSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0RainOfFireUpdateModuleData@@QAE@XZ,,0x002A08B0,62,Code/GameEngine/Source/GameLogic/AI/RainOfFireUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0DemoTrapUpdateModuleData@@QAE@XZ,,0x0028C9E0,58,Code/GameEngine/Source/GameLogic/AI/DemoTrapUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
