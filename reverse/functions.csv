@@ -9658,6 +9658,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?drawableIconNameToIndex@@YA?AW4DrawableIconType@@PBD@Z,,0x00410A80,51,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?dumpPacketToLog@NetPacket@@IAEXXZ,,0x00679560,83,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?duplicate@BuildListInfo@@QAEPAV1@XZ,,0x001944D0,194,Code/masm_dumps/duplicate_BuildListInfo_QAEPAV1_XZ_001944D0_6d7e0f9b.asm,matched,Certified packet 163 exact retail db recovery SHA256 6d7e0f9b3bcca298be35f6b13d8b6e1f0175f79c1cf4a03289786dea5ed3258a
+?duplicate@Condition@@QBEPAV1@XZ,,0x0001C189,5,Code/GameEngine/Source/Common/RTS/ConditionDuplicateThunk.cpp,matched,5-byte incremental-link Condition const member thunk converted to focused C++ source
 ?duplicate@OrCondition@@QBEPAV1@XZ,,0x0035A460,140,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?duplicate@ScriptAction@@QBEPAV1@XZ,,0x003560A0,532,Code/masm_dumps/duplicate_ScriptAction_003560A0_packet335.asm,matched,Certified packet 335 sealed SHA-256 b1b57dfc8fa47f49ebe2bdc67213543a27a2d9b45e9bdada25241478a55489d1
 ?emit_ArmorUpgrade@ModulePoolGlueBulk@@YAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D090,96,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,icf-owner=friend_newModuleInstance@ArmorUpgrade; Ghidra boundary
@@ -11231,6 +11232,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getNextAsciiString@INI@@QAE?AVAsciiString@@XZ,,0x008516E0,393,Code/masm_dumps/getNextAsciiString_INI_QAE_AVAsciiString_XZ_8516E0.asm,matched,Ghidra boundary plus static quoted-token buffer flow
 ?getNextFormationID@AI@@QAE?AW4FormationID@@XZ,,0x0014A570,10,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,
 ?getNextHeader@HeaderTemplateManager@@QAEPAVHeaderTemplate@@PAV2@@Z,,0x0048C440,42,Code/GameEngine/Source/GameClient/GUI/HeaderTemplate.cpp,matched,
+?getNextMission@Campaign@@QAEPAVMission@@PAV2@@Z,,0x0003236C,5,Code/Libraries/Source/WWVegas/WWLib/CampaignMissionThunk.cpp,matched,Focused C++ thunk for Campaign::getNextMission
 ?getNextPlayPortion@AudioEventRTS@@QBE?AW4PortionToPlay@@XZ,,0x000B2420,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Retail thunk-bound BFME next-portion getter
 ?getNextQuotedAsciiString@INI@@QAE?AVAsciiString@@XZ,,0x00851540,401,Code/masm_dumps/getNextQuotedAsciiString_INI_QAE_AVAsciiString_XZ_851540.asm,matched,Ghidra boundary plus 0x40C quoted-token buffer flow
 ?getNextSubToken@INI@@QAEPBDPBD@Z,,0x00850B00,157,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,BFME throws INIException with a formatted message
