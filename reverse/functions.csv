@@ -1560,7 +1560,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HordeGarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00248F90,175,Code/masm_dumps/HordeGarrisonContain_constructor.asm,matched,Exact 175B @ 0x00248F90; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1160C0
 ??0HordeGarrisonContainModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0HordeSiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024A560,307,Code/masm_dumps/HordeSiegeEngineContain_constructor.asm,matched,Exact 307B @ 0x0024A560; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1163F0
-??0HordeSiegeEngineContainModuleData@@QAE@XZ,,0x0022CB80,148,Code/masm_dumps/HordeSiegeEngineContainModuleData_constructor.asm,matched,Exact 148B @ 0x0022CB80; Exact retail MASM ModuleData ctor; unique factory 0x116360
 ??0HordeTransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024B6F0,115,Code/masm_dumps/HordeTransportContain_constructor.asm,matched,Exact 115B; factory ownership Open-BFME4
 ??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/HordeUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
 ??0HordeUpdateModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/HordeUpdateModuleData_constructor.asm,matched,Exact 162B ICF alias MD Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0DeployStyleAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0SupplyTruckAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C6AE0,280,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0HordeSiegeEngineContainModuleData@@QAE@XZ,,0x0022CB80,148,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
