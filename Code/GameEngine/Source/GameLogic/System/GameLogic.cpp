@@ -4858,12 +4858,12 @@ void GameLogic::setBuildableStatusOverride(const ThingTemplate* tt, BuildableSta
 }
 
 // ------------------------------------------------------------------------------------------------
-// ?findBuildableStatusOverride@GameLogic@@QBE_NPBVThingTemplate@@AAW4BuildableStatus@@@Z present-unmatched
 Bool GameLogic::findBuildableStatusOverride(const ThingTemplate* tt, BuildableStatus& bs) const
 {
 	if (tt)
 	{
-		BuildableMap::const_iterator it = m_thingTemplateBuildableOverrides.find(tt->getName());
+		const AsciiString &name = *(const AsciiString *)((const UnsignedByte *)tt + 0x20);
+		BuildableMap::const_iterator it = m_thingTemplateBuildableOverrides.find(name);
 		if (it != m_thingTemplateBuildableOverrides.end())
 		{
 			bs = it->second;
