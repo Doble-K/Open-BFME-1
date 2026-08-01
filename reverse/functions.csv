@@ -1133,7 +1133,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BattlePlanUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286260,383,Code/masm_dumps/BattlePlanUpdate_constructor.asm,matched,Exact 383B @ 0x00286260; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x119CD0
 ??0BattlePlanUpdateModuleData@@QAE@XZ,,0x0003025B,5,Code/masm_dumps/__0BattlePlanUpdateModuleData__QAE_XZ_3025B.asm,matched,MASM exact retail dump
 ??0BeaconClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
-??0BeaconClientUpdateModuleData@@QAE@XZ,,0x000286C3,5,Code/masm_dumps/__0BeaconClientUpdateModuleData__QAE_XZ_286C3.asm,matched,MASM exact retail dump
 ??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00121F60,46,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate.cpp,matched,
 ??0BenchProfile@@QAE@XZ,,0x0007BC10,30,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ??0BezFwdIterator@@QAE@HPBVBezierSegment@@@Z,,0x000B65C0,81,Code/GameEngine/Source/Common/Bezier/BezFwdIterator.cpp,matched,
@@ -1355,7 +1354,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DistLODNodeDefStruct@@QAE@XZ,,0x0005C5D0,13,Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp,matched,icf-owner=??0?$DLNodeClass@USmudge@@@@QAE@XZ
 ??0DistLODPrototypeClass@@QAE@PAVDistLODDefClass@@@Z,,0x00149E30,25,Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp,matched,
 ??0DockUpdateInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,ICF alias of existing matched body
-??0DockUpdateModuleData@@QAE@XZ,,0x0002C54D,5,Code/masm_dumps/__0DockUpdateModuleData__QAE_XZ_2C54D.asm,matched,MASM exact retail dump
 ??0DownloadManager@@QAE@XZ,,0x0001958D,5,Code/masm_dumps/__0DownloadManager__QAE_XZ_1958D.asm,matched,MASM exact retail dump
 ??0DownloadManagerMunkee@@QAE@XZ,,0x004C7490,22,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
 ??0DozerAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B8680,272,Code/masm_dumps/DozerAIUpdate_constructor.asm,matched,Exact 272B @ 0x002B8680; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x117FA0
@@ -13594,3 +13592,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0FloatUpdateModuleData@@QAE@XZ,,0x00294F60,13,Code/GameEngine/Source/GameLogic/Object/Update/FloatUpdate.cpp,matched,thunk-dump converted to real C++ (ZH body verbatim); BFME Snapshot ctor is inline-empty so no base-ctor call is emitted
 ??0RadarUpdateModuleData@@QAE@XZ,,0x002A01C0,16,Code/GameEngine/Source/GameLogic/Object/Update/RadarUpdate.cpp,matched,thunk-dump converted to real C++ (ZH body verbatim); BFME Snapshot ctor is inline-empty so no base-ctor call is emitted
 ??0LockWeaponCreateModuleData@@QAE@XZ,,0x0024FE00,16,Code/GameEngine/Source/GameLogic/Object/Create/LockWeaponCreate.cpp,matched,thunk-dump converted to real C++ (ZH body verbatim); BFME Snapshot ctor is inline-empty so no base-ctor call is emitted
+??0DockUpdateModuleData@@QAE@XZ,,0x002CAAF0,20,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,thunk-dump converted to real C++; BFME Snapshot ctor is inline-empty (reference/shims/snapshotinline) so no base-ctor call is emitted
+??0BeaconClientUpdateModuleData@@QAE@XZ,,0x006031C0,23,Code/GameEngine/Source/GameClient/Drawable/Update/BeaconClientUpdate.cpp,matched,thunk-dump converted to real C++ (ZH body verbatim); BFME Snapshot ctor is inline-empty so no base-ctor call is emitted
