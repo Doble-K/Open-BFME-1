@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/iniexception /Ireference/shims/ini_noinline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -33,6 +33,7 @@
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include "Common/INI.h"
+#include "Common/INIException.h"
 #include "Common/Player.h"
 #include "GameLogic/RankInfo.h"
 
@@ -123,7 +124,20 @@ const RankInfo* RankInfoStore::getRankInfo(Int level) const
 }
 
 //-----------------------------------------------------------------------------
-// ?friend_parseRankDefinition@RankInfoStore@@ present-unmatched
+// ?friend_parseRankDefinition@RankInfoStore@@SAXPAVINI@@@Z present-unmatched
+// All three guards now carry their retail messages -- "Rank not found in
+// map.ini" twice and "Ranks must increase monotonically" -- instead of a bare
+// INI_INVALID_DATA, and getLoadType reads INI+0x08, so the TU uses
+// reference/shims/ini_noinline. The control flow matches retail instruction for
+// instruction.
+//
+// What does not match is register allocation, and it starts at byte 8. Retail
+// tests the store with test eax,eax and passes the getNextToken separator as a
+// literal push 0. We materialise zero into ebx and spend the register on both --
+// xor ebx,ebx then cmp eax,ebx then push ebx -- which costs a callee-saved
+// register and shifts everything after. That is an MSVC heuristic about how many
+// zero uses are worth a register, so it wants a source shape with fewer of them
+// rather than a different spelling of any one comparison.
 void RankInfoStore::friend_parseRankDefinition( INI* ini )
 {
 	if (TheRankInfoStore)
@@ -144,15 +158,13 @@ void RankInfoStore::friend_parseRankDefinition( INI* ini )
 			// we aren't allowed to add ranks in overrides, only to override existing ones.
 			if (rank < 1 || rank > TheRankInfoStore->m_rankInfos.size())
 			{
-				DEBUG_CRASH(("Rank not found in map.ini"));
-				throw INI_INVALID_DATA;
+				throw INIException( 3, "Rank not found in map.ini" );
 			}
 			
 			RankInfo* info = TheRankInfoStore->m_rankInfos[rank-1];
 			if (!info)
 			{
-				DEBUG_CRASH(("Rank not found in map.ini"));
-				throw INI_INVALID_DATA;
+				throw INIException( 3, "Rank not found in map.ini" );
 			}
 
 			RankInfo* newInfo = newInstance(RankInfo);
@@ -172,8 +184,7 @@ void RankInfoStore::friend_parseRankDefinition( INI* ini )
 		{
 			if (rank != TheRankInfoStore->m_rankInfos.size() + 1)
 			{
-				DEBUG_CRASH(("Ranks must increase monotonically"));
-				throw INI_INVALID_DATA;
+				throw INIException( 3, "Ranks must increase monotonically" );
 			}
 			RankInfo* info = newInstance(RankInfo);
 			ini->initFromINI(info, myFieldParse);
