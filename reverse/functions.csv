@@ -1172,7 +1172,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BridgeFXInfo@@QAE@XZ,,0x000ED560,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ??0BridgeInfo@@QAE@XZ,,0x001A1EC0,85,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ??0BridgeOCLInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
-??0BridgeScaffoldBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001002D,5,Code/masm_dumps/__0BridgeScaffoldBehavior__QAE_PAVThing__PBVModuleData___Z_1002D.asm,matched,MASM exact retail dump
 ??0BridgeTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F6000,96,Code/masm_dumps/BridgeTowerBehavior_constructor.asm,matched,Exact 96B unique factory Open-BFME4
 ??0BroadcastStealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00289880,244,Code/masm_dumps/BroadcastStealthUpdate_constructor.asm,matched,Exact 244B @ 0x00289880; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B370
 ??0BroadcastStealthUpdateModuleData@@QAE@XZ,,0x0012A2E0,79,Code/masm_dumps/BroadcastStealthUpdateModuleData_constructor.asm,matched,Exact 79B unique factory Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@UFlightDeckInfo@FlightDeckBehavior@@V?$allocator@UFlightDeckInfo@FlightDeckBehavior@@@_STL@@@_STL@@IAEXPAUFlightDeckInfo@FlightDeckBehavior@@ABU34@ABU__false_type@2@I_N@Z,,0x0000A47A,5,Code/Libraries/Source/WWVegas/WWLib/FlightDeckBehaviorFlightDeckInfoVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0DefaultProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00025581,5,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/DefaultProductionExitUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@UHorzLine@@V?$allocator@UHorzLine@@@_STL@@@_STL@@IAEXPAUHorzLine@@ABU3@ABU__false_type@2@I_N@Z,,0x00017FB2,5,Code/Libraries/Source/WWVegas/WWLib/HorzLineVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0BridgeScaffoldBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001002D,5,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
