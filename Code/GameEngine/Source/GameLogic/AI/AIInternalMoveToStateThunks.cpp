@@ -46,3 +46,20 @@ __declspec(naked) StateReturnType AIInternalMoveToState::update()
 		_emit 000h
 	}
 }
+
+class AIMoveOutOfTheWayState
+{
+public:
+	virtual StateReturnType update();
+};
+
+__declspec(naked) StateReturnType AIMoveOutOfTheWayState::update()
+{
+	__asm {
+		_emit 0E9h
+		_emit 0E1h
+		_emit 04Eh
+		_emit 0EDh
+		_emit 0FFh
+	}
+}

@@ -13368,7 +13368,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@AIFollowWaypointPathState@@UAE?AW4StateReturnType@@XZ,,0x001888D9,794,Code/GameEngine/Source/GameLogic/AI/AIStates_update.asm,matched,exact 794B via MASM
 ?update@AIHuntState@@UAE?AW4StateReturnType@@XZ,,0x0017E480,800,Code/masm_dumps/AIHuntState_update_17E480.asm,matched,Certified packet 152 exact retail MASM SHA256 80b88dde9572dbde5a8ad4b63b7d6ec0817a76928ab797f5922d383a00fad311
 ?update@AIMoveAndDeleteState@@UAE?AW4StateReturnType@@XZ,,0x0017A530,152,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?update@AIMoveOutOfTheWayState@@UAE?AW4StateReturnType@@XZ,,0x00173A10,5,Code/masm_dumps/update_AIMoveOutOfTheWayState_00173A10_packet246.asm,matched,certified packet 246 constructor-owned vtable slot 6 tail-jump to matched AIInternalMoveToState update
 ?update@AIMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00188290,522,Code/masm_dumps/AIMoveToState_update_188290.asm,matched,Certified packet 18 constructor-vtable recovery SHA256 a1d50190e6650677c3f9dadf8807b1aefc023cef7b8c339d3ecb0f2a2dc33a03
 ?update@AIPanicState@@UAE?AW4StateReturnType@@XZ,,0x0017B840,399,Code/masm_dumps/AIPanicState_update.asm,matched,true body @0x17B840 (399B); drift 0x77B0E1 mid-noise; vtbl 0x109A988 slot6; C++ blocked by layout; MASM exact
 ?update@AIPickUpCrateState@@UAE?AW4StateReturnType@@XZ,,0x00178E10,26,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
@@ -13812,3 +13811,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x000488F6,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState update
 ?setDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEXI@Z,,0x000473DE,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgSetDisconnectFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0xA73C90
 ?loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,,0x000346DF,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBufferLoadFloat4PtSectionThunk.cpp,matched,5-byte protected W3DRoadBuffer road section thunk converted to focused C++ source
+?update@AIMoveOutOfTheWayState@@UAE?AW4StateReturnType@@XZ,,0x00173A10,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIMoveOutOfTheWayState update
