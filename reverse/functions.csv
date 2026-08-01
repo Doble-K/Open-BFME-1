@@ -2009,7 +2009,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SlaughterHordeContainModuleData@@QAE@XZ,,0x0022B160,110,Code/masm_dumps/SlaughterHordeContainModuleData_constructor.asm,matched,Exact 110B @ 0x0022B160; Exact retail MASM ModuleData ctor; unique factory 0x116750
 ??0SlaveWatcherBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00207300,134,Code/masm_dumps/SlaveWatcherBehavior_constructor.asm,matched,Exact 134B @ 0x00207300; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1174C0
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A4260,112,Code/masm_dumps/SlavedUpdate_constructor.asm,matched,Exact 112B; factory ownership Open-BFME4
-??0SlavedUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/SlavedUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0SlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00207B60,321,Code/masm_dumps/SlowDeathBehavior_constructor.asm,matched,Exact 321B @ 0x00207B60; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115470
 ??0SlowDeathBehaviorModuleData@@QAE@XZ,,0x002093F0,404,Code/masm_dumps/SlowDeathBehaviorModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x1154F0
 ??0SmartBombTargetHomingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286F80,154,Code/masm_dumps/SmartBombTargetHomingUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0RepairSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$__destroy_aux@PAVAsciiString@@@_STL@@YAXPAVAsciiString@@0ABU__false_type@0@@Z,,0x00014AA1,5,Code/GameEngine/Source/Common/System/AsciiStringDestroyAux.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
 ??0SiegeAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0SlavedUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
