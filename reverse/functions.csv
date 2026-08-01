@@ -1070,7 +1070,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AITNGuardMachine@@,,0x0018AFB0,753,Code/masm_dumps/_sa___0AITNGuardMachine___18AFB0.asm,matched,Exact 753B string-anchored Open-BFME4
 ??0AITunnelNetworkGuardState@@QAE@PAVStateMachine@@@Z,,0x001717B0,53,Code/GameEngine/Source/GameLogic/AI/AIStates_AITunnelNetworkGuardState_ctor.asm,matched,Certified packet 135 exact MASM recovery
 ??0AIUpdateInterfaceModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0ActiveBodyModuleData@@QAE@XZ,,0x0020F7C0,230,Code/masm_dumps/ActiveBodyModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x11F420
 ??0ActiveCategoryClass@@QAE@XZ,,0x00AFF590,181,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??0ActiveCategoryStackClass@@QAE@XZ,,0x00AFF0E0,75,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??0AggregateDefClass@@QAE@AAVRenderObjClass@@@Z,,0x00981720,162,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AttributeModifierUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/AttributeModifierUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0AutoDepositUpdateModuleData@@QAE@XZ,,0x00123E90,86,Code/GameEngine/Source/GameLogic/AI/AutoDepositUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AutoPickUpUpdateModuleData@@QAE@XZ,,0x002827E0,242,Code/GameEngine/Source/GameLogic/AI/AutoPickUpUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0ActiveBodyModuleData@@QAE@XZ,,0x0020F7C0,230,Code/GameEngine/Source/GameLogic/AI/ActiveBodyModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
