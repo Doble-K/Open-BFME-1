@@ -11982,7 +11982,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseSingleBitFromINI@?$BitFlags@$0HF@@@SAXPAVINI@@PAX1PBX@Z,,0x0081D410,32,Code/GameEngine/Source/GameLogic/Object/Upgrade/ModelConditionUpgrade.cpp,matched,
 ?parseSkillSet@AI@@SAXPAVINI@@PAX1PBX@Z,,0x0014AEC0,26,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,
 ?parseSliderData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484B10,88,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
-?parseSoundsList@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E9C4,5,Code/masm_dumps/parseSoundsList_INI_SAXPAV1_PAX1PBX_Z_2E9C4.asm,matched,Retail Sounds Attack and Decay table xrefs converge on BFME sound-list thunk to 0x4B1DF0
 ?parseSpecialPowerDefinition@SpecialPowerStore@@,,0x000EBE90,639,Code/masm_dumps/_sa__parseSpecialPowerDefinition_SpecialPowerStore___EBE90.asm,matched,Exact 639B string-anchored Open-BFME4
 ?parseSpecialPowerTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BB210,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,was a 5B thunk claim at 0x0001D77D
 ?parseStartMoney@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E0AF0,59,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??4?$PrimitiveAnimationChannelClass@VVector2@@@@QAEABV0@ABV0@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,object-symbol=?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z;ICF alias converted to focused C++ thunk TU
 ?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/GameEngine/Source/Common/RTS/INIParseAnim2DTemplateThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z,,0x0001366F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectSetStatusThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
+?parseSoundsList@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E9C4,5,Code/GameEngine/Source/Common/RTS/INIParseSoundsListThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
