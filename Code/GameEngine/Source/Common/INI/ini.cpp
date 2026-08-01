@@ -704,7 +704,6 @@ void INI::parseAngleReal( INI *ini, void * /*instance*/,
 /** Parse an angular velocity in degrees-per-sec and store the rads-per-frame value of that degree
 	* in a Real */
 //-------------------------------------------------------------------------------------------------
-// ?parseAngularVelocityReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseAngularVelocityReal( INI *ini, void * /*instance*/, 
 																			void *store, const void *userData )
 {
@@ -1331,7 +1330,6 @@ void INI::parseThingTemplate(INI *ini, void *, void *store, const void *)
 //-------------------------------------------------------------------------------------------------
 /** Parse an ArmorTemplate and assign to the 'ArmorTemplate *' at store */
 //-------------------------------------------------------------------------------------------------
-// ?parseArmorTemplate@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseArmorTemplate( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	const char *token = ini->getNextToken();
@@ -1356,7 +1354,6 @@ void INI::parseArmorTemplate( INI* ini, void * /*instance*/, void *store, const 
 //-------------------------------------------------------------------------------------------------
 /** Parse an WeaponTemplate and assign to the 'WeaponTemplate *' at store */
 //-------------------------------------------------------------------------------------------------
-// ?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseWeaponTemplate( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	const char *token = ini->getNextToken();
@@ -1399,7 +1396,6 @@ void INI::parseParticleSystemTemplate(INI *ini, void *, void *store, const void 
 //-------------------------------------------------------------------------------------------------
 /** Parse an DamageFX and assign to the 'DamageFX *' at store */
 //-------------------------------------------------------------------------------------------------
-// ?parseDamageFX@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseDamageFX( INI* ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	const char *token = ini->getNextToken();
@@ -1825,7 +1821,6 @@ void INI::parseDurationUnsignedInt( INI *ini, void * /*instance*/, void *store, 
 
 // ------------------------------------------------------------------------------------------------
 // parse a duration in msec and convert to duration in integral number of frames, (unsignedshort) rounding UP
-// ?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseDurationUnsignedShort( INI *ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	UnsignedInt val = scanUnsignedInt(ini->getNextToken());
@@ -1844,7 +1839,6 @@ void INI::parseVelocityReal( INI *ini, void * /*instance*/, void *store, const v
 
 //-------------------------------------------------------------------------------------------------
 // parse acceleration in (dist/sec^2) and convert to (dist/frame^2)
-// ?parseAccelerationReal@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseAccelerationReal( INI *ini, void * /*instance*/, void *store, const void* /*userData*/ )
 {
 	const char *token = ini->getNextToken();
