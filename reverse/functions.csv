@@ -9306,7 +9306,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?downloadNextQueuedFile@DownloadManager@@QAEJXZ,,0x00038F00,5,Code/masm_dumps/_downloadNextQueuedFile_DownloadManager__QAEJXZ_38F00.asm,matched,MASM exact retail dump
 ?draw@Anim2D@@QAEXHHHH@Z,,0x005BABA0,22,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?draw@ControlBarArrowTransition@@UAEXXZ,,0x0059BAB0,362,Code/masm_dumps/ControlBarArrowTransition_draw.asm,matched,Exact 362B MASM; true body 0x59BAB0 via sibling cluster+m_drawState@+0x30; queue 0x9DE7D4 wrong
-?draw@Drawable@@QAEXPAVView@@@Z,,0x0003291B,5,Code/masm_dumps/_thunk_9b9aa30a0972_3291B.asm,matched,thunk accessor of ported class (icf alias)
 ?draw@ShellMenuSchemeManager@@QAEXXZ,,0x00580D60,13,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp,matched,
 ?drawBridges@W3DBridgeBuffer@@QAEXPAVCameraClass@@_NPAVTextureClass@@@Z,,0x00938FF7,909,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBridgeBuffer_drawBridges.asm,matched,exact 909B via MASM
 ?drawCircle@DiscreteCircle@@QAEXP6AXHHHPAX@Z0@Z,,0x00068AF0,84,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?countIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
 ?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,,0x0002BF21,5,Code/GameEngine/Source/Common/RTS/DictEnsureUniqueThunk.cpp,matched,5-byte incremental-link Dict private member thunk converted to focused C++ source
+?draw@Drawable@@QAEXPAVView@@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
