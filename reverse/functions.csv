@@ -1549,7 +1549,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HordeContainModuleData@@QAE@XZ,,0x00220530,28,Code/GameEngine/Source/GameLogic/Object/Update/HordeUpdateModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0HordeGarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00248F90,175,Code/masm_dumps/HordeGarrisonContain_constructor.asm,matched,Exact 175B @ 0x00248F90; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1160C0
 ??0HordeGarrisonContainModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0HordeSiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024A560,307,Code/masm_dumps/HordeSiegeEngineContain_constructor.asm,matched,Exact 307B @ 0x0024A560; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1163F0
 ??0HordeTransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024B6F0,115,Code/masm_dumps/HordeTransportContain_constructor.asm,matched,Exact 115B; factory ownership Open-BFME4
 ??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/HordeUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
 ??0HotKeyManager@@QAE@XZ,,0x005B39E0,146,Code/masm_dumps/HotKeyManager_ctor.asm,matched,Correct retail body from GameClient init thunk 0x0000B389 and TheHotKeyManager naming sequence
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AODHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00230580,326,Code/GameEngine/Source/GameLogic/AI/AODHordeContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0GiantBirdSlowDeathBehaviorModuleData@@QAE@XZ,,0x001FFE40,171,Code/GameEngine/Source/GameLogic/AI/GiantBirdSlowDeathBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0HorseHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024D220,108,Code/GameEngine/Source/GameLogic/AI/HorseHordeContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
+??0HordeSiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024A560,307,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
