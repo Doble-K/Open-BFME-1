@@ -9471,7 +9471,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?deleteListResources@Radar@@IAEXXZ,,0x0002C976,5,Code/GameEngine/Source/Common/RTS/RadarDeleteListResourcesThunk.cpp,matched,5-byte incremental-link Radar protected member thunk converted to focused C++ source
 ?deleteLoadScreen@GameLogic@@QAEXXZ,,0x0038D100,1473,Code/masm_dumps/_sa13__deleteLoadScreen_GameLogic__QAEXXZ_38D100.asm,matched,multi-xref Open-BFME4+Grok FadeWholeScreen
 ?deleteRayEffect@RayEffectSystem@@QAEXPBVDrawable@@@Z,,0x005D35A0,56,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
-?deleteShadowVolume@W3DVolumetricShadow@@IAEXH@Z,,0x007BAFA0,142,Code/masm_dumps/_deleteShadowVolume_W3DVolumetricShadow__IAEXH_Z.asm,matched,MASM exact; true body 0x7BAFA0/142 (queue 0x7BCF93 was INSIDE dtor 0x7BCF50/280); layout m_shadowVolume@+0x80 count@+0xf80 vs C++ +0x50/+0xf50
 ?deleteTriggers@PolygonTrigger@@,,0x0074A680,139,Code/masm_dumps/_sa8__deleteTriggers_PolygonTrigger___74A680.asm,matched,Exact 139B Open-BFME4
 ?deleteTriggers@PolygonTrigger@@QAEXXZ,,0x00748860,1328,Code/masm_dumps/_sa3__deleteTriggers_PolygonTrigger__QAEXXZ_748860.asm,matched,Exact 1328B string-anchored Open-BFME4
 ?deposit@Money@@QAEXI_N@Z,,0x00027D6D,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Money::deposit
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Release_Ref@TextureBaseClass@@QAEXXZ,,0x009EB7A0,36,Code/Libraries/Source/WWVegas/WW3D2/TextureBaseReleaseRefThunk.cpp,matched,Open-BFME5 exact C++ raw TextureBase release leaf
 ?Peek_D3D_Base_Texture@TextureBaseClass@@QBEPAUIDirect3DBaseTexture8@@XZ,,0x0090DC60,37,Code/Libraries/Source/WWVegas/WW3D2/texture.cpp,matched,Open-BFME5 exact C++ raw texture accessor
 ?Set_Device_Resolution@WW3D@@SA?AW4WW3DErrorType@@HHHH_N@Z,,0x008FD1C0,39,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,Open-BFME5 exact C++ raw device resolution wrapper
+?deleteShadowVolume@W3DVolumetricShadow@@IAEXH@Z,,0x007BAFA0,142,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,Exact 142B clean C++ deleteShadowVolume; TU-local BFME 0x30 layout shim; MASM removed

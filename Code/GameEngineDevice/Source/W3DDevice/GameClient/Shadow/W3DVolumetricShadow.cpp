@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /DBFME_VOLUMETRIC_DELETE_LAYOUT /Ireference/shims/volumetricshadow /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -1797,7 +1797,13 @@ void W3DVolumetricShadow::SetGeometry( W3DShadowGeometry *geometry )
 		BFMEShadowGeometryMesh m_meshList[MAX_SHADOW_CASTER_MESHES];
 	};
 
+#ifdef BFME_VOLUMETRIC_DELETE_LAYOUT
+	W3DVolumetricShadow *shadow = this;
+	W3DVolumetricShadow *geometryShadow = (W3DVolumetricShadow *)((char *)this + 0x30);
+#else
 	W3DVolumetricShadow *shadow = (W3DVolumetricShadow *)((char *)this + 0x30);
+	W3DVolumetricShadow *geometryShadow = shadow;
+#endif
 	BFMEShadowGeometry *newGeometry = (BFMEShadowGeometry *)geometry;
 
 	Short numPrevVertices = 0;
@@ -1813,8 +1819,8 @@ void W3DVolumetricShadow::SetGeometry( W3DShadowGeometry *geometry )
 
 	for (Int i=0; i<MAX_SHADOW_CASTER_MESHES; i++)
 	{
-		if( shadow->m_geometry )
-			numPrevVertices = ((BFMEShadowGeometry *)shadow->m_geometry)->m_meshList[i].m_numVerts;
+		if( geometryShadow->m_geometry )
+			numPrevVertices = ((BFMEShadowGeometry *)geometryShadow->m_geometry)->m_meshList[i].m_numVerts;
 
 		// now many vertices does our new geometry have
 		if( geometry )
@@ -1836,7 +1842,7 @@ void W3DVolumetricShadow::SetGeometry( W3DShadowGeometry *geometry )
 	}
 
 	// assign the new geometry, possible over an old geometry
-	shadow->m_geometry = geometry;
+	geometryShadow->m_geometry = geometry;
 
 }  // end SetGeometry
 
@@ -3301,7 +3307,6 @@ Bool W3DVolumetricShadow::allocateShadowVolume( Int volumeIndex, Int meshIndex )
 // deleteShadowVolume =========================================================
 // Free all resources allocated to the shadow volume(s)
 // ============================================================================
-// ?deleteShadowVolume@W3DVolumetricShadow@@IAEXH@Z present-unmatched
 void W3DVolumetricShadow::deleteShadowVolume( Int volumeIndex )
 {
 
