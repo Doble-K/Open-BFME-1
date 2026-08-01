@@ -12493,7 +12493,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?remove@LListNode@@QAEXXZ,,0x00105930,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?removeAllBibs@W3DTerrainVisual@@UAEXXZ,,0x00731000,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ,,0x007AEA90,95,Code/masm_dumps/removeAllShadows_W3DProjectedShadowManager_QAEXXZ_007AEA90_f24fcc50.asm,matched,exact MASM dump; true body 0x7AEA90/95 (drift 0xC4D39D was int3 pad+COMDAT); BFME mark-only next@0xD4 lists +0xC/+4/+8
-?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ,,0x0000CC8E,5,Code/masm_dumps/_thunk_f3c9c7f00414_CC8E.asm,matched,thunk accessor of ported class (icf alias)
 ?removeBib@W3DBibBuffer@@QAEXW4ObjectID@@@Z,,0x006D6B20,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?removeBibDrawable@W3DBibBuffer@@QAEXW4DrawableID@@@Z,,0x006D6B80,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?removeBibHighlighting@W3DTerrainVisual@@UAEXXZ,,0x00731000,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
@@ -12523,7 +12522,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeTeam@SidesList@@QAEXH@Z,,0x00C2787D,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?removeTeam@TeamsInfoRec@@QAEXH@Z,,0x0000D828,5,Code/masm_dumps/_thunk_b63b5588148b_D828.asm,matched,thunk accessor of ported class (icf alias)
 ?removeTeamPrototypeFromList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000EFD50,149,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,BFME pair-key map erase; TeamPrototype +0x10/+0x14 name keys; node 0x1C; certified packet 362
-?removeTerrainBibHighlighting@BaseHeightMapRenderObjClass@@QAEXXZ,,0x0000CC8E,5,Code/masm_dumps/_thunk_d3f5d1898e3b_CC8E.asm,matched,thunk accessor of ported class
 ?removeTranslator@MessageStream@@QAEXI@Z,,0x0008A8D0,96,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,,0x0001A492,5,Code/masm_dumps/_thunk_810c39ea95d7_1A492.asm,matched,thunk accessor of ported class
 ?removeTreesAndPropsForConstruction@W3DTerrainVisual@@UAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,,0x00730D30,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
@@ -13594,3 +13592,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?parseReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B20,86,Code/masm_dumps/parseReal_INI_SAXPAV1_PAX1PBX_Z_852B20.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
 ?parseBool@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E00,86,Code/masm_dumps/parseBool_INI_SAXPAV1_PAX1PBX_Z_852E00.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
 ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852EE0,102,Code/masm_dumps/parsePercentToReal_INI_SAXPAV1_PAX1PBX_Z_852EE0.asm,matched,repoint: revert 85fbcdd1 dropped the __emit body but left the row on ini.cpp
+?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,thunk-dump converted to clean C++; BFME drops ZH bib call and does full-map updateShorelineTiles refresh; m_map@0x2FF4 + no-interface WorldHeightMap via reference/shims/bfmeheightmap
+?removeTerrainBibHighlighting@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,ICF twin of removeAllTerrainBibs; byte-identical full-map updateShorelineTiles refresh in BFME

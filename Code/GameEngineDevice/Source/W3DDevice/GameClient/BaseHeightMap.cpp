@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/bfmeheightmap /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -2167,10 +2167,12 @@ void BaseHeightMapRenderObjClass::addTerrainBibDrawable(Vector3 corners[4],
 //=============================================================================
 /** Removes all terrainBib highlighting from the bib buffer.*/
 //=============================================================================
-// ?removeTerrainBibHighlighting@BaseHeightMapRenderObjClass@@QAEXXZ present-unmatched
 void BaseHeightMapRenderObjClass::removeTerrainBibHighlighting()
 {
-	m_bibBuffer->removeHighlighting(  ); 
+	// BFME dropped the ZH bib-buffer call; retail refreshes the whole map's
+	// shoreline tiles instead (byte-identical twin of removeAllTerrainBibs)
+	if (m_map)
+		updateShorelineTiles(0, 0, m_map->getXExtent()-1, m_map->getYExtent()-1, m_map);
 };
 
 //=============================================================================
@@ -2178,10 +2180,12 @@ void BaseHeightMapRenderObjClass::removeTerrainBibHighlighting()
 //=============================================================================
 /** Removes all terrainBibs from the bib buffer.*/
 //=============================================================================
-// ?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ present-unmatched
 void BaseHeightMapRenderObjClass::removeAllTerrainBibs()
 {
-	m_bibBuffer->clearAllBibs(  ); 
+	// BFME dropped the ZH bib-buffer call; retail refreshes the whole map's
+	// shoreline tiles instead
+	if (m_map)
+		updateShorelineTiles(0, 0, m_map->getXExtent()-1, m_map->getYExtent()-1, m_map);
 };
 
 //=============================================================================
