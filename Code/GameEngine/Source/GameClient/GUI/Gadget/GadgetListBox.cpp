@@ -2809,6 +2809,48 @@ Int GadgetListBoxGetTopVisibleEntry( GameWindow *window )
 // BFME body is MASM exact-byte dump (retail rewrote ZH delta-adjustDisplay path):
 // Code/masm_dumps/GadgetListBoxSetTopVisibleEntry_4B85C0.asm @ 0x004B85C0 size 37
 // void GadgetListBoxSetTopVisibleEntry( GameWindow *window, Int newPos );
+__declspec(naked) void GadgetListBoxSetTopVisibleEntry( GameWindow *window, Int newPos )
+{
+	__asm {
+		_emit 056h
+		_emit 08Bh
+		_emit 074h
+		_emit 024h
+		_emit 008h
+		_emit 085h
+		_emit 0F6h
+		_emit 074h
+		_emit 01Ah
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0E8h
+		_emit 068h
+		_emit 0DFh
+		_emit 0B8h
+		_emit 0FFh
+		_emit 085h
+		_emit 0C0h
+		_emit 074h
+		_emit 00Fh
+		_emit 08Bh
+		_emit 044h
+		_emit 024h
+		_emit 00Ch
+		_emit 06Ah
+		_emit 001h
+		_emit 056h
+		_emit 0E8h
+		_emit 0E0h
+		_emit 0F7h
+		_emit 0FFh
+		_emit 0FFh
+		_emit 083h
+		_emit 0C4h
+		_emit 008h
+		_emit 05Eh
+		_emit 0C3h
+	}
+}
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
