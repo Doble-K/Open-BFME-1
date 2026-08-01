@@ -12928,7 +12928,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setDockCrippled@SupplyWarehouseDockUpdate@@UAEX_N@Z,,0x002CFB70,142,Code/masm_dumps/setDockCrippled_SupplyWarehouseDockUpdate_002CFB70.asm,matched,Certified packet 45 constructor-vtable owned exact retail bytes SHA256 0b3482d73f54d3619916ccd9555de4c661b919e84b19f12c0f9f0dca5d927e22
 ?setDockOpen@DockUpdate@@UAEX_N@Z,,0x002CCE90,10,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdate.cpp,matched,
 ?setDragSelecting@SelectionTranslator@@QAEX_N@Z,,0x004021E0,10,Code/GameEngine/Source/GameClient/MessageStream/SelectionXlat.cpp,matched,
-?setDrawableID@AudioEventRTS@@QAEXW4DrawableID@@@Z,,0x000B2290,30,Code/masm_dumps/AudioEventRTS_setDrawableID.asm,matched,Ghidra-bound BFME audio drawable setter
 ?setDrawableOpacity@Drawable@@QAEXM@Z,,0x0016A3D0,10,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?setEaseTimes@ParabolicEase@@QAEXMM@Z,,0x00964150,274,Code/masm_dumps/_leaf__setEaseTimes_ParabolicEase__QAEXMM_Z_964150.asm,matched,Exact 274B present-unmatched leaf Open-BFME4
 ?setEnabled@W3DBridge@@QAEX_N@Z,,0x006D75A0,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??$_Construct@VW3DAnimationInfo@@V1@@_STL@@YAXPAVW3DAnimationInfo@@ABV1@@Z,,0x00784DD0,19,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,object-symbol=?reconstructW3DAnimationInfo@@YAXPAXPBX@Z;clean C++ copy helper; REL32-pinned copy ctor
 ?findNonConstCommandSet@ControlBar@@AAEPAVCommandSet@@ABVAsciiString@@@Z,,0x004A0270,126,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarFields.cpp,matched,object-symbol=?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z; C++ ICF alias replaces direct thunk dump
 ?setObjectID@AudioEventRTS@@QAEXW4ObjectID@@@Z,,0x000B2250,30,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ object-ID setter with retail layout offsets replaces MASM dump
+?setDrawableID@AudioEventRTS@@QAEXW4DrawableID@@@Z,,0x000B2290,30,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ drawable-ID setter with retail layout offsets replaces MASM dump

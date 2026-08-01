@@ -653,12 +653,14 @@ ObjectID AudioEventRTS::getObjectID( void )
 //-------------------------------------------------------------------------------------------------
 void AudioEventRTS::setDrawableID( DrawableID drawID )
 {
-	if (!(m_ownerType == OT_Drawable || m_ownerType == OT_INVALID)) {
+	unsigned char *self = reinterpret_cast<unsigned char *>(this);
+	Int ownerType = *reinterpret_cast<Int *>(self + 0x30);
+	if (!(ownerType == OT_Drawable || ownerType == OT_INVALID)) {
 		return;
 	}
 
-	m_drawableID = drawID;
-	m_ownerType = OT_Drawable;
+	*reinterpret_cast<DrawableID *>(self + 0x2C) = drawID;
+	*reinterpret_cast<Int *>(self + 0x30) = OT_Drawable;
 }
 
 //-------------------------------------------------------------------------------------------------
