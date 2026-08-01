@@ -61,4 +61,15 @@ namespace _STL
 			_emit 000h
 		}
 	}
+
+	__declspec(naked) void vector<ObjectID, allocator<ObjectID> >::_M_insert_overflow(ObjectID *, ObjectID const &, const __false_type &, unsigned int, bool)
+	{
+		__asm {
+			_emit 0E9h
+			_emit 0DFh
+			_emit 076h
+			_emit 033h
+			_emit 000h
+		}
+	}
 }
