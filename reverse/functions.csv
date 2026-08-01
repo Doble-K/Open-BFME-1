@@ -9631,7 +9631,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?done@?$DLINK_ITERATOR@VTeamInQueue@@@@QBE_NXZ,,0x000C9EB0,10,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
 ?done@BezFwdIterator@@QAE_NXZ,,0x000B6540,17,Code/GameEngine/Source/Common/bez_fwd_iterator.cpp,matched,
 ?downloadFile@DownloadManagerMunkee@@UAEJVAsciiString@@00000_N@Z,,0x004F1C4A,805,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu_downloadFile.asm,matched,exact 805B via MASM
-?downloadNextQueuedFile@DownloadManager@@QAEJXZ,,0x00038F00,5,Code/masm_dumps/_downloadNextQueuedFile_DownloadManager__QAEJXZ_38F00.asm,matched,MASM exact retail dump
 ?draw@Anim2D@@QAEXHHHH@Z,,0x005BABA0,22,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?draw@ControlBarArrowTransition@@UAEXXZ,,0x0059BAB0,362,Code/masm_dumps/ControlBarArrowTransition_draw.asm,matched,Exact 362B MASM; true body 0x59BAB0 via sibling cluster+m_drawState@+0x30; queue 0x9DE7D4 wrong
 ?draw@Drawable@@QAEXPAVView@@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
@@ -13810,3 +13809,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEEXZ,,0x00028A1F,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgGetDisconnectSlotThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x673C70
 ?createNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@0M0@Z,,0x0002C8EA,5,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptEngineCreateNamedMapRevealThunk.cpp,matched,Focused C++ thunk for ScriptEngine createNamedMapReveal
 ?doFXPos@FXList@@IBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,,0x0003E360,5,Code/GameEngine/Source/GameClient/FXListDoFXPosThunk.cpp,matched,5-byte protected const FX position thunk converted to focused C++ source
+?downloadNextQueuedFile@DownloadManager@@QAEJXZ,,0x00038F00,5,Code/GameEngine/Source/GameClient/DownloadManagerThunks.cpp,matched,Focused C++ thunk for DownloadManager queue advance

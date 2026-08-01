@@ -3,6 +3,7 @@ class DownloadManager
 public:
 	virtual long OnError(int);
 	virtual long OnStatusUpdate(int);
+	long downloadNextQueuedFile();
 };
 
 __declspec(naked) long DownloadManager::OnError(int)
@@ -23,6 +24,17 @@ __declspec(naked) long DownloadManager::OnStatusUpdate(int)
 		_emit 058h
 		_emit 0ECh
 		_emit 061h
+		_emit 000h
+	}
+}
+
+__declspec(naked) long DownloadManager::downloadNextQueuedFile()
+{
+	__asm {
+		_emit 0E9h
+		_emit 06Bh
+		_emit 0E4h
+		_emit 05Eh
 		_emit 000h
 	}
 }
