@@ -11909,7 +11909,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?load@W3DBridge@@QAE_NW4BodyDamageType@@@Z,,0x006D8C10,2836,Code/masm_dumps/_sa3__load_W3DBridge__QAE_NW4BodyDamageType___Z_6D8C10.asm,matched,true size 2836B; row claimed 2808B
 ?load@WaterRenderObjClass@@QAEXXZ,,0x0079F160,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
 ?loadAlphaJoin@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1M@Z,,0x0070ED90,566,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
-?loadBridgesInVertexAndIndexBuffers@W3DBridgeBuffer@@IAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,,0x000367EB,5,Code/masm_dumps/_loadBridgesInVertexAndIndexBuffers_W3DBridgeBuffer__IAEXPAV__RefMultiListIterator_VRenderObjClass_____Z_367EB.asm,matched,MASM exact retail dump
 ?loadCurve@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1M@Z,,0x0070A8C0,949,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?loadD3DCursorTextures@W3DMouse@@,,0x00701330,559,Code/masm_dumps/_sa7__loadD3DCursorTextures_W3DMouse___701330.asm,matched,Exact 559B Open-BFME4
 ?loadDirectory@INI@@QAEXVAsciiString@@_NW4INILoadType@@PAVXfer@@@Z,,0x00853F10,700,Code/masm_dumps/loadDirectory_INI_QAEXVAsciiString_NW4INILoadType_PAVXfer_Z_853F10.asm,matched,Ghidra boundary and retail *.ini xref-identified body
@@ -13813,3 +13812,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,,0x000346DF,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBufferLoadFloat4PtSectionThunk.cpp,matched,5-byte protected W3DRoadBuffer road section thunk converted to focused C++ source
 ?update@AIMoveOutOfTheWayState@@UAE?AW4StateReturnType@@XZ,,0x00173A10,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIMoveOutOfTheWayState update
 ?setVoteFrame@NetDisconnectVoteCommandMsg@@QAEXI@Z,,0x000436C1,5,Code/GameEngine/Source/GameNetwork/NetDisconnectVoteCommandMsgSetVoteFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0xA73D50
+?loadBridgesInVertexAndIndexBuffers@W3DBridgeBuffer@@IAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,,0x000367EB,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBridgeBufferLoadBridgesThunk.cpp,matched,5-byte protected W3DBridgeBuffer bridge loading thunk converted to focused C++ source
