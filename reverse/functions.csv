@@ -1105,7 +1105,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AttackStateMachine@@QAE@PAVObject@@PAVAIAttackState@@VAsciiString@@_N33@Z,,0x0017F570,103,Code/masm_dumps/_sa8___0AttackStateMachine__QAE_PAVObject__PAVAIAttackS_17F570.asm,matched,Exact 103B Open-BFME4
 ??0AttributeModifierUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D2EB0,53,Code/masm_dumps/AttributeModifierUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
 ??0AudioSettings@@QAE@XZ,,0x000B4E00,725,Code/masm_dumps/AudioSettings_ctor_000B4E00.asm,matched,Certified packet 142 exact retail db recovery
-??0AutoAbilityBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ED8A0,155,Code/masm_dumps/AutoAbilityBehavior_constructor.asm,matched,Exact 155B @ 0x001ED8A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114F10
 ??0AutoAbilityBehaviorModuleData@@QAE@XZ,,0x001ED6A0,16,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoAbilityBehavior.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0AutoDepositUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00280D90,98,Code/GameEngine/Source/GameLogic/Object/Update/AutoDepositUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x280D90
 ??0AutoFindHealingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00281480,77,Code/GameEngine/Source/GameLogic/Object/Update/AutoFindHealingUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x281480
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ArrowStormUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002576E0,207,Code/GameEngine/Source/GameLogic/AI/ArrowStormUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0AssistedTargetingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0027FB60,134,Code/GameEngine/Source/GameLogic/AI/AssistedTargetingUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0AttributeModifierAuraUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002800D0,218,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
+??0AutoAbilityBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ED8A0,155,Code/GameEngine/Source/GameLogic/AI/AutoAbilityBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
