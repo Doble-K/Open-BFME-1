@@ -1898,7 +1898,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RadarUpdateModuleData@@QAE@XZ,,0x002A01C0,13,Code/GameEngine/Source/GameLogic/Object/Update/RadarUpdate.cpp,matched,exact 13B no-call ModuleData ctor (m_radarExtendTime=0); moduledata shim; replaces 5B thunk @0x1670C
 ??0RadarUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/RadarUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
 ??0RadiusDecalUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A0640,168,Code/masm_dumps/RadiusDecalUpdate_constructor.asm,matched,Exact 168B @ 0x002A0640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A580
-??0RailedTransportDockUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/RailedTransportDockUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0RainOfFireUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000A0E2,5,Code/masm_dumps/__0RainOfFireUpdate__QAE_PAVThing__PBVModuleData___Z_A0E2.asm,matched,retail factory call binds constructor thunk to RainOfFireUpdate
 ??0RainOfFireUpdateModuleData@@QAE@XZ,,0x002A08B0,62,Code/masm_dumps/RainOfFireUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x11C390
 ??0RampageBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00203C20,144,Code/masm_dumps/RampageBehavior_constructor.asm,matched,Exact 144B @ 0x00203C20; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1149C0
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0RadiusDecalUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$_Destroy@PAVProductionPrerequisite@@@_STL@@YAXPAVProductionPrerequisite@@0@Z,,0x00011D47,5,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteDestroy.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
 ??0RailedTransportAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0RailedTransportDockUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
