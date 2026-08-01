@@ -648,8 +648,8 @@ void WaterTracksRenderSystem::releaseTrack( WaterTracksObj *mod )
 //=============================================================================
 /** Constructor. Just nulls out some variables. */
 //=============================================================================
-// ??0WaterTracksRenderSystem@@QAE@XZ present-unmatched
-WaterTracksRenderSystem::WaterTracksRenderSystem()
+WaterTracksRenderSystem::WaterTracksRenderSystem() :
+	m_shaderClass(0x0010441b)
 {
 	m_usedModules = NULL;
 	m_freeModules = NULL;

@@ -2343,7 +2343,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WanderAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7520,60,Code/masm_dumps/WanderAIUpdate_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0WanderAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/WanderAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0WargBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D980,46,Code/masm_dumps/WargBehavior_constructor.asm,matched,Exact 46B unique factory Open-BFME4
-??0WaterTracksRenderSystem@@QAE@XZ,,0x007AB960,45,Code/masm_dumps/_rn4___0WaterTracksRenderSystem__QAE_XZ_7AB960.asm,matched,reloc-needle Open-BFME4+Grok
 ??0WaterTransparencySetting@@QAE@XZ,,0x000C3730,139,Code/masm_dumps/_sa8___0WaterTransparencySetting__QAE_XZ_C3730.asm,matched,Exact 139B Open-BFME4
 ??0WaypointMap@@QAE@ABV0@@Z,,0x000C1170,27,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,
 ??0WaypointMap@@QAE@XZ,,0x0019EA30,54,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?drawViews@Display@@UAEXXZ,,0x0040DA30,44,Code/GameEngine/Source/GameClient/Display.cpp,matched,exact C++ loop with TU-local BFME View vtable slots draw +0x178 next +0x23c
 ?GadgetListBoxSetTopVisibleEntry@@YAXPAVGameWindow@@H@Z,,0x004B85C0,37,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,Open-BFME5 exact C++ raw gadget wrapper; null-check and set-top helper dispatch preserved
 ?peerParseQuery@@YAHPAXPADHPAUsockaddr@@@Z,,0x00857570,34,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerParseQueryThunk.cpp,matched,Open-BFME5 exact C++ raw GameSpy peer query helper; profile/error fallback chain preserved
+??0WaterTracksRenderSystem@@QAE@XZ,,0x007AB960,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,exact C++ constructor with retail ShaderClass default bits 0x10441b
