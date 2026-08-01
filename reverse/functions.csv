@@ -13569,7 +13569,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winGetStyle@GameWindow@@QAEIXZ,,0x00478490,4,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_instData.m_style@0x3c; ICF twin of getFrame@GameLogic
 ?winGetTextSize@GameWindowManager@@QAEXPAVGameFont@@VUnicodeString@@PAH2H@Z,,0x0047A150,40,Code/GameEngine/Source/GameClient/GUI/GameWindowGlobal.cpp,matched,
 ?winGetUserData@GameWindow@@QAEPAXXZ,,0x00478C70,4,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_userData@0x2c
-?winGetWindowFromId@GameWindowManager@@UAEPAVGameWindow@@PAV2@H@Z,,0x0047C970,87,Code/masm_dumps/_rn5__winGetWindowFromId_GameWindowManager__UAEPAVGameWindow__PAV2_H_Z_47C970.asm,matched,reloc-needle Open-BFME4+Grok
+?winGetWindowFromId@GameWindowManager@@UAEPAVGameWindow@@PAV2@H@Z,,0x0047C970,87,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,clean C++ recursive lookup replaces exact MASM dump
 ?winGetWindowId@GameWindow@@QAEHXZ,,0x00478CA0,4,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_instData.m_id@0x34
 ?winHide@GameWindow@@QAEH_N@Z,,0x00478390,98,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; supersedes mislabeled QAEHH row (real param is bool not int); winSendSystemMsg@+0xd4 verified
 ?winIsChild@GameWindow@@QAE_NPAV1@@Z,,0x00478D30,40,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,true size 40B; row claimed 34B

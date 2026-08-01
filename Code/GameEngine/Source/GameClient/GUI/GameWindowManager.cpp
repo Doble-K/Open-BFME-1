@@ -673,21 +673,21 @@ GameWindow *GameWindowManager::winGetCapture( void )
 //-------------------------------------------------------------------------------------------------
 /** Gets the window pointer from its id */
 //-------------------------------------------------------------------------------------------------
-// ?winGetWindowFromId@GameWindowManager@@UAEPAVGameWindow@@PAV2@H@Z present-unmatched
+// ?winGetWindowFromId@GameWindowManager@@UAEPAVGameWindow@@PAV2@H@Z
 GameWindow *GameWindowManager::winGetWindowFromId( GameWindow *window, Int id )
 {
 
 	if( window == NULL )
 		window = m_windowList;
 
-	for( ; window; window = window->m_next ) 
+	for( ; window; window = *(GameWindow **)((char *)window + 0x1f8) )
 	{
 
 		if( window->winGetWindowId() == id)
 			return window;
-		else if( window->m_child ) 
+		else if( *(GameWindow **)((char *)window + 0x204) )
 		{
-			GameWindow *child = winGetWindowFromId( window->m_child, id );
+			GameWindow *child = winGetWindowFromId( *(GameWindow **)((char *)window + 0x204), id );
 
 			if( child )
 				return child;
