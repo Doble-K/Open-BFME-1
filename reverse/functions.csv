@@ -1327,7 +1327,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DelayedLuaEventUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028BEF0,161,Code/masm_dumps/DelayedLuaEventUpdate_constructor.asm,matched,Exact 161B @ 0x0028BEF0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11BC70
 ??0DelayedUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D4D20,53,Code/masm_dumps/DelayedUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
 ??0DelayedUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/DelayedUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
-??0DeletionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00016C52,5,Code/masm_dumps/__0DeletionUpdate__QAE_PAVThing__PBVModuleData___Z_16C52.asm,matched,MASM exact retail dump
 ??0DeletionUpdateModuleData@@QAE@XZ,,0x0008A950,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0DemoTrapUpdateModuleData@@QAE@XZ,,0x0028C9E0,58,Code/masm_dumps/DemoTrapUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x119A20
 ??0DeployStyleAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B5510,151,Code/masm_dumps/DeployStyleAIUpdate_constructor.asm,matched,Exact 151B; factory ownership Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@HV?$allocator@H@_STL@@@_STL@@IAEXPAHABHABU__true_type@2@I_N@Z,,0x0001CBFC,5,Code/Libraries/Source/WWVegas/WWLib/UnsignedShortVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0StructureToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00034711,5,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000328C6,5,Code/GameEngine/Source/GameLogic/Object/Update/PhysicsBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
+??0DeletionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00016C52,5,Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
