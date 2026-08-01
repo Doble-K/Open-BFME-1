@@ -7382,7 +7382,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Recalculate_Static_LOD_Factors@HLodClass@@UAEXXZ,,0x0097A410,238,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Recolor_Mesh@W3DAssetManager@@,,0x0092DF50,1218,Code/masm_dumps/_sa7__Recolor_Mesh_W3DAssetManager___92DF50.asm,matched,Exact 1218B Open-BFME4
 ?Recolor_Texture@W3DAssetManager@@,,0x00A5828A,644,Code/masm_dumps/_sa9__Recolor_Texture_W3DAssetManager___A5828A.asm,matched,Exact 644B Open-BFME4
-?RefreshGameListBox@@YAXPAVGameWindow@@_N@Z,,0x0000FD1C,5,Code/masm_dumps/_RefreshGameListBox__YAXPAVGameWindow___N_Z_FD1C.asm,matched,MASM exact retail dump
 ?RefreshGameListBoxes@@YAXXZ,,0x0062E4F0,17,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
 ?Register_Memory_Allocated@MemLogClass@@QAEHH@Z,,0x00AFF6B0,136,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Register_Memory_Allocated@WWMemoryLogClass@@SAHH@Z,,0x00AFFA70,18,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?ReleaseWindowLayout@@YAXPAVWindowLayout@@@Z,,0x00049AD0,5,Code/GameEngine/Source/GameLogic/ScriptEngine/ReleaseWindowLayout.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0DefaultProductionExitUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DeflectSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+?RefreshGameListBox@@YAXPAVGameWindow@@_N@Z,,0x0000FD1C,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/RefreshGameListBox.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
