@@ -9419,7 +9419,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?endsWithNoCase@?$StringBase@G@@QBE_NABV1@@Z,0x00887560,0x887560,50,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?endsWithNoCase@?$StringBase@G@@QBE_NPBG@Z,0x00887520,0x887520,52,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?endsWithNoCase@?$StringBase@G@@QBE_NPBGH@Z,0x008871D0,0x8871d0,84,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
-?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,,0x0002BF21,5,Code/masm_dumps/_ensureUnique_Dict__AAEPAUDictPair_1_H_NPAU21__Z_2BF21.asm,matched,MASM exact retail dump
 ?ensureUniqueBufferOfSize@?$StringBase@D@@AAEXH_NPBDH1H@Z,0x008879D0,0x8879d0,388,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?ensureUniqueBufferOfSize@?$StringBase@G@@AAEXH_NPBGH1H@Z,0x00888260,0x888260,401,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?eof@CachedFileInputStream@@UAE_NXZ,,0x00102440,12,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?evaluateTeamInsideAreaPartially@ScriptConditions@@IAE_NPAVParameter@@00@Z,,0x0004A8E0,5,Code/GameEngine/Source/Common/RTS/ScriptConditionsEvaluateTeamInsideAreaPartiallyThunk.cpp,matched,5-byte incremental-link ScriptConditions protected member thunk converted to focused C++ source
 ?countIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
+?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,,0x0002BF21,5,Code/GameEngine/Source/Common/RTS/DictEnsureUniqueThunk.cpp,matched,5-byte incremental-link Dict private member thunk converted to focused C++ source
