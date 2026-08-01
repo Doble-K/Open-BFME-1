@@ -8977,7 +8977,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?countIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z,,0x0013E870,42,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?countIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,,0x0003291B,5,Code/masm_dumps/_thunk_9538cbbb0b97_3291B.asm,matched,thunk accessor of ported class (icf alias)
 ?countIntersection@?$BitFlags@$0L@@@QBEHABV1@@Z,,0x0013E8C0,42,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
-?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z,,0x0003291B,5,Code/masm_dumps/_thunk_9daa236c1c61_3291B.asm,matched,thunk accessor of ported class
 ?countInverseIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,,0x00003873,5,Code/masm_dumps/_thunk_58073e49f2c5_3873.asm,matched,thunk accessor of ported class
 ?countInverseIntersection@?$BitFlags@$0L@@@QBEHABV1@@Z,,0x00140900,56,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?countTiles@WorldHeightMap@@SAHPAVInputStream@@PA_N@Z,,0x00747010,44,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?detectionBeginUpdate@FirewallHelperClass@@QAE_NXZ,,0x000205F4,5,Code/GameEngine/Source/Common/RTS/FirewallHelperClassDetectionBeginUpdateThunk.cpp,matched,5-byte incremental-link FirewallHelperClass member thunk converted to focused C++ source
 ?evaluateNamedInsideArea@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x0000696F,5,Code/GameEngine/Source/Common/RTS/ScriptConditionsEvaluateNamedInsideAreaThunk.cpp,matched,5-byte incremental-link ScriptConditions protected member thunk converted to focused C++ source
 ?evaluateTeamInsideAreaEntirely@ScriptConditions@@IAE_NPAVParameter@@00@Z,,0x00013219,5,Code/GameEngine/Source/Common/RTS/ScriptConditionsEvaluateTeamInsideAreaEntirelyThunk.cpp,matched,5-byte incremental-link ScriptConditions protected member thunk converted to focused C++ source
+?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining aliases retain shared target
