@@ -109,3 +109,172 @@ Bool File::print( const char *format, ... )
 
 	return (write ( buffer, len ) == len);
 }
+
+//-----------------------------------------------------------------------------
+// MemoryReadFile -- a File over a block of memory the caller already has.
+// Named by its own constructor at 0x009CB3D0, which installs vtable 0x01143A38
+// and then sets the file's name to "<MemoryReadFile>". BFME-only; Zero Hour has
+// no such class.
+//
+// Layout, read off the overrides below: m_data at +0x14, m_size at +0x18 and
+// m_pos at +0x1c. File itself ends at +0x0d and pads to +0x10, so there is one
+// more word at +0x10 that none of these functions touch; it is declared as
+// unknown rather than guessed at.
+//-----------------------------------------------------------------------------
+class MemoryReadFile : public File
+{
+public:
+	virtual Bool open( const char *filename, Int access = 0 );
+	virtual Int read( void *buffer, Int bytes );
+	virtual Int write( const void *buffer, Int bytes );
+	virtual Int seek( Int bytes, Int mode );
+	virtual void nextLine( char *buf, Int bufSize );
+	virtual Bool scanInt( Int &newInt );
+	virtual Bool scanReal( Real &newReal );
+	virtual Bool scanString( AsciiString &newString );
+	virtual Int size( void );
+	virtual Int position( void );
+	virtual char *readEntireAndClose( void );
+	virtual File *convertToRAMFile( void );
+
+private:
+	Int _bfme_unknown10;	// +0x10, untouched by every override here
+	char *m_data;			// +0x14
+	Int m_size;				// +0x18
+	Int m_pos;				// +0x1c
+};
+
+// ?open@MemoryReadFile@@UAE_NPBDH@Z
+Bool MemoryReadFile::open( const char * /*filename*/, Int /*access*/ )
+{
+	return FALSE;
+}
+
+// ?read@MemoryReadFile@@UAEHPAXH@Z present-unmatched
+// 70 of 75 bytes. Everything matches except where the compiler restores edi:
+// retail pops it at the join of the if(buffer) branch and then does the m_pos
+// update, we do the update first. Same registers, same order otherwise. Tried
+// hoisting the source pointer, an early return on zero, and the &m_data[m_pos]
+// form -- all three are worse, so it is not the obvious shapes.
+Int MemoryReadFile::read( void *buffer, Int bytes )
+{
+	if( bytes < 0 )
+	{
+		return -1;
+	}
+
+	// Unsigned compare: retail is jbe, not jle. The negative case is already
+	// gone by here, so the clamp is done in UnsignedInt.
+	UnsignedInt remaining = (UnsignedInt)m_size - (UnsignedInt)m_pos;
+	if( (UnsignedInt)bytes > remaining )
+	{
+		bytes = remaining;
+	}
+
+	if( bytes )
+	{
+		if( buffer )
+		{
+			memcpy( buffer, m_data + m_pos, bytes );
+		}
+		m_pos += bytes;
+	}
+
+	return bytes;
+}
+
+// ?write@MemoryReadFile@@UAEHPBXH@Z
+// Read-only, so writing always fails.
+Int MemoryReadFile::write( const void * /*buffer*/, Int /*bytes*/ )
+{
+	return -1;
+}
+
+// ?seek@MemoryReadFile@@UAEHHH@Z
+Int MemoryReadFile::seek( Int bytes, Int mode )
+{
+	Int pos;
+
+	switch( mode )
+	{
+		case 0:		// START
+			pos = bytes;
+			break;
+		case 1:		// CURRENT
+			pos = m_pos + bytes;
+			break;
+		case 2:		// END
+			pos = m_size + bytes;
+			break;
+		default:
+			return -1;
+	}
+
+	if( (UnsignedInt)pos > (UnsignedInt)m_size )
+	{
+		return -1;
+	}
+
+	m_pos = pos;
+	return pos;
+}
+
+// ?nextLine@MemoryReadFile@@UAEXPADH@Z
+void MemoryReadFile::nextLine( char * /*buf*/, Int /*bufSize*/ )
+{
+}
+
+// ?scanInt@MemoryReadFile@@UAE_NAAH@Z
+Bool MemoryReadFile::scanInt( Int & /*newInt*/ )
+{
+	return FALSE;
+}
+
+// ?scanReal@MemoryReadFile@@UAE_NAAM@Z
+Bool MemoryReadFile::scanReal( Real & /*newReal*/ )
+{
+	return FALSE;
+}
+
+// ?scanString@MemoryReadFile@@UAE_NAAVAsciiString@@@Z
+Bool MemoryReadFile::scanString( AsciiString & /*newString*/ )
+{
+	return FALSE;
+}
+
+// ?size@MemoryReadFile@@UAEHXZ
+Int MemoryReadFile::size( void )
+{
+	return m_size;
+}
+
+// ?position@MemoryReadFile@@UAEHXZ
+Int MemoryReadFile::position( void )
+{
+	return m_pos;
+}
+
+// ?readEntireAndClose@MemoryReadFile@@UAEPADXZ
+// Hands back a copy of the whole block and closes. An empty file still returns
+// an allocation rather than NULL, so the caller can always delete[] the result.
+char *MemoryReadFile::readEntireAndClose( void )
+{
+	if( m_size == 0 )
+	{
+		close();
+		return NEW char[1];
+	}
+
+	char *buffer = NEW char[m_size];
+	memcpy( buffer, m_data, m_size );
+	close();
+	return buffer;
+}
+
+// ?convertToRAMFile@MemoryReadFile@@UAEPAVFile@@XZ
+// Already in memory, so it is its own RAM file.
+File *MemoryReadFile::convertToRAMFile( void )
+{
+	return this;
+}
+
