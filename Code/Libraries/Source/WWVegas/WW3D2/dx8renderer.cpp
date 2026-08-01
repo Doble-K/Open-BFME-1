@@ -227,14 +227,14 @@ DX8TextureCategoryClass::~DX8TextureCategoryClass()
 	REF_PTR_RELEASE(material);
 }
 
-// ?Add_Render_Task@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@PAVMeshClass@@@Z present-unmatched
+// ?Add_Render_Task@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@PAVMeshClass@@@Z
 void DX8TextureCategoryClass::Add_Render_Task(DX8PolygonRendererClass * p_renderer,MeshClass * p_mesh)
 {
 	PolyRenderTaskClass * new_prt = new PolyRenderTaskClass(p_renderer,p_mesh);
 	new_prt->Set_Next_Visible(render_task_head);
 	render_task_head = new_prt;
 
-	container->Add_Visible_Texture_Category(this,pass);
+	container->Add_Visible_Texture_Category_Retail(this,pass);
 }
 
 void DX8TextureCategoryClass::Add_Polygon_Renderer(DX8PolygonRendererClass* p_renderer,DX8PolygonRendererClass* add_after_this)

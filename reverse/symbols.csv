@@ -1841,6 +1841,7 @@ name,address,notes
 ?Allocate_Object_Memory@?$ObjectPoolClass@VCameraShakerClass@CameraShakeSystemClass@@$0BAA@@@QAEPAVCameraShakerClass@CameraShakeSystemClass@@XZ,0x00002603,pinharvest x1 (thunk)
 ?Allocate_Object_Memory@?$ObjectPoolClass@VGridLinkClass@@$0BAA@@@QAEPAVGridLinkClass@@XZ,0x008DD970
 ?Allocate_Object_Memory@?$ObjectPoolClass@VMultiListNodeClass@@$0BAA@@@QAEPAVMultiListNodeClass@@XZ,0x009DBDD0
+?Allocate_Object_Memory@?$ObjectPoolClass@VPolyRenderTaskClass@@$0BAA@@@QAEPAVPolyRenderTaskClass@@XZ,0x009451C0
 ?Allocate_Sorting_Dynamic_Buffer@DynamicIBAccessClass@@QAEXXZ,0x0091D6B0
 ?BFMEGetWaterTrackTexture@@YA?AVBFMEWaterTrackTextureHandle@@PADHH@Z,0x0090E910,retail 4-byte texture handle return used by WaterTracksObj::init
 ?BTREE_decompress@@YAHPAE0@Z,0x00822FF0,additive; direct body / per-TU copy

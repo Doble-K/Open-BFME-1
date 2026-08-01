@@ -199,3 +199,10 @@ __real@3c8efa35
 # storage, so two bases is correct, not a discrepancy. Surfaced on the first
 # full gate after both TUs had rows referencing it.
 _staticTextStatus
+# These four symbols are duplicate COMDAT/template or CRT artifacts exposed by
+# the source-backed DX8 texture-category render-task body; their retail refs
+# intentionally resolve to distinct TU-local bases.
+??_7?$SimpleDynVecClass@PAV?$MultiListClass@VDX8FVFCategoryContainer@@@@@@6B@
+?CompactLog@CPUDetectClass@@0VStringClass@@A
+_$E10
+_$E8

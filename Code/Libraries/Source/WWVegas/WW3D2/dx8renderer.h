@@ -221,6 +221,15 @@ public:
 		AnythingToRender=true;
 	}
 
+	inline void Add_Visible_Texture_Category_Retail(DX8TextureCategoryClass * tex_category,int pass)
+	{
+		WWASSERT(pass<MAX_PASSES);
+		WWASSERT(tex_category != NULL);
+		WWASSERT(texture_category_list[pass].Contains(tex_category));
+		visible_texture_category_list[pass].Add(tex_category);
+		*(bool *)((char *)this + 0xed)=true;
+	}
+
 	/*
 	** Material pass rendering.  The following two functions allow procedural material passes
 	** to be applied to meshes in this FVF category.  In certain cases, the game will *only* render
