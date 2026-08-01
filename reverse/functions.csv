@@ -1058,7 +1058,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AABoxRenderObjClass@@QAE@ABV0@@Z,,0x00957E80,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0AABoxRenderObjClass@@QAE@ABVAABoxClass@@@Z,,0x00957880,147,Code/masm_dumps/_rn4___0AABoxRenderObjClass__QAE_ABVAABoxClass___Z_957880.asm,matched,reloc-needle Open-BFME4+Grok
 ??0AAPlaneClass@@QAE@W4AxisEnum@0@M@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,tiny-locate
-??0AIAttackFollowWaypointPathState@@QAE@PAVStateMachine@@_N@Z,,0x00183C90,201,Code/masm_dumps/_sa6___0AIAttackFollowWaypointPathState__QAE_PAVStateMa_183C90.asm,matched,Exact 201B Open-BFME4+Grok
 ??0AIAttackMoveStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x002C1061,501,Code/GameEngine/Source/GameLogic/AI/AIStates_0AIAttackMoveStateMachine.asm,matched,exact 501B via MASM
 ??0AIAttackMoveToState@@QAE@PAVStateMachine@@@Z,,0x00183990,234,Code/masm_dumps/_sa6___0AIAttackMoveToState__QAE_PAVStateMachine___Z_183990.asm,matched,Exact 234B Open-BFME4+Grok
 ??0AIAttackPursueTargetState@@QAE@PAVStateMachine@@_N11@Z,,0x0017F700,88,Code/masm_dumps/_saG___0AIAttackPursueTargetState__QAE_PAVStateMachine___N11_17F700.asm,matched,string-anchor MASM unique Open-BFME4+Grok
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0BannerCarrierUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00285F10,164,Code/GameEngine/Source/GameLogic/AI/BannerCarrierUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0BezierProjectileBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F1470,297,Code/GameEngine/Source/GameLogic/AI/BezierProjectileBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0BridgeBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F3390,379,Code/GameEngine/Source/GameLogic/AI/BridgeBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
+??0AIAttackFollowWaypointPathState@@QAE@PAVStateMachine@@_N@Z,,0x00183C90,201,Code/GameEngine/Source/GameLogic/AI/AIAttackFollowWaypointPathStateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior-state constructor
