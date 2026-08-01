@@ -1428,7 +1428,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FirestormDynamicGeometryInfoUpdateModuleData@@QAE@XZ,,0x002BC190,59,Code/GameEngine/Source/GameLogic/Object/Update/FirestormDynamicGeometryInfoUpdateModuleDataConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2BC190
 ??0FirewallHelperClass@@QAE@XZ,,0x0066E3B0,172,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,thunk-dump converted to clean C++
 ??0FlammableUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00293270,187,Code/masm_dumps/FlammableUpdate_ctor.asm,matched,Ghidra-owned BFME Flammable constructor
-??0FlammableUpdateModuleData@@QAE@XZ,,0x00294B20,180,Code/masm_dumps/FlammableUpdateModuleData_constructor.asm,matched,Exact 180B @ 0x00294B20; Exact retail MASM ModuleData ctor; unique factory 0x118460
 ??0FlightDeckBehaviorModuleData@@QAE@XZ,,0x0000CC3E,5,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0FlightDeckInfo@FlightDeckBehavior@@QAE@XZ,,0x001DE7E0,22,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,
 ??0FloatUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00294F90,82,Code/GameEngine/Source/GameLogic/Object/Update/FloatUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x294F90
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0BezierProjectileBehaviorModuleData@@QAE@XZ,,0x001EFD50,197,Code/GameEngine/Source/GameLogic/AI/BezierProjectileBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0BoneFXUpdateModuleData@@QAE@XZ,,0x00288340,225,Code/GameEngine/Source/GameLogic/AI/BoneFXUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0BroadcastStealthUpdateModuleData@@QAE@XZ,,0x0012A2E0,79,Code/GameEngine/Source/GameLogic/AI/BroadcastStealthUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0FlammableUpdateModuleData@@QAE@XZ,,0x00294B20,180,Code/GameEngine/Source/GameLogic/AI/FlammableUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
