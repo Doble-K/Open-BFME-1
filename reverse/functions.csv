@@ -9633,7 +9633,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?frameToSleepTime@@YA?AW4StateReturnType@@IIII@Z,,0x0018C2A0,37,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
 ?frameToSleepTime@UpdateModule@@IAE?AW4UpdateSleepTime@@IIII@Z,,0x002B1FD0,60,Code/GameEngine/Source/GameLogic/Object/Update/UpdateModule.cpp,matched,
 ?freeAllTextures@W3DShadowTextureManager@@QAEXXZ,,0x007AEEA0,118,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
-?freeBlock@MemoryPool@@QAEXPAX@Z,,0x0003291B,5,Code/masm_dumps/_thunk_bc6317ccba57_3291B.asm,matched,thunk accessor of ported class (icf alias)
 ?freeBytes@AsciiString@@AAEXXZ,,0x00887940,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=?releaseBuffer@?$StringBase@D@@AAEXXZ;C++ alias
 ?freeFromW3DMemPool@@YAXPAX0@Z,,0x00132AB0,15,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,
 ?freeMessageResources@InGameUI@@QAEXXZ,,0x0043CDC0,64,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,cached-obj2 Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
 ?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,,0x0002BF21,5,Code/GameEngine/Source/Common/RTS/DictEnsureUniqueThunk.cpp,matched,5-byte incremental-link Dict private member thunk converted to focused C++ source
 ?draw@Drawable@@QAEXPAVView@@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
+?freeBlock@MemoryPool@@QAEXPAX@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
