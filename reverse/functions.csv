@@ -1365,7 +1365,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0EmissionVolumeInfo@FXParticleSystem@@QAE@ABV01@@Z,0x000376DC,0x005BD6C0,21,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,copy constructor
 ??0EmissionVolumeInfo@FXParticleSystem@@QAE@XZ,0x0002EFF0,0x005BD640,10,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable pointer and flag
 ??0EmotionTrackerUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00290740,464,Code/masm_dumps/EmotionTrackerUpdate_constructor.asm,matched,Exact 464B @ 0x00290740; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11CE60
-??0EmotionTrackerUpdateModuleData@@QAE@XZ,,0x0028F910,537,Code/masm_dumps/EmotionTrackerUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x11CEE0
 ??0EnragedBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FAC00,134,Code/masm_dumps/EnragedBehavior_constructor.asm,matched,Exact 134B @ 0x001FAC00; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114AD0
 ??0EntEnragedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00291A00,179,Code/masm_dumps/EntEnragedUpdate_constructor.asm,matched,Exact 179B @ 0x00291A00; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11CF80
 ??0EnvironmentMapperClass@@QAE@I@Z,,0x00921460,25,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,exact 25B ctor; queue 32B overcounted int3 pad
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0LargeGroupAudioUpdateModuleData@@QAE@XZ,,0x002971F0,142,Code/GameEngine/Source/GameLogic/AI/LargeGroupAudioUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0EnragedBehaviorModuleData@@QAE@XZ,,0x00203E60,117,Code/GameEngine/Source/GameLogic/AI/EnragedBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0HeroDieModuleData@@QAE@XZ,,0x00255600,82,Code/GameEngine/Source/GameLogic/AI/HeroDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0EmotionTrackerUpdateModuleData@@QAE@XZ,,0x0028F910,537,Code/GameEngine/Source/GameLogic/AI/EmotionTrackerUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
