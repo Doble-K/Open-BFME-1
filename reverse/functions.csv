@@ -12778,7 +12778,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setStatus@Anim2D@@QAEXE@Z,,0x005BA2D0,15,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?setStatus@BattlePlanUpdate@@IAEXW4TransitionStatus@@@Z,,0x00286440,1298,Code/masm_dumps/setStatus_BattlePlanUpdate_00286440_packet227.asm,matched,Certified packet 227 db-only retail recovery SHA-256 6e55aee0e3e3bca8c83c8cd464431d935ab1de1481926bcd5b1ff003fb0ac5be
 ?setStatus@Image@@QAEII@Z,,0x005D1C10,19,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
-?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z,,0x0001366F,5,Code/masm_dumps/_thunk_2c21734a8beb_1366F.asm,matched,thunk accessor of ported class
 ?setSuperweaponDisplayEnabledByScript@InGameUI@@UAEX_N@Z,,0x0043AA60,15,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?setTargetObject@HijackerUpdate@@QAEXPBVObject@@@Z,,0x002921F0,27,Code/GameEngine/Source/GameLogic/Object/Update/HijackerUpdate.cpp,matched,
 ?setTargetPositionToGuard@AIGuardMachine@@QAEXPBUCoord3D@@@Z,,0x0079E400,26,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?parseDynamicAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E2DA,5,Code/GameEngine/Source/Common/RTS/INIParseDynamicAudioEventRTSThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ??4?$PrimitiveAnimationChannelClass@VVector2@@@@QAEABV0@ABV0@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,object-symbol=?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z;ICF alias converted to focused C++ thunk TU
 ?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/GameEngine/Source/Common/RTS/INIParseAnim2DTemplateThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
+?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z,,0x0001366F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectSetStatusThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
