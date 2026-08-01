@@ -1073,7 +1073,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AITunnelNetworkGuardState@@QAE@PAVStateMachine@@@Z,,0x001717B0,53,Code/GameEngine/Source/GameLogic/AI/AIStates_AITunnelNetworkGuardState_ctor.asm,matched,Certified packet 135 exact MASM recovery
 ??0AIUpdateInterface@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0027F4B0,1237,Code/masm_dumps/AIUpdateInterface_constructor.asm,matched,Exact 1237B @ 0x0027F4B0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1167E0
 ??0AIUpdateInterfaceModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0AIWanderInPlaceState@@QAE@PAVStateMachine@@@Z,,0x0017FB80,63,Code/masm_dumps/AIWanderInPlaceState_ctor.asm,matched,true body @0x17FB80 (63B); drift 0x185CB5 inside AIStateMachine; string-anchor AIWanderInPlaceState + StringBase(char*)@0x888BC0; MASM sibling AIBusy/AIDead/AIWander
 ??0AIWanderState@@QAE@PAVStateMachine@@@Z,,0x0017FB00,82,Code/masm_dumps/AIWanderState_ctor.asm,matched,true body @0x17FB00 (82B); drift 0x183CA5 inside AIAttackFollowWaypointPathState; string-anchor getName AIWanderState@0x17FB70 + vtbl 0x109A8A8; MASM sibling AIPanicState
 ??0AODHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00230580,326,Code/masm_dumps/AODHordeContain_constructor.asm,matched,Exact 326B @ 0x00230580; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1161D0
 ??0AODHordeContainModuleData@@QAE@XZ,,0x002472D0,531,Code/masm_dumps/AODHordeContainModuleData_constructor.asm,matched,Exact 531B ICF primary MD Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AIMoveToState@@QAE@PAVStateMachine@@@Z,,0x00173430,50,Code/GameEngine/Source/GameLogic/AI/AIMoveToStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIPanicState@@QAE@PAVStateMachine@@@Z,,0x0017FBE0,82,Code/GameEngine/Source/GameLogic/AI/AIPanicStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIIdleState@@QAE@PAVStateMachine@@W4AIIdleTargetingType@0@@Z,,0x00180320,71,Code/GameEngine/Source/GameLogic/AI/AIIdleStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
+??0AIWanderInPlaceState@@QAE@PAVStateMachine@@@Z,,0x0017FB80,63,Code/GameEngine/Source/GameLogic/AI/AIWanderInPlaceStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
