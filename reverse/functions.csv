@@ -1201,7 +1201,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CameraClass@@QAE@XZ,,0x00932560,295,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
 ??0CameraShakeSystemClass@@QAE@XZ,,0x006D12A0,39,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
 ??0CameraShakerClass@CameraShakeSystemClass@@QAE@ABVVector3@@MMM@Z,,0x006D14B0,211,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
-??0CashHackSpecialPowerModuleData@@QAE@XZ,,0x00258D70,98,Code/masm_dumps/CashHackSpecialPowerModuleData_constructor.asm,matched,Exact 98B @ 0x00258D70; Exact retail MASM ModuleData ctor; unique factory 0x11FDF0; Open-BFME4+Grok
 ??0CastResultStruct@@QAE@XZ,,0x006099F0,38,Code/Libraries/Source/WWVegas/WWMath/colmathaabox.cpp,matched,
 ??0CastleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00376250,661,Code/masm_dumps/CastleBehavior_constructor.asm,matched,Exact 661B @ 0x00376250; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114440
 ??0CastleMemberBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0036CDD0,58,Code/masm_dumps/CastleMemberBehavior_constructor.asm,matched,Exact retail MASM module ctor; factory 0x114550
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0BroadcastStealthUpdateModuleData@@QAE@XZ,,0x0012A2E0,79,Code/GameEngine/Source/GameLogic/AI/BroadcastStealthUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0FlammableUpdateModuleData@@QAE@XZ,,0x00294B20,180,Code/GameEngine/Source/GameLogic/AI/FlammableUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AttributeModifierAuraUpdateModuleData@@QAE@XZ,,0x00280B20,189,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0CashHackSpecialPowerModuleData@@QAE@XZ,,0x00258D70,98,Code/GameEngine/Source/GameLogic/AI/CashHackSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
