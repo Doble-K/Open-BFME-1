@@ -13654,7 +13654,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?xfer@GarrisonContain@@MAEXPAVXfer@@@Z,,0x00853EC0,72,Code/masm_dumps/_cache__xfer_GarrisonContain__MAEXPAVXfer___Z_853EC0.asm,matched,cached-obj needle Open-BFME4+Grok
 ?xfer@ScriptGroup@@MAEXPAVXfer@@@Z,,0x00350E90,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptGroupXfer.cpp,matched,True body ScriptGroup vtbl slot3 0x350E90/66; queue 0xAF9B24 is jmp-table; BFME Version1+bool@+0xc only (no ZH script-list walk)
 ?xfer@ScriptList@@MAEXPAVXfer@@@Z,,0x003556A0,400,Code/masm_dumps/xfer_ScriptList_MAEXPAVXfer_Z_003556A0_76e94c51.asm,matched,Certified packet 106 vtable thunk identity; retail sha256 76e94c51960571955350c1034dad16ec4d08b4264a953c395ab3c33077191aca
-?xfer@TerrainLogic@@MAEXPAVXfer@@@Z,,0x006BE430,45,Code/masm_dumps/TerrainLogic_xfer_6BE430.asm,matched,Certified packet 26 vtable-owned TerrainLogic xfer wrapper exact retail bytes SHA256 bbd9812128df694a4baf5174941c9d9f267c4d3364b406b26c6cbbb97edced32
 ?xferDrawableModules@Drawable@@IAEXPAVXfer@@@Z,,0x00417E20,530,Code/masm_dumps/xferDrawableModules_Drawable_IAEXPAVXfer_Z_417E20.asm,matched,Exact 530B MASM; true body 0x417E20 (queue 0x79CD36 int3); m_modules+0x150 NUM=3; callee of Drawable::xfer@0x41D290
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,,0x0003EE32,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/xferRandomVariable.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ?xferReal@Xfer@@QAEXPAM@Z,,0x006CF3A0,5,Code/GameEngine/Source/Common/System/Geometry.cpp,matched,icf-owner=?_bfme_ro_v28@RenderObjClass@@UBEHXZ
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?deleteShadowVolume@W3DVolumetricShadow@@IAEXH@Z,,0x007BAFA0,142,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,Exact 142B clean C++ deleteShadowVolume; TU-local BFME 0x30 layout shim; MASM removed
 ?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimComboClass@@@Z,,0x00982330,39,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,Open-BFME5 exact C++ raw animation combo setter
 ?loadPostProcess@Drawable@@MAEXXZ,,0x004120A0,45,Code/GameEngine/Source/Common/RTS/DrawableLoadPostProcessThunk.cpp,matched,Open-BFME5 exact C++ raw Drawable post-load hook
+?xfer@TerrainLogic@@MAEXPAVXfer@@@Z,,0x006BE430,45,Code/GameEngine/Source/GameLogic/Map/TerrainLogicXferThunk.cpp,matched,Open-BFME5 exact C++ raw TerrainLogic xfer wrapper
