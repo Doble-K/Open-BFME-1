@@ -369,6 +369,7 @@ void SegLineRendererClass::Scale(float scale)
 {
 	Width *= scale;
 	NoiseAmplitude *= scale;
+	_BFME_Unknown_Member *= scale;
 }
 
 VertexFormatXYZDUV1 *SegLineRendererClass::getVertexBuffer(unsigned int number)
