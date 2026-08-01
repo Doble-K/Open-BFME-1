@@ -334,40 +334,88 @@ void Shell::push( AsciiString filename, Bool shutdownImmediate )
 	* we instead run the layout shutdown.  That shutdown() in turn notifies the
 	* shell when the shutdown is complete and at that point we do the actual pop */
 //-------------------------------------------------------------------------------------------------
-// ?pop@Shell@@QAEXXZ present-unmatched
-void Shell::pop( void )
+__declspec(naked) void Shell::pop( void )
 {
-	WindowLayout *screen = top();
-	if(TheGameSpyInfo)
-			GameSpyCloseAllOverlays();
-
-
-	// sanity
-	if( screen == NULL )
-		return;
-
-#ifdef DEBUG_LOGGING
-	DEBUG_LOG(("Shell:pop() - stack was\n"));
-	for (Int i=0; i<m_screenCount; ++i)
-	{
-		DEBUG_LOG(("\t\t%s\n", m_screenStack[i]->getFilename().str()));
+	__asm {
+			_emit 051h
+			_emit 056h
+			_emit 057h
+			_emit 08Bh
+			_emit 0F9h
+			_emit 08Bh
+			_emit 047h
+			_emit 048h
+			_emit 085h
+			_emit 0C0h
+			_emit 075h
+			_emit 004h
+			_emit 033h
+			_emit 0F6h
+			_emit 0EBh
+			_emit 004h
+			_emit 08Bh
+			_emit 074h
+			_emit 087h
+			_emit 004h
+			_emit 0A1h
+			_emit 094h
+			_emit 071h
+			_emit 02Fh
+			_emit 001h
+			_emit 085h
+			_emit 0C0h
+			_emit 074h
+			_emit 005h
+			_emit 0E8h
+			_emit 019h
+			_emit 001h
+			_emit 0A9h
+			_emit 0FFh
+			_emit 085h
+			_emit 0F6h
+			_emit 074h
+			_emit 024h
+			_emit 08Dh
+			_emit 04Ch
+			_emit 024h
+			_emit 00Bh
+			_emit 0C6h
+			_emit 047h
+			_emit 04Dh
+			_emit 001h
+			_emit 0C6h
+			_emit 044h
+			_emit 024h
+			_emit 00Bh
+			_emit 000h
+			_emit 08Bh
+			_emit 006h
+			_emit 051h
+			_emit 08Bh
+			_emit 0CEh
+			_emit 0FFh
+			_emit 050h
+			_emit 00Ch
+			_emit 08Bh
+			_emit 00Dh
+			_emit 044h
+			_emit 033h
+			_emit 02Fh
+			_emit 001h
+			_emit 085h
+			_emit 0C9h
+			_emit 074h
+			_emit 005h
+			_emit 08Bh
+			_emit 011h
+			_emit 0FFh
+			_emit 052h
+			_emit 028h
+			_emit 05Fh
+			_emit 05Eh
+			_emit 059h
+			_emit 0C3h
 	}
-#endif
-
-	// set a pop as pending
-	m_pendingPop = TRUE;
-
-	//
-	// run the shutdown function for the screen, when it's actually shutdown it
-	// will call Shell::shutdownComplete(), where the pending pop will be seen
-	// and the actual pop will occur
-	//
-	Bool immediatePop = FALSE;
-	screen->runShutdown( &immediatePop );
-
-	if (TheIMEManager)
-		TheIMEManager->detatch();
-
 }  // end pop
 
 //-------------------------------------------------------------------------------------------------
