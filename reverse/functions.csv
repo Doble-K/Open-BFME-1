@@ -1186,7 +1186,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BlockHeader@TagBlockFile@@QAE@XZ,,0x000CCC50,15,Code/Libraries/Source/WWVegas/WWLib/tagblock.cpp,matched,
 ??0BlockParse@@QAE@PBDP6AXPAVINI@@@Z@Z,,0x0007BCA0,32,Code/GameEngine/Source/Common/INI/ini.cpp,matched,self-registering node ctor - prepends to the list head at 0x0130CE50
 ??0BoneFXDamage@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
-??0BoneFXDamageModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/BoneFXDamageModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0BoneFXUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000264E,5,Code/masm_dumps/__0BoneFXUpdate__QAE_PAVThing__PBVModuleData___Z_264E.asm,matched,MASM exact retail dump
 ??0BoneFXUpdateModuleData@@QAE@XZ,,0x00288340,225,Code/masm_dumps/BoneFXUpdateModuleData_constructor.asm,matched,Exact retail MASM; matched factory allocation and constructor thunk prove ownership; replaces stale unrelated 0xC0EA2 claim
 ??0BoxEmissionVolumeInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00036417,0x005D5E30,45,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0AIUpdateInterfaceModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0AssistedTargetingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0BaseRegenerateUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0BoneFXDamageModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
