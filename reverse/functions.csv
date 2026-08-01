@@ -1232,7 +1232,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CommandButtonHuntUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00020DCE,5,Code/GameEngine/Source/GameLogic/Object/Update/CommandButtonHuntUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0CommandButtonHuntUpdateModuleData@@QAE@XZ,,0x0028AAE0,17,Code/GameEngine/Source/GameLogic/Object/Update/CommandButtonHuntUpdate.cpp,matched,exact 17B no-call ModuleData ctor; m_scanFrames=5(BFME) m_scanRange=9999f; moduledata shim; replaces 5B thunk @0x2E500
 ??0CommandSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D41A0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/CommandSetUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2D41A0
-??0CommandSetUpgradeModuleData@@QAE@XZ,,0x0012AF80,93,Code/masm_dumps/CommandSetUpgradeModuleData_constructor.asm,matched,Exact 93B @ 0x0012AF80; Exact retail MASM ModuleData ctor; unique factory 0x12B0B0; Open-BFME4+Grok
 ??0CompositeRenderObjClass@@QAE@ABV0@@Z,,0x00983550,206,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
 ??0CompositeRenderObjClass@@QAE@XZ,,0x00982E10,148,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
 ??0Condition@@IAE@XZ,,0x0034FDA0,65,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0CashHackSpecialPowerModuleData@@QAE@XZ,,0x00258D70,98,Code/GameEngine/Source/GameLogic/AI/CashHackSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0DelayedUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/DelayedUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0CastleUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/CastleUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
+??0CommandSetUpgradeModuleData@@QAE@XZ,,0x0012AF80,93,Code/GameEngine/Source/GameLogic/AI/CommandSetUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
