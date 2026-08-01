@@ -541,25 +541,33 @@ void GameLODManager::applyStaticLODLevel(StaticGameLODLevel level)
 }
 
 /**Parse a description of all the LOD settings for a given detail level*/
-// ?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z present-unmatched
+// ?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z
+// Same shape as the static variant. m_dynamicGameLODInfo is at +0x120 in
+// GameLODManager with a 16-byte stride: retail computes the element address as
+// (index + 0x12) << 4 added to TheGameLODManager, which is index*16 + 0x120.
+// Offsets in the table are the ones retail's own table at 0x01076890 carries.
+static const FieldParse TheBFMEDynamicGameLODFieldParseTable[] =
+{
+	{ "MinimumFPS",			INI::parseInt,	NULL,	0x00 },
+	{ "ParticleSkipMask",	INI::parseInt,	NULL,	0x04 },
+	{ "DebrisSkipMask",		INI::parseInt,	NULL,	0x08 },
+	{ "SlowDeathScale",		INI::parseReal,	NULL,	0x0c },
+	{ 0, 0, 0, 0 }
+};
+
 void INI::parseDynamicGameLODDefinition( INI* ini )
 {
-	const char *c;
 	AsciiString name;
 
-	// read the name
-	c = ini->getNextToken();
-	name.set( c );	
+	name = ini->getNextToken();
 
 	if( TheGameLODManager )
 	{
-		Int index = TheGameLODManager->getDynamicGameLODIndex(name);
-		if (index != DYNAMIC_GAME_LOD_UNKNOWN)
+		Int index = TheGameLODManager->getDynamicGameLODIndex( name );
+		if( index != DYNAMIC_GAME_LOD_UNKNOWN )
 		{
-			DynamicGameLODInfo *lodInfo = &(TheGameLODManager->m_dynamicGameLODInfo[index]);
-
-			// parse the ini weapon definition
-			ini->initFromINI( lodInfo, TheDynamicGameLODFieldParseTable );
+			void *lodInfo = (char *)TheGameLODManager + index * 16 + 0x120;
+			ini->initFromINI( lodInfo, TheBFMEDynamicGameLODFieldParseTable );
 		}
 	}
 }
