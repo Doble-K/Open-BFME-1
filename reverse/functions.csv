@@ -2023,7 +2023,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StringClass@@QAE@_N@Z,,0x00972B50,42,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ??0StringInfo@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameClient/GameText.cpp,matched,icf-owner=??0?$DLNodeClass@USmudge@@@@QAE@XZ
 ??0StructureBodyModuleData@@QAE@XZ,,0x001293C0,118,Code/masm_dumps/StructureBodyModuleData_constructor.asm,matched,Exact 118B @ 0x001293C0; Exact retail MASM ModuleData ctor; unique factory 0x1294A0
-??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004A345,5,Code/masm_dumps/__0StructureCollapseUpdate__QAE_PAVThing__PBVModuleData___Z_4A345.asm,matched,retail factory call binds constructor thunk to StructureCollapseUpdate
 ??0StructureCollapseUpdateModuleData@@QAE@XZ,,0x00128940,224,Code/masm_dumps/StructureCollapseUpdateModuleData_constructor.asm,matched,Exact 224B @ 0x00128940; Exact retail MASM ModuleData ctor; unique factory 0x128B10
 ??0StructureToppleUpdateModuleData@@QAE@XZ,,0x0012BF50,398,Code/masm_dumps/StructureToppleUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x12C250
 ??0SubObjectArrayClass@HLodDefClass@@QAE@XZ,,0x009789F0,20,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0?$_Vector_base@PBVLocomotorTemplate@@V?$allocator@PBVLocomotorTemplate@@@_STL@@@_STL@@QAE@IABV?$allocator@PBVLocomotorTemplate@@@1@@Z,,0x0001D949,5,Code/Libraries/Source/WWVegas/WWLib/LocomotorTemplateVectorBaseConstructorThunk.cpp,matched,5-byte incremental-link STL vector-base constructor converted to focused C++ thunk TU
 ??0RainOfFireUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000A0E2,5,Code/GameEngine/Source/Common/RTS/RainOfFireUpdateCtorThunk.cpp,matched,5-byte incremental-link RainOfFireUpdate constructor thunk converted to focused C++ source
 ??0?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAE@ABV?$allocator@VAsciiString@@@1@@Z,,0x00008DCD,5,Code/Libraries/Source/WWVegas/WWLib/AsciiStringVectorConstructorThunk.cpp,matched,5-byte incremental-link STL vector constructor converted to focused C++ thunk TU
+??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004A345,5,Code/GameEngine/Source/Common/RTS/StructureCollapseUpdateCtorThunk.cpp,matched,5-byte incremental-link StructureCollapseUpdate constructor thunk converted to focused C++ source
