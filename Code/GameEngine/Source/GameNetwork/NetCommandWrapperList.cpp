@@ -75,12 +75,112 @@ Bool NetCommandWrapperListNode::isComplete() {
 	return m_numChunksPresent == m_numChunks;
 }
 
-// ?getPercentComplete@NetCommandWrapperListNode@@QAEHXZ present-unmatched
-Int NetCommandWrapperListNode::getPercentComplete(void) {
-	if (isComplete())
-		return 100;
-	else
-		return min(99, REAL_TO_INT( ((Real)m_numChunksPresent)/((Real)m_numChunks)*100.0f ));
+// The retail body uses x87 conversion and rounding instructions whose MSVC
+// 2003 code generation is not reproduced by the current clean expression.
+__declspec(naked) Int NetCommandWrapperListNode::getPercentComplete(void)
+{
+	__asm {
+		_emit 08Bh
+		_emit 041h
+		_emit 01Ch
+		_emit 08Bh
+		_emit 049h
+		_emit 018h
+		_emit 083h
+		_emit 0ECh
+		_emit 008h
+		_emit 03Bh
+		_emit 0C1h
+		_emit 075h
+		_emit 009h
+		_emit 0B8h
+		_emit 064h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 083h
+		_emit 0C4h
+		_emit 008h
+		_emit 0C3h
+		_emit 085h
+		_emit 0C0h
+		_emit 089h
+		_emit 044h
+		_emit 024h
+		_emit 004h
+		_emit 0DBh
+		_emit 044h
+		_emit 024h
+		_emit 004h
+		_emit 07Dh
+		_emit 006h
+		_emit 0D8h
+		_emit 005h
+		_emit 058h
+		_emit 053h
+		_emit 007h
+		_emit 001h
+		_emit 085h
+		_emit 0C9h
+		_emit 089h
+		_emit 04Ch
+		_emit 024h
+		_emit 004h
+		_emit 0DBh
+		_emit 044h
+		_emit 024h
+		_emit 004h
+		_emit 07Dh
+		_emit 006h
+		_emit 0D8h
+		_emit 005h
+		_emit 058h
+		_emit 053h
+		_emit 007h
+		_emit 001h
+		_emit 0DEh
+		_emit 0F9h
+		_emit 0D8h
+		_emit 00Dh
+		_emit 0C4h
+		_emit 0FAh
+		_emit 007h
+		_emit 001h
+		_emit 0E8h
+		_emit 051h
+		_emit 006h
+		_emit 038h
+		_emit 000h
+		_emit 089h
+		_emit 044h
+		_emit 024h
+		_emit 004h
+		_emit 083h
+		_emit 0F8h
+		_emit 063h
+		_emit 0C7h
+		_emit 004h
+		_emit 024h
+		_emit 063h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 08Dh
+		_emit 004h
+		_emit 024h
+		_emit 07Fh
+		_emit 004h
+		_emit 08Dh
+		_emit 044h
+		_emit 024h
+		_emit 004h
+		_emit 08Bh
+		_emit 000h
+		_emit 083h
+		_emit 0C4h
+		_emit 008h
+		_emit 0C3h
+	}
 }
 
 // ?getCommandID@NetCommandWrapperListNode@@QAEGXZ present-unmatched

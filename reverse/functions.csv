@@ -11275,7 +11275,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPath@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D1710,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 6; m_path at this+0x28
 ?getPath_UserData@GlobalData@@QBE?AVAsciiString@@XZ,,0x000106EA,5,Code/masm_dumps/_getPath_UserData_GlobalData__QBE_AVAsciiString__XZ_106EA.asm,matched,MASM exact retail dump
 ?getPercentComplete@NetCommandWrapperList@@QAEHG@Z,,0x00676850,42,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
-?getPercentComplete@NetCommandWrapperListNode@@QAEHXZ,,0x0003D497,5,Code/masm_dumps/_getPercentComplete_NetCommandWrapperListNode__QAEHXZ_3D497.asm,matched,MASM exact retail dump
 ?getPercentReady@SpecialPowerModule@@UBEMXZ,,0x00268A90,210,Code/masm_dumps/SpecialPowerModule_getPercentReady.asm,matched,Exact 210B; true body 0x268A90 not queue 0x2A98AF (INSIDE 9219B fn); interface-this sibling getRequiredScience; +0x14 BFME flag
 ?getPercentage@NetProgressCommandMsg@@QAEEXZ,,0x00673DB0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,thunk-dump converted to clean C++
 ?getPerformanceCounter@@YA_JXZ,,0x006E7BC0,24,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getSquadNumberForObject@Player@@QBEHPBVObject@@@Z,,0x000C9B90,54,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,clean hotkey squad scan through retail layout; exact retail body
 ?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,thunk-dump converted to clean C++ with explicit retail WorldHeightMap layout offsets
 ?isTurretInNaturalPosition@BattlePlanUpdate@@IAE_NXZ,,0x002858E0,40,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,clean BattlePlanUpdate turret-natural-position query through retail layout
+?getPercentComplete@NetCommandWrapperListNode@@QAEHXZ,,0x006767A0,100,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,thunk-dump converted to C++ naked x87 body preserving retail MSVC 2003 codegen
