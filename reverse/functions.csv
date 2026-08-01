@@ -5173,7 +5173,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Begin_Chunk@ChunkSaveClass@@QAE_NK@Z,,0x009E16F0,138,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Begin_Micro_Chunk@ChunkSaveClass@@QAE_NK@Z,,0x009E1950,76,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Bias@RawFileClass@@UAEXHH@Z,,0x009E6EE0,309,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
-?Bind@UDP@@QAEHIG@Z,,0x00047FA0,5,Code/masm_dumps/_Bind_UDP__QAEHIG_Z_47FA0.asm,matched,MASM exact retail dump
 ?Bind@UDP@@QAEHPBDG@Z,,0x00684AD0,115,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?Blend_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimClass@@M1MM@Z,,0x00981E80,59,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Blend_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimClass@@M1MM@Z,,0x009546B0,1746,Code/masm_dumps/__Blend_Update_HTreeClass__QAEXABVMatrix3D__PAVHAni_9546B0.asm,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??1PlayerTemplate@@QAE@XZ,,0x000181CE,5,Code/GameEngine/Source/Common/RTS/PlayerTemplateDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ?Free@DistLODClass@@AAEXXZ,,0x00014BC3,5,Code/Libraries/Source/WWVegas/WW3D2/DistLODClassFreeThunk.cpp,matched,5-byte incremental-link member thunk converted to focused C++ source
 ??1PendingSurfaceStruct@Render2DSentenceClass@@QAE@XZ,,0x00001F96,5,Code/Libraries/Source/WWVegas/WW3D2/PendingSurfaceDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
+?Bind@UDP@@QAEHIG@Z,,0x00047FA0,5,Code/Libraries/Source/DirtySock/UDPBindThunk.cpp,matched,5-byte incremental-link UDP member thunk converted to focused C++ source
