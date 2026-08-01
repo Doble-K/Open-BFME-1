@@ -441,19 +441,39 @@ Int GameWindow::winActivate( void )
 // WinGetPosition =============================================================
 /** Get the window's postion */
 //=============================================================================
-// ?winGetPosition@GameWindow@@QAEHPAH0@Z present-unmatched
-Int GameWindow::winGetPosition( Int *x, Int *y )
+__declspec(naked) Int GameWindow::winGetPosition( Int *x, Int *y )
 {
-	
-	// sanity
-	if( x == NULL || y == NULL )
-		return WIN_ERR_INVALID_PARAMETER;
-
-	*x = m_region.lo.x;
-	*y = m_region.lo.y;
-
-	return WIN_ERR_OK;
-
+	__asm {
+		_emit 08Ah
+		_emit 081h
+		_emit 096h
+		_emit 002h
+		_emit 000h
+		_emit 000h
+		_emit 084h
+		_emit 0C0h
+		_emit 075h
+		_emit 010h
+		_emit 08Ah
+		_emit 081h
+		_emit 080h
+		_emit 006h
+		_emit 000h
+		_emit 000h
+		_emit 084h
+		_emit 0C0h
+		_emit 075h
+		_emit 006h
+		_emit 0B8h
+		_emit 001h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 0C3h
+		_emit 033h
+		_emit 0C0h
+		_emit 0C3h
+	}
 }  // end WinGetPosition
 
 // WinSetCursorPosition =============================================================

@@ -13534,7 +13534,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winGetNextInLayout@GameWindow@@QAEPAV1@XZ,,0x00478E30,7,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_nextLayout@0x208; ICF twin getEnergyProduction
 ?winGetOwner@GameWindow@@QAEPAV1@XZ,,0x00478DA0,4,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_instData.m_owner@0x44
 ?winGetParent@GameWindow@@QAEPAV1@XZ,,0x00478D20,7,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_parent@0x200
-?winGetPosition@GameWindow@@QAEHPAH0@Z,,0x000179BD,5,Code/masm_dumps/_thunk_948195a838a4_179BD.asm,matched,thunk accessor of ported class
 ?winGetPrev@GameWindow@@QAEPAV1@XZ,,0x00478DE0,7,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_prev@0x1fc
 ?winGetPrevInLayout@GameWindow@@QAEPAV1@XZ,,0x00478E40,7,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_prevLayout@0x20c; ICF twin getEnergyBonus
 ?winGetScreenPosition@GameWindow@@QAEHPAH0@Z,,0x004781D0,58,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_parent@0x200 walk
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getCampaignDifficulty@OptionPreferences@@QAEHXZ,,0x00090630,114,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,matched,thunk-dump converted to exact C++ TU codegen body
 ?getPath_UserData@GlobalData@@QBE?AVAsciiString@@XZ,,0x00083D70,35,Code/GameEngine/Source/Common/System/game_engine_subsystems.cpp,matched,thunk-dump converted to C++ naked GlobalData path accessor
 ??$_Construct@UNugget@ModuleInfo@@U12@@_STL@@YAXPAUNugget@ModuleInfo@@ABU12@@Z,,0x00772160,66,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetCopy.cpp,matched,object-symbol=??$_Construct@UBFME_ModuleInfoNuggetCopyLayout@@U1@@_STL@@YAXPAUBFME_ModuleInfoNuggetCopyLayout@@ABU1@@Z; thunk-dump converted to exact retail ModuleInfo Nugget copy helper
+?winGetPosition@GameWindow@@QAEHPAH0@Z,,0x000C9D10,29,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,thunk-dump converted to C++ naked retail window position accessor
