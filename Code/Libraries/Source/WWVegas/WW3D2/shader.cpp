@@ -1128,7 +1128,6 @@ ShaderClass::StaticSortCategoryType ShaderClass::Get_SS_Category(void) const
  * HISTORY:                                                                                    *
  *   8/27/2001  hy : Created.                                                                  *
  *=============================================================================================*/
-// ?Guess_Sort_Level@ShaderClass@@QBEHXZ present-unmatched
 int ShaderClass::Guess_Sort_Level(void) const
 {
 	int sort_level;

@@ -6753,7 +6753,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Grow@?$SimpleDynVecClass@VVector3i16@@@@IAE_NH@Z,,0x00918570,68,Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp,matched,
 ?Grow@?$SimpleDynVecClass@VVector4@@@@IAE_NH@Z,,0x00701EE0,68,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Grow_Unicode_Array@FontCharsClass@@AAEXG@Z,,0x0093D320,252,Code/masm_dumps/_rn4__Grow_Unicode_Array_FontCharsClass__AAEXG_Z_93D320.asm,matched,reloc-needle Open-BFME4+Grok
-?Guess_Sort_Level@ShaderClass@@QBEHXZ,,0x00910E90,38,Code/masm_dumps/_Guess_Sort_Level_ShaderClass__QBEHXZ_910E90.asm,matched,MASM exact retail dump
 ?HSV_To_RGB@@YAXAAVVector3@@ABV1@@Z,,0x001068B0,358,Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp,matched,
 ?HUFF_analysis@@YAXPAUHuffEncodeContext@@II@Z,,0x0081FB50,2599,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,true size 2599B; row claimed 453B
 ?HUFF_decompress@@YAHPAE0@Z,,0x00822110,3195,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,true size 3195B; row claimed 3161B
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z,,0x006B9A40,19,Code/Libraries/Source/WWVegas/WWAudio/AudioManagerAddAudioEventThunk.cpp,matched,Open-BFME5 exact C++ AudioManager vtable thunk replacing MASM dump;object-symbol=?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z
 ?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z,,0x0043B280,20,Code/GameEngine/Source/GameLogic/ScriptEngine/BfmeInGameUISetInputEnabledThunk.cpp,matched,Open-BFME5 exact C++ BFME vtable thunk replacing MASM dump;object-symbol=?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z
 ??1MaterialCollectorClass@@QAE@XZ,,0x00C5C6A8,21,Code/Libraries/Source/WWVegas/WW3D2/MaterialCollectorClassDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1MaterialCollectorClass@@QAE@XZ
+?Guess_Sort_Level@ShaderClass@@QBEHXZ,,0x00910E90,38,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,converted exact MASM method dump to clean C++
