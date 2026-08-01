@@ -11433,7 +11433,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isBridgeRepaired@TerrainLogic@@QAE_NPBVObject@@@Z,,0x001A3510,69,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?isBuddy@GameSpyInfo@@UAE_NH@Z,,0x00632810,40,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?isCapableOfPurchasingScience@Player@@QBE_NW4ScienceType@@@Z,,0x000CFDF0,110,Code/GameEngine/Source/Common/RTS/PlayerFields.cpp,matched,BFME retail body; drops isScienceDisabled/isScienceHidden check vs ZH; m_sciences@0x234 m_sciencePurchasePoints@0x264 via reference/shims/player
-?isCellOnEnd@Bridge@@QAE_NPBURegion2D@@@Z,,0x0000DAAD,5,Code/masm_dumps/_isCellOnEnd_Bridge__QAE_NPBURegion2D___Z_DAAD.asm,matched,MASM exact retail dump
 ?isCellOnSide@Bridge@@QAE_NPBURegion2D@@@Z,,0x001A26D0,504,Code/masm_dumps/Bridge_isCellOnSide_1A26D0.asm,matched,Certified packet 14 exact retail db recovery
 ?isClearToAdvance@DockUpdate@@UBE_NPBVObject@@H@Z,,0x002CBC00,143,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?isClearToApproach@DockUpdate@@UBE_NPBVObject@@@Z,,0x002CB030,78,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?getBridgeHeight@Bridge@@QAEMPBUCoord3D@@PAU2@@Z,,0x0000B802,5,Code/GameEngine/Source/Common/RTS/BridgeGetBridgeHeightThunk.cpp,matched,5-byte incremental-link Bridge member thunk converted to focused C++ source
 ??0?$list@PAVSuperweaponInfo@@V?$allocator@PAVSuperweaponInfo@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x0076F640,111,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of exact STLport list copy constructor body with BFME 0x2c node tail
 ?_M_clear@?$vector@UPrereqUnitRec@ProductionPrerequisite@@V?$allocator@UPrereqUnitRec@ProductionPrerequisite@@@_STL@@@_STL@@IAEXXZ,,0x0001BEFA,5,Code/Libraries/Source/WWVegas/WWLib/ProductionPrerequisitePrereqUnitRecAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector clear thunk converted alongside focused C++ template TU
+?isCellOnEnd@Bridge@@QAE_NPBURegion2D@@@Z,,0x0000DAAD,5,Code/GameEngine/Source/Common/RTS/BridgeIsCellOnEndThunk.cpp,matched,5-byte incremental-link Bridge member thunk converted to focused C++ source
