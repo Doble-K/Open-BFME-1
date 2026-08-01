@@ -1110,7 +1110,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AsciiString@@QAE@PBDH@Z,0x0002B832,0x000AFF00,24,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,AsciiString(const char *
 ??0AsciiString@@QAE@XZ,0x00017BD9,0x00062030,9,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,default constructor sets text pointer to null
 ??0AssaultTransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B46F0,97,Code/masm_dumps/AssaultTransportAIUpdate_constructor.asm,matched,Exact 97B unique factory Open-BFME4
-??0AssaultTransportAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/AssaultTransportAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0AssetIterator@@IAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
 ??0AssistanceRequestData@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,ICF alias of existing matched body
 ??0AssistedTargetingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0027FB60,134,Code/masm_dumps/AssistedTargetingUpdate_constructor.asm,matched,Exact 134B @ 0x0027FB60; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x117C40
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AIAttackThenIdleStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x00184A40,347,Code/GameEngine/Source/GameLogic/AI/AIAttackThenIdleStateMachineCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state-machine constructor
 ??0AimWeaponBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ECF40,134,Code/GameEngine/Source/GameLogic/AI/AimWeaponBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw module constructor
 ??0AnimalAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
+??0AssaultTransportAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
