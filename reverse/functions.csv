@@ -1335,7 +1335,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DX8VertexBufferClass@@QAE@PBVVector3@@PBVVector4@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F4A0,131,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
 ??0DX8_CleanupHook@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,ICF alias of existing matched body
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
-??0DamDieModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/DamDieModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0DamageFXStore@@QAE@XZ,,0x00067C10,113,Code/GameEngine/Source/Common/DamageFXStore_ctor.asm,matched,exact MASM; true body @0x67C10 (queue 0x9F272E was ControlBar pad); C++ STLport hashtable shape blocks
 ??0DamageModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/DamageModuleModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0DarknessSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00259B80,46,Code/masm_dumps/DarknessSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?HideInGameChat@@YAXXZ,,0x00019583,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/HideInGameChat.cpp,matched,5-byte thunk converted from MASM dump to focused C++ source
 ??0CountermeasuresBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0DamDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
