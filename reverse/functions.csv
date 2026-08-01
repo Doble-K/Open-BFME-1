@@ -12420,7 +12420,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?preRender@ScreenDefaultFilter@@UAE_NAA_NAAW4CustomScenePassModes@@@Z,,0x007D46A0,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
 ?preRender@ScreenMotionBlurFilter@@UAE_NAA_NAAW4CustomScenePassModes@@@Z,,0x007D8790,19,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
 ?preRender@W3DFilterInterface@@UAE_NAA_NAAW4CustomScenePassModes@@@Z,,0x007D0AC0,12,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
-?preloadAssets@ControlBar@@QAEXW4TimeOfDay@@@Z,,0x0026FD50,13,Code/masm_dumps/_rn13__preloadAssets_ControlBar__QAEXW4TimeOfDay___Z_26FD50.asm,matched,reloc-needle Open-BFME4+Grok
 ?preloadRoadSegment@W3DRoadBuffer@@IAEXPAVRoadSegment@@@Z,,0x0070AD70,285,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?preloadRoadsInVertexAndIndexBuffers@W3DRoadBuffer@@IAEXXZ,,0x0070FDA0,184,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z,,0x00853610,1037,Code/masm_dumps/prepFile_INI_IAEXVAsciiString_W4INILoadType_Z_853610.asm,matched,ret 8 - two args - and it tests m_file on entry; load is 0x00853A20
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Get_Diffuse@VertexMaterialClass@@QBEXPAVVector3@@@Z,,0x009219F0,28,Code/Libraries/Source/WWVegas/WW3D2/VertexMaterialDiffuse.cpp,matched,Exact retail VertexMaterialClass::Get_Diffuse emitted in dedicated C++ TU.
 ?getNextVertexBuffer@W3DBufferManager@@QAEPAUW3DVertexBuffer@1@PAU21@W4VBM_FVF_TYPES@1@@Z,,0x007B7CF0,28,Code/Libraries/Source/WWVegas/WW3D2/W3DBufferManagerVertexBuffer.cpp,matched,Exact retail W3DBufferManager accessor emitted in dedicated C++ TU.
 _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConnection.cpp,matched,Exact retail stats connection query emitted in dedicated C++ TU.
+?preloadAssets@ControlBar@@QAEXW4TimeOfDay@@@Z,,0x0026FD50,13,Code/GameEngine/Source/GameClient/ControlBarPreloadAssets.cpp,matched,Exact retail ControlBar preload thunk emitted in dedicated C++ TU.
