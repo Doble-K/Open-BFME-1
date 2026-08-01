@@ -1,11 +1,11 @@
 .386
 .model flat
 
-; ?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z
-; Retail @ 0x00C53610 size 1037
+; ?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z
+; Exact 1037 retail bytes @ 0x00853610
 _TEXT SEGMENT
-public ?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z
-?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z PROC
+public ?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z
+?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z PROC
     db 06Ah,0FFh,068h,070h,065h,005h,001h,064h,0A1h,000h,000h,000h,000h,050h,064h,089h
     db 025h,000h,000h,000h,000h,083h,0ECh,030h,055h,057h,08Bh,0F9h,08Bh,007h,033h,0EDh
     db 03Bh,0C5h,08Bh,044h,024h,048h,089h,06Ch,024h,040h,074h,032h,03Bh,0C5h,074h,005h
@@ -71,6 +71,6 @@ public ?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z
     db 008h,0EBh,005h,0B8h,08Bh,038h,007h,001h,051h,050h,068h,0A8h,008h,013h,001h,08Dh
     db 044h,024h,038h,06Ah,008h,050h,0E8h,0F5h,0CBh,0FFh,0FFh,083h,0C4h,014h,068h,030h
     db 0FCh,01Dh,001h,08Dh,04Ch,024h,030h,051h,0E8h,0E3h,032h,01Ah,000h
-?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z ENDP
+?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z ENDP
 _TEXT ENDS
 END
