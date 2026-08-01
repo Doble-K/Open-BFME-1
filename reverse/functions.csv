@@ -1347,7 +1347,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DeletionUpdateModuleData@@QAE@XZ,,0x0008A950,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0DemoTrapUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028C7F0,80,Code/GameEngine/Source/GameLogic/Object/Update/DemoTrapUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x28C7F0
 ??0DemoTrapUpdateModuleData@@QAE@XZ,,0x0028C9E0,58,Code/masm_dumps/DemoTrapUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x119A20
-??0DeployStyleAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/DeployStyleAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0DestroyDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254F80,60,Code/masm_dumps/DestroyDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0DestroyEnvironmentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028CD70,101,Code/masm_dumps/DestroyEnvironmentUpdate_constructor.asm,matched,Exact 101B; factory ownership Open-BFME4
 ??0DestroyEnvironmentUpdateModuleData@@QAE@XZ,,0x0028CD30,23,Code/GameEngine/Source/GameLogic/Object/Update/DestroyEnvironmentUpdate.cpp,matched,Exact retail ModuleData constructor emitted as C++.
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0DozerAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B8680,272,Code/GameEngine/Source/GameLogic/AI/DozerAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0AssaultTransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B46F0,97,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0DeployStyleAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
