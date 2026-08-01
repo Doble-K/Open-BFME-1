@@ -9493,7 +9493,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?destroyObject@GameLogic@@QAEXPAVObject@@@Z,,0x0001D0DE,5,Code/masm_dumps/_thunk_6e29353ef7bd_1D0DE.asm,matched,thunk accessor of ported class
 ?destroyWindows@WindowLayout@@UAEXXZ,,0x00497A50,40,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,BFME rewrote: direct m_windowList loop
 ?destruct@BFMENetRequestPlayerLeaveCommandMsg@@QAEXXZ,,0x00674230,7,Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp,matched,native BFME request-player-leave command destructor body
-?detach@NetCommandMsg@@QAEXXZ,,0x000200A4,5,Code/masm_dumps/_thunk_f8723e0b2e80_200A4.asm,matched,thunk accessor of ported class
 ?detectFirewall@FirewallHelperClass@@QAE_NXZ,,0x0066FCC0,232,Code/masm_dumps/FirewallHelper_detectFirewall.asm,matched,Exact retail MASM; true body 0x66FCC0 (232B) not queue 0x6B7958; FirewallNeedToRefresh string + thin AsciiString@0x888BC0; C++ blocked by fat AsciiString/map find
 ?detectFirewallBehavior@FirewallHelperClass@@AAEXXZ,,0x0066E810,15,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?detectionBeginUpdate@FirewallHelperClass@@QAE_NXZ,,0x000205F4,5,Code/masm_dumps/_detectionBeginUpdate_FirewallHelperClass__QAE_NXZ_205F4.asm,matched,MASM exact retail dump
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setTerrainDecalOpacity@W3DModelDraw@@UAEXM@Z,,0x0075BDD0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,direct C++ terrain-decal opacity setter with retail decal offset replaces MASM dump
 ?setTimeOfDay@WaterRenderObjClass@@QAEXW4TimeOfDay@@@Z,,0x0079F590,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,direct C++ water time-of-day setter with retail layout offset replaces MASM dump
 ?setFrameCommandCount@FrameDataManager@@QAEXII@Z,,0x00670750,34,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,direct C++ frame command-count setter replaces MASM dump
+?detach@NetCommandMsg@@QAEXXZ,,0x00673610,16,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,codegen-blocked retail reference-count body; exact small __asm escape hatch in official C++ source
