@@ -15,3 +15,14 @@ __declspec(naked) void GameSpyOpenOverlay(GSOverlayType)
         _emit 000h
     }
 }
+
+__declspec(naked) void GameSpyCloseOverlay(GSOverlayType)
+{
+    __asm {
+        _emit 0E9h
+        _emit 037h
+        _emit 06Ch
+        _emit 05Eh
+        _emit 000h
+    }
+}
