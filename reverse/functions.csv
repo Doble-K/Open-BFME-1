@@ -9363,7 +9363,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?enableShadowRender@Shadow@@QAEX_N@Z,,0x00402180,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
 ?enableTurret@BattlePlanUpdate@@IAEX_N@Z,,0x00285870,43,Code/masm_dumps/_rn9__enableTurret_BattlePlanUpdate__IAEX_N_Z_285870.asm,matched,reloc-needle Open-BFME4+Grok
 ?enableWaterGrid@W3DTerrainVisual@@UAEX_N@Z,,0x007309C0,26,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
-?enableWaterGrid@WaterRenderObjClass@@QAEX_N@Z,,0x000366E7,5,Code/masm_dumps/_thunk_af717d7a0cd4_366E7.asm,matched,thunk accessor of ported class
 ?enableWindowsInRange@GameWindowManager@@UAEXPAVGameWindow@@HH_N@Z,,0x0047C8C0,62,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?end@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QAE?AU?$_List_iterator@USubsystemLegendEntry@@U?$_Nonconst_traits@USubsystemLegendEntry@@@_STL@@@2@XZ,,0x009A1110,11,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,list<Entry>::end(); identical body to the const overload so the pair is assigned in COMDAT emission order
 ?end@?$list@USubsystemLegendEntry@@V?$allocator@USubsystemLegendEntry@@@_STL@@@_STL@@QBE?AU?$_List_iterator@USubsystemLegendEntry@@U?$_Const_traits@USubsystemLegendEntry@@@_STL@@@2@XZ,,0x009A1130,11,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,list<Entry>::end() const; see the note at 0x009A1110
@@ -11282,7 +11281,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?initSpecialPowershortcutBar@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F1C0,766,Code/masm_dumps/_str3__initSpecialPowershortcutBar_ControlBar_QAEXPAVPlayer_Z_49F1C0.asm,matched,
 ?initSubsystem@SubsystemInterfaceList@@QAEXPAVSubsystemInterface@@PAXPBD22PAVXfer@@VAsciiString@@@Z,,0x009A20B0,271,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,registers a subsystem; legend takes precedence over the hard-coded paths
 ?initTeam@TeamFactory@@QAEXABVAsciiString@@0_NPAVDict@@@Z,,0x000F8170,220,Code/masm_dumps/TeamFactory_initTeam.asm,matched,Correct retail body identified by unique public thunk at 0x00039E0F
-?initTimes@BoneFXUpdate@@IAEXXZ,,0x0002F775,5,Code/masm_dumps/_initTimes_BoneFXUpdate__IAEXXZ_2F775.asm,matched,MASM exact retail dump
 ?initW3DAssets@W3DMouse@@AAEXXZ,,0x007015F0,44,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,
 ?init_volume@GridCullSystemClass@@IAEXABVAABoxClass@@PAUVolumeStruct@1@@Z,,0x008DD170,463,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?init_volume@GridCullSystemClass@@IAEXABVFrustumClass@@PAUVolumeStruct@1@@Z,,0x008DD530,457,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
@@ -11520,7 +11518,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?loadCurve@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1M@Z,,0x0070A8C0,949,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?loadD3DCursorTextures@W3DMouse@@,,0x00701330,559,Code/masm_dumps/_sa7__loadD3DCursorTextures_W3DMouse___701330.asm,matched,Exact 559B Open-BFME4
 ?loadDirectory@INI@@QAEXVAsciiString@@_NW4INILoadType@@PAVXfer@@@Z,,0x00853F10,700,Code/masm_dumps/loadDirectory_INI_QAEXVAsciiString_NW4INILoadType_PAVXfer_Z_853F10.asm,matched,Ghidra boundary and retail *.ini xref-identified body
-?loadDockPositions@DockUpdate@@IAEXXZ,,0x0000C595,5,Code/masm_dumps/_loadDockPositions_DockUpdate__IAEXXZ_C595.asm,matched,MASM exact retail dump
 ?loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,,0x000346DF,5,Code/masm_dumps/_loadFloat4PtSection_W3DRoadBuffer__IAEXPAVRoadSegment__VVector2__11PAV3_MMMM_Z_346DF.asm,matched,MASM exact retail dump
 ?loadFloatSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1MMMMMM@Z,,0x0070F6A0,573,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?loadGame@GameState@@QAE?AW4SaveCode@@UAvailableGameInfo@@@Z,,0x001109CF,521,Code/masm_dumps/_sa__loadGame_GameState__QAE_AW4SaveCode__UAvailableGa_1109CF.asm,matched,Exact 521B string-anchored Open-BFME4
@@ -12917,7 +12914,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?unlink_object@GridCullSystemClass@@IAEXPAVCullableClass@@@Z,,0x008DDC60,88,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?unlink_object_from_list@GridCullSystemClass@@IAEXPAPAVCullableClass@@PAV2@@Z,,0x008DD900,65,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?unloadAll@RailedTransportDockUpdate@@UAEXXZ,,0x002CE7C0,26,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RailedTransportDockUpdate.cpp,matched,
-?unloadNext@RailedTransportDockUpdate@@IAEXXZ,,0x0000C27F,5,Code/masm_dumps/_unloadNext_RailedTransportDockUpdate__IAEXXZ_C27F.asm,matched,MASM exact retail dump
 ?unloadSingleObject@RailedTransportDockUpdate@@UAEXPAVObject@@@Z,,0x002CE7E0,21,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RailedTransportDockUpdate.cpp,matched,
 ?unlock@File@@UAEXXZ,,0x009CB790,15,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 16; ReleaseMutex; vtable 0x01143AF8
 ?unselectOtherRadioOfGroup@@YAXHHPAVGameWindow@@@Z,,0x004BCF70,68,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetRadioButton.cpp,matched,
@@ -13804,3 +13800,8 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,,0x00017503,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ControlBar::showBuildTooltipLayout
 ?updateFadeLevel@ScreenCrossFadeFilter@@IAE_NXZ,,0x00006D0C,5,Code/GameEngine/Source/Common/RTS/ScreenCrossFadeFilterUpdateFadeLevelThunk.cpp,matched,5-byte incremental-link ScreenCrossFadeFilter protected member thunk converted to focused C++ source
 ?init@WinInstanceData@@QAEXXZ,,0x00021EC7,5,Code/GameEngine/Source/Common/RTS/WinInstanceDataInitThunk.cpp,matched,5-byte incremental-link WinInstanceData member thunk converted to focused C++ source
+?enableWaterGrid@WaterRenderObjClass@@QAEX_N@Z,,0x000366E7,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for WaterRenderObjClass::enableWaterGrid
+?init@WinInstanceData@@QAEXXZ,,0x00021EC7,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for WinInstanceData::init
+?initTimes@BoneFXUpdate@@IAEXXZ,,0x0002F775,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for BoneFXUpdate::initTimes
+?loadDockPositions@DockUpdate@@IAEXXZ,,0x0000C595,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for DockUpdate::loadDockPositions
+?unloadNext@RailedTransportDockUpdate@@IAEXXZ,,0x0000C27F,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for RailedTransportDockUpdate::unloadNext
