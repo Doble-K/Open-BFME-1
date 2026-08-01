@@ -12432,7 +12432,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?set@?$StringBase@G@@QAEXG@Z,0x0000434F,0x00564FB0,15,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,set wide string from single wchar_t; size trimmed: trailing int3 padding
 ?set@?$StringBase@G@@QAEXPBG@Z,0x0003517A,0x00083470,52,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,set from wide C string
 ?set@?$StringBase@G@@QAEXPBGH@Z,0x008885C0,0x8885c0,50,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
-?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,,0x00019BCD,5,Code/masm_dumps/_thunk_a7a0b256eefd_19BCD.asm,matched,thunk accessor of ported class (icf alias)
 ?set@Coord3D@@QAEXMMM@Z,0x00005F0B,0x000FB9C0,23,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,sets x/y/z from floats
 ?set@Coord3D@@QAEXPBU1@@Z,,0x00410690,23,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?set@Coord3D@@QAEXPBUCoord3DBase@@@Z,0x000491F2,0x000FB9A0,23,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,copies x/y/z from pointer
@@ -12922,7 +12921,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?testFlagBit@@YA_NHH@Z,,0x006958A0,22,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?testGrab@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x0047D750,13,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?testMinSpecRequirements@Display@@UAE_NPA_N00PAW4StaticGameLODLevel@@PAM@Z,,0x0040F5B0,26,Code/GameEngine/Source/GameClient/Display.cpp,matched,
-?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,,0x00019BCD,5,Code/masm_dumps/_thunk_8d4ed024ffb4_19BCD.asm,matched,thunk accessor of ported class
 ?tightenPath@Pathfinder@@IAEXPAVObject@@ABVLocomotorSet@@PAUCoord3D@@PBU4@@Z,,0x003F5FD0,143,Code/GameEngine/Source/GameLogic/AI/pathfind_tightenPath.cpp,matched,clean C++; BFME 0x34 TightenPathStruct + 2-arg getLayer + 4-arg iterate; sealed RVA 0x3F5FD0 size 143
 ?tintAllColors@DefaultColorModuleInfo@FXParticleSystem@@QAEXH@Z,0x0002C228,0x5ef6c0,283,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?toAngle@Coord2D@@QBEMXZ,0x00046e52,0x001a5cb0,148,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,
@@ -13802,3 +13800,5 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?pop_front@?$deque@VPeerRequest@@V?$allocator@VPeerRequest@@@_STL@@@_STL@@QAEXXZ,,0x0002D77C,5,Code/Libraries/Source/WWVegas/WWLib/DequePopFrontThunk.cpp,matched,object-symbol=?pop_front@?$deque@VPSRequest@@V?$allocator@VPSRequest@@@_STL@@@_STL@@QAEXXZ;ICF alias converted to focused C++ thunk TU
 ?makeDecoratedNameKey@ModuleFactory@@KA?AW4NameKeyType@@ABVAsciiString@@W4ModuleType@@@Z,,0x0004B439,5,Code/GameEngine/Source/Common/RTS/ModuleFactoryMakeDecoratedNameKeyThunk.cpp,matched,5-byte incremental-link static ModuleFactory key thunk converted to focused C++ source
 _$E28,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp,matched,Open-BFME5 exact static initializer after +1B pad correction
+?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,,0x00019BCD,5,Code/Libraries/Source/WWVegas/WWLib/BitsetSetBitFlagsTestThunk.cpp,matched,ICF-group owner converted to focused C++ template thunk; remaining alias retains shared target
+?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,,0x00019BCD,5,Code/Libraries/Source/WWVegas/WWLib/BitsetSetBitFlagsTestThunk.cpp,matched,object-symbol=?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z;ICF alias converted to focused C++ thunk TU
