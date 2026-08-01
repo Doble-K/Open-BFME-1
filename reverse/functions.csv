@@ -11824,7 +11824,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAngleFX@@YAXPAVINI@@PAX1PBX@Z,,0x002B0990,23,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate.cpp,matched,
 ?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852D30,92,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseAngularVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9BA0,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
-?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/masm_dumps/parseAnim2DTemplate_INI_SAXPAV1_PAX1PBX_Z_4B556.asm,matched,Unique BFME crash string anchors Anim2D collection lookup body and public thunk
 ?parseAnimatingPart@ControlBarSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x004AEA00,219,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme_parseAnimatingPart.asm,matched,True body 0x4AEA00/219 (queue 0xB026D6 was pad/epilogue). FieldParse FinalPos@0xcfd0a8; MASM exact like parseImagePart sibling
 ?parseAnimatingPartImage@ControlBarSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x004ACE60,102,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ?parseArbitraryFXIntoMap@@YAXPAVINI@@PAX1PBX@Z,,0x00145C80,206,Code/masm_dumps/parseArbitraryFXIntoMap_145C80.asm,matched,Certified packet 102 exact retail db recovery SHA256 f52d6a9a486b056efae3eb40e18809aec02d98b1b9ad8df6ebb50df1679f3b84
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?removeTeam@TeamsInfoRec@@QAEXH@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,object-symbol=?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z;ICF alias converted to focused C++ thunk TU
 ?parseDynamicAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E2DA,5,Code/GameEngine/Source/Common/RTS/INIParseDynamicAudioEventRTSThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ??4?$PrimitiveAnimationChannelClass@VVector2@@@@QAEABV0@ABV0@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,object-symbol=?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z;ICF alias converted to focused C++ thunk TU
+?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/GameEngine/Source/Common/RTS/INIParseAnim2DTemplateThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
