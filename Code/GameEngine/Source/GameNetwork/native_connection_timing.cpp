@@ -43,6 +43,12 @@ public:
 	void updateFileProgress();
 	void buildPlayerStatusText(void *out);
 	void queueLocalCommand(void *msg);
+	void sendKeepAliveCommand();
+	void sendProgressCommand(int percent);
+	void sendDisconnectFrameCommand();
+	void sendDisconnectScreenOffCommand(int slot);
+	void sendRequestPlayerLeaveCommand();
+	void sendLoadCompleteCommand();
 	void attachPlayersFromGameInfo(void *gameInfo);
 	void resolvePlayerFromName(void *msg);
 	void sendFileToPlayers(const char *path);
@@ -7325,6 +7331,741 @@ L07_6637D1:
 		pop edi
 		pop esi
 		pop ebx
+		ret
+	}
+}
+
+// Sends command type 12 (KEEPALIVE), built by the constructor at 0x00673B80. Named from the type its message carries, which is
+// evidence rather than inference now that the enum at 0x00683020 is recovered.
+__declspec(naked) void BFMEConnectionManager::sendKeepAliveCommand()
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104400Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 8h
+		push ebx
+		push ebp
+		push esi
+		push edi
+		mov ebx, ecx
+		__emit 0FFh
+		__emit 015h
+		__emit 044h
+		__emit 095h
+		__emit 035h
+		__emit 001h   // call dword ptr [0x1359544]
+		mov dword ptr [esp+10h], eax
+		xor edi, edi
+		lea ebp,  [ebx+4h]
+		__emit 08Dh
+		__emit 049h
+		__emit 000h   // lea ecx, [ecx]
+L03_663610:
+		mov eax, dword ptr [ebp]
+		xor esi, esi
+		cmp eax, esi
+		je L00_66368E
+		mov eax, dword ptr [eax+348h]
+		mov ecx, dword ptr [esp+10h]
+		sub ecx, eax
+		cmp ecx, 3E8h
+		jbe L00_66368E
+		push 1Ch
+		__emit 0E8h
+		__emit 0FCh
+		__emit 0E8h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+14h], eax
+		cmp eax, esi
+		mov dword ptr [esp+20h], esi
+		je L01_66364C
+		mov ecx, eax
+		__emit 0E8h
+		__emit 03Dh
+		__emit 019h
+		__emit 09Ch
+		__emit 0FFh   // call 0x24F87
+		mov esi, eax
+L01_66364C:
+		mov eax, dword ptr [esi+14h]
+		mov edx, dword ptr [ebx+12028h]
+		push eax
+		mov dword ptr [esp+24h], 0FFFFFFFFh
+		mov dword ptr [esi+0Ch], edx
+		__emit 0E8h
+		__emit 00Ch
+		__emit 025h
+		__emit 09Bh
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		cmp al, 1h
+		jne L02_663676
+		__emit 0E8h
+		__emit 0E6h
+		__emit 0CEh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L02_663676:
+		xor eax, eax
+		mov al, 1h
+		mov ecx, edi
+		shl al, cl
+		mov ecx, ebx
+		push eax
+		push esi
+		__emit 0E8h
+		__emit 050h
+		__emit 0DBh
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		mov ecx, esi
+		__emit 0E8h
+		__emit 016h
+		__emit 0CAh
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+L00_66368E:
+		inc edi
+		add ebp, 4h
+		cmp edi, 8h
+		jl L03_663610
+		mov ecx, dword ptr [esp+18h]
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 14h
+		ret
+	}
+}
+
+// Sends command type 15 (PROGRESS), built by 0x00673D60 -- it is the only caller of
+// NetProgressCommandMsg::setPercentage here. Named from the type its message carries, which is
+// evidence rather than inference now that the enum at 0x00683020 is recovered.
+__declspec(naked) void BFMEConnectionManager::sendProgressCommand(int percent)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104402Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push ebx
+		push esi
+		push edi
+		push 20h
+		mov edi, ecx
+		__emit 0E8h
+		__emit 00Eh
+		__emit 0E7h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+0Ch], eax
+		xor esi, esi
+		cmp eax, esi
+		mov dword ptr [esp+18h], esi
+		je L00_66383C
+		mov ecx, eax
+		__emit 0E8h
+		__emit 072h
+		__emit 02Eh
+		__emit 09Ch
+		__emit 0FFh   // call 0x266AC
+		mov esi, eax
+L00_66383C:
+		mov eax, dword ptr [esp+20h]
+		push eax
+		mov ecx, esi
+		mov dword ptr [esp+1Ch], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 006h
+		__emit 0D4h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30C56
+		mov eax, dword ptr [esi+14h]
+		mov ecx, dword ptr [edi+12028h]
+		push eax
+		mov dword ptr [esi+0Ch], ecx
+		__emit 0E8h
+		__emit 010h
+		__emit 023h
+		__emit 09Bh
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		cmp al, 1h
+		jne L01_663872
+		__emit 0E8h
+		__emit 0EAh
+		__emit 0CCh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L01_663872:
+		mov ebx, dword ptr [esi+0Ch]
+		mov ecx, esi
+		__emit 0E8h
+		__emit 027h
+		__emit 01Fh
+		__emit 09Bh
+		__emit 0FFh   // call 0x157A3
+		__emit 08Bh
+		__emit 00Dh
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f0898]
+		movzx edx, al
+		push edx
+		push ebx
+		__emit 0E8h
+		__emit 0E1h
+		__emit 0ADh
+		__emit 09Ch
+		__emit 0FFh   // call 0x2E66D
+		mov ecx, dword ptr [edi+12028h]
+		xor eax, eax
+		mov al, 1h
+		shl al, cl
+		mov ecx, edi
+		not al
+		push eax
+		push esi
+		__emit 0E8h
+		__emit 034h
+		__emit 0D9h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0FAh
+		__emit 0C7h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+10h]
+		pop edi
+		pop esi
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret 4h
+	}
+}
+
+// Sends command type 27 (DISCONNECTFRAME), built by 0x006740C0. Named from the type its message carries, which is
+// evidence rather than inference now that the enum at 0x00683020 is recovered.
+__declspec(naked) void BFMEConnectionManager::sendDisconnectFrameCommand()
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 1044056h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		push ebx
+		mov ebx, dword ptr [eax+3Ch]
+		push esi
+		push edi
+		push 20h
+		mov edi, ecx
+		__emit 0E8h
+		__emit 0F6h
+		__emit 0E5h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+0Ch], eax
+		xor esi, esi
+		cmp eax, esi
+		mov dword ptr [esp+18h], esi
+		je L00_663954
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0E4h
+		__emit 0BBh
+		__emit 09Ch
+		__emit 0FFh   // call 0x2F536
+		mov esi, eax
+L00_663954:
+		mov eax, dword ptr [edi+12028h]
+		push ebx
+		mov ecx, esi
+		mov dword ptr [esp+1Ch], 0FFFFFFFFh
+		mov dword ptr [esi+0Ch], eax
+		__emit 0E8h
+		__emit 0A1h
+		__emit 059h
+		__emit 09Ah
+		__emit 0FFh   // call 0x930E
+		mov eax, dword ptr [esi+14h]
+		push eax
+		__emit 0E8h
+		__emit 0FCh
+		__emit 021h
+		__emit 09Bh
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L01_663986
+		__emit 0E8h
+		__emit 0D6h
+		__emit 0CBh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L01_663986:
+		mov ecx, dword ptr [edi+12028h]
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, edi
+		not dl
+		push edx
+		push esi
+		__emit 0E8h
+		__emit 03Ah
+		__emit 0D8h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		mov eax, dword ptr [edi+120E0h]
+		test eax, eax
+		je L02_663A01
+		push 14h
+		__emit 0E8h
+		__emit 082h
+		__emit 0E5h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+0Ch], eax
+		test eax, eax
+		mov dword ptr [esp+18h], 1h
+		je L03_6639CD
+		push esi
+		mov ecx, eax
+		__emit 0E8h
+		__emit 01Dh
+		__emit 040h
+		__emit 09Ah
+		__emit 0FFh   // call 0x79E6
+		mov ebx, eax
+		jmp L04_6639CF
+L03_6639CD:
+		xor ebx, ebx
+L04_6639CF:
+		mov ecx, dword ptr [edi+12028h]
+		mov al, 1h
+		shl al, cl
+		push edi
+		push ebx
+		mov dword ptr [esp+20h], 0FFFFFFFFh
+		mov byte ptr [ebx+0Ch], al
+		mov ecx, dword ptr [edi+120E0h]
+		__emit 0E8h
+		__emit 07Fh
+		__emit 04Fh
+		__emit 09Ch
+		__emit 0FFh   // call 0x28970
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 068h
+		__emit 04Fh
+		__emit 09Dh
+		__emit 0FFh   // call 0x38960
+		push ebx
+		__emit 0E8h
+		__emit 0B2h
+		__emit 0E4h
+		__emit 021h
+		__emit 000h   // call 0x881EB0
+		add esp, 4h
+L02_663A01:
+		mov ecx, esi
+		__emit 0E8h
+		__emit 09Ch
+		__emit 0C6h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+10h]
+		pop edi
+		pop esi
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret
+	}
+}
+
+// Sends command type 28 (DISCONNECTSCREENOFF), built by 0x00674310; it also calls
+// DisconnectManager::turnOffScreen, which is the same pairing
+// processDisconnectScreenOff has on the receiving side. Named from the type its message carries, which is
+// evidence rather than inference now that the enum at 0x00683020 is recovered.
+__declspec(naked) void BFMEConnectionManager::sendDisconnectScreenOffCommand(int slot)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 1044086h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push ebx
+		push esi
+		mov esi, ecx
+		mov eax, dword ptr [esi+12028h]
+		mov ecx, dword ptr [esi+120E0h]
+		push edi
+		push eax
+		__emit 0E8h
+		__emit 043h
+		__emit 010h
+		__emit 09Eh
+		__emit 0FFh   // call 0x44AD0
+		push 20h
+		__emit 0E8h
+		__emit 09Ch
+		__emit 0E4h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+0Ch], eax
+		xor ebx, ebx
+		cmp eax, ebx
+		mov dword ptr [esp+18h], ebx
+		je L00_663AB0
+		mov ecx, eax
+		__emit 0E8h
+		__emit 024h
+		__emit 0BEh
+		__emit 09Ah
+		__emit 0FFh   // call 0xF8D0
+		mov edi, eax
+		jmp L01_663AB2
+L00_663AB0:
+		xor edi, edi
+L01_663AB2:
+		mov eax, dword ptr [esi+12028h]
+		mov dword ptr [edi+0Ch], eax
+		mov eax, dword ptr [esp+20h]
+		push eax
+		mov ecx, edi
+		mov dword ptr [esp+1Ch], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 036h
+		__emit 05Ah
+		__emit 09Ch
+		__emit 0FFh   // call 0x29505
+		mov eax, dword ptr [edi+14h]
+		push eax
+		__emit 0E8h
+		__emit 09Ah
+		__emit 020h
+		__emit 09Bh
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L02_663AE8
+		__emit 0E8h
+		__emit 074h
+		__emit 0CAh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [edi+10h], ax
+L02_663AE8:
+		mov ecx, dword ptr [esi+12028h]
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, esi
+		not dl
+		push edx
+		push edi
+		__emit 0E8h
+		__emit 0D8h
+		__emit 0D6h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		cmp dword ptr [esi+120E0h], ebx
+		je L03_663B5D
+		push 14h
+		__emit 0E8h
+		__emit 022h
+		__emit 0E4h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+20h], eax
+		cmp eax, ebx
+		mov dword ptr [esp+18h], 1h
+		je L04_663B2B
+		push edi
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0BDh
+		__emit 03Eh
+		__emit 09Ah
+		__emit 0FFh   // call 0x79E6
+		mov ebx, eax
+L04_663B2B:
+		mov ecx, dword ptr [esi+12028h]
+		mov al, 1h
+		shl al, cl
+		push esi
+		push ebx
+		mov dword ptr [esp+20h], 0FFFFFFFFh
+		mov byte ptr [ebx+0Ch], al
+		mov ecx, dword ptr [esi+120E0h]
+		__emit 0E8h
+		__emit 023h
+		__emit 04Eh
+		__emit 09Ch
+		__emit 0FFh   // call 0x28970
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 00Ch
+		__emit 04Eh
+		__emit 09Dh
+		__emit 0FFh   // call 0x38960
+		push ebx
+		__emit 0E8h
+		__emit 056h
+		__emit 0E3h
+		__emit 021h
+		__emit 000h   // call 0x881EB0
+		add esp, 4h
+L03_663B5D:
+		mov ecx, edi
+		__emit 0E8h
+		__emit 040h
+		__emit 0C5h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+10h]
+		pop edi
+		pop esi
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret 4h
+	}
+}
+
+// Sends command type 7 (REQUESTPLAYERLEAVE), built by the already-matched
+// BFMENetRequestPlayerLeaveCommandMsg::construct. Named from the type its message carries, which is
+// evidence rather than inference now that the enum at 0x00683020 is recovered.
+__declspec(naked) void BFMEConnectionManager::sendRequestPlayerLeaveCommand()
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104410Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push esi
+		push edi
+		push 20h
+		mov edi, ecx
+		__emit 0E8h
+		__emit 06Fh
+		__emit 0D6h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+8h], eax
+		test eax, eax
+		mov dword ptr [esp+14h], 0h
+		je L00_6648DF
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0F3h
+		__emit 04Ch
+		__emit 09Bh
+		__emit 0FFh   // call 0x195CE
+		mov esi, eax
+		jmp L01_6648E1
+L00_6648DF:
+		xor esi, esi
+L01_6648E1:
+		mov eax, dword ptr [edi+12028h]
+		push eax
+		mov ecx, esi
+		mov dword ptr [esp+18h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 0E2h
+		__emit 0BDh
+		__emit 09Ch
+		__emit 0FFh   // call 0x306D9
+		mov eax, dword ptr [esi+14h]
+		mov ecx, dword ptr [edi+12028h]
+		push eax
+		mov dword ptr [esi+0Ch], ecx
+		__emit 0E8h
+		__emit 069h
+		__emit 012h
+		__emit 09Bh
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L02_664919
+		__emit 0E8h
+		__emit 043h
+		__emit 0BCh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L02_664919:
+		xor edx, edx
+		mov dword ptr [esi+8h], 0FFFFFFFFh
+		mov ecx, dword ptr [edi+12028h]
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, edi
+		not dl
+		push edx
+		push esi
+		__emit 0E8h
+		__emit 0A0h
+		__emit 0C8h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0CEh
+		__emit 0D9h
+		__emit 09Dh
+		__emit 0FFh   // call 0x4230C
+		mov ecx, esi
+		__emit 0E8h
+		__emit 05Fh
+		__emit 0B7h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov eax, dword ptr [edi+12110h]
+		test eax, eax
+		jne L03_66495B
+		__emit 0FFh
+		__emit 015h
+		__emit 044h
+		__emit 095h
+		__emit 035h
+		__emit 001h   // call dword ptr [0x1359544]
+		mov dword ptr [edi+12110h], eax
+L03_66495B:
+		mov ecx, dword ptr [esp+0Ch]
+		pop edi
+		pop esi
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret
+	}
+}
+
+// Sends command type 16 (LOADCOMPLETE). Named from the type its message carries, which is
+// evidence rather than inference now that the enum at 0x00683020 is recovered.
+__declspec(naked) void BFMEConnectionManager::sendLoadCompleteCommand()
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104412Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push esi
+		push edi
+		push 1Ch
+		mov edi, ecx
+		__emit 0E8h
+		__emit 0AFh
+		__emit 0D4h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+8h], eax
+		xor esi, esi
+		cmp eax, esi
+		mov dword ptr [esp+14h], esi
+		je L00_664A9B
+		mov ecx, eax
+		__emit 0E8h
+		__emit 01Bh
+		__emit 0E8h
+		__emit 09Ah
+		__emit 0FFh   // call 0x132B4
+		mov esi, eax
+L00_664A9B:
+		mov dword ptr [esi+14h], 10h
+		mov eax, dword ptr [edi+12028h]
+		push 10h
+		mov dword ptr [esp+18h], 0FFFFFFFFh
+		mov dword ptr [esi+0Ch], eax
+		__emit 0E8h
+		__emit 0B8h
+		__emit 010h
+		__emit 09Bh
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L01_664ACA
+		__emit 0E8h
+		__emit 092h
+		__emit 0BAh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L01_664ACA:
+		mov ecx, dword ptr [esi+0Ch]
+		push ecx
+		__emit 08Bh
+		__emit 00Dh
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f0898]
+		__emit 0E8h
+		__emit 02Ch
+		__emit 0B9h
+		__emit 09Bh
+		__emit 0FFh   // call 0x20405
+		mov ecx, dword ptr [edi+12028h]
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, edi
+		not dl
+		push edx
+		push esi
+		__emit 0E8h
+		__emit 08Ah
+		__emit 0A6h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0ADh
+		__emit 0B5h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+0Ch]
+		pop edi
+		pop esi
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
 		ret
 	}
 }
