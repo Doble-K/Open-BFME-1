@@ -3938,7 +3938,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4SplitChoiceStruct@AABTreeNodeClass@@QAEAAU01@ABU01@@Z,,0x00706F70,109,Code/Libraries/Source/WWVegas/WWMath/aabtreecull.cpp,matched,
 ??4StreakDrawModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0000E86D,0x005D8610,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty assignment returns this
 ??4StreakDrawModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0001013B,0x005D87E0,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty assignment returns this
-??4StringClass@@QAEABV0@ABV0@@Z,,0x00035FDF,5,Code/masm_dumps/__4StringClass__QAEABV0_ABV0__Z_35FDF.asm,matched,MASM exact retail dump
 ??4StringClass@@QAEABV0@PBD@Z,,0x007AF330,81,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ??4TColumn@?5??loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV4@MMMM@Z@QAEAAU02@ABU02@@Z,,0x007041B0,291,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ??4TColumn@?BB@??loadLit4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@PAGPAUVertexFormatXYZDUV1@@PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z@QAEAAU02@ABU02@@Z,,0x00704330,291,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0RainOfFireUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000A0E2,5,Code/GameEngine/Source/Common/RTS/RainOfFireUpdateCtorThunk.cpp,matched,5-byte incremental-link RainOfFireUpdate constructor thunk converted to focused C++ source
 ??0?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAE@ABV?$allocator@VAsciiString@@@1@@Z,,0x00008DCD,5,Code/Libraries/Source/WWVegas/WWLib/AsciiStringVectorConstructorThunk.cpp,matched,5-byte incremental-link STL vector constructor converted to focused C++ thunk TU
 ??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004A345,5,Code/GameEngine/Source/Common/RTS/StructureCollapseUpdateCtorThunk.cpp,matched,5-byte incremental-link StructureCollapseUpdate constructor thunk converted to focused C++ source
+??4StringClass@@QAEABV0@ABV0@@Z,,0x00035FDF,5,Code/GameEngine/Source/Common/RTS/StringClassAssignmentThunk.cpp,matched,5-byte incremental-link StringClass assignment thunk converted to focused C++ source
