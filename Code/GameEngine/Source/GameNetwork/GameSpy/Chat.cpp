@@ -84,7 +84,6 @@ static const FieldParse GameSpyColorFieldParse[] =
 
 };
 
-// ?parseOnlineChatColorDefinition@INI@@ present-unmatched
 void INI::parseOnlineChatColorDefinition( INI* ini )
 {
 	// parse the ini definition

@@ -217,7 +217,6 @@ void ControlBarResizer::sizeWindowsAlt( void )
 }
 
 
-// ?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z present-unmatched
 void INI::parseControlBarResizerDefinition( INI* ini )
 {
 //	AsciiString name;
