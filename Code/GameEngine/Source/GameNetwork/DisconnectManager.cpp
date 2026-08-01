@@ -741,19 +741,13 @@ Bool DisconnectManager::isLocalPlayerNextPacketRouter(ConnectionManager *conMgr)
 	return FALSE;
 }
 
-// ?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z present-unmatched
-Bool DisconnectManager::hasPlayerTimedOut(Int slot) {
-	if (slot == -1) {
-		return FALSE;
-	}
-
-	time_t newTime = TheGlobalData->m_networkPlayerTimeoutTime - (timeGetTime() - m_playerTimeouts[slot]);
-	if (newTime <= 0) {
-		return TRUE;
-	}
-
-	return FALSE;
-}
+// hasPlayerTimedOut lives in native_connection_timing.cpp as naked asm. BFME
+// measures it against m_networkDisconnectScreenNotifyTime rather than ZH's
+// m_networkPlayerTimeoutTime, and reaches it at TheGlobalData +0xCC0 where the
+// ZH header puts that member at +0x918 -- so the body cannot be written as C++
+// from this TU until GlobalData itself is shimmed. Everything else about it
+// matches ZH: the -1 guard, timeGetTime() - m_playerTimeouts[slot], and a
+// boolean result.
 
 // this function assumes that we are the packet router. (or at least that 
 // we will be after everyone is getting disconnected)

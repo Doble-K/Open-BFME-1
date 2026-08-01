@@ -17,7 +17,7 @@ public:
 class BFMEConnectionManager
 {
 public:
-	Bool isPlayerConnected(int playerID);
+	Bool isPlayerConnectedDefaultTimeout(int playerID);
 	Bool isPlayerConnectedForTimeout(int playerID, unsigned int timeout);
 	Bool hasPacketRouterFrameStall();
 	void processRequestFrameDataCommand(void *msg);
@@ -42,14 +42,22 @@ public:
 	void resendFrameRangeToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame);
 };
 
+
+// Retail's real DisconnectManager, for the one body here whose true mangled name
+// is known. Protected, to match the IAE in the decorated name.
+class DisconnectManager
+{
+protected:
+	Bool hasPlayerTimedOut(int slot);
+};
+
 class BFMEDisconnectManager
 {
 public:
-	Bool hasDisconnectScreenNotifyTimedOut(int playerID);
 	void update(void *conMgr);
 };
 
-__declspec(naked) Bool BFMEConnectionManager::isPlayerConnected(int playerID)
+__declspec(naked) Bool BFMEConnectionManager::isPlayerConnectedDefaultTimeout(int playerID)
 {
 	__asm {
 		mov eax, dword ptr [esp+04h]
@@ -293,42 +301,6 @@ sameStalledFrame:
 		mov al, 1
 		pop ebx
 		ret
-	}
-}
-
-__declspec(naked) Bool BFMEDisconnectManager::hasDisconnectScreenNotifyTimedOut(int playerID)
-{
-	__asm {
-		push esi
-		push edi
-		mov edi, dword ptr [esp+0Ch]
-		cmp edi, 0FFFFFFFFh
-		mov esi, ecx
-		jne validPlayer
-		pop edi
-		xor al, al
-		pop esi
-		ret 4
-validPlayer:
-		__emit 0FFh
-		__emit 015h
-		__emit 044h
-		__emit 095h
-		__emit 035h
-		__emit 001h
-		sub eax, dword ptr [esi+edi*4+14h]
-		__emit 08Bh
-		__emit 00Dh
-		__emit 0C8h
-		__emit 0D5h
-		__emit 02Eh
-		__emit 001h
-		cmp eax, dword ptr [ecx+0CC0h]
-		sbb al, al
-		pop edi
-		inc al
-		pop esi
-		ret 4
 	}
 }
 
@@ -5065,6 +5037,49 @@ L05_667511:
 		pop ebp
 		mov dword ptr fs:[0h], ecx
 		add esp, 18h
+		ret 4h
+	}
+}
+
+// Real body, previously claimed only as the 5-byte ILT thunk at 0x00014AD8 and
+// separately mis-named here as a disconnect-screen check. It indexes
+// m_playerTimeouts at DisconnectManager+0x14, which is what identifies it: this
+// is ZH's hasPlayerTimedOut, just measured against
+// m_networkDisconnectScreenNotifyTime (TheGlobalData +0xCC0) instead of
+// m_networkPlayerTimeoutTime, and comparing elapsed time directly rather than
+// forming ZH's signed remainder.
+__declspec(naked) Bool DisconnectManager::hasPlayerTimedOut(int slot)
+{
+	__asm {
+		push esi
+		push edi
+		mov edi, dword ptr [esp+0Ch]
+		cmp edi, 0FFFFFFFFh
+		mov esi, ecx
+		jne L00_66B524
+		pop edi
+		xor al, al
+		pop esi
+		ret 4h
+L00_66B524:
+		__emit 0FFh
+		__emit 015h
+		__emit 044h
+		__emit 095h
+		__emit 035h
+		__emit 001h   // call dword ptr [0x1359544]
+		sub eax, dword ptr [esi+edi*4+14h]
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0C8h
+		__emit 0D5h
+		__emit 02Eh
+		__emit 001h   // mov ecx, dword ptr [0x12ed5c8]
+		cmp eax, dword ptr [ecx+0CC0h]
+		sbb al, al
+		pop edi
+		inc al
+		pop esi
 		ret 4h
 	}
 }

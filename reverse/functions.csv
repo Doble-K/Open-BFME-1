@@ -11415,13 +11415,11 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?hasAnyFreeBlocks@MemoryPoolBlob@@QAE_NXZ,,0x003CB9E0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,
 ?hasAnyWeapon@Object@@QBE_NXZ,,0x00410460,14,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?hasAnyWeapon@WeaponSet@@QBE_NXZ,,0x001BD9A0,11,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-?hasDisconnectScreenNotifyTimedOut@BFMEDisconnectManager@@QAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME disconnect-screen timeout check using GlobalData NetworkDisconnectScreenNotifyTime at +0xcc0
 ?hasItem@LList@@QAE_NPAX@Z,,0x00105DA0,60,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?hasLiveHandle@BFMENetworkBackend@@QAE_NXZ,,0x009DB590,11,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network backend handle check used by wrapper slot +0x0c
 ?hasMoreLoops@AudioEventRTS@@QBE_NXZ,,0x000B28B0,41,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,BFME audio event loop-control layout
 ?hasObjectsWantingToEnterOrExit@OpenContain@@UBE_NXZ,,0x001BD960,11,Code/GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp,matched,
 ?hasPacketRouterFrameStall@BFMEConnectionManager@@QAE_NXZ,,0x00664260,150,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME router frame-data stall scan using NetworkKeepAliveDelay at +0xcb4
-?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x00014AD8,5,Code/masm_dumps/_hasPlayerTimedOut_DisconnectManager__IAE_NH_Z_14AD8.asm,matched,MASM exact retail dump
 ?hasPrereqsForScience@Player@@QBE_NW4ScienceType@@@Z,,0x000C9850,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?hasRGBDataForWidth@TileData@@QAE_NH@Z,,0x006D6620,48,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
 ?hasRadar@Player@@QBE_NXZ,,0x000C9A80,28,Code/GameEngine/Source/Common/RTS/PlayerFields.cpp,matched,BFME retail body; m_radarDisabled@0x60 m_disableProofRadarCount@0x5c m_radarCount@0x58 via reference/shims/player; adjacent to okToPlayRadarEdgeSound@0xC9A20 in same compiland
@@ -11691,7 +11689,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isPacketRouter@Network@@UAE_NXZ,,0x00681B20,25,Code/GameEngine/Source/GameNetwork/Network.cpp,matched,
 ?isPlayer@GameSlot@@QBE_NVAsciiString@@@Z,,0x00620210,133,Code/masm_dumps/GameSlot_isPlayer_AsciiString.asm,matched,exact 133B MASM; queue 0x9DB05F was mid FUN_00dd9d90; true body SEH+translate+compareNoCase
 ?isPlayer@GameSlot@@QBE_NVUnicodeString@@@Z,,0x006202C0,58,Code/masm_dumps/isPlayer_GameSlot_UnicodeString_6202C0.asm,matched,certified packet 287 exact retail bytes sha256 06761d1b2381311c19c8b7438b5840deabcf97b5ba220d31ca10e3df306966c1
-?isPlayerConnected@BFMEConnectionManager@@QAE_NH@Z,,0x00662A50,138,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check using GlobalData NetworkPlayerTimeoutTime at +0xcbc
+?isPlayerConnectedDefaultTimeout@BFMEConnectionManager@@QAE_NH@Z,,0x00662A50,138,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check using GlobalData NetworkPlayerTimeoutTime at +0xcbc
 ?isPlayerConnected@ConnectionManager@@QAE_NH@Z,,0x00662BB0,38,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
 ?isPlayerConnectedForTimeout@BFMEConnectionManager@@QAE_NHI@Z,,0x00662B00,132,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check with explicit timeout and startup NetworkPlayerTimeoutTime fallback
 ?isPlayerDefaultTeam@SidesList@@QAE_NPAVTeamsInfo@@@Z,,0x001967F0,380,Code/masm_dumps/isPlayerDefaultTeam_SidesList_001967F0_packet308.asm,matched,Certified packet 308 exact retail db recovery SHA-256 26d2d2f0635fd4e762581b65bbe9c583971adcca6d3b762940e710fbcef4b2a5
@@ -13675,3 +13673,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ?processWrappedCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00669C50,366,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processAckCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00665700,387,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?beginPlayerLeave@BFMEConnectionManager@@QAEXPAX@Z,,0x00667320,526,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
