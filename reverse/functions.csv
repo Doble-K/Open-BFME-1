@@ -8787,7 +8787,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clear@ModuleInfo@@QAEXXZ,,0x0077AE90,13,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,icf-owner=?clear@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@QAEXXZ
 ?clear@SidesInfo@@QAEXXZ,,0x0019AED0,66,Code/masm_dumps/SidesList_SidesInfo_clear.asm,matched,
 ?clear@SpecialPowerReadyTimerType@@QAEXXZ,,0x000C8BF0,14,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
-?clear@TeamFactory@@QAEXXZ,,0x000284A7,5,Code/masm_dumps/_clear_TeamFactory__QAEXXZ_284A7.asm,matched,MASM exact retail dump
 ?clear@TeamsInfoRec@@QAEXXZ,,0x001991F0,115,Code/masm_dumps/TeamsInfoRec_clear.asm,matched,Certified packet 68; SidesList emptyTeams thunk and constructor member offsets; exact retail db recovery
 ?clear@TurretInfo@ModelConditionInfo@@QAEXXZ,,0x000C43F0,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?clear@WeaponBarrelInfo@ModelConditionInfo@@QAEXXZ,,0x0075B230,52,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0002C6E7,5,Code/Libraries/Source/WWVegas/WWLib/TracksRenderSystemShutdownThunks.cpp,matched,Focused C++ thunk for TerrainTracksRenderObjClassSystem::shutdown
 ?shutdown@WaterTracksRenderSystem@@QAEXXZ,,0x000319CB,5,Code/Libraries/Source/WWVegas/WWLib/TracksRenderSystemShutdownThunks.cpp,matched,Focused C++ thunk for WaterTracksRenderSystem::shutdown
 ?openDataChunk@DataChunkOutput@@QAEXPADG@Z,,0x0003A256,5,Code/GameEngine/Source/Common/RTS/DataChunkOutputOpenDataChunkThunk.cpp,matched,5-byte incremental-link DataChunkOutput member thunk converted to focused C++ source
+?clear@TeamFactory@@QAEXXZ,,0x000284A7,5,Code/Libraries/Source/WWVegas/WWLib/TeamFactoryClearThunk.cpp,matched,Focused C++ thunk for TeamFactory::clear
