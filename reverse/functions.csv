@@ -1418,7 +1418,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DrawableIconInfo@@QAE@XZ,,0x00410940,32,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ??0DrawableLocoInfo@@QAE@XZ,,0x004109F0,78,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ??0DualWeaponBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7E60,137,Code/masm_dumps/DualWeaponBehavior_constructor.asm,matched,Exact 137B @ 0x001F7E60; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115020
-??0DualWeaponBehaviorModuleData@@QAE@XZ,,0x001F7E20,26,Code/masm_dumps/DualWeaponBehaviorModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x1150A0
 ??0DynamicGeometryInfoUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00265B20,77,Code/GameEngine/Source/GameLogic/Object/Update/DynamicGeometryInfoUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ shared ICF body at destination 0x265B20
 ??0DynamicGeometryInfoUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DynamicIBAccessClass@@QAE@GG@Z,,0x0091D950,55,Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp,matched,
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??1MaterialCollectorClass@@QAE@XZ,,0x00C5C6A8,21,Code/Libraries/Source/WWVegas/WW3D2/MaterialCollectorClassDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1MaterialCollectorClass@@QAE@XZ
 ?Guess_Sort_Level@ShaderClass@@QBEHXZ,,0x00910E90,38,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,converted exact MASM method dump to clean C++
 ?Log_DX8_ErrorCode@@YAXI@Z,,0x0087CAC0,25,Code/Libraries/Source/WWVegas/WW3D2/LogDX8ErrorCodeThunk.cpp,matched,Open-BFME5 exact C++ DX8 logging thunk replacing MASM dump;object-symbol=?Log_DX8_ErrorCode@@YAXI@Z;retail 25-byte target authoritative over stale dump listing
+??0DualWeaponBehaviorModuleData@@QAE@XZ,,0x001F7E20,26,Code/GameEngine/Source/GameLogic/Object/Update/DualWeaponBehaviorModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ ModuleData constructor thunk replacing MASM dump;object-symbol=??0DualWeaponBehaviorModuleData@@QAE@XZ
