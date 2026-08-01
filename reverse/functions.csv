@@ -9478,7 +9478,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?erase@?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@QAEPAW4ScienceType@@PAW43@0@Z,,0x000BB700,52,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?erase@?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@QAEPAW4ScienceType@@PAW43@@Z,,0x000CEA00,65,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?erase@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAE?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@U32@0@Z,,0x002CC200,106,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
-?estimateWeaponDamage@Weapon@@IAEMPBVObject@@0PBUCoord3D@@@Z,,0x0001366F,5,Code/masm_dumps/_thunk_01b1855ee818_1366F.asm,matched,thunk accessor of ported class (icf alias)
 ?estimateWeaponDamage@Weapon@@QAEMPBVObject@@0@Z,,0x0019A720,20,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,
 ?eval_A0_point@@YAXABUBTCollisionStruct@@PAMH@Z,,0x008E5DA0,520,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
 ?eval_A1_point@@YAXABUBTCollisionStruct@@PAMH@Z,,0x008E5FB0,524,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/GameEngine/Source/Common/RTS/INIParseAnim2DTemplateThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z,,0x0001366F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectSetStatusThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
 ?parseSoundsList@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E9C4,5,Code/GameEngine/Source/Common/RTS/INIParseSoundsListThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
+?estimateWeaponDamage@Weapon@@IAEMPBVObject@@0PBUCoord3D@@@Z,,0x0001366F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectSetStatusThunk.cpp,matched,object-symbol=?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z;ICF alias converted to focused C++ thunk TU
