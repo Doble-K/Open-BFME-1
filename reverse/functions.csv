@@ -8185,7 +8185,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?WriteActionDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003513F0,160,Code/masm_dumps/ScriptAction_WriteActionDataChunk.asm,matched,Ghidra-bound BFME script-action writer
 ?WriteActionFalseDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003514C0,160,Code/masm_dumps/ScriptAction_WriteActionFalseDataChunk.asm,matched,Ghidra-bound BFME false-action writer
 ?WriteBuildInfo@Debug@@QAEXXZ,,0x0088A492,135,Code/Libraries/Source/WWVegas/WWDebug/debug_debug_WriteBuildInfo.asm,matched,exact 135B via MASM
-?WriteConditionDataChunk@Condition@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x0003DA91,5,Code/masm_dumps/_WriteConditionDataChunk_Condition__SAXAAVDataChunkOutput__PAV1__Z_3DA91.asm,matched,MASM exact retail dump
 ?WriteGroupDataChunk@ScriptGroup@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x00359EE0,204,Code/masm_dumps/ScriptGroup_WriteGroupDataChunk.asm,matched,Ghidra-bound BFME script-group writer
 ?WriteOrConditionDataChunk@OrCondition@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x00355C90,64,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?WriteParameter@Parameter@@QAEXAAVDataChunkOutput@@@Z,,0x00351320,167,Code/masm_dumps/Parameter_WriteParameter.asm,matched,Ghidra-bound BFME parameter writer
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ,,0x00013101,5,Code/Libraries/Source/WWVegas/WWLib/HashTemplateEntryDestructorThunk.cpp,matched,5-byte incremental-link template destructor thunk converted to focused C++ thunk TU
 ??1Entry@?$HashTemplateClass@VStringClass@@PAV?$DynamicVectorClass@PAVDefinitionClass@@@@@@QAE@XZ,,0x00013101,5,Code/Libraries/Source/WWVegas/WWLib/HashTemplateEntryDestructorThunk.cpp,matched,object-symbol=??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ;ICF alias converted to focused C++ thunk TU
 ??1Entry@?$HashTemplateClass@VStringClass@@PAVHTreeClass@@@@QAE@XZ,,0x00013101,5,Code/Libraries/Source/WWVegas/WWLib/HashTemplateEntryDestructorThunk.cpp,matched,object-symbol=??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ;ICF alias converted to focused C++ thunk TU
+?WriteConditionDataChunk@Condition@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x0003DA91,5,Code/GameEngine/Source/GameLogic/ScriptEngine/ConditionWriteChunkThunk.cpp,matched,5-byte incremental-link static member thunk converted to focused C++ source
