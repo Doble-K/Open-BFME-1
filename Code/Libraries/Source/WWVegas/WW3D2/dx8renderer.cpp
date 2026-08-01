@@ -252,14 +252,16 @@ void DX8TextureCategoryClass::Add_Polygon_Renderer(DX8PolygonRendererClass* p_re
 	p_renderer->Set_Texture_Category(this);
 }
 
-// ?Remove_Polygon_Renderer@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@@Z present-unmatched
+// ?Remove_Polygon_Renderer@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@@Z
 void DX8TextureCategoryClass::Remove_Polygon_Renderer(DX8PolygonRendererClass* p_renderer)
 {
 	PolygonRendererList.Remove(p_renderer);
 	p_renderer->Set_Texture_Category(NULL);
 	if (PolygonRendererList.Peek_Head() == NULL) {
 		container->Remove_Texture_Category(this);
-		TheDX8MeshRenderer.texture_category_delete_list.Add_Tail(this);
+		DX8MeshRendererClass *renderer = *(DX8MeshRendererClass **)0x0134b0e8;
+		if (renderer)
+			renderer->texture_category_delete_list.Add_Tail(this);
 	}
 }
 

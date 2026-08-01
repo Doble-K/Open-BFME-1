@@ -7494,7 +7494,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Remove_Head@?$RefMultiListClass@VRenderObjClass@@@@QAEPAVRenderObjClass@@XZ,,0x00958010,16,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
 ?Remove_Index@?$IndexClass@HPAUINIEntry@@@@QAE_NABH@Z,,0x009E26A0,111,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling (byte-identical to INISection instantiation)
 ?Remove_Index@?$IndexClass@HPAUINISection@@@@QAE_NABH@Z,,0x009E2730,111,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
-?Remove_Polygon_Renderer@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@@Z,,0x00947D30,79,Code/masm_dumps/_Remove_Polygon_Renderer_DX8TextureCategoryClass__QAEXPAVDX8PolygonRendererClass___Z_947D30.asm,matched,MASM exact retail dump
+?Remove_Polygon_Renderer@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@@Z,,0x00947D30,79,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,MASM exact retail dump
 ?Remove_Render_Object@SceneClass@@UAEXPAVRenderObjClass@@@Z,,0x00942C20,15,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
 ?Remove_Sub_Object@HLodClass@@UAEHPAVRenderObjClass@@@Z,,0x0097BF20,346,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,BFME retail vtable slot 30; Delete pinned at 0x97B0F0
 ?Remove_Sub_Objects_From_Bone@RenderObjClass@@UAEHH@Z,,0x0091F920,108,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
