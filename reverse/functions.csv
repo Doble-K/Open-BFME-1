@@ -1153,7 +1153,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AttributeModifierUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/AttributeModifierUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
 ??0AudioSettings@@QAE@XZ,,0x000B4E00,725,Code/masm_dumps/AudioSettings_ctor_000B4E00.asm,matched,Certified packet 142 exact retail db recovery
 ??0AutoAbilityBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001ED8A0,155,Code/masm_dumps/AutoAbilityBehavior_constructor.asm,matched,Exact 155B @ 0x001ED8A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114F10
-??0AutoAbilityBehaviorModuleData@@QAE@XZ,,0x001ED6A0,16,Code/masm_dumps/AutoAbilityBehaviorModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x114F90
 ??0AutoDepositUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000C15D,5,Code/masm_dumps/__0AutoDepositUpdate__QAE_PAVThing__PBVModuleData___Z_C15D.asm,matched,MASM exact retail dump
 ??0AutoDepositUpdateModuleData@@QAE@XZ,,0x00123E90,86,Code/masm_dumps/AutoDepositUpdateModuleData_constructor.asm,matched,Exact 86B @ 0x00123E90; Exact retail MASM ModuleData ctor; unique factory 0x123F20; Open-BFME4+Grok
 ??0AutoFindHealingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0002E12C,5,Code/masm_dumps/__0AutoFindHealingUpdate__QAE_PAVThing__PBVModuleData___Z_2E12C.asm,matched,MASM exact retail dump
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??$_Construct@UNugget@ModuleInfo@@U12@@_STL@@YAXPAUNugget@ModuleInfo@@ABU12@@Z,,0x00772160,66,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetCopy.cpp,matched,object-symbol=??$_Construct@UBFME_ModuleInfoNuggetCopyLayout@@U1@@_STL@@YAXPAUBFME_ModuleInfoNuggetCopyLayout@@ABU1@@Z; thunk-dump converted to exact retail ModuleInfo Nugget copy helper
 ?winGetPosition@GameWindow@@QAEHPAH0@Z,,0x000C9D10,29,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,thunk-dump converted to C++ naked retail window position accessor
 ?getName@SpecialPowerTemplate@@QBE?AVAsciiString@@XZ,,0x00098F80,52,Code/GameEngine/Source/Common/RTS/SpecialPowerTemplate.cpp,matched,Exact retail accessor emitted from thunk destination bytes.
+??0AutoAbilityBehaviorModuleData@@QAE@XZ,,0x001ED6A0,16,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoAbilityBehavior.cpp,matched,Exact retail ModuleData constructor emitted as C++.
