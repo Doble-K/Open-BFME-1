@@ -1993,7 +1993,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SidesInfo@@QAE@XZ,,0x001985B0,34,Code/masm_dumps/SidesList_SidesInfo_constructor.asm,matched,
 ??0SidesList@@QAE@XZ,,0x0019EA80,365,Code/masm_dumps/SidesList_ctor.asm,matched,Correct retail body from GameEngine init thunk 0x00032EC5 and TheSidesList naming sequence
 ??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/masm_dumps/SiegeAIUpdate_constructor.asm,matched,Exact 60B unique factory Open-BFME4
-??0SiegeAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/SiegeAIUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0SiegeDeploySpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00266240,107,Code/masm_dumps/SiegeDeploySpecialPower_constructor.asm,matched,Exact 107B; factory ownership Open-BFME4
 ??0SiegeDeploySpecialPowerModuleData@@QAE@XZ,,0x00266450,71,Code/masm_dumps/SiegeDeploySpecialPowerModuleData_constructor.asm,matched,Exact 71B unique factory Open-BFME4
 ??0SiegeDockingBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002062C0,162,Code/masm_dumps/SiegeDockingBehavior_constructor.asm,matched,Exact 162B @ 0x002062C0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114E00
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0RebuildHoleExposeDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0RepairSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$__destroy_aux@PAVAsciiString@@@_STL@@YAXPAVAsciiString@@0ABU__false_type@0@@Z,,0x00014AA1,5,Code/GameEngine/Source/Common/System/AsciiStringDestroyAux.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
+??0SiegeAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
