@@ -1818,7 +1818,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PlayerUpgradeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00263F50,46,Code/masm_dumps/PlayerUpgradeSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0PlayerUpgradeSpecialPowerModuleData@@QAE@XZ,,0x00264210,95,Code/masm_dumps/PlayerUpgradeSpecialPowerModuleData_constructor.asm,matched,Exact 95B @ 0x00264210; Exact retail MASM ModuleData ctor; unique factory 0x121370; Open-BFME4+Grok
 ??0PointDefenseLaserUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286F80,154,Code/masm_dumps/PointDefenseLaserUpdate_constructor.asm,matched,Exact 154B ICF primary Open-BFME4
-??0PointDefenseLaserUpdateModuleData@@QAE@XZ,,0x00123620,82,Code/masm_dumps/PointDefenseLaserUpdateModuleData_constructor.asm,matched,Exact 82B ICF primary MD Open-BFME4
 ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0000FECA,0x005D5930,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@XZ,0x0003160B,0x005D58B0,41,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0PointGroupClass@@QAE@XZ,,0x00912580,91,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0GateProxyBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/GameEngine/Source/GameLogic/AI/GateProxyBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0OathbreakersFadeAwayBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
 ??0SpawnUnitBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
+??0PointDefenseLaserUpdateModuleData@@QAE@XZ,,0x00123620,82,Code/GameEngine/Source/GameLogic/AI/PointDefenseLaserUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
