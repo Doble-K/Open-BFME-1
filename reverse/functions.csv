@@ -1481,7 +1481,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GameState@@QAE@XZ,,0x001111C0,171,Code/GameEngine/Source/Common/System/SaveGame/GameState_ctor.asm,matched,
 ??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameText_GameTextManager.asm,matched,exact 161B via MASM (SEH ctor)
 ??0GameWindow@@QAE@XZ,,0x004792F0,156,Code/masm_dumps/GameWindow_default_constructor_004792F0_packet332.asm,matched,Certified packet 332 SHA256 889fc8ecd26fa7027daa5c7542107cdfa86686169e57919bd48c509cd25d3194
-??0GarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021D820,312,Code/masm_dumps/GarrisonContain_constructor.asm,matched,Exact 312B @ 0x0021D820; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116040
 ??0GateOpenAndCloseBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FC580,197,Code/masm_dumps/GateOpenAndCloseBehavior_constructor.asm,matched,Exact 197B; factory ownership Open-BFME4
 ??0GateOpenAndCloseBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/masm_dumps/GateOpenAndCloseBehaviorModuleData_constructor.asm,matched,Exact 483B ICF primary MD Open-BFME4
 ??0GateProxyBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/masm_dumps/GateProxyBehaviorModuleData_constructor.asm,matched,Exact 483B ICF alias MD Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0CaveContainModuleData@@QAE@XZ,,0x00227200,398,Code/GameEngine/Source/GameLogic/AI/CaveContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0OpenContainModuleData@@QAE@XZ,,0x00227200,398,Code/GameEngine/Source/GameLogic/AI/OpenContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0CaveContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00219B90,129,Code/GameEngine/Source/GameLogic/AI/CaveContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
+??0GarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021D820,312,Code/GameEngine/Source/GameLogic/AI/GarrisonContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
