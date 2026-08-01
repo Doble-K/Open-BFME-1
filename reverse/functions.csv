@@ -1496,7 +1496,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GeometryInfo@@QAE@ABV0@@Z,,0x003A6360,24,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ??0GeometryUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D5790,120,Code/masm_dumps/GeometryUpgrade_constructor.asm,matched,Exact 120B @ 0x002D5790; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11DF20
 ??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/masm_dumps/GeometryUpgradeModuleData_constructor.asm,matched,Exact 143B @ 0x002D5CE0; Exact retail MASM ModuleData ctor; unique factory 0x11DFA0
-??0GettingBuiltBehaviorModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/GettingBuiltBehaviorModuleData_constructor.asm,matched,Exact 162B ICF primary MD Open-BFME4
 ??0GhostObjectManager@@QAE@XZ,,0x001B3AA0,20,Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp,matched,converted thunk to TU-scoped C++ constructor
 ??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0GiantBirdSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FFB40,137,Code/masm_dumps/GiantBirdSlowDeathBehavior_constructor.asm,matched,Exact 137B @ 0x001FFB40; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1157D0
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0SupplyTruckAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C6AE0,280,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0HordeSiegeEngineContainModuleData@@QAE@XZ,,0x0022CB80,148,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0GettingBuiltBehaviorModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/GettingBuiltBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
