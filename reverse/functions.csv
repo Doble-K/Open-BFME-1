@@ -6333,7 +6333,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Bounding_Box@MeshGeometryClass@@QAEXPAVAABoxClass@@@Z,,0x00924DD0,146,Code/masm_dumps/__Get_Bounding_Box_MeshGeometryClass__QAEXPAVAABoxC_924DD0.asm,matched,
 ?Get_Bounding_Box@RenderObjClass@@UBEABVAABoxClass@@XZ,,0x006CF9F0,25,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Get_Bounding_Sphere@HLodClass@@UBEABVSphereClass@@XZ,,0x00979860,179,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
-?Get_Bounding_Sphere@MeshGeometryClass@@QAEXPAVSphereClass@@@Z,,0x00924E70,42,Code/masm_dumps/__Get_Bounding_Sphere_MeshGeometryClass__QAEXPAVSph_924E70.asm,matched,
 ?Get_Bounding_Sphere@RenderObjClass@@UBEABVSphereClass@@XZ,,0x006CF9D0,25,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Get_Buffer@Buffer@@QBEPAXXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WWLib/cstraw.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Get_Buffer@StringClass@@QAEPADH@Z,,0x0091FDB0,19,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
@@ -13840,3 +13839,36 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?_M_create_node@?$list@VBuddyMessage@@V?$allocator@VBuddyMessage@@@_STL@@@_STL@@IAEPAU?$_List_node@VBuddyMessage@@@2@ABVBuddyMessage@@@Z,,0x004EB530,33,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyMessageCreateNodeThunk.cpp,matched,Open-BFME5 exact C++ raw STLport list node creation thunk; BuddyMessage copy path preserved
+?parseInGameUIDefinition@INI@@SAXPAV1@@Z,,0x0043AAA0,36,Code/GameEngine/Source/GameClient/INIParseInGameUIDefinitionThunk.cpp,matched,Open-BFME5 exact C++ raw INI dispatch thunk; InGameUI singleton and initFromINI path preserved
+??0SupplyCenterDockUpdateModuleData@@QAE@XZ,,0x002CF5A0,36,Code/GameEngine/Source/GameLogic/Object/Update/SupplyCenterDockUpdateModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; retail factory field initialization preserved
+??0GrabPassengerSpecialPowerModuleData@@QAE@XZ,,0x0025F260,35,Code/GameEngine/Source/GameLogic/Object/SpecialPower/GrabPassengerSpecialPowerModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; factory module-data initialization preserved
+??0AimWeaponBehaviorModuleData@@QAE@XZ,,0x001ECEF0,37,Code/GameEngine/Source/GameLogic/Object/Weapon/AimWeaponBehaviorModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; retail default weapon behavior fields preserved
+?drawViews@Display@@UAEXXZ,,0x0040DA30,44,Code/GameEngine/Source/GameClient/Display.cpp,matched,exact C++ loop with TU-local BFME View vtable slots draw +0x178 next +0x23c
+?GadgetListBoxSetTopVisibleEntry@@YAXPAVGameWindow@@H@Z,,0x004B85C0,37,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,Open-BFME5 exact C++ raw gadget wrapper; null-check and set-top helper dispatch preserved
+?peerParseQuery@@YAHPAXPADHPAUsockaddr@@@Z,,0x00857570,34,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerParseQueryThunk.cpp,matched,Open-BFME5 exact C++ raw GameSpy peer query helper; profile/error fallback chain preserved
+??0WaterTracksRenderSystem@@QAE@XZ,,0x007AB960,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,exact C++ constructor with retail ShaderClass default bits 0x10441b
+?Intersect_OBBox@MeshGeometryClass@@QAE_NAAVOBBoxIntersectionTestClass@@@Z,,0x00927920,34,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryIntersectOBBoxThunk.cpp,matched,Open-BFME5 exact C++ raw MeshGeometry OBBox wrapper; CullTree member dispatch and brute-force tail path preserved
+?setLocale@GameSpyMiscPreferences@@QAEXH@Z,,0x000A99D0,36,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,Open-BFME5 exact C++ raw locale setter
+??0ClickReactionBehaviorModuleData@@QAE@XZ,,0x002001A0,40,Code/GameEngine/Source/Common/RTS/ClickReactionBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ModuleData constructor
+??0DarknessSpecialPowerModuleData@@QAE@XZ,,0x00259EB0,38,Code/GameEngine/Source/Common/RTS/DarknessSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+??0FreezingRainSpecialPowerModuleData@@QAE@XZ,,0x0025D8C0,38,Code/GameEngine/Source/Common/RTS/FreezingRainSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+?allow@PartitionFilterPolygonTrigger@@MAE_NPAVObject@@@Z,,0x001DD490,64,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,exact C++ polygon check with BFME field offset and pinned call
+??0GloriousChargeUpdateModuleData@@QAE@XZ,,0x0025E7C0,38,Code/GameEngine/Source/Common/RTS/GloriousChargeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/GameEngine/Source/Common/RTS/ToggleMountedSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+??0WoundArrowUpdateModuleData@@QAE@XZ,,0x0026DF50,38,Code/GameEngine/Source/Common/RTS/WoundArrowUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+??0DevastateSpecialPowerModuleData@@QAE@XZ,,0x0025AC10,44,Code/GameEngine/Source/Common/RTS/DevastateSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+?Release_Ref@TextureBaseClass@@QAEXXZ,,0x009EB7A0,36,Code/Libraries/Source/WWVegas/WW3D2/TextureBaseReleaseRefThunk.cpp,matched,Open-BFME5 exact C++ raw TextureBase release leaf
+?Peek_D3D_Base_Texture@TextureBaseClass@@QBEPAUIDirect3DBaseTexture8@@XZ,,0x0090DC60,37,Code/Libraries/Source/WWVegas/WW3D2/texture.cpp,matched,Open-BFME5 exact C++ raw texture accessor
+?Set_Device_Resolution@WW3D@@SA?AW4WW3DErrorType@@HHHH_N@Z,,0x008FD1C0,39,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,Open-BFME5 exact C++ raw device resolution wrapper
+?deleteShadowVolume@W3DVolumetricShadow@@IAEXH@Z,,0x007BAFA0,142,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,Exact 142B clean C++ deleteShadowVolume; TU-local BFME 0x30 layout shim; MASM removed
+?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimComboClass@@@Z,,0x00982330,39,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,Open-BFME5 exact C++ raw animation combo setter
+?loadPostProcess@Drawable@@MAEXXZ,,0x004120A0,45,Code/GameEngine/Source/Common/RTS/DrawableLoadPostProcessThunk.cpp,matched,Open-BFME5 exact C++ raw Drawable post-load hook
+?xfer@TerrainLogic@@MAEXPAVXfer@@@Z,,0x006BE430,45,Code/GameEngine/Source/GameLogic/Map/TerrainLogicXferThunk.cpp,matched,Open-BFME5 exact C++ raw TerrainLogic xfer wrapper
+?onEnter@AIDockProcessDockState@@UAE?AW4StateReturnType@@XZ,,0x0014EEB0,44,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 exact C++ raw dock process state entry
+?NAMEKEY@@YA?AW4NameKeyType@@ABVAsciiString@@@Z,,0x000A3AB0,44,Code/GameEngine/Source/Common/NameKeyHelperThunk.cpp,matched,Open-BFME5 exact C++ raw AsciiString name-key helper
+?setAsciiString@Dict@@QAEXW4NameKeyType@@ABVAsciiString@@@Z,,0x00068860,41,Code/GameEngine/Source/Common/Dict.cpp,matched,Open-BFME5 exact C++ raw Dict ASCII setter
+?getPopupReplayLayout@Shell@@QAEPAVWindowLayout@@XZ,,0x0057FEC0,48,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,exact C++ popup layout with retail field offset and AsciiString shim
+?getScienceFromInternalName@ScienceStore@@QBE?AW4ScienceType@@ABVAsciiString@@@Z,,0x000E7460,41,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,Open-BFME5 exact C++ raw science name lookup
+?privateIdle@SupplyTruckAIUpdate@@MAEXW4CommandSourceType@@@Z,,0x002C57E0,42,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,Open-BFME5 exact C++ raw SupplyTruck idle wrapper
+?Get_Bounding_Sphere@MeshGeometryClass@@QAEXPAVSphereClass@@@Z,,0x00924E70,42,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,Open-BFME5 exact C++ raw MeshGeometry sphere accessor

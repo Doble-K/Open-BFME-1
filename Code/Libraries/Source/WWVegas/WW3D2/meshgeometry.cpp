@@ -438,11 +438,52 @@ void MeshGeometryClass::Get_Bounding_Box(AABoxClass * set_box)
  *   11/9/2000  gth : Created.                                                                 *
  *=============================================================================================*/
 // ?MeshGeometryClass::Get_Bounding_Sphere present-unmatched
-void MeshGeometryClass::Get_Bounding_Sphere(SphereClass * set_sphere)
+__declspec(naked) void MeshGeometryClass::Get_Bounding_Sphere(SphereClass *)
 {
-	WWASSERT(set_sphere != NULL);
-	set_sphere->Center = BoundSphereCenter;
-	set_sphere->Radius = BoundSphereRadius;
+	__asm {
+		_emit 08Bh
+		_emit 091h
+		_emit 080h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 08Bh
+		_emit 044h
+		_emit 024h
+		_emit 004h
+		_emit 089h
+		_emit 010h
+		_emit 08Bh
+		_emit 091h
+		_emit 084h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 089h
+		_emit 050h
+		_emit 004h
+		_emit 08Bh
+		_emit 091h
+		_emit 088h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 089h
+		_emit 050h
+		_emit 008h
+		_emit 08Bh
+		_emit 089h
+		_emit 08Ch
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 089h
+		_emit 048h
+		_emit 00Ch
+		_emit 0C2h
+		_emit 004h
+		_emit 000h
+	}
 }
 
 
