@@ -1370,7 +1370,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DefaultStaticSortListClass@@QAE@XZ,,0x00958110,98,Code/Libraries/Source/WWVegas/WW3D2/static_sort_list.cpp,matched,
 ??0DefaultUpdateModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x000052AE,0x005D81C0,135,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0DefaultUpdateModuleInfo@FXParticleSystem@@QAE@XZ,0x0004506B,0x005FF750,181,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultUpdateModuleInfo_ctor.asm,matched,exact 181B SEH ctor via MASM (was inflated 2400)
-??0DefectorSpecialPowerModuleData@@QAE@XZ,,0x0025A110,28,Code/masm_dumps/DefectorSpecialPowerModuleData_constructor.asm,matched,Exact 28B unique factory Open-BFME4
 ??0DeflectSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025A1B0,82,Code/masm_dumps/DeflectSpecialPower_constructor.asm,matched,Exact 82B unique factory Open-BFME4
 ??0DeflectSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/DeflectSpecialPowerModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0DelayedLuaEventUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028BEF0,161,Code/masm_dumps/DelayedLuaEventUpdate_constructor.asm,matched,Exact 161B @ 0x0028BEF0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11BC70
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0OCLUpdateModuleData@@QAE@XZ,,0x00298920,23,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0MaxHealthUpgradeModuleData@@QAE@XZ,,0x002D6590,29,Code/GameEngine/Source/GameLogic/Object/Upgrade/MaxHealthUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0CombineHordeSpecialPowerModuleData@@QAE@XZ,,0x002598A0,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/CombineHordeSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
+??0DefectorSpecialPowerModuleData@@QAE@XZ,,0x0025A110,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/DefectorSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
