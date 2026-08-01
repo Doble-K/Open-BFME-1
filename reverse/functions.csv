@@ -1455,7 +1455,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GenericMultiListIterator@@QAE@PAVGenericMultiListClass@@@Z,,0x006CA3F0,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ??0GeometryInfo@@QAE@ABV0@@Z,,0x003A6360,24,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ??0GeometryUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D5790,120,Code/masm_dumps/GeometryUpgrade_constructor.asm,matched,Exact 120B @ 0x002D5790; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11DF20
-??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/masm_dumps/GeometryUpgradeModuleData_constructor.asm,matched,Exact 143B @ 0x002D5CE0; Exact retail MASM ModuleData ctor; unique factory 0x11DFA0
 ??0GhostObjectManager@@QAE@XZ,,0x001B3AA0,20,Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp,matched,converted thunk to TU-scoped C++ constructor
 ??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0GiantBirdSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FFB40,137,Code/masm_dumps/GiantBirdSlowDeathBehavior_constructor.asm,matched,Exact 137B @ 0x001FFB40; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1157D0
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0PlayerUpgradeSpecialPowerModuleData@@QAE@XZ,,0x00264210,95,Code/GameEngine/Source/GameLogic/AI/PlayerUpgradeSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ObjectCreationUpgradeModuleData@@QAE@XZ,,0x002D75B0,95,Code/GameEngine/Source/GameLogic/AI/ObjectCreationUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ModelConditionUpgradeModuleData@@QAE@XZ,,0x002D6A20,158,Code/GameEngine/Source/GameLogic/AI/ModelConditionUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/GameEngine/Source/GameLogic/AI/GeometryUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
