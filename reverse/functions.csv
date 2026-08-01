@@ -11878,7 +11878,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseDurationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9C30,33,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDurationUnsignedInt@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9C60,67,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9CC0,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
-?parseDynamicAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E2DA,5,Code/masm_dumps/parseDynamicAudioEventRTS_INI_SAXPAV1_PAX1PBX_Z_2E2DA.asm,matched,109 retail Voice-field xrefs and canonical dynamic audio lifecycle body identify parser
 ?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007D470,191,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table binds keyword DynamicGameLOD here - was a MASM dump
 ?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C390,105,Code/masm_dumps/INI_parseDynamicGameLODLevel_7c390.asm,matched,MASM exact retail dump; DynamicGameLODNames count=5 VeryLow..VeryHigh; queue RVA 0x9A15D7 was mid-SEH-fn
 ?parseEvaMessageFromIni@Eva@@SAXPAVINI@@PAX1PBX@Z,,0x00004B65,5,Code/masm_dumps/parseEvaMessageFromIni_Eva_SAXPAVINI_PAX1PBX_Z_4B65.asm,matched,16 retail Eva-field xrefs and canonical token-map body 0x425B80 identify parser
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?parseFXList@BoneFXUpdateModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00033C2B,5,Code/GameEngine/Source/Common/RTS/BoneFXUpdateModuleDataParseFXListThunk.cpp,matched,5-byte incremental-link static BoneFXUpdateModuleData thunk converted to focused C++ source
 ?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining aliases retain shared target
 ?removeTeam@TeamsInfoRec@@QAEXH@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,object-symbol=?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z;ICF alias converted to focused C++ thunk TU
+?parseDynamicAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E2DA,5,Code/GameEngine/Source/Common/RTS/INIParseDynamicAudioEventRTSThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
