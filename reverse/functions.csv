@@ -12858,7 +12858,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setAnimData@AnimateWindow@@QAEXUICoord2D@@000UCoord2D@@II@Z,,0x0045CF50,87,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?setAnimType@AnimateWindow@@QAEXW4AnimTypes@@@Z,,0x001B49AE,10,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?setAreaToGuard@AIGuardMachine@@QAEXPBVPolygonTrigger@@@Z,,0x001BD2E0,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?setAsciiString@Dict@@QAEXW4NameKeyType@@ABVAsciiString@@@Z,,0x00068860,41,Code/masm_dumps/Dict_setAsciiString_68860.asm,matched,MASM exact: true body 0x68860/41 (queue 0x68957 was +0x17 inside copyPairFrom@0x68940); DICT_ASCIISTRING push 3 between setReal/setUnicodeString; C++ blocked by inline AsciiString::set
 ?setAttackInfo@AIUpdateInterface@@QAEXPBVAttackPriorityInfo@@@Z,,0x001F1EF0,10,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setAudioPriority@AudioEventRTS@@QAEXW4AudioPriority@@@Z,,0x000B23A0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
 ?setBackCrushed@ActiveBody@@UAEX_N@Z,,0x007AE650,13,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?xfer@TerrainLogic@@MAEXPAVXfer@@@Z,,0x006BE430,45,Code/GameEngine/Source/GameLogic/Map/TerrainLogicXferThunk.cpp,matched,Open-BFME5 exact C++ raw TerrainLogic xfer wrapper
 ?onEnter@AIDockProcessDockState@@UAE?AW4StateReturnType@@XZ,,0x0014EEB0,44,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 exact C++ raw dock process state entry
 ?NAMEKEY@@YA?AW4NameKeyType@@ABVAsciiString@@@Z,,0x000A3AB0,44,Code/GameEngine/Source/Common/NameKeyHelperThunk.cpp,matched,Open-BFME5 exact C++ raw AsciiString name-key helper
+?setAsciiString@Dict@@QAEXW4NameKeyType@@ABVAsciiString@@@Z,,0x00068860,41,Code/GameEngine/Source/Common/Dict.cpp,matched,Open-BFME5 exact C++ raw Dict ASCII setter
