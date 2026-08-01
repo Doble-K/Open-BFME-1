@@ -33,7 +33,6 @@
 //-------------------------------------------------------------------------------------------------
 /** Delete all vertices in polygon */
 //-------------------------------------------------------------------------------------------------
-// ?Reset@ClipPolyClass@@ present-unmatched
 void ClipPolyClass::Reset(void)
 {
 	Verts.Delete_All(false);
