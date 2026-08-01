@@ -1225,11 +1225,10 @@ void RTS3DScene::destroyLightsIterator(RefRenderObjListIterator * it)
 //=============================================================================
 /** Adds a dynamic light. */
 //=============================================================================
-// ?addDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z present-unmatched
 void RTS3DScene::addDynamicLight(W3DDynamicLight * obj)
 {
-	m_dynamicLightList.Add(obj);
-	UpdateList.Add(obj);
+	reinterpret_cast<RefRenderObjListClass *>(reinterpret_cast<char *>(this) + 0x110)->Add(obj);
+	reinterpret_cast<RefRenderObjListClass *>(reinterpret_cast<char *>(this) + 0x74)->Add(obj);
 }
 
 //=============================================================================
@@ -1571,4 +1570,3 @@ void RTS3DScene::Visibility_Check(CameraClass * camera)
 
  *
  */
-
