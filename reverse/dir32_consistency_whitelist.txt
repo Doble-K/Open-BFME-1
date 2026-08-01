@@ -159,6 +159,22 @@ _W3DFilters
 # Global singleton pointers / file-scope statics materialized at multiple retail
 # addresses. FiringTracker.cpp's newly-matched getModuleNameKey/getClassMemoryPool
 # references several of these; each reference is from a byte-matched function.
+#
+# ?TheControlBar@@ is NOT one of those, and its entry here is masking a real
+# discrepancy rather than recording a legitimate one. Five matched rows bind it to
+# 0x012F33F8 (ControlBarObserverSystem, GeneralsExpPointsSystem); exactly one,
+# commandButtonTooltip in ControlBar.cpp, binds it to 0x012ED7AC. That address is
+# provably TheScienceStore: ScienceStore::friend_parseScienceDefinition is what
+# the INI block table registers for the "Science" keyword, it byte-matches, and it
+# reads 0x012ED7AC as a store with the m_sciences vector at +0x08/+0x0c.
+#
+# So retail's commandButtonTooltip loads the science store, not the control bar,
+# and our source's TheControlBar->showBuildTooltipLayout(window) reproduces the
+# bytes only because the DIR32 slot is masked and the call happens to land on the
+# same vtable index. The name is wrong even though the row matches -- exactly the
+# failure this check exists to catch. Left whitelisted so the gate stays green,
+# but it should be resolved by working out what BFME's commandButtonTooltip really
+# calls, not by treating two bases as expected.
 ?TheControlBar@@3PAVControlBar@@A
 ?TheFXListStore@@3PAVFXListStore@@A
 ?TheNameKeyGenerator@@3PAVNameKeyGenerator@@A
