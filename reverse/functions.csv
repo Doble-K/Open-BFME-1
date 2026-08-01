@@ -7476,7 +7476,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Release_Memory@WWMemoryLogClass@@SAXPAX@Z,,0x00AFED20,31,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Release_Ref@RefCountClass@@QAEXXZ,,0x00087540,10,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Release_Ref@RefCountClass@@QBEXXZ,,0x00087540,10,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar.cpp,matched,
-?Release_Ref@TextureBaseClass@@QAEXXZ,,0x009EB7A0,36,Code/masm_dumps/_Release_Ref_TextureBaseClass__QAEXXZ_9EB7A0.asm,matched,MASM exact retail dump
 ?Release_Ref@TextureClass@@QAEXXZ,,0x009EB7A0,36,Code/masm_dumps/_icf6__Release_Ref_TextureClass__QAEXXZ_9EB7A0.asm,matched,ICF Open-BFME4+Grok
 ?Release_Render_Obj_Iterator@WW3DAssetManager@@UAEXPAVRenderObjIterator@@@Z,,0x006F62A0,23,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,
 ?Remap_Vertex_Material@MaterialRemapperClass@@QAEPAVVertexMaterialClass@@PAV2@@Z,,0x0092EDC0,88,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/GameEngine/Source/Common/RTS/ToggleMountedSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0WoundArrowUpdateModuleData@@QAE@XZ,,0x0026DF50,38,Code/GameEngine/Source/Common/RTS/WoundArrowUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0DevastateSpecialPowerModuleData@@QAE@XZ,,0x0025AC10,44,Code/GameEngine/Source/Common/RTS/DevastateSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+?Release_Ref@TextureBaseClass@@QAEXXZ,,0x009EB7A0,36,Code/Libraries/Source/WWVegas/WW3D2/TextureBaseReleaseRefThunk.cpp,matched,Open-BFME5 exact C++ raw TextureBase release leaf
