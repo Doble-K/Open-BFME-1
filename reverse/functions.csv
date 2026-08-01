@@ -1296,7 +1296,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Coord3D@@QAE@XZ,0x00016C93,0x00083330,3,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,empty constructor returns self
 ??0CostModifierUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D4570,71,Code/masm_dumps/CostModifierUpgrade_constructor.asm,matched,Exact 71B unique factory Open-BFME4
 ??0CountermeasuresBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/masm_dumps/CountermeasuresBehavior_constructor.asm,matched,Exact 74B ICF alias Open-BFME4
-??0CountermeasuresBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/CountermeasuresBehaviorModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0CrateSystem@@QAE@XZ,,0x003799D0,69,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,
 ??0CreateCrateDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00253E70,60,Code/masm_dumps/CreateCrateDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0CreateCrateDieModuleData@@QAE@XZ,,0x001298D0,123,Code/masm_dumps/CreateCrateDieModuleData_constructor.asm,matched,Exact 123B @ 0x001298D0; Exact retail MASM ModuleData ctor; unique factory 0x129A30
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0BunkerBusterBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?HideInGameChat@@YAXXZ,,0x00019583,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/HideInGameChat.cpp,matched,5-byte thunk converted from MASM dump to focused C++ source
+??0CountermeasuresBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
