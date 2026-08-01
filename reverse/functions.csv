@@ -2526,7 +2526,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$vector@PAVObjectCreationNugget@@V?$allocator@PAVObjectCreationNugget@@@_STL@@@_STL@@QAE@XZ,,0x00072A40,14,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ??1?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAE@XZ,,0x00072A40,14,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ??1?$vector@UVideo@@V?$allocator@UVideo@@@_STL@@@_STL@@QAE@XZ,,0x0081D040,165,Code/masm_dumps/__1__vector_UVideo__V__allocator_UVideo____STL____STL__QAE_XZ_0081D040_2e3068dd.asm,matched,Certified packet 130 SHA256 2e3068dd1cd8fd565014717a2204fb0df6d3e138e0dfb497ca33037ae1577744
-??1?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@QAE@XZ,,0x0001481C,5,Code/masm_dumps/_thunk_cc230e00b3c4_1481C.asm,matched,thunk accessor of ported class
 ??1?$vector@VUnicodeString@@V?$allocator@VUnicodeString@@@_STL@@@_STL@@QAE@XZ,,0x005324C0,149,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ??1AABoxRenderObjClass@@UAE@XZ,,0x00957840,5,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,vtable-anchored: primary slot1 ??_G@0x957820 calls this 5B jmp to RenderObjClass dtor; queue 0x984B01 was INSIDE ParticleBufferClass dtor
 ??1AIPlayer@@MAE@XZ,,0x001613C0,87,Code/masm_dumps/AIPlayer_destructor.asm,matched,MASM exact; AIPlayer vtbl slot0 deleting-wrapper chain; queue 0x9F2808 was INSIDE unrelated dtor
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?startRenderToTexture@W3DShaderManager@@SAXXZ,,0x000154E7,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
 ?Set_DX8_Texture_Stage_State@DX8Wrapper@@SAXIKI@Z,,0x000261E3,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
 ?getClassMemoryPool@ObjectDefectionHelper@@SAPAVMemoryPool@@XZ,,0x0000B9CE,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted alongside existing ICF target
+??1?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@QAE@XZ,,0x0001481C,5,Code/Libraries/Source/WWVegas/WWLib/PlayerTemplateVectorDestructorThunk.cpp,matched,5-byte incremental-link STL destructor thunk converted to focused C++ thunk TU
