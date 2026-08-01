@@ -1661,7 +1661,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LevelUpUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/LevelUpUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
 ??0LifeEventModuleInfo@FXParticleSystem@@QAE@XZ,0x0000FA79,0x005FC710,90,Code/masm_dumps/___0LifeEventModuleInfo_FXParticleSystem__QAE_XZ_5FC710.asm,matched,
 ??0LifeEventModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x00020342,0x005DE080,155,Code/masm_dumps/___0LifeEventModuleTemplate_FXParticleSystem__QAE_A_5DE080.asm,matched,
-??0LifeEventModuleTemplate@FXParticleSystem@@QAE@XZ,0x0004B024,0x005DDF50,114,Code/masm_dumps/___0LifeEventModuleTemplate_FXParticleSystem__QAE_X_5DDF50.asm,matched,
 ??0LifetimeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002980A0,278,Code/masm_dumps/LifetimeUpdate_constructor.asm,matched,Exact 278B @ 0x002980A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A2D0
 ??0LifetimeUpdateModuleData@@QAE@XZ,,0x00410240,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0LightClass@@QAE@ABV0@@Z,,0x0093BFB0,307,Code/Libraries/Source/WWVegas/WW3D2/light.cpp,matched,trimmed oversized claim into sibling
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??1LifeEventModuleInfo@FXParticleSystem@@UAE@XZ,,0x005DDDC0,67,Code/GameEngine/Source/GameClient/System/FXParticleSystem/LifeEventModuleInfoDestructorThunk.cpp,matched,Open-BFME5 exact C++ LifeEventModuleInfo destructor;object-symbol=??1LifeEventModuleInfo@FXParticleSystem@@QAE@XZ;retail UAE identity carried by non-virtual destructor body
 ??0LifeEventModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,,0x005DDE20,109,Code/GameEngine/Source/GameClient/System/FXParticleSystem/LifeEventModuleInfoCopyCtorThunk.cpp,matched,Open-BFME5 exact C++ LifeEventModuleInfo copy constructor;object-symbol=??0LifeEventModuleInfo@FXParticleSystem@@QAE@ABV01@@Z;MASM comment size 276 was stale and ledger target is 109
 ?enableTurret@BattlePlanUpdate@@IAEX_N@Z,,0x00285870,43,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,retail object +0x08 and AI +0x204
+??0LifeEventModuleTemplate@FXParticleSystem@@QAE@XZ,,0x005DDF50,114,Code/GameEngine/Source/GameClient/System/FXParticleSystem/LifeEventModuleTemplateCtorThunk.cpp,matched,Open-BFME5 exact C++ LifeEventModuleTemplate constructor;object-symbol=??0LifeEventModuleTemplate@FXParticleSystem@@QAE@XZ
