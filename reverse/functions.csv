@@ -1254,7 +1254,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CreateObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254680,60,Code/masm_dumps/CreateObjectDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0CriticalSectionClass@@QAE@XZ,,0x009DB420,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0CritterEmitterUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028B6A0,95,Code/masm_dumps/CritterEmitterUpdate_constructor.asm,matched,Exact 95B unique factory Open-BFME4
-??0CritterEmitterUpdateModuleData@@QAE@XZ,,0x001FA3A0,414,Code/masm_dumps/CritterEmitterUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x115730
 ??0CrushDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254B90,60,Code/masm_dumps/CrushDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0CullLinkClass@@QAE@PAVCullSystemClass@@@Z,,0x00087A50,18,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,ICF alias of existing matched body
 ??0CullNodeStruct@AABTreeBuilderClass@@QAE@XZ,,0x0096B500,37,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,MASM converted to clean C++
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0EnragedBehaviorModuleData@@QAE@XZ,,0x00203E60,117,Code/GameEngine/Source/GameLogic/AI/EnragedBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0HeroDieModuleData@@QAE@XZ,,0x00255600,82,Code/GameEngine/Source/GameLogic/AI/HeroDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0EmotionTrackerUpdateModuleData@@QAE@XZ,,0x0028F910,537,Code/GameEngine/Source/GameLogic/AI/EmotionTrackerUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0CritterEmitterUpdateModuleData@@QAE@XZ,,0x001FA3A0,414,Code/GameEngine/Source/GameLogic/AI/CritterEmitterUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
