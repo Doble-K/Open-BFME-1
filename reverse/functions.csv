@@ -1459,7 +1459,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FontLibrary@@QAE@XZ,,0x0008A430,26,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
 ??0Format@Debug@@QAA@PBDZZ,,0x008895F0,35,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??0FoundationAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002BA040,190,Code/masm_dumps/FoundationAIUpdate_constructor.asm,matched,Exact 190B @ 0x002BA040; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1143B0
-??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/FoundationAIUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/masm_dumps/FreezingRainSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0FreezingRainSpecialPowerModuleData@@QAE@XZ,,0x0025D8C0,38,Code/masm_dumps/FreezingRainSpecialPowerModuleData_constructor.asm,matched,Exact 38B unique factory Open-BFME4
 ??0FrustumClass@@QAE@ABV0@@Z,,0x009319F0,254,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?GetGameLogicRandomValueReal@@YAMMMPADH@Z,,0x0002CCA5,5,Code/GameEngine/Source/GameLogic/ScriptEngine/GetGameLogicRandomValueReal.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0DynamicGeometryInfoUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?iniParseObjectFilter@@YAXPAVINI@@PAX1PBX@Z,,0x00039865,5,Code/GameEngine/Source/GameLogic/ScriptEngine/iniParseObjectFilter.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
+??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
