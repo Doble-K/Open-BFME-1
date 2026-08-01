@@ -5205,14 +5205,14 @@ Bool PartitionFilterIrregularArea::allow( Object *other )
 }
 
 //-----------------------------------------------------------------------------
-// ?allow@PartitionFilterPolygonTrigger@@MAE_NPAVObject@@@Z present-unmatched
 Bool PartitionFilterPolygonTrigger::allow( Object *other )
 {
 	ICoord3D iPos;
 	iPos.x = other->getPosition()->x;
 	iPos.y = other->getPosition()->y;
 	iPos.z = 0; // Trigger areas compare on xy only.
-	return m_trigger->pointInTrigger(iPos);
+	const PolygonTrigger *trigger = *reinterpret_cast<const PolygonTrigger * const *>(reinterpret_cast<const char *>(this) + 8);
+	return trigger->pointInTrigger(iPos);
 }
 
 //-----------------------------------------------------------------------------

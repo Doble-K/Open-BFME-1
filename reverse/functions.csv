@@ -8734,7 +8734,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?allocateNewWindow@GameWindowManager@@QAEPAVGameWindow@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?allow@PartitionFilterFlammable@@UAE_NPAVObject@@@Z,,0x002925C0,144,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,
 ?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z,,0x001DD140,86,Code/masm_dumps/allow_PartitionFilterPlayerAffiliation_001DD140_2078175b.asm,matched,Certified packet 194 constructor-vtable-thunk ownership; SHA256 2078175b9d0720297cc0ee2d361385f4cbcf0665b77d3a01edc970e30a405646
-?allow@PartitionFilterPolygonTrigger@@MAE_NPAVObject@@@Z,,0x001DD490,64,Code/masm_dumps/PartitionFilterPolygonTrigger_allow_1DD490.asm,matched,Certified packet 89 exact retail MASM recovery
 ?allow@PartitionFilterRelationship@@UAE_NPAVObject@@@Z,,0x001DC980,51,Code/masm_dumps/allow_PartitionFilterRelationship_UAE_NPAVObject_Z_001DC980_06fd26e1.asm,matched,Certified packet 228 exact retail db SHA-256 06fd26e1f0a209e6bc711c311092772ea044ca4fa1172f5ca780714fe10421ef
 ?allowedToContinue@DisconnectManager@@QAE_NXZ,,0x0066B2C0,8,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?allowsObservers@CustomMatchPreferences@@QAE_NXZ,,0x000AC510,95,Code/masm_dumps/CustomMatchPreferences_allowsObservers.asm,matched,Unique AllowObservers preference getter
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ClickReactionBehaviorModuleData@@QAE@XZ,,0x002001A0,40,Code/GameEngine/Source/Common/RTS/ClickReactionBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ModuleData constructor
 ??0DarknessSpecialPowerModuleData@@QAE@XZ,,0x00259EB0,38,Code/GameEngine/Source/Common/RTS/DarknessSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0FreezingRainSpecialPowerModuleData@@QAE@XZ,,0x0025D8C0,38,Code/GameEngine/Source/Common/RTS/FreezingRainSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+?allow@PartitionFilterPolygonTrigger@@MAE_NPAVObject@@@Z,,0x001DD490,64,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,exact C++ polygon check with BFME field offset and pinned call
