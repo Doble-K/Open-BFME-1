@@ -6997,7 +6997,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Intersect_AABox@MeshClass@@UAE_NAAVAABoxIntersectionTestClass@@@Z,,0x0092DCF0,104,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ?Intersect_OBBox@AABTreeClass@@QAE_NAAVOBBoxIntersectionTestClass@@@Z,,0x00924840,17,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,icf-owner=?Cast_AABox@AABTreeClass@@QAE_NAAVAABoxCollisionTestClass@@@Z
 ?Intersect_OBBox@CompositeRenderObjClass@@UAE_NAAVOBBoxIntersectionTestClass@@@Z,,0x00983110,78,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
-?Intersect_OBBox@MeshGeometryClass@@QAE_NAAVOBBoxIntersectionTestClass@@@Z,,0x00927920,34,Code/masm_dumps/_sym4__Intersect_OBBox_MeshGeometryClass__QAE_NAAVOBBoxIntersectionTestClass_927920.asm,matched,symbol Open-BFME4+Grok
 ?Intersect_OBBox_Recursive@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxIntersectionTestClass@@@Z,,0x0096B100,112,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,icf-owner=?Cast_AABox_Recursive@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVAABoxCollisionTestClass@@@Z
 ?Intersect_OBBox_With_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxIntersectionTestClass@@@Z,,0x0096AEE0,219,Code/masm_dumps/_sym2__Intersect_OBBox_With_Polys_AABTreeClass__AAE_NPAUCullNodeStruct_1_AAV_96AEE0.asm,matched,symbol-pin Open-BFME4+Grok
 ?Intersect_Sphere@IntersectionClass@@QAE_NAAVSphereClass@@PAVIntersectionResultClass@@@Z,,0x0091FE90,175,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?GadgetListBoxSetTopVisibleEntry@@YAXPAVGameWindow@@H@Z,,0x004B85C0,37,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,Open-BFME5 exact C++ raw gadget wrapper; null-check and set-top helper dispatch preserved
 ?peerParseQuery@@YAHPAXPADHPAUsockaddr@@@Z,,0x00857570,34,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerParseQueryThunk.cpp,matched,Open-BFME5 exact C++ raw GameSpy peer query helper; profile/error fallback chain preserved
 ??0WaterTracksRenderSystem@@QAE@XZ,,0x007AB960,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,exact C++ constructor with retail ShaderClass default bits 0x10441b
+?Intersect_OBBox@MeshGeometryClass@@QAE_NAAVOBBoxIntersectionTestClass@@@Z,,0x00927920,34,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryIntersectOBBoxThunk.cpp,matched,Open-BFME5 exact C++ raw MeshGeometry OBBox wrapper; CullTree member dispatch and brute-force tail path preserved
