@@ -10148,7 +10148,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_setNumFXPerType@TerrainRoadType@@QAEXH@Z,,0x00601420,13,Code/GameEngine/Source/GameClient/Terrain/TerrainRoads.cpp,matched,
 ?friend_setPartitionData@Object@@QAEXPAVPartitionData@@@Z,,0x00499840,13,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,
 ?friend_setRadarData@Object@@QAEXPAVRadarObject@@@Z,,0x0098D390,13,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
-?friend_setRepairedToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,,0x0001C693,5,Code/masm_dumps/_friend_setRepairedToFXString_TerrainRoadType__QAEXW4BodyDamageType__HVAsciiString___Z_1C693.asm,matched,MASM exact retail dump
 ?friend_setTransitionEffectsHeight@TerrainRoadType@@QAEXM@Z,,0x002ED3A0,13,Code/GameEngine/Source/GameClient/Terrain/TerrainRoads.cpp,matched,
 ?friend_unlockDirtyStuffForIteration@Drawable@@SAXXZ,,0x00412120,16,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?friend_xferSaveDataForCRC@GameState@@QAEXPAVXfer@@W4SnapshotType@@@Z,,0x00110CF0,55,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,CRC wrapper clears SaveGameInfo strings+saveFileType then xferSaveData; sealed 55B @ 0x00110CF0
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?deposit@Money@@QAEXI_N@Z,,0x00027D6D,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Money::deposit
 ?setDisabledUntil@Object@@QAEXW4DisabledType@@I@Z,,0x0003364A,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Object::setDisabledUntil
 ?friend_setDamageToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,,0x00024E0B,5,Code/GameEngine/Source/Common/RTS/TerrainRoadTypeSetDamageToFXStringThunk.cpp,matched,5-byte incremental-link TerrainRoadType member thunk converted to focused C++ source
+?friend_setRepairedToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,,0x0001C693,5,Code/GameEngine/Source/Common/RTS/TerrainRoadTypeSetRepairedToFXStringThunk.cpp,matched,5-byte incremental-link TerrainRoadType member thunk converted to focused C++ source
