@@ -1223,7 +1223,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ClickReactionBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7860,151,Code/masm_dumps/ClickReactionBehavior_constructor.asm,matched,Exact 151B @ 0x001F7860; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114CF0
 ??0ClickReactionBehaviorModuleData@@QAE@XZ,,0x002001A0,40,Code/GameEngine/Source/Common/RTS/ClickReactionBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ModuleData constructor
 ??0CollectionPrototypeClass@@QAE@PAVCollectionDefClass@@@Z,,0x000EC7B0,25,Code/Libraries/Source/WWVegas/WW3D2/collect.cpp,matched,
-??0CollideModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/CollideModuleModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0CollisionTestClass@@QAE@ABV0@@Z,,0x001A1B70,25,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ??0CollisionTestClass@@QAE@PAUCastResultStruct@@H@Z,,0x00588710,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??0ColmathStatsStruct@CollisionMath@@QAE@XZ,,0x008E2110,46,Code/Libraries/Source/WWVegas/WWMath/colmath.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0DelayedUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/DelayedUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0CastleUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/CastleUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0CommandSetUpgradeModuleData@@QAE@XZ,,0x0012AF80,93,Code/GameEngine/Source/GameLogic/AI/CommandSetUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0CollideModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/CollideModuleModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
