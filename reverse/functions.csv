@@ -1367,7 +1367,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0EjectPilotDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
 ??0EjectPilotDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0ElvenWoodSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025B2B0,46,Code/masm_dumps/ElvenWoodSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
-??0ElvenWoodSpecialPowerModuleData@@QAE@XZ,,0x0025CA40,72,Code/masm_dumps/ElvenWoodSpecialPowerModuleData_constructor.asm,matched,Exact 72B unique factory Open-BFME4
 ??0EmissionVelocityInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00038D4D,0x005BD820,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,copy constructor
 ??0EmissionVelocityInfo@FXParticleSystem@@QAE@XZ,0x00012468,0x005BD800,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,default constructor sets vtable pointer
 ??0EmissionVolumeInfo@FXParticleSystem@@QAE@ABV01@@Z,0x000376DC,0x005BD6C0,21,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,copy constructor
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0PointDefenseLaserUpdateModuleData@@QAE@XZ,,0x00123620,82,Code/GameEngine/Source/GameLogic/AI/PointDefenseLaserUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
 ??0SpecialPowerCompletionDieModuleData@@QAE@XZ,,0x00123620,82,Code/GameEngine/Source/GameLogic/AI/SpecialPowerCompletionDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0GiveUpgradeUpdateModuleData@@QAE@XZ,,0x0025DCF0,72,Code/GameEngine/Source/GameLogic/AI/GiveUpgradeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0ElvenWoodSpecialPowerModuleData@@QAE@XZ,,0x0025CA40,72,Code/GameEngine/Source/GameLogic/AI/ElvenWoodSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
