@@ -9170,7 +9170,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?detach@NetCommandMsg@@QAEXXZ,,0x00673610,16,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,codegen-blocked retail reference-count body; exact small __asm escape hatch in official C++ source
 ?detectFirewall@FirewallHelperClass@@QAE_NXZ,,0x0066FCC0,232,Code/masm_dumps/FirewallHelper_detectFirewall.asm,matched,Exact retail MASM; true body 0x66FCC0 (232B) not queue 0x6B7958; FirewallNeedToRefresh string + thin AsciiString@0x888BC0; C++ blocked by fat AsciiString/map find
 ?detectFirewallBehavior@FirewallHelperClass@@AAEXXZ,,0x0066E810,15,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
-?detectionBeginUpdate@FirewallHelperClass@@QAE_NXZ,,0x000205F4,5,Code/masm_dumps/_detectionBeginUpdate_FirewallHelperClass__QAE_NXZ_205F4.asm,matched,MASM exact retail dump
 ?detectionTest1Update@FirewallHelperClass@@QAE_NXZ,,0x0066F370,197,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?detectionTest2Update@FirewallHelperClass@@QAE_NXZ,,0x0066F470,175,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?detectionTest3Update@FirewallHelperClass@@QAE_NXZ,,0x0066F550,263,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?isCellOnEnd@Bridge@@QAE_NPBURegion2D@@@Z,,0x0000DAAD,5,Code/GameEngine/Source/Common/RTS/BridgeIsCellOnEndThunk.cpp,matched,5-byte incremental-link Bridge member thunk converted to focused C++ source
 ?_M_clear@?$vector@VW3DAnimationInfo@@V?$allocator@VW3DAnimationInfo@@@_STL@@@_STL@@IAEXXZ,,0x00008837,5,Code/Libraries/Source/WWVegas/WWLib/W3DAnimationInfoAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector clear thunk converted alongside focused C++ template TU
 ?isPointOnBridge@Bridge@@QAE_NPBUCoord3D@@@Z,,0x00014637,5,Code/GameEngine/Source/Common/RTS/BridgeIsPointOnBridgeThunk.cpp,matched,5-byte incremental-link Bridge member thunk converted to focused C++ source
+?detectionBeginUpdate@FirewallHelperClass@@QAE_NXZ,,0x000205F4,5,Code/GameEngine/Source/Common/RTS/FirewallHelperClassDetectionBeginUpdateThunk.cpp,matched,5-byte incremental-link FirewallHelperClass member thunk converted to focused C++ source
