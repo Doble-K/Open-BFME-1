@@ -1261,7 +1261,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CastleUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/CastleUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
 ??0CaveContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00219B90,129,Code/masm_dumps/CaveContain_constructor.asm,matched,Exact 129B; factory ownership Open-BFME4
 ??0CaveContainModuleData@@QAE@XZ,,0x00227200,398,Code/masm_dumps/CaveContainModuleData_constructor.asm,matched,Exact 398B ICF primary MD Open-BFME4
-??0Cftp@@QAE@XZ,,0x00885AD0,18,Code/masm_dumps/__0Cftp__QAE_XZ_885AD0.asm,matched,MASM exact retail dump
 ??0CheckpointUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/CheckpointUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
 ??0ChinookMoveToBldgState@@QAE@PAVStateMachine@@@Z,,0x0005D9A0,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/ChinookAIUpdate.cpp,matched,
 ??0ChunkHeader@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
@@ -13840,3 +13839,4 @@ __CIasin,,0x009F7D86,6,Code/Libraries/Source/WWVegas/WWMath/CIasinThunk.cpp,matc
 ?parse@?$DefaultModuleTemplate@$02@FXParticleSystem@@QAEXPAVINI@@@Z,,0x005FD980,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate02ParseThunk.cpp,matched,Open-BFME5 exact C++ template parser thunk replacing MASM dump;object-symbol=?parse@?$DefaultModuleTemplate@$02@FXParticleSystem@@QAEXPAVINI@@@Z
 ?parse@?$DefaultModuleTemplate@$05@FXParticleSystem@@QAEXPAVINI@@@Z,,0x005F3030,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate05ParseThunk.cpp,matched,Open-BFME5 exact C++ template parser thunk replacing MASM dump;object-symbol=?parse@?$DefaultModuleTemplate@$05@FXParticleSystem@@QAEXPAVINI@@@Z
 ?parse@?$DefaultModuleTemplate@$0A@@FXParticleSystem@@QAEXPAVINI@@@Z,,0x005EF230,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate0AParseThunk.cpp,matched,Open-BFME5 exact C++ template parser thunk replacing MASM dump;object-symbol=?parse@?$DefaultModuleTemplate@$0A@@FXParticleSystem@@QAEXPAVINI@@@Z
+??0Cftp@@QAE@XZ,,0x00885AD0,18,Code/GameEngine/Source/GameNetwork/CftpConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0Cftp@@QAE@XZ
