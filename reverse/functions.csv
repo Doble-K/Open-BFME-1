@@ -1355,7 +1355,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DistLODPrototypeClass@@QAE@PAVDistLODDefClass@@@Z,,0x00149E30,25,Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp,matched,
 ??0DockUpdateInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,ICF alias of existing matched body
 ??0DockUpdateModuleData@@QAE@XZ,,0x0002C54D,5,Code/masm_dumps/__0DockUpdateModuleData__QAE_XZ_2C54D.asm,matched,MASM exact retail dump
-??0DownloadManager@@QAE@XZ,,0x0001958D,5,Code/masm_dumps/__0DownloadManager__QAE_XZ_1958D.asm,matched,MASM exact retail dump
 ??0DownloadManagerMunkee@@QAE@XZ,,0x004C7490,22,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
 ??0DozerAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B8680,272,Code/masm_dumps/DozerAIUpdate_constructor.asm,matched,Exact 272B @ 0x002B8680; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x117FA0
 ??0DozerAIUpdateModuleData@@QAE@XZ,,0x0002BFF8,5,Code/masm_dumps/__0DozerAIUpdateModuleData__QAE_XZ_2BFF8.asm,matched,MASM exact retail dump
@@ -13704,3 +13703,4 @@ _CommSRPListen,,0x00816660,577,Code/Libraries/Source/DirtySock/commsrp.cpp,match
 _CommSRPConnect,,0x00816970,547,Code/Libraries/Source/DirtySock/commsrp.cpp,matched,
 _NetGameUtilControl,,0x0080E5E0,219,Code/Libraries/Source/DirtySock/netgameutil.cpp,matched,
 ?processDisconnectFrame@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066BD80,285,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+??0DownloadManager@@QAE@XZ,,0x006275C0,289,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,thunk-dump converted to clean C++
