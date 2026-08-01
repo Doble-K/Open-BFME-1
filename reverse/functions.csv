@@ -1142,7 +1142,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AssetIterator@@IAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
 ??0AssistanceRequestData@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,ICF alias of existing matched body
 ??0AssistedTargetingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0027FB60,134,Code/masm_dumps/AssistedTargetingUpdate_constructor.asm,matched,Exact 134B @ 0x0027FB60; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x117C40
-??0AssistedTargetingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/AssistedTargetingUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0AttackStateMachine@@QAE@PAVObject@@PAVAIAttackState@@VAsciiString@@_N33@Z,,0x0017F570,103,Code/masm_dumps/_sa8___0AttackStateMachine__QAE_PAVObject__PAVAIAttackS_17F570.asm,matched,Exact 103B Open-BFME4
 ??0AttributeModifierAuraUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002800D0,218,Code/masm_dumps/AttributeModifierAuraUpdate_constructor.asm,matched,Exact 218B @ 0x002800D0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A8D0
 ??0AttributeModifierAuraUpdateModuleData@@QAE@XZ,,0x00280B20,189,Code/masm_dumps/AttributeModifierAuraUpdateModuleData_constructor.asm,matched,Exact 189B @ 0x00280B20; Exact retail MASM ModuleData ctor; unique factory 0x11A950
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?Free_Definitions@DefinitionMgrClass@@SAXXZ,,0x009CB880,50,Code/GameEngine/Source/Common/System/File.cpp,matched,object-symbol=?close@File@@UAEXXZ;ICF alias converted to existing clean C++ body
 ??1Nugget@ModuleInfo@@QAE@XZ,,0x007701C0,76,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetDestructor.cpp,matched,thunk-dump converted to clean C++ nested destructor body at destination 0x7701C0
 ??0AIUpdateInterfaceModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0AssistedTargetingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
