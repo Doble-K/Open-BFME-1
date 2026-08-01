@@ -12416,7 +12416,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?peek@?$StringBase@G@@ABEPAGXZ,0x0002264C,0x0005E5C0,6,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns pointer to data
 ?peekTexture@W3DShadowTextureManager@@QAEPAVW3DShadowTexture@@PBD@Z,,0x007AEF40,27,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?peekWindow@@YAPAVGameWindow@@XZ,,0x004845B0,19,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
-?peerParseQuery@@YAHPAXPADHPAUsockaddr@@@Z,,0x00857570,34,Code/masm_dumps/_sym4__peerParseQuery__YAHPAXPADHPAUsockaddr___Z_857570.asm,matched,symbol Open-BFME4+Grok
 ?performUpgradeFX@FireWeaponWhenDeadBehavior@@MAEXXZ,,0x001F8930,16,Code/GameEngine/Source/GameLogic/Object/Behavior/FireWeaponWhenDeadBehavior.cpp,matched,
 ?performUpgradeFX@GenerateMinefieldBehavior@@MAEXXZ,,0x001EE900,16,Code/GameEngine/Source/GameLogic/Object/Behavior/GenerateMinefieldBehavior.cpp,matched,
 ?performUpgradeFX@UpgradeModule@@MAEXXZ,,0x001F8930,16,Code/GameEngine/Source/GameLogic/Object/Upgrade/ModelConditionUpgrade.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AimWeaponBehaviorModuleData@@QAE@XZ,,0x001ECEF0,37,Code/GameEngine/Source/GameLogic/Object/Weapon/AimWeaponBehaviorModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; retail default weapon behavior fields preserved
 ?drawViews@Display@@UAEXXZ,,0x0040DA30,44,Code/GameEngine/Source/GameClient/Display.cpp,matched,exact C++ loop with TU-local BFME View vtable slots draw +0x178 next +0x23c
 ?GadgetListBoxSetTopVisibleEntry@@YAXPAVGameWindow@@H@Z,,0x004B85C0,37,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,Open-BFME5 exact C++ raw gadget wrapper; null-check and set-top helper dispatch preserved
+?peerParseQuery@@YAHPAXPADHPAUsockaddr@@@Z,,0x00857570,34,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerParseQueryThunk.cpp,matched,Open-BFME5 exact C++ raw GameSpy peer query helper; profile/error fallback chain preserved
