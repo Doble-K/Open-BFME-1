@@ -13243,7 +13243,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?sortNearToFar@SimpleObjectIterator@@CAMPAVClump@1@0@Z,,0x001DDF20,15,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,
 ?sortPairs@Dict@@AAEXXZ,,0x00067FA0,190,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?speedUp@FiringTracker@@AAEXXZ,,0x005AA450,7882,Code/masm_dumps/_sa3__speedUp_FiringTracker__AAEXXZ_5AA450.asm,matched,Exact 7882B string-anchored Open-BFME4
-?spin@LockClass@FastCriticalSectionClass@@CIXPAI@Z,,0x00026FA8,5,Code/masm_dumps/_spin_LockClass_FastCriticalSectionClass__CIXPAI_Z_26FA8.asm,matched,MASM exact retail dump
 ?splitSegmentAtT@BezierSegment@@QBEXMAAV1@0@Z,,0x000B6FA0,627,Code/GameEngine/Source/Common/bezier_segment.cpp,matched,
 ?start@BezFwdIterator@@QAEXXZ,,0x000B6630,374,Code/GameEngine/Source/Common/Bezier/BezFwdIterator.cpp,matched,
 ?startBurningSound@FlammableUpdate@@IAEXXZ,,0x00293520,113,Code/masm_dumps/FlammableUpdate_startBurningSound.asm,matched,Exact retail MASM; true body 0x293520 not drift 0xFB42D; AudioEventRTS+addAudioEvent@vtbl+0x44 handle@+0x34
@@ -13800,3 +13799,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConnection.cpp,matched,Exact retail stats connection query emitted in dedicated C++ TU.
 ?preloadAssets@ControlBar@@QAEXW4TimeOfDay@@@Z,,0x0026FD50,13,Code/GameEngine/Source/GameClient/ControlBarPreloadAssets.cpp,matched,Exact retail ControlBar preload thunk emitted in dedicated C++ TU.
 ??0FireSpreadUpdateModuleData@@QAE@XZ,,0x00292680,23,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdateModuleData.cpp,matched,incremental thunk @0x104B5; standalone codegen-blocked C++ emits exact 23B retail constructor body
+?spin@LockClass@FastCriticalSectionClass@@CIXPAI@Z,,0x006D10E0,48,Code/Libraries/Source/WWVegas/WWLib/FastCriticalSectionSpin.cpp,matched,incremental thunk @0x26FA8; standalone codegen-blocked C++ emits exact 48B retail spin loop
