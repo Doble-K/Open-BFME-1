@@ -3152,7 +3152,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1UpgradeSoundSelectorClientBehaviorModuleData@@UAE@XZ,,0x00608F80,67,Code/masm_dumps/UpgradeSoundSelectorClientBehaviorModuleData_destructor.asm,matched,Exact retail MASM; factory 0x121ED0 ctor 0x608DC0 prove ownership
 ??1UpgradeTemplate@@MAE@XZ,,0x0010ACB0,170,Code/masm_dumps/UpgradeTemplate_destructor_0010ACB0_packet262.asm,matched,Certified packet 262 exact retail MASM f78745debd90e92551686dc404ec95aed7f2fa59f73073f3484f0f90880b45e3
 ??1User@@MAE@XZ,,0x0078CFB0,73,Code/GameEngine/Source/GameNetwork/User.cpp,matched,
-??1UserPreferences@@UAE@XZ,,0x0003F25B,5,Code/masm_dumps/__1UserPreferences__UAE_XZ_3F25B.asm,matched,MASM exact retail dump
 ??1Vertex_Split_Table@@QAE@XZ,,0x00944BC0,18,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??1VideoPlayer@@UAE@XZ,,0x0081C590,35,Code/masm_dumps/VideoPlayer_destructor.asm,matched,Exact 35B @ 0x81C590; VP vtable 0x112CCC0 slot0 scalar 0x81C7C0 + matched init slot1 prove ownership; clears TheVideoPlayer; C++ blocked by vector<Video> SEH layout
 ??1W3DAnimationInfo@@QAE@XZ,,0x00020018,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
@@ -13833,3 +13832,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?sendMangledPortNumberToTarget@NAT@@IAEXGPAVGameSlot@@@Z,,0x0002ACCA,5,Code/GameEngine/Source/GameNetwork/NATSendMangledPortNumberToTargetThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x6718A0
+??1UserPreferences@@UAE@XZ,,0x0003F25B,5,Code/GameEngine/Source/Common/UserPreferencesDestructorThunk.cpp,matched,Focused C++ thunk for UserPreferences destructor
