@@ -35,12 +35,24 @@
 #include "GameNetwork/GameSpy/LadderDefs.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
 #include "GameNetwork/GameSpy/GSConfig.h"
+
 #include "Common/GameState.h"
 #include "Common/File.h"
 #include "Common/FileSystem.h"
 #include "Common/PlayerTemplate.h"
 #include "GameClient/GameText.h"
 #include "GameClient/MapUtil.h"
+
+__declspec(noinline) void reconstructAsciiString(AsciiString *dest, const AsciiString &src)
+{
+	if (dest == NULL)
+		return;
+
+	void *data = *reinterpret_cast<void * const *>(&src);
+	*reinterpret_cast<void **>(dest) = data;
+	if (data != NULL)
+		++*reinterpret_cast<unsigned short *>(reinterpret_cast<unsigned char *>(data) + 4);
+}
 
 #ifdef _INTERNAL
 // for occasional debugging...

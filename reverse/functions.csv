@@ -56,7 +56,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$_Construct@UWeaponDelayedDamageInfo@WeaponStore@@U12@@_STL@@YAXPAUWeaponDelayedDamageInfo@WeaponStore@@ABU12@@Z,,0x0028D4C0,24,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ??$_Construct@UtConnInfoStruct@@U1@@_STL@@YAXPAUtConnInfoStruct@@ABU1@@Z,,0x002A14C0,41,Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp,matched,
 ??$_Construct@V?$BitFlags@$0HF@@@V1@@_STL@@YAXPAV?$BitFlags@$0HF@@@ABV1@@Z,,0x00749420,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
-??$_Construct@VAsciiString@@V1@@_STL@@YAXPAVAsciiString@@ABV1@@Z,,0x0004725D,5,Code/masm_dumps/____Construct_VAsciiString__V1___STL__YAXPAVAsciiString__ABV1__Z_4725D.asm,matched,MASM exact retail dump
 ??$_Construct@VGameResultsRequest@@V1@@_STL@@YAXPAVGameResultsRequest@@ABV1@@Z,,0x00641B70,66,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ??$_Construct@VGameResultsResponse@@V1@@_STL@@YAXPAVGameResultsResponse@@ABV1@@Z,,0x00641BD0,87,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,STLport template-internal COMDAT emitted by this TU; thunk-dump repointed to real body
 ??$_Construct@VMoney@@V1@@_STL@@YAXPAVMoney@@ABV1@@Z,,0x001A6D80,19,Code/GameEngine/Source/Common/MultiplayerSettings.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?init@W3DVolumetricShadowManager@@QAE_NXZ,,0x007C19E0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,clean C++ body calls ReAcquireResources; exact retail call/return bytes
 ??0ImageCollection@@QAE@XZ,,0x005D30E0,105,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,ICF alias of ??0LocomotorStore@@QAE@XZ; corrected body begins after one-byte int3 padding
 ??0?$list@PAVParticleSystem@@V?$allocator@PAVParticleSystem@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x0076F640,111,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,C++ STLport list copy constructor; TU-scoped BFME 0x2c node tail and static allocator mode
+??$_Construct@VAsciiString@@V1@@_STL@@YAXPAVAsciiString@@ABV1@@Z,,0x00756D90,25,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,object-symbol=?reconstructAsciiString@@YAXPAVAsciiString@@ABV1@@Z;thunk-dump converted to clean C++ helper
