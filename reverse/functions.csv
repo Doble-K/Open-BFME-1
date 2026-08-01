@@ -5214,7 +5214,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Clear@?$ShareBufferClass@VShaderClass@@@@QAEXXZ,,0x00929050,30,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ?Clear@?$ShareBufferClass@VVector3@@@@QAEXXZ,,0x00923D70,33,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ?Clear@?$ShareBufferClass@VVector3i16@@@@QAEXXZ,,0x00923D50,32,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
-?Clear@?$VectorClass@M@@UAEXXZ,,0x0000DBA7,5,Code/masm_dumps/_thunk_24465b32cdb4_DBA7.asm,matched,thunk accessor of ported class (icf alias)
 ?Clear@?$VectorClass@UAddInfoStruct@MixFileFactoryClass@@@@UAEXXZ,,0x0093D920,61,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
 ?Clear@?$VectorClass@UFileOffsetStruct@@@@UAEXXZ,,0x0093D920,61,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
 ?Clear@?$VectorClass@UPendingSurfaceStruct@Render2DSentenceClass@@@@UAEXXZ,,0x009405D0,61,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?refreshTerrain@Radar@@UAEXPAVTerrainLogic@@@Z,,0x0002F8DD,5,Code/Libraries/Source/WWVegas/WWLib/RadarRefreshTerrainThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,,0x0002F8DD,5,Code/Libraries/Source/WWVegas/WWLib/RadarRefreshTerrainThunk.cpp,matched,object-symbol=?refreshTerrain@Radar@@UAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
 ??M@YA_NABVAsciiString@@0@Z,,0x00015898,5,Code/GameEngine/Source/Common/RTS/AsciiStringInequalityThunk.cpp,matched,5-byte incremental-link AsciiString less-than thunk converted to focused C++ source
+?Clear@?$VectorClass@M@@UAEXXZ,,0x0000DBA7,5,Code/Libraries/Source/WWVegas/WWLib/VectorClassClearThunk.cpp,matched,ICF-group owner converted to focused C++ template thunk; remaining aliases retain shared target
