@@ -1,5 +1,34 @@
-// cl: /EHsc /ICode/Libraries/Source/WWVegas/WWLib
+// cl: /EHsc /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /ICode/Libraries/Source/WWVegas/WWLib
 #include "message_stream.h"
+struct BFMEPlayer
+{
+	Int getPlayerIndex() const
+	{
+		return *(const Int *)((const unsigned char *)this + 0x24);
+	}
+};
+
+struct BFMEPlayerList
+{
+	BFMEPlayer *getLocalPlayer() const
+	{
+		return *(BFMEPlayer **)((const unsigned char *)this + 0x0C);
+	}
+};
+
+extern BFMEPlayerList *ThePlayerList;
+
+GameMessage::GameMessage(Type type)
+{
+	m_playerIndex = ThePlayerList->getLocalPlayer()->getPlayerIndex();
+	m_type = type;
+	m_reserved1 = 0;
+	m_reserved2 = 0;
+	m_argCount = 0;
+	m_list = 0;
+	m_argList = 0;
+	m_argTail = 0;
+}
 
 // Layout of the retail GameMessageArgument (a MemoryPoolObject subclass we have
 // not converted): vtbl@0, m_next@0x4, m_data@0x8 (16-byte union, widest member

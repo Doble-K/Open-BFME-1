@@ -14,6 +14,8 @@ struct IRegion2D;
 class GameMessage {
 public:
 	enum Type { MSG_INVALID = 0 };
+	GameMessage(Type type);
+	virtual ~GameMessage() {}
 	AsciiString getCommandTypeAsAsciiString(Type t);
 
 	// Argument-list mutators: each allocates a new GameMessageArgument (via the
@@ -34,4 +36,13 @@ public:
 private:
 	struct Argument;
 	Argument *allocArg();
+	Argument *m_argList;
+	Argument *m_argTail;
+	void *m_list;
+	Type m_type;
+	Int m_playerIndex;
+	unsigned char m_argCount;
+	unsigned char m_padding[3];
+	Int m_reserved1;
+	Int m_reserved2;
 };
