@@ -203,10 +203,16 @@ struct INILine
 class INILineBuffer
 {
 public:
+	// Inline: readLine computes the count from the two pointers in line
+	// ((end - begin) >> 3) rather than calling anything.
+	Int count( void ) const { return m_end - m_begin; }
+
 	const char *getText( Int index ) const;		// 0x009CBC60
 	Int getNumber( Int index ) const;			// 0x009CBC90
 
-private:
+	// Public because readLine subtracts them in line rather than going through
+	// count(), which is how retail reads them -- straight off the INI, with no
+	// address of the buffer taken.
 	void *m_unknown0;			// +0x00
 	void *m_unknown4;			// +0x04
 	INILine *m_begin;			// +0x08

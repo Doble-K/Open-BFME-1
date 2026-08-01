@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ob1 /Ireference/shims/ini /Ireference/shims/ini_parser /Ireference/shims/gameaudio /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ob1 /Ireference/shims/ini /Ireference/shims/xfer /Ireference/shims/ini_parser /Ireference/shims/gameaudio /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -411,73 +411,31 @@ void INI::load( AsciiString filename, INILoadType loadType, Xfer *pXfer )
 /** Read a line from the already open file.  Any comments will be remved and
 	* therefore ignored from any given line */
 //-------------------------------------------------------------------------------------------------
-// ?readLine@INI@@IAEXXZ present-unmatched
+// ?readLine@INI@@IAEXXZ
+// BFME does not stream the file. INI::load reads it in and splits it into
+// m_lines, so this just copies the next entry into m_buffer -- there is no
+// per-character loop, no comment stripping and no tab check here, because that
+// work happened when the file was split.
+//
+// Both paths fall through to the xfer: every line the parser sees is hashed,
+// including the empty one produced at end of file.
 void INI::readLine( void )
 {
-	// sanity
-	DEBUG_ASSERTCRASH( m_file, ("readLine(), file pointer is NULL\n") );
-
-  if (m_endOfFile)
-    *m_buffer=0;
-  else
-  {
-    char *p=m_buffer;
-    while (p!=m_buffer+INI_MAX_CHARS_PER_LINE)
-    {
-      // get next character
-      if (m_readBufferNext==m_readBufferUsed)
-      {
-        // refill buffer
-        m_readBufferNext=0;
-        m_readBufferUsed=m_file->read(m_readBuffer,INI_READ_BUFFER);
-
-        // EOF?
-        if (!m_readBufferUsed)
-        {
-          m_endOfFile=true;
-          *p=0;
-          break;
-        }
-      }
-      *p=m_readBuffer[m_readBufferNext++];
-
-      // CR?
-      if (*p=='\n')
-      {
-        *p=0;
-        break;
-      }
-
-      DEBUG_ASSERTCRASH(*p != '\t', ("tab characters are not allowed in INI files (%s). please check your editor settings. Line Number %d\n",m_filename.str(), getLineNum()));
-
-      // comment?
-      if (*p==';')
-        *p=0;
-      // whitespace?
-      else if (*p>0&&*p<32)
-        *p=' ';
-      p++;
-    }
-    *p=0;
-
-		// increase our line count
-		m_lineNum++;
-
-		// check for at the max
-		if ( p == m_buffer+INI_MAX_CHARS_PER_LINE )
-		{
-
-			DEBUG_ASSERTCRASH( 0, ("Buffer too small (%d) and was truncated, increase INI_MAX_CHARS_PER_LINE\n", 
-														 INI_MAX_CHARS_PER_LINE) );
-
-		}  // end if
-  }
+	if( m_lineNum < (UnsignedInt)(m_lines.m_end - m_lines.m_begin) )
+	{
+		const char *line = m_lines.getText( m_lineNum++ );
+		strncpy( m_buffer, line, INI_MAX_CHARS_PER_LINE - 1 );
+		m_buffer[ INI_MAX_CHARS_PER_LINE - 1 ] = 0;
+	}
+	else
+	{
+		m_endOfFile = TRUE;
+		m_buffer[0] = 0;
+	}
 
 	if (s_xfer)
 	{
 		s_xfer->xferUser( m_buffer, sizeof( char ) * strlen( m_buffer ) );
-		//DEBUG_LOG(("Xfer val is now 0x%8.8X in %s, line %s\n", ((XferCRC *)s_xfer)->getCRC(),
-			//m_filename.str(), m_buffer));
 	}
 }
 
