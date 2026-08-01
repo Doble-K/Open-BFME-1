@@ -20,21 +20,38 @@
 // There are seven File vtables in all, found by looking for the ones that carry
 // File::print (0x009CB6C0) at slot 10, which every subclass here inherits:
 //
-//   0x01143A38  MemoryReadFile      dtor 0x009CB440
-//   0x01143AA8  MemoryWriteFile     dtor 0x009CB650
-//   0x01143AF8  File                dtor 0x009CB950
-//   0x01143C10  unnamed             dtor 0x009D1960   (see below)
-//   0x01143C58  unnamed             dtor 0x009D1C30   -- the only one that also
-//                                                        overrides close
-//   0x01143CA8  unnamed             dtor 0x009D22B0
-//   0x01143D38  unnamed             dtor 0x009D26C0
+//   0x01143A38  MemoryReadFile        dtor 0x009CB440
+//   0x01143AA8  MemoryWriteFile       dtor 0x009CB650
+//   0x01143AF8  File                  dtor 0x009CB950
+//   0x01143C10  Win32LocalFile        dtor 0x009D1960   ctor 0x009D1930
+//   0x01143C58  RAMFile               dtor 0x009D1C30   ctor 0x009D1980
+//   0x01143CA8  StreamingArchiveFile  dtor 0x009D22B0   ctor 0x009D20B0
+//   0x01143D38  LocalFile             dtor 0x009D26C0   ctor 0x009D23E0
 //
-// So the family runs past 0x009CE000 into 0x009D2xxx. The four unnamed ones set
-// no identifying literal the way MemoryReadFile and MemoryWriteFile do. The
-// 0x01143C10 one is constructed near the string "Streaming from a compressed
-// archive file is not supported", which points at Zero Hour's
-// StreamingArchiveFile -- but that text is BFME's own, appearing nowhere in the
-// Zero Hour tree, so it is a lead and not a name.
+// So the family runs past 0x009CE000 into 0x009D2xxx. None of the last four set
+// an identifying literal the way MemoryReadFile and MemoryWriteFile do, so they
+// are named by construction instead:
+//
+// Win32LocalFileSystem's vtable is 0x01143B98 (its constructor is 0x009CDE10),
+// and it is identified by two rows this ledger already carries -- slot 4 is
+// ?doesFileExist@Win32LocalFileSystem@@UBE_NPBD@Z and slot 6 is
+// ?getFileInfo@Win32LocalFileSystem@@UBE_NABVAsciiString@@PAUFileInfo@@@Z. Its
+// slot 3, 0x009CDF50, is openFile: it does push 0x18 / call operator new /
+// call 0x009D1930. So 0x009D1930 constructs what a local file system hands
+// back, sizeof 0x18, and that constructor installs 0x01143C10 -- Win32LocalFile.
+//
+// 0x009D1930 chains to 0x009D23E0, which installs 0x01143D38 and stores -1 at
+// +0x14. A base of Win32LocalFile holding an invalid-handle sentinel is
+// LocalFile, and +0x14 is the OS file handle -- the one File's own +0x10 is not.
+//
+// The other two are named by the fields their constructors zero, matching Zero
+// Hour's declarations exactly: 0x009D1980 calls File::File and zeroes +0x14,
+// +0x18 and +0x1c, which is RAMFile's char *m_data / Int m_size / Int m_pos
+// (sizeof 0x20); 0x009D20B0 calls that constructor and zeroes +0x20, +0x24 and
+// +0x28, which is StreamingArchiveFile's File *m_file / Int m_startingPos /
+// Int m_size on top of RAMFile (sizeof 0x2C). That also settles the "Streaming
+// from a compressed archive file is not supported" lead: the string belongs to
+// StreamingArchiveFile at 0x01143CA8, not to 0x01143C10.
 //
 // 0x01143AF8 is File's own: MemoryReadFile's constructor calls 0x009CB7A0 first,
 // and that is what stores 0x01143AF8 and sets "<no file>", so 0x009CB7A0 is
@@ -80,8 +97,12 @@ public:
 	virtual Int position( void );					// slot 12
 	virtual char *readEntireAndClose( void );			// slot 13
 	virtual File *convertToRAMFile( void );				// slot 14
-	// slots 15 and 16 are BFME additions (0x009CB760, 0x009CB790); Zero Hour has
-	// no name for either, so they are absent here rather than guessed at.
+	// Slots 15 and 16 are BFME additions Zero Hour has no name for. They are a
+	// mutex acquire/release pair over m_mutex, read straight out of the imports
+	// the two bodies call: 0x009CB760 reaches KERNEL32!CreateMutexA and
+	// !WaitForSingleObject, 0x009CB790 reaches !ReleaseMutex.
+	virtual void lock( void );					// slot 15
+	virtual void unlock( void );					// slot 16
 
 protected:
 	void setName( const char *name ) { m_nameStr = name; }
@@ -90,7 +111,10 @@ protected:
 	Int m_access;				// +0x08
 	Bool m_open;				// +0x0c
 	Bool m_deleteOnClose;		// +0x0d
-	HANDLE m_handle;			// +0x10 -- the OS file handle; ~File closes it
+	// Not a file handle: lock() creates it with CreateMutexA and unlock()
+	// releases it, so the CloseHandle in ~File is closing a mutex. The OS file
+	// handle lives one field further on, in the subclass that owns it.
+	HANDLE m_mutex;				// +0x10
 };
 
 // ?close@File@@UAEXXZ
@@ -514,13 +538,13 @@ File::File()
 :	m_access(0),
 	m_open(FALSE),
 	m_deleteOnClose(FALSE),
-	m_handle(NULL)
+	m_mutex(NULL)
 {
 	setName( "<no file>" );
 }
 
 // ??1File@@UAE@XZ present-unmatched
-// 129 of 133 bytes. The word at +0x10 is an OS file handle, not a buffer: the
+// 129 of 133 bytes. The word at +0x10 is a mutex handle, not a buffer: the
 // call retail makes on it is KERNEL32!CloseHandle, read out of the import table
 // at the IAT slot 0x01358CCC. That also explains why no esp adjustment follows
 // it -- CloseHandle is __stdcall, so the callee cleans -- which is what the
@@ -537,8 +561,33 @@ File::~File()
 	m_deleteOnClose = FALSE;
 	close();
 
-	if( m_handle )
+	if( m_mutex )
 	{
-		CloseHandle( m_handle );
+		CloseHandle( m_mutex );
+	}
+}
+
+// ?lock@File@@UAEXXZ
+// Slot 15, one of the two BFME added. The mutex is created owned, so the first
+// caller acquires it by creating it and every later caller waits.
+void File::lock( void )
+{
+	if( m_mutex == NULL )
+	{
+		m_mutex = CreateMutex( NULL, TRUE, NULL );
+	}
+	else
+	{
+		WaitForSingleObject( m_mutex, INFINITE );
+	}
+}
+
+// ?unlock@File@@UAEXXZ
+// Slot 16. A File that was never locked has no mutex, hence the test.
+void File::unlock( void )
+{
+	if( m_mutex != NULL )
+	{
+		ReleaseMutex( m_mutex );
 	}
 }
