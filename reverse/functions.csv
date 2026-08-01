@@ -1502,7 +1502,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/masm_dumps/GeometryUpgradeModuleData_constructor.asm,matched,Exact 143B @ 0x002D5CE0; Exact retail MASM ModuleData ctor; unique factory 0x11DFA0
 ??0GettingBuiltBehaviorModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/GettingBuiltBehaviorModuleData_constructor.asm,matched,Exact 162B ICF primary MD Open-BFME4
 ??0GhostObjectManager@@QAE@XZ,,0x001B3AA0,20,Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp,matched,converted thunk to TU-scoped C++ constructor
-??0GiantBirdAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C2430,418,Code/masm_dumps/GiantBirdAIUpdate_constructor.asm,matched,Exact 418B @ 0x002C2430; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x118910
 ??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0GiantBirdSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FFB40,137,Code/masm_dumps/GiantBirdSlowDeathBehavior_constructor.asm,matched,Exact 137B @ 0x001FFB40; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1157D0
 ??0GiantBirdSlowDeathBehaviorModuleData@@QAE@XZ,,0x001FFE40,171,Code/masm_dumps/GiantBirdSlowDeathBehaviorModuleData_constructor.asm,matched,Exact 171B @ 0x001FFE40; Exact retail MASM ModuleData ctor; unique factory 0x115850
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AnimalAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B3090,118,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0FoundationAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002BA040,190,Code/GameEngine/Source/GameLogic/AI/FoundationAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0HordeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C43A0,141,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0GiantBirdAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C2430,418,Code/GameEngine/Source/GameLogic/AI/GiantBirdAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
