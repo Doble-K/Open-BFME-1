@@ -4389,7 +4389,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??AMatrix3x3@@QBEABVVector3@@H@Z,,0x005F6660,13,Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp,matched,
 ??AMatrix4@@QAEAAVVector4@@H@Z,,0x005F08D0,12,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??AMatrix4@@QBEABVVector4@@H@Z,,0x0078AE00,12,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
-??AModuleTemplateMap@ModuleFactory@@QAEAAVModuleTemplate@1@ABH@Z,,0x0002047D,5,Code/masm_dumps/__AModuleTemplateMap_ModuleFactory__QAEAAVModuleTemplate_1_ABH_Z_2047D.asm,matched,MASM exact retail dump
 ??AQuaternion@@QAEAAMH@Z,,0x008DB540,10,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ??AQuaternion@@QBEABMH@Z,,0x007B7CA0,10,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ??AVector2@@QAEAAMH@Z,,0x000FBAF0,10,Code/Libraries/Source/WWVegas/WW3D2/bw_render.cpp,matched,
@@ -13826,3 +13825,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?_M_initialize@?$vector@_NV?$allocator@_N@_STL@@@_STL@@IAEXI@Z,,0x0003B1A1,5,Code/Libraries/Source/WWVegas/WWLib/STLBitVectorFillInsertThunk.cpp,matched,5-byte STL bit vector initialization thunk converted to focused C++ source
 ?blendTileData@BFMERetailWorldHeightMap@@QAEXPAUTBlendTileInfo@@H@Z,,0x000167F7,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/BFMERetailWorldHeightMapBlendTileDataThunk.cpp,matched,Open-BFME5 exact ILT thunk; retail WorldHeightMap::blendTileData body
 ?_M_insert_aux@?$vector@_NV?$allocator@_N@_STL@@@_STL@@IAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@_N@Z,,0x0002CB5B,5,Code/Libraries/Source/WWVegas/WWLib/STLBitVectorFillInsertThunk.cpp,matched,5-byte STL bit vector insert auxiliary thunk converted to focused C++ source
+??AModuleTemplateMap@ModuleFactory@@QAEAAVModuleTemplate@1@ABH@Z,,0x0002047D,5,Code/GameEngine/Source/Common/Thing/ModuleTemplateMapOperatorThunk.cpp,matched,Focused C++ thunk for ModuleTemplateMap operator access
