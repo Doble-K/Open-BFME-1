@@ -12396,7 +12396,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?sendPlayerDestruct@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,,0x0066B550,159,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,structural: true body 0x66B550 not drift 0x9F2463; BFME enum 11 no setExecutionFrame sendLocalCommandDirect
 ?sendProgressCommand@BFMEConnectionManager@@QAEXH@Z,,0x00663800,190,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendRequestPlayerLeaveCommand@BFMEConnectionManager@@QAEXXZ,,0x006648A0,204,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?sendToManglerFromPort@FirewallHelperClass@@QAE_NIGG_N@Z,,0x00022C00,5,Code/masm_dumps/_sendToManglerFromPort_FirewallHelperClass__QAE_NIGG_N_Z_22C00.asm,matched,MASM exact retail dump
 ?sendVoteCommand@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,,0x0066B420,185,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?set3DWireFrameMode@W3DView@@UAEX_N@Z,,0x0020FB10,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?set@?$StringBase@D@@QAEXABV1@@Z,0x00887C90,0x887c90,135,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?getNATPortAllocationScheme@FirewallHelperClass@@AAEHHPAG0AA_N1@Z,,0x00012F3F,5,Code/GameEngine/Source/Common/RTS/FirewallHelperClassGetNATPortAllocationSchemeThunk.cpp,matched,5-byte incremental-link FirewallHelperClass private member thunk converted to focused C++ source
 ?copyFromQueueNode@BFMENetworkQueueItem1@@QAEXPAX@Z,,0x00032F6A,5,Code/Libraries/Source/WWVegas/WWLib/BFMENetworkQueueItemCopyThunks.cpp,matched,Focused C++ thunk for BFMENetworkQueueItem1::copyFromQueueNode
 ?copyFromQueueNode@BFMENetworkQueueItem@@QAEXPAX@Z,,0x00030C60,5,Code/Libraries/Source/WWVegas/WWLib/BFMENetworkQueueItemCopyThunks.cpp,matched,Focused C++ thunk for BFMENetworkQueueItem::copyFromQueueNode
+?sendToManglerFromPort@FirewallHelperClass@@QAE_NIGG_N@Z,,0x00022C00,5,Code/GameEngine/Source/Common/RTS/FirewallHelperClassSendToManglerFromPortThunk.cpp,matched,5-byte incremental-link FirewallHelperClass member thunk converted to focused C++ source
