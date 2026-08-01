@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/nat /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -1005,6 +1005,11 @@ void NAT::probed(Int nodeNumber) {
 				return;
 			}
 
+			// BFME addition: do nothing if we are still waiting on the mangler.
+			if (m_connectionStates[m_localNodeNumber] == NATCONNECTIONSTATE_WAITINGFORMANGLERRESPONSE) {
+				return;
+			}
+
 			if (targetSlot->getPort() == 0) {
 				setConnectionState(m_localNodeNumber, NATCONNECTIONSTATE_WAITINGFORMANGLEDPORT);
 				DEBUG_LOG(("NAT::probed - still waiting for mangled port\n"));
@@ -1067,7 +1072,6 @@ void NAT::gotMangledPort(Int nodeNumber, UnsignedShort mangledPort) {
 	}
 }
 
-// ?gotInternalAddress@NAT@@IAEXHI@Z present-unmatched
 void NAT::gotInternalAddress(Int nodeNumber, UnsignedInt address) {
 	GameSlot *targetSlot = m_slotList[m_connectionNodes[nodeNumber].m_slotIndex];
 	DEBUG_ASSERTCRASH(targetSlot != NULL, ("NAT::gotInternalAddress - targetSlot is NULL"));
@@ -1096,6 +1100,13 @@ void NAT::gotInternalAddress(Int nodeNumber, UnsignedInt address) {
 
 // ?notifyTargetOfProbe@NAT@@IAEXPAVGameSlot@@@Z
 // Body in nat_notifyTargetOfProbe.asm (exact 360B retail).
+
+// notifyTargetOfProbe's real body is 0x00671100, not the 0x006718BC the ledger
+// records: retail's probed() reaches it through the ILT thunk at 0x00028D1C,
+// which jumps to 0x00671100, while 0x006718BC is 28 bytes INTO the different
+// function that starts at 0x006718A0. The ZH body reproduces it to within a
+// four-byte stack frame -- BFME's PeerRequest is one dword larger -- so fixing
+// the row needs a PeerDefs shim first.
 
 // ?notifyUsersOfConnectionDone@NAT@@IAEXH@Z present-unmatched
 void NAT::notifyUsersOfConnectionDone(Int nodeIndex) {

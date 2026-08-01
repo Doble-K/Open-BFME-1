@@ -11510,7 +11510,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?gogoGadgetTabControl@GameWindowManager@@UAEPAVGameWindow@@PAV2@IHHHHPAVWinInstanceData@@PAU_TabControlData@@PAVGameFont@@_N@Z,,0x0047D090,150,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoGadgetTabControl.asm,matched,exact 150B via MASM; true start 0x47D090 (queue 0x47D071 was post-winSetLoneWindow padding)
 ?gogoMessageBox@GameWindowManager@@,,0x0047EF70,1518,Code/masm_dumps/_str2__gogoMessageBox_GameWindowManager__47EF70.asm,matched,
 ?gogoMessageBox@GameWindowManager@@UAEPAVGameWindow@@HHHHGVUnicodeString@@0P6AXXZ111_N@Z,,0x0047EF70,1518,Code/masm_dumps/gogoMessageBox_GameWindowManager_UAE_47EF70.asm,matched,icf-owner=?gogoMessageBox@GameWindowManager@@; full mangling MASM alias of string-anchored land; queue had off-by-1 RVA+pad size
-?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/masm_dumps/_gotInternalAddress_NAT__IAEXHI_Z_670D70.asm,matched,MASM exact retail dump
 ?gotMangledPort@NAT@@IAEXHG@Z,,0x00671EB0,179,Code/masm_dumps/_gotMangledPort_NAT__IAEXHG_Z_671EB0.asm,matched,MASM exact retail dump
 ?gotoNextMission@CampaignManager@@QAEPAVMission@@XZ,,0x005BC5A0,32,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
 ?grabHexInt@@YAHPBD@Z,,0x0050B030,54,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
@@ -13738,3 +13737,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007D470,191,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table binds keyword DynamicGameLOD here - was a MASM dump
+?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
