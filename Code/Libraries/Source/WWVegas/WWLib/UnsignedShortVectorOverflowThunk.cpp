@@ -28,4 +28,15 @@ namespace _STL
 			_emit 000h
 		}
 	}
+
+	__declspec(naked) void vector<int, allocator<int> >::_M_insert_overflow(int *, int const &, const __true_type &, unsigned int, bool)
+	{
+		__asm {
+			_emit 0E9h
+			_emit 07Fh
+			_emit 0F0h
+			_emit 009h
+			_emit 000h
+		}
+	}
 }
