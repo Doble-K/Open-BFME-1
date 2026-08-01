@@ -686,10 +686,10 @@ void BattlePlanUpdate::setStatus( TransitionStatus newStatus )
 }
 
 //------------------------------------------------------------------------------------------------
-// ?enableTurret@BattlePlanUpdate@@IAEX_N@Z present-unmatched
 void BattlePlanUpdate::enableTurret( Bool enable )
 {
-	AIUpdateInterface *ai = getObject()->getAI();
+	Object *object = *(Object **)((char *)this + 0x08);
+	AIUpdateInterface *ai = *(AIUpdateInterface **)((char *)object + 0x204);
 	if( ai )
 	{
 		WhichTurretType tur = ai->getWhichTurretForCurWeapon();

@@ -9724,7 +9724,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?enableScoring@ScriptActions@@IAEX_N@Z,,0x002EEBC0,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x90 scoring flag
 ?enableShadowInvisible@Shadow@@QAEX_N@Z,,0x00750520,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
 ?enableShadowRender@Shadow@@QAEX_N@Z,,0x00402180,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
-?enableTurret@BattlePlanUpdate@@IAEX_N@Z,,0x00285870,43,Code/masm_dumps/_rn9__enableTurret_BattlePlanUpdate__IAEX_N_Z_285870.asm,matched,reloc-needle Open-BFME4+Grok
 ?enableWaterGrid@W3DTerrainVisual@@UAEX_N@Z,,0x007309C0,26,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?enableWaterGrid@WaterRenderObjClass@@QAEX_N@Z,,0x000366E7,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for WaterRenderObjClass::enableWaterGrid
 ?enableWindowsInRange@GameWindowManager@@UAEXPAVGameWindow@@HH_N@Z,,0x0047C8C0,62,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0?$DefaultModuleTemplate@$01@FXParticleSystem@@QAE@XZ,,0x005DDC70,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate01CtorThunk.cpp,matched,Open-BFME5 exact C++ DefaultModuleTemplate<$01> constructor; object-symbol=??0?$DefaultModuleTemplate@$01@FXParticleSystem@@QAE@XZ; retail $01 is template 2
 ??1LifeEventModuleInfo@FXParticleSystem@@UAE@XZ,,0x005DDDC0,67,Code/GameEngine/Source/GameClient/System/FXParticleSystem/LifeEventModuleInfoDestructorThunk.cpp,matched,Open-BFME5 exact C++ LifeEventModuleInfo destructor;object-symbol=??1LifeEventModuleInfo@FXParticleSystem@@QAE@XZ;retail UAE identity carried by non-virtual destructor body
 ??0LifeEventModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,,0x005DDE20,109,Code/GameEngine/Source/GameClient/System/FXParticleSystem/LifeEventModuleInfoCopyCtorThunk.cpp,matched,Open-BFME5 exact C++ LifeEventModuleInfo copy constructor;object-symbol=??0LifeEventModuleInfo@FXParticleSystem@@QAE@ABV01@@Z;MASM comment size 276 was stale and ledger target is 109
+?enableTurret@BattlePlanUpdate@@IAEX_N@Z,,0x00285870,43,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,retail object +0x08 and AI +0x204
