@@ -99,3 +99,19 @@ class RecorderClass : public SubsystemInterface {};	// 0x00075290, TheRecorder; 
 // single-inheritance stub emits. Whatever Radar really derives from has to be
 // recovered before the instantiation can be reproduced.
 class ActionManager : public SubsystemInterface {};	// 0x000757E0, TheActionManager; name from ?canOverrideSpecialPowerDestination@ActionManager@@Q
+
+// ScienceStore, 0x00073250. The manifest used to exclude this one because its
+// registration constructs through ??0SubsystemInterface@@ directly, so no
+// class-specific ctor is emitted there. Three things now settle it without one:
+// the site passes the literal "TheScienceStore" as the subsystem name, its first
+// argument is 0x012ED7AC, and Science.cpp binds ?TheScienceStore@@3PAVScienceStore@@A
+// to exactly that address from byte-verified rows -- including
+// friend_parseScienceDefinition, which the INI block table registers for the
+// "Science" keyword and which reads 0x012ED7AC as a store with m_sciences at +0x08.
+// The class name itself is carried by a dozen byte-verified @ScienceStore@@ rows.
+//
+// This also decides the 0x012ED7AC collision noted in the DIR32 whitelist: the
+// address is TheScienceStore, and ControlBar.cpp's commandButtonTooltip is the
+// row referencing the wrong global.
+class ScienceStore : public SubsystemInterface {};
+

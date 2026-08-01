@@ -138,3 +138,4 @@ template void initSubsystem<ScriptEngine>(ScriptEngine *&, AsciiString, ScriptEn
 template void initSubsystem<GameLogic>(GameLogic *&, AsciiString, GameLogic *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<RecorderClass>(RecorderClass *&, AsciiString, RecorderClass *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<ActionManager>(ActionManager *&, AsciiString, ActionManager *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<ScienceStore>(ScienceStore *&, AsciiString, ScienceStore *, Xfer *, const char *, const char *, const char *);
