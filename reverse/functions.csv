@@ -1069,7 +1069,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AIGuardMachine@@,,0x0015D1D0,691,Code/masm_dumps/_sa___0AIGuardMachine___15D1D0.asm,matched,Exact 691B string-anchored Open-BFME4
 ??0AIGuardRetaliateMachine@@,,0x0015F240,327,Code/masm_dumps/_sa4___0AIGuardRetaliateMachine___15F240.asm,matched,Exact 327B Open-BFME4
 ??0AIIdleState@@QAE@PAVStateMachine@@W4AIIdleTargetingType@0@@Z,,0x00180320,71,Code/masm_dumps/AIIdleState_ctor.asm,matched,true body @0x180320 (71B); drift 0x186B04 mid-insn inside AIStateMachine; string-anchored AIIdleState + StringBase@0x888BC0
-??0AIMoveToState@@QAE@PAVStateMachine@@@Z,,0x00173430,50,Code/masm_dumps/AIMoveToState_ctor.asm,matched,true body @0x173430 (50B); drift 0x186CB1 mid-insn inside AIStateMachine; string-anchored AIMoveToState + StringBase(char*)@0x888BC0 + AIInternalMoveToState@0x32182 + vtbl 0x1098F08 m_isMoveTo=1
 ??0AIPanicState@@QAE@PAVStateMachine@@@Z,,0x0017FBE0,82,Code/masm_dumps/AIPanicState_ctor.asm,matched,true body @0x17FBE0 (82B); drift 0x183CA7 mid-insn inside AIAttackFollowWaypointPathState; string/vtable-anchored AIPanicState + StringBase(char*)@0x888BC0 + AIInternalMoveToState@0x32182
 ??0AIStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x00185A20,4930,Code/masm_dumps/__0AIStateMachine__QAE_PAVObject__VAsciiString___Z_185A20.asm,matched,Exact 4930B string-anchored Open-BFME4
 ??0AITNGuardMachine@@,,0x0018AFB0,753,Code/masm_dumps/_sa___0AITNGuardMachine___18AFB0.asm,matched,Exact 753B string-anchored Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AIMoveAwayFromRepulsorsState@@QAE@PAVStateMachine@@@Z,,0x0017F450,54,Code/GameEngine/Source/GameLogic/AI/AIMoveAwayFromRepulsorsStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIMoveAndDeleteState@@QAE@PAVStateMachine@@@Z,,0x0017FD70,50,Code/GameEngine/Source/GameLogic/AI/AIMoveAndDeleteStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIMoveAndEvacuateState@@QAE@PAVStateMachine@@@Z,,0x0017FD10,57,Code/GameEngine/Source/GameLogic/AI/AIMoveAndEvacuateStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
+??0AIMoveToState@@QAE@PAVStateMachine@@@Z,,0x00173430,50,Code/GameEngine/Source/GameLogic/AI/AIMoveToStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
