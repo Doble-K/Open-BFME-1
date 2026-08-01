@@ -13680,7 +13680,6 @@ _GetSoloINIFromMap,,0x0066DD40,211,Code/GameEngine/Source/GameNetwork/FileTransf
 _GetStrFileFromMap,,0x0066DC30,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _HUFF_decode@12,,0x00822EB0,20,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,
 _InitStatsConnection,,0x009D58C0,47,Code/masm_dumps/_sym3__InitStatsConnection_9D58C0.asm,matched,symbol-pin Open-BFME4+Grok
-_IsStatsConnected,,0x009D2B60,15,Code/masm_dumps/_sym4__IsStatsConnected_9D2B60.asm,matched,symbol Open-BFME4+Grok
 _NetGameUtilControl,,0x0080E5E0,219,Code/Libraries/Source/DirtySock/netgameutil.cpp,matched,
 _ProtoMangleCreate,,0x00804150,245,Code/Libraries/Source/DirtySock/protomangle.cpp,matched,
 _ProtoMangleDestroy,,0x00804330,80,Code/Libraries/Source/DirtySock/protomangle.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0HTreeClass@@QAE@XZ,,0x00952210,20,Code/Libraries/Source/WWVegas/WW3D2/HTreeClass.cpp,matched,Exact retail HTreeClass constructor emitted in dedicated C++ TU.
 ?Get_Diffuse@VertexMaterialClass@@QBEXPAVVector3@@@Z,,0x009219F0,28,Code/Libraries/Source/WWVegas/WW3D2/VertexMaterialDiffuse.cpp,matched,Exact retail VertexMaterialClass::Get_Diffuse emitted in dedicated C++ TU.
 ?getNextVertexBuffer@W3DBufferManager@@QAEPAUW3DVertexBuffer@1@PAU21@W4VBM_FVF_TYPES@1@@Z,,0x007B7CF0,28,Code/Libraries/Source/WWVegas/WW3D2/W3DBufferManagerVertexBuffer.cpp,matched,Exact retail W3DBufferManager accessor emitted in dedicated C++ TU.
+_IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConnection.cpp,matched,Exact retail stats connection query emitted in dedicated C++ TU.
