@@ -816,14 +816,25 @@ void DX8Caps::Check_Maximum_Texture_Support(const D3DCAPS8& caps)
 	MaxSimultaneousTextures=caps.MaxSimultaneousTextures;
 }
 
-// ?Check_Shader_Support@DX8Caps@@AAEXABU_D3DCAPS8@@@Z present-unmatched
+struct BFME_DX8Caps_CheckShaderFields
+{
+	char pad[0x27c];
+	int vertexShaderVersion;
+	int pixelShaderVersion;
+	char padAfterVersions[0x20];
+	StringClass capsLog;
+};
+
+// ?Check_Shader_Support@DX8Caps@@AAEXABU_D3DCAPS8@@@Z
 void DX8Caps::Check_Shader_Support(const D3DCAPS8& caps)
 {
-	VertexShaderVersion=caps.VertexShaderVersion;
-	PixelShaderVersion=caps.PixelShaderVersion;
-	DXLOG(("Vertex shader version: %d.%d, pixel shader version: %d.%d\r\n",
-		(VertexShaderVersion>>8)&0xff,VertexShaderVersion&0xff,
-		(PixelShaderVersion>>8)&0xff,PixelShaderVersion&0xff));
+	BFME_DX8Caps_CheckShaderFields *retail = (BFME_DX8Caps_CheckShaderFields *)this;
+	retail->vertexShaderVersion = caps.VertexShaderVersion;
+	retail->pixelShaderVersion = caps.PixelShaderVersion;
+	CapsWorkString.Format("Vertex shader version: %d.%d, pixel shader version: %d.%d\r\n",
+		(retail->vertexShaderVersion>>8)&0xff,retail->vertexShaderVersion&0xff,
+		(retail->pixelShaderVersion>>8)&0xff,retail->pixelShaderVersion&0xff);
+	retail->capsLog += CapsWorkString;
 }
 
 // ?Check_Driver_Version_Status@DX8Caps@@AAEXXZ
@@ -1001,4 +1012,3 @@ void DX8Caps::Vendor_Specific_Hacks(const D3DADAPTER_IDENTIFIER8& adapter_id)
 
 	}
 }
-
