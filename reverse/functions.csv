@@ -7815,7 +7815,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Ambient_Light@SceneClass@@UAEXABVVector3@@@Z,,0x006FCAF0,24,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 ?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@M0MM@Z,,0x009822C0,99,Code/masm_dumps/_sym2__Set_Animation_Animatable3DObjClass__UAEXPAVHAnimClass__M0MM_Z_9822C0.asm,matched,symbol-pin Open-BFME4+Grok
 ?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@MH@Z,,0x00982190,301,Code/masm_dumps/_sym1__Set_Animation_Animatable3DObjClass__UAEXPAVHAnimClass__MH_Z_982190.asm,matched,symbol-pin Open-BFME4+Grok
-?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimComboClass@@@Z,,0x00982330,39,Code/masm_dumps/_sym4__Set_Animation_Animatable3DObjClass__UAEXPAVHAnimComboClass___Z_982330.asm,matched,symbol Open-BFME4+Grok
 ?Set_Animation@Animatable3DObjClass@@UAEXXZ,,0x00982170,27,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Set_Animation@HLodClass@@UAEXPAVHAnimClass@@M0MM@Z,,0x0097A250,46,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Set_Animation@HLodClass@@UAEXPAVHAnimClass@@MH@Z,,0x0097A220,36,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Peek_D3D_Base_Texture@TextureBaseClass@@QBEPAUIDirect3DBaseTexture8@@XZ,,0x0090DC60,37,Code/Libraries/Source/WWVegas/WW3D2/texture.cpp,matched,Open-BFME5 exact C++ raw texture accessor
 ?Set_Device_Resolution@WW3D@@SA?AW4WW3DErrorType@@HHHH_N@Z,,0x008FD1C0,39,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,Open-BFME5 exact C++ raw device resolution wrapper
 ?deleteShadowVolume@W3DVolumetricShadow@@IAEXH@Z,,0x007BAFA0,142,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,Exact 142B clean C++ deleteShadowVolume; TU-local BFME 0x30 layout shim; MASM removed
+?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimComboClass@@@Z,,0x00982330,39,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,Open-BFME5 exact C++ raw animation combo setter
