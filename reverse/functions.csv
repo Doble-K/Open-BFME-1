@@ -1594,7 +1594,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HordeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C43A0,141,Code/masm_dumps/HordeAIUpdate_constructor.asm,matched,Exact 141B @ 0x002C43A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A680
 ??0HordeAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/HordeAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0HordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0023EAF0,819,Code/masm_dumps/HordeContain_constructor.asm,matched,Exact 819B @ 0x0023EAF0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115D60
-??0HordeContainModuleData@@QAE@XZ,,0x00220530,28,Code/masm_dumps/HordeContainModuleData_constructor.asm,matched,Exact 28B unique factory Open-BFME4
 ??0HordeGarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00248F90,175,Code/masm_dumps/HordeGarrisonContain_constructor.asm,matched,Exact 175B @ 0x00248F90; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1160C0
 ??0HordeGarrisonContainModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/HordeGarrisonContainModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0HordeSiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024A560,307,Code/masm_dumps/HordeSiegeEngineContain_constructor.asm,matched,Exact 307B @ 0x0024A560; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1163F0
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0MaxHealthUpgradeModuleData@@QAE@XZ,,0x002D6590,29,Code/GameEngine/Source/GameLogic/Object/Upgrade/MaxHealthUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0CombineHordeSpecialPowerModuleData@@QAE@XZ,,0x002598A0,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/CombineHordeSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0DefectorSpecialPowerModuleData@@QAE@XZ,,0x0025A110,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/DefectorSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
+??0HordeContainModuleData@@QAE@XZ,,0x00220530,28,Code/GameEngine/Source/GameLogic/Object/Update/HordeUpdateModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
