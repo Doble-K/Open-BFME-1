@@ -8681,7 +8681,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?buildRegion@@YAXPBUICoord2D@@0PAUIRegion2D@@@Z,,0x0008AA00,69,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?buildRegion@InGameUI@@UAEXPBUICoord2D@@0PAUIRegion2D@@@Z,,0x0043B7F0,73,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?buildSpecificAITeam@AIPlayer@@UAEXPAVTeamPrototype@@_N@Z,,0x001650F0,1335,Code/masm_dumps/_str__buildSpecificAITeam_AIPlayer_UAEXPAVTeamPrototype__N_Z_1650F0.asm,matched,
-?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z,,0x0002248F,5,Code/masm_dumps/_thunk_2c5ac2a20216_2248F.asm,matched,thunk accessor of ported class
 ?buildTransformMatrix@Matrix3D@@QAEXABVVector3@@0@Z,,0x008D6BC0,401,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
 ?buildUpgrade@AIPlayer@@QAEXABVAsciiString@@@Z,,0x001636D0,1089,Code/masm_dumps/_str__buildUpgrade_AIPlayer_QAEXABVAsciiString_Z_1636D0.asm,matched,
 ?buttonTriggersOnMouseDown@@YA_NPAVGameWindow@@@Z,,0x004BBD20,36,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetPushButton.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?parseSoundsList@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E9C4,5,Code/GameEngine/Source/Common/RTS/INIParseSoundsListThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ?estimateWeaponDamage@Weapon@@IAEMPBVObject@@0PBUCoord3D@@@Z,,0x0001366F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectSetStatusThunk.cpp,matched,object-symbol=?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z;ICF alias converted to focused C++ thunk TU
 ?parseScienceVector@INI@@SAXPAV1@PAX1PBX@Z,,0x00042609,5,Code/GameEngine/Source/Common/RTS/INIParseScienceVectorThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
+?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z,,0x0002248F,5,Code/Libraries/Source/WWVegas/WWLib/W3DRadarBuildTerrainTextureThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
