@@ -1773,7 +1773,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OneRingPenaltyUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298E10,157,Code/masm_dumps/OneRingPenaltyUpdate_ctor.asm,matched,Ghidra-owned BFME One Ring penalty constructor
 ??0OneRingPenaltyUpdateModuleData@@QAE@XZ,,0x00298D30,32,Code/GameEngine/Source/GameLogic/Object/Update/OneRingPenaltyUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ??0OpenContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002277A0,722,Code/masm_dumps/OpenContain_constructor.asm,matched,Exact 722B @ 0x002277A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115960
-??0OpenContainModuleData@@QAE@XZ,,0x00227200,398,Code/masm_dumps/OpenContainModuleData_constructor.asm,matched,Exact 398B ICF alias MD Open-BFME4
 ??0OptionPreferences@@QAE@XZ,,0x0003713C,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0OrphanData@@QAE@XZ,,0x0020A7A0,20,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehavior.cpp,matched,
 ??0OrthoEmissionVelocityInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00003FB2,0x005D6DA0,93,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0HorseHordeContainModuleData@@QAE@XZ,,0x002472D0,531,Code/GameEngine/Source/GameLogic/AI/HorseHordeContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0GarrisonContainModuleData@@QAE@XZ,,0x0022F7E0,153,Code/GameEngine/Source/GameLogic/AI/GarrisonContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CaveContainModuleData@@QAE@XZ,,0x00227200,398,Code/GameEngine/Source/GameLogic/AI/CaveContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
+??0OpenContainModuleData@@QAE@XZ,,0x00227200,398,Code/GameEngine/Source/GameLogic/AI/OpenContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
