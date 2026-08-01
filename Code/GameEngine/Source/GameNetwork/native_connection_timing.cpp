@@ -41,6 +41,10 @@ public:
 	void updateFileProgress();
 	void buildPlayerStatusText(void *out);
 	void queueLocalCommand(void *msg);
+	void attachPlayersFromGameInfo(void *gameInfo);
+	void resolvePlayerFromName(void *msg);
+	void sendFileToPlayers(const char *path);
+	void sendFileAnnouncement(const char *path, int playerMask);
 	void processAckCommand(void *msg);
 	void beginPlayerLeave(void *msg);
 	void resendFrameRangeToPlayer(int playerID, unsigned int startFrame, unsigned int endFrame);
@@ -6134,6 +6138,1111 @@ L12_663048:
 		mov dword ptr fs:[0h], ecx
 		pop ebx
 		add esp, 0Ch
+		ret 8h
+	}
+}
+
+// Populates the per-player state from the lobby's GameInfo: for each slot it
+// checks GameSlot::isHuman, copies the name out with GameSlot::getName, fills
+// the id array at this+0x12030, and constructs that slot's FrameDataManager
+// (0x00670410) into this+0x120E4.
+__declspec(naked) void BFMEConnectionManager::attachPlayersFromGameInfo(void *gameInfo)
+{
+	__asm {
+		push 0FFFFFFFFh
+		mov eax, dword ptr fs:[0h]
+		push 1044339h
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 20h
+		push ebx
+		push ebp
+		push esi
+		mov esi, dword ptr [esp+3Ch]
+		test esi, esi
+		push edi
+		mov ebx, ecx
+		je L00_666850
+		mov eax, dword ptr [esi]
+		mov ecx, esi
+		call dword ptr [eax+14h]
+		xor ecx, ecx
+		mov cx, ax
+		mov dword ptr [ebx+12028h], eax
+		push ecx
+		__emit 0E8h
+		__emit 092h
+		__emit 0B8h
+		__emit 09Ch
+		__emit 0FFh   // call 0x31EE4
+		add esp, 4h
+		xor ebp, ebp
+		lea edx,  [ebx+12030h]
+		mov dword ptr [esp+14h], ebp
+		mov dword ptr [esp+10h], edx
+		lea edi,  [ebx+120E4h]
+		jmp L01_666671
+L12_66666D:
+		mov esi, dword ptr [esp+40h]
+L01_666671:
+		push ebp
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0E7h
+		__emit 02Dh
+		__emit 09Ch
+		__emit 0FFh   // call 0x29460
+		mov esi, eax
+		test esi, esi
+		je L02_66683F
+		mov ecx, esi
+		__emit 0E8h
+		__emit 041h
+		__emit 013h
+		__emit 09Ch
+		__emit 0FFh   // call 0x279CB
+		test al, al
+		je L02_66683F
+		cmp ebp, dword ptr [ebx+12028h]
+		jne L03_666701
+		lea eax,  [esp+18h]
+		push eax
+		mov ecx, esi
+		__emit 0E8h
+		__emit 065h
+		__emit 03Bh
+		__emit 09Dh
+		__emit 0FFh   // call 0x3A20B
+		lea ecx,  [ebx+12058h]
+		push eax
+		mov dword ptr [esp+3Ch], 0h
+		__emit 0E8h
+		__emit 076h
+		__emit 01Eh
+		__emit 022h
+		__emit 000h   // call 0x888530
+		or esi, 0FFFFFFFFh
+		lea ecx,  [esp+18h]
+		mov dword ptr [esp+38h], esi
+		__emit 0E8h
+		__emit 006h
+		__emit 01Bh
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		push 10h
+		__emit 0E8h
+		__emit 05Fh
+		__emit 0B8h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+14h], eax
+		test eax, eax
+		mov dword ptr [esp+38h], 1h
+		je L04_6666F6
+		push 1h
+		mov ecx, eax
+		__emit 0E8h
+		__emit 039h
+		__emit 0E5h
+		__emit 09Bh
+		__emit 0FFh   // call 0x24C26
+		mov dword ptr [esp+38h], esi
+		jmp L05_666822
+L04_6666F6:
+		xor eax, eax
+		mov dword ptr [esp+38h], esi
+		jmp L05_666822
+L03_666701:
+		push 358h
+		__emit 0E8h
+		__emit 025h
+		__emit 0B8h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+24h], eax
+		test eax, eax
+		mov dword ptr [esp+38h], 2h
+		je L06_666727
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0A7h
+		__emit 0CAh
+		__emit 09Ch
+		__emit 0FFh   // call 0x331CC
+		jmp L07_666729
+L06_666727:
+		xor eax, eax
+L07_666729:
+		lea ecx,  [esp+1Ch]
+		push ecx
+		or ebp, 0FFFFFFFFh
+		mov ecx, esi
+		mov dword ptr [esp+3Ch], ebp
+		mov dword ptr [edi-120E0h], eax
+		__emit 0E8h
+		__emit 0C9h
+		__emit 03Ah
+		__emit 09Dh
+		__emit 0FFh   // call 0x3A20B
+		mov edx, dword ptr [ebx+12024h]
+		mov ecx, dword ptr [edi-120E0h]
+		push edx
+		push eax
+		lea eax,  [esi+30h]
+		push eax
+		mov dword ptr [esp+44h], 3h
+		__emit 0E8h
+		__emit 03Ah
+		__emit 0E7h
+		__emit 09Ch
+		__emit 0FFh   // call 0x34E9B
+		lea ecx,  [esp+1Ch]
+		mov dword ptr [esp+38h], ebp
+		__emit 0E8h
+		__emit 062h
+		__emit 01Ah
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		__emit 0A0h
+		__emit 0E9h
+		__emit 0D4h
+		__emit 02Eh
+		__emit 001h   // mov al, byte ptr [0x12ed4e9]
+		test al, al
+		je L08_6667F3
+		mov ecx, dword ptr [ebx+12024h]
+		push ecx
+		lea edx,  [esp+24h]
+		push edx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 081h
+		__emit 03Ah
+		__emit 09Dh
+		__emit 0FFh   // call 0x3A20B
+		push eax
+		__emit 0A1h
+		__emit 0F0h
+		__emit 0D4h
+		__emit 02Eh
+		__emit 001h   // mov eax, dword ptr [0x12ed4f0]
+		test eax, eax
+		mov dword ptr [esp+40h], 4h
+		lea ebp,  [eax+8h]
+		jne L09_6667A4
+		mov ebp, 107388Bh
+L09_6667A4:
+		push ecx
+		mov dword ptr [esp+30h], esp
+		mov ecx, esp
+		push 12ED4ECh
+		__emit 0E8h
+		__emit 0ABh
+		__emit 013h
+		__emit 022h
+		__emit 000h   // call 0x887B60
+		__emit 0E8h
+		__emit 04Eh
+		__emit 074h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3DC08
+		push ebp
+		mov esi, eax
+		__emit 0FFh
+		__emit 015h
+		__emit 084h
+		__emit 093h
+		__emit 035h
+		__emit 001h   // call dword ptr [0x1359384]
+		mov ecx, dword ptr [edi-120E0h]
+		mov word ptr [esp+3Ch], ax
+		add esp, 8h
+		lea eax,  [esp+30h]
+		push eax
+		mov dword ptr [esp+34h], esi
+		__emit 0E8h
+		__emit 0BCh
+		__emit 0E6h
+		__emit 09Ch
+		__emit 0FFh   // call 0x34E9B
+		lea ecx,  [esp+20h]
+		mov dword ptr [esp+38h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 0E0h
+		__emit 019h
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		or ebp, 0FFFFFFFFh
+L08_6667F3:
+		push 10h
+		__emit 0E8h
+		__emit 036h
+		__emit 0B7h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+24h], eax
+		test eax, eax
+		mov dword ptr [esp+38h], 5h
+		je L10_666818
+		push 0h
+		mov ecx, eax
+		__emit 0E8h
+		__emit 010h
+		__emit 0E4h
+		__emit 09Bh
+		__emit 0FFh   // call 0x24C26
+		jmp L11_66681A
+L10_666818:
+		xor eax, eax
+L11_66681A:
+		mov dword ptr [esp+38h], ebp
+		mov ebp, dword ptr [esp+14h]
+L05_666822:
+		mov ecx, eax
+		mov dword ptr [edi], eax
+		__emit 0E8h
+		__emit 0B7h
+		__emit 0AAh
+		__emit 09Bh
+		__emit 0FFh   // call 0x212E2
+		mov ecx, dword ptr [edi]
+		__emit 0E8h
+		__emit 014h
+		__emit 07Dh
+		__emit 09Ch
+		__emit 0FFh   // call 0x2E546
+		mov eax, dword ptr [esp+10h]
+		mov dword ptr [eax], ebp
+		add eax, 4h
+		mov dword ptr [esp+10h], eax
+L02_66683F:
+		inc ebp
+		add edi, 4h
+		cmp ebp, 8h
+		mov dword ptr [esp+14h], ebp
+		jl L12_66666D
+L00_666850:
+		mov ecx, dword ptr [esp+30h]
+		pop edi
+		pop esi
+		pop ebp
+		mov dword ptr fs:[0h], ecx
+		pop ebx
+		add esp, 2Ch
+		ret 4h
+	}
+}
+
+// Turns a player name into a Player. It formats the name into a UnicodeString,
+// puts it through NameKeyGenerator::nameToKey, and looks the result up with
+// PlayerList::findPlayerWithNameKey.
+__declspec(naked) void BFMEConnectionManager::resolvePlayerFromName(void *msg)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 1044420h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 1Ch
+		push ebx
+		push ebp
+		push esi
+		xor ebx, ebx
+		push edi
+		mov ebp, ecx
+		mov dword ptr [esp+10h], ebx
+		mov esi, dword ptr [esp+3Ch]
+		lea eax,  [esp+18h]
+		push eax
+		mov ecx, esi
+		mov dword ptr [esp+38h], ebx
+		__emit 0E8h
+		__emit 0A0h
+		__emit 0E2h
+		__emit 09Bh
+		__emit 0FFh   // call 0x25338
+		mov eax, dword ptr [eax]
+		cmp eax, ebx
+		mov byte ptr [esp+34h], 1h
+		je L00_6670A8
+		add eax, 8h
+		jmp L01_6670AD
+L00_6670A8:
+		mov eax, 107388Ch
+L01_6670AD:
+		push eax
+		mov eax, dword ptr [esi+0Ch]
+		push eax
+		lea ecx,  [esp+44h]
+		push ecx
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 0A4h
+		__emit 0B9h
+		__emit 09Ah
+		__emit 0FFh   // call 0x12A62
+		mov eax, dword ptr [eax]
+		cmp eax, ebx
+		mov byte ptr [esp+38h], 2h
+		je L02_6670CE
+		add eax, 8h
+		jmp L03_6670D3
+L02_6670CE:
+		mov eax, 107388Ch
+L03_6670D3:
+		push eax
+		push ecx
+		mov dword ptr [esp+28h], esp
+		mov ecx, esp
+		push 1117AECh
+		__emit 0E8h
+		__emit 0FBh
+		__emit 01Ch
+		__emit 022h
+		__emit 000h   // call 0x888DE0
+		lea edx,  [esp+1Ch]
+		push edx
+		__emit 0E8h
+		__emit 0A1h
+		__emit 020h
+		__emit 022h
+		__emit 000h   // call 0x889190
+		add esp, 10h
+		lea ecx,  [esp+3Ch]
+		mov byte ptr [esp+34h], 1h
+		__emit 0E8h
+		__emit 0D0h
+		__emit 010h
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		lea ecx,  [esp+18h]
+		mov byte ptr [esp+34h], 0h
+		__emit 0E8h
+		__emit 0C2h
+		__emit 010h
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		mov eax, dword ptr [esi+0Ch]
+		cmp eax, 8h
+		jae L04_66726B
+		__emit 08Bh
+		__emit 00Dh
+		__emit 08Ch
+		__emit 070h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f708c]
+		push eax
+		__emit 0E8h
+		__emit 0F2h
+		__emit 07Ah
+		__emit 09Bh
+		__emit 0FFh   // call 0x1EC18
+		add eax, 2Ch
+		push eax
+		lea ecx,  [esp+18h]
+		__emit 0E8h
+		__emit 02Dh
+		__emit 00Ah
+		__emit 022h
+		__emit 000h   // call 0x887B60
+		mov eax, dword ptr [esp+14h]
+		cmp eax, ebx
+		mov byte ptr [esp+34h], 3h
+		je L05_667145
+		add eax, 8h
+		jmp L06_66714A
+L05_667145:
+		mov eax, 107388Bh
+L06_66714A:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 000h
+		__emit 0D6h
+		__emit 02Eh
+		__emit 001h   // mov ecx, dword ptr [0x12ed600]
+		push eax
+		__emit 0E8h
+		__emit 081h
+		__emit 03Ch
+		__emit 09Dh
+		__emit 0FFh   // call 0x3ADD7
+		__emit 08Bh
+		__emit 00Dh
+		__emit 048h
+		__emit 0D7h
+		__emit 02Eh
+		__emit 001h   // mov ecx, dword ptr [0x12ed748]
+		push eax
+		__emit 0E8h
+		__emit 024h
+		__emit 084h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2F586
+		mov edi, eax
+		cmp edi, ebx
+		jne L07_6671C6
+		__emit 08Bh
+		__emit 00Dh
+		__emit 068h
+		__emit 0D6h
+		__emit 02Eh
+		__emit 001h   // mov ecx, dword ptr [0x12ed668]
+		cmp ecx, ebx
+		je L08_66718F
+		mov eax, dword ptr [ecx]
+		call dword ptr [eax+124h]
+		cmp eax, ebx
+		je L08_66718F
+		__emit 08Bh
+		__emit 00Dh
+		__emit 068h
+		__emit 0D6h
+		__emit 02Eh
+		__emit 001h   // mov ecx, dword ptr [0x12ed668]
+		mov edx, dword ptr [ecx]
+		add eax, 0C40h
+		push eax
+		call dword ptr [edx+44h]
+L08_66718F:
+		mov eax, dword ptr [esp+10h]
+		cmp eax, ebx
+		je L09_66719C
+		add eax, 8h
+		jmp L10_6671A1
+L09_66719C:
+		mov eax, 107388Ch
+L10_6671A1:
+		push eax
+		push ecx
+		mov dword ptr [esp+44h], esp
+		mov ecx, esp
+		push 10FF4BCh
+		__emit 0E8h
+		__emit 02Dh
+		__emit 01Ch
+		__emit 022h
+		__emit 000h   // call 0x888DE0
+		__emit 0A1h
+		__emit 08Ch
+		__emit 014h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f148c]
+		mov ecx, dword ptr [eax]
+		push eax
+		call dword ptr [ecx+40h]
+		add esp, 0Ch
+		jmp L11_66725D
+L07_6671C6:
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0F0h
+		__emit 007h
+		__emit 09Bh
+		__emit 0FFh   // call 0x179BD
+		neg al
+		sbb al, al
+		inc al
+		mov byte ptr [esp+3Ch], al
+		jne L12_6671F3
+		mov eax, dword ptr [esi+0Ch]
+		__emit 08Bh
+		__emit 00Dh
+		__emit 08Ch
+		__emit 070h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f708c]
+		push eax
+		__emit 0E8h
+		__emit 078h
+		__emit 022h
+		__emit 09Ch
+		__emit 0FFh   // call 0x29460
+		mov cl, byte ptr [eax+0Ah]
+		test cl, cl
+		jne L12_6671F3
+		mov bl, 1h
+		jmp L13_6671F5
+L12_6671F3:
+		xor bl, bl
+L13_6671F5:
+		mov ecx, esi
+		__emit 0E8h
+		__emit 020h
+		__emit 0B9h
+		__emit 099h
+		__emit 0FFh   // call 0x2B1C
+		mov ecx, dword ptr [ebp+12028h]
+		mov edx, 1h
+		shl edx, cl
+		__emit 085h
+		__emit 0C2h   // test edx, eax
+		je L11_66725D
+		test bl, bl
+		je L11_66725D
+		__emit 0E8h
+		__emit 0CAh
+		__emit 0BAh
+		__emit 0FFh
+		__emit 0FFh   // call 0x662CE0
+		mov eax, dword ptr [edi+1C4h]
+		push eax
+		lea ecx,  [esp+24h]
+		__emit 0E8h
+		__emit 0A1h
+		__emit 05Bh
+		__emit 09Ch
+		__emit 0FFh   // call 0x2CDC7
+		mov eax, dword ptr [esp+10h]
+		test eax, eax
+		je L14_667233
+		add eax, 8h
+		jmp L15_667238
+L14_667233:
+		mov eax, 107388Ch
+L15_667238:
+		push eax
+		push ecx
+		mov dword ptr [esp+44h], esp
+		mov ecx, esp
+		push 10FF4BCh
+		__emit 0E8h
+		__emit 096h
+		__emit 01Bh
+		__emit 022h
+		__emit 000h   // call 0x888DE0
+		__emit 0A1h
+		__emit 08Ch
+		__emit 014h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f148c]
+		mov ecx, dword ptr [eax]
+		lea edx,  [esp+28h]
+		push edx
+		push eax
+		call dword ptr [ecx+38h]
+		add esp, 10h
+L11_66725D:
+		lea ecx,  [esp+14h]
+		mov byte ptr [esp+34h], 0h
+		__emit 0E8h
+		__emit 0D5h
+		__emit 006h
+		__emit 022h
+		__emit 000h   // call 0x887940
+L04_66726B:
+		lea ecx,  [esp+10h]
+		mov dword ptr [esp+34h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 054h
+		__emit 00Fh
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		mov ecx, dword ptr [esp+2Ch]
+		pop edi
+		pop esi
+		pop ebp
+		mov dword ptr fs:[0h], ecx
+		pop ebx
+		add esp, 28h
+		ret 4h
+	}
+}
+
+// Opens a file through TheFileSystem and pushes it out as wrapped commands,
+// registering the transfer in the map at this+0x12130 and stamping each message
+// with a fresh command id from 0x00682D10.
+__declspec(naked) void BFMEConnectionManager::sendFileToPlayers(const char *path)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104467Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push ebx
+		push ebp
+		push esi
+		mov esi, dword ptr [esp+20h]
+		push edi
+		lea eax,  [esp+24h]
+		mov ebx, ecx
+		push eax
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0C3h
+		__emit 001h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1A00F
+		mov eax, dword ptr [eax]
+		test eax, eax
+		mov dword ptr [esp+1Ch], 0h
+		je L00_669E5F
+		add eax, 8h
+		jmp L01_669E64
+L00_669E5F:
+		mov eax, 107388Bh
+L01_669E64:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 048h
+		__emit 0CBh
+		__emit 034h
+		__emit 001h   // mov ecx, dword ptr [0x134cb48]
+		push eax
+		__emit 0E8h
+		__emit 030h
+		__emit 0E8h
+		__emit 035h
+		__emit 000h   // call 0x9C86A0
+		lea ecx,  [esp+24h]
+		mov dword ptr [esp+1Ch], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 0BFh
+		__emit 0DAh
+		__emit 021h
+		__emit 000h   // call 0x887940
+		mov ecx, esi
+		__emit 0E8h
+		__emit 010h
+		__emit 017h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3B598
+		mov ecx, esi
+		mov ebp, eax
+		__emit 0E8h
+		__emit 02Ch
+		__emit 049h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1E7BD
+		lea ecx,  [esp+24h]
+		push ecx
+		mov ecx, esi
+		mov dword ptr [esp+14h], eax
+		__emit 0E8h
+		__emit 06Eh
+		__emit 001h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1A00F
+		mov eax, dword ptr [eax]
+		test eax, eax
+		mov dword ptr [esp+1Ch], 1h
+		je L02_669EB4
+		add eax, 8h
+		jmp L03_669EB9
+L02_669EB4:
+		mov eax, 107388Bh
+L03_669EB9:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 048h
+		__emit 0CBh
+		__emit 034h
+		__emit 001h   // mov ecx, dword ptr [0x134cb48]
+		push 4Ah
+		push eax
+		__emit 0E8h
+		__emit 099h
+		__emit 0E9h
+		__emit 035h
+		__emit 000h   // call 0x9C8860
+		lea ecx,  [esp+24h]
+		mov edi, eax
+		mov dword ptr [esp+1Ch], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 066h
+		__emit 0DAh
+		__emit 021h
+		__emit 000h   // call 0x887940
+		test edi, edi
+		je L04_669EF2
+		mov eax, dword ptr [esp+10h]
+		mov edx, dword ptr [edi]
+		push eax
+		push ebp
+		mov ecx, edi
+		call dword ptr [edx+10h]
+		mov edx, dword ptr [edi]
+		mov ecx, edi
+		call dword ptr [edx+8h]
+L04_669EF2:
+		movzx ebp, word ptr [esi+10h]
+		lea eax,  [esp+24h]
+		push eax
+		mov eax, dword ptr [ebx+12028h]
+		__emit 08Dh
+		__emit 00Ch
+		__emit 040h   // lea ecx, [eax + eax*2]
+		lea ecx,  [ebx+ecx*4+12130h]
+		mov dword ptr [esp+28h], ebp
+		__emit 0E8h
+		__emit 0DDh
+		__emit 063h
+		__emit 09Ch
+		__emit 0FFh   // call 0x302F1
+		mov dword ptr [eax], 64h
+		mov ecx, dword ptr [ebx+12028h]
+		mov edi, 1h
+		shl edi, cl
+		push 24h
+		xor edi, 0FFh
+		__emit 0E8h
+		__emit 0FCh
+		__emit 07Fh
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+24h], eax
+		test eax, eax
+		mov dword ptr [esp+1Ch], 2h
+		je L05_669F52
+		mov ecx, eax
+		__emit 0E8h
+		__emit 08Ch
+		__emit 06Ah
+		__emit 09Dh
+		__emit 0FFh   // call 0x409DA
+		mov esi, eax
+		jmp L06_669F54
+L05_669F52:
+		xor esi, esi
+L06_669F54:
+		mov edx, dword ptr [ebx+12028h]
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov dword ptr [esp+20h], 0FFFFFFFFh
+		mov dword ptr [esi+0Ch], edx
+		mov word ptr [esi+10h], 0h
+		__emit 0E8h
+		__emit 0FEh
+		__emit 0BBh
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L07_669F84
+		__emit 0E8h
+		__emit 0D8h
+		__emit 065h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L07_669F84:
+		push ebp
+		mov ecx, esi
+		__emit 0E8h
+		__emit 062h
+		__emit 0A8h
+		__emit 09Bh
+		__emit 0FFh   // call 0x247EE
+		push 64h
+		mov ecx, esi
+		__emit 0E8h
+		__emit 021h
+		__emit 0B4h
+		__emit 09Ah
+		__emit 0FFh   // call 0x153B6
+		push edi
+		push esi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 0DCh
+		__emit 051h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		push esi
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 0CDh
+		__emit 063h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30373
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0F7h
+		__emit 060h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+14h]
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret 4h
+	}
+}
+
+// Announces a file transfer to the other players: opens the file to size it,
+// builds the announcement command, and sends it with sendLocalCommand.
+__declspec(naked) void BFMEConnectionManager::sendFileAnnouncement(const char *path, int playerMask)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 10446D3h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 10h
+		push ebx
+		push ebp
+		push esi
+		push edi
+		mov ebp, ecx
+		mov eax, dword ptr [esp+30h]
+		xor ebx, ebx
+		cmp eax, ebx
+		mov dword ptr [esp+28h], ebx
+		je L00_66A1A1
+		add eax, 8h
+		jmp L01_66A1A6
+L00_66A1A1:
+		mov eax, 107388Bh
+L01_66A1A6:
+		__emit 08Bh
+		__emit 00Dh
+		__emit 048h
+		__emit 0CBh
+		__emit 034h
+		__emit 001h   // mov ecx, dword ptr [0x134cb48]
+		push ebx
+		push eax
+		__emit 0E8h
+		__emit 0ADh
+		__emit 0E6h
+		__emit 035h
+		__emit 000h   // call 0x9C8860
+		mov esi, eax
+		cmp esi, ebx
+		je L02_66A2A4
+		mov eax, dword ptr [esi]
+		mov ecx, esi
+		call dword ptr [eax+2Ch]
+		test eax, eax
+		je L02_66A2A4
+		mov edx, dword ptr [esi]
+		mov ecx, esi
+		call dword ptr [edx+8h]
+		mov ecx, dword ptr [ebp+12028h]
+		mov edi, 1h
+		shl edi, cl
+		push 24h
+		xor edi, 0FFh
+		__emit 0E8h
+		__emit 043h
+		__emit 07Dh
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+10h], eax
+		cmp eax, ebx
+		mov byte ptr [esp+28h], 3h
+		je L03_66A208
+		mov ecx, eax
+		__emit 0E8h
+		__emit 00Dh
+		__emit 0BDh
+		__emit 09Dh
+		__emit 0FFh   // call 0x45F11
+		mov esi, eax
+		jmp L04_66A20A
+L03_66A208:
+		xor esi, esi
+L04_66A20A:
+		mov eax, dword ptr [ebp+12028h]
+		mov dword ptr [esi+0Ch], eax
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov byte ptr [esp+2Ch], bl
+		__emit 0E8h
+		__emit 052h
+		__emit 0B9h
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		cmp al, 1h
+		jne L05_66A230
+		__emit 0E8h
+		__emit 02Ch
+		__emit 063h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L05_66A230:
+		push ecx
+		lea eax,  [esp+34h]
+		mov dword ptr [esp+18h], esp
+		mov ecx, esp
+		push eax
+		__emit 0E8h
+		__emit 01Fh
+		__emit 0D9h
+		__emit 021h
+		__emit 000h   // call 0x887B60
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0E8h
+		__emit 04Ah
+		__emit 09Bh
+		__emit 0FFh   // call 0x1ED30
+		mov ecx, dword ptr [esp+34h]
+		push ecx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 095h
+		__emit 071h
+		__emit 09Dh
+		__emit 0FFh   // call 0x413E9
+		__emit 0E8h
+		__emit 0FFh
+		__emit 062h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov ecx, esi
+		mov ebx, eax
+		push ebx
+		__emit 0E8h
+		__emit 020h
+		__emit 072h
+		__emit 099h
+		__emit 0FFh   // call 0x1483
+		push esi
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 089h
+		__emit 0E7h
+		__emit 099h
+		__emit 0FFh   // call 0x89F4
+		push edi
+		push esi
+		mov ecx, ebp
+		__emit 0E8h
+		__emit 006h
+		__emit 04Fh
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		mov ecx, esi
+		__emit 0E8h
+		__emit 029h
+		__emit 05Eh
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		lea ecx,  [esp+30h]
+		mov dword ptr [esp+28h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 0B4h
+		__emit 0D6h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		mov ax, bx
+		mov ecx, dword ptr [esp+20h]
+		mov dword ptr fs:[0h], ecx
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		add esp, 1Ch
+		ret 8h
+L02_66A2A4:
+		mov dword ptr [esp+10h], ebx
+		movzx edx, byte ptr [esp+34h]
+		mov eax, dword ptr [esp+30h]
+		cmp eax, ebx
+		mov byte ptr [esp+28h], 1h
+		push edx
+		je L06_66A2C0
+		add eax, 8h
+		jmp L07_66A2C5
+L06_66A2C0:
+		mov eax, 107388Bh
+L07_66A2C5:
+		push eax
+		push ecx
+		mov dword ptr [esp+40h], esp
+		mov ecx, esp
+		push 111A268h
+		__emit 0E8h
+		__emit 009h
+		__emit 0EBh
+		__emit 021h
+		__emit 000h   // call 0x888DE0
+		lea eax,  [esp+1Ch]
+		push eax
+		__emit 0E8h
+		__emit 0AFh
+		__emit 0EEh
+		__emit 021h
+		__emit 000h   // call 0x889190
+		__emit 0A1h
+		__emit 030h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f7730]
+		add esp, 10h
+		cmp eax, ebx
+		je L08_66A337
+		push 2h
+		push ecx
+		lea edx,  [esp+18h]
+		mov dword ptr [esp+3Ch], esp
+		mov ecx, esp
+		push edx
+		__emit 0E8h
+		__emit 000h
+		__emit 0E1h
+		__emit 021h
+		__emit 000h   // call 0x888400
+		lea eax,  [esp+20h]
+		push eax
+		push ecx
+		mov dword ptr [esp+24h], esp
+		mov ecx, esp
+		push 111A250h
+		mov byte ptr [esp+3Ch], 2h
+		mov dword ptr [esp+2Ch], ebx
+		mov word ptr [esp+30h], bx
+		__emit 0E8h
+		__emit 0BCh
+		__emit 0EAh
+		__emit 021h
+		__emit 000h   // call 0x888DE0
+		__emit 08Bh
+		__emit 00Dh
+		__emit 030h
+		__emit 077h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f7730]
+		mov edx, dword ptr [ecx]
+		mov byte ptr [esp+38h], 1h
+		call dword ptr [edx+8Ch]
+L08_66A337:
+		lea ecx,  [esp+10h]
+		mov byte ptr [esp+28h], bl
+		__emit 0E8h
+		__emit 08Ch
+		__emit 0DEh
+		__emit 021h
+		__emit 000h   // call 0x8881D0
+		lea ecx,  [esp+30h]
+		mov dword ptr [esp+28h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 0EBh
+		__emit 0D5h
+		__emit 021h
+		__emit 000h   // call 0x887940
+		mov ecx, dword ptr [esp+20h]
+		pop edi
+		pop esi
+		pop ebp
+		xor ax, ax
+		mov dword ptr fs:[0h], ecx
+		pop ebx
+		add esp, 1Ch
 		ret 8h
 	}
 }
