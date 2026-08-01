@@ -2055,7 +2055,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StateConditionInfo@@QAE@P6A_NPAVState@@PAX@ZI1@Z,,0x000FBA90,25,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,
 ??0StaticNameKey@@QAE@PBD@Z,,0x00087A50,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ??0StatusBitsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000DFBC,5,Code/masm_dumps/__0StatusBitsUpgrade__QAE_PAVThing__PBVModuleData___Z_DFBC.asm,matched,MASM exact retail dump
-??0StatusBitsUpgradeModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/StatusBitsUpgradeModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0StealthDetectorUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00036A0C,5,Code/masm_dumps/__0StealthDetectorUpdate__QAE_PAVThing__PBVModuleData___Z_36A0C.asm,matched,MASM exact retail dump
 ??0StealthDetectorUpdateModuleData@@QAE@XZ,,0x001269F0,250,Code/masm_dumps/StealthDetectorUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x126BE0
 ??0StealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002ACB70,252,Code/masm_dumps/StealthUpdate_constructor.asm,matched,Exact 252B @ 0x002ACB70; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B3F0
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0SpyVisionSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0SquishCollideModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$__copy@PAVProductionPrerequisite@@PAV1@H@_STL@@YAPAVProductionPrerequisite@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x000181A1,5,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteCopy.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
+??0StatusBitsUpgradeModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
