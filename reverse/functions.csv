@@ -1559,7 +1559,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HitReactionBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200200,137,Code/masm_dumps/HitReactionBehavior_constructor.asm,matched,Exact 137B @ 0x00200200; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114BE0
 ??0HitReactionBehaviorModuleData@@QAE@XZ,,0x00291950,114,Code/masm_dumps/HitReactionBehaviorModuleData_constructor.asm,matched,Exact 114B @ 0x00291950; Exact retail MASM ModuleData ctor; unique factory 0x11D000
 ??0HiveStructureBodyModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0HordeAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/HordeAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0HordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0023EAF0,819,Code/masm_dumps/HordeContain_constructor.asm,matched,Exact 819B @ 0x0023EAF0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115D60
 ??0HordeContainModuleData@@QAE@XZ,,0x00220530,28,Code/GameEngine/Source/GameLogic/Object/Update/HordeUpdateModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0HordeGarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00248F90,175,Code/masm_dumps/HordeGarrisonContain_constructor.asm,matched,Exact 175B @ 0x00248F90; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1160C0
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0FoundationAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002BA040,190,Code/GameEngine/Source/GameLogic/AI/FoundationAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0HordeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C43A0,141,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0GiantBirdAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C2430,418,Code/GameEngine/Source/GameLogic/AI/GiantBirdAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0HordeAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
