@@ -13809,3 +13809,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?doFxAtBones@FXListAtBonePosFXNugget@@IBEXPBVObject@@H@Z,,0x00010CC6,5,Code/GameEngine/Source/GameClient/FXListAtBonePosFXNuggetDoFxAtBonesThunk.cpp,matched,5-byte protected const FX bone effect thunk converted to focused C++ source
 ?OnError@DownloadManager@@UAEJH@Z,,0x00031EC1,5,Code/GameEngine/Source/GameClient/DownloadManagerThunks.cpp,matched,Focused C++ thunk for DownloadManager OnError
 ?OnStatusUpdate@DownloadManager@@UAEJH@Z,,0x00008283,5,Code/GameEngine/Source/GameClient/DownloadManagerThunks.cpp,matched,Focused C++ thunk for DownloadManager OnStatusUpdate
+?getDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEEXZ,,0x00028A1F,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgGetDisconnectSlotThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x673C70
