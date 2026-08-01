@@ -1739,7 +1739,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OneRingPenaltyUpdateModuleData@@QAE@XZ,,0x00298D30,32,Code/masm_dumps/OneRingPenaltyUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x11A460
 ??0OpenContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002277A0,722,Code/masm_dumps/OpenContain_constructor.asm,matched,Exact 722B @ 0x002277A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115960
 ??0OpenContainModuleData@@QAE@XZ,,0x00227200,398,Code/masm_dumps/OpenContainModuleData_constructor.asm,matched,Exact 398B ICF alias MD Open-BFME4
-??0OptionPreferences@@QAE@XZ,,0x0003713C,5,Code/masm_dumps/__0OptionPreferences__QAE_XZ_3713C.asm,matched,MASM exact retail dump
 ??0OrphanData@@QAE@XZ,,0x0020A7A0,20,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehavior.cpp,matched,
 ??0OrthoEmissionVelocityInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00003FB2,0x005D6DA0,93,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??0OrthoEmissionVelocityInfo@FXParticleSystem@@QAE@XZ,0x00046E75,0x005D6CE0,130,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?getClassMemoryPool@ObjectDefectionHelper@@SAPAVMemoryPool@@XZ,,0x0000B9CE,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted alongside existing ICF target
 ??1?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@QAE@XZ,,0x0001481C,5,Code/Libraries/Source/WWVegas/WWLib/PlayerTemplateVectorDestructorThunk.cpp,matched,5-byte incremental-link STL destructor thunk converted to focused C++ thunk TU
 ??4?$vector@U?$pair@W4ObjectID@@I@_STL@@V?$allocator@U?$pair@W4ObjectID@@I@_STL@@@2@@_STL@@QAEAAV01@ABV01@@Z,,0x0002DC9F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectIDPairVectorAssignmentThunk.cpp,matched,5-byte incremental-link STL assignment thunk converted to focused C++ thunk TU
+??0OptionPreferences@@QAE@XZ,,0x0003713C,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
