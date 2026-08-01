@@ -12,6 +12,8 @@ class ConnectionManager
 public:
 	void sendLocalCommand(NetCommandMsg *msg, unsigned char relay);
 	void sendLocalCommandDirect(NetCommandMsg *msg, unsigned char relay);
+	int getNumPlayers();
+	unsigned int getPacketRouterSlot();
 };
 
 class BFMEConnectionManager
@@ -7244,5 +7246,85 @@ L08_66A337:
 		pop ebx
 		add esp, 1Ch
 		ret 8h
+	}
+}
+
+// Retail's name -- the ZH reference declares it with this signature. Returns
+// m_packetRouterSlot at this+0x1202C.
+__declspec(naked) unsigned int ConnectionManager::getPacketRouterSlot()
+{
+	__asm {
+		mov eax, dword ptr [ecx+1202Ch]
+		ret
+	}
+}
+
+// Retail's name, and the callee DisconnectManager::isPlayerVotedOut wants.
+// Counts the connected slots exactly as the reference does, except that BFME
+// inlines isPlayerConnected: a slot counts when it is our own or its Connection
+// pointer at this+0x04 is set.
+__declspec(naked) int ConnectionManager::getNumPlayers()
+{
+	__asm {
+		push ebx
+		push esi
+		push edi
+		mov edi, dword ptr [ecx+12028h]
+		mov esi, 2h
+		xor eax, eax
+		add ecx, 8h
+		mov ebx, esi
+L08_663785:
+		lea edx,  [esi-2h]
+		cmp edx, edi
+		je L00_663798
+		mov edx, dword ptr [ecx-4h]
+		test edx, edx
+		je L01_663799
+		cmp dword ptr [edx], 0FFFFFFFFh
+		jne L01_663799
+L00_663798:
+		inc eax
+L01_663799:
+		lea edx,  [esi-1h]
+		cmp edx, edi
+		je L02_6637AB
+		mov edx, dword ptr [ecx]
+		test edx, edx
+		je L03_6637AC
+		cmp dword ptr [edx], 0FFFFFFFFh
+		jne L03_6637AC
+L02_6637AB:
+		inc eax
+L03_6637AC:
+		cmp esi, edi
+		je L04_6637BC
+		mov edx, dword ptr [ecx+4h]
+		test edx, edx
+		je L05_6637BD
+		cmp dword ptr [edx], 0FFFFFFFFh
+		jne L05_6637BD
+L04_6637BC:
+		inc eax
+L05_6637BD:
+		lea edx,  [esi+1h]
+		cmp edx, edi
+		je L06_6637D0
+		mov edx, dword ptr [ecx+8h]
+		test edx, edx
+		je L07_6637D1
+		cmp dword ptr [edx], 0FFFFFFFFh
+		jne L07_6637D1
+L06_6637D0:
+		inc eax
+L07_6637D1:
+		add ecx, 10h
+		add esi, 4h
+		dec ebx
+		jne L08_663785
+		pop edi
+		pop esi
+		pop ebx
+		ret
 	}
 }
