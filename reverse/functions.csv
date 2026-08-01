@@ -12253,8 +12253,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseFont@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485B60,293,Code/masm_dumps/_parseFont__YA_NPADPAVWinInstanceData__0PAX_Z.asm,matched,
 ?parseFontDesc@GlobalLanguage@@SAXPAVINI@@PAX1PBX@Z,,0x0000B41F,5,Code/masm_dumps/parseFontDesc_GlobalLanguage_SAXPAVINI_PAX1PBX_Z_B41F.asm,matched,22 retail font-field xrefs and Ghidra FUN_00839150 identify font descriptor parser
 ?parseFrictionPerSec@@YAXPAVINI@@PAX1PBX@Z,,0x000B9D20,37,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
-?parseFromINI@?$BitFlags@$0CN@@@SAXPAVINI@@PAX1PBX@Z,,0x00029B9A,5,Code/masm_dumps/parseFromINI_BitFlags_0CN_SAXPAVINI_PAX1PBX_Z_29B9A.asm,matched,11 retail object-status field xrefs and Ghidra FUN_00604E70 identify bit-flag parser
-?parseFromINI@?$BitFlags@$0HE@@@SAXPAVINI@@PAX1PBX@Z,,0x0002032E,5,Code/masm_dumps/parseFromINI_BitFlags_0HE_SAXPAVINI_PAX1PBX_Z_2032E.asm,matched,26 retail KindOf-field xrefs and Ghidra FUN_00529810 identify bit-flag parser
 ?parseFullVersion@@YAHQAPADH@Z,,0x00060B40,53,Code/GameEngine/Source/Common/CommandLine.cpp,matched,
 ?parseGameClientRandomDelay@@YAXPAVINI@@PAXPAVGameClientRandomVariable@@@Z,,0x00287700,59,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,
 ?parseGameClientRandomVariable@INI@@SAXPAV1@PAX1PBX@Z,,0x000B8F60,113,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
@@ -13806,3 +13804,5 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??0?$SimpleParameterClass@H$0A@@@QAE@PAXPBD@Z,,0x00002874,5,Code/Libraries/Source/WWVegas/WWLib/SimpleParameterClassConstructorThunk.cpp,matched,Focused C++ template thunk for SimpleParameterClass int flags 0 constructor
+?parseFromINI@?$BitFlags@$0CN@@@SAXPAVINI@@PAX1PBX@Z,,0x00029B9A,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsParseFromINIThunk.cpp,matched,
+?parseFromINI@?$BitFlags@$0HE@@@SAXPAVINI@@PAX1PBX@Z,,0x0002032E,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsParseFromINIThunk.cpp,matched,5-byte static BitFlags parser thunk converted to focused C++ source
