@@ -1294,7 +1294,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DamDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
 ??0DamDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DamageFXStore@@QAE@XZ,,0x00067C10,113,Code/GameEngine/Source/Common/DamageFXStore_ctor.asm,matched,exact MASM; true body @0x67C10 (queue 0x9F272E was ControlBar pad); C++ STLport hashtable shape blocks
-??0DamageModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/DamageModuleModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0DarknessSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00259B80,46,Code/masm_dumps/DarknessSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0DarknessSpecialPowerModuleData@@QAE@XZ,,0x00259EB0,38,Code/GameEngine/Source/Common/RTS/DarknessSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0DataChunkInput@@QAE@PAVChunkInputStream@@@Z,,0x001030D0,109,Code/masm_dumps/_rn5___0DataChunkInput__QAE_PAVChunkInputStream___Z_1030D0.asm,matched,reloc-needle Open-BFME4+Grok
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0CastleUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/CastleUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0CommandSetUpgradeModuleData@@QAE@XZ,,0x0012AF80,93,Code/GameEngine/Source/GameLogic/AI/CommandSetUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CollideModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/CollideModuleModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
+??0DamageModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/DamageModuleModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
