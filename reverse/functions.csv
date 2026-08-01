@@ -3047,7 +3047,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00072A40,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
 ??1WindModuleInfo@FXParticleSystem@@UAE@XZ,0x0001B31F,0x005BD960,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1WindowLayout@@UAE@XZ,,0x00497CC0,14,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,virtual dtor; tail-jmps member string dtor
-??1WindowVideo@@QAE@XZ,,0x000253E7,5,Code/masm_dumps/__1WindowVideo__QAE_XZ_253E7.asm,matched,MASM exact retail dump
 ??1WindowVideoManager@@UAE@XZ,,0x00498E70,221,Code/masm_dumps/_rn7___1WindowVideoManager__UAE_XZ_498E70.asm,matched,reloc-needle Open-BFME4+Grok
 ??1WorkOrder@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
 ??1WorkerAIUpdate@@UAE@XZ,,0x002C7A80,259,Code/masm_dumps/WorkerAIUpdate_destructor.asm,matched,Exact 259B @ 0x002C7A80; Exact retail MASM; instance factory->vtable dtor; del 0x2C8340 ctor 0x2C9ED0 vt 0xCC9F58
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??$__uninitialized_copy@PBUPrereqUnitRec@ProductionPrerequisite@@PAU12@@_STL@@YAPAUPrereqUnitRec@ProductionPrerequisite@@PBU12@0PAU12@ABU__false_type@0@@Z,,0x000178B4,5,Code/GameEngine/Source/Common/RTS/PrereqUnitRecUninitializedCopy.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
 ??1ProductionPrerequisite@@QAE@XZ,,0x0003ECC0,5,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1W3DAnimationInfo@@QAE@XZ,,0x00020018,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
+??1WindowVideo@@QAE@XZ,,0x000253E7,5,Code/GameEngine/Source/GameClient/WindowVideoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
