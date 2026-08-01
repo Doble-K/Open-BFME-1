@@ -12927,6 +12927,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setDisallowAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630760,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADEE0,170,Code/masm_dumps/_sa13__setDisallowNonAsianText_CustomMatchPreferences__QAEX_N_Z_ADEE0.asm,matched,multi-xref Open-BFME4+Grok DisallowNonAsianText
 ?setDisallowNonAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630770,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+?setDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEXE@Z,,0x00008C74,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgSetDisconnectSlotThunk.cpp,matched,Open-BFME5 C++ conversion of retail incremental-link thunk; real body 0x673C80
 ?setDisplayMode@Display@@UAE_NIII_N@Z,,0x0040DA80,311,Code/masm_dumps/Display_setDisplayMode_40DA80.asm,matched,Certified packet 53 exact retail db recovery SHA256 17487ff48887ebb513026b1e5623f96a1de2d631bce2f7409aff8da740319436
 ?setDisplayedMaxWarning@InGameUI@@UAEX_N@Z,,0x0044B3B0,10,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?setDockCrippled@DockUpdate@@UAEX_N@Z,,0x002CA790,10,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
