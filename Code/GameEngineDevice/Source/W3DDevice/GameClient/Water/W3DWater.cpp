@@ -1452,11 +1452,12 @@ void WaterRenderObjClass::loadSetting( Setting *setting, TimeOfDay timeOfDay )
 	*	textures need to be updated before we start rendering to the main screen
 	* render target because D3D doesn't multiple render targets. */
 //-------------------------------------------------------------------------------------------------
-// ?updateRenderTargetTextures@WaterRenderObjClass@@QAEXPAVCameraClass@@@Z present-unmatched
+// ?updateRenderTargetTextures@WaterRenderObjClass@@QAEXPAVCameraClass@@@Z
 void WaterRenderObjClass::updateRenderTargetTextures(CameraClass *cam)
 {
 	if (m_waterType == WATER_TYPE_2_PVSHADER && getClippedWaterPlane(cam, NULL) &&
-		TheTerrainRenderObject && TheTerrainRenderObject->getMap())
+		TheTerrainRenderObject &&
+		*(WorldHeightMap **)((char *)TheTerrainRenderObject + 0x2ff4))
 		renderMirror(cam);	//generate texture containing reflected scene
 }
 
