@@ -1458,7 +1458,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FloatingTextData@@QAE@XZ,,0x0043F4D0,101,Code/masm_dumps/__0FloatingTextData__QAE_XZ_43F4D0.asm,matched,MASM exact: true body via addFloatingText@0x4435A0 (global new 0x24 + ILT 0xCD88); drift 0x9DB099 was subtitle mid-fn; DisplayStringManager newDisplayString vtbl+0x24
 ??0FontLibrary@@QAE@XZ,,0x0008A430,26,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
 ??0Format@Debug@@QAA@PBDZZ,,0x008895F0,35,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
-??0FoundationAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002BA040,190,Code/masm_dumps/FoundationAIUpdate_constructor.asm,matched,Exact 190B @ 0x002BA040; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1143B0
 ??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/masm_dumps/FreezingRainSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0FreezingRainSpecialPowerModuleData@@QAE@XZ,,0x0025D8C0,38,Code/GameEngine/Source/Common/RTS/FreezingRainSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AssaultTransportAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0AIUpdateInterface@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0027F4B0,1237,Code/GameEngine/Source/GameLogic/AI/AIUpdateInterfaceCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI interface module constructor
 ??0AnimalAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B3090,118,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0FoundationAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002BA040,190,Code/GameEngine/Source/GameLogic/AI/FoundationAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
