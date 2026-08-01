@@ -1165,7 +1165,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Base64Pipe@@QAE@W4CodeControl@0@@Z,,0x009E1EE0,29,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling (vtable ptr copied from target)
 ??0Base64Straw@@QAE@W4CodeControl@0@@Z,,0x009E1F20,29,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling
 ??0BaseHeightMapRenderObjClass@@QAE@XZ,,0x006CFAE0,1304,Code/masm_dumps/BaseHeightMapRenderObjClass_ctor_006CFAE0.asm,matched,exact 1304B MASM @ 0x006CFAE0; queue 0x00A3B6FB MISPLACED (00 00 00); true SEH ENTRY; mislabeled LightMap void-ctor twin (ZH is 2-arg); vtbls match ??1BaseHeightMap; TheTerrainRenderObject@0x12F7FE0; size twin of owner (true ret +1306/1307)
-??0BaseRegenerateUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/BaseRegenerateUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0BaseUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D3800,53,Code/masm_dumps/BaseUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
 ??0BaseUpgradeModuleData@@QAE@XZ,,0x002D3C50,127,Code/masm_dumps/BaseUpgradeModuleData_constructor.asm,matched,Exact 127B @ 0x002D3C50; Exact retail MASM ModuleData ctor; unique factory 0x11D190
 ??0BattlePlanUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286260,383,Code/masm_dumps/BattlePlanUpdate_constructor.asm,matched,Exact 383B @ 0x00286260; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x119CD0
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??1Nugget@ModuleInfo@@QAE@XZ,,0x007701C0,76,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetDestructor.cpp,matched,thunk-dump converted to clean C++ nested destructor body at destination 0x7701C0
 ??0AIUpdateInterfaceModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0AssistedTargetingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0BaseRegenerateUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
