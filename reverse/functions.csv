@@ -5653,7 +5653,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Format_Args@StringClass@@QAAHPBDABQAD@Z,,0x009DBAF0,151,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,
 ?Format_Args@WideStringClass@@QAAHPBGABQAD@Z,,0x009E7520,90,Code/Libraries/Source/WWVegas/WWLib/widestring.cpp,matched,
 ?Free@BitChannelClass@@AAEXXZ,,0x009778B0,28,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
-?Free@DistLODClass@@AAEXXZ,,0x00014BC3,5,Code/masm_dumps/_Free_DistLODClass__AAEXXZ_14BC3.asm,matched,MASM exact retail dump
 ?Free@FastFixedAllocator@@QAEXPAX@Z,,0x00AFE990,33,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Free@HLodClass@@IAEXXZ,,0x009796A0,434,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Free@HLodDefClass@@AAEXXZ,,0x0097CA10,111,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??1W3DAnimationInfo@@QAE@XZ,,0x00020018,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1WindowVideo@@QAE@XZ,,0x000253E7,5,Code/GameEngine/Source/GameClient/WindowVideoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1PlayerTemplate@@QAE@XZ,,0x000181CE,5,Code/GameEngine/Source/Common/RTS/PlayerTemplateDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
+?Free@DistLODClass@@AAEXXZ,,0x00014BC3,5,Code/Libraries/Source/WWVegas/WW3D2/DistLODClassFreeThunk.cpp,matched,5-byte incremental-link member thunk converted to focused C++ source
