@@ -76,6 +76,9 @@ typedef _List_global<bool> _List_global_inst;
 template <class _Tp>
 struct _List_node : public _List_node_base {
   _Tp _M_data;
+#ifdef BFME_PARTICLE_LIST_NODE_TAIL
+  char _M_bfme_node_tail[0x20];
+#endif
   __TRIVIAL_STUFF(_List_node)
 };
 

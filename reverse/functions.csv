@@ -13798,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?doSkyBoxSet@@YAX_N@Z,,0x0079E490,29,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,clean C++ body; retail GlobalData m_drawSkyBox offset pinned at +0x180
 ?init@W3DVolumetricShadowManager@@QAE_NXZ,,0x007C19E0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,clean C++ body calls ReAcquireResources; exact retail call/return bytes
 ??0ImageCollection@@QAE@XZ,,0x005D30E0,105,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,ICF alias of ??0LocomotorStore@@QAE@XZ; corrected body begins after one-byte int3 padding
+??0?$list@PAVParticleSystem@@V?$allocator@PAVParticleSystem@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x0076F640,111,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,C++ STLport list copy constructor; TU-scoped BFME 0x2c node tail and static allocator mode

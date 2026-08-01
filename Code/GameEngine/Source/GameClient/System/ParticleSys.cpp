@@ -30,6 +30,8 @@
 // Author: Michael S. Booth, November 2001
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+#define _STLP_USE_STATIC_LIB
+#define BFME_PARTICLE_LIST_NODE_TAIL
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #define DEFINE_PARTICLE_SYSTEM_NAMES
