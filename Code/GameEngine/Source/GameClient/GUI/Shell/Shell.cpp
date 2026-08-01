@@ -845,19 +845,19 @@ void Shell::loadScheme( AsciiString name )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?getSaveLoadMenuLayout@Shell@@QAEPAVWindowLayout@@XZ present-unmatched
 WindowLayout *Shell::getSaveLoadMenuLayout( void )
 {
 	
+	WindowLayout *&layout = *reinterpret_cast<WindowLayout **>(reinterpret_cast<char *>(this) + 0x68);
 	// if layout has not been created, create it now
-	if( m_saveLoadMenuLayout == NULL )
-   m_saveLoadMenuLayout = TheWindowManager->winCreateLayout( AsciiString( "Menus/PopupSaveLoad.wnd" ) );
+	if( layout == NULL )
+	   layout = TheWindowManager->winCreateLayout( AsciiString( "Menus/PopupSaveLoad.wnd" ) );
 
 	// sanity
-	DEBUG_ASSERTCRASH( m_saveLoadMenuLayout, ("Unable to create save/load menu layout\n") );
+	DEBUG_ASSERTCRASH( layout, ("Unable to create save/load menu layout\n") );
 
 	// return the layout
-	return m_saveLoadMenuLayout;
+	return layout;
 
 }  // end getSaveLoadMenuLayout
 
