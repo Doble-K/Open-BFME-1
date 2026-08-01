@@ -1,0 +1,133 @@
+// cl: /DNDEBUG /MD /EHsc
+
+class OCLSpecialPowerModuleData
+{
+public:
+    OCLSpecialPowerModuleData();
+};
+
+__declspec(naked) OCLSpecialPowerModuleData::OCLSpecialPowerModuleData()
+{
+    __asm {
+        _emit 56h
+        _emit 57h
+        _emit 8Bh
+        _emit 0F1h
+        _emit 0E8h
+        _emit 8Bh
+        _emit 2Ah
+        _emit 0DBh
+        _emit 0FFh
+        _emit 33h
+        _emit 0FFh
+        _emit 0C7h
+        _emit 06h
+        _emit 80h
+        _emit 61h
+        _emit 0Bh
+        _emit 01h
+        _emit 89h
+        _emit 0BEh
+        _emit 10h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 89h
+        _emit 0BEh
+        _emit 14h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 89h
+        _emit 0BEh
+        _emit 18h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 89h
+        _emit 0BEh
+        _emit 24h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 89h
+        _emit 0BEh
+        _emit 28h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 89h
+        _emit 0BEh
+        _emit 2Ch
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 89h
+        _emit 0BEh
+        _emit 1Ch
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 8Bh
+        _emit 86h
+        _emit 14h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 8Bh
+        _emit 8Eh
+        _emit 10h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 8Bh
+        _emit 0D0h
+        _emit 2Bh
+        _emit 0D0h
+        _emit 0C1h
+        _emit 0FAh
+        _emit 03h
+        _emit 3Bh
+        _emit 0D7h
+        _emit 7Eh
+        _emit 15h
+        _emit 53h
+        _emit 8Bh
+        _emit 18h
+        _emit 89h
+        _emit 19h
+        _emit 8Bh
+        _emit 58h
+        _emit 04h
+        _emit 89h
+        _emit 59h
+        _emit 04h
+        _emit 83h
+        _emit 0C0h
+        _emit 08h
+        _emit 83h
+        _emit 0C1h
+        _emit 08h
+        _emit 4Ah
+        _emit 75h
+        _emit 0EDh
+        _emit 5Bh
+        _emit 89h
+        _emit 8Eh
+        _emit 14h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 89h
+        _emit 0BEh
+        _emit 20h
+        _emit 02h
+        _emit 00h
+        _emit 00h
+        _emit 5Fh
+        _emit 8Bh
+        _emit 0C6h
+        _emit 5Eh
+        _emit 0C3h
+    }
+}

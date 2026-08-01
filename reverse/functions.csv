@@ -1701,7 +1701,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OBBoxRenderObjClass@@QAE@ABV0@@Z,,0x00957F40,111,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/masm_dumps/_rn4___0OBBoxRenderObjClass__QAE_ABVOBBoxClass___Z_957C20.asm,matched,reloc-needle Open-BFME4+Grok
 ??0OBBoxRenderObjClass@@QAE@XZ,,0x00957B30,80,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
-??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/masm_dumps/OCLSpecialPowerModuleData_constructor.asm,matched,Exact 120B @ 0x002631B0; Exact retail MASM ModuleData ctor; unique factory 0x120230
 ??0OCLUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298960,80,Code/masm_dumps/OCLUpdate_constructor.asm,matched,Exact 80B unique factory Open-BFME4
 ??0OCLUpdateModuleData@@QAE@XZ,,0x00298920,23,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0OathbreakersFadeAwayBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00201BB0,84,Code/masm_dumps/OathbreakersFadeAwayBehavior_constructor.asm,matched,Exact 84B unique factory Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ObjectCreationUpgradeModuleData@@QAE@XZ,,0x002D75B0,95,Code/GameEngine/Source/GameLogic/AI/ObjectCreationUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ModelConditionUpgradeModuleData@@QAE@XZ,,0x002D6A20,158,Code/GameEngine/Source/GameLogic/AI/ModelConditionUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/GameEngine/Source/GameLogic/AI/GeometryUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/GameEngine/Source/GameLogic/AI/OCLSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
