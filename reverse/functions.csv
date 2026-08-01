@@ -1817,7 +1817,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ObjectDrawInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,ICF alias of existing matched body
 ??0ObjectWeaponStatusHelper@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001C1340,107,Code/GameEngine/Source/GameLogic/Object/ObjectWeaponStatusHelper_ctor.asm,matched,Class vtable anchors from matched update and getModuleNameKey
 ??0OneRingPenaltyUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298E10,157,Code/masm_dumps/OneRingPenaltyUpdate_ctor.asm,matched,Ghidra-owned BFME One Ring penalty constructor
-??0OneRingPenaltyUpdateModuleData@@QAE@XZ,,0x00298D30,32,Code/masm_dumps/OneRingPenaltyUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x11A460
 ??0OpenContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002277A0,722,Code/masm_dumps/OpenContain_constructor.asm,matched,Exact 722B @ 0x002277A0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115960
 ??0OpenContainModuleData@@QAE@XZ,,0x00227200,398,Code/masm_dumps/OpenContainModuleData_constructor.asm,matched,Exact 398B ICF alias MD Open-BFME4
 ??0OptionPreferences@@QAE@XZ,,0x0003713C,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??0WeaponSetSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026DC20,32,Code/GameEngine/Source/GameLogic/Object/Update/WeaponSetSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ??0HealContainModuleData@@QAE@XZ,,0x0028B9E0,32,Code/GameEngine/Source/GameLogic/Object/Update/HealContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0HE@@@@Z,,0x00132AE0,41,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail ThingTemplate kindof shim and REL32 pin
+??0OneRingPenaltyUpdateModuleData@@QAE@XZ,,0x00298D30,32,Code/GameEngine/Source/GameLogic/Object/Update/OneRingPenaltyUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
