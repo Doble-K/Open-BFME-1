@@ -51,7 +51,7 @@
 class BFMERetailThingVTable
 {
 public:
-	virtual void slot0() = 0;
+	virtual Real calculateHeightAboveTerrain() const = 0;
 	virtual void slot1() = 0;
 	virtual void slot2() = 0;
 	virtual void slot3() = 0;
@@ -343,12 +343,11 @@ Real Thing::calculateHeightAboveTerrain() const
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getHeightAboveTerrain@Thing@@QBEMXZ present-unmatched
 Real Thing::getHeightAboveTerrain() const
 {
 	if (!(m_cacheFlags & VALID_ALTITUDE_TERRAIN))
 	{
-		m_cachedAltitudeAboveTerrain = calculateHeightAboveTerrain();
+		m_cachedAltitudeAboveTerrain = reinterpret_cast<const BFMERetailThingVTable *>(this)->calculateHeightAboveTerrain();
 		m_cacheFlags |= VALID_ALTITUDE_TERRAIN;
 	}
 	return m_cachedAltitudeAboveTerrain;

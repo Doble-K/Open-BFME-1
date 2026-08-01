@@ -10895,7 +10895,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getHealth@ActiveBody@@UBEMXZ,,0x0010BDA0,4,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,icf-owner=?getMaximumValue@GameClientRandomVariable@@QBEMXZ
 ?getHealthBoxDimensions@Object@@QBE_NAAM0@Z,,0x001C9E64,166,Code/GameEngine/Source/GameLogic/Object/Object_getHealthBoxDimensions.asm,matched,exact 166B via MASM
 ?getHeight@View@@UAEHXZ,,0x00674250,4,Code/GameEngine/Source/GameClient/View.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
-?getHeightAboveTerrain@Thing@@QBEMXZ,,0x00001C30,5,Code/masm_dumps/_getHeightAboveTerrain_Thing__QBEMXZ_1C30.asm,matched,thunk accessor of ported class
+?getHeightAboveTerrain@Thing@@QBEMXZ,,0x00131B00,25,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,
 ?getHeightAboveTerrainOrWater@Thing@@QBEMXZ,,0x00005948,5,Code/masm_dumps/_thunk_eb7dfbbe8fce_5948.asm,matched,thunk accessor of ported class
 ?getHeightMapHeight@BaseHeightMapRenderObjClass@@QBEMMMPAUCoord3D@@@Z,,0x006CBB50,957,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_getHeightMapHeight.asm,matched,exact 957B MASM @ 0x006CBB50; queue 0x00B020E9 misplaced (int3 pad+stub); m_map+0x2FF4 U16 height blocks C++
 ?getHordeUpdateInterface@BehaviorModule@@UAEPAVHordeUpdateInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
