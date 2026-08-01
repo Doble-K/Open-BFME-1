@@ -7401,7 +7401,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Release@Animatable3DObjClass@@IAEXXZ,,0x00982090,128,Code/masm_dumps/__Release_Animatable3DObjClass__IAEXXZ_982090.asm,matched,
 ?Release@Geometry@@QAEXXZ,,0x007B7EF0,57,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?ReleaseResources@W3DProjectedShadowManager@@QAEXXZ,,0x007B1450,58,Code/masm_dumps/ReleaseResources_W3DProjectedShadowManager_QAEXXZ_007B1450_28d95344.asm,matched,exact MASM dump; true body 0x7B1450/58 (drift 0x7B4E74 was mid-dtor)
-?ReleaseWindowLayout@@YAXPAVWindowLayout@@@Z,,0x00049AD0,5,Code/masm_dumps/_ReleaseWindowLayout__YAXPAVWindowLayout___Z_49AD0.asm,matched,MASM exact retail dump
 ?Release_Bone@Animatable3DObjClass@@UAEXH@Z,,0x00981C60,18,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Release_Bone@HTreeClass@@QAEXH@Z,,0x00952320,24,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Release_Head@?$RefMultiListClass@VLookupTableClass@@@@QAE_NXZ,,0x00711C80,31,Code/Libraries/Source/WWVegas/WWMath/lookuptable.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?HideInGameChat@@YAXXZ,,0x00019583,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/HideInGameChat.cpp,matched,5-byte thunk converted from MASM dump to focused C++ source
 ??0CountermeasuresBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DamDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+?ReleaseWindowLayout@@YAXPAVWindowLayout@@@Z,,0x00049AD0,5,Code/GameEngine/Source/GameLogic/ScriptEngine/ReleaseWindowLayout.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
