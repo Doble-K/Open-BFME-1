@@ -2433,7 +2433,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$CategoryModuleTemplateBase@$03@FXParticleSystem@@UAE@XZ,,0x005BF7F0,33,Code/masm_dumps/__1__CategoryModuleTemplateBase__03_FXParticleSystem__UAE_XZ_5BF7F0.asm,matched,MASM exact retail dump
 ??1?$CategoryModuleTemplateBase@$04@FXParticleSystem@@UAE@XZ,,0x005BFA60,33,Code/masm_dumps/__1__CategoryModuleTemplateBase__04_FXParticleSystem__UAE_XZ_5BFA60.asm,matched,MASM exact retail dump
 ??1?$CategoryModuleTemplateBase@$05@FXParticleSystem@@UAE@XZ,,0x005BFCB0,33,Code/masm_dumps/__1__CategoryModuleTemplateBase__05_FXParticleSystem__UAE_XZ_5BFCB0.asm,matched,MASM exact retail dump
-??1?$CategoryModuleTemplateBase@$06@FXParticleSystem@@UAE@XZ,,0x005C1940,33,Code/masm_dumps/__1__CategoryModuleTemplateBase__06_FXParticleSystem__UAE_XZ_5C1940.asm,matched,MASM exact retail dump
 ??1?$CategoryModuleTemplateBase@$07@FXParticleSystem@@UAE@XZ,,0x0005E250,33,Code/masm_dumps/__1__CategoryModuleTemplateBase__07_FXParticleSystem__UAE_XZ_5E250.asm,matched,MASM exact retail dump
 ??1?$CategoryModuleTemplateBase@$0A@@FXParticleSystem@@UAE@XZ,,0x0005D850,33,Code/masm_dumps/__1__CategoryModuleTemplateBase__0A__FXParticleSystem__UAE_XZ_5D850.asm,matched,MASM exact retail dump
 ??1?$ConcreteModuleClass@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ,0x0000E6C4,0x5da4d0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?writeINI@?$DefaultModuleTemplate@$05@FXParticleSystem@@UBEXAAVFile@@I@Z,,0x005F3870,35,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplateWriteINIThunk.cpp,matched,Open-BFME5 exact C++ raw default particle INI writer
 ??1?$CategoryModuleTemplateBase@$00@FXParticleSystem@@UAE@XZ,,0x005BF100,33,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplateBaseDestructorThunk.cpp,matched,Open-BFME5 exact C++ raw category template base destructor
 ??1?$CategoryModuleTemplateBase@$02@FXParticleSystem@@UAE@XZ,,0x005BF5A0,33,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplateBaseDestructorThunk.cpp,matched,Open-BFME5 exact C++ raw category template base destructor
+??1?$CategoryModuleTemplateBase@$06@FXParticleSystem@@UAE@XZ,,0x005C1940,33,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplateBaseDestructorThunk.cpp,matched,Open-BFME5 exact C++ raw category template base destructor
