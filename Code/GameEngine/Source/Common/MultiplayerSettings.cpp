@@ -100,23 +100,31 @@ MultiplayerColorDefinition::MultiplayerColorDefinition()
 	m_colorNight = m_color;
 }
 
-// ?getColor@MultiplayerSettings@@ present-unmatched
 MultiplayerColorDefinition * MultiplayerSettings::getColor(Int which)
 {
 	if (which == PLAYERTEMPLATE_RANDOM)
 	{
-		return &m_randomColor;
+		return reinterpret_cast<MultiplayerColorDefinition *>(reinterpret_cast<unsigned char *>(this) + 0x64);
 	}
 	else if (which == PLAYERTEMPLATE_OBSERVER)
 	{
-		return &m_observerColor;
+		return reinterpret_cast<MultiplayerColorDefinition *>(reinterpret_cast<unsigned char *>(this) + 0x40);
 	}
-	else if (which < 0 || which >= getNumColors())
+	else if (which < 0)
 	{
 		return NULL;
 	}
+	else
+	{
+		unsigned char *retailLayout = reinterpret_cast<unsigned char *>(this);
+		Int *numColors = reinterpret_cast<Int *>(retailLayout + 0x3c);
+		if (*numColors == 0)
+			*numColors = *reinterpret_cast<Int *>(retailLayout + 0x34);
+		if (which < *numColors)
+			return &(*reinterpret_cast<MultiplayerColorList *>(retailLayout + 0x30))[which];
+	}
 
-	return &m_colorList[which];
+	return NULL;
 }
 
 // ?findMultiplayerColorDefinitionByName@MultiplayerSettings@@ present-unmatched
@@ -180,4 +188,3 @@ void MultiplayerColorDefinition::setNightColor( RGBColor rgb )
 {
 	m_colorNight = rgb.getAsInt() | 0xFF << 24;
 }
-
