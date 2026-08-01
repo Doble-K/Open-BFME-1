@@ -13747,3 +13747,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?sendFileToPlayers@BFMEConnectionManager@@QAEXPBD@Z,,0x00669E20,418,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendFileAnnouncement@BFMEConnectionManager@@QAEXPBDH@Z,,0x0066A170,509,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?parseLanguageDefinition@INI@@SAXPAV1@@Z,,0x00438F70,25,Code/GameEngine/Source/GameClient/GlobalLanguage.cpp,matched,block table binds keyword Language here - reads TheGlobalLanguageData 0x012F1484
+_GetPreviewFromMap,,0x0066D6A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetArtPreviewFromMap,,0x0066D820,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
+_GetPicPreviewFromMap,,0x0066D9A0,300,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
