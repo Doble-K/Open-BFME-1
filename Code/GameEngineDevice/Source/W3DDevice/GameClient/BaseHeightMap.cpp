@@ -124,6 +124,16 @@ static ShaderClass detailOpaqueShader(SC_DETAIL_BLEND);
 /// The one-of for the terrain rendering object.
 BaseHeightMapRenderObjClass *TheTerrainRenderObject=NULL;
 
+// Keep the matched TScorch copy COMDAT live after addScorch moved to the BFME layout proxy.
+static void bfmeRetainTScorchCopy(void)
+{
+	TScorch destination;
+	TScorch source;
+	destination = source;
+}
+
+static int s_bfmeRetainTScorchCopy = (bfmeRetainTScorchCopy(), 0);
+
 /** Entry point so that trees can be drawn at the appropriate point in the rendering pipe for 
     transparent objects. */
 void DoTrees(RenderInfoClass & rinfo)
@@ -1883,34 +1893,53 @@ void BaseHeightMapRenderObjClass::clearAllScorches(void)
 //=============================================================================
 /** Adds a scorch mark. */
 //=============================================================================
-// ?addScorch@BaseHeightMapRenderObjClass@@QAEXVVector3@@MW4Scorches@@@Z present-unmatched
 void BaseHeightMapRenderObjClass::addScorch(Vector3 location, Real radius, Scorches type)
 {
 #ifdef DO_SCORCH
-	if (m_numScorches >= MAX_SCORCH_MARKS) {
-		Int i;
-		for (i=0; i<MAX_SCORCH_MARKS-1; i++) {
-			m_scorches[i] = m_scorches[i+1];
-		}
-		m_numScorches--;
-	}
+	struct BFMEScorch {
+		Vector3 location;
+		Real radius;
+		Scorches scorchType;
+		Bool flag;
+	};
+	struct BFMEState {
+		UnsignedByte padding[0xe4];
+		BFMEScorch scorches[MAX_SCORCH_MARKS];
+		Int numScorches;
+		Int scorchesInBuffer;
+		Int nextScorch;
+	};
 
-	Int i;
+	BFMEState *state = (BFMEState *)this;
 	Real limit = radius/4;
-	for (i=0; i<m_numScorches; i++) {		
-		if ( abs(location.X-m_scorches[i].location.X) < limit &&  
-				 abs(location.Y-m_scorches[i].location.Y) < limit && 
-				 abs(radius - m_scorches[i].radius) < limit &&
-				 m_scorches[i].scorchType == type) {
-			return; // basically a duplicate.
+	Int i;
+	Int index;
+	for (i=0; i<state->numScorches; i++) {
+		if ( abs(location.X-state->scorches[i].location.X) < limit &&
+				 abs(location.Y-state->scorches[i].location.Y) < limit &&
+				 abs(radius - state->scorches[i].radius) < limit &&
+				 state->scorches[i].scorchType == type) {
+			goto duplicate;
 		}
 	}
 
-	m_scorches[m_numScorches].location = location;
-	m_scorches[m_numScorches].radius = radius;
-	m_scorches[m_numScorches].scorchType = type;
-	m_numScorches++;
-	m_scorchesInBuffer = 0; // force buffer regenerations.
+	index = state->numScorches;
+	if (state->numScorches >= MAX_SCORCH_MARKS) {
+		index = state->nextScorch;
+		state->nextScorch = (state->nextScorch + 1) % MAX_SCORCH_MARKS;
+		state->numScorches--;
+	}
+
+	state->scorches[index].location = location;
+	state->scorches[index].radius = radius;
+	state->scorches[index].scorchType = type;
+	state->scorches[index].flag = FALSE;
+	state->numScorches++;
+	state->scorchesInBuffer = 0; // force buffer regenerations.
+	return;
+
+duplicate:
+	state->scorches[i].flag = FALSE;
 #endif	
 }
 
