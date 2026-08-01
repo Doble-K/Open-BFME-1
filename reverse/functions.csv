@@ -1691,7 +1691,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ModuleTemplate@ModuleFactory@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,ICF alias of existing matched body
 ??0Money@@QAE@ABV0@@Z,,0x000E1540,27,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,
 ??0MoneyCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00217D10,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/MoneyCrateCollide.cpp,matched,MASM converted to clean C++
-??0MoneyCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/masm_dumps/MoneyCrateCollideModuleData_constructor.asm,matched,Exact 147B ICF alias MD Open-BFME4
 ??0MonsterDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002CDA30,74,Code/GameEngine/Source/GameLogic/Object/Update/NeutronMissileUpdateConstructor.cpp,matched,shared ICF owner converted to clean C++ body at destination 0x2CDA30
 ??0MonsterDockUpdateModuleData@@QAE@XZ,,0x002CDCF0,81,Code/masm_dumps/MonsterDockUpdateModuleData_constructor.asm,matched,Exact 81B ModuleData ctor; Open-BFME4+Grok
 ??0MorphKeyStruct@TimeCodedMorphKeysClass@@QAE@KK@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp,matched,tiny-locate
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0LargeGroupBonusUpdateModuleData@@QAE@XZ,,0x002978A0,105,Code/GameEngine/Source/GameLogic/AI/LargeGroupBonusUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0ConvertToCarBombCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/ConvertToCarBombCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0HealCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/HealCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
+??0MoneyCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/MoneyCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
