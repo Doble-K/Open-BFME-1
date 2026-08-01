@@ -13212,7 +13212,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setWaterTransform@W3DTerrainVisual@@UAEXPBVMatrix3D@@@Z,,0x00730990,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?setWaterTransform@W3DTerrainVisual@@UAEXPBVWaterHandle@@MMMM@Z,,0x00730A20,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?setWaypointID@MapObject@@QAEXH@Z,,0x00087E20,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
-?setWaypointName@MapObject@@QAEXVAsciiString@@@Z,,0x00087E50,31,Code/masm_dumps/MapObject_setWaypointName.asm,matched,Correct retail body from waypoint key and matched getter sibling cluster
 ?setWhiner@BuildListInfo@@QAEX_N@Z,,0x0045A9A0,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?setWidth@GameLogic@@QAEXM@Z,,0x00360640,10,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?setWindowText@@YAXPAVGameWindow@@VAsciiString@@@Z,,0x004864E0,416,Code/masm_dumps/GameWindowManagerScript_setWindowText.asm,matched,Exact 416B MASM; true body 0x4864E0 (queue 0x4864C7 int3 pad); BFME AsciiString isEmpty/str blocks ZH C++
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??6Debug@@QAEAAV0@_N@Z,,0x008897C0,30,Code/Libraries/Source/WWVegas/WWDebug/debug_operator_bool.cpp,matched,Open-BFME5 exact C++ operator<< bool body
 ??0?$CategoryModuleTemplate@$07@FXParticleSystem@@QAE@XZ,,0x0005E340,31,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplate8CtorThunk.cpp,matched,Open-BFME5 exact C++ template constructor thunk; retail ordinal $07 is Category 8
 ?addDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z,,0x00712030,74,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail list-offset shim
+?setWaypointName@MapObject@@QAEXVAsciiString@@@Z,,0x00087E50,31,Code/GameEngine/Source/GameClient/MapObjectSetWaypointNameThunk.cpp,matched,Open-BFME5 exact C++ setter thunk
