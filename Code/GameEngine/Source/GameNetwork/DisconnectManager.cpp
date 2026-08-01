@@ -749,7 +749,6 @@ Bool DisconnectManager::isPlayerVotedOut(Int slot, ConnectionManager *conMgr) {
 	return FALSE;
 }
 
-// ?getMaxDisconnectFrame@DisconnectManager@@IAEIXZ present-unmatched
 UnsignedInt DisconnectManager::getMaxDisconnectFrame() {
 	UnsignedInt retval = 0;
 	for (Int i = 0; i < MAX_SLOTS; ++i) {

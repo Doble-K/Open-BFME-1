@@ -1474,7 +1474,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FireWeaponWhenDeadBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FBC70,395,Code/masm_dumps/FireWeaponWhenDeadBehavior_constructor.asm,matched,Exact 395B @ 0x001FBC70; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116FC0
 ??0FireWeaponWhenDeadBehaviorModuleData@@QAE@XZ,,0x0012A1C0,112,Code/masm_dumps/FireWeaponWhenDeadBehaviorModuleData_constructor.asm,matched,Exact 112B @ 0x0012A1C0; Exact retail MASM ModuleData ctor; unique factory 0x12A250
 ??0FirestormDynamicGeometryInfoUpdateModuleData@@QAE@XZ,,0x0001235A,5,Code/masm_dumps/__0FirestormDynamicGeometryInfoUpdateModuleData__QAE_XZ_1235A.asm,matched,MASM exact retail dump
-??0FirewallHelperClass@@QAE@XZ,,0x0066E3B0,172,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,thunk-dump converted to clean C++
 ??0FlammableUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00293270,187,Code/masm_dumps/FlammableUpdate_ctor.asm,matched,Ghidra-owned BFME Flammable constructor
 ??0FlammableUpdateModuleData@@QAE@XZ,,0x00294B20,180,Code/masm_dumps/FlammableUpdateModuleData_constructor.asm,matched,Exact 180B @ 0x00294B20; Exact retail MASM ModuleData ctor; unique factory 0x118460
 ??0FlightDeckBehaviorModuleData@@QAE@XZ,,0x0000CC3E,5,Code/masm_dumps/__0FlightDeckBehaviorModuleData__QAE_XZ_CC3E.asm,matched,MASM exact retail dump
@@ -11095,7 +11094,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getManglerResponse@FirewallHelperClass@@QAEGGH@Z,,0x00025A7C,5,Code/masm_dumps/_getManglerResponse_FirewallHelperClass__QAEGGH_Z_25A7C.asm,matched,MASM exact retail dump
 ?getMapPreviewImage@@YAPAVImage@@VAsciiString@@@Z,,0x004516E0,1212,Code/masm_dumps/getMapPreviewImage_YAPAVImage_VAsciiString_Z_004516E0_packet354.asm,matched,certified packet 354 sealed RVA and SHA-256 reviewed identity evidence
 ?getMaxCellHeight@BaseHeightMapRenderObjClass@@QBEMMM@Z,,0x006C6CB0,290,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_getMaxCellHeight.asm,matched,exact 290B MASM @ 0x006C6CB0; queue 0x008B440D misplaced (mid foreign epilogue); m_map+0x2FF4 field-offset + no TheTerrainVisual path blocks C++
-?getMaxDisconnectFrame@DisconnectManager@@IAEIXZ,,0x0002CDCC,5,Code/masm_dumps/_thunk_3a13d6db0d30_2CDCC.asm,matched,thunk accessor of ported class
 ?getMaxManglerRetries@GameSpyConfig@@UAEHXZ,,0x00674250,4,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?getMaxMessagesPerUpdate@GameSpyInfo@@UAEHXZ,,0x006307B0,7,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?getMaxMessagesPerUpdate@GameSpyMiscPreferences@@QAEHXZ,,0x000A9B30,33,Code/masm_dumps/GameSpyMiscPreferences_getMaxMessagesPerUpdate.asm,matched,Unique MaxMessagesPerUpdate preference getter
@@ -13736,3 +13734,31 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?close@File@@UAEXXZ,,0x009CB880,50,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 2 of all three File vtables - repointed off its MASM dump onto C++
+?print@File@@UAA_NPBDZZ,,0x009CB6C0,115,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 10 and the same address in all three File vtables
+?open@MemoryReadFile@@UAE_NPBDH@Z,,0x009CB080,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?write@MemoryReadFile@@UAEHPBXH@Z,,0x009CB0E0,6,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?seek@MemoryReadFile@@UAEHHH@Z,,0x009CB0F0,54,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?nextLine@MemoryReadFile@@UAEXPADH@Z,,0x009CB130,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?scanInt@MemoryReadFile@@UAE_NAAH@Z,,0x009CB140,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?scanReal@MemoryReadFile@@UAE_NAAM@Z,,0x009CB150,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?scanString@MemoryReadFile@@UAE_NAAVAsciiString@@@Z,,0x009CB160,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?size@MemoryReadFile@@UAEHXZ,,0x009CB170,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?position@MemoryReadFile@@UAEHXZ,,0x009CB180,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?readEntireAndClose@MemoryReadFile@@UAEPADXZ,,0x009CB190,77,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?convertToRAMFile@MemoryReadFile@@UAEPAVFile@@XZ,,0x009CB1E0,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?open@MemoryWriteFile@@UAE_NPBDH@Z,,0x009CB220,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?read@MemoryWriteFile@@UAEHPAXH@Z,,0x009CB230,6,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?write@MemoryWriteFile@@UAEHPBXH@Z,,0x009CB240,135,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?seek@MemoryWriteFile@@UAEHHH@Z,,0x009CB2D0,54,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?nextLine@MemoryWriteFile@@UAEXPADH@Z,,0x009CB310,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?scanInt@MemoryWriteFile@@UAE_NAAH@Z,,0x009CB320,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?scanReal@MemoryWriteFile@@UAE_NAAM@Z,,0x009CB330,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?scanString@MemoryWriteFile@@UAE_NAAVAsciiString@@@Z,,0x009CB340,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?size@MemoryWriteFile@@UAEHXZ,,0x009CB350,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?position@MemoryWriteFile@@UAEHXZ,,0x009CB360,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?readEntireAndClose@MemoryWriteFile@@UAEPADXZ,,0x009CB370,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?convertToRAMFile@MemoryWriteFile@@UAEPAVFile@@XZ,,0x009CB380,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+??0File@@QAE@XZ,,0x009CB7A0,88,Code/GameEngine/Source/Common/System/File.cpp,matched,installs vtable 0x01143AF8 and sets the placeholder name
+??0FirewallHelperClass@@QAE@XZ,,0x0066E3B0,172,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,thunk-dump converted to clean C++
+?getMaxDisconnectFrame@DisconnectManager@@IAEIXZ,,0x0066B620,99,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,repointed off its 5B ILT thunk onto the real body
