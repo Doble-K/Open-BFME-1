@@ -8435,7 +8435,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?_M_increment@?$_Deque_iterator_base@VPingRequest@@@_STL@@QAEXXZ,,0x0065E950,40,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?_M_increment@?$_Deque_iterator_base@VPingResponse@@@_STL@@QAEXXZ,,0x0065E990,40,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?_M_increment@?$_Rb_global@_N@_STL@@SAPAU_Rb_tree_node_base@2@PAU32@@Z,,0x0082B870,105,Code/masm_dumps/___M_increment____Rb_global__N__STL__SAPAU_Rb_tree__82B870.asm,matched,
-?_M_initialize@?$vector@_NV?$allocator@_N@_STL@@@_STL@@IAEXI@Z,,0x0003B1A1,5,Code/masm_dumps/_thunk_525b3c0f2f02_3B1A1.asm,matched,thunk accessor of ported class
 ?_M_initialize_map@?$_Deque_base@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@IAEXI@Z,,0x008FA2B0,210,Code/masm_dumps/_icf3___M_initialize_map____Deque_base_PAVMapObject__V__allocator_PAVMapObje_8FA2B0.asm,matched,ICF Open-BFME4+Grok
 ?_M_initialize_map@?$_Deque_base@PAVPartitionCell@@V?$allocator@PAVPartitionCell@@@_STL@@@_STL@@IAEXI@Z,,0x008FA150,203,Code/masm_dumps/_sym2___M_initialize_map____Deque_base_PAVPartitionCell__V__allocator_PAVPar_8FA150.asm,matched,symbol-pin Open-BFME4+Grok
 ?_M_initialize_map@?$_Deque_base@PAVSightingInfo@@V?$allocator@PAVSightingInfo@@,,0x009ED640,203,Code/masm_dumps/___M_initialize_map____Deque_base_PAVSightingInfo___9ED640.asm,matched,
@@ -13825,3 +13824,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?_M_fill_insert@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@I_N@Z,,0x0000886E,5,Code/Libraries/Source/WWVegas/WWLib/STLBitVectorFillInsertThunk.cpp,matched,5-byte STL bit vector fill-insert thunk converted to focused C++ source
 ?appendNode@Path@@QAEXPBUCoord3D@@W4PathfindLayerEnum@@@Z,,0x0003833E,5,Code/GameEngine/Source/GameLogic/AI/PathAppendNodeThunk.cpp,matched,Open-BFME5 exact ILT thunk; retail Path::appendNode body 0x0016A4B0
 ?findControlBarOverride@GameLogic@@QBE_NABVAsciiString@@HAAPBVCommandButton@@@Z,,0x00002509,5,Code/GameEngine/Source/GameLogic/System/GameLogicFindControlBarOverrideThunk.cpp,matched,Focused C++ thunk for GameLogic control bar override
+?_M_initialize@?$vector@_NV?$allocator@_N@_STL@@@_STL@@IAEXI@Z,,0x0003B1A1,5,Code/Libraries/Source/WWVegas/WWLib/STLBitVectorFillInsertThunk.cpp,matched,5-byte STL bit vector initialization thunk converted to focused C++ source
