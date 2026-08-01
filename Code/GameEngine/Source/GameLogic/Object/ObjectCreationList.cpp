@@ -1596,6 +1596,15 @@ const ObjectCreationList *ObjectCreationListStore::findObjectCreationList(const 
 	}
 }
 
+// Keep the ObjectCreationListMap const-find COMDAT emitted for the retail STL body.
+std::map<NameKeyType, ObjectCreationList, std::less<NameKeyType> >::const_iterator
+	PeerDefs_force_ObjectCreationListMapFind(
+		const std::map<NameKeyType, ObjectCreationList, std::less<NameKeyType> > *map,
+		NameKeyType key)
+{
+	return map->find(key);
+}
+
 //-------------------------------------------------------------------------------------------------
 void ObjectCreationListStore::addObjectCreationNugget(ObjectCreationNugget* nugget)
 {
