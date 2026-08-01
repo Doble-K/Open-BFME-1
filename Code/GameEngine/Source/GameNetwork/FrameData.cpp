@@ -39,11 +39,11 @@
 /**
  * Initialize this thing.
  */
-// ?init@FrameData@@ present-unmatched
 void FrameData::init()
 {
 	if (m_commandList == NULL) {
-		m_commandList = newInstance(NetCommandList);
+		// Plain new, not ZH's newInstance: BFME de-pooled the Net* classes.
+		m_commandList = new NetCommandList;
 		m_commandList->init();
 	}
 	m_commandList->reset();
@@ -78,8 +78,7 @@ UnsignedInt FrameData::getCommandCount() {
 /**
  * Add a command to this frame
  */
-// ?addCommand@FrameData@@ present-unmatched
-void FrameData::addCommand(NetCommandMsg *msg) {
+NetCommandRef *FrameData::addCommand(NetCommandMsg *msg) {
 	// need to add the message in order of command ID
 	if (m_commandList == NULL) {
 		init();
@@ -88,11 +87,12 @@ void FrameData::addCommand(NetCommandMsg *msg) {
 	// We don't need to worry about setting the relay since its not getting sent anywhere.
 	if (m_commandList->findMessage(msg) != NULL) {
 		// We don't want to add the same command twice.
-		return;
+		return NULL;
 	}
-	m_commandList->addMessage(msg);
+	NetCommandRef *ref = m_commandList->addMessage(msg);
 
 	++m_commandCount;
+	return ref;
 }
 
 /**
@@ -105,7 +105,6 @@ NetCommandList * FrameData::getCommandList() {
 /**
  * destroy all the commands in this frame.
  */
-// ?destroyGameMessages@FrameData@@ present-unmatched
 void FrameData::destroyGameMessages() {
 	if (m_commandList == NULL) {
 		return;

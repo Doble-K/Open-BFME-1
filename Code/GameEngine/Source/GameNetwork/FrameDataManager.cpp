@@ -98,16 +98,14 @@ void FrameDataManager::update() {
  * Add a network command to the appropriate frame.
  */
 // ?addNetCommandMsg@FrameDataManager@@ present-unmatched
+// BFME has no local-player adjustment here; the announced total is stamped by
+// the FRAMEINFO path instead. Everything but the call shape matches: retail
+// emits call+ret where this compiles to a tail jump, because addCommand's
+// NetCommandRef return is discarded and the conventions line up.
 void FrameDataManager::addNetCommandMsg(NetCommandMsg *msg) {
 	UnsignedInt frame = msg->getExecutionFrame();
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
-	DEBUG_LOG(("FrameDataManager::addNetCommandMsg - about to add a command of type %s for frame %d, frame index %d\n", GetAsciiNetCommandType(msg->getNetCommandType()).str(), frame, frameindex));
 	m_frameData[frameindex].addCommand(msg);
-
-	if (m_isLocal) {
-		// If this is the local connection, adjust the frame command count.
-		m_frameData[frameindex].setFrameCommandCount(m_frameData[frameindex].getCommandCount());
-	}
 }
 
 /**
@@ -123,7 +121,6 @@ FrameDataReturnType FrameDataManager::allCommandsReady(UnsignedInt frame, Bool d
 /**
  * Returns the command list for the given frame.
  */
-// ?getFrameCommandList@FrameDataManager@@ present-unmatched
 NetCommandList * FrameDataManager::getFrameCommandList(UnsignedInt frame) {
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
 	return m_frameData[frameindex].getCommandList();
@@ -132,21 +129,16 @@ NetCommandList * FrameDataManager::getFrameCommandList(UnsignedInt frame) {
 /**
  * Reset the contents of the given frame.
  */
-// ?resetFrame@FrameDataManager@@ present-unmatched
+// BFME drops ZH's isAdvancing branch along with m_frame, and passes -1 to
+// setFrameCommandCount where ZH re-reads getCommandCount().
 void FrameDataManager::resetFrame(UnsignedInt frame, Bool isAdvancing) {
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
 
 	m_frameData[frameindex].reset();
 
-	if (isAdvancing) {
-		m_frameData[frameindex].setFrame(frame + MAX_FRAMES_AHEAD);
-	}
-
 	if (m_isLocal) {
-		m_frameData[frameindex].setFrameCommandCount(m_frameData[frameindex].getCommandCount());
+		m_frameData[frameindex].setFrameCommandCount(-1);
 	}
-
-	DEBUG_ASSERTCRASH(m_frameData[frameindex].getCommandCount() == 0, ("we just reset the frame data and the command count is not zero, huh?"));
 }
 
 /**

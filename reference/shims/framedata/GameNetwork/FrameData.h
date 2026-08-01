@@ -43,7 +43,11 @@ public:
 	NetCommandList *getCommandList();
 	void setFrameCommandCount(UnsignedInt totalCommandCount);
 	UnsignedInt getFrameCommandCount();
-	void addCommand(NetCommandMsg *msg);
+	// Returns the new NetCommandRef in BFME, where ZH returns void: the
+	// duplicate path is `xor eax,eax` and the success path leaves addMessage's
+	// return value in eax, which is also why retail increments m_commandCount
+	// through ecx rather than clobbering it.
+	NetCommandRef *addCommand(NetCommandMsg *msg);
 	UnsignedInt getCommandCount();
 	void zeroFrame();
 	void destroyGameMessages();
