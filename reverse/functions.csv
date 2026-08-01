@@ -1450,7 +1450,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GateOpenAndCloseBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FC580,197,Code/masm_dumps/GateOpenAndCloseBehavior_constructor.asm,matched,Exact 197B; factory ownership Open-BFME4
 ??0GateOpenAndCloseBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/masm_dumps/GateOpenAndCloseBehaviorModuleData_constructor.asm,matched,Exact 483B ICF primary MD Open-BFME4
 ??0GateProxyBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/masm_dumps/GateProxyBehaviorModuleData_constructor.asm,matched,Exact 483B ICF alias MD Open-BFME4
-??0GenerateMinefieldBehaviorModuleData@@QAE@XZ,,0x0002B062,5,Code/masm_dumps/__0GenerateMinefieldBehaviorModuleData__QAE_XZ_2B062.asm,matched,MASM exact retail dump
 ??0GenericList@@QAE@XZ,,0x009E2EC0,103,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??0GenericMultiListClass@@QAE@XZ,,0x006D11E0,39,Code/Libraries/Source/WWVegas/WWMath/lookuptable.cpp,matched,
 ??0GenericMultiListIterator@@QAE@PAVGenericMultiListClass@@@Z,,0x006CA3F0,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@UUpgrades@CashHackSpecialPowerModuleData@@V?$allocator@UUpgrades@CashHackSpecialPowerModuleData@@@_STL@@@_STL@@IAEXPAUUpgrades@CashHackSpecialPowerModuleData@@ABU34@ABU__false_type@2@I_N@Z,,0x0000EF11,5,Code/Libraries/Source/WWVegas/WWLib/CashHackSpecialPowerModuleDataUpgradesVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0QuickMatchPreferences@@QAE@XZ,,0x0002E802,5,Code/GameEngine/Source/Common/QuickMatchPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@UUpgrades@OCLSpecialPowerModuleData@@V?$allocator@UUpgrades@OCLSpecialPowerModuleData@@@_STL@@@_STL@@IAEXPAUUpgrades@OCLSpecialPowerModuleData@@ABU34@ABU__false_type@2@I_N@Z,,0x0003913F,5,Code/Libraries/Source/WWVegas/WWLib/OCLSpecialPowerModuleDataUpgradesVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0GenerateMinefieldBehaviorModuleData@@QAE@XZ,,0x0002B062,5,Code/GameEngine/Source/GameLogic/Object/Behavior/GenerateMinefieldBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
