@@ -2162,7 +2162,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0UIMessage@InGameUI@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of existing matched body
 ??0UVBufferClass@@QAE@ABV0@@Z,,0x0092BAD0,33,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ??0UVBufferClass@@QAE@HPBD@Z,,0x006D7B70,41,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
-??0UndeadBodyModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/UndeadBodyModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0UnicodeString@@QAE@ABV0@@Z,0x00025E28,0x000682C0,19,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,UnicodeString copy constructor
 ??0UnicodeString@@QAE@ABV0@HH@Z,0x0001A843,0x00434630,31,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,UnicodeString copy substring
 ??0UnicodeString@@QAE@G@Z,0x0002C769,0x007E84E0,18,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,UnicodeString(wchar_t)
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??$__copy@PAVW3DAnimationInfo@@PAV1@H@_STL@@YAPAVW3DAnimationInfo@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x00024023,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoCopy.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
 ??0TemporarilyDefectUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0ToggleHiddenSpecialAbilityUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0UndeadBodyModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
