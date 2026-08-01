@@ -9126,7 +9126,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?deleteShadowVolume@W3DVolumetricShadow@@IAEXH@Z,,0x007BAFA0,142,Code/masm_dumps/_deleteShadowVolume_W3DVolumetricShadow__IAEXH_Z.asm,matched,MASM exact; true body 0x7BAFA0/142 (queue 0x7BCF93 was INSIDE dtor 0x7BCF50/280); layout m_shadowVolume@+0x80 count@+0xf80 vs C++ +0x50/+0xf50
 ?deleteTriggers@PolygonTrigger@@,,0x0074A680,139,Code/masm_dumps/_sa8__deleteTriggers_PolygonTrigger___74A680.asm,matched,Exact 139B Open-BFME4
 ?deleteTriggers@PolygonTrigger@@QAEXXZ,,0x00748860,1328,Code/masm_dumps/_sa3__deleteTriggers_PolygonTrigger__QAEXXZ_748860.asm,matched,Exact 1328B string-anchored Open-BFME4
-?deposit@Money@@QAEXI_N@Z,,0x00027D6D,5,Code/masm_dumps/_deposit_Money__QAEXI_N_Z_27D6D.asm,matched,MASM exact retail dump
 ?depth@IRegion3D@@QBEHXZ,0x00040E53,0x007E6F20,7,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,returns integer depth
 ?depth@Region3D@@QBEMXZ,0x0001DB24,0x007E6E30,7,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,returns float depth
 ?destroy@BFMEConnectionManager@@QAEXXZ,,0x00668D90,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
@@ -12502,7 +12501,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setDesiredSpeed@AIUpdateInterface@@QAEXM@Z,,0x001BD780,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setDirty@LaserUpdate@@QAEX_N@Z,,0x00295AA0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDraw.cpp,matched,
 ?setDisabled@Object@@QAEXW4DisabledType@@@Z,,0x001CE790,18,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-?setDisabledUntil@Object@@QAEXW4DisabledType@@I@Z,,0x0003364A,5,Code/masm_dumps/_setDisabledUntil_Object__QAEXW4DisabledType__I_Z_3364A.asm,matched,MASM exact retail dump
 ?setDisallowAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630760,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADEE0,170,Code/masm_dumps/_sa13__setDisallowNonAsianText_CustomMatchPreferences__QAEX_N_Z_ADEE0.asm,matched,multi-xref Open-BFME4+Grok DisallowNonAsianText
 ?setDisallowNonAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630770,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
@@ -13804,3 +13802,5 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?setOrientation@Thing@@QAEXM@Z,,0x000399A5,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Thing::setOrientation
 ?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z,,0x00023D49,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Thing::setTransformMatrix
 ?setSize@Shadow@@QAEXMM@Z,,0x0002133C,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Shadow::setSize
+?deposit@Money@@QAEXI_N@Z,,0x00027D6D,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Money::deposit
+?setDisabledUntil@Object@@QAEXW4DisabledType@@I@Z,,0x0003364A,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Object::setDisabledUntil
