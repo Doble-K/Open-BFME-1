@@ -1538,7 +1538,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GeometryUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D5790,120,Code/masm_dumps/GeometryUpgrade_constructor.asm,matched,Exact 120B @ 0x002D5790; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11DF20
 ??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/masm_dumps/GeometryUpgradeModuleData_constructor.asm,matched,Exact 143B @ 0x002D5CE0; Exact retail MASM ModuleData ctor; unique factory 0x11DFA0
 ??0GettingBuiltBehaviorModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/GettingBuiltBehaviorModuleData_constructor.asm,matched,Exact 162B ICF primary MD Open-BFME4
-??0GhostObjectManager@@QAE@XZ,,0x00008652,5,Code/masm_dumps/__0GhostObjectManager__QAE_XZ_8652.asm,matched,MASM exact retail dump
 ??0GiantBirdAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C2430,418,Code/masm_dumps/GiantBirdAIUpdate_constructor.asm,matched,Exact 418B @ 0x002C2430; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x118910
 ??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/GiantBirdAIUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0GiantBirdSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FFB40,137,Code/masm_dumps/GiantBirdSlowDeathBehavior_constructor.asm,matched,Exact 137B @ 0x001FFB40; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1157D0
@@ -13797,3 +13796,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??0GhostObjectManager@@QAE@XZ,,0x001B3AA0,20,Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp,matched,converted thunk to TU-scoped C++ constructor
