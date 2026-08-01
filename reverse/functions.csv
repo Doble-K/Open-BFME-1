@@ -1719,7 +1719,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OCLUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298960,80,Code/masm_dumps/OCLUpdate_constructor.asm,matched,Exact 80B unique factory Open-BFME4
 ??0OCLUpdateModuleData@@QAE@XZ,,0x00298920,23,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0OathbreakersFadeAwayBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00201BB0,84,Code/masm_dumps/OathbreakersFadeAwayBehavior_constructor.asm,matched,Exact 84B unique factory Open-BFME4
-??0OathbreakersFadeAwayBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/masm_dumps/OathbreakersFadeAwayBehaviorModuleData_constructor.asm,matched,Exact 114B ICF primary MD Open-BFME4
 ??0ObbCollisionStruct@@QAE@ABVOBBoxClass@@ABVVector3@@01@Z,,0x008E3760,218,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
 ??0ObbIntersectionStruct@@QAE@ABVOBBoxClass@@0@Z,,0x008E2A20,153,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
 ??0Object@@QAE@PBVThingTemplate@@ABV?$BitFlags@$0CN@@@PAVTeam@@@Z,,0x001D29A0,4246,Code/masm_dumps/_str2__0Object_QAE_PBVThingTemplate_ABV_BitFlags_0CN_PAVTeam__1D29A0.asm,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ShroudCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/ShroudCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0GateOpenAndCloseBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/GameEngine/Source/GameLogic/AI/GateOpenAndCloseBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
 ??0GateProxyBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/GameEngine/Source/GameLogic/AI/GateProxyBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
+??0OathbreakersFadeAwayBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
