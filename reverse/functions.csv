@@ -1798,7 +1798,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PlaneClass@@QAE@XZ,,0x00931400,20,Code/Libraries/Source/WWVegas/WWMath/frustum.cpp,matched,
 ??0Player@@QAE@H@Z,,0x0022E820,43,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0PlayerHealSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002639D0,46,Code/masm_dumps/PlayerHealSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
-??0PlayerHealSpecialPowerModuleData@@QAE@XZ,,0x00263BE0,92,Code/masm_dumps/PlayerHealSpecialPowerModuleData_constructor.asm,matched,Exact 92B @ 0x00263BE0; Exact retail MASM ModuleData ctor; unique factory 0x121480; Open-BFME4+Grok
 ??0PlayerList@@QAE@XZ,,0x000DFBD0,162,Code/masm_dumps/PlayerList_constructor_000DFBD0_2fb354f7.asm,matched,certified packet 217 sealed SHA-256 2fb354f7 constructor ownership reviewed
 ??0PlayerTemplate@@QAE@ABV0@@Z,,0x0001449D,5,Code/GameEngine/Source/Common/RTS/PlayerTemplateCopyCtorThunk.cpp,matched,5-byte incremental-link copy constructor thunk converted to focused C++ source
 ??0PlayerTemplate@@QAE@XZ,,0x000E3760,824,Code/masm_dumps/__0PlayerTemplate__QAE_XZ_E3760.asm,matched,MASM exact; true body 0xE3760/824 via symbols ILT 0x3E6E4; queue 0xC6DCD5 int3 pad
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0DemoTrapUpdateModuleData@@QAE@XZ,,0x0028C9E0,58,Code/GameEngine/Source/GameLogic/AI/DemoTrapUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/GameEngine/Source/GameLogic/AI/RunOffMapBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ShareExperienceBehaviorModuleData@@QAE@XZ,,0x002056B0,80,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0PlayerHealSpecialPowerModuleData@@QAE@XZ,,0x00263BE0,92,Code/GameEngine/Source/GameLogic/AI/PlayerHealSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
