@@ -147,6 +147,7 @@ REGISTER_BLOCK( MapCache, "MapCache", INI::parseMapCacheDefinition );
 REGISTER_BLOCK( MapData, "MapData", INI::parseMapDataDefinition );
 REGISTER_BLOCK( MappedImage, "MappedImage", INI::parseMappedImageDefinition );
 REGISTER_BLOCK( MiscAudio, "MiscAudio", INI::parseMiscAudio );
+REGISTER_BLOCK( MiscEvaData, "MiscEvaData", INI::parseMiscEvaData );
 REGISTER_BLOCK( Mouse, "Mouse", INI::parseMouseDefinition );
 REGISTER_BLOCK( MouseCursor, "MouseCursor", INI::parseMouseCursorDefinition );
 REGISTER_BLOCK( MultiplayerColor, "MultiplayerColor", INI::parseMultiplayerColorDefinition );

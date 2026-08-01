@@ -115,3 +115,52 @@ class ActionManager : public SubsystemInterface {};	// 0x000757E0, TheActionMana
 // row referencing the wrong global.
 class ScienceStore : public SubsystemInterface {};
 
+// ---------------------------------------------------------------------------
+// tools/dump_subsystems.py reopened the ten below, which the exclusions above
+// were written before it existed.
+//
+// Every GameEngine::init registration site passes the subsystem's own name as a
+// string literal immediately before the address of the global it initialises:
+//
+//     push 0x1076494          ; "TheRankInfoStore"
+//     call AsciiString::AsciiString
+//     push 0x12f1014          ; &TheRankInfoStore
+//     call initSubsystem<T>
+//
+// That names the VARIABLE from the binary, with no ctor needed -- which is what
+// the "built by a factory call, so there is no ctor to read a name from" and
+// "calls ??0SubsystemInterface@@ directly" exclusions above were blocked on.
+// It does not by itself name the TYPE, and the two differ often enough to be
+// dangerous: TheTerrainTypes is a TerrainTypeCollection*, TheCDManager a
+// CDManagerInterface*, TheGameResultsQueue a GameResultsInterface*. Chopping
+// "The" would have been wrong three times in ten.
+//
+// So the type comes from a second source, and there are two tiers of it:
+//
+//   (a) a byte-verified ledger row carries the class name. Same standard as the
+//       block above.
+//   (b) no ledger row does, and Zero Hour's header declares the global with the
+//       type. Weaker, but it is an outside authority rather than this file --
+//       the objection that kept TheGameText out was precisely that our own
+//       header would otherwise be the only one asserting the name.
+//
+class Eva : public SubsystemInterface {};	// 0x00073190, TheEva; (a) ?parseEvaMessageFromIni@Eva@@SAXPAVINI@@PAX1PBX@Z
+class TerrainTypeCollection : public SubsystemInterface {};	// 0x00073490, TheTerrainTypes; (a) ?newTerrain@TerrainTypeCollection@@
+class ModuleFactory : public SubsystemInterface {};	// 0x00073850, TheModuleFactory; (a) 14 rows incl ??0ModuleTemplate@ModuleFactory@@QAE@XZ
+class RankInfoStore : public SubsystemInterface {};	// 0x00073B50, TheRankInfoStore; (a) ?getRankInfo@RankInfoStore@@QBEPBVRankInfo@@H@Z
+class MetaMap : public SubsystemInterface {};	// 0x000754E0, TheMetaMap; (a) ?findGameMessageMetaType@MetaMap@@IAE?AW4Type@GameMessage@@PBD@Z
+class GameResultsInterface : public SubsystemInterface {};	// 0x00075A20, TheGameResultsQueue; (a) ?createNewGameResultsInterface@GameResultsInterface@@SAPAV1@XZ
+
+class GameTextInterface : public SubsystemInterface {};	// 0x00073010, TheGameText; (b) ZH: extern GameTextInterface *TheGameText
+class CDManagerInterface : public SubsystemInterface {};	// 0x00073610, TheCDManager; (b) ZH: extern CDManagerInterface *TheCDManager
+class BuildAssistant : public SubsystemInterface {};	// 0x00074390, TheBuildAssistant; (b) ZH: extern BuildAssistant *TheBuildAssistant
+class GameStateMap : public SubsystemInterface {};	// 0x000758A0, TheGameStateMap; (b) ZH: extern GameStateMap *TheGameStateMap
+
+// Still out, and now for one reason only -- no second source for the TYPE.
+// TheVictorySystem, TheLivingWorldManager, TheAerialPathfinder, TheTaintManager,
+// ThePlayerAITypeSet and TheExperienceLevelSystem are all BFME-only, so Zero
+// Hour cannot supply tier (b), and no ledger row carries a matching class name.
+// The variable names read like the class names, but that is the guess that
+// TerrainTypeCollection, CDManagerInterface and GameResultsInterface each show
+// to be unsafe. TheRadar stays out for the separate reason given above: 167
+// bytes where every other instantiation is 154.

@@ -139,3 +139,15 @@ template void initSubsystem<GameLogic>(GameLogic *&, AsciiString, GameLogic *, X
 template void initSubsystem<RecorderClass>(RecorderClass *&, AsciiString, RecorderClass *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<ActionManager>(ActionManager *&, AsciiString, ActionManager *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<ScienceStore>(ScienceStore *&, AsciiString, ScienceStore *, Xfer *, const char *, const char *, const char *);
+
+// Named by tools/dump_subsystems.py -- see game_engine_subsystems.h.
+template void initSubsystem<Eva>(Eva *&, AsciiString, Eva *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<TerrainTypeCollection>(TerrainTypeCollection *&, AsciiString, TerrainTypeCollection *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<ModuleFactory>(ModuleFactory *&, AsciiString, ModuleFactory *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<RankInfoStore>(RankInfoStore *&, AsciiString, RankInfoStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<MetaMap>(MetaMap *&, AsciiString, MetaMap *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<GameResultsInterface>(GameResultsInterface *&, AsciiString, GameResultsInterface *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<GameTextInterface>(GameTextInterface *&, AsciiString, GameTextInterface *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<CDManagerInterface>(CDManagerInterface *&, AsciiString, CDManagerInterface *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<BuildAssistant>(BuildAssistant *&, AsciiString, BuildAssistant *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<GameStateMap>(GameStateMap *&, AsciiString, GameStateMap *, Xfer *, const char *, const char *, const char *);

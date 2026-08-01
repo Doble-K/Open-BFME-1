@@ -301,6 +301,7 @@ public:
 	static void parseCampaignDefinition( INI *ini );
 	static void parseAudioSettingsDefinition( INI *ini );
 	static void parseMiscAudio( INI *ini );
+	static void parseMiscEvaData( INI *ini );   // BFME-only block
 	static void parseStaticGameLODDefinition( INI *ini);
 	static void parseDynamicGameLODDefinition( INI *ini);
 	// BFME-only block; Zero Hour has no audio LOD level at all.
