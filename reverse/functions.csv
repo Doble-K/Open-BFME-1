@@ -13810,3 +13810,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?doFXPos@FXList@@IBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,,0x0003E360,5,Code/GameEngine/Source/GameClient/FXListDoFXPosThunk.cpp,matched,5-byte protected const FX position thunk converted to focused C++ source
 ?downloadNextQueuedFile@DownloadManager@@QAEJXZ,,0x00038F00,5,Code/GameEngine/Source/GameClient/DownloadManagerThunks.cpp,matched,Focused C++ thunk for DownloadManager queue advance
 ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,,0x000119E1,5,Code/GameEngine/Source/GameLogic/Object/LocomotorStoreNewLocomotorThunk.cpp,matched,5-byte const LocomotorStore factory thunk converted to focused C++ source
+?getDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEIXZ,,0x0003D5F0,5,Code/GameEngine/Source/GameNetwork/NetDisconnectFrameCommandMsgGetDisconnectFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x674110
