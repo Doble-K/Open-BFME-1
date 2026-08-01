@@ -13257,7 +13257,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?write@UserPreferences@@UAE_NXZ,,0x000A9F60,162,Code/GameEngine/Source/Common/UserPreferences_write.asm,matched,exact 162B via MASM
 ?writeArrayOfBytes@DataChunkOutput@@QAEXPADH@Z,,0x001025A0,28,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?writeByte@DataChunkOutput@@QAEXD@Z,,0x00102580,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
-?writeCacheINI@MapCache@@AAEX_N@Z,,0x0000E2B4,5,Code/masm_dumps/_writeCacheINI_MapCache__AAEX_N_Z_E2B4.asm,matched,MASM exact retail dump
 ?writeDict@DataChunkOutput@@QAEXABVDict@@@Z,,0x001043B0,572,Code/GameEngine/Source/Common/System/DataChunk_writeDict.asm,matched,exact 572B MASM; true body 0x1043B0 (queue 0x1043FB INSIDE after fwrite); 5-case Dict switch jumptable; sibling writeNameKey pattern
 ?writeFirewallBehavior@FirewallHelperClass@@QAEXXZ,,0x0066FDF0,380,Code/masm_dumps/writeFirewallBehavior_FirewallHelperClass_QAEXXZ_0066FDF0_packet309.asm,matched,Certified packet 309 exact retail byte recovery sha256 adb48b97c58656160c2717d8af30a1bc43cf024ba94f2a11472e29a8b8857d7c
 ?writeGameMessageArgumentToPacket@NetPacket@@IAEXW4GameMessageArgumentDataType@@TGameMessageArgumentType@@@Z,,0x00678430,26,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??$_M_allocate_and_copy@PBUNugget@ModuleInfo@@@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@IAEPAUNugget@ModuleInfo@@IPBU23@0@Z,,0x000313AE,5,Code/Libraries/Source/WWVegas/WWLib/ModuleInfoNuggetAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector allocate-and-copy thunk converted to focused C++ thunk TU
 ?loadUserMaps@MapCache@@AAE_NXZ,,0x00028FF1,5,Code/GameEngine/Source/Common/RTS/MapCacheLoadUserMapsThunk.cpp,matched,5-byte incremental-link MapCache private member thunk converted to focused C++ source
 ??$_M_allocate_and_copy@PBUParticleSysBoneInfo@@@?$vector@UParticleSysBoneInfo@@V?$allocator@UParticleSysBoneInfo@@@_STL@@@_STL@@IAEPAUParticleSysBoneInfo@@IPBU2@0@Z,,0x000286AA,5,Code/Libraries/Source/WWVegas/WWLib/ParticleSysBoneInfoAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector allocate-and-copy thunk converted to focused C++ thunk TU
+?writeCacheINI@MapCache@@AAEX_N@Z,,0x0000E2B4,5,Code/GameEngine/Source/Common/RTS/MapCacheWriteCacheINIThunk.cpp,matched,5-byte incremental-link MapCache private member thunk converted to focused C++ source
