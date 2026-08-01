@@ -6466,7 +6466,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Render_Device_Desc@DX8Wrapper@@KAABVRenderDeviceDescClass@@H@Z,,0x00903E80,41,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,BFME RenderDeviceDesc layout shim
 ?Get_Render_Device_Name@DX8Wrapper@@KAPBDH@Z,,0x00903EB0,20,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_Render_Mode@ParticleEmitterClass@@QBEHXZ,,0x0097E200,13,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
-?Get_Render_Target_Resolution@WW3D@@SAXAAH00AA_N@Z,,0x008FD1F0,5,Code/masm_dumps/_Get_Render_Target_Resolution_WW3D__SAXAAH00AA_N_Z_8FD1F0.asm,matched,MASM exact retail dump
 ?Get_Rotation_Key_Frames@ParticleBufferClass@@QBEXAAU?$ParticlePropertyStruct@M@@@Z,,0x00983FE0,360,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Get_Rotation_Key_Frames@ParticleEmitterClass@@QBEXAAU?$ParticlePropertyStruct@M@@@Z,,0x0097E420,11,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Get_Rotation_Keyframes@ParticleEmitterDefClass@@UBEXAAU?$ParticlePropertyStruct@M@@@Z,,0x0098E600,23,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??1LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0002A08B,5,Code/Libraries/Source/WWVegas/WW3D2/LogicalDecalDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ?GameSpyCloseOverlay@@YAXW4GSOverlayType@@@Z,,0x00040E94,5,Code/GameEngine/Source/GameNetwork/GameSpyOpenOverlayThunk.cpp,matched,5-byte incremental-link global thunk converted alongside paired overlay thunk
 ??1Payload@DeliverPayloadNugget@@QAE@XZ,,0x0004B10A,5,Code/GameEngine/Source/GameLogic/Object/DeliverPayloadDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
+?Get_Render_Target_Resolution@WW3D@@SAXAAH00AA_N@Z,,0x008FD1F0,5,Code/Libraries/Source/WWVegas/WW3D2/WW3DGetRenderTargetResolutionThunk.cpp,matched,5-byte incremental-link static member thunk converted to focused C++ source
