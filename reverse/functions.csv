@@ -13689,3 +13689,6 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ??$initSubsystem@VRecorderClass@@@@YAXAAPAVRecorderClass@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075290,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,named from the global GameEngine::init passes by reference
 ??$initSubsystem@VActionManager@@@@YAXAAPAVActionManager@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x000757E0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,named from the global GameEngine::init passes by reference
 ??0FirewallHelperClass@@QAE@XZ,,0x0066E3B0,172,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,thunk-dump converted to clean C++
+_CommUDPResolve,,0x00817210,28,Code/Libraries/Source/DirtySock/commudp.cpp,matched,
+_CommUDPWrite,,0x00817030,203,Code/Libraries/Source/DirtySock/commudp.cpp,matched,
+_CommUDPConnect,,0x00819300,528,Code/Libraries/Source/DirtySock/commudp.cpp,matched,
