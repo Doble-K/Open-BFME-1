@@ -1063,7 +1063,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AIAttackMoveToState@@QAE@PAVStateMachine@@@Z,,0x00183990,234,Code/masm_dumps/_sa6___0AIAttackMoveToState__QAE_PAVStateMachine___Z_183990.asm,matched,Exact 234B Open-BFME4+Grok
 ??0AIAttackPursueTargetState@@QAE@PAVStateMachine@@_N11@Z,,0x0017F700,88,Code/masm_dumps/_saG___0AIAttackPursueTargetState__QAE_PAVStateMachine___N11_17F700.asm,matched,string-anchor MASM unique Open-BFME4+Grok
 ??0AIAttackState@@QAE@PAVStateMachine@@_N11PAVAttackExitConditionsInterface@@@Z,,0x0017C910,124,Code/masm_dumps/_sa12___0AIAttackState__QAE_PAVStateMachine___N11PAVAttackExitConditionsInte_17C910.asm,matched,string-anchor Open-BFME4+Grok AIAttackState
-??0AIAttackThenIdleStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x00184A40,347,Code/masm_dumps/AIAttackThenIdleStateMachine_ctor.asm,matched,MASM exact; true body via factory 0x184C00 string AIAttackThenIdleStateMachine ILT->0x184A40; queue 0x2C1093 was inside AIAttackMoveStateMachine
 ??0AIDockMachine@@,,0x0014F7C0,826,Code/masm_dumps/_sa___0AIDockMachine___14F7C0.asm,matched,Exact 826B string-anchored Open-BFME4
 ??0AIGuardMachine@@,,0x0015D1D0,691,Code/masm_dumps/_sa___0AIGuardMachine___15D1D0.asm,matched,Exact 691B string-anchored Open-BFME4
 ??0AIGuardRetaliateMachine@@,,0x0015F240,327,Code/masm_dumps/_sa4___0AIGuardRetaliateMachine___15F240.asm,matched,Exact 327B Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AIWanderInPlaceState@@QAE@PAVStateMachine@@@Z,,0x0017FB80,63,Code/GameEngine/Source/GameLogic/AI/AIWanderInPlaceStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIWanderState@@QAE@PAVStateMachine@@@Z,,0x0017FB00,82,Code/GameEngine/Source/GameLogic/AI/AIWanderStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIFollowWaypointPathExactState@@QAE@PAVStateMachine@@_N@Z,,0x0017FA90,60,Code/GameEngine/Source/GameLogic/AI/AIFollowWaypointPathExactStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
+??0AIAttackThenIdleStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x00184A40,347,Code/GameEngine/Source/GameLogic/AI/AIAttackThenIdleStateMachineCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state-machine constructor
