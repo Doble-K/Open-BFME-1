@@ -147,7 +147,9 @@ private:
 	*/
 	AsciiString								m_name;
 	LocomotorSurfaceTypeMask	m_surfaces;							///< flags indicating the kinds of surfaces we can use
+#ifndef BFME_LOCOMOTOR_RUDDER_LAYOUT
 	char								m_bfmeTemplatePadding[0x1c];
+#endif
 	Real											m_maxSpeed;							///< max speed
 	Real											m_maxSpeedDamaged;			///< max speed when "damaged"
 	Real											m_minSpeed;							///< we should never brake past this
@@ -314,7 +316,11 @@ public:
 	inline Real getWheelTurnAngle() const {return m_template->m_wheelTurnAngle;}
 
   
+#ifdef BFME_LOCOMOTOR_RUDDER_LAYOUT
+	Real getRudderCorrectionDegree() const;
+#else
 	inline Real getRudderCorrectionDegree()	  const { return m_template->m_rudderCorrectionDegree;}			///< How much we roll in response to acceleration.
+#endif
 	inline Real getRudderCorrectionRate()	    const { return m_template->m_rudderCorrectionRate;}			///< How much we roll in response to acceleration.
 	inline Real getElevatorCorrectionDegree() const { return m_template->m_elevatorCorrectionDegree;}			///< How much we roll in response to acceleration.
 	inline Real getElevatorCorrectionRate()	  const { return m_template->m_elevatorCorrectionRate;}			///< How much we roll in response to acceleration.
