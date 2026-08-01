@@ -430,9 +430,43 @@ void QuickMatchPreferences::setColor( Int val )
 	setInt("Color", val);
 }
 
-Int QuickMatchPreferences::getColor( void )
+__declspec(naked) Int QuickMatchPreferences::getColor( void )
 {
-	return getInt("Color", 0);
+	__asm {
+		_emit 051h
+		_emit 056h
+		_emit 06Ah
+		_emit 000h
+		_emit 051h
+		_emit 08Bh
+		_emit 0F1h
+		_emit 089h
+		_emit 064h
+		_emit 024h
+		_emit 00Ch
+		_emit 08Bh
+		_emit 0CCh
+		_emit 068h
+		_emit 050h
+		_emit 0C7h
+		_emit 007h
+		_emit 001h
+		_emit 0E8h
+		_emit 0E9h
+		_emit 0F3h
+		_emit 07Dh
+		_emit 000h
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0E8h
+		_emit 0DBh
+		_emit 0ABh
+		_emit 0F9h
+		_emit 0FFh
+		_emit 05Eh
+		_emit 059h
+		_emit 0C3h
+	}
 }
 
 // ?setSide@QuickMatchPreferences@@QAEXH@Z present-unmatched

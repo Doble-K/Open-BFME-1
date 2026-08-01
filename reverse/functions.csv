@@ -10878,7 +10878,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getCollide@BehaviorModule@@UAEPAVCollideModuleInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getCollide@CollideModule@@UAEPAVCollideModuleInterface@@XZ,,0x0011A150,14,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToCarBombCrateCollide.cpp,matched,
 ?getColor@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@H@Z,,0x0008F250,67,Code/GameEngine/Source/Common/MultiplayerSettings.cpp,matched,retail-layout C++ accessor; explicit +0x30/+0x34/+0x3c/+0x40/+0x64 offsets; REL32-pinned map lookup
-?getColor@QuickMatchPreferences@@QAEHXZ,,0x000A97C0,33,Code/masm_dumps/QuickMatchPreferences_getColor.asm,matched,Unique Color-string QuickMatch getter
 ?getCommandAsAsciiString@GameMessage@@QAE?AVAsciiString@@XZ,,0x0008DDE0,34,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?getCommandButton@CommandSet@@QBEPBVCommandButton@@H@Z,,0x0049C590,50,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?getCommandCount@FrameData@@QAEIXZ,,0x006702E0,4,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
@@ -13840,3 +13839,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?getMaxMessagesPerUpdate@GameSpyMiscPreferences@@QAEHXZ,,0x000A9B30,33,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,Open-BFME5 exact C++ raw getter; MaxMessagesPerUpdate preference and default 100 preserved
+?getColor@QuickMatchPreferences@@QAEHXZ,,0x000A97C0,33,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,Open-BFME5 exact C++ raw getter; Quick Match Color preference and zero default preserved
