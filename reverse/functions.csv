@@ -13719,3 +13719,15 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?position@MemoryReadFile@@UAEHXZ,,0x009CB180,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?readEntireAndClose@MemoryReadFile@@UAEPADXZ,,0x009CB190,77,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?convertToRAMFile@MemoryReadFile@@UAEPAVFile@@XZ,,0x009CB1E0,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
+?open@MemoryWriteFile@@UAE_NPBDH@Z,,0x009CB220,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?read@MemoryWriteFile@@UAEHPAXH@Z,,0x009CB230,6,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?write@MemoryWriteFile@@UAEHPBXH@Z,,0x009CB240,135,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?seek@MemoryWriteFile@@UAEHHH@Z,,0x009CB2D0,54,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?nextLine@MemoryWriteFile@@UAEXPADH@Z,,0x009CB310,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?scanInt@MemoryWriteFile@@UAE_NAAH@Z,,0x009CB320,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?scanReal@MemoryWriteFile@@UAE_NAAM@Z,,0x009CB330,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?scanString@MemoryWriteFile@@UAE_NAAVAsciiString@@@Z,,0x009CB340,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?size@MemoryWriteFile@@UAEHXZ,,0x009CB350,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?position@MemoryWriteFile@@UAEHXZ,,0x009CB360,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?readEntireAndClose@MemoryWriteFile@@UAEPADXZ,,0x009CB370,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
+?convertToRAMFile@MemoryWriteFile@@UAEPAVFile@@XZ,,0x009CB380,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string

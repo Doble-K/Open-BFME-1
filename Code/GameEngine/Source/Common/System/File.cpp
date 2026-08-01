@@ -278,3 +278,157 @@ File *MemoryReadFile::convertToRAMFile( void )
 	return this;
 }
 
+//-----------------------------------------------------------------------------
+// MemoryWriteFile -- a File that accumulates into a heap buffer it grows itself.
+// Named by its constructor at 0x009CB4E0, which installs vtable 0x01143AA8 and
+// sets the file's name to "<MemoryWriteFile>". BFME-only, like MemoryReadFile.
+//
+// Same first three members as MemoryReadFile, plus m_capacity at +0x20: the
+// buffer is realloc'd to 2*needed + 0x1000 whenever a write would run past it,
+// so it grows geometrically with a 4K floor.
+//-----------------------------------------------------------------------------
+class MemoryWriteFile : public File
+{
+public:
+	virtual Bool open( const char *filename, Int access = 0 );
+	virtual Int read( void *buffer, Int bytes );
+	virtual Int write( const void *buffer, Int bytes );
+	virtual Int seek( Int bytes, Int mode );
+	virtual void nextLine( char *buf, Int bufSize );
+	virtual Bool scanInt( Int &newInt );
+	virtual Bool scanReal( Real &newReal );
+	virtual Bool scanString( AsciiString &newString );
+	virtual Int size( void );
+	virtual Int position( void );
+	virtual char *readEntireAndClose( void );
+	virtual File *convertToRAMFile( void );
+
+private:
+	Int _bfme_unknown10;	// +0x10
+	char *m_data;			// +0x14
+	Int m_size;				// +0x18
+	Int m_pos;				// +0x1c
+	Int m_capacity;			// +0x20
+};
+
+// ?open@MemoryWriteFile@@UAE_NPBDH@Z
+Bool MemoryWriteFile::open( const char * /*filename*/, Int /*access*/ )
+{
+	return FALSE;
+}
+
+// ?read@MemoryWriteFile@@UAEHPAXH@Z
+// Write-only, so reading always fails.
+Int MemoryWriteFile::read( void * /*buffer*/, Int /*bytes*/ )
+{
+	return -1;
+}
+
+// ?write@MemoryWriteFile@@UAEHPBXH@Z
+Int MemoryWriteFile::write( const void *buffer, Int bytes )
+{
+	if( bytes < 0 )
+	{
+		return -1;
+	}
+
+	if( bytes > 0 && buffer == NULL )
+	{
+		return -1;
+	}
+
+	Int needed = m_pos + bytes;
+	if( (UnsignedInt)needed > (UnsignedInt)m_capacity )
+	{
+		m_capacity = needed * 2 + 0x1000;
+		m_data = (char *)realloc( m_data, m_capacity );
+	}
+
+	memcpy( m_data + m_pos, buffer, bytes );
+
+	m_pos += bytes;
+	if( (UnsignedInt)m_pos > (UnsignedInt)m_size )
+	{
+		m_size = m_pos;
+	}
+
+	return bytes;
+}
+
+// ?seek@MemoryWriteFile@@UAEHHH@Z
+Int MemoryWriteFile::seek( Int bytes, Int mode )
+{
+	Int pos;
+
+	switch( mode )
+	{
+		case 0:		// START
+			pos = bytes;
+			break;
+		case 1:		// CURRENT
+			pos = m_pos + bytes;
+			break;
+		case 2:		// END
+			pos = m_size + bytes;
+			break;
+		default:
+			return -1;
+	}
+
+	if( (UnsignedInt)pos > (UnsignedInt)m_size )
+	{
+		return -1;
+	}
+
+	m_pos = pos;
+	return pos;
+}
+
+// ?nextLine@MemoryWriteFile@@UAEXPADH@Z
+void MemoryWriteFile::nextLine( char * /*buf*/, Int /*bufSize*/ )
+{
+}
+
+// ?scanInt@MemoryWriteFile@@UAE_NAAH@Z
+Bool MemoryWriteFile::scanInt( Int & /*newInt*/ )
+{
+	return FALSE;
+}
+
+// ?scanReal@MemoryWriteFile@@UAE_NAAM@Z
+Bool MemoryWriteFile::scanReal( Real & /*newReal*/ )
+{
+	return FALSE;
+}
+
+// ?scanString@MemoryWriteFile@@UAE_NAAVAsciiString@@@Z
+Bool MemoryWriteFile::scanString( AsciiString & /*newString*/ )
+{
+	return FALSE;
+}
+
+// ?size@MemoryWriteFile@@UAEHXZ
+Int MemoryWriteFile::size( void )
+{
+	return m_size;
+}
+
+// ?position@MemoryWriteFile@@UAEHXZ
+Int MemoryWriteFile::position( void )
+{
+	return m_pos;
+}
+
+// ?readEntireAndClose@MemoryWriteFile@@UAEPADXZ
+// Nothing to hand back: this file exists to be written into.
+char *MemoryWriteFile::readEntireAndClose( void )
+{
+	return NULL;
+}
+
+// ?convertToRAMFile@MemoryWriteFile@@UAEPAVFile@@XZ
+File *MemoryWriteFile::convertToRAMFile( void )
+{
+	return this;
+}
+
