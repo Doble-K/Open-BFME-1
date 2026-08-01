@@ -89,7 +89,6 @@ FirewallHelperClass * createFirewallHelper()
  *=============================================================================================*/
 /* static */ Int FirewallHelperClass::m_sourcePortPool = 4096;
 
-// ??0FirewallHelperClass@@QAE@XZ present-unmatched
 FirewallHelperClass::FirewallHelperClass(void)
 {
 	//Added Sadullah Nader
@@ -108,6 +107,7 @@ FirewallHelperClass::FirewallHelperClass(void)
 	m_lastSourcePortAllocationDelta = 0;
 	for (Int i = 0; i < MAX_SPARE_SOCKETS; ++i) {
 		m_spareSockets[i].port = 0;
+		m_spareSockets[i].udp = 0;
 		m_messages[i].length = 0;
 		m_mangledPorts[i] = 0;
 		m_sparePorts[i] = 0;

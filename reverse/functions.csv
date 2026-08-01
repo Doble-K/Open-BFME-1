@@ -1435,7 +1435,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FireWeaponWhenDeadBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FBC70,395,Code/masm_dumps/FireWeaponWhenDeadBehavior_constructor.asm,matched,Exact 395B @ 0x001FBC70; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116FC0
 ??0FireWeaponWhenDeadBehaviorModuleData@@QAE@XZ,,0x0012A1C0,112,Code/masm_dumps/FireWeaponWhenDeadBehaviorModuleData_constructor.asm,matched,Exact 112B @ 0x0012A1C0; Exact retail MASM ModuleData ctor; unique factory 0x12A250
 ??0FirestormDynamicGeometryInfoUpdateModuleData@@QAE@XZ,,0x0001235A,5,Code/masm_dumps/__0FirestormDynamicGeometryInfoUpdateModuleData__QAE_XZ_1235A.asm,matched,MASM exact retail dump
-??0FirewallHelperClass@@QAE@XZ,,0x00003AD5,5,Code/masm_dumps/__0FirewallHelperClass__QAE_XZ_3AD5.asm,matched,MASM exact retail dump
 ??0FlammableUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00293270,187,Code/masm_dumps/FlammableUpdate_ctor.asm,matched,Ghidra-owned BFME Flammable constructor
 ??0FlammableUpdateModuleData@@QAE@XZ,,0x00294B20,180,Code/masm_dumps/FlammableUpdateModuleData_constructor.asm,matched,Exact 180B @ 0x00294B20; Exact retail MASM ModuleData ctor; unique factory 0x118460
 ??0FlightDeckBehaviorModuleData@@QAE@XZ,,0x0000CC3E,5,Code/masm_dumps/__0FlightDeckBehaviorModuleData__QAE_XZ_CC3E.asm,matched,MASM exact retail dump
@@ -13689,3 +13688,4 @@ _XMP_Significance,,0x009E8400,30,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,
 ??$initSubsystem@VGameLogic@@@@YAXAAPAVGameLogic@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x000751D0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,named from the global GameEngine::init passes by reference
 ??$initSubsystem@VRecorderClass@@@@YAXAAPAVRecorderClass@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00075290,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,named from the global GameEngine::init passes by reference
 ??$initSubsystem@VActionManager@@@@YAXAAPAVActionManager@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x000757E0,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,named from the global GameEngine::init passes by reference
+??0FirewallHelperClass@@QAE@XZ,,0x0066E3B0,172,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,thunk-dump converted to clean C++
