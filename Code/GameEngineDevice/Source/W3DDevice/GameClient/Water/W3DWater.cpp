@@ -186,7 +186,7 @@ WaterRenderObjClass *TheWaterRenderObj=NULL; ///<global water rendering object
 void doSkyBoxSet(Bool startDraw)
 {
 	if (TheWritableGlobalData)
-		TheWritableGlobalData->m_drawSkyBox = startDraw;
+		*reinterpret_cast<Real *>(reinterpret_cast<UnsignedByte *>(TheWritableGlobalData) + 0x180) = startDraw;
 }
 
 
@@ -3589,5 +3589,4 @@ void WaterRenderObjClass::loadPostProcess( void )
 {
 
 }  // end loadPostProcess
-
 
