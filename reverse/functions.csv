@@ -1259,7 +1259,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CivilianSpawnUpdateModuleData@@QAE@XZ,,0x0028A480,92,Code/masm_dumps/CivilianSpawnUpdateModuleData_constructor.asm,matched,Exact 92B @ 0x0028A480; Exact retail MASM ModuleData ctor; unique factory 0x116B60; Open-BFME4+Grok
 ??0ClassicEnvironmentMapperClass@@QAE@I@Z,,0x00921390,25,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0CleanupHazardUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D0620,125,Code/masm_dumps/CleanupHazardUpdate_constructor.asm,matched,Exact 125B; factory ownership Open-BFME4
-??0CleanupHazardUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/CleanupHazardUpdateModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0ClearanceTestingSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/masm_dumps/ClearanceTestingSlowDeathBehavior_constructor.asm,matched,Exact 74B ICF primary Open-BFME4
 ??0ClearanceTestingSlowDeathBehaviorModuleData@@QAE@XZ,,0x001F72D0,149,Code/masm_dumps/ClearanceTestingSlowDeathBehaviorModuleData_constructor.asm,matched,Exact 149B @ 0x001F72D0; Exact retail MASM ModuleData ctor; unique factory 0x117310
 ??0ClickReactionBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7860,151,Code/masm_dumps/ClickReactionBehavior_constructor.asm,matched,Exact 151B @ 0x001F7860; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114CF0
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0BoneFXDamageModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0BridgeTowerBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0BunkerBusterBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0CleanupHazardUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
