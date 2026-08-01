@@ -8998,7 +8998,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,152,Code/masm_dumps/__createDirectory_FileSystem__QAE_NVAsciiString___Z_9C8DC0.asm,matched,
 ?createDisplayStringManager@W3DGameClient@@MAEPAVDisplayStringManager@@XZ,,0x006FB710,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?createDrive@Win32CDManager@@MAEPAVCDDriveInterface@@XZ,,0x006BA4C0,80,Code/GameEngineDevice/Source/Win32Device/Common/Win32CDManager.cpp,matched,
-?createEvent@Radar@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,,0x00008B8E,5,Code/masm_dumps/_createEvent_Radar__QAEXPBUCoord3D__W4RadarEventType__M_Z_8B8E.asm,matched,MASM exact retail dump
 ?createFileSystem@GameEngine@@MAEPAVFileSystem@@XZ,,0x006BADB0,86,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ?createFirewallHelper@@YAPAVFirewallHelperClass@@XZ,,0x0066EBC0,27,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?createFontLibrary@W3DGameClient@@MAEPAVFontLibrary@@XZ,,0x006FB670,80,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??$_M_allocate_and_copy@PBUPrereqUnitRec@ProductionPrerequisite@@@?$vector@UPrereqUnitRec@ProductionPrerequisite@@V?$allocator@UPrereqUnitRec@ProductionPrerequisite@@@_STL@@@_STL@@IAEPAUPrereqUnitRec@ProductionPrerequisite@@IPBU23@0@Z,,0x00014470,5,Code/Libraries/Source/WWVegas/WWLib/ProductionPrerequisitePrereqUnitRecAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector allocate-and-copy thunk converted to focused C++ thunk TU
 ?deleteListResources@Radar@@IAEXXZ,,0x0002C976,5,Code/GameEngine/Source/Common/RTS/RadarDeleteListResourcesThunk.cpp,matched,5-byte incremental-link Radar protected member thunk converted to focused C++ source
 ??$_M_allocate_and_copy@PBVProductionPrerequisite@@@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@IAEPAVProductionPrerequisite@@IPBV2@0@Z,,0x00014961,5,Code/Libraries/Source/WWVegas/WWLib/ProductionPrerequisiteAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector allocate-and-copy thunk converted to focused C++ thunk TU
+?createEvent@Radar@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,,0x00008B8E,5,Code/GameEngine/Source/Common/RTS/RadarCreateEventThunk.cpp,matched,5-byte incremental-link Radar member thunk converted to focused C++ source
