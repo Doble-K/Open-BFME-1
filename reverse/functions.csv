@@ -1738,7 +1738,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ParabolicEase@@QAE@MM@Z,,0x00434610,26,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ??0ParkingPlaceBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F59F0,138,Code/masm_dumps/ParkingPlaceBehavior_constructor.asm,matched,Exact 138B; factory ownership Open-BFME4
 ??0PartTheHeavensUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002999D0,101,Code/masm_dumps/PartTheHeavensUpdate_constructor.asm,matched,Exact 101B; factory ownership Open-BFME4
-??0PartTheHeavensUpdateModuleData@@QAE@XZ,,0x00299E10,217,Code/masm_dumps/PartTheHeavensUpdateModuleData_constructor.asm,matched,Exact 217B @ 0x00299E10; Exact retail MASM ModuleData ctor; unique factory 0x11C5B0
 ??0ParticleBufferClass@@QAE@ABV0@@Z,,0x00989A20,4714,Code/Libraries/Source/WWVegas/WW3D2/ParticleBufferClass_copy_ctor.asm,matched,exact 4714B via MASM (true size; was ledger 3805)
 ??0ParticleBufferClass@@QAE@PAVParticleEmitterClass@@IAAU?$ParticlePropertyStruct@VVector3@@@@AAU?$ParticlePropertyStruct@M@@22M22VVector3@@MMPAVTextureClass@@VShaderClass@@_NHHPBUW3dEmitterLinePropertiesStruct@@@Z,,0x00989130,2227,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,"close (2220 vs 2227): retail PointGroupClass is 0x5C bytes (mine 0x60 — one member less, needs its own dtor-Rosetta); BFME init seq adds Set_Flag(x,true) call at +0x400 (push 1;push 1;call 0x9120A0) replacing a Set_Point_Color path; base/ctor callees pinned 2026-07-05"
 ??0ParticleEmitterClass@@QAE@ABV0@@Z,,0x0097EB20,484,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/GameEngine/Source/GameLogic/AI/GeometryUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/GameEngine/Source/GameLogic/AI/OCLSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,,0x002A2520,287,Code/GameEngine/Source/GameLogic/AI/ParticleUplinkCannonUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0PartTheHeavensUpdateModuleData@@QAE@XZ,,0x00299E10,217,Code/GameEngine/Source/GameLogic/AI/PartTheHeavensUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
