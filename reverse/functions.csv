@@ -11419,7 +11419,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getTemplateInfo@TeamPrototype@@QBEPBVTeamTemplateInfo@@XZ,,0x003BCD70,4,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,Ghidra-bound unique accessor
 ?getTerrainColorAt@W3DTerrainVisual@@UAEXMMPAURGBColor@@@Z,,0x007309E0,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?getTerrainColorAt@WorldHeightMap@@QAEXMMPAURGBColor@@@Z,,0x007477E0,272,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,clean C++; BFME floor-via-IAT plus reconstructed retail field offsets (raw access) inlined getRGBDataForWidth
-?getText@DisplayString@@UAE?AVUnicodeString@@XZ,,0x00410080,32,Code/masm_dumps/DisplayString_getText_410080.asm,matched,Certified packet 193 reviewed vtable slot and ret-4 boundary; exact retail db body
 ?getText@WinInstanceData@@QAE?AVUnicodeString@@XZ,,0x00479B00,24,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?getTextEntryDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getTextEntryImageDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -13840,3 +13839,4 @@ _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,mat
 ??0OneRingPenaltyUpdateModuleData@@QAE@XZ,,0x00298D30,32,Code/GameEngine/Source/GameLogic/Object/Update/OneRingPenaltyUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ??0?$DefaultModuleTemplate@$06@FXParticleSystem@@QAE@XZ,,0x005DEA80,32,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate6CtorThunk.cpp,matched,Open-BFME5 exact C++ template constructor thunk; retail ordinal $06 is template 7
 ?isKindOfMulti@Thing@@QBE_NABV?$BitFlags@$0HE@@@0@Z,,0x00132B20,41,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail ThingTemplate kindof shim
+?getText@DisplayString@@UAE?AVUnicodeString@@XZ,,0x00410080,32,Code/GameEngine/Source/GameClient/DisplayStringGetTextThunk.cpp,matched,Open-BFME5 exact C++ virtual UnicodeString getter thunk
