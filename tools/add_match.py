@@ -20,6 +20,7 @@ new claim does not byte-verify.
 import argparse
 import csv
 import io
+import os
 import re
 import subprocess
 import sys
@@ -252,9 +253,14 @@ def main():
         source_path.write_bytes(saved_source)
         fail(f"no build.sh at {root} — cannot verify; append reverted")
 
-    print(f"add_match: verifying: ./build.sh {source_rel}")
+    # build.sh is a bash script; on native Windows invoke build.py directly.
+    if os.name == "nt":
+        verify_cmd = [sys.executable, str(root / "tools" / "build.py"), source_rel]
+    else:
+        verify_cmd = [str(build_sh), source_rel]
+    print(f"add_match: verifying: {' '.join(verify_cmd[-2:])}")
     try:
-        result = subprocess.run([str(build_sh), source_rel], cwd=root)
+        result = subprocess.run(verify_cmd, cwd=root)
     except BaseException:
         functions_csv.write_bytes(raw)
         source_path.write_bytes(saved_source)
