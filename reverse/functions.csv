@@ -13704,3 +13704,5 @@ _CommSRPConnect,,0x00816970,547,Code/Libraries/Source/DirtySock/commsrp.cpp,matc
 _NetGameUtilControl,,0x0080E5E0,219,Code/Libraries/Source/DirtySock/netgameutil.cpp,matched,
 ?processDisconnectFrame@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066BD80,285,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ??0DownloadManager@@QAE@XZ,,0x006275C0,289,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,thunk-dump converted to clean C++
+_ProtoMangleCreate,,0x00804150,245,Code/Libraries/Source/DirtySock/protomangle.cpp,matched,
+_ProtoMangleDestroy,,0x00804330,80,Code/Libraries/Source/DirtySock/protomangle.cpp,matched,
