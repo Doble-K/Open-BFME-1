@@ -1382,7 +1382,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FXDamageParticleSystemInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXList@@QAE@ABV0@@Z,,0x00133BB0,31,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ??0FXListDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255360,60,Code/masm_dumps/FXListDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
-??0FXListDieModuleData@@QAE@XZ,,0x001234F0,86,Code/masm_dumps/FXListDieModuleData_constructor.asm,matched,Exact 86B @ 0x001234F0; Exact retail MASM ModuleData ctor; unique factory 0x123590; Open-BFME4+Grok
 ??0FXLocInfo@@QAE@XZ,,0x0010DB40,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/FXList.cpp,matched,ICF alias of existing matched body
 ??0FadeAndDieOrnamentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00292230,139,Code/masm_dumps/FadeAndDieOrnamentUpdate_constructor.asm,matched,Exact 139B; factory ownership Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0CreateCrateDieModuleData@@QAE@XZ,,0x001298D0,123,Code/GameEngine/Source/GameLogic/AI/CreateCrateDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CreateObjectDieModuleData@@QAE@XZ,,0x002547E0,109,Code/GameEngine/Source/GameLogic/AI/CreateObjectDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CrushDieModuleData@@QAE@XZ,,0x00123380,135,Code/GameEngine/Source/GameLogic/AI/CrushDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0FXListDieModuleData@@QAE@XZ,,0x001234F0,86,Code/GameEngine/Source/GameLogic/AI/FXListDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
