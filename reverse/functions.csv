@@ -1283,7 +1283,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CullNodeStruct@AABTreeBuilderClass@@QAE@XZ,,0x0096B500,37,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,MASM converted to clean C++
 ??0CullSystemClass@@QAE@XZ,,0x008E2140,16,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,
 ??0CullableClass@@QAE@XZ,,0x008E21F0,47,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,
-??0CustomMatchPreferences@@QAE@XZ,,0x0000B0F5,5,Code/masm_dumps/__0CustomMatchPreferences__QAE_XZ_B0F5.asm,matched,MASM exact retail dump
 ??0CylinderEmissionVolumeInfo@FXParticleSystem@@QAE@ABV01@@Z,0x0004556B,0x005D6430,57,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??0CylinderEmissionVolumeInfo@FXParticleSystem@@QAE@XZ,0x000223A4,0x005D63F0,29,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable and zeros cylinder fields
 ??0CylinderEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x000237EF,0x005D65F0,110,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0OptionPreferences@@QAE@XZ,,0x0003713C,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0GameResultsQueue@@QAE@XZ,,0x0000DAFD,5,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsQueueCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@U?$pair@W4ObjectID@@I@_STL@@V?$allocator@U?$pair@W4ObjectID@@I@_STL@@@2@@_STL@@IAEXPAU?$pair@W4ObjectID@@I@2@ABU32@ABU__false_type@2@I_N@Z,,0x0002AB44,5,Code/Libraries/Source/WWVegas/WWLib/ObjectIDPairVectorAssignmentThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0CustomMatchPreferences@@QAE@XZ,,0x0000B0F5,5,Code/GameEngine/Source/Common/CustomMatchPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
