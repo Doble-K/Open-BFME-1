@@ -90,7 +90,7 @@ protected:
 	Int m_access;				// +0x08
 	Bool m_open;				// +0x0c
 	Bool m_deleteOnClose;		// +0x0d
-	void *m_ownedBuffer;		// +0x10 -- File::~File free()s it if non-null
+	HANDLE m_handle;			// +0x10 -- the OS file handle; ~File closes it
 };
 
 // ?close@File@@UAEXXZ
@@ -514,25 +514,22 @@ File::File()
 :	m_access(0),
 	m_open(FALSE),
 	m_deleteOnClose(FALSE),
-	m_ownedBuffer(NULL)
+	m_handle(NULL)
 {
 	setName( "<no file>" );
 }
 
 // ??1File@@UAE@XZ present-unmatched
-// 101 of 133 bytes, and both remaining divergences are understood.
+// 129 of 133 bytes. The word at +0x10 is an OS file handle, not a buffer: the
+// call retail makes on it is KERNEL32!CloseHandle, read out of the import table
+// at the IAT slot 0x01358CCC. That also explains why no esp adjustment follows
+// it -- CloseHandle is __stdcall, so the callee cleans -- which is what the
+// "some __stdcall deallocator" note here used to say without knowing which.
 //
-// The deallocator is __stdcall, not free. Retail does push eax; call [imported]
-// and then never adjusts esp -- its epilogue's add esp,0x10 covers exactly the
-// three EH pushes plus the one local slot, with nothing left over for a cdecl
-// argument. (The IAT address matching ours proves nothing: a call through an
-// absolute address is a DIR32 slot, which the verifier fills from the target.)
-// So this wants a __stdcall deallocator, and which one is still open.
-//
-// The other is instruction order inside the inlined close(): retail pushes the
-// "<no file>" pointer before computing &m_nameStr, we compute it first. The same
-// call in File::File matches exactly, so it is specific to close() being inlined
-// here rather than to how setName is written.
+// The last four bytes are instruction order inside the inlined close(): retail
+// pushes the "<no file>" pointer before computing &m_nameStr, we compute it
+// first. The identical call in File::File matches exactly, so it belongs to
+// close() being inlined here rather than to how setName is written.
 // Clears m_deleteOnClose before closing, so a File that would normally delete
 // itself on close does not re-enter delete while already being destroyed.
 File::~File()
@@ -540,8 +537,8 @@ File::~File()
 	m_deleteOnClose = FALSE;
 	close();
 
-	if( m_ownedBuffer )
+	if( m_handle )
 	{
-		free( m_ownedBuffer );
+		CloseHandle( m_handle );
 	}
 }
