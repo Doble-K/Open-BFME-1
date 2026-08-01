@@ -8652,7 +8652,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?add@LList@@QAEXPAVLListNode@@@Z,,0x00105A90,180,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,,0x006235E0,152,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
-?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z,,0x006B9A40,19,Code/masm_dumps/AudioManager_addAudioEvent_6B9A40.asm,matched,Certified packet 156 vtable slot +0x44 and call-graph recovery
 ?addBib@W3DBibBuffer@@QAEXQAVVector3@@W4ObjectID@@_N@Z,,0x006D7090,220,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?addBibDrawable@W3DBibBuffer@@QAEXQAVVector3@@W4DrawableID@@_N@Z,,0x006D71B0,220,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?addBridge@W3DBridgeBuffer@@IAEXVVector3@@0VAsciiString@@PAVW3DTerrainLogic@@PAVDict@@@Z,,0x006DA0B0,364,Code/masm_dumps/W3DBridgeBuffer_addBridge_006DA0B0.asm,matched,Certified packet 47 exact retail MASM SHA256 33b8e76ca10052635be7a1570f5fdec1c2e3c0e4c218a4e3fd394ab81620aaa2
@@ -13840,3 +13839,4 @@ __CIasin,,0x009F7D86,6,Code/Libraries/Source/WWVegas/WWMath/CIasinThunk.cpp,matc
 ?parse@?$DefaultModuleTemplate@$0A@@FXParticleSystem@@QAEXPAVINI@@@Z,,0x005EF230,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate0AParseThunk.cpp,matched,Open-BFME5 exact C++ template parser thunk replacing MASM dump;object-symbol=?parse@?$DefaultModuleTemplate@$0A@@FXParticleSystem@@QAEXPAVINI@@@Z
 ??0Cftp@@QAE@XZ,,0x00885AD0,18,Code/GameEngine/Source/GameNetwork/CftpConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0Cftp@@QAE@XZ
 _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,matched,Open-BFME5 exact C++ CRT thunk replacing MASM dump;object-symbol=__atexit
+?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z,,0x006B9A40,19,Code/Libraries/Source/WWVegas/WWAudio/AudioManagerAddAudioEventThunk.cpp,matched,Open-BFME5 exact C++ AudioManager vtable thunk replacing MASM dump;object-symbol=?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z
