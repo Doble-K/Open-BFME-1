@@ -11168,7 +11168,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getUpgradedSupplyBoost@SupplyTruckAIUpdate@@UBEHXZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getUseHeatEffects@OptionPreferences@@QAE_NXZ,,0x00092070,98,Code/masm_dumps/getUseHeatEffects_OptionPreferences_92070.asm,matched,certified packet 214 sha256 64439f0a4ef31369fa901b41f931e336183149d7da4d9e42b417ab8bd81c2020
 ?getUser@LANGameSlot@@QAEPAVLANPlayer@@XZ,,0x0068DE20,145,Code/masm_dumps/getUser_LANGameSlot_QAEPAVLANPlayer_XZ_0068DE20_3d5a0c45.asm,matched,Certified packet 140 SHA256 3d5a0c45aafdb9ef17384528c8dc02e5df9270260c32da84fbee2f997e9ebb5d
-?getUserMapDir@MapCache@@QBE?AVAsciiString@@XZ,,0x000139E9,5,Code/masm_dumps/_getUserMapDir_MapCache__QBE_AVAsciiString__XZ_139E9.asm,matched,MASM exact retail dump
 ?getValue@GameClientRandomVariable@@QBEMXZ,0x0000D7B5,0x00096F60,123,Code/GameEngine/Source/Common/System/game_client_random_variable.cpp,matched,evaluate distribution value
 ?getValue@GameLogicRandomVariable@@QBEMXZ,,0x00096F60,123,Code/GameEngine/Source/Common/RandomValue.cpp,matched,
 ?getVel@AnimateWindow@@QAE?AUCoord2D@@XZ,,0x00495610,18,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??4StringClass@@QAEABV0@ABV0@@Z,,0x00035FDF,5,Code/GameEngine/Source/Common/RTS/StringClassAssignmentThunk.cpp,matched,5-byte incremental-link StringClass assignment thunk converted to focused C++ source
 ??4PlayerTemplate@@QAEAAV0@ABV0@@Z,,0x000050F6,5,Code/GameEngine/Source/Common/RTS/PlayerTemplateAssignmentThunk.cpp,matched,5-byte incremental-link PlayerTemplate assignment thunk converted to focused C++ source
 ??$_M_allocate_and_copy@PBQAVObject@@@?$vector@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@IAEPAPAVObject@@IPBQAV2@0@Z,,0x0004547B,5,Code/Libraries/Source/WWVegas/WWLib/ObjectPointerVectorAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector allocate-and-copy thunk converted to focused C++ thunk TU
+?getUserMapDir@MapCache@@QBE?AVAsciiString@@XZ,,0x000139E9,5,Code/GameEngine/Source/Common/RTS/MapCacheGetUserMapDirThunk.cpp,matched,5-byte incremental-link MapCache const member thunk converted to focused C++ source
