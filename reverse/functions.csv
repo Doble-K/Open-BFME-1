@@ -11507,7 +11507,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isPlayerPreorder@GameInfo@@QAE_NH@Z,,0x0061E650,39,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?isPlayerSlotActive@BFMEConnectionManager@@QAE_NH@Z,,0x00662C30,60,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?isPlayerVotedOut@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z,,0x0001ECE0,5,Code/masm_dumps/_isPlayerVotedOut_DisconnectManager__IAE_NHPAVConnectionManager___Z_1ECE0.asm,matched,MASM exact retail dump
-?isPointOnBridge@Bridge@@QAE_NPBUCoord3D@@@Z,,0x00014637,5,Code/masm_dumps/_isPointOnBridge_Bridge__QAE_NPBUCoord3D___Z_14637.asm,matched,MASM exact retail dump
 ?isPointOnWall@PathfindLayer@@QAE_NPAW4ObjectID@@HPBUCoord3D@@@Z,,0x00299080,257,Code/masm_dumps/PathfindLayer_isPointOnWall.asm,matched,Ghidra-bound BFME wall-layer geometry body
 ?isPosDifferent@@YA_NPBUCoord3D@@0@Z,,0x001BE5F0,75,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?isPriorityVisible@Radar@@QBE_NW4RadarPriorityType@@@Z,,0x00107280,23,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_clear@?$vector@UPrereqUnitRec@ProductionPrerequisite@@V?$allocator@UPrereqUnitRec@ProductionPrerequisite@@@_STL@@@_STL@@IAEXXZ,,0x0001BEFA,5,Code/Libraries/Source/WWVegas/WWLib/ProductionPrerequisitePrereqUnitRecAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector clear thunk converted alongside focused C++ template TU
 ?isCellOnEnd@Bridge@@QAE_NPBURegion2D@@@Z,,0x0000DAAD,5,Code/GameEngine/Source/Common/RTS/BridgeIsCellOnEndThunk.cpp,matched,5-byte incremental-link Bridge member thunk converted to focused C++ source
 ?_M_clear@?$vector@VW3DAnimationInfo@@V?$allocator@VW3DAnimationInfo@@@_STL@@@_STL@@IAEXXZ,,0x00008837,5,Code/Libraries/Source/WWVegas/WWLib/W3DAnimationInfoAllocateAndCopyThunk.cpp,matched,5-byte incremental-link STL vector clear thunk converted alongside focused C++ template TU
+?isPointOnBridge@Bridge@@QAE_NPBUCoord3D@@@Z,,0x00014637,5,Code/GameEngine/Source/Common/RTS/BridgeIsPointOnBridgeThunk.cpp,matched,5-byte incremental-link Bridge member thunk converted to focused C++ source
