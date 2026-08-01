@@ -9803,7 +9803,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findEntry@RayEffectSystem@@IAEPAURayEffectData@@PBVDrawable@@@Z,,0x005D34C0,49,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
 ?findFXList@FXListStore@@QBEPBVFXList@@PBD@Z,,0x0042B660,96,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?findFieldParse@@YAP6AXPAVINI@@PAX1PBX@ZPBUFieldParse@@PBDAAHAAPBX@Z,,0x00850880,128,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z,,0x00025CD4,5,Code/masm_dumps/_findFunction_FunctionLexicon__IAEPAXW4NameKeyType__W4TableIndex_1__Z_25CD4.asm,matched,MASM exact retail dump
 ?findGameMessageMetaType@MetaMap@@IAE?AW4Type@GameMessage@@PBD@Z,,0x005B6AD0,69,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,
 ?findGoodBuildOrRepairPosition@DozerAIUpdate@@SA_NPBVObject@@0AAUCoord3D@@@Z,,0x002B6C40,445,Code/masm_dumps/_findGoodBuildOrRepairPosition_DozerAIUpdate_SA_2B6C40.asm,matched,Exact 445B @ 0x2B6C40; queue 0x2B6C20 was prior-fn tail; BFME thiscall; callers in AndTarget@0x2B8890
 ?findGroundPath@Pathfinder@@QAEPAVPath@@PBUCoord3D@@0H_N@Z,,0x003F2160,2045,Code/GameEngine/Source/GameLogic/AI/AIPathfind_findGroundPath.asm,matched,MASM exact retail; true body 0x3F2160/2045 (queue 0x9DE1BB was int3+CPUDetect Init_AMD); ret 0x10 zoneMgr@+0xc9c clearPassable hierarchical
@@ -13304,7 +13303,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?valid@W3DVideoBuffer@@UAE_NXZ,,0x007E88A0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DVideoBuffer.cpp,matched,
 ?validate@?$StringBase@D@@ABEXXZ,0x0001D4A3,0x0005D790,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op string validation
 ?validate@?$StringBase@G@@ABEXXZ,0x000390A9,0x0005D7A0,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op
-?validate@FunctionLexicon@@QAE_NXZ,,0x00105380,123,Code/masm_dumps/_rn7__validate_FunctionLexicon__QAE_NXZ_105380.asm,matched,reloc-needle Open-BFME4+Grok
 ?validate@ThingTemplate@@QAEXXZ,,0x00139B40,350,Code/masm_dumps/_sa11__validate_ThingTemplate__QAEXXZ_139B40.asm,matched,string-anchor Open-BFME4+Grok DefaultThingTemplate
 ?validateAllyEnemyList@SidesList@@IAE_NABVAsciiString@@AAV2@@Z,,0x001A0390,2079,Code/masm_dumps/_sa11__validateAllyEnemyList_SidesList__IAE_NABVAsciiString__AAV2__Z_1A0390.asm,matched,string-anchor Open-BFME4+Grok PlyrCivilian
 ?validateAudio@ThingTemplate@@IAEXXZ,,0x0013E2F0,60,Code/masm_dumps/_sa15__validateAudio_ThingTemplate__IAEXXZ_13E2F0.asm,matched,sa15 Open-BFME4+Grok shadows
@@ -13594,3 +13592,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,,0x006C8930,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,thunk-dump converted to clean C++; BFME routes props via tree buffer; m_treeBuffer@0x309C pinned by this body; callee thunk pinned
 ?findImageByName@ImageCollection@@QAEPBVImage@@ABVAsciiString@@@Z,,0x005D2CF0,84,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,thunk-dump converted to clean C++; needs BFME 8-byte string header (reference/shims/asciistring8) for the inlined AsciiString::str()
 ?makeDecoratedNameKey@ModuleFactory@@KA?AW4NameKeyType@@ABVAsciiString@@W4ModuleType@@@Z,,0x00126260,80,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,thunk-dump converted to clean C++; needs BFME 8-byte string header (reference/shims/asciistring8) for the inlined AsciiString::str()
+?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z,,0x00105280,94,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,thunk-dump converted to clean C++; BFME has 12 function tables not ZH's 9 (reference/shims/functionlexicon)
+?validate@FunctionLexicon@@QAE_NXZ,,0x00105380,126,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,MASM dump converted to clean C++ once the 12-table count was shimmed; true size is 126 not 123 - the old row cut 3 bytes off the epilogue
