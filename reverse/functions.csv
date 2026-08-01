@@ -2069,7 +2069,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ShellMenuSchemeLine@@QAE@XZ,,0x00580400,30,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp,matched,
 ??0ShroudCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218620,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ShroudCrateCollide.cpp,matched,MASM converted to clean C++
 ??0ShroudCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/masm_dumps/ShroudCrateCollideModuleData_constructor.asm,matched,Exact 147B ICF alias MD Open-BFME4
-??0SidesInfo@@QAE@XZ,,0x001985B0,34,Code/masm_dumps/SidesList_SidesInfo_constructor.asm,matched,
 ??0SidesList@@QAE@XZ,,0x0019EA80,365,Code/masm_dumps/SidesList_ctor.asm,matched,Correct retail body from GameEngine init thunk 0x00032EC5 and TheSidesList naming sequence
 ??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/masm_dumps/SiegeAIUpdate_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0SiegeAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
@@ -13840,3 +13839,10 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?getMaxMessagesPerUpdate@GameSpyMiscPreferences@@QAEHXZ,,0x000A9B30,33,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,Open-BFME5 exact C++ raw getter; MaxMessagesPerUpdate preference and default 100 preserved
+?getColor@QuickMatchPreferences@@QAEHXZ,,0x000A97C0,33,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,Open-BFME5 exact C++ raw getter; Quick Match Color preference and zero default preserved
+?clone@?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@UBEPAVPointEmissionVolumeModuleTemplate@2@XZ,,0x005DCE50,31,Code/GameEngine/Source/GameClient/System/FXParticleSystem/PointEmissionVolumeConcreteModuleTemplateCloneThunk.cpp,matched,Open-BFME5 exact C++ raw clone thunk; PointEmissionVolume module template allocation path preserved
+?Scale@SegLineRendererClass@@QAEXM@Z,,0x0095FF30,33,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,Exact C++ scales BFME unknown member in retail order; MASM dump removed
+?clone@?$ConcreteModuleTemplate@V?$DefaultModuleTag@$00@FXParticleSystem@@@FXParticleSystem@@UBEPAV?$DefaultModuleTemplate@$00@2@XZ,,0x005DCC20,34,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTag0ConcreteModuleTemplateCloneThunk.cpp,matched,Open-BFME5 exact C++ raw clone thunk; retail $00 decoration mapped to template category 1
+?clone@?$ConcreteModuleTemplate@V?$DefaultModuleTag@$0A@@FXParticleSystem@@@FXParticleSystem@@UBEPAV?$DefaultModuleTemplate@$0A@@2@XZ,,0x005DCC50,34,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTag0AConcreteModuleTemplateCloneThunk.cpp,matched,Open-BFME5 exact C++ raw clone thunk; retail $0A decoration mapped to template category 0
+??0SidesInfo@@QAE@XZ,,0x001985B0,34,Code/GameEngine/Source/GameLogic/Map/SidesInfoConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; retail SidesInfo layout initializes vector at +0x0c
