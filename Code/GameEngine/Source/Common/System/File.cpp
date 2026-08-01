@@ -467,9 +467,19 @@ File::File()
 }
 
 // ??1File@@UAE@XZ present-unmatched
-// 101 of 133 bytes. The shape is right -- clear the flag, inline close(), free
-// the buffer -- but the tail still differs around the AsciiString destructor and
-// the free import.
+// 101 of 133 bytes, and both remaining divergences are understood.
+//
+// The deallocator is __stdcall, not free. Retail does push eax; call [imported]
+// and then never adjusts esp -- its epilogue's add esp,0x10 covers exactly the
+// three EH pushes plus the one local slot, with nothing left over for a cdecl
+// argument. (The IAT address matching ours proves nothing: a call through an
+// absolute address is a DIR32 slot, which the verifier fills from the target.)
+// So this wants a __stdcall deallocator, and which one is still open.
+//
+// The other is instruction order inside the inlined close(): retail pushes the
+// "<no file>" pointer before computing &m_nameStr, we compute it first. The same
+// call in File::File matches exactly, so it is specific to close() being inlined
+// here rather than to how setName is written.
 // Clears m_deleteOnClose before closing, so a File that would normally delete
 // itself on close does not re-enter delete while already being destroyed.
 File::~File()
