@@ -1371,7 +1371,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Dict@@QAE@ABV0@@Z,,0x000C8CF0,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0Dict@@QAE@H@Z,,0x00068550,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ??0DieModuleData@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehavior.cpp,matched,
-??0DieModuleModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/DieModuleModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0DiscreteCircle@@QAE@HHH@Z,,0x00069350,116,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
 ??0DisplayString@@QAE@XZ,,0x000D16F0,23,Code/GameEngine/Source/GameClient/DisplayString.cpp,matched,
 ??0DisplayStringManager@@QAE@XZ,,0x00410240,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=??0LifetimeUpdateModuleData@@QAE@XZ;Thunk-dump converted to clean C++ ICF alias
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?RefreshGameListBox@@YAXPAVGameWindow@@_N@Z,,0x0000FD1C,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/RefreshGameListBox.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ??0DelayedLuaEventUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ?MessageBoxOk@@YAPAVGameWindow@@VUnicodeString@@0P6AXXZ@Z,,0x0004A340,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/MessageBoxOk.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
+??0DieModuleModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
