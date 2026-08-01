@@ -4,25 +4,10 @@ class AsciiString
 
 namespace _STL
 {
-template<class T>
-struct _Identity
-{
-};
-
-template<class T>
-struct less
-{
-};
-
-template<class T>
-class allocator
-{
-};
-
-template<class Value>
-struct _Rb_tree_node
-{
-};
+template<class T> struct _Identity { };
+template<class T> struct less { };
+template<class T> class allocator { };
+template<class Value> struct _Rb_tree_node { };
 
 template<class Key, class Value, class Select, class Less, class Alloc>
 class _Rb_tree
