@@ -7189,7 +7189,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Multiply@Matrix4@@SAXABV1@ABVMatrix3D@@PAV1@@Z,,0x00B01E40,416,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,
 ?Multiply@Matrix4@@SAXABVMatrix3D@@ABV1@PAV1@@Z,,0x00B01C90,425,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,
 ?Multiply@Matrix4D@@QAEAAV1@ABV1@0@Z,0x00019bfa,0x007e6950,534,Code/Libraries/Source/WWVegas/WWMath/matrix4d.cpp,matched,
-?NAMEKEY@@YA?AW4NameKeyType@@ABVAsciiString@@@Z,,0x000A3AB0,44,Code/masm_dumps/NAMEKEY_AsciiString.asm,matched,Ghidra-corrected BFME AsciiString helper
 ?NAMEKEY@@YA?AW4NameKeyType@@PBD@Z,,0x000B9810,17,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?Needs_Vertex_Normals@MeshModelClass@@QAE_NXZ,,0x0094E0B0,22,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ?Negate@Coord2D@@QAEAAV1@XZ,0x0000848B,0x007E5B20,17,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,negates x/y
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?loadPostProcess@Drawable@@MAEXXZ,,0x004120A0,45,Code/GameEngine/Source/Common/RTS/DrawableLoadPostProcessThunk.cpp,matched,Open-BFME5 exact C++ raw Drawable post-load hook
 ?xfer@TerrainLogic@@MAEXPAVXfer@@@Z,,0x006BE430,45,Code/GameEngine/Source/GameLogic/Map/TerrainLogicXferThunk.cpp,matched,Open-BFME5 exact C++ raw TerrainLogic xfer wrapper
 ?onEnter@AIDockProcessDockState@@UAE?AW4StateReturnType@@XZ,,0x0014EEB0,44,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 exact C++ raw dock process state entry
+?NAMEKEY@@YA?AW4NameKeyType@@ABVAsciiString@@@Z,,0x000A3AB0,44,Code/GameEngine/Source/Common/NameKeyHelperThunk.cpp,matched,Open-BFME5 exact C++ raw AsciiString name-key helper
