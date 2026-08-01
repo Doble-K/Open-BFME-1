@@ -10607,7 +10607,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getCSFInfo@GameTextManager@@IAE_NPBD@Z,,0x00436150,47,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ?getCachedLocalPlayerStats@GameSpyInfo@@UAE?AVPSPlayerStats@@XZ,,0x006372D0,32,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?getCachedStats@GameSpyMiscPreferences@@QAE?AVAsciiString@@XZ,,0x000A9A00,113,Code/masm_dumps/GameSpyMiscPreferences_getCachedStats.asm,matched,Unique CachedStats-string preference getter
-?getCampaignDifficulty@OptionPreferences@@QAEHXZ,,0x00032B5A,5,Code/masm_dumps/_getCampaignDifficulty_OptionPreferences__QAEHXZ_32B5A.asm,matched,MASM exact retail dump
 ?getCaveInterface@BehaviorModule@@UAEPAVCaveInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getCell@CellAndObjectIntersection@@QAEPAVPartitionCell@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?getCell@PathfindLayer@@QAEPAVPathfindCell@@HH@Z,,0x003FBAB0,78,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,new PathfindLayer::getCell absent from ledger; landed via reference/shims/pathfind retail layout
@@ -13799,3 +13798,4 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?getChipset@W3DShaderManager@@SA?AW4ChipsetType@@XZ,,0x007175B0,28,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,thunk-dump converted to C++ naked retail global chipset accessor
 ?LookupGameByListOffset@LANAPI@@UAEPAVLANGameInfo@@H@Z,,0x00685150,36,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,clean LAN game list offset lookup through retail LANGameInfo layout
+?getCampaignDifficulty@OptionPreferences@@QAEHXZ,,0x00090630,114,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,matched,thunk-dump converted to exact C++ TU codegen body
