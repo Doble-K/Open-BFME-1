@@ -11263,7 +11263,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@W3DVolumetricShadowManager@@QAE_NXZ,,0x007C19E0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,clean C++ body calls ReAcquireResources; exact retail call/return bytes
 ?init@WaterRenderObjClass@@QAEHMMMPAVSceneClass@@W4WaterType@@@Z,,0x007A5200,1383,Code/masm_dumps/_sa3__init_WaterRenderObjClass__QAEHMMMPAVSceneClass__W_7A5200.asm,matched,Exact 1383B string-anchored Open-BFME4
 ?init@WaterTracksObj@@QAEXMAAVVector2@@0PAD@Z,,0x007AB6B0,520,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
-?init@WinInstanceData@@QAEXXZ,,0x00021EC7,5,Code/masm_dumps/_init_WinInstanceData__QAEXXZ_21EC7.asm,matched,MASM exact retail dump
 ?init@WindowVideoManager@@UAEXXZ,,0x00498C20,21,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
 ?initAnimateWindow@ProcessAnimateWindowSlideFromBottom@@UAEXPAVAnimateWindow@@@Z,,0x00496480,236,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ?initAnimateWindow@ProcessAnimateWindowSlideFromLeft@@UAEXPAVAnimateWindow@@@Z,,0x00495B90,235,Code/masm_dumps/initAnimateWindow_ProcessAnimateWindowSlideFromLeft_495B90.asm,matched,Exact 235B MASM; true body 0x495B90 via SlideFromLeft vtbl 0xCFA270 slot1 (ILT 0x1D61F); queue 0x589443 junk thunk cluster; C++ blocked Display getWidth vtbl+0x2c vs ZH+0x20 + setAnimData Coord2D stack-temp
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001019A,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ScriptEngine::undoNamedMapReveal
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,,0x00017503,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ControlBar::showBuildTooltipLayout
 ?updateFadeLevel@ScreenCrossFadeFilter@@IAE_NXZ,,0x00006D0C,5,Code/GameEngine/Source/Common/RTS/ScreenCrossFadeFilterUpdateFadeLevelThunk.cpp,matched,5-byte incremental-link ScreenCrossFadeFilter protected member thunk converted to focused C++ source
+?init@WinInstanceData@@QAEXXZ,,0x00021EC7,5,Code/GameEngine/Source/Common/RTS/WinInstanceDataInitThunk.cpp,matched,5-byte incremental-link WinInstanceData member thunk converted to focused C++ source
