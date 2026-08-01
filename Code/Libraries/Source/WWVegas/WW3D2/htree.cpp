@@ -538,21 +538,26 @@ bool HTreeClass::Simple_Evaluate_Pivot
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?HTreeClass::Base_Update present-unmatched
+// BFME resets PivotFade alongside IsVisible, on the root and on every pivot in
+// the loop -- retail stores 0x3F800000 to pivot+0xAC in both places. Everything
+// else is Zero Hour's, and the pivot stride the loop advances by, 0xB4, is what
+// this tree's pivot.h already lays out.
 void HTreeClass::Base_Update(const Matrix3D & root)
 {
 	PivotClass *pivot;
 
 	Pivot[0].Transform = root;
 	Pivot[0].IsVisible = true;
+	Pivot[0].PivotFade = 1.0f;
 
 	for (int piv_idx=1; piv_idx < NumPivots; piv_idx++) {
-		
+
 		pivot = &Pivot[piv_idx];
-		
+
 		assert(pivot->Parent != NULL);
 		Matrix3D::Multiply(pivot->Parent->Transform, pivot->BaseTransform, &(pivot->Transform));
 		pivot->IsVisible = 1;
+		pivot->PivotFade = 1.0f;
 
 		if (pivot->Is_Captured()) pivot->Capture_Update();
 	}
