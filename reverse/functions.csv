@@ -1571,7 +1571,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LargeGroupAudioUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00296C80,148,Code/masm_dumps/LargeGroupAudioUpdate_constructor.asm,matched,Exact 148B; factory ownership Open-BFME4
 ??0LargeGroupAudioUpdateModuleData@@QAE@XZ,,0x002971F0,142,Code/masm_dumps/LargeGroupAudioUpdateModuleData_constructor.asm,matched,Exact 142B @ 0x002971F0; Exact retail MASM ModuleData ctor; unique factory 0x11C280
 ??0LargeGroupBonusUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00297640,191,Code/masm_dumps/LargeGroupBonusUpdate_constructor.asm,matched,Exact 191B @ 0x00297640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x118B30
-??0LargeGroupBonusUpdateModuleData@@QAE@XZ,,0x002978A0,105,Code/masm_dumps/LargeGroupBonusUpdateModuleData_constructor.asm,matched,Exact 105B ICF alias MD Open-BFME4
 ??0LaserUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00035D91,5,Code/GameEngine/Source/GameLogic/Object/Update/LaserUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0LaserUpdateModuleData@@QAE@XZ,,0x00076E50,29,Code/GameEngine/Source/GameLogic/Object/Update/LaserUpdate.cpp,matched,
 ??0LeafletDropBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/LeafletDropBehavior_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0LocomotorSetUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/LocomotorSetUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0RadarUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/RadarUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0GrantStealthBehaviorModuleData@@QAE@XZ,,0x002978A0,105,Code/GameEngine/Source/GameLogic/AI/GrantStealthBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0LargeGroupBonusUpdateModuleData@@QAE@XZ,,0x002978A0,105,Code/GameEngine/Source/GameLogic/AI/LargeGroupBonusUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
