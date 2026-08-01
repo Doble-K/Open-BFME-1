@@ -2922,7 +2922,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MapCache@@QAE@XZ,,0x00078E90,89,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??1MapObject@@MAE@XZ,,0x00088350,236,Code/masm_dumps/MapObject_destructor_MAE_00088350.asm,matched,Certified packet 46; reviewed vtable deleting-destructor chain and ownership teardown
 ??1MatPassTaskClass@@QAE@XZ,,0x009457F0,32,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
-??1MaterialCollectorClass@@QAE@XZ,,0x00C5C6A8,21,Code/masm_dumps/__1MaterialCollectorClass__QAE_XZ.asm,matched,
 ??1MaxHealthUpgradeModuleData@@UAE@XZ,,0x002D65F0,67,Code/masm_dumps/MaxHealthUpgradeModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
 ??1MemLogClass@@QAE@XZ,,0x00AFF270,82,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??1MeshLoadContextClass@@AAE@XZ,,0x0096FD30,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
@@ -13840,3 +13839,4 @@ __CIasin,,0x009F7D86,6,Code/Libraries/Source/WWVegas/WWMath/CIasinThunk.cpp,matc
 _atexit,,0x009F6E26,18,Code/Libraries/Source/WWVegas/WWDebug/AtexitThunk.cpp,matched,Open-BFME5 exact C++ CRT thunk replacing MASM dump;object-symbol=__atexit
 ?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z,,0x006B9A40,19,Code/Libraries/Source/WWVegas/WWAudio/AudioManagerAddAudioEventThunk.cpp,matched,Open-BFME5 exact C++ AudioManager vtable thunk replacing MASM dump;object-symbol=?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z
 ?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z,,0x0043B280,20,Code/GameEngine/Source/GameLogic/ScriptEngine/BfmeInGameUISetInputEnabledThunk.cpp,matched,Open-BFME5 exact C++ BFME vtable thunk replacing MASM dump;object-symbol=?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z
+??1MaterialCollectorClass@@QAE@XZ,,0x00C5C6A8,21,Code/Libraries/Source/WWVegas/WW3D2/MaterialCollectorClassDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1MaterialCollectorClass@@QAE@XZ
