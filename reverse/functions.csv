@@ -1561,7 +1561,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HordeSiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024A560,307,Code/masm_dumps/HordeSiegeEngineContain_constructor.asm,matched,Exact 307B @ 0x0024A560; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1163F0
 ??0HordeTransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024B6F0,115,Code/masm_dumps/HordeTransportContain_constructor.asm,matched,Exact 115B; factory ownership Open-BFME4
 ??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/HordeUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
-??0HordeUpdateModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/HordeUpdateModuleData_constructor.asm,matched,Exact 162B ICF alias MD Open-BFME4
 ??0HorseHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024D220,108,Code/masm_dumps/HorseHordeContain_constructor.asm,matched,Exact 108B; factory ownership Open-BFME4
 ??0HorseHordeContainModuleData@@QAE@XZ,,0x002472D0,531,Code/masm_dumps/HorseHordeContainModuleData_constructor.asm,matched,Exact 531B ICF alias MD Open-BFME4
 ??0HotKeyManager@@QAE@XZ,,0x005B39E0,146,Code/masm_dumps/HotKeyManager_ctor.asm,matched,Correct retail body from GameClient init thunk 0x0000B389 and TheHotKeyManager naming sequence
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0SupplyTruckAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C6AE0,280,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0HordeSiegeEngineContainModuleData@@QAE@XZ,,0x0022CB80,148,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0GettingBuiltBehaviorModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/GettingBuiltBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
+??0HordeUpdateModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/HordeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
