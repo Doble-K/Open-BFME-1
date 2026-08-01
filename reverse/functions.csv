@@ -1058,7 +1058,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AABoxRenderObjClass@@QAE@ABV0@@Z,,0x00957E80,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0AABoxRenderObjClass@@QAE@ABVAABoxClass@@@Z,,0x00957880,147,Code/masm_dumps/_rn4___0AABoxRenderObjClass__QAE_ABVAABoxClass___Z_957880.asm,matched,reloc-needle Open-BFME4+Grok
 ??0AAPlaneClass@@QAE@W4AxisEnum@0@M@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,tiny-locate
-??0AIAttackAimAtTargetState@@QAE@PAVStateMachine@@_N1@Z,,0x00171180,68,Code/masm_dumps/AIAttackAimAtTargetState_constructor_171180.asm,matched,Certified packet 210 db recovery
 ??0AIAttackFollowWaypointPathState@@QAE@PAVStateMachine@@_N@Z,,0x00183C90,201,Code/masm_dumps/_sa6___0AIAttackFollowWaypointPathState__QAE_PAVStateMa_183C90.asm,matched,Exact 201B Open-BFME4+Grok
 ??0AIAttackMoveStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x002C1061,501,Code/GameEngine/Source/GameLogic/AI/AIStates_0AIAttackMoveStateMachine.asm,matched,exact 501B via MASM
 ??0AIAttackMoveToState@@QAE@PAVStateMachine@@@Z,,0x00183990,234,Code/masm_dumps/_sa6___0AIAttackMoveToState__QAE_PAVStateMachine___Z_183990.asm,matched,Exact 234B Open-BFME4+Grok
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0FailureState@@QAE@PAVStateMachine@@@Z,,0x00170E10,46,Code/GameEngine/Source/GameLogic/AI/FailureStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIDockState@@QAE@PAVStateMachine@@@Z,,0x00171420,54,Code/GameEngine/Source/GameLogic/AI/AIDockStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIGuardRetaliateState@@QAE@PAVStateMachine@@@Z,,0x00171750,53,Code/GameEngine/Source/GameLogic/AI/AIGuardRetaliateStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
+??0AIAttackAimAtTargetState@@QAE@PAVStateMachine@@_N1@Z,,0x00171180,68,Code/GameEngine/Source/GameLogic/AI/AIAttackAimAtTargetStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
