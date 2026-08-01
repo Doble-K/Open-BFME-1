@@ -2143,7 +2143,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StepLinearOffsetTextureMapperClass@@QAE@ABVVector2@@M_N0I@Z,,0x00965000,116,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0StickyBombUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/StickyBombUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
 ??0StopSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026B340,53,Code/masm_dumps/StopSpecialPower_constructor.asm,matched,Exact 53B unique factory Open-BFME4
-??0StopSpecialPowerModuleData@@QAE@XZ,,0x0026B5B0,28,Code/masm_dumps/StopSpecialPowerModuleData_constructor.asm,matched,Exact 28B unique factory Open-BFME4
 ??0StreakDrawModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00007fea,0x005d8600,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,copy constructor sets vtable pointer
 ??0StreakDrawModuleInfo@FXParticleSystem@@QAE@XZ,0x00018796,0x005F7EF0,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable pointer
 ??0StreakDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x00033B59,0x005D8790,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0DefectorSpecialPowerModuleData@@QAE@XZ,,0x0025A110,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/DefectorSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0HordeContainModuleData@@QAE@XZ,,0x00220530,28,Code/GameEngine/Source/GameLogic/Object/Update/HordeUpdateModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0GameMessage@@QAE@W4Type@0@@Z,,0x0008A2A0,53,Code/GameEngine/Source/Common/System/message_stream.cpp,matched,incremental thunk @0x359E5 to GameMessage constructor body @0x8A2A0; exact C++ retail layout reconstruction
+??0StopSpecialPowerModuleData@@QAE@XZ,,0x0026B5B0,28,Code/GameEngine/Source/GameLogic/Object/SpecialPower/StopSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
