@@ -13811,3 +13811,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?onEnter@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00021E27,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState onEnter
 ?onExit@AIInternalMoveToState@@UAEXW4StateExitType@@@Z,,0x00029311,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState onExit
 ?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x000488F6,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState update
+?setDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEXI@Z,,0x000473DE,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgSetDisconnectFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0xA73C90
