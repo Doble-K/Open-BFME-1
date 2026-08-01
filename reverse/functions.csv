@@ -1820,7 +1820,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ProcessAnimateWindowSlideFromTopFast@@QAE@XZ,,0x00496F30,44,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ??0ProductionPrerequisite@@QAE@XZ,,0x000E57A0,133,Code/masm_dumps/ProductionPrerequisite_ctor.asm,matched,Ghidra-bound BFME constructor layout
 ??0ProductionSpeedBonus@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00264450,46,Code/masm_dumps/ProductionSpeedBonus_constructor.asm,matched,Exact 46B unique factory Open-BFME4
-??0ProductionSpeedBonusModuleData@@QAE@XZ,,0x00264690,107,Code/masm_dumps/ProductionSpeedBonusModuleData_constructor.asm,matched,Exact 107B @ 0x00264690; Exact retail MASM ModuleData ctor; unique factory 0x120120
 ??0ProductionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0029C9E0,396,Code/masm_dumps/ProductionUpdate_constructor.asm,matched,Exact 396B @ 0x0029C9E0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11AC10
 ??0ProductionUpdateModuleData@@QAE@XZ,,0x0029FB70,159,Code/masm_dumps/ProductionUpdateModuleData_constructor.asm,matched,Exact 159B @ 0x0029FB70; Exact retail MASM ModuleData ctor; unique factory 0x11AC90
 ??0ProjectedShadowManager@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,ICF alias of existing matched body
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/GameEngine/Source/GameLogic/AI/OCLSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,,0x002A2520,287,Code/GameEngine/Source/GameLogic/AI/ParticleUplinkCannonUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0PartTheHeavensUpdateModuleData@@QAE@XZ,,0x00299E10,217,Code/GameEngine/Source/GameLogic/AI/PartTheHeavensUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0ProductionSpeedBonusModuleData@@QAE@XZ,,0x00264690,107,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonusModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
