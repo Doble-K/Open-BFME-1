@@ -2209,7 +2209,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DGameWindowManager@@QAE@XZ,,0x006C05D0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp,matched,thunk-dump converted to clean C++
 ??0W3DGhostObjectManager@@QAE@XZ,,0x006BC8C0,26,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DGhostObject.cpp,matched,
 ??0W3DLaserDrawModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/W3DLaserDrawModuleData_constructor.asm,matched,Exact 162B ICF alias MD Open-BFME4
-??0W3DModelDrawModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/W3DModelDrawModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0W3DOverlordAircraftDrawModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/W3DOverlordAircraftDrawModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0W3DProjectileStreamDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00369FD0,252,Code/masm_dumps/W3DProjectileStreamDraw_constructor.asm,matched,Exact 252B @ 0x00369FD0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1194C0
 ??0W3DProjectileStreamDrawModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/W3DProjectileStreamDrawModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0UndeadBodyModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0VeterancyGainCreateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0W3DDependencyModelDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0W3DModelDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
