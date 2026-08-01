@@ -12651,7 +12651,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeMessage@GameMessageList@@UAEXPAVGameMessage@@@Z,,0x0008A570,66,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?removeMilitarySubtitle@InGameUI@@UAEXXZ,,0x004431B0,154,Code/masm_dumps/InGameUI_removeMilitarySubtitle.asm,matched,Certified packet 182 exact retail db recovery sha256 17ea0741497e1a63201ab4f1808d1e17de5bd396ce235973b1842c379a4c2cce
 ?removeNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x00022610,5,Code/masm_dumps/_thunk_ae6263466ea1_22610.asm,matched,thunk accessor of ported class
-?removeObject@Radar@@QAEXPAVObject@@@Z,,0x00106C20,49,Code/masm_dumps/_rn9__removeObject_Radar__QAEXPAVObject___Z_106C20.asm,matched,reloc-needle Open-BFME4+Grok
 ?removeObjectBuilt@ScoreKeeper@@QAEXPBVObject@@@Z,,0x000016CC,5,Code/masm_dumps/_removeObjectBuilt_ScoreKeeper__QAEXPBVObject@@@Z_16CC.asm,matched,thunk accessor of ported class
 ?removeObjectFromPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,,0x001D27D0,15,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?removePlayer@LANAPI@@IAEXPAVLANPlayer@@@Z,,0x00685290,62,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setTimeOfDay@WaterRenderObjClass@@QAEXW4TimeOfDay@@@Z,,0x0079F590,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,direct C++ water time-of-day setter with retail layout offset replaces MASM dump
 ?setFrameCommandCount@FrameDataManager@@QAEXII@Z,,0x00670750,34,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,direct C++ frame command-count setter replaces MASM dump
 ?detach@NetCommandMsg@@QAEXXZ,,0x00673610,16,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,codegen-blocked retail reference-count body; exact small __asm escape hatch in official C++ source
+?removeObject@Radar@@QAEXPAVObject@@@Z,,0x00106C20,49,Code/GameEngine/Source/Common/System/Radar.cpp,matched,direct C++ radar object removal with retail object offset replaces MASM dump

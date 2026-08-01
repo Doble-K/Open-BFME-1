@@ -609,12 +609,11 @@ Bool Radar::deleteFromList( Object *obj, RadarObject **list )
 //-------------------------------------------------------------------------------------------------
 /** Remove an object from the radar, the object may reside in any list */
 //-------------------------------------------------------------------------------------------------
-// ?removeObject@Radar@@QAEXPAVObject@@@Z present-unmatched
 void Radar::removeObject( Object *obj )
 {
 
 	// sanity
-	if( obj->friend_getRadarData() == NULL )
+	if( *reinterpret_cast<RadarObject **>(reinterpret_cast<unsigned char *>(obj) + 0x20C) == NULL )
 		return;
 
 	if( deleteFromList( obj, &m_localObjectList ) == TRUE )
