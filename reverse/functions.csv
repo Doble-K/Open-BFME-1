@@ -1953,7 +1953,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SegmentedLineClass@@QAE@XZ,,0x00950D50,127,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ??0SelectionInfo@@QAE@XZ,,0x00458F60,58,Code/GameEngine/Source/GameClient/SelectionInfo.cpp,matched,
 ??0ShareExperienceBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205740,148,Code/masm_dumps/ShareExperienceBehavior_constructor.asm,matched,Exact 148B @ 0x00205740; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116BF0
-??0ShareExperienceBehaviorModuleData@@QAE@XZ,,0x002056B0,80,Code/masm_dumps/ShareExperienceBehaviorModuleData_constructor.asm,matched,Exact 80B @ 0x002056B0; Exact retail MASM ModuleData ctor; unique factory 0x116C70; Open-BFME4+Grok
 ??0Shell@@QAE@XZ,,0x0057F650,259,Code/masm_dumps/Shell_constructor_57F650.asm,matched,Certified packet 92 exact retail MASM SHA256 1cbea3545873ee70aacdaf9856ab9323d9288e58eeb640cc6330f5a55342362f
 ??0ShellGameLoadScreen@@QAE@XZ,,0x003367B0,17,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,
 ??0ShellMenuSchemeLine@@QAE@XZ,,0x00580400,30,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0RainOfFireUpdateModuleData@@QAE@XZ,,0x002A08B0,62,Code/GameEngine/Source/GameLogic/AI/RainOfFireUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0DemoTrapUpdateModuleData@@QAE@XZ,,0x0028C9E0,58,Code/GameEngine/Source/GameLogic/AI/DemoTrapUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/GameEngine/Source/GameLogic/AI/RunOffMapBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0ShareExperienceBehaviorModuleData@@QAE@XZ,,0x002056B0,80,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
