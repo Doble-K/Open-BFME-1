@@ -328,7 +328,7 @@ W3DAnimationInfo::W3DAnimationInfo(const AsciiString& name, Bool isIdle, Real di
 
 //-------------------------------------------------------------------------------------------------
 // ??0W3DAnimationInfo@@ present-unmatched
-W3DAnimationInfo::W3DAnimationInfo( const W3DAnimationInfo &r ) : 
+__declspec(noinline) W3DAnimationInfo::W3DAnimationInfo( const W3DAnimationInfo &r ) :
 	m_name(r.m_name),
 #ifdef RETAIN_ANIM_HANDLES
 	m_handle(r.m_handle),
@@ -341,6 +341,11 @@ W3DAnimationInfo::W3DAnimationInfo( const W3DAnimationInfo &r ) :
 	if (m_handle)
 		m_handle->Add_Ref();
 #endif
+}
+
+__declspec(noinline) void reconstructW3DAnimationInfo(void *dest, const void *src)
+{
+	new (dest) W3DAnimationInfo(*reinterpret_cast<const W3DAnimationInfo *>(src));
 }
 
 //-------------------------------------------------------------------------------------------------

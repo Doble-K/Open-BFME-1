@@ -67,7 +67,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$_Construct@VProductionPrerequisite@@V1@@_STL@@YAXPAVProductionPrerequisite@@ABV1@@Z,,0x0003AA26,5,Code/masm_dumps/____Construct_VProductionPrerequisite__V1___STL__YAXPAVProductionPrerequisite__ABV1__Z_3AA26.asm,matched,MASM exact retail dump
 ??$_Construct@VQueuedDownload@@V1@@_STL@@YAXPAVQueuedDownload@@ABV1@@Z,,0x001A6D80,19,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
 ??$_Construct@VUnicodeString@@V1@@_STL@@YAXPAVUnicodeString@@ABV1@@Z,,0x0009EF50,66,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
-??$_Construct@VW3DAnimationInfo@@V1@@_STL@@YAXPAVW3DAnimationInfo@@ABV1@@Z,,0x00033AAA,5,Code/masm_dumps/____Construct_VW3DAnimationInfo__V1___STL__YAXPAVW3DAnimationInfo__ABV1__Z_33AAA.asm,matched,MASM exact retail dump
 ??$_Construct@VWeaponTemplateSet@@V1@@_STL@@YAXPAVWeaponTemplateSet@@ABV1@@Z,,0x002E2F30,24,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ??$_Destroy@PAUHideShowSubObjInfo@ModelConditionInfo@@@_STL@@YAXPAUHideShowSubObjInfo@ModelConditionInfo@@0@Z,,0x000413AD,5,Code/masm_dumps/____Destroy_PAUHideShowSubObjInfo_ModelConditionInfo____STL__YAXPAUHideShowSubObjInfo_ModelConditionInfo__0_Z_413AD.asm,matched,MASM exact retail dump
 ??$_Destroy@PAUNugget@ModuleInfo@@@_STL@@YAXPAUNugget@ModuleInfo@@0@Z,,0x0013C1D0,33,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,STLport template-internal COMDAT emitted by this TU; thunk-dump repointed (callees pinned)
@@ -13799,3 +13798,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??$_Construct@VW3DAnimationInfo@@V1@@_STL@@YAXPAVW3DAnimationInfo@@ABV1@@Z,,0x00784DD0,19,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,object-symbol=?reconstructW3DAnimationInfo@@YAXPAXPBX@Z;clean C++ copy helper; REL32-pinned copy ctor
