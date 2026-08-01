@@ -10141,7 +10141,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_setBridgeScale@TerrainRoadType@@QAEXM@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/Terrain/TerrainRoads.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
 ?friend_setContainedBy@Object@@QAEXPAV1@@Z,,0x00464800,13,Code/GameEngine/Source/GameLogic/Object/Contain/HelixContain.cpp,matched,
 ?friend_setCurrentGoalPathIndex@AIUpdateInterface@@QAEXH@Z,,0x0016A760,13,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?friend_setDamageToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,,0x00024E0B,5,Code/masm_dumps/_friend_setDamageToFXString_TerrainRoadType__QAEXW4BodyDamageType__HVAsciiString___Z_24E0B.asm,matched,MASM exact retail dump
 ?friend_setDoneFlag@PartitionData@@QAEXH@Z,,0x000EC630,10,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,
 ?friend_setIndexInLogic@UpdateModule@@QAEXH@Z,,0x00674240,10,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
 ?friend_setLastCommandSource@AIUpdateInterface@@QAEXW4CommandSourceType@@@Z,,0x001BD79E,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
@@ -13804,3 +13803,4 @@ _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Op
 ?setSize@Shadow@@QAEXMM@Z,,0x0002133C,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Shadow::setSize
 ?deposit@Money@@QAEXI_N@Z,,0x00027D6D,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Money::deposit
 ?setDisabledUntil@Object@@QAEXW4DisabledType@@I@Z,,0x0003364A,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Object::setDisabledUntil
+?friend_setDamageToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,,0x00024E0B,5,Code/GameEngine/Source/Common/RTS/TerrainRoadTypeSetDamageToFXStringThunk.cpp,matched,5-byte incremental-link TerrainRoadType member thunk converted to focused C++ source
