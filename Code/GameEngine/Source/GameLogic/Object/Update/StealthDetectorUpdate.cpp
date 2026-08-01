@@ -110,11 +110,11 @@ StealthDetectorUpdate::~StealthDetectorUpdate( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?setSDEnabled@StealthDetectorUpdate@@ present-unmatched
 void StealthDetectorUpdate::setSDEnabled( Bool enabled ) 
 { 
 	m_enabled = enabled; 
-	setWakeFrame(getObject(), m_enabled ? UPDATE_SLEEP_NONE : UPDATE_SLEEP_FOREVER);
+	Object *object = *reinterpret_cast<Object **>(reinterpret_cast<unsigned char *>(this) + 8);
+	setWakeFrame(object, m_enabled ? UPDATE_SLEEP_NONE : UPDATE_SLEEP_FOREVER);
 }
 
 
