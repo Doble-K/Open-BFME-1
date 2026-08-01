@@ -9148,6 +9148,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clone@?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@FXParticleSystem@@3QBDB$E?TERRAIN_COLLISION_MODULE_NAME@2@3QBDBVTerrainCollisionModule@2@VTerrainCollisionModuleTemplate@2@VParticleTerrainCollisionModule@2@VParticleTerrainCollisionModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVTerrainCollisionModuleTemplate@2@XZ,0x00023A92,0x005E2110,99,Code/masm_dumps/clone_ConcreteModuleTemplate_V_ModuleTag_07_E_TERRAIN_COLLISION_MODULE_K_005E2110_7bbaca43.asm,matched,object-symbol=_bfme_export_7bbaca43;icf-owner=?clone@?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@;MASM exact retail export dump
 ?close@CachedFileInputStream@@QAEXXZ,,0x00102370,34,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?close@File@@UAEXXZ,,0x009CB880,50,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 2 of all three File vtables - repointed off its MASM dump onto C++
+?close@Win32BIGFile@@UAEXXZ,,0x009D14D0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 8; empty body
+?closeAllFiles@Win32BIGFile@@UAEXXZ,,0x009D14B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 4; empty body
 ?closeAllSpareSockets@FirewallHelperClass@@QAEXXZ,,0x0066EB60,64,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?closeDataChunk@DataChunkOutput@@QAEXXZ,,0x001024A0,118,Code/GameEngine/Source/Common/System/DataChunk_closeDataChunk.asm,matched,exact 118B via MASM
 ?closeLiveHandle@BFMENetworkBackend@@QAEXXZ,,0x009DB5A0,35,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network backend wait/clear for handle fields +0x48/+0x44
@@ -11196,6 +11198,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getName@PlayerTemplate@@QBE?AVAsciiString@@XZ,,0x00098F50,33,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?getName@SpecialPowerTemplate@@QBE?AVAsciiString@@XZ,,0x00005682,5,Code/masm_dumps/_getName_SpecialPowerTemplate__QBE_AVAsciiString__XZ_5682.asm,matched,MASM exact retail dump
 ?getName@SubsystemInterface@@QAE?AVAsciiString@@XZ,,0x009A19A0,32,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,returns m_name by value through the hidden return pointer
+?getName@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D16F0,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 5; m_name at this+0x24; StringBase<char> copy ctor call shape
 ?getNameAndDescription@ScienceStore@@QBE_NW4ScienceType@@AAVUnicodeString@@1@Z,,0x000E6E00,55,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ?getNameFromKey@DictPair@Dict@@CA?AW4NameKeyType@@W4DictPairKeyType@2@@Z,,0x00067CD0,8,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?getNameKey@PlayerTemplate@@QBE?AW4NameKeyType@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
@@ -11268,6 +11271,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getParticleCap@OptionPreferences@@QAEHXZ,,0x000914B0,136,Code/masm_dumps/_getParticleCap_OptionPreferences__QAEHXZ_914B0.asm,matched,Exact 136B; string-anchor MaxParticleCount; queue 0x560DB2 was OptionsMenuInit interior
 ?getParticleType@ParticleSystemTemplate@FXParticleSystem@@QBE?AW4ParticleType@2@XZ,0x0003CC31,0x0005CB60,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,returns particle type field
 ?getPasswordForEmail@GameSpyLoginPreferences@@QAE?AVAsciiString@@V2@@Z,,0x000813D0,426,Code/masm_dumps/_sa11__getPasswordForEmail_GameSpyLoginPreferences__QAE_AVAsciiString__V2__Z_813D0.asm,matched,string-anchor Open-BFME4+Grok %c%c%c%c
+?getPath@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D1710,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 6; m_path at this+0x28
 ?getPath_UserData@GlobalData@@QBE?AVAsciiString@@XZ,,0x000106EA,5,Code/masm_dumps/_getPath_UserData_GlobalData__QBE_AVAsciiString__XZ_106EA.asm,matched,MASM exact retail dump
 ?getPercentComplete@NetCommandWrapperList@@QAEHG@Z,,0x00676850,42,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ?getPercentComplete@NetCommandWrapperListNode@@QAEHXZ,,0x0003D497,5,Code/masm_dumps/_getPercentComplete_NetCommandWrapperListNode__QAEHXZ_3D497.asm,matched,MASM exact retail dump
@@ -13094,6 +13098,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setSawCompleteGameList@PeerThreadClass@@QAEX_N@Z,,0x0020FB00,13,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?setScienceAvailability@Player@@QAEXW4ScienceType@@W4ScienceAvailabilityType@@@Z,,0x000D5640,288,Code/GameEngine/Source/Common/RTS/Player_setScienceAvailability.asm,matched,exact 288B MASM; shape-id with ZH C++; Player science vec +0x240/+0x24c vs ZH +0x170/+0x17c (+0xD0); adj attemptToPurchaseScience@0xD55B0
 ?setScriptStatus@Object@@QAEXW4ObjectScriptStatusBit@@_N@Z,,0x001D01D0,181,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME m_scriptStatus@0x343 m_partitionData@0x3b0 DISABLED_SCRIPT_DISABLED=9
+?setSearchPriority@Win32BIGFile@@UAEXH@Z,,0x009D14C0,3,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 7; empty body
 ?setSecondMaterialPassOpacity@Drawable@@QAEXM@Z,,0x0077E040,13,Code/GameEngine/Source/GameLogic/Object/Update/StealthDetectorUpdate.cpp,matched,
 ?setSeed@GameInfo@@QAEXH@Z,,0x000C8F50,10,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setSelectable@Drawable@@QAEX_N@Z,,0x00411F80,23,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
@@ -13772,10 +13777,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?lock@File@@UAEXXZ,,0x009CB760,36,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 15; CreateMutexA/WaitForSingleObject; vtable 0x01143AF8
-?unlock@File@@UAEXXZ,,0x009CB790,15,Code/GameEngine/Source/Common/System/File.cpp,matched,BFME-only File virtual slot 16; ReleaseMutex; vtable 0x01143AF8
-?closeAllFiles@Win32BIGFile@@UAEXXZ,,0x009D14B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 4; empty body
-?setSearchPriority@Win32BIGFile@@UAEXH@Z,,0x009D14C0,3,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 7; empty body
-?close@Win32BIGFile@@UAEXXZ,,0x009D14D0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 8; empty body
-?getName@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D16F0,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 5; m_name at this+0x24; StringBase<char> copy ctor call shape
-?getPath@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D1710,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 6; m_path at this+0x28
