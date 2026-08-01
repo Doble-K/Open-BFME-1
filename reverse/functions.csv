@@ -1149,7 +1149,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BezierProjectileBehaviorModuleData@@QAE@XZ,,0x001EFD50,197,Code/masm_dumps/BezierProjectileBehaviorModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; factory 0x1152C0
 ??0BezierSegment@@QAE@MMMMMMMMMMMM@Z,,0x008D64A0,88,Code/GameEngine/Source/Common/Bezier/BezierSegment.cpp,matched,
 ??0BezierSegment@@QAE@QAM@Z,,0x00131DE0,79,Code/GameEngine/Source/Common/Bezier/BezierSegment.cpp,matched,
-??0BezierSegment@@QAE@XZ,,0x00043A9A,5,Code/masm_dumps/__0BezierSegment__QAE_XZ_43A9A.asm,matched,MASM exact retail dump
 ??0BitChannelClass@@QAE@XZ,,0x00977890,25,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??0Blend@@QAE@W4_D3DBLEND@@_N@Z,,0x0021A250,18,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,
 ??0BlockHeader@TagBlockFile@@QAE@HHH@Z,,0x000642F0,25,Code/Libraries/Source/WWVegas/WWLib/tagblock.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?_M_insert_overflow@?$vector@UUpgrades@OCLSpecialPowerModuleData@@V?$allocator@UUpgrades@OCLSpecialPowerModuleData@@@_STL@@@_STL@@IAEXPAUUpgrades@OCLSpecialPowerModuleData@@ABU34@ABU__false_type@2@I_N@Z,,0x0003913F,5,Code/Libraries/Source/WWVegas/WWLib/OCLSpecialPowerModuleDataUpgradesVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
 ??0GenerateMinefieldBehaviorModuleData@@QAE@XZ,,0x0002B062,5,Code/GameEngine/Source/GameLogic/Object/Behavior/GenerateMinefieldBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ?_M_insert_overflow@?$vector@UVideo@@V?$allocator@UVideo@@@_STL@@@_STL@@IAEXPAUVideo@@ABU3@ABU__false_type@2@I_N@Z,,0x000359B3,5,Code/Libraries/Source/WWVegas/WWLib/VideoVectorOverflowThunk.cpp,matched,5-byte incremental-link STL vector thunk converted to focused C++ thunk TU
+??0BezierSegment@@QAE@XZ,,0x00043A9A,5,Code/GameEngine/Source/Common/Bezier/BezierSegmentCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
