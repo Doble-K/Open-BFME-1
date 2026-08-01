@@ -1803,7 +1803,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PlayerTemplate@@QAE@XZ,,0x000E3760,824,Code/masm_dumps/__0PlayerTemplate__QAE_XZ_E3760.asm,matched,MASM exact; true body 0xE3760/824 via symbols ILT 0x3E6E4; queue 0xC6DCD5 int3 pad
 ??0PlayerTemplateStore@@QAE@XZ,,0x00076F30,29,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ??0PlayerUpgradeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00263F50,46,Code/masm_dumps/PlayerUpgradeSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
-??0PlayerUpgradeSpecialPowerModuleData@@QAE@XZ,,0x00264210,95,Code/masm_dumps/PlayerUpgradeSpecialPowerModuleData_constructor.asm,matched,Exact 95B @ 0x00264210; Exact retail MASM ModuleData ctor; unique factory 0x121370; Open-BFME4+Grok
 ??0PointDefenseLaserUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286F80,154,Code/masm_dumps/PointDefenseLaserUpdate_constructor.asm,matched,Exact 154B ICF primary Open-BFME4
 ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0000FECA,0x005D5930,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@XZ,0x0003160B,0x005D58B0,41,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/GameEngine/Source/GameLogic/AI/RunOffMapBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ShareExperienceBehaviorModuleData@@QAE@XZ,,0x002056B0,80,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0PlayerHealSpecialPowerModuleData@@QAE@XZ,,0x00263BE0,92,Code/GameEngine/Source/GameLogic/AI/PlayerHealSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0PlayerUpgradeSpecialPowerModuleData@@QAE@XZ,,0x00264210,95,Code/GameEngine/Source/GameLogic/AI/PlayerUpgradeSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
