@@ -666,8 +666,9 @@ void AudioEventRTS::setDrawableID( DrawableID drawID )
 //-------------------------------------------------------------------------------------------------
 DrawableID AudioEventRTS::getDrawableID( void )
 {
-	if (m_ownerType == OT_Drawable) {
-		return m_drawableID;
+	const unsigned char *self = reinterpret_cast<const unsigned char *>(this);
+	if (*reinterpret_cast<const Int *>(self + 0x30) == OT_Drawable) {
+		return *reinterpret_cast<const DrawableID *>(self + 0x2C);
 	}
 
 	return INVALID_DRAWABLE_ID;
