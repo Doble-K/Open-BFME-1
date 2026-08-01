@@ -1,6 +1,7 @@
 // cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
 
 class ThingTemplate;
+class AsciiString;
 
 namespace _STL
 {
@@ -38,6 +39,17 @@ namespace _STL
 			_emit 01Eh
 			_emit 0C0h
 			_emit 00Ah
+			_emit 000h
+		}
+	}
+
+	__declspec(naked) _Rb_tree<AsciiString, pair<AsciiString const, bool>, _Select1st<pair<AsciiString const, bool> >, less<AsciiString>, allocator<pair<AsciiString const, bool> > >::~_Rb_tree()
+	{
+		__asm {
+			_emit 0E9h
+			_emit 074h
+			_emit 03Fh
+			_emit 006h
 			_emit 000h
 		}
 	}
