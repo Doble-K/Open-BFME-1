@@ -9885,6 +9885,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findBlockParse@@YAP6AXPAVINI@@@ZPBD@Z,,0x00850820,93,Code/GameEngine/Source/Common/INI/ini.cpp,matched,walks the block registration list at 0x0130CE50
 ?findBridgeAt@TerrainLogic@@UBEPAVBridge@@PBUCoord3D@@@Z,,0x001A65F0,53,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?findBridgeLayerAt@TerrainLogic@@UBEPAVBridge@@PBUCoord3D@@W4PathfindLayerEnum@@_N@Z,,0x001A6640,95,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
+?findBuildableStatusOverride@GameLogic@@QBE_NPBVThingTemplate@@AAW4BuildableStatus@@@Z,,0x00391A10,43,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,retail ThingTemplate name +0x20 and pinned BuildableMap lookup
 ?findByTemplateID@ThingFactory@@QAEPBVThingTemplate@@G@Z,,0x00133CC0,40,Code/GameEngine/Source/Common/Thing/ThingFactory.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?findClosestPath@Pathfinder@@EAEPAVPath@@PAVObject@@ABVLocomotorSet@@PBUCoord3D@@PAU5@_NM4@Z,,0x003F3460,2701,Code/masm_dumps/findClosestPath_Pathfinder_3F3460.asm,matched,true size 2701B; previous row claimed 1747B
 ?findCommandButton@ControlBar@@QAEPBVCommandButton@@ABVAsciiString@@@Z,,0x004A0310,29,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
