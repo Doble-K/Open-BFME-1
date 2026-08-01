@@ -2014,13 +2014,12 @@ void DX8TextureCategoryClass::Render(void)
 }
 
 
-// ??0DX8MeshRendererClass@@QAE@XZ present-unmatched
+// ??0DX8MeshRendererClass@@QAE@XZ
 DX8MeshRendererClass::DX8MeshRendererClass()
 	:
 	camera(NULL),
 	enable_lighting(true),
-	texture_category_container_list_skin(NULL),
-	visible_decal_meshes(NULL)
+	texture_category_container_list_skin(NULL)
 {
 }
 
@@ -2239,9 +2238,6 @@ void DX8MeshRendererClass::Invalidate( bool shutdown)
 
 	texture_category_container_lists_rigid.Delete_All();
 }
-
-
-
 
 
 

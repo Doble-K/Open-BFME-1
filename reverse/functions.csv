@@ -1344,7 +1344,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DLINK_TeamReadyQueue@TeamInQueue@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
 ??0DX8Caps@@QAE@PAUIDirect3D8@@PAUIDirect3DDevice8@@W4WW3DFormat@@ABU_D3DADAPTER_IDENTIFIER8@@@Z,,0x0091CB00,233,Code/Libraries/Source/WWVegas/WW3D2/DX8Caps_ctor_device.asm,matched,Exact 233B; true start 0x91CB00 (queue 0x91CC08 was mid caps-ctor); MASM layout-blocked
 ??0DX8FVFCategoryContainer@@QAE@I_N@Z,,0x009469B0,126,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
-??0DX8MeshRendererClass@@QAE@XZ,,0x00947680,101,Code/masm_dumps/_rn4___0DX8MeshRendererClass__QAE_XZ_947680.asm,matched,reloc-needle Open-BFME4+Grok
+??0DX8MeshRendererClass@@QAE@XZ,,0x00947680,101,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,reloc-needle Open-BFME4+Grok
 ??0DX8VertexBufferClass@@QAE@IGW4UsageType@0@I@Z,,0x0091F2F0,106,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
 ??0DX8VertexBufferClass@@QAE@PBVVector3@@0PBVVector2@@GW4UsageType@0@@Z,,0x0091F380,131,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
 ??0DX8VertexBufferClass@@QAE@PBVVector3@@0PBVVector4@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F410,136,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
