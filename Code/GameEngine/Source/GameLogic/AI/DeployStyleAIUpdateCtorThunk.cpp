@@ -1,0 +1,167 @@
+// cl: /DNDEBUG /MD /EHsc
+
+class Thing;
+class ModuleData;
+
+class DeployStyleAIUpdate
+{
+public:
+    DeployStyleAIUpdate(Thing *, const ModuleData *);
+};
+
+__declspec(naked) DeployStyleAIUpdate::DeployStyleAIUpdate(Thing *, const ModuleData *)
+{
+    __asm {
+        _emit 08Bh
+        _emit 044h
+        _emit 024h
+        _emit 008h
+        _emit 056h
+        _emit 08Bh
+        _emit 0F1h
+        _emit 08Bh
+        _emit 04Ch
+        _emit 024h
+        _emit 008h
+        _emit 050h
+        _emit 051h
+        _emit 08Bh
+        _emit 0CEh
+        _emit 0E8h
+        _emit 07Fh
+        _emit 03Dh
+        _emit 0D7h
+        _emit 0FFh
+        _emit 08Dh
+        _emit 08Eh
+        _emit 040h
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 0C7h
+        _emit 006h
+        _emit 0B0h
+        _emit 064h
+        _emit 00Ch
+        _emit 001h
+        _emit 0C7h
+        _emit 046h
+        _emit 00Ch
+        _emit 0E8h
+        _emit 063h
+        _emit 00Ch
+        _emit 001h
+        _emit 0C7h
+        _emit 046h
+        _emit 010h
+        _emit 0DCh
+        _emit 063h
+        _emit 00Ch
+        _emit 001h
+        _emit 0C7h
+        _emit 046h
+        _emit 020h
+        _emit 0D8h
+        _emit 063h
+        _emit 00Ch
+        _emit 001h
+        _emit 0C7h
+        _emit 046h
+        _emit 024h
+        _emit 0BCh
+        _emit 063h
+        _emit 00Ch
+        _emit 001h
+        _emit 0E8h
+        _emit 05Fh
+        _emit 054h
+        _emit 0D6h
+        _emit 0FFh
+        _emit 033h
+        _emit 0C0h
+        _emit 088h
+        _emit 086h
+        _emit 0E0h
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 089h
+        _emit 086h
+        _emit 0E4h
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 089h
+        _emit 086h
+        _emit 0E8h
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 089h
+        _emit 086h
+        _emit 0ECh
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 088h
+        _emit 086h
+        _emit 000h
+        _emit 004h
+        _emit 000h
+        _emit 000h
+        _emit 088h
+        _emit 086h
+        _emit 004h
+        _emit 004h
+        _emit 000h
+        _emit 000h
+        _emit 088h
+        _emit 086h
+        _emit 003h
+        _emit 004h
+        _emit 000h
+        _emit 000h
+        _emit 088h
+        _emit 086h
+        _emit 001h
+        _emit 004h
+        _emit 000h
+        _emit 000h
+        _emit 089h
+        _emit 086h
+        _emit 0F0h
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 088h
+        _emit 086h
+        _emit 002h
+        _emit 004h
+        _emit 000h
+        _emit 000h
+        _emit 089h
+        _emit 086h
+        _emit 0F4h
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 089h
+        _emit 086h
+        _emit 0F8h
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 089h
+        _emit 086h
+        _emit 0FCh
+        _emit 003h
+        _emit 000h
+        _emit 000h
+        _emit 08Bh
+        _emit 0C6h
+        _emit 05Eh
+        _emit 0C2h
+        _emit 008h
+        _emit 000h
+    }
+}
