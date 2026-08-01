@@ -24,7 +24,10 @@ FIELDS = ["name", "export_rva", "target_rva", "target_size", "source", "status",
 
 
 def dedup_functions(path):
-    rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+    rows = [
+        row for row in csv.DictReader(path.open(encoding="utf-8", newline=""))
+        if row.get("name") != "name" and row.get("target_rva") != "target_rva"
+    ]
     best = {}
     for row in rows:
         key = (int(row["target_rva"], 16), row["name"])
