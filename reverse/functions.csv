@@ -1205,7 +1205,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CastleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00376250,661,Code/masm_dumps/CastleBehavior_constructor.asm,matched,Exact 661B @ 0x00376250; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114440
 ??0CastleMemberBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0036CDD0,58,Code/masm_dumps/CastleMemberBehavior_constructor.asm,matched,Exact retail MASM module ctor; factory 0x114550
 ??0CastleUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D3E30,53,Code/masm_dumps/CastleUpgrade_constructor.asm,matched,Exact 53B unique factory Open-BFME4
-??0CastleUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/CastleUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
 ??0Cftp@@QAE@XZ,,0x00885AD0,18,Code/GameEngine/Source/GameNetwork/CftpConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0Cftp@@QAE@XZ
 ??0CheckpointUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/CheckpointUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
 ??0ChinookMoveToBldgState@@QAE@PAVStateMachine@@@Z,,0x0005D9A0,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/ChinookAIUpdate.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AttributeModifierAuraUpdateModuleData@@QAE@XZ,,0x00280B20,189,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CashHackSpecialPowerModuleData@@QAE@XZ,,0x00258D70,98,Code/GameEngine/Source/GameLogic/AI/CashHackSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0DelayedUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/DelayedUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
+??0CastleUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/CastleUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
