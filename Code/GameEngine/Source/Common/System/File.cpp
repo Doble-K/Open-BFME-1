@@ -6,19 +6,23 @@
 // layout is Zero Hour's 15 File slots with two appended -- so slots 0..14 mean
 // exactly what Zero Hour's file.h declares them to mean:
 //
-//   0x01143A38  17 slots  MemoryReadFile
-//   0x01143AA8  17 slots  MemoryWriteFile
-//   0x01143AF8  40 slots  (slots 3..9 share one stub, so read/write/seek and
-//                          friends are pure in that class)
+//   0x01143A38  MemoryReadFile
+//   0x01143AA8  MemoryWriteFile
+//   0x01143AF8  File itself
 //
 // The first two are named by their own constructors. 0x009CB3D0 installs
 // 0x01143A38 and then sets the file's name to "<MemoryReadFile>"; 0x009CB4E0
 // installs 0x01143AA8 and sets "<MemoryWriteFile>". That is the same kind of
-// evidence "<no file>" gives for File itself -- a literal the object's own
-// constructor uses to identify it -- and both classes are BFME-only, appearing
-// nowhere in the Zero Hour tree. The 40-slot class is still unnamed: its two
-// constructors at 0x009CB7A0 and 0x009CB8C0 set only "<no file>", which they
-// inherit from File and which therefore says nothing about them.
+// evidence "<no file>" gives for File -- a literal the object's own constructor
+// uses to identify it -- and both classes are BFME-only, appearing nowhere in
+// the Zero Hour tree.
+//
+// 0x01143AF8 is File's own: MemoryReadFile's constructor calls 0x009CB7A0 first,
+// and that is what stores 0x01143AF8 and sets "<no file>", so 0x009CB7A0 is
+// File::File and 0x009CB8C0 (which MemoryReadFile's deleting destructor calls)
+// is File::~File. Counting slots forward from a vtable overruns into the next
+// one -- .rdata packs them adjacently with nothing between -- so all three are
+// 17 slots, not the 40 a naive walk reports for the last.
 //
 // Slots holding the same address in all three are File's own un-overridden
 // implementations: slot 2 close (0x009CB880), slot 10 print (0x009CB6C0), and
@@ -38,6 +42,7 @@ class File
 public:
 	enum { TEXT = 0x20 };		// the bit print() tests: retail is test byte ptr [esi+8], 0x20
 
+	File();
 	virtual ~File();							// slot 0
 	virtual Bool open( const char *filename, Int access = 0 );	// slot 1
 	virtual void close( void );					// slot 2
@@ -63,6 +68,7 @@ protected:
 	Int m_access;				// +0x08
 	Bool m_open;				// +0x0c
 	Bool m_deleteOnClose;		// +0x0d
+	void *m_ownedBuffer;		// +0x10 -- File::~File free()s it if non-null
 };
 
 // ?close@File@@UAEXXZ
@@ -117,9 +123,8 @@ Bool File::print( const char *format, ... )
 // no such class.
 //
 // Layout, read off the overrides below: m_data at +0x14, m_size at +0x18 and
-// m_pos at +0x1c. File itself ends at +0x0d and pads to +0x10, so there is one
-// more word at +0x10 that none of these functions touch; it is declared as
-// unknown rather than guessed at.
+// m_pos at +0x1c -- straight after File, whose own last member is the buffer
+// pointer at +0x10 that File::File zeroes and File::~File frees.
 //-----------------------------------------------------------------------------
 class MemoryReadFile : public File
 {
@@ -138,7 +143,6 @@ public:
 	virtual File *convertToRAMFile( void );
 
 private:
-	Int _bfme_unknown10;	// +0x10, untouched by every override here
 	char *m_data;			// +0x14
 	Int m_size;				// +0x18
 	Int m_pos;				// +0x1c
@@ -283,7 +287,7 @@ File *MemoryReadFile::convertToRAMFile( void )
 // Named by its constructor at 0x009CB4E0, which installs vtable 0x01143AA8 and
 // sets the file's name to "<MemoryWriteFile>". BFME-only, like MemoryReadFile.
 //
-// Same first three members as MemoryReadFile, plus m_capacity at +0x20: the
+// Same three members as MemoryReadFile, plus m_capacity at +0x20: the
 // buffer is realloc'd to 2*needed + 0x1000 whenever a write would run past it,
 // so it grows geometrically with a 4K floor.
 //-----------------------------------------------------------------------------
@@ -304,7 +308,6 @@ public:
 	virtual File *convertToRAMFile( void );
 
 private:
-	Int _bfme_unknown10;	// +0x10
 	char *m_data;			// +0x14
 	Int m_size;				// +0x18
 	Int m_pos;				// +0x1c
@@ -432,3 +435,31 @@ File *MemoryWriteFile::convertToRAMFile( void )
 	return this;
 }
 
+// ??0File@@QAE@XZ
+// Zeroes everything and gives the file the placeholder name. m_access starts at
+// 0, i.e. NONE.
+File::File()
+:	m_access(0),
+	m_open(FALSE),
+	m_deleteOnClose(FALSE),
+	m_ownedBuffer(NULL)
+{
+	setName( "<no file>" );
+}
+
+// ??1File@@UAE@XZ present-unmatched
+// 101 of 133 bytes. The shape is right -- clear the flag, inline close(), free
+// the buffer -- but the tail still differs around the AsciiString destructor and
+// the free import.
+// Clears m_deleteOnClose before closing, so a File that would normally delete
+// itself on close does not re-enter delete while already being destroyed.
+File::~File()
+{
+	m_deleteOnClose = FALSE;
+	close();
+
+	if( m_ownedBuffer )
+	{
+		free( m_ownedBuffer );
+	}
+}
