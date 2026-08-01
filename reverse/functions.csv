@@ -1389,7 +1389,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DestroyEnvironmentUpdateModuleData@@QAE@XZ,,0x0028CD30,23,Code/GameEngine/Source/GameLogic/Object/Update/DestroyEnvironmentUpdate.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0DetailedArchivedDirectoryInfo@@QAE@ABV0@@Z,,0x009D0DB0,98,Code/masm_dumps/_sym2___0DetailedArchivedDirectoryInfo__QAE_ABV0__Z_9D0DB0.asm,matched,symbol-pin Open-BFME4+Grok
 ??0DevastateSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025A7C0,46,Code/masm_dumps/DevastateSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
-??0DevastateSpecialPowerModuleData@@QAE@XZ,,0x0025AC10,44,Code/masm_dumps/DevastateSpecialPowerModuleData_constructor.asm,matched,Exact 44B unique factory Open-BFME4
 ??0Dict@@QAE@ABV0@@Z,,0x000C8CF0,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0Dict@@QAE@H@Z,,0x00068550,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ??0DieModuleData@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehavior.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0GloriousChargeUpdateModuleData@@QAE@XZ,,0x0025E7C0,38,Code/GameEngine/Source/Common/RTS/GloriousChargeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/GameEngine/Source/Common/RTS/ToggleMountedSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0WoundArrowUpdateModuleData@@QAE@XZ,,0x0026DF50,38,Code/GameEngine/Source/Common/RTS/WoundArrowUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+??0DevastateSpecialPowerModuleData@@QAE@XZ,,0x0025AC10,44,Code/GameEngine/Source/Common/RTS/DevastateSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
