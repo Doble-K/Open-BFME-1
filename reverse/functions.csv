@@ -2691,7 +2691,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AssaultTransportAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/masm_dumps/AssaultTransportAIUpdateModuleData_destructor.asm,matched,Exact 145B SEH dtor Open-BFME4
 ??1AttributeModifierAuraUpdate@@UAE@XZ,,0x002803F0,1471,Code/masm_dumps/AttributeModifierAuraUpdate_destructor.asm,matched,Exact 1471B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1AttributeModifierAuraUpdateModuleData@@UAE@XZ,,0x00280C40,106,Code/masm_dumps/AttributeModifierAuraUpdateModuleData_destructor.asm,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
-??1AudioEventRTS@@UAE@XZ,,0x0002671F,5,Code/masm_dumps/__1AudioEventRTS__UAE_XZ_2671F.asm,matched,MASM exact retail dump
 ??1AutoAbilityBehavior@@UAE@XZ,,0x001ED6E0,116,Code/masm_dumps/AutoAbilityBehavior_destructor.asm,matched,Exact 116B @ 0x001ED6E0; Exact retail MASM; instance factory->vtable dtor; del 0x1ED970 ctor 0x1ED8A0 vt 0xCA1BC4
 ??1AutoAbilityBehaviorModuleData@@UAE@XZ,,0x001EDCA0,1944,Code/masm_dumps/AutoAbilityBehaviorModuleData_destructor.asm,matched,Exact 1944B @ 0x001EDCA0; Exact retail MASM; ModuleData ctor->vtable SEH dtor; ctor 0x1ED6A0 vt 0xCA1AF4; Open-BFME4+Grok
 ??1AutoDepositUpdateModuleData@@UAE@XZ,,0x00125960,67,Code/masm_dumps/AutoDepositUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership; BFME member layout differs from ZH-derived C++
@@ -13833,3 +13832,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??1AudioEventRTS@@UAE@XZ,,0x0002671F,5,Code/GameEngine/Source/Common/AudioEventRTSDestructorThunk.cpp,matched,Focused C++ thunk for AudioEventRTS destructor
