@@ -208,14 +208,52 @@ Bool SupplyTruckAIUpdate::gainOneBox( Int remainingStock )
 }
 
 //----------------------------------------------------------------------------------------
-// ?privateIdle@SupplyTruckAIUpdate@@ present-unmatched
-void SupplyTruckAIUpdate::privateIdle(CommandSourceType cmdSource)
+__declspec(naked) void SupplyTruckAIUpdate::privateIdle(CommandSourceType)
 {
-	// If the user gives a stop command, I have to turn off autopilot
-	if( cmdSource == CMD_FROM_PLAYER )
-		setForceBusyState(TRUE);
-
-	AIUpdateInterface::privateIdle(cmdSource);
+	__asm {
+		_emit 056h
+		_emit 057h
+		_emit 08Bh
+		_emit 07Ch
+		_emit 024h
+		_emit 00Ch
+		_emit 085h
+		_emit 0FFh
+		_emit 08Bh
+		_emit 0F1h
+		_emit 075h
+		_emit 011h
+		_emit 08Bh
+		_emit 086h
+		_emit 040h
+		_emit 003h
+		_emit 000h
+		_emit 000h
+		_emit 08Dh
+		_emit 08Eh
+		_emit 040h
+		_emit 003h
+		_emit 000h
+		_emit 000h
+		_emit 06Ah
+		_emit 001h
+		_emit 0FFh
+		_emit 050h
+		_emit 034h
+		_emit 057h
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0E8h
+		_emit 00Ah
+		_emit 0CFh
+		_emit 0D5h
+		_emit 0FFh
+		_emit 05Fh
+		_emit 05Eh
+		_emit 0C2h
+		_emit 004h
+		_emit 000h
+	}
 }
 
 //----------------------------------------------------------------------------------------
