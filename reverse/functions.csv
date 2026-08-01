@@ -1715,7 +1715,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ObjectCreationListStore@@QAE@XZ,,0x001DAD50,114,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ??0ObjectCreationNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
 ??0ObjectCreationUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D6D90,116,Code/masm_dumps/ObjectCreationUpgrade_constructor.asm,matched,Exact 116B; factory ownership Open-BFME4
-??0ObjectCreationUpgradeModuleData@@QAE@XZ,,0x002D75B0,95,Code/masm_dumps/ObjectCreationUpgradeModuleData_constructor.asm,matched,Exact 95B @ 0x002D75B0; Exact retail MASM ModuleData ctor; unique factory 0x11D4A0; Open-BFME4+Grok
 ??0ObjectDrawInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,ICF alias of existing matched body
 ??0ObjectWeaponStatusHelper@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001C1340,107,Code/GameEngine/Source/GameLogic/Object/ObjectWeaponStatusHelper_ctor.asm,matched,Class vtable anchors from matched update and getModuleNameKey
 ??0OneRingPenaltyUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298E10,157,Code/masm_dumps/OneRingPenaltyUpdate_ctor.asm,matched,Ghidra-owned BFME One Ring penalty constructor
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ShareExperienceBehaviorModuleData@@QAE@XZ,,0x002056B0,80,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0PlayerHealSpecialPowerModuleData@@QAE@XZ,,0x00263BE0,92,Code/GameEngine/Source/GameLogic/AI/PlayerHealSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0PlayerUpgradeSpecialPowerModuleData@@QAE@XZ,,0x00264210,95,Code/GameEngine/Source/GameLogic/AI/PlayerUpgradeSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0ObjectCreationUpgradeModuleData@@QAE@XZ,,0x002D75B0,95,Code/GameEngine/Source/GameLogic/AI/ObjectCreationUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
