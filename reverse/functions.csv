@@ -1442,7 +1442,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FlightDeckBehaviorModuleData@@QAE@XZ,,0x0000CC3E,5,Code/masm_dumps/__0FlightDeckBehaviorModuleData__QAE_XZ_CC3E.asm,matched,MASM exact retail dump
 ??0FlightDeckInfo@FlightDeckBehavior@@QAE@XZ,,0x001DE7E0,22,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,
 ??0FloatUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001DF84,5,Code/masm_dumps/__0FloatUpdate__QAE_PAVThing__PBVModuleData___Z_1DF84.asm,matched,MASM exact retail dump
-??0FloatUpdateModuleData@@QAE@XZ,,0x0004601A,5,Code/masm_dumps/__0FloatUpdateModuleData__QAE_XZ_4601A.asm,matched,MASM exact retail dump
 ??0FloatingTextData@@QAE@XZ,,0x0043F4D0,101,Code/masm_dumps/__0FloatingTextData__QAE_XZ_43F4D0.asm,matched,MASM exact: true body via addFloatingText@0x4435A0 (global new 0x24 + ILT 0xCD88); drift 0x9DB099 was subtitle mid-fn; DisplayStringManager newDisplayString vtbl+0x24
 ??0FontLibrary@@QAE@XZ,,0x0008A430,26,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
 ??0Format@Debug@@QAA@PBDZZ,,0x008895F0,35,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
@@ -1644,7 +1643,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LockClass@CriticalSectionClass@@QAE@AAV1@@Z,,0x009DB4B0,29,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0LockClass@FastCriticalSectionClass@@QAE@AAV1@@Z,,0x006D1140,20,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,
 ??0LockClass@MutexClass@@QAE@AAV1@H@Z,,0x009DB3B0,72,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
-??0LockWeaponCreateModuleData@@QAE@XZ,,0x000283F3,5,Code/masm_dumps/__0LockWeaponCreateModuleData__QAE_XZ_283F3.asm,matched,MASM exact retail dump
 ??0Locomotor@@IAE@PBVLocomotorTemplate@@@Z,,0x001B60E0,539,Code/GameEngine/Source/GameLogic/Object/Locomotor_ctor_template.asm,matched,exact 539B via MASM; true start 0x1B60E0 (queue was mid-body +0x2D/432)
 ??0LocomotorSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000078B5,5,Code/masm_dumps/__0LocomotorSetUpgrade__QAE_PAVThing__PBVModuleData___Z_78B5.asm,matched,MASM exact retail dump
 ??0LocomotorSetUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/LocomotorSetUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
@@ -1887,7 +1885,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ProductionUpdateModuleData@@QAE@XZ,,0x0029FB70,159,Code/masm_dumps/ProductionUpdateModuleData_constructor.asm,matched,Exact 159B @ 0x0029FB70; Exact retail MASM ModuleData ctor; unique factory 0x11AC90
 ??0ProjectedShadowManager@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,ICF alias of existing matched body
 ??0ProneUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x000425DC,5,Code/masm_dumps/__0ProneUpdate__QAE_PAVThing__PBVModuleData___Z_425DC.asm,matched,MASM exact retail dump
-??0ProneUpdateModuleData@@QAE@XZ,,0x0002DABA,5,Code/masm_dumps/__0ProneUpdateModuleData__QAE_XZ_2DABA.asm,matched,MASM exact retail dump
 ??0PropagandaTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0000EF5C,5,Code/masm_dumps/__0PropagandaTowerBehavior__QAE_PAVThing__PBVModuleData___Z_EF5C.asm,matched,MASM exact retail dump
 ??0PropagandaTowerBehaviorModuleData@@QAE@XZ,,0x00010B2C,5,Code/masm_dumps/__0PropagandaTowerBehaviorModuleData__QAE_XZ_10B2C.asm,matched,MASM exact retail dump
 ??0PrototypeClass@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,ICF alias of existing matched body
@@ -1912,7 +1909,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RTS3DScene@@QAE@XZ,,0x00A1FDCD,940,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_0RTS3DScene.asm,matched,exact 940B via MASM
 ??0Radar@@QAE@XZ,,0x00107FE0,237,Code/masm_dumps/Radar_constructor.asm,matched,True body 0x107FE0/237 (queue 0x9F271F pad); dual Radar vtables match dtor; MASM exact
 ??0RadarUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0002A013,5,Code/masm_dumps/__0RadarUpdate__QAE_PAVThing__PBVModuleData___Z_2A013.asm,matched,MASM exact retail dump
-??0RadarUpdateModuleData@@QAE@XZ,,0x0001670C,5,Code/masm_dumps/__0RadarUpdateModuleData__QAE_XZ_1670C.asm,matched,MASM exact retail dump
 ??0RadarUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00020306,5,Code/masm_dumps/__0RadarUpgrade__QAE_PAVThing__PBVModuleData___Z_20306.asm,matched,MASM exact retail dump
 ??0RadarUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/masm_dumps/RadarUpgradeModuleData_constructor.asm,matched,Exact 90B ICF alias MD Open-BFME4
 ??0RadiusDecalUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A0640,168,Code/masm_dumps/RadiusDecalUpdate_constructor.asm,matched,Exact 168B @ 0x002A0640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A580
@@ -13594,3 +13590,7 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z,,0x00105280,94,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,thunk-dump converted to clean C++; BFME has 12 function tables not ZH's 9 (reference/shims/functionlexicon)
 ?validate@FunctionLexicon@@QAE_NXZ,,0x00105380,126,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,MASM dump converted to clean C++ once the 12-table count was shimmed; true size is 126 not 123 - the old row cut 3 bytes off the epilogue
 ??0GameMessageParser@@QAE@XZ,,0x00623510,20,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++; BFME's default ctor also clears m_last which the ZH body left uninitialized
+??0ProneUpdateModuleData@@QAE@XZ,,0x0029FE30,16,Code/GameEngine/Source/GameLogic/Object/Update/ProneUpdate.cpp,matched,thunk-dump converted to real C++ (ZH body verbatim); BFME Snapshot ctor is inline-empty so no base-ctor call is emitted
+??0FloatUpdateModuleData@@QAE@XZ,,0x00294F60,13,Code/GameEngine/Source/GameLogic/Object/Update/FloatUpdate.cpp,matched,thunk-dump converted to real C++ (ZH body verbatim); BFME Snapshot ctor is inline-empty so no base-ctor call is emitted
+??0RadarUpdateModuleData@@QAE@XZ,,0x002A01C0,16,Code/GameEngine/Source/GameLogic/Object/Update/RadarUpdate.cpp,matched,thunk-dump converted to real C++ (ZH body verbatim); BFME Snapshot ctor is inline-empty so no base-ctor call is emitted
+??0LockWeaponCreateModuleData@@QAE@XZ,,0x0024FE00,16,Code/GameEngine/Source/GameLogic/Object/Create/LockWeaponCreate.cpp,matched,thunk-dump converted to real C++ (ZH body verbatim); BFME Snapshot ctor is inline-empty so no base-ctor call is emitted
