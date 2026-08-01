@@ -11889,7 +11889,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseFX@@YAXPAVINI@@PAX1PBX@Z,,0x002B0890,138,Code/GameEngine/Source/GameLogic/Object/Update/StructureCollapseUpdate.cpp,matched,
 ?parseFXList@BoneFXUpdateModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00033C2B,5,Code/masm_dumps/parseFXList_BoneFXUpdateModuleData_SAXPAVINI_PAX1PBX_Z_33C2B.asm,matched,32 retail bone-FX field xrefs and Ghidra FUN_00687BC0 identify BoneFX parser
 ?parseFXList@INI@@SAXPAV1@PAX1PBX@Z,,0x000B8E80,107,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseFXList@TransitionDamageFXModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x0000A5AB,5,Code/masm_dumps/parseFXList_TransitionDamageFXModuleData_SAXPAVINI_PAX1PBX_Z_A5AB.asm,matched,36 retail damage-FX field xrefs and Ghidra FUN_00651ED0 identify TransitionDamageFX parser
 ?parseFont@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485B60,293,Code/masm_dumps/_parseFont__YA_NPADPAVWinInstanceData__0PAX_Z.asm,matched,
 ?parseFontDesc@GlobalLanguage@@SAXPAVINI@@PAX1PBX@Z,,0x0000B41F,5,Code/masm_dumps/parseFontDesc_GlobalLanguage_SAXPAVINI_PAX1PBX_Z_B41F.asm,matched,22 retail font-field xrefs and Ghidra FUN_00839150 identify font descriptor parser
 ?parseFrictionPerSec@@YAXPAVINI@@PAX1PBX@Z,,0x000B9D20,37,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,,0x0002BF21,5,Code/GameEngine/Source/Common/RTS/DictEnsureUniqueThunk.cpp,matched,5-byte incremental-link Dict private member thunk converted to focused C++ source
 ?draw@Drawable@@QAEXPAVView@@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
 ?freeBlock@MemoryPool@@QAEXPAX@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
+?parseFXList@TransitionDamageFXModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x0000A5AB,5,Code/GameEngine/Source/Common/RTS/TransitionDamageFXModuleDataParseFXListThunk.cpp,matched,5-byte incremental-link static TransitionDamageFXModuleData thunk converted to focused C++ source
