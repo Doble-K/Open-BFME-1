@@ -254,6 +254,8 @@ def vc71_root():
 
 def wine_path(path):
     key = str(path)
+    if os.name == "nt":
+        return key
     with _WINE_PATH_LOCK:
         cached = _WINE_PATH_CACHE.get(key)
         if cached is not None:
