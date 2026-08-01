@@ -2855,7 +2855,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Payload@DeliverPayloadNugget@@QAE@XZ,,0x0004B10A,5,Code/masm_dumps/_thunk_eb7f4717a782_4B10A.asm,matched,thunk accessor of ported class
 ??1PeerRequest@@QAE@XZ,,0x004D52D0,555,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ??1PeerResponse@@QAE@XZ,,0x004DAC70,649,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++
-??1PendingSurfaceStruct@Render2DSentenceClass@@QAE@XZ,,0x00001F96,5,Code/masm_dumps/_thunk_3b873742305f_1F96.asm,matched,thunk accessor of ported class
 ??1Pipe@@UAE@XZ,,0x009E78C0,50,Code/Libraries/Source/WWVegas/WWLib/pipe.cpp,matched,
 ??1PivotMapClass@@UAE@XZ,,0x00974730,62,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??1PlayerHealSpecialPowerModuleData@@UAE@XZ,,0x00268CB0,379,Code/masm_dumps/PlayerHealSpecialPowerModuleData_destructor.asm,matched,Exact 379B ModuleData SEH dtor Open-BFME4
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??1WindowVideo@@QAE@XZ,,0x000253E7,5,Code/GameEngine/Source/GameClient/WindowVideoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1PlayerTemplate@@QAE@XZ,,0x000181CE,5,Code/GameEngine/Source/Common/RTS/PlayerTemplateDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ?Free@DistLODClass@@AAEXXZ,,0x00014BC3,5,Code/Libraries/Source/WWVegas/WW3D2/DistLODClassFreeThunk.cpp,matched,5-byte incremental-link member thunk converted to focused C++ source
+??1PendingSurfaceStruct@Render2DSentenceClass@@QAE@XZ,,0x00001F96,5,Code/Libraries/Source/WWVegas/WW3D2/PendingSurfaceDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
