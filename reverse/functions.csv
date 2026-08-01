@@ -2018,7 +2018,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SpecialEnemySenseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002AAF30,131,Code/masm_dumps/SpecialEnemySenseUpdate_constructor.asm,matched,Exact 131B @ 0x002AAF30; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11A500
 ??0SpecialEnemySenseUpdateModuleData@@QAE@XZ,,0x00123D00,83,Code/masm_dumps/SpecialEnemySenseUpdateModuleData_constructor.asm,matched,Exact 83B @ 0x00123D00; Exact retail MASM ModuleData ctor; unique factory 0x123D90; Open-BFME4+Grok
 ??0SpecialPowerCompletionDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255E30,68,Code/masm_dumps/SpecialPowerCompletionDie_constructor.asm,matched,Exact 68B unique factory Open-BFME4
-??0SpecialPowerCompletionDieModuleData@@QAE@XZ,,0x00123620,82,Code/masm_dumps/SpecialPowerCompletionDieModuleData_constructor.asm,matched,Exact 82B ICF alias MD Open-BFME4
 ??0SpecialPowerReadyTimerType@@QAE@XZ,,0x000CBBA0,16,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0SpecialPowerStore@@QAE@XZ,,0x000EB9D0,32,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
 ??0SpecialPowerTemplate@@QAE@XZ,,0x000EB4F0,176,Code/masm_dumps/_rn6___0SpecialPowerTemplate__QAE_XZ_EB4F0.asm,matched,reloc-needle Open-BFME4+Grok
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0OathbreakersFadeAwayBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
 ??0SpawnUnitBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0PointDefenseLaserUpdateModuleData@@QAE@XZ,,0x00123620,82,Code/GameEngine/Source/GameLogic/AI/PointDefenseLaserUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
+??0SpecialPowerCompletionDieModuleData@@QAE@XZ,,0x00123620,82,Code/GameEngine/Source/GameLogic/AI/SpecialPowerCompletionDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
