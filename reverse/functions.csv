@@ -11126,7 +11126,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getLocalLadders@LadderList@@QAEPBV?$list@PAVLadderInfo@@V?$allocator@PAVLadderInfo@@@_STL@@@_STL@@XZ,,0x0062A160,3,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,Ghidra-bound unique accessor
 ?getLocalPlayerID@ConnectionManager@@QAEIXZ,,0x00663740,7,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
 ?getLocalProfileID@GameSpyBuddyMessageQueue@@UAEHXZ,,0x004EBE30,1771,Code/masm_dumps/_sa14__getLocalProfileID_GameSpyBuddyMessageQueue__UAEHXZ_4EBE30.asm,matched,sa14 Open-BFME4+Grok Loading
-?getLocale@GameSpyMiscPreferences@@QAEHXZ,,0x000A99A0,33,Code/masm_dumps/GameSpyMiscPreferences_getLocale.asm,matched,Unique Locale-string preference getter
 ?getMOTD@GameSpyInfo@@UAEABVAsciiString@@XZ,,0x006306B0,4,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,Vtable-bound GameSpyInfo accessor
 ?getManglerLocation@GameSpyConfig@@UAE_NHAAVAsciiString@@AAG@Z,,0x00628580,68,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,
 ?getManglerName@FirewallHelperClass@@SAXHPAD@Z,,0x0003BD81,5,Code/GameEngine/Source/Common/RTS/FirewallHelperClassGetManglerNameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x66EF00
@@ -13840,3 +13839,5 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?getRudderCorrectionDegree@Locomotor@@QBEMXZ,,0x00413210,33,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,Open-BFME5 exact C++ raw getter; Locomotor template override field +0xdc
+?getLocale@GameSpyMiscPreferences@@QAEHXZ,,0x000A99A0,33,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,Open-BFME5 exact C++ raw getter; locale preference key and zero default preserved
