@@ -11969,7 +11969,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseReplaceModule@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x00143320,315,Code/masm_dumps/parseReplaceModule_ThingTemplate_KAXPAVINI_PAX1PBX_Z_143320_packet342.asm,matched,Certified packet 342 exact retail bytes SHA-256 05016b18cc5af9bbcc33d188c4ce138084c4eb232fc86e47ce5a720e3bca37a8
 ?parseScience@AI@@SAXPAVINI@@PAX1PBX@Z,,0x0014A0A0,74,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,
 ?parseScience@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9BE0,59,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseScienceVector@INI@@SAXPAV1@PAX1PBX@Z,,0x00042609,5,Code/masm_dumps/parseScienceVector_INI_SAXPAV1_PAX1PBX_Z_42609.asm,matched,Retail IntrinsicSciences table xref and padding-bounded body semantics identify science-vector parser
 ?parseScorchType@TerrainScorchFXNugget@@KAXPAVINI@@PAX1PBX@Z,,0x00427610,32,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?parseScreenRect@@YA_NPAD0PAH111@Z,,0x004854F0,453,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseShakeType@ViewShakeFXNugget@@KAXPAVINI@@PAX1PBX@Z,,0x00427610,32,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z,,0x0001366F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectSetStatusThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
 ?parseSoundsList@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E9C4,5,Code/GameEngine/Source/Common/RTS/INIParseSoundsListThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ?estimateWeaponDamage@Weapon@@IAEMPBVObject@@0PBUCoord3D@@@Z,,0x0001366F,5,Code/Libraries/Source/WWVegas/WWLib/ObjectSetStatusThunk.cpp,matched,object-symbol=?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z;ICF alias converted to focused C++ thunk TU
+?parseScienceVector@INI@@SAXPAV1@PAX1PBX@Z,,0x00042609,5,Code/GameEngine/Source/Common/RTS/INIParseScienceVectorThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
