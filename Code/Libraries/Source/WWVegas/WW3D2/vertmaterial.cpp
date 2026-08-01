@@ -210,7 +210,7 @@ VertexMaterialClass & VertexMaterialClass::operator = (const VertexMaterialClass
 	return *this;
 }
 
-// ?Compute_CRC@VertexMaterialClass@@ABEKXZ present-unmatched
+// ?Compute_CRC@VertexMaterialClass@@ABEKXZ
 unsigned long VertexMaterialClass::Compute_CRC(void) const
 {
 	unsigned long crc = 0;
@@ -218,19 +218,21 @@ unsigned long VertexMaterialClass::Compute_CRC(void) const
 // don't include the name when determining whether two vertex materials match
 //	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(Name.Peek_Buffer()),sizeof(char)*strlen(Name),crc);
 
-	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(Material),sizeof(D3DMATERIAL8),crc);
-	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&Flags),sizeof(Flags),crc);
-	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&DiffuseColorSource),sizeof(DiffuseColorSource),crc);
-	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&AmbientColorSource),sizeof(AmbientColorSource),crc);
-	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&EmissiveColorSource),sizeof(EmissiveColorSource),crc);
-	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&UVSource),sizeof(UVSource),crc);
-	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&UseLighting),sizeof(UseLighting),crc);
-	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&UniqueID),sizeof(UniqueID),crc);
+	crc = CRC_Memory(reinterpret_cast<const unsigned char *>(*(const void **)((const char *)this + 0x08)),sizeof(D3DMATERIAL8),crc);
+	crc = CRC_Memory(reinterpret_cast<const unsigned char *>((const char *)this + 0x0c),sizeof(Flags),crc);
+	crc = CRC_Memory(reinterpret_cast<const unsigned char *>((const char *)this + 0x18),sizeof(DiffuseColorSource),crc);
+	crc = CRC_Memory(reinterpret_cast<const unsigned char *>((const char *)this + 0x10),sizeof(AmbientColorSource),crc);
+	crc = CRC_Memory(reinterpret_cast<const unsigned char *>((const char *)this + 0x14),sizeof(EmissiveColorSource),crc);
+	crc = CRC_Memory(reinterpret_cast<const unsigned char *>((const char *)this + 0x40),sizeof(UVSource),crc);
+	crc = CRC_Memory(reinterpret_cast<const unsigned char *>((const char *)this + 0x69),sizeof(UseLighting),crc);
+	crc = CRC_Memory(reinterpret_cast<const unsigned char *>((const char *)this + 0x60),sizeof(UniqueID),crc);
 
+	TextureMapperClass **mapper = reinterpret_cast<TextureMapperClass **>((char *)this + 0x20);
 	int i;
 	for (i=0; i<MeshBuilderClass::MAX_STAGES; i++)
 	{
-		if (Mapper[i]) crc = CRC_Memory(reinterpret_cast<const unsigned char *>(&(Mapper[i])),sizeof(TextureMapperClass*),crc);
+		if (*mapper) crc = CRC_Memory(reinterpret_cast<const unsigned char *>(mapper),sizeof(TextureMapperClass*),crc);
+		++mapper;
 	}
 
 	return crc;
