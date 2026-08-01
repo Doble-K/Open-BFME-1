@@ -1508,7 +1508,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HealContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00220190,88,Code/masm_dumps/HealContain_constructor.asm,matched,Exact 88B unique factory Open-BFME4
 ??0HealContainModuleData@@QAE@XZ,,0x0028B9E0,32,Code/GameEngine/Source/GameLogic/Object/Update/HealContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ??0HealCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00217AD0,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/HealCrateCollide.cpp,matched,MASM converted to clean C++
-??0HealCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/masm_dumps/HealCrateCollideModuleData_constructor.asm,matched,Exact 147B ICF alias MD Open-BFME4
 ??0HeightDieUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00295550,97,Code/GameEngine/Source/GameLogic/Object/Update/HeightDieUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x295550
 ??0HeightDieUpdateModuleData@@QAE@XZ,,0x00295500,33,Code/GameEngine/Source/GameLogic/Object/Update/HeightDieUpdateModuleDataConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x295500
 ??0HemisphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0002DB50,0x005D7560,39,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0GrantStealthBehaviorModuleData@@QAE@XZ,,0x002978A0,105,Code/GameEngine/Source/GameLogic/AI/GrantStealthBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0LargeGroupBonusUpdateModuleData@@QAE@XZ,,0x002978A0,105,Code/GameEngine/Source/GameLogic/AI/LargeGroupBonusUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0ConvertToCarBombCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/ConvertToCarBombCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
+??0HealCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/HealCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
