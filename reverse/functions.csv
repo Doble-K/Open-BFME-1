@@ -13831,3 +13831,5 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??1GameMessageList@@UAE@XZ,,0x0000E421,5,Code/Libraries/Source/WWVegas/WWLib/GameMessageListDestructorThunk.cpp,matched,Focused C++ thunk for GameMessageList destructor
+?sendFrameDataToPlayer@ConnectionManager@@QAEXII@Z,,0x0000BE10,5,Code/GameEngine/Source/GameNetwork/ConnectionManagerSendFrameDataToPlayerThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x664D20
+?updateUpgradeModules@Object@@QAEXXZ,,0x00027FCF,5,Code/GameEngine/Source/GameLogic/Object/ObjectUpdateUpgradeModulesThunk.cpp,matched,Open-BFME5 exact ILT thunk; used by giveUpgrade call site
