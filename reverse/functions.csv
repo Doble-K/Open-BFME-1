@@ -11914,7 +11914,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?loadD3DCursorTextures@W3DMouse@@,,0x00701330,559,Code/masm_dumps/_sa7__loadD3DCursorTextures_W3DMouse___701330.asm,matched,Exact 559B Open-BFME4
 ?loadDirectory@INI@@QAEXVAsciiString@@_NW4INILoadType@@PAVXfer@@@Z,,0x00853F10,700,Code/masm_dumps/loadDirectory_INI_QAEXVAsciiString_NW4INILoadType_PAVXfer_Z_853F10.asm,matched,Ghidra boundary and retail *.ini xref-identified body
 ?loadDockPositions@DockUpdate@@IAEXXZ,,0x0000C595,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for DockUpdate::loadDockPositions
-?loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,,0x000346DF,5,Code/masm_dumps/_loadFloat4PtSection_W3DRoadBuffer__IAEXPAVRoadSegment__VVector2__11PAV3_MMMM_Z_346DF.asm,matched,MASM exact retail dump
 ?loadFloatSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1MMMMMM@Z,,0x0070F6A0,573,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?loadGame@GameState@@QAE?AW4SaveCode@@UAvailableGameInfo@@@Z,,0x001109CF,521,Code/masm_dumps/_sa__loadGame_GameState__QAE_AW4SaveCode__UAvailableGa_1109CF.asm,matched,Exact 521B string-anchored Open-BFME4
 ?loadGarrisonPoints@GarrisonContain@@IAEXXZ,,0x0021EB50,908,Code/masm_dumps/GarrisonContain_loadGarrisonPoints_21EB50.asm,matched,Exact 908B @ 0x21EB50; queue 0x22ECF1/496 mid dtor+pad misplaced; 3x40 bone+flags+init
@@ -13812,3 +13811,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?onExit@AIInternalMoveToState@@UAEXW4StateExitType@@@Z,,0x00029311,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState onExit
 ?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x000488F6,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState update
 ?setDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEXI@Z,,0x000473DE,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgSetDisconnectFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0xA73C90
+?loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,,0x000346DF,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBufferLoadFloat4PtSectionThunk.cpp,matched,5-byte protected W3DRoadBuffer road section thunk converted to focused C++ source
