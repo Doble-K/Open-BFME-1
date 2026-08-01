@@ -1071,7 +1071,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AITunnelNetworkGuardState@@QAE@PAVStateMachine@@@Z,,0x001717B0,53,Code/GameEngine/Source/GameLogic/AI/AIStates_AITunnelNetworkGuardState_ctor.asm,matched,Certified packet 135 exact MASM recovery
 ??0AIUpdateInterfaceModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0AODHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00230580,326,Code/masm_dumps/AODHordeContain_constructor.asm,matched,Exact 326B @ 0x00230580; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1161D0
-??0AODHordeContainModuleData@@QAE@XZ,,0x002472D0,531,Code/masm_dumps/AODHordeContainModuleData_constructor.asm,matched,Exact 531B ICF primary MD Open-BFME4
 ??0ActiveBodyModuleData@@QAE@XZ,,0x0020F7C0,230,Code/masm_dumps/ActiveBodyModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x11F420
 ??0ActiveCategoryClass@@QAE@XZ,,0x00AFF590,181,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??0ActiveCategoryStackClass@@QAE@XZ,,0x00AFF0E0,75,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0HordeSiegeEngineContainModuleData@@QAE@XZ,,0x0022CB80,148,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0GettingBuiltBehaviorModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/GettingBuiltBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0HordeUpdateModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/HordeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
+??0AODHordeContainModuleData@@QAE@XZ,,0x002472D0,531,Code/GameEngine/Source/GameLogic/AI/AODHordeContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
