@@ -31,6 +31,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #define _BFME_RETAIL_TREE_INSERT_LAYOUT
+#define BFME_PARTICLE_LIST_NODE_TAIL
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #define DEFINE_SHADOW_NAMES

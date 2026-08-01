@@ -252,9 +252,15 @@ def main():
         source_path.write_bytes(saved_source)
         fail(f"no build.sh at {root} — cannot verify; append reverted")
 
-    print(f"add_match: verifying: ./build.sh {source_rel}")
+    if sys.platform == "win32":
+        verify_cmd = [sys.executable, str(root / "tools" / "build.py"), source_rel]
+        verify_label = f"{sys.executable} tools/build.py {source_rel}"
+    else:
+        verify_cmd = [str(build_sh), source_rel]
+        verify_label = f"./build.sh {source_rel}"
+    print(f"add_match: verifying: {verify_label}")
     try:
-        result = subprocess.run([str(build_sh), source_rel], cwd=root)
+        result = subprocess.run(verify_cmd, cwd=root)
     except BaseException:
         functions_csv.write_bytes(raw)
         source_path.write_bytes(saved_source)
