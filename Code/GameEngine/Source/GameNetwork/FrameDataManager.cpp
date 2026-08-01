@@ -153,7 +153,6 @@ UnsignedInt FrameDataManager::getCommandCount(UnsignedInt frame) {
 /**
  * Set the frame command count for the given frame.
  */
-// ?setFrameCommandCount@FrameDataManager@@ present-unmatched
 void FrameDataManager::setFrameCommandCount(UnsignedInt frame, UnsignedInt commandCount) {
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
 

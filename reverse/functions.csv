@@ -12950,7 +12950,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setFontHeight@W3DDebugDisplay@@QAEXH@Z,,0x0016A620,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,
 ?setForceWantingState@SupplyTruckAIUpdate@@UAEX_N@Z,,0x003BC6B0,10,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/ChinookAIUpdate.cpp,matched,
 ?setFrameCommandCount@FrameData@@QAEXI@Z,,0x006702C0,9,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
-?setFrameCommandCount@FrameDataManager@@QAEXII@Z,,0x00670750,34,Code/masm_dumps/_rn9__setFrameCommandCount_FrameDataManager__QAEXII_Z_670750.asm,matched,reloc-needle Open-BFME4+Grok
 ?setFrameToEvaluate@Script@@QAEXI@Z,,0x00191490,10,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
 ?setFramesPerSecondLimit@GameEngine@@UAEXH@Z,,0x0006B6F0,10,Code/GameEngine/Source/Common/GameEngine.cpp,matched,BFME FPS-limit setter
 ?setFromInt@RGBColor@@QAEXH@Z,0x0002CDC7,0x00083370,84,Code/Libraries/Source/WWVegas/WWMath/color.cpp,matched,sets RGB channels from packed int
@@ -13799,3 +13798,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setSDEnabled@StealthDetectorUpdate@@QAEX_N@Z,,0x002AB650,34,Code/GameEngine/Source/GameLogic/Object/Update/StealthDetectorUpdate.cpp,matched,direct C++ stealth-detector enable setter with retail object offset replaces MASM dump
 ?setTerrainDecalOpacity@W3DModelDraw@@UAEXM@Z,,0x0075BDD0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,direct C++ terrain-decal opacity setter with retail decal offset replaces MASM dump
 ?setTimeOfDay@WaterRenderObjClass@@QAEXW4TimeOfDay@@@Z,,0x0079F590,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,direct C++ water time-of-day setter with retail layout offset replaces MASM dump
+?setFrameCommandCount@FrameDataManager@@QAEXII@Z,,0x00670750,34,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,direct C++ frame command-count setter replaces MASM dump
