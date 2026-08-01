@@ -2777,14 +2777,26 @@ enum{
 	RADAR_ATTACK_GLOW_NUM_TIMES = 15  ///< number of times we'll flash
 };
 
-void ControlBar::triggerRadarAttackGlow( void )
+#pragma pack(push, 1)
+struct BFMEControlBarRadarGlowLayout
 {
-	if(!m_radarAttackGlowWindow)
+	unsigned char pad0[0x2E0];
+	unsigned char glowOn;
+	unsigned char pad1[3];
+	Int remainingFrames;
+	GameWindow *glowWindow;
+};
+#pragma pack(pop)
+
+__declspec(noinline) void ControlBar::triggerRadarAttackGlow( void )
+{
+	BFMEControlBarRadarGlowLayout *retail = reinterpret_cast<BFMEControlBarRadarGlowLayout *>(this);
+	if(!retail->glowWindow)
 		return;
-	m_radarAttackGlowOn = TRUE;
-	m_remainingRadarAttackGlowFrames = RADAR_ATTACK_GLOW_FRAMES;
-	if(BitTest(m_radarAttackGlowWindow->winGetStatus(),WIN_STATUS_ENABLED) == TRUE)
-		m_radarAttackGlowWindow->winEnable(FALSE);
+	retail->glowOn = TRUE;
+	retail->remainingFrames = RADAR_ATTACK_GLOW_FRAMES;
+	if(BitTest(retail->glowWindow->winGetStatus(),WIN_STATUS_ENABLED) == TRUE)
+		retail->glowWindow->winEnable(FALSE);
 }
 
 void ControlBar::updateRadarAttackGlow ( void )
