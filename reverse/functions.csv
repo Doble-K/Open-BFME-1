@@ -2960,7 +2960,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1NodeCompressedMotionStruct@@QAE@XZ,,0x00AFF130,45,Code/masm_dumps/_sym3___1NodeCompressedMotionStruct__QAE_XZ_AFF130.asm,matched,symbol-pin Open-BFME4+Grok
 ??1Nugget@ModuleInfo@@QAE@XZ,,0x007701C0,76,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetDestructor.cpp,matched,thunk-dump converted to clean C++ nested destructor body at destination 0x7701C0
 ??1OCLSpecialPowerModuleData@@UAE@XZ,,0x00263800,136,Code/masm_dumps/OCLSpecialPowerModuleData_destructor.asm,matched,Exact 136B @ 0x00263800; Exact retail MASM; factory->vtable dtor; del 0x2637D0 ctor 0x2631B0 vt 0xCB6180
-??1OCLUpdateModuleData@@UAE@XZ,,0x00298B70,7,Code/masm_dumps/OCLUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership; BFME lacks the ZH-derived FactionOCLList member
 ??1OathbreakersFadeAwayBehavior@@UAE@XZ,,0x001F1370,203,Code/masm_dumps/OathbreakersFadeAwayBehavior_destructor.asm,matched,Exact 203B SEH dtor factory->vtable Open-BFME4
 ??1OathbreakersFadeAwayBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/masm_dumps/OathbreakersFadeAwayBehaviorModuleData_destructor.asm,matched,Exact 80B SEH dtor Open-BFME4
 ??1ObjectCreationList@@QAE@XZ,,0x00072A40,14,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
@@ -13840,3 +13839,4 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 __CIpow,,0x009F6FB2,6,Code/Libraries/Source/WWVegas/WWMath/CIpowThunk.cpp,matched,Open-BFME5 exact C++ CRT import thunk replacing MASM dump;object-symbol=___CIpow
 __CIasin,,0x009F7D86,6,Code/Libraries/Source/WWVegas/WWMath/CIasinThunk.cpp,matched,Open-BFME5 exact C++ CRT import thunk replacing MASM dump;object-symbol=___CIasin
+??1OCLUpdateModuleData@@UAE@XZ,,0x00298B70,7,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1OCLUpdateModuleData@@QAE@XZ
