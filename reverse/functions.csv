@@ -4299,7 +4299,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??M@YA_NABUTempIndexStruct@@0@Z,,0x00938A70,30,Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp,matched,
 ??M@YA_NABV?$StringBase@D@@0@Z,0x0000FAAB,0x00062ED0,24,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,StringBase<char> less-than
 ??M@YA_NABV?$StringBase@G@@0@Z,0x00005D94,0x0054EB50,24,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,StringBase<wchar_t> less-than
-??M@YA_NABVAsciiString@@0@Z,,0x00015898,5,Code/masm_dumps/__M_YA_NABVAsciiString__0_Z_15898.asm,matched,MASM exact retail dump
 ??MNodeElement@?$IndexClass@HPAUINIEntry@@@@QBE_NABU01@@Z,,0x00570530,22,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??MNodeElement@?$IndexClass@HPAUINISection@@@@QBE_NABU01@@Z,,0x009E2410,22,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??N@YA_NABUTempIndexStruct@@0@Z,,0x00938A90,30,Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp,matched,
@@ -13801,3 +13800,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??8@YA_NABVAsciiString@@0@Z,,0x00046803,5,Code/GameEngine/Source/Common/RTS/AsciiStringEqualityThunk.cpp,matched,5-byte incremental-link AsciiString equality thunk converted to focused C++ source
 ?refreshTerrain@Radar@@UAEXPAVTerrainLogic@@@Z,,0x0002F8DD,5,Code/Libraries/Source/WWVegas/WWLib/RadarRefreshTerrainThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining alias retains shared target
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,,0x0002F8DD,5,Code/Libraries/Source/WWVegas/WWLib/RadarRefreshTerrainThunk.cpp,matched,object-symbol=?refreshTerrain@Radar@@UAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
+??M@YA_NABVAsciiString@@0@Z,,0x00015898,5,Code/GameEngine/Source/Common/RTS/AsciiStringInequalityThunk.cpp,matched,5-byte incremental-link AsciiString less-than thunk converted to focused C++ source
