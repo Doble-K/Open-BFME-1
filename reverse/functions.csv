@@ -1941,7 +1941,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RepairDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001E8D0,5,Code/masm_dumps/__0RepairDockUpdate__QAE_PAVThing__PBVModuleData___Z_1E8D0.asm,matched,MASM exact retail dump
 ??0RepairDockUpdateModuleData@@QAE@XZ,,0x002CEF40,25,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdate.cpp,matched,
 ??0RepairSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002647F0,46,Code/masm_dumps/RepairSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
-??0RepairSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/masm_dumps/RepairSpecialPowerModuleData_constructor.asm,matched,Exact 79B ICF alias MD Open-BFME4
 ??0RepeatChar@Debug@@QAE@DH@Z,,0x00889270,18,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??0ReplenishUnitsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002044E0,253,Code/masm_dumps/ReplenishUnitsBehavior_constructor.asm,matched,Exact 253B @ 0x002044E0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1173A0
 ??0ResizerWindow@@QAE@XZ,,0x004AAED0,31,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??0RebuildHoleBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??$_Construct@U?$pair@UICoord2D@@UCoord3D@@@_STL@@U12@@_STL@@YAXPAU?$pair@UICoord2D@@UCoord3D@@@0@ABU10@@Z,,0x0001BE23,5,Code/GameEngine/Source/GameClient/Coord3DPairConstruct.cpp,matched,5-byte incremental-link template thunk converted from MASM dump to focused C++ explicit instantiation
 ??0RebuildHoleExposeDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0RepairSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
