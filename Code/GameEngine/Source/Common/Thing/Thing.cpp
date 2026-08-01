@@ -81,6 +81,7 @@ public:
 	virtual void slot16() = 0;
 	virtual void slot17() = 0;
 	virtual PathfindLayerEnum alignOnTerrain(Real angle, const Coord3D& pos, Bool stickToGround, Matrix3D& mtx) = 0;
+	virtual Bool isUnderwater(Real x, Real y, Real *waterZ, Real *terrainZ) = 0;
 };
 
 #ifdef _INTERNAL
@@ -354,7 +355,6 @@ Real Thing::getHeightAboveTerrain() const
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getHeightAboveTerrainOrWater@Thing@@QBEMXZ present-unmatched
 Real Thing::getHeightAboveTerrainOrWater() const
 {
 	//USE_PERF_TIMER(ThingMatrixStuff)
@@ -362,7 +362,7 @@ Real Thing::getHeightAboveTerrainOrWater() const
 	{
 		const Coord3D* pos = getPosition();
 		Real waterZ;
-		if (TheTerrainLogic->isUnderwater(pos->x, pos->y, &waterZ)) 
+		if (reinterpret_cast<BFMERetailTerrainLogicVTable *>(TheTerrainLogic)->isUnderwater(pos->x, pos->y, &waterZ, 0))
 		{
 			m_cachedAltitudeAboveTerrainOrWater = pos->z - waterZ;
 		} 
