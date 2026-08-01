@@ -6051,7 +6051,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GameSpyCloseAllOverlays@@YAXXZ,,0x00627B90,98,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,true body 0x627B90/98; queue 0x53E263 INSIDE unrelated; retail inlines CloseOverlay (BFME WindowLayout vtbl close path) + tail deleteNotificationBox
 ?GameSpyCloseOverlay@@YAXW4GSOverlayType@@@Z,,0x00040E94,5,Code/masm_dumps/_GameSpyCloseOverlay__YAXW4GSOverlayType___Z_40E94.asm,matched,MASM exact retail dump
 ?GameSpyIsOverlayOpen@@YA_NW4GSOverlayType@@@Z,,0x00627B40,19,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,
-?GameSpyOpenOverlay@@YAXW4GSOverlayType@@@Z,,0x0002BA21,5,Code/masm_dumps/_GameSpyOpenOverlay__YAXW4GSOverlayType___Z_2BA21.asm,matched,MASM exact retail dump
 ?GameSpyPlayerInfoOverlayInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp,matched,
 ?GameSpyPlayerInfoOverlaySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D99C0,816,Code/masm_dumps/_rn7__GameSpyPlayerInfoOverlaySystem__YA_AW4WindowMsgHandledType__PAVGameWi_4D99C0.asm,matched,reloc-needle Open-BFME4+Grok
 ?GameSpyToggleOverlay@@YAXW4GSOverlayType@@@Z,,0x00628240,29,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,
@@ -13800,3 +13799,4 @@ _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConne
 ??1PendingSurfaceStruct@Render2DSentenceClass@@QAE@XZ,,0x00001F96,5,Code/Libraries/Source/WWVegas/WW3D2/PendingSurfaceDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ?Bind@UDP@@QAEHIG@Z,,0x00047FA0,5,Code/Libraries/Source/DirtySock/UDPBindThunk.cpp,matched,5-byte incremental-link UDP member thunk converted to focused C++ source
 ??1HideShowSubObjInfo@ModelConditionInfo@@QAE@XZ,,0x0000466F,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/HideShowSubObjInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
+?GameSpyOpenOverlay@@YAXW4GSOverlayType@@@Z,,0x0002BA21,5,Code/GameEngine/Source/GameNetwork/GameSpyOpenOverlayThunk.cpp,matched,5-byte incremental-link global thunk converted to focused C++ source
