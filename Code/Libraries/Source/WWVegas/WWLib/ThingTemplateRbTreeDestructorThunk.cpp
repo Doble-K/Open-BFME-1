@@ -2,6 +2,11 @@
 
 class ThingTemplate;
 class AsciiString;
+class UnicodeString;
+
+struct UnicodeStringLessThan
+{
+};
 
 namespace _STL
 {
@@ -50,6 +55,17 @@ namespace _STL
 			_emit 074h
 			_emit 03Fh
 			_emit 006h
+			_emit 000h
+		}
+	}
+
+	__declspec(naked) _Rb_tree<UnicodeString, pair<UnicodeString const, bool>, _Select1st<pair<UnicodeString const, bool> >, UnicodeStringLessThan, allocator<pair<UnicodeString const, bool> > >::~_Rb_tree()
+	{
+		__asm {
+			_emit 0E9h
+			_emit 09Fh
+			_emit 020h
+			_emit 041h
 			_emit 000h
 		}
 	}
