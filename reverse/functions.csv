@@ -11937,7 +11937,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?loadLocalLadders@LadderList@@AAEXXZ,,0x0062BE40,379,Code/masm_dumps/LadderList_loadLocalLadders.asm,matched,Ghidra-bound retail ladder enumeration body
 ?loadMap@TerrainLogic@@UAE_NVAsciiString@@_N@Z,,0x001AC1E0,293,Code/masm_dumps/_sa5__loadMap_TerrainLogic__UAE_NVAsciiString___N_Z_1AC1E0.asm,matched,Exact 293B Open-BFME4
 ?loadMapINI@GameLogic@@QAEXVAsciiString@@@Z,,0x00386A30,754,Code/masm_dumps/_loadMapINI_GameLogic__QAEXVAsciiString___Z_386A30.asm,matched,Exact 754B string-anchored Open-BFME4
-?loadPostProcess@Drawable@@MAEXXZ,,0x004120A0,45,Code/masm_dumps/Drawable_loadPostProcess_4120A0.asm,matched,Certified packet 251 vtable-owned Drawable Snapshot body sha256 e8a09e0bedffa0e897b2be809cb3c03fc460c8e2a5dc439304dfeb1f6fbff334
 ?loadPostProcess@ParticleSystem@@MAEXXZ,,0x000B9EA0,636,Code/masm_dumps/_sa13__loadPostProcess_ParticleSystem__MAEXXZ_B9EA0.asm,matched,multi-xref Open-BFME4+Grok InitialDelay
 ?loadPostProcess@SpecialPowerModule@@MAEXXZ,,0x0026A1A0,251,Code/masm_dumps/loadPostProcess_SpecialPowerModule_MAEXXZ_0026A1A0_packet264.asm,matched,Certified packet 264 exact retail db bytes SHA256 b159483537ee7d0dc0e4a8f0501dc2ec4f1d00dcf6c4739491d5ac46c673e64a
 ?loadPostProcess@Team@@MAEXXZ,,0x000F1800,265,Code/masm_dumps/Team_loadPostProcess.asm,matched,MASM exact true Team vtable body
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Set_Device_Resolution@WW3D@@SA?AW4WW3DErrorType@@HHHH_N@Z,,0x008FD1C0,39,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,Open-BFME5 exact C++ raw device resolution wrapper
 ?deleteShadowVolume@W3DVolumetricShadow@@IAEXH@Z,,0x007BAFA0,142,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,Exact 142B clean C++ deleteShadowVolume; TU-local BFME 0x30 layout shim; MASM removed
 ?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimComboClass@@@Z,,0x00982330,39,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,Open-BFME5 exact C++ raw animation combo setter
+?loadPostProcess@Drawable@@MAEXXZ,,0x004120A0,45,Code/GameEngine/Source/Common/RTS/DrawableLoadPostProcessThunk.cpp,matched,Open-BFME5 exact C++ raw Drawable post-load hook
