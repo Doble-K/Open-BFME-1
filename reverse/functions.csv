@@ -5761,7 +5761,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?DERDecode@?$Int@$0EA@@@QAEXPBE@Z,,0x009EA790,19,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,ghidra-unknown callee + identical DEREncode wrapper; disambiguated by call target; build.sh exact
 ?DEREncode@?$Int@$0EA@@@QBEHPAE@Z,,0x009E21F0,19,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,ghidra-unknown callee + identical DERDecode wrapper; disambiguated by call target; build.sh exact
 ?DX8_ErrorCode@@YAXI@Z,,0x0087ADF0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/TerrainTex.cpp,matched,
-?DebugAllocMemory@@YAPAXI@Z,,0x0088EB30,82,Code/masm_dumps/_DebugAllocMemory__YAPAXI_Z_88EB30.asm,matched,MASM exact retail dump
+?DebugAllocMemory@@YAPAXI@Z,,0x0088EB30,82,Code/Libraries/Source/WWVegas/WWDebug/debug_internal.cpp,matched,Exact 82B C++ raw function conversion Open-BFME5
 ?DebugFreeMemory@@YAXPAX@Z,,0x0088EAD0,19,Code/Libraries/Source/WWVegas/WWDebug/debug_internal.cpp,matched,MASM converted to clean C++
 ?DebugInternalAssert@@YAXPBDH0@Z,,0x0088EA70,89,Code/Libraries/Source/WWVegas/WWDebug/debug_internal.cpp,matched,
 ?Decode@@YAXPAKPAEI@Z,,0x0086A470,57,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,
