@@ -1283,7 +1283,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CollisionTestClass@@QAE@ABV0@@Z,,0x001A1B70,25,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ??0CollisionTestClass@@QAE@PAUCastResultStruct@@H@Z,,0x00588710,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??0ColmathStatsStruct@CollisionMath@@QAE@XZ,,0x008E2110,46,Code/Libraries/Source/WWVegas/WWMath/colmath.cpp,matched,
-??0CombineHordeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002596F0,46,Code/masm_dumps/CombineHordeSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0CombineHordeSpecialPowerModuleData@@QAE@XZ,,0x002598A0,28,Code/GameEngine/Source/GameLogic/Object/Upgrade/CombineHordeSpecialPowerModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0CommandButtonHuntUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00020DCE,5,Code/GameEngine/Source/GameLogic/Object/Update/CommandButtonHuntUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0CommandButtonHuntUpdateModuleData@@QAE@XZ,,0x0028AAE0,17,Code/GameEngine/Source/GameLogic/Object/Update/CommandButtonHuntUpdate.cpp,matched,exact 17B no-call ModuleData ctor; m_scanFrames=5(BFME) m_scanRange=9999f; moduledata shim; replaces 5B thunk @0x2E500
@@ -13840,3 +13839,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??0CombineHordeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002596F0,46,Code/GameEngine/Source/GameLogic/Object/Upgrade/CombineHordeSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
