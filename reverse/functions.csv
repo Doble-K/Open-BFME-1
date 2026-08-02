@@ -14012,3 +14012,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?getFileInfo@ArchiveFileSystem@@QBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CA7E0,182,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,calls getArchiveFilenameForFile at 0x009CA81A then m_archiveFileMap.find

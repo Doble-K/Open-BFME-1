@@ -367,14 +367,13 @@ File * ArchiveFileSystem::openFile(const Char *filename, Int access, Int a3, Int
 	return m_archiveFileMap[archiveFilename]->openFile(filename, access, a3, a4);
 }
 
-// ?getFileInfo@ArchiveFileSystem@@ present-unmatched
 Bool ArchiveFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const
 {
 	if (fileInfo == NULL) {
 		return FALSE;
 	}
 
-	if (filename.getLength() <= 0) {
+	if (bfmeLength(filename) <= 0) {
 		return FALSE;
 	}
 
