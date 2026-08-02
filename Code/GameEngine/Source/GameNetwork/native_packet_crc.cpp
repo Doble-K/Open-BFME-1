@@ -11,25 +11,29 @@
 // It is one of the two things 0x00683830 does to a packet, the other being the
 // rolling-XOR pass at 0x006832C0.
 
+typedef int Int;
 typedef unsigned int UnsignedInt;
 typedef unsigned char UnsignedByte;
 
-// Everything outside the loop body is retail's exactly -- the null guard, the
-// zero-length guard, the register assignment, the epilogue. Inside it, retail
-// computes (crc*2 + byte) and then adds the carried-out high bit, while MSVC
-// folds byte + hibit first and adds crc*2 last. That reassociation is legal for
-// unsigned arithmetic and survives writing the two adds as separate statements,
-// as one left-associative expression, and with the shift split out.
-// ?BFMEComputeCRC@@YAIPBEII@Z present-unmatched
+// The carry bit has to be written as a branch, exactly as the engine's own CRC
+// class writes it, even though MSVC compiles it to a shift either way. Written
+// as `crc >> 31` the compiler folds the byte and the carry together and adds
+// crc*2 last; written as the branch it keeps retail's order, adding the byte to
+// crc*2 first and the carry after.
 UnsignedInt BFMEComputeCRC(const UnsignedByte *data, UnsignedInt length, UnsignedInt crc)
 {
 	if (data != 0) {
 		while (length > 0) {
-			UnsignedInt val = *data;
-			UnsignedInt hibit = crc >> 31;
-			crc = (crc << 1) + val;
+			Int hibit;
+			if (crc & 0x80000000) {
+				hibit = 1;
+			} else {
+				hibit = 0;
+			}
+			crc <<= 1;
+			crc += *data;
 			++data;
-			crc = crc + hibit;
+			crc += hibit;
 			--length;
 		}
 	}

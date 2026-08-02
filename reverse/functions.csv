@@ -14175,3 +14175,4 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?obfuscate@@YAXPAUTransportMessage@@H@Z,,0x006832C0,62,Code/GameEngine/Source/GameNetwork/Transport_queueSend.cpp,matched,
 ?queueSend@Transport@@QAE_NPAUNetPacketAddress@@PBEH@Z,,0x00683830,164,Code/GameEngine/Source/GameNetwork/Transport_queueSend.cpp,matched,
+?BFMEComputeCRC@@YAIPBEII@Z,,0x00065250,42,Code/GameEngine/Source/GameNetwork/native_packet_crc.cpp,matched,
