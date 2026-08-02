@@ -5227,6 +5227,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Add_Point@MinMaxAABoxClass@@QAEXABVVector3@@@Z,,0x00728B30,115,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainBackground.cpp,matched,
 ?Add_Point@SegmentedLineClass@@QAEXABVVector3@@@Z,,0x00950B70,21,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ?Add_Polygon_Renderer@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@0@Z,,0x00945900,52,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
+?Add_Prototype@@YAXPAX@Z,,0x009EBA40,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype.cpp,matched,BFME registry Add_Prototype wrapper exact 21B @ 0x9EBA40
+?Add_Prototype_Impl@AssetRegistry@@QAEXPAX@Z,,0x009EF1A0,224,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype_Impl.cpp,matched,BFME registry Add_Prototype impl exact 224B @ 0x9EF1A0
 ?Add_Render_Object@SceneClass@@UAEXPAVRenderObjClass@@@Z,,0x00942C10,15,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
 ?Add_Render_Task@DX8TextureCategoryClass@@QAEXPAVDX8PolygonRendererClass@@PAVMeshClass@@@Z,,0x009465F0,87,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,reloc-needle Open-BFME4+Grok
 ?Add_Rigid_Mesh_To_Container@@YAXPAV?$MultiListClass@VDX8FVFCategoryContainer@@@@IPAVMeshModelClass@@@Z,,0x009476F0,277,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer_Add_Rigid_Mesh_To_Container.asm,matched,exact 277B MASM; C++ layout-blocked SortLevel/Is_Sorting/sizeof
@@ -5567,6 +5569,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Create_Morphed@HTreeClass@@SAPAV1@HQBMQAPBV1@@Z,,0x00952B90,524,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Create_New_Particles@ParticleEmitterClass@@AAEXABVQuaternion@@ABVVector3@@@Z,,0x0097F930,740,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Create_Randomizer@ParticleEmitterDefClass@@MAEPAVVector3Randomizer@@AAUW3dVolumeRandomizerStruct@@@Z,,0x0098D990,340,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
+?Create_Render_Obj@@YAPAVRenderObjClass@@PBD@Z,,0x008FF290,278,Code/GameEngineDevice/Source/W3DDevice/GameClient/Create_Render_Obj_plain.cpp,matched,plain Create_Render_Obj(name) exact 278B naked C++ @ 0x8FF290
+?Create_Render_Obj@W3DAssetManager@@QAEPAVRenderObjClass@@XZ,,0x009004A0,1213,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DAssetManager_Create_Render_Obj_scaled.cpp,matched,BFME scaled/recolored Create_Render_Obj exact 1213B naked C++ @ 0x9004A0
 ?CreditsMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x004C6C60,407,Code/masm_dumps/CreditsMenuInit.asm,matched,Exact retail MASM; unique CreditsMenu parent-window literal and Credits audio event
 ?CreditsMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C6BD0,42,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/CreditsMenu.cpp,matched,
 ?CreditsMenuSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C6C10,53,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/CreditsMenu.cpp,matched,
@@ -5762,6 +5766,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Find_POT@@YAHH@Z,,0x00AFFAB0,45,Code/Libraries/Source/WWVegas/WW3D2/pot.cpp,matched,
 ?Find_POT_Log2@@YAII@Z,,0x00AFFAE0,39,Code/Libraries/Source/WWVegas/WW3D2/pot.cpp,matched,
 ?Find_Point_Closest_To@LineSegClass@@QBE?AVVector3@@ABV2@@Z,,0x008D8990,185,Code/Libraries/Source/WWVegas/WWMath/lineseg.cpp,matched,
+?Find_Prototype@@YAPAXPAX0PBD@Z,,0x009EBCE0,211,Code/GameEngineDevice/Source/W3DDevice/GameClient/Find_Prototype.cpp,matched,BFME registry Find_Prototype exact 211B @ 0x9EBCE0
 ?Find_Section@INIClass@@QBEPAUINISection@@PBD@Z,,0x009E3720,103,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Find_Shader@MaterialCollectorClass@@QAEHABVShaderClass@@@Z,,0x0093D640,38,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
 ?Find_Subobject@AggregateDefClass@@MAEPAVRenderObjClass@@AAV2@QAY0CA@$$CBD1@Z,,0x009808F0,269,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
@@ -7144,7 +7149,11 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?LoadPostProcess@StreakDrawModuleInfo@FXParticleSystem@@UAEXXZ,0x0003D88E,0x005D4670,1,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,no-op
 ?LoadPostProcess@TerrainCollisionModuleInfo@FXParticleSystem@@UAEXXZ,0x0003D208,0x005D4780,1,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,no-op
 ?LoadPostProcess@WindModuleInfo@FXParticleSystem@@UAEXXZ,0x0001B518,0x005BD940,1,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,no-op
+?Load_Animation@W3DAnimationLoader@@QAEXXZ,,0x0090C080,479,Code/Libraries/Source/WWVegas/WW3D2/Load_Animation_W3D.cpp,matched,BFME animation type loader exact 479B @ 0x90C080
+?Load_Asset_Catalog@@YA_NPAX@Z,,0x00938150,1231,Code/GameEngineDevice/Source/W3DDevice/GameClient/Load_Asset_Catalog.cpp,matched,BFME ALAE catalog Load_3D stage exact 1231B @ 0x938150
+?Load_Asset_Dat@@YA_NXZ,,0x00938620,1057,Code/GameEngineDevice/Source/W3DDevice/GameClient/Load_Asset_Dat.cpp,matched,BFME asset.dat bulk Load_3D_Assets entry exact 1057B @ 0x938620
 ?Load_Geom@W3DShadowGeometryManager@@QAEHPAVRenderObjClass@@PBD@Z,,0x007BD140,342,Code/masm_dumps/W3DShadowGeometryManager_Load_Geom.asm,matched,Exact 342B MASM @0x7BD140; queue 0x7BD150 was mid-SEH. StringBase name@+0x10 not ZH char[]
+?Load_Hierarchy@W3DHierarchyLoader@@QAEXXZ,,0x00971990,403,Code/Libraries/Source/WWVegas/WW3D2/Load_Hierarchy_W3D.cpp,matched,BFME hierarchy type loader exact 403B @ 0x971990
 ?Load_Registry@RegistryClass@@SAXPBDPAD1@Z,,0x009DCEE0,817,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
 ?Load_W3D@AABTreeClass@@QAEXAAVChunkLoadClass@@@Z,,0x0096ABA0,219,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ?Load_W3D@BitChannelClass@@QAE_NAAVChunkLoadClass@@@Z,,0x009778D0,205,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
@@ -7260,6 +7269,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Open@RawFileClass@@UAEHPBDH@Z,,0x009E6580,31,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Open_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E1380,96,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
 ?Open_Micro_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E17C0,46,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
+?Open_W3D_File@@YAPAXPAX0PBD@Z,,0x006F6BA0,204,Code/GameEngineDevice/Source/W3DDevice/GameClient/Open_W3D_File.cpp,matched,BFME W3D open helper for Load hierarchy/anim exact 204B @ 0x6F6BA0
 ?OptionsMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x00560280,7212,Code/masm_dumps/_OptionsMenuInit__YAXPAVWindowLayout__PAX_Z_560280.asm,matched,true size 7212B; row claimed 6966B
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVAABoxClass@@0@Z,,0x008DD740,274,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVAABoxClass@@ABVLineSegClass@@@Z,,0x008D9B30,909,Code/Libraries/Source/WWVegas/WWMath/colmathaabox.cpp,matched,
@@ -7456,15 +7466,22 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Read_Poly_Indices@AABTreeClass@@AAEXAAVChunkLoadClass@@@Z,,0x0096A650,23,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ?Read_Size_Keyframe@ParticleEmitterDefClass@@MAE_NAAVChunkLoadClass@@PAM1@Z,,0x0098C5D0,81,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Recalculate_Static_LOD_Factors@HLodClass@@UAEXXZ,,0x0097A410,238,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
+?Recolor_Mesh@W3DAssetManager@@QAEHH@Z,,0x0092DF50,1218,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Mesh.cpp,matched,Recolor_Mesh naked C++ exact 1218B @ 0x92DF50
+?Recolor_Texture@W3DAssetManager@@QAEHHHHHHHHHH@Z,,0x00A5828A,644,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Texture.cpp,matched,Recolor_Texture naked C++ exact 644B @ 0xA5828A
 ?RefreshGameListBox@@YAXPAVGameWindow@@_N@Z,,0x0000FD1C,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/RefreshGameListBox.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ?RefreshGameListBoxes@@YAXXZ,,0x0062E4F0,17,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
+?Register_Animation_Prototype@@YAXPBDHH@Z,,0x0090C000,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Animation_Prototype.cpp,matched,BFME ANIM Load_Prototype register exact 124B @ 0x90C000
+?Register_HLOD_Prototype@@YAXPBDHH@Z,,0x00970A20,124,Code/Libraries/Source/WWVegas/WW3D2/Register_HLOD_Prototype.cpp,matched,BFME HLOD Load_Prototype register exact 124B @ 0x970A20
+?Register_Hierarchy_Prototype@@YAXPBDHH@Z,,0x00971910,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Hierarchy_Prototype.cpp,matched,BFME HIER Load_Prototype register exact 124B @ 0x971910
 ?Register_Memory_Allocated@MemLogClass@@QAEHH@Z,,0x00AFF6B0,136,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Register_Memory_Allocated@WWMemoryLogClass@@SAHH@Z,,0x00AFFA70,18,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Register_Memory_Released@MemLogClass@@QAEXHH@Z,,0x00AFE890,99,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Register_Memory_Released@WWMemoryLogClass@@SAXHH@Z,,0x00AFFA90,23,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
+?Register_Mesh_Prototype@@YAXPBDHH@Z,,0x00971060,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Mesh_Prototype.cpp,matched,BFME MESH Load_Prototype register exact 124B @ 0x971060
 ?Register_Mesh_Type@DX8MeshRendererClass@@QAEXPAVMeshModelClass@@@Z,,0x00A08180,528,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer_Register_Mesh_Type.asm,matched,exact 528B via MASM
 ?Register_Missing@HAnimManagerClass@@QAEXPBD@Z,,0x007BB850,101,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ?Register_Missing@W3DShadowGeometryManager@@QAEXPBD@Z,,0x007B1190,102,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
+?Register_Particle_Prototype@@YAXPBDHH@Z,,0x00971440,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Particle_Prototype.cpp,matched,BFME PART Load_Prototype register exact 124B @ 0x971440
 ?Register_Pointer@PointerRemapClass@@QAEXPAX0@Z,,0x000D2FF0,33,Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp,matched,
 ?Registry_Load_Render_Device@DX8Wrapper@@KA_NPBDPADHAAH2222@Z,,0x00903FE0,315,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Registry_Load_Render_Device@DX8Wrapper@@SA_NPBD_N@Z,,0x0090B960,473,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
@@ -7532,6 +7549,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Render_FVF_Category_Container_List_Delayed_Passes@@YAXAAV?$MultiListClass@VDX8FVFCategoryContainer@@@@@Z,,0x00947AF0,34,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Render_Line@ParticleBufferClass@@IAEXAAVRenderInfoClass@@@Z,,0x0098AD00,1763,Code/Libraries/Source/WWVegas/WW3D2/ParticleBufferClass_Render_Line.asm,matched,exact 1763B via MASM (SEH+reg-coloring wall)
 ?Render_Line_Group@ParticleBufferClass@@IAEXAAVRenderInfoClass@@@Z,,0x0098B950,908,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,true size 908B; row claimed 350B (switch dispatch + case bodies)
+?Render_Obj_Exists@@YA_NPBD@Z,,0x009EBB80,28,Code/GameEngineDevice/Source/W3DDevice/GameClient/Render_Obj_Exists.cpp,matched,BFME registry exists check exact 28B @ 0x9EBB80
 ?Render_Particles@ParticleBufferClass@@IAEXAAVRenderInfoClass@@@Z,,0x0098B800,332,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Render_Seg_Line@SegmentedLineClass@@IAEXAAVRenderInfoClass@@@Z,,0x00950960,78,Code/masm_dumps/__Render_Seg_Line_SegmentedLineClass__IAEXAAVRender_950960.asm,matched,
 ?Render_Sorted@DX8PolygonRendererClass@@QAEXHABVSphereClass@@@Z,,0x00945740,79,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
@@ -7967,6 +7985,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Name@AggregateDefClass@@QAEXPBD@Z,,0x00980810,48,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,
 ?Set_Name@BoxRenderObjClass@@UAEXPBD@Z,,0x00956980,29,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ?Set_Name@CompositeRenderObjClass@@UAEXPBD@Z,,0x00983200,11,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
+?Set_Name@GameFileClass@@QAEXPBD@Z,,0x006F63B0,1214,Code/GameEngineDevice/Source/W3DDevice/GameClient/GameFileClass_Set_Name.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
 ?Set_Name@GameFileClass@@UAEPBDPBD@Z,,0x00006F05,5,Code/Libraries/Source/WWVegas/WWLib/GameFileSetNameThunk.cpp,matched,Focused C++ thunk for GameFileClass Set_Name
 ?Set_Name@MeshClass@@UAEXPBD@Z,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ?Set_Name@MeshGeometryClass@@QAEXPBD@Z,,0x00924D10,178,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
@@ -9264,6 +9283,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?create@GameSpyConfigInterface@@SAPAV1@VAsciiString@@@Z,,0x0062AD50,3077,Code/masm_dumps/_sa13__create_GameSpyConfigInterface__SAPAV1_VAsciiString___Z_62AD50.asm,matched,multi-xref Open-BFME4+Grok %s\%s\%s.map
 ?create@ObjectCreationNugget@@UBEPAVObject@@PBV2@0I@Z,,0x001D63B0,24,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ?createAWallFromMyFootprint@Pathfinder@@QAEXPAVObject@@@Z,,0x0051F380,15,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,
+?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,144,Code/GameEngine/Source/Common/System/FileSystem_createDirectory.cpp,matched,Promote masm dump to Code/ naked C++; size 144 per ghidra
 ?createDisplayStringManager@W3DGameClient@@MAEPAVDisplayStringManager@@XZ,,0x006FB710,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?createDrive@Win32CDManager@@MAEPAVCDDriveInterface@@XZ,,0x006BA4C0,80,Code/GameEngineDevice/Source/Win32Device/Common/Win32CDManager.cpp,matched,
 ?createEvent@Radar@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,,0x00008B8E,5,Code/GameEngine/Source/Common/RTS/RadarCreateEventThunk.cpp,matched,5-byte incremental-link Radar member thunk converted to focused C++ source
@@ -9631,6 +9651,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doWeather@ScriptActions@@IAEX_N@Z,,0x002EF670,11,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,tail-call TheSnowManager->setVisible
 ?doZoomCamera@ScriptActions@@IAEXMMMM@Z,,0x002EDC20,74,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,true body 0x2EDC20 (drift 0x9DE809 mid-insn); View vtable+0xe8 force-fit
 ?do_encrypt@@YAPADPAD@Z,,0x00104760,278,Code/GameEngine/Source/Common/System/encrypt.cpp,matched,
+?doesFileExist@FileSystem@@QBE_NPBD@Z,,0x009C86A0,134,Code/GameEngine/Source/Common/System/FileSystem_doesFileExist.cpp,matched,BFME doesFileExist: sprintf path prefix then local+archive; C++ exact
 ?doesFileExist@Win32LocalFileSystem@@UBE_NPBD@Z,,0x009CDDC0,25,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,
 ?doesSaveGameExist@GameState@@QAE_NVAsciiString@@@Z,,0x0010FB20,133,Code/masm_dumps/_sa__doesSaveGameExist_GameState_10FB20.asm,matched,Exact 133B caller-anchored from loadGame; BFME FileSystem path not ZH XferLoad; drift 0x7892D8 was wrong body
 ?done@?$DLINK_ITERATOR@VObject@@@@QBE_NXZ,,0x00087830,10,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
@@ -9895,7 +9916,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findGroundPath@Pathfinder@@QAEPAVPath@@PBUCoord3D@@0H_N@Z,,0x003F2160,2045,Code/GameEngine/Source/GameLogic/AI/AIPathfind_findGroundPath.asm,matched,MASM exact retail; true body 0x3F2160/2045 (queue 0x9DE1BB was int3+CPUDetect Init_AMD); ret 0x10 zoneMgr@+0xc9c clearPassable hierarchical
 ?findGroup@AI@@QAEPAVAIGroup@@I@Z,,0x0014B830,54,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,
 ?findIdleWorker@InGameUI@@EAEPAVObject@@PAV2@@Z,,0x0043F880,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
-?findImageByName@ImageCollection@@QAEPBVImage@@ABVAsciiString@@@Z,,0x0001D606,5,Code/GameEngine/Source/Common/RTS/ImageCollectionFindImageByNameThunk.cpp,matched,5-byte incremental-link ImageCollection member thunk converted to focused C++ source
+?findImageByName@ImageCollection@@QAEPBVImage@@ABVAsciiString@@@Z,,0x005D2CF0,84,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,thunk-dump converted to clean C++; needs BFME 8-byte string header (reference/shims/asciistring8) for the inlined AsciiString::str()
 ?findItem@LList@@QAEPAVLListNode@@PAX@Z,,0x00105D60,51,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?findLadder@LadderList@@QAEPBVLadderInfo@@ABVAsciiString@@G@Z,,0x0062A560,447,Code/masm_dumps/LadderList_findLadder.asm,matched,Ghidra-bound retail ladder search body
 ?findLadderByIndex@LadderList@@QAEPBVLadderInfo@@H@Z,,0x0062A430,101,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,
@@ -11978,7 +11999,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?lower_bound@?$map@GEU?$less@G@_STL@@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@QBE?AU?$_Rb_tree_iterator@U?$pair@$$CBGE@_STL@@U?$_Const_traits@U?$pair@$$CBGE@_STL@@@2@@2@ABG@Z,,0x00667AD0,45,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,
 ?makeAlignToNormalMatrix@@YAXMABUCoord3D@@0AAVMatrix3D@@@Z,,0x001A2E00,338,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?makeArmor@ArmorStore@@QBE?AVArmor@@PBVArmorTemplate@@@Z,,0x0020DD40,13,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,
-?makeDecoratedNameKey@ModuleFactory@@KA?AW4NameKeyType@@ABVAsciiString@@W4ModuleType@@@Z,,0x0004B439,5,Code/GameEngine/Source/Common/RTS/ModuleFactoryMakeDecoratedNameKeyThunk.cpp,matched,5-byte incremental-link static ModuleFactory key thunk converted to focused C++ source
+?makeDecoratedNameKey@ModuleFactory@@KA?AW4NameKeyType@@ABVAsciiString@@W4ModuleType@@@Z,,0x00126260,80,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,thunk-dump converted to clean C++; needs BFME 8-byte string header (reference/shims/asciistring8) for the inlined AsciiString::str()
 ?makeEmpty@SimpleObjectIterator@@QAEXXZ,,0x00015479,5,Code/Libraries/Source/WWVegas/WWLib/MiscThunkGroup.cpp,matched,Focused C++ thunk for SimpleObjectIterator::makeEmpty
 ?makeLowerCase@WSYS_String@@QAEXXZ,,0x0010A250,38,Code/GameEngine/Source/Common/System/String.cpp,matched,
 ?makeStateMachine@SupplyTruckAIUpdate@@,,0x002C5DB0,99,Code/masm_dumps/_sa9__makeStateMachine_SupplyTruckAIUpdate___2C5DB0.asm,matched,Exact 99B Open-BFME4
@@ -12150,6 +12171,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?open@MemoryWriteFile@@UAE_NPBDH@Z,,0x009CB220,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?openDataChunk@DataChunkInput@@QAE?AVAsciiString@@PAG@Z,,0x001032A0,265,Code/masm_dumps/_rn5__openDataChunk_DataChunkInput__QAE_AVAsciiString__PAG_Z_1032A0.asm,matched,reloc-needle Open-BFME4+Grok
 ?openDataChunk@DataChunkOutput@@QAEXPADG@Z,,0x0003A256,5,Code/GameEngine/Source/Common/RTS/DataChunkOutputOpenDataChunkThunk.cpp,matched,5-byte incremental-link DataChunkOutput member thunk converted to focused C++ source
+?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,,0x009C8860,394,Code/GameEngine/Source/Common/System/FileSystem_openFile.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
 ?openFile@Win32BIGFile@@UAEPAVFile@@PBDH@Z,,0x009D1490,22,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileOpen.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 2; forwards to 4-arg openFile at slot 3
 ?openLiveHandle@BFMENetworkBackend@@QAEXXZ,,0x009DB650,54,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,
 ?openSpareSocket@FirewallHelperClass@@QAE_NG@Z,,0x0066EA30,194,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
@@ -12523,8 +12545,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?push_back@?$vector@PAVObjectCreationNugget@@V?$allocator@PAVObjectCreationNugget@@@_STL@@@_STL@@QAEXABQAVObjectCreationNugget@@@Z,,0x001D77D0,50,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ?push_back@?$vector@PBVFXList@@V?$allocator@PBVFXList@@@_STL@@@_STL@@QAEXABQBVFXList@@@Z,,0x00201510,50,Code/GameEngine/Source/GameLogic/Object/Update/StructureCollapseUpdate.cpp,matched,
 ?push_back@?$vector@U?$pair@UICoord2D@@UCoord3D@@@_STL@@V?$allocator@U?$pair@UICoord2D@@UCoord3D@@@_STL@@@2@@_STL@@QAEXABU?$pair@UICoord2D@@UCoord3D@@@2@@Z,,0x00144EA0,62,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
-?push_back@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@QAEXABU?$pair@W4ObjectID@@W41@@2@@Z,,0x007740E0,62,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?push_back@?$vector@U?$pair@W4ObjectID@@I@_STL@@V?$allocator@U?$pair@W4ObjectID@@I@_STL@@@2@@_STL@@QAEXABU?$pair@W4ObjectID@@I@2@@Z,,0x00774200,62,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
+?push_back@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@QAEXABU?$pair@W4ObjectID@@W41@@2@@Z,,0x007740E0,62,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?push_back@?$vector@UAnimSet@GenericObjectCreationNugget@@V?$allocator@UAnimSet@GenericObjectCreationNugget@@@_STL@@@_STL@@QAEXABUAnimSet@GenericObjectCreationNugget@@@Z,,0x00755F10,62,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?push_back@?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXABUCoord3D@@@Z,,0x00069200,64,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
 ?push_back@?$vector@UDetonatorInfo@MinefieldBehavior@@V?$allocator@UDetonatorInfo@MinefieldBehavior@@@_STL@@@_STL@@QAEXABUDetonatorInfo@MinefieldBehavior@@@Z,,0x00574CD0,70,Code/GameEngine/Source/GameLogic/Object/Behavior/MinefieldBehavior.cpp,matched,
@@ -13522,7 +13544,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?valid@W3DVideoBuffer@@UAE_NXZ,,0x007E88A0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DVideoBuffer.cpp,matched,
 ?validate@?$StringBase@D@@ABEXXZ,0x0001D4A3,0x0005D790,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op string validation
 ?validate@?$StringBase@G@@ABEXXZ,0x000390A9,0x0005D7A0,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op
-?validate@FunctionLexicon@@QAE_NXZ,,0x00105380,123,Code/masm_dumps/_rn7__validate_FunctionLexicon__QAE_NXZ_105380.asm,matched,reloc-needle Open-BFME4+Grok
+?validate@FunctionLexicon@@QAE_NXZ,,0x00105380,126,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,MASM dump converted to clean C++ once the 12-table count was shimmed; true size is 126 not 123 - the old row cut 3 bytes off the epilogue
 ?validate@ThingTemplate@@QAEXXZ,,0x00139B40,350,Code/masm_dumps/_sa11__validate_ThingTemplate__QAEXXZ_139B40.asm,matched,string-anchor Open-BFME4+Grok DefaultThingTemplate
 ?validateAllyEnemyList@SidesList@@IAE_NABVAsciiString@@AAV2@@Z,,0x001A0390,2079,Code/masm_dumps/_sa11__validateAllyEnemyList_SidesList__IAE_NABVAsciiString__AAV2__Z_1A0390.asm,matched,string-anchor Open-BFME4+Grok PlyrCivilian
 ?validateAudio@ThingTemplate@@IAEXXZ,,0x0013E2F0,60,Code/masm_dumps/_sa15__validateAudio_ThingTemplate__IAEXXZ_13E2F0.asm,matched,sa15 Open-BFME4+Grok shadows
@@ -13830,25 +13852,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?doesFileExist@FileSystem@@QBE_NPBD@Z,,0x009C86A0,134,Code/GameEngine/Source/Common/System/FileSystem_doesFileExist.cpp,matched,BFME doesFileExist: sprintf path prefix then local+archive; C++ exact
-?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,144,Code/GameEngine/Source/Common/System/FileSystem_createDirectory.cpp,matched,Promote masm dump to Code/ naked C++; size 144 per ghidra
-?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,,0x009C8860,394,Code/GameEngine/Source/Common/System/FileSystem_openFile.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
-?Set_Name@GameFileClass@@QAEXPBD@Z,,0x006F63B0,1214,Code/GameEngineDevice/Source/W3DDevice/GameClient/GameFileClass_Set_Name.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
-?Create_Render_Obj@W3DAssetManager@@QAEPAVRenderObjClass@@XZ,,0x009004A0,1213,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DAssetManager_Create_Render_Obj_scaled.cpp,matched,BFME scaled/recolored Create_Render_Obj exact 1213B naked C++ @ 0x9004A0
-?Create_Render_Obj@@YAPAVRenderObjClass@@PBD@Z,,0x008FF290,278,Code/GameEngineDevice/Source/W3DDevice/GameClient/Create_Render_Obj_plain.cpp,matched,plain Create_Render_Obj(name) exact 278B naked C++ @ 0x8FF290
-?Find_Prototype@@YAPAXPAX0PBD@Z,,0x009EBCE0,211,Code/GameEngineDevice/Source/W3DDevice/GameClient/Find_Prototype.cpp,matched,BFME registry Find_Prototype exact 211B @ 0x9EBCE0
-?Add_Prototype@@YAXPAX@Z,,0x009EBA40,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype.cpp,matched,BFME registry Add_Prototype wrapper exact 21B @ 0x9EBA40
-?Open_W3D_File@@YAPAXPAX0PBD@Z,,0x006F6BA0,204,Code/GameEngineDevice/Source/W3DDevice/GameClient/Open_W3D_File.cpp,matched,BFME W3D open helper for Load hierarchy/anim exact 204B @ 0x6F6BA0
-?Add_Prototype_Impl@AssetRegistry@@QAEXPAX@Z,,0x009EF1A0,224,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype_Impl.cpp,matched,BFME registry Add_Prototype impl exact 224B @ 0x9EF1A0
-?Load_Hierarchy@W3DHierarchyLoader@@QAEXXZ,,0x00971990,403,Code/Libraries/Source/WWVegas/WW3D2/Load_Hierarchy_W3D.cpp,matched,BFME hierarchy type loader exact 403B @ 0x971990
-?Load_Animation@W3DAnimationLoader@@QAEXXZ,,0x0090C080,479,Code/Libraries/Source/WWVegas/WW3D2/Load_Animation_W3D.cpp,matched,BFME animation type loader exact 479B @ 0x90C080
-?Recolor_Mesh@W3DAssetManager@@QAEHH@Z,,0x0092DF50,1218,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Mesh.cpp,matched,Recolor_Mesh naked C++ exact 1218B @ 0x92DF50
-?Recolor_Texture@W3DAssetManager@@QAEHHHHHHHHHH@Z,,0x00A5828A,644,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Texture.cpp,matched,Recolor_Texture naked C++ exact 644B @ 0xA5828A
-?Render_Obj_Exists@@YA_NPBD@Z,,0x009EBB80,28,Code/GameEngineDevice/Source/W3DDevice/GameClient/Render_Obj_Exists.cpp,matched,BFME registry exists check exact 28B @ 0x9EBB80
-?Register_Animation_Prototype@@YAXPBDHH@Z,,0x0090C000,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Animation_Prototype.cpp,matched,BFME ANIM Load_Prototype register exact 124B @ 0x90C000
-?Register_Hierarchy_Prototype@@YAXPBDHH@Z,,0x00971910,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Hierarchy_Prototype.cpp,matched,BFME HIER Load_Prototype register exact 124B @ 0x971910
-?Register_Mesh_Prototype@@YAXPBDHH@Z,,0x00971060,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Mesh_Prototype.cpp,matched,BFME MESH Load_Prototype register exact 124B @ 0x971060
-?Register_HLOD_Prototype@@YAXPBDHH@Z,,0x00970A20,124,Code/Libraries/Source/WWVegas/WW3D2/Register_HLOD_Prototype.cpp,matched,BFME HLOD Load_Prototype register exact 124B @ 0x970A20
-?Register_Particle_Prototype@@YAXPBDHH@Z,,0x00971440,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Particle_Prototype.cpp,matched,BFME PART Load_Prototype register exact 124B @ 0x971440
-?Load_Asset_Catalog@@YA_NPAX@Z,,0x00938150,1231,Code/GameEngineDevice/Source/W3DDevice/GameClient/Load_Asset_Catalog.cpp,matched,BFME ALAE catalog Load_3D stage exact 1231B @ 0x938150
-?Load_Asset_Dat@@YA_NXZ,,0x00938620,1057,Code/GameEngineDevice/Source/W3DDevice/GameClient/Load_Asset_Dat.cpp,matched,BFME asset.dat bulk Load_3D_Assets entry exact 1057B @ 0x938620

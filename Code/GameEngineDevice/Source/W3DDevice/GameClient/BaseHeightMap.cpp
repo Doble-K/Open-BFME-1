@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/bfmeheightmap /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -2049,27 +2049,13 @@ void BaseHeightMapRenderObjClass::unitMoved( Object *unit )
 //=============================================================================
 /** Tell that a unit moved.*/
 //=============================================================================
-__declspec(naked) void BaseHeightMapRenderObjClass::removeTreesAndPropsForConstruction(const Coord3D*, const GeometryInfo&, Real)
+void BaseHeightMapRenderObjClass::removeTreesAndPropsForConstruction(const Coord3D* pos, const GeometryInfo& geom, Real angle )
 {
-	__asm {
-		_emit 08Bh
-		_emit 089h
-		_emit 09Ch
-		_emit 030h
-		_emit 000h
-		_emit 000h
-		_emit 085h
-		_emit 0C9h
-		_emit 074h
-		_emit 005h
-		_emit 0E9h
-		_emit 015h
-		_emit 027h
-		_emit 095h
-		_emit 0FFh
-		_emit 0C2h
-		_emit 00Ch
-		_emit 000h
+	// BFME: retail's 18B body null-checks and tail-calls only the PROP buffer
+	// (callee body 0x7039E0 sits inside the W3DPropBuffer.cpp region; BFME
+	// trees are props, so there is no separate tree-buffer call)
+	if (m_propBuffer) {
+		m_propBuffer->removePropsForConstruction(pos, geom, angle);
 	}
 }
 
@@ -2210,41 +2196,12 @@ void BaseHeightMapRenderObjClass::addTerrainBibDrawable(Vector3 corners[4],
 //=============================================================================
 /** Removes all terrainBib highlighting from the bib buffer.*/
 //=============================================================================
-__declspec(naked) void BaseHeightMapRenderObjClass::removeTerrainBibHighlighting()
+void BaseHeightMapRenderObjClass::removeTerrainBibHighlighting()
 {
-	__asm {
-		_emit 08Bh
-		_emit 081h
-		_emit 0F4h
-		_emit 02Fh
-		_emit 000h
-		_emit 000h
-		_emit 085h
-		_emit 0C0h
-		_emit 074h
-		_emit 014h
-		_emit 08Bh
-		_emit 050h
-		_emit 00Ch
-		_emit 050h
-		_emit 08Bh
-		_emit 040h
-		_emit 008h
-		_emit 04Ah
-		_emit 052h
-		_emit 048h
-		_emit 050h
-		_emit 06Ah
-		_emit 000h
-		_emit 06Ah
-		_emit 000h
-		_emit 0E8h
-		_emit 006h
-		_emit 01Ah
-		_emit 097h
-		_emit 0FFh
-		_emit 0C3h
-	}
+	// BFME dropped the ZH bib-buffer call; retail refreshes the whole map's
+	// shoreline tiles instead (byte-identical twin of removeAllTerrainBibs)
+	if (m_map)
+		updateShorelineTiles(0, 0, m_map->getXExtent()-1, m_map->getYExtent()-1, m_map);
 };
 
 //=============================================================================
@@ -2254,7 +2211,10 @@ __declspec(naked) void BaseHeightMapRenderObjClass::removeTerrainBibHighlighting
 //=============================================================================
 void BaseHeightMapRenderObjClass::removeAllTerrainBibs()
 {
-	m_bibBuffer->clearAllBibs(  ); 
+	// BFME dropped the ZH bib-buffer call; retail refreshes the whole map's
+	// shoreline tiles instead
+	if (m_map)
+		updateShorelineTiles(0, 0, m_map->getXExtent()-1, m_map->getYExtent()-1, m_map);
 };
 
 //=============================================================================
