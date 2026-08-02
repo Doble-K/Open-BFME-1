@@ -1,6 +1,7 @@
 // cl: /DNDEBUG /MD /EHsc
 
 class DefinitionClass;
+class Render2DClass;
 
 template <class T>
 class VectorClass
@@ -33,3 +34,4 @@ template class VectorClass<int>;
 template class VectorClass<float>;
 template class VectorClass<unsigned char>;
 template class VectorClass<DefinitionClass *>;
+template class VectorClass<Render2DClass *>;

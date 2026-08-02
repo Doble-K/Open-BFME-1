@@ -2608,7 +2608,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$VectorClass@M@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@PAUtThreadInfoType@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_PAUtThreadInfoType____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
 ??1?$VectorClass@PAVDefinitionClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
-??1?$VectorClass@PAVRender2DClass@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_PAVRender2DClass____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
 ??1?$VectorClass@PAVTextureClass@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_PAVTextureClass____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
 ??1?$VectorClass@PAVVertexMaterialClass@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_PAVVertexMaterialClass____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
 ??1?$VectorClass@UAddInfoStruct@MixFileFactoryClass@@@@UAE@XZ,,0x0093E480,67,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,icf-owner=??1?$DynamicVectorClass@UFileOffsetStruct@@@@UAE@XZ
@@ -13840,3 +13839,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??1?$VectorClass@PAVRender2DClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
