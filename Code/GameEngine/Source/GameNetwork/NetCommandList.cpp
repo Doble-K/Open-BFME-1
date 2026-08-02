@@ -359,13 +359,26 @@ Int NetCommandList::length() {
  * This is really inefficient, but we can probably get away with it because
  * there shouldn't be too many messages for any given frame.
  */
-// ?findMessage@NetCommandList@@ present-unmatched
+class NetCommandListEqualShim
+{
+public:
+	Bool isEqualCommandMsg(NetCommandMsg *msg1, NetCommandMsg *msg2);
+};
+
 NetCommandRef * NetCommandList::findMessage(NetCommandMsg *msg) {
-	NetCommandRef *retval = m_first;
-	while ((retval != NULL) && (isEqualCommandMsg(retval->getCommand(), msg) == FALSE)) {
-		retval = retval->getNext();
+	struct NetCommandRefLayout
+	{
+		NetCommandMsg *command;
+		NetCommandRefLayout *next;
+	};
+
+	NetCommandRefLayout *retval = *(NetCommandRefLayout **)((char *)this + 4);
+	while (retval != NULL) {
+		if (((NetCommandListEqualShim *)this)->isEqualCommandMsg(retval->command, msg) != FALSE)
+			return (NetCommandRef *)retval;
+		retval = retval->next;
 	}
-	return retval;
+	return NULL;
 }
 
 NetCommandRef * NetCommandList::findMessage(UnsignedShort commandID, UnsignedByte playerID) {

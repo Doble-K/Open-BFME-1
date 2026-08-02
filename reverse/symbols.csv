@@ -3613,6 +3613,7 @@ name,address,notes
 ?reset@NetCommandList@@QAEXXZ,0x0000B9CE,ILT thunk retail call sites use; real body 0x6731A0
 ?reset@NetCommandList@@QAEXXZ,0x00015479,pinharvest x1 (thunk)
 ?reset@NetCommandList@@QAEXXZ,0x00037565,pinharvest x1 (thunk)
+?isEqualCommandMsg@NetCommandListEqualShim@@QAE_NPAVNetCommandMsg@@0@Z,0x00008963,NetCommandList findMessage helper call shim
 ?reset@SidesInfoSegmentShim@@QAEXXZ,0x00033F46,SidesInfo clear first segment helper shim
 ?resetShader@W3DShaderManager@@SAXW4ShaderTypes@1@@Z,0x00014367,pinharvest x1 (thunk)
 ?resetToRestPosition@AnimateWindowManager@@QAEXXZ,0x00038F7D,ILT thunk -> 0x45D520; retail call sites use the thunk
