@@ -33,12 +33,32 @@
 // Declared here rather than through a shim header: any file under
 // reference/shims/ forces the full gate, and nothing outside this file needs it.
 
+#include <string.h>
+
 typedef int Int;
 typedef unsigned int UnsignedInt;
 typedef unsigned short UnsignedShort;
 typedef unsigned char UnsignedByte;
 
 class NetCommandMsg;
+
+// BFME's header is four bytes, not six: the reference's TransportMessageHeader
+// carries a CRC and a magic number, and retail's data run starts at +4. The
+// three trailing fields land at +0x404, +0x408 and +0x40C, which is what pins
+// the payload at 0x400 bytes.
+struct TransportMessageHeader
+{
+	UnsignedInt crc;
+};
+
+struct TransportMessage
+{
+	TransportMessageHeader header;					// +0x000
+	UnsignedByte data[0x400];						// +0x004
+	Int length;										// +0x404
+	UnsignedInt addr;								// +0x408
+	UnsignedShort port;								// +0x40C
+};
 
 void __cdecl operator delete(void *block) throw();
 
@@ -48,6 +68,10 @@ public:
 	~NetCommandRef();
 };
 
+// The zeroing is a member constructor, not something either NetPacket
+// constructor writes: both of them emit the vptr store, then ip = 0 and a word
+// port = 0, before anything of their own. That is member construction order,
+// and it is what puts the vptr first in each.
 struct NetPacketAddress
 {
 	UnsignedInt ip;
@@ -60,6 +84,7 @@ public:
 	virtual ~NetPacket();
 
 	NetPacket();
+	NetPacket(TransportMessage *msg);
 	void init();
 
 	UnsignedByte m_packet[0x1DC];					// this+0x004
@@ -92,6 +117,23 @@ NetPacket::NetPacket() {
 	m_dest.ip = 0;
 	m_dest.port = 0;
 	init();
+}
+
+// 0x00679730, 174 bytes. Same prefix, same tie-break as the default constructor
+// above; everything after it -- the two address fields lifted out of the
+// transport message, the 476-byte payload copy and the -1 command count -- is
+// retail's. The message layout the offsets pin is the interesting part: BFME's
+// header is four bytes where the reference's carries a CRC and a magic number.
+// ??0NetPacket@@QAE@PAUTransportMessage@@@Z present-unmatched
+NetPacket::NetPacket(TransportMessage *msg) {
+	m_dest.ip = 0;
+	m_dest.port = 0;
+	init();
+	m_packetLen = msg->length;
+	memcpy(m_packet, msg->data, sizeof(m_packet));
+	m_numCommands = -1;
+	m_dest.ip = msg->addr;
+	m_dest.port = msg->port;
 }
 
 NetPacket::~NetPacket() {

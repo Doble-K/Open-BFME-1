@@ -1012,3 +1012,24 @@ out-of-line setter by value.
 So this is not a register-allocation or flag mismatch: it is specific to
 materialising a temporary into an outgoing by-value class argument. Worth
 revisiting with a matched caller elsewhere in the tree that does the same thing.
+
+## The vptr store sinks unless a member constructor holds it in place
+
+NetPacket's two constructors both start with the vptr store, then zero
+`m_dest.ip` and `m_dest.port`, then do their own work. Writing those two zeroes
+as ordinary statements makes MSVC sink the vptr store below them and hoist the
+inlined `init()`'s stack temporary above everything -- a three-instruction
+reordering that no statement order fixes.
+
+Giving the address struct a default constructor puts the vptr first in both,
+because member construction is ordered after the vptr and before the body. But
+it also makes the struct non-POD, and `m_dest = dest` inside `init()` then
+compiles to member-wise assignment (a word store plus the dword pair) where
+retail copies the eight bytes as two dwords.
+
+`: m_dest()` is not the answer either -- MSVC 7.1 restructures the whole copy.
+
+So the zeroing reads like member construction and the assignment reads like POD
+assignment, and no single declaration produces both. Worth revisiting if a
+matched constructor elsewhere in the tree zeroes a POD member and still emits
+its vptr first.
