@@ -123,12 +123,18 @@ void Win32LocalFileSystem::update()
 {
 }
 
-// ?init@Win32LocalFileSystem@@UAEXXZ present-unmatched
 void Win32LocalFileSystem::init() 
 {
 }
 
 // ?reset@Win32LocalFileSystem@@UAEXXZ present-unmatched
+// Deliberately not claimed, unlike init above. Slots 8 and 9 of vtable
+// 0x01143B98 are both one-byte bare rets at 0x009CDDB0 and 0x009CDD90, and they
+// are reset and update in some order -- but nothing says which. init was
+// claimable because a call site pins it: the FileSystem setup at 0x009C8820
+// calls TheLocalFileSystem through [eax+4], slot 1. There is no equivalent for
+// these two, and a bare ret matches every empty function in the image, so
+// picking one would be a coin flip dressed up as a match. Find a caller first.
 void Win32LocalFileSystem::reset() 
 {
 }
