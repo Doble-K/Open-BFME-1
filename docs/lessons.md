@@ -847,3 +847,30 @@ ArchiveFileSystem rows added by peer commits that morning, which made a
 tidy-looking story about a TU-scoped STLport shim changing the SEH epilogue.
 Both rows verify as exact matches and were never at fault. A plausible culprit
 turned up by `git log -S` is not evidence.
+
+## An initialiser list and a body assignment are ordered differently
+
+`MemoryWriteFile`'s constructor zeroes four members and also has an `AsciiString`
+member that needs constructing. Retail does it in this order:
+
+    mov [esi+0x14], edx     ; m_data
+    mov [esi+0x18], edx     ; m_size
+    mov [esi+0x1c], edx     ; m_pos
+    mov [esi+0x20], edx     ; m_capacity
+    mov [esp+0x14], edx     ; EH state
+    mov [esi+0x24], edx     ; m_pendingName's construction
+
+Writing the four as body assignments cannot produce that, and no amount of
+reordering the body will. Every member is constructed before the body runs, so
+body assignments necessarily land *after* `m_pendingName` is built. Four stores
+in the wrong place, and nothing in the body to move.
+
+They have to be initialisers. Members are initialised in declaration order, and
+`m_data`..`m_capacity` are declared before `m_pendingName`, so as initialisers
+they come first and the shape falls out.
+
+The general form: if a constructor's stores are interleaved with a member's
+construction rather than sitting wholly after it, the ones before it are
+initialisers. That is a real structural fact about the retail source, readable
+straight off the instruction order, and it is one of the few things in a
+constructor that the byte comparison can actually tell you.

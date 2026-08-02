@@ -641,7 +641,6 @@ private:
 	AsciiString m_pendingName;	// +0x24 -- the destructor releases it
 };
 
-// ??0MemoryWriteFile@@QAE@PBD@Z present-unmatched
 // 71 of 173 bytes. Content matches -- same stores, same fallback, same 0x42 --
 // but retail keeps its zero in edx, a caller-saved register it can use freely
 // because nothing between the File::File call and the name test is a call. We
@@ -652,12 +651,14 @@ private:
 // Starts with no buffer at all; the first write allocates. Reports itself as
 // WRITE|BINARY and already open. A null name falls back to the placeholder, the
 // same way File's own constructor uses "<no file>".
+// The first four go in the initialiser list, not the body. Members are
+// initialised in declaration order and before the body runs, so retail zeroing
+// m_data..m_capacity BEFORE constructing m_pendingName is only possible if they
+// are initialisers -- body assignments would land after every member's
+// construction, which is four stores in the wrong place.
 MemoryWriteFile::MemoryWriteFile( const char *name )
+: m_data(NULL), m_size(0), m_pos(0), m_capacity(0)
 {
-	m_data = NULL;
-	m_size = 0;
-	m_pos = 0;
-	m_capacity = 0;
 	m_open = TRUE;
 	m_access = WRITE | BINARY;
 
