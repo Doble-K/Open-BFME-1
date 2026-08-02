@@ -12257,7 +12257,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x000BBB60,181,Code/GameEngine/Source/Common/INI/ini.cpp,matched,field table binds 45 tokens across 5 INI blocks here - was a 5B thunk claim
 ?parseAudioLODDefinition@INI@@SAXPAV1@@Z,,0x0007D560,209,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table node binds keyword AudioLOD to this address
 ?parseAudioLowMHz@@YAXPAVINI@@@Z,,0x0007BE70,43,Code/GameEngine/Source/Common/GameLOD.cpp,matched,AudioLowMHz block; sibling of parseReallyLowMHz -- GameLODManager m_audioLowMHz at +0x1738 right after m_reallyLowMHz at +0x1734
-?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EACB0,51,Code/GameEngine/Source/GameLogic/Object/WeaponTemplateSet_parseAutoChoose.asm,matched,Corrected one-byte-early queue RVA using INT3 and RET boundaries
+?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EACB0,51,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,Open-BFME5 C++ conversion of WeaponTemplateSet parseAutoChoose
 ?parseBannerUI@@YAXPAVINI@@@Z,,0x00584D20,21,Code/GameEngine/Source/GameClient/GUI/BannerUI.cpp,matched,BFME-only; class name from the block keyword - the pointer at 0x012F4B70 has no recoverable name so the variable name is ours
 ?parseBenchProfile@INI@@SAXPAV1@@Z,,0x0007C7F0,131,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME retail GameLOD layout
 ?parseBitFlag@@YA_NPBDPAIPAPBD@Z,,0x004842E0,81,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,

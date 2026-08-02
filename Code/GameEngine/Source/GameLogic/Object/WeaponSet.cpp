@@ -136,12 +136,13 @@ void WeaponTemplateSet::parseWeapon(INI* ini, void *instance, void * /*store*/, 
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z present-unmatched
 void WeaponTemplateSet::parseAutoChoose(INI* ini, void *instance, void * /*store*/, const void* userData)
 {
 	WeaponTemplateSet* self = (WeaponTemplateSet*)instance;
 	WeaponSlotType wslot = (WeaponSlotType)INI::scanIndexList(ini->getNextToken(), TheWeaponSlotTypeNames);
-	INI::parseBitString32(ini, instance, &self->m_autoChooseMask[wslot], TheCommandSourceMaskNames);
+	INI::parseBitString32(ini, instance,
+		((UnsignedInt *)((unsigned char *)self + 0x18)) + wslot,
+		TheCommandSourceMaskNames);
 }
 
 //-------------------------------------------------------------------------------------------------
