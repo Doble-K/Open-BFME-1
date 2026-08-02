@@ -2772,6 +2772,7 @@ name,address,notes
 ?assign@DefaultModuleTemplate7AssignShim@FXParticleSystem@@QAEXPBX@Z,0x00017F53,DefaultModuleTemplate<7> assignment thunk used through a TU-local layout shim
 ?assign@LifeEventAsciiStringAssignShim@FXParticleSystem@@QAEXPBX@Z,0x00887C90,LifeEventModuleInfo AsciiString assignment thunk used through a TU-local layout shim
 ?assign@LightningDrawTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x0003E108,LightningDrawModuleTemplate assignment thunk used through a TU-local layout shim
+?assign@ObjectIDPairVectorAssignShim@_STL@@QAEAAV?$vector@U?$pair@W4ObjectID@@I@_STL@@V?$allocator@U?$pair@W4ObjectID@@I@_STL@@@2@@2@ABV32@@Z,0x00095D30,ObjectID vector incremental-link thunk target through a TU-local forwarding shim
 ?assign@ParticleSystemTemplateInfoAssignShim@FXParticleSystem@@QAEXPBX@Z,0x000387C6,ParticleSystemTemplate base-info assignment thunk used through a TU-local layout shim
 ?assign@ParticleSystemTemplateTailAssignShim@FXParticleSystem@@QAEXPBX@Z,0x0004A232,ParticleSystemTemplate tail assignment thunk used through a TU-local layout shim
 ?assign@PlayerTemplateAssignShim@@QAEAAVPlayerTemplate@@ABV2@@Z,0x000E32D0,PlayerTemplate assignment incremental-link thunk target through a TU-local forwarding shim
@@ -3321,6 +3322,9 @@ name,address,notes
 ?insert_overflow@NuggetInsertOverflowShim@_STL@@QAEXPAUNugget@ModuleInfo@@ABU34@ABU__false_type@2@I_N@Z,0x0077AEA0,_STL vector _M_insert_overflow ModuleInfo::Nugget incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@OCLSpecialPowerModuleDataUpgradesInsertOverflowShim@_STL@@QAEXPAUUpgrades@OCLSpecialPowerModuleData@@ABU34@ABU__false_type@2@I_N@Z,0x00262FE0,_STL vector _M_insert_overflow OCLSpecialPowerModuleData::Upgrades incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@ObjectCreationNuggetPointerInsertOverflowShim@_STL@@QAEXPAPAVObjectCreationNugget@@ABQAV3@ABU__true_type@2@I_N@Z,0x001D74F0,_STL vector _M_insert_overflow ObjectCreationNugget* incremental-link thunk target through a TU-local forwarding shim
+?insert_overflow@ObjectIDObjectIDOverflowShim@_STL@@QAEXPAU?$pair@W4ObjectID@@W41@@2@ABU32@ABU__false_type@2@I_N@Z,0x00771870,ObjectID vector incremental-link thunk target through a TU-local forwarding shim
+?insert_overflow@ObjectIDOverflowShim@_STL@@QAEXPAW4ObjectID@@ABW43@ABU__false_type@2@I_N@Z,0x0036B490,ObjectID vector incremental-link thunk target through a TU-local forwarding shim
+?insert_overflow@ObjectIDPairOverflowShim@_STL@@QAEXPAU?$pair@W4ObjectID@@I@2@ABU32@ABU__false_type@2@I_N@Z,0x000960A0,ObjectID vector incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@ObjectPointerInsertOverflowShim@_STL@@QAEXPAPAVObject@@ABQAV3@ABU__true_type@2@I_N@Z,0x00754110,_STL vector _M_insert_overflow Object* incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@PlayerTemplateInsertOverflowShim@_STL@@QAEXPAVPlayerTemplate@@ABV3@ABU__false_type@2@I_N@Z,0x000E4000,_STL vector _M_insert_overflow PlayerTemplate incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@ProductionPrerequisiteInsertOverflowShim@_STL@@QAEXPAVProductionPrerequisite@@ABV3@ABU__false_type@2@I_N@Z,0x00787E80,_STL vector _M_insert_overflow ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
