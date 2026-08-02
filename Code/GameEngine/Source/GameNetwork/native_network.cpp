@@ -274,7 +274,7 @@ public:
 	Bool popQueue1(BFMENetworkQueueItem1 *item);
 	void pushList90(BFMENetworkListPayload payload);
 	void *findList90(void *key, void *payload);
-	void *copyState6C(void *out);
+	BFMENetworkString copyState6C();
 	BFMENetworkString copyState78();
 	void *copyState84(void *out);
 
@@ -1294,26 +1294,9 @@ doneFindList90:
 	}
 }
 
-__declspec(naked) void *BFMENetwork::copyState6C(void *out)
+BFMENetworkString BFMENetwork::copyState6C()
 {
-	__asm {
-		push ecx
-		push esi
-		mov esi, [esp+0ch]
-		add ecx, 6ch
-		push ecx
-		mov ecx, esi
-		mov dword ptr [esp+8], 0
-		__emit 0xe8
-		__emit 0x98
-		__emit 0x7a
-		__emit 0x9c
-		__emit 0xff
-		mov eax, esi
-		pop esi
-		pop ecx
-		ret 4
-	}
+	return *reinterpret_cast<const BFMENetworkString *>(reinterpret_cast<const char *>(this) + 0x6c);
 }
 
 BFMENetworkString BFMENetwork::copyState78()
