@@ -12359,6 +12359,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851130,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseMajorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x000660D0,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMappedImage@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAAA0,113,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
+?parseMappedImageDefinition@INI@@SAXPAV1@@Z,,0x000C2480,238,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,find-then-create against TheMappedImageCollection; both collection methods were already matched so only Image ctor and setName were new
 ?parseMetaMapDefinition@INI@@SAXPAV1@@Z,,0x005B71A0,143,Code/GameEngine/Source/GameClient/MessageStream/INI_parseMetaMapDefinition.asm,matched,CommandMap INI table pointer and Ghidra-confirmed inlined parser body
 ?parseMinorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066180,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMiscAudio@INI@@SAXPAV1@@Z,,0x000C25B0,30,Code/GameEngine/Source/Common/INI/INIMiscAudio.cpp,matched,MiscAudio block parser; forwards to TheAudio->friend_getMiscAudio() through AudioManager vtable slot 75 (+0x12C) which ZH has non-virtual
@@ -13152,6 +13153,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setNATBehavior@GameSlot@@QAEXW4tFirewallBehaviorType@FirewallHelperClass@@@Z,,0x00087470,10,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
 ?setName@CrateTemplate@@QAEXVAsciiString@@@Z,,0x00379010,75,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,located by byte-scan once the TU moved onto the ini shim AsciiString
 ?setName@GameSlot@@QAEXVUnicodeString@@@Z,,0x00072420,75,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,
+?setName@Image@@QAEXVAsciiString@@@Z,,0x000C2420,75,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,BFME moves it out of the header; body is byte-identical to three other setName instantiations so the call from the MappedImage parser is what picks this address
 ?setName@LANGameInfo@@QAEXVUnicodeString@@@Z,,0x00685480,78,Code/masm_dumps/setName_LANGameInfo_QAEXVUnicodeString_Z_685480.asm,matched,Ghidra exact boundary and caller-verified body
 ?setName@LANPlayer@@QAEXVUnicodeString@@@Z,,0x00624C10,72,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ?setNeedsToFinish@AnimateWindow@@QAEX_N@Z,,0x0018F237,10,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
