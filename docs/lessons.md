@@ -1067,3 +1067,25 @@ constant before the walking pointer, and the source declared the pointer first.
 Swapping the two declarations fixed it. Where two locals are initialised from
 constants or parameters with no dependency between them, MSVC emits them in
 declaration order.
+
+## MSVC lays switch arms out in source order — read the order off the table
+
+`NetPacket::addCommand` is a 29-way switch. Getting the arms to match is not
+about the cases themselves, which are one instruction each; it is about their
+order in the file. MSVC emits the arm bodies in the order the cases appear in
+the source, so writing them in numeric order produces a function of exactly the
+right length whose arms are all in the wrong places.
+
+The order is recoverable: sort the jump-table entries by the address they point
+at, and the sequence of case values is the source order. For addCommand that is
+game command, the three ack stages, the frame command, the per-slot frame
+ratios, then the rest -- very nearly the order
+ConstructNetCommandMsgFromRawData tests in.
+
+The same table names every handler, so a dispatcher like this can be matched
+before any of the functions it dispatches to are owned: pin each arm's target
+from the table.
+
+Note the arms encode a thunk one hop further out than `build_call_thunks`
+discovers, so pin both the handler body and the address the arm literally
+encodes.
