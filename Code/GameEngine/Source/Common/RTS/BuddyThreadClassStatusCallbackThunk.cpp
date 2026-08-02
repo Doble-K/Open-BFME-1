@@ -9,13 +9,13 @@ public:
     void statusCallback(GPConnection *, GPRecvBuddyStatusArg *);
 };
 
-__declspec(naked) void BuddyThreadClass::statusCallback(GPConnection *, GPRecvBuddyStatusArg *)
+class BuddyThreadClassStatusCallbackShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 060h
-        _emit 0ECh
-        _emit 05Fh
-        _emit 000h
-    }
+public:
+    void run(GPConnection *conn, GPRecvBuddyStatusArg *arg);
+};
+
+void BuddyThreadClass::statusCallback(GPConnection *conn, GPRecvBuddyStatusArg *arg)
+{
+    ((BuddyThreadClassStatusCallbackShim *)this)->run(conn, arg);
 }
