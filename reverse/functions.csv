@@ -1174,6 +1174,10 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AutoPickUpUpdateModuleData@@QAE@XZ,,0x002827E0,242,Code/GameEngine/Source/GameLogic/AI/AutoPickUpUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AvailableGameInfo@@QAE@XZ,,0x0010DB60,19,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0BFMEAutoLockRef@@QAE@PAVBFMENetworkLock@@I@Z,,0x009DB3B0,72,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,object-symbol=??0LockClass@MutexClass@@QAE@AAV1@H@Z;C++ alias
+??0BFMENetGameSpyStatsAuthKeyCommandMsg@@QAE@XZ,,0x00675BE0,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+??0BFMENetInformPlayerLeaveFrameCommandMsg@@QAE@XZ,,0x00674130,46,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0BFMENetRequestFrameDataCommandMsg@@QAE@XZ,,0x00674260,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAE@XZ,,0x006759B0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ??0BFMENetwork@@QAE@XZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper constructor body; initializes locks queues list and backend pointer
 ??0BFMENetworkBackend@@QAE@PAVBFMENetworkLock@@@Z,,0x006547F0,127,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME backend constructor body; stores wrapper lock owner at +0x68 and initializes backend list at +0x5c
 ??0BFMEPlayerTemplateAsciiString@@QAE@PBD@Z,,0x00888BC0,72,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@PBD@Z;C++ alias
@@ -2737,6 +2741,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AutoPickUpUpdate@@UAE@XZ,,0x00281F40,1490,Code/masm_dumps/AutoPickUpUpdate_destructor.asm,matched,Exact 1490B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1AutoPickUpUpdateModuleData@@UAE@XZ,,0x00282A80,80,Code/masm_dumps/AutoPickUpUpdateModuleData_destructor.asm,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
 ??1BFMEAutoLockRef@@QAE@XZ,,0x009DB400,22,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME lock-ref release helper used by wrapper/backend
+??1BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@MAE@XZ,,0x00675B80,73,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ??1BFMEPlayerTemplateAsciiString@@QAE@XZ,,0x00887940,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=?releaseBuffer@?$StringBase@D@@AAEXXZ;C++ alias
 ??1BSurface@@UAE@XZ,,0x001279D0,67,Code/Libraries/Source/WWVegas/WW3D2/txt.cpp,matched,
 ??1BannerCarrierUpdateModuleData@@UAE@XZ,,0x00284AA0,375,Code/masm_dumps/BannerCarrierUpdateModuleData_destructor.asm,matched,Exact 375B @ 0x00284AA0; Exact retail MASM; factory->vtable dtor; del 0x285490 ctor 0x284600 vt 0xCBBBB8
@@ -3231,6 +3236,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WeaponSetSpecialAbilityUpdate@@UAE@XZ,,0x002A9850,2403,Code/masm_dumps/WeaponSetSpecialAbilityUpdate_destructor.asm,matched,Exact 2403B SEH dtor factory->vtable Open-BFME4
 ??1WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00072A40,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
 ??1Win32BIGFile@@UAE@XZ,,0x009D1500,95,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
+??1Win32BIGFileSystem@@UAE@XZ,,0x009CC370,11,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_dtor.cpp,matched,installs vtable 0x01143B40 then tail-jumps to the matched ~ArchiveFileSystem at 0x009CA550
 ??1WindModuleInfo@FXParticleSystem@@UAE@XZ,0x0001B31F,0x005BD960,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1WindowLayout@@UAE@XZ,,0x00497CC0,14,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,virtual dtor; tail-jmps member string dtor
 ??1WindowVideo@@QAE@XZ,,0x000253E7,5,Code/GameEngine/Source/GameClient/WindowVideoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
@@ -5180,6 +5186,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GWaterTransparencySetting@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWeapon@@MAEPAXI@Z,,0x001E6900,30,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ??_GWin32BIGFile@@UAEPAXI@Z,,0x009D17F0,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
+??_GWin32BIGFileSystem@@UAEPAXI@Z,,0x009CC440,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_dtor.cpp,matched,slot 0 of vtable 0x01143B40; its call to the scalar dtor is a REL32 so the pair verifies itself
+??_GWin32LocalFileSystem@@UAEPAXI@Z,,0x009CDE30,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,slot 0 of vtable 0x01143B98 -- was falsely claimed at 0x005BF290 which destroys CategoryModuleTemplate
 ??_GWinInstanceData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWindModuleInfo@FXParticleSystem@@UAEPAXI@Z,,0x005BDAA0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??_GWindowLayout@@UAEPAXI@Z,,0x004706F0,30,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,compiler-generated deleting dtor
@@ -5804,6 +5812,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Fast_Slerp@@YAXAAVQuaternion@@ABV1@1M@Z,,0x008DC4C0,942,Code/masm_dumps/__Fast_Slerp__YAXAAVQuaternion__ABV1_1M_Z_8DC4C0.asm,matched,
 ?File_Name@GameFileClass@@UBEPBDXZ,,0x006F60D0,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,Ghidra-bound GameFile accessor
 ?Filename_From_Asset_Name@@YA?AVStringClass@@PBD@Z,,0x00920770,210,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
+?FillBufferWithKeepAliveCommand@NetPacket@@KAXPAEPAVNetCommandRef@@@Z,,0x00677200,46,Code/GameEngine/Source/GameNetwork/NetPacket_fill.cpp,matched,
 ?Find@HashTableClass@@QAEPAVHashableClass@@PBD@Z,,0x009E0150,89,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
 ?Find_Color_And_Z_Mode@DX8Wrapper@@KA_NHHHPAW4_D3DFORMAT@@00@Z,,0x00906AA0,152,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Find_Color_Mode@DX8Wrapper@@KA_NW4_D3DFORMAT@@HHPAI@Z,,0x009021C0,248,Code/masm_dumps/_leaf__Find_Color_Mode_DX8Wrapper__KA_NW4_D3DF_9021C0.asm,matched,Exact 248B present-unmatched leaf Open-BFME4
@@ -9277,6 +9286,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?close@CachedFileInputStream@@QAEXXZ,,0x00102370,34,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?close@File@@UAEXXZ,,0x009CB880,50,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 2 of all three File vtables - repointed off its MASM dump onto C++
 ?close@Win32BIGFile@@UAEXXZ,,0x009D14D0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 8; empty body
+?closeAllArchiveFiles@Win32BIGFileSystem@@UAEXXZ,,0x009CD780,261,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_closeAllArchiveFiles.cpp,matched,vtable 0x01143B40 slot 4 -- BFME-only body; ZH leaves this method empty
 ?closeAllFiles@Win32BIGFile@@UAEXXZ,,0x009D14B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 4; empty body
 ?closeAllFiles@Win32BIGFileSystem@@UAEXXZ,,0x009CC3B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_closeAllFiles.cpp,matched,vtable 0x01143B40 slot 7 -- bare ret so the vtable is the whole evidence with ZH closeAllFiles being empty as corroboration
 ?closeAllSpareSockets@FirewallHelperClass@@QAEXXZ,,0x0066EB60,64,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
@@ -11070,6 +11080,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getDisallowNonAsianText@CustomMatchPreferences@@QAE_NXZ,,0x000AC610,95,Code/GameEngine/Source/Common/promoted__getDisallowNonAsianText_CustomMatchPreferences_QAE_NXZ_000AC610.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 95B
 ?getDisallowNonAsianText@GameSpyInfo@@UAE_NXZ,,0x00630790,7,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?getDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEIXZ,,0x00674110,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
+?getDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEIXZ,,0x00673CB0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEEXZ,,0x00673C70,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?getDisplayModeCount@Display@@UAEHXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/Display.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getDisplayName@PlayerTemplate@@QBE?AVUnicodeString@@XZ,,0x000DFBA0,32,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,thunk-dump converted to clean C++; inline getter body ODR-used from GameSlot::getApparentPlayerTemplateDisplayName
@@ -11109,9 +11120,13 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getFPSLimitEnabled@OptionPreferences@@QAE_NXZ,,0x000911B0,102,Code/GameEngine/Source/Common/promoted__getFPSLimitEnabled_OptionPreferences_QAE_NXZ_000911B0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 102B
 ?getField@WeaponBonus@@QBEMW4Field@1@@Z,,0x001DE220,10,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?getFieldParse@DieMuxData@@SAPBUFieldParse@@XZ,,0x00019326,5,Code/GameEngine/Source/GameLogic/Module/DieMuxDataGetFieldParseThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x655140
+?getFileData@NetFileCommandMsg@@QAEPAEXZ,,0x00673F90,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getFileID@NetFileAnnounceCommandMsg@@QAEGXZ,,0x00673FF0,5,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getFileID@NetFileProgressCommandMsg@@QAEGXZ,,0x00674080,5,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getFileInfo@ArchiveFileSystem@@QBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CA7E0,182,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,calls getArchiveFilenameForFile at 0x009CA81A then m_archiveFileMap.find
 ?getFileInfo@Win32BIGFile@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009D1810,274,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileGetInfo.cpp,matched,
 ?getFileInfo@Win32LocalFileSystem@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CDE50,105,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,
+?getFileLength@NetFileCommandMsg@@QAEIXZ,,0x00673F80,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getFinalOverride@Overridable@@QBEPBV1@XZ,,0x00087A80,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
 ?getFirewallBehavior@FirewallHelperClass@@QAE?AW4tFirewallBehaviorType@1@XZ,,0x0066E830,14,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?getFirewallBehavior@OptionPreferences@@QAEHXZ,,0x00090B80,100,Code/GameEngine/Source/Common/promoted__getFirewallBehavior_OptionPreferences_QAEHXZ_00090B80.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 100B
@@ -11227,6 +11242,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getLastLocalFile@DownloadManager@@QAE?AVAsciiString@@XZ,,0x00626DA0,224,Code/masm_dumps/_s6__getLastLocalFile_DownloadManager_QAE_AVAsciiString_XZ_626DA0.asm,matched,Exact 224B 'FTP:LocalFileOpenFailed' Open-BFME4+Grok
 ?getLastReplayFileName@RecorderClass@@QAE?AVAsciiString@@XZ,0x0001E3C6,0x98b40,33,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getLayerHeight@TerrainLogic@@UBEMMMW4PathfindLayerEnum@@PAUCoord3D@@_N@Z,,0x001A2DB0,27,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
+?getLeaveFrame@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEIXZ,,0x006741E0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getLeavingPlayerID@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEHXZ,,0x006741D0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEEXZ,,0x00673AF0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getLength@?$StringBase@D@@QBEHXZ,0x00004A30,0x0005E4A0,14,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns string length or zero
 ?getLength@?$StringBase@G@@QBEHXZ,0x0000ED6D,0x0005E4F0,14,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns string length or zero
@@ -11435,6 +11452,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPlayType@WindowVideo@@QAE?AW4WindowVideoPlayType@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?getPlayerDisplayName@Player@@QAE?AVUnicodeString@@XZ,,0x00098FD0,32,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarObserver.cpp,matched,
 ?getPlayerIndex@NetDestroyPlayerCommandMsg@@QAEIXZ,,0x00673B70,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getPlayerMask@NetFileAnnounceCommandMsg@@QAEEXZ,,0x00674010,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getPlayerMask@Player@@QBEGXZ,,0x000C8C50,11,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?getPlayerNameForSlot@BFMEConnectionManager@@QAEXPAXH@Z,,0x006649E0,100,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?getPlayerProfileIDCallback@@YAXPAXHPBDH0@Z,,0x00642F70,23,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
@@ -11459,6 +11477,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getProductionCostChangePercent@Player@@QBEMVAsciiString@@@Z,,0x000D47F0,91,Code/GameEngine/Source/Common/RTS/PlayerProductionCostChangePercentThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM body; retail cost map this+0x1CC
 ?getProductionUpdateInterface@BehaviorModule@@UAEPAVProductionUpdateInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getProductionUpdateInterface@Object@@QAEPAVProductionUpdateInterface@@XZ,,0x001BF570,42,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,BFME BehaviorModuleInterface getProductionUpdateInterface slot 27 (+0x6c); identified via AIPlayer::startTraining/buildUpgrade call sites
+?getProgress@NetFileProgressCommandMsg@@QAEHXZ,,0x006740A0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getProgressBarDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getProgressBarImageDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getProjectileUpdateInterface@BehaviorModule@@UAEPAVProjectileUpdateInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -11500,6 +11519,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getRequest@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyRequest@@@Z,,0x0063C770,167,Code/masm_dumps/_rn7__getRequest_GameSpyBuddyMessageQueue__UAE_NAAVBuddyRequest___Z_63C770.asm,matched,reloc-needle Open-BFME4+Grok
 ?getRequest@GameSpyPSMessageQueue@@UAE_NAAVPSRequest@@@Z,,0x0064C840,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,icf-owner=?getRequest@GameSpyPeerMessageQueue@@UAE_NAAVPeerRequest@@@Z
 ?getRequest@GameSpyPeerMessageQueue@@UAE_NAAVPeerRequest@@@Z,,0x0064C840,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
+?getRequestedFrame@BFMENetRequestFrameDataCommandMsg@@QAEIXZ,,0x00674300,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getRequestedPlayerID@BFMENetRequestFrameDataCommandMsg@@QAEHXZ,,0x006742F0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ,,0x00674250,4,Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp,matched,native BFME request-player-leave payload getter at +0x1c
 ?getRequiredScience@SpecialPowerModule@@UBE?AW4ScienceType@@XZ,,0x00268A30,33,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule.cpp,matched,
 ?getRequiredScience@SpecialPowerTemplate@@QBE?AW4ScienceType@@XZ,,0x000EB4C0,27,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
@@ -11583,7 +11604,12 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getTemplateInfo@TeamPrototype@@QBEPBVTeamTemplateInfo@@XZ,,0x003BCD70,4,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,Ghidra-bound unique accessor
 ?getTerrainColorAt@W3DTerrainVisual@@UAEXMMPAURGBColor@@@Z,,0x007309E0,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?getTerrainColorAt@WorldHeightMap@@QAEXMMPAURGBColor@@@Z,,0x007477E0,272,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,clean C++; BFME floor-via-IAT plus reconstructed retail field offsets (raw access) inlined getRGBDataForWidth
+?getText1C@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675C20,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?getText1C@BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x006759F0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?getText20@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675CB0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?getText@DisplayString@@UAE?AVUnicodeString@@XZ,,0x00410080,32,Code/GameEngine/Source/GameClient/DisplayStringGetTextThunk.cpp,matched,Open-BFME5 exact C++ virtual UnicodeString getter thunk
+?getText@NetChatCommandMsg@@QAE?AV?$StringBase@G@@XZ,,0x00675310,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?getText@NetDisconnectChatCommandMsg@@QAE?AV?$StringBase@G@@XZ,,0x006751E0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?getText@WinInstanceData@@QAE?AVUnicodeString@@XZ,,0x00479B00,24,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?getTextEntryDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getTextEntryImageDrawFunc@GameWindowManager@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -13166,6 +13192,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setFieldOfView@View@@UAEXM@Z,,0x0015B7B0,10,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setFieldOfView@W3DView@@UAEXM@Z,,0x0027F3D0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?setFileData@NetFileCommandMsg@@QAEXPAEI@Z,,0x00673FA0,52,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
+?setFileID@NetFileAnnounceCommandMsg@@QAEXG@Z,,0x00674000,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setFileID@NetFileProgressCommandMsg@@QAEXG@Z,,0x00674090,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setFinished@AnimateWindow@@QAEX_N@Z,,0x000B2330,10,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?setFirstUpdate@AcademyStats@@QAEX_N@Z,,0x0006B6D0,10,Code/GameEngine/Source/Common/RTS/AcademyStats.cpp,matched,
 ?setFlashColor@Drawable@@QAEXH@Z,,0x002C7E10,13,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
@@ -13223,6 +13251,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setLastLadder@QuickMatchPreferences@@QAEXABVAsciiString@@G@Z,,0x00029B36,5,Code/GameEngine/Source/Common/RTS/QuickMatchPreferencesSetLastLadderThunk.cpp,matched,5-byte incremental-link QuickMatchPreferences member thunk converted to focused C++ source
 ?setLateralSpeed@BridgeScaffoldBehavior@@UAEXM@Z,,0x00131DB0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setLayer@Bridge@@QAEXW4PathfindLayerEnum@@@Z,,0x0045BF90,13,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
+?setLeaveFrame@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEXI@Z,,0x00674190,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setLeaveInfo@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEXIH@Z,,0x00674170,14,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEXE@Z,,0x00673B00,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setLeechRangeActive@Weapon@@QAEX_N@Z,,0x003BBAE0,10,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?setLeftMargin@DebugDisplay@@UAEXH@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/System/DebugDisplay.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
@@ -13301,6 +13331,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPitch@View@@UAEXM@Z,,0x0045B570,61,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setPlayerIndex@AudioEventRTS@@QAEXH@Z,,0x000B23C0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,
 ?setPlayerIndex@NetDestroyPlayerCommandMsg@@QAEXI@Z,,0x00673B60,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setPlayerMask@NetFileAnnounceCommandMsg@@QAEXE@Z,,0x00674020,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setPlayerName@EstablishConnectionsMenu@@,,0x00538700,373,Code/masm_dumps/_sa4__setPlayerName_EstablishConnectionsMenu___538700.asm,matched,Exact 373B Open-BFME4
 ?setPlayerStatus@EstablishConnectionsMenu@@QAEXHW4NATConnectionState@@@Z,,0x004B2DC0,268,Code/GameEngine/Source/GameClient/GUI/EstablishConnectionsMenu/EstablishConnectionsMenu.cpp,matched,
 ?setPlayerTemplate@GameSlot@@QAEXH@Z,,0x003827E0,22,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
@@ -13322,6 +13353,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPrep@Dict@@AAEPAUDictPair@1@W4NameKeyType@@W4DataType@1@@Z,,0x00068760,90,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setProducer@Object@@QAEXPBV1@@Z,,0x001BE450,25,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setProfileID@GameSpyGameSlot@@QAEXH@Z,,0x001A19C0,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,
+?setProgress@NetFileProgressCommandMsg@@QAEXH@Z,,0x006740B0,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setQMChannel@GameSpyConfig@@UAEXH@Z,,0x00189A50,10,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,
 ?setQuitFrame@FrameDataManager@@QAEXI@Z,,0x00670850,14,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ?setQuitting@GameEngine@@UAEX_N@Z,,0x0006B6D0,10,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
@@ -13338,6 +13370,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setRenderObjExtent@W3DVolumetricShadow@@IAEXM@Z,,0x0026F9C0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?setRenderObject@W3DProjectedShadow@@QAEXPAVRenderObjClass@@@Z,,0x001BD2F0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?setRenderObject@W3DVolumetricShadow@@IAEXPAVRenderObjClass@@@Z,,0x00409460,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
+?setRequestedFrame@BFMENetRequestFrameDataCommandMsg@@QAEXI@Z,,0x006742D0,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setRequestedPlayerID@BFMENetRequestFrameDataCommandMsg@@QAEXH@Z,,0x006742C0,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEXH@Z,,0x00674240,10,Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp,matched,native BFME request-player-leave payload setter at +0x1c
 ?setReskinnedFrom@ThingTemplate@@QAEXPBV1@@Z,,0x0098D2A0,13,Code/GameEngine/Source/Common/Thing/ThingFactory.cpp,matched,
 ?setRiverStart@PolygonTrigger@@QAEXH@Z,,0x001BD780,10,Code/GameEngine/Source/GameLogic/Map/PolygonTrigger.cpp,matched,
@@ -13392,6 +13426,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setTerrainDecalOpacity@W3DModelDraw@@UAEXM@Z,,0x0075BDD0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,direct C++ terrain-decal opacity setter with retail decal offset replaces MASM dump
 ?setTerrainDecalSize@W3DModelDraw@@UAEXMM@Z,,0x002DAD60,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?setTerrainHeightUnderCamera@View@@UAEXM@Z,,0x005A7350,10,Code/GameEngine/Source/GameClient/View.cpp,matched,
+?setText1C@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675C50,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?setText1C@BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675A20,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?setText20@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675CE0,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?setText@WinInstanceData@@QAEXVUnicodeString@@@Z,,0x00499D60,123,Code/masm_dumps/setText_WinInstanceData_QAEXVUnicodeString_Z_499D60.asm,matched,Exact 123B MASM; true body 0x499D60 (ghidra ENTRY); queue 0x665642 inside FUN_00a655c0; C++ blocked DisplayStringManager/DisplayString vtbl slots
 ?setTexture@W3DShadowTexture@@QAEXPAVTextureClass@@@Z,,0x00087470,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?setTextureFilename@ParticleSystemTemplate@FXParticleSystem@@QAEXAAVAsciiString@@@Z,0x000163FB,0x0005CB50,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,adjusts this pointer and assigns texture filename
@@ -14036,40 +14073,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?FillBufferWithKeepAliveCommand@NetPacket@@KAXPAEPAVNetCommandRef@@@Z,,0x00677200,46,Code/GameEngine/Source/GameNetwork/NetPacket_fill.cpp,matched,
-?getDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEIXZ,,0x00673CB0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getFileLength@NetFileCommandMsg@@QAEIXZ,,0x00673F80,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getFileData@NetFileCommandMsg@@QAEPAEXZ,,0x00673F90,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getFileID@NetFileAnnounceCommandMsg@@QAEGXZ,,0x00673FF0,5,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setFileID@NetFileAnnounceCommandMsg@@QAEXG@Z,,0x00674000,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getPlayerMask@NetFileAnnounceCommandMsg@@QAEEXZ,,0x00674010,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setPlayerMask@NetFileAnnounceCommandMsg@@QAEXE@Z,,0x00674020,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getFileID@NetFileProgressCommandMsg@@QAEGXZ,,0x00674080,5,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getProgress@NetFileProgressCommandMsg@@QAEHXZ,,0x006740A0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0BFMENetInformPlayerLeaveFrameCommandMsg@@QAE@XZ,,0x00674130,46,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setLeaveInfo@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEXIH@Z,,0x00674170,14,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setLeaveFrame@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEXI@Z,,0x00674190,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getLeavingPlayerID@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEHXZ,,0x006741D0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getLeaveFrame@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEIXZ,,0x006741E0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0BFMENetRequestFrameDataCommandMsg@@QAE@XZ,,0x00674260,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setRequestedPlayerID@BFMENetRequestFrameDataCommandMsg@@QAEXH@Z,,0x006742C0,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setRequestedFrame@BFMENetRequestFrameDataCommandMsg@@QAEXI@Z,,0x006742D0,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getRequestedPlayerID@BFMENetRequestFrameDataCommandMsg@@QAEHXZ,,0x006742F0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getRequestedFrame@BFMENetRequestFrameDataCommandMsg@@QAEIXZ,,0x00674300,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setFileID@NetFileProgressCommandMsg@@QAEXG@Z,,0x00674090,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setProgress@NetFileProgressCommandMsg@@QAEXH@Z,,0x006740B0,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?closeAllArchiveFiles@Win32BIGFileSystem@@UAEXXZ,,0x009CD780,261,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_closeAllArchiveFiles.cpp,matched,vtable 0x01143B40 slot 4 -- BFME-only body; ZH leaves this method empty
-??_GWin32LocalFileSystem@@UAEPAXI@Z,,0x009CDE30,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,slot 0 of vtable 0x01143B98 -- was falsely claimed at 0x005BF290 which destroys CategoryModuleTemplate
-??1Win32BIGFileSystem@@UAE@XZ,,0x009CC370,11,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_dtor.cpp,matched,installs vtable 0x01143B40 then tail-jumps to the matched ~ArchiveFileSystem at 0x009CA550
-??_GWin32BIGFileSystem@@UAEPAXI@Z,,0x009CC440,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_dtor.cpp,matched,slot 0 of vtable 0x01143B40; its call to the scalar dtor is a REL32 so the pair verifies itself
-?getText@NetDisconnectChatCommandMsg@@QAE?AV?$StringBase@G@@XZ,,0x006751E0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?getText@NetChatCommandMsg@@QAE?AV?$StringBase@G@@XZ,,0x00675310,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-??0BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAE@XZ,,0x006759B0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?getText1C@BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x006759F0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-??0BFMENetGameSpyStatsAuthKeyCommandMsg@@QAE@XZ,,0x00675BE0,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?getText1C@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675C20,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?getText20@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675CB0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?setText1C@BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675A20,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-??1BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@MAE@XZ,,0x00675B80,73,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?setText1C@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675C50,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?setText20@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675CE0,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
