@@ -1262,7 +1262,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BoxEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0002D402,0x005D5FC0,98,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??0BoxEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@XZ,0x00048A72,0x005D5F40,51,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0BoxLoaderClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,ICF alias of existing matched body
-??0BoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00956D30,262,Code/masm_dumps/_leaf___0BoxRenderObjClass__QAE_ABUW3dBoxStruc_956D30.asm,matched,Exact 262B present-unmatched leaf Open-BFME4
+??0BoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00956D30,262,Code/Libraries/Source/WWVegas/WW3D2/BoxRenderObjClassConstructorThunk.cpp,matched,Exact 262B C++ raw constructor thunk Open-BFME5
 ??0BoxRenderObjClass@@QAE@ABV0@@Z,,0x00957790,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0BoxRenderObjClass@@QAE@XZ,,0x00956C70,127,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0Bridge@@,,0x001A98A0,861,Code/masm_dumps/_sa___0Bridge___1A98A0.asm,matched,Exact 861B string-anchored Open-BFME4
