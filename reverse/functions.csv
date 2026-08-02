@@ -9628,7 +9628,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doSoundRemoveType@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002EFE90,21,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Audio vtable+0x48 removeAudioEvent(name 0)
 ?doSpecialPowerAtLocation@CashHackSpecialPower@@UAEXPBUCoord3D@@MI@Z,,0x006CF660,3,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CashHackSpecialPower.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
 ?doSpecialPowerAtObject@CashHackSpecialPower@@UAEXPAVObject@@I@Z,,0x00258800,439,Code/masm_dumps/CashHackSpecialPower_doSpecialPowerAtObject.asm,matched,Exact 439B @ 0x258800 MASM; true start was 0x258800 not queue 0x258809; GUI:AddCash+LoseCash identity; Object/Player/InGameUI layout blocks C++
-?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z,,0x001C3850,77,Code/masm_dumps/_rn5__doSpecialPowerUsingWaypoints_Object__QAEXPBVSpecialPowerTemplate__PBV_1C3850.asm,matched,reloc-needle Open-BFME4+Grok
 ?doSpeechPlay@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x006AF840,973,Code/masm_dumps/_sa3__doSpeechPlay_ScriptActions__IAEXABVAsciiString____6AF840.asm,matched,Exact 973B string-anchored Open-BFME4
 ?doStopCameraFollowUnit@ScriptActions@@IAEXXZ,,0x002EFAB0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x19c void stop-follow tail-call
 ?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F95A0,144,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamAttackNamed.asm,matched,exact 144B MASM; true body 0x2F95A0 (drift 0x3992C6 was mid logicMessageDispatcher)
@@ -11860,7 +11859,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isInRegionWithZ@Region3D@@QBE_NPBVCoord3D@@@Z,0x000427D0,0x007E6E40,92,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,checks point inside x/y/z bounds
 ?isInSection@SectionChecker@@QAE_NXZ,,0x006287C0,41,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,
 ?isInSinglePlayerGame@GameLogic@@QAE_NXZ,,0x00382B00,64,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
-?isInside@Object@@QBE_NPBVPolygonTrigger@@@Z,,0x001BEA90,65,Code/masm_dumps/_rn5__isInside_Object__QBE_NPBVPolygonTrigger___Z_1BEA90.asm,matched,reloc-needle Open-BFME4+Grok
 ?isInside@Region2D@@QBE_NABVCoord2D@@@Z,0x000457A5,0x0061BA90,66,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,checks point inside region
 ?isKindOfMulti@Thing@@QBE_NABV?$BitFlags@$0HE@@@0@Z,,0x00132B20,41,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail ThingTemplate kindof shim
 ?isLauncherRunning@CopyProtect@@SA_NXZ,,0x00102090,49,Code/GameEngine/Source/Common/System/CopyProtection.cpp,matched,
@@ -13930,3 +13928,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,MASM dump converted to clean C++; BFME GameSlot is 0x44 bytes and has an out-of-line destructor
 ?computeExtents@W3DDisplayString@@IAEXXZ,,0x006F5420,192,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,MASM dump converted to clean C++; DisplayString drops one base virtual and its dtor is out-of-line
 ?Grow_Unicode_Array@FontCharsClass@@AAEXG@Z,,0x0093D320,252,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,MASM dump converted to clean C++; BFME moves 0xC of the GDI-handle block past UnicodeCharArray and drops 0x10 from before ASCIICharArray
+?isInside@Object@@QBE_NPBVPolygonTrigger@@@Z,,0x001BEA90,65,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,MASM dump converted to clean C++; BFME relocates m_disabledMask to +0x1A4 and the trigger fields into the appended block
+?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z,,0x001C3850,77,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,MASM dump converted to clean C++; BFME relocates m_disabledMask to +0x1A4

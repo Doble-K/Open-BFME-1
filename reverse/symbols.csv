@@ -4076,3 +4076,4 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??4GameSlot@@QAEAAV0@ABV0@@Z,0x000126E8,setSlot call target (incremental-link thunk)
 ??1GameSlot@@QAE@XZ,0x0000B988,setSlot call target (incremental-link thunk)
 ??1DisplayString@@UAE@XZ,0x0000D823,W3DDisplayString dtor call target; same thunk as the MAE spelling (access level differs between our header and retail)
+?getSpecialPowerModule@Object@@QBEPAVSpecialPowerModuleInterface@@PBVSpecialPowerTemplate@@@Z,0x000401BF,doSpecialPowerUsingWaypoints call target (incremental-link thunk)
