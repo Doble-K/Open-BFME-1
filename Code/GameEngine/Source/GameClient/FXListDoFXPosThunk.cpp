@@ -7,13 +7,13 @@ protected:
 	void doFXPos(const Coord3D *, const Matrix3D *, float, const Coord3D *, float) const;
 };
 
-__declspec(naked) void FXList::doFXPos(const Coord3D *, const Matrix3D *, float, const Coord3D *, float) const
+class FXListDoFXPosShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 00Bh
-		_emit 084h
-		_emit 019h
-		_emit 000h
-	}
+public:
+	void run(const Coord3D *, const Matrix3D *, float, const Coord3D *, float) const;
+};
+
+void FXList::doFXPos(const Coord3D *pos, const Matrix3D *mtx, float scale, const Coord3D *dir, float speed) const
+{
+	((const FXListDoFXPosShim *)this)->run(pos, mtx, scale, dir, speed);
 }
