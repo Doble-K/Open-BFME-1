@@ -10048,7 +10048,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@AODHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00122FD0,116,Code/masm_dumps/AODHordeContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@ActiveBody@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F420,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
-?friend_newModuleData@AimWeaponBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001151B0,107,Code/masm_dumps/AimWeaponBehavior_friend_newModuleData.asm,matched,Retail registration dp016 proves AimWeaponBehavior data factory
+?friend_newModuleData@AimWeaponBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001151B0,107,Code/GameEngine/Source/GameLogic/Object/Weapon/AimWeaponBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@AnimalAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00116A10,155,Code/masm_dumps/AnimalAIUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x8D; Ghidra confirmed
 ?friend_newModuleData@AnimationSoundClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121DA0,107,Code/masm_dumps/AnimationSoundClientBehavior_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xF3 Ghidra confirmed
 ?friend_newModuleData@AnimationSteeringUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00114B50,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
