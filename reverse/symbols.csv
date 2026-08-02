@@ -3398,6 +3398,7 @@ name,address,notes
 ?run@DrawableClearAndSetModelConditionStateShim@@QAEXW4ModelConditionFlagType@@0@Z,0x00526660,Drawable clearAndSetModelConditionState incremental-link thunk target through a TU-local forwarding shim
 ?run@FXListAtBonePosDoFxAtBonesShim@@QBEXPBVObject@@H@Z,0x0042D8E0,FXListAtBonePosFXNugget doFxAtBones incremental-link thunk target through a TU-local forwarding shim
 ?run@FXListDoFXPosShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,0x001D6770,FXList doFXPos incremental-link thunk target through a TU-local forwarding shim
+?run@TeamFactoryClearShim@@QAEXXZ,0x000F6CA0,TeamFactory clear incremental-link thunk target through a TU-local forwarding shim
 ?run@WinInstanceDataInitShim@@QAEXXZ,0x00499850,WinInstanceData init incremental-link thunk target through a TU-local forwarding shim
 ?saveReplay@@YAXVUnicodeString@@@Z,0x004DE8E0,PopupReplaySystem callee from decode_calls
 ?scanIndexList@INI@@SAHPBDPBQBD@Z,0x008509E0
