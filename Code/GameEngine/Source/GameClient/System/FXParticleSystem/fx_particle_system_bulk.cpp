@@ -7938,66 +7938,20 @@ __declspec(naked) PointEmissionVolumeModuleTemplate *ConcreteModuleClass<PointEm
 }
 
 // ?createTemplate@?$ConcreteModuleClass@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@UBEPAVPointEmissionVolumeModuleTemplate@2@XZ
-__declspec(naked) PointEmissionVolumeModuleTemplate *ConcreteModuleClass<PointEmissionVolumeModuleTag>::createTemplate() const
+PointEmissionVolumeModuleTemplate *ConcreteModuleClass<PointEmissionVolumeModuleTag>::createTemplate() const
 {
-    __asm {
-        __emit 0x6a
-        __emit 0x10
-        __emit 0xe8
-        __emit 0x89
-        __emit 0x0a
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x27
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xac
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x80
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0xc6
-        __emit 0x40
-        __emit 0x0c
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x7c
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0x78
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x64
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc3
-        __emit 0x33
-        __emit 0xc0
-        __emit 0xc3
+    PointEmissionVolumeModuleTemplate *result =
+        (PointEmissionVolumeModuleTemplate *)::operator new(0x10);
+    if (result != 0) {
+        *(volatile unsigned int *)((unsigned char *)result + 4) = 0x0110f9ac;
+        *(volatile unsigned int *)((unsigned char *)result + 8) = 0x0110f980;
+        *((volatile unsigned char *)result + 0x0c) = 0;
+        *(volatile unsigned int *)result = 0x0111117c;
+        *(volatile unsigned int *)((unsigned char *)result + 4) = 0x01111178;
+        *(volatile unsigned int *)((unsigned char *)result + 8) = 0x01111164;
+        return result;
     }
+    return 0;
 }
 
 // ?getClass@?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@UBEABV?$ConcreteModuleClass@UPointEmissionVolumeModuleTag@FXParticleSystem@@@2@XZ
