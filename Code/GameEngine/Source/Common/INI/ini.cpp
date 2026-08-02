@@ -305,13 +305,15 @@ void INI::prepFile( AsciiString filename, INILoadType loadType )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?unPrepFile@INI@@IAEXXZ present-unmatched
-void INI::unPrepFile()
+// ?unPrepFile@INI@@IAEXXZ
+// BFME does not close a file here, because by this point there is not one open:
+// load reads the whole thing into m_lines up front (see readLine), so tearing
+// down means handing that array's storage back rather than closing a handle.
+// Zero Hour's m_file->close() / m_file = NULL and its m_readBuffer bookkeeping
+// are both absent from the 50 bytes at 0x00850E30.
+inline void INI::unPrepFile()
 {
-	// close the file
-	m_file->close();
-	m_file = NULL;
-  m_readBufferUsed=m_readBufferNext=0;
+	m_lines.clear();
 	m_filename = "None";
 	m_loadType = INI_LOAD_INVALID;
 	m_lineNum = 0;
@@ -379,20 +381,27 @@ void INI::parseLine( AsciiString filename )
 	}
 }
 
-// ?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z present-unmatched
+// ?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z
 // BFME's load is 0x00853A20, not the 0x00853610 the ledger used to point at --
 // that one is prepFile. The shape is also different from Zero Hour's: the
 // per-line work (strtok, findBlockParse, invoke) is factored out into the
 // 362-byte function at 0x00851350 rather than written inline here, and the
 // filename is passed down to it for the error message.
 //
-// 106 of 259 bytes. The content lines up instruction for instruction --
-// setFPMode, store the Xfer, construct the filename temporary, prepFile, the
-// loop, parseLine, the catch that unPrepFiles and rethrows. Two things differ.
-// Retail reserves eight more bytes of locals than we do, and it materialises
-// zero into ebx to serve both the EH state store and the m_endOfFile compare
-// where we use immediates and a byte test. That second one is the same MSVC
-// heuristic that keeps friend_parseRankDefinition apart, pointing the other way.
+// Two things about this one resisted for a while, and both turned out to be the
+// same fact rather than two MSVC register-allocation coin flips:
+//
+// Retail reserves eight more bytes of locals than a straight port does, and it
+// materialises zero into ebx to serve the EH state store and the m_endOfFile
+// compare where a straight port uses immediates and a byte test. The eight
+// bytes are the INIException that the second catch below builds. Once that
+// catch exists, the tail becomes cheap enough for MSVC to inline unPrepFile
+// into it -- and the inlined tail stores zero five more times, which is what
+// makes keeping zero in a register worth a register.
+//
+// So unPrepFile is marked inline. It still gets its own out-of-line body at
+// 0x00850E30, because the catch(...) funclet below calls it rather than
+// inlining it, which is exactly the pair retail has.
 void INI::load( AsciiString filename, INILoadType loadType, Xfer *pXfer )
 {
 	setFPMode(); // so we have consistent Real values for GameLogic -MDC
@@ -407,6 +416,14 @@ void INI::load( AsciiString filename, INILoadType loadType, Xfer *pXfer )
 			readLine();
 			parseLine( filename );
 		}
+	}
+	catch( INIException& e )
+	{
+		// Rebuilt rather than rethrown, and notably without unPrepFile: parseLine
+		// has already wrapped whatever the block parser threw into an INIException
+		// carrying the file and line, so this hop only has to keep it alive across
+		// the frame.
+		throw INIException( e.m_argCount, e.mFailureMessage );
 	}
 	catch (...)
 	{

@@ -2791,6 +2791,7 @@ name,address,notes
 ?clear@DrawableIconInfo@@QAEXXZ,0x00015479,pinharvest x1 (thunk)
 ?clear@DrawableIconInfo@@QAEXXZ,0x00037565,pinharvest x1 (thunk)
 ?clear@FXList@@QAEXXZ,0x00044297,derived-ICF
+?clear@INILineBuffer@@QAEXXZ,0x009CBF50,empties INI::m_lines and operator-deletes its storage; called by unPrepFile
 ?clear@RadiusDecal@@QAEXXZ,0x00026F35,pinharvest x3 (thunk)
 ?clear@RadiusDecal@@QAEXXZ,0x00046344,pinharvest x2 (thunk)
 ?clear@TeamFactory@@QAEXXZ,0x000284A7
@@ -3226,8 +3227,6 @@ name,address,notes
 ?killRunningParticleSystems@BoneFXUpdate@@IAEXXZ,0x0000628F
 ?killThemKillThemAll@SelectionTranslator@@AAE_NPAVDrawable@@PAVGameMessage@@@Z,0x00019F5B
 ?less@AsciiStringLessShim@@SA_NABVAsciiString@@0@Z,0x006451D0,AsciiString less-than incremental-link thunk target through a TU-local forwarding shim
-?test@BridgeCellOnEndShim@@QAE_NPBURegion2D@@@Z,0x001A24B0,Bridge cell-end incremental-link thunk target through a TU-local forwarding shim
-?test@BridgePointOnBridgeShim@@QAE_NPBUCoord3D@@@Z,0x001A5F40,Bridge point-on-bridge incremental-link thunk target through a TU-local forwarding shim
 ?linkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,0x0002B87D,winSetParent depth Open-BFME4+Grok
 ?load@INI@@QAEXVAsciiString@@HHPAX@Z,0x00853CB0,retail INI::load(file loadType reload xfer); called by the subsystem loader at 0x000BB310
 ?loadBridgesInVertexAndIndexBuffers@W3DBridgeBuffer@@IAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x000367EB
@@ -3490,6 +3489,8 @@ name,address,notes
 ?stopAllBoneFX@BoneFXUpdate@@QAEXXZ,0x0002728C
 ?storeImage@Anim2DTemplate@@QAEXPBVImage@@@Z,0x0001CF0D
 ?strtrim@@YAPADPAD@Z,0x009E7EB0
+?test@BridgeCellOnEndShim@@QAE_NPBURegion2D@@@Z,0x001A24B0,Bridge cell-end incremental-link thunk target through a TU-local forwarding shim
+?test@BridgePointOnBridgeShim@@QAE_NPBUCoord3D@@@Z,0x001A5F40,Bridge point-on-bridge incremental-link thunk target through a TU-local forwarding shim
 ?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,0x00019BCD,pinharvest x1 (thunk)
 ?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,0x0003A8D7,pinharvest x1 (thunk)
 ?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,0x007E9FC0,pinharvest x1 (body)

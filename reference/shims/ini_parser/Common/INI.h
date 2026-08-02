@@ -216,6 +216,11 @@ public:
 	const char *getText( Int index ) const;		// 0x009CBC60
 	Int getNumber( Int index ) const;			// 0x009CBC90
 
+	// 0x009CBF50. Empties the array and gives the storage back: it sets m_end
+	// to m_begin, then operator-deletes m_unknown4, which is what identifies
+	// that word as the owning allocation rather than another iterator.
+	void clear( void );
+
 	// Public because readLine subtracts them in line rather than going through
 	// count(), which is how retail reads them -- straight off the INI, with no
 	// address of the buffer taken.

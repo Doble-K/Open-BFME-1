@@ -11951,6 +11951,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?link_object@GridCullSystemClass@@IAEXPAVCullableClass@@H@Z,,0x008DDBE0,121,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?link_object_to_list@GridCullSystemClass@@IAEXPAPAVCullableClass@@PAV2@@Z,,0x008DD8D0,42,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?load@GameSpyLoginPreferences@@UAE_NVAsciiString@@@Z,,0x00082190,977,Code/masm_dumps/GameSpyLoginPreferences_load.asm,matched,Exact retail MASM; date nick and password key literals prove ownership
+?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z,,0x00853A20,259,Code/GameEngine/Source/Common/INI/ini.cpp,matched,the INI entry point; two catch handlers - the INIException one rebuilds and rethrows while the catch-all unPrepFiles - and the tail inlines unPrepFile which is what puts zero in ebx
 ?load@ImageCollection@@QAEXH@Z,,0x005D23A0,600,Code/masm_dumps/_sa11__load_ImageCollection__QAEXH_Z_5D23A0.asm,matched,string-anchor Open-BFME4+Grok Data\INI\MappedImages\TextureSize_%d
 ?load@W3DBridge@@QAE_NW4BodyDamageType@@@Z,,0x006D8C10,2836,Code/masm_dumps/_sa3__load_W3DBridge__QAE_NW4BodyDamageType___Z_6D8C10.asm,matched,true size 2836B; row claimed 2808B
 ?load@WaterRenderObjClass@@QAEXXZ,,0x0079F160,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
@@ -13414,6 +13415,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?tryUnderAttackEvent@Radar@@,,0x004271B0,373,Code/masm_dumps/_sa4__tryUnderAttackEvent_Radar___4271B0.asm,matched,Exact 373B Open-BFME4
 ?turnOffScreen@DisconnectManager@@IAEXH@Z,,0x00044AD0,5,Code/GameEngine/Source/GameNetwork/DisconnectManagerTurnOffScreenThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x66B270
 ?unAccept@GameSlot@@QAEXXZ,,0x0061EE60,11,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
+?unPrepFile@INI@@IAEXXZ,,0x00850E30,50,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME closes no file here - load preloads into m_lines so teardown frees that array instead; no m_readBuffer bookkeeping either
 ?unRegisterAnimation@Anim2DCollection@@QAEXPAVAnim2D@@@Z,,0x005BA480,53,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?unbindTrack@WaterTracksRenderSystem@@QAEXPAVWaterTracksObj@@@Z,,0x007AB940,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001019A,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ScriptEngine::undoNamedMapReveal
