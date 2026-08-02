@@ -2920,6 +2920,7 @@ name,address,notes
 ?createNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@0M0@Z,0x0002C8EA
 ?defineState@StateMachine@@IAEXIPAVState@@IIPBUStateConditionInfo@@@Z,0x000A2030,hand-decoded from DozerPrimaryStateMachine ctor @0x2B7870 (5 call sites, one per defineState() in the reference source, args match: stateID/state-ptr/successID/failureID/conditions-ptr); call site encodes thunk 0x3D1B3 (thunk_FUN_004a2030) -- pinned to the real body
 ?deleteAllFonts@FontLibrary@@IAEXXZ,0x000309CC,pinharvest x1 (thunk)
+?deleteAllFonts@FontLibraryDeleteAllFontsShim@@QAEXXZ,0x00722190,FontLibrary incremental-link thunk target through a TU-local forwarding shim
 ?deleteAllFonts@FontLibrary@@IAEXXZ,0x00033D9D,pinharvest x1 (thunk)
 ?deleteAllFonts@FontLibrary@@IAEXXZ,0x009CB880,pinharvest x1 (body)
 ?deleteAllFonts@FontLibrary@@IAEXXZ,0x009DB5A0,pinharvest x1 (body)

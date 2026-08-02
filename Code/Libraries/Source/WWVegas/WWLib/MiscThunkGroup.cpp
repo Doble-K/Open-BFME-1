@@ -39,6 +39,17 @@ public:
 	void loadTracks();
 };
 
+class FontLibraryDeleteAllFontsShim
+{
+public:
+	void deleteAllFonts();
+};
+
+void FontLibrary::deleteAllFonts()
+{
+	((FontLibraryDeleteAllFontsShim *)this)->deleteAllFonts();
+}
+
 void WaterTracksRenderSystem::loadTracks()
 {
 	((WaterTracksRenderSystemLoadTracksShim *)this)->loadTracks();
@@ -55,13 +66,3 @@ __declspec(naked) void TerrainLogic::addWaypointLink(int, int)
 	}
 }
 
-__declspec(naked) void FontLibrary::deleteAllFonts()
-{
-	__asm {
-		_emit 0E9h
-		_emit 0BFh
-		_emit 017h
-		_emit 06Fh
-		_emit 000h
-	}
-}
