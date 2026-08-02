@@ -56,157 +56,6 @@
 #include "Common/AsciiString.h"
 #include "Common/PerfTimer.h"
 
-#ifdef _INTERNAL
-// for occasional debugging...
-//#pragma optimize("", off)
-//#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
-#endif
-
-//----------------------------------------------------------------------------
-//         Externals                                                     
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-//         Defines                                                         
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-//         Private Types                                                     
-//----------------------------------------------------------------------------
-
-
-//----------------------------------------------------------------------------
-//         Private Data                                                     
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-//         Public Data                                                      
-//----------------------------------------------------------------------------
-
-ArchiveFileSystem *TheArchiveFileSystem = NULL;
-
-
-//----------------------------------------------------------------------------
-//         Private Prototypes                                               
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-//         Private Functions                                               
-//----------------------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------
-//         Public Functions                                                
-//----------------------------------------------------------------------------
-
-//------------------------------------------------------
-// ArchivedFileInfo
-//------------------------------------------------------
-// ??0ArchiveFileSystem@@ present-unmatched
-ArchiveFileSystem::ArchiveFileSystem() 
-{
-}
-
-// ??1ArchiveFileSystem@@ present-unmatched
-ArchiveFileSystem::~ArchiveFileSystem() 
-{
-	ArchiveFileMap::iterator iter = m_archiveFileMap.begin();
-	while (iter != m_archiveFileMap.end()) {
-		ArchiveFile *file = iter->second;
-		if (file != NULL) {
-			delete file;
-			file = NULL;
-		}
-		iter++;
-	}
-}
-
-// ?loadIntoDirectoryTree@ArchiveFileSystem@@ present-unmatched
-void ArchiveFileSystem::loadIntoDirectoryTree(const ArchiveFile *archiveFile, const AsciiString& archiveFilename, Bool overwrite)
-{
-
-	FilenameList filenameList;
-
-	archiveFile->getFileListInDirectory(AsciiString(""), AsciiString(""), AsciiString("*"), filenameList, TRUE);
-
-	FilenameListIter it = filenameList.begin();
-
-	while (it != filenameList.end()) {
-		// add this filename to the directory tree.
-		AsciiString path = *it;
-		path.toLower();
-		AsciiString token;
-		AsciiString debugpath;
-
-		ArchivedDirectoryInfo *dirInfo = &m_rootDirectory;
-
-		Bool infoInPath;
-		infoInPath = path.nextToken(&token, "\\/");
-
-		while (infoInPath && (!token.find('.') || path.find('.'))) {
-			ArchivedDirectoryInfoMap::iterator tempiter = dirInfo->m_directories.find(token);
-			if (tempiter == dirInfo->m_directories.end()) 
-			{
-				dirInfo->m_directories[token].clear();
-				dirInfo->m_directories[token].m_directoryName = token;
-			}
-
-			dirInfo = &(dirInfo->m_directories[token]);
-			debugpath.concat(token);
-			debugpath.concat('\\');
-			infoInPath = path.nextToken(&token, "\\/");
-		}
-
-		// token is the filename, and dirInfo is the directory that this file is in.
-		if (dirInfo->m_files.find(token) == dirInfo->m_files.end() || overwrite) {
-			AsciiString path2;
-			path2 = debugpath;
-			path2.concat(token);
-//			DEBUG_LOG(("ArchiveFileSystem::loadIntoDirectoryTree - adding file %s, archived in %s\n", path2.str(), archiveFilename.str()));
-			dirInfo->m_files[token] = archiveFilename;
-		}
-
-		it++;
-	}
-}
-
-// ?loadMods@ArchiveFileSystem@@ present-unmatched
-void ArchiveFileSystem::loadMods() {
-	if (TheGlobalData->m_modBIG.isNotEmpty())
-	{
-		ArchiveFile *archiveFile = openArchiveFile(TheGlobalData->m_modBIG.str());
-
-		if (archiveFile != NULL) {
-			DEBUG_LOG(("ArchiveFileSystem::loadMods - loading %s into the directory tree.\n", TheGlobalData->m_modBIG.str()));
-			loadIntoDirectoryTree(archiveFile, TheGlobalData->m_modBIG, TRUE);
-			m_archiveFileMap[TheGlobalData->m_modBIG] = archiveFile;
-			DEBUG_LOG(("ArchiveFileSystem::loadMods - %s inserted into the archive file map.\n", TheGlobalData->m_modBIG.str()));
-		}
-		else
-		{
-			DEBUG_LOG(("ArchiveFileSystem::loadMods - could not openArchiveFile(%s)\n", TheGlobalData->m_modBIG.str()));
-		}
-	}
-
-	if (TheGlobalData->m_modDir.isNotEmpty())
-	{
-#ifdef DEBUG_LOGGING
-		Bool ret =
-#endif
-		loadBigFilesFromDirectory(TheGlobalData->m_modDir, "*.big", TRUE);
-		DEBUG_ASSERTLOG(ret, ("loadBigFilesFromDirectory(%s) returned FALSE!\n", TheGlobalData->m_modDir.str()));
-	}
-}
-
 // Retail's one-argument concats are inline wrappers over the two-argument
 // StringBase body at 0x00887D60: concat(token) passes the token's characters and
 // its 16-bit length, concat(BACKSLASH) passes a one-byte stack buffer and 1. The
@@ -294,6 +143,188 @@ static inline Int bfmeLength( const AsciiString &s )
 	const char *d = *(const char * const *)&s;
 	return d ? *(const unsigned short *)(d + 4) : 0;
 }
+
+
+#ifdef _INTERNAL
+// for occasional debugging...
+//#pragma optimize("", off)
+//#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
+#endif
+
+//----------------------------------------------------------------------------
+//         Externals                                                     
+//----------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------
+//         Defines                                                         
+//----------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------
+//         Private Types                                                     
+//----------------------------------------------------------------------------
+
+
+//----------------------------------------------------------------------------
+//         Private Data                                                     
+//----------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------
+//         Public Data                                                      
+//----------------------------------------------------------------------------
+
+ArchiveFileSystem *TheArchiveFileSystem = NULL;
+
+
+//----------------------------------------------------------------------------
+//         Private Prototypes                                               
+//----------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------
+//         Private Functions                                               
+//----------------------------------------------------------------------------
+
+
+
+//----------------------------------------------------------------------------
+//         Public Functions                                                
+//----------------------------------------------------------------------------
+
+//------------------------------------------------------
+// ArchivedFileInfo
+//------------------------------------------------------
+// ??0ArchiveFileSystem@@ present-unmatched
+ArchiveFileSystem::ArchiveFileSystem() 
+{
+}
+
+// ??1ArchiveFileSystem@@ present-unmatched
+ArchiveFileSystem::~ArchiveFileSystem() 
+{
+	ArchiveFileMap::iterator iter = m_archiveFileMap.begin();
+	while (iter != m_archiveFileMap.end()) {
+		ArchiveFile *file = iter->second;
+		if (file != NULL) {
+			delete file;
+			file = NULL;
+		}
+		iter++;
+	}
+}
+
+// ?loadIntoDirectoryTree@ArchiveFileSystem@@MAEXPBVArchiveFile@@ABVAsciiString@@_N@Z present-unmatched
+// Retail 0x009CACF0, 898 bytes -- vtable slot 10 of 0x01143A08. The slot is
+// settled by elimination: Zero Hour declares exactly three non-pure virtuals on
+// this class (openFile, doesFileExist, loadIntoDirectoryTree), the binary has
+// four real slots, and the extra one is BFME's wide openFile at slot 6. Slots 5
+// and 8 are the two already matched, in the same relative order, so 10 is this.
+// Note the access specifier: the object emits MAE (protected virtual), not UAE.
+//
+// The body is the reference's, with the find/concat helpers above substituted.
+// What it still needs is four callee names, and they are worth getting right
+// rather than fast, because a wrong one is a claim the byte comparison cannot
+// contradict -- build.py resolves these by name and fills the displacement in
+// from the target either way:
+//
+//   ?getFileListInDirectory@ArchiveFile@@   0x009D0820 is almost certainly it:
+//                                           the only call between the three
+//                                           AsciiString ctors and their three
+//                                           releaseBuffers.
+//   ??A?$map@VAsciiString@@VArchivedDirectoryInfo@@...  0x009CAB10, reached
+//                                           three times, matching the three
+//                                           m_directories[token] subscripts.
+//   ?_M_erase@?$_Rb_tree@VAsciiString@@U?$pair@...      0x009CAAD0 or 0x0007D250
+//                                           -- both are 61 bytes, so position
+//                                           alone does not separate them.
+//   ??1?$_Rb_tree@VAsciiString@@V1@U?$_Identity@...     the filenameList
+//                                           destructor, the last call in the
+//                                           body at 0x009CB059 through a thunk.
+//
+// tools/locate.py cannot place this one to settle them automatically: with four
+// call sites masked the remaining relocation-free run is not unique.
+void ArchiveFileSystem::loadIntoDirectoryTree(const ArchiveFile *archiveFile, const AsciiString& archiveFilename, Bool overwrite)
+{
+
+	FilenameList filenameList;
+
+	archiveFile->getFileListInDirectory(AsciiString(""), AsciiString(""), AsciiString("*"), filenameList, TRUE);
+
+	FilenameListIter it = filenameList.begin();
+
+	while (it != filenameList.end()) {
+		// add this filename to the directory tree.
+		AsciiString path = *it;
+		path.toLower();
+		AsciiString token;
+		AsciiString debugpath;
+
+		ArchivedDirectoryInfo *dirInfo = &m_rootDirectory;
+
+		Bool infoInPath;
+		infoInPath = path.nextToken(&token, "\\/");
+
+		while (infoInPath && (!bfmeFind(token, '.') || bfmeFind(path, '.'))) {
+			ArchivedDirectoryInfoMap::iterator tempiter = dirInfo->m_directories.find(token);
+			if (tempiter == dirInfo->m_directories.end()) 
+			{
+				dirInfo->m_directories[token].clear();
+				dirInfo->m_directories[token].m_directoryName = token;
+			}
+
+			dirInfo = &(dirInfo->m_directories[token]);
+			bfmeConcat(debugpath, token);
+			bfmeConcat(debugpath, '\\');
+			infoInPath = path.nextToken(&token, "\\/");
+		}
+
+		// token is the filename, and dirInfo is the directory that this file is in.
+		if (dirInfo->m_files.find(token) == dirInfo->m_files.end() || overwrite) {
+			AsciiString path2;
+			path2 = debugpath;
+			bfmeConcat(path2, token);
+//			DEBUG_LOG(("ArchiveFileSystem::loadIntoDirectoryTree - adding file %s, archived in %s\n", path2.str(), archiveFilename.str()));
+			dirInfo->m_files[token] = archiveFilename;
+		}
+
+		it++;
+	}
+}
+
+// ?loadMods@ArchiveFileSystem@@ present-unmatched
+void ArchiveFileSystem::loadMods() {
+	if (TheGlobalData->m_modBIG.isNotEmpty())
+	{
+		ArchiveFile *archiveFile = openArchiveFile(TheGlobalData->m_modBIG.str());
+
+		if (archiveFile != NULL) {
+			DEBUG_LOG(("ArchiveFileSystem::loadMods - loading %s into the directory tree.\n", TheGlobalData->m_modBIG.str()));
+			loadIntoDirectoryTree(archiveFile, TheGlobalData->m_modBIG, TRUE);
+			m_archiveFileMap[TheGlobalData->m_modBIG] = archiveFile;
+			DEBUG_LOG(("ArchiveFileSystem::loadMods - %s inserted into the archive file map.\n", TheGlobalData->m_modBIG.str()));
+		}
+		else
+		{
+			DEBUG_LOG(("ArchiveFileSystem::loadMods - could not openArchiveFile(%s)\n", TheGlobalData->m_modBIG.str()));
+		}
+	}
+
+	if (TheGlobalData->m_modDir.isNotEmpty())
+	{
+#ifdef DEBUG_LOGGING
+		Bool ret =
+#endif
+		loadBigFilesFromDirectory(TheGlobalData->m_modDir, "*.big", TRUE);
+		DEBUG_ASSERTLOG(ret, ("loadBigFilesFromDirectory(%s) returned FALSE!\n", TheGlobalData->m_modDir.str()));
+	}
+}
+
 
 // ?openFile@ArchiveFileSystem@@UAEPAVFile@@PBDH@Z
 // Vtable slot 5 of 0x01143A08, which FileSystem::openFile reaches through
