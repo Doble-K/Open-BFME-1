@@ -10045,7 +10045,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z,,0x000E7240,85,Code/masm_dumps/Science_ScienceStore_friend_lookupScience.asm,matched,
 ?friend_makeVeterancyUpgrade@UpgradeTemplate@@QAEXW4VeterancyLevel@@@Z,,0x0010B010,156,Code/GameEngine/Source/Common/System/Upgrade_friend_makeVeterancyUpgrade.asm,matched,exact 156B MASM; true start 0x10B010 via getVetUpgradeName caller (queue 0x79CE61 was SEH epilogue+int3)
 ?friend_newModuleData@AIUpdateInterface@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@PropagandaTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z
-?friend_newModuleData@AODHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00122FD0,116,Code/masm_dumps/AODHordeContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
+?friend_newModuleData@AODHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00122FD0,116,Code/GameEngine/Source/GameLogic/AI/AODHordeContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@ActiveBody@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F420,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
 ?friend_newModuleData@AimWeaponBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001151B0,107,Code/GameEngine/Source/GameLogic/Object/Weapon/AimWeaponBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
