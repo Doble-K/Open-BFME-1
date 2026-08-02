@@ -6,13 +6,13 @@ public:
     bool queueSend(unsigned int ip, unsigned short port, const unsigned char *data, int length);
 };
 
-__declspec(naked) bool Transport::queueSend(unsigned int, unsigned short, const unsigned char *, int)
+class TransportQueueSendShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0ABh
-        _emit 098h
-        _emit 063h
-        _emit 000h
-    }
+public:
+    bool queue(unsigned int ip, unsigned short port, const unsigned char *data, int length);
+};
+
+bool Transport::queueSend(unsigned int ip, unsigned short port, const unsigned char *data, int length)
+{
+    return ((TransportQueueSendShim *)this)->queue(ip, port, data, length);
 }
