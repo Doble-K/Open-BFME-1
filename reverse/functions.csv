@@ -2850,7 +2850,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1GameStateMap@@,,0x00112BF0,343,Code/masm_dumps/_sa9___1GameStateMap___112BF0.asm,matched,Exact 343B Open-BFME4
 ??1GameTextInterface@@UAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,object-symbol=??1SubsystemInterface@@UAE@XZ;ICF alias converted to existing clean C++ body
 ??1GameWindow@@MAE@XZ,,0x00479CD0,203,Code/masm_dumps/GameWindow_destructor.asm,matched,Certified complete destructor via vtable wrapper constructor ownership and ret boundary
-??1GameWindowManager@@UAE@XZ,,0x00483810,156,Code/masm_dumps/_rn5___1GameWindowManager__UAE_XZ_483810.asm,matched,reloc-needle Open-BFME4+Grok
 ??1GarrisonContain@@UAE@XZ,,0x0021D9C0,151,Code/masm_dumps/GarrisonContain_destructor.asm,matched,Exact 151B @ 0x0021D9C0; Exact retail MASM; instance factory->vtable dtor; del 0x21E310 ctor 0x21D820 vt 0xCAB818
 ??1GarrisonContainModuleData@@UAE@XZ,,0x002469D0,1501,Code/masm_dumps/GarrisonContainModuleData_destructor.asm,matched,Exact 1501B @ 0x002469D0; Exact retail MASM; factory->vtable dtor; del 0x22FF60 ctor 0x22F7E0 vt 0xCADE98
 ??1GateOpenAndCloseBehaviorModuleData@@UAE@XZ,,0x001FCB50,245,Code/masm_dumps/GateOpenAndCloseBehaviorModuleData_destructor.asm,matched,Exact 245B SEH dtor Open-BFME4
@@ -11963,7 +11962,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?lengthSqr@Coord3D@@QBEMXZ,0x00020662,0x0014FF10,31,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,returns squared x/y/z length
 ?linkFont@FontLibrary@@IAEXPAVGameFont@@@Z,,0x00472500,23,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
 ?linkScreen@Shell@@IAEXPAVWindowLayout@@@Z,,0x0057F290,26,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
-?linkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,,0x0047C340,166,Code/masm_dumps/_rn5__linkWindow_GameWindowManager__QAEXPAVGameWindow___Z_47C340.asm,matched,reloc-needle Open-BFME4+Grok
 ?link_object@GridCullSystemClass@@IAEXPAVCullableClass@@@Z,,0x008DECE0,189,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?link_object@GridCullSystemClass@@IAEXPAVCullableClass@@H@Z,,0x008DDBE0,121,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?link_object_to_list@GridCullSystemClass@@IAEXPAPAVCullableClass@@PAV2@@Z,,0x008DD8D0,42,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
@@ -13930,3 +13928,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getResponse@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyResponse@@@Z,,0x0063C840,167,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,MASM dump converted to clean C++; BFME BuddyRequest is 0x2B8 and BuddyResponse 0x864 (reference/shims/buddythread tail pads)
 ?addRequest@GameSpyBuddyMessageQueue@@UAEXABVBuddyRequest@@@Z,,0x0063E2B0,185,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,MASM dump converted to clean C++; BFME BuddyRequest is 0x2B8 and BuddyResponse 0x864 (reference/shims/buddythread tail pads)
 ?addResponse@GameSpyBuddyMessageQueue@@UAEXABVBuddyResponse@@@Z,,0x0063E3A0,185,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,MASM dump converted to clean C++; BFME BuddyRequest is 0x2B8 and BuddyResponse 0x864 (reference/shims/buddythread tail pads)
+?linkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,,0x0047C340,166,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME sibling-list pointers sit 0x10 later in GameWindow (reference/shims/gamewindowlist)
+??1GameWindowManager@@UAE@XZ,,0x00483810,156,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME sibling-list pointers sit 0x10 later in GameWindow (reference/shims/gamewindowlist)
