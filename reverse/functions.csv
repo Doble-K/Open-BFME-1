@@ -8881,7 +8881,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?applyDamageScalar@BodyModule@@UAEXM@Z,,0x0020DC50,13,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,
 ?applyDisconnectVote@DisconnectManager@@IAEXHIHPAVConnectionManager@@@Z,,0x0066B910,82,Code/masm_dumps/DisconnectManager_applyDisconnectVote_66B910.asm,matched,certified-packet-247 db-only retail SHA256-da48af2da8626018a206e3f969a696a6875e9c0a6e9f871544abfb3e16bce1c5
 ?applyTopplingForce@ToppleUpdate@@QAEXPBUCoord3D@@MI@Z,,0x0003FC97,5,Code/GameEngine/Source/Common/RTS/ToppleUpdateApplyTopplingForceThunk.cpp,matched,5-byte incremental-link ToppleUpdate member thunk converted to focused C++ source
-?areAllies@@YA_NPBVPlayer@@0@Z,,0x0035F150,53,Code/masm_dumps/_rn7__areAllies__YA_NPBVPlayer__0_Z_35F150.asm,matched,reloc-needle Open-BFME4+Grok
+?areAllies@@YA_NPBVPlayer@@0@Z,,0x0035F150,53,Code/GameEngine/Source/GameLogic/ScriptEngine/AreAlliesThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 53-byte retail helper
 ?areFrameCommandsComplete@BFMEConnectionManager@@QAE_NI_N@Z,,0x006633E0,89,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?areGameResultsBeingSent@GameResultsQueue@@UAE_NXZ,,0x0063FD50,118,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ?arePingsInProgress@Pinger@@UAE_NXZ,,0x0065E550,18,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
