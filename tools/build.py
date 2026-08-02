@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import concurrent.futures
 import csv
+import functools
 import hashlib
 import json
 import os
@@ -127,9 +128,22 @@ def rva_to_file_offset(sections, rva):
     raise ValueError(f"RVA 0x{rva:08X} is outside all PE sections")
 
 
-def read_target_bytes(rva, size):
+@functools.lru_cache(maxsize=1)
+def exe_image():
+    """The retail image and its section table, read once per process.
+
+    The baseline is md5-verified and never rewritten during a run, so this is the
+    same bytes every call. It used to be re-read per call: next_work.py asks for
+    4,008 candidate bodies and spent 13 of its 14 seconds re-reading the same
+    13 MB file and re-parsing the same section table.
+    """
     data = EXE.read_bytes()
-    offset = rva_to_file_offset(pe_sections(data), rva)
+    return data, pe_sections(data)
+
+
+def read_target_bytes(rva, size):
+    data, sections = exe_image()
+    offset = rva_to_file_offset(sections, rva)
     return data[offset : offset + size]
 
 
