@@ -2778,6 +2778,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AnimationSoundClientBehavior@@UAE@XZ,,0x00604B40,103,Code/masm_dumps/AnimationSoundClientBehavior_destructor.asm,matched,Exact 103B @ 0x00604B40; Exact retail MASM; instance factory->vtable dtor; del 0x604E60 ctor 0x605380 vt 0xD155A0
 ??1AnimationSoundClientBehaviorModuleData@@UAE@XZ,,0x00606120,67,Code/masm_dumps/AnimationSoundClientBehaviorModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
 ??1AnimationSteeringUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/masm_dumps/AnimationSteeringUpdateModuleData_destructor.asm,matched,Exact 108B SEH dtor Open-BFME4
+??1ArchiveFile@@UAE@XZ,,0x009D0BD0,94,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes m_file through File slot 2 then destroys m_rootDirectory at this+8
 ??1ArchiveFileSystem@@UAE@XZ,,0x009CA550,140,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08; reached as the scalar dtor from slot 0 at 0x009CAA50
 ??1ArrowStormUpdate@@UAE@XZ,,0x00257940,106,Code/masm_dumps/ArrowStormUpdate_destructor.asm,matched,Exact 106B @ 0x00257940; Exact retail MASM; instance factory->vtable dtor; del 0x257C70 ctor 0x2576E0 vt 0xCB37C0
 ??1ArrowStormUpdateModuleData@@UAE@XZ,,0x00257650,79,Code/masm_dumps/ArrowStormUpdateModuleData_destructor.asm,matched,Exact 79B SEH dtor factory->vtable Open-BFME4
@@ -3032,6 +3033,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MaterialCollectorClass@@QAE@XZ,,0x00C5C6A8,21,Code/Libraries/Source/WWVegas/WW3D2/MaterialCollectorClassDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1MaterialCollectorClass@@QAE@XZ
 ??1MaxHealthUpgradeModuleData@@UAE@XZ,,0x002D65F0,67,Code/masm_dumps/MaxHealthUpgradeModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
 ??1MemLogClass@@QAE@XZ,,0x00AFF270,82,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
+??1MemoryWriteFile@@UAE@XZ,,0x009CB590,94,Code/GameEngine/Source/Common/System/File.cpp,matched,body is one delete -- the rest is the vptr store of 0x01143AA8 then m_pendingName releaseBuffer then ~File
 ??1MeshLoadContextClass@@AAE@XZ,,0x0096FD30,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??1MessageStream@@UAE@XZ,,0x0008AD50,116,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??1MetaEventTranslator@@UAE@XZ,,0x005B6A70,7,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
@@ -3298,6 +3300,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00072A40,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
 ??1Win32BIGFile@@UAE@XZ,,0x009D1500,95,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
 ??1Win32BIGFileSystem@@UAE@XZ,,0x009CC370,11,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_dtor.cpp,matched,installs vtable 0x01143B40 then tail-jumps to the matched ~ArchiveFileSystem at 0x009CA550
+??1Win32LocalFileSystem@@UAE@XZ,,0x009CDE20,7,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,empty body -- the seven bytes are the inlined ~LocalFileSystem installing the base vtable 0x01143B78
 ??1WindModuleInfo@FXParticleSystem@@UAE@XZ,0x0001B31F,0x005BD960,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1WindowLayout@@UAE@XZ,,0x00497CC0,14,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,virtual dtor; tail-jmps member string dtor
 ??1WindowVideo@@QAE@XZ,,0x000253E7,5,Code/GameEngine/Source/GameClient/WindowVideoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
@@ -5201,6 +5204,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAEPAXI@Z,,0x005D7450,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??_GSpyVisionUpdateModuleData@@UAEPAXI@Z,,0x00378070,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??_GSquad@@MAEPAXI@Z,,0x000D4060,30,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
+??_GStateMachine@@MAEPAXI@Z,,0x000A1CC0,30,Code/GameEngine/Source/Common/StateMachine.cpp,matched,
 ??_GStatusBitsUpgrade@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStatusBitsUpgradeModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStealthDetectorUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -9027,6 +9031,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?atan2@@YAMMM@Z,,0x001486F0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?atan@@YAMM@Z,,0x0045B6F0,9,Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp,matched,icf-owner=_atanf
 ?attach@NetCommandMsg@@QAEXXZ,,0x00673600,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?attachFile@ArchiveFile@@QAEXPAVFile@@@Z,,0x009CE560,44,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes any previous file through File slot 2 then stores the new one
 ?attachPlayersFromGameInfo@BFMEConnectionManager@@QAEXPAX@Z,,0x00666610,597,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?attachToDrawable@ParticleSystem@@QAEXPBVDrawable@@@Z,,0x005BE130,40,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?attachTranslator@MessageStream@@QAEIPAVGameMessageTranslator@@I@Z,,0x0008A7B0,184,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
@@ -14237,7 +14242,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??1Win32LocalFileSystem@@UAE@XZ,,0x009CDE20,7,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,empty body -- the seven bytes are the inlined ~LocalFileSystem installing the base vtable 0x01143B78
-??1MemoryWriteFile@@UAE@XZ,,0x009CB590,94,Code/GameEngine/Source/Common/System/File.cpp,matched,body is one delete -- the rest is the vptr store of 0x01143AA8 then m_pendingName releaseBuffer then ~File
-?attachFile@ArchiveFile@@QAEXPAVFile@@@Z,,0x009CE560,44,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes any previous file through File slot 2 then stores the new one
-??1ArchiveFile@@UAE@XZ,,0x009D0BD0,94,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes m_file through File slot 2 then destroys m_rootDirectory at this+8
