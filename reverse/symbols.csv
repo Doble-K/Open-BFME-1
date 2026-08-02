@@ -3113,6 +3113,7 @@ name,address,notes
 ?findTemplate@BFMEThingFactory@@QAEPBVThingTemplate@@ABVAsciiString@@@Z,0x00028560,INI retail ThingFactory facade
 ?findTerrain@TerrainTypeCollection@@QAEPAVTerrainType@@VAsciiString@@@Z,0x0000DBD9,first of the find-then-create pair in the Terrain block parser; the second call on the same receiver is the already-matched newTerrain and ZH declares findTerrain immediately above it with the same signature
 ?findUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@ABVAsciiString@@@Z,0x0002F95A
+?finish@SidesInfoSegmentShim@@QAEXPAX0@Z,0x00024C17,SidesInfo clear tail helper shim
 ?finishConstruct@BFMENetworkQueue1@@QAEXPAX@Z,0x0002E91F,native BFME queue-1 constructor helper ILT
 ?finishConstruct@BFMENetworkQueue@@QAEXPAX@Z,0x000109D3,native BFME queue-0 constructor helper ILT
 ?format_va@AsciiString@@QAEXPBDPAD@Z,0x00888060,pinharvest x1 (body)
@@ -3416,6 +3417,13 @@ name,address,notes
 ?loadFile@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z,0x00853A20,provisional name for the 3-arg INI entry point the legend path calls; distinct from INI::load at 0x00853610
 ?loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,0x000346DF
 ?loadFloat4PtSection@W3DRoadBufferLoadFloat4PtSectionShim@@QAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,0x00708320,W3DRoadBuffer incremental-link thunk target through a TU-local forwarding shim
+?loadRoadsHelper0@W3DRoadBuffer@@QAEXXZ,0x000336F9,W3DRoadBuffer loadRoads guarded helper shim
+?loadRoadsHelper1@W3DRoadBuffer@@QAEXXZ,0x0002001D,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper2@W3DRoadBuffer@@QAEXXZ,0x00010B5E,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper3@W3DRoadBuffer@@SAXXZ,0x00023DD0,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper4@W3DRoadBuffer@@QAEXXZ,0x000411DC,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper5@W3DRoadBuffer@@QAEXXZ,0x0001BA9A,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper6@W3DRoadBuffer@@QAEXXZ,0x00013552,W3DRoadBuffer loadRoads helper shim
 ?loadStandardMaps@MapCache@@AAEXXZ,0x000359DB
 ?loadTracks@WaterTracksRenderSystem@@QAEXXZ,0x0004584F
 ?loadTracks@WaterTracksRenderSystemLoadTracksShim@@QAEXXZ,0x007AC7E0,WaterTracksRenderSystem incremental-link thunk target through a TU-local forwarding shim
@@ -3550,15 +3558,6 @@ name,address,notes
 ?release@DictReleaseDataShim@@QAEXXZ,0x000681C0,Dict releaseData incremental-link thunk target through a TU-local forwarding shim
 ?release@DistLODClassFreeShim@@QAEXXZ,0x00725B70,DistLODClass incremental-link Free target through a TU-local layout shim
 ?release@W3DShadowContainerShim@@QAEXXZ,0x0001E344,W3DProjectedShadowManager ReleaseResources container helper shim
-?loadRoadsHelper0@W3DRoadBuffer@@QAEXXZ,0x000336F9,W3DRoadBuffer loadRoads guarded helper shim
-?loadRoadsHelper1@W3DRoadBuffer@@QAEXXZ,0x0002001D,W3DRoadBuffer loadRoads helper shim
-?loadRoadsHelper2@W3DRoadBuffer@@QAEXXZ,0x00010B5E,W3DRoadBuffer loadRoads helper shim
-?loadRoadsHelper3@W3DRoadBuffer@@SAXXZ,0x00023DD0,W3DRoadBuffer loadRoads helper shim
-?loadRoadsHelper4@W3DRoadBuffer@@QAEXXZ,0x000411DC,W3DRoadBuffer loadRoads helper shim
-?loadRoadsHelper5@W3DRoadBuffer@@QAEXXZ,0x0001BA9A,W3DRoadBuffer loadRoads helper shim
-?loadRoadsHelper6@W3DRoadBuffer@@QAEXXZ,0x00013552,W3DRoadBuffer loadRoads helper shim
-?reset@SidesInfoSegmentShim@@QAEXXZ,0x00033F46,SidesInfo clear first segment helper shim
-?finish@SidesInfoSegmentShim@@QAEXPAX0@Z,0x00024C17,SidesInfo clear tail helper shim
 ?releaseBuffer@AsciiString@@IAEXXZ,0x00887940,Ghidra GrabWindowInfo direct callee
 ?releaseBuffer@BFMERetailAsciiString@@AAEXXZ,0x00887940
 ?releaseBuffer@UnicodeString@@IAEXXZ,0x0000D828,site-decoded x9 (thunk)
@@ -3598,6 +3597,7 @@ name,address,notes
 ?reset@NetCommandList@@QAEXXZ,0x0000B9CE,ILT thunk retail call sites use; real body 0x6731A0
 ?reset@NetCommandList@@QAEXXZ,0x00015479,pinharvest x1 (thunk)
 ?reset@NetCommandList@@QAEXXZ,0x00037565,pinharvest x1 (thunk)
+?reset@SidesInfoSegmentShim@@QAEXXZ,0x00033F46,SidesInfo clear first segment helper shim
 ?resetShader@W3DShaderManager@@SAXW4ShaderTypes@1@@Z,0x00014367,pinharvest x1 (thunk)
 ?resetToRestPosition@AnimateWindowManager@@QAEXXZ,0x00038F7D,ILT thunk -> 0x45D520; retail call sites use the thunk
 ?resize@?$hashtable@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@W4NameKeyType@@U?$hash@W4NameKeyType@@@rts@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@U?$equal_to@W4NameKeyType@@@5@V?$allocator@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@@_STL@@QAEXI@Z,0x0008FB70,NameKeyGenerator aux hash_map hashtable<>::resize() proven via nameToKey(const char*) insert call site
