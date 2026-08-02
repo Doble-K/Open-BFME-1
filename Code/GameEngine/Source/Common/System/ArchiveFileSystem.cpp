@@ -207,6 +207,30 @@ void ArchiveFileSystem::loadMods() {
 	}
 }
 
+// Retail's one-argument concats are inline wrappers over the two-argument
+// StringBase body at 0x00887D60: concat(token) passes the token's characters and
+// its 16-bit length, concat(BACKSLASH) passes a one-byte stack buffer and 1. The
+// reference header instead inlines concat down to ensureUniqueBufferOfSize, so
+// the wrappers are written out here. Declaring StringBase rather than inventing a
+// name is what makes the call mangle to the body the ledger already claims.
+template <class T> class StringBase
+{
+public:
+	void concat( const T *s, int len );
+};
+
+static inline void bfmeConcat( AsciiString &s, const AsciiString &t )
+{
+	const char *d = *(const char * const *)&t;
+	((StringBase<char> *)&s)->concat( d ? d + 8 : "",
+	                                  d ? *(const unsigned short *)(d + 4) : 0 );
+}
+
+static inline void bfmeConcat( AsciiString &s, char c )
+{
+	((StringBase<char> *)&s)->concat( &c, 1 );
+}
+
 // BFME's find(char) scans str() to str()+length rather than calling strchr, so
 // it reads the same 16-bit header field bfmeLength does. On a null buffer it
 // uses the shared empty string and a zero length, which makes the range empty
@@ -338,28 +362,19 @@ Bool ArchiveFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileI
 	}
 }
 
-// ?getArchiveFilenameForFile@ArchiveFileSystem@@ present-unmatched
-// Retail is 0x009CA2A0, 411 bytes. That address is not a guess: it is the only
-// callee of ArchiveFileSystem::openFile at 0x009CA62B, and openFile byte-matches
-// retail. With the find(char) helper above in place, the prologue and the whole
-// loop head already match. What is left is the two concat calls on debugpath.
+// ?getArchiveFilenameForFile@ArchiveFileSystem@@QBE?AVAsciiString@@ABV2@@Z
+// Retail 0x009CA2A0, 411 bytes. The address was settled before the body was:
+// it is the only callee of ArchiveFileSystem::openFile at 0x009CA62B, and that
+// caller byte-matches.
 //
-// Retail does not call AsciiString::concat for either of them. Both
-// debugpath.concat(token) and debugpath.concat(BACKSLASH) compile to a call to the
-// same body, 0x00887D60, which is ?concat@?$StringBase@D@@QAEXPBDH@Z -- the
-// two-argument (pointer, length) form. The char case pushes 1 as the length and
-// the address of a stack byte holding 0x5C; the string case pushes the token's
-// characters and its 16-bit length. So the one-argument concats are inline
-// wrappers over the two-argument body, the same way the string ctor is a thin
-// out-of-line call and getLength is a field read.
-//
-// The reference header instead inlines concat down to ensureUniqueBufferOfSize,
-// which is why this still differs. Un-inlining concat in the shim is the WRONG
-// fix and was tried: it emits a direct call to ?concat@AsciiString@@, which
-// resolves to the same address and so looks close, but it models as out-of-line
-// something retail inlines. The right fix is a shim whose concat(const
-// AsciiString&) and concat(char) forward to the two-argument StringBase form,
-// which needs StringBase visible in that header.
+// Three reference inlines had to be written out or un-inlined to get here, and
+// they are all the same kind of difference -- retail keeps a thin out-of-line
+// body where the Zero Hour header expands one. concat is an inline wrapper over
+// the two-argument StringBase form rather than an expansion down to
+// ensureUniqueBufferOfSize; find(char) is a length-bounded scan off the 16-bit
+// header field rather than strchr; and the copy constructor is out-of-line at
+// 0x00887B60, which this function reaches three times, once for it->second and
+// twice for TheEmptyString.
 AsciiString ArchiveFileSystem::getArchiveFilenameForFile(const AsciiString& filename) const
 {
 	AsciiString path;
@@ -395,8 +410,8 @@ AsciiString ArchiveFileSystem::getArchiveFilenameForFile(const AsciiString& file
 			return AsciiString::TheEmptyString;
 		}
 
-		debugpath.concat(token);
-		debugpath.concat('\\');
+		bfmeConcat(debugpath, token);
+		bfmeConcat(debugpath, '\\');
 
 		path.nextToken(&token, "\\/");
 	}

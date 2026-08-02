@@ -366,16 +366,11 @@ inline AsciiString::AsciiString() : m_data(0)
 
 
 // -----------------------------------------------------
-inline AsciiString::AsciiString(const AsciiString& stringSrc) : m_data(stringSrc.m_data)
-{
-  // don't need this if we're using InterlockedIncrement
-  // FastCriticalSectionClass::LockClass lock(TheAsciiStringCriticalSection);
-	if (m_data)
-		// ++m_data->m_refCount;
-    // yes, I know it's not a DWord but we're incrementing so we're safe
-    InterlockedIncrement((long *)&m_data->m_refCount);
-	validate();
-}
+// SHIM: AsciiString(const AsciiString&) left undefined so it emits a call to
+// ??0AsciiString@@QAE@ABV0@@Z (retail 0x00887B60). getArchiveFilenameForFile
+// returns by value and reaches it three times -- once for it->second and twice
+// for TheEmptyString -- where the reference inline expands the refcount bump.
+
 
 // -----------------------------------------------------
 // SHIM: releaseBuffer left undefined so ~AsciiString emits a call to

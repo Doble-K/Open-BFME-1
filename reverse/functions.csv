@@ -10665,6 +10665,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getApparentPlayerTemplate@GameSlot@@QBEHXZ,,0x0061ED90,40,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?getApparentPlayerTemplateDisplayName@GameSlot@@QBE?AVUnicodeString@@XZ,,0x0061F130,175,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,gametext vtable fix
 ?getApparentStartPos@GameSlot@@QBEHXZ,,0x0061EE20,40,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
+?getArchiveFilenameForFile@ArchiveFileSystem@@QBE?AVAsciiString@@ABV2@@Z,,0x009CA2A0,411,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,only callee of the byte-matched ArchiveFileSystem::openFile at 0x009CA62B
 ?getArgument@GameMessage@@QBEPBTGameMessageArgumentType@@H@Z,,0x0008A340,42,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?getAsInt@RGBColor@@QBEHXZ,0x0002D989,0x0008E050,60,Code/Libraries/Source/WWVegas/WWMath/color.cpp,matched,packs RGB channels into a hex int
 ?getAsW3DModelDrawModuleData@ModuleData@@UBEPBVW3DModelDrawModuleData@@XZ,,0x006CF680,3,Code/GameEngine/Source/Common/Thing/Module.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
