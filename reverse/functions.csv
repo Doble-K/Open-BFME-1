@@ -10978,8 +10978,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getDisallowAsianText@GameSpyInfo@@UAE_NXZ,,0x00630780,7,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?getDisallowNonAsianText@CustomMatchPreferences@@QAE_NXZ,,0x000AC610,95,Code/GameEngine/Source/Common/promoted__getDisallowNonAsianText_CustomMatchPreferences_QAE_NXZ_000AC610.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 95B
 ?getDisallowNonAsianText@GameSpyInfo@@UAE_NXZ,,0x00630790,7,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
-?getDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEIXZ,,0x0003D5F0,5,Code/GameEngine/Source/GameNetwork/NetDisconnectFrameCommandMsgGetDisconnectFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x674110
-?getDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEEXZ,,0x00028A1F,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgGetDisconnectSlotThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x673C70
+?getDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEIXZ,,0x00674110,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
+?getDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEEXZ,,0x00673C70,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?getDisplayModeCount@Display@@UAEHXZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/Display.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getDisplayName@PlayerTemplate@@QBE?AVUnicodeString@@XZ,,0x000DFBA0,32,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,thunk-dump converted to clean C++; inline getter body ODR-used from GameSlot::getApparentPlayerTemplateDisplayName
 ?getDistanceCovered@W3DAnimationInfo@@QBEMXZ,,0x0010BD90,4,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,icf-owner=?getMinimumValue@GameClientRandomVariable@@QBEMXZ
@@ -11253,7 +11253,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getNameKey@PlayerTemplate@@QBE?AW4NameKeyType@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?getNaturalDurationInMsec@W3DAnimationInfo@@QBEMXZ,,0x0010BDA0,4,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,icf-owner=?getMaximumValue@GameClientRandomVariable@@QBEMXZ
 ?getNaturalRallyPoint@ExitInterface@@UBE_NAAUCoord3D@@_N@Z,,0x00220670,19,Code/GameEngine/Source/GameLogic/Object/Behavior/ParkingPlaceBehavior.cpp,matched,
-?getNewFrame@NetDisconnectScreenOffCommandMsg@@QAEIXZ,,0x0003A1F2,5,Code/GameEngine/Source/GameNetwork/NetDisconnectScreenOffCommandMsgGetNewFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x674360
+?getNewFrame@NetDisconnectScreenOffCommandMsg@@QAEIXZ,,0x00674360,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?getNewPushButtonData@@YAPAU_PushButtonData@@XZ,,0x004BC980,46,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetPushButton.cpp,matched,object-symbol=?getNewPushButtonData@@YAPAU_PushButtonData@@XZ;TU-local retail layout converts thunk dump to clean C++
 ?getNext@?$CategoryModuleClass@$00@FXParticleSystem@@QBEPBV12@XZ,0x00013809,0x005C12F0,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns next module in category list
 ?getNext@?$CategoryModuleClass@$01@FXParticleSystem@@QBEPBV12@XZ,0x00025BE9,0x005C13B0,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns next module in category list
@@ -12999,8 +12999,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setDisallowAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630760,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADEE0,170,Code/masm_dumps/_sa13__setDisallowNonAsianText_CustomMatchPreferences__QAEX_N_Z_ADEE0.asm,matched,multi-xref Open-BFME4+Grok DisallowNonAsianText
 ?setDisallowNonAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630770,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
-?setDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEXI@Z,,0x000473DE,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgSetDisconnectFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0xA73C90
-?setDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEXE@Z,,0x00008C74,5,Code/GameEngine/Source/GameNetwork/NetDisconnectPlayerCommandMsgSetDisconnectSlotThunk.cpp,matched,Open-BFME5 C++ conversion of retail incremental-link thunk; real body 0x673C80
+?setDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEXI@Z,,0x00673C90,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
+?setDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEXE@Z,,0x00673C80,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?setDisplayMode@Display@@UAE_NIII_N@Z,,0x0040DA80,311,Code/masm_dumps/Display_setDisplayMode_40DA80.asm,matched,Certified packet 53 exact retail db recovery SHA256 17487ff48887ebb513026b1e5623f96a1de2d631bce2f7409aff8da740319436
 ?setDisplayedMaxWarning@InGameUI@@UAEX_N@Z,,0x0044B3B0,10,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?setDockCrippled@DockUpdate@@UAEX_N@Z,,0x002CA790,10,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
@@ -13221,7 +13221,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setSkipParentXfrm@ParticleSystem@@QAEX_N@Z,,0x0016A830,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?setSlaveSystemName@ParticleSystemTemplate@FXParticleSystem@@QAEXABVAsciiString@@@Z,0x00041F47,0x005BE690,28,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,assigns slave system name and clears flag
 ?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/masm_dumps/_rn7__setSlot_GameInfo__QAEXHVGameSlot___Z_61F630.asm,matched,reloc-needle Open-BFME4+Grok
-?setSlot@NetDisconnectVoteCommandMsg@@QAEXE@Z,,0x00020739,5,Code/GameEngine/Source/GameNetwork/NetDisconnectVoteCommandMsgSetSlotThunk.cpp,matched,Open-BFME5 C++ conversion of retail incremental-link thunk; real body 0x673D20
+?setSlot@NetDisconnectVoteCommandMsg@@QAEXE@Z,,0x00673D20,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?setSlotPointer@GameInfo@@QAEXHPAVGameSlot@@@Z,,0x0061E9E0,24,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setSlotRankPoints@GameSpyGameSlot@@QAEXH@Z,,0x0045BEC0,10,Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp,matched,
 ?setSortMode@@YAXW4GameSortType@@@Z,,0x0062E560,32,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,thunk-dump converted to clean C++
@@ -13282,7 +13282,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setVisibleState@Geometry@@QAEXW4VisibleState@1@@Z,,0x004F9510,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?setVisionRange@Object@@QAEXM@Z,,0x0098D2C0,13,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setVolume@AudioEventRTS@@QAEXM@Z,,0x000B23B0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
-?setVoteFrame@NetDisconnectVoteCommandMsg@@QAEXI@Z,,0x000436C1,5,Code/GameEngine/Source/GameNetwork/NetDisconnectVoteCommandMsgSetVoteFrameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0xA73D50
+?setVoteFrame@NetDisconnectVoteCommandMsg@@QAEXI@Z,,0x00673D50,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?setWaitTime@QuickMatchPreferences@@QAEXH@Z,,0x000AD500,169,Code/masm_dumps/_sa12__setWaitTime_QuickMatchPreferences__QAEXH_Z_AD500.asm,matched,string-anchor Open-BFME4+Grok WaitTime
 ?setWakeFrame@UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,,0x002B2040,30,Code/GameEngine/Source/GameLogic/Object/Update/UpdateModule.cpp,matched,
 ?setWaterAttenuationFactors@W3DTerrainVisual@@UAEXPBVWaterHandle@@MMMM@Z,,0x00730A20,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,

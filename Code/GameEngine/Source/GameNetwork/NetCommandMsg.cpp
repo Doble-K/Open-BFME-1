@@ -151,3 +151,35 @@ void NetProgressCommandMsg::setPercentage(UnsignedByte percent)
 {
 	m_percent = percent;
 }
+
+// Seven disconnect-message accessors whose ledger rows claimed 5-byte
+// incremental-link thunks. The definitions had been trimmed out of this file, so
+// nothing emitted the symbols; these are the reference's bodies unchanged.
+
+UnsignedByte NetDisconnectPlayerCommandMsg::getDisconnectSlot() {
+	return m_disconnectSlot;
+}
+
+void NetDisconnectPlayerCommandMsg::setDisconnectSlot(UnsignedByte slot) {
+	m_disconnectSlot = slot;
+}
+
+void NetDisconnectPlayerCommandMsg::setDisconnectFrame(UnsignedInt frame) {
+	m_disconnectFrame = frame;
+}
+
+void NetDisconnectVoteCommandMsg::setSlot(UnsignedByte slot) {
+	m_slot = slot;
+}
+
+void NetDisconnectVoteCommandMsg::setVoteFrame(UnsignedInt voteFrame) {
+	m_voteFrame = voteFrame;
+}
+
+UnsignedInt NetDisconnectFrameCommandMsg::getDisconnectFrame() {
+	return m_disconnectFrame;
+}
+
+UnsignedInt NetDisconnectScreenOffCommandMsg::getNewFrame() {
+	return m_newFrame;
+}
