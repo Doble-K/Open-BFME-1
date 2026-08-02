@@ -6,13 +6,13 @@ public:
     bool detectionBeginUpdate();
 };
 
-__declspec(naked) bool FirewallHelperClass::detectionBeginUpdate()
+class FirewallHelperDetectionBeginUpdateShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0A7h
-        _emit 0E9h
-        _emit 064h
-        _emit 000h
-    }
+public:
+    bool begin();
+};
+
+bool FirewallHelperClass::detectionBeginUpdate()
+{
+    return ((FirewallHelperDetectionBeginUpdateShim *)this)->begin();
 }
