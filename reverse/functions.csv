@@ -1433,6 +1433,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0EdgeMapperClass@@QAE@I@Z,,0x00965710,60,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0EjectPilotDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
 ??0EjectPilotDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0ElvenWoodSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025B2B0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ElvenWoodSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ??0ElvenWoodSpecialPowerModuleData@@QAE@XZ,,0x0025CA40,72,Code/GameEngine/Source/GameLogic/AI/ElvenWoodSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0EmissionVelocityInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00038D4D,0x005BD820,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,copy constructor
 ??0EmissionVelocityInfo@FXParticleSystem@@QAE@XZ,0x00012468,0x005BD800,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,default constructor sets vtable pointer
@@ -1497,6 +1498,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Format@Debug@@QAA@PBDZZ,,0x008895F0,35,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??0FoundationAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002BA040,190,Code/GameEngine/Source/GameLogic/AI/FoundationAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FreezingRainSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ??0FreezingRainSpecialPowerModuleData@@QAE@XZ,,0x0025D8C0,38,Code/GameEngine/Source/Common/RTS/FreezingRainSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0FrustumClass@@QAE@ABV0@@Z,,0x009319F0,254,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
 ??0FrustumClass@@QAE@XZ,,0x00931980,97,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
@@ -7444,6 +7446,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Re_Orthogonalize@Matrix3D@@QAEXXZ,,0x008D8260,534,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
 ?Re_Partition@GridCullSystemClass@@UAEXABVVector3@@0M@Z,,0x008DEDA0,575,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Read@BufferedFileClass@@UAEHPAXH@Z,,0x009E7630,272,Code/Libraries/Source/WWVegas/WWLib/bufffile.cpp,matched,
+?Read@ChunkLoadClass@@QAEKPAXK@Z,,0x009E15C0,142,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
 ?Read@DebugIONet@@UAEHPADH@Z,,0x0088FB90,115,Code/Libraries/Source/WWVegas/WWDebug/debug_io_net.cpp,matched,
 ?Read@RawFileClass@@UAEHPAXH@Z,,0x009E6760,205,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Read@UDP@@QAEHPAEIPAUsockaddr_in@@@Z,,0x00039EBE,5,Code/GameEngine/Source/GameNetwork/UDPReadThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x684630 (recvfrom identity)
@@ -8063,6 +8066,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Texture@MeshModelClass@@QAEXHPAVTextureClass@@HH@Z,,0x006DB460,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Set_Texture@ParticleBufferClass@@QAEXPAVTextureClass@@@Z,,0x00984410,52,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Set_Texture@PointGroupClass@@QAEXPAVTextureClass@@@Z,,0x009127F0,50,Code/masm_dumps/_Set_Texture_PointGroupClass__QAEXPAVTextureClass___Z_9127F0.asm,matched,MASM exact retail dump
+?Set_Texture@SegLineRendererClass@@QAEXPAVTextureClass@@@Z,,0x00960050,47,Code/Libraries/Source/WWVegas/WW3D2/SegLineRendererSetTexture.cpp,matched,Luna Open-BFME8 exact clean C++ retail texture handle layout
 ?Set_Texture@StreakRendererClass@@QAEXPAVTextureClass@@@Z,,0x00973850,37,Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp,matched,icf-owner=?Set_HAnim@HAnimComboDataClass@@QAEXPAVHAnimClass@@@Z
 ?Set_Texture_Filename@ParticleEmitterDefClass@@UAEXPBD@Z,,0x0098C170,32,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
 ?Set_Texture_Filter@WW3D@@SAXH@Z,,0x008FD2B0,48,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,
@@ -13836,7 +13840,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??0ElvenWoodSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025B2B0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ElvenWoodSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
-?Read@ChunkLoadClass@@QAEKPAXK@Z,,0x009E15C0,142,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
-??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FreezingRainSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
-?Set_Texture@SegLineRendererClass@@QAEXPAVTextureClass@@@Z,,0x00960050,47,Code/Libraries/Source/WWVegas/WW3D2/SegLineRendererSetTexture.cpp,matched,Luna Open-BFME8 exact clean C++ retail texture handle layout
