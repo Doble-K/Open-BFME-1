@@ -859,7 +859,6 @@ void NAT::sendMangledSourcePort() {
 	setConnectionState(m_localNodeNumber, NATCONNECTIONSTATE_WAITINGFORMANGLERRESPONSE);
 }
 
-// ?processManglerResponse@NAT@@IAEXG@Z present-unmatched
 void NAT::processManglerResponse(UnsignedShort mangledPort) {
 	DEBUG_LOG(("NAT::processManglerResponse - Work out what my NAT'd port will be\n"));
 
@@ -915,7 +914,9 @@ void NAT::processManglerResponse(UnsignedShort mangledPort) {
 	m_previousSourcePort = returnPort;
 
 	sendMangledPortNumberToTarget(returnPort, targetSlot);
-	m_sourcePorts[m_targetNodeNumber] = returnPort;
+	// BFME stores the mangled port on the local GameSlot here, where the
+	// reference records it in m_sourcePorts[m_targetNodeNumber].
+	m_slotList[m_connectionNodes[m_localNodeNumber].m_slotIndex]->setPort(returnPort);
 	if (targetSlot->getPort() == 0) {
 		// we haven't got the target's mangled port number yet, wait for it.
 		setConnectionState(m_localNodeNumber, NATCONNECTIONSTATE_WAITINGFORMANGLEDPORT);
