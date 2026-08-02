@@ -3270,6 +3270,7 @@ name,address,notes
 ?linkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,0x0002B87D,winSetParent depth Open-BFME4+Grok
 ?load@INI@@QAEXVAsciiString@@HHPAX@Z,0x00853CB0,retail INI::load(file loadType reload xfer); called by the subsystem loader at 0x000BB310
 ?loadBridgesInVertexAndIndexBuffers@W3DBridgeBuffer@@IAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x000367EB
+?loadBridgesInVertexAndIndexBuffers@W3DBridgeBufferLoadBridgesShim@@QAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x006D9F50,W3DBridgeBuffer incremental-link thunk target through a TU-local forwarding shim
 ?loadDirectory@INI@@QAEXVAsciiString@@_NW4INILoadType@@PAVXfer@@H@Z,0x00853F10,BFME loadDirectory takes a 5th arg; body shared with the 4-arg ledger row name,
 ?loadDockPositions@DockUpdate@@IAEXXZ,0x0000C595,ILT thunk to 0x002CB0A0
 ?loadFile@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z,0x00853A20,provisional name for the 3-arg INI entry point the legend path calls; distinct from INI::load at 0x00853610
