@@ -10762,7 +10762,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@W3DTracerDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00114200,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@WallUpgradeUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011C170,96,Code/GameEngine/Source/GameLogic/Object/Update/WallUpgradeUpdateFriendNewModuleInstanceThunk.cpp,matched,retail ModuleFactory registration ordinal 0x90; Ghidra confirmed
 ?friend_newModuleInstance@WanderAIUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011BE60,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleInstance@WargBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00115620,96,Code/masm_dumps/WargBehavior_friend_newModuleInstance.asm,matched,retail ModuleFactory cp027 Ghidra confirmed
+?friend_newModuleInstance@WargBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00115620,96,Code/GameEngine/Source/GameLogic/AI/WargBehaviorFriendNewModuleInstanceThunk.cpp,matched,retail ModuleFactory cp027 Ghidra confirmed
 ?friend_newModuleInstance@WeaponBonusUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BFAD0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleInstance@WeaponBonusUpgrade@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D850,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
 ?friend_newModuleInstance@WeaponChangeSpecialPowerModule@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001203D0,96,Code/masm_dumps/WeaponChangeSpecialPowerModule_friend_newModuleInstance.asm,matched,retail ModuleFactory registration ordinal 0xDC Ghidra confirmed
