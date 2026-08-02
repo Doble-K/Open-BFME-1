@@ -1938,6 +1938,7 @@ name,address,notes
 ?Find_Z_Mode@DX8Wrapper@@KA_NW4_D3DFORMAT@@0PAW42@@Z,0x00904120,pinharvest x1 (body)
 ?Flush@SortingRendererClass@@SAXXZ,0x0093A810,End_Render depth Open-BFME4+Grok
 ?Free@DistLODClass@@AAEXXZ,0x00014BC3
+?release@DistLODClassFreeShim@@QAEXXZ,0x00725B70,DistLODClass incremental-link Free target through a TU-local layout shim
 ?Free@FastAllocatorGeneral@@QAEXPAX@Z,0x00AFEBC0
 ?Free_All_Geoms@W3DShadowGeometryManager@@QAEXXZ,0x00002365,site-decoded x2 (thunk)
 ?Free_Definitions@DefinitionMgrClass@@SAXXZ,0x000309CC,pinharvest x1 (thunk)

@@ -6,13 +6,13 @@ private:
     __declspec(dllexport) void Free();
 };
 
-__declspec(naked) void DistLODClass::Free()
+class DistLODClassFreeShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0A8h
-        _emit 00Fh
-        _emit 071h
-        _emit 000h
-    }
+public:
+    void release();
+};
+
+void DistLODClass::Free()
+{
+    ((DistLODClassFreeShim *)this)->release();
 }
