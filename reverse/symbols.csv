@@ -1676,6 +1676,7 @@ name,address,notes
 ??4SegLineRendererClass@@QAEAAV0@ABV0@@Z,0x009600F0
 ??4SplitChoiceStruct@AABTreeBuilderClass@@QAEAAU01@ABU01@@Z,0x0096B6B0
 ??4StringClass@@QAEABV0@ABV0@@Z,0x00007A63,site-decoded x1 (thunk)
+?assign@StringClassAssignShim@@QAEABVStringClass@@ABV2@@Z,0x0013B600,StringClass assignment incremental-link thunk target through a TU-local forwarding shim
 ??4StringClass@@QAEABV0@ABV0@@Z,0x00035FDF
 ??4StringClass@@QAEABV0@ABV0@@Z,0x00887B60,site-decoded x3 (body)
 ??4StringClass@@QAEABV0@ABV0@@Z,0x00887C90,site-decoded x3 (body)

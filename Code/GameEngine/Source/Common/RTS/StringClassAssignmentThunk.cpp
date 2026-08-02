@@ -6,13 +6,13 @@ public:
     const StringClass &operator=(const StringClass &);
 };
 
-__declspec(naked) const StringClass &StringClass::operator=(const StringClass &)
+class StringClassAssignShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 01Ch
-        _emit 056h
-        _emit 010h
-        _emit 000h
-    }
+public:
+    const StringClass &assign(const StringClass &that);
+};
+
+const StringClass &StringClass::operator=(const StringClass &that)
+{
+    return ((StringClassAssignShim *)this)->assign(that);
 }
