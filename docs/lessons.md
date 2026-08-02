@@ -874,3 +874,34 @@ construction rather than sitting wholly after it, the ones before it are
 initialisers. That is a real structural fact about the retail source, readable
 straight off the instruction order, and it is one of the few things in a
 constructor that the byte comparison can actually tell you.
+
+## Two things that decide what `delete p` compiles to
+
+`Win32BIGFileSystem::closeArchiveFile` came out four bytes short and the wrong
+shape in one place. Retail deletes the mapped value like this:
+
+    mov ecx,[esi+0x14]   ; it->second
+    test ecx,ecx
+    jz  skip
+    mov edx,[ecx]
+    push 1
+    call [edx]           ; deleting destructor, slot 0, delete flag set
+
+and we emitted `mov edx,[edi+0x14]; push edx; call <operator delete>`. Same
+source line. The difference is that `ArchiveFile` was only forward-declared, and
+`delete` on an incomplete type has nothing to dispatch to, so it degenerates to a
+plain `operator delete`. Completing the class *with a virtual destructor* is what
+produces the null-check-and-dispatch pair.
+
+So when a `delete` comes out too short, the question is not how the statement is
+written — it is whether the compiler can see the type and whether that type's
+destructor is virtual. Both are visible in the target: the null check and the
+`push 1` before an indirect call are the signature of `delete` on a polymorphic
+type, and their absence is the signature of an incomplete one.
+
+The same function also needed exceptions turned OFF. Retail has no SEH frame at
+all despite holding an `AsciiString` temporary with a destructor, so the TU was
+built without them. `build.py`'s base is already `-EHsc-`; the per-file `// cl:`
+line was switching them back on. `/GX-` restores it. Worth checking whenever a
+function is the right length but carries an `fs:[0]` prologue the target lacks --
+that prologue is not a code difference, it is a flag difference.

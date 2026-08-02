@@ -9280,6 +9280,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?closeAllFiles@Win32BIGFile@@UAEXXZ,,0x009D14B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 4; empty body
 ?closeAllFiles@Win32BIGFileSystem@@UAEXXZ,,0x009CC3B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_closeAllFiles.cpp,matched,vtable 0x01143B40 slot 7 -- bare ret so the vtable is the whole evidence with ZH closeAllFiles being empty as corroboration
 ?closeAllSpareSockets@FirewallHelperClass@@QAEXXZ,,0x0066EB60,64,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
+?closeArchiveFile@Win32BIGFileSystem@@UAEXPBD@Z,,0x009CD660,117,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_closeArchiveFile.cpp,matched,vtable 0x01143B40 slot 3 -- archive-map find then delete then an inlined erase
 ?closeDataChunk@DataChunkOutput@@QAEXXZ,,0x001024A0,118,Code/GameEngine/Source/Common/System/DataChunkOutputCloseDataChunkThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM method
 ?closeLiveHandle@BFMENetworkBackend@@QAEXXZ,,0x009DB5A0,35,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network backend wait/clear for handle fields +0x48/+0x44
 ?closeSpareSocket@FirewallHelperClass@@QAEXG@Z,,0x0066EDB0,81,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
