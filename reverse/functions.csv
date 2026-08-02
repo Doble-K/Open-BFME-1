@@ -10293,7 +10293,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@SplitHordeSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x001216A0,110,Code/GameEngine/Source/GameLogic/Object/Upgrade/SplitHordeSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@SpyVisionSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F9C0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@MissileAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@SpyVisionUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001144C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@SquishCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00124800,107,Code/masm_dumps/SquishCollide_friend_newModuleData.asm,matched,Ghidra-bound BFME collide module-data factory
+?friend_newModuleData@SquishCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00124800,107,Code/GameEngine/Source/GameLogic/Object/Collide/SquishCollideFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@StatusBitsUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x00118020,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@DozerAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@StealthDetectorUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00126BE0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@StealthUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0012A680,110,Code/masm_dumps/StealthUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration Ghidra confirmed
