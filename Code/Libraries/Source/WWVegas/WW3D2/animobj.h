@@ -173,7 +173,10 @@ protected:
 	// Hierarchy Tree
 	HTreeClass *					HTree;
 
-	void *							_bfme_a3o_v0;		// BFME-era member; retail offset 0x100 (between HTree and CurMotionMode)
+	// BFME-era member at retail +0x100: another animatable this one is slaved to.
+	// When it is set, Update_Sub_Object_Transforms ignores the motion state
+	// entirely and rebases the master's pose into this object's space.
+	Animatable3DObjClass *		_bfme_a3o_v0;
 	
 	// Animation state for the next frame.  When we add more flexible motion
 	// compositing, add a new state and its associated data to the union below
@@ -200,15 +203,20 @@ protected:
 		} ModeAnim;				  
 
 		// CurMotionMode == DOUBLE_ANIM
+		// BFME: Percentage sits directly after Frame1, at retail +0x118, which is
+		// where Set_Animation's blend overload (0x009822C0) stores its fifth
+		// argument. Zero Hour has the two PrevFrame floats in between; BFME
+		// dropped the embedded-sound triggering they fed, so they moved to the
+		// tail where nothing matched depends on them.
 		struct {
-			
+
 			HAnimClass *			Motion0;
 			HAnimClass *			Motion1;
 			float		  				Frame0;
 			float		  				Frame1;
+			float		  				Percentage;
 			float						PrevFrame0;
 			float						PrevFrame1;
-			float		  				Percentage;
 		} ModeInterp;
 
 		// CurMotionMode == MULTIPLE_ANIM

@@ -1,116 +1,82 @@
 // cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Animatable3DObjClass::Set_Animation blend overload — retail 0x009822C0 size 99
-// Promoted from masm_dumps to Code/ naked C++ for bind spine.
-
-class HAnimClass;
-class Animatable3DObjClass {
+//
+// Animatable3DObjClass::Set_Animation, the blend overload -- retail 0x009822C0,
+// 99 bytes. This used to be a wall of __asm _emit bytes; it is real C++ now.
+//
+// It also pins the BFME layout of the DOUBLE_ANIM arm of the motion-state
+// union, which differs from Zero Hour's: retail stores both motions before
+// either frame (Motion0 +0x108, Motion1 +0x10c, Frame0 +0x110, Frame1 +0x114)
+// and puts Percentage at +0x118, immediately after Frame1, where Zero Hour has
+// two PrevFrame floats in between. BFME dropped the embedded-sound triggering
+// that those prev-frames existed to feed.
+//
+// The class below is a layout skeleton -- it only has to place the fields and
+// give HAnimClass a reference count at +0x04, which is where retail's inlined
+// Add_Ref increments.
+class RefCountClass
+{
 public:
-	virtual void Set_Animation(HAnimClass *motion0, float frame0, HAnimClass *motion1, float frame1, float percentage);
+	void Add_Ref( void ) { NumRefs++; }
+
+protected:
+	virtual ~RefCountClass();	// vtable pointer at +0x00
+	int NumRefs;				// +0x04
+};
+
+class HAnimClass : public RefCountClass
+{
+};
+
+class Animatable3DObjClass
+{
+public:
+	enum { NONE = 0, BASE_POSE, SINGLE_ANIM, DOUBLE_ANIM, MULTIPLE_ANIM };
+
+	virtual void Set_Animation( HAnimClass *motion0, float frame0, HAnimClass *motion1, float frame1, float percentage );
+
+	void Release( void );
+	void Set_Hierarchy_Valid( bool onoff ) const { IsTreeValid = onoff; }
+
+protected:
+	char m_head[0xf4];			// vtable pointer is +0x00; RenderObjClass's fields follow
+
+	mutable bool IsTreeValid;	// +0xf8
+	char m_pad[3];
+	void *HTree;				// +0xfc
+	void *m_container;			// +0x100
+	int CurMotionMode;			// +0x104
+
+	struct
+	{
+		HAnimClass *Motion0;	// +0x108
+		HAnimClass *Motion1;	// +0x10c
+		float Frame0;			// +0x110
+		float Frame1;			// +0x114
+		float Percentage;		// +0x118
+	} ModeInterp;
 };
 
 // ?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@M0MM@Z
-__declspec(naked) void Animatable3DObjClass::Set_Animation(HAnimClass * /*motion0*/, float /*frame0*/, HAnimClass * /*motion1*/, float /*frame1*/, float /*percentage*/)
+void Animatable3DObjClass::Set_Animation( HAnimClass *motion0, float frame0, HAnimClass *motion1, float frame1, float percentage )
 {
-__asm {
-		_emit 053h
-		_emit 08Bh
-		_emit 05Ch
-		_emit 024h
-		_emit 008h
-		_emit 085h
-		_emit 0DBh
-		_emit 056h
-		_emit 057h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 074h
-		_emit 003h
-		_emit 0FFh
-		_emit 043h
-		_emit 004h
-		_emit 08Bh
-		_emit 07Ch
-		_emit 024h
-		_emit 018h
-		_emit 085h
-		_emit 0FFh
-		_emit 074h
-		_emit 003h
-		_emit 0FFh
-		_emit 047h
-		_emit 004h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 0AEh
-		_emit 0FDh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 08Bh
-		_emit 044h
-		_emit 024h
-		_emit 014h
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 01Ch
-		_emit 08Bh
-		_emit 054h
-		_emit 024h
-		_emit 020h
-		_emit 089h
-		_emit 0BEh
-		_emit 00Ch
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 05Fh
-		_emit 089h
-		_emit 09Eh
-		_emit 008h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 0C7h
-		_emit 086h
-		_emit 004h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 003h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 086h
-		_emit 010h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 08Eh
-		_emit 014h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 096h
-		_emit 018h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 0C6h
-		_emit 086h
-		_emit 0F8h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 05Eh
-		_emit 05Bh
-		_emit 0C2h
-		_emit 014h
-		_emit 000h
+	if( motion0 )
+	{
+		motion0->Add_Ref();
 	}
-}
 
+	if( motion1 )
+	{
+		motion1->Add_Ref();
+	}
+
+	Release();
+
+	CurMotionMode = DOUBLE_ANIM;
+	ModeInterp.Motion0 = motion0;
+	ModeInterp.Frame0 = frame0;
+	ModeInterp.Motion1 = motion1;
+	ModeInterp.Frame1 = frame1;
+	ModeInterp.Percentage = percentage;
+
+	Set_Hierarchy_Valid( false );
+}

@@ -563,8 +563,32 @@ void HTreeClass::Base_Update(const Matrix3D & root)
 	}
 }
 
-/*********************************************************************************************** 
- * HTreeClass::Anim_Update -- Computes the transform for each pivot with motion                * 
+/***********************************************************************************************
+ * HTreeClass::Slave_Update -- Copies another tree's pose, rebased through a transform         *
+ *                                                                                             *
+ * BFME addition. Used for objects slaved to another animatable: the master's pivots already   *
+ * hold a finished pose, so instead of evaluating any motion this just carries them across.    *
+ * A pivot-count mismatch is not an error, it just does nothing -- the only check retail makes. *
+ *=============================================================================================*/
+// ?Slave_Update@HTreeClass@@QAEXPBV1@ABVMatrix3D@@@Z
+void HTreeClass::Slave_Update(const HTreeClass * src,const Matrix3D & tm)
+{
+	if (src == NULL) return;
+	if (NumPivots != src->NumPivots) return;
+
+	for (int piv_idx=0; piv_idx < NumPivots; piv_idx++) {
+
+		const PivotClass *from = &src->Pivot[piv_idx];
+		PivotClass *to = &Pivot[piv_idx];
+
+		to->IsVisible = from->IsVisible;
+		to->PivotFade = from->PivotFade;
+		Matrix3D::Multiply(tm,from->Transform,&(to->Transform));
+	}
+}
+
+/***********************************************************************************************
+ * HTreeClass::Anim_Update -- Computes the transform for each pivot with motion                *
  *                                                                                             * 
  * INPUT:                                                                                      * 
  *                                                                                             * 

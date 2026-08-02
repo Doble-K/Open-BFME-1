@@ -112,6 +112,14 @@ public:
 	void					Combo_Update(		const Matrix3D &		root,
 													HAnimComboClass *		anim);
 
+	// BFME addition, retail 0x00952340: take another tree's pose -- visibility,
+	// fade and transform per pivot -- and rebase it through `tm`. Used by
+	// Animatable3DObjClass::Update_Sub_Object_Transforms for objects slaved to
+	// another animatable. Silently does nothing if the trees disagree on pivot
+	// count, which is the only validation retail performs.
+	void					Slave_Update(		const HTreeClass *	src,
+													const Matrix3D &		tm);
+
 	WWINLINE const Matrix3D	&	Get_Transform(int pivot) const;
 	WWINLINE bool					Get_Visibility(int pivot) const;
 

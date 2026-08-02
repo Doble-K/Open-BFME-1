@@ -1,318 +1,145 @@
 // cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Animatable3DObjClass::Set_Animation(HAnim*,float,int) — retail 0x00982190 size 301
-// Primary bind path Set_Animation (mode/frame); promoted from masm_dumps to Code/ naked C++.
+//
+// Animatable3DObjClass::Set_Animation(HAnimClass *, float, int) -- retail
+// 0x00982190, 301 bytes. This used to be a wall of __asm _emit bytes; it is real
+// C++ now.
+//
+// BFME rewrote the body Zero Hour has. Zero Hour sets PrevFrame from the
+// previous Frame, always stores the new Frame, and picks the playback direction
+// purely from the mode. BFME instead:
+//   - stores a clamped copy of the requested frame in PrevFrame;
+//   - only overwrites Frame when the mode is not ANIM_MODE_LOOP_BACKWARDS, so
+//     re-issuing a backwards loop keeps whatever frame the object had reached;
+//   - for that one mode, derives the direction by comparing the clamped frame
+//     against the current Frame rather than from the mode;
+//   - drops the embedded-sound bone lookup entirely.
+//
+// The clamp has to be spelled with macros. Retail evaluates the inner minimum
+// three times over -- calling Get_Num_Frames again each time -- which is what
+// textual macro substitution does and what an inline function like
+// WWMath::Clamp cannot produce.
+#define BFME_MIN(a,b) (((a) < (b)) ? (a) : (b))
+#define BFME_MAX(a,b) (((a) > (b)) ? (a) : (b))
 
-class HAnimClass;
-class Animatable3DObjClass {
+class RefCountClass
+{
 public:
-	virtual void Set_Animation(HAnimClass *motion, float frame, int mode);
+	void Add_Ref( void ) { NumRefs++; }
+
+protected:
+	virtual ~RefCountClass();	// vtable pointer at +0x00
+	int NumRefs;				// +0x04
+};
+
+// Only slot 4 is proven here: retail's call is call dword ptr [eax+0x10].
+class HAnimClass : public RefCountClass
+{
+public:
+	virtual const char *Get_Name( void ) const;		// slot 1
+	virtual const char *Get_HName( void ) const;	// slot 2
+	virtual const char *Get_Key( void );			// slot 3
+	virtual int Get_Num_Frames( void );				// slot 4
+};
+
+class WW3D
+{
+public:
+	static unsigned int Get_Sync_Time( void ) { return SyncTime; }
+
+private:
+	static unsigned int SyncTime;
+};
+
+class Animatable3DObjClass
+{
+public:
+	enum { NONE = 0, BASE_POSE, SINGLE_ANIM, DOUBLE_ANIM, MULTIPLE_ANIM };
+	enum
+	{
+		ANIM_MODE_MANUAL = 0,
+		ANIM_MODE_LOOP,
+		ANIM_MODE_ONCE,
+		ANIM_MODE_LOOP_PINGPONG,
+		ANIM_MODE_LOOP_BACKWARDS,
+		ANIM_MODE_ONCE_BACKWARDS,
+	};
+
+	virtual void Set_Animation( HAnimClass *motion, float frame, int mode );
+
+	void Release( void );
+	void Set_Hierarchy_Valid( bool onoff ) const { IsTreeValid = onoff; }
+
+protected:
+	char m_head[0xf4];				// vtable pointer is +0x00; RenderObjClass's fields follow
+
+	mutable bool IsTreeValid;		// +0xf8
+	char m_pad[3];
+	void *HTree;					// +0xfc
+	void *m_slavedTo;				// +0x100
+	int CurMotionMode;				// +0x104
+
+	struct
+	{
+		HAnimClass *Motion;			// +0x108
+		float Frame;				// +0x10c
+		float PrevFrame;			// +0x110
+		int AnimMode;				// +0x114
+		mutable int LastSyncTime;	// +0x118
+		float animDirection;		// +0x11c
+		float frameRateMultiplier;	// +0x120
+	} ModeAnim;
 };
 
 // ?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@MH@Z
-__declspec(naked) void Animatable3DObjClass::Set_Animation(HAnimClass * /*motion*/, float /*frame*/, int /*mode*/)
+void Animatable3DObjClass::Set_Animation( HAnimClass *motion, float frame, int mode )
 {
-__asm {
-		_emit 056h
-		_emit 057h
-		_emit 08Bh
-		_emit 07Ch
-		_emit 024h
-		_emit 00Ch
-		_emit 085h
-		_emit 0FFh
-		_emit 08Bh
-		_emit 0F1h
-		_emit 00Fh
-		_emit 084h
-		_emit 002h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 0FFh
-		_emit 047h
-		_emit 004h
-		_emit 0E8h
-		_emit 0E8h
-		_emit 0FEh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0C7h
-		_emit 086h
-		_emit 004h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 0BEh
-		_emit 008h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 08Bh
-		_emit 007h
-		_emit 08Bh
-		_emit 0CFh
-		_emit 0FFh
-		_emit 050h
-		_emit 010h
-		_emit 048h
-		_emit 089h
-		_emit 044h
-		_emit 024h
-		_emit 00Ch
-		_emit 0DBh
-		_emit 044h
-		_emit 024h
-		_emit 00Ch
-		_emit 0D8h
-		_emit 05Ch
-		_emit 024h
-		_emit 010h
-		_emit 0DFh
-		_emit 0E0h
-		_emit 0F6h
-		_emit 0C4h
-		_emit 005h
-		_emit 07Ah
-		_emit 016h
-		_emit 08Bh
-		_emit 08Eh
-		_emit 008h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 08Bh
-		_emit 011h
-		_emit 0FFh
-		_emit 052h
-		_emit 010h
-		_emit 048h
-		_emit 089h
-		_emit 044h
-		_emit 024h
-		_emit 00Ch
-		_emit 0DBh
-		_emit 044h
-		_emit 024h
-		_emit 00Ch
-		_emit 0EBh
-		_emit 004h
-		_emit 0D9h
-		_emit 044h
-		_emit 024h
-		_emit 010h
-		_emit 0D8h
-		_emit 01Dh
-		_emit 050h
-		_emit 053h
-		_emit 007h
-		_emit 001h
-		_emit 0DFh
-		_emit 0E0h
-		_emit 0F6h
-		_emit 0C4h
-		_emit 041h
-		_emit 075h
-		_emit 03Bh
-		_emit 08Bh
-		_emit 08Eh
-		_emit 008h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 08Bh
-		_emit 001h
-		_emit 0FFh
-		_emit 050h
-		_emit 010h
-		_emit 048h
-		_emit 089h
-		_emit 044h
-		_emit 024h
-		_emit 00Ch
-		_emit 0DBh
-		_emit 044h
-		_emit 024h
-		_emit 00Ch
-		_emit 0D8h
-		_emit 05Ch
-		_emit 024h
-		_emit 010h
-		_emit 0DFh
-		_emit 0E0h
-		_emit 0F6h
-		_emit 0C4h
-		_emit 005h
-		_emit 07Ah
-		_emit 016h
-		_emit 08Bh
-		_emit 08Eh
-		_emit 008h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 08Bh
-		_emit 011h
-		_emit 0FFh
-		_emit 052h
-		_emit 010h
-		_emit 048h
-		_emit 089h
-		_emit 044h
-		_emit 024h
-		_emit 00Ch
-		_emit 0DBh
-		_emit 044h
-		_emit 024h
-		_emit 00Ch
-		_emit 0EBh
-		_emit 00Ch
-		_emit 0D9h
-		_emit 044h
-		_emit 024h
-		_emit 010h
-		_emit 0EBh
-		_emit 006h
-		_emit 0D9h
-		_emit 005h
-		_emit 050h
-		_emit 053h
-		_emit 007h
-		_emit 001h
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 014h
-		_emit 0D9h
-		_emit 096h
-		_emit 010h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 083h
-		_emit 0F9h
-		_emit 004h
-		_emit 0BAh
-		_emit 000h
-		_emit 000h
-		_emit 080h
-		_emit 03Fh
-		_emit 075h
-		_emit 03Ah
-		_emit 0D8h
-		_emit 09Eh
-		_emit 00Ch
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 0DFh
-		_emit 0E0h
-		_emit 0F6h
-		_emit 0C4h
-		_emit 001h
-		_emit 074h
-		_emit 03Eh
-		_emit 0C7h
-		_emit 086h
-		_emit 01Ch
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 080h
-		_emit 0BFh
-		_emit 0A1h
-		_emit 020h
-		_emit 0F4h
-		_emit 033h
-		_emit 001h
-		_emit 05Fh
-		_emit 089h
-		_emit 086h
-		_emit 018h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 096h
-		_emit 020h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 08Eh
-		_emit 014h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 0C6h
-		_emit 086h
-		_emit 0F8h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 05Eh
-		_emit 0C2h
-		_emit 00Ch
-		_emit 000h
-		_emit 083h
-		_emit 0F9h
-		_emit 005h
-		_emit 0DDh
-		_emit 0D8h
-		_emit 08Bh
-		_emit 044h
-		_emit 024h
-		_emit 010h
-		_emit 089h
-		_emit 086h
-		_emit 00Ch
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 07Dh
-		_emit 0C2h
-		_emit 089h
-		_emit 096h
-		_emit 01Ch
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 0EBh
-		_emit 0C4h
-		_emit 0E8h
-		_emit 0E9h
-		_emit 0FDh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 05Fh
-		_emit 0C7h
-		_emit 086h
-		_emit 004h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 001h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 0C6h
-		_emit 086h
-		_emit 0F8h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 05Eh
-		_emit 0C2h
-		_emit 00Ch
-		_emit 000h
-	}
-}
+	if( motion != 0 )
+	{
+		// Add_Ref before the release, in case it is the animation already playing.
+		motion->Add_Ref();
+		Release();
 
+		CurMotionMode = SINGLE_ANIM;
+		ModeAnim.Motion = motion;
+
+		ModeAnim.PrevFrame = BFME_MAX( BFME_MIN( (float)(ModeAnim.Motion->Get_Num_Frames() - 1), frame ), 0.0f );
+
+		if( mode == ANIM_MODE_LOOP_BACKWARDS )
+		{
+			// Frame is deliberately left alone: the direction says which way to
+			// walk away from wherever the object already was.
+			if( ModeAnim.PrevFrame >= ModeAnim.Frame )
+			{
+				ModeAnim.animDirection = 1.0f;
+			}
+			else
+			{
+				ModeAnim.animDirection = -1.0f;
+			}
+		}
+		else
+		{
+			ModeAnim.Frame = frame;
+
+			if( mode < ANIM_MODE_ONCE_BACKWARDS )
+			{
+				ModeAnim.animDirection = 1.0f;
+			}
+			else
+			{
+				ModeAnim.animDirection = -1.0f;
+			}
+		}
+
+		ModeAnim.LastSyncTime = WW3D::Get_Sync_Time();
+		ModeAnim.frameRateMultiplier = 1.0f;
+		ModeAnim.AnimMode = mode;
+	}
+	else
+	{
+		Release();
+		CurMotionMode = BASE_POSE;
+	}
+
+	Set_Hierarchy_Valid( false );
+}

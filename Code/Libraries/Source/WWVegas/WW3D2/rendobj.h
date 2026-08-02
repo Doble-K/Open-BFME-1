@@ -363,6 +363,16 @@ public:
 	virtual int						Remove_Sub_Objects_From_Bone(const char * bname);
 	virtual int						Remove_Sub_Objects_From_Bone(int boneindex);
 
+	// BFME: unidentified retail slot 40, immediately ahead of
+	// Update_Sub_Object_Transforms. Its body at 0x006CF420 is a bare ret, so it
+	// takes no arguments and returns nothing. It used to be declared further
+	// down, between Get_Num_Bones and Get_Bone_Name, where it made slots 48
+	// onward come out right while leaving everything from here to 47 one short --
+	// which is what put Update_Sub_Object_Transforms at 40 and broke every caller
+	// that reaches it as call [reg+0xa4]. Slot map read off the
+	// Animatable3DObjClass vtable at 0x0113F148.
+	virtual void					_bfme_ro_v40(void)														{ }
+
 	// This is public only so objects can recursively call this on their sub-objects
 	virtual void					Update_Sub_Object_Transforms(void);
 
@@ -394,8 +404,6 @@ public:
 
 	virtual HAnimClass *			Peek_Animation( void )														{ return NULL; }
 	virtual int						Get_Num_Bones(void)															{ return 0; }
-	// BFME: unidentified retail slot between Get_Num_Bones and Get_Bone_Name.
-	virtual int						_bfme_ro_v45(void) const													{ return 0; }
 	virtual const char *			Get_Bone_Name(int bone_index)												{ return NULL; }
 	virtual int						Get_Bone_Index(const char * bonename)									{ return 0; }
 	virtual const Matrix3D &	Get_Bone_Transform(const char * bonename)    						{ return Get_Transform(); }

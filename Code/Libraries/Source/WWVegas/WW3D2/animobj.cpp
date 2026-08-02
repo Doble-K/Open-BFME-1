@@ -293,7 +293,6 @@ void Animatable3DObjClass::Release( void )
  * HISTORY:                                                                                    *
  *   12/8/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?Animatable3DObjClass::Render present-unmatched
 void Animatable3DObjClass::Render(RenderInfoClass & rinfo)
 {
 	if (HTree == NULL) return;
@@ -697,7 +696,6 @@ const Matrix3D &	Animatable3DObjClass::Get_Bone_Transform(const char * bonename)
  * HISTORY:                                                                                    *
  *   12/8/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?Animatable3DObjClass::Get_Bone_Transform present-unmatched
 const Matrix3D &	Animatable3DObjClass::Get_Bone_Transform(int boneindex)
 {
 	Validate_Transform();
@@ -823,11 +821,41 @@ void Animatable3DObjClass::Control_Bone(int bindex,const Matrix3D & objtm,bool w
  * HISTORY:                                                                                    *
  *   12/8/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?Animatable3DObjClass::Update_Sub_Object_Transforms present-unmatched
 void Animatable3DObjClass::Update_Sub_Object_Transforms(void)
 {
 	/*
-	** The RenderObj impementation will cause our 'container' 
+	** BFME: an object slaved to another animatable takes that one's finished
+	** pose instead of evaluating any motion of its own. The master's pivots are
+	** in the master's object space, so they are carried across through the
+	** transform that maps the master's space into ours.
+	*/
+	if (_bfme_a3o_v0 != NULL) {
+
+		if (!_bfme_a3o_v0->Is_Hierarchy_Valid()) {
+			_bfme_a3o_v0->Update_Sub_Object_Transforms();
+		}
+
+		// Named only after that call: retail re-reads the member across it and
+		// then keeps it in a register for the three uses below.
+		Animatable3DObjClass * master = _bfme_a3o_v0;
+
+		Matrix3D tm;
+		master->Validate_Transform();
+		master->Transform.Get_Inverse(tm);
+
+		Validate_Transform();
+		Matrix3D::Multiply(Transform,tm,&tm);
+
+		// The member again, not `master`: retail re-reads it across the Multiply,
+		// which it has to -- nothing tells the compiler that call cannot touch it.
+		HTree->Slave_Update(_bfme_a3o_v0->HTree,tm);
+
+		Set_Hierarchy_Valid(true);
+		return;
+	}
+
+	/*
+	** The RenderObj impementation will cause our 'container'
 	** to update if we are not valid yet
 	*/
 	CompositeRenderObjClass::Update_Sub_Object_Transforms();
@@ -841,58 +869,26 @@ void Animatable3DObjClass::Update_Sub_Object_Transforms(void)
 			Base_Update(Transform);
 			break;
 
+		/*
+		** BFME dropped the AnimatedSoundMgrClass::Trigger_Sound call Zero Hour
+		** makes after each of these updates; retail's arms are the bare update.
+		*/
 		case SINGLE_ANIM:
-			
+
 			if ( ModeAnim.AnimMode != ANIM_MODE_MANUAL ) {
 				Single_Anim_Progress();
 			}
 			Anim_Update(Transform,ModeAnim.Motion,ModeAnim.Frame);
-			
-			/*
-			**	Play any sounds that are triggered by this frame of animation
-			*/
-			if ( ModeAnim.Motion->Has_Embedded_Sounds() ) {
-				ModeAnim.PrevFrame = AnimatedSoundMgrClass::Trigger_Sound(ModeAnim.Motion, ModeAnim.PrevFrame, ModeAnim.Frame, HTree->Get_Transform(ModeAnim.Motion->Get_Embedded_Sound_Bone_Index()));
-			}
 			break;
 
 		case DOUBLE_ANIM:
 			Blend_Update(Transform,ModeInterp.Motion0,ModeInterp.Frame0,
 				ModeInterp.Motion1,ModeInterp.Frame1,ModeInterp.Percentage);
-
-			/*
-			**	Play any sounds that are triggered by this frame of animation
-			*/
-			if ( ModeInterp.Motion0->Has_Embedded_Sounds() ) {
-				ModeInterp.PrevFrame0 = AnimatedSoundMgrClass::Trigger_Sound(ModeInterp.Motion0, ModeInterp.PrevFrame0, ModeInterp.Frame0, HTree->Get_Transform(ModeInterp.Motion0->Get_Embedded_Sound_Bone_Index()));
-			}
-
-			if ( ModeInterp.Motion1->Has_Embedded_Sounds() ) {
-				ModeInterp.PrevFrame1 = AnimatedSoundMgrClass::Trigger_Sound(ModeInterp.Motion1, ModeInterp.PrevFrame1, ModeInterp.Frame1, HTree->Get_Transform(ModeInterp.Motion1->Get_Embedded_Sound_Bone_Index()));
-			}
-
   			break;
 
 		case MULTIPLE_ANIM:
-		{
 			Combo_Update(Transform,ModeCombo.AnimCombo);
-
-			/*
-			**	Play any sounds that are triggered by this frame of animation
-			*/
-			int count = ModeCombo.AnimCombo->Get_Num_Anims();
-			for (int index = 0; index < count; index ++) {				
-				HAnimClass *motion = ModeCombo.AnimCombo->Peek_Motion(index);
-
-				if ( motion != NULL && motion->Has_Embedded_Sounds() ) {
-					float prev_frame = AnimatedSoundMgrClass::Trigger_Sound(motion, ModeCombo.AnimCombo->Get_Prev_Frame(index),
-																				ModeCombo.AnimCombo->Get_Frame(index), HTree->Get_Transform(motion->Get_Embedded_Sound_Bone_Index()));
-					ModeCombo.AnimCombo->Set_Prev_Frame(index, prev_frame);
-				}
-				
-			}
 			break;
-		}
 
 		default:
 			break;
