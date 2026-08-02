@@ -89,7 +89,26 @@ Derives from `ArchiveFileSystem`; overrides the six pure slots and inherits 5, 6
 | 3 | 0x009CD660 | 117 | `closeArchiveFile` — map find, one virtual call, `_M_deallocate` |
 | 4 | 0x009CD780 | 261 | `closeAllArchiveFiles` — **claimed**. BFME-only body; Zero Hour leaves the method empty. Collects every entry's `getName()` into a vector, then calls slot 3 on each — collecting first because slot 3 erases from the map it would otherwise be iterating. |
 | 7 | 0x009CC3B0 | 1 | `closeAllFiles` — bare `ret` |
-| 9 | 0x009CDB90 | 459 | `loadBigFilesFromDirectory` — `init` calls it through `[eax+0x24]` |
+| 9 | 0x009CDB90 | 459 | `loadBigFilesFromDirectory` — `init` calls it through `[eax+0x24]`. Not claimed; see below. |
+
+`loadBigFilesFromDirectory` is the one that resists. Zero Hour's body plus the
+widened declaration compiles to 332 bytes against retail's 459, with four
+callee-saved registers and `0x20` of frame against three and `0x14` — about 127
+bytes of logic BFME has and Zero Hour does not.
+
+Two dead ends already walked, so don't repeat them. The comparator is not it:
+using the real `rts::less_than_nocase<AsciiString>` for `FilenameList` changes
+nothing. And `FilenameList` really is a `set` — `Win32LocalFileSystem::getFileListInDirectory`
+fills it through `_Rb_tree::insert_unique` at 0x00197270, which is red-black
+node traversal, not `push_back`.
+
+What the extra bytes are is still open. Between the `getFileListInDirectory`
+call and the iteration, retail calls three helpers that look like vector work:
+0x009CD890 (123 B) compares a requested count against `(end - begin) / 4`, which
+is a `resize`; 0x009CDB40 (74 B) halves a range repeatedly, which is sort or
+heap machinery; and 0x009CC4C0 (61 B) takes five arguments. Copying the set into
+a vector for a reason the set does not provide is the obvious guess — but it is
+a guess, and the set is already ordered, so the reason is not ordering.
 
 Which settles the base's virtual order, since the base leaves exactly these
 pure. BFME's `ArchiveFileSystem` runs: dtor, `init`, `openArchiveFile`,
