@@ -1072,7 +1072,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AABoxClass@@QAE@ABVVector3@@0@Z,,0x00728AE0,46,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??0AABoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00957850,39,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0AABoxRenderObjClass@@QAE@ABV0@@Z,,0x00957E80,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
-??0AABoxRenderObjClass@@QAE@ABVAABoxClass@@@Z,,0x00957880,147,Code/masm_dumps/_rn4___0AABoxRenderObjClass__QAE_ABVAABoxClass___Z_957880.asm,matched,reloc-needle Open-BFME4+Grok
+??0AABoxRenderObjClass@@QAE@ABVAABoxClass@@@Z,,0x00957880,147,Code/Libraries/Source/WWVegas/WW3D2/AABoxRenderObjClassCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM constructor
 ??0AAPlaneClass@@QAE@W4AxisEnum@0@M@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,tiny-locate
 ??0AIAttackAimAtTargetState@@QAE@PAVStateMachine@@_N1@Z,,0x00171180,68,Code/GameEngine/Source/GameLogic/AI/AIAttackAimAtTargetStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIAttackAreaState@@QAE@PAVStateMachine@@@Z,,0x001718A0,54,Code/GameEngine/Source/GameLogic/AI/AIAttackAreaStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor

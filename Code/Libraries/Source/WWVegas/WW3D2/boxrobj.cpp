@@ -624,13 +624,8 @@ AABoxRenderObjClass::AABoxRenderObjClass(const AABoxRenderObjClass & src)
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
 // ??0AABoxRenderObjClass@@ present-unmatched
-AABoxRenderObjClass::AABoxRenderObjClass(const AABoxClass & box)
-{
-	ObjSpaceCenter.Set(0,0,0);
-	ObjSpaceExtent.Set(box.Extent);
-	Set_Position(box.Center);
-	update_cached_box();
-}
+// Implemented in AABoxRenderObjClassCtorThunk.cpp because the real class's
+// base subobjects make MSVC prepend constructor initialization to a naked body.
 
 
 /***********************************************************************************************
