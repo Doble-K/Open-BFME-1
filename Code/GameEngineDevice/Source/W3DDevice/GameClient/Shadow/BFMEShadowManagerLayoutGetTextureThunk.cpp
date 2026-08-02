@@ -8,13 +8,13 @@ public:
     W3DShadowTexture *getTexture(const char *name);
 };
 
-__declspec(naked) W3DShadowTexture *BFMEShadowManagerLayout::getTexture(const char *)
+class BFMEShadowManagerLayoutGetTextureShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 080h
-        _emit 0F4h
-        _emit 076h
-        _emit 000h
-    }
+public:
+    W3DShadowTexture *getTexture(const char *);
+};
+
+W3DShadowTexture *BFMEShadowManagerLayout::getTexture(const char *name)
+{
+    return ((BFMEShadowManagerLayoutGetTextureShim *)this)->getTexture(name);
 }

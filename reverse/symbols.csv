@@ -3142,6 +3142,7 @@ name,address,notes
 ?getTerrainColorAt@WorldHeightMap@@QAEXMMPAURGBColor@@@Z,0x007477E0,thunk-resolved body (via 0x197ae)
 ?getText@INILineBuffer@@QBEPBDH@Z,0x009CBC60,the INI line array accessor readLine copies from
 ?getTexture@BFMEShadowManagerLayout@@QAEPAVW3DShadowTexture@@PBD@Z,0x0004088B,retail projected-shadow texture lookup ILT thunk
+?getTexture@BFMEShadowManagerLayoutGetTextureShim@@QAEPAVW3DShadowTexture@@PBD@Z,0x007AFD10,BFME ShadowManager incremental-link thunk target through a TU-local forwarding shim
 ?getTotalDataLength@NetWrapperCommandMsg@@QAEIXZ,0x0000F70E,ILT thunk; real body 0xA73F40 (mov eax,[ecx+0x28];ret)
 ?getUpgradeActivationMasks@UpgradeMuxData@@QBEXAAV?$BitFlags@$0IA@@@0@Z,0x0002644F,pinharvest x1 (thunk)
 ?getUserMapDir@MapCache@@QBE?AVAsciiString@@XZ,0x000139E9
