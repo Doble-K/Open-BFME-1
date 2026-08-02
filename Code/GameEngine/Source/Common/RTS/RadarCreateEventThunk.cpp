@@ -12,13 +12,13 @@ public:
     void createEvent(const Coord3D *, RadarEventType, float);
 };
 
-__declspec(naked) void Radar::createEvent(const Coord3D *, RadarEventType, float)
+class RadarCreateEventShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0ADh
-        _emit 0F5h
-        _emit 00Fh
-        _emit 000h
-    }
+public:
+    void create(const Coord3D *pos, RadarEventType type, float duration);
+};
+
+void Radar::createEvent(const Coord3D *pos, RadarEventType type, float duration)
+{
+    ((RadarCreateEventShim *)this)->create(pos, type, duration);
 }
