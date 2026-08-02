@@ -1,0 +1,100 @@
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+
+class WindowLayout;
+
+// ?WOLLoginMenuShutdown@@YAXPAVWindowLayout@@PAX@Z
+__declspec(naked) void WOLLoginMenuShutdown(WindowLayout *layout, void *userData)
+{
+    __asm {
+        __emit 0x8b
+        __emit 0x0d
+        __emit 0x40
+        __emit 0x1b
+        __emit 0x2f
+        __emit 0x01
+        __emit 0x8b
+        __emit 0x01
+        __emit 0x56
+        __emit 0xc6
+        __emit 0x05
+        __emit 0x80
+        __emit 0x46
+        __emit 0x2f
+        __emit 0x01
+        __emit 0x01
+        __emit 0xc6
+        __emit 0x05
+        __emit 0x20
+        __emit 0x47
+        __emit 0x2f
+        __emit 0x01
+        __emit 0x00
+        __emit 0xff
+        __emit 0x90
+        __emit 0xa0
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0x8b
+        __emit 0x4c
+        __emit 0x24
+        __emit 0x0c
+        __emit 0x80
+        __emit 0x39
+        __emit 0x00
+        __emit 0x74
+        __emit 0x0b
+        __emit 0x8b
+        __emit 0x74
+        __emit 0x24
+        __emit 0x08
+        __emit 0xe8
+        __emit 0x01
+        __emit 0xff
+        __emit 0xff
+        __emit 0xff
+        __emit 0x5e
+        __emit 0xc3
+        __emit 0x8b
+        __emit 0x0d
+        __emit 0x58
+        __emit 0x4b
+        __emit 0x2f
+        __emit 0x01
+        __emit 0xe8
+        __emit 0xa2
+        __emit 0xe1
+        __emit 0xb3
+        __emit 0xff
+        __emit 0x51
+        __emit 0x89
+        __emit 0x64
+        __emit 0x24
+        __emit 0x10
+        __emit 0x8b
+        __emit 0xcc
+        __emit 0x68
+        __emit 0xa4
+        __emit 0x35
+        __emit 0x10
+        __emit 0x01
+        __emit 0xe8
+        __emit 0x63
+        __emit 0x90
+        __emit 0x38
+        __emit 0x00
+        __emit 0x8b
+        __emit 0x0d
+        __emit 0x30
+        __emit 0x33
+        __emit 0x2f
+        __emit 0x01
+        __emit 0xe8
+        __emit 0xc4
+        __emit 0x46
+        __emit 0xb1
+        __emit 0xff
+        __emit 0x5e
+        __emit 0xc3
+    }
+}
