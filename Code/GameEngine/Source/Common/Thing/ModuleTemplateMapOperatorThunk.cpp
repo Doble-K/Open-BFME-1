@@ -1,24 +1,24 @@
 class ModuleFactory
 {
 public:
-	class ModuleTemplate
-	{
-	};
+    class ModuleTemplate
+    {
+    };
 
-	class ModuleTemplateMap
-	{
-	public:
-		ModuleTemplate &operator[](int const &);
-	};
+    class ModuleTemplateMap
+    {
+    public:
+        ModuleTemplate &operator[](const int &);
+    };
 };
 
-__declspec(naked) ModuleFactory::ModuleTemplate &ModuleFactory::ModuleTemplateMap::operator[](int const &)
+class ModuleTemplateMapOperatorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 05Eh
-		_emit 092h
-		_emit 010h
-		_emit 000h
-	}
+public:
+    ModuleFactory::ModuleTemplate &at(const int &key);
+};
+
+ModuleFactory::ModuleTemplate &ModuleFactory::ModuleTemplateMap::operator[](const int &key)
+{
+    return ((ModuleTemplateMapOperatorShim *)this)->at(key);
 }
