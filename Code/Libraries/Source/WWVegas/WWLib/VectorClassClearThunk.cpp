@@ -2,19 +2,19 @@ template<class Type>
 class VectorClass
 {
 public:
-	virtual void Clear();
+    virtual void Clear();
+};
+
+class VectorClassClearShim
+{
+public:
+    void run();
 };
 
 template<class Type>
-__declspec(naked) void VectorClass<Type>::Clear()
+void VectorClass<Type>::Clear()
 {
-	__asm {
-		_emit 0E9h
-		_emit 0C4h
-		_emit 02Dh
-		_emit 040h
-		_emit 000h
-	}
+    ((VectorClassClearShim *)this)->run();
 }
 
-template __declspec(naked) void VectorClass<float>::Clear();
+template void VectorClass<float>::Clear();

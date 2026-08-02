@@ -3400,6 +3400,7 @@ name,address,notes
 ?run@FXListDoFXPosShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,0x001D6770,FXList doFXPos incremental-link thunk target through a TU-local forwarding shim
 ?run@RadarRefreshTerrainShim@@QAEXPAVTerrainLogic@@@Z,0x0024E990,Radar refreshTerrain incremental-link thunk target through a TU-local forwarding shim
 ?run@TeamFactoryClearShim@@QAEXXZ,0x000F6CA0,TeamFactory clear incremental-link thunk target through a TU-local forwarding shim
+?run@VectorClassClearShim@@QAEXXZ,0x00410970,VectorClass Clear incremental-link thunk target through a TU-local forwarding shim
 ?run@WinInstanceDataInitShim@@QAEXXZ,0x00499850,WinInstanceData init incremental-link thunk target through a TU-local forwarding shim
 ?saveReplay@@YAXVUnicodeString@@@Z,0x004DE8E0,PopupReplaySystem callee from decode_calls
 ?scanIndexList@INI@@SAHPBDPBQBD@Z,0x008509E0
