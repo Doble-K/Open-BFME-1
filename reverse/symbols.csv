@@ -3405,6 +3405,7 @@ name,address,notes
 ?run@DrawableClearAndSetModelConditionStateShim@@QAEXW4ModelConditionFlagType@@0@Z,0x00526660,Drawable clearAndSetModelConditionState incremental-link thunk target through a TU-local forwarding shim
 ?run@FXListAtBonePosDoFxAtBonesShim@@QBEXPBVObject@@H@Z,0x0042D8E0,FXListAtBonePosFXNugget doFxAtBones incremental-link thunk target through a TU-local forwarding shim
 ?run@FXListDoFXPosShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,0x001D6770,FXList doFXPos incremental-link thunk target through a TU-local forwarding shim
+?run@HideInGameChatShim@@SAXXZ,0x00512670,HideInGameChat incremental-link thunk target through a TU-local forwarding shim
 ?run@RadarRefreshTerrainShim@@QAEXPAVTerrainLogic@@@Z,0x0024E990,Radar refreshTerrain incremental-link thunk target through a TU-local forwarding shim
 ?run@TeamFactoryClearShim@@QAEXXZ,0x000F6CA0,TeamFactory clear incremental-link thunk target through a TU-local forwarding shim
 ?run@VectorClassClearShim@@QAEXXZ,0x00410970,VectorClass Clear incremental-link thunk target through a TU-local forwarding shim
@@ -3431,6 +3432,7 @@ name,address,notes
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007E9FC0,pinharvest x1 (body)
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007EA320,pinharvest x1 (body)
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007EA380,pinharvest x1 (body)
+?set@DX8TextureStageStateShim@@SAXIKI@Z,0x006C5840,DX8Wrapper incremental-link static thunk target through a TU-local forwarding shim
 ?set@LayoutFilename@@QAEXPBDH@Z,0x00887D20
 ?set@NetFileProgressSetFileIDShim@@QAEXG@Z,0x00674090,NetFileProgressCommandMsg setFileID incremental-link thunk target through a TU-local forwarding shim
 ?set@NetFileProgressSetProgressShim@@QAEXH@Z,0x006740B0,NetFileProgressCommandMsg setProgress incremental-link thunk target through a TU-local forwarding shim
@@ -3538,8 +3540,6 @@ name,address,notes
 ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,0x0002C6E7
 ?shutdown@WaterTracksRenderSystem@@QAEXXZ,0x000319CB
 ?spin@LockClass@FastCriticalSectionClass@@CIXPAI@Z,0x00026FA8,FastCriticalSectionClass::LockClass spin-acquire (shared out-of-line body reached via ILT thunk); StringClass locks resolve here
-?set@DX8TextureStageStateShim@@SAXIKI@Z,0x006C5840,DX8Wrapper incremental-link static thunk target through a TU-local forwarding shim
-?getAdjustedVisionRangeForObject@AIAdjustedVisionRangeForObjectShim@@SAMPBVObject@@H@Z,0x0014A620,AI incremental-link static thunk target through a TU-local forwarding shim
 ?start@W3DShaderManagerStartRenderToTextureShim@@SAXXZ,0x007171F0,W3DShaderManager incremental-link static thunk target through a TU-local forwarding shim
 ?startRenderToTexture@W3DShaderManager@@SAXXZ,0x000154E7
 ?statusCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyStatusArg@@@Z,0x0003BD8B
