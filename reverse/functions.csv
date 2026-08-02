@@ -10052,7 +10052,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@AutoAbilityBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00114F90,107,Code/masm_dumps/AutoAbilityBehavior_friend_newModuleData.asm,matched,Retail registration dp014 proves AutoAbilityBehavior data factory
 ?friend_newModuleData@AutoDepositUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00123F20,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@AutoFindHealingUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119800,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue cascade; located via ModuleFactory::init ModuleTemplate inline-build
-?friend_newModuleData@AutoHealBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00129E40,54,Code/masm_dumps/AutoHealBehavior_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x00; Ghidra confirmed
+?friend_newModuleData@AutoHealBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00129E40,54,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@AutoPickUpUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119B30,107,Code/masm_dumps/AutoPickUpUpdate_friend_newModuleData.asm,matched,Retail registration dp098 proves AutoPickUpUpdate data factory
 ?friend_newModuleData@BaikonurLaunchPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F8B0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@BannerCarrierUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119C40,107,Code/masm_dumps/BannerCarrierUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
