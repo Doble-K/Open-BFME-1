@@ -6,13 +6,13 @@ public:
     void populateObserverList();
 };
 
-__declspec(naked) void ControlBar::populateObserverList()
+class ControlBarPopulateObserverListShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 02Ah
-        _emit 031h
-        _emit 047h
-        _emit 000h
-    }
+public:
+    void populate();
+};
+
+void ControlBar::populateObserverList()
+{
+    ((ControlBarPopulateObserverListShim *)this)->populate();
 }
