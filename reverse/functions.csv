@@ -3018,7 +3018,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1PropagandaTowerBehaviorModuleData@@UAE@XZ,,0x0028DD10,137,Code/masm_dumps/PropagandaTowerBehaviorModuleData_destructor.asm,matched,Exact retail MASM; factory 0x11CB70 ctor 0x28DC60 ownership
 ??1ProxyArrayClass@@UAE@XZ,,0x0097C9D0,62,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ??1QuadDrawModuleInfo@FXParticleSystem@@UAE@XZ,0x0001C5CB,0x005D88A0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
-??1QuadDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x000459F8,0x005D8A00,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/QuadDrawModuleTemplate_dtor.asm,matched,exact 50B dtor via MASM (was inflated 688)
+??1QuadDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x000459F8,0x005D8A00,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=?destroy@QuadDrawDtorBody@FXParticleSystem@@QAEXXZ;C++ member body converted from 50B raw dtor
 ??1QueueProductionExitUpdate@@UAE@XZ,,0x001F8D10,141,Code/masm_dumps/QueueProductionExitUpdate_destructor.asm,matched,Exact 141B SEH dtor Open-BFME4
 ??1QuickMatchPreferences@@UAE@XZ,,0x000AAFA0,11,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,thunk-dump converted to clean C++
 ??1RAMFile@@MAE@XZ,,0x009D19A0,93,Code/masm_dumps/_icf2___1RAMFile__MAE_XZ_9D19A0.asm,matched,ICF of ??1SubsystemInterface@@UAE@XZ Open-BFME4+Grok

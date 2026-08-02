@@ -15860,7 +15860,21 @@ PointEmissionVolumeModuleTemplate::~PointEmissionVolumeModuleTemplate()
 }
 
 // ??1QuadDrawModuleTemplate@FXParticleSystem@@UAE@XZ
-// Body in QuadDrawModuleTemplate_dtor.asm (large SEH dtor wrapper).
+struct QuadDrawDtorBody
+{
+    void destroy();
+};
+
+void QuadDrawDtorBody::destroy()
+{
+    unsigned char *info = this ? (unsigned char *)this + 8 : 0;
+    *(volatile unsigned int *)info = 0x01073744;
+
+    unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+    *(volatile unsigned int *)base = 0x0110f97c;
+    *(volatile unsigned int *)this = 0x01073758;
+}
+#pragma comment(linker, "/alternatename:??1QuadDrawModuleTemplate@FXParticleSystem@@UAE@XZ=?destroy@QuadDrawDtorBody@FXParticleSystem@@QAEXXZ")
 
 // ??1RenderObjectDrawModuleInfo@FXParticleSystem@@UAE@XZ
 __declspec(naked) RenderObjectDrawModuleInfo::~RenderObjectDrawModuleInfo()
