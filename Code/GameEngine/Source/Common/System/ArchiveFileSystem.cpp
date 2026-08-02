@@ -223,30 +223,29 @@ ArchiveFileSystem::~ArchiveFileSystem()
 // this class (openFile, doesFileExist, loadIntoDirectoryTree), the binary has
 // four real slots, and the extra one is BFME's wide openFile at slot 6. Slots 5
 // and 8 are the two already matched, in the same relative order, so 10 is this.
-// Note the access specifier: the object emits MAE (protected virtual), not UAE.
+// The object emits MAE (protected virtual), not UAE.
 //
-// The body is the reference's, with the find/concat helpers above substituted.
-// What it still needs is four callee names, and they are worth getting right
-// rather than fast, because a wrong one is a claim the byte comparison cannot
-// contradict -- build.py resolves these by name and fills the displacement in
-// from the target either way:
+// The callee names are NOT the blocker; all five now have addresses in
+// reverse/symbols.csv. Correcting an earlier note here: a wrong address in one
+// of those rows FAILS rather than masks. build.py computes the REL32
+// displacement from the symbol's address and compares it to retail, so a wrong
+// callee address makes the caller mismatch. That is the opposite of the DIR32
+// case, and it means these rows fail safe -- a wrong one blocks a match, it
+// cannot manufacture one. They are still positional guesses and marked as such
+// in symbols.csv; only _M_erase at 0x009CAAD0 has structural backing, being
+// recursive.
 //
-//   ?getFileListInDirectory@ArchiveFile@@   0x009D0820 is almost certainly it:
-//                                           the only call between the three
-//                                           AsciiString ctors and their three
-//                                           releaseBuffers.
-//   ??A?$map@VAsciiString@@VArchivedDirectoryInfo@@...  0x009CAB10, reached
-//                                           three times, matching the three
-//                                           m_directories[token] subscripts.
-//   ?_M_erase@?$_Rb_tree@VAsciiString@@U?$pair@...      0x009CAAD0 or 0x0007D250
-//                                           -- both are 61 bytes, so position
-//                                           alone does not separate them.
-//   ??1?$_Rb_tree@VAsciiString@@V1@U?$_Identity@...     the filenameList
-//                                           destructor, the last call in the
-//                                           body at 0x009CB059 through a thunk.
+// The real blocker is structural. With all five resolved the body is still the
+// wrong shape: retail reserves 0x24 of frame where this reserves 0x30, and the
+// two use different callee-saved registers throughout (retail carries the node
+// pointer in esi/ebp, this in edi/ebp). Both come out 898 bytes, which is
+// coincidence rather than progress.
 //
-// tools/locate.py cannot place this one to settle them automatically: with four
-// call sites masked the remaining relocation-free run is not unique.
+// It is NOT that debugpath and path2 are absent, which is the first thing to
+// suspect given the DEBUG_LOG they feed is commented out. Retail has exactly
+// three concat calls, at 0x009CAF52, 0x009CAF67 and 0x009CAFDA, which is one
+// for each of this function's three -- two on debugpath and one on path2. Both
+// locals are real. The extra 0xC of frame is something else.
 void ArchiveFileSystem::loadIntoDirectoryTree(const ArchiveFile *archiveFile, const AsciiString& archiveFilename, Bool overwrite)
 {
 
