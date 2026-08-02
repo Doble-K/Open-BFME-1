@@ -12289,6 +12289,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseFXList@BoneFXUpdateModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00033C2B,5,Code/GameEngine/Source/Common/RTS/BoneFXUpdateModuleDataParseFXListThunk.cpp,matched,5-byte incremental-link static BoneFXUpdateModuleData thunk converted to focused C++ source
 ?parseFXList@INI@@SAXPAV1@PAX1PBX@Z,,0x000B8E80,107,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseFXList@TransitionDamageFXModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x0000A5AB,5,Code/GameEngine/Source/Common/RTS/TransitionDamageFXModuleDataParseFXListThunk.cpp,matched,5-byte incremental-link static TransitionDamageFXModuleData thunk converted to focused C++ source
+?parseFireEffect@@YAXPAVINI@@@Z,,0x00421FB0,73,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,BFME-only block; 0x58 struct sharing RingEffects leading layout
 ?parseFont@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485B60,293,Code/masm_dumps/_parseFont__YA_NPADPAVWinInstanceData__0PAX_Z.asm,matched,
 ?parseFontDesc@GlobalLanguage@@SAXPAVINI@@PAX1PBX@Z,,0x0000B41F,5,Code/GameEngine/Source/GameClient/GlobalLanguageParseFontDescThunk.cpp,matched,5-byte static GlobalLanguage font parser thunk converted to focused C++ source
 ?parseFrictionPerSec@@YAXPAVINI@@PAX1PBX@Z,,0x000B9D20,37,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
@@ -12299,6 +12300,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseGameClientRandomVariable@INI@@SAXPAV1@PAX1PBX@Z,,0x000B8F60,113,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseGameLogicRandomDelay@@YAXPAVINI@@PAXPAVGameLogicRandomVariable@@@Z,,0x00287750,59,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,
 ?parseGeneralPersona@ChallengeGenerals@@CAXPAVINI@@PAX1PBX@Z,,0x004582D0,20,Code/GameEngine/Source/GameClient/GUI/ChallengeGenerals.cpp,matched,
+?parseGlowEffect@@YAXPAVINI@@@Z,,0x00421EE0,80,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,BFME-only block; saved/active pair at 0x12b4ff8 and 0x12b501c with the write-back suppressed for override loads
 ?parseHeaderTemplateDefinition@INI@@SAXPAV1@@Z,,0x0048CBD0,195,Code/masm_dumps/INI_parseHeaderTemplateDefinition_48CBD0.asm,matched,true body 0x48CBD0/195; queue 0x9A15AF was epilogue; FieldParse Font/Point/Bold; MASM ZH AsciiString block
 ?parseICoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853420,60,Code/GameEngine/Source/Common/INI/ini.cpp,matched,C++ match via getNextSubToken + scanInt
 ?parseImage@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BB110,43,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
@@ -12376,6 +12378,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseRealRange@@YAXPAVINI@@PAX1PBX@Z,,0x0075B800,24,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?parseReallyLowMHz@@YAXPAVINI@@@Z,,0x0007BE30,43,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ?parseReplaceModule@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x00143320,315,Code/masm_dumps/parseReplaceModule_ThingTemplate_KAXPAVINI_PAX1PBX_Z_143320_packet342.asm,matched,Certified packet 342 exact retail bytes SHA-256 05016b18cc5af9bbcc33d188c4ce138084c4eb232fc86e47ce5a720e3bca37a8
+?parseRingEffect@@YAXPAVINI@@@Z,,0x00421F50,73,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,BFME-only block; 0x60 struct - RingEffect is FireEffect plus EffectBlurDiameter and BaseBlurDiameter
 ?parseScience@AI@@SAXPAVINI@@PAX1PBX@Z,,0x0014A0A0,74,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,
 ?parseScience@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9BE0,59,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseScienceVector@INI@@SAXPAV1@PAX1PBX@Z,,0x00042609,5,Code/GameEngine/Source/Common/RTS/INIParseScienceVectorThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source

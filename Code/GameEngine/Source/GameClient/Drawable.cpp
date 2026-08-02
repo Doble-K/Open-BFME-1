@@ -5501,3 +5501,121 @@ void TintEnvelope::loadPostProcess( void )
 {
 
 }  // end loadPostProcess
+
+//-------------------------------------------------------------------------------------------------
+// The GlowEffect / RingEffect / FireEffect blocks. All three are BFME-only, all
+// three have the same shape, and their six statics sit consecutively in .data
+// with no gaps -- 0x12b4ff8, 0x12b501c, 0x12b5040, 0x12b50a0, 0x12b5100,
+// 0x12b5158 -- which is what says they were declared together in one file.
+//
+// The shape is override bookkeeping. The parser copies the saved settings into
+// the active ones, parses over the active copy, and writes back to saved only
+// when this is not an override load. So a map.ini override changes what the game
+// reads without disturbing the baseline it can be restored from.
+//
+// Field names and offsets are the retail FieldParse tables, decoded in
+// docs/ini_schema.md. The 0x28..0x4b run in RingEffect/FireEffect has no INI
+// field writing into it, so it stays an anonymous pad rather than invented names.
+
+struct GlowEffect
+{
+	Bool m_glowEnabled;				// 0x00  GlowEnabled
+	Int m_glowDiameter;				// 0x04  GlowDiameter
+	Real m_glowIntensity;			// 0x08  GlowIntensity
+	Int m_glowTextureWidth;			// 0x0c  GlowTextureWidth
+	Real m_radiusScale1;			// 0x10  RadiusScale1
+	Real m_amplitude1;				// 0x14  Amplitude1
+	Real m_radiusScale2;			// 0x18  RadiusScale2
+	Real m_amplitude2;				// 0x1c  Amplitude2
+	Bool m_terrainGlow;				// 0x20  TerrainGlow
+	Bool m_multipassGlowEnabled;	// 0x21  MultipassGlowEnabled
+
+	static const FieldParse m_fieldParseTable[];
+};
+
+// FireEffect is RingEffect without the two blur fields, which is why it copies
+// 0x58 bytes where RingEffect copies 0x60.
+struct FireEffect
+{
+	Real m_scale;					// 0x00  Scale
+	Real m_blend;					// 0x04  Blend
+	RGBColor m_effectColor;			// 0x08  EffectColor
+	RGBColor m_baseColor;			// 0x14  BaseColor
+	Real m_effectSaturation;		// 0x20  EffectSaturation
+	Real m_baseSaturation;			// 0x24  BaseSaturation
+	char m_unknown28[ 0x4c - 0x28 ];// 0x28  no INI field writes here
+	Real m_velocity;				// 0x4c  Velocity
+	Real m_textureCross;			// 0x50  TextureCross
+	Real m_textureRepeatCount;		// 0x54  TextureRepeatCount
+
+	static const FieldParse m_fieldParseTable[];
+};
+
+struct RingEffect
+{
+	Real m_scale;					// 0x00  Scale
+	Real m_blend;					// 0x04  Blend
+	RGBColor m_effectColor;			// 0x08  EffectColor
+	RGBColor m_baseColor;			// 0x14  BaseColor
+	Real m_effectSaturation;		// 0x20  EffectSaturation
+	Real m_baseSaturation;			// 0x24  BaseSaturation
+	char m_unknown28[ 0x4c - 0x28 ];// 0x28  no INI field writes here
+	Real m_velocity;				// 0x4c  Velocity
+	Real m_textureCross;			// 0x50  TextureCross
+	Real m_textureRepeatCount;		// 0x54  TextureRepeatCount
+	Int m_effectBlurDiameter;		// 0x58  EffectBlurDiameter
+	Real m_baseBlurDiameter;		// 0x5c  BaseBlurDiameter
+
+	static const FieldParse m_fieldParseTable[];
+};
+
+// BFME has a fourth INILoadType that Zero Hour does not, value 4. Both it and
+// INI_LOAD_CREATE_OVERRIDES suppress the write-back. Left as the literal because
+// nothing in the image names it.
+static const INILoadType INI_LOAD_BFME_TYPE_4 = (INILoadType)4;
+
+// BFME keeps m_loadType at INI+0x08. Zero Hour's header puts it at +0x2010,
+// because Zero Hour parses through an 8KB m_readBuffer that BFME does not have
+// (see docs/ini_loading.md). Reading it through a local view keeps these three
+// functions matchable without moving this whole file onto the BFME INI shim.
+inline INILoadType retailLoadType( const INI *ini )
+{
+	struct RetailINI { char m_pad[ 0x08 ]; INILoadType m_loadType; };
+	return reinterpret_cast<const RetailINI *>( ini )->m_loadType;
+}
+
+static GlowEffect s_glowEffectSaved;		// 0x12b4ff8
+static GlowEffect s_glowEffectActive;		// 0x12b501c
+static RingEffect s_ringEffectSaved;		// 0x12b5040
+static RingEffect s_ringEffectActive;		// 0x12b50a0
+static FireEffect s_fireEffectSaved;		// 0x12b5100
+static FireEffect s_fireEffectActive;		// 0x12b5158
+static Bool s_glowEffectChanged;			// 0x12f13fc
+
+void parseGlowEffect( INI *ini )
+{
+	s_glowEffectActive = s_glowEffectSaved;
+	ini->initFromINI( &s_glowEffectActive, GlowEffect::m_fieldParseTable );
+	s_glowEffectChanged = TRUE;
+	const INILoadType loadType = retailLoadType( ini );
+	if( loadType != INI_LOAD_CREATE_OVERRIDES && loadType != INI_LOAD_BFME_TYPE_4 )
+		s_glowEffectSaved = s_glowEffectActive;
+}
+
+void parseRingEffect( INI *ini )
+{
+	s_ringEffectActive = s_ringEffectSaved;
+	ini->initFromINI( &s_ringEffectActive, RingEffect::m_fieldParseTable );
+	const INILoadType loadType = retailLoadType( ini );
+	if( loadType != INI_LOAD_CREATE_OVERRIDES && loadType != INI_LOAD_BFME_TYPE_4 )
+		s_ringEffectSaved = s_ringEffectActive;
+}
+
+void parseFireEffect( INI *ini )
+{
+	s_fireEffectActive = s_fireEffectSaved;
+	ini->initFromINI( &s_fireEffectActive, FireEffect::m_fieldParseTable );
+	const INILoadType loadType = retailLoadType( ini );
+	if( loadType != INI_LOAD_CREATE_OVERRIDES && loadType != INI_LOAD_BFME_TYPE_4 )
+		s_fireEffectSaved = s_fireEffectActive;
+}
