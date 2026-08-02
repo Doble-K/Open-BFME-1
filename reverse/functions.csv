@@ -11467,7 +11467,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPopupReplayLayout@Shell@@QAEPAVWindowLayout@@XZ,,0x0057FEC0,48,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,exact C++ popup layout with retail field offset and AsciiString shim
 ?getPosUnit@PathfindCell@@QBE?AW4ObjectID@@XZ,,0x003D4BF0,13,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?getPosition@BFMERopeDrawable@@QBEPBUCoord3D@@XZ,,0x0004B12D,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/BFMERopeDrawableGetPositionThunk.cpp,matched,Open-BFME5 exact ILT thunk; retail Drawable::getPosition body
-?getPosition@ParticleSystem@@QAEXPAUCoord3D@@@Z,,0x005BDDB0,63,Code/masm_dumps/_rn5__getPosition_ParticleSystem__QAEXPAUCoord3D___Z_5BDDB0.asm,matched,reloc-needle Open-BFME4+Grok
+?getPosition@ParticleSystem@@QAEXPAUCoord3D@@@Z,,0x005BDDB0,63,Code/GameEngine/Source/GameClient/System/ParticleSystemGetPositionThunk.cpp,matched,MASM converted to focused C++ member-function thunk
 ?getPosition@Thing@@QBEPBUCoord3D@@XZ,,0x000B6560,4,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,Ghidra-bound cached-position accessor
 ?getPosition@View@@UAEXPAUCoord3D@@@Z,,0x0045BD40,26,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?getPowerName@SpecialPowerModule@@UBE?AVAsciiString@@XZ,,0x00268A60,33,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule.cpp,matched,
