@@ -2036,7 +2036,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RousingSpeechUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00264BF0,213,Code/masm_dumps/RousingSpeechUpdate_constructor.asm,matched,Exact 213B @ 0x00264BF0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C640
 ??0RousingSpeechUpdateModuleData@@QAE@XZ,,0x00265450,146,Code/masm_dumps/RousingSpeechUpdateModuleData_constructor.asm,matched,Exact 146B @ 0x00265450; Exact retail MASM ModuleData ctor; unique factory 0x11C6C0
 ??0RubbleRiseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A3640,175,Code/masm_dumps/RubbleRiseUpdate_constructor.asm,matched,Exact 175B @ 0x002A3640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B6C0
-??0RubbleRiseUpdateModuleData@@QAE@XZ,,0x00127AD0,202,Code/masm_dumps/RubbleRiseUpdateModuleData_constructor.asm,matched,Exact 202B @ 0x00127AD0; Exact retail MASM ModuleData ctor; unique factory 0x127BD0
+??0RubbleRiseUpdateModuleData@@QAE@XZ,,0x00127AD0,202,Code/GameEngine/Source/Common/RTS/RubbleRiseUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0RunOffMapBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205060,60,Code/masm_dumps/RunOffMapBehavior_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/GameEngine/Source/GameLogic/AI/RunOffMapBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,MASM converted to clean C++
@@ -10131,6 +10131,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@HordeSiegeEngineContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00116360,110,Code/masm_dumps/HordeSiegeEngineContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@HordeUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00114320,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@HorseHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00115DE0,110,Code/masm_dumps/HorseHordeContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
+?friend_newModuleData@InactiveBody@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/GameEngine/Source/GameLogic/Object/Body/InactiveBodyModuleDataFactory.cpp,matched,Luna Open-BFME8 exact C++ base module-data factory ICF alias
 ?friend_newModuleData@InstantDeathBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z;C++ alias
 ?friend_newModuleData@JetAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118020,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@DozerAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@KeepObjectDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00125340,107,Code/masm_dumps/KeepObjectDie_friend_newModuleData.asm,matched,retail ModuleFactory dp062 Ghidra confirmed ICF body
@@ -10250,6 +10251,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@UpgradeSoundSelectorClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121ED0,107,Code/masm_dumps/UpgradeSoundSelectorClientBehavior_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xF5 Ghidra confirmed
 ?friend_newModuleData@VeterancyCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00125FD0,129,Code/masm_dumps/VeterancyCrateCollide_friend_newModuleData.asm,matched,ModuleFactory reg 0xC6 binds data factory; ICF alias of ConvertToCarBomb at 0x125FD0; drift 0x12B63B was int3 pad
 ?friend_newModuleData@VeterancyGainCreate@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
+?friend_newModuleData@W3DDebrisDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DDebrisDrawModuleDataFactory.cpp,matched,Luna Open-BFME8 exact C++ W3D factory ICF alias
 ?friend_newModuleData@W3DDependencyModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DLaserDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00114320,107,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F9C0,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
