@@ -2,22 +2,25 @@
 
 namespace ProductionPrerequisite
 {
-	struct PrereqUnitRec;
+struct PrereqUnitRec;
 }
 
 namespace _STL
 {
-	template <class T, class U>
-	__declspec(naked) void _Construct(T *, const U &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0F4h
-			_emit 09Dh
-			_emit 055h
-			_emit 000h
-		}
-	}
+template <class T, class U>
+void _Construct(T *, const U &);
 
-	template void _Construct<ProductionPrerequisite::PrereqUnitRec, ProductionPrerequisite::PrereqUnitRec>(ProductionPrerequisite::PrereqUnitRec *, const ProductionPrerequisite::PrereqUnitRec &);
+class PrereqUnitRecConstructShim
+{
+public:
+    static void construct(ProductionPrerequisite::PrereqUnitRec *p, const ProductionPrerequisite::PrereqUnitRec &v);
+};
+
+template <class T, class U>
+void _Construct(T *p, const U &v)
+{
+    PrereqUnitRecConstructShim::construct((ProductionPrerequisite::PrereqUnitRec *)p, *(const ProductionPrerequisite::PrereqUnitRec *)&v);
+}
+
+template void _Construct<ProductionPrerequisite::PrereqUnitRec, ProductionPrerequisite::PrereqUnitRec>(ProductionPrerequisite::PrereqUnitRec *, const ProductionPrerequisite::PrereqUnitRec &);
 }
