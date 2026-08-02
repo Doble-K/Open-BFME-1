@@ -4,26 +4,26 @@ class PlayerTemplate;
 
 namespace _STL
 {
-	template <class Type>
-	class allocator
-	{
-	};
+template <class Type>
+class allocator
+{
+};
 
-	template <class Type, class Allocator>
-	class vector
-	{
-	public:
-		~vector();
-	};
+template <class Type, class Allocator>
+class vector
+{
+public:
+	~vector();
+};
 
-	__declspec(naked) vector<PlayerTemplate, allocator<PlayerTemplate> >::~vector()
-	{
-		__asm {
-			_emit 0E9h
-			_emit 05Fh
-			_emit 0F5h
-			_emit 00Ch
-			_emit 000h
-		}
-	}
+class PlayerTemplateVectorDestructorShim
+{
+public:
+	void destroy();
+};
+
+vector<PlayerTemplate, allocator<PlayerTemplate> >::~vector()
+{
+	((PlayerTemplateVectorDestructorShim *)this)->destroy();
+}
 }
