@@ -21,9 +21,28 @@ virtual call on the freshly opened file. So the wide forms are not Zero Hour's
 bodies with two spare arguments; they have BFME-only logic that uses them, and
 recovering one means reconstructing that logic rather than retyping a signature.
 
-What is true is that every *caller* found so far passes zero: the 22-byte narrow
-forwarders push `0, 0`, and `Win32BIGFileSystem::init` passes its overwrite flag
-as 0. So nothing yet says what the parameters mean, only that they matter.
+The fourth one is a **seek offset**. `Win32LocalFileSystem`'s wide `openFile`
+ends like this:
+
+    mov  eax,[esp+0x40]      ; the fourth argument
+    cmp  eax, ebp            ; against zero
+    mov  byte [esi+0x0d], 1  ; deleteOnClose
+    je   done
+    mov  edx,[esi]
+    push 1                   ; CURRENT
+    push eax
+    mov  ecx, esi
+    call [edx+0x14]          ; File slot 5, seek
+
+so on success it seeks the freshly opened file to that offset before returning
+it. That explains why the whole family was widened rather than just one class:
+an `openFile` that can hand back a file already positioned is what reading a
+member out of a BIG archive needs, and it is why the narrow forms pass zero —
+zero means "no seek", which is the old behaviour exactly.
+
+The third parameter is still unnamed. Every caller found so far passes zero for
+both: the 22-byte narrow forwarders push `0, 0`, and `Win32BIGFileSystem::init`
+passes its overwrite flag as 0.
 
 This is why Zero Hour's `Win32LocalFileSystem::openFile` — the big one that
 allocates a `Win32LocalFile` and creates directories on the WRITE path — is at
