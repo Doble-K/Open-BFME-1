@@ -6,13 +6,13 @@ public:
     bool sendToManglerFromPort(unsigned int, unsigned short, unsigned short, bool);
 };
 
-__declspec(naked) bool FirewallHelperClass::sendToManglerFromPort(unsigned int, unsigned short, unsigned short, bool)
+class FirewallHelperClassSendToManglerFromPortShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 04Bh
-        _emit 0C0h
-        _emit 064h
-        _emit 000h
-    }
+public:
+    bool sendToManglerFromPort(unsigned int, unsigned short, unsigned short, bool);
+};
+
+bool FirewallHelperClass::sendToManglerFromPort(unsigned int address, unsigned short port, unsigned short sourcePort, bool useMangler)
+{
+    return ((FirewallHelperClassSendToManglerFromPortShim *)this)->sendToManglerFromPort(address, port, sourcePort, useMangler);
 }

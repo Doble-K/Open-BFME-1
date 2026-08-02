@@ -3457,6 +3457,7 @@ name,address,notes
 ?sendLocalCommandDirect@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,0x000411D7,ILT thunk; real body 0xA63300
 ?sendMangledPortNumberToTarget@NAT@@IAEXGPAVGameSlot@@@Z,0x0002ACCA,ILT thunk; real body 0x6718A0
 ?sendToManglerFromPort@FirewallHelperClass@@QAE_NIGG_N@Z,0x00022C00
+?sendToManglerFromPort@FirewallHelperClassSendToManglerFromPortShim@@QAE_NIGG_N@Z,0x0066EC50,FirewallHelperClass incremental-link thunk target through a TU-local forwarding shim
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x00019BCD,pinharvest x1 (thunk)
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x0003A8D7,pinharvest x1 (thunk)
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007E9FC0,pinharvest x1 (body)
