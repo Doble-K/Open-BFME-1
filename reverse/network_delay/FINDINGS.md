@@ -407,3 +407,178 @@ returning them to a pool.
 - Do not lower run-ahead values here.
 - Do not add an opt-in patch profile here.
 - Do not change matched source away from the original BFME behavior.
+
+---
+
+# The scheduler, decoded (2026-08-02)
+
+`getFrameAdvanceCount` (0x00681F70, vtable +0x3C) is the whole delay. It is still
+`__declspec(naked)` assembly in our tree, so nobody had read it. Decoded:
+
+```
+int BFMENativeNetwork::getFrameAdvanceCount()
+{
+    if (m_state(+0x0C) != 1)          return 1;      // not in a network game: free-run
+
+    if (this->vtable[0x8C]())         goto quantum;  // <-- SELECTOR, still unidentified
+
+    if (TheGameLogic->getFrame() == 0) return 1;
+
+    if (!m_stallFlag(+0x28)) {                        // first tick of a stall
+        g_stallStart(0x12F7718) = timeGetTime();
+        m_stallFlag(+0x28) = 1;
+    }
+
+    allowance = m_conMgr(+8)->m_frameCeiling(+0x1205C) - TheGameLogic->getFrame() + 1;
+
+    if (allowance > 0) {
+        if (areFrameCommandsComplete(curFrame, FALSE)) {   // 0x006633E0
+            m_stallFlag(+0x28) = 0;
+            return allowance;                              // <-- the release
+        }
+        this->vtable[0x24](FALSE);
+        return 0;                                          // commands missing: hold
+    }
+    ... bookkeeping on 0x12F7728, returns allowance ...
+
+quantum:                                                   // the 200ms path
+    if (m_conMgr->hasPacketRouterFrameStall()) {           // 0x00664260
+        m_accum(+0x20/+0x24) = 0;
+        return 0;
+    }
+    QueryPerformanceCounter(&now);                         // [0x1358EB4]
+    m_accum += now - m_lastCounter(+0x18/+0x1C);
+    m_lastCounter = now;
+
+    quantum = m_freq(+0x10/+0x14) / 5;                     // __alldiv, divisor 5
+    if (m_accum < quantum) return 0;                       // not yet
+    m_accum -= quantum;
+    if (m_accum > quantum * 2) { g_overrun(0x12F7724)++; m_accum = 0; }  // catch-up clamp
+    g_lastAdvance(0x12F771C) = timeGetTime();
+    return 1;                                              // exactly ONE frame
+}
+```
+
+`m_freq` really is the performance frequency: `construct` (0x006818D4) calls
+[0x1358EB8] then [0x1358EB4] -- QueryPerformanceFrequency then
+QueryPerformanceCounter -- storing them at +0x10/+0x14 and +0x18/+0x1C.
+
+So on the quantum path the caller is released **one logic frame per 200ms**, and
+on the normal path it is released `ceiling - currentFrame + 1` frames gated on
+`areFrameCommandsComplete`. Nothing here consults ping, which is why the delay
+does not shrink on a LAN.
+
+## The one thing that must be identified next
+
+**Virtual slot +0x8C decides which path runs**, and it is unidentified. Everything
+about the size of the fix depends on it: if it is "am I the packet router" then
+the host is paced at 5Hz and clients follow its ceiling; if it is a loading or
+observer state then the quantum path is not the steady-state path at all and the
+delay is elsewhere. Do not tune the 5 until this is known.
+
+# The nine network INI fields: six are dead
+
+The GameData block parses nine network timing fields. A def-use scan -- decode
+each function, track the register loaded from TheWritableGlobalData (0x012ED5C8),
+let callee-saved registers survive calls, then look for [reg+offset] -- gives:
+
+| INI key | offset | reads | verdict |
+|---|---|---|---|
+| NetworkFPSHistoryLength | 0xCA4 | 0 | parsed, never read |
+| NetworkLatencyHistoryLength | 0xCA8 | 0 | parsed, never read |
+| NetworkRunAheadMetricsTime | 0xCAC | 0 | parsed, never read |
+| NetworkCushionHistoryLength | 0xCB0 | 0 | parsed, never read |
+| NetworkKeepAliveDelay | 0xCB8 | 0 | parsed, never read |
+| NetworkDisconnectScreenNotifyTime | 0xCC4 | 0 | parsed, never read |
+| NetworkRunAheadSlack | 0xCB4 | 10 | live |
+| NetworkDisconnectTime | 0xCBC | 3 | live |
+| NetworkPlayerTimeoutTime | 0xCC0 | 4 | live |
+
+`NetworkCushionHistoryLength` being dead rules out an adaptive cushion layer.
+
+`NetworkRunAheadSlack` is NOT a lead. It is a stall tolerance:
+`hasPacketRouterFrameStall` returns TRUE when any
+`m_playerLatestFrame[i] + slack < TheGameLogic->getFrame()`, and its only caller
+is the scheduler. Before frame 5 the slack is a hardcoded 3. In
+`Connection::doSend` the same field is a retention window -- drop queued commands
+more than `slack` frames stale. Neither use shortens command-to-execution
+latency, so varying it in INI cannot fix the delay.
+
+# Delay-path functions still needing C++
+
+Generated from the call graph: two levels of callees from the scheduler, both
+ceiling writers, the readiness gate, the send path and the frame ring, filtered
+to what is unnamed, asm-only or claimed by a thunk row.
+
+ bytes  addr       state       name
+  1380  0x680980   UNNAMED     
+   937  0x67EE40   UNNAMED     
+   750  0x66C3B0   ASM         ?updateDisconnectStatus@DisconnectManager@@IAEXPAVConnection
+   608  0x673200   ASM         ?addMessage@NetCommandList@@QAEPAVNetCommandRef@@PAVNetComma
+   581  0x661F10   UNNAMED     
+   502  0x6624A0   UNNAMED     
+   448  0x670A30   UNNAMED     
+   433  0x67E3F0   UNNAMED     
+   284  0x67E8C0   UNNAMED     
+   272  0x67E760   UNNAMED     
+   261  0x67EA30   UNNAMED     
+   256  0x676890   UNNAMED     
+   256  0x66A030   UNNAMED     
+   255  0x6655C0   UNNAMED     
+   251  0x67EC70   UNNAMED     
+   251  0x67E620   UNNAMED     
+   215  0x678AA0   UNNAMED     
+   204  0x669B50   UNNAMED     
+   187  0x67EB80   UNNAMED     
+   187  0x66B2D0   ASM         ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@
+   174  0x679730   UNNAMED     
+   171  0x9D2AB0   UNNAMED     
+   170  0x9F70E0   UNNAMED     
+   169  0x82C920   UNNAMED     
+   164  0x683830   UNNAMED     
+   162  0x82E540   ASM         ?_M_allocate@?$__node_alloc@$00$0A@@_STL@@CAPAXI@Z
+   156  0x6645B0   UNNAMED     
+   153  0x6789E0   UNNAMED     
+   152  0x678920   UNNAMED     
+   152  0x678860   UNNAMED     
+   152  0x6787A0   UNNAMED     
+   150  0x6658F0   UNNAMED     
+   130  0x679390   UNNAMED     
+   130  0x679250   UNNAMED     
+   126  0x669960   UNNAMED     
+   121  0x669560   UNNAMED     
+   114  0x678F10   UNNAMED     
+   112  0x50EF20   UNNAMED     
+   108  0x6794D0   UNNAMED     
+   108  0x679440   UNNAMED     
+   108  0x679300   UNNAMED     
+   105  0x86AF90   UNNAMED     
+   103  0x679650   UNNAMED     
+    96  0x6688D0   UNNAMED     
+    91  0x662270   UNNAMED     
+    87  0x66BD10   THUNK-ONLY  ?processDisconnectVote@DisconnectManager@@IAEXPAVNetCommandM
+    86  0x682E80   UNNAMED     
+    86  0x679010   UNNAMED     
+    86  0x678FA0   UNNAMED     
+    86  0x678D40   UNNAMED     
+    86  0x678CD0   UNNAMED     
+    85  0x82E5F0   ASM         ?_M_deallocate@?$__node_alloc@$00$0A@@_STL@@CAXPAXI@Z
+    82  0x6652B0   UNNAMED     
+    75  0x675CE0   UNNAMED     
+    75  0x675C50   UNNAMED     
+    75  0x675A20   UNNAMED     
+    75  0x6380F0   UNNAMED     
+    75  0x638060   UNNAMED     
+    74  0x9F6EE4   ASM         ??_L@YGXPAXIHP6EX0@Z1@Z
+    74  0x6731A0   UNNAMED     
+    70  0x66BFE0   UNNAMED     
+    69  0x673840   UNNAMED     
+    68  0x673740   UNNAMED     
+    62  0x8543B0   UNNAMED     
+    62  0x6832C0   UNNAMED     
+    61  0x667B50   UNNAMED     
+    61  0x50E5A0   UNNAMED     
+    60  0x6651C0   UNNAMED     
+    59  0x9F7E88   UNNAMED     
+    58  0x0800C0   UNNAMED     
+
