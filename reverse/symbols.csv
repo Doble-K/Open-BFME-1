@@ -2132,6 +2132,7 @@ name,address,notes
 ?Registry_Load_Render_Device@DX8Wrapper@@KA_NPBDPADHAAH2222@Z,0x00903FE0,pinharvest x1 (body)
 ?Registry_Save_Render_Device@DX8Wrapper@@KA_NPBDHHHH_NH@Z,0x00903ED0,pinharvest x1 (body)
 ?Release@Animatable3DObjClass@@IAEXXZ,0x00982090
+?Release@Animatable3DObjClass@@QAEXXZ,0x00982090,called by every Set_Animation overload
 ?ReleaseWindowLayout@@YAXPAVWindowLayout@@@Z,0x00049AD0
 ?Release_Engine_Ref@IndexBufferClass@@QBEXXZ,0x0091CD40,pinharvest x2 (body)
 ?Release_Engine_Ref@VertexBufferClass@@QBEXXZ,0x0091D9D0,pinharvest x1 (body)
@@ -2354,6 +2355,7 @@ name,address,notes
 ?SignalUIInteraction@@YAXH@Z,0x000348DD
 ?Simple_Evaluate_Pivot@HTreeClass@@QBE_NHABVMatrix3D@@PAV2@@Z,0x009539C0,rel32 pin for layout-fixed landing
 ?Simple_Evaluate_Pivot@HTreeClass@@QBE_NPAVHAnimClass@@HMABVMatrix3D@@PAV3@@Z,0x00953620,rel32 pin for layout-fixed landing
+?Single_Anim_Progress@Animatable3DObjClass@@IAEXXZ,0x00982870,called by Animatable3DObjClass::Render
 ?Start@ParticleEmitterClass@@QAEXXZ,0x0097F090
 ?Start_Movie_Capture@WW3D@@SAXPBDM@Z,0x009E7FD0,pinharvest x1 (body)
 ?String@CRC@@SAKPBDK@Z,0x009E7FD0
@@ -2473,6 +2475,7 @@ name,address,notes
 ?Update_Frustum@CameraClass@@IBEXXZ,0x00931DF0,CameraClass::Update_Frustum - REL32 callee for Project/Project_Camera_Space_Point
 ?Update_Min_Max@AABTreeClass@@AAEXHAAVVector3@@0@Z,0x0096AFC0
 ?Update_Non_New_Particles@ParticleBufferClass@@IAEXI@Z,0x00988060
+?Update_Sub_Object_Transforms@RenderObjClass@@UAEXXZ,0x0091FB90,empty base implementation the Animatable3DObjClass override chains to
 ?Update_Visual_Particle_State@ParticleBufferClass@@IAEXXZ,0x00986FC0
 ?Write@ChunkSaveClass@@QAEKPBXK@Z,0x009E18A0
 ?WriteConditionDataChunk@Condition@@SAXAAVDataChunkOutput@@PAV1@@Z,0x0003DA91
@@ -4050,6 +4053,3 @@ _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
 _gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
 _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
-?Single_Anim_Progress@Animatable3DObjClass@@IAEXXZ,0x00982870,called by Animatable3DObjClass::Render
-?Update_Sub_Object_Transforms@RenderObjClass@@UAEXXZ,0x0091FB90,empty base implementation the Animatable3DObjClass override chains to
-?Release@Animatable3DObjClass@@QAEXXZ,0x00982090,called by every Set_Animation overload
