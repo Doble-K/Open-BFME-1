@@ -1352,7 +1352,6 @@ void NAT::processGlobalMessage(Int slotNum, const char *options) {
 	}
 }
 
-// ?setConnectionState@NAT@@IAEXHW4NATConnectionState@@@Z present-unmatched
 void NAT::setConnectionState(Int nodeNumber, NATConnectionState state) {
 	m_connectionStates[nodeNumber] = state;
 
