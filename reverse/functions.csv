@@ -13231,7 +13231,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setSlotPointer@GameInfo@@QAEXHPAVGameSlot@@@Z,,0x0061E9E0,24,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setSlotRankPoints@GameSpyGameSlot@@QAEXH@Z,,0x0045BEC0,10,Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp,matched,
 ?setSortMode@@YAXW4GameSortType@@@Z,,0x0062E560,32,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,thunk-dump converted to clean C++
-?setSquishedControlBarConfig@ControlBar@@IAEXXZ,,0x0049D0B0,95,Code/masm_dumps/_rn5__setSquishedControlBarConfig_ControlBar__IAEXXZ_49D0B0.asm,matched,reloc-needle Open-BFME4+Grok
 ?setStacking@RoadType@@QAEXH@Z,,0x00674240,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,ICF alias of existing matched body
 ?setStartPos@AnimateWindow@@QAEXUICoord2D@@@Z,,0x00495370,17,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ?setStartPos@ControlBarSchemeAnimation@@QAEXUICoord2D@@@Z,,0x00495390,17,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?doEnableOrDisableObjectDifficultyBonuses@ScriptActions@@UAEX_N@Z,,0x002F0840,77,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,MASM dump converted to clean C++; BFME ScriptEngine is 0x6868 bigger ahead of m_freezeByScript
 ?setConnectionState@NAT@@IAEXHW4NATConnectionState@@@Z,,0x00670DC0,116,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,MASM dump converted to clean C++; BFME EstablishConnectionsMenu declares its five public methods virtual so setPlayerStatus is slot 5
 ?registerNewCave@CaveSystem@@QAEXH@Z,,0x00378970,193,Code/GameEngine/Source/GameLogic/System/CaveSystem.cpp,matched,MASM dump converted to clean C++; BFME TunnelTracker has one polymorphic base (sizeof 0x20) not MemoryPoolObject+Snapshot
+?setSquishedControlBarConfig@ControlBar@@IAEXXZ,,0x0049D0B0,95,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,MASM dump converted to clean C++; BFME View has two more virtuals ahead of setHeight
