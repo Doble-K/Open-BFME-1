@@ -2849,7 +2849,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1GameState@@UAE@XZ,,0x00110DF0,503,Code/GameEngine/Source/Common/System/SaveGame/GameState_dtor.asm,matched,
 ??1GameStateMap@@,,0x00112BF0,343,Code/masm_dumps/_sa9___1GameStateMap___112BF0.asm,matched,Exact 343B Open-BFME4
 ??1GameTextInterface@@UAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,object-symbol=??1SubsystemInterface@@UAE@XZ;ICF alias converted to existing clean C++ body
-??1GameTextManager@@UAE@XZ,,0x00438430,117,Code/masm_dumps/GameText_GameTextManager_destructor.asm,matched,exact retail destructor via MASM; ZH class has extra 0xA000-byte text buffer
 ??1GameWindow@@MAE@XZ,,0x00479CD0,203,Code/masm_dumps/GameWindow_destructor.asm,matched,Certified complete destructor via vtable wrapper constructor ownership and ret boundary
 ??1GameWindowManager@@UAE@XZ,,0x00483810,156,Code/masm_dumps/_rn5___1GameWindowManager__UAE_XZ_483810.asm,matched,reloc-needle Open-BFME4+Grok
 ??1GarrisonContain@@UAE@XZ,,0x0021D9C0,151,Code/masm_dumps/GarrisonContain_destructor.asm,matched,Exact 151B @ 0x0021D9C0; Exact retail MASM; instance factory->vtable dtor; del 0x21E310 ctor 0x21D820 vt 0xCAB818
@@ -13365,7 +13364,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?size@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QBEIXZ,,0x002CB260,26,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?size@MemoryReadFile@@UAEHXZ,,0x009CB170,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?size@MemoryWriteFile@@UAEHXZ,,0x009CB350,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
-?sizeWindowsDefault@ControlBarResizer@@QAEXXZ,,0x004AB100,122,Code/masm_dumps/sizeWindowsDefault_ControlBarResizer_4AB100_packet229.asm,matched,Certified recovery packet 229 exact retail bytes SHA256 8e769ae3b84ff3a81f7e98fc36c10a362f552c8361f9009c7c08338860f40cb7
 ?skip@ButtonFlashTransition@@UAEXXZ,,0x0059AA80,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@ControlBarArrowTransition@@UAEXXZ,,0x0059B850,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@FadeTransition@@UAEXXZ,,0x0059C440,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
@@ -13930,3 +13928,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setUpDownImages@ControlBar@@IAEXXZ,,0x0049D160,259,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,MASM dump converted to clean C++; BFME puts the six toggle-button images at this+0x2A0 (reference/shims/controlbarlayout)
 ?Make_UV_Array_Unique@MeshMatDescClass@@QAEXHH@Z,,0x0092C010,158,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes
 ?probed@NAT@@IAEXH@Z,,0x00671DE0,155,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes under the existing nat shim
+?sizeWindowsDefault@ControlBarResizer@@QAEXXZ,,0x004AB100,122,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes under the display shim
+??1GameTextManager@@UAE@XZ,,0x00438430,117,Code/GameEngine/Source/GameClient/GameText.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes

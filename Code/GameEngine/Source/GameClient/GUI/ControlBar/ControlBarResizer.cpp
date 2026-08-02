@@ -159,7 +159,6 @@ ResizerWindow *ControlBarResizer::newResizerWindow( AsciiString name )
 	m_resizerWindowsList.push_back(newRwin);
 	return newRwin;
 }	
-// ?sizeWindowsDefault@ControlBarResizer@@QAEXXZ present-unmatched
 void ControlBarResizer::sizeWindowsDefault( void )
 {
 	ResizerWindowList::iterator it = m_resizerWindowsList.begin();
