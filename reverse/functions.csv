@@ -13981,3 +13981,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?add_channel@HRawAnimClass@@AAEXPAVMotionChannelClass@@@Z,,0x00959B60,192,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
 ?add_channel@HCompressedAnimClass@@AAEXPAVTimeCodedMotionChannelClass@@@Z,,0x0095B8F0,140,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ?add_channel@HCompressedAnimClass@@AAEXPAVAdaptiveDeltaMotionChannelClass@@@Z,,0x0095B980,140,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?openFile@FileSystem@@QAEPAVFile@@PBDHHH@Z,,0x009C89F0,445,Code/GameEngine/Source/Common/System/FileSystem_openFile.cpp,matched,BFME wide form; same structure as the narrow one but reaching LocalFileSystem slot 3 and ArchiveFileSystem slot 6

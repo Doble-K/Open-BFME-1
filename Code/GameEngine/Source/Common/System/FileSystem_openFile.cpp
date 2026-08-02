@@ -100,8 +100,11 @@ public:
 	virtual void A2() = 0;
 	virtual void A3() = 0;
 	virtual void A4() = 0;
-	// slot 5 = +0x14
-	virtual File *openFile( const char *filename, int access ) = 0;
+	// Declared widest-first: MSVC lays out a run of same-name virtual overloads
+	// in reverse declaration order, so this is what puts the two-argument form at
+	// slot 5 and the four-argument one at slot 6.
+	virtual File *openFile( const char *filename, int access, int a3, int a4 ) = 0;	// slot 6 = +0x18
+	virtual File *openFile( const char *filename, int access ) = 0;					// slot 5 = +0x14
 };
 
 class LocalFileSystem
@@ -109,8 +112,8 @@ class LocalFileSystem
 public:
 	virtual ~LocalFileSystem() {}
 	virtual void L1() = 0;
-	// slot 2 = +0x08
-	virtual File *openFile( const char *filename, int access ) = 0;
+	virtual File *openFile( const char *filename, int access, int a3, int a4 ) = 0;	// slot 3 = +0x0c
+	virtual File *openFile( const char *filename, int access ) = 0;					// slot 2 = +0x08
 };
 
 extern ArchiveFileSystem *TheArchiveFileSystem;
@@ -123,6 +126,7 @@ class FileSystem
 {
 public:
 	File *openFile( const char *filename, int access );
+	File *openFile( const char *filename, int access, int a3, int a4 );
 };
 
 // ?openFile@FileSystem@@QAEPAVFile@@PBDH@Z
@@ -165,6 +169,59 @@ File *FileSystem::openFile( const char *filename, int access )
 				return f;
 		}
 		return TheArchiveFileSystem->openFile( filename, access );
+	}
+
+	return file;
+}
+
+// ?openFile@FileSystem@@QAEPAVFile@@PBDHHH@Z
+// BFME's wide form, retail 0x009C89F0, 445 bytes. Structurally the narrow one
+// above with two more arguments threaded into every downstream call, and the
+// calls go one slot further on: LocalFileSystem slot 3 rather than 2, and
+// ArchiveFileSystem slot 6 rather than 5. Nothing in the image says what the two
+// extra parameters mean -- Win32LocalFileSystem's narrow forwarder passes them
+// as zero -- so they keep positional names.
+File *FileSystem::openFile( const char *filename, int access, int a3, int a4 )
+{
+	char buf[0x200];
+	File *file = NULL;
+
+	do_sprintf( buf, "%s\\%s", byte_134CA48, filename );
+
+	if( byte_134CB50[0] )
+	{
+		BFMERetailAsciiString path( byte_134CB50 );
+		path.concat( filename );
+		file = TheLocalFileSystem->openFile( path.str(), access, a3, a4 );
+	}
+
+	if( !byte_134CB4C && file == NULL && TheArchiveFileSystem )
+	{
+		if( !(access & 8) )
+			file = TheArchiveFileSystem->openFile( buf, access, a3, a4 );
+		if( file == NULL )
+			file = TheArchiveFileSystem->openFile( filename, access, a3, a4 );
+	}
+
+	if( TheLocalFileSystem && file == NULL )
+	{
+		if( !(access & 2) )
+			file = TheLocalFileSystem->openFile( buf, access, a3, a4 );
+		if( file == NULL )
+			file = TheLocalFileSystem->openFile( filename, access, a3, a4 );
+	}
+
+	// Note the test order: the wide form checks TheArchiveFileSystem before
+	// file == NULL, where the narrow one above does it the other way round.
+	if( byte_134CB4C && TheArchiveFileSystem && file == NULL )
+	{
+		if( !(access & 8) )
+		{
+			File *f = TheArchiveFileSystem->openFile( buf, access, a3, a4 );
+			if( f != NULL )
+				return f;
+		}
+		return TheArchiveFileSystem->openFile( filename, access, a3, a4 );
 	}
 
 	return file;
