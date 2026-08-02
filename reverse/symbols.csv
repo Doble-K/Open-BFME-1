@@ -2801,6 +2801,7 @@ name,address,notes
 ?construct@DefaultModuleTemplate7CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00031EFD,DefaultModuleTemplate<7> copy constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate7CtorShim@FXParticleSystem@@QAEXXZ,0x000366EC,DefaultModuleTemplate<7> constructor thunk used through a TU-local layout shim
 ?construct@LifeEventTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0004B024,LifeEventModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@LightningDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0004A89F,LightningDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@LightningDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003B2AA,LightningDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@LightningEmissionTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0000CC39,LightningEmissionModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@LineEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00004269,LineEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
