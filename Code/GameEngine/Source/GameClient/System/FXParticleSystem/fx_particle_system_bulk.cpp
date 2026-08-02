@@ -44,6 +44,22 @@ public:
     void assign(const void *source);
 };
 
+class TerrainCollisionEventFXLookupShim {
+public:
+    const FXList *lookup(const char *name) const;
+};
+
+struct TerrainCollisionFXNameShim {
+    const char *m_text;
+};
+
+struct TerrainCollisionInfoView {
+    unsigned char padding[0x18];
+    const FXList *cached;
+};
+
+extern "C" TerrainCollisionEventFXLookupShim *g_terrainCollisionEventFXListStore;
+
 class PointEmissionVolumeTemplateCopyCtorShim {
 public:
     void construct(const void *source);
@@ -19552,72 +19568,17 @@ __declspec(naked) const FXList *LifeEventModuleInfo::getEventFX()
 }
 
 // ?getEventFX@TerrainCollisionModuleInfo@FXParticleSystem@@QAEPBVFXList@@XZ
-__declspec(naked) const FXList *TerrainCollisionModuleInfo::getEventFX()
+const FXList *TerrainCollisionModuleInfo::getEventFX()
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x18
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x2f
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x4c
-        __emit 0x14
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xce
-        __emit 0x93
-        __emit 0xa1
-        __emit 0xff
-        __emit 0x89
-        __emit 0x46
-        __emit 0x18
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x4c
-        __emit 0x14
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xb8
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xb8
-        __emit 0x93
-        __emit 0xa1
-        __emit 0xff
-        __emit 0x89
-        __emit 0x46
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x18
-        __emit 0x5e
-        __emit 0xc3
+    unsigned char *base = (unsigned char *)this;
+    TerrainCollisionInfoView *view = (TerrainCollisionInfoView *)this;
+    if (!view->cached) {
+        TerrainCollisionFXNameShim *name = (TerrainCollisionFXNameShim *)(base + 4);
+        _ReadWriteBarrier();
+        view->cached = g_terrainCollisionEventFXListStore->lookup(
+            name->m_text ? name->m_text + 8 : DefaultModuleName<8>::VALUE);
     }
+    return view->cached;
 }
 
 // ?parse@BoxEmissionVolumeModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z
