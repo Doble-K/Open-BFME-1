@@ -2955,6 +2955,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ModuleTemplate@FXParticleSystem@@UAE@XZ,0x00015A14,0x0005C7D0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable
 ??1MoneyCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/masm_dumps/MoneyCrateCollideModuleData_destructor.asm,matched,Exact 67B SEH dtor Open-BFME4
 ??1MonsterDockUpdateModuleData@@UAE@XZ,,0x002CDD90,67,Code/masm_dumps/MonsterDockUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
+??1MotionChannelClass@@QAE@XZ,,0x00978140,24,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??1MultiListObjectClass@@UAE@XZ,,0x009DC190,37,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ??1MultiPlayerLoadScreen@@,,0x0052C220,844,Code/masm_dumps/_cache___1MultiPlayerLoadScreen___52C220.asm,matched,cached-obj needle Open-BFME4+Grok
 ??1MultiplayerSettings@@UAE@XZ,,0x0008F0E0,102,Code/masm_dumps/_dtor_MultiplayerSettings_UAE_XZ_8F0E0.asm,matched,MASM exact retail dtor; true body 0x8F0E0 (queue 0x9F282F misplaced inside 0x9F2800)
@@ -2968,6 +2969,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1NetCommandWrapperListNode@@MAE@XZ,,0x00676420,57,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ??1NetWrapperCommandMsg@@MAE@XZ,,0x00673E20,40,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ??1NodeCompressedMotionStruct@@QAE@XZ,,0x00AFF130,45,Code/masm_dumps/_sym3___1NodeCompressedMotionStruct__QAE_XZ_AFF130.asm,matched,symbol-pin Open-BFME4+Grok
+??1NodeMotionStruct@@QAE@XZ,,0x009598D0,213,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
 ??1Nugget@ModuleInfo@@QAE@XZ,,0x007701C0,76,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetDestructor.cpp,matched,thunk-dump converted to clean C++ nested destructor body at destination 0x7701C0
 ??1OCLSpecialPowerModuleData@@UAE@XZ,,0x00263800,136,Code/masm_dumps/OCLSpecialPowerModuleData_destructor.asm,matched,Exact 136B @ 0x00263800; Exact retail MASM; factory->vtable dtor; del 0x2637D0 ctor 0x2631B0 vt 0xCB6180
 ??1OCLUpdateModuleData@@UAE@XZ,,0x00298B70,7,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1OCLUpdateModuleData@@QAE@XZ
@@ -5294,6 +5296,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Alter_Avatar_HTree@HTreeClass@@SAPAV1@PBV1@AAVVector3@@@Z,,0x00955470,641,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Anim_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00981E10,112,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Anim_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00953AD0,987,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
+?Anim_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHRawAnimClass@@M@Z,,0x00953EB0,2047,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Append_Anim_Combo_Data@HAnimComboClass@@QAEXPAVHAnimComboDataClass@@@Z,,0x009743C0,68,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Append_Sub_Directory@SimpleFileFactoryClass@@QAEXPBD@Z,,0x009DDA50,249,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ?Apply_Null@VertexMaterialClass@@CAXXZ,,0x00921E30,130,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
@@ -6608,6 +6611,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Pivot@MotionChannelClass@@QBEHXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Get_Pivot@TimeCodedBitChannelClass@@QAEHXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Get_Pivot@TimeCodedMotionChannelClass@@QAEHXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
+?Get_Pivot_Weight_Map@HAnimComboClass@@QAEPAVPivotMapClass@@H@Z,,0x00973A10,26,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Get_Point@INIClass@@QBE?BV?$TPoint2D@H@@PBD0ABV2@@Z,,0x009E4230,179,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Get_Point@INIClass@@QBE?BV?$TPoint2D@M@@PBD0ABV2@@Z,,0x009E4530,179,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Get_Point@INIClass@@QBE?BV?$TPoint3D@H@@PBD0ABV2@@Z,,0x009E4340,207,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
@@ -6625,8 +6629,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Post_Increment_Value@SegmentedLineClass@@UBEMXZ,,0x009508D0,71,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Get_PowerVR_Device@DX8Caps@@CA?AW4DeviceTypePowerVR@1@I@Z,,0x001B4040,13,Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp,matched,
 ?Get_Preset@VertexMaterialClass@@SAPAV1@W4PresetType@1@@Z,,0x009212C0,22,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
-?Get_Weight@HAnimComboClass@@QAEMH@Z,,0x009739C0,16,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
-?Get_Weight@HAnimComboDataClass@@QBEMXZ,,0x0010BDA0,4,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,icf-owner=?getMaximumValue@GameClientRandomVariable@@QBEMXZ
 ?Get_Primary_Gradient@ShaderClass@@QBE?AW4PriGradientType@1@XZ,,0x00910D70,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
 ?Get_Processor_Manufacturer_Name@CPUDetectClass@@,,0x00A5EAED,228,Code/masm_dumps/_sa6__Get_Processor_Manufacturer_Name_CPUDetectClass___A5EAED.asm,matched,Exact 228B Open-BFME4+Grok
 ?Get_Projection_Matrix@CameraClass@@QAEABVMatrix4@@XZ,,0x00932540,16,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
@@ -6749,6 +6751,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_View_Plane@CameraClass@@QBEXAAVVector2@@0@Z,,0x00931DC0,45,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,RenderObjClass +0x34 (camera shim)
 ?Get_Viewport@CameraClass@@QBEXAAVVector2@@0@Z,,0x0073DBB0,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?Get_Visibility@HTreeClass@@QBE_NH@Z,,0x009793A0,23,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
+?Get_Weight@HAnimComboClass@@QAEMH@Z,,0x009739C0,16,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+?Get_Weight@HAnimComboDataClass@@QBEMXZ,,0x0010BDA0,4,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,icf-owner=?getMaximumValue@GameClientRandomVariable@@QBEMXZ
 ?Get_Width@SegLineRendererClass@@QBEMXZ,,0x0010BDA0,4,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,icf-owner=?getMaximumValue@GameClientRandomVariable@@QBEMXZ
 ?Get_Width@TextureLoadTaskClass@@QBEIXZ,,0x00674250,4,Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?Get_X_Rotation@Matrix3D@@QBEMXZ,,0x008D6880,9,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
@@ -7378,6 +7382,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Peek_Next_Collected_Object_Internal@CullSystemClass@@IAEPAVCullableClass@@PAV2@@Z,,0x008E21A0,19,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,
 ?Peek_Obj@?$RefMultiListIterator@VLookupTableClass@@@@QAEPAVLookupTableClass@@XZ,,0x00711C00,17,Code/Libraries/Source/WWVegas/WWMath/lookuptable.cpp,matched,
 ?Peek_Obj@?$RefMultiListIterator@VRenderObjClass@@@@QAEPAVRenderObjClass@@XZ,,0x006C9E70,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
+?Peek_Pivot_Weight_Map@HAnimComboClass@@QAEPAVPivotMapClass@@H@Z,,0x00973A30,16,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Peek_Polygon_Renderer@PolyRenderTaskClass@@QAEPAVDX8PolygonRendererClass@@XZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Peek_Scene@LayerClass@@QBEPAVSceneClass@@XZ,,0x00674250,4,Code/Libraries/Source/WWVegas/WW3D2/layer.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?Peek_Shader@MaterialCollectorClass@@QAE?AVShaderClass@@H@Z,,0x0092F530,19,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
@@ -7947,6 +7952,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Fog_Range@SceneClass@@UAEXMM@Z,,0x006FCB70,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 ?Set_Font@Render2DSentenceClass@@QAEXPAVFontCharsClass@@@Z,,0x0093D0C0,43,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,
 ?Set_Force_Visible@RenderObjClass@@UAEXH@Z,,0x0091F890,76,Code/masm_dumps/__Set_Force_Visible_RenderObjClass__UAEXH_Z_91F890.asm,matched,
+?Set_Frame@HAnimComboClass@@QAEXHM@Z,,0x00973970,20,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Set_Frame_Keyframes@ParticleEmitterDefClass@@UAEXAAU?$ParticlePropertyStruct@M@@@Z,,0x0098E4E0,85,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
 ?Set_Frame_Mode@ParticleEmitterDefClass@@UAEXH@Z,,0x0098D2B0,13,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,ICF alias of existing matched body
 ?Set_Frame_Per_Second@GridTextureMapperClass@@QAEXM@Z,,0x00967040,17,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
@@ -8032,6 +8038,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Outwards_Velocity@ParticleEmitterClass@@QAEXM@Z,,0x0097DF70,19,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Set_Pass_Count@DynamicMeshModel@@QAEXH@Z,,0x0096CFB0,15,Code/Libraries/Source/WWVegas/WW3D2/shattersystem.cpp,matched,
 ?Set_Pass_Count@MeshModelClass@@QAEXH@Z,,0x0096CFB0,15,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,ICF alias of existing matched body
+?Set_Pivot_Weight_Map@HAnimComboClass@@QAEXHPAVPivotMapClass@@@Z,,0x009739D0,50,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Set_Point_Alpha@PointGroupClass@@QAEXM@Z,,0x00912020,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
 ?Set_Point_Color@PointGroupClass@@QAEXVVector3@@@Z,,0x009127B0,24,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
 ?Set_Point_Frame@PointGroupClass@@QAEXE@Z,,0x00912060,10,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,MASM converted to clean C++
@@ -8048,7 +8055,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Position@RenderObjClass@@UAEXABVVector3@@@Z,,0x00920220,74,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
 ?Set_Position_Randomizer@ParticleEmitterClass@@QAEXPAVVector3Randomizer@@@Z,,0x0097DEA0,57,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Set_Post_Load_Registered@PostLoadableClass@@QAEX_N@Z,,0x001EE7D0,10,Code/Libraries/Source/WWVegas/WWSaveLoad/saveload.cpp,matched,
-?Set_Weight@HAnimComboClass@@QAEXHM@Z,,0x009739A0,20,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Set_Primary_Gradient@ShaderClass@@QAEXW4PriGradientType@1@@Z,,0x006C5370,21,Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp,matched,
 ?Set_Priority@TextureLoadTaskClass@@QAEXW4PriorityType@1@@Z,,0x003967C0,13,Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp,matched,
 ?Set_Projection_Type@CameraClass@@QAEXW4ProjectionType@1@@Z,,0x00700220,20,Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp,matched,
@@ -8147,6 +8153,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Viewport@CameraClass@@QAEXABVVector2@@0@Z,,0x0073DB60,52,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?Set_Viewport@DX8Wrapper@@SAXPBU_D3DVIEWPORT8@@@Z,,0x009043B0,26,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Set_Visible@RenderObjClass@@UAEXHH@Z,,0x0091F880,13,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,out-of-line in retail; stores scene visibility token at 0x90
+?Set_Weight@HAnimComboClass@@QAEXHM@Z,,0x009739A0,20,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Set_Width@SegmentedLineClass@@QAEXM@Z,,0x0094FCA0,67,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ?Set_Widths@StreakLineClass@@IAEXIPAM@Z,,0x0091A380,146,Code/masm_dumps/_rn4__Set_Widths_StreakLineClass__IAEXIPAM_Z_91A380.asm,matched,reloc-needle Open-BFME4+Grok
 ?Set_Word_Wrap_Centered@Render2DSentenceClass@@QAE_N_N@Z,,0x006F45D0,28,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,
@@ -13944,11 +13951,35 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?Combo_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimComboClass@@@Z,,0x00954D90,1753,Code/masm_dumps/__Combo_Update_HTreeClass__QAEXABVMatrix3D__PAVHAni_954D90.asm,matched,
-?Set_Frame@HAnimComboClass@@QAEXHM@Z,,0x00973970,20,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
-?Set_Pivot_Weight_Map@HAnimComboClass@@QAEXHPAVPivotMapClass@@@Z,,0x009739D0,50,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
-?Get_Pivot_Weight_Map@HAnimComboClass@@QAEPAVPivotMapClass@@H@Z,,0x00973A10,26,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
-?Peek_Pivot_Weight_Map@HAnimComboClass@@QAEPAVPivotMapClass@@H@Z,,0x00973A30,16,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
-??1MotionChannelClass@@QAE@XZ,,0x00978140,24,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
-??1NodeMotionStruct@@QAE@XZ,,0x009598D0,213,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
-?Anim_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHRawAnimClass@@M@Z,,0x00953EB0,2047,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
+?Get_Vector@MotionChannelClass@@QBEXHPAM@Z,,0x00952550,105,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Get_Vector_As_Quat@MotionChannelClass@@QBEXHAAVQuaternion@@@Z,,0x009525C0,82,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+??_GMotionChannelClass@@QAEPAXI@Z,,0x009594C0,30,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+??_GBitChannelClass@@QAEPAXI@Z,,0x009594E0,30,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?read_bit_channel@HRawAnimClass@@AAE_NAAVChunkLoadClass@@PAPAVBitChannelClass@@_N@Z,,0x00959580,119,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Is_Node_Motion_Present@HRawAnimClass@@UAE_NH@Z,,0x00959600,76,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Has_X_Translation@HRawAnimClass@@UAE_NH@Z,,0x00959650,27,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Has_Y_Translation@HRawAnimClass@@UAE_NH@Z,,0x00959670,28,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Has_Z_Translation@HRawAnimClass@@UAE_NH@Z,,0x00959690,28,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Has_Rotation@HRawAnimClass@@UAE_NH@Z,,0x009596B0,28,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Has_Visibility@HRawAnimClass@@UAE_NH@Z,,0x009596F0,28,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+??0HRawAnimClass@@QAE@XZ,,0x009599B0,75,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+??_ENodeMotionStruct@@QAEPAXI@Z,,0x00959A80,84,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?add_bit_channel@HRawAnimClass@@AAEXPAVBitChannelClass@@@Z,,0x00959C20,26,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Get_Translation@HRawAnimClass@@UBEXAAVVector3@@HM@Z,,0x00959E20,1353,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Get_Orientation@HRawAnimClass@@UBE_NAAVQuaternion@@HM@Z,,0x0095A370,432,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Get_Transform@HRawAnimClass@@UBEXAAVMatrix3D@@HM@Z,,0x0095A520,1756,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Get_Visibility@HRawAnimClass@@UAE_NHM@Z,,0x0095AC00,121,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?Free@HRawAnimClass@@AAEXXZ,,0x0095AC80,50,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+??0HAnimComboDataClass@@QAE@_N@Z,,0x009734F0,29,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+?Get_Pivot_Map@HAnimComboDataClass@@QBEPAVPivotMapClass@@XZ,,0x00973690,14,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+??0HAnimComboDataClass@@QAE@ABV0@@Z,,0x00973730,56,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+?Copy@HAnimComboDataClass@@QAEXPBV1@@Z,,0x00973770,82,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+??1HAnimComboDataClass@@QAE@XZ,,0x009737D0,39,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+?Clear@HAnimComboDataClass@@QAEXXZ,,0x00973800,73,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+?Set_Pivot_Map@HAnimComboDataClass@@QAEXPAVPivotMapClass@@@Z,,0x00973880,42,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+?Clear@HAnimComboClass@@QAEXXZ,,0x009738B0,94,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+?Normalize_Weights@HAnimComboClass@@QAE_NXZ,,0x00973FC0,1009,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+??0HAnimComboClass@@QAE@H@Z,,0x00974820,213,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+?Build_Active_Pivot_Map@HAnimComboDataClass@@QAEXXZ,,0x00974C60,351,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
+??0HCompressedAnimClass@@QAE@XZ,,0x0095B7D0,78,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Load_W3D@MotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,,0x009777A0,206,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
