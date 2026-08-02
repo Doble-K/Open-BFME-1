@@ -2972,7 +2972,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1OptionPreferences@@UAE@XZ,,0x00090450,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,matched,thunk-dump converted to clean C++
 ??1OrthoEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x000346BC,0x005D6D90,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
 ??1OrthoEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D6FC0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
-??1OrthoEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D6FC0,50,Code/masm_dumps/__1OrthoEmissionVelocityModuleTemplate_FXParticleSystem__UAE_XZ_5D6FC0.asm,matched,MASM exact retail dump
 ??1OutwardEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x000206CB,0x005D7B10,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
 ??1OutwardEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D7D00,50,Code/masm_dumps/__1OutwardEmissionVelocityModuleTemplate_FXParticleSystem__UAE_XZ_5D7D00.asm,matched,MASM exact retail dump
 ??1OverchargeBehaviorModuleData@@UAE@XZ,,0x0008A450,105,Code/masm_dumps/OverchargeBehaviorModuleData_destructor.asm,matched,Exact 105B SEH dtor Open-BFME4
