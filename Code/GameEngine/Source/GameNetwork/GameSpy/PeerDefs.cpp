@@ -386,7 +386,6 @@ void GameSpyInfo::clearStagingRoomList( void )
 	}
 }
 
-// ?addStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z present-unmatched
 void GameSpyInfo::addStagingRoom( GameSpyStagingRoom room )
 {
 	removeStagingRoom(room);
@@ -403,7 +402,6 @@ void GameSpyInfo::updateStagingRoom( GameSpyStagingRoom room )
 	addStagingRoom(room);
 }
 
-// ?removeStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z present-unmatched
 void GameSpyInfo::removeStagingRoom( GameSpyStagingRoom room )
 {
 	StagingRoomMap::iterator it = m_stagingRooms.find(room.getID());

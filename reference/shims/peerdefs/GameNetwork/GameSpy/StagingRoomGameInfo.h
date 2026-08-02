@@ -78,7 +78,12 @@ class GameSpyStagingRoom : public GameInfo
 private:
 	GameSpyGameSlot m_GameSpySlot[MAX_SLOTS];											///< The GameSpy Games Slot List
 	UnicodeString m_gameName;
-	Int m_id;
+	// m_id is RELOCATED in BFME, not shifted: removeStagingRoom reads it at
+	// parameter offset 0x41C while setExeCRC/setIniCRC prove m_exeCRC and
+	// m_iniCRC keep their ZH offsets (0x398/0x39C) right after it. So the
+	// slot stays a hole here and the member is re-declared in the block
+	// BFME appends past this header's 0x3C0 end.
+	char _bfme_hole_id[sizeof(Int)];
 	Transport *m_transport;
 	AsciiString m_localName;
 	Bool m_requiresPassword;
@@ -156,11 +161,15 @@ public:
 	inline void setLocalName( AsciiString name ) { m_localName = name; } 
 
 private:
-	// BFME's GameSpyStagingRoom is 0xA8 bytes bigger than ZH's:
-	// GameSpyInfo::removeStagingRoom @0x632A50 takes one BY VALUE and pops
-	// 0x468 bytes of arguments where we emit `ret 0x3C0`. Only the size is
-	// proven, so the pad sits at the tail and moves no existing member.
-	char _bfme_pad_tail[0xA8];
+	// BFME's GameSpyStagingRoom is 0xA8 bytes bigger than ZH's, and the growth
+	// is SPLIT: removeStagingRoom @0x632A50 takes one by value, pops 0x468
+	// bytes (we emit `ret 0x3C0`) and reads m_id at parameter
+	// offset 0x41C where ours sits at 0x384 - so 0x98 lands before that field
+	// and the remaining 0x10 after everything. What occupies either run is
+	// unknown; only the two offsets and the total size are proven.
+	char _bfme_pad_pre_relocated_id[0x41C - 0x3C0];
+	Int m_id;                     // retail +0x41C
+	char _bfme_pad_tail[0x468 - 0x420];
 };
 
 extern GameSpyStagingRoom *TheGameSpyGame;

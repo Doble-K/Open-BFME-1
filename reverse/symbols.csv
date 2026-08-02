@@ -4068,3 +4068,7 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??1?$_List_base@PAVGameWindow@@V?$allocator@PAVGameWindow@@@_STL@@@_STL@@QAE@XZ,0x00040278,GameWindowManager dtor call target (incremental-link thunk)
 ??1Render2DSentenceClass@@QAE@XZ,0x009409F0,W3DDisplayString dtor call target
 ??1DisplayString@@MAE@XZ,0x0000D823,W3DDisplayString dtor call target
+??0GameSpyStagingRoom@@QAE@ABV0@@Z,0x0004A2C8,addStagingRoom call target (incremental-link thunk)
+??0GameSpyStagingRoom@@QAE@XZ,0x000301B1,addStagingRoom call target (incremental-link thunk)
+??4GameSpyStagingRoom@@QAEAAV0@ABV0@@Z,0x00048ADB,addStagingRoom call target (incremental-link thunk)
+?cleanUpSlotPointers@GameSpyStagingRoom@@QAEXXZ,0x00022507,addStagingRoom call target (incremental-link thunk)

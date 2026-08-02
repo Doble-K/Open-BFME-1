@@ -8725,7 +8725,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addSkirmishTeam@SidesList@@QAEXPBVDict@@@Z,,0x00C50B39,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?addSmudgeSet@SmudgeManager@@QAEPAUSmudgeSet@@XZ,,0x005D4240,129,Code/masm_dumps/_rn6__addSmudgeSet_SmudgeManager__QAEPAUSmudgeSet__XZ_5D4240.asm,matched,reloc-needle Open-BFME4+Grok
 ?addSnapshotBlock@GameState@@AAEXVAsciiString@@PAVSnapshot@@W4SnapshotType@@@Z,,0x003BDB80,155,Code/masm_dumps/_sa7__addSnapshotBlock_GameState__AAEXVAsciiString__PAV_3BDB80.asm,matched,Exact 155B Open-BFME4
-?addStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00635120,206,Code/masm_dumps/_rn7__addStagingRoom_GameSpyInfo__UAEXVGameSpyStagingRoom___Z_635120.asm,matched,reloc-needle Open-BFME4+Grok
 ?addSuperweapon@InGameUI@@UAEXHABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x0044C970,338,Code/masm_dumps/_rn1__addSuperweapon_InGameUI__UAEXHABVAsciiString__W4ObjectID__PBVSpecialP_44C970.asm,matched,reloc-needle Open-BFME4+Grok
 ?addTeam@SidesList@@QAEXPBVDict@@@Z,,0x00C2787D,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining aliases retain shared target
@@ -12745,7 +12744,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeSide@SidesList@@QAEXH@Z,,0x000C31B0,363,Code/masm_dumps/_sa14__removeSide_SidesList__QAEXH_Z_C31B0.asm,matched,sa14 Open-BFME4+Grok neutral
 ?removeSmudgeFromSet@SmudgeSet@@QAEXAAUSmudge@@@Z,,0x005D40A0,115,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ?removeSmudgeSet@SmudgeManager@@QAEXAAUSmudgeSet@@@Z,,0x005D4060,40,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
-?removeStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00632A50,187,Code/masm_dumps/_rn7__removeStagingRoom_GameSpyInfo__UAEXVGameSpyStagingRoom___Z_632A50.asm,matched,reloc-needle Open-BFME4+Grok
 ?removeTeam@SidesList@@QAEXH@Z,,0x00C2787D,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?removeTeam@TeamsInfoRec@@QAEXH@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,object-symbol=?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z;ICF alias converted to focused C++ thunk TU
 ?removeTeamPrototypeFromList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000EFD50,149,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,BFME pair-key map erase; TeamPrototype +0x10/+0x14 name keys; node 0x1C; certified packet 362
@@ -13930,3 +13928,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??1GameWindowManager@@UAE@XZ,,0x00483810,156,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME sibling-list pointers sit 0x10 later in GameWindow (reference/shims/gamewindowlist)
 ??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,MASM dump converted to clean C++; BFME Render2DSentenceClass is 0xC bigger so both embedded renderers shift the class (reference/shims/w3ddisplaystring)
 ?createNewGameSpyInfoInterface@GameSpyInfoInterface@@SAPAV1@XZ,,0x00637760,89,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME GameSpyInfo is 0x700 and GameSpyStagingRoom 0xA8 bigger (reference/shims/peerdefs)
+?removeStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00632A50,187,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME relocates GameSpyStagingRoom m_id to +0x41C in the appended block
+?addStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00635120,206,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME GameSpyInfoInterface has 7 more virtuals before removeStagingRoom
