@@ -3394,6 +3394,7 @@ name,address,notes
 ?resize@?$hashtable@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@W4NameKeyType@@U?$hash@W4NameKeyType@@@rts@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@U?$equal_to@W4NameKeyType@@@5@V?$allocator@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@@_STL@@QAEXI@Z,0x0008FB70,NameKeyGenerator aux hash_map hashtable<>::resize() proven via nameToKey(const char*) insert call site
 ?resize@?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAEXI@Z,0x0000366B
 ?revalidateOccupiers@SpawnPointProductionExitUpdate@@AAEXXZ,0x0002374A
+?run@BitFlagsCountInverseIntersectionShim@@QBEHABV1@@Z,0x00786BD0,BitFlags countInverseIntersection incremental-link thunk target through a TU-local forwarding shim
 ?run@BuddyThreadClassConnectCallbackShim@@QAEXPAVGPConnection@@PAUGPConnectResponseArg@@@Z,0x0063E490,BuddyThreadClass connectCallback incremental-link thunk target through a TU-local forwarding shim
 ?run@BuddyThreadClassErrorCallbackShim@@QAEXPAVGPConnection@@PAUGPErrorArg@@@Z,0x0063D210,BuddyThreadClassErrorCallbackShim incremental-link thunk target through a TU-local forwarding shim
 ?run@BuddyThreadClassMessageCallbackShim@@QAEXPAVGPConnection@@PAUGPRecvBuddyMessageArg@@@Z,0x0063C910,BuddyThreadClass messageCallback incremental-link thunk target through a TU-local forwarding shim
