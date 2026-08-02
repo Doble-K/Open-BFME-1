@@ -2911,6 +2911,7 @@ name,address,notes
 ?countInverseIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,0x000497D3,pinharvest x1 (thunk)
 ?countObjectsByThingTemplate@Player@@QBEXHPBQBVThingTemplate@@_NPAH1@Z,0x00048D79,retail target of ProductionPrerequisite::calcNumPrereqUnitsOwned call; Player class not yet converted for this method
 ?countVotesForPlayer@DisconnectManager@@IAEHH@Z,0x00003751,ILT thunk; real body 0x66B720 (from isPlayerVotedOut)
+?create@LocomotorStoreNewLocomotorShim@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,0x001B6920,LocomotorStore newLocomotor incremental-link thunk target through a TU-local forwarding shim
 ?create@RadarCreateEventShim@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,0x00108140,Radar createEvent incremental-link thunk target through a TU-local forwarding shim
 ?create@ScriptEngineCreateNamedMapRevealShim@@QAEXABVAsciiString@@0M0@Z,0x0034EF80,ScriptEngine createNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
 ?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,0x009C8DC0

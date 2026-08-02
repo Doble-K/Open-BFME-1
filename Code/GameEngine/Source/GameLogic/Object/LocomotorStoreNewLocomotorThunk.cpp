@@ -4,16 +4,16 @@ class LocomotorTemplate;
 class LocomotorStore
 {
 public:
-	Locomotor *newLocomotor(const LocomotorTemplate *) const;
+    Locomotor *newLocomotor(const LocomotorTemplate *) const;
 };
 
-__declspec(naked) Locomotor *LocomotorStore::newLocomotor(const LocomotorTemplate *) const
+class LocomotorStoreNewLocomotorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 03Ah
-		_emit 04Fh
-		_emit 01Ah
-		_emit 000h
-	}
+public:
+    Locomotor *create(const LocomotorTemplate *tmpl) const;
+};
+
+Locomotor *LocomotorStore::newLocomotor(const LocomotorTemplate *tmpl) const
+{
+    return ((const LocomotorStoreNewLocomotorShim *)this)->create(tmpl);
 }
