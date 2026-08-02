@@ -422,7 +422,10 @@ inline int AsciiString::getLength() const
 inline Bool AsciiString::isEmpty() const
 {
 	validate();
-	return m_data == NULL || peek()[0] == 0;
+	// BFME tests the header's 16-bit length rather than the first character:
+	// ModuleFactory::findModuleInterfaceMask @0x129100 emits
+	// `cmp word ptr [eax+4], 0` where the ZH body reads peek()[0] as a byte.
+	return m_data == NULL || m_data->m_len == 0;
 }
 
 // -----------------------------------------------------

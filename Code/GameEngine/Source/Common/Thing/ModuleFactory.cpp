@@ -962,7 +962,6 @@ const ModuleFactory::ModuleTemplate* ModuleFactory::findModuleTemplate(const Asc
 //-------------------------------------------------------------------------------------------------
 /** Allocate a new acton class istance given the name */
 //-------------------------------------------------------------------------------------------------
-// ?newModule@ModuleFactory@@QAEPAVModule@@PAVThing@@ABVAsciiString@@PBVModuleData@@W4ModuleType@@@Z present-unmatched
 Module *ModuleFactory::newModule( Thing *thing, const AsciiString& name, const ModuleData* moduleData, ModuleType type )
 {
 	// sanity
