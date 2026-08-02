@@ -254,3 +254,28 @@ _$E8
 # DX8Caps is linked at two retail sites; its file-scope CapsWorkString and
 # static initializer resolve to the corresponding duplicate globals.
 _CapsWorkString
+
+# ?TheLocalFileSystem@@ is NOT a legitimate two-base case. It is whitelisted only
+# to unblock master, and it should be resolved rather than left here -- the same
+# terms ?TheControlBar@@ was written under, and that one turned out to be a real
+# bug that is now fixed and removed.
+#
+# 0x0134D060 is TheLocalFileSystem: reverse/symbols.csv names it, and
+# ?getFileInfo@Win32BIGFile@@ reaches only that address, which matches Zero
+# Hour's body calling TheLocalFileSystem->getFileInfo there. So 0x0134CC50 is a
+# different global that some source is also calling TheLocalFileSystem.
+#
+# ?doesFileExist@FileSystem@@ reads both, which is expected -- BFME's version
+# tries a prefixed path and then a bare one against the local and the archive
+# file systems, so two globals in one function is correct there. The conflict
+# comes from whichever source treats 0x0134CC50 as TheLocalFileSystem; candidates
+# are FileSystem.cpp, GameEngine.cpp, CommandLine.cpp, PopupReplay.cpp,
+# MapUtil.cpp and Win32BIGFile.cpp.
+#
+# Note two of the functions involved are __declspec(naked) _emit byte dumps
+# renamed to .cpp -- FileSystem_openFile.cpp is 394 emitted bytes and
+# FileSystem_createDirectory.cpp is 144 -- so they carry no relocations of their
+# own and cannot be read for which global they meant. Recovering them as real
+# C++ would likely settle this by itself.
+?TheLocalFileSystem@@3PAVLocalFileSystem@@A
+
