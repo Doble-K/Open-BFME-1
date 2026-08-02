@@ -482,6 +482,7 @@ name,address,notes
 ??0AutoFindHealingUpdateModuleData@@QAE@XZ,0x0001D4EE,module-glue cascade callee (from retail call site)
 ??0AutoHealBehaviorModuleData@@QAE@XZ,0x000287C7
 ??0BFMEAutoLockRef@@QAE@PAVBFMENetworkLock@@I@Z,0x009DB3B0,native BFME lock-ref acquire helper
+??0BFMENetworkThreadBase@@QAE@PBD@Z,0x009DB4E0,native BFME network-thread base constructor
 ??0BFMEPlayerTemplateAsciiString@@QAE@PBD@Z,0x00888BC0,PlayerTemplate time-change retail AsciiString constructor owner
 ??0BFMERetailAsciiString@@QAE@PBD@Z,0x00888BC0
 ??0BFMERetailFontLibrary@@QAE@XZ,0x0000FDF3

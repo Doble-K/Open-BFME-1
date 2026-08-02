@@ -4,10 +4,48 @@ typedef bool Bool;
 
 class BFMENetworkLock;
 
-class BFMENetworkBackend
+struct BFMENetworkListNode
+{
+	Bool flag;
+	int value;
+	BFMENetworkListNode *next;
+	BFMENetworkListNode *previous;
+};
+
+struct BFMENetworkList
+{
+	BFMENetworkList() : head(0)
+	{
+		head = static_cast<BFMENetworkListNode *>(::operator new(0x18));
+		size = 0;
+		head->flag = false;
+		head->value = 0;
+		head->next = head;
+		head->previous = head;
+	}
+
+	BFMENetworkListNode *head;
+	int size;
+	int allocatorStorage;
+};
+
+class BFMENetworkThreadBase
 {
 public:
-	void *construct(BFMENetworkLock *ownerLock);
+	BFMENetworkThreadBase(const char *name);
+	virtual ~BFMENetworkThreadBase();
+
+protected:
+	char m_threadName[0x40];
+	void *m_auxHandle;
+	void *m_liveHandle;
+	int m_threadPriority;
+};
+
+class BFMENetworkBackend : public BFMENetworkThreadBase
+{
+public:
+	BFMENetworkBackend(BFMENetworkLock *ownerLock);
 	virtual ~BFMENetworkBackend();
 	void *destroyAndMaybeDelete(unsigned int flags);
 	void openLiveHandle();
@@ -15,9 +53,14 @@ public:
 	__declspec(noinline) void closeLiveHandle();
 
 private:
-	char m_pad[0x40];
-	void *m_auxHandle;
-	void *m_liveHandle;
+	Bool m_flag50;
+	Bool m_flag51;
+	char m_pad52[2];
+	int m_value54;
+	Bool m_flag58;
+	char m_pad59[3];
+	BFMENetworkList m_list;
+	BFMENetworkLock *m_ownerLock;
 };
 
 class BFMENetworkLock
@@ -161,60 +204,14 @@ extern "C" unsigned long __stdcall BFMENetworkBackendThreadStart(BFMENetworkBack
 	return 0;
 }
 
-// ?construct@BFMENetworkBackend@@QAEPAXPAVBFMENetworkLock@@@Z
-__declspec(naked) void *BFMENetworkBackend::construct(BFMENetworkLock *ownerLock)
+BFMENetworkBackend::BFMENetworkBackend(BFMENetworkLock *ownerLock) :
+	BFMENetworkThreadBase(0),
+	m_ownerLock(ownerLock)
 {
-	__asm {
-		push 0ffffffffh
-		push 01042c98h
-		mov eax, fs:[0]
-		push eax
-		mov fs:[0], esp
-		push ecx
-		push ebx
-		push esi
-		mov esi, ecx
-		xor ebx, ebx
-		push ebx
-		mov [esp+0ch], esi
-		__emit 0xe8
-		__emit 0xca
-		__emit 0x6c
-		__emit 0x38
-		__emit 0x00
-		mov dword ptr [esi], 0111988ch
-		push 18h
-		mov [esp+18h], ebx
-		mov [esi+5ch], ebx
-		__emit 0xe8
-		__emit 0x16
-		__emit 0x9d
-		__emit 0x1d
-		__emit 0x00
-		mov ecx, [esp+20h]
-		mov [esi+5ch], eax
-		mov [esi+60h], ebx
-		mov [eax], bl
-		mov eax, [esi+5ch]
-		mov [eax+4], ebx
-		mov eax, [esi+5ch]
-		mov [eax+8], eax
-		mov eax, [esi+5ch]
-		mov [eax+0ch], eax
-		add esp, 4
-		mov [esi+68h], ecx
-		mov ecx, [esp+0ch]
-		mov [esi+51h], bl
-		mov [esi+58h], bl
-		mov [esi+50h], bl
-		mov [esi+54h], ebx
-		mov eax, esi
-		pop esi
-		pop ebx
-		mov fs:[0], ecx
-		add esp, 10h
-		ret 4
-	}
+	m_flag51 = false;
+	m_flag58 = false;
+	m_flag50 = false;
+	m_value54 = 0;
 }
 
 __declspec(naked) void *BFMENetworkBackend::destroyAndMaybeDelete(unsigned int flags)

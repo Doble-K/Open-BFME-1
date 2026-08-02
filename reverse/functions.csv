@@ -9221,7 +9221,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?construct@BFMENativeNetwork@@QAEPAXXZ,,0x006818B0,73,Code/GameEngine/Source/GameNetwork/native_network_interface.cpp,matched,native BFME Network constructor body; installs vtable 0x0111A968 and initializes QueryPerformanceCounter pacing fields
 ?construct@BFMENetRequestPlayerLeaveCommandMsg@@QAEPAXXZ,,0x006741F0,44,Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp,matched,native BFME command type 7 constructor; command type string mapper names it NETCOMMANDTYPE_REQUESTPLAYERLEAVE
 ?construct@BFMENetwork@@QAEPAXXZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper constructor body; initializes locks queues list and backend pointer
-?construct@BFMENetworkBackend@@QAEPAXPAVBFMENetworkLock@@@Z,,0x006547F0,127,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME backend constructor body; stores wrapper lock owner at +0x68 and initializes backend list at +0x5c
+??0BFMENetworkBackend@@QAE@PAVBFMENetworkLock@@@Z,,0x006547F0,127,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME backend constructor body; stores wrapper lock owner at +0x68 and initializes backend list at +0x5c
 ?constructVolume@W3DVolumetricShadow@@IAEXPAVVector3@@MHH@Z,,0x007B82A2,1397,Code/masm_dumps/_constructVolume_W3DVolumetricShadow__IAEXPAVVector3__MHH_Z.asm,matched,
 ?containsMessageOfType@GameMessageList@@UAE_NW4Type@GameMessage@@@Z,,0x0008A5D0,35,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?convertBonePosToWorldPos@Thing@@QBEXPBUCoord3D@@PBVMatrix3D@@PAU2@PAV3@@Z,,0x00132530,468,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,
