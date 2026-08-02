@@ -73,6 +73,11 @@ public:
     void construct();
 };
 
+class TerrainCollisionTemplateCtorShim {
+public:
+    void construct();
+};
+
 extern const char BOX_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char BUTTERFLY_DRAW_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char CYLINDER_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
@@ -14086,42 +14091,12 @@ __declspec(naked) ConcreteModuleTemplate<ModuleTag<8, TERRAIN_COLLISION_MODULE_K
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@FXParticleSystem@@3QBDB$E?TERRAIN_COLLISION_MODULE_NAME@2@3QBDBVTerrainCollisionModule@2@VTerrainCollisionModuleTemplate@2@VParticleTerrainCollisionModule@2@VParticleTerrainCollisionModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
-__declspec(naked) ConcreteModuleTemplate<ModuleTag<8, TERRAIN_COLLISION_MODULE_KEY, TERRAIN_COLLISION_MODULE_NAME, TerrainCollisionModule, TerrainCollisionModuleTemplate, ParticleTerrainCollisionModule, ParticleTerrainCollisionModuleTemplate> >::ConcreteModuleTemplate()
+ConcreteModuleTemplate<ModuleTag<8, TERRAIN_COLLISION_MODULE_KEY, TERRAIN_COLLISION_MODULE_NAME, TerrainCollisionModule, TerrainCollisionModuleTemplate, ParticleTerrainCollisionModule, ParticleTerrainCollisionModuleTemplate> >::ConcreteModuleTemplate()
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0xea
-        __emit 0x06
-        __emit 0xa3
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x50
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x4c
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x38
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc3
-    }
+    ((TerrainCollisionTemplateCtorShim *)this)->construct();
+    *(volatile unsigned int *)this = 0x01111450;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x0111144c;
+    *(volatile unsigned int *)((unsigned char *)this + 12) = 0x01111438;
 }
 
 // ??1?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@FXParticleSystem@@3QBDB$E?TERRAIN_COLLISION_MODULE_NAME@2@3QBDBVTerrainCollisionModule@2@VTerrainCollisionModuleTemplate@2@VParticleTerrainCollisionModule@2@VParticleTerrainCollisionModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UAE@XZ
