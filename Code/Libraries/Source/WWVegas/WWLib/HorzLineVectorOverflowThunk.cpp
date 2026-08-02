@@ -4,31 +4,31 @@ struct HorzLine
 
 namespace _STL
 {
-	struct __false_type
-	{
-	};
+struct __false_type
+{
+};
 
-	template <class Type>
-	class allocator
-	{
-	};
+template <class Type>
+class allocator
+{
+};
 
-	template <class Type, class Allocator>
-	class vector
-	{
-	protected:
-		void _M_insert_overflow(Type *, const Type &, const __false_type &, unsigned int, bool);
-	};
+template <class Type, class Allocator>
+class vector
+{
+protected:
+	void _M_insert_overflow(Type *, const Type &, const __false_type &, unsigned int, bool);
+};
 
-	__declspec(naked) void vector<HorzLine, allocator<HorzLine> >::_M_insert_overflow(
-		HorzLine *, const HorzLine &, const __false_type &, unsigned int, bool)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0B9h
-			_emit 010h
-			_emit 005h
-			_emit 000h
-		}
-	}
+class HorzLineInsertOverflowShim
+{
+public:
+	void insert_overflow(HorzLine * pos, const HorzLine & x, const __false_type &tag, unsigned int fill_len, bool at_end);
+};
+
+void vector<HorzLine, allocator<HorzLine> >::_M_insert_overflow(
+	HorzLine * pos, const HorzLine & x, const __false_type &tag, unsigned int fill_len, bool at_end)
+{
+	((HorzLineInsertOverflowShim *)this)->insert_overflow(pos, x, tag, fill_len, at_end);
+}
 }
