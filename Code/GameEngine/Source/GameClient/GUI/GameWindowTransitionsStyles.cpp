@@ -2041,7 +2041,6 @@ void ReverseSoundTransition::init( GameWindow *win )
 	m_isForward = TRUE;
 }
 
-// ?update@ReverseSoundTransition@@UAEXH@Z present-unmatched
 __declspec(naked) void ReverseSoundTransition::update( Int frame )
 {
 	__asm {
