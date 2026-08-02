@@ -13441,7 +13441,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?tryToIgnite@FlammableUpdate@@QAEXXZ,,0x00293990,961,Code/masm_dumps/FlammableUpdate_tryToIgnite.asm,matched,Ghidra-owned BFME ignition path
 ?tryToRecruit@Team@@QAEPAVObject@@PBVThingTemplate@@PBUCoord3D@@M@Z,,0x0076E90A,568,Code/GameEngine/Source/Common/RTS/Team_tryToRecruit.asm,matched,exact 568B via MASM
 ?tryUnderAttackEvent@Radar@@,,0x004271B0,373,Code/masm_dumps/_sa4__tryUnderAttackEvent_Radar___4271B0.asm,matched,Exact 373B Open-BFME4
-?turnOffScreen@DisconnectManager@@IAEXH@Z,,0x00044AD0,5,Code/GameEngine/Source/GameNetwork/DisconnectManagerTurnOffScreenThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x66B270
 ?unAccept@GameSlot@@QAEXXZ,,0x0061EE60,11,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?unPrepFile@INI@@IAEXXZ,,0x00850E30,50,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME closes no file here - load preloads into m_lines so teardown frees that array instead; no m_readBuffer bookkeeping either
 ?unRegisterAnimation@Anim2DCollection@@QAEXPAVAnim2D@@@Z,,0x005BA480,53,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
@@ -13886,3 +13885,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?turnOffScreen@DisconnectManager@@IAEXH@Z,,0x0066B270,57,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,

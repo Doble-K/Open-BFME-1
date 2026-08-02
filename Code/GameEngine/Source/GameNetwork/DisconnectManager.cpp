@@ -543,6 +543,31 @@ void DisconnectManager::resetPacketRouterTimeout() {
 	m_packetRouterTimeout = timeGetTime();
 }
 
+// BFME calls a free function to take the disconnect screen down, not
+// TheDisconnectMenu->hideScreen(): retail's call site sets up no `this`, and the
+// menu pointer is loaded inside the callee at 0x0050E5A0 instead. Its retail
+// name is unknown, so this one is descriptive.
+extern void HideDisconnectWindow(void);
+
+// BFME-only, no ZH counterpart: the disconnect screen comes down here.
+// processDisconnectScreenOff calls it unconditionally, and the DISCONNECTSCREENOFF
+// sender at 0x00663A60 pairs with it on the outgoing side.
+void DisconnectManager::turnOffScreen(Int localSlot) {
+	if (m_disconnectState == DISCONNECTSTATETYPE_SCREENOFF) {
+		return;
+	}
+
+	HideDisconnectWindow();
+	m_disconnectState = DISCONNECTSTATETYPE_SCREENOFF;
+
+	// Clear this player's whole column of votes.
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
+		m_playerVotes[i][localSlot].vote = FALSE;
+	}
+
+	m_timeOfDisconnectScreenOn = 0;
+}
+
 // ?turnOnScreen@DisconnectManager@@IAEXPAVConnectionManager@@@Z present-unmatched
 void DisconnectManager::turnOnScreen(ConnectionManager *conMgr) {
 	TheDisconnectMenu->showScreen();
