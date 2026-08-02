@@ -1,13 +1,12 @@
 class ArmorTemplateSet;
 class WeaponTemplateSet;
-class WeaponTemplateSet;
 
-template<int Bits>
+template <int Bits>
 class BitFlags
 {
 };
 
-template<class Set, class Flags>
+template <class Set, class Flags>
 class SparseMatchFinder
 {
 public:
@@ -18,21 +17,27 @@ public:
 	};
 };
 
-template<class Set, class Flags>
-__declspec(naked) bool SparseMatchFinder<Set, Flags>::MapHelper::operator()(const Flags &, const Flags &) const
+class ArmorMapHelperShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 099h
-		_emit 05Dh
-		_emit 013h
-		_emit 000h
-	}
+public:
+	bool call(const BitFlags<11> &a, const BitFlags<11> &b) const;
+};
+
+class WeaponMapHelperShim
+{
+public:
+	bool call(const BitFlags<17> &a, const BitFlags<17> &b) const;
+};
+
+template <class Set, class Flags>
+bool SparseMatchFinder<Set, Flags>::MapHelper::operator()(const Flags &a, const Flags &b) const
+{
+	return ((ArmorMapHelperShim const *)this)->call((const BitFlags<11> &)a, (const BitFlags<11> &)b);
 }
 
 template class SparseMatchFinder<ArmorTemplateSet, BitFlags<11> >;
 
-template<>
+template <>
 class SparseMatchFinder<WeaponTemplateSet, BitFlags<17> >
 {
 public:
@@ -43,13 +48,7 @@ public:
 	};
 };
 
-__declspec(naked) bool SparseMatchFinder<WeaponTemplateSet, BitFlags<17> >::MapHelper::operator()(const BitFlags<17> &, const BitFlags<17> &) const
+bool SparseMatchFinder<WeaponTemplateSet, BitFlags<17> >::MapHelper::operator()(const BitFlags<17> &a, const BitFlags<17> &b) const
 {
-	__asm {
-		_emit 0E9h
-		_emit 07Eh
-		_emit 0FCh
-		_emit 012h
-		_emit 000h
-	}
+	return ((WeaponMapHelperShim const *)this)->call(a, b);
 }

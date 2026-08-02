@@ -2800,6 +2800,8 @@ name,address,notes
 ?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z,0x00041506,pinharvest x1 (thunk)
 ?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z,0x0089F530,pinharvest x1 (body)
 ?calcNumPrereqUnitsOwned@ProductionPrerequisite@@ABEHPBVPlayer@@QAH@Z,0x000379B1
+?call@ArmorMapHelperShim@@QBE_NABV?$BitFlags@$0L@@@0@Z,0x00140740,incremental-link thunk target through a TU-local forwarding shim
+?call@WeaponMapHelperShim@@QBE_NABV?$BitFlags@$0BB@@@0@Z,0x001407A0,incremental-link thunk target through a TU-local forwarding shim
 ?canEnterObject@BFMEActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@W4CanEnterType@@PA_N@Z,0x0002D588,retail five-argument ActionManager ABI thunk (body 0x000C5440)
 ?changeGridHeight@WaterRenderObjClass@@QAEXMMM@Z,0x0079F850,thunk-resolved body (via 0x2b256)
 ?check@AssistedTargetingObjectShim@@QAE_NXZ,0x00001FD7,AssistedTargetingUpdate isFreeToAssist first object predicate shim
