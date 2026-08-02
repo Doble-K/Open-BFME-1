@@ -98,3 +98,56 @@ Int CommandRequiresAck(NetCommandMsg *msg)
 
 	return 0;
 }
+
+
+// IsCommandSynchronized, 0x00682E50, 33 bytes.
+//
+// The reference's set minus RUNAHEAD, which BFME does not have -- so four types
+// where the reference has five, in the reference's order. Int rather than Bool
+// for the same reason CommandRequiresAck is: retail sets the whole register.
+Int IsCommandSynchronized(NetCommandType type)
+{
+	if ((type == NETCOMMANDTYPE_GAMECOMMAND) ||
+			(type == NETCOMMANDTYPE_FRAMEINFO) ||
+			(type == NETCOMMANDTYPE_PLAYERLEAVE) ||
+			(type == NETCOMMANDTYPE_DESTROYPLAYER))
+	{
+		return 1;
+	}
+
+	return 0;
+}
+
+
+// CommandRequiresDirectSend, 0x00682E80, 86 bytes.
+//
+// The reference's list minus FRAMERESENDREQUEST, which BFME does not have, plus
+// BFME's own five appended after it in the order 5, 6, 8, 9, 7 -- the request
+// and reply for the GameSpy stats authkey, the inform-player-leave-frame and
+// request-frame-data commands, and the request-player-leave command last.
+//
+// Everything on this list bypasses the packet router and goes straight to its
+// destination, which is why the five additions matter: two of them,
+// INFORMPLAYERLEAVEFRAME and REQUESTFRAMEDATA, are on the frame path.
+Int CommandRequiresDirectSend(NetCommandMsg *msg)
+{
+	if ((msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTVOTE) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTPLAYER) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_LOADCOMPLETE) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_TIMEOUTSTART) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_FILE) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_FILEANNOUNCE) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_FILEPROGRESS) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTFRAME) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_DISCONNECTSCREENOFF) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_REQUEST_GAMESPY_STATS_AUTHKEY) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_GAMESPY_STATS_AUTHKEY) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_INFORMPLAYERLEAVEFRAME) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_REQUESTFRAMEDATA) ||
+			(msg->getNetCommandType() == NETCOMMANDTYPE_REQUESTPLAYERLEAVE))
+	{
+		return 1;
+	}
+
+	return 0;
+}

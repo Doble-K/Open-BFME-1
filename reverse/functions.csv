@@ -14102,3 +14102,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?readPlayerFrameRatiosMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678AA0,215,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
 ?reset@NetCommandList@@QAEXXZ,,0x006731A0,74,Code/GameEngine/Source/GameNetwork/NetCommandList_reset.cpp,matched,
 ??1NetPacket@@UAE@XZ,,0x006776C0,49,Code/GameEngine/Source/GameNetwork/NetPacket_init.cpp,matched,
+?IsCommandSynchronized@@YAHW4NetCommandType@@@Z,,0x00682E50,33,Code/GameEngine/Source/GameNetwork/NetworkUtil_CommandRequiresAck.cpp,matched,
+?CommandRequiresDirectSend@@YAHPAVNetCommandMsg@@@Z,,0x00682E80,86,Code/GameEngine/Source/GameNetwork/NetworkUtil_CommandRequiresAck.cpp,matched,
