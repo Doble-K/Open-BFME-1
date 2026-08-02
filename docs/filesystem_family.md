@@ -103,10 +103,21 @@ all sixteen bytes in one call and checks the return equals 16:
     cmp  eax, 0x10
     jne  fail
 
-It also reaches a global at 0x012D9030 that Zero Hour's version has no use for,
-and builds a substring through `??0?$StringBase@D@@AAE@ABV0@HH@Z`, the private
-three-argument `StringBase` constructor, which Zero Hour's code never calls.
-Expect to write this one from the disassembly.
+What that global at 0x012D9030 is turns out to matter beyond this function.
+0x012D9030 and 0x012D9034 are pointers to the literals `"BIGF"` and `"BIG4"`, and
+retail tries the header tag against **both** with `strncmp` — accepting either —
+where Zero Hour only ever recognises one identifier. So BFME reads two BIG
+container formats, which is a fact about the archive format rather than about
+this function.
+
+The rest of the header handling is inlined: after the sixteen-byte read and the
+two `strncmp`s, the archive size and file count are byte-swapped in registers
+(`and esi,0xff00` / `shl edx,0x10` / `shr eax,0x18` / `shl esi,8`) rather than
+going through a call, which is `ntohl` expanded.
+
+It also builds a substring through `??0?$StringBase@D@@AAE@ABV0@HH@Z`, the
+private three-argument `StringBase` constructor, which Zero Hour's code never
+calls. Expect to write this one from the disassembly.
 
 `loadBigFilesFromDirectory` is the one that resists. Zero Hour's body plus the
 widened declaration compiles to 332 bytes against retail's 459, with four
