@@ -12194,6 +12194,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?openDataChunk@DataChunkOutput@@QAEXPADG@Z,,0x0003A256,5,Code/GameEngine/Source/Common/RTS/DataChunkOutputOpenDataChunkThunk.cpp,matched,5-byte incremental-link DataChunkOutput member thunk converted to focused C++ source
 ?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,,0x009C8860,394,Code/GameEngine/Source/Common/System/FileSystem_openFile.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
 ?openFile@Win32BIGFile@@UAEPAVFile@@PBDH@Z,,0x009D1490,22,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileOpen.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 2; forwards to 4-arg openFile at slot 3
+?openFile@Win32BIGFile@@UAEPAVFile@@PBDHHH@Z,,0x009D1560,397,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileOpenArchived.cpp,matched,
 ?openLiveHandle@BFMENetworkBackend@@QAEXXZ,,0x009DB650,54,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,
 ?openSpareSocket@FirewallHelperClass@@QAE_NG@Z,,0x0066EA30,194,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?optimize@Path@@QAEXPBVObject@@H_N@Z,,0x00401660,669,Code/GameEngine/Source/GameLogic/AI/AIPathfind_Path_optimize.asm,matched,exact 669B MASM; true body 0x401660 (queue 0x433E7A INSIDE FUN_00833dc0)
@@ -13150,6 +13151,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setName@Image@@QAEXVAsciiString@@@Z,,0x000C2420,75,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,BFME moves it out of the header; body is byte-identical to three other setName instantiations so the call from the MappedImage parser is what picks this address
 ?setName@LANGameInfo@@QAEXVUnicodeString@@@Z,,0x00685480,78,Code/masm_dumps/setName_LANGameInfo_QAEXVUnicodeString_Z_685480.asm,matched,Ghidra exact boundary and caller-verified body
 ?setName@LANPlayer@@QAEXVUnicodeString@@@Z,,0x00624C10,72,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
+?setNameAndPath@Win32BIGFile@@UAEXABVAsciiString@@@Z,,0x009D1730,189,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSetName.cpp,matched,
 ?setNeedsToFinish@AnimateWindow@@QAEX_N@Z,,0x0018F237,10,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?setNemesisID@AIGuardMachine@@QAEXW4ObjectID@@@Z,,0x0016A390,10,Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp,matched,
 ?setNemesisID@AIGuardRetaliateMachine@@QAEXW4ObjectID@@@Z,,0x001F83A0,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
@@ -13917,5 +13919,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?setNameAndPath@Win32BIGFile@@UAEXABVAsciiString@@@Z,,0x009D1730,189,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSetName.cpp,matched,
-?openFile@Win32BIGFile@@UAEPAVFile@@PBDHHH@Z,,0x009D1560,397,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileOpenArchived.cpp,matched,
