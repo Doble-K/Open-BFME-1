@@ -1322,7 +1322,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CriticalSectionClass@@QAE@XZ,,0x009DB420,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0CritterEmitterUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028B6A0,95,Code/masm_dumps/CritterEmitterUpdate_constructor.asm,matched,Exact 95B unique factory Open-BFME4
 ??0CritterEmitterUpdateModuleData@@QAE@XZ,,0x001FA3A0,414,Code/GameEngine/Source/GameLogic/AI/CritterEmitterUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0CrushDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254B90,60,Code/masm_dumps/CrushDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0CrushDieModuleData@@QAE@XZ,,0x00123380,135,Code/GameEngine/Source/GameLogic/AI/CrushDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CullLinkClass@@QAE@PAVCullSystemClass@@@Z,,0x00087A50,18,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,ICF alias of existing matched body
 ??0CullNodeStruct@AABTreeBuilderClass@@QAE@XZ,,0x0096B500,37,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,MASM converted to clean C++
@@ -13840,3 +13839,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??1?$ConcreteModuleTemplate@V?$ModuleTag@$03$E?OUTWARD_EMISSION_VELOCITY_MODULE_KEY@FXParticleSystem@@3QBDB$E?OUTWARD_EMISSION_VELOCITY_MODULE_NAME@2@3QBDBVOutwardEmissionVelocityModule@2@VOutwardEmissionVelocityModuleTemplate@2@V?$DefaultP,,0x005DBCF0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$03$E?OUTWARD_EMISSION_VELOCITY_MODULE_KEY@FXParticleSystem@@3QBDB$E?OUTWARD_EMISSION_VELOCITY_MODULE_NAME@2@3QBDBVOutwardEmissionVelocityModule@2@VOutwardEmissionVelocityModuleTemplate@2@V?$DefaultParticleModule@$03@2@V?$DefaultParticleModuleTemplate@$03@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Shortened MASM alias of clean C++ destructor
+??0CrushDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254B90,60,Code/GameEngine/Source/GameLogic/Object/Die/CrushDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
