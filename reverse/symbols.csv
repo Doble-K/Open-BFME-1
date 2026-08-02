@@ -2899,6 +2899,7 @@ name,address,notes
 ?copy@AsciiStringCopyShim@_STL@@SAPAVAsciiString@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x006FA270,_STL __copy AsciiString incremental-link thunk target through a TU-local forwarding shim
 ?copy@ProductionPrerequisiteCopyShim@_STL@@SAPAVProductionPrerequisite@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00753280,_STL __copy ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?copy@VideoCopyShim@_STL@@SAPAUVideo@@PAU3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00755100,_STL __copy Video incremental-link thunk target through a TU-local forwarding shim
+?copy@W3DAnimationInfoCopyShim@_STL@@SAPAVW3DAnimationInfo@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00610AF0,_STL __copy W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
 ?copyFrom@DictPair@Dict@@QAEXPAU12@@Z,0x00013E94
 ?copyFromQueueNode@BFMENetworkQueueItem1@@QAEXPAX@Z,0x00032F6A,native BFME queue item copy helper for wrapper queue +0x3c
 ?copyFromQueueNode@BFMENetworkQueueItem@@QAEXPAX@Z,0x00030C60,native BFME queue item copy helper for wrapper queue +0x14

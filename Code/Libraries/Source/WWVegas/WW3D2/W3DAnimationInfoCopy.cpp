@@ -4,19 +4,22 @@ class W3DAnimationInfo;
 
 namespace _STL
 {
-	struct random_access_iterator_tag;
+struct random_access_iterator_tag {};
 
-	template <class In, class Out, class Distance>
-	__declspec(naked) Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0C8h
-			_emit 0CAh
-			_emit 05Eh
-			_emit 000h
-		}
-	}
+template <class In, class Out, class Distance>
+Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *);
 
-	template W3DAnimationInfo *__copy<W3DAnimationInfo *, W3DAnimationInfo *, int>(W3DAnimationInfo *, W3DAnimationInfo *, W3DAnimationInfo *, const random_access_iterator_tag &, int *);
+class W3DAnimationInfoCopyShim
+{
+public:
+    static W3DAnimationInfo *copy(W3DAnimationInfo *first, W3DAnimationInfo *last, W3DAnimationInfo *result, const random_access_iterator_tag &, int *n);
+};
+
+template <class In, class Out, class Distance>
+Out __copy(In first, In last, Out result, const random_access_iterator_tag &tag, Distance *n)
+{
+    return (Out)W3DAnimationInfoCopyShim::copy((W3DAnimationInfo *)first, (W3DAnimationInfo *)last, (W3DAnimationInfo *)result, tag, (int *)n);
+}
+
+template W3DAnimationInfo *__copy<W3DAnimationInfo *, W3DAnimationInfo *, int>(W3DAnimationInfo *, W3DAnimationInfo *, W3DAnimationInfo *, const random_access_iterator_tag &, int *);
 }
