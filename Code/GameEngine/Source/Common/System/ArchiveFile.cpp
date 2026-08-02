@@ -95,12 +95,6 @@ ArchiveFile::~ArchiveFile()
 	}
 }
 
-// ??0ArchiveFile@@ present-unmatched
-ArchiveFile::ArchiveFile() 
-{
-	m_rootDirectory.clear();
-}
-
 // ?addFile@ArchiveFile@@ present-unmatched
 void ArchiveFile::addFile(const AsciiString& path, const ArchivedFileInfo *fileInfo) 
 {
