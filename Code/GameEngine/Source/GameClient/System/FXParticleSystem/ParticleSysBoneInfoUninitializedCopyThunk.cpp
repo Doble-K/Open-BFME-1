@@ -4,19 +4,22 @@ struct ParticleSysBoneInfo;
 
 namespace _STL
 {
-	struct __false_type;
+struct __false_type {};
 
-	template <class In, class Out>
-	__declspec(naked) Out __uninitialized_copy(In, In, Out, const __false_type &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 015h
-			_emit 0CBh
-			_emit 007h
-			_emit 000h
-		}
-	}
+template <class In, class Out>
+Out __uninitialized_copy(In, In, Out, const __false_type &);
 
-	template ParticleSysBoneInfo *__uninitialized_copy<const ParticleSysBoneInfo *, ParticleSysBoneInfo *>(const ParticleSysBoneInfo *, const ParticleSysBoneInfo *, ParticleSysBoneInfo *, const __false_type &);
+class ParticleSysBoneInfoUninitializedCopyShim
+{
+public:
+	static void *copy(void *first, void *last, void *result, const __false_type &);
+};
+
+template <class In, class Out>
+Out __uninitialized_copy(In first, In last, Out result, const __false_type &tag)
+{
+	return (Out)ParticleSysBoneInfoUninitializedCopyShim::copy((void *)first, (void *)last, (void *)result, tag);
+}
+
+template ParticleSysBoneInfo *__uninitialized_copy<const ParticleSysBoneInfo *, ParticleSysBoneInfo *>(const ParticleSysBoneInfo *, const ParticleSysBoneInfo *, ParticleSysBoneInfo *, const __false_type &);
 }
