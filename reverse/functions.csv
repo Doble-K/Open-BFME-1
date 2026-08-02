@@ -1934,7 +1934,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ProcessAnimateWindowSlideFromTop@@QAE@XZ,,0x00495F30,44,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ??0ProcessAnimateWindowSlideFromTopFast@@QAE@XZ,,0x00496F30,44,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ??0ProductionPrerequisite@@QAE@XZ,,0x000E57A0,133,Code/masm_dumps/ProductionPrerequisite_ctor.asm,matched,Ghidra-bound BFME constructor layout
-??0ProductionSpeedBonus@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00264450,46,Code/masm_dumps/ProductionSpeedBonus_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0ProductionSpeedBonusModuleData@@QAE@XZ,,0x00264690,107,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonusModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ProductionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0029C9E0,396,Code/masm_dumps/ProductionUpdate_constructor.asm,matched,Exact 396B @ 0x0029C9E0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11AC10
 ??0ProductionUpdateModuleData@@QAE@XZ,,0x0029FB70,159,Code/GameEngine/Source/GameLogic/AI/ProductionUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
@@ -13840,3 +13839,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??0RepairSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002647F0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/RepairSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
+??0ProductionSpeedBonus@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00264450,46,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonus.cpp,matched,Luna Open-BFME5.0 clean C++ empty derived constructor
