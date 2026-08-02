@@ -13725,7 +13725,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?startNewGame@GameLogic@@QAEX_N@Z,,0x00394260,7640,Code/masm_dumps/_startNewGame_GameLogic__QAEX_N_Z_394260.asm,matched,Exact 7640B string-anchored Open-BFME4
 ?startPowerRecharge@SpecialPowerModule@@UAEXXZ,,0x0026AE00,112,Code/GameEngine/Source/Common/promoted__startPowerRecharge_SpecialPowerModule_UAEXXZ_0026AE00.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 112B
 ?startRenderToTexture@W3DShaderManager@@SAXXZ,,0x000154E7,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
-?startThread@GameSpyBuddyMessageQueue@@UAEXXZ,,0x0063C650,222,Code/masm_dumps/GameSpyBuddyMessageQueue_startThread.asm,matched,vtable-slot1; true body 0x63C650/222; drift 0xB026CF false (dtor region); Open-BFME fleet
+?startThread@GameSpyBuddyMessageQueue@@UAEXXZ,,0x0063C650,222,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameSpyBuddyMessageQueueStartThreadThunk.cpp,matched,Exact 222B C++ raw virtual-method thunk Open-BFME5
 ?startTraining@AIPlayer@@MAE_NPAVWorkOrder@@_NVAsciiString@@@Z,,0x00166EF0,313,Code/masm_dumps/_str__startTraining_AIPlayer_MAE_NPAVWorkOrder__NVAsciiString_Z_166EF0.asm,matched,str Queuing true body 0x166ef0 not drift 0xC6C3D3 Open-BFME structural
 ?startsWith@?$StringBase@D@@QBE_NABV1@@Z,0x0004B6A0,0x0033CB50,50,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?startsWith@?$StringBase@D@@QBE_NPBD@Z,0x0001702B,0x00061DF0,50,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
