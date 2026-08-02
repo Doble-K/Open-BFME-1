@@ -6,13 +6,13 @@ protected:
     int countVotesForPlayer(int playerIndex);
 };
 
-__declspec(naked) int DisconnectManager::countVotesForPlayer(int)
+class DisconnectManagerCountVotesShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0CAh
-        _emit 07Fh
-        _emit 066h
-        _emit 000h
-    }
+public:
+    int count(int playerIndex);
+};
+
+int DisconnectManager::countVotesForPlayer(int playerIndex)
+{
+    return ((DisconnectManagerCountVotesShim *)this)->count(playerIndex);
 }
