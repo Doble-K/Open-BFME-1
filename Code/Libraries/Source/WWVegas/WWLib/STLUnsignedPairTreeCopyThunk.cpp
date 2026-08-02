@@ -1,64 +1,69 @@
 namespace _STL
 {
-template<class First, class Second>
+template <class First, class Second>
 struct pair
 {
 };
 
-template<class Value>
+template <class Value>
 struct _Rb_tree_node
 {
 };
 
-template<class T>
+template <class T>
 struct _Select1st
 {
 };
 
-template<class T>
+template <class T>
 struct less
 {
 };
 
-template<class T>
+template <class T>
 class allocator
 {
 };
 
-template<class Key, class Value, class Select, class Less, class Alloc>
+template <class Key, class Value, class Select, class Less, class Alloc>
 class _Rb_tree
 {
 	_Rb_tree_node<Value> *_M_copy(_Rb_tree_node<Value> *, _Rb_tree_node<Value> *);
 	void _M_erase(_Rb_tree_node<Value> *);
 };
 
-template<class Key, class Value, class Select, class Less, class Alloc>
-__declspec(naked) _Rb_tree_node<Value> *_Rb_tree<Key, Value, Select, Less, Alloc>::_M_copy(_Rb_tree_node<Value> *, _Rb_tree_node<Value> *)
+class UnsignedPairTreeCopyShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 076h
-		_emit 0BAh
-		_emit 073h
-		_emit 000h
-	}
+public:
+	_Rb_tree_node<pair<const unsigned short, unsigned char> > *copy(
+		_Rb_tree_node<pair<const unsigned short, unsigned char> > *x,
+		_Rb_tree_node<pair<const unsigned short, unsigned char> > *p);
+};
+
+class UnsignedPairTreeEraseShim
+{
+public:
+	void erase(_Rb_tree_node<pair<const unsigned short, unsigned char> > *x);
+};
+
+template <class Key, class Value, class Select, class Less, class Alloc>
+_Rb_tree_node<Value> *_Rb_tree<Key, Value, Select, Less, Alloc>::_M_copy(
+	_Rb_tree_node<Value> *x, _Rb_tree_node<Value> *p)
+{
+	return (_Rb_tree_node<Value> *)((UnsignedPairTreeCopyShim *)this)->copy(
+		(_Rb_tree_node<pair<const unsigned short, unsigned char> > *)x,
+		(_Rb_tree_node<pair<const unsigned short, unsigned char> > *)p);
+}
+
+template <class Key, class Value, class Select, class Less, class Alloc>
+void _Rb_tree<Key, Value, Select, Less, Alloc>::_M_erase(_Rb_tree_node<Value> *x)
+{
+	((UnsignedPairTreeEraseShim *)this)->erase(
+		(_Rb_tree_node<pair<const unsigned short, unsigned char> > *)x);
 }
 }
 
 typedef _STL::pair<const unsigned short, unsigned char> UnsignedPair;
 typedef _STL::_Rb_tree<unsigned short, UnsignedPair, _STL::_Select1st<UnsignedPair>, _STL::less<unsigned short>, _STL::allocator<UnsignedPair> > UnsignedTree;
-template __declspec(naked) _STL::_Rb_tree_node<UnsignedPair> *UnsignedTree::_M_copy(_STL::_Rb_tree_node<UnsignedPair> *, _STL::_Rb_tree_node<UnsignedPair> *);
-
-template<class Key, class Value, class Select, class Less, class Alloc>
-__declspec(naked) void _STL::_Rb_tree<Key, Value, Select, Less, Alloc>::_M_erase(_STL::_Rb_tree_node<Value> *)
-{
-	__asm {
-		_emit 0E9h
-		_emit 0EFh
-		_emit 0E2h
-		_emit 071h
-		_emit 000h
-	}
-}
-
-template __declspec(naked) void UnsignedTree::_M_erase(_STL::_Rb_tree_node<UnsignedPair> *);
+template _STL::_Rb_tree_node<UnsignedPair> *UnsignedTree::_M_copy(_STL::_Rb_tree_node<UnsignedPair> *, _STL::_Rb_tree_node<UnsignedPair> *);
+template void UnsignedTree::_M_erase(_STL::_Rb_tree_node<UnsignedPair> *);
