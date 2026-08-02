@@ -10207,7 +10207,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@RepairDockUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011B0D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,recovered from Open-BFME6 overnight session (GLM)
 ?friend_newModuleData@RepairSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x001217B0,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/RepairSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@ReplaceObjectUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z;C++ alias
-?friend_newModuleData@RespawnBody@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F7A0,107,Code/masm_dumps/RespawnBody_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xD4 Ghidra confirmed
+?friend_newModuleData@RespawnBody@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F7A0,107,Code/GameEngine/Source/GameLogic/Object/Behavior/RespawnBodyFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@RiderChangeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x001195C0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@RousingSpeechUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011C6C0,110,Code/masm_dumps/RousingSpeechUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x80; Ghidra confirmed
 ?friend_newModuleData@RubbleRiseUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00127BD0,110,Code/masm_dumps/RubbleRiseUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x88; Ghidra confirmed
