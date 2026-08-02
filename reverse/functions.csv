@@ -2341,7 +2341,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DShadowTextureManager@@QAE@XZ,,0x007AEDA0,159,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ??0W3DShadowTextureManagerIterator@@QAE@AAVW3DShadowTextureManager@@@Z,,0x007AE830,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ??0W3DShroudMaterialPassClass@@QAE@XZ,,0x00702300,22,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
-??0W3DStatusCircle@@QAE@XZ,,0x00726000,90,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DStatusCircle_ctor.asm,matched,vtbl 0x01121018 store; true body @0x726000 not drift 0x98914C; MASM (ShaderClass member-default blocks C++)
+??0W3DStatusCircle@@QAE@XZ,,0x00726000,90,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DStatusCircleCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM ctor
 ??0W3DSupplyDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0W3DTracerDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001EE950,276,Code/masm_dumps/W3DTracerDraw_constructor.asm,matched,Exact 276B ICF alias Open-BFME4
 ??0W3DTreeDrawModuleData@@QAE@XZ,,0x0077F360,192,Code/masm_dumps/W3DTreeDrawModuleData_constructor.asm,matched,Exact 192B @ 0x0077F360; Exact retail MASM ModuleData ctor; unique factory 0x6BF710
