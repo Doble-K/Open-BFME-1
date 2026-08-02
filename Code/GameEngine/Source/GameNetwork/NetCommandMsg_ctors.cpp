@@ -46,6 +46,8 @@ enum NetCommandType
 	NETCOMMANDTYPE_ACKSTAGE2 = 2,
 	NETCOMMANDTYPE_FRAMEINFO = 3,
 	NETCOMMANDTYPE_GAMECOMMAND = 4,
+	NETCOMMANDTYPE_INFORMPLAYERLEAVEFRAME = 8,
+	NETCOMMANDTYPE_REQUESTFRAMEDATA = 9,
 	NETCOMMANDTYPE_PLAYERLEAVE = 10,
 	NETCOMMANDTYPE_DESTROYPLAYER = 11,
 	NETCOMMANDTYPE_KEEPALIVE = 12,
@@ -158,6 +160,7 @@ class NetDisconnectPlayerCommandMsg : public NetCommandMsg
 {
 public:
 	NetDisconnectPlayerCommandMsg();
+	UnsignedInt getDisconnectFrame();
 	void setDisconnectFrame(UnsignedInt v);
 	UnsignedByte m_disconnectSlot;
 	UnsignedInt m_disconnectFrame;
@@ -207,8 +210,12 @@ class NetFileProgressCommandMsg : public NetCommandMsg
 {
 public:
 	NetFileProgressCommandMsg();
-	UnsignedShort m_fileID;
-	Int m_progress;
+	UnsignedShort getFileID();
+	void setFileID(UnsignedShort v);
+	Int getProgress();
+	void setProgress(Int v);
+	UnsignedShort m_fileID;							// this+0x1C
+	Int m_progress;									// this+0x20
 };
 
 NetFileProgressCommandMsg::NetFileProgressCommandMsg() : NetCommandMsg()
@@ -479,3 +486,120 @@ void NetDisconnectScreenOffCommandMsg::setNewFrame(UnsignedInt v)
 {
 	m_newFrame = v;
 }
+
+
+UnsignedInt NetDisconnectPlayerCommandMsg::getDisconnectFrame() { return m_disconnectFrame; }
+
+UnsignedShort NetFileProgressCommandMsg::getFileID() { return m_fileID; }
+void NetFileProgressCommandMsg::setFileID(UnsignedShort v) { m_fileID = v; }
+Int NetFileProgressCommandMsg::getProgress() { return m_progress; }
+void NetFileProgressCommandMsg::setProgress(Int v) { m_progress = v; }
+
+// NetFileCommandMsg carries the file payload. setFileData at 0x00673FA0 pins the
+// two fields the accessors below read: it stores the length at +0x24 and the
+// freshly allocated buffer at +0x20, in that order. BFME keeps only one filename
+// where the reference keeps a real and a portable one, which is why the payload
+// pair sits at +0x20/+0x24 rather than the reference's +0x24/+0x28.
+class NetFileCommandMsg : public NetCommandMsg
+{
+public:
+	UnsignedInt getFileLength();
+	UnsignedByte *getFileData();
+
+	void *m_realFilename;							// this+0x1C
+	UnsignedByte *m_fileData;						// this+0x20
+	UnsignedInt m_fileLength;						// this+0x24
+};
+
+UnsignedInt NetFileCommandMsg::getFileLength() { return m_fileLength; }
+UnsignedByte *NetFileCommandMsg::getFileData() { return m_fileData; }
+
+// NetFileAnnounceCommandMsg announces a file to a subset of players. Its two
+// scalars are packed rather than aligned to dwords -- the id is a word at +0x20
+// and the mask a byte immediately after it at +0x22.
+class NetFileAnnounceCommandMsg : public NetCommandMsg
+{
+public:
+	UnsignedShort getFileID();
+	void setFileID(UnsignedShort v);
+	UnsignedByte getPlayerMask();
+	void setPlayerMask(UnsignedByte v);
+
+	void *m_realFilename;							// this+0x1C
+	UnsignedShort m_fileID;							// this+0x20
+	UnsignedByte m_playerMask;						// this+0x22
+};
+
+UnsignedShort NetFileAnnounceCommandMsg::getFileID() { return m_fileID; }
+void NetFileAnnounceCommandMsg::setFileID(UnsignedShort v) { m_fileID = v; }
+UnsignedByte NetFileAnnounceCommandMsg::getPlayerMask() { return m_playerMask; }
+void NetFileAnnounceCommandMsg::setPlayerMask(UnsignedByte v) { m_playerMask = v; }
+
+// Command types 8 and 9 have no counterpart in the reference: BFME added them.
+// Retail ships without RTTI, so the class names below are not recovered from the
+// image -- they are built from the type constant each constructor stamps, in the
+// BFMENet* style the other BFME-only additions in this tree already use. The
+// layouts and the type constants ARE from the image.
+
+// Stamps 8. m_leaveFrame starts at -1 rather than 0, the same "not yet bound to a
+// frame" convention the base uses for m_executionFrame -- which is what makes the
+// +0x20 field the frame and the +0x1C field the player.
+class BFMENetInformPlayerLeaveFrameCommandMsg : public NetCommandMsg
+{
+public:
+	BFMENetInformPlayerLeaveFrameCommandMsg();
+	Int getLeavingPlayerID();
+	UnsignedInt getLeaveFrame();
+	void setLeaveFrame(UnsignedInt frame);
+	void setLeaveInfo(UnsignedInt frame, Int playerID);
+
+	Int m_leavingPlayerID;							// this+0x1C
+	UnsignedInt m_leaveFrame;						// this+0x20
+};
+
+BFMENetInformPlayerLeaveFrameCommandMsg::BFMENetInformPlayerLeaveFrameCommandMsg()
+{
+	m_commandType = NETCOMMANDTYPE_INFORMPLAYERLEAVEFRAME;
+	m_leavingPlayerID = 0;
+	m_leaveFrame = -1;
+}
+
+Int BFMENetInformPlayerLeaveFrameCommandMsg::getLeavingPlayerID() { return m_leavingPlayerID; }
+UnsignedInt BFMENetInformPlayerLeaveFrameCommandMsg::getLeaveFrame() { return m_leaveFrame; }
+void BFMENetInformPlayerLeaveFrameCommandMsg::setLeaveFrame(UnsignedInt frame) { m_leaveFrame = frame; }
+
+// Retail assigns the frame first and the player second even though the frame is
+// the second parameter, which is why the two stores read [ecx+0x1c] = arg2 then
+// [ecx+0x20] = arg1.
+void BFMENetInformPlayerLeaveFrameCommandMsg::setLeaveInfo(UnsignedInt frame, Int playerID)
+{
+	m_leavingPlayerID = playerID;
+	m_leaveFrame = frame;
+}
+
+// Stamps 9. Both fields start at zero, so neither carries the -1 sentinel and the
+// pairing below follows type 8's rather than being pinned by the constructor.
+class BFMENetRequestFrameDataCommandMsg : public NetCommandMsg
+{
+public:
+	BFMENetRequestFrameDataCommandMsg();
+	Int getRequestedPlayerID();
+	UnsignedInt getRequestedFrame();
+	void setRequestedPlayerID(Int playerID);
+	void setRequestedFrame(UnsignedInt frame);
+
+	Int m_requestedPlayerID;						// this+0x1C
+	UnsignedInt m_requestedFrame;					// this+0x20
+};
+
+BFMENetRequestFrameDataCommandMsg::BFMENetRequestFrameDataCommandMsg()
+{
+	m_commandType = NETCOMMANDTYPE_REQUESTFRAMEDATA;
+	m_requestedPlayerID = 0;
+	m_requestedFrame = 0;
+}
+
+Int BFMENetRequestFrameDataCommandMsg::getRequestedPlayerID() { return m_requestedPlayerID; }
+UnsignedInt BFMENetRequestFrameDataCommandMsg::getRequestedFrame() { return m_requestedFrame; }
+void BFMENetRequestFrameDataCommandMsg::setRequestedPlayerID(Int playerID) { m_requestedPlayerID = playerID; }
+void BFMENetRequestFrameDataCommandMsg::setRequestedFrame(UnsignedInt frame) { m_requestedFrame = frame; }
