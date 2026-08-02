@@ -1,40 +1,40 @@
 class INI;
 
-template<int Bits>
+template <int Bits>
 class BitFlags
 {
 public:
 	static void parseFromINI(INI *, void *, void *, const void *);
 };
 
-template<int Bits>
-__declspec(naked) void BitFlags<Bits>::parseFromINI(INI *, void *, void *, const void *)
+class BitFlags45ParseFromINIShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0D1h
-		_emit 0B2h
-		_emit 01Dh
-		_emit 000h
-	}
+public:
+	static void parseFromINI(INI *, void *, void *, const void *);
+};
+
+class BitFlags116ParseFromINIShim
+{
+public:
+	static void parseFromINI(INI *, void *, void *, const void *);
+};
+
+template <int Bits>
+void BitFlags<Bits>::parseFromINI(INI *ini, void *a, void *b, const void *c)
+{
+	BitFlags45ParseFromINIShim::parseFromINI(ini, a, b, c);
 }
 
-template __declspec(naked) void BitFlags<45>::parseFromINI(INI *, void *, void *, const void *);
+template void BitFlags<45>::parseFromINI(INI *, void *, void *, const void *);
 
-template<>
+template <>
 class BitFlags<116>
 {
 public:
 	static void parseFromINI(INI *, void *, void *, const void *);
 };
 
-__declspec(naked) void BitFlags<116>::parseFromINI(INI *, void *, void *, const void *)
+void BitFlags<116>::parseFromINI(INI *ini, void *a, void *b, const void *c)
 {
-	__asm {
-		_emit 0E9h
-		_emit 0DDh
-		_emit 094h
-		_emit 010h
-		_emit 000h
-	}
+	BitFlags116ParseFromINIShim::parseFromINI(ini, a, b, c);
 }
