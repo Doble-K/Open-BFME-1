@@ -1,0 +1,141 @@
+// cl: /DNDEBUG /MD /EHsc
+
+class FadeAndDieOrnamentUpdateModuleData
+{
+public:
+    FadeAndDieOrnamentUpdateModuleData();
+};
+
+__declspec(naked) FadeAndDieOrnamentUpdateModuleData::FadeAndDieOrnamentUpdateModuleData()
+{
+    __asm {
+        _emit 6Ah
+        _emit 0FFh
+        _emit 68h
+        _emit 93h
+        _emit 17h
+        _emit 00h
+        _emit 01h
+        _emit 64h
+        _emit 0A1h
+        _emit 00h
+        _emit 00h
+        _emit 00h
+        _emit 00h
+        _emit 50h
+        _emit 64h
+        _emit 89h
+        _emit 25h
+        _emit 00h
+        _emit 00h
+        _emit 00h
+        _emit 00h
+        _emit 51h
+        _emit 53h
+        _emit 56h
+        _emit 8Bh
+        _emit 0F1h
+        _emit 89h
+        _emit 74h
+        _emit 24h
+        _emit 08h
+        _emit 33h
+        _emit 0C0h
+        _emit 8Dh
+        _emit 4Eh
+        _emit 08h
+        _emit 0C7h
+        _emit 06h
+        _emit 38h
+        _emit 0E8h
+        _emit 08h
+        _emit 01h
+        _emit 89h
+        _emit 44h
+        _emit 24h
+        _emit 14h
+        _emit 89h
+        _emit 01h
+        _emit 0BAh
+        _emit 00h
+        _emit 00h
+        _emit 80h
+        _emit 3Fh
+        _emit 89h
+        _emit 56h
+        _emit 0Ch
+        _emit 89h
+        _emit 56h
+        _emit 10h
+        _emit 89h
+        _emit 56h
+        _emit 14h
+        _emit 0BBh
+        _emit 01h
+        _emit 00h
+        _emit 00h
+        _emit 00h
+        _emit 83h
+        _emit 0CAh
+        _emit 0FFh
+        _emit 89h
+        _emit 46h
+        _emit 18h
+        _emit 89h
+        _emit 5Eh
+        _emit 1Ch
+        _emit 89h
+        _emit 5Eh
+        _emit 20h
+        _emit 89h
+        _emit 5Eh
+        _emit 24h
+        _emit 89h
+        _emit 56h
+        _emit 28h
+        _emit 89h
+        _emit 56h
+        _emit 2Ch
+        _emit 89h
+        _emit 46h
+        _emit 30h
+        _emit 88h
+        _emit 5Ch
+        _emit 24h
+        _emit 14h
+        _emit 89h
+        _emit 46h
+        _emit 18h
+        _emit 89h
+        _emit 46h
+        _emit 30h
+        _emit 0E8h
+        _emit 0A7h
+        _emit 1Dh
+        _emit 76h
+        _emit 00h
+        _emit 8Bh
+        _emit 4Ch
+        _emit 24h
+        _emit 0Ch
+        _emit 88h
+        _emit 5Eh
+        _emit 34h
+        _emit 8Bh
+        _emit 0C6h
+        _emit 5Eh
+        _emit 5Bh
+        _emit 64h
+        _emit 89h
+        _emit 0Dh
+        _emit 00h
+        _emit 00h
+        _emit 00h
+        _emit 00h
+        _emit 83h
+        _emit 0C4h
+        _emit 10h
+        _emit 0C3h
+    }
+}
+

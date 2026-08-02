@@ -1368,7 +1368,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FXLocInfo@@QAE@XZ,,0x0010DB40,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/FXList.cpp,matched,ICF alias of existing matched body
 ??0FadeAndDieOrnamentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00292230,139,Code/masm_dumps/FadeAndDieOrnamentUpdate_constructor.asm,matched,Exact 139B; factory ownership Open-BFME4
-??0FadeAndDieOrnamentUpdateModuleData@@QAE@XZ,,0x00125B30,127,Code/masm_dumps/FadeAndDieOrnamentUpdateModuleData_constructor.asm,matched,Exact 127B @ 0x00125B30; Exact retail MASM ModuleData ctor; unique factory 0x125BD0
 ??0FastAllocatorGeneral@@QAE@XZ,,0x00B027B0,113,Code/masm_dumps/___0FastAllocatorGeneral__QAE_XZ_B027B0.asm,matched,
 ??0FastCriticalSectionClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,ICF alias of existing matched body
 ??0FastFixedAllocator@@QAE@I@Z,,0x00B02760,45,Code/Libraries/Source/WWVegas/WWLib/FastAllocator.cpp,matched,
@@ -13841,3 +13840,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0AIAttackMoveToState@@QAE@PAVStateMachine@@@Z,,0x00183990,234,Code/GameEngine/Source/GameLogic/AI/AIAttackMoveToStateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior-state constructor
 ??0AIAttackPursueTargetState@@QAE@PAVStateMachine@@_N11@Z,,0x0017F700,88,Code/GameEngine/Source/GameLogic/AI/AIAttackPursueTargetStateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior-state constructor
 ??0AIAttackState@@QAE@PAVStateMachine@@_N11PAVAttackExitConditionsInterface@@@Z,,0x0017C910,124,Code/GameEngine/Source/GameLogic/AI/AIAttackStateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior-state constructor
+??0FadeAndDieOrnamentUpdateModuleData@@QAE@XZ,,0x00125B30,127,Code/GameEngine/Source/Common/RTS/FadeAndDieOrnamentUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
