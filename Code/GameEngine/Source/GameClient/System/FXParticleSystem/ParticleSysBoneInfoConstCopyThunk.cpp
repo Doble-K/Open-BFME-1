@@ -4,19 +4,22 @@ struct ParticleSysBoneInfo;
 
 namespace _STL
 {
-	struct random_access_iterator_tag;
+struct random_access_iterator_tag {};
 
-	template <class In, class Out, class Distance>
-	__declspec(naked) Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 024h
-			_emit 0E3h
-			_emit 006h
-			_emit 000h
-		}
-	}
+template <class In, class Out, class Distance>
+Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *);
 
-	template ParticleSysBoneInfo *__copy<const ParticleSysBoneInfo *, ParticleSysBoneInfo *, int>(const ParticleSysBoneInfo *, const ParticleSysBoneInfo *, ParticleSysBoneInfo *, const random_access_iterator_tag &, int *);
+class ParticleSysBoneInfoConstCopyShim
+{
+public:
+    static void *copy(void *first, void *last, void *result, const random_access_iterator_tag &, int *n);
+};
+
+template <class In, class Out, class Distance>
+Out __copy(In first, In last, Out result, const random_access_iterator_tag &tag, Distance *n)
+{
+    return (Out)ParticleSysBoneInfoConstCopyShim::copy((void *)first, (void *)last, (void *)result, tag, (int *)n);
+}
+
+template ParticleSysBoneInfo *__copy<const ParticleSysBoneInfo *, ParticleSysBoneInfo *, int>(const ParticleSysBoneInfo *, const ParticleSysBoneInfo *, ParticleSysBoneInfo *, const random_access_iterator_tag &, int *);
 }
