@@ -2094,7 +2094,6 @@ void BaseHeightMapRenderObjClass::addTree(DrawableID id, Coord3D location, Real 
 //=============================================================================
 /** Adds a tree to the tree buffer.*/
 //=============================================================================
-// ?removeTree@BaseHeightMapRenderObjClass@@QAEXW4DrawableID@@@Z present-unmatched
 void BaseHeightMapRenderObjClass::removeTree(DrawableID id)
 {
 	if (m_treeBuffer) {
@@ -2149,7 +2148,6 @@ void BaseHeightMapRenderObjClass::addProp(Int id, Coord3D location, Real angle, 
 //=============================================================================
 /** Adds a prop to the prop buffer.*/
 //=============================================================================
-// ?removeProp@BaseHeightMapRenderObjClass@@QAEXH@Z present-unmatched
 void BaseHeightMapRenderObjClass::removeProp(Int id)
 {
 	if (m_propBuffer) {
@@ -2162,7 +2160,6 @@ void BaseHeightMapRenderObjClass::removeProp(Int id)
 //=============================================================================
 /** Adds a prop to the prop buffer.*/
 //=============================================================================
-// ?removeAllProps@BaseHeightMapRenderObjClass@@QAEXXZ present-unmatched
 void BaseHeightMapRenderObjClass::removeAllProps()
 {
 	if (m_propBuffer) {

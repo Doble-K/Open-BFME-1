@@ -146,6 +146,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$__copy@PBW4ScienceType@@PAW41@H@_STL@@YAPAW4ScienceType@@PBW41@0PAW41@ABUrandom_access_iterator_tag@0@PAH@Z,,0x000B9830,44,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ??$__copy@U?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@U12@H@_STL@@YA?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@0@U10@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x002CAF40,129,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,STLport template-internal COMDAT emitted by this TU; thunk-dump repointed to real body
 ??$__copy@U?$_Bit_iter@_NPB_N@_STL@@U?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@H@_STL@@YA?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@0@U?$_Bit_iter@_NPB_N@0@0U10@ABUrandom_access_iterator_tag@0@PAH@Z,,0x002CAF40,129,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
+??$__copy@U?$_Rb_tree_iterator@VAsciiString@@U?$_Const_traits@VAsciiString@@@_STL@@@_STL@@PAVAsciiString@@H@_STL@@YAPAVAsciiString@@U?$_Rb_tree_iterator@VAsciiString@@U?$_Const_traits@VAsciiString@@@_STL@@@0@0PAV1@ABUinput_iterator_tag@0@PAH@Z,,0x009CC4C0,61,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.cpp,matched,
 ??$__copy_aux@U?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@U12@@_STL@@YA?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@0@U10@00ABU__false_type@0@@Z,,0x002CB4B0,79,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,
 ??$__copy_aux@U?$_Bit_iter@_NPB_N@_STL@@U?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@@_STL@@YA?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@0@U?$_Bit_iter@_NPB_N@0@0U10@ABU__false_type@0@@Z,,0x00645250,63,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ??$__copy_backward@PAU?$pair@W4ObjectID@@I@_STL@@PAU12@H@_STL@@YAPAU?$pair@W4ObjectID@@I@0@PAU10@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x00260A40,59,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
@@ -153,6 +154,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$__copy_backward@PAUICoord2D@@PAU1@H@_STL@@YAPAUICoord2D@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x000950E0,59,Code/GameEngine/Source/GameClient/MapUtil.cpp,matched,
 ??$__copy_backward@PAUWeaponRecoilInfo@W3DModelDraw@@PAU12@H@_STL@@YAPAUWeaponRecoilInfo@W3DModelDraw@@PAU12@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x0052D370,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ??$__copy_backward@PAV?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@PAV12@H@_STL@@YAPAV?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@0@PAV10@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x000BCCE0,77,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,
+??$__copy_backward@PAVAsciiString@@PAV1@H@_STL@@YAPAVAsciiString@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x003C4EA0,62,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.cpp,matched,
 ??$__copy_backward@PAW4ObjectID@@PAW41@H@_STL@@YAPAW4ObjectID@@PAW41@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x002CA890,53,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ??$__copy_backward@U?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@U12@H@_STL@@YA?AU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@0@U10@00ABUrandom_access_iterator_tag@0@PAH@Z,,0x002CB400,140,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ??$__copy_backward_aux@PAU?$pair@W4ObjectID@@I@_STL@@PAU12@@_STL@@YAPAU?$pair@W4ObjectID@@I@0@PAU10@00ABU__true_type@0@@Z,,0x00095B70,53,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
@@ -256,6 +258,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$__find@U?$_List_iterator@W4ObjectID@@U?$_Nonconst_traits@W4ObjectID@@@_STL@@@_STL@@W4ObjectID@@@_STL@@YA?AU?$_List_iterator@W4ObjectID@@U?$_Nonconst_traits@W4ObjectID@@@_STL@@@0@U10@0ABW4ObjectID@@ABUinput_iterator_tag@0@@Z,,0x000F85E0,36,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehavior.cpp,matched,
 ??$__find@U?$_Rb_tree_iterator@HU?$_Const_traits@H@_STL@@@_STL@@H@_STL@@YA?AU?$_Rb_tree_iterator@HU?$_Const_traits@H@_STL@@@0@U10@0ABHABUinput_iterator_tag@0@@Z,,0x00506180,130,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,object-symbol=??$__find@U?$_List_iterator@UBFMEFindAsciiStringView@@U?$_Const_traits@UBFMEFindAsciiStringView@@@_STL@@@_STL@@UBFMEFindAsciiStringView@@@_STL@@YA?AU?$_List_iterator@UBFMEFindAsciiStringView@@U?$_Const_traits@UBFMEFindAsciiStringView@@@_STL@@@0@U10@0ABUBFMEFindAsciiStringView@@ABUinput_iterator_tag@0@@Z;thunk-dump converted to clean C++ helper
 ??$__insertion_sort@PAU?$pair@W4ObjectID@@I@_STL@@P6A_NU12@0@Z@_STL@@YAXPAU?$pair@W4ObjectID@@I@0@0P6A_NU10@1@Z@Z,,0x00096220,67,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
+??$__insertion_sort@PAVAsciiString@@U?$less@VAsciiString@@@_STL@@@_STL@@YAXPAVAsciiString@@0U?$less@VAsciiString@@@0@@Z,,0x009CD4F0,65,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.cpp,matched,
 ??$__introsort_loop@PAU?$pair@W4ObjectID@@I@_STL@@U12@HP6A_NU12@0@Z@_STL@@YAXPAU?$pair@W4ObjectID@@I@0@00HP6A_NU10@1@Z@Z,,0x00096440,155,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
 ??$__lg@H@_STL@@YAHH@Z,,0x00094D70,25,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
 ??$__linear_insert@PAU?$pair@W4ObjectID@@I@_STL@@U12@P6A_NU12@0@Z@_STL@@YAXPAU?$pair@W4ObjectID@@I@0@0U10@P6A_N11@Z@Z,,0x00095E80,136,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
@@ -339,6 +342,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$fill@PAUICoord2D@@U1@@_STL@@YAXPAUICoord2D@@0ABU1@@Z,,0x0044FE00,36,Code/GameEngine/Source/GameClient/MapUtil.cpp,matched,
 ??$fill@PAUWeaponRecoilInfo@W3DModelDraw@@U12@@_STL@@YAXPAUWeaponRecoilInfo@W3DModelDraw@@0ABU12@@Z,,0x0075E7E0,50,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ??$fill@PAV?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@V12@@_STL@@YAXPAV?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@0@0ABV10@@Z,,0x000BCC50,38,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,
+??$fill@PAVAsciiString@@V1@@_STL@@YAXPAVAsciiString@@0ABV1@@Z,,0x009CC3E0,38,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.cpp,matched,
 ??$fill@PAW4ObjectID@@W41@@_STL@@YAXPAW4ObjectID@@0ABW41@@Z,,0x00066530,30,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ??$fill@U?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@_N@_STL@@YAXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@0@0AB_N@Z,,0x002CADD0,76,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ??$fill_n@I@_STL@@YAPAEPAEIABE@Z,,0x007493D0,57,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,
@@ -432,6 +436,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$swap@U?$pair@W4ObjectID@@I@_STL@@@_STL@@YAXAAU?$pair@W4ObjectID@@I@0@0@Z,,0x00094F70,33,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
 ??$swap@UTempIndexStruct@@@_STL@@YAXAAUTempIndexStruct@@0@Z,,0x0018F130,53,Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp,matched,
 ??$swap@V?$TPoint2D@H@@@@YAXAAV?$TPoint2D@H@@0@Z,,0x002608E0,33,Code/Libraries/Source/WWVegas/WWLib/xsurface.cpp,matched,
+??$swap@VAsciiString@@@_STL@@YAXAAVAsciiString@@0@Z,,0x009CC500,104,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.cpp,matched,
 ??$uninitialized_fill_n@PAEIE@_STL@@YAPAEPAEIABE@Z,,0x0074A9C0,57,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,
 ??$uninitialized_fill_n@PAUCoord3D@@IU1@@_STL@@YAPAUCoord3D@@PAU1@IABU1@@Z,,0x0033A580,30,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,object-symbol=??$find@PAW4ObjectID@@W41@@_STL@@YAPAW4ObjectID@@PAW41@0ABW41@@Z;C++ alias
 ??$uninitialized_fill_n@PAUICoord2D@@IU1@@_STL@@YAPAUICoord2D@@PAU1@IABU1@@Z,,0x0033A580,30,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,object-symbol=??$find@PAW4ObjectID@@W41@@_STL@@YAPAW4ObjectID@@PAW41@0ABW41@@Z;C++ alias
@@ -4822,6 +4827,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GBFMEAutoLockRef@@QAEPAXI@Z,,0x0010B690,30,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,
 ??_GBFMENetRequestGameSpyStatsAuthKeyCommandMsg@@MAEPAXI@Z,,0x006761E0,30,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ??_GBSurface@@UAEPAXI@Z,,0x001279A0,30,Code/Libraries/Source/WWVegas/WW3D2/txt.cpp,matched,
+??_GBaseHeightMapRenderObjClass@@UAEPAXI@Z,,0x006CFAB0,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ??_GBattlePlanBonuses@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GBattlePlanUpdateModuleData@@UAEPAXI@Z,,0x00285FE0,30,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,
 ??_GBehaviorModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -5090,6 +5096,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GQueueProductionExitUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GQueuedDownload@@QAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GQuickMatchPreferences@@UAEPAXI@Z,,0x000AB7C0,30,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
+??_GRTS2DScene@@UAEPAXI@Z,,0x007120D0,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 ??_GRadar@@UAEPAXI@Z,,0x00108110,30,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
 ??_GRadarObject@@MAEPAXI@Z,,0x001B0E60,30,Code/GameEngine/Source/Common/System/Radar.cpp,matched,icf-owner=??_GUpgrade@@MAEPAXI@Z
 ??_GRadarUpgradeModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -12943,6 +12950,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?remove@Dict@@QAE_NW4NameKeyType@@@Z,,0x000688E0,73,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?remove@LListNode@@QAEXXZ,,0x00105930,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?removeAllBibs@W3DTerrainVisual@@UAEXXZ,,0x00731000,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
+?removeAllProps@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006C8CA0,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ,,0x007AEA90,95,Code/GameEngine/Source/Common/promoted__removeAllShadows_W3DProjectedShadowManager_QAEXXZ_007AEA90.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 95B
 ?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,object-symbol=?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ;thunk-dump converted to clean C++ ICF alias at destination 0x006CB050
 ?removeBib@W3DBibBuffer@@QAEXW4ObjectID@@@Z,,0x006D6B20,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
@@ -12967,6 +12975,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeObjectFromPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,,0x001D27D0,15,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?removePlayer@LANAPI@@IAEXPAVLANPlayer@@@Z,,0x00685290,62,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,,0x0002F8DD,5,Code/Libraries/Source/WWVegas/WWLib/RadarRefreshTerrainThunk.cpp,matched,object-symbol=?refreshTerrain@Radar@@UAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
+?removeProp@BaseHeightMapRenderObjClass@@QAEXH@Z,,0x006C8C80,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ?removeRadar@Player@@QAEX_N@Z,,0x000CC0B0,215,Code/masm_dumps/_removeRadar_Player__QAEX_N_Z_CC0B0.asm,matched,MASM exact retail body; true entry 0xCC0B0 (queue 0xFB3CF was int3 pad); Player radar field cluster
 ?removeSide@SidesList@@QAEXH@Z,,0x000C31B0,363,Code/masm_dumps/_sa14__removeSide_SidesList__QAEXH_Z_C31B0.asm,matched,sa14 Open-BFME4+Grok neutral
 ?removeSmudgeFromSet@SmudgeSet@@QAEXAAUSmudge@@@Z,,0x005D40A0,115,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
@@ -12977,6 +12986,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeTeamPrototypeFromList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000EFD50,149,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,BFME pair-key map erase; TeamPrototype +0x10/+0x14 name keys; node 0x1C; certified packet 362
 ?removeTerrainBibHighlighting@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,thunk-dump converted to clean C++ shared ICF body at destination 0x6CB050
 ?removeTranslator@MessageStream@@QAEXI@Z,,0x0008A8D0,96,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
+?removeTree@BaseHeightMapRenderObjClass@@QAEXW4DrawableID@@@Z,,0x006C8B20,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,,0x006C8930,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,converted incremental-link thunk to exact codegen-blocked C++ naked body
 ?removeTreesAndPropsForConstruction@W3DTerrainVisual@@UAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,,0x00730D30,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?removeUnitFromPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,,0x0024EA60,27,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,

@@ -209,6 +209,7 @@ name,address,notes
 ??$__find@U?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@_STL@@VAsciiString@@@_STL@@YA?AU?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@0@U10@0ABVAsciiString@@ABUinput_iterator_tag@0@@Z,0x00027BAB,pinharvest x1 (thunk)
 ??$__find@U?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@_STL@@VAsciiString@@@_STL@@YA?AU?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@0@U10@0ABVAsciiString@@ABUinput_iterator_tag@0@@Z,0x0002D66E,pinharvest x1 (thunk)
 ??$__find@U?$_Rb_tree_iterator@HU?$_Const_traits@H@_STL@@@_STL@@H@_STL@@YA?AU?$_Rb_tree_iterator@HU?$_Const_traits@H@_STL@@@0@U10@0ABHABUinput_iterator_tag@0@@Z,0x0004093A
+??$__linear_insert@PAVAsciiString@@V1@U?$less@VAsciiString@@@_STL@@@_STL@@YAXPAVAsciiString@@0V1@U?$less@VAsciiString@@@0@@Z,0x009CD0D0
 ??$__uninitialized_copy@PBUHideShowSubObjInfo@ModelConditionInfo@@PAU12@@_STL@@YAPAUHideShowSubObjInfo@ModelConditionInfo@@PBU12@0PAU12@ABU__false_type@0@@Z,0x000032A6,ILT thunk used by call site
 ??$__uninitialized_copy@PBUNugget@ModuleInfo@@PAU12@@_STL@@YAPAUNugget@ModuleInfo@@PBU12@0PAU12@ABU__false_type@0@@Z,0x0001819C,resweep callee back-solved
 ??$__uninitialized_copy@PBUParticleSysBoneInfo@@PAU1@@_STL@@YAPAUParticleSysBoneInfo@@PBU1@0PAU1@ABU__false_type@0@@Z,0x000032A6,pinharvest x1 (thunk)
@@ -2885,6 +2886,7 @@ name,address,notes
 ?clear@W3DAnimationInfoAllocateAndCopyShim@_STL@@QAEXXZ,0x003B0E90,_STL vector _M_clear W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
 ?clear@WindowVideoHashtableClearShim@_STL@@QAEXXZ,0x004984F0,_STL hashtable clear GameWindow/WindowVideo incremental-link thunk target through a TU-local forwarding shim
 ?clearAllEvents@Radar@@IAEXXZ,0x00028C27
+?clearAllProps@W3DPropBuffer@@QAEXXZ,0x000298BB
 ?clearAndSetModelConditionState@Drawable@@QAEXW4ModelConditionFlagType@@0@Z,0x0001C8D2
 ?clearDisabled@Object@@QAE_NW4DisabledType@@@Z,0x0003C06A,ILT thunk used by setScriptStatus call site
 ?clearWinList@@YAXAAV?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@@Z,0x0045D660,file-local static; retail takes list head in edi
@@ -3652,10 +3654,12 @@ name,address,notes
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0002F8DD,pinharvest x1 (thunk)
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0003A21A,pinharvest x1 (thunk)
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,0x0089F420,pinharvest x1 (body)
+?removeProp@W3DPropBuffer@@QAEXH@Z,0x00018F84
 ?removePropsForConstruction@W3DPropBuffer@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,0x0001B054,removeTreesAndPropsForConstruction tail-call target (incremental-link thunk; body 0x7039E0 sits in the W3DPropBuffer.cpp region)
 ?removeTeam@TeamsInfoRec@@QAEXH@Z,0x0000D828,pinharvest x3 (thunk)
 ?removeTeam@TeamsInfoRec@@QAEXH@Z,0x0003275E,pinharvest x2 (thunk)
 ?removeTerrainBibHighlighting@BaseHeightMapRenderObjClass@@QAEXXZ,0x0000CC8E,pinharvest x1 (thunk)
+?removeTree@W3DTreeBuffer@@QAEXW4DrawableID@@@Z,0x0003AC60
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,0x0001A492,pinharvest x1 (thunk)
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,0x00023439,pinharvest x1 (thunk)
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,0x0002A833,pinharvest x1 (thunk)
