@@ -71,6 +71,11 @@ public:
     void construct(const void *source);
 };
 
+class OutwardEmissionVelocityTemplateCopyCtorShim {
+public:
+    void construct(const void *source);
+};
+
 class HemisphericalEmissionVelocityTemplateCopyCtorShim {
 public:
     void construct(const void *source);
