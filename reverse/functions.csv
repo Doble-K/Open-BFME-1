@@ -12554,7 +12554,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?processDisconnectFrame@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066BD80,285,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processDisconnectPlayer@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066C760,140,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processDisconnectScreenOff@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066B890,92,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
-?processDisconnectVote@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066BD10,87,Code/GameEngine/Source/GameNetwork/DisconnectManager_processDisconnectVote.asm,matched,Certified packet 254 reviewed boundary and dispatcher evidence
+?processDisconnectVote@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066BD10,87,Code/GameEngine/Source/GameNetwork/DisconnectManagerProcessDisconnectVoteThunk.cpp,matched,Open-BFME5 exact C++ __emit port of certified MASM body
 ?processGlobalMessage@NAT@@QAEXHPBD@Z,,0x00671F90,456,Code/GameEngine/Source/GameNetwork/NAT_processGlobalMessage.asm,matched,
 ?processIncomingCommand@BFMEConnectionManager@@QAE_NPAX@Z,,0x0066A3F0,580,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processInformPlayerLeaveFrameCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00664430,307,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
