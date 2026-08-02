@@ -58,12 +58,30 @@ struct TerrainCollisionInfoView {
     const FXList *cached;
 };
 
+struct LifeEventInfoView {
+    unsigned char padding[0x14];
+    const FXList *cached;
+};
+
 extern "C" TerrainCollisionEventFXLookupShim *g_terrainCollisionEventFXListStore;
 
 class PointEmissionVolumeTemplateCopyCtorShim {
 public:
     void construct(const void *source);
 };
+
+class PointEmissionVolumeModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+__forceinline void initializePointEmissionVolumeModule(void *module)
+{
+    *(unsigned int *)module = 0x011122e0;
+    *(unsigned int *)((unsigned char *)module + 0x14) = 0x011122dc;
+    *(unsigned int *)((unsigned char *)module + 0x18) = 0x011122d8;
+    *(unsigned int *)((unsigned char *)module + 0x1c) = 0x011122c4;
+}
 
 class DefaultModuleTemplate0CtorShim {
 public:
@@ -160,6 +178,19 @@ public:
     void construct(const void *source);
 };
 
+class CylinderEmissionVolumeModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+__forceinline void initializeCylinderEmissionVolumeModule(void *module)
+{
+    *(unsigned int *)module = 0x011123e0;
+    *(unsigned int *)((unsigned char *)module + 0x14) = 0x011123dc;
+    *(unsigned int *)((unsigned char *)module + 0x18) = 0x011123d8;
+    *(unsigned int *)((unsigned char *)module + 0x1c) = 0x011123c4;
+}
+
 class OutwardEmissionVelocityTemplateCopyCtorShim {
 public:
     void construct(const void *source);
@@ -241,6 +272,19 @@ __forceinline void initializeBoxEmissionVolumeModule(void *module)
     *(unsigned int *)((unsigned char *)module + 0x1c) = 0x01112344;
 }
 
+class LineEmissionVolumeModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+__forceinline void initializeLineEmissionVolumeModule(void *module)
+{
+    *(unsigned int *)module = 0x01112320;
+    *(unsigned int *)((unsigned char *)module + 0x14) = 0x0111231c;
+    *(unsigned int *)((unsigned char *)module + 0x18) = 0x01112318;
+    *(unsigned int *)((unsigned char *)module + 0x1c) = 0x01112304;
+}
+
 class BoxEmissionVolumeTemplateCopyCtorShim {
 public:
     void construct(const void *source);
@@ -250,6 +294,19 @@ class SphereEmissionVolumeTemplateCopyCtorShim {
 public:
     void construct(const void *source);
 };
+
+class SphereEmissionVolumeModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+__forceinline void initializeSphereEmissionVolumeModule(void *module)
+{
+    *(unsigned int *)module = 0x011123a0;
+    *(unsigned int *)((unsigned char *)module + 0x14) = 0x0111239c;
+    *(unsigned int *)((unsigned char *)module + 0x18) = 0x01112398;
+    *(unsigned int *)((unsigned char *)module + 0x1c) = 0x01112384;
+}
 
 class LineEmissionVolumeTemplateCopyCtorShim {
 public:
@@ -360,6 +417,18 @@ class OrthoEmissionVelocityTemplateCopyCtorShim {
 public:
     void construct(const void *source);
 };
+
+class OrthoEmissionVelocityModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+__forceinline void initializeOrthoEmissionVelocityModule(void *module)
+{
+    *(unsigned int *)module = 0x011121ec;
+    *(unsigned int *)((unsigned char *)module + 0x14) = 0x011121e8;
+    *(unsigned int *)((unsigned char *)module + 0x18) = 0x011121d4;
+}
 
 extern const char BOX_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char BUTTERFLY_DRAW_MODULE_TEMPLATE_PARSE_TABLE[];
@@ -9428,84 +9497,17 @@ CylinderEmissionVolumeModuleTemplate *ConcreteModuleTemplate<ModuleTag<5, CYLIND
 }
 
 // ?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?CYLINDER_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?CYLINDER_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVCylinderEmissionVolumeModule@2@VCylinderEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UAEPAVCylinderEmissionVolumeModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
-__declspec(naked) CylinderEmissionVolumeModule *ConcreteModuleTemplate<ModuleTag<5, CYLINDER_EMISSION_VOLUME_MODULE_KEY, CYLINDER_EMISSION_VOLUME_MODULE_NAME, CylinderEmissionVolumeModule, CylinderEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
+CylinderEmissionVolumeModule *ConcreteModuleTemplate<ModuleTag<5, CYLINDER_EMISSION_VOLUME_MODULE_KEY, CYLINDER_EMISSION_VOLUME_MODULE_NAME, CylinderEmissionVolumeModule, CylinderEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x38
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0x05
-        __emit 0x8e
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x2f
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x66
-        __emit 0x09
-        __emit 0xa2
-        __emit 0xff
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xe0
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x14
-        __emit 0xdc
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0xd8
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x1c
-        __emit 0xc4
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    CylinderEmissionVolumeModule *module =
+        (CylinderEmissionVolumeModule *)::operator new(0x38);
+    if (module) {
+        const void *source = this;
+        ((CylinderEmissionVolumeModuleCtorShim *)module)->construct(sys, source);
+        initializeCylinderEmissionVolumeModule(module);
+        return module;
     }
+    return 0;
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?LIGHTNING_EMISSION_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIGHTNING_EMISSION_MODULE_NAME@2@3QBDBVLightningEmissionModule@2@VLightningEmissionModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
@@ -9806,84 +9808,17 @@ LineEmissionVolumeModuleTemplate *ConcreteModuleTemplate<ModuleTag<5, LINE_EMISS
 }
 
 // ?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?LINE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?LINE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVLineEmissionVolumeModule@2@VLineEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UAEPAVLineEmissionVolumeModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
-__declspec(naked) LineEmissionVolumeModule *ConcreteModuleTemplate<ModuleTag<5, LINE_EMISSION_VOLUME_MODULE_KEY, LINE_EMISSION_VOLUME_MODULE_NAME, LineEmissionVolumeModule, LineEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
+LineEmissionVolumeModule *ConcreteModuleTemplate<ModuleTag<5, LINE_EMISSION_VOLUME_MODULE_KEY, LINE_EMISSION_VOLUME_MODULE_NAME, LineEmissionVolumeModule, LineEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x3c
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0x25
-        __emit 0x8f
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x2f
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x2f
-        __emit 0x87
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x20
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x14
-        __emit 0x1c
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0x18
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x04
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    LineEmissionVolumeModule *module =
+        (LineEmissionVolumeModule *)::operator new(0x3c);
+    if (module) {
+        const void *source = this;
+        ((LineEmissionVolumeModuleCtorShim *)module)->construct(sys, source);
+        initializeLineEmissionVolumeModule(module);
+        return module;
     }
+    return 0;
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?SPHERE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?SPHERE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVSphereEmissionVolumeModule@2@VSphereEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
@@ -9938,84 +9873,17 @@ SphereEmissionVolumeModuleTemplate *ConcreteModuleTemplate<ModuleTag<5, SPHERE_E
 }
 
 // ?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?SPHERE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?SPHERE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVSphereEmissionVolumeModule@2@VSphereEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UAEPAVSphereEmissionVolumeModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
-__declspec(naked) SphereEmissionVolumeModule *ConcreteModuleTemplate<ModuleTag<5, SPHERE_EMISSION_VOLUME_MODULE_KEY, SPHERE_EMISSION_VOLUME_MODULE_NAME, SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
+SphereEmissionVolumeModule *ConcreteModuleTemplate<ModuleTag<5, SPHERE_EMISSION_VOLUME_MODULE_KEY, SPHERE_EMISSION_VOLUME_MODULE_NAME, SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x28
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0x65
-        __emit 0x8e
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x2f
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xac
-        __emit 0x70
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xa0
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x14
-        __emit 0x9c
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0x98
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x84
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    SphereEmissionVolumeModule *module =
+        (SphereEmissionVolumeModule *)::operator new(0x28);
+    if (module) {
+        const void *source = this;
+        ((SphereEmissionVolumeModuleCtorShim *)module)->construct(sys, source);
+        initializeSphereEmissionVolumeModule(module);
+        return module;
     }
+    return 0;
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$05$E?BUTTERFLY_DRAW_MODULE_KEY@FXParticleSystem@@3QBDB$E?BUTTERFLY_DRAW_MODULE_NAME@2@3QBDBVButterflyDrawModule@2@VButterflyDrawModuleTemplate@2@V?$DefaultParticleModule@$05@2@V?$DefaultParticleModuleTemplate@$05@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
@@ -11131,77 +10999,17 @@ OrthoEmissionVelocityModuleTemplate *ConcreteModuleTemplate<OrthoEmissionVelocit
 }
 
 // ?createModule@?$ConcreteModuleTemplate@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@UAEPAVOrthoEmissionVelocityModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
-__declspec(naked) OrthoEmissionVelocityModule *ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>::createModule(TrackingPtr<ParticleSystem> &sys)
+OrthoEmissionVelocityModule *ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>::createModule(TrackingPtr<ParticleSystem> &sys)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x40
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0x65
-        __emit 0x91
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xb1
-        __emit 0xb8
-        __emit 0xa1
-        __emit 0xff
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xec
-        __emit 0x21
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x14
-        __emit 0xe8
-        __emit 0x21
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0xd4
-        __emit 0x21
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    OrthoEmissionVelocityModule *module =
+        (OrthoEmissionVelocityModule *)::operator new(0x40);
+    if (module) {
+        const void *source = this;
+        ((OrthoEmissionVelocityModuleCtorShim *)module)->construct(sys, source);
+        initializeOrthoEmissionVelocityModule(module);
+        return module;
     }
+    return 0;
 }
 
 // ??0?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
@@ -11252,84 +11060,17 @@ PointEmissionVolumeModuleTemplate *ConcreteModuleTemplate<PointEmissionVolumeMod
 }
 
 // ?createModule@?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@UAEPAVPointEmissionVolumeModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
-__declspec(naked) PointEmissionVolumeModule *ConcreteModuleTemplate<PointEmissionVolumeModuleTag>::createModule(TrackingPtr<ParticleSystem> &sys)
+PointEmissionVolumeModule *ConcreteModuleTemplate<PointEmissionVolumeModuleTag>::createModule(TrackingPtr<ParticleSystem> &sys)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x24
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0x85
-        __emit 0x8f
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x2f
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x57
-        __emit 0x2b
-        __emit 0xa2
-        __emit 0xff
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xe0
-        __emit 0x22
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x14
-        __emit 0xdc
-        __emit 0x22
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0xd8
-        __emit 0x22
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x1c
-        __emit 0xc4
-        __emit 0x22
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    PointEmissionVolumeModule *module =
+        (PointEmissionVolumeModule *)::operator new(0x24);
+    if (module) {
+        const void *source = this;
+        ((PointEmissionVolumeModuleCtorShim *)module)->construct(sys, source);
+        initializePointEmissionVolumeModule(module);
+        return module;
     }
+    return 0;
 }
 
 // ??0BoxEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@XZ
@@ -16864,94 +16605,23 @@ LifeEventModuleInfo &LifeEventModuleInfo::operator=(const LifeEventModuleInfo &t
 }
 
 // ??4LifeEventModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) LifeEventModuleTemplate &LifeEventModuleTemplate::operator=(const LifeEventModuleTemplate &that)
+LifeEventModuleTemplate &LifeEventModuleTemplate::operator=(const LifeEventModuleTemplate &that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x74
-        __emit 0x05
-        __emit 0x8d
-        __emit 0x48
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x09
-        __emit 0x66
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x74
-        __emit 0x05
-        __emit 0x8d
-        __emit 0x78
-        __emit 0x0c
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x04
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x10
-        __emit 0xe8
-        __emit 0xdf
-        __emit 0xf6
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x14
-        __emit 0x89
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x89
-        __emit 0x51
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x08
-        __emit 0x89
-        __emit 0x41
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x14
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x20
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const void *src = &that;
+    unsigned char *destination = (unsigned char *)this;
+    const unsigned char *base = src ? (const unsigned char *)src + 8 : 0;
+    *(unsigned short *)(destination + 8) = *(const unsigned short *)base;
+
+    const unsigned char *info = src ? (const unsigned char *)src + 0x0c : 0;
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x10))->assign(info + 4);
+    struct ThreeDwords {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+    };
+    *(ThreeDwords *)(destination + 0x14) = *(const ThreeDwords *)(info + 8);
+    *(unsigned int *)(destination + 0x20) = *(const unsigned int *)(info + 0x14);
+    return *this;
 }
 
 // ??4LightningDrawModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z
@@ -17038,351 +16708,49 @@ OutwardEmissionVelocityModuleTemplate &OutwardEmissionVelocityModuleTemplate::op
 }
 
 // ??4ParticleSystemInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) ParticleSystemInfo &ParticleSystemInfo::operator=(const ParticleSystemInfo &that)
+ParticleSystemInfo &ParticleSystemInfo::operator=(const ParticleSystemInfo &that)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8a
-        __emit 0x47
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x88
-        __emit 0x46
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x0c
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x89
-        __emit 0x56
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0xca
-        __emit 0xb2
-        __emit 0x82
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x14
-        __emit 0x89
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x89
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4a
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x20
-        __emit 0x89
-        __emit 0x56
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x24
-        __emit 0x89
-        __emit 0x46
-        __emit 0x24
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x28
-        __emit 0x89
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x89
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4a
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x0a
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x34
-        __emit 0x89
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x40
-        __emit 0x89
-        __emit 0x46
-        __emit 0x40
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x44
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x44
-        __emit 0x89
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x89
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4a
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0x0a
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x50
-        __emit 0x89
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x5c
-        __emit 0x8b
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x5c
-        __emit 0x89
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x89
-        __emit 0x51
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x08
-        __emit 0x89
-        __emit 0x41
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x68
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x68
-        __emit 0xe8
-        __emit 0x28
-        __emit 0xb2
-        __emit 0x82
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x0a
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x6c
-        __emit 0x89
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x78
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x78
-        __emit 0xe8
-        __emit 0x06
-        __emit 0xb2
-        __emit 0x82
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x7c
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x7c
-        __emit 0x8a
-        __emit 0x97
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x96
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x87
-        __emit 0x81
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x86
-        __emit 0x81
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x8f
-        __emit 0x82
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x8e
-        __emit 0x82
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x97
-        __emit 0x83
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x96
-        __emit 0x83
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x87
-        __emit 0x84
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0x84
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x89
-        __emit 0x51
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x08
-        __emit 0x89
-        __emit 0x51
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x41
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x8f
-        __emit 0x94
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x8e
-        __emit 0x94
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const unsigned char *source = (const unsigned char *)&that;
+    unsigned char *destination = (unsigned char *)this;
+    destination[4] = source[4];
+    *(unsigned int *)(destination + 8) = *(const unsigned int *)(source + 8);
+    *(unsigned int *)(destination + 0x0c) = *(const unsigned int *)(source + 0x0c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x10))->assign(source + 0x10);
+
+    struct ThreeDwords {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+    };
+
+    *(ThreeDwords *)(destination + 0x14) = *(const ThreeDwords *)(source + 0x14);
+    *(unsigned int *)(destination + 0x20) = *(const unsigned int *)(source + 0x20);
+    *(unsigned int *)(destination + 0x24) = *(const unsigned int *)(source + 0x24);
+    *(ThreeDwords *)(destination + 0x28) = *(const ThreeDwords *)(source + 0x28);
+    *(ThreeDwords *)(destination + 0x34) = *(const ThreeDwords *)(source + 0x34);
+    *(unsigned int *)(destination + 0x40) = *(const unsigned int *)(source + 0x40);
+    *(ThreeDwords *)(destination + 0x44) = *(const ThreeDwords *)(source + 0x44);
+    *(ThreeDwords *)(destination + 0x50) = *(const ThreeDwords *)(source + 0x50);
+    *(ThreeDwords *)(destination + 0x5c) = *(const ThreeDwords *)(source + 0x5c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x68))->assign(source + 0x68);
+    *(ThreeDwords *)(destination + 0x6c) = *(const ThreeDwords *)(source + 0x6c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x78))->assign(source + 0x78);
+    *(unsigned int *)(destination + 0x7c) = *(const unsigned int *)(source + 0x7c);
+    destination[0x80] = source[0x80];
+    destination[0x81] = source[0x81];
+    destination[0x82] = source[0x82];
+    destination[0x83] = source[0x83];
+
+    struct FourDwords {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+        unsigned int value3;
+    };
+
+    *(FourDwords *)(destination + 0x84) = *(const FourDwords *)(source + 0x84);
+    *(unsigned int *)(destination + 0x94) = *(const unsigned int *)(source + 0x94);
+    return *this;
 }
 
 // ??4ParticleSystemTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
@@ -17419,133 +16787,26 @@ RandomAlphaKeyframe &RandomAlphaKeyframe::operator=(const RandomAlphaKeyframe &t
 }
 
 // ??4RenderObjectDrawModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) RenderObjectDrawModuleInfo &RenderObjectDrawModuleInfo::operator=(const RenderObjectDrawModuleInfo &that)
+RenderObjectDrawModuleInfo &RenderObjectDrawModuleInfo::operator=(const RenderObjectDrawModuleInfo &that)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8a
-        __emit 0x47
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x88
-        __emit 0x46
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x8a
-        __emit 0x57
-        __emit 0x0c
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x88
-        __emit 0x56
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0x6a
-        __emit 0xee
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x14
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x18
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x20
-        __emit 0x89
-        __emit 0x56
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x1c
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x20
-        __emit 0x89
-        __emit 0x46
-        __emit 0x1c
-        __emit 0xe8
-        __emit 0x4c
-        __emit 0xee
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x24
-        __emit 0x89
-        __emit 0x56
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x28
-        __emit 0x89
-        __emit 0x46
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x2c
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x30
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x2c
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x30
-        __emit 0xe8
-        __emit 0x2e
-        __emit 0xee
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x34
-        __emit 0x89
-        __emit 0x46
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x38
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x3c
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x56
-        __emit 0x3c
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const unsigned char *source = (const unsigned char *)&that;
+    unsigned char *destination = (unsigned char *)this;
+    destination[4] = source[4];
+    *(unsigned int *)(destination + 8) = *(const unsigned int *)(source + 8);
+    destination[0x0c] = source[0x0c];
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x10))->assign(source + 0x10);
+    *(unsigned int *)(destination + 0x14) = *(const unsigned int *)(source + 0x14);
+    *(unsigned int *)(destination + 0x18) = *(const unsigned int *)(source + 0x18);
+    *(unsigned int *)(destination + 0x1c) = *(const unsigned int *)(source + 0x1c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x20))->assign(source + 0x20);
+    *(unsigned int *)(destination + 0x24) = *(const unsigned int *)(source + 0x24);
+    *(unsigned int *)(destination + 0x28) = *(const unsigned int *)(source + 0x28);
+    *(unsigned int *)(destination + 0x2c) = *(const unsigned int *)(source + 0x2c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x30))->assign(source + 0x30);
+    *(unsigned int *)(destination + 0x34) = *(const unsigned int *)(source + 0x34);
+    *(unsigned int *)(destination + 0x38) = *(const unsigned int *)(source + 0x38);
+    *(unsigned int *)(destination + 0x3c) = *(const unsigned int *)(source + 0x3c);
+    return *this;
 }
 
 // ??4RenderObjectDrawModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
@@ -17643,100 +16904,24 @@ TerrainCollisionModuleInfo &TerrainCollisionModuleInfo::operator=(const TerrainC
 }
 
 // ??4TerrainCollisionModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) TerrainCollisionModuleTemplate &TerrainCollisionModuleTemplate::operator=(const TerrainCollisionModuleTemplate &that)
+TerrainCollisionModuleTemplate &TerrainCollisionModuleTemplate::operator=(const TerrainCollisionModuleTemplate &that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x74
-        __emit 0x05
-        __emit 0x8d
-        __emit 0x48
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x09
-        __emit 0x66
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x74
-        __emit 0x05
-        __emit 0x8d
-        __emit 0x78
-        __emit 0x0c
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x04
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x10
-        __emit 0xe8
-        __emit 0xbf
-        __emit 0xe3
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x14
-        __emit 0x89
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x89
-        __emit 0x51
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x08
-        __emit 0x89
-        __emit 0x41
-        __emit 0x08
-        __emit 0x8a
-        __emit 0x4f
-        __emit 0x14
-        __emit 0x88
-        __emit 0x4e
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x18
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x56
-        __emit 0x24
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const void *src = &that;
+    unsigned char *destination = (unsigned char *)this;
+    const unsigned char *base = src ? (const unsigned char *)src + 8 : 0;
+    *(unsigned short *)(destination + 8) = *(const unsigned short *)base;
+
+    const unsigned char *info = src ? (const unsigned char *)src + 0x0c : 0;
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x10))->assign(info + 4);
+    struct ThreeDwords {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+    };
+    *(ThreeDwords *)(destination + 0x14) = *(const ThreeDwords *)(info + 8);
+    *(unsigned char *)(destination + 0x20) = *(const unsigned char *)(info + 0x14);
+    *(unsigned int *)(destination + 0x24) = *(const unsigned int *)(info + 0x18);
+    return *this;
 }
 
 // ??4WindModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z
@@ -19349,72 +18534,16 @@ __declspec(naked) TrackingPtr<ParticleSystem> ParticleSystemTemplate::createSlav
 }
 
 // ?getEventFX@LifeEventModuleInfo@FXParticleSystem@@QAEPBVFXList@@XZ
-__declspec(naked) const FXList *LifeEventModuleInfo::getEventFX()
+const FXList *LifeEventModuleInfo::getEventFX()
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x14
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x2f
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x4c
-        __emit 0x14
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xfe
-        __emit 0x9e
-        __emit 0xa1
-        __emit 0xff
-        __emit 0x89
-        __emit 0x46
-        __emit 0x14
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x4c
-        __emit 0x14
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xb8
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xe8
-        __emit 0x9e
-        __emit 0xa1
-        __emit 0xff
-        __emit 0x89
-        __emit 0x46
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x14
-        __emit 0x5e
-        __emit 0xc3
+    unsigned char *base = (unsigned char *)this;
+    LifeEventInfoView *view = (LifeEventInfoView *)this;
+    if (!view->cached) {
+        TerrainCollisionFXNameShim *name = (TerrainCollisionFXNameShim *)(base + 4);
+        view->cached = g_terrainCollisionEventFXListStore->lookup(
+            name->m_text ? name->m_text + 8 : DefaultModuleName<8>::VALUE);
     }
+    return view->cached;
 }
 
 // ?getEventFX@TerrainCollisionModuleInfo@FXParticleSystem@@QAEPBVFXList@@XZ

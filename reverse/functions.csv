@@ -11595,7 +11595,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?hasMoreLoops@AudioEventRTS@@QBE_NXZ,,0x000B28B0,41,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,BFME audio event loop-control layout
 ?hasObjectsWantingToEnterOrExit@OpenContain@@UBE_NXZ,,0x001BD960,11,Code/GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp,matched,
 ?hasPacketRouterFrameStall@BFMEConnectionManager@@QAE_NXZ,,0x00664260,150,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME router frame-data stall scan using NetworkKeepAliveDelay at +0xcb4
-?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?hasPrereqsForScience@Player@@QBE_NW4ScienceType@@@Z,,0x000C9850,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?hasRGBDataForWidth@TileData@@QAE_NH@Z,,0x006D6620,48,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
 ?hasRadar@Player@@QBE_NXZ,,0x000C9A80,28,Code/GameEngine/Source/Common/RTS/PlayerFields.cpp,matched,BFME retail body; m_radarDisabled@0x60 m_disableProofRadarCount@0x5c m_radarCount@0x58 via reference/shims/player; adjacent to okToPlayRadarEdgeSound@0xC9A20 in same compiland
@@ -13853,3 +13852,7 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?parseMultiplayerSettingsDefinition@INI@@SAXPAV1@@Z,,0x000C2600,113,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerSettings block; push 0x88 to operator new pins sizeof at 136 where ZH compiles 0x90 - BFME layout in reference/shims/multiplayer from the retail field table
+?parseMultiplayerColorDefinition@INI@@SAXPAV1@@Z,,0x000C2690,261,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerColor block; ZH body unchanged and MultiplayerColorDefinition layout matches - retail reaches m_rgbValue at +4 and m_rgbValueNight at +0x14
+?processManglerResponse@NAT@@IAEXG@Z,,0x00671CA0,255,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
+?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,

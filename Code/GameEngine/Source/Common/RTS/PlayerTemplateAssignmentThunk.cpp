@@ -6,13 +6,13 @@ public:
     PlayerTemplate &operator=(const PlayerTemplate &);
 };
 
-__declspec(naked) PlayerTemplate &PlayerTemplate::operator=(const PlayerTemplate &)
+class PlayerTemplateAssignShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0D5h
-        _emit 0E1h
-        _emit 00Dh
-        _emit 000h
-    }
+public:
+    PlayerTemplate &assign(const PlayerTemplate &that);
+};
+
+PlayerTemplate &PlayerTemplate::operator=(const PlayerTemplate &that)
+{
+    return ((PlayerTemplateAssignShim *)this)->assign(that);
 }
