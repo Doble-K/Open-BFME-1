@@ -320,6 +320,27 @@ Bool ArchiveFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fileI
 }
 
 // ?getArchiveFilenameForFile@ArchiveFileSystem@@ present-unmatched
+// Retail is 0x009CA2A0, 411 bytes. That address is not a guess: it is the only
+// callee of ArchiveFileSystem::openFile at 0x009CA62B, and openFile byte-matches
+// retail. With the find(char) helper above in place, the prologue and the whole
+// loop head already match. What is left is the two concat calls on debugpath.
+//
+// Retail does not call AsciiString::concat for either of them. Both
+// debugpath.concat(token) and debugpath.concat(BACKSLASH) compile to a call to the
+// same body, 0x00887D60, which is ?concat@?$StringBase@D@@QAEXPBDH@Z -- the
+// two-argument (pointer, length) form. The char case pushes 1 as the length and
+// the address of a stack byte holding 0x5C; the string case pushes the token's
+// characters and its 16-bit length. So the one-argument concats are inline
+// wrappers over the two-argument body, the same way the string ctor is a thin
+// out-of-line call and getLength is a field read.
+//
+// The reference header instead inlines concat down to ensureUniqueBufferOfSize,
+// which is why this still differs. Un-inlining concat in the shim is the WRONG
+// fix and was tried: it emits a direct call to ?concat@AsciiString@@, which
+// resolves to the same address and so looks close, but it models as out-of-line
+// something retail inlines. The right fix is a shim whose concat(const
+// AsciiString&) and concat(char) forward to the two-argument StringBase form,
+// which needs StringBase visible in that header.
 AsciiString ArchiveFileSystem::getArchiveFilenameForFile(const AsciiString& filename) const
 {
 	AsciiString path;
@@ -332,7 +353,7 @@ AsciiString ArchiveFileSystem::getArchiveFilenameForFile(const AsciiString& file
 
 	path.nextToken(&token, "\\/");
 
-	while (!token.find('.') || path.find('.')) {
+	while (!bfmeFind(token, '.') || bfmeFind(path, '.')) {
 
 		ArchivedDirectoryInfoMap::const_iterator it = dirInfo->m_directories.find(token);
 		if (it != dirInfo->m_directories.end())
