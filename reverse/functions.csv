@@ -2913,7 +2913,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1LightningEmissionInfo@FXParticleSystem@@UAE@XZ,0x0000D7F6,0x005D6770,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,resets vtable pointer
 ??1LightningEmissionModuleTemplate@FXParticleSystem@@UAE@XZ,0x0003612E,0x005D6B60,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?CYLINDER_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?CYLINDER_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVCylinderEmissionVolumeModule@2@VCylinderEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;C++ alias
 ??1LineEmissionVolumeInfo@FXParticleSystem@@UAE@XZ,0x0002F03B,0x005D5A80,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,resets vtable pointer
-??1LineEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D5C20,50,Code/masm_dumps/__1LineEmissionVolumeModuleTemplate_FXParticleSystem__UAE_XZ_5D5C20.asm,matched,MASM exact retail dump
 ??1LockClass@CriticalSectionClass@@QAE@XZ,,0x009DB4D0,15,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,MASM converted to clean C++
 ??1LockClass@MutexClass@@QAE@XZ,,0x009DB400,22,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,icf-owner=??1BFMEAutoLockRef@@QAE@XZ
 ??1Locomotor@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
@@ -13840,3 +13839,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??1LineEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D5C20,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?BOX_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?BOX_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVBoxEmissionVolumeModule@2@VBoxEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
