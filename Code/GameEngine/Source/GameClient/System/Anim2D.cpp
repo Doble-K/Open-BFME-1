@@ -32,6 +32,7 @@
 
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 
+#define ANIM2D_INLINE_SNAPSHOT_DTOR
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 #define DEFINE_ANIM_2D_MODE_NAMES
 #include "Common/RandomValue.h"
@@ -208,8 +209,24 @@ const Image* Anim2DTemplate::getFrame( UnsignedShort frameNumber ) const
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // ??1Anim2D@@MAE@XZ
-// Body in Anim2D_dtor.asm (exact 61B retail @ 0x005BA670; C++ tail-jmps to
-// the wrong Snapshot QAE ICF alias instead of inlining the 7B UAE vtable store).
+Anim2D::~Anim2D( void )
+{
+	Anim2DCollection *collectionSystem = m_collectionSystem;
+	*(volatile void **)this = (void *)0x0110F29C;
+
+	if( collectionSystem )
+	{
+		if( m_collectionSystemNext )
+			m_collectionSystemNext->m_collectionSystemPrev = m_collectionSystemPrev;
+
+		if( m_collectionSystemPrev )
+			m_collectionSystemPrev->m_collectionSystemNext = m_collectionSystemNext;
+		else
+			*(Anim2D **)((unsigned char *)collectionSystem + 0x0C) = m_collectionSystemNext;
+	}
+
+	*(volatile void **)this = (void *)0x01073744;
+}
 
 // ------------------------------------------------------------------------------------------------
 /** Set the current animation frame */

@@ -52,7 +52,11 @@ friend class XferCRC;
 public:
 	
 	Snapshot( void );
+#ifdef ANIM2D_INLINE_SNAPSHOT_DTOR
+	inline ~Snapshot( void ) { }
+#else
 	~Snapshot( void );
+#endif
 
 protected:
 
