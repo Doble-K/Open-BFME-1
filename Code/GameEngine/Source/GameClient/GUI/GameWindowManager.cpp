@@ -234,28 +234,55 @@ void GameWindowManager::init( void )
 //-------------------------------------------------------------------------------------------------
 /** Reset window system */
 //-------------------------------------------------------------------------------------------------
-// ?reset@GameWindowManager@@UAEXXZ present-unmatched
 void GameWindowManager::reset( void )
 {
 
 	// destroy all windows left
 	winDestroyAll();
+
+	// Called through slot 4, not Zero Hour's slot 3. BFME inserted
+	// SubsystemInterface::loadIniFilesFromLegend at slot 2 of the base class, so
+	// every subsystem virtual after it shifts down one -- init stays at 1,
+	// reset moves 3 -> 4, update 4 -> 5. tools/subsystem_virtuals.py reads the
+	// order out of SubsystemLegend's own vtable, where all three are matched.
+	//
+	// Reaching it through a local view keeps that correction local to this call;
+	// Zero Hour's GameWindowTransitionsHandler header still has the old layout.
+	struct RetailSubsystem
+	{
+		virtual void _bfme_slot0( void ) = 0;
+		virtual void _bfme_slot1( void ) = 0;
+		virtual void _bfme_slot2( void ) = 0;
+		virtual void _bfme_slot3( void ) = 0;
+		virtual void reset( void ) = 0;
+	};
 	if(TheTransitionHandler)
-		TheTransitionHandler->reset();
+		reinterpret_cast<RetailSubsystem *>( TheTransitionHandler )->reset();
 
 }  // end reset
 
 //-------------------------------------------------------------------------------------------------
 /** Update cycle for game widnow manager */
 //-------------------------------------------------------------------------------------------------
-// ?update@GameWindowManager@@UAEXXZ present-unmatched
 void GameWindowManager::update( void )
 {
 
 	// Process windows waiting to be destroyed
 	processDestroyList();
+
+	// Slot 5, not Zero Hour's slot 4 -- see reset() above for why every
+	// subsystem virtual after loadIniFilesFromLegend shifts down one.
+	struct RetailSubsystem
+	{
+		virtual void _bfme_slot0( void ) = 0;
+		virtual void _bfme_slot1( void ) = 0;
+		virtual void _bfme_slot2( void ) = 0;
+		virtual void _bfme_slot3( void ) = 0;
+		virtual void _bfme_slot4( void ) = 0;
+		virtual void update( void ) = 0;
+	};
 	if(TheTransitionHandler)
-		TheTransitionHandler->update();
+		reinterpret_cast<RetailSubsystem *>( TheTransitionHandler )->update();
 }  // end update
 
 //-------------------------------------------------------------------------------------------------

@@ -81,7 +81,6 @@ void LanguageFilter::init() {
 	file1 = NULL;
 }
 
-// ?reset@LanguageFilter@@UAEXXZ present-unmatched
 void LanguageFilter::reset() {
 	init();
 }
