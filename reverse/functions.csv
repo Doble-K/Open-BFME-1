@@ -2730,7 +2730,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1BufferedFileClass@@UAE@XZ,,0x009E7780,102,Code/Libraries/Source/WWVegas/WWLib/bufffile.cpp,matched,
 ??1BuildListInfo@@MAE@XZ,,0x00194320,135,Code/masm_dumps/BuildListInfo_destructor_194320.asm,matched,Certified packet 93 exact retail MASM
 ??1ButterflyDrawModuleInfo@FXParticleSystem@@UAE@XZ,0x00001C08,0x005D8B50,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
-??1ButterflyDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x0003BE8A,0x005D8CB0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/ButterflyDrawModuleTemplate_dtor.asm,matched,exact 50B dtor via MASM (was inflated 1008; ICF twin of Quad dtor)
+??1ButterflyDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x0003BE8A,0x005D8CB0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=?destroy@QuadDrawDtorBody@FXParticleSystem@@QAEXXZ;C++ member body converted from 50B raw dtor;ICF twin of Quad dtor
 ??1CDManager@@UAE@XZ,,0x00101DB0,85,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
 ??1CDownload@@QAE@XZ,,0x006268C0,23,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
 ??1CacheStraw@@UAE@XZ,,0x009E1FC0,76,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling

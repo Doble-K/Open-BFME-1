@@ -15875,6 +15875,7 @@ void QuadDrawDtorBody::destroy()
     *(volatile unsigned int *)this = 0x01073758;
 }
 #pragma comment(linker, "/alternatename:??1QuadDrawModuleTemplate@FXParticleSystem@@UAE@XZ=?destroy@QuadDrawDtorBody@FXParticleSystem@@QAEXXZ")
+#pragma comment(linker, "/alternatename:??1ButterflyDrawModuleTemplate@FXParticleSystem@@UAE@XZ=?destroy@QuadDrawDtorBody@FXParticleSystem@@QAEXXZ")
 
 // ??1RenderObjectDrawModuleInfo@FXParticleSystem@@UAE@XZ
 __declspec(naked) RenderObjectDrawModuleInfo::~RenderObjectDrawModuleInfo()
