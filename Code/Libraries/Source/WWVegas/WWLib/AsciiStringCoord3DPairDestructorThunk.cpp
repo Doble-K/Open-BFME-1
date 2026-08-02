@@ -5,21 +5,21 @@ struct Coord3D;
 
 namespace _STL
 {
-	template <class First, class Second>
-	class pair
-	{
-	public:
-		~pair();
-	};
+template <class First, class Second>
+class pair
+{
+public:
+	~pair();
+};
 
-	__declspec(naked) pair<AsciiString const, Coord3D>::~pair()
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0DDh
-			_emit 022h
-			_emit 005h
-			_emit 000h
-		}
-	}
+class AsciiStringCoord3DPairDestructorShim
+{
+public:
+	void destroy();
+};
+
+pair<AsciiString const, Coord3D>::~pair()
+{
+	((AsciiStringCoord3DPairDestructorShim *)this)->destroy();
+}
 }

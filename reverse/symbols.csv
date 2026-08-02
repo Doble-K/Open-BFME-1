@@ -2982,6 +2982,7 @@ name,address,notes
 ?deleteNotificationBox@@YAXXZ,0x000271DD
 ?deposit@Money@@QAEXI_N@Z,0x00027D6D
 ?deposit@MoneyDepositShim@@QAEXI_N@Z,0x000C8730,Money::deposit incremental-link thunk target through a TU-local forwarding shim
+?destroy@AsciiStringCoord3DPairDestructorShim@_STL@@QAEXXZ,0x000723E0,destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@AsciiStringDestroyAuxShim@_STL@@SAXPAX0ABU__false_type@2@@Z,0x006FA420,_STL __destroy_aux AsciiString incremental-link thunk target through a TU-local forwarding shim
 ?destroy@AudioEventRTSDestructorShim@@QAEXXZ,0x000CFA40,AudioEventRTS destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@BFMENetworkBackendDestructorShim@@QAEXXZ,0x0003242F,BFMENetworkBackend destructor thunk used through a TU-local layout shim
