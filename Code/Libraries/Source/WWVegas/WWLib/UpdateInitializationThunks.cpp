@@ -4,12 +4,6 @@ public:
 	void enableWaterGrid(bool);
 };
 
-class WinInstanceData
-{
-public:
-	void init();
-};
-
 class BoneFXUpdate
 {
 protected:
@@ -28,57 +22,46 @@ protected:
 	void unloadNext();
 };
 
-__declspec(naked) void WaterRenderObjClass::enableWaterGrid(bool)
+class WaterRenderObjClassEnableWaterGridShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 024h
-		_emit 0ADh
-		_emit 076h
-		_emit 000h
-	}
+public:
+	void enableWaterGrid(bool a0);
+};
+
+class BoneFXUpdateInitTimesShim
+{
+public:
+	void initTimes();
+};
+
+class DockUpdateLoadDockPositionsShim
+{
+public:
+	void loadDockPositions();
+};
+
+class RailedTransportDockUpdateUnloadNextShim
+{
+public:
+	void unloadNext();
+};
+
+void WaterRenderObjClass::enableWaterGrid(bool a0)
+{
+	((WaterRenderObjClassEnableWaterGridShim *)this)->enableWaterGrid(a0);
 }
 
-__declspec(naked) void WinInstanceData::init()
+void BoneFXUpdate::initTimes()
 {
-	__asm {
-		_emit 0E9h
-		_emit 084h
-		_emit 079h
-		_emit 047h
-		_emit 000h
-	}
+	((BoneFXUpdateInitTimesShim *)this)->initTimes();
 }
 
-__declspec(naked) void BoneFXUpdate::initTimes()
+void DockUpdate::loadDockPositions()
 {
-	__asm {
-		_emit 0E9h
-		_emit 0C6h
-		_emit 08Dh
-		_emit 025h
-		_emit 000h
-	}
+	((DockUpdateLoadDockPositionsShim *)this)->loadDockPositions();
 }
 
-__declspec(naked) void DockUpdate::loadDockPositions()
+void RailedTransportDockUpdate::unloadNext()
 {
-	__asm {
-		_emit 0E9h
-		_emit 006h
-		_emit 0EBh
-		_emit 02Bh
-		_emit 000h
-	}
-}
-
-__declspec(naked) void RailedTransportDockUpdate::unloadNext()
-{
-	__asm {
-		_emit 0E9h
-		_emit 07Ch
-		_emit 023h
-		_emit 02Ch
-		_emit 000h
-	}
+	((RailedTransportDockUpdateUnloadNextShim *)this)->unloadNext();
 }

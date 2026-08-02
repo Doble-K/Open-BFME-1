@@ -2801,7 +2801,10 @@ name,address,notes
 ?disableRadar@PlayerDisableRadarShim@@QAEXXZ,0x000CC1C0,Player::disableRadar incremental-link thunk target through a TU-local forwarding shim
 ?doNamedMapReveal@ScriptEnginedoNamedMapRevealShim@@QAEXABVAsciiString@@@Z,0x0034D200,ScriptEngine::doNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
 ?enableRadar@PlayerEnableRadarShim@@QAEXXZ,0x000CC2C0,Player::enableRadar incremental-link thunk target through a TU-local forwarding shim
+?enableWaterGrid@WaterRenderObjClassEnableWaterGridShim@@QAEX_N@Z,0x007A1410,WaterRenderObjClass::enableWaterGrid incremental-link thunk target through a TU-local forwarding shim
+?initTimes@BoneFXUpdateInitTimesShim@@QAEXXZ,0x00288540,BoneFXUpdate::initTimes incremental-link thunk target through a TU-local forwarding shim
 ?iterateObjects@PlayerIterateObjectsShim@@QBEXP6AXPAVObject@@PAX@Z1@Z,0x000CDCF0,Player::iterateObjects incremental-link thunk target through a TU-local forwarding shim
+?loadDockPositions@DockUpdateLoadDockPositionsShim@@QAEXXZ,0x002CB0A0,DockUpdate::loadDockPositions incremental-link thunk target through a TU-local forwarding shim
 ?parseParticleSystem@BoneFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00287E40,BoneFXUpdateModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
 ?parseParticleSystem@TransitionDamageFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00252010,TransitionDamageFXModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
 ?set@ThingTemplateSubobjectShim@@QAEXH@Z,0x0004AC69,ThingTemplate setCopiedFromDefault subobject flag helper shim
@@ -3736,6 +3739,7 @@ name,address,notes
 ?unlinkChildWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,0x00015A55,winSetParent depth Open-BFME4+Grok
 ?unlinkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,0x00029A05,winSetParent depth Open-BFME4+Grok
 ?unloadNext@RailedTransportDockUpdate@@IAEXXZ,0x0000C27F
+?unloadNext@RailedTransportDockUpdateUnloadNextShim@@QAEXXZ,0x002CE600,RailedTransportDockUpdate::unloadNext incremental-link thunk target through a TU-local forwarding shim
 ?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,0x000488F6
 ?update@Mouse@@UAEXXZ,0x0003D7FD
 ?update@ObjectUpdateUpgradeModulesShim@@QAEXXZ,0x001C5800,Object updateUpgradeModules incremental-link thunk target through a TU-local forwarding shim
