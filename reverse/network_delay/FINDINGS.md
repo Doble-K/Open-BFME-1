@@ -527,6 +527,65 @@ latency, so varying it in INI cannot fix the delay.
 
 # Delay-path functions still needing C++
 
+## What the command-type sweep turned up
+
+Working the packet path end to end named every remaining `NetCommandMsg`
+subclass, and three of them matter here.
+
+**Type 22 is the per-player frame ratios.** The shim's enum leaves 22 and 23
+unnamed and files them under "disconnect menu"; 22 is nothing of the sort. Its
+command class carries eight `Int`s, one per slot, and
+`BFMEConnectionManager::computePlayerFrameRatios` (`0x00666000`) is what fills
+them. `ConstructNetCommandMsgFromRawData` tests for it *third*, immediately
+after FRAMEINFO and well before any disconnect type -- and that chain is ordered
+by frequency, so this is per-frame traffic, not lobby traffic. Reader
+`0x00678AA0`, setter `0x00673A50`, both matched.
+
+**Types 5 to 9 are BFME's, and two of them bypass the packet router.**
+
+| type | class | reader |
+|---|---|---|
+| 5 | `BFMENetRequestGameSpyStatsAuthKeyCommandMsg` | `0x0067EB80` |
+| 6 | `BFMENetGameSpyStatsAuthKeyCommandMsg` | `0x0067EC70` |
+| 7 | `BFMENetRequestPlayerLeaveCommandMsg` | `0x00679300` |
+| 8 | `BFMENetInformPlayerLeaveFrameCommandMsg` | `0x00679250` |
+| 9 | `BFMENetRequestFrameDataCommandMsg` | `0x00679390` |
+
+`CommandRequiresDirectSend` (`0x00682E80`) is the reference's list minus
+FRAMERESENDREQUEST plus all five of these. Types 8 and 9 -- inform-player-leave
+-frame and request-frame-data -- therefore go straight to their destination
+rather than through the router, which is the only frame-path traffic in the game
+that does.
+
+**The acks carry an execution frame the reference's do not.** All three ack
+classes have a BFME-only `m_originalExecutionFrame` at `+0x20`, and the readers
+write it straight to the field -- there is no setter for it anywhere in the
+image. So an ack tells the sender not just which command was seen but which
+frame it was bound to.
+
+**FRAMEINFO's payload is three dwords**, and the reader (`0x006789E0`) pins
+them: `+0x1C` the sender's frame, `+0x20` the value the receiver copies into
+`ConnectionManager+0x120A0`, `+0x24` the frame's command count. The count starts
+at `-1`, the same "not yet known" sentinel the base uses for `m_executionFrame`.
+
+**`NetCommandRef::m_relay` is at `+0x0C`, settled.** The dispatcher inlines
+`setRelay` and stores a byte to `+0x0C`; the constructor at `0x00676240` zeroes
+the same offset. The ledger row `?setRelay@NetCommandRef@@QAEXE@Z` at
+`0x003BC6B0`, which stores to `+0x10`, is a fold onto some other class.
+
+### Ledger corrections made along the way
+
+Three of the four heuristic `??0NetCommandMsg@@QAE@XZ` pins in `symbols.csv`
+pointed at other classes' constructors, and one at a body outside the family
+entirely. Those extra candidates had let six reader names settle on
+`GameEngine::createMessageStream`'s body at `0x0006C090`, `readProgressMessage`
+on `readPlayerLeaveMessage`'s, and two disconnect readers on
+`readDestroyPlayerMessage`'s. Every reader is now identified by the constructor
+it actually calls, which is checkable rather than inferred.
+`readPacketRouterQueryMessage`, `readPacketRouterAckMessage` and
+`readFrameResendRequestMessage` are marked absent-from-retail: BFME has no such
+command types, so there is no body for them to claim.
+
 Generated from the call graph: two levels of callees from the scheduler
 (0x00681F70), the frame-pacing status (0x00682160), the stall detector
 (0x00664260), both runtime ceiling writers (0x00665D10, 0x0066A3F0), the
