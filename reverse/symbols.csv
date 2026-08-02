@@ -2993,6 +2993,7 @@ name,address,notes
 ?destroy@AudioEventRTSDestructorShim@@QAEXXZ,0x000CFA40,AudioEventRTS destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@BFMENetworkBackendDestructorShim@@QAEXXZ,0x0003242F,BFMENetworkBackend destructor thunk used through a TU-local layout shim
 ?destroy@BFMENetworkDestructorShim@@QAEXXZ,0x000088C8,BFMENetwork destructor thunk used through a TU-local layout shim
+?destroy@CustomAsciiStringShim@@QAEXXZ,0x00887940,CustomMatchPreferences getter key destructor shim
 ?destroy@DeliverPayloadNuggetPayloadDestructorShim@@QAEXXZ,0x0036CC00,DeliverPayloadNugget::Payload dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@GameMessageListDestructorShim@@QAEXXZ,0x0008A450,GameMessageList dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@HashTemplateEntryDestructorShim@@QAEXXZ,0x005D5760,destructor incremental-link thunk target through a TU-local forwarding shim
@@ -3090,6 +3091,7 @@ name,address,notes
 ?evaluateTeamInsideAreaPartially@ScriptConditions@@IAE_NPAVParameter@@00@Z,0x0004A8E0
 ?fill_insert@BitVectorFillInsertShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@I_N@Z,0x002CC290,_STL bit vector _M_fill_insert incremental-link thunk target through a TU-local forwarding shim
 ?find@AssistedTargetingObjectShim@@QAEPAXH@Z,0x00009C41,AssistedTargetingUpdate isFreeToAssist object query shim
+?find@CustomPreferenceMapShim@@QAEPAUCustomMapNodeShim@@PAUCustomAsciiStringShim@@@Z,0x0000AEAC,CustomMatchPreferences getter map lookup shim
 ?find@DataChunkTableOfContentsFindMappingShim@@QAEPAVMapping@@ABVAsciiString@@@Z,0x00103CA0,DataChunkTableOfContents findMapping incremental-link thunk target through a TU-local forwarding shim
 ?find@GameLogicFindControlBarOverrideShim@@QBE_NABVAsciiString@@HAAPBVCommandButton@@@Z,0x00391B30,GameLogic findControlBarOverride incremental-link thunk target through a TU-local forwarding shim
 ?find@ParticleSystemHashtableFindShim@_STL@@QBEPAU?$_Hashtable_node@U?$pair@$$CBVAsciiString@@PAVParticleSystemTemplate@@@_STL@@@2@ABVAsciiString@@@Z,0x005C76A0,incremental-link thunk target through a TU-local forwarding shim
@@ -3291,6 +3293,7 @@ name,address,notes
 ?hidePurchaseScience@ControlBar@@QAEXXZ,0x00020347
 ?hideScreen@DisconnectMenu@@QAEXXZ,0x00024D6B,ILT thunk; real body 0x50E5A0 (from DisconnectManager::turnOffScreen)
 ?hideSpecialPowerShortcut@ControlBar@@QAEXXZ,0x00041367
+?init@CustomAsciiStringShim@@QAEXPBD@Z,0x00888BC0,CustomMatchPreferences getter key constructor shim
 ?init@NetCommandList@@QAEXXZ,0x0000B9CE,ICF-folded onto reset; retail calls both through this thunk
 ?init@SpawnPointInitializeBonePositionsShim@@QAEXXZ,0x002D18F0,SpawnPointProductionExitUpdate initializeBonePositions incremental-link thunk target through a TU-local forwarding shim
 ?init@W3DProjectedShadowManager@@QAE_NXZ,0x0003F93B,pinharvest x1 (thunk)
@@ -4037,6 +4040,3 @@ _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
 _gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
 _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
-?init@CustomAsciiStringShim@@QAEXPBD@Z,0x00888BC0,CustomMatchPreferences getter key constructor shim
-?destroy@CustomAsciiStringShim@@QAEXXZ,0x00887940,CustomMatchPreferences getter key destructor shim
-?find@CustomPreferenceMapShim@@QAEPAUCustomMapNodeShim@@PAUCustomAsciiStringShim@@@Z,0x0000AEAC,CustomMatchPreferences getter map lookup shim
