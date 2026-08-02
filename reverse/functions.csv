@@ -3189,6 +3189,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WeaponSet@@QAE@XZ,,0x001EAD40,95,Code/masm_dumps/WeaponSet_destructor.asm,matched,Exact 95B @ 0x1EAD40; scalar-dtor/vtable/4-slot weapons prove WeaponSet; queue 0x9F27F7 was PartitionManager pad
 ??1WeaponSetSpecialAbilityUpdate@@UAE@XZ,,0x002A9850,2403,Code/masm_dumps/WeaponSetSpecialAbilityUpdate_destructor.asm,matched,Exact 2403B SEH dtor factory->vtable Open-BFME4
 ??1WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00072A40,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
+??1Win32BIGFile@@UAE@XZ,,0x009D1500,95,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
 ??1WindModuleInfo@FXParticleSystem@@UAE@XZ,0x0001B31F,0x005BD960,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1WindowLayout@@UAE@XZ,,0x00497CC0,14,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,virtual dtor; tail-jmps member string dtor
 ??1WindowVideo@@QAE@XZ,,0x000253E7,5,Code/GameEngine/Source/GameClient/WindowVideoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
@@ -5152,6 +5153,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GWaterTracksRenderSystem@@QAEPAXI@Z,,0x0079E6B0,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
 ??_GWaterTransparencySetting@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWeapon@@MAEPAXI@Z,,0x001E6900,30,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
+??_GWin32BIGFile@@UAEPAXI@Z,,0x009D17F0,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
 ??_GWin32LocalFileSystem@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWinInstanceData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWindModuleInfo@FXParticleSystem@@UAEPAXI@Z,,0x005BDAA0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -13337,7 +13339,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?set_identity@TimeCodedMotionChannelClass@@AAEXPAM@Z,,0x00977AC0,39,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ?setupAlphaTiles@WorldHeightMap@@SAXXZ,,0x00747AC0,515,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?shouldExit@TunnelNetworkExitConditions@@UBE_NPBVStateMachine@@@Z,,0x00189AE0,18,Code/GameEngine/Source/GameLogic/AI/AITNGuard.cpp,matched,
-?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,,0x00017503,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,SUSPECT: 0x00017503 is a 5-byte incremental-link thunk whose body 0x000E7240 is the matched ?friend_lookupScience@ScienceStore@@ - so this row claims an ILT entry rather than a function and a 5-byte jump matches trivially. It is what lets commandButtonTooltip byte-verify while naming the wrong global; see reverse/dir32_consistency_whitelist.txt
 ?showGameSpyGameOptionsUnderlyingGUIElements@@YAX_N@Z,,0x00503E80,92,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp,matched,
 ?showIdleWorkerLayout@InGameUI@@EAEXXZ,,0x0043B970,86,Code/masm_dumps/InGameUI_showIdleWorkerLayout.asm,matched,Ghidra-corrected BFME idle-worker body
 ?showLANGameOptionsUnderlyingGUIElements@@YAX_N@Z,,0x004D00E0,92,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp,matched,
@@ -13476,7 +13477,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?unPrepFile@INI@@IAEXXZ,,0x00850E30,50,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME closes no file here - load preloads into m_lines so teardown frees that array instead; no m_readBuffer bookkeeping either
 ?unRegisterAnimation@Anim2DCollection@@QAEXPAVAnim2D@@@Z,,0x005BA480,53,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?unbindTrack@WaterTracksRenderSystem@@QAEXPAVWaterTracksObj@@@Z,,0x007AB940,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
-?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001019A,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ScriptEngine::undoNamedMapReveal
 ?unique@?$list@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@V?$allocator@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@@_STL@@QAEXXZ,,0x0037FCB0,15,Code/Libraries/Source/WWVegas/WW3D2/w3d_dep.cpp,matched,
 ?unitMoved@W3DTreeBuffer@@QAEXPAVObject@@@Z,,0x008EA400,234,Code/masm_dumps/_sa6__unitMoved_W3DTreeBuffer__QAEXPAVObject___Z_8EA400.asm,matched,Exact 234B Open-BFME4+Grok
 ?unlinkFont@FontLibrary@@IAEXPAVGameFont@@@Z,,0x00472520,101,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
@@ -13920,5 +13920,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??1Win32BIGFile@@UAE@XZ,,0x009D1500,95,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
-??_GWin32BIGFile@@UAEPAXI@Z,,0x009D17F0,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,

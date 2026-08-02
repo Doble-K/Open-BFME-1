@@ -89,3 +89,23 @@ added while it exists. `?setGameOptions@GameSpyInfo@@UAEXXZ` sat 198 bytes
 inside `NAT::notifyUsersOfConnectionFailed`, in a different translation unit
 entirely -- which is its own tell, since functions from different TUs do not
 interleave in the image.
+
+* A row whose size makes it unfalsifiable can carry a wrong name past every check
+  the gate has, and there are three shapes of it. A MASM dump is the retail
+  bytes, so it matches at any length -- ?parse@DataChunkInput@@ claimed 1006
+  bytes against a 231-byte function and swallowed three later ones. A five-byte
+  thunk row matches any ILT entry, because every one is E9 xx xx xx xx --
+  ?showBuildTooltipLayout@ControlBar@@ claimed the thunk whose body is
+  ?friend_lookupScience@ScienceStore@@, and ?undoNamedMapReveal@ScriptEngine@@
+  claimed the one whose body is ?removeNamedMapReveal@ScriptEngine@@. A one-byte
+  row is a bare ret and matches every empty function in the image.
+  For all three the test is the same and it is cheap: deref the thunk chain or
+  measure the body by disassembly, then ask what the ledger already says that
+  address is. Do it before adding the row, not after a mismatch elsewhere sends
+  you looking.
+  Note the comment trap interacts with this: writing the evidence into the source
+  as `// ?showBuildTooltipLayout@ControlBar@@ claimed ...` makes
+  find_declared_unmatched.py read that line as the next definition's symbol. The
+  lesson above about prose form applies to the comment documenting this one --
+  which is how it was hit for the fourth time in a day.
+
