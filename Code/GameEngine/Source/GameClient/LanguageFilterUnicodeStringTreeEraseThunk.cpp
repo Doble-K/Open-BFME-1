@@ -8,42 +8,42 @@ struct UnicodeStringLessThan
 
 namespace _STL
 {
-template<class First, class Second>
+template <class First, class Second>
 struct pair
 {
 };
 
-template<class T>
+template <class T>
 struct _Select1st
 {
 };
 
-template<class T>
+template <class T>
 class allocator
 {
 };
 
-template<class T>
+template <class T>
 struct _Rb_tree_node
 {
 };
 
-template<class Key, class Value, class KeyOfValue, class Compare, class Alloc>
+template <class Key, class Value, class KeyOfValue, class Compare, class Alloc>
 class _Rb_tree
 {
-    void _M_erase(_Rb_tree_node<Value> *);
+	void _M_erase(_Rb_tree_node<Value> *);
 };
 
-template<class Key, class Value, class KeyOfValue, class Compare, class Alloc>
-__declspec(naked) void _Rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::_M_erase(_Rb_tree_node<Value> *)
+class UnicodeStringTreeEraseShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0B7h
-        _emit 04Bh
-        _emit 044h
-        _emit 000h
-    }
+public:
+	void erase(_Rb_tree_node<pair<const UnicodeString, bool> > *node);
+};
+
+template <class Key, class Value, class KeyOfValue, class Compare, class Alloc>
+void _Rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::_M_erase(_Rb_tree_node<Value> *node)
+{
+	((UnicodeStringTreeEraseShim *)this)->erase((_Rb_tree_node<pair<const UnicodeString, bool> > *)node);
 }
 }
 
