@@ -16,10 +16,47 @@ public:
 	virtual void slot0();
 	virtual void slot1();
 	virtual void slot2();
-	virtual void slot3();
+	virtual int Read(void *buffer, int size);
 	virtual void slot4();
 	virtual int Seek(int pos, int dir);
 };
+
+struct BFMEChunkLoadLayout
+{
+	FileClass *File;
+	BFMEChunkInput *Input;
+	int StackIndex;
+	int PositionStack[256];
+	ChunkHeader HeaderStack[256];
+	bool InMicroChunk;
+	char Padding[3];
+	int MicroChunkPosition;
+	MicroChunkHeader MCHeader;
+};
+
+
+bool ChunkLoadClass::Open_Chunk()
+{
+	BFMEChunkLoadLayout *layout = (BFMEChunkLoadLayout *)this;
+	if (layout->StackIndex > 0) {
+		if (layout->PositionStack[layout->StackIndex - 1] ==
+			(layout->HeaderStack[layout->StackIndex - 1].ChunkSize & 0x7FFFFFFF)) {
+			return false;
+		}
+	}
+
+	if (layout->File) {
+		if (layout->File->Read(&layout->HeaderStack[layout->StackIndex], sizeof(ChunkHeader)) != sizeof(ChunkHeader)) {
+			return false;
+		}
+	} else if (layout->Input->Read(&layout->HeaderStack[layout->StackIndex], sizeof(ChunkHeader)) != sizeof(ChunkHeader)) {
+		return false;
+	}
+
+	layout->PositionStack[layout->StackIndex] = 0;
+	layout->StackIndex++;
+	return true;
+}
 
 
 uint32 ChunkLoadClass::Cur_Chunk_ID()
