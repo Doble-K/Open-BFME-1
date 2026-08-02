@@ -24,6 +24,11 @@ public:
     void assign(const void *source);
 };
 
+class RenderObjectUpdateTemplateAssignShim {
+public:
+    void assign(const void *source);
+};
+
 class DefaultModuleTemplate0CtorShim {
 public:
     void construct();
@@ -18375,56 +18380,12 @@ RenderObjectUpdateModuleInfo &RenderObjectUpdateModuleInfo::operator=(const Rend
 }
 
 // ??4RenderObjectUpdateModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) RenderObjectUpdateModuleTemplate &RenderObjectUpdateModuleTemplate::operator=(const RenderObjectUpdateModuleTemplate &that)
+RenderObjectUpdateModuleTemplate &RenderObjectUpdateModuleTemplate::operator=(const RenderObjectUpdateModuleTemplate &that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x74
-        __emit 0x12
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x3e
-        __emit 0x4b
-        __emit 0xa6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x2d
-        __emit 0x4b
-        __emit 0xa6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const void *source = &that;
+    const unsigned char *info = source ? (const unsigned char *)source + 8 : 0;
+    ((RenderObjectUpdateTemplateAssignShim *)((unsigned char *)this + 8))->assign(info);
+    return *this;
 }
 
 SphereEmissionVolumeInfo &SphereEmissionVolumeInfo::operator=(const SphereEmissionVolumeInfo &that)
