@@ -5,16 +5,16 @@ class CameraClass
 class BaseHeightMapRenderObjClass
 {
 public:
-	void renderTrees(CameraClass *);
+    void renderTrees(CameraClass *);
 };
 
-__declspec(naked) void BaseHeightMapRenderObjClass::renderTrees(CameraClass *)
+class BaseHeightMapRenderTreesShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 055h
-		_emit 0DBh
-		_emit 068h
-		_emit 000h
-	}
+public:
+    void render(CameraClass *camera);
+};
+
+void BaseHeightMapRenderObjClass::renderTrees(CameraClass *camera)
+{
+    ((BaseHeightMapRenderTreesShim *)this)->render(camera);
 }
