@@ -2795,6 +2795,7 @@ name,address,notes
 ?construct@BoxEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002D402,BoxEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00019CB3,ButterflyDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003E8F1,ButterflyDrawModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@CylinderEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000237EF,CylinderEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@CylindricalEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002B79C,CylindricalEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@CylindricalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0004AEB7,CylindricalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate0CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000139AD,DefaultModuleTemplate<0> copy constructor thunk used through a TU-local layout shim
