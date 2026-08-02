@@ -11,6 +11,11 @@ void xferRandomVariable(Xfer &xfer, GameClientRandomVariable &v);
 
 namespace FXParticleSystem {
 
+class LifeEventAsciiStringAssignShim {
+public:
+    void assign(const void *source);
+};
+
 class DefaultModuleTemplate0CtorShim {
 public:
     void construct();
@@ -17752,65 +17757,20 @@ HemisphericalEmissionVelocityModuleTemplate &HemisphericalEmissionVelocityModule
 }
 
 // ??4LifeEventModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) LifeEventModuleInfo &LifeEventModuleInfo::operator=(const LifeEventModuleInfo &that)
+LifeEventModuleInfo &LifeEventModuleInfo::operator=(const LifeEventModuleInfo &that)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x04
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x04
-        __emit 0xe8
-        __emit 0x4c
-        __emit 0xf7
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x08
-        __emit 0x89
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x89
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4a
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x14
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x56
-        __emit 0x14
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    struct ThreeDwords {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+    };
+
+    unsigned char *destination = (unsigned char *)this;
+    const unsigned char *source = (const unsigned char *)&that;
+    ((LifeEventAsciiStringAssignShim *)(destination + 4))->assign(source + 4);
+    *(ThreeDwords *)(destination + 8) = *(const ThreeDwords *)(source + 8);
+    *(unsigned int *)(destination + 20) = *(const unsigned int *)(source + 20);
+    return *this;
 }
 
 // ??4LifeEventModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
