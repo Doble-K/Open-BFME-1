@@ -11140,7 +11140,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getLocale@GameSpyMiscPreferences@@QAEHXZ,,0x000A99A0,33,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,Open-BFME5 exact C++ raw getter; locale preference key and zero default preserved
 ?getMOTD@GameSpyInfo@@UAEABVAsciiString@@XZ,,0x006306B0,4,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,Vtable-bound GameSpyInfo accessor
 ?getManglerLocation@GameSpyConfig@@UAE_NHAAVAsciiString@@AAG@Z,,0x00628580,68,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,
-?getManglerName@FirewallHelperClass@@SAXHPAD@Z,,0x0003BD81,5,Code/GameEngine/Source/Common/RTS/FirewallHelperClassGetManglerNameThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x66EF00
 ?getManglerResponse@FirewallHelperClass@@QAEGGH@Z,,0x0066E570,521,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,thunk-dump converted to clean C++ body at destination 0x0066E570
 ?getMapPreviewImage@@YAPAVImage@@VAsciiString@@@Z,,0x004516E0,1212,Code/masm_dumps/getMapPreviewImage_YAPAVImage_VAsciiString_Z_004516E0_packet354.asm,matched,certified packet 354 sealed RVA and SHA-256 reviewed identity evidence
 ?getMaxCellHeight@BaseHeightMapRenderObjClass@@QBEMMM@Z,,0x006C6CB0,290,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_getMaxCellHeight.asm,matched,exact 290B MASM @ 0x006C6CB0; queue 0x008B440D misplaced (mid foreign epilogue); m_map+0x2FF4 field-offset + no TheTerrainVisual path blocks C++
@@ -13883,3 +13882,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getFirewallBehavior@OptionPreferences@@QAEHXZ,,0x00090B80,100,Code/GameEngine/Source/Common/promoted__getFirewallBehavior_OptionPreferences_QAEHXZ_00090B80.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 100B
 ??0DisconnectManager@@QAE@XZ,,0x0066AF50,178,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?init@DisconnectManager@@QAEXXZ,,0x0066B040,154,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?getManglerName@FirewallHelperClass@@SAXHPAD@Z,,0x0066EF00,127,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
