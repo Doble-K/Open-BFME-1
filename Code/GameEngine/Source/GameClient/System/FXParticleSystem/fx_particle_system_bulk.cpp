@@ -206,6 +206,11 @@ public:
     void construct();
 };
 
+class RenderObjectUpdateTemplateCopyCtorShim {
+public:
+    void construct(const void *source);
+};
+
 class OrthoEmissionVelocityTemplateCopyCtorShim {
 public:
     void construct(const void *source);
@@ -9552,49 +9557,12 @@ __declspec(naked) DefaultModule<7> *ConcreteModuleTemplate<DefaultModuleTag<7> >
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$01$E?RENDEROBJECT_UPDATE_MODULE_KEY@FXParticleSystem@@3QBDB$E?RENDEROBJECT_UPDATE_MODULE_NAME@2@3QBDBVRenderObjectUpdateModule@2@VRenderObjectUpdateModuleTemplate@2@VRenderObjectParticleUpdateModule@2@VRenderObjectParticleUpdateModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
-__declspec(naked) ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME, RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate, RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> >::ConcreteModuleTemplate(const ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME, RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate, RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> > &that)
+ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME, RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate, RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> >::ConcreteModuleTemplate(const ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME, RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate, RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> > &that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x64
-        __emit 0xcb
-        __emit 0xa3
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x74
-        __emit 0x10
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x70
-        __emit 0x10
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0x5c
-        __emit 0x10
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    ((RenderObjectUpdateTemplateCopyCtorShim *)this)->construct(&that);
+    *(volatile unsigned int *)this = 0x01111074;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x01111070;
+    *(volatile unsigned int *)((unsigned char *)this + 8) = 0x0111105c;
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$01$E?RENDEROBJECT_UPDATE_MODULE_KEY@FXParticleSystem@@3QBDB$E?RENDEROBJECT_UPDATE_MODULE_NAME@2@3QBDBVRenderObjectUpdateModule@2@VRenderObjectUpdateModuleTemplate@2@VRenderObjectParticleUpdateModule@2@VRenderObjectParticleUpdateModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ

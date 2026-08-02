@@ -2825,6 +2825,7 @@ name,address,notes
 ?construct@QuadDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001D278,QuadDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002AEA5,RenderObjectDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00033816,RenderObjectDrawModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@RenderObjectUpdateTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00018101,RenderObjectUpdateModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectUpdateTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00035490,RenderObjectUpdateModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00003DF5,SphericalEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001BF86,SphericalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
