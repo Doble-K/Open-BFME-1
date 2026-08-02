@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/ini /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -108,26 +108,39 @@ void CrateSystem::reset( void )
 	}
 }
 
-// ?parseCrateTemplateDefinition@CrateSystem@@SAXPAVINI@@@Z present-unmatched
+// BFME keeps m_loadType at INI+0x08; Zero Hour's header puts it at +0x2010
+// because of the 8KB read buffer BFME does not have (docs/ini_loading.md).
+static INILoadType retailLoadType( const INI *ini )
+{
+	struct RetailINI { char m_pad[ 0x08 ]; INILoadType m_loadType; };
+	return reinterpret_cast<const RetailINI *>( ini )->m_loadType;
+}
+
+// BFME has a fourth INILoadType Zero Hour does not, value 4. Nothing names it.
+static const INILoadType INI_LOAD_BFME_TYPE_4 = (INILoadType)4;
+
 void CrateSystem::parseCrateTemplateDefinition(INI* ini)
 {
 	AsciiString name;
 
-	// read the crateTemplate name
-	const char* c = ini->getNextToken();
-	name.set(c);	
+	// read the crateTemplate name. Assignment rather than set(c): BFME inlines
+	// strlen and calls the two-argument set, which is what operator= expands to.
+	name = ini->getNextToken();
 
 	CrateTemplate *crateTemplate = TheCrateSystem->friend_findCrateTemplate(name);
 	if (crateTemplate == NULL) {
 		crateTemplate = TheCrateSystem->newCrateTemplate(name);
 
-		if (ini->getLoadType() == INI_LOAD_CREATE_OVERRIDES) {
+		if (retailLoadType(ini) == INI_LOAD_CREATE_OVERRIDES) {
 			crateTemplate->markAsOverride();
 		}
-	} else if( ini->getLoadType() != INI_LOAD_CREATE_OVERRIDES ) {
-			DEBUG_CRASH(( "[LINE: %d in '%s'] Duplicate crate %s found!", ini->getLineNum(), ini->getFilename().str(), name.str() ));
 	} else {
-		crateTemplate = TheCrateSystem->newCrateTemplateOverride(crateTemplate);
+		// Two load types take an override here, not one, and retail loads
+		// m_loadType once and compares it twice -- hence the local.
+		const INILoadType loadType = retailLoadType(ini);
+		if (loadType == INI_LOAD_CREATE_OVERRIDES || loadType == INI_LOAD_BFME_TYPE_4) {
+			crateTemplate = TheCrateSystem->newCrateTemplateOverride(crateTemplate);
+		}
 	}
 
 	// parse the ini weapon definition

@@ -12293,6 +12293,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseCoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x008533E0,60,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseCoord3D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853380,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseCrateCreationEntry@CrateTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x00379F80,258,Code/masm_dumps/parseCrateCreationEntry_CrateTemplate_00379F80_packet305.asm,matched,Certified packet 305 sealed retail body
+?parseCrateTemplateDefinition@CrateSystem@@SAXPAVINI@@@Z,,0x0037A490,232,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,find-then-create on TheCrateSystem; two load types take the override branch not one and retail loads m_loadType once there and compares it twice
 ?parseCredits@INI@@SAXPAV1@@Z,,0x0040BFC0,25,Code/GameEngine/Source/GameClient/Credits.cpp,matched,
 ?parseDamageFX@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAFD0,80,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseDamageFXDefinition@DamageFXStore@@SAXPAVINI@@@Z,,0x00067A60,77,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
@@ -13147,6 +13148,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setMotion@BridgeScaffoldBehavior@@UAEXW4ScaffoldTargetMotion@@@Z,,0x001F58C0,92,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setMouseCursor@InGameUI@@IAEXW4MouseCursor@Mouse@@@Z,,0x0043AA10,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?setNATBehavior@GameSlot@@QAEXW4tFirewallBehaviorType@FirewallHelperClass@@@Z,,0x00087470,10,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
+?setName@CrateTemplate@@QAEXVAsciiString@@@Z,,0x00379010,75,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,located by byte-scan once the TU moved onto the ini shim AsciiString
 ?setName@GameSlot@@QAEXVUnicodeString@@@Z,,0x00072420,75,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,
 ?setName@LANGameInfo@@QAEXVUnicodeString@@@Z,,0x00685480,78,Code/masm_dumps/setName_LANGameInfo_QAEXVUnicodeString_Z_685480.asm,matched,Ghidra exact boundary and caller-verified body
 ?setName@LANPlayer@@QAEXVUnicodeString@@@Z,,0x00624C10,72,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,

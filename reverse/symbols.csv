@@ -3094,6 +3094,7 @@ name,address,notes
 ?freeZones@ZoneBlock@@IAEXXZ,0x00044E2C,pinharvest x1 (thunk)
 ?freeZones@ZoneBlock@@IAEXXZ,0x000482ED,pinharvest x1 (thunk)
 ?friend_awakenUpdateModule@GameLogic@@QAEXPAVObject@@PAVUpdateModule@@I@Z,0x00009944
+?friend_findCrateTemplate@CrateSystem@@QAEPAVCrateTemplate@@VAsciiString@@@Z,0x0000D8BE,first of the find-then-create pair in the CrateData block; the second call on the same receiver is the already-matched newCrateTemplate and ZH declares this one beside it
 ?friend_getFinalOverride@Overridable@@QAEPAV1@XZ,0x00048C61
 ?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z,0x00017503,pinharvest x1 (thunk)
 ?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z,0x0001DF43,pinharvest x1 (thunk)
@@ -3372,6 +3373,7 @@ name,address,notes
 ?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,0x0001EDE9,site-decoded x1 (thunk)
 ?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,0x0003ADD7
 ?nameToLowercaseKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,0x00006DB6,findImageByName call target (incremental-link thunk)
+?newCrateTemplateOverride@CrateSystem@@QAEPAVCrateTemplate@@PAV2@@Z,0x00036C28,override branch of the CrateData block; ZH declares it beside newCrateTemplate which is matched at the sibling call
 ?newDrawable@BFMEThingFactory@@QAEPAVDrawable@@PBVThingTemplate@@W4DrawableStatus@@H@Z,0x0002C336
 ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,0x000119E1,ILT thunk; real body 0x5B6920
 ?newMultiplayerColorDefinition@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@VAsciiString@@@Z,0x0002FD6A,harvested from parseMultiplayerColorDefinition (thunk)
