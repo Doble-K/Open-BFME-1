@@ -11992,7 +11992,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isPacketRouter@ConnectionManager@@QAE_NXZ,,0x006638F0,18,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
 ?isPacketRouter@Network@@UAE_NXZ,,0x00681B20,25,Code/GameEngine/Source/GameNetwork/Network.cpp,matched,
 ?isPlayer@GameSlot@@QBE_NVAsciiString@@@Z,,0x00620210,133,Code/masm_dumps/GameSlot_isPlayer_AsciiString.asm,matched,exact 133B MASM; queue 0x9DB05F was mid FUN_00dd9d90; true body SEH+translate+compareNoCase
-?isPlayer@GameSlot@@QBE_NVUnicodeString@@@Z,,0x006202C0,58,Code/masm_dumps/isPlayer_GameSlot_UnicodeString_6202C0.asm,matched,certified packet 287 exact retail bytes sha256 06761d1b2381311c19c8b7438b5840deabcf97b5ba220d31ca10e3df306966c1
+?isPlayer@GameSlot@@QBE_NVUnicodeString@@@Z,,0x006202C0,58,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,Open-BFME5 exact C++ __emit port of certified 58-byte retail method
 ?isPlayerConnected@ConnectionManager@@QAE_NH@Z,,0x00662BB0,38,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
 ?isPlayerConnectedDefaultTimeout@BFMEConnectionManager@@QAE_NH@Z,,0x00662A50,138,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check using GlobalData NetworkPlayerTimeoutTime at +0xcbc
 ?isPlayerConnectedForTimeout@BFMEConnectionManager@@QAE_NHI@Z,,0x00662B00,132,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check with explicit timeout and startup NetworkPlayerTimeoutTime fallback
