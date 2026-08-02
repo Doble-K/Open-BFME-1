@@ -94,6 +94,11 @@ public:
     void construct(const void *source);
 };
 
+class DefaultModuleTemplate7AssignShim {
+public:
+    void assign(const void *source);
+};
+
 class CylindricalEmissionVelocityTemplateCtorShim {
 public:
     void construct();
@@ -9016,56 +9021,12 @@ ConcreteModuleTemplate<DefaultModuleTag<7> >::~ConcreteModuleTemplate()
 }
 
 // ??4?$ConcreteModuleTemplate@V?$DefaultModuleTag@$06@FXParticleSystem@@@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) ConcreteModuleTemplate<DefaultModuleTag<7> > &ConcreteModuleTemplate<DefaultModuleTag<7> >::operator=(const ConcreteModuleTemplate<DefaultModuleTag<7> > &that)
+ConcreteModuleTemplate<DefaultModuleTag<7> > &ConcreteModuleTemplate<DefaultModuleTag<7> >::operator=(const ConcreteModuleTemplate<DefaultModuleTag<7> > &that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x74
-        __emit 0x12
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x1c
-        __emit 0xcb
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x0b
-        __emit 0xcb
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const void *source = &that;
+    const unsigned char *info = source ? (const unsigned char *)source + 8 : 0;
+    ((DefaultModuleTemplate7AssignShim *)((unsigned char *)this + 8))->assign(info);
+    return *this;
 }
 
 // ?createModule@?$ConcreteModuleTemplate@V?$DefaultModuleTag@$06@FXParticleSystem@@@FXParticleSystem@@UAEPAV?$DefaultModule@$06@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
