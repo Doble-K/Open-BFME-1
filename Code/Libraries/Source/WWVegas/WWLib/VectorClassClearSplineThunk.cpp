@@ -1,46 +1,46 @@
 class VehicleCurveClass
 {
 public:
-	struct _ArcInfoStruct
-	{
-	};
+    struct _ArcInfoStruct
+    {
+    };
 };
 
 class HermiteSpline1DClass
 {
 public:
-	struct TangentsClass
-	{
-	};
+    struct TangentsClass
+    {
+    };
 };
 
 class HermiteSpline3DClass
 {
 public:
-	struct TangentsClass
-	{
-	};
+    struct TangentsClass
+    {
+    };
 };
 
 template<class Type>
 class VectorClass
 {
 public:
-	virtual void Clear();
+    virtual void Clear();
+};
+
+class VectorClassClearSplineShim
+{
+public:
+    void run();
 };
 
 template<class Type>
-__declspec(naked) void VectorClass<Type>::Clear()
+void VectorClass<Type>::Clear()
 {
-	__asm {
-		_emit 0E9h
-		_emit 0CDh
-		_emit 077h
-		_emit 066h
-		_emit 000h
-	}
+    ((VectorClassClearSplineShim *)this)->run();
 }
 
-template __declspec(naked) void VectorClass<VehicleCurveClass::_ArcInfoStruct>::Clear();
-template __declspec(naked) void VectorClass<HermiteSpline1DClass::TangentsClass>::Clear();
-template __declspec(naked) void VectorClass<HermiteSpline3DClass::TangentsClass>::Clear();
+template void VectorClass<VehicleCurveClass::_ArcInfoStruct>::Clear();
+template void VectorClass<HermiteSpline1DClass::TangentsClass>::Clear();
+template void VectorClass<HermiteSpline3DClass::TangentsClass>::Clear();
