@@ -4066,3 +4066,5 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?_M_push_back_aux_v@?$deque@VBuddyResponse@@V?$allocator@VBuddyResponse@@@_STL@@@_STL@@IAEXABVBuddyResponse@@@Z,0x0002992E,BuddyThread queue call target (incremental-link thunk)
 ?freeStaticStrings@GameWindowManager@@UAEXXZ,0x00040B7E,GameWindowManager dtor call target (incremental-link thunk)
 ??1?$_List_base@PAVGameWindow@@V?$allocator@PAVGameWindow@@@_STL@@@_STL@@QAE@XZ,0x00040278,GameWindowManager dtor call target (incremental-link thunk)
+??1Render2DSentenceClass@@QAE@XZ,0x009409F0,W3DDisplayString dtor call target
+??1DisplayString@@MAE@XZ,0x0000D823,W3DDisplayString dtor call target

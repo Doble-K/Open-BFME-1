@@ -3161,7 +3161,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1VideoPlayer@@UAE@XZ,,0x0081C590,35,Code/GameEngine/Source/GameClient/VideoPlayerDestructorThunk.cpp,matched,Open-BFME5 exact C++ raw VideoPlayer destructor
 ??1W3DAnimationInfo@@QAE@XZ,,0x00020018,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1W3DDebrisDraw@@UAE@XZ,,0x00750CC0,474,Code/masm_dumps/W3DDebrisDraw_destructor.asm,matched,Exact 474B SEH dtor factory->vtable Open-BFME4
-??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/masm_dumps/W3DDisplayString_dtor.asm,matched,Correct retail body from vtable scalar deleting destructor thunk 0x00044B57
 ??1W3DFileSystem@@UAE@XZ,,0x006F6280,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,
 ??1W3DLaserDrawModuleData@@UAE@XZ,,0x001FE260,198,Code/masm_dumps/W3DLaserDrawModuleData_destructor.asm,matched,Exact 198B SEH dtor Open-BFME4
 ??1W3DModelDraw@@MAE@XZ,,0x0077B090,682,Code/masm_dumps/W3DModelDraw_destructor_77B090.asm,matched,Certified packet 234 exact retail MASM destructor body
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?addResponse@GameSpyBuddyMessageQueue@@UAEXABVBuddyResponse@@@Z,,0x0063E3A0,185,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,MASM dump converted to clean C++; BFME BuddyRequest is 0x2B8 and BuddyResponse 0x864 (reference/shims/buddythread tail pads)
 ?linkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,,0x0047C340,166,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME sibling-list pointers sit 0x10 later in GameWindow (reference/shims/gamewindowlist)
 ??1GameWindowManager@@UAE@XZ,,0x00483810,156,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME sibling-list pointers sit 0x10 later in GameWindow (reference/shims/gamewindowlist)
+??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,MASM dump converted to clean C++; BFME Render2DSentenceClass is 0xC bigger so both embedded renderers shift the class (reference/shims/w3ddisplaystring)
