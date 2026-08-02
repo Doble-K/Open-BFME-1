@@ -4,17 +4,20 @@ class ProductionPrerequisite;
 
 namespace _STL
 {
-	template <class T, class U>
-	__declspec(naked) void _Construct(T *, const U &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 085h
-			_emit 0A3h
-			_emit 074h
-			_emit 000h
-		}
-	}
+template <class T, class U>
+void _Construct(T *, const U &);
 
-	template void _Construct<ProductionPrerequisite, ProductionPrerequisite>(ProductionPrerequisite *, const ProductionPrerequisite &);
+class ProductionPrerequisiteConstructShim
+{
+public:
+    static void construct(ProductionPrerequisite *p, const ProductionPrerequisite &v);
+};
+
+template <class T, class U>
+void _Construct(T *p, const U &v)
+{
+    ProductionPrerequisiteConstructShim::construct((ProductionPrerequisite *)p, *(const ProductionPrerequisite *)&v);
+}
+
+template void _Construct<ProductionPrerequisite, ProductionPrerequisite>(ProductionPrerequisite *, const ProductionPrerequisite &);
 }
