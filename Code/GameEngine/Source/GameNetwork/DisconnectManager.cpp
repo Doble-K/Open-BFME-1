@@ -377,8 +377,7 @@ void DisconnectManager::processPacketRouterAck(NetCommandMsg *msg, ConnectionMan
 void DisconnectManager::processDisconnectVote(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectVoteCommandMsg *cmdMsg = (NetDisconnectVoteCommandMsg *)msg;
 	DEBUG_LOG(("DisconnectManager::processDisconnectVote - Got a disconnect vote for player %d command from player %d\n", cmdMsg->getSlot(), cmdMsg->getPlayerID()));
-	Int playerID = msg->getPlayerID();
-	Int transSlot = translatedSlotPosition(playerID, conMgr->getLocalPlayerID());
+	Int transSlot = translatedSlotPosition(msg->getPlayerID(), conMgr->getLocalPlayerID());
 
 	if (isPlayerInGame(transSlot, conMgr) == FALSE) {
 		// if they've been timed out, voted out, disconnected, don't count their vote.
