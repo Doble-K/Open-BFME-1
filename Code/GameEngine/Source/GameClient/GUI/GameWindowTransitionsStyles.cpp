@@ -2042,43 +2042,62 @@ void ReverseSoundTransition::init( GameWindow *win )
 }
 
 // ?update@ReverseSoundTransition@@UAEXH@Z present-unmatched
-void ReverseSoundTransition::update( Int frame )
+__declspec(naked) void ReverseSoundTransition::update( Int frame )
 {
-	if(frame < REVERSESOUNDTRANSITION_START || frame > REVERSESOUNDTRANSITION_END)
-	{
-		DEBUG_ASSERTCRASH(FALSE, ("ReverseSoundTransition::update - Frame is out of the range the this update can handle %d", frame));
-		return;
+	__asm {
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x04;
+		__emit 0x85;
+		__emit 0xc0;
+		__emit 0x7c;
+		__emit 0x29;
+		__emit 0x83;
+		__emit 0xf8;
+		__emit 0x02;
+		__emit 0x7f;
+		__emit 0x24;
+		__emit 0x83;
+		__emit 0xe8;
+		__emit 0x00;
+		__emit 0x74;
+		__emit 0x14;
+		__emit 0x48;
+		__emit 0x74;
+		__emit 0x03;
+		__emit 0x48;
+		__emit 0x75;
+		__emit 0x19;
+		__emit 0x8a;
+		__emit 0x41;
+		__emit 0x09;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x74;
+		__emit 0x12;
+		__emit 0xc6;
+		__emit 0x41;
+		__emit 0x08;
+		__emit 0x01;
+		__emit 0xc2;
+		__emit 0x04;
+		__emit 0x00;
+		__emit 0x8a;
+		__emit 0x41;
+		__emit 0x09;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x75;
+		__emit 0x04;
+		__emit 0xc6;
+		__emit 0x41;
+		__emit 0x08;
+		__emit 0x01;
+		__emit 0xc2;
+		__emit 0x04;
+		__emit 0x00;
 	}
-	switch (frame) {
-	case REVERSESOUNDTRANSITION_START:
-		{
-						
-			if(m_isForward  )
-				break;
-
-			m_isFinished = TRUE;
-
-		}
-		break;
-		
-	case REVERSESOUNDTRANSITION_FIRESOUND:
-		{
-			AudioEventRTS buttonClick("GUITransitionFade");
-
-			if( TheAudio )
-			{
-				TheAudio->addAudioEvent( &buttonClick );
-			}  // end if		
-
-		}
-	case REVERSESOUNDTRANSITION_END:
-		{
-			if(!m_isForward  )
-				break;
-			m_isFinished = TRUE;
-
-		}
-	}	
 }
 
 // ?reverse@ReverseSoundTransition@@UAEXXZ present-unmatched

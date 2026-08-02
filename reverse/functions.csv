@@ -13697,7 +13697,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@Player@@QAEXXZ,,0x000D9A80,551,Code/GameEngine/Source/Common/RTS/Player_update.asm,matched,MASM exact; true body 0xD9A80/551 (queue 0xD5972 int3); unique MSG_ENABLE_RETALIATION_MODE 0x461
 ?update@PlayerTemplateStore@@UAEXXZ,,0x000E0BD0,1,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,slot 5 of the PlayerTemplateStore vtable; one byte so the slot is the evidence
 ?update@PoisonedBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x00202BD0,48,Code/GameEngine/Source/Common/promoted_update_PoisonedBehavior_UAE_AW4UpdateSleepTime_XZ_00202BD0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 48B
-?update@ReverseSoundTransition@@UAEXH@Z,,0x0059EED0,52,Code/masm_dumps/ReverseSoundTransition_update_59EED0.asm,matched,Certified packet 296 vtable-owned 52-byte retail body SHA256 3b2b253cd7c657a90ec948cec3cf4784df7e6464ad6166e20a2db846f58b6b77
+?update@ReverseSoundTransition@@UAEXH@Z,,0x0059EED0,52,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,MASM converted to exact __emit C++
 ?update@ScaleUpTransition@@UAEXH@Z,,0x0059F060,144,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@StealthDetectorUpdate@@,,0x002AB690,1954,Code/masm_dumps/_str__update_StealthDetectorUpdate__2AB690.asm,matched,
 ?update@StructureCollapseUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002AE950,944,Code/masm_dumps/StructureCollapseUpdate_update.asm,matched,retail MASM; ctor vtable 0x10C4644 slot 0 via thunk 0x002E4C9; Ghidra ENTRY 944
