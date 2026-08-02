@@ -335,7 +335,6 @@ TimeCodedMotionChannelClass::TimeCodedMotionChannelClass(void) :
 	PacketSize(0),
 	Data(NULL),
 	NumTimeCodes(0),
-	LastTimeCodeIdx(0),	// absolute index to last time code
 	CachedIdx(0)			// Last Index Used
 {
 }
@@ -373,10 +372,10 @@ TimeCodedMotionChannelClass::~TimeCodedMotionChannelClass(void)
 // ?TimeCodedMotionChannelClass::Free present-unmatched
 void TimeCodedMotionChannelClass::Free(void)
 {
-	if (Data) {
-		delete[] Data;
-		Data = NULL;
-	}
+	// No null test, as in MotionChannelClass::Free: retail's 0x00978180 loads
+	// [esi+0x18], deletes it and nulls it with nothing in between.
+	delete[] Data;
+	Data = NULL;
 }
 
 
@@ -410,7 +409,6 @@ bool TimeCodedMotionChannelClass::Load_W3D(ChunkLoadClass & cload)
 	PivotIdx     = chan.Pivot;
 	PacketSize   = VectorLen+1;
 	CachedIdx	 = 0;
-	LastTimeCodeIdx = (NumTimeCodes-1) * PacketSize;
 
 	Data = MSGW3DNEWARRAY("TimeCodedMotionChannelClass::Data") uint32[numInts];
 	Data[0] = chan.Data[0];
@@ -573,7 +571,7 @@ uint32 TimeCodedMotionChannelClass::binary_search_index(uint32 timecode)
 	uint32 time;
 
 
-	int idx = LastTimeCodeIdx;  //((rightIdx+1) * PacketSize;)
+	int idx = (NumTimeCodes-1) * PacketSize;
 
 	//int32		LastTimeCodeIdx;	// absolute index to last time code
 	//int32		CachedIdx;			// Last Index Used
@@ -647,13 +645,13 @@ uint32 TimeCodedMotionChannelClass::get_index(uint32 timecode)
 		// possibly in the current packet
 
 		// special case for end packets
-		if (CachedIdx == LastTimeCodeIdx) return(CachedIdx);
+		if (CachedIdx == (NumTimeCodes-1) * PacketSize) return(CachedIdx);
 		time = Data[CachedIdx + PacketSize]	& ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
 		if (timecode < time) return(CachedIdx);
 
 		// Do one time look-ahead before reverting to a search
 		CachedIdx+=PacketSize;
-		if (CachedIdx == LastTimeCodeIdx) return(CachedIdx);
+		if (CachedIdx == (NumTimeCodes-1) * PacketSize) return(CachedIdx);
 		time = Data[CachedIdx + PacketSize]	& ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
 		if (timecode < time) return(CachedIdx);
 	}

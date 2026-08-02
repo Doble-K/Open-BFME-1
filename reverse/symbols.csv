@@ -4063,7 +4063,7 @@ _gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
 _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?Allocate_Object_Memory@?$ObjectPoolClass@VHAnimComboDataClass@@$0BAA@@@QAEPAVHAnimComboDataClass@@XZ,0x00973DB0
 ??0TimeCodedBitChannelClass@@QAE@XZ,0x00977AF0
-??1TimeCodedMotionChannelClass@@QAE@XZ,0x00978180
 ??0AdaptiveDeltaMotionChannelClass@@QAE@XZ,0x00978340
 ?Get_Vector@TimeCodedMotionChannelClass@@QAEXMPAM@Z,0x009781A0
 ?Load_W3D@AdaptiveDeltaMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977CC0
+?Load_W3D@TimeCodedMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977A00

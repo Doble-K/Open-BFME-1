@@ -251,7 +251,10 @@ private:
 	
 	uint32	NumTimeCodes;		// Number of packets
 
-	uint32	LastTimeCodeIdx;	// absolute index to last time code
+	// BFME has no LastTimeCodeIdx: ~TimeCodedMotionChannelClass (0x00978180)
+	// frees [esi+0x18] and Get_Vector (0x009781A0) reads +0xc, +0x10, +0x14 and
+	// +0x18, which is PacketSize, NumTimeCodes, CachedIdx and Data with this
+	// cached product gone. binary_search_index recomputes it instead.
 	uint32	CachedIdx;			// Last Index Used
   
 	uint32	*	Data;			 	// pointer to packet data
