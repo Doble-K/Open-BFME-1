@@ -47,7 +47,7 @@ public:
 
 void FontLibrary::deleteAllFonts()
 {
-	((FontLibraryDeleteAllFontsShim *)this)->deleteAllFonts();
+    ((FontLibraryDeleteAllFontsShim *)this)->deleteAllFonts();
 }
 
 void WaterTracksRenderSystem::loadTracks()
@@ -58,10 +58,10 @@ void WaterTracksRenderSystem::loadTracks()
 class TerrainLogicAddWaypointLinkShim
 {
 public:
-	void add(int a, int b);
+    void add(int a, int b);
 };
 
 void TerrainLogic::addWaypointLink(int a, int b)
 {
-	((TerrainLogicAddWaypointLinkShim *)this)->add(a, b);
+    ((TerrainLogicAddWaypointLinkShim *)this)->add(a, b);
 }
