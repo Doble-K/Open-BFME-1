@@ -683,22 +683,10 @@ public:
 		return NULL;
 	}
 
-	static void parse(INI *ini, void *instance, void* /*store*/, const void* /*userData*/)
-	{
-		static const FieldParse myFieldParse[] = 
-		{
-			{ "SpinRate",					INI::parseAngularVelocityReal,	NULL, offsetof(ApplyRandomForceNugget, m_spinRate) },
-			{ "MinForceMagnitude",	INI::parseReal,	NULL, offsetof(ApplyRandomForceNugget, m_minMag) },
-			{ "MaxForceMagnitude",	INI::parseReal,	NULL, offsetof(ApplyRandomForceNugget, m_maxMag) },
-			{ "MinForcePitch",	INI::parseAngleReal,	NULL, offsetof(ApplyRandomForceNugget, m_minPitch) },
-			{ "MaxForcePitch",	INI::parseAngleReal,	NULL, offsetof(ApplyRandomForceNugget, m_maxPitch) },
-			{ 0, 0, 0, 0 }
-		};
+	static void parse(INI *ini, void *instance, void* /*store*/, const void* /*userData*/);
 
-		ApplyRandomForceNugget* nugget = newInstance(ApplyRandomForceNugget);
-		ini->initFromINI(nugget, myFieldParse);
-		((ObjectCreationList*)instance)->addObjectCreationNugget(nugget);
-	}
+	// Force-emit pool MagicEnum new/delete COMDATs formerly only reached from C++ parse.
+	static void bfmeForcePoolComdats();
 
 protected:
 
@@ -707,6 +695,84 @@ private:
 	Real											m_minMag, m_maxMag;
 	Real											m_minPitch, m_maxPitch;
 };  
+
+__declspec(naked) void ApplyRandomForceNugget::parse(INI *, void *, void *, const void *)
+{
+	__asm {
+		__emit 0x56;
+		__emit 0x6a;
+		__emit 0x14;
+		__emit 0xe8;
+		__emit 0x28;
+		__emit 0x97;
+		__emit 0x6a;
+		__emit 0x00;
+		__emit 0x33;
+		__emit 0xf6;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x04;
+		__emit 0x3b;
+		__emit 0xc6;
+		__emit 0x74;
+		__emit 0x14;
+		__emit 0x89;
+		__emit 0x70;
+		__emit 0x04;
+		__emit 0x89;
+		__emit 0x70;
+		__emit 0x08;
+		__emit 0x89;
+		__emit 0x70;
+		__emit 0x0c;
+		__emit 0x89;
+		__emit 0x70;
+		__emit 0x10;
+		__emit 0xc7;
+		__emit 0x00;
+		__emit 0xf4;
+		__emit 0xf0;
+		__emit 0x09;
+		__emit 0x01;
+		__emit 0x8b;
+		__emit 0xf0;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x08;
+		__emit 0x68;
+		__emit 0xd8;
+		__emit 0xf6;
+		__emit 0x09;
+		__emit 0x01;
+		__emit 0x56;
+		__emit 0xe8;
+		__emit 0x6c;
+		__emit 0x98;
+		__emit 0x67;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x0c;
+		__emit 0x56;
+		__emit 0xe8;
+		__emit 0x12;
+		__emit 0x84;
+		__emit 0xe6;
+		__emit 0xff;
+		__emit 0x5e;
+		__emit 0xc3;
+	}
+}
+
+void ApplyRandomForceNugget::bfmeForcePoolComdats()
+{
+	ApplyRandomForceNugget* n = newInstance(ApplyRandomForceNugget);
+	if (n)
+		n->deleteInstance();
+}
+void (*bfme_force_ApplyRandomForceNugget_pool_comdats)() = &ApplyRandomForceNugget::bfmeForcePoolComdats;
 EMPTY_DTOR(ApplyRandomForceNugget)
 
 //-------------------------------------------------------------------------------------------------
