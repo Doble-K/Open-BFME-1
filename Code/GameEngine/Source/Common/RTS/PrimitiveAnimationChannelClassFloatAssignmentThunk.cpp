@@ -7,16 +7,20 @@ public:
     const PrimitiveAnimationChannelClass<T> &operator=(const PrimitiveAnimationChannelClass<T> &);
 };
 
-template <class T>
-__declspec(naked) const PrimitiveAnimationChannelClass<T> &PrimitiveAnimationChannelClass<T>::operator=(const PrimitiveAnimationChannelClass<T> &)
+class PrimitiveAnimationChannelFloatAssignShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0ECh
-        _emit 06Fh
-        _emit 008h
-        _emit 000h
-    }
+public:
+    const PrimitiveAnimationChannelFloatAssignShim &assign(const PrimitiveAnimationChannelFloatAssignShim &);
+};
+
+template <class T>
+const PrimitiveAnimationChannelClass<T> &PrimitiveAnimationChannelClass<T>::operator=(
+    const PrimitiveAnimationChannelClass<T> &other)
+{
+    return *(const PrimitiveAnimationChannelClass<T> *)
+        &((PrimitiveAnimationChannelFloatAssignShim *)this)->assign(
+            *(const PrimitiveAnimationChannelFloatAssignShim *)&other);
 }
 
-template const PrimitiveAnimationChannelClass<float> &PrimitiveAnimationChannelClass<float>::operator=(const PrimitiveAnimationChannelClass<float> &);
+template const PrimitiveAnimationChannelClass<float> &PrimitiveAnimationChannelClass<float>::operator=(
+    const PrimitiveAnimationChannelClass<float> &);

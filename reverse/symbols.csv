@@ -2762,6 +2762,7 @@ name,address,notes
 ?assign@ParticleSystemTemplateInfoAssignShim@FXParticleSystem@@QAEXPBX@Z,0x000387C6,ParticleSystemTemplate base-info assignment thunk used through a TU-local layout shim
 ?assign@ParticleSystemTemplateTailAssignShim@FXParticleSystem@@QAEXPBX@Z,0x0004A232,ParticleSystemTemplate tail assignment thunk used through a TU-local layout shim
 ?assign@PlayerTemplateAssignShim@@QAEAAVPlayerTemplate@@ABV2@@Z,0x000E32D0,PlayerTemplate assignment incremental-link thunk target through a TU-local forwarding shim
+?assign@PrimitiveAnimationChannelFloatAssignShim@@QAEABV1@ABV1@@Z,0x000A4B60,PrimitiveAnimationChannelClass float assignment incremental-link thunk target through a TU-local forwarding shim
 ?assign@RenderObjectDrawTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x00007E14,RenderObjectDrawModuleTemplate assignment thunk used through a TU-local layout shim
 ?assign@RenderObjectUpdateTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x0003E2C5,RenderObjectUpdateModuleTemplate assignment thunk used through a TU-local layout shim
 ?assign@StringClassAssignShim@@QAEABVStringClass@@ABV2@@Z,0x0013B600,StringClass assignment incremental-link thunk target through a TU-local forwarding shim
