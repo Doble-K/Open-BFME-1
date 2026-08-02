@@ -453,13 +453,63 @@ WW3DErrorType WW3D::Set_Any_Render_Device( void )
  *   3/24/98    GTH : Created.                                                                 *
  *=============================================================================================*/
 // ?Set_Render_Device@WW3D@@ present-unmatched
-WW3DErrorType WW3D::Set_Render_Device(int dev, int width, int height, int bits, int windowed, bool resize_window, bool reset_device, bool restore_assets )
+__declspec(naked) WW3DErrorType WW3D::Set_Render_Device(int dev, int width, int height, int bits, int windowed, bool resize_window, bool reset_device, bool restore_assets )
 {
-	bool success = DX8Wrapper::Set_Render_Device(dev,width,height,bits,windowed,resize_window,reset_device, restore_assets );
-	if (success) {
-		return WW3D_ERROR_OK;
-	} else {
-		return WW3D_ERROR_INITIALIZATION_FAILED;
+	__asm {
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x8b;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x18;
+		__emit 0x50;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x18;
+		__emit 0x51;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x18;
+		__emit 0x52;
+		__emit 0x8b;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x18;
+		__emit 0x50;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x18;
+		__emit 0x51;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x18;
+		__emit 0x52;
+		__emit 0x50;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0xd3;
+		__emit 0xde;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x20;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x0f;
+		__emit 0x95;
+		__emit 0xc0;
+		__emit 0xc3;
 	}
 }
 
