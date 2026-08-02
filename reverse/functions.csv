@@ -13234,7 +13234,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setSkillPointsModifier@Player@@QAEXM@Z,,0x00360740,13,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?setSkipParentXfrm@ParticleSystem@@QAEX_N@Z,,0x0016A830,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?setSlaveSystemName@ParticleSystemTemplate@FXParticleSystem@@QAEXABVAsciiString@@@Z,0x00041F47,0x005BE690,28,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,assigns slave system name and clears flag
-?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/masm_dumps/_rn7__setSlot_GameInfo__QAEXHVGameSlot___Z_61F630.asm,matched,reloc-needle Open-BFME4+Grok
 ?setSlot@NetDisconnectVoteCommandMsg@@QAEXE@Z,,0x00673D20,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?setSlotPointer@GameInfo@@QAEXHPAVGameSlot@@@Z,,0x0061E9E0,24,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setSlotRankPoints@GameSpyGameSlot@@QAEXH@Z,,0x0045BEC0,10,Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?adjustCoordToCell@Pathfinder@@IAEXHH_NAAUCoord3D@@W4PathfindLayerEnum@@@Z,,0x003D6040,116,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,MASM dump converted to clean C++; BFME TerrainLogic has one more virtual before getLayerHeight (slot 0x1C)
 ?screenPixelToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,,0x00107C50,126,Code/GameEngine/Source/Common/System/Radar.cpp,matched,MASM dump converted to clean C++; BFME Radar puts m_radarWindow at this+0x1438
 ?findDrawPositions@Radar@@QAEXHHHHPAUICoord2D@@0@Z,,0x00106FC0,302,Code/GameEngine/Source/Common/System/Radar.cpp,matched,MASM dump converted to clean C++; same BFME Radar layout pin (m_radarWindow at this+0x1438)
+?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,MASM dump converted to clean C++; BFME GameSlot is 0x44 bytes and has an out-of-line destructor
