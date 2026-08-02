@@ -12442,7 +12442,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseSubsystemLegendDefinition@@YAXPAVINI@@@Z,,0x009A16A0,21,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,INI block callback registered under the keyword LoadSubsystem (table row 0x00ED7768)
 ?parseTWS@@YAXPAVINI@@PAX1PBX@Z,,0x0018C380,77,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
 ?parseTabControlData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484DE0,305,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
+?parseTerrainBridgeDefinition@INI@@SAXPAV1@@Z,,0x000C2D70,271,Code/GameEngine/Source/Common/INI/INITerrainRoad.cpp,matched,mirror of the Road block against the bridge list at +0x0c
 ?parseTerrainDefinition@INI@@SAXPAV1@@Z,,0x000C2AC0,195,Code/GameEngine/Source/Common/INI/INITerrain.cpp,matched,find-then-create on TheTerrainTypes; the second call is the already-matched newTerrain which is what names findTerrain at the first
+?parseTerrainRoadDefinition@INI@@SAXPAV1@@Z,,0x000C2EE0,271,Code/GameEngine/Source/Common/INI/INITerrainRoad.cpp,matched,searches the road list then checks the kind flag at +0x08; isBridge is inline in retail not a call
 ?parseTextColor@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485730,402,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C80,270,Code/masm_dumps/_entry__parseTextEntryData_YA_NPADPAVWinInstanceData_0PAX_Z_484C80.asm,matched,
 ?parseThingTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAD60,186,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
