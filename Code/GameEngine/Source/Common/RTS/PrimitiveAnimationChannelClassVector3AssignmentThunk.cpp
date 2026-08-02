@@ -9,16 +9,20 @@ public:
     const PrimitiveAnimationChannelClass<T> &operator=(const PrimitiveAnimationChannelClass<T> &);
 };
 
-template <class T>
-__declspec(naked) const PrimitiveAnimationChannelClass<T> &PrimitiveAnimationChannelClass<T>::operator=(const PrimitiveAnimationChannelClass<T> &)
+class PrimitiveAnimationChannelVector3AssignShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 08Eh
-        _emit 06Ah
-        _emit 043h
-        _emit 000h
-    }
+public:
+    const PrimitiveAnimationChannelVector3AssignShim &assign(const PrimitiveAnimationChannelVector3AssignShim &);
+};
+
+template <class T>
+const PrimitiveAnimationChannelClass<T> &PrimitiveAnimationChannelClass<T>::operator=(
+    const PrimitiveAnimationChannelClass<T> &other)
+{
+    return *(const PrimitiveAnimationChannelClass<T> *)
+        &((PrimitiveAnimationChannelVector3AssignShim *)this)->assign(
+            *(const PrimitiveAnimationChannelVector3AssignShim *)&other);
 }
 
-template const PrimitiveAnimationChannelClass<Vector3> &PrimitiveAnimationChannelClass<Vector3>::operator=(const PrimitiveAnimationChannelClass<Vector3> &);
+template const PrimitiveAnimationChannelClass<Vector3> &PrimitiveAnimationChannelClass<Vector3>::operator=(
+    const PrimitiveAnimationChannelClass<Vector3> &);
