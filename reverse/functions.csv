@@ -1177,7 +1177,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AnimationSteeringUpdateModuleData@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/GameLogic/Object/Update/AnimationSteeringUpdate.cpp,matched,
 ??0ArchiveFile@@QAE@XZ,,0x009D10B0,87,Code/GameEngine/Source/Common/System/ArchiveFileCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ArchiveFile constructor
 ??0ArchiveFileSystem@@QAE@XZ,,0x009CA9E0,108,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08 which the derived BIG file system ctor at 0x009CC350 chains to
-??0ArchivedDirectoryInfo@@QAE@ABV0@@Z,,0x009CA8F0,98,Code/masm_dumps/_sym3___0ArchivedDirectoryInfo__QAE_ABV0__Z_9CA8F0.asm,matched,symbol-pin Open-BFME4+Grok
+??0ArchivedDirectoryInfo@@QAE@ABV0@@Z,,0x009CA8F0,98,Code/GameEngine/Source/Common/System/ArchivedDirectoryInfoCopyConstructorThunk.cpp,matched,Exact 98B C++ raw copy-constructor thunk Open-BFME5
 ??0ArchivedDirectoryInfo@@QAE@XZ,,0x009CA460,137,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,the only non-allocator call in ArchiveFileSystem ctor
 ??0ArchivedFileInfo@@QAE@ABV0@@Z,,0x009CEBF0,93,Code/GameEngine/Source/Common/System/ArchivedFileInfoCopyConstructorThunk.cpp,matched,Exact 93B C++ raw copy-constructor thunk Open-BFME5
 ??0ArmorTemplateSet@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,ICF alias of existing matched body
