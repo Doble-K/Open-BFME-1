@@ -11698,6 +11698,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@MultiPlayerLoadScreen@@,,0x00492400,1688,Code/masm_dumps/_str2__init_MultiPlayerLoadScreen__492400.asm,matched,
 ?init@NameKeyGenerator@@UAEXXZ,,0x0008FE90,20,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,
 ?init@NetCommandWrapperList@@QAEXXZ,,0x008E21C0,8,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,icf-owner=?First@AssetIterator@@UAEXXZ
+?init@NetPacket@@QAEXXZ,,0x00677700,82,Code/GameEngine/Source/GameNetwork/NetPacket_init.cpp,matched,
 ?init@PlayerTemplateStore@@UAEXXZ,,0x000E41A0,17,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?init@ProductionPrerequisite@@QAEXXZ,,0x000E5700,54,Code/GameEngine/Source/Common/RTS/ProductionPrerequisite.cpp,matched,
 ?init@RankInfoStore@@UAEXXZ,,0x000E79F0,43,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp,matched,
