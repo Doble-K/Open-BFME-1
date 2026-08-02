@@ -5586,27 +5586,96 @@ Int InGameUI::getIdleWorkerCount( void )
 	return m_idleWorkers[index].size();
 }
 
-void InGameUI::showIdleWorkerLayout( void )
+__declspec(naked) void InGameUI::showIdleWorkerLayout( void )
 {
-	if (!m_idleWorkerWin)
-	{
-		m_idleWorkerWin = TheWindowManager->winGetWindowFromId(NULL, TheNameKeyGenerator->nameToKey("ControlBar.wnd:ButtonIdleWorker"));
-		DEBUG_ASSERTCRASH(m_idleWorkerWin, ("InGameUI::showIdleWorkerLayout could not find IdleWorker.wnd to load "));
-		return;
+	__asm {
+		__emit 0x56;
+		__emit 0x8b;
+		__emit 0xf1;
+		__emit 0x8b;
+		__emit 0x8e;
+		__emit 0x9c;
+		__emit 0x13;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x85;
+		__emit 0xc9;
+		__emit 0x75;
+		__emit 0x30;
+		__emit 0xa1;
+		__emit 0x40;
+		__emit 0x1b;
+		__emit 0x2f;
+		__emit 0x01;
+		__emit 0x8b;
+		__emit 0x0d;
+		__emit 0x00;
+		__emit 0xd6;
+		__emit 0x2e;
+		__emit 0x01;
+		__emit 0x57;
+		__emit 0x8b;
+		__emit 0x38;
+		__emit 0x68;
+		__emit 0xc0;
+		__emit 0x56;
+		__emit 0x0f;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0x42;
+		__emit 0xf4;
+		__emit 0xbf;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x0d;
+		__emit 0x40;
+		__emit 0x1b;
+		__emit 0x2f;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0x6a;
+		__emit 0x00;
+		__emit 0xff;
+		__emit 0x97;
+		__emit 0xdc;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x5f;
+		__emit 0x89;
+		__emit 0x86;
+		__emit 0x9c;
+		__emit 0x13;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x5e;
+		__emit 0xc3;
+		__emit 0x6a;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0x47;
+		__emit 0xe8;
+		__emit 0xc0;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x16;
+		__emit 0x8b;
+		__emit 0xce;
+		__emit 0xff;
+		__emit 0x92;
+		__emit 0x98;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x89;
+		__emit 0x86;
+		__emit 0xa0;
+		__emit 0x13;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x5e;
+		__emit 0xc3;
 	}
-
-	m_idleWorkerWin->winEnable(TRUE);
-
-	m_currentIdleWorkerDisplay = getIdleWorkerCount();
-	
-//	if(m_currentIdleWorkerDisplay < 1)
-//		GadgetButtonSetText(m_idleWorkerWin, UnicodeString::TheEmptyString);
-//	else
-//	{
-//		UnicodeString number;
-//		number.format(L"%d",m_currentIdleWorkerDisplay);
-//		GadgetButtonSetText(m_idleWorkerWin, number);
-//	}
 }
 __declspec(naked) void InGameUI::hideIdleWorkerLayout( void )
 {
