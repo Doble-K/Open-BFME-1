@@ -3493,6 +3493,7 @@ name,address,notes
 ?stopAllBoneFX@BoneFXUpdate@@QAEXXZ,0x0002728C
 ?storeImage@Anim2DTemplate@@QAEXPBVImage@@@Z,0x0001CF0D
 ?strtrim@@YAPADPAD@Z,0x009E7EB0
+?compute@BridgeGetBridgeHeightShim@@QAEMPBUCoord3D@@PAU2@@Z,0x001A7520,Bridge getBridgeHeight incremental-link thunk target through a TU-local forwarding shim
 ?test@BridgeCellOnEndShim@@QAE_NPBURegion2D@@@Z,0x001A24B0,Bridge cell-end incremental-link thunk target through a TU-local forwarding shim
 ?test@BridgePointOnBridgeShim@@QAE_NPBUCoord3D@@@Z,0x001A5F40,Bridge point-on-bridge incremental-link thunk target through a TU-local forwarding shim
 ?testSetAndClear@?$BitFlags@$0HE@@@QBE_NABV1@0@Z,0x00019BCD,pinharvest x1 (thunk)

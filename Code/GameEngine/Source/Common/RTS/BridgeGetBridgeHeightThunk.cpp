@@ -8,13 +8,13 @@ public:
     float getBridgeHeight(const Coord3D *, Coord3D *);
 };
 
-__declspec(naked) float Bridge::getBridgeHeight(const Coord3D *, Coord3D *)
+class BridgeGetBridgeHeightShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 019h
-        _emit 0BDh
-        _emit 019h
-        _emit 000h
-    }
+public:
+    float compute(const Coord3D *pos, Coord3D *normal);
+};
+
+float Bridge::getBridgeHeight(const Coord3D *pos, Coord3D *normal)
+{
+    return ((BridgeGetBridgeHeightShim *)this)->compute(pos, normal);
 }
