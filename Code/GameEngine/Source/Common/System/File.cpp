@@ -254,6 +254,66 @@ StreamingArchiveFile::StreamingArchiveFile()
 	m_size = 0;
 }
 
+// LocalFile, 0x01143D38. It adds one word to File and initialises it to -1,
+// which is INVALID_HANDLE_VALUE -- so this is the class that owns the OS file
+// handle, and File's own +0x10 (the mutex) is not it.
+class LocalFile : public File
+{
+public:
+	LocalFile();
+
+	virtual Bool open( const char *filename, Int access = 0 );
+	virtual void close( void );
+	virtual Int read( void *buffer, Int bytes );
+	virtual Int write( const void *buffer, Int bytes );
+	virtual Int seek( Int bytes, Int mode );
+	virtual void nextLine( char *buf, Int bufSize );
+	virtual Bool scanInt( Int &newInt );
+	virtual Bool scanReal( Real &newReal );
+	virtual Bool scanString( AsciiString &newString );
+	virtual Int size( void );
+	virtual Int position( void );
+	virtual char *readEntireAndClose( void );
+	virtual File *convertToRAMFile( void );
+
+protected:
+	HANDLE m_handle;		// +0x14
+};
+
+// noinline for the same translation-unit reason as RAMFile::RAMFile below --
+// Win32LocalFile's constructor calls this one rather than inlining it.
+__declspec(noinline) LocalFile::LocalFile()
+{
+	m_handle = INVALID_HANDLE_VALUE;
+}
+
+// Win32LocalFile, 0x01143C10. It adds no members of its own -- the constructor
+// is a base call and a vptr store, nothing else -- which is what
+// Win32LocalFileSystem::openFile allocates 0x18 bytes for.
+class Win32LocalFile : public LocalFile
+{
+public:
+	Win32LocalFile();
+
+	virtual Bool open( const char *filename, Int access = 0 );
+	virtual void close( void );
+	virtual Int read( void *buffer, Int bytes );
+	virtual Int write( const void *buffer, Int bytes );
+	virtual Int seek( Int bytes, Int mode );
+	virtual void nextLine( char *buf, Int bufSize );
+	virtual Bool scanInt( Int &newInt );
+	virtual Bool scanReal( Real &newReal );
+	virtual Bool scanString( AsciiString &newString );
+	virtual Int size( void );
+	virtual Int position( void );
+	virtual char *readEntireAndClose( void );
+	virtual File *convertToRAMFile( void );
+};
+
+Win32LocalFile::Win32LocalFile()
+{
+}
+
 class MemoryReadFile : public File
 {
 public:

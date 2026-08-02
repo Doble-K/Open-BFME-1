@@ -1694,6 +1694,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LinearOffsetTextureMapperClass@@QAE@ABV0@@Z,,0x009669A0,103,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0LinearOffsetTextureMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x009668B0,237,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0LinearOffsetTextureMapperClass@@QAE@ABVVector2@@0_N0I@Z,,0x009667F0,133,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
+??0LocalFile@@QAE@XZ,,0x009D23E0,25,Code/GameEngine/Source/Common/System/File.cpp,matched,installs 0x01143D38 and sets +0x14 to INVALID_HANDLE_VALUE - the class that owns the OS file handle unlike File whose +0x10 is a mutex
 ??0LockClass@CriticalSectionClass@@QAE@AAV1@@Z,,0x009DB4B0,29,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0LockClass@FastCriticalSectionClass@@QAE@AAV1@@Z,,0x006D1140,20,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,
 ??0LockClass@MutexClass@@QAE@AAV1@H@Z,,0x009DB3B0,72,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
@@ -2368,6 +2369,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WeaponStore@@QAE@XZ,,0x001E5290,29,Code/GameEngine/Source/GameLogic/Object/WeaponStoreCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk; Weapon.cpp retains STL COMDAT carrier
 ??0WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,ICF alias of existing matched body
 ??0Win32BIGFile@@QAE@XZ,,0x009D14E0,26,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,
+??0Win32LocalFile@@QAE@XZ,,0x009D1930,18,Code/GameEngine/Source/Common/System/File.cpp,matched,adds no members - a base call and a vptr store for 0x01143C10 - which is what Win32LocalFileSystem openFile allocates 0x18 bytes for
 ??0WinInstanceData@@QAE@XZ,,0x00499B40,111,Code/GameEngine/Source/GameClient/GUI/WinInstanceData.cpp,matched,
 ??0WindModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00047410,0x005BD970,117,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0WindModuleInfo@FXParticleSystem@@QAE@XZ,0x0003EA9A,0x005FE6C0,112,Code/masm_dumps/___0WindModuleInfo_FXParticleSystem__QAE_XZ_5FE6C0.asm,matched,
@@ -12192,7 +12194,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@ButterflyDrawModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0004391E,0x5f08f0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@CylinderEmissionVolumeModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00034B35,0x5f9360,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@CylindricalEmissionVelocityModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002DE7A,0x5f8ed0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-?parse@DataChunkInput@@QAE_NPAX@Z,,0x009D22F0,1006,Code/GameEngine/Source/Common/System/DataChunk_parse.asm,matched,exact 1006B via MASM
+?parse@DataChunkInput@@QAE_NPAX@Z,,0x009D22F0,231,Code/GameEngine/Source/Common/System/DataChunk_parse.asm,matched,was 1006B which ran past the ret 0x10 at 0x009D23D4 and its int3 padding into three later functions; a MASM dump byte-matches at any length so the over-claim was invisible
 ?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,23,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,reverted to 23B: extending to 55B tripped DIR32 consistency
 ?parse@LifeEventModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0003F553,0x5fc300,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@LightPulseFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042BE30,224,Code/masm_dumps/LightPulseFXNugget_parse_42BE30.asm,matched,Certified packet 31; LightPulse parser table ILT and Ghidra ret boundary; retail sha256 794285f856fbf02b8bb4305437cadc3c7f955c41640c3f12f132ec9ffea92e38
