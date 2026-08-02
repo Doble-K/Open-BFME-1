@@ -6,13 +6,13 @@ public:
     bool isCliffMappedTexture(int x, int y);
 };
 
-__declspec(naked) bool WorldHeightMap::isCliffMappedTexture(int, int)
+class WorldHeightMapIsCliffMappedTextureShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 017h
-        _emit 062h
-        _emit 070h
-        _emit 000h
-    }
+public:
+    bool isCliffMappedTexture(int, int);
+};
+
+bool WorldHeightMap::isCliffMappedTexture(int x, int y)
+{
+    return ((WorldHeightMapIsCliffMappedTextureShim *)this)->isCliffMappedTexture(x, y);
 }

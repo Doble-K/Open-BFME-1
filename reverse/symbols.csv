@@ -3237,6 +3237,7 @@ name,address,notes
 ?isCapableOfPurchasingScience@Player@@QBE_NW4ScienceType@@@Z,0x00049E45
 ?isCellOnEnd@Bridge@@QAE_NPBURegion2D@@@Z,0x0000DAAD,ILT thunk used by call site
 ?isCliffMappedTexture@WorldHeightMap@@QAE_NHH@Z,0x00022034,retail WorldHeightMap::isCliffMappedTexture ILT thunk
+?isCliffMappedTexture@WorldHeightMapIsCliffMappedTextureShim@@QAE_NHH@Z,0x00728250,WorldHeightMap incremental-link thunk target through a TU-local forwarding shim
 ?isEmpty@UnicodeString@@QBE_NXZ,0x0001F361,PopupReplaySystem GEM_UPDATE_TEXT site thunk to 0x7F7D0
 ?isFinished@GameWindowTransitionsHandler@@QAE_NXZ,0x00042E6F,Shell retail transition handler
 ?isMultiplayer@RecorderClass@@QAE_NXZ,0x0004A7A5,retail target of getSciencePurchaseCost REPLAY-mode check; thunk-table entry (real body FUN_00497800); Bool RecorderClass::isMultiplayer(void) per reference Recorder.h
