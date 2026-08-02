@@ -15,43 +15,43 @@ struct hashConstGameWindowPtr
 
 namespace _STL
 {
-template<class First, class Second>
+template <class First, class Second>
 struct pair
 {
 };
 
-template<class T>
+template <class T>
 struct _Select1st
 {
 };
 
-template<class T>
+template <class T>
 struct equal_to
 {
 };
 
-template<class T>
+template <class T>
 class allocator
 {
 };
 
-template<class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
+template <class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
 class hashtable
 {
 public:
-    void clear();
+	void clear();
 };
 
-template<class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
-__declspec(naked) void hashtable<Value, Key, Hash, Extract, Equal, Alloc>::clear()
+class WindowVideoHashtableClearShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 02Eh
-        _emit 02Ch
-        _emit 045h
-        _emit 000h
-    }
+public:
+	void clear();
+};
+
+template <class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
+void hashtable<Value, Key, Hash, Extract, Equal, Alloc>::clear()
+{
+	((WindowVideoHashtableClearShim *)this)->clear();
 }
 }
 
