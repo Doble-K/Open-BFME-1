@@ -1125,16 +1125,18 @@ void NAT::gotInternalAddress(Int nodeNumber, UnsignedInt address) {
 //   - PeerRequest is 0x194, not the reference's 0x190 (see the PeerThread shim);
 //   - AsciiString's const char* constructor has to be out of line, or the
 //     format temporary cannot be built in its pushed argument slot;
-//   - retail passes format's AsciiString overload and sets peerRequestType to
-//     13. Both format overloads exist in BFME, so the by-value one is a source
-//     choice, not a missing declaration. 13 is UTMROOM under the reference's
-//     enum; it is equally consistent with BFME having inserted one value ahead
-//     of UTMPLAYER, and nothing here distinguishes those.
+//   - retail passes format's AsciiString overload. Both overloads exist in
+//     BFME, so the by-value one is a source choice, not a missing declaration.
+// peerRequestType is 13 here and 13 again in notifyUsersOfConnectionFailed,
+// where the reference writes PEERREQUEST_UTMPLAYER (12) in both. Two
+// independent sites agreeing is what settles it: BFME's enum gained a value
+// ahead of UTMPLAYER rather than both call sites switching to UTMROOM. See the
+// PeerThread shim.
 void NAT::notifyTargetOfProbe(GameSlot *targetSlot) {
 	PeerRequest req;
 	AsciiString options;
 	options.format(AsciiString("PROBED%d"), m_localNodeNumber);
-	req.peerRequestType = PeerRequest::PEERREQUEST_UTMROOM;
+	req.peerRequestType = PeerRequest::PEERREQUEST_UTMPLAYER;
 	req.UTM.isStagingRoom = TRUE;
 	req.id = "NAT/";
 	AsciiString hostName;
@@ -1189,6 +1191,14 @@ void NAT::notifyUsersOfConnectionDone(Int nodeIndex) {
 }
 
 // ?notifyUsersOfConnectionFailed@NAT@@IAEXH@Z present-unmatched
+// Real body 0x006715C0, 581 bytes -- unblocked by removing the setGameOptions
+// dump that claimed 383 bytes from the middle of it. Same remaining blocker as
+// notifyTargetOfProbe: retail writes the EH object slot before taking the
+// format temporary's address and this source emits those two the other way
+// round. Five source arrangements were tried against that pair (explicit vs
+// implicit conversion, declaring the const char* overload away, swapping the
+// PeerRequest and AsciiString declarations); none moves it, so it is not
+// reachable from the source side.
 void NAT::notifyUsersOfConnectionFailed(Int nodeIndex) {
 	GameSlot *localSlot = m_slotList[m_connectionNodes[m_localNodeNumber].m_slotIndex];
 	DEBUG_ASSERTCRASH(localSlot != NULL, ("NAT::notifyUsersOfConnectionFailed - localSlot is NULL, WTF?"));
@@ -1200,7 +1210,7 @@ void NAT::notifyUsersOfConnectionFailed(Int nodeIndex) {
 
 	PeerRequest req;
 	AsciiString options;
-	options.format("CONNFAILED%d", nodeIndex);
+	options.format(AsciiString("CONNFAILED%d"), nodeIndex);
 /*
 	req.peerRequestType = PeerRequest::PEERREQUEST_UTMROOM;
 	req.UTM.isStagingRoom = TRUE;
