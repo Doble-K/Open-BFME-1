@@ -8,13 +8,13 @@ public:
     int Read(unsigned char *msg, unsigned int len, sockaddr_in *from);
 };
 
-__declspec(naked) int UDP::Read(unsigned char *, unsigned int, sockaddr_in *)
+class UDPReadShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 06Dh
-        _emit 0A7h
-        _emit 064h
-        _emit 000h
-    }
+public:
+    int read(unsigned char *msg, unsigned int len, sockaddr_in *from);
+};
+
+int UDP::Read(unsigned char *msg, unsigned int len, sockaddr_in *from)
+{
+    return ((UDPReadShim *)this)->read(msg, len, from);
 }

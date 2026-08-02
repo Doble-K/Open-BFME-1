@@ -3315,6 +3315,7 @@ name,address,notes
 ?processProgress@GameLogic@@QAEXHH@Z,0x0002E66D
 ?push@?$queue@VPeerResponse@@V?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@@_STL@@QAEXABVPeerResponse@@@Z,0x0003CE07
 ?queueSend@Transport@@QAE_NIGPBEH@Z,0x00049F80,ILT thunk; real body 0x683830 (from NAT::sendAProbe)
+?read@UDPReadShim@@QAEHPAEIPAUsockaddr_in@@@Z,0x00684630,UDP Read incremental-link thunk target through a TU-local forwarding shim
 ?readDict@DataChunkInput@@QAE?AVDict@@XZ,0x00022683
 ?readInt@DataChunkInput@@QAEHXZ,0x0003A805
 ?readUnicodeString@@YA?AVUnicodeString@@PAU_iobuf@@@Z,0x000322F4,shared replay Unicode string reader thunk
