@@ -2811,6 +2811,7 @@ name,address,notes
 ?construct@ButterflyDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00019CB3,ButterflyDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003E8F1,ButterflyDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@CylinderEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000237EF,CylinderEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
+?construct@CylindricalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00017215,CylindricalEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@CylindricalEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002B79C,CylindricalEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@CylindricalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0004AEB7,CylindricalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate0CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000139AD,DefaultModuleTemplate<0> copy constructor thunk used through a TU-local layout shim
@@ -2825,6 +2826,7 @@ name,address,notes
 ?construct@DefaultModuleTemplate6CtorShim@FXParticleSystem@@QAEXXZ,0x0002FC2A,DefaultModuleTemplate<6> constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate7CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00031EFD,DefaultModuleTemplate<7> copy constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate7CtorShim@FXParticleSystem@@QAEXXZ,0x000366EC,DefaultModuleTemplate<7> constructor thunk used through a TU-local layout shim
+?construct@HemisphericalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000178A0,HemisphericalEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@HemisphericalEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002DB50,HemisphericalEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@HemisphericalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001BF86,HemisphericalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@LifeEventTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00020342,LifeEventModuleTemplate copy constructor thunk used through a TU-local layout shim
@@ -2839,8 +2841,6 @@ name,address,notes
 ?construct@OutwardEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0003C6DC,OutwardEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@OutwardEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00048DB0,OutwardEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@PointEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000FECA,PointEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
-?construct@OutwardEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0003AD96,OutwardEmissionVelocityModule constructor thunk used through a TU-local layout shim
-?construct@CylindricalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00017215,CylindricalEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@QuadDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00005222,QuadDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@QuadDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001D278,QuadDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002AEA5,RenderObjectDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
@@ -2851,8 +2851,6 @@ name,address,notes
 ?construct@SphericalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000178A0,SphericalEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00003DF5,SphericalEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001BF86,SphericalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
-?construct@SphericalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000178A0,SphericalEmissionVelocityModule constructor thunk used through a TU-local layout shim
-?construct@HemisphericalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000178A0,HemisphericalEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@StreakDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00033B59,StreakDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@StreakDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00006FBE,StreakDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@TerrainCollisionTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002C3C7,TerrainCollisionModuleTemplate copy constructor thunk used through a TU-local layout shim
