@@ -2,19 +2,20 @@ template<int Bits>
 class BitFlags
 {
 public:
-	int countInverseIntersection(const BitFlags<Bits> &) const;
+    int countInverseIntersection(const BitFlags<Bits> &) const;
+};
+
+class BitFlagsHFCountInverseIntersectionShim
+{
+public:
+    int run(const BitFlagsHFCountInverseIntersectionShim &) const;
 };
 
 template<int Bits>
-__declspec(naked) int BitFlags<Bits>::countInverseIntersection(const BitFlags<Bits> &) const
+int BitFlags<Bits>::countInverseIntersection(const BitFlags<Bits> &other) const
 {
-	__asm {
-		_emit 0E9h
-		_emit 0B8h
-		_emit 0DFh
-		_emit 041h
-		_emit 000h
-	}
+    return ((const BitFlagsHFCountInverseIntersectionShim *)this)->run(
+        *(const BitFlagsHFCountInverseIntersectionShim *)&other);
 }
 
-template __declspec(naked) int BitFlags<117>::countInverseIntersection(const BitFlags<117> &) const;
+template int BitFlags<117>::countInverseIntersection(const BitFlags<117> &) const;
