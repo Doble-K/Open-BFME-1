@@ -1,156 +1,47 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// FileSystem::createDirectory retail 0x009C8DC0 size 144
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/ini /Ireference/shims/iniexception /Ireference/shims/ini_noinline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// stlport
+//
+// FileSystem::createDirectory, recovered as C++ rather than left as 144 emitted
+// bytes. The body is Zero Hour's unchanged: null-check the local file system and
+// forward the directory name to it.
+//
+// Worth recording while it is fresh: the naked version could not answer the
+// question the DIR32 consistency check was asking about ?TheLocalFileSystem@@,
+// because emitted bytes carry no relocations and so name nothing. Disassembled,
+// this function loads 0x0134D060 -- which reverse/symbols.csv already names
+// TheLocalFileSystem -- so it is not the source of that conflict. That is a
+// thing the C++ says and the byte dump could not.
+//
+// createDirectory is virtual slot 7 on LocalFileSystem, reached at +0x1c.
+#include "PreRTS.h"
+#include "Common/AsciiString.h"
 
-class AsciiString { public: char *p; };
-class FileSystem { public: bool createDirectory(AsciiString directory); };
-
-// ?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z
-__declspec(naked) bool FileSystem::createDirectory(AsciiString /*directory*/)
+class LocalFileSystem
 {
-	__asm {
-		_emit 06Ah
-		_emit 0FFh
-		_emit 068h
-		_emit 098h
-		_emit 003h
-		_emit 006h
-		_emit 001h
-		_emit 064h
-		_emit 0A1h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 050h
-		_emit 064h
-		_emit 089h
-		_emit 025h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 051h
-		_emit 053h
-		_emit 0A1h
-		_emit 060h
-		_emit 0D0h
-		_emit 034h
-		_emit 001h
-		_emit 085h
-		_emit 0C0h
-		_emit 0C7h
-		_emit 044h
-		_emit 024h
-		_emit 010h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 074h
-		_emit 043h
-		_emit 051h
-		_emit 08Dh
-		_emit 044h
-		_emit 024h
-		_emit 01Ch
-		_emit 089h
-		_emit 064h
-		_emit 024h
-		_emit 008h
-		_emit 08Bh
-		_emit 0CCh
-		_emit 050h
-		_emit 0E8h
-		_emit 067h
-		_emit 0EDh
-		_emit 0EBh
-		_emit 0FFh
-		_emit 08Bh
-		_emit 00Dh
-		_emit 060h
-		_emit 0D0h
-		_emit 034h
-		_emit 001h
-		_emit 08Bh
-		_emit 011h
-		_emit 0FFh
-		_emit 052h
-		_emit 01Ch
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 018h
-		_emit 08Ah
-		_emit 0D8h
-		_emit 0C7h
-		_emit 044h
-		_emit 024h
-		_emit 010h
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0E8h
-		_emit 029h
-		_emit 0EBh
-		_emit 0EBh
-		_emit 0FFh
-		_emit 08Ah
-		_emit 0C3h
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 064h
-		_emit 089h
-		_emit 00Dh
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 05Bh
-		_emit 083h
-		_emit 0C4h
-		_emit 010h
-		_emit 0C2h
-		_emit 004h
-		_emit 000h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 018h
-		_emit 0C7h
-		_emit 044h
-		_emit 024h
-		_emit 010h
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0E8h
-		_emit 004h
-		_emit 0EBh
-		_emit 0EBh
-		_emit 0FFh
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 032h
-		_emit 0C0h
-		_emit 064h
-		_emit 089h
-		_emit 00Dh
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 05Bh
-		_emit 083h
-		_emit 0C4h
-		_emit 010h
-		_emit 0C2h
-		_emit 004h
-		_emit 000h
+public:
+	virtual void _bfme_slot0( void ) = 0;
+	virtual void _bfme_slot1( void ) = 0;
+	virtual void _bfme_slot2( void ) = 0;
+	virtual void _bfme_slot3( void ) = 0;
+	virtual void _bfme_slot4( void ) = 0;
+	virtual void _bfme_slot5( void ) = 0;
+	virtual void _bfme_slot6( void ) = 0;
+	virtual Bool createDirectory( AsciiString directory ) = 0;	// slot 7, +0x1c
+};
+
+extern LocalFileSystem *TheLocalFileSystem;
+
+class FileSystem
+{
+public:
+	Bool createDirectory( AsciiString directory );
+};
+
+Bool FileSystem::createDirectory( AsciiString directory )
+{
+	if( TheLocalFileSystem != NULL )
+	{
+		return TheLocalFileSystem->createDirectory( directory );
 	}
+	return FALSE;
 }
