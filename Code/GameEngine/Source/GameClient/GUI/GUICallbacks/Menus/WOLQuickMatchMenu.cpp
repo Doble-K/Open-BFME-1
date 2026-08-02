@@ -314,6 +314,48 @@ WindowMsgHandledType BfmeQuickMatchInputBody::input(UnsignedInt msg, WindowMsgDa
 }
 #pragma comment(linker, "/alternatename:?WOLQuickMatchMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z=?input@BfmeQuickMatchInputBody@@QAE?AW4WindowMsgHandledType@@III@Z")
 
+struct BfmeQuickMatchUpdateStartButtonBody
+{
+	unsigned char _bfme_pad244[0x244];
+	GameWindow *m_comboLadder;
+	unsigned char _bfme_pad248[0x24];
+	GameWindow *m_buttonStart;
+	unsigned char _bfme_pad270[0x14];
+	GameWindow *m_listboxMapSelect;
+
+	void update(void);
+};
+
+void BfmeQuickMatchUpdateStartButtonBody::update(void)
+{
+	if (!m_comboLadder || !m_buttonStart || !m_listboxMapSelect)
+		return;
+
+	Int index;
+	Int selected;
+	GadgetComboBoxGetSelectedPos(m_comboLadder, &selected);
+	index = (Int)GadgetComboBoxGetItemData(m_comboLadder, selected);
+	const LadderInfo *li = TheLadderList->findLadderByIndex(index);
+	if (li)
+	{
+		m_buttonStart->winEnable(TRUE);
+		return;
+	}
+
+	Int numMaps = GadgetListBoxGetNumEntries(m_listboxMapSelect);
+	for (Int i = 0; i < numMaps; ++i)
+	{
+		if ((Bool)GadgetListBoxGetItemData(m_listboxMapSelect, i, 0))
+		{
+			m_buttonStart->winEnable(TRUE);
+			return;
+		}
+	}
+
+	m_buttonStart->winEnable(FALSE);
+}
+#pragma comment(linker, "/alternatename:?UpdateStartButton@@YAXXZ=?update@BfmeQuickMatchUpdateStartButtonBody@@QAEXXZ")
+
 static void hideOptionsGadgets(Bool doIt)
 {
 	static NameKeyType parentOptionsID = NAMEKEY("WOLQuickMatchMenu.wnd:ParentOptions");

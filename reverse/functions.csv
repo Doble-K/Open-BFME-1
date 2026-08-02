@@ -8275,7 +8275,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Unlock_Decal_Generator@DecalSystemClass@@UAEXPAVDecalGeneratorClass@@@Z,,0x0045DD60,23,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,
 ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z,,0x009438C0,134,Code/masm_dumps/_entry__Unregister_SimpleSceneClass_UAEXPAVRenderObjClass_W4RegType_9438C0.asm,matched,
 ?Update@W3DVolumetricShadow@@IAEXXZ,,0x007BF7D0,758,Code/masm_dumps/_Update_W3DVolumetricShadow__IAEXXZ.asm,matched,MASM exact; true body 0x7BF7D0/758 (queue 0x98B1BC was Render_Line interior); BFME Update(Bool) ret4; callchain updateVolumes/updateMeshVolume/constructVolume
-?UpdateStartButton@@YAXXZ,,0x00505570,197,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu_UpdateStartButton.asm,matched,
+?UpdateStartButton@@YAXXZ,,0x00505570,197,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,object-symbol=?update@BfmeQuickMatchUpdateStartButtonBody@@QAEXXZ;C++ body converted from exact 197B retail MASM
 ?Update_Bounding_Box@ParticleBufferClass@@IAEXXZ,,0x0098B460,740,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Update_Bounding_Boxes_Recursive@AABTreeClass@@AAEXPAUCullNodeStruct@1@@Z,,0x0096B170,476,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ?Update_CRC@UVBufferClass@@QAEXXZ,,0x009292C0,29,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
