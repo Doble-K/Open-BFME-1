@@ -6487,7 +6487,7 @@ void ScriptActions::doTeamEmoticon(const AsciiString& teamName, const AsciiStrin
 
 //-------------------------------------------------------------------------------------------------
 // ?doNamedEmoticon@ScriptActions@@IAEXABVAsciiString@@0M@Z
-// Body in Code/masm_dumps/ScriptActions_doNamedEmoticon.asm (exact 66B retail @ 0x2F04F0;
+// Body in ScriptActionsDoNamedEmoticonThunk.cpp (exact 66B retail @ 0x2F04F0;
 // queue 0x9DE812 was profiler FUN float math, not this action).
 
 
