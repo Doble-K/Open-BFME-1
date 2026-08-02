@@ -1317,7 +1317,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CrateSystem@@QAE@XZ,,0x003799D0,69,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,
 ??0CreateCrateDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00253E70,60,Code/GameEngine/Source/GameLogic/Object/Die/CreateCrateDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
 ??0CreateCrateDieModuleData@@QAE@XZ,,0x001298D0,123,Code/GameEngine/Source/GameLogic/AI/CreateCrateDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0CreateObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254680,60,Code/masm_dumps/CreateObjectDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
+??0CreateObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254680,60,Code/GameEngine/Source/GameLogic/Object/Die/CreateObjectDieConstructor.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
 ??0CreateObjectDieModuleData@@QAE@XZ,,0x002547E0,109,Code/GameEngine/Source/GameLogic/AI/CreateObjectDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CriticalSectionClass@@QAE@XZ,,0x009DB420,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0CritterEmitterUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028B6A0,95,Code/masm_dumps/CritterEmitterUpdate_constructor.asm,matched,Exact 95B unique factory Open-BFME4
