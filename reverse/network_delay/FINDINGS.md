@@ -527,79 +527,271 @@ latency, so varying it in INI cannot fix the delay.
 
 # Delay-path functions still needing C++
 
-Generated from the call graph: two levels of callees from the scheduler, both
-ceiling writers, the readiness gate, the send path and the frame ring, filtered
-to what is unnamed, asm-only or claimed by a thunk row.
+Generated from the call graph: two levels of callees from the scheduler
+(0x00681F70), the frame-pacing status (0x00682160), the stall detector
+(0x00664260), both runtime ceiling writers (0x00665D10, 0x0066A3F0), the
+readiness gate (0x006633E0), Connection::doSend (0x00661F10), the frame ring
+(0x00670A30) and the connection-manager lifecycle -- filtered to what is still
+unnamed, asm-only, or claimed only by a thunk row.
 
- bytes  addr       state       name
-  1380  0x680980   UNNAMED     
-   937  0x67EE40   UNNAMED     
-   750  0x66C3B0   ASM         ?updateDisconnectStatus@DisconnectManager@@IAEXPAVConnection
-   608  0x673200   ASM         ?addMessage@NetCommandList@@QAEPAVNetCommandRef@@PAVNetComma
-   581  0x661F10   UNNAMED     
-   502  0x6624A0   UNNAMED     
-   448  0x670A30   UNNAMED     
-   433  0x67E3F0   UNNAMED     
-   284  0x67E8C0   UNNAMED     
-   272  0x67E760   UNNAMED     
-   261  0x67EA30   UNNAMED     
-   256  0x676890   UNNAMED     
-   256  0x66A030   UNNAMED     
-   255  0x6655C0   UNNAMED     
-   251  0x67EC70   UNNAMED     
-   251  0x67E620   UNNAMED     
-   215  0x678AA0   UNNAMED     
-   204  0x669B50   UNNAMED     
-   187  0x67EB80   UNNAMED     
-   187  0x66B2D0   ASM         ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@
-   174  0x679730   UNNAMED     
-   171  0x9D2AB0   UNNAMED     
-   170  0x9F70E0   UNNAMED     
-   169  0x82C920   UNNAMED     
-   164  0x683830   UNNAMED     
-   162  0x82E540   ASM         ?_M_allocate@?$__node_alloc@$00$0A@@_STL@@CAPAXI@Z
-   156  0x6645B0   UNNAMED     
-   153  0x6789E0   UNNAMED     
-   152  0x678920   UNNAMED     
-   152  0x678860   UNNAMED     
-   152  0x6787A0   UNNAMED     
-   150  0x6658F0   UNNAMED     
-   130  0x679390   UNNAMED     
-   130  0x679250   UNNAMED     
-   126  0x669960   UNNAMED     
-   121  0x669560   UNNAMED     
-   114  0x678F10   UNNAMED     
-   112  0x50EF20   UNNAMED     
-   108  0x6794D0   UNNAMED     
-   108  0x679440   UNNAMED     
-   108  0x679300   UNNAMED     
-   105  0x86AF90   UNNAMED     
-   103  0x679650   UNNAMED     
-    96  0x6688D0   UNNAMED     
-    91  0x662270   UNNAMED     
-    87  0x66BD10   THUNK-ONLY  ?processDisconnectVote@DisconnectManager@@IAEXPAVNetCommandM
-    86  0x682E80   UNNAMED     
-    86  0x679010   UNNAMED     
-    86  0x678FA0   UNNAMED     
-    86  0x678D40   UNNAMED     
-    86  0x678CD0   UNNAMED     
-    85  0x82E5F0   ASM         ?_M_deallocate@?$__node_alloc@$00$0A@@_STL@@CAXPAXI@Z
-    82  0x6652B0   UNNAMED     
-    75  0x675CE0   UNNAMED     
-    75  0x675C50   UNNAMED     
-    75  0x675A20   UNNAMED     
-    75  0x6380F0   UNNAMED     
-    75  0x638060   UNNAMED     
-    74  0x9F6EE4   ASM         ??_L@YGXPAXIHP6EX0@Z1@Z
-    74  0x6731A0   UNNAMED     
-    70  0x66BFE0   UNNAMED     
-    69  0x673840   UNNAMED     
-    68  0x673740   UNNAMED     
-    62  0x8543B0   UNNAMED     
-    62  0x6832C0   UNNAMED     
-    61  0x667B50   UNNAMED     
-    61  0x50E5A0   UNNAMED     
-    60  0x6651C0   UNNAMED     
-    59  0x9F7E88   UNNAMED     
-    58  0x0800C0   UNNAMED     
+**139 functions, 15498 bytes.** Regenerate with the call-graph walk described
+above; this is the complete list, not a sample.
 
+| bytes | addr | state | name |
+|---|---|---|---|
+| 1380 | `0x680980` | unnamed |  |
+| 937 | `0x67EE40` | unnamed |  |
+| 750 | `0x66C3B0` | asm-only | `?updateDisconnectStatus@DisconnectManager@@IAEXPAVConnectionManager@@@Z` |
+| 608 | `0x673200` | asm-only | `?addMessage@NetCommandList@@QAEPAVNetCommandRef@@PAVNetCommandMsg@@@Z` |
+| 581 | `0x661F10` | unnamed |  |
+| 502 | `0x6624A0` | unnamed |  |
+| 448 | `0x670A30` | unnamed |  |
+| 433 | `0x67E3F0` | unnamed |  |
+| 284 | `0x67E8C0` | unnamed |  |
+| 272 | `0x67E760` | unnamed |  |
+| 261 | `0x67EA30` | unnamed |  |
+| 256 | `0x676890` | unnamed |  |
+| 256 | `0x66A030` | unnamed |  |
+| 255 | `0x6655C0` | unnamed |  |
+| 251 | `0x67EC70` | unnamed |  |
+| 251 | `0x67E620` | unnamed |  |
+| 215 | `0x678AA0` | unnamed |  |
+| 204 | `0x669B50` | unnamed |  |
+| 187 | `0x67EB80` | unnamed |  |
+| 187 | `0x66B2D0` | asm-only | `?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z` |
+| 174 | `0x679730` | unnamed |  |
+| 171 | `0x9D2AB0` | unnamed |  |
+| 170 | `0x9F70E0` | unnamed |  |
+| 169 | `0x82C920` | unnamed |  |
+| 164 | `0x683830` | unnamed |  |
+| 162 | `0x82E540` | asm-only | `?_M_allocate@?$__node_alloc@$00$0A@@_STL@@CAPAXI@Z` |
+| 156 | `0x6645B0` | unnamed |  |
+| 153 | `0x6789E0` | unnamed |  |
+| 152 | `0x678920` | unnamed |  |
+| 152 | `0x678860` | unnamed |  |
+| 152 | `0x6787A0` | unnamed |  |
+| 150 | `0x6658F0` | unnamed |  |
+| 130 | `0x679390` | unnamed |  |
+| 130 | `0x679250` | unnamed |  |
+| 126 | `0x669960` | unnamed |  |
+| 121 | `0x669560` | unnamed |  |
+| 114 | `0x678F10` | unnamed |  |
+| 112 | `0x50EF20` | unnamed |  |
+| 108 | `0x6794D0` | unnamed |  |
+| 108 | `0x679440` | unnamed |  |
+| 108 | `0x679300` | unnamed |  |
+| 105 | `0x86AF90` | unnamed |  |
+| 103 | `0x679650` | unnamed |  |
+| 96 | `0x6688D0` | unnamed |  |
+| 91 | `0x662270` | unnamed |  |
+| 87 | `0x66BD10` | thunk-only | `?processDisconnectVote@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z` |
+| 86 | `0x682E80` | unnamed |  |
+| 86 | `0x679010` | unnamed |  |
+| 86 | `0x678FA0` | unnamed |  |
+| 86 | `0x678D40` | unnamed |  |
+| 86 | `0x678CD0` | unnamed |  |
+| 85 | `0x82E5F0` | asm-only | `?_M_deallocate@?$__node_alloc@$00$0A@@_STL@@CAXPAXI@Z` |
+| 82 | `0x6652B0` | unnamed |  |
+| 75 | `0x675CE0` | unnamed |  |
+| 75 | `0x675C50` | unnamed |  |
+| 75 | `0x675A20` | unnamed |  |
+| 75 | `0x6380F0` | unnamed |  |
+| 75 | `0x638060` | unnamed |  |
+| 74 | `0x9F6EE4` | asm-only | `??_L@YGXPAXIHP6EX0@Z1@Z` |
+| 74 | `0x6731A0` | unnamed |  |
+| 70 | `0x66BFE0` | unnamed |  |
+| 69 | `0x673840` | unnamed |  |
+| 68 | `0x673740` | unnamed |  |
+| 62 | `0x8543B0` | unnamed |  |
+| 62 | `0x6832C0` | unnamed |  |
+| 61 | `0x667B50` | unnamed |  |
+| 61 | `0x50E5A0` | unnamed |  |
+| 60 | `0x6651C0` | unnamed |  |
+| 59 | `0x9F7E88` | unnamed |  |
+| 58 | `0x0800C0` | unnamed |  |
+| 55 | `0x9D2EB0` | unnamed |  |
+| 54 | `0x385570` | unnamed |  |
+| 53 | `0x6738A0` | unnamed |  |
+| 53 | `0x665170` | unnamed |  |
+| 53 | `0x665120` | unnamed |  |
+| 52 | `0x9F7210` | unnamed |  |
+| 51 | `0x6739B0` | unnamed |  |
+| 50 | `0x9D39A0` | unnamed |  |
+| 49 | `0x6776C0` | unnamed |  |
+| 49 | `0x674030` | unnamed |  |
+| 49 | `0x105750` | unnamed |  |
+| 48 | `0x675BE0` | unnamed |  |
+| 48 | `0x674260` | unnamed |  |
+| 47 | `0x6737A0` | unnamed |  |
+| 45 | `0x676240` | unnamed |  |
+| 45 | `0x6759B0` | unnamed |  |
+| 45 | `0x673B10` | unnamed |  |
+| 45 | `0x673AA0` | unnamed |  |
+| 42 | `0x673B80` | unnamed |  |
+| 42 | `0x065250` | unnamed |  |
+| 40 | `0x662CE0` | unnamed |  |
+| 38 | `0x6811B0` | unnamed |  |
+| 37 | `0x675610` | unnamed |  |
+| 37 | `0x675450` | unnamed |  |
+| 37 | `0x6735D0` | unnamed |  |
+| 35 | `0x670640` | unnamed |  |
+| 33 | `0x682E50` | unnamed |  |
+| 32 | `0x675CB0` | unnamed |  |
+| 32 | `0x675C20` | unnamed |  |
+| 32 | `0x6759F0` | unnamed |  |
+| 32 | `0x675310` | unnamed |  |
+| 32 | `0x6751E0` | unnamed |  |
+| 32 | `0x638030` | unnamed |  |
+| 32 | `0x61E8B0` | unnamed |  |
+| 24 | `0x9F6F2E` | unnamed |  |
+| 18 | `0x9F6E26` | thunk-only | `_atexit` |
+| 18 | `0x50E5F0` | unnamed |  |
+| 17 | `0x9F7EC3` | unnamed |  |
+| 16 | `0x676550` | unnamed |  |
+| 12 | `0x674090` | unnamed |  |
+| 12 | `0x673A10` | unnamed |  |
+| 12 | `0x673910` | unnamed |  |
+| 12 | `0x673800` | unnamed |  |
+| 10 | `0x6742D0` | unnamed |  |
+| 10 | `0x6742C0` | unnamed |  |
+| 10 | `0x6740B0` | unnamed |  |
+| 10 | `0x673B60` | unnamed |  |
+| 10 | `0x673B00` | unnamed |  |
+| 10 | `0x673A30` | unnamed |  |
+| 10 | `0x673930` | unnamed |  |
+| 10 | `0x673820` | unnamed |  |
+| 8 | `0x82DA10` | unnamed |  |
+| 8 | `0x6765B0` | unnamed |  |
+| 8 | `0x664D80` | unnamed |  |
+| 8 | `0x383730` | unnamed |  |
+| 7 | `0x82AD50` | unnamed |  |
+| 5 | `0x674080` | unnamed |  |
+| 5 | `0x673FF0` | unnamed |  |
+| 4 | `0x674300` | unnamed |  |
+| 4 | `0x6742F0` | unnamed |  |
+| 4 | `0x6741E0` | unnamed |  |
+| 4 | `0x6741D0` | unnamed |  |
+| 4 | `0x6740A0` | unnamed |  |
+| 4 | `0x674010` | unnamed |  |
+| 4 | `0x673F90` | unnamed |  |
+| 4 | `0x673F80` | unnamed |  |
+| 4 | `0x673CB0` | unnamed |  |
+| 4 | `0x673600` | unnamed |  |
+| 0 | `0x665350` | unnamed |  |
+
+# BFME de-pooled the whole netcode object graph
+
+Six classes drop the reference's `MemoryPoolObject` base. This is not cosmetic:
+against the reference's base the compiler emits an SEH frame retail does not
+have, and every field shifts down four bytes because there is no vptr.
+
+| class | evidence |
+|---|---|
+| `FrameData` | 20-byte stride, m_frameCommandCount at +0 |
+| `FrameDataManager` | destructor stores a vptr but carries no SEH frame |
+| `NetCommandList` | -- |
+| `NetCommandRef` | m_msg at +0, m_next/m_prev at +4/+8 |
+| `NetPacket` | constructor stores a vptr, no base constructor call |
+| `Connection` | plain Int at this+0, not a vptr |
+
+They still have vtables where the reference had them; only the pool base is
+gone. This was the blocker on FrameDataManager and it will be the blocker on
+anything else in that graph.
+
+# The egress pacer is dead code
+
+`Connection::doSend` gates every send on
+
+    if ((curtime - m_lastTimeSent) < m_frameGrouping) return 0;
+
+with `m_frameGrouping` at Connection+0x344 and `m_lastTimeSent` at +0x348. Two
+sites initialise the field to 1 (0x00661E99, 0x006623E2). The only code that can
+change it is `ConnectionManager::setFrameGrouping` (0x00663530, landed), whose
+eight unrolled stores are the only other writes to +0x344 in the image -- and an
+exhaustive scan of every section for a call or jump reaching either that body or
+its thunk at 0x00049DB4 finds exactly one reference: the thunk's own jump into
+the body. **Nothing calls the thunk.**
+
+So m_frameGrouping stays at 1ms and that gate never fires. There is no second
+delay source to remove. The function also halves the interval when the machine
+is the packet router -- BFME-only, and dead along with the rest of it.
+
+# Every writer of the frame ceiling
+
+`ConnectionManager+0x1205C` has exactly five writers, and only two carry runtime
+semantics:
+
+| address | function | kind |
+|---|---|---|
+| 0x006654F5 | reset at 0x00665350 | lifecycle |
+| 0x00669126 | `init` | lifecycle |
+| 0x0066969E | `construct` | lifecycle |
+| 0x00665E45 | `sendFrameInfo` | **runtime** -- router publishes its own frame |
+| 0x0066A4BE | `processIncomingCommand` | **runtime** -- client raises it from FRAMEINFO |
+
+Nothing else can move the ceiling.
+
+# Connection layout
+
+| offset | field | pinned by |
+|---|---|---|
+| 0x000 | m_id / quit state, compared to -1 | doSend, isPlayerConnected |
+| 0x004 | m_quitTime, +0x7530 (30s) flush timeout | doSend |
+| 0x008 | m_transport | doSend passes it to queueSend |
+| 0x00C | m_addr | copied into the packet |
+| 0x010 | m_port | copied into the packet |
+| 0x018 | m_netCommandList | isQueueEmpty, doSend |
+| 0x01C | m_retryTime | doSend retransmit test |
+| 0x344 | m_frameGrouping | the dead egress gate |
+| 0x348 | m_lastTimeSent | same |
+| 0x350 | m_numRetries | doRetryMetrics |
+| 0x354 | m_retryMetricsTime | 10-second window |
+
+Retransmit: a queued command is resent when
+`(curtime - timeLastSent) > m_retryTime`, or immediately if timeLastSent is -1.
+`doRetryMetrics` is inlined into doSend on a 10-second window.
+
+`doSend` also takes a Bool argument that caps it at five packets per call, and
+drops queued commands whose execution frame plus `NetworkRunAheadSlack` has
+fallen behind TheGameLogic's frame.
+
+# NetPacket layout, and the address struct
+
+sizeof is 0x200, which is what doSend hands operator new.
+
+| offset | field |
+|---|---|
+| 0x000 | vptr |
+| 0x004 | m_packet[0x1DC] (0x1DC == 476 == MAX_PACKET_SIZE) |
+| 0x1E0 | m_packetLen |
+| 0x1E4 | m_addr |
+| 0x1E8 | m_port |
+| 0x1EC | m_numCommands |
+| 0x1F0 | m_lastCommand, then m_lastFrame, m_lastCommandID, m_lastPlayerID, m_lastCommandType, m_lastRelay |
+
+m_addr and m_port are adjacent in BFME and separated in the reference, and
+doSend passes `&packet->m_addr` straight into `Transport::queueSend` -- so that
+pair IS the address struct queueSend takes, embedded in the packet rather than
+built on the stack.
+
+`NetPacket::init` assigns the pair as a whole struct (a dword at +0x1E4 and a
+dword at +0x1E8 out of an eight-byte stack temp), so it carries two bytes of
+tail padding and is **not** packed. The transport shim declares TransportAddress
+under `#pragma pack(1)` at six bytes, which is wrong; nothing landed depends on
+it, since Transport::init only reads through a pointer.
+
+# BFMENativeNetwork vtable (0x00D1A968)
+
+| slot | body | name |
+|---|---|---|
+| +0x24 | 0x00681930 | called when commands are incomplete |
+| +0x3C | 0x00681F70 | `getFrameAdvanceCount` |
+| +0x40 | 0x00682160 | `getFramePacingStatus` |
+| +0x8C | 0x00681B20 | `isPacketRouter` -- selects the 200ms path |
+
+# Mechanical gotcha: double incremental-link thunks
+
+Retail's call sites reach `FrameData::init` through **two** hops,
+0x0003BB6F -> 0x00670220 -> 0x00670170. `build_call_thunks` follows one, so the
+call resolved to the body and three bytes of REL32 stayed wrong until the outer
+thunk was pinned explicitly in reverse/symbols.csv.
