@@ -2024,7 +2024,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ResizerWindow@@QAE@XZ,,0x004AAED0,31,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,
 ??0ResolutionDescClass@@QAE@HHH@Z,,0x000642F0,25,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ??0ResolutionDescClass@@QAE@XZ,,0x0005C5D0,13,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,ICF alias of existing matched body
-??0RespawnBody@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00214650,46,Code/masm_dumps/RespawnBody_constructor.asm,matched,Exact 46B unique factory Open-BFME4
+??0RespawnBody@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00214650,46,Code/GameEngine/Source/GameLogic/Object/Body/RespawnBody.cpp,matched,Luna Open-BFME5.0 clean C++ empty ActiveBody derivative
 ??0RespawnBodyModuleData@@QAE@XZ,,0x002149D0,190,Code/masm_dumps/RespawnBodyModuleData_constructor.asm,matched,Exact 190B @ 0x002149D0; Exact retail MASM ModuleData ctor; unique factory 0x11F7A0
 ??0RiderChangeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00229FB0,124,Code/masm_dumps/RiderChangeContain_constructor.asm,matched,Exact 124B; factory ownership Open-BFME4
 ??0RiderChangeContainModuleData@@QAE@XZ,,0x00268120,430,Code/masm_dumps/RiderChangeContainModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x1195C0
