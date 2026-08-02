@@ -3792,3 +3792,4 @@ _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
 ?bind@UDPBindShim@@QAEHIG@Z,0x00684900,UDP Bind incremental-link thunk target through a TU-local forwarding shim
 ?reacquire@W3DVolumetricShadowManagerReAcquireShim@@QAE_NXZ,0x007C1180,W3DVolumetricShadowManager ReAcquireResources incremental-link thunk target through a TU-local forwarding shim
+?compare@GameSortStructCallOperatorShim@@QAE_NPAVGameSpyStagingRoom@@0@Z,0x0053EDD0,GameSortStruct operator() incremental-link thunk target through a TU-local forwarding shim

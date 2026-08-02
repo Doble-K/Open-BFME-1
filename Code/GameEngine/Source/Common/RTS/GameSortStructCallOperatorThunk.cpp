@@ -8,13 +8,13 @@ public:
     bool operator()(GameSpyStagingRoom *, GameSpyStagingRoom *);
 };
 
-__declspec(naked) bool GameSortStruct::operator()(GameSpyStagingRoom *, GameSpyStagingRoom *)
+class GameSortStructCallOperatorShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0F4h
-        _emit 0D5h
-        _emit 050h
-        _emit 000h
-    }
+public:
+    bool compare(GameSpyStagingRoom *a, GameSpyStagingRoom *b);
+};
+
+bool GameSortStruct::operator()(GameSpyStagingRoom *a, GameSpyStagingRoom *b)
+{
+    return ((GameSortStructCallOperatorShim *)this)->compare(a, b);
 }
