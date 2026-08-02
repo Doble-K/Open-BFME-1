@@ -2821,6 +2821,7 @@ name,address,notes
 ?clear@DrawableIconInfo@@QAEXXZ,0x00015479,pinharvest x1 (thunk)
 ?clear@DrawableIconInfo@@QAEXXZ,0x00037565,pinharvest x1 (thunk)
 ?clear@FXList@@QAEXXZ,0x00044297,derived-ICF
+?clear@GameWindowHashtableClearShim@_STL@@QAEXXZ,0x004984F0,_STL hashtable clear GameWindowVideo dual incremental-link thunk target through a TU-local forwarding shim
 ?clear@INILineBuffer@@QAEXXZ,0x009CBF50,empties INI::m_lines and operator-deletes its storage; called by unPrepFile
 ?clear@ModelConditionInfoHideShowSubObjInfoInsertOverflowShim@_STL@@QAEXXZ,0x003AFA40,_STL vector _M_clear ModelConditionInfo::HideShowSubObjInfo incremental-link thunk target through a TU-local forwarding shim
 ?clear@NuggetInsertOverflowShim@_STL@@QAEXXZ,0x00771D00,_STL vector _M_clear ModuleInfo::Nugget incremental-link thunk target through a TU-local forwarding shim
