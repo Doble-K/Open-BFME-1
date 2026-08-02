@@ -11709,6 +11709,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@TerrainShaderPixelShader@@EAEHXZ,,0x007E1F60,146,Code/masm_dumps/_sa12__init_TerrainShaderPixelShader__EAEHXZ_7E1F60.asm,matched,string-anchor Open-BFME4+Grok shaders\terrainnoise2.pso
 ?init@TextOnFrameTransition@@UAEXPAVGameWindow@@@Z,,0x005A02B0,23,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?init@TextTypeTransition@@UAEXPAVGameWindow@@@Z,,0x005A07F0,220,Code/masm_dumps/init_TextTypeTransition_UAEXPAVGameWindow_Z_005A07F0_a2419f26.asm,matched,Certified vtable slot and constructor chain recovery; exact retail db bytes SHA256 a2419f2649de4939c78ca27f9528c905e6bb74f08cdfdd43de237dc8e943ef6f
+?init@Transport@@QAE_NPBUTransportAddress@@@Z,,0x00684200,430,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?init@VideoPlayer@@UAEXXZ,,0x0081CB30,574,Code/masm_dumps/VideoPlayer_init.asm,matched,Exact contiguous retail MASM; VideoPlayer vtable and derived Bink init prove ownership; preserves BFME video-table construction
 ?init@W3DProjectedShadowManager@@QAE_NXZ,,0x007AF630,156,Code/masm_dumps/init_W3DProjectedShadowManager_QAE_NXZ_007AF630_a1e7261b.asm,matched,Certified packet 108 exact retail db recovery sha256 a1e7261bc7da1bdbf3c7db1e609c068d2e7ffe4a1f6859a47e7f3bbbcaf1c5b6
 ?init@W3DShadowGeometry@@QAEHPAVRenderObjClass@@@Z,,0x00464830,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,tiny-locate
@@ -12108,7 +12109,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?normalize@Coord3D@@QAEXXZ,0x0002BD82,0x000FB930,76,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,normalizes 3D vector in place with zero check
 ?normalizeAngle@@YAMM@Z,,0x001056F0,69,Code/GameEngine/Source/Common/System/GameCommon.cpp,matched,exact
 ?notifyShroudChanged@W3DPropBuffer@@QAEXXZ,,0x007024E0,50,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DPropBuffer.cpp,matched,
-?notifyTargetOfProbe@NAT@@IAEXPAVGameSlot@@@Z,,0x006718BC,360,Code/GameEngine/Source/GameNetwork/nat_notifyTargetOfProbe.asm,matched,exact 360B via MASM
 ?notifyUsersOfConnectionDone@NAT@@IAEXH@Z,,0x006712E0,578,Code/masm_dumps/_sa5__notifyUsersOfConnectionDone_NAT__IAEXH_Z_6712E0.asm,matched,Exact 578B Open-BFME4
 ?nstrdup@@YAPADPBD@Z,,0x009E6410,61,Code/Libraries/Source/WWVegas/WWLib/nstrdup.cpp,matched,
 ?obb_check_axis@@YA_NAAUObbCollisionStruct@@MM@Z,,0x008E3B10,85,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
@@ -13559,6 +13559,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@SupplyTruckBusyState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@SupplyTruckIdleState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@TextTypeTransition@@UAEXH@Z,,0x005A0910,180,Code/masm_dumps/TextTypeTransition_update.asm,matched,Exact retail MASM; true body 0x5A0910/180 via TextType vtable@0x110CCFC slot2; queue 0x4A2737 wrong; C++ blocked by +0x10/+0x14 layout + no GUITypeText
+?update@Transport@@QAE_NXZ,,0x00684420,78,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?update@VictoryConditions@@,,0x0035F920,986,Code/masm_dumps/_str__update_VictoryConditions__35F920.asm,matched,
 ?update@WaterTracksObj@@QAEHH@Z,,0x007AAB80,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ?update@WaypointMap@@QAEXXZ,,0x00454EF3,363,Code/GameEngine/Source/GameClient/MapUtil_update.asm,matched,exact 363B via MASM
@@ -13927,12 +13928,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?doRecv@Transport@@QAE_NXZ,,0x00683610,431,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?getIncomingBytesPerSecond@Transport@@QAEMXZ,,0x00683900,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?getIncomingPacketsPerSecond@Transport@@QAEMXZ,,0x00683A80,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?getOutgoingBytesPerSecond@Transport@@QAEMXZ,,0x00683C00,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?getOutgoingPacketsPerSecond@Transport@@QAEMXZ,,0x00683D80,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?getUnknownBytesPerSecond@Transport@@QAEMXZ,,0x00683F00,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?getUnknownPacketsPerSecond@Transport@@QAEMXZ,,0x00684080,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?update@Transport@@QAE_NXZ,,0x00684420,78,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?init@Transport@@QAE_NPBUTransportAddress@@@Z,,0x00684200,430,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,

@@ -40,7 +40,7 @@
 #include "GameClient/EstablishConnectionsMenu.h"
 #include "GameNetwork/NetworkInterface.h"
 #include "GameNetwork/GameInfo.h"
-#include "GameNetwork/GameSpy/PeerThread.h"
+#include "GameNetwork/GameSpy/PeerThread.h"   // TU-scoped shim: BFME PeerRequest is 0x194, not 0x190 (see also the AsciiString shim)
 #include "GameNetwork/GameSpy/PeerDefs.h"
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
 #include "GameNetwork/GameSpy/GSConfig.h"
@@ -1105,15 +1105,45 @@ void NAT::gotInternalAddress(Int nodeNumber, UnsignedInt address) {
 	}
 }
 
-// ?notifyTargetOfProbe@NAT@@IAEXPAVGameSlot@@@Z
-// Body in nat_notifyTargetOfProbe.asm (exact 360B retail).
+// The ledger used to claim this at 0x006718BC via a MASM dump. That address is
+// 28 bytes INTO sendMangledPortNumberToTarget, whose body starts at 0x006718A0
+// with an SEH prologue and ends in `ret 8` for its two arguments. The real body
+// is 0x00671100: it starts with its own SEH prologue, ends in `ret 4` for the
+// single GameSlot*, and it is the function that references "PROBED%d". A byte
+// dump matches whatever bytes it was cut from, so the wrong claim verified
+// cleanly -- and comparing the C++ against those wrong bytes is what produced
+// the old note here about BFME's PeerRequest being a dword larger than the
+// reference's. It is not; the layout is the reference's.
 
-// notifyTargetOfProbe's real body is 0x00671100, not the 0x006718BC the ledger
-// records: retail's probed() reaches it through the ILT thunk at 0x00028D1C,
-// which jumps to 0x00671100, while 0x006718BC is 28 bytes INTO the different
-// function that starts at 0x006718A0. The ZH body reproduces it to within a
-// four-byte stack frame -- BFME's PeerRequest is one dword larger -- so fixing
-// the row needs a PeerDefs shim first.
+// ?notifyTargetOfProbe@NAT@@IAEXPAVGameSlot@@@Z present-unmatched
+// 374 bytes of the right instructions in the right order except for two local
+// schedule swaps: retail writes the EH object slot before taking the
+// temporary's address (mov [esp+0x18],esp / mov ecx,esp; this source emits them
+// the other way round), and it pushes both of id's assign pointers before
+// loading its `this`. Everything between re-converges. Three things had to be
+// right to get this far, and all three are worth keeping:
+//   - PeerRequest is 0x194, not the reference's 0x190 (see the PeerThread shim);
+//   - AsciiString's const char* constructor has to be out of line, or the
+//     format temporary cannot be built in its pushed argument slot;
+//   - retail passes format's AsciiString overload and sets peerRequestType to
+//     13. Both format overloads exist in BFME, so the by-value one is a source
+//     choice, not a missing declaration. 13 is UTMROOM under the reference's
+//     enum; it is equally consistent with BFME having inserted one value ahead
+//     of UTMPLAYER, and nothing here distinguishes those.
+void NAT::notifyTargetOfProbe(GameSlot *targetSlot) {
+	PeerRequest req;
+	AsciiString options;
+	options.format(AsciiString("PROBED%d"), m_localNodeNumber);
+	req.peerRequestType = PeerRequest::PEERREQUEST_UTMROOM;
+	req.UTM.isStagingRoom = TRUE;
+	req.id = "NAT/";
+	AsciiString hostName;
+	hostName.translate(targetSlot->getName());
+	req.nick = hostName.str();
+	req.options = options.str();
+	TheGameSpyPeerMessageQueue->addRequest(req);
+}
+
 
 // ?notifyUsersOfConnectionDone@NAT@@IAEXH@Z present-unmatched
 void NAT::notifyUsersOfConnectionDone(Int nodeIndex) {
