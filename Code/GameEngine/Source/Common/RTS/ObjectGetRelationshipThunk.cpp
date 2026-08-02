@@ -11,13 +11,13 @@ public:
     Relationship getRelationship(const Object *) const;
 };
 
-__declspec(naked) Relationship Object::getRelationship(const Object *) const
+class ObjectGetRelationshipShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 032h
-        _emit 0D2h
-        _emit 017h
-        _emit 000h
-    }
+public:
+    Relationship get(const Object *other) const;
+};
+
+Relationship Object::getRelationship(const Object *other) const
+{
+    return ((const ObjectGetRelationshipShim *)this)->get(other);
 }
