@@ -402,12 +402,31 @@ void AI::addSideInfo(AISideInfo *infoToAdd)
 //-------------------------------------------------------------------------------------------------
 /** Parse GameData entry */
 //-------------------------------------------------------------------------------------------------
-// ?parseAiDataDefinition@AI@@SAXPAVINI@@@Z
-// Body in ai_parseAiDataDefinition.asm (exact 50B retail @ 0x0014E580).
+class AIParseDefinitionAIShim
+{
+public:
+	unsigned char padding[0x14];
+	void *data;
+	void newOverride();
+};
 
+extern "C" AIParseDefinitionAIShim *TheAIParseDefinitionAI;
 
+class AIParseDefinitionINIShim
+{
+public:
+	void initFromINI(void *data, const void *fieldParse);
+};
 
-
+void AI::parseAiDataDefinition(INI *ini)
+{
+	if (TheAIParseDefinitionAI == NULL)
+		return;
+	if (*(int *)((unsigned char *)ini + 8) == 2)
+		TheAIParseDefinitionAI->newOverride();
+	void *data = TheAIParseDefinitionAI->data;
+	((AIParseDefinitionINIShim *)ini)->initFromINI(data, (const void *)0x01094B00);
+}
 //--------------------------------------------------------------------------------------------------------
 /**
  * Create a new AI Group

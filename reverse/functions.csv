@@ -12237,7 +12237,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@ViewShakeFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C320,244,Code/masm_dumps/parse_ViewShakeFXNugget_SAXPAVINI_PAX1PBX_Z_0042C320_4717cc22.asm,matched,Certified packet 167 db-only MASM SHA256 4717cc225abc96cd5fa449fec9f04c8cca2043a94891684368ad9e8ca82d40ed
 ?parseAccelerationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D50,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseAddModule@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x0013E210,88,Code/masm_dumps/parseAddModule_ThingTemplate_13E210.asm,matched,FieldParse AddModule true body; drift 0x9A15E8 misplaced
-?parseAiDataDefinition@AI@@SAXPAVINI@@@Z,,0x0014E580,50,Code/GameEngine/Source/GameLogic/AI/ai_parseAiDataDefinition.asm,matched,exact 50B MASM; true body via FieldParse table xref (drift 0x9A15F2 was mid-parseSideInfo); INI m_loadType+8 blocks C++
+?parseAiDataDefinition@AI@@SAXPAVINI@@@Z,,0x0014E580,50,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,Open-BFME5 C++ conversion of AI parseAiDataDefinition
 ?parseAllVetLevelsFXList@@YAXPAVINI@@PAX1PBX@Z,,0x001E10F0,51,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseAllVetLevelsPSys@@YAXPAVINI@@PAX1PBX@Z,,0x001E1190,51,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseAmount@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066020,138,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
