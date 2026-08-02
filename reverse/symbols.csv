@@ -2935,7 +2935,9 @@ name,address,notes
 ?copy@W3DAnimationInfoUninitializedCopyShim@_STL@@SAPAXPAX00ABU__false_type@2@@Z,0x003AA640,_STL __uninitialized_copy const W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
 ?copyFrom@DictPair@Dict@@QAEXPAU12@@Z,0x00013E94
 ?copyFromQueueNode@BFMENetworkQueueItem1@@QAEXPAX@Z,0x00032F6A,native BFME queue item copy helper for wrapper queue +0x3c
+?copyFromQueueNode@BFMENetworkQueueItem1copyFromQueueNodeShim@@QAEXPAX@Z,0x00658340,BFMENetworkQueueItem1::copyFromQueueNode incremental-link thunk target through a TU-local forwarding shim
 ?copyFromQueueNode@BFMENetworkQueueItem@@QAEXPAX@Z,0x00030C60,native BFME queue item copy helper for wrapper queue +0x14
+?copyFromQueueNode@BFMENetworkQueueItemcopyFromQueueNodeShim@@QAEXPAX@Z,0x00658CE0,BFMENetworkQueueItem::copyFromQueueNode incremental-link thunk target through a TU-local forwarding shim
 ?count@DisconnectManagerCountVotesShim@@QAEHH@Z,0x0066B720,DisconnectManager countVotesForPlayer incremental-link thunk target through a TU-local forwarding shim
 ?countBuildings@TeamPrototype@@QAEHXZ,0x00022ACF
 ?countIntersection@?$BitFlags@$0HF@@@QBEHABV1@@Z,0x00003873,pinharvest x1 (thunk)

@@ -10,24 +10,25 @@ public:
 	void copyFromQueueNode(void *);
 };
 
-__declspec(naked) void BFMENetworkQueueItem1::copyFromQueueNode(void *)
+class BFMENetworkQueueItem1copyFromQueueNodeShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0D1h
-		_emit 053h
-		_emit 062h
-		_emit 000h
-	}
+public:
+	void copyFromQueueNode(void * a0);
+};
+
+void BFMENetworkQueueItem1::copyFromQueueNode(void * a0)
+{
+	((BFMENetworkQueueItem1copyFromQueueNodeShim *)this)->copyFromQueueNode(a0);
 }
 
-__declspec(naked) void BFMENetworkQueueItem::copyFromQueueNode(void *)
+class BFMENetworkQueueItemcopyFromQueueNodeShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 07Bh
-		_emit 080h
-		_emit 062h
-		_emit 000h
-	}
+public:
+	void copyFromQueueNode(void * a0);
+};
+
+void BFMENetworkQueueItem::copyFromQueueNode(void * a0)
+{
+	((BFMENetworkQueueItemcopyFromQueueNodeShim *)this)->copyFromQueueNode(a0);
 }
+
