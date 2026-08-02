@@ -5520,6 +5520,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Combine_Color_And_Alpha@ParticleBufferClass@@IAEXXZ,,0x00984CB0,357,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Combo_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimComboClass@@@Z,,0x00981EC0,39,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Combo_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimComboClass@@@Z,,0x00954D90,1753,Code/masm_dumps/__Combo_Update_HTreeClass__QAEXABVMatrix3D__PAVHAni_954D90.asm,matched,
+?CommandRequiresAck@@YAHPAVNetCommandMsg@@@Z,,0x00682DB0,116,Code/GameEngine/Source/GameNetwork/NetworkUtil_CommandRequiresAck.cpp,matched,
 ?Compare_No_Case@StringClass@@QBEHPBD@Z,,0x0093CB20,20,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
 ?Compute_Axis_Aligned_Extent@OBBoxClass@@QBEXPAVVector3@@@Z,,0x008DCD20,225,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Compute_Bounding_Box@AABTreeBuilderClass@@AAEXPAUCullNodeStruct@1@@Z,,0x0096C0D0,357,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
@@ -13943,4 +13944,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?CommandRequiresAck@@YAHPAVNetCommandMsg@@@Z,,0x00682DB0,116,Code/GameEngine/Source/GameNetwork/NetworkUtil_CommandRequiresAck.cpp,matched,
