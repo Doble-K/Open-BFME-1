@@ -6338,6 +6338,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Bone_Index@ProxyRecordClass@@QAEHXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Get_Bone_Name@Animatable3DObjClass@@UAEPBDH@Z,,0x00981BE0,23,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Get_Bone_Name@HTreeClass@@QBEPBDH@Z,,0x009522B0,18,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
+?Get_Bone_Transform@Animatable3DObjClass@@UAEABVMatrix3D@@H@Z,,0x009823A0,72,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Get_Bone_Transform@Animatable3DObjClass@@UAEABVMatrix3D@@PBD@Z,,0x00982360,52,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Get_Bone_Transform@RenderObjClass@@UAEABVMatrix3D@@H@Z,,0x006CFA90,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ?Get_Bone_Transform@RenderObjClass@@UAEABVMatrix3D@@PBD@Z,,0x006CFA70,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
@@ -7547,6 +7548,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Remove_Tail@?$DLListClass@USmudgeSet@@@@QAEXXZ,,0x005D3F40,57,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ?Remove_Tail@?$DLListClass@VSortingNodeStruct@@@@QAEXXZ,,0x009394F0,41,Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp,matched,
 ?Remove_Tail@?$DLListClass@VThumbnailManagerClass@@@@QAEXXZ,,0x005D3F00,41,Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp,matched,
+?Render@Animatable3DObjClass@@UAEXAAVRenderInfoClass@@@Z,,0x00982A60,86,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Render@LineGroupClass@@QAEXAAVRenderInfoClass@@@Z,,0x0098ED30,4100,Code/masm_dumps/__Render_LineGroupClass__QAEXAAVRenderInfoClass___Z_98ED30.asm,matched,
 ?Render@OBBoxRenderObjClass@@UAEXAAVRenderInfoClass@@@Z,,0x00957D00,263,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Render@ParticleBufferClass@@UAEXAAVRenderInfoClass@@@Z,,0x0098BE50,184,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
@@ -8180,6 +8182,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Size@Signature@DebugStackwalk@@QBEIXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WWDebug/debug_stack.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?SkipBadBlock@Xfer@@UAEXAAVSnapshot@@I@Z,0x00048B44,0x0006B1D0,3,Code/GameEngine/Source/Common/System/Xfer.cpp,matched,no-op
 ?SkirmishGameOptionsMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,
+?Slave_Update@HTreeClass@@QAEXPBV1@ABVMatrix3D@@@Z,,0x00952340,109,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Slerp@@YAXAAVQuaternion@@ABV1@1M@Z,,0x008DB6D0,302,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Slerp_Setup@@YAXABVQuaternion@@0PAUSlerpInfoStruct@@@Z,,0x008DB800,150,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Solve_Linear_System@Matrix3D@@SA_NAAV1@@Z,,0x008D7420,638,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
@@ -8296,6 +8299,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Update_On_Visibilty@ParticleEmitterClass@@MAEXXZ,,0x0097F550,96,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Update_Pivot_Map@NamedPivotMapClass@@QAEXPBVHTreeClass@@@Z,,0x009736D0,96,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Update_Sub_Object_Bits@RenderObjClass@@MAEXXZ,,0x0091FA80,269,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,protected; retail body reconstructed
+?Update_Sub_Object_Transforms@Animatable3DObjClass@@MAEXXZ,,0x00982AC0,344,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Update_Visual_Particle_State@ParticleBufferClass@@IAEXXZ,,0x00986FC0,3223,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Valid_File@FilePipe@@AAE_NXZ,,0x009E1B80,11,Code/Libraries/Source/WWVegas/WWLib/xpipe.cpp,matched,
 ?Valid_File@FileStraw@@AAE_NXZ,,0x009E7D40,11,Code/Libraries/Source/WWVegas/WWLib/xstraw.cpp,matched,
@@ -12821,6 +12825,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reset@WindowVideoManager@@UAEXXZ,,0x00498F90,149,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
 ?resetFrame@FrameDataManager@@QAEXI_N@Z,,0x006706D0,56,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ?resetIdleWorker@InGameUI@@EAEXXZ,,0x0043FAF0,121,Code/masm_dumps/InGameUI_resetIdleWorker.asm,matched,True body post-hideIdleWorkerLayout at 0x43FAF0 (queue 0x81D754 was int3 pad); field anchors +0x139c/+0x13a0/+0x131c; MASM byte-verified
+?resetPlayerTimeouts@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B980,84,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?resetPlayersVotes@DisconnectManager@@IAEXHIPAVConnectionManager@@@Z,,0x0066B7B0,89,Code/masm_dumps/resetPlayersVotes_DisconnectManager_IAEXHIPAVConnectionManager_Z_0066B7B0_packet249.asm,matched,Certified packet 249 sealed SHA256 467f4dede1a623bf4da01a1c4f2b80fe2d96e72d760a513b6dbf5286ecee2a76
 ?resetRank@Player@@QAEXXZ,,0x000D7CA0,319,Code/GameEngine/Source/Common/RTS/Player_resetRank.asm,matched,exact 319B via MASM; true start 0xD7CA0 (queue 0xD7CAE mid-SEH); SCIENCE:GeneralName unique
 ?resetShader@W3DShaderManager@@SAXW4ShaderTypes@1@@Z,,0x007169D0,40,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
@@ -13918,10 +13923,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?resetPlayerTimeouts@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B980,84,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
-?setNameAndPath@Win32BIGFile@@UAEXABVAsciiString@@@Z,,0x009D1730,189,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSetName.cpp,matched,
-?openFile@Win32BIGFile@@UAEPAVFile@@PBDHHH@Z,,0x009D1560,397,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileOpenArchived.cpp,matched,
-?Get_Bone_Transform@Animatable3DObjClass@@UAEABVMatrix3D@@H@Z,,0x009823A0,72,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
-?Render@Animatable3DObjClass@@UAEXAAVRenderInfoClass@@@Z,,0x00982A60,86,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
-?Slave_Update@HTreeClass@@QAEXPBV1@ABVMatrix3D@@@Z,,0x00952340,109,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
-?Update_Sub_Object_Transforms@Animatable3DObjClass@@MAEXXZ,,0x00982AC0,344,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
