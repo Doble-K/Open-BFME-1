@@ -6,6 +6,12 @@ class TextureClass;
 class VertexMaterialClass;
 struct tThreadInfoType;
 
+class ShaderClass
+{
+private:
+	unsigned int m_bits;
+};
+
 template <class T>
 class VectorClass
 {
@@ -41,3 +47,4 @@ template class VectorClass<Render2DClass *>;
 template class VectorClass<TextureClass *>;
 template class VectorClass<VertexMaterialClass *>;
 template class VectorClass<tThreadInfoType *>;
+template class VectorClass<ShaderClass>;
