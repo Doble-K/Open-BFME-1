@@ -5,16 +5,16 @@ class INI;
 class TransitionDamageFXModuleData
 {
 public:
-    __declspec(dllexport) static void parseFXList(INI *, void *, void *, const void *);
+    static void parseFXList(INI *, void *, void *, const void *);
 };
 
-__declspec(naked) void TransitionDamageFXModuleData::parseFXList(INI *, void *, void *, const void *)
+class TransitionDamageFXModuleDataParseFXListShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 020h
-        _emit 079h
-        _emit 024h
-        _emit 000h
-    }
+public:
+    static void parse(INI *ini, void *store, void *userData, const void *desc);
+};
+
+void TransitionDamageFXModuleData::parseFXList(INI *ini, void *store, void *userData, const void *desc)
+{
+    TransitionDamageFXModuleDataParseFXListShim::parse(ini, store, userData, desc);
 }
