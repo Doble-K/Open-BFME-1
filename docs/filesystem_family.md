@@ -14,8 +14,16 @@ is 22 bytes and does exactly that:
 
     openFile(filename, access)  ->  this->vtable[3](filename, access, 0, 0)
 
-Nothing in the image gives the two extra parameters a non-zero value, so they
-have no names yet.
+The two extra parameters are NOT dead. `Win32LocalFileSystem`'s wide form at
+0x009CDF50 reads the fourth one on its success path — `mov eax,[esp+0x40]`,
+compared against zero, and when it is non-zero the function makes a further
+virtual call on the freshly opened file. So the wide forms are not Zero Hour's
+bodies with two spare arguments; they have BFME-only logic that uses them, and
+recovering one means reconstructing that logic rather than retyping a signature.
+
+What is true is that every *caller* found so far passes zero: the 22-byte narrow
+forwarders push `0, 0`, and `Win32BIGFileSystem::init` passes its overwrite flag
+as 0. So nothing yet says what the parameters mean, only that they matter.
 
 This is why Zero Hour's `Win32LocalFileSystem::openFile` — the big one that
 allocates a `Win32LocalFile` and creates directories on the WRITE path — is at
