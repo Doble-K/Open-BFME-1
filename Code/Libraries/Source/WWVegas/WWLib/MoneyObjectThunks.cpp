@@ -15,24 +15,24 @@ public:
 	void setDisabledUntil(DisabledType, unsigned int);
 };
 
-__declspec(naked) void Money::deposit(unsigned int, bool)
+class MoneyDepositShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0BEh
-		_emit 009h
-		_emit 00Ah
-		_emit 000h
-	}
+public:
+	void deposit(unsigned int amount, bool playSound);
+};
+
+class ObjectSetDisabledUntilShim
+{
+public:
+	void setDisabledUntil(DisabledType type, unsigned int frame);
+};
+
+void Money::deposit(unsigned int amount, bool playSound)
+{
+	((MoneyDepositShim *)this)->deposit(amount, playSound);
 }
 
-__declspec(naked) void Object::setDisabledUntil(DisabledType, unsigned int)
+void Object::setDisabledUntil(DisabledType type, unsigned int frame)
 {
-	__asm {
-		_emit 0E9h
-		_emit 071h
-		_emit 04Bh
-		_emit 019h
-		_emit 000h
-	}
+	((ObjectSetDisabledUntilShim *)this)->setDisabledUntil(type, frame);
 }

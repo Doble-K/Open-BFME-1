@@ -2970,6 +2970,7 @@ name,address,notes
 ?deleteListResources@Radar@@IAEXXZ,0x0002C976
 ?deleteNotificationBox@@YAXXZ,0x000271DD
 ?deposit@Money@@QAEXI_N@Z,0x00027D6D
+?deposit@MoneyDepositShim@@QAEXI_N@Z,0x000C8730,Money::deposit incremental-link thunk target through a TU-local forwarding shim
 ?destroy@AsciiStringDestroyAuxShim@_STL@@SAXPAX0ABU__false_type@2@@Z,0x006FA420,_STL __destroy_aux AsciiString incremental-link thunk target through a TU-local forwarding shim
 ?destroy@BFMENetworkBackendDestructorShim@@QAEXXZ,0x0003242F,BFMENetworkBackend destructor thunk used through a TU-local layout shim
 ?destroy@BFMENetworkDestructorShim@@QAEXXZ,0x000088C8,BFMENetwork destructor thunk used through a TU-local layout shim
@@ -3601,6 +3602,7 @@ name,address,notes
 ?setDataOffset@NetWrapperCommandMsg@@QAEXI@Z,0x00023709,ILT thunk; real body 0xA73EF0
 ?setDefaultControlBarConfig@ControlBar@@IAEXXZ,0x00043E73
 ?setDisabledUntil@Object@@QAEXW4DisabledType@@I@Z,0x0003364A
+?setDisabledUntil@ObjectSetDisabledUntilShim@@QAEXW4DisabledType@@I@Z,0x001C81C0,Object::setDisabledUntil incremental-link thunk target through a TU-local forwarding shim
 ?setDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEXI@Z,0x0000930E,pinharvest x1 (thunk)
 ?setDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEXI@Z,0x00026C33,pinharvest x1 (thunk)
 ?setDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEXI@Z,0x00029505,pinharvest x1 (thunk)
