@@ -3,27 +3,30 @@
 class DeliverPayloadNugget
 {
 public:
-	struct Payload;
+    struct Payload;
 };
 
 struct ParticleSysBoneInfo;
 
 namespace _STL
 {
-	struct random_access_iterator_tag;
+struct random_access_iterator_tag {};
 
-	template <class In, class Out, class Distance>
-	__declspec(naked) Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0AEh
-			_emit 041h
-			_emit 036h
-			_emit 000h
-		}
-	}
+template <class In, class Out, class Distance>
+Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *);
 
-	template DeliverPayloadNugget::Payload *__copy<DeliverPayloadNugget::Payload *, DeliverPayloadNugget::Payload *, int>(DeliverPayloadNugget::Payload *, DeliverPayloadNugget::Payload *, DeliverPayloadNugget::Payload *, const random_access_iterator_tag &, int *);
-	template ParticleSysBoneInfo *__copy<ParticleSysBoneInfo *, ParticleSysBoneInfo *, int>(ParticleSysBoneInfo *, ParticleSysBoneInfo *, ParticleSysBoneInfo *, const random_access_iterator_tag &, int *);
+class DeliverPayloadCopyShim
+{
+public:
+    static void *copy(void *first, void *last, void *result, const random_access_iterator_tag &, int *n);
+};
+
+template <class In, class Out, class Distance>
+Out __copy(In first, In last, Out result, const random_access_iterator_tag &tag, Distance *n)
+{
+    return (Out)DeliverPayloadCopyShim::copy((void *)first, (void *)last, (void *)result, tag, (int *)n);
+}
+
+template DeliverPayloadNugget::Payload *__copy<DeliverPayloadNugget::Payload *, DeliverPayloadNugget::Payload *, int>(DeliverPayloadNugget::Payload *, DeliverPayloadNugget::Payload *, DeliverPayloadNugget::Payload *, const random_access_iterator_tag &, int *);
+template ParticleSysBoneInfo *__copy<ParticleSysBoneInfo *, ParticleSysBoneInfo *, int>(ParticleSysBoneInfo *, ParticleSysBoneInfo *, ParticleSysBoneInfo *, const random_access_iterator_tag &, int *);
 }
