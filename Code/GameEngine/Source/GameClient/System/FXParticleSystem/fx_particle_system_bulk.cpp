@@ -16708,351 +16708,49 @@ OutwardEmissionVelocityModuleTemplate &OutwardEmissionVelocityModuleTemplate::op
 }
 
 // ??4ParticleSystemInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) ParticleSystemInfo &ParticleSystemInfo::operator=(const ParticleSystemInfo &that)
+ParticleSystemInfo &ParticleSystemInfo::operator=(const ParticleSystemInfo &that)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8a
-        __emit 0x47
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x88
-        __emit 0x46
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x0c
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x89
-        __emit 0x56
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0xca
-        __emit 0xb2
-        __emit 0x82
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x14
-        __emit 0x89
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x89
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4a
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x20
-        __emit 0x89
-        __emit 0x56
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x24
-        __emit 0x89
-        __emit 0x46
-        __emit 0x24
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x28
-        __emit 0x89
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x89
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4a
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x0a
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x34
-        __emit 0x89
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x40
-        __emit 0x89
-        __emit 0x46
-        __emit 0x40
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x44
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x44
-        __emit 0x89
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x89
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4a
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0x0a
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x50
-        __emit 0x89
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x5c
-        __emit 0x8b
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x5c
-        __emit 0x89
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x89
-        __emit 0x51
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x08
-        __emit 0x89
-        __emit 0x41
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x68
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x68
-        __emit 0xe8
-        __emit 0x28
-        __emit 0xb2
-        __emit 0x82
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x0a
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x6c
-        __emit 0x89
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x78
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x78
-        __emit 0xe8
-        __emit 0x06
-        __emit 0xb2
-        __emit 0x82
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x7c
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x7c
-        __emit 0x8a
-        __emit 0x97
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x96
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x87
-        __emit 0x81
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x86
-        __emit 0x81
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x8f
-        __emit 0x82
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x8e
-        __emit 0x82
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x97
-        __emit 0x83
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x96
-        __emit 0x83
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x87
-        __emit 0x84
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0x84
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x89
-        __emit 0x51
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x08
-        __emit 0x89
-        __emit 0x51
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x41
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x8f
-        __emit 0x94
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x8e
-        __emit 0x94
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const unsigned char *source = (const unsigned char *)&that;
+    unsigned char *destination = (unsigned char *)this;
+    destination[4] = source[4];
+    *(unsigned int *)(destination + 8) = *(const unsigned int *)(source + 8);
+    *(unsigned int *)(destination + 0x0c) = *(const unsigned int *)(source + 0x0c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x10))->assign(source + 0x10);
+
+    struct ThreeDwords {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+    };
+
+    *(ThreeDwords *)(destination + 0x14) = *(const ThreeDwords *)(source + 0x14);
+    *(unsigned int *)(destination + 0x20) = *(const unsigned int *)(source + 0x20);
+    *(unsigned int *)(destination + 0x24) = *(const unsigned int *)(source + 0x24);
+    *(ThreeDwords *)(destination + 0x28) = *(const ThreeDwords *)(source + 0x28);
+    *(ThreeDwords *)(destination + 0x34) = *(const ThreeDwords *)(source + 0x34);
+    *(unsigned int *)(destination + 0x40) = *(const unsigned int *)(source + 0x40);
+    *(ThreeDwords *)(destination + 0x44) = *(const ThreeDwords *)(source + 0x44);
+    *(ThreeDwords *)(destination + 0x50) = *(const ThreeDwords *)(source + 0x50);
+    *(ThreeDwords *)(destination + 0x5c) = *(const ThreeDwords *)(source + 0x5c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x68))->assign(source + 0x68);
+    *(ThreeDwords *)(destination + 0x6c) = *(const ThreeDwords *)(source + 0x6c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x78))->assign(source + 0x78);
+    *(unsigned int *)(destination + 0x7c) = *(const unsigned int *)(source + 0x7c);
+    destination[0x80] = source[0x80];
+    destination[0x81] = source[0x81];
+    destination[0x82] = source[0x82];
+    destination[0x83] = source[0x83];
+
+    struct FourDwords {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+        unsigned int value3;
+    };
+
+    *(FourDwords *)(destination + 0x84) = *(const FourDwords *)(source + 0x84);
+    *(unsigned int *)(destination + 0x94) = *(const unsigned int *)(source + 0x94);
+    return *this;
 }
 
 // ??4ParticleSystemTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
