@@ -13,13 +13,13 @@ public:
     Upgrade *addUpgrade(const UpgradeTemplate *, UpgradeStatusType);
 };
 
-__declspec(naked) Upgrade *Player::addUpgrade(const UpgradeTemplate *, UpgradeStatusType)
+class PlayerAddUpgradeShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 094h
-        _emit 021h
-        _emit 009h
-        _emit 000h
-    }
+public:
+    Upgrade *add(const UpgradeTemplate *tmpl, UpgradeStatusType status);
+};
+
+Upgrade *Player::addUpgrade(const UpgradeTemplate *tmpl, UpgradeStatusType status)
+{
+    return ((PlayerAddUpgradeShim *)this)->add(tmpl, status);
 }
