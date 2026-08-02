@@ -10175,7 +10175,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@HordeAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00123FB0,113,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@HordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00115BC0,110,Code/GameEngine/Source/GameLogic/AI/HordeContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@HordeGarrisonContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00115FB0,110,Code/GameEngine/Source/GameLogic/AI/HordeGarrisonContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
-?friend_newModuleData@HordeSiegeEngineContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00116360,110,Code/masm_dumps/HordeSiegeEngineContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
+?friend_newModuleData@HordeSiegeEngineContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00116360,110,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@HordeUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00114320,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@HorseHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00115DE0,110,Code/masm_dumps/HorseHordeContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@InactiveBody@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/GameEngine/Source/GameLogic/Object/Body/InactiveBodyModuleDataFactory.cpp,matched,Luna Open-BFME8 exact C++ base module-data factory ICF alias
