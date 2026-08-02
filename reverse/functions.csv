@@ -10067,7 +10067,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@BaikonurLaunchPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F8B0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@BannerCarrierUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119C40,107,Code/masm_dumps/BannerCarrierUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@BaseRegenerateUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00117E40,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@BaseUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D190,107,Code/masm_dumps/BaseUpgrade_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x99; Ghidra confirmed
+?friend_newModuleData@BaseUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D190,107,Code/GameEngine/Source/GameLogic/Object/Upgrade/BaseUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@BattlePlanUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119D50,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@BeaconClientUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00121BF0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
 ?friend_newModuleData@BezierProjectileBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001152C0,110,Code/masm_dumps/BezierProjectileBehavior_friend_newModuleData.asm,matched,Retail registration dp017 proves BezierProjectileBehavior data factory
