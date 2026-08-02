@@ -1982,7 +1982,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PartitionFilterWithinAttackRange@@QAE@PBVObject@@@Z,,0x00087A50,18,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,icf-owner=??0StaticNameKey@@QAE@PBD@Z
 ??0PartitionSolver@@QAE@ABV?$vector@U?$pair@W4ObjectID@@I@_STL@@V?$allocator@U?$pair@W4ObjectID@@I@_STL@@@2@@_STL@@0W4SolutionType@@@Z,,0x00095FB0,135,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
 ??0PassiveAreaEffectBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00202100,211,Code/masm_dumps/PassiveAreaEffectBehavior_constructor.asm,matched,Exact 211B @ 0x00202100; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1175D0
-??0PassiveAreaEffectBehaviorModuleData@@QAE@XZ,,0x002027A0,123,Code/masm_dumps/PassiveAreaEffectBehaviorModuleData_constructor.asm,matched,Exact 123B @ 0x002027A0; Exact retail MASM ModuleData ctor; unique factory 0x117650
+??0PassiveAreaEffectBehaviorModuleData@@QAE@XZ,,0x002027A0,123,Code/GameEngine/Source/GameLogic/Object/Behavior/PassiveAreaEffectBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 123B ModuleData constructor
 ??0PathfindServicesInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,ICF alias of existing matched body
 ??0Payload@DeliverPayloadNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
 ??0PeerRequest@@QAE@XZ,,0x004D51B0,220,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
