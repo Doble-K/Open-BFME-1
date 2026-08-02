@@ -10251,7 +10251,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@UpgradeSoundSelectorClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121ED0,107,Code/masm_dumps/UpgradeSoundSelectorClientBehavior_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xF5 Ghidra confirmed
 ?friend_newModuleData@VeterancyCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00125FD0,129,Code/masm_dumps/VeterancyCrateCollide_friend_newModuleData.asm,matched,ModuleFactory reg 0xC6 binds data factory; ICF alias of ConvertToCarBomb at 0x125FD0; drift 0x12B63B was int3 pad
 ?friend_newModuleData@VeterancyGainCreate@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@W3DDebrisDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/masm_dumps/W3DDebrisDraw_friend_newModuleData.asm,matched,retail W3DModuleFactory registration ordinal 1; shared ICF body
 ?friend_newModuleData@W3DDependencyModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DLaserDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00114320,107,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F9C0,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
@@ -13840,3 +13839,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?friend_newModuleData@W3DDebrisDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DDebrisDrawModuleDataFactory.cpp,matched,Luna Open-BFME8 exact C++ W3D factory ICF alias
