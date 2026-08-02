@@ -13913,3 +13913,10 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?doRecv@Transport@@QAE_NXZ,,0x00683610,431,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
+?getIncomingBytesPerSecond@Transport@@QAEMXZ,,0x00683900,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
+?getIncomingPacketsPerSecond@Transport@@QAEMXZ,,0x00683A80,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
+?getOutgoingBytesPerSecond@Transport@@QAEMXZ,,0x00683C00,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
+?getOutgoingPacketsPerSecond@Transport@@QAEMXZ,,0x00683D80,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
+?getUnknownBytesPerSecond@Transport@@QAEMXZ,,0x00683F00,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
+?getUnknownPacketsPerSecond@Transport@@QAEMXZ,,0x00684080,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,

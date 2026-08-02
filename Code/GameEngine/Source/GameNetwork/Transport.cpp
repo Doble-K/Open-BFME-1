@@ -28,6 +28,10 @@
 
 #include "GameNetwork/Transport.h"
 
+// Retail's packet check calls the WWLib CRC through the thunk at 0x0000A984.
+extern unsigned long CRC_Memory( const unsigned char *data, unsigned long length, unsigned long crc );
+
+
 // ??0Transport@@QAE@XZ present-unmatched
 /**
  * BFME does in the constructor what the reference does in init: clear both
@@ -51,7 +55,7 @@ Transport::Transport(void)
 	m_udpsock = NULL;
 	m_statisticsSlot = 0;
 	m_lastSecond = 0;
-	m_unidentified410E0 = 0;
+	m_badPackets = 0;
 
 	Int i;
 	for (i=0; i<MAX_MESSAGES; ++i)
@@ -139,4 +143,151 @@ Bool Transport::doSend() {
 	} // for (i=0; i<MAX_MESSAGES; ++i)
 
 	return retval;
+}
+
+// This assumes the buf is a multiple of 4 bytes.  Extra is not encrypted.
+static inline void decryptBuf( unsigned char *buf, Int len )
+{
+	UnsignedInt mask = 0x38D9B7D4;
+
+	UnsignedInt *uintPtr = (UnsignedInt *) (buf);
+
+	for (int i=0 ; i<len/4 ; i++) {
+		*uintPtr = htonl(*uintPtr);
+		*uintPtr = (*uintPtr) ^ mask;
+		uintPtr++;
+		mask -= 0x7F39C50E;
+	}
+}
+
+Bool Transport::doRecv()
+{
+	if (!m_udpsock)
+	{
+		return FALSE;
+	}
+
+	// The reference starts this TRUE and only clears it on a socket error, so it
+	// answers "did the socket behave". BFME starts it FALSE and sets it only
+	// when a packet actually lands in m_inBuffer, so it answers "did anything
+	// arrive" -- and a read error is no longer distinguishable from a quiet
+	// socket.
+	Bool retval = FALSE;
+
+	sockaddr_in from;
+	TransportMessage incomingMessage;
+
+	Int len;
+	while ( (len=m_udpsock->Read((unsigned char *)&incomingMessage, sizeof(TransportMessage), &from)) > 0 )
+	{
+		decryptBuf((unsigned char *)&incomingMessage, len);
+
+		// The reference fills these in on the m_inBuffer slot it picks. BFME
+		// fills in the local and copies the whole struct into the slot, which is
+		// why the slot store below is an assignment rather than a memcpy.
+		incomingMessage.addr = ntohl(from.sin_addr.S_un.S_addr);
+		incomingMessage.port = ntohs(from.sin_port);
+
+		UnsignedInt msgLen = len - sizeof(TransportMessageHeader);
+		incomingMessage.length = msgLen;
+
+		// Where the reference checks a magic number through isGeneralsPacket,
+		// BFME recomputes the CRC over the payload and compares it against the
+		// header. That check is the reason BFME's header has no magic field left
+		// to check, and it is the only validation an incoming packet gets.
+		if (msgLen <= 0 || msgLen > MAX_MESSAGE_LEN ||
+				incomingMessage.header.crc != CRC_Memory(incomingMessage.data, msgLen, 0))
+		{
+			++m_badPackets;
+			m_unknownPackets[m_statisticsSlot]++;
+			m_unknownBytes[m_statisticsSlot] += len;
+			continue;
+		}
+
+		m_incomingPackets[m_statisticsSlot]++;
+		m_incomingBytes[m_statisticsSlot] += len;
+
+		for (int i=0; i<MAX_MESSAGES; ++i)
+		{
+			if (m_inBuffer[i].length == 0)
+			{
+				// Empty slot; use it
+				m_inBuffer[i] = incomingMessage;
+				retval = TRUE;
+				break;
+			}
+		}
+	}
+
+	return retval;
+}
+
+// The six bandwidth metrics are the reference's, unchanged, and retail lays
+// them out in this order -- each one identified by the statistics array its
+// unrolled loop indexes.
+
+Real Transport::getIncomingBytesPerSecond( void )
+{
+	Real val = 0.0;
+	for (int i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
+	{
+		if (i != m_statisticsSlot)
+			val += m_incomingBytes[i];
+	}
+	return val / (MAX_TRANSPORT_STATISTICS_SECONDS-1);
+}
+
+Real Transport::getIncomingPacketsPerSecond( void )
+{
+	Real val = 0.0;
+	for (int i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
+	{
+		if (i != m_statisticsSlot)
+			val += m_incomingPackets[i];
+	}
+	return val / (MAX_TRANSPORT_STATISTICS_SECONDS-1);
+}
+
+Real Transport::getOutgoingBytesPerSecond( void )
+{
+	Real val = 0.0;
+	for (int i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
+	{
+		if (i != m_statisticsSlot)
+			val += m_outgoingBytes[i];
+	}
+	return val / (MAX_TRANSPORT_STATISTICS_SECONDS-1);
+}
+
+Real Transport::getOutgoingPacketsPerSecond( void )
+{
+	Real val = 0.0;
+	for (int i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
+	{
+		if (i != m_statisticsSlot)
+			val += m_outgoingPackets[i];
+	}
+	return val / (MAX_TRANSPORT_STATISTICS_SECONDS-1);
+}
+
+Real Transport::getUnknownBytesPerSecond( void )
+{
+	Real val = 0.0;
+	for (int i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
+	{
+		if (i != m_statisticsSlot)
+			val += m_unknownBytes[i];
+	}
+	return val / (MAX_TRANSPORT_STATISTICS_SECONDS-1);
+}
+
+Real Transport::getUnknownPacketsPerSecond( void )
+{
+	Real val = 0.0;
+	for (int i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
+	{
+		if (i != m_statisticsSlot)
+			val += m_unknownPackets[i];
+	}
+	return val / (MAX_TRANSPORT_STATISTICS_SECONDS-1);
 }

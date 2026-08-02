@@ -15,7 +15,7 @@
 //   0x40E08  m_statisticsSlot   idiv by 30 in doSend, then used as an index
 //   0x40E0C  m_lastSecond       compared against timeGetTime()+1000
 //   0x40E10  six UnsignedInt[30] statistics arrays
-//   0x410E0  one more UnsignedInt the constructor zeroes; unidentified
+//   0x410E0  m_badPackets, a cumulative bad-packet count doRecv bumps
 //
 // The reference puts m_statisticsSlot and m_lastSecond *after* the statistics
 // arrays and carries m_useLatency/m_usePacketLoss between m_udpsock and them;
@@ -75,9 +75,10 @@ private:
 	UnsignedInt m_unknownPackets[MAX_TRANSPORT_STATISTICS_SECONDS];		// 0x40FF0
 	UnsignedInt m_outgoingPackets[MAX_TRANSPORT_STATISTICS_SECONDS];	// 0x41068
 
-	// Zeroed by the constructor alongside m_statisticsSlot and m_lastSecond, and
-	// not touched by anything else landed here, so its meaning is still open.
-	UnsignedInt m_unidentified410E0;				// this+0x410E0
+	// A cumulative count of packets doRecv threw away, incremented next to the
+	// per-second m_unknownPackets slot but never reset or read by anything in
+	// this TU. The reference has no equivalent.
+	UnsignedInt m_badPackets;						// this+0x410E0
 };
 
 #endif // _TRANSPORT_H_
