@@ -15,13 +15,13 @@ public:
     void friend_setRepairedToFXString(BodyDamageType, int, AsciiString);
 };
 
-__declspec(naked) void TerrainRoadType::friend_setRepairedToFXString(BodyDamageType, int, AsciiString)
+class TerrainRoadTypeSetRepairedToFXStringShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 028h
-        _emit 056h
-        _emit 05Eh
-        _emit 000h
-    }
+public:
+    void set(BodyDamageType type, int index, AsciiString name);
+};
+
+void TerrainRoadType::friend_setRepairedToFXString(BodyDamageType type, int index, AsciiString name)
+{
+    ((TerrainRoadTypeSetRepairedToFXStringShim *)this)->set(type, index, name);
 }
