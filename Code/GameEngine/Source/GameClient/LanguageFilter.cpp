@@ -85,7 +85,6 @@ void LanguageFilter::reset() {
 	init();
 }
 
-// ?update@LanguageFilter@@UAEXXZ present-unmatched
 void LanguageFilter::update() {
 }
 

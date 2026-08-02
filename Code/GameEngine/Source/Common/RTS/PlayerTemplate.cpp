@@ -299,7 +299,6 @@ void PlayerTemplateStore::init()
 }
 
 //-----------------------------------------------------------------------------
-// ?reset@PlayerTemplateStore@@UAEXXZ present-unmatched
 void PlayerTemplateStore::reset()
 {
 // don't reset this list here; we want to retain this info.
@@ -307,7 +306,6 @@ void PlayerTemplateStore::reset()
 }
 
 //-----------------------------------------------------------------------------
-// ?update@PlayerTemplateStore@@UAEXXZ present-unmatched
 void PlayerTemplateStore::update()
 {
 	// nothing

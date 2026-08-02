@@ -189,7 +189,6 @@ CDManager::~CDManager()
 // CDManager::init
 //============================================================================
 
-// ?init@CDManager@@ present-unmatched
 void CDManager::init( void )
 {
 
@@ -199,7 +198,6 @@ void CDManager::init( void )
 // CDManager::update
 //============================================================================
 
-// ?update@CDManager@@ present-unmatched
 void CDManager::update( void )
 {
 	// Every so often, check to make sure the CD is still in the drive
@@ -212,7 +210,6 @@ void CDManager::update( void )
 // CDManager::reset
 //============================================================================
 
-// ?reset@CDManager@@ present-unmatched
 void CDManager::reset( void )
 {
 

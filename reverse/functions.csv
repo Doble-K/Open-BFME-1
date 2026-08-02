@@ -11647,6 +11647,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@BFMEConnectionManager@@QAEXXZ,,0x00669050,694,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?init@BFMENetwork@@QAEXXZ,,0x006548C0,204,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper vtable slot +0x04; creates backend and calls backend slot +0x04
 ?init@ButtonFlashTransition@@UAEXPAVGameWindow@@@Z,,0x0059B070,161,Code/masm_dumps/_icf__init_ButtonFlashTransition_UAEXPAVGameWindow_Z_59B070.asm,matched,ICF true init @0x59B070/161; unique Gradient push; queue 0x5A07ED was int3+other fn
+?init@CDManager@@UAEXXZ,,0x00101C30,1,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,slot 1 of the CDManager vtable; one byte so the slot is the evidence not the body
 ?init@CampaignManager@@QAEXXZ,,0x005BB8C0,118,Code/GameEngine/Source/Common/promoted__init_CampaignManager_QAEXXZ_005BB8C0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 118B
 ?init@ControlBar@@UAEXXZ,,0x004A0F70,3660,Code/masm_dumps/_str2__init_ControlBar_UAEXXZ_4A0F70.asm,matched,
 ?init@ControlBarArrowTransition@@UAEXPAVGameWindow@@@Z,,0x0059B980,23,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
@@ -12786,6 +12787,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reset@Anim2D@@QAEXXZ,,0x005BA250,96,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?reset@AnimateWindowManager@@UAEXXZ,,0x0045DAB0,36,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?reset@BaseHeightMapRenderObjClass@@UAEXXZ,,0x006D03B0,372,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_reset.asm,matched,MASM exact 372B @ 0x006D03B0; queue 0x006D041C was INSIDE (+0x6C)
+?reset@CDManager@@UAEXXZ,,0x00101C70,1,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,slot 4 of the CDManager vtable; one byte so the slot is the evidence not the body
 ?reset@ControlBar@@UAEXXZ,,0x004A2F80,684,Code/masm_dumps/_cache__reset_ControlBar__UAEXXZ_4A2F80.asm,matched,true size 684B; row claimed 583B
 ?reset@DisplayString@@UAEXXZ,,0x0040FFB0,20,Code/GameEngine/Source/GameClient/DisplayString.cpp,matched,
 ?reset@FirewallHelperClass@@QAEXXZ,,0x0066EBF0,66,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
@@ -12799,6 +12801,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reset@NameKeyGenerator@@UAEXXZ,,0x0008FE90,20,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,
 ?reset@NetCommandWrapperList@@QAEXXZ,,0x006765C0,44,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ?reset@PlayerList@@UAEXXZ,,0x000DF2B0,22,Code/GameEngine/Source/Common/RTS/PlayerList.cpp,matched,
+?reset@PlayerTemplateStore@@UAEXXZ,,0x000E0BC0,1,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,slot 4 of the PlayerTemplateStore vtable; one byte so the slot is the evidence
 ?reset@Radar@@UAEXXZ,,0x001077A0,28,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
 ?reset@SimpleObjectIterator@@AAEXXZ,,0x001DDD50,7,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,Unique padded iterator reset
 ?reset@SmudgeManager@@UAEXXZ,,0x005D3F90,163,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
@@ -13499,6 +13502,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@BridgeBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x001F38A0,721,Code/masm_dumps/_sa11__update_BridgeBehavior__UAE_AW4UpdateSleepTime__XZ_1F38A0.asm,matched,string-anchor Open-BFME4+Grok ParentObject
 ?update@BridgeScaffoldBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x0073327B,580,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior_update.asm,matched,exact 580B via MASM
 ?update@ButtonFlashTransition@@UAEXH@Z,,0x0059B070,161,Code/masm_dumps/_sa12__update_ButtonFlashTransition__UAEXH_Z_59B070.asm,matched,string-anchor Open-BFME4+Grok Gradient
+?update@CDManager@@UAEXXZ,,0x00101C40,33,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,slot 5 of the CDManager vtable via tools/subsystem_virtuals.py; 33 real bytes so the body proves it too
 ?update@CleanUpState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DeliverPayloadAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@ContinueState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@ControlBar@@,,0x0049FC90,818,Code/masm_dumps/_str3__update_ControlBar__49FC90.asm,matched,
@@ -13518,6 +13522,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@GameWindowManager@@UAEXXZ,,0x0047C320,21,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,processDestroyList then TheTransitionHandler->update() through slot 5 not ZH slot 4
 ?update@InGameUI@@,,0x004410C0,1234,Code/masm_dumps/_str2__update_InGameUI__4410C0.asm,matched,
 ?update@LANAPI@@,,0x006870F0,2030,Code/masm_dumps/_str__update_LANAPI__6870F0.asm,matched,
+?update@LanguageFilter@@UAEXXZ,,0x0044CB30,1,Code/GameEngine/Source/GameClient/LanguageFilter.cpp,matched,slot 5 of the LanguageFilter vtable; one byte so the slot is the evidence
 ?update@LocomotorStore@@UAEXXZ,,0x005D2CE0,1,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,slot 5 of LocomotorStore vtable 0x01110104; slot order pinned by SubsystemLegend own vtable where slot 1 is init slot 4 reset slot 5 update - corroborated by PlayerList and TeamFactory
 ?update@MainMenuMediumScaleUpTransition@@UAEXH@Z,,0x0059E010,161,Code/masm_dumps/update_MainMenuMediumScaleUpTransition_UAEXH_Z_0059E010_packet339.asm,matched,Certified packet 339; Ghidra entry vtable slot constructor chain Medium string xref and ret boundary; retail SHA256 3ee58d8724c86dc1cd9eaee15cd97b2499a862e8d5b11672386c7d9aedab2c29
 ?update@MainMenuScaleUpTransition@@UAEXH@Z,,0x0059E610,150,Code/masm_dumps/update_MainMenuScaleUpTransition_UAEXH_Z_0059E610_packet340.asm,matched,Certified packet 340 retail SHA256 a279f021d9dc1d0a9987eac2fb852f65b8868395d6a2aaf4defcec1778a27f4a
@@ -13526,6 +13531,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@ObjectWeaponStatusHelper@@UAE?AW4UpdateSleepTime@@XZ,,0x001CB9D0,14,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?update@ParticleSystem@@UAE_NH@Z,,0x005FF310,767,Code/masm_dumps/_sa7__update_ParticleSystem__UAE_NH_Z_5FF310.asm,matched,Exact 767B Open-BFME4
 ?update@Player@@QAEXXZ,,0x000D9A80,551,Code/GameEngine/Source/Common/RTS/Player_update.asm,matched,MASM exact; true body 0xD9A80/551 (queue 0xD5972 int3); unique MSG_ENABLE_RETALIATION_MODE 0x461
+?update@PlayerTemplateStore@@UAEXXZ,,0x000E0BD0,1,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,slot 5 of the PlayerTemplateStore vtable; one byte so the slot is the evidence
 ?update@PoisonedBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x00202BD0,48,Code/GameEngine/Source/Common/promoted_update_PoisonedBehavior_UAE_AW4UpdateSleepTime_XZ_00202BD0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 48B
 ?update@ReverseSoundTransition@@UAEXH@Z,,0x0059EED0,52,Code/masm_dumps/ReverseSoundTransition_update_59EED0.asm,matched,Certified packet 296 vtable-owned 52-byte retail body SHA256 3b2b253cd7c657a90ec948cec3cf4784df7e6464ad6166e20a2db846f58b6b77
 ?update@ScaleUpTransition@@UAEXH@Z,,0x0059F060,144,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
