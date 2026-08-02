@@ -376,3 +376,35 @@ control flow, suspect an inlined operator or accessor whose receiver got hoisted
 and try spelling the call out. Hoisting an address above a branch is cheap to
 cause and expensive to spot, because the byte that differs is nowhere near the
 line that caused it.
+
+## Combo_Update's fade is accumulated, and it calls Multiply where Blend_Update inlines it
+
+Two things fall out of retail's `HTreeClass::Combo_Update` (0x00954D90, 1753
+bytes) that do not carry over from its sibling.
+
+**The multiply spelling does not generalise.** Retail calls `Matrix3D::Multiply`
+here -- `call 0x008D80C0` at 0x00954E99 -- where `Blend_Update` inlines the same
+operation through `Matrix3D::mul`. So the two spellings really are chosen per
+call site in the original source, and substituting one for the other everywhere
+is wrong in both directions.
+
+**The fade is summed, not lerped.** Inside the same loop that ors the
+visibilities together:
+
+```
+009553C5  call dword ptr [eax + 0x34]      ; the slot-13 fade getter
+009553C8  fadd dword ptr [edi + 0xac]      ; += PivotFade
+009553CE  fstp dword ptr [edi + 0xac]
+009553D7  fld  dword ptr [esp + 0x48]      ; a running count
+009553DC  fadd dword ptr [0x01075334]      ; += 1.0f
+009553E5  fstp dword ptr [esp + 0x48]
+```
+
+and the count is reloaded once the loop ends, so the accumulated fade is
+averaged over the animations that contributed. That is a third fade rule, after
+`Anim_Update`'s straight read and `Blend_Update`'s lerp.
+
+The C++ body also compiles 96 bytes **longer** than retail's, which points at
+the pivot-weight-map handling in the reference having no counterpart in BFME --
+retail's HAnimComboClass calls in this function are `Get_Motion`, `Get_Frame`
+and three others, with nothing that looks like `Get_Pivot_Weight_Map`.

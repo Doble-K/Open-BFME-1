@@ -836,6 +836,7 @@ void HTreeClass::Combo_Update
 
 	Pivot[0].Transform = root;
 	Pivot[0].IsVisible = true;
+	Pivot[0].PivotFade = 1.0f;
 	
 	int num_anim_pivots = 100000;
 	for ( int anim_num = 0; anim_num < anim->Get_Num_Anims(); anim_num++ ) {
@@ -849,6 +850,8 @@ void HTreeClass::Combo_Update
 		
 		pivot = &Pivot[piv_idx];
 		assert(pivot->Parent != NULL);
+		// Multiply(), not mul(): unlike Blend_Update, retail calls this one here
+		// (call 0x008D80C0 at 0x00954E99), so the out-of-line spelling is right.
 		Matrix3D::Multiply(pivot->Parent->Transform,pivot->BaseTransform,&(pivot->Transform));
 		
 		if (piv_idx < num_anim_pivots) {
