@@ -34,3 +34,8 @@ Code/GameEngine/Source/GameNetwork/native_packet_crc.cpp
 # Connection::doSend: retail's instructions exactly; MSVC assigns three locals
 # to different stack slots. See the note in the file.
 Code/GameEngine/Source/GameNetwork/Connection_doSend.cpp
+# The four by-value-string readers: retail's instructions exactly bar one
+# adjacent pair around the temporary. See the note in NetPacket_read_chat.cpp.
+Code/GameEngine/Source/GameNetwork/NetPacket_read_gamespy.cpp
+Code/GameEngine/Source/GameNetwork/NetPacket_read_chat.cpp
+

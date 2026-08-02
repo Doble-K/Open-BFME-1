@@ -331,12 +331,8 @@ class NetPacket
 protected:
 	static NetCommandMsg *readFrameMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readPlayerFrameRatiosMessage(UnsignedByte *data, Int &i);
-	static NetCommandMsg *readDisconnectChatMessage(UnsignedByte *data, Int &i);
-	static NetCommandMsg *readChatMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readFileMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readFileAnnounceMessage(UnsignedByte *data, Int &i);
-	static NetCommandMsg *readRequestGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i);
-	static NetCommandMsg *readGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readRequestPlayerLeaveMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readAckBothMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readAckStage1Message(UnsignedByte *data, Int &i);
@@ -573,70 +569,6 @@ NetCommandMsg *NetPacket::readRequestFrameDataMessage(UnsignedByte *data, Int &i
 	return msg;
 }
 
-
-// The two GameSpy stats-authkey readers. Each string arrives NUL-terminated
-// rather than length-prefixed, which is why they copy byte by byte into a
-// _MAX_PATH buffer instead of memcpy-ing a counted run like the chat readers do.
-// 0x0067EB80, 187 bytes and 0x0067EC70, 251 bytes: retail's instruction for
-// instruction, one pair apart. Retail writes the temporary's unwind record
-// before loading its address into ecx; this source emits the two the other way
-// round. The same source shape matches exactly in readFileAnnounceMessage, where
-// the setter is inline and the temporary is not a by-value argument, so the
-// tie-break is specific to passing the string by value.
-// ?readRequestGameSpyStatsAuthKeyMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z present-unmatched
-NetCommandMsg *NetPacket::readRequestGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i)
-{
-	BFMENetRequestGameSpyStatsAuthKeyCommandMsg *msg = new BFMENetRequestGameSpyStatsAuthKeyCommandMsg;
-
-	char text[256];
-	char *c = text;
-
-	while (data[i] != 0) {
-		*c = data[i];
-		++c;
-		++i;
-	}
-	*c = 0;
-	++i;
-	msg->setText1C(text);
-
-	return msg;
-}
-
-// ?readGameSpyStatsAuthKeyMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z present-unmatched
-NetCommandMsg *NetPacket::readGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i)
-{
-	BFMENetGameSpyStatsAuthKeyCommandMsg *msg = new BFMENetGameSpyStatsAuthKeyCommandMsg;
-
-	char text[256];
-	char *c = text;
-
-	while (data[i] != 0) {
-		*c = data[i];
-		++c;
-		++i;
-	}
-	*c = 0;
-	++i;
-	msg->setText1C(text);
-
-	// One buffer, refilled: retail's frame is 0x104 bytes, which is the single
-	// 256-byte run plus the temporary AsciiString.
-	c = text;
-
-	while (data[i] != 0) {
-		*c = data[i];
-		++c;
-		++i;
-	}
-	*c = 0;
-	++i;
-	msg->setText20(text);
-
-	return msg;
-}
-
-
 // The filename arrives in its portable form and NUL-terminated, so both file
 // readers copy it out byte by byte before anything else.
 NetCommandMsg *NetPacket::readFileMessage(UnsignedByte *data, Int &i)
@@ -695,55 +627,3 @@ NetCommandMsg *NetPacket::readFileAnnounceMessage(UnsignedByte *data, Int &i)
 	return msg;
 }
 
-
-// Both chat readers are retail's instruction for instruction except for the one
-// pair described above readRequestGameSpyStatsAuthKeyMessage -- the same swap,
-// in the same place, for the same reason: a temporary string handed to an
-// out-of-line function by value.
-// ?readDisconnectChatMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z present-unmatched
-//
-// Chat text is length-prefixed rather than NUL-terminated: one byte of character
-// count, then that many UnsignedShorts. The terminator is written afterwards, so
-// the buffer holds 256 characters and never a 257th.
-NetCommandMsg *NetPacket::readDisconnectChatMessage(UnsignedByte *data, Int &i)
-{
-	NetDisconnectChatCommandMsg *msg = new NetDisconnectChatCommandMsg;
-
-	UnsignedShort text[256];
-	UnsignedByte length;
-	memcpy(&length, data + i, sizeof(UnsignedByte));
-	++i;
-	memcpy(text, data + i, length * sizeof(UnsignedShort));
-	i += length * sizeof(UnsignedShort);
-	text[length] = 0;
-
-	UnicodeString unitext;
-	unitext.set(text);
-
-	msg->setText(unitext);
-	return msg;
-}
-
-// ?readChatMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z present-unmatched
-NetCommandMsg *NetPacket::readChatMessage(UnsignedByte *data, Int &i)
-{
-	NetChatCommandMsg *msg = new NetChatCommandMsg;
-
-	UnsignedShort text[256];
-	UnsignedByte length;
-	Int playerMask;
-	memcpy(&length, data + i, sizeof(UnsignedByte));
-	++i;
-	memcpy(text, data + i, length * sizeof(UnsignedShort));
-	i += length * sizeof(UnsignedShort);
-	text[length] = 0;
-	memcpy(&playerMask, data + i, sizeof(Int));
-	i += sizeof(Int);
-
-	UnicodeString unitext;
-	unitext.set(text);
-
-	msg->setText(unitext);
-	msg->setPlayerMask(playerMask);
-	return msg;
-}
