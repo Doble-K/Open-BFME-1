@@ -2,83 +2,21 @@
 // Grok promote from masm_dumps — retail 0x0013FDB0 size 71
 // was: Code/masm_dumps/ThingTemplate_setCopiedFromDefault.asm
 
+class ThingTemplateSubobjectShim { public: void set(int); };
 class ThingTemplate { public: void setCopiedFromDefault(void); };
 
 // ?setCopiedFromDefault@ThingTemplate@@QAEXXZ
-__declspec(naked) void ThingTemplate::setCopiedFromDefault(void)
+void ThingTemplate::setCopiedFromDefault(void)
 {
-__asm {
-		_emit 056h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 06Ah
-		_emit 001h
-		_emit 08Dh
-		_emit 08Eh
-		_emit 094h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 0C6h
-		_emit 086h
-		_emit 089h
-		_emit 004h
-		_emit 000h
-		_emit 000h
-		_emit 001h
-		_emit 0C6h
-		_emit 086h
-		_emit 08Ah
-		_emit 004h
-		_emit 000h
-		_emit 000h
-		_emit 001h
-		_emit 0E8h
-		_emit 09Bh
-		_emit 0AEh
-		_emit 0F0h
-		_emit 0FFh
-		_emit 06Ah
-		_emit 001h
-		_emit 08Dh
-		_emit 08Eh
-		_emit 0A0h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 0E8h
-		_emit 08Eh
-		_emit 0AEh
-		_emit 0F0h
-		_emit 0FFh
-		_emit 06Ah
-		_emit 001h
-		_emit 08Dh
-		_emit 08Eh
-		_emit 0ACh
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 0E8h
-		_emit 081h
-		_emit 0AEh
-		_emit 0F0h
-		_emit 0FFh
-		_emit 06Ah
-		_emit 001h
-		_emit 08Dh
-		_emit 08Eh
-		_emit 0B8h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 0E8h
-		_emit 074h
-		_emit 0AEh
-		_emit 0F0h
-		_emit 0FFh
-		_emit 05Eh
-		_emit 0C3h
-	}
+	ThingTemplateSubobjectShim *first = (ThingTemplateSubobjectShim *)((unsigned char *)this + 0x294);
+	*(unsigned char *)((unsigned char *)this + 0x489) = 1;
+	*(unsigned char *)((unsigned char *)this + 0x48A) = 1;
+	first->set(1);
+	ThingTemplateSubobjectShim *second = (ThingTemplateSubobjectShim *)((unsigned char *)this + 0x2A0);
+	second->set(1);
+	ThingTemplateSubobjectShim *third = (ThingTemplateSubobjectShim *)((unsigned char *)this + 0x2AC);
+	third->set(1);
+	ThingTemplateSubobjectShim *fourth = (ThingTemplateSubobjectShim *)((unsigned char *)this + 0x2B8);
+	fourth->set(1);
 }
 
