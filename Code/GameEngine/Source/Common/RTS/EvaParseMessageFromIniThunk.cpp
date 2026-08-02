@@ -8,13 +8,13 @@ public:
     __declspec(dllexport) static void parseEvaMessageFromIni(INI *, void *, void *, const void *);
 };
 
-__declspec(naked) void Eva::parseEvaMessageFromIni(INI *, void *, void *, const void *)
+class EvaParseMessageFromIniShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 016h
-        _emit 010h
-        _emit 042h
-        _emit 000h
-    }
+public:
+    static void parse(INI *ini, void *store, void *userData, const void *desc);
+};
+
+void Eva::parseEvaMessageFromIni(INI *ini, void *store, void *userData, const void *desc)
+{
+    EvaParseMessageFromIniShim::parse(ini, store, userData, desc);
 }
