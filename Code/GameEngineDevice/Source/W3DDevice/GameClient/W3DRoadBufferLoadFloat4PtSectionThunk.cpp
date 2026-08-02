@@ -9,13 +9,13 @@ protected:
 	void loadFloat4PtSection(RoadSegment *, Vector2, Vector2, Vector2, Vector2 *, float, float, float, float);
 };
 
-__declspec(naked) void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *, Vector2, Vector2, Vector2, Vector2 *, float, float, float, float)
+class W3DRoadBufferLoadFloat4PtSectionShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 03Ch
-		_emit 03Ch
-		_emit 06Dh
-		_emit 000h
-	}
+public:
+	void loadFloat4PtSection(RoadSegment *, Vector2, Vector2, Vector2, Vector2 *, float, float, float, float);
+};
+
+void W3DRoadBuffer::loadFloat4PtSection(RoadSegment *road, Vector2 a, Vector2 b, Vector2 c, Vector2 *d, float w, float x, float y, float z)
+{
+	((W3DRoadBufferLoadFloat4PtSectionShim *)this)->loadFloat4PtSection(road, a, b, c, d, w, x, y, z);
 }

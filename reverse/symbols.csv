@@ -3276,6 +3276,7 @@ name,address,notes
 ?loadDockPositions@DockUpdate@@IAEXXZ,0x0000C595,ILT thunk to 0x002CB0A0
 ?loadFile@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z,0x00853A20,provisional name for the 3-arg INI entry point the legend path calls; distinct from INI::load at 0x00853610
 ?loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,0x000346DF
+?loadFloat4PtSection@W3DRoadBufferLoadFloat4PtSectionShim@@QAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,0x00708320,W3DRoadBuffer incremental-link thunk target through a TU-local forwarding shim
 ?loadStandardMaps@MapCache@@AAEXXZ,0x000359DB
 ?loadTracks@WaterTracksRenderSystem@@QAEXXZ,0x0004584F
 ?loadUserMaps@MapCache@@AAE_NXZ,0x00028FF1
