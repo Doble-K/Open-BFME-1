@@ -1133,3 +1133,18 @@ The tool now requires `--symbol` when more than one function fails rather than
 choosing one. Anything that silently picks a subject turns every later
 measurement into a measurement of an unknown function, and the numbers still
 look perfectly reasonable while it happens.
+
+## A discarded return value turns the last call into a tail jump
+
+`FrameDataManager::addNetCommandMsg` sat one instruction short for a long time:
+retail saves esi, calls, restores and returns, where the same body written with
+a `void` return compiles to a bare `jmp`. Nothing about the arithmetic differed.
+
+The function returns the `NetCommandRef *` that `FrameData::addCommand` hands
+back. With the value returned MSVC cannot tail-jump; with it discarded it can,
+and does. The reference declares this one `void`, so the return type is a BFME
+change and reading it off the call shape is the only way to see it.
+
+Worth checking whenever a one-call function comes out as a tail jump and retail
+has a real call: the missing piece may be a return value the reference throws
+away.

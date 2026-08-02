@@ -59,7 +59,7 @@ public:
 	void reset();
 	void update();
 
-	void addNetCommandMsg(NetCommandMsg *msg);
+	NetCommandRef *addNetCommandMsg(NetCommandMsg *msg);
 	void setIsLocal(Bool isLocal);
 	FrameDataReturnType allCommandsReady(UnsignedInt frame, Bool debugSpewage);
 	NetCommandList * getFrameCommandList(UnsignedInt frame);
@@ -152,19 +152,19 @@ void FrameDataManager::update() {
 /**
  * Add a network command to the appropriate frame.
  */
-// ?addNetCommandMsg@FrameDataManager@@ present-unmatched
-// Real body 0x00670640, 35 bytes. The ring index and the call are already
-// right; retail keeps msg in esi across the address arithmetic and then calls,
-// where this source keeps it in eax and tail-jumps. Same allocator/tail-call
-// tie-break as Transport::queueSend and the Connection constructor.
-// BFME has no local-player adjustment here; the announced total is stamped by
-// the FRAMEINFO path instead. Everything but the call shape matches: retail
-// emits call+ret where this compiles to a tail jump, because addCommand's
-// NetCommandRef return is discarded and the conventions line up.
-void FrameDataManager::addNetCommandMsg(NetCommandMsg *msg) {
+// 0x00670640, 35 bytes.
+//
+// It returns the reference rather than discarding it, which is the whole
+// difference between this and a version that tail-jumps: with a void return
+// MSVC turns the last call into a jmp, and retail emits call plus ret.
+//
+// BFME also drops the reference's local-player adjustment -- there is no
+// `if (m_isLocal) setFrameCommandCount(getCommandCount())` here. The announced
+// total is stamped by the FRAMEINFO path instead.
+NetCommandRef *FrameDataManager::addNetCommandMsg(NetCommandMsg *msg) {
 	UnsignedInt frame = msg->getExecutionFrame();
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
-	m_frameData[frameindex].addCommand(msg);
+	return m_frameData[frameindex].addCommand(msg);
 }
 
 /**
