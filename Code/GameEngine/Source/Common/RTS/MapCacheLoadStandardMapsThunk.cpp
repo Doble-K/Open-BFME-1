@@ -5,13 +5,13 @@ class MapCache
     void loadStandardMaps();
 };
 
-__declspec(naked) void MapCache::loadStandardMaps()
+class MapCacheLoadStandardMapsShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0C0h
-        _emit 0ADh
-        _emit 041h
-        _emit 000h
-    }
+public:
+    void load();
+};
+
+void MapCache::loadStandardMaps()
+{
+    ((MapCacheLoadStandardMapsShim *)this)->load();
 }
