@@ -101,11 +101,6 @@ public:
     void construct();
 };
 
-class SphericalEmissionVelocityTemplateCopyCtorShim {
-public:
-    void construct(const void *source);
-};
-
 class LightningEmissionTemplateCtorShim {
 public:
     void construct();
