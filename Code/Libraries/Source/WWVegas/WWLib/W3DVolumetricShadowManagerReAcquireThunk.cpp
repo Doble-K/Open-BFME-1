@@ -1,16 +1,16 @@
 class W3DVolumetricShadowManager
 {
 public:
-	bool ReAcquireResources();
+    bool ReAcquireResources();
 };
 
-__declspec(naked) bool W3DVolumetricShadowManager::ReAcquireResources()
+class W3DVolumetricShadowManagerReAcquireShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0C5h
-		_emit 017h
-		_emit 07Bh
-		_emit 000h
-	}
+public:
+    bool reacquire();
+};
+
+bool W3DVolumetricShadowManager::ReAcquireResources()
+{
+    return ((W3DVolumetricShadowManagerReAcquireShim *)this)->reacquire();
 }
