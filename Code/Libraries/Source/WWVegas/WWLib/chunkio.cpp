@@ -368,3 +368,15 @@ uint32 ChunkSaveClass::Write(const IOVector3Struct & v)
 {
 	return Write(&v,sizeof(v));
 }
+
+
+uint32 ChunkSaveClass::Write(const IOVector4Struct & v)
+{
+	return Write(&v,sizeof(v));
+}
+
+
+uint32 ChunkSaveClass::Write(const IOQuaternionStruct & q)
+{
+	return Write(&q,sizeof(q));
+}
