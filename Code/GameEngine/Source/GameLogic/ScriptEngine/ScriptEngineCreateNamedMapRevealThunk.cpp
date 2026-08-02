@@ -5,16 +5,16 @@ class AsciiString
 class ScriptEngine
 {
 public:
-	void createNamedMapReveal(AsciiString const &, AsciiString const &, float, AsciiString const &);
+    void createNamedMapReveal(const AsciiString &, const AsciiString &, float, const AsciiString &);
 };
 
-__declspec(naked) void ScriptEngine::createNamedMapReveal(AsciiString const &, AsciiString const &, float, AsciiString const &)
+class ScriptEngineCreateNamedMapRevealShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 091h
-		_emit 026h
-		_emit 032h
-		_emit 000h
-	}
+public:
+    void create(const AsciiString &name, const AsciiString &waypoint, float radius, const AsciiString &player);
+};
+
+void ScriptEngine::createNamedMapReveal(const AsciiString &name, const AsciiString &waypoint, float radius, const AsciiString &player)
+{
+    ((ScriptEngineCreateNamedMapRevealShim *)this)->create(name, waypoint, radius, player);
 }
