@@ -648,3 +648,47 @@ before re-adding the constructor.
 Watch for this whenever a new row lands near a pooled class: the DIR32 check is
 the only thing that sees it, and the per-file verify a delta commit runs does
 not.
+
+## The texture pipeline's real blocker: BFME split the texture classes handle/impl
+
+Earlier entries blamed the format enum for `locate.py` placing nothing from the
+texture sources. That was retracted above; this is the actual reason.
+
+BFME's texture objects hold a **pointer at +0 to a separate implementation
+object**, where Zero Hour's classes hold their state inline. Seven of thirteen
+sampled bodies in the 0x0090D000-0x0090E900 cluster open by dereferencing and
+null-testing `[ecx]`, then calling virtuals on what it points at:
+
+```
+0090DC60  ?Peek_D3D_Base_Texture@TextureBaseClass@@QBEPAUIDirect3DBaseTexture8@@XZ
+0090DC61  mov esi, [ecx]        ; the impl, not a vptr
+0090DC63  test esi, esi ; je -> return 0
+0090DC6B  mov eax, [esi]        ; the impl's vtable
+0090DC6F  call [eax + 0x28]     ; ...and its virtuals
+0090DC7A  call [eax + 0x2c]
+0090DC7D  mov eax, [esi + 0x14]
+0090DC80  mov eax, [eax + 8]
+```
+
+The impl is **0x48 bytes** and is allocated at 0x0090D211 (`push 0x48`, then
+zeroing +4, +8 through +0x20, +0x34 and +0x38). `+0x38` holds the D3D texture --
+`Poke_Texture` writes it and 0x0090E810 writes it through the handle.
+
+This is why no amount of faithful porting makes those bodies match: every Zero
+Hour texture method reaches its members directly, and every BFME one reaches
+them one indirection away. It is a redesign, not an offset fix, and it explains
+all six sources at once (0 of 152 placed).
+
+Do not try to salvage this with small corrections. The way in is the same one
+that produced 62 animation functions today: establish the two class shapes from
+allocation sites, destructors and vtables first, then let locate.py place the
+family. The three sibling vtables noted above (VA 0x0113A668/0x0113A6B0/
+0x0113A6F8, 12 slots, slot 0 a plain getter rather than a destructor) are
+consistent with being the *impl* side of this split, which is why slot 0 did not
+look like a destructor.
+
+Beware the small matched rows here when reconstructing: `?As_TextureClass@TextureBaseClass`
+and `?Get_Asset_Type@ZTextureClass` are both 3 bytes at the same address
+(0x006CF680), and `?Poke_Texture@TextureBaseClass` is 10 bytes at 0x001BD780
+that writes `[ecx+0x38]` -- an impl offset. Folded and near-folded rows like
+these will not constrain the layout, and may mislead.
