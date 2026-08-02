@@ -834,7 +834,6 @@ Bool Shell::isAnimReversed( void )
 }
 
 
-// ?loadScheme@Shell@@QAEXVAsciiString@@@Z present-unmatched
 void Shell::loadScheme( AsciiString name )
 {
 	if(!m_schemeManager)

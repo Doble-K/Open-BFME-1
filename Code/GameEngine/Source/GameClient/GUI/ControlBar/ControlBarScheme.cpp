@@ -180,7 +180,6 @@ static void animSlideRight( ControlBarSchemeAnimation *anim );
 //-----------------------------------------------------------------------------
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
-// ??0ControlBarSchemeImage@@QAE@XZ present-unmatched
 __declspec(noinline) ControlBarSchemeImage::ControlBarSchemeImage( void )
 {
 	m_name.clear();
@@ -196,7 +195,6 @@ ControlBarSchemeImage::~ControlBarSchemeImage( void )
 	m_image = NULL;
 }
 
-// ??0ControlBarSchemeAnimation@@QAE@XZ present-unmatched
 ControlBarSchemeAnimation::ControlBarSchemeAnimation( void )
 {
 	// Added by Sadullah Nader
@@ -213,7 +211,6 @@ ControlBarSchemeAnimation::ControlBarSchemeAnimation( void )
 	m_currentFrame = 0;
 }
 
-// ??1ControlBarSchemeAnimation@@QAE@XZ present-unmatched
 ControlBarSchemeAnimation::~ControlBarSchemeAnimation( void )
 {
 	m_animImage = NULL;
@@ -296,7 +293,6 @@ void ControlBarScheme::reset(void)
 		
 }
 
-// ??1ControlBarScheme@@QAE@XZ present-unmatched
 ControlBarScheme::~ControlBarScheme(void)
 {
 	reset();
