@@ -602,6 +602,14 @@ void LocomotorStore::update()
 // about behaviour rather than about bytes, so the Zero Hour body stays here
 // unclaimed rather than being deleted to make a one-byte row match -- a bare ret
 // matches every empty function in the image and would prove nothing on its own.
+//
+// There is now a second, concrete reason not to empty it, found by trying. The
+// loop below is the only thing in this TU that instantiates
+// _Rb_tree_iterator<pair<const NameKeyType, LocomotorTemplate*>>, and its
+// constructor is a separate matched row attributed to this file. Emptying reset
+// stops that instantiation being emitted, so the one-byte row it would buy costs
+// a real one that is already verified. If reset is ever claimed, that row needs
+// somewhere else to live first.
 void LocomotorStore::reset()
 {
 	// cleanup overrides.
