@@ -2795,6 +2795,7 @@ name,address,notes
 ?clear@DrawableIconInfo@@QAEXXZ,0x00037565,pinharvest x1 (thunk)
 ?clear@FXList@@QAEXXZ,0x00044297,derived-ICF
 ?clear@INILineBuffer@@QAEXXZ,0x009CBF50,empties INI::m_lines and operator-deletes its storage; called by unPrepFile
+?clear@RadarDeleteListResourcesShim@@QAEXXZ,0x00106A90,Radar deleteListResources incremental-link thunk target through a TU-local forwarding shim
 ?clear@RadiusDecal@@QAEXXZ,0x00026F35,pinharvest x3 (thunk)
 ?clear@RadiusDecal@@QAEXXZ,0x00046344,pinharvest x2 (thunk)
 ?clear@TeamFactory@@QAEXXZ,0x000284A7

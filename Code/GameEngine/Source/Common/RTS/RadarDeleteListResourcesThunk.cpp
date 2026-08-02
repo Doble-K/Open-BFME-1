@@ -6,13 +6,13 @@ protected:
     void deleteListResources();
 };
 
-__declspec(naked) void Radar::deleteListResources()
+class RadarDeleteListResourcesShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 015h
-        _emit 0A1h
-        _emit 00Dh
-        _emit 000h
-    }
+public:
+    void clear();
+};
+
+void Radar::deleteListResources()
+{
+    ((RadarDeleteListResourcesShim *)this)->clear();
 }
