@@ -590,7 +590,7 @@ int PointGroupClass::Get_Flag(FlagsType flag)
  *   11/17/1998 NH  : Created.                                            *
  *   02/08/2001 HY  : Upgraded to DX8                                     *
  *========================================================================*/
-// ?PointGroupClass::Set_Texture present-unmatched
+// ?PointGroupClass::Set_Texture body in PointGroupClassSetTextureThunk.cpp (exact 50B retail)
 void PointGroupClass::Set_Texture(TextureClass* texture)
 {
 	REF_PTR_SET(Texture,texture);
