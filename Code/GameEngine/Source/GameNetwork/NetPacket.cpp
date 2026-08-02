@@ -5669,6 +5669,7 @@ NetCommandMsg * NetPacket::readDisconnectPlayerMessage(UnsignedByte *data, Int &
 /**
  * Reads the packet router query data, of which there is none.
  */
+// ?readPacketRouterQueryMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z absent-from-retail
 NetCommandMsg * NetPacket::readPacketRouterQueryMessage(UnsignedByte *data, Int &i) {
 	NetPacketRouterQueryCommandMsg *msg = newInstance(NetPacketRouterQueryCommandMsg);
 
@@ -5678,6 +5679,7 @@ NetCommandMsg * NetPacket::readPacketRouterQueryMessage(UnsignedByte *data, Int 
 /**
  * Reads the packet router ack data, of which there is none.
  */
+// ?readPacketRouterAckMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z absent-from-retail
 NetCommandMsg * NetPacket::readPacketRouterAckMessage(UnsignedByte *data, Int &i) {
 	NetPacketRouterAckCommandMsg *msg = newInstance(NetPacketRouterAckCommandMsg);
 
@@ -5925,6 +5927,7 @@ NetCommandMsg * NetPacket::readDisconnectScreenOffMessage(UnsignedByte *data, In
 	return msg;
 }
 
+// ?readFrameResendRequestMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z absent-from-retail
 NetCommandMsg * NetPacket::readFrameResendRequestMessage(UnsignedByte *data, Int &i) {
 	NetFrameResendRequestCommandMsg *msg = newInstance(NetFrameResendRequestCommandMsg);
 

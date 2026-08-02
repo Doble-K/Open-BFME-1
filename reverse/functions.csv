@@ -12783,30 +12783,20 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?readByte@DataChunkInput@@QAEDXZ,,0x00102830,48,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?readDestroyPlayerMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678C40,108,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readDict@DataChunkInput@@QAE?AVDict@@XZ,,0x00022683,5,Code/GameEngine/Source/Common/RTS/DataChunkInputReadDictThunk.cpp,matched,5-byte incremental-link DataChunkInput member thunk converted to focused C++ source
-?readDisconnectFrameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678C40,108,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
-?readDisconnectKeepAliveMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readDisconnectPlayerMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678DB0,136,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
-?readDisconnectScreenOffMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678C40,108,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readDisconnectVoteMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678E60,136,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readEntireAndClose@MemoryReadFile@@UAEPADXZ,,0x009CB190,77,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?readEntireAndClose@MemoryWriteFile@@UAEPADXZ,,0x009CB370,3,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?readEntireAndClose@StreamingArchiveFile@@UAEPADXZ,,0x006CF680,3,Code/GameEngine/Source/Common/System/StreamingArchiveFile.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?readFileProgressMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x006791A0,133,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
-?readFrameResendRequestMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678C40,108,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readFromDict@Handicap@@QAEXPBVDict@@@Z,,0x000C8220,362,Code/masm_dumps/_sa11__readFromDict_Handicap__QAEXPBVDict___Z_C8220.asm,matched,string-anchor Open-BFME4+Grok BUILDCOST
 ?readGameMessageArgumentFromPacket@NetPacket@@KAXW4GameMessageArgumentDataType@@PAVNetGameCommandMsg@@PAEAAH@Z,,0x0067CE30,26,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readInt@DataChunkInput@@QAEHXZ,,0x001027F0,49,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
-?readKeepAliveMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readLine@INI@@IAEXXZ,,0x008514C0,121,Code/GameEngine/Source/Common/INI/ini.cpp,matched,copies the next preloaded line and hashes it - was a MASM dump
-?readLoadCompleteMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readNameKey@DataChunkInput@@QAE?AW4NameKeyType@@XZ,,0x001038D0,186,Code/masm_dumps/readNameKey_DataChunkInput_QAE_AW4NameKeyType_XZ_001038D0_packet293.asm,matched,Certified packet 293 SHA256 77443a9b046abf545b23fee7b77cf01414a46bd80d0c06ff54424e18e0fb9f7f
 ?readNextFrame@RecorderClass@@IAEXXZ,0x0000A2D1,0x98730,97,Code/GameEngine/Source/Common/System/recorder_strings.cpp,matched,
-?readPacketRouterAckMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
-?readPacketRouterQueryMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readPlayerLeaveMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678BB0,114,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
-?readProgressMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678BB0,114,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readReal@DataChunkInput@@QAEMXZ,,0x001027B0,49,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
-?readTimeOutGameStartMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0006C090,86,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readToEndOfQuote@GameTextManager@@IAEXPAVFile@@PAD11H@Z,,0x00436390,47,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ?readUnicodeString@@YA?AVUnicodeString@@PAU_iobuf@@@Z,,0x000984F0,230,Code/GameEngine/Source/Common/System/ReadUnicodeString.cpp,matched,incremental thunk @0x322F4; standalone codegen-blocked C++ emits exact 230B retail Unicode reader body
 ?readUnicodeString@DataChunkInput@@QAE?AVUnicodeString@@XZ,,0x00103580,244,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
@@ -14081,3 +14071,16 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??1NetFileCommandMsg@@MAE@XZ,,0x006753D0,96,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?setRealFilename@NetFileCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675480,117,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?setRealFilename@NetFileAnnounceCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675640,117,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?readRequestFrameDataMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00679390,130,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?setLeavingPlayerID@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEXH@Z,,0x006741A0,14,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?readAckBothMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x006787A0,152,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readAckStage1Message@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678860,152,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readAckStage2Message@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678920,152,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readInformPlayerLeaveFrameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00679250,130,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readKeepAliveMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678CD0,86,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readDisconnectKeepAliveMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678D40,86,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readProgressMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678F10,114,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readLoadCompleteMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678FA0,86,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readTimeOutGameStartMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00679010,86,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readDisconnectFrameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00679440,108,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?readDisconnectScreenOffMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x006794D0,108,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,

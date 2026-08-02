@@ -549,6 +549,7 @@ class BFMENetInformPlayerLeaveFrameCommandMsg : public NetCommandMsg
 public:
 	BFMENetInformPlayerLeaveFrameCommandMsg();
 	Int getLeavingPlayerID();
+	void setLeavingPlayerID(Int playerID);
 	UnsignedInt getLeaveFrame();
 	void setLeaveFrame(UnsignedInt frame);
 	void setLeaveInfo(UnsignedInt frame, Int playerID);
@@ -565,6 +566,15 @@ BFMENetInformPlayerLeaveFrameCommandMsg::BFMENetInformPlayerLeaveFrameCommandMsg
 }
 
 Int BFMENetInformPlayerLeaveFrameCommandMsg::getLeavingPlayerID() { return m_leavingPlayerID; }
+
+// Re-stamps the command type on the way in. Nothing else in the family does
+// that, and the constructor has already set it -- but the store is there in
+// retail, ahead of the field write.
+void BFMENetInformPlayerLeaveFrameCommandMsg::setLeavingPlayerID(Int playerID)
+{
+	m_commandType = NETCOMMANDTYPE_INFORMPLAYERLEAVEFRAME;
+	m_leavingPlayerID = playerID;
+}
 UnsignedInt BFMENetInformPlayerLeaveFrameCommandMsg::getLeaveFrame() { return m_leaveFrame; }
 void BFMENetInformPlayerLeaveFrameCommandMsg::setLeaveFrame(UnsignedInt frame) { m_leaveFrame = frame; }
 
