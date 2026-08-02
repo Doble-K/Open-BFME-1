@@ -1497,7 +1497,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Format@Debug@@QAA@PBDZZ,,0x008895F0,35,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??0FoundationAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002BA040,190,Code/GameEngine/Source/GameLogic/AI/FoundationAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/masm_dumps/FreezingRainSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0FreezingRainSpecialPowerModuleData@@QAE@XZ,,0x0025D8C0,38,Code/GameEngine/Source/Common/RTS/FreezingRainSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0FrustumClass@@QAE@ABV0@@Z,,0x009319F0,254,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
 ??0FrustumClass@@QAE@XZ,,0x00931980,97,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
@@ -13840,3 +13839,4 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??0ElvenWoodSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025B2B0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ElvenWoodSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ?Read@ChunkLoadClass@@QAEKPAXK@Z,,0x009E15C0,142,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
+??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FreezingRainSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
