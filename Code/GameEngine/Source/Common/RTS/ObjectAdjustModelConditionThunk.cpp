@@ -6,13 +6,13 @@ public:
     void adjustModelConditionForWeaponStatus();
 };
 
-__declspec(naked) void Object::adjustModelConditionForWeaponStatus()
+class ObjectAdjustModelConditionShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 018h
-        _emit 02Ah
-        _emit 01Ah
-        _emit 000h
-    }
+public:
+    void adjust();
+};
+
+void Object::adjustModelConditionForWeaponStatus()
+{
+    ((ObjectAdjustModelConditionShim *)this)->adjust();
 }
