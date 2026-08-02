@@ -391,14 +391,21 @@ protected:
 
 	// **************************************************************************
 
-	Int m_status;      									// Status bits for this window
+	// BFME inserts one pointer-sized field here: winDestroy @0x47CE30 reads
+	// and writes m_status at [win+8] where this header puts it at +4. The
+	// same 4 bytes come straight back out before m_instData, because the
+	// seven matched win*Color accessors still index from +0x48 and
+	// setTooltipDelay still writes +0x1C4. m_userData is the member moved
+	// to the tail to pay for it - nothing pins its position, so it is the
+	// least-constrained candidate, NOT a proven identification.
+	void *_bfme_pre_status;
+	Int m_status;      									// retail +8
 	ICoord2D  m_size;						     	  // Width and height of the window
 	IRegion2D m_region;      					  // Current region occupied by window.
 																			// Low x,y is the window's origin
 	Int m_cursorX;											// window cursor X position if any
 	Int m_cursorY;											// window cursor Y position if any
 
-	void *m_userData;										// User defined data area
 	WinInstanceData m_instData;					// Class data, varies by window type
 	void *m_inputData;								  // Client data
 
@@ -437,6 +444,8 @@ protected:
 
 	// game window edit data for the GUIEditor only
 	GameWindowEditData *m_editData;
+
+	void *m_userData;										// relocated; see the note on _bfme_pre_status
 
 };  // end class GameWindow
 

@@ -1514,7 +1514,6 @@ GameWindow *GameWindowManager::winCreate( GameWindow *parent,
 /** Take a window and its children off the top level list and free
 	* their allocation class data. */
 //-------------------------------------------------------------------------------------------------
-// ?winDestroy@GameWindowManager@@UAEHPAVGameWindow@@@Z present-unmatched
 Int GameWindowManager::winDestroy( GameWindow *window )
 {
 	GameWindow *child, *next;
