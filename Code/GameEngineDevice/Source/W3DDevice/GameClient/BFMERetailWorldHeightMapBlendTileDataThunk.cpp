@@ -8,13 +8,13 @@ public:
     void blendTileData(TBlendTileInfo *blend, int width);
 };
 
-__declspec(naked) void BFMERetailWorldHeightMap::blendTileData(TBlendTileInfo *, int)
+class BFMERetailWorldHeightMapBlendTileDataShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 044h
-        _emit 03Ah
-        _emit 073h
-        _emit 000h
-    }
+public:
+    void blendTileData(TBlendTileInfo *, int);
+};
+
+void BFMERetailWorldHeightMap::blendTileData(TBlendTileInfo *blend, int width)
+{
+    ((BFMERetailWorldHeightMapBlendTileDataShim *)this)->blendTileData(blend, width);
 }
