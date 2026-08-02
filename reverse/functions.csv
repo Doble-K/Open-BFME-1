@@ -14086,3 +14086,5 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??_GUpgradeCenter@@UAEPAXI@Z,,0x0010AEC0,30,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,placed uniquely by locate.py byte-scan with all call sites resolving
+??_GUpgradeTemplate@@MAEPAXI@Z,,0x0010AFE0,30,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,placed uniquely by locate.py byte-scan with all call sites resolving
