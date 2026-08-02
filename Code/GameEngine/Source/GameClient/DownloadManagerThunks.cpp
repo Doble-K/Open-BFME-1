@@ -6,35 +6,35 @@ public:
 	long downloadNextQueuedFile();
 };
 
-__declspec(naked) long DownloadManager::OnError(int)
+class DownloadManagerOnErrorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0DAh
-		_emit 04Eh
-		_emit 05Fh
-		_emit 000h
-	}
+public:
+	long OnError(int a0);
+};
+
+class DownloadManagerOnStatusUpdateShim
+{
+public:
+	long OnStatusUpdate(int a0);
+};
+
+class DownloadManagerDownloadNextQueuedFileShim
+{
+public:
+	long downloadNextQueuedFile();
+};
+
+long DownloadManager::OnError(int a0)
+{
+	return ((DownloadManagerOnErrorShim *)this)->OnError(a0);
 }
 
-__declspec(naked) long DownloadManager::OnStatusUpdate(int)
+long DownloadManager::OnStatusUpdate(int a0)
 {
-	__asm {
-		_emit 0E9h
-		_emit 058h
-		_emit 0ECh
-		_emit 061h
-		_emit 000h
-	}
+	return ((DownloadManagerOnStatusUpdateShim *)this)->OnStatusUpdate(a0);
 }
 
-__declspec(naked) long DownloadManager::downloadNextQueuedFile()
+long DownloadManager::downloadNextQueuedFile()
 {
-	__asm {
-		_emit 0E9h
-		_emit 06Bh
-		_emit 0E4h
-		_emit 05Eh
-		_emit 000h
-	}
+	return ((DownloadManagerDownloadNextQueuedFileShim *)this)->downloadNextQueuedFile();
 }

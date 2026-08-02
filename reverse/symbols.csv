@@ -2085,7 +2085,9 @@ name,address,notes
 ?Notify_Removed@RenderObjClass@@UAEXPAVSceneClass@@@Z,0x0091FC00
 ?OnEnd@DownloadManager@@UAEJXZ,0x000044E4,ILT thunk used by call site
 ?OnError@DownloadManager@@UAEJH@Z,0x00031EC1,ILT thunk used by call site
+?OnError@DownloadManagerOnErrorShim@@QAEJH@Z,0x00626DA0,DownloadManager::OnError incremental-link thunk target through a TU-local forwarding shim
 ?OnStatusUpdate@DownloadManager@@UAEJH@Z,0x00008283
+?OnStatusUpdate@DownloadManagerOnStatusUpdateShim@@QAEJH@Z,0x00626EE0,DownloadManager::OnStatusUpdate incremental-link thunk target through a TU-local forwarding shim
 ?Open_Chunk@ChunkLoadClass@@QAE_NXZ,0x009E1380
 ?Open_Micro_Chunk@ChunkLoadClass@@QAE_NXZ,0x009E17C0
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVFrustumClass@@ABVAABoxClass@@@Z,0x008DB060,pinharvest x1 (body)
@@ -2800,6 +2802,7 @@ name,address,notes
 ?check@AssistedTargetingResultShim@@QAEHXZ,0x0000978C,AssistedTargetingUpdate isFreeToAssist result predicate shim
 ?disableRadar@PlayerDisableRadarShim@@QAEXXZ,0x000CC1C0,Player::disableRadar incremental-link thunk target through a TU-local forwarding shim
 ?doNamedMapReveal@ScriptEnginedoNamedMapRevealShim@@QAEXABVAsciiString@@@Z,0x0034D200,ScriptEngine::doNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
+?downloadNextQueuedFile@DownloadManagerDownloadNextQueuedFileShim@@QAEJXZ,0x00627370,DownloadManager::downloadNextQueuedFile incremental-link thunk target through a TU-local forwarding shim
 ?enableRadar@PlayerEnableRadarShim@@QAEXXZ,0x000CC2C0,Player::enableRadar incremental-link thunk target through a TU-local forwarding shim
 ?enableWaterGrid@WaterRenderObjClassEnableWaterGridShim@@QAEX_N@Z,0x007A1410,WaterRenderObjClass::enableWaterGrid incremental-link thunk target through a TU-local forwarding shim
 ?fill_insert@BitVectorFillInsertShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@I_N@Z,0x002CC290,_STL bit vector _M_fill_insert incremental-link thunk target through a TU-local forwarding shim
