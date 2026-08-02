@@ -3053,7 +3053,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1RousingSpeechUpdate@@UAE@XZ,,0x00264DA0,159,Code/masm_dumps/RousingSpeechUpdate_destructor.asm,matched,Exact 159B @ 0x00264DA0; Exact retail MASM; instance factory->vtable dtor; del 0x264E70 ctor 0x264BF0 vt 0xCB6D90
 ??1RousingSpeechUpdateModuleData@@UAE@XZ,,0x00265800,95,Code/masm_dumps/RousingSpeechUpdateModuleData_destructor.asm,matched,Exact 95B @ 0x00265800; Exact retail MASM; factory->vtable dtor; del 0x2657D0 ctor 0x265450 vt 0xCB6DF8
 ??1RubbleRiseUpdateModuleData@@UAE@XZ,,0x00128BD0,103,Code/masm_dumps/RubbleRiseUpdateModuleData_destructor.asm,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
-??1SaveLoadSubSystemClass@@UAE@XZ,,0x009D19A0,93,Code/masm_dumps/_icf2___1SaveLoadSubSystemClass__UAE_XZ_9D19A0.asm,matched,ICF of ??1SubsystemInterface@@UAE@XZ Open-BFME4+Grok
 ??1ScienceInfo@@MAE@XZ,,0x000E8520,127,Code/masm_dumps/ScienceInfo_destructor.asm,matched,MASM exact: true body 0xE8520 (queue 0x6F4C1A misplaced); FieldParse+parseScience ctor identity; BFME sizeof 0x30 one ScienceVec+costMP depooled
 ??1ScriptConditions@@UAE@XZ,,0x003244B0,106,Code/masm_dumps/ScriptConditions_dtor.asm,matched,True body via ctor vtbl 0x10E1F44; queue 0x9F27F1 was PartitionManager getName+pad+matched dtor
 ??1ScriptGroup@@MAE@XZ,,0x00352950,71,Code/masm_dumps/ScriptGroup_dtor.asm,matched,True body via vtbl 0x10E855C ScriptGroup string; queue 0x9F2799 was inside matched ControlBar ctor
@@ -3111,7 +3110,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Straw@@UAE@XZ,,0x009E1A90,50,Code/Libraries/Source/WWVegas/WWLib/straw.cpp,matched,
 ??1StreakDrawModuleInfo@FXParticleSystem@@UAE@XZ,0x00049CA1,0x005D85F0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1StreakDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x00038A1E,0x005D8750,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$DefaultModuleTag@$05@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;C++ alias
-??1StreamingArchiveFile@@MAE@XZ,,0x00168710,79,Code/GameEngine/Source/Common/System/StreamingArchiveFile.cpp,matched,
 ??1StringInfo@@QAE@XZ,,0x004368F0,76,Code/masm_dumps/StringInfo_destructor.asm,matched,True body 0x4368F0 76B (queue 0x9DB087 was INSIDE unrelated fn). Proven via deinit m_stringInfo ehvec_dtor elem=8 dtor ILT 0x1510E->0x4368F0; SEH dtor of Unicode@+4 then Ascii@+0 (BFME sizeof 8 no speech). MASM exact retail.
 ??1StructureCollapseUpdateModuleData@@UAE@XZ,,0x00128A90,103,Code/masm_dumps/StructureCollapseUpdateModuleData_destructor.asm,matched,Ghidra-corrected retail SEH vector destructor via registration and vtable chain
 ??1StructureToppleUpdateModuleData@@UAE@XZ,,0x0012C180,163,Code/masm_dumps/StructureToppleUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x12C150 ctor 0x12BF50 vt 0xC8F700
@@ -4745,7 +4743,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GAnimateWindowManager@@UAEPAXI@Z,,0x0045DB20,30,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??_GAnimationSteeringUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAnimationSteeringUpdateModuleData@@UAEPAXI@Z,,0x000A73F0,30,Code/GameEngine/Source/GameLogic/Object/Update/AnimationSteeringUpdate.cpp,matched,
-??_GArchiveFileSystem@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAssaultTransportAIUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAssistedTargetingUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAudioEventRTS@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -5048,7 +5045,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSabotageSupplyCenterCrateCollideModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSabotageSupplyDropzoneCrateCollideModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSalvageCrateCollideModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GSaveLoadSubSystemClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GScaleTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GScaleUpTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GScienceInfo@@MAEPAXI@Z,,0x000E84F0,30,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
@@ -5087,7 +5083,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GStickyBombUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStraw@@UAEPAXI@Z,,0x00921710,30,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??_GStreakDrawModuleTemplate@FXParticleSystem@@UAEPAXI@Z,,0x005D87F0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??_GStreamingArchiveFile@@MAEPAXI@Z,,0x001689E0,30,Code/GameEngine/Source/Common/System/StreamingArchiveFile.cpp,matched,icf-owner=??_GDefinitionMgrClass@@UAEPAXI@Z
 ??_GStructureBodyModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStructureCollapseUpdateModuleData@@UAEPAXI@Z,,0x00128A60,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??_GStructureToppleUpdateModuleData@@UAEPAXI@Z,,0x0012C150,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
@@ -5160,7 +5155,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GWaterTransparencySetting@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWeapon@@MAEPAXI@Z,,0x001E6900,30,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ??_GWin32BIGFile@@UAEPAXI@Z,,0x009D17F0,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
-??_GWin32LocalFileSystem@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWinInstanceData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWindModuleInfo@FXParticleSystem@@UAEPAXI@Z,,0x005BDAA0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??_GWindowLayout@@UAEPAXI@Z,,0x004706F0,30,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,compiler-generated deleting dtor
@@ -13984,3 +13978,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0HCompressedAnimClass@@QAE@XZ,,0x0095B7D0,78,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ?Load_W3D@MotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,,0x009777A0,206,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ?createDirectory@Win32LocalFileSystem@@UAE_NVAsciiString@@@Z,,0x009CDEC0,137,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,vtable 0x01143B98 slot 7; reached by byte-matched FileSystem::createDirectory and calls CreateDirectoryA
+??1StreamingArchiveFile@@MAE@XZ,,0x009D2140,79,Code/GameEngine/Source/Common/System/StreamingArchiveFile.cpp,matched,installs vtable 0x01143CA8 (the one the StreamingArchiveFile ctor installs) and calls ~RAMFile at 0x009D19A0; was 0x00168710 which installs 0x01096FB0 so it destroyed a different class
+??_GStreamingArchiveFile@@MAEPAXI@Z,,0x009D22B0,30,Code/GameEngine/Source/Common/System/StreamingArchiveFile.cpp,matched,slot 0 of vtable 0x01143CA8; moves with the scalar dtor because the verifier resolves its call by name; was 0x001689E0
