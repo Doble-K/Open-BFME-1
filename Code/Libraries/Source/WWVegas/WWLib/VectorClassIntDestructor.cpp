@@ -28,3 +28,4 @@ VectorClass<T>::~VectorClass()
 }
 
 template class VectorClass<int>;
+template class VectorClass<float>;
