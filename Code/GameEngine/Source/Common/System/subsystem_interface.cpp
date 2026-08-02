@@ -156,3 +156,24 @@ template void initSubsystem<GlobalLanguage>(GlobalLanguage *&, AsciiString, Glob
 template void initSubsystem<CaveSystem>(CaveSystem *&, AsciiString, CaveSystem *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<GameClient>(GameClient *&, AsciiString, GameClient *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<VictoryConditionsInterface>(VictoryConditionsInterface *&, AsciiString, VictoryConditionsInterface *, Xfer *, const char *, const char *, const char *);
+
+// Convention-named from the registration-site "TheXxx" literal, not from a
+// decorated symbol -- see the block at the end of game_engine_subsystems.h for
+// what that is worth and why the two stronger routes produce nothing here.
+// TheRadar is excluded: 167 bytes where these are all 154.
+template void initSubsystem<GlobalWeatherSystem>(GlobalWeatherSystem *&, AsciiString, GlobalWeatherSystem *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<PlayerAITypeSet>(PlayerAITypeSet *&, AsciiString, PlayerAITypeSet *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<EmotionSystem>(EmotionSystem *&, AsciiString, EmotionSystem *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<LightPointSystem>(LightPointSystem *&, AsciiString, LightPointSystem *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<ExperienceLevelSystem>(ExperienceLevelSystem *&, AsciiString, ExperienceLevelSystem *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<AptPlayer>(AptPlayer *&, AsciiString, AptPlayer *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<LivingWorldManager>(LivingWorldManager *&, AsciiString, LivingWorldManager *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<AerialPathfinder>(AerialPathfinder *&, AsciiString, AerialPathfinder *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<LivingWorldLogic>(LivingWorldLogic *&, AsciiString, LivingWorldLogic *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<SplineService>(SplineService *&, AsciiString, SplineService *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<AttributeModifierStore>(AttributeModifierStore *&, AsciiString, AttributeModifierStore *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<TaintManager>(TaintManager *&, AsciiString, TaintManager *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<LuaScriptEngine>(LuaScriptEngine *&, AsciiString, LuaScriptEngine *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<HouseColorSystem>(HouseColorSystem *&, AsciiString, HouseColorSystem *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<LivingWorldCampaignManager>(LivingWorldCampaignManager *&, AsciiString, LivingWorldCampaignManager *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<VictorySystem>(VictorySystem *&, AsciiString, VictorySystem *, Xfer *, const char *, const char *, const char *);

@@ -118,6 +118,9 @@ public:
 	enum seekMode { START, CURRENT, END };
 
 	File();
+	// Non-virtual, so it adds no slot. Retail expresses it purely through the
+	// two virtuals below, which is what pins their slot numbers independently.
+	Bool eof( void );
 	virtual ~File();							// slot 0
 	virtual Bool open( const char *filename, Int access = 0 );	// slot 1
 	virtual void close( void );					// slot 2
@@ -232,6 +235,15 @@ Int File::size( void )
 Int File::position( void )
 {
 	return seek( 0, CURRENT );
+}
+
+// Retail 0x009CB740, 30 bytes. Reads position through vtable slot 12 ([eax+0x30])
+// and size through slot 11 ([edx+0x2c]), compares them, and returns the Bool via
+// the sub/neg/sbb/inc idiom MSVC uses for `== 0`. position is called FIRST, which
+// is the order this expression has to produce.
+Bool File::eof( void )
+{
+	return position() == size();
 }
 
 // ?close@File@@UAEXXZ

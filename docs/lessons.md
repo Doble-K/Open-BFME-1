@@ -1089,3 +1089,47 @@ from the table.
 Note the arms encode a thunk one hop further out than `build_call_thunks`
 discovers, so pin both the handler body and the address the arm literally
 encodes.
+## A vtable slot belongs to the class that DECLARES the virtual
+
+`Win32LocalFileSystem::openFile` reached `createDirectory` through `[eax+0x28]`
+where retail uses `[eax+0x1c]`, and reordering the derived class's header did
+nothing. It could not: `createDirectory` is declared on `LocalFileSystem`, so
+its slot number is fixed by the base's layout and the derived class only
+supplies the body. Shimming a derived header to fix a slot only works for
+virtuals that derived class introduces.
+
+Two things had to change in the base before the offset moved:
+
+  * the declaration order, so the family's own order applies rather than Zero
+    Hour's; and
+  * the base list itself. The reference `LocalFileSystem` derives from
+    `SubsystemInterface`, which contributes six slots and pushes
+    `createDirectory` to 11. Standalone it lands at 7, which is retail's. That
+    is the same finding already recorded for `ArchiveFileSystem`, so it is worth
+    assuming for the rest of the family rather than rediscovering per class.
+
+The same mechanism, one level down, explains a whole-class shift: the reference
+`File` derives from `MemoryPoolObject`, which declares a virtual destructor AND
+a pure `getObjectMemoryPool`. Two slots, so `File::open` lands at 2 where retail
+calls it at `[eax+4]`, and `close`, `read`, `write` and `seek` are each one slot
+out behind it. BFME's pooled objects carry only the destructor. A single wrong
+base slot count moves every virtual in every derived class.
+
+## Measure the function you think you are measuring
+
+A flag sweep over `Win32LocalFileSystem.cpp` reported that `/G7` took the target
+function from 271 differing bytes to 9 -- a spectacular-looking result, and
+wrong. The TU had two failing functions, and the tool being swept took the first
+`target:`/`compiled:` pair it found in the build output. The 9 belonged to
+`doesFileExist`, a 25-byte function that had been matching until `/G7` broke it.
+Measured against the function actually under test, `/G7` scores 495, worse than
+the 271 it started from.
+
+Retail is not `/G7` in any case, and one byte says so: it emits `inc eax` where
+`/G7` emits `add eax,1`, because on Pentium 4 `inc` has a partial-flags stall.
+That check costs nothing and would have caught the bad reading immediately.
+
+The tool now requires `--symbol` when more than one function fails rather than
+choosing one. Anything that silently picks a subject turns every later
+measurement into a measurement of an unknown function, and the numbers still
+look perfectly reasonable while it happens.

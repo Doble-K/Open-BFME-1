@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD /EHsc /Ireference/shims/asciistring_outofline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/win32localfilesystem_wide /Ireference/shims/asciistring_thin /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -52,48 +52,142 @@ Win32LocalFileSystem::Win32LocalFileSystem() : LocalFileSystem()
 Win32LocalFileSystem::~Win32LocalFileSystem() {
 }
 
+
+// BFME's string keeps its length as a 16-bit field at buffer+4 and its
+// characters at buffer+8, and the one-argument set/concat/find are inline
+// wrappers over the two-argument StringBase forms rather than the expansions
+// down to ensureUniqueBufferOfSize the reference header does. Declaring
+// StringBase here rather than inventing a name makes these calls mangle to the
+// bodies the ledger already claims.
+static inline Int bfmeLength( const AsciiString &s )
+{
+	const char *d = *(const char * const *)&s;
+	return d ? *(const unsigned short *)(d + 4) : 0;
+}
+
+static inline const char *bfmeStr( const AsciiString &s )
+{
+	const char *d = *(const char * const *)&s;
+	return d ? d + 8 : "";
+}
+
+template <class T> class StringBase
+{
+public:
+	void set( const T *s, int len );
+	void concat( const T *s, int len );
+};
+
+static inline void bfmeSet( AsciiString &s, const char *v )
+{
+	((StringBase<char> *)&s)->set( v, v ? (int)strlen( v ) : 0 );
+}
+
+static inline void bfmeConcat( AsciiString &s, const AsciiString &v )
+{
+	((StringBase<char> *)&s)->concat( bfmeStr( v ), bfmeLength( v ) );
+}
+
+static inline void bfmeConcat( AsciiString &s, char c )
+{
+	((StringBase<char> *)&s)->concat( &c, 1 );
+}
+
+static inline const char *bfmeFind( const AsciiString &s, char c )
+{
+	const char *p = bfmeStr( s );
+	const char *end = p + bfmeLength( s );
+	for (; p != end; ++p) {
+		if (*p == c) {
+			return p;
+		}
+	}
+	return NULL;
+}
+
 //DECLARE_PERF_TIMER(Win32LocalFileSystem_openFile)
 // This is Zero Hour's openFile, and in BFME it is NOT the two-argument form.
 // BFME widened openFile to four parameters and left a 22-byte forwarder at the
 // two-argument slot; that forwarder is matched in
 // Win32LocalFileSystem_openFile.cpp, and the body below belongs to the wide
-// form at slot 3, retail 0x009CDF50, 571 bytes. Retyping it needs a class
-// declaration with the extra two parameters, which the reference header does
-// not have -- so it stays here, uncompiled against its real target, rather than
-// carrying a marker for a name another file now legitimately owns.
-File * Win32LocalFileSystem::openFile(const Char *filename, Int access /* = 0 */)
+// form at slot 3, retail 0x009CDF50, 571 bytes. The THIRD parameter is a seek
+// offset applied on success -- see docs/filesystem_family.md for the frame
+// arithmetic that pins it, and Win32BIGFile::openFile, which is matched and
+// uses its third as an offset too.
+//
+// STATE: compiles to 571 bytes against retail's 571, NOT claimed. Every call
+// target, every constant, every stack offset, every vtable slot and every
+// control-flow edge agrees. What is left is the assignment of two callee-saved
+// registers, plus one instruction pair that retail schedules the other way
+// round:
+//
+//   retail   this -> edi,  the zero constant -> ebp
+//   here     this -> ebp,  the zero constant -> edi
+//
+// The two swapped, nothing else. Both are used exactly as often on both sides
+// -- twelve references to the zero, three to this -- so the usual density
+// tie-break does not explain it. It costs 271 of 571 bytes rather than four,
+// because ebp-relative addressing needs a displacement byte: retail's
+// `mov eax,[edi]` is two bytes and this file's `mov eax,[ebp]` is three, and
+// that one byte shifts every instruction after it.
+//
+// Ruled out, each measured rather than assumed:
+//   * /G7 -- looked like a fix (271 -> 9) but the 9 was a DIFFERENT function in
+//     this TU. Measured against openFile it is 495, and it breaks doesFileExist,
+//     which matches today. Retail is not /G7 in any case: it emits `inc eax`
+//     where /G7 emits `add eax,1`.
+//   * /G6, /G5, /Ob1, /Ot, /Gs, /GF- -- no change at all (271).
+//   * /Oy- -- worse (504), and it keeps ebp as a frame pointer, which retail
+//     plainly does not do.
+//
+// The scheduling difference, for the record: at 0x009CE065 retail stores the
+// by-value AsciiString temporary's address for the unwinder and then loads the
+// receiver, `mov [esp+0x28],esp` / `mov ecx,esp`; this file emits the same two
+// instructions the other way round.
+// ?openFile@Win32LocalFileSystem@@UAEPAVFile@@PBDHHH@Z present-unmatched
+File * Win32LocalFileSystem::openFile(const Char *filename, Int access, Int seekTo, Int a4)
 {
 	//USE_PERF_TIMER(Win32LocalFileSystem_openFile)
-	Win32LocalFile *file = newInstance( Win32LocalFile );	
-
-	// sanity check
+	// Retail checks the name BEFORE allocating -- the inline strlen and its
+	// jnz come first in the disassembly, with the operator new call after.
 	if (strlen(filename) <= 0) {
 		return NULL;
 	}
+
+	Win32LocalFile *file = newInstance( Win32LocalFile );	
 
 	if (access & File::WRITE) {
 		// if opening the file for writing, we need to make sure the directory is there
 		// before we try to create the file.
 		AsciiString string;
-		string = filename;
+		bfmeSet(string, filename);
 		AsciiString token;
 		AsciiString dirName;
 		string.nextToken(&token, "\\/");
 		dirName = token;
-		while ((token.find('.') == NULL) || (string.find('.') != NULL)) {
+		while ((bfmeFind(token, '.') == NULL) || (bfmeFind(string, '.') != NULL)) {
 			createDirectory(dirName);
 			string.nextToken(&token, "\\/");
-			dirName.concat('\\');
-			dirName.concat(token);
+			bfmeConcat(dirName, '\\');
+			bfmeConcat(dirName, token);
 		}
 	}
 
 	if (file->open(filename, access) == FALSE) {
 		file->close();
-		file->deleteInstance();
+		// Retail frees this with a plain delete -- push 1, call [eax], the scalar
+		// deleting destructor at slot 0 -- not with the pool's deleteInstance,
+		// which would read the pool out of the vtable first and then call it.
+		delete file;
 		file = NULL;
 	} else {
 		file->deleteOnClose();
+		// BFME only: hand the file back already positioned, which is what
+		// reading a member out of a BIG archive needs. seek is File slot 5 and
+		// mode 1 is CURRENT.
+		if (seekTo != 0) {
+			file->seek(seekTo, File::CURRENT);
+		}
 	}
 
 // this will also need to play nice with the STREAMING type that I added, if we ever enable this
@@ -244,18 +338,6 @@ Bool Win32LocalFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fi
 // does. The whole TU cannot simply switch to the BFME string shim: this file
 // also owns ?concat@AsciiString@@QAEXABV1@@Z, which is a real out-of-line body
 // here and collapses to a 5-byte thunk under the shim.
-static inline Int bfmeLength( const AsciiString &s )
-{
-	const char *d = *(const char * const *)&s;
-	return d ? *(const unsigned short *)(d + 4) : 0;
-}
-
-static inline const char *bfmeStr( const AsciiString &s )
-{
-	const char *d = *(const char * const *)&s;
-	return d ? d + 8 : "";
-}
-
 // ?createDirectory@Win32LocalFileSystem@@UAE_NVAsciiString@@@Z
 Bool Win32LocalFileSystem::createDirectory(AsciiString directory)
 {

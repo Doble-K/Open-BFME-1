@@ -2759,19 +2759,75 @@ name,address,notes
 ?add@PlayerAddUpgradeShim@@QAEPAVUpgrade@@PBVUpgradeTemplate@@W4UpgradeStatusType@@@Z,0x000D24C0,Player addUpgrade incremental-link thunk target through a TU-local forwarding shim
 ?add@TeamsInfoRecAddTeamShim@@QAEXPBVDict@@@Z,0x0005EE90,TeamsInfoRec addTeam incremental-link thunk target through a TU-local forwarding shim
 ?add@TerrainLogicAddWaypointLinkShim@@QAEXHH@Z,0x001A60F0,TerrainLogic addWaypointLink incremental-link thunk target through a TU-local forwarding shim
+?addAckBothCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0003DDA7,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addAckBothCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680290,addCommand's jump-table arm for command type 0
+?addAckStage1Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00011810,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addAckStage1Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x006802D0,addCommand's jump-table arm for command type 1
+?addAckStage2Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0003A0AD,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addAckStage2Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680310,addCommand's jump-table arm for command type 2
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,0x0000B569,GameMessageParser::addArgType thunk
+?addChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00031115,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067FF20,addCommand's jump-table arm for command type 14
 ?addCommand@NetPacket@@QAE_NPAVNetCommandRef@@@Z,0x006811B0,the jump-table dispatcher doSend calls; identified from the call site
+?addDestroyPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000365AC,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addDestroyPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067BE60,addCommand's jump-table arm for command type 11
+?addDisconnectChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00007EFF,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addDisconnectChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067FC80,addCommand's jump-table arm for command type 13
+?addDisconnectFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000115C2,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addDisconnectFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067A410,addCommand's jump-table arm for command type 27
+?addDisconnectKeepAliveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0002BAB2,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addDisconnectKeepAliveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067BA20,addCommand's jump-table arm for command type 24
+?addDisconnectPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00003B98,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addDisconnectPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067B750,addCommand's jump-table arm for command type 25
+?addDisconnectScreenOffCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00023079,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addDisconnectScreenOffCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00679810,addCommand's jump-table arm for command type 28
+?addDisconnectVoteCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000422F8,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addDisconnectVoteCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067B480,addCommand's jump-table arm for command type 26
 ?addFile@ArchiveFile@@QAEXABVAsciiString@@PBUArchivedFileInfo@@@Z,0x009D1110,called once per BIG directory entry
+?addFileAnnounceCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0003233F,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addFileAnnounceCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067F950,addCommand's jump-table arm for command type 20
+?addFileCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000092EB,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addFileCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067F600,addCommand's jump-table arm for command type 19
+?addFileProgressCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00002A31,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addFileProgressCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067A700,addCommand's jump-table arm for command type 21
+?addFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00016081,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067C6C0,addCommand's jump-table arm for command type 3
+?addGameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0002F9FF,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addGameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067CA00,addCommand's jump-table arm for command type 4
+?addGameSpyStatsAuthKeyCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0001C69D,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addGameSpyStatsAuthKeyCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680620,addCommand's jump-table arm for command type 6
+?addInformPlayerLeaveFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0004901C,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addInformPlayerLeaveFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00679B00,addCommand's jump-table arm for command type 8
+?addKeepAliveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00022BFB,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addKeepAliveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067BC40,addCommand's jump-table arm for command type 12
+?addLoadCompleteMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0002ED4D,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addLoadCompleteMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067AFD0,addCommand's jump-table arm for command type 16
+?addPlayerFrameRatiosCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00017319,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addPlayerFrameRatiosCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067C150,addCommand's jump-table arm for command type 22
+?addPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00034CB1,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067C410,addCommand's jump-table arm for command type 10
+?addProgressMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000155FA,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addProgressMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067B250,addCommand's jump-table arm for command type 15
+?addRequestFrameDataCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0001E1D7,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addRequestFrameDataCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067A100,addCommand's jump-table arm for command type 9
+?addRequestGameSpyStatsAuthKeyCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00026003,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addRequestGameSpyStatsAuthKeyCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680350,addCommand's jump-table arm for command type 5
+?addRequestPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00024717,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addRequestPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00679E10,addCommand's jump-table arm for command type 7
 ?addScience@Player@@AAE_NW4ScienceType@@@Z,0x00036057
 ?addSciencePurchasePoints@Player@@QAEXH@Z,0x0000F0F1
 ?addScorch@BaseHeightMapRenderObjClass@@QAEXVVector3@@MW4Scorches@@@Z,0x00047906
 ?addShadowCore@BFMEShadowManagerLayout@@QAEPAVW3DProjectedShadow@@PAVW3DShadowTexture@@PAVRenderObjClass@@W4ShadowType@@_NMMHMMPAPAV2@3PAVDrawable@@3@Z,0x000193BC,retail projected-shadow 13-argument core ILT thunk
 ?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z,0x0000D828,pinharvest x4 (thunk)
 ?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z,0x0003275E,pinharvest x2 (thunk)
+?addTimeOutGameStartMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00037263,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addTimeOutGameStartMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067AD50,addCommand's jump-table arm for command type 17
 ?addToBuildList@SidesInfo@@QAEXPAVBuildListInfo@@H@Z,0x0000DD9B
 ?addUpgrade@Player@@QAEPAVUpgrade@@PBVUpgradeTemplate@@W4UpgradeStatusType@@@Z,0x00040327
 ?addVelocity@WaterRenderObjClass@@QAEXMMMM@Z,0x0079F5F0,thunk-resolved body (via 0x4ae8f)
 ?addWaypointLink@TerrainLogic@@IAEXHH@Z,0x00038B77
+?addWrapperCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0002FF0E,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
+?addWrapperCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067A9D0,addCommand's jump-table arm for command type 18
 ?adjust@ObjectAdjustModelConditionShim@@QAEXXZ,0x001CA0F0,Object adjustModelConditionForWeaponStatus incremental-link thunk target through a TU-local forwarding shim
 ?adjustDisplay@@YAXPAVGameWindow@@_N@Z,0x004B7B20,BFME-only 2-arg overload (no adjustment param); proven from computeTotalHeight's own bytes (0x4B7ED0: 2 pushes + add esp8) distinct from the general 3-arg adjustDisplay@0x4B7CA0 (addEntry's bytes: 3 pushes + add esp0xc)
 ?adjustModelConditionForWeaponStatus@Object@@QAEXXZ,0x000276D3,ILT thunk; real body 0x5CA0F0
@@ -4110,59 +4166,3 @@ _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
 _gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
 _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
-?addAckBothCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680290,addCommand's jump-table arm for command type 0
-?addAckStage1Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x006802D0,addCommand's jump-table arm for command type 1
-?addAckStage2Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680310,addCommand's jump-table arm for command type 2
-?addFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067C6C0,addCommand's jump-table arm for command type 3
-?addGameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067CA00,addCommand's jump-table arm for command type 4
-?addRequestGameSpyStatsAuthKeyCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680350,addCommand's jump-table arm for command type 5
-?addGameSpyStatsAuthKeyCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00680620,addCommand's jump-table arm for command type 6
-?addRequestPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00679E10,addCommand's jump-table arm for command type 7
-?addInformPlayerLeaveFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00679B00,addCommand's jump-table arm for command type 8
-?addRequestFrameDataCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067A100,addCommand's jump-table arm for command type 9
-?addPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067C410,addCommand's jump-table arm for command type 10
-?addDestroyPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067BE60,addCommand's jump-table arm for command type 11
-?addKeepAliveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067BC40,addCommand's jump-table arm for command type 12
-?addDisconnectChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067FC80,addCommand's jump-table arm for command type 13
-?addChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067FF20,addCommand's jump-table arm for command type 14
-?addProgressMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067B250,addCommand's jump-table arm for command type 15
-?addLoadCompleteMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067AFD0,addCommand's jump-table arm for command type 16
-?addTimeOutGameStartMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067AD50,addCommand's jump-table arm for command type 17
-?addWrapperCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067A9D0,addCommand's jump-table arm for command type 18
-?addFileCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067F600,addCommand's jump-table arm for command type 19
-?addFileAnnounceCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067F950,addCommand's jump-table arm for command type 20
-?addFileProgressCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067A700,addCommand's jump-table arm for command type 21
-?addPlayerFrameRatiosCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067C150,addCommand's jump-table arm for command type 22
-?addDisconnectKeepAliveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067BA20,addCommand's jump-table arm for command type 24
-?addDisconnectPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067B750,addCommand's jump-table arm for command type 25
-?addDisconnectVoteCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067B480,addCommand's jump-table arm for command type 26
-?addDisconnectFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067A410,addCommand's jump-table arm for command type 27
-?addDisconnectScreenOffCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00679810,addCommand's jump-table arm for command type 28
-?addAckBothCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0003DDA7,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addAckStage1Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00011810,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addAckStage2Command@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0003A0AD,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00016081,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addGameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0002F9FF,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addRequestGameSpyStatsAuthKeyCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00026003,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addGameSpyStatsAuthKeyCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0001C69D,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addRequestPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00024717,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addInformPlayerLeaveFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0004901C,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addRequestFrameDataCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0001E1D7,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addPlayerLeaveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00034CB1,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addDestroyPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000365AC,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addKeepAliveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00022BFB,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addDisconnectChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00007EFF,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addChatCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00031115,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addProgressMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000155FA,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addLoadCompleteMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0002ED4D,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addTimeOutGameStartMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00037263,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addWrapperCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0002FF0E,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addFileCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000092EB,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addFileAnnounceCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0003233F,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addFileProgressCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00002A31,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addPlayerFrameRatiosCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00017319,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addDisconnectKeepAliveCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0002BAB2,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addDisconnectPlayerCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00003B98,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addDisconnectVoteCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000422F8,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addDisconnectFrameCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x000115C2,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop
-?addDisconnectScreenOffCommand@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00023079,the address addCommand's arm encodes; the body's own incremental-link thunk is a further hop

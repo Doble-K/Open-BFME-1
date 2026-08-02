@@ -1,38 +1,16 @@
 # Sources under Code/ that deliberately carry no matched functions.csv row.
 #
-# The pre-commit hook rejects a staged source with zero matched rows, because
-# normally that means someone committed a body they never verified. This file is
-# the exception list, and an entry needs a reason that says what the source is
-# for instead.
+# THIS LIST EXEMPTS NOTHING AT COMMIT TIME. The pre-commit gate's own check lives
+# in tools/build.py (verify_source_claims) and deliberately honours no exception
+# list: "a source file nothing has ever byte-verified is a reconstruction, not a
+# port, and must not live here." Only tools/find_declared_unmatched.py reads this
+# file, and it scans src/, which this layout does not use.
 #
-# Format: one repo-relative path per line, with the reason on the line above it.
-
-# Win32BIGFileSystem::openArchiveFile. Compiles to 832 bytes against retail's
-# 832, with the prologue, epilogue, every call target and every constant
-# agreeing -- but the middle is not the same program yet: the ntohl expansion
-# uses a different byte-extraction idiom, the separator scan runs the other way,
-# and three registers are assigned differently. Kept because re-deriving it
-# means re-deriving the whole BIG header format, which is where the value is;
-# the file header records what got it this far and what to try next. Claim it
-# and delete this entry.
-Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_openArchiveFile.cpp
-
-# Win32BIGFileSystem::loadBigFilesFromDirectory. Compiles to 459 bytes against
-# retail's 459, with the frame size and all four callee-saved registers matching;
-# the remaining differences are register assignment. Kept because the file
-# records how the shape was established -- BFME copies the case-insensitive
-# filename set into a vector, stable_sorts it and reverses it, which changes .big
-# load precedence, and each step is pinned by the length it produced. Claim it
-# and delete this entry.
-Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.cpp
-# ConstructNetCommandMsgFromRawData: retail's instructions in retail's order,
-# but three locals land in different registers. See the note in the file.
-Code/GameEngine/Source/GameNetwork/NetPacket_construct.cpp
-# Connection::doSend: retail's instructions exactly; MSVC assigns three locals
-# to different stack slots. See the note in the file.
-Code/GameEngine/Source/GameNetwork/Connection_doSend.cpp
-# The four by-value-string readers: retail's instructions exactly bar one
-# adjacent pair around the temporary. See the note in NetPacket_read_chat.cpp.
-Code/GameEngine/Source/GameNetwork/NetPacket_read_gamespy.cpp
-Code/GameEngine/Source/GameNetwork/NetPacket_read_chat.cpp
-
+# Two entries were removed after they were found to be doing nothing:
+# Win32BIGFileSystem_openArchiveFile.cpp and Win32BIGFileSystem_loadBigFiles.cpp
+# were listed here and still failed the gate. Both sources are gone; what they
+# established is in docs/filesystem_family.md with git hashes to recover the
+# bodies.
+#
+# Do not add entries expecting them to work. Byte-match a function or delete the
+# file.

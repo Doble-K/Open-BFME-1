@@ -15,16 +15,16 @@ is 22 bytes and does exactly that:
     openFile(filename, access)  ->  this->vtable[3](filename, access, 0, 0)
 
 The two extra parameters are NOT dead. `Win32LocalFileSystem`'s wide form at
-0x009CDF50 reads the fourth one on its success path — `mov eax,[esp+0x40]`,
-compared against zero, and when it is non-zero the function makes a further
-virtual call on the freshly opened file. So the wide forms are not Zero Hour's
-bodies with two spare arguments; they have BFME-only logic that uses them, and
-recovering one means reconstructing that logic rather than retyping a signature.
+0x009CDF50 reads one of them on its success path, compares it against zero, and
+when it is non-zero makes a further virtual call on the freshly opened file. So
+the wide forms are not Zero Hour's bodies with two spare arguments; they have
+BFME-only logic that uses them, and recovering one means reconstructing that
+logic rather than retyping a signature.
 
-The fourth one is a **seek offset**. `Win32LocalFileSystem`'s wide `openFile`
-ends like this:
+The **third** parameter is a seek offset. `Win32LocalFileSystem`'s wide
+`openFile` ends like this:
 
-    mov  eax,[esp+0x40]      ; the fourth argument
+    mov  eax,[esp+0x40]      ; the third argument -- see the frame arithmetic below
     cmp  eax, ebp            ; against zero
     mov  byte [esi+0x0d], 1  ; deleteOnClose
     je   done
@@ -40,9 +40,22 @@ an `openFile` that can hand back a file already positioned is what reading a
 member out of a BIG archive needs, and it is why the narrow forms pass zero —
 zero means "no seek", which is the old behaviour exactly.
 
-The third parameter is still unnamed. Every caller found so far passes zero for
-both: the 22-byte narrow forwarders push `0, 0`, and `Win32BIGFileSystem::init`
-passes its overwrite flag as 0.
+`[esp+0x40]` is the third argument, not the fourth. The prologue moves esp down
+by 52 bytes — `push -1`, the two SEH pushes, `sub esp,0x18`, then ebx, ebp, esi,
+edi — so the incoming arguments sit at `[esp+0x38]`, `0x3c`, `0x40`, `0x44`. The
+function checks that itself: at 0x009CE01B it loads `[esp+0x38]` and `[esp+0x3c]`
+as the two arguments it hands to `File::open(filename, access)`, which pins the
+first two, and the seek load is one slot past them. An earlier revision of this
+document called it the fourth, which did not survive the arithmetic.
+
+`Win32BIGFile::openFile` agrees independently. It is byte-matched at 0x009D1560
+and is the other place a wide form consumes rather than forwards its extra pair;
+it uses the third as an offset and the fourth as a size.
+
+The remaining wide forms — `FileSystem::openFile` and
+`ArchiveFileSystem::openFile`, both matched — are pure forwarders. They pass the
+pair straight through and never read either, so they are not evidence about
+which is which in any direction.
 
 This is why Zero Hour's `Win32LocalFileSystem::openFile` — the big one that
 allocates a `Win32LocalFile` and creates directories on the WRITE path — is at
@@ -257,3 +270,62 @@ retail's sources were split more finely than Zero Hour's. If a function is the
 right length but carries an `fs:[0]` prologue the target lacks, that is a flag
 difference, not a code difference, and it may also mean the function belongs in
 its own file.
+
+## Two bodies that got close, and what happened to them
+
+`Win32BIGFileSystem::openArchiveFile` (0x009CC710, 832 bytes) and
+`Win32BIGFileSystem::loadBigFilesFromDirectory` (0x009CDB90, 459 bytes) each
+reached their exact retail length without ever matching. Both lived under `Code/`
+as sources carrying no matched row, which the commit gate rejects — a source
+nothing has byte-verified is a reconstruction, not a port, and there is
+deliberately no exception list. An earlier revision of this work added
+`reverse/unclaimed_sources_whitelist.txt` believing it exempted them. It does
+not: that file is read only by `tools/find_declared_unmatched.py`, which scans
+`src/`, while the gate's own check in `tools/build.py` honours nothing.
+
+`openArchiveFile` was removed on those grounds. Its body is recoverable in full:
+
+    git show 1e975e7ea:Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_openArchiveFile.cpp
+
+`loadBigFilesFromDirectory` **survives**, and the reason is worth recording. Its
+TU no longer carries zero matched rows: five STL instantiations the vector work
+below drags in — `fill`, `swap`, `__copy`, `__copy_backward` and
+`__insertion_sort`, all over `AsciiString` — are claimed out of it. So the file
+now earns its place by the same rule that would have removed it. That is the
+general escape hatch for a body stuck one idiom short of matching: the templates
+it instantiates are separate functions, and they can be landed on their own.
+
+What they established, which is the part worth keeping:
+
+**openArchiveFile.** BFME does not walk the directory entry by entry the way Zero
+Hour does. It reads the sixteen-byte header in ONE read and checks the result
+equals 16; it accepts either container tag, trying `"BIGF"` (0x012D9030) and
+`"BIG4"` (0x012D9034) with `strncmp`; and it allocates a single buffer of
+`archiveFileSize - 0x10` with `operator new[]`, reads the WHOLE directory into
+it, and parses in memory. That last point is why it slices names with the private
+three-argument `StringBase` constructor instead of building them a character at a
+time — there is no file I/O in the parse loop. `ntohl` is expanded inline in
+registers on the header fields and on every entry's offset and size, so no call
+for it appears. The separator scan runs BACKWARDS from the end of the name
+(`mov al,[esi+ebp]` / `cmp` / `dec ebp` / `jns`), and the frame needs two index
+variables, not one.
+
+**loadBigFilesFromDirectory.** BFME copies the filename set into a vector,
+`stable_sort`s it, and then REVERSES it. That is not redundant even though the
+set is already ordered: `FilenameList` is keyed on `rts::less_than_nocase`, so it
+arrives in case-insensitive order and comes out in descending default order. For
+`.big` files that sequence is load precedence, so it is a deliberate behaviour
+change. Each step was pinned by the length it produced against retail's 459:
+
+    Zero Hour's body, no vector at all      332
+    + resize / copy / sort                  403
+    + range-construct instead               397
+    + assign instead                        387
+    + stable_sort rather than sort          413
+    + reverse after the sort                459   <- exact
+
+Both stalled on the same thing that stalls `Win32LocalFileSystem::openFile`:
+register assignment. Retail holds `this` in a register whose addressing costs one
+byte less than the one MSVC picks here, and that single byte shifts everything
+downstream. Worth retrying together, since one explanation probably covers all
+three.

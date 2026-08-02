@@ -179,3 +179,61 @@ class GlobalLanguage : public SubsystemInterface {};	// 0x00072F50, TheGlobalLan
 class CaveSystem : public SubsystemInterface {};	// 0x00073A90, TheCaveSystem; (a) ?getTunnelTrackerForCaveIndex@CaveSystem@@QAEPAVTunnelTracker@@H@Z
 class GameClient : public SubsystemInterface {};	// 0x000748D0, TheGameClient; (b) ZH: extern GameClient *TheGameClient
 class VictoryConditionsInterface : public SubsystemInterface {};	// 0x00075420, TheVictoryConditions; (b) ZH: extern VictoryConditionsInterface *TheVictoryConditions
+
+// ---------------------------------------------------------------------------
+// CONVENTION-NAMED. Weaker than everything above -- read this before trusting a
+// name in this block.
+//
+// These sixteen are named from the "TheXxx" string literal their registration
+// site passes, with the class taken as Xxx. That literal names the GLOBAL. The
+// class name follows only by convention, and this file already records four
+// times the convention is wrong:
+//
+//     TheTerrainTypes       -> TerrainTypeCollection
+//     TheCDManager          -> CDManagerInterface
+//     TheGameResultsQueue   -> GameResultsInterface
+//     TheVictoryConditions  -> VictoryConditionsInterface
+//
+// So treat roughly one name in four here as likely wrong. They are claimed
+// anyway, by explicit decision, because the BYTES are verified either way --
+// initSubsystem<T> emits identical code whatever T is called, so a wrong name
+// costs a wrong label on a correct match and nothing else. Every row carries
+// "convention-named" in its functions.csv note so the block stays reversible.
+//
+// Both stronger routes were checked for all sixteen and neither produces
+// anything -- see tools/name_subsystem.py, which does this mechanically:
+//   (a) no registration constructor is in the ledger under a decorated name.
+//       TheEmotionSystem's resolves to ??0SupplyCenterProductionExitUpdate-
+//       ModuleData@@, an ICF-folded trivial constructor, which is the same
+//       non-evidence already recorded for TheTerrainTypes.
+//   (b) no vtable these constructors install has a class-specific named slot.
+//       The only named slots are loadIniFilesFromLegend (in 44 other vtables)
+//       and ??_GSubsystemInterface (in 5), both inherited or ICF-folded.
+//
+// Six of them are worse than merely unproven. TheScienceStore, TheRankInfoStore,
+// ThePlayerAITypeSet, TheSplineService, TheAttributeModifierStore and
+// TheHouseColorSystem share BOTH constructor 0x009A1A30 and vtable 0x00D41640 --
+// they are plain SubsystemInterfaces with no overrides at all. No byte in the
+// image distinguishes them from each other, so route (b) can never name them,
+// however much else gets decompiled.
+//
+// TheRadar is deliberately NOT here even though Zero Hour supplies a real
+// `extern Radar *TheRadar;`, which would be tier (b) evidence. Its instantiation
+// is 167 bytes where the other 59 are all 154, so it is not the same template
+// shape and claiming it at 154 would be a false match, not just a false name.
+class GlobalWeatherSystem        : public SubsystemInterface {};	// 0x000736D0
+class PlayerAITypeSet            : public SubsystemInterface {};	// 0x00073C10  (shares ctor+vtable)
+class EmotionSystem              : public SubsystemInterface {};	// 0x00074450
+class LightPointSystem           : public SubsystemInterface {};	// 0x000745D0
+class ExperienceLevelSystem      : public SubsystemInterface {};	// 0x00074690
+class AptPlayer                  : public SubsystemInterface {};	// 0x00074750  (factory-built)
+class LivingWorldManager         : public SubsystemInterface {};	// 0x00074810
+class AerialPathfinder           : public SubsystemInterface {};	// 0x00074A50
+class LivingWorldLogic           : public SubsystemInterface {};	// 0x00074B10
+class SplineService              : public SubsystemInterface {};	// 0x00074BD0  (shares ctor+vtable)
+class AttributeModifierStore     : public SubsystemInterface {};	// 0x00074C90  (shares ctor+vtable)
+class TaintManager               : public SubsystemInterface {};	// 0x00074D50
+class LuaScriptEngine            : public SubsystemInterface {};	// 0x00074ED0
+class HouseColorSystem           : public SubsystemInterface {};	// 0x000755A0  (shares ctor+vtable)
+class LivingWorldCampaignManager : public SubsystemInterface {};	// 0x00075660
+class VictorySystem              : public SubsystemInterface {};	// 0x00075720
