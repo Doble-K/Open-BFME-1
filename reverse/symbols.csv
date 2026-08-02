@@ -2987,6 +2987,7 @@ name,address,notes
 ?destroy@BFMENetworkBackendDestructorShim@@QAEXXZ,0x0003242F,BFMENetworkBackend destructor thunk used through a TU-local layout shim
 ?destroy@BFMENetworkDestructorShim@@QAEXXZ,0x000088C8,BFMENetwork destructor thunk used through a TU-local layout shim
 ?destroy@DeliverPayloadNuggetPayloadDestructorShim@@QAEXXZ,0x0036CC00,DeliverPayloadNugget::Payload dtor incremental-link thunk target through a TU-local forwarding shim
+?destroy@GameMessageListDestructorShim@@QAEXXZ,0x0008A450,GameMessageList dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@MultiFixedPoolDecalSystemClassLogicalDecalClassDestructorShim@@QAEXXZ,0x005D7520,MultiFixedPoolDecalSystemClass::LogicalDecalClass dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@ParticleSystemManagerDestroyByIDShim@@QAEXW4ParticleSystemID@@@Z,0x005C3C10,ParticleSystemManager destroyParticleSystemByID incremental-link thunk target through a TU-local forwarding shim
 ?destroy@PlayerTemplateDestructorShim@@QAEXXZ,0x000E27A0,PlayerTemplate destructor incremental-link thunk target through a TU-local forwarding shim
