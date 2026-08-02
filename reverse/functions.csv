@@ -1665,7 +1665,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HijackerUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0003A382,5,Code/GameEngine/Source/GameLogic/Object/Update/HijackerUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0HijackerUpdateModuleData@@QAE@XZ,,0x0006E2B0,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0HitReactionBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200200,137,Code/masm_dumps/HitReactionBehavior_constructor.asm,matched,Exact 137B @ 0x00200200; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114BE0
-??0HitReactionBehaviorModuleData@@QAE@XZ,,0x00291950,114,Code/masm_dumps/HitReactionBehaviorModuleData_constructor.asm,matched,Exact 114B @ 0x00291950; Exact retail MASM ModuleData ctor; unique factory 0x11D000
+??0HitReactionBehaviorModuleData@@QAE@XZ,,0x00291950,114,Code/GameEngine/Source/GameLogic/Object/Behavior/HitReactionBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 114B ModuleData constructor
 ??0HiveStructureBodyModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0HordeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C43A0,141,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0HordeAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
