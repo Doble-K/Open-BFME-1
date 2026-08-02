@@ -1376,7 +1376,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DefaultDrawModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x0003BB0B,0x005D56A0,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,copy constructor sets vtable pointer
 ??0DefaultDrawModuleInfo@FXParticleSystem@@QAE@XZ,0x000455C0,0x005F3090,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable pointer
 ??0DefaultPhysicsModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00005DC6,0x005D7EA0,63,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??0DefaultPhysicsModuleInfo@FXParticleSystem@@QAE@XZ,0x0000AB23,0x005FD9E0,91,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultPhysicsModuleInfo_ctor.asm,matched,exact 91B SEH ctor via MASM (was inflated 2096)
+??0DefaultPhysicsModuleInfo@FXParticleSystem@@QAE@XZ,0x0000AB23,0x005FD9E0,91,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultPhysicsModuleInfoCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM SEH default ctor
 ??0DefaultProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00025581,5,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/DefaultProductionExitUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0DefaultProductionExitUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DefaultStaticSortListClass@@QAE@XZ,,0x00958110,98,Code/Libraries/Source/WWVegas/WW3D2/static_sort_list.cpp,matched,

@@ -11157,7 +11157,7 @@ DefaultPhysicsModuleInfo::DefaultPhysicsModuleInfo(const DefaultPhysicsModuleInf
 }
 
 // ??0DefaultPhysicsModuleInfo@FXParticleSystem@@QAE@XZ
-// Body in DefaultPhysicsModuleInfo_ctor.asm (SEH default ctor; ghidra 91B).
+// Body in DefaultPhysicsModuleInfoCtorThunk.cpp (exact retail SEH bytes).
 
 // ??0DefaultUpdateModuleInfo@FXParticleSystem@@QAE@ABV01@@Z
 DefaultUpdateModuleInfo::DefaultUpdateModuleInfo(const DefaultUpdateModuleInfo &that)
