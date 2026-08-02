@@ -200,7 +200,7 @@ The first native timing slice is now byte-matched:
 | `BFMEConnectionManager::isPlayerConnectedForTimeout` | `0x00662B00` | same connection timestamp at peer object `+0x34C`; normally uses caller timeout, but startup path still falls back to `NetworkPlayerTimeoutTime * 4` |
 | `BFMEConnectionManager::hasPacketRouterFrameStall` | `0x00664260` | only runs when local player is packet router; after frame `5`, uses `TheGlobalData + 0xCB4` (`NetworkKeepAliveDelay`) to detect stale per-player frame data |
 | `BFMEDisconnectManager::hasDisconnectScreenNotifyTimedOut` | `0x0066B510` | compares elapsed time against `TheGlobalData + 0xCC0` (`NetworkDisconnectScreenNotifyTime`) |
-| `BFMEConnectionManager::processRequestFrameDataCommand` | `0x006659B0` | command type `9` handler; rejects/clamps requested resend windows using `NetworkKeepAliveDelay`, then calls `0x0040D8CD` with player id and frame range |
+| `BFMEConnectionManager::processRequestFrameDataCommand` | `0x006659B0` | command type `9` handler; rejects/clamps requested resend windows using `NetworkRunAheadSlack` (`+0xCB4`), then calls `0x0040D8CD` with player id and frame range |
 
 These are timeout/readiness gates, not the delay patch itself, but they expose the
 retail frame and keep-alive timing constants that a later patch design must not
@@ -572,6 +572,31 @@ at `-1`, the same "not yet known" sentinel the base uses for `m_executionFrame`.
 `setRelay` and stores a byte to `+0x0C`; the constructor at `0x00676240` zeroes
 the same offset. The ledger row `?setRelay@NetCommandRef@@QAEXE@Z` at
 `0x003BC6B0`, which stores to `+0x10`, is a fold onto some other class.
+
+### doSend drops stale commands, and RunAheadSlack is the horizon
+
+`Connection::doSend` (`0x00661F10`) does not retry an ack-pending command
+forever. After the retry bookkeeping it reads the command's frame -- the frame
+field for a FRAMEINFO command, the execution frame for anything else -- and if
+
+    TheWritableGlobalData->[+0xCB4] + frame < TheGameLogic->getFrame()
+
+it drops the command from the queue instead of keeping it for another round.
+
+`+0xCB4` is **NetworkRunAheadSlack**, not NetworkKeepAliveDelay: the INI offset
+table puts KeepAliveDelay at `+0xCB8` with zero reads, and RunAheadSlack at
+`+0xCB4` with ten. Two places in this file previously said otherwise and are now
+corrected. So the same staleness horizon that makes
+`hasPacketRouterFrameStall` declare a router stall also decides when a queued
+command is too old to keep sending -- which makes RunAheadSlack a send-path knob
+as well as a stall tolerance, and worth varying in a sweep.
+
+Three other BFME changes in the same function: a clock-wrap guard that pulls
+`m_lastTimeSent` back if the clock goes backwards, so the frame-grouping gate
+cannot lock a connection out for 49 days; the destination address copied out of
+the Connection as an eight-byte struct rather than through a user object; and a
+parameter the reference's `doSend` has no counterpart for, which stops the loop
+after five packets when set.
 
 ### Ledger corrections made along the way
 

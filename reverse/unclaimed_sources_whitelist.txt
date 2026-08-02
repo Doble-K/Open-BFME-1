@@ -31,3 +31,6 @@ Code/GameEngine/Source/GameNetwork/NetPacket_construct.cpp
 # BFMEComputeCRC: retail's exactly outside the loop; inside, MSVC reassociates
 # the two adds. See the note in the file.
 Code/GameEngine/Source/GameNetwork/native_packet_crc.cpp
+# Connection::doSend: retail's instructions exactly; MSVC assigns three locals
+# to different stack slots. See the note in the file.
+Code/GameEngine/Source/GameNetwork/Connection_doSend.cpp
