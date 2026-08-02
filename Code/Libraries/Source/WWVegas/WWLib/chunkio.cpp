@@ -111,6 +111,43 @@ uint32 ChunkLoadClass::Read(void *buffer, uint32 byte_count)
 }
 
 
+// Read's twin, skipping instead of copying. The bounds checks are the same; the
+// difference is how the skip is proven to have happened, since neither Seek
+// interface reports a byte count -- both branches take a position before and
+// after and require the delta to be exactly what was asked for.
+uint32 ChunkLoadClass::Seek(uint32 byte_count)
+{
+	BFMEChunkLoadLayout *layout = (BFMEChunkLoadLayout *)this;
+	if (layout->PositionStack[layout->StackIndex - 1] + byte_count >
+		(layout->HeaderStack[layout->StackIndex - 1].ChunkSize & 0x7FFFFFFF)) {
+		return 0;
+	}
+
+	if (layout->InMicroChunk && layout->MicroChunkPosition + byte_count > layout->MCHeader.ChunkSize) {
+		return 0;
+	}
+
+	if (layout->File) {
+		int before = layout->File->Tell();
+		if (layout->File->Seek(byte_count, SEEK_CUR) - before != (int)byte_count) {
+			return 0;
+		}
+	} else {
+		int before = layout->Input->Seek(0, SEEK_CUR);
+		if (layout->Input->Seek(byte_count, SEEK_CUR) - before != (int)byte_count) {
+			return 0;
+		}
+	}
+
+	layout->PositionStack[layout->StackIndex - 1] += byte_count;
+	if (layout->InMicroChunk) {
+		layout->MicroChunkPosition += byte_count;
+	}
+
+	return byte_count;
+}
+
+
 uint32 ChunkLoadClass::Cur_Chunk_ID()
 {
 	int index = *(int *)((char *)this + 0x08);
@@ -125,9 +162,24 @@ uint32 ChunkLoadClass::Cur_Chunk_Length()
 }
 
 
+// The high bit of a chunk's size word is the "this chunk holds sub-chunks"
+// flag, so the test is the raw masked word rather than a bool.
+int ChunkLoadClass::Contains_Chunks()
+{
+	int index = *(int *)((char *)this + 0x08);
+	return *(uint32 *)((char *)this + 0x408 + index * 8) & 0x80000000;
+}
+
+
 uint32 ChunkLoadClass::Cur_Micro_Chunk_ID()
 {
 	return *(unsigned char *)((char *)this + 0xC14);
+}
+
+
+uint32 ChunkLoadClass::Cur_Micro_Chunk_Length()
+{
+	return *(unsigned char *)((char *)this + 0xC15);
 }
 
 
