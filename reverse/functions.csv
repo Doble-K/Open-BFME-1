@@ -13999,3 +13999,16 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??1File@@UAE@XZ,,0x009CB8C0,133,Code/GameEngine/Source/Common/System/File.cpp,matched,scalar dtor reached from ??_GFile@@ at 0x009CB950; installs vtable 0x01143AF8
 ??0MemoryWriteFile@@QAE@PBD@Z,,0x009CB4E0,173,Code/GameEngine/Source/Common/System/File.cpp,matched,holds the <MemoryWriteFile> literal its else branch passes to setName; installs vtable 0x01143AA8
+??0NetKeepAliveCommandMsg@@QAE@XZ,,0x00673B80,42,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetPlayerLeaveCommandMsg@@QAE@XZ,,0x00673AA0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDestroyPlayerCommandMsg@@QAE@XZ,,0x00673B10,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectKeepAliveCommandMsg@@QAE@XZ,,0x00673BD0,42,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectChatCommandMsg@@QAE@XZ,,0x006750E0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetChatCommandMsg@@QAE@XZ,,0x00675210,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectPlayerCommandMsg@@QAE@XZ,,0x00673C20,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectVoteCommandMsg@@QAE@XZ,,0x00673CD0,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetProgressCommandMsg@@QAE@XZ,,0x00673D60,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetFileProgressCommandMsg@@QAE@XZ,,0x00674030,49,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectFrameCommandMsg@@QAE@XZ,,0x006740C0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectScreenOffCommandMsg@@QAE@XZ,,0x00674310,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetCommandMsg@@QAE@XZ,,0x006735D0,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
