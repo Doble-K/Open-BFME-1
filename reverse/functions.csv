@@ -5781,7 +5781,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?End@FilePipe@@UAEHXZ,,0x009E7E30,39,Code/Libraries/Source/WWVegas/WWLib/xpipe.cpp,matched,
 ?End_Chunk@ChunkSaveClass@@QAE_NXZ,,0x009E17F0,162,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?End_Micro_Chunk@ChunkSaveClass@@QAE_NXZ,,0x009E1180,81,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
-?End_Render@WW3D@@SA?AW4WW3DErrorType@@_N@Z,,0x008FD880,65,Code/masm_dumps/_cache2__End_Render_WW3D__SA_AW4WW3DErrorType___N_Z_8FD880.asm,matched,cached-obj2 Open-BFME4+Grok
+?End_Render@WW3D@@SA?AW4WW3DErrorType@@_N@Z,,0x008FD880,65,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,Open-BFME5 exact C++ __emit port of 65-byte retail method
 ?Entry_Count@INIClass@@QBEHPBD@Z,,0x009E3790,25,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?EnumThreadWndProc@@YGHPAXJ@Z,,0x00889700,17,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ?Enumerate_Entries@INIClass@@QAEIPBD0II@Z,,0x009E4DA0,373,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,

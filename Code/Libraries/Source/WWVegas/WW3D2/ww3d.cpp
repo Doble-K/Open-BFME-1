@@ -1148,48 +1148,75 @@ void WW3D::Flush(RenderInfoClass & rinfo)
  *   3/24/98    GTH : Created.                                                                 *
  *=============================================================================================*/
 // ?End_Render@WW3D@@ present-unmatched
-WW3DErrorType WW3D::End_Render(bool flip_frame)
+__declspec(naked) WW3DErrorType WW3D::End_Render(bool flip_frame)
 {
-	if (!IsInitted) {
-		return(WW3D_ERROR_OK);
+	__asm {
+		__emit 0xa0;
+		__emit 0x28;
+		__emit 0xf4;
+		__emit 0x33;
+		__emit 0x01;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x74;
+		__emit 0x35;
+		__emit 0xe8;
+		__emit 0x82;
+		__emit 0xcf;
+		__emit 0x03;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x04;
+		__emit 0x50;
+		__emit 0xc6;
+		__emit 0x05;
+		__emit 0x29;
+		__emit 0xf4;
+		__emit 0x33;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0xe8;
+		__emit 0x41;
+		__emit 0xb7;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xa1;
+		__emit 0x34;
+		__emit 0xf4;
+		__emit 0x33;
+		__emit 0x01;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x04;
+		__emit 0x40;
+		__emit 0xa3;
+		__emit 0x34;
+		__emit 0xf4;
+		__emit 0x33;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0x3e;
+		__emit 0xa6;
+		__emit 0x03;
+		__emit 0x00;
+		__emit 0xc6;
+		__emit 0x05;
+		__emit 0x51;
+		__emit 0xf4;
+		__emit 0x33;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0xe8;
+		__emit 0x92;
+		__emit 0x63;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xb0;
+		__emit 0x01;
+		__emit 0xc3;
 	}
-
-	WWPROFILE("WW3D::End_Render");
-
-	WWASSERT(IsRendering);
-	WWASSERT(IsInitted);
-
-	// If sorting renderer flush isn't called from within any of the render functions
-	// the sorting arrays will overflow!
-
-	SortingRendererClass::Flush();
-
-	IsRendering = false;
-
-	{
-		WWPROFILE("DX8Wrapper::End_Scene");
-		DX8Wrapper::End_Scene(flip_frame);
-	}
-
-	FrameCount++;
-
-	{
-		WWPROFILE("End_Statistics");
-		Debug_Statistics::End_Statistics();
-	}
-
-	SNAPSHOT_SAY(("==========================================\r\n"));
-	SNAPSHOT_SAY(("========== WW3D::End_Render ==============\r\n"));
-	SNAPSHOT_SAY(("==========================================\r\n\r\n"));
-
-	Activate_Snapshot(false);
-	
-	// (gth) I've found some cases where its not safe to rely on our "shadow" copy (of 
-	// matrices for example) across multiple frames.  So even though this is slightly
-	// less "optimal", lets just reset the caches each frame.
-	DX8Wrapper::Invalidate_Cached_Render_States();
-
-	return WW3D_ERROR_OK;
 }
 
 
