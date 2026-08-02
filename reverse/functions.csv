@@ -10332,7 +10332,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@UpdateModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00124080,112,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,source-local retail data facade preserves derived UpdateModule ABI
 ?friend_newModuleData@UpgradeDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00125710,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@UpgradeModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00128DA0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@UpgradeSoundSelectorClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121ED0,107,Code/masm_dumps/UpgradeSoundSelectorClientBehavior_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xF5 Ghidra confirmed
+?friend_newModuleData@UpgradeSoundSelectorClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121ED0,107,Code/GameEngine/Source/GameLogic/Object/Behavior/UpgradeSoundSelectorClientBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@VeterancyCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00125FD0,129,Code/masm_dumps/VeterancyCrateCollide_friend_newModuleData.asm,matched,ModuleFactory reg 0xC6 binds data factory; ICF alias of ConvertToCarBomb at 0x125FD0; drift 0x12B63B was int3 pad
 ?friend_newModuleData@VeterancyGainCreate@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DDebrisDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DDebrisDrawModuleDataFactory.cpp,matched,Luna Open-BFME8 exact C++ W3D factory ICF alias
