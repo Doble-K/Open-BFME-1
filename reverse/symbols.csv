@@ -4067,3 +4067,6 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?Get_Vector@TimeCodedMotionChannelClass@@QAEXMPAM@Z,0x009781A0
 ?Load_W3D@AdaptiveDeltaMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977CC0
 ?Load_W3D@TimeCodedMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977A00
+?getArchiveFilenameForFile@ArchiveFileSystem@@QBE?AVAsciiString@@ABV2@@Z,0x009CA2A0,called by ArchiveFileSystem::openFile at 0x009CA62B; ZH openFile calls exactly this before assigning and length-checking the result
+?set@AsciiString@@QAEXABV1@@Z,0x00887C90,same body the ledger claims as ?set@?$StringBase@D@@QAEXABV1@@Z; operator= inlines to a call to it
+??A?$map@VAsciiString@@PAVArchiveFile@@U?$less@VAsciiString@@@_STL@@V?$allocator@U?$pair@$$CBVAsciiString@@PAVArchiveFile@@@_STL@@@4@@_STL@@QAEAAPAVArchiveFile@@ABVAsciiString@@@Z,0x00063960,ArchiveFileSystem::openFile reaches it through the ILT thunk at 0x00038B22; folded with the map<AsciiString bool> operator[] the ledger already claims there

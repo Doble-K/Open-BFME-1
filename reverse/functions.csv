@@ -13798,7 +13798,6 @@ _$E55,,0x00C70930,40,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerasha
 _$E6,,0x00C70930,40,Code/Libraries/Source/WWVegas/WWMath/aabtreecull.cpp,matched,
 _$E64,,0x00C6B2C0,30,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,
 _$E7,,0x00C6E270,50,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,Open-BFME5 ICF alias at corrected +1B entry
-_$E8,,0x00C71350,40,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 _$E9,,0x00C6E170,16,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 _$E94,,0x00C6A930,23,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 _BFMENetworkBackendDispatchCatch,,0x0065D6F3,6,Code/GameEngine/Source/GameNetwork/native_network_dispatcher.cpp,matched,native BFME backend dispatcher EH catch thunk; returns cleanup resume VA 0x00A5CAEB
@@ -13977,3 +13976,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??1TimeCodedMotionChannelClass@@QAE@XZ,,0x00978180,24,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ?Free@TimeCodedMotionChannelClass@@AAEXXZ,,0x009779E0,24,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ?read_channel@HCompressedAnimClass@@AAE_NAAVChunkLoadClass@@PAPAVTimeCodedMotionChannelClass@@@Z,,0x0095B110,101,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?openFile@ArchiveFileSystem@@UAEPAVFile@@PBDH@Z,,0x009CA5E0,243,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,vtable 0x01143A08 slot 5 reached by byte-matched FileSystem::openFile; archive map at this+4 and ArchiveFile::openFile at its slot 2

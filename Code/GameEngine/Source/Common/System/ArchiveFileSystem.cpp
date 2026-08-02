@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/archivefilesystem_nosubsystem /Ireference/shims/asciistring_thin /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -240,13 +240,34 @@ Bool ArchiveFileSystem::doesFileExist(const Char *filename) const
 	return TRUE;
 }
 
-// ?openFile@ArchiveFileSystem@@ present-unmatched
-File * ArchiveFileSystem::openFile(const Char *filename, Int access /* = 0 */) 
+// BFME keeps the string length as a 16-bit field in the buffer header rather
+// than measuring it, so getLength() is `movzx eax, word ptr [eax+4]` guarded by
+// a null check -- not the strlen the Zero Hour header inlines.
+static inline Int bfmeLength( const AsciiString &s )
+{
+	const char *d = *(const char * const *)&s;
+	return d ? *(const unsigned short *)(d + 4) : 0;
+}
+
+// ?openFile@ArchiveFileSystem@@UAEPAVFile@@PBDH@Z
+// Vtable slot 5 of 0x01143A08, which FileSystem::openFile reaches through
+// [eax+0x14]; that caller byte-matches retail, so the slot is a fact. The
+// archive map is at this+4 and ArchiveFile::openFile is its slot 2.
+File * ArchiveFileSystem::openFile(const Char *filename, Int access /* = 0 */)
 {
 	AsciiString archiveFilename;
-	archiveFilename = getArchiveFilenameForFile(AsciiString(filename));
+	{
+		// The argument temporary is named and block-scoped on purpose. Written as
+		// one expression -- getArchiveFilenameForFile(AsciiString(filename)) -- the
+		// compiler gives the argument and the returned temporary the opposite pair
+		// of stack slots, which shows up as the two releaseBuffer calls coming out
+		// in the wrong order. Same lifetimes either way: both temporaries die
+		// before the length check.
+		AsciiString key(filename);
+		archiveFilename = getArchiveFilenameForFile(key);
+	}
 
-	if (archiveFilename.getLength() == 0) {
+	if (bfmeLength(archiveFilename) == 0) {
 		return NULL;
 	}
 

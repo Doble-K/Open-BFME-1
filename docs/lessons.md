@@ -692,3 +692,34 @@ and `?Get_Asset_Type@ZTextureClass` are both 3 bytes at the same address
 (0x006CF680), and `?Poke_Texture@TextureBaseClass` is 10 bytes at 0x001BD780
 that writes `[ecx+0x38]` -- an impl offset. Folded and near-folded rows like
 these will not constrain the layout, and may mislead.
+## Naming a temporary can decide which stack slot it gets
+
+`ArchiveFileSystem::openFile` is Zero Hour's three lines unchanged:
+
+    archiveFilename = getArchiveFilenameForFile(AsciiString(filename));
+
+and written that way it came out the right length with the right calls, but the
+two `releaseBuffer` calls at the end came out in the opposite order. Nothing was
+wrong with the lifetimes — both temporaries die at the end of the full
+expression either way, and in reverse construction order. What differed was
+which stack slot each got: the argument temporary and the returned temporary had
+swapped places, and that rippled into the register choices for the rest of the
+function.
+
+Giving the argument a name and a block fixed it:
+
+    {
+        AsciiString key(filename);
+        archiveFilename = getArchiveFilenameForFile(key);
+    }
+
+Same lifetimes, same destruction order, same generated calls — different slot
+assignment. So when a function is the right length, calls the right things in
+the right order, and still differs in `[esp+N]` displacements and register
+picks, look at the temporaries before doubting the structure. An unnamed
+temporary inside a call expression and a named one in a block are not the same
+input to the register allocator, even though they are the same C++.
+
+Worth pairing with the note on inlined member calls materialising their
+receiver: both are cases where the spelling, not the semantics, is what the
+compiler is responding to.
