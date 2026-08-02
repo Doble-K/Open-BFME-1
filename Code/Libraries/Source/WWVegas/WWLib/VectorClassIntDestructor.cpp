@@ -2,6 +2,7 @@
 
 class DefinitionClass;
 class Render2DClass;
+class TextureClass;
 
 template <class T>
 class VectorClass
@@ -35,3 +36,4 @@ template class VectorClass<float>;
 template class VectorClass<unsigned char>;
 template class VectorClass<DefinitionClass *>;
 template class VectorClass<Render2DClass *>;
+template class VectorClass<TextureClass *>;

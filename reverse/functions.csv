@@ -13840,6 +13840,10 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??0ToggleHiddenSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026BFD0,63,Code/GameEngine/Source/GameLogic/Object/Update/ToggleHiddenSpecialAbilityUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ SpecialAbilityUpdate constructor
+??1BoxEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D5F80,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?BOX_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?BOX_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVBoxEmissionVolumeModule@2@VBoxEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
+??1?$VectorClass@PAVRender2DClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
+??0RunOffMapBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205060,60,Code/GameEngine/Source/GameLogic/Object/Update/RunOffMapBehavior.cpp,matched,Luna Open-BFME5.0 clean C++ inline UpdateModule constructor
 name,export_rva,target_rva,target_size,source,status,notes
 ??$?6D@@YAAAVDebug@@AAV0@ABV?$StringBase@D@@@Z,0x00016F86,0x0005F590,52,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??6@YAAAVDebug@@AAV0@ABV?$StringBase@D@@@Z;C++ alias
 ??$?8D@@YA_NABV?$StringBase@D@@0@Z,0x000259B9,0x0007FFF0,20,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??8@YA_NABV?$StringBase@D@@0@Z;C++ alias
@@ -14970,6 +14974,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AnimationSoundClientBehaviorModuleData@@QAE@XZ,,0x00606060,107,Code/GameEngine/Source/GameLogic/AI/AnimationSoundClientBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AnimationSteeringUpdateModuleData@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/GameLogic/Object/Update/AnimationSteeringUpdate.cpp,matched,
 ??0ArchiveFile@@QAE@XZ,,0x009D10B0,87,Code/GameEngine/Source/Common/System/ArchiveFileCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ArchiveFile constructor
+??0ArchiveFile@@QAE@XZ,,0x009D10B0,87,Code/masm_dumps/__0ArchiveFile__QAE_XZ_9D10B0.asm,matched,MASM exact retail dump
 ??0ArchivedDirectoryInfo@@QAE@ABV0@@Z,,0x009CA8F0,98,Code/masm_dumps/_sym3___0ArchivedDirectoryInfo__QAE_ABV0__Z_9CA8F0.asm,matched,symbol-pin Open-BFME4+Grok
 ??0ArchivedFileInfo@@QAE@ABV0@@Z,,0x009CEBF0,93,Code/masm_dumps/_cache___0ArchivedFileInfo__QAE_ABV0__Z_9CEBF0.asm,matched,cached-obj needle Open-BFME4+Grok
 ??0ArmorTemplateSet@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,ICF alias of existing matched body
@@ -16072,6 +16077,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TimeAndLocationInfo@@QAE@XZ,,0x001F2410,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ??0TimeCodedMotionChannelClass@@QAE@XZ,,0x005CD350,28,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??0ToggleHiddenSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026BFD0,63,Code/GameEngine/Source/GameLogic/Object/Update/ToggleHiddenSpecialAbilityUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ SpecialAbilityUpdate constructor
+??0ToggleHiddenSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026BFD0,63,Code/masm_dumps/ToggleHiddenSpecialAbilityUpdate_constructor.asm,matched,Exact 63B unique factory Open-BFME4
 ??0ToggleHiddenSpecialAbilityUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0ToggleMountedSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026C730,73,Code/masm_dumps/ToggleMountedSpecialAbilityUpdate_constructor.asm,matched,Exact 73B unique factory Open-BFME4
 ??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/GameEngine/Source/Common/RTS/ToggleMountedSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
@@ -16186,6 +16192,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WSYS_String@@QAE@PBD@Z,,0x0010A280,25,Code/GameEngine/Source/Common/System/String.cpp,matched,
 ??0WallUpgradeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B2270,169,Code/masm_dumps/WallUpgradeUpdate_constructor.asm,matched,Exact 169B @ 0x002B2270; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C170
 ??0WanderAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7520,60,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WanderAIUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ AIUpdateInterface constructor
+??0WanderAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7520,60,Code/masm_dumps/WanderAIUpdate_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0WanderAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/WanderAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0WargBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D980,46,Code/GameEngine/Source/GameLogic/AI/WargBehavior.cpp,matched,Luna Open-BFME5.0 clean C++ ObjectModule derived constructor
 ??0WaterTracksRenderSystem@@QAE@XZ,,0x007AB960,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,exact C++ constructor with retail ShaderClass default bits 0x10441b
@@ -16221,6 +16228,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WorldHeightMap@@IAE@XZ,,0x0074E990,303,Code/masm_dumps/WorldHeightMap_default_ctor.asm,matched,True body @0x74E990 size 303 (queue 0x8361AF was INSIDE unrelated SEH fn). RefCount+NORMAL_DRAW0x81+tile wipe+setupAlphaTiles; MASM exact
 ??0WorldHeightMap@@QAE@PAVChunkInputStream@@_N@Z,,0x0074EB10,352,Code/masm_dumps/WorldHeightMap_stream_ctor_0074EB10.asm,matched,Certified packet 243 exact retail db-only recovery SHA256 fd88fea36c757917716f17cf5c1633f2946944a096525e9c5834b296bb0e0956
 ??0WoundArrowUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026DFB0,60,Code/GameEngine/Source/GameLogic/Object/Update/WoundArrowUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ SpecialAbilityUpdate constructor
+??0WoundArrowUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026DFB0,60,Code/masm_dumps/WoundArrowUpdate_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0WoundArrowUpdateModuleData@@QAE@XZ,,0x0026DF50,38,Code/GameEngine/Source/Common/RTS/WoundArrowUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0WriteLockClass@VertexBufferClass@@QAE@PAV1@H@Z,,0x0091DD70,150,Code/masm_dumps/___0WriteLockClass_VertexBufferClass__QAE_PAV1_H_Z_91DD70.asm,matched,
 ??0Xfer@@QAE@XZ,0x00041BAF,0x007E7660,9,Code/GameEngine/Source/Common/System/Xfer.cpp,matched,constructor sets vtable
@@ -16554,6 +16562,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1BoneFXUpdateModuleData@@UAE@XZ,,0x00288490,129,Code/masm_dumps/BoneFXUpdateModuleData_destructor.asm,matched,Exact retail MASM; matched factory ctor vtable and deleting-wrapper chain prove ownership; preserves three BFME vector destructors
 ??1BoxEmissionVolumeInfo@FXParticleSystem@@UAE@XZ,0x0002BFF3,0x005D5E20,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,resets vtable pointer
 ??1BoxEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D5F80,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?BOX_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?BOX_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVBoxEmissionVolumeModule@2@VBoxEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
+??1BoxEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D5F80,50,Code/masm_dumps/__1BoxEmissionVolumeModuleTemplate_FXParticleSystem__UAE_XZ_5D5F80.asm,matched,MASM exact retail dump
 ??1BridgeBehavior@@MAE@XZ,,0x001F36A0,399,Code/masm_dumps/BridgeBehavior_destructor_MAE.asm,matched,icf-owner=??1BridgeBehavior@@UAE@XZ; queue 0x7A5E37 misplaced; true body 399B @ 0x1F36A0; C++ emits MAE protected pool-glue dtor
 ??1BridgeBehavior@@UAE@XZ,,0x001F36A0,399,Code/masm_dumps/BridgeBehavior_destructor.asm,matched,Exact 399B @ 0x001F36A0; Exact retail MASM; instance factory->vtable dtor; del 0x1F3EE0 ctor 0x1F3390 vt 0xCA2764
 ??1BridgeBehaviorModuleData@@UAE@XZ,,0x001F5440,147,Code/masm_dumps/BridgeBehaviorModuleData_destructor.asm,matched,Ghidra-corrected retail body via constructor vtable and deleting destructor
@@ -27682,3 +27691,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??1?$VectorClass@PAVTextureClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
