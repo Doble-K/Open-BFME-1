@@ -6,13 +6,14 @@ class Dict
     DictPair *ensureUnique(int, bool, DictPair *);
 };
 
-__declspec(naked) Dict::DictPair *Dict::ensureUnique(int, bool, DictPair *)
+class DictEnsureUniqueShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0AAh
-        _emit 0C4h
-        _emit 003h
-        _emit 000h
-    }
+public:
+    struct DictPair;
+    DictPair *run(int count, bool flag, DictPair *pair);
+};
+
+Dict::DictPair *Dict::ensureUnique(int count, bool flag, DictPair *pair)
+{
+    return (Dict::DictPair *)((DictEnsureUniqueShim *)this)->run(count, flag, (DictEnsureUniqueShim::DictPair *)pair);
 }

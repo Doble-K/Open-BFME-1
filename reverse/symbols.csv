@@ -3737,5 +3737,6 @@ _atexit,0x009F6E26,CRT atexit (registers static destructors)
 _bfme_acos,0x009F7256,internal acos helper called by ACos
 _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
+?run@DictEnsureUniqueShim@@QAEPAUDictPair@1@H_NPAU21@@Z,0x000683D0,Dict ensureUnique incremental-link thunk target through a TU-local forwarding shim
 ?run@FXListDoFXPosShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,0x001D6770,FXList doFXPos incremental-link thunk target through a TU-local forwarding shim
 ?populate@ControlBarPopulateObserverListShim@@QAEXXZ,0x004A9CD0,ControlBar populateObserverList incremental-link thunk target through a TU-local forwarding shim
