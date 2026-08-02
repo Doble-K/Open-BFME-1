@@ -10065,7 +10065,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@AutoHealBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00129E40,54,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@AutoPickUpUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119B30,107,Code/masm_dumps/AutoPickUpUpdate_friend_newModuleData.asm,matched,Retail registration dp098 proves AutoPickUpUpdate data factory
 ?friend_newModuleData@BaikonurLaunchPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F8B0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@BannerCarrierUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119C40,107,Code/masm_dumps/BannerCarrierUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
+?friend_newModuleData@BannerCarrierUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119C40,107,Code/GameEngine/Source/GameLogic/AI/BannerCarrierUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@BaseRegenerateUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00117E40,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@BaseUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D190,107,Code/GameEngine/Source/GameLogic/Object/Upgrade/BaseUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@BattlePlanUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119D50,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
