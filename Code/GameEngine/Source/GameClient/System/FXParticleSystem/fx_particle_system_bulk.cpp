@@ -18376,80 +18376,19 @@ __declspec(naked) void DefaultUpdateModuleInfo::DoXfer(Xfer &xfer)
 }
 
 // ?DoXfer@LifeEventModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
-__declspec(naked) void LifeEventModuleInfo::DoXfer(Xfer &xfer)
+void LifeEventModuleInfo::DoXfer(Xfer &xfer)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x50
-        __emit 0x10
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x2e
-        __emit 0x8b
-        __emit 0x16
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0d
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x28
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x08
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x0f
-        __emit 0x2a
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x04
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x68
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    if (xfer.IsLightCRC()) {
+        return;
     }
+
+    Xfer::Version version;
+    version.data[0] = 1;
+    version.data[1] = 1;
+    xfer == version;
+    xferRandomVariable(xfer,
+                       *(GameClientRandomVariable *)((unsigned char *)this + 8));
+    xfer == *(AsciiString *)((unsigned char *)this + 4);
 }
 
 // ?DoXfer@LightningDrawModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
