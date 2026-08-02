@@ -10,13 +10,13 @@ protected:
     bool insertY(Vector2 loc, int index1, float scale);
 };
 
-__declspec(naked) bool W3DRoadBuffer::insertY(Vector2, int, float)
+class W3DRoadBufferInsertYShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 054h
-        _emit 0FAh
-        _emit 06Eh
-        _emit 000h
-    }
+public:
+    bool insertY(Vector2, int, float);
+};
+
+bool W3DRoadBuffer::insertY(Vector2 loc, int index1, float scale)
+{
+    return ((W3DRoadBufferInsertYShim *)this)->insertY(loc, index1, scale);
 }
