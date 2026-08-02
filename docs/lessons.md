@@ -986,3 +986,29 @@ in the body was `delete[] m_data`.
 Declaring `void __cdecl operator delete[](void *) throw();` in the TU is what
 the real <new> does, and with it the body needs no state of its own. Without
 any declaration the compiler assumes the array deallocation can throw.
+
+## A temporary passed by value to an out-of-line function schedules differently
+
+Four of NetPacket's readers sit exactly one instruction pair away from retail
+and no closer. Retail writes the temporary's unwind pointer and then loads its
+address into ecx:
+
+    push ecx                  ; allocate the temporary
+    lea  edx, [esp+0x14]      ; the argument to its constructor
+    mov  [esp+0x18], esp      ; record the temporary for unwinding
+    mov  ecx, esp             ; this
+    push edx
+
+and every source shape tried here emits `mov ecx, esp` before the record. The
+difference survives writing the argument as an explicit constructor call, as an
+implicit conversion, and via a pointer local.
+
+What separates the readers that DO match is not the temporary -- it is the
+call. readFileMessage and readFileAnnounceMessage build the same temporary and
+match exactly, because their setter is inline, so there is no by-value argument
+crossing a call boundary. The four that miss all hand the string to an
+out-of-line setter by value.
+
+So this is not a register-allocation or flag mismatch: it is specific to
+materialising a temporary into an outgoing by-value class argument. Worth
+revisiting with a matched caller elsewhere in the tree that does the same thing.

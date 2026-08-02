@@ -26,6 +26,7 @@
 // are the real ones, identified by the constructor each one calls.
 
 #include <string.h>
+#include <wchar.h>
 
 // Declared here so the array allocation binds to the game's own operator new[]
 // at 0x00881F70 rather than the CRT import the /MD default would pull in.
@@ -41,6 +42,16 @@ enum { NETCOMMANDTYPE_FRAMEINFO = 3 };
 // See NetCommandMsg_text.cpp for why the string classes are the StringBase
 // instantiations themselves rather than wrappers, and why every holder has to
 // be a friend to reach the private constructors.
+static int stringLength(const char *s)
+{
+	return (int)strlen(s);
+}
+
+static int stringLength(const unsigned short *s)
+{
+	return (int)wcslen((const wchar_t *)s);
+}
+
 template <typename T>
 class StringBase
 {
@@ -48,17 +59,24 @@ class StringBase
 	friend class BFMENetGameSpyStatsAuthKeyCommandMsg;
 	friend class NetFileCommandMsg;
 	friend class NetFileAnnounceCommandMsg;
+	friend class NetDisconnectChatCommandMsg;
+	friend class NetChatCommandMsg;
 	friend class NetPacket;
 
 public:
-	void set(const T *str);
+	// Inline in retail: the chat readers expand this into a length call followed
+	// by the counted overload rather than calling it.
+	void set(const T *str) { set(str, stringLength(str)); }
+	void set(const T *str, int len);
 
 	// Inline in retail: assignment lands straight on set(). See lessons.
 	StringBase<T> &operator=(const StringBase<T> &src) { set(src); return *this; }
 	void set(const StringBase<T> &src);
 
 private:
-	StringBase();
+	// Inline: retail expands the default construction into the single zero
+	// store rather than calling ??0?$StringBase@G@@AAE@XZ.
+	StringBase() { m_data = 0; }
 	StringBase(const T *str);
 	StringBase(const StringBase<T> &src);
 	~StringBase();
@@ -222,6 +240,26 @@ public:
 	Int m_requestedPlayerID;						// this+0x1C
 };
 
+class NetDisconnectChatCommandMsg : public NetCommandMsg
+{
+public:
+	NetDisconnectChatCommandMsg();
+	void setText(UnicodeString text);
+
+	UnicodeString m_text;							// this+0x1C
+};
+
+class NetChatCommandMsg : public NetCommandMsg
+{
+public:
+	NetChatCommandMsg();
+	void setText(UnicodeString text);
+	void setPlayerMask(Int playerMask);
+
+	UnicodeString m_text;							// this+0x1C
+	Int m_playerMask;								// this+0x20
+};
+
 class NetFileCommandMsg : public NetCommandMsg
 {
 public:
@@ -274,6 +312,8 @@ class NetPacket
 {
 protected:
 	static NetCommandMsg *readFrameMessage(UnsignedByte *data, Int &i);
+	static NetCommandMsg *readDisconnectChatMessage(UnsignedByte *data, Int &i);
+	static NetCommandMsg *readChatMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readFileMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readFileAnnounceMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readRequestGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i);
@@ -619,5 +659,58 @@ NetCommandMsg *NetPacket::readFileAnnounceMessage(UnsignedByte *data, Int &i)
 	i += sizeof(playerMask);
 	msg->setPlayerMask(playerMask);
 
+	return msg;
+}
+
+
+// Both chat readers are retail's instruction for instruction except for the one
+// pair described above readRequestGameSpyStatsAuthKeyMessage -- the same swap,
+// in the same place, for the same reason: a temporary string handed to an
+// out-of-line function by value.
+// ?readDisconnectChatMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z present-unmatched
+//
+// Chat text is length-prefixed rather than NUL-terminated: one byte of character
+// count, then that many UnsignedShorts. The terminator is written afterwards, so
+// the buffer holds 256 characters and never a 257th.
+NetCommandMsg *NetPacket::readDisconnectChatMessage(UnsignedByte *data, Int &i)
+{
+	NetDisconnectChatCommandMsg *msg = new NetDisconnectChatCommandMsg;
+
+	UnsignedShort text[256];
+	UnsignedByte length;
+	memcpy(&length, data + i, sizeof(UnsignedByte));
+	++i;
+	memcpy(text, data + i, length * sizeof(UnsignedShort));
+	i += length * sizeof(UnsignedShort);
+	text[length] = 0;
+
+	UnicodeString unitext;
+	unitext.set(text);
+
+	msg->setText(unitext);
+	return msg;
+}
+
+// ?readChatMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z present-unmatched
+NetCommandMsg *NetPacket::readChatMessage(UnsignedByte *data, Int &i)
+{
+	NetChatCommandMsg *msg = new NetChatCommandMsg;
+
+	UnsignedShort text[256];
+	UnsignedByte length;
+	Int playerMask;
+	memcpy(&length, data + i, sizeof(UnsignedByte));
+	++i;
+	memcpy(text, data + i, length * sizeof(UnsignedShort));
+	i += length * sizeof(UnsignedShort);
+	text[length] = 0;
+	memcpy(&playerMask, data + i, sizeof(Int));
+	i += sizeof(Int);
+
+	UnicodeString unitext;
+	unitext.set(text);
+
+	msg->setText(unitext);
+	msg->setPlayerMask(playerMask);
 	return msg;
 }

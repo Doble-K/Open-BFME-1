@@ -274,6 +274,7 @@ class NetChatCommandMsg : public NetCommandMsg
 {
 public:
 	NetChatCommandMsg();
+	void setPlayerMask(Int playerMask);
 	void *m_text;
 	Int m_playerMask;
 };
@@ -613,3 +614,5 @@ Int BFMENetRequestFrameDataCommandMsg::getRequestedPlayerID() { return m_request
 UnsignedInt BFMENetRequestFrameDataCommandMsg::getRequestedFrame() { return m_requestedFrame; }
 void BFMENetRequestFrameDataCommandMsg::setRequestedPlayerID(Int playerID) { m_requestedPlayerID = playerID; }
 void BFMENetRequestFrameDataCommandMsg::setRequestedFrame(UnsignedInt frame) { m_requestedFrame = frame; }
+
+void NetChatCommandMsg::setPlayerMask(Int playerMask) { m_playerMask = playerMask; }

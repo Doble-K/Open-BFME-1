@@ -104,9 +104,22 @@ class NetDisconnectChatCommandMsg : public NetCommandMsg
 {
 public:
 	UnicodeString getText();
+	void setText(UnicodeString text);
 
 	UnicodeString m_text;							// this+0x1C
+
+protected:
+	virtual ~NetDisconnectChatCommandMsg();
 };
+
+NetDisconnectChatCommandMsg::~NetDisconnectChatCommandMsg()
+{
+}
+
+void NetDisconnectChatCommandMsg::setText(UnicodeString text)
+{
+	m_text = text;
+}
 
 UnicodeString NetDisconnectChatCommandMsg::getText()
 {
@@ -117,10 +130,23 @@ class NetChatCommandMsg : public NetCommandMsg
 {
 public:
 	UnicodeString getText();
+	void setText(UnicodeString text);
 
 	UnicodeString m_text;							// this+0x1C
 	Int m_playerMask;								// this+0x20
+
+protected:
+	virtual ~NetChatCommandMsg();
 };
+
+NetChatCommandMsg::~NetChatCommandMsg()
+{
+}
+
+void NetChatCommandMsg::setText(UnicodeString text)
+{
+	m_text = text;
+}
 
 UnicodeString NetChatCommandMsg::getText()
 {
