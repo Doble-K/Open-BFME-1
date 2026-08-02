@@ -2820,6 +2820,7 @@ name,address,notes
 ?construct@HemisphericalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001BF86,HemisphericalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@LifeEventTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00020342,LifeEventModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?assign@LifeEventAsciiStringAssignShim@FXParticleSystem@@QAEXPBX@Z,0x00887C90,LifeEventModuleInfo AsciiString assignment thunk used through a TU-local layout shim
+?assign@RenderObjectDrawTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x00007E14,RenderObjectDrawModuleTemplate assignment thunk used through a TU-local layout shim
 ?construct@LifeEventTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0004B024,LifeEventModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@LightningDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0004A89F,LightningDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@LightningDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003B2AA,LightningDrawModuleTemplate constructor thunk used through a TU-local layout shim
