@@ -468,13 +468,34 @@ on the normal path it is released `ceiling - currentFrame + 1` frames gated on
 `areFrameCommandsComplete`. Nothing here consults ping, which is why the delay
 does not shrink on a LAN.
 
-## The one thing that must be identified next
+## The selector is isPacketRouter -- so the host paces the world at 5Hz
 
-**Virtual slot +0x8C decides which path runs**, and it is unidentified. Everything
-about the size of the fix depends on it: if it is "am I the packet router" then
-the host is paced at 5Hz and clients follow its ceiling; if it is a loading or
-observer state then the quantum path is not the steady-state path at all and the
-delay is elsewhere. Do not tune the 5 until this is known.
+Virtual slot +0x8C resolves to `?isPacketRouter@Network@@UAE_NXZ` (0x00681B20,
+25 bytes) through the vtable at 0x00D1A968. The call at 0x00681F8B is a virtual
+call on `this` (mov eax,[esi]; mov ecx,esi; call [eax+0x8C]), so the branch reads:
+
+    if (isPacketRouter()) -> quantum path (one logic frame per 200ms)
+    else                  -> ceiling path (ceiling - currentFrame + 1)
+
+The packet router therefore advances its own logic at exactly **5 frames per
+second**, and every client is clamped to a ceiling that only the router
+publishes. No client can outrun it, so the router's 5Hz is the whole game's
+logic rate in a network game, and the resulting command latency is a flat ~200ms
+that does not move with ping. That is the delay.
+
+The fix is the literal 5 in `m_freq / 5`. It is not reachable today because this
+body is still `__declspec(naked)` assembly; converting getFrameAdvanceCount to
+real C++ is the prerequisite, and it is a single constant afterwards.
+
+Two things to respect when changing it:
+
+  - the catch-up clamp discards the accumulator when it exceeds two quanta, so a
+    smaller quantum makes that clamp fire more readily under load;
+  - hasPacketRouterFrameStall still gates the path on
+    m_playerLatestFrame[i] + NetworkRunAheadSlack, so a faster router raises the
+    rate at which a laggard trips the stall. That is the coupling to watch on
+    the frame-time p99 gate, and it is the one place NetworkRunAheadSlack
+    becomes relevant after the change even though it is irrelevant before it.
 
 # The nine network INI fields: six are dead
 
