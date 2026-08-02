@@ -2230,7 +2230,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TimeCodedMotionChannelClass@@QAE@XZ,,0x005CD350,28,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??0ToggleHiddenSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026BFD0,63,Code/GameEngine/Source/GameLogic/Object/Update/ToggleHiddenSpecialAbilityUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ SpecialAbilityUpdate constructor
 ??0ToggleHiddenSpecialAbilityUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0ToggleMountedSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026C730,73,Code/masm_dumps/ToggleMountedSpecialAbilityUpdate_constructor.asm,matched,Exact 73B unique factory Open-BFME4
 ??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/GameEngine/Source/Common/RTS/ToggleMountedSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0TooltipUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D93E0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/TooltipUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
 ??0TooltipUpgradeModuleData@@QAE@XZ,,0x0012BAE0,116,Code/masm_dumps/TooltipUpgradeModuleData_constructor.asm,matched,Exact 116B @ 0x0012BAE0; Exact retail MASM ModuleData ctor; unique factory 0x12BC30
@@ -13840,3 +13839,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??0CostModifierUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D4570,71,Code/GameEngine/Source/GameLogic/Object/Upgrade/CostModifierUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ UpgradeModule constructor
+??0ToggleMountedSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026C730,73,Code/GameEngine/Source/GameLogic/Object/Update/ToggleMountedSpecialAbilityUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ SpecialAbilityUpdate constructor
