@@ -6,13 +6,13 @@ public:
 	~WindowVideo();
 };
 
-__declspec(naked) WindowVideo::~WindowVideo()
+class WindowVideoDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0B4h
-		_emit 02Dh
-		_emit 047h
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+WindowVideo::~WindowVideo()
+{
+	((WindowVideoDestructorShim *)this)->destroy();
 }
