@@ -11548,7 +11548,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getWaypointName@MapObject@@QAE?AVAsciiString@@XZ,,0x00088AE0,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?getWeaponInWeaponSlot@WeaponSet@@QBEPAVWeapon@@W4WeaponSlotType@@@Z,,0x001EAF90,11,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
 ?getWheelInfo@Drawable@@QBEPBUTWheelInfo@@XZ,,0x0077F6B0,17,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; m_locoInfo@+0x138; DrawableLocoInfo layout unchanged from ZH
-?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/masm_dumps/_rn5__getWhichTurretForCurWeapon_AIUpdateInterface__QBE_AW4WhichTurretType__26EB70.asm,matched,reloc-needle Open-BFME4+Grok
 ?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/masm_dumps/_rn3__getWhichTurretForWeaponSlot_AIUpdateInterface__QBE_AW4WhichTurretType_26EBB0.asm,matched,reloc-needle Open-BFME4+Grok
 ?getWidth@W3DDisplayString@@UAEHH@Z,,0x006F53A0,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,
 ?getWindowUnderCursor@GameWindowManager@@UAEPAVGameWindow@@HH_N@Z,,0x0047D570,378,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_getWindowUnderCursor.asm,matched,exact 378B via MASM (field-offset drift)
@@ -11925,7 +11924,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isValidRelationshipTarget@CommandButton@@QBE_NW4Relationship@@@Z,,0x0049AC50,77,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?isValidScience@ScienceStore@@QBE_NW4ScienceType@@@Z,,0x000E6EC0,19,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ?isWaypoint@MapObject@@QBE_NXZ,,0x00087420,10,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
-?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/masm_dumps/_rn3__isWeaponSlotOnTurretAndAimingAtTarget_AIUpdateInterface__QBE_NW4Weapo_26EA90.asm,matched,reloc-needle Open-BFME4+Grok
 ?isZero3D@@YA_NABUCoord3D@@@Z,,0x005F85F0,66,Code/GameEngine/Source/GameLogic/Object/Update/PhysicsUpdate.cpp,matched,
 ?iterateObjects@Player@@QBEXP6AXPAVObject@@PAX@Z1@Z,,0x0002F1CB,5,Code/GameEngine/Source/Common/RTS/PlayerRadarAndIterationThunks.cpp,matched,5-byte incremental-link Player const member thunk converted to focused C++ source
 ?joinBestGroupRoom@GameSpyInfo@@UAEXXZ,,0x00634EF2,433,Code/masm_dumps/_joinBestGroupRoom_GameSpyInfo__UAEXXZ.asm,matched,
@@ -13930,3 +13928,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B2D0,187,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,MASM dump converted to clean C++; keep-alive elapsed time is unsigned in BFME (JA not JG)
 ??1CreditsLine@@QAE@XZ,,0x0040C230,134,Code/GameEngine/Source/GameClient/Credits.cpp,matched,MASM dump converted to clean C++; DisplayStringManager carries the BFME slot 6-8 stubs
 ?createNewMessageQueue@GameSpyPeerMessageQueueInterface@@SAPAV1@XZ,,0x0064E620,86,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,MASM dump converted to clean C++; BFME queue carries a third MutexClass plus a tail word (0x78 not 0x6C)
+?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME AIUpdateInterface puts m_turretAI at +0x1E8
+?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME AIUpdateInterface puts m_turretAI at +0x1E8
