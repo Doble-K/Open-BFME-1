@@ -5480,7 +5480,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Close@BufferedFileClass@@UAEXXZ,,0x009E77F0,42,Code/Libraries/Source/WWVegas/WWLib/bufffile.cpp,matched,
 ?Close@RawFileClass@@UAEXXZ,,0x009E6720,57,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Close_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E13E0,89,Code/masm_dumps/__Close_Chunk_ChunkLoadClass__QAE_NXZ_9E13E0.asm,matched,
-?Close_Micro_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E1480,82,Code/masm_dumps/_Close_Micro_Chunk_ChunkLoadClass__QAE_NXZ_9E1480.asm,matched,MASM exact retail dump
+?Close_Micro_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E1480,82,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
 ?Collect_And_Unlink_All@GridCullSystemClass@@IAEXXZ,,0x008DEA60,359,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Collect_Objects@GridCullSystemClass@@UAEXABVAABoxClass@@@Z,,0x008DE1B0,710,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Collect_Objects@GridCullSystemClass@@UAEXABVFrustumClass@@@Z,,0x008DE780,724,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,

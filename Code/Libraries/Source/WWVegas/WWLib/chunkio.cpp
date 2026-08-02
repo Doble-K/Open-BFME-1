@@ -10,6 +10,17 @@
 #include <string.h>
 #include <assert.h>
 
+class BFMEChunkInput
+{
+public:
+	virtual void slot0();
+	virtual void slot1();
+	virtual void slot2();
+	virtual void slot3();
+	virtual void slot4();
+	virtual int Seek(int pos, int dir);
+};
+
 
 uint32 ChunkLoadClass::Cur_Chunk_ID()
 {
@@ -39,6 +50,30 @@ bool ChunkLoadClass::Open_Micro_Chunk()
 
 	*(bool *)((char *)this + 0xC0C) = true;
 	*(int *)((char *)this + 0xC10) = 0;
+	return true;
+}
+
+
+bool ChunkLoadClass::Close_Micro_Chunk()
+{
+	int pos = *(int *)((char *)this + 0xC10);
+	int size = *(unsigned char *)((char *)this + 0xC15);
+	*(bool *)((char *)this + 0xC0C) = false;
+
+	if (pos < size) {
+		FileClass *file = *(FileClass **)this;
+		if (file) {
+			file->Seek(size - pos, SEEK_CUR);
+		} else {
+			(*(BFMEChunkInput **)((char *)this + 4))->Seek(size - pos, SEEK_CUR);
+		}
+
+		int stack_index = *(int *)((char *)this + 8);
+		if (stack_index > 0) {
+			*(int *)((char *)this + 8 + stack_index * 4) += size - pos;
+		}
+	}
+
 	return true;
 }
 
