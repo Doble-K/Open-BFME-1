@@ -12235,7 +12235,7 @@ __declspec(naked) LightningEmissionInfo::LightningEmissionInfo()
 }
 
 // ??0LightningEmissionModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z
-// Body in LightningEmissionModuleTemplate_copy_ctor.asm (ghidra 76B).
+// Body in LightningEmissionModuleTemplateCopyCtorThunk.cpp (exact retail bytes).
 
 // ??0LightningEmissionModuleTemplate@FXParticleSystem@@QAE@XZ
 // Body in LightningEmissionModuleTemplate_ctor.asm (SEH ctor; C++ naked
