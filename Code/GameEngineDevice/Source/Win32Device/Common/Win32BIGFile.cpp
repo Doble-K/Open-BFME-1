@@ -140,24 +140,8 @@ void Win32BIGFile::close( void )
 }
 
 //============================================================================
-// Win32BIGFile::getFileInfo
+// Win32BIGFile::getFileInfo lives in the sibling Win32BIGFileGetInfo.cpp. It
+// needs the same delegating AsciiString the destructor and the name accessors
+// do -- it builds a temporary from the archive's own filename -- and BFME
+// appends a compressed-size decode that Zero Hour's body has no trace of.
 //============================================================================
-
-// ?getFileInfo@Win32BIGFile@@UBE_NABVAsciiString@@PAUFileInfo@@@Z present-unmatched
-Bool Win32BIGFile::getFileInfo(const AsciiString& filename, FileInfo *fileInfo) const 
-{
-	const ArchivedFileInfo *tempFileInfo = getArchivedFileInfo(filename);
-
-	if (tempFileInfo == NULL) {
-		return FALSE;
-	}
-
-	TheLocalFileSystem->getFileInfo(AsciiString(m_file->getName()), fileInfo);
-
-	// fill in the size info.  Since the size can't be bigger than a JUNK file, the high Int will always be 0.
-	fileInfo->sizeHigh = 0;
-	fileInfo->sizeLow = tempFileInfo->m_size;
-
-	return TRUE;
-}
-

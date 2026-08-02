@@ -13920,3 +13920,6 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??1Win32BIGFile@@UAE@XZ,,0x009D1500,95,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
+??_GWin32BIGFile@@UAEPAXI@Z,,0x009D17F0,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
+?getFileInfo@Win32BIGFile@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009D1810,274,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileGetInfo.cpp,matched,
