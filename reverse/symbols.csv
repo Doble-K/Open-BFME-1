@@ -2807,8 +2807,8 @@ name,address,notes
 ?concat@AsciiString@@QAEXPBD@Z,0x00888060,hit-decoded x2 (body)
 ?concat@AsciiString@@QAEXPBD@Z,0x00888930,hit-decoded x2 (body)
 ?connectCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPConnectResponseArg@@@Z,0x000314AD
-?construct@BoxEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002D402,BoxEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@BoxEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0001B33D,BoxEmissionVolumeModule constructor thunk used through a TU-local layout shim
+?construct@BoxEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002D402,BoxEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00019CB3,ButterflyDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003E8F1,ButterflyDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@CylinderEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000237EF,CylinderEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
