@@ -3439,6 +3439,7 @@ name,address,notes
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007EA320,pinharvest x1 (body)
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007EA380,pinharvest x1 (body)
 ?set@DX8TextureStageStateShim@@SAXIKI@Z,0x006C5840,DX8Wrapper incremental-link static thunk target through a TU-local forwarding shim
+?set@GameFileSetNameShim@@QAEPBDPBD@Z,0x006F63B0,GameFileClass Set_Name incremental-link thunk target through a TU-local forwarding shim
 ?set@LayoutFilename@@QAEXPBDH@Z,0x00887D20
 ?set@NetFileProgressSetFileIDShim@@QAEXG@Z,0x00674090,NetFileProgressCommandMsg setFileID incremental-link thunk target through a TU-local forwarding shim
 ?set@NetFileProgressSetProgressShim@@QAEXH@Z,0x006740B0,NetFileProgressCommandMsg setProgress incremental-link thunk target through a TU-local forwarding shim
