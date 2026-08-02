@@ -2992,6 +2992,7 @@ name,address,notes
 ?destroy@ProductionPrerequisiteDestroyShim@_STL@@SAXPAVProductionPrerequisite@@0@Z,0x003A9010,_STL _Destroy ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?destroy@ProductionPrerequisiteDestructorShim@@QAEXXZ,0x00753450,ProductionPrerequisite destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@UserPreferencesDestructorShim@@QAEXXZ,0x000AAF30,UserPreferences destructor incremental-link thunk target through a TU-local forwarding shim
+?destroy@W3DAnimationInfoDestructorShim@@QAEXXZ,0x00610080,W3DAnimationInfo dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@WindowVideoDestructorShim@@QAEXXZ,0x004981A0,WindowVideo destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroyObject@GameLogic@@QAEXPAVObject@@@Z,0x0001D0DE,ILT thunk; real body 0x78B0C0
 ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z,0x00005696,BoneFXUpdate::killRunningParticleSystems/stopAllBoneFX call target (ILT thunk -> body 0x5C3C10)

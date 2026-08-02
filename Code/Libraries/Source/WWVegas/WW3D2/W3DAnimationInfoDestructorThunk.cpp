@@ -6,13 +6,13 @@ public:
 	~W3DAnimationInfo();
 };
 
-__declspec(naked) W3DAnimationInfo::~W3DAnimationInfo()
+class W3DAnimationInfoDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 063h
-		_emit 000h
-		_emit 05Fh
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+W3DAnimationInfo::~W3DAnimationInfo()
+{
+	((W3DAnimationInfoDestructorShim *)this)->destroy();
 }
