@@ -13938,3 +13938,7 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??1FrameDataManager@@MAE@XZ,,0x00670540,102,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+??0FrameDataManager@@QAE@_N@Z,,0x00670410,145,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+??_GFrameDataManager@@MAEPAXI@Z,,0x006708F0,30,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
+?init@FrameDataManager@@QAEXXZ,,0x006705C0,72,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,

@@ -28,15 +28,66 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
+// Claim the real GameNetwork/FrameDataManager.h include guard before anything
+// can pull it in transitively: its FrameDataManager derives from
+// MemoryPoolObject, which BFME's does not, and the class is declared below
+// instead.
+#define __FRAMEDATAMANAGER_H
+
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
-#include "GameNetwork/FrameDataManager.h"
+#include "GameNetwork/FrameData.h"
+#include "GameNetwork/NetworkDefs.h"
+
+// Declared here rather than in a shim header: a shim directory makes every
+// later commit run the full gate, and on a machine running six clones at once
+// that gate is both slow and prone to wedging. Nothing outside this file needs
+// the declaration.
+// BFME de-pooled this the same way it de-pooled FrameData, NetCommandList,
+// NetCommandRef and Connection: the destructor at 0x00670540 stores a vptr, so
+// the class still has a vtable, but it carries no SEH frame at all -- there is
+// no MemoryPoolObject base destructor to unwind past. It goes straight from the
+// clear loop to the vector-destructor iterator and operator delete[]. The field
+// offsets are unchanged (m_frameData at +4), which is why the accessors already
+// matched against the reference layout.
+class FrameDataManager
+{
+public:
+	FrameDataManager(Bool isLocal);
+
+	void init();
+	void reset();
+	void update();
+
+	void addNetCommandMsg(NetCommandMsg *msg);
+	void setIsLocal(Bool isLocal);
+	FrameDataReturnType allCommandsReady(UnsignedInt frame, Bool debugSpewage);
+	NetCommandList * getFrameCommandList(UnsignedInt frame);
+	UnsignedInt getCommandCount(UnsignedInt frame);
+	void setFrameCommandCount(UnsignedInt frame, UnsignedInt commandCount);
+	UnsignedInt getFrameCommandCount(UnsignedInt frame);
+	void zeroFrames(UnsignedInt startingFrame, UnsignedInt numFrames);
+	void destroyGameMessages();
+	void resetFrame(UnsignedInt frame, Bool isAdvancing = TRUE);
+	void setQuitFrame(UnsignedInt frame);
+	UnsignedInt getQuitFrame();
+	Bool getIsQuitting();
+
+protected:
+	// Protected and virtual: retail's destructor mangles ??1FrameDataManager@@MAE@XZ.
+	virtual ~FrameDataManager();
+
+	FrameData *m_frameData;
+	Bool m_isLocal;
+
+	Bool m_isQuitting;
+	UnsignedInt m_quitFrame;
+};
 #include "GameNetwork/NetworkUtil.h"
 
 /**
  * Constructor.  isLocal tells it whether its the frame data manager for the local player or not.
  */
-// ??0FrameDataManager@@ present-unmatched
 FrameDataManager::FrameDataManager(Bool isLocal) {
 	m_isLocal = isLocal;
 	
@@ -49,10 +100,13 @@ FrameDataManager::FrameDataManager(Bool isLocal) {
 /**
  * destructor.
  */
-// ??1FrameDataManager@@ present-unmatched
 FrameDataManager::~FrameDataManager() {
+	// init(), not reset(): the reference's FrameData::reset is nothing but a call
+	// to init, so the two bodies are identical and the image carries only one of
+	// them at 0x00670170. Whichever name BFME's source used, the call lands
+	// there. FRAME_DATA_LENGTH is re-read from its global on every iteration.
 	for (Int i = 0; i < FRAME_DATA_LENGTH; ++i) {
-		m_frameData[i].reset();
+		m_frameData[i].init();
 	}
 
 	if (m_frameData)
@@ -65,13 +119,14 @@ FrameDataManager::~FrameDataManager() {
 /**
  * Initialize all of the frame datas associated with this manager.
  */
-// ?init@FrameDataManager@@ present-unmatched
 void FrameDataManager::init() {
 	for (Int i = 0; i < FRAME_DATA_LENGTH; ++i) {
 		m_frameData[i].init();
 		if (m_isLocal) {
-			// If this is the local connection, adjust the frame command count.
-			m_frameData[i].setFrameCommandCount(m_frameData[i].getCommandCount());
+			// BFME stamps -1 rather than the reference's getCommandCount(), the
+			// same substitution resetFrame makes: a fresh frame is "count not yet
+			// known", not "zero commands".
+			m_frameData[i].setFrameCommandCount(-1);
 		}
 	}
 
@@ -98,6 +153,10 @@ void FrameDataManager::update() {
  * Add a network command to the appropriate frame.
  */
 // ?addNetCommandMsg@FrameDataManager@@ present-unmatched
+// Real body 0x00670640, 35 bytes. The ring index and the call are already
+// right; retail keeps msg in esi across the address arithmetic and then calls,
+// where this source keeps it in eax and tail-jumps. Same allocator/tail-call
+// tie-break as Transport::queueSend and the Connection constructor.
 // BFME has no local-player adjustment here; the announced total is stamped by
 // the FRAMEINFO path instead. Everything but the call shape matches: retail
 // emits call+ret where this compiles to a tail jump, because addCommand's
@@ -112,6 +171,14 @@ void FrameDataManager::addNetCommandMsg(NetCommandMsg *msg) {
  * Returns true if all the commands for the given frame are ready.
  */
 // ?allCommandsReady@FrameDataManager@@ present-unmatched
+// Real body 0x00670A30, 448 bytes, and it is not this. The reference delegates
+// straight to FrameData::allCommandsReady; BFME's is a body of its own that
+// walks the ring from a base it keeps in ebx and consults TheGlobalData+0xB1C.
+// That is the same offset the firewall shim currently attributes to
+// m_firewallPortOverride, on the strength of detectionBeginUpdate alone -- and
+// detectionBeginUpdate is still unmatched, so that attribution is unverified.
+// A frame-readiness predicate reading a firewall port would be odd; one of the
+// two readings is wrong and neither is settled here.
 FrameDataReturnType FrameDataManager::allCommandsReady(UnsignedInt frame, Bool debugSpewage) {
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
 	//DEBUG_ASSERTCRASH(m_frameData[frameindex].getFrame() == frame || frame == 256, ("Looking at old commands!"));
