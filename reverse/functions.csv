@@ -12160,7 +12160,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?open@MemoryWriteFile@@UAE_NPBDH@Z,,0x009CB220,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?openDataChunk@DataChunkInput@@QAE?AVAsciiString@@PAG@Z,,0x001032A0,265,Code/masm_dumps/_rn5__openDataChunk_DataChunkInput__QAE_AVAsciiString__PAG_Z_1032A0.asm,matched,reloc-needle Open-BFME4+Grok
 ?openDataChunk@DataChunkOutput@@QAEXPADG@Z,,0x0003A256,5,Code/GameEngine/Source/Common/RTS/DataChunkOutputOpenDataChunkThunk.cpp,matched,5-byte incremental-link DataChunkOutput member thunk converted to focused C++ source
-?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,,0x009C8860,394,Code/masm_dumps/__openFile_FileSystem__QAEPAVFile__PBDH_Z_9C8860.asm,matched,
 ?openFile@Win32BIGFile@@UAEPAVFile@@PBDH@Z,,0x009D1490,22,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileOpen.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 2; forwards to 4-arg openFile at slot 3
 ?openLiveHandle@BFMENetworkBackend@@QAEXXZ,,0x009DB650,54,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,
 ?openSpareSocket@FirewallHelperClass@@QAE_NG@Z,,0x0066EA30,194,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
@@ -13841,3 +13840,4 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?doesFileExist@FileSystem@@QBE_NPBD@Z,,0x009C86A0,134,Code/GameEngine/Source/Common/System/FileSystem_doesFileExist.cpp,matched,BFME doesFileExist: sprintf path prefix then local+archive; C++ exact
 ?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,144,Code/GameEngine/Source/Common/System/FileSystem_createDirectory.cpp,matched,Promote masm dump to Code/ naked C++; size 144 per ghidra
+?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,,0x009C8860,394,Code/GameEngine/Source/Common/System/FileSystem_openFile.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
