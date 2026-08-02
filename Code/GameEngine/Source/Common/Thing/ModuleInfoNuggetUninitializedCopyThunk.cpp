@@ -8,19 +8,22 @@ public:
 
 namespace _STL
 {
-	struct __false_type;
+struct __false_type {};
 
-	template <class In, class Out>
-	__declspec(naked) Out __uninitialized_copy(In, In, Out, const __false_type &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 06Fh
-			_emit 02Eh
-			_emit 075h
-			_emit 000h
-		}
-	}
+template <class In, class Out>
+Out __uninitialized_copy(In, In, Out, const __false_type &);
 
-	template ModuleInfo::Nugget *__uninitialized_copy<const ModuleInfo::Nugget *, ModuleInfo::Nugget *>(const ModuleInfo::Nugget *, const ModuleInfo::Nugget *, ModuleInfo::Nugget *, const __false_type &);
+class ModuleInfoNuggetUninitializedCopyShim
+{
+public:
+	static void *copy(void *first, void *last, void *result, const __false_type &);
+};
+
+template <class In, class Out>
+Out __uninitialized_copy(In first, In last, Out result, const __false_type &tag)
+{
+	return (Out)ModuleInfoNuggetUninitializedCopyShim::copy((void *)first, (void *)last, (void *)result, tag);
+}
+
+template ModuleInfo::Nugget *__uninitialized_copy<const ModuleInfo::Nugget *, ModuleInfo::Nugget *>(const ModuleInfo::Nugget *, const ModuleInfo::Nugget *, ModuleInfo::Nugget *, const __false_type &);
 }
