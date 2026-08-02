@@ -11890,7 +11890,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?hide@WindowLayout@@QAEX_N@Z,,0x00497A00,58,Code/GameEngine/Source/GameClient/GUI/WindowLayout.cpp,matched,
 ?hide@WindowLayout@@UAEXH@Z,,0x00497A00,58,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,
 ?hideCommunicator@ControlBar@@QAEX_N@Z,,0x0049D070,18,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
-?hideIdleWorkerLayout@InGameUI@@EAEXXZ,,0x0043FA90,72,Code/masm_dumps/InGameUI_hideIdleWorkerLayout.asm,matched,Ghidra-corrected BFME idle-worker body
+?hideIdleWorkerLayout@InGameUI@@EAEXXZ,,0x0043FA90,72,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,Exact 72B C++ raw function conversion Open-BFME5
 ?hideInfoGadgets@@YAX_N@Z,,0x00505730,61,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,object-symbol=?hide@BfmeQuickMatchHideInfoGadgetsBody@@QAEX_N@Z;C++ body converted from exact 61B retail MASM
 ?hideMovie@WindowVideoManager@@QAEXPAVGameWindow@@@Z,,0x004987B0,72,Code/masm_dumps/_rn7__hideMovie_WindowVideoManager__QAEXPAVGameWindow___Z_4987B0.asm,matched,reloc-needle Open-BFME4+Grok
 ?hideOptionsGadgets@@YAX_N@Z,,0x00505670,145,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,object-symbol=?hide@BfmeQuickMatchHideOptionsGadgetsBody@@QAEX_N@Z;C++ body converted from exact 145B retail MASM
