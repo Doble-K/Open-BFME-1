@@ -21,35 +21,32 @@
 // ntohl is expanded inline in registers on both the header fields and every
 // entry's offset and size, so there is no call for it.
 //
-// STATE: 832 bytes compiled against 832 in retail, NOT claimed and NOT yet
-// structurally exact. The length agreeing is encouraging but it is not the same
-// program yet -- the middle still differs in kind, not only in register choice:
+// STATE: compiles to 832 bytes against retail's 832, NOT claimed. The prologue,
+// epilogue, every call target and every constant agree; what is left is a
+// handful of codegen idioms and the register assignment.
 //
-//   * the ntohl expansion. Retail assembles bytes with `xor eax,eax` then
-//     `mov ah,[esp+N]`; this uses movzx loads and shifts. Same value, different
-//     idiom, and it appears four times.
-//   * the separator scan in the loop. Retail walks backwards from the end of the
-//     name; this walks forward tracking the last hit.
-//   * the register assignment on top of that: fp in edi where retail has ebp,
-//     and the zero constant in ebp where retail has ebx.
+// Fixed since the first attempt, each of which moved it:
+//   * the separator scan runs backwards from the end of the name, as retail
+//     does (mov al,[esi+ebp]; cmp; dec ebp; jns), not forwards tracking the
+//     last hit;
+//   * two index variables rather than one -- retail's frame is four bytes
+//     larger, and a single `sep` is four bytes short of it;
+//   * the byte-swap written as (v>>24) | ((v>>8)&0xFF00) | ((v<<8)&0xFF0000) |
+//     (v<<24).
 //
-// The prologue does match exactly, including all four saved registers, and so do
-// every call target, every constant and the epilogue.
+// Still different:
+//   * the operator-new null check. Retail stores the pointer to a stack slot in
+//     BOTH arms (mov [esp+0x10],edi / mov [esp+0x10],ebx) where this keeps it
+//     only in a register, which makes retail's skip 0x0f bytes against 0x0b.
+//   * the fp == NULL test. Retail branches over a short inline early-return
+//     block (jne +0x28); here the compiler merges that return with the later
+//     ones and jumps far (je +0xdd). Retail's three returns evidently are not
+//     all interchangeable -- probably they clean up different amounts.
+//   * register assignment on top of both: fp in edi where retail has ebp.
 //
-// Things that got it this far, each a real finding about the format: the
-// sixteen-byte header read rather than three four-byte ones; the tag checked
-// against BOTH "BIGF" and "BIG4" with strncmp; one bulk read of the whole
-// directory into a heap buffer, parsed in memory; setNameAndPath at ArchiveFile
-// slot 9, which is the [edx+0x24] call and whose absence cost exactly nine
-// bytes; and Win32BIGFile being 44 bytes, since retail pushes 0x2c to
-// operator new.
-//
-// Things tried that do NOT help: hoisting archiveFileSize - 0x10 into a local
-// (worse, 821 bytes), moving the m_archiveFilename set inside the loop, and
-// declaring archiveFileName before fp (much worse).
-//
-// Next: match the byte-extraction idiom and reverse the separator scan before
-// worrying about registers.
+// Things tried that do NOT help: hoisting archiveFileSize - 0x10 into a local,
+// moving the m_archiveFilename set inside the loop, and declaring
+// archiveFileName before fp.
 
 #include <string.h>
 #include "string_base.h"
@@ -96,8 +93,7 @@ private:
 // on both header fields and on every entry's offset and size.
 static inline Int ntohl_inline( Int v )
 {
-	return ((v & 0xFF) << 24) | ((v & 0xFF00) << 8) |
-	       ((v >> 8) & 0xFF00) | ((v >> 24) & 0xFF);
+	return (v >> 24) | ((v >> 8) & 0xFF00) | ((v << 8) & 0xFF0000) | (v << 24);
 }
 
 struct ArchivedFileInfo
@@ -222,11 +218,12 @@ ArchiveFile *Win32BIGFileSystem::openArchiveFile( const Char *filename )
 
 		const char *name = p + 8;
 
-		Int sep = -1;
-		for (Int k = 0; name[k] != 0; ++k) {
-			if (name[k] == '\\' || name[k] == '/') {
-				sep = k;
-			}
+		// Backwards from the end, which is what retail does: mov al,[esi+ebp];
+		// cmp against the two separators; dec ebp; jns.
+		Int pathIndex = (Int)strlen( name );
+		Int sep = pathIndex;
+		while (sep >= 0 && name[sep] != '\\' && name[sep] != '/') {
+			--sep;
 		}
 
 		fileInfo.m_filename.set( name + sep + 1,
@@ -238,7 +235,7 @@ ArchiveFile *Win32BIGFileSystem::openArchiveFile( const Char *filename )
 
 		archiveFile->addFile( path, &fileInfo );
 
-		p += strlen( name ) + 9;
+		p += pathIndex + 9;
 	}
 
 	archiveFile->attachFile( fp );
