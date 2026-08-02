@@ -26,6 +26,11 @@ public:
     void construct(const void *source);
 };
 
+class DefaultModuleTemplate1CtorShim {
+public:
+    void construct();
+};
+
 class DefaultModuleTemplate3CtorShim {
 public:
     void construct();
@@ -8560,42 +8565,12 @@ ConcreteModuleTemplate<DefaultModuleTag<1> >::ConcreteModuleTemplate(const Concr
 }
 
 // ??0?$ConcreteModuleTemplate@V?$DefaultModuleTag@$00@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
-__declspec(naked) ConcreteModuleTemplate<DefaultModuleTag<1> >::ConcreteModuleTemplate()
+ConcreteModuleTemplate<DefaultModuleTag<1> >::ConcreteModuleTemplate()
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x7d
-        __emit 0x52
-        __emit 0xa3
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x6c
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x68
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0x54
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc3
-    }
+    ((DefaultModuleTemplate1CtorShim *)this)->construct();
+    *(volatile unsigned int *)this = 0x01110f6c;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x01110f68;
+    *(volatile unsigned int *)((unsigned char *)this + 8) = 0x01110f54;
 }
 
 // ??1?$ConcreteModuleTemplate@V?$DefaultModuleTag@$00@FXParticleSystem@@@FXParticleSystem@@UAE@XZ
