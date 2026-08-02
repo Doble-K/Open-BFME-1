@@ -141,7 +141,14 @@ public:
 	virtual void unlock( void );					// slot 16
 
 protected:
-	void setName( const char *name ) { m_nameStr = name; }
+	// Spelled as a direct set() rather than m_nameStr = name. Going through
+	// operator= makes &m_nameStr a parameter of an inlined member call, so it is
+	// materialised at the inline site instead of at the call -- which shows up in
+	// ~File as lea ecx,[esi+4] before the string push rather than after.
+	void setName( const char *name )
+	{
+		((StringBase<char> *)&m_nameStr)->set( name, name ? (int)strlen( name ) : 0 );
+	}
 
 	AsciiString m_nameStr;		// +0x04
 	Int m_access;				// +0x08
@@ -797,17 +804,21 @@ File::File()
 	setName( "<no file>" );
 }
 
-// ??1File@@UAE@XZ present-unmatched
-// 129 of 133 bytes. The word at +0x10 is a mutex handle, not a buffer: the
-// call retail makes on it is KERNEL32!CloseHandle, read out of the import table
-// at the IAT slot 0x01358CCC. That also explains why no esp adjustment follows
-// it -- CloseHandle is __stdcall, so the callee cleans -- which is what the
-// "some __stdcall deallocator" note here used to say without knowing which.
+// ??1File@@UAE@XZ
+// The word at +0x10 is a mutex handle, not a buffer: the call retail makes on
+// it is KERNEL32!CloseHandle, read out of the import table at the IAT slot
+// 0x01358CCC. That also explains why no esp adjustment follows it -- CloseHandle
+// is __stdcall, so the callee cleans -- which is what the "some __stdcall
+// deallocator" note here used to say without knowing which.
 //
-// The last four bytes are instruction order inside the inlined close(): retail
-// pushes the "<no file>" pointer before computing &m_nameStr, we compute it
-// first. The identical call in File::File matches exactly, so it belongs to
-// close() being inlined here rather than to how setName is written.
+// This sat at 129 of 133 for a while, and the last four bytes were instruction
+// order inside the inlined close(): retail pushes the "<no file>" pointer before
+// computing &m_nameStr and we computed it first. The note here blamed the
+// inlining rather than setName, on the grounds that the identical call in
+// File::File matched. It was setName. Writing it as a direct set() instead of
+// m_nameStr = name stops the receiver being materialised at the inline site, and
+// that fixed this one without disturbing the five other call sites -- 42/42.
+//
 // Clears m_deleteOnClose before closing, so a File that would normally delete
 // itself on close does not re-enter delete while already being destroyed.
 File::~File()
