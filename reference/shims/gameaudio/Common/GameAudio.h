@@ -286,10 +286,17 @@ class AudioManager : public SubsystemInterface
 	//   slot 70 (+0x118) -> 0x006AEA10, 166 bytes
 	//
 	// Zero Hour declares newAudioEventInfo, addAudioEventInfo and
-	// findAudioEventInfo in that region of the class, but the argument counts do
-	// not line up with any of them on a first reading, so they are left unnamed
-	// rather than guessed. Naming those two would unblock all five blocks at
-	// once, which is the highest-yield naming problem left in the INI work.
+	// findAudioEventInfo in that region of the class, and it is tempting to map
+	// these onto them. Do not: both bodies open with
+	// WaitForSingleObject on a handle at AudioManager+0x95c, so they are
+	// mutex-guarded accessors, and Zero Hour's three take no lock at all. These
+	// are BFME additions, which is also why the argument counts do not fit --
+	// slot 68 takes two stack arguments where findAudioEventInfo( AsciiString )
+	// would take one, the first being a hidden return slot for a by-value result.
+	//
+	// So Zero Hour cannot supply these names, the same wall the BFME-only
+	// subsystems hit. Naming them needs evidence from inside the image, and it is
+	// worth the effort: five blocks unblock at once.
 	virtual MiscAudio *friend_getMiscAudio( void );
 
 
