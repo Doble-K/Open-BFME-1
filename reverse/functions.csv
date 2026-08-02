@@ -13847,5 +13847,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Add_Prototype_Impl@AssetRegistry@@QAEXPAX@Z,,0x009EF1A0,224,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype_Impl.cpp,matched,BFME registry Add_Prototype impl exact 224B @ 0x9EF1A0
 ?Load_Hierarchy@W3DHierarchyLoader@@QAEXXZ,,0x00971990,403,Code/Libraries/Source/WWVegas/WW3D2/Load_Hierarchy_W3D.cpp,matched,BFME hierarchy type loader exact 403B @ 0x971990
 ?Load_Animation@W3DAnimationLoader@@QAEXXZ,,0x0090C080,479,Code/Libraries/Source/WWVegas/WW3D2/Load_Animation_W3D.cpp,matched,BFME animation type loader exact 479B @ 0x90C080
-?Recolor_Mesh@W3DAssetManager@@,,0x0092DF50,1218,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Mesh.asm,matched,Promote Recolor_Mesh from masm_dumps to Code/ exact 1218B
-?Recolor_Texture@W3DAssetManager@@,,0x00A5828A,644,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Texture.asm,matched,Promote Recolor_Texture from masm_dumps to Code/ exact 644B
+?Recolor_Mesh@W3DAssetManager@@QAEHH@Z,,0x0092DF50,1218,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Mesh.cpp,matched,Recolor_Mesh naked C++ exact 1218B @ 0x92DF50
+?Recolor_Texture@W3DAssetManager@@QAEHHHHHHHHHH@Z,,0x00A5828A,644,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Texture.cpp,matched,Recolor_Texture naked C++ exact 644B @ 0xA5828A
