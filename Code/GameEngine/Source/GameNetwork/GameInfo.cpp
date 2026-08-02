@@ -266,14 +266,9 @@ Bool GameSlot::isAI( void ) const
 {
 	return m_state == SLOT_EASY_AI || m_state == SLOT_MED_AI || m_state == SLOT_BRUTAL_AI;
 }
-
 // ?isPlayer@GameSlot@@ present-unmatched
-Bool GameSlot::isPlayer( AsciiString userName ) const
-{
-	UnicodeString uName;
-	uName.translate(userName);
-	return (m_state == SLOT_PLAYER && !m_name.compareNoCase(uName));
-}
+// Implemented in GameSlotIsPlayerAsciiThunk.cpp to avoid an MSVC 7.1
+// overload interaction between naked by-value string methods.
 
 // ?isPlayer@GameSlot@@ present-unmatched
 __declspec(naked) Bool GameSlot::isPlayer( UnicodeString ) const
