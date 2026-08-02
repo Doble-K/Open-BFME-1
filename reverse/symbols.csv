@@ -3403,6 +3403,7 @@ name,address,notes
 ?localPixelToRadar@Radar@@QAE_NPBUICoord2D@@PAU2@@Z,0x00004D59
 ?localPixelToRadar@RadarLocalPixelToRadarShim@@QAE_NPBUICoord2D@@PAU2@@Z,0x00107AB0,Radar incremental-link thunk target through a TU-local forwarding shim
 ?lookup@TerrainCollisionEventFXLookupShim@FXParticleSystem@@QBEPBVFXList@@PBD@Z,0x0001669E,TerrainCollisionModuleInfo event FX lookup thunk used through a TU-local layout shim
+?lower_bound@AsciiStringTreeLowerBoundShim@_STL@@QBEPAU?$_Rb_tree_node@VAsciiString@@@2@ABVAsciiString@@@Z,0x00633900,incremental-link thunk target through a TU-local forwarding shim
 ?makeDecoratedNameKey@ModuleFactory@@KA?AW4NameKeyType@@ABVAsciiString@@W4ModuleType@@@Z,0x0004B439
 ?makeDecoratedNameKey@ModuleFactory@@KAHABVAsciiString@@H@Z,0x0004B439,ModuleFactory::makeDecoratedNameKey thunk (body 0x00126260)
 ?makeDirty@PartitionData@@QAEXXZ,0x008F7B30,BFME PartitionData::makeDirty() takes no argument; pinned from setScriptStatus 0x1D01D0
@@ -3774,6 +3775,7 @@ name,address,notes
 ?updateMeshVolume@W3DVolumetricShadow@@IAEXHHPBVMatrix3D@@ABVAABoxClass@@M@Z,0x007BE000,certified packet 348; updateMeshVolume body 0x7BE000 (thunk 0xC392 from updateVolumes)
 ?updateNumPlayersOnline@@YAXXZ,0x0050BA40
 ?updateUpgradeModules@Object@@QAEXXZ,0x00027FCF,ILT thunk used by giveUpgrade call site
+?upper_bound@AsciiStringTreeUpperBoundShim@_STL@@QBEPAU?$_Rb_tree_node@VAsciiString@@@2@ABVAsciiString@@@Z,0x000804D0,incremental-link thunk target through a TU-local forwarding shim
 ?winBringToTop@GameWindow@@QAEHXZ,0x0000FE66
 ?winClearStatus@GameWindow@@QAEII@Z,0x00027B24
 ?winEnable@GameWindow@@QAEH_N@Z,0x0004A1FB
