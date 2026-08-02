@@ -13459,7 +13459,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setName@CrateTemplate@@QAEXVAsciiString@@@Z,,0x00379010,75,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,located by byte-scan once the TU moved onto the ini shim AsciiString
 ?setName@GameSlot@@QAEXVUnicodeString@@@Z,,0x00072420,75,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,
 ?setName@Image@@QAEXVAsciiString@@@Z,,0x000C2420,75,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,BFME moves it out of the header; body is byte-identical to three other setName instantiations so the call from the MappedImage parser is what picks this address
-?setName@LANGameInfo@@QAEXVUnicodeString@@@Z,,0x00685480,78,Code/masm_dumps/setName_LANGameInfo_QAEXVUnicodeString_Z_685480.asm,matched,Ghidra exact boundary and caller-verified body
+?setName@LANGameInfo@@QAEXVUnicodeString@@@Z,,0x00685480,78,Code/GameEngine/Source/GameNetwork/LANGameInfoSetNameThunk.cpp,matched,Exact 78B C++ raw member thunk Open-BFME5
 ?setName@LANPlayer@@QAEXVUnicodeString@@@Z,,0x00624C10,72,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ?setNameAndPath@Win32BIGFile@@UAEXABVAsciiString@@@Z,,0x009D1730,189,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSetName.cpp,matched,
 ?setNeedsToFinish@AnimateWindow@@QAEX_N@Z,,0x0018F237,10,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
