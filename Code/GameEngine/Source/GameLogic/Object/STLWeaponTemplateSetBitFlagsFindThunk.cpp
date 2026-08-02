@@ -2,60 +2,60 @@ class WeaponTemplateSet
 {
 };
 
-template<int Bits>
+template <int Bits>
 class BitFlags
 {
 };
 
-template<class Set, class Flags>
+template <class Set, class Flags>
 class SparseMatchFinder
 {
 public:
-    struct MapHelper
-    {
-    };
+	struct MapHelper
+	{
+	};
 };
 
 namespace _STL
 {
-template<class First, class Second>
+template <class First, class Second>
 struct pair
 {
 };
 
-template<class T>
+template <class T>
 struct _Select1st
 {
 };
 
-template<class T>
+template <class T>
 class allocator
 {
 };
 
-template<class T>
+template <class T>
 struct _Rb_tree_node
 {
 };
 
-template<class Key, class Value, class KeyOfValue, class Compare, class Alloc>
+template <class Key, class Value, class KeyOfValue, class Compare, class Alloc>
 class _Rb_tree
 {
-    template<class SearchKey>
-    _Rb_tree_node<Value> *_M_find(const SearchKey &) const;
+	template <class SearchKey>
+	_Rb_tree_node<Value> *_M_find(const SearchKey &) const;
 };
 
-template<class Key, class Value, class KeyOfValue, class Compare, class Alloc>
-template<class SearchKey>
-__declspec(naked) _Rb_tree_node<Value> *_Rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::_M_find(const SearchKey &) const
+class WeaponTemplateBitFlagsFindShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 000h
-        _emit 0E5h
-        _emit 00Fh
-        _emit 000h
-    }
+public:
+	_Rb_tree_node<pair<const BitFlags<17>, const WeaponTemplateSet *> > *find(const BitFlags<17> &k) const;
+};
+
+template <class Key, class Value, class KeyOfValue, class Compare, class Alloc>
+template <class SearchKey>
+_Rb_tree_node<Value> *_Rb_tree<Key, Value, KeyOfValue, Compare, Alloc>::_M_find(const SearchKey &k) const
+{
+	return (_Rb_tree_node<Value> *)((WeaponTemplateBitFlagsFindShim const *)this)->find((const BitFlags<17> &)k);
 }
 }
 

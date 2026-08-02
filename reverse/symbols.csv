@@ -3094,6 +3094,7 @@ name,address,notes
 ?find@GameLogicFindControlBarOverrideShim@@QBE_NABVAsciiString@@HAAPBVCommandButton@@@Z,0x00391B30,GameLogic findControlBarOverride incremental-link thunk target through a TU-local forwarding shim
 ?find@ParticleSystemHashtableFindShim@_STL@@QBEPAU?$_Hashtable_node@U?$pair@$$CBVAsciiString@@PAVParticleSystemTemplate@@@_STL@@@2@ABVAsciiString@@@Z,0x005C76A0,incremental-link thunk target through a TU-local forwarding shim
 ?find@UpgradeCenterFindUpgradeShim@@QBEPBVUpgradeTemplate@@ABVAsciiString@@@Z,0x0010B0E0,UpgradeCenter findUpgrade incremental-link thunk target through a TU-local forwarding shim
+?find@WeaponTemplateBitFlagsFindShim@_STL@@QBEPAU?$_Rb_tree_node@U?$pair@$$CBV?$BitFlags@$0BB@@@PBVWeaponTemplateSet@@@_STL@@@2@ABV?$BitFlags@$0BB@@@@Z,0x00141220,incremental-link thunk target through a TU-local forwarding shim
 ?findArmorTemplate@ArmorStore@@QBEPBVArmorTemplate@@VAsciiString@@@Z,0x00022FC5,parseArmorTemplate call target (incremental-link thunk); resolves repointed INI parser thunk-dump
 ?findBestInfoSlow@?$SparseMatchFinder@VArmorTemplateSet@@V?$BitFlags@$0L@@@@@ABEPBVArmorTemplateSet@@ABV?$vector@VArmorTemplateSet@@V?$allocator@VArmorTemplateSet@@@_STL@@@_STL@@ABV?$BitFlags@$0L@@@@Z,0x00013ACA,pinharvest x1 (thunk)
 ?findBestInfoSlow@?$SparseMatchFinder@VWeaponTemplateSet@@V?$BitFlags@$0BB@@@@@ABEPBVWeaponTemplateSet@@ABV?$vector@VWeaponTemplateSet@@V?$allocator@VWeaponTemplateSet@@@_STL@@@_STL@@ABV?$BitFlags@$0BB@@@@Z,0x00013ACA,resweep callee back-solved
