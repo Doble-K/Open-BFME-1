@@ -344,10 +344,21 @@ static INIBlockParse findBlockParse(const char* token)
 /** Load and parse an INI file */
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?parseLine@INI@@IAEXVAsciiString@@@Z present-unmatched
 // 0x00851350, 362 bytes. BFME factors this out of load; Zero Hour writes it
 // inline there. The name is ours -- there is nothing to take it from, since the
 // function does not exist upstream.
+//
+// The error handling is BFME's own and is worth reading if you write INI: Zero
+// Hour sprintfs into a 1KB stack buffer and throws a message-only exception,
+// while BFME throws the variadic INIException at three distinct sites, each
+// with its own text. Those texts are the ones a mod actually sees:
+//
+//   unknown keyword   "Unknown block '%s'.\n\nError parsing INI block '%s' in file '%s'."
+//   parser threw      "%s\n\nError parsing INI block '%s' in file '%s'."
+//   anything else     "Unknown error parsing INI block '%s' in file '%s'."
+//
+// The absence of that 1KB buffer is what the byte count turned on -- retail
+// reserves 0x2c bytes of locals where the Zero Hour shape reserves 0x418.
 //
 // It also keeps findBlockParse alive: that function is file-static, so with the
 // dispatch moved out of load and nothing else calling it, the compiler drops it
@@ -366,17 +377,30 @@ void INI::parseLine( AsciiString filename )
 			{
 				(*parse)( this );
 			}
+			catch( INIException& e )
+			{
+				// The block parser already said what went wrong; this only adds
+				// where. Note it reads m_filename rather than the filename
+				// argument -- retail loads this+4 at all three throw sites, even
+				// though it takes the name by value and destroys it on the way
+				// out.
+				throw INIException( e.m_argCount,
+					"%s\n\nError parsing INI block '%s' in file '%s'.",
+					e.mFailureMessage, token, m_filename.str() );
+			}
 			catch (...)
 			{
-				char buff[1024];
-				sprintf(buff, "Error parsing INI file '%s' (Line: '%s')\n", filename.str(), m_buffer);
-				throw INIException(buff);
+				throw INIException( 8,
+					"Unknown error parsing INI block '%s' in file '%s'.",
+					token, m_filename.str() );
 			}
 			strcpy(m_curBlockStart, "NO_BLOCK");
 		}
 		else
 		{
-			throw INI_UNKNOWN_TOKEN;
+			throw INIException( 5,
+				"Unknown block '%s'.\n\nError parsing INI block '%s' in file '%s'.",
+				token, token, m_filename.str() );
 		}
 	}
 }
