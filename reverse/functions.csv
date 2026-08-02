@@ -12281,6 +12281,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseConditionState@W3DModelDrawModuleData@@,,0x0077C860,748,Code/masm_dumps/_str3__parseConditionState_W3DModelDrawModuleData__77C860.asm,matched,
 ?parseConditionState@W3DModelDrawModuleData@@CAXPAVINI@@PAX1PBX@Z,,0x0077C860,748,Code/masm_dumps/_str3__parseConditionState_W3DModelDrawModuleData__77C860.asm,matched,object-symbol=?parseConditionState@W3DModelDrawModuleData@@;ICF alias of MASM body; structural queue RVA 0x852F4C is int3 pad before already-matched parseRGBColor@0x852F50
 ?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z,,0x004AAD10,1,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,INI block table node binds keyword ControlBarResizer to this address
+?parseControlBarSchemeDefinition@INI@@SAXPAV1@@Z,,0x000B8070,171,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,the scheme manager hangs off TheControlBar at +0x30 and is null-checked so a scheme block loaded before the control bar exists is skipped
 ?parseCoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x008533E0,60,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseCoord3D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853380,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseCrateCreationEntry@CrateTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x00379F80,258,Code/masm_dumps/parseCrateCreationEntry_CrateTemplate_00379F80_packet305.asm,matched,Certified packet 305 sealed retail body
@@ -12291,6 +12292,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseDamageTypeFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B8FF0,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDeathTypeFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9100,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDebris@GenericObjectCreationNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001DAE40,204,Code/masm_dumps/GenericObjectCreationNugget_parseDebris_1DAE40.asm,matched,Exact 204B MASM; queue RVA 0x1DAE09 was int3 pad before true start; m_nameAreObjects=0 at +0x114; sibling parseObject@0x1DA620
+?parseDebugCommandMap@@YAXPAVINI@@@Z,,0x005B7030,129,Code/GameEngine/Source/GameClient/DebugCommandMap.cpp,matched,reads the entry name and discards it then parses into a local that is also discarded - the release build validates syntax and stores nothing
 ?parseDefaultColor@@YA_NPAHPAVFile@@PAD@Z,,0x00485970,143,Code/masm_dumps/parseDefaultColor_YA_NPAHPAVFile_PAD_Z_00485970.asm,matched,Certified packet 43 reviewed ENTRY boundaries callers TRANSPARENT xref and call graph
 ?parseDrawCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486A60,130,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript_parseDrawCallback.asm,matched,MASM exact parser-table anchored DRAWCALLBACK
 ?parseDrawData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485EE0,1221,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript_parseDrawData.asm,matched,exact 1221B via MASM (structural near-match)
@@ -12370,6 +12372,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseObjectDefinition@INI@@SAXPAV1@ABVAsciiString@@11@Z,,0x00139D00,541,Code/masm_dumps/INI_parseObjectDefinition_139D00.asm,matched,"shared body behind the Object ObjectReskin and ChildObject blocks - it prints ""ChildObject must come after the original Object"" and calls ThingTemplate validate; was recorded as ?newDrawable@ThingFactory@@ which is a thiscall while this reads its first stack arg"
 ?parseObjectReskinDefinition@INI@@SAXPAV1@@Z,,0x000C2870,151,Code/GameEngine/Source/Common/INI/INIObject.cpp,matched,passes the second name as reskinFrom - the third argument of the shared body
 ?parseOnlineChatColorDefinition@INI@@SAXPAV1@@Z,,0x006250A0,20,Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp,matched,INI block table node binds keyword OnlineChatColors to this address
+?parseOptionGroup@@YAXPAVINI@@@Z,,0x000945A0,211,Code/GameEngine/Source/GameClient/OptionGroup.cpp,matched,builds a four-entry FieldParse array on the stack - Bool Int String Real - so a group body is a list of typed values rather than fixed named settings
 ?parseParticleSystem@BoneFXUpdateModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00016A04,5,Code/GameEngine/Source/Common/RTS/FXModuleDataParseParticleSystemThunks.cpp,matched,5-byte static BoneFX particle parser thunk converted to focused C++ source
 ?parseParticleSystem@TransitionDamageFXModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00020C43,5,Code/GameEngine/Source/Common/RTS/FXModuleDataParseParticleSystemThunks.cpp,matched,5-byte static transition particle parser thunk converted to focused C++ source
 ?parseParticleSystemTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAF00,163,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
