@@ -2,15 +2,15 @@ class AsciiString
 {
 };
 
+class GameWindow
+{
+};
+
 class ScriptEngine
 {
 public:
 	void doNamedMapReveal(AsciiString const &);
 	void undoNamedMapReveal(AsciiString const &);
-};
-
-class GameWindow
-{
 };
 
 class ControlBar
@@ -19,35 +19,36 @@ public:
 	void showBuildTooltipLayout(GameWindow *);
 };
 
-__declspec(naked) void ScriptEngine::doNamedMapReveal(AsciiString const &)
+class ScriptEnginedoNamedMapRevealShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0BCh
-		_emit 0D5h
-		_emit 032h
-		_emit 000h
-	}
+public:
+	void doNamedMapReveal(AsciiString const & a0);
+};
+
+void ScriptEngine::doNamedMapReveal(AsciiString const & a0)
+{
+	((ScriptEnginedoNamedMapRevealShim *)this)->doNamedMapReveal(a0);
 }
 
-__declspec(naked) void ScriptEngine::undoNamedMapReveal(AsciiString const &)
+class ScriptEngineundoNamedMapRevealShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 081h
-		_emit 0D1h
-		_emit 033h
-		_emit 000h
-	}
+public:
+	void undoNamedMapReveal(AsciiString const & a0);
+};
+
+void ScriptEngine::undoNamedMapReveal(AsciiString const & a0)
+{
+	((ScriptEngineundoNamedMapRevealShim *)this)->undoNamedMapReveal(a0);
 }
 
-__declspec(naked) void ControlBar::showBuildTooltipLayout(GameWindow *)
+class ControlBarshowBuildTooltipLayoutShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 038h
-		_emit 0FDh
-		_emit 00Ch
-		_emit 000h
-	}
+public:
+	void showBuildTooltipLayout(GameWindow * a0);
+};
+
+void ControlBar::showBuildTooltipLayout(GameWindow * a0)
+{
+	((ControlBarshowBuildTooltipLayoutShim *)this)->showBuildTooltipLayout(a0);
 }
+

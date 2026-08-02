@@ -2798,6 +2798,7 @@ name,address,notes
 ?changeGridHeight@WaterRenderObjClass@@QAEXMMM@Z,0x0079F850,thunk-resolved body (via 0x2b256)
 ?check@AssistedTargetingObjectShim@@QAE_NXZ,0x00001FD7,AssistedTargetingUpdate isFreeToAssist first object predicate shim
 ?check@AssistedTargetingResultShim@@QAEHXZ,0x0000978C,AssistedTargetingUpdate isFreeToAssist result predicate shim
+?doNamedMapReveal@ScriptEnginedoNamedMapRevealShim@@QAEXABVAsciiString@@@Z,0x0034D200,ScriptEngine::doNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
 ?set@ThingTemplateSubobjectShim@@QAEXH@Z,0x0004AC69,ThingTemplate setCopiedFromDefault subobject flag helper shim
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x00004EE9,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002054F,hit-decoded x3 (thunk)
@@ -3701,6 +3702,7 @@ name,address,notes
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,0x0001DF43,pinharvest x1 (thunk)
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,0x0003ADD7,pinharvest x1 (thunk)
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,0x0003EBD5,pinharvest x1 (thunk)
+?showBuildTooltipLayout@ControlBarshowBuildTooltipLayoutShim@@QAEXPAVGameWindow@@@Z,0x000E7240,ControlBar::showBuildTooltipLayout incremental-link thunk target through a TU-local forwarding shim
 ?showNamedTimerDisplay@InGameUI@@QAEX_N@Z,0x0001E1A0,ILT thunk for ScriptActions timer display
 ?showNamedTimerDisplay@InGameUI@@QAEX_N@Z,0x0043AA90,body showNamedTimerDisplay InGameUI+0x7a1
 ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,0x0002C6E7
@@ -3725,6 +3727,7 @@ name,address,notes
 ?turnOffScreen@DisconnectManager@@IAEXH@Z,0x00044AD0,ILT thunk; real body 0x66B270
 ?unPrepFile@INI@@IAEXXZ,0x00850E30,reached inline from load tail - name from ZH
 ?undoNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,0x0001019A,ILT thunk; real body 0x74D320
+?undoNamedMapReveal@ScriptEngineundoNamedMapRevealShim@@QAEXABVAsciiString@@@Z,0x0034D320,ScriptEngine::undoNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
 ?unlinkChildWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,0x00015A55,winSetParent depth Open-BFME4+Grok
 ?unlinkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,0x00029A05,winSetParent depth Open-BFME4+Grok
 ?unloadNext@RailedTransportDockUpdate@@IAEXXZ,0x0000C27F
