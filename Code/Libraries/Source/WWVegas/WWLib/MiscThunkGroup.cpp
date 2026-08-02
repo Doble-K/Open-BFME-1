@@ -22,6 +22,17 @@ public:
 	void makeEmpty();
 };
 
+class WaterTracksRenderSystemLoadTracksShim
+{
+public:
+	void loadTracks();
+};
+
+void WaterTracksRenderSystem::loadTracks()
+{
+	((WaterTracksRenderSystemLoadTracksShim *)this)->loadTracks();
+}
+
 __declspec(naked) void TerrainLogic::addWaypointLink(int, int)
 {
 	__asm {
@@ -40,17 +51,6 @@ __declspec(naked) void FontLibrary::deleteAllFonts()
 		_emit 0BFh
 		_emit 017h
 		_emit 06Fh
-		_emit 000h
-	}
-}
-
-__declspec(naked) void WaterTracksRenderSystem::loadTracks()
-{
-	__asm {
-		_emit 0E9h
-		_emit 08Ch
-		_emit 06Fh
-		_emit 076h
 		_emit 000h
 	}
 }

@@ -3289,6 +3289,7 @@ name,address,notes
 ?loadFloat4PtSection@W3DRoadBufferLoadFloat4PtSectionShim@@QAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,0x00708320,W3DRoadBuffer incremental-link thunk target through a TU-local forwarding shim
 ?loadStandardMaps@MapCache@@AAEXXZ,0x000359DB
 ?loadTracks@WaterTracksRenderSystem@@QAEXXZ,0x0004584F
+?loadTracks@WaterTracksRenderSystemLoadTracksShim@@QAEXXZ,0x007AC7E0,WaterTracksRenderSystem incremental-link thunk target through a TU-local forwarding shim
 ?loadUserMaps@MapCache@@AAE_NXZ,0x00028FF1
 ?localPixelToRadar@Radar@@QAE_NPBUICoord2D@@PAU2@@Z,0x00004D59
 ?localPixelToRadar@RadarLocalPixelToRadarShim@@QAE_NPBUICoord2D@@PAU2@@Z,0x00107AB0,Radar incremental-link thunk target through a TU-local forwarding shim
