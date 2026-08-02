@@ -956,13 +956,18 @@ UNMATCHED_MARKER_RE = re.compile(
 
 
 
-def verify_source_claims():
+def verify_source_claims(only=None):
     """Progress is matched rows, nothing else: every .cpp under Code/ must own at
     least one byte-verified matched row, and no marker may contradict the ledger
     (a symbol both matched and marked unmatched is a stale annotation lying about
     state). There is deliberately NO exception list: a source file nothing has
     ever byte-verified is a reconstruction, not a port, and must not live here.
-    Removing that hatch is why game_engine_init.cpp and five others were deleted."""
+    Removing that hatch is why game_engine_init.cpp and five others were deleted.
+
+    With `only`, checks just the sources those selectors name. The delta path runs
+    it that way so a zero-row source or a stale marker fails for whoever adds it.
+    Left to the full gate alone, it lands on delta verification and then blocks
+    every header or shim commit tree-wide until someone else cleans it up."""
     matched_by_source = {}
     matched_sources = {}
     for row in load_function_rows():
@@ -971,6 +976,9 @@ def verify_source_claims():
 
     problems = []
     sources = sorted((ROOT / "Code").rglob("*.cpp"))
+    if only:
+        sources = [p for p in sources
+                   if any(sel in p.relative_to(ROOT).as_posix() for sel in only)]
     for path in sources:
         rel = path.relative_to(ROOT).as_posix()
         text = path.read_text(encoding="utf-8", errors="replace")
@@ -994,7 +1002,8 @@ def verify_source_claims():
         for problem in problems[:20]:
             print(f"    {problem}")
         raise SystemExit(1)
-    print(f"Source claims: OK ({len(sources)} sources, all byte-verified)")
+    scope = "scoped" if only else "all"
+    print(f"Source claims: OK ({len(sources)} sources, {scope} byte-verified)")
 
 
 def main(only=None):
@@ -1006,6 +1015,11 @@ def main(only=None):
         # Fast path: compile and byte-compare only the matching sources/functions
         # (a few seconds), skipping the baseline hash and no-op patch. Use this to
         # iterate; run with no arguments for the full check before committing.
+        #
+        # Claims first: verify_functions exits with "no functions match" when the
+        # selector names a source that owns no rows, which is exactly the case the
+        # zero-row check exists to catch, so it has to run before that exit.
+        verify_source_claims(only)
         verify_functions(only)
         # String-ref verify scoped to the same rows: function bytes alone cannot
         # tell identical-twin stubs apart (their string pointer is a masked
