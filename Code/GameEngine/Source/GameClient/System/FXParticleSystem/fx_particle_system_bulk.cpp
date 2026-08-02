@@ -295,66 +295,18 @@ extern const char TERRAIN_COLLISION_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const void *CATEGORY_MODULE_CLASS_0_VTABLE;
 
 // ??0?$ConcreteModuleClass@V?$DefaultModuleTag@$0A@@FXParticleSystem@@@FXParticleSystem@@AAE@XZ
-__declspec(naked) ConcreteModuleClass<DefaultModuleTag<0> >::ConcreteModuleClass()
+ConcreteModuleClass<DefaultModuleTag<0> >::ConcreteModuleClass()
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x15
-        __emit 0xe0
-        __emit 0x6c
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x12
-        __emit 0x8b
-        __emit 0xc1
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xe4
-        __emit 0x6c
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x09
-        __emit 0xa3
-        __emit 0xc4
-        __emit 0x64
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x44
-        __emit 0x08
-        __emit 0x11
-        __emit 0x01
-        __emit 0x89
-        __emit 0x50
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xe8
-        __emit 0x64
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x89
-        __emit 0x48
-        __emit 0x0c
-        __emit 0xa3
-        __emit 0xe8
-        __emit 0x64
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x00
-        __emit 0xb8
-        __emit 0x13
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc3
-    }
+    const void *first = *reinterpret_cast<void **>(*reinterpret_cast<void **>(0x012f6ce4));
+    void **self = reinterpret_cast<void **>(this);
+    const void *second = *reinterpret_cast<void **>(*reinterpret_cast<void **>(0x012f6ce0));
+    *reinterpret_cast<void **>(0x012f64c4) = this;
+    self[0] = (void *)0x01110844;
+    self[1] = (void *)second;
+    self[2] = (void *)first;
+    self[3] = *reinterpret_cast<void **>(0x012f64e8);
+    *reinterpret_cast<void **>(0x012f64e8) = this;
+    self[0] = (void *)0x011113b8;
 }
 
 ConcreteModuleClass<DefaultModuleTag<0> >::~ConcreteModuleClass()
