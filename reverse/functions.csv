@@ -11027,6 +11027,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getFPSLimitEnabled@OptionPreferences@@QAE_NXZ,,0x000911B0,102,Code/GameEngine/Source/Common/promoted__getFPSLimitEnabled_OptionPreferences_QAE_NXZ_000911B0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 102B
 ?getField@WeaponBonus@@QBEMW4Field@1@@Z,,0x001DE220,10,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?getFieldParse@DieMuxData@@SAPBUFieldParse@@XZ,,0x00019326,5,Code/GameEngine/Source/GameLogic/Module/DieMuxDataGetFieldParseThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x655140
+?getFileInfo@Win32BIGFile@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009D1810,274,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileGetInfo.cpp,matched,
 ?getFileInfo@Win32LocalFileSystem@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CDE50,105,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,
 ?getFinalOverride@Overridable@@QBEPBV1@XZ,,0x00087A80,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
 ?getFirewallBehavior@FirewallHelperClass@@QAE?AW4tFirewallBehaviorType@1@XZ,,0x0066E830,14,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
@@ -13920,6 +13921,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??1Win32BIGFile@@UAE@XZ,,0x009D1500,95,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
-??_GWin32BIGFile@@UAEPAXI@Z,,0x009D17F0,30,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
-?getFileInfo@Win32BIGFile@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009D1810,274,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileGetInfo.cpp,matched,
