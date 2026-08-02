@@ -10323,7 +10323,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@TooltipUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BC30,107,Code/GameEngine/Source/GameLogic/Object/Upgrade/TooltipUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@ToppleUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BBD0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@TransitionDamageFX@@SAPAVModuleData@@PAVINI@@@Z,,0x00124770,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleData@TransportAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00116860,107,Code/masm_dumps/TransportAIUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x8B; Ghidra confirmed
+?friend_newModuleData@TransportAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00116860,107,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@TransportContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00125470,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@TunnelContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00116470,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@UndeadBody@@SAPAVModuleData@@PAVINI@@@Z,,0x00114D70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
