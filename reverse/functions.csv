@@ -9625,7 +9625,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doRevealMapAtWaypointPermanent@ScriptActions@@IAEXABVAsciiString@@M00@Z,,0x002F0560,48,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?doRotateCameraTowardObject@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002EE060,118,Code/masm_dumps/ScriptActions_doRotateCameraTowardObject.asm,matched,MASM exact 118B; true body 0x2EE060 (drift 0x7A8655 misplaced); BFME extra stack arg + vtable slots
 ?doRotateCameraTowardWaypoint@ScriptActions@@IAEXABVAsciiString@@MMM_N@Z,,0x002F26F0,116,Code/masm_dumps/doRotateCameraTowardWaypoint_ScriptActions_002F26F0.asm,matched,certified packet 75 exact retail db recovery
-?doSend@Transport@@QAE_NXZ,,0x00015D3E,5,Code/GameEngine/Source/GameNetwork/TransportDoSendThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x6834B0
+?doSend@Transport@@QAE_NXZ,,0x006834B0,271,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?doSetDrawIconUIMode@ScriptActions@@IAEX_N@Z,,0x002F0600,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x92 script flag
 ?doSetDynamicLODMode@ScriptActions@@IAEX_N@Z,,0x002F0620,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x93 script flag
 ?doSetInfantryLightingOverride@ScriptActions@@IAEXM@Z,,0x002EFC10,18,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GlobalData+0xdc8 infantry light scale
@@ -12808,6 +12808,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reset@SmudgeSet@@QAEXXZ,,0x005D3D50,126,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ?reset@SubsystemLegend@@UAEXXZ,,0x009A14C0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 4)
 ?reset@TeamFactory@@UAEXXZ,,0x000F7570,13,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
+?reset@Transport@@QAEXXZ,,0x00683450,66,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?reset@W3DRadar@@UAEXXZ,,0x006C1890,205,Code/masm_dumps/reset_W3DRadar_UAEXXZ_006C1890_packet323.asm,matched,Certified packet 323 exact retail bytes SHA256 2251962adb7e00fb76a9ab1e8f9efd79e757ddc1df0ddbfc69b9858dd35161d8
 ?reset@WindowVideoManager@@UAEXXZ,,0x00498F90,149,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
 ?resetFrame@FrameDataManager@@QAEXI_N@Z,,0x006706D0,56,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
