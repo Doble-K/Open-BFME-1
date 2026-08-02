@@ -14,52 +14,52 @@ public:
 	virtual StateReturnType update();
 };
 
-__declspec(naked) StateReturnType AIInternalMoveToState::onEnter()
-{
-	__asm {
-		_emit 0E9h
-		_emit 0D4h
-		_emit 007h
-		_emit 015h
-		_emit 000h
-	}
-}
-
-__declspec(naked) void AIInternalMoveToState::onExit(StateExitType)
-{
-	__asm {
-		_emit 0E9h
-		_emit 06Ah
-		_emit 09Ah
-		_emit 014h
-		_emit 000h
-	}
-}
-
-__declspec(naked) StateReturnType AIInternalMoveToState::update()
-{
-	__asm {
-		_emit 0E9h
-		_emit 075h
-		_emit 0A5h
-		_emit 012h
-		_emit 000h
-	}
-}
-
 class AIMoveOutOfTheWayState
 {
 public:
 	virtual StateReturnType update();
 };
 
-__declspec(naked) StateReturnType AIMoveOutOfTheWayState::update()
+class AIInternalMoveToStateOnEnterShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0E1h
-		_emit 04Eh
-		_emit 0EDh
-		_emit 0FFh
-	}
+public:
+	StateReturnType onEnter();
+};
+
+class AIInternalMoveToStateOnExitShim
+{
+public:
+	void onExit(StateExitType a0);
+};
+
+class AIInternalMoveToStateUpdateShim
+{
+public:
+	StateReturnType update();
+};
+
+class AIMoveOutOfTheWayStateUpdateShim
+{
+public:
+	StateReturnType update();
+};
+
+StateReturnType AIInternalMoveToState::onEnter()
+{
+	return ((AIInternalMoveToStateOnEnterShim *)this)->onEnter();
+}
+
+void AIInternalMoveToState::onExit(StateExitType a0)
+{
+	((AIInternalMoveToStateOnExitShim *)this)->onExit(a0);
+}
+
+StateReturnType AIInternalMoveToState::update()
+{
+	return ((AIInternalMoveToStateUpdateShim *)this)->update();
+}
+
+StateReturnType AIMoveOutOfTheWayState::update()
+{
+	return ((AIMoveOutOfTheWayStateUpdateShim *)this)->update();
 }
