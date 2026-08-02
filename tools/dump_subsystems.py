@@ -54,6 +54,11 @@ import dump_ini_schema as S
 # this exact start -- scanning for the push encoding instead finds hits inside
 # other instructions' immediates and misaligns the rest of the listing.
 INIT_RVA = 0x00079060
+# 7123, and it really is 7123 even though tools/audit_short_rows.py flags a jcc
+# branching 63 bytes past that end and Image.body_size measures 7322. Both are
+# overruns: ??1GameEngine@@UAE@XZ starts at exactly 0x00079060 + 7123, so the
+# branch target and the measured tail are inside the destructor, not inside init.
+# Rescanning at 7322 finds no additional registrations, which confirms it.
 INIT_SIZE = 7123
 MIN_EXPECTED = 55
 
