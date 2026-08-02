@@ -2738,6 +2738,7 @@ name,address,notes
 ?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z,0x0089F530,pinharvest x1 (body)
 ?calcNumPrereqUnitsOwned@ProductionPrerequisite@@ABEHPBVPlayer@@QAH@Z,0x000379B1
 ?canEnterObject@BFMEActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@W4CanEnterType@@PA_N@Z,0x0002D588,retail five-argument ActionManager ABI thunk (body 0x000C5440)
+?construct@DefaultModuleTemplate0CtorShim@FXParticleSystem@@QAEXXZ,0x00041AB5,DefaultModuleTemplate<0> constructor thunk used through a TU-local layout shim
 ?changeGridHeight@WaterRenderObjClass@@QAEXMMM@Z,0x0079F850,thunk-resolved body (via 0x2b256)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x00004EE9,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002054F,hit-decoded x3 (thunk)
