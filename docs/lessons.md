@@ -339,13 +339,22 @@ call site -- that is how retail gets the split.
 403 bytes match the reference's ALLOW_TEMPORARIES arm exactly, first try,
 despite matrix3d.cpp's own note claiming its codegen had drifted.
 
-What is left of Blend_Update is two bytes and an operand ordering: retail's
-inlined postMul accumulates its three products in the order (0x38 x [esi+0x44]),
-(0x58 x [esi+0x4c]), (0x48 x [esi+0x48]) and ours rotates that to (0x58, 0x48,
-0x38). Same terms, same instruction lengths, different order -- the commuted-
-operand trap docs/matching.md warns about, in a shared WWINLINE that
-Anim_Update already matches through, so the difference has to come from the
-argument expression rather than from postMul itself.
+The last two bytes were the fade, not the multiply: retail reads **motion1's
+fade before motion0's** and keeps both results on the x87 stack, where reading
+them in the written order makes MSVC spill one and add it back from memory --
+`fadd st,st(1)` against `fadd DWORD PTR [esp+0x18]`, two bytes. Declaring the
+second animation's fade first closes it, and Blend_Update now compiles to
+**exactly 1746 bytes**.
+
+What survives is one operand ordering. Retail's inlined `submul` runs its three
+products X, Z, Y -- (0x38 x [esi+0x44]), (0x58 x [esi+0x4c]), (0x48 x
+[esi+0x48]) -- and ours runs them Z, Y, X. Things that do **not** move it:
+splitting `postMul(Build_Matrix3D(q,mtx))` into two statements, moving `mtx`
+inside the rotation block, or using the temp-taking spelling
+(`Matrix3D pre = t; t.mul(pre,mtx)`, which costs 124 bytes instead). `submul` is
+a shared WWINLINE that `Anim_Update` already matches through, so the ordering is
+a scheduling artifact of the larger function rather than a spelling of the
+source. That is the whole remaining distance.
 ## An inlined member call materialises its receiver at the inline site
 
 `File::open` came out six bytes long and would not shrink. The extra bytes were

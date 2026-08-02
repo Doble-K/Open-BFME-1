@@ -751,7 +751,6 @@ void HTreeClass::Blend_Update
 )
 {
 	PivotClass *pivot;
-	Matrix3D mtx;
 
 	Pivot[0].Transform = root;
 	Pivot[0].IsVisible = true;
@@ -792,14 +791,18 @@ void HTreeClass::Blend_Update
 
 				Quaternion q;
 				Fast_Slerp(q,q0,q1,percentage);
-				pivot->Transform.postMul(Build_Matrix3D(q,mtx));
+				Matrix3D mtx;
+				::Build_Matrix3D(q,mtx);
+				pivot->Transform.postMul(mtx);
 			}
 
 			pivot->IsVisible = (motion0->Get_Visibility(piv_idx,frame0) || motion1->Get_Visibility(piv_idx,frame1));
 
-			// BFME blends the two fades the same way it blends the pose
-			float fade0 = motion0->_bfme_hanim_fade(piv_idx,frame0);
+			// BFME blends the two fades the same way it blends the pose. The second
+			// animation is read first: retail calls through motion1 before motion0
+			// and keeps both results on the x87 stack rather than spilling one.
 			float fade1 = motion1->_bfme_hanim_fade(piv_idx,frame1);
+			float fade0 = motion0->_bfme_hanim_fade(piv_idx,frame0);
 			pivot->PivotFade = fade0 + (fade1 - fade0) * percentage;
 		}
 
