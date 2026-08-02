@@ -14237,3 +14237,7 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??1Win32LocalFileSystem@@UAE@XZ,,0x009CDE20,7,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,empty body -- the seven bytes are the inlined ~LocalFileSystem installing the base vtable 0x01143B78
+??1MemoryWriteFile@@UAE@XZ,,0x009CB590,94,Code/GameEngine/Source/Common/System/File.cpp,matched,body is one delete -- the rest is the vptr store of 0x01143AA8 then m_pendingName releaseBuffer then ~File
+?attachFile@ArchiveFile@@QAEXPAVFile@@@Z,,0x009CE560,44,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes any previous file through File slot 2 then stores the new one
+??1ArchiveFile@@UAE@XZ,,0x009D0BD0,94,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes m_file through File slot 2 then destroys m_rootDirectory at this+8

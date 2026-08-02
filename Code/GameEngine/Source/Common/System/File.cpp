@@ -644,6 +644,7 @@ public:
 
 public:
 	MemoryWriteFile( const char *name );
+	virtual ~MemoryWriteFile();
 
 private:
 	char *m_data;			// +0x14
@@ -668,6 +669,15 @@ private:
 // m_data..m_capacity BEFORE constructing m_pendingName is only possible if they
 // are initialisers -- body assignments would land after every member's
 // construction, which is four stores in the wrong place.
+// Retail 0x009CB590, 94 bytes. The body is one delete; everything else the 94
+// bytes contain is compiler-generated and confirms the layout: the vptr store of
+// 0x01143AA8 (MemoryWriteFile's vtable -- its slot 0 is ??_GMemoryWriteFile at
+// 0x009CB650), then m_pendingName's releaseBuffer at this+0x24, then ~File.
+MemoryWriteFile::~MemoryWriteFile()
+{
+	delete [] m_data;
+}
+
 MemoryWriteFile::MemoryWriteFile( const char *name )
 : m_data(NULL), m_size(0), m_pos(0), m_capacity(0)
 {

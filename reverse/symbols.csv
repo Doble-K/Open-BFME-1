@@ -4175,3 +4175,4 @@ _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
 _gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
 _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
+??1DetailedArchivedDirectoryInfo@@QAE@XZ,0x009D0730,site-decoded from ~ArchiveFile: lea ecx,[esi+8] then call -- m_rootDirectory is the DetailedArchivedDirectoryInfo member at ArchiveFile+8 and the type is already named by its copy ctor

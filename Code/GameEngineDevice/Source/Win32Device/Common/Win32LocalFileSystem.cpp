@@ -48,7 +48,6 @@ Win32LocalFileSystem::Win32LocalFileSystem() : LocalFileSystem()
 {
 }
 
-// ??1Win32LocalFileSystem@@UAE@XZ present-unmatched
 Win32LocalFileSystem::~Win32LocalFileSystem() {
 }
 

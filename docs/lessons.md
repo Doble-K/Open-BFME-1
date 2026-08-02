@@ -1197,3 +1197,33 @@ either way, and it is not mine to retire on inference alone. Whoever owns that
 file should decide; the evidence is above. Until then `locate --emit` over any
 file using char_traits<char> will keep re-adding the 0x000A30D0 row, and it has
 to be dropped again each time.
+## A shim on the include path loses to a sibling of the file that includes it
+
+`reference/shims/bfme_mempool/Common/GameMemory.h` corrects one thing:
+`MemoryPoolObject` contributes ONE vtable slot in BFME, not the two the
+reference gives it (a virtual destructor AND a pure `getObjectMemoryPool`). That
+second slot pushes every virtual in every pooled class down by one, so
+`File::close` sits at slot 3 and every call through it is wrong — retail reaches
+it at `[eax+8]`.
+
+Putting that shim first on the include path fixed `Win32LocalFileSystem.cpp` and
+did nothing at all for `ArchiveFile.cpp`. The difference is which file asks for
+the header. `Win32LocalFileSystem.cpp` includes `"Common/GameMemory.h"` itself
+from a directory with no such sibling, so the `-I` order decides and the shim
+wins. `ArchiveFile.cpp` includes `"PreRTS.h"`, which lives in
+`reference/shims/sweep/` and asks for `"Common/GameMemory.h"` — and MSVC
+resolves a quoted include against the **including file's own directory first**,
+which is `reference/shims/sweep/`, where `Common/GameMemory.h` exists. No `-I`
+ordering can beat that, because `-I` is never consulted.
+
+The fix is to get there first and let the guard do the work: include
+`"Common/GameMemory.h"` in the .cpp BEFORE `"PreRTS.h"`, so `_GAME_MEMORY_H_` is
+already defined when sweep's copy is reached. Pulling it in via a wrapper header
+does not work — `PreRTS.h` sets up `__PLACEMENT_VEC_NEW_INLINE`, the CRT and
+several engine headers before it includes `GameMemory.h`, and that header needs
+them.
+
+Two things follow. A shim that appears to be ignored is worth checking for a
+sibling before assuming the `-I` order is wrong. And this one is worth trying
+wherever a call lands exactly one slot late on a pooled class — it is a
+tree-wide fact, not something about these two files.

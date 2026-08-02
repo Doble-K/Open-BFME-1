@@ -254,3 +254,13 @@ _$E8
 # DX8Caps is linked at two retail sites; its file-scope CapsWorkString and
 # static initializer resolve to the corresponding duplicate globals.
 _CapsWorkString
+
+# DynamicVectorClass<ResolutionDescClass>'s vtable exists TWICE in retail, which is
+# the doubly-linked-TU case rather than a wrong claim. 0x113A388 is the direct copy --
+# slot 1 is ??8?$VectorClass@VResolutionDescClass@@@@UBE_NABV0@@Z and slot 4 is
+# ?ID@?$DynamicVectorClass@VResolutionDescClass@@@@UAEH... -- while 0x1091078 reaches
+# the same methods through incremental-link thunks: its slots 0x3AB57, 0xB014 and
+# 0x3A04E are each a bare `jmp` to 0x13BD70, 0x13ABC0 and 0x13B7C0. Both constructors
+# that reference it are byte-verified and both are right; a DIR32 slot is filled from
+# the target, so neither could have caught the other being wrong either way.
+??_7?$DynamicVectorClass@VResolutionDescClass@@@@6B@

@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DBFME_STLP_NODE_ALLOC /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/stlp_nodealloc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DBFME_STLP_NODE_ALLOC /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/stlp_nodealloc /Ireference/shims/win32localfilesystem_wide /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -31,6 +31,18 @@
 // Bryan Cleveland, August 2002
 ////////////////////////////////////////////////
 
+// BFME's MemoryPoolObject contributes ONE vtable slot, not two -- see
+// reference/shims/win32localfilesystem_wide/Common/GameMemory.h. That directory
+// name is wrong for a fact this general -- the header belongs somewhere neutral,
+// and moving it is a reference/shims/ change, which forces the full gate. Master
+// cannot pass one right now: three in-flight sources carry zero matched rows.
+// Move it when that clears. Pulled in BEFORE PreRTS.h
+// on purpose: PreRTS.h lives in reference/shims/sweep and includes
+// "Common/GameMemory.h", which MSVC resolves against the including file's own
+// directory first, so sweep's copy would win no matter where bfme_mempool sits
+// on the include path. Getting there first lets the _GAME_MEMORY_H_ guard skip
+// it. Without this, File::close is slot 3 and every call through it is wrong.
+#include "Common/GameMemory.h"
 #include "PreRTS.h"
 
 #include "Common/ArchiveFile.h"
@@ -86,7 +98,6 @@ static Bool SearchStringMatches(AsciiString str, AsciiString searchString)
 	return FALSE;
 }
 
-// ??1ArchiveFile@@ present-unmatched
 ArchiveFile::~ArchiveFile() 
 {
 	if (m_file != NULL) {
@@ -191,7 +202,6 @@ void ArchiveFile::getFileListInDirectory(const DetailedArchivedDirectoryInfo *di
 	}
 }
 
-// ?attachFile@ArchiveFile@@ present-unmatched
 void ArchiveFile::attachFile(File *file) 
 {
 	if (m_file != NULL) {
