@@ -1,6 +1,50 @@
 // cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
 // FileSystem::openFile retail 0x009C8860 size 394
-// Exact body promoted from masm_dumps; clean C++ near-match WIP (lea/control-flow).
+//
+// STILL A BYTE DUMP. __declspec(naked) with 394 _emit bytes carries no
+// relocations, so it names nothing -- which is not merely untidy: it is what
+// made the ?TheLocalFileSystem@@ DIR32 conflict unresolvable, because this
+// function is one of the two that read both globals and neither could be
+// asked which was which. FileSystem_createDirectory.cpp was recovered as C++
+// for exactly that reason and answered the question immediately.
+//
+// The structure is decoded below so the next attempt starts here rather than at
+// the bytes. Slot numbers are what the calls actually use, and they differ
+// between the two interfaces, which is itself the proof they are different
+// classes:
+//
+//   char buf[0x200];
+//   sprintf(buf, "%s\\%s", byte_134CA48, filename);   // via __imp__sprintf
+//   File *file = NULL;
+//
+//   if (byte_134CB50[0]) {                            // non-empty prefix string
+//       AsciiString s(byte_134CB50);
+//       s.concat(filename, strlen(filename));         // strlen inlined
+//       file = TheLocalFileSystem->openFile(s.str(), access);   // slot 2, +0x08
+//   }                                                 // s destroyed here (SEH)
+//
+//   if (!byte_134CB4C && file == NULL && TheArchiveFileSystem) {
+//       if (!(access & 8))
+//           file = TheArchiveFileSystem->openFile(buf, access);      // slot 5, +0x14
+//       if (file == NULL)
+//           file = TheArchiveFileSystem->openFile(filename, access);
+//   }
+//
+//   if (TheLocalFileSystem && file == NULL) {
+//       if (!(access & 2))
+//           file = TheLocalFileSystem->openFile(buf, access);       // slot 2, +0x08
+//       ...
+//   }
+//   return file;
+//
+// Two globals still need names. 0x0134CB50 is a char array used as an alternate
+// path prefix, and 0x0134CB4C is a Bool that suppresses the archive lookup. Both
+// live in the zero-fill tail of .data, so reading them out of the file yields the
+// next section's bytes rather than their contents -- the same trap that hid 17
+// subsystems from tools/dump_subsystems.py until it was taught about raw extents.
+//
+// 0x0134CC50 is TheArchiveFileSystem and 0x0134D060 is TheLocalFileSystem; both
+// are in reverse/symbols.csv now.
 
 class File;
 class FileSystem { public: File *openFile(const char *filename, int access); };
