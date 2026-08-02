@@ -815,3 +815,35 @@ instructions, stop reaching for flags.
 Note also what a global flag change would have to survive: about 14,000 rows
 already byte-match under -O2, so any setting that fixes a near-miss must keep
 all of those. Per-source `// cl:` flags are the only safe place to experiment.
+## Do not run a per-file verify while a full gate is running
+
+A full gate reported two NEW DIR32 inconsistencies:
+
+```
+__except_list:    bases ['0x0', '0xd', '0x83000000']
+__real@4f800000:  bases ['0x1075358', '0x3b04c083', '0x8f4c8dc0']
+```
+
+Both look alarming and neither is real. `0x83000000`, `0x3b04c083` and
+`0x8f4c8dc0` are instruction bytes, not addresses, and `__except_list` is a
+compiler-internal symbol whose address is 0 by definition.
+
+The cause is concurrency, not the ledger. `verify_dir32_consistency` reads the
+`.obj` files, and an `add_match` (or any `build.py --files`) running alongside
+rewrites them; the gate then reads a half-written object and the
+`final - addend` arithmetic produces garbage. Re-running the check alone
+afterwards gives a single base for both symbols and NEW: 0.
+
+Two things follow. Per-file verifies take no lock, which is what makes them
+usable while a full gate is queued -- but once the gate is actually *running*,
+they corrupt its reading. And a DIR32 failure whose "addresses" do not look like
+addresses should be re-checked in isolation before anything is whitelisted or
+any row is blamed; the check is a real bug detector (it caught the
+AutoPoolClass<HAnimComboDataClass> fold earlier today) and whitelisting noise
+would blunt it.
+
+Attribution warning from the same episode: the two outlying sites both landed in
+ArchiveFileSystem rows added by peer commits that morning, which made a
+tidy-looking story about a TU-scoped STLport shim changing the SEH epilogue.
+Both rows verify as exact matches and were never at fault. A plausible culprit
+turned up by `git log -S` is not evidence.
