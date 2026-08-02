@@ -1508,6 +1508,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Format@Debug@@QAA@PBDZZ,,0x008895F0,35,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??0FoundationAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002BA040,190,Code/GameEngine/Source/GameLogic/AI/FoundationAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0FoundationAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
+??0FrameDataManager@@QAE@_N@Z,,0x00670410,145,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FreezingRainSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ??0FreezingRainSpecialPowerModuleData@@QAE@XZ,,0x0025D8C0,38,Code/GameEngine/Source/Common/RTS/FreezingRainSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0FrustumClass@@QAE@ABV0@@Z,,0x009319F0,254,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
@@ -2837,6 +2838,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1FontLibrary@@UAE@XZ,,0x00168710,79,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
 ??1FoundationAIUpdate@@UAE@XZ,,0x002B9D60,123,Code/masm_dumps/FoundationAIUpdate_destructor.asm,matched,Exact 123B @ 0x002B9D60; Exact retail MASM; instance factory->vtable dtor; del 0x2BA130 ctor 0x2BA040 vt 0xCC734C
 ??1FrameData@@QAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf6___1FrameData__QAE_XZ_AFF130.asm,matched,ICF Open-BFME4+Grok
+??1FrameDataManager@@MAE@XZ,,0x00670540,102,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ??1GameEngine@@UAE@XZ,,0x0007AC33,63,Code/masm_dumps/_sa14___1GameEngine__UAE_XZ_7AC33.asm,matched,sa14 Open-BFME4+Grok Uncaught Exception during init
 ??1GameLogic@@UAE@XZ,,0x0038F080,821,Code/masm_dumps/GameLogic_dtor.asm,matched,Exact 821B MASM; true body 0x38F080 (queue 0x9F265F int3 pad); dual vtbl+init globals; Open-BFME4+Grok
 ??1GameMessageList@@UAE@XZ,,0x0000E421,5,Code/Libraries/Source/WWVegas/WWLib/GameMessageListDestructorThunk.cpp,matched,Focused C++ thunk for GameMessageList destructor
@@ -4858,6 +4860,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GFlightDeckBehavior@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GFlightDeckBehaviorModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GFontLibrary@@UAEPAXI@Z,,0x001689E0,30,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,icf-owner=??_GDefinitionMgrClass@@UAEPAXI@Z
+??_GFrameDataManager@@MAEPAXI@Z,,0x006708F0,30,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ??_GFullFadeTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GFunctionLexicon@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GGameMessageTranslator@@UAEPAXI@Z,,0x008E2260,31,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,object-symbol=??_GCullSystemClass@@UAEPAXI@Z;C++ alias
@@ -11677,6 +11680,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@FlashTransition@@UAEXPAVGameWindow@@@Z,,0x0059C310,68,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?init@FlatTerrainShaderPixelShader@@UAEHXZ,,0x007C7DC0,212,Code/masm_dumps/_sa11__init_FlatTerrainShaderPixelShader__UAEHXZ_7C7DC0.asm,matched,string-anchor Open-BFME4+Grok shaders\fterrainnoise2.pso
 ?init@FrameData@@QAEXXZ,,0x00670170,135,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
+?init@FrameDataManager@@QAEXXZ,,0x006705C0,72,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ?init@FullFadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059D420,95,Code/masm_dumps/_sa__init_FullFadeTransition_UAEXPAVGameWindow_Z_59D420.asm,matched,
 ?init@GameEngine@@,,0x00079060,7123,Code/masm_dumps/_str2__init_GameEngine__79060.asm,matched,true size 7123B; previous row claimed only 6689B (no padding before ~GameEngine)
 ?init@GameLogic@@UAEXXZ,,0x0038A1F0,1014,Code/masm_dumps/_sa11__init_GameLogic__UAEXXZ_38A1F0.asm,matched,string-anchor Open-BFME4+Grok ThePartitionManager
@@ -13938,7 +13942,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??1FrameDataManager@@MAE@XZ,,0x00670540,102,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
-??0FrameDataManager@@QAE@_N@Z,,0x00670410,145,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
-??_GFrameDataManager@@MAEPAXI@Z,,0x006708F0,30,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
-?init@FrameDataManager@@QAEXXZ,,0x006705C0,72,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
