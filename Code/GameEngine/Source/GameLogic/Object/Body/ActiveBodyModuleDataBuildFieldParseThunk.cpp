@@ -8,13 +8,13 @@ public:
     static void buildFieldParse(MultiIniFieldParse &parse);
 };
 
-__declspec(naked) void ActiveBodyModuleData::buildFieldParse(MultiIniFieldParse &)
+class ActiveBodyModuleDataBuildFieldParseShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 029h
-        _emit 0EDh
-        _emit 020h
-        _emit 000h
-    }
+public:
+    static void build(MultiIniFieldParse &parse);
+};
+
+void ActiveBodyModuleData::buildFieldParse(MultiIniFieldParse &parse)
+{
+    ActiveBodyModuleDataBuildFieldParseShim::build(parse);
 }
