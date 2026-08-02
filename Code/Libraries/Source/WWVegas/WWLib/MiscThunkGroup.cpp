@@ -65,4 +65,3 @@ __declspec(naked) void TerrainLogic::addWaypointLink(int, int)
 		_emit 000h
 	}
 }
-
