@@ -1227,3 +1227,30 @@ Two things follow. A shim that appears to be ignored is worth checking for a
 sibling before assuming the `-I` order is wrong. And this one is worth trying
 wherever a call lands exactly one slot late on a pooled class — it is a
 tree-wide fact, not something about these two files.
+## Recognise MSVC's inlined CRT intrinsics before hand-writing the loop
+
+A 62-byte strdup resisted a dozen source shapes -- do/while, postfix increment
+in the condition, an explicit counter, the length written as distance-to-NUL
+plus one -- and every one of them came out a couple of instructions off. The
+body is not open-coded at all: it is MSVC's intrinsic `strlen` and `strcpy`
+expanded inline, and writing `malloc(strlen(str) + 1)` then `strcpy` matched on
+the first try.
+
+The tell for inline `strlen` is the shape:
+
+    mov eax, str
+    lea edx, [eax + 1]
+  L: mov cl, byte ptr [eax]
+     inc eax
+     test cl, cl
+     jne L
+    sub eax, edx
+
+The `lea` of `str + 1` before the loop and the `sub` against it afterwards are
+not something a hand-written loop produces -- the compiler folds that to a
+single subtraction. Inline `strcpy` is similarly recognisable: it walks the
+source pointer and indexes the destination through a precomputed delta rather
+than advancing two pointers.
+
+When a byte loop is a couple of instructions off and no source shape moves it,
+check whether the original called a CRT function and let the compiler expand it.
