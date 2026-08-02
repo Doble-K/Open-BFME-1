@@ -13351,6 +13351,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setParentCell@PathfindCell@@QAEXPAV1@@Z,,0x003F69A0,14,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?setParentCellHierarchical@PathfindCell@@QAEXPAV1@@Z,,0x003F69A0,14,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,ICF alias of existing matched body
 ?setPassable@ZoneBlock@@QAEX_N@Z,,0x002C56C0,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
+?setPath@CDDrive@@QAEXPBD@Z,,0x00101F80,52,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
 ?setPercentage@NetProgressCommandMsg@@QAEXE@Z,,0x00673DC0,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,thunk-dump converted to clean C++
 ?setPersonality@Particle@@QAEXI@Z,,0x005FC2D0,13,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ?setPingString@GameSpyInfo@@UAEXABVAsciiString@@@Z,,0x00637230,8,Code/GameEngine/Source/GameNetwork/GameSpy/GameSpyInfoSetPingStringThunk.cpp,matched,Open-BFME5 exact C++ vtable tail thunk replacing MASM dump
