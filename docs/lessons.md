@@ -1148,3 +1148,16 @@ change and reading it off the call shape is the only way to see it.
 Worth checking whenever a one-call function comes out as a tail jump and retail
 has a real call: the missing piece may be a return value the reference throws
 away.
+
+## Use the reference's loop form; MSVC's rotation is the thing to reproduce
+
+`readGameMessage` came out wrong when its two loops were hand-written as
+guarded `do/while` shapes to mimic the emitted code, and right when they were
+written as the reference's plain `for` loops. MSVC rotates a counted `for` whose
+index the body never reads into a countdown -- `dec ebx; jne` -- and guards it
+with the entry test, which is exactly what retail shows.
+
+That is not in tension with the `queueSend` lesson: there the loop exits early
+to a label past the loop, and no `for` or `while` produces that. The rule is to
+write the loop the way the source plausibly had it and only reach for a
+hand-rotated shape when the control flow genuinely is not a counted loop.
