@@ -12084,7 +12084,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z,,0x005BB050,106,Code/GameEngine/Source/GameClient/System/Anim2DCollection_walls.asm,matched,
 ?newTerrain@TerrainTypeCollection@@,,0x000A8680,204,Code/masm_dumps/_sa6__newTerrain_TerrainTypeCollection___A8680.asm,matched,Exact 204B Open-BFME4+Grok
 ?newUpgrade@UpgradeCenter@@QAEPAVUpgradeTemplate@@ABVAsciiString@@@Z,,0x0010B140,246,Code/masm_dumps/_sa6__newUpgrade_UpgradeCenter__QAEPAVUpgradeTemplate___10B140.asm,matched,Exact 246B Open-BFME4+Grok
-?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z,,0x001E7F50,261,Code/masm_dumps/newWeaponTemplate_WeaponStore_001E7F50_packet337.asm,matched,Certified packet 337 sealed exact retail bytes SHA256 90f8376182dd2aab1ea9669ea2e5a32b0bacccef12f18d64a555cff615bea476
 ?next@BezFwdIterator@@QAEXXZ,,0x000B6810,87,Code/GameEngine/Source/Common/bez_fwd_iterator.cpp,matched,
 ?next@LListNode@@QAEPAV1@XZ,,0x00105950,20,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?next@SimpleObjectIterator@@UAEPAVObject@@XZ,,0x001DDFB0,19,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?clientOnly_getRenderObjBoundBox@W3DModelDraw@@UBE_NPAVOBBoxClass@@@Z,,0x0075C470,302,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; BFME W3DModelDraw keeps ONE weapon-recoil vector so m_renderObject sits at +0x28
 ?getCurrentWorldspaceClientBonePositions@W3DModelDraw@@UBE_NPBDAAVMatrix3D@@@Z,,0x0075C5F0,127,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; same one-recoil-vector layout pin
 ?clientOnly_getRenderObjBoneTransform@W3DModelDraw@@UBE_NABVAsciiString@@PAVMatrix3D@@@Z,,0x00763520,193,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; needs the layout pin and the 8-byte string header
+?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z,,0x001E7F50,261,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,MASM dump converted to clean C++; BFME WeaponTemplate is 0x53C bytes so the weapon shim carries a tail pad

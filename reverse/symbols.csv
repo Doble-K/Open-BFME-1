@@ -4057,3 +4057,5 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??1ArchivedFileInfo@@QAE@XZ,0x009CC600,archive directory entry dtor
 ?addFile@ArchiveFile@@QAEXABVAsciiString@@PBUArchivedFileInfo@@@Z,0x009D1110,called once per BIG directory entry
 ?attachFile@ArchiveFile@@QAEXPAVFile@@@Z,0x009CE560,closes any previous file then stores the new one
+??0WeaponTemplate@@QAE@XZ,0x0004456C,newWeaponTemplate call target (incremental-link thunk)
+?_M_insert_overflow@?$vector@PAVWeaponTemplate@@V?$allocator@PAVWeaponTemplate@@@_STL@@@_STL@@IAEXPAPAVWeaponTemplate@@ABQAV3@ABU__true_type@2@I_N@Z,0x00012067,newWeaponTemplate STL growth call target (incremental-link thunk)
