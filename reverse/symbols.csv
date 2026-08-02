@@ -4072,3 +4072,4 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??0GameSpyStagingRoom@@QAE@XZ,0x000301B1,addStagingRoom call target (incremental-link thunk)
 ??4GameSpyStagingRoom@@QAEAAV0@ABV0@@Z,0x00048ADB,addStagingRoom call target (incremental-link thunk)
 ?cleanUpSlotPointers@GameSpyStagingRoom@@QAEXXZ,0x00022507,addStagingRoom call target (incremental-link thunk)
+?radarToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,0x00011513,screenPixelToWorld call target (incremental-link thunk)

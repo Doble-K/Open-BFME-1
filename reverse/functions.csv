@@ -9910,7 +9910,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findCrossTypeJoinVector@W3DRoadBuffer@@IAEHVVector2@@PAV2@H@Z,,0x0070CA00,818,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?findDamageFX@DamageFXStore@@QBEPBVDamageFX@@VAsciiString@@@Z,,0x00067440,192,Code/GameEngine/Source/Common/DamageFXStore_findDamageFX.asm,matched,exact MASM; true body @0x67440 (queue 0x79CED6 mid-insn elsewhere); TheDamageFXStore via parseDamageFX ILT 0x3A01C; C++ blocked by AsciiString +8 buffer layout
 ?findDrawPositions@@YAXHHHHURegion3D@@PAUICoord2D@@1@Z,,0x0044F800,272,Code/GameEngine/Source/GameClient/MapUtil.cpp,matched,
-?findDrawPositions@Radar@@QAEXHHHHPAUICoord2D@@0@Z,,0x00106FC0,302,Code/masm_dumps/_rn7__findDrawPositions_Radar__QAEXHHHHPAUICoord2D__0_Z_106FC0.asm,matched,reloc-needle Open-BFME4+Grok
 ?findEmptyMessage@FirewallHelperClass@@AAEPAUManglerMessage@@XZ,,0x0066E4D0,36,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?findEntry@RayEffectSystem@@IAEPAURayEffectData@@PBVDrawable@@@Z,,0x005D34C0,49,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
 ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z,,0x009A11A0,264,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,the legend lookup; inlines the AsciiString compare
@@ -12868,7 +12867,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?scanString@MemoryReadFile@@UAE_NAAVAsciiString@@@Z,,0x009CB160,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?scanString@MemoryWriteFile@@UAE_NAAVAsciiString@@@Z,,0x009CB340,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?scanUnsignedInt@INI@@SAIPBD@Z,,0x00852680,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
-?screenPixelToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,,0x00107C50,126,Code/masm_dumps/_rn7__screenPixelToWorld_Radar__QAE_NPBUICoord2D__PAUCoord3D___Z_107C50.asm,matched,reloc-needle Open-BFME4+Grok
 ?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABV2@@Z,,0x005B2AD0,135,Code/GameEngine/Source/GameClient/MessageStream/HotKey_searchHotKey_AsciiString.asm,matched,MASM exact 135B; true body @0x5B2AD0 (queue 0x9DB068 misplaced); fetch+unicode searchHotKey chain
 ?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABVUnicodeString@@@Z,,0x005B27E0,245,Code/GameEngine/Source/GameClient/MessageStream/HotKey_searchHotKey_UnicodeString.asm,matched,Certified packet 304 exact retail db recovery
 ?search_compfunc@?$IndexClass@HPAUINIEntry@@@@CAHPBX0@Z,,0x009E2390,33,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
@@ -13930,3 +13928,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?winDestroy@GameWindowManager@@UAEHPAVGameWindow@@@Z,,0x0047CE30,226,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME GameWindow gains a field before m_status and WindowLayout::removeWindow is virtual at slot 0x1C
 ?newModule@ModuleFactory@@QAEPAVModule@@PAVThing@@ABVAsciiString@@PBVModuleData@@W4ModuleType@@@Z,,0x00127E00,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM dump converted to clean C++; BFME AsciiString::isEmpty tests the header length word at +4
 ?adjustCoordToCell@Pathfinder@@IAEXHH_NAAUCoord3D@@W4PathfindLayerEnum@@@Z,,0x003D6040,116,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,MASM dump converted to clean C++; BFME TerrainLogic has one more virtual before getLayerHeight (slot 0x1C)
+?screenPixelToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,,0x00107C50,126,Code/GameEngine/Source/Common/System/Radar.cpp,matched,MASM dump converted to clean C++; BFME Radar puts m_radarWindow at this+0x1438
+?findDrawPositions@Radar@@QAEXHHHHPAUICoord2D@@0@Z,,0x00106FC0,302,Code/GameEngine/Source/Common/System/Radar.cpp,matched,MASM dump converted to clean C++; same BFME Radar layout pin (m_radarWindow at this+0x1438)
