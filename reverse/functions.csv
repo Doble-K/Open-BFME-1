@@ -13296,7 +13296,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setUnicodeString@Dict@@QAEXW4NameKeyType@@ABVUnicodeString@@@Z,,0x000688A0,41,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setUnignoreText@@YAXPAVWindowLayout@@VAsciiString@@H@Z,,0x004EB100,326,Code/masm_dumps/setUnignoreText_004EB100_packet274.asm,matched,Certified packet 274 exact retail db recovery
 ?setUninterruptable@AudioEventRTS@@QAEX_N@Z,,0x000B2350,10,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
-?setUpDownImages@ControlBar@@IAEXXZ,,0x0049D160,259,Code/masm_dumps/ControlBar_setUpDownImages.asm,matched,Exact retail MASM; source string and three caller paths prove ownership; preserves BFME ControlBar member offsets
 ?setUpdate@HijackerUpdate@@QAEX_N@Z,,0x00295AA0,10,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToHijackedVehicleCrateCollide.cpp,matched,
 ?setUpdate@WindowLayout@@QAEXP6AXPAV1@PAX@Z@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,ICF alias of existing matched body
 ?setUpgradeExecuted@UpgradeMux@@IAEX_N@Z,,0x001EE7D0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?clientOnly_getRenderObjBoneTransform@W3DModelDraw@@UBE_NABVAsciiString@@PAVMatrix3D@@@Z,,0x00763520,193,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; needs the layout pin and the 8-byte string header
 ?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z,,0x001E7F50,261,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,MASM dump converted to clean C++; BFME WeaponTemplate is 0x53C bytes so the weapon shim carries a tail pad
 ?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,284,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,MASM dump converted to clean C++; BFME Display has 3 more virtuals before getWidth (reference/shims/display) plus the 8-byte string header
+?setUpDownImages@ControlBar@@IAEXXZ,,0x0049D160,259,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,MASM dump converted to clean C++; BFME puts the six toggle-button images at this+0x2A0 (reference/shims/controlbarlayout)
