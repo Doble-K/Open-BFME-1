@@ -276,7 +276,7 @@ public:
 	void *findList90(void *key, void *payload);
 	BFMENetworkString copyState6C();
 	BFMENetworkString copyState78();
-	void *copyState84(void *out);
+	BFMENetworkString copyState84();
 
 private:
 	BFMENetworkLock m_lock0;
@@ -1304,26 +1304,9 @@ BFMENetworkString BFMENetwork::copyState78()
 	return *reinterpret_cast<const BFMENetworkString *>(reinterpret_cast<const char *>(this) + 0x78);
 }
 
-__declspec(naked) void *BFMENetwork::copyState84(void *out)
+BFMENetworkString BFMENetwork::copyState84()
 {
-	__asm {
-		push ecx
-		push esi
-		mov esi, [esp+0ch]
-		add ecx, 84h
-		push ecx
-		mov ecx, esi
-		mov dword ptr [esp+8], 0
-		__emit 0xe8
-		__emit 0x35
-		__emit 0x7a
-		__emit 0x9c
-		__emit 0xff
-		mov eax, esi
-		pop esi
-		pop ecx
-		ret 4
-	}
+	return *reinterpret_cast<const BFMENetworkString *>(reinterpret_cast<const char *>(this) + 0x84);
 }
 
 __declspec(noinline) BFMEAutoLockRef::~BFMEAutoLockRef()

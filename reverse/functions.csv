@@ -9237,7 +9237,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?copyPairFrom@Dict@@QAEXABV1@W4NameKeyType@@@Z,,0x00068940,86,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?copyState6C@BFMENetwork@@QAE?AV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@XZ,,0x00655060,32,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network callback helper; copies wrapper state at +0x6c
 ?copyState78@BFMENetwork@@QAE?AV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@XZ,,0x00655090,32,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network callback helper; copies wrapper state at +0x78
-?copyState84@BFMENetwork@@QAEPAXPAX@Z,,0x006550C0,35,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network callback helper; copies wrapper state at +0x84
+?copyState84@BFMENetwork@@QAE?AV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@XZ,,0x006550C0,35,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network callback helper; copies wrapper state at +0x84
 ?cos@@YAMM@Z,,0x00873920,7,Code/GameEngine/Source/Common/System/BuildAssistant.cpp,matched,icf-owner=?Cos@@YAMM@Z
 ?count@?$BitFlags@$0BB@@@QBEHXZ,,0x001C2B50,35,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?count@?$BitFlags@$0ED@@@QBEHXZ,,0x001C4090,35,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
