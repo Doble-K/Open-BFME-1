@@ -3545,6 +3545,8 @@ name,address,notes
 ?loadRoadsHelper4@W3DRoadBuffer@@QAEXXZ,0x000411DC,W3DRoadBuffer loadRoads helper shim
 ?loadRoadsHelper5@W3DRoadBuffer@@QAEXXZ,0x0001BA9A,W3DRoadBuffer loadRoads helper shim
 ?loadRoadsHelper6@W3DRoadBuffer@@QAEXXZ,0x00013552,W3DRoadBuffer loadRoads helper shim
+?reset@SidesInfoSegmentShim@@QAEXXZ,0x00033F46,SidesInfo clear first segment helper shim
+?finish@SidesInfoSegmentShim@@QAEXPAX0@Z,0x00024C17,SidesInfo clear tail helper shim
 ?releaseBuffer@AsciiString@@IAEXXZ,0x00887940,Ghidra GrabWindowInfo direct callee
 ?releaseBuffer@BFMERetailAsciiString@@AAEXXZ,0x00887940
 ?releaseBuffer@UnicodeString@@IAEXXZ,0x0000D828,site-decoded x9 (thunk)
