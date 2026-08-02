@@ -241,6 +241,13 @@ ArchiveFileSystem::~ArchiveFileSystem()
 // pointer in esi/ebp, this in edi/ebp). Both come out 898 bytes, which is
 // coincidence rather than progress.
 //
+// Measured since: retail reserves 0x24 of frame and saves THREE callee-saved
+// registers (ebx, ebp, esi); this reserves 0x30 and saves four. So the surplus
+// is roughly three dwords and one register of live state, not one. Dropping
+// path2 takes the frame to 0x2c and pushes the length to 900, so it is not the
+// whole answer and probably not any of it; dropping the infoInPath local changes
+// nothing at all. Something else here is holding more state than retail did.
+//
 // It is NOT that debugpath and path2 are absent, which is the first thing to
 // suspect given the DEBUG_LOG they feed is commented out. Retail has exactly
 // three concat calls, at 0x009CAF52, 0x009CAF67 and 0x009CAFDA, which is one
