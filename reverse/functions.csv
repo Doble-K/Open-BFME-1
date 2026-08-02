@@ -10184,7 +10184,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@PassiveAreaEffectBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00117650,107,Code/GameEngine/Source/GameLogic/Object/Behavior/PassiveAreaEffectBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@PhysicsBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x0011AA70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@PilotFindVehicleUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001171F0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@PlayerHealSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00121480,110,Code/masm_dumps/PlayerHealSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xEB Ghidra confirmed
+?friend_newModuleData@PlayerHealSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00121480,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/PlayerHealSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@PlayerUpgradeSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00121370,110,Code/masm_dumps/PlayerUpgradeSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xEA Ghidra confirmed
 ?friend_newModuleData@PointDefenseLaserUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001236C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@PoisonedBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue cascade; located via ModuleFactory::init ModuleTemplate inline-build
