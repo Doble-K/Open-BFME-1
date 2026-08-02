@@ -346,3 +346,33 @@ inlined postMul accumulates its three products in the order (0x38 x [esi+0x44]),
 operand trap docs/matching.md warns about, in a shared WWINLINE that
 Anim_Update already matches through, so the difference has to come from the
 argument expression rather than from postMul itself.
+## An inlined member call materialises its receiver at the inline site
+
+`File::open` came out six bytes long and would not shrink. The extra bytes were
+a `push esi`/`pop esi` pair and a loop-align nop, and the cause was one
+instruction in the wrong place: retail computes `lea ecx,[edi+4]` immediately
+before the `set` call, and we computed it before the null-check branch.
+
+That one hoist cascades. Holding `&m_nameStr` in ecx across the branch means the
+inlined strlen loop cannot use `cl`, so it uses `dl`; that pushes `filename` out
+of `edx` into a callee-saved register; that is a third `push`/`pop`; and the
+extra instructions push the loop off a 16-byte boundary so the compiler inserts
+an align nop. Six bytes, none of them at the site of the actual difference.
+
+The trigger is that `m_nameStr = filename` goes through `AsciiString::operator=`.
+When an inlined member call is expanded, its receiver is a *parameter* of the
+inlined body, so it is materialised where the body is spliced in -- the dominator
+of everything inside, including the `s ? strlen(s) : 0` diamond. Writing the same
+expression as a direct call on the member instead:
+
+    ((StringBase<char> *)&m_nameStr)->set( filename, filename ? (int)strlen( filename ) : 0 );
+
+lets the receiver sink to the call it belongs to, and retail's shape falls out
+on its own -- one callee-saved register, `push len; push filename; lea ecx,[edi+4]`.
+
+This is the same expression either way; only the spelling differs. So when a
+function is a handful of bytes long and the diff is register choice rather than
+control flow, suspect an inlined operator or accessor whose receiver got hoisted,
+and try spelling the call out. Hoisting an address above a branch is cheap to
+cause and expensive to spot, because the byte that differs is nowhere near the
+line that caused it.

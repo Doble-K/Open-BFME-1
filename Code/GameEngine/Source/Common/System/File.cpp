@@ -99,7 +99,23 @@ public:
 	// Access flags. TEXT is the bit print() tests -- retail is
 	// test byte ptr [esi+8], 0x20 -- and READ|BINARY is what MemoryReadFile's
 	// constructor stores (0x41).
-	enum { READ = 0x01, WRITE = 0x02, TEXT = 0x20, BINARY = 0x40 };
+	// The values beyond READ/WRITE/TEXT/BINARY are the ones File::open tests:
+	// its two illegal-combination checks are `and 0x102` and `and 0x60`, and its
+	// three defaulting steps are `test al,3 / or 1`, `test al,5 / or 0x10` and
+	// `test al,0x60 / or 0x40` -- i.e. STREAMING|WRITE, TEXT|BINARY, READ|WRITE,
+	// READ|APPEND and TEXT|BINARY against Zero Hour's numbering, unchanged.
+	enum access
+	{
+		READ		= 0x0001,
+		WRITE		= 0x0002,
+		APPEND		= 0x0004,
+		TRUNCATE	= 0x0010,
+		TEXT		= 0x0020,
+		BINARY		= 0x0040,
+		STREAMING	= 0x0100
+	};
+
+	enum seekMode { START, CURRENT, END };
 
 	File();
 	virtual ~File();							// slot 0
@@ -136,6 +152,80 @@ protected:
 	// handle lives one field further on, in the subclass that owns it.
 	HANDLE m_mutex;				// +0x10
 };
+
+// ?open@File@@UAE_NPBDH@Z
+// File's own slot 1 -- the base implementation subclasses call up into. It
+// records the access mode and marks the file open; it never touches a handle,
+// which is why every subclass vtable that does not override slot 1 points here.
+Bool File::open( const char *filename, Int access )
+{
+	if( m_open )
+	{
+		return FALSE;
+	}
+
+	// This is exactly what `m_nameStr = filename` expands to, written out. It has
+	// to be written out: going through operator= makes &m_nameStr a parameter of
+	// an inlined member call, so it is materialised at the inline site -- above
+	// the null/strlen diamond -- which occupies ecx, pushes filename into a
+	// callee-saved register, and costs a third push/pop pair plus a loop-align
+	// nop. Six bytes too many, and none of them where the difference is. Called
+	// directly, the receiver sinks to the call and retail's shape falls out:
+	// push len, push filename, lea ecx,[edi+4], call.
+	((StringBase<char> *)&m_nameStr)->set( filename, filename ? (int)strlen( filename ) : 0 );
+
+	if( (access & ( STREAMING | WRITE )) == ( STREAMING | WRITE ))
+	{
+		// illegal access
+		return FALSE;
+	}
+
+	if( (access & ( TEXT | BINARY)) == ( TEXT | BINARY ))
+	{
+		// illegal access
+		return FALSE;
+	}
+
+	if ( (access & (READ|WRITE)) == 0 )
+	{
+		access |= READ;
+	}
+
+	if ( !(access & (READ|APPEND)) )
+	{
+		access |= TRUNCATE;
+	}
+
+	if ( (access & (TEXT|BINARY)) == 0 )
+	{
+		access |= BINARY;
+	}
+
+	m_access = access;
+	m_open = TRUE;
+	return TRUE;
+}
+
+// ?size@File@@UAEHXZ
+// Slot 11. Measures by seeking, so it works for any subclass that implements
+// seek and nothing else -- which is why File, and the four subclasses that do
+// not override it, all share this one body.
+Int File::size( void )
+{
+	Int pos = seek( 0, CURRENT );
+	Int size = seek( 0, END );
+
+	seek( pos, START );
+
+	return size < 0 ? 0 : size;
+}
+
+// ?position@File@@UAEHXZ
+// Slot 12.
+Int File::position( void )
+{
+	return seek( 0, CURRENT );
+}
 
 // ?close@File@@UAEXXZ
 // Must be called once per successful open(). Zero Hour ends with
@@ -378,12 +468,14 @@ Bool MemoryReadFile::open( const char * /*filename*/, Int /*access*/ )
 	return FALSE;
 }
 
-// ?read@MemoryReadFile@@UAEHPAXH@Z present-unmatched
-// 70 of 75 bytes. Everything matches except where the compiler restores edi:
-// retail pops it at the join of the if(buffer) branch and then does the m_pos
-// update, we do the update first. Same registers, same order otherwise. Tried
-// hoisting the source pointer, an early return on zero, and the &m_data[m_pos]
-// form -- all three are worse, so it is not the obvious shapes.
+// ?read@MemoryReadFile@@UAEHPAXH@Z
+// The m_pos update is deliberately OUTSIDE the if(bytes), which is what the
+// earlier attempts here got wrong while chasing the edi restore. Retail's
+// zero-length branch is `je 0x009CB0D4`, and 0x009CB0D4 IS the
+// `add [edx+0x1c], eax` -- so a zero-byte read still runs the (zero) update
+// rather than skipping it. Once the update is hoisted out, the register
+// restores fall into retail's order on their own: pop esi/edi at the join of
+// the buffer test, then the add, then pop ebx.
 Int MemoryReadFile::read( void *buffer, Int bytes )
 {
 	if( bytes < 0 )
@@ -405,8 +497,8 @@ Int MemoryReadFile::read( void *buffer, Int bytes )
 		{
 			memcpy( buffer, m_data + m_pos, bytes );
 		}
-		m_pos += bytes;
 	}
+	m_pos += bytes;
 
 	return bytes;
 }
