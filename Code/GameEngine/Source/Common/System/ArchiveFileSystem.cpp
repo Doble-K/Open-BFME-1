@@ -294,7 +294,17 @@ void ArchiveFileSystem::loadIntoDirectoryTree(const ArchiveFile *archiveFile, co
 	}
 }
 
-// ?loadMods@ArchiveFileSystem@@ present-unmatched
+// ?loadMods@ArchiveFileSystem@@QAEXXZ present-unmatched
+// Ruled out: 0x00063BA0, 474 bytes. That function is the obvious candidate --
+// it is one of only two places referencing the "*.big" literal at 0x0107532C
+// (the other is Win32BIGFileSystem::init), and it calls TheArchiveFileSystem
+// through [edx+0x24], which is loadBigFilesFromDirectory at slot 9. But this
+// body compiles to 231 bytes against its 474, and 0x00063BA0 reads a stack
+// argument at entry while loadMods takes none. Two different functions.
+//
+// Whatever 0x00063BA0 is, it also sets byte_134CB50 -- the second path prefix --
+// from TheWritableGlobalData+0xDC0 at 0x00063D5F, so it is mod-directory setup
+// of some kind, just not this method.
 void ArchiveFileSystem::loadMods() {
 	if (TheGlobalData->m_modBIG.isNotEmpty())
 	{
