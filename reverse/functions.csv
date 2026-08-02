@@ -1455,7 +1455,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FXDamageOCLInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXDamageParticleSystemInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXList@@QAE@ABV0@@Z,,0x00133BB0,31,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
-??0FXListDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255360,60,Code/masm_dumps/FXListDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0FXListDieModuleData@@QAE@XZ,,0x001234F0,86,Code/GameEngine/Source/GameLogic/AI/FXListDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0FXLocInfo@@QAE@XZ,,0x0010DB40,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/FXList.cpp,matched,ICF alias of existing matched body
@@ -13840,3 +13839,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??1?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?SPHERE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?SPHERE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVSphereEmissionVolumeModule@2@VSphereEmissionVolumeModuleTemplate@2@V?$DefaultParticleModul,,0x005DC370,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?SPHERE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?SPHERE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVSphereEmissionVolumeModule@2@VSphereEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Shortened MASM alias of clean C++ destructor
+??0FXListDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255360,60,Code/GameEngine/Source/GameLogic/Object/Die/FXListDieConstructor.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
