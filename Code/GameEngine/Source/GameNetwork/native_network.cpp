@@ -299,6 +299,12 @@ private:
 	BFMEAutoLockRef *m_backendLockRef;
 };
 
+class BFMENetworkDestructorShim
+{
+public:
+	void destroy();
+};
+
 extern "C" __declspec(dllimport) unsigned long __stdcall WaitForSingleObject(void *handle, unsigned long milliseconds);
 extern "C" __declspec(dllimport) int __stdcall ReleaseMutex(void *handle);
 
@@ -762,30 +768,14 @@ void BFMENetwork::destroyBackend()
 	m_backend = 0;
 }
 
-__declspec(naked) void *BFMENetwork::destroyAndMaybeDelete(unsigned int flags)
+void *BFMENetwork::destroyAndMaybeDelete(unsigned int flags)
 {
-	__asm {
-		push esi
-		mov esi, ecx
-		__emit 0xe8
-		__emit 0x10
-		__emit 0xdb
-		__emit 0x9a
-		__emit 0xff
-		test byte ptr [esp+8], 1
-		je doneWrapperDeleting
-		push esi
-		__emit 0xe8
-		__emit 0xeb
-		__emit 0x70
-		__emit 0x22
-		__emit 0x00
-		add esp, 4
-doneWrapperDeleting:
-		mov eax, esi
-		pop esi
-		ret 4
+	void *self = this;
+	((BFMENetworkDestructorShim *)self)->destroy();
+	if (flags & 1) {
+		::operator delete(self);
 	}
+	return self;
 }
 
 BFMENetwork::BFMENetwork() :
