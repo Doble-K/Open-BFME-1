@@ -8,13 +8,13 @@ public:
     const Coord3D *getPosition() const;
 };
 
-__declspec(naked) const Coord3D *BFMERopeDrawable::getPosition() const
+class BFMERopeDrawableGetPositionShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 05Eh
-        _emit 01Fh
-        _emit 03Dh
-        _emit 000h
-    }
+public:
+    const Coord3D *get() const;
+};
+
+const Coord3D *BFMERopeDrawable::getPosition() const
+{
+    return ((const BFMERopeDrawableGetPositionShim *)this)->get();
 }
