@@ -227,7 +227,8 @@ WWINLINE int BitChannelClass::Get_Bit(int frame) const
 
 class TimeCodedMotionChannelClass : public W3DMPO
 {
-	W3DMPO_GLUE(TimeCodedMotionChannelClass)
+	// Not pooled, on the same evidence as MotionChannelClass above: the unpooled
+	// ??_G is 30 bytes and retail's are 30, where the glue makes ours 36.
 
 public:
 
@@ -265,7 +266,8 @@ private:
 
 class AdaptiveDeltaMotionChannelClass : public W3DMPO
 {
-	W3DMPO_GLUE(AdaptiveDeltaMotionChannelClass)
+	// Not pooled, on the same evidence as MotionChannelClass above: the unpooled
+	// ??_G is 30 bytes and retail's are 30, where the glue makes ours 36.
 
 public:
 
@@ -314,7 +316,8 @@ private:
 
 class TimeCodedBitChannelClass : public W3DMPO
 {
-	W3DMPO_GLUE(TimeCodedBitChannelClass)
+	// Not pooled, on the same evidence as MotionChannelClass above: the unpooled
+	// ??_G is 30 bytes and retail's are 30, where the glue makes ours 36.
 
 public:
 

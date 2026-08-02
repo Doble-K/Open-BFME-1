@@ -616,3 +616,35 @@ in a `call [reg+disp]` displacement looks like a wrong slot *number* — a
 miscounted vtable — when the count is right and only the ordering is wrong.
 Check for an overload set before recounting slots. Anywhere a shim declares two
 virtuals with the same name, the order is a decision, not a formatting choice.
+
+## A folded ??_G body can make two pools look like one symbol
+
+Adding `??0HAnimComboClass@@QAE@H@Z` (0x00974820) tripped the gate's DIR32
+consistency check:
+
+```
+?Allocator@?$AutoPoolClass@VHAnimComboDataClass@@$0BAA@@@0V?$ObjectPoolClass@...@A
+    bases ['0x134b128', '0x134bc4c']
+```
+
+Retail is perfectly consistent: 0x134b128 is referenced only from the
+dx8renderer range (0x009463C1, 0x009463DA, 0x009465F5, 0x00947668, 0x00949CA1,
+0x00949CB0) and 0x134bc4c only from the HAnimCombo range (0x009745B1,
+0x009745CA, 0x00974881, 0x0097492E, 0x00974E07). They are two different pools'
+statics.
+
+Our build conflates them. `PolyRenderTaskClass : AutoPoolClass<PolyRenderTaskClass,256>`
+is declared correctly, so this is not a source typo -- it is that
+`??_GPolyRenderTaskClass` and the HAnimComboDataClass `??_G` compile to identical
+bodies, fold, and the surviving copy carries only one of the two relocations. The
+claim at 0x00947668 therefore rests on a folded body, exactly like the
+NodeMotionStruct rows did.
+
+The row was dropped rather than whitelisted. Whitelisting would bury a real
+ambiguity, and the remaining 31 rows from that batch are unaffected. Resolving it
+properly means deciding which of the two `??_G` claims owns 0x00947668 -- do that
+before re-adding the constructor.
+
+Watch for this whenever a new row lands near a pooled class: the DIR32 check is
+the only thing that sees it, and the per-file verify a delta commit runs does
+not.
