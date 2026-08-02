@@ -63,7 +63,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$_Construct@VGameResultsRequest@@V1@@_STL@@YAXPAVGameResultsRequest@@ABV1@@Z,,0x00641B70,66,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ??$_Construct@VGameResultsResponse@@V1@@_STL@@YAXPAVGameResultsResponse@@ABV1@@Z,,0x00641BD0,87,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,STLport template-internal COMDAT emitted by this TU; thunk-dump repointed to real body
 ??$_Construct@VMoney@@V1@@_STL@@YAXPAVMoney@@ABV1@@Z,,0x001A6D80,19,Code/GameEngine/Source/Common/MultiplayerSettings.cpp,matched,
-??$_Construct@VPSResponse@@V1@@_STL@@YAXPAVPSResponse@@ABV1@@Z,,0x003685C0,93,Code/masm_dumps/_rn7_____Construct_VPSResponse__V1___STL__YAXPAVPSResponse__ABV1__Z_3685C0.asm,matched,reloc-needle Open-BFME4+Grok
+??$_Construct@VPSResponse@@V1@@_STL@@YAXPAVPSResponse@@ABV1@@Z,,0x003685C0,93,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PSResponseConstructThunk.cpp,matched,Exact 93B C++ raw STL construct thunk Open-BFME5
 ??$_Construct@VPingRequest@@V1@@_STL@@YAXPAVPingRequest@@ABV1@@Z,,0x00660330,85,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,clean C++ PingRequest copy helper; shared 85-byte body with PingResponse copy; _STLP_USE_STATIC_LIB direct call
 ??$_Construct@VPingResponse@@V1@@_STL@@YAXPAVPingResponse@@ABV1@@Z,,0x006603A0,85,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,clean C++ PingResponse copy helper; shared 85-byte STLport copy body; _STLP_USE_STATIC_LIB direct call
 ??$_Construct@VPlayerTemplate@@V1@@_STL@@YAXPAVPlayerTemplate@@ABV1@@Z,,0x000E3B70,66,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
