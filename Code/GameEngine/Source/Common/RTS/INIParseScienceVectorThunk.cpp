@@ -6,13 +6,13 @@ public:
     __declspec(dllexport) static void parseScienceVector(INI *, void *, void *, const void *);
 };
 
-__declspec(naked) void INI::parseScienceVector(INI *, void *, void *, const void *)
+class INIParseScienceVectorShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 072h
-        _emit 0A7h
-        _emit 007h
-        _emit 000h
-    }
+public:
+    static void parse(INI *ini, void *store, void *userData, const void *desc);
+};
+
+void INI::parseScienceVector(INI *ini, void *store, void *userData, const void *desc)
+{
+    INIParseScienceVectorShim::parse(ini, store, userData, desc);
 }
