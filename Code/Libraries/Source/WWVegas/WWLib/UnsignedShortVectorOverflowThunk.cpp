@@ -2,41 +2,43 @@
 
 namespace _STL
 {
-	struct __true_type
-	{
-	};
+struct __true_type
+{
+};
 
-	template <class Type>
-	class allocator
-	{
-	};
+template <class Type>
+class allocator
+{
+};
 
-	template <class Type, class Allocator>
-	class vector
-	{
-	protected:
-		void _M_insert_overflow(Type *, const Type &, const __true_type &, unsigned int, bool);
-	};
+template <class Type, class Allocator>
+class vector
+{
+protected:
+	void _M_insert_overflow(Type *, const Type &, const __true_type &, unsigned int, bool);
+};
 
-	__declspec(naked) void vector<unsigned short, allocator<unsigned short> >::_M_insert_overflow(unsigned short *, unsigned short const &, const __true_type &, unsigned int, bool)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 07Dh
-			_emit 09Dh
-			_emit 03Bh
-			_emit 000h
-		}
-	}
+class UnsignedShortInsertOverflowShim
+{
+public:
+	void insert_overflow(unsigned short *pos, const unsigned short &x, const __true_type &tag, unsigned int fill_len, bool at_end);
+};
 
-	__declspec(naked) void vector<int, allocator<int> >::_M_insert_overflow(int *, int const &, const __true_type &, unsigned int, bool)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 07Fh
-			_emit 0F0h
-			_emit 009h
-			_emit 000h
-		}
-	}
+class IntInsertOverflowShim
+{
+public:
+	void insert_overflow(int *pos, const int &x, const __true_type &tag, unsigned int fill_len, bool at_end);
+};
+
+void vector<unsigned short, allocator<unsigned short> >::_M_insert_overflow(
+	unsigned short *pos, const unsigned short &x, const __true_type &tag, unsigned int fill_len, bool at_end)
+{
+	((UnsignedShortInsertOverflowShim *)this)->insert_overflow(pos, x, tag, fill_len, at_end);
+}
+
+void vector<int, allocator<int> >::_M_insert_overflow(
+	int *pos, const int &x, const __true_type &tag, unsigned int fill_len, bool at_end)
+{
+	((IntInsertOverflowShim *)this)->insert_overflow(pos, x, tag, fill_len, at_end);
+}
 }
