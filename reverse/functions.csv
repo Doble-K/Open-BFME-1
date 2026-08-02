@@ -1636,7 +1636,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0InstantDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200BA0,60,Code/masm_dumps/InstantDeathBehavior_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0InstantDeathBehaviorModuleData@@QAE@XZ,,0x00201650,111,Code/masm_dumps/InstantDeathBehaviorModuleData_constructor.asm,matched,Exact 111B @ 0x00201650; Exact retail MASM ModuleData ctor; unique factory 0x1153E0
 ??0JetAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0KeepObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255870,60,Code/masm_dumps/KeepObjectDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
+??0KeepObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255870,60,Code/GameEngine/Source/GameLogic/Object/Die/KeepObjectDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
 ??0KeepObjectDieModuleData@@QAE@XZ,,0x00122ED0,69,Code/GameEngine/Source/GameLogic/AI/KeepObjectDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0KeyClass@?$PrimitiveAnimationChannelClass@M@@QAE@XZ,,0x0037E190,10,Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp,matched,
 ??0KeyClass@?$PrimitiveAnimationChannelClass@VVector2@@@@QAE@XZ,,0x000E49D0,10,Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp,matched,
