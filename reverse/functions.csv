@@ -1166,6 +1166,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AutoPickUpUpdateModuleData@@QAE@XZ,,0x002827E0,242,Code/GameEngine/Source/GameLogic/AI/AutoPickUpUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AvailableGameInfo@@QAE@XZ,,0x0010DB60,19,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0BFMEAutoLockRef@@QAE@PAVBFMENetworkLock@@I@Z,,0x009DB3B0,72,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,object-symbol=??0LockClass@MutexClass@@QAE@AAV1@H@Z;C++ alias
+??0BFMENetwork@@QAE@XZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper constructor body; initializes locks queues list and backend pointer
+??0BFMENetworkBackend@@QAE@PAVBFMENetworkLock@@@Z,,0x006547F0,127,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME backend constructor body; stores wrapper lock owner at +0x68 and initializes backend list at +0x5c
 ??0BFMEPlayerTemplateAsciiString@@QAE@PBD@Z,,0x00888BC0,72,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@PBD@Z;C++ alias
 ??0BFMERetailAsciiString@@QAE@PBD@Z,,0x00888BC0,72,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@PBD@Z;C++ alias
 ??0BTIntersectStruct@@QAE@ABVOBBoxClass@@ABVTriClass@@@Z,,0x008E6760,367,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
@@ -9220,8 +9222,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?construct@BFMEConnectionManager@@QAEPAXXZ,,0x00669630,643,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?construct@BFMENativeNetwork@@QAEPAXXZ,,0x006818B0,73,Code/GameEngine/Source/GameNetwork/native_network_interface.cpp,matched,native BFME Network constructor body; installs vtable 0x0111A968 and initializes QueryPerformanceCounter pacing fields
 ?construct@BFMENetRequestPlayerLeaveCommandMsg@@QAEPAXXZ,,0x006741F0,44,Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp,matched,native BFME command type 7 constructor; command type string mapper names it NETCOMMANDTYPE_REQUESTPLAYERLEAVE
-??0BFMENetwork@@QAE@XZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper constructor body; initializes locks queues list and backend pointer
-??0BFMENetworkBackend@@QAE@PAVBFMENetworkLock@@@Z,,0x006547F0,127,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME backend constructor body; stores wrapper lock owner at +0x68 and initializes backend list at +0x5c
 ?constructVolume@W3DVolumetricShadow@@IAEXPAVVector3@@MHH@Z,,0x007B82A2,1397,Code/masm_dumps/_constructVolume_W3DVolumetricShadow__IAEXPAVVector3__MHH_Z.asm,matched,
 ?containsMessageOfType@GameMessageList@@UAE_NW4Type@GameMessage@@@Z,,0x0008A5D0,35,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?convertBonePosToWorldPos@Thing@@QBEXPBUCoord3D@@PBVMatrix3D@@PAU2@PAV3@@Z,,0x00132530,468,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,
