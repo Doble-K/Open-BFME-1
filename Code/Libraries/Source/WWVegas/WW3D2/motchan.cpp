@@ -100,7 +100,6 @@ MotionChannelClass::MotionChannelClass(void) :
 	Data(NULL),
 	FirstFrame(-1),
 	LastFrame(-1),
-	CompressedData(NULL),
 	ValueScale(0.0f),
 	ValueOffset(0.0f)
 {
@@ -139,9 +138,8 @@ MotionChannelClass::~MotionChannelClass(void)
 // ?MotionChannelClass::Free present-unmatched
 void MotionChannelClass::Free(void)
 {
-	// BFME frees Data unconditionally and leaves CompressedData alone: retail's
-	// 0x00978140 loads [esi+0x14], deletes it and nulls it, with no test between
-	// and no second field.
+	// BFME frees Data unconditionally: retail's 0x00978140 loads [esi+0x14],
+	// deletes it and nulls it, with no test between and no second field.
 	delete[] Data;
 	Data = NULL;
 }
@@ -193,7 +191,6 @@ bool MotionChannelClass::Load_W3D(ChunkLoadClass & cload)
 		cload.Seek(saved_datasize-datasize);
 	}
 
-	Do_Data_Compression(datasize);
 	return true;
 }
 
@@ -1296,57 +1293,6 @@ Quaternion AdaptiveDeltaMotionChannelClass::Get_QuatVector(float32 frame)
 
 } // Get_QuatVector
 
-//==========================================================================================
-void MotionChannelClass::
-Do_Data_Compression(int datasize)
-{
-return;
-	//Find Min_Max
-	float value_min=FLT_MAX;
-	float value_max=-FLT_MAX;
-	int count=datasize/sizeof(float);
-	for (int i=0;i<count;i++) {
-		float value=Data[i];
-		if (_isnan(value)) value=0.0f;
-		if (value>100000.0f) value=0.0f;
-		if (value<-100000.0f) value=0.0f;
-		Data[i]=value;
-
-		if (value_min > value) value_min = value;
-		if (value_max < value) value_max = value;
-	}
-	ValueOffset=value_min;
-	ValueScale=value_max-value_min;
-	// Can't compress if the range is too high
-	if (ValueScale>2000.0f) return;
-	if (Type==ANIM_CHANNEL_Q/* && ValueScale>3.0f*/) return;
-
-	WWASSERT(!CompressedData);
-	CompressedData=new unsigned short[count];
-	float inv_scale=0.0f;
-	if (ValueScale!=0.0f) {
-		inv_scale=1.0f/ValueScale;
-	}
-	inv_scale*=65535.0f;
-	for (i=0;i<count;++i) {
-		float value=Data[i];
-		value-=ValueOffset;
-		value*=inv_scale;
-		int ivalue=WWMath::Float_To_Int_Floor(value);
-		CompressedData[i]=unsigned short(ivalue);
-
-		float new_scale=ValueScale/65535.0f;
-		float new_value=int(CompressedData[i]);
-		float new_float = new_value*new_scale+ValueOffset;
-//			if (fabs(new_float-Data[i])>ValueScale/65536.0f) {
-//				int ii=0;
-//			}
-
-	}
-
-	delete[] Data;
-	Data=NULL;
-}
 
 
 

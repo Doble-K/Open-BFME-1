@@ -69,7 +69,10 @@ class MotionChannelClass : public W3DMPO
 	// base stays and nothing moves.
 
 public:
-	void Do_Data_Compression(int datasize);
+	// No Do_Data_Compression and no CompressedData: HRawAnimClass::read_channel
+	// allocates the class with push 0x20 (0x00959AF6), eight dwords, which is
+	// PivotIdx, Type, VectorLen, ValueOffset, ValueScale, Data, FirstFrame and
+	// LastFrame with nothing left over.
 	void Get_Vector(int frame,float * setvec) const;
 
 	MotionChannelClass(void);
@@ -97,12 +100,6 @@ private:
 	float	*	Data;					// pointer to the raw floating point data
 	int		FirstFrame;			// first frame which was non-identity
 	int		LastFrame;			// last frame which was non-identity
-
-	// BFME keeps this one past the end rather than ahead of Data: retail reads
-	// VectorLen at +8, Data at +0x14, FirstFrame at +0x18 and LastFrame at +0x1c
-	// (the Get_Vector inlined into HTreeClass::Anim_Update, 0x0095456A onward),
-	// which only leaves room for it here.
-	unsigned short* CompressedData;
 	void Free(void);
 	WWINLINE void set_identity(float * setvec) const;
 

@@ -335,7 +335,6 @@ Error:
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?read_channel@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::read_channel(ChunkLoadClass & cload,MotionChannelClass * * newchan,bool pre30)
 {
 	*newchan = W3DNEW MotionChannelClass;

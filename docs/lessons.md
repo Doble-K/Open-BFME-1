@@ -500,24 +500,30 @@ Corroboration: both `Animatable3DObjClass::Set_Animation` bodies that were
 reconstructed from retail contain no embedded-sound code at all, while the
 unmatched Zero Hour copies in `animobj.cpp` do.
 
-## MotionChannelClass keeps CompressedData past the end
+## CORRECTED: MotionChannelClass has no CompressedData at all
 
-Retail reads `VectorLen` at +8, `Data` at +0x14, `FirstFrame` at +0x18 and
-`LastFrame` at +0x1c, which is one dword tighter than our layout, and
-`~MotionChannelClass` (0x00978140) frees `[esi+0x14]` alone, with no null test
-and no second field.
+This entry previously concluded that `CompressedData` survives in BFME but sits
+past `LastFrame`, because deleting it also deletes `Do_Data_Compression` -- its
+only caller -- and that function is the only thing in the tree that emits
+`WWMath::Float_To_Int_Floor`, which owned a matched row.
 
-The tempting read is that `CompressedData` does not exist -- but deleting it also
-deletes `Do_Data_Compression`, its only caller, and that function is the only
-thing in the tree that emits `WWMath::Float_To_Int_Floor`, which owns a matched
-row. Retail *has* `Float_To_Int_Floor` at 0x007239D0 with no callers at all, so
-BFME keeps the same dead compression path. Moving `CompressedData` past
-`LastFrame` satisfies every measured offset and keeps the function compiling;
-`Free` still touches only `Data`.
+That reasoning preserved a row at the cost of the layout, and the layout was
+wrong. `HRawAnimClass::read_channel` allocates the class at 0x00959AF6 with
+**push 0x20**: eight dwords, which is PivotIdx, Type, VectorLen, ValueOffset,
+ValueScale, Data, FirstFrame and LastFrame with nothing left over. The
+constructor at 0x00977760 confirms it -- it zeroes +0 through +0x14 and sets
++0x18 and +0x1c to -1, then stops.
 
-Removing code can delete a matched symbol. Check for that before concluding a
-member is absent -- absence of a *member* and absence of the *code that uses it*
-are different claims.
+So `CompressedData` and `Do_Data_Compression` are both gone, and the
+`Float_To_Int_Floor` row was dropped: nothing in the tree emits it any more.
+Retail does contain it, at 0x007239D0 with no callers at all, so some other BFME
+translation unit emits it as dead code; whoever finds that one can restore the
+row there.
+
+The general lesson stands but with the priority the other way round: removing
+code can delete a matched symbol, and you should notice when it does -- but a
+row is not worth a layout. Fix the layout, then go find where the orphaned
+symbol really lives.
 
 ## Texture pipeline: what is actually known, and the three sibling vtables
 
