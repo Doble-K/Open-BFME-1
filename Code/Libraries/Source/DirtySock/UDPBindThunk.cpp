@@ -6,13 +6,13 @@ public:
     __declspec(dllexport) int Bind(unsigned int, unsigned short);
 };
 
-__declspec(naked) int UDP::Bind(unsigned int, unsigned short)
+class UDPBindShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 05Bh
-        _emit 0C9h
-        _emit 063h
-        _emit 000h
-    }
+public:
+    int bind(unsigned int ip, unsigned short port);
+};
+
+int UDP::Bind(unsigned int ip, unsigned short port)
+{
+    return ((UDPBindShim *)this)->bind(ip, port);
 }
