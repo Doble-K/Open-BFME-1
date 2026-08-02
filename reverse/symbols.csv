@@ -3449,6 +3449,7 @@ name,address,notes
 ?pop_front@?$deque@VPSRequest@@V?$allocator@VPSRequest@@@_STL@@@_STL@@QAEXXZ,0x0002D77C,derived-ICF
 ?pop_front@?$deque@VPeerRequest@@V?$allocator@VPeerRequest@@@_STL@@@_STL@@QAEXXZ,0x0002D77C
 ?pop_front@?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@QAEXXZ,0x0002A3C4
+?pop_front@DequePopFrontShim@_STL@@QAEXXZ,0x006486F0,_STL deque pop_front PSRequest/PeerRequest incremental-link thunk target through a TU-local forwarding shim
 ?populate@ControlBarPopulateObserverListShim@@QAEXXZ,0x004A9CD0,ControlBar populateObserverList incremental-link thunk target through a TU-local forwarding shim
 ?populateLadderListBox@@YAXXZ,0x004D8740,pinharvest x1 (body)
 ?populateObserverInfoWindow@ControlBar@@QAEXXZ,0x000431C1
