@@ -1331,7 +1331,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CivilianSpawnUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028A2F0,149,Code/masm_dumps/CivilianSpawnUpdate_constructor.asm,matched,Exact 149B @ 0x0028A2F0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116AE0
 ??0CivilianSpawnUpdateModuleData@@QAE@XZ,,0x0028A480,92,Code/GameEngine/Source/GameLogic/AI/CivilianSpawnUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ClassicEnvironmentMapperClass@@QAE@I@Z,,0x00921390,25,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
-??0CleanupHazardUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D0620,125,Code/masm_dumps/CleanupHazardUpdate_constructor.asm,matched,Exact 125B; factory ownership Open-BFME4
+??0CleanupHazardUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D0620,125,Code/GameEngine/Source/GameLogic/Module/CleanupHazardUpdateConstructorThunk.cpp,matched,Exact 125B; factory ownership Open-BFME4
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0ClearanceTestingSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/masm_dumps/ClearanceTestingSlowDeathBehavior_constructor.asm,matched,Exact 74B ICF primary Open-BFME4
 ??0ClearanceTestingSlowDeathBehaviorModuleData@@QAE@XZ,,0x001F72D0,149,Code/GameEngine/Source/GameLogic/AI/ClearanceTestingSlowDeathBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
