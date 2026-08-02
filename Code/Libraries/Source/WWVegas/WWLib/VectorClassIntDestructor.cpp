@@ -12,6 +12,13 @@ private:
 	unsigned int m_bits;
 };
 
+class Vector2
+{
+private:
+	float m_x;
+	float m_y;
+};
+
 template <class T>
 class VectorClass
 {
@@ -48,3 +55,4 @@ template class VectorClass<TextureClass *>;
 template class VectorClass<VertexMaterialClass *>;
 template class VectorClass<tThreadInfoType *>;
 template class VectorClass<ShaderClass>;
+template class VectorClass<Vector2>;
