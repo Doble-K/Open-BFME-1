@@ -1852,7 +1852,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MoneyCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00217D10,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/MoneyCrateCollide.cpp,matched,MASM converted to clean C++
 ??0MoneyCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/MoneyCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0MonsterDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002CDA30,74,Code/GameEngine/Source/GameLogic/Object/Update/NeutronMissileUpdateConstructor.cpp,matched,shared ICF owner converted to clean C++ body at destination 0x2CDA30
-??0MonsterDockUpdateModuleData@@QAE@XZ,,0x002CDCF0,81,Code/masm_dumps/MonsterDockUpdateModuleData_constructor.asm,matched,Exact 81B ModuleData ctor; Open-BFME4+Grok
+??0MonsterDockUpdateModuleData@@QAE@XZ,,0x002CDCF0,81,Code/GameEngine/Source/GameLogic/Object/Update/MonsterDockUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 81B ModuleData constructor
 ??0MorphKeyStruct@TimeCodedMorphKeysClass@@QAE@KK@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp,matched,tiny-locate
 ??0MorphKeyStruct@TimeCodedMorphKeysClass@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
 ??0MotionChannelClass@@QAE@XZ,,0x00977760,31,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
