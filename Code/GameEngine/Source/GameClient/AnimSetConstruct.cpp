@@ -2,22 +2,25 @@
 
 namespace GenericObjectCreationNugget
 {
-	struct AnimSet;
+struct AnimSet;
 }
 
 namespace _STL
 {
-	template <class T, class U>
-	__declspec(naked) void _Construct(T *, const U &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 06Ch
-			_emit 06Dh
-			_emit 074h
-			_emit 000h
-		}
-	}
+template <class T, class U>
+void _Construct(T *, const U &);
 
-	template void _Construct<GenericObjectCreationNugget::AnimSet, GenericObjectCreationNugget::AnimSet>(GenericObjectCreationNugget::AnimSet *, const GenericObjectCreationNugget::AnimSet &);
+class AnimSetConstructShim
+{
+public:
+    static void construct(GenericObjectCreationNugget::AnimSet *p, const GenericObjectCreationNugget::AnimSet &v);
+};
+
+template <class T, class U>
+void _Construct(T *p, const U &v)
+{
+    AnimSetConstructShim::construct((GenericObjectCreationNugget::AnimSet *)p, *(const GenericObjectCreationNugget::AnimSet *)&v);
+}
+
+template void _Construct<GenericObjectCreationNugget::AnimSet, GenericObjectCreationNugget::AnimSet>(GenericObjectCreationNugget::AnimSet *, const GenericObjectCreationNugget::AnimSet &);
 }
