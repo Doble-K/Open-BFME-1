@@ -2923,6 +2923,7 @@ name,address,notes
 ?construct@StreakDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00006FBE,StreakDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@TerrainCollisionTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002C3C7,TerrainCollisionModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@TerrainCollisionTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00012602,TerrainCollisionModuleTemplate constructor thunk used through a TU-local layout shim
+?copy@AsciiCoordTreeCopyShim@_STL@@QAEPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@2@PAU32@0@Z,0x000BFF50,incremental-link thunk target through a TU-local forwarding shim
 ?copy@AsciiStringCopyShim@_STL@@SAPAVAsciiString@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x006FA270,_STL __copy AsciiString incremental-link thunk target through a TU-local forwarding shim
 ?copy@DeliverPayloadCopyShim@_STL@@SAPAXPAX00ABUrandom_access_iterator_tag@2@PAH@Z,0x0036D980,_STL __copy DeliverPayload shared incremental-link thunk target through a TU-local forwarding shim
 ?copy@IntPairTreeCopyShim@_STL@@QAEPAU?$_Rb_tree_node@U?$pair@$$CBHI@_STL@@@2@PAU32@0@Z,0x000AAC70,_STL int pair tree incremental-link thunk target through a TU-local forwarding shim
