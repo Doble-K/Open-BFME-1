@@ -1,16 +1,7 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class DefinitionClass;
-class Render2DClass;
 class TextureClass;
 class VertexMaterialClass;
-struct tThreadInfoType;
-
-class ShaderClass
-{
-private:
-	unsigned int m_bits;
-};
 
 class Vector2
 {
@@ -46,13 +37,12 @@ VectorClass<T>::~VectorClass()
 	m_vectorMax = 0;
 }
 
+// unsigned char / DefinitionClass* / Render2DClass* / tThreadInfoType* / ShaderClass
+// were instantiated here too, but retail proves each has its OWN vtable
+// (0x113ac74, 0x113a0fc x3, 0x113c5e4) while this folded body loads 0x11bc44c —
+// so their destructors cannot be this body. See the DIR32 consistency gate.
 template class VectorClass<int>;
 template class VectorClass<float>;
-template class VectorClass<unsigned char>;
-template class VectorClass<DefinitionClass *>;
-template class VectorClass<Render2DClass *>;
 template class VectorClass<TextureClass *>;
 template class VectorClass<VertexMaterialClass *>;
-template class VectorClass<tThreadInfoType *>;
-template class VectorClass<ShaderClass>;
 template class VectorClass<Vector2>;

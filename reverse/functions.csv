@@ -1183,7 +1183,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BattlePlanUpdateModuleData@@QAE@XZ,,0x0003025B,5,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdateModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0BeaconClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
 ??0BeaconClientUpdateModuleData@@QAE@XZ,,0x006031C0,15,Code/GameEngine/Source/GameClient/Drawable/Update/BeaconClientUpdate.cpp,matched,exact 15B no-call ModuleData ctor; m_framesBetweenRadarPulses=30 m_radarPulseDuration=15; moduledata shim; replaces 5B thunk @0x286C3
-??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00121F60,46,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate.cpp,matched,
 ??0BenchProfile@@QAE@XZ,,0x0007BC10,30,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ??0BezFwdIterator@@QAE@HPBVBezierSegment@@@Z,,0x000B65C0,81,Code/GameEngine/Source/Common/Bezier/BezFwdIterator.cpp,matched,
 ??0BezFwdIterator@@QAE@XZ,,0x000B6880,60,Code/GameEngine/Source/Common/bez_fwd_iterator.cpp,matched,
@@ -2274,7 +2273,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0UnitCrateCollideModuleData@@QAE@XZ,,0x00125EA0,88,Code/masm_dumps/UnitCrateCollideModuleData_constructor.asm,matched,Exact 88B @ 0x00125EA0; Exact retail MASM ModuleData ctor; unique factory 0x125F10; Open-BFME4+Grok
 ??0UnpauseSpecialPowerUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D9760,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/UnpauseSpecialPowerUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2D9760
 ??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ,,0x002D99B0,29,Code/GameEngine/Source/GameLogic/Object/SpecialPower/UnpauseSpecialPowerUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
-??0UpdateModuleInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,ICF alias of existing matched body
 ??0UpdateModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/UpdateModuleModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0UpgradeCenter@@QAE@XZ,,0x0010A6A0,29,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
 ??0UpgradeDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002560E0,60,Code/GameEngine/Source/GameLogic/Object/Die/UpgradeDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
@@ -2605,12 +2603,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$SimpleVecClass@VVector4@@@@UAE@XZ,,0x0078C7E0,41,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ??1?$StringBase@D@@AAE@XZ,0x00004A34,0x0005E490,5,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,destroy char string base; size trimmed: trailing int3 padding
 ??1?$StringBase@G@@AAE@XZ,0x000160F9,0x0005E4E0,5,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,destroy wide string base; size trimmed: trailing int3 padding
-??1?$VectorClass@E@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@H@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@M@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
-??1?$VectorClass@PAUtThreadInfoType@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
-??1?$VectorClass@PAVDefinitionClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
-??1?$VectorClass@PAVRender2DClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@PAVTextureClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@PAVVertexMaterialClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@UAddInfoStruct@MixFileFactoryClass@@@@UAE@XZ,,0x0093E480,67,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,icf-owner=??1?$DynamicVectorClass@UFileOffsetStruct@@@@UAE@XZ
@@ -2619,7 +2613,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$VectorClass@UWeightInfoStruct@NamedPivotMapClass@@@@UAE@XZ,,0x0093E480,67,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,icf-owner=??1?$DynamicVectorClass@UFileOffsetStruct@@@@UAE@XZ
 ??1?$VectorClass@U_ENUM_VALUE@EnumParameterClass@@@@UAE@XZ,,0x0093E480,67,Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cpp,matched,
 ??1?$VectorClass@VActiveCategoryStackClass@@@@UAE@XZ,,0x00AFEF80,73,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
-??1?$VectorClass@VShaderClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@VStringClass@@@@UAE@XZ,,0x0013B3F0,67,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,
 ??1?$VectorClass@VVector2@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@VVector3@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_VVector3____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
