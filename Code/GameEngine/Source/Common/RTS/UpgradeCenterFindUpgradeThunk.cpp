@@ -9,13 +9,13 @@ public:
     const UpgradeTemplate *findUpgrade(const AsciiString &) const;
 };
 
-__declspec(naked) const UpgradeTemplate *UpgradeCenter::findUpgrade(const AsciiString &) const
+class UpgradeCenterFindUpgradeShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 081h
-        _emit 0B7h
-        _emit 00Dh
-        _emit 000h
-    }
+public:
+    const UpgradeTemplate *find(const AsciiString &name) const;
+};
+
+const UpgradeTemplate *UpgradeCenter::findUpgrade(const AsciiString &name) const
+{
+    return ((const UpgradeCenterFindUpgradeShim *)this)->find(name);
 }
