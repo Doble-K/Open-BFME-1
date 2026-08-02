@@ -1,0 +1,126 @@
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// Grok promote from masm_dumps — retail 0x00090D00 size 113
+// was: Code/masm_dumps/_getFirewallNeedToRefresh_OptionPreferences__QAE_NXZ_90D00.asm
+
+class OptionPreferences { public: bool getFirewallNeedToRefresh(void); };
+
+// ?getFirewallNeedToRefresh@OptionPreferences@@QAE_NXZ
+__declspec(naked) bool OptionPreferences::getFirewallNeedToRefresh(void)
+{
+__asm {
+		_emit 083h
+		_emit 0ECh
+		_emit 008h
+		_emit 056h
+		_emit 057h
+		_emit 08Bh
+		_emit 0F1h
+		_emit 068h
+		_emit 060h
+		_emit 0FAh
+		_emit 007h
+		_emit 001h
+		_emit 08Dh
+		_emit 04Ch
+		_emit 024h
+		_emit 00Ch
+		_emit 0E8h
+		_emit 0ABh
+		_emit 07Eh
+		_emit 07Fh
+		_emit 000h
+		_emit 08Dh
+		_emit 044h
+		_emit 024h
+		_emit 008h
+		_emit 083h
+		_emit 0C6h
+		_emit 004h
+		_emit 050h
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0E8h
+		_emit 088h
+		_emit 0A1h
+		_emit 0F7h
+		_emit 0FFh
+		_emit 08Dh
+		_emit 04Ch
+		_emit 024h
+		_emit 008h
+		_emit 08Bh
+		_emit 0F8h
+		_emit 0E8h
+		_emit 011h
+		_emit 06Ch
+		_emit 07Fh
+		_emit 000h
+		_emit 03Bh
+		_emit 03Eh
+		_emit 075h
+		_emit 008h
+		_emit 05Fh
+		_emit 032h
+		_emit 0C0h
+		_emit 05Eh
+		_emit 083h
+		_emit 0C4h
+		_emit 008h
+		_emit 0C3h
+		_emit 053h
+		_emit 083h
+		_emit 0C7h
+		_emit 014h
+		_emit 057h
+		_emit 08Dh
+		_emit 04Ch
+		_emit 024h
+		_emit 014h
+		_emit 032h
+		_emit 0DBh
+		_emit 0E8h
+		_emit 015h
+		_emit 06Eh
+		_emit 07Fh
+		_emit 000h
+		_emit 068h
+		_emit 058h
+		_emit 0FAh
+		_emit 007h
+		_emit 001h
+		_emit 08Dh
+		_emit 04Ch
+		_emit 024h
+		_emit 014h
+		_emit 0E8h
+		_emit 08Fh
+		_emit 0F8h
+		_emit 0FAh
+		_emit 0FFh
+		_emit 085h
+		_emit 0C0h
+		_emit 075h
+		_emit 002h
+		_emit 0B3h
+		_emit 001h
+		_emit 08Dh
+		_emit 04Ch
+		_emit 024h
+		_emit 010h
+		_emit 0E8h
+		_emit 0D8h
+		_emit 06Bh
+		_emit 07Fh
+		_emit 000h
+		_emit 08Ah
+		_emit 0C3h
+		_emit 05Bh
+		_emit 05Fh
+		_emit 05Eh
+		_emit 083h
+		_emit 0C4h
+		_emit 008h
+		_emit 0C3h
+	}
+}
+
