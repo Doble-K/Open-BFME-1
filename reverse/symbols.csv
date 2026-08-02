@@ -2984,6 +2984,7 @@ name,address,notes
 ?deposit@MoneyDepositShim@@QAEXI_N@Z,0x000C8730,Money::deposit incremental-link thunk target through a TU-local forwarding shim
 ?destroy@AsciiStringCoord3DPairDestructorShim@_STL@@QAEXXZ,0x000723E0,destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@AsciiStringDestroyAuxShim@_STL@@SAXPAX0ABU__false_type@2@@Z,0x006FA420,_STL __destroy_aux AsciiString incremental-link thunk target through a TU-local forwarding shim
+?destroy@AsciiStringRbTreeDestructorShim@_STL@@QAEXXZ,0x00077FC0,_Rb_tree dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@AudioEventRTSDestructorShim@@QAEXXZ,0x000CFA40,AudioEventRTS destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@BFMENetworkBackendDestructorShim@@QAEXXZ,0x0003242F,BFMENetworkBackend destructor thunk used through a TU-local layout shim
 ?destroy@BFMENetworkDestructorShim@@QAEXXZ,0x000088C8,BFMENetwork destructor thunk used through a TU-local layout shim
@@ -3000,6 +3001,8 @@ name,address,notes
 ?destroy@ProductionPrerequisiteDestroyShim@_STL@@SAXPAVProductionPrerequisite@@0@Z,0x003A9010,_STL _Destroy ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?destroy@ProductionPrerequisiteDestructorShim@@QAEXXZ,0x00753450,ProductionPrerequisite destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@Render2DSentenceClassPendingSurfaceStructDestructorShim@@QAEXXZ,0x005DC1E0,Render2DSentenceClass::PendingSurfaceStruct dtor incremental-link thunk target through a TU-local forwarding shim
+?destroy@ThingTemplateRbTreeDestructorShim@_STL@@QAEXXZ,0x000E9640,_Rb_tree dtor incremental-link thunk target through a TU-local forwarding shim
+?destroy@UnicodeStringRbTreeDestructorShim@_STL@@QAEXXZ,0x0044DDD0,_Rb_tree dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@UserPreferencesDestructorShim@@QAEXXZ,0x000AAF30,UserPreferences destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@W3DAnimationInfoDestructorShim@@QAEXXZ,0x00610080,W3DAnimationInfo dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@WindowVideoDestructorShim@@QAEXXZ,0x004981A0,WindowVideo destructor incremental-link thunk target through a TU-local forwarding shim
