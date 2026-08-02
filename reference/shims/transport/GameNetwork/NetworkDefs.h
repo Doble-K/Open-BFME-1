@@ -112,6 +112,23 @@ struct TransportMessageHeader
  * Transport message - encapsulating info kept by the transport layer about each
  * packet.  These structs make up the in/out buffers at the transport layer.
  */
+/**
+ * BFME passes an address and port around as one object rather than as two
+ * scalars: Transport::init takes a pointer to this (ret 4, not ret 8) and
+ * dereferences [ptr] as the address and [ptr+4] as a 16-bit port, and
+ * Transport::queueSend does the same. NAT::sendAProbe builds one on its own
+ * stack to make the call. The layout is pinned by those three; the *name* is
+ * not -- a POD with no RTTI leaves nothing to recover it from, so this one is
+ * inferred and the mangled names that embed it are inferred with it.
+ */
+#pragma pack(push, 1)
+struct TransportAddress
+{
+	UnsignedInt ip;
+	UnsignedShort port;
+};
+#pragma pack(pop)
+
 #pragma pack(push, 1)
 struct TransportMessage
 {

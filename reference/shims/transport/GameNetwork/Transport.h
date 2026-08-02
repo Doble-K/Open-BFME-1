@@ -44,12 +44,14 @@ public:
 	~Transport();
 
 	Bool init( AsciiString ip, UnsignedShort port );
-	Bool init( UnsignedInt ip, UnsignedShort port );
+	Bool init( const TransportAddress *addr );
 	void reset( void );
 	Bool update( void );
 
 	Bool doRecv( void );
 	Bool doSend( void );
+
+	Bool queueSend( const TransportAddress *dest, const UnsignedByte *buf, UnsignedInt len );
 
 	Real getIncomingBytesPerSecond( void );
 	Real getIncomingPacketsPerSecond( void );
@@ -62,8 +64,10 @@ public:
 	TransportMessage m_inBuffer[MAX_MESSAGES];		// this+0x20700
 
 private:
+	// The reference's m_port is absent: BFME's init never writes a port anywhere
+	// on the object, and the three bytes of alignment before m_udpsock are all
+	// that separate them.
 	Bool m_winsockInit;								// this+0x40E00
-	UnsignedShort m_port;							// this+0x40E02, position unproven
 	UDP *m_udpsock;									// this+0x40E04
 	Int m_statisticsSlot;							// this+0x40E08
 	UnsignedInt m_lastSecond;						// this+0x40E0C

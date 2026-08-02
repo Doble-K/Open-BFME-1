@@ -27,6 +27,7 @@
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include "GameNetwork/Transport.h"
+#include "GameNetwork/NetworkInterface.h"
 
 // Retail's packet check calls the WWLib CRC through the thunk at 0x0000A984.
 extern unsigned long CRC_Memory( const unsigned char *data, unsigned long length, unsigned long crc );
@@ -99,6 +100,20 @@ void Transport::reset( void )
 	}
 }
 
+Bool Transport::update( void )
+{
+	Bool retval = TRUE;
+	if (doRecv() == FALSE && m_udpsock && m_udpsock->GetStatus() == UDP::ADDRNOTAVAIL)
+	{
+		retval = FALSE;
+	}
+	if (doSend() == FALSE && m_udpsock && m_udpsock->GetStatus() == UDP::ADDRNOTAVAIL)
+	{
+		retval = FALSE;
+	}
+	return retval;
+}
+
 Bool Transport::doSend() {
 	if (!m_udpsock)
 	{
@@ -143,6 +158,21 @@ Bool Transport::doSend() {
 	} // for (i=0; i<MAX_MESSAGES; ++i)
 
 	return retval;
+}
+
+// This assumes the buf is a multiple of 4 bytes.  Extra is not encrypted.
+static inline void encryptBuf( unsigned char *buf, Int len )
+{
+	UnsignedInt mask = 0x38D9B7D4;
+
+	UnsignedInt *uintPtr = (UnsignedInt *) (buf);
+
+	for (int i=0 ; i<len/4 ; i++) {
+		*uintPtr = (*uintPtr) ^ mask;
+		*uintPtr = htonl(*uintPtr);
+		uintPtr++;
+		mask -= 0x7F39C50E;
+	}
 }
 
 // This assumes the buf is a multiple of 4 bytes.  Extra is not encrypted.
@@ -291,3 +321,131 @@ Real Transport::getUnknownPacketsPerSecond( void )
 	}
 	return val / (MAX_TRANSPORT_STATISTICS_SECONDS-1);
 }
+
+/**
+ * The reference takes (UnsignedInt ip, UnsignedShort port); BFME takes one
+ * TransportAddress pointer, which is why this ends in `ret 4`. Everything the
+ * reference's init does after the bind is still here even though the
+ * constructor now does it too -- BFME clears the two length fields and the six
+ * statistics arrays a second time.
+ */
+Bool Transport::init( const TransportAddress *addr )
+{
+	// ----- Initialize Winsock -----
+	if (!m_winsockInit)
+	{
+		WORD verReq = MAKEWORD(2, 2);
+		WSADATA wsadata;
+
+		int err = WSAStartup(verReq, &wsadata);
+		if (err != 0) {
+			return false;
+		}
+
+		if ((LOBYTE(wsadata.wVersion) != 2) || (HIBYTE(wsadata.wVersion) !=2)) {
+			WSACleanup();
+			return false;
+		}
+		m_winsockInit = true;
+	}
+
+	// ------- Bind our port --------
+	if (m_udpsock)
+		delete m_udpsock;
+	m_udpsock = new UDP();
+
+	if (!m_udpsock)
+		return false;
+
+	int retval = -1;
+	UnsignedInt now = timeGetTime();
+	while ((retval != 0) && ((timeGetTime() - now) < 1000)) {
+		retval = m_udpsock->Bind(addr->ip, addr->port);
+	}
+
+	if (retval != 0) {
+		delete m_udpsock;
+		m_udpsock = NULL;
+		return false;
+	}
+
+	// ------- Clear buffers --------
+	int i;
+	for (i=0; i<MAX_MESSAGES; ++i)
+	{
+		m_outBuffer[i].length = 0;
+		m_inBuffer[i].length = 0;
+	}
+	for (i=0; i<MAX_TRANSPORT_STATISTICS_SECONDS; ++i)
+	{
+		m_incomingBytes[i] = 0;
+		m_outgoingBytes[i] = 0;
+		m_unknownBytes[i] = 0;
+		m_incomingPackets[i] = 0;
+		m_outgoingPackets[i] = 0;
+		m_unknownPackets[i] = 0;
+		// Retail really does clear this inside the loop, thirty times over.
+		m_badPackets = 0;
+	}
+	m_statisticsSlot = 0;
+	m_lastSecond = timeGetTime();
+
+	return true;
+}
+
+// ?init@Transport@@QAE_NVAsciiString@@G@Z present-unmatched
+// Correct through the SEH frame and the TransportAddress it builds, but retail
+// calls AsciiString's copy constructor out of line to make ResolveIP's by-value
+// argument, where every AsciiString header in the tree defines that constructor
+// inline and so copies the pointer in place. Landing it needs a TU-scoped
+// AsciiString whose copy constructor is declared but not defined, with the
+// symbol pinned at the ICF-folded body -- more shim than 127 bytes is worth
+// until something else needs the same lever.
+Bool Transport::init( AsciiString ip, UnsignedShort port )
+{
+	TransportAddress addr;
+	addr.ip = ResolveIP(ip);
+	addr.port = port;
+	return init(&addr);
+}
+
+/**
+ * Two departures from the reference: the guard rejects a NULL buffer rather
+ * than a zero length, and the packet is stamped with a CRC over the caller's
+ * buffer instead of a magic number. doRecv is the other half of that -- it
+ * recomputes the same CRC and drops anything that disagrees.
+ */
+// ?queueSend@Transport@@QAE_NPBUTransportAddress@@PBEI@Z present-unmatched
+// (and the name is inferred -- see the TransportAddress note in the shim).
+// Compiles to retail's length and instructions; retail commits to a three
+// register prologue and holds this in ebp, buf in esi and len in ebx, while
+// this source leaves this in ecx. Same allocator tie-break as the constructor.
+Bool Transport::queueSend(const TransportAddress *dest, const UnsignedByte *buf, UnsignedInt len)
+{
+	int i;
+
+	if (buf == NULL || len > MAX_PACKET_SIZE)
+	{
+		return false;
+	}
+
+	for (i=0; i<MAX_MESSAGES; ++i)
+	{
+		if (m_outBuffer[i].length == 0)
+		{
+			// Insert data here
+			m_outBuffer[i].addr = dest->ip;
+			m_outBuffer[i].port = dest->port;
+			m_outBuffer[i].length = len;
+			memcpy(m_outBuffer[i].data, buf, len);
+			m_outBuffer[i].header.crc = CRC_Memory(buf, len, 0);
+
+			// Encrypt packet
+			encryptBuf((unsigned char *)&m_outBuffer[i], len + sizeof(TransportMessageHeader));
+
+			return true;
+		}
+	}
+	return false;
+}
+
