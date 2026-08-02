@@ -172,6 +172,46 @@ Bool File::print( const char *format, ... )
 // m_pos at +0x1c -- straight after File, whose own last member is the buffer
 // pointer at +0x10 that File::File zeroes and File::~File frees.
 //-----------------------------------------------------------------------------
+// Zero Hour's RAMFile, named at 0x01143C58 in the vtable table above. Its three
+// members are Zero Hour's, in Zero Hour's order: m_data at +0x14, m_pos at
+// +0x18, m_size at +0x1c, which is what the constructor zeroes.
+//
+// Two further checks on that vtable, since it carries no identifying literal.
+// Slots 10, 15 and 16 are File's own print, lock and unlock, so this is a File
+// subclass that does not override them. And the constructor chains to
+// File::File at 0x009CB7A0, so it is a File subclass at all.
+class RAMFile : public File
+{
+public:
+	RAMFile();
+
+	virtual Bool open( const char *filename, Int access = 0 );
+	virtual void close( void );
+	virtual Int read( void *buffer, Int bytes );
+	virtual Int write( const void *buffer, Int bytes );
+	virtual Int seek( Int bytes, Int mode );
+	virtual void nextLine( char *buf, Int bufSize );
+	virtual Bool scanInt( Int &newInt );
+	virtual Bool scanReal( Real &newReal );
+	virtual Bool scanString( AsciiString &newString );
+	virtual Int size( void );
+	virtual Int position( void );
+	virtual char *readEntireAndClose( void );
+	virtual File *convertToRAMFile( void );
+
+protected:
+	char *m_data;			// +0x14
+	Int m_pos;				// +0x18
+	Int m_size;				// +0x1c
+};
+
+RAMFile::RAMFile()
+{
+	m_data = NULL;
+	m_pos = 0;
+	m_size = 0;
+}
+
 class MemoryReadFile : public File
 {
 public:

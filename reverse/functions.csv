@@ -1959,7 +1959,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0QueueProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F8B80,107,Code/masm_dumps/QueueProductionExitUpdate_constructor.asm,matched,Exact 107B ICF alias Open-BFME4
 ??0QueuedDownload@@QAE@XZ,,0x001DE7E0,22,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
 ??0QuickMatchPreferences@@QAE@XZ,,0x0002E802,5,Code/GameEngine/Source/Common/QuickMatchPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
-??0RAMFile@@QAE@XZ,,0x009E6990,108,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,object-symbol=??0RawFileClass@@QAE@XZ;C++ alias
+??0RAMFile@@QAE@XZ,,0x009D1980,29,Code/GameEngine/Source/Common/System/File.cpp,matched,chains to File::File at 0x009CB7A0 and installs 0x01143C58 which inherits File print/lock/unlock at slots 10/15/16; the name was previously held by RawFileClass ctor at 0x009E6990
 ??0RGBColorKeyframe@FXParticleSystem@@QAE@XZ,0x00029677,0x0005C700,16,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,sets channels and frame to zero
 ??0RObjIterator@@QAE@XZ,,0x003FD390,16,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
 ??0RTS2DScene@@QAE@XZ,,0x00712590,209,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS2DScene_ctor.asm,matched,RTS2DScene string xref and Ghidra-confirmed constructor boundary
@@ -1986,7 +1986,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RankInfoStore@@QAE@XZ,,0x00076EC0,29,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??0RankPoints@@,,0x004D9DF0,1394,Code/masm_dumps/_sa9___0RankPoints___4D9DF0.asm,matched,Exact 1394B Open-BFME4
 ??0RawFileClass@@QAE@PBD@Z,,0x009E6A20,144,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
-??0RawFileClass@@QAE@XZ,,0x009E6990,108,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
+??0RawFileClass@@QAE@XZ,,0x009E6990,108,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,installs 0x01145548 whose slots are 14 matched @RawFileClass@@ methods incl ??_GRawFileClass@@UAEPAXI@Z - was recorded as ??0RAMFile@@QAE@XZ which belongs to the File subclass at 0x009D1980
 ??0RayCollisionTestClass@@QAE@ABV0@ABVMatrix3D@@@Z,,0x0092C8B0,60,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ??0RayCollisionTestClass@@QAE@ABVLineSegClass@@PAUCastResultStruct@@H_N2@Z,,0x00609A20,120,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
 ??0RebuildHoleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F8B80,107,Code/masm_dumps/RebuildHoleBehavior_constructor.asm,matched,Exact 107B ICF alias Open-BFME4
