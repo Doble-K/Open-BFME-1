@@ -13995,3 +13995,5 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??0ArchiveFileSystem@@QAE@XZ,,0x009CA9E0,108,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08 which the derived BIG file system ctor at 0x009CC350 chains to
+??1ArchiveFileSystem@@UAE@XZ,,0x009CA550,140,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08; reached as the scalar dtor from slot 0 at 0x009CAA50
+??_GArchiveFileSystem@@UAEPAXI@Z,,0x009CAA50,30,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,slot 0 of vtable 0x01143A08; was previously claimed at 0x005BF290 which destroys CategoryModuleTemplate
