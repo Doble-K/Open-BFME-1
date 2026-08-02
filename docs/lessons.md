@@ -723,3 +723,35 @@ input to the register allocator, even though they are the same C++.
 Worth pairing with the note on inlined member calls materialising their
 receiver: both are cases where the spelling, not the semantics, is what the
 compiler is responding to.
+
+## A compiler-generated name cannot be checked by anything but its relocations
+
+A full gate failed on a DIR32 conflict:
+`?Allocator@?$AutoPoolClass@VHAnimComboDataClass@@$0BAA@@@` resolved to two
+different bases, both from `hanim.cpp`. `??0HAnimComboClass@@` gave 0x0134BC4C,
+which is that class's pool. A row named `_$E8` at 0x00C71350 gave 0x0134B128 —
+the `PolyRenderTaskClass` pool, which `dx8renderer.cpp` owns. So the funclet at
+0x00C71350 belongs to a different translation unit, and `hanim.cpp` still
+verifies 66/66 without it.
+
+`_$E8` is an exception funclet: a compiler-generated symbol. That makes it the
+worst case of the unfalsifiable-row problem, for two reasons at once.
+
+The *body* is unfalsifiable in the usual way — its only distinguishing operand
+is a DIR32, which `build.py` fills in from the target, so it byte-matches
+wherever you put it. And the *name* is unfalsifiable too: `_$E8` says nothing
+about a class, a signature, or a translation unit, so none of the naming oracles
+apply. There is no vtable slot to read, no string literal to anchor to, no
+sibling class whose method set constrains it. Every technique that resolved a
+wrong `??1` or `??_G` row is unavailable here.
+
+What caught it is the one check that looks at the masked operand instead of the
+bytes: DIR32 consistency, which noticed that two rows in the same TU disagreed
+about where one symbol lives. That only works when the funclet happens to touch
+a global some *other* row in the same TU also touches. Thirty-one `_$E` rows
+remain in the ledger; none is currently contradicted, but that is the absence of
+a coincidence rather than evidence they are right.
+
+So treat a compiler-generated row as carrying no claim at all. If one is
+blocking something, prefer deleting it to relocating it — there is nothing in it
+to be right about.
