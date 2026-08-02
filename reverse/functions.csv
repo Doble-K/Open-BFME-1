@@ -10175,7 +10175,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@OCLSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120230,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@OCLUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011A840,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@OathbreakersFadeAwayBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00125D70,107,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
-?friend_newModuleData@ObjectCreationUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D4A0,110,Code/masm_dumps/ObjectCreationUpgrade_friend_newModuleData.asm,matched,Retail registration dp162 proves ObjectCreationUpgrade data factory
+?friend_newModuleData@ObjectCreationUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D4A0,110,Code/GameEngine/Source/GameLogic/AI/ObjectCreationUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@OneRingPenaltyUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011A460,107,Code/masm_dumps/OneRingPenaltyUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@OpenContain@@SAPAVModuleData@@PAVINI@@@Z,,0x001159E0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@OverchargeBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
