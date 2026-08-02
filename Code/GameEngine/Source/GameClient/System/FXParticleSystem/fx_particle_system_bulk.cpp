@@ -68,6 +68,11 @@ public:
     void construct();
 };
 
+class LifeEventTemplateCtorShim {
+public:
+    void construct();
+};
+
 extern const char BOX_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char BUTTERFLY_DRAW_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char CYLINDER_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
@@ -13895,42 +13900,12 @@ __declspec(naked) ConcreteModuleTemplate<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIF
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
-__declspec(naked) ConcreteModuleTemplate<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate> >::ConcreteModuleTemplate()
+ConcreteModuleTemplate<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate> >::ConcreteModuleTemplate()
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x1c
-        __emit 0x92
-        __emit 0xa6
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x24
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x20
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x0c
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc3
-    }
+    ((LifeEventTemplateCtorShim *)this)->construct();
+    *(volatile unsigned int *)this = 0x01111424;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x01111420;
+    *(volatile unsigned int *)((unsigned char *)this + 12) = 0x0111140c;
 }
 
 // ??1?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UAE@XZ
