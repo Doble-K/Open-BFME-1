@@ -2023,6 +2023,7 @@ name,address,notes
 ?Get_Noise_Amplitude@ParticleBufferClass@@QBEMXZ,0x00984290,pinharvest x1 (body)
 ?Get_Position@RenderObjClass@@QBE?AVVector3@@XZ,0x009202C0,derived from part_buf matched-caller call sites
 ?Get_Render_Target_Resolution@WW3D@@SAXAAH00AA_N@Z,0x008FD1F0,located from binary (camera callee)
+?get@WW3DGetRenderTargetResolutionShim@@SAXAAH00AA_N@Z,0x00906990,WW3D incremental-link static thunk target through a TU-local forwarding shim
 ?Get_SS_Category@ShaderClass@@QBE?AW4StaticSortCategoryType@1@XZ,0x00910E10
 ?Get_Shader@LineGroupClass@@QAE?AVShaderClass@@XZ,0x0098ED00
 ?Get_Shader@MeshMatDescClass@@QBE?AVShaderClass@@HH@Z,0x00929990

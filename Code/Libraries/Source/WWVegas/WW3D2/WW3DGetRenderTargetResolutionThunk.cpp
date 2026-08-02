@@ -6,13 +6,13 @@ public:
     __declspec(dllexport) static void Get_Render_Target_Resolution(int &, int &, int &, bool &);
 };
 
-__declspec(naked) void WW3D::Get_Render_Target_Resolution(int &, int &, int &, bool &)
-    {
-        __asm {
-            _emit 0E9h
-            _emit 09Bh
-            _emit 097h
-            _emit 000h
-            _emit 000h
-        }
+class WW3DGetRenderTargetResolutionShim
+{
+public:
+    static void get(int &, int &, int &, bool &);
+};
+
+void WW3D::Get_Render_Target_Resolution(int &width, int &height, int &depth, bool &windowed)
+{
+    WW3DGetRenderTargetResolutionShim::get(width, height, depth, windowed);
 }
