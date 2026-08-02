@@ -2800,6 +2800,24 @@ name,address,notes
 ?changeGridHeight@WaterRenderObjClass@@QAEXMMM@Z,0x0079F850,thunk-resolved body (via 0x2b256)
 ?check@AssistedTargetingObjectShim@@QAE_NXZ,0x00001FD7,AssistedTargetingUpdate isFreeToAssist first object predicate shim
 ?check@AssistedTargetingResultShim@@QAEHXZ,0x0000978C,AssistedTargetingUpdate isFreeToAssist result predicate shim
+?disableRadar@PlayerDisableRadarShim@@QAEXXZ,0x000CC1C0,Player::disableRadar incremental-link thunk target through a TU-local forwarding shim
+?doNamedMapReveal@ScriptEnginedoNamedMapRevealShim@@QAEXABVAsciiString@@@Z,0x0034D200,ScriptEngine::doNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
+?downloadNextQueuedFile@DownloadManagerDownloadNextQueuedFileShim@@QAEJXZ,0x00627370,DownloadManager::downloadNextQueuedFile incremental-link thunk target through a TU-local forwarding shim
+?enableRadar@PlayerEnableRadarShim@@QAEXXZ,0x000CC2C0,Player::enableRadar incremental-link thunk target through a TU-local forwarding shim
+?enableWaterGrid@WaterRenderObjClassEnableWaterGridShim@@QAEX_N@Z,0x007A1410,WaterRenderObjClass::enableWaterGrid incremental-link thunk target through a TU-local forwarding shim
+?fill_insert@BitVectorFillInsertShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@I_N@Z,0x002CC290,_STL bit vector _M_fill_insert incremental-link thunk target through a TU-local forwarding shim
+?initTimes@BoneFXUpdateInitTimesShim@@QAEXXZ,0x00288540,BoneFXUpdate::initTimes incremental-link thunk target through a TU-local forwarding shim
+?initialize@BitVectorInitializeShim@_STL@@QAEXI@Z,0x00526BC0,_STL bit vector _M_initialize incremental-link thunk target through a TU-local forwarding shim
+?insert_aux@BitVectorInsertAuxShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@_N@Z,0x002CBF30,_STL bit vector _M_insert_aux incremental-link thunk target through a TU-local forwarding shim
+?iterateObjects@PlayerIterateObjectsShim@@QBEXP6AXPAVObject@@PAX@Z1@Z,0x000CDCF0,Player::iterateObjects incremental-link thunk target through a TU-local forwarding shim
+?loadDockPositions@DockUpdateLoadDockPositionsShim@@QAEXXZ,0x002CB0A0,DockUpdate::loadDockPositions incremental-link thunk target through a TU-local forwarding shim
+?onEnter@AIInternalMoveToStateOnEnterShim@@QAE?AW4StateReturnType@@XZ,0x00172600,AIInternalMoveToState::onEnter incremental-link thunk target through a TU-local forwarding shim
+?onExit@AIInternalMoveToStateOnExitShim@@QAEXW4StateExitType@@@Z,0x00172D80,AIInternalMoveToState::onExit incremental-link thunk target through a TU-local forwarding shim
+?parseParticleSystem@BoneFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00287E40,BoneFXUpdateModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
+?parseParticleSystem@TransitionDamageFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00252010,TransitionDamageFXModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
+?set@ThingTemplateSubobjectShim@@QAEXH@Z,0x0004AC69,ThingTemplate setCopiedFromDefault subobject flag helper shim
+?helper@PoisonedBehaviorOwnerShim@@QAE?AW4UpdateSleepTime@@HPAXHH@Z,0x000202A7,PoisonedBehavior update sleep-time helper shim
+?release@W3DShadowContainerShim@@QAEXXZ,0x0001E344,W3DProjectedShadowManager ReleaseResources container helper shim
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x00004EE9,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002054F,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002237C,hit-decoded x3 (thunk)
