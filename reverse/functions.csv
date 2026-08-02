@@ -1809,7 +1809,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OBBoxRenderObjClass@@QAE@XZ,,0x00957B30,80,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/GameEngine/Source/GameLogic/AI/OCLSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0OCLUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298960,80,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateConstructor.cpp,matched,Luna Open-BFME5.0 clean C++ inline UpdateModule constructor
-??0OCLUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298960,80,Code/masm_dumps/OCLUpdate_constructor.asm,matched,Exact 80B unique factory Open-BFME4
 ??0OCLUpdateModuleData@@QAE@XZ,,0x00298920,23,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
 ??0OathbreakersFadeAwayBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00201BB0,84,Code/masm_dumps/OathbreakersFadeAwayBehavior_constructor.asm,matched,Exact 84B unique factory Open-BFME4
 ??0OathbreakersFadeAwayBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
