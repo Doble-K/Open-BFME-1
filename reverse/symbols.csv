@@ -3586,9 +3586,8 @@ name,address,notes
 ?writeDrawTemplateBase@FXParticleSystem@@YAXPBXAAVFile@@PBI@Z,0x000460C9,draw module template base write thunk
 ?xferInteger@@YAXAAVXfer@@AAH@Z,0x0002153A,ParticleSystemInfo::DoXfer raw ParticleType enum helper call target
 ?xferInteger@@YAXAAVXfer@@AAH@Z,0x000272CD,ParticleSystemInfo::DoXfer raw ParticlePriorityType enum helper call target
-?xferInteger@@YAXAAVXfer@@AAH@Z,0x0004570F,ParticleSystemInfo::DoXfer raw ParticleShaderType enum helper call target
-?xferInteger@@YAXAAVXfer@@AAH@Z,0x00048851,WindModuleInfo::DoXfer raw integer helper call target
 ?xferInteger@@YAXAAVXfer@@AAH@Z,0x00044FD0,DefaultUpdateModuleInfo m_extra direct xfer helper through a TU-local forwarding declaration
+?xferInteger@@YAXAAVXfer@@AAH@Z,0x0004570F,ParticleSystemInfo::DoXfer raw ParticleShaderType enum helper call target
 ?xferInteger@@YAXAAVXfer@@AAH@Z,0x00048851,WindModuleInfo::DoXfer raw integer helper call target
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0003EE32,H1 GameClientRandomVariable xfer helper (thunk; body 0x0010C4D0) — pinned, ideally matched in game_client_random_variable.cpp
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0004570F,RenderObjectDrawModuleInfo::DoXfer raw helper call target
