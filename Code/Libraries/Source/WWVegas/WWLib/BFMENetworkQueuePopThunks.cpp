@@ -10,24 +10,24 @@ public:
 	void popFront();
 };
 
-__declspec(naked) void BFMENetworkQueue1::popFront()
+class BFMENetworkQueue1PopFrontShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 039h
-		_emit 036h
-		_emit 063h
-		_emit 000h
-	}
+public:
+	void popFront();
+};
+
+class BFMENetworkQueuePopFrontShim
+{
+public:
+	void popFront();
+};
+
+void BFMENetworkQueue1::popFront()
+{
+	((BFMENetworkQueue1PopFrontShim *)this)->popFront();
 }
 
-__declspec(naked) void BFMENetworkQueue::popFront()
+void BFMENetworkQueue::popFront()
 {
-	__asm {
-		_emit 0E9h
-		_emit 041h
-		_emit 022h
-		_emit 063h
-		_emit 000h
-	}
+	((BFMENetworkQueuePopFrontShim *)this)->popFront();
 }

@@ -3448,7 +3448,9 @@ name,address,notes
 ?pointInTrigger@PolygonTrigger@@QBE_NAAUICoord3D@@@Z,0x0004AB6F,decoded target call from PartitionFilterPolygonTrigger::allow
 ?pop@Shell@@QAEXXZ,0x00006AAA
 ?popFront@BFMENetworkQueue1@@QAEXXZ,0x00023592,native BFME queue pop helper for wrapper queue +0x3c
+?popFront@BFMENetworkQueue1PopFrontShim@@QAEXXZ,0x00656BD0,BFMENetworkQueue1::popFront incremental-link thunk target through a TU-local forwarding shim
 ?popFront@BFMENetworkQueue@@QAEXXZ,0x0002491A,native BFME queue pop helper for wrapper queue +0x14
+?popFront@BFMENetworkQueuePopFrontShim@@QAEXXZ,0x00656B60,BFMENetworkQueue::popFront incremental-link thunk target through a TU-local forwarding shim
 ?pop_front@?$deque@VPSRequest@@V?$allocator@VPSRequest@@@_STL@@@_STL@@QAEXXZ,0x0002D77C,derived-ICF
 ?pop_front@?$deque@VPeerRequest@@V?$allocator@VPeerRequest@@@_STL@@@_STL@@QAEXXZ,0x0002D77C
 ?pop_front@?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@QAEXXZ,0x0002A3C4
