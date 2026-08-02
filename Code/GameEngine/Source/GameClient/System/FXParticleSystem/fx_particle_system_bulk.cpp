@@ -17089,133 +17089,26 @@ RandomAlphaKeyframe &RandomAlphaKeyframe::operator=(const RandomAlphaKeyframe &t
 }
 
 // ??4RenderObjectDrawModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) RenderObjectDrawModuleInfo &RenderObjectDrawModuleInfo::operator=(const RenderObjectDrawModuleInfo &that)
+RenderObjectDrawModuleInfo &RenderObjectDrawModuleInfo::operator=(const RenderObjectDrawModuleInfo &that)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8a
-        __emit 0x47
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x88
-        __emit 0x46
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x8a
-        __emit 0x57
-        __emit 0x0c
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x88
-        __emit 0x56
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0x6a
-        __emit 0xee
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x14
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x18
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x20
-        __emit 0x89
-        __emit 0x56
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x1c
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x20
-        __emit 0x89
-        __emit 0x46
-        __emit 0x1c
-        __emit 0xe8
-        __emit 0x4c
-        __emit 0xee
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x24
-        __emit 0x89
-        __emit 0x56
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x28
-        __emit 0x89
-        __emit 0x46
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x2c
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x30
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x2c
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x30
-        __emit 0xe8
-        __emit 0x2e
-        __emit 0xee
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x34
-        __emit 0x89
-        __emit 0x46
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x38
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x3c
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x56
-        __emit 0x3c
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const unsigned char *source = (const unsigned char *)&that;
+    unsigned char *destination = (unsigned char *)this;
+    destination[4] = source[4];
+    *(unsigned int *)(destination + 8) = *(const unsigned int *)(source + 8);
+    destination[0x0c] = source[0x0c];
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x10))->assign(source + 0x10);
+    *(unsigned int *)(destination + 0x14) = *(const unsigned int *)(source + 0x14);
+    *(unsigned int *)(destination + 0x18) = *(const unsigned int *)(source + 0x18);
+    *(unsigned int *)(destination + 0x1c) = *(const unsigned int *)(source + 0x1c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x20))->assign(source + 0x20);
+    *(unsigned int *)(destination + 0x24) = *(const unsigned int *)(source + 0x24);
+    *(unsigned int *)(destination + 0x28) = *(const unsigned int *)(source + 0x28);
+    *(unsigned int *)(destination + 0x2c) = *(const unsigned int *)(source + 0x2c);
+    ((LifeEventAsciiStringAssignShim *)(destination + 0x30))->assign(source + 0x30);
+    *(unsigned int *)(destination + 0x34) = *(const unsigned int *)(source + 0x34);
+    *(unsigned int *)(destination + 0x38) = *(const unsigned int *)(source + 0x38);
+    *(unsigned int *)(destination + 0x3c) = *(const unsigned int *)(source + 0x3c);
+    return *this;
 }
 
 // ??4RenderObjectDrawModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
