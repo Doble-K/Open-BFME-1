@@ -9148,8 +9148,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clearVeterancyLevelFlag@@YAIIW4VeterancyLevel@@@Z,,0x000B8DD0,21,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?clearVisibleSkinList@DX8SkinFVFCategoryContainer@@AAEXXZ,,0x00945D60,72,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail field shim
 ?clearWinList@@YAXAAV?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@@Z,,0x0045D660,53,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,MASM converted to clean C++
-?clientOnly_getRenderObjBoneTransform@W3DModelDraw@@UBE_NABVAsciiString@@PAVMatrix3D@@@Z,,0x00763520,193,Code/masm_dumps/_rn4__clientOnly_getRenderObjBoneTransform_W3DModelDraw__UBE_NABVAsciiStrin_763520.asm,matched,reloc-needle Open-BFME4+Grok
-?clientOnly_getRenderObjBoundBox@W3DModelDraw@@UBE_NPAVOBBoxClass@@@Z,,0x0075C470,302,Code/masm_dumps/_rn4__clientOnly_getRenderObjBoundBox_W3DModelDraw_UBE_NPAVOBBoxClass_Z_75C470.asm,matched,MASM exact; true ENTRY 0x75C470/302 (queue 0x75C46F leading int3); m_renderObject+0x28; sibling getRenderObjInfo 0x75C390
 ?clientOnly_getRenderObjInfo@W3DModelDraw@@UBE_NPAUCoord3D@@PAMPAVMatrix3D@@@Z,,0x0075C390,172,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?clientSafeQuickDoesPathExistForUI@Pathfinder@@QAE_NABVLocomotorSet@@PBUCoord3D@@1@Z,,0x003D96A3,375,Code/GameEngine/Source/GameLogic/AI/AIPathfind_clientSafeQuickDoesPathExistForUI.asm,matched,exact 375B via MASM
 ?clip@Pathfinder@@QAEXPAUCoord3D@@0@Z,,0x003D5DE0,373,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,clean C++; MASM dump superseded; BFME floor-via-IAT + int-scale clip codegen
@@ -10942,7 +10940,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getCurrentMissionNumber@CampaignManager@@QAEHXZ,,0x005BBDB0,41,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
 ?getCurrentStagingRoom@GameSpyInfo@@UAEPAVGameSpyStagingRoom@@XZ,,0x006327B0,72,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?getCurrentTexture@W3DShadowTextureManagerIterator@@QAEPAVW3DShadowTexture@@XZ,,0x007AE850,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
-?getCurrentWorldspaceClientBonePositions@W3DModelDraw@@UBE_NPBDAAVMatrix3D@@@Z,,0x0075C5F0,127,Code/masm_dumps/_rn4__getCurrentWorldspaceClientBonePositions_W3DModelDraw__UBE_NPBDAAVMatr_75C5F0.asm,matched,reloc-needle Open-BFME4+Grok
 ?getDX8Format@W3DBufferManager@@SAHW4VBM_FVF_TYPES@1@@Z,,0x0013A450,12,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp,matched,
 ?getDamage@BehaviorModule@@UAEPAVDamageModuleInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getDamage@DamageModule@@UAEPAVDamageModuleInterface@@XZ,,0x0011A150,14,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
@@ -13930,3 +13927,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Write@ChunkSaveClass@@QAEKABUIOVector4Struct@@@Z,,0x009E1930,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Write@ChunkSaveClass@@QAEKABUIOQuaternionStruct@@@Z,,0x009E1940,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?writeFirewallBehavior@FirewallHelperClass@@QAEXXZ,,0x0066FDF0,380,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,MASM dump converted to clean C++; m_firewallBehavior belongs to BFMEs moved firewall block at +0xB14 so the shim pad moved one field earlier
+?clientOnly_getRenderObjBoundBox@W3DModelDraw@@UBE_NPAVOBBoxClass@@@Z,,0x0075C470,302,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; BFME W3DModelDraw keeps ONE weapon-recoil vector so m_renderObject sits at +0x28
+?getCurrentWorldspaceClientBonePositions@W3DModelDraw@@UBE_NPBDAAVMatrix3D@@@Z,,0x0075C5F0,127,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; same one-recoil-vector layout pin
+?clientOnly_getRenderObjBoneTransform@W3DModelDraw@@UBE_NABVAsciiString@@PAVMatrix3D@@@Z,,0x00763520,193,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; needs the layout pin and the 8-byte string header
