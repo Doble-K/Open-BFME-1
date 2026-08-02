@@ -1255,7 +1255,23 @@ void BaseHeightMapRenderObjClass::oversizeTerrain(Int tilesToOversize)
 /** WW3D method that returns object bounding box used in collision detection*/
 //=============================================================================
 // ?Get_Obj_Space_Bounding_Box@BaseHeightMapRenderObjClass@@UBEXAAVAABoxClass@@@Z
-// Body in BaseHeightMap_Get_Obj_Space_Bounding_Box.asm (exact 193B retail; field offsets).
+void BaseHeightMapRenderObjClass::Get_Obj_Space_Bounding_Box(AABoxClass &box) const
+{
+	WorldHeightMap *map = *(WorldHeightMap **)((char *)this + 0x2ff4);
+	Int x = 0;
+	Int y = 0;
+	if (map != NULL)
+	{
+		x = *(Int *)((char *)map + 0x08);
+		y = *(Int *)((char *)map + 0x0c);
+	}
+
+	Vector3 minPt(0, 0, *(const Real *)((const char *)this + 0x300c));
+	Vector3 maxPt((Real)x * MAP_XY_FACTOR, (Real)y * MAP_XY_FACTOR,
+		*(const Real *)((const char *)this + 0x3010));
+	MinMaxAABoxClass minMaxBox(minPt, maxPt);
+	box.Init(minMaxBox);
+}
 
 //-------------------------------------------------------------------------------------------------
 /** Get the 3D extent of the terrain visible through the camera.  Return value

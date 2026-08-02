@@ -6548,7 +6548,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_OS_Info@@YAXAAUOSInfoStruct@@IIII@Z,,0x009DE410,387,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,
 ?Get_Obj@?$MultiListIterator@VRenderObjClass@@@@QAEPAVRenderObjClass@@XZ,,0x006C9E70,17,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,
 ?Get_Obj_Space_Bounding_Box@AABoxRenderObjClass@@UBEXAAVAABoxClass@@@Z,,0x00957660,60,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
-?Get_Obj_Space_Bounding_Box@BaseHeightMapRenderObjClass@@UBEXAAVAABoxClass@@@Z,,0x006CAF50,193,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_Get_Obj_Space_Bounding_Box.asm,matched,exact 193B via MASM (field-offset drift)
+?Get_Obj_Space_Bounding_Box@BaseHeightMapRenderObjClass@@UBEXAAVAABoxClass@@@Z,,0x006CAF50,193,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,exact 193B C++ terrain bounds from retail MinMaxAABox body
 ?Get_Obj_Space_Bounding_Box@CameraClass@@UBEXAAVAABoxClass@@@Z,,0x00931750,44,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,RenderObjClass +0x34 (camera shim)
 ?Get_Obj_Space_Bounding_Box@CompositeRenderObjClass@@UBEXAAVAABoxClass@@@Z,,0x0097B6D0,60,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Get_Obj_Space_Bounding_Box@LightClass@@UBEXAAVAABoxClass@@@Z,,0x0093C2B0,32,Code/Libraries/Source/WWVegas/WW3D2/light.cpp,matched,
