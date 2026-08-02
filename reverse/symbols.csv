@@ -3125,6 +3125,8 @@ name,address,notes
 ?getModelVertices@W3DBridgeGetModelVerticesShim@@QAEHPAUVertexFormatXYZNDUV1@@HMAAVVector3@@111ABVMatrix3D@@PAVMeshClass@@PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x006D7EA0,W3DBridge incremental-link thunk target through a TU-local forwarding shim
 ?getNATPortAllocationScheme@FirewallHelperClass@@AAEHHPAG0AA_N1@Z,0x00012F3F
 ?getNATPortAllocationScheme@FirewallHelperClassGetNATPortAllocationSchemeShim@@QAEHHPAG0AA_N1@Z,0x0066E870,FirewallHelperClass incremental-link thunk target through a TU-local forwarding shim
+?localPixelToRadar@RadarLocalPixelToRadarShim@@QAE_NPBUICoord2D@@PAU2@@Z,0x00107AB0,Radar incremental-link thunk target through a TU-local forwarding shim
+?isPlayerVotedOut@DisconnectManagerIsPlayerVotedOutShim@@QAE_NHPAVConnectionManager@@@Z,0x0066BC30,DisconnectManager incremental-link thunk target through a TU-local forwarding shim
 ?getName@SpecialPowerTemplate@@QBE?AVAsciiString@@XZ,0x00005682
 ?getNewFrame@NetDisconnectScreenOffCommandMsg@@QAEIXZ,0x0003A1F2,ILT thunk; real body 0x674360
 ?getNewPushButtonData@@YAPAU_PushButtonData@@XZ,0x00012765

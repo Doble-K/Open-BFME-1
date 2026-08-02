@@ -37,13 +37,13 @@ protected:
 	bool isPlayerVotedOut(int, ConnectionManager *);
 };
 
-__declspec(naked) bool DisconnectManager::isPlayerVotedOut(int, ConnectionManager *)
+class DisconnectManagerIsPlayerVotedOutShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 04Bh
-		_emit 0CFh
-		_emit 064h
-		_emit 000h
-	}
+public:
+	bool isPlayerVotedOut(int, ConnectionManager *);
+};
+
+bool DisconnectManager::isPlayerVotedOut(int player, ConnectionManager *connectionManager)
+{
+	return ((DisconnectManagerIsPlayerVotedOutShim *)this)->isPlayerVotedOut(player, connectionManager);
 }
