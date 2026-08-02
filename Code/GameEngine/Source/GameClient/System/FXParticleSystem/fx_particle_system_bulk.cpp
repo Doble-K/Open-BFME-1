@@ -4575,70 +4575,21 @@ __declspec(naked) SphereEmissionVolumeModuleTemplate *ConcreteModuleClass<Module
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?SPHERE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?SPHERE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVSphereEmissionVolumeModule@2@VSphereEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVSphereEmissionVolumeModuleTemplate@2@XZ
-__declspec(naked) SphereEmissionVolumeModuleTemplate *ConcreteModuleClass<ModuleTag<5, SPHERE_EMISSION_VOLUME_MODULE_KEY, SPHERE_EMISSION_VOLUME_MODULE_NAME, SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createTemplate() const
+SphereEmissionVolumeModuleTemplate *ConcreteModuleClass<ModuleTag<5, SPHERE_EMISSION_VOLUME_MODULE_KEY, SPHERE_EMISSION_VOLUME_MODULE_NAME, SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createTemplate() const
 {
-    __asm {
-        __emit 0x6a
-        __emit 0x14
-        __emit 0xe8
-        __emit 0xc9
-        __emit 0x05
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x74
-        __emit 0x29
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xac
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0x88
-        __emit 0x48
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x0c
-        __emit 0x0a
-        __emit 0x11
-        __emit 0x01
-        __emit 0x89
-        __emit 0x48
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x00
-        __emit 0x12
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xfc
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc3
-        __emit 0x33
-        __emit 0xc0
-        __emit 0xc3
+    SphereEmissionVolumeModuleTemplate *result =
+        (SphereEmissionVolumeModuleTemplate *)::operator new(0x14);
+    if (result != 0) {
+        *(volatile unsigned int *)((unsigned char *)result + 4) = 0x0110f9ac;
+        *((volatile unsigned char *)result + 0x0c) = 0;
+        *(volatile unsigned int *)((unsigned char *)result + 8) = 0x01110a0c;
+        *(volatile unsigned int *)((unsigned char *)result + 0x10) = 0;
+        *(volatile unsigned int *)result = 0x01111200;
+        *(volatile unsigned int *)((unsigned char *)result + 4) = 0x011111fc;
+        *(volatile unsigned int *)((unsigned char *)result + 8) = 0x011111e8;
+        return result;
     }
+    return 0;
 }
 
 // ?getClass@?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?SPHERE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?SPHERE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVSphereEmissionVolumeModule@2@VSphereEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UBEABV?$ConcreteModuleClass@V?$ModuleTag@$04$E?SPHERE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?SPHERE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVSphereEmissionVolumeModule@2@VSphereEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@2@XZ
