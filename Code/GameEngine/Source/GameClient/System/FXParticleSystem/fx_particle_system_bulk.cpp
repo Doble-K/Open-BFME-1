@@ -11171,7 +11171,7 @@ DefaultUpdateModuleInfo::DefaultUpdateModuleInfo(const DefaultUpdateModuleInfo &
 }
 
 // ??0DefaultUpdateModuleInfo@FXParticleSystem@@QAE@XZ
-// Body in DefaultUpdateModuleInfo_ctor.asm (SEH default ctor; ghidra 181B).
+// Body in DefaultUpdateModuleInfoCtorThunk.cpp (exact retail SEH bytes).
 
 // ??0LifeEventModuleInfo@FXParticleSystem@@QAE@ABV01@@Z
 __declspec(naked) LifeEventModuleInfo::LifeEventModuleInfo(const LifeEventModuleInfo &that)
