@@ -11,6 +11,9 @@ void xferRandomVariable(Xfer &xfer, GameClientRandomVariable &v);
 
 namespace FXParticleSystem {
 
+void writeButterflyTemplateBase(const void *self, File &file, const unsigned int *flags);
+void writeButterflyInfo(File &file, const unsigned int *flags);
+
 class LifeEventAsciiStringAssignShim {
 public:
     void assign(const void *source);
@@ -22260,45 +22263,10 @@ __declspec(naked) void BoxEmissionVolumeModuleTemplate::writeINI(File &file, uns
 }
 
 // ?writeINI@ButterflyDrawModuleTemplate@FXParticleSystem@@UBEXAAVFile@@I@Z
-__declspec(naked) void ButterflyDrawModuleTemplate::writeINI(File &file, unsigned int flags) const
+void ButterflyDrawModuleTemplate::writeINI(File &file, unsigned int flags) const
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x56
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x08
-        __emit 0x31
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xc0
-        __emit 0x31
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-    }
+    writeButterflyTemplateBase(this, file, &flags);
+    writeButterflyInfo(file, &flags);
 }
 
 // ?writeINI@CylinderEmissionVolumeModuleTemplate@FXParticleSystem@@UBEXAAVFile@@I@Z
