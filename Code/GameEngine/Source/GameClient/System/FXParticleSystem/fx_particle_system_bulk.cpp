@@ -13,6 +13,11 @@ public:
     void construct();
 };
 
+class DefaultModuleTemplate0CopyCtorShim {
+public:
+    void construct(const void *source);
+};
+
 class DefaultModuleTemplate3CtorShim {
 public:
     void construct();
@@ -9076,49 +9081,12 @@ __declspec(naked) const ConcreteModuleClass<PointEmissionVolumeModuleTag> &Concr
 }
 
 // ??0?$ConcreteModuleTemplate@V?$DefaultModuleTag@$0A@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
-__declspec(naked) ConcreteModuleTemplate<DefaultModuleTag<0> >::ConcreteModuleTemplate(const ConcreteModuleTemplate<DefaultModuleTag<0> > &that)
+ConcreteModuleTemplate<DefaultModuleTag<0> >::ConcreteModuleTemplate(const ConcreteModuleTemplate<DefaultModuleTag<0> > &that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x30
-        __emit 0x8a
-        __emit 0xa3
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x98
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0x80
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    ((DefaultModuleTemplate0CopyCtorShim *)this)->construct(&that);
+    *(volatile unsigned int *)this = 0x01110f98;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x01110f94;
+    *(volatile unsigned int *)((unsigned char *)this + 8) = 0x01110f80;
 }
 
 // ??0?$ConcreteModuleTemplate@V?$DefaultModuleTag@$0A@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
