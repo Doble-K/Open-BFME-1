@@ -2711,6 +2711,7 @@ name,address,notes
 ?_Rebalance_for_erase@?$_Rb_global@_N@_STL@@SAPAU_Rb_tree_node_base@2@PAU32@AAPAU32@11@Z,0x0082CB60
 ?add@DynamicVectorAddPtrPairShim@@QAE_NABUPtrPairStruct@PointerRemapClass@@@Z,0x000D0AE0,DynamicVectorClass Add PtrPair incremental-link thunk target through a TU-local forwarding shim
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,0x00850920,additive; direct body / per-TU copy
+?add@PlayerAddScienceShim@@QAE_NW4ScienceType@@@Z,0x000D5380,Player addScience incremental-link thunk target through a TU-local forwarding shim
 ?add@TeamsInfoRecAddTeamShim@@QAEXPBVDict@@@Z,0x0005EE90,TeamsInfoRec addTeam incremental-link thunk target through a TU-local forwarding shim
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,0x0000B569,GameMessageParser::addArgType thunk
 ?addScience@Player@@AAE_NW4ScienceType@@@Z,0x00036057

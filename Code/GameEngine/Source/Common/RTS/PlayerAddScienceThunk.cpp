@@ -10,13 +10,13 @@ class Player
     bool addScience(ScienceType);
 };
 
-__declspec(naked) bool Player::addScience(ScienceType)
+class PlayerAddScienceShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 024h
-        _emit 0F3h
-        _emit 009h
-        _emit 000h
-    }
+public:
+    bool add(ScienceType science);
+};
+
+bool Player::addScience(ScienceType science)
+{
+    return ((PlayerAddScienceShim *)this)->add(science);
 }
