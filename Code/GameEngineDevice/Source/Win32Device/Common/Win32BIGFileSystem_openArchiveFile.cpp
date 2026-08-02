@@ -48,12 +48,19 @@
 // moving the m_archiveFilename set inside the loop, and declaring
 // archiveFileName before fp.
 
+#include <stddef.h>
 #include <string.h>
 #include "string_base.h"
+
+// Declared, not inherited from a header: without these in scope MSVC lowers
+// `new char[n]` to the scalar operator new, while retail calls operator new[].
+extern void * __cdecl operator new[](size_t size);
+extern void __cdecl operator delete[](void *p);
 
 typedef char Char;
 typedef int Int;
 typedef int Bool;
+typedef unsigned int UnsignedInt;
 
 // The delegating shim: the constructor is defined here and forwards to
 // StringBase<char> rather than being left an undefined extern. Left as an
@@ -93,7 +100,11 @@ private:
 // on both header fields and on every entry's offset and size.
 static inline Int ntohl_inline( Int v )
 {
-	return (v >> 24) | ((v >> 8) & 0xFF00) | ((v << 8) & 0xFF0000) | (v << 24);
+	// Sum rather than or, and an unsigned high shift: retail folds the two low
+	// terms into ((v << 16) + (v & 0xff00)) << 8 and uses shr, which it can only
+	// do for + on an unsigned value.
+	unsigned int u = (unsigned int)v;
+	return (Int)((u << 24) + ((u << 8) & 0xFF0000) + (u >> 24) + ((u >> 8) & 0xFF00));
 }
 
 struct ArchivedFileInfo
@@ -189,30 +200,32 @@ ArchiveFile *Win32BIGFileSystem::openArchiveFile( const Char *filename )
 		return NULL;
 	}
 
+	// Only the null-file case returns NULL. A short read or an unrecognised
+	// magic falls through to attachFile and hands back the empty archive --
+	// that is why retail has one inline epilogue for fp == NULL at 0x009CC7D6
+	// and sends both header failures to the shared tail at 0x009CCA20.
 	char header[16];
-	if (fp->read( header, 16 ) != 16) {
-		return NULL;
-	}
-
-	if (strncmp( TheBigfIdentifier, header, 4 ) != 0 &&
-		strncmp( TheBig4Identifier, header, 4 ) != 0) {
-		return NULL;
-	}
+	if (fp->read( header, 16 ) == 16 &&
+		(strncmp( TheBigfIdentifier, header, 4 ) == 0 ||
+		 strncmp( TheBig4Identifier, header, 4 ) == 0)) {
 
 	ArchivedFileInfo fileInfo;
 
-	Int archiveFileSize = ntohl_inline( *(Int *)(header + 4) );
-	Int numLittleFiles  = ntohl_inline( *(Int *)(header + 8) );
+	// +12, not +4: retail allocates and reads the directory-table size at
+	// header+0x0c (it loads [esp+0x48] against a header base of [esp+0x3c]),
+	// while +4 is the whole-archive size, which it never uses.
+	Int archiveFileSize = ntohl_inline( *(Int *)(header + 12) );
+	// Unsigned: retail's loop guard is `test edi,edi / je`, not jle.
+	UnsignedInt numLittleFiles = (UnsignedInt)ntohl_inline( *(Int *)(header + 8) );
 
-	char *table = new char[archiveFileSize - 0x10];
-	if (fp->read( table, archiveFileSize - 0x10 ) != archiveFileSize - 0x10) {
-		return NULL;
-	}
-
-	fileInfo.m_archiveFilename.set( archiveFileName );
+	char *table = new char[archiveFileSize];
+	if (fp->read( table, archiveFileSize - 0x10 ) == archiveFileSize - 0x10) {
 
 	char *p = table;
-	for (Int i = 0; i < numLittleFiles; ++i) {
+	for (UnsignedInt i = numLittleFiles; i != 0; --i) {
+		// invariant, but retail has it here: MSVC hoists it into the preheader
+		// after the loop-count init, which is where retail's call lands.
+		fileInfo.m_archiveFilename.set( archiveFileName );
 		fileInfo.m_offset = ntohl_inline( *(Int *)p );
 		fileInfo.m_size   = ntohl_inline( *(Int *)(p + 4) );
 
@@ -220,27 +233,31 @@ ArchiveFile *Win32BIGFileSystem::openArchiveFile( const Char *filename )
 
 		// Backwards from the end, which is what retail does: mov al,[esi+ebp];
 		// cmp against the two separators; dec ebp; jns.
-		Int pathIndex = (Int)strlen( name );
-		Int sep = pathIndex;
+		Int sep = (Int)strlen( name );
 		while (sep >= 0 && name[sep] != '\\' && name[sep] != '/') {
 			--sep;
 		}
 
-		fileInfo.m_filename.set( name + sep + 1,
-		                         (int)strlen( name + sep + 1 ) );
+		const char *base = name + sep + 1;
+		fileInfo.m_filename.set( base, base ? (int)strlen( base ) : 0 );
 		fileInfo.m_filename.toLower();
 
-		AsciiString full( name );
-		AsciiString path( full, 0, sep + 1 );
+		// A temporary, not a named local: retail destroys the full name right
+		// after path is built and before addFile, which is end-of-full-expression.
+		AsciiString path( AsciiString( name ), 0, sep + 1 );
 
 		archiveFile->addFile( path, &fileInfo );
 
-		p += pathIndex + 9;
+		// strlen again rather than reusing the scan's start: addFile can write
+		// through the pointers, so retail recomputes it here too.
+		p += (Int)strlen( name ) + 9;
+	}
+	}
+
+	delete[] table;
 	}
 
 	archiveFile->attachFile( fp );
-
-	delete[] table;
 
 	return archiveFile;
 }
