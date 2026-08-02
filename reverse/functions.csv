@@ -2881,9 +2881,11 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1GloriousChargeUpdate@@UAE@XZ,,0x0025EA40,159,Code/masm_dumps/GloriousChargeUpdate_destructor.asm,matched,Exact 159B @ 0x0025EA40; Exact retail MASM; instance factory->vtable dtor; del 0x25EB10 ctor 0x25E890 vt 0xCB5608
 ??1GrantStealthBehaviorModuleData@@UAE@XZ,,0x00297D60,93,Code/masm_dumps/GrantStealthBehaviorModuleData_destructor.asm,matched,Exact 93B SEH dtor Open-BFME4
 ??1GridCullSystemClass@@UAE@XZ,,0x008DCAD0,97,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
+??1HAnimClass@@UAE@XZ,,0x009736B0,21,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??1HAnimComboClass@@QAE@XZ,,0x00974F10,102,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??1HAnimComboDataClass@@QAE@XZ,,0x009737D0,39,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??1HAnimManagerClass@@QAE@XZ,,0x007BD0E0,70,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
+??1HRawAnimClass@@UAE@XZ,,0x0095AF40,126,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
 ??1HTreeClass@@QAE@XZ,,0x00952790,42,Code/Libraries/Source/WWVegas/WW3D2/HTreeClass.cpp,matched,Open-BFME5 exact C++ raw HTree destructor
 ??1HashTableClass@@QAE@XZ,,0x009DFFC0,28,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
 ??1HealContainModuleData@@UAE@XZ,,0x0028BA40,156,Code/masm_dumps/HealContainModuleData_destructor.asm,matched,Exact retail MASM; factory 0x1219D0 ctor 0x28B9E0 prove ownership
@@ -4887,6 +4889,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GGridCullSystemClass@@UAEPAXI@Z,,0x008DD8B0,30,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ??_GGridTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GGridWSEnvMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
+??_GHAnimClass@@UAEPAXI@Z,,0x00959840,30,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+??_GHRawAnimClass@@UAEPAXI@Z,,0x0095AFC0,30,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
 ??_GHTreeClass@@QAEPAXI@Z,,0x009714C0,30,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ??_GHackInternetAIUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GHashTableClass@@QAEPAXI@Z,,0x007AEE70,30,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,

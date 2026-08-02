@@ -83,7 +83,10 @@ public:
 	};
 
 	HAnimClass(void)	{ }
-	virtual ~HAnimClass(void)		{ }
+	// Out of line, not an inline empty body: retail's ~HAnimClass at 0x009736B0
+	// is a real 21-byte function restoring the HashableClass vptr at +8 and the
+	// RefCountClass vptr at +0, and ~HRawAnimClass calls it (0x0095AFA9).
+	virtual ~HAnimClass(void);
 
 	virtual const char *		Get_Name(void) const = 0;
 	virtual const char *		Get_HName(void) const = 0;
