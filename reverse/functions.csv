@@ -7730,6 +7730,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Resize@?$DynamicVectorClass@PAVTextureClass@@@@UAE_NHPBQAVTextureClass@@@Z,,0x0096E0E0,47,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
 ?Resize@?$DynamicVectorClass@PAVVertexMaterialClass@@@@UAE_NHPBQAVVertexMaterialClass@@@Z,,0x00974500,47,Code/Libraries/Source/WWVegas/WWMath/ode.cpp,matched,object-symbol=?Resize@?$DynamicVectorClass@M@@UAE_NHPBM@Z;C++ alias
 ?Resize@?$DynamicVectorClass@PAX@@UAE_NHPBQAX@Z,,0x0093D860,47,Code/Libraries/Source/WWVegas/WWLib/msgloop.cpp,matched,icf-owner=?Resize@?$DynamicVectorClass@PAD@@UAE_NHPBQAD@Z
+?Resize@?$DynamicVectorClass@UFileInfoStruct@MixFileCreator@@@@UAE_NHPBUFileInfoStruct@MixFileCreator@@@Z,,0x00930BE0,47,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
 ?Resize@?$DynamicVectorClass@VShaderClass@@@@UAE_NHPBVShaderClass@@@Z,,0x00974500,47,Code/Libraries/Source/WWVegas/WWMath/ode.cpp,matched,object-symbol=?Resize@?$DynamicVectorClass@M@@UAE_NHPBM@Z;C++ alias
 ?Resize@?$DynamicVectorClass@VStringClass@@@@UAE_NHPBVStringClass@@@Z,,0x0013B7C0,47,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
 ?Resize@?$SimpleDynVecClass@E@@UAE_NH@Z,,0x00989070,40,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
