@@ -6370,7 +6370,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Current_Allocated_Memory@WWMemoryLogClass@@SAHH@Z,,0x00AFFA30,18,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Get_Current_Anim@HAnimManagerIterator@@QAEPAVHAnimClass@@XZ,,0x007B9B70,14,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ?Get_Current_Geom@W3DShadowGeometryManagerIterator@@QAEPAVW3DShadowGeometry@@XZ,,0x007AE850,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
-?Get_Current_LOD@HLodClass@@UAEPAVRenderObjClass@@XZ,,0x00978F20,47,Code/masm_dumps/_rn4__Get_Current_LOD_HLodClass__UAEPAVRenderObjClass__XZ_978F20.asm,matched,reloc-needle Open-BFME4+Grok
 ?Get_Current_Subdivision_Level@SegLineRendererClass@@QBEIXZ,,0x00674250,4,Code/Libraries/Source/WWVegas/WW3D2/streak.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?Get_Current_UV_Offset@LinearOffsetTextureMapperClass@@QAEXAAVVector2@@@Z,,0x00946440,18,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Get_D3D_Projection_Matrix@CameraClass@@QAEXPAVMatrix4@@@Z,,0x009323C0,241,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,RenderObjClass +0x34 (camera shim)
@@ -13870,3 +13869,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?Get_Current_LOD@HLodClass@@UAEPAVRenderObjClass@@XZ,,0x00978F20,47,Code/Libraries/Source/WWVegas/WW3D2/HLodClass_Get_Current_LOD.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 47B
