@@ -260,6 +260,20 @@ UpgradeCenter::~UpgradeCenter( void )
 //-------------------------------------------------------------------------------------------------
 /** Upgrade center initialization */
 //-------------------------------------------------------------------------------------------------
+// What tools/locate.py says about this file, run at --min-size 24 and again at
+// 14: two functions placed uniquely (both deleting destructors, now claimed) and
+// everything else came back "unlocated -- drifted or not in this binary". That
+// verdict is worth more than it looks. locate.py masks relocations before
+// scanning, so unlocated does not mean the address is unknown; it means these
+// compiled bodies do not appear ANYWHERE in .text. Zero Hour's UpgradeCenter is
+// not BFME's, and each of these needs reconstructing rather than placing.
+//
+// Do not try to pair them off by size. reset compiles to 138 bytes and there is
+// an unclaimed 133-byte body two functions along at 0x0010B550; they share
+// nothing -- 114 of 133 bytes differ, starting at the prologue. Size proximity
+// in a dense region is coincidence, and the ledger has enough rows placed that
+// way already.
+//
 // ?init@UpgradeCenter@@UAEXXZ present-unmatched
 void UpgradeCenter::init( void )
 {
