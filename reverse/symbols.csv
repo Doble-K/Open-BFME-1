@@ -3329,6 +3329,7 @@ name,address,notes
 ?openDataChunk@DataChunkOutput@@QAEXPADG@Z,0x0003A256
 ?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,0x009C8860
 ?outOfWeaponRangeObject@@YA_NPAVState@@PAX@Z,0x0001745E,pinharvest x1 (thunk)
+?parse@BoneFXUpdateModuleDataParseFXListShim@@SAXPAVINI@@PAX1PBX@Z,0x00287BC0,BoneFXUpdateModuleData parseFXList incremental-link thunk target through a TU-local forwarding shim
 ?parse@EvaParseMessageFromIniShim@@SAXPAVINI@@PAX1PBX@Z,0x00425B80,Eva parseEvaMessageFromIni incremental-link thunk target through a TU-local forwarding shim
 ?parse@INIParseAnim2DTemplateShim@@SAXPAVINI@@PAX1PBX@Z,0x000BAB30,INI parseAnim2DTemplate incremental-link thunk target through a TU-local forwarding shim
 ?parse@INIParseDynamicAudioEventRTSShim@@SAXPAVINI@@PAX1PBX@Z,0x000BB9A0,INI parseDynamicAudioEventRTS incremental-link thunk target through a TU-local forwarding shim

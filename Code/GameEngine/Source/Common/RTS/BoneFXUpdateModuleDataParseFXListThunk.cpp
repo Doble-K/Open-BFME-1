@@ -5,16 +5,16 @@ class INI;
 class BoneFXUpdateModuleData
 {
 public:
-    __declspec(dllexport) static void parseFXList(INI *, void *, void *, const void *);
+    static void parseFXList(INI *, void *, void *, const void *);
 };
 
-__declspec(naked) void BoneFXUpdateModuleData::parseFXList(INI *, void *, void *, const void *)
+class BoneFXUpdateModuleDataParseFXListShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 090h
-        _emit 03Fh
-        _emit 025h
-        _emit 000h
-    }
+public:
+    static void parse(INI *ini, void *store, void *userData, const void *desc);
+};
+
+void BoneFXUpdateModuleData::parseFXList(INI *ini, void *store, void *userData, const void *desc)
+{
+    BoneFXUpdateModuleDataParseFXListShim::parse(ini, store, userData, desc);
 }
