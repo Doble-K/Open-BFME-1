@@ -11,8 +11,8 @@ void xferRandomVariable(Xfer &xfer, GameClientRandomVariable &v);
 
 namespace FXParticleSystem {
 
-void writeButterflyTemplateBase(const void *self, File &file, const unsigned int *flags);
-void writeButterflyInfo(File &file, const unsigned int *flags);
+void writeDrawTemplateBase(const void *self, File &file, const unsigned int *flags);
+void writeDrawInfo(File &file, const unsigned int *flags);
 
 class LifeEventAsciiStringAssignShim {
 public:
@@ -22265,8 +22265,8 @@ __declspec(naked) void BoxEmissionVolumeModuleTemplate::writeINI(File &file, uns
 // ?writeINI@ButterflyDrawModuleTemplate@FXParticleSystem@@UBEXAAVFile@@I@Z
 void ButterflyDrawModuleTemplate::writeINI(File &file, unsigned int flags) const
 {
-    writeButterflyTemplateBase(this, file, &flags);
-    writeButterflyInfo(file, &flags);
+    writeDrawTemplateBase(this, file, &flags);
+    writeDrawInfo(file, &flags);
 }
 
 // ?writeINI@CylinderEmissionVolumeModuleTemplate@FXParticleSystem@@UBEXAAVFile@@I@Z
@@ -28285,45 +28285,10 @@ __declspec(naked) void PointEmissionVolumeModuleTemplate::writeINI(File &file, u
 }
 
 // ?writeINI@QuadDrawModuleTemplate@FXParticleSystem@@UBEXAAVFile@@I@Z
-__declspec(naked) void QuadDrawModuleTemplate::writeINI(File &file, unsigned int flags) const
+void QuadDrawModuleTemplate::writeINI(File &file, unsigned int flags) const
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x56
-        __emit 0x51
-        __emit 0xe8
-        __emit 0xa8
-        __emit 0xfa
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x60
-        __emit 0xfb
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-    }
+    writeDrawTemplateBase(this, file, &flags);
+    writeDrawInfo(file, &flags);
 }
 
 // ?writeINI@RenderObjectDrawModuleTemplate@FXParticleSystem@@UBEXAAVFile@@I@Z

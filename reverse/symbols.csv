@@ -1,6 +1,6 @@
 name,address,notes
-?writeButterflyInfo@FXParticleSystem@@YAXAAVFile@@PBI@Z,0x0004618C,ButterflyDrawModuleTemplate info write thunk
-?writeButterflyTemplateBase@FXParticleSystem@@YAXPBXAAVFile@@PBI@Z,0x000460C9,ButterflyDrawModuleTemplate base write thunk
+?writeDrawInfo@FXParticleSystem@@YAXAAVFile@@PBI@Z,0x0004618C,draw module info write thunk
+?writeDrawTemplateBase@FXParticleSystem@@YAXPBXAAVFile@@PBI@Z,0x000460C9,draw module template base write thunk
 ?$S103@?1??getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ@4IA,0x00EEFE34,pool-glue cascade static (back-solved)
 ?$S105@?1??getClassMemoryPool@PoisonedBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF830,pool-glue cascade static (back-solved)
 ?$S107@?1??getClassMemoryPool@SupplyWarehouseCripplingBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF91C,pool-glue cascade static (back-solved)
