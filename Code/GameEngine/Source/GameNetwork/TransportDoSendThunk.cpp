@@ -6,13 +6,13 @@ public:
     bool doSend();
 };
 
-__declspec(naked) bool Transport::doSend()
+class TransportDoSendShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 06Dh
-        _emit 0D7h
-        _emit 066h
-        _emit 000h
-    }
+public:
+    bool send();
+};
+
+bool Transport::doSend()
+{
+    return ((TransportDoSendShim *)this)->send();
 }
