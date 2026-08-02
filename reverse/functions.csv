@@ -9274,7 +9274,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?create@GameSpyConfigInterface@@SAPAV1@VAsciiString@@@Z,,0x0062AD50,3077,Code/masm_dumps/_sa13__create_GameSpyConfigInterface__SAPAV1_VAsciiString___Z_62AD50.asm,matched,multi-xref Open-BFME4+Grok %s\%s\%s.map
 ?create@ObjectCreationNugget@@UBEPAVObject@@PBV2@0I@Z,,0x001D63B0,24,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ?createAWallFromMyFootprint@Pathfinder@@QAEXPAVObject@@@Z,,0x0051F380,15,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,
-?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,152,Code/masm_dumps/__createDirectory_FileSystem__QAE_NVAsciiString___Z_9C8DC0.asm,matched,
 ?createDisplayStringManager@W3DGameClient@@MAEPAVDisplayStringManager@@XZ,,0x006FB710,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?createDrive@Win32CDManager@@MAEPAVCDDriveInterface@@XZ,,0x006BA4C0,80,Code/GameEngineDevice/Source/Win32Device/Common/Win32CDManager.cpp,matched,
 ?createEvent@Radar@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,,0x00008B8E,5,Code/GameEngine/Source/Common/RTS/RadarCreateEventThunk.cpp,matched,5-byte incremental-link Radar member thunk converted to focused C++ source
@@ -13841,3 +13840,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?doesFileExist@FileSystem@@QBE_NPBD@Z,,0x009C86A0,134,Code/GameEngine/Source/Common/System/FileSystem_doesFileExist.cpp,matched,BFME doesFileExist: sprintf path prefix then local+archive; C++ exact
+?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,144,Code/GameEngine/Source/Common/System/FileSystem_createDirectory.cpp,matched,Promote masm dump to Code/ naked C++; size 144 per ghidra
