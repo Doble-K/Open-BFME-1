@@ -2813,6 +2813,7 @@ name,address,notes
 ?construct@RenderObjectDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00033816,RenderObjectDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectUpdateTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00035490,RenderObjectUpdateModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001BF86,SphericalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@StreakDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00033B59,StreakDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@StreakDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00006FBE,StreakDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@TerrainCollisionTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00012602,TerrainCollisionModuleTemplate constructor thunk used through a TU-local layout shim
 ?copyFrom@DictPair@Dict@@QAEXPAU12@@Z,0x00013E94
