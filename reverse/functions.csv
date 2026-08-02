@@ -1766,6 +1766,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MemoryPoolObject@@QAE@ABV0@@Z,,0x00712E80,11,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,ICF alias of existing matched body
 ??0MemoryPoolObject@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,ICF alias of existing matched body
 ??0MemoryReadFile@@QAE@PADH@Z,,0x009CB3D0,109,Code/GameEngine/Source/Common/System/File.cpp,matched,installs vtable 0x01143A38 and names itself MemoryReadFile
+??0MemoryWriteFile@@QAE@PBD@Z,,0x009CB4E0,173,Code/GameEngine/Source/Common/System/File.cpp,matched,holds the <MemoryWriteFile> literal its else branch passes to setName; installs vtable 0x01143AA8
 ??0MeshLoadContextClass@@AAE@XZ,,0x00970180,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??0MeshMatDescClass@@QAE@XZ,,0x0092A2B0,267,Code/masm_dumps/_leaf___0MeshMatDescClass__QAE_XZ_92A2B0.asm,matched,Exact 267B present-unmatched leaf Open-BFME4
 ??0MeshSaveContextClass@@QAE@XZ,,0x0096CAD0,28,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
@@ -1807,8 +1808,21 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
 ??0MutexClass@@QAE@PBD@Z,,0x009DB320,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0NameKeyGenerator@@QAE@XZ,,0x00090380,120,Code/masm_dumps/NameKeyGenerator_ctor.asm,matched,True SEH ctor via static-init push; queue 0x9F274A was mid ControlBar ctor
+??0NetChatCommandMsg@@QAE@XZ,,0x00675210,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetCommandList@@QAE@XZ,,0x00672EA0,20,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,real ctor; 0x000659C0 was a same-shaped ctor of another class - only the vtable differs and that is a DIR32 slot copied from the target
+??0NetCommandMsg@@QAE@XZ,,0x006735D0,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetCommandWrapperListNode@@QAE@PAVNetWrapperCommandMsg@@@Z,,0x00676380,119,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
+??0NetDestroyPlayerCommandMsg@@QAE@XZ,,0x00673B10,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectChatCommandMsg@@QAE@XZ,,0x006750E0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectFrameCommandMsg@@QAE@XZ,,0x006740C0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectKeepAliveCommandMsg@@QAE@XZ,,0x00673BD0,42,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectPlayerCommandMsg@@QAE@XZ,,0x00673C20,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectScreenOffCommandMsg@@QAE@XZ,,0x00674310,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetDisconnectVoteCommandMsg@@QAE@XZ,,0x00673CD0,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetFileProgressCommandMsg@@QAE@XZ,,0x00674030,49,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetKeepAliveCommandMsg@@QAE@XZ,,0x00673B80,42,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetPlayerLeaveCommandMsg@@QAE@XZ,,0x00673AA0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetProgressCommandMsg@@QAE@XZ,,0x00673D60,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0Network@@QAE@XZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,object-symbol=??0BFMENetwork@@QAE@XZ;C++ ICF alias of Network ctor
 ??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/masm_dumps/NeutronMissileSlowDeathBehavior_constructor.asm,matched,Exact 74B ICF alias Open-BFME4
 ??0NeutronMissileUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002CDA30,74,Code/GameEngine/Source/GameLogic/Object/Update/NeutronMissileUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ shared ICF body at destination 0x2CDA30
@@ -2834,6 +2848,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1FXBoneInfo@@QAE@XZ,,0x0037E1A0,8,Code/GameEngine/Source/GameLogic/Object/Update/FXBoneInfoDestructor.cpp,matched,thunk-dump converted to clean C++ destructor body at destination 0x37E1A0
 ??1FadeAndDieOrnamentUpdateModuleData@@UAE@XZ,,0x00126E70,67,Code/masm_dumps/FadeAndDieOrnamentUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
 ??1FastFixedAllocator@@QAE@XZ,,0x00B02720,26,Code/Libraries/Source/WWVegas/WWLib/FastAllocator.cpp,matched,
+??1File@@UAE@XZ,,0x009CB8C0,133,Code/GameEngine/Source/Common/System/File.cpp,matched,scalar dtor reached from ??_GFile@@ at 0x009CB950; installs vtable 0x01143AF8
 ??1FileInfoStruct@MixFileCreator@@QAE@XZ,,0x005DBEA0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;C++ alias
 ??1FilePipe@@UAE@XZ,,0x009E7DC0,104,Code/Libraries/Source/WWVegas/WWLib/xpipe.cpp,matched,
 ??1FileStraw@@UAE@XZ,,0x009E1C50,104,Code/Libraries/Source/WWVegas/WWLib/xstraw.cpp,matched,
@@ -13997,18 +14012,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??1File@@UAE@XZ,,0x009CB8C0,133,Code/GameEngine/Source/Common/System/File.cpp,matched,scalar dtor reached from ??_GFile@@ at 0x009CB950; installs vtable 0x01143AF8
-??0MemoryWriteFile@@QAE@PBD@Z,,0x009CB4E0,173,Code/GameEngine/Source/Common/System/File.cpp,matched,holds the <MemoryWriteFile> literal its else branch passes to setName; installs vtable 0x01143AA8
-??0NetKeepAliveCommandMsg@@QAE@XZ,,0x00673B80,42,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetPlayerLeaveCommandMsg@@QAE@XZ,,0x00673AA0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetDestroyPlayerCommandMsg@@QAE@XZ,,0x00673B10,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetDisconnectKeepAliveCommandMsg@@QAE@XZ,,0x00673BD0,42,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetDisconnectChatCommandMsg@@QAE@XZ,,0x006750E0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetChatCommandMsg@@QAE@XZ,,0x00675210,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetDisconnectPlayerCommandMsg@@QAE@XZ,,0x00673C20,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetDisconnectVoteCommandMsg@@QAE@XZ,,0x00673CD0,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetProgressCommandMsg@@QAE@XZ,,0x00673D60,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetFileProgressCommandMsg@@QAE@XZ,,0x00674030,49,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetDisconnectFrameCommandMsg@@QAE@XZ,,0x006740C0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetDisconnectScreenOffCommandMsg@@QAE@XZ,,0x00674310,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetCommandMsg@@QAE@XZ,,0x006735D0,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
