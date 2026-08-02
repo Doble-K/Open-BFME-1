@@ -1278,153 +1278,82 @@ Bool FirewallHelperClass::detectionTest5Update() {
  *   3/15/01 4:45PM ST : Created                                                               *
  *=============================================================================================*/
 // ?getNATPortAllocationScheme@FirewallHelperClass@@AAEHHPAG0AA_N1@Z present-unmatched
+// Real body 0x0066E870, 242 bytes (ghidra says 235; it stops short of the ret).
+// The algorithm below is retail's, read off that body, and it is nothing like
+// the reference's: no bubble sort, no scan over numPorts, just the first four
+// mangled ports tested for a constant stride, and if that fails, the same test
+// on the deltas against the source ports. numPorts is only ever used to bound
+// the subtract loop between the two passes.
+//
+// This compiles to retail's instruction sequence exactly, one instruction and
+// nine bytes short. Two things are left: retail keeps delta1 in eax from the
+// first subtract while this source lands it in edx, and retail lays the
+// return-0 block before the relativeDelta-only block rather than after. Both
+// are allocator and block-placement choices, not source ones.
 Int FirewallHelperClass::getNATPortAllocationScheme(Int numPorts, UnsignedShort *originalPorts, UnsignedShort *mangledPorts, Bool &relativeDelta, Bool &looksGood)
 {
-	DEBUG_ASSERTCRASH(numPorts > 3, ("numPorts too small"));
-
-	DEBUG_LOG(("Looking for port allocation pattern in originalPorts %d, %d, %d, %d\n", originalPorts[0], originalPorts[1], originalPorts[2], originalPorts[3]));
-
 	/*
-	** Sort the mangled ports into order - should be easier to detect patterns.
-	** Stupid bubble sort will do. original_ports may be out of oder after the sort.
+	** BFME drops the reference's bubble sort entirely and just tests the first
+	** four mangled ports for a constant stride. Two consecutive deltas agreeing
+	** is enough to report a delta; all three agreeing is what makes it "good".
 	*/
-	for (Int x=0 ; x<numPorts ; x++) {
-		for (Int y=0 ; y<numPorts-1 ; y++) {
-			if (mangledPorts[y] > mangledPorts[y+1]) {
-				Int temp = mangledPorts[y];
-				mangledPorts[y] = mangledPorts[y+1];
-				mangledPorts[y+1] = temp;
-				temp = originalPorts[y];
-				originalPorts[y] = originalPorts[y+1];
-				originalPorts[y+1] = temp;
-			}
-		}
-	}
+	Int delta1 = mangledPorts[1] - mangledPorts[0];
+	Int delta2 = mangledPorts[2] - mangledPorts[1];
+	Int delta3 = mangledPorts[3] - mangledPorts[2];
 
-	/*
-	** Now start looking for patterns in the port numbers. Possible patterns include.
-	**
-	** Incremental. Port numbers are allocated incrementally.
-	** Every 'n' ports. NAT adds 'n' port numbers when allocating ports.
-	**
-	** Also, schemes may be absolute or relative to the original port number.
-	*/
-
-	/*
-	** 1. Check for absolute sequential allocation.
-	*/
-	if (mangledPorts[1] - mangledPorts[0] == 1) {
-		if (mangledPorts[2] - mangledPorts[1] == 1) {
-			if (mangledPorts[3] - mangledPorts[2] == 1) {
-				DEBUG_LOG(("Incremental port allocation detected\n"));
-				relativeDelta = FALSE;
-				looksGood = TRUE;
-				return(1);
-			}
-		}
-	}
-
-	/*
-	** 2. Check for semi sequential.
-	*/
-	if (mangledPorts[1] - mangledPorts[0] == 2) {
-		if (mangledPorts[2] - mangledPorts[1] == 2) {
-			if (mangledPorts[3] - mangledPorts[2] == 2) {
-				DEBUG_LOG(("Semi-incremental port allocation detected\n"));
-				relativeDelta = FALSE;
-				looksGood = TRUE;
-				return(2);
-			}
-		}
-	}
-
-	Int diff1 = mangledPorts[1] - mangledPorts[0];
-	Int diff2 = mangledPorts[2] - mangledPorts[1];
-	Int diff3 = mangledPorts[3] - mangledPorts[2];
-
-
-	/*
-	** 3. Check for absolute scheme skipping 'n' ports.
-	*/
-	if (diff1 == diff2 && diff2 == diff3) {
-		DEBUG_LOG(("Looks good for absolute allocation sequence delta of %d\n", diff1));
+	if (delta1 == delta2) {
 		relativeDelta = FALSE;
-		looksGood = TRUE;
-		return(diff1);
+		if (delta2 == delta3) {
+			looksGood = TRUE;
+		} else {
+			looksGood = FALSE;
+		}
+		return delta1;
 	}
 
-	if (diff1 == diff2) {
-		DEBUG_LOG(("Probable absolute allocation sequence delta of %d\n", diff1));
+	if (delta2 == delta3) {
 		relativeDelta = FALSE;
 		looksGood = FALSE;
-		return(diff1);
+		return delta2;
 	}
 
-	if (diff2 == diff3) {
-		DEBUG_LOG(("Probable absolute allocation sequence delta of %d\n", diff2));
-		relativeDelta = FALSE;
-		looksGood = FALSE;
-		return(diff2);
-	}
-
-
-
-
 	/*
-	** Insert more tests here if we can think of any!!!!!
+	** No absolute stride. Convert the mangled ports to deltas against the source
+	** port they came from and look for a stride in those instead.
 	*/
-
-
-
-	/*
-	** 4. Check for relative scheme skipping 'n' ports. NAT32 behaves this way, it skips 100 ports
-	** each time.
-	*/
-	for (Int i=0 ; i<numPorts ; i++) {
+	for (Int i = 0; i < numPorts; i++) {
 		mangledPorts[i] -= originalPorts[i];
 	}
 
-	diff1 = mangledPorts[1] - mangledPorts[0];
-	diff2 = mangledPorts[2] - mangledPorts[1];
-	diff3 = mangledPorts[3] - mangledPorts[2];
+	delta1 = mangledPorts[1] - mangledPorts[0];
+	delta2 = mangledPorts[2] - mangledPorts[1];
+	delta3 = mangledPorts[3] - mangledPorts[2];
 
-	/*
-	** Look for a linear pattern.
-	*/
-	if (diff1 == diff2 && diff2 == diff3) {
-		/*
-		** Return a -ve result to indicate that port mangling is relative.
-		*/
-		DEBUG_LOG(("Looks good for a relative port range delta of %d\n", diff1));
+	if (delta1 == delta2) {
 		relativeDelta = TRUE;
-		looksGood = TRUE;
-		return(diff1);
+		if (delta2 == delta3) {
+			looksGood = TRUE;
+		} else {
+			looksGood = FALSE;
+		}
+		return delta1;
 	}
 
-	/*
-	** Look for a broken pattern. Maybe the NAT skipped a whole range.
-	*/
-	if (diff1 == diff2 || diff1 == diff3) {
-		DEBUG_LOG(("Detected probable broken relative port range delta of %d\n", diff1));
+	if (delta1 == delta3) {
 		relativeDelta = TRUE;
 		looksGood = FALSE;
-		return(diff1);
+		return delta1;
 	}
 
-	if (diff2 == diff3) {
-		DEBUG_LOG(("Detected probable broken relative port range delta of %d\n", diff2));
+	if (delta2 == delta3) {
 		relativeDelta = TRUE;
 		looksGood = FALSE;
-		return(diff2);
+		return delta2;
 	}
 
-
-	/*
-	** Aw hell, I don't know what it is.
-	*/
-	looksGood = FALSE;
 	relativeDelta = FALSE;
-	return(0);
+	looksGood = FALSE;
+	return 0;
 }
 
 
