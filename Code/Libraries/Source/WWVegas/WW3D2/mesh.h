@@ -91,14 +91,19 @@ public:
 	virtual int						Get_Num_Polys(void) const;
 	virtual void					Render(RenderInfoClass & rinfo);
 	void								Render_Material_Pass(MaterialPassClass * pass,IndexBufferClass * ib);
-	virtual void					Special_Render(SpecialRenderInfoClass & rinfo);
+	// BFME: rendobj.h keeps these out of the retail vtable, so overrides of them
+	// must not be virtual either -- left virtual they add slots instead.
+	void							Special_Render(SpecialRenderInfoClass & rinfo);
 
 	/////////////////////////////////////////////////////////////////////////////
 	// Render Object Interface - Collision Detection
 	/////////////////////////////////////////////////////////////////////////////	
 	virtual bool					Cast_Ray(RayCollisionTestClass & raytest);
-	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
-	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+	bool							Cast_AABox(AABoxCollisionTestClass & boxtest);
+	bool							Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+	// The exception: MeshClass::Intersect_AABox is matched at 0x0092DCF0 under a
+	// virtual mangling, so it has to stay virtual whatever the vtable says. That
+	// costs MeshClass one slot past its own end, which nothing reaches today.
 	virtual bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
 	virtual bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
    

@@ -280,7 +280,9 @@ public:
 	virtual int						Class_ID(void)	const { return CLASSID_DAZZLE; }
 	
 	virtual void					Render(RenderInfoClass & rinfo);
-	virtual void Special_Render(SpecialRenderInfoClass & rinfo);
+	// BFME: rendobj.h keeps these out of the retail vtable, so overrides of them
+	// must not be virtual either -- left virtual they add slots instead.
+	void		 Special_Render(SpecialRenderInfoClass & rinfo);
 	virtual void 					Set_Transform(const Matrix3D &m); 
    virtual void					Get_Obj_Space_Bounding_Sphere(SphereClass & sphere) const;
    virtual void					Get_Obj_Space_Bounding_Box(AABoxClass & box) const;

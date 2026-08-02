@@ -81,7 +81,9 @@ public:
 	// Render Object Interface - Rendering
 	/////////////////////////////////////////////////////////////////////////////
 	virtual void					Render(RenderInfoClass & rinfo);
-	virtual void					Special_Render(SpecialRenderInfoClass & rinfo);
+	// BFME: rendobj.h keeps these out of the retail vtable, so overrides of them
+	// must not be virtual either -- left virtual they add slots instead.
+	void							Special_Render(SpecialRenderInfoClass & rinfo);
 
 	/////////////////////////////////////////////////////////////////////////////
 	// Render Object Interface - "Scene Graph"
@@ -98,9 +100,9 @@ public:
 	// Render Object Interface - Collision Detection, Ray Tracing
 	/////////////////////////////////////////////////////////////////////////////
 	virtual bool					Cast_Ray(RayCollisionTestClass & raytest);
-	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
-	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
-	virtual bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
+	bool							Cast_AABox(AABoxCollisionTestClass & boxtest);
+	bool							Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+	bool							Intersect_AABox(AABoxIntersectionTestClass & boxtest);
 	virtual bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
 
 	/////////////////////////////////////////////////////////////////////////////

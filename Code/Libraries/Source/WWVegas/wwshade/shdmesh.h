@@ -83,15 +83,17 @@ public:
 	int								Get_Num_Vertices(void) const;
 	virtual void					Render(RenderInfoClass & rinfo);
 //	void								Render_Material_Pass(MaterialPassClass * pass,IndexBufferClass * ib);
-	virtual void					Special_Render(SpecialRenderInfoClass & rinfo);
+	// BFME: rendobj.h keeps these out of the retail vtable, so overrides of them
+	// must not be virtual either -- left virtual they add slots instead.
+	void							Special_Render(SpecialRenderInfoClass & rinfo);
 
 	/////////////////////////////////////////////////////////////////////////////
 	// Render Object Interface - Collision Detection
 	/////////////////////////////////////////////////////////////////////////////	
 	virtual bool					Cast_Ray(RayCollisionTestClass & raytest);
-	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
-	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
-	virtual bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
+	bool							Cast_AABox(AABoxCollisionTestClass & boxtest);
+	bool							Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+	bool							Intersect_AABox(AABoxIntersectionTestClass & boxtest);
 	virtual bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
    
 	/////////////////////////////////////////////////////////////////////////////
