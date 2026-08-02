@@ -5,13 +5,13 @@ class FirewallHelperClass
     int getNATPortAllocationScheme(int, unsigned short *, unsigned short *, bool &, bool &);
 };
 
-__declspec(naked) int FirewallHelperClass::getNATPortAllocationScheme(int, unsigned short *, unsigned short *, bool &, bool &)
+class FirewallHelperClassGetNATPortAllocationSchemeShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 02Ch
-        _emit 0B9h
-        _emit 065h
-        _emit 000h
-    }
+public:
+    int getNATPortAllocationScheme(int, unsigned short *, unsigned short *, bool &, bool &);
+};
+
+int FirewallHelperClass::getNATPortAllocationScheme(int scheme, unsigned short *port1, unsigned short *port2, bool &flag1, bool &flag2)
+{
+    return ((FirewallHelperClassGetNATPortAllocationSchemeShim *)this)->getNATPortAllocationScheme(scheme, port1, port2, flag1, flag2);
 }
