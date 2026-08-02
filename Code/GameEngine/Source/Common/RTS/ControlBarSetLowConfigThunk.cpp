@@ -6,13 +6,13 @@ protected:
     void setLowControlBarConfig();
 };
 
-__declspec(naked) void ControlBar::setLowControlBarConfig()
+class ControlBarSetLowConfigShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0AEh
-        _emit 0E6h
-        _emit 046h
-        _emit 000h
-    }
+public:
+    void apply();
+};
+
+void ControlBar::setLowControlBarConfig()
+{
+    ((ControlBarSetLowConfigShim *)this)->apply();
 }
