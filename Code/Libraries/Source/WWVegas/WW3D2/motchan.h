@@ -290,7 +290,13 @@ private:
 	uint32	NumFrames;			// Number of frames
 
 	float		Scale;				// Scale Filter, this much
-  
+
+	// BFME has one more dword here: ~AdaptiveDeltaMotionChannelClass (0x009783C0)
+	// frees [esi+0x18] and [esi+0x20], four past ours, and with this member in
+	// place getframe's reads of +0xc, +0x1c and +0x20 become NumFrames,
+	// CacheFrame and CacheData instead of running off the end of the class.
+	float		_bfme_adm_scale2;
+
 	uint32  *Data;				 	// pointer to packet data
 
 	uint32	CacheFrame;

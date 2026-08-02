@@ -78,6 +78,7 @@ struct NodeCompressedMotionStruct
 			TimeCodedMotionChannelClass *		Y;
 			TimeCodedMotionChannelClass *		Z;
 			TimeCodedMotionChannelClass *		Q;
+			TimeCodedMotionChannelClass *		Fade;
 		} tc;
 
 		struct {
@@ -85,6 +86,7 @@ struct NodeCompressedMotionStruct
 			AdaptiveDeltaMotionChannelClass *		Y;
 			AdaptiveDeltaMotionChannelClass *		Z;
 			AdaptiveDeltaMotionChannelClass *		Q;
+			AdaptiveDeltaMotionChannelClass *		Fade;
 
 		} ad;
 
@@ -93,10 +95,15 @@ struct NodeCompressedMotionStruct
 			 void * Y;
 			 void * Z;
 			 void * Q;
+			 void * Fade;
 		} vd;
 	};
 
 
+	// BFME: Vis sits at +0x18 and the struct strides 0x1c (imul ...,0x1c at
+	// 0x0095BA3B and 0x0095B2D7), which is one dword more than Zero Hour's. The
+	// extra one is a fade channel inside the union at +0x14 -- the slot-13 getter
+	// at 0x0095B260 switches on Flavor and reads [eax+0x14] in both arms.
 	TimeCodedBitChannelClass *			Vis;
 };
 
@@ -119,6 +126,7 @@ NodeCompressedMotionStruct::NodeCompressedMotionStruct() :
 		vd.Y = NULL;
 		vd.Z = NULL;
 		vd.Q = NULL;
+		vd.Fade = NULL;
 }
 
 
@@ -146,12 +154,14 @@ NodeCompressedMotionStruct::~NodeCompressedMotionStruct()
 			if (tc.Y) delete tc.Y;
 			if (tc.Z) delete tc.Z;
 			if (tc.Q) delete tc.Q;
+			if (tc.Fade) delete tc.Fade;
 			break;
 		case ANIM_FLAVOR_ADAPTIVE_DELTA:
 			if (ad.X) delete ad.X;
 			if (ad.Y) delete ad.Y;
 			if (ad.Z) delete ad.Z;
 			if (ad.Q) delete ad.Q;
+			if (ad.Fade) delete ad.Fade;
 			break;
 		default:
 			WWASSERT(0);	// unknown flavor

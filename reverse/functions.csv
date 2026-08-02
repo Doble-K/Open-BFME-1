@@ -2968,7 +2968,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1NetCommandWrapperList@@MAE@XZ,,0x00676570,45,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ??1NetCommandWrapperListNode@@MAE@XZ,,0x00676420,57,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ??1NetWrapperCommandMsg@@MAE@XZ,,0x00673E20,40,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
-??1NodeCompressedMotionStruct@@QAE@XZ,,0x00AFF130,45,Code/masm_dumps/_sym3___1NodeCompressedMotionStruct__QAE_XZ_AFF130.asm,matched,symbol-pin Open-BFME4+Grok
+??1NodeCompressedMotionStruct@@QAE@XZ,,0x0095B6C0,267,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ??1NodeMotionStruct@@QAE@XZ,,0x009598D0,213,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
 ??1Nugget@ModuleInfo@@QAE@XZ,,0x007701C0,76,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetDestructor.cpp,matched,thunk-dump converted to clean C++ nested destructor body at destination 0x7701C0
 ??1OCLSpecialPowerModuleData@@UAE@XZ,,0x00263800,136,Code/masm_dumps/OCLSpecialPowerModuleData_destructor.asm,matched,Exact 136B @ 0x00263800; Exact retail MASM; factory->vtable dtor; del 0x2637D0 ctor 0x2631B0 vt 0xCB6180
@@ -4611,7 +4611,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_ELODHeapNode@@QAEPAXI@Z,,0x00881390,77,Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp,matched,
 ??_ELogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAEPAXI@Z,,0x005D7480,84,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,
 ??_EModelArrayClass@HLodClass@@UAEPAXI@Z,,0x005D5D90,84,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
-??_ENodeCompressedMotionStruct@@QAEPAXI@Z,,0x005D7480,84,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+??_ENodeCompressedMotionStruct@@QAEPAXI@Z,,0x0095B890,84,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ??_EPendingSurfaceStruct@Render2DSentenceClass@@QAEPAXI@Z,,0x0005FF30,84,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp,matched,
 ??_ERTS2DScene@@WJI@AEPAXI@Z,,0x006BCA93,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
 ??_ERTS3DScene@@WJI@AEPAXI@Z,,0x006BCA93,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
@@ -13959,3 +13959,18 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?openFile@Win32LocalFileSystem@@UAEPAVFile@@PBDH@Z,,0x009CDD70,22,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem_openFile.cpp,matched,vtable 0x01143B98 slot 2 reached by byte-matched FileSystem::openFile; forwards to the four-argument slot 3 at 0x009CDF50
 ??_GTimeCodedBitChannelClass@@QAEPAXI@Z,,0x0095B050,30,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ?read_bit_channel@HCompressedAnimClass@@AAE_NAAVChunkLoadClass@@PAPAVTimeCodedBitChannelClass@@@Z,,0x0095B1F0,101,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+??1AdaptiveDeltaMotionChannelClass@@QAE@XZ,,0x009783C0,51,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
+??0NodeCompressedMotionStruct@@QAE@XZ,,0x0095AFF0,23,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+??_GTimeCodedMotionChannelClass@@QAEPAXI@Z,,0x0095B010,30,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+??_GAdaptiveDeltaMotionChannelClass@@QAEPAXI@Z,,0x0095B030,30,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?read_channel@HCompressedAnimClass@@AAE_NAAVChunkLoadClass@@PAPAVAdaptiveDeltaMotionChannelClass@@@Z,,0x0095B180,101,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Get_Visibility@HCompressedAnimClass@@UAE_NHM@Z,,0x0095B2D0,52,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Is_Node_Motion_Present@HCompressedAnimClass@@UAE_NH@Z,,0x0095B310,56,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Has_X_Translation@HCompressedAnimClass@@UAE_NH@Z,,0x0095B350,28,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Has_Y_Translation@HCompressedAnimClass@@UAE_NH@Z,,0x0095B370,28,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Has_Z_Translation@HCompressedAnimClass@@UAE_NH@Z,,0x0095B390,28,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Has_Rotation@HCompressedAnimClass@@UAE_NH@Z,,0x0095B3B0,28,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Has_Visibility@HCompressedAnimClass@@UAE_NH@Z,,0x0095B3D0,28,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?add_bit_channel@HCompressedAnimClass@@AAEXPAVTimeCodedBitChannelClass@@@Z,,0x0095BA10,26,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Get_Translation@HCompressedAnimClass@@UBEXAAVVector3@@HM@Z,,0x0095BA30,160,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?Free@AdaptiveDeltaMotionChannelClass@@AAEXXZ,,0x00977C80,51,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
