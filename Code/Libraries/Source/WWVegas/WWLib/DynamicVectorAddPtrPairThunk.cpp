@@ -1,28 +1,30 @@
 class PointerRemapClass
 {
 public:
-	struct PtrPairStruct
-	{
-	};
+    struct PtrPairStruct
+    {
+    };
 };
 
 template<class Type>
 class DynamicVectorClass
 {
 public:
-	bool Add(Type const &);
+    bool Add(const Type &);
+};
+
+class DynamicVectorAddPtrPairShim
+{
+public:
+    bool add(const PointerRemapClass::PtrPairStruct &item);
 };
 
 template<class Type>
-__declspec(naked) bool DynamicVectorClass<Type>::Add(Type const &)
+bool DynamicVectorClass<Type>::Add(const Type &item)
 {
-	__asm {
-		_emit 0E9h
-		_emit 0A5h
-		_emit 0E0h
-		_emit 00Ch
-		_emit 000h
-	}
+    return ((DynamicVectorAddPtrPairShim *)this)->add(
+        *(const PointerRemapClass::PtrPairStruct *)&item);
 }
 
-template __declspec(naked) bool DynamicVectorClass<PointerRemapClass::PtrPairStruct>::Add(const PointerRemapClass::PtrPairStruct &);
+template bool DynamicVectorClass<PointerRemapClass::PtrPairStruct>::Add(
+    const PointerRemapClass::PtrPairStruct &);

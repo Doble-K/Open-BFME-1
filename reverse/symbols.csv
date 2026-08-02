@@ -2709,6 +2709,7 @@ name,address,notes
 ?_M_upper_bound@?$_Rb_tree@VAsciiString@@V1@U?$_Identity@VAsciiString@@@_STL@@U?$less@VAsciiString@@@3@V?$allocator@VAsciiString@@@3@@_STL@@ABEPAU?$_Rb_tree_node@VAsciiString@@@2@ABVAsciiString@@@Z,0x00044602,pinharvest x1 (thunk)
 ?_M_upper_bound@?$_Rb_tree@VAsciiString@@V1@U?$_Identity@VAsciiString@@@_STL@@U?$less@VAsciiString@@@3@V?$allocator@VAsciiString@@@3@@_STL@@ABEPAU?$_Rb_tree_node@VAsciiString@@@2@ABVAsciiString@@@Z,0x0004AC41,pinharvest x1 (thunk)
 ?_Rebalance_for_erase@?$_Rb_global@_N@_STL@@SAPAU_Rb_tree_node_base@2@PAU32@AAPAU32@11@Z,0x0082CB60
+?add@DynamicVectorAddPtrPairShim@@QAE_NABUPtrPairStruct@PointerRemapClass@@@Z,0x000D0AE0,DynamicVectorClass Add PtrPair incremental-link thunk target through a TU-local forwarding shim
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,0x00850920,additive; direct body / per-TU copy
 ?add@TeamsInfoRecAddTeamShim@@QAEXPBVDict@@@Z,0x0005EE90,TeamsInfoRec addTeam incremental-link thunk target through a TU-local forwarding shim
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,0x0000B569,GameMessageParser::addArgType thunk
