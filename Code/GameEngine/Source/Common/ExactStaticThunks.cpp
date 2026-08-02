@@ -57,15 +57,15 @@ public:
     __declspec(dllexport) static void startRenderToTexture();
 };
 
-__declspec(naked) void W3DShaderManager::startRenderToTexture()
+class W3DShaderManagerStartRenderToTextureShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 004h
-        _emit 01Dh
-        _emit 070h
-        _emit 000h
-    }
+public:
+    static void start();
+};
+
+void W3DShaderManager::startRenderToTexture()
+{
+    W3DShaderManagerStartRenderToTextureShim::start();
 }
 
 class ObjectDefectionHelper
