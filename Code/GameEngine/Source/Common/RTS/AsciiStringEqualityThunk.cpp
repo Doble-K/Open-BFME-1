@@ -2,13 +2,13 @@
 
 class AsciiString;
 
-__declspec(naked) bool operator==(const AsciiString &, const AsciiString &)
+class AsciiStringEqualityShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 038h
-        _emit 019h
-        _emit 056h
-        _emit 000h
-    }
+public:
+    static bool equal(const AsciiString &, const AsciiString &);
+};
+
+bool operator==(const AsciiString &a, const AsciiString &b)
+{
+    return AsciiStringEqualityShim::equal(a, b);
 }
