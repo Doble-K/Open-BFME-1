@@ -755,6 +755,7 @@ void HTreeClass::Blend_Update
 
 	Pivot[0].Transform = root;
 	Pivot[0].IsVisible = true;
+	Pivot[0].PivotFade = 1.0f;
 
 	int num_anim_pivots = MIN( motion0->Get_Num_Pivots (), motion1->Get_Num_Pivots () );
 
