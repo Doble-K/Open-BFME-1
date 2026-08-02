@@ -5,16 +5,16 @@ enum CommandSourceType
 
 class AIGroup
 {
-	void groupAttackObjectPrivate(bool, Object *, int, CommandSourceType);
+    void groupAttackObjectPrivate(bool, Object *, int, CommandSourceType);
 };
 
-__declspec(naked) void AIGroup::groupAttackObjectPrivate(bool, Object *, int, CommandSourceType)
+class AIGroupGroupAttackObjectPrivateShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0CAh
-		_emit 040h
-		_emit 011h
-		_emit 000h
-	}
+public:
+    void attack(bool forced, Object *target, int maxShots, CommandSourceType source);
+};
+
+void AIGroup::groupAttackObjectPrivate(bool forced, Object *target, int maxShots, CommandSourceType source)
+{
+    ((AIGroupGroupAttackObjectPrivateShim *)this)->attack(forced, target, maxShots, source);
 }
