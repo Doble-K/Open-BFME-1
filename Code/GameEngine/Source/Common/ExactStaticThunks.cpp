@@ -40,15 +40,15 @@ public:
     __declspec(dllexport) static float getAdjustedVisionRangeForObject(const Object *, int);
 };
 
-__declspec(naked) float AI::getAdjustedVisionRangeForObject(const Object *, int)
+class AIAdjustedVisionRangeForObjectShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 000h
-        _emit 05Eh
-        _emit 012h
-        _emit 000h
-    }
+public:
+    static float getAdjustedVisionRangeForObject(const Object *, int);
+};
+
+float AI::getAdjustedVisionRangeForObject(const Object *object, int value)
+{
+    return AIAdjustedVisionRangeForObjectShim::getAdjustedVisionRangeForObject(object, value);
 }
 
 class W3DShaderManager
