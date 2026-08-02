@@ -6,13 +6,13 @@ public:
 	~PlayerTemplate();
 };
 
-__declspec(naked) PlayerTemplate::~PlayerTemplate()
+class PlayerTemplateDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0CDh
-		_emit 0A5h
-		_emit 00Ch
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+PlayerTemplate::~PlayerTemplate()
+{
+	((PlayerTemplateDestructorShim *)this)->destroy();
 }
