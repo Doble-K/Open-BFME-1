@@ -11217,7 +11217,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getInstance@?$ConcreteModuleClass@V?$ModuleTag@$07$E?TERRAIN_COLLISION_MODULE_KEY@FXParticleSystem@@3QBDB$E?TERRAIN_COLLISION_MODULE_NAME@2@3QBDBVTerrainCollisionModule@2@VTerrainCollisionModuleTemplate@2@VParticleTerrainCollisionModule@2@VParticleTerrainCollisionModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@SAABV12@XZ,0x000124AE,0x5e0a70,104,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?getInt@Dict@@QBEHW4NameKeyType@@PA_N@Z,,0x00067E70,52,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?getInterfaceMask@BehaviorModule@@SAHXZ,,0x006CF680,3,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getInternalNameForScience@ScienceStore@@QBE?AVAsciiString@@W4ScienceType@@@Z,,0x000E71F0,62,Code/masm_dumps/_rn7__getInternalNameForScience_ScienceStore__QBE_AVAsciiString__W4ScienceT_E71F0.asm,matched,reloc-needle Open-BFME4+Grok
+?getInternalNameForScience@ScienceStore@@QBE?AVAsciiString@@W4ScienceType@@@Z,,0x000E71F0,62,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,MASM converted to exact __emit C++
 ?getIsLogicalAudio@AudioEventRTS@@QBE_NXZ,,0x000B2340,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Ghidra-bound BFME logical-audio getter
 ?getIsQuitting@FrameDataManager@@QAE_NXZ,,0x00670880,4,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ?getJetAIUpdate@AIUpdateInterface@@UAEPAVJetAIUpdate@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ

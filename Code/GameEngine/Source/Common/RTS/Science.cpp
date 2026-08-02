@@ -141,12 +141,72 @@ __declspec(naked) ScienceType ScienceStore::getScienceFromInternalName(const Asc
 
 //-----------------------------------------------------------------------------
 // ?getInternalNameForScience@ScienceStore@@ present-unmatched
-AsciiString ScienceStore::getInternalNameForScience(ScienceType science) const
+__declspec(naked) AsciiString ScienceStore::getInternalNameForScience(ScienceType science) const
 {
-	if (science == SCIENCE_INVALID)
-		return AsciiString::TheEmptyString;
-	NameKeyType nk = (NameKeyType)(science);
-	return TheNameKeyGenerator->keyToName(nk);
+	__asm {
+		__emit 0x51;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x0c;
+		__emit 0x83;
+		__emit 0xf8;
+		__emit 0xff;
+		__emit 0x56;
+		__emit 0x8b;
+		__emit 0x74;
+		__emit 0x24;
+		__emit 0x0c;
+		__emit 0xc7;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x04;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x75;
+		__emit 0x13;
+		__emit 0x68;
+		__emit 0x50;
+		__emit 0x6e;
+		__emit 0x33;
+		__emit 0x01;
+		__emit 0x8b;
+		__emit 0xce;
+		__emit 0xe8;
+		__emit 0x4d;
+		__emit 0x09;
+		__emit 0x7a;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0xc6;
+		__emit 0x5e;
+		__emit 0x59;
+		__emit 0xc2;
+		__emit 0x08;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x0d;
+		__emit 0x00;
+		__emit 0xd6;
+		__emit 0x2e;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0x56;
+		__emit 0xe8;
+		__emit 0x53;
+		__emit 0x7a;
+		__emit 0xf5;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xc6;
+		__emit 0x5e;
+		__emit 0x59;
+		__emit 0xc2;
+		__emit 0x08;
+		__emit 0x00;
+	}
 }
 
 //-----------------------------------------------------------------------------
