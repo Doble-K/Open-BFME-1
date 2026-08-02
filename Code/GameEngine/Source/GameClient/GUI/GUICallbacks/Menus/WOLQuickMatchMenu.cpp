@@ -230,6 +230,52 @@ void BfmeQuickMatchHideInfoGadgetsBody::hide(Bool doIt)
 }
 #pragma comment(linker, "/alternatename:?hideInfoGadgets@@YAX_N@Z=?hide@BfmeQuickMatchHideInfoGadgetsBody@@QAEX_N@Z")
 
+struct BfmeQuickMatchHideOptionsGadgetsBody
+{
+	unsigned char _bfme_pad22c[0x22C];
+	GameWindow *m_22c;
+	unsigned char _bfme_pad230[4];
+	GameWindow *m_234;
+	unsigned char _bfme_pad238[4];
+	GameWindow *m_23c;
+	unsigned char _bfme_pad240[4];
+	GameWindow *m_244;
+	unsigned char _bfme_pad248[4];
+	GameWindow *m_24c;
+	unsigned char _bfme_pad250[4];
+	GameWindow *m_254;
+	unsigned char _bfme_pad258[4];
+	GameWindow *m_25c;
+	unsigned char _bfme_pad260[4];
+	GameWindow *m_264;
+	unsigned char _bfme_pad268[4];
+	GameWindow *m_26c;
+	unsigned char _bfme_pad270[4];
+	GameWindow *m_274;
+	unsigned char _bfme_pad278[4];
+	GameWindow *m_27c;
+	unsigned char _bfme_pad280[4];
+	GameWindow *m_284;
+
+	void hide(Bool doIt);
+};
+
+void BfmeQuickMatchHideOptionsGadgetsBody::hide(Bool doIt)
+{
+	m_22c->winHide(doIt);
+	m_234->winHide(doIt);
+	m_26c->winHide(doIt);
+	m_264->winHide(doIt);
+	m_284->winHide(doIt);
+	m_23c->winHide(doIt);
+	m_244->winHide(doIt);
+	m_24c->winHide(doIt);
+	m_254->winHide(doIt);
+	m_25c->winHide(doIt);
+	m_27c->winHide(doIt);
+}
+#pragma comment(linker, "/alternatename:?hideOptionsGadgets@@YAX_N@Z=?hide@BfmeQuickMatchHideOptionsGadgetsBody@@QAEX_N@Z")
+
 static void hideOptionsGadgets(Bool doIt)
 {
 	static NameKeyType parentOptionsID = NAMEKEY("WOLQuickMatchMenu.wnd:ParentOptions");
