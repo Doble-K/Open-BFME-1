@@ -4073,3 +4073,4 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?toLower@AsciiString@@QAEXXZ,0x00887DA0,same body the ledger claims as ?toLower@?$StringBase@D@@QAEXXZ
 ?nextToken@AsciiString@@QAE_NPAV1@PBD@Z,0x008880E0,same body the ledger claims as ?nextToken@?$StringBase@D@@QAE_NPAV1@PBD@Z
 ??$_M_find@VAsciiString@@@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@VArchivedDirectoryInfo@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@VArchivedDirectoryInfo@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@VArchivedDirectoryInfo@@@_STL@@@3@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VArchivedDirectoryInfo@@@_STL@@@1@ABVAsciiString@@@Z,0x009C9AA0,directory-tree lookup ArchiveFileSystem::doesFileExist calls at 0x009CA1D8
+?Get_HTree@@YAPAVHTreeClass@@PBD@Z,0x00971810

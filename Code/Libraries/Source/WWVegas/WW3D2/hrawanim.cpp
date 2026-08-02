@@ -59,6 +59,12 @@
 #include "motchan.h"
 #include "chunkio.h"
 #include "assetmgr.h"
+
+// BFME reaches the hierarchy through a free function, not the asset manager
+// singleton: Load_W3D calls it cdecl with one argument at 0x0095ADD8 and
+// cleans the stack itself, where Get_Instance()->Get_HTree() would be a
+// thiscall through a vtable. Same shape as the free Get_HAnim at 0x0090BF00.
+HTreeClass *Get_HTree(const char *name);
 #include "htree.h"
 
 /***********************************************************************************************
@@ -207,7 +213,6 @@ void HRawAnimClass::Free(void)
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?Load_W3D@HRawAnimClass@@ present-unmatched
 int HRawAnimClass::Load_W3D(ChunkLoadClass & cload)
 {
 	bool pre30 = false;
@@ -252,7 +257,7 @@ int HRawAnimClass::Load_W3D(ChunkLoadClass & cload)
    WWASSERT(sizeof(HierarchyName) >= W3D_NAME_LEN);
    strncpy(HierarchyName,aheader.HierarchyName,W3D_NAME_LEN);
 
-	HTreeClass * base_pose = WW3DAssetManager::Get_Instance()->Get_HTree(HierarchyName);
+	HTreeClass * base_pose = Get_HTree(HierarchyName);
 	if (base_pose == NULL) {
 		goto Error;
 	}

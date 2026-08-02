@@ -13984,3 +13984,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0MotionChannelClass@@QAE@XZ,,0x00977760,31,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ?read_channel@HRawAnimClass@@AAE_NAAVChunkLoadClass@@PAPAVMotionChannelClass@@_N@Z,,0x00959AE0,119,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
 ?openFile@ArchiveFileSystem@@UAEPAVFile@@PBDHHH@Z,,0x009CA6E0,253,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,vtable 0x01143A08 slot 6 (ret 0x10); wide form of slot 5 reaching ArchiveFile slot 3
+?Load_W3D@HRawAnimClass@@QAEHAAVChunkLoadClass@@@Z,,0x0095ACC0,634,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
