@@ -3585,6 +3585,7 @@ name,address,notes
 ?writeDrawInfo@FXParticleSystem@@YAXAAVFile@@PBI@Z,0x0004618C,draw module info write thunk
 ?writeDrawTemplateBase@FXParticleSystem@@YAXPBXAAVFile@@PBI@Z,0x000460C9,draw module template base write thunk
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0003EE32,H1 GameClientRandomVariable xfer helper (thunk; body 0x0010C4D0) — pinned, ideally matched in game_client_random_variable.cpp
+?xferInteger@@YAXAAVXfer@@AAH@Z,0x00044FD0,DefaultUpdateModuleInfo m_extra direct xfer helper through a TU-local forwarding declaration
 ?xferSaveData@GameState@@AAEXPAVXfer@@W4SnapshotType@@@Z,0x0010FBD0,GameState save-data walker (CHUNK_GameState/Campaign/LivingWorldLogic/Palantir/Audio); thunk 0x36674
 _D3DXMatrixInverse@12,0x009FB321
 _D3DXVec4Transform@12,0x009FAA48

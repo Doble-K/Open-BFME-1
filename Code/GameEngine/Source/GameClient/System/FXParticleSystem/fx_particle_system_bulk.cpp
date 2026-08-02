@@ -8,6 +8,7 @@ extern "C" void _ReadWriteBarrier();
 // GameClientRandomVariable xfer helper (version + distribution/min/max); lives in
 // another translation unit — resolved via reverse/symbols.csv.
 void xferRandomVariable(Xfer &xfer, GameClientRandomVariable &v);
+void xferInteger(Xfer &xfer, int &value);
 
 namespace FXParticleSystem {
 
@@ -17005,119 +17006,22 @@ void DefaultPhysicsModuleInfo::DoXfer(Xfer &xfer)
 }
 
 // ?DoXfer@DefaultUpdateModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
-__declspec(naked) void DefaultUpdateModuleInfo::DoXfer(Xfer &xfer)
+void DefaultUpdateModuleInfo::DoXfer(Xfer &xfer)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x50
-        __emit 0x10
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x55
-        __emit 0x8b
-        __emit 0x16
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0d
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x28
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x04
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xbf
-        __emit 0xf5
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x10
-        __emit 0x52
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xb5
-        __emit 0xf5
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x1c
-        __emit 0x50
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xab
-        __emit 0xf5
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x28
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xa1
-        __emit 0xf5
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x34
-        __emit 0x52
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x97
-        __emit 0xf5
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x57
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x2b
-        __emit 0x57
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x30
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    if (xfer.IsLightCRC()) {
+        return;
     }
+
+    Xfer::Version v;
+    v.data[0] = 1;
+    v.data[1] = 1;
+    xfer == v;
+    xferRandomVariable(xfer, m_var0);
+    xferRandomVariable(xfer, m_var1);
+    xferRandomVariable(xfer, m_var2);
+    xferRandomVariable(xfer, m_var3);
+    xferRandomVariable(xfer, m_var4);
+    xferInteger(xfer, m_extra);
 }
 
 // ?DoXfer@LifeEventModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
