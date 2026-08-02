@@ -13843,3 +13843,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Set_Name@GameFileClass@@QAEXPBD@Z,,0x006F63B0,1214,Code/GameEngineDevice/Source/W3DDevice/GameClient/GameFileClass_Set_Name.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
 ?Create_Render_Obj@W3DAssetManager@@QAEPAVRenderObjClass@@XZ,,0x009004A0,1213,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DAssetManager_Create_Render_Obj_scaled.cpp,matched,BFME scaled/recolored Create_Render_Obj exact 1213B naked C++ @ 0x9004A0
 ?Create_Render_Obj@@YAPAVRenderObjClass@@PBD@Z,,0x008FF290,278,Code/GameEngineDevice/Source/W3DDevice/GameClient/Create_Render_Obj_plain.cpp,matched,plain Create_Render_Obj(name) exact 278B naked C++ @ 0x8FF290
+?Find_Prototype@@YAPAXPAX0PBD@Z,,0x009EBCE0,211,Code/GameEngineDevice/Source/W3DDevice/GameClient/Find_Prototype.cpp,matched,BFME registry Find_Prototype exact 211B @ 0x9EBCE0
+?Add_Prototype@@YAXPAX@Z,,0x009EBA40,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype.cpp,matched,BFME registry Add_Prototype wrapper exact 21B @ 0x9EBA40
+?Open_W3D_File@@YAPAXPAX0PBD@Z,,0x006F6BA0,204,Code/GameEngineDevice/Source/W3DDevice/GameClient/Open_W3D_File.cpp,matched,BFME W3D open helper for Load hierarchy/anim exact 204B @ 0x6F6BA0
