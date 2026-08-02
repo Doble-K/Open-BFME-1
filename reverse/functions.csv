@@ -2135,6 +2135,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ,0x0001BF86,0x005D72F0,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0SplitChoiceStruct@AABTreeBuilderClass@@QAE@ABU01@@Z,,0x00706F70,109,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ??0SplitChoiceStruct@AABTreeBuilderClass@@QAE@XZ,,0x0096B580,71,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
+??0SplitHordeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026B030,46,Code/GameEngine/Source/GameLogic/Object/Upgrade/SplitHordeSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ??0SplitHordeSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0SpyVisionSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0SpyVisionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001EE950,276,Code/masm_dumps/SpyVisionUpdate_constructor.asm,matched,Exact 276B ICF alias Open-BFME4
