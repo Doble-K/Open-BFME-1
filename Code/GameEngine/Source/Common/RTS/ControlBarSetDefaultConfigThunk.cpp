@@ -6,13 +6,13 @@ protected:
     void setDefaultControlBarConfig();
 };
 
-__declspec(naked) void ControlBar::setDefaultControlBarConfig()
+class ControlBarSetDefaultConfigShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 018h
-        _emit 0A2h
-        _emit 045h
-        _emit 000h
-    }
+public:
+    void apply();
+};
+
+void ControlBar::setDefaultControlBarConfig()
+{
+    ((ControlBarSetDefaultConfigShim *)this)->apply();
 }
