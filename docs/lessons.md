@@ -774,3 +774,19 @@ There is no suppression list. After an `--emit` sweep, diff the staged ledger
 (`git diff --cached -- reverse/functions.csv`) and check nothing deliberately
 excluded has returned, rather than trusting `check_csv` -- a re-added row is
 perfectly well-formed, so `check_csv` is silent about it.
+
+## If every shell command starts failing, check the session temp directory
+
+Symptom: commands that produce output exit 1 and return nothing, while `true`
+and `echo hello > /dev/null` succeed. It looks like the shell died; it has not.
+The harness writes each command's output to a file under its session directory
+in `/tmp`, and if that directory goes missing -- `/tmp` here is a 16G tmpfs that
+sits around 80% full with four clones building -- every command that writes
+anything fails while silent ones still work.
+
+`mkdir -p` on the session directory restores it. Until then, `cmd > /tmp/x 2>&1`
+followed by reading `/tmp/x` with the Read tool is a working escape hatch, and is
+how to run diagnostics (`df`, `ls`) while the capture is broken.
+
+Do not read this as a disk-full problem without checking: the root filesystem had
+237G free throughout.

@@ -1135,6 +1135,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AnimationSoundClientBehaviorModuleData@@QAE@XZ,,0x00606060,107,Code/GameEngine/Source/GameLogic/AI/AnimationSoundClientBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AnimationSteeringUpdateModuleData@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/GameLogic/Object/Update/AnimationSteeringUpdate.cpp,matched,
 ??0ArchiveFile@@QAE@XZ,,0x009D10B0,87,Code/GameEngine/Source/Common/System/ArchiveFileCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ArchiveFile constructor
+??0ArchiveFileSystem@@QAE@XZ,,0x009CA9E0,108,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08 which the derived BIG file system ctor at 0x009CC350 chains to
 ??0ArchivedDirectoryInfo@@QAE@ABV0@@Z,,0x009CA8F0,98,Code/masm_dumps/_sym3___0ArchivedDirectoryInfo__QAE_ABV0__Z_9CA8F0.asm,matched,symbol-pin Open-BFME4+Grok
 ??0ArchivedFileInfo@@QAE@ABV0@@Z,,0x009CEBF0,93,Code/masm_dumps/_cache___0ArchivedFileInfo__QAE_ABV0__Z_9CEBF0.asm,matched,cached-obj needle Open-BFME4+Grok
 ??0ArmorTemplateSet@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,ICF alias of existing matched body
@@ -2699,6 +2700,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AnimationSoundClientBehavior@@UAE@XZ,,0x00604B40,103,Code/masm_dumps/AnimationSoundClientBehavior_destructor.asm,matched,Exact 103B @ 0x00604B40; Exact retail MASM; instance factory->vtable dtor; del 0x604E60 ctor 0x605380 vt 0xD155A0
 ??1AnimationSoundClientBehaviorModuleData@@UAE@XZ,,0x00606120,67,Code/masm_dumps/AnimationSoundClientBehaviorModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
 ??1AnimationSteeringUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/masm_dumps/AnimationSteeringUpdateModuleData_destructor.asm,matched,Exact 108B SEH dtor Open-BFME4
+??1ArchiveFileSystem@@UAE@XZ,,0x009CA550,140,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08; reached as the scalar dtor from slot 0 at 0x009CAA50
 ??1ArrowStormUpdate@@UAE@XZ,,0x00257940,106,Code/masm_dumps/ArrowStormUpdate_destructor.asm,matched,Exact 106B @ 0x00257940; Exact retail MASM; instance factory->vtable dtor; del 0x257C70 ctor 0x2576E0 vt 0xCB37C0
 ??1ArrowStormUpdateModuleData@@UAE@XZ,,0x00257650,79,Code/masm_dumps/ArrowStormUpdateModuleData_destructor.asm,matched,Exact 79B SEH dtor factory->vtable Open-BFME4
 ??1AsciiString@@QAE@XZ,0x0000D828,0x0005EE90,5,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,AsciiString destructor
@@ -4752,6 +4754,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GAnimateWindowManager@@UAEPAXI@Z,,0x0045DB20,30,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??_GAnimationSteeringUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAnimationSteeringUpdateModuleData@@UAEPAXI@Z,,0x000A73F0,30,Code/GameEngine/Source/GameLogic/Object/Update/AnimationSteeringUpdate.cpp,matched,
+??_GArchiveFileSystem@@UAEPAXI@Z,,0x009CAA50,30,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,slot 0 of vtable 0x01143A08; was previously claimed at 0x005BF290 which destroys CategoryModuleTemplate
 ??_GAssistedTargetingUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAudioEventRTS@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAutoDepositUpdateModuleData@@UAEPAXI@Z,,0x00125930,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
@@ -13994,6 +13997,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??0ArchiveFileSystem@@QAE@XZ,,0x009CA9E0,108,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08 which the derived BIG file system ctor at 0x009CC350 chains to
-??1ArchiveFileSystem@@UAE@XZ,,0x009CA550,140,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08; reached as the scalar dtor from slot 0 at 0x009CAA50
-??_GArchiveFileSystem@@UAEPAXI@Z,,0x009CAA50,30,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,slot 0 of vtable 0x01143A08; was previously claimed at 0x005BF290 which destroys CategoryModuleTemplate
