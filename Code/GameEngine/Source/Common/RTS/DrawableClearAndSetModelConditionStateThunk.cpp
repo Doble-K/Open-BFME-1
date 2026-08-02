@@ -11,13 +11,13 @@ public:
     void clearAndSetModelConditionState(ModelConditionFlagType, ModelConditionFlagType);
 };
 
-__declspec(naked) void Drawable::clearAndSetModelConditionState(ModelConditionFlagType, ModelConditionFlagType)
+class DrawableClearAndSetModelConditionStateShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 089h
-        _emit 09Dh
-        _emit 050h
-        _emit 000h
-    }
+public:
+    void run(ModelConditionFlagType clearFlags, ModelConditionFlagType setFlags);
+};
+
+void Drawable::clearAndSetModelConditionState(ModelConditionFlagType clearFlags, ModelConditionFlagType setFlags)
+{
+    ((DrawableClearAndSetModelConditionStateShim *)this)->run(clearFlags, setFlags);
 }
