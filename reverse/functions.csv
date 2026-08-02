@@ -7976,7 +7976,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Name@AggregateDefClass@@QAEXPBD@Z,,0x00980810,48,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,
 ?Set_Name@BoxRenderObjClass@@UAEXPBD@Z,,0x00956980,29,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ?Set_Name@CompositeRenderObjClass@@UAEXPBD@Z,,0x00983200,11,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
-?Set_Name@GameFileClass@@QAEXPBD@Z,,0x006F63B0,1214,Code/masm_dumps/_sa3__Set_Name_GameFileClass__QAEXPBD_Z_6F63B0.asm,matched,Exact 1214B string-anchored Open-BFME4
 ?Set_Name@GameFileClass@@UAEPBDPBD@Z,,0x00006F05,5,Code/Libraries/Source/WWVegas/WWLib/GameFileSetNameThunk.cpp,matched,Focused C++ thunk for GameFileClass Set_Name
 ?Set_Name@MeshClass@@UAEXPBD@Z,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ?Set_Name@MeshGeometryClass@@QAEXPBD@Z,,0x00924D10,178,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
@@ -13841,3 +13840,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?doesFileExist@FileSystem@@QBE_NPBD@Z,,0x009C86A0,134,Code/GameEngine/Source/Common/System/FileSystem_doesFileExist.cpp,matched,BFME doesFileExist: sprintf path prefix then local+archive; C++ exact
 ?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,144,Code/GameEngine/Source/Common/System/FileSystem_createDirectory.cpp,matched,Promote masm dump to Code/ naked C++; size 144 per ghidra
 ?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,,0x009C8860,394,Code/GameEngine/Source/Common/System/FileSystem_openFile.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
+?Set_Name@GameFileClass@@QAEXPBD@Z,,0x006F63B0,1214,Code/GameEngineDevice/Source/W3DDevice/GameClient/GameFileClass_Set_Name.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
