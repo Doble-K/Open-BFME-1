@@ -341,21 +341,71 @@ void W3DGameClient::createRayEffectByTemplate( const Coord3D *start,
 //-------------------------------------------------------------------------------------------------
 /**  Tell all the drawables what time of day it is now */
 //-------------------------------------------------------------------------------------------------
-// ?setTimeOfDay@W3DGameClient@@UAEXW4TimeOfDay@@@Z present-unmatched
+class W3DGameClientWaterShim
+{
+public:
+	void setTimeOfDay(TimeOfDay tod);
+};
+
+class W3DGameClientShadowShim
+{
+public:
+	void setTimeOfDay(TimeOfDay tod);
+};
+
+class W3DGameClientDisplayShim
+{
+public:
+	virtual void slot00() = 0;
+	virtual void slot01() = 0;
+	virtual void slot02() = 0;
+	virtual void slot03() = 0;
+	virtual void slot04() = 0;
+	virtual void slot05() = 0;
+	virtual void slot06() = 0;
+	virtual void slot07() = 0;
+	virtual void slot08() = 0;
+	virtual void slot09() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual void slot12() = 0;
+	virtual void slot13() = 0;
+	virtual void slot14() = 0;
+	virtual void slot15() = 0;
+	virtual void slot16() = 0;
+	virtual void slot17() = 0;
+	virtual void slot18() = 0;
+	virtual void slot19() = 0;
+	virtual void slot20() = 0;
+	virtual void slot21() = 0;
+	virtual void slot22() = 0;
+	virtual void slot23() = 0;
+	virtual void slot24() = 0;
+	virtual void slot25() = 0;
+	virtual void slot26() = 0;
+	virtual void slot27() = 0;
+	virtual void slot28() = 0;
+	virtual void slot29() = 0;
+	virtual void slot30() = 0;
+	virtual void slot31() = 0;
+	virtual void slot32() = 0;
+	virtual void slot33() = 0;
+	virtual void slot34() = 0;
+	virtual void slot35() = 0;
+	virtual void slot36() = 0;
+	virtual void setTimeOfDay(TimeOfDay tod) = 0;
+};
+
 void W3DGameClient::setTimeOfDay( TimeOfDay tod )
 {
-
-	GameClient::setTimeOfDay(tod);
-
-	//tell cloud/water plane to update its lighting/texture
-	if (TheWaterRenderObj)
-		TheWaterRenderObj->setTimeOfDay(tod);
-	if (TheW3DShadowManager)
-		TheW3DShadowManager->setTimeOfDay(tod);
-
-	//tell the display to update its lighting
-	TheDisplay->setTimeOfDay( tod );
-
+	void *water = *(void **)0x01306D7C;
+	if (water)
+		((W3DGameClientWaterShim *)water)->setTimeOfDay(tod);
+	void *shadow = *(void **)0x01306EEC;
+	if (shadow)
+		((W3DGameClientShadowShim *)shadow)->setTimeOfDay(tod);
+	void *display = *(void **)0x012F1270;
+	((W3DGameClientDisplayShim *)display)->setTimeOfDay(tod);
 }  // end setTimeOfDay
 
 

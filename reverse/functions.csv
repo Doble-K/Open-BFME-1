@@ -13279,7 +13279,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setTextureFilename@ParticleSystemTemplate@FXParticleSystem@@QAEXAAVAsciiString@@@Z,0x000163FB,0x0005CB50,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,adjusts this pointer and assigns texture filename
 ?setTimeMultiplier@W3DView@@UAEXH@Z,,0x004F9600,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?setTimeOfDay@AudioEventRTS@@QAEXW4TimeOfDay@@@Z,,0x000873F0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,
-?setTimeOfDay@W3DGameClient@@UAEXW4TimeOfDay@@@Z,,0x006FBCB0,56,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient_setTimeOfDay.asm,matched,W3DGameClient vtable slot via matched createRayEffect addScorch and setTeamColor anchors
+?setTimeOfDay@W3DGameClient@@UAEXW4TimeOfDay@@@Z,,0x006FBCB0,56,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,Open-BFME5 C++ conversion of W3DGameClient setTimeOfDay
 ?setTimeOfDay@W3DShadowManager@@QAEXW4TimeOfDay@@@Z,,0x007B7B70,198,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp,matched,
 ?setTimeOfDay@WaterRenderObjClass@@QAEXW4TimeOfDay@@@Z,,0x0079F590,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,direct C++ water time-of-day setter with retail layout offset replaces MASM dump
 ?setTooltipDelay@GameWindow@@QAEXH@Z,,0x0098D2B0,13,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
