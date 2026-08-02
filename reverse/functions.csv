@@ -5156,6 +5156,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSmartBombTargetHomingUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSmudgeManager@@UAEPAXI@Z,,0x005D44D0,30,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ??_GSnapshot@@UAEPAXI@Z,,0x008E2260,31,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,object-symbol=??_GCullSystemClass@@UAEPAXI@Z;C++ alias
+??_GSortingNodeStruct@@QAEPAXI@Z,,0x0093B830,30,Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp,matched,
 ??_GSoundFXNugget@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSpawnBehaviorModuleData@@UAEPAXI@Z,,0x0012AA20,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??_GSpawnPointProductionExitUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
