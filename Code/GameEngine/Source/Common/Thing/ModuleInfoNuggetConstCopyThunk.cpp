@@ -3,24 +3,27 @@
 class ModuleInfo
 {
 public:
-	struct Nugget;
+    struct Nugget;
 };
 
 namespace _STL
 {
-	struct random_access_iterator_tag;
+struct random_access_iterator_tag {};
 
-	template <class In, class Out, class Distance>
-	__declspec(naked) Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0E3h
-			_emit 064h
-			_emit 072h
-			_emit 000h
-		}
-	}
+template <class In, class Out, class Distance>
+Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *);
 
-	template ModuleInfo::Nugget *__copy<const ModuleInfo::Nugget *, ModuleInfo::Nugget *, int>(const ModuleInfo::Nugget *, const ModuleInfo::Nugget *, ModuleInfo::Nugget *, const random_access_iterator_tag &, int *);
+class ModuleInfoNuggetConstCopyShim
+{
+public:
+    static void *copy(void *first, void *last, void *result, const random_access_iterator_tag &, int *n);
+};
+
+template <class In, class Out, class Distance>
+Out __copy(In first, In last, Out result, const random_access_iterator_tag &tag, Distance *n)
+{
+    return (Out)ModuleInfoNuggetConstCopyShim::copy((void *)first, (void *)last, (void *)result, tag, (int *)n);
+}
+
+template ModuleInfo::Nugget *__copy<const ModuleInfo::Nugget *, ModuleInfo::Nugget *, int>(const ModuleInfo::Nugget *, const ModuleInfo::Nugget *, ModuleInfo::Nugget *, const random_access_iterator_tag &, int *);
 }
