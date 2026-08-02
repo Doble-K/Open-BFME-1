@@ -1161,3 +1161,39 @@ That is not in tension with the `queueSend` lesson: there the loop exits early
 to a label past the loop, and no `for` or `while` produces that. The rule is to
 write the loop the way the source plausibly had it and only reach for a
 hand-rotated shape when the control flow genuinely is not a counted loop.
+
+## A short claim can match the TAIL of a real function
+
+`?stringLength@@YAHPBD@Z` is claimed at 0x000A30D4, 13 bytes, from
+string_base.cpp, and it verifies exactly. `locate.py` nevertheless keeps placing
+`?length@?$char_traits@D@_STL@@SAIPBD@Z` at 0x000A30D0, 17 bytes, and the two
+overlap, which makes the full gate refuse to patch.
+
+The bytes settle where the function starts:
+
+```
+000A30C8  cc cc cc cc cc cc cc cc      <- padding
+000A30D0  8b 44 24 04    mov eax, [esp + 4]
+000A30D4  8d 50 01       lea edx, [eax + 1]     <- the 13-byte claim starts HERE
+000A30D7  8a 08          mov cl, [eax]
+...
+000A30E0  c3             ret
+000A30E1  cc cc ...                              <- padding
+```
+
+Padding either side puts one function at 0x000A30D0 spanning 17 bytes. The
+13-byte claim begins four bytes inside it, after the argument load -- and
+`?stringLength@@YAHPBD@Z` demangles to `int __cdecl stringLength(char const *)`,
+which cannot have a complete body that never touches the stack. It is `static` in
+string_base.cpp, so MSVC is free to pass the pointer in a register, and that
+13-byte register-convention body happens to equal the tail of the real function.
+
+So an exact byte match at a given RVA is not by itself proof the claim is right:
+the range has to start where the function starts. Two rows verifying and
+overlapping means one of them is anchored inside the other.
+
+Not changed here -- string_base.cpp owns 165 other rows so nothing is at risk
+either way, and it is not mine to retire on inference alone. Whoever owns that
+file should decide; the evidence is above. Until then `locate --emit` over any
+file using char_traits<char> will keep re-adding the 0x000A30D0 row, and it has
+to be dropped again each time.
