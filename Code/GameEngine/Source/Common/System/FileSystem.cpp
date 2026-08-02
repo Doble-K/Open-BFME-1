@@ -200,33 +200,15 @@ File*		FileSystem::openFile( const Char *filename, Int access )
 }
 
 //============================================================================
-// FileSystem::doesFileExist
+// FileSystem::doesFileExist — matched body in FileSystem_doesFileExist.cpp
+// Keep a map touch so the pair/construct helpers claimed on this TU still emit.
 //============================================================================
-
-// ?doesFileExist@FileSystem@@ present-unmatched
-Bool FileSystem::doesFileExist(const Char *filename) const
+static void fileSystemExistCacheTouch(std::map<unsigned, bool> &cache, unsigned key, bool value)
 {
-	USE_PERF_TIMER(FileSystem)
-
-  unsigned key=TheNameKeyGenerator->nameToLowercaseKey(filename);
-  std::map<unsigned,bool>::iterator i=m_fileExist.find(key);
-  if (i!=m_fileExist.end())
-    return i->second;
-
-	if (TheLocalFileSystem->doesFileExist(filename)) 
-  {
-    m_fileExist[key]=true;
-		return TRUE;
-	}
-	if (TheArchiveFileSystem->doesFileExist(filename)) 
-  {
-    m_fileExist[key]=true;
-		return TRUE;
-	}
-
-  m_fileExist[key]=false;
-	return FALSE;
+	cache[key] = value;
 }
+// Force instantiation of the pair helpers claimed on this TU (were part of ZH doesFileExist).
+static void (*s_fileSystemExistCacheTouch)(std::map<unsigned, bool> &, unsigned, bool) = fileSystemExistCacheTouch;
 
 //============================================================================
 // FileSystem::getFileListInDirectory
