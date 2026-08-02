@@ -2819,6 +2819,7 @@ name,address,notes
 ?onExit@AIInternalMoveToStateOnExitShim@@QAEXW4StateExitType@@@Z,0x00172D80,AIInternalMoveToState::onExit incremental-link thunk target through a TU-local forwarding shim
 ?parseParticleSystem@BoneFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00287E40,BoneFXUpdateModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
 ?parseParticleSystem@TransitionDamageFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00252010,TransitionDamageFXModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
+?set@Bitset67SetShim@_STL@@QAEAAV?$bitset@$0ED@@2@IH@Z,0x000E9910,incremental-link thunk target through a TU-local forwarding shim
 ?set@ThingTemplateSubobjectShim@@QAEXH@Z,0x0004AC69,ThingTemplate setCopiedFromDefault subobject flag helper shim
 ?helper@PoisonedBehaviorOwnerShim@@QAE?AW4UpdateSleepTime@@HPAXHH@Z,0x000202A7,PoisonedBehavior update sleep-time helper shim
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x00004EE9,hit-decoded x3 (thunk)
