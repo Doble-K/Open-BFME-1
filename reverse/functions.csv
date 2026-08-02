@@ -10654,7 +10654,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@RadarUpgrade@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D540,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
 ?friend_newModuleInstance@RadiusDecalUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011A580,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@RainOfFireUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011C310,96,Code/GameEngine/Source/Common/RTS/RainOfFireUpdateFriendNewModuleInstanceThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
-?friend_newModuleInstance@RampageBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001149C0,96,Code/masm_dumps/RampageBehavior_friend_newModuleInstance.asm,matched,Retail registration proves RampageBehavior instance factory
+?friend_newModuleInstance@RampageBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001149C0,96,Code/GameEngine/Source/GameLogic/Object/Behavior/RampageBehaviorFriendNewModuleInstanceThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleInstance@RebuildHoleBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001156B0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleInstance@RebuildHoleExposeDie@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleInstance@RefundDie@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001176E0,96,Code/masm_dumps/RefundDie_friend_newModuleInstance.asm,matched,retail
