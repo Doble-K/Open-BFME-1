@@ -374,6 +374,18 @@ public:
     void construct(const void *source);
 };
 
+class OrthoEmissionVelocityModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+__forceinline void initializeOrthoEmissionVelocityModule(void *module)
+{
+    *(unsigned int *)module = 0x011121ec;
+    *(unsigned int *)((unsigned char *)module + 0x14) = 0x011121e8;
+    *(unsigned int *)((unsigned char *)module + 0x18) = 0x011121d4;
+}
+
 extern const char BOX_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char BUTTERFLY_DRAW_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char CYLINDER_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
@@ -11077,77 +11089,17 @@ OrthoEmissionVelocityModuleTemplate *ConcreteModuleTemplate<OrthoEmissionVelocit
 }
 
 // ?createModule@?$ConcreteModuleTemplate@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@UAEPAVOrthoEmissionVelocityModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
-__declspec(naked) OrthoEmissionVelocityModule *ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>::createModule(TrackingPtr<ParticleSystem> &sys)
+OrthoEmissionVelocityModule *ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>::createModule(TrackingPtr<ParticleSystem> &sys)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x40
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0x65
-        __emit 0x91
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xb1
-        __emit 0xb8
-        __emit 0xa1
-        __emit 0xff
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xec
-        __emit 0x21
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x14
-        __emit 0xe8
-        __emit 0x21
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0xd4
-        __emit 0x21
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    OrthoEmissionVelocityModule *module =
+        (OrthoEmissionVelocityModule *)::operator new(0x40);
+    if (module) {
+        const void *source = this;
+        ((OrthoEmissionVelocityModuleCtorShim *)module)->construct(sys, source);
+        initializeOrthoEmissionVelocityModule(module);
+        return module;
     }
+    return 0;
 }
 
 // ??0?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z

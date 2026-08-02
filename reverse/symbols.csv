@@ -2839,6 +2839,7 @@ name,address,notes
 ?construct@LineEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00004269,LineEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@OrthoEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000ADDA,OrthoEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@OrthoEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0000FAD3,OrthoEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@OrthoEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00004692,OrthoEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@OutwardEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0003AD96,OutwardEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@OutwardEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0003C6DC,OutwardEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@OutwardEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00048DB0,OutwardEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
