@@ -4079,3 +4079,5 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?getSpecialPowerModule@Object@@QBEPAVSpecialPowerModuleInterface@@PBVSpecialPowerTemplate@@@Z,0x000401BF,doSpecialPowerUsingWaypoints call target (incremental-link thunk)
 ?getFirstObject@GameLogic@@QAEPAVObject@@XZ,0x000358BE,doEnableOrDisableObjectDifficultyBonuses call target (incremental-link thunk)
 ?setReceivingDifficultyBonus@Object@@QAEX_N@Z,0x00016F2C,doEnableOrDisableObjectDifficultyBonuses call target (incremental-link thunk)
+??0TunnelTracker@@QAE@XZ,0x0001E777,REL32 pin from CaveSystem::registerNewCave @0x378970
+?_M_insert_overflow@?$vector@PAVTunnelTracker@@V?$allocator@PAVTunnelTracker@@@_STL@@@_STL@@IAEXPAPAVTunnelTracker@@ABQAV3@ABU__true_type@2@I_N@Z,0x0001212A,REL32 pin from CaveSystem::registerNewCave @0x378970

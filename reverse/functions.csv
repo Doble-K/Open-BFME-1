@@ -12693,7 +12693,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?registerAnimation@Anim2DCollection@@QAEXPAVAnim2D@@@Z,,0x005BA450,37,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?registerGameWindow@AnimateWindowManager@@QAEXPAVGameWindow@@W4AnimTypes@@_NII@Z,,0x0045DB50,165,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?registerMissing@W3DShadowTextureManager@@QAEXPBD@Z,,0x007B1190,102,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
-?registerNewCave@CaveSystem@@QAEXH@Z,,0x00378970,193,Code/masm_dumps/_rn6__registerNewCave_CaveSystem__QAEXH_Z_378970.asm,matched,reloc-needle Open-BFME4+Grok
 ?registerWithAnimateManager@Shell@@QAEXPAVGameWindow@@W4AnimTypes@@_NI@Z,,0x0057F370,55,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
 ?relayCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00663100,237,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?releaseAudioEventRTS@AudioManager@@UAEXPAVAudioEventRTS@@@Z,,0x0045DD60,23,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z,,0x001C3850,77,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,MASM dump converted to clean C++; BFME relocates m_disabledMask to +0x1A4
 ?doEnableOrDisableObjectDifficultyBonuses@ScriptActions@@UAEX_N@Z,,0x002F0840,77,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,MASM dump converted to clean C++; BFME ScriptEngine is 0x6868 bigger ahead of m_freezeByScript
 ?setConnectionState@NAT@@IAEXHW4NATConnectionState@@@Z,,0x00670DC0,116,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,MASM dump converted to clean C++; BFME EstablishConnectionsMenu declares its five public methods virtual so setPlayerStatus is slot 5
+?registerNewCave@CaveSystem@@QAEXH@Z,,0x00378970,193,Code/GameEngine/Source/GameLogic/System/CaveSystem.cpp,matched,MASM dump converted to clean C++; BFME TunnelTracker has one polymorphic base (sizeof 0x20) not MemoryPoolObject+Snapshot
