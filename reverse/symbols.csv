@@ -3697,6 +3697,7 @@ name,address,notes
 ?worldToCell@Pathfinder@@QAE_NPBUCoord3D@@PAUICoord2D@@@Z,0x000171E8
 ?wouldIgnite@FlammableUpdate@@QAE_NXZ,0x00016653
 ?write@ConditionWriteChunkShim@@SAXAAVDataChunkOutput@@PAVCondition@@@Z,0x00352DB0,Condition WriteConditionDataChunk incremental-link thunk target through a TU-local forwarding shim
+?write@MapCacheWriteCacheINIShim@@QAEX_N@Z,0x004550C0,MapCache writeCacheINI incremental-link thunk target through a TU-local forwarding shim
 ?write@UserPreferences@@UAE_NXZ,0x00030495
 ?writeCacheINI@MapCache@@AAEX_N@Z,0x0000E2B4
 ?writeDrawInfo@FXParticleSystem@@YAXAAVFile@@PBI@Z,0x0004618C,draw module info write thunk

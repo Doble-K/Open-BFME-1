@@ -5,13 +5,13 @@ class MapCache
     void writeCacheINI(bool);
 };
 
-__declspec(naked) void MapCache::writeCacheINI(bool)
+class MapCacheWriteCacheINIShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 007h
-        _emit 06Eh
-        _emit 044h
-        _emit 000h
-    }
+public:
+    void write(bool user);
+};
+
+void MapCache::writeCacheINI(bool user)
+{
+    ((MapCacheWriteCacheINIShim *)this)->write(user);
 }
