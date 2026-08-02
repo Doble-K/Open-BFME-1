@@ -592,3 +592,27 @@ byte-matched *caller* before editing anything.
 separating from destructors: whenever a construct's identity lives entirely in
 relocated operands, the byte gate cannot see it, and the check has to come from
 somewhere the relocation still exists — a vtable, a caller, or a string.
+
+## MSVC lays out same-name virtual overloads in reverse declaration order
+
+`Win32LocalFileSystem::openFile` is a 22-byte forwarder: BFME widened `openFile`
+to four parameters and left the two-parameter form calling the wide one. Written
+the obvious way —
+
+    virtual File *openFile( const char *, Int );                // meant to be slot 2
+    virtual File *openFile( const char *, Int, Int, Int );      // meant to be slot 3
+
+— it compiled to 21 of 22 bytes, with `call [eax+0x08]` where retail has
+`call [eax+0x0c]`. Overload resolution was right; the slot was not. Swapping the
+two declarations, widest first, fixed it.
+
+MSVC assigns vtable slots to a run of overloads sharing a name in *reverse* of
+the order they are declared. So when the target calls one overload through the
+vtable, the declaration order in the shim is load-bearing, and the natural
+narrow-to-wide reads as the wrong slot.
+
+The symptom is worth recognising because it is easy to misread: a one-byte diff
+in a `call [reg+disp]` displacement looks like a wrong slot *number* — a
+miscounted vtable — when the count is right and only the ordering is wrong.
+Check for an overload set before recounting slots. Anywhere a shim declares two
+virtuals with the same name, the order is a decision, not a formatting choice.

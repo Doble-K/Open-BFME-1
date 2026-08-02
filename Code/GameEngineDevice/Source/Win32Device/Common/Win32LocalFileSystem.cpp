@@ -53,8 +53,15 @@ Win32LocalFileSystem::~Win32LocalFileSystem() {
 }
 
 //DECLARE_PERF_TIMER(Win32LocalFileSystem_openFile)
-// ?openFile@Win32LocalFileSystem@@UAEPAVFile@@PBDH@Z present-unmatched
-File * Win32LocalFileSystem::openFile(const Char *filename, Int access /* = 0 */) 
+// This is Zero Hour's openFile, and in BFME it is NOT the two-argument form.
+// BFME widened openFile to four parameters and left a 22-byte forwarder at the
+// two-argument slot; that forwarder is matched in
+// Win32LocalFileSystem_openFile.cpp, and the body below belongs to the wide
+// form at slot 3, retail 0x009CDF50, 571 bytes. Retyping it needs a class
+// declaration with the extra two parameters, which the reference header does
+// not have -- so it stays here, uncompiled against its real target, rather than
+// carrying a marker for a name another file now legitimately owns.
+File * Win32LocalFileSystem::openFile(const Char *filename, Int access /* = 0 */)
 {
 	//USE_PERF_TIMER(Win32LocalFileSystem_openFile)
 	Win32LocalFile *file = newInstance( Win32LocalFile );	
