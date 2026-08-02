@@ -9,13 +9,13 @@ public:
     void friend_awakenUpdateModule(Object *, UpdateModule *, unsigned int);
 };
 
-__declspec(naked) void GameLogic::friend_awakenUpdateModule(Object *, UpdateModule *, unsigned int)
+class GameLogicAwakenUpdateModuleShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 027h
-        _emit 03Fh
-        _emit 038h
-        _emit 000h
-    }
+public:
+    void awaken(Object *obj, UpdateModule *mod, unsigned int sleep);
+};
+
+void GameLogic::friend_awakenUpdateModule(Object *obj, UpdateModule *mod, unsigned int sleep)
+{
+    ((GameLogicAwakenUpdateModuleShim *)this)->awaken(obj, mod, sleep);
 }
