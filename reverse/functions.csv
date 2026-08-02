@@ -11296,7 +11296,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getGridVertexHeight@WaterRenderObjClass@@QAEXHHPAM@Z,,0x00730340,84,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?getGroundHeight@TerrainLogic@@UBEMMMPAUCoord3D@@@Z,,0x001A2D80,27,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?getGroup@AIUpdateInterface@@QAEPAVAIGroup@@XZ,,0x008F7430,8,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,icf-owner=?getShroudStatusForPlayer@PartitionManager@@QBE?AW4CellShroudStatus@@HPBUCoord3D@@@Z
-?getGroup@Object@@QAEPAVAIGroup@@XZ,,0x008F9550,71,Code/masm_dumps/_leaf2__getGroup_Object__QAEPAVAIGroup__XZ_8F9550.asm,matched,Exact 71B present-unmatched Open-BFME4
+?getGroup@Object@@QAEPAVAIGroup@@XZ,,0x008F9550,71,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,Exact 71B C++ raw function conversion Open-BFME5
 ?getGroupNumeralString@W3DDisplayStringManager@@UAEPAVDisplayString@@H@Z,,0x006F5740,26,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp,matched,
 ?getHackInternetAIInterface@AIUpdateInterface@@UAEPAVHackInternetAIInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getHackInternetAIInterface@AIUpdateInterface@@UBEPBVHackInternetAIInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
