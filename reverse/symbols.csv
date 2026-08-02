@@ -3446,6 +3446,7 @@ name,address,notes
 ?run@GadgetListBoxSetColorsShim@@SAXPAVGameWindow@@HHHHHHHHHHHH@Z,0x004B6D40,GadgetListBoxSetColors incremental-link thunk target through a TU-local forwarding shim
 ?run@GetGameLogicRandomValueRealShim@@SAMMMPADH@Z,0x00096DD0,GetGameLogicRandomValueReal incremental-link thunk target through a TU-local forwarding shim
 ?run@HideInGameChatShim@@SAXXZ,0x00512670,HideInGameChat incremental-link thunk target through a TU-local forwarding shim
+?run@IniParseObjectFilterShim@@SAXPAVINI@@PAX1PBX@Z,0x0039F470,iniParseObjectFilter incremental-link thunk target through a TU-local forwarding shim
 ?run@PopulateLobbyPlayerListboxShim@@SAXXZ,0x004FB500,PopulateLobbyPlayerListbox incremental-link thunk target through a TU-local forwarding shim
 ?run@RadarRefreshTerrainShim@@QAEXPAVTerrainLogic@@@Z,0x0024E990,Radar refreshTerrain incremental-link thunk target through a TU-local forwarding shim
 ?run@RefreshGameListBoxShim@@SAXPAVGameWindow@@_N@Z,0x0062E2E0,RefreshGameListBox incremental-link thunk target through a TU-local forwarding shim

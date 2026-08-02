@@ -2,13 +2,15 @@
 
 class INI;
 
-__declspec(naked) void iniParseObjectFilter(INI *, void *, void *, const void *)
+void iniParseObjectFilter(INI *, void *, void *, const void *);
+
+class IniParseObjectFilterShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 006h
-		_emit 05Ch
-		_emit 036h
-		_emit 000h
-	}
+public:
+    static void run(INI *ini, void *store, void *userData, const void *desc);
+};
+
+void iniParseObjectFilter(INI *ini, void *store, void *userData, const void *desc)
+{
+    IniParseObjectFilterShim::run(ini, store, userData, desc);
 }
