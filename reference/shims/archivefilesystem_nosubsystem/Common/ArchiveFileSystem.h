@@ -167,6 +167,9 @@ class ArchiveFileSystem
 	virtual void					closeAllArchiveFiles( void ) = 0;								///< Close all Archivefiles currently open
 
 	// File operations
+	// SHIM: the wide form, vtable slot 6 (retail 0x009CA6E0, ret 0x10). Declared
+	// widest-first for the same reverse-ordering reason as ArchiveFile.
+	virtual File*					openFile( const Char *filename, Int access, Int a3, Int a4 );
 	virtual File*					openFile( const Char *filename, Int access = 0);	///< Search Archive files for specified file name and open it if found
 	virtual void					closeAllFiles( void ) = 0;									///< Close all files associated with ArchiveFiles
 	virtual Bool					doesFileExist(const Char *filename) const;		///< return true if that file exists in an archive file somewhere.
