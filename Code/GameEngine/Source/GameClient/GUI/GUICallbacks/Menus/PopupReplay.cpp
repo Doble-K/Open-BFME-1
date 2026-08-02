@@ -108,7 +108,17 @@ static void closeSaveMenu( GameWindow *window )
 	WindowLayout *layout = window->winGetLayout();
 
 	if( layout )
-		layout->hide( TRUE );
+	{
+		struct PopupReplayWindowLayoutVirtual
+		{
+			virtual void unused0( void ) = 0;
+			virtual void unused1( void ) = 0;
+			virtual void unused2( void ) = 0;
+			virtual void unused3( void ) = 0;
+			virtual void hide( Bool hide ) = 0;
+		};
+		((PopupReplayWindowLayoutVirtual *)layout)->hide( TRUE );
+	}
 
 }  // end closeSaveMenu
 

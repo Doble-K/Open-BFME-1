@@ -7410,9 +7410,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?PopupReplayInit@@YAXPAVWindowLayout@@PAX@Z,,0x004DE270,386,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay_Init.asm,matched,
 ?PopupReplayInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004DEFE0,93,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?PopupReplaySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004DEB70,737,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay_System.asm,matched,Exact MASM: C++ only temp-slot mov-esp order at saveReplay by-value sites
-?PopupReplayUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004DE180,90,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay_Update.asm,matched,
 ?PostStaticInit@Debug@@CAXXZ,0x0088AF60,0x0088AF60,841,Code/masm_dumps/__PostStaticInit_Debug__CAXXZ_88AF60.asm,matched,
 ?Power@VectorProcessorClass@@SAXPAM0MH@Z,,0x00B00190,56,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
+?PopupReplayUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004DE180,90,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay.cpp,matched,C++ local vtable shim preserves BFME virtual WindowLayout::hide dispatch
 ?PreStaticInit@Debug@@CAPAV1@XZ,0x00889500,0x00889500,114,Code/GameEngine/Source/Common/debug.cpp,matched,Debug PreStaticInit singleton allocator
 ?Pre_Render_Update@LightEnvironmentClass@@QAEXABVMatrix3D@@@Z,,0x0094BB40,245,Code/masm_dumps/_entry__Pre_Render_Update_LightEnvironmentClass_QAEXABVMatrix3D_Z_94BB40.asm,matched,
 ?Pre_Rotate_Z@Matrix3D@@QAEXM@Z,,0x0075B080,145,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
