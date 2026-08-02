@@ -10204,7 +10204,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@PropagandaTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@QueueProductionExitUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001241B0,88,Code/masm_dumps/QueueProductionExitUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x69; ILT 0x41964b->0x1241b0; drift 0xB026DA was WWMath misplacement
 ?friend_newModuleData@RadarUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00124240,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
-?friend_newModuleData@RadarUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012B530,62,Code/masm_dumps/RadarUpgrade_friend_newModuleData.asm,matched,Retail registration dp160 proves RadarUpgrade data factory
+?friend_newModuleData@RadarUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012B530,62,Code/GameEngine/Source/GameLogic/Object/Upgrade/RadarUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@RadiusDecalUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00123E50,50,Code/GameEngine/Source/GameLogic/Object/Update/RadiusDecalUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@RailedTransportAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001145D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@RailedTransportDockUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118AA0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
