@@ -5856,6 +5856,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?First@GridListIterator@@QAEXPAVCullableClass@@@Z,,0x008DCE20,12,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?First@HashTableIteratorClass@@QAEXXZ,,0x009E01F0,93,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
 ?First@SimpleSceneIterator@@UAEXXZ,,0x009431B0,10,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
+?Float_To_Int_Floor@WWMath@@SAHABM@Z,,0x007239D0,103,Code/Libraries/Source/WWVegas/WWMath/wwmath.cpp,matched,
 ?Float_To_Long@WWMath@@SAJM@Z,,0x009523C0,13,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Floor@WWMath@@SAMM@Z,,0x00069750,20,Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp,matched,
 ?Flush@Base64Pipe@@UAEHXZ,,0x009E7B20,87,Code/Libraries/Source/WWVegas/WWLib/b64pipe.cpp,matched,
