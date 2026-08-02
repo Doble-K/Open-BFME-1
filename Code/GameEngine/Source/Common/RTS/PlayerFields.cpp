@@ -48,7 +48,6 @@ Bool Player::hasRadar() const
 // itself has no known standalone retail call site (see reverse/re_attempts.log);
 // hasPrereqsForScience already has its own row (Player.cpp, natural header --
 // it never dereferences a Player field, so layout drift doesn't affect it).
-// ?hasScience@Player@@QBE_NW4ScienceType@@@Z present-unmatched
 Bool Player::hasScience(ScienceType t) const
 {
 	return std::find(m_sciences.begin(), m_sciences.end(), t) != m_sciences.end();

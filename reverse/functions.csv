@@ -171,6 +171,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$__copy_ptrs@PAUHorzLine@@PAU1@@_STL@@YAPAUHorzLine@@PAU1@00ABU__false_type@0@@Z,,0x00068C20,32,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
 ??$__copy_ptrs@PAUNugget@ModuleInfo@@PAU12@@_STL@@YAPAUNugget@ModuleInfo@@PAU12@00ABU__false_type@0@@Z,,0x007722C0,32,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ??$__copy_ptrs@PAUPayload@DeliverPayloadNugget@@PAU12@@_STL@@YAPAUPayload@DeliverPayloadNugget@@PAU12@00ABU__false_type@0@@Z,,0x0036E110,32,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
+??$__copy_ptrs@PAUPrereqUnitRec@ProductionPrerequisite@@PAU12@@_STL@@YAPAUPrereqUnitRec@ProductionPrerequisite@@PAU12@00ABU__false_type@0@@Z,,0x000E4BB0,32,Code/GameEngine/Source/Common/RTS/ProductionPrerequisite.cpp,matched,
 ??$__copy_ptrs@PAUSegInfo@W3DRopeDraw@@PAU12@@_STL@@YAPAUSegInfo@W3DRopeDraw@@PAU12@00ABU__false_type@0@@Z,,0x0075A150,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/W3DRopeDraw.cpp,matched,
 ??$__copy_ptrs@PAUStationPointData@GarrisonContain@@PAU12@@_STL@@YAPAUStationPointData@GarrisonContain@@PAU12@00ABU__false_type@0@@Z,,0x000BA6F0,32,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,icf-owner=??$__copy_ptrs@PAUDetonatorInfo@MinefieldBehavior@@PAU12@@_STL@@YAPAUDetonatorInfo@MinefieldBehavior@@PAU12@00ABU__false_type@0@@Z
 ??$__copy_ptrs@PAUVideo@@PAU1@@_STL@@YAPAUVideo@@PAU1@00ABU__false_type@0@@Z,,0x00755880,32,Code/GameEngine/Source/GameClient/VideoPlayer.cpp,matched,
@@ -5184,6 +5185,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSphericalEmissionVelocityInfo@FXParticleSystem@@UAEPAXI@Z,,0x005D7250,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??_GSphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAEPAXI@Z,,0x005D7450,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??_GSpyVisionUpdateModuleData@@UAEPAXI@Z,,0x00378070,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
+??_GSquad@@MAEPAXI@Z,,0x000D4060,30,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??_GStatusBitsUpgrade@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStatusBitsUpgradeModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStealthDetectorUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -11844,6 +11846,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?hasPrereqsForScience@Player@@QBE_NW4ScienceType@@@Z,,0x000C9850,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?hasRGBDataForWidth@TileData@@QAE_NH@Z,,0x006D6620,48,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
 ?hasRadar@Player@@QBE_NXZ,,0x000C9A80,28,Code/GameEngine/Source/Common/RTS/PlayerFields.cpp,matched,BFME retail body; m_radarDisabled@0x60 m_disableProofRadarCount@0x5c m_radarCount@0x58 via reference/shims/player; adjacent to okToPlayRadarEdgeSound@0xC9A20 in same compiland
+?hasScience@Player@@QBE_NW4ScienceType@@@Z,,0x000CE340,46,Code/GameEngine/Source/Common/RTS/PlayerFields.cpp,matched,
 ?hasStagingRoomListChanged@GameSpyInfo@@UAE_NXZ,,0x006306A0,8,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?hasWriteAccess@@YA_NXZ,,0x0062E8F0,99,Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp,matched,
 ?height@IRegion2D@@QBEHXZ,0x00011B49,0x001A19B0,7,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,returns integer height
