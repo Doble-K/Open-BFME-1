@@ -4648,13 +4648,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_G?$CategoryModuleTemplateBase@$07@FXParticleSystem@@UAEPAXI@Z,,0x0005E2A0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??_G?$CategoryModuleTemplateBase@$0A@@FXParticleSystem@@UAEPAXI@Z,,0x0005D8B0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??_G?$DLListClass@USmudgeSet@@@@UAEPAXI@Z,,0x005D38E0,31,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
-??_G?$DynamicVectorClass@PAUtThreadInfoType@@@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_G?$DynamicVectorClass@PAVDefinitionClass@@@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_G?$DynamicVectorClass@PAVTextureClass@@@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_G?$DynamicVectorClass@PAVVertexMaterialClass@@@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_G?$DynamicVectorClass@UPendingSurfaceStruct@Render2DSentenceClass@@@@UAEPAXI@Z,,0x00940BD0,30,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,
 ??_G?$DynamicVectorClass@U_ArcInfoStruct@VehicleCurveClass@@@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_G?$DynamicVectorClass@VShaderClass@@@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_G?$DynamicVectorClass@VStringClass@@@@UAEPAXI@Z,,0x0013BD70,30,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ??_G?$IndexClass@HPAUINISection@@@@QAEPAXI@Z,,0x009E32E0,53,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??_G?$LatchRestore@H@@UAEPAXI@Z,,0x003377A0,39,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
@@ -4732,7 +4727,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_G?$set@PAVGameSpyStagingRoom@@U?$less@PAVGameSpyStagingRoom@@@_STL@@V?$allocator@PAVGameSpyStagingRoom@@@3@@_STL@@QAEPAXI@Z,,0x0062CF90,30,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
 ??_G?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAEPAXI@Z,,0x007544F0,30,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,icf-owner=??_GVideo@@QAEPAXI@Z
 ??_GAABTreeLinkClass@@UAEPAXI@Z,,0x006D18A0,36,Code/Libraries/Source/WWVegas/WWMath/aabtreecull.cpp,matched,
-??_GAIPlayer@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GActiveBody@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GActiveBodyModuleData@@UAEPAXI@Z,,0x00210B40,30,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,
 ??_GActiveCategoryClass@@UAEPAXI@Z,,0x00AFF690,30,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
@@ -4743,7 +4737,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GAnimateWindowManager@@UAEPAXI@Z,,0x0045DB20,30,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??_GAnimationSteeringUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAnimationSteeringUpdateModuleData@@UAEPAXI@Z,,0x000A73F0,30,Code/GameEngine/Source/GameLogic/Object/Update/AnimationSteeringUpdate.cpp,matched,
-??_GAssaultTransportAIUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAssistedTargetingUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAudioEventRTS@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GAutoDepositUpdateModuleData@@UAEPAXI@Z,,0x00125930,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
@@ -4759,7 +4752,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GBodyParticleSystem@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GBoxEmissionVolumeInfo@FXParticleSystem@@UAEPAXI@Z,,0x005D5EA0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??_GBoxEmissionVolumeModuleTemplate@FXParticleSystem@@UAEPAXI@Z,,0x005D6080,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
-??_GBridgeBehavior@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GBridgeBehaviorModuleData@@UAEPAXI@Z,,0x001F5800,30,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ??_GBridgeFXInfo@@QAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GBridgeOCLInfo@@QAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -4853,7 +4845,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GFireWeaponWhenDeadBehaviorModuleData@@UAEPAXI@Z,,0x0012AD30,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??_GFirestormDynamicGeometryInfoUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GFirewallHelperClass@@UAEPAXI@Z,,0x0066FBB0,92,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
-??_GFlammableUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GFlammableUpdateModuleData@@UAEPAXI@Z,,0x00294C10,30,Code/GameEngine/Source/GameLogic/Object/Update/FlammableUpdate.cpp,matched,
 ??_GFlashTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GFlightDeckBehavior@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -4925,7 +4916,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GMainMenuScaleUpTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GMainMenuSmallScaleDownTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GMapCache@@QAEPAXI@Z,,0x00079030,30,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
-??_GMapObject@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GMatBufferClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GMatPassTaskClass@@QAEPAXI@Z,,0x009467B0,50,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??_GMaxHealthUpgradeModuleData@@UAEPAXI@Z,,0x002D65C0,30,Code/GameEngine/Source/GameLogic/Object/Upgrade/MaxHealthUpgrade.cpp,matched,
@@ -4947,8 +4937,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GModelConditionUpgradeModuleData@@UAEPAXI@Z,,0x002D6AF0,30,Code/GameEngine/Source/GameLogic/Object/Upgrade/ModelConditionUpgrade.cpp,matched,
 ??_GModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GModuleFactory@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GMoneyCrateCollideModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GMultiListObjectClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GNameKeyGenerator@@UAEPAXI@Z,,0x001689E0,30,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,icf-owner=??_GDefinitionMgrClass@@UAEPAXI@Z
 ??_GNamedPivotMapClass@@UAEPAXI@Z,,0x00974EF0,30,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??_GNetCommandList@@MAEPAXI@Z,,0x001DE080,30,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,icf-owner=??_GSimpleObjectIterator@@MAEPAXI@Z
@@ -4982,7 +4970,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GParticleUplinkCannonUpdateModuleData@@UAEPAXI@Z,,0x002A2690,30,Code/GameEngine/Source/GameLogic/Object/Update/ParticleUplinkCannonUpdate.cpp,matched,
 ??_GPartitionContactListNode@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GPartitionData@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GPartitionManager@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GPayload@DeliverPayloadNugget@@QAEPAXI@Z,,0x0036DB30,30,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ??_GPeerRequest@@QAEPAXI@Z,,0x00647340,30,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ??_GPeerResponse@@QAEPAXI@Z,,0x004F3970,30,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp,matched,
@@ -5016,8 +5003,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GRailedTransportDockUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GRailedTransportDockUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GRandomTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GRankInfo@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GRankInfoStore@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GRawFileClass@@UAEPAXI@Z,,0x009E7100,30,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ??_GRayEffectFXNugget@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GRayEffectSystem@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -5058,7 +5043,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSimpleObjectIterator@@MAEPAXI@Z,,0x001DE080,30,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,
 ??_GSineLinearOffsetTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSkirmishGameInfo@@QAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GSlavedUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSlowDeathBehaviorModuleData@@UAEPAXI@Z,,0x0020A570,30,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior.cpp,matched,
 ??_GSmartBombTargetHomingUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSmudgeManager@@UAEPAXI@Z,,0x005D44D0,30,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
@@ -5074,7 +5058,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSphericalEmissionVelocityInfo@FXParticleSystem@@UAEPAXI@Z,,0x005D7250,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??_GSphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAEPAXI@Z,,0x005D7450,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??_GSpyVisionUpdateModuleData@@UAEPAXI@Z,,0x00378070,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-??_GSquad@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStatusBitsUpgrade@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStatusBitsUpgradeModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GStealthDetectorUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -5091,7 +5074,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSubsystemLegend@@UAEPAXI@Z,,0x00078B50,30,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,scalar deleting dtor (vtable slot 0)
 ??_GSubsystemLegendEntry@@QAEPAXI@Z,,0x00078420,30,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,scalar deleting dtor for the list element
 ??_GSupplyCenterProductionExitUpdateModuleData@@UAEPAXI@Z,,0x0037CE80,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-??_GSupplyTruckAIUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSupplyTruckAIUpdateModuleData@@UAEPAXI@Z,,0x00124400,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??_GSupplyTruckBusyState@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSupplyTruckIdleState@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -5100,7 +5082,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSupplyWarehouseDockUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSupplyWarehouseDockUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GTeamFactory@@UAEPAXI@Z,,0x009F2900,30,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
-??_GTeamInQueue@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GTechBuildingBehavior@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GTechBuildingBehaviorModuleData@@UAEPAXI@Z,,0x0008AD20,30,Code/GameEngine/Source/GameLogic/Object/Behavior/TechBuildingBehavior.cpp,matched,
 ??_GTerrainCollisionModuleInfo@FXParticleSystem@@UAEPAXI@Z,,0x005DE740,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -5109,7 +5090,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GTerrainTracksRenderObjClassSystem@@QAEPAXI@Z,,0x00730530,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ??_GTexBufferClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GTextOnFrameTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GTextTypeTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GThingTemplate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GTintEnvelope@@MAEPAXI@Z,,0x001B0E60,30,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,icf-owner=??_GUpgrade@@MAEPAXI@Z
@@ -5126,7 +5106,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GUpgrade@@MAEPAXI@Z,,0x001B0E60,30,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
 ??_GUpgradeDieModuleData@@UAEPAXI@Z,,0x00126870,30,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-??_GUpgradeModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GUser@@MAEPAXI@Z,,0x0078D240,30,Code/GameEngine/Source/GameNetwork/User.cpp,matched,icf-owner=??_GDynamicAudioEventRTS@@MAEPAXI@Z
 ??_GUserPreferences@@UAEPAXI@Z,,0x000AB6A0,30,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ??_GVector3Randomizer@@UAEPAXI@Z,,0x008E2260,31,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,object-symbol=??_GCullSystemClass@@UAEPAXI@Z;C++ alias
@@ -5142,8 +5121,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GW3DMPO@@UAEPAXI@Z,,0x008E2260,31,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,object-symbol=??_GCullSystemClass@@UAEPAXI@Z;C++ alias
 ??_GW3DOverlordTankDrawModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GW3DPropDraw@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GW3DPropDrawModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GW3DRopeDraw@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GW3DShadowGeometryManager@@QAEPAXI@Z,,0x007B13E0,90,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??_GW3DShadowTextureManager@@QAEPAXI@Z,,0x007B13E0,90,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ??_GW3DStatusCircle@@UAEPAXI@Z,,0x00725FD0,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DStatusCircle.cpp,matched,icf-owner=??_GDistLODClass@@UAEPAXI@Z
