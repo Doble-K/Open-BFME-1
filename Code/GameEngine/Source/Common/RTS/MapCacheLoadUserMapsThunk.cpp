@@ -5,13 +5,13 @@ class MapCache
     bool loadUserMaps();
 };
 
-__declspec(naked) bool MapCache::loadUserMaps()
+class MapCacheLoadUserMapsShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0CAh
-        _emit 0E7h
-        _emit 042h
-        _emit 000h
-    }
+public:
+    bool load();
+};
+
+bool MapCache::loadUserMaps()
+{
+    return ((MapCacheLoadUserMapsShim *)this)->load();
 }
