@@ -12891,7 +12891,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?sendGameCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00666240,147,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendGameResults@GameResultsThreadClass@@AAEHIGABV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@Z,,0x00640830,223,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ?sendGameSpyStatsAuthKey@BFMEConnectionManager@@QAEXPAX@Z,,0x00665A70,326,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B2D0,187,Code/masm_dumps/_rn5__sendKeepAlive_DisconnectManager__IAEXPAVConnectionManager___Z_66B2D0.asm,matched,reloc-needle Open-BFME4+Grok
 ?sendKeepAliveCommand@BFMEConnectionManager@@QAEXXZ,,0x006635E0,206,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendLoadCompleteCommand@BFMEConnectionManager@@QAEXXZ,,0x00664A60,168,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendLocalCommand@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,,0x00664740,277,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setConnectionState@NAT@@IAEXHW4NATConnectionState@@@Z,,0x00670DC0,116,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,MASM dump converted to clean C++; BFME EstablishConnectionsMenu declares its five public methods virtual so setPlayerStatus is slot 5
 ?registerNewCave@CaveSystem@@QAEXH@Z,,0x00378970,193,Code/GameEngine/Source/GameLogic/System/CaveSystem.cpp,matched,MASM dump converted to clean C++; BFME TunnelTracker has one polymorphic base (sizeof 0x20) not MemoryPoolObject+Snapshot
 ?setSquishedControlBarConfig@ControlBar@@IAEXXZ,,0x0049D0B0,95,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,MASM dump converted to clean C++; BFME View has two more virtuals ahead of setHeight
+?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B2D0,187,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,MASM dump converted to clean C++; keep-alive elapsed time is unsigned in BFME (JA not JG)

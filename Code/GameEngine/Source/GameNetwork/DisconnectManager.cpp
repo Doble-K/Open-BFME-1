@@ -466,9 +466,9 @@ Bool DisconnectManager::allowedToContinue() {
 	return TRUE;
 }
 
-// ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z present-unmatched
 void DisconnectManager::sendKeepAlive(ConnectionManager *conMgr) {
-	time_t curTime = timeGetTime();
+	// unsigned, not time_t: retail tests the elapsed time with JA @0x66B2FF
+	UnsignedInt curTime = timeGetTime();
 
 	if (((curTime - m_lastKeepAliveSendTime) > 500) || (m_lastKeepAliveSendTime == -1)) {
 		NetDisconnectKeepAliveCommandMsg *msg = newInstance(NetDisconnectKeepAliveCommandMsg);
