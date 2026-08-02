@@ -1,5 +1,7 @@
 // cl: /DNDEBUG /MD /EHsc
 
+class DefinitionClass;
+
 template <class T>
 class VectorClass
 {
@@ -30,3 +32,4 @@ VectorClass<T>::~VectorClass()
 template class VectorClass<int>;
 template class VectorClass<float>;
 template class VectorClass<unsigned char>;
+template class VectorClass<DefinitionClass *>;
