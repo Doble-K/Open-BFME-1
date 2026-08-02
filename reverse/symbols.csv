@@ -1137,6 +1137,7 @@ name,address,notes
 ??0SpawnBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00034711,pinharvest x1 (thunk)
 ??0SpawnBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00035D91,pinharvest x1 (thunk)
 ??0SpawnPointProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00023858,module ctor (friend_newModuleInstance retail call target)
+??0SpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x002A6360,BFME SpecialAbilityUpdate constructor body
 ??0SpecialPowerCompletionDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x00008878,pinharvest x1 (thunk)
 ??0SpecialPowerCompletionDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000BAF0,pinharvest x1 (thunk)
 ??0SpecialPowerCompletionDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x00034EDC,pinharvest x1 (thunk)
