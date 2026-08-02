@@ -43,6 +43,11 @@ public:
 	void updateFileProgress();
 	void buildPlayerStatusText(void *out);
 	void queueLocalCommand(void *msg);
+	void sendPlayerLeaveCommands();
+	void sendFrameInfoToPlayer(int slot);
+	void sendDisconnectChatCommand(void *text);
+	void sendDisconnectVoteCommand(int slot, unsigned int frame);
+	void sendGameSpyStatsAuthKey(void *key);
 	void sendKeepAliveCommand();
 	void sendProgressCommand(int percent);
 	void sendDisconnectFrameCommand();
@@ -8023,5 +8028,643 @@ L01_664ACA:
 		mov dword ptr fs:[0h], ecx
 		add esp, 10h
 		ret
+	}
+}
+
+// Sends command type 10 (PLAYERLEAVE) and 11 (DESTROYPLAYER) -- it builds both. Named from the type its message carries.
+__declspec(naked) void BFMEConnectionManager::sendPlayerLeaveCommands()
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104424Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push esi
+		push edi
+		push 20h
+		mov edi, ecx
+		__emit 0E8h
+		__emit 0FFh
+		__emit 0C2h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+8h], eax
+		xor esi, esi
+		cmp eax, esi
+		mov dword ptr [esp+14h], esi
+		je L00_665C4B
+		mov ecx, eax
+		__emit 0E8h
+		__emit 044h
+		__emit 0F0h
+		__emit 09Dh
+		__emit 0FFh   // call 0x44C8D
+		mov esi, eax
+L00_665C4B:
+		xor eax, eax
+		mov al, byte ptr [edi+12028h]
+		mov ecx, esi
+		mov dword ptr [esp+14h], 0FFFFFFFFh
+		push eax
+		__emit 0E8h
+		__emit 0EAh
+		__emit 067h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3C44D
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov dword ptr [esi+8h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 0FFh
+		__emit 0FEh
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L01_665C83
+		__emit 0E8h
+		__emit 0D9h
+		__emit 0A8h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L01_665C83:
+		mov ecx, dword ptr [edi+12028h]
+		push 0FFh
+		mov dword ptr [esi+0Ch], ecx
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0E1h
+		__emit 094h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		mov ecx, esi
+		__emit 0E8h
+		__emit 004h
+		__emit 0A4h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		__emit 0FFh
+		__emit 015h
+		__emit 044h
+		__emit 095h
+		__emit 035h
+		__emit 001h   // call dword ptr [0x1359544]
+		mov ecx, dword ptr [esp+0Ch]
+		mov dword ptr [edi+12110h], eax
+		pop edi
+		pop esi
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret
+	}
+}
+
+// Sends command type 3 (FRAMEINFO), the single-recipient counterpart to sendFrameInfo. Named from the type its message carries.
+__declspec(naked) void BFMEConnectionManager::sendFrameInfoToPlayer(int slot)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 104428Bh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push esi
+		push edi
+		push 28h
+		mov edi, ecx
+		__emit 0E8h
+		__emit 03Fh
+		__emit 0C0h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		mov esi, eax
+		add esp, 4h
+		mov dword ptr [esp+8h], esi
+		test esi, esi
+		mov dword ptr [esp+14h], 0h
+		je L00_665F31
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0A7h
+		__emit 0D3h
+		__emit 09Ah
+		__emit 0FFh   // call 0x132B4
+		mov dword ptr [esi], 111A220h
+		mov dword ptr [esi+1Ch], 0h
+		mov dword ptr [esi+20h], 0h
+		mov dword ptr [esi+24h], 0FFFFFFFFh
+		mov dword ptr [esi+14h], 3h
+		jmp L01_665F33
+L00_665F31:
+		xor esi, esi
+L01_665F33:
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		mov eax, dword ptr [eax+3Ch]
+		dec eax
+		mov dword ptr [esi+1Ch], eax
+		__emit 08Bh
+		__emit 00Dh
+		__emit 064h
+		__emit 014h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f1464]
+		mov edx, dword ptr [ecx]
+		mov dword ptr [esp+14h], 0FFFFFFFFh
+		call dword ptr [edx+68h]
+		mov dword ptr [esi+20h], eax
+		mov eax, dword ptr [esi+14h]
+		push eax
+		__emit 0E8h
+		__emit 014h
+		__emit 0FCh
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L02_665F6E
+		__emit 0E8h
+		__emit 0EEh
+		__emit 0A5h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L02_665F6E:
+		mov eax, dword ptr [edi+12028h]
+		mov dword ptr [esi+0Ch], eax
+		mov eax, dword ptr [edi+12028h]
+		mov ecx, dword ptr [edi+1202Ch]
+		cmp eax, ecx
+		jne L03_665F94
+		xor edx, edx
+		mov dl, 1h
+		mov ecx, eax
+		shl dl, cl
+		not dl
+		push edx
+		jmp L04_665F9B
+L03_665F94:
+		xor eax, eax
+		mov al, 1h
+		shl al, cl
+		push eax
+L04_665F9B:
+		mov ecx, edi
+		push esi
+		__emit 0E8h
+		__emit 0D7h
+		__emit 091h
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0FAh
+		__emit 0A0h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+0Ch]
+		pop edi
+		pop esi
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret
+	}
+}
+
+// Sends command type 13 (DISCONNECTCHAT). Named from the type its message carries.
+__declspec(naked) void BFMEConnectionManager::sendDisconnectChatCommand(void *text)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 1044373h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push esi
+		push edi
+		mov edi, ecx
+		push 20h
+		mov dword ptr [esp+18h], 0h
+		__emit 0E8h
+		__emit 007h
+		__emit 0B6h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+8h], eax
+		test eax, eax
+		mov byte ptr [esp+14h], 1h
+		je L00_666944
+		mov ecx, eax
+		__emit 0E8h
+		__emit 00Ah
+		__emit 0F5h
+		__emit 09Ch
+		__emit 0FFh   // call 0x35E4A
+		mov esi, eax
+		jmp L01_666946
+L00_666944:
+		xor esi, esi
+L01_666946:
+		mov eax, dword ptr [edi+12028h]
+		mov dword ptr [esi+0Ch], eax
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov byte ptr [esp+18h], 0h
+		__emit 0E8h
+		__emit 015h
+		__emit 0F2h
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L02_66696D
+		__emit 0E8h
+		__emit 0EFh
+		__emit 09Bh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L02_66696D:
+		push ecx
+		lea eax,  [esp+20h]
+		mov dword ptr [esp+0Ch], esp
+		mov ecx, esp
+		push eax
+		__emit 0E8h
+		__emit 082h
+		__emit 01Ah
+		__emit 022h
+		__emit 000h   // call 0x888400
+		mov ecx, esi
+		__emit 0E8h
+		__emit 019h
+		__emit 05Ch
+		__emit 09Bh
+		__emit 0FFh   // call 0x1C59E
+		mov ecx, dword ptr [edi+12028h]
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, edi
+		not dl
+		push edx
+		push esi
+		__emit 0E8h
+		__emit 03Bh
+		__emit 0A8h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 01Eh
+		__emit 002h
+		__emit 09Ah
+		__emit 0FFh   // call 0x6BC2
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0F9h
+		__emit 096h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		lea ecx,  [esp+1Ch]
+		mov dword ptr [esp+14h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 014h
+		__emit 018h
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		mov ecx, dword ptr [esp+0Ch]
+		pop edi
+		mov dword ptr fs:[0h], ecx
+		pop esi
+		add esp, 10h
+		ret 4h
+	}
+}
+
+// Sends command type 26 (DISCONNECTVOTE), and 14 (CHAT) on the other arm. Named from the type its message carries.
+__declspec(naked) void BFMEConnectionManager::sendDisconnectVoteCommand(int slot, unsigned int frame)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 1044473h
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push esi
+		push edi
+		mov edi, ecx
+		push 24h
+		mov dword ptr [esp+18h], 0h
+		__emit 0E8h
+		__emit 027h
+		__emit 0A9h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+8h], eax
+		test eax, eax
+		mov byte ptr [esp+14h], 1h
+		je L00_667624
+		mov ecx, eax
+		__emit 0E8h
+		__emit 0DFh
+		__emit 06Eh
+		__emit 09Dh
+		__emit 0FFh   // call 0x3E4FF
+		mov esi, eax
+		jmp L01_667626
+L00_667624:
+		xor esi, esi
+L01_667626:
+		push ecx
+		lea eax,  [esp+20h]
+		mov dword ptr [esp+0Ch], esp
+		mov ecx, esp
+		push eax
+		mov byte ptr [esp+1Ch], 0h
+		__emit 0E8h
+		__emit 0C4h
+		__emit 00Dh
+		__emit 022h
+		__emit 000h   // call 0x888400
+		mov ecx, esi
+		__emit 0E8h
+		__emit 00Eh
+		__emit 09Bh
+		__emit 09Ch
+		__emit 0FFh   // call 0x31151
+		mov ecx, dword ptr [esp+20h]
+		push ecx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0EFh
+		__emit 0C2h
+		__emit 09Bh
+		__emit 0FFh   // call 0x2393E
+		mov eax, dword ptr [edi+12028h]
+		mov dword ptr [esi+0Ch], eax
+		mov eax, dword ptr [esi+14h]
+		push eax
+		__emit 0E8h
+		__emit 011h
+		__emit 0E5h
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L02_667671
+		__emit 0E8h
+		__emit 0EBh
+		__emit 08Eh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L02_667671:
+		mov ecx, dword ptr [edi+12028h]
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, edi
+		not dl
+		push edx
+		push esi
+		__emit 0E8h
+		__emit 04Fh
+		__emit 09Bh
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 077h
+		__emit 0D3h
+		__emit 099h
+		__emit 0FFh   // call 0x4A07
+		mov ecx, esi
+		__emit 0E8h
+		__emit 00Dh
+		__emit 08Ah
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		lea ecx,  [esp+1Ch]
+		mov dword ptr [esp+14h], 0FFFFFFFFh
+		__emit 0E8h
+		__emit 028h
+		__emit 00Bh
+		__emit 022h
+		__emit 000h   // call 0x8881D0
+		mov ecx, dword ptr [esp+0Ch]
+		pop edi
+		mov dword ptr fs:[0h], ecx
+		pop esi
+		add esp, 10h
+		ret 8h
+	}
+}
+
+// Sends command type 6 (GAMESPY_STATS_AUTHKEY), built by 0x00675BE0. Named from the type its message carries.
+__declspec(naked) void BFMEConnectionManager::sendGameSpyStatsAuthKey(void *key)
+{
+	__asm {
+		push 0FFFFFFFFh
+		mov eax, dword ptr fs:[0h]
+		push 104422Eh
+		push eax
+		mov dword ptr fs:[0h], esp
+		sub esp, 108h
+		push ebx
+		mov ebx, dword ptr [esp+11Ch]
+		push ebp
+		push esi
+		push edi
+		lea eax,  [esp+14h]
+		mov ebp, ecx
+		push eax
+		mov ecx, ebx
+		__emit 0E8h
+		__emit 02Eh
+		__emit 0AAh
+		__emit 09Bh
+		__emit 0FFh   // call 0x204D2
+		mov eax, dword ptr [eax]
+		test eax, eax
+		je L00_665AAF
+		add eax, 8h
+		jmp L01_665AB4
+L00_665AAF:
+		mov eax, 107388Bh
+L01_665AB4:
+		push eax
+		__emit 0E8h
+		__emit 0F6h
+		__emit 0E8h
+		__emit 01Eh
+		__emit 000h   // call 0x8543B0
+		add esp, 4h
+		lea ecx,  [esp+14h]
+		mov esi, eax
+		__emit 0E8h
+		__emit 078h
+		__emit 01Eh
+		__emit 022h
+		__emit 000h   // call 0x887940
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0B4h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f71b4]
+		mov edx, dword ptr [ecx]
+		call dword ptr [edx+30h]
+		push eax
+		__emit 0E8h
+		__emit 0D7h
+		__emit 0E8h
+		__emit 01Eh
+		__emit 000h   // call 0x8543B0
+		mov edi, eax
+		lea eax,  [esp+1Ch]
+		push eax
+		push edi
+		push esi
+		__emit 0E8h
+		__emit 0C9h
+		__emit 0CFh
+		__emit 036h
+		__emit 000h   // call 0x9D2AB0
+		push esi
+		__emit 08Bh
+		__emit 035h
+		__emit 0D4h
+		__emit 093h
+		__emit 035h
+		__emit 001h   // mov esi, dword ptr [0x13593d4]
+		call esi
+		push edi
+		call esi
+		push 24h
+		__emit 0E8h
+		__emit 036h
+		__emit 0C4h
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 1Ch
+		mov dword ptr [esp+10h], eax
+		xor esi, esi
+		cmp eax, esi
+		mov dword ptr [esp+120h], esi
+		je L02_665B17
+		mov ecx, eax
+		__emit 0E8h
+		__emit 084h
+		__emit 0CCh
+		__emit 09Dh
+		__emit 0FFh   // call 0x42799
+		mov esi, eax
+L02_665B17:
+		mov ecx, dword ptr [ebp+12028h]
+		or eax, 0FFFFFFFFh
+		mov dword ptr [esp+120h], eax
+		mov dword ptr [esi+8h], eax
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov dword ptr [esi+0Ch], ecx
+		__emit 0E8h
+		__emit 03Ch
+		__emit 000h
+		__emit 09Bh
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L03_665B46
+		__emit 0E8h
+		__emit 016h
+		__emit 0AAh
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L03_665B46:
+		push ecx
+		lea edx,  [esp+1Ch]
+		mov dword ptr [esp+14h], esp
+		mov ecx, esp
+		push edx
+		__emit 0E8h
+		__emit 069h
+		__emit 030h
+		__emit 022h
+		__emit 000h   // call 0x888BC0
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0C5h
+		__emit 098h
+		__emit 09Ch
+		__emit 0FFh   // call 0x2F423
+		__emit 08Bh
+		__emit 00Dh
+		__emit 0B4h
+		__emit 071h
+		__emit 02Fh
+		__emit 001h   // mov ecx, dword ptr [0x12f71b4]
+		mov eax, dword ptr [ecx]
+		call dword ptr [eax+2Ch]
+		push ecx
+		mov dword ptr [esp+14h], esp
+		mov ecx, esp
+		push eax
+		__emit 0E8h
+		__emit 04Ah
+		__emit 030h
+		__emit 022h
+		__emit 000h   // call 0x888BC0
+		mov ecx, esi
+		__emit 0E8h
+		__emit 09Eh
+		__emit 015h
+		__emit 09Bh
+		__emit 0FFh   // call 0x1711B
+		mov ecx, dword ptr [ebx+0Ch]
+		cmp ecx, 8h
+		jae L04_665B94
+		xor edx, edx
+		mov dl, 1h
+		shl dl, cl
+		mov ecx, ebp
+		push edx
+		push esi
+		__emit 0E8h
+		__emit 043h
+		__emit 0B6h
+		__emit 09Dh
+		__emit 0FFh   // call 0x411D7
+L04_665B94:
+		mov ecx, esi
+		__emit 0E8h
+		__emit 009h
+		__emit 0A5h
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+118h]
+		pop edi
+		pop esi
+		pop ebp
+		mov dword ptr fs:[0h], ecx
+		pop ebx
+		add esp, 114h
+		ret 4h
 	}
 }

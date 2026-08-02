@@ -13870,3 +13870,8 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?Get_Current_LOD@HLodClass@@UAEPAVRenderObjClass@@XZ,,0x00978F20,47,Code/Libraries/Source/WWVegas/WW3D2/HLodClass_Get_Current_LOD.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 47B
+?sendPlayerLeaveCommands@BFMEConnectionManager@@QAEXXZ,,0x00665C10,173,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendFrameInfoToPlayer@BFMEConnectionManager@@QAEXH@Z,,0x00665ED0,235,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendDisconnectChatCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00666900,207,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendDisconnectVoteCommand@BFMEConnectionManager@@QAEXHI@Z,,0x006675E0,219,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendGameSpyStatsAuthKey@BFMEConnectionManager@@QAEXPAX@Z,,0x00665A70,326,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
