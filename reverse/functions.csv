@@ -1274,6 +1274,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ChinookMoveToBldgState@@QAE@PAVStateMachine@@@Z,,0x0005D9A0,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/ChinookAIUpdate.cpp,matched,
 ??0ChunkHeader@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
 ??0ChunkInputStream@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,ICF alias of existing matched body
+??0ChunkLoadClass@@QAE@PAVBFMEChunkInput@@@Z,,0x009E1320,91,Code/Libraries/Source/WWVegas/WWLib/chunkio_load_ctor.cpp,matched,
 ??0ChunkSaveClass@@QAE@PAVFileClass@@@Z,,0x009E1690,91,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ??0CivilianSpawnCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002173E0,60,Code/GameEngine/Source/GameLogic/Object/Behavior/CivilianSpawnCollideCtorThunk.cpp,matched,Open-BFME5 exact C++ raw CivilianSpawnCollide constructor
 ??0CivilianSpawnCollideModuleData@@QAE@XZ,,0x00217360,69,Code/GameEngine/Source/GameLogic/AI/CivilianSpawnCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
@@ -5288,6 +5289,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Allocate_Sorting_Dynamic_Buffer@DynamicIBAccessClass@@QAEXXZ,,0x0091D6B0,274,Code/masm_dumps/_leaf__Allocate_Sorting_Dynamic_Buffer_Dynamic_91D6B0.asm,matched,Exact 274B present-unmatched leaf Open-BFME4
 ?AllowBroadcasts@UDP@@QAEH_N@Z,,0x006848C0,40,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?Alter_Avatar_HTree@HTreeClass@@SAPAV1@PBV1@AAVVector3@@@Z,,0x00955470,641,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
+?Anim_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00981E10,112,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
+?Anim_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00953AD0,987,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Append_Anim_Combo_Data@HAnimComboClass@@QAEXPAVHAnimComboDataClass@@@Z,,0x009743C0,68,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Append_Sub_Directory@SimpleFileFactoryClass@@QAEXPBD@Z,,0x009DDA50,249,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ?Apply_Null@VertexMaterialClass@@CAXXZ,,0x00921E30,130,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
@@ -5533,6 +5536,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?ConstructNetCommandMsgFromRawData@NetPacket@@SAPAVNetCommandRef@@PAEG@Z,,0x00682FF0,515,Code/masm_dumps/_sa4__ConstructNetCommandMsgFromRawData_NetPacket__SAPA_682FF0.asm,matched,Exact 515B Open-BFME4
 ?Contains@AABoxClass@@QBE_NABVVector3@@@Z,,0x008DDA80,139,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Contains@GenericMultiListClass@@QAE_NPAVMultiListObjectClass@@@Z,,0x009DBEE0,38,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
+?Contains_Chunks@ChunkLoadClass@@QAEHXZ,,0x009E1470,16,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Contains_Point@TriClass@@QBE_NABVVector3@@@Z,,0x008E1900,297,Code/Libraries/Source/WWVegas/WWMath/tri.cpp,matched,
 ?Contribution@InputLightStruct@LightEnvironmentClass@@QAEMXZ,,0x0094AA10,32,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,matched,
 ?ControlBarObserverSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004AA690,233,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarObserver.cpp,matched,Corrected one-byte-early vote; explicit BFME observer-player offset and retail callee thunks.
@@ -5601,6 +5605,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Cur_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E1440,11,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Cur_Chunk_Length@ChunkLoadClass@@QAEKXZ,,0x009E1450,16,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Cur_Micro_Chunk_ID@ChunkLoadClass@@QAEKXZ,,0x009E14E0,8,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
+?Cur_Micro_Chunk_Length@ChunkLoadClass@@QAEKXZ,,0x009E14F0,8,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Current@ActiveCategoryClass@@QAEHXZ,,0x00AFF680,16,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Current@ActiveCategoryStackClass@@QAEHXZ,,0x00AFED10,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Current_Item@SimpleSceneIterator@@UAEPAVRenderObjClass@@XZ,,0x00943950,17,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
@@ -6328,6 +6333,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Bin_Size@RegistryClass@@QAEHPBD@Z,,0x009DC450,40,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
 ?Get_Bit@BitChannelClass@@QBEHH@Z,,0x00952620,76,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Get_Bit@TimeCodedBitChannelClass@@QAEHH@Z,,0x00977C10,96,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
+?Get_Bits_Per_Pixel@@YIIW4WW3DFormat@@@Z,,0x0090C400,180,Code/Libraries/Source/WWVegas/WW3D2/ww3dformat_bits.cpp,matched,
 ?Get_Blur_Time_Key_Frames@ParticleBufferClass@@QBEXAAU?$ParticlePropertyStruct@M@@@Z,,0x00984290,318,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Get_Blur_Time_Key_Frames@ParticleEmitterClass@@QBEXAAU?$ParticlePropertyStruct@M@@@Z,,0x0097E440,11,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Get_Blur_Time_Keyframes@ParticleEmitterDefClass@@UBEXAAU?$ParticlePropertyStruct@M@@@Z,,0x0098E640,23,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
@@ -7056,6 +7062,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Is_Additive@RenderObjClass@@UBEHXZ,,0x006CF800,9,Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp,matched,relocated: vtable slot 109 target (was coincidence-match at 0x979380 with pre-fix mask)
 ?Is_Alpha@RenderObjClass@@UBEHXZ,,0x006CF7C0,9,Code/Libraries/Source/WWVegas/WW3D2/nullrobj.cpp,matched,
 ?Is_Alternate_Material_Description_Enabled@MeshModelClass@@QAE_NXZ,,0x0094DB50,18,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
+?Is_Animation_Complete@Animatable3DObjClass@@UBE_NXZ,,0x00981CA0,103,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Is_Animation_Hidden@RenderObjClass@@UBEHXZ,,0x006CF730,12,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,vtable slot 101
 ?Is_Archive_Same@?$IndexClass@HPAUINIEntry@@@@ABE_NABH@Z,,0x009E22E0,27,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
 ?Is_Archive_Same@?$IndexClass@HPAUINISection@@@@ABE_NABH@Z,,0x009E2320,27,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
@@ -7784,6 +7791,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Search_For_Node@?$IndexClass@HPAUINIEntry@@@@ABEPBUNodeElement@1@ABH@Z,,0x009E2E60,95,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Search_For_Node@?$IndexClass@HPAUINISection@@@@ABEPBUNodeElement@1@ABH@Z,,0x009E2FD0,95,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Seek@BufferedFileClass@@UAEHHH@Z,,0x009E7820,120,Code/Libraries/Source/WWVegas/WWLib/bufffile.cpp,matched,
+?Seek@ChunkLoadClass@@QAEKK@Z,,0x009E1500,180,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Seek@RawFileClass@@UAEHHH@Z,,0x009E6DD0,261,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Select_Splitting_Plane@AABTreeBuilderClass@@AAE?AUSplitChoiceStruct@1@HPAH@Z,,0x0096C240,750,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ?Set2D@Coord3D@@QAEAAV1@MM@Z,0x0003D00A,0x007E5FB0,18,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,sets x/y from floats
@@ -8172,6 +8180,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Shutdown@INIClass@@AAEXXZ,,0x009E36B0,74,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Shutdown@WWMath@@SAXXZ,,0x008D8DF0,1,Code/Libraries/Source/WWVegas/WWMath/wwmath.cpp,matched,BFME drift: empty body (LookupTableMgr call dropped) -> lone ret; addr inferred from WWMath cluster adjacency to Random_Float/Init
 ?Simple_Evaluate_Bone@Animatable3DObjClass@@UBE_NHMPAVMatrix3D@@@Z,,0x00982470,198,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,layout-fixed via _bfme_a3o_v0 member
+?Simple_Evaluate_Bone@Animatable3DObjClass@@UBE_NHPAVMatrix3D@@@Z,,0x00982C20,202,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Simple_Evaluate_Pivot@HTreeClass@@QBE_NHABVMatrix3D@@PAV2@@Z,,0x009539C0,272,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Simple_Evaluate_Pivot@HTreeClass@@QBE_NPAVHAnimClass@@HMABVMatrix3D@@PAV3@@Z,,0x00953620,924,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Sin@@YAMM@Z,0x00873910,0x00873910,7,Code/GameEngine/Source/Common/System/Trig.cpp,matched,returns sine of radians
@@ -8369,8 +8378,10 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Width@RectClass@@QBEMXZ,,0x00160B20,6,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,icf-owner=?width@Region2D@@QBEMXZ
 ?Width@ViewportClass@@QBEMXZ,,0x00160B20,6,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,icf-owner=?width@Region2D@@QBEMXZ
 ?Write@BufferedFileClass@@UAEHPBXH@Z,,0x009E7740,5,Code/Libraries/Source/WWVegas/WWLib/bufffile.cpp,matched,
+?Write@ChunkSaveClass@@QAEKABUIOQuaternionStruct@@@Z,,0x009E1940,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Write@ChunkSaveClass@@QAEKABUIOVector2Struct@@@Z,,0x009E1910,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Write@ChunkSaveClass@@QAEKABUIOVector3Struct@@@Z,,0x009E1920,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
+?Write@ChunkSaveClass@@QAEKABUIOVector4Struct@@@Z,,0x009E1930,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Write@ChunkSaveClass@@QAEKPBXK@Z,,0x009E18A0,98,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Write@DebugIONet@@UAEXW4StringType@DebugIOInterface@@PBD1@Z,,0x0088FC10,188,Code/Libraries/Source/WWVegas/WWDebug/debug_io_net.cpp,matched,
 ?Write@OutputStream@DebugIOFlat@@QAEXPBD@Z,,0x00890DD0,92,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,
@@ -13924,14 +13935,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?Contains_Chunks@ChunkLoadClass@@QAEHXZ,,0x009E1470,16,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
-?Cur_Micro_Chunk_Length@ChunkLoadClass@@QAEKXZ,,0x009E14F0,8,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
-?Seek@ChunkLoadClass@@QAEKK@Z,,0x009E1500,180,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
-??0ChunkLoadClass@@QAE@PAVBFMEChunkInput@@@Z,,0x009E1320,91,Code/Libraries/Source/WWVegas/WWLib/chunkio_load_ctor.cpp,matched,
-?Get_Bits_Per_Pixel@@YIIW4WW3DFormat@@@Z,,0x0090C400,180,Code/Libraries/Source/WWVegas/WW3D2/ww3dformat_bits.cpp,matched,
-?Write@ChunkSaveClass@@QAEKABUIOVector4Struct@@@Z,,0x009E1930,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
-?Write@ChunkSaveClass@@QAEKABUIOQuaternionStruct@@@Z,,0x009E1940,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
-?Is_Animation_Complete@Animatable3DObjClass@@UBE_NXZ,,0x00981CA0,103,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
-?Simple_Evaluate_Bone@Animatable3DObjClass@@UBE_NHPAVMatrix3D@@@Z,,0x00982C20,202,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
-?Anim_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00981E10,112,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
-?Anim_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00953AD0,987,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
