@@ -4,13 +4,13 @@ typedef unsigned short UnsignedShort;
 
 UnsignedShort GenerateNextCommandID();
 
-__declspec(naked) UnsignedShort GenerateNextCommandID()
+class GenerateNextCommandIDShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0B3h
-        _emit 027h
-        _emit 065h
-        _emit 000h
-    }
+public:
+    static UnsignedShort next();
+};
+
+UnsignedShort GenerateNextCommandID()
+{
+    return GenerateNextCommandIDShim::next();
 }

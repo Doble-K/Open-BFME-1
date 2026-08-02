@@ -3262,6 +3262,7 @@ name,address,notes
 ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,0x000119E1,ILT thunk; real body 0x5B6920
 ?newMultiplayerColorDefinition@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@VAsciiString@@@Z,0x0002FD6A,harvested from parseMultiplayerColorDefinition (thunk)
 ?newOverride@WeaponStore@@SAPAVWeaponTemplate@@PAV2@@Z,0x0002BE72,harvested from parseWeaponTemplateDefinition (thunk)
+?next@GenerateNextCommandIDShim@@SAGXZ,0x00682D10,GenerateNextCommandID incremental-link thunk target through a TU-local forwarding shim
 ?normalizeAngle@@YAMM@Z,0x0000991C
 ?notifyModelConditionChanged@Object@@QAEXXZ,0x0002191D,Object model-condition notify ILT (body 0x1BE1C0); inlined clearModelConditionState(PANICKING) sites
 ?nstrdup@@YAPADPBD@Z,0x009E6410
