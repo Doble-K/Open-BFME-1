@@ -7434,7 +7434,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?OnError@DownloadManagerMunkee@@UAEJH@Z,,0x004C79A0,129,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,gametext vtable fix
 ?OnGameJoin@LANAPI@@UAEXW4ReturnType@LANAPIInterface@@PAVLANGameInfo@@@Z,,0x001F2E80,30,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
 ?OnNameChange@LANAPI@@UAEXIVUnicodeString@@@Z,,0x00689B70,30,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
-?OnProgressUpdate@DownloadManager@@UAEJHHHH@Z,,0x00626EE0,163,Code/masm_dumps/_sa12__OnProgressUpdate_DownloadManager__UAEJHHHH_Z_626EE0.asm,matched,string-anchor Open-BFME4+Grok FTP:StatusNone
 ?OnProgressUpdate@DownloadManagerMunkee@@UAEJHHHH@Z,,0x004C7B60,521,Code/masm_dumps/_str3__OnProgressUpdate_DownloadManagerMunkee_UAEJHHHH_Z_4C7B60.asm,matched,
 ?OnQueryResume@DownloadManager@@UAEJXZ,,0x006CF680,3,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?OnStatusUpdate@DownloadManagerMunkee@@UAEJH@Z,,0x004C7DF0,62,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
@@ -11344,7 +11343,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getLastLadderAddr@CustomMatchPreferences@@QAE?AVAsciiString@@XZ,,0x000AC1B0,98,Code/masm_dumps/CustomMatchPreferences_getLastLadderAddr.asm,matched,certified packet 292; reviewed Ghidra entry and custom-ladder caller chain; retail sha256 69c5a0f80fb1336e3c6811133b257efa82bfdaca706bab5e0fa3689ffcd8534e
 ?getLastLadderPort@CustomMatchPreferences@@QAEGXZ,,0x00856900,1617,Code/masm_dumps/_sa14__getLastLadderPort_CustomMatchPreferences__QAEGXZ_856900.asm,matched,sa14 Open-BFME4+Grok UseLongGameList
 ?getLastLadderPort@QuickMatchPreferences@@QAEGXZ,,0x000ABF10,84,Code/masm_dumps/_sa14__getLastLadderPort_QuickMatchPreferences__QAEGXZ_ABF10.asm,matched,sa14 Open-BFME4+Grok MaxDisconnects
-?getLastLocalFile@DownloadManager@@QAE?AVAsciiString@@XZ,,0x00626DA0,224,Code/masm_dumps/_s6__getLastLocalFile_DownloadManager_QAE_AVAsciiString_XZ_626DA0.asm,matched,Exact 224B 'FTP:LocalFileOpenFailed' Open-BFME4+Grok
 ?getLastReplayFileName@RecorderClass@@QAE?AVAsciiString@@XZ,0x0001E3C6,0x98b40,33,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getLayerHeight@TerrainLogic@@UBEMMMW4PathfindLayerEnum@@PAUCoord3D@@_N@Z,,0x001A2DB0,27,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?getLeaveFrame@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEIXZ,,0x006741E0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
@@ -14214,3 +14212,5 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?readGameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0067E3F0,433,Code/GameEngine/Source/GameNetwork/NetPacket_readGameMessage.cpp,matched,
+?OnStatusUpdate@DownloadManager@@UAEJH@Z,,0x00626EE0,226,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,WWLib StringBase-based AsciiString via asciistring_downloadmanager shim; clean C++
+?OnError@DownloadManager@@UAEJH@Z,,0x00626DA0,224,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,WWLib StringBase-based AsciiString via asciistring_downloadmanager shim; clean C++
