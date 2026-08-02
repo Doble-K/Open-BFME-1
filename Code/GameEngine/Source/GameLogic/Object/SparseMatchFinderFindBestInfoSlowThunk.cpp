@@ -9,15 +9,15 @@ class BitFlags
 
 namespace _STL
 {
-	template <class T>
-	class allocator
-	{
-	};
+template <class T>
+class allocator
+{
+};
 
-	template <class T, class Allocator>
-	class vector
-	{
-	};
+template <class T, class Allocator>
+class vector
+{
+};
 }
 
 template <class Set, class Flags>
@@ -26,16 +26,18 @@ class SparseMatchFinder
 	const Set *findBestInfoSlow(_STL::vector<Set, _STL::allocator<Set> > const &, Flags const &) const;
 };
 
-template <class Set, class Flags>
-__declspec(naked) const Set *SparseMatchFinder<Set, Flags>::findBestInfoSlow(_STL::vector<Set, _STL::allocator<Set> > const &, Flags const &) const
+class WeaponFindBestInfoSlowShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 031h
-		_emit 005h
-		_emit 013h
-		_emit 000h
-	}
+public:
+	const WeaponTemplateSet *findBestInfoSlow(_STL::vector<WeaponTemplateSet, _STL::allocator<WeaponTemplateSet> > const &v, BitFlags<17> const &f) const;
+};
+
+template <class Set, class Flags>
+const Set *SparseMatchFinder<Set, Flags>::findBestInfoSlow(_STL::vector<Set, _STL::allocator<Set> > const &v, Flags const &f) const
+{
+	return (const Set *)((WeaponFindBestInfoSlowShim const *)this)->findBestInfoSlow(
+		(_STL::vector<WeaponTemplateSet, _STL::allocator<WeaponTemplateSet> > const &)v,
+		(BitFlags<17> const &)f);
 }
 
-template __declspec(naked) const WeaponTemplateSet *SparseMatchFinder<WeaponTemplateSet, BitFlags<17> >::findBestInfoSlow(_STL::vector<WeaponTemplateSet, _STL::allocator<WeaponTemplateSet> > const &, BitFlags<17> const &) const;
+template const WeaponTemplateSet *SparseMatchFinder<WeaponTemplateSet, BitFlags<17> >::findBestInfoSlow(_STL::vector<WeaponTemplateSet, _STL::allocator<WeaponTemplateSet> > const &, BitFlags<17> const &) const;
