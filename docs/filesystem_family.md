@@ -85,11 +85,28 @@ Derives from `ArchiveFileSystem`; overrides the six pure slots and inherits 5, 6
 | --- | --- | --- | --- |
 | 0 | 0x009CC440 | 30 | `??_G` |
 | 1 | 0x009CC590 | 111 | `init` — 109/111, see the source note |
-| 2 | 0x009CC710 | 832 | `openArchiveFile` — constructs a `Win32BIGFile` at 0x009D14E0 |
+| 2 | 0x009CC710 | 832 | `openArchiveFile` — constructs a `Win32BIGFile` at 0x009D14E0. Not claimed; restructured relative to Zero Hour, see below. |
 | 3 | 0x009CD660 | 117 | `closeArchiveFile` — map find, one virtual call, `_M_deallocate` |
 | 4 | 0x009CD780 | 261 | `closeAllArchiveFiles` — **claimed**. BFME-only body; Zero Hour leaves the method empty. Collects every entry's `getName()` into a vector, then calls slot 3 on each — collecting first because slot 3 erases from the map it would otherwise be iterating. |
 | 7 | 0x009CC3B0 | 1 | `closeAllFiles` — bare `ret` |
 | 9 | 0x009CDB90 | 459 | `loadBigFilesFromDirectory` — `init` calls it through `[eax+0x24]`. Not claimed; see below. |
+
+`openArchiveFile` is restructured rather than adapted, so Zero Hour's body is a
+poor starting point. Zero Hour reads the BIG header in three separate four-byte
+`read` calls — the "BIG" tag, the archive size, then the file count. Retail reads
+all sixteen bytes in one call and checks the return equals 16:
+
+    push 0x10
+    lea  eax,[esp+0x40]
+    push eax
+    call [edx+0x0c]        ; File slot 3, read
+    cmp  eax, 0x10
+    jne  fail
+
+It also reaches a global at 0x012D9030 that Zero Hour's version has no use for,
+and builds a substring through `??0?$StringBase@D@@AAE@ABV0@HH@Z`, the private
+three-argument `StringBase` constructor, which Zero Hour's code never calls.
+Expect to write this one from the disassembly.
 
 `loadBigFilesFromDirectory` is the one that resists. Zero Hour's body plus the
 widened declaration compiles to 332 bytes against retail's 459, with four
