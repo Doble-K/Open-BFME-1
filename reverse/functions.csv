@@ -14013,3 +14013,6 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?getFileInfo@ArchiveFileSystem@@QBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CA7E0,182,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,calls getArchiveFilenameForFile at 0x009CA81A then m_archiveFileMap.find
+??0NetAckBothCommandMsg@@QAE@XZ,,0x006738A0,53,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetAckBothCommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673840,69,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetWrapperCommandMsg@@QAE@XZ,,0x00673DD0,64,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,

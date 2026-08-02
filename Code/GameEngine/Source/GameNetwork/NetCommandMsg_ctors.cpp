@@ -51,6 +51,7 @@ enum NetCommandType
 	NETCOMMANDTYPE_DISCONNECTCHAT = 13,
 	NETCOMMANDTYPE_CHAT = 14,
 	NETCOMMANDTYPE_PROGRESS = 15,
+	NETCOMMANDTYPE_WRAPPER = 18,
 	NETCOMMANDTYPE_FILEPROGRESS = 21,
 	NETCOMMANDTYPE_DISCONNECTKEEPALIVE = 24,
 	NETCOMMANDTYPE_DISCONNECTPLAYER = 25,
@@ -64,6 +65,10 @@ class NetCommandMsg
 public:
 	NetCommandMsg();
 	virtual ~NetCommandMsg() {}
+
+	UnsignedShort getID() { return m_id; }
+	UnsignedInt getPlayerID() { return m_playerID; }
+	UnsignedInt getExecutionFrame() { return m_executionFrame; }
 
 protected:
 	UnsignedInt m_timestamp;						// this+0x04
@@ -255,3 +260,65 @@ NetChatCommandMsg::NetChatCommandMsg() : NetCommandMsg()
 	m_commandType = NETCOMMANDTYPE_CHAT;
 	m_playerMask = 0;
 }
+
+// 0x006738A0 (53B) and 0x00673840 (69B). BFME adds a third field the reference
+// does not have: at +0x20 it keeps the execution frame of the command being
+// acknowledged, which the copying constructor takes from the source message and
+// the default constructor leaves at -1, matching m_executionFrame's own default.
+class NetAckBothCommandMsg : public NetCommandMsg
+{
+public:
+	NetAckBothCommandMsg();
+	NetAckBothCommandMsg(NetCommandMsg *msg);
+
+	UnsignedShort m_commandID;						// this+0x1C
+	UnsignedByte m_originalPlayerID;				// this+0x1E
+	UnsignedInt m_originalExecutionFrame;			// this+0x20, BFME-only
+};
+
+NetAckBothCommandMsg::NetAckBothCommandMsg() : NetCommandMsg()
+{
+	m_commandID = 0;
+	m_originalPlayerID = 0;
+	m_originalExecutionFrame = -1;
+	m_commandType = NETCOMMANDTYPE_ACKBOTH;
+}
+
+NetAckBothCommandMsg::NetAckBothCommandMsg(NetCommandMsg *msg) : NetCommandMsg()
+{
+	m_commandID = msg->getID();
+	m_commandType = NETCOMMANDTYPE_ACKBOTH;
+	m_originalPlayerID = msg->getPlayerID();
+	m_originalExecutionFrame = msg->getExecutionFrame();
+}
+
+// 0x00673DD0, 64 bytes. Declaration order is pinned by the offsets retail writes
+// (+0x1C..+0x34); assignment order is the reference's, which is why the stores
+// come out as type, numChunks, data, totalDataLength, chunkNumber, dataLength,
+// dataOffset, wrappedCommandID.
+class NetWrapperCommandMsg : public NetCommandMsg
+{
+public:
+	NetWrapperCommandMsg();
+
+	UnsignedByte *m_data;							// this+0x1C
+	UnsignedInt m_dataLength;						// this+0x20
+	UnsignedInt m_dataOffset;						// this+0x24
+	UnsignedInt m_totalDataLength;					// this+0x28
+	UnsignedInt m_chunkNumber;						// this+0x2C
+	UnsignedInt m_numChunks;						// this+0x30
+	UnsignedShort m_wrappedCommandID;				// this+0x34
+};
+
+NetWrapperCommandMsg::NetWrapperCommandMsg() : NetCommandMsg()
+{
+	m_commandType = NETCOMMANDTYPE_WRAPPER;
+	m_numChunks = 0;
+	m_data = 0;
+	m_totalDataLength = 0;
+	m_chunkNumber = 0;
+	m_dataLength = 0;
+	m_dataOffset = 0;
+	m_wrappedCommandID = 0;
+}
+
