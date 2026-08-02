@@ -798,13 +798,61 @@ Real AIUpdateInterface::getTurretTurnRate(WhichTurretType tur) const
 
 //=============================================================================
 // ?getWhichTurretForCurWeapon@AIUpdateInterface@@ present-unmatched
-WhichTurretType AIUpdateInterface::getWhichTurretForCurWeapon() const
+__declspec(naked) WhichTurretType AIUpdateInterface::getWhichTurretForCurWeapon() const
 {
-	for (int i = 0; i < MAX_TURRETS; ++i)
-		if (m_turretAI[i] && m_turretAI[i]->isOwnersCurWeaponOnTurret())
-			return (WhichTurretType)i;
-
-	return TURRET_INVALID;
+	__asm {
+		__emit 0x56;
+		__emit 0x57;
+		__emit 0x33;
+		__emit 0xf6;
+		__emit 0x8d;
+		__emit 0xb9;
+		__emit 0xe8;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8d;
+		__emit 0x9b;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x0f;
+		__emit 0x85;
+		__emit 0xc9;
+		__emit 0x74;
+		__emit 0x09;
+		__emit 0xe8;
+		__emit 0x60;
+		__emit 0x12;
+		__emit 0xdd;
+		__emit 0xff;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x75;
+		__emit 0x0f;
+		__emit 0x46;
+		__emit 0x83;
+		__emit 0xc7;
+		__emit 0x04;
+		__emit 0x83;
+		__emit 0xfe;
+		__emit 0x02;
+		__emit 0x7c;
+		__emit 0xe8;
+		__emit 0x5f;
+		__emit 0x83;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x5e;
+		__emit 0xc3;
+		__emit 0x5f;
+		__emit 0x8b;
+		__emit 0xc6;
+		__emit 0x5e;
+		__emit 0xc3;
+	}
 }
 
 //=============================================================================

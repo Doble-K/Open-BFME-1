@@ -11657,7 +11657,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getWaypointName@MapObject@@QAE?AVAsciiString@@XZ,,0x00088AE0,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?getWeaponInWeaponSlot@WeaponSet@@QBEPAVWeapon@@W4WeaponSlotType@@@Z,,0x001EAF90,11,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
 ?getWheelInfo@Drawable@@QBEPBUTWheelInfo@@XZ,,0x0077F6B0,17,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; m_locoInfo@+0x138; DrawableLocoInfo layout unchanged from ZH
-?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/masm_dumps/_rn5__getWhichTurretForCurWeapon_AIUpdateInterface__QBE_AW4WhichTurretType__26EB70.asm,matched,reloc-needle Open-BFME4+Grok
+?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,Open-BFME5 exact C++ __emit port of 51-byte retail method
 ?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/masm_dumps/_rn3__getWhichTurretForWeaponSlot_AIUpdateInterface__QBE_AW4WhichTurretType_26EBB0.asm,matched,reloc-needle Open-BFME4+Grok
 ?getWidth@W3DDisplayString@@UAEHH@Z,,0x006F53A0,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,
 ?getWindowUnderCursor@GameWindowManager@@UAEPAVGameWindow@@HH_N@Z,,0x0047D570,378,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_getWindowUnderCursor.asm,matched,exact 378B via MASM (field-offset drift)
