@@ -192,3 +192,42 @@ Corollary: the union merge on `reverse/symbols.csv` can silently drop pins
 during a rebase. Check `git status` before pushing -- two pins the converted
 `Set_Animation` bodies needed went missing that way and only turned up because
 the working tree still had them.
+
+## Win32BIGFileSystem::openArchiveFile, decoded but not yet landed
+
+0x009CC710, 900 bytes. Everything below is read off the instruction stream and
+verified as far as it goes -- a written version matched the whole prologue on
+the first attempt, through the file open, the lowercased name, the archive
+allocation and the null-file return. It is recorded here so the next attempt
+starts from the structure rather than the disassembly.
+
+What BFME does differently from Zero Hour:
+
+- one sixteen byte header read, not three four-byte reads;
+- the whole directory table read in a single call into `operator new[]` storage
+  and then walked in memory, rather than each entry read a byte at a time;
+- `"BIG4"` accepted alongside `"BIGF"`, both loaded through pointer variables at
+  0x012D9030 and 0x012D9034 rather than pushed as literals;
+- the archive is told its own name through vtable slot 9 before anything else;
+- a bad magic is **not** fatal: the parse is skipped but the archive is still
+  attached to the file and returned, so the caller gets an empty archive. Only a
+  null file pointer returns NULL.
+
+Header, sixteen bytes: magic at +0x00, archive size at +0x04, entry count at
++0x08 big endian, and at +0x0c, big endian, where the entry data starts. That
+last one is the allocation size; the read length is it minus sixteen. Entries
+are packed back to back: offset and length, both big endian, then a
+NUL-terminated name, and the next entry begins at name + strlen(name) + 1.
+
+Callee pins are already in `reverse/symbols.csv`: ArchivedFileInfo's constructor
+and destructor at 0x009CC650 and 0x009CC600, `addFile` at 0x009D1110 and
+`attachFile` at 0x009CE560.
+
+Two deltas remain, and they are the same delta twice over. The frame comes out
+at 0x38 where retail has 0x3c, because retail spills the entry counter to memory
+(`dec dword ptr [esp+0x1c]` closes the loop) and the written version keeps it in
+a register. Every register choice downstream follows from that, including the
+four big-endian decodes, which come out three to six bytes short apiece because
+they have a spare register retail does not. Total 61 to 81 bytes short depending
+on how the decode is spelled -- and spelling the decode differently does not
+help, because the difference is not in the decode. Find the frame slot first.
