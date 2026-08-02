@@ -7200,7 +7200,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Make_Identity@Matrix3x3@@QAEXXZ,,0x007A0260,34,Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp,matched,
 ?Make_Identity@Matrix4@@QAEXXZ,,0x005F0A50,55,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
 ?Make_Identity@Quaternion@@QAEXXZ,,0x009523F0,18,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
-?Make_UV_Array_Unique@MeshMatDescClass@@QAEXHH@Z,,0x0092C010,158,Code/masm_dumps/_Make_UV_Array_Unique_MeshMatDescClass__QAEXHH_Z_92C010.asm,matched,masm: cl 7.1 TU-level regalloc perturbation after empty-W3DMPO always.h change; C++ emits equivalent code with different frame layout
 ?Make_UV_Array_Unique@MeshModelClass@@QAEXHH@Z,,0x0094DB30,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ?Make_Unique@MeshClass@@QAEX_N@Z,,0x0092C400,170,Code/masm_dumps/_sym2__Make_Unique_MeshClass__QAEX_N_Z_92C400.asm,matched,symbol-pin Open-BFME4+Grok
 ?MapSelectMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D17B0,194,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MapSelectMenu.cpp,matched,
@@ -12544,7 +12543,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?prev@LListNode@@QAEPAV1@XZ,,0x00105970,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?print@File@@UAA_NPBDZZ,,0x009CB6C0,115,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 10 and the same address in all three File vtables
 ?privateIdle@SupplyTruckAIUpdate@@MAEXW4CommandSourceType@@@Z,,0x002C57E0,42,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,Open-BFME5 exact C++ raw SupplyTruck idle wrapper
-?probed@NAT@@IAEXH@Z,,0x00671DE0,155,Code/masm_dumps/_probed_NAT__IAEXH_Z_671DE0.asm,matched,MASM exact retail dump
 ?processAckCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00665700,387,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processDisconnectCommand@DisconnectManager@@QAEXPAVNetCommandRef@@PAVConnectionManager@@@Z,,0x0066C810,145,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?processDisconnectFrame@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,,0x0066BD80,285,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
@@ -13930,3 +13928,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z,,0x001E7F50,261,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,MASM dump converted to clean C++; BFME WeaponTemplate is 0x53C bytes so the weapon shim carries a tail pad
 ?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,284,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,MASM dump converted to clean C++; BFME Display has 3 more virtuals before getWidth (reference/shims/display) plus the 8-byte string header
 ?setUpDownImages@ControlBar@@IAEXXZ,,0x0049D160,259,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,MASM dump converted to clean C++; BFME puts the six toggle-button images at this+0x2A0 (reference/shims/controlbarlayout)
+?Make_UV_Array_Unique@MeshMatDescClass@@QAEXHH@Z,,0x0092C010,158,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes
+?probed@NAT@@IAEXH@Z,,0x00671DE0,155,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes under the existing nat shim

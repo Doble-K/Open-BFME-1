@@ -601,7 +601,6 @@ ShaderClass * MeshMatDescClass::Get_Shader_Array(int pass,bool create)
 	return NULL;
 }
 
-// ?Make_UV_Array_Unique@MeshMatDescClass@@QAEXHH@Z present-unmatched
 void MeshMatDescClass::Make_UV_Array_Unique(int pass,int stage)
 {
 	int uvindex = UVSource[pass][stage];
