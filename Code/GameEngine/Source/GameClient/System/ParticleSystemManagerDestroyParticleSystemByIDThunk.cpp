@@ -11,13 +11,13 @@ public:
     void destroyParticleSystemByID(ParticleSystemID id);
 };
 
-__declspec(naked) void ParticleSystemManager::destroyParticleSystemByID(ParticleSystemID)
+class ParticleSystemManagerDestroyByIDShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 075h
-        _emit 0E5h
-        _emit 05Bh
-        _emit 000h
-    }
+public:
+    void destroy(ParticleSystemID id);
+};
+
+void ParticleSystemManager::destroyParticleSystemByID(ParticleSystemID id)
+{
+    ((ParticleSystemManagerDestroyByIDShim *)this)->destroy(id);
 }

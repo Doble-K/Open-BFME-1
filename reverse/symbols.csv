@@ -2913,6 +2913,7 @@ name,address,notes
 ?deposit@Money@@QAEXI_N@Z,0x00027D6D
 ?destroy@BFMENetworkBackendDestructorShim@@QAEXXZ,0x0003242F,BFMENetworkBackend destructor thunk used through a TU-local layout shim
 ?destroy@BFMENetworkDestructorShim@@QAEXXZ,0x000088C8,BFMENetwork destructor thunk used through a TU-local layout shim
+?destroy@ParticleSystemManagerDestroyByIDShim@@QAEXW4ParticleSystemID@@@Z,0x005C3C10,ParticleSystemManager destroyParticleSystemByID incremental-link thunk target through a TU-local forwarding shim
 ?destroyObject@GameLogic@@QAEXPAVObject@@@Z,0x0001D0DE,ILT thunk; real body 0x78B0C0
 ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z,0x00005696,BoneFXUpdate::killRunningParticleSystems/stopAllBoneFX call target (ILT thunk -> body 0x5C3C10)
 ?detach@NetCommandMsg@@QAEXXZ,0x000200A4,additive; ILT thunk for body 0xA73610
