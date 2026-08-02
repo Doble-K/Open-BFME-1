@@ -48,6 +48,11 @@ public:
     void construct();
 };
 
+class LightningDrawTemplateCtorShim {
+public:
+    void construct();
+};
+
 extern const char BOX_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char BUTTERFLY_DRAW_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char CYLINDER_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
@@ -13067,42 +13072,12 @@ __declspec(naked) ConcreteModuleTemplate<ModuleTag<6, LIGHTNING_DRAW_MODULE_KEY,
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$05$E?LIGHTNING_DRAW_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIGHTNING_DRAW_MODULE_NAME@2@3QBDBVLightningDrawModule@2@VLightningDrawModuleTemplate@2@V?$DefaultParticleModule@$05@2@V?$DefaultParticleModuleTemplate@$05@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
-__declspec(naked) ConcreteModuleTemplate<ModuleTag<6, LIGHTNING_DRAW_MODULE_KEY, LIGHTNING_DRAW_MODULE_NAME, LightningDrawModule, LightningDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::ConcreteModuleTemplate()
+ConcreteModuleTemplate<ModuleTag<6, LIGHTNING_DRAW_MODULE_KEY, LIGHTNING_DRAW_MODULE_NAME, LightningDrawModule, LightningDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::ConcreteModuleTemplate()
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0xd2
-        __emit 0x0f
-        __emit 0xa6
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xbc
-        __emit 0x0e
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0xb8
-        __emit 0x0e
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0xa4
-        __emit 0x0e
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc3
-    }
+    ((LightningDrawTemplateCtorShim *)this)->construct();
+    *(volatile unsigned int *)this = 0x01110ebc;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x01110eb8;
+    *(volatile unsigned int *)((unsigned char *)this + 8) = 0x01110ea4;
 }
 
 ConcreteModuleTemplate<ModuleTag<6, LIGHTNING_DRAW_MODULE_KEY, LIGHTNING_DRAW_MODULE_NAME, LightningDrawModule, LightningDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::~ConcreteModuleTemplate()
