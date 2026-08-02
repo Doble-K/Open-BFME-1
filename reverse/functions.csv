@@ -8900,6 +8900,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?atEndOfFile@DataChunkInput@@QAE_NXZ,,0x00102320,13,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?atan2@@YAMMM@Z,,0x001486F0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?atan@@YAMM@Z,,0x0045B6F0,9,Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp,matched,icf-owner=_atanf
+?attach@NetCommandMsg@@QAEXXZ,,0x00673600,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?attachPlayersFromGameInfo@BFMEConnectionManager@@QAEXPAX@Z,,0x00666610,597,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?attachToDrawable@ParticleSystem@@QAEXPBVDrawable@@@Z,,0x005BE130,40,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?attachTranslator@MessageStream@@QAEIPAVGameMessageTranslator@@I@Z,,0x0008A7B0,184,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
@@ -11224,6 +11225,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getLastLocalFile@DownloadManager@@QAE?AVAsciiString@@XZ,,0x00626DA0,224,Code/masm_dumps/_s6__getLastLocalFile_DownloadManager_QAE_AVAsciiString_XZ_626DA0.asm,matched,Exact 224B 'FTP:LocalFileOpenFailed' Open-BFME4+Grok
 ?getLastReplayFileName@RecorderClass@@QAE?AVAsciiString@@XZ,0x0001E3C6,0x98b40,33,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getLayerHeight@TerrainLogic@@UBEMMMW4PathfindLayerEnum@@PAUCoord3D@@_N@Z,,0x001A2DB0,27,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
+?getLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEEXZ,,0x00673AF0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getLength@?$StringBase@D@@QBEHXZ,0x00004A30,0x0005E4A0,14,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns string length or zero
 ?getLength@?$StringBase@G@@QBEHXZ,0x0000ED6D,0x0005E4F0,14,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns string length or zero
 ?getLightPosWorld@W3DShadowManager@@QAEAAVVector3@@H@Z,,0x007B7820,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp,matched,
@@ -11430,6 +11432,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPitchShift@AudioEventRTS@@QBEMXZ,,0x000B21C0,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Ghidra-bound BFME pitch-shift offset
 ?getPlayType@WindowVideo@@QAE?AW4WindowVideoPlayType@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?getPlayerDisplayName@Player@@QAE?AVUnicodeString@@XZ,,0x00098FD0,32,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarObserver.cpp,matched,
+?getPlayerIndex@NetDestroyPlayerCommandMsg@@QAEIXZ,,0x00673B70,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getPlayerMask@Player@@QBEGXZ,,0x000C8C50,11,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?getPlayerNameForSlot@BFMEConnectionManager@@QAEXPAXH@Z,,0x006649E0,100,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?getPlayerProfileIDCallback@@YAXPAXHPBDH0@Z,,0x00642F70,23,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
@@ -11531,6 +11534,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getSizeOfGroup@Squad@@QBEHXZ,,0x000ED420,10,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,
 ?getSlavedUpdateInterface@BehaviorModule@@UAEPAVSlavedUpdateInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getSlot@GameInfo@@QAEPAVGameSlot@@H@Z,,0x0061E8E0,25,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
+?getSlot@NetDisconnectVoteCommandMsg@@QAEEXZ,,0x00673D30,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getSlotIndex@@YAHPBVGameSlot@@@Z,,0x0061ECE0,48,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,true size 48B; row claimed 45B
 ?getSlotNum@GameInfo@@QBEHVAsciiString@@@Z,,0x00620390,301,Code/masm_dumps/getSlotNum_GameInfo_QBEHVAsciiString_Z_00620390_packet341.asm,matched,Certified packet 341 exact retail db body SHA-256 9cb2788c73a6a1d974bbed5e41b89d95b7a713038e267199a71dac8480f0463f
 ?getSlotNum@LANGameInfo@@QAEHVUnicodeString@@@Z,,0x0068EB10,179,Code/masm_dumps/LANGameInfo_getSlotNum.asm,matched,Ghidra-corrected BFME LAN slot search
@@ -11643,6 +11647,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getViewFilterType@View@@UAE?AW4FilterTypes@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/View.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getViewObjectDuration@SpecialPowerTemplate@@QBEIXZ,,0x00268950,33,Code/GameEngine/Source/Common/RTS/SpecialPowerTemplate.cpp,matched,Open-BFME5 exact C++ raw getter; target field offset 0x108 and Overridable final-override call preserved
 ?getVolumeShift@AudioEventRTS@@QBEMXZ,,0x000B21D0,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,BFME audio layout
+?getVoteFrame@NetDisconnectVoteCommandMsg@@QAEIXZ,,0x00673D40,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getWaitTime@QuickMatchPreferences@@QAEHXZ,,0x000AC060,84,Code/GameEngine/Source/Common/promoted__getWaitTime_QuickMatchPreferences_QAEHXZ_000AC060.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 84B
 ?getWaterGridResolution@W3DTerrainVisual@@UAEXPBVWaterHandle@@PAM11@Z,,0x00730AC0,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?getWaterTransform@W3DTerrainVisual@@UAEXPBVWaterHandle@@PAVMatrix3D@@@Z,,0x00730AA0,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
@@ -13088,6 +13093,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setColor@W3DStatusCircle@@SAXHHH@Z,,0x006FB4D0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?setColorTintEnvelope@Drawable@@QAEXAAVTintEnvelope@@@Z,,0x00761CB0,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DOverlordAircraftDraw.cpp,matched,
 ?setCommandBarBorder@ControlBar@@AAEXPAVGameWindow@@W4CommandButtonMappedBorderType@@@Z,,0x0049CE10,153,Code/masm_dumps/ControlBar_setCommandBarBorder.asm,matched,Ghidra-bound BFME five-case border body
+?setCommandID@NetAckBothCommandMsg@@QAEXG@Z,,0x00673800,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setCommandID@NetAckStage1CommandMsg@@QAEXG@Z,,0x00673910,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setCommandID@NetAckStage2CommandMsg@@QAEXG@Z,,0x00673A10,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setCompletedWaypoint@AIUpdateInterface@@QAEXPBVWaypoint@@@Z,,0x0098D2E0,13,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setConditionType@Condition@@QAEXW4ConditionType@1@@Z,,0x00355D10,215,Code/masm_dumps/setConditionType_Condition_QAEXW4ConditionType_1_Z_00355D10_80d49b30.asm,matched,certified packet 71; exact retail db body; sha256 80d49b3022fbe120803c7cc2cf3b029ff172f1d5544c2a93e969bd7ab1610b12
 ?setConfig@GameSpyInfo@@UAEXABVAsciiString@@@Z,,0x00630E00,8,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
@@ -13128,6 +13136,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setDisallowAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630760,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADEE0,170,Code/masm_dumps/_sa13__setDisallowNonAsianText_CustomMatchPreferences__QAEX_N_Z_ADEE0.asm,matched,multi-xref Open-BFME4+Grok DisallowNonAsianText
 ?setDisallowNonAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630770,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
+?setDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEXI@Z,,0x00674120,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEXI@Z,,0x00673C90,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?setDisconnectSlot@NetDisconnectPlayerCommandMsg@@QAEXE@Z,,0x00673C80,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?setDisplayMode@Display@@UAE_NIII_N@Z,,0x0040DA80,311,Code/masm_dumps/Display_setDisplayMode_40DA80.asm,matched,Certified packet 53 exact retail db recovery SHA256 17487ff48887ebb513026b1e5623f96a1de2d631bce2f7409aff8da740319436
@@ -13212,6 +13221,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setLastLadder@QuickMatchPreferences@@QAEXABVAsciiString@@G@Z,,0x00029B36,5,Code/GameEngine/Source/Common/RTS/QuickMatchPreferencesSetLastLadderThunk.cpp,matched,5-byte incremental-link QuickMatchPreferences member thunk converted to focused C++ source
 ?setLateralSpeed@BridgeScaffoldBehavior@@UAEXM@Z,,0x00131DB0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setLayer@Bridge@@QAEXW4PathfindLayerEnum@@@Z,,0x0045BF90,13,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
+?setLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEXE@Z,,0x00673B00,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setLeechRangeActive@Weapon@@QAEX_N@Z,,0x003BBAE0,10,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?setLeftMargin@DebugDisplay@@UAEXH@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/System/DebugDisplay.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
 ?setLeftMouseButton@SelectionTranslator@@QAEX_N@Z,,0x001EE7D0,10,Code/GameEngine/Source/GameClient/MessageStream/SelectionXlat.cpp,matched,
@@ -13257,6 +13267,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setNemesisID@AIGuardMachine@@QAEXW4ObjectID@@@Z,,0x0016A390,10,Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp,matched,
 ?setNemesisID@AIGuardRetaliateMachine@@QAEXW4ObjectID@@@Z,,0x001F83A0,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setNemesisID@AITNGuardMachine@@QAEXW4ObjectID@@@Z,,0x0018F257,10,Code/GameEngine/Source/GameLogic/AI/AITNGuard.cpp,matched,
+?setNewFrame@NetDisconnectScreenOffCommandMsg@@QAEXI@Z,,0x00674370,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setNext@LANGameInfo@@QAEXPAV1@@Z,,0x0025E790,13,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ?setNextAction@ScriptAction@@QAEXPAV1@@Z,,0x003365F0,10,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?setNextBuildList@BuildListInfo@@QAEXPAV1@@Z,,0x00673F30,10,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
@@ -13276,6 +13287,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setOptimalExtrusionPadding@W3DVolumetricShadow@@IAEXM@Z,,0x0061E9D0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?setOrientation@Thing@@QAEXM@Z,,0x000399A5,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Thing::setOrientation
 ?setOrigin@View@@UAEXHH@Z,,0x0045BA60,17,Code/GameEngine/Source/GameClient/View.cpp,matched,
+?setOriginalPlayerID@NetAckBothCommandMsg@@QAEXE@Z,,0x00673820,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setOriginalPlayerID@NetAckStage1CommandMsg@@QAEXE@Z,,0x00673930,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setOriginalPlayerID@NetAckStage2CommandMsg@@QAEXE@Z,,0x00673A30,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setParentCell@PathfindCell@@QAEXPAV1@@Z,,0x003F69A0,14,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?setParentCellHierarchical@PathfindCell@@QAEXPAV1@@Z,,0x003F69A0,14,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,ICF alias of existing matched body
 ?setPassable@ZoneBlock@@QAEX_N@Z,,0x002C56C0,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
@@ -13284,6 +13298,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPingString@GameSpyInfo@@UAEXABVAsciiString@@@Z,,0x00637230,8,Code/GameEngine/Source/GameNetwork/GameSpy/GameSpyInfoSetPingStringThunk.cpp,matched,Open-BFME5 exact C++ vtable tail thunk replacing MASM dump
 ?setPitch@View@@UAEXM@Z,,0x0045B570,61,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setPlayerIndex@AudioEventRTS@@QAEXH@Z,,0x000B23C0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,
+?setPlayerIndex@NetDestroyPlayerCommandMsg@@QAEXI@Z,,0x00673B60,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setPlayerName@EstablishConnectionsMenu@@,,0x00538700,373,Code/masm_dumps/_sa4__setPlayerName_EstablishConnectionsMenu___538700.asm,matched,Exact 373B Open-BFME4
 ?setPlayerStatus@EstablishConnectionsMenu@@QAEXHW4NATConnectionState@@@Z,,0x004B2DC0,268,Code/GameEngine/Source/GameClient/GUI/EstablishConnectionsMenu/EstablishConnectionsMenu.cpp,matched,
 ?setPlayerTemplate@GameSlot@@QAEXH@Z,,0x003827E0,22,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
@@ -14020,18 +14035,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?attach@NetCommandMsg@@QAEXXZ,,0x00673600,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setCommandID@NetAckBothCommandMsg@@QAEXG@Z,,0x00673800,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setOriginalPlayerID@NetAckBothCommandMsg@@QAEXE@Z,,0x00673820,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setCommandID@NetAckStage1CommandMsg@@QAEXG@Z,,0x00673910,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setOriginalPlayerID@NetAckStage1CommandMsg@@QAEXE@Z,,0x00673930,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setCommandID@NetAckStage2CommandMsg@@QAEXG@Z,,0x00673A10,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setOriginalPlayerID@NetAckStage2CommandMsg@@QAEXE@Z,,0x00673A30,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEEXZ,,0x00673AF0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEXE@Z,,0x00673B00,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setPlayerIndex@NetDestroyPlayerCommandMsg@@QAEXI@Z,,0x00673B60,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getPlayerIndex@NetDestroyPlayerCommandMsg@@QAEIXZ,,0x00673B70,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getSlot@NetDisconnectVoteCommandMsg@@QAEEXZ,,0x00673D30,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?getVoteFrame@NetDisconnectVoteCommandMsg@@QAEIXZ,,0x00673D40,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEXI@Z,,0x00674120,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-?setNewFrame@NetDisconnectScreenOffCommandMsg@@QAEXI@Z,,0x00674370,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
