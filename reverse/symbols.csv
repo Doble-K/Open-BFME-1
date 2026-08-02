@@ -4087,3 +4087,5 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?isOwnersCurWeaponOnTurret@TurretAI@@QBE_NXZ,0x0003FDEB,REL32 pin from AIUpdateInterface::getWhichTurretForCurWeapon @0x26EB70
 ?isWeaponSlotOnTurret@TurretAI@@QBE_NW4WeaponSlotType@@@Z,0x00039D24,REL32 pin from AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget @0x26EA90
 ?isTryingToAimAtTarget@TurretAI@@QBE_NPBVObject@@@Z,0x000079D7,REL32 pin from AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget @0x26EA90
+?getCurNemesis@TunnelTracker@@QAEPAVObject@@XZ,0x00025766,REL32 pin from TunnelTracker::updateNemesis @0xF90D0
+?isKindOf@Thing@@QBE_NW4KindOfType@@@Z,0x0003251F,REL32 pin from TunnelTracker::updateNemesis @0xF90D0

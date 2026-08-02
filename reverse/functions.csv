@@ -13545,7 +13545,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?updateLoadProgress@GameLogic@@QAEXH@Z,,0x000DB020,3751,Code/masm_dumps/_sa16__updateLoadProgress_GameLogic__QAEXH_Z_DB020.asm,matched,sa16 Open-BFME4+Grok ReplayObserver
 ?updateMenuActions@@YAXXZ,,0x004DEF10,157,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,matched,
 ?updateMips@TileData@@QAEXXZ,,0x006D6900,105,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
-?updateNemesis@TunnelTracker@@QAEXPBVObject@@@Z,,0x000F90D0,124,Code/masm_dumps/_rn7__updateNemesis_TunnelTracker__QAEXPBVObject___Z_F90D0.asm,matched,reloc-needle Open-BFME4+Grok
 ?updateNumPlayersOnline@@YAXXZ,,0x0050BA40,1421,Code/masm_dumps/_sym1__updateNumPlayersOnline__YAXXZ_50BA40.asm,matched,symbol-pin Open-BFME4+Grok
 ?updateOCLTimerTextDisplay@ControlBar@@IAEXIM@Z,,0x004AA7C0,358,Code/masm_dumps/_cache__updateOCLTimerTextDisplay_ControlBar__IAEXIM_Z_4AA7C0.asm,matched,cached-obj needle Open-BFME4+Grok
 ?updateObjValuesFromMapProperties@Object@@QAEXPAVDict@@@Z,,0x001D0610,1951,Code/masm_dumps/updateObjValuesFromMapProperties_Object_QAEXPAVDict_Z_001D0610_56f927ed.asm,matched,Certified packet 86 exact retail MASM sha256 56f927edaef7d221087371da921ad2655aa010fbe2b5a612a70182c03431de27
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?createNewMessageQueue@GameSpyPeerMessageQueueInterface@@SAPAV1@XZ,,0x0064E620,86,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,MASM dump converted to clean C++; BFME queue carries a third MutexClass plus a tail word (0x78 not 0x6C)
 ?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME AIUpdateInterface puts m_turretAI at +0x1E8
 ?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME AIUpdateInterface puts m_turretAI at +0x1E8
+?updateNemesis@TunnelTracker@@QAEXPBVObject@@@Z,,0x000F90D0,124,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,MASM dump converted to clean C++; single-base TunnelTracker plus two extra BFME KindOf entries before KINDOF_AIRCRAFT
