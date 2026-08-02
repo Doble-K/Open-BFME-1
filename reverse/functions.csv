@@ -9217,7 +9217,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?compareNoCase@?$StringBase@G@@QBEHPBGH@Z,0x00049BA2,0x0009EE70,69,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?computeApproachPosition@DockUpdate@@IAE?AUCoord3D@@HPAVObject@@@Z,,0x0001D7C8,5,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdateComputeApproachPositionThunk.cpp,matched,Focused C++ thunk for DockUpdate approach position
 ?computeApproachTarget@Weapon@@QBE_NPBVObject@@0PBUCoord3D@@MAAU3@@Z,,0x001E43D0,1042,Code/masm_dumps/computeApproachTarget_Weapon_001E43D0_packet175.asm,matched,Certified packet 175 sealed RVA and SHA-256 ab0690c840949900faa36b2070211d492a9cddcc0b55b6d18e047dc300b6db58
-?computeExtents@W3DDisplayString@@IAEXXZ,,0x006F5420,192,Code/masm_dumps/W3DDisplayString_computeExtents.asm,matched,Exact MASM dump; true start 0x6F5420 (queue had int3@0x6F541F); SEH+vcall getText/getTextLength; m_size@+0x1F0
 ?computePlayerFrameRatios@BFMEConnectionManager@@QAEXXZ,,0x00666000,454,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?computeTotalHeight@@YAXPAVGameWindow@@@Z,,0x004B7ED0,357,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,clean C++; BFME listData@+0x18/endPos@+0x2c/totalHeight@+0x28 raw offsets; DisplayString::getSize retail vtbl slot 15 (0x3c) hand-cast proven via this fn + addEntry retail bytes
 ?compute_contact_normal@@YAXAAUObbCollisionStruct@@PAUCastResultStruct@@@Z,,0x008E4920,915,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?screenPixelToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,,0x00107C50,126,Code/GameEngine/Source/Common/System/Radar.cpp,matched,MASM dump converted to clean C++; BFME Radar puts m_radarWindow at this+0x1438
 ?findDrawPositions@Radar@@QAEXHHHHPAUICoord2D@@0@Z,,0x00106FC0,302,Code/GameEngine/Source/Common/System/Radar.cpp,matched,MASM dump converted to clean C++; same BFME Radar layout pin (m_radarWindow at this+0x1438)
 ?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,MASM dump converted to clean C++; BFME GameSlot is 0x44 bytes and has an out-of-line destructor
+?computeExtents@W3DDisplayString@@IAEXXZ,,0x006F5420,192,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,MASM dump converted to clean C++; DisplayString drops one base virtual and its dtor is out-of-line

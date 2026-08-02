@@ -366,7 +366,6 @@ void W3DDisplayString::setClipRegion( IRegion2D *region )
 // W3DDisplayString::computeExtents ===========================================
 /** Update the width and height of our string */
 //=============================================================================
-// ?computeExtents@W3DDisplayString@@IAEXXZ present-unmatched
 void W3DDisplayString::computeExtents( void )
 {
 	UnsignedInt len = getTextLength();
