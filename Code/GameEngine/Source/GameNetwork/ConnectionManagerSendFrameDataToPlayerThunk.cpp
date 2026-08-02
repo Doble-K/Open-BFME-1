@@ -6,13 +6,13 @@ public:
     void sendFrameDataToPlayer(unsigned int playerID, unsigned int frame);
 };
 
-__declspec(naked) void ConnectionManager::sendFrameDataToPlayer(unsigned int, unsigned int)
+class ConnectionManagerSendFrameDataShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 00Bh
-        _emit 08Fh
-        _emit 065h
-        _emit 000h
-    }
+public:
+    void send(unsigned int playerID, unsigned int frame);
+};
+
+void ConnectionManager::sendFrameDataToPlayer(unsigned int playerID, unsigned int frame)
+{
+    ((ConnectionManagerSendFrameDataShim *)this)->send(playerID, frame);
 }
