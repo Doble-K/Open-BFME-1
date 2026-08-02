@@ -4,17 +4,20 @@ struct EvaSideSounds;
 
 namespace _STL
 {
-	template <class T, class U>
-	__declspec(naked) void _Construct(T *, const U &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0FEh
-			_emit 0A1h
-			_emit 035h
-			_emit 000h
-		}
-	}
+template <class T, class U>
+void _Construct(T *, const U &);
 
-	template void _Construct<EvaSideSounds, EvaSideSounds>(EvaSideSounds *, const EvaSideSounds &);
+class EvaSideSoundsConstructShim
+{
+public:
+    static void construct(EvaSideSounds *p, const EvaSideSounds &v);
+};
+
+template <class T, class U>
+void _Construct(T *p, const U &v)
+{
+    EvaSideSoundsConstructShim::construct((EvaSideSounds *)p, *(const EvaSideSounds *)&v);
+}
+
+template void _Construct<EvaSideSounds, EvaSideSounds>(EvaSideSounds *, const EvaSideSounds &);
 }
