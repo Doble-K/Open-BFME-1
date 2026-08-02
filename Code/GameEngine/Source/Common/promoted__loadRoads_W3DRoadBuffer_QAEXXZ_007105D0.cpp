@@ -2,73 +2,31 @@
 // Grok promote from masm_dumps — retail 0x007105D0 size 61
 // was: Code/masm_dumps/W3DRoadBuffer_loadRoads.asm
 
-class W3DRoadBuffer { public: void loadRoads(void); };
+class W3DRoadBuffer {
+public:
+	void loadRoadsHelper0(void);
+	void loadRoadsHelper1(void);
+	void loadRoadsHelper2(void);
+	static void loadRoadsHelper3(void);
+	void loadRoadsHelper4(void);
+	void loadRoadsHelper5(void);
+	void loadRoadsHelper6(void);
+	void loadRoads(void);
+};
 
 // ?loadRoads@W3DRoadBuffer@@QAEXXZ
-__declspec(naked) void W3DRoadBuffer::loadRoads(void)
+void W3DRoadBuffer::loadRoads(void)
 {
-__asm {
-		_emit 056h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 08Ah
-		_emit 046h
-		_emit 00Ch
-		_emit 084h
-		_emit 0C0h
-		_emit 074h
-		_emit 031h
-		_emit 0E8h
-		_emit 01Ah
-		_emit 031h
-		_emit 092h
-		_emit 0FFh
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 037h
-		_emit 0FAh
-		_emit 090h
-		_emit 0FFh
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 071h
-		_emit 005h
-		_emit 090h
-		_emit 0FFh
-		_emit 0E8h
-		_emit 0DEh
-		_emit 037h
-		_emit 091h
-		_emit 0FFh
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 0E3h
-		_emit 00Bh
-		_emit 093h
-		_emit 0FFh
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 09Ah
-		_emit 0B4h
-		_emit 090h
-		_emit 0FFh
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 04Bh
-		_emit 02Fh
-		_emit 090h
-		_emit 0FFh
-		_emit 0C6h
-		_emit 046h
-		_emit 050h
-		_emit 001h
-		_emit 05Eh
-		_emit 0C3h
+	if (*(unsigned char *)((unsigned char *)this + 0x0C))
+	{
+		loadRoadsHelper0();
+		loadRoadsHelper1();
+		loadRoadsHelper2();
+		loadRoadsHelper3();
+		loadRoadsHelper4();
+		loadRoadsHelper5();
+		loadRoadsHelper6();
+		*(unsigned char *)((unsigned char *)this + 0x50) = 1;
 	}
 }
 

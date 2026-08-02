@@ -3531,6 +3531,13 @@ name,address,notes
 ?release@DictReleaseDataShim@@QAEXXZ,0x000681C0,Dict releaseData incremental-link thunk target through a TU-local forwarding shim
 ?release@DistLODClassFreeShim@@QAEXXZ,0x00725B70,DistLODClass incremental-link Free target through a TU-local layout shim
 ?release@W3DShadowContainerShim@@QAEXXZ,0x0001E344,W3DProjectedShadowManager ReleaseResources container helper shim
+?loadRoadsHelper0@W3DRoadBuffer@@QAEXXZ,0x000336F9,W3DRoadBuffer loadRoads guarded helper shim
+?loadRoadsHelper1@W3DRoadBuffer@@QAEXXZ,0x0002001D,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper2@W3DRoadBuffer@@QAEXXZ,0x00010B5E,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper3@W3DRoadBuffer@@SAXXZ,0x00023DD0,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper4@W3DRoadBuffer@@QAEXXZ,0x000411DC,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper5@W3DRoadBuffer@@QAEXXZ,0x0001BA9A,W3DRoadBuffer loadRoads helper shim
+?loadRoadsHelper6@W3DRoadBuffer@@QAEXXZ,0x00013552,W3DRoadBuffer loadRoads helper shim
 ?releaseBuffer@AsciiString@@IAEXXZ,0x00887940,Ghidra GrabWindowInfo direct callee
 ?releaseBuffer@BFMERetailAsciiString@@AAEXXZ,0x00887940
 ?releaseBuffer@UnicodeString@@IAEXXZ,0x0000D828,site-decoded x9 (thunk)
