@@ -72,12 +72,18 @@ public:
 //
 // The mov [esp+N],esp is MSVC recording the temporary's address for the unwind
 // table, and retail emits it before setting the this pointer rather than after.
-// Nothing tried moves it: explicit AsciiString(...) temporaries, a declared
-// rather than inline destructor, releaseBuffer public rather than private, the
-// third argument defaulted rather than passed, and /GX, /EHa, /Gy and /Os in
-// place of /EHsc. It is not the argument order either -- MSVC evaluates
+//
+// Nothing tried moves it. Source shapes: explicit AsciiString(...) temporaries,
+// a declared rather than inline destructor, releaseBuffer public rather than
+// private, and the third argument defaulted rather than passed. Flags, all on
+// top of build.py's base -O2 -GR- -EHsc-: /GX, /EHa, /Gy, /Os, /Ox, /O1, /Oy-,
+// /GF, /Gd and /Og. It is not the argument order either -- MSVC evaluates
 // right-to-left and retail does construct "*.big" first, which this already
 // matches.
+//
+// So it is not a spelling and it is not a flag on this list. The next thing to
+// try is the shape of loadBigFilesFromDirectory's declaration, since the store
+// being scheduled is the unwind record for ITS by-value parameters.
 //
 // Everything else about the function is settled, so this is two bytes of
 // scheduling away from done.
