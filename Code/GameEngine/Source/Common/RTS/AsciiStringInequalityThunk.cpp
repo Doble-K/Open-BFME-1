@@ -2,13 +2,13 @@
 
 class AsciiString;
 
-__declspec(naked) bool operator<(const AsciiString &, const AsciiString &)
+class AsciiStringLessShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 033h
-        _emit 0F9h
-        _emit 062h
-        _emit 000h
-    }
+public:
+    static bool less(const AsciiString &, const AsciiString &);
+};
+
+bool operator<(const AsciiString &a, const AsciiString &b)
+{
+    return AsciiStringLessShim::less(a, b);
 }
