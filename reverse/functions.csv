@@ -9278,6 +9278,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?close@File@@UAEXXZ,,0x009CB880,50,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 2 of all three File vtables - repointed off its MASM dump onto C++
 ?close@Win32BIGFile@@UAEXXZ,,0x009D14D0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 8; empty body
 ?closeAllFiles@Win32BIGFile@@UAEXXZ,,0x009D14B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 4; empty body
+?closeAllFiles@Win32BIGFileSystem@@UAEXXZ,,0x009CC3B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_closeAllFiles.cpp,matched,vtable 0x01143B40 slot 7 -- bare ret so the vtable is the whole evidence with ZH closeAllFiles being empty as corroboration
 ?closeAllSpareSockets@FirewallHelperClass@@QAEXXZ,,0x0066EB60,64,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?closeDataChunk@DataChunkOutput@@QAEXXZ,,0x001024A0,118,Code/GameEngine/Source/Common/System/DataChunkOutputCloseDataChunkThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM method
 ?closeLiveHandle@BFMENetworkBackend@@QAEXXZ,,0x009DB5A0,35,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network backend wait/clear for handle fields +0x48/+0x44
@@ -11804,6 +11805,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@W3DVolumetricShadowManager@@QAE_NXZ,,0x007C19E0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,clean C++ body calls ReAcquireResources; exact retail call/return bytes
 ?init@WaterRenderObjClass@@QAEHMMMPAVSceneClass@@W4WaterType@@@Z,,0x007A5200,1383,Code/masm_dumps/_sa3__init_WaterRenderObjClass__QAEHMMMPAVSceneClass__W_7A5200.asm,matched,Exact 1383B string-anchored Open-BFME4
 ?init@WaterTracksObj@@QAEXMAAVVector2@@0PAD@Z,,0x007AB6B0,520,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
+?init@Win32BIGFileSystem@@UAEXXZ,,0x009CC590,111,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_init.cpp,matched,
 ?init@WinInstanceData@@QAEXXZ,,0x00021EC7,5,Code/GameEngine/Source/Common/RTS/WinInstanceDataInitThunk.cpp,matched,5-byte incremental-link WinInstanceData member thunk converted to focused C++ source
 ?init@WindowVideoManager@@UAEXXZ,,0x00498C20,21,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
 ?initAnimateWindow@ProcessAnimateWindowSlideFromBottom@@UAEXPAVAnimateWindow@@@Z,,0x00496480,236,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
@@ -14035,4 +14037,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?closeAllFiles@Win32BIGFileSystem@@UAEXXZ,,0x009CC3B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_closeAllFiles.cpp,matched,vtable 0x01143B40 slot 7 -- bare ret so the vtable is the whole evidence with ZH closeAllFiles being empty as corroboration

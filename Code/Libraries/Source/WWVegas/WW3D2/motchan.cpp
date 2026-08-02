@@ -559,62 +559,6 @@ Quaternion TimeCodedMotionChannelClass::Get_QuatVector(float32 frame)
  *   01/27/2000 JGA  : Created.                                                                * 
  *=============================================================================================*/
 // New version that uses a binary search, and no cache
-// ?TimeCodedMotionChannelClass::binary_search_index present-unmatched
-uint32 TimeCodedMotionChannelClass::binary_search_index(uint32 timecode)
-{	
-	int leftIdx = 0;
-	int rightIdx = NumTimeCodes - 2;
-	int dx;
-	uint32 time;
-
-
-	int idx = (NumTimeCodes-1) * PacketSize;
-
-	//int32		LastTimeCodeIdx;	// absolute index to last time code
-	//int32		CachedIdx;			// Last Index Used
-
-	// special case last packet
-	time = Data[idx] & ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
-	if (timecode >= time) return(idx);
-
-	for (;;) {
-	
-		dx = rightIdx - leftIdx;
-
-		dx>>=1;	// divide by 2
-
-		dx += leftIdx;
-
-		idx = dx * PacketSize;
-
-		time = Data[idx] & ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
-
-		if (timecode < time) {
-			rightIdx = dx;
-			continue;
-		}
-
-		time = Data[idx + PacketSize] & ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
-
-		if (timecode < time) return(idx); 
-
-		if (leftIdx ^ dx) {
-			leftIdx = dx;
-			continue;
-		}
-
-		//
-		// if leftIdx == dx prior to assignment, then leftIdx is stuck.
-		//
-
-		leftIdx++;
-
-	}
-
-	assert(0);
-	return(0);
-
-}	// binary_search_index
 
 	 
 /*********************************************************************************************** 
@@ -629,35 +573,6 @@ uint32 TimeCodedMotionChannelClass::binary_search_index(uint32 timecode)
  * HISTORY:                                                                                    * 
  *   01/27/2000 JGA  : Created.                                                                * 
  *=============================================================================================*/
-// ?TimeCodedMotionChannelClass::get_index present-unmatched
-uint32 TimeCodedMotionChannelClass::get_index(uint32 timecode)
-{	
-	assert(CachedIdx <= LastTimeCodeIdx);
-
-	uint32	time;
-
-	time = Data[CachedIdx] & ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
-
-	if (timecode >= time) {
-		// possibly in the current packet
-
-		// special case for end packets
-		if (CachedIdx == (NumTimeCodes-1) * PacketSize) return(CachedIdx);
-		time = Data[CachedIdx + PacketSize]	& ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
-		if (timecode < time) return(CachedIdx);
-
-		// Do one time look-ahead before reverting to a search
-		CachedIdx+=PacketSize;
-		if (CachedIdx == (NumTimeCodes-1) * PacketSize) return(CachedIdx);
-		time = Data[CachedIdx + PacketSize]	& ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
-		if (timecode < time) return(CachedIdx);
-	}
-
-	CachedIdx = binary_search_index( timecode );
-
-	return(CachedIdx);
-
-}	// get_index
    
 /*********************************************************************************************** 
  * TimeCodedMotionChannelClass::set_identity -- returns an "identity" vector (not really...hmm...)      * 

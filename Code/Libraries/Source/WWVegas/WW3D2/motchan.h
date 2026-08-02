@@ -258,11 +258,96 @@ private:
 
 	void 		Free(void);
 	void 		set_identity(float * setvec);
-	uint32	get_index(uint32 timecode);
-	uint32	binary_search_index(uint32 timecode);
+	// WWINLINE, defined below: retail folds the whole index search into
+	// Get_Vector (0x009781A0), which makes exactly one call and that is the
+	// float-to-integer conversion at 0x009F6E38.
+	WWINLINE uint32	get_index(uint32 timecode);
+	WWINLINE uint32	binary_search_index(uint32 timecode);
 
 	friend class HCompressedAnimClass;
 };
+
+WWINLINE uint32 TimeCodedMotionChannelClass::binary_search_index(uint32 timecode)
+{	
+	int leftIdx = 0;
+	int rightIdx = NumTimeCodes - 2;
+	int dx;
+	uint32 time;
+	int idx;
+
+	// No special case for the last packet: retail's search path (the fall-through
+	// of the jae at 0x0097821B) sets leftIdx and rightIdx and drops straight into
+	// the loop. get_index has already handled the last packet by the time it gets
+	// here, and keeping the test gave (NumTimeCodes-1)*PacketSize a third use,
+	// which made MSVC hoist it above the branch where retail computes it inside.
+
+	for (;;) {
+	
+		dx = rightIdx - leftIdx;
+
+		dx>>=1;	// divide by 2
+
+		dx += leftIdx;
+
+		idx = dx * PacketSize;
+
+		time = Data[idx] & ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
+
+		if (timecode < time) {
+			rightIdx = dx;
+			continue;
+		}
+
+		time = Data[idx + PacketSize] & ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
+
+		if (timecode < time) return(idx); 
+
+		if (leftIdx ^ dx) {
+			leftIdx = dx;
+			continue;
+		}
+
+		//
+		// if leftIdx == dx prior to assignment, then leftIdx is stuck.
+		//
+
+		leftIdx++;
+
+	}
+
+	assert(0);
+	return(0);
+
+}	// binary_search_index
+
+WWINLINE uint32 TimeCodedMotionChannelClass::get_index(uint32 timecode)
+{	
+	assert(CachedIdx <= LastTimeCodeIdx);
+
+	uint32	time;
+
+	time = Data[CachedIdx] & ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
+
+	if (timecode >= time) {
+		// possibly in the current packet
+
+		// special case for end packets
+		if (CachedIdx == (NumTimeCodes-1) * PacketSize) return(CachedIdx);
+		time = Data[CachedIdx + PacketSize]	& ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
+		if (timecode < time) return(CachedIdx);
+
+		// Do one time look-ahead before reverting to a search
+		CachedIdx+=PacketSize;
+		if (CachedIdx == (NumTimeCodes-1) * PacketSize) return(CachedIdx);
+		time = Data[CachedIdx + PacketSize]	& ~W3D_TIMECODED_BINARY_MOVEMENT_FLAG;
+		if (timecode < time) return(CachedIdx);
+	}
+
+	CachedIdx = binary_search_index( timecode );
+
+	return(CachedIdx);
+
+}	// get_index
 
 class AdaptiveDeltaMotionChannelClass : public W3DMPO
 {

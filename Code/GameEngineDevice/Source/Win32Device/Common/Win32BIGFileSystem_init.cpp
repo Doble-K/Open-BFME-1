@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /ICode/Libraries/Source/WWVegas/WWLib /Ireference/shims/sweep
 //
 // Win32BIGFileSystem::init, retail 0x009CC590, 111 bytes.
 //
@@ -26,20 +26,28 @@
 // constructors unwinds the one already built.
 
 #include <stddef.h>
+#include "string_base.h"
 
 typedef int Int;
 typedef int Bool;
 
-// Retail AsciiString(const char*) is the thin 0x00888BC0 body and releaseBuffer
-// is 0x00887940 -- the same local shim pattern as File.cpp and Upgrade.cpp.
+// The delegating shim, as in Win32BIGFileOpenArchived.cpp: the constructor is
+// defined here and forwards to StringBase<char>, rather than being left an
+// undefined extern. That file matched first try building two of these by value.
 class AsciiString
 {
 public:
-	AsciiString( const char *string );
-	~AsciiString() { releaseBuffer(); }
+	AsciiString( const char *s )
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase( s );
+	}
+
+	~AsciiString()
+	{
+		((StringBase<char> *)this)->releaseBuffer();
+	}
 
 private:
-	void releaseBuffer();
 	char *m_data;
 };
 
@@ -63,7 +71,6 @@ public:
 	                                        Bool overwrite ) = 0;
 };
 
-// ?init@Win32BIGFileSystem@@UAEXXZ present-unmatched
 // 109 of 111 bytes. Same length, same instructions, same operands -- the only
 // difference is that one pair is scheduled the other way round, twice:
 //
