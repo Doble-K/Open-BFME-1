@@ -2031,7 +2031,7 @@ UnsignedInt Player::getSupplyBoxValue()
 
 //=============================================================================
 // ?getProductionCostChangePercent@Player@@QBEMVAsciiString@@@Z
-// Body in Player_getProductionCostChangePercent.asm (exact 91B retail @ 0xD47F0;
+// Body in PlayerProductionCostChangePercentThunk.cpp (exact 91B retail @ 0xD47F0;
 // queue 0x79CED4 was INSIDE MOTDSystem; map at this+0x1CC).
 
 //=============================================================================
