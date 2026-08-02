@@ -4,17 +4,20 @@ class ProductionPrerequisite;
 
 namespace _STL
 {
-	template <class T>
-	__declspec(naked) void _Destroy(T, T)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0C4h
-			_emit 072h
-			_emit 039h
-			_emit 000h
-		}
-	}
+template <class T>
+void _Destroy(T, T);
 
-	template void _Destroy<ProductionPrerequisite *>(ProductionPrerequisite *, ProductionPrerequisite *);
+class ProductionPrerequisiteDestroyShim
+{
+public:
+    static void destroy(ProductionPrerequisite *first, ProductionPrerequisite *last);
+};
+
+template <class T>
+void _Destroy(T first, T last)
+{
+    ProductionPrerequisiteDestroyShim::destroy((ProductionPrerequisite *)first, (ProductionPrerequisite *)last);
+}
+
+template void _Destroy<ProductionPrerequisite *>(ProductionPrerequisite *, ProductionPrerequisite *);
 }
