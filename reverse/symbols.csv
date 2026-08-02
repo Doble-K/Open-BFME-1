@@ -375,6 +375,7 @@ name,address,notes
 ??0?$_STLP_alloc_proxy@PAPAVBuddyResponse@@PAV1@V?$allocator@PAVBuddyResponse@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVBuddyResponse@@@1@PAPAVBuddyResponse@@@Z,0x008F9A20,shared alloc_proxy ctor body (4 template instances)
 ??0?$_STLP_alloc_proxy@PAPAVGameResultsRequest@@PAV1@V?$allocator@PAVGameResultsRequest@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVGameResultsRequest@@@1@PAPAVGameResultsRequest@@@Z,0x008F9A20,shared alloc_proxy ctor body (4 template instances)
 ??0?$_STLP_alloc_proxy@PAPAVGameResultsResponse@@PAV1@V?$allocator@PAVGameResultsResponse@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVGameResultsResponse@@@1@PAPAVGameResultsResponse@@@Z,0x008F9A20,shared alloc_proxy ctor body (4 template instances)
+??0?$_STLP_alloc_proxy@PAU?$_List_node@PAVParticleSystem@@@_STL@@U12@V?$allocator@U?$_List_node@PAVParticleSystem@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_List_node@PAVParticleSystem@@@_STL@@@1@PAU?$_List_node@PAVParticleSystem@@@1@@Z,0x00024091
 ??0?$_STLP_alloc_proxy@PAU?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@U12@V?$allocator@U?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@@1@PAU?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@1@@Z,0x0000F461,pinharvest x1 (thunk)
 ??0?$_STLP_alloc_proxy@PAU?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@U12@V?$allocator@U?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@@1@PAU?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@1@@Z,0x0001CF26,pinharvest x1 (thunk)
 ??0?$_STLP_alloc_proxy@PAU?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@U12@V?$allocator@U?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@_STL@@@1@PAU?$_Rb_tree_node@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@@1@@Z,0x0002AFE0,pinharvest x1 (thunk)
@@ -473,6 +474,7 @@ name,address,notes
 ??0ArchivedDirectoryInfo@@QAE@XZ,0x009CA460,the only non-allocator call in ArchiveFileSystem::ArchiveFileSystem at 0x009CAA34; m_rootDirectory is the only member needing a constructor
 ??0ArchivedFileInfo@@QAE@XZ,0x009CC650,archive directory entry ctor
 ??0ArmorUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003582D,module ctor (friend_newModuleInstance retail call target)
+??0AsciiString@@AAE@PBD@Z,0x00888BC0,probe: plain-class variant of the StringBase<char> const char* constructor
 ??0AsciiString@@QAE@ABV0@@Z,0x00887B60,pinharvest x4 (body)
 ??0AsciiString@@QAE@PBD@Z,0x00888BC0,pinharvest x4 (body)
 ??0AssistedTargetingUpdateModuleData@@QAE@XZ,0x000104B5,pinharvest x1 (thunk)
@@ -3824,6 +3826,7 @@ name,address,notes
 ?setSortMode@@YAXW4GameSortType@@@Z,0x00048360
 ?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z,0x0001366F,hit-decoded x8 (thunk)
 ?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z,0x000486EE,hit-decoded x8 (thunk)
+?setText1C@BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAEXVAsciiString@@@Z,0x00675A20,probe: plain-class variant of the setter
 ?setTimeOfDay@W3DGameClientShadowShim@@QAEXW4TimeOfDay@@@Z,0x0003E42D,W3DGameClient setTimeOfDay shadow helper shim
 ?setTimeOfDay@W3DGameClientWaterShim@@QAEXW4TimeOfDay@@@Z,0x00031728,W3DGameClient setTimeOfDay water helper shim
 ?setTotalDataLength@NetWrapperCommandMsg@@QAEXI@Z,0x0003EC52,ILT thunk; real body 0xA73F50
@@ -4100,5 +4103,3 @@ _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
 _gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
 _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
-??0AsciiString@@AAE@PBD@Z,0x00888BC0,probe: plain-class variant of the StringBase<char> const char* constructor
-?setText1C@BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAEXVAsciiString@@@Z,0x00675A20,probe: plain-class variant of the setter
