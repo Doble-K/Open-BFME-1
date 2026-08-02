@@ -1033,3 +1033,37 @@ So the zeroing reads like member construction and the assignment reads like POD
 assignment, and no single declaration produces both. Worth revisiting if a
 matched constructor elsewhere in the tree zeroes a POD member and still emits
 its vptr first.
+
+## Retail's search loops are bottom-tested; a while/for gets rotated
+
+`Transport::queueSend` scans for a free slot. Retail emits a plain top-tested
+body with the bound check at the bottom:
+
+    lea eax, [ebp+0x404]
+  L: cmp dword ptr [eax], 0
+     je  found
+     inc edi
+     add eax, 0x40e
+     cmp edi, 0x80
+     jl  L
+     ...return FALSE
+  found:
+
+Writing that as `while (...)`, as `for (i = 0; i < N; ++i)` with a `break`, or
+as `for (;;)` with an internal `return` all miss -- MSVC rotates the loop,
+peeling the first test into a separate `test ecx,ecx` above the loop and making
+the value test the back edge. The `for` form additionally unrolls four ways.
+Neither `/Os`, `/Ot`, a `volatile` read, a second induction variable nor an
+explicit `goto` out of the body prevents it.
+
+`do { ... } while (i < N);` with a `goto` for the early exit produces retail's
+shape exactly, because there is nothing left to rotate. Reach for it whenever a
+scan loop comes out with a peeled first test.
+
+## Local declaration order picks the register initialisation order
+
+The obfuscation pass next door was one swapped pair away: retail loads the key
+constant before the walking pointer, and the source declared the pointer first.
+Swapping the two declarations fixed it. Where two locals are initialised from
+constants or parameters with no dependency between them, MSVC emits them in
+declaration order.
