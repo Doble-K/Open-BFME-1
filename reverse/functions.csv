@@ -10119,7 +10119,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@DynamicGeometryInfoUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001145D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@DynamicShroudClearingRangeUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118130,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@EjectPilotDie@@SAPAVModuleData@@PAVINI@@@Z,,0x001145D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@ElvenWoodSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120340,110,Code/masm_dumps/ElvenWoodSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xDB Ghidra confirmed
+?friend_newModuleData@ElvenWoodSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120340,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ElvenWoodSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@EmotionTrackerUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CEE0,107,Code/masm_dumps/EmotionTrackerUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x96; Ghidra confirmed
 ?friend_newModuleData@EnragedBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00114A40,107,Code/masm_dumps/EnragedBehavior_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@ExperienceLevelCreate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011E670,107,Code/masm_dumps/ExperienceLevelCreate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xB9 Ghidra confirmed
