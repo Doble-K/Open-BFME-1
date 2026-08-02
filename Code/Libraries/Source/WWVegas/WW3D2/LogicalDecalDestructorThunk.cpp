@@ -10,13 +10,13 @@ public:
 	};
 };
 
-__declspec(naked) MultiFixedPoolDecalSystemClass::LogicalDecalClass::~LogicalDecalClass()
+class MultiFixedPoolDecalSystemClassLogicalDecalClassDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 090h
-		_emit 0D4h
-		_emit 05Ah
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+MultiFixedPoolDecalSystemClass::LogicalDecalClass::~LogicalDecalClass()
+{
+	((MultiFixedPoolDecalSystemClassLogicalDecalClassDestructorShim *)this)->destroy();
 }
