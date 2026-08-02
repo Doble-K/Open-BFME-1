@@ -1169,7 +1169,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AnimalAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B3090,118,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0AnimalAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0Animatable3DObjClass@@QAE@ABV0@@Z,,0x00982D10,193,Code/Libraries/Source/WWVegas/WW3D2/Animatable3DObjClassCopyConstructorThunk.cpp,matched,Exact 193B C++ raw copy-constructor thunk Open-BFME5
-??0Animatable3DObjClass@@QAE@PBD@Z,,0x00981EF0,393,Code/masm_dumps/_sym1___0Animatable3DObjClass__QAE_PBD_Z_981EF0.asm,matched,symbol-pin Open-BFME4+Grok
+??0Animatable3DObjClass@@QAE@PBD@Z,,0x00981EF0,393,Code/Libraries/Source/WWVegas/WW3D2/Animatable3DObjClassStringConstructorThunk.cpp,matched,Exact 393B C++ raw string constructor thunk Open-BFME5
 ??0AnimateWindow@@QAE@XZ,,0x0045CEE0,62,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??0AnimateWindowManager@@QAE@XZ,,0x0045D6B0,537,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??0AnimationSoundClientBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00605380,245,Code/GameEngine/Source/GameLogic/AI/AnimationSoundClientBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
