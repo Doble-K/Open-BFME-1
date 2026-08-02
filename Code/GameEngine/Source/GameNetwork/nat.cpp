@@ -1025,6 +1025,12 @@ void NAT::probed(Int nodeNumber) {
 }
 
 // got the mangled port for our target for this round.
+// BFME adds two guards this reference body lacks, and it is 24 bytes away from
+// matching because of them. The first wraps targetSlot->setPort(mangledPort) in
+// a test of a byte at NAT+0xC4. The second is the same early-out that probed()
+// has: when m_connectionStates[m_localNodeNumber] is
+// NATCONNECTIONSTATE_WAITINGFORMANGLERRESPONSE it skips the whole probe section.
+// Landing it needs NAT+0xC4 named first.
 // ?gotMangledPort@NAT@@IAEXHG@Z present-unmatched
 void NAT::gotMangledPort(Int nodeNumber, UnsignedShort mangledPort) {
 
