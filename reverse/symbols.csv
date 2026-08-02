@@ -3392,6 +3392,7 @@ name,address,notes
 ?run@ConditionDuplicateShim@@QBEPAVCondition@@XZ,0x00357D30,Condition duplicate incremental-link thunk target through a TU-local forwarding shim
 ?run@DictEnsureUniqueShim@@QAEPAUDictPair@1@H_NPAU21@@Z,0x000683D0,Dict ensureUnique incremental-link thunk target through a TU-local forwarding shim
 ?run@DrawableClearAndSetModelConditionStateShim@@QAEXW4ModelConditionFlagType@@0@Z,0x00526660,Drawable clearAndSetModelConditionState incremental-link thunk target through a TU-local forwarding shim
+?run@FXListAtBonePosDoFxAtBonesShim@@QBEXPBVObject@@H@Z,0x0042D8E0,FXListAtBonePosFXNugget doFxAtBones incremental-link thunk target through a TU-local forwarding shim
 ?run@FXListDoFXPosShim@@QBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,0x001D6770,FXList doFXPos incremental-link thunk target through a TU-local forwarding shim
 ?saveReplay@@YAXVUnicodeString@@@Z,0x004DE8E0,PopupReplaySystem callee from decode_calls
 ?scanIndexList@INI@@SAHPBDPBQBD@Z,0x008509E0
