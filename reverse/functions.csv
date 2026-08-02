@@ -1311,6 +1311,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Coord3D@@QAE@HHH@Z,0x0003AE04,0x00064310,25,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,converts ints to floats
 ??0Coord3D@@QAE@MMM@Z,0x000156C7,0x000642F0,25,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,sets x/y/z from floats
 ??0Coord3D@@QAE@XZ,0x00016C93,0x00083330,3,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,empty constructor returns self
+??0CostModifierUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D4570,71,Code/GameEngine/Source/GameLogic/Object/Upgrade/CostModifierUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ UpgradeModule constructor
 ??0CountermeasuresBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/masm_dumps/CountermeasuresBehavior_constructor.asm,matched,Exact 74B ICF alias Open-BFME4
 ??0CountermeasuresBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0CrateSystem@@QAE@XZ,,0x003799D0,69,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,
