@@ -297,6 +297,23 @@ class AudioManager : public SubsystemInterface
 	// So Zero Hour cannot supply these names, the same wall the BFME-only
 	// subsystems hit. Naming them needs evidence from inside the image, and it is
 	// worth the effort: five blocks unblock at once.
+	//
+	// One constraint is already established and narrows slot 68 a long way.
+	// Scanning every `call [reg+disp32]` whose receiver was loaded from TheAudio
+	// (0x012ED668) finds slot 68 reached from exactly five sites, all of them in
+	// 0x000B1xxx -- which is precisely the five audio block parsers and nothing
+	// else in the image. A virtual only INI parsing calls is the create-an-entry
+	// entry point, which is what Zero Hour calls newAudioEventInfo.
+	//
+	// That is a strong hint and still not proof, because the argument count has
+	// to be explained too: the call passes two addresses where
+	// newAudioEventInfo( AsciiString ) would pass one. Until that is accounted
+	// for, the slot stays a placeholder.
+	//
+	// Slot 70 is reached from many more places, so the same argument does not
+	// narrow it. Do not read the caller list naively either -- pairing a TheAudio
+	// load with the next indirect call within 48 bytes produces false hits, which
+	// is how ControlBar and GameWindowManager appear in it.
 	virtual MiscAudio *friend_getMiscAudio( void );
 
 
