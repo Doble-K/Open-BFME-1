@@ -9,13 +9,13 @@ public:
     void connectCallback(GPConnection *, GPConnectResponseArg *);
 };
 
-__declspec(naked) void BuddyThreadClass::connectCallback(GPConnection *, GPConnectResponseArg *)
+class BuddyThreadClassConnectCallbackShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0DEh
-        _emit 0CFh
-        _emit 060h
-        _emit 000h
-    }
+public:
+    void run(GPConnection *conn, GPConnectResponseArg *arg);
+};
+
+void BuddyThreadClass::connectCallback(GPConnection *conn, GPConnectResponseArg *arg)
+{
+    ((BuddyThreadClassConnectCallbackShim *)this)->run(conn, arg);
 }

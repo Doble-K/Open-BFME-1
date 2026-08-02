@@ -3384,6 +3384,7 @@ name,address,notes
 ?resize@?$hashtable@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@W4NameKeyType@@U?$hash@W4NameKeyType@@@rts@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@U?$equal_to@W4NameKeyType@@@5@V?$allocator@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@@_STL@@QAEXI@Z,0x0008FB70,NameKeyGenerator aux hash_map hashtable<>::resize() proven via nameToKey(const char*) insert call site
 ?resize@?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAEXI@Z,0x0000366B
 ?revalidateOccupiers@SpawnPointProductionExitUpdate@@AAEXXZ,0x0002374A
+?run@BuddyThreadClassConnectCallbackShim@@QAEXPAVGPConnection@@PAUGPConnectResponseArg@@@Z,0x0063E490,BuddyThreadClass connectCallback incremental-link thunk target through a TU-local forwarding shim
 ?run@ConditionDuplicateShim@@QBEPAVCondition@@XZ,0x00357D30,Condition duplicate incremental-link thunk target through a TU-local forwarding shim
 ?run@DictEnsureUniqueShim@@QAEPAUDictPair@1@H_NPAU21@@Z,0x000683D0,Dict ensureUnique incremental-link thunk target through a TU-local forwarding shim
 ?run@DrawableClearAndSetModelConditionStateShim@@QAEXW4ModelConditionFlagType@@0@Z,0x00526660,Drawable clearAndSetModelConditionState incremental-link thunk target through a TU-local forwarding shim
