@@ -41,8 +41,9 @@ enum NetCommandType
 	// m_commandType; every derived constructor overwrites it, so the elided store
 	// hides that in the subclasses.
 	NETCOMMANDTYPE_UNKNOWN = -1,
-	NETCOMMANDTYPE_ACKBOTH = 1,
-	NETCOMMANDTYPE_ACKSTAGE1 = 2,
+	NETCOMMANDTYPE_ACKBOTH = 0,
+	NETCOMMANDTYPE_ACKSTAGE1 = 1,
+	NETCOMMANDTYPE_ACKSTAGE2 = 2,
 	NETCOMMANDTYPE_FRAMEINFO = 3,
 	NETCOMMANDTYPE_GAMECOMMAND = 4,
 	NETCOMMANDTYPE_PLAYERLEAVE = 10,
@@ -261,33 +262,33 @@ NetChatCommandMsg::NetChatCommandMsg() : NetCommandMsg()
 	m_playerMask = 0;
 }
 
-// 0x006738A0 (53B) and 0x00673840 (69B). BFME adds a third field the reference
+// 0x006738A0 (53B) and 0x00673840 (69B), type 1 = ACKSTAGE1. BFME adds a third field the reference
 // does not have: at +0x20 it keeps the execution frame of the command being
 // acknowledged, which the copying constructor takes from the source message and
 // the default constructor leaves at -1, matching m_executionFrame's own default.
-class NetAckBothCommandMsg : public NetCommandMsg
+class NetAckStage1CommandMsg : public NetCommandMsg
 {
 public:
-	NetAckBothCommandMsg();
-	NetAckBothCommandMsg(NetCommandMsg *msg);
+	NetAckStage1CommandMsg();
+	NetAckStage1CommandMsg(NetCommandMsg *msg);
 
 	UnsignedShort m_commandID;						// this+0x1C
 	UnsignedByte m_originalPlayerID;				// this+0x1E
 	UnsignedInt m_originalExecutionFrame;			// this+0x20, BFME-only
 };
 
-NetAckBothCommandMsg::NetAckBothCommandMsg() : NetCommandMsg()
+NetAckStage1CommandMsg::NetAckStage1CommandMsg() : NetCommandMsg()
 {
 	m_commandID = 0;
 	m_originalPlayerID = 0;
 	m_originalExecutionFrame = -1;
-	m_commandType = NETCOMMANDTYPE_ACKBOTH;
+	m_commandType = NETCOMMANDTYPE_ACKSTAGE1;
 }
 
-NetAckBothCommandMsg::NetAckBothCommandMsg(NetCommandMsg *msg) : NetCommandMsg()
+NetAckStage1CommandMsg::NetAckStage1CommandMsg(NetCommandMsg *msg) : NetCommandMsg()
 {
 	m_commandID = msg->getID();
-	m_commandType = NETCOMMANDTYPE_ACKBOTH;
+	m_commandType = NETCOMMANDTYPE_ACKSTAGE1;
 	m_originalPlayerID = msg->getPlayerID();
 	m_originalExecutionFrame = msg->getExecutionFrame();
 }
@@ -320,5 +321,62 @@ NetWrapperCommandMsg::NetWrapperCommandMsg() : NetCommandMsg()
 	m_dataLength = 0;
 	m_dataOffset = 0;
 	m_wrappedCommandID = 0;
+}
+
+// 0x006737A0 (47B) and 0x00673740 (68B), type ACKBOTH. Same three-field shape as AckStage1.
+class NetAckBothCommandMsg : public NetCommandMsg
+{
+public:
+	NetAckBothCommandMsg();
+	NetAckBothCommandMsg(NetCommandMsg *msg);
+
+	UnsignedShort m_commandID;						// this+0x1C
+	UnsignedByte m_originalPlayerID;				// this+0x1E
+	UnsignedInt m_originalExecutionFrame;			// this+0x20, BFME-only
+};
+
+NetAckBothCommandMsg::NetAckBothCommandMsg() : NetCommandMsg()
+{
+	m_commandID = 0;
+	m_originalPlayerID = 0;
+	m_originalExecutionFrame = -1;
+	m_commandType = NETCOMMANDTYPE_ACKBOTH;
+}
+
+NetAckBothCommandMsg::NetAckBothCommandMsg(NetCommandMsg *msg) : NetCommandMsg()
+{
+	m_commandID = msg->getID();
+	m_commandType = NETCOMMANDTYPE_ACKBOTH;
+	m_originalPlayerID = msg->getPlayerID();
+	m_originalExecutionFrame = msg->getExecutionFrame();
+}
+
+
+// 0x006739B0 (51B) and 0x00673950 (70B), type ACKSTAGE2. Same three-field shape as AckStage1.
+class NetAckStage2CommandMsg : public NetCommandMsg
+{
+public:
+	NetAckStage2CommandMsg();
+	NetAckStage2CommandMsg(NetCommandMsg *msg);
+
+	UnsignedShort m_commandID;						// this+0x1C
+	UnsignedByte m_originalPlayerID;				// this+0x1E
+	UnsignedInt m_originalExecutionFrame;			// this+0x20, BFME-only
+};
+
+NetAckStage2CommandMsg::NetAckStage2CommandMsg() : NetCommandMsg()
+{
+	m_commandID = 0;
+	m_originalPlayerID = 0;
+	m_originalExecutionFrame = -1;
+	m_commandType = NETCOMMANDTYPE_ACKSTAGE2;
+}
+
+NetAckStage2CommandMsg::NetAckStage2CommandMsg(NetCommandMsg *msg) : NetCommandMsg()
+{
+	m_commandID = msg->getID();
+	m_commandType = NETCOMMANDTYPE_ACKSTAGE2;
+	m_originalPlayerID = msg->getPlayerID();
+	m_originalExecutionFrame = msg->getExecutionFrame();
 }
 
