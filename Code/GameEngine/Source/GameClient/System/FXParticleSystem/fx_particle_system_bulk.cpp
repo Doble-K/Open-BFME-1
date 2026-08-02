@@ -16970,107 +16970,17 @@ void DefaultAlphaModuleInfo::DoXfer(Xfer &xfer)
 }
 
 // ?DoXfer@DefaultColorModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
-__declspec(naked) void DefaultColorModuleInfo::DoXfer(Xfer &xfer)
+void DefaultColorModuleInfo::DoXfer(Xfer &xfer)
 {
-    __asm {
-        __emit 0x51
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8b
-        __emit 0xe9
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x50
-        __emit 0x28
-        __emit 0x8d
-        __emit 0x7d
-        __emit 0x10
-        __emit 0xbb
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0xa4
-        __emit 0x24
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0xf4
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x3c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x74
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x10
-        __emit 0x4b
-        __emit 0x75
-        __emit 0xe7
-        __emit 0x81
-        __emit 0xc5
-        __emit 0x84
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x55
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xac
-        __emit 0xf5
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    Xfer::Version v;
+    v.data[0] = 1;
+    v.data[1] = 1;
+    xfer == v;
+    for (int i = 0; i < 8; ++i) {
+        xfer == *(RGBColor *)&m_colorKey[i].red;
+        xfer == *(unsigned int *)&m_colorKey[i].frame;
     }
+    xferRandomVariable(xfer, m_colorScale);
 }
 
 // ?DoXfer@DefaultDrawModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
