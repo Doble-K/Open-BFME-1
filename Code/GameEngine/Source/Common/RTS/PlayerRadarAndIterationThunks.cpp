@@ -5,40 +5,40 @@ class Object;
 class Player
 {
 public:
-    void disableRadar();
-    void enableRadar();
-    void iterateObjects(void (*)(Object *, void *), void *) const;
+	void disableRadar();
+	void enableRadar();
+	void iterateObjects(void (*)(Object *, void *), void *) const;
 };
 
-__declspec(naked) void Player::disableRadar()
+class PlayerDisableRadarShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0FEh
-        _emit 0FEh
-        _emit 008h
-        _emit 000h
-    }
+public:
+	void disableRadar();
+};
+
+class PlayerEnableRadarShim
+{
+public:
+	void enableRadar();
+};
+
+class PlayerIterateObjectsShim
+{
+public:
+	void iterateObjects(void (*)(Object *, void *), void *) const;
+};
+
+void Player::disableRadar()
+{
+	((PlayerDisableRadarShim *)this)->disableRadar();
 }
 
-__declspec(naked) void Player::enableRadar()
+void Player::enableRadar()
 {
-    __asm {
-        _emit 0E9h
-        _emit 0B4h
-        _emit 090h
-        _emit 008h
-        _emit 000h
-    }
+	((PlayerEnableRadarShim *)this)->enableRadar();
 }
 
-__declspec(naked) void Player::iterateObjects(void (*)(Object *, void *), void *) const
+void Player::iterateObjects(void (*cb)(Object *, void *), void *userData) const
 {
-    __asm {
-        _emit 0E9h
-        _emit 020h
-        _emit 0EBh
-        _emit 009h
-        _emit 000h
-    }
+	((PlayerIterateObjectsShim const *)this)->iterateObjects(cb, userData);
 }

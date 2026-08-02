@@ -2798,7 +2798,10 @@ name,address,notes
 ?changeGridHeight@WaterRenderObjClass@@QAEXMMM@Z,0x0079F850,thunk-resolved body (via 0x2b256)
 ?check@AssistedTargetingObjectShim@@QAE_NXZ,0x00001FD7,AssistedTargetingUpdate isFreeToAssist first object predicate shim
 ?check@AssistedTargetingResultShim@@QAEHXZ,0x0000978C,AssistedTargetingUpdate isFreeToAssist result predicate shim
+?disableRadar@PlayerDisableRadarShim@@QAEXXZ,0x000CC1C0,Player::disableRadar incremental-link thunk target through a TU-local forwarding shim
 ?doNamedMapReveal@ScriptEnginedoNamedMapRevealShim@@QAEXABVAsciiString@@@Z,0x0034D200,ScriptEngine::doNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
+?enableRadar@PlayerEnableRadarShim@@QAEXXZ,0x000CC2C0,Player::enableRadar incremental-link thunk target through a TU-local forwarding shim
+?iterateObjects@PlayerIterateObjectsShim@@QBEXP6AXPAVObject@@PAX@Z1@Z,0x000CDCF0,Player::iterateObjects incremental-link thunk target through a TU-local forwarding shim
 ?set@ThingTemplateSubobjectShim@@QAEXH@Z,0x0004AC69,ThingTemplate setCopiedFromDefault subobject flag helper shim
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x00004EE9,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002054F,hit-decoded x3 (thunk)
