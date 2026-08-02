@@ -220,7 +220,6 @@ _W3DFilters
 # f(arg){ TheX->method(arg); } is a shape shared by many wrappers, and this one
 # passes a GameWindow* to something that takes a const char*. Its real name is
 # not recoverable from the image, which is why nothing is repointed here.
-?TheControlBar@@3PAVControlBar@@A
 ?TheFXListStore@@3PAVFXListStore@@A
 ?TheNameKeyGenerator@@3PAVNameKeyGenerator@@A
 ?TheNullChr@?1??str@UnicodeString@@QBEPBGXZ@4GB

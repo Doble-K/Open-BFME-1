@@ -3401,6 +3401,7 @@ name,address,notes
 ?isCliffMappedTexture@WorldHeightMap@@QAE_NHH@Z,0x00022034,retail WorldHeightMap::isCliffMappedTexture ILT thunk
 ?isCliffMappedTexture@WorldHeightMapIsCliffMappedTextureShim@@QAE_NHH@Z,0x00728250,WorldHeightMap incremental-link thunk target through a TU-local forwarding shim
 ?isEmpty@UnicodeString@@QBE_NXZ,0x0001F361,PopupReplaySystem GEM_UPDATE_TEXT site thunk to 0x7F7D0
+?isEqualCommandMsg@NetCommandListEqualShim@@QAE_NPAVNetCommandMsg@@0@Z,0x00008963,NetCommandList findMessage helper call shim
 ?isFinished@GameWindowTransitionsHandler@@QAE_NXZ,0x00042E6F,Shell retail transition handler
 ?isMultiplayer@RecorderClass@@QAE_NXZ,0x0004A7A5,retail target of getSciencePurchaseCost REPLAY-mode check; thunk-table entry (real body FUN_00497800); Bool RecorderClass::isMultiplayer(void) per reference Recorder.h
 ?isOnSquad@Squad@@QBE_NPBVObject@@@Z,0x000250F4,REL32 pin from Player::getSquadNumberForObject body
@@ -3613,7 +3614,6 @@ name,address,notes
 ?reset@NetCommandList@@QAEXXZ,0x0000B9CE,ILT thunk retail call sites use; real body 0x6731A0
 ?reset@NetCommandList@@QAEXXZ,0x00015479,pinharvest x1 (thunk)
 ?reset@NetCommandList@@QAEXXZ,0x00037565,pinharvest x1 (thunk)
-?isEqualCommandMsg@NetCommandListEqualShim@@QAE_NPAVNetCommandMsg@@0@Z,0x00008963,NetCommandList findMessage helper call shim
 ?reset@SidesInfoSegmentShim@@QAEXXZ,0x00033F46,SidesInfo clear first segment helper shim
 ?resetShader@W3DShaderManager@@SAXW4ShaderTypes@1@@Z,0x00014367,pinharvest x1 (thunk)
 ?resetToRestPosition@AnimateWindowManager@@QAEXXZ,0x00038F7D,ILT thunk -> 0x45D520; retail call sites use the thunk

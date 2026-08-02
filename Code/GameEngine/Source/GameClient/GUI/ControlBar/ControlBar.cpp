@@ -130,11 +130,24 @@ const FieldParse CommandButton::s_commandButtonFieldParseTable[] =
 	{ NULL,						NULL,												 NULL, 0 }  // keep this last
 
 };
+// Retail loads TheScienceStore here, not TheControlBar, and calls
+// ScienceStore::friend_lookupScience -- the seventeen bytes at 0x000B8F40 are
+// mov ecx,[0x12ed7ac] ; push eax ; call 0x17503, and 0x00017503 is the
+// incremental-link thunk for the matched friend_lookupScience body at
+// 0x000E7240. Calling TheControlBar->showBuildTooltipLayout(window) reproduced
+// those bytes only because a five-byte thunk row stood in for the callee, which
+// is what reverse/dir32_consistency_whitelist.txt recorded as a wrong name that
+// still matched.
+//
+// The argument is passed straight through, so the cast is retail's shape rather
+// than a conversion this code chose. The function's own name is still Zero
+// Hour's guess and is very likely wrong too -- nothing in the image names it --
+// but the global and the callee are now right.
 static void commandButtonTooltip(GameWindow *window,
 													WinInstanceData *instData,
 													UnsignedInt mouse)
 {
-	TheControlBar->showBuildTooltipLayout(window);
+	TheScienceStore->friend_lookupScience( (const char *)window );
 }
 
 /// mark the UI as dirty so the context of everything is re-evaluated
