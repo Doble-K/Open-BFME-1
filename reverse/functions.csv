@@ -10351,7 +10351,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@W3DTruckDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FAD0,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@WanderAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BEE0,128,Code/GameEngine/Source/GameLogic/AI/WanderAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@WeaponBonusUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001236C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@WeaponChangeSpecialPowerModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00120450,110,Code/masm_dumps/WeaponChangeSpecialPowerModule_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xDC Ghidra confirmed
+?friend_newModuleData@WeaponChangeSpecialPowerModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00120450,110,Code/GameEngine/Source/GameLogic/AI/WeaponChangeSpecialPowerModuleFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@WeaponFireSpecialAbilityUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119430,110,Code/masm_dumps/WeaponFireSpecialAbilityUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x70; Ghidra confirmed
 ?friend_newModuleData@WeaponModeSpecialPowerUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001196F0,110,Code/masm_dumps/WeaponModeSpecialPowerUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@WeaponSetSpecialAbilityUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001192F0,110,Code/masm_dumps/WeaponSetSpecialAbilityUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x72; Ghidra confirmed
