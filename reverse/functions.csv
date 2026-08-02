@@ -1703,7 +1703,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LocomotorStore@@QAE@XZ,,0x005D30E0,105,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ??0LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x006D12A0,39,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,
 ??0LogicalDecalPoolClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
-??0ManTheWallsSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00260600,46,Code/masm_dumps/ManTheWallsSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0ManTheWallsSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0MapCache@@QAE@XZ,,0x00078F50,169,Code/masm_dumps/_rn7___0MapCache__QAE_XZ_78F50.asm,matched,reloc-needle Open-BFME4+Grok
 ??0MapMetaDataReader@@QAE@XZ,,0x000C0EA0,334,Code/masm_dumps/MapMetaDataReader_constructor.asm,matched,Certified packet 252 exact retail MASM recovery sha256 ceb57c2a58892fac8b9485da85ae069861a754ecea27627fe5fc40863eb0812b
@@ -27682,3 +27681,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??0ManTheWallsSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00260600,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ManTheWallsSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
