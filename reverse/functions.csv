@@ -1178,6 +1178,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ArchiveFile@@QAE@XZ,,0x009D10B0,87,Code/GameEngine/Source/Common/System/ArchiveFileCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ArchiveFile constructor
 ??0ArchiveFileSystem@@QAE@XZ,,0x009CA9E0,108,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08 which the derived BIG file system ctor at 0x009CC350 chains to
 ??0ArchivedDirectoryInfo@@QAE@ABV0@@Z,,0x009CA8F0,98,Code/masm_dumps/_sym3___0ArchivedDirectoryInfo__QAE_ABV0__Z_9CA8F0.asm,matched,symbol-pin Open-BFME4+Grok
+??0ArchivedDirectoryInfo@@QAE@XZ,,0x009CA460,137,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,the only non-allocator call in ArchiveFileSystem ctor
 ??0ArchivedFileInfo@@QAE@ABV0@@Z,,0x009CEBF0,93,Code/masm_dumps/_cache___0ArchivedFileInfo__QAE_ABV0__Z_9CEBF0.asm,matched,cached-obj needle Open-BFME4+Grok
 ??0ArmorTemplateSet@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,ICF alias of existing matched body
 ??0ArmorUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D2AB0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/ArmorUpgradeConstructor.cpp,matched,incremental thunk @0x3582D; standalone codegen-blocked C++ emits exact 53B retail constructor body
@@ -2780,6 +2781,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AnimationSteeringUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/masm_dumps/AnimationSteeringUpdateModuleData_destructor.asm,matched,Exact 108B SEH dtor Open-BFME4
 ??1ArchiveFile@@UAE@XZ,,0x009D0BD0,94,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes m_file through File slot 2 then destroys m_rootDirectory at this+8
 ??1ArchiveFileSystem@@UAE@XZ,,0x009CA550,140,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08; reached as the scalar dtor from slot 0 at 0x009CAA50
+??1ArchivedDirectoryInfo@@QAE@XZ,,0x009CA4F0,89,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,destroys m_files then m_directories then releases m_directoryName
 ??1ArrowStormUpdate@@UAE@XZ,,0x00257940,106,Code/masm_dumps/ArrowStormUpdate_destructor.asm,matched,Exact 106B @ 0x00257940; Exact retail MASM; instance factory->vtable dtor; del 0x257C70 ctor 0x2576E0 vt 0xCB37C0
 ??1ArrowStormUpdateModuleData@@UAE@XZ,,0x00257650,79,Code/masm_dumps/ArrowStormUpdateModuleData_destructor.asm,matched,Exact 79B SEH dtor factory->vtable Open-BFME4
 ??1AsciiString@@QAE@XZ,0x0000D828,0x0005EE90,5,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,AsciiString destructor
@@ -5447,6 +5449,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?AuthenticateCDKeyCallback@@YAXPAXHPBD0@Z,,0x00642E30,27,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?Axis_To_Quat@@YA?AVQuaternion@@ABVVector3@@M@Z,,0x008DC3C0,245,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?BFMEComputeCRC@@YAIPBEII@Z,,0x00065250,42,Code/GameEngine/Source/GameNetwork/native_packet_crc.cpp,matched,
+?BFMEDuplicateString@@YAPADPBD@Z,,0x008543B0,62,Code/GameEngine/Source/GameNetwork/native_strdup.cpp,matched,
 ?BTREE_adjcount@@YAXPAE0PAF@Z,,0x00820E10,365,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,
 ?BTREE_chase@@YAXPAUBTreeDecodeContext@@E@Z,,0x00822ED0,74,Code/Libraries/Source/Compression/EAC/btreedecode.cpp,matched,
 ?BTREE_clearcount@@YAXPAEPAF@Z,,0x00820F80,96,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,
@@ -9328,6 +9331,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clear@DFX@DamageFX@@QAEXXZ,,0x007FA950,14,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?clear@Dict@@QAEXXZ,,0x00068530,16,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?clear@DictPair@Dict@@QAEXXZ,,0x000680D0,64,Code/GameEngine/Source/Common/DictPairClearThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM DictPair helper
+?clear@INILineBuffer@@QAEXXZ,,0x009CBF50,69,Code/GameEngine/Source/Common/INI/INILineBuffer.cpp,matched,erase(begin end) then frees the buffer at this+4 -- the erase copy loop is emitted with a zero trip count
 ?clear@LList@@QAEXXZ,,0x00105C70,59,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?clear@ModuleInfo@@QAEXXZ,,0x0077AE90,13,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,icf-owner=?clear@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@QAEXXZ
 ?clear@SidesInfo@@QAEXXZ,,0x0019AED0,66,Code/GameEngine/Source/Common/promoted__clear_SidesInfo_QAEXXZ_0019AED0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 66B
@@ -11743,6 +11747,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getText1C@BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x006759F0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?getText20@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675CB0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?getText@DisplayString@@UAE?AVUnicodeString@@XZ,,0x00410080,32,Code/GameEngine/Source/GameClient/DisplayStringGetTextThunk.cpp,matched,Open-BFME5 exact C++ virtual UnicodeString getter thunk
+?getText@INILineBuffer@@QBEPBDH@Z,,0x009CBC60,33,Code/GameEngine/Source/Common/INI/INILineBuffer.cpp,matched,index bounded against size() with a signed jge -- no lower bound -- and operator[] re-loads the start pointer
 ?getText@NetChatCommandMsg@@QAE?AV?$StringBase@G@@XZ,,0x00675310,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?getText@NetDisconnectChatCommandMsg@@QAE?AV?$StringBase@G@@XZ,,0x006751E0,32,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?getText@WinInstanceData@@QAE?AVUnicodeString@@XZ,,0x00479B00,24,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
@@ -14242,10 +14247,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?BFMEDuplicateString@@YAPADPBD@Z,,0x008543B0,62,Code/GameEngine/Source/GameNetwork/native_strdup.cpp,matched,
-??1Win32LocalFileSystem@@UAE@XZ,,0x009CDE20,7,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,empty body -- the seven bytes are the inlined ~LocalFileSystem installing the base vtable 0x01143B78
-??1MemoryWriteFile@@UAE@XZ,,0x009CB590,94,Code/GameEngine/Source/Common/System/File.cpp,matched,body is one delete -- the rest is the vptr store of 0x01143AA8 then m_pendingName releaseBuffer then ~File
-?attachFile@ArchiveFile@@QAEXPAVFile@@@Z,,0x009CE560,44,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes any previous file through File slot 2 then stores the new one
-??1ArchiveFile@@UAE@XZ,,0x009D0BD0,94,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes m_file through File slot 2 then destroys m_rootDirectory at this+8
-?getText@INILineBuffer@@QBEPBDH@Z,,0x009CBC60,33,Code/GameEngine/Source/Common/INI/INILineBuffer.cpp,matched,index bounded against size() with a signed jge -- no lower bound -- and operator[] re-loads the start pointer
-?clear@INILineBuffer@@QAEXXZ,,0x009CBF50,69,Code/GameEngine/Source/Common/INI/INILineBuffer.cpp,matched,erase(begin end) then frees the buffer at this+4 -- the erase copy loop is emitted with a zero trip count
