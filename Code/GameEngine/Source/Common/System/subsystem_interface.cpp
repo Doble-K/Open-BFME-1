@@ -151,3 +151,8 @@ template void initSubsystem<GameTextInterface>(GameTextInterface *&, AsciiString
 template void initSubsystem<CDManagerInterface>(CDManagerInterface *&, AsciiString, CDManagerInterface *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<BuildAssistant>(BuildAssistant *&, AsciiString, BuildAssistant *, Xfer *, const char *, const char *, const char *);
 template void initSubsystem<GameStateMap>(GameStateMap *&, AsciiString, GameStateMap *, Xfer *, const char *, const char *, const char *);
+
+template void initSubsystem<GlobalLanguage>(GlobalLanguage *&, AsciiString, GlobalLanguage *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<CaveSystem>(CaveSystem *&, AsciiString, CaveSystem *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<GameClient>(GameClient *&, AsciiString, GameClient *, Xfer *, const char *, const char *, const char *);
+template void initSubsystem<VictoryConditionsInterface>(VictoryConditionsInterface *&, AsciiString, VictoryConditionsInterface *, Xfer *, const char *, const char *, const char *);

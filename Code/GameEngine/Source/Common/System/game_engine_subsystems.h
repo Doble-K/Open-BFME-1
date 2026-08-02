@@ -164,3 +164,18 @@ class GameStateMap : public SubsystemInterface {};	// 0x000758A0, TheGameStateMa
 // TerrainTypeCollection, CDManagerInterface and GameResultsInterface each show
 // to be unsafe. TheRadar stays out for the separate reason given above: 167
 // bytes where every other instantiation is 154.
+
+// A later fix to tools/dump_subsystems.py raised the site count from 43 to 60:
+// it had been reading uninitialised globals as string literals, because .data's
+// virtual size runs past its raw size and the zero-fill tail decodes as whatever
+// section follows. TheHouseColorSystem's global came back as "CloneImage" and
+// its whole site was dropped. These four are from that recovered set, same two
+// tiers of type evidence as above.
+//
+// Note VictoryConditionsInterface: chopping "The" off TheVictoryConditions gives
+// VictoryConditions, which is not the class. That is the fourth time in this
+// file the shortcut would have been wrong.
+class GlobalLanguage : public SubsystemInterface {};	// 0x00072F50, TheGlobalLanguageData; (a) ?parseFontDesc@GlobalLanguage@@SAXPAVINI@@PAX1PBX@Z
+class CaveSystem : public SubsystemInterface {};	// 0x00073A90, TheCaveSystem; (a) ?getTunnelTrackerForCaveIndex@CaveSystem@@QAEPAVTunnelTracker@@H@Z
+class GameClient : public SubsystemInterface {};	// 0x000748D0, TheGameClient; (b) ZH: extern GameClient *TheGameClient
+class VictoryConditionsInterface : public SubsystemInterface {};	// 0x00075420, TheVictoryConditions; (b) ZH: extern VictoryConditionsInterface *TheVictoryConditions

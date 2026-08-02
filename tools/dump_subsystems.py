@@ -31,7 +31,7 @@ ThePlayerAITypeSet is what turns that row from a guess into a match.
 
 --boot additionally recovers the order the engine boots in, which is a separate
 finding: BFME passes NULL for all three of initSubsystem's trailing const char*
-path arguments at every one of the 43 sites. Zero Hour hands the subsystem its
+path arguments at every one of the sites. Zero Hour hands the subsystem its
 INI files there; BFME does not use them at all, and instead interleaves plain
 INI::load calls between the registrations. So the boot-time INI order is not
 readable from the initSubsystem arguments -- it has to be read from the calls
@@ -55,7 +55,7 @@ import dump_ini_schema as S
 # other instructions' immediates and misaligns the rest of the listing.
 INIT_RVA = 0x00079060
 INIT_SIZE = 7123
-MIN_EXPECTED = 40
+MIN_EXPECTED = 55
 
 # INI::load(AsciiString, INILoadType, Xfer *). Not in the ledger yet -- ini.cpp
 # still carries it present-unmatched -- so the address comes from the note on
@@ -69,6 +69,35 @@ INI_LOAD_TYPE = {0: "INI_LOAD_INVALID", 1: "INI_LOAD_OVERWRITE",
                  2: "INI_LOAD_CREATE_OVERRIDES"}
 
 
+def _initialized_ranges(img):
+    """RVA ranges that actually have bytes in the file.
+
+    .data's virtual size is larger than its raw size -- the tail is the zero-fill
+    that holds every uninitialised global, and these singletons all live there.
+    Reading it walks off the end of .data's file bytes and into the next section,
+    so an uninitialised global decodes as whatever text happens to follow.
+
+    That is not hypothetical: TheHouseColorSystem's global at 0x012F0FEC came
+    back as the string "CloneImage", so collect() below classified the push as a
+    name rather than as the &sysref argument and dropped the whole site.
+
+    Sections are laid out contiguously in the file, so the next section's raw
+    pointer is where this one's real bytes stop.
+    """
+    secs = sorted(img.secs, key=lambda s: s["raw_pointer"])
+    out = []
+    for i, s in enumerate(secs):
+        nxt = secs[i + 1]["raw_pointer"] if i + 1 < len(secs) else len(img.data)
+        raw_len = max(0, min(nxt - s["raw_pointer"], s["size"]))
+        out.append((s["rva"], s["rva"] + raw_len))
+    return out
+
+
+def _initialized(ranges, va):
+    rva = va - S.IMAGE_BASE
+    return any(lo <= rva < hi for lo, hi in ranges)
+
+
 def _is_data(img, va):
     """True if va lands in a mapped, non-executable section."""
     return bool(img.read(va, 4)) and not img.in_text(va)
@@ -77,13 +106,15 @@ def _is_data(img, va):
 def collect(img, rva, size):
     """(name, global_va, call_rva) for each `push "TheX"` ... `push g` ... `call`."""
     o = rva - img.tbase
+    ranges = _initialized_ranges(img)
     pending_name = None
     pending_global = None
     out = []
     for ins in S._MD.disasm(img.text[o:o + size], rva):
         if ins.mnemonic == "push" and ins.op_str.startswith("0x"):
             imm = int(ins.op_str, 16)
-            text = img.cstr(imm)
+            # Only bytes that exist in the file can be a string literal.
+            text = img.cstr(imm) if _initialized(ranges, imm) else None
             if text and text.startswith("The") and len(text) > 4:
                 pending_name = text
                 pending_global = None

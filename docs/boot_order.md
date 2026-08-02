@@ -9,7 +9,7 @@ Two things worth knowing before reading it.
 
 Zero Hour hands each subsystem its INI files through `initSubsystem`'s
 three trailing `const char *` arguments. BFME passes NULL for all three
-at all 43 sites and calls `INI::load` separately instead, so the loads
+at all 60 sites and calls `INI::load` separately instead, so the loads
 below are their own statements sitting between the registrations, not
 properties of the subsystem above them.
 
@@ -27,44 +27,61 @@ the full INI load order.
 | 5 | `INI::load` | `Data\INI\Water.ini` — INI_LOAD_OVERWRITE |
 | 6 | `INI::load` | `Data\INI\Default\Environment.ini` — INI_LOAD_OVERWRITE |
 | 7 | `INI::load` | `Data\INI\Environment.ini` — INI_LOAD_OVERWRITE |
-| 8 | `initSubsystem` | **TheGameText** |
-| 9 | `initSubsystem` | **TheAudio** |
-| 10 | `initSubsystem` | **TheEva** |
-| 11 | `initSubsystem` | **TheScienceStore** |
-| 12 | `initSubsystem` | **TheUpgradeCenter** |
-| 13 | `initSubsystem` | **TheMultiplayerSettings** |
-| 14 | `initSubsystem` | **TheTerrainTypes** |
-| 15 | `initSubsystem` | **TheTerrainRoads** |
-| 16 | `initSubsystem` | **TheCDManager** |
-| 17 | `initSubsystem` | **TheFunctionLexicon** |
-| 18 | `initSubsystem` | **TheModuleFactory** |
-| 19 | `initSubsystem` | **TheMessageStream** |
-| 20 | `initSubsystem` | **TheSidesList** |
-| 21 | `initSubsystem` | **TheRankInfoStore** |
-| 22 | `initSubsystem` | **ThePlayerAITypeSet** |
-| 23 | `initSubsystem` | **ThePlayerTemplateStore** |
-| 24 | `initSubsystem` | **TheFXParticleSystemManager** |
-| 25 | `initSubsystem` | **TheWeaponStore** |
-| 26 | `initSubsystem` | **TheObjectCreationListStore** |
-| 27 | `initSubsystem` | **TheLocomotorStore** |
-| 28 | `initSubsystem` | **TheSpecialPowerStore** |
-| 29 | `initSubsystem` | **TheDamageFXStore** |
-| 30 | `initSubsystem` | **TheArmorStore** |
-| 31 | `initSubsystem` | **TheBuildAssistant** |
-| 32 | `initSubsystem` | **TheThingFactory** |
-| 33 | `initSubsystem` | **TheExperienceLevelSystem** |
-| 34 | `initSubsystem` | **TheLivingWorldManager** |
-| 35 | `initSubsystem` | **TheAI** |
-| 36 | `initSubsystem` | **TheAerialPathfinder** |
-| 37 | `initSubsystem` | **TheTaintManager** |
-| 38 | `initSubsystem` | **TheTeamFactory** |
-| 39 | `initSubsystem` | **ThePlayerList** |
-| 40 | `initSubsystem` | **TheGameLogic** |
-| 41 | `initSubsystem` | **TheRecorder** |
-| 42 | `initSubsystem` | **TheRadar** |
-| 43 | `initSubsystem` | **TheMetaMap** |
-| 44 | `initSubsystem` | **TheVictorySystem** |
-| 45 | `initSubsystem` | **TheActionManager** |
-| 46 | `initSubsystem` | **TheGameStateMap** |
-| 47 | `initSubsystem` | **TheGameState** |
-| 48 | `initSubsystem` | **TheGameResultsQueue** |
+| 8 | `initSubsystem` | **TheGlobalLanguageData** |
+| 9 | `initSubsystem` | **TheGameText** |
+| 10 | `initSubsystem` | **TheAudio** |
+| 11 | `initSubsystem` | **TheEva** |
+| 12 | `initSubsystem` | **TheScienceStore** |
+| 13 | `initSubsystem` | **TheUpgradeCenter** |
+| 14 | `initSubsystem` | **TheMultiplayerSettings** |
+| 15 | `initSubsystem` | **TheTerrainTypes** |
+| 16 | `initSubsystem` | **TheTerrainRoads** |
+| 17 | `initSubsystem` | **TheCDManager** |
+| 18 | `initSubsystem` | **TheGlobalWeatherSystem** |
+| 19 | `initSubsystem` | **TheFunctionLexicon** |
+| 20 | `initSubsystem` | **TheModuleFactory** |
+| 21 | `initSubsystem` | **TheMessageStream** |
+| 22 | `initSubsystem` | **TheSidesList** |
+| 23 | `initSubsystem` | **TheCaveSystem** |
+| 24 | `initSubsystem` | **TheRankInfoStore** |
+| 25 | `initSubsystem` | **ThePlayerAITypeSet** |
+| 26 | `initSubsystem` | **ThePlayerTemplateStore** |
+| 27 | `initSubsystem` | **TheFXParticleSystemManager** |
+| 28 | `initSubsystem` | **TheFXListStore** |
+| 29 | `initSubsystem` | **TheWeaponStore** |
+| 30 | `initSubsystem` | **TheObjectCreationListStore** |
+| 31 | `initSubsystem` | **TheLocomotorStore** |
+| 32 | `initSubsystem` | **TheSpecialPowerStore** |
+| 33 | `initSubsystem` | **TheDamageFXStore** |
+| 34 | `initSubsystem` | **TheArmorStore** |
+| 35 | `initSubsystem` | **TheBuildAssistant** |
+| 36 | `initSubsystem` | **TheEmotionSystem** |
+| 37 | `initSubsystem` | **TheThingFactory** |
+| 38 | `initSubsystem` | **TheLightPointSystem** |
+| 39 | `initSubsystem` | **TheExperienceLevelSystem** |
+| 40 | `initSubsystem` | **TheAptPlayer** |
+| 41 | `initSubsystem` | **TheLivingWorldManager** |
+| 42 | `initSubsystem` | **TheGameClient** |
+| 43 | `initSubsystem` | **TheAI** |
+| 44 | `initSubsystem` | **TheAerialPathfinder** |
+| 45 | `initSubsystem` | **TheLivingWorldLogic** |
+| 46 | `initSubsystem` | **TheSplineService** |
+| 47 | `initSubsystem` | **TheAttributeModifierStore** |
+| 48 | `initSubsystem` | **TheTaintManager** |
+| 49 | `initSubsystem` | **TheScriptEngine** |
+| 50 | `initSubsystem` | **TheLuaScriptEngine** |
+| 51 | `initSubsystem` | **TheTeamFactory** |
+| 52 | `initSubsystem` | **TheCrateSystem** |
+| 53 | `initSubsystem` | **ThePlayerList** |
+| 54 | `initSubsystem` | **TheGameLogic** |
+| 55 | `initSubsystem` | **TheRecorder** |
+| 56 | `initSubsystem` | **TheRadar** |
+| 57 | `initSubsystem` | **TheVictoryConditions** |
+| 58 | `initSubsystem` | **TheMetaMap** |
+| 59 | `initSubsystem` | **TheHouseColorSystem** |
+| 60 | `initSubsystem` | **TheLivingWorldCampaignManager** |
+| 61 | `initSubsystem` | **TheVictorySystem** |
+| 62 | `initSubsystem` | **TheActionManager** |
+| 63 | `initSubsystem` | **TheGameStateMap** |
+| 64 | `initSubsystem` | **TheGameState** |
+| 65 | `initSubsystem` | **TheGameResultsQueue** |
