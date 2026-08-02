@@ -6,16 +6,16 @@ class BitFlags
 class Object
 {
 public:
-	void setStatus(BitFlags<45>, bool);
+    void setStatus(BitFlags<45>, bool);
 };
 
-__declspec(naked) void Object::setStatus(BitFlags<45>, bool)
+class ObjectSetStatusShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0FCh
-		_emit 06Dh
-		_emit 018h
-		_emit 000h
-	}
+public:
+    void set(BitFlags<45> flags, bool value);
+};
+
+void Object::setStatus(BitFlags<45> flags, bool value)
+{
+    ((ObjectSetStatusShim *)this)->set(flags, value);
 }
