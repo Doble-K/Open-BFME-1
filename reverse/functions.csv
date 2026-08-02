@@ -2017,7 +2017,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RenderObjectUpdateModuleTemplate@FXParticleSystem@@QAE@XZ,0x00035490,0x005D9650,106,Code/masm_dumps/___0RenderObjectUpdateModuleTemplate_FXParticleSyst_5D9650.asm,matched,
 ??0RepairDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001E8D0,5,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0RepairDockUpdateModuleData@@QAE@XZ,,0x002CEF40,25,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdate.cpp,matched,
-??0RepairSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002647F0,46,Code/masm_dumps/RepairSpecialPower_constructor.asm,matched,Exact 46B unique factory Open-BFME4
 ??0RepairSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0RepeatChar@Debug@@QAE@DH@Z,,0x00889270,18,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??0ReplenishUnitsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002044E0,253,Code/masm_dumps/ReplenishUnitsBehavior_constructor.asm,matched,Exact 253B @ 0x002044E0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1173A0
@@ -13840,3 +13839,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+??0RepairSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002647F0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/RepairSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
