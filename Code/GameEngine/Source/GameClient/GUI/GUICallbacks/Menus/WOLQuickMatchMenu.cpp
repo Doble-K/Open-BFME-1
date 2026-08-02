@@ -276,6 +276,44 @@ void BfmeQuickMatchHideOptionsGadgetsBody::hide(Bool doIt)
 }
 #pragma comment(linker, "/alternatename:?hideOptionsGadgets@@YAX_N@Z=?hide@BfmeQuickMatchHideOptionsGadgetsBody@@QAEX_N@Z")
 
+struct BfmeQuickMatchInputBody
+{
+	unsigned char _bfme_pad260[0x260];
+	WindowMsgData m_buttonBackID;
+	GameWindow *m_buttonBack;
+
+	WindowMsgHandledType input(UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2);
+};
+
+WindowMsgHandledType BfmeQuickMatchInputBody::input(UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2)
+{
+	if (msg != GWM_CHAR)
+		return MSG_IGNORED;
+	if (buttonPushed)
+		return MSG_IGNORED;
+
+	UnsignedByte key = mData1;
+	switch (key)
+	{
+		case KEY_ESC:
+		{
+			if (BitTest(mData2, KEY_STATE_UP))
+			{
+				if (!m_buttonBack->winIsHidden())
+				{
+					TheWindowManager->winSendSystemMsg((GameWindow *)this, GBM_SELECTED,
+						(WindowMsgData)m_buttonBack, m_buttonBackID);
+				}
+			}
+
+			return MSG_HANDLED;
+		}
+	}
+
+	return MSG_IGNORED;
+}
+#pragma comment(linker, "/alternatename:?WOLQuickMatchMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z=?input@BfmeQuickMatchInputBody@@QAE?AW4WindowMsgHandledType@@III@Z")
+
 static void hideOptionsGadgets(Bool doIt)
 {
 	static NameKeyType parentOptionsID = NAMEKEY("WOLQuickMatchMenu.wnd:ParentOptions");
