@@ -12748,6 +12748,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeLastChar@?$StringBase@G@@QAEXXZ,0x00888840,0x888840,237,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?removeLeadingAndTrailing@GameTextManager@@IAEXPAD@Z,,0x00435EE0,104,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ?removeMessage@GameMessageList@@UAEXPAVGameMessage@@@Z,,0x0008A570,66,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
+?removeMessage@NetCommandList@@QAEXPAVNetCommandRef@@@Z,,0x00672EC0,78,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,
 ?removeMilitarySubtitle@InGameUI@@UAEXXZ,,0x004431B0,154,Code/masm_dumps/InGameUI_removeMilitarySubtitle.asm,matched,Certified packet 182 exact retail db recovery sha256 17ea0741497e1a63201ab4f1808d1e17de5bd396ce235973b1842c379a4c2cce
 ?removeNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0034D320,226,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptEngineRemoveNamedMapReveal.cpp,matched,incremental thunk @0x22610; standalone codegen-blocked C++ emits exact 226B retail method body
 ?removeObject@Radar@@QAEXPAVObject@@@Z,,0x00106C20,49,Code/GameEngine/Source/Common/System/Radar.cpp,matched,direct C++ radar object removal with retail object offset replaces MASM dump
@@ -13067,6 +13068,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setForceWantingState@SupplyTruckAIUpdate@@UAEX_N@Z,,0x003BC6B0,10,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/ChinookAIUpdate.cpp,matched,
 ?setFrameCommandCount@FrameData@@QAEXI@Z,,0x006702C0,9,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
 ?setFrameCommandCount@FrameDataManager@@QAEXII@Z,,0x00670750,34,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,direct C++ frame command-count setter replaces MASM dump
+?setFrameGrouping@ConnectionManager@@QAEXI@Z,,0x00663530,129,Code/GameEngine/Source/GameNetwork/ConnectionManager_setFrameGrouping.cpp,matched,
 ?setFrameToEvaluate@Script@@QAEXI@Z,,0x00191490,10,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
 ?setFramesPerSecondLimit@GameEngine@@UAEXH@Z,,0x0006B6F0,10,Code/GameEngine/Source/Common/GameEngine.cpp,matched,BFME FPS-limit setter
 ?setFromInt@RGBColor@@QAEXH@Z,0x0002CDC7,0x00083370,84,Code/Libraries/Source/WWVegas/WWMath/color.cpp,matched,sets RGB channels from packed int
