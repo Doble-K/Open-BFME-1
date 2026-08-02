@@ -3662,6 +3662,7 @@ name,address,notes
 ?setOrRestoreTeam@Object@@IAEXPAVTeam@@_N@Z,0x0004ADE0,pinharvest x1 (thunk)
 ?setOrRestoreTeam@Object@@IAEXPAVTeam@@_N@Z,0x0004AEFD,pinharvest x1 (thunk)
 ?setOrientation@Thing@@QAEXM@Z,0x000399A5
+?setOrientation@ThingSetOrientationShim@@QAEXM@Z,0x00132E40,Thing::setOrientation incremental-link thunk target through a TU-local forwarding shim
 ?setPasswordMode@@YAXW4PasswordMode@@@Z,0x004D7AF0,pinharvest x2 (body)
 ?setPercentage@NetProgressCommandMsg@@QAEXE@Z,0x00030C56,pinharvest x1 (thunk)
 ?setPercentage@NetProgressCommandMsg@@QAEXE@Z,0x0003C44D,pinharvest x1 (thunk)
@@ -3682,6 +3683,7 @@ name,address,notes
 ?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ,0x0000CC8E,pinharvest x1 (thunk)
 ?setSize@Shadow@@QAEXMM@Z,0x0002133C,pinharvest x1 (thunk)
 ?setSize@Shadow@@QAEXMM@Z,0x00040412,pinharvest x1 (thunk)
+?setSize@ShadowSetSizeShim@@QAEXMM@Z,0x001E4250,Shadow::setSize incremental-link thunk target through a TU-local forwarding shim
 ?setSlot@NetDisconnectVoteCommandMsg@@QAEXE@Z,0x00020739,ILT thunk; real body 0xA73D20
 ?setSortMode@@YAXW4GameSortType@@@Z,0x00048360
 ?setStatus@Object@@QAEXV?$BitFlags@$0CN@@@_N@Z,0x0001366F,hit-decoded x8 (thunk)
@@ -3689,6 +3691,7 @@ name,address,notes
 ?setTotalDataLength@NetWrapperCommandMsg@@QAEXI@Z,0x0003EC52,ILT thunk; real body 0xA73F50
 ?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z,0x00023D49
 ?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z,0x000361CE,BFME Thing::setTransformMatrix thunk
+?setTransformMatrix@ThingSetTransformMatrixShim@@QAEXPBVMatrix3D@@@Z,0x001C16A0,Thing::setTransformMatrix incremental-link thunk target through a TU-local forwarding shim
 ?setTurretEnabled@AIUpdateInterface@@QAEXW4WhichTurretType@@_N@Z,0x0002ABBC,BattlePlanUpdate::enableTurret retail REL32 target
 ?setVisibility@BfmeMouse_setVisibility@@QAEX_N@Z,0x00016A68,ILT thunk Mouse setVisibility
 ?setVisibility@BfmeMouse_setVisibility@@QAEX_N@Z,0x005A4BA0,body Mouse setVisibility

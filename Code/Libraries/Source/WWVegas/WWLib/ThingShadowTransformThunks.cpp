@@ -15,35 +15,35 @@ public:
 	void setSize(float, float);
 };
 
-__declspec(naked) void Thing::setOrientation(float)
+class ThingSetOrientationShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 096h
-		_emit 094h
-		_emit 00Fh
-		_emit 000h
-	}
+public:
+	void setOrientation(float a0);
+};
+
+class ThingSetTransformMatrixShim
+{
+public:
+	void setTransformMatrix(Matrix3D const *a0);
+};
+
+class ShadowSetSizeShim
+{
+public:
+	void setSize(float a0, float a1);
+};
+
+void Thing::setOrientation(float a0)
+{
+	((ThingSetOrientationShim *)this)->setOrientation(a0);
 }
 
-__declspec(naked) void Thing::setTransformMatrix(Matrix3D const *)
+void Thing::setTransformMatrix(Matrix3D const *a0)
 {
-	__asm {
-		_emit 0E9h
-		_emit 052h
-		_emit 0D9h
-		_emit 019h
-		_emit 000h
-	}
+	((ThingSetTransformMatrixShim *)this)->setTransformMatrix(a0);
 }
 
-__declspec(naked) void Shadow::setSize(float, float)
+void Shadow::setSize(float a0, float a1)
 {
-	__asm {
-		_emit 0E9h
-		_emit 00Fh
-		_emit 02Fh
-		_emit 01Ch
-		_emit 000h
-	}
+	((ShadowSetSizeShim *)this)->setSize(a0, a1);
 }
