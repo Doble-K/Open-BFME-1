@@ -10097,7 +10097,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@CountermeasuresBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00117420,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@BattlePlanUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@CreateCrateDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00129A30,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@CreateObjectDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00117860,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleData@CritterEmitterUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00115730,110,Code/masm_dumps/CritterEmitterUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
+?friend_newModuleData@CritterEmitterUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00115730,110,Code/GameEngine/Source/GameLogic/AI/CritterEmitterUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@CrushDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00123460,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@DamDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00114D70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@DamageModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00124080,112,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME DamageModule factory facade
