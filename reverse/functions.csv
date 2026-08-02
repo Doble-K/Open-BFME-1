@@ -10203,7 +10203,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@RainOfFireUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011C390,107,Code/GameEngine/Source/Common/RTS/RainOfFireUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@RebuildHoleBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001171F0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@RebuildHoleExposeDie@@SAPAVModuleData@@PAVINI@@@Z,,0x001145D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@RefundDie@@SAPAVModuleData@@PAVINI@@@Z,,0x001232C0,107,Code/masm_dumps/RefundDie_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
+?friend_newModuleData@RefundDie@@SAPAVModuleData@@PAVINI@@@Z,,0x001232C0,107,Code/GameEngine/Source/GameLogic/Object/Die/RefundDieFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@RepairDockUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011B0D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,recovered from Open-BFME6 overnight session (GLM)
 ?friend_newModuleData@RepairSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x001217B0,110,Code/masm_dumps/RepairSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xEE Ghidra confirmed
 ?friend_newModuleData@ReplaceObjectUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z;C++ alias
