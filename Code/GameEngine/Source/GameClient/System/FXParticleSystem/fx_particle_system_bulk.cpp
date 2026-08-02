@@ -88,6 +88,11 @@ public:
     void construct();
 };
 
+class OrthoEmissionVelocityTemplateCopyCtorShim {
+public:
+    void construct(const void *source);
+};
+
 extern const char BOX_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char BUTTERFLY_DRAW_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char CYLINDER_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
@@ -14211,49 +14216,12 @@ __declspec(naked) TerrainCollisionModule *ConcreteModuleTemplate<ModuleTag<8, TE
 }
 
 // ??0?$ConcreteModuleTemplate@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
-__declspec(naked) ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>::ConcreteModuleTemplate(const ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag> &that)
+ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>::ConcreteModuleTemplate(const ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag> &that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x9d
-        __emit 0xf6
-        __emit 0xa2
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xa0
-        __emit 0x10
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x9c
-        __emit 0x10
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0x88
-        __emit 0x10
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    ((OrthoEmissionVelocityTemplateCopyCtorShim *)this)->construct(&that);
+    *(volatile unsigned int *)this = 0x011110a0;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x0111109c;
+    *(volatile unsigned int *)((unsigned char *)this + 8) = 0x01111088;
 }
 
 // ??0?$ConcreteModuleTemplate@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
