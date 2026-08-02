@@ -9364,7 +9364,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?createNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@0M0@Z,,0x0002C8EA,5,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptEngineCreateNamedMapRevealThunk.cpp,matched,Focused C++ thunk for ScriptEngine createNamedMapReveal
 ?createNetwork@NetworkInterface@@SAPAV1@XZ,,0x0065C1F0,89,Code/GameEngine/Source/GameNetwork/Network.cpp,matched,
 ?createNewGameResultsInterface@GameResultsInterface@@SAPAV1@XZ,,0x0063E240,86,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
-?createNewGameSpyInfoInterface@GameSpyInfoInterface@@SAPAV1@XZ,,0x00637760,89,Code/masm_dumps/GameSpyInfoInterface_createNew.asm,matched,Exact retail MASM; SetUpGameSpy assignment and immediate interface calls prove ownership
 ?createNewMessageQueue@GameSpyBuddyMessageQueueInterface@@SAPAV1@XZ,,0x0063E240,86,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,object-symbol=?createNewGameResultsInterface@GameResultsInterface@@SAPAV1@XZ;C++ alias
 ?createNewMessageQueue@GameSpyPSMessageQueueInterface@@SAPAV1@XZ,,0x006FB870,89,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,
 ?createNewMessageQueue@GameSpyPeerMessageQueueInterface@@SAPAV1@XZ,,0x0064E620,86,Code/masm_dumps/GameSpyPeerMessageQueue_createNew.asm,matched,Exact retail MASM; SetUpGameSpy call order proves peer-factory ownership
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?linkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,,0x0047C340,166,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME sibling-list pointers sit 0x10 later in GameWindow (reference/shims/gamewindowlist)
 ??1GameWindowManager@@UAE@XZ,,0x00483810,156,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME sibling-list pointers sit 0x10 later in GameWindow (reference/shims/gamewindowlist)
 ??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,MASM dump converted to clean C++; BFME Render2DSentenceClass is 0xC bigger so both embedded renderers shift the class (reference/shims/w3ddisplaystring)
+?createNewGameSpyInfoInterface@GameSpyInfoInterface@@SAPAV1@XZ,,0x00637760,89,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME GameSpyInfo is 0x700 and GameSpyStagingRoom 0xA8 bigger (reference/shims/peerdefs)
