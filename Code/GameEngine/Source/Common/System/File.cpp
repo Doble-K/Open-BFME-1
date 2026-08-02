@@ -205,10 +205,52 @@ protected:
 	Int m_size;				// +0x1c
 };
 
-RAMFile::RAMFile()
+// noinline stands in for a translation-unit boundary. Retail builds RAMFile and
+// StreamingArchiveFile separately, so StreamingArchiveFile's constructor can
+// only call this one; with both in this file MSVC inlines it instead and emits
+// six zero stores where retail emits a call and three.
+__declspec(noinline) RAMFile::RAMFile()
 {
 	m_data = NULL;
 	m_pos = 0;
+	m_size = 0;
+}
+
+// StreamingArchiveFile, 0x01143CA8 in the table above. It lives here rather than
+// in StreamingArchiveFile.cpp for one reason: it is laid out on BFME's File, and
+// that file compiles against Zero Hour's, which is four bytes shorter because it
+// has no m_mutex at +0x10. Its constructor came out zeroing +0x1c through +0x28
+// where retail zeroes +0x20 through +0x28 -- the whole class shifted down by the
+// missing word.
+class StreamingArchiveFile : public RAMFile
+{
+public:
+	StreamingArchiveFile();
+
+	virtual Bool open( const char *filename, Int access = 0 );
+	virtual void close( void );
+	virtual Int read( void *buffer, Int bytes );
+	virtual Int write( const void *buffer, Int bytes );
+	virtual Int seek( Int bytes, Int mode );
+	virtual void nextLine( char *buf, Int bufSize );
+	virtual Bool scanInt( Int &newInt );
+	virtual Bool scanReal( Real &newReal );
+	virtual Bool scanString( AsciiString &newString );
+	virtual Int size( void );
+	virtual Int position( void );
+	virtual char *readEntireAndClose( void );
+	virtual File *convertToRAMFile( void );
+
+protected:
+	File *m_file;			// +0x20
+	Int m_startingPos;		// +0x24
+	Int m_size;				// +0x28
+};
+
+StreamingArchiveFile::StreamingArchiveFile()
+{
+	m_file = NULL;
+	m_startingPos = 0;
 	m_size = 0;
 }
 

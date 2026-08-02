@@ -2164,7 +2164,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StreakDrawModuleInfo@FXParticleSystem@@QAE@XZ,0x00018796,0x005F7EF0,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable pointer
 ??0StreakDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x00033B59,0x005D8790,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0StreakDrawModuleTemplate@FXParticleSystem@@QAE@XZ,0x00006FBE,0x005D86C0,106,Code/masm_dumps/___0StreakDrawModuleTemplate_FXParticleSystem__QAE__5D86C0.asm,matched,
-??0StreamingArchiveFile@@QAE@XZ,,0x009E75E0,32,Code/GameEngine/Source/Common/System/StreamingArchiveFile.cpp,matched,
+??0StreamingArchiveFile@@QAE@XZ,,0x009D20B0,29,Code/GameEngine/Source/Common/System/File.cpp,matched,was pointed at 0x009E75E0 which installs 0x011455A0 whose slot 0 is ??_GBufferedFileClass@@UAEPAXI@Z and which bufffile.cpp already claims; the real ctor chains to RAMFile::RAMFile and installs 0x01143CA8
 ??0StringClass@@QAE@ABV0@_N@Z,,0x008FF470,132,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ??0StringClass@@QAE@H_N@Z,,0x0013A010,43,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ??0StringClass@@QAE@PBD_N@Z,,0x007AF3A0,70,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
