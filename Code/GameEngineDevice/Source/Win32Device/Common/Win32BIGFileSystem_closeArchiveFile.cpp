@@ -14,6 +14,14 @@
 // Zero Hour's version also compares the name against MUSIC_BIG and stops the
 // music. None of that is here: there is no string compare and no audio call in
 // 117 bytes, so BFME dropped it.
+//
+// This TU is built WITHOUT exceptions, and that is load-bearing rather than
+// incidental: retail has no SEH frame here despite the AsciiString temporary
+// having a destructor. loadBigFilesFromDirectory on the same class opens with
+// the fs:[0] prologue, so it was built WITH them. Two methods of one class that
+// disagree about exceptions cannot have shared a translation unit, which is a
+// fact about how retail's sources were split -- worth knowing before adding
+// another method here. Anything needing /EHsc belongs in its own file.
 
 #include "Common/AsciiString.h"
 #include <map>
@@ -31,6 +39,7 @@ public:
 typedef char Char;
 
 typedef std::map<AsciiString, ArchiveFile *> ArchiveFileMap;
+
 
 class File;
 typedef int Int;

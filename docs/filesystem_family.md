@@ -167,3 +167,14 @@ out-of-line something retail inlines, and it does not match.
 
 Also check the TU has `/D_STLP_USE_STATIC_LIB`. Without it the STLport allocator
 comes out as an import thunk (`ff 15`) where retail calls it directly (`e8`).
+
+And check the exception setting per function, not per class. `build.py`'s base is
+`-EHsc-`; a per-file `// cl:` line that adds `/EHsc` turns them back on. Retail
+built `Win32BIGFileSystem::closeArchiveFile` *without* exceptions — no SEH frame
+at all, despite an `AsciiString` temporary with a destructor — and
+`loadBigFilesFromDirectory` on the same class *with* them. Two methods of one
+class that disagree about exceptions cannot have shared a translation unit, so
+retail's sources were split more finely than Zero Hour's. If a function is the
+right length but carries an `fs:[0]` prologue the target lacks, that is a flag
+difference, not a code difference, and it may also mean the function belongs in
+its own file.
