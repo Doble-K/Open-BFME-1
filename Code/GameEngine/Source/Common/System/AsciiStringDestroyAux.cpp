@@ -4,19 +4,22 @@ class AsciiString;
 
 namespace _STL
 {
-	struct __false_type;
+struct __false_type {};
 
-	template <class T>
-	__declspec(naked) void __destroy_aux(T, T, const __false_type &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 07Ah
-			_emit 059h
-			_emit 06Eh
-			_emit 000h
-		}
-	}
+template <class T>
+void __destroy_aux(T, T, const __false_type &);
 
-	template void __destroy_aux<AsciiString *>(AsciiString *, AsciiString *, const __false_type &);
+class AsciiStringDestroyAuxShim
+{
+public:
+	static void destroy(void *first, void *last, const __false_type &);
+};
+
+template <class T>
+void __destroy_aux(T first, T last, const __false_type &tag)
+{
+	AsciiStringDestroyAuxShim::destroy((void *)first, (void *)last, tag);
+}
+
+template void __destroy_aux<AsciiString *>(AsciiString *, AsciiString *, const __false_type &);
 }
