@@ -6,13 +6,13 @@ public:
     void init();
 };
 
-__declspec(naked) void WinInstanceData::init()
+class WinInstanceDataInitShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 084h
-        _emit 079h
-        _emit 047h
-        _emit 000h
-    }
+public:
+    void run();
+};
+
+void WinInstanceData::init()
+{
+    ((WinInstanceDataInitShim *)this)->run();
 }
