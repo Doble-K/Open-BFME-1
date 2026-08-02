@@ -32,6 +32,8 @@ typedef unsigned int UnsignedInt;
 typedef unsigned short UnsignedShort;
 typedef unsigned char UnsignedByte;
 
+enum { NETCOMMANDTYPE_FRAMEINFO = 3 };
+
 class NetCommandMsg
 {
 public:
@@ -144,9 +146,44 @@ public:
 	UnsignedInt m_requestedFrame;					// this+0x20
 };
 
+// Type 3, the frame-info command, and the only one whose constructor retail
+// inlines into its reader -- so the constructor is written inline here too.
+// FINDINGS pins what the three fields carry: sendFrameInfo stamps the sender's
+// TheGameLogic->getFrame() at +0x1C and the frame's total command count at
+// +0x24, and the receiving half copies +0x20 into the per-player dword array at
+// ConnectionManager+0x120A0. Nothing names that third value, so it keeps its
+// offset. The count starting at -1 is the same "not yet known" sentinel the base
+// uses for m_executionFrame.
+class NetFrameCommandMsg : public NetCommandMsg
+{
+public:
+	NetFrameCommandMsg()
+	{
+		m_frame = 0;
+		m_field20 = 0;
+		m_commandCount = -1;
+		m_commandType = NETCOMMANDTYPE_FRAMEINFO;
+	}
+
+	UnsignedInt m_frame;							// this+0x1C
+	UnsignedInt m_field20;							// this+0x20
+	UnsignedInt m_commandCount;						// this+0x24
+};
+
+class BFMENetRequestPlayerLeaveCommandMsg : public NetCommandMsg
+{
+public:
+	BFMENetRequestPlayerLeaveCommandMsg();
+	void setRequestedPlayerID(Int playerID);
+
+	Int m_requestedPlayerID;						// this+0x1C
+};
+
 class NetPacket
 {
 protected:
+	static NetCommandMsg *readFrameMessage(UnsignedByte *data, Int &i);
+	static NetCommandMsg *readRequestPlayerLeaveMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readAckBothMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readAckStage1Message(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readAckStage2Message(UnsignedByte *data, Int &i);
@@ -160,6 +197,40 @@ protected:
 	static NetCommandMsg *readInformPlayerLeaveFrameMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readRequestFrameDataMessage(UnsignedByte *data, Int &i);
 };
+
+NetCommandMsg *NetPacket::readFrameMessage(UnsignedByte *data, Int &i)
+{
+	NetFrameCommandMsg *msg = new NetFrameCommandMsg;
+
+	UnsignedInt frame = 0;
+	memcpy(&frame, data + i, sizeof(frame));
+	i += sizeof(frame);
+	msg->m_frame = frame;
+
+	UnsignedInt field20 = 0;
+	memcpy(&field20, data + i, sizeof(field20));
+	i += sizeof(field20);
+	msg->m_field20 = field20;
+
+	UnsignedInt commandCount = 0;
+	memcpy(&commandCount, data + i, sizeof(commandCount));
+	i += sizeof(commandCount);
+	msg->m_commandCount = commandCount;
+
+	return msg;
+}
+
+NetCommandMsg *NetPacket::readRequestPlayerLeaveMessage(UnsignedByte *data, Int &i)
+{
+	BFMENetRequestPlayerLeaveCommandMsg *msg = new BFMENetRequestPlayerLeaveCommandMsg;
+
+	Int playerID = 0;
+	memcpy(&playerID, data + i, sizeof(playerID));
+	i += sizeof(playerID);
+	msg->setRequestedPlayerID(playerID);
+
+	return msg;
+}
 
 NetCommandMsg *NetPacket::readAckBothMessage(UnsignedByte *data, Int &i)
 {

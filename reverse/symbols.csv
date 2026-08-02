@@ -4083,3 +4083,4 @@ _gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
 _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?portableMapPathToRealMapPath@GameState@@QBE?AV?$StringBase@D@@ABV2@@Z,0x0010F550,same body as the AsciiString-typed ledger row; BFME AsciiString is StringBase<char> so the callee mangles with the instantiation
 ?realMapPathToPortableMapPath@GameState@@QBE?AV?$StringBase@D@@ABV2@@Z,0x0010F280,same body as the AsciiString-typed ledger row; BFME AsciiString is StringBase<char> so the callee mangles with the instantiation
+??0BFMENetRequestPlayerLeaveCommandMsg@@QAE@XZ,0x006741F0,the constructor; the ledger row at that address carries native_netcommandmsg.cpp's ?construct@ name for the same body
