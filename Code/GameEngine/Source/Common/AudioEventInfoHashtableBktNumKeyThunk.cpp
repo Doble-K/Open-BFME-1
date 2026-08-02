@@ -8,12 +8,12 @@ struct AudioEventInfo
 
 namespace rts
 {
-template<class T>
+template <class T>
 struct hash
 {
 };
 
-template<class T>
+template <class T>
 struct equal_to
 {
 };
@@ -21,37 +21,37 @@ struct equal_to
 
 namespace _STL
 {
-template<class First, class Second>
+template <class First, class Second>
 struct pair
 {
 };
 
-template<class T>
+template <class T>
 struct _Select1st
 {
 };
 
-template<class T>
+template <class T>
 class allocator
 {
 };
 
-template<class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
+template <class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
 class hashtable
 {
-    unsigned int _M_bkt_num_key(const Key &, unsigned int) const;
+	unsigned int _M_bkt_num_key(const Key &, unsigned int) const;
 };
 
-template<class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
-__declspec(naked) unsigned int hashtable<Value, Key, Hash, Extract, Equal, Alloc>::_M_bkt_num_key(const Key &, unsigned int) const
+class AudioEventInfoBktNumKeyShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 074h
-        _emit 082h
-        _emit 00Ah
-        _emit 000h
-    }
+public:
+	unsigned int bkt_num_key(const AsciiString &key, unsigned int n) const;
+};
+
+template <class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
+unsigned int hashtable<Value, Key, Hash, Extract, Equal, Alloc>::_M_bkt_num_key(const Key &key, unsigned int n) const
+{
+	return ((AudioEventInfoBktNumKeyShim const *)this)->bkt_num_key((const AsciiString &)key, n);
 }
 }
 

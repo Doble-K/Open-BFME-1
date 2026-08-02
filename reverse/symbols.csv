@@ -2787,6 +2787,7 @@ name,address,notes
 ?begin@FirewallHelperDetectionBeginUpdateShim@@QAE_NXZ,0x0066EFA0,FirewallHelperClass detectionBeginUpdate incremental-link thunk target through a TU-local forwarding shim
 ?bfmePushBack@BFMEAnimateWindowListPush@@QAEXABQAVAnimateWindow@@@Z,0x00022D36,BFME out-of-line list<AnimateWindow*>::push_back body 0x45DAE0 via ILT thunk
 ?bind@UDPBindShim@@QAEHIG@Z,0x00684900,UDP Bind incremental-link thunk target through a TU-local forwarding shim
+?bkt_num_key@AudioEventInfoBktNumKeyShim@_STL@@QBEIABVAsciiString@@I@Z,0x000B8670,incremental-link thunk target through a TU-local forwarding shim
 ?blendTileData@BFMERetailWorldHeightMap@@QAEXPAUTBlendTileInfo@@H@Z,0x000167F7,retail WorldHeightMap::blendTileData ILT thunk
 ?blendTileData@BFMERetailWorldHeightMapBlendTileDataShim@@QAEXPAUTBlendTileInfo@@H@Z,0x0074A240,BFME WorldHeightMap incremental-link thunk target through a TU-local forwarding shim
 ?build@ActiveBodyModuleDataBuildFieldParseShim@@SAXAAVMultiIniFieldParse@@@Z,0x002284A0,ActiveBodyModuleData buildFieldParse incremental-link thunk target through a TU-local forwarding shim
