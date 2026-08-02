@@ -91,13 +91,13 @@ public:
     __declspec(dllexport) static void Set_DX8_Texture_Stage_State(unsigned int, unsigned long, unsigned int);
 };
 
-__declspec(naked) void DX8Wrapper::Set_DX8_Texture_Stage_State(unsigned int, unsigned long, unsigned int)
+class DX8TextureStageStateShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 058h
-        _emit 0F6h
-        _emit 069h
-        _emit 000h
-    }
+public:
+    static void set(unsigned int, unsigned long, unsigned int);
+};
+
+void DX8Wrapper::Set_DX8_Texture_Stage_State(unsigned int stage, unsigned long state, unsigned int value)
+{
+    DX8TextureStageStateShim::set(stage, state, value);
 }

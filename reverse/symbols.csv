@@ -3538,6 +3538,8 @@ name,address,notes
 ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,0x0002C6E7
 ?shutdown@WaterTracksRenderSystem@@QAEXXZ,0x000319CB
 ?spin@LockClass@FastCriticalSectionClass@@CIXPAI@Z,0x00026FA8,FastCriticalSectionClass::LockClass spin-acquire (shared out-of-line body reached via ILT thunk); StringClass locks resolve here
+?set@DX8TextureStageStateShim@@SAXIKI@Z,0x006C5840,DX8Wrapper incremental-link static thunk target through a TU-local forwarding shim
+?getAdjustedVisionRangeForObject@AIAdjustedVisionRangeForObjectShim@@SAMPBVObject@@H@Z,0x0014A620,AI incremental-link static thunk target through a TU-local forwarding shim
 ?start@W3DShaderManagerStartRenderToTextureShim@@SAXXZ,0x007171F0,W3DShaderManager incremental-link static thunk target through a TU-local forwarding shim
 ?startRenderToTexture@W3DShaderManager@@SAXXZ,0x000154E7
 ?statusCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyStatusArg@@@Z,0x0003BD8B
