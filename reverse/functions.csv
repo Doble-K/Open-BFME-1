@@ -1227,7 +1227,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BridgeInfo@@QAE@XZ,,0x001A1EC0,85,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ??0BridgeOCLInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ??0BridgeScaffoldBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001002D,5,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
-??0BridgeTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F6000,96,Code/masm_dumps/BridgeTowerBehavior_constructor.asm,matched,Exact 96B unique factory Open-BFME4
+??0BridgeTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F6000,96,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeTowerBehaviorCtorThunk.cpp,matched,MASM converted to focused C++ constructor thunk
 ??0BridgeTowerBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0BroadcastStealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00289880,244,Code/masm_dumps/BroadcastStealthUpdate_constructor.asm,matched,Exact 244B @ 0x00289880; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B370
 ??0BroadcastStealthUpdateModuleData@@QAE@XZ,,0x0012A2E0,79,Code/GameEngine/Source/GameLogic/AI/BroadcastStealthUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
