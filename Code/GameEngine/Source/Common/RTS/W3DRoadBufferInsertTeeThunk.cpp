@@ -10,13 +10,13 @@ protected:
     void insertTee(Vector2, int, float);
 };
 
-__declspec(naked) void W3DRoadBuffer::insertTee(Vector2, int, float)
+class W3DRoadBufferInsertTeeShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0D9h
-        _emit 046h
-        _emit 070h
-        _emit 000h
-    }
+public:
+    void insert(Vector2 loc, int roadType, float width);
+};
+
+void W3DRoadBuffer::insertTee(Vector2 loc, int roadType, float width)
+{
+    ((W3DRoadBufferInsertTeeShim *)this)->insert(loc, roadType, width);
 }
