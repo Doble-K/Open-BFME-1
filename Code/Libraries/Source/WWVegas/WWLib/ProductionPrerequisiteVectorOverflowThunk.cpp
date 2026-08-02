@@ -4,31 +4,31 @@ class ProductionPrerequisite
 
 namespace _STL
 {
-	struct __false_type
-	{
-	};
+struct __false_type
+{
+};
 
-	template <class Type>
-	class allocator
-	{
-	};
+template <class Type>
+class allocator
+{
+};
 
-	template <class Type, class Allocator>
-	class vector
-	{
-	protected:
-		void _M_insert_overflow(Type *, const Type &, const __false_type &, unsigned int, bool);
-	};
+template <class Type, class Allocator>
+class vector
+{
+protected:
+	void _M_insert_overflow(Type *, const Type &, const __false_type &, unsigned int, bool);
+};
 
-	__declspec(naked) void vector<ProductionPrerequisite, allocator<ProductionPrerequisite> >::_M_insert_overflow(
-		ProductionPrerequisite *, const ProductionPrerequisite &, const __false_type &, unsigned int, bool)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 05Ch
-			_emit 05Fh
-			_emit 074h
-			_emit 000h
-		}
-	}
+class ProductionPrerequisiteInsertOverflowShim
+{
+public:
+	void insert_overflow(ProductionPrerequisite * pos, const ProductionPrerequisite & x, const __false_type &tag, unsigned int fill_len, bool at_end);
+};
+
+void vector<ProductionPrerequisite, allocator<ProductionPrerequisite> >::_M_insert_overflow(
+	ProductionPrerequisite * pos, const ProductionPrerequisite & x, const __false_type &tag, unsigned int fill_len, bool at_end)
+{
+	((ProductionPrerequisiteInsertOverflowShim *)this)->insert_overflow(pos, x, tag, fill_len, at_end);
+}
 }
