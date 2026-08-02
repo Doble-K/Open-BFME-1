@@ -11595,6 +11595,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?hasMoreLoops@AudioEventRTS@@QBE_NXZ,,0x000B28B0,41,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,BFME audio event loop-control layout
 ?hasObjectsWantingToEnterOrExit@OpenContain@@UBE_NXZ,,0x001BD960,11,Code/GameEngine/Source/GameLogic/Object/Contain/OpenContain.cpp,matched,
 ?hasPacketRouterFrameStall@BFMEConnectionManager@@QAE_NXZ,,0x00664260,150,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME router frame-data stall scan using NetworkKeepAliveDelay at +0xcb4
+?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?hasPrereqsForScience@Player@@QBE_NW4ScienceType@@@Z,,0x000C9850,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?hasRGBDataForWidth@TileData@@QAE_NH@Z,,0x006D6620,48,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
 ?hasRadar@Player@@QBE_NXZ,,0x000C9A80,28,Code/GameEngine/Source/Common/RTS/PlayerFields.cpp,matched,BFME retail body; m_radarDisabled@0x60 m_disableProofRadarCount@0x5c m_radarCount@0x58 via reference/shims/player; adjacent to okToPlayRadarEdgeSound@0xC9A20 in same compiland
@@ -12328,6 +12329,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseModuleName@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x001458A0,772,Code/masm_dumps/_sa__parseModuleName_ThingTemplate__KAXPAVINI__PAX1PBX_1458A0.asm,matched,Exact 772B string-anchored Open-BFME4
 ?parseMouseCursorDefinition@INI@@SAXPAV1@@Z,,0x005A5FA0,185,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,INI block table node binds keyword MouseCursor to this address
 ?parseMouseDefinition@INI@@SAXPAV1@@Z,,0x005A4690,25,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,
+?parseMultiplayerColorDefinition@INI@@SAXPAV1@@Z,,0x000C2690,261,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerColor block; ZH body unchanged and MultiplayerColorDefinition layout matches - retail reaches m_rgbValue at +4 and m_rgbValueNight at +0x14
+?parseMultiplayerSettingsDefinition@INI@@SAXPAV1@@Z,,0x000C2600,113,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerSettings block; push 0x88 to operator new pins sizeof at 136 where ZH compiles 0x90 - BFME layout in reference/shims/multiplayer from the retail field table
 ?parseName@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004866F0,139,Code/masm_dumps/parseName_YA_NPADPAVWinInstanceData_0PAX_Z.asm,matched,
 ?parseNumImages@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BAE50,158,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_parse_walls.asm,matched,
 ?parseOCL@@YAXPAVINI@@PAX1PBX@Z,,0x002097E0,155,Code/masm_dumps/parseOCL_YAXPAVINI_PAX1PBX_Z_002097E0_packet259.asm,matched,Certified packet 259 exact retail db recovery SHA256 36f9e8eab167bd253f6ceef21260045565964fd9067b79658c0cc81dc81725db
@@ -12506,6 +12509,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?processGlobalMessage@NAT@@QAEXHPBD@Z,,0x00671F90,456,Code/GameEngine/Source/GameNetwork/NAT_processGlobalMessage.asm,matched,
 ?processIncomingCommand@BFMEConnectionManager@@QAE_NPAX@Z,,0x0066A3F0,580,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?processInformPlayerLeaveFrameCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00664430,307,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?processManglerResponse@NAT@@IAEXG@Z,,0x00671CA0,255,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
 ?processProgress@ConnectionManager@@AAEXPAVNetProgressCommandMsg@@@Z,,0x00662D20,33,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,
 ?processProgress@GameLogic@@QAEXHH@Z,,0x00385520,57,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,converted incremental-link thunk to exact codegen-blocked C++ naked body
 ?processRequestAssistance@Weapon@@IAEXPBVObject@@PAV2@@Z,,0x001E4BF0,83,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,BFME Weapon and WeaponTemplate layout offsets
@@ -13852,7 +13856,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?parseMultiplayerSettingsDefinition@INI@@SAXPAV1@@Z,,0x000C2600,113,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerSettings block; push 0x88 to operator new pins sizeof at 136 where ZH compiles 0x90 - BFME layout in reference/shims/multiplayer from the retail field table
-?parseMultiplayerColorDefinition@INI@@SAXPAV1@@Z,,0x000C2690,261,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerColor block; ZH body unchanged and MultiplayerColorDefinition layout matches - retail reaches m_rgbValue at +4 and m_rgbValueNight at +0x14
-?processManglerResponse@NAT@@IAEXG@Z,,0x00671CA0,255,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
-?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,,0x0066B510,51,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,

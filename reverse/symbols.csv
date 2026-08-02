@@ -864,6 +864,7 @@ name,address,notes
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,0x0003F382,pinharvest x1 (thunk)
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,0x00048329,pinharvest x1 (thunk)
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,0x00887B60,pinharvest x4 (body)
+??0MultiplayerSettings@@QAE@XZ,0x0002B0BC,harvested from parseMultiplayerSettingsDefinition (thunk)
 ??0NetCommandMsg@@QAE@XZ,0x000132B4,hit-decoded x4 (thunk)
 ??0NetCommandMsg@@QAE@XZ,0x00024F87,hit-decoded x2 (thunk)
 ??0NetCommandMsg@@QAE@XZ,0x0002FAD1,hit-decoded x2 (thunk)
@@ -1670,14 +1671,11 @@ name,address,notes
 ??4PeerRequest@@QAEAAV0@ABV0@@Z,0x000336A4
 ??4PeerResponse@@QAEAAV0@ABV0@@Z,0x00003E86
 ??4PlayerTemplate@@QAEAAV0@ABV0@@Z,0x000050F6
-?assign@PlayerTemplateAssignShim@@QAEAAVPlayerTemplate@@ABV2@@Z,0x000E32D0,PlayerTemplate assignment incremental-link thunk target through a TU-local forwarding shim
 ??4RankInfo@@QAEAAV0@ABV0@@Z,0x0002E53C,harvested from friend_parseRankDefinition (thunk)
 ??4RenderObjClass@@QAEAAV0@ABV0@@Z,0x0091F790
 ??4SegLineRendererClass@@QAEAAV0@ABV0@@Z,0x009600F0
 ??4SplitChoiceStruct@AABTreeBuilderClass@@QAEAAU01@ABU01@@Z,0x0096B6B0
 ??4StringClass@@QAEABV0@ABV0@@Z,0x00007A63,site-decoded x1 (thunk)
-?assign@StringClassAssignShim@@QAEABVStringClass@@ABV2@@Z,0x0013B600,StringClass assignment incremental-link thunk target through a TU-local forwarding shim
-?equal@AsciiStringEqualityShim@@SA_NABVAsciiString@@0@Z,0x005A8140,AsciiString equality incremental-link thunk target through a TU-local forwarding shim
 ??4StringClass@@QAEABV0@ABV0@@Z,0x00035FDF
 ??4StringClass@@QAEABV0@ABV0@@Z,0x00887B60,site-decoded x3 (body)
 ??4StringClass@@QAEABV0@ABV0@@Z,0x00887C90,site-decoded x3 (body)
@@ -2751,8 +2749,10 @@ name,address,notes
 ?assign@LightningDrawTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x0003E108,LightningDrawModuleTemplate assignment thunk used through a TU-local layout shim
 ?assign@ParticleSystemTemplateInfoAssignShim@FXParticleSystem@@QAEXPBX@Z,0x000387C6,ParticleSystemTemplate base-info assignment thunk used through a TU-local layout shim
 ?assign@ParticleSystemTemplateTailAssignShim@FXParticleSystem@@QAEXPBX@Z,0x0004A232,ParticleSystemTemplate tail assignment thunk used through a TU-local layout shim
+?assign@PlayerTemplateAssignShim@@QAEAAVPlayerTemplate@@ABV2@@Z,0x000E32D0,PlayerTemplate assignment incremental-link thunk target through a TU-local forwarding shim
 ?assign@RenderObjectDrawTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x00007E14,RenderObjectDrawModuleTemplate assignment thunk used through a TU-local layout shim
 ?assign@RenderObjectUpdateTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x0003E2C5,RenderObjectUpdateModuleTemplate assignment thunk used through a TU-local layout shim
+?assign@StringClassAssignShim@@QAEABVStringClass@@ABV2@@Z,0x0013B600,StringClass assignment incremental-link thunk target through a TU-local forwarding shim
 ?begin@?$hashtable@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@_STL@@QAE?AU?$_Ht_iterator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@U?$_Nonconst_traits@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@2@XZ,0x0003EE14
 ?bfmePushBack@BFMEAnimateWindowListPush@@QAEXABQAVAnimateWindow@@@Z,0x00022D36,BFME out-of-line list<AnimateWindow*>::push_back body 0x45DAE0 via ILT thunk
 ?blendTileData@BFMERetailWorldHeightMap@@QAEXPAUTBlendTileInfo@@H@Z,0x000167F7,retail WorldHeightMap::blendTileData ILT thunk
@@ -2812,11 +2812,10 @@ name,address,notes
 ?connectCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPConnectResponseArg@@@Z,0x000314AD
 ?construct@BoxEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0001B33D,BoxEmissionVolumeModule constructor thunk used through a TU-local layout shim
 ?construct@BoxEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002D402,BoxEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
-?construct@LineEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00031750,LineEmissionVolumeModule constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00019CB3,ButterflyDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003E8F1,ButterflyDrawModuleTemplate constructor thunk used through a TU-local layout shim
-?construct@CylinderEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000237EF,CylinderEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@CylinderEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00009AA7,CylinderEmissionVolumeModule constructor thunk used through a TU-local layout shim
+?construct@CylinderEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000237EF,CylinderEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@CylindricalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00017215,CylindricalEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@CylindricalEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002B79C,CylindricalEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@CylindricalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0004AEB7,CylindricalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
@@ -2840,23 +2839,24 @@ name,address,notes
 ?construct@LightningDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0004A89F,LightningDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@LightningDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003B2AA,LightningDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@LightningEmissionTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0000CC39,LightningEmissionModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@LineEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00031750,LineEmissionVolumeModule constructor thunk used through a TU-local layout shim
 ?construct@LineEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00004269,LineEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
+?construct@OrthoEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00004692,OrthoEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@OrthoEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000ADDA,OrthoEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@OrthoEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0000FAD3,OrthoEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
-?construct@OrthoEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00004692,OrthoEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@OutwardEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0003AD96,OutwardEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@OutwardEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0003C6DC,OutwardEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@OutwardEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00048DB0,OutwardEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
-?construct@PointEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000FECA,PointEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@PointEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0000BB18,PointEmissionVolumeModule constructor thunk used through a TU-local layout shim
+?construct@PointEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000FECA,PointEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@QuadDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00005222,QuadDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@QuadDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001D278,QuadDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002AEA5,RenderObjectDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00033816,RenderObjectDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectUpdateTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00018101,RenderObjectUpdateModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@RenderObjectUpdateTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00035490,RenderObjectUpdateModuleTemplate constructor thunk used through a TU-local layout shim
-?construct@SphereEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0001598D,SphereEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@SphereEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0004018D,SphereEmissionVolumeModule constructor thunk used through a TU-local layout shim
+?construct@SphereEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0001598D,SphereEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000178A0,SphericalEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00003DF5,SphericalEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001BF86,SphericalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
@@ -2925,6 +2925,7 @@ name,address,notes
 ?enableRadar@Player@@QAEXXZ,0x00043207
 ?enableWaterGrid@WaterRenderObjClass@@QAEX_N@Z,0x000366E7
 ?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,0x0002BF21
+?equal@AsciiStringEqualityShim@@SA_NABVAsciiString@@0@Z,0x005A8140,AsciiString equality incremental-link thunk target through a TU-local forwarding shim
 ?erase@?$_Rb_tree@HU?$pair@$$CBHVAsciiString@@@_STL@@U?$_Select1st@U?$pair@$$CBHVAsciiString@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@_STL@@QAEXU?$_Rb_tree_iterator@U?$pair@$$CBHVAsciiString@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@2@0@Z,0x0001799F
 ?erase@?$hashtable@U?$pair@$$CBHW4Relationship@@@_STL@@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAEXABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@2@@Z,0x00002A36,pinharvest x1 (thunk)
 ?erase@?$hashtable@U?$pair@$$CBHW4Relationship@@@_STL@@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAEXABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@2@@Z,0x000114F0,pinharvest x1 (thunk)
@@ -2973,6 +2974,7 @@ name,address,notes
 ?findMapping@DataChunkTableOfContents@@AAEPAVMapping@@ABVAsciiString@@@Z,0x0001587A
 ?findMemoryPool@MemoryPoolFactory@@QAEPAVMemoryPool@@PBD@Z,0x0003ADD7,pool-glue cascade callee (from retail call site)
 ?findModule@Object@@IBEPAVModule@@W4NameKeyType@@@Z,0x0002AE23
+?findMultiplayerColorDefinitionByName@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@VAsciiString@@@Z,0x0003F436,harvested from parseMultiplayerColorDefinition (thunk)
 ?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z,0x00036D27,pinharvest x1 (thunk)
 ?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z,0x00044EEF,pinharvest x1 (thunk)
 ?findNonConstCommandSet@ControlBar@@AAEPAVCommandSet@@ABVAsciiString@@@Z,0x00036D27,pinharvest x1 (thunk)
@@ -3251,6 +3253,7 @@ name,address,notes
 ?nameToLowercaseKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,0x00006DB6,findImageByName call target (incremental-link thunk)
 ?newDrawable@BFMEThingFactory@@QAEPAVDrawable@@PBVThingTemplate@@W4DrawableStatus@@H@Z,0x0002C336
 ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,0x000119E1,ILT thunk; real body 0x5B6920
+?newMultiplayerColorDefinition@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@VAsciiString@@@Z,0x0002FD6A,harvested from parseMultiplayerColorDefinition (thunk)
 ?newOverride@WeaponStore@@SAPAVWeaponTemplate@@PAV2@@Z,0x0002BE72,harvested from parseWeaponTemplateDefinition (thunk)
 ?normalizeAngle@@YAMM@Z,0x0000991C
 ?notifyModelConditionChanged@Object@@QAEXXZ,0x0002191D,Object model-condition notify ILT (body 0x1BE1C0); inlined clearModelConditionState(PANICKING) sites
@@ -3710,6 +3713,3 @@ _atexit,0x009F6E26,CRT atexit (registers static destructors)
 _bfme_acos,0x009F7256,internal acos helper called by ACos
 _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
-??0MultiplayerSettings@@QAE@XZ,0x0002B0BC,harvested from parseMultiplayerSettingsDefinition (thunk)
-?findMultiplayerColorDefinitionByName@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@VAsciiString@@@Z,0x0003F436,harvested from parseMultiplayerColorDefinition (thunk)
-?newMultiplayerColorDefinition@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@VAsciiString@@@Z,0x0002FD6A,harvested from parseMultiplayerColorDefinition (thunk)
