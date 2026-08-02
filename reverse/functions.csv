@@ -13337,7 +13337,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?set_identity@TimeCodedMotionChannelClass@@AAEXPAM@Z,,0x00977AC0,39,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ?setupAlphaTiles@WorldHeightMap@@SAXXZ,,0x00747AC0,515,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?shouldExit@TunnelNetworkExitConditions@@UBE_NPBVStateMachine@@@Z,,0x00189AE0,18,Code/GameEngine/Source/GameLogic/AI/AITNGuard.cpp,matched,
-?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,,0x00017503,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ControlBar::showBuildTooltipLayout
+?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,,0x00017503,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,SUSPECT: 0x00017503 is a 5-byte incremental-link thunk whose body 0x000E7240 is the matched ?friend_lookupScience@ScienceStore@@ - so this row claims an ILT entry rather than a function and a 5-byte jump matches trivially. It is what lets commandButtonTooltip byte-verify while naming the wrong global; see reverse/dir32_consistency_whitelist.txt
 ?showGameSpyGameOptionsUnderlyingGUIElements@@YAX_N@Z,,0x00503E80,92,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp,matched,
 ?showIdleWorkerLayout@InGameUI@@EAEXXZ,,0x0043B970,86,Code/masm_dumps/InGameUI_showIdleWorkerLayout.asm,matched,Ghidra-corrected BFME idle-worker body
 ?showLANGameOptionsUnderlyingGUIElements@@YAX_N@Z,,0x004D00E0,92,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp,matched,

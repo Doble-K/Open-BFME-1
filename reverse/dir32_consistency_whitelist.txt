@@ -197,6 +197,29 @@ _W3DFilters
 # never contradicted, since the addresses they resolve are masked. Nothing is
 # renamed on that basis alone -- it is recorded so the next person starts from
 # three data points instead of one.
+#
+# RESOLVED, in the sense that the mechanism is now understood even though the
+# rows are left alone. Retail's function at 0x000B8F40 is seventeen bytes:
+#
+#   mov eax,[esp+4] ; mov ecx,[0x12ed7ac] ; push eax ; call 0x17503 ; ret
+#
+# 0x12ed7ac is TheScienceStore, and 0x00017503 is a five-byte incremental-link
+# thunk whose real body is 0x000E7240 -- the 85-byte function functions.csv
+# already matches as ?friend_lookupScience@ScienceStore@@. So retail loads the
+# science store and calls a science-store method, exactly as this note suspected.
+#
+# What kept it invisible is a second bad row rather than a subtle one:
+# ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z is recorded at
+# 0x00017503 with size 5 -- that is, it claims the ILT thunk itself, not a
+# function. A five-byte jump matches trivially, so our ControlBar.cpp source can
+# call TheControlBar->showBuildTooltipLayout(window), have the REL32 resolve
+# through that thunk row, and byte-verify while naming both the global and the
+# callee wrongly.
+#
+# So ?commandButtonTooltip@@ at 0x000B8F40 is very likely misattributed too --
+# f(arg){ TheX->method(arg); } is a shape shared by many wrappers, and this one
+# passes a GameWindow* to something that takes a const char*. Its real name is
+# not recoverable from the image, which is why nothing is repointed here.
 ?TheControlBar@@3PAVControlBar@@A
 ?TheFXListStore@@3PAVFXListStore@@A
 ?TheNameKeyGenerator@@3PAVNameKeyGenerator@@A
