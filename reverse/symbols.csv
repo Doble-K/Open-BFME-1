@@ -439,6 +439,7 @@ name,address,notes
 ??0AIMoveToState@@QAE@PAVStateMachine@@@Z,0x0003FB61,pinharvest x1 (thunk)
 ??0AIMoveToState@@QAE@PAVStateMachine@@@Z,0x00046DE9,pinharvest x1 (thunk)
 ??0AIUpdateModuleData@@QAE@XZ,0x00010B2C,derived-ICF
+??0ActiveBody@@QAE@PAVThing@@PBVModuleData@@@Z,0x00211A50,BFME ActiveBody constructor body
 ??0ActiveBodyModuleData@@QAE@XZ,0x00001780,pinharvest x1 (thunk)
 ??0ActiveBodyModuleData@@QAE@XZ,0x0001ECBD,pinharvest x1 (thunk)
 ??0ActiveBodyModuleData@@QAE@XZ,0x0002C9D0,pinharvest x1 (thunk)
