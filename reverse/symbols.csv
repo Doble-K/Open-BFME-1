@@ -3594,6 +3594,7 @@ name,address,notes
 ?render_box@BoxRenderObjClass@@IAEXAAVRenderInfoClass@@ABVVector3@@1@Z,0x00956F40,rel32 pin for exact-ambiguous landing
 ?requestCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyRequestArg@@@Z,0x00031D9F
 ?reserve@?$vector@UHorzLine@@V?$allocator@UHorzLine@@@_STL@@@_STL@@QAEXI@Z,0x0000DE95
+?reserve@HorzLineVectorReserveShim@_STL@@QAEXI@Z,0x00068FA0,incremental-link thunk target through a TU-local forwarding shim
 ?reset@FrameData@@QAEXXZ,0x0003BB6F,ICF-folded onto init; ZH's reset is just a call to init
 ?reset@NetCommandList@@QAEXXZ,0x0000B9CE,ILT thunk retail call sites use; real body 0x6731A0
 ?reset@NetCommandList@@QAEXXZ,0x00015479,pinharvest x1 (thunk)
@@ -3603,6 +3604,7 @@ name,address,notes
 ?resetToRestPosition@AnimateWindowManager@@QAEXXZ,0x00038F7D,ILT thunk -> 0x45D520; retail call sites use the thunk
 ?resize@?$hashtable@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@W4NameKeyType@@U?$hash@W4NameKeyType@@@rts@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@U?$equal_to@W4NameKeyType@@@5@V?$allocator@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@@_STL@@QAEXI@Z,0x0008FB70,NameKeyGenerator aux hash_map hashtable<>::resize() proven via nameToKey(const char*) insert call site
 ?resize@?$vector@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAEXI@Z,0x0000366B
+?resize@ICoord2DVectorResizeShim@_STL@@QAEXI@Z,0x00453DF0,incremental-link thunk target through a TU-local forwarding shim
 ?revalidateOccupiers@SpawnPointProductionExitUpdate@@AAEXXZ,0x0002374A
 ?run@BitFlagsCountInverseIntersectionShim@@QBEHABV1@@Z,0x00786BD0,BitFlags countInverseIntersection incremental-link thunk target through a TU-local forwarding shim
 ?run@BitFlagsHFCountInverseIntersectionShim@@QBEHABV1@@Z,0x00421830,BitFlags@117 countInverseIntersection incremental-link thunk target through a TU-local forwarding shim
