@@ -31,6 +31,18 @@ uint32 ChunkLoadClass::Cur_Micro_Chunk_ID()
 }
 
 
+bool ChunkLoadClass::Open_Micro_Chunk()
+{
+	if (Read((char *)this + 0xC14, 2) != 2) {
+		return false;
+	}
+
+	*(bool *)((char *)this + 0xC0C) = true;
+	*(int *)((char *)this + 0xC10) = 0;
+	return true;
+}
+
+
 ChunkSaveClass::ChunkSaveClass(FileClass * file) :
 	File(file),
 	StackIndex(0),
