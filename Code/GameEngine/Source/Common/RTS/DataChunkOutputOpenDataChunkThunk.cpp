@@ -6,13 +6,13 @@ public:
     void openDataChunk(char *, unsigned short);
 };
 
-__declspec(naked) void DataChunkOutput::openDataChunk(char *, unsigned short)
+class DataChunkOutputOpenDataChunkShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 095h
-        _emit 09Fh
-        _emit 00Ch
-        _emit 000h
-    }
+public:
+    void open(char *name, unsigned short id);
+};
+
+void DataChunkOutput::openDataChunk(char *name, unsigned short id)
+{
+    ((DataChunkOutputOpenDataChunkShim *)this)->open(name, id);
 }
