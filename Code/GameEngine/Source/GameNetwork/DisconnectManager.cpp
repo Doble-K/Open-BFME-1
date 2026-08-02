@@ -377,7 +377,8 @@ void DisconnectManager::processPacketRouterAck(NetCommandMsg *msg, ConnectionMan
 void DisconnectManager::processDisconnectVote(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectVoteCommandMsg *cmdMsg = (NetDisconnectVoteCommandMsg *)msg;
 	DEBUG_LOG(("DisconnectManager::processDisconnectVote - Got a disconnect vote for player %d command from player %d\n", cmdMsg->getSlot(), cmdMsg->getPlayerID()));
-	Int transSlot = translatedSlotPosition(msg->getPlayerID(), conMgr->getLocalPlayerID());
+	Int playerID = msg->getPlayerID();
+	Int transSlot = translatedSlotPosition(playerID, conMgr->getLocalPlayerID());
 
 	if (isPlayerInGame(transSlot, conMgr) == FALSE) {
 		// if they've been timed out, voted out, disconnected, don't count their vote.
@@ -466,9 +467,12 @@ Bool DisconnectManager::allowedToContinue() {
 	return TRUE;
 }
 
-// ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z present-unmatched
 void DisconnectManager::sendKeepAlive(ConnectionManager *conMgr) {
-	time_t curTime = timeGetTime();
+	// Unsigned: retail compares the elapsed span with `ja`, not `jg`, so the
+	// subtraction is done in unsigned arithmetic. With the reference's signed
+	// time_t the compiler emits the signed branch and the bodies differ by that
+	// one byte.
+	UnsignedInt curTime = timeGetTime();
 
 	if (((curTime - m_lastKeepAliveSendTime) > 500) || (m_lastKeepAliveSendTime == -1)) {
 		NetDisconnectKeepAliveCommandMsg *msg = newInstance(NetDisconnectKeepAliveCommandMsg);
