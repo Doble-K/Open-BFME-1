@@ -5288,7 +5288,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Allocate_Sorting_Dynamic_Buffer@DynamicIBAccessClass@@QAEXXZ,,0x0091D6B0,274,Code/masm_dumps/_leaf__Allocate_Sorting_Dynamic_Buffer_Dynamic_91D6B0.asm,matched,Exact 274B present-unmatched leaf Open-BFME4
 ?AllowBroadcasts@UDP@@QAEH_N@Z,,0x006848C0,40,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?Alter_Avatar_HTree@HTreeClass@@SAPAV1@PBV1@AAVVector3@@@Z,,0x00955470,641,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
-?Anim_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00981E10,32,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Append_Anim_Combo_Data@HAnimComboClass@@QAEXPAVHAnimComboDataClass@@@Z,,0x009743C0,68,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Append_Sub_Directory@SimpleFileFactoryClass@@QAEXPBD@Z,,0x009DDA50,249,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ?Apply_Null@VertexMaterialClass@@CAXXZ,,0x00921E30,130,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
@@ -13932,3 +13931,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Write@ChunkSaveClass@@QAEKABUIOQuaternionStruct@@@Z,,0x009E1940,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Is_Animation_Complete@Animatable3DObjClass@@UBE_NXZ,,0x00981CA0,103,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Simple_Evaluate_Bone@Animatable3DObjClass@@UBE_NHPAVMatrix3D@@@Z,,0x00982C20,202,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
+?Anim_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00981E10,112,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,

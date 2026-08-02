@@ -105,6 +105,18 @@ public:
 	virtual void				Get_Transform(Matrix3D&, int pividx, float frame) const = 0;
 	virtual bool				Get_Visibility(int pividx,float frame) = 0;
 
+	// BFME: a per-pivot fade at retail slot 13, sitting between Get_Visibility
+	// and Get_Num_Pivots. HTreeClass::Anim_Update calls it right after
+	// Get_Visibility with the same two arguments and stores the result straight
+	// into PivotClass::PivotFade, so it returns a float. Zero Hour has neither
+	// the call nor the field.
+	//
+	// It has a body rather than being left pure -- retail's slot is _purecall,
+	// but the purity of a slot we never claim buys nothing, and a pure
+	// declaration makes every concrete animation class abstract in the
+	// translation units that instantiate them.
+	virtual float				_bfme_hanim_fade(int pividx,float frame)	{ return 1.0f; }
+
 	virtual int					Get_Num_Pivots(void) const = 0;
 	virtual bool				Is_Node_Motion_Present(int pividx) = 0;
 
@@ -114,6 +126,9 @@ public:
 	virtual bool				Has_Z_Translation (int pividx)	{ return true; }
 	virtual bool				Has_Rotation (int pividx)			{ return true; }
 	virtual bool				Has_Visibility (int pividx)		{ return true; }
+	// BFME: a sixth predicate in the same run -- retail has six `mov al,1; ret`
+	// bodies at slots 16 through 21 where Zero Hour declares five.
+	virtual bool				_bfme_hanim_v21 (int pividx)	{ return true; }
 	virtual int					Class_ID(void)	const															{ return CLASSID_UNKNOWNANIM; }
 
 	// Animated sound-triggering support

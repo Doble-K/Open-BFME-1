@@ -4058,3 +4058,5 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?addFile@ArchiveFile@@QAEXABVAsciiString@@PBUArchivedFileInfo@@@Z,0x009D1110,called once per BIG directory entry
 ?attachFile@ArchiveFile@@QAEXPAVFile@@@Z,0x009CE560,closes any previous file then stores the new one
 ?Compute_Current_Frame@Animatable3DObjClass@@IBEMPAM@Z,0x00982540,called by Simple_Evaluate_Bone
+?Anim_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimClass@@M@Z,0x00953AD0,generic per-pivot evaluator
+?Anim_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHRawAnimClass@@M@Z,0x00953EB0,uncompressed-animation evaluator
