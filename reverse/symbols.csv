@@ -3414,6 +3414,7 @@ name,address,notes
 ?set@NetFileProgressSetProgressShim@@QAEXH@Z,0x006740B0,NetFileProgressCommandMsg setProgress incremental-link thunk target through a TU-local forwarding shim
 ?set@QuickMatchPreferencesSetLastLadderShim@@QAEXABVAsciiString@@G@Z,0x000AD140,QuickMatchPreferences setLastLadder incremental-link thunk target through a TU-local forwarding shim
 ?set@RetailLayoutString@@QAEXPBDH@Z,0x00887D20
+?set@TerrainRoadTypeSetDamageToFXStringShim@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,0x00601B50,TerrainRoadType friend_setDamageToFXString incremental-link thunk target through a TU-local forwarding shim
 ?set@UnicodeString@@QAEXABV1@@Z,0x00887C90,additive; per-TU copy (static 0x01336E2C)
 ?set@UnicodeString@@QAEXABV1@@Z,0x00888530
 ?setAnimData@BFMEAnimateWindowLayout@@QAEXUICoord2D@@000UBFMECoord2D@@II@Z,0x003D5B9,BFME Coord2D ABI layout call to AnimateWindow::setAnimData
