@@ -3453,6 +3453,7 @@ name,address,notes
 ?pop_front@?$deque@VPeerRequest@@V?$allocator@VPeerRequest@@@_STL@@@_STL@@QAEXXZ,0x0002D77C
 ?pop_front@?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@QAEXXZ,0x0002A3C4
 ?pop_front@DequePopFrontShim@_STL@@QAEXXZ,0x006486F0,_STL deque pop_front PSRequest/PeerRequest incremental-link thunk target through a TU-local forwarding shim
+?pop_front@PeerResponseDequePopFrontShim@_STL@@QAEXXZ,0x00648760,_STL deque PeerResponse pop_front incremental-link thunk target through a TU-local forwarding shim
 ?populate@ControlBarPopulateObserverListShim@@QAEXXZ,0x004A9CD0,ControlBar populateObserverList incremental-link thunk target through a TU-local forwarding shim
 ?populateLadderListBox@@YAXXZ,0x004D8740,pinharvest x1 (body)
 ?populateObserverInfoWindow@ControlBar@@QAEXXZ,0x000431C1
@@ -3466,6 +3467,7 @@ name,address,notes
 ?processDisconnectScreenOff@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z,0x0066B890
 ?processProgress@GameLogic@@QAEXHH@Z,0x0002E66D
 ?push@?$queue@VPeerResponse@@V?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@@_STL@@QAEXABVPeerResponse@@@Z,0x0003CE07
+?push@PeerResponseQueuePushShim@_STL@@QAEXPBX@Z,0x0064CB30,_STL queue PeerResponse push incremental-link thunk target through a TU-local forwarding shim
 ?push_back_aux@DequeGameResultsResponseThunkShim@_STL@@QAEXPBX@Z,0x006421D0,_STL deque _M_push_back_aux_v incremental-link thunk target through a TU-local forwarding shim
 ?push_back_aux@DequePingRequestThunkShim@_STL@@QAEXPBX@Z,0x00660750,_STL deque _M_push_back_aux_v incremental-link thunk target through a TU-local forwarding shim
 ?push_back_aux@DequePingResponseThunkShim@_STL@@QAEXPBX@Z,0x00660880,_STL deque _M_push_back_aux_v incremental-link thunk target through a TU-local forwarding shim
