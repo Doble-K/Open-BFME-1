@@ -245,8 +245,12 @@ long      GCALL gtell(GSTREAM *g);
 
 /* Memory Functions */
 
-void *  GCALL galloc(long size);
-int     GCALL gfree(void *memptr);
+/* Imported, not linked in: ds:0x0135944C and ds:0x013593D4 are IAT slots, and
+   retail loads one into edi and calls through it twice, which is what MSVC
+   emits for a repeatedly-called dllimport. The caller cleans the argument, so
+   they are __cdecl rather than GCALL. */
+__declspec(dllimport) void * __cdecl galloc(long size);
+__declspec(dllimport) int   __cdecl gfree(void *memptr);
 void          gputm(void *memptr, unsigned long val, int numbytes);
 void          gputi(void *memptr, unsigned long val, int numbytes);
 unsigned long ggetm(const void *memptr, int numbytes);

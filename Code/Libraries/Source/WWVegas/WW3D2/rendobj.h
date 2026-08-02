@@ -351,9 +351,11 @@ public:
 
 	virtual int						Get_Num_Sub_Objects_On_Bone(int boneindex) const					{ return 0; }
 	virtual RenderObjClass *	Get_Sub_Object_On_Bone(int index,int boneindex)	const				{ return NULL; }
-	// BFME: retail has the two Get_Sub_Object_Bone_Index overloads swapped vs ZH.
-	virtual int						Get_Sub_Object_Bone_Index(int LodIndex, int ModelIndex)	const 		{ return 0; }
+	// BFME: retail declares the RenderObjClass* overload FIRST. Proven by
+	// HLodClass::Update_Obj_Space_Bounding_Volumes, which calls it through vtable
+	// slot 0x8c; the ZH order puts it at 0x88 and the function cannot match.
 	virtual int						Get_Sub_Object_Bone_Index(RenderObjClass * subobj)	const 		{ return 0; }
+	virtual int						Get_Sub_Object_Bone_Index(int LodIndex, int ModelIndex)	const 		{ return 0; }
 	// BFME: retail Add_Sub_Object_To_Bone takes a third parameter (a Vector3
 	// copied into the model node, defaulted here for ZH call sites) and the
 	// (const char *) overload precedes the (int) overload.

@@ -5412,7 +5412,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?BTREE_decompress@@YAHPAE0@Z,,0x00822FF0,258,Code/masm_dumps/_sym1__BTREE_decompress__YAHPAE0_Z_822FF0.asm,matched,symbol-pin Open-BFME4+Grok
 ?BTREE_findbest@@YAIPAFPAEPAI2H@Z,,0x00821090,357,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,
 ?BTREE_joinnodes@@YAXPAUBTreeEncodeContext@@PAE11I@Z,,0x00820FF0,154,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,
-?BTREE_treepack@@YAXPAUBTreeEncodeContext@@PAUBTREEMemStruct@@IIIH@Z,,0x00821200,2593,Code/masm_dumps/_sym1__BTREE_treepack__YAXPAUBTreeEncodeContext__PAUBTREEMemStruct__IIIH_Z_821200.asm,matched,true size 2593B; previous row claimed 2560B
+?BTREE_treepack@@YAXPAUBTreeEncodeContext@@PAUBTREEMemStruct@@IIIH@Z,,0x00821200,2593,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,real C++ already in tree; row pointed at the MASM dump (true size 2593B)
 ?BTREE_writebits@@YAXPAUBTreeEncodeContext@@PAUBTREEMemStruct@@II@Z,,0x00820D80,137,Code/Libraries/Source/Compression/EAC/btreeencode.cpp,matched,
 ?Base64_Decode@@YAHPBXHPAXH@Z,,0x009EB670,286,Code/Libraries/Source/WWVegas/WWLib/base64.cpp,matched,
 ?Base64_Encode@@YAHPBXHPAXH@Z,,0x009EB560,264,Code/Libraries/Source/WWVegas/WWLib/base64.cpp,matched,
@@ -7278,7 +7278,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Link@GenericNode@@QAEXPAV1@@Z,,0x009E2900,75,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Load@GridCullSystemClass@@UAEXAAVChunkLoadClass@@@Z,,0x008DEFE0,343,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Load@INIClass@@QAEHAAVFileClass@@@Z,,0x009E5C80,145,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
-?Load@INIClass@@QAEHAAVStraw@@@Z,,0x009E4680,1411,Code/masm_dumps/__Load_INIClass__QAEHAAVStraw___Z_9E4680.asm,matched,
+?Load@INIClass@@QAEHAAVStraw@@@Z,,0x009E4680,1411,Code/masm_dumps/__Load_INIClass__QAEHAAVStraw___Z_9E4680.asm,matched,SIZE IS SHORT: the real function runs to 0x009E4D4F (1744B) -- its last instruction is the jmp 0x009E48E8 at 0x009E4D4B and 0x009E4C7D jumps back to 0x009E48CF from beyond the claimed end. 333B are unclaimed. C++ from ini.cpp reaches 77.18% over the true extent
 ?Load@INIClass@@QAEHPBD@Z,,0x009E5D20,131,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Load@SceneClass@@UAEXAAVChunkLoadClass@@@Z,,0x00942D00,141,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
 ?LoadPostProcess@ButterflyDrawModuleInfo@FXParticleSystem@@UAEXXZ,0x000073FB,0x005D46D0,1,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,no-op
@@ -8440,7 +8440,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Update_Min_Max@AABTreeBuilderClass@@AAEXHAAVVector3@@0@Z,,0x0096BB70,392,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ?Update_Non_New_Particles@ParticleBufferClass@@IAEXI@Z,,0x00988060,3476,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Update_Obj_Space_Bounding_Volumes@CompositeRenderObjClass@@UAEXXZ,,0x00983230,800,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
-?Update_Obj_Space_Bounding_Volumes@HLodClass@@MAEXXZ,,0x0097C1A0,1481,Code/masm_dumps/_rn1__Update_Obj_Space_Bounding_Volumes_HLodClass__MAEXXZ_97C1A0.asm,matched,reloc-needle Open-BFME4+Grok
+?Update_Obj_Space_Bounding_Volumes@HLodClass@@MAEXXZ,,0x0097C1A0,1481,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,real C++; needed the two Get_Sub_Object_Bone_Index overloads in retail's declaration order
 ?Update_On_Visibilty@ParticleEmitterClass@@MAEXXZ,,0x0097F550,96,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Update_Pivot_Map@NamedPivotMapClass@@QAEXPBVHTreeClass@@@Z,,0x009736D0,96,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Update_Sub_Object_Bits@RenderObjClass@@MAEXXZ,,0x0091FA80,269,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,protected; retail body reconstructed
@@ -11084,7 +11084,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getCommandOption@ParticleUplinkCannonUpdate@@UBE?AW4CommandOption@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/ParticleUplinkCannonUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getCommandOption@SpectreGunshipUpdate@@UBE?AW4CommandOption@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/SpectreGunshipUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getCommandType@AICommandParmsStorage@@QBE?AW4AICommandType@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/JetAIUpdate.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
-?getCommandTypeAsAsciiString@GameMessage@@QAE?AVAsciiString@@W4Type@1@@Z,,0x0008B600,7143,Code/GameEngine/Source/Common/System/message_stream.cpp,matched,naked-asm whale: message-name; C++ capped at 64% by global regalloc
+?getCommandTypeAsAsciiString@GameMessage@@QAE?AVAsciiString@@W4Type@1@@Z,,0x0008B600,7143,Code/GameEngine/Source/Common/System/message_stream.cpp,matched,naked-asm whale: message-name; C++ reaches 93.97% -- a switch over the 235 dense values (MSVC lowers it to retail's pivot-1001 plus the two jump tables) followed by a ZH-style CHECK_IF chain over the sparse 72. Body is byte-identical; the residual is 106 sites where retail stops inlining AsciiString(const char *) after 203 expansions
 ?getCommandTypeAsAsciiString@GameMessage@@SA?AVAsciiString@@W4Type@1@@Z,,0x00040A1B,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
 ?getConfig@GameSpyInfo@@UAEABVAsciiString@@XZ,,0x006306C0,4,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,Vtable-bound GameSpyInfo accessor
 ?getConstSlot@GameInfo@@QBEPBVGameSlot@@H@Z,,0x0061E900,25,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
@@ -12930,7 +12930,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?recalculate@LineSegClass@@IAEXXZ,,0x003FE770,203,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
 ?recreateControlBar@InGameUI@@UAEXXZ,,0x00442300,279,Code/masm_dumps/_sa13__recreateControlBar_InGameUI__UAEXXZ_442300.asm,matched,multi-xref Open-BFME4+Grok ControlBar.wnd
 ?recruitSpecificAITeam@AIPlayer@@UAEXPAVTeamPrototype@@M@Z,,0x001699C2,1654,Code/GameEngine/Source/GameLogic/AI/AIPlayer_recruitSpecificAITeam.asm,matched,exact 1654B via MASM
-?refcompress@@YAHPAEH0HH@Z,,0x0081EF80,1095,Code/masm_dumps/_cache__refcompress__YAHPAEH0HH_Z_81EF80.asm,matched,cached-obj needle Open-BFME4+Grok
+?refcompress@@YAHPAEH0HH@Z,,0x0081EF80,1095,Code/Libraries/Source/Compression/EAC/refencode.cpp,matched,real C++; needed galloc/gfree as __cdecl dllimports (they are IAT slots)
 ?refreshDrives@CDManager@@UAEXXZ,,0x00101CC0,43,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
 ?refreshIgnoreList@@YAXXZ,,0x004EF6D0,539,Code/masm_dumps/refreshIgnoreList.asm,matched,Exact 539B MASM; true body (queue 0x6865F8 INSIDE RequestChat@LANAPI). Identity: SEH dual SavedIgnoreMap/IgnoreList color 0xFFFF6464 GSInfo vcall +0x130/+0x138
 ?refreshInfo@CDDrive@@UAEXXZ,,0x00101BF0,8,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
@@ -14179,3 +14179,5 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?obfuscate@@YAXPAUTransportMessage@@H@Z,,0x006832C0,62,Code/GameEngine/Source/GameNetwork/Transport_queueSend.cpp,matched,
+?queueSend@Transport@@QAE_NPAUNetPacketAddress@@PBEH@Z,,0x00683830,164,Code/GameEngine/Source/GameNetwork/Transport_queueSend.cpp,matched,
