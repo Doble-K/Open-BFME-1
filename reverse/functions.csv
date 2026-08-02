@@ -2760,7 +2760,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CreateCrateDie@@UAE@XZ,,0x00379440,320,Code/masm_dumps/CreateCrateDie_destructor.asm,matched,Exact 320B SEH dtor factory->vtable Open-BFME4
 ??1CreateCrateDieModuleData@@UAE@XZ,,0x001299A0,106,Code/masm_dumps/CreateCrateDieModuleData_destructor.asm,matched,Exact 106B @ 0x001299A0; Exact retail MASM; factory->vtable dtor; del 0x129970 ctor 0x1298D0 vt 0xC8EF70
 ??1CreateObjectDieModuleData@@UAE@XZ,,0x002548A0,67,Code/masm_dumps/CreateObjectDieModuleData_destructor.asm,matched,Exact 67B SEH dtor factory->vtable Open-BFME4
-??1CreditsLine@@QAE@XZ,,0x0040C230,134,Code/masm_dumps/_rn7___1CreditsLine__QAE_XZ_40C230.asm,matched,reloc-needle Open-BFME4+Grok
 ??1CriticalSectionClass@@QAE@XZ,,0x009DB450,25,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??1CritterEmitterUpdateModuleData@@UAE@XZ,,0x001FA750,175,Code/masm_dumps/CritterEmitterUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x1FA720 ctor 0x1FA3A0 vt 0xCA39F0
 ??1CrushDieModuleData@@UAE@XZ,,0x001255C0,77,Code/masm_dumps/CrushDieModuleData_destructor.asm,matched,Exact retail MASM; factory constructor vtable and deleting wrapper prove ownership
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?registerNewCave@CaveSystem@@QAEXH@Z,,0x00378970,193,Code/GameEngine/Source/GameLogic/System/CaveSystem.cpp,matched,MASM dump converted to clean C++; BFME TunnelTracker has one polymorphic base (sizeof 0x20) not MemoryPoolObject+Snapshot
 ?setSquishedControlBarConfig@ControlBar@@IAEXXZ,,0x0049D0B0,95,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,MASM dump converted to clean C++; BFME View has two more virtuals ahead of setHeight
 ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B2D0,187,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,MASM dump converted to clean C++; keep-alive elapsed time is unsigned in BFME (JA not JG)
+??1CreditsLine@@QAE@XZ,,0x0040C230,134,Code/GameEngine/Source/GameClient/Credits.cpp,matched,MASM dump converted to clean C++; DisplayStringManager carries the BFME slot 6-8 stubs
