@@ -2710,6 +2710,7 @@ name,address,notes
 ?_M_upper_bound@?$_Rb_tree@VAsciiString@@V1@U?$_Identity@VAsciiString@@@_STL@@U?$less@VAsciiString@@@3@V?$allocator@VAsciiString@@@3@@_STL@@ABEPAU?$_Rb_tree_node@VAsciiString@@@2@ABVAsciiString@@@Z,0x0004AC41,pinharvest x1 (thunk)
 ?_Rebalance_for_erase@?$_Rb_global@_N@_STL@@SAPAU_Rb_tree_node_base@2@PAU32@AAPAU32@11@Z,0x0082CB60
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,0x00850920,additive; direct body / per-TU copy
+?add@TeamsInfoRecAddTeamShim@@QAEXPBVDict@@@Z,0x0005EE90,TeamsInfoRec addTeam incremental-link thunk target through a TU-local forwarding shim
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,0x0000B569,GameMessageParser::addArgType thunk
 ?addScience@Player@@AAE_NW4ScienceType@@@Z,0x00036057
 ?addSciencePurchasePoints@Player@@QAEXH@Z,0x0000F0F1
@@ -2732,6 +2733,7 @@ name,address,notes
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,0x00041D49,pinharvest x1 (thunk)
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,0x00046C3B,pinharvest x1 (thunk)
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,0x000497D3,pinharvest x1 (thunk)
+?append@PathAppendNodeShim@@QAEXPBUCoord3D@@W4PathfindLayerEnum@@@Z,0x0016A4B0,Path appendNode incremental-link thunk target through a TU-local forwarding shim
 ?appendBooleanArgument@GameMessage@@QAEX_N@Z,0x000032AB,GameMessage::appendBooleanArgument thunk
 ?appendDrawableIDArgument@GameMessage@@QAEXI@Z,0x000154BF,GameMessage::appendDrawableIDArgument thunk
 ?appendIntegerArgument@GameMessage@@QAEXH@Z,0x00001370,GameMessage::appendIntegerArgument thunk
@@ -2764,6 +2766,7 @@ name,address,notes
 ?begin@?$hashtable@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@_STL@@QAE?AU?$_Ht_iterator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@U?$_Nonconst_traits@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@2@XZ,0x0003EE14
 ?bfmePushBack@BFMEAnimateWindowListPush@@QAEXABQAVAnimateWindow@@@Z,0x00022D36,BFME out-of-line list<AnimateWindow*>::push_back body 0x45DAE0 via ILT thunk
 ?blendTileData@BFMERetailWorldHeightMap@@QAEXPAUTBlendTileInfo@@H@Z,0x000167F7,retail WorldHeightMap::blendTileData ILT thunk
+?build@W3DRadarBuildTerrainTextureShim@@QAEXPAVTerrainLogic@@@Z,0x006C39D0,W3DRadar buildTerrainTexture incremental-link thunk target through a TU-local forwarding shim
 ?buildFieldParse@AIUpdateModuleData@@SAXAAVMultiIniFieldParse@@@Z,0x00019772,pinharvest x1 (thunk)
 ?buildFieldParse@ActiveBodyModuleData@@SAXAAVMultiIniFieldParse@@@Z,0x00019772,ILT thunk; real body 0x6284A0
 ?buildSegments@W3DRopeDraw@@AAEXXZ,0x0002354C,retail W3DRopeDraw vtable-bound doDrawModule call
@@ -2898,6 +2901,7 @@ name,address,notes
 ?countObjectsByThingTemplate@Player@@QBEXHPBQBVThingTemplate@@_NPAH1@Z,0x00048D79,retail target of ProductionPrerequisite::calcNumPrereqUnitsOwned call; Player class not yet converted for this method
 ?countVotesForPlayer@DisconnectManager@@IAEHH@Z,0x00003751,ILT thunk; real body 0x66B720 (from isPlayerVotedOut)
 ?create@RadarCreateEventShim@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,0x00108140,Radar createEvent incremental-link thunk target through a TU-local forwarding shim
+?create@ScriptEngineCreateNamedMapRevealShim@@QAEXABVAsciiString@@0M0@Z,0x0034EF80,ScriptEngine createNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
 ?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,0x009C8DC0
 ?createEvent@Radar@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,0x00008B8E
 ?createMemoryPool@MemoryPoolFactory@@QAEPAVMemoryPool@@PBDHHH@Z,0x0003ADD7,pool-glue cascade callee (ICF-folded with findMemoryPool)
@@ -3039,6 +3043,7 @@ name,address,notes
 ?friend_setGoalObject@AIUpdateInterface@@QAEXPAVObject@@@Z,0x000125E9,retail AIEnterState::update call target
 ?friend_setRepairedToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,0x0001C693,ILT thunk -> 0x61cc0 (parseTransitionToFX callee)
 ?getAdjustedVisionRangeForObject@AI@@SAMPBVObject@@H@Z,0x0002481B,pinharvest x6 (thunk)
+?getAdjustedVisionRangeForObject@AIAdjustedVisionRangeForObjectShim@@SAMPBVObject@@H@Z,0x0014A620,AI incremental-link static thunk target through a TU-local forwarding shim
 ?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,0x0002FF6D
 ?getAudioLODIndex@GameLODManager@@QAEHABVAsciiString@@@Z,0x00005128,harvested from parseAudioLODDefinition (thunk)
 ?getBridgeHeight@Bridge@@QAEMPBUCoord3D@@PAU2@@Z,0x0000B802,ILT thunk used by call site
@@ -3374,6 +3379,7 @@ name,address,notes
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,0x0001A492,pinharvest x1 (thunk)
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,0x00023439,pinharvest x1 (thunk)
 ?removeTreesAndPropsForConstruction@BaseHeightMapRenderObjClass@@QAEXPBUCoord3D@@ABVGeometryInfo@@M@Z,0x0002A833,pinharvest x1 (thunk)
+?render@BaseHeightMapRenderTreesShim@@QAEXPAVCameraClass@@@Z,0x006CD990,BaseHeightMapRenderObjClass renderTrees incremental-link thunk target through a TU-local forwarding shim
 ?renderMirror@WaterRenderObjClass@@IAEXPAVCameraClass@@@Z,0x00040809,REL32 pin for WaterRenderObjClass::updateRenderTargetTextures
 ?renderTrees@BaseHeightMapRenderObjClass@@QAEXPAVCameraClass@@@Z,0x0003FE36
 ?render_box@BoxRenderObjClass@@IAEXAAVRenderInfoClass@@ABVVector3@@1@Z,0x00956F40,rel32 pin for exact-ambiguous landing
@@ -3531,7 +3537,6 @@ name,address,notes
 ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,0x0002C6E7
 ?shutdown@WaterTracksRenderSystem@@QAEXXZ,0x000319CB
 ?spin@LockClass@FastCriticalSectionClass@@CIXPAI@Z,0x00026FA8,FastCriticalSectionClass::LockClass spin-acquire (shared out-of-line body reached via ILT thunk); StringClass locks resolve here
-?getAdjustedVisionRangeForObject@AIAdjustedVisionRangeForObjectShim@@SAMPBVObject@@H@Z,0x0014A620,AI incremental-link static thunk target through a TU-local forwarding shim
 ?start@W3DShaderManagerStartRenderToTextureShim@@SAXXZ,0x007171F0,W3DShaderManager incremental-link static thunk target through a TU-local forwarding shim
 ?startRenderToTexture@W3DShaderManager@@SAXXZ,0x000154E7
 ?statusCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyStatusArg@@@Z,0x0003BD8B
@@ -3773,8 +3778,3 @@ _atexit,0x009F6E26,CRT atexit (registers static destructors)
 _bfme_acos,0x009F7256,internal acos helper called by ACos
 _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
-?append@PathAppendNodeShim@@QAEXPBUCoord3D@@W4PathfindLayerEnum@@@Z,0x0016A4B0,Path appendNode incremental-link thunk target through a TU-local forwarding shim
-?create@ScriptEngineCreateNamedMapRevealShim@@QAEXABVAsciiString@@0M0@Z,0x0034EF80,ScriptEngine createNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
-?add@TeamsInfoRecAddTeamShim@@QAEXPBVDict@@@Z,0x0005EE90,TeamsInfoRec addTeam incremental-link thunk target through a TU-local forwarding shim
-?build@W3DRadarBuildTerrainTextureShim@@QAEXPAVTerrainLogic@@@Z,0x006C39D0,W3DRadar buildTerrainTexture incremental-link thunk target through a TU-local forwarding shim
-?render@BaseHeightMapRenderTreesShim@@QAEXPAVCameraClass@@@Z,0x006CD990,BaseHeightMapRenderObjClass renderTrees incremental-link thunk target through a TU-local forwarding shim

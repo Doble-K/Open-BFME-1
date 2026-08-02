@@ -584,13 +584,24 @@ const LocomotorTemplate* LocomotorStore::findLocomotorTemplate(NameKeyType namek
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?update@LocomotorStore@@UAEXXZ present-unmatched
 void LocomotorStore::update()
 {
 }
 
 //-------------------------------------------------------------------------------------------------
 // ?reset@LocomotorStore@@UAEXXZ present-unmatched
+//
+// Retail's is one byte -- a bare ret. LocomotorStore's vtable is 0x01110104 and
+// its slot 4 points at 0x005D2CD0, which is an empty function sitting between
+// init at 0x005D2CC0 and update at 0x005D2CE0 in LocomotorStore's own code. The
+// slot order is not guessed: SubsystemLegend's own vtable has init at slot 1,
+// reset at slot 4 and update at slot 5, all three already matched by name, and
+// PlayerList and TeamFactory agree on slot 4.
+//
+// So BFME appears to have dropped the override cleanup below. That is a claim
+// about behaviour rather than about bytes, so the Zero Hour body stays here
+// unclaimed rather than being deleted to make a one-byte row match -- a bare ret
+// matches every empty function in the image and would prove nothing on its own.
 void LocomotorStore::reset()
 {
 	// cleanup overrides.
