@@ -67,6 +67,8 @@ public:
 	NetCommandMsg();
 	virtual ~NetCommandMsg() {}
 
+	void attach();
+
 	UnsignedShort getID() { return m_id; }
 	UnsignedInt getPlayerID() { return m_playerID; }
 	UnsignedInt getExecutionFrame() { return m_executionFrame; }
@@ -79,6 +81,11 @@ protected:
 	NetCommandType m_commandType;					// this+0x14
 	Int m_referenceCount;							// this+0x18
 };
+
+void NetCommandMsg::attach()
+{
+	++m_referenceCount;
+}
 
 NetCommandMsg::NetCommandMsg()
 {
@@ -106,6 +113,8 @@ class NetPlayerLeaveCommandMsg : public NetCommandMsg
 {
 public:
 	NetPlayerLeaveCommandMsg();
+	UnsignedByte getLeavingPlayerID();
+	void setLeavingPlayerID(UnsignedByte v);
 	UnsignedByte m_leavingPlayerID;
 };
 
@@ -120,6 +129,8 @@ class NetDestroyPlayerCommandMsg : public NetCommandMsg
 {
 public:
 	NetDestroyPlayerCommandMsg();
+	void setPlayerIndex(UnsignedInt v);
+	UnsignedInt getPlayerIndex();
 	UnsignedInt m_playerIndex;
 };
 
@@ -147,6 +158,7 @@ class NetDisconnectPlayerCommandMsg : public NetCommandMsg
 {
 public:
 	NetDisconnectPlayerCommandMsg();
+	void setDisconnectFrame(UnsignedInt v);
 	UnsignedByte m_disconnectSlot;
 	UnsignedInt m_disconnectFrame;
 };
@@ -163,6 +175,8 @@ class NetDisconnectVoteCommandMsg : public NetCommandMsg
 {
 public:
 	NetDisconnectVoteCommandMsg();
+	UnsignedByte getSlot();
+	UnsignedInt getVoteFrame();
 	UnsignedByte m_slot;
 	UnsignedInt m_voteFrame;
 };
@@ -209,6 +223,7 @@ class NetDisconnectFrameCommandMsg : public NetCommandMsg
 {
 public:
 	NetDisconnectFrameCommandMsg();
+	void setDisconnectFrame(UnsignedInt v);
 	UnsignedInt m_disconnectFrame;
 };
 
@@ -223,6 +238,7 @@ class NetDisconnectScreenOffCommandMsg : public NetCommandMsg
 {
 public:
 	NetDisconnectScreenOffCommandMsg();
+	void setNewFrame(UnsignedInt v);
 	UnsignedInt m_newFrame;
 };
 
@@ -271,6 +287,9 @@ class NetAckStage1CommandMsg : public NetCommandMsg
 public:
 	NetAckStage1CommandMsg();
 	NetAckStage1CommandMsg(NetCommandMsg *msg);
+
+	void setCommandID(UnsignedShort commandID);
+	void setOriginalPlayerID(UnsignedByte originalPlayerID);
 
 	UnsignedShort m_commandID;						// this+0x1C
 	UnsignedByte m_originalPlayerID;				// this+0x1E
@@ -330,6 +349,9 @@ public:
 	NetAckBothCommandMsg();
 	NetAckBothCommandMsg(NetCommandMsg *msg);
 
+	void setCommandID(UnsignedShort commandID);
+	void setOriginalPlayerID(UnsignedByte originalPlayerID);
+
 	UnsignedShort m_commandID;						// this+0x1C
 	UnsignedByte m_originalPlayerID;				// this+0x1E
 	UnsignedInt m_originalExecutionFrame;			// this+0x20, BFME-only
@@ -359,6 +381,9 @@ public:
 	NetAckStage2CommandMsg();
 	NetAckStage2CommandMsg(NetCommandMsg *msg);
 
+	void setCommandID(UnsignedShort commandID);
+	void setOriginalPlayerID(UnsignedByte originalPlayerID);
+
 	UnsignedShort m_commandID;						// this+0x1C
 	UnsignedByte m_originalPlayerID;				// this+0x1E
 	UnsignedInt m_originalExecutionFrame;			// this+0x20, BFME-only
@@ -380,3 +405,77 @@ NetAckStage2CommandMsg::NetAckStage2CommandMsg(NetCommandMsg *msg) : NetCommandM
 	m_originalExecutionFrame = msg->getExecutionFrame();
 }
 
+void NetAckBothCommandMsg::setCommandID(UnsignedShort commandID)
+{
+	m_commandID = commandID;
+}
+
+void NetAckBothCommandMsg::setOriginalPlayerID(UnsignedByte originalPlayerID)
+{
+	m_originalPlayerID = originalPlayerID;
+}
+
+void NetAckStage1CommandMsg::setCommandID(UnsignedShort commandID)
+{
+	m_commandID = commandID;
+}
+
+void NetAckStage1CommandMsg::setOriginalPlayerID(UnsignedByte originalPlayerID)
+{
+	m_originalPlayerID = originalPlayerID;
+}
+
+void NetAckStage2CommandMsg::setCommandID(UnsignedShort commandID)
+{
+	m_commandID = commandID;
+}
+
+void NetAckStage2CommandMsg::setOriginalPlayerID(UnsignedByte originalPlayerID)
+{
+	m_originalPlayerID = originalPlayerID;
+}
+
+UnsignedByte NetPlayerLeaveCommandMsg::getLeavingPlayerID()
+{
+	return m_leavingPlayerID;
+}
+
+void NetPlayerLeaveCommandMsg::setLeavingPlayerID(UnsignedByte v)
+{
+	m_leavingPlayerID = v;
+}
+
+void NetDestroyPlayerCommandMsg::setPlayerIndex(UnsignedInt v)
+{
+	m_playerIndex = v;
+}
+
+UnsignedInt NetDestroyPlayerCommandMsg::getPlayerIndex()
+{
+	return m_playerIndex;
+}
+
+void NetDisconnectPlayerCommandMsg::setDisconnectFrame(UnsignedInt v)
+{
+	m_disconnectFrame = v;
+}
+
+UnsignedByte NetDisconnectVoteCommandMsg::getSlot()
+{
+	return m_slot;
+}
+
+UnsignedInt NetDisconnectVoteCommandMsg::getVoteFrame()
+{
+	return m_voteFrame;
+}
+
+void NetDisconnectFrameCommandMsg::setDisconnectFrame(UnsignedInt v)
+{
+	m_disconnectFrame = v;
+}
+
+void NetDisconnectScreenOffCommandMsg::setNewFrame(UnsignedInt v)
+{
+	m_newFrame = v;
+}

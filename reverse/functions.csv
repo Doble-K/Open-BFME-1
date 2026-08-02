@@ -14020,3 +14020,18 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?attach@NetCommandMsg@@QAEXXZ,,0x00673600,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setCommandID@NetAckBothCommandMsg@@QAEXG@Z,,0x00673800,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setOriginalPlayerID@NetAckBothCommandMsg@@QAEXE@Z,,0x00673820,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setCommandID@NetAckStage1CommandMsg@@QAEXG@Z,,0x00673910,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setOriginalPlayerID@NetAckStage1CommandMsg@@QAEXE@Z,,0x00673930,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setCommandID@NetAckStage2CommandMsg@@QAEXG@Z,,0x00673A10,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setOriginalPlayerID@NetAckStage2CommandMsg@@QAEXE@Z,,0x00673A30,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEEXZ,,0x00673AF0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setLeavingPlayerID@NetPlayerLeaveCommandMsg@@QAEXE@Z,,0x00673B00,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setPlayerIndex@NetDestroyPlayerCommandMsg@@QAEXI@Z,,0x00673B60,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getPlayerIndex@NetDestroyPlayerCommandMsg@@QAEIXZ,,0x00673B70,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getSlot@NetDisconnectVoteCommandMsg@@QAEEXZ,,0x00673D30,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?getVoteFrame@NetDisconnectVoteCommandMsg@@QAEIXZ,,0x00673D40,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEXI@Z,,0x00674120,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+?setNewFrame@NetDisconnectScreenOffCommandMsg@@QAEXI@Z,,0x00674370,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
