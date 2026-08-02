@@ -10166,7 +10166,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@MinefieldBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001145D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@MissileAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F9C0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@MissileLauncherBuildingUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00117420,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@BattlePlanUpdate@@SAPAVModuleData@@PAVINI@@@Z
-?friend_newModuleData@ModelConditionSoundSelectorClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121E30,107,Code/masm_dumps/ModelConditionSoundSelectorClientBehavior_friend_newModuleData.asm,matched,retail
+?friend_newModuleData@ModelConditionSoundSelectorClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121E30,107,Code/GameEngine/Source/GameLogic/Object/Behavior/ModelConditionSoundSelectorClientBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@ModelConditionSpecialAbilityUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119070,110,Code/masm_dumps/ModelConditionSpecialAbilityUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@ModelConditionUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DD90,110,Code/masm_dumps/ModelConditionUpgrade_friend_newModuleData.asm,matched,Retail registration dp169 proves ModelConditionUpgrade data factory
 ?friend_newModuleData@MoneyCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00127020,120,Code/masm_dumps/MoneyCrateCollide_friend_newModuleData.asm,matched,Ghidra-bound BFME crate module-data factory
