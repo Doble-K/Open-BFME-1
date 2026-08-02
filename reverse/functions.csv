@@ -8394,7 +8394,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?W3DCommandBarTopDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x0079A2BF,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp,matched,converted drifted retail body to exact C++ naked implementation
 ?W3DLeftHUDDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x00799DC0,271,Code/masm_dumps/W3DLeftHUDDraw_799DC0.asm,matched,Certified packet 87 retail db recovery sha256 3342a48b
 ?W3DPowerDrawA@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x0079AEC0,1853,Code/masm_dumps/W3DPowerDrawA_0079AEC0_packet245.asm,matched,certified packet 245; exact retail db dump; sha256 19f5a3b795c010f396466a59d3ab9e36331f58bc33a3a74efc0fa04d842b8491
-?W3DRightHUDDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x00799F20,62,Code/masm_dumps/W3DRightHUDDraw.asm,matched,FunctionLexicon key/str/fn ILT 0x44099->0x799F20 size 62; drift 0x79A72A mid-fn; not Cameo 0x799D00
+?W3DRightHUDDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x00799F20,62,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBar.cpp,matched,MASM converted to exact __emit C++
 ?W3d_Shader_Get_Alpha_Test@@YAHPBUW3dShaderStruct@@@Z,,0x00978750,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
 ?W3d_Shader_Get_Depth_Mask@@YAHPBUW3dShaderStruct@@@Z,,0x009786D0,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
 ?W3d_Shader_Get_Dest_Blend_Func@@YAHPBUW3dShaderStruct@@@Z,,0x009786E0,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
