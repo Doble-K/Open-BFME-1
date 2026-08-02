@@ -8741,7 +8741,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addWindow@WindowLayout@@QAEXPAVGameWindow@@@Z,,0x00497B00,99,Code/GameEngine/Source/GameClient/GUI/WindowLayout.cpp,matched,
 ?addWindow@WindowLayout@@UAEXPAVGameWindow@@@Z,,0x00497B00,99,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,
 ?add_resolution@RenderDeviceDescClass@@AAEXHHH@Z,,0x00906440,164,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,BFME RenderDeviceDesc layout shim
-?adjustCoordToCell@Pathfinder@@IAEXHH_NAAUCoord3D@@W4PathfindLayerEnum@@@Z,,0x003D6040,116,Code/masm_dumps/_rn3__adjustCoordToCell_Pathfinder__IAEXHH_NAAUCoord3D__W4PathfindLayerEnum_3D6040.asm,matched,reloc-needle Open-BFME4+Grok
 ?adjustModelConditionForWeaponStatus@Object@@QAEXXZ,,0x000276D3,5,Code/GameEngine/Source/Common/RTS/ObjectAdjustModelConditionThunk.cpp,matched,5-byte incremental-link Object member thunk converted to focused C++ source
 ?adjustTerrainLOD@BaseHeightMapRenderObjClass@@UAEXH@Z,,0x006C5DC0,399,Code/masm_dumps/BaseHeightMapRenderObjClass_adjustTerrainLOD.asm,matched,Certified packet 278 exact retail db body sha256 da747dbaa1da6d5536bbc5170ceb73259ba622147a97da0d76815a312ec282e8
 ?adjustVector@@YAXPAUCoord3D@@PBVMatrix3D@@@Z,,0x00429350,84,Code/GameEngine/Source/GameClient/FXList.cpp,matched,identical-bytes drift row; string-anchored; ICF-folded template instantiation
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?addStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00635120,206,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME GameSpyInfoInterface has 7 more virtuals before removeStagingRoom
 ?winDestroy@GameWindowManager@@UAEHPAVGameWindow@@@Z,,0x0047CE30,226,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,MASM dump converted to clean C++; BFME GameWindow gains a field before m_status and WindowLayout::removeWindow is virtual at slot 0x1C
 ?newModule@ModuleFactory@@QAEPAVModule@@PAVThing@@ABVAsciiString@@PBVModuleData@@W4ModuleType@@@Z,,0x00127E00,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM dump converted to clean C++; BFME AsciiString::isEmpty tests the header length word at +4
+?adjustCoordToCell@Pathfinder@@IAEXHH_NAAUCoord3D@@W4PathfindLayerEnum@@@Z,,0x003D6040,116,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,MASM dump converted to clean C++; BFME TerrainLogic has one more virtual before getLayerHeight (slot 0x1C)
