@@ -13930,3 +13930,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Get_Bits_Per_Pixel@@YIIW4WW3DFormat@@@Z,,0x0090C400,180,Code/Libraries/Source/WWVegas/WW3D2/ww3dformat_bits.cpp,matched,
 ?Write@ChunkSaveClass@@QAEKABUIOVector4Struct@@@Z,,0x009E1930,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ?Write@ChunkSaveClass@@QAEKABUIOQuaternionStruct@@@Z,,0x009E1940,15,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
+?Is_Animation_Complete@Animatable3DObjClass@@UBE_NXZ,,0x00981CA0,103,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,

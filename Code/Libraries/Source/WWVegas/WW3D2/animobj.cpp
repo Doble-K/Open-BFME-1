@@ -1133,18 +1133,38 @@ void Animatable3DObjClass::Single_Anim_Progress (void)
  * HISTORY:                                                                                    *
  *   4/13/99    BMG : Created.                                                                 *
  *=============================================================================================*/
-// ?Animatable3DObjClass::Is_Animation_Complete present-unmatched
+/*
+** BFME inserted a mode ahead of Zero Hour's ONCE_BACKWARDS, so its
+** once-backwards is 6 where rendobj.h's enum still says 5. Naming the new mode
+** would mean adding an enumerator to that shared header; until something needs
+** it by name the value is enough.
+*/
+enum { BFME_ANIM_MODE_ONCE_BACKWARDS = 6 };
+
 bool	Animatable3DObjClass::Is_Animation_Complete( void ) const
 {
 	if (CurMotionMode == SINGLE_ANIM) {
-	
+
+		/*
+		** All three arms ask the same question -- has Frame reached the end it is
+		** travelling towards -- so they only differ in where that end is. BFME
+		** added the third: a backwards loop is finished when it gets back to the
+		** frame it was re-issued at, which is what Set_Animation parked in
+		** PrevFrame.
+		*/
+		float last_frame;
+
 		if ( ModeAnim.AnimMode == ANIM_MODE_ONCE ) {
-			return ( ModeAnim.Frame == ModeAnim.Motion->Get_Num_Frames() - 1 );
+			last_frame = (float)(ModeAnim.Motion->Get_Num_Frames() - 1);
+		} else if ( ModeAnim.AnimMode == BFME_ANIM_MODE_ONCE_BACKWARDS ) {
+			last_frame = 0.0f;
+		} else if ( ModeAnim.AnimMode == ANIM_MODE_LOOP_BACKWARDS ) {
+			last_frame = ModeAnim.PrevFrame;
+		} else {
+			return false;
 		}
-		else
-		if ( ModeAnim.AnimMode == ANIM_MODE_ONCE_BACKWARDS)
-		{	return ( ModeAnim.Frame == 0);
-		}
+
+		return ( ModeAnim.Frame == last_frame );
 	}
 	return false;
 }
