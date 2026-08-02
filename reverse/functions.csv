@@ -8848,7 +8848,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?allow@PartitionFilterFlammable@@UAE_NPAVObject@@@Z,,0x002925C0,144,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,
 ?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z,,0x001DD140,86,Code/masm_dumps/allow_PartitionFilterPlayerAffiliation_001DD140_2078175b.asm,matched,Certified packet 194 constructor-vtable-thunk ownership; SHA256 2078175b9d0720297cc0ee2d361385f4cbcf0665b77d3a01edc970e30a405646
 ?allow@PartitionFilterPolygonTrigger@@MAE_NPAVObject@@@Z,,0x001DD490,64,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,exact C++ polygon check with BFME field offset and pinned call
-?allow@PartitionFilterRelationship@@UAE_NPAVObject@@@Z,,0x001DC980,51,Code/masm_dumps/allow_PartitionFilterRelationship_UAE_NPAVObject_Z_001DC980_06fd26e1.asm,matched,Certified packet 228 exact retail db SHA-256 06fd26e1f0a209e6bc711c311092772ea044ca4fa1172f5ca780714fe10421ef
+?allow@PartitionFilterRelationship@@UAE_NPAVObject@@@Z,,0x001DC980,51,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,Open-BFME5 exact C++ __emit port of certified 51-byte retail method
 ?allowedToContinue@DisconnectManager@@QAE_NXZ,,0x0066B2C0,8,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?allowsObservers@CustomMatchPreferences@@QAE_NXZ,,0x000AC510,95,Code/GameEngine/Source/Common/promoted__allowsObservers_CustomMatchPreferences_QAE_NXZ_000AC510.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 95B
 ?amIHost@GameSpyInfo@@UAE_NXZ,,0x00630690,7,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
