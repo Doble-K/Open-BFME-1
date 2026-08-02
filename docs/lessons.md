@@ -790,3 +790,28 @@ how to run diagnostics (`df`, `ls`) while the capture is broken.
 
 Do not read this as a disk-full problem without checking: the root filesystem had
 237G free throughout.
+
+## The near-miss tie-breaks are not a compiler-flag mismatch
+
+A recurring failure looks like this: the body compiles to retail's exact length
+with retail's exact instructions, and differs only in which registers hold what,
+or in the order of two adjacent stores, or in where one block was placed. It has
+now blocked Transport::queueSend, the Transport and NetPacket and Connection
+constructors, getNATPortAllocationScheme, FrameDataManager::addNetCommandMsg,
+DisconnectManager::processDisconnectVote, and two NAT notify functions.
+
+Nine instances invites the theory that retail's netcode was built with different
+optimisation settings than our `-O2 -GR- -EHsc-`. It was not. Tested per-source
+against the NetPacket constructor, whose only defect is that retail stores the
+vptr before two field zeroes and we hoist an inlined init's stack temp above
+them: `-O1`, `-Ox`, `-G6`, `-G7`, `-Os` and `-Oy-` all still fail, and none of
+them turns any part of it green.
+
+So these are per-function source problems, not a global setting, and the lever
+is the shape of the source -- statement order, whether a value is a named local,
+argument evaluation order. When a body is the right length with the right
+instructions, stop reaching for flags.
+
+Note also what a global flag change would have to survive: about 14,000 rows
+already byte-match under -O2, so any setting that fixes a near-miss must keep
+all of those. Per-source `// cl:` flags are the only safe place to experiment.
