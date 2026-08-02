@@ -13978,3 +13978,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?read_channel@HCompressedAnimClass@@AAE_NAAVChunkLoadClass@@PAPAVTimeCodedMotionChannelClass@@@Z,,0x0095B110,101,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ?openFile@ArchiveFileSystem@@UAEPAVFile@@PBDH@Z,,0x009CA5E0,243,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,vtable 0x01143A08 slot 5 reached by byte-matched FileSystem::openFile; archive map at this+4 and ArchiveFile::openFile at its slot 2
 ?doesFileExist@ArchiveFileSystem@@UBE_NPBD@Z,,0x009CA150,323,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,vtable 0x01143A08 slot 8 reached by byte-matched FileSystem::doesFileExist; the two "\/" literals are its two nextToken calls
+?add_channel@HRawAnimClass@@AAEXPAVMotionChannelClass@@@Z,,0x00959B60,192,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
+?add_channel@HCompressedAnimClass@@AAEXPAVTimeCodedMotionChannelClass@@@Z,,0x0095B8F0,140,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
+?add_channel@HCompressedAnimClass@@AAEXPAVAdaptiveDeltaMotionChannelClass@@@Z,,0x0095B980,140,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,

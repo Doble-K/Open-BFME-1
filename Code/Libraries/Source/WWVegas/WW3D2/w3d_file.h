@@ -1427,6 +1427,13 @@ enum
 	ANIM_CHANNEL_ADAPTIVEDELTA_Y,
 	ANIM_CHANNEL_ADAPTIVEDELTA_Z,
 	ANIM_CHANNEL_ADAPTIVEDELTA_Q,
+
+	// BFME's per-pivot fade channel, value 15. HRawAnimClass::add_channel
+	// (0x00959B60) bounds its switch at 0xf and its index table at 0x00959C10 is
+	// 00 01 02 03 04 05 06 08 08 08 08 08 08 08 08 07 -- types 0-6 are the seven
+	// above, 7 through 14 fall through to the default, and 15 reaches the arm that
+	// stores NodeMotion[idx] + 0x1c.
+	ANIM_CHANNEL_FADE,
 };
 
 //

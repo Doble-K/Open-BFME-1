@@ -361,7 +361,6 @@ bool HRawAnimClass::read_channel(ChunkLoadClass & cload,MotionChannelClass * * n
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?add_channel@HRawAnimClass@@ present-unmatched
 void HRawAnimClass::add_channel(MotionChannelClass * newchan)
 {
 	int idx = newchan->Get_Pivot();
@@ -394,6 +393,10 @@ void HRawAnimClass::add_channel(MotionChannelClass * newchan)
 
 		case ANIM_CHANNEL_Q:
 			NodeMotion[idx].Q = newchan;
+			break;
+
+		case ANIM_CHANNEL_FADE:
+			NodeMotion[idx].Fade = newchan;
 			break;
 	}
 

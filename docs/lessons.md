@@ -755,3 +755,16 @@ a coincidence rather than evidence they are right.
 So treat a compiler-generated row as carrying no claim at all. If one is
 blocking something, prefer deleting it to relocating it — there is nothing in it
 to be right about.
+
+## `locate.py --emit` will re-add a row you deliberately dropped
+
+`??0HAnimComboClass@@QAE@H@Z` (0x00974820) is dropped because it trips the DIR32
+consistency check -- see the folded-`??_G` entry above. It locates cleanly, so
+every `tools/locate.py Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp --emit`
+puts it straight back, and the next full gate rejects the commit again. It has
+cost two gate runs so far.
+
+There is no suppression list. After an `--emit` sweep, diff the staged ledger
+(`git diff --cached -- reverse/functions.csv`) and check nothing deliberately
+excluded has returned, rather than trusting `check_csv` -- a re-added row is
+perfectly well-formed, so `check_csv` is silent about it.

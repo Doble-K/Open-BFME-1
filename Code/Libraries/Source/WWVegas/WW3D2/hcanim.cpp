@@ -459,6 +459,10 @@ void HCompressedAnimClass::add_channel(TimeCodedMotionChannelClass * newchan)
 		case ANIM_CHANNEL_Q:
 			NodeMotion[idx].tc.Q = newchan;
 			break;
+
+		case ANIM_CHANNEL_FADE:
+			NodeMotion[idx].tc.Fade = newchan;
+			break;
 	}
 
 }	// add_channel
@@ -484,6 +488,10 @@ void HCompressedAnimClass::add_channel(AdaptiveDeltaMotionChannelClass * newchan
 
 		case ANIM_CHANNEL_Q:
 			NodeMotion[idx].ad.Q = newchan;
+			break;
+
+		case ANIM_CHANNEL_FADE:
+			NodeMotion[idx].ad.Fade = newchan;
 			break;
 	}
 
