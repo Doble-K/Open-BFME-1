@@ -6,13 +6,13 @@ public:
     void updateUpgradeModules();
 };
 
-__declspec(naked) void Object::updateUpgradeModules()
+class ObjectUpdateUpgradeModulesShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 02Ch
-        _emit 0D8h
-        _emit 019h
-        _emit 000h
-    }
+public:
+    void update();
+};
+
+void Object::updateUpgradeModules()
+{
+    ((ObjectUpdateUpgradeModulesShim *)this)->update();
 }
