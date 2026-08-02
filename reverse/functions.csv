@@ -10068,7 +10068,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@BunkerBusterBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@PropagandaTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@CashBountyPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D7C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
 ?friend_newModuleData@CashHackSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FDF0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleData@CastleUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BA80,65,Code/masm_dumps/CastleUpgrade_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xAB; CC-delimited body
+?friend_newModuleData@CastleUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BA80,65,Code/GameEngine/Source/GameLogic/Object/Upgrade/CastleUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@CaveContain@@SAPAVModuleData@@PAVINI@@@Z,,0x0012ABC0,125,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME CaveContain layout
 ?friend_newModuleData@CivilianSpawnCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F290,107,Code/masm_dumps/CivilianSpawnCollide_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xC8 Ghidra confirmed
 ?friend_newModuleData@CivilianSpawnUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00116B60,107,Code/masm_dumps/CivilianSpawnUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
