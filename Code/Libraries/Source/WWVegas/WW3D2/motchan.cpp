@@ -139,14 +139,11 @@ MotionChannelClass::~MotionChannelClass(void)
 // ?MotionChannelClass::Free present-unmatched
 void MotionChannelClass::Free(void)
 {
-	if (CompressedData) {
-		delete[] CompressedData;
-		CompressedData=NULL;
-	}
-	if (Data) {
-		delete[] Data;
-		Data = NULL;
-	}
+	// BFME frees Data unconditionally and leaves CompressedData alone: retail's
+	// 0x00978140 loads [esi+0x14], deletes it and nulls it, with no test between
+	// and no second field.
+	delete[] Data;
+	Data = NULL;
 }
 
 

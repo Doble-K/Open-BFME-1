@@ -82,8 +82,7 @@ public:
 		CLASSID_LASTANIM		= 0x0000FFFF
 	};
 
-	HAnimClass(void)	:
-		EmbeddedSoundBoneIndex (EMBEDDED_SOUND_BONE_INDEX_NOT_SET)	{ }
+	HAnimClass(void)	{ }
 	virtual ~HAnimClass(void)		{ }
 
 	virtual const char *		Get_Name(void) const = 0;
@@ -135,13 +134,10 @@ public:
 	virtual bool				_bfme_hanim_v21 (int pividx)	{ return true; }
 	virtual int					Class_ID(void)	const															{ return CLASSID_UNKNOWNANIM; }
 
-	// Animated sound-triggering support
-	virtual bool				Has_Embedded_Sounds (void) const			{ if (EmbeddedSoundBoneIndex < 0) return false; return true;}
-	virtual void				Set_Embedded_Sound_Bone_Index (int bone)	{ EmbeddedSoundBoneIndex = bone; }
-	virtual int					Get_Embedded_Sound_Bone_Index() {return EmbeddedSoundBoneIndex;}
-
-protected:
-	int EmbeddedSoundBoneIndex;					
+	// BFME has no embedded-sound bone: HRawAnimClass::NodeMotion sits at +0x4c
+	// (0x00953F7D), which puts the base at 0x10 -- two vptrs, NumRefs and NextHash
+	// with nothing left over. Zero Hour's three accessors sat past Class_ID, so
+	// dropping them costs no slot that anything reaches.
 };
 
 
@@ -212,8 +208,10 @@ class HAnimComboDataClass : public AutoPoolClass<HAnimComboDataClass,256> {
 		void Set_HAnim(HAnimClass *motion);
 		void Give_HAnim(HAnimClass *motion) { if(HAnim) HAnim->Release_Ref(); HAnim = motion; }	// used for giving this object the reference
 
-		void Set_Frame(float frame)		{ PrevFrame = Frame; Frame = frame; }		
-		void Set_Prev_Frame(float frame)	{ PrevFrame = frame; }
+		// BFME's HAnimComboDataClass has no PrevFrame: retail exposes exactly two
+		// float accessors on it, [ecx+4] and [ecx+8], and both Get_ and
+		// Peek_Pivot_Weight_Map read [ecx+0xc], which leaves no room for a third.
+		void Set_Frame(float frame)		{ Frame = frame; }		
 		void Set_Weight(float weight)		{ Weight = weight; }
 		void Set_Pivot_Map(PivotMapClass *map);
 		
@@ -221,7 +219,6 @@ class HAnimComboDataClass : public AutoPoolClass<HAnimComboDataClass,256> {
 		HAnimClass * Peek_HAnim(void)				const { return HAnim; }	// note: does not add reference
 		HAnimClass * Get_HAnim(void)				const { if(HAnim) HAnim->Add_Ref(); return HAnim; }	// note: does not add reference
 		float Get_Frame(void)						const { return Frame; }
-		float Get_Prev_Frame(void)					const { return PrevFrame; }
 		float Get_Weight(void)						const { return Weight; }
 		PivotMapClass * Peek_Pivot_Map(void)	const { return PivotMap; }
 		PivotMapClass * Get_Pivot_Map(void)		const { if(PivotMap) PivotMap->Add_Ref(); return PivotMap; }
@@ -233,7 +230,6 @@ class HAnimComboDataClass : public AutoPoolClass<HAnimComboDataClass,256> {
 
 		HAnimClass *HAnim;
 		float Frame;
-		float PrevFrame;
 		float Weight;
 		PivotMapClass * PivotMap;
 		bool Shared;			// this is set to false when the HAnimCombo allocates it
@@ -262,9 +258,7 @@ public:
 	HAnimClass *Peek_Motion( int indx );
 
 	void	Set_Frame( int indx, float frame );
-	void	Set_Prev_Frame( int indx, float frame );
 	float	Get_Frame( int indx );
-	float	Get_Prev_Frame( int indx );
 
 	void	Set_Weight( int indx, float weight );
 	float	Get_Weight( int indx );

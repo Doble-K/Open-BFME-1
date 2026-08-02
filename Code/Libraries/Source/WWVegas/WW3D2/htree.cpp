@@ -657,6 +657,7 @@ void HTreeClass::Anim_Update(const Matrix3D & root,HRawAnimClass * motion,float 
 
 	Pivot[0].Transform = root;
 	Pivot[0].IsVisible = true;
+	Pivot[0].PivotFade = 1.0f;
 
 
 	int num_anim_pivots = motion->Get_Num_Pivots ();
@@ -710,6 +711,17 @@ void HTreeClass::Anim_Update(const Matrix3D & root,HRawAnimClass * motion,float 
 #else
 				xform->postMul(::Build_Matrix3D(q,mtx));
 #endif
+			}
+
+			// BFME: the ninth channel is a per-pivot fade, evaluated ahead of the
+			// visibility and through the same Get_Vector the translation uses -- an
+			// out-of-range frame therefore fades to zero rather than to one.
+			if (nodeMotion->Fade != NULL) {
+				float fade = 1.0f;
+				nodeMotion->Fade->Get_Vector(iframe,&fade);
+				pivot->PivotFade = fade;
+			} else {
+				pivot->PivotFade = 1.0f;
 			}
 
 			// visibility
@@ -900,7 +912,12 @@ void HTreeClass::Combo_Update
 						weight_total += weight;
 
 #ifdef ASSUME_NORMALIZED_ANIM_COMBO_WEIGHTS
-						motion->Get_Orientation(q1,piv_idx, frame_num );
+						// BFME: Get_Orientation reports whether the animation has a
+						// rotation for this pivot, and an absent one contributes an
+						// identity to the slerp rather than being skipped.
+						if ( !motion->Get_Orientation(q1,piv_idx, frame_num ) ) {
+							q1.Make_Identity();
+						}
 						if ( wcount == 1 ) {
 							q0 = q1;
 						} else {
@@ -948,15 +965,28 @@ void HTreeClass::Combo_Update
 
 			pivot->IsVisible = false;
 
+			// BFME sums each contributing animation's fade alongside the visibility
+			// and averages it once the loop ends.
+			pivot->PivotFade = 0.0f;
+			float fade_count = 0.0f;
+
 			for ( anim_num = 0; (anim_num < anim->Get_Num_Anims()) && (!pivot->IsVisible); anim_num++ ) {
 				HAnimClass *motion = anim->Get_Motion( anim_num );
 				if ( motion != NULL ) {
 					float frame_num = anim->Get_Frame( anim_num );
 
 					pivot->IsVisible |= motion->Get_Visibility(piv_idx,frame_num);
+					pivot->PivotFade += motion->_bfme_hanim_fade(piv_idx,frame_num);
+					fade_count += 1.0f;
 
 					motion->Release_Ref();
 				}
+			}
+
+			// Greater-than, not non-zero: retail compares with an ordered fcomp and
+			// tests ah against 0x41, which is the <= arm being skipped.
+			if (fade_count > 0.0f) {
+				pivot->PivotFade /= fade_count;
 			}
 		}
 

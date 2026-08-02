@@ -114,7 +114,7 @@ DEFINE_AUTO_POOL(HAnimComboDataClass,256);
 
 // ?HAnimComboDataClass::HAnimComboDataClass present-unmatched
 HAnimComboDataClass::HAnimComboDataClass(bool shared) 
-: Shared(shared), HAnim(0), PivotMap(0), Frame(0), PrevFrame(0), Weight(1) 
+: Shared(shared), HAnim(0), PivotMap(0), Frame(0), Weight(1) 
 {}
 
 
@@ -125,7 +125,6 @@ HAnimComboDataClass::HAnimComboDataClass(const HAnimComboDataClass &src)
 {
 	Shared = src.Is_Shared();
 	Frame = src.Get_Frame();
-	PrevFrame = src.Get_Prev_Frame();
 	Weight = src.Get_Weight();
 }
 
@@ -136,13 +135,11 @@ void HAnimComboDataClass::Copy(const HAnimComboDataClass *src)
 		HAnim = src->Get_HAnim();
 		PivotMap = src->Get_Pivot_Map();
 		Frame = src->Get_Frame();
-		PrevFrame = src->Get_Prev_Frame();
-		Weight = src->Get_Weight();
+			Weight = src->Get_Weight();
 	} else {
 		HAnim = 0;
 		PivotMap = 0;
 		Frame = 0;
-		PrevFrame = 0;
 		Weight = 1;
 	}
 }
@@ -172,7 +169,6 @@ void HAnimComboDataClass::Clear(void)
 	}
 
 	Frame = 0.0f;
-	PrevFrame = 0.0f;
 	Weight = 1.0;
 	PivotMap = NULL;
 }
@@ -414,24 +410,6 @@ float	HAnimComboClass::Get_Frame( int index )
 	WWASSERT(data);
 
 	return data->Get_Frame();
-}
-
-// ?HAnimComboClass::Set_Prev_Frame present-unmatched
-void	HAnimComboClass::Set_Prev_Frame( int index, float frame )
-{
-	HAnimComboDataClass *data = HAnimComboData[index];
-	WWASSERT(data);
-
-	data->Set_Prev_Frame(frame);
-}
-
-// ?HAnimComboClass::Get_Prev_Frame present-unmatched
-float	HAnimComboClass::Get_Prev_Frame( int index )
-{
-	HAnimComboDataClass *data = HAnimComboData[index];
-	WWASSERT(data);
-
-	return data->Get_Prev_Frame();
 }
 
 // ?HAnimComboClass::Set_Weight present-unmatched

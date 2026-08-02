@@ -80,6 +80,7 @@ NodeMotionStruct::NodeMotionStruct() :
 	YR(NULL),
 	ZR(NULL),
 	Q(NULL),
+	Fade(NULL),
 	Vis(NULL)
 {
 }
@@ -97,7 +98,6 @@ NodeMotionStruct::NodeMotionStruct() :
  * HISTORY:                                                                                    *
  *   10/23/98   GTH : Created.                                                                 *
  *=============================================================================================*/
-// ??1NodeMotionStruct@@ present-unmatched
 NodeMotionStruct::~NodeMotionStruct()
 {
 	if (X != NULL) {
@@ -123,6 +123,9 @@ NodeMotionStruct::~NodeMotionStruct()
 	}
 	if (Vis != NULL) {
 		delete Vis;
+	}
+	if (Fade != NULL) {
+		delete Fade;
 	}
 }
 

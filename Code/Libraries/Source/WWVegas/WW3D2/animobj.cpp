@@ -506,12 +506,6 @@ void Animatable3DObjClass::Set_Animation(HAnimClass * motion, float frame, int m
 			ModeAnim.animDirection = 1.0f;	//assume playing forwards
 		else
 			ModeAnim.animDirection = -1.0f;	//reverse animation playback
- 
-		const char* sound_name = AnimatedSoundMgrClass::Get_Embedded_Sound_Name(motion);
-		if (sound_name) {
-			int bone_index = Get_Bone_Index(sound_name);
-			motion->Set_Embedded_Sound_Bone_Index(bone_index);
-		}
 	} else {
 		CurMotionMode = BASE_POSE;
 		Release();
@@ -555,20 +549,10 @@ void Animatable3DObjClass::Set_Animation
 
 	if ( ModeInterp.Motion0 != NULL ) {
 		ModeInterp.Motion0->Add_Ref();
-		const char* sound_name = AnimatedSoundMgrClass::Get_Embedded_Sound_Name(motion0);
-		if (sound_name) {
-			int bone_index = Get_Bone_Index(sound_name);
-			motion0->Set_Embedded_Sound_Bone_Index(bone_index);
-		}
 	}
 
 	if ( ModeInterp.Motion1 != NULL ) {
 		ModeInterp.Motion1->Add_Ref();
-		const char* sound_name = AnimatedSoundMgrClass::Get_Embedded_Sound_Name(motion1);
-		if (sound_name) {
-			int bone_index = Get_Bone_Index(sound_name);
-			motion1->Set_Embedded_Sound_Bone_Index(bone_index);
-		}
 	}
 }
 

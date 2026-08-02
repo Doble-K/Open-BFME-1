@@ -62,6 +62,12 @@ struct NodeMotionStruct
 	MotionChannelClass *		ZR;
 	MotionChannelClass *		Q;
 
+	// BFME: a ninth channel carrying a per-pivot fade. HRawAnimClass allocates the
+	// array with an element size of 0x24 (0x0095AE37) and HTreeClass::Anim_Update
+	// reads Vis from +0x20, so this one is declared ahead of Vis rather than
+	// appended. ~NodeMotionStruct still deletes it last, after Vis.
+	MotionChannelClass *		Fade;
+
 	BitChannelClass *			Vis;
 };
  

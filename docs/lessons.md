@@ -154,26 +154,34 @@ three members in the initialiser list: members initialise in declaration order,
 which is what puts their stores ahead of `HeaderStack`'s 256 element
 constructors. Written in the body they land after.
 
-## BFME's WW3DFormat is D3DFORMAT, and that is why the texture pipeline will not scan
+## CORRECTED: WW3DFormat is still dense; only one helper takes D3DFORMAT
 
-`locate.py` places nothing from `texture.cpp` or `textureloader.cpp` -- 0
-located, 53 unlocated -- and `anchor_by_string.py` finds no anchors in either,
-or in `ddsfile.cpp`. The reason is not that the bodies were rewritten. It is
-that Zero Hour's `WW3DFormat` is a dense enum numbered from zero with its own
-ordering, and BFME replaced it with Direct3D's own enumeration: retail's
-`Get_Bits_Per_Pixel` (0x0090C400, matched) switches on 20 through 30, 40, 41, 50
-through 52 and the four-character codes 'DXT1' through 'DXT5', which are
-`D3DFMT_` values exactly. Every format switch in the ported sources is therefore
-built on the wrong numbers and cannot byte-match however faithfully it was
-ported.
+This entry previously claimed BFME replaced `WW3DFormat` with Direct3D's own
+enumeration, and that this was why the texture pipeline would not scan. The first
+half is wrong and the second does not follow.
 
-Zero Hour's nearest equivalent is `Get_Bytes_Per_Pixel`, which cannot express
-DXT1 at half a byte per pixel; BFME moved to bits.
+What is true: the 180-byte function at 0x0090C400 switches on 20 through 30, 40,
+41, 50 through 52 and 'DXT1' through 'DXT5', which are `D3DFMT_` values exactly,
+and it matches with those values declared locally in `ww3dformat_bits.cpp`.
 
-`ww3dformat.h` still carries the Zero Hour numbering and other matched files
-depend on those constants, so `ww3dformat_bits.cpp` declares the retail values
-locally rather than changing the header. Anything new in the texture pipeline
-needs the retail numbering.
+What was assumed: that its parameter is a `WW3DFormat`. The mangled name
+`?Get_Bits_Per_Pixel@@YIIW4WW3DFormat@@@Z` is **not** in `reverse/symbols.csv` --
+it was invented when the row was added, so the `W4WW3DFormat@@` in it is a guess,
+not evidence. The function takes a D3DFORMAT; the name is what needs revisiting.
+
+The counter-evidence is direct: `WW3D_FORMAT_COUNT` sizes
+`DX8Caps::SupportTextureFormat[]` and bounds seven loops in `dx8caps.cpp`, and
+`Compute_Caps` (0x0091C230, 2220 bytes) matches today with the dense 26-entry
+enum. Sparse D3D values would make that array absurd. So do **not** renumber
+`ww3dformat.h`.
+
+The texture pipeline's real blocker is still open. `locate.py` places nothing
+from `texture.cpp` (0/53), `textureloader.cpp` (0/67), `surfaceclass.cpp`
+(0/27), `ddsfile.cpp` (0/17), `bitmaphandler.cpp` (0/12) or `texproject.cpp`
+(0/26). Whatever it is, it is shared across all six and it is not the enum.
+Suspect a class layout -- `TextureBaseClass` is the common root -- and find it
+the way `HRawAnimClass`'s was found: reconstruct one small function and let the
+first wrong byte name the field.
 
 ## Header changes cost a full gate, and the gate lock is host-wide
 
@@ -417,3 +425,131 @@ The C++ body also compiles 96 bytes **longer** than retail's, which points at
 the pivot-weight-map handling in the reference having no counterpart in BFME --
 retail's HAnimComboClass calls in this function are `Get_Motion`, `Get_Frame`
 and three others, with nothing that looks like `Get_Pivot_Weight_Map`.
+
+## Never pass `--no-verify` to `tools/add_match.py`
+
+It writes `matched` into the ledger without building, so it manufactures a claim
+that is simply false. Doing this to `HTreeClass::Combo_Update` repointed the row
+from its MASM dump to `htree.cpp` and staged a lie for commit; only the
+pre-commit full gate would have caught it, tens of minutes later. If a row needs
+to move while the answer is still unknown, leave it on the dump.
+
+## A folded body is not evidence about the class it is named after
+
+MSVC folds identical COMDATs, so one address can serve many symbols, and a row
+naming that address is only as good as whoever assigned it. Two rows claimed
+`NodeMotionStruct`:
+
+- `??0NodeMotionStruct@@QAE@XZ` at 0x005CD350 -- a constructor zeroing *eight*
+  dwords
+- `??_ENodeMotionStruct@@QAEPAXI@Z` at 0x005D5B60 -- a vector deleting destructor
+  whose element destructor is `mov [ecx],0x1073744; ret`, a vtable store
+
+`NodeMotionStruct` has no vtable, so the second was impossible on its face, and
+neither address had a single xref. Both were generic bodies that happened to
+compile the same.
+
+The way to identify a constructor is to find the site that *passes* it: an array
+`new` hands the constructor to `` `eh vector constructor iterator' `` as an
+immediate, alongside the element size. `xrefs_imm(IMAGE_BASE+candidate)` found
+exactly one site for 0x009594A0, and it was HRawAnimClass's node-motion
+allocation -- `lea ecx,[esi+esi*8]` (nine dwords), `push 0x24`, result stored to
+`[ebp+0x4c]`, which is the field `HTreeClass::Anim_Update` reads back.
+
+## BFME's NodeMotionStruct has nine channels, and the ninth is a fade
+
+Zero Hour's is X, Y, Z, XR, YR, ZR, Q, Vis -- eight pointers, 0x20 bytes. BFME
+inserts a `MotionChannelClass * Fade` **ahead of Vis**, so Vis moves to +0x20 and
+the array stride becomes 0x24. Three independent confirmations:
+
+- `nodeMotion += 1` compiles to `add esi,0x24` (0x0095468B)
+- the allocation pushes 0x24 as its element size (0x0095AE37)
+- `~NodeMotionStruct` destroys +0x1c through `MotionChannelClass::~MotionChannelClass`
+  (0x00978140) and +0x20 through a different one (0x00978160, BitChannelClass)
+
+The destructor is worth a second look: it deletes X..Q, then **Vis, then the
+fade**, even though the fade is declared first. Declaration order sets the
+layout; the destructor body is hand-written and simply appends the new delete to
+Zero Hour's existing run. Both orders have to be reproduced, and they differ.
+
+## HAnimComboDataClass has no PrevFrame
+
+Retail exposes exactly two float accessors on it, `fld [ecx+4]` and `fld [ecx+8]`,
+and both `Get_` and `Peek_Pivot_Weight_Map` read `[edx+0xc]`. Three dwords ahead
+of the pivot map leaves no room for a third float. `Combo_Update` multiplies the
++8 one by the pivot map entry and gates on it being non-zero, so it is the
+weight, and the class is HAnim, Frame, Weight, PivotMap, Shared.
+
+Our ledger had the +8 accessors named `Get_`/`Set_Prev_Frame`. Renaming them to
+their Weight spellings keeps them matched -- the bytes never changed -- and drops
+`Set_Frame` back to a plain store instead of Zero Hour's `PrevFrame = Frame;
+Frame = frame;`, which let four more accessors land at once.
+
+## BFME's HAnimClass is 0x10 bytes -- there is no embedded-sound bone
+
+`HTreeClass::Anim_Update(HRawAnimClass*)` came out 2046 of 2047 bytes with a
+single byte wrong: `mov esi,[esi+0x4c]` against our `+0x50`. That byte is
+`Get_Node_Motion_Array`, and every member ahead of it is fixed, so the base class
+was one dword too large.
+
+`HAnimClass : public RefCountClass, public HashableClass` is two vptrs, `NumRefs`
+and `NextHash` -- 0x10 exactly -- with no room for Zero Hour's
+`EmbeddedSoundBoneIndex`. Its three accessors were declared *after* `Class_ID`,
+so they sat at slots 23-25 and removing them costs no slot anything reaches.
+Corroboration: both `Animatable3DObjClass::Set_Animation` bodies that were
+reconstructed from retail contain no embedded-sound code at all, while the
+unmatched Zero Hour copies in `animobj.cpp` do.
+
+## MotionChannelClass keeps CompressedData past the end
+
+Retail reads `VectorLen` at +8, `Data` at +0x14, `FirstFrame` at +0x18 and
+`LastFrame` at +0x1c, which is one dword tighter than our layout, and
+`~MotionChannelClass` (0x00978140) frees `[esi+0x14]` alone, with no null test
+and no second field.
+
+The tempting read is that `CompressedData` does not exist -- but deleting it also
+deletes `Do_Data_Compression`, its only caller, and that function is the only
+thing in the tree that emits `WWMath::Float_To_Int_Floor`, which owns a matched
+row. Retail *has* `Float_To_Int_Floor` at 0x007239D0 with no callers at all, so
+BFME keeps the same dead compression path. Moving `CompressedData` past
+`LastFrame` satisfies every measured offset and keeps the function compiling;
+`Free` still touches only `Data`.
+
+Removing code can delete a matched symbol. Check for that before concluding a
+member is absent -- absence of a *member* and absence of the *code that uses it*
+are different claims.
+
+## Texture pipeline: what is actually known, and the three sibling vtables
+
+`locate.py` places nothing from any of the six texture sources -- 0 of 152
+functions across `texture.cpp`, `textureloader.cpp`, `surfaceclass.cpp`,
+`ddsfile.cpp`, `bitmaphandler.cpp` and `texproject.cpp`. The nine "ambiguous"
+hits it does report are all 30-byte `??_G` scalar deleting destructors resolving
+to the same six addresses -- folded bodies, worth nothing (see the folded-body
+entry above).
+
+`bitmaphandler.cpp` is the useful datapoint: its twelve functions are static and
+take no object, so no class layout can be blamed, and they still do not place.
+That points at rewritten bodies rather than one shared structural fault.
+
+Three sibling vtables in the family, all reached from constructors around
+0x0090E3D0:
+
+```
+VA 0x0113A668   stored at 0x0090E4A1
+VA 0x0113A6B0   stored at 0x0090E5A1
+VA 0x0113A6F8   stored at 0x0090E8AD and 0x0090E9AB
+```
+
+All three are 12 slots and share slots 0, 4, 5, 6, 7, 8, 10 and 11; only 1, 3
+and 9 are overridden (plus slot 2 in the third). Slot 0 is
+`mov eax,[ecx+0x18]; ret`, a plain getter -- **not** a destructor, so whatever
+owns this vtable has no polymorphic base, which rules out the `TextureBaseClass`
+chain (it derives from `RefCountClass`) and does not fit
+`TextureLoadTaskClass` either, whose subclasses override far more than three
+slots. Identify the owner before writing anything against these.
+
+Note on addresses: values encoded in instruction operands are **VAs**, and
+`IMAGE_BASE` is 0x400000, while the ledger is in RVAs. `read()`/`u32()` in the
+probe helper take RVAs, so a vtable printed as `0x0113A668` must be read at
+`0x00D3A668`. Getting this wrong returns empty bytes, not an error.

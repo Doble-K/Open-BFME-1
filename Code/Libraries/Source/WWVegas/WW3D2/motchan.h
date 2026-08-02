@@ -63,7 +63,10 @@ class Quaternion;
 
 class MotionChannelClass : public W3DMPO
 {
-	W3DMPO_GLUE(MotionChannelClass)
+	// BFME does not pool these two: ~NodeMotionStruct deletes every channel
+	// through plain operator delete (0x00881EB0, one argument), where the glue
+	// would route through getClassMemoryPool. W3DMPO itself is empty, so the
+	// base stays and nothing moves.
 
 public:
 	void Do_Data_Compression(int datasize);
@@ -90,11 +93,16 @@ private:
 
 	float		ValueOffset;
 	float		ValueScale;
-	unsigned short* CompressedData;
 
 	float	*	Data;					// pointer to the raw floating point data
 	int		FirstFrame;			// first frame which was non-identity
 	int		LastFrame;			// last frame which was non-identity
+
+	// BFME keeps this one past the end rather than ahead of Data: retail reads
+	// VectorLen at +8, Data at +0x14, FirstFrame at +0x18 and LastFrame at +0x1c
+	// (the Get_Vector inlined into HTreeClass::Anim_Update, 0x0095456A onward),
+	// which only leaves room for it here.
+	unsigned short* CompressedData;
 	void Free(void);
 	WWINLINE void set_identity(float * setvec) const;
 
@@ -160,7 +168,10 @@ WWINLINE void MotionChannelClass::Get_Vector_As_Quat(int frame, Quaternion& quat
 
 class BitChannelClass : public W3DMPO
 {
-	W3DMPO_GLUE(BitChannelClass)
+	// BFME does not pool these two: ~NodeMotionStruct deletes every channel
+	// through plain operator delete (0x00881EB0, one argument), where the glue
+	// would route through getClassMemoryPool. W3DMPO itself is empty, so the
+	// base stays and nothing moves.
 
 public:
 
