@@ -1568,6 +1568,7 @@ name,address,notes
 ??1RAMFile@@MAE@XZ,0x0003692B,pinharvest x1 (thunk)
 ??1RAMFile@@MAE@XZ,0x009D19A0,pinharvest x1 (body)
 ??1RegistryClass@@QAE@XZ,0x009DC280,pinharvest x4 (body)
+??1RenderDeviceDescClass@@QAE@XZ,0x009077B0
 ??1RenderObjClass@@UAE@XZ,0x0091FC10,base dtor; derived from ~ParticleBufferClass call site
 ??1RoadType@@QAE@XZ,0x00012968,pinharvest x1 (thunk)
 ??1RoadType@@QAE@XZ,0x00018FCF,pinharvest x1 (thunk)
