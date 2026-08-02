@@ -6,13 +6,13 @@ public:
     __declspec(dllexport) static void parseAnim2DTemplate(INI *, void *, void *, const void *);
 };
 
-__declspec(naked) void INI::parseAnim2DTemplate(INI *, void *, void *, const void *)
+class INIParseAnim2DTemplateShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0D5h
-        _emit 0F5h
-        _emit 006h
-        _emit 000h
-    }
+public:
+    static void parse(INI *ini, void *store, void *userData, const void *desc);
+};
+
+void INI::parseAnim2DTemplate(INI *ini, void *store, void *userData, const void *desc)
+{
+    INIParseAnim2DTemplateShim::parse(ini, store, userData, desc);
 }
