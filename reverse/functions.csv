@@ -1859,7 +1859,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MultiListNodeClass@@QAE@XZ,,0x006D11C0,19,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
 ??0MutexClass@@QAE@PBD@Z,,0x009DB320,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
-??0NameKeyGenerator@@QAE@XZ,,0x00090380,120,Code/masm_dumps/NameKeyGenerator_ctor.asm,matched,True SEH ctor via static-init push; queue 0x9F274A was mid ControlBar ctor
+??0NameKeyGenerator@@QAE@XZ,,0x00090380,120,Code/GameEngine/Source/Common/NameKeyGeneratorCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of retail SEH constructor
 ??0NetAckBothCommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673740,68,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetAckBothCommandMsg@@QAE@XZ,,0x006737A0,47,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetAckStage1CommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673840,69,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
