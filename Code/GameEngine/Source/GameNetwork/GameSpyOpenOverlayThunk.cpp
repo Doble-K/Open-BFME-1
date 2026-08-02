@@ -2,27 +2,18 @@
 
 enum GSOverlayType
 {
-    GSOverlayType_Thunk
+	GSOverlayType_Thunk
 };
 
-__declspec(naked) void GameSpyOpenOverlay(GSOverlayType)
+void GameSpyOpenOverlayShim(GSOverlayType);
+void GameSpyCloseOverlayShim(GSOverlayType);
+
+void GameSpyOpenOverlay(GSOverlayType type)
 {
-    __asm {
-        _emit 0E9h
-        _emit 07Ah
-        _emit 0C5h
-        _emit 05Fh
-        _emit 000h
-    }
+	GameSpyOpenOverlayShim(type);
 }
 
-__declspec(naked) void GameSpyCloseOverlay(GSOverlayType)
+void GameSpyCloseOverlay(GSOverlayType type)
 {
-    __asm {
-        _emit 0E9h
-        _emit 037h
-        _emit 06Ch
-        _emit 05Eh
-        _emit 000h
-    }
+	GameSpyCloseOverlayShim(type);
 }

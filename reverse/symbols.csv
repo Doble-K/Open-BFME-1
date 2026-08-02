@@ -1984,7 +1984,9 @@ name,address,notes
 ?GadgetStaticTextSetText@@YAXPAVGameWindow@@VUnicodeString@@@Z,0x0002C16F
 ?GadgetTabControlShowSubPane@@YAXPAVGameWindow@@H@Z,0x00008936
 ?GameSpyCloseOverlay@@YAXW4GSOverlayType@@@Z,0x00040E94
+?GameSpyCloseOverlayShim@@YAXW4GSOverlayType@@@Z,0x00627AD0,GameSpyCloseOverlay incremental-link thunk target through a free forwarding shim
 ?GameSpyOpenOverlay@@YAXW4GSOverlayType@@@Z,0x0002BA21
+?GameSpyOpenOverlayShim@@YAXW4GSOverlayType@@@Z,0x00627FA0,GameSpyOpenOverlay incremental-link thunk target through a free forwarding shim
 ?GenerateNextCommandID@@YAGXZ,0x00030558,ILT thunk; real body 0xA82D10
 ?Generate_Culling_Tree@MeshGeometryClass@@IAEXXZ,0x00924C30,pinharvest x1 (body)
 ?Generate_Culling_Tree@MeshGeometryClass@@IAEXXZ,0x00924C40,pinharvest x1 (body)
