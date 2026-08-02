@@ -4,19 +4,22 @@ class ProductionPrerequisite;
 
 namespace _STL
 {
-	struct random_access_iterator_tag;
+struct random_access_iterator_tag {};
 
-	template <class In, class Out, class Distance>
-	__declspec(naked) Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 014h
-			_emit 0E8h
-			_emit 03Ah
-			_emit 000h
-		}
-	}
+template <class In, class Out, class Distance>
+Out __copy(In, In, Out, const random_access_iterator_tag &, Distance *);
 
-	template ProductionPrerequisite *__copy<const ProductionPrerequisite *, ProductionPrerequisite *, int>(const ProductionPrerequisite *, const ProductionPrerequisite *, ProductionPrerequisite *, const random_access_iterator_tag &, int *);
+class ProductionPrerequisiteConstCopyShim
+{
+public:
+    static void *copy(void *first, void *last, void *result, const random_access_iterator_tag &, int *n);
+};
+
+template <class In, class Out, class Distance>
+Out __copy(In first, In last, Out result, const random_access_iterator_tag &tag, Distance *n)
+{
+    return (Out)ProductionPrerequisiteConstCopyShim::copy((void *)first, (void *)last, (void *)result, tag, (int *)n);
+}
+
+template ProductionPrerequisite *__copy<const ProductionPrerequisite *, ProductionPrerequisite *, int>(const ProductionPrerequisite *, const ProductionPrerequisite *, ProductionPrerequisite *, const random_access_iterator_tag &, int *);
 }

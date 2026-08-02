@@ -2900,6 +2900,7 @@ name,address,notes
 ?copy@DeliverPayloadCopyShim@_STL@@SAPAXPAX00ABUrandom_access_iterator_tag@2@PAH@Z,0x0036D980,_STL __copy DeliverPayload shared incremental-link thunk target through a TU-local forwarding shim
 ?copy@ModelConditionInfoCopyShim@_STL@@SAPAXPAX00ABUrandom_access_iterator_tag@2@PAH@Z,0x0033A990,_STL __copy HideShowSubObjInfo incremental-link thunk target through a TU-local forwarding shim
 ?copy@ModuleInfoNuggetCopyShim@_STL@@SAPAUNugget@ModuleInfo@@PAU34@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00770E00,_STL __copy ModuleInfo Nugget incremental-link thunk target through a TU-local forwarding shim
+?copy@ProductionPrerequisiteConstCopyShim@_STL@@SAPAXPAX00ABUrandom_access_iterator_tag@2@PAH@Z,0x003B6100,_STL __copy const ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?copy@ProductionPrerequisiteCopyShim@_STL@@SAPAVProductionPrerequisite@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00753280,_STL __copy ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?copy@VideoCopyShim@_STL@@SAPAUVideo@@PAU3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00755100,_STL __copy Video incremental-link thunk target through a TU-local forwarding shim
 ?copy@W3DAnimationInfoCopyShim@_STL@@SAPAVW3DAnimationInfo@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00610AF0,_STL __copy W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
