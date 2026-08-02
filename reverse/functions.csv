@@ -10101,7 +10101,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@CrushDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00123460,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@DamDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00114D70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@DamageModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00124080,112,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME DamageModule factory facade
-?friend_newModuleData@DarknessSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x001209A0,110,Code/masm_dumps/DarknessSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xE1 Ghidra confirmed
+?friend_newModuleData@DarknessSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x001209A0,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/DarknessSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@DefaultProductionExitUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00123910,70,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/DefaultProductionExitUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@DefectorSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FF00,110,Code/masm_dumps/DefectorSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xD7 supersedes stale no-match
 ?friend_newModuleData@DeflectSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120BC0,110,Code/masm_dumps/DeflectSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xE3 Ghidra confirmed
