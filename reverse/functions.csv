@@ -9110,7 +9110,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clear@DictPair@Dict@@QAEXXZ,,0x000680D0,64,Code/GameEngine/Source/Common/Dict_DictPair_clear.asm,matched,Dict helper cluster via setPrep thunk to setNameAndType at 0x68120
 ?clear@LList@@QAEXXZ,,0x00105C70,59,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?clear@ModuleInfo@@QAEXXZ,,0x0077AE90,13,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,icf-owner=?clear@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@QAEXXZ
-?clear@SidesInfo@@QAEXXZ,,0x0019AED0,66,Code/masm_dumps/SidesList_SidesInfo_clear.asm,matched,
 ?clear@SpecialPowerReadyTimerType@@QAEXXZ,,0x000C8BF0,14,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?clear@TeamFactory@@QAEXXZ,,0x000284A7,5,Code/Libraries/Source/WWVegas/WWLib/TeamFactoryClearThunk.cpp,matched,Focused C++ thunk for TeamFactory::clear
 ?clear@TeamsInfoRec@@QAEXXZ,,0x001991F0,115,Code/masm_dumps/TeamsInfoRec_clear.asm,matched,Certified packet 68; SidesList emptyTeams thunk and constructor member offsets; exact retail db recovery
@@ -11846,10 +11845,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isFinished@AnimateWindowManager@@QAE_NXZ,,0x0049CA30,11,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?isForcedAttack@@YA_NW4AbleToAttackType@@@Z,,0x001EAB70,8,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
 ?isFortifyMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B6540,79,Code/masm_dumps/_rn5__isFortifyMostImportant_DozerPrimaryStateMachine__SA_NPAVState__PAX_Z_2B6540.asm,matched,reloc-needle Open-BFME4+Grok
-?isFreeToAssist@AssistedTargetingUpdate@@QBE_NXZ,,0x0027FCE0,56,Code/masm_dumps/_cache__isFreeToAssist_AssistedTargetingUpdate__QBE_NXZ_27FCE0.asm,matched,cached-obj needle Open-BFME4+Grok
 ?isFreeToExit@QueueProductionExitUpdate@@IBE_NXZ,,0x002D04F0,21,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/QueueProductionExitUpdate.cpp,matched,
 ?isGamePaused@GameLogic@@QAE_NXZ,,0x002197D0,7,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,Unique padded game-pause accessor
-?isGroupAiDead@AIGroup@@QBE_NXZ,,0x00151390,50,Code/masm_dumps/_cache__isGroupAiDead_AIGroup__QBE_NXZ_151390.asm,matched,cached-obj needle Open-BFME4+Grok
 ?isHead@LListNode@@QAE_NXZ,,0x00105830,16,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?isHuman@GameSlot@@QBE_NXZ,,0x0061E580,12,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?isInLanGame@GameLogic@@QAE_NXZ,,0x0018D6B0,15,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,matched,
@@ -11983,7 +11980,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?loadPostProcess@SpecialPowerModule@@MAEXXZ,,0x0026A1A0,251,Code/masm_dumps/loadPostProcess_SpecialPowerModule_MAEXXZ_0026A1A0_packet264.asm,matched,Certified packet 264 exact retail db bytes SHA256 b159483537ee7d0dc0e4a8f0501dc2ec4f1d00dcf6c4739491d5ac46c673e64a
 ?loadPostProcess@Team@@MAEXXZ,,0x000F1800,265,Code/masm_dumps/Team_loadPostProcess.asm,matched,MASM exact true Team vtable body
 ?loadPostProcess@Upgrade@@MAEXXZ,,0x00109560,173,Code/masm_dumps/_sa12__loadPostProcess_Upgrade__MAEXXZ_109560.asm,matched,string-anchor Open-BFME4+Grok DisplayName
-?loadRoads@W3DRoadBuffer@@QAEXXZ,,0x007105D0,61,Code/masm_dumps/W3DRoadBuffer_loadRoads.asm,matched,Ghidra-corrected BFME road-load body
 ?loadSavedIgnoreList@GameSpyInfo@@UAEXXZ,,0x00635310,162,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs_loadSavedIgnoreList.asm,matched,exact 162B via MASM (SEH+field offsets)
 ?loadStandardMaps@MapCache@@AAEXXZ,,0x000359DB,5,Code/GameEngine/Source/Common/RTS/MapCacheLoadStandardMapsThunk.cpp,matched,5-byte incremental-link MapCache private member thunk converted to focused C++ source
 ?loadSubsystemFiles@INI@@SA_NPBDPAX@Z,,0x000BB310,214,Code/GameEngine/Source/Common/INI/ini_subsystem.cpp,matched,legend-driven INI loader; retail home is ini.cpp
@@ -13880,3 +13876,7 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?isGroupAiDead@AIGroup@@QBE_NXZ,,0x00151390,50,Code/GameEngine/Source/Common/promoted__isGroupAiDead_AIGroup_QBE_NXZ_00151390.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 50B
+?isFreeToAssist@AssistedTargetingUpdate@@QBE_NXZ,,0x0027FCE0,56,Code/GameEngine/Source/Common/promoted__isFreeToAssist_AssistedTargetingUpdate_QBE_NXZ_0027FCE0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 56B
+?loadRoads@W3DRoadBuffer@@QAEXXZ,,0x007105D0,61,Code/GameEngine/Source/Common/promoted__loadRoads_W3DRoadBuffer_QAEXXZ_007105D0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 61B
+?clear@SidesInfo@@QAEXXZ,,0x0019AED0,66,Code/GameEngine/Source/Common/promoted__clear_SidesInfo_QAEXXZ_0019AED0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 66B
