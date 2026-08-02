@@ -47,15 +47,11 @@ Win32BIGFile::Win32BIGFile()
 }
 
 //============================================================================
-// Win32BIGFile::~Win32BIGFile
-//============================================================================
-
-// ??1Win32BIGFile@@UAE@XZ present-unmatched
-Win32BIGFile::~Win32BIGFile()
-{
-
-}
-
+// Win32BIGFile::~Win32BIGFile lives in the sibling Win32BIGFileDtor.cpp. Its
+// source body is empty, but the compiler-generated part destroys m_name and
+// m_path, and retail reaches StringBase<char>::releaseBuffer by a call where
+// this file's Zero Hour Common/AsciiString.h inlines it -- the same divergence
+// that moved getName and getPath out. See that file's header comment.
 //============================================================================
 // Win32BIGFile::openFile
 //============================================================================
