@@ -2826,6 +2826,8 @@ name,address,notes
 ?lookup@TerrainCollisionEventFXLookupShim@FXParticleSystem@@QBEPBVFXList@@PBD@Z,0x0001669E,TerrainCollisionModuleInfo event FX lookup thunk used through a TU-local layout shim
 ??$_Construct@U?$pair@W4ObjectID@@I@_STL@@U12@@_STL@@YAXPAU?$pair@W4ObjectID@@I@0@ABU10@@Z,0x00039F18,retail REL32 pin for ScriptActions ObjectID pair vector push_back
 ?_M_insert_overflow@?$vector@U?$pair@W4ObjectID@@I@_STL@@V?$allocator@U?$pair@W4ObjectID@@I@_STL@@@2@@_STL@@IAEXPAU?$pair@W4ObjectID@@I@2@ABU32@ABU__false_type@2@I_N@Z,0x00004F93,retail REL32 pin for ScriptActions ObjectID pair vector push_back
+??$_Construct@UParticleSysBoneInfo@@U1@@_STL@@YAXPAUParticleSysBoneInfo@@ABU1@@Z,0x00039F18,retail REL32 pin for W3DModelDraw particle-system-bone vector push_back
+?_M_insert_overflow@?$vector@UParticleSysBoneInfo@@V?$allocator@UParticleSysBoneInfo@@@_STL@@@_STL@@IAEXPAUParticleSysBoneInfo@@ABU3@ABU__false_type@2@I_N@Z,0x00004F93,retail REL32 pin for W3DModelDraw particle-system-bone vector push_back
 ?assign@RenderObjectDrawTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x00007E14,RenderObjectDrawModuleTemplate assignment thunk used through a TU-local layout shim
 ?assign@RenderObjectUpdateTemplateAssignShim@FXParticleSystem@@QAEXPBX@Z,0x0003E2C5,RenderObjectUpdateModuleTemplate assignment thunk used through a TU-local layout shim
 ?construct@PointEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000FECA,PointEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
