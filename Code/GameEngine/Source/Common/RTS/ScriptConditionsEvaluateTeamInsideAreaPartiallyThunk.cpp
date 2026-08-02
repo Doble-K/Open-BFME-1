@@ -8,13 +8,13 @@ protected:
     bool evaluateTeamInsideAreaPartially(Parameter *, Parameter *, Parameter *);
 };
 
-__declspec(naked) bool ScriptConditions::evaluateTeamInsideAreaPartially(Parameter *, Parameter *, Parameter *)
+class ScriptConditionsEvaluateTeamInsideAreaPartiallyShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 08Bh
-        _emit 09Dh
-        _emit 02Dh
-        _emit 000h
-    }
+public:
+    bool evaluate(Parameter *a, Parameter *b, Parameter *c);
+};
+
+bool ScriptConditions::evaluateTeamInsideAreaPartially(Parameter *a, Parameter *b, Parameter *c)
+{
+    return ((ScriptConditionsEvaluateTeamInsideAreaPartiallyShim *)this)->evaluate(a, b, c);
 }
