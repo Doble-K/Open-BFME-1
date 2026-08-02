@@ -290,6 +290,19 @@ public:
     void construct(const void *source);
 };
 
+class SphereEmissionVolumeModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+__forceinline void initializeSphereEmissionVolumeModule(void *module)
+{
+    *(unsigned int *)module = 0x011123a0;
+    *(unsigned int *)((unsigned char *)module + 0x14) = 0x0111239c;
+    *(unsigned int *)((unsigned char *)module + 0x18) = 0x01112398;
+    *(unsigned int *)((unsigned char *)module + 0x1c) = 0x01112384;
+}
+
 class LineEmissionVolumeTemplateCopyCtorShim {
 public:
     void construct(const void *source);
@@ -9855,84 +9868,17 @@ SphereEmissionVolumeModuleTemplate *ConcreteModuleTemplate<ModuleTag<5, SPHERE_E
 }
 
 // ?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?SPHERE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?SPHERE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVSphereEmissionVolumeModule@2@VSphereEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UAEPAVSphereEmissionVolumeModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
-__declspec(naked) SphereEmissionVolumeModule *ConcreteModuleTemplate<ModuleTag<5, SPHERE_EMISSION_VOLUME_MODULE_KEY, SPHERE_EMISSION_VOLUME_MODULE_NAME, SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
+SphereEmissionVolumeModule *ConcreteModuleTemplate<ModuleTag<5, SPHERE_EMISSION_VOLUME_MODULE_KEY, SPHERE_EMISSION_VOLUME_MODULE_NAME, SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x28
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0x65
-        __emit 0x8e
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x2f
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xac
-        __emit 0x70
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xa0
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x14
-        __emit 0x9c
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0x98
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x84
-        __emit 0x23
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    SphereEmissionVolumeModule *module =
+        (SphereEmissionVolumeModule *)::operator new(0x28);
+    if (module) {
+        const void *source = this;
+        ((SphereEmissionVolumeModuleCtorShim *)module)->construct(sys, source);
+        initializeSphereEmissionVolumeModule(module);
+        return module;
     }
+    return 0;
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$05$E?BUTTERFLY_DRAW_MODULE_KEY@FXParticleSystem@@3QBDB$E?BUTTERFLY_DRAW_MODULE_NAME@2@3QBDBVButterflyDrawModule@2@VButterflyDrawModuleTemplate@2@V?$DefaultParticleModule@$05@2@V?$DefaultParticleModuleTemplate@$05@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
