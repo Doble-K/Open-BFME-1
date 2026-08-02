@@ -10200,7 +10200,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@RadiusDecalUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00123E50,50,Code/GameEngine/Source/GameLogic/Object/Update/RadiusDecalUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@RailedTransportAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001145D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@RailedTransportDockUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118AA0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@RainOfFireUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011C390,107,Code/masm_dumps/RainOfFireUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
+?friend_newModuleData@RainOfFireUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011C390,107,Code/GameEngine/Source/Common/RTS/RainOfFireUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@RebuildHoleBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001171F0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@RebuildHoleExposeDie@@SAPAVModuleData@@PAVINI@@@Z,,0x001145D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@RefundDie@@SAPAVModuleData@@PAVINI@@@Z,,0x001232C0,107,Code/masm_dumps/RefundDie_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
