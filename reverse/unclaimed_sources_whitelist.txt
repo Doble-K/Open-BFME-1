@@ -28,3 +28,6 @@ Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.
 # ConstructNetCommandMsgFromRawData: retail's instructions in retail's order,
 # but three locals land in different registers. See the note in the file.
 Code/GameEngine/Source/GameNetwork/NetPacket_construct.cpp
+# BFMEComputeCRC: retail's exactly outside the loop; inside, MSVC reassociates
+# the two adds. See the note in the file.
+Code/GameEngine/Source/GameNetwork/native_packet_crc.cpp
