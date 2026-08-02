@@ -1,16 +1,18 @@
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
+
 class __declspec(novtable) AudioEventRTS
 {
 public:
 	virtual ~AudioEventRTS();
 };
 
-__declspec(naked) AudioEventRTS::~AudioEventRTS()
+class AudioEventRTSDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 01Ch
-		_emit 093h
-		_emit 00Ah
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+AudioEventRTS::~AudioEventRTS()
+{
+	((AudioEventRTSDestructorShim *)this)->destroy();
 }
