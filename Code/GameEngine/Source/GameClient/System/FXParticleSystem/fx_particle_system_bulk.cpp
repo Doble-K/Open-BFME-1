@@ -13,6 +13,11 @@ public:
     void construct();
 };
 
+class DefaultModuleTemplate3CtorShim {
+public:
+    void construct();
+};
+
 extern const char BOX_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char BUTTERFLY_DRAW_MODULE_TEMPLATE_PARSE_TABLE[];
 extern const char CYLINDER_EMISSION_VOLUME_MODULE_TEMPLATE_PARSE_TABLE[];
@@ -9963,42 +9968,12 @@ __declspec(naked) ConcreteModuleTemplate<DefaultModuleTag<3> >::ConcreteModuleTe
 }
 
 // ??0?$ConcreteModuleTemplate@V?$DefaultModuleTag@$02@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
-__declspec(naked) ConcreteModuleTemplate<DefaultModuleTag<3> >::ConcreteModuleTemplate()
+ConcreteModuleTemplate<DefaultModuleTag<3> >::ConcreteModuleTemplate()
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x02
-        __emit 0x97
-        __emit 0xa6
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xc4
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0xac
-        __emit 0x0f
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc3
-    }
+    ((DefaultModuleTemplate3CtorShim *)this)->construct();
+    *(volatile unsigned int *)this = 0x01110fc4;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x01110fc0;
+    *(volatile unsigned int *)((unsigned char *)this + 8) = 0x01110fac;
 }
 
 // ??1?$ConcreteModuleTemplate@V?$DefaultModuleTag@$02@FXParticleSystem@@@FXParticleSystem@@UAE@XZ
