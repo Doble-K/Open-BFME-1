@@ -14839,7 +14839,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$deque@VBuddyRequest@@V?$allocator@VBuddyRequest@@@_STL@@@_STL@@QAE@ABV?$allocator@VBuddyRequest@@@1@@Z,,0x008FAE70,46,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,icf-owner=??0?$deque@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVMapObject@@@1@@Z
 ??0?$deque@VBuddyResponse@@V?$allocator@VBuddyResponse@@@_STL@@@_STL@@QAE@ABV?$allocator@VBuddyResponse@@@1@@Z,,0x008FAE70,46,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,icf-owner=??0?$deque@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVMapObject@@@1@@Z
 ??0?$deque@VGameResultsRequest@@V?$allocator@VGameResultsRequest@@@_STL@@@_STL@@QAE@ABV?$allocator@VGameResultsRequest@@@1@@Z,,0x008FAE70,46,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,icf-owner=??0?$deque@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVMapObject@@@1@@Z
-??0?$deque@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@QAE@ABV?$allocator@VGameResultsResponse@@@1@@Z,,0x008FAE70,46,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,icf-owner=??0?$deque@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVMapObject@@@1@@Z??0?$list@PAVFXNugget@@V?$allocator@PAVFXNugget@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
+??0?$deque@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@QAE@ABV?$allocator@VGameResultsResponse@@@1@@Z,,0x008FAE70,46,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,icf-owner=??0?$deque@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVMapObject@@@1@@Z
+??0?$list@PAVFXNugget@@V?$allocator@PAVFXNugget@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
 ??0?$list@PAVGameWindow@@V?$allocator@PAVGameWindow@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x004FFF30,111,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,
 ??0?$list@PAVParticleSystem@@V?$allocator@PAVParticleSystem@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x0076F640,111,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,C++ STLport list copy constructor; TU-scoped BFME 0x2c node tail and static allocator mode
 ??0?$list@PAVSuperweaponInfo@@V?$allocator@PAVSuperweaponInfo@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x0076F640,111,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of exact STLport list copy constructor body with BFME 0x2c node tail
@@ -15838,7 +15839,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RectClass@@QAE@MMMM@Z,,0x0005BA90,32,Code/GameEngine/Source/GameClient/VideoPlayer.cpp,matched,
 ??0RefCountClass@@QAE@XZ,,0x005F38A0,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ??0RefundDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255A80,60,Code/masm_dumps/RefundDie_constructor.asm,matched,Exact 60B unique factory Open-BFME4
-??0RefundDieModuleData@@QAE@XZ,,0x00123200,105,Code/masm_dumps/RefundDieModuleData_constructor.asm,matched,Exact 105B @ 0x00123200; Exact retail MASM ModuleData ctor; unique factory 0x1232C0; Open-BFME4+Grok
+??0RefundDieModuleData@@QAE@XZ,,0x00123200,105,Code/GameEngine/Source/Common/RTS/RefundDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0Region2D@@QAE@ABU0@@Z,0x000173CD,0x0005C320,31,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,copies bounds
 ??0Region2D@@QAE@ABVCoord2D@@0@Z,0x000277EB,0x0061BA60,34,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,copies lower and upper coordinates
 ??0Region2D@@QAE@XZ,0x0001DFB1,0x00160B10,3,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,empty constructor returns self
@@ -27681,4 +27682,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??0RefundDieModuleData@@QAE@XZ,,0x00123200,105,Code/GameEngine/Source/Common/RTS/RefundDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
