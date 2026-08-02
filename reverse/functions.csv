@@ -7839,8 +7839,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Ambient@DX8Wrapper@@SAXABVVector3@@@Z,,0x008FE1B0,200,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,
 ?Set_Ambient@LightClass@@QAEXABVVector3@@@Z,,0x006E7980,33,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,exact after camera shim
 ?Set_Ambient_Light@SceneClass@@UAEXABVVector3@@@Z,,0x006FCAF0,24,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
-?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@M0MM@Z,,0x009822C0,99,Code/masm_dumps/_sym2__Set_Animation_Animatable3DObjClass__UAEXPAVHAnimClass__M0MM_Z_9822C0.asm,matched,symbol-pin Open-BFME4+Grok
-?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@MH@Z,,0x00982190,301,Code/masm_dumps/_sym1__Set_Animation_Animatable3DObjClass__UAEXPAVHAnimClass__MH_Z_982190.asm,matched,symbol-pin Open-BFME4+Grok
 ?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimComboClass@@@Z,,0x00982330,39,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,Open-BFME5 exact C++ raw animation combo setter
 ?Set_Animation@Animatable3DObjClass@@UAEXXZ,,0x00982170,27,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Set_Animation@HLodClass@@UAEXPAVHAnimClass@@M0MM@Z,,0x0097A250,46,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -13852,3 +13850,28 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?doesFileExist@FileSystem@@QBE_NPBD@Z,,0x009C86A0,134,Code/GameEngine/Source/Common/System/FileSystem_doesFileExist.cpp,matched,BFME doesFileExist: sprintf path prefix then local+archive; C++ exact
+?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,144,Code/GameEngine/Source/Common/System/FileSystem_createDirectory.cpp,matched,Promote masm dump to Code/ naked C++; size 144 per ghidra
+?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,,0x009C8860,394,Code/GameEngine/Source/Common/System/FileSystem_openFile.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
+?Set_Name@GameFileClass@@QAEXPBD@Z,,0x006F63B0,1214,Code/GameEngineDevice/Source/W3DDevice/GameClient/GameFileClass_Set_Name.cpp,matched,Promote masm dump to Code/ naked C++; exact retail body
+?Create_Render_Obj@W3DAssetManager@@QAEPAVRenderObjClass@@XZ,,0x009004A0,1213,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DAssetManager_Create_Render_Obj_scaled.cpp,matched,BFME scaled/recolored Create_Render_Obj exact 1213B naked C++ @ 0x9004A0
+?Create_Render_Obj@@YAPAVRenderObjClass@@PBD@Z,,0x008FF290,278,Code/GameEngineDevice/Source/W3DDevice/GameClient/Create_Render_Obj_plain.cpp,matched,plain Create_Render_Obj(name) exact 278B naked C++ @ 0x8FF290
+?Find_Prototype@@YAPAXPAX0PBD@Z,,0x009EBCE0,211,Code/GameEngineDevice/Source/W3DDevice/GameClient/Find_Prototype.cpp,matched,BFME registry Find_Prototype exact 211B @ 0x9EBCE0
+?Add_Prototype@@YAXPAX@Z,,0x009EBA40,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype.cpp,matched,BFME registry Add_Prototype wrapper exact 21B @ 0x9EBA40
+?Open_W3D_File@@YAPAXPAX0PBD@Z,,0x006F6BA0,204,Code/GameEngineDevice/Source/W3DDevice/GameClient/Open_W3D_File.cpp,matched,BFME W3D open helper for Load hierarchy/anim exact 204B @ 0x6F6BA0
+?Add_Prototype_Impl@AssetRegistry@@QAEXPAX@Z,,0x009EF1A0,224,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype_Impl.cpp,matched,BFME registry Add_Prototype impl exact 224B @ 0x9EF1A0
+?Load_Hierarchy@W3DHierarchyLoader@@QAEXXZ,,0x00971990,403,Code/Libraries/Source/WWVegas/WW3D2/Load_Hierarchy_W3D.cpp,matched,BFME hierarchy type loader exact 403B @ 0x971990
+?Load_Animation@W3DAnimationLoader@@QAEXXZ,,0x0090C080,479,Code/Libraries/Source/WWVegas/WW3D2/Load_Animation_W3D.cpp,matched,BFME animation type loader exact 479B @ 0x90C080
+?Recolor_Mesh@W3DAssetManager@@QAEHH@Z,,0x0092DF50,1218,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Mesh.cpp,matched,Recolor_Mesh naked C++ exact 1218B @ 0x92DF50
+?Recolor_Texture@W3DAssetManager@@QAEHHHHHHHHHH@Z,,0x00A5828A,644,Code/GameEngineDevice/Source/W3DDevice/GameClient/Recolor_Texture.cpp,matched,Recolor_Texture naked C++ exact 644B @ 0xA5828A
+?Render_Obj_Exists@@YA_NPBD@Z,,0x009EBB80,28,Code/GameEngineDevice/Source/W3DDevice/GameClient/Render_Obj_Exists.cpp,matched,BFME registry exists check exact 28B @ 0x9EBB80
+?Register_Animation_Prototype@@YAXPBDHH@Z,,0x0090C000,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Animation_Prototype.cpp,matched,BFME ANIM Load_Prototype register exact 124B @ 0x90C000
+?Register_Hierarchy_Prototype@@YAXPBDHH@Z,,0x00971910,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Hierarchy_Prototype.cpp,matched,BFME HIER Load_Prototype register exact 124B @ 0x971910
+?Register_Mesh_Prototype@@YAXPBDHH@Z,,0x00971060,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Mesh_Prototype.cpp,matched,BFME MESH Load_Prototype register exact 124B @ 0x971060
+?Register_HLOD_Prototype@@YAXPBDHH@Z,,0x00970A20,124,Code/Libraries/Source/WWVegas/WW3D2/Register_HLOD_Prototype.cpp,matched,BFME HLOD Load_Prototype register exact 124B @ 0x970A20
+?Register_Particle_Prototype@@YAXPBDHH@Z,,0x00971440,124,Code/Libraries/Source/WWVegas/WW3D2/Register_Particle_Prototype.cpp,matched,BFME PART Load_Prototype register exact 124B @ 0x971440
+?Load_Asset_Catalog@@YA_NPAX@Z,,0x00938150,1231,Code/GameEngineDevice/Source/W3DDevice/GameClient/Load_Asset_Catalog.cpp,matched,BFME ALAE catalog Load_3D stage exact 1231B @ 0x938150
+?Load_Asset_Dat@@YA_NXZ,,0x00938620,1057,Code/GameEngineDevice/Source/W3DDevice/GameClient/Load_Asset_Dat.cpp,matched,BFME asset.dat bulk Load_3D_Assets entry exact 1057B @ 0x938620
+?Get_HAnim@@YAPAVHAnimClass@@PBD@Z,,0x0090BF00,255,Code/GameEngineDevice/Source/W3DDevice/GameClient/Get_HAnim.cpp,matched,BFME Get_HAnim by name exact 255B @ 0x90BF00 bind-path get-anim
+?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@MH@Z,,0x00982190,301,Code/Libraries/Source/WWVegas/WW3D2/Animatable3DObj_Set_Animation_MH.cpp,matched,Promote Set_Animation MH from masm_dumps to Code/ naked C++ exact 301B
+?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@M0MM@Z,,0x009822C0,99,Code/Libraries/Source/WWVegas/WW3D2/Animatable3DObj_Set_Animation_blend.cpp,matched,Promote Set_Animation blend from masm_dumps to Code/ naked C++ exact 99B
