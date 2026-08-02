@@ -76,11 +76,24 @@ class Image:
     def in_text(self, vma):
         return self.tbase <= vma - IMAGE_BASE < self.tbase + len(self.text)
 
-    def deref_thunk(self, rva):
-        """Follow a 5-byte incremental-link E9 jump to the real body."""
-        o = rva - self.tbase
-        if 0 <= o < len(self.text) - 5 and self.text[o] == 0xE9:
-            return rva + 5 + struct.unpack("<i", self.text[o + 1:o + 5])[0]
+    def deref_thunk(self, rva, limit=8):
+        """Follow 5-byte incremental-link E9 jumps to the real body.
+
+        Chains, not a single hop. The AIData block registers a thunk that jumps
+        to another thunk that jumps to ?parseAiDataDefinition@AI@@ -- stopping
+        after one hop leaves you looking at five bytes of jump, which measures as
+        a 5-byte function with no field table. AIData is the game's AI tuning
+        block; it was published as "parses its body directly" for exactly that
+        reason.
+        """
+        for _ in range(limit):
+            o = rva - self.tbase
+            if not (0 <= o < len(self.text) - 5) or self.text[o] != 0xE9:
+                return rva
+            nxt = rva + 5 + struct.unpack("<i", self.text[o + 1:o + 5])[0]
+            if nxt == rva:
+                return rva
+            rva = nxt
         return rva
 
     def body_size(self, rva, limit=8192):

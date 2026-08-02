@@ -13,8 +13,8 @@ is given. `Offset` is the field's byte offset into the block's own struct, so
 these tables double as the class layouts.
 
 - **96** registered block keywords
-- **80** with a decodable field table
-- **1668** field entries
+- **81** with a decodable field table
+- **1736** field entries
 
 ## Blocks
 
@@ -26,9 +26,113 @@ _No field table: this block parses its body directly._
 
 ### `AIData`
 
-Parsed by `0x000B7F50`
+Parsed by `0x0014E580` — `?parseAiDataDefinition@AI@@SAXPAVINI@@@Z`
 
-_No field table: this block parses its body directly._
+Field table `0x01094B00` — 68 fields
+
+| Field | Offset | Type |
+|---|---|---|
+| `StructureSeconds` | `0x004` | `Real` |
+| `TeamSeconds` | `0x008` | `Real` |
+| `Wealthy` | `0x00C` | `Int` |
+| `Poor` | `0x010` | `Int` |
+| `ForceIdleMSEC` | `0x014` | `DurationUnsignedInt` |
+| `StructuresWealthyRate` | `0x018` | `Real` |
+| `TeamsWealthyRate` | `0x01C` | `Real` |
+| `StructuresPoorRate` | `0x020` | `Real` |
+| `TeamsPoorRate` | `0x024` | `Real` |
+| `TeamResourcesToStart` | `0x028` | `Real` |
+| `GuardInnerModifierAI` | `0x02C` | `Real` |
+| `GuardOuterModifierAI` | `0x030` | `Real` |
+| `GuardInnerModifierHuman` | `0x034` | `Real` |
+| `GuardOuterModifierHuman` | `0x038` | `Real` |
+| `GuardChaseUnitsDuration` | `0x03C` | `DurationUnsignedInt` |
+| `GuardEnemyScanRate` | `0x040` | `DurationUnsignedInt` |
+| `GuardEnemyReturnScanRate` | `0x044` | `DurationUnsignedInt` |
+| `SkirmishGroupFudgeDistance` | `0x058` | `Real` |
+| `RepulsedDistance` | `0x060` | `Real` |
+| `EnableRepulsors` | `0x064` | `Bool` |
+| `AlertRangeModifier` | `0x04C` | `Real` |
+| `AggressiveRangeModifier` | `0x050` | `Real` |
+| `ForceSkirmishAI` | `0x065` | `Bool` |
+| `RotateSkirmishBases` | `0x066` | `Bool` |
+| `AttackUsesLineOfSight` | `0x067` | `Bool` |
+| `AttackIgnoreInsignificantBuildings` | `0x068` | `Bool` |
+| `AttackPriorityDistanceModifier` | `0x054` | `Real` |
+| `MaxRecruitRadius` | `0x05C` | `Real` |
+| `WallHeight` | `0x048` | `Real` |
+| `SideInfo` | `0x000` | `0x0014BF10` |
+| `AttackPriority` | `0x000` | `0x0014E130` |
+| `SkirmishBuildList` | `0x000` | `0x0014C090` |
+| `MinDistanceForGroup` | `0x06C` | `Real` |
+| `FormationEnemyDistance` | `0x070` | `Real` |
+| `MinClumpDensity` | `0x074` | `Real` |
+| `InfantryPathfindDiameter` | `0x078` | `Int` |
+| `VehiclePathfindDiameter` | `0x07C` | `Int` |
+| `RebuildDelayTimeSeconds` | `0x080` | `Int` |
+| `SupplyCenterSafeRadius` | `0x084` | `Real` |
+| `AIDozerBoredRadiusModifier` | `0x088` | `Real` |
+| `AICrushesInfantry` | `0x08C` | `Bool` |
+| `MeleeApproachTolerance` | `0x090` | `Real` |
+| `MeleeApproachDist` | `0x094` | `Real` |
+| `MeleeAcquireLimitDist` | `0x098` | `Real` |
+| `WadeWaterDepth` | `0x09C` | `Real` |
+| `FormationColumnWidth` | `0x0A0` | `Real` |
+| `FormationRowDepth` | `0x0A4` | `Real` |
+| `FormationSquadSpacing` | `0x0A8` | `Real` |
+| `FormationColumns` | `0x0B0` | `Int` |
+| `NarrowPassageScale` | `0x0AC` | `Real` |
+| `HordesWaitForHordes` | `0x0B5` | `Bool` |
+| `AttackMoveUsesFormations` | `0x0B6` | `Bool` |
+| `ForceHordesToLowLOD` | `0x0B7` | `Bool` |
+| `AllowForestFires` | `0x0B8` | `Bool` |
+| `UseFormations` | `0x0B9` | `Bool` |
+| `WaitForOthers` | `0x0B4` | `Bool` |
+| `AltCameraZoomOverride` | `0x0BC` | `Real` |
+| `AltCameraPitchOverride` | `0x0C0` | `Real` |
+| `MaxRetaliateDistance` | `0x0C4` | `Real` |
+| `RetaliateFriendsRadius` | `0x0C8` | `Real` |
+| `ChaseFromBehindLimit` | `0x0CC` | `Real` |
+| `CastleSiegeStandBackDistance` | `0x0D0` | `Real` |
+| `UseLowLODTrees` | `0x0D4` | `Bool` |
+| `DisableTrees` | `0x0E8` | `Bool` |
+| `LowLodTreeName` | `0x0D8` | `AsciiString` |
+| `LowLodTreeNameNoGrab` | `0x0DC` | `AsciiString` |
+| `LowLodTreeNameNoHarvest` | `0x0E0` | `AsciiString` |
+| `LowLodTreeScale` | `0x0E4` | `Real` |
+
+<details><summary><code>SideInfo</code> sub-block — 9 fields</summary>
+
+| Field | Offset | Type |
+|---|---|---|
+| `ResourceGatherersEasy` | `0x008` | `Int` |
+| `ResourceGatherersNormal` | `0x00C` | `Int` |
+| `ResourceGatherersHard` | `0x010` | `Int` |
+| `BaseDefenseStructure1` | `0x1B8` | `AsciiString` |
+| `SkillSet1` | `0x014` | `SkillSet` |
+| `SkillSet2` | `0x068` | `SkillSet` |
+| `SkillSet3` | `0x0BC` | `SkillSet` |
+| `SkillSet4` | `0x110` | `SkillSet` |
+| `SkillSet5` | `0x164` | `SkillSet` |
+
+</details>
+
+<details><summary><code>AttackPriority</code> sub-block — 2 fields</summary>
+
+| Field | Offset | Type |
+|---|---|---|
+| `Default` | `0x008` | `Int` |
+| `Target` | `0x00C` | `0x0014C8E0` |
+
+</details>
+
+<details><summary><code>SkirmishBuildList</code> sub-block — 1 fields</summary>
+
+| Field | Offset | Type |
+|---|---|---|
+| `Structure` | `0x000` | `Structure` |
+
+</details>
 
 ### `AmbientStream`
 
@@ -125,7 +229,7 @@ Field table `0x010768D0` — 3 fields
 
 ### `AudioLowMHz`
 
-Parsed by `0x0007BE70`
+Parsed by `0x0007BE70` — `?parseAudioLowMHz@@YAXPAVINI@@@Z`
 
 _No field table: this block parses its body directly._
 
@@ -390,7 +494,7 @@ Field table `0x010FA3B8` — 54 fields
 | `UnsetAutoAbilityUnitSoundGroup` | `0x114` | `0x000BD640` |
 | `UnsetAutoAbilityUnitSound2` | `0x120` | `0x000BD640` |
 | `UnsetAutoAbilityUnitSoundGroup2` | `0x12C` | `0x000BD640` |
-| `DoubleClick` | `0x14C` | `0x0049AB80` |
+| `DoubleClick` | `0x14C` | `Bool` |
 | `Radial` | `0x14D` | `Bool` |
 | `ShowProductionCount` | `0x150` | `Bool` |
 | `InPalantir` | `0x14E` | `Bool` |
@@ -788,7 +892,7 @@ Field table `0x0109FBC8` — 5 fields
 
 ### `FireEffect`
 
-Parsed by `0x00421FB0`
+Parsed by `0x00421FB0` — `?parseFireEffect@@YAXPAVINI@@@Z`
 
 Field table `0x010F1808` — 9 fields
 
@@ -1521,7 +1625,7 @@ Field table `0x01077018` — 447 fields
 
 ### `GlowEffect`
 
-Parsed by `0x00421EE0`
+Parsed by `0x00421EE0` — `?parseGlowEffect@@YAXPAVINI@@@Z`
 
 Field table `0x010F1698` — 10 fields
 
@@ -2068,7 +2172,7 @@ Field table `0x01083310` — 32 fields
 
 ### `MiscEvaData`
 
-Parsed by `0x00422BD0`
+Parsed by `0x00422BD0` — `?parseMiscEvaData@INI@@SAXPAV1@@Z`
 
 Field table `0x010F1E48` — 3 fields
 
@@ -2159,7 +2263,7 @@ Field table `0x0110D070` — 34 fields
 
 ### `MultiplayerColor`
 
-Parsed by `0x000C2690`
+Parsed by `0x000C2690` — `?parseMultiplayerColorDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x0107F6D8` — 3 fields
 
@@ -2171,7 +2275,7 @@ Field table `0x0107F6D8` — 3 fields
 
 ### `MultiplayerSettings`
 
-Parsed by `0x000C2600`
+Parsed by `0x000C2600` — `?parseMultiplayerSettingsDefinition@INI@@SAXPAV1@@Z`
 
 Field table `0x0107F718` — 11 fields
 
@@ -2528,7 +2632,7 @@ _No field table: this block parses its body directly._
 
 ### `RingEffect`
 
-Parsed by `0x00421F50`
+Parsed by `0x00421F50` — `?parseRingEffect@@YAXPAVINI@@@Z`
 
 Field table `0x010F1748` — 11 fields
 
