@@ -8,13 +8,13 @@ protected:
     bool evaluateNamedInsideArea(Parameter *, Parameter *);
 };
 
-__declspec(naked) bool ScriptConditions::evaluateNamedInsideArea(Parameter *, Parameter *)
+class ScriptConditionsEvaluateNamedInsideAreaShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 02Ch
-        _emit 0DEh
-        _emit 031h
-        _emit 000h
-    }
+public:
+    bool evaluate(Parameter *a, Parameter *b);
+};
+
+bool ScriptConditions::evaluateNamedInsideArea(Parameter *a, Parameter *b)
+{
+    return ((ScriptConditionsEvaluateNamedInsideAreaShim *)this)->evaluate(a, b);
 }
