@@ -6,13 +6,13 @@ public:
     void setProgress(int percentage);
 };
 
-__declspec(naked) void NetFileProgressCommandMsg::setProgress(int)
+class NetFileProgressSetProgressShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0F5h
-        _emit 0ECh
-        _emit 065h
-        _emit 000h
-    }
+public:
+    void set(int percentage);
+};
+
+void NetFileProgressCommandMsg::setProgress(int percentage)
+{
+    ((NetFileProgressSetProgressShim *)this)->set(percentage);
 }
