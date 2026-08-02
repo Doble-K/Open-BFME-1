@@ -10813,60 +10813,14 @@ __declspec(naked) ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE
 }
 
 // ??1?$ConcreteModuleTemplate@V?$ModuleTag@$01$E?RENDEROBJECT_UPDATE_MODULE_KEY@FXParticleSystem@@3QBDB$E?RENDEROBJECT_UPDATE_MODULE_NAME@2@3QBDBVRenderObjectUpdateModule@2@VRenderObjectUpdateModuleTemplate@2@VRenderObjectParticleUpdateModule@2@VRenderObjectParticleUpdateModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UAE@XZ
-__declspec(naked) ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME, RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate, RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> >::~ConcreteModuleTemplate()
+ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME, RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate, RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> >::~ConcreteModuleTemplate()
 {
-    __asm {
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x05
-        __emit 0x8d
-        __emit 0x41
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x74
-        __emit 0x0e
-        __emit 0xc7
-        __emit 0x41
-        __emit 0x04
-        __emit 0xe8
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x01
-        __emit 0x58
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0xc3
-        __emit 0x33
-        __emit 0xc0
-        __emit 0xc7
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x01
-        __emit 0x58
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0xc3
-    }
+    unsigned char *info = this ? (unsigned char *)this + 8 : 0;
+    *(volatile unsigned int *)info = 0x01073744;
+
+    unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+    *(volatile unsigned int *)base = 0x0110f9e8;
+    *(volatile unsigned int *)this = 0x01073758;
 }
 
 // ??4?$ConcreteModuleTemplate@V?$ModuleTag@$01$E?RENDEROBJECT_UPDATE_MODULE_KEY@FXParticleSystem@@3QBDB$E?RENDEROBJECT_UPDATE_MODULE_NAME@2@3QBDBVRenderObjectUpdateModule@2@VRenderObjectUpdateModuleTemplate@2@VRenderObjectParticleUpdateModule@2@VRenderObjectParticleUpdateModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@QAEAAV01@ABV01@@Z
