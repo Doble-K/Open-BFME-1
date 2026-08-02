@@ -4,19 +4,22 @@ class W3DAnimationInfo;
 
 namespace _STL
 {
-	struct __false_type;
+struct __false_type {};
 
-	template <class In, class Out>
-	__declspec(naked) Out __uninitialized_copy(In, In, Out, const __false_type &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 044h
-			_emit 0D0h
-			_emit 038h
-			_emit 000h
-		}
-	}
+template <class In, class Out>
+Out __uninitialized_copy(In, In, Out, const __false_type &);
 
-	template W3DAnimationInfo *__uninitialized_copy<const W3DAnimationInfo *, W3DAnimationInfo *>(const W3DAnimationInfo *, const W3DAnimationInfo *, W3DAnimationInfo *, const __false_type &);
+class W3DAnimationInfoUninitializedCopyShim
+{
+public:
+	static void *copy(void *first, void *last, void *result, const __false_type &);
+};
+
+template <class In, class Out>
+Out __uninitialized_copy(In first, In last, Out result, const __false_type &tag)
+{
+	return (Out)W3DAnimationInfoUninitializedCopyShim::copy((void *)first, (void *)last, (void *)result, tag);
+}
+
+template W3DAnimationInfo *__uninitialized_copy<const W3DAnimationInfo *, W3DAnimationInfo *>(const W3DAnimationInfo *, const W3DAnimationInfo *, W3DAnimationInfo *, const __false_type &);
 }
