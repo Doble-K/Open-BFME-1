@@ -207,6 +207,29 @@ static void hideInfoGadgets(Bool doIt)
 	}
 }
 
+struct BfmeQuickMatchHideInfoGadgetsBody
+{
+	unsigned char _bfme_pad28c[0x28C];
+	GameWindow *m_stats;
+	unsigned char _bfme_pad290[4];
+	GameWindow *m_options;
+	unsigned char _bfme_pad298[4];
+	GameWindow *m_disabledLadder;
+	unsigned char _bfme_pad2a0[4];
+	GameWindow *m_parent;
+
+	void hide(Bool doIt);
+};
+
+void BfmeQuickMatchHideInfoGadgetsBody::hide(Bool doIt)
+{
+	m_stats->winHide(doIt);
+	m_options->winHide(doIt);
+	m_parent->winHide(doIt);
+	m_disabledLadder->winHide(doIt);
+}
+#pragma comment(linker, "/alternatename:?hideInfoGadgets@@YAX_N@Z=?hide@BfmeQuickMatchHideInfoGadgetsBody@@QAEX_N@Z")
+
 static void hideOptionsGadgets(Bool doIt)
 {
 	static NameKeyType parentOptionsID = NAMEKEY("WOLQuickMatchMenu.wnd:ParentOptions");
