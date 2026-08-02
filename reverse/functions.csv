@@ -12244,6 +12244,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAudioLODDefinition@INI@@SAXPAV1@@Z,,0x0007D560,209,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table node binds keyword AudioLOD to this address
 ?parseAudioLowMHz@@YAXPAVINI@@@Z,,0x0007BE70,43,Code/GameEngine/Source/Common/GameLOD.cpp,matched,AudioLowMHz block; sibling of parseReallyLowMHz -- GameLODManager m_audioLowMHz at +0x1738 right after m_reallyLowMHz at +0x1734
 ?parseAutoChoose@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x001EACB0,51,Code/GameEngine/Source/GameLogic/Object/WeaponTemplateSet_parseAutoChoose.asm,matched,Corrected one-byte-early queue RVA using INT3 and RET boundaries
+?parseBannerUI@@YAXPAVINI@@@Z,,0x00584D20,21,Code/GameEngine/Source/GameClient/GUI/BannerUI.cpp,matched,BFME-only; class name from the block keyword - the pointer at 0x012F4B70 has no recoverable name so the variable name is ours
 ?parseBenchProfile@INI@@SAXPAV1@@Z,,0x0007C7F0,131,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME retail GameLOD layout
 ?parseBitFlag@@YA_NPBDPAIPAPBD@Z,,0x004842E0,81,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E60,115,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
@@ -12326,6 +12327,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseLine@INI@@IAEXVAsciiString@@@Z,,0x00851350,362,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME factors the per-line dispatch out of load; three message-carrying INIException throws instead of ZH sprintf-into-a-1KB-stack-buffer
 ?parseLinePart@ShellMenuSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x00581540,124,Code/masm_dumps/parseLinePart_ShellMenuSchemeManager_581540.asm,matched,Certified packet 146; LinePart parser-table callback via ILT thunk; SHA256 8861c93a0273b919427ad0c960277df77ac80f4c557894cb8fa23ac31c22b7a1
 ?parseListboxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484760,166,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
+?parseLivingWorldMapInfo@@YAXPAVINI@@@Z,,0x0060D6B0,40,Code/GameEngine/Source/Common/INI/INILivingWorld.cpp,matched,BFME-only; TheLivingWorldManager named from GameEngine::init string literal - class unnamed so reached through a local view
 ?parseLoadSubsystem@SubsystemLegend@@QAEXPAVINI@@@Z,,0x009A15C0,219,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,parses one LoadSubsystem INI block into an entry and appends it; FieldParse table 0x011415C0
 ?parseLocomotorTemplateDefinition@LocomotorStore@@SAXPAVINI@@@Z,,0x001BAEC0,362,Code/masm_dumps/parseLocomotorTemplateDefinition_LocomotorStore_1BAEC0.asm,matched,Certified recovery packet 239 reviewed parser-table wrapper and call-graph identity
 ?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851130,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
