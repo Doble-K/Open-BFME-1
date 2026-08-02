@@ -709,7 +709,7 @@ void HMorphAnimClass::Get_Translation(Vector3& trans,int pividx,float frame) con
 }
 
 // ?HMorphAnimClass::Get_Orientation present-unmatched
-void HMorphAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
+bool HMorphAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
 {
 	int channel = PivotChannel[pividx];
 	int pose_frame0,pose_frame1;
@@ -721,6 +721,9 @@ void HMorphAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) con
 	Quaternion q1;
 	PoseData[channel]->Get_Orientation(q1,pividx,pose_frame1);
 	::Fast_Slerp(q,q0,q1,fraction);
+	// BFME reports whether the pivot actually has rotation; these bodies are not
+	// matched yet, so true is a placeholder that preserves Zero Hour behaviour.
+	return true;
 }
 
 // ?HMorphAnimClass::Get_Transform present-unmatched

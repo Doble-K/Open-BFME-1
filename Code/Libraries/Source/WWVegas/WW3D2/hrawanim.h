@@ -100,7 +100,7 @@ public:
 //	Vector3						Get_Translation(int pividx,float frame);
 //	Quaternion					Get_Orientation(int pividx,float frame);
 	void							Get_Translation(Vector3& translation, int pividx,float frame) const;
-	void							Get_Orientation(Quaternion& orientation, int pividx,float frame) const;
+	bool							Get_Orientation(Quaternion& orientation, int pividx,float frame) const;
 	void							Get_Transform(Matrix3D& transform, int pividx,float frame) const;
 	bool							Get_Visibility(int pividx,float frame);
 

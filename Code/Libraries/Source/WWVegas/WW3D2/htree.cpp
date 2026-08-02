@@ -607,6 +607,7 @@ void HTreeClass::Anim_Update(const Matrix3D & root,HAnimClass * motion,float fra
 
 	Pivot[0].Transform = root;
 	Pivot[0].IsVisible = true;
+	Pivot[0].PivotFade = 1.0f;
 
 	int num_anim_pivots = motion->Get_Num_Pivots ();
 
@@ -625,18 +626,18 @@ void HTreeClass::Anim_Update(const Matrix3D & root,HAnimClass * motion,float fra
 			motion->Get_Translation(trans,piv_idx,frame);
 			pivot->Transform.Translate(trans * ScaleFactor);
 
+			// BFME: the rotation is conditional -- Get_Orientation reports whether
+			// the animation has any for this pivot, and the matrix build and post
+			// multiply are skipped when it does not.
 			Quaternion q;
-			motion->Get_Orientation(q,piv_idx,frame);
-			::Build_Matrix3D(q,mtx);
+			if (motion->Get_Orientation(q,piv_idx,frame)) {
+				::Build_Matrix3D(q,mtx);
+				pivot->Transform.postMul(mtx);
+			}
 
-#ifdef ALLOW_TEMPORARIES
-			pivot->Transform = pivot->Transform * mtx;
-#else
-			pivot->Transform.postMul(mtx);
-#endif
-
-			// visibility
+			// visibility, and BFME's per-pivot fade alongside it
 			pivot->IsVisible = motion->Get_Visibility(piv_idx,frame);
+			pivot->PivotFade = motion->_bfme_hanim_fade(piv_idx,frame);
 		}
 
 		if (pivot->Is_Captured()) 

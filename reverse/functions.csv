@@ -13932,3 +13932,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Is_Animation_Complete@Animatable3DObjClass@@UBE_NXZ,,0x00981CA0,103,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Simple_Evaluate_Bone@Animatable3DObjClass@@UBE_NHPAVMatrix3D@@@Z,,0x00982C20,202,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Anim_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00981E10,112,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
+?Anim_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimClass@@M@Z,,0x00953AD0,987,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,

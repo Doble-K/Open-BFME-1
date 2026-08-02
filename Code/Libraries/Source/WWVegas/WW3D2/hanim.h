@@ -101,7 +101,11 @@ public:
 	virtual void				Get_Translation(int pividx,float frame) {}	// todo: remove
 	virtual void				Get_Orientation(int pividx,float frame) {}	// todo: remove
 	virtual void				Get_Translation(Vector3& translation, int pividx,float frame) const = 0;
-	virtual void				Get_Orientation(Quaternion& orientation, int pividx,float frame) const = 0;
+	// BFME: returns whether the animation actually has rotation for this pivot.
+	// HTreeClass::Anim_Update tests the result and skips building and post-
+	// multiplying the rotation matrix when it is false -- that is the test al,al
+	// right after the call. Zero Hour's returns void.
+	virtual bool				Get_Orientation(Quaternion& orientation, int pividx,float frame) const = 0;
 	virtual void				Get_Transform(Matrix3D&, int pividx, float frame) const = 0;
 	virtual bool				Get_Visibility(int pividx,float frame) = 0;
 

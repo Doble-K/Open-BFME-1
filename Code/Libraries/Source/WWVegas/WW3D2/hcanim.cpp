@@ -579,7 +579,7 @@ void HCompressedAnimClass::Get_Translation( Vector3& trans, int pividx, float fr
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
 // ?HCompressedAnimClass::Get_Orientation present-unmatched
-void HCompressedAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
+bool HCompressedAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
 {		
 	switch(Flavor) {
 		case ANIM_FLAVOR_TIMECODED:
@@ -594,6 +594,9 @@ void HCompressedAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame
 			WWASSERT(0); // unknown flavor
 			break;
 	}
+	// BFME reports whether the pivot actually has rotation; these bodies are not
+	// matched yet, so true is a placeholder that preserves Zero Hour behaviour.
+	return true;
 } // Get_Orientation
 
 /*********************************************************************************************** 

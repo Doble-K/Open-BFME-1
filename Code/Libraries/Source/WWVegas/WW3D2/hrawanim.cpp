@@ -527,7 +527,7 @@ void HRawAnimClass::Get_Translation(Vector3& trans, int pividx, float frame ) co
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
 // ?Get_Orientation@HRawAnimClass@@ present-unmatched
-void HRawAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
+bool HRawAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
 {
 //	int frame0 = (int)frame;
 	int frame0 = WWMath::Float_To_Long(frame-0.499999f);
@@ -581,7 +581,7 @@ void HRawAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
 
 	if ( ratio == 0.0f ) {
 		q=q0;
-		return;
+		return true;
 	}
 
 	Quaternion q1(1);
@@ -592,6 +592,9 @@ void HRawAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
 
 	Fast_Slerp(q, q0, q1, ratio );
 #endif
+	// BFME reports whether the pivot actually has rotation; these bodies are not
+	// matched yet, so true is a placeholder that preserves Zero Hour behaviour.
+	return true;
 }
 
 /*********************************************************************************************** 
