@@ -17475,252 +17475,32 @@ void TerrainCollisionModuleInfo::DoXfer(Xfer &xfer)
 }
 
 // ?DoXfer@WindModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
-__declspec(naked) void WindModuleInfo::DoXfer(Xfer &xfer)
+void WindModuleInfo::DoXfer(Xfer &xfer)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x50
-        __emit 0x10
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x85
-        __emit 0xd6
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x16
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0d
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x28
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x04
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xca
-        __emit 0xa0
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x08
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x14
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x18
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x1c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x20
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x24
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x28
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x2c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x30
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x34
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x38
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x3c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x92
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x40
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    if (xfer.IsLightCRC()) {
+        return;
     }
+    Xfer::Version v;
+    v.data[0] = 1;
+    v.data[1] = 1;
+    xfer == v;
+    xferInteger(xfer, m_type);
+    xfer == m_f0;
+    xfer == m_f1;
+    xfer == m_f2;
+    xfer == m_f3;
+    xfer == m_f4;
+    xfer == m_f5;
+    xfer == m_f6;
+    xfer == m_f7;
+    xfer == m_f8;
+    xfer == m_f9;
+    xfer == m_f10;
+    xfer == m_f11;
+    xfer == m_f12;
+    xfer == *(char *)((char *)this + 0x3c);
+    xfer == *(float *)((char *)this + 0x40);
+    xfer == *(float *)((char *)this + 0x44);
 }
 
 // ?createSlaveSystem@ParticleSystemTemplate@FXParticleSystem@@QBE?AV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@_N@Z
