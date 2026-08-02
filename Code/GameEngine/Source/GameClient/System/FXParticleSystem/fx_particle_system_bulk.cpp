@@ -15993,51 +15993,15 @@ __declspec(naked) ConcreteModuleTemplate<PointEmissionVolumeModuleTag>::Concrete
 }
 
 // ??0?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
-__declspec(naked) ConcreteModuleTemplate<PointEmissionVolumeModuleTag>::ConcreteModuleTemplate()
+ConcreteModuleTemplate<PointEmissionVolumeModuleTag>::ConcreteModuleTemplate()
 {
-    __asm {
-        __emit 0x8b
-        __emit 0xc1
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xac
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x80
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0xc6
-        __emit 0x40
-        __emit 0x0c
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x7c
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0x78
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x64
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc3
-    }
+	volatile unsigned int *vtableSlots = (unsigned int *)this;
+	vtableSlots[1] = 0x0110f9ac;
+	vtableSlots[2] = 0x0110f980;
+	*((volatile unsigned char *)this + 0x0c) = 0;
+	vtableSlots[0] = 0x0111117c;
+	vtableSlots[1] = 0x01111178;
+	vtableSlots[2] = 0x01111164;
 }
 
 // ??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@UAE@XZ
