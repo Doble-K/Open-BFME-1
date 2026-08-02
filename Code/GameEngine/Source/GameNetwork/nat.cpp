@@ -40,7 +40,7 @@
 #include "GameClient/EstablishConnectionsMenu.h"
 #include "GameNetwork/NetworkInterface.h"
 #include "GameNetwork/GameInfo.h"
-#include "GameNetwork/GameSpy/PeerThread.h"   // TU-scoped shim: BFME PeerRequest is 0x194, not 0x190 (see also the AsciiString shim)
+#include "GameNetwork/GameSpy/PeerThread.h"   // TU-scoped shim: BFME PeerRequest is 0x194, not 0x190 (and see the AsciiString shim)
 #include "GameNetwork/GameSpy/PeerDefs.h"
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
 #include "GameNetwork/GameSpy/GSConfig.h"

@@ -65,3 +65,27 @@ are unlikely to be the lever; stop permuting and mark it present-unmatched.
   functions the ledger does not declare" for a function that is plainly in the
   ledger, which is the tell.
 
+
+## A claimed address that is not an instruction boundary cannot be a function
+
+MASM byte dumps byte-verify against whatever bytes they were cut from, so a dump
+cut out of the middle of the wrong function passes the gate forever. Eight rows
+in the ledger were exactly that, 4,502 bytes of coverage that was never real.
+Every one of them claimed an address that lands *inside* an instruction of the
+function containing it -- one of them three bytes into a `cmp`, another one byte
+into an SEH prologue's `mov eax, fs:[0]`.
+
+The test is decisive and needs no judgement: linear-disassemble from the
+containing function's start; if the decode walks straight over the claimed
+address without landing on it, the row is wrong. `tools/audit_claim_boundaries.py`
+does this and stays silent on everything ambiguous -- a desynced decode, a claim
+in a gap, a claim that is itself a known function start. That is why it finds
+eight rows where two earlier attempts at ledger auditing found thousands of
+things that were fine and got thrown away.
+
+Two of the eight were also blocking real work: the bogus range covers the
+function the dump was cut from, so no honest claim on that function can be
+added while it exists. `?setGameOptions@GameSpyInfo@@UAEXXZ` sat 198 bytes
+inside `NAT::notifyUsersOfConnectionFailed`, in a different translation unit
+entirely -- which is its own tell, since functions from different TUs do not
+interleave in the image.
