@@ -2037,7 +2037,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RousingSpeechUpdateModuleData@@QAE@XZ,,0x00265450,146,Code/masm_dumps/RousingSpeechUpdateModuleData_constructor.asm,matched,Exact 146B @ 0x00265450; Exact retail MASM ModuleData ctor; unique factory 0x11C6C0
 ??0RubbleRiseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A3640,175,Code/masm_dumps/RubbleRiseUpdate_constructor.asm,matched,Exact 175B @ 0x002A3640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B6C0
 ??0RubbleRiseUpdateModuleData@@QAE@XZ,,0x00127AD0,202,Code/GameEngine/Source/Common/RTS/RubbleRiseUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0RunOffMapBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205060,60,Code/masm_dumps/RunOffMapBehavior_constructor.asm,matched,Exact 60B unique factory Open-BFME4
 ??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/GameEngine/Source/GameLogic/AI/RunOffMapBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,MASM converted to clean C++
 ??0SabotageFakeBuildingCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
@@ -13840,3 +13839,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??1?$VectorClass@PAVRender2DClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
+??0RunOffMapBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205060,60,Code/GameEngine/Source/GameLogic/Object/Update/RunOffMapBehavior.cpp,matched,Luna Open-BFME5.0 clean C++ inline UpdateModule constructor
