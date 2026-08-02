@@ -6,13 +6,13 @@ public:
     __declspec(dllexport) static void parseSoundsList(INI *, void *, void *, const void *);
 };
 
-__declspec(naked) void INI::parseSoundsList(INI *, void *, void *, const void *)
+class INIParseSoundsListShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 027h
-        _emit 034h
-        _emit 008h
-        _emit 000h
-    }
+public:
+    static void parse(INI *ini, void *store, void *userData, const void *desc);
+};
+
+void INI::parseSoundsList(INI *ini, void *store, void *userData, const void *desc)
+{
+    INIParseSoundsListShim::parse(ini, store, userData, desc);
 }
