@@ -7,13 +7,13 @@ public:
     __declspec(dllexport) static void WriteConditionDataChunk(DataChunkOutput &, Condition *);
 };
 
-__declspec(naked) void Condition::WriteConditionDataChunk(DataChunkOutput &, Condition *)
+class ConditionWriteChunkShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 01Ah
-        _emit 053h
-        _emit 031h
-        _emit 000h
-    }
+public:
+    static void write(DataChunkOutput &out, Condition *cond);
+};
+
+void Condition::WriteConditionDataChunk(DataChunkOutput &out, Condition *cond)
+{
+    ConditionWriteChunkShim::write(out, cond);
 }
