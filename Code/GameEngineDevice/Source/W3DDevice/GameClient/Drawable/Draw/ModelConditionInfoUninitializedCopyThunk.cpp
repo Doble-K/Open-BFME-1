@@ -8,19 +8,22 @@ public:
 
 namespace _STL
 {
-	struct __false_type;
+struct __false_type {};
 
-	template <class In, class Out>
-	__declspec(naked) Out __uninitialized_copy(In, In, Out, const __false_type &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0D5h
-			_emit 071h
-			_emit 03Ah
-			_emit 000h
-		}
-	}
+template <class In, class Out>
+Out __uninitialized_copy(In, In, Out, const __false_type &);
 
-	template ModelConditionInfo::HideShowSubObjInfo *__uninitialized_copy<const ModelConditionInfo::HideShowSubObjInfo *, ModelConditionInfo::HideShowSubObjInfo *>(const ModelConditionInfo::HideShowSubObjInfo *, const ModelConditionInfo::HideShowSubObjInfo *, ModelConditionInfo::HideShowSubObjInfo *, const __false_type &);
+class ModelConditionInfoUninitializedCopyShim
+{
+public:
+	static void *copy(void *first, void *last, void *result, const __false_type &);
+};
+
+template <class In, class Out>
+Out __uninitialized_copy(In first, In last, Out result, const __false_type &tag)
+{
+	return (Out)ModelConditionInfoUninitializedCopyShim::copy((void *)first, (void *)last, (void *)result, tag);
+}
+
+template ModelConditionInfo::HideShowSubObjInfo *__uninitialized_copy<const ModelConditionInfo::HideShowSubObjInfo *, ModelConditionInfo::HideShowSubObjInfo *>(const ModelConditionInfo::HideShowSubObjInfo *, const ModelConditionInfo::HideShowSubObjInfo *, ModelConditionInfo::HideShowSubObjInfo *, const __false_type &);
 }
