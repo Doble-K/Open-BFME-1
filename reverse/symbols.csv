@@ -1250,6 +1250,7 @@ name,address,notes
 ??0UpgradeDieModuleData@@QAE@XZ,0x0000F6BE,pinharvest x1 (thunk)
 ??0UpgradeDieModuleData@@QAE@XZ,0x000246CC,pinharvest x1 (thunk)
 ??0UpgradeDieModuleData@@QAE@XZ,0x0004A250,pinharvest x1 (thunk)
+??0UpgradeModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x001F8970,BFME UpgradeModule constructor body
 ??0UpgradeModuleData@@QAE@XZ,0x00049AA3,pinharvest x1 (thunk)
 ??0UpgradeMuxData@@QAE@XZ,0x000057B8,pinharvest x1 (thunk)
 ??0Vector3HollowSphereRandomizer@@QAE@M@Z,0x00B02350
