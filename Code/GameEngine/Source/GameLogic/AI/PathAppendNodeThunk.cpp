@@ -9,13 +9,13 @@ public:
     void appendNode(const Coord3D *position, PathfindLayerEnum layer);
 };
 
-__declspec(naked) void Path::appendNode(const Coord3D *, PathfindLayerEnum)
+class PathAppendNodeShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 06Dh
-        _emit 021h
-        _emit 013h
-        _emit 000h
-    }
+public:
+    void append(const Coord3D *position, PathfindLayerEnum layer);
+};
+
+void Path::appendNode(const Coord3D *position, PathfindLayerEnum layer)
+{
+    ((PathAppendNodeShim *)this)->append(position, layer);
 }
