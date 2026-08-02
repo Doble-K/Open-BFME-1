@@ -12434,6 +12434,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseSubsystemLegendDefinition@@YAXPAVINI@@@Z,,0x009A16A0,21,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,INI block callback registered under the keyword LoadSubsystem (table row 0x00ED7768)
 ?parseTWS@@YAXPAVINI@@PAX1PBX@Z,,0x0018C380,77,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
 ?parseTabControlData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484DE0,305,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
+?parseTerrainDefinition@INI@@SAXPAV1@@Z,,0x000C2AC0,195,Code/GameEngine/Source/Common/INI/INITerrain.cpp,matched,find-then-create on TheTerrainTypes; the second call is the already-matched newTerrain which is what names findTerrain at the first
 ?parseTextColor@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485730,402,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C80,270,Code/masm_dumps/_entry__parseTextEntryData_YA_NPADPAVWinInstanceData_0PAX_Z_484C80.asm,matched,
 ?parseThingTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAD60,186,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
