@@ -1254,3 +1254,35 @@ than advancing two pointers.
 
 When a byte loop is a couple of instructions off and no source shape moves it,
 check whether the original called a CRT function and let the compiler expand it.
+
+## The texture impl class is a BFME invention, not a modified Zero Hour one
+
+The handle/impl entry above establishes that BFME's texture objects hold a
+pointer at +0 to a separate 0x48-byte implementation object. This is the part
+that decides how to approach the subsystem: that object has no Zero Hour
+counterpart at all.
+
+The evidence is a string. The cluster around the impl allocation references
+
+```
+0090D112  'dyntex_%08x'
+0090E210  "Texture '"
+0090EBC8  '.tga'   0090EBF0  '.dds'   0090EC42  '.jpg'
+```
+
+and `dyntex_%08x` appears nowhere in `reference/CnC_Generals_Zero_Hour` or in
+`Code/`. It is a format for naming a dynamically created texture, and Zero Hour
+has no such naming anywhere in WW3D2.
+
+So the texture layer is not a port with drift. There is a class in retail that
+was never in the Westwood source, the ported classes hand their state to it, and
+every ported body reaches its members one indirection further than ours does.
+`locate.py` placing 0 of 152 across all six texture sources is the expected
+result, not a puzzle.
+
+What that means for anyone picking this up: do not keep adjusting the Zero Hour
+bodies. Reconstruct the impl class first -- its size is 0x48, its constructor
+zeroes +4 through +0x20 and +0x34/+0x38 at 0x0090D211, it carries a vtable, the
+D3D texture sits at +0x38, and three sibling vtables at VA 0x0113A668, 0x0113A6B0
+and 0x0113A6F8 share slots 0, 4, 5, 6, 7, 8, 10, 11 with slot 0 a plain getter
+rather than a destructor. The handle classes only make sense once it does.
