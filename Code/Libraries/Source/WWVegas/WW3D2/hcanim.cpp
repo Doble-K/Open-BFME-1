@@ -54,6 +54,11 @@
 
 #include "hcanim.h"
 #include "assetmgr.h"
+
+// BFME reaches the hierarchy through a free function, as HRawAnimClass::Load_W3D
+// does -- cdecl, one argument, caller cleans -- rather than through the asset
+// manager singleton. The body lives in another translation unit.
+HTreeClass *Get_HTree(const char *name);
 #include "htree.h"
 #include "motchan.h"
 #include "chunkio.h"
@@ -235,6 +240,10 @@ void HCompressedAnimClass::Free(void)
 	if (NodeMotion != NULL) {
 		delete[] NodeMotion;
 	}
+	// Outside the test, unlike HRawAnimClass::Free: retail's je at 0x0095C457
+	// lands at 0x0095C478, ahead of the store at 0x0095C47A, so it runs on both
+	// paths. Zero Hour never nulled it here at all.
+	NodeMotion = NULL;
 }
 
 
@@ -286,7 +295,7 @@ int HCompressedAnimClass::Load_W3D(ChunkLoadClass & cload)
    WWASSERT(sizeof(HierarchyName) >= W3D_NAME_LEN);
    strncpy(HierarchyName,aheader.HierarchyName,W3D_NAME_LEN);
 
-	HTreeClass * base_pose = WW3DAssetManager::Get_Instance()->Get_HTree(HierarchyName);
+	HTreeClass * base_pose = Get_HTree(HierarchyName);
 	if (base_pose == NULL) {
 		goto Error;
 	}
