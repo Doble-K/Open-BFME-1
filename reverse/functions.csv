@@ -13368,7 +13368,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?size@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QBEIXZ,,0x002CB260,26,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?size@MemoryReadFile@@UAEHXZ,,0x009CB170,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?size@MemoryWriteFile@@UAEHXZ,,0x009CB350,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
-?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,284,Code/masm_dumps/_rn6__sizeWindowsAlt_ControlBarResizer__QAEXXZ_4AB1A0.asm,matched,true size 284B; previous row claimed 277B
 ?sizeWindowsDefault@ControlBarResizer@@QAEXXZ,,0x004AB100,122,Code/masm_dumps/sizeWindowsDefault_ControlBarResizer_4AB100_packet229.asm,matched,Certified recovery packet 229 exact retail bytes SHA256 8e769ae3b84ff3a81f7e98fc36c10a362f552c8361f9009c7c08338860f40cb7
 ?skip@ButtonFlashTransition@@UAEXXZ,,0x0059AA80,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@ControlBarArrowTransition@@UAEXXZ,,0x0059B850,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getCurrentWorldspaceClientBonePositions@W3DModelDraw@@UBE_NPBDAAVMatrix3D@@@Z,,0x0075C5F0,127,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; same one-recoil-vector layout pin
 ?clientOnly_getRenderObjBoneTransform@W3DModelDraw@@UBE_NABVAsciiString@@PAVMatrix3D@@@Z,,0x00763520,193,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,MASM dump converted to clean C++; needs the layout pin and the 8-byte string header
 ?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z,,0x001E7F50,261,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,MASM dump converted to clean C++; BFME WeaponTemplate is 0x53C bytes so the weapon shim carries a tail pad
+?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,284,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,MASM dump converted to clean C++; BFME Display has 3 more virtuals before getWidth (reference/shims/display) plus the 8-byte string header
