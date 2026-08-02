@@ -4,26 +4,26 @@ struct ICoord2D;
 
 namespace _STL
 {
-	template <class Type>
-	class allocator
-	{
-	};
+template <class Type>
+class allocator
+{
+};
 
-	template <class Type, class Allocator>
-	class vector
-	{
-	public:
-		~vector();
-	};
+template <class Type, class Allocator>
+class vector
+{
+public:
+	~vector();
+};
 
-	__declspec(naked) vector<ICoord2D, allocator<ICoord2D> >::~vector()
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0EEh
-			_emit 0ECh
-			_emit 008h
-			_emit 000h
-		}
-	}
+class ICoord2DVectorDestructorShim
+{
+public:
+	void destroy();
+};
+
+vector<ICoord2D, allocator<ICoord2D> >::~vector()
+{
+	((ICoord2DVectorDestructorShim *)this)->destroy();
+}
 }
