@@ -31,11 +31,6 @@ public:
     void construct(const void *source);
 };
 
-class DefaultModuleTemplate1CtorShim {
-public:
-    void construct();
-};
-
 class DefaultModuleTemplate3CtorShim {
 public:
     void construct();
