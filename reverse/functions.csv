@@ -14035,3 +14035,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?closeAllFiles@Win32BIGFileSystem@@UAEXXZ,,0x009CC3B0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_closeAllFiles.cpp,matched,vtable 0x01143B40 slot 7 -- bare ret so the vtable is the whole evidence with ZH closeAllFiles being empty as corroboration
