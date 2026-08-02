@@ -4,6 +4,7 @@ class DefinitionClass;
 class Render2DClass;
 class TextureClass;
 class VertexMaterialClass;
+struct tThreadInfoType;
 
 template <class T>
 class VectorClass
@@ -39,3 +40,4 @@ template class VectorClass<DefinitionClass *>;
 template class VectorClass<Render2DClass *>;
 template class VectorClass<TextureClass *>;
 template class VectorClass<VertexMaterialClass *>;
+template class VectorClass<tThreadInfoType *>;
