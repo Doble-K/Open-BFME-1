@@ -2675,6 +2675,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AggregateDefClass@@UAE@XZ,,0x00981150,58,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,
 ??1Anim2D@@MAE@XZ,,0x005BA670,61,Code/GameEngine/Source/GameClient/System/Anim2D_dtor.asm,matched,True body between ctor and tryNextFrame; queue 0x9F27FD was int3 pad. MASM: C++ tail-jmps wrong Snapshot ICF alias
 ??1Anim2DCollection@@UAE@XZ,,0x005BA3A0,108,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
+??1Anim2DTemplate@@UAE@XZ,,0x005BAE20,34,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,clean C++ replaces MASM destructor
 ??1AnimalAIUpdate@@UAE@XZ,,0x0027E5A0,843,Code/masm_dumps/AnimalAIUpdate_destructor.asm,matched,Exact 843B; factory ownership Open-BFME4
 ??1AnimalAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/masm_dumps/AnimalAIUpdateModuleData_destructor.asm,matched,Exact 145B SEH dtor Open-BFME4
 ??1Animatable3DObjClass@@UAE@XZ,,0x009828E0,114,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
