@@ -3,6 +3,7 @@
 typedef bool Bool;
 
 class BFMENetworkLock;
+void *BFMENetworkAllocate(unsigned int bytes);
 
 struct BFMENetworkListNode
 {
@@ -66,6 +67,9 @@ private:
 class BFMENetworkLock
 {
 public:
+	BFMENetworkLock(const char *name);
+	~BFMENetworkLock();
+
 	void *m_handle;
 	int m_refCount;
 };
@@ -103,29 +107,99 @@ private:
 class BFMENetworkQueue
 {
 public:
+	BFMENetworkQueue()
+	{
+		m_begin = 0;
+		m_04 = 0;
+		m_08 = 0;
+		m_0c = 0;
+		m_end = 0;
+		m_14 = 0;
+		m_storageEnd = 0;
+		m_1c = 0;
+		m_20 = 0;
+		m_24 = 0;
+		finishConstruct(0);
+	}
+	~BFMENetworkQueue();
+
 	Bool empty() const { return m_end == m_begin; }
 	void popFront();
+	void finishConstruct(void *unused);
 
 	void *volatile m_begin;
-	char m_pad04[0x0c];
+	void *volatile m_04;
+	void *volatile m_08;
+	void *volatile m_0c;
 	char *volatile m_end;
-	char m_pad14[0x04];
-	char *m_storageEnd;
-	char m_pad1c[0x0c];
+	void *volatile m_14;
+	char *volatile m_storageEnd;
+	void *volatile m_1c;
+	void *volatile m_20;
+	void *m_24;
 };
 
 class BFMENetworkQueue1
 {
 public:
+	BFMENetworkQueue1()
+	{
+		m_begin = 0;
+		m_04 = 0;
+		m_08 = 0;
+		m_0c = 0;
+		m_end = 0;
+		m_14 = 0;
+		m_storageEnd = 0;
+		m_1c = 0;
+		m_20 = 0;
+		m_24 = 0;
+		finishConstruct(0);
+	}
+	~BFMENetworkQueue1();
+
 	Bool empty() const { return m_end == m_begin; }
 	void popFront();
+	void finishConstruct(void *unused);
 
 	void *volatile m_begin;
-	char m_pad04[0x0c];
+	void *volatile m_04;
+	void *volatile m_08;
+	void *volatile m_0c;
 	char *volatile m_end;
-	char m_pad14[0x04];
-	char *m_storageEnd;
-	char m_pad1c[0x0c];
+	void *volatile m_14;
+	char *volatile m_storageEnd;
+	void *volatile m_1c;
+	void *volatile m_20;
+	void *volatile m_24;
+};
+
+class BFMENetworkState
+{
+public:
+	BFMENetworkState();
+	~BFMENetworkState();
+
+private:
+	int m_data[3];
+};
+
+struct BFMENetworkPayloadList
+{
+	BFMENetworkPayloadList() : head(0)
+	{
+		head = static_cast<BFMENetworkListNode *>(BFMENetworkAllocate(0x1d8));
+		size = 0;
+		head->flag = false;
+		head->value = 0;
+		head->next = head;
+		head->previous = head;
+	}
+	~BFMENetworkPayloadList();
+
+	BFMENetworkListNode *head;
+	int size;
+	int allocatorStorage;
 };
 
 class BFMENetworkThreadRunner
@@ -164,10 +238,17 @@ public:
 	virtual void dispatchEvents();
 };
 
-class BFMENetwork
+class BFMENetworkInterfaceBase
 {
 public:
-	void *construct();
+	virtual ~BFMENetworkInterfaceBase();
+};
+
+class BFMENetwork : public BFMENetworkInterfaceBase
+{
+public:
+	BFMENetwork();
+	virtual ~BFMENetwork();
 	void *destroyAndMaybeDelete(unsigned int flags);
 	void init();
 	Bool backendHasLiveHandle();
@@ -183,13 +264,17 @@ public:
 	void *copyState84(void *out);
 
 private:
-	void *m_vtable;
 	BFMENetworkLock m_lock0;
 	BFMENetworkLock m_lock1;
 	BFMENetworkQueue m_queue0;
 	BFMENetworkQueue1 m_queue1;
 	BFMENetworkBackend *m_backend;
-	char m_pad2[0x3c];
+	void *m_unknown68;
+	BFMENetworkState m_state6c;
+	BFMENetworkState m_state78;
+	BFMENetworkState m_state84;
+	BFMENetworkPayloadList m_list90;
+	BFMENetworkLock m_lock9c;
 	BFMEAutoLockRef *m_backendLockRef;
 };
 
@@ -698,132 +783,14 @@ doneWrapperDeleting:
 	}
 }
 
-// ?construct@BFMENetwork@@QAEPAXXZ
-__declspec(naked) void *BFMENetwork::construct()
+BFMENetwork::BFMENetwork() :
+	m_lock0(0),
+	m_lock1(0),
+	m_lock9c(0)
 {
-	__asm {
-		push 0ffffffffh
-		push 01043626h
-		mov eax, fs:[0]
-		push eax
-		mov fs:[0], esp
-		push ecx
-		push ebx
-		push esi
-		mov esi, ecx
-		mov [esp+8], esi
-		xor ebx, ebx
-		push ebx
-		lea ecx, [esi+4]
-		mov [esp+18h], ebx
-		mov dword ptr [esi], 01119c8ch
-		__emit 0xe8
-		__emit 0xbd
-		__emit 0x06
-		__emit 0x38
-		__emit 0x00
-		push ebx
-		lea ecx, [esi+0ch]
-		mov byte ptr [esp+18h], 1
-		__emit 0xe8
-		__emit 0xaf
-		__emit 0x06
-		__emit 0x38
-		__emit 0x00
-		lea ecx, [esi+14h]
-		mov [ecx], ebx
-		mov [ecx+4], ebx
-		mov [ecx+8], ebx
-		mov [ecx+0ch], ebx
-		mov [ecx+10h], ebx
-		mov [ecx+14h], ebx
-		mov [ecx+18h], ebx
-		mov [ecx+1ch], ebx
-		mov [ecx+20h], ebx
-		push ebx
-		mov byte ptr [esp+18h], 2
-		mov [ecx+24h], ebx
-		__emit 0xe8
-		__emit 0x37
-		__emit 0x5d
-		__emit 0x9b
-		__emit 0xff
-		lea ecx, [esi+3ch]
-		mov [ecx], ebx
-		mov [ecx+4], ebx
-		mov [ecx+8], ebx
-		mov [ecx+0ch], ebx
-		mov [ecx+10h], ebx
-		mov [ecx+14h], ebx
-		mov [ecx+18h], ebx
-		mov [ecx+1ch], ebx
-		mov [ecx+20h], ebx
-		push ebx
-		mov byte ptr [esp+18h], 3
-		mov [ecx+24h], ebx
-		__emit 0xe8
-		__emit 0x58
-		__emit 0x3c
-		__emit 0x9d
-		__emit 0xff
-		lea ecx, [esi+6ch]
-		mov byte ptr [esp+14h], 4
-		__emit 0xe8
-		__emit 0xb6
-		__emit 0x57
-		__emit 0x9e
-		__emit 0xff
-		lea ecx, [esi+78h]
-		mov byte ptr [esp+14h], 5
-		__emit 0xe8
-		__emit 0xa9
-		__emit 0x57
-		__emit 0x9e
-		__emit 0xff
-		lea ecx, [esi+84h]
-		mov byte ptr [esp+14h], 6
-		__emit 0xe8
-		__emit 0x99
-		__emit 0x57
-		__emit 0x9e
-		__emit 0xff
-		push 1d8h
-		mov byte ptr [esp+18h], 7
-		mov [esi+90h], ebx
-		__emit 0xe8
-		__emit 0x2a
-		__emit 0x72
-		__emit 0x22
-		__emit 0x00
-		mov [esi+90h], eax
-		mov [esi+94h], ebx
-		mov [eax], bl
-		mov eax, [esi+90h]
-		mov [eax+4], ebx
-		mov eax, [esi+90h]
-		mov [eax+8], eax
-		mov eax, [esi+90h]
-		add esp, 4
-		mov [eax+0ch], eax
-		push ebx
-		lea ecx, [esi+9ch]
-		mov byte ptr [esp+18h], 8
-		__emit 0xe8
-		__emit 0xdd
-		__emit 0x05
-		__emit 0x38
-		__emit 0x00
-		mov [esi+0a4h], ebx
-		mov [esi+64h], ebx
-		mov [esi+68h], ebx
-		mov ecx, [esp+0ch]
-		mov eax, esi
-		pop esi
-		pop ebx
-		mov fs:[0], ecx
-		add esp, 10h
-		ret
-	}
+	m_backendLockRef = 0;
+	m_backend = 0;
+	m_unknown68 = 0;
 }
 
 __declspec(naked) void BFMENetwork::init()
