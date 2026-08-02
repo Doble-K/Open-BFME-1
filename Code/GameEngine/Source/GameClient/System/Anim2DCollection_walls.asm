@@ -1,29 +1,6 @@
 .386
 .model flat
 
-; ?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z
-; Exact 106 retail bytes @ 0x005BB050; by-value AsciiString arg copy is
-; out-of-line in BFME (AsciiString reconciliation wall).
-_TEXT SEGMENT
-public ?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z
-?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z PROC
-    db 06Ah,0FFh,068h,0FBh,093h,003h,001h,064h
-    db 0A1h,000h,000h,000h,000h,050h,064h,089h
-    db 025h,000h,000h,000h,000h,083h,0ECh,008h
-    db 056h,057h,06Ah,01Ch,08Bh,0F9h,0E8h,0BDh
-    db 06Eh,02Ch,000h,08Bh,0F0h,083h,0C4h,004h
-    db 089h,074h,024h,008h,033h,0C0h,03Bh,0F0h
-    db 089h,044h,024h,018h,074h,018h,08Bh,044h
-    db 024h,020h,051h,089h,064h,024h,010h,08Bh
-    db 0CCh,050h,0E8h,0C9h,0CAh,02Ch,000h,08Bh
-    db 0CEh,0E8h,043h,0C2h,0A6h,0FFh,08Bh,04Fh
-    db 008h,089h,048h,004h,08Bh,04Ch,024h,010h
-    db 089h,047h,008h,05Fh,064h,089h,00Dh,000h
-    db 000h,000h,000h,05Eh,083h,0C4h,014h,0C2h
-    db 004h,000h
-?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z ENDP
-_TEXT ENDS
-
 ; ?findTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z
 ; Exact 155 retail bytes @ 0x005BB330; BFME AsciiString compare with
 ; TheEmptyString fallback (AsciiString reconciliation wall).
