@@ -764,7 +764,10 @@ void HTreeClass::Blend_Update
 		pivot = &Pivot[piv_idx];
 
 		assert(pivot->Parent != NULL);
-		Matrix3D::Multiply(pivot->Parent->Transform,pivot->BaseTransform,&(pivot->Transform));
+		// mul() rather than Multiply(): the first is WWINLINE and the second is not,
+		// which is how retail ends up with the base-pose multiply inlined here and
+		// called from Anim_Update.
+		pivot->Transform.mul(pivot->Parent->Transform,pivot->BaseTransform);
 
 		if (piv_idx < num_anim_pivots) {
 			// interpolated translation

@@ -327,8 +327,22 @@ a call. Retail calls it in `Anim_Update` and inlines it in `Blend_Update`, which
 is just MSVC's cost model differing between the two functions -- but our
 `matrix3d.h` declares `Multiply` non-inline, so we always call it.
 
-Making it `WWINLINE` should reproduce both choices, since it is the same
-compiler and flags. The obstacle is that its 403-byte body at 0x008D80C0 is
-still a MASM dump, so it has to be written as real C++ first, and it has to keep
-matching standalone afterwards. That is the next thing to do for the blend
-evaluators, and it is a prerequisite for both of them.
+That guess was wrong, and the right answer is simpler. Making `Multiply`
+`WWINLINE` breaks five other functions in htree.cpp, because MSVC then inlines
+it everywhere. `Matrix3D::mul` is **already** `WWINLINE` and does the same job:
+`pivot->Transform.mul(a, b)` inlines where `Matrix3D::Multiply(a, b, &dest)`
+calls, and that one substitution takes Blend_Update from 1473 to **1744 of
+retail's 1746 bytes**. Two different spellings of the same multiply, chosen per
+call site -- that is how retail gets the split.
+
+`Matrix3D::Multiply` did turn out to be worth converting on its own account: its
+403 bytes match the reference's ALLOW_TEMPORARIES arm exactly, first try,
+despite matrix3d.cpp's own note claiming its codegen had drifted.
+
+What is left of Blend_Update is two bytes and an operand ordering: retail's
+inlined postMul accumulates its three products in the order (0x38 x [esi+0x44]),
+(0x58 x [esi+0x4c]), (0x48 x [esi+0x48]) and ours rotates that to (0x58, 0x48,
+0x38). Same terms, same instruction lengths, different order -- the commuted-
+operand trap docs/matching.md warns about, in a shared WWINLINE that
+Anim_Update already matches through, so the difference has to come from the
+argument expression rather than from postMul itself.
