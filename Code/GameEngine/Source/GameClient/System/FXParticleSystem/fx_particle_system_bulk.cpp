@@ -6705,61 +6705,17 @@ __declspec(naked) const ConcreteModuleClass<ModuleTag<6, STREAK_DRAW_MODULE_KEY,
 }
 
 // ??0?$ConcreteModuleClass@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@AAE@XZ
-__declspec(naked) ConcreteModuleClass<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate> >::ConcreteModuleClass()
+ConcreteModuleClass<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate> >::ConcreteModuleClass()
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x15
-        __emit 0x18
-        __emit 0x6d
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x12
-        __emit 0x8b
-        __emit 0xc1
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x1c
-        __emit 0x6d
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x09
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x74
-        __emit 0x08
-        __emit 0x11
-        __emit 0x01
-        __emit 0x89
-        __emit 0x50
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x08
-        __emit 0x65
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x89
-        __emit 0x48
-        __emit 0x0c
-        __emit 0xa3
-        __emit 0x08
-        __emit 0x65
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x13
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc3
-    }
+    const void *first = *reinterpret_cast<void **>(*reinterpret_cast<void **>(0x012f6d1c));
+    void **slots = reinterpret_cast<void **>(this);
+    const void *second = *reinterpret_cast<void **>(*reinterpret_cast<void **>(0x012f6d18));
+    slots[0] = (void *)0x01110874;
+    slots[1] = (void *)second;
+    slots[2] = (void *)first;
+    slots[3] = *reinterpret_cast<void **>(0x012f6508);
+    *reinterpret_cast<void **>(0x012f6508) = this;
+    slots[0] = (void *)0x011113e8;
 }
 
 // ??1?$ConcreteModuleClass@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
