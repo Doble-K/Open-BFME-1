@@ -5,13 +5,13 @@ class Dict
     void releaseData();
 };
 
-__declspec(naked) void Dict::releaseData()
+class DictReleaseDataShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 046h
-        _emit 03Dh
-        _emit 005h
-        _emit 000h
-    }
+public:
+    void release();
+};
+
+void Dict::releaseData()
+{
+    ((DictReleaseDataShim *)this)->release();
 }
