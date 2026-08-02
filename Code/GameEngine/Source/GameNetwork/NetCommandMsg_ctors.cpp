@@ -497,22 +497,22 @@ void NetFileProgressCommandMsg::setProgress(Int v) { m_progress = v; }
 
 // NetFileCommandMsg carries the file payload. setFileData at 0x00673FA0 pins the
 // two fields the accessors below read: it stores the length at +0x24 and the
-// freshly allocated buffer at +0x20, in that order. BFME keeps only one filename
-// where the reference keeps a real and a portable one, which is why the payload
-// pair sits at +0x20/+0x24 rather than the reference's +0x24/+0x28.
+// freshly allocated buffer at +0x20, in that order. Only the portable form of
+// the path is stored -- getRealFilename converts on the way out, which is what
+// puts the payload pair at +0x20/+0x24 rather than the reference's +0x24/+0x28.
 class NetFileCommandMsg : public NetCommandMsg
 {
 public:
 	UnsignedInt getFileLength();
 	UnsignedByte *getFileData();
 
-	void *m_realFilename;							// this+0x1C
-	UnsignedByte *m_fileData;						// this+0x20
-	UnsignedInt m_fileLength;						// this+0x24
+	void *m_portableFilename;						// this+0x1C
+	UnsignedByte *m_data;							// this+0x20
+	UnsignedInt m_dataLength;						// this+0x24
 };
 
-UnsignedInt NetFileCommandMsg::getFileLength() { return m_fileLength; }
-UnsignedByte *NetFileCommandMsg::getFileData() { return m_fileData; }
+UnsignedInt NetFileCommandMsg::getFileLength() { return m_dataLength; }
+UnsignedByte *NetFileCommandMsg::getFileData() { return m_data; }
 
 // NetFileAnnounceCommandMsg announces a file to a subset of players. Its two
 // scalars are packed rather than aligned to dwords -- the id is a word at +0x20
@@ -525,7 +525,7 @@ public:
 	UnsignedByte getPlayerMask();
 	void setPlayerMask(UnsignedByte v);
 
-	void *m_realFilename;							// this+0x1C
+	void *m_portableFilename;						// this+0x1C
 	UnsignedShort m_fileID;							// this+0x20
 	UnsignedByte m_playerMask;						// this+0x22
 };

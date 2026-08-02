@@ -955,3 +955,34 @@ declared. Nothing in the byte diff points there, which is why it is worth
 writing down — the same shim is used elsewhere in the tree as a plain extern and
 will produce the same two-byte difference in any function that builds one of
 these by value.
+
+## `x = y` and `x.set(y)` schedule the destination differently
+
+Two AsciiString setters sat one instruction apart from retail for several
+rounds: retail emits `lea ecx,[esi+0x1c]` then `push eax`, and a source
+written as `m_x.set(expr)` emits the push first. Nothing about registers or
+flags -- the same two instructions, swapped.
+
+The cause is the shape of the call, not the scheduler. Retail's source is
+`m_x = expr`, and `operator=` is an inline that forwards to `set`. Inlining
+materialises the assignment target before the argument, which is exactly the
+order retail shows. Writing `.set()` by hand skips that step and lets the
+argument go first.
+
+So when a member-call near-miss differs only in whether the `this` adjustment
+precedes the argument push, check whether retail was really calling an inline
+wrapper. Reaching for a pointer local (`T *dst = &m_x; dst->set(...)`) can
+force the same order, but it is a worse source and it moves the `lea` too
+early as soon as the argument is itself a call.
+
+## A nothrow `operator delete[]` declaration removes a spurious EH state
+
+`~NetFileCommandMsg` initialised its EH state variable to 1 and stepped it
+down to 0 before destroying its string member, where retail sets 0 once and
+never moves. The extra state is the unwind entry MSVC adds for a function
+body that can throw while a destructible member is alive -- and the only call
+in the body was `delete[] m_data`.
+
+Declaring `void __cdecl operator delete[](void *) throw();` in the TU is what
+the real <new> does, and with it the body needs no state of its own. Without
+any declaration the compiler assumes the array deallocation can throw.

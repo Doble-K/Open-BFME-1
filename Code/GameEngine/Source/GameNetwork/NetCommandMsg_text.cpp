@@ -31,9 +31,17 @@ class StringBase
 	friend class NetChatCommandMsg;
 	friend class BFMENetRequestGameSpyStatsAuthKeyCommandMsg;
 	friend class BFMENetGameSpyStatsAuthKeyCommandMsg;
+	friend class NetFileCommandMsg;
+	friend class NetFileAnnounceCommandMsg;
 
 public:
+	void clear();
 	void set(const StringBase<T> &src);
+
+	// Inline, and it really is inline in retail: assignment through it lands
+	// straight on set() at 0x00887C90, never on the out-of-line operator=
+	// forwarder at 0x008881B0.
+	StringBase<T> &operator=(const StringBase<T> &src) { set(src); return *this; }
 
 private:
 	StringBase() { m_data = 0; }
@@ -63,7 +71,8 @@ enum NetCommandType
 {
 	NETCOMMANDTYPE_UNKNOWN = -1,
 	NETCOMMANDTYPE_REQUEST_GAMESPY_STATS_AUTHKEY = 5,
-	NETCOMMANDTYPE_GAMESPY_STATS_AUTHKEY = 6
+	NETCOMMANDTYPE_GAMESPY_STATS_AUTHKEY = 6,
+	NETCOMMANDTYPE_FILEANNOUNCE = 20
 };
 
 class NetCommandMsg
@@ -163,8 +172,7 @@ AsciiString BFMENetRequestGameSpyStatsAuthKeyCommandMsg::getText1C()
 
 void BFMENetRequestGameSpyStatsAuthKeyCommandMsg::setText1C(AsciiString text)
 {
-	AsciiString *dst = &m_text1C;
-	dst->set(text);
+	m_text1C = text;
 }
 
 class BFMENetGameSpyStatsAuthKeyCommandMsg : public NetCommandMsg
@@ -193,8 +201,7 @@ AsciiString BFMENetGameSpyStatsAuthKeyCommandMsg::getText1C()
 
 void BFMENetGameSpyStatsAuthKeyCommandMsg::setText1C(AsciiString text)
 {
-	AsciiString *dst = &m_text1C;
-	dst->set(text);
+	m_text1C = text;
 }
 
 AsciiString BFMENetGameSpyStatsAuthKeyCommandMsg::getText20()
@@ -204,6 +211,96 @@ AsciiString BFMENetGameSpyStatsAuthKeyCommandMsg::getText20()
 
 void BFMENetGameSpyStatsAuthKeyCommandMsg::setText20(AsciiString text)
 {
-	AsciiString *dst = &m_text20;
-	dst->set(text);
+	m_text20 = text;
+}
+
+
+// Both file commands store only the portable form of the map path and convert on
+// the way out, exactly as the reference does. The pair of converters lives on
+// GameState, reached through the global at 0x012EF190, and is called directly
+// rather than virtually.
+//
+// The assignment in setRealFilename goes to ?set@?$StringBase@D@@QAEXABV1@@Z, not
+// to operator=: retail inlines AsciiString's operator= down to the set() call,
+// where this tree's operator= is the 19-byte forwarder at 0x008881B0. Writing
+// set() here reproduces retail; writing = would add that hop.
+void __cdecl operator delete[](void *block) throw();
+
+class GameState
+{
+public:
+	AsciiString portableMapPathToRealMapPath(const AsciiString &path) const;
+	AsciiString realMapPathToPortableMapPath(const AsciiString &path) const;
+};
+
+GameState *TheGameState;
+
+class NetFileCommandMsg : public NetCommandMsg
+{
+public:
+	AsciiString getRealFilename();
+	void setRealFilename(AsciiString filename);
+
+	AsciiString m_portableFilename;					// this+0x1C
+	UnsignedByte *m_data;							// this+0x20
+	UnsignedInt m_dataLength;						// this+0x24
+
+protected:
+	virtual ~NetFileCommandMsg();
+};
+
+NetFileCommandMsg::~NetFileCommandMsg()
+{
+	if (m_data != 0) {
+		::operator delete[](m_data);
+		m_data = 0;
+	}
+}
+
+AsciiString NetFileCommandMsg::getRealFilename()
+{
+	return TheGameState->portableMapPathToRealMapPath(m_portableFilename);
+}
+
+void NetFileCommandMsg::setRealFilename(AsciiString filename)
+{
+	m_portableFilename = TheGameState->realMapPathToPortableMapPath(filename);
+}
+
+class NetFileAnnounceCommandMsg : public NetCommandMsg
+{
+public:
+	NetFileAnnounceCommandMsg();
+
+	AsciiString getRealFilename();
+	void setRealFilename(AsciiString filename);
+
+	AsciiString m_portableFilename;					// this+0x1C
+	UnsignedShort m_fileID;							// this+0x20
+	UnsignedByte m_playerMask;						// this+0x22
+
+protected:
+	virtual ~NetFileAnnounceCommandMsg();
+};
+
+NetFileAnnounceCommandMsg::NetFileAnnounceCommandMsg()
+{
+	m_commandType = NETCOMMANDTYPE_FILEANNOUNCE;
+	m_portableFilename.clear();
+	m_fileID = 0;
+	m_playerMask = 0;
+}
+
+NetFileAnnounceCommandMsg::~NetFileAnnounceCommandMsg()
+{
+}
+
+AsciiString NetFileAnnounceCommandMsg::getRealFilename()
+{
+	return TheGameState->portableMapPathToRealMapPath(m_portableFilename);
+}
+
+void NetFileAnnounceCommandMsg::setRealFilename(AsciiString filename)
+{
+	m_portableFilename = TheGameState->realMapPathToPortableMapPath(filename);
 }

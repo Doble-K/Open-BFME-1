@@ -14074,3 +14074,10 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?init@Win32LocalFileSystem@@UAEXXZ,,0x009CDDA0,1,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,vtable 0x01143B98 slot 1 -- bare ret so the vtable is the evidence; the FileSystem setup at 0x009C8820 calls TheLocalFileSystem through [eax+4] which corroborates the slot
+?getRealFilename@NetFileCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675450,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+??0NetFileAnnounceCommandMsg@@QAE@XZ,,0x00675520,114,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+??1NetFileAnnounceCommandMsg@@MAE@XZ,,0x006755B0,73,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?getRealFilename@NetFileAnnounceCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675610,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+??1NetFileCommandMsg@@MAE@XZ,,0x006753D0,96,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?setRealFilename@NetFileCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675480,117,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
+?setRealFilename@NetFileAnnounceCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675640,117,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
