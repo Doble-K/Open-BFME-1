@@ -12238,8 +12238,7 @@ __declspec(naked) LightningEmissionInfo::LightningEmissionInfo()
 // Body in LightningEmissionModuleTemplateCopyCtorThunk.cpp (exact retail bytes).
 
 // ??0LightningEmissionModuleTemplate@FXParticleSystem@@QAE@XZ
-// Body in LightningEmissionModuleTemplate_ctor.asm (SEH ctor; C++ naked
-// still gets MSVC member-init fragments prepended under this toolchain).
+// Body in LightningEmissionModuleTemplateCtorThunk.cpp (exact retail bytes).
 
 // ??0LineEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@XZ
 LineEmissionVolumeModuleTemplate::LineEmissionVolumeModuleTemplate()
