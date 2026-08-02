@@ -3227,6 +3227,7 @@ name,address,notes
 ?killThemKillThemAll@SelectionTranslator@@AAE_NPAVDrawable@@PAVGameMessage@@@Z,0x00019F5B
 ?less@AsciiStringLessShim@@SA_NABVAsciiString@@0@Z,0x006451D0,AsciiString less-than incremental-link thunk target through a TU-local forwarding shim
 ?test@BridgeCellOnEndShim@@QAE_NPBURegion2D@@@Z,0x001A24B0,Bridge cell-end incremental-link thunk target through a TU-local forwarding shim
+?test@BridgePointOnBridgeShim@@QAE_NPBUCoord3D@@@Z,0x001A5F40,Bridge point-on-bridge incremental-link thunk target through a TU-local forwarding shim
 ?linkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z,0x0002B87D,winSetParent depth Open-BFME4+Grok
 ?load@INI@@QAEXVAsciiString@@HHPAX@Z,0x00853CB0,retail INI::load(file loadType reload xfer); called by the subsystem loader at 0x000BB310
 ?loadBridgesInVertexAndIndexBuffers@W3DBridgeBuffer@@IAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x000367EB

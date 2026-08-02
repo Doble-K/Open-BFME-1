@@ -8,13 +8,13 @@ public:
     bool isPointOnBridge(const Coord3D *);
 };
 
-__declspec(naked) bool Bridge::isPointOnBridge(const Coord3D *)
+class BridgePointOnBridgeShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 004h
-        _emit 019h
-        _emit 019h
-        _emit 000h
-    }
+public:
+    bool test(const Coord3D *point);
+};
+
+bool Bridge::isPointOnBridge(const Coord3D *point)
+{
+    return ((BridgePointOnBridgeShim *)this)->test(point);
 }
