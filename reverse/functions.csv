@@ -10166,7 +10166,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@HijackerUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00126D50,58,Code/GameEngine/Source/GameLogic/Object/Update/HijackerUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@HitReactionBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x0011D000,107,Code/GameEngine/Source/GameLogic/Object/Behavior/HitReactionBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@HiveStructureBody@@SAPAVModuleData@@PAVINI@@@Z,,0x001145D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@HordeAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00123FB0,113,Code/masm_dumps/HordeAIUpdate_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
+?friend_newModuleData@HordeAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00123FB0,113,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@HordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00115BC0,110,Code/masm_dumps/HordeContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@HordeGarrisonContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00115FB0,110,Code/masm_dumps/HordeGarrisonContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@HordeSiegeEngineContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00116360,110,Code/masm_dumps/HordeSiegeEngineContain_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
