@@ -32,6 +32,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$_Construct@U?$pair@$$CBVUnicodeString@@_N@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBVUnicodeString@@_N@0@ABU10@@Z,,0x0044D660,79,Code/GameEngine/Source/GameClient/LanguageFilter.cpp,matched,
 ??$_Construct@U?$pair@$$CBW4LocomotorSetType@@V?$vector@PBVLocomotorTemplate@@V?$allocator@PBVLocomotorTemplate@@@_STL@@@_STL@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4LocomotorSetType@@V?$vector@PBVLocomotorTemplate@@V?$allocator@PBVLocomotorTemplate@@@_STL@@@_STL@@@0@ABU10@@Z,,0x001375A0,66,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,
 ??$_Construct@U?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@0@ABU10@@Z,,0x00761A60,19,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
+??$_Construct@U?$pair@$$CBW4NameKeyType@@VArmorTemplate@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@VArmorTemplate@@@0@ABU10@@Z,,0x001B0050,34,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,
 ??$_Construct@U?$pair@$$CBW4NameKeyType@@VModuleTemplate@ModuleFactory@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@VModuleTemplate@ModuleFactory@@@0@ABU10@@Z,,0x000699F0,39,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??$_Construct@U?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@0@ABU10@@Z,,0x00261530,66,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ??$_Construct@U?$pair@$$CB_KUModelConditionInfo@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CB_KUModelConditionInfo@@@0@ABU10@@Z,,0x000E5170,82,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
@@ -1041,6 +1042,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$pair@$$CBW4NameKeyType@@PAVLocomotorTemplate@@@_STL@@QAE@ABU01@@Z,,0x007E59E0,19,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,ICF alias of existing matched body
 ??0?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@QAE@ABU01@@Z,,0x0075EA00,91,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ??0?$pair@$$CBW4NameKeyType@@UPristineBoneInfo@@@_STL@@QAE@ABW4NameKeyType@@ABUPristineBoneInfo@@@Z,,0x00761100,94,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
+??0?$pair@$$CBW4NameKeyType@@VArmorTemplate@@@_STL@@QAE@ABU01@@Z,,0x001AFE60,30,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,
+??0?$pair@$$CBW4NameKeyType@@VArmorTemplate@@@_STL@@QAE@ABW4NameKeyType@@ABVArmorTemplate@@@Z,,0x001AFD60,31,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,
 ??0?$pair@$$CBW4NameKeyType@@VModuleTemplate@ModuleFactory@@@_STL@@QAE@ABU01@@Z,,0x000695F0,37,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0?$pair@$$CBW4NameKeyType@@VModuleTemplate@ModuleFactory@@@_STL@@QAE@ABW4NameKeyType@@ABVModuleTemplate@ModuleFactory@@@Z,,0x00069580,38,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0?$pair@$$CBW4NameKeyType@@VObjectCreationList@@@_STL@@QAE@ABU01@@Z,,0x00261440,90,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
@@ -2061,6 +2064,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ScaleTextureMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00964670,146,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0ScaleTextureMapperClass@@QAE@ABVVector2@@I@Z,,0x00964600,55,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0SceneClass@@QAE@XZ,,0x00942F30,64,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
+??0ScienceInfo@@AAE@XZ,,0x000E84B0,49,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ??0ScienceStore@@QAE@XZ,,0x00076E50,29,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??0ScoreScaleUpTransition@@QAE@XZ,,0x0048B8D0,847,Code/masm_dumps/_sa3___0ScoreScaleUpTransition__QAE_XZ_48B8D0.asm,matched,Exact 847B string-anchored Open-BFME4
 ??0ScreenMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00922680,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
@@ -4911,6 +4915,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GLinearOffsetTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GLocalFileSystem@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GLocomotor@@MAEPAXI@Z,,0x001B0E60,30,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,icf-owner=??_GUpgrade@@MAEPAXI@Z
+??_GLocomotorStore@@UAEPAXI@Z,,0x005D3170,30,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ??_GLookAtTranslator@@UAEPAXI@Z,,0x005A6600,30,Code/GameEngine/Source/GameClient/MessageStream/LookAtXlat.cpp,matched,
 ??_GLookupTableClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GMainMenuMediumScaleUpTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
@@ -5040,6 +5045,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSaveLoadSubSystemClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GScaleTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GScaleUpTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
+??_GScienceInfo@@MAEPAXI@Z,,0x000E84F0,30,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ??_GScoreScaleUpTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GScreenFadeTransition@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSegLineRendererClass@@QAEPAXI@Z,,0x00983620,30,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
@@ -5146,6 +5152,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GWaterSetting@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWaterTracksRenderSystem@@QAEPAXI@Z,,0x0079E6B0,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
 ??_GWaterTransparencySetting@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
+??_GWeapon@@MAEPAXI@Z,,0x001E6900,30,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ??_GWin32LocalFileSystem@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWinInstanceData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GWindModuleInfo@FXParticleSystem@@UAEPAXI@Z,,0x005BDAA0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -9105,6 +9112,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clear@?$vector@W4ParticleSystemID@@V?$allocator@W4ParticleSystemID@@@_STL@@@_STL@@QAEXXZ,,0x000BC7A0,37,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,
 ?clear@?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@QAEXXZ,,0x000BBC50,37,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?clear@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAEXXZ,,0x005060E0,48,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
+?clear@ArmorTemplate@@QAEXXZ,,0x001AFBB0,79,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,
 ?clear@ArmorTemplateSet@@QAEXXZ,,0x0013F1A0,11,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?clear@DFX@DamageFX@@QAEXXZ,,0x007FA950,14,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?clear@Dict@@QAEXXZ,,0x00068530,16,Code/GameEngine/Source/Common/Dict.cpp,matched,
@@ -9515,6 +9523,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?depth@Region3D@@QBEMXZ,0x0001DB24,0x007E6E30,7,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,returns float depth
 ?destroy@BFMEConnectionManager@@QAEXXZ,,0x00668D90,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?destroy@LListNode@@QAEXXZ,,0x001059F0,15,Code/GameEngine/Source/Common/System/List.cpp,matched,
+?destroy@LocomotorTemplateDeleteAccess@@SAXPAVLocomotorTemplate@@@Z,,0x00160E50,15,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ?destroyAllDrives@CDManager@@UAEXXZ,,0x00101D00,54,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
 ?destroyAndMaybeDelete@BFMENetwork@@QAEPAXI@Z,,0x0065ADB0,30,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper vtable slot +0x00; scalar deleting destructor wrapper
 ?destroyAndMaybeDelete@BFMENetworkBackend@@QAEPAXI@Z,,0x00654890,30,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME backend vtable slot +0x00; scalar deleting destructor wrapper
@@ -12571,6 +12580,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?push_back@?$vector@HV?$allocator@H@_STL@@@_STL@@QAEXABH@Z,,0x00754670,50,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,icf-owner=?push_back@?$vector@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QAEXABQAVObject@@@Z
 ?push_back@?$vector@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QAEXABQAVObject@@@Z,,0x00754670,50,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?push_back@?$vector@PAVObjectCreationNugget@@V?$allocator@PAVObjectCreationNugget@@@_STL@@@_STL@@QAEXABQAVObjectCreationNugget@@@Z,,0x001D77D0,50,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
+?push_back@?$vector@PAVScienceInfo@@V?$allocator@PAVScienceInfo@@@_STL@@@_STL@@QAEXABQAVScienceInfo@@@Z,,0x000E7B20,50,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ?push_back@?$vector@PBVFXList@@V?$allocator@PBVFXList@@@_STL@@@_STL@@QAEXABQBVFXList@@@Z,,0x00201510,50,Code/GameEngine/Source/GameLogic/Object/Update/StructureCollapseUpdate.cpp,matched,
 ?push_back@?$vector@U?$pair@UICoord2D@@UCoord3D@@@_STL@@V?$allocator@U?$pair@UICoord2D@@UCoord3D@@@_STL@@@2@@_STL@@QAEXABU?$pair@UICoord2D@@UCoord3D@@@2@@Z,,0x00144EA0,62,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?push_back@?$vector@U?$pair@W4ObjectID@@I@_STL@@V?$allocator@U?$pair@W4ObjectID@@I@_STL@@@2@@_STL@@QAEXABU?$pair@W4ObjectID@@I@2@@Z,,0x00774200,62,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
