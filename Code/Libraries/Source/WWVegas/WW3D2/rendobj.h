@@ -610,6 +610,15 @@ protected:
 	virtual void					Update_Cached_Bounding_Volumes(void) const;
 	virtual void					Update_Sub_Object_Bits(void);
 
+	// BFME has one more virtual at the END of RenderObjClass than ZH does.
+	// Both box render-object constructors - AABoxRenderObjClass @0x957880 and
+	// OBBoxRenderObjClass @0x957C20 - reach BoxRenderObjClass's own first
+	// virtual, update_cached_box, through slot +0x20C where this header lands
+	// it at +0x208. It has to be the last slot: putting it any earlier moves
+	// slots that matched rows across WW3D2 and the draw modules already pin.
+	// Name and signature unknown.
+	virtual void					_bfme_rendobj_tail_slot(void) { }
+
 	bool								Bounding_Volumes_Valid(void) const										{ return (Bits & BOUNDING_VOLUMES_VALID) != 0; }
 	void								Invalidate_Cached_Bounding_Volumes(void) const						{ Bits &= ~BOUNDING_VOLUMES_VALID; }
 	void								Validate_Cached_Bounding_Volumes(void)	const							{ Bits |= BOUNDING_VOLUMES_VALID; }

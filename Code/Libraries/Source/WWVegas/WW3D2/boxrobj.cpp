@@ -565,7 +565,6 @@ void BoxRenderObjClass::render_box(RenderInfoClass & rinfo,const Vector3 & cente
  * HISTORY:                                                                                    *
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
-// ??0AABoxRenderObjClass@@ present-unmatched
 AABoxRenderObjClass::AABoxRenderObjClass(void)
 {
 	update_cached_box();

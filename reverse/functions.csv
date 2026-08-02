@@ -1072,7 +1072,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AABoxClass@@QAE@ABVVector3@@0@Z,,0x00728AE0,46,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??0AABoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00957850,39,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0AABoxRenderObjClass@@QAE@ABV0@@Z,,0x00957E80,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
-??0AABoxRenderObjClass@@QAE@ABVAABoxClass@@@Z,,0x00957880,147,Code/masm_dumps/_rn4___0AABoxRenderObjClass__QAE_ABVAABoxClass___Z_957880.asm,matched,reloc-needle Open-BFME4+Grok
 ??0AAPlaneClass@@QAE@W4AxisEnum@0@M@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,tiny-locate
 ??0AIAttackAimAtTargetState@@QAE@PAVStateMachine@@_N1@Z,,0x00171180,68,Code/GameEngine/Source/GameLogic/AI/AIAttackAimAtTargetStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0AIAttackAreaState@@QAE@PAVStateMachine@@@Z,,0x001718A0,54,Code/GameEngine/Source/GameLogic/AI/AIAttackAreaStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME AIUpdateInterface puts m_turretAI at +0x1E8
 ?updateNemesis@TunnelTracker@@QAEXPBVObject@@@Z,,0x000F90D0,124,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,MASM dump converted to clean C++; single-base TunnelTracker plus two extra BFME KindOf entries before KINDOF_AIRCRAFT
 ?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME TurretAI has one polymorphic base fewer so m_angle is at +0x18
+??0AABoxRenderObjClass@@QAE@ABVAABoxClass@@@Z,,0x00957880,147,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,MASM dump converted to clean C++; BFME RenderObjClass has one more virtual at its tail
