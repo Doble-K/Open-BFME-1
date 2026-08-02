@@ -54,7 +54,6 @@ void WaterTracksRenderSystem::loadTracks()
 {
 	((WaterTracksRenderSystemLoadTracksShim *)this)->loadTracks();
 }
-
 class TerrainLogicAddWaypointLinkShim
 {
 public:
