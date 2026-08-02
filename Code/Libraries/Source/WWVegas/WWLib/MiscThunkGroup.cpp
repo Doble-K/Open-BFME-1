@@ -22,6 +22,17 @@ public:
 	void makeEmpty();
 };
 
+class SimpleObjectIteratorMakeEmptyShim
+{
+public:
+	void makeEmpty();
+};
+
+void SimpleObjectIterator::makeEmpty()
+{
+	((SimpleObjectIteratorMakeEmptyShim *)this)->makeEmpty();
+}
+
 class WaterTracksRenderSystemLoadTracksShim
 {
 public:
@@ -55,13 +66,3 @@ __declspec(naked) void FontLibrary::deleteAllFonts()
 	}
 }
 
-__declspec(naked) void SimpleObjectIterator::makeEmpty()
-{
-	__asm {
-		_emit 0E9h
-		_emit 002h
-		_emit 059h
-		_emit 03Fh
-		_emit 000h
-	}
-}
