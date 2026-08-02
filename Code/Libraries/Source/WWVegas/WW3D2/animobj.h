@@ -73,7 +73,11 @@ public:
 	// Render Object Interface - Rendering
 	/////////////////////////////////////////////////////////////////////////////
 	virtual void					Render(RenderInfoClass & rinfo);
-	virtual void					Special_Render(SpecialRenderInfoClass & rinfo);
+	// BFME: rendobj.h keeps Special_Render out of the retail vtable, so this
+	// override has to follow -- left virtual it became a brand new slot rather
+	// than an override, and it was the fourth of the four that put
+	// Set_Animation_Frame_Rate_Multiplier at 134 instead of 130.
+	void							Special_Render(SpecialRenderInfoClass & rinfo);
 
 	/////////////////////////////////////////////////////////////////////////////
 	// Render Object Interface - "Scene Graph"
@@ -116,9 +120,11 @@ public:
 	// to update the heirarchy, but needs to know the transform of
 	// a bone at a given frame.
 	//
-	// BFME: retail vtable order has the float-frame overload first (slots 133/134).
-	virtual bool					Simple_Evaluate_Bone(int boneindex, float frame, Matrix3D *tm) const;
+	// BFME: retail has the float-frame overload at 133 and the other at 134. MSVC
+	// lays overloads of one name into the vtable back to front, so the one that
+	// should land FIRST is declared SECOND.
 	virtual bool					Simple_Evaluate_Bone(int boneindex, Matrix3D *tm) const;
+	virtual bool					Simple_Evaluate_Bone(int boneindex, float frame, Matrix3D *tm) const;
 
 	// (gth) TESTING DYNAMICALLY SWAPPING SKELETONS!
 	// BFME: not virtual in retail (Animatable3DObjClass adds exactly 5 virtuals).

@@ -72,9 +72,13 @@ public:
 	virtual void					Notify_Removed(SceneClass * scene);
 
 	virtual bool					Cast_Ray(RayCollisionTestClass & raytest);
-	virtual bool					Cast_AABox(AABoxCollisionTestClass & boxtest);
-	virtual bool					Cast_OBBox(OBBoxCollisionTestClass & boxtest);
-	virtual bool					Intersect_AABox(AABoxIntersectionTestClass & boxtest);
+	// BFME: rendobj.h already keeps these three out of the retail vtable. Leaving
+	// them virtual here reintroduced them as three NEW slots on
+	// CompositeRenderObjClass, which pushed everything Animatable3DObjClass adds
+	// four places too far down -- see the note on Special_Render in animobj.h.
+	bool								Cast_AABox(AABoxCollisionTestClass & boxtest);
+	bool								Cast_OBBox(OBBoxCollisionTestClass & boxtest);
+	bool								Intersect_AABox(AABoxIntersectionTestClass & boxtest);
 	virtual bool					Intersect_OBBox(OBBoxIntersectionTestClass & boxtest);
 
 	virtual void					Create_Decal(DecalGeneratorClass * generator, bool unk = false);
