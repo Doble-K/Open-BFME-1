@@ -7445,7 +7445,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Re_Orthogonalize@Matrix3D@@QAEXXZ,,0x008D8260,534,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
 ?Re_Partition@GridCullSystemClass@@UAEXABVVector3@@0M@Z,,0x008DEDA0,575,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Read@BufferedFileClass@@UAEHPAXH@Z,,0x009E7630,272,Code/Libraries/Source/WWVegas/WWLib/bufffile.cpp,matched,
-?Read@ChunkLoadClass@@QAEKPAXK@Z,,0x009E15C0,142,Code/masm_dumps/__Read_ChunkLoadClass__QAEKPAXK_Z_9E15C0.asm,matched,
 ?Read@DebugIONet@@UAEHPADH@Z,,0x0088FB90,115,Code/Libraries/Source/WWVegas/WWDebug/debug_io_net.cpp,matched,
 ?Read@RawFileClass@@UAEHPAXH@Z,,0x009E6760,205,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Read@UDP@@QAEHPAEIPAUsockaddr_in@@@Z,,0x00039EBE,5,Code/GameEngine/Source/GameNetwork/UDPReadThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x684630 (recvfrom identity)
@@ -13840,3 +13839,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ??0ElvenWoodSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025B2B0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ElvenWoodSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
+?Read@ChunkLoadClass@@QAEKPAXK@Z,,0x009E15C0,142,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout

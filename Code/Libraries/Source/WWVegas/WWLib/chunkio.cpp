@@ -82,6 +82,35 @@ bool ChunkLoadClass::Close_Chunk()
 }
 
 
+uint32 ChunkLoadClass::Read(void *buffer, uint32 byte_count)
+{
+	BFMEChunkLoadLayout *layout = (BFMEChunkLoadLayout *)this;
+	if (layout->PositionStack[layout->StackIndex - 1] + byte_count >
+		(layout->HeaderStack[layout->StackIndex - 1].ChunkSize & 0x7FFFFFFF)) {
+		return 0;
+	}
+
+	if (layout->InMicroChunk && layout->MicroChunkPosition + byte_count > layout->MCHeader.ChunkSize) {
+		return 0;
+	}
+
+	if (layout->File) {
+		if (layout->File->Read(buffer, byte_count) != (int)byte_count) {
+			return 0;
+		}
+	} else if (layout->Input->Read(buffer, byte_count) != (int)byte_count) {
+		return 0;
+	}
+
+	layout->PositionStack[layout->StackIndex - 1] += byte_count;
+	if (layout->InMicroChunk) {
+		layout->MicroChunkPosition += byte_count;
+	}
+
+	return byte_count;
+}
+
+
 uint32 ChunkLoadClass::Cur_Chunk_ID()
 {
 	int index = *(int *)((char *)this + 0x08);
