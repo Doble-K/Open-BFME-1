@@ -207,7 +207,29 @@ void ArchiveFileSystem::loadMods() {
 	}
 }
 
-// ?doesFileExist@ArchiveFileSystem@@ present-unmatched
+// BFME's find(char) scans str() to str()+length rather than calling strchr, so
+// it reads the same 16-bit header field bfmeLength does. On a null buffer it
+// uses the shared empty string and a zero length, which makes the range empty
+// and the search fail immediately -- the same shape as retail's
+// `mov eax, offset ""; xor ecx,ecx`.
+static inline const char *bfmeFind( const AsciiString &s, char c )
+{
+	const char *d = *(const char * const *)&s;
+	const char *p = d ? d + 8 : "";
+	const char *end = p + (d ? *(const unsigned short *)(d + 4) : 0);
+
+	for (; p != end; ++p) {
+		if (*p == c) {
+			return p;
+		}
+	}
+	return NULL;
+}
+
+// ?doesFileExist@ArchiveFileSystem@@UBE_NPBD@Z
+// Vtable slot 8 of 0x01143A08, which FileSystem::doesFileExist reaches through
+// [eax+0x20]; that caller byte-matches retail, so the slot is a fact. The two
+// "\\/" literals in the body are this function's two nextToken calls.
 Bool ArchiveFileSystem::doesFileExist(const Char *filename) const
 {
 	AsciiString path = filename;
@@ -218,7 +240,7 @@ Bool ArchiveFileSystem::doesFileExist(const Char *filename) const
 
 	path.nextToken(&token, "\\/");
 
-	while (!token.find('.') || path.find('.')) 
+	while (!bfmeFind(token, '.') || bfmeFind(path, '.'))
 	{
 		ArchivedDirectoryInfoMap::const_iterator tempiter = dirInfo->m_directories.find(token);
 		if (tempiter != dirInfo->m_directories.end()) 
