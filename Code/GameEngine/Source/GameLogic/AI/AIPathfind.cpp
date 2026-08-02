@@ -1008,8 +1008,45 @@ PathfindCellInfo *PathfindCellInfo::s_firstFree = NULL;
  * Allocates a pool of pathfind cell infos.
  */
 // ?allocateCellInfos@PathfindCellInfo@@SAXXZ
-// Body in AIPathfind_allocateCellInfos.asm (exact 123B retail @ 0x3F6AD0).
-// BFME: grow free-list by 256 x 0x34 cells (not ZH's one-shot 30000).
+void PathfindCellInfo::allocateCellInfos(void)
+{
+	PathfindCellInfo *block = (PathfindCellInfo *)new UnsignedByte[0x3400];
+	if (block != NULL)
+	{
+		UnsignedInt *slot = (UnsignedInt *)((char *)block + 0x30);
+		for (Int i = 0x100; i != 0; --i)
+		{
+			slot[-1] = 0;
+			slot[0] = 0;
+			slot = (UnsignedInt *)((char *)slot + 0x34);
+		}
+	}
+	else
+	{
+		block = NULL;
+	}
+
+	UnsignedInt *slot = (UnsignedInt *)((char *)block + 0x2C);
+	for (Int i = 0x100; i != 0; --i)
+	{
+		if (slot[1] != 0)
+		{
+			UnsignedInt previous = slot[0];
+			*(UnsignedInt *)slot[1] = previous;
+			if (slot[0] != 0)
+				*(UnsignedInt *)(slot[0] + 0x30) = slot[1];
+			slot[1] = 0;
+			slot[0] = 0;
+		}
+
+		slot[1] = 0x012F1094;
+		slot[0] = *(UnsignedInt *)0x012F1094;
+		if (slot[0] != 0)
+			*(UnsignedInt *)(slot[0] + 0x30) = (UnsignedInt)slot;
+		*(UnsignedInt *)0x012F1094 = (UnsignedInt)((char *)slot - 0x2C);
+		slot = (UnsignedInt *)((char *)slot + 0x34);
+	}
+}
 
 /**
  * Releases a pool of pathfind cell infos.

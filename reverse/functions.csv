@@ -8762,7 +8762,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?allocate@?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VMapMetaData@@@_STL@@@_STL@@@_STL@@QBEPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VMapMetaData@@@_STL@@@2@IPBX@Z,,0x001AFF70,46,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,
 ?allocate@__new_alloc@_STL@@SAPAXI@Z,,0x0082E540,162,Code/masm_dumps/_icf2__allocate___new_alloc__STL__SAPAXI_Z_82E540.asm,matched,ICF of ?_M_allocate@?$__node_alloc@$00$0A@@_STL@@CAPAXI@Z Open-BFME4+Grok
 ?allocateBlocks@PathfindZoneManager@@QAEXABUIRegion2D@@@Z,,0x00403D50,287,Code/masm_dumps/allocateBlocks_PathfindZoneManager_00403D50_149ae938.asm,matched,Certified packet 94 exact retail MASM recovery SHA256 149ae93817eb6bdfe8ba1cb43af2b051f9bae4adbdf4c26f67e399ac5549bc36
-?allocateCellInfos@PathfindCellInfo@@SAXXZ,,0x003F6AD0,123,Code/GameEngine/Source/GameLogic/AI/AIPathfind_allocateCellInfos.asm,matched,exact 123B MASM BFME grow-by-256 pool at 0x3F6AD0 (queue RVA was int3 pad)
+?allocateCellInfos@PathfindCellInfo@@SAXXZ,,0x003F6AD0,123,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,exact 123B C++ BFME grow-by-256 pool at 0x3F6AD0
 ?allocateImages@Anim2DTemplate@@QAEXG@Z,,0x005BA140,71,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?allocateNewWeapon@WeaponStore@@QBEPAVWeapon@@PBVWeaponTemplate@@W4WeaponSlotType@@@Z,,0x001BDD90,100,Code/masm_dumps/_rn5__allocateNewWeapon_WeaponStore__QBEPAVWeapon__PBVWeaponTemplate__W4Wea_1BDD90.asm,matched,reloc-needle Open-BFME4+Grok
 ?allocateNewWindow@GameWindowManager@@QAEPAVGameWindow@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
