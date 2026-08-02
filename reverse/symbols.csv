@@ -3387,6 +3387,7 @@ name,address,notes
 ?run@BuddyThreadClassConnectCallbackShim@@QAEXPAVGPConnection@@PAUGPConnectResponseArg@@@Z,0x0063E490,BuddyThreadClass connectCallback incremental-link thunk target through a TU-local forwarding shim
 ?run@BuddyThreadClassErrorCallbackShim@@QAEXPAVGPConnection@@PAUGPErrorArg@@@Z,0x0063D210,BuddyThreadClassErrorCallbackShim incremental-link thunk target through a TU-local forwarding shim
 ?run@BuddyThreadClassMessageCallbackShim@@QAEXPAVGPConnection@@PAUGPRecvBuddyMessageArg@@@Z,0x0063C910,BuddyThreadClass messageCallback incremental-link thunk target through a TU-local forwarding shim
+?run@BuddyThreadClassRequestCallbackShim@@QAEXPAVGPConnection@@PAUGPRecvBuddyRequestArg@@@Z,0x0063CA60,BuddyThreadClass requestCallback incremental-link thunk target through a TU-local forwarding shim
 ?run@ConditionDuplicateShim@@QBEPAVCondition@@XZ,0x00357D30,Condition duplicate incremental-link thunk target through a TU-local forwarding shim
 ?run@DictEnsureUniqueShim@@QAEPAUDictPair@1@H_NPAU21@@Z,0x000683D0,Dict ensureUnique incremental-link thunk target through a TU-local forwarding shim
 ?run@DrawableClearAndSetModelConditionStateShim@@QAEXW4ModelConditionFlagType@@0@Z,0x00526660,Drawable clearAndSetModelConditionState incremental-link thunk target through a TU-local forwarding shim

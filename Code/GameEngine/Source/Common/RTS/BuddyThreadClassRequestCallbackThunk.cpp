@@ -9,13 +9,13 @@ public:
     void requestCallback(GPConnection *, GPRecvBuddyRequestArg *);
 };
 
-__declspec(naked) void BuddyThreadClass::requestCallback(GPConnection *, GPRecvBuddyRequestArg *)
+class BuddyThreadClassRequestCallbackShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0BCh
-        _emit 0ACh
-        _emit 060h
-        _emit 000h
-    }
+public:
+    void run(GPConnection *conn, GPRecvBuddyRequestArg *arg);
+};
+
+void BuddyThreadClass::requestCallback(GPConnection *conn, GPRecvBuddyRequestArg *arg)
+{
+    ((BuddyThreadClassRequestCallbackShim *)this)->run(conn, arg);
 }
