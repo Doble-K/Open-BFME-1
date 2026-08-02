@@ -2,19 +2,21 @@
 
 class Render2DSentenceClass
 {
-	struct PendingSurfaceStruct
+public:
+	class PendingSurfaceStruct
 	{
+	public:
 		~PendingSurfaceStruct();
 	};
 };
 
-__declspec(naked) Render2DSentenceClass::PendingSurfaceStruct::~PendingSurfaceStruct()
+class Render2DSentenceClassPendingSurfaceStructDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 045h
-		_emit 0A2h
-		_emit 05Dh
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+Render2DSentenceClass::PendingSurfaceStruct::~PendingSurfaceStruct()
+{
+	((Render2DSentenceClassPendingSurfaceStructDestructorShim *)this)->destroy();
 }

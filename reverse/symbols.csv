@@ -2991,6 +2991,7 @@ name,address,notes
 ?destroy@PlayerTemplateDestructorShim@@QAEXXZ,0x000E27A0,PlayerTemplate destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@ProductionPrerequisiteDestroyShim@_STL@@SAXPAVProductionPrerequisite@@0@Z,0x003A9010,_STL _Destroy ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?destroy@ProductionPrerequisiteDestructorShim@@QAEXXZ,0x00753450,ProductionPrerequisite destructor incremental-link thunk target through a TU-local forwarding shim
+?destroy@Render2DSentenceClassPendingSurfaceStructDestructorShim@@QAEXXZ,0x005DC1E0,Render2DSentenceClass::PendingSurfaceStruct dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@UserPreferencesDestructorShim@@QAEXXZ,0x000AAF30,UserPreferences destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@W3DAnimationInfoDestructorShim@@QAEXXZ,0x00610080,W3DAnimationInfo dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@WindowVideoDestructorShim@@QAEXXZ,0x004981A0,WindowVideo destructor incremental-link thunk target through a TU-local forwarding shim
