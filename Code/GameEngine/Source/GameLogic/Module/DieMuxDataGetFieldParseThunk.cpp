@@ -8,13 +8,13 @@ public:
     static const FieldParse *getFieldParse();
 };
 
-__declspec(naked) const FieldParse *DieMuxData::getFieldParse()
+class DieMuxDataGetFieldParseShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 015h
-        _emit 0BEh
-        _emit 023h
-        _emit 000h
-    }
+public:
+    static const FieldParse *run();
+};
+
+const FieldParse *DieMuxData::getFieldParse()
+{
+    return DieMuxDataGetFieldParseShim::run();
 }
