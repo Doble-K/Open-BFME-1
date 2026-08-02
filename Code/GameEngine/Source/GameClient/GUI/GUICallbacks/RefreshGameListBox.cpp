@@ -2,13 +2,15 @@
 
 class GameWindow;
 
-__declspec(naked) void RefreshGameListBox(GameWindow *, bool)
+void RefreshGameListBox(GameWindow *, bool);
+
+class RefreshGameListBoxShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0BFh
-		_emit 0E5h
-		_emit 061h
-		_emit 000h
-	}
+public:
+    static void run(GameWindow *window, bool flag);
+};
+
+void RefreshGameListBox(GameWindow *window, bool flag)
+{
+    RefreshGameListBoxShim::run(window, flag);
 }
