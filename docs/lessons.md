@@ -261,3 +261,37 @@ Anything that calls a slot above 96 through a render object is blocked on this.
 The cheapest way to find the five is a probe translation unit that includes the
 real headers and calls a handful of virtuals, then reading the displacements out
 of the object file -- one compile answers it, where guessing costs a build each.
+
+## To name a global, find its setter and then the setter's callers
+
+`FileSystem::openFile` reads three globals that nothing named. Reading the
+global itself is useless -- all three live in `.data`'s zero-fill tail, so their
+file bytes are the next section's, and even with correct bytes they are written
+at runtime.
+
+What works is going up the write side, one hop at a time:
+
+1. Scan `.text` for the 4-byte little-endian address. `tools/xref_global.py`
+   does the claimed half; the unclaimed sites are the interesting ones, because
+   a global's *writers* are usually small unclaimed helpers.
+2. Disassemble each site. A write that stands alone between `int3` padding is a
+   whole setter function -- `0x00061BE2` is literally
+   `mov byte [0x0134CB4C], 1; ret`.
+3. Scan for `E8` calls to that setter. Setters have few callers.
+4. Read the caller's arguments. That is where the name lives.
+
+For `byte_134CA48` the chain ended at `GameEngine::init+291`, which formats
+`"Lang\%s"` and passes the result -- so the global is the localisation
+subdirectory, and `sprintf("%s\\%s", byte_134CA48, filename)` is the
+language-specific lookup path. No other evidence in the image says that.
+
+The same sweep also settled `byte_134CB4C` against the reading that was already
+written down. It had been guessed to suppress the archive lookup; the
+disassembly shows two archive blocks, one gated on `!flag` before the local
+block and one gated on `flag` after it. It selects search *order*, not
+presence -- a distinction a byte dump cannot express and a guess got backwards.
+
+Note what the chain does NOT give you: a retail identifier. Knowing a global is
+the language path is not knowing what EA called it, so these stay
+`byte_134CA48`-style address names. The evidence names the *role*; only a symbol
+source names the symbol. Record the role in the header and leave the name alone.
