@@ -8,13 +8,13 @@ public:
     void setLastLadder(const AsciiString &, unsigned short);
 };
 
-__declspec(naked) void QuickMatchPreferences::setLastLadder(const AsciiString &, unsigned short)
+class QuickMatchPreferencesSetLastLadderShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 005h
-        _emit 036h
-        _emit 008h
-        _emit 000h
-    }
+public:
+    void set(const AsciiString &ladder, unsigned short port);
+};
+
+void QuickMatchPreferences::setLastLadder(const AsciiString &ladder, unsigned short port)
+{
+    ((QuickMatchPreferencesSetLastLadderShim *)this)->set(ladder, port);
 }

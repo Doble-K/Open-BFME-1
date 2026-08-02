@@ -3400,6 +3400,7 @@ name,address,notes
 ?set@LayoutFilename@@QAEXPBDH@Z,0x00887D20
 ?set@NetFileProgressSetFileIDShim@@QAEXG@Z,0x00674090,NetFileProgressCommandMsg setFileID incremental-link thunk target through a TU-local forwarding shim
 ?set@NetFileProgressSetProgressShim@@QAEXH@Z,0x006740B0,NetFileProgressCommandMsg setProgress incremental-link thunk target through a TU-local forwarding shim
+?set@QuickMatchPreferencesSetLastLadderShim@@QAEXABVAsciiString@@G@Z,0x000AD140,QuickMatchPreferences setLastLadder incremental-link thunk target through a TU-local forwarding shim
 ?set@RetailLayoutString@@QAEXPBDH@Z,0x00887D20
 ?set@UnicodeString@@QAEXABV1@@Z,0x00887C90,additive; per-TU copy (static 0x01336E2C)
 ?set@UnicodeString@@QAEXABV1@@Z,0x00888530
