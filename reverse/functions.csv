@@ -2610,6 +2610,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$VectorClass@PAVDefinitionClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@PAVRender2DClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@PAVTextureClass@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_PAVTextureClass____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
+??1?$VectorClass@PAVTextureClass@@@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@PAVVertexMaterialClass@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_PAVVertexMaterialClass____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
 ??1?$VectorClass@UAddInfoStruct@MixFileFactoryClass@@@@UAE@XZ,,0x0093E480,67,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,icf-owner=??1?$DynamicVectorClass@UFileOffsetStruct@@@@UAE@XZ
 ??1?$VectorClass@UFileOffsetStruct@@@@UAE@XZ,,0x0093E480,67,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,icf-owner=??1?$DynamicVectorClass@UFileOffsetStruct@@@@UAE@XZ
