@@ -18,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
 SYMBOLS = ROOT / "reverse" / "symbols.csv"
+DELETED = ROOT / "reverse" / "deleted_rows.csv"
 
 # realcrc.cpp is linked twice in the retail exe, so these two symbols
 # legitimately appear at two addresses each. Any other duplicate name is a bug.
@@ -70,7 +71,31 @@ def known_sources(spec):
     return allowed
 
 
+def tombstones():
+    """(name, rva) pairs deleted on purpose -> why. See reverse/deleted_rows.csv.
+
+    functions.csv merges with git's union driver, which cannot express a
+    deletion: any branch forked before the delete puts the row back with no
+    conflict. Without this, a proven-wrong row silently returns to master.
+    """
+    if not DELETED.exists():
+        return {}
+    out = {}
+    for line in DELETED.read_text(encoding="utf-8").splitlines():
+        if not line.strip() or line.startswith("#") or line.startswith("name,"):
+            continue
+        row = next(csv.reader(io.StringIO(line)))
+        if len(row) < 2:
+            continue
+        try:
+            out[(row[0], int(row[1], 16))] = row[2] if len(row) > 2 else ""
+        except ValueError:
+            continue
+    return out
+
+
 def check_functions(raw, problems, sources_ok):
+    deleted = tombstones()
     if b"\r\n" not in raw[:200]:
         problems.append("functions.csv: CRLF line endings were lost (file is LF). "
                         "Restore from git and use binary-safe edits (tools/dedup_csv.py "
@@ -129,6 +154,14 @@ def check_functions(raw, problems, sources_ok):
                     if (ROOT / source).exists()
                     else "a commit added rows without adding the file")
             problems.append(f"functions.csv line {i} ({name}): source not in git: {source} ({hint})")
+
+        if (name, rva) in deleted:
+            problems.append(f"functions.csv line {i}: {name} @ {target_rva} was deleted on "
+                            f"purpose and has come back (a union merge from a branch that "
+                            f"forked before the delete). Reason it was deleted: "
+                            f"{deleted[(name, rva)]}. Drop the row again, or — if you can "
+                            f"byte-prove it — remove its line from reverse/deleted_rows.csv "
+                            f"in the same commit.")
 
         key = (name, target_rva)
         if key in seen_exact:

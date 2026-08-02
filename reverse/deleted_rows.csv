@@ -1,0 +1,15 @@
+name,target_rva,reason
+# Rows deleted on purpose because byte-evidence proved them wrong. functions.csv
+# uses git's union merge driver, which has no concept of a deletion: merging any
+# branch that forked before the delete silently resurrects the row. check_csv
+# fails if a name+target_rva listed here reappears.
+#
+# If you later PROVE one of these is real, delete its line here in the same
+# commit that re-adds the row, and say what the proof was.
+??1?$VectorClass@E@@UAE@XZ,0x00AFF130,retail vtable for VectorClass<unsigned char> is 0x113ac74 (proven by pointgr.cpp ctor) but the folded body at 0x00AFF130 loads 0x11bc44c; ICF folds only identical code so this cannot be that body
+??1?$VectorClass@PAUtThreadInfoType@@@@UAE@XZ,0x00AFF130,vtable is 0x113a0fc (proven by Except.cpp ctor) not the 0x11bc44c this body loads
+??1?$VectorClass@PAVDefinitionClass@@@@UAE@XZ,0x00AFF130,vtable is 0x113a0fc (proven by definitionmgr.cpp ctor) not the 0x11bc44c this body loads
+??1?$VectorClass@PAVRender2DClass@@@@UAE@XZ,0x00AFF130,vtable is 0x113a0fc (proven by render2dsentence.cpp ctor) not the 0x11bc44c this body loads
+??1?$VectorClass@VShaderClass@@@@UAE@XZ,0x00AFF130,vtable is 0x113c5e4 (proven by matinfo.cpp ctor) not the 0x11bc44c this body loads
+??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00121F60,resolved ??_7BehaviorModuleInterface@@6B@ to 0x108acf8 against ten other TUs agreeing on 0x109c9d0; landed by a 387-row bulk pin-harvest that was never DIR32-verified
+??0UpdateModuleInterface@@QAE@XZ,0x00061D90,resolved its vtable to base 0x0; landed by a ~279-row bulk ICF-alias commit that was never DIR32-verified

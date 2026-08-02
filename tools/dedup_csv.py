@@ -11,12 +11,18 @@ kept.
 functions.csv: one row per (target_rva, name) — ICF alias groups legitimately
 hold several names at one address (folded identical COMDATs), so the name is part
 of the key. A matched row beats an unmatched one; among equals the smaller
-target_size wins (a trimmed-padding row), then the lexically first source, so the
-choice never depends on merge order. symbols.csv: unique (name,address) lines.
-Run with no arguments; edits both files in place.
+target_size wins (a trimmed-padding row). If rows still tie but name DIFFERENT
+sources, only byte-verification can say which source really defines the symbol,
+so this refuses to guess and exits 1 naming both. (It used to break that tie on
+the lexically first source, which silently repointed findFieldParse at ini.cpp
+after it had moved to ini_parsers.cpp — the row then referenced a file that no
+longer defined it, and the full gate died with "symbol not found in object".)
+symbols.csv: unique (name,address) lines. Run with no arguments; edits in place.
 """
 import csv
 import io
+import sys
+from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,17 +34,35 @@ def dedup_functions(path):
         row for row in csv.DictReader(path.open(encoding="utf-8", newline=""))
         if row.get("name") != "name" and row.get("target_rva") != "target_rva"
     ]
-    best = {}
+    def rank(row):
+        return (0 if row["status"] == "matched" else 1,   # matched wins
+                int(row["target_size"]))                    # smaller (trimmed) wins
+
+    groups = defaultdict(list)
     for row in rows:
-        key = (int(row["target_rva"], 16), row["name"])
-        rank = (
-            0 if row["status"] == "matched" else 1,   # matched wins
-            int(row["target_size"]),                    # smaller (trimmed) wins
-            row["source"],                              # deterministic tiebreak
-        )
-        if key not in best or rank < best[key][0]:
-            best[key] = (rank, row)
-    ordered = sorted((entry[1] for entry in best.values()), key=lambda r: r["name"])
+        groups[(int(row["target_rva"], 16), row["name"])].append(row)
+
+    best, ambiguous = {}, []
+    for key, group in groups.items():
+        finalists = [r for r in group if rank(r) == min(rank(r) for r in group)]
+        if len({r["source"] for r in finalists}) > 1:
+            ambiguous.append((key, sorted({r["source"] for r in finalists})))
+            continue
+        # Same source, so only notes differ: keep the most informative one.
+        best[key] = max(finalists, key=lambda r: (len(r["notes"]), r["notes"]))
+
+    if ambiguous:
+        print(f"dedup_csv: {len(ambiguous)} row(s) claimed by more than one source — "
+              "refusing to guess (nothing written):", file=sys.stderr)
+        for (rva, name), sources in sorted(ambiguous, key=lambda a: a[0][1]):
+            print(f"  - {name} @ 0x{rva:08X}", file=sys.stderr)
+            for source in sources:
+                print(f"      {source}", file=sys.stderr)
+        print("Byte-verify which source defines the symbol (./build.sh <source>), delete "
+              "the losing row, then re-run.", file=sys.stderr)
+        raise SystemExit(1)
+
+    ordered = sorted(best.values(), key=lambda r: r["name"])
     buffer = io.StringIO()
     writer = csv.DictWriter(buffer, fieldnames=FIELDS)
     writer.writeheader()
