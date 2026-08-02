@@ -7223,7 +7223,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Multiply@Matrix3@@SAXABV1@0PAV1@@Z,,0x008D93B0,301,Code/Libraries/Source/WWVegas/WWMath/matrix3.cpp,matched,
 ?Multiply@Matrix3@@SAXABV1@ABVMatrix3D@@PAV1@@Z,,0x008D92C0,231,Code/Libraries/Source/WWVegas/WWMath/matrix3.cpp,matched,
 ?Multiply@Matrix3@@SAXABVMatrix3D@@ABV1@PAV1@@Z,,0x008D91D0,231,Code/Libraries/Source/WWVegas/WWMath/matrix3.cpp,matched,
-?Multiply@Matrix3D@@SAXABV1@0PAV1@@Z,,0x008D80C0,403,Code/masm_dumps/_sym1__Multiply_Matrix3D__SAXABV1_0PAV1__Z_8D80C0.asm,matched,symbol-pin Open-BFME4+Grok
 ?Multiply@Matrix4@@SAXABV1@0PAV1@@Z,,0x00B01A70,532,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,
 ?Multiply@Matrix4@@SAXABV1@ABVMatrix3D@@PAV1@@Z,,0x00B01E40,416,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,
 ?Multiply@Matrix4@@SAXABVMatrix3D@@ABV1@PAV1@@Z,,0x00B01C90,425,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,
@@ -13935,3 +13934,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?Multiply@Matrix3D@@SAXABV1@0PAV1@@Z,,0x008D80C0,403,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
