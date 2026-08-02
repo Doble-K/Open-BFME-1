@@ -10179,7 +10179,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@OneRingPenaltyUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011A460,107,Code/GameEngine/Source/GameLogic/Object/Update/OneRingPenaltyUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@OpenContain@@SAPAVModuleData@@PAVINI@@@Z,,0x001159E0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@OverchargeBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@PartTheHeavensUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011C5B0,110,Code/masm_dumps/PartTheHeavensUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0x53; Ghidra confirmed
+?friend_newModuleData@PartTheHeavensUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011C5B0,110,Code/GameEngine/Source/GameLogic/AI/PartTheHeavensUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@ParticleUplinkCannonUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CC80,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@PassiveAreaEffectBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00117650,107,Code/masm_dumps/PassiveAreaEffectBehavior_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xB0 Ghidra confirmed
 ?friend_newModuleData@PhysicsBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x0011AA70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
