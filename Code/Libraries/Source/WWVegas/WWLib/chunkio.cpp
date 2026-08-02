@@ -59,6 +59,29 @@ bool ChunkLoadClass::Open_Chunk()
 }
 
 
+bool ChunkLoadClass::Close_Chunk()
+{
+	BFMEChunkLoadLayout *layout = (BFMEChunkLoadLayout *)this;
+	int size = layout->HeaderStack[layout->StackIndex - 1].ChunkSize & 0x7FFFFFFF;
+	int position = layout->PositionStack[layout->StackIndex - 1];
+
+	if (position < size) {
+		if (layout->File) {
+			layout->File->Seek(size - position, SEEK_CUR);
+		} else {
+			layout->Input->Seek(size - position, SEEK_CUR);
+		}
+	}
+
+	layout->StackIndex--;
+	if (layout->StackIndex > 0) {
+		layout->PositionStack[layout->StackIndex - 1] += size + sizeof(ChunkHeader);
+	}
+
+	return true;
+}
+
+
 uint32 ChunkLoadClass::Cur_Chunk_ID()
 {
 	int index = *(int *)((char *)this + 0x08);
