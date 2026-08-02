@@ -109,3 +109,14 @@ interleave in the image.
   lesson above about prose form applies to the comment documenting this one --
   which is how it was hit for the fourth time in a day.
 
+## Adding a shim header does not invalidate the build cache
+
+The deps cache records the headers a TU resolved *last* time. A brand-new shim
+header is a path it has never seen, so adding one and rebuilding reports
+"Compile: 0 of 1 TU(s) (deps-cache: 1 current)" and silently compiles the old
+output. This cost two rounds of "the shim isn't working" before the pattern was
+obvious: the compiled bytes had not changed at all, which is the tell -- a shim
+that is genuinely being ignored usually still shifts *something*.
+
+Touching the file is not enough either; the cache keys on content. Change the
+source, even by a character in a comment, and it recompiles.
