@@ -7264,6 +7264,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Open@RawFileClass@@UAEHH@Z,,0x009E6B20,201,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Open@RawFileClass@@UAEHPBDH@Z,,0x009E6580,31,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?Open_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E1380,96,Code/masm_dumps/__Open_Chunk_ChunkLoadClass__QAE_NXZ_9E1380.asm,matched,
+?Open_Micro_Chunk@ChunkLoadClass@@QAE_NXZ,,0x009E17C0,46,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
 ?OptionsMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x00560280,7212,Code/masm_dumps/_OptionsMenuInit__YAXPAVWindowLayout__PAX_Z_560280.asm,matched,true size 7212B; row claimed 6966B
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVAABoxClass@@0@Z,,0x008DD740,274,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVAABoxClass@@ABVLineSegClass@@@Z,,0x008D9B30,909,Code/Libraries/Source/WWVegas/WWMath/colmathaabox.cpp,matched,
