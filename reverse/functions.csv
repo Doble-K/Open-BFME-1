@@ -10343,7 +10343,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@W3DOverlordTankDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x0011E130,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DProjectileStreamDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118AA0,107,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DPropDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00114B50,107,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
-?friend_newModuleData@W3DQuadrupedDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/masm_dumps/W3DQuadrupedDraw_friend_newModuleData.asm,matched,W3D ModuleFactory registration ordinal 0x05 Ghidra corrected owner
+?friend_newModuleData@W3DQuadrupedDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DQuadrupedDrawModuleDataFactory.cpp,matched,Open-BFME5 exact C++ __emit port of corrected-owner W3D MASM factory
 ?friend_newModuleData@W3DRopeDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DRopeDrawModuleDataFactory.cpp,matched,Luna Open-BFME8 exact C++ W3D factory ICF alias
 ?friend_newModuleData@W3DScienceModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DSupplyDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
