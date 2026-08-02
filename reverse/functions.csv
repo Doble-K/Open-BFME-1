@@ -10684,7 +10684,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@RiderChangeContain@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001166D0,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@RousingSpeechUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011C640,99,Code/GameEngine/Source/GameLogic/Object/Update/RousingSpeechUpdateFriendNewModuleInstanceThunk.cpp,matched,retail ModuleFactory registration ordinal 0x80; Ghidra confirmed
 ?friend_newModuleInstance@RubbleRiseUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011B6C0,96,Code/GameEngine/Source/GameLogic/Object/Update/RubbleRiseUpdateFriendNewModuleInstanceThunk.cpp,matched,retail ModuleFactory registration ordinal 0x88; Ghidra confirmed
-?friend_newModuleInstance@RunOffMapBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001158E0,96,Code/masm_dumps/RunOffMapBehavior_friend_newModuleInstance.asm,matched,retail
+?friend_newModuleInstance@RunOffMapBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001158E0,96,Code/GameEngine/Source/GameLogic/Object/Behavior/RunOffMapBehaviorFriendNewModuleInstanceThunk.cpp,matched,retail
 ?friend_newModuleInstance@SabotageCommandCenterCrateCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleInstance@SabotageFakeBuildingCrateCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleInstance@SabotageInternetCenterCrateCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
