@@ -11,7 +11,6 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "tools"))
 
 import list_naked_candidates
-import list_thunk_dumps
 import work_selection
 
 
@@ -48,24 +47,11 @@ def test_distinct_quality_groups_and_recent_history():
     print("PASS selector: quality-bounded group rotation reaches same-group siblings")
 
 
-def test_tool_conflict_keys():
+def test_naked_conflict_keys():
     (ROOT / "build").mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(dir=ROOT / "build") as temp:
         root = Path(temp)
         (root / ".git").mkdir()
-        thunks = [
-            {"class": "Wide", "name": "?a", "source": "a.asm", "rva": 1, "dest": 2},
-            {"class": "Wide", "name": "?b", "source": "b.asm", "rva": 3, "dest": 4},
-            {"class": "Other", "name": "?c", "source": "c.asm", "rva": 5, "dest": 6},
-        ]
-        picked_thunks = [list_thunk_dumps.select_thunk(thunks, root)[0]
-                         for _ in range(4)]
-        assert all(left["class"] != right["class"]
-                   for left, right in zip(picked_thunks, picked_thunks[1:])), (
-                       "consecutive thunks must use distinct classes")
-        assert {item["name"] for item in picked_thunks if item["class"] == "Wide"} == {
-            "?a", "?b"}, "both siblings in one thunk class must be reachable"
-
         naked = [
             {"path": "same.cpp", "score": 10, "size": 1, "line": 1},
             {"path": "same.cpp", "score": 9, "size": 1, "line": 2},
@@ -78,7 +64,7 @@ def test_tool_conflict_keys():
                        "consecutive naked candidates must use distinct sources")
         assert {item["line"] for item in picked_naked if item["path"] == "same.cpp"} == {
             1, 2}, "both siblings in one source file must be reachable"
-    print("PASS tool grouping: immediate group collisions avoided; siblings reachable")
+    print("PASS naked grouping: immediate source collisions avoided; siblings reachable")
 
 
 def test_cli_defaults():
@@ -96,14 +82,7 @@ def test_cli_defaults():
     assert ranked.returncode == 0, ranked.stderr
     assert "== selected naked-asm conversion ==" not in ranked.stdout
 
-    thunks = subprocess.run(
-        [sys.executable, "tools/list_thunk_dumps.py"], cwd=ROOT,
-        capture_output=True, text=True, timeout=60, check=False)
-    assert thunks.returncode == 0, thunks.stderr
-    assert (thunks.stdout.count("== selected convertible thunk ==") == 1
-            or "No validated" in thunks.stdout)
-
-    for tool in ("next_work.py", "list_thunk_dumps.py", "list_naked_candidates.py"):
+    for tool in ("next_work.py", "list_naked_candidates.py"):
         help_run = subprocess.run(
             [sys.executable, f"tools/{tool}", "--help"], cwd=ROOT,
             capture_output=True, text=True, timeout=60, check=False)
@@ -115,7 +94,7 @@ def test_cli_defaults():
 
 def main():
     test_distinct_quality_groups_and_recent_history()
-    test_tool_conflict_keys()
+    test_naked_conflict_keys()
     test_cli_defaults()
     print("ALL TESTS PASSED")
 

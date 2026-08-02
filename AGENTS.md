@@ -13,11 +13,10 @@ task names a file, symbol, tier, or audit, stay in that lane. Otherwise:
 2. `python3 tools/check_csv.py`; repair ledger errors before other work
 3. `python3 tools/next_work.py`; it returns one randomized candidate
 
-Use `python3 tools/next_work.py --tier ghidra` or `--tier structural` when that is
-your assigned tier. For ASM-to-C++ work use `python3 tools/list_thunk_dumps.py`;
-for existing inline-assembly bodies use `python3 tools/list_naked_candidates.py
-Code`. Each command returns one randomized candidate. Finish or revert it, then
-ask again; do not keep several speculative edits open.
+Use `python3 tools/next_work.py --tier ghidra` or `--tier structural` when
+assigned. Use `python3 tools/list_naked_candidates.py Code` for inline assembly.
+Each command returns one randomized candidate. Finish or revert it, then ask
+again; do not keep speculative edits open.
 
 ## Bank one verified unit
 
