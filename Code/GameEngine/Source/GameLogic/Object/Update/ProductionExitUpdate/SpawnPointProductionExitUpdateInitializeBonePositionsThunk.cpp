@@ -1,15 +1,15 @@
 class SpawnPointProductionExitUpdate
 {
-	void initializeBonePositions();
+    void initializeBonePositions();
 };
 
-__declspec(naked) void SpawnPointProductionExitUpdate::initializeBonePositions()
+class SpawnPointInitializeBonePositionsShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 085h
-		_emit 063h
-		_emit 029h
-		_emit 000h
-	}
+public:
+    void init();
+};
+
+void SpawnPointProductionExitUpdate::initializeBonePositions()
+{
+    ((SpawnPointInitializeBonePositionsShim *)this)->init();
 }

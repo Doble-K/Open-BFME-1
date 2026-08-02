@@ -3186,6 +3186,7 @@ name,address,notes
 ?hideScreen@DisconnectMenu@@QAEXXZ,0x00024D6B,ILT thunk; real body 0x50E5A0 (from DisconnectManager::turnOffScreen)
 ?hideSpecialPowerShortcut@ControlBar@@QAEXXZ,0x00041367
 ?init@NetCommandList@@QAEXXZ,0x0000B9CE,ICF-folded onto reset; retail calls both through this thunk
+?init@SpawnPointInitializeBonePositionsShim@@QAEXXZ,0x002D18F0,SpawnPointProductionExitUpdate initializeBonePositions incremental-link thunk target through a TU-local forwarding shim
 ?init@W3DProjectedShadowManager@@QAE_NXZ,0x0003F93B,pinharvest x1 (thunk)
 ?init@W3DVolumetricShadowManager@@QAE_NXZ,0x0001EAA6,pinharvest x1 (thunk)
 ?init@WinInstanceData@@QAEXXZ,0x00021EC7
