@@ -2023,7 +2023,6 @@ name,address,notes
 ?Get_Noise_Amplitude@ParticleBufferClass@@QBEMXZ,0x00984290,pinharvest x1 (body)
 ?Get_Position@RenderObjClass@@QBE?AVVector3@@XZ,0x009202C0,derived from part_buf matched-caller call sites
 ?Get_Render_Target_Resolution@WW3D@@SAXAAH00AA_N@Z,0x008FD1F0,located from binary (camera callee)
-?get@WW3DGetRenderTargetResolutionShim@@SAXAAH00AA_N@Z,0x00906990,WW3D incremental-link static thunk target through a TU-local forwarding shim
 ?Get_SS_Category@ShaderClass@@QBE?AW4StaticSortCategoryType@1@XZ,0x00910E10
 ?Get_Shader@LineGroupClass@@QAE?AVShaderClass@@XZ,0x0098ED00
 ?Get_Shader@MeshMatDescClass@@QBE?AVShaderClass@@HH@Z,0x00929990
@@ -2766,6 +2765,7 @@ name,address,notes
 ?awaken@GameLogicAwakenUpdateModuleShim@@QAEXPAVObject@@PAVUpdateModule@@I@Z,0x0038D870,GameLogic friend_awakenUpdateModule incremental-link thunk target through a TU-local forwarding shim
 ?begin@?$hashtable@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@_STL@@QAE?AU?$_Ht_iterator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@U?$_Nonconst_traits@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@2@XZ,0x0003EE14
 ?bfmePushBack@BFMEAnimateWindowListPush@@QAEXABQAVAnimateWindow@@@Z,0x00022D36,BFME out-of-line list<AnimateWindow*>::push_back body 0x45DAE0 via ILT thunk
+?bind@UDPBindShim@@QAEHIG@Z,0x00684900,UDP Bind incremental-link thunk target through a TU-local forwarding shim
 ?blendTileData@BFMERetailWorldHeightMap@@QAEXPAUTBlendTileInfo@@H@Z,0x000167F7,retail WorldHeightMap::blendTileData ILT thunk
 ?blendTileData@BFMERetailWorldHeightMapBlendTileDataShim@@QAEXPAUTBlendTileInfo@@H@Z,0x0074A240,BFME WorldHeightMap incremental-link thunk target through a TU-local forwarding shim
 ?build@W3DRadarBuildTerrainTextureShim@@QAEXPAVTerrainLogic@@@Z,0x006C39D0,W3DRadar buildTerrainTexture incremental-link thunk target through a TU-local forwarding shim
@@ -2819,6 +2819,7 @@ name,address,notes
 ?close@File@@UAEXXZ,0x009DB5A0,pinharvest x1 (body)
 ?closeDataChunk@DataChunkOutput@@QAEXXZ,0x00004B42
 ?compare@AsciiString@@QBEHABV1@@Z,0x000220C5,HotKey retail StringBase compare thunk
+?compare@GameSortStructCallOperatorShim@@QAE_NPAVGameSpyStagingRoom@@0@Z,0x0053EDD0,GameSortStruct operator() incremental-link thunk target through a TU-local forwarding shim
 ?compute@BridgeGetBridgeHeightShim@@QAEMPBUCoord3D@@PAU2@@Z,0x001A7520,Bridge getBridgeHeight incremental-link thunk target through a TU-local forwarding shim
 ?computeApproachPosition@DockUpdate@@IAE?AUCoord3D@@HPAVObject@@@Z,0x0001D7C8
 ?concat@AsciiString@@QAEXPBD@Z,0x00006DB6,hit-decoded x2 (thunk)
@@ -3044,6 +3045,8 @@ name,address,notes
 ?friend_setDamageToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,0x00024E0B,ILT thunk -> 0x601b50 (parseTransitionToFX callee)
 ?friend_setGoalObject@AIUpdateInterface@@QAEXPAVObject@@@Z,0x000125E9,retail AIEnterState::update call target
 ?friend_setRepairedToFXString@TerrainRoadType@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,0x0001C693,ILT thunk -> 0x61cc0 (parseTransitionToFX callee)
+?get@BFMERopeDrawableGetPositionShim@@QBEPBUCoord3D@@XZ,0x0041D090,BFME RopeDrawable incremental-link thunk target through a TU-local forwarding shim
+?get@WW3DGetRenderTargetResolutionShim@@SAXAAH00AA_N@Z,0x00906990,WW3D incremental-link static thunk target through a TU-local forwarding shim
 ?getAdjustedVisionRangeForObject@AI@@SAMPBVObject@@H@Z,0x0002481B,pinharvest x6 (thunk)
 ?getAdjustedVisionRangeForObject@AIAdjustedVisionRangeForObjectShim@@SAMPBVObject@@H@Z,0x0014A620,AI incremental-link static thunk target through a TU-local forwarding shim
 ?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,0x0002FF6D
@@ -3122,7 +3125,6 @@ name,address,notes
 ?getPlayerMaskFromAsciiString@BfmeScriptEngine_getPlayerMaskFromAsciiString@@QAEGABVAsciiString@@PA_N@Z,0x0004B290,ILT doSetMoney player-mask resolver (body 0x34CB60)
 ?getPlayerMaskFromAsciiString@BfmeScriptEngine_getPlayerMaskFromAsciiString@@QAEGABVAsciiString@@PA_N@Z,0x0034CB60,body BFME ScriptEngine multi-player mask from name
 ?getPosition@BFMERopeDrawable@@QBEPBUCoord3D@@XZ,0x0004B12D,retail Drawable::getPosition ILT thunk
-?get@BFMERopeDrawableGetPositionShim@@QBEPBUCoord3D@@XZ,0x0041D090,BFME RopeDrawable incremental-link thunk target through a TU-local forwarding shim
 ?getPristineBonePositions@BFMEDrawableBoneQuery@@QBEHPBDHPAUCoord3D@@PAVMatrix3D@@HH@Z,0x0002319B,BFME Drawable::getPristineBonePositions 6-arg (ret 0x18); thunk to 0x413850
 ?getPristineBonePositions@Drawable@@QBEHPBDHPAUCoord3D@@PAVMatrix3D@@HH@Z,0x0002319B,BFME 6-arg getPristineBonePositions (true body 0x413850)
 ?getProjectileLaunchOffset@Drawable@@QBE_NW4WeaponSlotType@@HPAVMatrix3D@@W4WhichTurretType@@PAUCoord3D@@3@Z,0x0041B9C0
@@ -3337,6 +3339,7 @@ name,address,notes
 ?push@?$queue@VPeerResponse@@V?$deque@VPeerResponse@@V?$allocator@VPeerResponse@@@_STL@@@_STL@@@_STL@@QAEXABVPeerResponse@@@Z,0x0003CE07
 ?queue@TransportQueueSendShim@@QAE_NIGPBEH@Z,0x00683830,Transport queueSend incremental-link thunk target through a TU-local forwarding shim
 ?queueSend@Transport@@QAE_NIGPBEH@Z,0x00049F80,ILT thunk; real body 0x683830 (from NAT::sendAProbe)
+?reacquire@W3DVolumetricShadowManagerReAcquireShim@@QAE_NXZ,0x007C1180,W3DVolumetricShadowManager ReAcquireResources incremental-link thunk target through a TU-local forwarding shim
 ?read@UDPReadShim@@QAEHPAEIPAUsockaddr_in@@@Z,0x00684630,UDP Read incremental-link thunk target through a TU-local forwarding shim
 ?readDict@DataChunkInput@@QAE?AVDict@@XZ,0x00022683
 ?readInt@DataChunkInput@@QAEHXZ,0x0003A805
@@ -3790,6 +3793,3 @@ _atexit,0x009F6E26,CRT atexit (registers static destructors)
 _bfme_acos,0x009F7256,internal acos helper called by ACos
 _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
-?bind@UDPBindShim@@QAEHIG@Z,0x00684900,UDP Bind incremental-link thunk target through a TU-local forwarding shim
-?reacquire@W3DVolumetricShadowManagerReAcquireShim@@QAE_NXZ,0x007C1180,W3DVolumetricShadowManager ReAcquireResources incremental-link thunk target through a TU-local forwarding shim
-?compare@GameSortStructCallOperatorShim@@QAE_NPAVGameSpyStagingRoom@@0@Z,0x0053EDD0,GameSortStruct operator() incremental-link thunk target through a TU-local forwarding shim
