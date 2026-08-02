@@ -120,3 +120,75 @@ that is genuinely being ignored usually still shifts *something*.
 
 Touching the file is not enough either; the cache keys on content. Change the
 source, even by a character in a comment, and it recompiles.
+
+## MSVC shaping rules that only turn up as byte diffs
+
+Four of these cost an iteration each before the pattern was obvious. All were
+found while matching functions that were otherwise structurally identical.
+
+**A loop is not interchangeable with its unrolled form.** In
+`Win32BIGFile::getFileInfo` the compressed-size decode only matched when written
+as `for (i = 0; i < 4; i++) size = (size << 8) | header.size[i];`. MSVC unrolls
+that two iterations at a time, and that is what pairs the byte loads into the
+dword and word accesses retail emits. Every hand-unrolled spelling of the same
+value -- including the one grouped exactly the way the target accumulates --
+schedules the third byte's load early and loses the pairing.
+
+**Splitting a byte buffer into named sub-arrays changes how loads widen.** The
+same function needed `struct { unsigned char magic[2]; unsigned char size[4]; }`
+rather than a flat `unsigned char[6]`. MSVC widens a pair of adjacent byte reads
+to the widest access that stays inside *the array they belong to*, so `size[0]`
+gets a dword and `size[2]`, with two bytes of the array left, gets a word. A flat
+buffer gets neither.
+
+**Naming a member through a reference is not cosmetic.** In
+`Win32BIGFile::setNameAndPath`, writing `AsciiString &name = m_name;` once
+instead of `m_name.set(...)` twice makes MSVC hoist the address into a
+callee-saved register ahead of an inlined strlen. That costs the register that
+forces `this` onto the stack, which is what grows the frame by the four bytes
+retail's `chkstk` asks for. Same code, four bytes of frame apart.
+
+**Initialiser list versus constructor body decides ordering against member
+array construction.** `ChunkLoadClass`'s constructor only matched with its first
+three members in the initialiser list: members initialise in declaration order,
+which is what puts their stores ahead of `HeaderStack`'s 256 element
+constructors. Written in the body they land after.
+
+## BFME's WW3DFormat is D3DFORMAT, and that is why the texture pipeline will not scan
+
+`locate.py` places nothing from `texture.cpp` or `textureloader.cpp` -- 0
+located, 53 unlocated -- and `anchor_by_string.py` finds no anchors in either,
+or in `ddsfile.cpp`. The reason is not that the bodies were rewritten. It is
+that Zero Hour's `WW3DFormat` is a dense enum numbered from zero with its own
+ordering, and BFME replaced it with Direct3D's own enumeration: retail's
+`Get_Bits_Per_Pixel` (0x0090C400, matched) switches on 20 through 30, 40, 41, 50
+through 52 and the four-character codes 'DXT1' through 'DXT5', which are
+`D3DFMT_` values exactly. Every format switch in the ported sources is therefore
+built on the wrong numbers and cannot byte-match however faithfully it was
+ported.
+
+Zero Hour's nearest equivalent is `Get_Bytes_Per_Pixel`, which cannot express
+DXT1 at half a byte per pixel; BFME moved to bits.
+
+`ww3dformat.h` still carries the Zero Hour numbering and other matched files
+depend on those constants, so `ww3dformat_bits.cpp` declares the retail values
+locally rather than changing the header. Anything new in the texture pipeline
+needs the retail numbering.
+
+## Header changes cost a full gate, and the gate lock is host-wide
+
+`build.py` takes an exclusive lock for any build over 8 TUs, and the pre-commit
+hook runs a full gate for any staged header or shim change. With sibling clones
+running their own gates, a header commit sat queued for 44 minutes without
+compiling a single TU -- the holder had burned 10 seconds of CPU in that time,
+because it was serialised too.
+
+Per-file verifies stay under 8 TUs and take no lock. So the way to land header
+work is to make every header edit first, check the blast radius by hand with
+`./build.sh` on each dependent source, and then pay the gate once. Landing them
+one at a time costs a queue wait each.
+
+Corollary: the union merge on `reverse/symbols.csv` can silently drop pins
+during a rebase. Check `git status` before pushing -- two pins the converted
+`Set_Animation` bodies needed went missing that way and only turned up because
+the working tree still had them.
