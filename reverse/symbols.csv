@@ -4060,3 +4060,7 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??0WeaponTemplate@@QAE@XZ,0x0004456C,newWeaponTemplate call target (incremental-link thunk)
 ?_M_insert_overflow@?$vector@PAVWeaponTemplate@@V?$allocator@PAVWeaponTemplate@@@_STL@@@_STL@@IAEXPAPAVWeaponTemplate@@ABQAV3@ABU__true_type@2@I_N@Z,0x00012067,newWeaponTemplate STL growth call target (incremental-link thunk)
 ?notifyTargetOfProbe@NAT@@IAEXPAVGameSlot@@@Z,0x00028D1C,probed call target (incremental-link thunk)
+?pop_front@?$deque@VBuddyRequest@@V?$allocator@VBuddyRequest@@@_STL@@@_STL@@QAEXXZ,0x00009BB5,BuddyThread queue call target (incremental-link thunk)
+?pop_front@?$deque@VBuddyResponse@@V?$allocator@VBuddyResponse@@@_STL@@@_STL@@QAEXXZ,0x0001C92C,BuddyThread queue call target (incremental-link thunk)
+?_M_push_back_aux_v@?$deque@VBuddyRequest@@V?$allocator@VBuddyRequest@@@_STL@@@_STL@@IAEXABVBuddyRequest@@@Z,0x00016BC6,BuddyThread queue call target (incremental-link thunk)
+?_M_push_back_aux_v@?$deque@VBuddyResponse@@V?$allocator@VBuddyResponse@@@_STL@@@_STL@@IAEXABVBuddyResponse@@@Z,0x0002992E,BuddyThread queue call target (incremental-link thunk)

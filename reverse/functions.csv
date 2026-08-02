@@ -8713,10 +8713,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addPlayerByTemplate@SidesList@@QAEXVAsciiString@@@Z,,0x0019C590,722,Code/masm_dumps/SidesList_addPlayerByTemplate.asm,matched,Exact retail MASM; faction strings and validateSides caller prove ownership
 ?addRayEffect@RayEffectSystem@@QAEXPBVDrawable@@PBUCoord3D@@1@Z,,0x005D3510,111,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
 ?addRequest@GameResultsQueue@@UAEXABVGameResultsRequest@@@Z,,0x006427F0,151,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
-?addRequest@GameSpyBuddyMessageQueue@@UAEXABVBuddyRequest@@@Z,,0x0063E2B0,185,Code/masm_dumps/_rn7__addRequest_GameSpyBuddyMessageQueue__UAEXABVBuddyRequest___Z_63E2B0.asm,matched,vtable slot6; true body 0x63E2B0/185; queue 0x63E39F was addResponse mispair; sizeof BuddyRequest retail 0x2B8 vs ZH 0x208 blocks C++
 ?addRequest@Pinger@@UAEXABVPingRequest@@@Z,,0x00661500,141,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?addResponse@GameResultsQueue@@UAEXABVGameResultsResponse@@@Z,,0x006428B0,141,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
-?addResponse@GameSpyBuddyMessageQueue@@UAEXABVBuddyResponse@@@Z,,0x0063E3A0,185,Code/masm_dumps/_rn7__addResponse_GameSpyBuddyMessageQueue__UAEXABVBuddyResponse___Z_63E3A0.asm,matched,reloc-needle Open-BFME4+Grok
 ?addResponse@GameSpyPeerMessageQueue@@UAEXABVPeerResponse@@@Z,,0x0064D950,136,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?addResponse@Pinger@@UAEXABVPingResponse@@@Z,,0x006615B0,192,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?addScience@Player@@AAE_NW4ScienceType@@@Z,,0x00036057,5,Code/GameEngine/Source/Common/RTS/PlayerAddScienceThunk.cpp,matched,5-byte incremental-link Player member thunk converted to focused C++ source
@@ -11406,7 +11404,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getReplayDir@RecorderClass@@SA?AVAsciiString@@XZ,0x00023F74,0x98a50,145,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getReplayExtention@RecorderClass@@SA?AVAsciiString@@XZ,0x000427F8,0x98b10,31,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getRequest@GameResultsQueue@@UAE_NAAVGameResultsRequest@@@Z,,0x00642440,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,MASM converted to clean C++
-?getRequest@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyRequest@@@Z,,0x0063C770,167,Code/masm_dumps/_rn7__getRequest_GameSpyBuddyMessageQueue__UAE_NAAVBuddyRequest___Z_63C770.asm,matched,reloc-needle Open-BFME4+Grok
 ?getRequest@GameSpyPSMessageQueue@@UAE_NAAVPSRequest@@@Z,,0x0064C840,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,icf-owner=?getRequest@GameSpyPeerMessageQueue@@UAE_NAAVPeerRequest@@@Z
 ?getRequest@GameSpyPeerMessageQueue@@UAE_NAAVPeerRequest@@@Z,,0x0064C840,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ,,0x00674250,4,Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp,matched,native BFME request-player-leave payload getter at +0x1c
@@ -11415,7 +11412,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getRequiresList@ProductionPrerequisite@@QBE?AVUnicodeString@@PBVPlayer@@@Z,,0x000E4BE0,1037,Code/masm_dumps/_str__getRequiresList_ProductionPrerequisite_QBE_AVUnicodeSt_E4BE0.asm,matched,
 ?getResolution@OptionPreferences@@QAEXPAH0@Z,,0x00091930,129,Code/masm_dumps/_sa13__getResolution_OptionPreferences__QAEXPAH0_Z_91930.asm,matched,multi-xref Open-BFME4+Grok MusicVolume
 ?getResponse@GameResultsQueue@@UAE_NAAVGameResultsResponse@@@Z,,0x00642510,237,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
-?getResponse@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyResponse@@@Z,,0x0063C840,167,Code/masm_dumps/_rn7__getResponse_GameSpyBuddyMessageQueue__UAE_NAAVBuddyResponse___Z_63C840.asm,matched,reloc-needle Open-BFME4+Grok
 ?getResponse@GameSpyPeerMessageQueue@@UAE_NAAVPeerResponse@@@Z,,0x0064C910,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?getRestPos@AnimateWindow@@QAE?AUICoord2D@@XZ,,0x003D4D50,18,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?getRollDamping@Locomotor@@QBEMXZ,,0x00413180,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,Exact inline accessor via Locomotor retail-layout shim; MASM dump removed
@@ -13930,3 +13926,7 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?probed@NAT@@IAEXH@Z,,0x00671DE0,155,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes under the existing nat shim
 ?sizeWindowsDefault@ControlBarResizer@@QAEXXZ,,0x004AB100,122,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes under the display shim
 ??1GameTextManager@@UAE@XZ,,0x00438430,117,Code/GameEngine/Source/GameClient/GameText.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes
+?getRequest@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyRequest@@@Z,,0x0063C770,167,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,MASM dump converted to clean C++; BFME BuddyRequest is 0x2B8 and BuddyResponse 0x864 (reference/shims/buddythread tail pads)
+?getResponse@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyResponse@@@Z,,0x0063C840,167,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,MASM dump converted to clean C++; BFME BuddyRequest is 0x2B8 and BuddyResponse 0x864 (reference/shims/buddythread tail pads)
+?addRequest@GameSpyBuddyMessageQueue@@UAEXABVBuddyRequest@@@Z,,0x0063E2B0,185,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,MASM dump converted to clean C++; BFME BuddyRequest is 0x2B8 and BuddyResponse 0x864 (reference/shims/buddythread tail pads)
+?addResponse@GameSpyBuddyMessageQueue@@UAEXABVBuddyResponse@@@Z,,0x0063E3A0,185,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,MASM dump converted to clean C++; BFME BuddyRequest is 0x2B8 and BuddyResponse 0x864 (reference/shims/buddythread tail pads)
