@@ -10188,7 +10188,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@PlayerUpgradeSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00121370,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/PlayerUpgradeSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@PointDefenseLaserUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001236C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@PoisonedBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue cascade; located via ModuleFactory::init ModuleTemplate inline-build
-?friend_newModuleData@PorcupineFormationBodyModule@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FC60,107,Code/masm_dumps/PorcupineFormationBodyModule_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xD3 Ghidra confirmed
+?friend_newModuleData@PorcupineFormationBodyModule@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FC60,107,Code/GameEngine/Source/GameLogic/Object/Behavior/PorcupineFormationBodyModuleFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@PowerPlantUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00114B50,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@ProductionSpeedBonus@@SAPAVModuleData@@PAVINI@@@Z,,0x00120120,110,Code/masm_dumps/ProductionSpeedBonus_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xD9 Ghidra confirmed
 ?friend_newModuleData@ProductionUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011AC90,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
