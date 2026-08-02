@@ -3119,6 +3119,8 @@ name,address,notes
 ?findTerrain@TerrainTypeCollection@@QAEPAVTerrainType@@VAsciiString@@@Z,0x0000DBD9,first of the find-then-create pair in the Terrain block parser; the second call on the same receiver is the already-matched newTerrain and ZH declares findTerrain immediately above it with the same signature
 ?findUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@ABVAsciiString@@@Z,0x0002F95A
 ?finish@SidesInfoSegmentShim@@QAEXPAX0@Z,0x00024C17,SidesInfo clear tail helper shim
+_gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
+_gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?finishConstruct@BFMENetworkQueue1@@QAEXPAX@Z,0x0002E91F,native BFME queue-1 constructor helper ILT
 ?finishConstruct@BFMENetworkQueue@@QAEXPAX@Z,0x000109D3,native BFME queue-0 constructor helper ILT
 ?format_va@AsciiString@@QAEXPBDPAD@Z,0x00888060,pinharvest x1 (body)
