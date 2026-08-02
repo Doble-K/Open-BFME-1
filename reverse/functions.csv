@@ -1198,7 +1198,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AssistanceRequestData@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,ICF alias of existing matched body
 ??0AssistedTargetingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0027FB60,134,Code/GameEngine/Source/GameLogic/AI/AssistedTargetingUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0AssistedTargetingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0AttackStateMachine@@QAE@PAVObject@@PAVAIAttackState@@VAsciiString@@_N33@Z,,0x0017F570,103,Code/masm_dumps/_sa8___0AttackStateMachine__QAE_PAVObject__PAVAIAttackS_17F570.asm,matched,Exact 103B Open-BFME4
+??0AttackStateMachine@@QAE@PAVObject@@PAVAIAttackState@@VAsciiString@@_N33@Z,,0x0017F570,103,Code/GameEngine/Source/GameLogic/AI/AttackStateMachineCtorThunk.cpp,matched,Exact 103B Open-BFME5 C++ raw behavior constructor
 ??0AttributeModifierAuraUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002800D0,218,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0AttributeModifierAuraUpdateModuleData@@QAE@XZ,,0x00280B20,189,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0AttributeModifierUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D2EB0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/AttributeModifierUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
