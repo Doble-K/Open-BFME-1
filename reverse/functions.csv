@@ -1381,7 +1381,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CreateObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254680,60,Code/GameEngine/Source/GameLogic/Object/Die/CreateObjectDieConstructor.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
 ??0CreateObjectDieModuleData@@QAE@XZ,,0x002547E0,109,Code/GameEngine/Source/GameLogic/AI/CreateObjectDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CriticalSectionClass@@QAE@XZ,,0x009DB420,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
-??0CritterEmitterUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028B6A0,95,Code/masm_dumps/CritterEmitterUpdate_constructor.asm,matched,Exact 95B unique factory Open-BFME4
+??0CritterEmitterUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028B6A0,95,Code/GameEngine/Source/GameLogic/AI/CritterEmitterUpdateConstructorThunk.cpp,matched,Exact 95B unique factory Open-BFME4
 ??0CritterEmitterUpdateModuleData@@QAE@XZ,,0x001FA3A0,414,Code/GameEngine/Source/GameLogic/AI/CritterEmitterUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CrushDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254B90,60,Code/GameEngine/Source/GameLogic/Object/Die/CrushDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
 ??0CrushDieModuleData@@QAE@XZ,,0x00123380,135,Code/GameEngine/Source/GameLogic/AI/CrushDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
