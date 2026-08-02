@@ -3,16 +3,16 @@ struct Coord3D;
 class BezierSegment
 {
 public:
-	void evaluateBezSegmentAtT(float, Coord3D *) const;
+    void evaluateBezSegmentAtT(float, Coord3D *) const;
 };
 
-__declspec(naked) void BezierSegment::evaluateBezSegmentAtT(float, Coord3D *) const
+class BezierSegmentEvaluateShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0AEh
-		_emit 00Fh
-		_emit 00Bh
-		_emit 000h
-	}
+public:
+    void evaluate(float t, Coord3D *out) const;
+};
+
+void BezierSegment::evaluateBezSegmentAtT(float t, Coord3D *out) const
+{
+    ((const BezierSegmentEvaluateShim *)this)->evaluate(t, out);
 }
