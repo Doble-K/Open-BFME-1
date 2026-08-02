@@ -270,6 +270,26 @@ class AudioManager : public SubsystemInterface
 	virtual void _bfme_miscAudioPad_28() = 0;
 	virtual void _bfme_miscAudioPad_29() = 0;
 	virtual void _bfme_miscAudioPad_30() = 0;
+	// The vtable this padding is calibrated against is 0x0111C0C0, and three of
+	// its slots are independently confirmed: slot 1 is the matched
+	// ?init@AudioManager@@, slot 2 is
+	// ?loadIniFilesFromLegend@SubsystemInterface@@UAE_NXZ (which is what
+	// identifies any SubsystemInterface vtable -- see
+	// tools/subsystem_virtuals.py), and slot 75 below is a four-byte function,
+	// which is what friend_getMiscAudio has to be.
+	//
+	// Two more slots are worth naming next, because five INI blocks are waiting
+	// on them -- AudioEvent, MusicTrack, DialogEvent, StreamedSound and
+	// AmbientStream all reach TheAudio the same way:
+	//
+	//   slot 68 (+0x110) -> 0x006AE710, 406 bytes, called with two arguments
+	//   slot 70 (+0x118) -> 0x006AEA10, 166 bytes
+	//
+	// Zero Hour declares newAudioEventInfo, addAudioEventInfo and
+	// findAudioEventInfo in that region of the class, but the argument counts do
+	// not line up with any of them on a first reading, so they are left unnamed
+	// rather than guessed. Naming those two would unblock all five blocks at
+	// once, which is the highest-yield naming problem left in the INI work.
 	virtual MiscAudio *friend_getMiscAudio( void );
 
 
