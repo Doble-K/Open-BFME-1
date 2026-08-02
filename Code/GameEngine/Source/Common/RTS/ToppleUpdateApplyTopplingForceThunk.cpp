@@ -8,13 +8,13 @@ public:
     void applyTopplingForce(const Coord3D *, float, unsigned int);
 };
 
-__declspec(naked) void ToppleUpdate::applyTopplingForce(const Coord3D *, float, unsigned int)
+class ToppleUpdateApplyTopplingForceShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 024h
-        _emit 01Fh
-        _emit 027h
-        _emit 000h
-    }
+public:
+    void apply(const Coord3D *dir, float speed, unsigned int options);
+};
+
+void ToppleUpdate::applyTopplingForce(const Coord3D *dir, float speed, unsigned int options)
+{
+    ((ToppleUpdateApplyTopplingForceShim *)this)->apply(dir, speed, options);
 }
