@@ -6,13 +6,13 @@ public:
     __declspec(dllexport) static void parseDynamicAudioEventRTS(INI *, void *, void *, const void *);
 };
 
-__declspec(naked) void INI::parseDynamicAudioEventRTS(INI *, void *, void *, const void *)
+class INIParseDynamicAudioEventRTSShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0C1h
-        _emit 0D6h
-        _emit 008h
-        _emit 000h
-    }
+public:
+    static void parse(INI *ini, void *store, void *userData, const void *desc);
+};
+
+void INI::parseDynamicAudioEventRTS(INI *ini, void *store, void *userData, const void *desc)
+{
+    INIParseDynamicAudioEventRTSShim::parse(ini, store, userData, desc);
 }
