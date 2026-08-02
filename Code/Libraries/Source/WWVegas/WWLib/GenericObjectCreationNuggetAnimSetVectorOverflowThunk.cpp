@@ -7,31 +7,31 @@ struct GenericObjectCreationNugget
 
 namespace _STL
 {
-	struct __false_type
-	{
-	};
+struct __false_type
+{
+};
 
-	template <class Type>
-	class allocator
-	{
-	};
+template <class Type>
+class allocator
+{
+};
 
-	template <class Type, class Allocator>
-	class vector
-	{
-	protected:
-		void _M_insert_overflow(Type *, const Type &, const __false_type &, unsigned int, bool);
-	};
+template <class Type, class Allocator>
+class vector
+{
+protected:
+	void _M_insert_overflow(Type *, const Type &, const __false_type &, unsigned int, bool);
+};
 
-	__declspec(naked) void vector<GenericObjectCreationNugget::AnimSet, allocator<GenericObjectCreationNugget::AnimSet> >::_M_insert_overflow(
-		GenericObjectCreationNugget::AnimSet *, const GenericObjectCreationNugget::AnimSet &, const __false_type &, unsigned int, bool)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 06Ch
-			_emit 081h
-			_emit 074h
-			_emit 000h
-		}
-	}
+class GenericObjectCreationNuggetAnimSetInsertOverflowShim
+{
+public:
+	void insert_overflow(GenericObjectCreationNugget::AnimSet *pos, const GenericObjectCreationNugget::AnimSet &x, const __false_type &tag, unsigned int fill_len, bool at_end);
+};
+
+void vector<GenericObjectCreationNugget::AnimSet, allocator<GenericObjectCreationNugget::AnimSet> >::_M_insert_overflow(
+	GenericObjectCreationNugget::AnimSet *pos, const GenericObjectCreationNugget::AnimSet &x, const __false_type &tag, unsigned int fill_len, bool at_end)
+{
+	((GenericObjectCreationNuggetAnimSetInsertOverflowShim *)this)->insert_overflow(pos, x, tag, fill_len, at_end);
+}
 }
