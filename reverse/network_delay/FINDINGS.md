@@ -795,3 +795,57 @@ Retail's call sites reach `FrameData::init` through **two** hops,
 0x0003BB6F -> 0x00670220 -> 0x00670170. `build_call_thunks` follows one, so the
 call resolved to the body and three bytes of REL32 stayed wrong until the outer
 thunk was pinned explicitly in reverse/symbols.csv.
+
+# The NetCommandMsg constructor family (15 of the unnamed entries)
+
+The small unnamed functions clustered in 0x673000-0x678000 are not miscellaneous:
+they are the NetCommandMsg subclass constructors, and each one identifies itself.
+Every body stores its class vptr and stamps its own NetCommandType into m_type at
++0x14 -- the same offset CommandRequiresAck reads and Connection::doSend tests for
+FRAMEINFO. Reading the stamped constant off each constructor names it:
+
+| addr | bytes | type stamped | class |
+|---|---|---|---|
+| `0x673840` | 69 | 1 ACKBOTH | `NetAckBothCommandMsg` |
+| `0x6738A0` | 53 | 1 ACKBOTH | `NetAckBothCommandMsg` |
+| `0x673AA0` | 45 | 10 PLAYERLEAVE | `NetPlayerLeaveCommandMsg` |
+| `0x673B10` | 45 | 11 DESTROYPLAYER | `NetDestroyPlayerCommandMsg` |
+| `0x673B80` | 42 | 12 KEEPALIVE | `NetKeepAliveCommandMsg` |
+| `0x673BD0` | 42 | 24 DISCONNECTKEEPALIVE | `NetDisconnectKeepAliveCommandMsg` |
+| `0x673C20` | 48 | 25 DISCONNECTPLAYER | `NetDisconnectPlayerCommandMsg` |
+| `0x673CD0` | 48 | 26 DISCONNECTVOTE | `NetDisconnectVoteCommandMsg` |
+| `0x673D60` | 45 | 15 PROGRESS | `NetProgressCommandMsg` |
+| `0x673DD0` | 64 | 18 WRAPPER | `(wrapper: no ??2 row seen)` |
+| `0x674030` | 49 | 21 FILEPROGRESS | `NetFileProgressCommandMsg` |
+| `0x6740C0` | 45 | 27 DISCONNECTFRAME | `NetDisconnectFrameCommandMsg` |
+| `0x674310` | 45 | 28 DISCONNECTSCREENOFF | `NetDisconnectScreenOffCommandMsg` |
+| `0x6750E0` | 45 | 13 DISCONNECTCHAT | `NetDisconnectChatCommandMsg` |
+| `0x675210` | 48 | 14 CHAT | `NetChatCommandMsg` |
+
+The class names are the ones already established in the ledger by the matched
+`??2Net<X>CommandMsg@@SAPAXIW4...MagicEnum@0@@Z` allocation rows, so these are not
+invented. Two constructors stamp ACKBOTH and share the vptr 0x0111A49C, so they
+are two constructors of one class rather than two classes.
+
+This also independently validates the NetCommandType numbering recovered from the
+type-to-string mapper at 0x00683020: every stamped constant lands on the class you
+would expect from its name.
+
+Shape, from 0x006738A0 (53 bytes, ACKBOTH):
+
+```
+m_?(+0x04)  = 0
+m_executionFrame(+0x08) = -1     // addNetCommandMsg reads +8 as the frame
+m_?(+0x0C)  = 0
+m_?(+0x10)  = 0   (word)
+m_type(+0x14) = <the class's NetCommandType>
+m_?(+0x18)  = same constant as m_type
+vptr(+0x00) = <the class's vtable>
+m_?(+0x1C)  = 0   (word)
+m_?(+0x1E)  = 0   (byte)
+m_?(+0x20)  = -1
+```
+
+Writing these needs the de-pooled NetCommandMsg base -- BFME de-pooled this graph
+like the rest -- and the usual care over member declaration order, since the
+compiler emits the stores in declaration order rather than the order above.
