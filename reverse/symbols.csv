@@ -1670,6 +1670,7 @@ name,address,notes
 ??4PeerRequest@@QAEAAV0@ABV0@@Z,0x000336A4
 ??4PeerResponse@@QAEAAV0@ABV0@@Z,0x00003E86
 ??4PlayerTemplate@@QAEAAV0@ABV0@@Z,0x000050F6
+?assign@PlayerTemplateAssignShim@@QAEAAVPlayerTemplate@@ABV2@@Z,0x000E32D0,PlayerTemplate assignment incremental-link thunk target through a TU-local forwarding shim
 ??4RankInfo@@QAEAAV0@ABV0@@Z,0x0002E53C,harvested from friend_parseRankDefinition (thunk)
 ??4RenderObjClass@@QAEAAV0@ABV0@@Z,0x0091F790
 ??4SegLineRendererClass@@QAEAAV0@ABV0@@Z,0x009600F0
