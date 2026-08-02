@@ -1808,6 +1808,12 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
 ??0MutexClass@@QAE@PBD@Z,,0x009DB320,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0NameKeyGenerator@@QAE@XZ,,0x00090380,120,Code/masm_dumps/NameKeyGenerator_ctor.asm,matched,True SEH ctor via static-init push; queue 0x9F274A was mid ControlBar ctor
+??0NetAckBothCommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673740,68,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetAckBothCommandMsg@@QAE@XZ,,0x006737A0,47,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetAckStage1CommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673840,69,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetAckStage1CommandMsg@@QAE@XZ,,0x006738A0,53,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetAckStage2CommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673950,70,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetAckStage2CommandMsg@@QAE@XZ,,0x006739B0,51,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetChatCommandMsg@@QAE@XZ,,0x00675210,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetCommandList@@QAE@XZ,,0x00672EA0,20,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,real ctor; 0x000659C0 was a same-shaped ctor of another class - only the vtable differs and that is a DIR32 slot copied from the target
 ??0NetCommandMsg@@QAE@XZ,,0x006735D0,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
@@ -14014,9 +14020,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??0NetAckStage1CommandMsg@@QAE@XZ,,0x006738A0,53,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetAckStage1CommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673840,69,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetAckBothCommandMsg@@QAE@XZ,,0x006737A0,47,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetAckBothCommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673740,68,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetAckStage2CommandMsg@@QAE@XZ,,0x006739B0,51,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetAckStage2CommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673950,70,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
