@@ -166,6 +166,7 @@ name,address,notes
 ??$_M_insert_dispatch@U?$_List_iterator@PAVSuperweaponInfo@@U?$_Const_traits@PAVSuperweaponInfo@@@_STL@@@_STL@@@?$list@PAVSuperweaponInfo@@V?$allocator@PAVSuperweaponInfo@@@_STL@@@_STL@@QAEXU?$_List_iterator@PAVSuperweaponInfo@@U?$_Nonconst_traits@PAVSuperweaponInfo@@@_STL@@@1@U?$_List_iterator@PAVSuperweaponInfo@@U?$_Const_traits@PAVSuperweaponInfo@@@_STL@@@1@1ABU__false_type@1@@Z,0x0000A7D1,retail list insert-dispatch body shared by pointer-list copy constructors
 ??$_M_insert_dispatch@U?$_List_iterator@UCoord3D@@U?$_Const_traits@UCoord3D@@@_STL@@@_STL@@@?$list@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXU?$_List_iterator@UCoord3D@@U?$_Nonconst_traits@UCoord3D@@@_STL@@@1@U?$_List_iterator@UCoord3D@@U?$_Const_traits@UCoord3D@@@_STL@@@1@1ABU__false_type@1@@Z,0x00011E87
 ??$_M_insert_dispatch@U?$_List_iterator@VAsciiString@@U?$_Const_traits@VAsciiString@@@_STL@@@_STL@@@?$list@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAEXU?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@1@U?$_List_iterator@VAsciiString@@U?$_Const_traits@VAsciiString@@@_STL@@@1@1ABU__false_type@1@@Z,0x00009F61,STLport internal callee harvested from retail rel32; resolves repointed STL template thunk-dump
+??$_M_range_initialize@PBD@?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@AAEXPBD0ABUforward_iterator_tag@1@@Z,0x0002A531
 ??$_S_sort@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@V?$allocator@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@U?$less@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@@_STL@@YAXAAV?$list@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@V?$allocator@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@@0@U?$less@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@0@@Z,0x0000F8B7,derived-ICF
 ??$_S_unique@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@V?$allocator@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@U?$equal_to@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@@_STL@@YAXAAV?$list@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@V?$allocator@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@2@@0@U?$equal_to@V?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@0@@Z,0x0000F8B7,ILT thunk; real body 0x77F960
 ??$__copy@PAUFXBoneInfo@@PAU1@H@_STL@@YAPAUFXBoneInfo@@PAU1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00003378,resweep callee back-solved
@@ -1558,6 +1559,7 @@ name,address,notes
 ??1QuantityModifier@@QAE@XZ,0x00016FE0,pinharvest x1 (thunk)
 ??1QuantityModifier@@QAE@XZ,0x00022FE3,pinharvest x1 (thunk)
 ??1QuantityModifier@@QAE@XZ,0x0004B10A,pinharvest x1 (thunk)
+??1QueuedDownload@@QAE@XZ,0x00044733
 ??1QuickMatchPreferences@@UAE@XZ,0x00010073
 ??1RAMFile@@MAE@XZ,0x00029555,pinharvest x1 (thunk)
 ??1RAMFile@@MAE@XZ,0x0003692B,pinharvest x1 (thunk)
@@ -3566,6 +3568,8 @@ name,address,notes
 ?performUpgradeFX@UpgradeMuxData@@QBEXPAVObject@@@Z,0x0002EB4F,pinharvest x1 (thunk)
 ?playerHasPrereqsForScience@ScienceStore@@QBE_NPBVPlayer@@W4ScienceType@@@Z,0x0000DCDD
 ?pointInTrigger@PolygonTrigger@@QBE_NAAUICoord3D@@@Z,0x0004AB6F,decoded target call from PartitionFilterPolygonTrigger::allow
+?pop@?$queue@VPingRequest@@V?$deque@VPingRequest@@V?$allocator@VPingRequest@@@_STL@@@_STL@@@_STL@@QAEXXZ,0x0003BFED
+?pop@?$queue@VPingResponse@@V?$deque@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@@_STL@@QAEXXZ,0x000412A4
 ?pop@Shell@@QAEXXZ,0x00006AAA
 ?popFront@BFMENetworkQueue1@@QAEXXZ,0x00023592,native BFME queue pop helper for wrapper queue +0x3c
 ?popFront@BFMENetworkQueue1PopFrontShim@@QAEXXZ,0x00656BD0,BFMENetworkQueue1::popFront incremental-link thunk target through a TU-local forwarding shim
