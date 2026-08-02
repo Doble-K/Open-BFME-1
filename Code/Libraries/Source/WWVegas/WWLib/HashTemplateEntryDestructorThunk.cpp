@@ -13,13 +13,13 @@ public:
 	};
 };
 
-__declspec(naked) HashTemplateClass<StringClass, int>::Entry::~Entry()
+class HashTemplateEntryDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 05Ah
-		_emit 026h
-		_emit 05Ch
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+HashTemplateClass<StringClass, int>::Entry::~Entry()
+{
+	((HashTemplateEntryDestructorShim *)this)->destroy();
 }
