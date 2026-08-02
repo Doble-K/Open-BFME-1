@@ -522,7 +522,6 @@ Int DisconnectManager::untranslatedSlotPosition(Int slot, Int localSlot) {
 	return (slot + 1);
 }
 
-// ?resetPlayerTimeouts@DisconnectManager@@IAEXPAVConnectionManager@@@Z present-unmatched
 void DisconnectManager::resetPlayerTimeouts(ConnectionManager *conMgr) {
 	// reset the player timeouts.
 	for (Int i = 0; i < MAX_SLOTS; ++i) {
