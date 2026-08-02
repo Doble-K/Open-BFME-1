@@ -1808,6 +1808,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MultiplayerColorDefinition@@QAE@ABV0@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
 ??0MutexClass@@QAE@PBD@Z,,0x009DB320,39,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??0NameKeyGenerator@@QAE@XZ,,0x00090380,120,Code/masm_dumps/NameKeyGenerator_ctor.asm,matched,True SEH ctor via static-init push; queue 0x9F274A was mid ControlBar ctor
+??0NetAckBothCommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673840,69,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetAckBothCommandMsg@@QAE@XZ,,0x006738A0,53,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetChatCommandMsg@@QAE@XZ,,0x00675210,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetCommandList@@QAE@XZ,,0x00672EA0,20,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,real ctor; 0x000659C0 was a same-shaped ctor of another class - only the vtable differs and that is a DIR32 slot copied from the target
 ??0NetCommandMsg@@QAE@XZ,,0x006735D0,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
@@ -1823,6 +1825,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0NetKeepAliveCommandMsg@@QAE@XZ,,0x00673B80,42,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetPlayerLeaveCommandMsg@@QAE@XZ,,0x00673AA0,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetProgressCommandMsg@@QAE@XZ,,0x00673D60,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
+??0NetWrapperCommandMsg@@QAE@XZ,,0x00673DD0,64,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0Network@@QAE@XZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,object-symbol=??0BFMENetwork@@QAE@XZ;C++ ICF alias of Network ctor
 ??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/masm_dumps/NeutronMissileSlowDeathBehavior_constructor.asm,matched,Exact 74B ICF alias Open-BFME4
 ??0NeutronMissileUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002CDA30,74,Code/GameEngine/Source/GameLogic/Object/Update/NeutronMissileUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ shared ICF body at destination 0x2CDA30
@@ -11099,6 +11102,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getFPSLimitEnabled@OptionPreferences@@QAE_NXZ,,0x000911B0,102,Code/GameEngine/Source/Common/promoted__getFPSLimitEnabled_OptionPreferences_QAE_NXZ_000911B0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 102B
 ?getField@WeaponBonus@@QBEMW4Field@1@@Z,,0x001DE220,10,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?getFieldParse@DieMuxData@@SAPBUFieldParse@@XZ,,0x00019326,5,Code/GameEngine/Source/GameLogic/Module/DieMuxDataGetFieldParseThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x655140
+?getFileInfo@ArchiveFileSystem@@QBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CA7E0,182,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,calls getArchiveFilenameForFile at 0x009CA81A then m_archiveFileMap.find
 ?getFileInfo@Win32BIGFile@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009D1810,274,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileGetInfo.cpp,matched,
 ?getFileInfo@Win32LocalFileSystem@@UBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CDE50,105,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,
 ?getFinalOverride@Overridable@@QBEPBV1@XZ,,0x00087A80,26,Code/GameEngine/Source/Common/INI/INIWater.cpp,matched,thunk-dump converted to clean C++
@@ -14012,7 +14016,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?getFileInfo@ArchiveFileSystem@@QBE_NABVAsciiString@@PAUFileInfo@@@Z,,0x009CA7E0,182,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,calls getArchiveFilenameForFile at 0x009CA81A then m_archiveFileMap.find
-??0NetAckBothCommandMsg@@QAE@XZ,,0x006738A0,53,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetAckBothCommandMsg@@QAE@PAVNetCommandMsg@@@Z,,0x00673840,69,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
-??0NetWrapperCommandMsg@@QAE@XZ,,0x00673DD0,64,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
