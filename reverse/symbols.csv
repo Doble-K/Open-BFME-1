@@ -3698,7 +3698,9 @@ name,address,notes
 ?showNamedTimerDisplay@InGameUI@@QAEX_N@Z,0x0001E1A0,ILT thunk for ScriptActions timer display
 ?showNamedTimerDisplay@InGameUI@@QAEX_N@Z,0x0043AA90,body showNamedTimerDisplay InGameUI+0x7a1
 ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,0x0002C6E7
+?shutdown@TerrainTracksShutdownShim@@QAEXXZ,0x0072EDF0,TerrainTracksRenderObjClassSystem::shutdown incremental-link thunk target through a TU-local forwarding shim
 ?shutdown@WaterTracksRenderSystem@@QAEXXZ,0x000319CB
+?shutdown@WaterTracksShutdownShim@@QAEXXZ,0x007AC560,WaterTracksRenderSystem::shutdown incremental-link thunk target through a TU-local forwarding shim
 ?spin@LockClass@FastCriticalSectionClass@@CIXPAI@Z,0x00026FA8,FastCriticalSectionClass::LockClass spin-acquire (shared out-of-line body reached via ILT thunk); StringClass locks resolve here
 ?start@W3DShaderManagerStartRenderToTextureShim@@SAXXZ,0x007171F0,W3DShaderManager incremental-link static thunk target through a TU-local forwarding shim
 ?startRenderToTexture@W3DShaderManager@@SAXXZ,0x000154E7
