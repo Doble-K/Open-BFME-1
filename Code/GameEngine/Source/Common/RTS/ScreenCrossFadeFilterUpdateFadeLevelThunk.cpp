@@ -6,13 +6,13 @@ protected:
     bool updateFadeLevel();
 };
 
-__declspec(naked) bool ScreenCrossFadeFilter::updateFadeLevel()
+class ScreenCrossFadeFilterUpdateFadeLevelShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 09Fh
-        _emit 0C8h
-        _emit 07Ch
-        _emit 000h
-    }
+public:
+    bool update();
+};
+
+bool ScreenCrossFadeFilter::updateFadeLevel()
+{
+    return ((ScreenCrossFadeFilterUpdateFadeLevelShim *)this)->update();
 }
