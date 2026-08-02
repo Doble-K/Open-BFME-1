@@ -2906,6 +2906,7 @@ name,address,notes
 ?copy@ModuleInfoNuggetUninitializedCopyShim@_STL@@SAPAXPAX00ABU__false_type@2@@Z,0x0076B010,_STL __uninitialized_copy const ModuleInfo Nugget incremental-link thunk target through a TU-local forwarding shim
 ?copy@ParticleSysBoneInfoConstCopyShim@_STL@@SAPAXPAX00ABUrandom_access_iterator_tag@2@PAH@Z,0x000A78A0,_STL __copy const ParticleSysBoneInfo incremental-link thunk target through a TU-local forwarding shim
 ?copy@ParticleSysBoneInfoUninitializedCopyShim@_STL@@SAPAXPAX00ABU__false_type@2@@Z,0x000A7AA0,_STL __uninitialized_copy const ParticleSysBoneInfo incremental-link thunk target through a TU-local forwarding shim
+?copy@PrereqUnitRecUninitializedCopyShim@_STL@@SAPAXPAX00ABU__false_type@2@@Z,0x003AB7A0,_STL __uninitialized_copy const PrereqUnitRec incremental-link thunk target through a TU-local forwarding shim
 ?copy@ProductionPrerequisiteConstCopyShim@_STL@@SAPAXPAX00ABUrandom_access_iterator_tag@2@PAH@Z,0x003B6100,_STL __copy const ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?copy@ProductionPrerequisiteCopyShim@_STL@@SAPAVProductionPrerequisite@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00753280,_STL __copy ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?copy@VideoCopyShim@_STL@@SAPAUVideo@@PAU3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00755100,_STL __copy Video incremental-link thunk target through a TU-local forwarding shim

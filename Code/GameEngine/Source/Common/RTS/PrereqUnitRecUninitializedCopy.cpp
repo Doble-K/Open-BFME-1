@@ -7,19 +7,22 @@ namespace ProductionPrerequisite
 
 namespace _STL
 {
-	struct __false_type;
+struct __false_type {};
 
-	template <class In, class Out>
-	__declspec(naked) Out __uninitialized_copy(In, In, Out, const __false_type &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 0E7h
-			_emit 03Eh
-			_emit 039h
-			_emit 000h
-		}
-	}
+template <class In, class Out>
+Out __uninitialized_copy(In, In, Out, const __false_type &);
 
-	template ProductionPrerequisite::PrereqUnitRec *__uninitialized_copy<const ProductionPrerequisite::PrereqUnitRec *, ProductionPrerequisite::PrereqUnitRec *>(const ProductionPrerequisite::PrereqUnitRec *, const ProductionPrerequisite::PrereqUnitRec *, ProductionPrerequisite::PrereqUnitRec *, const __false_type &);
+class PrereqUnitRecUninitializedCopyShim
+{
+public:
+	static void *copy(void *first, void *last, void *result, const __false_type &);
+};
+
+template <class In, class Out>
+Out __uninitialized_copy(In first, In last, Out result, const __false_type &tag)
+{
+	return (Out)PrereqUnitRecUninitializedCopyShim::copy((void *)first, (void *)last, (void *)result, tag);
+}
+
+template ProductionPrerequisite::PrereqUnitRec *__uninitialized_copy<const ProductionPrerequisite::PrereqUnitRec *, ProductionPrerequisite::PrereqUnitRec *>(const ProductionPrerequisite::PrereqUnitRec *, const ProductionPrerequisite::PrereqUnitRec *, ProductionPrerequisite::PrereqUnitRec *, const __false_type &);
 }
