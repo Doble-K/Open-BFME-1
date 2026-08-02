@@ -3,6 +3,7 @@
 class DefinitionClass;
 class Render2DClass;
 class TextureClass;
+class VertexMaterialClass;
 
 template <class T>
 class VectorClass
@@ -37,3 +38,4 @@ template class VectorClass<unsigned char>;
 template class VectorClass<DefinitionClass *>;
 template class VectorClass<Render2DClass *>;
 template class VectorClass<TextureClass *>;
+template class VectorClass<VertexMaterialClass *>;
