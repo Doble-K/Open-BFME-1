@@ -295,3 +295,40 @@ Note what the chain does NOT give you: a retail identifier. Knowing a global is
 the language path is not knowing what EA called it, so these stay
 `byte_134CA48`-style address names. The evidence names the *role*; only a symbol
 source names the symbol. Record the role in the header and leave the name alone.
+
+## BFME's pivot fade, and what still blocks the two blend evaluators
+
+`HTreeClass::Anim_Update` (0x00953AD0, 987 bytes) is matched, and getting there
+turned up a whole subsystem Zero Hour does not have. The fade lives in four
+places:
+
+- `PivotClass::PivotFade` at +0xac, written by `Base_Update`, `Anim_Update`,
+  `Blend_Update` and `Slave_Update` alike;
+- `HAnimClass` virtual slot 13, a per-pivot fade getter taking the same
+  `(pividx, frame)` the visibility getter does;
+- `NodeMotionStruct`'s ninth channel at +0x20 -- Zero Hour's struct is eight
+  pointers and BFME's stride is 0x24 -- which is where a raw animation's fade
+  curve lives;
+- and `Blend_Update` lerps the two animations' fades by the same percentage it
+  lerps the pose: `fade0 + (fade1 - fade0) * percentage`.
+
+The other BFME change in the same family: `Get_Orientation` returns bool rather
+than void. It reports whether the animation has any rotation for that pivot.
+`Anim_Update` skips the matrix build and post-multiply when it is false;
+`Blend_Update` skips the blend when *neither* animation has one and substitutes
+identity for whichever does not.
+
+### What still blocks Blend_Update and Combo_Update
+
+With the fade, the orientation guard and the identity substitution written in,
+`Blend_Update` compiles to 1473 of retail's 1746 bytes. The remaining 273 are
+one thing: retail **inlines `Matrix3D::Multiply`** there, where our build emits
+a call. Retail calls it in `Anim_Update` and inlines it in `Blend_Update`, which
+is just MSVC's cost model differing between the two functions -- but our
+`matrix3d.h` declares `Multiply` non-inline, so we always call it.
+
+Making it `WWINLINE` should reproduce both choices, since it is the same
+compiler and flags. The obstacle is that its 403-byte body at 0x008D80C0 is
+still a MASM dump, so it has to be written as real C++ first, and it has to keep
+matching standalone afterwards. That is the next thing to do for the blend
+evaluators, and it is a prerequisite for both of them.

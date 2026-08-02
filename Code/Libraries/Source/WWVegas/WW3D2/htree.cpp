@@ -775,20 +775,29 @@ void HTreeClass::Blend_Update
 			Vector3 lerped = (1.0 - percentage) * trans0 + (percentage) * trans1;
 			pivot->Transform.Translate(lerped * ScaleFactor);
 
-			// interpolated rotation
+			// Interpolated rotation. BFME asks each animation whether it has any
+			// rotation for this pivot and skips the blend entirely when neither
+			// does; when only one does, the other contributes identity.
 			Quaternion q0;
-			motion0->Get_Orientation(q0,piv_idx,frame0);
+			bool got0 = motion0->Get_Orientation(q0,piv_idx,frame0);
 			Quaternion q1;
-			motion1->Get_Orientation(q1,piv_idx,frame1);
-			Quaternion q;
-			Fast_Slerp(q,q0,q1,percentage);
-#ifdef ALLOW_TEMPORARIES
-			pivot->Transform = pivot->Transform * Build_Matrix3D(q);
-#else
-			pivot->Transform.postMul(Build_Matrix3D(q,mtx));
-#endif
+			bool got1 = motion1->Get_Orientation(q1,piv_idx,frame1);
+
+			if (got0 || got1) {
+				if (!got0) q0.Make_Identity();
+				if (!got1) q1.Make_Identity();
+
+				Quaternion q;
+				Fast_Slerp(q,q0,q1,percentage);
+				pivot->Transform.postMul(Build_Matrix3D(q,mtx));
+			}
 
 			pivot->IsVisible = (motion0->Get_Visibility(piv_idx,frame0) || motion1->Get_Visibility(piv_idx,frame1));
+
+			// BFME blends the two fades the same way it blends the pose
+			float fade0 = motion0->_bfme_hanim_fade(piv_idx,frame0);
+			float fade1 = motion1->_bfme_hanim_fade(piv_idx,frame1);
+			pivot->PivotFade = fade0 + (fade1 - fade0) * percentage;
 		}
 
 		if (pivot->Is_Captured()) 
