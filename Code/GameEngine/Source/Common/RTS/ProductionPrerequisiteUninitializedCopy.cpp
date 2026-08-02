@@ -4,19 +4,22 @@ class ProductionPrerequisite;
 
 namespace _STL
 {
-	struct __false_type;
+struct __false_type {};
 
-	template <class In, class Out>
-	__declspec(naked) Out __uninitialized_copy(In, In, Out, const __false_type &)
-	{
-		__asm {
-			_emit 0E9h
-			_emit 050h
-			_emit 0BBh
-			_emit 038h
-			_emit 000h
-		}
-	}
+template <class In, class Out>
+Out __uninitialized_copy(In, In, Out, const __false_type &);
 
-	template ProductionPrerequisite *__uninitialized_copy<const ProductionPrerequisite *, ProductionPrerequisite *>(const ProductionPrerequisite *, const ProductionPrerequisite *, ProductionPrerequisite *, const __false_type &);
+class ProductionPrerequisiteUninitializedCopyShim
+{
+public:
+	static void *copy(void *first, void *last, void *result, const __false_type &);
+};
+
+template <class In, class Out>
+Out __uninitialized_copy(In first, In last, Out result, const __false_type &tag)
+{
+	return (Out)ProductionPrerequisiteUninitializedCopyShim::copy((void *)first, (void *)last, (void *)result, tag);
+}
+
+template ProductionPrerequisite *__uninitialized_copy<const ProductionPrerequisite *, ProductionPrerequisite *>(const ProductionPrerequisite *, const ProductionPrerequisite *, ProductionPrerequisite *, const __false_type &);
 }
