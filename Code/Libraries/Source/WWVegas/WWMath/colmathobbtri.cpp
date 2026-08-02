@@ -29,6 +29,13 @@ enum
 struct BTCollisionStruct
 {
 	BTCollisionStruct(const OBBoxClass &box,const Vector3 &move,const TriClass &tri,const Vector3 &trimove) :
+		// Reset() is out-of-line, so these three stores cannot be proved dead. They
+		// survive to pin ebx as a zero scratch, which pushes BoxMove into ebp and stops
+		// the 0x7fffffff Fabs mask being enregistered. Without them the register
+		// allocation diverges from retail across the whole function (690 bytes).
+		TestSide(0),
+		TestAxisId(0),
+		TestPoint(0),
 		Box(box),															
 		Tri(tri),
 		BoxMove(move),

@@ -5513,8 +5513,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@01PAUCastResultStruct@@@Z,,0x008E59E0,63,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
 ?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@ABVAABoxClass@@1PAUCastResultStruct@@@Z,,0x008E5A20,189,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
 ?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@ABVPlaneClass@@PAUCastResultStruct@@@Z,,0x008E2700,533,Code/Libraries/Source/WWVegas/WWMath/colmathobbox.cpp,matched,
-?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@ABVTriClass@@1PAUCastResu,,0x008E7180,4528,Code/masm_dumps/__Collide_CollisionMath__SA_NABVOBBoxClass__ABVVect_8E7180.asm,matched,
-?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@ABVTriClass@@1PAUCastResultStruct@@@Z,,0x008E7180,4528,Code/masm_dumps/_icf2__Collide_CollisionMath__SA_NABVOBBoxClass__ABVVector3__ABVTriClass__1P_8E7180.asm,matched,ICF of ?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@ABVTriClass@@1PAUCastResu Open-BFME4+Grok
+?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@ABVTriClass@@1PAUCastResultStruct@@@Z,,0x008E7180,4528,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,ICF of ?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@ABVTriClass@@1PAUCastResu Open-BFME4+Grok
 ?Combine_Color_And_Alpha@ParticleBufferClass@@IAEXXZ,,0x00984CB0,357,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Combo_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimComboClass@@@Z,,0x00981EC0,39,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Combo_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimComboClass@@@Z,,0x00954D90,1753,Code/masm_dumps/__Combo_Update_HTreeClass__QAEXABVMatrix3D__PAVHAni_954D90.asm,matched,
