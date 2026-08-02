@@ -905,3 +905,19 @@ built without them. `build.py`'s base is already `-EHsc-`; the per-file `// cl:`
 line was switching them back on. `/GX-` restores it. Worth checking whenever a
 function is the right length but carries an `fs:[0]` prologue the target lacks --
 that prologue is not a code difference, it is a flag difference.
+
+## A prose comment starting with `// ?` is read as a symbol annotation
+
+`find_declared_unmatched.py` treats any line whose stripped form starts with
+`// ?` as the mangled name of the next definition it sees, and it does not
+clear that state until it finds one. A file-header paragraph that happens to
+wrap so a line begins with a mangled name -- `// ??0?$StringBase@G@@AAE@...` --
+therefore attaches itself to the first function defined dozens of lines later,
+which then fails the pre-commit claims gate as an undeclared definition even
+though its ledger row is right there.
+
+The symptom is confusing because the reported function is not the one the
+comment is about. Reflow the paragraph so no line starts with `// ?`.
+
+This is the same parser state that makes `// <mangled> present-unmatched` work,
+and the same reason that marker has to sit immediately above its definition.
