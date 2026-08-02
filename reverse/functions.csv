@@ -1488,7 +1488,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DynamicIBAccessClass@@QAE@GG@Z,,0x0091D950,55,Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp,matched,
 ??0DynamicPortalBehaviour@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F8B80,107,Code/masm_dumps/DynamicPortalBehaviour_constructor.asm,matched,Exact 107B ICF primary Open-BFME4
 ??0DynamicShroudClearingRangeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028E410,297,Code/masm_dumps/DynamicShroudClearingRangeUpdate_constructor.asm,matched,Exact 297B @ 0x0028E410; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1180B0
-??0DynamicShroudClearingRangeUpdateModuleData@@QAE@XZ,,0x0028EBF0,93,Code/masm_dumps/DynamicShroudClearingRangeUpdateModuleData_constructor.asm,matched,Exact 93B @ 0x0028EBF0; Exact retail MASM ModuleData ctor; unique factory 0x118130; Open-BFME4+Grok
+??0DynamicShroudClearingRangeUpdateModuleData@@QAE@XZ,,0x0028EBF0,93,Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 93B ModuleData constructor
 ??0EMPUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001EE950,276,Code/masm_dumps/EMPUpdate_constructor.asm,matched,Exact 276B ICF primary Open-BFME4
 ??0Edge@Strip@@QAE@HH@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/stripoptimizer.cpp,matched,tiny-locate
 ??0EdgeMapperClass@@QAE@ABV0@@Z,,0x00965830,73,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
