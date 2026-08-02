@@ -2361,6 +2361,7 @@ name,address,notes
 ?TheAIUpdateInterfacePool@?1??getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFE30,pool-glue cascade static (back-solved)
 ?TheActiveBodyPool@?1??getClassMemoryPool@ActiveBody@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEF928,pool-glue cascade static (back-solved)
 ?TheAnimatedParticleSysBoneClientUpdatePool@?1??getClassMemoryPool@AnimatedParticleSysBoneClientUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EF7018,pool-glue cascade static (back-solved)
+?TheArchiveFileSystem@@3PAVArchiveFileSystem@@A,0x0134CC50,the second global in FileSystem::openFile: 0x0134D060 is called through vtable slot 2 and this one through slot 5 so they are different interfaces, and ZH openFile uses exactly TheLocalFileSystem and TheArchiveFileSystem
 ?TheArmorUpgradePool@?1??getClassMemoryPool@ArmorUpgrade@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EF0514,pool-glue cascade static (back-solved)
 ?TheAssaultTransportAIUpdatePool@?1??getClassMemoryPool@AssaultTransportAIUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EF0244,pool-glue cascade static (back-solved)
 ?TheAssistedTargetingUpdatePool@?1??getClassMemoryPool@AssistedTargetingUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFE38,pool-glue cascade static (back-solved)
