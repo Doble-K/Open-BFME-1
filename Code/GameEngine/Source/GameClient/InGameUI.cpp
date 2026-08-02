@@ -259,7 +259,7 @@ void toggleReplayControls( void )
 {
 	if (m_replayWindow)
 	{
-		Bool show = TheGameLogic->isInReplayGame() && m_replayWindow->winIsHidden();
+		Bool show = *(Int *)((unsigned char *)TheGameLogic + 0x10C) == GAME_REPLAY && m_replayWindow->winIsHidden();
 		m_replayWindow->winHide(!show);
 	}
 }
