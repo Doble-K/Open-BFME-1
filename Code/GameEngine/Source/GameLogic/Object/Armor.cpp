@@ -62,7 +62,6 @@ private:
 	friend class ArmorStore;
 };
 
-// ?clear@ArmorTemplate@@QAEXXZ present-unmatched
 // Retail always inlines this, so there is no standalone body to claim. It is
 // here because parseArmorDefinition carries it, and it is what proves
 // m_damageScalar is a separate member rather than a 24th coefficient: the loop

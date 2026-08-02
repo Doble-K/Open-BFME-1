@@ -35,6 +35,23 @@ public:
 	UnsignedInt m_localSlot;						// this+0x12028
 	UnsignedInt m_packetRouterSlot;				// this+0x1202c
 
+	// The tail the frame scheduler works on. The constructor at 0x00669630 and
+	// init at 0x00669050 write all of it; sendFrameInfo, the FRAMEINFO receiver
+	// in the command dispatcher and the readiness gate read it back.
+	UnsignedInt m_playerIds[8];					// this+0x12030, init to -1
+	UnsignedInt m_pad12050;						// this+0x12050
+	UnsignedShort m_pad12054;					// this+0x12054
+	UnsignedShort m_pad12056;
+	UnsignedInt m_pad12058;						// this+0x12058
+	UnsignedInt m_frameCeiling;					// this+0x1205c -- the shared ceiling
+	UnsignedInt m_playerLatestFrame[8];			// this+0x12060
+	UnsignedInt m_playerState[8];					// this+0x12080, 0 empty / 1 in game / 2-3 leaving
+	UnsignedInt m_playerFrameInfoAux[8];			// this+0x120a0, from FRAMEINFO +0x20
+	UnsignedInt m_playerAux2[8];					// this+0x120c0
+	UnsignedInt m_pad120e0;						// this+0x120e0
+	void *m_frameData[8];						// this+0x120e4, FrameDataManager *
+
+	void sendFrameDataToPlayer( UnsignedInt playerID, UnsignedInt startingFrame );
 	UnsignedInt getLocalPlayerID();
 	Bool isPacketRouter( void );
 	Bool isPlayerConnected( Int playerID );

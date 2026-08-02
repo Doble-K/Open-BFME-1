@@ -67,3 +67,16 @@ Int DoesCommandRequireACommandID(NetCommandType type) {
 
 	return FALSE;
 }
+
+/**
+ * Returns the next network command ID.
+ */
+UnsignedShort GenerateNextCommandID() {
+	// Retail loads the counter, then increments it in place (a1 <slot>;
+	// 66 ff 05 <slot>) -- a post-increment, where the reference pre-increments
+	// and so never hands out the seed. The seed itself is 100, read straight out
+	// of .data at the address both instructions reference.
+	static UnsignedShort commandID = 100;
+	return commandID++;
+}
+

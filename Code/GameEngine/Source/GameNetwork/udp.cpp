@@ -164,12 +164,16 @@ Int UDP::Bind(UnsignedInt IP,UnsignedShort Port)
   int retval;
   int status;
 
-  IP=htonl(IP);
-  Port=htons(Port);
+  // BFME refuses to bind a socket that is already open; the reference would
+  // overwrite fd and leak the old one.
+  if (fd!=-1)
+    return(UNKNOWN);
 
+  // Retail converts straight into addr rather than through the reference's two
+  // temporaries: it calls htons, stores sin_port, then calls htonl.
   addr.sin_family=AF_INET;
-  addr.sin_port=Port;
-  addr.sin_addr.s_addr=IP;
+  addr.sin_port=htons(Port);
+  addr.sin_addr.s_addr=htonl(IP);
   fd=socket(AF_INET,SOCK_DGRAM,DEFAULT_PROTOCOL);
   #ifdef _WINDOWS
   if (fd==SOCKET_ERROR)
@@ -183,16 +187,16 @@ Int UDP::Bind(UnsignedInt IP,UnsignedShort Port)
   #ifdef _WINDOWS
   if (retval==SOCKET_ERROR)
 	{
-    retval=-1;
+		// The reference returns here with the socket still open. BFME closes it
+		// and puts fd back to -1, which is what makes the guard above safe to
+		// retry against another port.
 		m_lastError = WSAGetLastError();
+    status=GetStatus();
+		closesocket(fd);
+		fd=-1;
+    return(status);
 	}
   #endif
-  if (retval==-1)
-  {
-    status=GetStatus();
-    //CERR("Bind failure (" << status << ") IP " << IP << " PORT " << Port )
-    return(status);
-  }
 
   int namelen=sizeof(addr);
   getsockname(fd, (struct sockaddr *)&addr, &namelen); 
@@ -200,9 +204,9 @@ Int UDP::Bind(UnsignedInt IP,UnsignedShort Port)
   myIP=ntohl(addr.sin_addr.s_addr);
   myPort=ntohs(addr.sin_port);
 
-  retval=SetBlocking(FALSE);
-  if (retval==-1)
-    fprintf(stderr,"Couldn't set nonblocking mode!\n");
+  // Retail inlines this (/Ob2) and keeps only the ioctlsocket -- no test of the
+  // result, so the reference's fprintf is not in the shipped source.
+  SetBlocking(FALSE);
 
   return(OK);
 }
@@ -276,7 +280,6 @@ Int UDP::Write(const unsigned char *msg,UnsignedInt len,UnsignedInt IP,UnsignedS
   return(retval);
 }
 
-// ?Read@UDP@@QAEHPAEIPAUsockaddr_in@@@Z present-unmatched
 Int UDP::Read(unsigned char *msg,UnsignedInt len,sockaddr_in *from)
 {
   Int retval;
@@ -291,12 +294,10 @@ Int UDP::Read(unsigned char *msg,UnsignedInt len,sockaddr_in *from)
 			if (WSAGetLastError() != WSAEWOULDBLOCK)
 			{
 				// failing because of a blocking error isn't really such a bad thing.
-				m_lastError = WSAGetLastError();
-#ifdef DEBUG_LOGGING
-				static Int errCount = 0;
-#endif
-				DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Read() - WSA error is %s\n", GetWSAErrorString(WSAGetLastError()).str()));
+				// Retail stores retval before m_lastError -- the reverse of the
+				// reference -- and caches the WSAGetLastError import in ebx.
 				retval = -1;
+				m_lastError = WSAGetLastError();
 			} else {
 				retval = 0;
 			}
@@ -312,12 +313,10 @@ Int UDP::Read(unsigned char *msg,UnsignedInt len,sockaddr_in *from)
 			if (WSAGetLastError() != WSAEWOULDBLOCK)
 			{
 				// failing because of a blocking error isn't really such a bad thing.
-				m_lastError = WSAGetLastError();
-#ifdef DEBUG_LOGGING
-				static Int errCount = 0;
-#endif
-				DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Read() - WSA error is %s\n", GetWSAErrorString(WSAGetLastError()).str()));
+				// Retail stores retval before m_lastError -- the reverse of the
+				// reference -- and caches the WSAGetLastError import in ebx.
 				retval = -1;
+				m_lastError = WSAGetLastError();
 			} else {
 				retval = 0;
 			}
