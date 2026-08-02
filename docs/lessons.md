@@ -231,3 +231,33 @@ four big-endian decodes, which come out three to six bytes short apiece because
 they have a spare register retail does not. Total 61 to 81 bytes short depending
 on how the decode is spelled -- and spelling the decode differently does not
 help, because the difference is not in the decode. Find the frame slot first.
+
+## The RenderObjClass vtable is still five slots long above slot 96
+
+The slot-40 fix corrected slots 40 through 47. There is a second divergence
+further down, and it is now measured rather than suspected:
+
+- slot 96 is right. `Animatable3DObjClass::Render` matches, and it reaches
+  `Is_Not_Hidden_At_All` as `call [eax+0x180]`.
+- slot 133 is five too high. Writing the two-argument
+  `Simple_Evaluate_Bone` produced a body identical to retail except for one
+  displacement: it forwards to the three-argument overload as
+  `call [edx+0x228]` where retail has `call [edx+0x214]` -- 138 against 133.
+
+So the headers carry five virtuals that retail does not, somewhere between slots
+97 and 132. Retail's own layout in that range, read off the
+`Animatable3DObjClass` vtable at 0x0113F148, is: 97 unnamed, 98 `Set_Visible`,
+99..110 the Is_/Set_ flag pairs through `Set_Additive`, 111..118 the eight
+`_bfme_ro_flag*` placeholders, 119 `Get_Collision_Type`, 120
+`Set_Collision_Type`, 121 `Is_Complete`, 122 `Is_In_Scene`, 123
+`Get_Native_Screen_Size`, 124 `Set_Native_Screen_Size`, 125 `Create_Decal`, 126
+and 127 unnamed, 128 `Update_Cached_Bounding_Volumes`, 129
+`Update_Sub_Object_Bits`, then Animatable3DObjClass's own five: 130
+`Set_Animation_Frame_Rate_Multiplier`, 131 `Peek_Animation_And_Info`, 132
+`Is_Animation_Complete`, 133 and 134 the two `Simple_Evaluate_Bone` overloads.
+The vtable is 136 slots.
+
+Anything that calls a slot above 96 through a render object is blocked on this.
+The cheapest way to find the five is a probe translation unit that includes the
+real headers and calls a handful of virtuals, then reading the displacements out
+of the object file -- one compile answers it, where guessing costs a build each.

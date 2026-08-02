@@ -4057,3 +4057,4 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??1ArchivedFileInfo@@QAE@XZ,0x009CC600,archive directory entry dtor
 ?addFile@ArchiveFile@@QAEXABVAsciiString@@PBUArchivedFileInfo@@@Z,0x009D1110,called once per BIG directory entry
 ?attachFile@ArchiveFile@@QAEXPAVFile@@@Z,0x009CE560,closes any previous file then stores the new one
+?Compute_Current_Frame@Animatable3DObjClass@@IBEMPAM@Z,0x00982540,called by Simple_Evaluate_Bone

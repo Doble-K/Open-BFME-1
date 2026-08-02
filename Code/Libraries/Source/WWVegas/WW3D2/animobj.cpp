@@ -930,8 +930,11 @@ bool Animatable3DObjClass::Simple_Evaluate_Bone(int boneindex, Matrix3D *tm) con
 		retval = Simple_Evaluate_Bone (boneindex, curr_frame, tm);
 	
 	} else {
-		
-		const_cast <Animatable3DObjClass *>(this)->Update_Sub_Object_Transforms();
+
+		// BFME guards the update; Zero Hour calls it unconditionally.
+		if (!Is_Hierarchy_Valid()) {
+			const_cast <Animatable3DObjClass *>(this)->Update_Sub_Object_Transforms();
+		}
 		*tm = HTree->Get_Transform(boneindex);
 
 	}
