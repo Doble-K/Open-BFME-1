@@ -16,3 +16,12 @@
 # the file header records what got it this far and what to try next. Claim it
 # and delete this entry.
 Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_openArchiveFile.cpp
+
+# Win32BIGFileSystem::loadBigFilesFromDirectory. Compiles to 459 bytes against
+# retail's 459, with the frame size and all four callee-saved registers matching;
+# the remaining differences are register assignment. Kept because the file
+# records how the shape was established -- BFME copies the case-insensitive
+# filename set into a vector, stable_sorts it and reverses it, which changes .big
+# load precedence, and each step is pinned by the length it produced. Claim it
+# and delete this entry.
+Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.cpp
