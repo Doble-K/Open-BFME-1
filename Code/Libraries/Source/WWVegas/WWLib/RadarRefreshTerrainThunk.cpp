@@ -3,16 +3,16 @@ class TerrainLogic;
 class Radar
 {
 public:
-	virtual void refreshTerrain(TerrainLogic *);
+    virtual void refreshTerrain(TerrainLogic *);
 };
 
-__declspec(naked) void Radar::refreshTerrain(TerrainLogic *)
+class RadarRefreshTerrainShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0AEh
-		_emit 0F0h
-		_emit 021h
-		_emit 000h
-	}
+public:
+    void run(TerrainLogic *terrain);
+};
+
+void Radar::refreshTerrain(TerrainLogic *terrain)
+{
+    ((RadarRefreshTerrainShim *)this)->run(terrain);
 }
