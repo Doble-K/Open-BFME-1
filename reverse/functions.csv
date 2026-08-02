@@ -13983,3 +13983,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Build_Active_Pivot_Map@HAnimComboDataClass@@QAEXXZ,,0x00974C60,351,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??0HCompressedAnimClass@@QAE@XZ,,0x0095B7D0,78,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ?Load_W3D@MotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,,0x009777A0,206,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
+?createDirectory@Win32LocalFileSystem@@UAE_NVAsciiString@@@Z,,0x009CDEC0,137,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,vtable 0x01143B98 slot 7; reached by byte-matched FileSystem::createDirectory and calls CreateDirectoryA

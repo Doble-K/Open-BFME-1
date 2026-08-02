@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/asciistring_outofline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -222,11 +222,32 @@ Bool Win32LocalFileSystem::getFileInfo(const AsciiString& filename, FileInfo *fi
 	return TRUE;
 }
 
-// ?createDirectory@Win32LocalFileSystem@@UAE_NVAsciiString@@@Z present-unmatched
-Bool Win32LocalFileSystem::createDirectory(AsciiString directory) 
+// BFME's string buffer header is {int refCount; unsigned short length; unsigned
+// short capacity;}, so the length is a 16-bit field at +4 and the characters
+// start at +8. Retail reads both directly -- movzx ecx,[eax+4] once, compared
+// twice, then add eax,8 for the pointer. The Zero Hour AsciiString this TU
+// includes has the older four-byte header, so its getLength() inlines a strlen
+// and its str() adds 4; both are wrong here. Reading the fields is what retail
+// does. The whole TU cannot simply switch to the BFME string shim: this file
+// also owns ?concat@AsciiString@@QAEXABV1@@Z, which is a real out-of-line body
+// here and collapses to a 5-byte thunk under the shim.
+static inline Int bfmeLength( const AsciiString &s )
 {
-	if ((directory.getLength() > 0) && (directory.getLength() < _MAX_DIR)) {
-		return (CreateDirectory(directory.str(), NULL) != 0);
+	const char *d = *(const char * const *)&s;
+	return d ? *(const unsigned short *)(d + 4) : 0;
+}
+
+static inline const char *bfmeStr( const AsciiString &s )
+{
+	const char *d = *(const char * const *)&s;
+	return d ? d + 8 : "";
+}
+
+// ?createDirectory@Win32LocalFileSystem@@UAE_NVAsciiString@@@Z
+Bool Win32LocalFileSystem::createDirectory(AsciiString directory)
+{
+	if ((bfmeLength(directory) > 0) && (bfmeLength(directory) < _MAX_DIR)) {
+		return (CreateDirectory(bfmeStr(directory), NULL) != 0);
 	}
 	return FALSE;
 }
