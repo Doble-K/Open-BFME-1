@@ -7268,6 +7268,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?OnStatusUpdate@DownloadManager@@UAEJH@Z,,0x00008283,5,Code/GameEngine/Source/GameClient/DownloadManagerThunks.cpp,matched,Focused C++ thunk for DownloadManager OnStatusUpdate
 ?OnStatusUpdate@DownloadManagerMunkee@@UAEJH@Z,,0x004C7DF0,62,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
 ?On_Activate_App@WW3D@@SA?AW4WW3DErrorType@@XZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
+?On_Frame_Update@ParticleBufferClass@@UAEXXZ,,0x00984E20,58,Code/GameEngine/Source/Common/promoted_On_Frame_Update_ParticleBufferClass_UAEXXZ_00984E20.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 58B
 ?On_Frame_Update@ParticleEmitterClass@@UAEXXZ,,0x0097EED0,273,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Open@GameFileClass@@UAEHH@Z,,0x006F6170,49,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,
 ?Open@GameFileClass@@UAEHPBDH@Z,,0x006F6130,50,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,
@@ -7495,6 +7496,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Registry_Save_Render_Device@DX8Wrapper@@SA_NPBD@Z,,0x00906A60,56,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Release@Animatable3DObjClass@@IAEXXZ,,0x00982090,128,Code/masm_dumps/__Release_Animatable3DObjClass__IAEXXZ_982090.asm,matched,
 ?Release@Geometry@@QAEXXZ,,0x007B7EF0,57,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
+?ReleaseResources@W3DProjectedShadowManager@@QAEXXZ,,0x007B1450,58,Code/GameEngine/Source/Common/promoted_ReleaseResources_W3DProjectedShadowManager_QAEXXZ_007B1450.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 58B
 ?ReleaseWindowLayout@@YAXPAVWindowLayout@@@Z,,0x00049AD0,5,Code/GameEngine/Source/GameLogic/ScriptEngine/ReleaseWindowLayout.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ?Release_Bone@Animatable3DObjClass@@UAEXH@Z,,0x00981C60,18,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Release_Bone@HTreeClass@@QAEXH@Z,,0x00952320,24,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
@@ -13497,6 +13499,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@ObjectWeaponStatusHelper@@UAE?AW4UpdateSleepTime@@XZ,,0x001CB9D0,14,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?update@ParticleSystem@@UAE_NH@Z,,0x005FF310,767,Code/masm_dumps/_sa7__update_ParticleSystem__UAE_NH_Z_5FF310.asm,matched,Exact 767B Open-BFME4
 ?update@Player@@QAEXXZ,,0x000D9A80,551,Code/GameEngine/Source/Common/RTS/Player_update.asm,matched,MASM exact; true body 0xD9A80/551 (queue 0xD5972 int3); unique MSG_ENABLE_RETALIATION_MODE 0x461
+?update@PoisonedBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x00202BD0,48,Code/GameEngine/Source/Common/promoted_update_PoisonedBehavior_UAE_AW4UpdateSleepTime_XZ_00202BD0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 48B
 ?update@ReverseSoundTransition@@UAEXH@Z,,0x0059EED0,52,Code/masm_dumps/ReverseSoundTransition_update_59EED0.asm,matched,Certified packet 296 vtable-owned 52-byte retail body SHA256 3b2b253cd7c657a90ec948cec3cf4784df7e6464ad6166e20a2db846f58b6b77
 ?update@ScaleUpTransition@@UAEXH@Z,,0x0059F060,144,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@StealthDetectorUpdate@@,,0x002AB690,1954,Code/masm_dumps/_str__update_StealthDetectorUpdate__2AB690.asm,matched,
@@ -13787,6 +13790,7 @@ _GetReadmeFromMap,,0x0066DF60,211,Code/GameEngine/Source/GameNetwork/FileTransfe
 _GetSoloINIFromMap,,0x0066DD40,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _GetStrFileFromMap,,0x0066DC30,211,Code/GameEngine/Source/GameNetwork/FileTransfer.cpp,matched,
 _HUFF_decode@12,,0x00822EB0,20,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,
+_InitStatsConnection,,0x009D58C0,47,Code/GameEngine/Source/Common/promoted_InitStatsConnection_009D58C0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 47B
 _IsStatsConnected,,0x009D2B60,15,Code/GameEngine/Source/Common/System/StatsConnection.cpp,matched,Exact retail stats connection query emitted in dedicated C++ TU.
 _NetGameUtilControl,,0x0080E5E0,219,Code/Libraries/Source/DirtySock/netgameutil.cpp,matched,
 _ProtoMangleCreate,,0x00804150,245,Code/Libraries/Source/DirtySock/protomangle.cpp,matched,
@@ -13873,8 +13877,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?Get_Current_LOD@HLodClass@@UAEPAVRenderObjClass@@XZ,,0x00978F20,47,Code/Libraries/Source/WWVegas/WW3D2/HLodClass_Get_Current_LOD.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 47B
-?On_Frame_Update@ParticleBufferClass@@UAEXXZ,,0x00984E20,58,Code/GameEngine/Source/Common/promoted_On_Frame_Update_ParticleBufferClass_UAEXXZ_00984E20.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 58B
-?ReleaseResources@W3DProjectedShadowManager@@QAEXXZ,,0x007B1450,58,Code/GameEngine/Source/Common/promoted_ReleaseResources_W3DProjectedShadowManager_QAEXXZ_007B1450.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 58B
-?update@PoisonedBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x00202BD0,48,Code/GameEngine/Source/Common/promoted_update_PoisonedBehavior_UAE_AW4UpdateSleepTime_XZ_00202BD0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 48B
-_InitStatsConnection,,0x009D58C0,47,Code/GameEngine/Source/Common/promoted_InitStatsConnection_009D58C0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 47B
