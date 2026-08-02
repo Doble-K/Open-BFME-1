@@ -553,3 +553,42 @@ Note on addresses: values encoded in instruction operands are **VAs**, and
 `IMAGE_BASE` is 0x400000, while the ledger is in RVAs. `read()`/`u32()` in the
 probe helper take RVAs, so a vtable printed as `0x0113A668` must be read at
 `0x00D3A668`. Getting this wrong returns empty bytes, not an error.
+## Destructors are the blind spot of the byte gate
+
+A destructor consists almost entirely of the two operands `build.py` masks:
+
+  * `??1<C>` installs the vptr — `mov [ecx], offset <C>'s vtable` — a DIR32,
+    filled in from the target;
+  * `??_G<C>` calls the scalar destructor — a REL32, filled in from the target.
+
+Strip those and a destructor is a prologue, a store, and an epilogue. So the
+gate tests the *shape* and never the class, and a destructor row can carry any
+name at all and stay green forever. This is the same unfalsifiable-size problem
+as a 5-byte ILT thunk and a 1-byte bare `ret`, except it is not tied to a size,
+so `audit_short_rows.py` and `audit_thunk_rows.py` both walk straight past it.
+
+It is not hypothetical and it is not rare. When this was written the ledger had
+205 different class names on 0x005BF290 alone, and 51 scalar-destructor
+addresses claimed by more than one class.
+
+What makes it tractable is that the masking has a floor. Identical bodies really
+are folded by the linker, and folding really does put several correct names on
+one address — so "several names, one address" is not by itself a defect. But
+folding cannot join two bodies that install *different* vtable pointers, because
+those bodies differ before masking, and a vtable belongs to exactly one class.
+So n distinct class names on one body that installs a vtable means at least n-1
+are wrong, and that conclusion needs no view on which one is right. By that test
+alone, 111 rows are wrong.
+
+Deciding which name survives needs the vptr read back out of the image and
+matched against a claimed constructor that installs the same pointer.
+`??0RAMFile@@` installs 0x01143C58, so the body at 0x009D19A0 installing
+0x01143C58 is `~RAMFile` and the `??1SaveLoadSubSystemClass@@` row on it is
+wrong. Note what that attribution rests on: a false `??0` would propagate
+through it unchallenged, so confirm the owner against a vtable pinned by a
+byte-matched *caller* before editing anything.
+
+`tools/audit_dtor_aliases.py` runs both halves. The general lesson is worth
+separating from destructors: whenever a construct's identity lives entirely in
+relocated operands, the byte gate cannot see it, and the check has to come from
+somewhere the relocation still exists — a vtable, a caller, or a string.
