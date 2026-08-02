@@ -58,6 +58,11 @@ public:
     void construct(const void *source);
 };
 
+class BoxEmissionVolumeTemplateCopyCtorShim {
+public:
+    void construct(const void *source);
+};
+
 class SphericalEmissionVelocityTemplateCtorShim {
 public:
     void construct();
@@ -11305,49 +11310,12 @@ __declspec(naked) SphericalEmissionVelocityModule *ConcreteModuleTemplate<Module
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?BOX_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?BOX_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVBoxEmissionVolumeModule@2@VBoxEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
-__declspec(naked) ConcreteModuleTemplate<ModuleTag<5, BOX_EMISSION_VOLUME_MODULE_KEY, BOX_EMISSION_VOLUME_MODULE_NAME, BoxEmissionVolumeModule, BoxEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::ConcreteModuleTemplate(const ConcreteModuleTemplate<ModuleTag<5, BOX_EMISSION_VOLUME_MODULE_KEY, BOX_EMISSION_VOLUME_MODULE_NAME, BoxEmissionVolumeModule, BoxEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > > &that)
+ConcreteModuleTemplate<ModuleTag<5, BOX_EMISSION_VOLUME_MODULE_KEY, BOX_EMISSION_VOLUME_MODULE_NAME, BoxEmissionVolumeModule, BoxEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::ConcreteModuleTemplate(const ConcreteModuleTemplate<ModuleTag<5, BOX_EMISSION_VOLUME_MODULE_KEY, BOX_EMISSION_VOLUME_MODULE_NAME, BoxEmissionVolumeModule, BoxEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > > &that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0xd5
-        __emit 0x11
-        __emit 0xa5
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xd4
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0xd0
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0xbc
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    ((BoxEmissionVolumeTemplateCopyCtorShim *)this)->construct(&that);
+    *(volatile unsigned int *)this = 0x011111d4;
+    *(volatile unsigned int *)((unsigned char *)this + 4) = 0x011111d0;
+    *(volatile unsigned int *)((unsigned char *)this + 8) = 0x011111bc;
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?BOX_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?BOX_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVBoxEmissionVolumeModule@2@VBoxEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ
