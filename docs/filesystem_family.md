@@ -87,7 +87,7 @@ Derives from `ArchiveFileSystem`; overrides the six pure slots and inherits 5, 6
 | 1 | 0x009CC590 | 111 | `init` — 109/111, see the source note |
 | 2 | 0x009CC710 | 832 | `openArchiveFile` — constructs a `Win32BIGFile` at 0x009D14E0 |
 | 3 | 0x009CD660 | 117 | `closeArchiveFile` — map find, one virtual call, `_M_deallocate` |
-| 4 | 0x009CD780 | 261 | **uncertain** — walks the map calling ArchiveFile slot 5 (`getName`, returns by value) and collecting the results. `closeAllArchiveFiles` by position, but Zero Hour's is empty and this is 261 bytes, so if it is that method BFME wrote it from scratch. Could equally be a name-gathering accessor. |
+| 4 | 0x009CD780 | 261 | `closeAllArchiveFiles` — **claimed**. BFME-only body; Zero Hour leaves the method empty. Collects every entry's `getName()` into a vector, then calls slot 3 on each — collecting first because slot 3 erases from the map it would otherwise be iterating. |
 | 7 | 0x009CC3B0 | 1 | `closeAllFiles` — bare `ret` |
 | 9 | 0x009CDB90 | 459 | `loadBigFilesFromDirectory` — `init` calls it through `[eax+0x24]` |
 
