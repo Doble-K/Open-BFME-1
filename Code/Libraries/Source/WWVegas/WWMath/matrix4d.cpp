@@ -2889,89 +2889,28 @@ __declspec(naked) Matrix4D::Matrix4D(const Coord3D &v, float w)
     }
 }
 
-// ??0Matrix4D@@QAE@ABVCoord3D@@@Z
-__declspec(naked) Matrix4D::Matrix4D(const Coord3D &v)
+Matrix4D::Matrix4D(const Coord3D &v)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0xc1
-        __emit 0x33
-        __emit 0xc9
-        __emit 0xba
-        __emit 0x00
-        __emit 0x00
-        __emit 0x80
-        __emit 0x3f
-        __emit 0x89
-        __emit 0x48
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x48
-        __emit 0x1c
-        __emit 0x89
-        __emit 0x48
-        __emit 0x2c
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x89
-        __emit 0x48
-        __emit 0x08
-        __emit 0x89
-        __emit 0x48
-        __emit 0x10
-        __emit 0x89
-        __emit 0x48
-        __emit 0x18
-        __emit 0x89
-        __emit 0x48
-        __emit 0x20
-        __emit 0x89
-        __emit 0x48
-        __emit 0x24
-        __emit 0x89
-        __emit 0x48
-        __emit 0x30
-        __emit 0x89
-        __emit 0x48
-        __emit 0x34
-        __emit 0x89
-        __emit 0x48
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0x89
-        __emit 0x10
-        __emit 0x89
-        __emit 0x50
-        __emit 0x14
-        __emit 0x89
-        __emit 0x50
-        __emit 0x28
-        __emit 0x89
-        __emit 0x50
-        __emit 0x3c
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x89
-        __emit 0x50
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x51
-        __emit 0x04
-        __emit 0x89
-        __emit 0x50
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x48
-        __emit 0x2c
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    unsigned int zero = 0;
+    unsigned int one = 0x3f800000;
+
+    ((unsigned int *)values)[0] = one;
+    ((unsigned int *)values)[1] = zero;
+    ((unsigned int *)values)[2] = zero;
+    ((unsigned int *)values)[3] = zero;
+    ((unsigned int *)values)[4] = zero;
+    ((unsigned int *)values)[5] = one;
+    ((unsigned int *)values)[6] = zero;
+    ((unsigned int *)values)[7] = zero;
+    ((unsigned int *)values)[8] = zero;
+    ((unsigned int *)values)[9] = zero;
+    ((unsigned int *)values)[10] = one;
+    ((unsigned int *)values)[11] = zero;
+    ((unsigned int *)values)[12] = zero;
+    ((unsigned int *)values)[13] = zero;
+    ((unsigned int *)values)[14] = zero;
+    ((unsigned int *)values)[15] = one;
+    values[3] = v.x;
+    values[7] = v.y;
+    values[11] = v.z;
 }
