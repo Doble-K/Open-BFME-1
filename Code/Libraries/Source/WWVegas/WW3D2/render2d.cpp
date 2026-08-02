@@ -61,6 +61,23 @@
 #include "wwmemlog.h"
 #include "assetmgr.h"
 
+template<>
+VectorClass<unsigned short>::VectorClass(int size, unsigned short const *array) :
+	Vector(0),
+	VectorMax(size),
+	IsValid(true),
+	IsAllocated(false)
+{
+	if (size) {
+		if (array) {
+			Vector = (unsigned short *)array;
+		} else {
+			Vector = (unsigned short *)new char[size << 2];
+			IsAllocated = true;
+		}
+	}
+}
+
 //#pragma optimize("", off)
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 

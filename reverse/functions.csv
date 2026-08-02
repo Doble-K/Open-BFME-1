@@ -784,7 +784,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$TPoint3D@M@@QAE@MMM@Z,,0x0052CE40,25,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??0?$TRect@H@@QAE@HHHH@Z,,0x0005BA90,32,Code/Libraries/Source/WWVegas/WWLib/xsurface.cpp,matched,
 ??0?$VectorClass@E@@QAE@HPBE@Z,,0x009121A0,71,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
-??0?$VectorClass@G@@QAE@HPBG@Z,,0x00AFE9C0,73,Code/Libraries/Source/WWVegas/WW3D2/VectorClass_G_ctor.asm,matched,
+??0?$VectorClass@G@@QAE@HPBG@Z,,0x00AFE9C0,73,Code/Libraries/Source/WWVegas/WW3D2/render2d.cpp,matched,TU-local specialization preserves retail 4-byte allocation shape
 ??0?$VectorClass@H@@QAE@HPBH@Z,,0x009062F0,74,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??0?$VectorClass@K@@QAE@HPBK@Z,,0x00981080,74,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ??0?$VectorClass@M@@QAE@HPBM@Z,,0x0093CE50,74,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
