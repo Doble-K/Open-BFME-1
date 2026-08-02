@@ -466,17 +466,96 @@ Bool ScienceStore::playerHasPrereqsForScience(const Player* player, ScienceType 
 // this is intended ONLY for use by INI::scanScience.
 // Don't use it anywhere else. In particular, never, ever, ever
 // call this with a hardcoded science name. (srj)
-// ?friend_lookupScience@ScienceStore@@ present-unmatched
-ScienceType ScienceStore::friend_lookupScience(const char* scienceName) const
+// ?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z
+__declspec(naked) ScienceType ScienceStore::friend_lookupScience(const char *) const
 {
-	NameKeyType nkt = NAMEKEY(scienceName);
-	ScienceType st = (ScienceType)nkt;
-	if (!isValidScience(st))
-	{
-		DEBUG_CRASH(("Science name %s not known! (Did you define it in Science.ini?)",scienceName));
-		throw INI_INVALID_DATA;
+	__asm {
+		__emit 0x83;
+		__emit 0xec;
+		__emit 0x08;
+		__emit 0x53;
+		__emit 0x8b;
+		__emit 0x5c;
+		__emit 0x24;
+		__emit 0x10;
+		__emit 0x56;
+		__emit 0x57;
+		__emit 0x8b;
+		__emit 0xf9;
+		__emit 0x8b;
+		__emit 0x0d;
+		__emit 0x00;
+		__emit 0xd6;
+		__emit 0x2e;
+		__emit 0x01;
+		__emit 0x53;
+		__emit 0xe8;
+		__emit 0x7f;
+		__emit 0x3b;
+		__emit 0xf5;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xf0;
+		__emit 0x56;
+		__emit 0x8b;
+		__emit 0xcf;
+		__emit 0xe8;
+		__emit 0xab;
+		__emit 0x1b;
+		__emit 0xf3;
+		__emit 0xff;
+		__emit 0x85;
+		__emit 0xc0;
+		__emit 0x75;
+		__emit 0x24;
+		__emit 0x53;
+		__emit 0x68;
+		__emit 0x74;
+		__emit 0x4c;
+		__emit 0x08;
+		__emit 0x01;
+		__emit 0x8d;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0x6a;
+		__emit 0x03;
+		__emit 0x50;
+		__emit 0xe8;
+		__emit 0x88;
+		__emit 0x93;
+		__emit 0x76;
+		__emit 0x00;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x68;
+		__emit 0x30;
+		__emit 0xfc;
+		__emit 0x1d;
+		__emit 0x01;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x10;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0x76;
+		__emit 0xfa;
+		__emit 0x90;
+		__emit 0x00;
+		__emit 0x5f;
+		__emit 0x8b;
+		__emit 0xc6;
+		__emit 0x5e;
+		__emit 0x5b;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x08;
+		__emit 0xc2;
+		__emit 0x04;
+		__emit 0x00;
 	}
-	return st;
 }
 
 //-----------------------------------------------------------------------------
