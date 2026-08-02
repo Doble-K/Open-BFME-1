@@ -55,13 +55,13 @@ void WaterTracksRenderSystem::loadTracks()
 	((WaterTracksRenderSystemLoadTracksShim *)this)->loadTracks();
 }
 
-__declspec(naked) void TerrainLogic::addWaypointLink(int, int)
+class TerrainLogicAddWaypointLinkShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 074h
-		_emit 0D5h
-		_emit 016h
-		_emit 000h
-	}
+public:
+	void add(int a, int b);
+};
+
+void TerrainLogic::addWaypointLink(int a, int b)
+{
+	((TerrainLogicAddWaypointLinkShim *)this)->add(a, b);
 }
