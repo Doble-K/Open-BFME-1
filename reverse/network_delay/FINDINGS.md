@@ -618,6 +618,35 @@ readiness gate (0x006633E0), Connection::doSend (0x00661F10), the frame ring
 (0x00670A30) and the connection-manager lifecycle -- filtered to what is still
 unnamed, asm-only, or claimed only by a thunk row.
 
+**88 of 139 matched, 7248 of 15498 bytes** as of the last sweep. What is left
+splits three ways, and the split matters because two of the three cannot be
+closed by writing better C++:
+
+  * **~15 are compiler runtime.** `0x009F7210` is `__allmul` and `0x009F70E0`
+    is `__alldiv` -- hand-written CRT assembly that MSVC *calls* for 64-bit
+    arithmetic and never emits from source, so no C++ produces them.
+    `0x009F7E88`, `0x009F6F2E` and `0x009F7EC3` are `__ehvec_*` unwind helpers,
+    same story. `0x0082AD50`, `0x0082DA10`, `0x0082C920` and `0x000800C0` are
+    STLport `__node_alloc` internals, and `0x006651C0`, `0x00665120`,
+    `0x00665170`, `0x00667B50`, `0x006652B0` and `0x00669560` are STL map and
+    list internals -- those are real C++, but they are STLport's, not the
+    game's.
+
+  * **~10 are blocked on a register or stack-slot tie-break.** Their bodies are
+    written and instruction-for-instruction correct; what differs is which
+    register or frame slot MSVC picks. `Connection::doSend`,
+    `ConstructNetCommandMsgFromRawData`, `NetPacket::getCommandList`, both
+    NetPacket constructors and the four by-value-string readers are all in this
+    state. Each carries a note recording exactly what was ruled out.
+
+  * **the rest are game code needing a name.** The behaviour is legible from the
+    image but the symbol is not, and the repo's convention for that -- an
+    offset- or behaviour-derived name, as in `copyState6C@BFMENetwork` -- is
+    what these need.
+
+Regenerate with the call-graph walk described above; this is the complete list,
+not a sample.
+
 **139 functions, 15498 bytes.** Regenerate with the call-graph walk described
 above; this is the complete list, not a sample.
 
