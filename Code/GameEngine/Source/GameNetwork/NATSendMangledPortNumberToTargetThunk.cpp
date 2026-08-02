@@ -8,13 +8,13 @@ protected:
     void sendMangledPortNumberToTarget(unsigned short mangledPort, GameSlot *targetSlot);
 };
 
-__declspec(naked) void NAT::sendMangledPortNumberToTarget(unsigned short, GameSlot *)
+class NATSendMangledPortShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0D1h
-        _emit 06Bh
-        _emit 064h
-        _emit 000h
-    }
+public:
+    void send(unsigned short mangledPort, GameSlot *targetSlot);
+};
+
+void NAT::sendMangledPortNumberToTarget(unsigned short mangledPort, GameSlot *targetSlot)
+{
+    ((NATSendMangledPortShim *)this)->send(mangledPort, targetSlot);
 }

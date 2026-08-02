@@ -3380,6 +3380,7 @@ name,address,notes
 ?scanUnsignedInt@INI@@SAIPBD@Z,0x00852680
 ?searchListForRadarLocationMatch@Radar@@IAEPAVObject@@PAVRadarObject@@PAUICoord2D@@@Z,0x0000C6DA
 ?selectFriends@SelectionTranslator@@AAE_NPAVDrawable@@PAVGameMessage@@_N@Z,0x000282B8
+?send@NATSendMangledPortShim@@QAEXGPAVGameSlot@@@Z,0x006718A0,NAT sendMangledPortNumberToTarget incremental-link thunk target through a TU-local forwarding shim
 ?send@TransportDoSendShim@@QAE_NXZ,0x006834B0,Transport doSend incremental-link thunk target through a TU-local forwarding shim
 ?sendFrameDataToPlayer@ConnectionManager@@QAEXII@Z,0x0000BE10,ILT thunk; real body 0x664D20 which raises the per-player watermark at +0x12060
 ?sendLocalCommand@ConnectionManager@@QAEXPAVNetCommandMsg@@E@Z,0x0003F17A,ILT thunk; real body 0xA64740
