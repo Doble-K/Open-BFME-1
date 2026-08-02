@@ -5470,7 +5470,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Cast_OBBox_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxCollisionTestClass@@@Z,,0x0096AEE0,219,Code/masm_dumps/_icf3__Cast_OBBox_To_Polys_AABTreeClass__AAE_NPAUCullNodeStruct_1_AAVOBBoxCo_96AEE0.asm,matched,ICF Open-BFME4+Grok
 ?Cast_Ray@AABTreeClass@@QAE_NAAVRayCollisionTestClass@@@Z,,0x00924820,17,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ?Cast_Ray@AABoxRenderObjClass@@UAE_NAAVRayCollisionTestClass@@@Z,,0x00956AE0,83,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,"callee-pinned: calls Collide(LineSeg,AABox)@0x8DAC30"
-?Cast_Ray@BaseHeightMapRenderObjClass@@UAE_NAAVRayCollisionTestClass@@@Z,,0x006CDF90,2839,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_Cast_Ray.asm,matched,exact 2839B MASM @ 0x006CDF90 (true body); queue 0x0096A3CA MISPLACED; m_map+0x2FF4 field-offset blocks C++
+?Cast_Ray@BaseHeightMapRenderObjClass@@UAE_NAAVRayCollisionTestClass@@@Z,,0x006CDF90,2839,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_Cast_Ray.asm,matched,exact 2839B MASM @ 0x006CDF90 (true body); queue 0x0096A3CA MISPLACED. The Zero Hour body ports and compiles but reaches only 15.57% -- BFME rewrote this function so it needs reconstructing from the disassembly rather than porting
 ?Cast_Ray@CompositeRenderObjClass@@UAE_NAAVRayCollisionTestClass@@@Z,,0x009830C0,78,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
 ?Cast_Ray@HLodClass@@UAE_NAAVRayCollisionTestClass@@@Z,,0x0097A2A0,179,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Cast_Ray@OBBoxRenderObjClass@@UAE_NAAVRayCollisionTestClass@@@Z,,0x00956B90,83,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,"callee-pinned: calls Collide(LineSeg,OBBox)@0x8DAD70"
@@ -11590,6 +11590,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getRankPoints@CampaignManager@@QBEHXZ,,0x006CF680,3,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getRawTileData@WorldHeightMap@@QAE_NFHPAEH@Z,,0x00747D70,217,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,clean C++; BFME m_sourceTiles@+0xa4 raw-offset access and NUM_SOURCE_TILES=4096 (retail drift vs ZH header proven from getTerrainColorAt)
 ?getRayEffectData@RayEffectSystem@@QAEXPBVDrawable@@PAURayEffectData@@@Z,,0x005D35F0,42,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
+?getReadyCommands@NetCommandWrapperList@@QAEPAVNetCommandList@@XZ,,0x00676890,256,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList_getReadyCommands.cpp,matched,
 ?getReadyFrame@SpecialPowerModule@@UBEIXZ,,0x0026ABC0,126,Code/masm_dumps/getReadyFrame_SpecialPowerModule_0026ABC0.asm,matched,Certified packet 179 sealed RVA size hash and reviewed identity
 ?getReal@Dict@@QBEMW4NameKeyType@@PA_N@Z,,0x00067EC0,56,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?getRealFilename@NetFileAnnounceCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675610,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
@@ -11790,7 +11791,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?gogoGadgetPushButton@GameWindowManager@@UAEPAVGameWindow@@PAV2@IHHHHPAVWinInstanceData@@PAVGameFont@@_N@Z,,0x0047DC50,241,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoGadgetPushButton.asm,matched,exact 241B via MASM; true start 0x47DC50 (queue 0x68F0DB misplaced mid-fn); GWM vtbl slot14 createGadget PUSHBUTTON
 ?gogoGadgetTabControl@GameWindowManager@@UAEPAVGameWindow@@PAV2@IHHHHPAVWinInstanceData@@PAU_TabControlData@@PAVGameFont@@_N@Z,,0x0047D090,150,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoGadgetTabControl.asm,matched,exact 150B via MASM; true start 0x47D090 (queue 0x47D071 was post-winSetLoneWindow padding)
 ?gogoMessageBox@GameWindowManager@@,,0x0047EF70,1518,Code/masm_dumps/_str2__gogoMessageBox_GameWindowManager__47EF70.asm,matched,
-?gogoMessageBox@GameWindowManager@@UAEPAVGameWindow@@HHHHGVUnicodeString@@0P6AXXZ111_N@Z,,0x0047EF70,1518,Code/masm_dumps/gogoMessageBox_GameWindowManager_UAE_47EF70.asm,matched,icf-owner=?gogoMessageBox@GameWindowManager@@; full mangling MASM alias of string-anchored land; queue had off-by-1 RVA+pad size
+?gogoMessageBox@GameWindowManager@@UAEPAVGameWindow@@HHHHGVUnicodeString@@0P6AXXZ111_N@Z,,0x0047EF70,1518,Code/masm_dumps/gogoMessageBox_GameWindowManager_UAE_47EF70.asm,matched,icf-owner=?gogoMessageBox@GameWindowManager@@; full mangling MASM alias of string-anchored land. C++ is already in GameWindowManager.cpp at 34.19%; that TU uses Zero Hour's AsciiString while retail calls StringBase<char>::set(str len) and the ctor at 0x888BC0. Converting means extracting it to its own TU with retail's string shims -- changing the model in place risks that file's 114 matched rows
 ?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
 ?gotMangledPort@NAT@@IAEXHG@Z,,0x00671EB0,179,Code/masm_dumps/_gotMangledPort_NAT__IAEXHG_Z_671EB0.asm,matched,MASM exact retail dump
 ?gotoNextMission@CampaignManager@@QAEPAVMission@@XZ,,0x005BC5A0,32,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
@@ -14189,4 +14190,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?getReadyCommands@NetCommandWrapperList@@QAEPAVNetCommandList@@XZ,,0x00676890,256,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList_getReadyCommands.cpp,matched,
