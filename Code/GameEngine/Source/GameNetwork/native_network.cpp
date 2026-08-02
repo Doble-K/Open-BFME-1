@@ -79,6 +79,12 @@ private:
 	BFMENetworkLock *m_ownerLock;
 };
 
+class BFMENetworkBackendDestructorShim
+{
+public:
+	void destroy();
+};
+
 class BFMENetworkLock
 {
 public:
@@ -314,30 +320,14 @@ BFMENetworkBackend::BFMENetworkBackend(BFMENetworkLock *ownerLock) :
 	m_value54 = 0;
 }
 
-__declspec(naked) void *BFMENetworkBackend::destroyAndMaybeDelete(unsigned int flags)
+void *BFMENetworkBackend::destroyAndMaybeDelete(unsigned int flags)
 {
-	__asm {
-		push esi
-		mov esi, ecx
-		__emit 0xe8
-		__emit 0x97
-		__emit 0xdb
-		__emit 0x9d
-		__emit 0xff
-		test byte ptr [esp+8], 1
-		je doneBackendDeleting
-		push esi
-		__emit 0xe8
-		__emit 0x0b
-		__emit 0xd6
-		__emit 0x22
-		__emit 0x00
-		add esp, 4
-doneBackendDeleting:
-		mov eax, esi
-		pop esi
-		ret 4
+	void *self = this;
+	((BFMENetworkBackendDestructorShim *)self)->destroy();
+	if (flags & 1) {
+		::operator delete(self);
 	}
+	return self;
 }
 
 void BFMENetworkBackend::openLiveHandle()

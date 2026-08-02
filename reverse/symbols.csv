@@ -2905,6 +2905,7 @@ name,address,notes
 ?deleteNotificationBox@@YAXXZ,0x000271DD
 ?deposit@Money@@QAEXI_N@Z,0x00027D6D
 ?destroyObject@GameLogic@@QAEXPAVObject@@@Z,0x0001D0DE,ILT thunk; real body 0x78B0C0
+?destroy@BFMENetworkBackendDestructorShim@@QAEXXZ,0x0003242F,BFMENetworkBackend destructor thunk used through a TU-local layout shim
 ?destroyParticleSystemByID@ParticleSystemManager@@QAEXW4ParticleSystemID@@@Z,0x00005696,BoneFXUpdate::killRunningParticleSystems/stopAllBoneFX call target (ILT thunk -> body 0x5C3C10)
 ?detach@NetCommandMsg@@QAEXXZ,0x000200A4,additive; ILT thunk for body 0xA73610
 ?detach@NetCommandMsg@@QAEXXZ,0x009EB7A0
