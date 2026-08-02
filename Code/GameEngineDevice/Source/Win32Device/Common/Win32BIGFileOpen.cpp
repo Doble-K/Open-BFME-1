@@ -16,12 +16,9 @@
 // the same dummy-virtual technique already used for the InGameUI and Radar slot
 // pins; the two virtuals ahead of them are the destructor and getFileInfo.
 //
-// What the four-argument form does with its extra two arguments is not settled
-// here, so they are spelled as an untyped buffer and a length, which is what the
-// call site passes (two zeros) and all this function needs them to be. Its body
-// at 0x009D1560 looks the filename up and then allocates either 0x2C bytes and
-// runs StreamingArchiveFile's constructor, or 0x20 bytes and RAMFile's,
-// selected by testing bit 8 of access -- Zero Hour's File::STREAMING.
+// The extra two are an offset bias and a length override -- see the landed body
+// in Win32BIGFileOpenArchived.cpp. Passing zeros asks for the whole entry from
+// its recorded offset, which is exactly what Zero Hour's single openFile does.
 class File;
 
 class Win32BIGFile
@@ -34,7 +31,7 @@ public:
 	// declaring them the readable way round put the four-argument form at slot 2,
 	// which showed up as the one wrong byte in an otherwise exact forward
 	// (call [eax+8] where retail has call [eax+0xc]).
-	virtual File *openFile( const char *filename, int access, void *buffer, int bufferSize );	// slot 3
+	virtual File *openFile( const char *filename, int access, int offset, int size );	// slot 3
 	virtual File *openFile( const char *filename, int access );		// slot 2
 };
 
