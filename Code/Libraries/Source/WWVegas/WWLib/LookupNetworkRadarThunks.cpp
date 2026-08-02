@@ -20,22 +20,22 @@ public:
 	bool localPixelToRadar(ICoord2D const *, ICoord2D *);
 };
 
+class RadarLocalPixelToRadarShim
+{
+public:
+	bool localPixelToRadar(ICoord2D const *, ICoord2D *);
+};
+
+bool Radar::localPixelToRadar(ICoord2D const *source, ICoord2D *destination)
+{
+	return ((RadarLocalPixelToRadarShim *)this)->localPixelToRadar(source, destination);
+}
+
 class DisconnectManager
 {
 protected:
 	bool isPlayerVotedOut(int, ConnectionManager *);
 };
-
-__declspec(naked) bool Radar::localPixelToRadar(ICoord2D const *, ICoord2D *)
-{
-	__asm {
-		_emit 0E9h
-		_emit 052h
-		_emit 02Dh
-		_emit 010h
-		_emit 000h
-	}
-}
 
 __declspec(naked) bool DisconnectManager::isPlayerVotedOut(int, ConnectionManager *)
 {
