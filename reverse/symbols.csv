@@ -901,6 +901,7 @@ name,address,notes
 ??0NetKeepAliveCommandMsg@@QAE@XZ,0x00024F87,pinharvest x1 (thunk)
 ??0NetKeepAliveCommandMsg@@QAE@XZ,0x0002FAD1,pinharvest x1 (thunk)
 ??0NetKeepAliveCommandMsg@@QAE@XZ,0x00049F71,pinharvest x1 (thunk)
+??0NetPacket@@QAE@XZ,0x00679650,the default constructor; body written in NetPacket_init.cpp but one ordering tie-break short of clean
 ??0NetPacketRouterAckCommandMsg@@QAE@XZ,0x000132B4,pinharvest x2 (thunk)
 ??0NetPacketRouterAckCommandMsg@@QAE@XZ,0x00024F87,pinharvest x1 (thunk)
 ??0NetPacketRouterAckCommandMsg@@QAE@XZ,0x0002FAD1,pinharvest x1 (thunk)
@@ -1917,6 +1918,7 @@ name,address,notes
 ?Collide@CollisionMath@@SA_NABVOBBoxClass@@ABVVector3@@ABVTriClass@@1PAUCastResultStruct@@@Z,0x008E7180
 ?Combine_Color_And_Alpha@ParticleBufferClass@@IAEXXZ,0x00984CB0,derived from Render_Particles call sites
 ?Combo_Update@HTreeClass@@QAEXABVMatrix3D@@PAVHAnimComboClass@@@Z,0x00954D90
+?CommandRequiresAck@@YA_NPAVNetCommandMsg@@@Z,0x00682DB0,same body as the Int-returning ledger row; callers declare it Bool and test al, the definition widens to the whole register
 ?Compute_Current_Frame@Animatable3DObjClass@@IBEMPAM@Z,0x00982540,called by Simple_Evaluate_Bone
 ?Compute_Texture_Coordinate@MatrixMapperClass@@QAEXABVVector3@@PAV2@@Z,0x00924C30,pinharvest x1 (body)
 ?Compute_Texture_Coordinate@MatrixMapperClass@@QAEXABVVector3@@PAV2@@Z,0x00924C40,pinharvest x1 (body)
@@ -2750,6 +2752,7 @@ name,address,notes
 ?add@TeamsInfoRecAddTeamShim@@QAEXPBVDict@@@Z,0x0005EE90,TeamsInfoRec addTeam incremental-link thunk target through a TU-local forwarding shim
 ?add@TerrainLogicAddWaypointLinkShim@@QAEXHH@Z,0x001A60F0,TerrainLogic addWaypointLink incremental-link thunk target through a TU-local forwarding shim
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,0x0000B569,GameMessageParser::addArgType thunk
+?addCommand@NetPacket@@QAE_NPAVNetCommandRef@@@Z,0x006811B0,the jump-table dispatcher doSend calls; identified from the call site
 ?addFile@ArchiveFile@@QAEXABVAsciiString@@PBUArchivedFileInfo@@@Z,0x009D1110,called once per BIG directory entry
 ?addScience@Player@@AAE_NW4ScienceType@@@Z,0x00036057
 ?addSciencePurchasePoints@Player@@QAEXH@Z,0x0000F0F1
@@ -3595,6 +3598,7 @@ name,address,notes
 ?push_back_aux@DequePushBackAuxValueThunksShim@_STL@@QAEXPBX@Z,0x006420E0,_STL deque _M_push_back_aux_v incremental-link thunk target through a TU-local forwarding shim
 ?queue@TransportQueueSendShim@@QAE_NIGPBEH@Z,0x00683830,Transport queueSend incremental-link thunk target through a TU-local forwarding shim
 ?queueSend@Transport@@QAE_NIGPBEH@Z,0x00049F80,ILT thunk; real body 0x683830 (from NAT::sendAProbe)
+?queueSend@Transport@@QAE_NPAUNetPacketAddress@@PBEH@Z,0x00683830,BFME takes the address as a struct pointer, so three args where the reference has four; the ledger row for the four-arg name is the incremental-link thunk
 ?reacquire@W3DVolumetricShadowManagerReAcquireShim@@QAE_NXZ,0x007C1180,W3DVolumetricShadowManager ReAcquireResources incremental-link thunk target through a TU-local forwarding shim
 ?read@UDPReadShim@@QAEHPAEIPAUsockaddr_in@@@Z,0x00684630,UDP Read incremental-link thunk target through a TU-local forwarding shim
 ?readChatMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,0x0067E760,identified by the NetChatCommandMsg constructor it calls; source is one instruction pair off
@@ -4091,7 +4095,3 @@ _bfme_asin,0x009F7D86,internal asin helper called by ASin
 _bfme_timeGetTime@0,0x000481E4,ILT thunk for timeGetTime (non-dllimport call sites in ProcessAnimateWindow.cpp)
 _gameTextPrepare@16,0x009F6D76,GameTextManager reset prepare helper shim
 _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
-??0NetPacket@@QAE@XZ,0x00679650,the default constructor; body written in NetPacket_init.cpp but one ordering tie-break short of clean
-?addCommand@NetPacket@@QAE_NPAVNetCommandRef@@@Z,0x006811B0,the jump-table dispatcher doSend calls; identified from the call site
-?queueSend@Transport@@QAE_NPAUNetPacketAddress@@PBEH@Z,0x00683830,BFME takes the address as a struct pointer, so three args where the reference has four; the ledger row for the four-arg name is the incremental-link thunk
-?CommandRequiresAck@@YA_NPAVNetCommandMsg@@@Z,0x00682DB0,same body as the Int-returning ledger row; callers declare it Bool and test al, the definition widens to the whole register
