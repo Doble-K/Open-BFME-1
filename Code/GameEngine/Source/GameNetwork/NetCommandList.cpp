@@ -147,6 +147,28 @@ void NetCommandList::reset() {
  * The message is sorted in based first on command type, then player id, and then command id.
  */
 // ?addMessage@NetCommandList@@QAEPAVNetCommandRef@@PAVNetCommandMsg@@@Z present-unmatched
+// Real body 0x00673200, 609 bytes, still claimed by NetCommandList_addMessage.asm.
+// The 84 accessor uses below were emitting the reference's +4/+8/+0xC offsets and
+// now go through the de-pooled layout, which is what removeMessage needed too --
+// so this source is closer to right than it was even though it is not matched.
+// It compiles to exactly 609 bytes and the first 37 are identical, but 79% of the
+// body differs with only short matching runs: the blocks are laid out in a
+// different order throughout, which is a structural difference rather than the
+// allocator tie-break seen elsewhere. Worth re-deriving the branch structure from
+// retail rather than transforming the reference further.
+// BFME's NetCommandRef is not a MemoryPoolObject, so it carries no vptr and its
+// fields sit four bytes lower than the reference header puts them: m_msg at +0,
+// m_next at +4, m_prev at +8. The accessors would emit +4/+8/+0xC. removeMessage
+// and findMessage in this file already walk the links through a local layout;
+// addMessage does the same, through L().
+struct NetCommandRefLayout
+{
+	NetCommandMsg *command;
+	NetCommandRefLayout *next;
+	NetCommandRefLayout *prev;
+};
+static inline NetCommandRefLayout *L(void *r) { return (NetCommandRefLayout *)r; }
+
 NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 	if (cmdMsg == NULL) {
 		DEBUG_ASSERTCRASH(cmdMsg != NULL, ("NetCommandList::addMessage - command message was NULL"));
@@ -169,16 +191,16 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 		// Messages that are inserted in order should just be put in one right after the other.
 		// So saving the placement of the last message inserted can give us a huge boost in
 		// efficiency.
-		NetCommandRef *theNext = m_lastMessageInserted->getNext();
-		if ((m_lastMessageInserted->getCommand()->getNetCommandType() == msg->getCommand()->getNetCommandType()) &&
-			(m_lastMessageInserted->getCommand()->getPlayerID() == msg->getCommand()->getPlayerID()) &&
-			(m_lastMessageInserted->getCommand()->getID() < msg->getCommand()->getID()) &&
-			((theNext == NULL) || ((theNext->getCommand()->getNetCommandType() > msg->getCommand()->getNetCommandType()) ||
-			 (theNext->getCommand()->getPlayerID() > msg->getCommand()->getPlayerID()) ||
-			 (theNext->getCommand()->getID() > msg->getCommand()->getID())))) {
+		NetCommandRef *theNext = ((NetCommandRef *)L(m_lastMessageInserted)->next);
+		if ((L(m_lastMessageInserted)->command->getNetCommandType() == L(msg)->command->getNetCommandType()) &&
+			(L(m_lastMessageInserted)->command->getPlayerID() == L(msg)->command->getPlayerID()) &&
+			(L(m_lastMessageInserted)->command->getID() < L(msg)->command->getID()) &&
+			((theNext == NULL) || ((L(theNext)->command->getNetCommandType() > L(msg)->command->getNetCommandType()) ||
+			 (L(theNext)->command->getPlayerID() > L(msg)->command->getPlayerID()) ||
+			 (L(theNext)->command->getID() > L(msg)->command->getID())))) {
 
 			// Make sure this command isn't already in the list.
-			if (isEqualCommandMsg(m_lastMessageInserted->getCommand(), msg->getCommand())) {
+			if (isEqualCommandMsg(L(m_lastMessageInserted)->command, L(msg)->command)) {
 
 				// This command is already in the list, don't duplicate it.
 				msg->deleteInstance();
@@ -188,28 +210,28 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 
 			if (theNext == NULL) {
 				// this means that m_lastMessageInserted == m_last, so m_last should point to the msg that is being inserted.
-				msg->setNext(m_lastMessageInserted->getNext());
-				msg->setPrev(m_lastMessageInserted);
-				m_lastMessageInserted->setNext(msg);
+				L(msg)->next = L(((NetCommandRef *)L(m_lastMessageInserted)->next));
+				L(msg)->prev = L(m_lastMessageInserted);
+				L(m_lastMessageInserted)->next = L(msg);
 				m_lastMessageInserted = msg;
 				m_last = msg;
 			} else {
-				msg->setNext(m_lastMessageInserted->getNext());
-				msg->setPrev(m_lastMessageInserted);
-				m_lastMessageInserted->setNext(msg);
-				msg->getNext()->setPrev(msg);
+				L(msg)->next = L(((NetCommandRef *)L(m_lastMessageInserted)->next));
+				L(msg)->prev = L(m_lastMessageInserted);
+				L(m_lastMessageInserted)->next = L(msg);
+				L(msg)->next->prev = L(msg);
 				m_lastMessageInserted = msg;
 			}
 			return msg;
 		}
 	}
 	
-	if (msg->getCommand()->getNetCommandType() > m_last->getCommand()->getNetCommandType()) {
+	if (L(msg)->command->getNetCommandType() > L(m_last)->command->getNetCommandType()) {
 		// easy optimization for a command that goes at the end of the list
 		// since they are likely to be added in order.
 
 		// Make sure this command isn't already in the list.
-		if (isEqualCommandMsg(m_last->getCommand(), msg->getCommand())) {
+		if (isEqualCommandMsg(L(m_last)->command, L(msg)->command)) {
 
 			// This command is already in the list, don't duplicate it.
 			msg->deleteInstance();
@@ -217,17 +239,17 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 			return NULL;
 		}
 
-		msg->setPrev(m_last);
-		msg->setNext(NULL);
-		m_last->setNext(msg);
+		L(msg)->prev = L(m_last);
+		L(msg)->next = (NetCommandRefLayout *)NULL;
+		L(m_last)->next = L(msg);
 		m_last = msg;
 		m_lastMessageInserted = msg;
 		return msg;
 	}
 	
-	if (msg->getCommand()->getNetCommandType() < m_first->getCommand()->getNetCommandType()) {
+	if (L(msg)->command->getNetCommandType() < L(m_first)->command->getNetCommandType()) {
 		// Make sure this command isn't already in the list.
-		if (isEqualCommandMsg(m_first->getCommand(), msg->getCommand())) {
+		if (isEqualCommandMsg(L(m_first)->command, L(msg)->command)) {
 
 			// This command is already in the list, don't duplicate it.
 			msg->deleteInstance();
@@ -236,9 +258,9 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 		}
 
 		// The command goes at the head of the list.
-		msg->setNext(m_first);
-		msg->setPrev(NULL);
-		m_first->setPrev(msg);
+		L(msg)->next = L(m_first);
+		L(msg)->prev = (NetCommandRefLayout *)NULL;
+		L(m_first)->prev = L(msg);
 		m_first = msg;
 		m_lastMessageInserted = msg;
 		return msg;
@@ -247,13 +269,13 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 	
 	// Find the start of the command type we're looking for.
 	NetCommandRef *tempmsg = m_first;
-	while ((tempmsg != NULL) && (msg->getCommand()->getNetCommandType() > tempmsg->getCommand()->getNetCommandType())) {
-		tempmsg = tempmsg->getNext();
+	while ((tempmsg != NULL) && (L(msg)->command->getNetCommandType() > L(tempmsg)->command->getNetCommandType())) {
+		tempmsg = ((NetCommandRef *)L(tempmsg)->next);
 	}
 
 	if (tempmsg == NULL) {
 		// Make sure this command isn't already in the list.
-		if (isEqualCommandMsg(m_last->getCommand(), msg->getCommand())) {
+		if (isEqualCommandMsg(L(m_last)->command, L(msg)->command)) {
 
 			// This command is already in the list, don't duplicate it.
 			msg->deleteInstance();
@@ -262,22 +284,22 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 		}
 
 		// message goes at the end of the list.
-		msg->setPrev(m_last);
-		msg->setNext(NULL);
-		m_last->setNext(msg);
+		L(msg)->prev = L(m_last);
+		L(msg)->next = (NetCommandRefLayout *)NULL;
+		L(m_last)->next = L(msg);
 		m_last = msg;
 		m_lastMessageInserted = msg;
 		return msg;
 	}
 
 	// Now find the player position.  munkee.
-	while ((tempmsg != NULL) && (msg->getCommand()->getNetCommandType() == tempmsg->getCommand()->getNetCommandType()) && (msg->getCommand()->getPlayerID() > tempmsg->getCommand()->getPlayerID())) {
-		tempmsg = tempmsg->getNext();
+	while ((tempmsg != NULL) && (L(msg)->command->getNetCommandType() == L(tempmsg)->command->getNetCommandType()) && (L(msg)->command->getPlayerID() > L(tempmsg)->command->getPlayerID())) {
+		tempmsg = ((NetCommandRef *)L(tempmsg)->next);
 	}
 
 	if (tempmsg == NULL) {
 		// Make sure this command isn't already in the list.
-		if (isEqualCommandMsg(m_last->getCommand(), msg->getCommand())) {
+		if (isEqualCommandMsg(L(m_last)->command, L(msg)->command)) {
 
 			// This command is already in the list, don't duplicate it.
 			msg->deleteInstance();
@@ -286,9 +308,9 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 		}
 
 		// message goes at the end of the list.
-		msg->setPrev(m_last);
-		msg->setNext(NULL);
-		m_last->setNext(msg);
+		L(msg)->prev = L(m_last);
+		L(msg)->next = (NetCommandRefLayout *)NULL;
+		L(m_last)->next = L(msg);
 		m_last = msg;
 		m_lastMessageInserted = msg;
 		return msg;
@@ -296,13 +318,13 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 
 	// Find the position within the player's section based on the command ID.
 	// If the command type doesn't require a command ID, sort by whatever it should be sorted by.
-	while ((tempmsg != NULL) && (msg->getCommand()->getNetCommandType() == tempmsg->getCommand()->getNetCommandType()) && (msg->getCommand()->getPlayerID() == tempmsg->getCommand()->getPlayerID()) && (msg->getCommand()->getSortNumber() > tempmsg->getCommand()->getSortNumber())) {
-		tempmsg = tempmsg->getNext();
+	while ((tempmsg != NULL) && (L(msg)->command->getNetCommandType() == L(tempmsg)->command->getNetCommandType()) && (L(msg)->command->getPlayerID() == L(tempmsg)->command->getPlayerID()) && (L(msg)->command->getSortNumber() > L(tempmsg)->command->getSortNumber())) {
+		tempmsg = ((NetCommandRef *)L(tempmsg)->next);
 	}
 
 	if (tempmsg == NULL) {
 		// Make sure this command isn't already in the list.
-		if (isEqualCommandMsg(m_last->getCommand(), msg->getCommand())) {
+		if (isEqualCommandMsg(L(m_last)->command, L(msg)->command)) {
 
 			// This command is already in the list, don't duplicate it.
 			msg->deleteInstance();
@@ -311,9 +333,9 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 		}
 
 		// This message goes at the end of the list.
-		msg->setPrev(m_last);
-		msg->setNext(NULL);
-		m_last->setNext(msg);
+		L(msg)->prev = L(m_last);
+		L(msg)->next = (NetCommandRefLayout *)NULL;
+		L(m_last)->next = L(msg);
 		m_last = msg;
 		m_lastMessageInserted = msg;
 		return msg;
@@ -321,7 +343,7 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 
 	if (tempmsg == m_first) {
 		// Make sure this command isn't already in the list.
-		if (isEqualCommandMsg(m_first->getCommand(), msg->getCommand())) {
+		if (isEqualCommandMsg(L(m_first)->command, L(msg)->command)) {
 
 			// This command is already in the list, don't duplicate it.
 			msg->deleteInstance();
@@ -329,16 +351,16 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 		}
 
 		// This message goes at the head of the list.
-		msg->setNext(m_first);
-		msg->setPrev(NULL);
-		m_first->setPrev(msg);
+		L(msg)->next = L(m_first);
+		L(msg)->prev = (NetCommandRefLayout *)NULL;
+		L(m_first)->prev = L(msg);
 		m_first = msg;
 		m_lastMessageInserted = msg;
 		return msg;
 	}
 
 	// Make sure this command isn't already in the list.
-		if (isEqualCommandMsg(tempmsg->getCommand(), msg->getCommand())) {
+		if (isEqualCommandMsg(L(tempmsg)->command, L(msg)->command)) {
 
 		// This command is already in the list, don't duplicate it.
 		msg->deleteInstance();
@@ -347,10 +369,10 @@ NetCommandRef * NetCommandList::addMessage(NetCommandMsg *cmdMsg) {
 	}
 
 	// Insert message before tempmsg.
-	msg->setNext(tempmsg);
-	msg->setPrev(tempmsg->getPrev());
-	msg->getPrev()->setNext(msg);
-	tempmsg->setPrev(msg);
+	L(msg)->next = L(tempmsg);
+	L(msg)->prev = L(((NetCommandRef *)L(tempmsg)->prev));
+	L(msg)->prev->next = L(msg);
+	L(tempmsg)->prev = L(msg);
 	m_lastMessageInserted = msg;
 
 	return msg;
