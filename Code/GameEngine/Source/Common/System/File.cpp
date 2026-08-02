@@ -28,6 +28,26 @@
 //   0x01143CA8  StreamingArchiveFile  dtor 0x009D22B0   ctor 0x009D20B0
 //   0x01143D38  LocalFile             dtor 0x009D26C0   ctor 0x009D23E0
 //
+// Measured state of 0x009C9000-0x009CE000, since "the File family" is often
+// taken to mean that range: it holds 282 real functions once the 5-byte
+// incremental-link thunks are discounted, and 36 of them are claimed. 33 of
+// those 36 are this file; the rest are two Win32LocalFileSystem rows,
+// ArchiveFileSystem, ArchiveFile and one MASM dump.
+//
+// The other 246 are not waiting on effort. Running tools/locate.py over
+// ArchiveFileSystem.cpp, ArchiveFile.cpp, Win32LocalFileSystem.cpp and
+// FileSystem.cpp places nothing at all: 114 definitions come back ambiguous,
+// because they are STL instantiations over AsciiString-keyed maps of
+// ArchivedFileInfo and DetailedArchivedDirectoryInfo whose bodies are identical
+// at six or more addresses, and 245 come back unlocated, because BFME rewrote
+// the archive file system and Zero Hour's source no longer assembles to it.
+// None of the eighteen largest unclaimed functions references a string, so
+// there is nothing to anchor a name to either.
+//
+// So the range is 13% claimed and the remainder is a rewrite to recover rather
+// than a gap to fill. The File subclasses themselves -- the part that had names
+// to find -- are done.
+//
 // So the family runs past 0x009CE000 into 0x009D2xxx. None of the last four set
 // an identifying literal the way MemoryReadFile and MemoryWriteFile do, so they
 // are named by construction instead:
