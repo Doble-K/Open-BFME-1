@@ -2802,6 +2802,7 @@ name,address,notes
 ?construct@CylindricalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0004AEB7,CylindricalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate0CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000139AD,DefaultModuleTemplate<0> copy constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate0CtorShim@FXParticleSystem@@QAEXXZ,0x00041AB5,DefaultModuleTemplate<0> constructor thunk used through a TU-local layout shim
+?assign@DefaultModuleTemplate0AssignShim@FXParticleSystem@@QAEXPBX@Z,0x000111C6,DefaultModuleTemplate<0> assignment thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate1CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000356D4,DefaultModuleTemplate<1> copy constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate1CtorShim@FXParticleSystem@@QAEXXZ,0x00016F95,DefaultModuleTemplate<1> constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate2CtorShim@FXParticleSystem@@QAEXXZ,0x0003EF45,DefaultModuleTemplate<2> constructor thunk used through a TU-local layout shim
