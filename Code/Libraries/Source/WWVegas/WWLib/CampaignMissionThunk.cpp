@@ -5,16 +5,16 @@ class Mission
 class Campaign
 {
 public:
-	Mission * getNextMission(Mission *);
+    Mission *getNextMission(Mission *);
 };
 
-__declspec(naked) Mission * Campaign::getNextMission(Mission *)
+class CampaignGetNextMissionShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0FFh
-		_emit 09Eh
-		_emit 058h
-		_emit 000h
-	}
+public:
+    Mission *next(Mission *current);
+};
+
+Mission *Campaign::getNextMission(Mission *current)
+{
+    return ((CampaignGetNextMissionShim *)this)->next(current);
 }

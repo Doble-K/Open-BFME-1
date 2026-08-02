@@ -3125,8 +3125,6 @@ name,address,notes
 ?getModelVertices@W3DBridgeGetModelVerticesShim@@QAEHPAUVertexFormatXYZNDUV1@@HMAAVVector3@@111ABVMatrix3D@@PAVMeshClass@@PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x006D7EA0,W3DBridge incremental-link thunk target through a TU-local forwarding shim
 ?getNATPortAllocationScheme@FirewallHelperClass@@AAEHHPAG0AA_N1@Z,0x00012F3F
 ?getNATPortAllocationScheme@FirewallHelperClassGetNATPortAllocationSchemeShim@@QAEHHPAG0AA_N1@Z,0x0066E870,FirewallHelperClass incremental-link thunk target through a TU-local forwarding shim
-?localPixelToRadar@RadarLocalPixelToRadarShim@@QAE_NPBUICoord2D@@PAU2@@Z,0x00107AB0,Radar incremental-link thunk target through a TU-local forwarding shim
-?isPlayerVotedOut@DisconnectManagerIsPlayerVotedOutShim@@QAE_NHPAVConnectionManager@@@Z,0x0066BC30,DisconnectManager incremental-link thunk target through a TU-local forwarding shim
 ?getName@SpecialPowerTemplate@@QBE?AVAsciiString@@XZ,0x00005682
 ?getNewFrame@NetDisconnectScreenOffCommandMsg@@QAEIXZ,0x0003A1F2,ILT thunk; real body 0x674360
 ?getNewPushButtonData@@YAPAU_PushButtonData@@XZ,0x00012765
@@ -3266,6 +3264,7 @@ name,address,notes
 ?isPacketRouter@ConnectionManager@@QAE_NXZ,0x00044139
 ?isPlayerConnected@ConnectionManager@@QAE_NH@Z,0x0001514A
 ?isPlayerVotedOut@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z,0x0001ECE0
+?isPlayerVotedOut@DisconnectManagerIsPlayerVotedOutShim@@QAE_NHPAVConnectionManager@@@Z,0x0066BC30,DisconnectManager incremental-link thunk target through a TU-local forwarding shim
 ?isPointOnBridge@Bridge@@QAE_NPBUCoord3D@@@Z,0x00014637
 ?isScienceGrantable@ScienceStore@@QBE_NW4ScienceType@@@Z,0x0003882A
 ?isSlotLocalAlly@@YA_NPBVGameSlot@@@Z,0x0061ED20
@@ -3311,6 +3310,7 @@ name,address,notes
 ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,0x000119E1,ILT thunk; real body 0x5B6920
 ?newMultiplayerColorDefinition@MultiplayerSettings@@QAEPAVMultiplayerColorDefinition@@VAsciiString@@@Z,0x0002FD6A,harvested from parseMultiplayerColorDefinition (thunk)
 ?newOverride@WeaponStore@@SAPAVWeaponTemplate@@PAV2@@Z,0x0002BE72,harvested from parseWeaponTemplateDefinition (thunk)
+?next@CampaignGetNextMissionShim@@QAEPAVMission@@PAV2@@Z,0x005BC270,Campaign getNextMission incremental-link thunk target through a TU-local forwarding shim
 ?next@GenerateNextCommandIDShim@@SAGXZ,0x00682D10,GenerateNextCommandID incremental-link thunk target through a TU-local forwarding shim
 ?normalizeAngle@@YAMM@Z,0x0000991C
 ?notifyModelConditionChanged@Object@@QAEXXZ,0x0002191D,Object model-condition notify ILT (body 0x1BE1C0); inlined clearModelConditionState(PANICKING) sites
