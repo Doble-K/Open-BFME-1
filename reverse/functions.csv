@@ -11548,7 +11548,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getWaypointName@MapObject@@QAE?AVAsciiString@@XZ,,0x00088AE0,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?getWeaponInWeaponSlot@WeaponSet@@QBEPAVWeapon@@W4WeaponSlotType@@@Z,,0x001EAF90,11,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
 ?getWheelInfo@Drawable@@QBEPBUTWheelInfo@@XZ,,0x0077F6B0,17,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; m_locoInfo@+0x138; DrawableLocoInfo layout unchanged from ZH
-?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/masm_dumps/_rn3__getWhichTurretForWeaponSlot_AIUpdateInterface__QBE_AW4WhichTurretType_26EBB0.asm,matched,reloc-needle Open-BFME4+Grok
 ?getWidth@W3DDisplayString@@UAEHH@Z,,0x006F53A0,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,
 ?getWindowUnderCursor@GameWindowManager@@UAEPAVGameWindow@@HH_N@Z,,0x0047D570,378,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_getWindowUnderCursor.asm,matched,exact 378B via MASM (field-offset drift)
 ?getWorkerAIInterface@AIUpdateInterface@@UAEPAVWorkerAIInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME AIUpdateInterface puts m_turretAI at +0x1E8
 ?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME AIUpdateInterface puts m_turretAI at +0x1E8
 ?updateNemesis@TunnelTracker@@QAEXPBVObject@@@Z,,0x000F90D0,124,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,MASM dump converted to clean C++; single-base TunnelTracker plus two extra BFME KindOf entries before KINDOF_AIRCRAFT
+?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME TurretAI has one polymorphic base fewer so m_angle is at +0x18

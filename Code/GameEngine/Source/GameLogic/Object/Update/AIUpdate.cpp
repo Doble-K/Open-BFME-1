@@ -806,7 +806,6 @@ WhichTurretType AIUpdateInterface::getWhichTurretForCurWeapon() const
 }
 
 //=============================================================================
-// ?getWhichTurretForWeaponSlot@AIUpdateInterface@@ present-unmatched
 WhichTurretType AIUpdateInterface::getWhichTurretForWeaponSlot(WeaponSlotType wslot, Real* turretAngle, Real* turretPitch) const
 {
 	for (int i = 0; i < MAX_TURRETS; ++i)
