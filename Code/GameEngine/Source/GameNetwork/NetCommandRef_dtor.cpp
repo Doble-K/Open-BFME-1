@@ -18,20 +18,42 @@
 // Declared locally: the real GameNetwork/NetCommandRef.h derives the class from
 // MemoryPoolObject, and any file under reference/shims/ forces the full gate.
 
+typedef int Int;
+typedef unsigned int UnsignedInt;
+typedef unsigned char UnsignedByte;
+
 class NetCommandMsg
 {
 public:
+	void attach();
 	void detach();
 };
 
 class NetCommandRef
 {
 public:
+	NetCommandRef(NetCommandMsg *msg);
 	~NetCommandRef();
 
 private:
 	NetCommandMsg *m_msg;							// this+0x00
+	NetCommandRef *m_next;							// this+0x04
+	NetCommandRef *m_prev;							// this+0x08
+	UnsignedByte m_relay;							// this+0x0C
+	UnsignedInt m_timeLastSent;						// this+0x10
 };
+
+// BFME's one addition to the reference's body: m_relay is zeroed here, between
+// the attach and the timestamp. The reference has no relay on the ref at all.
+NetCommandRef::NetCommandRef(NetCommandMsg *msg)
+{
+	m_msg = msg;
+	m_next = 0;
+	m_prev = 0;
+	m_msg->attach();
+	m_relay = 0;
+	m_timeLastSent = -1;
+}
 
 NetCommandRef::~NetCommandRef()
 {

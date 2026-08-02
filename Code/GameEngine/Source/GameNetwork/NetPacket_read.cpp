@@ -37,7 +37,9 @@ typedef unsigned int UnsignedInt;
 typedef unsigned short UnsignedShort;
 typedef unsigned char UnsignedByte;
 
-enum { NETCOMMANDTYPE_FRAMEINFO = 3 };
+enum { NETCOMMANDTYPE_FRAMEINFO = 3, NETCOMMANDTYPE_PLAYERFRAMERATIOS = 22 };
+
+enum { MAX_SLOTS = 8 };
 
 // See NetCommandMsg_text.cpp for why the string classes are the StringBase
 // instantiations themselves rather than wrappers, and why every holder has to
@@ -231,6 +233,22 @@ public:
 	UnsignedInt m_commandCount;						// this+0x24
 };
 
+// BFME-only type 22: the eight per-slot frame ratios computePlayerFrameRatios
+// publishes. Retail inlines the constructor into the reader, so it is inline
+// here, the same as NetFrameCommandMsg's.
+class BFMENetPlayerFrameRatiosCommandMsg : public NetCommandMsg
+{
+public:
+	BFMENetPlayerFrameRatiosCommandMsg()
+	{
+		m_commandType = NETCOMMANDTYPE_PLAYERFRAMERATIOS;
+	}
+
+	void setPlayerFrameRatios(const Int *ratios);
+
+	Int m_ratios[MAX_SLOTS];						// this+0x1C .. +0x38
+};
+
 class BFMENetRequestPlayerLeaveCommandMsg : public NetCommandMsg
 {
 public:
@@ -312,6 +330,7 @@ class NetPacket
 {
 protected:
 	static NetCommandMsg *readFrameMessage(UnsignedByte *data, Int &i);
+	static NetCommandMsg *readPlayerFrameRatiosMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readDisconnectChatMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readChatMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readFileMessage(UnsignedByte *data, Int &i);
@@ -351,6 +370,20 @@ NetCommandMsg *NetPacket::readFrameMessage(UnsignedByte *data, Int &i)
 	memcpy(&commandCount, data + i, sizeof(commandCount));
 	i += sizeof(commandCount);
 	msg->m_commandCount = commandCount;
+
+	return msg;
+}
+
+NetCommandMsg *NetPacket::readPlayerFrameRatiosMessage(UnsignedByte *data, Int &i)
+{
+	BFMENetPlayerFrameRatiosCommandMsg *msg = new BFMENetPlayerFrameRatiosCommandMsg;
+	Int ratios[MAX_SLOTS];
+
+	for (Int slot = 0; slot < MAX_SLOTS; ++slot) {
+		ratios[slot] = data[i];
+		++i;
+	}
+	msg->setPlayerFrameRatios(ratios);
 
 	return msg;
 }

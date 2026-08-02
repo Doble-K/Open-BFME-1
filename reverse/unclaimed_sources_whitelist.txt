@@ -25,3 +25,6 @@ Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_openArchiveFi
 # load precedence, and each step is pinned by the length it produced. Claim it
 # and delete this entry.
 Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_loadBigFiles.cpp
+# ConstructNetCommandMsgFromRawData: retail's instructions in retail's order,
+# but three locals land in different registers. See the note in the file.
+Code/GameEngine/Source/GameNetwork/NetPacket_construct.cpp

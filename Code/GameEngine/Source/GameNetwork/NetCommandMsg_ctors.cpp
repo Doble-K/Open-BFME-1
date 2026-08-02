@@ -31,6 +31,8 @@
 // reference/shims/ forces the full gate.
 
 typedef int Int;
+
+enum { MAX_SLOTS = 8 };
 typedef unsigned int UnsignedInt;
 typedef unsigned short UnsignedShort;
 typedef unsigned char UnsignedByte;
@@ -616,3 +618,25 @@ void BFMENetRequestFrameDataCommandMsg::setRequestedPlayerID(Int playerID) { m_r
 void BFMENetRequestFrameDataCommandMsg::setRequestedFrame(UnsignedInt frame) { m_requestedFrame = frame; }
 
 void NetChatCommandMsg::setPlayerMask(Int playerMask) { m_playerMask = playerMask; }
+
+
+// BFME-only command type 22 -- one of the two the shim's enum leaves unnamed.
+// It is not a disconnect-menu command despite sitting in that numeric range: it
+// carries the eight per-slot frame ratios BFMEConnectionManager::
+// computePlayerFrameRatios (0x00666000) computes, and NetPacket's dispatcher
+// tests for it immediately after FRAMEINFO rather than down with the disconnect
+// types, which is where per-frame traffic sits.
+class BFMENetPlayerFrameRatiosCommandMsg : public NetCommandMsg
+{
+public:
+	void setPlayerFrameRatios(const Int *ratios);
+
+	Int m_ratios[MAX_SLOTS];						// this+0x1C .. +0x38
+};
+
+void BFMENetPlayerFrameRatiosCommandMsg::setPlayerFrameRatios(const Int *ratios)
+{
+	for (Int i = 0; i < MAX_SLOTS; ++i) {
+		m_ratios[i] = ratios[i];
+	}
+}
