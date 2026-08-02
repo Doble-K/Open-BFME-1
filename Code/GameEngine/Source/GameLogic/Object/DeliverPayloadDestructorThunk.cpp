@@ -10,13 +10,13 @@ public:
 	};
 };
 
-__declspec(naked) DeliverPayloadNugget::Payload::~Payload()
+class DeliverPayloadNuggetPayloadDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0F1h
-		_emit 01Ah
-		_emit 032h
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+DeliverPayloadNugget::Payload::~Payload()
+{
+	((DeliverPayloadNuggetPayloadDestructorShim *)this)->destroy();
 }
