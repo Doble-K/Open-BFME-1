@@ -3,19 +3,20 @@
 class ModelConditionInfo
 {
 public:
-	struct HideShowSubObjInfo
+	class HideShowSubObjInfo
 	{
+	public:
 		~HideShowSubObjInfo();
 	};
 };
 
-__declspec(naked) ModelConditionInfo::HideShowSubObjInfo::~HideShowSubObjInfo()
+class ModelConditionInfoHideShowSubObjInfoDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0BCh
-		_emit 052h
-		_emit 033h
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+ModelConditionInfo::HideShowSubObjInfo::~HideShowSubObjInfo()
+{
+	((ModelConditionInfoHideShowSubObjInfoDestructorShim *)this)->destroy();
 }
