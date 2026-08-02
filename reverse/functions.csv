@@ -13846,3 +13846,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Find_Prototype@@YAPAXPAX0PBD@Z,,0x009EBCE0,211,Code/GameEngineDevice/Source/W3DDevice/GameClient/Find_Prototype.cpp,matched,BFME registry Find_Prototype exact 211B @ 0x9EBCE0
 ?Add_Prototype@@YAXPAX@Z,,0x009EBA40,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype.cpp,matched,BFME registry Add_Prototype wrapper exact 21B @ 0x9EBA40
 ?Open_W3D_File@@YAPAXPAX0PBD@Z,,0x006F6BA0,204,Code/GameEngineDevice/Source/W3DDevice/GameClient/Open_W3D_File.cpp,matched,BFME W3D open helper for Load hierarchy/anim exact 204B @ 0x6F6BA0
+?Add_Prototype_Impl@AssetRegistry@@QAEXPAX@Z,,0x009EF1A0,224,Code/GameEngineDevice/Source/W3DDevice/GameClient/Add_Prototype_Impl.cpp,matched,BFME registry Add_Prototype impl exact 224B @ 0x9EF1A0
