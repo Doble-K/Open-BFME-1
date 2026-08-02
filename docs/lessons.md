@@ -921,3 +921,37 @@ comment is about. Reflow the paragraph so no line starts with `// ?`.
 
 This is the same parser state that makes `// <mangled> present-unmatched` work,
 and the same reason that marker has to sit immediately above its definition.
+## An opaque temporary and a transparent one schedule differently
+
+`Win32BIGFileSystem::init` sat at 109 of 111 bytes for a long stretch. One
+instruction pair, twice, in the wrong order:
+
+    retail   push ecx; mov [esp+0xc],esp; mov ecx,esp; push offset "*.big"
+    ours     push ecx; mov ecx,esp; mov [esp+0xc],esp; push offset "*.big"
+
+`mov [esp+N],esp` is MSVC recording the temporary's address for the unwind
+table. None of the usual levers moved it — explicit temporaries, a declared
+rather than inline destructor, access changes, a defaulted argument, and ten
+different codegen and exception flags. Nor argument order, which was already
+right.
+
+What fixed it was how the temporary's **type** was declared. The shim had
+
+    AsciiString( const char *s );          // declared, never defined
+
+and changing it to a visible delegation
+
+    AsciiString( const char *s ) { ((StringBase<char> *)this)->StringBase<char>::StringBase( s ); }
+
+reordered the pair to retail's. With an undefined extern constructor the
+temporary is opaque: the compiler knows only that something happens to it, and
+registers it for unwinding after computing the receiver. With the construction
+visible it can order the two the other way.
+
+Both spellings are the same program and produce the same call. The lesson is
+where to look: when a diff is pure scheduling around a temporary, the lever may
+not be at the call site at all but in how completely the temporary's type is
+declared. Nothing in the byte diff points there, which is why it is worth
+writing down — the same shim is used elsewhere in the tree as a plain extern and
+will produce the same two-byte difference in any function that builds one of
+these by value.

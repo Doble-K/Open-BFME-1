@@ -71,29 +71,31 @@ public:
 	                                        Bool overwrite ) = 0;
 };
 
-// 109 of 111 bytes. Same length, same instructions, same operands -- the only
-// difference is that one pair is scheduled the other way round, twice:
+// ?init@Win32BIGFileSystem@@UAEXXZ
+//
+// This sat at 109 of 111 for a while. The only difference was one instruction
+// pair scheduled the other way round, twice:
 //
 //   retail    push ecx; mov [esp+0xc],esp; mov ecx,esp; push offset "*.big"
-//   compiled  push ecx; mov ecx,esp; mov [esp+0xc],esp; push offset "*.big"
+//   earlier   push ecx; mov ecx,esp; mov [esp+0xc],esp; push offset "*.big"
 //
 // The mov [esp+N],esp is MSVC recording the temporary's address for the unwind
 // table, and retail emits it before setting the this pointer rather than after.
 //
-// Nothing tried moves it. Source shapes: explicit AsciiString(...) temporaries,
-// a declared rather than inline destructor, releaseBuffer public rather than
-// private, and the third argument defaulted rather than passed. Flags, all on
-// top of build.py's base -O2 -GR- -EHsc-: /GX, /EHa, /Gy, /Os, /Ox, /O1, /Oy-,
-// /GF, /Gd and /Og. It is not the argument order either -- MSVC evaluates
-// right-to-left and retail does construct "*.big" first, which this already
-// matches.
+// None of the obvious levers moved it: explicit AsciiString(...) temporaries, a
+// declared rather than inline destructor, releaseBuffer public rather than
+// private, the third argument defaulted rather than passed, and /GX, /EHa, /Gy,
+// /Os, /Ox, /O1, /Oy-, /GF, /Gd and /Og on top of build.py's base. Nor the
+// argument order -- MSVC evaluates right-to-left and retail does construct
+// "*.big" first.
 //
-// So it is not a spelling and it is not a flag on this list. The next thing to
-// try is the shape of loadBigFilesFromDirectory's declaration, since the store
-// being scheduled is the unwind record for ITS by-value parameters.
-//
-// Everything else about the function is settled, so this is two bytes of
-// scheduling away from done.
+// What fixed it was the AsciiString shim above: defining the constructor inline
+// as a delegation to StringBase<char>::StringBase(const char*) instead of
+// leaving it an undefined extern. With the extern, the temporary is opaque and
+// its unwind record gets scheduled after the receiver; with the delegation the
+// compiler can see the construction and orders the pair retail's way. So the
+// lever was not how the CALL is written but how the temporary's TYPE is
+// declared -- worth remembering, because nothing about the diff pointed at it.
 void Win32BIGFileSystem::init( void )
 {
 	if( TheLocalFileSystem == NULL )
