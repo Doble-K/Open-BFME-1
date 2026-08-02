@@ -81,14 +81,23 @@ callee of slot 5.
 Derives from `ArchiveFileSystem`; overrides the six pure slots and inherits 5, 6,
 8 and 10 unchanged. Named by the `"*.big"` literal at 0x0107532C in its `init`.
 
-| slot | address | size |
-| --- | --- | --- |
-| 0 | 0x009CC440 | 30 |
-| 1 `init` | 0x009CC590 | 111 — 109/111, see the source note |
-| 2 | 0x009CC710 | 832 |
-| 3 | 0x009CD660 | 117 |
-| 4 | 0x009CD780 | 261 |
-| 9 `loadBigFilesFromDirectory` | 0x009CDB90 | 459 |
+| slot | address | size | function |
+| --- | --- | --- | --- |
+| 0 | 0x009CC440 | 30 | `??_G` |
+| 1 | 0x009CC590 | 111 | `init` — 109/111, see the source note |
+| 2 | 0x009CC710 | 832 | `openArchiveFile` — constructs a `Win32BIGFile` at 0x009D14E0 |
+| 3 | 0x009CD660 | 117 | `closeArchiveFile` — map find, one virtual call, `_M_deallocate` |
+| 4 | 0x009CD780 | 261 | `closeAllArchiveFiles` — walks the map with `_M_increment` |
+| 7 | 0x009CC3B0 | 1 | `closeAllFiles` — bare `ret` |
+| 9 | 0x009CDB90 | 459 | `loadBigFilesFromDirectory` — `init` calls it through `[eax+0x24]` |
+
+Which settles the base's virtual order, since the base leaves exactly these
+pure. BFME's `ArchiveFileSystem` runs: dtor, `init`, `openArchiveFile`,
+`closeArchiveFile`, `closeAllArchiveFiles`, `openFile`, `openFile` wide,
+`closeAllFiles`, `doesFileExist`, `loadBigFilesFromDirectory`,
+`loadIntoDirectoryTree`. That is not Zero Hour's declaration order — Zero Hour
+has `init/update/reset/postProcessLoad` first and `openFile` ninth — so the
+slots have to come from the image, which is what every entry above does.
 
 ## LocalFileSystem / Win32LocalFileSystem — 0x01143B78 / 0x01143B98
 
