@@ -175,6 +175,28 @@ _W3DFilters
 # failure this check exists to catch. Left whitelisted so the gate stays green,
 # but it should be resolved by working out what BFME's commandButtonTooltip really
 # calls, not by treating two bases as expected.
+#
+# A third caller has since turned up, and it points the same way. The INI block
+# registry binds the "PlayerAIType" keyword to 0x000DF1A0, whose whole body is
+#   mov ecx,[0x12ed740] ; push ini ; call 0x0003EBD5
+# and 0x12ed740 is ThePlayerAITypeSet -- named by the string literal
+# GameEngine::init pushes immediately before it (tools/dump_subsystems.py). That
+# same thunk 0x0003EBD5 is what reverse/symbols.csv records twice, once as
+# ?friend_lookupScience@ScienceStore@@ and once as
+# ?showBuildTooltipLayout@ControlBar@@, both "pinharvest x1".
+#
+# So three call sites with three different `this` globals reach one address, and
+# the function there (0x000DEEC0, 578 bytes) does a lookup over a vector of
+# 16-byte elements at this+0x08 and appends when the lookup returns -1. That is
+# not the shape of showBuildTooltipLayout, and ScienceInfo is 0x30 bytes rather
+# than 16, so it is not friend_lookupScience over m_sciences either.
+#
+# The PlayerAIType binding is the strongest of the three, because the registry is
+# ground truth for what a keyword does: the block table itself says this function
+# parses a PlayerAIType entry. The other two look like harvest guesses that were
+# never contradicted, since the addresses they resolve are masked. Nothing is
+# renamed on that basis alone -- it is recorded so the next person starts from
+# three data points instead of one.
 ?TheControlBar@@3PAVControlBar@@A
 ?TheFXListStore@@3PAVFXListStore@@A
 ?TheNameKeyGenerator@@3PAVNameKeyGenerator@@A

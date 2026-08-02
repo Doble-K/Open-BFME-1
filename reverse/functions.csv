@@ -12450,6 +12450,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAEC0,44,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseWeaponTemplateDefinition@WeaponStore@@SAXPAVINI@@@Z,,0x001E9C40,223,Code/GameEngine/Source/GameLogic/Object/WeaponStore_parseWeaponTemplateDefinition.asm,matched,Certified packet 178 db-only retail recovery SHA256 da43851aa11804b5070b0273f73a23217690057e7b934ba66d66deb312c45aab
 ?parseWeaponTemplateSet@WeaponTemplateSet@@QAEXPAVINI@@PBVThingTemplate@@@Z,,0x001ECE50,28,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
+?parseWeatherData@@YAXPAVINI@@@Z,,0x0039B380,167,Code/GameEngine/Source/GameClient/WeatherData.cpp,matched,BFME-only and distinct from the Weather block in Snow.cpp; five 8-byte entries at TheGlobalWeatherSystem+0x28 selected by name
 ?parseWeatherDefinition@INI@@SAXPAV1@@Z,,0x0045B130,306,Code/GameEngine/Source/GameClient/Snow.cpp,matched,INI block table node binds keyword Weather to this address
 ?parseWin@@YAHQAPADH@Z,,0x00061050,19,Code/GameEngine/Source/Common/CommandLine.cpp,matched,
 ?parseWindow@@YAPAVGameWindow@@PAVFile@@PAD@Z,,0x00487F80,1328,Code/masm_dumps/GameWindowManagerScript_parseWindow.asm,matched,Exact 1328B MASM; true start 0x487F80 after int3 pad; cold tail past main ret
@@ -13441,6 +13442,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?tryToIgnite@FlammableUpdate@@QAEXXZ,,0x00293990,961,Code/masm_dumps/FlammableUpdate_tryToIgnite.asm,matched,Ghidra-owned BFME ignition path
 ?tryToRecruit@Team@@QAEPAVObject@@PBVThingTemplate@@PBUCoord3D@@M@Z,,0x0076E90A,568,Code/GameEngine/Source/Common/RTS/Team_tryToRecruit.asm,matched,exact 568B via MASM
 ?tryUnderAttackEvent@Radar@@,,0x004271B0,373,Code/masm_dumps/_sa4__tryUnderAttackEvent_Radar___4271B0.asm,matched,Exact 373B Open-BFME4
+?turnOffScreen@DisconnectManager@@IAEXH@Z,,0x0066B270,57,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?unAccept@GameSlot@@QAEXXZ,,0x0061EE60,11,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?unPrepFile@INI@@IAEXXZ,,0x00850E30,50,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME closes no file here - load preloads into m_lines so teardown frees that array instead; no m_readBuffer bookkeeping either
 ?unRegisterAnimation@Anim2DCollection@@QAEXPAVAnim2D@@@Z,,0x005BA480,53,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
@@ -13885,4 +13887,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-?turnOffScreen@DisconnectManager@@IAEXH@Z,,0x0066B270,57,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
