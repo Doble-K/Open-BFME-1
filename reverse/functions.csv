@@ -1549,6 +1549,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GiveUpgradeUpdateModuleData@@QAE@XZ,,0x0025DCF0,72,Code/GameEngine/Source/GameLogic/AI/GiveUpgradeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0GloriousChargeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025E890,208,Code/masm_dumps/GloriousChargeUpdate_constructor.asm,matched,Exact 208B @ 0x0025E890; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C750
 ??0GloriousChargeUpdateModuleData@@QAE@XZ,,0x0025E7C0,38,Code/GameEngine/Source/Common/RTS/GloriousChargeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
+??0GrabPassengerSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025F0E0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/GrabPassengerSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ??0GrabPassengerSpecialPowerModuleData@@QAE@XZ,,0x0025F260,35,Code/GameEngine/Source/GameLogic/Object/SpecialPower/GrabPassengerSpecialPowerModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; factory module-data initialization preserved
 ??0GrantStealthBehaviorModuleData@@QAE@XZ,,0x002978A0,105,Code/GameEngine/Source/GameLogic/AI/GrantStealthBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0GrantUpgradeCreateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
@@ -13839,8 +13840,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??0ElvenWoodSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025B2B0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ElvenWoodSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
-?Read@ChunkLoadClass@@QAEKPAXK@Z,,0x009E15C0,142,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
-??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FreezingRainSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
-?Set_Texture@SegLineRendererClass@@QAEXPAVTextureClass@@@Z,,0x00960050,47,Code/Libraries/Source/WWVegas/WW3D2/SegLineRendererSetTexture.cpp,matched,Luna Open-BFME8 exact clean C++ retail texture handle layout
-??0GrabPassengerSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025F0E0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/GrabPassengerSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
