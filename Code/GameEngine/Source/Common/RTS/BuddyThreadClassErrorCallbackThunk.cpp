@@ -9,13 +9,13 @@ public:
     void errorCallback(GPConnection *, GPErrorArg *);
 };
 
-__declspec(naked) void BuddyThreadClass::errorCallback(GPConnection *, GPErrorArg *)
+class BuddyThreadClassErrorCallbackShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 029h
-        _emit 013h
-        _emit 063h
-        _emit 000h
-    }
+public:
+    void run(GPConnection *conn, GPErrorArg *arg);
+};
+
+void BuddyThreadClass::errorCallback(GPConnection *conn, GPErrorArg *arg)
+{
+    ((BuddyThreadClassErrorCallbackShim *)this)->run(conn, arg);
 }
