@@ -9,16 +9,16 @@ class CommandButton
 class GameLogic
 {
 public:
-	bool findControlBarOverride(AsciiString const &, int, CommandButton const *&) const;
+    bool findControlBarOverride(const AsciiString &, int, const CommandButton *&) const;
 };
 
-__declspec(naked) bool GameLogic::findControlBarOverride(AsciiString const &, int, CommandButton const *&) const
+class GameLogicFindControlBarOverrideShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 022h
-		_emit 0F6h
-		_emit 038h
-		_emit 000h
-	}
+public:
+    bool find(const AsciiString &name, int slot, const CommandButton *&out) const;
+};
+
+bool GameLogic::findControlBarOverride(const AsciiString &name, int slot, const CommandButton *&out) const
+{
+    return ((const GameLogicFindControlBarOverrideShim *)this)->find(name, slot, out);
 }
