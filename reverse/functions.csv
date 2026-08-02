@@ -6771,7 +6771,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Grow@?$SimpleDynVecClass@VVector3@@@@IAE_NH@Z,,0x00918610,68,Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp,matched,
 ?Grow@?$SimpleDynVecClass@VVector3i16@@@@IAE_NH@Z,,0x00918570,68,Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp,matched,
 ?Grow@?$SimpleDynVecClass@VVector4@@@@IAE_NH@Z,,0x00701EE0,68,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
-?Grow_Unicode_Array@FontCharsClass@@AAEXG@Z,,0x0093D320,252,Code/masm_dumps/_rn4__Grow_Unicode_Array_FontCharsClass__AAEXG_Z_93D320.asm,matched,reloc-needle Open-BFME4+Grok
 ?Guess_Sort_Level@ShaderClass@@QBEHXZ,,0x00910E90,38,Code/Libraries/Source/WWVegas/WW3D2/shader.cpp,matched,converted exact MASM method dump to clean C++
 ?HSV_To_RGB@@YAXAAVVector3@@ABV1@@Z,,0x001068B0,358,Code/Libraries/Source/WWVegas/WW3D2/bitmaphandler.cpp,matched,
 ?HUFF_analysis@@YAXPAUHuffEncodeContext@@II@Z,,0x0081FB50,2599,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,true size 2599B; row claimed 453B
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?findDrawPositions@Radar@@QAEXHHHHPAUICoord2D@@0@Z,,0x00106FC0,302,Code/GameEngine/Source/Common/System/Radar.cpp,matched,MASM dump converted to clean C++; same BFME Radar layout pin (m_radarWindow at this+0x1438)
 ?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,MASM dump converted to clean C++; BFME GameSlot is 0x44 bytes and has an out-of-line destructor
 ?computeExtents@W3DDisplayString@@IAEXXZ,,0x006F5420,192,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,MASM dump converted to clean C++; DisplayString drops one base virtual and its dtor is out-of-line
+?Grow_Unicode_Array@FontCharsClass@@AAEXG@Z,,0x0093D320,252,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,MASM dump converted to clean C++; BFME moves 0xC of the GDI-handle block past UnicodeCharArray and drops 0x10 from before ASCIICharArray

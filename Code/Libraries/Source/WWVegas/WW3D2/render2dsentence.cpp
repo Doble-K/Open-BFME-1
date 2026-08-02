@@ -1736,7 +1736,6 @@ FontCharsClass::Is_Font (const char *font_name, int point_size, bool is_bold)
 //
 ////////////////////////////////////////////////////////////////////////////////////
 void
-// ?Grow_Unicode_Array@FontCharsClass@@AAEXG@Z present-unmatched
 FontCharsClass::Grow_Unicode_Array (WCHAR ch)
 {
 	//
