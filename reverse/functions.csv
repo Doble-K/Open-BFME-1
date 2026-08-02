@@ -2963,6 +2963,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1NetCommandList@@MAE@XZ,,0x001DDFD0,70,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,
 ??1NetCommandMsg@@MAE@XZ,,0x006737E0,7,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,base destructor needed for NetWrapperCommandMsg dtor shape
 ??1NetCommandRef@@MAE@XZ,,0x007851D0,77,Code/GameEngine/Source/GameNetwork/NetCommandRef.cpp,matched,
+??1NetCommandRef@@QAE@XZ,,0x00676280,12,Code/GameEngine/Source/GameNetwork/NetCommandRef_dtor.cpp,matched,
 ??1NetCommandWrapperList@@MAE@XZ,,0x00676570,45,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ??1NetCommandWrapperListNode@@MAE@XZ,,0x00676420,57,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ??1NetWrapperCommandMsg@@MAE@XZ,,0x00673E20,40,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
@@ -13944,4 +13945,3 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
-??1NetCommandRef@@QAE@XZ,,0x00676280,12,Code/GameEngine/Source/GameNetwork/NetCommandRef_dtor.cpp,matched,
