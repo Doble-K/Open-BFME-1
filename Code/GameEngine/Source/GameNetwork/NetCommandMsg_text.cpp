@@ -72,6 +72,7 @@ enum NetCommandType
 	NETCOMMANDTYPE_UNKNOWN = -1,
 	NETCOMMANDTYPE_REQUEST_GAMESPY_STATS_AUTHKEY = 5,
 	NETCOMMANDTYPE_GAMESPY_STATS_AUTHKEY = 6,
+	NETCOMMANDTYPE_FILE = 19,
 	NETCOMMANDTYPE_FILEANNOUNCE = 20
 };
 
@@ -238,6 +239,7 @@ GameState *TheGameState;
 class NetFileCommandMsg : public NetCommandMsg
 {
 public:
+	NetFileCommandMsg();
 	AsciiString getRealFilename();
 	void setRealFilename(AsciiString filename);
 
@@ -248,6 +250,14 @@ public:
 protected:
 	virtual ~NetFileCommandMsg();
 };
+
+NetFileCommandMsg::NetFileCommandMsg()
+{
+	m_commandType = NETCOMMANDTYPE_FILE;
+	m_data = 0;
+	m_portableFilename.clear();
+	m_dataLength = 0;
+}
 
 NetFileCommandMsg::~NetFileCommandMsg()
 {

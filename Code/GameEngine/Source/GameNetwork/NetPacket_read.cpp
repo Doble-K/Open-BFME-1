@@ -27,12 +27,55 @@
 
 #include <string.h>
 
+// Declared here so the array allocation binds to the game's own operator new[]
+// at 0x00881F70 rather than the CRT import the /MD default would pull in.
+void *__cdecl operator new[](unsigned int size);
+
 typedef int Int;
 typedef unsigned int UnsignedInt;
 typedef unsigned short UnsignedShort;
 typedef unsigned char UnsignedByte;
 
 enum { NETCOMMANDTYPE_FRAMEINFO = 3 };
+
+// See NetCommandMsg_text.cpp for why the string classes are the StringBase
+// instantiations themselves rather than wrappers, and why every holder has to
+// be a friend to reach the private constructors.
+template <typename T>
+class StringBase
+{
+	friend class BFMENetRequestGameSpyStatsAuthKeyCommandMsg;
+	friend class BFMENetGameSpyStatsAuthKeyCommandMsg;
+	friend class NetFileCommandMsg;
+	friend class NetFileAnnounceCommandMsg;
+	friend class NetPacket;
+
+public:
+	void set(const T *str);
+
+	// Inline in retail: assignment lands straight on set(). See lessons.
+	StringBase<T> &operator=(const StringBase<T> &src) { set(src); return *this; }
+	void set(const StringBase<T> &src);
+
+private:
+	StringBase();
+	StringBase(const T *str);
+	StringBase(const StringBase<T> &src);
+	~StringBase();
+
+	struct Header
+	{
+		int ref_count;
+		unsigned short length;
+		unsigned short capacity;
+		T data[1];
+	};
+
+	Header *m_data;
+};
+
+typedef StringBase<char> AsciiString;
+typedef StringBase<unsigned short> UnicodeString;
 
 class NetCommandMsg
 {
@@ -179,10 +222,62 @@ public:
 	Int m_requestedPlayerID;						// this+0x1C
 };
 
+class NetFileCommandMsg : public NetCommandMsg
+{
+public:
+	NetFileCommandMsg();
+	void setFileData(UnsignedByte *data, UnsignedInt dataLength);
+
+	// Inline: retail expands it to the member assignment rather than calling out.
+	void setPortableFilename(AsciiString filename) { m_portableFilename = filename; }
+
+	AsciiString m_portableFilename;					// this+0x1C
+	UnsignedByte *m_data;							// this+0x20
+	UnsignedInt m_dataLength;						// this+0x24
+};
+
+class NetFileAnnounceCommandMsg : public NetCommandMsg
+{
+public:
+	NetFileAnnounceCommandMsg();
+	void setFileID(UnsignedShort fileID);
+	void setPlayerMask(UnsignedByte playerMask);
+
+	void setPortableFilename(AsciiString filename) { m_portableFilename = filename; }
+
+	AsciiString m_portableFilename;					// this+0x1C
+	UnsignedShort m_fileID;							// this+0x20
+	UnsignedByte m_playerMask;						// this+0x22
+};
+
+class BFMENetRequestGameSpyStatsAuthKeyCommandMsg : public NetCommandMsg
+{
+public:
+	BFMENetRequestGameSpyStatsAuthKeyCommandMsg();
+	void setText1C(AsciiString text);
+
+	AsciiString m_text1C;							// this+0x1C
+};
+
+class BFMENetGameSpyStatsAuthKeyCommandMsg : public NetCommandMsg
+{
+public:
+	BFMENetGameSpyStatsAuthKeyCommandMsg();
+	void setText1C(AsciiString text);
+	void setText20(AsciiString text);
+
+	AsciiString m_text1C;							// this+0x1C
+	AsciiString m_text20;							// this+0x20
+};
+
 class NetPacket
 {
 protected:
 	static NetCommandMsg *readFrameMessage(UnsignedByte *data, Int &i);
+	static NetCommandMsg *readFileMessage(UnsignedByte *data, Int &i);
+	static NetCommandMsg *readFileAnnounceMessage(UnsignedByte *data, Int &i);
+	static NetCommandMsg *readRequestGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i);
+	static NetCommandMsg *readGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readRequestPlayerLeaveMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readAckBothMessage(UnsignedByte *data, Int &i);
 	static NetCommandMsg *readAckStage1Message(UnsignedByte *data, Int &i);
@@ -401,6 +496,128 @@ NetCommandMsg *NetPacket::readRequestFrameDataMessage(UnsignedByte *data, Int &i
 	memcpy(&frame, data + i, sizeof(frame));
 	i += sizeof(frame);
 	msg->setRequestedFrame(frame);
+
+	return msg;
+}
+
+
+// The two GameSpy stats-authkey readers. Each string arrives NUL-terminated
+// rather than length-prefixed, which is why they copy byte by byte into a
+// _MAX_PATH buffer instead of memcpy-ing a counted run like the chat readers do.
+// 0x0067EB80, 187 bytes and 0x0067EC70, 251 bytes: retail's instruction for
+// instruction, one pair apart. Retail writes the temporary's unwind record
+// before loading its address into ecx; this source emits the two the other way
+// round. The same source shape matches exactly in readFileAnnounceMessage, where
+// the setter is inline and the temporary is not a by-value argument, so the
+// tie-break is specific to passing the string by value.
+// ?readRequestGameSpyStatsAuthKeyMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z present-unmatched
+NetCommandMsg *NetPacket::readRequestGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i)
+{
+	BFMENetRequestGameSpyStatsAuthKeyCommandMsg *msg = new BFMENetRequestGameSpyStatsAuthKeyCommandMsg;
+
+	char text[256];
+	char *c = text;
+
+	while (data[i] != 0) {
+		*c = data[i];
+		++c;
+		++i;
+	}
+	*c = 0;
+	++i;
+	msg->setText1C(text);
+
+	return msg;
+}
+
+// ?readGameSpyStatsAuthKeyMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z present-unmatched
+NetCommandMsg *NetPacket::readGameSpyStatsAuthKeyMessage(UnsignedByte *data, Int &i)
+{
+	BFMENetGameSpyStatsAuthKeyCommandMsg *msg = new BFMENetGameSpyStatsAuthKeyCommandMsg;
+
+	char text[256];
+	char *c = text;
+
+	while (data[i] != 0) {
+		*c = data[i];
+		++c;
+		++i;
+	}
+	*c = 0;
+	++i;
+	msg->setText1C(text);
+
+	// One buffer, refilled: retail's frame is 0x104 bytes, which is the single
+	// 256-byte run plus the temporary AsciiString.
+	c = text;
+
+	while (data[i] != 0) {
+		*c = data[i];
+		++c;
+		++i;
+	}
+	*c = 0;
+	++i;
+	msg->setText20(text);
+
+	return msg;
+}
+
+
+// The filename arrives in its portable form and NUL-terminated, so both file
+// readers copy it out byte by byte before anything else.
+NetCommandMsg *NetPacket::readFileMessage(UnsignedByte *data, Int &i)
+{
+	NetFileCommandMsg *msg = new NetFileCommandMsg;
+	char filename[260];
+	char *c = filename;
+
+	while (data[i] != 0) {
+		*c = data[i];
+		++c;
+		++i;
+	}
+	*c = 0;
+	++i;
+	msg->setPortableFilename(AsciiString(filename));
+
+	UnsignedInt dataLength = 0;
+	memcpy(&dataLength, data + i, sizeof(dataLength));
+	i += sizeof(dataLength);
+
+	UnsignedByte *buf = new UnsignedByte[dataLength];
+	memcpy(buf, data + i, dataLength);
+	i += dataLength;
+
+	msg->setFileData(buf, dataLength);
+
+	return msg;
+}
+
+NetCommandMsg *NetPacket::readFileAnnounceMessage(UnsignedByte *data, Int &i)
+{
+	NetFileAnnounceCommandMsg *msg = new NetFileAnnounceCommandMsg;
+	char filename[260];
+	char *c = filename;
+
+	while (data[i] != 0) {
+		*c = data[i];
+		++c;
+		++i;
+	}
+	*c = 0;
+	++i;
+	msg->setPortableFilename(AsciiString(filename));
+
+	UnsignedShort fileID = 0;
+	memcpy(&fileID, data + i, sizeof(fileID));
+	i += sizeof(fileID);
+	msg->setFileID(fileID);
+
+	UnsignedByte playerMask = 0;
+	memcpy(&playerMask, data + i, sizeof(playerMask));
+	i += sizeof(playerMask);
+	msg->setPlayerMask(playerMask);
 
 	return msg;
 }
