@@ -65,4 +65,3 @@ __declspec(naked) void FontLibrary::deleteAllFonts()
 		_emit 000h
 	}
 }
-
