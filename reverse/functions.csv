@@ -8087,7 +8087,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Subdivision_Levels@SegmentedLineClass@@QAEXI@Z,,0x00918EE0,30,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ?Set_Swap_Interval@DX8Wrapper@@KAXH@Z,,0x00908E50,21,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Set_Tail_Diffuse@LineGroupClass@@QAEXABVVector4@@@Z,,0x0098EC40,30,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,
-?Set_Texture@LineGroupClass@@QAEXPAVTextureClass@@@Z,,0x0098EC80,50,Code/masm_dumps/_Set_Texture_LineGroupClass__QAEXPAVTextureClass___Z_98EC80.asm,matched,MASM exact retail dump
+?Set_Texture@LineGroupClass@@QAEXPAVTextureClass@@@Z,,0x0098EC80,50,Code/Libraries/Source/WWVegas/WW3D2/LineGroupClassSetTextureThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM method
 ?Set_Texture@MeshModelClass@@QAEXHPAVTextureClass@@HH@Z,,0x006DB460,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Set_Texture@ParticleBufferClass@@QAEXPAVTextureClass@@@Z,,0x00984410,52,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Set_Texture@PointGroupClass@@QAEXPAVTextureClass@@@Z,,0x009127F0,50,Code/masm_dumps/_Set_Texture_PointGroupClass__QAEXPAVTextureClass___Z_9127F0.asm,matched,MASM exact retail dump
