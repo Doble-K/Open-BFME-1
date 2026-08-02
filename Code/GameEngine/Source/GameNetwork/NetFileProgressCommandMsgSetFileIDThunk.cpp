@@ -8,13 +8,13 @@ public:
     void setFileID(UnsignedShort fileID);
 };
 
-__declspec(naked) void NetFileProgressCommandMsg::setFileID(UnsignedShort)
+class NetFileProgressSetFileIDShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 09Dh
-        _emit 0F8h
-        _emit 064h
-        _emit 000h
-    }
+public:
+    void set(UnsignedShort fileID);
+};
+
+void NetFileProgressCommandMsg::setFileID(UnsignedShort fileID)
+{
+    ((NetFileProgressSetFileIDShim *)this)->set(fileID);
 }
