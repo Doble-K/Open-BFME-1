@@ -2733,6 +2733,7 @@ name,address,notes
 ?allocArg@GameMessage@@AAEPAUArgument@1@XZ,0x0002CC8C,GameMessage::allocArg private helper not yet converted to C++; retail target of the append*Argument leaves' call
 ?allocate@__new_alloc@_STL@@SAPAXI@Z,0x0082E540,stlport static-lib allocate (SEH body; not operator new @ 0x881F30)
 ?allocate_and_copy@ParticleSysBoneInfoAllocateAndCopyShim@_STL@@QAEPAUParticleSysBoneInfo@@IPBU3@0@Z,0x000A7E00,_STL vector _M_allocate_and_copy ParticleSysBoneInfo incremental-link thunk target through a TU-local forwarding shim
+?allocate_and_copy@W3DAnimationInfoAllocateAndCopyShim@_STL@@QAEPAVW3DAnimationInfo@@IPBV3@0@Z,0x003B5000,_STL vector _M_allocate_and_copy W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,0x00003873,pinharvest x1 (thunk)
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,0x0003291B,pinharvest x1 (thunk)
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,0x00041D49,pinharvest x1 (thunk)
@@ -2823,6 +2824,7 @@ name,address,notes
 ?clear@RadiusDecal@@QAEXXZ,0x00026F35,pinharvest x3 (thunk)
 ?clear@RadiusDecal@@QAEXXZ,0x00046344,pinharvest x2 (thunk)
 ?clear@TeamFactory@@QAEXXZ,0x000284A7
+?clear@W3DAnimationInfoAllocateAndCopyShim@_STL@@QAEXXZ,0x003B0E90,_STL vector _M_clear W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
 ?clearAllEvents@Radar@@IAEXXZ,0x00028C27
 ?clearAndSetModelConditionState@Drawable@@QAEXW4ModelConditionFlagType@@0@Z,0x0001C8D2
 ?clearDisabled@Object@@QAE_NW4DisabledType@@@Z,0x0003C06A,ILT thunk used by setScriptStatus call site
