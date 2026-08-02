@@ -2733,6 +2733,7 @@ name,address,notes
 ?allocArg@GameMessage@@AAEPAUArgument@1@XZ,0x0002CC8C,GameMessage::allocArg private helper not yet converted to C++; retail target of the append*Argument leaves' call
 ?allocate@__new_alloc@_STL@@SAPAXI@Z,0x0082E540,stlport static-lib allocate (SEH body; not operator new @ 0x881F30)
 ?allocate_and_copy@ParticleSysBoneInfoAllocateAndCopyShim@_STL@@QAEPAUParticleSysBoneInfo@@IPBU3@0@Z,0x000A7E00,_STL vector _M_allocate_and_copy ParticleSysBoneInfo incremental-link thunk target through a TU-local forwarding shim
+?allocate_and_copy@PrereqUnitRecAllocateAndCopyShim@_STL@@QAEPAUPrereqUnitRec@ProductionPrerequisite@@IPBU34@0@Z,0x003B5E20,_STL vector _M_allocate_and_copy PrereqUnitRec incremental-link thunk target through a TU-local forwarding shim
 ?allocate_and_copy@ProductionPrerequisiteAllocateAndCopyShim@_STL@@QAEPAVProductionPrerequisite@@IPBV3@0@Z,0x003B6460,_STL vector _M_allocate_and_copy ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?allocate_and_copy@W3DAnimationInfoAllocateAndCopyShim@_STL@@QAEPAVW3DAnimationInfo@@IPBV3@0@Z,0x003B5000,_STL vector _M_allocate_and_copy W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,0x00003873,pinharvest x1 (thunk)
@@ -2821,6 +2822,7 @@ name,address,notes
 ?clear@FXList@@QAEXXZ,0x00044297,derived-ICF
 ?clear@INILineBuffer@@QAEXXZ,0x009CBF50,empties INI::m_lines and operator-deletes its storage; called by unPrepFile
 ?clear@ParticleSysBoneInfoAllocateAndCopyShim@_STL@@QAEXXZ,0x000A8170,_STL vector _M_clear ParticleSysBoneInfo incremental-link thunk target through a TU-local forwarding shim
+?clear@PrereqUnitRecAllocateAndCopyShim@_STL@@QAEXXZ,0x003B0F00,_STL vector _M_clear PrereqUnitRec incremental-link thunk target through a TU-local forwarding shim
 ?clear@ProductionPrerequisiteAllocateAndCopyShim@_STL@@QAEXXZ,0x003AFE10,_STL vector _M_clear ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?clear@RadarDeleteListResourcesShim@@QAEXXZ,0x00106A90,Radar deleteListResources incremental-link thunk target through a TU-local forwarding shim
 ?clear@RadiusDecal@@QAEXXZ,0x00026F35,pinharvest x3 (thunk)
