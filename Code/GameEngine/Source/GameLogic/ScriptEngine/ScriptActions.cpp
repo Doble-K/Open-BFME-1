@@ -361,7 +361,6 @@ void ScriptActions::changeObjectPanelFlagForSingleObject(Object *obj, const Asci
 //-------------------------------------------------------------------------------------------------
 /** doDebugMessage */
 //-------------------------------------------------------------------------------------------------
-// ?doDebugMessage@ScriptActions@@IAEXABVAsciiString@@_N@Z present-unmatched
 __declspec(naked) void ScriptActions::doDebugMessage(const AsciiString&, Bool)
 {
 	__asm {

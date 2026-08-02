@@ -5374,7 +5374,6 @@ Bool PartitionFilterSamePlayer::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-// ?allow@PartitionFilterRelationship@@UAE_NPAVObject@@@Z present-unmatched
 __declspec(naked) Bool PartitionFilterRelationship::allow(Object *)
 {
 	__asm {

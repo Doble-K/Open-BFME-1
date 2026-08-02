@@ -8,7 +8,16 @@
 #ifndef __PRERTS_H__
 #define __PRERTS_H__
 
+// Retail is built against STLport's node allocator, not plain new/delete: an
+// erase() expansion deallocates with the node size (push 0x18; call
+// 0x0082E5F0, which buckets by (n-1)>>3 into the free-list array at
+// 0x0130B1C0), where __new_alloc would emit a bare operator delete. Most TUs
+// never show the difference because their container bodies are pinned rather
+// than compiled, so the override stays the default; a TU that does show it
+// defines BFME_STLP_NODE_ALLOC to opt out.
+#ifndef BFME_STLP_NODE_ALLOC
 #define _STLP_USE_NEWALLOC 1
+#endif
 class STLSpecialAlloc;
 
 // GameMemory.h defines the ARRAY placement new/delete itself (unguarded); keep
