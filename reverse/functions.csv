@@ -8063,7 +8063,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Texture@MeshModelClass@@QAEXHPAVTextureClass@@HH@Z,,0x006DB460,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Set_Texture@ParticleBufferClass@@QAEXPAVTextureClass@@@Z,,0x00984410,52,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Set_Texture@PointGroupClass@@QAEXPAVTextureClass@@@Z,,0x009127F0,50,Code/masm_dumps/_Set_Texture_PointGroupClass__QAEXPAVTextureClass___Z_9127F0.asm,matched,MASM exact retail dump
-?Set_Texture@SegLineRendererClass@@QAEXPAVTextureClass@@@Z,,0x00960050,47,Code/masm_dumps/_Set_Texture_SegLineRendererClass__QAEXPAVTextureClass___Z_960050.asm,matched,MASM exact retail dump
 ?Set_Texture@StreakRendererClass@@QAEXPAVTextureClass@@@Z,,0x00973850,37,Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp,matched,icf-owner=?Set_HAnim@HAnimComboDataClass@@QAEXPAVHAnimClass@@@Z
 ?Set_Texture_Filename@ParticleEmitterDefClass@@UAEXPBD@Z,,0x0098C170,32,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
 ?Set_Texture_Filter@WW3D@@SAXH@Z,,0x008FD2B0,48,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,
@@ -13840,3 +13839,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0ElvenWoodSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025B2B0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ElvenWoodSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ?Read@ChunkLoadClass@@QAEKPAXK@Z,,0x009E15C0,142,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,Luna Open-BFME5.0 clean C++ BFME loader layout
 ??0FreezingRainSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D590,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FreezingRainSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
+?Set_Texture@SegLineRendererClass@@QAEXPAVTextureClass@@@Z,,0x00960050,47,Code/Libraries/Source/WWVegas/WW3D2/SegLineRendererSetTexture.cpp,matched,Luna Open-BFME8 exact clean C++ retail texture handle layout
