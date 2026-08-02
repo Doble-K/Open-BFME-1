@@ -17429,202 +17429,28 @@ void RenderObjectDrawModuleInfo::DoXfer(Xfer &xfer)
 }
 
 // ?DoXfer@RenderObjectUpdateModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
-__declspec(naked) void RenderObjectUpdateModuleInfo::DoXfer(Xfer &xfer)
+void RenderObjectUpdateModuleInfo::DoXfer(Xfer &xfer)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x50
-        __emit 0x10
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x85
-        __emit 0xa4
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x16
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x88
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0d
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x28
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x04
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xdb
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x10
-        __emit 0x52
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xd1
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x1c
-        __emit 0x50
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xc7
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x28
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xbd
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x34
-        __emit 0x52
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xb3
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x40
-        __emit 0x50
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xa9
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x4c
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x9f
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x58
-        __emit 0x52
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x95
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x40
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x64
-        __emit 0x50
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x88
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x70
-        __emit 0x51
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x7e
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x7c
-        __emit 0x52
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x74
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x87
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x67
-        __emit 0xe7
-        __emit 0xa3
-        __emit 0xff
-        __emit 0x81
-        __emit 0xc7
-        __emit 0x94
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x57
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xf8
-        __emit 0x48
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x28
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+    if (xfer.IsLightCRC()) {
+        return;
     }
+    Xfer::Version v;
+    v.data[0] = 1;
+    v.data[1] = 1;
+    xfer == v;
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x04));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x10));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x1c));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x28));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x34));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x40));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x4c));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x58));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x64));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x70));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x7c));
+    xferRandomVariable(xfer, *(GameClientRandomVariable *)((char *)this + 0x88));
+    xferInteger(xfer, *(int *)((char *)this + 0x94));
 }
 
 // ?DoXfer@StreakDrawModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z
