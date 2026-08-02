@@ -6,13 +6,13 @@ public:
     Condition *duplicate() const;
 };
 
-__declspec(naked) Condition *Condition::duplicate() const
+class ConditionDuplicateShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0A2h
-        _emit 0BBh
-        _emit 033h
-        _emit 000h
-    }
+public:
+    Condition *run() const;
+};
+
+Condition *Condition::duplicate() const
+{
+    return ((const ConditionDuplicateShim *)this)->run();
 }
