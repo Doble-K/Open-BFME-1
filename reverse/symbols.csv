@@ -2795,6 +2795,7 @@ name,address,notes
 ?construct@DefaultModuleTemplate7CtorShim@FXParticleSystem@@QAEXXZ,0x000366EC,DefaultModuleTemplate<7> constructor thunk used through a TU-local layout shim
 ?construct@LightningDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003B2AA,LightningDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@LightningEmissionTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0000CC39,LightningEmissionModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@QuadDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001D278,QuadDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@SphericalEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0001BF86,SphericalEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
 ?copyFrom@DictPair@Dict@@QAEXPAU12@@Z,0x00013E94
 ?copyFromQueueNode@BFMENetworkQueueItem1@@QAEXPAX@Z,0x00032F6A,native BFME queue item copy helper for wrapper queue +0x3c
