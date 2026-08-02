@@ -115,9 +115,22 @@ two `strncmp`s, the archive size and file count are byte-swapped in registers
 (`and esi,0xff00` / `shl edx,0x10` / `shr eax,0x18` / `shl esi,8`) rather than
 going through a call, which is `ntohl` expanded.
 
+The bigger restructure is how the directory is read. Zero Hour walks the file
+entry by entry, issuing a `read` per field and a one-byte-at-a-time loop for each
+name. Retail allocates one buffer with `operator new[]` sized
+`archiveFileSize - 0x10`, reads the **whole** directory into it in a single
+`read`, checks the return equals that size, and then parses entries out of
+memory — offsets and sizes byte-swapped in registers from `[ebx]` and `[ebx+4]`,
+the name taken at `ebx+8`. So the loop does no file I/O at all.
+
 It also builds a substring through `??0?$StringBase@D@@AAE@ABV0@HH@Z`, the
 private three-argument `StringBase` constructor, which Zero Hour's code never
-calls. Expect to write this one from the disassembly.
+calls — consistent with names being sliced out of that in-memory buffer rather
+than assembled a character at a time.
+
+Expect to write this one from the disassembly. The shape is now known end to
+end: open, sixteen-byte header, two-tag check, one bulk read of the directory,
+then an in-memory parse loop.
 
 `loadBigFilesFromDirectory` is the one that resists. Zero Hour's body plus the
 widened declaration compiles to 332 bytes against retail's 459, with four
