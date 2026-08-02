@@ -12742,7 +12742,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeDuplicates@DiscreteCircle@@IAEXXZ,,0x00068E40,117,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
 ?removeFromList@Drawable@@QAEXPAPAV1@@Z,,0x00411C80,62,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,cached-obj2 Open-BFME4+Grok asm->cpp Open-BFME4+Grok
 ?removeFromList@NetCommandWrapperList@@IAEXPAVNetCommandWrapperListNode@@@Z,,0x006766D0,85,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
-?removeFromSavedIgnoreList@GameSpyInfo@@UAEXH@Z,,0x00635730,118,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs_removeFromSavedIgnoreList.asm,matched,
+?removeFromSavedIgnoreList@GameSpyInfo@@UAEXH@Z,,0x00635730,118,Code/GameEngine/Source/GameNetwork/GameSpy/GameSpyInfoRemoveFromSavedIgnoreListThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM method
 ?removeGoal@Pathfinder@@QAEXPAVObject@@@Z,,0x0002248F,5,Code/Libraries/Source/WWVegas/WWLib/W3DRadarBuildTerrainTextureThunk.cpp,matched,object-symbol=?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
 ?removeHighlighting@W3DBibBuffer@@QAEXXZ,,0x006D6AF0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?removeLastChar@?$StringBase@D@@QAEXXZ,0x00887F80,0x887f80,224,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
