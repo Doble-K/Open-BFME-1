@@ -9494,6 +9494,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?deallocate@__new_alloc@_STL@@SAXPAXI@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ?debugIgnoreLeaks@?$StringBase@D@@QAEXXZ,0x00887080,0x00887080,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op leak ignore
 ?debugIgnoreLeaks@?$StringBase@G@@QAEXXZ,0x00887230,0x00887230,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op leak ignore
+?decideCommandRelay@BFMEConnectionManager@@QAEXPAX@Z,,0x006693C0,151,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAMK0@Z,,0x00977EB0,305,Code/masm_dumps/_rn4__decompress_AdaptiveDeltaMotionChannelClass__AAEXKPAMK0_Z_977EB0.asm,matched,reloc-needle Open-BFME4+Grok
 ?decrementDataLeft@DataChunkInput@@IAEXH@Z,,0x00102780,29,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?decrementDelay@AudioEventRTS@@QAEXM@Z,,0x000B21E0,13,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,BFME audio layout
@@ -11335,6 +11336,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPlayType@WindowVideo@@QAE?AW4WindowVideoPlayType@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?getPlayerDisplayName@Player@@QAE?AVUnicodeString@@XZ,,0x00098FD0,32,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarObserver.cpp,matched,
 ?getPlayerMask@Player@@QBEGXZ,,0x000C8C50,11,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
+?getPlayerNameForSlot@BFMEConnectionManager@@QAEXPAXH@Z,,0x006649E0,100,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?getPlayerProfileIDCallback@@YAXPAXHPBDH0@Z,,0x00642F70,23,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?getPlayerTemplateCount@PlayerTemplateStore@@QBEHXZ,,0x000863E0,30,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?getPlayerWins@PeerThreadClass@@QAEHH@Z,,0x002B0F30,14,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
@@ -12874,6 +12876,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?sendFrameDataToPlayer@ConnectionManager@@QAEXII@Z,,0x0000BE10,5,Code/GameEngine/Source/GameNetwork/ConnectionManagerSendFrameDataToPlayerThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x664D20
 ?sendFrameInfo@BFMEConnectionManager@@QAEXXZ,,0x00665D10,354,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendFrameInfoToPlayer@BFMEConnectionManager@@QAEXH@Z,,0x00665ED0,235,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?sendGameCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00666240,147,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendGameResults@GameResultsThreadClass@@AAEHIGABV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@@Z,,0x00640830,223,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ?sendGameSpyStatsAuthKey@BFMEConnectionManager@@QAEXPAX@Z,,0x00665A70,326,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?sendKeepAlive@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B2D0,187,Code/masm_dumps/_rn5__sendKeepAlive_DisconnectManager__IAEXPAVConnectionManager___Z_66B2D0.asm,matched,reloc-needle Open-BFME4+Grok

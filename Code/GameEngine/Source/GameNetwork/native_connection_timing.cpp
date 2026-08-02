@@ -43,6 +43,9 @@ public:
 	void updateFileProgress();
 	void buildPlayerStatusText(void *out);
 	void queueLocalCommand(void *msg);
+	void sendGameCommand(void *msg);
+	void decideCommandRelay(void *msg);
+	void getPlayerNameForSlot(void *out, int slot);
 	void sendPlayerLeaveCommands();
 	void sendFrameInfoToPlayer(int slot);
 	void sendDisconnectChatCommand(void *text);
@@ -8666,5 +8669,235 @@ L04_665B94:
 		pop ebx
 		add esp, 114h
 		ret 4h
+	}
+}
+
+// Sends command type 4 (GAMECOMMAND), built by the constructor at 0x00674A40.
+// This is where a player's order enters the lockstep: it is the BFME analogue of
+// the reference's ConnectionManager::sendLocalGameMessage.
+__declspec(naked) void BFMEConnectionManager::sendGameCommand(void *msg)
+{
+	__asm {
+		push 0FFFFFFFFh
+		push 10442CBh
+		mov eax, dword ptr fs:[0h]
+		push eax
+		mov dword ptr fs:[0h], esp
+		push ecx
+		push esi
+		push edi
+		push 30h
+		mov edi, ecx
+		__emit 0E8h
+		__emit 0CFh
+		__emit 0BCh
+		__emit 021h
+		__emit 000h   // call 0x881F30
+		add esp, 4h
+		mov dword ptr [esp+8h], eax
+		xor esi, esi
+		cmp eax, esi
+		mov dword ptr [esp+14h], esi
+		je L00_666280
+		mov ecx, dword ptr [esp+1Ch]
+		push ecx
+		mov ecx, eax
+		__emit 0E8h
+		__emit 003h
+		__emit 0BFh
+		__emit 09Dh
+		__emit 0FFh   // call 0x42181
+		mov esi, eax
+L00_666280:
+		or eax, 0FFFFFFFFh
+		mov dword ptr [esi+8h], eax
+		mov edx, dword ptr [edi+12028h]
+		mov dword ptr [esp+14h], eax
+		mov eax, dword ptr [esi+14h]
+		push eax
+		mov dword ptr [esi+0Ch], edx
+		__emit 0E8h
+		__emit 0D6h
+		__emit 0F8h
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L01_6662AC
+		__emit 0E8h
+		__emit 0B0h
+		__emit 0A2h
+		__emit 09Ch
+		__emit 0FFh   // call 0x30558
+		mov word ptr [esi+10h], ax
+L01_6662AC:
+		push 0FFh
+		push esi
+		mov ecx, edi
+		__emit 0E8h
+		__emit 0C1h
+		__emit 08Eh
+		__emit 09Dh
+		__emit 0FFh   // call 0x3F17A
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0E4h
+		__emit 09Dh
+		__emit 09Bh
+		__emit 0FFh   // call 0x200A4
+		mov ecx, dword ptr [esp+0Ch]
+		pop edi
+		pop esi
+		mov dword ptr fs:[0h], ecx
+		add esp, 10h
+		ret 4h
+	}
+}
+
+// Works out who a command has to reach. It compares m_localSlot against
+// m_packetRouterSlot and the message's own player id at +0x0C, asks
+// DoesCommandRequireACommandID whether the command needs an id at all, and
+// hands off to 0x006688D0.
+__declspec(naked) void BFMEConnectionManager::decideCommandRelay(void *msg)
+{
+	__asm {
+		push esi
+		mov esi, dword ptr [esp+8h]
+		push edi
+		mov edi, ecx
+		mov eax, dword ptr [edi+1202Ch]
+		cmp dword ptr [edi+12028h], eax
+		jne L00_66941C
+		mov ecx, dword ptr [esi+0Ch]
+		cmp ecx, eax
+		je L01_669450
+		cmp ecx, 8h
+		jae L01_669450
+		mov eax, dword ptr [esi+14h]
+		push eax
+		__emit 0E8h
+		__emit 087h
+		__emit 0C7h
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L01_669450
+		__emit 0A1h
+		__emit 098h
+		__emit 008h
+		__emit 02Fh
+		__emit 001h   // mov eax, dword ptr [0x12f0898]
+		mov ecx, dword ptr [eax+3Ch]
+		mov eax, dword ptr [esi+0Ch]
+		xor edx, edx
+		mov dx, word ptr [esi+10h]
+		push ecx
+		shl eax, 0Dh
+		lea ecx,  [eax+edi+24h]
+		push edx
+		__emit 0E8h
+		__emit 02Ah
+		__emit 0AEh
+		__emit 09Ah
+		__emit 0FFh   // call 0x1423B
+		test al, al
+		jne L01_669450
+		pop edi
+		mov al, 1h
+		pop esi
+		ret 4h
+L00_66941C:
+		cmp dword ptr [esi+0Ch], eax
+		jne L01_669450
+		mov eax, dword ptr [esi+14h]
+		push eax
+		__emit 0E8h
+		__emit 048h
+		__emit 0C7h
+		__emit 09Ah
+		__emit 0FFh   // call 0x15B72
+		add esp, 4h
+		test al, al
+		je L01_669450
+		mov eax, dword ptr [esi+8h]
+		movzx esi, word ptr [esi+10h]
+		push eax
+		push esi
+		lea ecx,  [edi+10024h]
+		__emit 0E8h
+		__emit 0F6h
+		__emit 0ADh
+		__emit 09Ah
+		__emit 0FFh   // call 0x1423B
+		test al, al
+		jne L01_669450
+		pop edi
+		mov al, 1h
+		pop esi
+		ret 4h
+L01_669450:
+		pop edi
+		xor al, al
+		pop esi
+		ret 4h
+	}
+}
+
+// Copies a player's display name out. For our own slot it reads the string at
+// this+0x12058 directly; otherwise it takes the copy path through
+// StringBase<UnsignedShort>.
+__declspec(naked) void BFMEConnectionManager::getPlayerNameForSlot(void *out, int slot)
+{
+	__asm {
+		push ecx
+		mov eax, dword ptr [esp+0Ch]
+		cmp eax, dword ptr [ecx+12028h]
+		push esi
+		mov dword ptr [esp+4h], 0h
+		jne L00_664A0F
+		mov esi, dword ptr [esp+0Ch]
+		add ecx, 12058h
+		push ecx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0F8h
+		__emit 039h
+		__emit 022h
+		__emit 000h   // call 0x888400
+		mov eax, esi
+		pop esi
+		pop ecx
+		ret 8h
+L00_664A0F:
+		mov ecx, dword ptr [ecx+eax*4+4h]
+		test ecx, ecx
+		je L01_664A2D
+		mov esi, dword ptr [esp+0Ch]
+		add ecx, 14h
+		push ecx
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0DAh
+		__emit 039h
+		__emit 022h
+		__emit 000h   // call 0x888400
+		mov eax, esi
+		pop esi
+		pop ecx
+		ret 8h
+L01_664A2D:
+		mov esi, dword ptr [esp+0Ch]
+		push 1336E54h
+		mov ecx, esi
+		__emit 0E8h
+		__emit 0C3h
+		__emit 039h
+		__emit 022h
+		__emit 000h   // call 0x888400
+		mov eax, esi
+		pop esi
+		pop ecx
+		ret 8h
 	}
 }
