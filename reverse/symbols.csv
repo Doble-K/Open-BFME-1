@@ -2822,6 +2822,7 @@ name,address,notes
 ?clear@DrawableIconInfo@@QAEXXZ,0x00037565,pinharvest x1 (thunk)
 ?clear@FXList@@QAEXXZ,0x00044297,derived-ICF
 ?clear@INILineBuffer@@QAEXXZ,0x009CBF50,empties INI::m_lines and operator-deletes its storage; called by unPrepFile
+?clear@ModelConditionInfoHideShowSubObjInfoInsertOverflowShim@_STL@@QAEXXZ,0x003AFA40,_STL vector _M_clear ModelConditionInfo::HideShowSubObjInfo incremental-link thunk target through a TU-local forwarding shim
 ?clear@NuggetInsertOverflowShim@_STL@@QAEXXZ,0x00771D00,_STL vector _M_clear ModuleInfo::Nugget incremental-link thunk target through a TU-local forwarding shim
 ?clear@ParticleSysBoneInfoAllocateAndCopyShim@_STL@@QAEXXZ,0x000A8170,_STL vector _M_clear ParticleSysBoneInfo incremental-link thunk target through a TU-local forwarding shim
 ?clear@PrereqUnitRecAllocateAndCopyShim@_STL@@QAEXXZ,0x003B0F00,_STL vector _M_clear PrereqUnitRec incremental-link thunk target through a TU-local forwarding shim
@@ -3248,6 +3249,7 @@ name,address,notes
 ?insert_overflow@AsciiStringInsertOverflowShim@_STL@@QAEXPAVAsciiString@@ABV3@ABU__false_type@2@I_N@Z,0x00757C70,_STL vector _M_insert_overflow AsciiString incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@EvaSideSoundsInsertOverflowShim@_STL@@QAEXPAUEvaSideSounds@@ABU3@ABU__false_type@2@I_N@Z,0x00262120,_STL vector _M_insert_overflow EvaSideSounds incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@HorzLineInsertOverflowShim@_STL@@QAEXPAUHorzLine@@ABU3@ABU__false_type@2@I_N@Z,0x00069070,_STL vector _M_insert_overflow HorzLine incremental-link thunk target through a TU-local forwarding shim
+?insert_overflow@ModelConditionInfoHideShowSubObjInfoInsertOverflowShim@_STL@@QAEXPAUHideShowSubObjInfo@ModelConditionInfo@@ABU34@ABU__false_type@2@I_N@Z,0x006A3DB0,_STL vector _M_insert_overflow ModelConditionInfo::HideShowSubObjInfo incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@NuggetInsertOverflowShim@_STL@@QAEXPAUNugget@ModuleInfo@@ABU34@ABU__false_type@2@I_N@Z,0x0077AEA0,_STL vector _M_insert_overflow ModuleInfo::Nugget incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@ObjectPointerInsertOverflowShim@_STL@@QAEXPAPAVObject@@ABQAV3@ABU__true_type@2@I_N@Z,0x00754110,_STL vector _M_insert_overflow Object* incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@PlayerTemplateInsertOverflowShim@_STL@@QAEXPAVPlayerTemplate@@ABV3@ABU__false_type@2@I_N@Z,0x000E4000,_STL vector _M_insert_overflow PlayerTemplate incremental-link thunk target through a TU-local forwarding shim
