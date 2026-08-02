@@ -14100,3 +14100,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0NetCommandRef@@QAE@PAVNetCommandMsg@@@Z,,0x00676240,45,Code/GameEngine/Source/GameNetwork/NetCommandRef_dtor.cpp,matched,
 ?setPlayerFrameRatios@BFMENetPlayerFrameRatiosCommandMsg@@QAEXPBH@Z,,0x00673A50,52,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?readPlayerFrameRatiosMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00678AA0,215,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+?reset@NetCommandList@@QAEXXZ,,0x006731A0,74,Code/GameEngine/Source/GameNetwork/NetCommandList_reset.cpp,matched,
+??1NetPacket@@UAE@XZ,,0x006776C0,49,Code/GameEngine/Source/GameNetwork/NetPacket_init.cpp,matched,

@@ -40,6 +40,14 @@ typedef unsigned char UnsignedByte;
 
 class NetCommandMsg;
 
+void __cdecl operator delete(void *block) throw();
+
+class NetCommandRef
+{
+public:
+	~NetCommandRef();
+};
+
 struct NetPacketAddress
 {
 	UnsignedInt ip;
@@ -62,7 +70,9 @@ public:
 	// pack(1) TransportAddress is wrong on that point.
 	NetPacketAddress m_dest;						// this+0x1E4 (ip), +0x1E8 (port)
 	Int m_numCommands;								// this+0x1EC
-	NetCommandMsg *m_lastCommand;					// this+0x1F0
+	// A ref, not a message: the destructor deletes it through
+	// ??1NetCommandRef@@QAE@XZ.
+	NetCommandRef *m_lastCommand;					// this+0x1F0
 	UnsignedInt m_lastFrame;						// this+0x1F4
 	UnsignedShort m_lastCommandID;					// this+0x1F8
 	UnsignedByte m_lastPlayerID;					// this+0x1FA
@@ -82,6 +92,13 @@ NetPacket::NetPacket() {
 	m_dest.ip = 0;
 	m_dest.port = 0;
 	init();
+}
+
+NetPacket::~NetPacket() {
+	if (m_lastCommand != 0) {
+		delete m_lastCommand;
+		m_lastCommand = 0;
+	}
 }
 
 void NetPacket::init() {

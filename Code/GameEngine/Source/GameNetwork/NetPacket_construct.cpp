@@ -170,10 +170,10 @@ NetCommandRef *NetPacket::ConstructNetCommandMsgFromRawData(UnsignedByte *data, 
 	UnsignedByte playerID = 0;
 	UnsignedByte relay = 0;
 
+	Int offset = 0;
+	Bool notDone = 1;
 	NetCommandRef *ref = 0;
 	NetCommandMsg *msg;
-	Bool notDone = 1;
-	Int offset = 0;
 
 	while ((offset < (Int)dataLength) && notDone) {
 		if (data[offset] == 'T') {
