@@ -13881,3 +13881,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?usesSystemMapDir@OptionPreferences@@QAE_NXZ,,0x00090780,95,Code/GameEngine/Source/Common/promoted__usesSystemMapDir_OptionPreferences_QAE_NXZ_00090780.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 95B
 ?getUseHeatEffects@OptionPreferences@@QAE_NXZ,,0x00092070,98,Code/GameEngine/Source/Common/promoted__getUseHeatEffects_OptionPreferences_QAE_NXZ_00092070.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 98B
 ?getFirewallBehavior@OptionPreferences@@QAEHXZ,,0x00090B80,100,Code/GameEngine/Source/Common/promoted__getFirewallBehavior_OptionPreferences_QAEHXZ_00090B80.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 100B
+??0DisconnectManager@@QAE@XZ,,0x0066AF50,178,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
+?init@DisconnectManager@@QAEXXZ,,0x0066B040,154,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,

@@ -71,7 +71,12 @@ public:
 // is known. Protected, to match the IAE in the decorated name.
 class DisconnectManager
 {
+public:
+	// Public in the reference's header, so QAE in the decorated names.
+	DisconnectManager();
+	void init();
 protected:
+	// Protected there, so IAE.
 	void processDisconnectFrame(NetCommandMsg *msg, ConnectionManager *conMgr);
 	void processDisconnectPlayer(NetCommandMsg *msg, ConnectionManager *conMgr);
 };
@@ -8980,5 +8985,144 @@ L01_66C7B5:
 L00_66C7E8:
 		pop esi
 		ret 8h
+	}
+}
+
+// The constructor. It installs the vtable at 0x0111A2CC -- which is what proves
+// the class keeps a vptr, the assumption reference/shims/disconnectmanager rests
+// on -- and then zeroes the whole tail: m_disconnectFrames at +0x230, the flags
+// at +0x258 and +0x25C, the ping counters at +0x260 through +0x268, and the
+// bytes at +0x270, +0x272 and +0x282. Ghidra sizes it 171, seven short of its
+// ret. The reference's body is structurally different, so this is bytes.
+__declspec(naked) DisconnectManager::DisconnectManager()
+{
+	__asm {
+		push ecx
+		mov eax, ecx
+		xor ecx, ecx
+		push ebx
+		mov dword ptr [eax], 111A2CCh
+		mov dword ptr [eax+4h], ecx
+		mov dword ptr [eax+8h], ecx
+		mov dword ptr [eax+0Ch], ecx
+		mov dword ptr [eax+10h], ecx
+		mov dword ptr [eax+258h], ecx
+		mov dword ptr [eax+25Ch], ecx
+		mov dword ptr [eax+260h], ecx
+		mov dword ptr [eax+264h], ecx
+		mov dword ptr [eax+268h], ecx
+		mov dword ptr [eax+26Ch], ecx
+		mov byte ptr [eax+270h], cl
+		push ebp
+		push esi
+		push edi
+		mov dword ptr [eax+14h], ecx
+		mov dword ptr [eax+18h], ecx
+		mov dword ptr [eax+1Ch], ecx
+		mov dword ptr [eax+20h], ecx
+		mov dword ptr [eax+24h], ecx
+		mov dword ptr [eax+28h], ecx
+		mov dword ptr [eax+2Ch], ecx
+		lea esi,  [eax+282h]
+		lea ebx,  [eax+272h]
+		lea edi,  [eax+230h]
+		lea edx,  [eax+30h]
+		mov dword ptr [esp+10h], 8h
+		jmp L00_66AFD0
+		__emit 08Dh
+		__emit 0A4h
+		__emit 024h
+		__emit 000h
+		__emit 000h
+		__emit 000h
+		__emit 000h   // lea esp, [esp]
+L00_66AFD0:
+		mov ebp, 8h
+L01_66AFD5:
+		mov byte ptr [edx], cl
+		mov dword ptr [edx+4h], ecx
+		add edx, 8h
+		dec ebp
+		jne L01_66AFD5
+		mov ebp, dword ptr [esp+10h]
+		mov dword ptr [edi], ecx
+		mov byte ptr [esi-32h], cl
+		mov word ptr [ebx], cx
+		add edi, 4h
+		add ebx, 2h
+		mov byte ptr [esi], cl
+		inc esi
+		dec ebp
+		mov dword ptr [esp+10h], ebp
+		jne L00_66AFD0
+		pop edi
+		pop esi
+		pop ebp
+		pop ebx
+		pop ecx
+		ret
+	}
+}
+
+// Resets the same tail the constructor writes, without touching the vtable.
+// Diverges from the reference body at the first instruction.
+__declspec(naked) void DisconnectManager::init()
+{
+	__asm {
+		push ecx
+		push ebx
+		xor ebx, ebx
+		push ebp
+		or eax, 0FFFFFFFFh
+		push esi
+		push edi
+		mov dword ptr [ecx+8h], eax
+		mov dword ptr [ecx+10h], eax
+		mov dword ptr [ecx+4h], ebx
+		mov dword ptr [ecx+258h], ebx
+		mov dword ptr [ecx+0Ch], 1h
+		mov dword ptr [ecx+25Ch], ebx
+		mov dword ptr [ecx+268h], ebx
+		lea edx,  [ecx+282h]
+		lea edi,  [ecx+272h]
+		lea esi,  [ecx+230h]
+		lea eax,  [ecx+30h]
+		mov dword ptr [esp+10h], 8h
+		__emit 08Dh
+		__emit 0A4h
+		__emit 024h
+		__emit 000h
+		__emit 000h
+		__emit 000h
+		__emit 000h   // lea esp, [esp]
+L01_66B090:
+		mov ebp, 8h
+L00_66B095:
+		mov byte ptr [eax], bl
+		mov dword ptr [eax+4h], ebx
+		add eax, 8h
+		dec ebp
+		jne L00_66B095
+		mov ebp, dword ptr [esp+10h]
+		mov dword ptr [esi], ebx
+		mov byte ptr [edx-32h], bl
+		mov word ptr [edi], bx
+		add esi, 4h
+		add edi, 2h
+		mov byte ptr [edx], bl
+		inc edx
+		dec ebp
+		mov dword ptr [esp+10h], ebp
+		jne L01_66B090
+		pop edi
+		pop esi
+		pop ebp
+		mov dword ptr [ecx+26Ch], ebx
+		mov dword ptr [ecx+260h], ebx
+		mov dword ptr [ecx+264h], ebx
+		mov byte ptr [ecx+270h], bl
+		pop ebx
+		pop ecx
+		ret
 	}
 }
