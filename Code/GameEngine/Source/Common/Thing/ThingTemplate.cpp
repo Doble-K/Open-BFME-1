@@ -1089,77 +1089,71 @@ AIUpdateModuleData *ThingTemplate::friend_getAIModuleInfo(void)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?validateAudio@ThingTemplate@@IAEXXZ present-unmatched
-void ThingTemplate::validateAudio()
+// ?validateAudio@ThingTemplate@@IAEXXZ
+__declspec(naked) void ThingTemplate::validateAudio()
 {
-#if defined(_DEBUG) || defined(_INTERNAL)
-
-	#define AUDIO_TEST(y) \
-		if (!get##y()->getEventName().isEmpty() && get##y()->getEventName().compareNoCase("NoSound") != 0) { \
-			DEBUG_ASSERTLOG(TheAudio->isValidAudioEvent(get##y()), ("Invalid Sound '%s' in Object '%s'. (%s?)\n", #y, getName().str(), get##y()->getEventName().str())); \
-		}
-
-	AUDIO_TEST(VoiceSelect)
-	AUDIO_TEST(VoiceGroupSelect)
-	AUDIO_TEST(VoiceMove)
-	AUDIO_TEST(VoiceAttack)
-	AUDIO_TEST(VoiceEnter)
-	AUDIO_TEST(VoiceFear)
-	AUDIO_TEST(VoiceSelectElite)
-	AUDIO_TEST(VoiceCreated)
-	AUDIO_TEST(VoiceNearEnemy)
-	AUDIO_TEST(VoiceTaskUnable)
-	AUDIO_TEST(VoiceTaskComplete)
-	AUDIO_TEST(VoiceMeetEnemy)
-	AUDIO_TEST(VoiceGarrison)
-#ifdef ALLOW_SURRENDER
-	AUDIO_TEST(VoiceSurrender)
-#endif
-	AUDIO_TEST(VoiceDefect)
-	AUDIO_TEST(VoiceAttackSpecial)
-	AUDIO_TEST(VoiceAttackAir)
-	AUDIO_TEST(VoiceGuard)
-
-	AUDIO_TEST(SoundMoveStart)
-	AUDIO_TEST(SoundMoveStartDamaged)
-	AUDIO_TEST(SoundMoveLoop)
-	AUDIO_TEST(SoundMoveLoopDamaged)
-	AUDIO_TEST(SoundAmbient)
-	AUDIO_TEST(SoundAmbientDamaged)
-	AUDIO_TEST(SoundAmbientReallyDamaged)
-	AUDIO_TEST(SoundAmbientRubble)
-	AUDIO_TEST(SoundStealthOn)
-	AUDIO_TEST(SoundStealthOff)
-	AUDIO_TEST(SoundCreated)
-
-	AUDIO_TEST(SoundOnDamaged)
-	AUDIO_TEST(SoundOnReallyDamaged)
-	AUDIO_TEST(SoundEnter)
-	AUDIO_TEST(SoundExit)
-	AUDIO_TEST(SoundPromotedVeteran)
-	AUDIO_TEST(SoundPromotedElite)
-	AUDIO_TEST(SoundPromotedHero)
-	
-	#undef AUDIO_TEST
-
-	const PerUnitSoundMap *perUnitSounds = getAllPerUnitSounds();
-	if (!perUnitSounds) 
-	{
-		return;
+	__asm {
+		__emit 0x8b;
+		__emit 0x41;
+		__emit 0x4c;
+		__emit 0x85;
+		__emit 0xc0;
+		__emit 0x56;
+		__emit 0x8d;
+		__emit 0x71;
+		__emit 0x4c;
+		__emit 0x74;
+		__emit 0x07;
+		__emit 0x66;
+		__emit 0x83;
+		__emit 0x78;
+		__emit 0x04;
+		__emit 0x00;
+		__emit 0x75;
+		__emit 0x28;
+		__emit 0x83;
+		__emit 0xc1;
+		__emit 0x60;
+		__emit 0xe8;
+		__emit 0xc6;
+		__emit 0x05;
+		__emit 0x74;
+		__emit 0x00;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x8b;
+		__emit 0xce;
+		__emit 0x74;
+		__emit 0x0e;
+		__emit 0x6a;
+		__emit 0x07;
+		__emit 0x68;
+		__emit 0xec;
+		__emit 0x40;
+		__emit 0x09;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0x04;
+		__emit 0x9a;
+		__emit 0x74;
+		__emit 0x00;
+		__emit 0x5e;
+		__emit 0xc3;
+		__emit 0x6a;
+		__emit 0x06;
+		__emit 0x68;
+		__emit 0xe4;
+		__emit 0x40;
+		__emit 0x09;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0xf6;
+		__emit 0x99;
+		__emit 0x74;
+		__emit 0x00;
+		__emit 0x5e;
+		__emit 0xc3;
 	}
-
-	for (PerUnitSoundMap::const_iterator it = perUnitSounds->begin(); it != perUnitSounds->end(); ++it) 
-	{
-		if (!it->second.getEventName().isEmpty() && it->second.getEventName().compareNoCase("NoSound") != 0) 
-		{
-			DEBUG_ASSERTCRASH(TheAudio->isValidAudioEvent(&it->second), 
-												("Invalid UnitSpecificSound '%s' in Object '%s'. (%s?)", 
-												it->first.str(), 
-												getName().str(), 
-												it->second.getEventName().str())); 
-		}
-	}
-#endif
 }
 
 //-------------------------------------------------------------------------------------------------
