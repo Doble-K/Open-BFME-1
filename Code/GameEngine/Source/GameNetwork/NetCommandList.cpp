@@ -81,28 +81,40 @@ NetCommandRef *NetCommandList::getFirstMessage() {
 /**
  * Remove the given message from this list.
  */
-// ?removeMessage@NetCommandList@@QAEXPAVNetCommandRef@@@Z present-unmatched
 void NetCommandList::removeMessage(NetCommandRef *msg) {
+	// BFME's NetCommandRef is not a MemoryPoolObject, so it carries no vptr and
+	// every field sits four bytes earlier than the reference header puts it:
+	// m_msg at +0, m_next at +4, m_prev at +8. Retail walks the links at those
+	// offsets; the accessors would emit +8 and +0xC. Same workaround findMessage
+	// in this file already uses.
+	struct NetCommandRefLayout
+	{
+		NetCommandMsg *command;
+		NetCommandRefLayout *next;
+		NetCommandRefLayout *prev;
+	};
+	NetCommandRefLayout *ref = (NetCommandRefLayout *)msg;
+
 	if (m_lastMessageInserted == msg) {
-		m_lastMessageInserted = msg->getNext();
+		m_lastMessageInserted = (NetCommandRef *)ref->next;
 	}
 
-	if (msg->getPrev() != NULL) {
-		msg->getPrev()->setNext(msg->getNext());
+	if (ref->prev != NULL) {
+		ref->prev->next = ref->next;
 	}
-	if (msg->getNext() != NULL) {
-		msg->getNext()->setPrev(msg->getPrev());
+	if (ref->next != NULL) {
+		ref->next->prev = ref->prev;
 	}
 
 	if (msg == m_first) {
-		m_first = msg->getNext();
+		m_first = (NetCommandRef *)ref->next;
 	}
 	if (msg == m_last) {
-		m_last = msg->getPrev();
+		m_last = (NetCommandRef *)ref->prev;
 	}
 
-	msg->setNext(NULL);
-	msg->setPrev(NULL);
+	ref->next = NULL;
+	ref->prev = NULL;
 }
 
 /**
