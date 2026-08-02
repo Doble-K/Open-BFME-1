@@ -2603,6 +2603,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$SimpleVecClass@VVector4@@@@UAE@XZ,,0x0078C7E0,41,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ??1?$StringBase@D@@AAE@XZ,0x00004A34,0x0005E490,5,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,destroy char string base; size trimmed: trailing int3 padding
 ??1?$StringBase@G@@AAE@XZ,0x000160F9,0x0005E4E0,5,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,destroy wide string base; size trimmed: trailing int3 padding
+??1?$VectorClass@E@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@H@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@M@@UAE@XZ,,0x00AFF130,45,Code/Libraries/Source/WWVegas/WWLib/VectorClassIntDestructor.cpp,matched,clean C++ owned-buffer destructor; ICF alias
 ??1?$VectorClass@PAUtThreadInfoType@@@@UAE@XZ,,0x00AFF130,45,Code/masm_dumps/_icf___1__VectorClass_PAUtThreadInfoType____UAE_XZ_AFF130.asm,matched,ICF alias of ??1ActiveCategoryStackClass@@UAE@XZ Open-BFME4+Grok
