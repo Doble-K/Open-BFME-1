@@ -5097,6 +5097,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GRailedTransportDockUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GRailedTransportDockUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GRandomTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
+??_GRankInfo@@MAEPAXI@Z,,0x003A0AB0,30,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp,matched,
 ??_GRankInfoStore@@UAEPAXI@Z,,0x00076F00,30,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??_GRawFileClass@@UAEPAXI@Z,,0x009E7100,30,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ??_GRayEffectFXNugget@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
