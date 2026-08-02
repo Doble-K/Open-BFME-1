@@ -2800,28 +2800,6 @@ name,address,notes
 ?changeGridHeight@WaterRenderObjClass@@QAEXMMM@Z,0x0079F850,thunk-resolved body (via 0x2b256)
 ?check@AssistedTargetingObjectShim@@QAE_NXZ,0x00001FD7,AssistedTargetingUpdate isFreeToAssist first object predicate shim
 ?check@AssistedTargetingResultShim@@QAEHXZ,0x0000978C,AssistedTargetingUpdate isFreeToAssist result predicate shim
-?copy@UnsignedPairTreeCopyShim@_STL@@QAEPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@2@PAU32@0@Z,0x0076AB10,_STL unsigned pair tree incremental-link thunk target through a TU-local forwarding shim
-?create_node@AnimateWindowListCreateNodeShim@_STL@@QAEPAU?$_List_node@PAVAnimateWindow@@@2@ABQAVAnimateWindow@@@Z,0x0045DAE0,incremental-link thunk target through a TU-local forwarding shim
-?disableRadar@PlayerDisableRadarShim@@QAEXXZ,0x000CC1C0,Player::disableRadar incremental-link thunk target through a TU-local forwarding shim
-?doNamedMapReveal@ScriptEnginedoNamedMapRevealShim@@QAEXABVAsciiString@@@Z,0x0034D200,ScriptEngine::doNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
-?downloadNextQueuedFile@DownloadManagerDownloadNextQueuedFileShim@@QAEJXZ,0x00627370,DownloadManager::downloadNextQueuedFile incremental-link thunk target through a TU-local forwarding shim
-?enableRadar@PlayerEnableRadarShim@@QAEXXZ,0x000CC2C0,Player::enableRadar incremental-link thunk target through a TU-local forwarding shim
-?enableWaterGrid@WaterRenderObjClassEnableWaterGridShim@@QAEX_N@Z,0x007A1410,WaterRenderObjClass::enableWaterGrid incremental-link thunk target through a TU-local forwarding shim
-?erase@UnsignedPairTreeEraseShim@_STL@@QAEXPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@2@@Z,0x007612D0,_STL unsigned pair tree incremental-link thunk target through a TU-local forwarding shim
-?erase@WindowVideoHashtableEraseShim@_STL@@QAEXPBX@Z,0x00498A90,_STL hashtable erase GameWindowVideo incremental-link thunk target through a TU-local forwarding shim
-?fill_insert@BitVectorFillInsertShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@I_N@Z,0x002CC290,_STL bit vector _M_fill_insert incremental-link thunk target through a TU-local forwarding shim
-?initTimes@BoneFXUpdateInitTimesShim@@QAEXXZ,0x00288540,BoneFXUpdate::initTimes incremental-link thunk target through a TU-local forwarding shim
-?initialize@BitVectorInitializeShim@_STL@@QAEXI@Z,0x00526BC0,_STL bit vector _M_initialize incremental-link thunk target through a TU-local forwarding shim
-?insert_aux@BitVectorInsertAuxShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@_N@Z,0x002CBF30,_STL bit vector _M_insert_aux incremental-link thunk target through a TU-local forwarding shim
-?iterateObjects@PlayerIterateObjectsShim@@QBEXP6AXPAVObject@@PAX@Z1@Z,0x000CDCF0,Player::iterateObjects incremental-link thunk target through a TU-local forwarding shim
-?loadDockPositions@DockUpdateLoadDockPositionsShim@@QAEXXZ,0x002CB0A0,DockUpdate::loadDockPositions incremental-link thunk target through a TU-local forwarding shim
-?onEnter@AIInternalMoveToStateOnEnterShim@@QAE?AW4StateReturnType@@XZ,0x00172600,AIInternalMoveToState::onEnter incremental-link thunk target through a TU-local forwarding shim
-?onExit@AIInternalMoveToStateOnExitShim@@QAEXW4StateExitType@@@Z,0x00172D80,AIInternalMoveToState::onExit incremental-link thunk target through a TU-local forwarding shim
-?parseParticleSystem@BoneFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00287E40,BoneFXUpdateModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
-?parseParticleSystem@TransitionDamageFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00252010,TransitionDamageFXModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
-?set@Bitset67SetShim@_STL@@QAEAAV?$bitset@$0ED@@2@IH@Z,0x000E9910,incremental-link thunk target through a TU-local forwarding shim
-?set@ThingTemplateSubobjectShim@@QAEXH@Z,0x0004AC69,ThingTemplate setCopiedFromDefault subobject flag helper shim
-?helper@PoisonedBehaviorOwnerShim@@QAE?AW4UpdateSleepTime@@HPAXHH@Z,0x000202A7,PoisonedBehavior update sleep-time helper shim
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x00004EE9,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002054F,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0002237C,hit-decoded x3 (thunk)
@@ -2952,6 +2930,7 @@ name,address,notes
 ?copy@ProductionPrerequisiteConstCopyShim@_STL@@SAPAXPAX00ABUrandom_access_iterator_tag@2@PAH@Z,0x003B6100,_STL __copy const ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?copy@ProductionPrerequisiteCopyShim@_STL@@SAPAVProductionPrerequisite@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00753280,_STL __copy ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
 ?copy@ProductionPrerequisiteUninitializedCopyShim@_STL@@SAPAXPAX00ABU__false_type@2@@Z,0x003ABB40,_STL __uninitialized_copy const ProductionPrerequisite incremental-link thunk target through a TU-local forwarding shim
+?copy@UnsignedPairTreeCopyShim@_STL@@QAEPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@2@PAU32@0@Z,0x0076AB10,_STL unsigned pair tree incremental-link thunk target through a TU-local forwarding shim
 ?copy@VideoCopyShim@_STL@@SAPAUVideo@@PAU3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00755100,_STL __copy Video incremental-link thunk target through a TU-local forwarding shim
 ?copy@W3DAnimationInfoConstCopyShim@_STL@@SAPAXPAX00ABUrandom_access_iterator_tag@2@PAH@Z,0x003B3800,_STL __copy const W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
 ?copy@W3DAnimationInfoCopyShim@_STL@@SAPAVW3DAnimationInfo@@PAV3@00ABUrandom_access_iterator_tag@2@PAH@Z,0x00610AF0,_STL __copy W3DAnimationInfo incremental-link thunk target through a TU-local forwarding shim
@@ -2987,6 +2966,7 @@ name,address,notes
 ?createEvent@Radar@@QAEXPBUCoord3D@@W4RadarEventType@@M@Z,0x00008B8E
 ?createMemoryPool@MemoryPoolFactory@@QAEPAVMemoryPool@@PBDHHH@Z,0x0003ADD7,pool-glue cascade callee (ICF-folded with findMemoryPool)
 ?createNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@0M0@Z,0x0002C8EA
+?create_node@AnimateWindowListCreateNodeShim@_STL@@QAEPAU?$_List_node@PAVAnimateWindow@@@2@ABQAVAnimateWindow@@@Z,0x0045DAE0,incremental-link thunk target through a TU-local forwarding shim
 ?defineState@StateMachine@@IAEXIPAVState@@IIPBUStateConditionInfo@@@Z,0x000A2030,hand-decoded from DozerPrimaryStateMachine ctor @0x2B7870 (5 call sites, one per defineState() in the reference source, args match: stateID/state-ptr/successID/failureID/conditions-ptr); call site encodes thunk 0x3D1B3 (thunk_FUN_004a2030) -- pinned to the real body
 ?deleteAllFonts@FontLibrary@@IAEXXZ,0x000309CC,pinharvest x1 (thunk)
 ?deleteAllFonts@FontLibrary@@IAEXXZ,0x00033D9D,pinharvest x1 (thunk)
@@ -3009,17 +2989,20 @@ name,address,notes
 ?detach@NetCommandMsg@@QAEXXZ,0x009EB7A0
 ?detectionBeginUpdate@FirewallHelperClass@@QAE_NXZ,0x000205F4
 ?disableRadar@Player@@QAEXXZ,0x0003C2BD
+?disableRadar@PlayerDisableRadarShim@@QAEXXZ,0x000CC1C0,Player::disableRadar incremental-link thunk target through a TU-local forwarding shim
 ?doFXPos@FXList@@IBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,0x0003E360
 ?doFreezeTime@ScriptEngine@@QAEXXZ,0x0001FDAC,ILT freeze
 ?doFreezeTime@ScriptEngine@@QAEXXZ,0x00336F00,BFME freeze +0x17624
 ?doFreezeTime@ScriptEngine@@QAEXXZ,0x00465B80,pin ScriptActions doFreezeTime wrapper
 ?doFxAtBones@FXListAtBonePosFXNugget@@IBEXPBVObject@@H@Z,0x00010CC6
 ?doNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,0x0001FC3F
+?doNamedMapReveal@ScriptEnginedoNamedMapRevealShim@@QAEXABVAsciiString@@@Z,0x0034D200,ScriptEngine::doNamedMapReveal incremental-link thunk target through a TU-local forwarding shim
 ?doSend@Transport@@QAE_NXZ,0x00015D3E,ILT thunk; real body 0x6834B0 (from NAT::sendAProbe)
 ?doSkyBoxSet@@YAX_N@Z,0x00029AC8
 ?doUnfreezeTime@ScriptEngine@@QAEXXZ,0x00037524,ILT thunk for doUnfreezeTime body 0x336F10
 ?doUnfreezeTime@ScriptEngine@@QAEXXZ,0x00336F10,pin ScriptActions doUnfreezeTime wrapper (ScriptEngine+0x17624=0)
 ?downloadNextQueuedFile@DownloadManager@@QAEJXZ,0x00038F00,ILT thunk used by call site
+?downloadNextQueuedFile@DownloadManagerDownloadNextQueuedFileShim@@QAEJXZ,0x00627370,DownloadManager::downloadNextQueuedFile incremental-link thunk target through a TU-local forwarding shim
 ?draw@Drawable@@QAEXPAVView@@@Z,0x00003873,pinharvest x1 (thunk)
 ?draw@Drawable@@QAEXPAVView@@@Z,0x0003291B,pinharvest x1 (thunk)
 ?draw@Drawable@@QAEXPAVView@@@Z,0x00041D49,pinharvest x1 (thunk)
@@ -3028,7 +3011,9 @@ name,address,notes
 ?draw@ShellMenuScheme@@QAEXXZ,0x00026D64,pinharvest x1 (thunk)
 ?duplicate@Condition@@QBEPAV1@XZ,0x0001C189,pinharvest x2 (thunk)
 ?enableRadar@Player@@QAEXXZ,0x00043207
+?enableRadar@PlayerEnableRadarShim@@QAEXXZ,0x000CC2C0,Player::enableRadar incremental-link thunk target through a TU-local forwarding shim
 ?enableWaterGrid@WaterRenderObjClass@@QAEX_N@Z,0x000366E7
+?enableWaterGrid@WaterRenderObjClassEnableWaterGridShim@@QAEX_N@Z,0x007A1410,WaterRenderObjClass::enableWaterGrid incremental-link thunk target through a TU-local forwarding shim
 ?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,0x0002BF21
 ?equal@AsciiStringEqualityShim@@SA_NABVAsciiString@@0@Z,0x005A8140,AsciiString equality incremental-link thunk target through a TU-local forwarding shim
 ?erase@?$_Rb_tree@HU?$pair@$$CBHVAsciiString@@@_STL@@U?$_Select1st@U?$pair@$$CBHVAsciiString@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@_STL@@QAEXU?$_Rb_tree_iterator@U?$pair@$$CBHVAsciiString@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@2@0@Z,0x0001799F
@@ -3061,6 +3046,8 @@ name,address,notes
 ?erase@?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAEPAVAsciiString@@PAV3@0@Z,0x00065960,SubsystemLegend.cpp TU copy of vector<AsciiString>::erase(first last)
 ?erase@BfmeLegendStringVec@@QAEXPAX0@Z,0x00065960,SubsystemLegend.cpp vector<AsciiString> stand-in erase(first,last)
 ?erase@UnicodeStringTreeEraseShim@_STL@@QAEXPAU?$_Rb_tree_node@U?$pair@$$CBVUnicodeString@@_N@_STL@@@2@@Z,0x0044D6F0,_STL _Rb_tree _M_erase UnicodeString incremental-link thunk target through a TU-local forwarding shim
+?erase@UnsignedPairTreeEraseShim@_STL@@QAEXPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@2@@Z,0x007612D0,_STL unsigned pair tree incremental-link thunk target through a TU-local forwarding shim
+?erase@WindowVideoHashtableEraseShim@_STL@@QAEXPBX@Z,0x00498A90,_STL hashtable erase GameWindowVideo incremental-link thunk target through a TU-local forwarding shim
 ?errorCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPErrorArg@@@Z,0x0000BEE2
 ?estimateWeaponDamage@Weapon@@IAEMPBVObject@@0PBUCoord3D@@@Z,0x0001366F,pinharvest x1 (thunk)
 ?estimateWeaponDamage@Weapon@@IAEMPBVObject@@0PBUCoord3D@@@Z,0x000486EE,pinharvest x1 (thunk)
@@ -3072,6 +3059,7 @@ name,address,notes
 ?evaluateNamedInsideArea@ScriptConditions@@IAE_NPAVParameter@@0@Z,0x0000696F
 ?evaluateTeamInsideAreaEntirely@ScriptConditions@@IAE_NPAVParameter@@00@Z,0x00013219
 ?evaluateTeamInsideAreaPartially@ScriptConditions@@IAE_NPAVParameter@@00@Z,0x0004A8E0
+?fill_insert@BitVectorFillInsertShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@I_N@Z,0x002CC290,_STL bit vector _M_fill_insert incremental-link thunk target through a TU-local forwarding shim
 ?find@AssistedTargetingObjectShim@@QAEPAXH@Z,0x00009C41,AssistedTargetingUpdate isFreeToAssist object query shim
 ?find@DataChunkTableOfContentsFindMappingShim@@QAEPAVMapping@@ABVAsciiString@@@Z,0x00103CA0,DataChunkTableOfContents findMapping incremental-link thunk target through a TU-local forwarding shim
 ?find@GameLogicFindControlBarOverrideShim@@QBE_NABVAsciiString@@HAAPBVCommandButton@@@Z,0x00391B30,GameLogic findControlBarOverride incremental-link thunk target through a TU-local forwarding shim
@@ -3265,6 +3253,7 @@ name,address,notes
 ?groupAttackObjectPrivate@AIGroup@@AAEX_NPAVObject@@HW4CommandSourceType@@@Z,0x00041CD1
 ?hasPlayerTimedOut@DisconnectManager@@IAE_NH@Z,0x00014AD8
 ?hasScience@Player@@QBE_NW4ScienceType@@@Z,0x0000943F,retail target of playerHasPrereqsForScience inner-loop call; thunk-table entry; real body unresolved
+?helper@PoisonedBehaviorOwnerShim@@QAE?AW4UpdateSleepTime@@HPAXHH@Z,0x000202A7,PoisonedBehavior update sleep-time helper shim
 ?hidePurchaseScience@ControlBar@@QAEXXZ,0x00020347
 ?hideScreen@DisconnectMenu@@QAEXXZ,0x00024D6B,ILT thunk; real body 0x50E5A0 (from DisconnectManager::turnOffScreen)
 ?hideSpecialPowerShortcut@ControlBar@@QAEXXZ,0x00041367
@@ -3279,12 +3268,15 @@ name,address,notes
 ?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z,0x00852130
 ?initSubsystem@SubsystemInterfaceList@@QAEXPAVSubsystemInterface@@PAXPBD22PAVXfer@@VAsciiString@@@Z,0x009A20B0,SubsystemInterfaceList::initSubsystem body,
 ?initTimes@BoneFXUpdate@@IAEXXZ,0x0002F775
+?initTimes@BoneFXUpdateInitTimesShim@@QAEXXZ,0x00288540,BoneFXUpdate::initTimes incremental-link thunk target through a TU-local forwarding shim
+?initialize@BitVectorInitializeShim@_STL@@QAEXI@Z,0x00526BC0,_STL bit vector _M_initialize incremental-link thunk target through a TU-local forwarding shim
 ?initializeBonePositions@SpawnPointProductionExitUpdate@@AAEXXZ,0x0003B566
 ?insert4Way@W3DRoadBuffer@@IAEXVVector2@@HM@Z,0x00032B96,ILT thunk to 0x706310
 ?insert@W3DRoadBufferInsertTeeShim@@QAEXVVector2@@HM@Z,0x0070BC00,W3DRoadBuffer insertTee incremental-link thunk target through a TU-local forwarding shim
 ?insertTee@W3DRoadBuffer@@IAEXVVector2@@HM@Z,0x00007522,ILT thunk to 0x70BC00
 ?insertY@W3DRoadBuffer@@IAE_NVVector2@@HM@Z,0x00017977,ILT thunk -> body 0x7073D0; called by insertTee (decode_calls.py)
 ?insertY@W3DRoadBufferInsertYShim@@QAE_NVVector2@@HM@Z,0x007073D0,W3DRoadBuffer incremental-link thunk target through a TU-local forwarding shim
+?insert_aux@BitVectorInsertAuxShim@_STL@@QAEXU?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@2@_N@Z,0x002CBF30,_STL bit vector _M_insert_aux incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@AsciiStringInsertOverflowShim@_STL@@QAEXPAVAsciiString@@ABV3@ABU__false_type@2@I_N@Z,0x00757C70,_STL vector _M_insert_overflow AsciiString incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@CashHackSpecialPowerModuleDataUpgradesInsertOverflowShim@_STL@@QAEXPAUUpgrades@CashHackSpecialPowerModuleData@@ABU34@ABU__false_type@2@I_N@Z,0x00258BF0,_STL vector _M_insert_overflow CashHackSpecialPowerModuleData::Upgrades incremental-link thunk target through a TU-local forwarding shim
 ?insert_overflow@Coord2DCoord3DPairInsertOverflowShim@_STL@@QAEXPAU?$pair@UICoord2D@@UCoord3D@@@2@ABU32@ABU__false_type@2@I_N@Z,0x002EB770,_STL vector _M_insert_overflow pair ICoord2D Coord3D incremental-link thunk target through a TU-local forwarding shim
@@ -3382,6 +3374,7 @@ name,address,notes
 ?isUsingAirborneLocomotor@Object@@QBE_NXZ,0x0000A001,ILT thunk to 0x001C1770
 ?iterateCellsAlongLine@Pathfinder@@IAEHABUICoord2D@@0W4PathfindLayerEnum@@PAX@Z,0x000190B0,tightenPath 4-arg iterate (thunk->0x003F1F00)
 ?iterateObjects@Player@@QBEXP6AXPAVObject@@PAX@Z1@Z,0x0002F1CB
+?iterateObjects@PlayerIterateObjectsShim@@QBEXP6AXPAVObject@@PAX@Z1@Z,0x000CDCF0,Player::iterateObjects incremental-link thunk target through a TU-local forwarding shim
 ?keyToName@NameKeyGenerator@@QAE?AVAsciiString@@W4NameKeyType@@@Z,0x0003EC7A
 ?killRunningParticleSystems@BoneFXUpdate@@IAEXXZ,0x0000628F
 ?killThemKillThemAll@SelectionTranslator@@AAE_NPAVDrawable@@PAVGameMessage@@@Z,0x00019F5B
@@ -3394,6 +3387,7 @@ name,address,notes
 ?loadBridgesInVertexAndIndexBuffers@W3DBridgeBufferLoadBridgesShim@@QAEXPAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,0x006D9F50,W3DBridgeBuffer incremental-link thunk target through a TU-local forwarding shim
 ?loadDirectory@INI@@QAEXVAsciiString@@_NW4INILoadType@@PAVXfer@@H@Z,0x00853F10,BFME loadDirectory takes a 5th arg; body shared with the 4-arg ledger row name,
 ?loadDockPositions@DockUpdate@@IAEXXZ,0x0000C595,ILT thunk to 0x002CB0A0
+?loadDockPositions@DockUpdateLoadDockPositionsShim@@QAEXXZ,0x002CB0A0,DockUpdate::loadDockPositions incremental-link thunk target through a TU-local forwarding shim
 ?loadFile@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z,0x00853A20,provisional name for the 3-arg INI entry point the legend path calls; distinct from INI::load at 0x00853610
 ?loadFloat4PtSection@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,0x000346DF
 ?loadFloat4PtSection@W3DRoadBufferLoadFloat4PtSectionShim@@QAEXPAVRoadSegment@@VVector2@@11PAV3@MMMM@Z,0x00708320,W3DRoadBuffer incremental-link thunk target through a TU-local forwarding shim
@@ -3419,6 +3413,10 @@ name,address,notes
 ?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,0x0001EDE9,site-decoded x1 (thunk)
 ?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,0x0003ADD7
 ?nameToLowercaseKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,0x00006DB6,findImageByName call target (incremental-link thunk)
+?newCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z,0x0001B329,create branch of the CommandButton block parser; body 0x0049DDB0 sits between the matched onPlayerRankChanged and showRallyPoint in ControlBar code
+?newCommandButtonOverride@ControlBar@@IAEPAVCommandButton@@PAV2@@Z,0x00027CC3,override branch of the CommandButton block parser. The CommandSet block calls 0x00049ADA for its own override so the two creators pair up; the name previously pointed at 0x004A2150 which the INI registry shows is the CommandSet parser
+?newCommandSet@ControlBar@@IAEPAVCommandSet@@ABVAsciiString@@@Z,0x00024212,create branch of the CommandSet block parser at 0x004A2150 whose find branch is the matched findNonConstCommandSet
+?newCommandSetOverride@ControlBar@@IAEPAVCommandSet@@PAV2@@Z,0x00049ADA,override branch of the same parser; ZH declares it beside newCommandSet
 ?newCrateTemplateOverride@CrateSystem@@QAEPAVCrateTemplate@@PAV2@@Z,0x00036C28,override branch of the CrateData block; ZH declares it beside newCrateTemplate which is matched at the sibling call
 ?newDrawable@BFMEThingFactory@@QAEPAVDrawable@@PBVThingTemplate@@W4DrawableStatus@@H@Z,0x0002C336
 ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,0x000119E1,ILT thunk; real body 0x5B6920
@@ -3431,7 +3429,9 @@ name,address,notes
 ?notifyModelConditionChanged@Object@@QAEXXZ,0x0002191D,Object model-condition notify ILT (body 0x1BE1C0); inlined clearModelConditionState(PANICKING) sites
 ?nstrdup@@YAPADPBD@Z,0x009E6410
 ?onEnter@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,0x00021E27
+?onEnter@AIInternalMoveToStateOnEnterShim@@QAE?AW4StateReturnType@@XZ,0x00172600,AIInternalMoveToState::onEnter incremental-link thunk target through a TU-local forwarding shim
 ?onExit@AIInternalMoveToState@@UAEXW4StateExitType@@@Z,0x00029311
+?onExit@AIInternalMoveToStateOnExitShim@@QAEXW4StateExitType@@@Z,0x00172D80,AIInternalMoveToState::onExit incremental-link thunk target through a TU-local forwarding shim
 ?open@DataChunkOutputOpenDataChunkShim@@QAEXPADG@Z,0x001041F0,DataChunkOutput openDataChunk incremental-link thunk target through a TU-local forwarding shim
 ?openDataChunk@DataChunkOutput@@QAEXPADG@Z,0x0003A256
 ?openFile@FileSystem@@QAEPAVFile@@PBDH@Z,0x009C8860
@@ -3460,6 +3460,8 @@ name,address,notes
 ?parseLine@INI@@IAEXVAsciiString@@@Z,0x00851350,BFME factors the per-line block dispatch out of load - name is ours
 ?parseMappedImage@INI@@SAXPAV1@PAX1PBX@Z,0x0000FC3B
 ?parseObjectCreationList@INI@@SAXPAV1@PAX1PBX@Z,0x0003CBA0
+?parseParticleSystem@BoneFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00287E40,BoneFXUpdateModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
+?parseParticleSystem@TransitionDamageFXParseParticleSystemShim@@SAXPAVINI@@PAX1PBX@Z,0x00252010,TransitionDamageFXModuleData::parseParticleSystem incremental-link thunk target through a TU-local forwarding shim
 ?parseParticleSystemTemplate@INI@@SAXPAV1@PAX1PBX@Z,0x00040C1E
 ?parsePercentToReal@INI@@SAXPAV1@PAX1PBX@Z,0x00852EE0
 ?parseRGBColor@INI@@SAXPAV1@PAX1PBX@Z,0x00852F50
@@ -3614,6 +3616,7 @@ name,address,notes
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007E9FC0,pinharvest x1 (body)
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007EA320,pinharvest x1 (body)
 ?set@?$bitset@$0ED@@_STL@@QAEAAV12@IH@Z,0x007EA380,pinharvest x1 (body)
+?set@Bitset67SetShim@_STL@@QAEAAV?$bitset@$0ED@@2@IH@Z,0x000E9910,incremental-link thunk target through a TU-local forwarding shim
 ?set@DX8TextureStageStateShim@@SAXIKI@Z,0x006C5840,DX8Wrapper incremental-link static thunk target through a TU-local forwarding shim
 ?set@GameFileSetNameShim@@QAEPBDPBD@Z,0x006F63B0,GameFileClass Set_Name incremental-link thunk target through a TU-local forwarding shim
 ?set@LayoutFilename@@QAEXPBDH@Z,0x00887D20
@@ -3624,6 +3627,7 @@ name,address,notes
 ?set@RetailLayoutString@@QAEXPBDH@Z,0x00887D20
 ?set@TerrainRoadTypeSetDamageToFXStringShim@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,0x00601B50,TerrainRoadType friend_setDamageToFXString incremental-link thunk target through a TU-local forwarding shim
 ?set@TerrainRoadTypeSetRepairedToFXStringShim@@QAEXW4BodyDamageType@@HVAsciiString@@@Z,0x00601CC0,TerrainRoadType friend_setRepairedToFXString incremental-link thunk target through a TU-local forwarding shim
+?set@ThingTemplateSubobjectShim@@QAEXH@Z,0x0004AC69,ThingTemplate setCopiedFromDefault subobject flag helper shim
 ?set@UnicodeString@@QAEXABV1@@Z,0x00887C90,additive; per-TU copy (static 0x01336E2C)
 ?set@UnicodeString@@QAEXABV1@@Z,0x00888530
 ?setAnimData@BFMEAnimateWindowLayout@@QAEXUICoord2D@@000UBFMECoord2D@@II@Z,0x003D5B9,BFME Coord2D ABI layout call to AnimateWindow::setAnimData

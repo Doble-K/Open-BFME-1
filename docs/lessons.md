@@ -52,3 +52,16 @@ anchors on `&m_outBuffer[i].length`, writing the in buffer first anchors on
 body reaches the right length with the right instructions and differs only in
 which base register displacement scheme was chosen, source-order permutations
 are unlikely to be the lever; stop permuting and mark it present-unmatched.
+
+* tools/find_declared_unmatched.py reads the `//` comment line immediately above
+  a definition as that definition's declared symbol, so an explanatory comment
+  whose line *begins* with a mangled name is taken as the symbol and the
+  pre-commit hook rejects the file. This cost three cycles in one session --
+  `// ??_7RAMFile@@6B@ is at 0x01143C58, which...`,
+  `// ?newTerrain@TerrainTypeCollection@@, on the same receiver...`, and
+  `// ?findNonConstCommandSet@ControlBar@@ -- so it is the CommandSet parser`.
+  Write the name in prose form (`ControlBar::findNonConstCommandSet`) or push it
+  off the start of the line. The failure looks like "staged sources define
+  functions the ledger does not declare" for a function that is plainly in the
+  ledger, which is the tell.
+
