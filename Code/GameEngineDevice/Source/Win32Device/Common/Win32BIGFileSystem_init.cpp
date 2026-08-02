@@ -54,7 +54,15 @@ private:
 class LocalFileSystem;
 extern LocalFileSystem *TheLocalFileSystem;
 
-class Win32BIGFileSystem
+// ArchiveFileSystem's own destructor is 0x009CA550, already matched; the derived
+// one tail-jumps to it after restoring its own vtable.
+class ArchiveFileSystem
+{
+public:
+	virtual ~ArchiveFileSystem();
+};
+
+class Win32BIGFileSystem : public ArchiveFileSystem
 {
 public:
 	virtual ~Win32BIGFileSystem();										// slot 0
@@ -104,4 +112,12 @@ void Win32BIGFileSystem::init( void )
 	}
 
 	loadBigFilesFromDirectory( "", "*.big", 0 );
+}
+
+
+// ??1Win32BIGFileSystem@@UAE@XZ
+// 0x009CC370, 11 bytes: restore this class's vtable, then tail-jump to
+// ~ArchiveFileSystem. An empty body -- the members are the base's.
+Win32BIGFileSystem::~Win32BIGFileSystem()
+{
 }

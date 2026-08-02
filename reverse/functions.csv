@@ -14086,3 +14086,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?readDisconnectScreenOffMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x006794D0,108,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
 ?readFrameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x006789E0,153,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
 ?readRequestPlayerLeaveMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00679300,108,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
+??1Win32BIGFileSystem@@UAE@XZ,,0x009CC370,11,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_init.cpp,matched,
+??_GWin32BIGFileSystem@@UAEPAXI@Z,,0x009CC440,28,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_init.cpp,matched,
