@@ -34,6 +34,16 @@ public:
     void assign(const void *source);
 };
 
+class ParticleSystemTemplateInfoAssignShim {
+public:
+    void assign(const void *source);
+};
+
+class ParticleSystemTemplateTailAssignShim {
+public:
+    void assign(const void *source);
+};
+
 class PointEmissionVolumeTemplateCopyCtorShim {
 public:
     void construct(const void *source);
@@ -17510,77 +17520,15 @@ __declspec(naked) ParticleSystemInfo &ParticleSystemInfo::operator=(const Partic
 }
 
 // ??4ParticleSystemTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) ParticleSystemTemplate &ParticleSystemTemplate::operator=(const ParticleSystemTemplate &that)
+ParticleSystemTemplate &ParticleSystemTemplate::operator=(const ParticleSystemTemplate &that)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x28
-        __emit 0x85
-        __emit 0xa6
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x87
-        __emit 0x98
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0x98
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xe0
-        __emit 0x79
-        __emit 0x2b
-        __emit 0x00
-        __emit 0x81
-        __emit 0xc7
-        __emit 0xa0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xa0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x86
-        __emit 0x9c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x66
-        __emit 0x9f
-        __emit 0xa7
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    const unsigned char *source = (const unsigned char *)&that;
+    ((ParticleSystemTemplateInfoAssignShim *)this)->assign(source);
+    ((LifeEventAsciiStringAssignShim *)((unsigned char *)this + 0x98))->assign(source + 0x98);
+    unsigned char *tail = (unsigned char *)this + 0xa0;
+    *(unsigned int *)((unsigned char *)this + 0x9c) = 0;
+    ((ParticleSystemTemplateTailAssignShim *)tail)->assign(source + 0xa0);
+    return *this;
 }
 
 // ??4PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
