@@ -2992,6 +2992,7 @@ name,address,notes
 ?destroy@ICoord2DVectorDestructorShim@_STL@@QAEXXZ,0x000A5120,destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@ModelConditionInfoHideShowSubObjInfoDestructorShim@@QAEXXZ,0x00339930,ModelConditionInfo::HideShowSubObjInfo dtor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@MultiFixedPoolDecalSystemClassLogicalDecalClassDestructorShim@@QAEXXZ,0x005D7520,MultiFixedPoolDecalSystemClass::LogicalDecalClass dtor incremental-link thunk target through a TU-local forwarding shim
+?destroy@NameKeyObjectCreationPairDestructorShim@_STL@@QAEXXZ,0x00654BA0,destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@ParticleSystemManagerDestroyByIDShim@@QAEXW4ParticleSystemID@@@Z,0x005C3C10,ParticleSystemManager destroyParticleSystemByID incremental-link thunk target through a TU-local forwarding shim
 ?destroy@PlayerTemplateDestructorShim@@QAEXXZ,0x000E27A0,PlayerTemplate destructor incremental-link thunk target through a TU-local forwarding shim
 ?destroy@PlayerTemplateVectorDestructorShim@_STL@@QAEXXZ,0x000E3D80,destructor incremental-link thunk target through a TU-local forwarding shim

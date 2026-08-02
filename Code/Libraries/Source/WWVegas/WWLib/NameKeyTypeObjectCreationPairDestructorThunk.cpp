@@ -7,21 +7,21 @@ class ObjectCreationList;
 
 namespace _STL
 {
-	template <class First, class Second>
-	class pair
-	{
-	public:
-		~pair();
-	};
+template <class First, class Second>
+class pair
+{
+public:
+	~pair();
+};
 
-	__declspec(naked) pair<NameKeyType const, ObjectCreationList>::~pair()
-	{
-		__asm {
-			_emit 0E9h
-			_emit 076h
-			_emit 0B6h
-			_emit 064h
-			_emit 000h
-		}
-	}
+class NameKeyObjectCreationPairDestructorShim
+{
+public:
+	void destroy();
+};
+
+pair<NameKeyType const, ObjectCreationList>::~pair()
+{
+	((NameKeyObjectCreationPairDestructorShim *)this)->destroy();
+}
 }
