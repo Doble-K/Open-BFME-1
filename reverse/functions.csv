@@ -10246,7 +10246,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@StatusBitsUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x00118020,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@DozerAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@StealthDetectorUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00126BE0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@StealthUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0012A680,110,Code/masm_dumps/StealthUpdate_friend_newModuleData.asm,matched,retail ModuleFactory registration Ghidra confirmed
-?friend_newModuleData@StealthUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BF00,58,Code/masm_dumps/StealthUpgrade_friend_newModuleData.asm,matched,Ghidra-bound BFME upgrade module-data factory
+?friend_newModuleData@StealthUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BF00,58,Code/GameEngine/Source/GameLogic/Object/Upgrade/StealthUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@StopSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120F00,110,Code/masm_dumps/StopSpecialPower_friend_newModuleData.asm,matched,retail ModuleFactory registration ordinal 0xE6 Ghidra confirmed
 ?friend_newModuleData@StructureBody@@SAPAVModuleData@@PAVINI@@@Z,,0x001294A0,107,Code/masm_dumps/StructureBody_friend_newModuleData.asm,matched,Ghidra-bound BFME factory body
 ?friend_newModuleData@StructureCollapseUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00128B10,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
