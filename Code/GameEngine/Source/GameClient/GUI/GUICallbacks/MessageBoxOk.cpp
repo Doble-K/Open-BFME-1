@@ -3,13 +3,15 @@
 class GameWindow;
 class UnicodeString {};
 
-__declspec(naked) GameWindow *MessageBoxOk(UnicodeString, UnicodeString, void (*)(void))
+GameWindow *MessageBoxOk(UnicodeString, UnicodeString, void (*)(void));
+
+class MessageBoxOkShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 0EBh
-		_emit 0C3h
-		_emit 047h
-		_emit 000h
-	}
+public:
+    static GameWindow *run(UnicodeString title, UnicodeString body, void (*cb)(void));
+};
+
+GameWindow *MessageBoxOk(UnicodeString title, UnicodeString body, void (*cb)(void))
+{
+    return MessageBoxOkShim::run(title, body, cb);
 }
