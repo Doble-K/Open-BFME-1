@@ -18378,71 +18378,21 @@ SphericalEmissionVelocityModuleTemplate &SphericalEmissionVelocityModuleTemplate
 }
 
 // ??4TerrainCollisionModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z
-__declspec(naked) TerrainCollisionModuleInfo &TerrainCollisionModuleInfo::operator=(const TerrainCollisionModuleInfo &that)
+TerrainCollisionModuleInfo &TerrainCollisionModuleInfo::operator=(const TerrainCollisionModuleInfo &that)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x04
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x04
-        __emit 0xe8
-        __emit 0x2c
-        __emit 0xe4
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x08
-        __emit 0x89
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x89
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x08
-        __emit 0x89
-        __emit 0x4a
-        __emit 0x08
-        __emit 0x8a
-        __emit 0x57
-        __emit 0x14
-        __emit 0x88
-        __emit 0x56
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x18
-        __emit 0x89
-        __emit 0x46
-        __emit 0x18
-        __emit 0x5f
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    struct ThreeDwords {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+    };
+
+    unsigned char *destination = (unsigned char *)this;
+    const unsigned char *source = (const unsigned char *)&that;
+    ((LifeEventAsciiStringAssignShim *)(destination + 4))->assign(source + 4);
+    *(ThreeDwords *)(destination + 8) = *(const ThreeDwords *)(source + 8);
+    *(unsigned char *)(destination + 20) = *(const unsigned char *)(source + 20);
+    *(unsigned int *)(destination + 24) = *(const unsigned int *)(source + 24);
+    return *this;
 }
 
 // ??4TerrainCollisionModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z
