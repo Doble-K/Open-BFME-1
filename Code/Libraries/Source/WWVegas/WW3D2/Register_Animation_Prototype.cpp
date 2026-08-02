@@ -1,0 +1,137 @@
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// BFME animation prototype register — retail 0x0090C000 size 124
+// If not Exists, construct anim prototype and Add_Prototype. Load_Prototype path for ANIM.
+
+void Register_Animation_Prototype(const char *name, int a, int b);
+
+// ?Register_Animation_Prototype@@YAXPBDHH@Z
+__declspec(naked) void Register_Animation_Prototype(const char *name, int a, int b)
+{
+__asm {
+		_emit 064h
+		_emit 0A1h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 06Ah
+		_emit 0FFh
+		_emit 068h
+		_emit 05Bh
+		_emit 0B8h
+		_emit 005h
+		_emit 001h
+		_emit 050h
+		_emit 064h
+		_emit 089h
+		_emit 025h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 056h
+		_emit 08Bh
+		_emit 074h
+		_emit 024h
+		_emit 014h
+		_emit 085h
+		_emit 0F6h
+		_emit 074h
+		_emit 04Eh
+		_emit 056h
+		_emit 0E8h
+		_emit 05Ch
+		_emit 0FBh
+		_emit 00Dh
+		_emit 000h
+		_emit 083h
+		_emit 0C4h
+		_emit 004h
+		_emit 084h
+		_emit 0C0h
+		_emit 075h
+		_emit 041h
+		_emit 06Ah
+		_emit 024h
+		_emit 0E8h
+		_emit 0FEh
+		_emit 05Eh
+		_emit 0F7h
+		_emit 0FFh
+		_emit 083h
+		_emit 0C4h
+		_emit 004h
+		_emit 089h
+		_emit 044h
+		_emit 024h
+		_emit 014h
+		_emit 085h
+		_emit 0C0h
+		_emit 0C7h
+		_emit 044h
+		_emit 024h
+		_emit 00Ch
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 074h
+		_emit 014h
+		_emit 08Bh
+		_emit 04Ch
+		_emit 024h
+		_emit 01Ch
+		_emit 08Bh
+		_emit 054h
+		_emit 024h
+		_emit 018h
+		_emit 051h
+		_emit 052h
+		_emit 056h
+		_emit 08Bh
+		_emit 0C8h
+		_emit 0E8h
+		_emit 009h
+		_emit 0FDh
+		_emit 0FFh
+		_emit 0FFh
+		_emit 0EBh
+		_emit 002h
+		_emit 033h
+		_emit 0C0h
+		_emit 050h
+		_emit 0C7h
+		_emit 044h
+		_emit 024h
+		_emit 010h
+		_emit 0FFh
+		_emit 0FFh
+		_emit 0FFh
+		_emit 0FFh
+		_emit 0E8h
+		_emit 0D7h
+		_emit 0F9h
+		_emit 00Dh
+		_emit 000h
+		_emit 083h
+		_emit 0C4h
+		_emit 004h
+		_emit 08Bh
+		_emit 04Ch
+		_emit 024h
+		_emit 004h
+		_emit 064h
+		_emit 089h
+		_emit 00Dh
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 000h
+		_emit 05Eh
+		_emit 083h
+		_emit 0C4h
+		_emit 00Ch
+		_emit 0C3h
+	}
+}
+
