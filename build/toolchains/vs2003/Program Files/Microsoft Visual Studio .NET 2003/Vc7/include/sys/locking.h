@@ -1,3 +1,41 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e1af1c24e2bd9a9e99dff7a7ed4162e22b4f7f375e4128c49cf171d2eb6a9631
-size 997
+/***
+*sys/locking.h - flags for locking() function
+*
+*       Copyright (c) Microsoft Corporation. All rights reserved.
+*
+*Purpose:
+*       This file defines the flags for the locking() function.
+*       [System V]
+*
+*       [Public]
+*
+****/
+
+#if _MSC_VER > 1000
+#pragma once
+#endif
+
+#ifndef _INC_LOCKING
+#define _INC_LOCKING
+
+#if !defined(_WIN32)
+#error ERROR: Only Win32 target supported!
+#endif
+
+
+#define _LK_UNLCK       0       /* unlock the file region */
+#define _LK_LOCK        1       /* lock the file region */
+#define _LK_NBLCK       2       /* non-blocking lock */
+#define _LK_RLCK        3       /* lock for writing */
+#define _LK_NBRLCK      4       /* non-blocking lock for writing */
+
+#if !__STDC__
+/* Non-ANSI names for compatibility */
+#define LK_UNLCK        _LK_UNLCK
+#define LK_LOCK         _LK_LOCK
+#define LK_NBLCK        _LK_NBLCK
+#define LK_RLCK         _LK_RLCK
+#define LK_NBRLCK       _LK_NBRLCK
+#endif
+
+#endif  /* _INC_LOCKING */

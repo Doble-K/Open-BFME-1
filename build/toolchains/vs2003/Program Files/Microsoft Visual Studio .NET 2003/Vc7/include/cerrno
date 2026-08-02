@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c548c13a3f54095a9d56312807a2f339024af627bf3784001d40dfac4c263996
-size 562
+// cerrno standard header
+#pragma once
+#ifndef _CERRNO_
+#define _CERRNO_
+#include <yvals.h>
+
+#ifdef _STD_USING
+ #undef _STD_USING
+  #include <errno.h>
+ #define _STD_USING
+
+#else /* _STD_USING */
+ #include <errno.h>
+
+ #if _GLOBAL_USING
+_STD_BEGIN
+  #ifndef errno
+using ::errno;
+  #endif /* errno */
+
+_STD_END
+ #endif /* _GLOBAL_USING */
+
+#endif /* _CERRNO_ */
+#endif /* _STD_USING */
+
+/*
+ * Copyright (c) 1992-2002 by P.J. Plauger.  ALL RIGHTS RESERVED.
+ * Consult your license regarding permissions and restrictions.
+ V3.13:0009 */

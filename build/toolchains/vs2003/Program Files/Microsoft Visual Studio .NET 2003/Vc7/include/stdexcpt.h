@@ -1,3 +1,31 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f9f2c33d6b639783c12932855d6b1907e2f4e6729d7c3ada524e5d47d7f8e566
-size 613
+/***
+*stdexcpt.h - User include file for standard exception classes
+*
+*       Copyright (c) Microsoft Corporation. All rights reserved.
+*
+*Purpose:
+*       This file is the previous location of the standard exception class
+*       definitions, now found in the standard header <exception>.
+*
+*       [Public]
+*
+****/
+
+#if     _MSC_VER > 1000
+#pragma once
+#endif
+
+#ifndef _INC_STDEXCPT
+#define _INC_STDEXCPT
+
+#if     !defined(_WIN32)
+#error ERROR: Only Win32 target supported!
+#endif
+
+
+#ifdef  __cplusplus
+
+#include <exception>
+
+#endif  /* __cplusplus */
+#endif  /* _INC_STDEXCPT */

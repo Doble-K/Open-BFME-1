@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:10e319a0b72aa9457e6e5ee2e399da9eb5a142105b765bfdb35bfe07fa7f4672
-size 565
+// csignal standard header
+#pragma once
+#ifndef _CSIGNAL_
+#define _CSIGNAL_
+#include <yvals.h>
+
+#ifdef _STD_USING
+ #undef _STD_USING
+  #include <signal.h>
+ #define _STD_USING
+
+#else /* _STD_USING */
+ #include <signal.h>
+
+ #if _GLOBAL_USING
+_STD_BEGIN
+using ::sig_atomic_t; using ::raise; using ::signal;
+_STD_END
+ #endif /* _GLOBAL_USING */
+
+#endif /* _STD_USING */
+#endif /* _CSIGNAL_ */
+
+/*
+ * Copyright (c) 1992-2002 by P.J. Plauger.  ALL RIGHTS RESERVED.
+ * Consult your license regarding permissions and restrictions.
+ V3.13:0009 */

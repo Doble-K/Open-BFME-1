@@ -39,10 +39,9 @@ Just tell your favorite AI agent to make a PR in this repo, where each commit in
 
 ## Build
 
-Baseline executables and the MSVC 7.1 toolchain are stored with Git LFS. After cloning, run:
+Baseline executables and the MSVC 7.1 toolchain are committed directly in the repo (plain git, no LFS) — a normal `git clone` gets everything. After cloning, run:
 
 ```bash
-git lfs pull
 ./tools/setup_hooks.sh
 ```
 

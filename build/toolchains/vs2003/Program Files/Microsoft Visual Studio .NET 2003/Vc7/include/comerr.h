@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:31255f7e51abc13d3cee3e5e48dde7a750a28608a0cc93dd300878d5f7abea8e
-size 307
+#include <comdef.h>
+
+#ifndef _PCEH_DEFINED
+typedef void (__stdcall * _PCEH)(HRESULT, IUnknown *, REFIID);
+#define _PCEH_DEFINED
+#endif
+
+_PCEH __stdcall _query_com_error_handler();
+_PCEH __stdcall _set_com_error_handler(_PCEH);
+void  __stdcall _call_com_error_handler(HRESULT, IUnknown *, REFIID);

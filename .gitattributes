@@ -1,5 +1,7 @@
-baselines/**/*.exe filter=lfs diff=lfs merge=lfs -text
-build/toolchains/vs2003/** filter=lfs diff=lfs merge=lfs -text
+# Byte-exact payloads the build verifies by hash; EOL normalization on any of
+# these (including the toolchain's headers) would silently break byte-matching.
+baselines/** -text
+build/toolchains/vs2003/** -text
 
 # Append-mostly ledgers written concurrently by many agents. The built-in union
 # merge driver combines both sides' added lines instead of emitting conflict

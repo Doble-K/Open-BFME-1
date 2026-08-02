@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Push gate: static ledger integrity of the outgoing commit + byte-verify of
 # every source whose ledger claims changed vs the remote. Bounded by push size
-# — never the full gate. Also chains git-lfs (core.hooksPath bypasses the
-# hooks `git lfs install` writes into .git/hooks).
+# — never the full gate.
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel)"
@@ -14,10 +13,6 @@ fail() {
 }
 
 refs="$(cat || true)"
-
-if command -v git-lfs >/dev/null 2>&1; then
-    printf '%s\n' "$refs" | git lfs pre-push "$@" || fail "git lfs pre-push"
-fi
 
 ZERO=0000000000000000000000000000000000000000
 

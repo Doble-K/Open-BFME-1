@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2646b577d3ed46c69855cde99813ffd18de64c4cb75899b197c17b1cf7bdc0de
-size 296
+// cfloat standard header
+#pragma once
+#ifndef _CFLOAT_
+#define _CFLOAT_
+#include <yvals.h>
+
+#include <float.h>
+#endif /* _CFLOAT_ */
+
+/*
+ * Copyright (c) 1992-2002 by P.J. Plauger.  ALL RIGHTS RESERVED.
+ * Consult your license regarding permissions and restrictions.
+ V3.13:0009 */
