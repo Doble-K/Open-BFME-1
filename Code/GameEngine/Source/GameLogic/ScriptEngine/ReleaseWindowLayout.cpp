@@ -2,13 +2,15 @@
 
 class WindowLayout;
 
-__declspec(naked) void ReleaseWindowLayout(WindowLayout *)
+void ReleaseWindowLayout(WindowLayout *);
+
+class ReleaseWindowLayoutShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 06Bh
-		_emit 08Ch
-		_emit 04Dh
-		_emit 000h
-	}
+public:
+    static void run(WindowLayout *layout);
+};
+
+void ReleaseWindowLayout(WindowLayout *layout)
+{
+    ReleaseWindowLayoutShim::run(layout);
 }

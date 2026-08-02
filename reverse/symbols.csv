@@ -3408,6 +3408,7 @@ name,address,notes
 ?run@HideInGameChatShim@@SAXXZ,0x00512670,HideInGameChat incremental-link thunk target through a TU-local forwarding shim
 ?run@PopulateLobbyPlayerListboxShim@@SAXXZ,0x004FB500,PopulateLobbyPlayerListbox incremental-link thunk target through a TU-local forwarding shim
 ?run@RadarRefreshTerrainShim@@QAEXPAVTerrainLogic@@@Z,0x0024E990,Radar refreshTerrain incremental-link thunk target through a TU-local forwarding shim
+?run@ReleaseWindowLayoutShim@@SAXPAVWindowLayout@@@Z,0x00522740,ReleaseWindowLayout incremental-link thunk target through a TU-local forwarding shim
 ?run@TeamFactoryClearShim@@QAEXXZ,0x000F6CA0,TeamFactory clear incremental-link thunk target through a TU-local forwarding shim
 ?run@VectorClassClearShim@@QAEXXZ,0x00410970,VectorClass Clear incremental-link thunk target through a TU-local forwarding shim
 ?run@VectorClassClearSplineShim@@QAEXXZ,0x006731A0,VectorClass spline Clear incremental-link thunk target through a TU-local forwarding shim
