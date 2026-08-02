@@ -15,53 +15,53 @@ struct hashConstGameWindowPtr
 
 namespace _STL
 {
-template<class First, class Second>
+template <class First, class Second>
 struct pair
 {
 };
 
-template<class T>
+template <class T>
 struct _Select1st
 {
 };
 
-template<class T>
+template <class T>
 struct _Const_traits
 {
 };
 
-template<class Value, class Traits>
+template <class Value, class Traits>
 struct _Ht_iterator
 {
 };
 
-template<class T>
+template <class T>
 struct equal_to
 {
 };
 
-template<class T>
+template <class T>
 class allocator
 {
 };
 
-template<class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
+template <class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
 class hashtable
 {
 public:
-    void erase(const _Ht_iterator<Value, _Const_traits<Value> > &);
+	void erase(const _Ht_iterator<Value, _Const_traits<Value> > &);
 };
 
-template<class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
-__declspec(naked) void hashtable<Value, Key, Hash, Extract, Equal, Alloc>::erase(const _Ht_iterator<Value, _Const_traits<Value> > &)
+class WindowVideoHashtableEraseShim
 {
-    __asm {
-        _emit 0E9h
-        _emit 0F3h
-        _emit 08Eh
-        _emit 045h
-        _emit 000h
-    }
+public:
+	void erase(const void *it);
+};
+
+template <class Value, class Key, class Hash, class Extract, class Equal, class Alloc>
+void hashtable<Value, Key, Hash, Extract, Equal, Alloc>::erase(const _Ht_iterator<Value, _Const_traits<Value> > &it)
+{
+	((WindowVideoHashtableEraseShim *)this)->erase((const void *)&it);
 }
 }
 
