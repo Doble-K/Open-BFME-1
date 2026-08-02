@@ -26,17 +26,4 @@ public ??0Anim2DTemplate@@QAE@VAsciiString@@@Z
 ??0Anim2DTemplate@@QAE@VAsciiString@@@Z ENDP
 _TEXT ENDS
 
-; ??1Anim2DTemplate@@UAE@XZ
-; Exact 34 retail bytes @ 0x005BAE20; same AsciiString wall as the ctor.
-_TEXT SEGMENT
-public ??1Anim2DTemplate@@UAE@XZ
-??1Anim2DTemplate@@UAE@XZ PROC
-    db 056h,08Bh,0F1h,08Bh,046h,00Ch,085h,0C0h
-    db 0C7h,006h,0B8h,0F2h,010h,001h,074h,009h
-    db 050h,0E8h,0BAh,070h,02Ch,000h,083h,0C4h
-    db 004h,08Dh,04Eh,008h,05Eh,0E9h,0FEh,0CAh
-    db 02Ch,000h
-??1Anim2DTemplate@@UAE@XZ ENDP
-_TEXT ENDS
-
 END

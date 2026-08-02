@@ -64,7 +64,16 @@ Anim2DCollection *TheAnim2DCollection = NULL;
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // ??1Anim2DTemplate@@UAE@XZ
-// Body in Anim2DTemplate_ctor_dtor.asm (exact 34B retail; same AsciiString wall).
+#pragma inline_depth(0)
+Anim2DTemplate::~Anim2DTemplate( void )
+{
+
+	// delete the images
+	if( m_images )
+		delete [] m_images;
+
+}  // end ~Anim2DTemplate
+#pragma inline_depth(255)
 
 // ------------------------------------------------------------------------------------------------
 /** Field parse table for 2D animation templates */
@@ -704,4 +713,3 @@ void Anim2DCollection::unRegisterAnimation( Anim2D *anim )
 		m_instanceList = anim->m_collectionSystemNext;
 
 }  // end unRegisterAnimation
-
