@@ -6,13 +6,13 @@ public:
 	~ProductionPrerequisite();
 };
 
-__declspec(naked) ProductionPrerequisite::~ProductionPrerequisite()
+class ProductionPrerequisiteDestructorShim
 {
-	__asm {
-		_emit 0E9h
-		_emit 08Bh
-		_emit 047h
-		_emit 071h
-		_emit 000h
-	}
+public:
+	void destroy();
+};
+
+ProductionPrerequisite::~ProductionPrerequisite()
+{
+	((ProductionPrerequisiteDestructorShim *)this)->destroy();
 }
