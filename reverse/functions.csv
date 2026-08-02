@@ -2451,7 +2451,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Weapon@@QAE@XZ,,0x001E74B0,933,Code/masm_dumps/_sa3___0Weapon__QAE_XZ_1E74B0.asm,matched,Exact 933B string-anchored Open-BFME4
 ??0WeaponBarrelInfo@ModelConditionInfo@@QAE@ABU01@@Z,,0x0075E480,97,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ??0WeaponBarrelInfo@ModelConditionInfo@@QAE@XZ,,0x0075F040,54,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
-??0WeaponBonusUpdateModuleData@@QAE@XZ,,0x00123620,82,Code/masm_dumps/WeaponBonusUpdateModuleData_constructor.asm,matched,Exact 82B ICF alias MD Open-BFME4
+??0WeaponBonusUpdateModuleData@@QAE@XZ,,0x00123620,82,Code/GameEngine/Source/GameLogic/Object/Behavior/WeaponBonusUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 82B ICF constructor
 ??0WeaponBonusUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002DA320,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/WeaponBonusUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2DA320
 ??0WeaponChangeSpecialPowerModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026CC80,46,Code/GameEngine/Source/GameLogic/AI/WeaponChangeSpecialPowerModule.cpp,matched,Luna Open-BFME5.0 clean C++ empty derived constructor
 ??0WeaponChangeSpecialPowerModuleModuleData@@QAE@XZ,,0x0026CE40,123,Code/masm_dumps/WeaponChangeSpecialPowerModuleModuleData_constructor.asm,matched,Exact 123B @ 0x0026CE40; Exact retail MASM ModuleData ctor; unique factory 0x120450; Open-BFME4+Grok
