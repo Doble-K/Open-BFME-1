@@ -153,13 +153,14 @@ private:
 	PlayerInfoMap m_playerInfoMap;
 	BuddyMessageList m_buddyMessages;
 	Int m_currentGroupRoomID;
+	// BFME has two more dwords between m_currentGroupRoomID and
+	// m_gotGroupRoomList. addGroupRoom @0x636650 sets m_gotGroupRoomList at
+	// +0x68 where ours is at +0x60, and joinBestGroupRoom @0x634EC0 reads the
+	// two new dwords at +0x60 and +0x64 - picking between them on its argument -
+	// before clearing m_currentGroupRoomID at +0x5C. That also puts the four
+	// AsciiStrings the constructor @0x636D90 zeroes at +0x6C/+0x74/+0x78/+0x7C.
+	char _bfme_hole_afterCurrentGroupRoomID[8];
 	Bool m_gotGroupRoomList;
-
-	// BFME has 8 more bytes here: the constructor @0x636D90 zeroes the four
-	// AsciiStrings at +0x6C/+0x74/+0x78/+0x7C - our own 8/4/4 spacing, eight
-	// bytes further along - while m_currentGroupRoomID and m_gotGroupRoomList
-	// just above are untouched.
-	char _bfme_hole_beforeLocalName[8];
 	AsciiString m_localName;
 	Int m_localProfileID;
 	AsciiString m_localPasswd;

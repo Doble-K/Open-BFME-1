@@ -90,17 +90,17 @@ class GameSpyGroupRoom
 public:
 	GameSpyGroupRoom() { m_name = AsciiString::TheEmptyString; m_translatedName = UnicodeString::TheEmptyString; m_groupID = m_numWaiting = m_maxWaiting = m_numGames = m_numPlaying = 0; }
 	AsciiString m_name;
+	// BFME's group-room record is one dword larger and the extra field sits
+	// here, not at the tail: the constructor @0x636D90 allocates a 0x34-byte
+	// first map node where ours is 0x30, and addGroupRoom @0x636650 reaches
+	// the field after m_name with add eax,8 where we emit add eax,4.
+	Int _bfme_hole_afterName;
 	UnicodeString m_translatedName;
 	Int m_groupID;
 	Int m_numWaiting;
 	Int m_maxWaiting;
 	Int m_numGames;
 	Int m_numPlaying;
-
-	// BFME's group-room record is one dword larger: the first map node the
-	// GameSpyInfo constructor @0x636D90 allocates is 0x34 bytes where ours is
-	// 0x30, and m_groupRooms is the first map it builds.
-	Int _bfme_hole_tail;
 };
 typedef std::map<Int, GameSpyGroupRoom> GroupRoomMap;
 
