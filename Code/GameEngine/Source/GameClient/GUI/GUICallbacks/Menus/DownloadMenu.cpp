@@ -98,14 +98,35 @@ static GameWindow * progressBarMunkee = NULL;
 
 static GameWindow *parent = NULL;
 
+// BFME made WindowLayout's methods virtual (vtable read at 0x10f7514: runInit,
+// dtor, runUpdate, runShutdown @+0x0c, hide, bringForward, addWindow,
+// removeWindow, destroyWindows @+0x20); the swept ZH header is non-virtual, so
+// closeDownloadWindow casts to this view to emit retail's virtual-call shape.
+// deleteInstance stays a plain inline: `delete this` through the virtual dtor
+// produces retail's `push 1; call [eax+4]` deleting-dtor call.
+class BFMEDownloadMenuLayoutView
+{
+public:
+	virtual void runInit( void *userData );
+	virtual ~BFMEDownloadMenuLayoutView( );
+	virtual void runUpdate( void *userData );
+	virtual void runShutdown( void *userData );
+	virtual void hide( int hide );
+	virtual void bringForward( void );
+	virtual void addWindow( GameWindow *window );
+	virtual void removeWindow( GameWindow *window );
+	virtual void destroyWindows( void );
+	void deleteInstance( void ) { delete this; }
+};
+
 static void closeDownloadWindow( void )
 {
 	DEBUG_ASSERTCRASH(parent, ("No Parent"));
 	if (!parent)
 		return;
 
-  WindowLayout *menuLayout = parent->winGetLayout();
-	menuLayout->runShutdown();
+  BFMEDownloadMenuLayoutView *menuLayout = (BFMEDownloadMenuLayoutView *)parent->winGetLayout();
+	menuLayout->runShutdown( NULL );
   menuLayout->destroyWindows();
 	menuLayout->deleteInstance();
 	menuLayout = NULL;

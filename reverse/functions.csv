@@ -13154,7 +13154,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?runInit@WindowLayout@@QAEXPAX@Z,,0x00470690,21,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MainMenu.cpp,matched,
 ?runInit@WindowLayout@@UAEXPAX@Z,,0x00470690,21,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,header-inline virtual (COMDAT)
 ?runRelayPass@BFMEConnectionManager@@QAEXXZ,,0x0066A740,792,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?runShutdown@WindowLayout@@QAEXPAX@Z,,0x004706D0,21,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,icf-owner=?runShutdown@WindowLayout@@UAEXPAX@Z
 ?runShutdown@WindowLayout@@UAEXPAX@Z,,0x004706D0,21,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,header-inline virtual (COMDAT)
 ?runUpdate@WindowLayout@@QAEXPAX@Z,,0x004706B0,21,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,ICF alias of existing matched body
 ?runUpdate@WindowLayout@@UAEXPAX@Z,,0x004706B0,21,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,header-inline virtual (COMDAT)
@@ -14247,3 +14246,4 @@ _logf,,0x0045B370,11,Code/GameEngine/Source/Common/System/statistics.cpp,matched
 _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
+?closeDownloadWindow@@YAXXZ,,0x004C7780,103,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
