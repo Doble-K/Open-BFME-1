@@ -4253,3 +4253,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 ??0LightningDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x19614,LightningDrawModuleTemplate clone copy-ctor pin
 ??0?@V?@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x0001ADFC,DefaultModuleTag clone copy-ctor pin
 ??0?@V?@@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x0002D06A,DefaultModuleTag clone copy-ctor pin
+??0LightningEmissionModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x19f88,LightningEmissionModuleTemplate clone copy-ctor pin
