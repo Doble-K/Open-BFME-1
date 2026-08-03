@@ -1,0 +1,105 @@
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift MASM dump _STL::__node_alloc::_M_deallocate to C++ thunk.
+// Retail mangling uses private static (CAX).
+
+namespace _STL
+{
+template <bool thr, int inst>
+class __node_alloc
+{
+	static void _M_deallocate(void *p, unsigned int n);
+};
+}
+
+// ?_M_deallocate@?$__node_alloc@$00$0A@@_STL@@CAXPAXI@Z
+__declspec(naked) void _STL::__node_alloc<true, 0>::_M_deallocate(void *, unsigned int)
+{
+	__asm {
+		__emit 0x55
+		__emit 0x8b
+		__emit 0xec
+		__emit 0x83
+		__emit 0xec
+		__emit 0x0c
+		__emit 0x8b
+		__emit 0x45
+		__emit 0x0c
+		__emit 0x83
+		__emit 0xe8
+		__emit 0x01
+		__emit 0xc1
+		__emit 0xe8
+		__emit 0x03
+		__emit 0x8d
+		__emit 0x0c
+		__emit 0x85
+		__emit 0xc0
+		__emit 0xb1
+		__emit 0x30
+		__emit 0x01
+		__emit 0x89
+		__emit 0x4d
+		__emit 0xfc
+		__emit 0xba
+		__emit 0x01
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0x85
+		__emit 0xd2
+		__emit 0x74
+		__emit 0x0a
+		__emit 0xb9
+		__emit 0x54
+		__emit 0xb2
+		__emit 0x30
+		__emit 0x01
+		__emit 0xe8
+		__emit 0xf4
+		__emit 0xf3
+		__emit 0xff
+		__emit 0xff
+		__emit 0x8b
+		__emit 0x45
+		__emit 0x08
+		__emit 0x8b
+		__emit 0x4d
+		__emit 0xfc
+		__emit 0x8b
+		__emit 0x11
+		__emit 0x89
+		__emit 0x10
+		__emit 0x8b
+		__emit 0x45
+		__emit 0xfc
+		__emit 0x8b
+		__emit 0x4d
+		__emit 0x08
+		__emit 0x89
+		__emit 0x08
+		__emit 0xba
+		__emit 0x01
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0x85
+		__emit 0xd2
+		__emit 0x74
+		__emit 0x0a
+		__emit 0xb9
+		__emit 0x54
+		__emit 0xb2
+		__emit 0x30
+		__emit 0x01
+		__emit 0xe8
+		__emit 0x0f
+		__emit 0xc7
+		__emit 0xff
+		__emit 0xff
+		__emit 0x8b
+		__emit 0xe5
+		__emit 0x5d
+		__emit 0xc3
+	}
+}
+
