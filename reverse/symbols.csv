@@ -4226,3 +4226,5 @@ DefaultModuleTemplate0AFieldParse,0x01113460,DefaultModuleTemplate parse FieldPa
 ?addAudioEventEx@AudioManager@@QAEIPBVAudioEventRTS@@HHH@Z,0x00020B08,AudioManager::addAudioEvent thiscall impl
 ??1PropagandaTowerBehaviorMember@@QAE@XZ,0x00887940,PropagandaTowerBehavior dtor member at this+0x18; ICF-folded AsciiString releaseBuffer/destroy body
 ??1UnpauseSpecialPowerUpgradeModuleDataMember@@QAE@XZ,0x0001B97D,UnpauseSpecialPowerUpgradeModuleData dtor member at this+8; ILT thunk for body 0x00129C80
+_audioManagerAddEventHelper@16,0x00020B08,AudioManager::addAudioEvent stdcall helper pin
+?audioManagerAddEventHelper@@YGIPBVAudioEventRTS@@HHH@Z,0x00020B08,AudioManager addAudioEvent helper YGI stdcall
