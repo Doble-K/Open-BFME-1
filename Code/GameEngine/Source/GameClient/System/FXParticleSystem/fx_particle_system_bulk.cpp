@@ -14538,6 +14538,7 @@ __declspec(naked) TerrainCollisionModuleInfo::TerrainCollisionModuleInfo()
     }
 }
 
+#if 0 // exact copy constructor moved to TerrainCollisionModuleTemplateCopyCtorThunk.cpp
 // ??0TerrainCollisionModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z
 __declspec(naked) TerrainCollisionModuleTemplate::TerrainCollisionModuleTemplate(const TerrainCollisionModuleTemplate &that)
 {
@@ -14699,6 +14700,8 @@ __declspec(naked) TerrainCollisionModuleTemplate::TerrainCollisionModuleTemplate
         __emit 0x00
     }
 }
+
+#endif
 
 // ??0TerrainCollisionModuleTemplate@FXParticleSystem@@QAE@XZ is implemented by
 // the exact retail thunk in TerrainCollisionModuleTemplateCtorThunk.cpp.
