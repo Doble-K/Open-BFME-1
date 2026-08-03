@@ -9272,7 +9272,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?checkLogin@@YAXXZ,,0x004FFFC0,418,Code/GameEngine/Source/Common/checkLogin_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?checkQR2Queries@@YAXPAXI@Z,,0x00642E60,178,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?checkReadyTeams@AIPlayer@@MAEXXZ,,0x00162560,722,Code/GameEngine/Source/Common/AIPlayer_checkReadyTeamsMethodThunk.cpp,matched,Exact 722B string-anchored Open-BFME4
-?chooseVictim@AIAttackSquadState@@QAEPAVObject@@XZ,,0x0017D2F0,949,Code/masm_dumps/chooseVictim_AIAttackSquadState_0017D2F0_packet310.asm,matched,Certified packet 310 reviewed identity exact retail byte recovery
 ?clamp_indices_to_grid@GridCullSystemClass@@IAEXPAH00@Z,,0x008DCE70,82,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?classifyCells@PathfindLayer@@QAEXXZ,,0x003FC790,1405,Code/GameEngine/Source/GameLogic/AI/AIPathfind_classifyCells.asm,matched,exact 1405B MASM true ENTRY 0x3FC790 (queue 0x73F191 mid-body of host 0x73E050); C++ blocked PathfindCell 0x10 packing
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,,0x00701FB0,103,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,object-symbol=?Add@?$SimpleDynVecClass@VVector3@@@@QAE_NABVVector3@@H@Z;C++ alias
@@ -34598,4 +34597,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Customized_Render@RTS3DScene@@UAEXAAVRenderInfoClass@@@Z,,0x007143B0,888,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS3DSceneCustomizedRenderThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?post_process_fog@MeshModelClass@@IAEXXZ,,0x0096EE60,929,Code/Libraries/Source/WWVegas/WW3D2/MeshModelClassPostProcessFogThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?generateVertexBuffer@WaterRenderObjClass@@IAEJHHH_N@Z,,0x0079EAB0,790,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterGenerateVertexBufferThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?chooseVictim@AIAttackSquadState@@QAEPAVObject@@XZ,,0x0017D2F0,949,Code/GameEngine/Source/GameLogic/AI/AIAttackSquadStateChooseVictimThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
