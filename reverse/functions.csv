@@ -13401,7 +13401,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setIgnoreObstacleID@Pathfinder@@QAEXW4ObjectID@@@Z,,0x0015E6E0,10,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,
 ?setImageSize@Image@@QAEXPAUICoord2D@@@Z,,0x005D1BD0,18,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar.cpp,matched,
 ?setIniCRC@GameSpyStagingRoom@@QAEXI@Z,,0x00684BF0,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
-?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z,,0x0043B280,20,Code/GameEngine/Source/GameLogic/ScriptEngine/BfmeInGameUISetInputEnabledThunk.cpp,matched,Open-BFME5 exact C++ BFME vtable thunk replacing MASM dump;object-symbol=?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z
+?setInputEnabled@BfmeInGameUI_setInputEnabled@@QAEX_N@Z,,0x0043B280,20,Code/GameEngine/Source/GameLogic/ScriptEngine/BfmeInGameUISetInputEnabledThunk.cpp,matched,Open-BFME5 clean C++ setInputEnabled virtual impl this+0xe
 ?setInstanceScale@Drawable@@QAEXM@Z,,0x00955C20,13,Code/GameEngine/Source/GameLogic/Object/Update/EMPUpdate.cpp,matched,
 ?setInt@Dict@@QAEXW4NameKeyType@@H@Z,,0x00068800,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setInteractsWithBridge@ZoneBlock@@QAEX_N@Z,,0x0009FF30,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
