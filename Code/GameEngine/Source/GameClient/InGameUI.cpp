@@ -4860,33 +4860,8 @@ Int InGameUI::selectAllUnitsByTypeAcrossScreen(KindOfMaskType mustBeSet, KindOfM
 // Body in InGameUI_selectMatchingAcrossScreen.asm (exact 332B retail @ 0x43EF70).
 
 //-------------------------------------------------------------------------------------------------
-// ?selectAllUnitsByTypeAcrossMap@InGameUI@@UAEHV?$BitFlags@$0HE@@@0@Z present-unmatched
-Int InGameUI::selectAllUnitsByTypeAcrossMap(KindOfMaskType mustBeSet, KindOfMaskType mustBeClear)
-{
-	/// When implementing this, obey TheInGameUI->getMaxSelectCount() if it is > 0
-	Int numSelected = selectAllUnitsByTypeAcrossRegion(NULL, mustBeSet, mustBeClear);
-	if (numSelected == -1)
-	{
-		UnicodeString message = TheGameText->fetch( "GUI:NothingSelected" );
-		TheInGameUI->message( message );
-	}
-	else if (numSelected == 0)
-	{
-		Drawable *draw = TheInGameUI->getFirstSelectedDrawable();
-		if( !draw || !draw->getObject() || !draw->getObject()->isKindOf( KINDOF_STRUCTURE ) )
-		{
-			UnicodeString message = TheGameText->fetch( "GUI:SelectedAcrossMap" );
-			TheInGameUI->message( message );
-		}
-	}
-	else
-	{
-		UnicodeString message = TheGameText->fetch( "GUI:SelectedAcrossMap" );
-		TheInGameUI->message( message );
-	}
-	return numSelected;
-}
-
+// ?selectAllUnitsByTypeAcrossMap@InGameUI@@UAEHV?$BitFlags@$0HE@@@0@Z
+// Body in Code/masm_dumps/_s4__selectAllUnitsByTypeAcrossMap_InGameUI_UAEHV_BitFlags__446550.asm (exact 756B retail @ 0x00446550).
 //-------------------------------------------------------------------------------------------------
 /** Selects matching units across map */
 //-------------------------------------------------------------------------------------------------
