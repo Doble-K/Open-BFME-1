@@ -1,109 +1,44 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: RenderObjectDrawModuleInfo dtor. Buffers @+0x10/+0x20/+0x30.
+
+class Buffer
+{
+public:
+	~Buffer();
+
+private:
+	unsigned char m_pad[4];
+};
 
 namespace FXParticleSystem
 {
-class RenderObjectDrawModuleInfo
+
+class RenderObjectDrawModuleInfoBase
 {
 public:
-    ~RenderObjectDrawModuleInfo();
+	virtual ~RenderObjectDrawModuleInfoBase() {}
+
+private:
+	unsigned char m_pad[0xc];
 };
 
-__declspec(naked) RenderObjectDrawModuleInfo::~RenderObjectDrawModuleInfo()
+class __declspec(novtable) RenderObjectDrawModuleInfo
+	: public RenderObjectDrawModuleInfoBase
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 04Eh
-        _emit 0AEh
-        _emit 003h
-        _emit 001h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 004h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 030h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0E8h
-        _emit 023h
-        _emit 097h
-        _emit 02Ah
-        _emit 000h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 020h
-        _emit 0C6h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 001h
-        _emit 0E8h
-        _emit 016h
-        _emit 097h
-        _emit 02Ah
-        _emit 000h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 010h
-        _emit 0C6h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 000h
-        _emit 0E8h
-        _emit 009h
-        _emit 097h
-        _emit 02Ah
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 0C7h
-        _emit 006h
-        _emit 044h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
+public:
+	virtual ~RenderObjectDrawModuleInfo();
+
+private:
+	Buffer m_a;
+	unsigned char m_gap1[0xc];
+	Buffer m_b;
+	unsigned char m_gap2[0xc];
+	Buffer m_c;
+};
+
+// ??1RenderObjectDrawModuleInfo@FXParticleSystem@@UAE@XZ
+RenderObjectDrawModuleInfo::~RenderObjectDrawModuleInfo()
+{
 }
+
 }
