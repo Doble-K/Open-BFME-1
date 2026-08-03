@@ -12501,7 +12501,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@QuadDrawModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00043BF8,0x5f5410,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@RenderObjectDrawModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00037713,0x5f6780,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@RenderObjectUpdateModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00002E3C,0x6003e0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-?parse@SoundFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042BBE0,240,Code/masm_dumps/SoundFXNugget_parse_42BBE0.asm,matched,Exact 240B MASM; FX table Sound ILT 0x91A1; drift 0x9A15F7 was interior of parseSideInfo@AI; BFME rewrite new(0xB8)+MultiIniFieldParse Name@+0xB4
+?parse@SoundFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042BBE0,240,Code/GameEngine/Source/Common/SoundFXNugget_parseMethodThunk.cpp,matched,Exact 240B MASM; FX table Sound ILT 0x91A1; drift 0x9A15F7 was interior of parseSideInfo@AI; BFME rewrite new(0xB8)+MultiIniFieldParse Name@+0xB4
 ?parse@SphereEmissionVolumeModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00034847,0x5fa8b0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002337B,0x5fa650,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@StreakDrawModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002BCBA,0x5f7eb0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
