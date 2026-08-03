@@ -9708,7 +9708,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?createWindowManager@W3DGameClient@@MAEPAVGameWindowManager@@XZ,,0x006BA930,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?crossProduct@Coord3D@@SAXPBU1@0PAU1@@Z,,0x00131BF0,59,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,
 ?crossProduct@Coord3D@@SAXPBV1@0PAV1@@Z,0x00007536,0x00131BF0,59,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,writes cross product to result pointer
-?crushLocationCheck@@YA?AW4CrushEnum@@PAVObject@@0@Z,,0x002549A0,387,Code/masm_dumps/_cache__crushLocationCheck__YA_AW4CrushEnum__PAVObject__0_Z_2549A0.asm,matched,cached-obj needle Open-BFME4+Grok
+?crushLocationCheck@@YA?AW4CrushEnum@@PAVObject@@0@Z,,0x002549A0,387,Code/GameEngine/Source/Common/crushLocationCheck_Thunk.cpp,matched,cached-obj needle Open-BFME4+Grok
 ?cull@W3DBridgeBuffer@@IAEXPAVCameraClass@@@Z,,0x006D7710,69,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp,matched,
 ?cull@W3DPropBuffer@@IAEXPAVCameraClass@@@Z,,0x00702590,87,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DPropBuffer.cpp,matched,
 ?cullBridge@W3DBridge@@QAE_NPAVCameraClass@@@Z,,0x006D76F0,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp,matched,
@@ -11606,7 +11606,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPreAttackFinishedFrame@Weapon@@QBEIXZ,,0x00674250,4,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?getPreferredColor@CustomMatchPreferences@@QAEHXZ,,0x000AC2A0,111,Code/GameEngine/Source/Common/promoted__getPreferredColor_CustomMatchPreferences_QAEHXZ_000AC2A0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 111B
 ?getPreferredFaction@CustomMatchPreferences@@QAEHXZ,,0x000AC3B0,160,Code/GameEngine/Source/Common/CustomMatchPreferences_getPreferredFaction_Thunk.cpp,matched,Open-BFME5 lift 160B retail method MASM to standalone C++ thunk
-?getPreferredMap@CustomMatchPreferences@@QAE?AVAsciiString@@XZ,,0x000AC690,377,Code/masm_dumps/CustomMatchPreferences_getPreferredMap.asm,matched,Ghidra-bound BFME preferred-map getter; true body after DisallowNonAsian cluster
+?getPreferredMap@CustomMatchPreferences@@QAE?AVAsciiString@@XZ,,0x000AC690,377,Code/GameEngine/Source/Common/CustomMatchPreferences_getPreferredMap_Thunk.cpp,matched,Ghidra-bound BFME preferred-map getter; true body after DisallowNonAsian cluster
 ?getProcessAnimate@AnimateWindowManager@@AAEPAVProcessAnimateWindow@@W4AnimTypes@@@Z,,0x0045CDC0,70,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?getProductionCostChangePercent@Player@@QBEMVAsciiString@@@Z,,0x000D47F0,91,Code/GameEngine/Source/Common/RTS/PlayerProductionCostChangePercentThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM body; retail cost map this+0x1CC
 ?getProductionUpdateInterface@BehaviorModule@@UAEPAVProductionUpdateInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -12172,7 +12172,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isPlayerConnected@ConnectionManager@@QAE_NH@Z,,0x00662BB0,38,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
 ?isPlayerConnectedDefaultTimeout@BFMEConnectionManager@@QAE_NH@Z,,0x00662A50,138,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check using GlobalData NetworkPlayerTimeoutTime at +0xcbc
 ?isPlayerConnectedForTimeout@BFMEConnectionManager@@QAE_NHI@Z,,0x00662B00,132,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,native BFME player timeout check with explicit timeout and startup NetworkPlayerTimeoutTime fallback
-?isPlayerDefaultTeam@SidesList@@QAE_NPAVTeamsInfo@@@Z,,0x001967F0,380,Code/masm_dumps/isPlayerDefaultTeam_SidesList_001967F0_packet308.asm,matched,Certified packet 308 exact retail db recovery SHA-256 26d2d2f0635fd4e762581b65bbe9c583971adcca6d3b762940e710fbcef4b2a5
+?isPlayerDefaultTeam@SidesList@@QAE_NPAVTeamsInfo@@@Z,,0x001967F0,380,Code/GameEngine/Source/Common/SidesList_isPlayerDefaultTeam_Thunk.cpp,matched,Certified packet 308 exact retail db recovery SHA-256 26d2d2f0635fd4e762581b65bbe9c583971adcca6d3b762940e710fbcef4b2a5
 ?isPlayerInGame@BFMEConnectionManager@@QAE_NH@Z,,0x00662BE0,53,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?isPlayerInGame@DisconnectManager@@IAE_NHPAVConnectionManager@@@Z,,0x0066BC90,95,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
 ?isPlayerPreorder@GameInfo@@QAE_NH@Z,,0x0061E650,39,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
@@ -13279,7 +13279,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setCachedStats@GameSpyMiscPreferences@@QAEXVAsciiString@@@Z,,0x000A9A90,121,Code/GameEngine/Source/Common/GameSpyMiscPreferences_setCachedStats_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setCampaignDifficulty@OptionPreferences@@QAEXH@Z,,0x000920F0,169,Code/GameEngine/Source/Common/OptionPreferences_setCampaignDifficulty_Thunk.cpp,matched,Exact 169B MASM; true ENTRY 0x920F0 (queue 0x920FF mid-SEH); CampaignDifficulty %d identity
 ?setCanOptimize@PathNode@@QAEX_N@Z,,0x000F9250,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
-?setCaptionText@Drawable@@QAEXABVUnicodeString@@@Z,,0x00418880,381,Code/masm_dumps/Drawable_setCaptionText_418880.asm,matched,Certified packet 192 sealed retail bytes SHA256 1cd21ef4ec3eb2769021a3deb7453a6cb282def2d452afc5bf833f5eb01a8a9f
+?setCaptionText@Drawable@@QAEXABVUnicodeString@@@Z,,0x00418880,381,Code/GameEngine/Source/Common/Drawable_setCaptionText_Thunk.cpp,matched,Certified packet 192 sealed retail bytes SHA256 1cd21ef4ec3eb2769021a3deb7453a6cb282def2d452afc5bf833f5eb01a8a9f
 ?setCashValue@SupplyWarehouseDockUpdate@@QAEXH@Z,,0x002CFA50,81,Code/GameEngine/Source/Common/promoted__setCashValue_SupplyWarehouseDockUpdate_QAEXH_Z_002CFA50.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 81B
 ?setChatSizeSlider@CustomMatchPreferences@@QAEXH@Z,,0x000AD9A0,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setChatSizeSlider_Thunk.cpp,matched,Ghidra-bound BFME chat-slider setter
 ?setChunkNumber@NetWrapperCommandMsg@@QAEXI@Z,,0x00673F10,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor thunk
@@ -13853,9 +13853,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@DockingState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@DownloadManager@@QAEJXZ,,0x00626950,7,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,Unique padded virtual tail call
 ?update@DozerActionDoActionState@@UAE?AW4StateReturnType@@XZ,,0x002B8FF0,1936,Code/masm_dumps/_str__update_DozerActionDoActionState_UAE_AW4StateReturnType_2B8FF0.asm,matched,
-?update@DozerActionPickActionPosState@@UAE?AW4StateReturnType@@XZ,,0x002B8E10,372,Code/masm_dumps/_str__update_DozerActionPickActionPosState_UAE_AW4StateReturnType_2B8E10.asm,matched,MASM exact 372B @ 0x2B8E10; vtbl slot6 thunk 0x2CE8F; queue 0x2CE79D was pad
+?update@DozerActionPickActionPosState@@UAE?AW4StateReturnType@@XZ,,0x002B8E10,372,Code/GameEngine/Source/Common/DozerActionPickActionPosState_update_Thunk.cpp,matched,MASM exact 372B @ 0x2B8E10; vtbl slot6 thunk 0x2CE8F; queue 0x2CE79D was pad
 ?update@FadeTransition@@UAEXH@Z,,0x0059C370,118,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
-?update@FireSpreadUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x00292900,386,Code/masm_dumps/FireSpreadUpdate_update.asm,matched,Certified packet 72 vtable constructor string-xref and call-graph identity; exact retail SHA-256 6a71c5e83d7ca45c374732cdce369ea3e446c94b4af94efcda26c8c054c6c29d
+?update@FireSpreadUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x00292900,386,Code/GameEngine/Source/Common/FireSpreadUpdate_update_Thunk.cpp,matched,Certified packet 72 vtable constructor string-xref and call-graph identity; exact retail SHA-256 6a71c5e83d7ca45c374732cdce369ea3e446c94b4af94efcda26c8c054c6c29d
 ?update@FlashTransition@@UAEXH@Z,,0x0059C9C0,137,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@GameTextManager@@UAEXXZ,,0x00438420,1,Code/GameEngine/Source/GameClient/GameText.cpp,matched,Ghidra-vtable anchored empty update override; exact C++ RET
 ?update@GameWindowManager@@UAEXXZ,,0x0047C320,21,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,processDestroyList then TheTransitionHandler->update() through slot 5 not ZH slot 4
