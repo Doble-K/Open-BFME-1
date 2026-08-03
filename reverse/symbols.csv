@@ -985,7 +985,7 @@ name,address,notes
 ??0ParticleBufferClass@@QAE@ABV0@@Z,0x00989A20
 ??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,0x0000C063,pinharvest x1 (thunk)
 ??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,0x0002DE75,pinharvest x1 (thunk)
-??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x000328C6
+??0PhysicsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003C3BC
 ??0PhysicsBehaviorModuleData@@QAE@XZ,0x00007FF4,pinharvest x1 (thunk)
 ??0PhysicsBehaviorModuleData@@QAE@XZ,0x000103E8,pinharvest x1 (thunk)
 ??0PhysicsBehaviorModuleData@@QAE@XZ,0x0001659F,pinharvest x1 (thunk)
@@ -4386,3 +4386,9 @@ CategoryModuleTemplate07_vtbl4,0x01073844,CMT07 vtbl4
 ??1Member8@@QAE@XZ,0x00887940,Open-BFME5 pin Buffer-like
 ??1LaserUpdateModuleDataMember4@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1LaserUpdateModuleDataMember8@@QAE@XZ,0x00887940,Open-BFME5 pin
+??0BannerCarrierUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003DB36,BannerCarrierUpdate ctor for friend_new
+??0CastleMemberBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x000060F5,CastleMemberBehavior ctor for friend_new
+??0GateOpenAndCloseBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000ACE0,GateOpenAndCloseBehavior ctor for friend_new
+??0ModelConditionSoundSelectorClientBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00002874,ModelConditionSoundSelectorClientBehavior ctor for friend_new
+??0ObjectCreationUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x000246B8,ObjectCreationUpgrade ctor for friend_new
+??0UpgradeSoundSelectorClientBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00002874,UpgradeSoundSelectorClientBehavior ctor for friend_new
