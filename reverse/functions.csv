@@ -2161,7 +2161,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SegmentedLineClass@@QAE@ABV0@@Z,,0x009509D0,181,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ??0SegmentedLineClass@@QAE@XZ,,0x00950D50,127,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ??0SelectionInfo@@QAE@XZ,,0x00458F60,58,Code/GameEngine/Source/GameClient/SelectionInfo.cpp,matched,
-??0ShareExperienceBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205740,148,Code/masm_dumps/ShareExperienceBehavior_constructor.asm,matched,Exact 148B @ 0x00205740; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116BF0
+??0ShareExperienceBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205740,148,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorCtorThunk.cpp,matched,Exact 148B @ 0x00205740; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116BF0
 ??0ShareExperienceBehaviorModuleData@@QAE@XZ,,0x002056B0,80,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0Shell@@QAE@XZ,,0x0057F650,259,Code/masm_dumps/Shell_constructor_57F650.asm,matched,Certified packet 92 exact retail MASM SHA256 1cbea3545873ee70aacdaf9856ab9323d9288e58eeb640cc6330f5a55342362f
 ??0ShellGameLoadScreen@@QAE@XZ,,0x003367B0,17,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,
