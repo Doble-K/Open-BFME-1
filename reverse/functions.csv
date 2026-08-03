@@ -9768,7 +9768,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?detectionTest4Stage2Update@FirewallHelperClass@@QAE_NXZ,,0x0066FB00,131,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?detectionTest5Update@FirewallHelperClass@@QAE_NXZ,,0x0066E860,13,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?disableRadar@Player@@QAEXXZ,,0x0003C2BD,5,Code/GameEngine/Source/Common/RTS/PlayerRadarAndIterationThunks.cpp,matched,5-byte incremental-link Player member thunk converted to focused C++ source
-?disband@TeamInQueue@@QAEXXZ,,0x00161A60,180,Code/masm_dumps/_sa7__disband_TeamInQueue__QAEXXZ_161A60.asm,matched,Exact 180B Open-BFME4
+?disband@TeamInQueue@@QAEXXZ,,0x00161A60,180,Code/GameEngine/Source/Common/TeamInQueue_disbandMethodThunk.cpp,matched,Exact 180B Open-BFME4
 ?disconnectPlayer@DisconnectManager@@IAEXHPAVConnectionManager@@@Z,,0x0066C040,231,Code/GameEngine/Source/GameNetwork/DisconnectManager_disconnectPlayer_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?dispatchEvents@BFMENetworkBackend@@QAEXXZ,,0x0065CA50,3235,Code/GameEngine/Source/GameNetwork/native_network_dispatcher.cpp,matched,native BFME backend dispatcher vtable slot +0x08; code ends before EH catch thunk and switch table at 0x0065D6FC
 ?disregardDrawable@InGameUI@@UAEXPAVDrawable@@@Z,,0x00537A1A,8,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
