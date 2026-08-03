@@ -1,72 +1,29 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: DefaultModuleTemplate<1> empty dual-vtbl dtor (50B Sphere pattern).
 
 namespace FXParticleSystem
 {
-template<int Category>
+
+template <int Category>
 class DefaultModuleTemplate
 {
 };
 
-template<>
+template <>
 class __declspec(novtable) DefaultModuleTemplate<1>
 {
 public:
-    virtual ~DefaultModuleTemplate();
+	virtual ~DefaultModuleTemplate();
 };
 
-__declspec(naked) DefaultModuleTemplate<1>::~DefaultModuleTemplate()
+DefaultModuleTemplate<1>::~DefaultModuleTemplate()
 {
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 005h
-        _emit 08Dh
-        _emit 041h
-        _emit 008h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0C0h
-        _emit 085h
-        _emit 0C9h
-        _emit 0C7h
-        _emit 000h
-        _emit 044h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 078h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 078h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+	unsigned char *info = this ? (unsigned char *)this + 8 : 0;
+	*(volatile unsigned int *)info = 0x01073744;
+
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F978;
+	*(volatile unsigned int *)this = 0x01073758;
 }
+
 }
