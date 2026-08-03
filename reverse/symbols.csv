@@ -1923,11 +1923,13 @@ name,address,notes
 ??RUnicodeStringLessThan@@QBE_NVUnicodeString@@0@Z,0x000482B1,LanguageFilter map operator[] callee (ILT thunk -> body 0x0044D2A0)
 ??RWOLLoginAsciiStringLess@@QBE_NABVAsciiString@@0@Z,0x00043D42,WOLLogin retail AsciiString comparator thunk
 ??_7AODHordeContainModuleDataVtbl@@6B@,0x01089960,AODHordeContain ModuleData vtbl
+??_7AnimalAIUpdateModuleDataVtbl@@6B@,0x010899F0,AnimalAIUpdate vtbl
 ??_7AssaultTransportAIUpdateModuleDataVtbl@@6B@,0x01089CC0,AssaultTransportAIUpdate vtbl
 ??_7CategoryModuleTemplate8Sub@FXParticleSystem@@6B@,0x0107375C,CategoryModuleTemplate8 interim sub vtbl
 ??_7ConvertToCarBombCrateCollideModuleDataVtbl@@6B@,0x0108E940,ConvertToCarBombCrateCollide vtbl
 ??_7DeployStyleAIUpdateModuleDataVtbl@@6B@,0x01089B68,DeployStyleAIUpdate vtbl
 ??_7GateProxyBehaviorModuleDataVtbl@@6B@,0x0108A2A0,GateProxyBehavior ModuleData vtbl
+??_7MoneyCrateCollideModuleDataVtbl@@6B@,0x0108EAA0,MoneyCrateCollide vtbl
 ??_7RAMFile@@6B@,0x01143C58,installed by RAMFile ctor at 0x009D1980 and by the matched ??1RAMFile@@MAE@XZ
 ??_7RawFileClass@@6B@,0x01145548,14 of 17 slots are matched @RawFileClass@@ methods
 ??_7RetailCollideModuleData@@6B@,0x0108A350,CollideModule factory vtable target
@@ -3173,6 +3175,7 @@ name,address,notes
 ?connectCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPConnectResponseArg@@@Z,0x000314AD
 ?construct@AODHordeContainModuleDataBaseShim@@QAEXXZ,0x0000ED77,AODHordeContain ModuleData base
 ?construct@AnimSetConstructShim@_STL@@SAXPAUAnimSet@GenericObjectCreationNugget@@ABU34@@Z,0x00754B20,_STL _Construct AnimSet incremental-link thunk target through a TU-local forwarding shim
+?construct@AnimalAIUpdateModuleDataBaseShim@@QAEXXZ,0x00048A3B,AnimalAIUpdate base
 ?construct@AssaultTransportAIUpdateModuleDataBaseShim@@QAEXXZ,0x00048A3B,AssaultTransportAIUpdate base
 ?construct@AutoHealBehaviorModuleData@@AAEXXZ,0x00285F10,AutoHealBehaviorModuleData real ctor body via 5-byte E9
 ?construct@AutoHealBehaviorModuleData@@QAEXXZ,0x00285F10,AutoHealBehaviorModuleData real ctor body via 5-byte E9
@@ -3213,6 +3216,7 @@ name,address,notes
 ?construct@LightningEmissionTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0000CC39,LightningEmissionModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@LineEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00031750,LineEmissionVolumeModule constructor thunk used through a TU-local layout shim
 ?construct@LineEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00004269,LineEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
+?construct@MoneyCrateCollideModuleDataBaseShim@@QAEXXZ,0x000441CA,MoneyCrateCollide base
 ?construct@OrthoEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00004692,OrthoEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@OrthoEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000ADDA,OrthoEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@OrthoEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0000FAD3,OrthoEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
@@ -4279,6 +4283,7 @@ name,address,notes
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0004570F,RenderObjectDrawModuleInfo::DoXfer raw helper call target
 ?xferSaveData@GameState@@AAEXPAVXfer@@W4SnapshotType@@@Z,0x0010FBD0,GameState save-data walker (CHUNK_GameState/Campaign/LivingWorldLogic/Palantir/Audio); thunk 0x36674
 AODHordeContainFieldParse,0x004334F6,AODHordeContain FieldParse
+AnimalAIUpdateFieldParse,0x00436E30,AnimalAIUpdate FieldParse
 AssaultTransportAIUpdateFieldParse,0x0040A35D,AssaultTransportAIUpdate FieldParse
 CategoryModuleTemplate06_sub_vtbl,0x0110FC94,CMT06 sub vtbl
 CategoryModuleTemplate06_vtbl0,0x0110FC80,CMT06 vtbl0
@@ -4314,6 +4319,7 @@ DeflectSpecialPowerFieldParse,0x0044765E,DeflectSpecialPower FieldParse
 DelayedLuaEventUpdateFieldParse,0x0041B199,DelayedLuaEventUpdate FieldParse
 DeployStyleAIUpdateFieldParse,0x00406708,DeployStyleAIUpdate FieldParse
 GateProxyBehaviorFieldParse,0x004141E1,GateProxyBehavior FieldParse
+MoneyCrateCollideFieldParse,0x0042BAEE,MoneyCrateCollide FieldParse
 ShareBufferClassUnsignedShort_vtbl_final,0x011135AC,ShareBuffer ushort dtor final vtbl
 ShareBufferClassUnsignedShort_vtbl_interim,0x0113C110,ShareBuffer ushort dtor interim vtbl
 SpawnPointProductionExitUpdateFieldParse,0x00442979,SpawnPoint friend_newModuleData field parse table
