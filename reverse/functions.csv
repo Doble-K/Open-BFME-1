@@ -12711,7 +12711,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseStaticTextData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C10,78,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseStatus@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484700,34,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseStringAsNameKeyType@NameKeyGenerator@@SAXPAVINI@@PAX1PBX@Z,,0x000B8F10,30,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,
-?parseStructure@BuildListInfo@@SAXPAVINI@@PAX1PBX@Z,,0x001943D0,204,Code/masm_dumps/BuildListInfo_parseStructure.asm,matched,Exact retail MASM; Structure parser table and AI build-list caller prove ownership
+?parseStructure@BuildListInfo@@SAXPAVINI@@PAX1PBX@Z,,0x001943D0,204,Code/GameEngine/Source/Common/BuildListInfo_parseStructureMethodThunk.cpp,matched,Exact retail MASM; Structure parser table and AI build-list caller prove ownership
 ?parseStyle@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484730,34,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseSubsystemLegendDefinition@@YAXPAVINI@@@Z,,0x009A16A0,21,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,INI block callback registered under the keyword LoadSubsystem (table row 0x00ED7768)
 ?parseTWS@@YAXPAVINI@@PAX1PBX@Z,,0x0018C380,77,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
