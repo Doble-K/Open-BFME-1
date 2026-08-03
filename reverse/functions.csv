@@ -6499,7 +6499,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Bool@INIClass@@QBE_NPBD0_N@Z,,0x009E4140,101,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Get_Bool@RegistryClass@@QAE_NPBD_N@Z,,0x009DC320,99,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
 ?Get_Bounding_Box@HLodClass@@UBEABVAABoxClass@@XZ,,0x00979920,99,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
-?Get_Bounding_Box@MeshGeometryClass@@QAEXPAVAABoxClass@@@Z,,0x00924DD0,146,Code/masm_dumps/__Get_Bounding_Box_MeshGeometryClass__QAEXPAVAABoxC_924DD0.asm,matched,
+?Get_Bounding_Box@MeshGeometryClass@@QAEXPAVAABoxClass@@@Z,,0x00924DD0,146,Code/GameEngine/Source/Common/MeshGeometryClass_Get_Bounding_Box_Thunk.cpp,matched,
 ?Get_Bounding_Box@RenderObjClass@@UBEABVAABoxClass@@XZ,,0x006CF9F0,25,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Get_Bounding_Sphere@HLodClass@@UBEABVSphereClass@@XZ,,0x00979860,179,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Get_Bounding_Sphere@MeshGeometryClass@@QAEXPAVSphereClass@@@Z,,0x00924E70,42,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,Open-BFME5 exact C++ raw MeshGeometry sphere accessor
@@ -9797,7 +9797,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doFXObj@FXListAtBonePosFXNugget@@UBEXPBVObject@@0@Z,,0x0042D8B0,35,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?doFXObj@FXNugget@@UBEXPBVObject@@0@Z,,0x00427C30,24,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?doFXObj@ParticleSystemFXNugget@@UBEXPBVObject@@0@Z,,0x0042B120,281,Code/masm_dumps/ParticleSystemFXNugget_doFXObj_42B120.asm,matched,Exact 281B MASM; true body via ParticleSystemFXNugget vtbl@0x010F3520 slot2; queue 0xA9A536 misplaced mid-body; m_ricochet@+0x101 Object pos@+0x38
-?doFXObj@SoundFXNugget@@UBEXPBVObject@@0@Z,,0x00428A60,146,Code/masm_dumps/SoundFXNugget_doFXObj_428A60.asm,matched,Exact 146B MASM; true body via Sound FieldParse vtbl slot2; queue 0x76E9B4 inside Team::tryToRecruit; BFME name@+0xB4 not ZH+4
+?doFXObj@SoundFXNugget@@UBEXPBVObject@@0@Z,,0x00428A60,146,Code/GameEngine/Source/Common/SoundFXNugget_doFXObj_Thunk.cpp,matched,Exact 146B MASM; true body via Sound FieldParse vtbl slot2; queue 0x76E9B4 inside Team::tryToRecruit; BFME name@+0xB4 not ZH+4
 ?doFXPos@FXList@@IBEXPBUCoord3D@@PBVMatrix3D@@M0M@Z,,0x0003E360,5,Code/GameEngine/Source/GameClient/FXListDoFXPosThunk.cpp,matched,5-byte protected const FX position thunk converted to focused C++ source
 ?doFXPos@FXList@@SAXPBV1@PBUCoord3D@@PBVMatrix3D@@M1M@Z,,0x00262890,39,Code/GameEngine/Source/GameLogic/Object/Update/StructureCollapseUpdate.cpp,matched,
 ?doForceObjectSelection@ScriptActions@@IAEXABVAsciiString@@0_N0@Z,,0x002FAF10,481,Code/masm_dumps/doForceObjectSelection_ScriptActions_002FAF10.asm,matched,Certified packet 104 retail SHA256 057209a4db6c245b910390ac232638713a617e3853483172cdc3f1fe0ba6ba9d
@@ -10185,7 +10185,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findPreviousCondition@OrCondition@@QAEPAVCondition@@PAV2@@Z,,0x0034FD70,34,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?findSWInfo@InGameUI@@IAEPAVSuperweaponInfo@@HABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x00449E70,75,Code/GameEngine/Source/Common/InGameUIFindSWInfoThunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?findScienceInfo@ScienceStore@@ABEPBVScienceInfo@@W4ScienceType@@@Z,,0x000E6D30,51,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
-?findSingleBone@@YA_NPAVRenderObjClass@@ABVAsciiString@@AAVMatrix3D@@AAH@Z,,0x00761E90,135,Code/masm_dumps/_rn4__findSingleBone__YA_NPAVRenderObjClass__ABVAsciiString__AAVMatrix3D__A_761E90.asm,matched,reloc-needle Open-BFME4+Grok
+?findSingleBone@@YA_NPAVRenderObjClass@@ABVAsciiString@@AAVMatrix3D@@AAH@Z,,0x00761E90,135,Code/GameEngine/Source/Common/findSingleBone_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z,,0x0035F4E0,231,Code/masm_dumps/_sa13__findSkirmishSideInfo_SidesList__QAEPAVSidesInfo__VAsciiString__PAH_Z_35F4E0.asm,matched,true size 231B; previous row claimed 224B
 ?findSpareSocketByPort@FirewallHelperClass@@AAEPAUSpareSocketStruct@@G@Z,,0x0066E490,44,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?findSpecialPowerCompletionDie@Object@@QBEPAVSpecialPowerCompletionDie@@XZ,,0x001BF8C0,111,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
@@ -11427,7 +11427,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getModuleNameKey@EnemyNearUpdate@@UBE?AW4NameKeyType@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
 ?getModuleNameKey@FirestormDynamicGeometryInfoUpdate@@UBE?AW4NameKeyType@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
 ?getModuleNameKey@FiringTracker@@UBE?AW4NameKeyType@@XZ,,0x001B3050,104,Code/GameEngine/Source/GameLogic/Object/FiringTracker.cpp,matched,
-?getModuleNameKey@FlammableUpdate@@UBE?AW4NameKeyType@@XZ,,0x002EFB20,146,Code/masm_dumps/_getModuleNameKey_FlammableUpdate__UBE_AW4NameKeyType__XZ.asm,matched,
+?getModuleNameKey@FlammableUpdate@@UBE?AW4NameKeyType@@XZ,,0x002EFB20,146,Code/GameEngine/Source/Common/FlammableUpdate_getModuleNameKey_Thunk.cpp,matched,
 ?getModuleNameKey@FlightDeckBehavior@@UBE?AW4NameKeyType@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
 ?getModuleNameKey@GarrisonContain@@UBE?AW4NameKeyType@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
 ?getModuleNameKey@ImmortalBody@@UBE?AW4NameKeyType@@XZ,,0x0027F130,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,object-symbol=?getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ;C++ alias
@@ -12415,7 +12415,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onCollide@ToppleUpdate@@UAEXPAVObject@@PBUCoord3D@@1@Z,,0x002B12C0,161,Code/masm_dumps/onCollide_ToppleUpdate_UAEXPAVObject_PBUCoord3D_1_Z_002B12C0_e8785e1b.asm,matched,Certified packet 32; vtable slot thunk 0x00028948 to body; retail sha256 e8785e1bacdd68f43b7ed8db67c515f1a9957f6e0fd9ad890a919711e3a93870
 ?onCreate@GrantUpgradeCreate@@UAEXXZ,,0x0024FB90,109,Code/GameEngine/Source/GameLogic/Object/Create/GrantUpgradeCreate.cpp,matched,certified packet id 363; true body RVA 0x0024FB90 size 109
 ?onDie@SlowDeathBehavior@@UAEXPBVDamageInfo@@@Z,,0x0020A150,842,Code/masm_dumps/SlowDeathBehavior_onDie.asm,matched,Certified packet 11 vtable slot thunk ownership exact retail body SHA256 2699d9d667d933d9a257987982a7662d56ffa05a35eb5f4e98db40369fe831df
-?onDie@StructureToppleUpdate@@UAEXPBVDamageInfo@@@Z,,0x002AE520,145,Code/masm_dumps/_sa13__onDie_StructureToppleUpdate__UAEXPBVDamageInfo___Z_2AE520.asm,matched,multi-xref Open-BFME4+Grok BoneFXUpdate
+?onDie@StructureToppleUpdate@@UAEXPBVDamageInfo@@@Z,,0x002AE520,145,Code/GameEngine/Source/Common/StructureToppleUpdate_onDie_Thunk.cpp,matched,multi-xref Open-BFME4+Grok BoneFXUpdate
 ?onDisabledEdge@Object@@IAEX_N@Z,,0x001C3550,259,Code/masm_dumps/_onDisabledEdge_Object__IAEX_N_Z_1C3550.asm,matched,Exact 259B MASM @ 0x1C3550; setDisabledUntil/clearDisabled via ILT 0x45430; RadarUpgrade+power; queue 0x76D8A9 misplaced
 ?onEnter@AIAttackAimAtTargetState@@UAE?AW4StateReturnType@@XZ,,0x00183E40,523,Code/masm_dumps/onEnter_AIAttackAimAtTargetState_00183E40.asm,matched,Certified packet 34 db-only retail recovery sha256 7648cb17462eb86da206c3191272e3643a6f5126f6a0b21fe828bc0bf95443cd
 ?onEnter@AIAttackAreaState@@UAE?AW4StateReturnType@@XZ,,0x0016DE50,61,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,MASM converted to exact __emit C++
@@ -12572,7 +12572,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseDeathTypeFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9100,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDebris@GenericObjectCreationNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001DAE40,204,Code/masm_dumps/GenericObjectCreationNugget_parseDebris_1DAE40.asm,matched,Exact 204B MASM; queue RVA 0x1DAE09 was int3 pad before true start; m_nameAreObjects=0 at +0x114; sibling parseObject@0x1DA620
 ?parseDebugCommandMap@@YAXPAVINI@@@Z,,0x005B7030,129,Code/GameEngine/Source/GameClient/DebugCommandMap.cpp,matched,reads the entry name and discards it then parses into a local that is also discarded - the release build validates syntax and stores nothing
-?parseDefaultColor@@YA_NPAHPAVFile@@PAD@Z,,0x00485970,143,Code/masm_dumps/parseDefaultColor_YA_NPAHPAVFile_PAD_Z_00485970.asm,matched,Certified packet 43 reviewed ENTRY boundaries callers TRANSPARENT xref and call graph
+?parseDefaultColor@@YA_NPAHPAVFile@@PAD@Z,,0x00485970,143,Code/GameEngine/Source/Common/parseDefaultColor_Thunk.cpp,matched,Certified packet 43 reviewed ENTRY boundaries callers TRANSPARENT xref and call graph
 ?parseDrawCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486A60,130,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript_parseDrawCallback.asm,matched,MASM exact parser-table anchored DRAWCALLBACK
 ?parseDrawData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485EE0,1221,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript_parseDrawData.asm,matched,exact 1221B via MASM (structural near-match)
 ?parseDrawGroupNumberDefinition@INI@@SAXPAV1@@Z,,0x000B8200,66,Code/GameEngine/Source/Common/INI/INIDrawGroupNumberDefinitionThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit parse thunk
@@ -12640,7 +12640,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseMouseDefinition@INI@@SAXPAV1@@Z,,0x005A4690,25,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,
 ?parseMultiplayerColorDefinition@INI@@SAXPAV1@@Z,,0x000C2690,261,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerColor block; ZH body unchanged and MultiplayerColorDefinition layout matches - retail reaches m_rgbValue at +4 and m_rgbValueNight at +0x14
 ?parseMultiplayerSettingsDefinition@INI@@SAXPAV1@@Z,,0x000C2600,113,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerSettings block; push 0x88 to operator new pins sizeof at 136 where ZH compiles 0x90 - BFME layout in reference/shims/multiplayer from the retail field table
-?parseName@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004866F0,139,Code/masm_dumps/parseName_YA_NPADPAVWinInstanceData_0PAX_Z.asm,matched,
+?parseName@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004866F0,139,Code/GameEngine/Source/Common/parseName_Thunk.cpp,matched,
 ?parseNumImages@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BAE50,158,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_parse_walls.asm,matched,
 ?parseOCL@@YAXPAVINI@@PAX1PBX@Z,,0x002097E0,155,Code/masm_dumps/parseOCL_YAXPAVINI_PAX1PBX_Z_002097E0_packet259.asm,matched,Certified packet 259 exact retail db recovery SHA256 36f9e8eab167bd253f6ceef21260045565964fd9067b79658c0cc81dc81725db
 ?parseOCLUpgradePair@@YAXPAVINI@@PAX1PBX@Z,,0x00263250,120,Code/GameEngine/Source/GameLogic/Object/SpecialPower/OCLSpecialPower.cpp,matched,
