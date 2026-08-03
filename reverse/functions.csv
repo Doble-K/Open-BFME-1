@@ -12996,7 +12996,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?realMapPathToPortableMapPath@GameState@@QBE?AVAsciiString@@ABV2@@Z,,0x0010F280,566,Code/masm_dumps/_sa__realMapPathToPortableMapPath_GameState_10F280.asm,matched,Exact 566B @ 0x10F280; true body via getUserMapDir+PORTABLE_* globals (queue 0x9D213E was int3/misplaced ctor)
 ?reallySaveReplay@@YAXXZ,,0x004DE460,922,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay_reallySaveReplay.asm,matched,Exact MASM: true body @0x4DE460 via saveReplay call (queue 0x6894B2 misplaced mid-thiscall); C++ blocked AsciiString thin-ctor + frame 0x1018
 ?recalculate@LineSegClass@@IAEXXZ,,0x003FE770,203,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
-?recreateControlBar@InGameUI@@UAEXXZ,,0x00442300,279,Code/masm_dumps/_sa13__recreateControlBar_InGameUI__UAEXXZ_442300.asm,matched,multi-xref Open-BFME4+Grok ControlBar.wnd
+?recreateControlBar@InGameUI@@UAEXXZ,,0x00442300,279,Code/GameEngine/Source/Common/InGameUI_recreateControlBarMethodThunk.cpp,matched,multi-xref Open-BFME4+Grok ControlBar.wnd
 ?recruitSpecificAITeam@AIPlayer@@UAEXPAVTeamPrototype@@M@Z,,0x001699C2,1654,Code/GameEngine/Source/GameLogic/AI/AIPlayer_recruitSpecificAITeam.asm,matched,exact 1654B via MASM
 ?refcompress@@YAHPAEH0HH@Z,,0x0081EF80,1095,Code/Libraries/Source/Compression/EAC/refencode.cpp,matched,real C++; needed galloc/gfree as __cdecl dllimports (they are IAT slots)
 ?refreshDrives@CDManager@@UAEXXZ,,0x00101CC0,43,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
