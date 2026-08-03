@@ -12126,7 +12126,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isFinished@AnimateWindow@@QAE_NXZ,,0x004953E0,4,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ?isFinished@AnimateWindowManager@@QAE_NXZ,,0x0049CA30,11,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?isForcedAttack@@YA_NW4AbleToAttackType@@@Z,,0x001EAB70,8,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
-?isFortifyMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B6540,79,Code/masm_dumps/_rn5__isFortifyMostImportant_DozerPrimaryStateMachine__SA_NPAVState__PAX_Z_2B6540.asm,matched,reloc-needle Open-BFME4+Grok
+?isFortifyMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B6540,79,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isFortifyMostImportant_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?isFreeToAssist@AssistedTargetingUpdate@@QBE_NXZ,,0x0027FCE0,56,Code/GameEngine/Source/Common/promoted__isFreeToAssist_AssistedTargetingUpdate_QBE_NXZ_0027FCE0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 56B
 ?isFreeToExit@QueueProductionExitUpdate@@IBE_NXZ,,0x002D04F0,21,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/QueueProductionExitUpdate.cpp,matched,
 ?isGamePaused@GameLogic@@QAE_NXZ,,0x002197D0,7,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,Unique padded game-pause accessor
@@ -12183,7 +12183,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isPriorityVisible@Radar@@QBE_NW4RadarPriorityType@@@Z,,0x00107280,23,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
 ?isQueueEmpty@Connection@@QAE_NXZ,,0x00661C90,12,Code/GameEngine/Source/GameNetwork/Connection.cpp,matched,
 ?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z,,0x0043A520,29,Code/GameEngine/Source/Common/System/RadarIsRadarWindowThunk.cpp,matched,Open-BFME5 clean C++ Radar::isRadarWindow
-?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/masm_dumps/_rn5__isRepairMostImportant_DozerPrimaryStateMachine__SA_NPAVState__PAX_Z_2B64E0.asm,matched,reloc-needle Open-BFME4+Grok
+?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isRepairMostImportant_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?isSamePosition@@YA_NPBUCoord3D@@00@Z,,0x0016AA70,69,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?isSandbox@GameInfo@@QAE_NXZ,,0x00621600,843,Code/masm_dumps/_sa3__isSandbox_GameInfo__QAE_NXZ_621600.asm,matched,Exact 843B string-anchored Open-BFME4
 ?isScienceGrantable@ScienceStore@@QBE_NW4ScienceType@@@Z,,0x000E6DE0,25,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,thunk-dump converted to clean C++; true body 0xE6DE0 (25B ending before int3 pad at 0xE6DF9)
@@ -13721,7 +13721,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?splitSegmentAtT@BezierSegment@@QBEXMAAV1@0@Z,,0x000B6FA0,627,Code/GameEngine/Source/Common/bezier_segment.cpp,matched,
 ?start@BezFwdIterator@@QAEXXZ,,0x000B6630,374,Code/GameEngine/Source/Common/Bezier/BezFwdIterator.cpp,matched,
 ?startBurningSound@FlammableUpdate@@IAEXXZ,,0x00293520,113,Code/GameEngine/Source/GameLogic/Object/Update/FlammableUpdateStartBurningSoundThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?startDefectionTimer@ObjectDefectionHelper@@QAEXI_N@Z,,0x002562F0,82,Code/masm_dumps/_cache__startDefectionTimer_ObjectDefectionHelper__QAEXI_N_Z_2562F0.asm,matched,cached-obj needle Open-BFME4+Grok
+?startDefectionTimer@ObjectDefectionHelper@@QAEXI_N@Z,,0x002562F0,82,Code/GameEngine/Source/Common/ObjectDefectionHelper_startDefectionTimer_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?startMoveSound@AIInternalMoveToState@@AAEXXZ,,0x0016E6C0,566,Code/masm_dumps/AIInternalMoveToState_startMoveSound_16E6C0.asm,matched,MASM exact retail dump; true body via onEnter last call (queue 0xFB2BC was int3 pad)
 ?startNewGame@GameLogic@@QAEX_N@Z,,0x00394260,7640,Code/masm_dumps/_startNewGame_GameLogic__QAEX_N_Z_394260.asm,matched,Exact 7640B string-anchored Open-BFME4
 ?startPowerRecharge@SpecialPowerModule@@UAEXXZ,,0x0026AE00,112,Code/GameEngine/Source/Common/promoted__startPowerRecharge_SpecialPowerModule_UAEXXZ_0026AE00.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 112B
