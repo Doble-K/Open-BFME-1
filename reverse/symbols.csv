@@ -4338,3 +4338,5 @@ CategoryModuleTemplate06_sub_vtbl,0x0110FC94,CMT06 sub vtbl
 ??1HijackerUpdateModuleDataBase@@UAE@XZ,0x009A1A40,Open-BFME5 base pin
 ??1SpecialDisguiseUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base pin
 ??1WeaponChangeSpecialPowerModuleModuleDataBase@@UAE@XZ,0x0001D7B4,Open-BFME5 base pin
+?writeINI_part1@FXParticleSystem@@YAXPBXPAVFile@@PAI@Z,0x000460C9,DefaultModuleTemplate writeINI helper 1
+?writeINI_part2@FXParticleSystem@@YAXPAVFile@@PAI@Z,0x0004618C,DefaultModuleTemplate writeINI helper 2
