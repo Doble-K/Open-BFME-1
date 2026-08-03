@@ -2831,7 +2831,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CameraClass@@UAE@XZ,,0x009312D0,18,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,Ghidra vtable xrefs identified exact function
 ??1CameraShakeSystemClass@@QAE@XZ,,0x006D1900,116,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
 ??1CameraShakerClass@CameraShakeSystemClass@@UAE@XZ,,0x006D1290,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,thunk-dump converted to clean C++
-??1CampaignManager@@QAE@XZ,,0x005BC4E0,146,Code/masm_dumps/dtor_CampaignManager_QAE_XZ_005BC4E0_packet294.asm,matched,Certified packet 294 exact retail db body SHA-256 b6b1a8ffab386afc7f4d5b4b8b0cfcaca796fa98cbeed12dc4acbd3a07489dd1
+??1CampaignManager@@QAE@XZ,,0x005BC4E0,146,Code/GameEngine/Source/Common/CampaignManagerDestructorThunk.cpp,matched,Exact 146B SEH dtor Open-BFME5
 ??1CashHackSpecialPowerModuleData@@UAE@XZ,,0x00258E20,120,Code/GameEngine/Source/Common/CashHackSpecialPowerModuleDataDestructorThunk.cpp,matched,Exact 120B ModuleData SEH dtor Open-BFME4
 ??1CastleBehavior@@UAE@XZ,,0x003728E0,433,Code/masm_dumps/CastleBehavior_destructor.asm,matched,Exact 433B @ 0x003728E0; Exact retail MASM; instance factory->vtable dtor; del 0x374EF0 ctor 0x376250 vt 0xCE9BFC
 ??1CivilianSpawnCollideModuleData@@UAE@XZ,,0x002175C0,67,Code/GameEngine/Source/GameLogic/Object/Collide/CivilianSpawnCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
@@ -2845,7 +2845,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ControlBar@@UAE@XZ,,0x004A9980,679,Code/masm_dumps/_sa13___1ControlBar__UAE_XZ_4A9980.asm,matched,multi-xref Open-BFME4+Grok ControlBar.wnd:ObserverPlayerListWi
 ??1ControlBarScheme@@QAE@XZ,,0x004ADBD0,128,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ??1ControlBarSchemeAnimation@@QAE@XZ,,0x004ACDF0,12,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
-??1ControlBarSchemeManager@@QAE@XZ,,0x004AE850,166,Code/masm_dumps/_rn7___1ControlBarSchemeManager__QAE_XZ_4AE850.asm,matched,reloc-needle Open-BFME4+Grok
+??1ControlBarSchemeManager@@QAE@XZ,,0x004AE850,166,Code/GameEngine/Source/Common/ControlBarSchemeManagerDestructorThunk.cpp,matched,Exact 166B SEH dtor Open-BFME5
 ??1ConvertToCarBombCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/Object/Collide/ConvertToCarBombCrateCollideModuleDataDestructorThunk.cpp,matched,Exact 67B SEH dtor Open-BFME4
 ??1Coord2D@@QAE@XZ,0x0003EAB8,0x0005BD90,1,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,empty destructor emits ret
 ??1Coord3D@@QAE@XZ,0x0001364C,0x0005BC40,1,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,empty destructor emits ret
@@ -2855,7 +2855,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CreateCrateDie@@UAE@XZ,,0x00379440,320,Code/masm_dumps/CreateCrateDie_destructor.asm,matched,Exact 320B SEH dtor factory->vtable Open-BFME4
 ??1CreateCrateDieModuleData@@UAE@XZ,,0x001299A0,106,Code/GameEngine/Source/Common/CreateCrateDieModuleDataDestructorThunk.cpp,matched,Exact 106B @ 0x001299A0; Exact retail MASM; factory->vtable dtor; del 0x129970 ctor 0x1298D0 vt 0xC8EF70
 ??1CreateObjectDieModuleData@@UAE@XZ,,0x002548A0,67,Code/GameEngine/Source/GameLogic/Object/Die/CreateObjectDieModuleDataDestructorThunk.cpp,matched,Exact 67B SEH dtor factory->vtable Open-BFME4
-??1CreditsLine@@QAE@XZ,,0x0040C230,134,Code/masm_dumps/_rn7___1CreditsLine__QAE_XZ_40C230.asm,matched,reloc-needle Open-BFME4+Grok
+??1CreditsLine@@QAE@XZ,,0x0040C230,134,Code/GameEngine/Source/Common/CreditsLineDestructorThunk.cpp,matched,Exact 134B SEH dtor Open-BFME5
 ??1CriticalSectionClass@@QAE@XZ,,0x009DB450,25,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??1CritterEmitterUpdateModuleData@@UAE@XZ,,0x001FA750,175,Code/GameEngine/Source/Common/CritterEmitterUpdateModuleDataDestructorThunk.cpp,matched,Exact 175B SEH dtor Open-BFME5
 ??1CrushDieModuleData@@UAE@XZ,,0x001255C0,77,Code/GameEngine/Source/GameLogic/AI/CrushDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -2957,7 +2957,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1GenericList@@UAE@XZ,,0x009E2F30,148,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??1GenericMultiListClass@@UAE@XZ,,0x009DBD20,7,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ??1GenericNode@@UAE@XZ,,0x009E2DE0,47,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling
-??1GenericObjectCreationNugget@@MAE@XZ,,0x001D8220,144,Code/masm_dumps/GenericObjectCreationNugget_dtor_1D8220.asm,matched,Exact 144B MASM; true body via vtbl 0x109F5E8 slot0 del-dtor 0x1D81F0; queue 0xFB453 was mid-fn
+??1GenericObjectCreationNugget@@MAE@XZ,,0x001D8220,144,Code/GameEngine/Source/Common/GenericObjectCreationNuggetDestructorThunk.cpp,matched,Exact 144B SEH dtor Open-BFME5
 ??1Geometry@@QAE@XZ,,0x007BA140,57,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??1GeometryUpgrade@@UAE@XZ,,0x002D5900,103,Code/GameEngine/Source/Common/GeometryUpgradeDestructorThunk.cpp,matched,Exact 103B @ 0x002D5900; Exact retail MASM; instance factory->vtable dtor; del 0x2D58D0 ctor 0x2D5790 vt 0xCCCD5C
 ??1GeometryUpgradeModuleData@@UAE@XZ,,0x002D5DD0,144,Code/GameEngine/Source/Common/GeometryUpgradeModuleDataDestructorThunk.cpp,matched,Exact 144B @ 0x002D5DD0; Exact retail MASM; factory->vtable dtor; del 0x2D5DA0 ctor 0x2D5CE0 vt 0xCCCD90
@@ -3002,7 +3002,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1InGameUI@@UAE@XZ,,0x0044AE70,936,Code/masm_dumps/dtor_InGameUI_UAE_XZ_0044AE70_packet315.asm,matched,certified packet 315 sealed RVA size and SHA-256 verified
 ??1InactiveBody@@UAE@XZ,,0x001CEFC0,1493,Code/masm_dumps/InactiveBody_destructor.asm,matched,Exact 1493B SEH dtor factory->vtable Open-BFME4
 ??1InstantDeathBehaviorModuleData@@UAE@XZ,,0x00201840,220,Code/GameEngine/Source/Common/InstantDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 220B SEH dtor Open-BFME5
-??1LANGameInfo@@QAE@XZ,,0x00686CD0,103,Code/masm_dumps/__1LANGameInfo__QAE_XZ_686CD0.asm,matched,Ghidra-corrected exact boundary and layout-verified body
+??1LANGameInfo@@QAE@XZ,,0x00686CD0,103,Code/GameEngine/Source/Common/LANGameInfoDestructorThunk.cpp,matched,Exact 103B SEH dtor Open-BFME5
 ??1LANPlayer@@QAE@XZ,,0x00685830,89,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,
 ??1LadderInfo@@QAE@XZ,,0x0062A9E0,194,Code/GameEngine/Source/Common/LadderInfoDestructorThunk.cpp,matched,Ghidra-bound retail destructor
 ??1LadderList@@QAE@XZ,,0x0062AB10,452,Code/masm_dumps/LadderList_destructor.asm,matched,Ghidra-corrected retail destructor
