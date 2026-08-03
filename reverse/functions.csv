@@ -3041,7 +3041,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MetaEventTranslator@@UAE@XZ,,0x005B6A70,7,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,MASM converted to clean C++
 ??1MetaMapRec@@QAE@XZ,,0x005B6FC0,77,Code/GameEngine/Source/GameClient/MessageStream/MetaMapRecDestructorThunks.cpp,matched,Open-BFME5 exact C++ destructor body;object-symbol=??1MetaMapRec@@QAE@XZ
 ??1MinefieldBehaviorModuleData@@UAE@XZ,,0x0036CE20,100,Code/GameEngine/Source/Common/MinefieldBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x1145D0 ctor 0x36CDD0 ownership
-??1MiscAudio@@QAE@XZ,,0x006952F0,556,Code/masm_dumps/__1MiscAudio__QAE_XZ_6952F0.asm,matched,MASM exact retail: misplaced queue RVA 0xFB23E; true body 556B@0x6952F0; 32x AudioEventRTS step 0x70 FieldParse-proven
+??1MiscAudio@@QAE@XZ,,0x006952F0,556,Code/GameEngine/Source/Common/MiscAudioDestructorThunk.cpp,matched,Exact 556B SEH dtor Open-BFME5
 ??1MissingAnimClass@@UAE@XZ,,0x007BB7F0,73,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ??1MissingGeomClass@@UAE@XZ,,0x007B1130,73,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??1MissingTextureClass@@UAE@XZ,,0x007B1130,73,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
@@ -3229,7 +3229,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SupplyTruckAIUpdate@@UAE@XZ,,0x002C5580,154,Code/GameEngine/Source/Common/SupplyTruckAIUpdateDestructorThunk.cpp,matched,Exact 154B SEH dtor Open-BFME5
 ??1SupplyTruckAIUpdateModuleData@@UAE@XZ,,0x00124430,79,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SysTimeClass@@QAE@XZ,,0x009E64D0,9,Code/Libraries/Source/WWVegas/WWLib/systimer.cpp,matched,weak needle (dllimport call dominates); dtor at cluster addr; build.sh exact
-??1Team@@MAE@XZ,,0x000F4250,480,Code/masm_dumps/Team_dtor_MAE_000F4250_packet238.asm,matched,certified packet 238 retail SHA256 b5f02508996b8030029cc75dab2c51a6216c596d95a010d25f3da7df1b37e417
+??1Team@@MAE@XZ,,0x000F4250,480,Code/GameEngine/Source/Common/TeamDestructorThunk.cpp,matched,Exact 480B SEH dtor Open-BFME5
 ??1TeamFactory@@UAE@XZ,,0x009F2800,115,Code/GameEngine/Source/Common/TeamFactoryDestructorThunk.cpp,matched,TeamFactory primary and secondary vtables plus scalar deleting destructor prove ownership
 ??1TeamInQueue@@MAE@XZ,,0x00160ED0,112,Code/GameEngine/Source/GameLogic/AI/TeamInQueueDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1TeamTemplateInfo@@QAE@XZ,,0x000ED580,251,Code/GameEngine/Source/Common/TeamTemplateInfoDestructorThunk.cpp,matched,Exact 251B SEH dtor Open-BFME5
