@@ -4340,3 +4340,41 @@ CategoryModuleTemplate06_sub_vtbl,0x0110FC94,CMT06 sub vtbl
 ??1WeaponChangeSpecialPowerModuleModuleDataBase@@UAE@XZ,0x0001D7B4,Open-BFME5 base pin
 ?writeINI_part1@FXParticleSystem@@YAXPBXPAVFile@@PAI@Z,0x000460C9,DefaultModuleTemplate writeINI helper 1
 ?writeINI_part2@FXParticleSystem@@YAXPAVFile@@PAI@Z,0x0004618C,DefaultModuleTemplate writeINI helper 2
+??1BaseUpgradeModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1BaseUpgradeModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1BaseUpgradeModuleDataBase@@UAE@XZ,0x0001B97D,Open-BFME5 pin
+??1ElvenWoodSpecialPowerModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1ElvenWoodSpecialPowerModuleDataMemberA@@QAE@XZ,0x00013C00,Open-BFME5 pin
+??1ElvenWoodSpecialPowerModuleDataBase@@UAE@XZ,0x0001D7B4,Open-BFME5 pin
+??1GateOpenAndCloseBehaviorModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1GateOpenAndCloseBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1GateOpenAndCloseBehaviorModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 pin
+??1GateProxyBehaviorModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1GateProxyBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1GateProxyBehaviorModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 pin
+??1GrantStealthBehaviorModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1GrantStealthBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1GrantStealthBehaviorModuleDataBase@@UAE@XZ,0x0001A401,Open-BFME5 pin
+??1HijackerUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1HijackerUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1HordeSiegeEngineContainModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1HordeSiegeEngineContainModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1HordeSiegeEngineContainModuleDataBase@@UAE@XZ,0x000179B8,Open-BFME5 pin
+??1LargeGroupBonusUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1LargeGroupBonusUpdateModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1LargeGroupBonusUpdateModuleDataBase@@UAE@XZ,0x0001A401,Open-BFME5 pin
+??1LaserUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1LaserUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1LaserUpdateModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 pin
+??1RousingSpeechUpdateModuleDataMemberB@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1RousingSpeechUpdateModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1RousingSpeechUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 pin
+??1StealthDetectorUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1StealthDetectorUpdateModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1StealthDetectorUpdateModuleDataBase@@UAE@XZ,0x00026F35,Open-BFME5 pin
+??1TooltipUpgradeModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1TooltipUpgradeModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1TooltipUpgradeModuleDataBase@@UAE@XZ,0x0001B97D,Open-BFME5 pin
+??1TunnelContainModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1TunnelContainModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1TunnelContainModuleDataBase@@UAE@XZ,0x000179B8,Open-BFME5 pin
