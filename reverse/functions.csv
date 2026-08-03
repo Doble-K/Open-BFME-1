@@ -34610,3 +34610,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?nameToLowercaseKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z,,0x009EDD70,187,Code/GameEngine/Source/Common/NameKeyGeneratorNameToLowercaseKey.cpp,matched,stale-header retail body: vtable-less 12B Bucket {next@0 key@4 str@8} m_sockets@this+4 m_nextID@this+0x2bf40 (siblings use vptr'd Bucket +8/0x2bf44); NULL early-return; _stricmp IAT hoisted out of search loop; no reverse-hash insert
 ??_GDX8FVFCategoryContainer@@UAEPAXI@Z,,0x00947E30,30,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??6Debug@@QAEAAV0@K@Z,,0x0088C1A0,79,Code/Libraries/Source/WWVegas/WWDebug/debug_operator_ulong.cpp,matched,exact C++ Debug::operator<<(unsigned long) body
+_$E56,,0x00C71520,40,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,MultiListNodeClass pool teardown funclet (global teardown loop)
