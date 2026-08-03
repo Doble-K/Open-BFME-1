@@ -11932,7 +11932,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@GameWindowManager@@UAEXXZ,,0x0047C270,104,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?init@HotKeyManager@@UAEXXZ,,0x005B38D0,52,Code/GameEngine/Source/GameClient/MessageStream/HotKey.cpp,matched,
 ?init@LanguageFilter@@UAEXXZ,,0x0044E7A0,310,Code/masm_dumps/init_LanguageFilter_UAEXXZ_44E7A0.asm,matched,MASM exact 310B; true body 0x44E7A0 (queue 0x44E79E int3 pad); langdata.dat+XOR0x5555; C++ blocked SEH/File vtbl/convertToRAMFile
-?init@MainMenuMediumScaleUpTransition@@UAEXPAVGameWindow@@@Z,,0x003A4C80,251,Code/masm_dumps/_sa14__init_MainMenuMediumScaleUpTransition__UAEXPAVGameWindow___Z_3A4C80.asm,matched,sa14 Open-BFME4+Grok Medium
+?init@MainMenuMediumScaleUpTransition@@UAEXPAVGameWindow@@@Z,,0x003A4C80,251,Code/GameEngine/Source/Common/MainMenuMediumScaleUpTransition_init_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?init@MainMenuScaleUpTransition@@UAEXPAVGameWindow@@@Z,,0x0059E4E0,234,Code/GameEngine/Source/GameClient/GUI/MainMenuScaleUpTransition_init_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?init@MainMenuSmallScaleDownTransition@@UAEXPAVGameWindow@@@Z,,0x0059EC20,325,Code/masm_dumps/_sa__init_MainMenuSmallScaleDownTransition_UAEXPAVGameWindow_Z_59EC20.asm,matched,Exact 325B @0x59EC20 true body (queue 0x59EC1F was int3 pad+oversize); Small concat SEH Open-BFME
 ?init@MapTransferLoadScreen@@,,0x00492C40,988,Code/masm_dumps/_str__init_MapTransferLoadScreen__492C40.asm,matched,
