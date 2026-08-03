@@ -212,19 +212,8 @@ private:
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
-// ??0PlayerTemplate@@ present-unmatched
-PlayerTemplate::PlayerTemplate() : 
-	m_nameKey(NAMEKEY_INVALID),
-	m_observer(false),
-	m_playableSide(false),
-  m_oldFaction(false),
-	m_intrinsicSPP(0),
-	m_specialPowerShortcutButtonCount(0)
-{
-	m_preferredColor.red = m_preferredColor.green = m_preferredColor.blue = 0.0f;
-	m_beaconTemplate.clear();
-}
-
+// ??0PlayerTemplate@@QAE@XZ exact retail body is emitted by
+// PlayerTemplateCtorThunk.cpp.
 //-----------------------------------------------------------------------------
 // ?getHeadWaterMarkImage@PlayerTemplate@@QBEPBVImage@@XZ present-unmatched
 const Image *PlayerTemplate::getHeadWaterMarkImage( void ) const
