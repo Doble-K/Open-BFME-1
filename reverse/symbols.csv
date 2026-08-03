@@ -1515,20 +1515,6 @@ name,address,notes
 ??1BroadcastStealthUpdateModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1BuddyMessage@@QAE@XZ,0x00021445
 ??1Buffer@@QAE@XZ,0x0001A401,pinharvest x1 (thunk)
-??1SpyVisionUpdateModuleDataMemberA@@QAE@XZ,0x0002E19A,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberC@@QAE@XZ,0x00887940,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberD@@QAE@XZ,0x0001A401,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberE@@QAE@XZ,0x0001A401,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberF@@QAE@XZ,0x0001C4DB,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberG@@QAE@XZ,0x00007FB8,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberH@@QAE@XZ,0x00014DF3,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberB@@QAE@XZ,0x00026F35,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberC@@QAE@XZ,0x00026F35,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberD@@QAE@XZ,0x00026F35,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberE@@QAE@XZ,0x00887940,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberF@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1Buffer@@QAE@XZ,0x00887940,pinharvest x1 (body)
 ??1Buffer@@QAE@XZ,0x009E1E60
 ??1BufferStraw@@UAE@XZ,0x00921790
@@ -1575,6 +1561,7 @@ name,address,notes
 ??1DebugIOOds@@UAE@XZ,0x0088FB30,pinharvest x1 (body)
 ??1DebugIOOds@@UAE@XZ,0x00890780,pinharvest x1 (body)
 ??1DebugIOOds@@UAE@XZ,0x00890F10,pinharvest x1 (body)
+??1DeletionUpdateModuleDataBase@@UAE@XZ,0x0000E421,Open-BFME5 pin
 ??1DetailedArchivedDirectoryInfo@@QAE@XZ,0x009D0730,site-decoded from ~ArchiveFile: lea ecx,[esi+8] then call -- m_rootDirectory is the DetailedArchivedDirectoryInfo member at ArchiveFile+8 and the type is already named by its copy ctor
 ??1DieModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
 ??1ElvenWoodSpecialPowerModuleDataBase@@UAE@XZ,0x0001D7B4,Open-BFME5 pin
@@ -1758,6 +1745,12 @@ name,address,notes
 ??1RegistryClass@@QAE@XZ,0x009DC280,pinharvest x4 (body)
 ??1RenderDeviceDescClass@@QAE@XZ,0x009077B0
 ??1RenderObjClass@@UAE@XZ,0x0091FC10,base dtor; derived from ~ParticleBufferClass call site
+??1RiderChangeContainModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberB@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberC@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberD@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberE@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberF@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1RoadType@@QAE@XZ,0x00012968,pinharvest x1 (thunk)
 ??1RoadType@@QAE@XZ,0x00018FCF,pinharvest x1 (thunk)
 ??1RoadType@@QAE@XZ,0x00033A91,pinharvest x1 (thunk)
@@ -1777,6 +1770,14 @@ name,address,notes
 ??1SpawnBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1SpawnBehaviorModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1SpecialDisguiseUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base pin
+??1SpyVisionUpdateModuleDataMemberA@@QAE@XZ,0x0002E19A,Open-BFME5 pin
+??1SpyVisionUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1SpyVisionUpdateModuleDataMemberC@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1SpyVisionUpdateModuleDataMemberD@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1SpyVisionUpdateModuleDataMemberE@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1SpyVisionUpdateModuleDataMemberF@@QAE@XZ,0x0001C4DB,Open-BFME5 pin
+??1SpyVisionUpdateModuleDataMemberG@@QAE@XZ,0x00007FB8,Open-BFME5 pin
+??1SpyVisionUpdateModuleDataMemberH@@QAE@XZ,0x00014DF3,Open-BFME5 pin
 ??1StealthDetectorUpdateModuleDataBase@@UAE@XZ,0x00026F35,Open-BFME5 pin
 ??1StealthDetectorUpdateModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
 ??1StealthDetectorUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
@@ -1817,6 +1818,7 @@ name,address,notes
 ??1UnitCrateCollideModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1UnitCrateCollideModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1UnpauseSpecialPowerUpgradeModuleDataMember@@QAE@XZ,0x0001B97D,UnpauseSpecialPowerUpgradeModuleData dtor member at this+8; ILT thunk for body 0x00129C80
+??1UpdateModuleData@@UAE@XZ,0x009A1A40,Open-BFME5 ModuleData-family base dtor (ICF-folded with SubsystemInterface dtor) from AnimationSteering/PowerPlant/W3DPropDraw dtor call sites
 ??1UpgradeModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
 ??1UpgradeSoundSelectorClientBehaviorModuleDataMember@@QAE@XZ,0x0001EA97,UpgradeSoundSelectorClientBehaviorModuleData dtor member +0x8
 ??1UserPreferences@@UAE@XZ,0x0003F25B
@@ -2812,11 +2814,11 @@ name,address,notes
 ?_M_insert@?$_Rb_tree@HU?$pair@$$CBHVAsciiString@@@_STL@@U?$_Select1st@U?$pair@$$CBHVAsciiString@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHVAsciiString@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBHVAsciiString@@@2@0@Z,0x0004517E
 ?_M_insert@?$_Rb_tree@HU?$pair@$$CBHVBuddyInfo@@@_STL@@U?$_Select1st@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHVBuddyInfo@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVBuddyInfo@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBHVBuddyInfo@@@2@0@Z,0x00036CDC,retail BuddyInfo map _M_insert ILT thunk (body 0x004EBC90)
 ?_M_insert@?$_Rb_tree@HU?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@U?$_Select1st@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBHVGameSpyGroupRoom@@@2@0@Z,0x0003E7E8
+?_M_insert@?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIPAVImage@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVImage@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBIPAVImage@@@2@0@Z,0x009A4130,Open-BFME5 Image insert_unique call target
 ?_M_insert@?$_Rb_tree@JU?$pair@$$CBJVLadderPref@@@_STL@@U?$_Select1st@U?$pair@$$CBJVLadderPref@@@_STL@@@2@U?$less@J@2@V?$allocator@U?$pair@$$CBJVLadderPref@@@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBJVLadderPref@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBJVLadderPref@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBJVLadderPref@@@2@0@Z,0x00029E92
 ?_M_insert@?$_Rb_tree@PAVGameSpyStagingRoom@@PAV1@U?$_Identity@PAVGameSpyStagingRoom@@@_STL@@U?$less@PAVGameSpyStagingRoom@@@3@V?$allocator@PAVGameSpyStagingRoom@@@3@@_STL@@AAE?AU?$_Rb_tree_iterator@PAVGameSpyStagingRoom@@U?$_Nonconst_traits@PAVGameSpyStagingRoom@@@_STL@@@2@PAU_Rb_tree_node_base@2@0ABQAVGameSpyStagingRoom@@0@Z,0x0001234B
 ?_M_insert@?$_Rb_tree@PAVGameSpyStagingRoom@@PAV1@U?$_Identity@PAVGameSpyStagingRoom@@@_STL@@UGameSortStruct@@V?$allocator@PAVGameSpyStagingRoom@@@3@@_STL@@AAE?AU?$_Rb_tree_iterator@PAVGameSpyStagingRoom@@U?$_Nonconst_traits@PAVGameSpyStagingRoom@@@_STL@@@2@PAU_Rb_tree_node_base@2@0ABQAVGameSpyStagingRoom@@0@Z,0x0000FF47
 ?_M_insert@?$_Rb_tree@PBVLadderInfo@@PBV1@U?$_Identity@PBVLadderInfo@@@_STL@@U?$less@PBVLadderInfo@@@3@V?$allocator@PBVLadderInfo@@@3@@_STL@@AAE?AU?$_Rb_tree_iterator@PBVLadderInfo@@U?$_Nonconst_traits@PBVLadderInfo@@@_STL@@@2@PAU_Rb_tree_node_base@2@0ABQBVLadderInfo@@0@Z,0x000224CB
-?_M_insert@?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIPAVImage@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVImage@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBIPAVImage@@@2@0@Z,0x009A4130,Open-BFME5 Image insert_unique call target
 ?_M_insert@?$_Rb_tree@PBVThingTemplate@@PBV1@U?$_Identity@PBVThingTemplate@@@_STL@@U?$less@PBVThingTemplate@@@3@V?$allocator@PBVThingTemplate@@@3@@_STL@@AAE?AU?$_Rb_tree_iterator@PBVThingTemplate@@U?$_Nonconst_traits@PBVThingTemplate@@@_STL@@@2@PAU_Rb_tree_node_base@2@0ABQBVThingTemplate@@0@Z,0x009A4130,decoded from insert_unique call site
 ?_M_insert@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@3@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBVAsciiString@@UCoord3D@@@2@0@Z,0x000086A2
 ?_M_insert@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@V?$list@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@V?$list@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@V?$list@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@@_STL@@@3@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBVAsciiString@@V?$list@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBVAsciiString@@V?$list@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBVAsciiString@@V?$list@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@@2@0@Z,0x00026283,WOLLogin tree insert thunk
@@ -3741,9 +3743,9 @@ name,address,notes
 ?insert_unique@?$_Rb_tree@HU?$pair@$$CBHPAVPlayer@@@_STL@@U?$_Select1st@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHPAVPlayer@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@@2@U32@ABU?$pair@$$CBHPAVPlayer@@@2@@Z,0x0002C318,pinharvest x1 (thunk)
 ?insert_unique@?$_Rb_tree@HU?$pair@$$CBHPAVPlayer@@@_STL@@U?$_Select1st@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHPAVPlayer@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@@2@U32@ABU?$pair@$$CBHPAVPlayer@@@2@@Z,0x00038703,pinharvest x1 (thunk)
 ?insert_unique@?$_Rb_tree@HU?$pair@$$CBHPAVPlayer@@@_STL@@U?$_Select1st@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHPAVPlayer@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHPAVPlayer@@@_STL@@@2@@2@U32@ABU?$pair@$$CBHPAVPlayer@@@2@@Z,0x0003E05E,pinharvest x1 (thunk)
-?insert_unique@?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIPAVImage@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIPAVImage@@@2@@Z,0x009A41E0,Open-BFME5 Image insert_unique call target
-?insert_unique@?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIPAVImage@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVImage@@@_STL@@@2@@2@U32@ABU?$pair@$$CBIPAVImage@@@2@@Z,0x009A4350,decoded from map<IPAVImage>::operator[]
 ?insert_unique@?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIPAVImage@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVImage@@@_STL@@@2@@2@U32@ABU?$pair@$$CBIPAVImage@@@2@@Z,0x009A4350,Open-BFME5 Image map insert_unique call target
+?insert_unique@?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIPAVImage@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVImage@@@_STL@@@2@@2@U32@ABU?$pair@$$CBIPAVImage@@@2@@Z,0x009A4350,decoded from map<IPAVImage>::operator[]
+?insert_unique@?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIPAVImage@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIPAVImage@@@2@@Z,0x009A41E0,Open-BFME5 Image insert_unique call target
 ?insert_unique@?$_Rb_tree@PBVThingTemplate@@U?$pair@QBVThingTemplate@@H@_STL@@U?$_Select1st@U?$pair@QBVThingTemplate@@H@_STL@@@3@U?$less@PBVThingTemplate@@@3@V?$allocator@U?$pair@QBVThingTemplate@@H@_STL@@@3@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@QBVThingTemplate@@H@_STL@@U?$_Nonconst_traits@U?$pair@QBVThingTemplate@@H@_STL@@@2@@2@U32@ABU?$pair@QBVThingTemplate@@H@2@@Z,0x0003E22A,ILT thunk used by call site
 ?insert_unique@?$_Rb_tree@PBVThingTemplate@@U?$pair@QBVThingTemplate@@H@_STL@@U?$_Select1st@U?$pair@QBVThingTemplate@@H@_STL@@@3@U?$less@PBVThingTemplate@@@3@V?$allocator@U?$pair@QBVThingTemplate@@H@_STL@@@3@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@QBVThingTemplate@@H@_STL@@U?$_Nonconst_traits@U?$pair@QBVThingTemplate@@H@_STL@@@2@@2@U32@ABU?$pair@QBVThingTemplate@@H@2@@Z,0x009A4350,resweep callee back-solved
 ?insert_unique@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@3@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBVAsciiString@@UCoord3D@@@2@@Z,0x0002DA10
@@ -4517,7 +4519,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-
-??1UpdateModuleData@@UAE@XZ,0x009A1A40,Open-BFME5 ModuleData-family base dtor (ICF-folded with SubsystemInterface dtor) from AnimationSteering/PowerPlant/W3DPropDraw dtor call sites
-
-??1DeletionUpdateModuleDataBase@@UAE@XZ,0x0000E421,Open-BFME5 pin
