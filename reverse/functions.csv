@@ -8934,7 +8934,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addSkirmishTeam@SidesList@@QAEXPBVDict@@@Z,,0x00C50B39,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?addSmudgeSet@SmudgeManager@@QAEPAUSmudgeSet@@XZ,,0x005D4240,129,Code/GameEngine/Source/Common/SmudgeManager_addSmudgeSet_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?addSnapshotBlock@GameState@@AAEXVAsciiString@@PAVSnapshot@@W4SnapshotType@@@Z,,0x003BDB80,155,Code/GameEngine/Source/Common/GameState_addSnapshotBlock_Thunk.cpp,matched,Open-BFME5 lift 155B retail MASM to standalone C++ thunk
-?addStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00635120,206,Code/masm_dumps/_rn7__addStagingRoom_GameSpyInfo__UAEXVGameSpyStagingRoom___Z_635120.asm,matched,reloc-needle Open-BFME4+Grok
+?addStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00635120,206,Code/GameEngine/Source/Common/GameSpyInfo_addStagingRoom_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?addSuperweapon@InGameUI@@UAEXHABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x0044C970,338,Code/masm_dumps/_rn1__addSuperweapon_InGameUI__UAEXHABVAsciiString__W4ObjectID__PBVSpecialP_44C970.asm,matched,reloc-needle Open-BFME4+Grok
 ?addTeam@SidesList@@QAEXPBVDict@@@Z,,0x00C2787D,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining aliases retain shared target
@@ -11371,7 +11371,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getLastLadderAddr@CustomMatchPreferences@@QAE?AVAsciiString@@XZ,,0x000AC1B0,98,Code/GameEngine/Source/Common/CustomMatchPreferences_getLastLadderAddr_Thunk.cpp,matched,certified packet 292; reviewed Ghidra entry and custom-ladder caller chain; retail sha256 69c5a0f80fb1336e3c6811133b257efa82bfdaca706bab5e0fa3689ffcd8534e
 ?getLastLadderPort@CustomMatchPreferences@@QAEGXZ,,0x00856900,1617,Code/masm_dumps/_sa14__getLastLadderPort_CustomMatchPreferences__QAEGXZ_856900.asm,matched,sa14 Open-BFME4+Grok UseLongGameList
 ?getLastLadderPort@QuickMatchPreferences@@QAEGXZ,,0x000ABF10,84,Code/GameEngine/Source/Common/QuickMatchPreferences_getLastLadderPort_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?getLastLocalFile@DownloadManager@@QAE?AVAsciiString@@XZ,,0x00626DA0,224,Code/masm_dumps/_s6__getLastLocalFile_DownloadManager_QAE_AVAsciiString_XZ_626DA0.asm,matched,Exact 224B 'FTP:LocalFileOpenFailed' Open-BFME4+Grok
+?getLastLocalFile@DownloadManager@@QAE?AVAsciiString@@XZ,,0x00626DA0,224,Code/GameEngine/Source/Common/DownloadManager_getLastLocalFile_Thunk.cpp,matched,Exact 224B 'FTP:LocalFileOpenFailed' Open-BFME4+Grok
 ?getLastReplayFileName@RecorderClass@@QAE?AVAsciiString@@XZ,0x0001E3C6,0x98b40,33,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getLayerHeight@TerrainLogic@@UBEMMMW4PathfindLayerEnum@@PAUCoord3D@@_N@Z,,0x001A2DB0,27,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?getLeaveFrame@BFMENetInformPlayerLeaveFrameCommandMsg@@QAEIXZ,,0x006741E0,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
@@ -12295,7 +12295,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?makeLowerCase@WSYS_String@@QAEXXZ,,0x0010A250,38,Code/GameEngine/Source/Common/System/String.cpp,matched,
 ?makeStateMachine@SupplyTruckAIUpdate@@,,0x002C5DB0,99,Code/masm_dumps/_sa9__makeStateMachine_SupplyTruckAIUpdate___2C5DB0.asm,matched,Exact 99B Open-BFME4
 ?makeUpperCase@WSYS_String@@QAEXXZ,,0x0010A220,38,Code/GameEngine/Source/Common/System/String.cpp,matched,
-?mangleCustomAudioName@Drawable@@QBEXPAVDynamicAudioEventInfo@@@Z,,0x00417330,205,Code/masm_dumps/_sa7__mangleCustomAudioName_Drawable__QBEXPAVDynamicAud_417330.asm,matched,Exact 205B Open-BFME4
+?mangleCustomAudioName@Drawable@@QBEXPAVDynamicAudioEventInfo@@@Z,,0x00417330,205,Code/GameEngine/Source/Common/Drawable_mangleCustomAudioName_Thunk.cpp,matched,Exact 205B Open-BFME4
 ?mapDirectInputMouse@DirectInputMouse@@IAEXPAUMouseIO@@PAU_DIDEVICEOBJECTDATA@@@Z,,0x006BB700,138,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?mapListTooltipFunc@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z,,0x00524730,128,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishMapSelectMenu.cpp,matched,
 ?map_indices_to_address@GridCullSystemClass@@IAEHHHH@Z,,0x008DCF80,23,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
@@ -12341,7 +12341,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?newDisplayString@W3DDisplayStringManager@@UAEPAVDisplayString@@XZ,,0x005A5AE0,774,Code/masm_dumps/_sa13__newDisplayString_W3DDisplayStringManager__UAEPAVDisplayString__XZ_5A5AE0.asm,matched,multi-xref Open-BFME4+Grok Times New Roman
 ?newDrive@CDManager@@UAEPAVCDDriveInterface@@PBD@Z,,0x00102000,77,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,C++: CDManager::newDrive; sealed RVA 0x00102000 size 77; createDrive vtbl+0x38 via TU shim 3 BFME slots; StringBase set(PBDH)@0x887d20
 ?newGame@PlayerList@@UAEXXZ,,0x000E0060,46,Code/GameEngine/Source/Common/RTS/PlayerList.cpp,matched,
-?newHeaderTemplate@HeaderTemplateManager@@QAEPAVHeaderTemplate@@VAsciiString@@@Z,,0x0048CAD0,204,Code/masm_dumps/HeaderTemplateManager_newHeaderTemplate_48CAD0.asm,matched,true body 0x48CAD0/204; queue 0xB026CE was dtor-interior; caller parseHeaderTemplateDefinition ILT 0x470E6; MASM ZH list push_front shape
+?newHeaderTemplate@HeaderTemplateManager@@QAEPAVHeaderTemplate@@VAsciiString@@@Z,,0x0048CAD0,204,Code/GameEngine/Source/Common/HeaderTemplateManager_newHeaderTemplate_Thunk.cpp,matched,true body 0x48CAD0/204; queue 0xB026CE was dtor-interior; caller parseHeaderTemplateDefinition ILT 0x470E6; MASM ZH list push_front shape
 ?newLocomotor@LocomotorStore@@QBEPAVLocomotor@@PBVLocomotorTemplate@@@Z,,0x000119E1,5,Code/GameEngine/Source/GameLogic/Object/LocomotorStoreNewLocomotorThunk.cpp,matched,5-byte const LocomotorStore factory thunk converted to focused C++ source
 ?newMap@AIPlayer@@UAEXXZ,,0x00160EB0,1,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,vtable-slot6 empty ret; queue 0x76E9B2 was INSIDE FUN_00b6e7f0
 ?newMap@Radar@@UAEXPAVTerrainLogic@@@Z,,0x001078B0,323,Code/masm_dumps/Radar_newMap.asm,matched,true body 0x1078B0/323 (queue 0x79CEFC MOTD pad misplaced); LeftHUD helper+getExtent+128x128 avg; MASM exact
