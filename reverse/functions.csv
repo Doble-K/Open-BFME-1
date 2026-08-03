@@ -3308,7 +3308,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WindowVideo@@QAE@XZ,,0x000253E7,5,Code/GameEngine/Source/GameClient/WindowVideoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1WindowVideoManager@@UAE@XZ,,0x00498E70,221,Code/GameEngine/Source/Common/WindowVideoManagerDestructorThunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ??1WorkOrder@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
-??1WorkerAIUpdate@@UAE@XZ,,0x002C7A80,259,Code/masm_dumps/WorkerAIUpdate_destructor.asm,matched,Exact 259B @ 0x002C7A80; Exact retail MASM; instance factory->vtable dtor; del 0x2C8340 ctor 0x2C9ED0 vt 0xCC9F58
+??1WorkerAIUpdate@@UAE@XZ,,0x002C7A80,259,Code/GameEngine/Source/Common/WorkerAIUpdateDestructorThunk.cpp,matched,Exact 259B @ 0x002C7A80; Exact retail MASM; instance factory->vtable dtor; del 0x2C8340 ctor 0x2C9ED0 vt 0xCC9F58
 ??1WorkerAIUpdateModuleData@@UAE@XZ,,0x000D1690,76,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??1WriteLockClass@VertexBufferClass@@QAE@XZ,,0x0091DE10,121,Code/masm_dumps/___1WriteLockClass_VertexBufferClass__QAE_XZ_91DE10.asm,matched,
 ??1Xfer@@UAE@XZ,0x00038D2A,0x007E7670,7,Code/GameEngine/Source/Common/System/Xfer.cpp,matched,destructor
