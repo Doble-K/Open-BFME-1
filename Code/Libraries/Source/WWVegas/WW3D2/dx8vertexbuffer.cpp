@@ -165,42 +165,8 @@ void VertexBufferClass::Release_Engine_Ref() const
 //
 // ----------------------------------------------------------------------------
 
-// ??0WriteLockClass@@ present-unmatched
-VertexBufferClass::WriteLockClass::WriteLockClass(VertexBufferClass* VertexBuffer, int flags)
-	:
-	VertexBufferLockClass(VertexBuffer)
-{
-	DX8_THREAD_ASSERT();
-	WWASSERT(VertexBuffer);
-	WWASSERT(!VertexBuffer->Engine_Refs());
-	VertexBuffer->Add_Ref();
-	switch (VertexBuffer->Type()) {
-	case BUFFER_TYPE_DX8:
-#ifdef VERTEX_BUFFER_LOG
-		{
-		StringClass fvf_name;
-		VertexBuffer->FVF_Info().Get_FVF_Name(fvf_name);
-		WWDEBUG_SAY(("VertexBuffer->Lock(start_index: 0, index_range: 0(%d), fvf_size: %d, fvf: %s)\n",
-			VertexBuffer->Get_Vertex_Count(),
-			VertexBuffer->FVF_Info().Get_FVF_Size(),
-			fvf_name));
-		}
-#endif
-		DX8_Assert();
-		DX8_ErrorCode(static_cast<DX8VertexBufferClass*>(VertexBuffer)->Get_DX8_Vertex_Buffer()->Lock(
-			0,
-			0,
-			(unsigned char**)&Vertices,
-			flags));	//flags
-		break;
-	case BUFFER_TYPE_SORTING:
-		Vertices=static_cast<SortingVertexBufferClass*>(VertexBuffer)->VertexBuffer;
-		break;
-	default:
-		WWASSERT(0);
-		break;
-	}
-}
+// ??0WriteLockClass@VertexBufferClass@@QAE@PAV1@H@Z
+// Exact retail constructor emitted by VertexBufferWriteLockCtorThunk.cpp.
 
 // ----------------------------------------------------------------------------
 
