@@ -2251,7 +2251,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002ACB70,252,Code/masm_dumps/StealthUpdate_constructor.asm,matched,Exact 252B @ 0x002ACB70; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B3F0
 ??0StealthUpdateModuleData@@QAE@XZ,,0x00049AA3,5,Code/GameEngine/Source/GameLogic/Object/Update/StealthUpdateModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0StealthUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D8000,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/StealthUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2D8000
-??0StealthUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/StealthUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
+??0StealthUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/StealthUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ two SixDwords blocks plus sentinel -1
 ??0StepLinearOffsetTextureMapperClass@@QAE@ABV0@@Z,,0x00965160,96,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0StepLinearOffsetTextureMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x009650A0,179,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0StepLinearOffsetTextureMapperClass@@QAE@ABVVector2@@M_N0I@Z,,0x00965000,116,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
