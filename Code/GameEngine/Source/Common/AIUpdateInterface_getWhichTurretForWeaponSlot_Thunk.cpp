@@ -1,119 +1,60 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Lift the AIUpdateInterface::getWhichTurretForWeaponSlot __emit thunk to clean C++.
+//
+// Zero Hour's AIUpdate.cpp carries this function verbatim, and the retail body
+// agrees with it exactly: scan MAX_TURRETS entries, and on the first live turret
+// that owns the weapon slot write back the angle and pitch through the optional
+// out-parameters and return the index, else TURRET_INVALID. Retail confirms
+// MAX_TURRETS == 2 (`cmp esi, 2`), the array at this+0x1E8, and the angle/pitch
+// members at TurretAI+0x18/+0x1C. It also re-reads m_turretAI[i] for each
+// write-back rather than caching the turret, which is what the ZH source does.
 
-enum WhichTurretType { };
-enum WeaponSlotType { };
+typedef float Real;
+
+enum WeaponSlotType { PRIMARY_WEAPON = 0 };
+enum WhichTurretType { TURRET_INVALID = -1, TURRET_MAIN = 0 };
+
+enum { MAX_TURRETS = 2 };
+
+class TurretAI
+{
+public:
+	bool isWeaponSlotOnTurret(WeaponSlotType) const;	///< pinned to the ILT thunk at 0x00039D24
+
+	Real getTurretAngle(void) const { return m_angle; }
+	Real getTurretPitch(void) const { return m_pitch; }
+
+private:
+	unsigned char m_unreconstructed_00[0x18];
+	Real m_angle;										///< retail this+0x18
+	Real m_pitch;										///< retail this+0x1C
+};
+
 class AIUpdateInterface
 {
 public:
-	WhichTurretType getWhichTurretForWeaponSlot(WeaponSlotType, float *, float *) const;
+	WhichTurretType getWhichTurretForWeaponSlot(WeaponSlotType, Real *, Real *) const;
+
+private:
+	unsigned char m_unreconstructed_00[0x1E8];
+	TurretAI *m_turretAI[MAX_TURRETS];					///< retail this+0x1E8
 };
 
 // ?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z
-__declspec(naked) WhichTurretType AIUpdateInterface::getWhichTurretForWeaponSlot(WeaponSlotType, float *, float *) const
+WhichTurretType AIUpdateInterface::getWhichTurretForWeaponSlot(WeaponSlotType wslot, Real *turretAngle,
+															   Real *turretPitch) const
 {
-	__asm {
-		__emit 0x53
-		__emit 0x55
-		__emit 0x8b
-		__emit 0x6c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xd9
-		__emit 0x57
-		__emit 0x33
-		__emit 0xf6
-		__emit 0x8d
-		__emit 0xbb
-		__emit 0xe8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0f
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x0a
-		__emit 0x55
-		__emit 0xe8
-		__emit 0x56
-		__emit 0xb1
-		__emit 0xdc
-		__emit 0xff
-		__emit 0x84
-		__emit 0xc0
-		__emit 0x75
-		__emit 0x13
-		__emit 0x46
-		__emit 0x83
-		__emit 0xc7
-		__emit 0x04
-		__emit 0x83
-		__emit 0xfe
-		__emit 0x02
-		__emit 0x7c
-		__emit 0xe7
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x83
-		__emit 0xc8
-		__emit 0xff
-		__emit 0x5b
-		__emit 0xc2
-		__emit 0x0c
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x8c
-		__emit 0xb3
-		__emit 0xe8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x51
-		__emit 0x18
-		__emit 0x89
-		__emit 0x10
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x8c
-		__emit 0xb3
-		__emit 0xe8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x51
-		__emit 0x1c
-		__emit 0x89
-		__emit 0x10
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x5b
-		__emit 0xc2
-		__emit 0x0c
-		__emit 0x00
+	for (int i = 0; i < MAX_TURRETS; ++i)
+	{
+		if (m_turretAI[i] && m_turretAI[i]->isWeaponSlotOnTurret(wslot))
+		{
+			if (turretAngle)
+				*turretAngle = m_turretAI[i]->getTurretAngle();
+			if (turretPitch)
+				*turretPitch = m_turretAI[i]->getTurretPitch();
+
+			return (WhichTurretType)i;
+		}
 	}
+	return TURRET_INVALID;
 }

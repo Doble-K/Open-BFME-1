@@ -122,6 +122,37 @@ def test_structural_candidates_do_not_start_inside_claimed_ranges(data):
     print(f"PASS structural queue: {len(data['structural'])} candidates outside claimed ranges")
 
 
+def test_logged_no_match_suppressed(ranked):
+    """A `no-match` row is a finished investigation, so the queues must not
+    serve that symbol again; --include-logged restores it for auditing."""
+    logged = set()
+    log = ROOT / "reverse" / "re_attempts.log"
+    if log.exists():
+        for line in log.read_text(encoding="utf-8", errors="replace").splitlines():
+            fields = line.split("\t")
+            if len(fields) >= 2 and fields[1] == "no-match":
+                logged.add(fields[0])
+
+    queues = ("drift_quick_wins", "structural", "ghidra_absent")
+    for key in queues:
+        # A logged verdict retires a candidate only while its boundary is
+        # unchanged; a snap-corrected boundary is new evidence and comes back.
+        stale = [c["function"] for c in ranked[key]
+                 if c["function"] in logged and "drift-corrected" not in c["hint"]]
+        assert not stale, f"{key} served {len(stale)} already-no-match candidate(s): {stale[:3]}"
+        revived = [c for c in ranked[key]
+                   if c["function"] in logged and "drift-corrected" in c["hint"]]
+        for candidate in revived:
+            assert "drift-corrected" in candidate["hint"], candidate
+
+    full = get_ranked_json(["--include-logged"])
+    hidden = sum(len(full[key]) - len(ranked[key]) for key in queues)
+    assert hidden == ranked["suppressed_logged"], (hidden, ranked["suppressed_logged"])
+    assert hidden >= 0
+    print(f"PASS re_attempts filter: {hidden} logged no-match candidate(s) suppressed, "
+          f"--include-logged restores them")
+
+
 def test_corrupt_ledger():
     (ROOT / "build").mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(dir=ROOT / "build") as temp:
@@ -156,6 +187,7 @@ def main():
     test_ranked_json_shape(ranked)
     test_ghidra_candidates_validated(ranked)
     test_structural_candidates_do_not_start_inside_claimed_ranges(ranked)
+    test_logged_no_match_suppressed(ranked)
     test_corrupt_ledger()
     print("ALL TESTS PASSED")
 

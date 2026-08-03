@@ -1,74 +1,59 @@
 // cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Grok promote from masm_dumps — retail 0x005A4BA0 size 61
-// was: Code/masm_dumps/_sym3__setVisibility_BfmeMouse_setVisibility__QAEX_N_Z_5A4BA0.asm
+// Lift the BfmeMouse setVisibility naked dump to clean C++.
+//
+// Retail keeps a pending cursor pair at +0x4DA3/+0x4DA4 and a dirty flag at
+// +0x4DA5; when the flag is set it commits the pair down to +0x4DA1/+0x4DA2 and
+// clears it, then hands the visibility flag and a pointer to the committed pair
+// to the virtual at vtable +0x5C. The filler virtuals only place that call.
 
-class BfmeMouse_setVisibility { public: void setVisibility(bool); };
+class BfmeMouse_setVisibility
+{
+public:
+	virtual void unused00();
+	virtual void unused01();
+	virtual void unused02();
+	virtual void unused03();
+	virtual void unused04();
+	virtual void unused05();
+	virtual void unused06();
+	virtual void unused07();
+	virtual void unused08();
+	virtual void unused09();
+	virtual void unused10();
+	virtual void unused11();
+	virtual void unused12();
+	virtual void unused13();
+	virtual void unused14();
+	virtual void unused15();
+	virtual void unused16();
+	virtual void unused17();
+	virtual void unused18();
+	virtual void unused19();
+	virtual void unused20();
+	virtual void unused21();
+	virtual void unused22();
+	virtual void applyCursor(bool, const unsigned char *);	///< vtable +0x5C
+
+	void setVisibility(bool);
+
+private:
+	unsigned char m_unreconstructed_04[0x4DA1 - 4];
+	unsigned char m_cursor;						///< retail this+0x4DA1
+	unsigned char m_cursorState;				///< retail this+0x4DA2
+	unsigned char m_pendingCursor;				///< retail this+0x4DA3
+	unsigned char m_pendingCursorState;			///< retail this+0x4DA4
+	unsigned char m_cursorDirty;				///< retail this+0x4DA5
+};
 
 // ?setVisibility@BfmeMouse_setVisibility@@QAEX_N@Z
-__declspec(naked) void BfmeMouse_setVisibility::setVisibility(bool)
+void BfmeMouse_setVisibility::setVisibility(bool visible)
 {
-__asm {
-		_emit 08Ah
-		_emit 081h
-		_emit 0A5h
-		_emit 04Dh
-		_emit 000h
-		_emit 000h
-		_emit 084h
-		_emit 0C0h
-		_emit 074h
-		_emit 01Fh
-		_emit 08Ah
-		_emit 081h
-		_emit 0A3h
-		_emit 04Dh
-		_emit 000h
-		_emit 000h
-		_emit 08Ah
-		_emit 091h
-		_emit 0A4h
-		_emit 04Dh
-		_emit 000h
-		_emit 000h
-		_emit 088h
-		_emit 081h
-		_emit 0A1h
-		_emit 04Dh
-		_emit 000h
-		_emit 000h
-		_emit 088h
-		_emit 091h
-		_emit 0A2h
-		_emit 04Dh
-		_emit 000h
-		_emit 000h
-		_emit 0C6h
-		_emit 081h
-		_emit 0A5h
-		_emit 04Dh
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 08Bh
-		_emit 001h
-		_emit 08Dh
-		_emit 091h
-		_emit 0A2h
-		_emit 04Dh
-		_emit 000h
-		_emit 000h
-		_emit 052h
-		_emit 08Bh
-		_emit 054h
-		_emit 024h
-		_emit 008h
-		_emit 052h
-		_emit 0FFh
-		_emit 050h
-		_emit 05Ch
-		_emit 0C2h
-		_emit 004h
-		_emit 000h
+	if (m_cursorDirty)
+	{
+		m_cursor = m_pendingCursor;
+		m_cursorState = m_pendingCursorState;
+		m_cursorDirty = 0;
 	}
-}
 
+	applyCursor(visible, &m_cursorState);
+}

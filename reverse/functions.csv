@@ -22239,7 +22239,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?parseDebris@GenericObjectCreationNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001DAE40,204,Code/GameEngine/Source/Common/GenericObjectCreationNugget_parseDebrisMethodThunk.cpp,matched,Exact 204B MASM; queue RVA 0x1DAE09 was int3 pad before true start; m_nameAreObjects=0 at +0x114; sibling parseObject@0x1DA620
 ?parseObjectCreationListDefinition@ObjectCreationListStore@@SAXPAVINI@@@Z,,0x001DB050,124,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ?allow@PartitionFilterRelationship@@UAE_NPAVObject@@@Z,,0x001DC980,51,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,Open-BFME5 exact C++ __emit port of certified 51-byte retail method
-?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z,,0x001DD140,86,Code/GameEngine/Source/Common/PartitionFilterPlayerAffiliation_allow_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z,,0x001DD140,86,Code/GameEngine/Source/Common/PartitionFilterPlayerAffiliation_allow_Thunk.cpp,matched,clean C++ conversion; ZH member order m_player/m_match/m_affiliation lands on +0x08/+0x0C/+0x10; switch on Player::getRelationship with ZH's ALLOW_ENEMIES 0x04 / ALLOW_NEUTRAL 0x08 / ALLOW_ALLIES 0x02
 ?_M_is_any@?$_Base_bitset@$02@_STL@@QBE_NXZ,,0x001DD2A0,20,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?GetLengthSqrd2D@Coord3D@@QBEMXZ,0x000185D9,0x001DD2C0,20,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,returns squared x/y length
 ?m@Gen_001dd420@@QAEXXZ,,0x001DD420,7,Code/gen_small/fun_001.cpp,matched,gen-shim;skeleton=store-imm-0;ghidra=FUN_005dd420
@@ -22879,7 +22879,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ??1SpecialPowerCompletionDie@@UAE@XZ,,0x00255FD0,124,Code/GameEngine/Source/Common/SpecialPowerCompletionDieDestructorThunk.cpp,matched,Exact 124B SEH dtor factory->vtable Open-BFME4
 ??0UpgradeDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002560E0,60,Code/GameEngine/Source/GameLogic/Object/Die/UpgradeDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
 ?getClassMemoryPool@UpgradeDie@@CAPAVMemoryPool@@XZ,,0x00256140,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,pool-glue cascade; copy proven by verify_string_refs
-?startDefectionTimer@ObjectDefectionHelper@@QAEXI_N@Z,,0x002562F0,82,Code/GameEngine/Source/Common/ObjectDefectionHelper_startDefectionTimer_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?startDefectionTimer@ObjectDefectionHelper@@QAEXI_N@Z,,0x002562F0,82,Code/GameEngine/Source/Common/ObjectDefectionHelper_startDefectionTimer_Thunk.cpp,matched,clean C++ conversion; owner Object at this+0x08; status bit 1 at Object+0x344 picks 0x3FFFFFFF vs 1; frame stamps at this+0x20/+0x24; both arms tail-jump the pinned two-arg thiscall
 ?m@Gen_002567d0@@QAEIXZ,,0x002567D0,6,Code/gen_small/fun_001.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_006567d0
 ?j_00256c80@@YAXXZ,,0x00256C80,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_005ef410
 ?j_00256dd0@@YAXXZ,,0x00256DD0,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_005ef410
@@ -23067,9 +23067,9 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?m@Gen_0026e000@@QAEIXZ,,0x0026E000,6,Code/gen_small/fun_001.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_0066e000
 ?j_0026e120@@YAXXZ,,0x0026E120,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_006a5cc0
 ?m@Gen_0026e920@@QAEXXZ,,0x0026E920,1,Code/gen_small/fun_001.cpp,matched,gen-shim;skeleton=ret-void;ghidra=FUN_0066e920
-?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/GameEngine/Source/Common/AIUpdateInterface_isWeaponSlotOnTurretAndAimingAtTarget_Thunk.cpp,matched,Exact 76B SEH body Open-BFME5
+?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/GameEngine/Source/Common/AIUpdateInterface_isWeaponSlotOnTurretAndAimingAtTarget_Thunk.cpp,matched,clean C++ conversion; verbatim ZH AIUpdate.cpp body; turret array at this+0x1E8 with MAX_TURRETS==2; aim test via ILT thunk 0x000079D7
 ?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,Open-BFME5 exact C++ __emit port of 51-byte retail method
-?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/GameEngine/Source/Common/AIUpdateInterface_getWhichTurretForWeaponSlot_Thunk.cpp,matched,Exact 102B Open-BFME5
+?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/GameEngine/Source/Common/AIUpdateInterface_getWhichTurretForWeaponSlot_Thunk.cpp,matched,clean C++ conversion; verbatim ZH AIUpdate.cpp body; retail confirms MAX_TURRETS==2 and the turret array at this+0x1E8 with angle/pitch at TurretAI+0x18/+0x1C
 ?setLocomotorUpgrade@AIUpdateInterface@@QAEX_N@Z,,0x0026EC60,44,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?Set_Flags@RingRenderObjClass@@QAEXI@Z,,0x0026ED70,13,Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp,matched,
 ?winSetLayout@GameWindow@@QAEXPAVWindowLayout@@@Z,,0x0026ED70,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
@@ -23490,8 +23490,8 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?getClassMemoryPool@DeployStyleAIUpdate@@CAPAVMemoryPool@@XZ,,0x002B5470,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,pool-glue cascade; copy proven by verify_string_refs
 ??0DeployStyleAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B5510,151,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ?onExit@DozerPrimaryIdleState@@UAEXW4StateExitType@@@Z,,0x002B6350,50,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail owner and UI vtable shims
-?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isRepairMostImportant_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?isFortifyMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B6540,79,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isFortifyMostImportant_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isRepairMostImportant_Thunk.cpp,matched,clean C++ conversion; ZH DozerAIUpdate.cpp predicate with the machine-owner and AI lookups inlined to the State +0x1C/+0x10/+0x204 walk; getDozerAIInterface +0x13C isIdle +0x180 getMostRecentCommand +0x14; dec eax pins DOZER_TASK_REPAIR
+?isFortifyMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B6540,79,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isFortifyMostImportant_Thunk.cpp,matched,clean C++ conversion; ZH DozerAIUpdate.cpp predicate with the machine-owner and AI lookups inlined to the State +0x1C/+0x10/+0x204 walk; vtable +0x13C/+0x180/+0x14; sub eax 2 pins DOZER_TASK_FORTIFY
 ??0TensileFormationUpdateModuleData@@QAE@XZ,,0x002B65B0,29,Code/GameEngine/Source/GameLogic/Object/Update/TensileFormationUpdateModuleDataConstructor.cpp,matched,Open-BFME5 clean C++ base+three dword zeros
 ?m@Gen_002b6620@@QAEPAXXZ,,0x002B6620,3,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=ret-this;ghidra=FUN_006b6620
 ??1DozerAIUpdate@@MAE@XZ,,0x002B6640,215,Code/GameEngine/Source/Common/DozerAIUpdateDestructorThunk.cpp,matched,Exact 215B SEH dtor Open-BFME5
@@ -24852,7 +24852,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?selectMatchingAcrossMap@InGameUI@@UAEHXZ,,0x00448729,298,Code/GameEngine/Source/GameClient/InGameUI_selectMatchingAcrossMap_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?canSelectedObjectsNonAttackInteractWithObject@InGameUI@@QBE_NPBVObject@@W4SelectionRules@1@@Z,,0x00449140,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?j_00449870@@YAXXZ,,0x00449870,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_008491d0
-?findSWInfo@InGameUI@@IAEPAVSuperweaponInfo@@HABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x00449E70,75,Code/GameEngine/Source/Common/InGameUIFindSWInfoThunk.cpp,matched,reloc-needle Open-BFME4+Grok
+?findSWInfo@InGameUI@@IAEPAVSuperweaponInfo@@HABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x00449E70,75,Code/GameEngine/Source/Common/InGameUIFindSWInfoThunk.cpp,matched,clean C++ conversion; 12-byte-per-player map array at this+0x5CC; end sentinel at map+0x00; circular list head at node+0x14; matches on SuperweaponInfo+0x18 and never reads the SpecialPowerTemplate arg
 ?objectChangedTeam@InGameUI@@UAEXPBVObject@@HH@Z,,0x00449FC0,394,Code/GameEngine/Source/Common/InGameUI_objectChangedTeam_Thunk.cpp,matched,MASM exact; true body via InGameUI vtbl after add/removeSW; queue 0x44C3FA was mid-fn at 0x44C250
 ?addNamedTimer@InGameUI@@QAEXABVAsciiString@@ABVUnicodeString@@_N@Z,,0x0044AD40,229,Code/GameEngine/Source/GameClient/InGameUI_addNamedTimer_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1InGameUI@@UAE@XZ,,0x0044AE70,936,Code/GameEngine/Source/Common/InGameUIDestructorThunk.cpp,matched,Exact 936B SEH dtor Open-BFME5
@@ -26068,7 +26068,7 @@ __stringbase_isnone_cmp_wchar,,0x004EA730,89,Code/Libraries/Source/WWVegas/WWLib
 ?isAlt@Keyboard@@QAE_NXZ,,0x005A3260,12,Code/GameEngine/Source/GameClient/Input/Keyboard.cpp,matched,
 ?m@Gen_005a4400@@QAEXXZ,,0x005A4400,1,Code/gen_small/fun_003.cpp,matched,gen-shim;skeleton=ret-void;ghidra=FUN_009a4400
 ?parseMouseDefinition@INI@@SAXPAV1@@Z,,0x005A4690,25,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,
-?setVisibility@BfmeMouse_setVisibility@@QAEX_N@Z,,0x005A4BA0,61,Code/GameEngine/Source/Common/promoted__setVisibility_BfmeMouse_setVisibility_QAEX_N_Z_005A4BA0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 61B
+?setVisibility@BfmeMouse_setVisibility@@QAEX_N@Z,,0x005A4BA0,61,Code/GameEngine/Source/Common/promoted__setVisibility_BfmeMouse_setVisibility_QAEX_N_Z_005A4BA0.cpp,matched,clean C++ conversion; pending cursor pair +0x4DA3/+0x4DA4 commits to +0x4DA1/+0x4DA2 under dirty flag +0x4DA5; filler virtuals place the apply call at vtable +0x5C
 ??0CursorInfo@@QAE@XZ,,0x005A5370,186,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,
 ??1CursorInfo@@QAE@XZ,,0x005A5460,128,Code/GameEngine/Source/GameClient/Input/Mouse.cpp,matched,
 ?handleRequestJoin@LANAPI@@IAEXPAULANMessage@@I@Z,,0x005A565D,1119,Code/GameEngine/Source/GameNetwork/LANAPIhandlers_handleRequestJoin.asm,matched,exact 1119B via MASM
@@ -33055,7 +33055,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?Get_Value@HLodClass@@UBEMXZ,,0x00978DC0,16,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Get_Post_Increment_Value@HLodClass@@UBEMXZ,,0x00978DD0,17,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Calculate_Cost_Value_Arrays@HLodClass@@UBEHMPAM0@Z,,0x00978E10,247,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
-?Get_Current_LOD@HLodClass@@UAEPAVRenderObjClass@@XZ,,0x00978F20,47,Code/Libraries/Source/WWVegas/WW3D2/HLodClass_Get_Current_LOD.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 47B
+?Get_Current_LOD@HLodClass@@UAEPAVRenderObjClass@@XZ,,0x00978F20,47,Code/Libraries/Source/WWVegas/WW3D2/HLodClass_Get_Current_LOD.cpp,matched,clean C++ conversion; current LOD at this+0x128; virtual count/sub-object calls pinned to vtable +0x228/+0x230; early return reuses the zero test instead of re-zeroing eax
 ??A?$VectorClass@VModelNodeClass@HLodClass@@@@QAEAAVModelNodeClass@HLodClass@@H@Z,,0x00979080,16,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ??A?$VectorClass@VModelNodeClass@HLodClass@@@@QBEABVModelNodeClass@HLodClass@@H@Z,,0x00979090,16,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ??A?$VectorClass@USentenceDataStruct@Render2DSentenceClass@@@@QAEAAUSentenceDataStruct@Render2DSentenceClass@@H@Z,,0x009790A0,16,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,

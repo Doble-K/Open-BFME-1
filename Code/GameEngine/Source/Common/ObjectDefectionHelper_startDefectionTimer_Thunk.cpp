@@ -1,97 +1,57 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Lift the startDefectionTimer __emit thunk to clean C++.
+//
+// Retail reads the owner Object from this+0x08 and tests its status byte at
+// +0x344. When the bit is clear it hands the helper an effectively-infinite
+// frame (0x3FFFFFFF); otherwise it stamps the current logic frame and the
+// deadline, then hands over 1. Both arms end in the same two-argument thiscall,
+// which MSVC 7.1 tail-jumps because the callee's `ret 8` matches this frame's.
+
+class Object
+{
+public:
+	unsigned char m_unreconstructed_00[0x344];
+	unsigned char m_statusBits;					///< retail this+0x344; bit 1 gates the timer
+};
+
+class GameLogicFrameSource
+{
+public:
+	unsigned char m_unreconstructed_00[0x3C];
+	unsigned int m_frame;						///< retail this+0x3C
+};
+
+extern GameLogicFrameSource *TheGameLogic;		///< retail [0x012F0898]
 
 class ObjectDefectionHelper
 {
 public:
 	void startDefectionTimer(unsigned int, bool);
+	void applyDefectionFrame(Object *, int);	///< pinned to the ILT thunk at 0x000157DA
+
+private:
+	unsigned char m_unreconstructed_00[0x08];
+	Object *m_owner;							///< retail this+0x08
+	unsigned char m_unreconstructed_0C[0x20 - 0x0C];
+	unsigned int m_startFrame;					///< retail this+0x20
+	unsigned int m_endFrame;					///< retail this+0x24
+	unsigned int m_defectorFrame;				///< retail this+0x28
+	bool m_flag;								///< retail this+0x2C
 };
 
 // ?startDefectionTimer@ObjectDefectionHelper@@QAEXI_N@Z
-__declspec(naked) void ObjectDefectionHelper::startDefectionTimer(unsigned int, bool)
+void ObjectDefectionHelper::startDefectionTimer(unsigned int duration, bool flag)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x51
-        __emit 0x08
-        __emit 0xf6
-        __emit 0x82
-        __emit 0x44
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x02
-        __emit 0x75
-        __emit 0x11
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x3f
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x04
-        __emit 0xe9
-        __emit 0xcd
-        __emit 0xf4
-        __emit 0xdb
-        __emit 0xff
-        __emit 0xa1
-        __emit 0x98
-        __emit 0x08
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x3c
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x89
-        __emit 0x41
-        __emit 0x20
-        __emit 0x03
-        __emit 0xc6
-        __emit 0x89
-        __emit 0x41
-        __emit 0x24
-        __emit 0x8a
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x41
-        __emit 0x28
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x41
-        __emit 0x2c
-        __emit 0x5e
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x04
-        __emit 0xe9
-        __emit 0x98
-        __emit 0xf4
-        __emit 0xdb
-        __emit 0xff
+	Object *owner = m_owner;
+	if ((owner->m_statusBits & 2) == 0)
+	{
+		applyDefectionFrame(owner, 0x3FFFFFFF);
+		return;
 	}
+
+	m_startFrame = TheGameLogic->m_frame;
+	m_endFrame = m_startFrame + duration;
+	m_defectorFrame = 0;
+	m_flag = flag;
+	applyDefectionFrame(owner, 1);
 }

@@ -36,6 +36,8 @@ DRIFT = ROOT / "reverse" / "zh_sweep" / "drift_report.csv"
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
 GHIDRA_FUNCTIONS = ROOT / "reverse" / "ghidra_functions.csv"
 STRING_XREFS = ROOT / "reverse" / "string_xrefs.tsv"
+RE_ATTEMPTS = ROOT / "reverse" / "re_attempts.log"
+_NO_MATCH = None
 _SOURCE_INDEX = None
 _SOURCE_TEXT = {}
 
@@ -175,8 +177,12 @@ def snap_rva(rva):
     function start, trying both directions and keeping whichever is closer.
     Returns (corrected_rva, note|None)."""
     ordered, starts = _ghidra_starts()
-    if not ordered or rva in starts:
+    if rva in starts:
         return rva, None
+    if not ordered:
+        # No Ghidra inventory (it is gitignored, so this is the fresh-clone case):
+        # recover the boundary from the retail image instead of no-opping.
+        return padding_snap(rva)
     try:
         import bisect
         import build
@@ -201,7 +207,58 @@ def snap_rva(rva):
             return candidates[0][1], candidates[0][2]
     except Exception:
         pass
-    return rva, None
+    return padding_snap(rva)
+
+
+PAD_BYTES = (0xCC, 0x90)
+SNAP_WINDOW = 64
+
+
+def padding_snap(rva):
+    """Ghidra-free fallback for the correction above.
+
+    The Ghidra inventory is gitignored, so on a fresh clone `_ghidra_starts()` is
+    empty and every drift vote keeps its raw rva — which the docstring above says
+    is wrong ~99% of the time. MSVC pads between functions with int3, so the byte
+    after a padding run is a real function start and the image alone is enough to
+    recover one. Where no boundary is in range, say the candidate is interior
+    rather than invent a start: that verdict is what saves the 30-60 minutes."""
+    try:
+        import build
+        head = build.read_target_bytes(rva, SNAP_WINDOW)
+        back = build.read_target_bytes(rva - SNAP_WINDOW, SNAP_WINDOW)
+    except Exception:
+        return rva, None
+    if len(head) < 2 or len(back) < SNAP_WINDOW:
+        return rva, None
+
+    # The vote landed inside the pad run; the next real body starts after it.
+    if head[0] in PAD_BYTES:
+        off = 0
+        while off < len(head) and head[off] in PAD_BYTES:
+            off += 1
+        if off < len(head):
+            return rva + off, f"drift-corrected +{off}B (queued rva was int3 padding)"
+        return rva, None
+
+    # Otherwise the nearest preceding padding run ends on the real start. A lone
+    # 0xCC/0x90 is often just an operand byte, so trust a single-byte run only
+    # when it lands on MSVC's 16-byte function alignment.
+    for distance in range(1, SNAP_WINDOW + 1):
+        if back[SNAP_WINDOW - distance] not in PAD_BYTES:
+            continue
+        start = rva - distance + 1
+        run = 0
+        while (SNAP_WINDOW - distance - run) >= 0 and back[SNAP_WINDOW - distance - run] in PAD_BYTES:
+            run += 1
+        if run < 2 and start % 16:
+            return rva, (f"lone 0x{back[SNAP_WINDOW - distance]:02X} {distance - 1}B back is an "
+                         f"operand byte, not padding — no trustworthy boundary in {SNAP_WINDOW}B")
+        if distance == 1:
+            return rva, None  # already on a start
+        return start, f"drift-corrected -{distance - 1}B (snapped to int3-delimited start)"
+
+    return rva, f"no int3 boundary within {SNAP_WINDOW}B — candidate is function-interior"
 
 
 def structural_candidates(claimed, claimed_names, claimed_ranges, big=False):
@@ -399,6 +456,48 @@ def ghidra_absent_candidates(claimed, claimed_names):
     return out, (f"{len(functions)} Ghidra functions + {len(xrefs)} string literals loaded")
 
 
+def logged_no_match():
+    """Symbols already reduced to a `no-match` verdict in reverse/re_attempts.log.
+
+    Those boundaries were investigated and rejected — stale drift votes, interior
+    fragments, absent bodies — so re-serving them spends another agent's 30-60
+    minutes rediscovering a known dead end. The log is TSV (symbol, status, prose)
+    and append-only, so reading it is cheap."""
+    global _NO_MATCH
+    if _NO_MATCH is None:
+        symbols = set()
+        if RE_ATTEMPTS.exists():
+            with RE_ATTEMPTS.open(encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    fields = line.rstrip("\r\n").split("\t")
+                    if len(fields) >= 2 and fields[1] == "no-match":
+                        symbols.add(fields[0])
+        _NO_MATCH = symbols
+    return _NO_MATCH
+
+
+def drop_logged(candidates):
+    """Filter one queue, returning (kept, dropped_count). Never silent: main()
+    reports the count so a shrunken queue is visibly explained, not mistaken
+    for an exhausted tier.
+
+    A logged verdict describes the boundary that agent actually examined, and
+    most existing rows reject a *stale* one. So a row only retires a candidate
+    while the boundary still matches: once the image-derived snap moves the
+    candidate somewhere else, the old verdict no longer covers it and it comes
+    back. Without that, this filter would permanently bury exactly the
+    candidates the snap just repaired."""
+    logged = logged_no_match()
+    kept, dropped = [], 0
+    for candidate in candidates:
+        if (candidate["function"] in logged
+                and "drift-corrected" not in candidate.get("hint", "")):
+            dropped += 1
+            continue
+        kept.append(candidate)
+    return kept, dropped
+
+
 def selected_queue(tier, drifts, structural, ghidra_absent):
     queues = {
         "harvest": ("drift quick win", drifts),
@@ -439,9 +538,13 @@ def print_candidate(label, candidate, meta):
         print(f"       start: {candidate['command']}")
 
 
-def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent):
+def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent,
+                 suppressed=0):
     print("== 0. ledger health ==")
     print(f"  {ledger}")
+    if suppressed:
+        print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
+              f"no-match (--include-logged to show)")
 
     if args.tier not in ("structural", "ghidra"):
         print(f"\n== 1. drift quick wins: literal-only diffs ({len(drifts)}) ==")
@@ -498,6 +601,9 @@ def main():
                     help="choose from only this task lane")
     ap.add_argument("--big", action="store_true",
                     help="sort structural candidates by size (byte yield) instead of alignment")
+    ap.add_argument("--include-logged", action="store_true",
+                    help="keep candidates already recorded no-match in "
+                         "reverse/re_attempts.log (they are dropped by default)")
     args = ap.parse_args()
 
     ledger = check_ledger()  # exit 2 happens in there; nothing below matters if red
@@ -520,29 +626,43 @@ def main():
     else:
         ghidra_absent, ghidra_meta = [], "Ghidra tier not requested"
 
+    # A `no-match` row is a finished investigation, not a pending task; serving
+    # one again is pure rework. ~20% of the structural queue is in that state.
+    suppressed = 0
+    if not args.include_logged:
+        drifts, dropped_drift = drop_logged(drifts)
+        structural, dropped_structural = drop_logged(structural)
+        ghidra_absent, dropped_ghidra = drop_logged(ghidra_absent)
+        suppressed = dropped_drift + dropped_structural + dropped_ghidra
+
     if args.ranked and args.json:
         print(json.dumps({
             "ledger": ledger,
             "drift_quick_wins": drifts,
             "structural": structural,
             "ghidra_meta": ghidra_meta, "ghidra_absent": ghidra_absent,
+            "suppressed_logged": suppressed,
             "pointers": [cmd for cmd, _ in POINTERS],
         }, indent=2))
         return
 
     if args.ranked:
-        print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent)
+        print_ranked(args, ledger, drifts, structural, ghidra_meta,
+                     ghidra_absent, suppressed)
         return
 
     label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent)
     candidate = candidates[secrets.randbelow(len(candidates))] if candidates else None
-    meta = {"pool": len(candidates)}
+    meta = {"pool": len(candidates), "suppressed_logged": suppressed}
     if args.json:
         print(json.dumps({"ledger": ledger, "tier": label,
                           "selection": candidate, "selection_meta": meta}, indent=2))
         return
     print("== ledger health ==")
     print(f"  {ledger}")
+    if suppressed:
+        print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
+              f"no-match (--include-logged to show)")
     if candidate is None:
         print(f"\nNo {label} candidates remain.")
         return

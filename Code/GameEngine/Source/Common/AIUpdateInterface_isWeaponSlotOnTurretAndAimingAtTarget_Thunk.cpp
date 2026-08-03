@@ -1,93 +1,48 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Lift the AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget __emit thunk
+// to clean C++.
+//
+// Zero Hour's AIUpdate.cpp carries this function verbatim and the retail body
+// agrees exactly: scan the turrets and, on the first live one owning the weapon
+// slot, tail-answer with that turret's aim test; otherwise false. Retail pins
+// the same details as the getWhichTurretForWeaponSlot sibling -- MAX_TURRETS is
+// 2 (`cmp esi, 2`) and the turret array sits at this+0x1E8.
 
-enum WeaponSlotType { };
+typedef float Real;
+
 class Object;
+
+enum WeaponSlotType { PRIMARY_WEAPON = 0 };
+
+enum { MAX_TURRETS = 2 };
+
+class TurretAI
+{
+public:
+	bool isWeaponSlotOnTurret(WeaponSlotType) const;		///< ILT thunk at 0x00039D24
+	bool isTryingToAimAtTarget(const Object *) const;		///< ILT thunk at 0x000079D7
+};
+
 class AIUpdateInterface
 {
 public:
 	bool isWeaponSlotOnTurretAndAimingAtTarget(WeaponSlotType, const Object *) const;
+
+private:
+	unsigned char m_unreconstructed_00[0x1E8];
+	TurretAI *m_turretAI[MAX_TURRETS];						///< retail this+0x1E8
 };
 
 // ?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z
-__declspec(naked) bool AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget(WeaponSlotType, const Object *) const
+bool AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget(WeaponSlotType wslot,
+															  const Object *victim) const
 {
-	__asm {
-		__emit 0x53
-		__emit 0x55
-		__emit 0x8b
-		__emit 0x6c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xd9
-		__emit 0x57
-		__emit 0x33
-		__emit 0xf6
-		__emit 0x8d
-		__emit 0xbb
-		__emit 0xe8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0f
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x0a
-		__emit 0x55
-		__emit 0xe8
-		__emit 0x76
-		__emit 0xb2
-		__emit 0xdc
-		__emit 0xff
-		__emit 0x84
-		__emit 0xc0
-		__emit 0x75
-		__emit 0x12
-		__emit 0x46
-		__emit 0x83
-		__emit 0xc7
-		__emit 0x04
-		__emit 0x83
-		__emit 0xfe
-		__emit 0x02
-		__emit 0x7c
-		__emit 0xe7
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x32
-		__emit 0xc0
-		__emit 0x5b
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x8b
-		__emit 0x8c
-		__emit 0xb3
-		__emit 0xe8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x02
-		__emit 0x8f
-		__emit 0xd9
-		__emit 0xff
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x5b
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
+	for (int i = 0; i < MAX_TURRETS; i++)
+	{
+		if (m_turretAI[i] && m_turretAI[i]->isWeaponSlotOnTurret(wslot))
+		{
+			return m_turretAI[i]->isTryingToAimAtTarget(victim);
+		}
 	}
+	return false;
 }
