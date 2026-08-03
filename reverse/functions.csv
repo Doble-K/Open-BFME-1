@@ -2445,7 +2445,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WanderAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/WanderAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0WargBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D980,46,Code/GameEngine/Source/GameLogic/AI/WargBehavior.cpp,matched,Luna Open-BFME5.0 clean C++ ObjectModule derived constructor
 ??0WaterTracksRenderSystem@@QAE@XZ,,0x007AB960,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,exact C++ constructor with retail ShaderClass default bits 0x10441b
-??0WaterTransparencySetting@@QAE@XZ,,0x000C3730,139,Code/masm_dumps/_sa8___0WaterTransparencySetting__QAE_XZ_C3730.asm,matched,Exact 139B Open-BFME4
+??0WaterTransparencySetting@@QAE@XZ,,0x000C3730,139,Code/GameEngine/Source/Common/INI/WaterTransparencySettingCtorThunk.cpp,matched,Open-BFME5 exact 139B default constructor
 ??0WaypointMap@@QAE@ABV0@@Z,,0x000C1170,27,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,
 ??0WaypointMap@@QAE@XZ,,0x0019EA30,54,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,
 ??0Weapon@@QAE@XZ,,0x001E74B0,933,Code/masm_dumps/_sa3___0Weapon__QAE_XZ_1E74B0.asm,matched,Exact 933B string-anchored Open-BFME4
