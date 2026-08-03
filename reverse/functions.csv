@@ -2803,8 +2803,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1BannerCarrierUpdateModuleData@@UAE@XZ,,0x00284AA0,375,Code/GameEngine/Source/Common/BannerCarrierUpdateModuleDataDestructorThunk.cpp,matched,Exact 375B SEH dtor Open-BFME5
 ??1BaseHeightMapRenderObjClass@@UAE@XZ,,0x006CEE90,871,Code/masm_dumps/BaseHeightMapRenderObjClass_dtor_006CEE90.asm,matched,certified packet 222 exact retail db recovery
 ??1BaseUpgradeModuleData@@UAE@XZ,,0x002D3D20,96,Code/GameEngine/Source/Common/BaseUpgradeModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
-??1BattlePlanUpdate@@MAE@XZ,,0x00285650,182,Code/masm_dumps/BattlePlanUpdate_destructor_MAE.asm,matched,icf-owner=??1BattlePlanUpdate@@UAE@XZ; queue 0x0FB368/461 unrelated; true body 182B @ 0x00285650; C++ emits MAE protected pool-glue dtor
-??1BattlePlanUpdate@@UAE@XZ,,0x00285650,182,Code/GameEngine/Source/Common/BattlePlanUpdateDestructorThunk.cpp,matched,Exact 182B @ 0x00285650; Exact retail MASM; instance factory->vtable dtor; del 0x285D00 ctor 0x286260 vt 0xCBBF8C
+??1BattlePlanUpdate@@MAE@XZ,,0x00285650,182,Code/GameEngine/Source/Common/BattlePlanUpdateDestructorThunk.cpp,matched,Exact 182B SEH dtor Open-BFME5
+??1BattlePlanUpdate@@UAE@XZ,,0x00285650,182,Code/GameEngine/Source/Common/BattlePlanUpdateDestructorThunk.cpp,matched,Exact 182B @ 0x00285650; Exact retail MASM; instance factory->vtable dtor; del 0x285D00 ctor 0x286260 vt 0xCBBF8C;;object-symbol=??1BattlePlanUpdate@@MAE@XZ
 ??1BattlePlanUpdateModuleData@@UAE@XZ,,0x00286010,239,Code/GameEngine/Source/Common/BattlePlanUpdateModuleDataDestructorThunk.cpp,matched,Exact 239B SEH dtor Open-BFME5
 ??1BezierProjectileBehavior@@UAE@XZ,,0x001F0240,199,Code/GameEngine/Source/Common/BezierProjectileBehaviorDestructorThunk.cpp,matched,Exact 199B @ 0x001F0240; Exact retail MASM; instance factory->vtable dtor; del 0x1F15F0 ctor 0x1F1470 vt 0xCA253C
 ??1BitChannelClass@@QAE@XZ,,0x00978160,28,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
@@ -2894,8 +2894,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Display@@UAE@XZ,,0x005CB360,402,Code/masm_dumps/Display_destructor_5CB360.asm,matched,Certified packet 109; Display vtable and derived destructor chains; retail sha256 70ba90e47128dd067f1534c8ad52d468cf88aa57081a16a2c8d8a800576e756b
 ??1DistLODClass@@UAE@XZ,,0x00725F40,86,Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp,matched,
 ??1DownloadManager@@UAE@XZ,,0x00627730,75,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
-??1DozerAIUpdate@@MAE@XZ,,0x002B6640,215,Code/masm_dumps/DozerAIUpdate_destructor_MAE.asm,matched,icf-owner=??1DozerAIUpdate@@UAE@XZ; queue 0xFB3DF is int3 pad; true body 215B @ 0x2B6640; C++ emits MAE protected pool-glue dtor
-??1DozerAIUpdate@@UAE@XZ,,0x002B6640,215,Code/GameEngine/Source/Common/DozerAIUpdateDestructorThunk.cpp,matched,Exact 215B @ 0x002B6640; Exact retail MASM; instance factory->vtable dtor; del 0x2B6B50 ctor 0x2B8680 vt 0xCC6A90
+??1DozerAIUpdate@@MAE@XZ,,0x002B6640,215,Code/GameEngine/Source/Common/DozerAIUpdateDestructorThunk.cpp,matched,Exact 215B SEH dtor Open-BFME5
+??1DozerAIUpdate@@UAE@XZ,,0x002B6640,215,Code/GameEngine/Source/Common/DozerAIUpdateDestructorThunk.cpp,matched,Exact 215B @ 0x002B6640; Exact retail MASM; instance factory->vtable dtor; del 0x2B6B50 ctor 0x2B8680 vt 0xCC6A90;;object-symbol=??1DozerAIUpdate@@MAE@XZ
 ??1DrawableIconInfo@@MAE@XZ,,0x001DDFD0,70,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ??1DrawableLocoInfo@@MAE@XZ,,0x00415D50,1385,Code/masm_dumps/_sa3___1DrawableLocoInfo__MAE_XZ_415D50.asm,matched,Exact 1385B string-anchored Open-BFME4
 ??1DynamicAudioEventRTS@@MAE@XZ,,0x0078CFB0,73,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,
@@ -2948,7 +2948,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1GameStateMap@@,,0x00112BF0,343,Code/masm_dumps/_sa9___1GameStateMap___112BF0.asm,matched,Exact 343B Open-BFME4
 ??1GameTextInterface@@UAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,object-symbol=??1SubsystemInterface@@UAE@XZ;ICF alias converted to existing clean C++ body
 ??1GameTextManager@@UAE@XZ,,0x00438430,117,Code/GameEngine/Source/Common/GameTextManagerDestructorThunk.cpp,matched,exact retail destructor via MASM; ZH class has extra 0xA000-byte text buffer
-??1GameWindow@@MAE@XZ,,0x00479CD0,203,Code/masm_dumps/GameWindow_destructor.asm,matched,Certified complete destructor via vtable wrapper constructor ownership and ret boundary
+??1GameWindow@@MAE@XZ,,0x00479CD0,203,Code/GameEngine/Source/Common/GameWindowDestructorThunk.cpp,matched,Exact 203B SEH dtor Open-BFME5
 ??1GameWindowManager@@UAE@XZ,,0x00483810,156,Code/GameEngine/Source/Common/GameWindowManagerDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
 ??1GarrisonContain@@UAE@XZ,,0x0021D9C0,151,Code/GameEngine/Source/Common/GarrisonContainDestructorThunk.cpp,matched,Exact 151B SEH dtor Open-BFME5
 ??1GarrisonContainModuleData@@UAE@XZ,,0x002469D0,1501,Code/GameEngine/Source/Common/GarrisonContainModuleDataDestructorThunk.cpp,matched,Exact 1501B SEH dtor Open-BFME5
@@ -3045,7 +3045,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MissingAnimClass@@UAE@XZ,,0x007BB7F0,73,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ??1MissingGeomClass@@UAE@XZ,,0x007B1130,73,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??1MissingTextureClass@@UAE@XZ,,0x007B1130,73,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
-??1Mission@@MAE@XZ,,0x00BF4EB5,200,Code/masm_dumps/__1Mission__MAE_XZ.asm,matched,
+??1Mission@@MAE@XZ,,0x00BF4EB5,200,Code/GameEngine/Source/Common/MissionDestructorThunk.cpp,matched,Exact 200B SEH dtor Open-BFME5
 ??1MobMemberSlavedUpdate@@UAE@XZ,,0x001FB0C0,226,Code/GameEngine/Source/Common/MobMemberSlavedUpdateDestructorThunk.cpp,matched,Exact 226B; factory ownership Open-BFME4
 ??1ModelArrayClass@HLodClass@@UAE@XZ,,0x005DB080,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$DefaultModuleTag@$02@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;ICF thunk converted to C++ alias
 ??1ModelConditionInfo@@QAE@XZ,,0x0013C3FE,292,Code/masm_dumps/ModelConditionInfo_destructor.asm,matched,Exact retail MASM SEH dtor; member-layout SEH shape not emittable from ZH C++
