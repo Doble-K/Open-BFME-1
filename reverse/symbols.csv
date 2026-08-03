@@ -23199,3 +23199,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?m@T_009f59d0@@QAEXXZ,0x009F59D0,gen-shim call target
 ?m@T_009f50e0@@QAEXXZ,0x009F50E0,gen-shim call target
 ?m@T_009f5170@@QAEXXZ,0x009F5170,gen-shim call target
+??0?$BFMEFactoryModuleData@VChinookAIUpdateModuleData@@$0BGM@@@QAE@XZ,0x00030945,Open-BFME5 factory storage constructor pin for exact ChinookAIUpdate factory

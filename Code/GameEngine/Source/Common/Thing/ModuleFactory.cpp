@@ -165,6 +165,7 @@ class AutoDepositUpdateModuleData;
 class BattlePlanUpdateModuleData;
 class BoneFXUpdateModuleData;
 class CashHackSpecialPowerModuleData;
+class ChinookAIUpdateModuleData;
 class CommandSetUpgradeModuleData;
 class CreateCrateDieModuleData;
 class CreateObjectDieModuleData;
@@ -201,6 +202,7 @@ template <> struct BFMEFactoryInstanceSize<AutoDepositUpdateModuleData> { enum {
 template <> struct BFMEFactoryInstanceSize<BattlePlanUpdateModuleData> { enum { VALUE = 0xA0 }; };
 template <> struct BFMEFactoryInstanceSize<BoneFXUpdateModuleData> { enum { VALUE = 0xD94 }; };
 template <> struct BFMEFactoryInstanceSize<CashHackSpecialPowerModuleData> { enum { VALUE = 0x220 }; };
+template <> struct BFMEFactoryInstanceSize<ChinookAIUpdateModuleData> { enum { VALUE = 0x16C }; };
 template <> struct BFMEFactoryInstanceSize<CommandSetUpgradeModuleData> { enum { VALUE = 0x74 }; };
 template <> struct BFMEFactoryInstanceSize<CreateCrateDieModuleData> { enum { VALUE = 0x38 }; };
 template <> struct BFMEFactoryInstanceSize<CreateObjectDieModuleData> { enum { VALUE = 0x3C }; };
@@ -243,6 +245,7 @@ BFME_FACTORY_DATA_CHOICE(AutoDepositUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(BattlePlanUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(BoneFXUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(CashHackSpecialPowerModuleData)
+BFME_FACTORY_DATA_CHOICE(ChinookAIUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(CommandSetUpgradeModuleData)
 BFME_FACTORY_DATA_CHOICE(CreateCrateDieModuleData)
 BFME_FACTORY_DATA_CHOICE(CreateObjectDieModuleData)
