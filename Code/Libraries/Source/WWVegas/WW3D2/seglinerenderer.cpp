@@ -120,26 +120,7 @@ SegLineRendererClass::SegLineRendererClass(void) :
 	// EMPTY
 }
 
-SegLineRendererClass::SegLineRendererClass(const SegLineRendererClass & that) :
-		Texture(NULL),
-		Shader(ShaderClass::_PresetAdditiveSpriteShader),
-		Width(0.0f),
-		Color(Vector3(1,1,1)),
-		Opacity(1.0f),
-		_BFME_Unknown_Member(0.0f),
-		SubdivisionLevel(0),
-		NoiseAmplitude(0.0f),
-		MergeAbortFactor(1.5f),
-		TextureTileFactor(1.0f),
-		LastUsedSyncTime(that.LastUsedSyncTime),
-		CurrentUVOffset(0.0f,0.0f),
-		UVOffsetDeltaPerMS(0.0f, 0.0f),
-		Bits(DEFAULT_BITS),
-		m_vertexBufferSize(0),
-		m_vertexBuffer(NULL)
-{
-	*this = that;
-}
+// The exact retail copy constructor is emitted by SegLineRendererClassCopyCtorThunk.cpp.
 
 // ?SegLineRendererClass::operator= present-unmatched
 SegLineRendererClass & SegLineRendererClass::operator = (const SegLineRendererClass & that)
