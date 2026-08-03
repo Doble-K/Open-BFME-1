@@ -1536,7 +1536,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FilePipe@@QAE@AAVFileClass@@@Z,,0x009E20C0,29,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling
 ??0FileStraw@@QAE@AAVFileClass@@@Z,,0x009E2100,29,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling
 ??0FindPositionOptions@@QAE@XZ,,0x00160B40,36,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-??0FireOCLAfterWeaponCooldownUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001EE950,276,Code/masm_dumps/FireOCLAfterWeaponCooldownUpdate_constructor.asm,matched,Exact 276B ICF alias Open-BFME4
+??0FireOCLAfterWeaponCooldownUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001EE950,276,Code/GameEngine/Source/GameLogic/Object/Update/FireOCLAfterWeaponCooldownUpdate_ctor_Thunk.cpp,matched,Open-BFME5 lift 276B retail MASM to standalone C++ thunk
 ??0FireSpreadUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004B510,5,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0FireSpreadUpdateModuleData@@QAE@XZ,,0x00292680,23,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdateModuleData.cpp,matched,incremental thunk @0x104B5; standalone codegen-blocked C++ emits exact 23B retail constructor body
 ??0FireWeaponCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00216430,151,Code/GameEngine/Source/GameLogic/Object/Collide/FireWeaponCollideCtorThunk.cpp,matched,Exact 151B @ 0x00216430; 1:1 C++ thunk from certified retail constructor
@@ -1546,7 +1546,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FireWeaponUpdateModuleData@@QAE@XZ,,0x00292CB0,23,Code/GameEngine/Source/GameLogic/Object/Update/FireWeaponUpdate.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0FireWeaponWhenDamagedBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0002A379,5,Code/GameEngine/Source/GameLogic/Object/Behavior/FireWeaponWhenDamagedBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0FireWeaponWhenDamagedBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0FireWeaponWhenDeadBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FBC70,395,Code/masm_dumps/FireWeaponWhenDeadBehavior_constructor.asm,matched,Exact 395B @ 0x001FBC70; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116FC0
+??0FireWeaponWhenDeadBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FBC70,395,Code/GameEngine/Source/GameLogic/Object/Behavior/FireWeaponWhenDeadBehavior_ctor_Thunk.cpp,matched,Open-BFME5 lift 395B retail MASM to standalone C++ thunk
 ??0FireWeaponWhenDeadBehaviorModuleData@@QAE@XZ,,0x0012A1C0,112,Code/GameEngine/Source/GameLogic/Object/Behavior/FireWeaponWhenDeadBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 112B ModuleData constructor
 ??0FirestormDynamicGeometryInfoUpdateModuleData@@QAE@XZ,,0x002BC190,59,Code/GameEngine/Source/GameLogic/Object/Update/FirestormDynamicGeometryInfoUpdateModuleDataConstructor.cpp,matched,Open-BFME5 clean C++ base + zeros and float defaults
 ??0FirewallHelperClass@@QAE@XZ,,0x0066E3B0,172,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,thunk-dump converted to clean C++
@@ -2034,7 +2034,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ProductionPrerequisite@@QAE@XZ,,0x000E57A0,133,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteCtorThunk.cpp,matched,1:1 C++ thunk from certified BFME constructor layout
 ??0ProductionSpeedBonus@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00264450,46,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonus.cpp,matched,Luna Open-BFME5.0 clean C++ empty derived constructor
 ??0ProductionSpeedBonusModuleData@@QAE@XZ,,0x00264690,107,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonusModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0ProductionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0029C9E0,396,Code/masm_dumps/ProductionUpdate_constructor.asm,matched,Exact 396B @ 0x0029C9E0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11AC10
+??0ProductionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0029C9E0,396,Code/GameEngine/Source/GameLogic/Object/Update/ProductionUpdate_ctor_Thunk.cpp,matched,Open-BFME5 lift 396B retail MASM to standalone C++ thunk
 ??0ProductionUpdateModuleData@@QAE@XZ,,0x0029FB70,159,Code/GameEngine/Source/GameLogic/AI/ProductionUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ProjectedShadowManager@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,ICF alias of existing matched body
 ??0ProneUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0029FE70,77,Code/GameEngine/Source/GameLogic/Object/Update/ProneUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x29FE70
@@ -2351,7 +2351,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TreadObjectInfo@W3DTankTruckDraw@@QAE@XZ,,0x0077E0A0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp,matched,
 ??0TunnelContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022EE70,102,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
 ??0TunnelContainModuleData@@QAE@XZ,,0x0024B580,133,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainModuleDataCtorThunk.cpp,matched,Exact 133B @ 0x0024B580; Exact retail MASM ModuleData ctor; unique factory 0x116470
-??0TurretAI@@QAE@PAVObject@@PBVTurretAIData@@W4WhichTurretType@@@Z,,0x0018DED0,383,Code/masm_dumps/_sa4___0TurretAI__QAE_PAVObject__PBVTurretAIData__W4Whi_18DED0.asm,matched,Exact 383B Open-BFME4
+??0TurretAI@@QAE@PAVObject@@PBVTurretAIData@@W4WhichTurretType@@@Z,,0x0018DED0,383,Code/GameEngine/Source/GameLogic/Object/Update/TurretAI_ctor_Thunk.cpp,matched,Open-BFME5 lift 383B retail MASM to standalone C++ thunk
 ??0TurretAIAimTurretState@@QAE@PAVTurretStateMachine@@@Z,,0x0018DA10,46,Code/GameEngine/Source/GameLogic/AI/TurretAIAimTurretStateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw TurretAIAimTurretState constructor
 ??0TurretAIHoldTurretState@@QAE@PAVTurretStateMachine@@@Z,,0x0018DAF0,53,Code/GameEngine/Source/GameLogic/AI/TurretAIHoldTurretStateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw TurretAIHoldTurretState constructor
 ??0TurretAIIdleScanState@@QAE@PAVTurretStateMachine@@@Z,,0x0018D9A0,53,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleScanStateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw TurretAIIdleScanState constructor
@@ -2473,9 +2473,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WindModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x00047410,0x005BD970,117,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0WindModuleInfo@FXParticleSystem@@QAE@XZ,0x0003EA9A,0x005FE6C0,112,Code/GameEngine/Source/GameClient/System/FXParticleSystem/WindModuleInfoCtorThunk.cpp,matched,Open-BFME5 clean C++ wind module info field init
 ??0WindowLayout@@QAE@XZ,,0x00497C40,99,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,EH function (cl: /EHsc); BFME added vtable vs Generals
-??0WorkerAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C9ED0,417,Code/masm_dumps/WorkerAIUpdate_constructor.asm,matched,Exact 417B @ 0x002C9ED0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C060
+??0WorkerAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C9ED0,417,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate_ctor_Thunk.cpp,matched,Open-BFME5 lift 417B retail MASM to standalone C++ thunk
 ??0WorkerAIUpdateModuleData@@QAE@XZ,,0x0011BF80,141,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact 141B retail module-data constructor
-??0WorkerStateMachine@@QAE@PAVObject@@@Z,,0x002C9260,387,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate_WorkerStateMachine.asm,matched,exact 387B via MASM (SEH ctor)
+??0WorkerStateMachine@@QAE@PAVObject@@@Z,,0x002C9260,387,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerStateMachine_ctor_Thunk.cpp,matched,Open-BFME5 lift 387B retail MASM to standalone C++ thunk
 ??0WorldAnimationData@@QAE@XZ,,0x0015A230,25,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ??0WorldHeightMap@@IAE@XZ,,0x0074E990,303,Code/GameEngine/Source/Common/WorldHeightMap_ctor_Thunk.cpp,matched,Open-BFME5 lift 303B retail MASM to standalone C++ thunk
 ??0WorldHeightMap@@QAE@PAVChunkInputStream@@_N@Z,,0x0074EB10,352,Code/GameEngine/Source/Common/WorldHeightMap_stream_ctor_Thunk.cpp,matched,Open-BFME5 lift 352B retail MASM to standalone C++ thunk
@@ -6363,7 +6363,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GameDarkenColor@@YAHHH@Z,,0x0040BEE0,161,Code/GameEngine/Source/Common/System/color_ops.cpp,matched,
 ?GameGetColorComponents@@YAXHPAE000@Z,,0x0040BD20,44,Code/GameEngine/Source/Common/System/color_ops.cpp,matched,
 ?GameGetColorComponentsReal@@YAXHPAM000@Z,,0x0040BD60,127,Code/GameEngine/Source/Common/System/color_ops.cpp,matched,
-?GameInfoWindowInit@@YAXPAVWindowLayout@@PAX@Z,,0x004C8910,446,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow_Init.asm,matched,
+?GameInfoWindowInit@@YAXPAVWindowLayout@@PAX@Z,,0x004C8910,446,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindowInit_Thunk.cpp,matched,Open-BFME5 lift 446B retail MASM to standalone C++ thunk
 ?GameInfoWindowSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C87C0,44,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow.cpp,matched,
 ?GameMakeColor@@YAHEEEE@Z,,0x00083400,31,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?GameSpyCloseAllOverlays@@YAXXZ,,0x00627B90,98,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,true body 0x627B90/98; queue 0x53E263 INSIDE unrelated; retail inlines CloseOverlay (BFME WindowLayout vtbl close path) + tail deleteNotificationBox
@@ -7596,7 +7596,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?PopupJoinGameSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D7740,435,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupJoinGame_System.asm,matched,Exact MASM: true start 0x4D7740 (queue int3@0x4D773F); C++ only temp-slot mov-esp order at by-value sites; pin trim@UnicodeString->0x888ED0
 ?PopupLadderSelectInit@@YAXPAVWindowLayout@@PAX@Z,,0x004D87C0,554,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupLadderSelect.cpp,matched,
 ?PopupLadderSelectInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D7D10,80,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupLadderSelect.cpp,matched,
-?PopupReplayInit@@YAXPAVWindowLayout@@PAX@Z,,0x004DE270,386,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay_Init.asm,matched,
+?PopupReplayInit@@YAXPAVWindowLayout@@PAX@Z,,0x004DE270,386,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplayInit_Thunk.cpp,matched,Open-BFME5 lift 386B retail MASM to standalone C++ thunk
 ?PopupReplayInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004DEFE0,93,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?PopupReplaySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004DEB70,737,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay_System.asm,matched,Exact MASM: C++ only temp-slot mov-esp order at saveReplay by-value sites
 ?PopupReplayUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004DE180,90,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay.cpp,matched,C++ local vtable shim preserves BFME virtual WindowLayout::hide dispatch
@@ -8909,7 +8909,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addLocomotor@LocomotorSet@@QAEXPBVLocomotorTemplate@@@Z,,0x001BAD80,52,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ?addMap@MapCache@@AAE_NVAsciiString@@0PAUFileInfo@@_N@Z,,0x00456A90,1178,Code/masm_dumps/_sa11__addMap_MapCache__AAE_NVAsciiString__0PAUFileInfo___N_Z_456A90.asm,matched,string-anchor Open-BFME4+Grok Star-Bronze
 ?addMessage@NetCommandList@@QAEPAVNetCommandRef@@PAVNetCommandMsg@@@Z,,0x00673200,609,Code/GameEngine/Source/GameNetwork/NetCommandList_addMessage.asm,matched,MASM exact 609B @ 0x673200; queue 0x673251 was mid-SEH body; push 0x14 NetCommandRef; ret 4
-?addMessageText@InGameUI@@IAEXABVUnicodeString@@PBURGBColor@@@Z,,0x0043DF00,388,Code/masm_dumps/InGameUI_addMessageText_43DF00.asm,matched,Certified packet 83 exact retail MASM SHA256 c11453c0f548db46dbb487fb3fd57ac5fdb63057beea85c388f56d3a3dd37f6f
+?addMessageText@InGameUI@@IAEXABVUnicodeString@@PBURGBColor@@@Z,,0x0043DF00,388,Code/GameEngine/Source/GameClient/InGameUI_addMessageText_Thunk.cpp,matched,Open-BFME5 lift 388B retail MASM to standalone C++ thunk
 ?addModuleInternal@ModuleFactory@@IAEXPBX00HABVAsciiString@@H@Z,,0x00129AC0,69,Code/GameEngine/Source/Common/System/module_factory.cpp,matched,ModuleFactory::addModuleInternal shared body
 ?addMoneyEarned@ScoreKeeper@@QAEXH@Z,,0x000C85F0,15,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?addMoneySpent@ScoreKeeper@@QAEXH@Z,,0x000C85D0,15,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
@@ -9780,7 +9780,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doAudioFeedback@@YAXPAVGameWindow@@@Z,,0x004B85F0,153,Code/GameEngine/Source/Common/doAudioFeedback_Thunk.cpp,matched,Exact retail body; queue RVA 0xC6C420 was CRT stubs misplace
 ?doAudioSetVolume@ScriptActions@@IAEXW4AudioAffect@@M@Z,,0x002EF830,91,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Audio vtable+0xd4 setVolume clamp /100
 ?doBorderSwitch@ScriptActions@@IAEXH@Z,,0x002EFC50,102,Code/GameEngine/Source/Common/ScriptActions_doBorderSwitch_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?doBountyForKill@Player@@QAEXPBVObject@@0@Z,,0x000D5160,431,Code/GameEngine/Source/Common/RTS/Player_doBountyForKill.asm,matched,MASM exact 431B @ 0xD5160; queue 0x66556D int3 pad/wrong body; GUI:AddCash+deposit+format+ftol2; ret 8; C++ blocked BFME bounty/layout
+?doBountyForKill@Player@@QAEXPBVObject@@0@Z,,0x000D5160,431,Code/GameEngine/Source/Common/RTS/Player_doBountyForKill_Thunk.cpp,matched,Open-BFME5 lift 431B retail MASM to standalone C++ thunk
 ?doC3CameraDisableSlaveMode@ScriptActions@@IAEXXZ,,0x002F06A0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x9c cameraDisableSlaveMode
 ?doChooseVictimAlwaysUsesNormal@ScriptActions@@IAEX_N@Z,,0x002F08A0,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,ScriptEngine+0x17635 choose-victim flag
 ?doCollapseDoneStuff@StructureCollapseUpdate@@IAEXXZ,,0x002A38A0,123,Code/GameEngine/Source/GameLogic/Object/Update/StructureCollapseUpdate.cpp,matched,
