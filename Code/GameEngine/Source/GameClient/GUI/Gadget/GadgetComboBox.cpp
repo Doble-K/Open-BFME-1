@@ -541,16 +541,8 @@ UnicodeString GadgetComboBoxGetText( GameWindow *comboBox )
 			: NULL );
 }
 
-// GadgetComboBoxSetText =======================================================
-/** Set the text the Combo Box */
-//=============================================================================
-void GadgetComboBoxSetText( GameWindow *comboBox, UnicodeString text )
-{
-	if( comboBox == NULL )
-		return;
-
-	GadgetTextEntrySetText(GadgetComboBoxGetEditBox(comboBox), text);
-}
+// ?GadgetComboBoxSetText@@YAXPAVGameWindow@@VUnicodeString@@@Z
+// Exact retail helper emitted by GadgetComboBoxSetTextThunk.cpp.
 
 // GadgetComboBoxAddEntry =======================================================
 /** Convenience wrapper function for adding an entry */
