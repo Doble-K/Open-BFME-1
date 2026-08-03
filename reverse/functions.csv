@@ -12803,7 +12803,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?positionProjectileForLaunch@Weapon@@SAXPAVObject@@PBV2@W4WeaponSlotType@@H@Z,,0x001E37F0,55,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?postDraw@InGameUI@@UAEXXZ,,0x004469F0,3333,Code/masm_dumps/InGameUI_postDraw_4469F0.asm,matched,Exact MASM unique postDraw format anchors and timer/RMB semantics
 ?postMul@Matrix3D@@QAEXABV1@@Z,,0x001E0E80,338,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,
-?postProcessLoad@W3DDisplayStringManager@@UAEXXZ,,0x006F5890,368,Code/masm_dumps/_sa4__postProcessLoad_W3DDisplayStringManager__UAEXXZ_6F5890.asm,matched,Exact 368B Open-BFME4
+?postProcessLoad@W3DDisplayStringManager@@UAEXXZ,,0x006F5890,368,Code/GameEngine/Source/Common/W3DDisplayStringManager_postProcessLoadMethodThunk.cpp,matched,Exact 368B Open-BFME4
 ?postProcessLoad@WeaponStore@@UAEXXZ,,0x0023E5F0,1017,Code/masm_dumps/_sa14__postProcessLoad_WeaponStore__UAEXXZ_23E5F0.asm,matched,sa14 Open-BFME4+Grok NoSound
 ?post_process_fog@MeshModelClass@@IAEXXZ,,0x0096EE60,929,Code/masm_dumps/_s4__post_process_fog_MeshModelClass_IAEXXZ_96EE60.asm,matched,Exact string-anchored Open-BFME4+Grok
 ?preAuthCDCallback@@YAXHHHPADPAX@Z,,0x00651810,27,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,
