@@ -12958,7 +12958,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setCurrentHeightAboveGround@View@@UAEXM@Z,,0x0045BDE0,10,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setCurrentPos@LookAtTranslator@@QAEXABUICoord2D@@@Z,,0x005B5420,18,Code/GameEngine/Source/GameClient/MessageStream/LookAtXlat.cpp,matched,
 ?setCurrentWaypoint@Team@@QAEXPBVWaypoint@@@Z,,0x007F5530,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?setCursorDirection@W3DMouse@@AAEXW4MouseCursor@Mouse@@@Z,,0x00700820,233,Code/masm_dumps/_rn4__setCursorDirection_W3DMouse__AAEXW4MouseCursor_Mouse___Z_700820.asm,matched,reloc-needle Open-BFME4+Grok
 ?setCursorPos@DebugDisplay@@UAEXHH@Z,,0x00495370,17,Code/GameEngine/Source/GameClient/System/DebugDisplay.cpp,matched,
 ?setCustomData@Condition@@QAEXH@Z,,0x002ED4D0,10,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
 ?setCustomFrame@Condition@@QAEXH@Z,,0x001BD310,10,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?addSmudgeSet@SmudgeManager@@QAEPAUSmudgeSet@@XZ,,0x005D4240,129,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,MASM dump converted to clean C++; SmudgeSet is not pool-allocated in BFME either
 ?addImage@ImageCollection@@QAEXPAVImage@@@Z,,0x005D3410,133,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,MASM dump converted to clean C++; AsciiString::releaseBuffer is out of line in BFME
 ?initPolygonAssets@W3DMouse@@AAEXXZ,,0x00700950,184,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,MASM dump converted to clean C++; Mouse and Win32Mouse carry 0x368 more bytes and the TU needs the 8-byte AsciiStringData; size corrected from 174 to 184
+?setCursorDirection@W3DMouse@@AAEXW4MouseCursor@Mouse@@@Z,,0x00700820,233,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,MASM dump converted to clean C++; InGameUI carries nine more virtuals ahead of isScrolling

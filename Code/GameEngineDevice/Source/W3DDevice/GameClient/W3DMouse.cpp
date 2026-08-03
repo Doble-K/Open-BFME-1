@@ -682,7 +682,6 @@ void W3DMouse::setRedrawMode(RedrawMode mode)
 	setCursor(cursor);
 }
 
-// ?setCursorDirection@W3DMouse@@ present-unmatched
 void W3DMouse::setCursorDirection(MouseCursor cursor)
 {
 	Coord2D offset = {0, 0};
