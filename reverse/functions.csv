@@ -12618,7 +12618,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseInputCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486900,130,Code/GameEngine/Source/Common/parseInputCallback_Thunk.cpp,matched,parse table INPUTCALLBACK->0x486900; queue 0x4877E5 was wrong body; exact 130B MASM
 ?parseInt@@YAXPAVINI@@PAX1PBX@Z,,0x000B8160,55,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
 ?parseInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852A60,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,was a naked byte dump; now C++ with getNextToken inlined
-?parseLODPreset@INI@@SAXPAV1@@Z,,0x0007D2D0,325,Code/masm_dumps/INI_parseLODPreset_7d2d0.asm,matched,MASM exact retail dump; true start 0x7D2D0 (queue 0x7D2FE was mid-body after SEH); size 325
+?parseLODPreset@INI@@SAXPAV1@@Z,,0x0007D2D0,325,Code/GameEngine/Source/Common/INI_parseLODPresetMethodThunk.cpp,matched,MASM exact retail dump; true start 0x7D2D0 (queue 0x7D2FE was mid-body after SEH); size 325
 ?parseLanguageDefinition@INI@@SAXPAV1@@Z,,0x00438F70,25,Code/GameEngine/Source/GameClient/GlobalLanguage.cpp,matched,block table binds keyword Language here - reads TheGlobalLanguageData 0x012F1484
 ?parseLayoutBlock@@YA_NPAVFile@@PADIPAVWindowLayoutInfo@@@Z,,0x00488600,526,Code/masm_dumps/GameWindowManagerScript_parseLayoutBlock.asm,matched,Exact 526B MASM; true size strips int3 (queue 606); STARTLAYOUTBLOCK string; File scanString +0x24 blocks ZH C++
 ?parseLine@INI@@IAEXVAsciiString@@@Z,,0x00851350,362,Code/GameEngine/Source/Common/INI/ini.cpp,matched,BFME factors the per-line dispatch out of load; three message-carrying INIException throws instead of ZH sprintf-into-a-1KB-stack-buffer
