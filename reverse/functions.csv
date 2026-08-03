@@ -2201,7 +2201,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SupplyWarehouseDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001E902,5,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyWarehouseDockUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0SupplyWarehouseDockUpdateModuleData@@QAE@XZ,,0x002CFB00,29,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyWarehouseDockUpdate.cpp,matched,
 ??0Surface@@QAE@HH@Z,,0x0043CD10,25,Code/Libraries/Source/WWVegas/WW3D2/txt.cpp,matched,
-??0SwayClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x006044E0,68,Code/masm_dumps/SwayClientUpdate_constructor.asm,matched,Exact 68B unique factory Open-BFME4
 ??0SysTimeClass@@QAE@XZ,,0x009E64B0,28,Code/Libraries/Source/WWVegas/WWLib/systimer.cpp,matched,
 ??0TCreateUnitsInfo@@QAE@XZ,,0x001F2A80,10,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
 ??0TPropType@@QAE@XZ,,0x002DFCE0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DPropBuffer.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0GameSpyInfo@@QAE@XZ,,0x00636D90,609,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME shifts m_localName on by 8 and GameSpyGroupRoom is one dword larger
 ?addToSavedIgnoreList@GameSpyInfo@@UAEXHVAsciiString@@@Z,,0x00635670,149,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME keeps AsciiString::set and releaseBuffer out of line
 ?doBorderSwitch@ScriptActions@@IAEXH@Z,,0x002EFC50,102,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,MASM dump converted to clean C++; BFME omits the trailing refreshShroudForLocalPlayer call
+??0SwayClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x006044E0,68,Code/GameEngine/Source/GameClient/Drawable/Update/SwayClientUpdate.cpp,matched,MASM dump converted to clean C++; Module drops MemoryPoolObject in BFME and the class has two more dwords

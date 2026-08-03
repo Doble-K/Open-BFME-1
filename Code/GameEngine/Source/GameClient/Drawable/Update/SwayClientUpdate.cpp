@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /MD /EHsc /DBFME_MODULE_NO_MPO /Ireference/shims/swayclientupdate /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
 // stlport
 /*
 **	Command & Conquer Generals Zero Hour(tm)
@@ -53,7 +53,6 @@
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0SwayClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
 SwayClientUpdate::SwayClientUpdate( Thing *thing, const ModuleData* moduleData ) :
 	ClientUpdateModule( thing, moduleData ),
 	m_curDelta(0),
@@ -63,6 +62,8 @@ SwayClientUpdate::SwayClientUpdate( Thing *thing, const ModuleData* moduleData )
 	m_leanAngle(0),
 	m_swaying(true),
 	m_unused(false),
+	_bfme_hole_a(0),
+	_bfme_hole_b(0),
 	m_curVersion(-1)	// so that we never match the first time
 {
 

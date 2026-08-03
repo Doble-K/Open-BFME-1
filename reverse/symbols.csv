@@ -4099,3 +4099,4 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??1IgnorePreferences@@UAE@XZ,0x00033A23,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
 ?undoRevealMapForPlayerPermanently@PartitionManager@@QAEXH@Z,0x008F7400,REL32 pin from ScriptActions::doBorderSwitch @0x2EFC50
 ?revealMapForPlayerPermanently@PartitionManager@@QAEXH@Z,0x008F73E0,REL32 pin from ScriptActions::doBorderSwitch @0x2EFC50
+??0DrawableModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00002874,REL32 pin from the SwayClientUpdate constructor @0x6044E0
