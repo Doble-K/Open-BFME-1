@@ -2030,7 +2030,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ProcessAnimateWindowSlideFromRightFast@@QAE@XZ,,0x004973C0,44,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ??0ProcessAnimateWindowSlideFromTop@@QAE@XZ,,0x00495F30,44,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ??0ProcessAnimateWindowSlideFromTopFast@@QAE@XZ,,0x00496F30,44,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
-??0ProductionPrerequisite@@QAE@XZ,,0x000E57A0,133,Code/masm_dumps/ProductionPrerequisite_ctor.asm,matched,Ghidra-bound BFME constructor layout
+??0ProductionPrerequisite@@QAE@XZ,,0x000E57A0,133,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteCtorThunk.cpp,matched,1:1 C++ thunk from certified BFME constructor layout
 ??0ProductionSpeedBonus@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00264450,46,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonus.cpp,matched,Luna Open-BFME5.0 clean C++ empty derived constructor
 ??0ProductionSpeedBonusModuleData@@QAE@XZ,,0x00264690,107,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonusModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ProductionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0029C9E0,396,Code/masm_dumps/ProductionUpdate_constructor.asm,matched,Exact 396B @ 0x0029C9E0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11AC10

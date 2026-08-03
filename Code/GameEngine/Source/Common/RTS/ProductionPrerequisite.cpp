@@ -60,11 +60,7 @@
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
 #endif
 
-//-----------------------------------------------------------------------------
-ProductionPrerequisite::ProductionPrerequisite() 
-{
-	init();
-}
+// The exact retail constructor is emitted by ProductionPrerequisiteCtorThunk.cpp.
 
 //-----------------------------------------------------------------------------
 // ??1ProductionPrerequisite@@QAE@XZ present-unmatched
