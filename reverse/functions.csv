@@ -33501,7 +33501,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reverseMotion@BridgeScaffoldBehavior@@UAEXXZ,,0x001F5940,68,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?reverseWord@GameTextManager@@IAEXPAD0@Z,,0x00435F70,66,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ?rewind@CachedFileInputStream@@QAEXXZ,,0x00702070,8,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,tiny-locate
-?rewind@FileInputStream@@,,0x001036C0,297,Code/masm_dumps/_sa5__rewind_FileInputStream___1036C0.asm,matched,Exact 297B Open-BFME4
+?rewind@FileInputStream@@,,0x001036C0,297,Code/GameEngine/Source/Common/FileInputStreamRewindThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_FileInputStreamRewind_1036C0
 ?rotateAbout@W3DRoadBuffer@@IAEXPAVVector2@@V2@M@Z,,0x00706DC0,119,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?runInit@WindowLayout@@QAEXPAX@Z,,0x00470690,21,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MainMenu.cpp,matched,
 ?runInit@WindowLayout@@UAEXPAX@Z,,0x00470690,21,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,header-inline virtual (COMDAT)
