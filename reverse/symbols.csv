@@ -23217,3 +23217,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1GGS_Member@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??0?$BFMEFactoryModuleData@VWaveGuideUpdateModuleData@@$0BGM@@@QAE@XZ,0x00030945,Open-BFME5 exact factory storage constructor pin (ICF alias with ChinookAIUpdate/InternetHackContain)
 ?updateCounts@W3DRoadBuffer@@IAEXPAVRoadSegment@@@Z,0x00010BC7,Open-BFME-DS05 addMapObject callee pin (ILT thunk to 0x00705000)
+?build@BroadcastStealthUpdateModuleDataBuildFieldParseShim@@SAXAAVMultiIniFieldParse@@@Z,0x00289800,BroadcastStealthUpdateModuleData buildFieldParse incremental-link thunk target through a TU-local forwarding shim

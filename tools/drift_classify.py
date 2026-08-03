@@ -50,14 +50,23 @@ def load_world():
     pe = build.pe_sections(exe)
     text = next(s for s in pe if s["name"] == ".text")
     ghidra = {}
-    with (ROOT / "reverse" / "ghidra_functions.csv").open(newline="") as fh:
-        for row in csv.DictReader(fh):
-            ghidra[int(row["rva"], 16)] = int(row["size"])
-    matched_names, matched_rvas = set(), set()
+    ghidra_file = ROOT / "reverse" / "ghidra_functions.csv"
+    if ghidra_file.exists():
+        with ghidra_file.open(newline="") as fh:
+            for row in csv.DictReader(fh):
+                ghidra[int(row["rva"], 16)] = int(row["size"])
+    matched_names, matched_rvas, matched_spans = set(), set(), []
     for row in build.load_all_function_rows():
         matched_names.add(row["name"])
-        matched_rvas.add(int(row["target_rva"], 16))
-    return exe, pe, text, ghidra, matched_names, matched_rvas, build.load_symbol_map()
+        try:
+            start = int(row["target_rva"], 16)
+            size = int(row["target_size"])
+        except (ValueError, TypeError):
+            continue
+        matched_rvas.add(start)
+        matched_spans.append((start, start + size))
+    matched_spans.sort()
+    return exe, pe, text, ghidra, matched_names, matched_rvas, matched_spans, build.load_symbol_map()
 
 
 def prescan_call_sites(exe, text):
@@ -74,6 +83,23 @@ def prescan_call_sites(exe, text):
     return sites
 
 
+def in_matched_span(rva, spans):
+    """True if rva falls inside any matched function body (not just at a start).
+
+    A drift vote that lands inside an already-matched function is a false
+    candidate -- e.g. the old 0x9A15F5 placement for parseAudioSettingsDefinition,
+    which was interior to the matched parseLoadSubsystem@SubsystemLegend. Excluding
+    interiors keeps the report from proposing placement inside claimed bytes.
+
+    spans must be sorted by start address."""
+    if not spans:
+        return False
+    import bisect
+    starts = [s for s, _ in spans]
+    i = bisect.bisect_right(starts, rva) - 1
+    return i >= 0 and spans[i][0] <= rva < spans[i][1]
+
+
 def offset_to_rva(pe, off):
     for s in pe:
         if s["raw_pointer"] <= off < s["raw_pointer"] + s["size"]:
@@ -81,7 +107,7 @@ def offset_to_rva(pe, off):
     return None
 
 
-def find_candidates(exe, pe, text, body, relocs, symbol_map, call_sites, matched_rvas, obj_path):
+def find_candidates(exe, pe, text, body, relocs, symbol_map, call_sites, matched_rvas, matched_spans, obj_path):
     """Vote for candidate start RVAs using drift-surviving anchors."""
     votes = Counter()
     size = len(body)
@@ -129,7 +155,9 @@ def find_candidates(exe, pe, text, body, relocs, symbol_map, call_sites, matched
             pos = exe.find(needle, pos + 1, text["raw_pointer"] + text["size"])
 
     ranked = [(v, rva) for rva, v in votes.items()
-              if rva not in matched_rvas and text["rva"] <= rva < text["rva"] + text["size"]]
+              if rva not in matched_rvas
+              and not in_matched_span(rva, matched_spans)
+              and text["rva"] <= rva < text["rva"] + text["size"]]
     ranked.sort(reverse=True)
     return ranked[:3]
 
@@ -218,13 +246,13 @@ def main():
     args = ap.parse_args()
 
     SCRATCH.mkdir(parents=True, exist_ok=True)
-    exe, pe, text, ghidra, matched_names, matched_rvas, symbol_map = load_world()
+    exe, pe, text, ghidra, matched_names, matched_rvas, matched_spans, symbol_map = load_world()
     print("prescanning call sites...", flush=True)
     call_sites = prescan_call_sites(exe, text)
 
     rows = []
     seen = {}   # name -> row index (inline COMDATs appear in every TU; report once)
-    sources = sorted((ROOT / args.src).glob("*.cpp"))
+    sources = sorted(p for p in (ROOT / args.src).rglob("*.cpp") if p.is_file())
     for src in sources:
         obj = build.obj_path(src)
         if not obj.exists():
@@ -240,7 +268,7 @@ def main():
             if len(body) < args.min_size:
                 continue
             cands = find_candidates(exe, pe, text, body, relocs, symbol_map,
-                                    call_sites, matched_rvas, obj)
+                                    call_sites, matched_rvas, matched_spans, obj)
             if not cands or cands[0][0] < 5:
                 top = cands[0][0] if cands else 0
                 klass = "absent" if top or len(body) >= 48 else "no-anchors"

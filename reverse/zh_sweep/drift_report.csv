@@ -652,7 +652,7 @@ _$E59,dx8renderer.cpp,40,0x00C7151F,37,structural,0,"shape ratio 40%, sizes 40->
 ??0FireSpreadUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,firespreadupdate.cpp,117,0x0037645E,37,structural,0,"shape ratio 35%, sizes 117->117",5
 ?parseShakeType@ViewShakeFXNugget@@KAXPAVINI@@PAX1PBX@Z,fxlist.cpp,32,0x009A15D6,37,structural,0,"shape ratio 17%, sizes 32->32",5
 ?parseScorchType@TerrainScorchFXNugget@@KAXPAVINI@@PAX1PBX@Z,fxlist.cpp,32,0x009A15D6,37,structural,0,"shape ratio 17%, sizes 32->32",5
-?parseAudioSettingsDefinition@INI@@SAXPAV1@@Z,gameaudio.cpp,272,0x009A15F5,37,structural,0,"shape ratio 14%, sizes 272->272",5
+?parseAudioSettingsDefinition@INI@@SAXPAV1@@Z,gameaudio.cpp,272,,0,no-anchors,-1,"FALSE DRIFT: 0x9A15F5 is interior of matched parseLoadSubsystem@SubsystemLegend (0x9A15C0); real body 0xB4B70 (518B) via AudioSettings BlockParse node, unclaimed",0
 ?GameSpyCloseAllOverlays@@YAXXZ,gamespyoverlay.cpp,24,0x0053E263,37,structural,0,"shape ratio 32%, sizes 24->24",5
 ??1LANPlayer@@QAE@XZ,lanapi.cpp,89,0x0068582F,37,structural,0,"shape ratio 44%, sizes 89->89",15
 ??1MetaMapRec@@MAE@XZ,metaevent.cpp,86,0x006F4C62,37,structural,0,"shape ratio 14%, sizes 86->86",10
