@@ -570,6 +570,7 @@ name,address,notes
 ??0CastleMemberBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x000060F5,CastleMemberBehavior ctor for friend_new
 ??0Cftp@@QAE@XZ,0x00885AD0
 ??0CheckpointUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00037619,derived-ICF
+??0CivilianSpawnCollideBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,CivilianSpawnCollide ctor base
 ??0CleanupAreaPowerModuleData@@QAE@XZ,0x0001ABF9,pinharvest x1 (thunk)
 ??0CleanupAreaPowerModuleData@@QAE@XZ,0x00037A51,pinharvest x1 (thunk)
 ??0CleanupAreaPowerModuleData@@QAE@XZ,0x0003BDE5,pinharvest x1 (thunk)
@@ -705,6 +706,7 @@ name,address,notes
 ??0EjectPilotDieModuleData@@QAE@XZ,0x0002AE6E,pinharvest x1 (thunk)
 ??0EjectPilotDieModuleData@@QAE@XZ,0x000331A9,pinharvest x1 (thunk)
 ??0ElvenWoodSpecialPowerModuleDataBase@@QAE@XZ,0x00015C44,ElvenWood SpecialPower base (shared 0x15c44)
+??0ExperienceLevelCreateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00026CAB,ExperienceLevelCreate ctor base
 ??0ExperienceScalarUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x000380D2,module ctor (friend_newModuleInstance retail call target)
 ??0ExperienceScalarUpgradeModuleData@@QAE@XZ,0x00010C80,pinharvest x1 (thunk)
 ??0ExperienceScalarUpgradeModuleData@@QAE@XZ,0x00022877,pinharvest x1 (thunk)
@@ -817,6 +819,7 @@ name,address,notes
 ??0HealCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x00046407,module ctor (friend_newModuleInstance retail call target)
 ??0HeightDieUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00C199,module ctor (friend_newModuleInstance retail call target)
 ??0HeightDieUpdateModuleData@@QAE@XZ,0x0002C9D0,module-glue cascade callee (from retail call site)
+??0HeroDieBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HeroDie ctor base
 ??0HeroModeSpecialAbilityUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,Open-BFME5 HeroModeSpecialAbilityUpdate base pin
 ??0HijackerUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003A382,module ctor (friend_newModuleInstance retail call target)
 ??0HiveStructureBodyModuleData@@QAE@XZ,0x00022B15,pinharvest x1 (thunk)
@@ -1122,6 +1125,7 @@ name,address,notes
 ??0ReplaceObjectUpgradeModuleData@@QAE@XZ,0x0003C556,pinharvest x1 (thunk)
 ??0ReplaceObjectUpgradeModuleData@@QAE@XZ,0x00046B5A,pinharvest x1 (thunk)
 ??0ReplaceObjectUpgradeModuleData@@QAE@XZ,0x00048A3B,pinharvest x1 (thunk)
+??0RespawnBodyBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00025509,RespawnBody ctor base
 ??0RetailCollideModuleDataBase@@QAE@XZ,0x00048A3B,CollideModule factory base constructor target
 ??0RetailDamageModuleDataBase@@QAE@XZ,0x00048A3B,DamageModule factory base constructor target
 ??0RetailUpdateModuleDataBase@@QAE@XZ,0x00048A3B,UpdateModule factory base constructor target
@@ -1894,6 +1898,7 @@ name,address,notes
 ??_7AODHordeContainModuleDataVtbl@@6B@,0x01089960,AODHordeContain ModuleData vtbl
 ??_7AssaultTransportAIUpdateModuleDataVtbl@@6B@,0x01089CC0,AssaultTransportAIUpdate vtbl
 ??_7CategoryModuleTemplate8Sub@FXParticleSystem@@6B@,0x0107375C,CategoryModuleTemplate8 interim sub vtbl
+??_7DeployStyleAIUpdateModuleDataVtbl@@6B@,0x01089B68,DeployStyleAIUpdate vtbl
 ??_7GateProxyBehaviorModuleDataVtbl@@6B@,0x0108A2A0,GateProxyBehavior ModuleData vtbl
 ??_7RAMFile@@6B@,0x01143C58,installed by RAMFile ctor at 0x009D1980 and by the matched ??1RAMFile@@MAE@XZ
 ??_7RawFileClass@@6B@,0x01145548,14 of 17 slots are matched @RawFileClass@@ methods
@@ -3165,6 +3170,7 @@ name,address,notes
 ?construct@DefaultModuleTemplate6CtorShim@FXParticleSystem@@QAEXXZ,0x0002FC2A,DefaultModuleTemplate<6> constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate7CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00031EFD,DefaultModuleTemplate<7> copy constructor thunk used through a TU-local layout shim
 ?construct@DefaultModuleTemplate7CtorShim@FXParticleSystem@@QAEXXZ,0x000366EC,DefaultModuleTemplate<7> constructor thunk used through a TU-local layout shim
+?construct@DeployStyleAIUpdateModuleDataBaseShim@@QAEXXZ,0x00048A3B,DeployStyleAIUpdate base
 ?construct@EvaSideSoundsConstructShim@_STL@@SAXPAUEvaSideSounds@@ABU3@@Z,0x003685C0,_STL _Construct EvaSideSounds incremental-link thunk target through a TU-local forwarding shim
 ?construct@GateProxyBehaviorModuleDataBaseShim@@QAEXXZ,0x0001659F,GateProxyBehavior ModuleData base
 ?construct@HemisphericalEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000178A0,HemisphericalEmissionVelocityModule constructor thunk used through a TU-local layout shim
@@ -3369,6 +3375,7 @@ name,address,notes
 ?erase@?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAEPAVAsciiString@@PAV3@0@Z,0x00065960,SubsystemLegend.cpp TU copy of vector<AsciiString>::erase(first last)
 ?erase@BfmeLegendStringVec@@QAEXPAX0@Z,0x00065960,SubsystemLegend.cpp vector<AsciiString> stand-in erase(first,last)
 ?erase@IntPairTreeEraseShim@_STL@@QAEXPAU?$_Rb_tree_node@U?$pair@$$CBHI@_STL@@@2@@Z,0x000AA7B0,_STL int pair tree incremental-link thunk target through a TU-local forwarding shim
+?erase@PrereqVector@@QAEPAXPAX0@Z,0x00010BB3,ThingTemplate parsePrerequisites vector range-erase helper (jmp thunk)
 ?erase@UnicodeStringTreeEraseShim@_STL@@QAEXPAU?$_Rb_tree_node@U?$pair@$$CBVUnicodeString@@_N@_STL@@@2@@Z,0x0044D6F0,_STL _Rb_tree _M_erase UnicodeString incremental-link thunk target through a TU-local forwarding shim
 ?erase@UnsignedPairTreeEraseShim@_STL@@QAEXPAU?$_Rb_tree_node@U?$pair@$$CBGE@_STL@@@2@@Z,0x007612D0,_STL unsigned pair tree incremental-link thunk target through a TU-local forwarding shim
 ?erase@WindowVideoHashtableEraseShim@_STL@@QAEXPBX@Z,0x00498A90,_STL hashtable erase GameWindowVideo incremental-link thunk target through a TU-local forwarding shim
@@ -4274,6 +4281,7 @@ DefaultModuleTemplate6_vtbl8,0x01111004,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultProductionExitUpdateFieldParse,0x00423687,DefaultProductionExitUpdate friend_newModuleData field parse
 DeflectSpecialPowerFieldParse,0x0044765E,DeflectSpecialPower FieldParse
 DelayedLuaEventUpdateFieldParse,0x0041B199,DelayedLuaEventUpdate FieldParse
+DeployStyleAIUpdateFieldParse,0x00406708,DeployStyleAIUpdate FieldParse
 GateProxyBehaviorFieldParse,0x004141E1,GateProxyBehavior FieldParse
 ShareBufferClassUnsignedShort_vtbl_final,0x011135AC,ShareBuffer ushort dtor final vtbl
 ShareBufferClassUnsignedShort_vtbl_interim,0x0113C110,ShareBuffer ushort dtor interim vtbl
@@ -4425,8 +4433,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-??0CivilianSpawnCollideBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,CivilianSpawnCollide ctor base
-??0HeroDieBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HeroDie ctor base
-??0RespawnBodyBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00025509,RespawnBody ctor base
-??0ExperienceLevelCreateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00026CAB,ExperienceLevelCreate ctor base
-?erase@PrereqVector@@QAEPAXPAX0@Z,0x00010BB3,ThingTemplate parsePrerequisites vector range-erase helper (jmp thunk)

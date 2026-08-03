@@ -1,145 +1,67 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: DeployStyleAIUpdate::friend_newModuleData factory
 
 class INI;
 class ModuleData;
 
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+class DeployStyleAIUpdateModuleDataBaseShim
+{
+public:
+	void construct();
+};
+
+class DeployStyleAIUpdateModuleDataVtbl
+{
+public:
+	DeployStyleAIUpdateModuleDataVtbl() {}
+	virtual void dummy();
+
+private:
+	unsigned char m_pad[0x6C];
+};
+
+class __declspec(novtable) DeployStyleAIUpdateModuleData
+{
+public:
+	DeployStyleAIUpdateModuleData();
+	virtual void dummy();
+
+private:
+	unsigned char m_pad[0x6C];
+};
+
+DeployStyleAIUpdateModuleData::DeployStyleAIUpdateModuleData()
+{
+	((DeployStyleAIUpdateModuleDataBaseShim *)this)->construct();
+	((DeployStyleAIUpdateModuleDataVtbl *)this)->DeployStyleAIUpdateModuleDataVtbl::DeployStyleAIUpdateModuleDataVtbl();
+	*(unsigned int *)((char *)this + 0x64) = 0;
+	*(unsigned int *)((char *)this + 0x68) = 0;
+	*((unsigned char *)this + 0x6C) = 0;
+	*((unsigned char *)this + 0x6D) = 0;
+	*((unsigned char *)this + 0x6E) = 0;
+}
+
+class INI
+{
+public:
+	void initFromINI(void *what, const void *parseTable);
+};
+
+extern "C" char DeployStyleAIUpdateFieldParse;
+
 class DeployStyleAIUpdate
 {
 public:
-    static ModuleData *friend_newModuleData(INI *ini);
+	static ModuleData *friend_newModuleData(INI *ini);
 };
 
-// ?friend_newModuleData@DeployStyleAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *DeployStyleAIUpdate::friend_newModuleData(INI *)
+ModuleData *DeployStyleAIUpdate::friend_newModuleData(INI *ini)
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xff
-        __emit 0x00
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x53
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x70
-        __emit 0xe8
-        __emit 0x21
-        __emit 0x98
-        __emit 0x76
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x3b
-        __emit 0xf3
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x74
-        __emit 0x1e
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x12
-        __emit 0x03
-        __emit 0xf3
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x68
-        __emit 0x9b
-        __emit 0x08
-        __emit 0x01
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x68
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x6c
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x6d
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x6e
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0xcb
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x68
-        __emit 0x08
-        __emit 0x67
-        __emit 0x40
-        __emit 0x00
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xd3
-        __emit 0x99
-        __emit 0x73
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	DeployStyleAIUpdateModuleData *data = new DeployStyleAIUpdateModuleData;
+	if (ini)
+		ini->initFromINI(data, &DeployStyleAIUpdateFieldParse);
+	return (ModuleData *)data;
 }
