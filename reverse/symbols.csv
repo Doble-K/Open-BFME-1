@@ -2440,6 +2440,7 @@ name,address,notes
 ?Remove_Tail@?$DLListClass@VThumbnailManagerClass@@@@QAEXXZ,0x00047852,pinharvest x1 (thunk)
 ?Remove_Tail@?$DLListClass@VThumbnailManagerClass@@@@QAEXXZ,0x009394F0,pinharvest x1 (body)
 ?Remove_Texture_Category@DX8FVFCategoryContainer@@QAEXPAVDX8TextureCategoryClass@@@Z,0x00946650,REL32 pin for DX8TextureCategoryClass::Remove_Polygon_Renderer
+??1DX8FVFCategoryContainer@@UAE@XZ,0x00946B20,REL32 pin for scalar deleting dtor ??_GDX8FVFCategoryContainer
 ?Render@LineGroupClass@@QAEXAAVRenderInfoClass@@@Z,0x0098ED30
 ?Render@PointGroupClass@@QAEXAAVRenderInfoClass@@H@Z,0x00917B70,derived from Render_Particles call sites; BFME added the int param
 ?Render@Render2DClass@@QAEXXZ,0x00933E50
