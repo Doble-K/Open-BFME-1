@@ -1195,6 +1195,7 @@ name,address,notes
 ??0ShroudCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x00026F1C,module ctor (friend_newModuleInstance retail call target)
 ??0SidesInfoSub@@QAE@H@Z,0x00002ECD,SidesInfo subobject ctor with int arg
 ??0SiegeAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,SiegeAIUpdate ctor base
+??0SiegeAIUpdateModuleData@@QAE@XZ,0x00010C80,SiegeAIUpdate friend_newModuleData ModuleData ctor ILT
 ??0SiegeDeploySpecialPowerModuleDataBase@@QAE@XZ,0x00023FE7,SiegeDeploySpecialPowerModuleData base ctor from retail call site
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00001CDA,pinharvest x1 (thunk)
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002D40C,pinharvest x1 (thunk)
@@ -1490,12 +1491,6 @@ name,address,notes
 ??1BfmeLegendStringVec@@QAE@XZ,0x000658A0,SubsystemLegend.cpp vector<AsciiString> stand-in dtor
 ??1BroadcastStealthUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1BroadcastStealthUpdateModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
-??1GrantStealthBehaviorModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
-??1GrantStealthBehaviorModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
-??1GrantStealthBehaviorModuleDataMemberC@@QAE@XZ,0x00887940,Open-BFME5 pin
-??1LargeGroupBonusUpdateModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
-??1LargeGroupBonusUpdateModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
-??1LargeGroupBonusUpdateModuleDataMemberC@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1BuddyMessage@@QAE@XZ,0x00021445
 ??1Buffer@@QAE@XZ,0x0001A401,pinharvest x1 (thunk)
 ??1Buffer@@QAE@XZ,0x00887940,pinharvest x1 (body)
@@ -1611,8 +1606,11 @@ name,address,notes
 ??1GiantBirdSlowDeathBehaviorModuleDataBase@@UAE@XZ,0x00015645,Open-BFME5 base pin
 ??1GiantBirdSlowDeathBehaviorModuleDataMember@@QAE@XZ,0x00026F35,Open-BFME5 pin
 ??1GrantStealthBehaviorModuleDataBase@@UAE@XZ,0x0001A401,Open-BFME5 pin
+??1GrantStealthBehaviorModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1GrantStealthBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1GrantStealthBehaviorModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1GrantStealthBehaviorModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1GrantStealthBehaviorModuleDataMemberC@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1HTreeClass@@QAE@XZ,0x00952790
 ??1HeroModeSpecialAbilityUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base dtor pin
 ??1HideShowSubObjInfo@ModelConditionInfo@@QAE@XZ,0x0000466F,rel32 pin for exact-ambiguous landing
@@ -1624,8 +1622,11 @@ name,address,notes
 ??1HordeSiegeEngineContainModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1HordeUpdateModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
 ??1LargeGroupBonusUpdateModuleDataBase@@UAE@XZ,0x0001A401,Open-BFME5 pin
+??1LargeGroupBonusUpdateModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1LargeGroupBonusUpdateModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1LargeGroupBonusUpdateModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1LargeGroupBonusUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1LargeGroupBonusUpdateModuleDataMemberC@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1LaserUpdateModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 pin
 ??1LaserUpdateModuleDataMember4@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1LaserUpdateModuleDataMember8@@QAE@XZ,0x00887940,Open-BFME5 pin
@@ -1655,6 +1656,7 @@ name,address,notes
 ??1ModelArrayClass@HLodClass@@UAE@XZ,0x00038410,pinharvest x1 (thunk)
 ??1ModelArrayClass@HLodClass@@UAE@XZ,0x0003C69B,pinharvest x1 (thunk)
 ??1ModelConditionSoundSelectorClientBehaviorModuleDataMember@@QAE@XZ,0x000241AE,ModelConditionSoundSelectorClientBehaviorModuleData dtor member +0x8
+??1ModuleDataListStandIn@@QAE@XZ,0x001468A0,Open-BFME5 list-style sentinel container dtor from AnimalAIUpdate-family ModuleData dtor call sites
 ??1NamedPivotMapClass@@UAE@XZ,0x00974E20,call-target pin: row deleted (ZH drift: element-ctor ptr), callers verify against this rva
 ??1NodeCompressedMotionStruct@@QAE@XZ,0x0002A08B,pinharvest x1 (thunk)
 ??1NodeCompressedMotionStruct@@QAE@XZ,0x0003B8DB,pinharvest x1 (thunk)
@@ -4448,11 +4450,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-??0SiegeAIUpdateModuleData@@QAE@XZ,0x00010C80,SiegeAIUpdate friend_newModuleData ModuleData ctor ILT
-??1ModuleDataListStandIn@@QAE@XZ,0x001468A0,Open-BFME5 list-style sentinel container dtor from AnimalAIUpdate-family ModuleData dtor call sites
-??0CivilianSpawnCollideBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,CivilianSpawnCollide ctor base
-??0HeroDieBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HeroDie ctor base
-??0RespawnBodyBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00025509,RespawnBody ctor base
-??0ExperienceLevelCreateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00026CAB,ExperienceLevelCreate ctor base
-?erase@PrereqVector@@QAEPAXPAX0@Z,0x00010BB3,ThingTemplate parsePrerequisites vector range-erase helper (jmp thunk)
-
