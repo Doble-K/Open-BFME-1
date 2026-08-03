@@ -121,8 +121,15 @@ def test_logged_no_match_suppressed(ranked):
 
     queues = ("drift_quick_wins", "structural", "ghidra_absent")
     for key in queues:
-        stale = [c["function"] for c in ranked[key] if c["function"] in logged]
+        # A logged verdict retires a candidate only while its boundary is
+        # unchanged; a snap-corrected boundary is new evidence and comes back.
+        stale = [c["function"] for c in ranked[key]
+                 if c["function"] in logged and "drift-corrected" not in c["hint"]]
         assert not stale, f"{key} served {len(stale)} already-no-match candidate(s): {stale[:3]}"
+        revived = [c for c in ranked[key]
+                   if c["function"] in logged and "drift-corrected" in c["hint"]]
+        for candidate in revived:
+            assert "drift-corrected" in candidate["hint"], candidate
 
     full = get_ranked_json(["--include-logged"])
     hidden = sum(len(full[key]) - len(ranked[key]) for key in queues)

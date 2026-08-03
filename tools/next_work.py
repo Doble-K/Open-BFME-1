@@ -472,10 +472,23 @@ def logged_no_match():
 def drop_logged(candidates):
     """Filter one queue, returning (kept, dropped_count). Never silent: main()
     reports the count so a shrunken queue is visibly explained, not mistaken
-    for an exhausted tier."""
+    for an exhausted tier.
+
+    A logged verdict describes the boundary that agent actually examined, and
+    most existing rows reject a *stale* one. So a row only retires a candidate
+    while the boundary still matches: once the image-derived snap moves the
+    candidate somewhere else, the old verdict no longer covers it and it comes
+    back. Without that, this filter would permanently bury exactly the
+    candidates the snap just repaired."""
     logged = logged_no_match()
-    kept = [c for c in candidates if c["function"] not in logged]
-    return kept, len(candidates) - len(kept)
+    kept, dropped = [], 0
+    for candidate in candidates:
+        if (candidate["function"] in logged
+                and "drift-corrected" not in candidate.get("hint", "")):
+            dropped += 1
+            continue
+        kept.append(candidate)
+    return kept, dropped
 
 
 def selected_queue(tier, drifts, structural, ghidra_absent):
