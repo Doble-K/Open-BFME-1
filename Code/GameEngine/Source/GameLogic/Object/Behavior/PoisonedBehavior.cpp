@@ -71,17 +71,7 @@ PoisonedBehaviorModuleData::PoisonedBehaviorModuleData()
   p.add(dataFieldParse);
 }
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-// ??0PoisonedBehavior@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
-PoisonedBehavior::PoisonedBehavior( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
-{
-	m_poisonDamageFrame = 0;
-	m_poisonOverallStopFrame = 0;
-	m_poisonDamageAmount = 0.0f;
-	m_deathType = DEATH_POISONED;
-	setWakeFrame(getObject(), UPDATE_SLEEP_FOREVER);
-}
+// The exact retail constructor is emitted by PoisonedBehaviorCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------

@@ -2013,7 +2013,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0000FECA,0x005D5930,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@XZ,0x0003160B,0x005D58B0,41,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0PointGroupClass@@QAE@XZ,,0x00912580,91,Code/Libraries/Source/WWVegas/WW3D2/pointgr.cpp,matched,
-??0PoisonedBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B0AD0,146,Code/masm_dumps/__0PoisonedBehavior__QAE_PAVThing__PBVModuleData__.asm,matched,
+??0PoisonedBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B0AD0,146,Code/GameEngine/Source/GameLogic/Object/Behavior/PoisonedBehaviorCtorThunk.cpp,matched,1:1 C++ thunk from certified retail constructor body
 ??0PoisonedBehaviorModuleData@@QAE@XZ,,0x002029B0,17,Code/GameEngine/Source/GameLogic/Object/Behavior/PoisonedBehavior.cpp,matched,exact 17B no-call ModuleData ctor; two zeroed dwords; moduledata shim; replaces 5B thunk @0x2EA73
 ??0PolyRemover@@QAE@XZ,,0x003FD390,16,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,ICF alias of existing matched body
 ??0PolyRenderTaskClass@@QAE@PAVDX8PolygonRendererClass@@PAVMeshClass@@@Z,,0x00945790,28,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
@@ -11201,7 +11201,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getDisabledTypesToProcess@OCLUpdate@@UBE?AV?$BitFlags@$0N@@@XZ,,0x001F6F60,15,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdate.cpp,matched,
 ?getDisabledTypesToProcess@ObjectDefectionHelper@@UBE?AV?$BitFlags@$0N@@@XZ,,0x001C55D0,15,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?getDisabledTypesToProcess@PhysicsBehavior@@UBE?AV?$BitFlags@$0N@@@XZ,,0x00202AF0,15,Code/GameEngine/Source/GameLogic/Object/Update/PhysicsUpdate.cpp,matched,
-?getDisabledTypesToProcess@PoisonedBehavior@@UBE?AV?$BitFlags@$0N@@@XZ,,0x001B2D50,15,Code/GameEngine/Source/GameLogic/Object/Behavior/PoisonedBehavior.cpp,matched,
+?getDisabledTypesToProcess@PoisonedBehavior@@UBE?AV?$BitFlags@$0N@@@XZ,,0x001B2D50,15,Code/GameEngine/Source/GameLogic/Object/Behavior/PoisonedBehaviorGetDisabledTypesThunk.cpp,matched,standalone byte thunk retained after PoisonedBehavior constructor extraction
 ?getDisabledTypesToProcess@ProductionUpdate@@UBE?AV?$BitFlags@$0N@@@XZ,,0x0029CD00,15,Code/GameEngine/Source/GameLogic/Object/Update/ProductionUpdate.cpp,matched,
 ?getDisabledTypesToProcess@PropagandaTowerBehavior@@UBE?AV?$BitFlags@$0N@@@XZ,,0x0011A130,15,Code/GameEngine/Source/GameLogic/Object/Behavior/PropagandaTowerBehavior.cpp,matched,
 ?getDisabledTypesToProcess@SlowDeathBehavior@@UBE?AV?$BitFlags@$0N@@@XZ,,0x001C0F90,15,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior.cpp,matched,
