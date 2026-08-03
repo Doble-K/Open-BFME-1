@@ -342,6 +342,32 @@ template <int Category>
 class DefaultParticleModuleTemplate : public LightningEmissionModuleTemplate {
 };
 
+// Open-BFME5: the LifeEvent default template derives from the header's
+// LifeEventModuleTemplate and adds the two interface subobjects retail shows
+// (vptr slots at +0x04 and +0x0C); its implicit ctor calls the out-of-line
+// base ctor, then stores its own three vtables.
+// Open-BFME5: the LifeEvent default template. Retail's createTemplate() has an
+// SEH new-guard, so the base-ctor call must go to an opaque (possibly
+// throwing) ctor; the bulk file's own naked ??0LifeEventModuleTemplate is
+// visibly nothrow to the compiler, so an invented opaque base is used and the
+// result is cast. novtable ifaces keep their vptr stores out of the ctor.
+class PLEMT_Base
+{
+public:
+    PLEMT_Base();
+    virtual ~PLEMT_Base();
+};
+class __declspec(novtable) PLEMT_IfaceA { public: virtual void slot(); private: unsigned int m_pad; };
+class __declspec(novtable) PLEMT_IfaceB { public: virtual void slot(); };
+class ParticleLifeEventModuleTemplate : public PLEMT_Base, public PLEMT_IfaceA, public PLEMT_IfaceB
+{
+public:
+    ParticleLifeEventModuleTemplate() {}
+
+private:
+    unsigned char m_pad[0x14];
+};
+
 // Open-BFME5: retail createModule(sys) news up the tag's default module, which
 // derives from the draw module and adds nothing (size stays 0x5C); its inline
 // forwarding ctor calls the out-of-line base ctor, then stores its own three
@@ -6675,106 +6701,10 @@ __declspec(naked) LifeEventModuleTemplate *ConcreteModuleClass<ModuleTag<8, LIFE
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVLifeEventModuleTemplate@2@XZ
-__declspec(naked) LifeEventModuleTemplate *ConcreteModuleClass<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate> >::createTemplate() const
+LifeEventModuleTemplate *ConcreteModuleClass<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate> >::createTemplate() const
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x6b
-        __emit 0xb8
-        __emit 0x03
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x24
-        __emit 0xe8
-        __emit 0xb2
-        __emit 0xd7
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x3b
-        __emit 0xf0
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x74
-        __emit 0x1d
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x8c
-        __emit 0x68
-        __emit 0xa6
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x24
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x20
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x0c
-        __emit 0x14
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+    return (LifeEventModuleTemplate *)new ParticleLifeEventModuleTemplate;
 }
-
 // ?getClass@?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UBEABV?$ConcreteModuleClass@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@2@XZ
 const ConcreteModuleClass<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate> > &ConcreteModuleTemplate<ModuleTag<8, LIFE_EVENT_MODULE_KEY, LIFE_EVENT_MODULE_NAME, LifeEventModule, LifeEventModuleTemplate, ParticleLifeEventModule, ParticleLifeEventModuleTemplate> >::getClass() const
 {
