@@ -61,6 +61,17 @@
 W3DShadowManager *TheW3DShadowManager=NULL;
 const FrustumClass *shadowCameraFrustum;
 
+// BFME: retail ~W3DShadowManager (@0x007B7AF0) deletes a third manager before
+// the volumetric one — a small helper with two refcounted members (dtor body
+// @0x007C19A0, non-virtual). Its name is not preserved, so a stand-in carries
+// the byte evidence; the dtor is pinned in symbols.csv.
+class W3DShadowHelperManager
+{
+public:
+	~W3DShadowHelperManager();
+};
+W3DShadowHelperManager *TheW3DShadowHelperManager = NULL;
+
 Vector3 LightPosWorld[ MAX_SHADOW_LIGHTS ] =
 {
 
@@ -117,9 +128,10 @@ W3DShadowManager::W3DShadowManager( void )
 	TheProjectedShadowManager = TheW3DProjectedShadowManager = NEW W3DProjectedShadowManager;
 }
 
-// ??1W3DShadowManager@@QAE@XZ present-unmatched
 W3DShadowManager::~W3DShadowManager( void )
 {
+	delete TheW3DShadowHelperManager;
+	TheW3DShadowHelperManager = NULL;
 	delete TheW3DVolumetricShadowManager;
 	TheW3DVolumetricShadowManager = NULL;
 	delete TheW3DProjectedShadowManager;
