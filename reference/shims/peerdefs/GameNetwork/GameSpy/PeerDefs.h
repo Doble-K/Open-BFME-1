@@ -96,6 +96,11 @@ public:
 	Int m_maxWaiting;
 	Int m_numGames;
 	Int m_numPlaying;
+
+	// BFME's group-room record is one dword larger: the first map node the
+	// GameSpyInfo constructor @0x636D90 allocates is 0x34 bytes where ours is
+	// 0x30, and m_groupRooms is the first map it builds.
+	Int _bfme_hole_tail;
 };
 typedef std::map<Int, GameSpyGroupRoom> GroupRoomMap;
 

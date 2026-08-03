@@ -154,6 +154,12 @@ private:
 	BuddyMessageList m_buddyMessages;
 	Int m_currentGroupRoomID;
 	Bool m_gotGroupRoomList;
+
+	// BFME has 8 more bytes here: the constructor @0x636D90 zeroes the four
+	// AsciiStrings at +0x6C/+0x74/+0x78/+0x7C - our own 8/4/4 spacing, eight
+	// bytes further along - while m_currentGroupRoomID and m_gotGroupRoomList
+	// just above are untouched.
+	char _bfme_hole_beforeLocalName[8];
 	AsciiString m_localName;
 	Int m_localProfileID;
 	AsciiString m_localPasswd;
@@ -182,7 +188,7 @@ private:
 	// createNewGameSpyInfoInterface @0x637760 passes 0x700 to operator new.
 	// GameSpyInfo embeds a GameSpyStagingRoom, so the 0xA8 that class gains
 	// above is already counted here - only the remaining 0x34 is added.
-	char _bfme_pad_tail[0x700 - 0x624 - 0xA8];
+	char _bfme_pad_tail[0x700 - 0x624 - 0xA8 - 0x30];	// 0x30 of it is real now: the 8 above plus PSPlayerStats' 0x28
 };
 
 #endif // __PEERDEFS_H__
