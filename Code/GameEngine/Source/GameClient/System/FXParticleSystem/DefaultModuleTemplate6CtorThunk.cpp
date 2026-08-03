@@ -1,52 +1,42 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: DefaultModuleTemplate (ledger $06 / N=7) ctor
+// Retail: shim construct then three vtbl stores at +0/+4/+8.
 
 namespace FXParticleSystem
 {
+
+class DefaultModuleTemplate7CtorShim
+{
+public:
+	void construct();
+};
+
+extern "C" char DefaultModuleTemplate6_vtbl0;
+extern "C" char DefaultModuleTemplate6_vtbl4;
+extern "C" char DefaultModuleTemplate6_vtbl8;
+
 template <int N>
 class DefaultModuleTemplate
 {
 public:
-    DefaultModuleTemplate();
+	DefaultModuleTemplate();
+
+private:
+	void *m_v0;
+	void *m_v4;
+	void *m_v8;
 };
 
+// MSVC mangles DefaultModuleTemplate<7> as @$06
 template <int N>
-__declspec(naked) DefaultModuleTemplate<N>::DefaultModuleTemplate()
+DefaultModuleTemplate<N>::DefaultModuleTemplate()
 {
-    __asm {
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 064h
-        _emit 07Ch
-        _emit 0A5h
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 01Ch
-        _emit 010h
-        _emit 011h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 004h
-        _emit 018h
-        _emit 010h
-        _emit 011h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 008h
-        _emit 004h
-        _emit 010h
-        _emit 011h
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
+	((DefaultModuleTemplate7CtorShim *)this)->construct();
+	m_v0 = &DefaultModuleTemplate6_vtbl0;
+	m_v4 = &DefaultModuleTemplate6_vtbl4;
+	m_v8 = &DefaultModuleTemplate6_vtbl8;
 }
 
-template class DefaultModuleTemplate<7>;
+template DefaultModuleTemplate<7>::DefaultModuleTemplate();
 }
