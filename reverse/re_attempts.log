@@ -1,0 +1,1 @@
+?OnStatusUpdate@DownloadManager@@UAEJH@Z	no-match	Retail RVA 0x00626ED2 is int3 padding, not a function entry; compiled source has a real SEH switch body, so the queue claim is stale or misanchored and no C++ edit is justified.
