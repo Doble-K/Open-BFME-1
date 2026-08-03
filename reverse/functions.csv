@@ -3242,7 +3242,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TerrainRoadType@@MAE@XZ,,0x00602190,373,Code/masm_dumps/1TerrainRoadType_MAE_XZ_00602190_cbaed676.asm,matched,certified packet 347 exact retail db recovery sha256 cbaed676ad1cf73c0e9adae3efabec8faaffcfa09553bc5e0c3551f081f37870
 ??1TerrainTracksRenderObjClass@@UAE@XZ,,0x00725F40,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp,matched,icf-owner=??1DistLODClass@@UAE@XZ
 ??1TerrainTracksRenderObjClassSystem@@QAE@XZ,,0x0072FDD0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp,matched,
-??1TextTypeTransition@@UAE@XZ,,0x005A0670,133,Code/masm_dumps/TextTypeTransition_destructor.asm,matched,Exact retail MASM; true RVA via vtable 0x110CCFC slot0 del-dtor 0x5A0A50; queue RVA 0x6F4C3C was W3DDisplayString pad/body
+??1TextTypeTransition@@UAE@XZ,,0x005A0670,133,Code/GameEngine/Source/Common/TextTypeTransitionDestructorThunk.cpp,matched,Exact retail MASM; true RVA via vtable 0x110CCFC slot0 del-dtor 0x5A0A50; queue RVA 0x6F4C3C was W3DDisplayString pad/body
 ??1TimeCodedBitChannelClass@@QAE@XZ,,0x00978320,28,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??1TimeCodedMotionChannelClass@@QAE@XZ,,0x00978180,24,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??1TintEnvelope@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
