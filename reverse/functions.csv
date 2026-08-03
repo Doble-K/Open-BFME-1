@@ -1458,7 +1458,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DevastateSpecialPowerModuleData@@QAE@XZ,,0x0025AC10,44,Code/GameEngine/Source/Common/RTS/DevastateSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0Dict@@QAE@ABV0@@Z,,0x000C8CF0,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0Dict@@QAE@H@Z,,0x00068550,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
-??0DieModuleData@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/GameLogic/Object/Behavior/DieModuleDataCtorThunk.cpp,matched,Exact 74B retail constructor extracted from target 0x00101D50; converted to an exact standalone C++ thunk
+??0DieModuleData@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/GameLogic/Object/Behavior/DieModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ DieModuleData ctor Snapshot+DieMuxData
 ??0DieModuleModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DisconnectManager@@QAE@XZ,,0x0066AF50,178,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ??0DiscreteCircle@@QAE@HHH@Z,,0x00069350,116,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
