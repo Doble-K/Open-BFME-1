@@ -4264,3 +4264,16 @@ DefaultModuleTemplate6_vtbl0,0x0111101C,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultModuleTemplate6_vtbl4,0x01111018,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultModuleTemplate6_vtbl8,0x01111004,DefaultModuleTemplate6 ctor vtbl anchor
 ?construct_from@DefaultModuleTemplate7CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000CC4D,DefaultModuleTemplate6 copy-ctor base shim
+??1WeaponModeSpecialPowerUpdateModuleDataBase@@UAE@XZ,0x0001BBE4,Open-BFME5 base dtor pin for WeaponModeSpecialPowerUpdateModuleData
+??1ArrowStormUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base dtor pin
+??1CommandSetUpgradeModuleDataBase@@UAE@XZ,0x0001B97D,Open-BFME5 base dtor pin
+??1DieModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
+??1GettingBuiltBehaviorModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
+??1HeroModeSpecialAbilityUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base dtor pin
+??1HordeUpdateModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
+??1ProductionUpdateModuleDataBase@@UAE@XZ,0x0003BD59,Open-BFME5 base dtor pin
+??1TransportContainModuleDataBase@@UAE@XZ,0x000376E1,Open-BFME5 base dtor pin
+??1UnitCrateCollideModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
+??1UpgradeModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
+??1W3DLaserDrawModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
+??1WeaponFireSpecialAbilityUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base dtor pin

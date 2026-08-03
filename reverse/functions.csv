@@ -2783,7 +2783,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ArchiveFileSystem@@UAE@XZ,,0x009CA550,140,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08; reached as the scalar dtor from slot 0 at 0x009CAA50
 ??1ArchivedDirectoryInfo@@QAE@XZ,,0x009CA4F0,89,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,destroys m_files then m_directories then releases m_directoryName
 ??1ArrowStormUpdate@@UAE@XZ,,0x00257940,106,Code/GameEngine/Source/Common/ArrowStormUpdateDestructorThunk.cpp,matched,Exact 106B @ 0x00257940; Exact retail MASM; instance factory->vtable dtor; del 0x257C70 ctor 0x2576E0 vt 0xCB37C0
-??1ArrowStormUpdateModuleData@@UAE@XZ,,0x00257650,79,Code/GameEngine/Source/Common/ArrowStormUpdateModuleDataDestructorThunk.cpp,matched,Exact 79B SEH dtor factory->vtable Open-BFME4
+??1ArrowStormUpdateModuleData@@UAE@XZ,,0x00257650,79,Code/GameEngine/Source/Common/ArrowStormUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1AsciiString@@QAE@XZ,0x0000D828,0x0005EE90,5,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,AsciiString destructor
 ??1AssaultTransportAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/GameEngine/Source/Common/AssaultTransportAIUpdateDestructorThunk.cpp,matched,Exact 2099B SEH dtor Open-BFME4
 ??1AssaultTransportAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/AssaultTransportAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME4
@@ -2792,7 +2792,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AudioEventRTS@@UAE@XZ,,0x0002671F,5,Code/GameEngine/Source/Common/AudioEventRTSDestructorThunk.cpp,matched,Focused C++ thunk for AudioEventRTS destructor
 ??1AutoAbilityBehavior@@UAE@XZ,,0x001ED6E0,116,Code/GameEngine/Source/Common/AutoAbilityBehaviorDestructorThunk.cpp,matched,Exact 116B @ 0x001ED6E0; Exact retail MASM; instance factory->vtable dtor; del 0x1ED970 ctor 0x1ED8A0 vt 0xCA1BC4
 ??1AutoAbilityBehaviorModuleData@@UAE@XZ,,0x001EDCA0,1944,Code/GameEngine/Source/Common/AutoAbilityBehaviorModuleDataDestructorThunk.cpp,matched,Exact 1944B SEH dtor Open-BFME5
-??1AutoDepositUpdateModuleData@@UAE@XZ,,0x00125960,67,Code/GameEngine/Source/GameLogic/Object/Update/AutoDepositUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
+??1AutoDepositUpdateModuleData@@UAE@XZ,,0x00125960,67,Code/GameEngine/Source/GameLogic/Object/Update/AutoDepositUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1AutoHealBehaviorModuleData@@UAE@XZ,,0x0012A910,67,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor member@8 pin 0x1B97D (PropagandaTower pattern)
 ??1AutoPickUpUpdate@@UAE@XZ,,0x00281F40,1490,Code/GameEngine/Source/Common/AutoPickUpUpdateDestructorThunk.cpp,matched,Exact 1490B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1AutoPickUpUpdateModuleData@@UAE@XZ,,0x00282A80,80,Code/GameEngine/Source/Common/AutoPickUpUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
@@ -2834,7 +2834,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CampaignManager@@QAE@XZ,,0x005BC4E0,146,Code/GameEngine/Source/Common/CampaignManagerDestructorThunk.cpp,matched,Exact 146B SEH dtor Open-BFME5
 ??1CashHackSpecialPowerModuleData@@UAE@XZ,,0x00258E20,120,Code/GameEngine/Source/Common/CashHackSpecialPowerModuleDataDestructorThunk.cpp,matched,Exact 120B ModuleData SEH dtor Open-BFME4
 ??1CastleBehavior@@UAE@XZ,,0x003728E0,433,Code/GameEngine/Source/Common/CastleBehaviorDestructorThunk.cpp,matched,Exact 433B @ 0x003728E0; Exact retail MASM; instance factory->vtable dtor; del 0x374EF0 ctor 0x376250 vt 0xCE9BFC
-??1CivilianSpawnCollideModuleData@@UAE@XZ,,0x002175C0,67,Code/GameEngine/Source/GameLogic/Object/Collide/CivilianSpawnCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
+??1CivilianSpawnCollideModuleData@@UAE@XZ,,0x002175C0,67,Code/GameEngine/Source/GameLogic/Object/Collide/CivilianSpawnCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1CivilianSpawnUpdate@@UAE@XZ,,0x0028A5A0,1025,Code/GameEngine/Source/Common/CivilianSpawnUpdateDestructorThunk.cpp,matched,Exact 1025B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1CivilianSpawnUpdateModuleData@@UAE@XZ,,0x0028A530,80,Code/GameEngine/Source/Common/CivilianSpawnUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1ClearanceTestingSlowDeathBehaviorModuleData@@UAE@XZ,,0x001F73C0,79,Code/GameEngine/Source/GameLogic/AI/ClearanceTestingSlowDeathBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -2846,7 +2846,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ControlBarScheme@@QAE@XZ,,0x004ADBD0,128,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ??1ControlBarSchemeAnimation@@QAE@XZ,,0x004ACDF0,12,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ??1ControlBarSchemeManager@@QAE@XZ,,0x004AE850,166,Code/GameEngine/Source/Common/ControlBarSchemeManagerDestructorThunk.cpp,matched,Exact 166B SEH dtor Open-BFME5
-??1ConvertToCarBombCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/Object/Collide/ConvertToCarBombCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member (PropagandaTower pattern)
+??1ConvertToCarBombCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/Object/Collide/ConvertToCarBombCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1Coord2D@@QAE@XZ,0x0003EAB8,0x0005BD90,1,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,empty destructor emits ret
 ??1Coord3D@@QAE@XZ,0x0001364C,0x0005BC40,1,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,empty destructor emits ret
 ??1CostModifierUpgrade@@UAE@XZ,,0x001F8970,139,Code/GameEngine/Source/Common/CostModifierUpgradeDestructorThunk.cpp,matched,Exact 139B SEH dtor factory->vtable Open-BFME4
@@ -2917,7 +2917,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ExperienceScalarUpgradeModuleData@@UAE@XZ,,0x002D51E0,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/ExperienceScalarUpgradeModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor member@8 pin 0x1B97D (PropagandaTower pattern)
 ??1ExperienceTracker@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameLogic/Object/ExperienceTracker.cpp,matched,
 ??1FXBoneInfo@@QAE@XZ,,0x0037E1A0,8,Code/GameEngine/Source/GameLogic/Object/Update/FXBoneInfoDestructor.cpp,matched,Open-BFME5 clean C++ FXBoneInfo dtor (AsciiString at +4)
-??1FadeAndDieOrnamentUpdateModuleData@@UAE@XZ,,0x00126E70,67,Code/GameEngine/Source/GameLogic/Object/Die/FadeAndDieOrnamentUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member (PropagandaTower pattern)
+??1FadeAndDieOrnamentUpdateModuleData@@UAE@XZ,,0x00126E70,67,Code/GameEngine/Source/GameLogic/Object/Die/FadeAndDieOrnamentUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1FastFixedAllocator@@QAE@XZ,,0x00B02720,26,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,Converted to an exact standalone C++ thunk
 ??1File@@UAE@XZ,,0x009CB8C0,133,Code/GameEngine/Source/Common/System/File.cpp,matched,scalar dtor reached from ??_GFile@@ at 0x009CB950; installs vtable 0x01143AF8
 ??1FileInfoStruct@MixFileCreator@@QAE@XZ,,0x005DBEA0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;C++ alias
@@ -2978,10 +2978,10 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1HTreeClass@@QAE@XZ,,0x00952790,42,Code/Libraries/Source/WWVegas/WW3D2/HTreeClass.cpp,matched,Open-BFME5 clean C++ HTreeClass dtor
 ??1HashTableClass@@QAE@XZ,,0x009DFFC0,28,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
 ??1HealContainModuleData@@UAE@XZ,,0x0028BA40,156,Code/GameEngine/Source/Common/HealContainModuleDataDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
-??1HealCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/HealCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member (PropagandaTower pattern)
+??1HealCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/HealCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1HeightMapRenderObjClass@@UAE@XZ,,0x006D33B0,116,Code/GameEngine/Source/Common/HeightMapRenderObjClassDestructorThunk.cpp,matched,Ghidra-corrected body via constructor vtables and deleting destructor
 ??1HemisphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D7520,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$03$E?CYLINDRICAL_EMISSION_VELOCITY_MODULE_KEY@FXParticleSystem@@3QBDB$E?CYLINDRICAL_EMISSION_VELOCITY_MODULE_NAME@2@3QBDBVCylindricalEmissionVelocityModule@2@VCylindricalEmissionVelocityModuleTemplate@2@V?$DefaultParticleModule@$03@2@V?$DefaultParticleModuleTemplate@$03@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
-??1HeroModeSpecialAbilityUpdateModuleData@@UAE@XZ,,0x0025FB80,79,Code/GameEngine/Source/GameLogic/Object/Update/HeroModeSpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+??1HeroModeSpecialAbilityUpdateModuleData@@UAE@XZ,,0x0025FB80,79,Code/GameEngine/Source/GameLogic/Object/Update/HeroModeSpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1HideShowSubObjInfo@ModelConditionInfo@@QAE@XZ,,0x0000466F,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/HideShowSubObjInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1HijackerUpdateModuleData@@UAE@XZ,,0x0006E320,95,Code/GameEngine/Source/Common/HijackerUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory→vtable dtor; del 0x6E2F0 ctor 0x6E2B0 vt 0xC75D24
 ??1HitReactionBehaviorModuleData@@UAE@XZ,,0x00291EB0,80,Code/GameEngine/Source/Common/HitReactionBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
@@ -3053,8 +3053,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ModelConditionUpgradeModuleData@@UAE@XZ,,0x002D6B20,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/ModelConditionUpgradeModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor member@8 pin 0x1B97D (PropagandaTower pattern)
 ??1Module@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/Thing/Module.cpp,matched,
 ??1ModuleTemplate@FXParticleSystem@@UAE@XZ,0x00015A14,0x0005C7D0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable
-??1MoneyCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/MoneyCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member (PropagandaTower pattern)
-??1MonsterDockUpdateModuleData@@UAE@XZ,,0x002CDD90,67,Code/GameEngine/Source/GameLogic/Object/Update/MonsterDockUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
+??1MoneyCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/MoneyCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
+??1MonsterDockUpdateModuleData@@UAE@XZ,,0x002CDD90,67,Code/GameEngine/Source/GameLogic/Object/Update/MonsterDockUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1MotionChannelClass@@QAE@XZ,,0x00978140,24,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??1MultiListObjectClass@@UAE@XZ,,0x009DC190,37,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ??1MultiPlayerLoadScreen@@,,0x0052C220,844,Code/masm_dumps/_cache___1MultiPlayerLoadScreen___52C220.asm,matched,cached-obj needle Open-BFME4+Grok
@@ -3079,7 +3079,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1OCLSpecialPowerModuleData@@UAE@XZ,,0x00263800,136,Code/GameEngine/Source/Common/OCLSpecialPowerModuleDataDestructorThunk.cpp,matched,Exact 136B @ 0x00263800; Exact retail MASM; factory->vtable dtor; del 0x2637D0 ctor 0x2631B0 vt 0xCB6180
 ??1OCLUpdateModuleData@@UAE@XZ,,0x00298B70,7,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ empty virtual dtor;object-symbol=??1OCLUpdateModuleData@@UAE@XZ
 ??1OathbreakersFadeAwayBehavior@@UAE@XZ,,0x001F1370,203,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1OathbreakersFadeAwayBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
+??1OathbreakersFadeAwayBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1ObjectCreationList@@QAE@XZ,,0x00072A40,14,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ??1ObjectCreationListStore@@UAE@XZ,,0x001DA720,207,Code/GameEngine/Source/Common/ObjectCreationListStoreDestructorThunk.cpp,matched,Certified retail MASM recovery packet 263
 ??1ObjectCreationUpgrade@@UAE@XZ,,0x00137E80,284,Code/GameEngine/Source/Common/ObjectCreationUpgradeDestructorThunk.cpp,matched,Exact 284B SEH dtor Open-BFME4
@@ -3142,7 +3142,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1RankInfoStore@@UAE@XZ,,0x003A0BA0,212,Code/GameEngine/Source/Common/RankInfoStoreDestructorThunk.cpp,matched,Certified packet 110; Ghidra entry and RankInfoStore deleting-destructor chain; retail SHA-256 bb0ca418f4cb4caee2d814dd70efae958c268784c3d47d1d703cfe9a99c8d3f4
 ??1RawFileClass@@UAE@XZ,,0x009E7080,123,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ??1RebuildHoleBehavior@@UAE@XZ,,0x001F8D10,141,Code/GameEngine/Source/Common/RebuildHoleBehaviorDestructorThunk.cpp,matched,Exact 141B SEH dtor Open-BFME4
-??1RefundDieModuleData@@UAE@XZ,,0x00125530,67,Code/GameEngine/Source/GameLogic/Object/Die/RefundDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
+??1RefundDieModuleData@@UAE@XZ,,0x00125530,67,Code/GameEngine/Source/GameLogic/Object/Die/RefundDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1Region2D@@QAE@XZ,0x000071DF,0x0005C310,1,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,empty destructor emits ret
 ??1Region3D@@QAE@XZ,0x00045746,0x0006B0C0,1,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,empty destructor emits ret
 ??1RegistryClass@@QAE@XZ,,0x009DC280,25,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
@@ -3164,9 +3164,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SegLineRendererClass@@QAE@XZ,,0x00960030,28,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,
 ??1SelectionTranslator@@UAE@XZ,,0x005B7BE0,73,Code/GameEngine/Source/GameClient/MessageStream/SelectionXlat.cpp,matched,
 ??1ShareExperienceBehavior@@UAE@XZ,,0x00205AC0,630,Code/GameEngine/Source/Common/ShareExperienceBehaviorDestructorThunk.cpp,matched,Exact 630B @ 0x00205AC0; Exact retail MASM; instance factory->vtable dtor; del 0x205AC0 ctor 0x205740 vt 0xCA5FC0
-??1ShareExperienceBehaviorModuleData@@UAE@XZ,,0x002059C0,67,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
+??1ShareExperienceBehaviorModuleData@@UAE@XZ,,0x002059C0,67,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1ShellMenuScheme@@QAE@XZ,,0x00580FB0,238,Code/GameEngine/Source/Common/ShellMenuSchemeDestructorThunk.cpp,matched,Exact 238B SEH dtor Open-BFME5
-??1ShroudCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/ShroudCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member (PropagandaTower pattern)
+??1ShroudCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/ShroudCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1SidesInfo@@QAE@XZ,,0x0019AF30,148,Code/GameEngine/Source/Common/SidesInfoDestructorThunk.cpp,matched,
 ??1SidesList@@UAE@XZ,,0x0019E640,290,Code/GameEngine/Source/Common/SidesListDestructorThunk.cpp,matched,Certified packet id 111 exact retail MASM SHA256 8699b70f447fd057fdb39875e2e20d185e658f90b877d8bebd4974b9aaee0f0e
 ??1SiegeDeployHordeSpecialPower@@UAE@XZ,,0x00265ED0,651,Code/GameEngine/Source/Common/SiegeDeployHordeSpecialPowerDestructorThunk.cpp,matched,Exact 651B SEH dtor factory->vtable Open-BFME4
@@ -3180,7 +3180,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SlaughterHordeContain@@UAE@XZ,,0x0024EB00,329,Code/GameEngine/Source/Common/SlaughterHordeContainDestructorThunk.cpp,matched,Exact 329B; factory ownership Open-BFME4
 ??1SlaughterHordeContainModuleData@@UAE@XZ,,0x0022B220,89,Code/GameEngine/Source/Common/SlaughterHordeContainModuleDataDestructorThunk.cpp,matched,Exact 89B SEH dtor Open-BFME5
 ??1SlaveWatcherBehavior@@UAE@XZ,,0x00207580,142,Code/GameEngine/Source/Common/SlaveWatcherBehaviorDestructorThunk.cpp,matched,Exact 142B @ 0x00207580; Exact retail MASM; instance factory->vtable dtor; del 0x2076E0 ctor 0x207300 vt 0xCA64DC
-??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
+??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1SlavedUpdate@@UAE@XZ,,0x00113C60,131,Code/GameEngine/Source/Common/SlavedUpdateDestructorThunk.cpp,matched,Exact 131B; factory ownership Open-BFME4
 ??1SlavedUpdateModuleData@@UAE@XZ,,0x00126980,80,Code/GameEngine/Source/Common/SlavedUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two AsciiString members + inlined base vftable store) converted from __emit thunk
 ??1SlowDeathBehaviorModuleData@@UAE@XZ,,0x002095F0,221,Code/GameEngine/Source/Common/SlowDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 221B SEH dtor Open-BFME5
@@ -3191,13 +3191,13 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Snapshot@@UAE@XZ,0x00001C80,0x0005C520,7,Code/GameEngine/Source/Common/System/Snapshot.cpp,matched,sets vtable pointer
 ??1SpawnBehavior@@UAE@XZ,,0x0020B180,207,Code/GameEngine/Source/Common/SpawnBehaviorDestructorThunk.cpp,matched,Exact 207B @ 0x0020B180; Exact retail MASM; instance factory->vtable dtor; del 0x20C020 ctor 0x20AE30 vt 0xCA6CCC
 ??1SpawnBehaviorModuleData@@UAE@XZ,,0x0012AA50,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
+??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1SpecialAbilityUpdate@@UAE@XZ,,0x002AA910,153,Code/GameEngine/Source/Common/SpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 153B SEH dtor Open-BFME5
 ??1SpecialAbilityUpdateModuleData@@UAE@XZ,,0x002A5CC0,225,Code/GameEngine/Source/Common/SpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Exact 225B SEH dtor Open-BFME5
 ??1SpecialDisguiseUpdate@@UAE@XZ,,0x00137E80,284,Code/GameEngine/Source/Common/SpecialDisguiseUpdateDestructorThunk.cpp,matched,Exact 284B SEH dtor Open-BFME4
 ??1SpecialDisguiseUpdateModuleData@@UAE@XZ,,0x00267A90,95,Code/GameEngine/Source/Common/SpecialDisguiseUpdateModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
 ??1SpecialEnemySenseUpdate@@UAE@XZ,,0x002AB0F0,543,Code/GameEngine/Source/Common/SpecialEnemySenseUpdateDestructorThunk.cpp,matched,Exact 543B @ 0x002AB0F0; Exact retail MASM; instance factory->vtable dtor; del 0x2AB0F0 ctor 0x2AAF30 vt 0xCC3880
-??1SpecialEnemySenseUpdateModuleData@@UAE@XZ,,0x00125890,67,Code/GameEngine/Source/GameLogic/Object/Update/SpecialEnemySenseUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
+??1SpecialEnemySenseUpdateModuleData@@UAE@XZ,,0x00125890,67,Code/GameEngine/Source/GameLogic/Object/Update/SpecialEnemySenseUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1SpecialPowerCompletionDie@@UAE@XZ,,0x00255FD0,124,Code/GameEngine/Source/Common/SpecialPowerCompletionDieDestructorThunk.cpp,matched,Exact 124B SEH dtor factory->vtable Open-BFME4
 ??1SpecialPowerModule@@MAE@XZ,,0x00268F30,232,Code/GameEngine/Source/Common/SpecialPowerModuleDestructorThunk.cpp,matched,Exact 232B ICF alias; true body 0x268F30 not queue pad 0x268F28; ctor-paired vtables 0x10B7C3C
 ??1SpecialPowerStore@@UAE@XZ,,0x000EBD30,219,Code/GameEngine/Source/Common/SpecialPowerStoreDestructorThunk.cpp,matched,Certified packet 329 vtable destructor chain and retail boundary hash dd831bc42554b7a6cbdabdd5b01b386808e324afcd5c363566dbaaf80ec53eaa
@@ -3248,12 +3248,12 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TintEnvelope@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
 ??1TooltipUpgrade@@UAE@XZ,,0x00418B50,142,Code/GameEngine/Source/Common/TooltipUpgradeDestructorThunk.cpp,matched,Exact 142B SEH dtor factory->vtable Open-BFME4
 ??1TooltipUpgradeModuleData@@UAE@XZ,,0x0012BBB0,96,Code/GameEngine/Source/Common/TooltipUpgradeModuleDataDestructorThunk.cpp,matched,Exact 96B SEH dtor Open-BFME5
-??1ToppleUpdateModuleData@@UAE@XZ,,0x002B15B0,67,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member (PropagandaTower pattern)
+??1ToppleUpdateModuleData@@UAE@XZ,,0x002B15B0,67,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1TransitionDamageFXModuleData@@UAE@XZ,,0x00253500,197,Code/GameEngine/Source/Common/TransitionDamageFXModuleDataDestructorThunk.cpp,matched,Exact 197B SEH dtor Open-BFME5
 ??1TranslatorData@MessageStream@@QAE@XZ,,0x0008A260,15,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??1TransportAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/GameEngine/Source/Common/TransportAIUpdateDestructorThunk.cpp,matched,Exact 2099B SEH dtor Open-BFME4
 ??1TransportAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/TransportAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
-??1TransportContainModuleData@@UAE@XZ,,0x0021D560,79,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+??1TransportContainModuleData@@UAE@XZ,,0x0021D560,79,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1TunnelContainModuleData@@UAE@XZ,,0x0024B660,95,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1TurretAI@@MAE@XZ,,0x0018D390,166,Code/GameEngine/Source/Common/TurretAIDestructorThunk.cpp,matched,Exact 166B SEH dtor Open-BFME5
 ??1UDP@@QAE@XZ,,0x00A3C88D,14,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
@@ -3294,9 +3294,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Weapon@@MAE@XZ,,0x001E5490,111,Code/GameEngine/Source/Common/WeaponDestructorThunk.cpp,matched,Exact 111B @ 0x001E5490; allocateNewWeapon->ctor vtbl 0x10A13F4 slot0 scalar-del 0x1E6900->body; m_scatterTargets@+0x40; drift 0x9F2801 was TeamFactory
 ??1WeaponChangeSpecialPowerModuleModuleData@@UAE@XZ,,0x0026CF10,95,Code/GameEngine/Source/Common/WeaponChangeSpecialPowerModuleModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
 ??1WeaponFireSpecialAbilityUpdate@@UAE@XZ,,0x0026D320,121,Code/GameEngine/Source/Common/WeaponFireSpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 121B @ 0x0026D320; Exact retail MASM; instance factory->vtable dtor; del 0x26D490 ctor 0x26D670 vt 0xCB8D18
-??1WeaponFireSpecialAbilityUpdateModuleData@@UAE@XZ,,0x0026D7B0,79,Code/GameEngine/Source/GameLogic/Object/Update/WeaponFireSpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+??1WeaponFireSpecialAbilityUpdateModuleData@@UAE@XZ,,0x0026D7B0,79,Code/GameEngine/Source/GameLogic/Object/Update/WeaponFireSpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1WeaponModeSpecialPowerUpdate@@UAE@XZ,,0x0026A820,156,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
-??1WeaponModeSpecialPowerUpdateModuleData@@UAE@XZ,,0x002B2D70,79,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateModuleDataDestructorThunk.cpp,matched,Exact 79B SEH dtor Open-BFME5
+??1WeaponModeSpecialPowerUpdateModuleData@@UAE@XZ,,0x002B2D70,79,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1WeaponSet@@QAE@XZ,,0x001EAD40,95,Code/GameEngine/Source/Common/WeaponSetDestructorThunk.cpp,matched,Exact 95B @ 0x1EAD40; scalar-dtor/vtable/4-slot weapons prove WeaponSet; queue 0x9F27F7 was PartitionManager pad
 ??1WeaponSetSpecialAbilityUpdate@@UAE@XZ,,0x002A9850,2403,Code/GameEngine/Source/Common/WeaponSetSpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 2403B SEH dtor factory->vtable Open-BFME4
 ??1WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00072A40,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
