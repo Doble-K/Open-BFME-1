@@ -4482,3 +4482,9 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
+??0GameSpyPeerMessageQueueInterface@@QAE@XZ,0x0000A1B9,createNewMessageQueue ctor call; ILT thunk for body 0x0064D650
+
+??0SiegeAIUpdateModuleData@@QAE@XZ,0x00010C80,SiegeAIUpdate friend_newModuleData ModuleData ctor ILT
+??1ModuleDataListStandIn@@QAE@XZ,0x001468A0,Open-BFME5 list-style sentinel container dtor from AnimalAIUpdate-family ModuleData dtor call sites
+??1AttributeHandleStandIn@@QAE@XZ,0x0039D550,Open-BFME5 handle-release dtor (global-pool index) from AttributeModifierAuraUpdateModuleData dtor call site
+??1AttributeModifierStandIn@@QAE@XZ,0x00129C80,Open-BFME5 nested attribute-modifier struct dtor from AttributeModifierAuraUpdateModuleData dtor call site
