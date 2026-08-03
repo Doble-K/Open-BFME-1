@@ -2335,7 +2335,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TooltipUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D93E0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/TooltipUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
 ??0TooltipUpgradeModuleData@@QAE@XZ,,0x0012BAE0,116,Code/GameEngine/Source/GameLogic/Object/Behavior/TooltipUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 116B ModuleData constructor
 ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B1060,187,Code/masm_dumps/ToppleUpdate_constructor.asm,matched,Exact 187B @ 0x002B1060; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11BB50
-??0ToppleUpdateModuleData@@QAE@XZ,,0x002B13A0,123,Code/masm_dumps/ToppleUpdateModuleData_constructor.asm,matched,Exact 123B @ 0x002B13A0; Exact retail MASM ModuleData ctor; unique factory 0x11BBD0
+??0ToppleUpdateModuleData@@QAE@XZ,,0x002B13A0,123,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataCtorThunk.cpp,matched,Exact 123B @ 0x002B13A0; Exact retail MASM ModuleData ctor; unique factory 0x11BBD0; converted to an exact standalone C++ thunk
 ??0TransitionDamageFX@@,,0x00251CF0,374,Code/masm_dumps/_sa7___0TransitionDamageFX___251CF0.asm,matched,Exact 374B Open-BFME4
 ??0TransitionDamageFXModuleData@@QAE@XZ,,0x002532B0,433,Code/masm_dumps/TransitionDamageFXModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x124770
 ??0TransitionInfo@State@@QAE@P6A_NPAV1@PAX@ZI1PBD@Z,,0x0009FF40,25,Code/GameEngine/Source/Common/StateMachine.cpp,matched,
@@ -5247,7 +5247,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GTimeCodedBitChannelClass@@QAEPAXI@Z,,0x0095B050,30,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ??_GTimeCodedMotionChannelClass@@QAEPAXI@Z,,0x0095B010,30,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ??_GTintEnvelope@@MAEPAXI@Z,,0x001B0E60,30,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,icf-owner=??_GUpgrade@@MAEPAXI@Z
-??_GToppleUpdateModuleData@@UAEPAXI@Z,,0x002B1580,30,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdate.cpp,matched,
+??_GToppleUpdateModuleData@@UAEPAXI@Z,,0x002B1580,30,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataDeletingDtorThunk.cpp,matched,Compiler-owned deleting destructor paired with the retail scalar destructor
 ??_GTracerFXNugget@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GTransition@@UAEPAXI@Z,,0x008E2260,31,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,object-symbol=??_GCullSystemClass@@UAEPAXI@Z;C++ alias
 ??_GTransitionDamageFXModuleData@@UAEPAXI@Z,,0x002534D0,30,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,

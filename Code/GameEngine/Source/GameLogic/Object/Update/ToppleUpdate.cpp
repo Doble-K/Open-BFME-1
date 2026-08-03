@@ -56,24 +56,8 @@ static const Real ANGULAR_LIMIT = PI/2 - PI/64;
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0ToppleUpdateModuleData@@QAE@XZ present-unmatched
-ToppleUpdateModuleData::ToppleUpdateModuleData()
-{
-	const Real START_VELOCITY_PERCENT = 0.2f;
-	const Real START_ACCEL_PERCENT = 0.01f;
-	const Real VELOCITY_BOUNCE_PERCENT = 0.3f;			// multiply the velocity by this when you bounce
-	m_toppleFX = NULL;
-	m_bounceFX = NULL;
-	m_stumpName.clear();
-	m_killWhenToppled = true;
-	m_killWhenStartToppled = false;
-	m_killStumpWhenToppled = false;
-	m_toppleLeftOrRightOnly = false;
-	m_reorientToppledRubble = false;
-	m_initialVelocityPercent = START_VELOCITY_PERCENT;
-	m_initialAccelPercent = START_ACCEL_PERCENT;
-	m_bounceVelocityPercent = VELOCITY_BOUNCE_PERCENT;
-}
+// ??0ToppleUpdateModuleData@@ is implemented by the exact retail thunk in
+// ToppleUpdateModuleDataCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
