@@ -2,32 +2,28 @@
 
 class StringClass
 {
-    void Store_Length(int);
+	struct HEADER
+	{
+		int allocated_length;
+		int length;
+	};
+
+	char *m_Buffer;
+	static char *m_EmptyString;
+
+	void Store_Length(int length);
+
+	HEADER *Get_Header(void) const
+	{
+		return reinterpret_cast<HEADER *>(((char *)m_Buffer) - sizeof(StringClass::HEADER));
+	}
 };
 
 // ?Store_Length@StringClass@@AAEXH@Z
-__declspec(naked) void StringClass::Store_Length(int)
+void StringClass::Store_Length(int length)
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x01;
-        __emit 0x3b;
-        __emit 0x05;
-        __emit 0x24;
-        __emit 0x91;
-        __emit 0x2d;
-        __emit 0x01;
-        __emit 0x74;
-        __emit 0x07;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0xfc;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+	if (m_Buffer != m_EmptyString) {
+		HEADER *header = Get_Header();
+		header->length = length;
+	}
 }
