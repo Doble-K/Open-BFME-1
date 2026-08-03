@@ -179,6 +179,8 @@ static Bool locoSetMatches(LocomotorSurfaceTypeMask lstm, UnsignedInt surfaceBit
 
 // ------------------------------------------------------------------------
 
+// Moved to TeamFactoryCtorThunk.cpp so the exact retail body is emitted standalone.
+#if 0
 // ------------------------------------------------------------------------
 TeamFactory::TeamFactory()
 {
@@ -187,6 +189,7 @@ TeamFactory::TeamFactory()
 	m_uniqueTeamID = TEAM_ID_INVALID;
 
 }
+#endif
 
 // ------------------------------------------------------------------------
 // ??1TeamFactory@@UAE@XZ present-unmatched
