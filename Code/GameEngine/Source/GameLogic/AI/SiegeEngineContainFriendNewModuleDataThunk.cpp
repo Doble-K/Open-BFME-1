@@ -1,127 +1,23 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+﻿// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: SiegeEngineContain::friend_newModuleData factory
 
 class INI;
 class ModuleData;
-
-class SiegeEngineContain
-{
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+class SiegeEngineContainModuleData {
 public:
-    static ModuleData *friend_newModuleData(INI *);
+SiegeEngineContainModuleData();
+virtual ~SiegeEngineContainModuleData();
+private:
+unsigned char m_pad[0x220];
 };
-
+class INI { public: void initFromINI(void *what, const void *parseTable); };
+extern "C" char SiegeEngineContainFieldParse;
+class SiegeEngineContain { public: static ModuleData *friend_newModuleData(INI *ini); };
 // ?friend_newModuleData@SiegeEngineContain@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *SiegeEngineContain::friend_newModuleData(INI *)
-{
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 02Bh
-        _emit 0E7h
-        _emit 0FFh
-        _emit 000h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 056h
-        _emit 068h
-        _emit 024h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 0E8h
-        _emit 03Fh
-        _emit 0C2h
-        _emit 076h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 089h
-        _emit 044h
-        _emit 024h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 074h
-        _emit 00Bh
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 04Ah
-        _emit 073h
-        _emit 0F2h
-        _emit 0FFh
-        _emit 08Bh
-        _emit 0F0h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0F6h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 018h
-        _emit 085h
-        _emit 0C9h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 074h
-        _emit 00Bh
-        _emit 068h
-        _emit 020h
-        _emit 01Ah
-        _emit 043h
-        _emit 000h
-        _emit 056h
-        _emit 0E8h
-        _emit 004h
-        _emit 0C4h
-        _emit 073h
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
+ModuleData *SiegeEngineContain::friend_newModuleData(INI *ini) {
+SiegeEngineContainModuleData *data = new SiegeEngineContainModuleData;
+if (ini) ini->initFromINI(data, &SiegeEngineContainFieldParse);
+return (ModuleData *)data;
 }

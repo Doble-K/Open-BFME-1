@@ -830,6 +830,7 @@ name,address,notes
 ??0HiveStructureBodyModuleData@@QAE@XZ,0x0002AE6E,pinharvest x1 (thunk)
 ??0HiveStructureBodyModuleData@@QAE@XZ,0x000331A9,pinharvest x1 (thunk)
 ??0HordeGarrisonContainModuleData@@QAE@XZ,0x0000DF7B,HordeGarrisonContain ModuleData ctor
+??0SiegeEngineContainModuleData@@QAE@XZ,0x0003D055,SiegeEngineContain ModuleData ctor
 ??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00037619,derived-ICF
 ??0HordeUpdateModuleData@@QAE@XZ,0x00014EA2,pinharvest x1 (thunk)
 ??0HordeUpdateModuleData@@QAE@XZ,0x0001BE41,pinharvest x1 (thunk)
