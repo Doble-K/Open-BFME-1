@@ -23207,3 +23207,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??0RenderObjectDrawModule@FXParticleSystem@@QAE@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0001C021,Open-BFME5 pin
 ??1LGA_MemberObj@@QAE@XZ,0x000181C9,Open-BFME5 pin
 ?remove@LGA_Global@@QAEXPAPAX@Z,0x00025C34,Open-BFME5 pin
+?bind@BFX_Member@@QAEHPAVMemoryPool@@@Z,0x0002AE23,Open-BFME5 pin

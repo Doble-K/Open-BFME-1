@@ -1,168 +1,59 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift BoneFXDamage::onObjectCreated __emit thunk to clean C++.
+// Function-static MemoryPool from the factory (guard byte + static store),
+// a bind call on the member at +0x08, and a throw of a variadic exception
+// object on failure.
 
-class __declspec(novtable) BoneFXDamage {
+class MemoryPool;
+
+class MemoryPoolFactory
+{
+public:
+    MemoryPool *findMemoryPool(const char *name);
+};
+
+extern MemoryPoolFactory *TheMemoryPoolFactory;
+
+class BFX_Member
+{
+public:
+    int bind(MemoryPool *pool);
+};
+
+class INIException
+{
+public:
+    INIException(int code, const char *message, ...);
+    INIException(const INIException &that);
+
+private:
+    int m_code;
+    int m_line;
+};
+
+class BFX_RootBase
+{
+public:
+    virtual void onObjectCreated();
+
+private:
+    unsigned int m_f4;
+};
+
+class BoneFXDamage : public BFX_RootBase
+{
 protected:
-	virtual void onObjectCreated();
+    virtual void onObjectCreated();
+
+private:
+    BFX_Member *m_member;
 };
 
 // ?onObjectCreated@BoneFXDamage@@MAEXXZ
-__declspec(naked) void BoneFXDamage::onObjectCreated()
+void BoneFXDamage::onObjectCreated()
 {
-	__asm {
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x8e
-		__emit 0xe6
-		__emit 0x00
-		__emit 0x01
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xec
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x8a
-		__emit 0x0d
-		__emit 0xc8
-		__emit 0xfb
-		__emit 0x2e
-		__emit 0x01
-		__emit 0xb8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x84
-		__emit 0xc8
-		__emit 0x75
-		__emit 0x2b
-		__emit 0x09
-		__emit 0x05
-		__emit 0xc8
-		__emit 0xfb
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x00
-		__emit 0xd6
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x68
-		__emit 0x24
-		__emit 0x01
-		__emit 0x09
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x0f
-		__emit 0xa5
-		__emit 0xde
-		__emit 0xff
-		__emit 0xa3
-		__emit 0xc4
-		__emit 0xfb
-		__emit 0x2e
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xa1
-		__emit 0xc4
-		__emit 0xfb
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x08
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x40
-		__emit 0xa5
-		__emit 0xdd
-		__emit 0xff
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x5e
-		__emit 0x75
-		__emit 0x23
-		__emit 0x68
-		__emit 0xe4
-		__emit 0x1f
-		__emit 0x0b
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x04
-		__emit 0x6a
-		__emit 0x03
-		__emit 0x51
-		__emit 0xe8
-		__emit 0x07
-		__emit 0xfd
-		__emit 0x5f
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0x68
-		__emit 0x30
-		__emit 0xfc
-		__emit 0x1d
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x54
-		__emit 0x24
-		__emit 0x04
-		__emit 0x52
-		__emit 0xe8
-		__emit 0xf5
-		__emit 0x63
-		__emit 0x7a
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x14
-		__emit 0xc3
-	}
+    static MemoryPool *pool = TheMemoryPoolFactory->findMemoryPool("BoneFXUpdate");
+    if (!m_member->bind(pool)) {
+        throw INIException(3, "BoneFXDamage requires BoneFXUpdate");
+    }
 }
