@@ -9814,7 +9814,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doMip@TileData@@KAXPAEH0@Z,,0x006D6660,454,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
 ?doMoveCameraAlongWaypointPath@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002F8FD0,563,Code/masm_dumps/_sa13__doMoveCameraAlongWaypointPath_ScriptActions__IAEXABVAsciiString__MMMM_2F8FD0.asm,matched,multi-xref Open-BFME4+Grok  already exists. Failed Create.
 ?doMoveCameraTo@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002F24F0,186,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doMoveCameraTo_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?doMoveUnitTowardsNearest@ScriptActions@@IAEXABVAsciiString@@0V2@@Z,,0x00302D70,314,Code/masm_dumps/ScriptActions_doMoveUnitTowardsNearest.asm,matched,reviewed packet 19 sealed RVA size hash and executeAction thunk identity
+?doMoveUnitTowardsNearest@ScriptActions@@IAEXABVAsciiString@@0V2@@Z,,0x00302D70,314,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doMoveUnitTowardsNearest_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doNamedEmoticon@ScriptActions@@IAEXABVAsciiString@@0M@Z,,0x002F04F0,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionsDoNamedEmoticonThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 66-byte retail method
 ?doNamedFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002EE7C0,124,Code/GameEngine/Source/Common/ScriptActions_doNamedFlash_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0001FC3F,5,Code/Libraries/Source/WWVegas/WWLib/ScriptControlTooltipThunks.cpp,matched,Focused C++ thunk for ScriptEngine::doNamedMapReveal
@@ -9825,8 +9825,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doOverrideHulkLifetime@ScriptActions@@IAEXM@Z,,0x002F0640,65,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,ghidra+string-adjacent ScriptActions cluster; GameLogic+0x98
 ?doPhaseStuff@SlowDeathBehavior@@IAEXW4SlowDeathPhaseType@@@Z,,0x002080B0,504,Code/masm_dumps/SlowDeathBehavior_doPhaseStuff.asm,matched,Exact 504B MASM; true body 0x2080B0 via beginSlowDeath@0x20A000 push0+call thunk 0x3BD0E and update push1/2; queue 0x20A315 is INSIDE update SEH body; BFME SEH+4 phase effect vecs block ZH 224B C++
 ?doPing@PingThreadClass@@AAEHIH@Z,,0x0065E570,272,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
-?doPlaySoundEffect@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F22A0,266,Code/masm_dumps/ScriptActions_doPlaySoundEffect.asm,matched,
-?doPlaySoundEffectAt@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F2120,306,Code/masm_dumps/ScriptActions_doPlaySoundEffectAt.asm,matched,Ghidra-bound exact retail body
+?doPlaySoundEffect@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F22A0,266,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doPlaySoundEffect_Thunk.cpp,matched,Open-BFME5 MASM lift
+?doPlaySoundEffectAt@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F2120,306,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doPlaySoundEffectAt_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doPlayerGrantScience@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F00C0,91,Code/GameEngine/Source/Common/ScriptActions_doPlayerGrantScience_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doPlayerPurchaseScience@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F0140,91,Code/GameEngine/Source/Common/ScriptActions_doPlayerPurchaseScience_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doPlayerSetOverrideRelationToTeam@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F84C0,102,Code/GameEngine/Source/Common/ScriptActions_doPlayerSetOverrideRelationToTeam_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -9885,7 +9885,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doUnitGarrisonSpecificBuilding@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x00302570,146,Code/GameEngine/Source/Common/ScriptActions_doUnitGarrisonSpecificBuilding_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doUnitReceiveUpgrade@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002FE070,117,Code/GameEngine/Source/Common/ScriptActions_doUnitReceiveUpgrade_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doUpgradesAndSkills@AIPlayer@@MAEXXZ,,0x001628F0,740,Code/masm_dumps/_sa__doUpgradesAndSkills_AIPlayer__MAEXXZ_1628F0.asm,matched,Exact 740B string-anchor purchases from SkillSet; true body @0x1628F0 (queue 0x62E63 int3 pad); AIPlayer layout blocks C++
-?doVictory@ScriptActions@@IAEXXZ,,0x002F1C10,290,Code/masm_dumps/ScriptActions_doVictory.asm,matched,
+?doVictory@ScriptActions@@IAEXXZ,,0x002F1C10,290,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doVictory_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doWeather@ScriptActions@@IAEX_N@Z,,0x002EF670,11,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,tail-call TheSnowManager->setVisible
 ?doZoomCamera@ScriptActions@@IAEXMMMM@Z,,0x002EDC20,74,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,true body 0x2EDC20 (drift 0x9DE809 mid-insn); View vtable+0xe8 force-fit
 ?do_encrypt@@YAPADPAD@Z,,0x00104760,278,Code/GameEngine/Source/Common/System/encrypt.cpp,matched,
