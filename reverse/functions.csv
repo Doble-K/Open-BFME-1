@@ -4084,8 +4084,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4?$SimpleVecClass@M@@QAEAAV0@ABV0@@Z,,0x000C91A0,21,Code/Libraries/Source/WWVegas/WW3D2/streak.cpp,matched,
 ??4?$SimpleVecClass@VVector3@@@@QAEAAV0@ABV0@@Z,,0x00605130,21,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ??4?$SimpleVecClass@VVector4@@@@QAEAAV0@ABV0@@Z,,0x000C91A0,21,Code/Libraries/Source/WWVegas/WW3D2/streak.cpp,matched,
-??4?$StringBase@D@@QAEAAV0@ABV0@@Z,0x008881B0,0x8881b0,19,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
-??4?$StringBase@G@@QAEAAV0@ABV0@@Z,0x00888A90,0x888a90,19,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
+??4?$StringBase@D@@QAEAAV0@ABV0@@Z,0x008881B0,0x8881b0,19,Code/Libraries/Source/WWVegas/WWLib/StringBaseAssignThunk.cpp,matched,Open-BFME5 clean C++ set()+return *this
+??4?$StringBase@G@@QAEAAV0@ABV0@@Z,0x00888A90,0x888a90,19,Code/Libraries/Source/WWVegas/WWLib/StringBaseAssignThunk.cpp,matched,Open-BFME5 clean C++ set()+return *this
 ??4?$VectorClass@H@@QAEAAV0@ABV0@@Z,,0x0092F810,249,Code/masm_dumps/_icf3___4__VectorClass_H__QAEAAV0_ABV0__Z_92F810.asm,matched,ICF Open-BFME4+Grok
 ??4?$VectorClass@PAVRender2DClass@@@@QAEAAV0@ABV0@@Z,,0x0092F810,249,Code/masm_dumps/_icf3___4__VectorClass_PAVRender2DClass____QAEAAV0_ABV0__Z_92F810.asm,matched,ICF Open-BFME4+Grok
 ??4?$VectorClass@U_ENUM_VALUE@EnumParameterClass@@@@QAEAAV0@ABV0@@Z,,0x0092F810,249,Code/masm_dumps/_icf3___4__VectorClass_U_ENUM_VALUE_EnumParameterClass____QAEAAV0_ABV0__Z_92F810.asm,matched,ICF Open-BFME4+Grok

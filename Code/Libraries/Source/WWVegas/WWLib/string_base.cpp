@@ -83,56 +83,6 @@ void StringBase<T>::validate() const
 {
 }
 
-__declspec(naked) StringBase<char> &StringBase<char>::operator=(const StringBase<char> &src)
-{
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0xd3
-        __emit 0xfa
-        __emit 0xff
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
-}
-
-__declspec(naked) StringBase<wchar_t> &StringBase<wchar_t>::operator=(const StringBase<wchar_t> &src)
-{
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xe8
-        __emit 0x93
-        __emit 0xfa
-        __emit 0xff
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
-}
-
 __declspec(naked) int StringBase<char>::compare(const char *str) const
 {
     __asm {
