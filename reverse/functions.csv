@@ -3141,7 +3141,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Radar@@UAE@XZ,,0x00107620,118,Code/GameEngine/Source/Common/RadarDestructorThunk.cpp,matched,Exact retail MASM; dual-vtable wrapper chain proves ownership; preserves BFME vector-destructor machinery absent from ZH layout
 ??1RadarObject@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/System/Radar.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
 ??1RadiusDecalUpdate@@UAE@XZ,,0x002A04E0,132,Code/GameEngine/Source/Common/RadiusDecalUpdateDestructorThunk.cpp,matched,Exact 132B @ 0x002A04E0; Exact retail MASM; instance factory->vtable dtor; del 0x2A0720 ctor 0x2A0640 vt 0xCC1654
-??1RankInfo@@MAE@XZ,,0x003A0AE0,146,Code/masm_dumps/dtor_RankInfo_MAEXXZ_003A0AE0_b3880e47.asm,matched,Certified packet 122 sealed SHA256 b3880e47d91aeecf7c79afd12d5ab7bab4e3d06b82aab0dd37db6a1045eca1ea
+??1RankInfo@@MAE@XZ,,0x003A0AE0,146,Code/GameEngine/Source/Common/RankInfoDestructorThunk.cpp,matched,Exact 146B SEH dtor Open-BFME5
 ??1RankInfoStore@@UAE@XZ,,0x003A0BA0,212,Code/masm_dumps/RankInfoStore_destructor.asm,matched,Certified packet 110; Ghidra entry and RankInfoStore deleting-destructor chain; retail SHA-256 bb0ca418f4cb4caee2d814dd70efae958c268784c3d47d1d703cfe9a99c8d3f4
 ??1RawFileClass@@UAE@XZ,,0x009E7080,123,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ??1RebuildHoleBehavior@@UAE@XZ,,0x001F8D10,141,Code/GameEngine/Source/Common/RebuildHoleBehaviorDestructorThunk.cpp,matched,Exact 141B SEH dtor Open-BFME4
@@ -3212,13 +3212,13 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SpecialPowerCompletionDie@@UAE@XZ,,0x00255FD0,124,Code/GameEngine/Source/Common/SpecialPowerCompletionDieDestructorThunk.cpp,matched,Exact 124B SEH dtor factory->vtable Open-BFME4
 ??1SpecialPowerModule@@MAE@XZ,,0x00268F30,232,Code/masm_dumps/SpecialPowerModule_destructor.asm,matched,Exact 232B ICF alias; true body 0x268F30 not queue pad 0x268F28; ctor-paired vtables 0x10B7C3C
 ??1SpecialPowerStore@@UAE@XZ,,0x000EBD30,219,Code/masm_dumps/SpecialPowerStore_destructor.asm,matched,Certified packet 329 vtable destructor chain and retail boundary hash dd831bc42554b7a6cbdabdd5b01b386808e324afcd5c363566dbaaf80ec53eaa
-??1SpecialPowerTemplate@@MAE@XZ,,0x000EB5D0,146,Code/masm_dumps/dtor_SpecialPowerTemplate_MAE_XZ_000EB5D0_9e3fc815.asm,matched,Certified packet 148 exact retail db recovery sha256 9e3fc8158b09084c7c2e58034859a7cdbc1cd405dd5d54a24ea1a64f212ffbf6
+??1SpecialPowerTemplate@@MAE@XZ,,0x000EB5D0,146,Code/GameEngine/Source/Common/SpecialPowerTemplateDestructorThunk.cpp,matched,Exact 146B SEH dtor Open-BFME5
 ??1SphereEmissionVolumeInfo@FXParticleSystem@@UAE@XZ,0x00028E9D,0x005D6140,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,resets vtable pointer
 ??1SphereEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D6280,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/SphereEmissionVolumeModuleTemplateDestructorThunk.cpp,matched,MASM exact retail dump
 ??1SphericalEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x0001BFDB,0x005D71D0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
 ??1SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D7380,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/SphericalEmissionVelocityModuleTemplateDestructorThunk.cpp,matched,MASM exact retail dump
 ??1SpyVisionUpdateModuleData@@UAE@XZ,,0x003780A0,158,Code/GameEngine/Source/GameLogic/Object/Update/SpyVisionUpdateModuleDataDtorThunk.cpp,matched,Exact standalone C++ __emit thunk from certified retail destructor
-??1Squad@@MAE@XZ,,0x000D4090,156,Code/masm_dumps/___1Squad__MAE_XZ_D4090.asm,matched,Exact 156B MASM; Squad vt@0xC83E78 slot0 G@0xD4060; queue 0x9F27DB int3; layout m_objectIDs@+4 m_objectsCached@+0x10
+??1Squad@@MAE@XZ,,0x000D4090,156,Code/GameEngine/Source/Common/SquadDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
 ??1StateMachine@@MAE@XZ,,0x000A1130,224,Code/masm_dumps/StateMachine_dtor.asm,matched,exact 224B MASM; true body via subclass dtor chain not queue 0x9F27BE
 ??1StealthDetectorUpdateModuleData@@UAE@XZ,,0x00126B60,99,Code/GameEngine/Source/Common/StealthDetectorUpdateModuleDataDestructorThunk.cpp,matched,Exact 99B SEH dtor Open-BFME5
 ??1StealthUpdate@@UAE@XZ,,0x002AC620,1085,Code/masm_dumps/StealthUpdate_destructor.asm,matched,Exact 1085B SEH module dtor; factory->vtable recovery Open-BFME4
@@ -3247,7 +3247,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TeamsInfo@@QAE@XZ,,0x009DB7A0,117,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,object-symbol=?Free_String@StringClass@@AAEXXZ;C++ alias
 ??1TechAndSupplyImages@@QAE@XZ,,0x0068E6D0,76,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,icf-owner=??1?$pair@$$CBVUnicodeString@@V1@@_STL@@QAE@XZ
 ??1TechBuildingBehaviorModuleData@@UAE@XZ,,0x0008A450,105,Code/GameEngine/Source/Common/TechBuildingBehaviorModuleDataDestructorThunk.cpp,matched,Exact 105B SEH dtor Open-BFME5
-??1Template@@MAE@XZ,,0x003394E0,125,Code/masm_dumps/destructor_Template_MAEXXZ_003394E0_packet331.asm,matched,certified packet 331 SHA256 b8579d5701e4a7fd18bda9ccfae90567ae367dd40d78cf8786240bd04fcf8785
+??1Template@@MAE@XZ,,0x003394E0,125,Code/GameEngine/Source/Common/TemplateDestructorThunk.cpp,matched,Exact 125B SEH dtor Open-BFME5
 ??1TensileFormationUpdate@@UAE@XZ,,0x00253090,119,Code/GameEngine/Source/Common/TensileFormationUpdateDestructorThunk.cpp,matched,Exact 119B SEH dtor factory->vtable Open-BFME4
 ??1TerrainCollisionModuleInfo@FXParticleSystem@@UAE@XZ,,0x005DE650,67,Code/GameEngine/Source/GameClient/System/FXParticleSystem/TerrainCollisionModuleInfoDestructorThunk.cpp,matched,Open-BFME5 exact C++ TerrainCollisionModuleInfo destructor;object-symbol=??1TerrainCollisionModuleInfo@FXParticleSystem@@QAE@XZ;retail UAE identity carried by non-virtual destructor body
 ??1TerrainCollisionModuleTemplate@FXParticleSystem@@UAE@XZ,0x00038410,0x005DE870,118,Code/masm_dumps/___1TerrainCollisionModuleTemplate_FXParticleSystem_5DE870.asm,matched,
@@ -3269,7 +3269,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TransportAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/TransportAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
 ??1TransportContainModuleData@@UAE@XZ,,0x0021D560,79,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1TunnelContainModuleData@@UAE@XZ,,0x0024B660,95,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1TurretAI@@MAE@XZ,,0x0018D390,166,Code/masm_dumps/_sa12___1TurretAI__MAE_XZ_18D390.asm,matched,string-anchor Open-BFME4+Grok TurretMoveLoop
+??1TurretAI@@MAE@XZ,,0x0018D390,166,Code/GameEngine/Source/Common/TurretAIDestructorThunk.cpp,matched,Exact 166B SEH dtor Open-BFME5
 ??1UDP@@QAE@XZ,,0x00A3C88D,14,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ??1UnicodeString@@QAE@XZ,0x0003B304,0x0005EEA0,5,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,UnicodeString destructor
 ??1UnitCrateCollideModuleData@@UAE@XZ,,0x001270F0,83,Code/GameEngine/Source/Common/UnitCrateCollideModuleDataDestructorThunk.cpp,matched,Exact 83B SEH dtor Open-BFME5
@@ -3288,7 +3288,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1VideoPlayer@@UAE@XZ,,0x0081C590,35,Code/GameEngine/Source/GameClient/VideoPlayerDestructorThunk.cpp,matched,Open-BFME5 exact C++ raw VideoPlayer destructor
 ??1W3DAnimationInfo@@QAE@XZ,,0x00020018,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1W3DDebrisDraw@@UAE@XZ,,0x00750CC0,474,Code/masm_dumps/W3DDebrisDraw_destructor.asm,matched,Exact 474B SEH dtor factory->vtable Open-BFME4
-??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/masm_dumps/W3DDisplayString_dtor.asm,matched,Correct retail body from vtable scalar deleting destructor thunk 0x00044B57
+??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/GameEngine/Source/Common/W3DDisplayStringDestructorThunk.cpp,matched,Exact 114B SEH dtor Open-BFME5
 ??1W3DFileSystem@@UAE@XZ,,0x006F6280,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,
 ??1W3DLaserDrawModuleData@@UAE@XZ,,0x001FE260,198,Code/GameEngine/Source/Common/W3DLaserDrawModuleDataDestructorThunk.cpp,matched,Exact 198B SEH dtor Open-BFME5
 ??1W3DModelDraw@@MAE@XZ,,0x0077B090,682,Code/masm_dumps/W3DModelDraw_destructor_77B090.asm,matched,Certified packet 234 exact retail MASM destructor body
