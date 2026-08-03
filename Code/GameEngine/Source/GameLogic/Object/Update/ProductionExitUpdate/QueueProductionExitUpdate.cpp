@@ -45,26 +45,8 @@
 #include "GameLogic/Module/QueueProductionExitUpdate.h"
 
 //-------------------------------------------------------------------------------------------------
-// ??0QueueProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
-QueueProductionExitUpdate::QueueProductionExitUpdate( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
-{
-	m_currentDelay = 0;
-
-	//Added By Sadullah Nader
-	//Initializations inserted 
-	m_creationClearDistance = 0;
-	m_rallyPoint.zero();
-	//
-	
-	// no rally point has been set
-	m_rallyPointExists = false;
-	m_currentBurstCount = 0;
-	const QueueProductionExitUpdateModuleData* md = getQueueProductionExitUpdateModuleData();
-	if (md) //sanity
-	{
-		m_currentBurstCount = md->m_initialBurst;
-	}
-}
+// ??0QueueProductionExitUpdate@@ is implemented by the exact retail thunk in
+// QueueProductionExitUpdateCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 // ??1QueueProductionExitUpdate@@MAE@XZ present-unmatched
