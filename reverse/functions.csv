@@ -34611,3 +34611,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??_GDX8FVFCategoryContainer@@UAEPAXI@Z,,0x00947E30,30,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??6Debug@@QAEAAV0@K@Z,,0x0088C1A0,79,Code/Libraries/Source/WWVegas/WWDebug/debug_operator_ulong.cpp,matched,exact C++ Debug::operator<<(unsigned long) body
 _$E56,,0x00C71520,40,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,MultiListNodeClass pool teardown funclet (global teardown loop)
+?updateAnimateWindow@ProcessAnimateWindowSpiral@@UAE_NPAVAnimateWindow@@@Z,,0x00496DE0,266,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindowSpiral_updateAnimateWindow_Thunk.cpp,matched,Open-BFME-DS06 __emit thunk from retail bytes; C++ blocked by frame 0x1c vs 0x14 slot merge and setVel store order

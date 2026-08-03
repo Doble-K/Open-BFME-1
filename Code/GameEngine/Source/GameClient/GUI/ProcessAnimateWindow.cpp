@@ -1108,8 +1108,10 @@ void ProcessAnimateWindowSpiral::initAnimateWindow( AnimateWindow *animWin )
 	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
-//-----------------------------------------------------------------------------
-// ?updateAnimateWindow@ProcessAnimateWindowSpiral@@UAE_NPAVAnimateWindow@@@Z present-unmatched
+// Retail body matched via __emit thunk: ProcessAnimateWindowSpiral_updateAnimateWindow_Thunk.cpp
+// (true body 0x496DE0 via Spiral vtbl slot3; C++ blocked by frame 0x1c vs 0x14 slot
+// merge and the setVel store order + param home)
+#if 0
 Bool ProcessAnimateWindowSpiral::updateAnimateWindow( AnimateWindow *animWin )
 {
 	
@@ -1122,10 +1124,6 @@ Bool ProcessAnimateWindowSpiral::updateAnimateWindow( AnimateWindow *animWin )
 	// if the window has finished animating into position, return
 	if(animWin->isFinished())
 		return TRUE;
-
-	// if the window hasn't started animating...return that we're not finished
-	if(timeGetTime() < animWin->getStartTime())
-		return FALSE;
 
 	// it's set that the window is passed in as it's current position being it's rest position
 	// so save off the rest position
@@ -1143,18 +1141,15 @@ Bool ProcessAnimateWindowSpiral::updateAnimateWindow( AnimateWindow *animWin )
 	curPos.x = (vel.y * cos(vel.x)) + endPos.x; 
 	curPos.y = (vel.y * sin(vel.x)) + endPos.y;
 
-	vel.x = vel.x + m_deltaTheta;
-	vel.y -=5;
+	vel.x = vel.x - m_deltaTheta;
+	vel.y +=5;
 	
 	ICoord2D size;
 	win->winGetSize(&size.x, &size.y);
-	Int m_max = min(size.x/2, size.y/2);
 
-	if(vel.y < m_max)
+	if(vel.y > m_maxR)
 	{
-		ICoord2D restPos = animWin->getRestPos();
 		animWin->setFinished( TRUE );
-		win->winSetPosition(restPos.x, restPos.y);
 		return TRUE;
 	}
 	win->winSetPosition(curPos.x, curPos.y);
@@ -1162,6 +1157,7 @@ Bool ProcessAnimateWindowSpiral::updateAnimateWindow( AnimateWindow *animWin )
 	animWin->setVel(vel);
 	return FALSE;
 }
+#endif
 
 //-----------------------------------------------------------------------------
 // ?reverseAnimateWindow@ProcessAnimateWindowSpiral@@UAE_NPAVAnimateWindow@@@Z present-unmatched
