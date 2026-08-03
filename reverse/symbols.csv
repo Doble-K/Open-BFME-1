@@ -2891,6 +2891,7 @@ name,address,notes
 ?blendTileData@BFMERetailWorldHeightMap@@QAEXPAUTBlendTileInfo@@H@Z,0x000167F7,retail WorldHeightMap::blendTileData ILT thunk
 ?blendTileData@BFMERetailWorldHeightMapBlendTileDataShim@@QAEXPAUTBlendTileInfo@@H@Z,0x0074A240,BFME WorldHeightMap incremental-link thunk target through a TU-local forwarding shim
 ?build@ActiveBodyModuleDataBuildFieldParseShim@@SAXAAVMultiIniFieldParse@@@Z,0x002284A0,ActiveBodyModuleData buildFieldParse incremental-link thunk target through a TU-local forwarding shim
+?build@BroadcastStealthUpdateModuleDataBuildFieldParseShim@@SAXAAVMultiIniFieldParse@@@Z,0x00289800,BroadcastStealthUpdateModuleData buildFieldParse incremental-link thunk target through a TU-local forwarding shim
 ?build@W3DRadarBuildTerrainTextureShim@@QAEXPAVTerrainLogic@@@Z,0x006C39D0,W3DRadar buildTerrainTexture incremental-link thunk target through a TU-local forwarding shim
 ?buildFieldParse@AIUpdateModuleData@@SAXAAVMultiIniFieldParse@@@Z,0x00019772,pinharvest x1 (thunk)
 ?buildFieldParse@ActiveBodyModuleData@@SAXAAVMultiIniFieldParse@@@Z,0x00019772,ILT thunk; real body 0x6284A0

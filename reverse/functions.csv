@@ -14214,3 +14214,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?readGameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0067E3F0,433,Code/GameEngine/Source/GameNetwork/NetPacket_readGameMessage.cpp,matched,
 ?OnStatusUpdate@DownloadManager@@UAEJH@Z,,0x00626EE0,226,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,WWLib StringBase-based AsciiString via asciistring_downloadmanager shim; clean C++
 ?OnError@DownloadManager@@UAEJH@Z,,0x00626DA0,224,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,WWLib StringBase-based AsciiString via asciistring_downloadmanager shim; clean C++
+?buildFieldParse@BroadcastStealthUpdateModuleData@@SAXAAVMultiIniFieldParse@@@Z,,0x000094F3,5,Code/GameEngine/Source/GameLogic/AI/BroadcastStealthUpdateModuleDataBuildFieldParseThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x289800
