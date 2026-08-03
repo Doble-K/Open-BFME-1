@@ -1515,6 +1515,7 @@ name,address,notes
 ??1BroadcastStealthUpdateModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1BuddyMessage@@QAE@XZ,0x00021445
 ??1Buffer@@QAE@XZ,0x0001A401,pinharvest x1 (thunk)
+??1INIMemberA@@QAE@XZ,0x009CBFE0,Open-BFME5 pin
 ??1W3DDisplayStringBase@@UAE@XZ,0x0000D823,Open-BFME5 pin
 ??1W3DDisplayStringMemberB@@QAE@XZ,0x009409F0,Open-BFME5 pin
 ??1ParticleSystemTemplateBase@FXParticleSystem@@UAE@XZ,0x00002F5E,Open-BFME5 pin
@@ -4525,6 +4526,7 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
+
 
 
 
