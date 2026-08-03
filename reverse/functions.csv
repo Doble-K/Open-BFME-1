@@ -9235,7 +9235,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?callbackWrapper@@YAXPAVGPConnection@@PAX1@Z,,0x0063EA60,128,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,
 ?cameraModFinalPitch@View@@UAEXMMM@Z,,0x006CF660,3,Code/GameEngine/Source/GameClient/View.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
 ?cameraModFinalZoom@View@@UAEXMMM@Z,,0x006CF660,3,Code/GameEngine/Source/GameClient/View.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
-?canAffordUpgrade@UpgradeCenter@@QBE_NPAVPlayer@@PBVUpgradeTemplate@@_N@Z,,0x0010AF70,86,Code/masm_dumps/_sa9__canAffordUpgrade_UpgradeCenter__QBE_NPAVPlayer__P_10AF70.asm,matched,Exact 86B Open-BFME4
+?canAffordUpgrade@UpgradeCenter@@QBE_NPAVPlayer@@PBVUpgradeTemplate@@_N@Z,,0x0010AF70,86,Code/GameEngine/Source/Common/UpgradeCenter_canAffordUpgrade_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?canCrushOrSquish@Object@@QBE_NPAV1@W4CrushSquishTestType@@@Z,,0x001C7600,223,Code/masm_dumps/_canCrushOrSquish_Object_1C7600.asm,matched,Exact 223B MASM @ 0x1C7600; BFME rewrite; queue 0x594AD0 misplaced pool SEH
 ?canDoSpecialPowerAtLocation@ActionManager@@QAE_NPBVObject@@PBUCoord3D@@W4CommandSourceType@@PBVSpecialPowerTemplate@@0I_N@Z,,0x000C6930,3094,Code/masm_dumps/ActionManager_canDoSpecialPowerAtLocation.asm,matched,Ghidra-owned BFME special-power location validation
 ?canDoSpecialPowerAtObject@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@PBVSpecialPowerTemplate@@I_N@Z,,0x000C5FF0,1603,Code/masm_dumps/ActionManager_canDoSpecialPowerAtObject.asm,matched,True body @ 0xC5FF0/1603 (queue 0x596EF8 INSIDE unrelated fn); thunk 0x17BCA + 7 callers; ret 0x18; BFME SP switch+GrabPassenger string; sibling AtLocation @ 0xC6930
@@ -9243,7 +9243,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?canOverrideSpecialPowerDestination@ActionManager@@QAE_NPBVObject@@PBUCoord3D@@W4SpecialPowerType@@W4CommandSourceType@@@Z,,0x000C4330,68,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,
 ?canRenderToTexture@W3DShaderManager@@SA_NXZ,,0x007D0A60,27,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
 ?canRepairObject@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,,0x000C5230,316,Code/masm_dumps/ActionManager_canRepairObject.asm,matched,True body 0xC5230/316 (queue 0x5AB05D MISPLACED); thunk 0x338D4 + Dozer/Worker callers; ret 0xC
-?canResumeConstructionOf@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,,0x000C53C0,92,Code/masm_dumps/canResumeConstructionOf_ActionManager_0C53C0.asm,matched,Certified packet 183 reviewed retail recovery
+?canResumeConstructionOf@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,,0x000C53C0,92,Code/GameEngine/Source/Common/ActionManager_canResumeConstructionOf_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?canSelectedObjectsEffectivelyUseWeapon@InGameUI@@QBE_NPBVCommandButton@@PBVObject@@PBUCoord3D@@W4SelectionRules@1@@Z,,0x0043EE20,269,Code/GameEngine/Source/GameClient/InGameUI_canSelectedObjectsEffectivelyUseWeapon.asm,matched,exact 269B via MASM (field-offset drift)
 ?canSelectedObjectsNonAttackInteractWithObject@InGameUI@@QBE_NPBVObject@@W4SelectionRules@1@@Z,,0x00449140,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?canSelectedObjectsOverrideSpecialPowerDestination@InGameUI@@QBE_NPBUCoord3D@@W4SelectionRules@1@W4SpecialPowerType@@@Z,,0x0043ED60,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
@@ -13122,7 +13122,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?resetFrame@FrameDataManager@@QAEXI_N@Z,,0x006706D0,56,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ?resetIdleWorker@InGameUI@@EAEXXZ,,0x0043FAF0,121,Code/masm_dumps/InGameUI_resetIdleWorker.asm,matched,True body post-hideIdleWorkerLayout at 0x43FAF0 (queue 0x81D754 was int3 pad); field anchors +0x139c/+0x13a0/+0x131c; MASM byte-verified
 ?resetPlayerTimeouts@DisconnectManager@@IAEXPAVConnectionManager@@@Z,,0x0066B980,84,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
-?resetPlayersVotes@DisconnectManager@@IAEXHIPAVConnectionManager@@@Z,,0x0066B7B0,89,Code/masm_dumps/resetPlayersVotes_DisconnectManager_IAEXHIPAVConnectionManager_Z_0066B7B0_packet249.asm,matched,Certified packet 249 sealed SHA256 467f4dede1a623bf4da01a1c4f2b80fe2d96e72d760a513b6dbf5286ecee2a76
+?resetPlayersVotes@DisconnectManager@@IAEXHIPAVConnectionManager@@@Z,,0x0066B7B0,89,Code/GameEngine/Source/Common/DisconnectManager_resetPlayersVotes_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?resetRank@Player@@QAEXXZ,,0x000D7CA0,319,Code/GameEngine/Source/Common/RTS/Player_resetRank.asm,matched,exact 319B via MASM; true start 0xD7CA0 (queue 0xD7CAE mid-SEH); SCIENCE:GeneralName unique
 ?resetShader@W3DShaderManager@@SAXW4ShaderTypes@1@@Z,,0x007169D0,40,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
 ?resetToRestPosition@AnimateWindowManager@@QAEXXZ,,0x0045D520,105,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
