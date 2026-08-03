@@ -5302,7 +5302,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GZigZagLinearOffsetTextureMapperClass@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GupgradePair@@QAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_H@YGXPAXIHP6EPAX0@Z@Z,,0x0005C600,48,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
-??_L@YGXPAXIHP6EX0@Z1@Z,,0x009F6EE4,74,Code/masm_dumps/___L_YGXPAXIHP6EX0_Z1_Z_9F6EE4.asm,matched,MASM exact retail dump
+??_L@YGXPAXIHP6EX0@Z1@Z,,0x009F6EE4,74,Code/Libraries/Source/WWVegas/WWLib/ArrayNewHelperBodyThunk.cpp,matched,Open-BFME5 exact C++ body;object-symbol=?ArrayNewHelperBodyThunk@@YAXXZ
 ??_M@YGXPAXIHP6EX0@Z@Z,,0x009F6D76,72,Code/Libraries/Source/WWVegas/WWLib/ArrayDeleteHelperBodyThunk.cpp,matched,Open-BFME5 exact C++ body;object-symbol=?ArrayDeleteHelperBodyThunk@@YAXXZ
 ??_U@YAPAXI@Z,,0x00881F70,17,Code/Libraries/Source/WWVegas/WWLib/mem_ops.cpp,matched,operator new[]
 ??_V@YAXPAX@Z,,0x00881EF0,21,Code/Libraries/Source/WWVegas/WWLib/mem_ops.cpp,matched,operator delete[]
