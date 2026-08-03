@@ -1,55 +1,27 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: CategoryModuleTemplateBase (ledger $05 / N=6) empty dual-vtbl dtor.
 
 namespace FXParticleSystem
 {
-template<int Category>
+
+template <int Category>
 class CategoryModuleTemplateBase
 {
 };
 
-template<>
+template <>
 class __declspec(novtable) CategoryModuleTemplateBase<6>
 {
 public:
-    virtual ~CategoryModuleTemplateBase();
+	virtual ~CategoryModuleTemplateBase();
 };
 
-__declspec(naked) CategoryModuleTemplateBase<6>::~CategoryModuleTemplateBase()
+// ??1?$CategoryModuleTemplateBase@$05@FXParticleSystem@@UAE@XZ
+CategoryModuleTemplateBase<6>::~CategoryModuleTemplateBase()
 {
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 07Ch
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 07Ch
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F97C;
+	*(volatile unsigned int *)this = 0x01073758;
 }
+
 }
