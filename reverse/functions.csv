@@ -1502,7 +1502,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0EmissionVelocityInfo@FXParticleSystem@@QAE@XZ,0x00012468,0x005BD800,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,default constructor sets vtable pointer
 ??0EmissionVolumeInfo@FXParticleSystem@@QAE@ABV01@@Z,0x000376DC,0x005BD6C0,21,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,copy constructor
 ??0EmissionVolumeInfo@FXParticleSystem@@QAE@XZ,0x0002EFF0,0x005BD640,10,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable pointer and flag
-??0EmotionTrackerUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00290740,464,Code/masm_dumps/EmotionTrackerUpdate_constructor.asm,matched,Exact 464B @ 0x00290740; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11CE60
+??0EmotionTrackerUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00290740,464,Code/GameEngine/Source/GameLogic/Object/Update/EmotionTrackerUpdateCtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0EmotionTrackerUpdateModuleData@@QAE@XZ,,0x0028F910,537,Code/GameEngine/Source/GameLogic/AI/EmotionTrackerUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0EnragedBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FAC00,134,Code/GameEngine/Source/GameLogic/Object/Behavior/EnragedBehaviorCtorThunk.cpp,matched,Open-BFME5 exact 134B retail module constructor
 ??0EnragedBehaviorModuleData@@QAE@XZ,,0x00203E60,117,Code/GameEngine/Source/GameLogic/AI/EnragedBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
@@ -9706,7 +9706,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?createTower@Bridge@@QAEPAVObject@@PAUCoord3D@@W4BridgeTowerType@@PBVThingTemplate@@PAV2@@Z,,0x001A9730,265,Code/GameEngine/Source/GameLogic/Bridge_createTower_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?createUnitOnTeamAt@ScriptActions@@IAEXABVAsciiString@@000@Z,,0x002F92A5,604,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_createUnitOnTeamAt_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?createVideoPlayer@W3DGameClient@@MAEPAVVideoPlayerInterface@@XZ,,0x006955C0,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
-?createViewObject@SpecialPowerModule@@IAEXPBUCoord3D@@@Z,,0x00269130,422,Code/masm_dumps/SpecialPowerModule_createViewObject.asm,matched,
+?createViewObject@SpecialPowerModule@@IAEXPBUCoord3D@@@Z,,0x00269130,422,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule_createViewObject_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?createWindow@@YAPAVGameWindow@@PADHHHHHHPAVWinInstanceData@@PAXP6A?AW4WindowMsgHandledType@@PAV1@III@Z4P6AX31I@ZP6AX31@Z@Z,,0x004874A0,320,Code/masm_dumps/GameWindowManagerScript_createWindow.asm,matched,Exact 320B MASM; true start 0x4874A0 (queue 0x9D2256 int3/wrong); parseWindow callers + USER/TABPANE
 ?createWindowManager@W3DGameClient@@MAEPAVGameWindowManager@@XZ,,0x006BA930,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?crossProduct@Coord3D@@SAXPBU1@0PAU1@@Z,,0x00131BF0,59,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,
@@ -9827,7 +9827,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doNamedUseCommandButtonAbilityOnNamed@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002F9E40,166,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doNamedUseCommandButtonAbilityOnNamed_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doObjectRadarCreateEvent@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002EECA0,50,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,exact C++; true body 0x2EECA0 (drift 0x6036BF mid-fn); ScriptEngine getUnitNamed vtable +0x68
 ?doOverrideHulkLifetime@ScriptActions@@IAEXM@Z,,0x002F0640,65,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,ghidra+string-adjacent ScriptActions cluster; GameLogic+0x98
-?doPhaseStuff@SlowDeathBehavior@@IAEXW4SlowDeathPhaseType@@@Z,,0x002080B0,504,Code/masm_dumps/SlowDeathBehavior_doPhaseStuff.asm,matched,Exact 504B MASM; true body 0x2080B0 via beginSlowDeath@0x20A000 push0+call thunk 0x3BD0E and update push1/2; queue 0x20A315 is INSIDE update SEH body; BFME SEH+4 phase effect vecs block ZH 224B C++
+?doPhaseStuff@SlowDeathBehavior@@IAEXW4SlowDeathPhaseType@@@Z,,0x002080B0,504,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior_doPhaseStuff_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doPing@PingThreadClass@@AAEHIH@Z,,0x0065E570,272,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?doPlaySoundEffect@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F22A0,266,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doPlaySoundEffect_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doPlaySoundEffectAt@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F2120,306,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doPlaySoundEffectAt_Thunk.cpp,matched,Open-BFME5 MASM lift
