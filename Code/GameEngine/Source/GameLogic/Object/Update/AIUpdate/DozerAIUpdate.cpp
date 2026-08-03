@@ -831,6 +831,14 @@ protected:
 	DozerTask m_task;				///< the task of this action state machine
 
 };
+
+// Keep the inline pool operators emitted by this owner TU after the extracted
+// DozerActionState constructor no longer instantiates this machine here.
+typedef void *(*DozerActionStateMachineNewFunction)( size_t, DozerActionStateMachine::DozerActionStateMachineMagicEnum );
+typedef void (*DozerActionStateMachineDeleteFunction)( void *, DozerActionStateMachine::DozerActionStateMachineMagicEnum );
+volatile DozerActionStateMachineNewFunction DozerActionStateMachineNewAnchor = &DozerActionStateMachine::operator new;
+volatile DozerActionStateMachineDeleteFunction DozerActionStateMachineDeleteAnchor = &DozerActionStateMachine::operator delete;
+
 EMPTY_DTOR(DozerActionStateMachine)
 
 //-------------------------------------------------------------------------------------------------
@@ -1216,12 +1224,7 @@ class DozerActionState : public State
 
 public:
 
-	DozerActionState( StateMachine *machine, DozerTask task ) : State( machine, "DozerActionState" )
-	{
-		m_task = task;
-		m_actionMachine = newInstance(DozerActionStateMachine)( getMachineOwner(), task );
-		m_actionMachine->initDefaultState();
-	}
+	DozerActionState( StateMachine *machine, DozerTask task );
 	/* 
 		Note that we DON'T use CONVERT_SLEEP_TO_CONTINUE; since we're not doing anything else
 		interesting in update, we can sleep when this machine sleeps 
