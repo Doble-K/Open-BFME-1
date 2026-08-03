@@ -3228,7 +3228,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SysTimeClass@@QAE@XZ,,0x009E64D0,9,Code/Libraries/Source/WWVegas/WWLib/systimer.cpp,matched,weak needle (dllimport call dominates); dtor at cluster addr; build.sh exact
 ??1Team@@MAE@XZ,,0x000F4250,480,Code/GameEngine/Source/Common/TeamDestructorThunk.cpp,matched,Exact 480B SEH dtor Open-BFME5
 ??1TeamFactory@@UAE@XZ,,0x009F2800,115,Code/GameEngine/Source/Common/TeamFactoryDestructorThunk.cpp,matched,TeamFactory primary and secondary vtables plus scalar deleting destructor prove ownership
-??1TeamInQueue@@MAE@XZ,,0x00160ED0,112,Code/GameEngine/Source/GameLogic/AI/TeamInQueueDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+??1TeamInQueue@@MAE@XZ,,0x00160ED0,112,Code/GameEngine/Source/GameLogic/AI/TeamInQueueDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (work-order list delete loop + inlined Team::setActive) converted from __emit thunk
 ??1TeamTemplateInfo@@QAE@XZ,,0x000ED580,251,Code/GameEngine/Source/Common/TeamTemplateInfoDestructorThunk.cpp,matched,Exact 251B SEH dtor Open-BFME5
 ??1TeamsInfo@@QAE@XZ,,0x009DB7A0,117,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,object-symbol=?Free_String@StringClass@@AAEXXZ;C++ alias
 ??1TechAndSupplyImages@@QAE@XZ,,0x0068E6D0,76,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,icf-owner=??1?$pair@$$CBVUnicodeString@@V1@@_STL@@QAE@XZ

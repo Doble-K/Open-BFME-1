@@ -1,127 +1,61 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift TeamInQueue dtor MASM dump to clean C++.
+// Retail @0x00160ED0: protected virtual SEH dtor walking the m_workOrders
+// linked list (+0x14) and deleting each node (m_next at +0x0C) via its
+// scalar deleting destructor, then inlining m_team->setActive() (flag bytes
+// at +0x31/+0x32) and nulling the list head. Unlike ZH, BFME's TeamInQueue
+// has a single base (no Snapshot subobject) and uses plain delete.
 
-class __declspec(novtable) TeamInQueue
+class WorkOrder
+{
+public:
+	virtual ~WorkOrder();
+	int m_04;
+	int m_08;
+	WorkOrder *m_next;	// +0x0c
+};
+
+class Team
+{
+	unsigned char m_pad[0x31];
+public:
+	unsigned char m_b31;	// +0x31
+	unsigned char m_b32;	// +0x32
+	void setActive() { if (!m_b31) { m_b32 = 1; m_b31 = 1; } }
+};
+
+class TeamInQueueBase
+{
+public:
+	virtual ~TeamInQueueBase() {}
+	void *m_dlink1a;	// +0x04
+	void *m_dlink1b;	// +0x08
+	void *m_dlink2a;	// +0x0c
+	void *m_dlink2b;	// +0x10
+};
+
+class TeamInQueue : public TeamInQueueBase
 {
 protected:
-    virtual ~TeamInQueue();
+	virtual ~TeamInQueue();
+
+public:
+	WorkOrder *m_workOrders;	// +0x14
+	unsigned char m_priorityBuild;	// +0x18
+	Team *m_team;	// +0x1c
 };
 
 // ??1TeamInQueue@@MAE@XZ
-__declspec(naked) TeamInQueue::~TeamInQueue()
+TeamInQueue::~TeamInQueue()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xd8
-        __emit 0x53
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x40
-        __emit 0x69
-        __emit 0x09
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x14
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x3b
-        __emit 0xcb
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x74
-        __emit 0x11
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x79
-        __emit 0x0c
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x3b
-        __emit 0xfb
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0x75
-        __emit 0xf1
-        __emit 0x5f
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x74
-        __emit 0x0d
-        __emit 0x38
-        __emit 0x58
-        __emit 0x31
-        __emit 0x75
-        __emit 0x08
-        __emit 0xc6
-        __emit 0x40
-        __emit 0x32
-        __emit 0x01
-        __emit 0xc6
-        __emit 0x40
-        __emit 0x31
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x14
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	WorkOrder *order, *next;
+
+	for (order = m_workOrders; order; order = next)
+	{
+		next = order->m_next;
+		delete order;
+	}
+	// If we have a team, activate it.  If it is empty, Team.cpp will remove empty active teams.
+	if (m_team) m_team->setActive();
+	m_workOrders = 0;
 }
