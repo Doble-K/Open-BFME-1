@@ -4320,3 +4320,13 @@ DefaultModuleTemplate0A_sub_vtbl,0x0111090C,DMT0A sub vtbl
 ??1MemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1PassiveAreaEffectBehaviorModuleDataMemberB@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1PassiveAreaEffectBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1CivilianSpawnUpdateModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1CivilianSpawnUpdateModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1CommandSetUpgradeModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1CommandSetUpgradeModuleDataMemberA@@QAE@XZ,0x0001B97D,Open-BFME5 pin
+??1FlammableUpdateModuleDataMemberB@@QAE@XZ,0x0004908A,Open-BFME5 pin
+??1FlammableUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1SpawnBehaviorModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
+??1SpawnBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1UnitCrateCollideModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1UnitCrateCollideModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
