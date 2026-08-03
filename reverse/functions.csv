@@ -13676,7 +13676,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?showShell@Shell@@QAEX_N@Z,,0x00580150,180,Code/masm_dumps/showShell_Shell_QAEX_N_Z_00580150_packet324.asm,matched,Certified packet 324 sealed RVA size and SHA-256
 ?showShellMap@Shell@@QAEX_N@Z,,0x0057FB40,289,Code/masm_dumps/Shell_showShellMap_57FB40.asm,matched,Certified packet 95 exact retail MASM recovery SHA256 6186002125eb74db24866f36a7d75780d63447886bc347a55b354a442d6c6f8e
 ?showSortIcons@@YAXXZ,,0x0062C4D0,163,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
-?showSpecialPowerShortcut@ControlBar@@QAEXXZ,,0x004A07D0,153,Code/masm_dumps/ControlBar_showSpecialPowerShortcut_4A07D0.asm,matched,MASM exact retail dump; certified thunk and matched-caller ownership
+?showSpecialPowerShortcut@ControlBar@@QAEXXZ,,0x004A07D0,153,Code/GameEngine/Source/Common/ControlBar_showSpecialPowerShortcutMethodThunk.cpp,matched,MASM exact retail dump; certified thunk and matched-caller ownership
 ?shutdown@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0002C6E7,5,Code/Libraries/Source/WWVegas/WWLib/TracksRenderSystemShutdownThunks.cpp,matched,Focused C++ thunk for TerrainTracksRenderObjClassSystem::shutdown
 ?shutdown@WaterTracksRenderSystem@@QAEXXZ,,0x000319CB,5,Code/Libraries/Source/WWVegas/WWLib/TracksRenderSystemShutdownThunks.cpp,matched,Focused C++ thunk for WaterTracksRenderSystem::shutdown
 ?sin@@YAMM@Z,,0x00873910,7,Code/GameEngine/Source/Common/System/BuildAssistant.cpp,matched,icf-owner=?Sin@@YAMM@Z
