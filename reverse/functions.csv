@@ -11676,7 +11676,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getSaveLoadMenuLayout@Shell@@QAEPAVWindowLayout@@XZ,,0x0057FE80,48,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,exact C++ save load layout with retail field offset and AsciiString shim
 ?getScienceFromInternalName@ScienceStore@@QBE?AW4ScienceType@@ABVAsciiString@@@Z,,0x000E7460,41,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,Open-BFME5 exact C++ raw science name lookup
 ?getSciencePurchaseCost@ScienceStore@@QBEHW4ScienceType@@@Z,,0x000E6D70,88,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,thunk-dump converted to clean C++; true body 0xE6D70 (88B before int3 pad at 0xE6DC8); TheGameLogic mode branch + TheRecorder isMultiplayer pinned to 0x4A7A5 thunk
-?getScrollFactor@OptionPreferences@@QAEMXZ,,0x000906C0,147,Code/masm_dumps/_sa13__getScrollFactor_OptionPreferences__QAEMXZ_906C0.asm,matched,multi-xref Open-BFME4+Grok ScrollFactor
+?getScrollFactor@OptionPreferences@@QAEMXZ,,0x000906C0,147,Code/GameEngine/Source/Common/OptionPreferences_getScrollFactor_Thunk.cpp,matched,multi-xref Open-BFME4+Grok ScrollFactor
 ?getSelectedSaveFileInfo@@YAPAUAvailableGameInfo@@PAVGameWindow@@@Z,,0x004DF060,39,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,matched,
 ?getSendDelay@OptionPreferences@@QAE_NXZ,,0x00090AF0,105,Code/GameEngine/Source/Common/promoted__getSendDelay_OptionPreferences_QAE_NXZ_00090AF0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 105B
 ?getShouldFade@AudioEventRTS@@QBE_NXZ,,0x0006B3B0,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Ghidra-bound BFME should-fade getter
@@ -11701,7 +11701,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getSlotNum@LANGameInfo@@QAEHVUnicodeString@@@Z,,0x0068EB10,179,Code/masm_dumps/LANGameInfo_getSlotNum.asm,matched,Ghidra-corrected BFME LAN slot search
 ?getSlotPort@NAT@@QAEHH@Z,,0x00670C60,26,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
 ?getSlowDeathBehaviorInterface@BehaviorModule@@UAEPAVSlowDeathBehaviorInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getSoundVolume@OptionPreferences@@QAEMXZ,,0x000917D0,129,Code/masm_dumps/_getSoundVolume_OptionPreferences__QAEMXZ_917d0.asm,matched,string-anchor SFXVolume; true 0x917d0 129B; queue 0x561741 OptionsMenuInit interior
+?getSoundVolume@OptionPreferences@@QAEMXZ,,0x000917D0,129,Code/GameEngine/Source/Common/OptionPreferences_getSoundVolume_Thunk.cpp,matched,string-anchor SFXVolume; true 0x917d0 129B; queue 0x561741 OptionsMenuInit interior
 ?getSpawnBehaviorInterface@BehaviorModule@@UAEPAVSpawnBehaviorInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getSpawnBehaviorInterface@Object@@QBEPAVSpawnBehaviorInterface@@XZ,,0x001BF5F0,42,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,BFME behavior-interface loop at m_behaviors+0x1f0 secondary vtable slot +0x74; confirmed via ActionManager::getCanAttackObject getClosestSlave call chain
 ?getSpecialLadders@LadderList@@QAEPBV?$list@PAVLadderInfo@@V?$allocator@PAVLadderInfo@@@_STL@@@_STL@@XZ,,0x0062A140,4,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,Ghidra-bound unique accessor
@@ -11710,7 +11710,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getSpecialPowerTemplateByIndex@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@I@Z,,0x000EB3A0,33,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
 ?getSpecialPowerType@SpecialPowerTemplate@@QBE?AW4SpecialPowerType@@XZ,,0x000C4640,27,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule.cpp,matched,
 ?getSpecialPowerUpdateInterface@BehaviorModule@@UAEPAVSpecialPowerUpdateInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getSpeechVolume@OptionPreferences@@QAEMXZ,,0x00091880,129,Code/masm_dumps/_sa13__getSpeechVolume_OptionPreferences__QAEMXZ_91880.asm,matched,multi-xref Open-BFME4+Grok VoiceVolume
+?getSpeechVolume@OptionPreferences@@QAEMXZ,,0x00091880,129,Code/GameEngine/Source/Common/OptionPreferences_getSpeechVolume_Thunk.cpp,matched,multi-xref Open-BFME4+Grok VoiceVolume
 ?getSpyVisionUpdate@BehaviorModule@@UAEPAVSpyVisionUpdate@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getSquadNumberForObject@Player@@QBEHPBVObject@@@Z,,0x000C9B90,54,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,clean hotkey squad scan through retail layout; exact retail body
 ?getStacking@RoadType@@QAEHXZ,,0x00674250,4,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
