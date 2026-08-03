@@ -3146,7 +3146,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Region2D@@QAE@XZ,0x000071DF,0x0005C310,1,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,empty destructor emits ret
 ??1Region3D@@QAE@XZ,0x00045746,0x0006B0C0,1,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,empty destructor emits ret
 ??1RegistryClass@@QAE@XZ,,0x009DC280,25,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
-??1RenderObjClass@@UAE@XZ,,0x0091FC10,119,Code/masm_dumps/__1RenderObjClass__UAE_XZ_91FC10.asm,matched,MASM exact retail dump
+??1RenderObjClass@@UAE@XZ,,0x0091FC10,119,Code/GameEngine/Source/Common/RenderObjClassDestructorThunk.cpp,matched,MASM exact retail dump
 ??1RenderObjectDrawModuleInfo@FXParticleSystem@@UAE@XZ,,0x005DE1F0,93,Code/GameEngine/Source/GameClient/System/FXParticleSystem/RenderObjectDrawModuleInfoDestructorThunk.cpp,matched,Open-BFME5 exact C++ RenderObjectDrawModuleInfo destructor;object-symbol=??1RenderObjectDrawModuleInfo@FXParticleSystem@@QAE@XZ;retail UAE identity carried by non-virtual destructor body
 ??1RenderObjectDrawModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005DE490,96,Code/GameEngine/Source/GameClient/System/FXParticleSystem/RenderObjectDrawModuleTemplateDestructorThunk.cpp,matched,Open-BFME5 exact C++ RenderObjectDrawModuleTemplate destructor;object-symbol=??1RenderObjectDrawModuleTemplate@FXParticleSystem@@QAE@XZ;retail UAE identity carried by non-virtual destructor body
 ??1RenderObjectUpdateModuleInfo@FXParticleSystem@@UAE@XZ,0x000095F7,0x005D92B0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
