@@ -4124,7 +4124,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAEAAV01@ABV01@@Z,,0x000DE2C0,212,Code/Libraries/Source/WWVegas/WWLib/AsciiStringVectorAssignmentThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_AsciiStringVectorAssignment_DE2C0
 ??4?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@QAEAAV01@ABV01@@Z,,0x003B6510,294,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ??4?$vector@VW3DAnimationInfo@@V?$allocator@VW3DAnimationInfo@@@_STL@@@_STL@@QAEAAV01@ABV01@@Z,,0x003B5B40,226,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
-??4?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@QAEAAV01@ABV01@@Z,,0x00170228,221,Code/masm_dumps/__4__vector_W4ScienceType__V__allocator_W4ScienceT.asm,matched,
+??4?$vector@W4ScienceType@@V?$allocator@W4ScienceType@@@_STL@@@_STL@@QAEAAV01@ABV01@@Z,,0x00170228,221,Code/GameEngine/Source/Common/RTS/VectorScienceTypeAssignmentThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_VectorScienceTypeAssignment_170228
 ??4AABTreeClass@@AAEAAV0@ABV0@@Z,,0x0096A970,260,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ??4AABoxClass@@QAEAAV0@ABV0@@Z,,0x003C72B0,43,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ??4AABoxRenderObjClass@@QAEAAV0@ABV0@@Z,,0x00957920,97,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
