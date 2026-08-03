@@ -53,23 +53,8 @@
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0SwayClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
-SwayClientUpdate::SwayClientUpdate( Thing *thing, const ModuleData* moduleData ) :
-	ClientUpdateModule( thing, moduleData ),
-	m_curDelta(0),
-	m_curValue(0),
-	m_curAngle(0),
-	m_curAngleLimit(0),
-	m_leanAngle(0),
-	m_swaying(true),
-	m_unused(false),
-	m_curVersion(-1)	// so that we never match the first time
-{
-
-	// don't do updateSway here; wait till the first time we go thru our update loop.
-	//updateSway();
-
-}
+// ??0SwayClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z is implemented by
+// SwayClientUpdateCtorThunk.cpp so the retail constructor bytes remain exact.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
