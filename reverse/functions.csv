@@ -1722,7 +1722,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LadderPreferences@@QAE@XZ,,0x000ACB60,139,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ??0LargeGroupAudioUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00296C80,148,Code/GameEngine/Source/GameLogic/AI/LargeGroupAudioUpdateCtorThunk.cpp,matched,Open-BFME5 exact 148B constructor
 ??0LargeGroupAudioUpdateModuleData@@QAE@XZ,,0x002971F0,142,Code/GameEngine/Source/GameLogic/AI/LargeGroupAudioUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0LargeGroupBonusUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00297640,191,Code/masm_dumps/LargeGroupBonusUpdate_constructor.asm,matched,Exact 191B @ 0x00297640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x118B30
+??0LargeGroupBonusUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00297640,191,Code/GameEngine/Source/GameLogic/AI/LargeGroupBonusUpdateCtorThunk.cpp,matched,Exact 191B @ 0x00297640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x118B30
 ??0LargeGroupBonusUpdateModuleData@@QAE@XZ,,0x002978A0,105,Code/GameEngine/Source/GameLogic/AI/LargeGroupBonusUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0LaserUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00035D91,5,Code/GameEngine/Source/GameLogic/Object/Update/LaserUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0LaserUpdateModuleData@@QAE@XZ,,0x00076E50,29,Code/GameEngine/Source/GameLogic/Object/Update/LaserUpdate.cpp,matched,
