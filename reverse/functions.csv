@@ -3100,7 +3100,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ParticleEmitterDefClass@@UAE@XZ,,0x0098D230,106,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
 ??1ParticleSystemInfo@FXParticleSystem@@UAE@XZ,0x00002F5E,0x0005EEE0,93,Code/masm_dumps/___1ParticleSystemInfo_FXParticleSystem__UAE_XZ_5EEE0.asm,matched,
 ??1ParticleSystemTemplate@FXParticleSystem@@UAE@XZ,0x0002083D,0x005CE4D0,101,Code/masm_dumps/___1ParticleSystemTemplate_FXParticleSystem__UAE_XZ_5CE4D0.asm,matched,
-??1ParticleUplinkCannonUpdateModuleData@@UAE@XZ,,0x002A26C0,115,Code/masm_dumps/ParticleUplinkCannonUpdateModuleData_destructor.asm,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
+??1ParticleUplinkCannonUpdateModuleData@@UAE@XZ,,0x002A26C0,115,Code/GameEngine/Source/Common/ParticleUplinkCannonUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1PartitionManager@@UAE@XZ,,0x009F2800,115,Code/masm_dumps/PartitionManager_dtor.asm,matched,True owner via PartitionManager getName string; ICF-alias of mislabeled TeamFactory dtor @0x9F2800
 ??1PassiveAreaEffectBehavior@@UAE@XZ,,0x002022B0,116,Code/masm_dumps/PassiveAreaEffectBehavior_destructor.asm,matched,Exact 116B @ 0x002022B0; Exact retail MASM; instance factory->vtable dtor; del 0x202390 ctor 0x202100 vt 0xCA5304
 ??1PassiveAreaEffectBehaviorModuleData@@UAE@XZ,,0x00202870,80,Code/GameEngine/Source/Common/PassiveAreaEffectBehaviorModuleDataDestructorThunk.cpp,matched,Exact 80B SEH dtor Open-BFME5
