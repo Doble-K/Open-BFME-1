@@ -621,14 +621,8 @@ void SidesList::emptyTeams()
 	m_skirmishTeamrec.clear();
 }
 
-// ?addSide@SidesList@@QAEXPBVDict@@@Z present-unmatched
-void SidesList::addSide(const Dict* d)
-{
-	DEBUG_ASSERTCRASH(m_numSides < MAX_PLAYER_COUNT, ("too many players"));
-	if (m_numSides < MAX_PLAYER_COUNT)
-		m_sides[m_numSides++].init(d);
-}
-
+// ?addSide@SidesList@@QAEXPBVDict@@@Z exact retail body is emitted by
+// SidesListAddSideThunk.cpp.
 void SidesList::addTeam(const Dict* d)
 {
 	m_teamrec.addTeam(d);
