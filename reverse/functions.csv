@@ -7891,7 +7891,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_DX8_Render_State@DX8Wrapper@@SAXKI@Z,,0x006C5740,193,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Set_DX8_Texture_Stage_State@DX8Wrapper@@SAXIKI@Z,,0x000261E3,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
 ?Set_Date_Time@RawFileClass@@UAE_NK@Z,,0x009E6690,99,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
-?Set_Default_Global_Render_States@DX8Wrapper@@KAXXZ,,0x009081D0,211,Code/masm_dumps/_rn1__Set_Default_Global_Render_States_DX8Wrapper__KAXXZ_9081D0.asm,matched,reloc-needle Open-BFME4+Grok
 ?Set_Depth_Compare@ShaderClass@@QAEXW4DepthCompareType@1@@Z,,0x006C5250,16,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Set_Depth_Mask@ShaderClass@@QAEXW4DepthMaskType@1@@Z,,0x006C5270,19,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Set_Device_Resolution@DX8Wrapper@@KA_NHHHH_N@Z,,0x00908EC0,284,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setHealth@BuildListInfo@@QAEXH@Z,,0x00191490,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,repointed: real body next to duplicate @0x1944D0; folds with setFrameToEvaluate
 ?duplicate@BuildListInfo@@QAEPAV1@XZ,,0x001944D0,194,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,MASM dump converted to clean C++; BuildListInfo has one merged base so every field drops a dword
 ?Initialize@AggregateDefClass@@QAEXAAVRenderObjClass@@@Z,,0x00980A60,163,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,MASM dump converted to clean C++; SUBOBJS_MATCH_LOD is bit 20 in BFME and two AggregateDefClass methods are not virtual
+?Set_Default_Global_Render_States@DX8Wrapper@@KAXXZ,,0x009081D0,211,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,MASM dump converted to clean C++; BFME calls Set_DX8_ZBias out of line instead of the two-arg render-state helper
