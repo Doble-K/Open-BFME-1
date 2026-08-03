@@ -4405,3 +4405,5 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??_7CategoryModuleTemplate8Sub@FXParticleSystem@@6B@,0x0107375C,CategoryModuleTemplate8 interim sub vtbl
+?unregister@AnimationSoundClientBehaviorGlobal@@QAEXPAVAnimationSoundClientBehavior@@@Z,0x0000D765,AnimationSoundClientBehavior dtor global unregister call; ILT thunk for body 0x00409140
+??1ASCB_RootBase@@UAE@XZ,0x0002B8C8,AnimationSoundClientBehavior dtor root base call; ILT thunk for body 0x00113E60
