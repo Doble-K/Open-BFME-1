@@ -10220,7 +10220,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?floor@@YAMM@Z,,0x00069750,20,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?flush@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0072FEB0,892,Code/masm_dumps/_flush_TerrainTracksRenderObjClassSystem__QAEXXZ_72FEB0.asm,matched,
 ?flush@WaterTracksRenderSystem@@QAEXAAVRenderInfoClass@@@Z,,0x007AD620,406,Code/GameEngineDevice/Source/W3DDevice/GameClient/WaterTracksRenderSystem_flush_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
-?flushTranslucentObjects@RTS3DScene@@IAEXAAVRenderInfoClass@@@Z,,0x00715340,392,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_flushTranslucentObjects.asm,matched,exact 392B MASM; true body via Flush@0x7158F0 ILT 0x19042; queue 0x943720 was INSIDE neighbor 0x9436c0
+?flushTranslucentObjects@RTS3DScene@@IAEXAAVRenderInfoClass@@@Z,,0x00715340,392,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS3DScene_flushTranslucentObjects_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?fmod@@YAMMM@Z,,0x00097070,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,
 ?forceOn@Radar@@QAEX_N@Z,,0x0034F880,10,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?forgetLogin@GameSpyLoginPreferences@@QAEXVAsciiString@@@Z,,0x00081FC0,106,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,true forgetLogin C++ inline_depth0 Open-BFME4+Grok
