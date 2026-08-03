@@ -4255,3 +4255,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 ??0?@V?@@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x0002D06A,DefaultModuleTag clone copy-ctor pin
 ??0LightningEmissionModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x19f88,LightningEmissionModuleTemplate clone copy-ctor pin
 ?TheVideoPlayer@@3PAVVideoPlayer@@A,0x0130B190,global TheVideoPlayer
+??0?$ConcreteModuleTemplate@URenderObjectUpdateModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x0001104F,RenderObjectUpdate ConcreteModuleTemplate copy ctor
