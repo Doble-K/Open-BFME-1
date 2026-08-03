@@ -4548,3 +4548,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1SpecialPowerModuleDataMemberF@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ?_M_acquire_lock@NodeAllocMutex@_STL@@QAEXXZ,0x0082DA10,node_alloc deallocate lock acquire; thunk to real acquire 0x0082C760
 ?_M_release_lock@NodeAllocMutex@_STL@@QAEXXZ,0x0082AD50,node_alloc deallocate lock release; mov [ecx],0 ret spinlock release
+?queuePacket@LANAPI@@QAEXPAVLANAPIRequestPacket@@H@Z,0x0002B599,RequestLobbyLeave packet call; ILT thunk for LANAPI::sendMessage body 0x00684CF0
+?flushQueue@LANAPIMemberObject@@QAEXXZ,0x00001EC4,RequestLobbyLeave flag call; ILT thunk for Transport::update body 0x00684420
