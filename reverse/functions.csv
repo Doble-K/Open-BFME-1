@@ -2472,7 +2472,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WindModuleInfo@FXParticleSystem@@QAE@XZ,0x0003EA9A,0x005FE6C0,112,Code/masm_dumps/___0WindModuleInfo_FXParticleSystem__QAE_XZ_5FE6C0.asm,matched,
 ??0WindowLayout@@QAE@XZ,,0x00497C40,99,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,EH function (cl: /EHsc); BFME added vtable vs Generals
 ??0WorkerAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C9ED0,417,Code/masm_dumps/WorkerAIUpdate_constructor.asm,matched,Exact 417B @ 0x002C9ED0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C060
-??0WorkerAIUpdateModuleData@@QAE@XZ,,0x0011BF80,141,Code/masm_dumps/WorkerAIUpdateModuleData_constructor.asm,matched,Exact 141B @ 0x0011BF80; Exact retail MASM ModuleData ctor; unique factory 0x11C0E0
+??0WorkerAIUpdateModuleData@@QAE@XZ,,0x0011BF80,141,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact 141B retail module-data constructor
 ??0WorkerStateMachine@@QAE@PAVObject@@@Z,,0x002C9260,387,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate_WorkerStateMachine.asm,matched,exact 387B via MASM (SEH ctor)
 ??0WorldAnimationData@@QAE@XZ,,0x0015A230,25,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ??0WorldHeightMap@@IAE@XZ,,0x0074E990,303,Code/masm_dumps/WorldHeightMap_default_ctor.asm,matched,True body @0x74E990 size 303 (queue 0x8361AF was INSIDE unrelated SEH fn). RefCount+NORMAL_DRAW0x81+tile wipe+setupAlphaTiles; MASM exact
