@@ -12821,7 +12821,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?prev@LListNode@@QAEPAV1@XZ,,0x00105970,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?print@File@@UAA_NPBDZZ,,0x009CB6C0,115,Code/GameEngine/Source/Common/System/File.cpp,matched,slot 10 and the same address in all three File vtables
 ?privateIdle@SupplyTruckAIUpdate@@MAEXW4CommandSourceType@@@Z,,0x002C57E0,42,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,Open-BFME5 exact C++ raw SupplyTruck idle wrapper
-?probed@NAT@@IAEXH@Z,,0x00671DE0,155,Code/masm_dumps/_probed_NAT__IAEXH_Z_671DE0.asm,matched,MASM exact retail dump
+?probed@NAT@@IAEXH@Z,,0x00671DE0,155,Code/GameEngine/Source/Common/NAT_probedMethodThunk.cpp,matched,MASM exact retail dump
 ?processAck@BFMEConnectionManager@@QAEXPAVNetCommandMsg@@@Z,,0x006658F0,150,Code/GameEngine/Source/GameNetwork/ConnectionManager_processAck.cpp,matched,
 ?processAck@Connection@@QAEPAVNetCommandRef@@PAVNetCommandMsg@@@Z,,0x00662270,91,Code/GameEngine/Source/GameNetwork/Connection_processAck.cpp,matched,
 ?processAckCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00665700,387,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
