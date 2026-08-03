@@ -36,6 +36,8 @@ DRIFT = ROOT / "reverse" / "zh_sweep" / "drift_report.csv"
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
 GHIDRA_FUNCTIONS = ROOT / "reverse" / "ghidra_functions.csv"
 STRING_XREFS = ROOT / "reverse" / "string_xrefs.tsv"
+RE_ATTEMPTS = ROOT / "reverse" / "re_attempts.log"
+_NO_MATCH = None
 _SOURCE_INDEX = None
 _SOURCE_TEXT = {}
 
@@ -392,6 +394,35 @@ def ghidra_absent_candidates(claimed, claimed_names):
     return out, (f"{len(functions)} Ghidra functions + {len(xrefs)} string literals loaded")
 
 
+def logged_no_match():
+    """Symbols already reduced to a `no-match` verdict in reverse/re_attempts.log.
+
+    Those boundaries were investigated and rejected — stale drift votes, interior
+    fragments, absent bodies — so re-serving them spends another agent's 30-60
+    minutes rediscovering a known dead end. The log is TSV (symbol, status, prose)
+    and append-only, so reading it is cheap."""
+    global _NO_MATCH
+    if _NO_MATCH is None:
+        symbols = set()
+        if RE_ATTEMPTS.exists():
+            with RE_ATTEMPTS.open(encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    fields = line.rstrip("\r\n").split("\t")
+                    if len(fields) >= 2 and fields[1] == "no-match":
+                        symbols.add(fields[0])
+        _NO_MATCH = symbols
+    return _NO_MATCH
+
+
+def drop_logged(candidates):
+    """Filter one queue, returning (kept, dropped_count). Never silent: main()
+    reports the count so a shrunken queue is visibly explained, not mistaken
+    for an exhausted tier."""
+    logged = logged_no_match()
+    kept = [c for c in candidates if c["function"] not in logged]
+    return kept, len(candidates) - len(kept)
+
+
 def selected_queue(tier, drifts, structural, ghidra_absent):
     queues = {
         "harvest": ("drift quick win", drifts),
@@ -432,9 +463,13 @@ def print_candidate(label, candidate, meta):
         print(f"       start: {candidate['command']}")
 
 
-def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent):
+def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent,
+                 suppressed=0):
     print("== 0. ledger health ==")
     print(f"  {ledger}")
+    if suppressed:
+        print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
+              f"no-match (--include-logged to show)")
 
     if args.tier not in ("structural", "ghidra"):
         print(f"\n== 1. drift quick wins: literal-only diffs ({len(drifts)}) ==")
@@ -491,6 +526,9 @@ def main():
                     help="choose from only this task lane")
     ap.add_argument("--big", action="store_true",
                     help="sort structural candidates by size (byte yield) instead of alignment")
+    ap.add_argument("--include-logged", action="store_true",
+                    help="keep candidates already recorded no-match in "
+                         "reverse/re_attempts.log (they are dropped by default)")
     args = ap.parse_args()
 
     ledger = check_ledger()  # exit 2 happens in there; nothing below matters if red
@@ -509,29 +547,43 @@ def main():
     else:
         ghidra_absent, ghidra_meta = [], "Ghidra tier not requested"
 
+    # A `no-match` row is a finished investigation, not a pending task; serving
+    # one again is pure rework. ~20% of the structural queue is in that state.
+    suppressed = 0
+    if not args.include_logged:
+        drifts, dropped_drift = drop_logged(drifts)
+        structural, dropped_structural = drop_logged(structural)
+        ghidra_absent, dropped_ghidra = drop_logged(ghidra_absent)
+        suppressed = dropped_drift + dropped_structural + dropped_ghidra
+
     if args.ranked and args.json:
         print(json.dumps({
             "ledger": ledger,
             "drift_quick_wins": drifts,
             "structural": structural,
             "ghidra_meta": ghidra_meta, "ghidra_absent": ghidra_absent,
+            "suppressed_logged": suppressed,
             "pointers": [cmd for cmd, _ in POINTERS],
         }, indent=2))
         return
 
     if args.ranked:
-        print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent)
+        print_ranked(args, ledger, drifts, structural, ghidra_meta,
+                     ghidra_absent, suppressed)
         return
 
     label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent)
     candidate = candidates[secrets.randbelow(len(candidates))] if candidates else None
-    meta = {"pool": len(candidates)}
+    meta = {"pool": len(candidates), "suppressed_logged": suppressed}
     if args.json:
         print(json.dumps({"ledger": ledger, "tier": label,
                           "selection": candidate, "selection_meta": meta}, indent=2))
         return
     print("== ledger health ==")
     print(f"  {ledger}")
+    if suppressed:
+        print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
+              f"no-match (--include-logged to show)")
     if candidate is None:
         print(f"\nNo {label} candidates remain.")
         return

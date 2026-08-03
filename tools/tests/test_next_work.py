@@ -108,6 +108,30 @@ def test_ghidra_candidates_validated(data):
     print(f"PASS Ghidra queue: {len(data['ghidra_absent'])} validated candidates")
 
 
+def test_logged_no_match_suppressed(ranked):
+    """A `no-match` row is a finished investigation, so the queues must not
+    serve that symbol again; --include-logged restores it for auditing."""
+    logged = set()
+    log = ROOT / "reverse" / "re_attempts.log"
+    if log.exists():
+        for line in log.read_text(encoding="utf-8", errors="replace").splitlines():
+            fields = line.split("\t")
+            if len(fields) >= 2 and fields[1] == "no-match":
+                logged.add(fields[0])
+
+    queues = ("drift_quick_wins", "structural", "ghidra_absent")
+    for key in queues:
+        stale = [c["function"] for c in ranked[key] if c["function"] in logged]
+        assert not stale, f"{key} served {len(stale)} already-no-match candidate(s): {stale[:3]}"
+
+    full = get_ranked_json(["--include-logged"])
+    hidden = sum(len(full[key]) - len(ranked[key]) for key in queues)
+    assert hidden == ranked["suppressed_logged"], (hidden, ranked["suppressed_logged"])
+    assert hidden >= 0
+    print(f"PASS re_attempts filter: {hidden} logged no-match candidate(s) suppressed, "
+          f"--include-logged restores them")
+
+
 def test_corrupt_ledger():
     (ROOT / "build").mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(dir=ROOT / "build") as temp:
