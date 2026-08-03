@@ -9203,7 +9203,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?buildFieldParse@UpgradeDieModuleData@@SAXAAVMultiIniFieldParse@@@Z,,0x00123560,36,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?buildFieldParse@UpgradeModuleData@@SAXAAVMultiIniFieldParse@@@Z,,0x00122DC0,17,Code/GameEngine/Source/GameLogic/Object/Upgrade/ModelConditionUpgrade.cpp,matched,
 ?buildPlayerStatusText@BFMEConnectionManager@@QAEXPAX@Z,,0x00666300,578,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?buildPolygonNormals@W3DShadowGeometryMesh@@QAEXXZ,,0x007BD320,209,Code/masm_dumps/W3DShadowGeometryMesh_buildPolygonNormals.asm,matched,Certified packet 257 retail SHA256 8fd89af23d5f32c09cc02e84cbcc82d2aa677cab918bdf9124838831ccbc7ddd
+?buildPolygonNormals@W3DShadowGeometryMesh@@QAEXXZ,,0x007BD320,209,Code/GameEngine/Source/Common/W3DShadowGeometryMesh_buildPolygonNormalsMethodThunk.cpp,matched,Certified packet 257 retail SHA256 8fd89af23d5f32c09cc02e84cbcc82d2aa677cab918bdf9124838831ccbc7ddd
 ?buildRegion@@YAXPBUICoord2D@@0PAUIRegion2D@@@Z,,0x0008AA00,69,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?buildRegion@InGameUI@@UAEXPBUICoord2D@@0PAUIRegion2D@@@Z,,0x0043B7F0,73,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?buildSpecificAITeam@AIPlayer@@UAEXPAVTeamPrototype@@_N@Z,,0x001650F0,1335,Code/masm_dumps/_str__buildSpecificAITeam_AIPlayer_UAEXPAVTeamPrototype__N_Z_1650F0.asm,matched,
