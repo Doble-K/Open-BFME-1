@@ -212,50 +212,8 @@ void LANGameInfo::resetAccepted( void )
 // Misc game-related functionality --------------------
 
 
-void LANDisplayGameList( GameWindow *gameListbox, LANGameInfo *gameList )
-{
-	LANGameInfo *selectedPtr = NULL;
-	Int selectedIndex = -1;
-	Int indexToSelect = -1;
-	if (gameListbox)
-	{
-		GadgetListBoxGetSelected(gameListbox, &selectedIndex);
-		
-		if (selectedIndex != -1 )
-		{
-			selectedPtr = (LANGameInfo *)GadgetListBoxGetItemData(gameListbox, selectedIndex, 0);
-		}
-
-		GadgetListBoxReset(gameListbox);
-		
-		while (gameList)
-		{
-			UnicodeString txtGName;
-			txtGName = L"";
-			if( gameList->isGameInProgress() )
-			{
-				txtGName.concat(L"[");
-			}
-			txtGName.concat(gameList->getPlayerName(0));
-			if( gameList->isGameInProgress() )
-			{
-				txtGName.concat(L"]");
-			}
-			Int addedIndex = GadgetListBoxAddEntryText(gameListbox, txtGName, (gameList->isGameInProgress())?gameInProgressColor:gameColor, -1, -1);
-			GadgetListBoxSetItemData(gameListbox, (void *)gameList, addedIndex, 0 );
-
-			if (selectedPtr == gameList)
-				indexToSelect = addedIndex;
-
-			gameList = gameList->getNext();
-		}
-
-		if (indexToSelect >= 0)
-			GadgetListBoxSetSelected(gameListbox, indexToSelect);
-		else
-			HideGameInfoWindow(TRUE);
-	}
-}
+// ?LANDisplayGameList@@YAXPAVGameWindow@@PAVLANGameInfo@@@Z
+// Body in Code/masm_dumps/LANDisplayGameList_YAXPAVGameWindow_PAVLANGameInfo_Z_0068EBF0.asm (exact 710B retail @ 0x0068EBF0).
 
 AsciiString GenerateGameOptionsString( void )
 {
