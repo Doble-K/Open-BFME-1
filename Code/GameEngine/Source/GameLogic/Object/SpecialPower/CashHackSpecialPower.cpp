@@ -114,22 +114,14 @@ void CashHackSpecialPower::doSpecialPowerAtLocation( const Coord3D *loc, Real an
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-Int CashHackSpecialPower::findAmountToSteal() const
-{
-	const CashHackSpecialPowerModuleData* d = getCashHackSpecialPowerModuleData();
-	const Player* controller = getObject()->getControllingPlayer();
-	if (controller != NULL)
-	{
-		for (std::vector<CashHackSpecialPowerModuleData::Upgrades>::const_iterator it = d->m_upgrades.begin(); 
-					it != d->m_upgrades.end();
-					++it)
-		{
-			if (controller->hasScience(it->m_science))
-				return it->m_amountToSteal;
-		}
-	}
-	return d->m_defaultAmountToSteal;
-}
+// ?findAmountToSteal@CashHackSpecialPower@@IBEHXZ is emitted by
+// CashHackSpecialPowerFindAmountToStealThunk.cpp.
+
+typedef std::vector<CashHackSpecialPowerModuleData::Upgrades> CashHackUpgradesVector;
+typedef CashHackUpgradesVector::iterator (CashHackUpgradesVector::*CashHackBegin)();
+typedef CashHackUpgradesVector::const_iterator (CashHackUpgradesVector::*CashHackConstBegin)() const;
+static volatile CashHackBegin cashHackBeginAnchor = &CashHackUpgradesVector::begin;
+static volatile CashHackConstBegin cashHackConstBeginAnchor = &CashHackUpgradesVector::begin;
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
