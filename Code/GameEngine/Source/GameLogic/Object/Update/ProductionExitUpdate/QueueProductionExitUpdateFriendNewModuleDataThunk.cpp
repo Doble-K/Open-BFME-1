@@ -1,105 +1,70 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class INI;
+// Open-BFME5: QueueProductionExitUpdate::friend_newModuleData
+// Inline ModuleData ctor so the TU only exports the factory symbol.
+
 class ModuleData;
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+class QueueProductionExitUpdateModuleData
+{
+public:
+	QueueProductionExitUpdateModuleData()
+	{
+		m_a = 0;
+		m_b = 0;
+		m_c = 0;
+		m_d = 0;
+		m_e = 0;
+		m_f = 0;
+		m_g = 0;
+		m_h = 0;
+		m_i = 0;
+		m_j = 0;
+		m_k = 0;
+		m_l = 0;
+	}
+	virtual ~QueueProductionExitUpdateModuleData();
+private:
+	unsigned int m_pad;
+	unsigned int m_a;
+	unsigned int m_b;
+	unsigned int m_c;
+	unsigned int m_d;
+	unsigned int m_e;
+	unsigned int m_f;
+	unsigned int m_g;
+	unsigned char m_h;
+	unsigned char m_pad1;
+	unsigned char m_pad2;
+	unsigned char m_pad3;
+	unsigned int m_i;
+	unsigned int m_j;
+	unsigned char m_k;
+	unsigned char m_l;
+};
+
+class INI
+{
+public:
+	void initFromINI(void *what, const void *parseTable);
+};
+
+extern "C" char QueueProductionExitUpdateFieldParse;
 
 class QueueProductionExitUpdate
 {
 public:
-    static ModuleData *friend_newModuleData(INI *ini);
+	static ModuleData *friend_newModuleData(INI *ini);
 };
 
 // ?friend_newModuleData@QueueProductionExitUpdate@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *QueueProductionExitUpdate::friend_newModuleData(INI *)
+ModuleData *QueueProductionExitUpdate::friend_newModuleData(INI *ini)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x34
-        __emit 0xe8
-        __emit 0x78
-        __emit 0xdd
-        __emit 0x75
-        __emit 0x00
-        __emit 0x33
-        __emit 0xd2
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc2
-        __emit 0x74
-        __emit 0x2e
-        __emit 0xc7
-        __emit 0x00
-        __emit 0xc0
-        __emit 0xcf
-        __emit 0x08
-        __emit 0x01
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x89
-        __emit 0x50
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x50
-        __emit 0x10
-        __emit 0x89
-        __emit 0x50
-        __emit 0x14
-        __emit 0x89
-        __emit 0x50
-        __emit 0x18
-        __emit 0x89
-        __emit 0x50
-        __emit 0x1c
-        __emit 0x89
-        __emit 0x50
-        __emit 0x20
-        __emit 0x88
-        __emit 0x50
-        __emit 0x24
-        __emit 0x89
-        __emit 0x50
-        __emit 0x28
-        __emit 0x89
-        __emit 0x50
-        __emit 0x2c
-        __emit 0x88
-        __emit 0x50
-        __emit 0x30
-        __emit 0x88
-        __emit 0x50
-        __emit 0x31
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x3b
-        __emit 0xca
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x68
-        __emit 0x51
-        __emit 0x04
-        __emit 0x41
-        __emit 0x00
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x2c
-        __emit 0xdf
-        __emit 0x72
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc3
-    }
+	QueueProductionExitUpdateModuleData *data = new QueueProductionExitUpdateModuleData;
+	if (ini)
+		ini->initFromINI(data, &QueueProductionExitUpdateFieldParse);
+	return (ModuleData *)data;
 }
