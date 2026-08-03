@@ -226,13 +226,22 @@ def main():
         source_path.write_bytes(new_source)
 
     if replaced is not None:
-        lines = raw.splitlines(keepends=True)
-        old_index = replaced["line"] - 1
-        if not (0 <= old_index < len(lines)):
-            fail(f"internal error: existing row line {replaced['line']} is out of range")
-        new_raw = b"".join(lines[:old_index] + lines[old_index + 1:])
+        # Drop the old row by CONTENT, not by line number. parse_ledger numbers
+        # csv records while raw.splitlines() counts physical lines, and the two
+        # disagree whenever a row carries a stray CR (the ledger is currently
+        # written with \r\r\n): indexing physical lines with a record number
+        # deletes an unrelated row and silently glues its neighbours together.
+        # parse_ledger already guaranteed exactly one row for this name.
+        chunks = raw.split(b"\r\n")
+        prefix = (replaced["name"] + ",").encode("utf-8")
+        hits = [i for i, chunk in enumerate(chunks) if chunk.startswith(prefix)]
+        if len(hits) != 1:
+            fail(f"internal error: {len(hits)} ledger lines start with "
+                 f"{replaced['name']}, — expected exactly one")
+        del chunks[hits[0]]
+        new_raw = b"\r\n".join(chunks)
         functions_csv.write_bytes(new_raw + ledger_row.encode("utf-8") + b"\r\n")
-        print(f"add_match: replaced line {replaced['line']}: "
+        print(f"add_match: replaced row {replaced['line']}: "
               f"0x{replaced['rva']:08X}/{replaced['size']}B {replaced['source']}")
         print(f"add_match: with: {ledger_row}")
     else:
