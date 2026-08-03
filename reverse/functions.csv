@@ -2422,7 +2422,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DQuadrupedDrawModuleData@@QAE@XZ,,0x006BFE00,92,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DQuadrupedDrawModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 92B ModuleData constructor
 ??0W3DRopeDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0075A490,136,Code/masm_dumps/W3DRopeDraw_constructor.asm,matched,Exact 136B; factory ownership Open-BFME4
 ??0W3DScienceModelDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0W3DShadowGeometry@@QAE@XZ,,0x007BBCF0,131,Code/masm_dumps/W3DShadowGeometry_ctor.asm,matched,Correct retail body from Load_Geom constructor thunk 0x00031624
+??0W3DShadowGeometry@@QAE@XZ,,0x007BBCF0,131,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadowGeometryCtorThunk.cpp,matched,1:1 C++ thunk from certified Load_Geom constructor body
 ??0W3DShadowGeometryManager@@QAE@XZ,,0x007AEDA0,159,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??0W3DShadowGeometryManagerIterator@@QAE@AAVW3DShadowGeometryManager@@@Z,,0x007B96B0,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??0W3DShadowManager@@QAE@XZ,,0x007B7900,396,Code/masm_dumps/W3DShadowManager_ctor.asm,matched,MASM exact; true body 0x7B7900/396 (queue 0xA2DA77 misplaced); unique 0x7fa0a0a0; NEW0xC@0x73063a->TheW3DShadowManager; BFME 3 submgrs
