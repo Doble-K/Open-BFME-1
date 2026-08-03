@@ -1,77 +1,58 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: RenderObjectDrawModuleInfo ctor
+// Vtbl + three (byte, zero, zero, 8) groups and lead-in zeros.
 
 namespace FXParticleSystem
 {
-class RenderObjectDrawModuleInfo
+
+extern "C" char RenderObjectDrawModuleInfo_vtbl;
+
+class __declspec(novtable) RenderObjectDrawModuleInfo
 {
 public:
-    RenderObjectDrawModuleInfo();
+	RenderObjectDrawModuleInfo();
+
+private:
+	char *m_vtbl;
+	unsigned char m_04;
+	unsigned char m_pad05[3];
+	unsigned int m_08;
+	unsigned char m_0c;
+	unsigned char m_pad0d[3];
+	unsigned int m_10;
+	unsigned int m_14;
+	unsigned int m_18;
+	unsigned int m_1c;
+	unsigned int m_20;
+	unsigned int m_24;
+	unsigned int m_28;
+	unsigned int m_2c;
+	unsigned int m_30;
+	unsigned int m_34;
+	unsigned int m_38;
+	unsigned int m_3c;
 };
 
-__declspec(naked) RenderObjectDrawModuleInfo::RenderObjectDrawModuleInfo()
+// ??0RenderObjectDrawModuleInfo@FXParticleSystem@@QAE@XZ
+RenderObjectDrawModuleInfo::RenderObjectDrawModuleInfo()
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0xc1;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0xc7;
-        __emit 0x00;
-        __emit 0xb8;
-        __emit 0x12;
-        __emit 0x11;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x20;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x30;
-        __emit 0xba;
-        __emit 0x08;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x48;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x1c;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x24;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x28;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x2c;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x34;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x38;
-        __emit 0x89;
-        __emit 0x50;
-        __emit 0x3c;
-        __emit 0x88;
-        __emit 0x48;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x08;
-        __emit 0xc3;
-    }
+	*reinterpret_cast<char *volatile *>(this) = &RenderObjectDrawModuleInfo_vtbl;
+	*reinterpret_cast<unsigned int volatile *>(&m_10) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_20) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_30) = 0;
+	*reinterpret_cast<unsigned char volatile *>(&m_0c) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_14) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_18) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_1c) = 8;
+	*reinterpret_cast<unsigned int volatile *>(&m_24) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_28) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_2c) = 8;
+	*reinterpret_cast<unsigned int volatile *>(&m_34) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_38) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_3c) = 8;
+	*reinterpret_cast<unsigned char volatile *>(&m_04) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_08) = 0;
 }
+
 }
