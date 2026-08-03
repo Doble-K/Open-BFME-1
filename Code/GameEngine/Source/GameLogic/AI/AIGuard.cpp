@@ -172,6 +172,22 @@ Bool ExitConditions::shouldExit(const StateMachine* machine) const
 // ??0AIGuardMachine@@QAE@PAVObject@@@Z
 // Body in Code/masm_dumps/_sa___0AIGuardMachine___15D1D0.asm (exact 691B retail @ 0x15D1D0).
 //--------------------------------------------------------------------------------------
+// Lifting that constructor out took every newInstance() call in this file with
+// it, and with them the pool operator new and operator delete these six state
+// classes emit. Twelve claims still name this file for those two folded bodies
+// at 0x3FD696 and 0x7EFFF0, and no other object in the tree defines them, so
+// the calls have to stay here. Nothing calls this, and the linker drops it.
+//--------------------------------------------------------------------------------------
+void AIGuardStatePoolGlue( AIGuardMachine *machine )
+{
+	newInstance(AIGuardInnerState)( machine );
+	newInstance(AIGuardReturnState)( machine );
+	newInstance(AIGuardIdleState)( machine );
+	newInstance(AIGuardOuterState)( machine );
+	newInstance(AIGuardPickUpCrateState)( machine );
+	newInstance(AIGuardAttackAggressorState)( machine );
+}
+//--------------------------------------------------------------------------------------
 // ??1AIGuardMachine@@ present-unmatched
 AIGuardMachine::~AIGuardMachine()
 {

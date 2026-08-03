@@ -155,6 +155,22 @@ Bool TunnelNetworkExitConditions::shouldExit(const StateMachine* machine) const
 // ??0AITNGuardMachine@@QAE@PAVObject@@@Z
 // Body in Code/masm_dumps/_sa___0AITNGuardMachine___18AFB0.asm (exact 753B retail @ 0x0018AFB0).
 //--------------------------------------------------------------------------------------
+// Lifting that constructor out took every newInstance() call in this file with
+// it, and with them the pool operator new and operator delete these six state
+// classes emit. Twelve claims still name this file for those two folded bodies
+// at 0x3FD696 and 0x7EFFF0, and no other object in the tree defines them, so
+// the calls have to stay here. Nothing calls this, and the linker drops it.
+//--------------------------------------------------------------------------------------
+void AITNGuardStatePoolGlue( AITNGuardMachine *machine )
+{
+	newInstance(AITNGuardInnerState)( machine );
+	newInstance(AITNGuardReturnState)( machine );
+	newInstance(AITNGuardIdleState)( machine );
+	newInstance(AITNGuardOuterState)( machine );
+	newInstance(AITNGuardPickUpCrateState)( machine );
+	newInstance(AITNGuardAttackAggressorState)( machine );
+}
+//--------------------------------------------------------------------------------------
 // ??1AITNGuardMachine@@ present-unmatched
 AITNGuardMachine::~AITNGuardMachine()
 {
