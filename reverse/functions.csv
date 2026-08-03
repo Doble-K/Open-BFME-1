@@ -7186,7 +7186,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Internal_Add_Tail@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@_N@Z,,0x009DBFE0,125,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ?Internal_Get_List_Head@GenericMultiListClass@@IAEPAVMultiListObjectClass@@XZ,,0x00710D40,17,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Internal_Get_Next@GenericSLNode@@IAEPAXXZ,,0x0010BDB0,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DAssetManager.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
-?Internal_Remove@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@@Z,,0x009DC100,104,Code/Libraries/Source/WWVegas/WWLib/GenericMultiListClass_Internal_Remove.asm,matched,exact 104B via MASM (delete tail-duplication wall)
+?Internal_Remove@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@@Z,,0x009DC100,104,Code/Libraries/Source/WWVegas/WWLib/GenericMultiListClass_Internal_Remove_Thunk.cpp,matched,Open-BFME5 lift 104B retail method MASM to standalone C++ thunk
 ?Internal_Remove_List_Head@GenericMultiListClass@@IAEPAVMultiListObjectClass@@XZ,,0x009DC170,27,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ?Intersect@RenderObjClass@@UAE_NPAVIntersectionClass@@PAVIntersectionResultClass@@@Z,,0x00920850,456,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?IntersectLine2D@@YA_NPBUCoord2D@@000PAU1@@Z,,0x0044EC20,286,Code/GameEngine/Source/Common/line2_d.cpp,matched,
@@ -12573,7 +12573,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseDebris@GenericObjectCreationNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001DAE40,204,Code/masm_dumps/GenericObjectCreationNugget_parseDebris_1DAE40.asm,matched,Exact 204B MASM; queue RVA 0x1DAE09 was int3 pad before true start; m_nameAreObjects=0 at +0x114; sibling parseObject@0x1DA620
 ?parseDebugCommandMap@@YAXPAVINI@@@Z,,0x005B7030,129,Code/GameEngine/Source/GameClient/DebugCommandMap.cpp,matched,reads the entry name and discards it then parses into a local that is also discarded - the release build validates syntax and stores nothing
 ?parseDefaultColor@@YA_NPAHPAVFile@@PAD@Z,,0x00485970,143,Code/GameEngine/Source/Common/parseDefaultColor_Thunk.cpp,matched,Certified packet 43 reviewed ENTRY boundaries callers TRANSPARENT xref and call graph
-?parseDrawCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486A60,130,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript_parseDrawCallback.asm,matched,MASM exact parser-table anchored DRAWCALLBACK
+?parseDrawCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486A60,130,Code/GameEngine/Source/GameClient/GUI/parseDrawCallback_Thunk.cpp,matched,Open-BFME5 lift 130B retail method MASM to standalone C++ thunk
 ?parseDrawData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485EE0,1221,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript_parseDrawData.asm,matched,exact 1221B via MASM (structural near-match)
 ?parseDrawGroupNumberDefinition@INI@@SAXPAV1@@Z,,0x000B8200,66,Code/GameEngine/Source/Common/INI/INIDrawGroupNumberDefinitionThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit parse thunk
 ?parseDurationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9C30,33,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
@@ -13183,7 +13183,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?scanString@MemoryWriteFile@@UAE_NAAVAsciiString@@@Z,,0x009CB340,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?scanUnsignedInt@INI@@SAIPBD@Z,,0x00852680,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
 ?screenPixelToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,,0x00107C50,126,Code/GameEngine/Source/Common/Radar_screenPixelToWorld_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
-?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABV2@@Z,,0x005B2AD0,135,Code/GameEngine/Source/GameClient/MessageStream/HotKey_searchHotKey_AsciiString.asm,matched,MASM exact 135B; true body @0x5B2AD0 (queue 0x9DB068 misplaced); fetch+unicode searchHotKey chain
+?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABV2@@Z,,0x005B2AD0,135,Code/GameEngine/Source/GameClient/MessageStream/HotKeyManager_searchHotKey_Thunk.cpp,matched,Open-BFME5 lift 135B retail method MASM to standalone C++ thunk
 ?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABVUnicodeString@@@Z,,0x005B27E0,245,Code/GameEngine/Source/GameClient/MessageStream/HotKey_searchHotKey_UnicodeString.asm,matched,Certified packet 304 exact retail db recovery
 ?search_compfunc@?$IndexClass@HPAUINIEntry@@@@CAHPBX0@Z,,0x009E2390,33,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
 ?search_compfunc@?$IndexClass@HPAUINISection@@@@CAHPBX0@Z,,0x009E23C0,33,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
