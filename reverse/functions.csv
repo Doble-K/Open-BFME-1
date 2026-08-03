@@ -8283,7 +8283,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Texture@LineGroupClass@@QAEXPAVTextureClass@@@Z,,0x0098EC80,50,Code/Libraries/Source/WWVegas/WW3D2/LineGroupClassSetTextureThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM method
 ?Set_Texture@MeshModelClass@@QAEXHPAVTextureClass@@HH@Z,,0x006DB460,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Set_Texture@ParticleBufferClass@@QAEXPAVTextureClass@@@Z,,0x00984410,52,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
-?Set_Texture@PointGroupClass@@QAEXPAVTextureClass@@@Z,,0x009127F0,50,Code/Libraries/Source/WWVegas/WW3D2/PointGroupClassSetTextureThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM method
+?Set_Texture@PointGroupClass@@QAEXPAVTextureClass@@@Z,,0x009127F0,50,Code/Libraries/Source/WWVegas/WW3D2/PointGroupClassSetTextureThunk.cpp,matched,Open-BFME5 exact clean C++ retail texture handle layout (SegLine twin)
 ?Set_Texture@SegLineRendererClass@@QAEXPAVTextureClass@@@Z,,0x00960050,47,Code/Libraries/Source/WWVegas/WW3D2/SegLineRendererSetTexture.cpp,matched,Luna Open-BFME8 exact clean C++ retail texture handle layout
 ?Set_Texture@StreakRendererClass@@QAEXPAVTextureClass@@@Z,,0x00973850,37,Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp,matched,icf-owner=?Set_HAnim@HAnimComboDataClass@@QAEXPAVHAnimClass@@@Z
 ?Set_Texture_Filename@ParticleEmitterDefClass@@UAEXPBD@Z,,0x0098C170,32,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
