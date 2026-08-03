@@ -556,23 +556,8 @@ void SegmentedLineClass::Set_Texture_Reduction_Factor(float trf)
 
 
 
-// ?SegmentedLineClass::Render_Seg_Line present-unmatched
-void SegmentedLineClass::Render_Seg_Line(RenderInfoClass & rinfo)
-{
-	// Line must have at least two points to be valid
-	if (PointLocations.Count() < 2) return;
-
-	SphereClass bounding_sphere;
-	Get_Obj_Space_Bounding_Sphere(bounding_sphere);			
-
-	LineRenderer.Render(
-		rinfo,
-		Transform,
-		PointLocations.Count(),
-		&(PointLocations[0]),
-		bounding_sphere
-		);
-}
+// ?Render_Seg_Line@SegmentedLineClass@@IAEXAAVRenderInfoClass@@@Z is emitted by
+// SegmentedLineRenderSegLineThunk.cpp.
 
 
 // ?SegmentedLineClass::Cast_Ray present-unmatched
