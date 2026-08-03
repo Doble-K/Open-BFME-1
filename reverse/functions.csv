@@ -6109,9 +6109,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GadgetListBoxGetEnabledSelectedItemImageSmallCenter@@YAPBVImage@@PAVGameWindow@@@Z,,0x007970C0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp,matched,icf-owner=?GadgetButtonGetRightEnabledSelectedImage@@YAPBVImage@@PAVGameWindow@@@Z
 ?GadgetListBoxGetEntryBasedOnXY@@YAHPAVGameWindow@@HHAAH1@Z,,0x004B6B30,33,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
 ?GadgetListBoxGetHiliteBorderColor@@YAHPAVGameWindow@@@Z,,0x0047B5E0,11,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
-?GadgetListBoxGetHiliteColor@@YAHPAVGameWindow@@@Z,,0x007903B0,11,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
-?GadgetListBoxGetHiliteImage@@YAPBVImage@@PAVGameWindow@@@Z,,0x00797330,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp,matched,
-?GadgetListBoxGetHiliteSelectedItemBorderColor@@YAHPAVGameWindow@@@Z,,0x004B68F0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp,matched,
+?GadgetListBoxGetHiliteColor@@YAHPAVGameWindow@@@Z,,0x007903B0,11,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
+?GadgetListBoxGetHiliteImage@@YAPBVImage@@PAVGameWindow@@@Z,,0x00797330,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp,matched,
+?GadgetListBoxGetHiliteSelectedItemBorderColor@@YAHPAVGameWindow@@@Z,,0x004B68F0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp,matched,
 ?GadgetListBoxGetHiliteSelectedItemColor@@YAHPAVGameWindow@@@Z,,0x0078FC40,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp,matched,
 ?GadgetListBoxGetHiliteSelectedItemImageCenter@@YAPBVImage@@PAVGameWindow@@@Z,,0x0078FC90,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp,matched,
 ?GadgetListBoxGetHiliteSelectedItemImageLeft@@YAPBVImage@@PAVGameWindow@@@Z,,0x0047B5F0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DListBox.cpp,matched,
@@ -12200,7 +12200,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z,,0x0043A520,29,Code/GameEngine/Source/Common/System/RadarIsRadarWindowThunk.cpp,matched,Open-BFME5 clean C++ Radar::isRadarWindow
 ?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isRepairMostImportant_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?isSamePosition@@YA_NPBUCoord3D@@00@Z,,0x0016AA70,69,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?isSandbox@GameInfo@@QAE_NXZ,,0x00621600,843,Code/masm_dumps/_sa3__isSandbox_GameInfo__QAE_NXZ_621600.asm,matched,Exact 843B string-anchored Open-BFME4
 ?isScienceGrantable@ScienceStore@@QBE_NW4ScienceType@@@Z,,0x000E6DE0,25,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,thunk-dump converted to clean C++; true body 0xE6DE0 (25B ending before int3 pad at 0xE6DF9)
 ?isScorch@MapObject@@QBE_NXZ,,0x00730320,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?isScreenVisible@DisconnectMenu@@QAE_NXZ,,0x00537670,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,
@@ -34599,3 +34598,4 @@ _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,ic
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?friend_newModuleData@InternetHackContain@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,Open-BFME5 exact C++ ICF alias; corrected one-byte int3 boundary; retail size 0x16C and constructor pin 0x30945
 ?setControlBarSchemeByPlayer@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F8B0,790,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSetControlBarSchemeByPlayerThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?isSandbox@GameInfo@@QAE_NXZ,,0x00621600,843,Code/GameEngine/Source/GameNetwork/GameInfoIsSandboxThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
