@@ -6623,7 +6623,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Hash_Val@?$HashTemplateClass@VStringClass@@PAVHTreeClass@@@@CAIABVStringClass@@I@Z,,0x0094DF40,21,Code/Libraries/Source/WWVegas/WW3D2/htreemgr.cpp,matched,
 ?Get_Hash_Val@?$HashTemplateClass@VStringClass@@PAVTextureClass@@@@CAIABVStringClass@@I@Z,,0x0094DF40,21,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,
 ?Get_Hash_Val@?$HashTemplateClass@VStringClass@@PAVThumbnailClass@@@@CAIABVStringClass@@I@Z,,0x0094DF40,21,Code/Libraries/Source/WWVegas/WW3D2/texturethumbnail.cpp,matched,
-?Get_Hash_Value@?$HashTemplateKeyClass@VStringClass@@@@SAIABVStringClass@@@Z,,0x0094DBC0,77,Code/masm_dumps/_sym3__Get_Hash_Value___HashTemplateKeyClass_VStringClass____SAIABVStringCla_94DBC0.asm,matched,symbol-pin Open-BFME4+Grok
+?Get_Hash_Value@?$HashTemplateKeyClass@VStringClass@@@@SAIABVStringClass@@@Z,,0x0094DBC0,77,Code/GameEngine/Source/Common/HashTemplateKeyClassStringClassGetHashValueThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Get_Head@?$MultiListClass@VDX8PolygonRendererClass@@@@QAEPAVDX8PolygonRendererClass@@XZ,,0x0092D680,17,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Get_Head@?$MultiListClass@VMeshModelClass@@@@QAEPAVMeshModelClass@@XZ,,0x00711C40,24,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Get_Height@Vector3SolidCylinderRandomizer@@UBEMXZ,,0x0010BD90,4,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,icf-owner=?getMinimumValue@GameClientRandomVariable@@QBEMXZ
@@ -7713,7 +7713,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Remove@?$RefMultiListClass@VRenderObjClass@@@@QAE_NPAVRenderObjClass@@@Z,,0x00711B70,47,Code/Libraries/Source/WWVegas/WW3D2/renderobjectrecycler.cpp,matched,
 ?Remove@HashTableClass@@QAE_NPAVHashableClass@@@Z,,0x009E00E0,102,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
 ?Remove@RenderObjClass@@UAEXXZ,,0x0091FBC0,42,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
-?Remove_All@?$SList@VTagBlockIndex@@@@UAEXXZ,,0x009EDD30,63,Code/masm_dumps/_sym3__Remove_All___SList_VTagBlockIndex____UAEXXZ_9EDD30.asm,matched,symbol-pin Open-BFME4+Grok
+?Remove_All@?$SList@VTagBlockIndex@@@@UAEXXZ,,0x009EDD30,63,Code/GameEngine/Source/Common/SListTagBlockIndexRemoveAllThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Remove_Anim_Combo_Data@HAnimComboClass@@QAEXPAVHAnimComboDataClass@@@Z,,0x00974410,58,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Remove_Current_Object@?$MultiListIterator@VPolyRemover@@@@QAEXXZ,,0x00946200,25,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,icf-owner=?Remove_Current_Object@?$MultiListIterator@VTextureTrackerClass@@@@QAEXXZ
 ?Remove_Current_Object@?$MultiListIterator@VTextureTrackerClass@@@@QAEXXZ,,0x00946200,25,Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp,matched,
