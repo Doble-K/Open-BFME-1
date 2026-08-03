@@ -1,172 +1,71 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: AnimalAIUpdate::friend_newModuleData factory.
 
-class INI;
 class ModuleData;
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+class AnimalAIUpdateModuleDataBaseShim
+{
+public:
+	void construct();
+};
+
+class AnimalAIUpdateModuleDataVtbl
+{
+public:
+	AnimalAIUpdateModuleDataVtbl() {}
+	virtual void dummy();
+
+private:
+	unsigned char m_pad[0x7c];
+};
+
+class __declspec(novtable) AnimalAIUpdateModuleData
+{
+public:
+	AnimalAIUpdateModuleData();
+	virtual void dummy();
+
+private:
+	unsigned char m_pad[0x7c];
+};
+
+AnimalAIUpdateModuleData::AnimalAIUpdateModuleData()
+{
+	((AnimalAIUpdateModuleDataBaseShim *)this)->construct();
+	((AnimalAIUpdateModuleDataVtbl *)this)
+		->AnimalAIUpdateModuleDataVtbl::AnimalAIUpdateModuleDataVtbl();
+	unsigned int ten = 10;
+	*(unsigned int *)((char *)this + 0x64) = 0x14;
+	*(unsigned int *)((char *)this + 0x68) = 0x64;
+	*(unsigned int *)((char *)this + 0x6c) = 0x32;
+	*(unsigned int *)((char *)this + 0x70) = ten;
+	*(unsigned int *)((char *)this + 0x74) = ten;
+	*(unsigned int *)((char *)this + 0x78) = ten;
+	*((unsigned char *)this + 0x7c) = 1;
+}
+
+class INI
+{
+public:
+	void initFromINI(void *what, const void *parseTable);
+};
+
+extern "C" char AnimalAIUpdateFieldParse;
 
 class AnimalAIUpdate
 {
 public:
-    static ModuleData *friend_newModuleData(INI *);
+	static ModuleData *friend_newModuleData(INI *ini);
 };
 
 // ?friend_newModuleData@AnimalAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *AnimalAIUpdate::friend_newModuleData(INI *)
+ModuleData *AnimalAIUpdate::friend_newModuleData(INI *ini)
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 00Bh
-        _emit 0EAh
-        _emit 0FFh
-        _emit 000h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 056h
-        _emit 068h
-        _emit 080h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0E8h
-        _emit 0FFh
-        _emit 0B4h
-        _emit 076h
-        _emit 000h
-        _emit 08Bh
-        _emit 0F0h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 004h
-        _emit 085h
-        _emit 0F6h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 074h
-        _emit 036h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 0EEh
-        _emit 01Fh
-        _emit 0F3h
-        _emit 0FFh
-        _emit 0B8h
-        _emit 00Ah
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 006h
-        _emit 0F0h
-        _emit 099h
-        _emit 008h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 064h
-        _emit 014h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 046h
-        _emit 068h
-        _emit 064h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 046h
-        _emit 06Ch
-        _emit 032h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 046h
-        _emit 070h
-        _emit 089h
-        _emit 046h
-        _emit 074h
-        _emit 089h
-        _emit 046h
-        _emit 078h
-        _emit 0C6h
-        _emit 046h
-        _emit 07Ch
-        _emit 001h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0F6h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 018h
-        _emit 085h
-        _emit 0C9h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 074h
-        _emit 00Bh
-        _emit 068h
-        _emit 030h
-        _emit 06Eh
-        _emit 043h
-        _emit 000h
-        _emit 056h
-        _emit 0E8h
-        _emit 097h
-        _emit 0B6h
-        _emit 073h
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
+	AnimalAIUpdateModuleData *data = new AnimalAIUpdateModuleData;
+	if (ini)
+		ini->initFromINI(data, &AnimalAIUpdateFieldParse);
+	return (ModuleData *)data;
 }
