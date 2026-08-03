@@ -4539,3 +4539,9 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?sendMessage@LANAPI@@QAEXPAULANMessage@@I@Z,0x0002B599,LANAPI::sendMessage(msg, ip) for RequestLobbyLeave
 ?update@Transport@@QAEXXZ,0x00001EC4,Transport::update for LANAPI::RequestLobbyLeave forced path
 ??1ModuleTagString@@QAE@XZ,0x00026AB2,ModuleInfo::Nugget m_moduleTag AsciiString-like ILT
+??1SpecialPowerModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1SpecialPowerModuleDataMemberB@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1SpecialPowerModuleDataMemberC@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1SpecialPowerModuleDataMemberD@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1SpecialPowerModuleDataMemberE@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1SpecialPowerModuleDataMemberF@@QAE@XZ,0x0001A401,Open-BFME5 pin
