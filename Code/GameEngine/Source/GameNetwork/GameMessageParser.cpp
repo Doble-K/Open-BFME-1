@@ -38,34 +38,7 @@ GameMessageParser::GameMessageParser()
 	m_argTypeCount = 0;
 }
 
-//----------------------------------------------------------------------------
-// ??0GameMessageParser@@ present-unmatched
-GameMessageParser::GameMessageParser(GameMessage *msg) 
-{
-	m_first = NULL;
-	m_argTypeCount = 0;
-
-	UnsignedByte argCount = msg->getArgumentCount();
-	GameMessageArgumentDataType lasttype = ARGUMENTDATATYPE_UNKNOWN;
-	Int thisTypeCount = 0;
-
-	for (UnsignedByte i = 0; i < argCount; ++i) {
-		GameMessageArgumentDataType type = msg->getArgumentDataType(i);
-		if (type != lasttype) {
-			if (thisTypeCount > 0) {
-				addArgType(lasttype, thisTypeCount);
-				++m_argTypeCount;
-			}
-			lasttype = type;
-			thisTypeCount = 0;
-		}
-		++thisTypeCount;
-	}
-	if (thisTypeCount > 0) {
-		addArgType(lasttype, thisTypeCount);
-		++m_argTypeCount;
-	}
-}
+// The exact retail message-taking constructor is emitted by GameMessageParserCtorThunk.cpp.
 
 //----------------------------------------------------------------------------
 // ??1GameMessageParser@@MAE@XZ present-unmatched

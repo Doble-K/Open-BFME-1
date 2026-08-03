@@ -1573,7 +1573,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GameFileClass@@QAE@XZ,,0x006F6090,26,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,
 ??0GameFont@@QAE@XZ,,0x00102DF0,16,Code/GameEngine/Source/GameClient/GUI/GameFont.cpp,matched,
 ??0GameMessage@@QAE@W4Type@0@@Z,,0x0008A2A0,53,Code/GameEngine/Source/Common/System/message_stream.cpp,matched,incremental thunk @0x359E5 to GameMessage constructor body @0x8A2A0; exact C++ retail layout reconstruction
-??0GameMessageParser@@QAE@PAVGameMessage@@@Z,,0x006236D0,142,Code/masm_dumps/GameMessageParser_constructor_6236D0.asm,matched,Certified packet 82 exact retail db body SHA256 dff2813593a796ae89878de4cb840cc2c0771774c9ab0e621261b0671e0562f7
+??0GameMessageParser@@QAE@PAVGameMessage@@@Z,,0x006236D0,142,Code/GameEngine/Source/GameNetwork/GameMessageParserCtorThunk.cpp,matched,1:1 C++ thunk from certified retail packet 82
 ??0GameMessageParser@@QAE@XZ,,0x00623510,20,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
 ??0GameMessageParserArgumentType@@QAE@W4GameMessageArgumentDataType@@H@Z,,0x00623570,32,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,
 ??0GameResultsQueue@@QAE@XZ,,0x0000DAFD,5,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsQueueCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
