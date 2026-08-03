@@ -1,169 +1,62 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift SupplyTruckAIUpdate dtor __emit thunk to clean C++.
+// Primary base (0x340 bytes) carries the four interface subobjects at
+// +0x0C/+0x10/+0x20/+0x24; SupplyTruckAIInterface is the secondary direct
+// base at +0x340. Body virtual-deletes the heap pointer at +0x344 and clears
+// it; the member at +0x364 has an out-of-line dtor; the primary base dtor is
+// out-of-line as well.
 
-class __declspec(novtable) SupplyTruckAIUpdate
+class ST_RootBase
 {
 public:
-	virtual ~SupplyTruckAIUpdate();
+    virtual ~ST_RootBase();
+
+private:
+    unsigned char m_pad[8];
+};
+
+class ST_Iface1 { public: virtual void vslot(); };
+class ST_Iface2 { public: virtual void vslot(); private: unsigned char m_pad[0xC]; };
+class ST_Iface3 { public: virtual void vslot(); };
+class ST_Iface4 { public: virtual void vslot(); };
+
+class AIUpdateInterface : public ST_RootBase, public ST_Iface1, public ST_Iface2, public ST_Iface3, public ST_Iface4
+{
+public:
+    virtual ~AIUpdateInterface();
+
+private:
+    unsigned char m_pad[0x318];
+};
+
+class ST_SupplyTruckAIInterface { public: virtual void vslot(); };
+
+class ST_HeapObj
+{
+public:
+    virtual ~ST_HeapObj();
+};
+
+class ST_MemberObj
+{
+public:
+    ~ST_MemberObj();
+};
+
+class SupplyTruckAIUpdate : public AIUpdateInterface, public ST_SupplyTruckAIInterface
+{
+public:
+    virtual ~SupplyTruckAIUpdate();
+
+private:
+    ST_HeapObj *m_member;
+    unsigned char m_pad2[0x1C];
+    ST_MemberObj m_obj;
 };
 
 // ??1SupplyTruckAIUpdate@@UAE@XZ
-__declspec(naked) SupplyTruckAIUpdate::~SupplyTruckAIUpdate()
+SupplyTruckAIUpdate::~SupplyTruckAIUpdate()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x56
-		__emit 0x3e
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0xc7
-		__emit 0x06
-		__emit 0xe8
-		__emit 0x8f
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x0c
-		__emit 0x20
-		__emit 0x8f
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x10
-		__emit 0x10
-		__emit 0x8f
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x20
-		__emit 0x0c
-		__emit 0x8f
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x24
-		__emit 0xf0
-		__emit 0x8e
-		__emit 0x0c
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x86
-		__emit 0x40
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x90
-		__emit 0x8e
-		__emit 0x0c
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x8e
-		__emit 0x44
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x85
-		__emit 0xc9
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x06
-		__emit 0x8b
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x01
-		__emit 0xff
-		__emit 0x10
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x64
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x86
-		__emit 0x44
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x3a
-		__emit 0x19
-		__emit 0xd6
-		__emit 0xff
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x6a
-		__emit 0x71
-		__emit 0xd5
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
+    delete m_member;
+    m_member = 0;
 }
