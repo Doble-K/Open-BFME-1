@@ -63,26 +63,7 @@ public:
 // PUBLIC FUNCTIONS ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-// ??0W3DRopeDraw@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
-W3DRopeDraw::W3DRopeDraw( Thing *thing, const ModuleData* moduleData ) : DrawModule( thing, moduleData )
-{
-	m_curLen = 0.0f;
-	m_maxLen = 1.0f;
-	m_width = 0.5f;
-	m_color.red = 0.0f;
-	m_color.green = 0.0f;
-	m_color.blue = 0.0f;
-	m_curSpeed = 0.0f;
-	m_maxSpeed = 0.0f;
-	m_accel = 0.0f;
-	m_wobbleLen = m_maxLen;	// huge
-	m_wobbleAmp = 0.0f;
-	m_segments.clear();
-	m_curWobblePhase = 0.0f;
-	m_curZOffset = 0.0f;
-} 
+// The exact retail constructor is emitted by W3DRopeDrawCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
