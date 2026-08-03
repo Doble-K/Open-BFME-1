@@ -3273,7 +3273,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1User@@MAE@XZ,,0x0078CFB0,73,Code/GameEngine/Source/GameNetwork/User.cpp,matched,
 ??1UserPreferences@@UAE@XZ,,0x0003F25B,5,Code/GameEngine/Source/Common/UserPreferencesDestructorThunk.cpp,matched,Focused C++ thunk for UserPreferences destructor
 ??1Vertex_Split_Table@@QAE@XZ,,0x00944BC0,18,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
-??1VideoPlayer@@UAE@XZ,,0x0081C590,35,Code/GameEngine/Source/GameClient/VideoPlayerDestructorThunk.cpp,matched,Open-BFME5 exact C++ raw VideoPlayer destructor
+??1VideoPlayer@@UAE@XZ,,0x0081C590,35,Code/GameEngine/Source/GameClient/VideoPlayerDestructorThunk.cpp,matched,Open-BFME5 clean C++ VideoPlayer dtor clear global
 ??1W3DAnimationInfo@@QAE@XZ,,0x00020018,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1W3DDebrisDraw@@UAE@XZ,,0x00750CC0,474,Code/GameEngine/Source/Common/W3DDebrisDrawDestructorThunk.cpp,matched,Exact 474B SEH dtor factory->vtable Open-BFME4
 ??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/GameEngine/Source/Common/W3DDisplayStringDestructorThunk.cpp,matched,Exact 114B SEH dtor Open-BFME5

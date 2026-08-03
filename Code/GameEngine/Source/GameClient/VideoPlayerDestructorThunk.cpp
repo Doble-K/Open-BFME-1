@@ -1,48 +1,35 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class __declspec(novtable) VideoPlayer
+// Open-BFME5: VideoPlayer destructor ? clear global singleton then chain bases
+
+class SubsystemInterface
 {
 public:
-    virtual ~VideoPlayer();
+	virtual ~SubsystemInterface();
 };
 
-__declspec(naked) VideoPlayer::~VideoPlayer()
+class VideoPlayerBase : public SubsystemInterface
 {
-    __asm {
-        _emit 0C7h
-        _emit 001h
-        _emit 0C0h
-        _emit 0CCh
-        _emit 012h
-        _emit 001h
-        _emit 03Bh
-        _emit 00Dh
-        _emit 090h
-        _emit 0B1h
-        _emit 030h
-        _emit 001h
-        _emit 075h
-        _emit 00Ah
-        _emit 0C7h
-        _emit 005h
-        _emit 090h
-        _emit 0B1h
-        _emit 030h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 001h
-        _emit 060h
-        _emit 0CCh
-        _emit 012h
-        _emit 001h
-        _emit 0E9h
-        _emit 08Dh
-        _emit 054h
-        _emit 018h
-        _emit 000h
-    }
+public:
+	virtual ~VideoPlayerBase();
+};
+
+class VideoPlayer : public VideoPlayerBase
+{
+public:
+	virtual ~VideoPlayer();
+};
+
+extern VideoPlayer *TheVideoPlayer;
+
+// empty intermediate so MSVC emits its vtbl store then jumps to SubsystemInterface
+VideoPlayerBase::~VideoPlayerBase()
+{
+}
+
+// ??1VideoPlayer@@UAE@XZ
+VideoPlayer::~VideoPlayer()
+{
+	if (this == TheVideoPlayer)
+		TheVideoPlayer = 0;
 }
