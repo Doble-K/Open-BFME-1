@@ -722,6 +722,7 @@ name,address,notes
 ??0FXListDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0004B510,pinharvest x1 (thunk)
 ??0FXListDieModuleData@@QAE@XZ,0x00025EBE,derived-ICF
 ??0FastAllocatorGeneral@@QAE@XZ,0x00B027B0
+??0FellBeastSwoopPowerBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,FellBeastSwoopPower ctor base
 ??0FileSystem@@QAE@XZ,0x00022CA5
 ??0FireOCLAfterWeaponCooldownUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00004D36,pinharvest x1 (thunk)
 ??0FireOCLAfterWeaponCooldownUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000C199,pinharvest x1 (thunk)
@@ -1190,6 +1191,7 @@ name,address,notes
 ??0ShareBufferClassBase@@QAE@HPBDH@Z,0x00929FC0,TexBufferClass base ShareBuffer-like ctor
 ??0ShroudCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x00026F1C,module ctor (friend_newModuleInstance retail call target)
 ??0SidesInfoSub@@QAE@H@Z,0x00002ECD,SidesInfo subobject ctor with int arg
+??0SiegeAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,SiegeAIUpdate ctor base
 ??0SiegeDeploySpecialPowerModuleDataBase@@QAE@XZ,0x00023FE7,SiegeDeploySpecialPowerModuleData base ctor from retail call site
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00001CDA,pinharvest x1 (thunk)
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002D40C,pinharvest x1 (thunk)
@@ -1301,6 +1303,7 @@ name,address,notes
 ??0ToppleUpdateModuleData@@QAE@XZ,0x00010B2C,derived-ICF
 ??0TransitionDamageFX@@QAE@PAVThing@@PBVModuleData@@@Z,0x00002450,pinharvest x1 (thunk)
 ??0TransitionDamageFX@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002B166,pinharvest x1 (thunk)
+??0TransportAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,TransportAIUpdate ctor base
 ??0TwiddlerClass@@QAE@XZ,0x000063A2,pinharvest x1 (thunk)
 ??0TwiddlerClass@@QAE@XZ,0x0000CDC9,pinharvest x1 (thunk)
 ??0UDP@@QAE@XZ,0x0001FFFA
@@ -1898,6 +1901,7 @@ name,address,notes
 ??_7AODHordeContainModuleDataVtbl@@6B@,0x01089960,AODHordeContain ModuleData vtbl
 ??_7AssaultTransportAIUpdateModuleDataVtbl@@6B@,0x01089CC0,AssaultTransportAIUpdate vtbl
 ??_7CategoryModuleTemplate8Sub@FXParticleSystem@@6B@,0x0107375C,CategoryModuleTemplate8 interim sub vtbl
+??_7ConvertToCarBombCrateCollideModuleDataVtbl@@6B@,0x0108E940,ConvertToCarBombCrateCollide vtbl
 ??_7DeployStyleAIUpdateModuleDataVtbl@@6B@,0x01089B68,DeployStyleAIUpdate vtbl
 ??_7GateProxyBehaviorModuleDataVtbl@@6B@,0x0108A2A0,GateProxyBehavior ModuleData vtbl
 ??_7RAMFile@@6B@,0x01143C58,installed by RAMFile ctor at 0x009D1980 and by the matched ??1RAMFile@@MAE@XZ
@@ -3152,6 +3156,7 @@ name,address,notes
 ?construct@BoxEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002D402,BoxEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00019CB3,ButterflyDrawModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@ButterflyDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0003E8F1,ButterflyDrawModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@ConvertToCarBombCrateCollideModuleDataBaseShim@@QAEXXZ,0x000441CA,ConvertToCarBombCrateCollide base
 ?construct@Coord3DPairConstructShim@_STL@@SAXPAU?$pair@UICoord2D@@UCoord3D@@@2@ABU32@@Z,0x00134F70,_STL _Construct pair ICoord2D Coord3D incremental-link thunk target through a TU-local forwarding shim
 ?construct@CylinderEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00009AA7,CylinderEmissionVolumeModule constructor thunk used through a TU-local layout shim
 ?construct@CylinderEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x000237EF,CylinderEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
@@ -4258,6 +4263,7 @@ CategoryModuleTemplate07_vtbl4,0x01073844,CMT07 vtbl4
 CategoryModuleTemplate8_vtbl0,0x01073848,CategoryModuleTemplate8 ctor vtbl at +0
 CategoryModuleTemplate8_vtbl4,0x01073844,CategoryModuleTemplate8 ctor vtbl at +4 final
 CategoryModuleTemplate8_vtbl_temp,0x0107375C,CategoryModuleTemplate8 ctor intermediate vtbl at +4
+ConvertToCarBombCrateCollideFieldParse,0x00412751,ConvertToCarBombCrateCollide FieldParse
 DefaultModuleTemplate00FieldParse,0x01113360,DefaultModuleTemplate parse FieldParse
 DefaultModuleTemplate00_sub_vtbl,0x011108CC,DefaultModuleTemplate00 sub vtbl
 DefaultModuleTemplate00_vtbl0,0x011108B8,DefaultModuleTemplate00 outer vtbl0
@@ -4433,6 +4439,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-??0SiegeAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,SiegeAIUpdate ctor base
-??0TransportAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,TransportAIUpdate ctor base
-??0FellBeastSwoopPowerBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,FellBeastSwoopPower ctor base

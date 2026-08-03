@@ -1528,8 +1528,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FastAllocatorGeneral@@QAE@XZ,,0x00B027B0,113,Code/Libraries/Source/WWVegas/WWLib/FastAllocatorGeneralCtorThunk.cpp,matched,Converted to an exact standalone C++ thunk
 ??0FastCriticalSectionClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,ICF alias of existing matched body
 ??0FastFixedAllocator@@QAE@I@Z,,0x00B02760,45,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,Converted to an exact standalone C++ thunk
-??0FellBeastSwoopPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025CF40,60,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FellBeastSwoopPowerCtorThunk.cpp,matched,Open-BFME5 clean C++ FellBeastSwoopPower MI ctor + zero at +0xE8
-
+??0FellBeastSwoopPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025CF40,60,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FellBeastSwoopPowerCtorThunk.cpp,matched,Open-BFME5 clean C++ FellBeastSwoopPower MI ctor + zero at +0xE8
 ??0FellBeastSwoopPowerModuleData@@QAE@XZ,,0x0025CF10,32,Code/GameEngine/Source/GameLogic/Object/Update/FellBeastSwoopPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ SpecialPowerModuleData + two zero fields
 ??0File@@QAE@XZ,,0x009CB7A0,88,Code/GameEngine/Source/Common/System/File.cpp,matched,installs vtable 0x01143AF8 and sets the placeholder name
 ??0FileFactoryClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,ICF alias of existing matched body
@@ -1902,7 +1901,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OBBoxIntersectionTestClass@@QAE@ABVAABoxIntersectionTestClass@@ABVMatrix3D@@@Z,,0x0092D8E0,176,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ??0OBBoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00957BC0,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0OBBoxRenderObjClass@@QAE@ABV0@@Z,,0x00957F40,111,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
-??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/Libraries/Source/WWVegas/WW3D2/OBBoxRenderObjClass_CtorThunk.cpp,matched,Open-BFME5 MASM lift
+??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/Libraries/Source/WWVegas/WW3D2/OBBoxRenderObjClass_CtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0OBBoxRenderObjClass@@QAE@XZ,,0x00957B30,80,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/GameEngine/Source/GameLogic/AI/OCLSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0OCLUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298960,80,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateConstructor.cpp,matched,Luna Open-BFME5.0 clean C++ inline UpdateModule constructor
@@ -2170,8 +2169,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ShroudCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/ShroudCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0SidesInfo@@QAE@XZ,,0x001985B0,34,Code/GameEngine/Source/GameLogic/Map/SidesInfoConstructorThunk.cpp,matched,Open-BFME5 clean C++ SidesInfo ctor zero fields + sub at +4
 ??0SidesList@@QAE@XZ,,0x0019EA80,365,Code/GameEngine/Source/GameLogic/Map/SidesListCtorThunk.cpp,matched,Open-BFME5 exact C++ raw map SidesList constructor
-??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ SiegeAIUpdate MI ctor (5 vtbls)
-
+??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ SiegeAIUpdate MI ctor (5 vtbls)
 ??0SiegeAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0SiegeDeployHordeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00265B20,77,Code/GameEngine/Source/GameLogic/Object/Update/DynamicGeometryInfoUpdateConstructor.cpp,matched,shared ICF owner converted to clean C++ body at destination 0x265B20
 ??0SiegeDeployHordeSpecialPowerModuleData@@QAE@XZ,,0x00265D90,25,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SiegeDeployHordeSpecialPowerModuleData.cpp,matched,Open-BFME5 clean C++ ModuleData ctor byte flag
@@ -2341,8 +2339,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TransitionDamageFXModuleData@@QAE@XZ,,0x002532B0,433,Code/masm_dumps/TransitionDamageFXModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x124770
 ??0TransitionInfo@State@@QAE@P6A_NPAV1@PAX@ZI1PBD@Z,,0x0009FF40,25,Code/GameEngine/Source/Common/StateMachine.cpp,matched,
 ??0TranslatorData@MessageStream@@QAE@XZ,,0x0008A240,19,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
-??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ TransportAIUpdate MI ctor (5 vtbls)
-
+??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ TransportAIUpdate MI ctor (5 vtbls)
 ??0TransportAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/TransportAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0TransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022D010,128,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 128B constructor
 ??0TransportContainModuleData@@QAE@XZ,,0x0021FC80,216,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainModuleDataCtorThunk.cpp,matched,Exact 216B @ 0x0021FC80; Exact retail MASM ModuleData ctor; unique factory 0x125470
@@ -9871,7 +9868,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/masm_dumps/_sa7__doTeamDecreasePriority_ScriptActions__IAEXABVAsci_2F3A60.asm,matched,Exact 196B Open-BFME4
 ?doTeamFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002F3E90,282,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamFlash.asm,matched,exact 282B MASM; true body 0x2F3E90 (drift 0x933119 mid-fn x87)
 ?doTeamHuntWithCommandButton@ScriptActions@@,,0x002F7B80,895,Code/masm_dumps/_sa6__doTeamHuntWithCommandButton_ScriptActions___2F7B80.asm,matched,true size 895B; row claimed 211B
-?doTeamIncreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3960,196,Code/GameEngine/Source/Common/ScriptActions_doTeamIncreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift
+?doTeamIncreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3960,196,Code/GameEngine/Source/Common/ScriptActions_doTeamIncreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift
 ?doTeamRadarCreateEvent@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002F4140,96,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionsDoTeamRadarCreateEventThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM body
 ?doTeamUseCommandButtonOnNamed@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002F54C0,204,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamUseCommandButtonOnNamed_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doTeamUseCommandButtonOnNearestEnemy@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002FB170,713,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamUseCommandButtonOnNearestEnemy.asm,matched,exact 713B via MASM; true body @ 0x2FB170 (queue 0x614F94 INSIDE mislocated NearestKindof/INI)
