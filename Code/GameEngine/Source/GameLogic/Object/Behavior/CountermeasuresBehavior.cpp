@@ -92,19 +92,8 @@ static void checkForCountermeasures( Object *testObj, void *userData )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0CountermeasuresBehavior@@ present-unmatched
-CountermeasuresBehavior::CountermeasuresBehavior( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
-{
-	const CountermeasuresBehaviorModuleData *data = getCountermeasuresBehaviorModuleData();
-	m_availableCountermeasures = data->m_numberOfVolleys * data->m_volleySize;
-	m_reactionFrame = 0;
-	m_activeCountermeasures = 0;
-	m_divertedMissiles = 0;
-	m_incomingMissiles = 0;
-	m_nextVolleyFrame = 0;
-	
-	setWakeFrame( getObject(), UPDATE_SLEEP_NONE );
-}
+// ??0CountermeasuresBehavior@@ is implemented by the exact retail thunk in
+// CountermeasuresBehaviorCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
