@@ -3102,7 +3102,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ParticleUplinkCannonUpdateModuleData@@UAE@XZ,,0x002A26C0,115,Code/GameEngine/Source/Common/ParticleUplinkCannonUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1PartitionManager@@UAE@XZ,,0x009F2800,115,Code/GameEngine/Source/Common/PartitionManagerDestructorThunk.cpp,matched,True owner via PartitionManager getName string; ICF-alias of mislabeled TeamFactory dtor @0x9F2800
 ??1PassiveAreaEffectBehavior@@UAE@XZ,,0x002022B0,116,Code/GameEngine/Source/Common/PassiveAreaEffectBehaviorDestructorThunk.cpp,matched,Exact 116B @ 0x002022B0; Exact retail MASM; instance factory->vtable dtor; del 0x202390 ctor 0x202100 vt 0xCA5304
-??1PassiveAreaEffectBehaviorModuleData@@UAE@XZ,,0x00202870,80,Code/GameEngine/Source/Common/PassiveAreaEffectBehaviorModuleDataDestructorThunk.cpp,matched,Exact 80B SEH dtor Open-BFME5
+??1PassiveAreaEffectBehaviorModuleData@@UAE@XZ,,0x00202870,80,Code/GameEngine/Source/Common/PassiveAreaEffectBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual non-consecutive member SEH ModuleData dtor
 ??1Payload@DeliverPayloadNugget@@QAE@XZ,,0x0004B10A,5,Code/GameEngine/Source/GameLogic/Object/DeliverPayloadDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1PeerRequest@@QAE@XZ,,0x004D52D0,555,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ??1PeerResponse@@QAE@XZ,,0x004DAC70,649,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,MASM converted to clean C++

@@ -4316,3 +4316,7 @@ DefaultModuleTemplate05_sub_vtbl,0x0111094C,DMT05 sub vtbl
 DefaultModuleTemplate0A_vtbl0,0x011108F8,DMT0A vtbl0
 DefaultModuleTemplate0A_vtbl4,0x011108F4,DMT0A vtbl4
 DefaultModuleTemplate0A_sub_vtbl,0x0111090C,DMT0A sub vtbl
+??1MemberB@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1MemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1PassiveAreaEffectBehaviorModuleDataMemberB@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1PassiveAreaEffectBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
