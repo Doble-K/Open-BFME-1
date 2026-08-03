@@ -3137,7 +3137,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1RTS3DScene@@UAE@XZ,,0x00C5FD7E,328,Code/masm_dumps/__1RTS3DScene__UAE_XZ.asm,matched,
 ??1Radar@@UAE@XZ,,0x00107620,118,Code/GameEngine/Source/Common/RadarDestructorThunk.cpp,matched,Exact retail MASM; dual-vtable wrapper chain proves ownership; preserves BFME vector-destructor machinery absent from ZH layout
 ??1RadarObject@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/System/Radar.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
-??1RadiusDecalUpdate@@UAE@XZ,,0x002A04E0,132,Code/masm_dumps/RadiusDecalUpdate_destructor.asm,matched,Exact 132B @ 0x002A04E0; Exact retail MASM; instance factory->vtable dtor; del 0x2A0720 ctor 0x2A0640 vt 0xCC1654
+??1RadiusDecalUpdate@@UAE@XZ,,0x002A04E0,132,Code/GameEngine/Source/Common/RadiusDecalUpdateDestructorThunk.cpp,matched,Exact 132B @ 0x002A04E0; Exact retail MASM; instance factory->vtable dtor; del 0x2A0720 ctor 0x2A0640 vt 0xCC1654
 ??1RankInfo@@MAE@XZ,,0x003A0AE0,146,Code/masm_dumps/dtor_RankInfo_MAEXXZ_003A0AE0_b3880e47.asm,matched,Certified packet 122 sealed SHA256 b3880e47d91aeecf7c79afd12d5ab7bab4e3d06b82aab0dd37db6a1045eca1ea
 ??1RankInfoStore@@UAE@XZ,,0x003A0BA0,212,Code/masm_dumps/RankInfoStore_destructor.asm,matched,Certified packet 110; Ghidra entry and RankInfoStore deleting-destructor chain; retail SHA-256 bb0ca418f4cb4caee2d814dd70efae958c268784c3d47d1d703cfe9a99c8d3f4
 ??1RawFileClass@@UAE@XZ,,0x009E7080,123,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
