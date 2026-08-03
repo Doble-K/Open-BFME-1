@@ -1512,45 +1512,8 @@ Bool AIPlayer::isPossibleToBuildTeam( TeamPrototype *proto, Bool requireIdleFact
 /** Check if this team is buildable, doesn't exceed maximum limits, meets conditions, 
 	* and isn't under construction. */
 // ------------------------------------------------------------------------------------------------
-Bool AIPlayer::isAGoodIdeaToBuildTeam( TeamPrototype *proto )
-{
-	// Check condition.
-	if (!proto->evaluateProductionCondition()) {
-		return false;
-	}
-	// check build limit
-	if (proto->countTeamInstances() >= proto->getTemplateInfo()->m_maxInstances){
-		if (TheGlobalData->m_debugAI) {	
-			AsciiString str;
-			str.format("Team %s not chosen - %d already exist.", proto->getName().str(), proto->countTeamInstances());
-			TheScriptEngine->AppendDebugMessage(str, false);
-		}
-		return false;	// Max already built.
-	}
-
-	for ( DLINK_ITERATOR<TeamInQueue> iter = iterate_TeamBuildQueue(); !iter.done(); iter.advance())
-	{
-		TeamInQueue *team = iter.cur();
-		if (team->m_team->getPrototype() == proto) {
-			return false; // currently building one of these.
-		}
-	}
-	Bool needMoney;
-	if (!isPossibleToBuildTeam( proto, true, needMoney)) {
-		if (TheGlobalData->m_debugAI) {	
-			AsciiString str;
-			if (needMoney) {
-				str.format("Team %s not chosen - Not enough money.", proto->getName().str());
-			} else {
-				str.format("Team %s not chosen - Factory/tech missing or busy.", proto->getName().str());
-			}
-			TheScriptEngine->AppendDebugMessage(str, false);
-		}
-		return false;
-	}
-	return true;
-}
-
+// ?isAGoodIdeaToBuildTeam@AIPlayer@@MAE_NPAVTeamPrototype@@@Z
+// Body in Code/masm_dumps/_sa14__isAGoodIdeaToBuildTeam_AIPlayer__MAE_NPAVTeamPrototype___Z_167E80.asm (exact 786B retail @ 0x00167E80).
 // ------------------------------------------------------------------------------------------------
 /** See if any existing teams need reinforcements, and have higher priority. */
 // ------------------------------------------------------------------------------------------------
