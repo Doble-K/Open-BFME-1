@@ -530,8 +530,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$CategoryModuleTemplate@$06@FXParticleSystem@@QAE@ABV01@@Z,,0x005C1B00,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplate06CopyCtorThunk.cpp,matched,Open-BFME5 clean C++ CategoryModuleTemplate06 copy ctor
 ??0?$CategoryModuleTemplate@$06@FXParticleSystem@@QAE@XZ,,0x005C1A30,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplate06CtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw category template constructor
 ??0?$CategoryModuleTemplate@$07@FXParticleSystem@@QAE@ABV01@@Z,,0x0005E3A0,52,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplate07CopyCtorThunk.cpp,matched,Open-BFME5 clean C++ CategoryModuleTemplate07 copy ctor
-??0?$CategoryModuleTemplate@$07@FXParticleSystem@@QAE@XZ,,0x0005E340,31,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplate8CtorThunk.cpp,matched,Open-BFME5 clean C++ CategoryModuleTemplate8 dual-vtbl ctor; interim sub + bools + final vtbls
-
+??0?$CategoryModuleTemplate@$07@FXParticleSystem@@QAE@XZ,,0x0005E340,31,Code/GameEngine/Source/GameClient/System/FXParticleSystem/CategoryModuleTemplate8CtorThunk.cpp,matched,Open-BFME5 clean C++ CategoryModuleTemplate8 dual-vtbl ctor; interim sub + bools + final vtbls
 ??0?$CategoryModuleTemplate@$0A@@FXParticleSystem@@QAE@ABV01@@Z,0x00025CA7,0x0005D9A0,32,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,calls TemplateBase copy ctor then sets derived vtables
 ??0?$CategoryModuleTemplate@$0A@@FXParticleSystem@@QAE@XZ,0x00007252,0x0005D950,23,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,vtable setup for two bases
 ??0?$CategoryModuleTemplateBase@$00@FXParticleSystem@@QAE@ABV01@@Z,0x00046DE9,0x005BF130,25,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,vtable setup for two bases
@@ -1355,7 +1354,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ContestableContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021BEE0,292,Code/GameEngine/Source/GameLogic/AI/ContestableContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0ContestableContainModuleData@@QAE@XZ,,0x00249B50,86,Code/GameEngine/Source/GameLogic/AI/ContestableContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ContinueState@@QAE@PAVStateMachine@@@Z,,0x00170EA0,46,Code/GameEngine/Source/GameLogic/AI/ContinueStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
-??0ControlBar@@QAE@XZ,,0x009F2730,146,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_ctor_Thunk.cpp,matched,Open-BFME5 lift 146B retail MASM to standalone C++ thunk
+??0ControlBar@@QAE@XZ,,0x009F2730,146,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_ctor_Thunk.cpp,matched,Open-BFME5 lift 146B retail MASM to standalone C++ thunk
 ??0ControlBarSchemeAnimation@@QAE@XZ,,0x004ACD80,86,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ??0ControlBarSchemeImage@@QAE@XZ,,0x004ACD00,80,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ??0ConvertToCarBombCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
@@ -1458,7 +1457,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DevastateSpecialPowerModuleData@@QAE@XZ,,0x0025AC10,44,Code/GameEngine/Source/Common/RTS/DevastateSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0Dict@@QAE@ABV0@@Z,,0x000C8CF0,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0Dict@@QAE@H@Z,,0x00068550,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
-??0DieModuleData@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/GameLogic/Object/Behavior/DieModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ DieModuleData ctor Snapshot+DieMuxData
+??0DieModuleData@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/GameLogic/Object/Behavior/DieModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ DieModuleData ctor Snapshot+DieMuxData
 ??0DieModuleModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DisconnectManager@@QAE@XZ,,0x0066AF50,178,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ??0DiscreteCircle@@QAE@HHH@Z,,0x00069350,116,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
@@ -1590,7 +1589,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GameSpyInfoInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,ICF alias of existing matched body
 ??0GameSpyMiscPreferences@@QAE@XZ,,0x000AB910,192,Code/masm_dumps/GameSpyMiscPreferences_ctor.asm,matched,Unique BFME profile-path constructor
 ??0GameState@@QAE@XZ,,0x001111C0,171,Code/GameEngine/Source/Common/System/SaveGame/GameState_ctor.asm,matched,
-??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameTextManager_ctor_Thunk.cpp,matched,Open-BFME5 lift 161B retail MASM to standalone C++ thunk
+??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameTextManager_ctor_Thunk.cpp,matched,Open-BFME5 lift 161B retail MASM to standalone C++ thunk
 ??0GameWindow@@QAE@XZ,,0x004792F0,156,Code/GameEngine/Source/GameClient/GUI/GameWindowDefaultConstructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0GarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021D820,312,Code/GameEngine/Source/GameLogic/AI/GarrisonContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0GarrisonContainModuleData@@QAE@XZ,,0x0022F7E0,153,Code/GameEngine/Source/GameLogic/AI/GarrisonContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
@@ -1701,8 +1700,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0InputChunk@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,ICF alias of existing matched body
 ??0InputLightStruct@LightEnvironmentClass@@QAE@ABU01@@Z,,0x0094AD80,139,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,matched,
 ??0InputStream@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,ICF alias of existing matched body
-??0InstantDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200BA0,60,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ InstantDeathBehavior MI ctor (base + dual iface)
-
+??0InstantDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200BA0,60,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ InstantDeathBehavior MI ctor (base + dual iface)
 ??0InstantDeathBehaviorModuleData@@QAE@XZ,,0x00201650,111,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehaviorModuleDataCtorThunk.cpp,matched,Exact 111B @ 0x00201650; Exact retail MASM ModuleData ctor; unique factory 0x1153E0; converted to an exact standalone C++ thunk
 ??0JetAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0KeepObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255870,60,Code/GameEngine/Source/GameLogic/Object/Die/KeepObjectDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
@@ -1833,7 +1831,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MissileLauncherBuildingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0MissingAnimClass@@QAE@PBD@Z,,0x007BB710,123,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ??0MissingTextureClass@@QAE@PBD@Z,,0x007B1050,125,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/MissingTextureClassCtorThunk.cpp,matched,1:1 C++ thunk; exact retail bytes from registerMissing body 0x42C3A->0x7B1050
-??0Mission@@QAE@XZ,,0x005BB9B0,164,Code/GameEngine/Source/GameClient/Mission_ctor_Thunk.cpp,matched,Open-BFME5 lift 164B retail MASM to standalone C++ thunk
+??0Mission@@QAE@XZ,,0x005BB9B0,164,Code/GameEngine/Source/GameClient/Mission_ctor_Thunk.cpp,matched,Open-BFME5 lift 164B retail MASM to standalone C++ thunk
 ??0MobMemberSlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FB5D0,652,Code/masm_dumps/MobMemberSlavedUpdate_constructor.asm,matched,Exact 652B; factory ownership Open-BFME4
 ??0ModalWindow@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,ICF alias of existing matched body
 ??0ModelArrayClass@HLodClass@@QAE@XZ,,0x0097C970,50,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -2136,8 +2134,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RousingSpeechUpdateModuleData@@QAE@XZ,,0x00265450,146,Code/GameEngine/Source/GameLogic/Object/Update/RousingSpeechUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact 146B retail module-data constructor
 ??0RubbleRiseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A3640,175,Code/GameEngine/Source/GameLogic/Object/Update/RubbleRiseUpdateCtorThunk.cpp,matched,Exact 175B @ 0x002A3640; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11B6C0
 ??0RubbleRiseUpdateModuleData@@QAE@XZ,,0x00127AD0,202,Code/GameEngine/Source/Common/RTS/RubbleRiseUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0RunOffMapBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205060,60,Code/GameEngine/Source/GameLogic/Object/Behavior/RunOffMapBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ RunOffMapBehavior MI ctor (base + dual iface)
-
+??0RunOffMapBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205060,60,Code/GameEngine/Source/GameLogic/Object/Behavior/RunOffMapBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ RunOffMapBehavior MI ctor (base + dual iface)
 ??0RunOffMapBehaviorModuleData@@QAE@XZ,,0x00126760,96,Code/GameEngine/Source/GameLogic/AI/RunOffMapBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,MASM converted to clean C++
 ??0SabotageFakeBuildingCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
@@ -2414,7 +2411,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DDisplayStringManager@@QAE@XZ,,0x006F5600,53,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp,matched,
 ??0W3DGameWindowManager@@QAE@XZ,,0x006C05D0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp,matched,thunk-dump converted to clean C++
 ??0W3DGhostObjectManager@@QAE@XZ,,0x006BC8C0,26,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DGhostObject.cpp,matched,
-??0W3DLaserDrawModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDrawModuleData_ctor_Thunk.cpp,matched,Open-BFME5 lift 162B retail MASM to standalone C++ thunk
+??0W3DLaserDrawModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDrawModuleData_ctor_Thunk.cpp,matched,Open-BFME5 lift 162B retail MASM to standalone C++ thunk
 ??0W3DModelDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0W3DOverlordAircraftDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0W3DProjectileStreamDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00369FD0,252,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDrawCtorThunk.cpp,matched,Exact 252B @ 0x00369FD0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1194C0
@@ -3100,7 +3097,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ParticleBufferClass@@UAE@XZ,,0x00984730,1029,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??1ParticleEmitterClass@@UAE@XZ,,0x0097ED10,203,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ??1ParticleEmitterDefClass@@UAE@XZ,,0x0098D230,106,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
-??1ParticleSystemInfo@FXParticleSystem@@UAE@XZ,0x00002F5E,0x0005EEE0,93,Code/GameEngine/Source/GameClient/System/FXParticleSystem/ParticleSystemInfoDestructorThunk.cpp,matched,Open-BFME5 clean C++ ParticleSystemInfo triple-Buffer SEH dtor
+??1ParticleSystemInfo@FXParticleSystem@@UAE@XZ,0x00002F5E,0x0005EEE0,93,Code/GameEngine/Source/GameClient/System/FXParticleSystem/ParticleSystemInfoDestructorThunk.cpp,matched,Open-BFME5 clean C++ ParticleSystemInfo triple-Buffer SEH dtor
 ??1ParticleSystemTemplate@FXParticleSystem@@UAE@XZ,0x0002083D,0x005CE4D0,101,Code/GameEngine/Source/Common/FXParticleSystem_ParticleSystemTemplateDestructorThunk.cpp,matched,
 ??1ParticleUplinkCannonUpdateModuleData@@UAE@XZ,,0x002A26C0,115,Code/GameEngine/Source/Common/ParticleUplinkCannonUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1PartitionManager@@UAE@XZ,,0x009F2800,115,Code/GameEngine/Source/Common/PartitionManagerDestructorThunk.cpp,matched,True owner via PartitionManager getName string; ICF-alias of mislabeled TeamFactory dtor @0x9F2800
@@ -7408,7 +7405,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Multiply@Matrix4@@SAXABV1@ABVMatrix3D@@PAV1@@Z,,0x00B01E40,416,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,
 ?Multiply@Matrix4@@SAXABVMatrix3D@@ABV1@PAV1@@Z,,0x00B01C90,425,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,
 ?Multiply@Matrix4D@@QAEAAV1@ABV1@0@Z,0x00019bfa,0x007e6950,534,Code/Libraries/Source/WWVegas/WWMath/matrix4d.cpp,matched,
-?NAMEKEY@@YA?AW4NameKeyType@@ABVAsciiString@@@Z,,0x000A3AB0,44,Code/GameEngine/Source/Common/NameKeyHelperThunk.cpp,matched,Open-BFME5 exact C++ raw AsciiString name-key helper
+?NAMEKEY@@YA?AW4NameKeyType@@ABVAsciiString@@@Z,,0x000A3AB0,44,Code/GameEngine/Source/Common/NameKeyHelperThunk.cpp,matched,Open-BFME5 clean C++ NAMEKEY AsciiString helper
 ?NAMEKEY@@YA?AW4NameKeyType@@PBD@Z,,0x000B9810,17,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?Needs_Vertex_Normals@MeshModelClass@@QAE_NXZ,,0x0094E0B0,22,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ?Negate@Coord2D@@QAEAAV1@XZ,0x0000848B,0x007E5B20,17,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,negates x/y
@@ -7514,7 +7511,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?ParseObjectsDataChunk@@YA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00454A60,124,Code/GameEngine/Source/GameClient/MapUtil_ParseObjectsDataChunk_Thunk.cpp,matched,Open-BFME5 lift 124B retail MASM to standalone C++ thunk
 ?ParseOrConditionDataChunk@OrCondition@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0035B700,176,Code/GameEngine/Source/GameLogic/ScriptEngine/OrCondition_ParseOrConditionDataChunk_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ParseScript@Script@@SAPAV1@AAVDataChunkInput@@G@Z,,0x0035C0C0,579,Code/masm_dumps/_sa4__ParseScript_Script__SAPAV1_AAVDataChunkInput__G_Z_35C0C0.asm,matched,Exact 579B Open-BFME4
-?ParseScriptListDataChunk@ScriptList@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00350F50,153,Code/GameEngine/Source/Common/ScriptList_ParseScriptListDataChunkThunk.cpp,matched,Open-BFME5 MASM lift ParseScriptListDataChunk
+?ParseScriptListDataChunk@ScriptList@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00350F50,153,Code/GameEngine/Source/Common/ScriptList_ParseScriptListDataChunkThunk.cpp,matched,Open-BFME5 MASM lift ParseScriptListDataChunk
 ?ParseScriptsDataChunk@ScriptList@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0035BFB0,211,Code/masm_dumps/_sa11__ParseScriptsDataChunk_ScriptList__SA_NAAVDataChunkInput__PAUDataChunk_35BFB0.asm,matched,string-anchor Open-BFME4+Grok ScriptList
 ?ParseSizeOnly@@YA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00454220,152,Code/GameEngine/Source/GameClient/MapUtil.cpp,matched,
 ?ParseSizeOnly@WorldHeightMap@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0074EF50,503,Code/masm_dumps/WorldHeightMap_ParseSizeOnly.asm,matched,Exact 503B retail ParseSizeOnly @0x74EF50 (queue 0x74EF4F was 1B int3 pad + wrong size 396). Layout m_width@+8 RefCount-only; BFME ret 8; v1 updates w/h distinguishes from twin ParseHeightMapData @0x74ECD0.
@@ -8977,7 +8974,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?allocateBlocks@PathfindZoneManager@@QAEXABUIRegion2D@@@Z,,0x00403D50,287,Code/masm_dumps/allocateBlocks_PathfindZoneManager_00403D50_149ae938.asm,matched,Certified packet 94 exact retail MASM recovery SHA256 149ae93817eb6bdfe8ba1cb43af2b051f9bae4adbdf4c26f67e399ac5549bc36
 ?allocateCellInfos@PathfindCellInfo@@SAXXZ,,0x003F6AD0,123,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,exact 123B C++ BFME grow-by-256 pool at 0x3F6AD0
 ?allocateImages@Anim2DTemplate@@QAEXG@Z,,0x005BA140,71,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
-?allocateNewWeapon@WeaponStore@@QBEPAVWeapon@@PBVWeaponTemplate@@W4WeaponSlotType@@@Z,,0x001BDD90,100,Code/GameEngine/Source/Common/WeaponStore_allocateNewWeapon_Thunk.cpp,matched,Open-BFME5 clean C++ WeaponStore::allocateNewWeapon new Weapon factory
+?allocateNewWeapon@WeaponStore@@QBEPAVWeapon@@PBVWeaponTemplate@@W4WeaponSlotType@@@Z,,0x001BDD90,100,Code/GameEngine/Source/Common/WeaponStore_allocateNewWeapon_Thunk.cpp,matched,Open-BFME5 clean C++ WeaponStore::allocateNewWeapon new Weapon factory
 ?allocateNewWindow@GameWindowManager@@QAEPAVGameWindow@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?allow@PartitionFilterFlammable@@UAE_NPAVObject@@@Z,,0x002925C0,144,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,
 ?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z,,0x001DD140,86,Code/GameEngine/Source/Common/PartitionFilterPlayerAffiliation_allow_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -10264,7 +10261,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z,,0x000E7240,85,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,Exact 85B C++ raw function conversion Open-BFME5
 ?friend_makeVeterancyUpgrade@UpgradeTemplate@@QAEXW4VeterancyLevel@@@Z,,0x0010B010,156,Code/GameEngine/Source/Common/System/UpgradeTemplate_friend_makeVeterancyUpgrade_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?friend_newModuleData@AIUpdateInterface@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@PropagandaTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z
-?friend_newModuleData@AODHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00122FD0,116,Code/GameEngine/Source/GameLogic/AI/AODHordeContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@AODHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00122FD0,116,Code/GameEngine/Source/GameLogic/AI/AODHordeContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@ActiveBody@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F420,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@ActiveShroudUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x001153E0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
 ?friend_newModuleData@AimWeaponBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001151B0,107,Code/GameEngine/Source/GameLogic/Object/Weapon/AimWeaponBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
@@ -10273,7 +10270,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@AnimationSteeringUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00114B50,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@ArmorUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012AF20,73,Code/GameEngine/Source/GameLogic/Object/Upgrade/ArmorUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ factory 0x78 sub-before-vtbl bytes+0x70/71 dword+0x74=3
 ?friend_newModuleData@ArrowStormUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118F30,110,Code/GameEngine/Source/GameLogic/AI/ArrowStormUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
-?friend_newModuleData@AssaultTransportAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118870,127,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@AssaultTransportAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118870,127,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@AssistedTargetingUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001237B0,68,Code/GameEngine/Source/GameLogic/AI/AssistedTargetingUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ AssistedTargetingUpdate friend_newModuleData
 ?friend_newModuleData@AttributeModifierAuraUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011A950,110,Code/GameEngine/Source/GameLogic/AI/AttributeModifierAuraUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@AttributeModifierUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012B950,65,Code/GameEngine/Source/GameLogic/Object/Upgrade/AttributeModifierUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ factory 0x74 sub-before-vtbl dword+0x70
@@ -10310,7 +10307,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@CommandButtonHuntUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119910,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue cascade; located via ModuleFactory::init ModuleTemplate inline-build
 ?friend_newModuleData@CommandSetUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012B0B0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@ContestableContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00116140,110,Code/GameEngine/Source/GameLogic/AI/ContestableContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
-?friend_newModuleData@ConvertToCarBombCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00125FD0,129,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToCarBombCrateCollideFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@ConvertToCarBombCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00125FD0,129,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToCarBombCrateCollideFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@CostModifierUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,MASM converted to clean C++
 ?friend_newModuleData@CountermeasuresBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00117420,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@BattlePlanUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@CreateCrateDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00129A30,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
@@ -10322,13 +10319,13 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@DarknessSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x001209A0,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/DarknessSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@DefaultProductionExitUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00123910,70,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/DefaultProductionExitUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ factory new ModuleData + initFromINI
 ?friend_newModuleData@DefectorSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FF00,110,Code/GameEngine/Source/GameLogic/Object/Upgrade/DefectorSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
-?friend_newModuleData@DeflectSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120BC0,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/DeflectSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
-?friend_newModuleData@DelayedLuaEventUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BCF0,107,Code/GameEngine/Source/GameLogic/ScriptEngine/DelayedLuaEventUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@DeflectSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120BC0,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/DeflectSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@DelayedLuaEventUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BCF0,107,Code/GameEngine/Source/GameLogic/ScriptEngine/DelayedLuaEventUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@DelayedUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012B200,65,Code/GameEngine/Source/GameLogic/Object/Upgrade/DelayedUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ factory 0x74 sub-before-vtbl dword+0x70
 ?friend_newModuleData@DeletionUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001239B0,58,Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ DeletionUpdate friend_newModuleData
 ?friend_newModuleData@DeliverPayloadAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=?friend_newModuleData@CostModifierUpgrade@@SAPAVModuleData@@PAVINI@@@Z;C++ alias
 ?friend_newModuleData@DemoTrapUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119A20,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleData@DeployStyleAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001186F0,128,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@DeployStyleAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001186F0,128,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@DestroyEnvironmentUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011C4A0,107,Code/GameEngine/Source/GameLogic/Object/Update/DestroyEnvironmentUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@DevastateSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00121590,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/DevastateSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@DieModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00114D70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
@@ -10360,7 +10357,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@FreezingRainSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120890,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FreezingRainSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@GarrisonContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00116250,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@GateOpenAndCloseBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00123AB0,107,Code/GameEngine/Source/GameLogic/Object/Behavior/GateOpenAndCloseBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
-?friend_newModuleData@GateProxyBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00123BF0,113,Code/GameEngine/Source/GameLogic/Object/Behavior/GateProxyBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@GateProxyBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00123BF0,113,Code/GameEngine/Source/GameLogic/Object/Behavior/GateProxyBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@GenerateMinefieldBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DA50,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@GeometryUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0011DFA0,110,Code/GameEngine/Source/GameLogic/Object/Upgrade/GeometryUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@GettingBuiltBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00114320,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=?friend_newModuleData@HordeUpdate@@SAPAVModuleData@@PAVINI@@@Z;C++ alias
@@ -10471,10 +10468,10 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@SplitHordeSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x001216A0,110,Code/GameEngine/Source/GameLogic/Object/Upgrade/SplitHordeSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@SpyVisionSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F9C0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@MissileAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@SpyVisionUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001144C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleData@SquishCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00124800,107,Code/GameEngine/Source/GameLogic/Object/Collide/SquishCollideFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@SquishCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00124800,107,Code/GameEngine/Source/GameLogic/Object/Collide/SquishCollideFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@StatusBitsUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x00118020,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@DozerAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@StealthDetectorUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00126BE0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleData@StealthUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0012A680,110,Code/GameEngine/Source/GameLogic/Object/Update/StealthUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@StealthUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0012A680,110,Code/GameEngine/Source/GameLogic/Object/Update/StealthUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@StealthUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BF00,58,Code/GameEngine/Source/GameLogic/Object/Upgrade/StealthUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ factory 0x70 with UpgradeModuleData subobject
 ?friend_newModuleData@StopSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120F00,110,Code/GameEngine/Source/GameLogic/Object/SpecialPower/StopSpecialPowerFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@StructureBody@@SAPAVModuleData@@PAVINI@@@Z,,0x001294A0,107,Code/GameEngine/Source/GameLogic/Object/Body/StructureBodyFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
@@ -10489,7 +10486,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@TechBuildingBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@TemporarilyDefectUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00124C20,57,Code/GameEngine/Source/GameLogic/Object/Update/TemporarilyDefectUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ TemporarilyDefectUpdate friend_newModuleData
 ?friend_newModuleData@TensileFormationUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00118020,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,object-symbol=?friend_newModuleData@JetAIUpdate@@SAPAVModuleData@@PAVINI@@@Z;C++ alias
-?friend_newModuleData@ToggleHiddenSpecialAbilityUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CA60,110,Code/GameEngine/Source/GameLogic/Object/Update/ToggleHiddenSpecialAbilityUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@ToggleHiddenSpecialAbilityUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CA60,110,Code/GameEngine/Source/GameLogic/Object/Update/ToggleHiddenSpecialAbilityUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@ToggleMountedSpecialAbilityUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011C910,110,Code/GameEngine/Source/GameLogic/Object/Update/ToggleMountedSpecialAbilityUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@TooltipUpgrade@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BC30,107,Code/GameEngine/Source/GameLogic/Object/Upgrade/TooltipUpgradeFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@ToppleUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BBD0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
@@ -10504,7 +10501,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@UpgradeDie@@SAPAVModuleData@@PAVINI@@@Z,,0x00125710,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@UpgradeModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00128DA0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@UpgradeSoundSelectorClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x00121ED0,107,Code/GameEngine/Source/GameLogic/Object/Behavior/UpgradeSoundSelectorClientBehaviorFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
-?friend_newModuleData@VeterancyCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00125FD0,129,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/VeterancyCrateCollideFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@VeterancyCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00125FD0,129,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/VeterancyCrateCollideFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@VeterancyGainCreate@@SAPAVModuleData@@PAVINI@@@Z,,0x001170D0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DDebrisDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00113BE0,47,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DDebrisDrawModuleDataFactory.cpp,matched,Luna Open-BFME8 exact C++ W3D factory ICF alias
 ?friend_newModuleData@W3DDependencyModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
@@ -10520,7 +10517,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleData@W3DSupplyDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x00118990,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleData@W3DTreeDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF710,107,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleData@W3DTruckDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x0011FAD0,110,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
-?friend_newModuleData@WanderAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BEE0,128,Code/GameEngine/Source/GameLogic/AI/WanderAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
+?friend_newModuleData@WanderAIUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011BEE0,128,Code/GameEngine/Source/GameLogic/AI/WanderAIUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@WeaponBonusUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x001236C0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleData@WeaponChangeSpecialPowerModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00120450,110,Code/GameEngine/Source/GameLogic/AI/WeaponChangeSpecialPowerModuleFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
 ?friend_newModuleData@WeaponFireSpecialAbilityUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00119430,110,Code/GameEngine/Source/GameLogic/Object/Update/WeaponFireSpecialAbilityUpdateFriendNewModuleDataThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleData factory
