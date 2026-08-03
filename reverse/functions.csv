@@ -3004,7 +3004,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1InstantDeathBehaviorModuleData@@UAE@XZ,,0x00201840,220,Code/GameEngine/Source/Common/InstantDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 220B SEH dtor Open-BFME5
 ??1LANGameInfo@@QAE@XZ,,0x00686CD0,103,Code/masm_dumps/__1LANGameInfo__QAE_XZ_686CD0.asm,matched,Ghidra-corrected exact boundary and layout-verified body
 ??1LANPlayer@@QAE@XZ,,0x00685830,89,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,
-??1LadderInfo@@QAE@XZ,,0x0062A9E0,194,Code/masm_dumps/LadderInfo_destructor.asm,matched,Ghidra-bound retail destructor
+??1LadderInfo@@QAE@XZ,,0x0062A9E0,194,Code/GameEngine/Source/Common/LadderInfoDestructorThunk.cpp,matched,Ghidra-bound retail destructor
 ??1LadderList@@QAE@XZ,,0x0062AB10,452,Code/masm_dumps/LadderList_destructor.asm,matched,Ghidra-corrected retail destructor
 ??1LadderPreferences@@UAE@XZ,,0x000ABB70,82,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ??1LanguageFilter@@UAE@XZ,,0x0044E400,150,Code/GameEngine/Source/GameClient/LanguageFilter.cpp,matched,
@@ -3126,7 +3126,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ProductionPrerequisite@@QAE@XZ,,0x0003ECC0,5,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1ProductionSpeedBonus@@UAE@XZ,,0x00268F30,232,Code/GameEngine/Source/Common/ProductionSpeedBonusDestructorThunk.cpp,matched,Exact 232B SEH dtor Open-BFME4
 ??1ProductionSpeedBonusModuleData@@UAE@XZ,,0x00264750,79,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonusModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1ProductionUpdate@@UAE@XZ,,0x0029D460,200,Code/masm_dumps/ProductionUpdate_destructor.asm,matched,Exact 200B @ 0x0029D460; Exact retail MASM; instance factory->vtable dtor; del 0x29E300 ctor 0x29C9E0 vt 0xCC0F34
+??1ProductionUpdate@@UAE@XZ,,0x0029D460,200,Code/GameEngine/Source/Common/ProductionUpdateDestructorThunk.cpp,matched,Exact 200B @ 0x0029D460; Exact retail MASM; instance factory->vtable dtor; del 0x29E300 ctor 0x29C9E0 vt 0xCC0F34
 ??1ProductionUpdateModuleData@@UAE@XZ,,0x0029E260,126,Code/GameEngine/Source/Common/ProductionUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1PropagandaTowerBehavior@@UAE@XZ,,0x002034F0,67,Code/GameEngine/Source/GameLogic/Object/Behavior/PropagandaTowerBehaviorDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit dtor thunk
 ??1PropagandaTowerBehaviorModuleData@@UAE@XZ,,0x0028DD10,137,Code/GameEngine/Source/Common/PropagandaTowerBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x11CB70 ctor 0x28DC60 ownership
@@ -3200,7 +3200,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SmudgeSet@@UAE@XZ,,0x005D4190,89,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ??1Snapshot@@QAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,object-symbol=??1SubsystemInterface@@UAE@XZ;ICF alias converted to existing clean C++ body
 ??1Snapshot@@UAE@XZ,0x00001C80,0x0005C520,7,Code/GameEngine/Source/Common/System/Snapshot.cpp,matched,sets vtable pointer
-??1SpawnBehavior@@UAE@XZ,,0x0020B180,207,Code/masm_dumps/SpawnBehavior_destructor.asm,matched,Exact 207B @ 0x0020B180; Exact retail MASM; instance factory->vtable dtor; del 0x20C020 ctor 0x20AE30 vt 0xCA6CCC
+??1SpawnBehavior@@UAE@XZ,,0x0020B180,207,Code/GameEngine/Source/Common/SpawnBehaviorDestructorThunk.cpp,matched,Exact 207B @ 0x0020B180; Exact retail MASM; instance factory->vtable dtor; del 0x20C020 ctor 0x20AE30 vt 0xCA6CCC
 ??1SpawnBehaviorModuleData@@UAE@XZ,,0x0012AA50,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM ICF alias
 ??1SpecialAbilityUpdate@@UAE@XZ,,0x002AA910,153,Code/GameEngine/Source/Common/SpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 153B SEH dtor Open-BFME5
