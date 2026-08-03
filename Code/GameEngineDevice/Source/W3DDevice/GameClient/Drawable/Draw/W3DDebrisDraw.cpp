@@ -54,18 +54,8 @@
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0W3DDebrisDraw@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
-W3DDebrisDraw::W3DDebrisDraw(Thing *thing, const ModuleData* moduleData) : DrawModule(thing, moduleData)
-{
-  m_renderObject = NULL;
-	for (int i = 0; i < STATECOUNT; ++i)
-		m_anims[i] = NULL;
-	m_fxFinal = NULL;
-	m_state = INITIAL;
-	m_frames = 0;
-	m_shadow = NULL;
-	m_finalStop = false;
-}
+// ??0W3DDebrisDraw@@ is implemented by the exact retail thunk in
+// W3DDebrisDrawCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
