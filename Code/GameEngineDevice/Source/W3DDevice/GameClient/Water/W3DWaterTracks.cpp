@@ -214,11 +214,8 @@ Int WaterTracksObj::freeWaterTracksResources(void)
 *	the specified texture.
  */
 //=============================================================================
-// ?init@WaterTracksObj@@ present-unmatched
 void WaterTracksObj::init( Real width, Real length, Vector2 &start, Vector2 &end, Char *texturename, Int waveTimeOffset)
 {	
-	freeWaterTracksResources();	//free old resources used by this track
-
 	//save original settings used to create this wave
 	m_initStartPos = start;
 	m_initEndPos = end;
@@ -274,7 +271,7 @@ void WaterTracksObj::init( Real width, Real length, Vector2 &start, Vector2 &end
 		m_fadeMs = 1000;		//time for wave to fade out after it stops on beach
 	}
 
-	m_stageZeroTexture=WW3DAssetManager::Get_Instance()->Get_Texture(texturename);
+	BFMEAssignWaterTrackTexture(m_stageZeroTexture, BFMEGetWaterTrackTexture(texturename, 0, 0));
 }
 
 //=============================================================================
