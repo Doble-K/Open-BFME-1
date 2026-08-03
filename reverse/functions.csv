@@ -11965,7 +11965,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@TextTypeTransition@@UAEXPAVGameWindow@@@Z,,0x005A07F0,220,Code/masm_dumps/init_TextTypeTransition_UAEXPAVGameWindow_Z_005A07F0_a2419f26.asm,matched,Certified vtable slot and constructor chain recovery; exact retail db bytes SHA256 a2419f2649de4939c78ca27f9528c905e6bb74f08cdfdd43de237dc8e943ef6f
 ?init@Transport@@QAE_NPBUTransportAddress@@@Z,,0x00684200,430,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?init@VideoPlayer@@UAEXXZ,,0x0081CB30,574,Code/masm_dumps/VideoPlayer_init.asm,matched,Exact contiguous retail MASM; VideoPlayer vtable and derived Bink init prove ownership; preserves BFME video-table construction
-?init@W3DProjectedShadowManager@@QAE_NXZ,,0x007AF630,156,Code/masm_dumps/init_W3DProjectedShadowManager_QAE_NXZ_007AF630_a1e7261b.asm,matched,Certified packet 108 exact retail db recovery sha256 a1e7261bc7da1bdbf3c7db1e609c068d2e7ffe4a1f6859a47e7f3bbbcaf1c5b6
+?init@W3DProjectedShadowManager@@QAE_NXZ,,0x007AF630,156,Code/GameEngine/Source/Common/W3DProjectedShadowManager_initMethodThunk.cpp,matched,Certified packet 108 exact retail db recovery sha256 a1e7261bc7da1bdbf3c7db1e609c068d2e7ffe4a1f6859a47e7f3bbbcaf1c5b6
 ?init@W3DShadowGeometry@@QAEHPAVRenderObjClass@@@Z,,0x00464830,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,tiny-locate
 ?init@W3DShadowManager@@QAE_NXZ,,0x007B751E,63,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp,matched,
 ?init@W3DView@@UAEXXZ,,0x00742700,432,Code/masm_dumps/_saG__init_W3DView__UAEXXZ_742700.asm,matched,string-anchor MASM unique Open-BFME4+Grok
