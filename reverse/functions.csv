@@ -3028,7 +3028,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1LocomotorStore@@UAE@XZ,,0x005D2C10,139,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,structural: true body via ctor vtable; map+delete ICF ImageCollection; pin Rb_tree dtor 0x5D2900
 ??1LogicalDecalClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0002A08B,5,Code/Libraries/Source/WWVegas/WW3D2/LogicalDecalDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1LookAtTranslator@@UAE@XZ,,0x005A63A0,31,Code/GameEngine/Source/GameClient/MessageStream/LookAtXlat.cpp,matched,
-??1ManTheWallsSpecialPower@@UAE@XZ,,0x00268F30,232,Code/masm_dumps/ManTheWallsSpecialPower_destructor.asm,matched,Exact 232B SEH dtor Open-BFME4
+??1ManTheWallsSpecialPower@@UAE@XZ,,0x00268F30,232,Code/GameEngine/Source/Common/ManTheWallsSpecialPowerDestructorThunk.cpp,matched,Exact 232B SEH dtor Open-BFME4
 ??1MapCache@@QAE@XZ,,0x00078E90,89,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??1MapObject@@MAE@XZ,,0x00088350,236,Code/masm_dumps/MapObject_destructor_MAE_00088350.asm,matched,Certified packet 46; reviewed vtable deleting-destructor chain and ownership teardown
 ??1MatPassTaskClass@@QAE@XZ,,0x009457F0,32,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
