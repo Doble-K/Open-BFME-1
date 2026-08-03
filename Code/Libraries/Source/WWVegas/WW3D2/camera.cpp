@@ -154,7 +154,6 @@ CameraClass::CameraClass(const CameraClass & src) :
  * HISTORY:                                                                                    *
  *   3/21/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ??4CameraClass@@QAEAAV0@ABV0@@Z present-unmatched
 CameraClass & CameraClass::operator = (const CameraClass & that)
 {
 	if (this != &that) {
@@ -170,6 +169,10 @@ CameraClass & CameraClass::operator = (const CameraClass & that)
 		NearClipBBox = that.NearClipBBox;
 		ProjectionTransform = that.ProjectionTransform;
 		CameraInvTransform = that.CameraInvTransform;
+		AspectRatio = that.AspectRatio;
+		ViewSpaceFrustum = that.ViewSpaceFrustum;
+		ZBufferMax = that.ZBufferMax;
+		ZBufferMin = that.ZBufferMin;
 		
 		// just being paraniod in case any parent class doesn't completely copy the entire state...
 		FrustumValid = false;
