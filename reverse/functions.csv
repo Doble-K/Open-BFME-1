@@ -1660,7 +1660,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HeroDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255670,60,Code/GameEngine/Source/GameLogic/Object/Die/HeroDieCtorThunk.cpp,matched,Open-BFME5 exact C++ raw HeroDie constructor
 ??0HeroDieModuleData@@QAE@XZ,,0x00255600,82,Code/GameEngine/Source/GameLogic/AI/HeroDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0HeroModeSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025F8A0,53,Code/GameEngine/Source/GameLogic/Object/Update/HeroModeSpecialAbilityUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw HeroModeSpecialAbilityUpdate constructor
-??0HeroModeSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0025FAC0,112,Code/masm_dumps/HeroModeSpecialAbilityUpdateModuleData_constructor.asm,matched,Exact 112B @ 0x0025FAC0; Exact retail MASM ModuleData ctor; unique factory 0x1191B0
+??0HeroModeSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0025FAC0,112,Code/GameEngine/Source/GameLogic/Object/Update/HeroModeSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact 112B retail module-data constructor
 ??0HideShowSubObjInfo@ModelConditionInfo@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,ICF alias of existing matched body
 ??0HijackerUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0003A382,5,Code/GameEngine/Source/GameLogic/Object/Update/HijackerUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0HijackerUpdateModuleData@@QAE@XZ,,0x0006E2B0,26,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
