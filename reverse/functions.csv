@@ -9863,7 +9863,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z,,0x001C3850,77,Code/GameEngine/Source/Common/Object_doSpecialPowerUsingWaypoints_Thunk.cpp,matched,Exact 77B Open-BFME5
 ?doSpeechPlay@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x006AF840,973,Code/masm_dumps/_sa3__doSpeechPlay_ScriptActions__IAEXABVAsciiString____6AF840.asm,matched,Exact 973B string-anchored Open-BFME4
 ?doStopCameraFollowUnit@ScriptActions@@IAEXXZ,,0x002EFAB0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x19c void stop-follow tail-call
-?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F95A0,144,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamAttackNamed.asm,matched,exact 144B MASM; true body 0x2F95A0 (drift 0x3992C6 was mid logicMessageDispatcher)
+?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F95A0,144,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamAttackNamed_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/masm_dumps/_sa7__doTeamDecreasePriority_ScriptActions__IAEXABVAsci_2F3A60.asm,matched,Exact 196B Open-BFME4
 ?doTeamFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002F3E90,282,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamFlash.asm,matched,exact 282B MASM; true body 0x2F3E90 (drift 0x933119 mid-fn x87)
 ?doTeamHuntWithCommandButton@ScriptActions@@,,0x002F7B80,895,Code/masm_dumps/_sa6__doTeamHuntWithCommandButton_ScriptActions___2F7B80.asm,matched,true size 895B; row claimed 211B
@@ -10258,7 +10258,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_getThingTemplate@WeaponTemplateSet@@QBEPBVThingTemplate@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?friend_isSweepEnabled@TurretAI@@QBE_NXZ,,0x0018C9F0,27,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,
 ?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z,,0x000E7240,85,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,Exact 85B C++ raw function conversion Open-BFME5
-?friend_makeVeterancyUpgrade@UpgradeTemplate@@QAEXW4VeterancyLevel@@@Z,,0x0010B010,156,Code/GameEngine/Source/Common/System/Upgrade_friend_makeVeterancyUpgrade.asm,matched,exact 156B MASM; true start 0x10B010 via getVetUpgradeName caller (queue 0x79CE61 was SEH epilogue+int3)
+?friend_makeVeterancyUpgrade@UpgradeTemplate@@QAEXW4VeterancyLevel@@@Z,,0x0010B010,156,Code/GameEngine/Source/Common/System/UpgradeTemplate_friend_makeVeterancyUpgrade_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?friend_newModuleData@AIUpdateInterface@@SAPAVModuleData@@PAVINI@@@Z,,0x0011CB70,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,icf-owner=?friend_newModuleData@PropagandaTowerBehavior@@SAPAVModuleData@@PAVINI@@@Z
 ?friend_newModuleData@AODHordeContain@@SAPAVModuleData@@PAVINI@@@Z,,0x00122FD0,116,Code/GameEngine/Source/GameLogic/AI/AODHordeContainFriendNewModuleDataThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM factory
 ?friend_newModuleData@ActiveBody@@SAPAVModuleData@@PAVINI@@@Z,,0x0011F420,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
@@ -12630,7 +12630,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseMajorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x000660D0,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMappedImage@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAAA0,113,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseMappedImageDefinition@INI@@SAXPAV1@@Z,,0x000C2480,238,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,find-then-create against TheMappedImageCollection; both collection methods were already matched so only Image ctor and setName were new
-?parseMetaMapDefinition@INI@@SAXPAV1@@Z,,0x005B71A0,143,Code/GameEngine/Source/GameClient/MessageStream/INI_parseMetaMapDefinition.asm,matched,CommandMap INI table pointer and Ghidra-confirmed inlined parser body
+?parseMetaMapDefinition@INI@@SAXPAV1@@Z,,0x005B71A0,143,Code/GameEngine/Source/GameClient/MessageStream/INI_parseMetaMapDefinition_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseMinorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066180,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMiscAudio@INI@@SAXPAV1@@Z,,0x000C25B0,30,Code/GameEngine/Source/Common/INI/INIMiscAudio.cpp,matched,MiscAudio block parser; forwards to TheAudio->friend_getMiscAudio() through AudioManager vtable slot 75 (+0x12C) which ZH has non-virtual
 ?parseMiscEvaData@INI@@SAXPAV1@@Z,,0x00422BD0,74,Code/GameEngine/Source/GameClient/Eva.cpp,matched,BFME-only MiscEvaData block; Eva holds it at +0x60 and refuses map.ini overrides via throw INIException(8)
