@@ -11964,7 +11964,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@ScreenMotionBlurFilter@@UAEHXZ,,0x007D8760,33,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
 ?init@ScriptEngine@@UAEXXZ,,0x003107F0,57072,Code/GameEngine/Source/GameLogic/ScriptEngine/script_engine.cpp,matched,real C++ (was naked asm); 542 action templates via a curTemplate cached base
 ?init@Shell@@UAEXXZ,,0x0057F0A0,13,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
-?init@ShellGameLoadScreen@@,,0x004920E0,517,Code/masm_dumps/_s4__init_ShellGameLoadScreen__4920E0.asm,matched,Exact string-anchored Open-BFME4+Grok
+?init@ShellGameLoadScreen@@,,0x004920E0,517,Code/GameEngine/Source/GameClient/GUI/ShellGameLoadScreenInitThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_ShellGameLoadScreenInit_4920E0
 ?init@ShellMenuSchemeManager@@QAEXXZ,,0x00580290,1,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp,matched,Retail manager init is a no-op; Shell init caller and unique thunk prove ownership
 ?init@SnowManager@@UAEXXZ,,0x0045A970,34,Code/GameEngine/Source/GameClient/Snow.cpp,matched,Exact clean C++ SnowManager::init; MASM dump removed
 ?init@SubsystemLegend@@UAEXXZ,,0x009A14B0,8,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,tail-call m_entries.clear() (base slot 1)
