@@ -1777,14 +1777,6 @@ name,address,notes
 ??1SpawnBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1SpawnBehaviorModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1SpecialDisguiseUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base pin
-??1SpyVisionUpdateModuleDataMemberA@@QAE@XZ,0x0002E19A,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberC@@QAE@XZ,0x00887940,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberD@@QAE@XZ,0x0001A401,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberE@@QAE@XZ,0x0001A401,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberF@@QAE@XZ,0x0001C4DB,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberG@@QAE@XZ,0x00007FB8,Open-BFME5 pin
-??1SpyVisionUpdateModuleDataMemberH@@QAE@XZ,0x00014DF3,Open-BFME5 pin
 ??1StealthDetectorUpdateModuleDataBase@@UAE@XZ,0x00026F35,Open-BFME5 pin
 ??1StealthDetectorUpdateModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
 ??1StealthDetectorUpdateModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
