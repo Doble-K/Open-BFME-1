@@ -4556,3 +4556,5 @@ g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??0OCU_GrandBase@@QAE@XZ,0x0003D24E,ObjectCreationUpgrade ctor grandbase call; ILT thunk for body 0x002D9B80
 ??0OCU_MidGrand@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,ObjectCreationUpgrade ctor mid-base call; ILT thunk for ObjectModule ctor (body 0x00113C60)
+?insert_unique@?$_Rb_tree@HU?$pair@$$CBHI@_STL@@U?$_Select1st@U?$pair@$$CBHI@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHI@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBHI@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHI@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBHI@2@@Z,0x0003E090,Open-BFME5 ICF pin for GameLogicDispatch
+?_M_insert@?$_Rb_tree@HU?$pair@$$CBHI@_STL@@U?$_Select1st@U?$pair@$$CBHI@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHI@_STL@@@2@@_STL@@AAE?AU?$_Rb_tree_iterator@U?$pair@$$CBHI@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHI@_STL@@@2@@2@PAU_Rb_tree_node_base@2@0ABU?$pair@$$CBHI@2@0@Z,0x00032934,Open-BFME5 ICF pin for GameLogicDispatch
