@@ -13277,11 +13277,11 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setBuilder@Object@@QAEXPBV1@@Z,,0x001BE470,25,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setCRCInterval@GameInfo@@QAEXH@Z,,0x000970F0,20,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setCachedStats@GameSpyMiscPreferences@@QAEXVAsciiString@@@Z,,0x000A9A90,121,Code/masm_dumps/GameSpyMiscPreferences_setCachedStats.asm,matched,Unique CachedStats-string preference setter
-?setCampaignDifficulty@OptionPreferences@@QAEXH@Z,,0x000920F0,169,Code/masm_dumps/_setCampaignDifficulty_OptionPreferences__QAEXH_Z_920F0.asm,matched,Exact 169B MASM; true ENTRY 0x920F0 (queue 0x920FF mid-SEH); CampaignDifficulty %d identity
+?setCampaignDifficulty@OptionPreferences@@QAEXH@Z,,0x000920F0,169,Code/GameEngine/Source/Common/OptionPreferences_setCampaignDifficulty_Thunk.cpp,matched,Exact 169B MASM; true ENTRY 0x920F0 (queue 0x920FF mid-SEH); CampaignDifficulty %d identity
 ?setCanOptimize@PathNode@@QAEX_N@Z,,0x000F9250,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?setCaptionText@Drawable@@QAEXABVUnicodeString@@@Z,,0x00418880,381,Code/masm_dumps/Drawable_setCaptionText_418880.asm,matched,Certified packet 192 sealed retail bytes SHA256 1cd21ef4ec3eb2769021a3deb7453a6cb282def2d452afc5bf833f5eb01a8a9f
 ?setCashValue@SupplyWarehouseDockUpdate@@QAEXH@Z,,0x002CFA50,81,Code/GameEngine/Source/Common/promoted__setCashValue_SupplyWarehouseDockUpdate_QAEXH_Z_002CFA50.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 81B
-?setChatSizeSlider@CustomMatchPreferences@@QAEXH@Z,,0x000AD9A0,169,Code/masm_dumps/CustomMatchPreferences_setChatSizeSlider.asm,matched,Ghidra-bound BFME chat-slider setter
+?setChatSizeSlider@CustomMatchPreferences@@QAEXH@Z,,0x000AD9A0,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setChatSizeSlider_Thunk.cpp,matched,Ghidra-bound BFME chat-slider setter
 ?setChunkNumber@NetWrapperCommandMsg@@QAEXI@Z,,0x00673F10,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor thunk
 ?setCloseEnoughDist@Locomotor@@QAEXM@Z,,0x001F5AF0,10,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setColor@MapObject@@QAEXH@Z,,0x003C4B20,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
@@ -13630,7 +13630,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setUpdate@WindowLayout@@QAEXP6AXPAV1@PAX@Z@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,ICF alias of existing matched body
 ?setUpgradeExecuted@UpgradeMux@@IAEX_N@Z,,0x001EE7D0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,
 ?setUseStats@GameInfo@@QAEXH@Z,,0x0016A390,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
-?setUsesLongGameList@CustomMatchPreferences@@QAEX_N@Z,,0x000ADC40,170,Code/masm_dumps/CustomMatchPreferences_setUsesLongGameList.asm,matched,Ghidra-bound BFME long-game-list setter
+?setUsesLongGameList@CustomMatchPreferences@@QAEX_N@Z,,0x000ADC40,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesLongGameList_Thunk.cpp,matched,Ghidra-bound BFME long-game-list setter
 ?setUsesSystemMapDir@CustomMatchPreferences@@QAEX_N@Z,,0x000ADB60,170,Code/masm_dumps/CustomMatchPreferences_setUsesSystemMapDir.asm,matched,Ghidra-bound BFME system-map-directory setter
 ?setVel@AnimateWindow@@QAEXUCoord2D@@@Z,,0x00495630,17,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ?setVerticalSpeed@BridgeScaffoldBehavior@@UAEXM@Z,,0x00160EA0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
