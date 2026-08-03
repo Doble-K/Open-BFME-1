@@ -12467,7 +12467,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onExit@AIEnterState@@UAEXW4StateExitType@@@Z,,0x0017DA00,103,Code/masm_dumps/AIEnterState_onExit.asm,matched,MASM exact retail dump; true body via AIEnterState vtbl@0x109ABD0 slot5 (queue 0x17F217 was INSIDE AIPanicState::onExit)
 ?onExit@AIInternalMoveToState@@UAEXW4StateExitType@@@Z,,0x00029311,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState onExit
 ?onExit@AIMoveAwayFromRepulsorsState@@UAEXW4StateExitType@@@Z,,0x00173EE0,54,Code/GameEngine/Source/GameLogic/AI/AIMoveAwayFromRepulsorsState_onExit.cpp,matched,Certified packet 357: true body 0x173EE0 (54B) via vtable 0xC9A368 slot5; queue 0x17F250 was scalar-deleting dtor; BFME State m_machine@+0x1c owner@+0x10; clear PANICKING bit@Object+0x118 + notify@0x2191D
-?onExit@AIPanicState@@UAEXW4StateExitType@@@Z,,0x0017F1E0,84,Code/masm_dumps/AIPanicState_onExit.asm,matched,Ghidra-bound BFME panic-exit body
+?onExit@AIPanicState@@UAEXW4StateExitType@@@Z,,0x0017F1E0,84,Code/GameEngine/Source/Common/AIPanicState_onExit_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?onExit@DozerPrimaryIdleState@@UAEXW4StateExitType@@@Z,,0x002B6350,50,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail owner and UI vtable shims
 ?onObjectCreated@BoneFXDamage@@MAEXXZ,,0x00250880,154,Code/GameEngine/Source/GameLogic/Object/Damage/BoneFXDamage_onObjectCreated.asm,matched,
 ?onObjectCreated@GarrisonContain@@MAEXXZ,,0x0021EA90,150,Code/masm_dumps/onObjectCreated_GarrisonContain_MAEXXZ_0021EA90_packet325.asm,matched,Certified packet 325 exact retail db body
@@ -12691,7 +12691,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parsePositiveNonZeroReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852B80,144,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,BFME throws INIException with a formatted message
 ?parsePreferredAgainst@WeaponTemplateSet@@CAXPAVINI@@PAX1PBX@Z,,0x0010FE90,204,Code/masm_dumps/_sa14__parsePreferredAgainst_WeaponTemplateSet__CAXPAVINI__PAX1PBX_Z_10FE90.asm,matched,sa14 Open-BFME4+Grok Weapon
 ?parsePrerequisiteScience@@YAXPAVINI@@PAX1PBX@Z,,0x00147320,220,Code/masm_dumps/parsePrerequisiteScience_YAXPAVINI_147320.asm,matched,MASM exact; PP sizeof 0x24 blocks C++
-?parsePrerequisites@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x001485B0,63,Code/masm_dumps/parsePrerequisites_ThingTemplate_001485B0.asm,matched,Certified packet 63 parser-table ownership via ILT 0x000223FE; sealed SHA256 646ffc9279ecebbc7d80b1bdc86091965407a4715e7a89131f8f85d8bd4aec61
+?parsePrerequisites@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x001485B0,63,Code/GameEngine/Source/Common/ThingTemplate_parsePrerequisites_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseProductionCostChange@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E2650,83,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,BFME PlayerTemplate production-cost map is at offset 0x60
 ?parseProductionTimeChange@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E2DA0,134,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,BFME uses an AsciiString production-time key map at offset 0x6C
 ?parseProductionVeterancyLevel@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E26C0,170,Code/masm_dumps/parseProductionVeterancyLevel_PlayerTemplate_KAXPAVINI_PAX1PBX_Z_000E26C0_39c405d0.asm,matched,certified packet 126 sealed retail SHA256 39c405d06e4d4962be5614d5379d0ede677c2a0b0105cb91ea988de13bc3ad00
@@ -14107,7 +14107,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?xfer@AIAttackSquadState@@MAEXPAVXfer@@@Z,,0x00181C10,210,Code/masm_dumps/_sa13__xfer_AIAttackSquadState__MAEXPAVXfer___Z_181C10.asm,matched,multi-xref Open-BFME4+Grok AIAttackMachine
 ?xfer@AIAttackState@@MAEXPAVXfer@@@Z,,0x00184110,516,Code/masm_dumps/_sa__xfer_AIAttackState__MAEXPAVXfer___Z_184110.asm,matched,Exact 516B string-anchored Open-BFME4
 ?xfer@DozerAIUpdate@@MAEXPAVXfer@@@Z,,0x002B7080,350,Code/masm_dumps/DozerAIUpdate_xfer.asm,matched,Exact 350B @ 0x2B7080; queue 0x8538E9 was wrong (GarrisonContain region tail); Dozer primary vtbl slot3; calls AIUpdateInterface::xfer@0x271db0; DOZER_NUM_TASKS/DOCK loops
-?xfer@GarrisonContain@@MAEXPAVXfer@@@Z,,0x00853EC0,72,Code/masm_dumps/_cache__xfer_GarrisonContain__MAEXPAVXfer___Z_853EC0.asm,matched,cached-obj needle Open-BFME4+Grok
+?xfer@GarrisonContain@@MAEXPAVXfer@@@Z,,0x00853EC0,72,Code/GameEngine/Source/Common/GarrisonContain_xfer_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?xfer@ScriptGroup@@MAEXPAVXfer@@@Z,,0x00350E90,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptGroupXfer.cpp,matched,True body ScriptGroup vtbl slot3 0x350E90/66; queue 0xAF9B24 is jmp-table; BFME Version1+bool@+0xc only (no ZH script-list walk)
 ?xfer@ScriptList@@MAEXPAVXfer@@@Z,,0x003556A0,400,Code/masm_dumps/xfer_ScriptList_MAEXPAVXfer_Z_003556A0_76e94c51.asm,matched,Certified packet 106 vtable thunk identity; retail sha256 76e94c51960571955350c1034dad16ec4d08b4264a953c395ab3c33077191aca
 ?xfer@TerrainLogic@@MAEXPAVXfer@@@Z,,0x006BE430,45,Code/GameEngine/Source/GameLogic/Map/TerrainLogicXferThunk.cpp,matched,Open-BFME5 exact C++ raw TerrainLogic xfer wrapper
