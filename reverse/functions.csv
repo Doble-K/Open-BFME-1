@@ -12263,7 +12263,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?loadPostProcess@ParticleSystem@@MAEXXZ,,0x000B9EA0,636,Code/masm_dumps/_sa13__loadPostProcess_ParticleSystem__MAEXXZ_B9EA0.asm,matched,multi-xref Open-BFME4+Grok InitialDelay
 ?loadPostProcess@SpecialPowerModule@@MAEXXZ,,0x0026A1A0,251,Code/masm_dumps/loadPostProcess_SpecialPowerModule_MAEXXZ_0026A1A0_packet264.asm,matched,Certified packet 264 exact retail db bytes SHA256 b159483537ee7d0dc0e4a8f0501dc2ec4f1d00dcf6c4739491d5ac46c673e64a
 ?loadPostProcess@Team@@MAEXXZ,,0x000F1800,265,Code/masm_dumps/Team_loadPostProcess.asm,matched,MASM exact true Team vtable body
-?loadPostProcess@Upgrade@@MAEXXZ,,0x00109560,173,Code/masm_dumps/_sa12__loadPostProcess_Upgrade__MAEXXZ_109560.asm,matched,string-anchor Open-BFME4+Grok DisplayName
+?loadPostProcess@Upgrade@@MAEXXZ,,0x00109560,173,Code/GameEngine/Source/Common/Upgrade_loadPostProcessMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok DisplayName
 ?loadRoads@W3DRoadBuffer@@QAEXXZ,,0x007105D0,61,Code/GameEngine/Source/Common/promoted__loadRoads_W3DRoadBuffer_QAEXXZ_007105D0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 61B
 ?loadSavedIgnoreList@GameSpyInfo@@UAEXXZ,,0x00635310,162,Code/GameEngine/Source/GameNetwork/GameSpy/GameSpyInfo_loadSavedIgnoreList_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?loadScheme@Shell@@QAEXVAsciiString@@@Z,,0x0057FE00,100,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
