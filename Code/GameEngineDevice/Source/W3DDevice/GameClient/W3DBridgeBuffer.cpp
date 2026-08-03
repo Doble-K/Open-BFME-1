@@ -707,26 +707,7 @@ W3DBridgeBuffer::~W3DBridgeBuffer(void)
 	freeBridgeBuffers();
 }
 
-//=============================================================================
-// W3DBridgeBuffer::W3DBridgeBuffer
-//=============================================================================
-/** Constructor. Sets m_initialized to true if it finds the w3d models it needs
-for the bridges. */
-//=============================================================================
-// ??0W3DBridgeBuffer@@QAE@XZ present-unmatched
-W3DBridgeBuffer::W3DBridgeBuffer(void)
-{
-	m_initialized = false;
-	m_vertexMaterial = NULL;
-	m_vertexBridge = NULL;
-	m_indexBridge = NULL;
-	m_bridgeTexture = NULL;
-	m_curNumBridgeVertices=0;
-	m_curNumBridgeIndices=0;
-	clearAllBridges();
-	allocateBridgeBuffers();
-	m_initialized = true;
-}
+// The exact retail constructor is emitted by W3DBridgeBufferCtorThunk.cpp.
 
 
 //=============================================================================
