@@ -9,6 +9,8 @@ public:
 	FastFixedAllocator(unsigned int);
 	~FastFixedAllocator();
 	void Init(unsigned int);
+	// MSVC default-ctor closure (??_F...); object-symbol maps retail name here.
+	void DefaultConstructorClosure();
 
 protected:
 	struct Link
@@ -45,6 +47,7 @@ FastFixedAllocator::FastFixedAllocator(unsigned int n)
 }
 
 // ??1FastFixedAllocator@@QAE@XZ
+// Walk chunks list; operator-delete each POD node (no Chunk dtor).
 FastFixedAllocator::~FastFixedAllocator()
 {
 	Chunk *n = chunks;
@@ -56,36 +59,17 @@ FastFixedAllocator::~FastFixedAllocator()
 }
 
 // ??_FFastFixedAllocator@@QAEXXZ
-// Default-ctor closure for FastFixedAllocator() / FastFixedAllocator(0).
-// object-symbol=?FastFixedAllocatorDefaultConstructorClosureThunk@@YAXXZ
-__declspec(naked) void FastFixedAllocatorDefaultConstructorClosureThunk()
+// Default-ctor closure for FastFixedAllocator() / FastFixedAllocator(0):
+// zero stats/head/chunks and set esize=4 (sizeof(Link*)).
+// object-symbol=?DefaultConstructorClosure@FastFixedAllocator@@QAEXXZ
+void FastFixedAllocator::DefaultConstructorClosure()
 {
-	__asm {
-		__emit 0x33;
-		__emit 0xc0;
-		__emit 0x89;
-		__emit 0x41;
-		__emit 0x08;
-		__emit 0x89;
-		__emit 0x41;
-		__emit 0x0c;
-		__emit 0x89;
-		__emit 0x41;
-		__emit 0x10;
-		__emit 0x89;
-		__emit 0x41;
-		__emit 0x14;
-		__emit 0x89;
-		__emit 0x01;
-		__emit 0xc7;
-		__emit 0x41;
-		__emit 0x04;
-		__emit 0x04;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0xc3;
-	}
+	TotalHeapSize = 0;
+	TotalAllocatedSize = 0;
+	TotalAllocationCount = 0;
+	head = 0;
+	chunks = 0;
+	esize = 4;
 }
 
 // ?Init@FastFixedAllocator@@QAEXI@Z
