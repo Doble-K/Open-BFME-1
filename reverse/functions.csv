@@ -2814,7 +2814,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1BridgeBehavior@@MAE@XZ,,0x001F36A0,399,Code/masm_dumps/BridgeBehavior_destructor_MAE.asm,matched,icf-owner=??1BridgeBehavior@@UAE@XZ; queue 0x7A5E37 misplaced; true body 399B @ 0x1F36A0; C++ emits MAE protected pool-glue dtor
 ??1BridgeBehavior@@UAE@XZ,,0x001F36A0,399,Code/GameEngine/Source/Common/BridgeBehaviorDestructorThunk.cpp,matched,Exact 399B @ 0x001F36A0; Exact retail MASM; instance factory->vtable dtor; del 0x1F3EE0 ctor 0x1F3390 vt 0xCA2764
 ??1BridgeBehaviorModuleData@@UAE@XZ,,0x001F5440,147,Code/GameEngine/Source/Common/BridgeBehaviorModuleDataDestructorThunk.cpp,matched,Ghidra-corrected retail body via constructor vtable and deleting destructor
-??1BroadcastStealthUpdate@@UAE@XZ,,0x00289E50,803,Code/masm_dumps/BroadcastStealthUpdate_destructor.asm,matched,Exact 803B @ 0x00289E50; Exact retail MASM; instance factory->vtable dtor; del 0x289E50 ctor 0x289880 vt 0xCBCB3C
+??1BroadcastStealthUpdate@@UAE@XZ,,0x00289E50,803,Code/GameEngine/Source/Common/BroadcastStealthUpdateDestructorThunk.cpp,matched,Exact 803B @ 0x00289E50; Exact retail MASM; instance factory->vtable dtor; del 0x289E50 ctor 0x289880 vt 0xCBCB3C
 ??1BroadcastStealthUpdateModuleData@@UAE@XZ,,0x0012ADF0,80,Code/GameEngine/Source/Common/BroadcastStealthUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
 ??1BuddyMessage@@QAE@XZ,,0x004EA4B0,90,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyMessageDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1Buffer@@QAE@XZ,,0x009E1E30,40,Code/Libraries/Source/WWVegas/WWLib/buff.cpp,matched,
@@ -3279,7 +3279,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/GameEngine/Source/Common/W3DDisplayStringDestructorThunk.cpp,matched,Exact 114B SEH dtor Open-BFME5
 ??1W3DFileSystem@@UAE@XZ,,0x006F6280,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,
 ??1W3DLaserDrawModuleData@@UAE@XZ,,0x001FE260,198,Code/GameEngine/Source/Common/W3DLaserDrawModuleDataDestructorThunk.cpp,matched,Exact 198B SEH dtor Open-BFME5
-??1W3DModelDraw@@MAE@XZ,,0x0077B090,682,Code/masm_dumps/W3DModelDraw_destructor_77B090.asm,matched,Certified packet 234 exact retail MASM destructor body
+??1W3DModelDraw@@MAE@XZ,,0x0077B090,682,Code/GameEngine/Source/Common/W3DModelDrawDestructorThunk.cpp,matched,Certified packet 234 exact retail MASM destructor body
 ??1W3DModelDrawModuleData@@UAE@XZ,,0x00213750,76,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDrawModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1W3DProjectileStreamDraw@@UAE@XZ,,0x00369CF0,116,Code/GameEngine/Source/Common/W3DProjectileStreamDrawDestructorThunk.cpp,matched,Exact 116B @ 0x00369CF0; Exact retail MASM; instance factory->vtable dtor; del 0x36A110 ctor 0x369FD0 vt 0xCE92DC
 ??1W3DPropDrawModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/W3DPropDrawModuleDataDestructorThunk.cpp,matched,Exact 108B SEH dtor Open-BFME5
