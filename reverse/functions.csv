@@ -6534,7 +6534,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Current_Allocated_Memory@WWMemoryLogClass@@SAHH@Z,,0x00AFFA30,18,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Get_Current_Anim@HAnimManagerIterator@@QAEPAVHAnimClass@@XZ,,0x007B9B70,14,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ?Get_Current_Geom@W3DShadowGeometryManagerIterator@@QAEPAVW3DShadowGeometry@@XZ,,0x007AE850,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
-?Get_Current_LOD@HLodClass@@UAEPAVRenderObjClass@@XZ,,0x00978F20,47,Code/Libraries/Source/WWVegas/WW3D2/HLodClass_Get_Current_LOD.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 47B
+?Get_Current_LOD@HLodClass@@UAEPAVRenderObjClass@@XZ,,0x00978F20,47,Code/Libraries/Source/WWVegas/WW3D2/HLodClass_Get_Current_LOD.cpp,matched,clean C++ conversion; current LOD at this+0x128; virtual count/sub-object calls pinned to vtable +0x228/+0x230; early return reuses the zero test instead of re-zeroing eax
 ?Get_Current_Subdivision_Level@SegLineRendererClass@@QBEIXZ,,0x00674250,4,Code/Libraries/Source/WWVegas/WW3D2/streak.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?Get_Current_UV_Offset@LinearOffsetTextureMapperClass@@QAEXAAVVector2@@@Z,,0x00946440,18,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Get_D3D_Projection_Matrix@CameraClass@@QAEXPAVMatrix4@@@Z,,0x009323C0,241,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,RenderObjClass +0x34 (camera shim)
