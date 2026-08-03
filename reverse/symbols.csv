@@ -4443,9 +4443,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??0SiegeAIUpdateModuleData@@QAE@XZ,0x00010C80,SiegeAIUpdate friend_newModuleData ModuleData ctor ILT
-??0SiegeAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,SiegeAIUpdate ctor base
-??0TransportAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,TransportAIUpdate ctor base
-??0FellBeastSwoopPowerBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,FellBeastSwoopPower ctor base
-??0LevelGrantSpecialPowerBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,Open-BFME5 LevelGrantSpecialPower base pin
-??0HeroModeSpecialAbilityUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,Open-BFME5 HeroModeSpecialAbilityUpdate base pin
 ??1ModuleDataListStandIn@@QAE@XZ,0x001468A0,Open-BFME5 list-style sentinel container dtor from AnimalAIUpdate-family ModuleData dtor call sites
