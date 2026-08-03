@@ -1,160 +1,62 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// stlport
+// Open-BFME5: lift ModuleData dtor MASM dump to clean C++.
+// Retail SEH dtor whose body frees two POD pointers at this+0x14/+0x18
+// (plain operator delete, 2-iteration loop), then destroys members in
+// reverse declaration order: a vector<AsciiString> at +0x58 (state 3),
+// AsciiStrings at +0x44 (state 2) and +0x30 (state 1), and a sentinel-list
+// container at +0x08 (state 0), then the base vftable store.
 
-class __declspec(novtable) AssaultTransportAIUpdateModuleData
+class AsciiString
+{
+	char *m_str;
+public:
+	~AsciiString();
+};
+
+// Stand-in for the out-of-line STL-list-style container dtor @0x001468A0
+// (sentinel-node teardown); pinned in symbols.csv.
+class ModuleDataListStandIn
+{
+	void *m_node;
+	void *m_p0c;
+	void *m_p10;
+public:
+	~ModuleDataListStandIn();
+};
+
+#include <vector>
+
+class ModuleData
 {
 public:
-    virtual ~AssaultTransportAIUpdateModuleData();
+	virtual ~ModuleData() {}
+	unsigned int m_04;
+};
+
+class AssaultTransportAIUpdateModuleData : public ModuleData
+{
+public:
+	virtual ~AssaultTransportAIUpdateModuleData();
+
+private:
+	ModuleDataListStandIn m_list;	// +0x08
+	int *m_p14;	// +0x14, freed in the dtor body
+	int *m_p18;	// +0x18, freed in the dtor body
+	int m_f1c, m_f20, m_f24, m_f28, m_f2c;
+	AsciiString m_s30;	// +0x30
+	int m_f34, m_f38, m_f3c, m_f40;
+	AsciiString m_s44;	// +0x44
+	int m_f48, m_f4c, m_f50, m_f54;
+	std::vector<AsciiString> m_vec;	// +0x58
 };
 
 // ??1AssaultTransportAIUpdateModuleData@@UAE@XZ
-__declspec(naked) AssaultTransportAIUpdateModuleData::~AssaultTransportAIUpdateModuleData()
+AssaultTransportAIUpdateModuleData::~AssaultTransportAIUpdateModuleData()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xe9
-        __emit 0x05
-        __emit 0x01
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x80
-        __emit 0xa6
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x7e
-        __emit 0x14
-        __emit 0xbb
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x07
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x09
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x8f
-        __emit 0x39
-        __emit 0x60
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x04
-        __emit 0x4b
-        __emit 0x75
-        __emit 0xeb
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x58
-        __emit 0xe8
-        __emit 0x80
-        __emit 0x85
-        __emit 0xda
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x44
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x02
-        __emit 0xe8
-        __emit 0x01
-        __emit 0x94
-        __emit 0x60
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x30
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xf4
-        __emit 0x93
-        __emit 0x60
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x1e
-        __emit 0xe3
-        __emit 0xda
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	for (int i = 0; i < 2; i++)
+	{
+		if ((&m_p14)[i])
+			delete (&m_p14)[i];
+	}
 }
