@@ -1596,7 +1596,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GateOpenAndCloseBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FC580,197,Code/GameEngine/Source/GameLogic/Object/Behavior/GateOpenAndCloseBehaviorCtorThunk.cpp,matched,Exact 197B; factory ownership Open-BFME4
 ??0GateOpenAndCloseBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/GameEngine/Source/GameLogic/AI/GateOpenAndCloseBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ICF-primary module-data constructor
 ??0GateProxyBehaviorModuleData@@QAE@XZ,,0x001FCEC0,483,Code/GameEngine/Source/GameLogic/AI/GateProxyBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
-??0GenerateMinefieldBehaviorModuleData@@QAE@XZ,,0x0002B062,5,Code/GameEngine/Source/GameLogic/Object/Behavior/GenerateMinefieldBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
+
 ??0GenericList@@QAE@XZ,,0x009E2EC0,103,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??0GenericMultiListClass@@QAE@XZ,,0x006D11E0,39,Code/Libraries/Source/WWVegas/WWMath/lookuptable.cpp,matched,
 ??0GenericMultiListIterator@@QAE@PAVGenericMultiListClass@@@Z,,0x006CA3F0,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
@@ -3183,7 +3183,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
 ??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
-??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two AsciiString members + inlined base vftable store) converted from __emit thunk
 ??1SlavedUpdate@@UAE@XZ,,0x00113C60,131,Code/GameEngine/Source/Common/SlavedUpdateDestructorThunk.cpp,matched,Exact 131B; factory ownership Open-BFME4
 ??1SlavedUpdateModuleData@@UAE@XZ,,0x00126980,80,Code/GameEngine/Source/Common/SlavedUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two AsciiString members + inlined base vftable store) converted from __emit thunk
 ??1SlowDeathBehaviorModuleData@@UAE@XZ,,0x002095F0,221,Code/GameEngine/Source/Common/SlowDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 221B SEH dtor Open-BFME5
@@ -3197,7 +3196,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
 ??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
-??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two AsciiString members + inlined base vftable store) converted from __emit thunk
 ??1SpecialAbilityUpdate@@UAE@XZ,,0x002AA910,153,Code/GameEngine/Source/Common/SpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 153B SEH dtor Open-BFME5
 ??1SpecialAbilityUpdateModuleData@@UAE@XZ,,0x002A5CC0,225,Code/GameEngine/Source/Common/SpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Exact 225B SEH dtor Open-BFME5
 ??1SpecialDisguiseUpdate@@UAE@XZ,,0x00137E80,284,Code/GameEngine/Source/Common/SpecialDisguiseUpdateDestructorThunk.cpp,matched,Exact 284B SEH dtor Open-BFME4
