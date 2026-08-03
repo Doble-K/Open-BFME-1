@@ -3141,7 +3141,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1RankInfo@@MAE@XZ,,0x003A0AE0,146,Code/masm_dumps/dtor_RankInfo_MAEXXZ_003A0AE0_b3880e47.asm,matched,Certified packet 122 sealed SHA256 b3880e47d91aeecf7c79afd12d5ab7bab4e3d06b82aab0dd37db6a1045eca1ea
 ??1RankInfoStore@@UAE@XZ,,0x003A0BA0,212,Code/masm_dumps/RankInfoStore_destructor.asm,matched,Certified packet 110; Ghidra entry and RankInfoStore deleting-destructor chain; retail SHA-256 bb0ca418f4cb4caee2d814dd70efae958c268784c3d47d1d703cfe9a99c8d3f4
 ??1RawFileClass@@UAE@XZ,,0x009E7080,123,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
-??1RebuildHoleBehavior@@UAE@XZ,,0x001F8D10,141,Code/masm_dumps/RebuildHoleBehavior_destructor.asm,matched,Exact 141B SEH dtor Open-BFME4
+??1RebuildHoleBehavior@@UAE@XZ,,0x001F8D10,141,Code/GameEngine/Source/Common/RebuildHoleBehaviorDestructorThunk.cpp,matched,Exact 141B SEH dtor Open-BFME4
 ??1RefundDieModuleData@@UAE@XZ,,0x00125530,67,Code/GameEngine/Source/GameLogic/Object/Die/RefundDieModuleDataDestructorThunk.cpp,matched,Exact 67B SEH dtor factory->vtable Open-BFME4
 ??1Region2D@@QAE@XZ,0x000071DF,0x0005C310,1,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,empty destructor emits ret
 ??1Region3D@@QAE@XZ,0x00045746,0x0006B0C0,1,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,empty destructor emits ret
