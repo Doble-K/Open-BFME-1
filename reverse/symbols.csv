@@ -4217,3 +4217,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?Add_Prototype_Impl@AssetRegistry@@QAEXPAX@Z,0x009EF1A0,Add_Prototype thiscall impl body
 ??0ROUMT_CopyBase@@QAE@ABV0@@Z,0x0001D435,RenderObjectUpdateModuleTemplate copy-ctor primary-base call; ILT thunk for CategoryModuleTemplate<2> copy ctor (body 0x005BF4A0)
 ??0ROUMT_OffsetBase@@QAE@ABV0@@Z,0x000310FC,RenderObjectUpdateModuleTemplate copy-ctor offset-base call; ILT thunk for RenderObjectUpdateModuleInfo copy ctor (body 0x005D92C0)
+?Render_Obj_Exists_Impl@AssetRegistry@@QAE_NPBD@Z,0x009EEBB0,Render_Obj_Exists thiscall impl body
