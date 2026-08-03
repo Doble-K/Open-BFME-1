@@ -50,6 +50,12 @@ while call sites align. After several failed shapes or roughly 30 minutes withou
 byte progress, revert the experiment and take a fresh candidate. Never leave a
 nonmatching reconstruction in the tree.
 
+When you abandon a candidate, record it in `reverse/re_attempts.log` as
+`<symbol><TAB>no-match<TAB><evidence>`, citing the real INT3-delimited boundary
+you found rather than just "did not match". `tools/next_work.py` drops those
+symbols from every queue, so a logged dead end is what stops the next agent
+repeating your 30-60 minutes; `--include-logged` shows them again for auditing.
+
 ## Placement and integrity
 
 - Game source belongs under the official `Code/` tree. MASM dumps belong in
