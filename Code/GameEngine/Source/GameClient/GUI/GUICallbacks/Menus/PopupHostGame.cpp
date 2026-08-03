@@ -253,65 +253,9 @@ void PopulateCustomLadderListBox( GameWindow *win )
 	isPopulatingLadderBox = false;
 }
 
-void PopulateCustomLadderComboBox( void )
-{
-	if (!parentPopup || !comboBoxLadderName)
-		return;
-
-	isPopulatingLadderBox = true;
-
-	CustomMatchPreferences pref;
-	AsciiString userPrefFilename;
-	Int localProfile = TheGameSpyInfo->getLocalProfileID();
-	userPrefFilename.format("GeneralsOnline\\CustomPref%d.ini", localProfile);
-	pref.load(userPrefFilename);
-
-	std::set<const LadderInfo *> usedLadders;
-
-	Color specialColor = GameSpyColor[GSCOLOR_MAP_SELECTED];
-	Color normalColor = GameSpyColor[GSCOLOR_MAP_UNSELECTED];
-	Int index;
-	GadgetComboBoxReset( comboBoxLadderName );
-	index = GadgetComboBoxAddEntry( comboBoxLadderName, TheGameText->fetch("GUI:NoLadder"), normalColor );
-	GadgetComboBoxSetItemData( comboBoxLadderName, index, 0 );
-
-	Int selectedPos = 0;
-	AsciiString lastLadderAddr = pref.getLastLadderAddr();
-	UnsignedShort lastLadderPort = pref.getLastLadderPort();
-	const LadderInfo *info = TheLadderList->findLadder( lastLadderAddr, lastLadderPort );
-	if (info && info->validCustom)
-	{
-		usedLadders.insert(info);
-		index = GadgetComboBoxAddEntry( comboBoxLadderName, info->name, specialColor );
-		GadgetComboBoxSetItemData( comboBoxLadderName, index, (void *)(info->index) );
-		selectedPos = index;
-	}
-
-	LadderPreferences ladPref;
-	ladPref.loadProfile( localProfile );
-	const LadderPrefMap recentLadders = ladPref.getRecentLadders();
-	for (LadderPrefMap::const_iterator cit = recentLadders.begin(); cit != recentLadders.end(); ++cit)
-	{
-		AsciiString addr = cit->second.address;
-		UnsignedShort port = cit->second.port;
-		if (addr == lastLadderAddr && port == lastLadderPort)
-			continue;
-		const LadderInfo *info = TheLadderList->findLadder( addr, port );
-		if (info && info->validCustom && usedLadders.find(info) == usedLadders.end())
-		{
-			usedLadders.insert(info);
-			index = GadgetComboBoxAddEntry( comboBoxLadderName, info->name, normalColor );
-			GadgetComboBoxSetItemData( comboBoxLadderName, index, (void *)(info->index) );
-		}
-	}
-
-	index = GadgetComboBoxAddEntry( comboBoxLadderName, TheGameText->fetch("GUI:ChooseLadder"), normalColor );
-	GadgetComboBoxSetItemData( comboBoxLadderName, index, (void *)-1 );
-
-	GadgetComboBoxSetSelectedPos( comboBoxLadderName, selectedPos );
-	isPopulatingLadderBox = false;
-}
-
+// PopulateCustomLadderComboBox exact retail body is emitted by
+// PopulateCustomLadderComboBoxThunk.cpp.
+void PopulateCustomLadderComboBox(void);
 // Window Functions -----------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------------------------
