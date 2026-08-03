@@ -3158,7 +3158,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1RousingSpeechUpdate@@UAE@XZ,,0x00264DA0,159,Code/GameEngine/Source/GameLogic/Object/Update/RousingSpeechUpdateDtorThunk.cpp,matched,Exact standalone C++ __emit thunk from certified retail destructor
 ??1RousingSpeechUpdateModuleData@@UAE@XZ,,0x00265800,95,Code/GameEngine/Source/Common/RousingSpeechUpdateModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
 ??1RubbleRiseUpdateModuleData@@UAE@XZ,,0x00128BD0,103,Code/GameEngine/Source/Common/RubbleRiseUpdateModuleDataDestructorThunk.cpp,matched,Exact 103B SEH dtor Open-BFME5
-??1ScienceInfo@@MAE@XZ,,0x000E8520,127,Code/masm_dumps/ScienceInfo_destructor.asm,matched,MASM exact: true body 0xE8520 (queue 0x6F4C1A misplaced); FieldParse+parseScience ctor identity; BFME sizeof 0x30 one ScienceVec+costMP depooled
+??1ScienceInfo@@MAE@XZ,,0x000E8520,127,Code/GameEngine/Source/Common/ScienceInfoDestructorThunk.cpp,matched,MASM exact: true body 0xE8520 (queue 0x6F4C1A misplaced); FieldParse+parseScience ctor identity; BFME sizeof 0x30 one ScienceVec+costMP depooled
 ??1ScriptConditions@@UAE@XZ,,0x003244B0,106,Code/GameEngine/Source/Common/ScriptConditionsDestructorThunk.cpp,matched,True body via ctor vtbl 0x10E1F44; queue 0x9F27F1 was PartitionManager getName+pad+matched dtor
 ??1ScriptGroup@@MAE@XZ,,0x00352950,71,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptGroupDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SegLineRendererClass@@QAE@XZ,,0x00960030,28,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,
@@ -3293,7 +3293,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WaterTracksRenderSystem@@QAE@XZ,,0x007AC7C0,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ??1Weapon@@MAE@XZ,,0x001E5490,111,Code/GameEngine/Source/Common/WeaponDestructorThunk.cpp,matched,Exact 111B @ 0x001E5490; allocateNewWeapon->ctor vtbl 0x10A13F4 slot0 scalar-del 0x1E6900->body; m_scatterTargets@+0x40; drift 0x9F2801 was TeamFactory
 ??1WeaponChangeSpecialPowerModuleModuleData@@UAE@XZ,,0x0026CF10,95,Code/GameEngine/Source/Common/WeaponChangeSpecialPowerModuleModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
-??1WeaponFireSpecialAbilityUpdate@@UAE@XZ,,0x0026D320,121,Code/masm_dumps/WeaponFireSpecialAbilityUpdate_destructor.asm,matched,Exact 121B @ 0x0026D320; Exact retail MASM; instance factory->vtable dtor; del 0x26D490 ctor 0x26D670 vt 0xCB8D18
+??1WeaponFireSpecialAbilityUpdate@@UAE@XZ,,0x0026D320,121,Code/GameEngine/Source/Common/WeaponFireSpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 121B @ 0x0026D320; Exact retail MASM; instance factory->vtable dtor; del 0x26D490 ctor 0x26D670 vt 0xCB8D18
 ??1WeaponFireSpecialAbilityUpdateModuleData@@UAE@XZ,,0x0026D7B0,79,Code/GameEngine/Source/GameLogic/Object/Update/WeaponFireSpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1WeaponModeSpecialPowerUpdate@@UAE@XZ,,0x0026A820,156,Code/masm_dumps/WeaponModeSpecialPowerUpdate_destructor.asm,matched,Exact 156B SEH dtor factory->vtable Open-BFME4
 ??1WeaponModeSpecialPowerUpdateModuleData@@UAE@XZ,,0x002B2D70,79,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateModuleDataDestructorThunk.cpp,matched,Exact 79B SEH dtor Open-BFME5
