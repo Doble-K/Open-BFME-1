@@ -2349,7 +2349,7 @@ name,address,notes
 ?Release_Ref@BFMETextureRelease@@QAEXXZ,0x009EB7A0,BFME TextureBaseClass::Release_Ref for updateCenter
 ?Release_Ref@BFMEWaterTrackTexture@@QAEXXZ,0x009EB7A0,WaterTracks local texture release surrogate
 ?Release_Ref@TextureBaseClass@@QAEXXZ,0x009EB7A0,hider decl in texture.h; WORD refcount+flags release
-?Release_Ref@TextureClass@@QAEXXZ,0x009EB7A0,BFME texture release: WORD refcount+flag bits at [this+4]; auto-delete via vtbl slot 8 when bit24 set — TextureClass does NOT derive RefCountClass
+?Release_Ref@TextureClass@@QAEXXZ,0x009EB7A0,BFME texture release: WORD refcount+flag bits at [this+4]; auto-delete via vtbl slot 8 when bit24 set ??? TextureClass does NOT derive RefCountClass
 ?Remove@?$DLNodeClass@VThumbnailManagerClass@@@@QAEXXZ,0x00041763,pinharvest x4 (thunk)
 ?Remove@?$DLNodeClass@VThumbnailManagerClass@@@@QAEXXZ,0x00939430,pinharvest x4 (body)
 ?Remove_All@?$SList@VTagBlockIndex@@@@UAEXXZ,0x0000B9CE,pinharvest x1 (thunk)
@@ -4253,7 +4253,7 @@ name,address,notes
 ?xferInteger@@YAXAAVXfer@@AAH@Z,0x00044FD0,DefaultUpdateModuleInfo m_extra direct xfer helper through a TU-local forwarding declaration
 ?xferInteger@@YAXAAVXfer@@AAH@Z,0x0004570F,ParticleSystemInfo::DoXfer raw ParticleShaderType enum helper call target
 ?xferInteger@@YAXAAVXfer@@AAH@Z,0x00048851,WindModuleInfo::DoXfer raw integer helper call target
-?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0003EE32,H1 GameClientRandomVariable xfer helper (thunk; body 0x0010C4D0) — pinned, ideally matched in game_client_random_variable.cpp
+?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0003EE32,H1 GameClientRandomVariable xfer helper (thunk; body 0x0010C4D0) ??? pinned, ideally matched in game_client_random_variable.cpp
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0004570F,RenderObjectDrawModuleInfo::DoXfer raw helper call target
 ?xferSaveData@GameState@@AAEXPAVXfer@@W4SnapshotType@@@Z,0x0010FBD0,GameState save-data walker (CHUNK_GameState/Campaign/LivingWorldLogic/Palantir/Audio); thunk 0x36674
 AODHordeContainFieldParse,0x004334F6,AODHordeContain FieldParse
@@ -4442,3 +4442,4 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
+??0SiegeAIUpdateModuleData@@QAE@XZ,0x00010C80,SiegeAIUpdate friend_newModuleData ModuleData ctor ILT
