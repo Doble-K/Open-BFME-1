@@ -1509,6 +1509,12 @@ name,address,notes
 ??1BroadcastStealthUpdateModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1BuddyMessage@@QAE@XZ,0x00021445
 ??1Buffer@@QAE@XZ,0x0001A401,pinharvest x1 (thunk)
+??1RiderChangeContainModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberB@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberC@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberD@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberE@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberF@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1BattlePlanUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1Buffer@@QAE@XZ,0x00887940,pinharvest x1 (body)
 ??1Buffer@@QAE@XZ,0x009E1E60
