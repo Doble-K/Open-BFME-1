@@ -1,79 +1,66 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+// Open-BFME5: clean C++ for ThingTemplate::parsePrerequisites.
+// Retail keeps instance in esi and INI in edi; CREATE_OVERRIDES (load-type
+// at +8) erases m_prereqInfo [begin,end] at +0x2C4 via thiscall erase.
 
-class INI;
+class INI
+{
+public:
+	void initFromINI(void *store, const void *fieldParse);
+
+	int m_unk0;
+	int m_unk1;
+	int m_loadType; // +8
+};
+
+class PrereqVector
+{
+public:
+	// erase(first, last) — REL32 pins to retail range-destroy helper.
+	void *erase(void *first, void *last);
+
+	void *m_begin;
+	void *m_end;
+};
+
 class ThingTemplate
 {
 protected:
-	static void __cdecl parsePrerequisites(INI *, void *, void *, const void *);
+	static void __cdecl parsePrerequisites(INI *ini, void *instance, void *store, const void *userData);
+};
+
+enum { INI_LOAD_CREATE_OVERRIDES = 2 };
+
+struct FieldParse
+{
+	const char *name;
+	void (__cdecl *parse)(INI *, void *, void *, const void *);
+	const void *userData;
+	int offset;
+};
+
+void __cdecl parsePrerequisiteUnit(INI *, void *, void *, const void *);
+void __cdecl parsePrerequisiteScience(INI *, void *, void *, const void *);
+
+static const FieldParse s_prereqFieldParse[] =
+{
+	{ "Object", parsePrerequisiteUnit, 0, 0 },
+	{ "Science", parsePrerequisiteScience, 0, 0 },
+	{ 0, 0, 0, 0 }
 };
 
 // ?parsePrerequisites@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void __cdecl ThingTemplate::parsePrerequisites(INI *, void *, void *, const void *)
+void __cdecl ThingTemplate::parsePrerequisites(INI *ini, void *instance, void * /*store*/, const void * /*userData*/)
 {
-	__asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x83
-        __emit 0x7f
-        __emit 0x08
-        __emit 0x02
-        __emit 0x75
-        __emit 0x19
-        __emit 0x8b
-        __emit 0x86
-        __emit 0xc8
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x96
-        __emit 0xc4
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xc4
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x52
-        __emit 0xe8
-        __emit 0xda
-        __emit 0x85
-        __emit 0xec
-        __emit 0xff
-        __emit 0x68
-        __emit 0xf8
-        __emit 0x49
-        __emit 0x09
-        __emit 0x01
-        __emit 0x81
-        __emit 0xc6
-        __emit 0xc4
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xb4
-        __emit 0x9a
-        __emit 0x70
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc3
+	unsigned char *self = (unsigned char *)instance;
+
+	if (*(int *)((unsigned char *)ini + 8) == INI_LOAD_CREATE_OVERRIDES)
+	{
+		void *end = *(void **)(self + 0x2C8);
+		void *beg = *(void **)(self + 0x2C4);
+		PrereqVector *vec = (PrereqVector *)(self + 0x2C4);
+		vec->erase(beg, end);
 	}
+
+	ini->initFromINI(self + 0x2C4, s_prereqFieldParse);
 }
