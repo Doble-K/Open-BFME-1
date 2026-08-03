@@ -1295,7 +1295,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BumpEnvTextureMapperClass@@QAE@AAVINIClass@@PADI@Z,,0x009693A0,141,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0BumpEnvTextureMapperClass@@QAE@ABV0@@Z,,0x00969430,54,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0BumpEnvTextureMapperClass@@QAE@MMABVVector2@@0_N0I@Z,,0x00969340,77,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
-??0BunkerBusterBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/BunkerBusterBehavior_constructor.asm,matched,Exact 154B ICF primary Open-BFME4
+??0BunkerBusterBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/GameEngine/Source/GameLogic/Object/Behavior/BunkerBusterBehaviorCtorThunk.cpp,matched,Open-BFME5 exact 154B ICF primary constructor
 ??0BunkerBusterBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0ButterflyDrawModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x0002C732,0x005D8B60,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,copy constructor sets vtable pointer
 ??0ButterflyDrawModuleInfo@FXParticleSystem@@QAE@XZ,0x000116C6,0x005F0C60,9,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor sets vtable pointer
