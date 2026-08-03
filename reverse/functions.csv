@@ -1645,7 +1645,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HModelPrototypeClass@@QAE@PAVHModelDefClass@@@Z,,0x000EC7B0,25,Code/Libraries/Source/WWVegas/WW3D2/proto.cpp,matched,
 ??0HRawAnimClass@@QAE@XZ,,0x009599B0,75,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
 ??0HTreeClass@@QAE@ABV0@@Z,,0x009527C0,264,Code/masm_dumps/___0HTreeClass__QAE_ABV0__Z_9527C0.asm,matched,
-??0HTreeClass@@QAE@XZ,,0x00952210,20,Code/Libraries/Source/WWVegas/WW3D2/HTreeClass.cpp,matched,Exact retail HTreeClass constructor emitted in dedicated C++ TU.
+??0HTreeClass@@QAE@XZ,,0x00952210,20,Code/Libraries/Source/WWVegas/WW3D2/HTreeClass.cpp,matched,Open-BFME5 clean C++ HTreeClass default ctor zero+1.0f
 ??0HTreeIterator@@QAE@XZ,,0x003FD390,16,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
 ??0HashTableClass@@QAE@H@Z,,0x009E0060,55,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
 ??0HashTableIteratorClass@@QAE@AAVHashTableClass@@@Z,,0x00087A50,18,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
