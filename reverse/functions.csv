@@ -3135,7 +3135,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1QuickMatchPreferences@@UAE@XZ,,0x000AAFA0,11,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,thunk-dump converted to clean C++
 ??1RAMFile@@MAE@XZ,,0x009D19A0,93,Code/Libraries/Source/WWVegas/WWLib/RAMFileDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1RTS2DScene@@UAE@XZ,,0x00711980,143,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS2DScene_dtor.asm,matched,true ENTRY via RTS2DScene vtable store; queue 0x9F27F2 was mid-neighbor; MASM exact 143B
-??1RTS3DScene@@UAE@XZ,,0x00C5FD7E,328,Code/masm_dumps/__1RTS3DScene__UAE_XZ.asm,matched,
+??1RTS3DScene@@UAE@XZ,,0x00C5FD7E,328,Code/GameEngine/Source/Common/RTS3DSceneDestructorThunk.cpp,matched,Exact 328B SEH dtor Open-BFME5
 ??1Radar@@UAE@XZ,,0x00107620,118,Code/GameEngine/Source/Common/RadarDestructorThunk.cpp,matched,Exact retail MASM; dual-vtable wrapper chain proves ownership; preserves BFME vector-destructor machinery absent from ZH layout
 ??1RadarObject@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/System/Radar.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
 ??1RadiusDecalUpdate@@UAE@XZ,,0x002A04E0,132,Code/GameEngine/Source/Common/RadiusDecalUpdateDestructorThunk.cpp,matched,Exact 132B @ 0x002A04E0; Exact retail MASM; instance factory->vtable dtor; del 0x2A0720 ctor 0x2A0640 vt 0xCC1654
