@@ -1,566 +1,186 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: CategoryModuleTemplate / CategoryModuleTemplateBase dual-vtbl empty dtors.
+// Retail shape: if (this) write sec@+4 then pri@0; else write sec@0 then pri@this(null).
 
 namespace FXParticleSystem
 {
-template<int Category>
+
+template <int Category>
 class CategoryModuleTemplate
 {
 };
 
-template<>
-class __declspec(novtable) CategoryModuleTemplate<0>
-{
-public:
-    virtual ~CategoryModuleTemplate();
-};
-
-__declspec(naked) CategoryModuleTemplate<0>::~CategoryModuleTemplate()
-{
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 060h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 060h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
-}
-
-template<>
-class __declspec(novtable) CategoryModuleTemplate<1>
-{
-public:
-    virtual ~CategoryModuleTemplate();
-};
-
-__declspec(naked) CategoryModuleTemplate<1>::~CategoryModuleTemplate()
-{
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 078h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 078h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
-}
-
-template<>
-class __declspec(novtable) CategoryModuleTemplate<2>
-{
-public:
-    virtual ~CategoryModuleTemplate();
-};
-
-__declspec(naked) CategoryModuleTemplate<2>::~CategoryModuleTemplate()
-{
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 0E8h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 0E8h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
-}
-
-template<>
-class __declspec(novtable) CategoryModuleTemplate<3>
-{
-public:
-    virtual ~CategoryModuleTemplate();
-};
-
-__declspec(naked) CategoryModuleTemplate<3>::~CategoryModuleTemplate()
-{
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 0E4h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 0E4h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
-}
-
-template<>
-class __declspec(novtable) CategoryModuleTemplate<4>
-{
-public:
-    virtual ~CategoryModuleTemplate();
-};
-
-__declspec(naked) CategoryModuleTemplate<4>::~CategoryModuleTemplate()
-{
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 0CCh
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 0CCh
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
-}
-
-template<>
-class __declspec(novtable) CategoryModuleTemplate<5>
-{
-public:
-    virtual ~CategoryModuleTemplate();
-};
-
-__declspec(naked) CategoryModuleTemplate<5>::~CategoryModuleTemplate()
-{
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 0ACh
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 0ACh
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
-}
-
-template<int Category>
+template <int Category>
 class CategoryModuleTemplateBase
 {
 };
 
-template<>
-class __declspec(novtable) CategoryModuleTemplateBase<1>
+template <>
+class __declspec(novtable) CategoryModuleTemplate<0>
 {
 public:
-    virtual ~CategoryModuleTemplateBase();
+	virtual ~CategoryModuleTemplate();
 };
 
-__declspec(naked) CategoryModuleTemplateBase<1>::~CategoryModuleTemplateBase()
+CategoryModuleTemplate<0>::~CategoryModuleTemplate()
 {
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 078h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 078h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x01073760u;
+	*(volatile unsigned int *)this = 0x01073758u;
 }
 
-template<>
-class __declspec(novtable) CategoryModuleTemplateBase<3>
+template <>
+class __declspec(novtable) CategoryModuleTemplate<1>
 {
 public:
-    virtual ~CategoryModuleTemplateBase();
+	virtual ~CategoryModuleTemplate();
 };
 
-__declspec(naked) CategoryModuleTemplateBase<3>::~CategoryModuleTemplateBase()
+CategoryModuleTemplate<1>::~CategoryModuleTemplate()
 {
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 0E4h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 0E4h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F978u;
+	*(volatile unsigned int *)this = 0x01073758u;
 }
 
-template<>
-class __declspec(novtable) CategoryModuleTemplateBase<7>
+template <>
+class __declspec(novtable) CategoryModuleTemplate<2>
 {
 public:
-    virtual ~CategoryModuleTemplateBase();
+	virtual ~CategoryModuleTemplate();
 };
 
-__declspec(naked) CategoryModuleTemplateBase<7>::~CategoryModuleTemplateBase()
+CategoryModuleTemplate<2>::~CategoryModuleTemplate()
 {
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 014h
-        _emit 0FAh
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 014h
-        _emit 0FAh
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F9E8u;
+	*(volatile unsigned int *)this = 0x01073758u;
 }
 
-template<>
-class __declspec(novtable) CategoryModuleTemplateBase<2>
+template <>
+class __declspec(novtable) CategoryModuleTemplate<3>
 {
 public:
-    virtual ~CategoryModuleTemplateBase();
+	virtual ~CategoryModuleTemplate();
 };
 
-__declspec(naked) CategoryModuleTemplateBase<2>::~CategoryModuleTemplateBase()
+CategoryModuleTemplate<3>::~CategoryModuleTemplate()
 {
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 0E8h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 0E8h
-        _emit 0F9h
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F9E4u;
+	*(volatile unsigned int *)this = 0x01073758u;
 }
 
-template<>
-class __declspec(novtable) CategoryModuleTemplateBase<0>
+template <>
+class __declspec(novtable) CategoryModuleTemplate<4>
 {
 public:
-    virtual ~CategoryModuleTemplateBase();
+	virtual ~CategoryModuleTemplate();
 };
 
-__declspec(naked) CategoryModuleTemplateBase<0>::~CategoryModuleTemplateBase()
+CategoryModuleTemplate<4>::~CategoryModuleTemplate()
 {
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 060h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 060h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F9CCu;
+	*(volatile unsigned int *)this = 0x01073758u;
 }
 
-template<>
+template <>
+class __declspec(novtable) CategoryModuleTemplate<5>
+{
+public:
+	virtual ~CategoryModuleTemplate();
+};
+
+CategoryModuleTemplate<5>::~CategoryModuleTemplate()
+{
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F9ACu;
+	*(volatile unsigned int *)this = 0x01073758u;
+}
+
+template <>
 class __declspec(novtable) CategoryModuleTemplate<8>
 {
 public:
-    virtual ~CategoryModuleTemplate();
+	virtual ~CategoryModuleTemplate();
 };
 
-__declspec(naked) CategoryModuleTemplate<8>::~CategoryModuleTemplate()
+CategoryModuleTemplate<8>::~CategoryModuleTemplate()
 {
-    __asm {
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Eh
-        _emit 0C7h
-        _emit 041h
-        _emit 004h
-        _emit 05Ch
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 000h
-        _emit 05Ch
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 001h
-        _emit 058h
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0107375Cu;
+	*(volatile unsigned int *)this = 0x01073758u;
 }
+
+template <>
+class __declspec(novtable) CategoryModuleTemplateBase<0>
+{
+public:
+	virtual ~CategoryModuleTemplateBase();
+};
+
+CategoryModuleTemplateBase<0>::~CategoryModuleTemplateBase()
+{
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x01073760u;
+	*(volatile unsigned int *)this = 0x01073758u;
+}
+
+template <>
+class __declspec(novtable) CategoryModuleTemplateBase<1>
+{
+public:
+	virtual ~CategoryModuleTemplateBase();
+};
+
+CategoryModuleTemplateBase<1>::~CategoryModuleTemplateBase()
+{
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F978u;
+	*(volatile unsigned int *)this = 0x01073758u;
+}
+
+template <>
+class __declspec(novtable) CategoryModuleTemplateBase<2>
+{
+public:
+	virtual ~CategoryModuleTemplateBase();
+};
+
+CategoryModuleTemplateBase<2>::~CategoryModuleTemplateBase()
+{
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F9E8u;
+	*(volatile unsigned int *)this = 0x01073758u;
+}
+
+template <>
+class __declspec(novtable) CategoryModuleTemplateBase<3>
+{
+public:
+	virtual ~CategoryModuleTemplateBase();
+};
+
+CategoryModuleTemplateBase<3>::~CategoryModuleTemplateBase()
+{
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110F9E4u;
+	*(volatile unsigned int *)this = 0x01073758u;
+}
+
+template <>
+class __declspec(novtable) CategoryModuleTemplateBase<7>
+{
+public:
+	virtual ~CategoryModuleTemplateBase();
+};
+
+CategoryModuleTemplateBase<7>::~CategoryModuleTemplateBase()
+{
+	unsigned char *base = this ? (unsigned char *)this + 4 : 0;
+	*(volatile unsigned int *)base = 0x0110FA14u;
+	*(volatile unsigned int *)this = 0x01073758u;
+}
+
 }
