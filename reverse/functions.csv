@@ -3273,7 +3273,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1UDP@@QAE@XZ,,0x00A3C88D,14,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ??1UnicodeString@@QAE@XZ,0x0003B304,0x0005EEA0,5,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,UnicodeString destructor
 ??1UnitCrateCollideModuleData@@UAE@XZ,,0x001270F0,83,Code/GameEngine/Source/Common/UnitCrateCollideModuleDataDestructorThunk.cpp,matched,Exact 83B SEH dtor Open-BFME5
-??1UnpauseSpecialPowerUpgradeModuleData@@UAE@XZ,,0x002D9A10,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/UnpauseSpecialPowerUpgradeModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
+??1UnpauseSpecialPowerUpgradeModuleData@@UAE@XZ,,0x002D9A10,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/UnpauseSpecialPowerUpgradeModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit dtor thunk
 ??1UpdateModuleModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/UpdateModuleModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
 ??1Upgrade@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
 ??1UpgradeCenter@@UAE@XZ,,0x0010A8C0,111,Code/GameEngine/Source/Common/UpgradeCenterDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
