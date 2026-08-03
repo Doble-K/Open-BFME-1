@@ -4213,3 +4213,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?g_theWindowManager@@3PAVWindowManager@@A,0x012F19E8,HideQuitMenu WindowManager global
 ?g_quitMenuLayout@@3PAXA,0x012F4AD4,HideQuitMenu layout global
 ??0UpgradeModuleDataSub@@QAE@XZ,0x0000F0A6,UpgradeModuleData subobject ctor ILT used by upgrade factories
+?g_theAssetRegistry@@3PAVAssetRegistry@@A,0x0134FAAC,Add_Prototype AssetRegistry global
+?Add_Prototype_Impl@AssetRegistry@@QAEXPAX@Z,0x009EF1A0,Add_Prototype thiscall impl body
