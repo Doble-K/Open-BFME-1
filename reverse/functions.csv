@@ -9700,7 +9700,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?createTerrainLogic@GameLogic@@EAEPAVTerrainLogic@@XZ,,0x006BAD40,89,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,true RVA via GameLogic vtable slot 9 (0xD1CA5C+0x24) stored to TheTerrainLogic global 0x12EF4CC in init; queue 0xB026E0 was bogus snap; TU-local TerrainLogic facade retail sizeof 0x1904 (ZH prefix + pad); REL32 pins for TerrainLogic ctor; verified via ./build.sh (Win add_match cannot spawn .sh)
 ?createTerrainVisual@W3DGameClient@@MAEPAVTerrainVisual@@XZ,,0x006FB800,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,TU-local BFME TerrainVisual and W3DTerrainVisual ABI facades; ctor thunk pinned
 ?createTower@Bridge@@QAEPAVObject@@PAUCoord3D@@W4BridgeTowerType@@PBVThingTemplate@@PAV2@@Z,,0x001A9730,265,Code/GameEngine/Source/GameLogic/Bridge_createTower_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?createUnitOnTeamAt@ScriptActions@@IAEXABVAsciiString@@000@Z,,0x002F92A5,604,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_createUnitOnTeamAt.asm,matched,exact 604B via MASM
+?createUnitOnTeamAt@ScriptActions@@IAEXABVAsciiString@@000@Z,,0x002F92A5,604,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_createUnitOnTeamAt_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?createVideoPlayer@W3DGameClient@@MAEPAVVideoPlayerInterface@@XZ,,0x006955C0,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?createViewObject@SpecialPowerModule@@IAEXPBUCoord3D@@@Z,,0x00269130,422,Code/masm_dumps/SpecialPowerModule_createViewObject.asm,matched,
 ?createWindow@@YAPAVGameWindow@@PADHHHHHHPAVWinInstanceData@@PAXP6A?AW4WindowMsgHandledType@@PAV1@III@Z4P6AX31I@ZP6AX31@Z@Z,,0x004874A0,320,Code/masm_dumps/GameWindowManagerScript_createWindow.asm,matched,Exact 320B MASM; true start 0x4874A0 (queue 0x9D2256 int3/wrong); parseWindow callers + USER/TABPANE
@@ -9788,7 +9788,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doDisableCountdownTimerDisplay@ScriptActions@@IAEXXZ,,0x002EF9B0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,showNamedTimerDisplay(false)
 ?doDisableSpecialPowerDisplay@ScriptActions@@IAEXXZ,,0x002EF770,17,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,InGameUI vtable+0x90 setSuperweaponDisplayEnabledByScript false
 ?doDisplayCinematicText@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F3BD0,553,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doDisplayCinematicText_Thunk.cpp,matched,Open-BFME5 MASM lift
-?doDisplayCounter@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F9660,235,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doDisplayCounter.asm,matched,exact 235B via MASM; true body (drift 0x9DB075 was mid mega-fn); display counter isCountdown=false
+?doDisplayCounter@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F9660,235,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doDisplayCounter_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doDrawModule@W3DRopeDraw@@UAEXPBVMatrix3D@@@Z,,0x0075AD20,363,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/W3DRopeDraw.cpp,matched,
 ?doEnableCountdownTimerDisplay@ScriptActions@@IAEXXZ,,0x002EF9D0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,showNamedTimerDisplay(true)
 ?doEnableInput@ScriptActions@@IAEXXZ,,0x002EF090,27,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,InGameUI setInputEnabled + Mouse setVisibility pins
@@ -9812,7 +9812,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doLocalDefeat@ScriptActions@@IAEXXZ,,0x002F1EC0,246,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doLocalDefeat_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doMapSetRankLevelLimit@ScriptActions@@IAEXH@Z,,0x002F0090,33,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x110 rank level limit
 ?doMip@TileData@@KAXPAEH0@Z,,0x006D6660,454,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
-?doMoveCameraAlongWaypointPath@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002F8FD0,563,Code/masm_dumps/_sa13__doMoveCameraAlongWaypointPath_ScriptActions__IAEXABVAsciiString__MMMM_2F8FD0.asm,matched,multi-xref Open-BFME4+Grok  already exists. Failed Create.
+?doMoveCameraAlongWaypointPath@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002F8FD0,563,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doMoveCameraAlongWaypointPath_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doMoveCameraTo@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002F24F0,186,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doMoveCameraTo_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doMoveUnitTowardsNearest@ScriptActions@@IAEXABVAsciiString@@0V2@@Z,,0x00302D70,314,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doMoveUnitTowardsNearest_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doNamedEmoticon@ScriptActions@@IAEXABVAsciiString@@0M@Z,,0x002F04F0,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionsDoNamedEmoticonThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 66-byte retail method
