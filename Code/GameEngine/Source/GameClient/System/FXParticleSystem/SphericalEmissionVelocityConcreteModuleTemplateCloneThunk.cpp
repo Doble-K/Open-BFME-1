@@ -1,4 +1,7 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: SphericalEmissionVelocity ConcreteModuleTemplate::clone
+// Category N mangles as $(N-1) for N>=1 in MSVC 7.1; ledger $03 => N=4.
 
 namespace FXParticleSystem
 {
@@ -18,6 +21,8 @@ class SphericalEmissionVelocityModule
 
 class SphericalEmissionVelocityModuleTemplate
 {
+public:
+	virtual ~SphericalEmissionVelocityModuleTemplate();
 };
 
 extern const char SPHERICAL_EMISSION_VELOCITY_MODULE_KEY[1];
@@ -32,50 +37,26 @@ template <class Tag>
 class ConcreteModuleTemplate;
 
 typedef ModuleTag<4, SPHERICAL_EMISSION_VELOCITY_MODULE_KEY, SPHERICAL_EMISSION_VELOCITY_MODULE_NAME,
-    SphericalEmissionVelocityModule, SphericalEmissionVelocityModuleTemplate,
-    DefaultParticleModule<4>, DefaultParticleModuleTemplate<4> > SphericalEmissionVelocityTag;
+	SphericalEmissionVelocityModule, SphericalEmissionVelocityModuleTemplate,
+	DefaultParticleModule<4>, DefaultParticleModuleTemplate<4> > SphericalEmissionVelocityTag;
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
 
 template <>
-class ConcreteModuleTemplate<SphericalEmissionVelocityTag>
+class ConcreteModuleTemplate<SphericalEmissionVelocityTag> : public SphericalEmissionVelocityModuleTemplate
 {
 public:
-    virtual SphericalEmissionVelocityModuleTemplate *clone() const;
+	ConcreteModuleTemplate(const ConcreteModuleTemplate &);
+	virtual SphericalEmissionVelocityModuleTemplate *clone() const;
+
+private:
+	unsigned char m_pad[0x14];
 };
 
-__declspec(naked) SphericalEmissionVelocityModuleTemplate *ConcreteModuleTemplate<SphericalEmissionVelocityTag>::clone() const
+SphericalEmissionVelocityModuleTemplate *ConcreteModuleTemplate<SphericalEmissionVelocityTag>::clone() const
 {
-    __asm {
-        _emit 056h
-        _emit 06Ah
-        _emit 018h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 096h
-        _emit 051h
-        _emit 02Ah
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 074h
-        _emit 00Ah
-        _emit 056h
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 02Ah
-        _emit 040h
-        _emit 0A4h
-        _emit 0FFh
-        _emit 05Eh
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 05Eh
-        _emit 0C3h
-    }
+	return new ConcreteModuleTemplate<SphericalEmissionVelocityTag>(*this);
 }
+
 }
