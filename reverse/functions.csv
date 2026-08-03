@@ -2315,7 +2315,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TerrainCollisionModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,,0x005DE6B0,115,Code/GameEngine/Source/GameClient/System/FXParticleSystem/TerrainCollisionModuleInfoCopyCtorThunk.cpp,matched,Open-BFME5 exact C++ TerrainCollisionModuleInfo copy constructor;object-symbol=??0TerrainCollisionModuleInfo@FXParticleSystem@@QAE@ABV01@@Z;MASM comment size 276 was stale and ledger target is 115
 ??0TerrainCollisionModuleInfo@FXParticleSystem@@QAE@XZ,0x0001EDB7,0x005FD230,95,Code/GameEngine/Source/GameClient/System/FXParticleSystem/TerrainCollisionModuleInfoCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
 ??0TerrainCollisionModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0002C3C7,0x005DE910,155,Code/masm_dumps/___0TerrainCollisionModuleTemplate_FXParticleSystem_5DE910.asm,matched,
-??0TerrainCollisionModuleTemplate@FXParticleSystem@@QAE@XZ,0x00012602,0x005DE7E0,114,Code/masm_dumps/___0TerrainCollisionModuleTemplate_FXParticleSystem_5DE7E0.asm,matched,
+??0TerrainCollisionModuleTemplate@FXParticleSystem@@QAE@XZ,0x00012602,0x005DE7E0,114,Code/GameEngine/Source/GameClient/System/FXParticleSystem/TerrainCollisionModuleTemplateCtorThunk.cpp,matched,Converted to an exact standalone C++ thunk
 ??0TerrainRoadCollection@@QAE@XZ,,0x00601430,36,Code/GameEngine/Source/GameClient/Terrain/TerrainRoads.cpp,matched,
 ??0TerrainScorchFXNugget@@QAE@XZ,,0x00350020,23,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ??0TerrainTypeCollection@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/Common/TerrainTypes.cpp,matched,
