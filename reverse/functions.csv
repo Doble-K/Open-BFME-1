@@ -13041,7 +13041,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeLeadingAndTrailing@GameTextManager@@IAEXPAD@Z,,0x00435EE0,104,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ?removeMessage@GameMessageList@@UAEXPAVGameMessage@@@Z,,0x0008A570,66,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ?removeMessage@NetCommandList@@QAEXPAVNetCommandRef@@@Z,,0x00672EC0,78,Code/GameEngine/Source/GameNetwork/NetCommandList.cpp,matched,
-?removeMilitarySubtitle@InGameUI@@UAEXXZ,,0x004431B0,154,Code/masm_dumps/InGameUI_removeMilitarySubtitle.asm,matched,Certified packet 182 exact retail db recovery sha256 17ea0741497e1a63201ab4f1808d1e17de5bd396ce235973b1842c379a4c2cce
+?removeMilitarySubtitle@InGameUI@@UAEXXZ,,0x004431B0,154,Code/GameEngine/Source/Common/InGameUI_removeMilitarySubtitleMethodThunk.cpp,matched,Certified packet 182 exact retail db recovery sha256 17ea0741497e1a63201ab4f1808d1e17de5bd396ce235973b1842c379a4c2cce
 ?removeNamedMapReveal@ScriptEngine@@QAEXABVAsciiString@@@Z,,0x0034D320,226,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptEngineRemoveNamedMapReveal.cpp,matched,incremental thunk @0x22610; standalone codegen-blocked C++ emits exact 226B retail method body
 ?removeObject@Radar@@QAEXPAVObject@@@Z,,0x00106C20,49,Code/GameEngine/Source/Common/System/Radar.cpp,matched,direct C++ radar object removal with retail object offset replaces MASM dump
 ?removeObjectBuilt@ScoreKeeper@@QAEXPBVObject@@@Z,,0x0056E160,27,Code/GameEngine/Source/Common/RTS/ScoreKeeperRemoveObjectBuilt.cpp,matched,thunk-dump converted to clean C++ method body at destination 0x56E160
