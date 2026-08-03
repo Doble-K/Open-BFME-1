@@ -13016,7 +13016,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?releaseBuffer@?$StringBase@G@@AAEXXZ,0x008881D0,0x8881d0,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?releaseBuffer@AsciiString@@IAEXXZ,,0x00887940,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=?releaseBuffer@?$StringBase@D@@AAEXXZ;C++ alias
 ?releaseBuffer@BFMERetailAsciiString@@AAEXXZ,,0x00887940,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=?releaseBuffer@?$StringBase@D@@AAEXXZ;C++ alias
-?releaseBuffer@UnicodeString@@IAEXXZ,,0x009409F0,334,Code/masm_dumps/__releaseBuffer_UnicodeString__IAEXXZ_9409F0.asm,matched,
+?releaseBuffer@UnicodeString@@IAEXXZ,,0x009409F0,334,Code/GameEngine/Source/Common/UnicodeString_releaseBufferMethodThunk.cpp,matched,
 ?releaseData@Dict@@AAEXXZ,,0x00014475,5,Code/GameEngine/Source/Common/RTS/DictReleaseDataThunk.cpp,matched,5-byte incremental-link Dict private member thunk converted to focused C++ source
 ?releaseFontData@W3DFontLibrary@@MAEXPAVGameFont@@@Z,,0x0078C770,55,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameFont.cpp,matched,
 ?releaseWindowPointers@@YAXXZ,,0x004C3170,294,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,address+name proven from a matched callers relocation
