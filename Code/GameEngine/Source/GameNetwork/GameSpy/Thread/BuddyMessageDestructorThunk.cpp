@@ -1,103 +1,36 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: BuddyMessage dtor. members @+0x08/+0x10/+0x14.
+
+class Buffer
+{
+public:
+	~Buffer();
+private:
+	unsigned char m_pad[4];
+};
+
+class CountUpBuffer
+{
+public:
+	~CountUpBuffer();
+private:
+	unsigned char m_pad[4];
+};
 
 class BuddyMessage
 {
 public:
-    ~BuddyMessage();
+	~BuddyMessage();
+private:
+	unsigned char m_gap[8];
+	Buffer m_a; // +0x08
+	unsigned char m_gap2[4]; // +0x0c
+	Buffer m_b; // +0x10
+	CountUpBuffer m_c; // +0x14
 };
 
-__declspec(naked) BuddyMessage::~BuddyMessage()
+// Destruction: 14, 10, 8 -> calls 8881d0, 887940, 887940
+// ??1BuddyMessage@@QAE@XZ
+BuddyMessage::~BuddyMessage()
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 036h
-        _emit 0BBh
-        _emit 002h
-        _emit 001h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 004h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 014h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0E8h
-        _emit 0F3h
-        _emit 0DCh
-        _emit 039h
-        _emit 000h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 010h
-        _emit 0C6h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 000h
-        _emit 0E8h
-        _emit 056h
-        _emit 0D4h
-        _emit 039h
-        _emit 000h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 008h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0E8h
-        _emit 046h
-        _emit 0D4h
-        _emit 039h
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
 }
