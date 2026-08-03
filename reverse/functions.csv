@@ -7378,7 +7378,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Make_Closest@Quaternion@@QAEAAV1@ABV1@@Z,,0x008DB490,80,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Make_Color_Array_Unique@MeshMatDescClass@@QAEXH@Z,,0x0092A4D0,131,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ?Make_Color_Array_Unique@MeshModelClass@@QAEXH@Z,,0x0094DB40,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
-?Make_Geometry_Unique@MeshModelClass@@QAEXXZ,,0x0094EE80,510,Code/masm_dumps/_sym1__Make_Geometry_Unique_MeshModelClass__QAEXXZ_94EE80.asm,matched,symbol-pin Open-BFME4+Grok
+?Make_Geometry_Unique@MeshModelClass@@QAEXXZ,,0x0094EE80,510,Code/GameEngine/Source/Common/MeshModelClass_Make_Geometry_UniqueMethodThunk.cpp,matched,symbol-pin Open-BFME4+Grok
 ?Make_Identity@Matrix3@@QAEXXZ,,0x007A0260,34,Code/Libraries/Source/WWVegas/WWMath/matrix3.cpp,matched,
 ?Make_Identity@Matrix3D@@QAEXXZ,,0x000FBBE0,43,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
 ?Make_Identity@Matrix3x3@@QAEXXZ,,0x007A0260,34,Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp,matched,
