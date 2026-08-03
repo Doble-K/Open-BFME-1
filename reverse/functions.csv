@@ -8977,7 +8977,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?allocateBlocks@PathfindZoneManager@@QAEXABUIRegion2D@@@Z,,0x00403D50,287,Code/masm_dumps/allocateBlocks_PathfindZoneManager_00403D50_149ae938.asm,matched,Certified packet 94 exact retail MASM recovery SHA256 149ae93817eb6bdfe8ba1cb43af2b051f9bae4adbdf4c26f67e399ac5549bc36
 ?allocateCellInfos@PathfindCellInfo@@SAXXZ,,0x003F6AD0,123,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,exact 123B C++ BFME grow-by-256 pool at 0x3F6AD0
 ?allocateImages@Anim2DTemplate@@QAEXG@Z,,0x005BA140,71,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
-?allocateNewWeapon@WeaponStore@@QBEPAVWeapon@@PBVWeaponTemplate@@W4WeaponSlotType@@@Z,,0x001BDD90,100,Code/GameEngine/Source/Common/WeaponStore_allocateNewWeapon_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
+?allocateNewWeapon@WeaponStore@@QBEPAVWeapon@@PBVWeaponTemplate@@W4WeaponSlotType@@@Z,,0x001BDD90,100,Code/GameEngine/Source/Common/WeaponStore_allocateNewWeapon_Thunk.cpp,matched,Open-BFME5 clean C++ WeaponStore::allocateNewWeapon new Weapon factory
 ?allocateNewWindow@GameWindowManager@@QAEPAVGameWindow@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?allow@PartitionFilterFlammable@@UAE_NPAVObject@@@Z,,0x002925C0,144,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,
 ?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z,,0x001DD140,86,Code/GameEngine/Source/Common/PartitionFilterPlayerAffiliation_allow_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump

@@ -4417,3 +4417,5 @@ GateProxyBehaviorFieldParse,0x004141E1,GateProxyBehavior FieldParse
 ??0HeroModeSpecialAbilityUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,Open-BFME5 HeroModeSpecialAbilityUpdate base pin
 ??0InstantDeathBehaviorBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,InstantDeathBehavior ctor base call
 ??0RunOffMapBehaviorBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,RunOffMapBehavior ctor base call (shared ILT)
+
+??0Weapon@@QAE@PBVWeaponTemplate@@W4WeaponSlotType@@@Z,0x00002B03,Open-BFME5 Weapon ctor pin
