@@ -2178,7 +2178,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SiegeDeploySpecialPowerModuleData@@QAE@XZ,,0x00266450,71,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SiegeDeploySpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 71B constructor
 ??0SiegeDockingBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002062C0,162,Code/masm_dumps/SiegeDockingBehavior_constructor.asm,matched,Exact 162B @ 0x002062C0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114E00
 ??0SiegeDockingBehaviorModuleData@@QAE@XZ,,0x00205F60,16,Code/GameEngine/Source/GameLogic/Object/Behavior/SiegeDockingBehavior.cpp,matched,Exact retail ModuleData constructor emitted as C++.
-??0SiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022BC50,273,Code/masm_dumps/SiegeEngineContain_constructor.asm,matched,Exact 273B @ 0x0022BC50; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1162E0
+??0SiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022BC50,273,Code/GameEngine/Source/GameLogic/AI/SiegeEngineContainCtorThunk.cpp,matched,Exact 273B @ 0x0022BC50; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1162E0
 ??0Signature@DebugStackwalk@@QAE@ABV01@@Z,,0x0088D400,32,Code/Libraries/Source/WWVegas/WWDebug/debug_stack.cpp,matched,
 ??0SimpleFileFactoryClass@@QAE@XZ,,0x009DD6C0,111,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ??0SimpleObjectIterator@@QAE@XZ,,0x0008F6F0,20,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,
