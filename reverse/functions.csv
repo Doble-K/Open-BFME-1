@@ -2127,7 +2127,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RespawnBody@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00214650,46,Code/GameEngine/Source/GameLogic/Object/Behavior/RespawnBodyCtorThunk.cpp,matched,Open-BFME5 clean C++ RespawnBody MI ctor (base hosts 3 vtbls)
 ??0RespawnBodyModuleData@@QAE@XZ,,0x002149D0,190,Code/GameEngine/Source/GameLogic/Object/Behavior/RespawnBodyModuleDataCtorThunk.cpp,matched,Exact 190B @ 0x002149D0; Exact retail MASM ModuleData ctor; unique factory 0x11F7A0
 ??0RiderChangeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00229FB0,124,Code/GameEngine/Source/GameLogic/Object/Contain/RiderChangeContainCtorThunk.cpp,matched,Exact 124B; factory ownership Open-BFME4; converted to an exact standalone C++ thunk
-??0RiderChangeContainModuleData@@QAE@XZ,,0x00268120,430,Code/masm_dumps/RiderChangeContainModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x1195C0
+??0RiderChangeContainModuleData@@QAE@XZ,,0x00268120,430,Code/GameEngine/Source/Common/RiderChangeContainModuleData_ctor_Thunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x1195C0
 ??0RiderInfo@@QAE@XZ,,0x0022A2D0,16,Code/GameEngine/Source/GameLogic/Object/Contain/RiderChangeContain.cpp,matched,
 ??0RoadSegment@@QAE@ABV0@@Z,,0x00704EB0,265,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ??0RotateTextureMapperClass@@QAE@ABV0@@Z,,0x00964BB0,86,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
@@ -2196,7 +2196,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A4260,112,Code/GameEngine/Source/GameLogic/Object/Update/SlavedUpdateCtorThunk.cpp,matched,Open-BFME5 exact 112B constructor
 ??0SlavedUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0SlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00207B60,321,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior_ctor_Thunk.cpp,matched,Open-BFME5 lift 321B retail MASM to standalone C++ thunk
-??0SlowDeathBehaviorModuleData@@QAE@XZ,,0x002093F0,404,Code/masm_dumps/SlowDeathBehaviorModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x1154F0
+??0SlowDeathBehaviorModuleData@@QAE@XZ,,0x002093F0,404,Code/GameEngine/Source/Common/SlowDeathBehaviorModuleData_ctor_Thunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x1154F0
 ??0SmartBombTargetHomingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286F80,154,Code/GameEngine/Source/GameLogic/Object/Update/SmartBombTargetHomingUpdateCtorThunk.cpp,matched,Open-BFME5 exact 154B ICF-alias constructor
 ??0Smudge@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,ICF alias of existing matched body
 ??0SmudgeManager@@QAE@XZ,,0x005D3A90,40,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
@@ -2212,7 +2212,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SpawnUnitBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D0F0,99,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit ctor thunk
 ??0SpawnUnitBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0SpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A6360,356,Code/GameEngine/Source/GameLogic/Object/Update/SpecialAbilityUpdate_ctor_Thunk.cpp,matched,Open-BFME5 lift 356B retail MASM to standalone C++ thunk
-??0SpecialAbilityUpdateModuleData@@QAE@XZ,,0x002A5AA0,434,Code/masm_dumps/SpecialAbilityUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x114140
+??0SpecialAbilityUpdateModuleData@@QAE@XZ,,0x002A5AA0,434,Code/GameEngine/Source/Common/SpecialAbilityUpdateModuleData_ctor_Thunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x114140
 ??0SpecialDisguiseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00267820,87,Code/GameEngine/Source/GameLogic/Object/Update/SpecialDisguiseUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 87B constructor
 ??0SpecialDisguiseUpdateModuleData@@QAE@XZ,,0x002677D0,56,Code/GameEngine/Source/GameLogic/Object/Update/SpecialDisguiseUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ SpecialDisguiseUpdateModuleData ctor
 ??0SpecialEnemySenseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002AAF30,131,Code/GameEngine/Source/GameLogic/Object/Behavior/SpecialEnemySenseUpdateCtorThunk.cpp,matched,Open-BFME5 exact 131B retail module constructor
@@ -2339,7 +2339,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B1060,187,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateCtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0ToppleUpdateModuleData@@QAE@XZ,,0x002B13A0,123,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataCtorThunk.cpp,matched,Exact 123B @ 0x002B13A0; Exact retail MASM ModuleData ctor; unique factory 0x11BBD0; converted to an exact standalone C++ thunk
 ??0TransitionDamageFX@@,,0x00251CF0,374,Code/masm_dumps/_sa7___0TransitionDamageFX___251CF0.asm,matched,Exact 374B Open-BFME4
-??0TransitionDamageFXModuleData@@QAE@XZ,,0x002532B0,433,Code/masm_dumps/TransitionDamageFXModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x124770
+??0TransitionDamageFXModuleData@@QAE@XZ,,0x002532B0,433,Code/GameEngine/Source/Common/TransitionDamageFXModuleData_ctor_Thunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x124770
 ??0TransitionInfo@State@@QAE@P6A_NPAV1@PAX@ZI1PBD@Z,,0x0009FF40,25,Code/GameEngine/Source/Common/StateMachine.cpp,matched,
 ??0TranslatorData@MessageStream@@QAE@XZ,,0x0008A240,19,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ TransportAIUpdate MI ctor (5 vtbls)
@@ -8596,7 +8596,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?_GetBlockSize@MemoryPool@@YAIPAX@Z,0x00882D40,0x00882D40,13,Code/GameEngine/Source/Common/System/memory_pool.cpp,matched,returns block size or zero for null
 ?_Get_DX8_Transform@DX8Wrapper@@SAXW4_D3DTRANSFORMSTATETYPE@@AAVMatrix4@@@Z,,0x006E1A70,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTreeBuffer.cpp,matched,
 ?_Init@MemoryPool@@YAXXZ,0x008827D0,0x008827D0,366,Code/GameEngine/Source/Common/System/memory_pool.cpp,matched,initialize memory pool
-?_Init_Filters@TextureFilterClass@@SAXW4TextureFilterMode@1@@Z,,0x00920D10,438,Code/masm_dumps/_sym1___Init_Filters_TextureFilterClass__SAXW4TextureFilterMode_1__Z_920D10.asm,matched,symbol-pin Open-BFME4+Grok
+?_Init_Filters@TextureFilterClass@@SAXW4TextureFilterMode@1@@Z,,0x00920D10,438,Code/GameEngine/Source/Common/TextureFilterClass_Init_Filters_Thunk.cpp,matched,symbol-pin Open-BFME4+Grok
 ?_Invalidate_Textures@WW3D@@SAXXZ,,0x008FD790,174,Code/GameEngine/Source/Common/WW3D__Invalidate_TexturesMethodThunk.cpp,matched,Exact 174B present-unmatched leaf Open-BFME4
 ?_IsValidBlock@MemoryPool@@YA_NPAX@Z,0x00882D10,0x00882D10,38,Code/GameEngine/Source/Common/System/memory_pool.cpp,matched,validate heap block
 ?_M_advance@_Bit_iterator_base@_STL@@QAEXH@Z,,0x002CAA30,62,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
@@ -9864,7 +9864,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doSoundRemoveAllDisabled@ScriptActions@@IAEXXZ,,0x002EFE60,17,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Audio vtable+0x9c removeDisabledEvents(0)
 ?doSoundRemoveType@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002EFE90,21,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Audio vtable+0x48 removeAudioEvent(name 0)
 ?doSpecialPowerAtLocation@CashHackSpecialPower@@UAEXPBUCoord3D@@MI@Z,,0x006CF660,3,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CashHackSpecialPower.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
-?doSpecialPowerAtObject@CashHackSpecialPower@@UAEXPAVObject@@I@Z,,0x00258800,439,Code/masm_dumps/CashHackSpecialPower_doSpecialPowerAtObject.asm,matched,Exact 439B @ 0x258800 MASM; true start was 0x258800 not queue 0x258809; GUI:AddCash+LoseCash identity; Object/Player/InGameUI layout blocks C++
+?doSpecialPowerAtObject@CashHackSpecialPower@@UAEXPAVObject@@I@Z,,0x00258800,439,Code/GameEngine/Source/Common/CashHackSpecialPower_doSpecialPowerAtObject_Thunk.cpp,matched,Exact 439B @ 0x258800 MASM; true start was 0x258800 not queue 0x258809; GUI:AddCash+LoseCash identity; Object/Player/InGameUI layout blocks C++
 ?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z,,0x001C3850,77,Code/GameEngine/Source/Common/Object_doSpecialPowerUsingWaypoints_Thunk.cpp,matched,Exact 77B Open-BFME5
 ?doSpeechPlay@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x006AF840,973,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doSpeechPlay_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doStopCameraFollowUnit@ScriptActions@@IAEXXZ,,0x002EFAB0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x19c void stop-follow tail-call
