@@ -12574,7 +12574,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseDamageScalar@ArmorTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x001AFD00,28,Code/GameEngine/Source/GameLogic/Object/Armor.cpp,matched,FieldParse token DamageScalar at 0x0109C874 slot 0 - BFME-only name from token
 ?parseDamageTypeFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B8FF0,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseDeathTypeFlags@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9100,210,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseDebris@GenericObjectCreationNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001DAE40,204,Code/masm_dumps/GenericObjectCreationNugget_parseDebris_1DAE40.asm,matched,Exact 204B MASM; queue RVA 0x1DAE09 was int3 pad before true start; m_nameAreObjects=0 at +0x114; sibling parseObject@0x1DA620
+?parseDebris@GenericObjectCreationNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001DAE40,204,Code/GameEngine/Source/Common/GenericObjectCreationNugget_parseDebrisMethodThunk.cpp,matched,Exact 204B MASM; queue RVA 0x1DAE09 was int3 pad before true start; m_nameAreObjects=0 at +0x114; sibling parseObject@0x1DA620
 ?parseDebugCommandMap@@YAXPAVINI@@@Z,,0x005B7030,129,Code/GameEngine/Source/GameClient/DebugCommandMap.cpp,matched,reads the entry name and discards it then parses into a local that is also discarded - the release build validates syntax and stores nothing
 ?parseDefaultColor@@YA_NPAHPAVFile@@PAD@Z,,0x00485970,143,Code/GameEngine/Source/Common/parseDefaultColor_Thunk.cpp,matched,Certified packet 43 reviewed ENTRY boundaries callers TRANSPARENT xref and call graph
 ?parseDrawCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486A60,130,Code/GameEngine/Source/GameClient/GUI/parseDrawCallback_Thunk.cpp,matched,Open-BFME5 lift 130B retail method MASM to standalone C++ thunk
