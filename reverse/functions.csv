@@ -7502,7 +7502,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVSphereClass@@ABVOBBoxClass@@@Z,,0x008E2310,27,Code/Libraries/Source/WWVegas/WWMath/colmathsphere.cpp,matched,icf-owner=?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVSphereClass@@ABVAABoxClass@@@Z
 ?Overlap_Test@CollisionMath@@SA?AW4OverlapType@1@ABVVector3@@0ABVLineSegClass@@@Z,,0x0096A830,174,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ?Override_Current_Static_Sort_Lists@WW3D@@SAXPAVStaticSortListClass@@@Z,,0x008FD530,14,Code/Libraries/Source/WWVegas/WW3D2/ww3d.cpp,matched,
-?ParseActionFalseDataChunk@ScriptAction@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x002F8A50,413,Code/masm_dumps/_sa4__ParseActionFalseDataChunk_ScriptAction__SA_NAAVDa_2F8A50.asm,matched,Exact 413B Open-BFME4
+?ParseActionFalseDataChunk@ScriptAction@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x002F8A50,413,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptAction_ParseActionFalseDataChunk_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?ParseBlendTileData@WorldHeightMap@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A7860,60,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,object-symbol=?parseWaypointData@TerrainLogic@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z;Thunk-dump converted to clean C++ ICF alias
 ?ParseBlendTileDataChunk@WorldHeightMap@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A8BB0,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?ParseConditionDataChunk@Condition@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0035A510,800,Code/masm_dumps/Condition_ParseConditionDataChunk_35A510.asm,matched,Exact 800B @0x35A510; identity via OrCondition registerParser Condition ILT 0x49292; SEH+new(0x4C)+vtbl 0x10E84DC; queue RVA 0x74F548 mid-call misplaced
@@ -7511,7 +7511,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?ParseObjectDataChunk@@YA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00454760,605,Code/masm_dumps/ParseObjectDataChunk_454760.asm,matched,True body 0x454760/605; queue 0x454759 was 7B int3 pad. MASM: MapObject sizeof 0x60 vs ZH 0x48 blocks C++.
 ?ParseObjectsDataChunk@@YA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00454A60,124,Code/GameEngine/Source/GameClient/MapUtil_ParseObjectsDataChunk_Thunk.cpp,matched,Open-BFME5 lift 124B retail MASM to standalone C++ thunk
 ?ParseOrConditionDataChunk@OrCondition@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0035B700,176,Code/GameEngine/Source/GameLogic/ScriptEngine/OrCondition_ParseOrConditionDataChunk_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?ParseScript@Script@@SAPAV1@AAVDataChunkInput@@G@Z,,0x0035C0C0,579,Code/masm_dumps/_sa4__ParseScript_Script__SAPAV1_AAVDataChunkInput__G_Z_35C0C0.asm,matched,Exact 579B Open-BFME4
+?ParseScript@Script@@SAPAV1@AAVDataChunkInput@@G@Z,,0x0035C0C0,579,Code/GameEngine/Source/GameLogic/ScriptEngine/Script_ParseScript_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?ParseScriptListDataChunk@ScriptList@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00350F50,153,Code/GameEngine/Source/Common/ScriptList_ParseScriptListDataChunkThunk.cpp,matched,Open-BFME5 MASM lift ParseScriptListDataChunk
 ?ParseScriptsDataChunk@ScriptList@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0035BFB0,211,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptList_ParseScriptsDataChunk_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ParseSizeOnly@@YA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00454220,152,Code/GameEngine/Source/GameClient/MapUtil.cpp,matched,
@@ -11772,7 +11772,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getUV@ParticleSystemTemplate@FXParticleSystem@@QBEPBURegion2D@@XZ,0x0002D6E6,0x0005CBA0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,returns UV region pointer
 ?getUiText@Condition@@QAE?AVAsciiString@@XZ,,0x00352DB0,160,Code/GameEngine/Source/GameLogic/ScriptEngine/Condition_getUiText_Thunk.cpp,matched,Open-BFME5 lift 160B retail MASM to standalone C++ thunk
 ?getUiText@Parameter@@QBE?AVAsciiString@@XZ,,0x00352E80,3667,Code/masm_dumps/Parameter_getUiText.asm,matched,Exact retail MASM; unique UI strings and two script callers prove ownership
-?getUiText@Script@@QAE?AVAsciiString@@XZ,,0x00357860,564,Code/masm_dumps/_sa7__getUiText_Script__QAE_AVAsciiString__XZ_357860.asm,matched,Exact 564B Open-BFME4
+?getUiText@Script@@QAE?AVAsciiString@@XZ,,0x00357860,564,Code/GameEngine/Source/GameLogic/ScriptEngine/Script_getUiText_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?getUiText@ScriptAction@@QAE?AVAsciiString@@XZ,,0x00356340,395,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptAction_getUiText_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?getUnicodeBuildLocation@Version@@,,0x000AF220,273,Code/masm_dumps/_sa5__getUnicodeBuildLocation_Version___AF220.asm,matched,Exact 273B Open-BFME4
 ?getUnicodeBuildTime@Version@@,,0x000AF080,292,Code/masm_dumps/_sa5__getUnicodeBuildTime_Version___AF080.asm,matched,Exact 292B Open-BFME4
