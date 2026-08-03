@@ -1,172 +1,84 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: SpyVisionUpdateModuleData dtor multi-member SEH.
 
-class __declspec(novtable) SpyVisionUpdateModuleData
+class SpyVisionUpdateModuleDataMemberA {
+public:
+	~SpyVisionUpdateModuleDataMemberA();
+private:
+	unsigned char m_pad[4];
+};
+class SpyVisionUpdateModuleDataMemberB {
+public:
+	~SpyVisionUpdateModuleDataMemberB();
+private:
+	unsigned char m_pad[4];
+};
+class SpyVisionUpdateModuleDataMemberC {
+public:
+	~SpyVisionUpdateModuleDataMemberC();
+private:
+	unsigned char m_pad[4];
+};
+class SpyVisionUpdateModuleDataMemberD {
+public:
+	~SpyVisionUpdateModuleDataMemberD();
+private:
+	unsigned char m_pad[4];
+};
+class SpyVisionUpdateModuleDataMemberE {
+public:
+	~SpyVisionUpdateModuleDataMemberE();
+private:
+	unsigned char m_pad[4];
+};
+class SpyVisionUpdateModuleDataMemberF {
+public:
+	~SpyVisionUpdateModuleDataMemberF();
+private:
+	unsigned char m_pad[4];
+};
+class SpyVisionUpdateModuleDataMemberG {
+public:
+	~SpyVisionUpdateModuleDataMemberG();
+private:
+	unsigned char m_pad[4];
+};
+class SpyVisionUpdateModuleDataMemberH {
+public:
+	~SpyVisionUpdateModuleDataMemberH();
+private:
+	unsigned char m_pad[4];
+};
+
+class SpyVisionUpdateModuleDataBase
 {
 public:
-    virtual ~SpyVisionUpdateModuleData();
+	virtual ~SpyVisionUpdateModuleDataBase() {}
+private:
+	unsigned char m_pad[0x8];
+};
+
+class __declspec(novtable) SpyVisionUpdateModuleData : public SpyVisionUpdateModuleDataBase
+{
+public:
+	virtual ~SpyVisionUpdateModuleData();
+private:
+	SpyVisionUpdateModuleDataMemberA m_a;
+	unsigned char m_gap1[0xc];
+	SpyVisionUpdateModuleDataMemberB m_b;
+	SpyVisionUpdateModuleDataMemberC m_c;
+	unsigned char m_gap3[0x18];
+	SpyVisionUpdateModuleDataMemberD m_d;
+	SpyVisionUpdateModuleDataMemberE m_e;
+	unsigned char m_gap5[0x10];
+	SpyVisionUpdateModuleDataMemberF m_f;
+	unsigned char m_gap6[0x8];
+	SpyVisionUpdateModuleDataMemberG m_g;
+	unsigned char m_gap7[0x8];
+	SpyVisionUpdateModuleDataMemberH m_h;
 };
 
 // ??1SpyVisionUpdateModuleData@@UAE@XZ
-__declspec(naked) SpyVisionUpdateModuleData::~SpyVisionUpdateModuleData()
+SpyVisionUpdateModuleData::~SpyVisionUpdateModuleData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x75;
-        __emit 0xae;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x6c;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x07;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x26;
-        __emit 0xcd;
-        __emit 0xc9;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x60;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x06;
-        __emit 0xe8;
-        __emit 0xde;
-        __emit 0xfe;
-        __emit 0xc8;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x54;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x05;
-        __emit 0xe8;
-        __emit 0xf4;
-        __emit 0x43;
-        __emit 0xca;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x40;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x04;
-        __emit 0xe8;
-        __emit 0x0d;
-        __emit 0x23;
-        __emit 0xca;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x3c;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x03;
-        __emit 0xe8;
-        __emit 0x00;
-        __emit 0x23;
-        __emit 0xca;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x20;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x02;
-        __emit 0xe8;
-        __emit 0x32;
-        __emit 0xf8;
-        __emit 0x50;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x1c;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x25;
-        __emit 0xf8;
-        __emit 0x50;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x0c;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x72;
-        __emit 0x60;
-        __emit 0xcb;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x44;
-        __emit 0x37;
-        __emit 0x07;
-        __emit 0x01;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
 }
