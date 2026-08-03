@@ -2994,7 +2994,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1HordeTransportContain@@UAE@XZ,,0x0024C530,820,Code/masm_dumps/HordeTransportContain_destructor.asm,matched,Exact 820B; factory ownership Open-BFME4
 ??1HordeUpdateModuleData@@UAE@XZ,,0x001FE260,198,Code/GameEngine/Source/Common/HordeUpdateModuleDataDestructorThunk.cpp,matched,Exact 198B SEH dtor Open-BFME5
 ??1HorseHordeContain@@UAE@XZ,,0x00137E80,284,Code/masm_dumps/HorseHordeContain_destructor.asm,matched,Exact 284B SEH dtor Open-BFME4
-??1INI@@QAE@XZ,,0x008512E0,80,Code/masm_dumps/__1INI__QAE_XZ_8512E0.asm,matched,Ghidra exact boundary and member-layout-verified body
+??1INI@@QAE@XZ,,0x008512E0,80,Code/GameEngine/Source/Common/INIDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1INIClass@@UAE@XZ,,0x009E45F0,138,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??1INIException@@QAE@XZ,,0x00139FF0,14,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??1INISection@@UAE@XZ,,0x009E3220,190,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
@@ -3098,7 +3098,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ParticleBufferClass@@UAE@XZ,,0x00984730,1029,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??1ParticleEmitterClass@@UAE@XZ,,0x0097ED10,203,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ??1ParticleEmitterDefClass@@UAE@XZ,,0x0098D230,106,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
-??1ParticleSystemInfo@FXParticleSystem@@UAE@XZ,0x00002F5E,0x0005EEE0,93,Code/masm_dumps/___1ParticleSystemInfo_FXParticleSystem__UAE_XZ_5EEE0.asm,matched,
+??1ParticleSystemInfo@FXParticleSystem@@UAE@XZ,0x00002F5E,0x0005EEE0,93,Code/GameEngine/Source/GameClient/System/FXParticleSystem/ParticleSystemInfoDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1ParticleSystemTemplate@FXParticleSystem@@UAE@XZ,0x0002083D,0x005CE4D0,101,Code/masm_dumps/___1ParticleSystemTemplate_FXParticleSystem__UAE_XZ_5CE4D0.asm,matched,
 ??1ParticleUplinkCannonUpdateModuleData@@UAE@XZ,,0x002A26C0,115,Code/GameEngine/Source/Common/ParticleUplinkCannonUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1PartitionManager@@UAE@XZ,,0x009F2800,115,Code/GameEngine/Source/Common/PartitionManagerDestructorThunk.cpp,matched,True owner via PartitionManager getName string; ICF-alias of mislabeled TeamFactory dtor @0x9F2800
@@ -3132,7 +3132,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1QuadDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x000459F8,0x005D8A00,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=?destroy@QuadDrawDtorBody@FXParticleSystem@@QAEXXZ;C++ member body converted from 50B raw dtor
 ??1QueueProductionExitUpdate@@UAE@XZ,,0x001F8D10,141,Code/GameEngine/Source/Common/QueueProductionExitUpdateDestructorThunk.cpp,matched,Exact 141B SEH dtor Open-BFME4
 ??1QuickMatchPreferences@@UAE@XZ,,0x000AAFA0,11,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,thunk-dump converted to clean C++
-??1RAMFile@@MAE@XZ,,0x009D19A0,93,Code/masm_dumps/_icf2___1RAMFile__MAE_XZ_9D19A0.asm,matched,ICF of ??1SubsystemInterface@@UAE@XZ Open-BFME4+Grok
+??1RAMFile@@MAE@XZ,,0x009D19A0,93,Code/Libraries/Source/WWVegas/WWLib/RAMFileDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1RTS2DScene@@UAE@XZ,,0x00711980,143,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS2DScene_dtor.asm,matched,true ENTRY via RTS2DScene vtable store; queue 0x9F27F2 was mid-neighbor; MASM exact 143B
 ??1RTS3DScene@@UAE@XZ,,0x00C5FD7E,328,Code/masm_dumps/__1RTS3DScene__UAE_XZ.asm,matched,
 ??1Radar@@UAE@XZ,,0x00107620,118,Code/GameEngine/Source/Common/RadarDestructorThunk.cpp,matched,Exact retail MASM; dual-vtable wrapper chain proves ownership; preserves BFME vector-destructor machinery absent from ZH layout
@@ -3229,7 +3229,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SysTimeClass@@QAE@XZ,,0x009E64D0,9,Code/Libraries/Source/WWVegas/WWLib/systimer.cpp,matched,weak needle (dllimport call dominates); dtor at cluster addr; build.sh exact
 ??1Team@@MAE@XZ,,0x000F4250,480,Code/masm_dumps/Team_dtor_MAE_000F4250_packet238.asm,matched,certified packet 238 retail SHA256 b5f02508996b8030029cc75dab2c51a6216c596d95a010d25f3da7df1b37e417
 ??1TeamFactory@@UAE@XZ,,0x009F2800,115,Code/GameEngine/Source/Common/TeamFactoryDestructorThunk.cpp,matched,TeamFactory primary and secondary vtables plus scalar deleting destructor prove ownership
-??1TeamInQueue@@MAE@XZ,,0x00160ED0,112,Code/masm_dumps/TeamInQueue_dtor.asm,matched,Exact 112B @0x160ED0; queue 0x9F27D3 was TeamFactory-region thunk; vtbl+G-dtor chain+m_team@+0x1c vs disband
+??1TeamInQueue@@MAE@XZ,,0x00160ED0,112,Code/GameEngine/Source/GameLogic/AI/TeamInQueueDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1TeamTemplateInfo@@QAE@XZ,,0x000ED580,251,Code/masm_dumps/TeamTemplateInfo_dtor.asm,matched,
 ??1TeamsInfo@@QAE@XZ,,0x009DB7A0,117,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,object-symbol=?Free_String@StringClass@@AAEXXZ;C++ alias
 ??1TechAndSupplyImages@@QAE@XZ,,0x0068E6D0,76,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,icf-owner=??1?$pair@$$CBVUnicodeString@@V1@@_STL@@QAE@XZ
@@ -3262,7 +3262,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1UnpauseSpecialPowerUpgradeModuleData@@UAE@XZ,,0x002D9A10,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/UnpauseSpecialPowerUpgradeModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
 ??1UpdateModuleModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/UpdateModuleModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
 ??1Upgrade@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
-??1UpgradeCenter@@UAE@XZ,,0x0010A8C0,111,Code/masm_dumps/UpgradeCenter_dtor.asm,matched,True body via UpgradeCenter ctor vtable 0x1088D24 scalar dtor chain; queue RVA was int3 pad before ICF TeamFactory/PartitionManager
+??1UpgradeCenter@@UAE@XZ,,0x0010A8C0,111,Code/GameEngine/Source/Common/UpgradeCenterDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1UpgradeDieModuleData@@UAE@XZ,,0x001268A0,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeDieModuleDataDestructorThunk.cpp,matched,Exact 67B SEH dtor factory->vtable Open-BFME4
 ??1UpgradeModuleData@@UAE@XZ,,0x00101EB0,86,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM ICF alias
 ??1UpgradeModuleModuleData@@UAE@XZ,,0x00128FA0,273,Code/GameEngine/Source/Common/UpgradeModuleModuleDataDestructorThunk.cpp,matched,Exact 273B SEH dtor Open-BFME5

@@ -1,0 +1,127 @@
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift MASM dump to standalone C++ thunk.
+
+class __declspec(novtable) TeamInQueue
+{
+protected:
+    virtual ~TeamInQueue();
+};
+
+// ??1TeamInQueue@@MAE@XZ
+__declspec(naked) TeamInQueue::~TeamInQueue()
+{
+    __asm {
+        __emit 0x6a
+        __emit 0xff
+        __emit 0x68
+        __emit 0xd8
+        __emit 0x53
+        __emit 0x00
+        __emit 0x01
+        __emit 0x64
+        __emit 0xa1
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0x50
+        __emit 0x64
+        __emit 0x89
+        __emit 0x25
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0x51
+        __emit 0x53
+        __emit 0x56
+        __emit 0x8b
+        __emit 0xf1
+        __emit 0x89
+        __emit 0x74
+        __emit 0x24
+        __emit 0x08
+        __emit 0xc7
+        __emit 0x06
+        __emit 0x40
+        __emit 0x69
+        __emit 0x09
+        __emit 0x01
+        __emit 0x8b
+        __emit 0x4e
+        __emit 0x14
+        __emit 0x33
+        __emit 0xdb
+        __emit 0x3b
+        __emit 0xcb
+        __emit 0x89
+        __emit 0x5c
+        __emit 0x24
+        __emit 0x14
+        __emit 0x74
+        __emit 0x11
+        __emit 0x57
+        __emit 0x8b
+        __emit 0x01
+        __emit 0x8b
+        __emit 0x79
+        __emit 0x0c
+        __emit 0x6a
+        __emit 0x01
+        __emit 0xff
+        __emit 0x10
+        __emit 0x3b
+        __emit 0xfb
+        __emit 0x8b
+        __emit 0xcf
+        __emit 0x75
+        __emit 0xf1
+        __emit 0x5f
+        __emit 0x8b
+        __emit 0x46
+        __emit 0x1c
+        __emit 0x3b
+        __emit 0xc3
+        __emit 0x74
+        __emit 0x0d
+        __emit 0x38
+        __emit 0x58
+        __emit 0x31
+        __emit 0x75
+        __emit 0x08
+        __emit 0xc6
+        __emit 0x40
+        __emit 0x32
+        __emit 0x01
+        __emit 0xc6
+        __emit 0x40
+        __emit 0x31
+        __emit 0x01
+        __emit 0x8b
+        __emit 0x4c
+        __emit 0x24
+        __emit 0x0c
+        __emit 0x89
+        __emit 0x5e
+        __emit 0x14
+        __emit 0xc7
+        __emit 0x06
+        __emit 0x44
+        __emit 0x37
+        __emit 0x07
+        __emit 0x01
+        __emit 0x5e
+        __emit 0x5b
+        __emit 0x64
+        __emit 0x89
+        __emit 0x0d
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0x83
+        __emit 0xc4
+        __emit 0x10
+        __emit 0xc3
+    }
+}
