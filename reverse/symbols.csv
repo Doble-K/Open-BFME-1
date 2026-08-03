@@ -3217,6 +3217,7 @@ name,address,notes
 ?construct@LineEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00031750,LineEmissionVolumeModule constructor thunk used through a TU-local layout shim
 ?construct@LineEmissionVolumeTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x00004269,LineEmissionVolumeModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@MoneyCrateCollideModuleDataBaseShim@@QAEXXZ,0x000441CA,MoneyCrateCollide base
+?construct@VeterancyCrateCollideModuleDataBaseShim@@QAEXXZ,0x000441CA,VeterancyCrateCollide base
 ?construct@OrthoEmissionVelocityModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00004692,OrthoEmissionVelocityModule constructor thunk used through a TU-local layout shim
 ?construct@OrthoEmissionVelocityTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000ADDA,OrthoEmissionVelocityModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@OrthoEmissionVelocityTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x0000FAD3,OrthoEmissionVelocityModuleTemplate constructor thunk used through a TU-local layout shim
@@ -4471,3 +4472,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??0GameSpyPeerMessageQueueInterface@@QAE@XZ,0x0000A1B9,createNewMessageQueue ctor call; ILT thunk for body 0x0064D650
+
