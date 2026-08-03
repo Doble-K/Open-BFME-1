@@ -9778,7 +9778,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z,,0x002EF2E0,30,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionsDoAmbientSoundsPauseThunk.cpp,matched,Open-BFME5 exact C++ ScriptActions audio pause/resume thunk replacing MASM dump;object-symbol=?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z
 ?doAudioFeedback@@YAXPAVGameWindow@@@Z,,0x004B85F0,153,Code/masm_dumps/doAudioFeedback_YAXPAVGameWindow_Z_4B85F0.asm,matched,Exact retail body; queue RVA 0xC6C420 was CRT stubs misplace
 ?doAudioSetVolume@ScriptActions@@IAEXW4AudioAffect@@M@Z,,0x002EF830,91,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Audio vtable+0xd4 setVolume clamp /100
-?doBorderSwitch@ScriptActions@@IAEXH@Z,,0x002EFC50,102,Code/masm_dumps/_rn5__doBorderSwitch_ScriptActions__IAEXH_Z_2EFC50.asm,matched,reloc-needle Open-BFME4+Grok
+?doBorderSwitch@ScriptActions@@IAEXH@Z,,0x002EFC50,102,Code/GameEngine/Source/Common/ScriptActions_doBorderSwitch_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doBountyForKill@Player@@QAEXPBVObject@@0@Z,,0x000D5160,431,Code/GameEngine/Source/Common/RTS/Player_doBountyForKill.asm,matched,MASM exact 431B @ 0xD5160; queue 0x66556D int3 pad/wrong body; GUI:AddCash+deposit+format+ftol2; ret 8; C++ blocked BFME bounty/layout
 ?doC3CameraDisableSlaveMode@ScriptActions@@IAEXXZ,,0x002F06A0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x9c cameraDisableSlaveMode
 ?doChooseVictimAlwaysUsesNormal@ScriptActions@@IAEX_N@Z,,0x002F08A0,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,ScriptEngine+0x17635 choose-victim flag
@@ -11267,8 +11267,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getFirewallBehavior@OptionPreferences@@QAEHXZ,,0x00090B80,100,Code/GameEngine/Source/Common/promoted__getFirewallBehavior_OptionPreferences_QAEHXZ_00090B80.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 100B
 ?getFirewallHardness@FirewallHelperClass@@QAEHW4tFirewallBehaviorType@1@@Z,,0x0066E9A0,57,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?getFirewallNeedToRefresh@OptionPreferences@@QAE_NXZ,,0x00090D00,113,Code/GameEngine/Source/Common/promoted__getFirewallNeedToRefresh_OptionPreferences_QAE_NXZ_00090D00.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 113B
-?getFirewallPortAllocationDelta@OptionPreferences@@QAEFXZ,,0x00090C00,95,Code/masm_dumps/_getFirewallPortAllocationDelta_OptionPreferences__QAEFXZ_90C00.asm,matched,Exact 95B; string-anchor FirewallPortAllocationDelta; queue 0x66FEF3 was write-path interior; C++ blocked by fat AsciiString
-?getFirewallPortOverride@OptionPreferences@@QAEGXZ,,0x00090C80,95,Code/masm_dumps/OptionPreferences_getFirewallPortOverride_90C80.asm,matched,Certified retail recovery: 95B boundary; FirewallPortOverride string xref; adjacent getter order; parseGameDataDefinition call chain
+?getFirewallPortAllocationDelta@OptionPreferences@@QAEFXZ,,0x00090C00,95,Code/GameEngine/Source/Common/OptionPreferences_getFirewallPortAllocationDelta_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?getFirewallPortOverride@OptionPreferences@@QAEGXZ,,0x00090C80,95,Code/GameEngine/Source/Common/OptionPreferences_getFirewallPortOverride_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?getFirewallRetries@FirewallHelperClass@@QAEHW4tFirewallBehaviorType@1@@Z,,0x0066E9F0,42,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?getFirst@?$CategoryModuleClass@$00@FXParticleSystem@@SAPBV12@XZ,0x00001EA1,0x005C12D0,6,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns first module in category list
 ?getFirst@?$CategoryModuleClass@$01@FXParticleSystem@@SAPBV12@XZ,0x0002EA2D,0x005C1390,6,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns first module in category list
@@ -12443,7 +12443,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onExit@AIAttackApproachTargetState@@UAEXW4StateExitType@@@Z,,0x001751B0,181,Code/masm_dumps/onExit_AIAttackApproachTargetState_UAEXW4StateExitType_Z_001751B0.asm,matched,Certified packet 4 vtable slot and constructor identity exact retail bytes
 ?onExit@AIAttackMoveToState@@UAEXW4StateExitType@@@Z,,0x0017A400,29,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?onExit@AIAttackPursueTargetState@@UAEXW4StateExitType@@@Z,,0x00176560,21,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?onExit@AIAttackState@@UAEXW4StateExitType@@@Z,,0x00184C00,99,Code/masm_dumps/_sa9__onExit_AIAttackState__UAEXW4StateExitType___Z_184C00.asm,matched,Exact 99B Open-BFME4
+?onExit@AIAttackState@@UAEXW4StateExitType@@@Z,,0x00184C00,99,Code/GameEngine/Source/Common/AIAttackState_onExit_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?onExit@AIEnterState@@UAEXW4StateExitType@@@Z,,0x0017DA00,103,Code/masm_dumps/AIEnterState_onExit.asm,matched,MASM exact retail dump; true body via AIEnterState vtbl@0x109ABD0 slot5 (queue 0x17F217 was INSIDE AIPanicState::onExit)
 ?onExit@AIInternalMoveToState@@UAEXW4StateExitType@@@Z,,0x00029311,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState onExit
 ?onExit@AIMoveAwayFromRepulsorsState@@UAEXW4StateExitType@@@Z,,0x00173EE0,54,Code/GameEngine/Source/GameLogic/AI/AIMoveAwayFromRepulsorsState_onExit.cpp,matched,Certified packet 357: true body 0x173EE0 (54B) via vtable 0xC9A368 slot5; queue 0x17F250 was scalar-deleting dtor; BFME State m_machine@+0x1c owner@+0x10; clear PANICKING bit@Object+0x118 + notify@0x2191D
@@ -13582,7 +13582,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setSlotPointer@GameInfo@@QAEXHPAVGameSlot@@@Z,,0x0061E9E0,24,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setSlotRankPoints@GameSpyGameSlot@@QAEXH@Z,,0x0045BEC0,10,Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp,matched,
 ?setSortMode@@YAXW4GameSortType@@@Z,,0x0062E560,32,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,thunk-dump converted to clean C++
-?setSquishedControlBarConfig@ControlBar@@IAEXXZ,,0x0049D0B0,95,Code/masm_dumps/_rn5__setSquishedControlBarConfig_ControlBar__IAEXXZ_49D0B0.asm,matched,reloc-needle Open-BFME4+Grok
+?setSquishedControlBarConfig@ControlBar@@IAEXXZ,,0x0049D0B0,95,Code/GameEngine/Source/Common/ControlBar_setSquishedControlBarConfig_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setStacking@RoadType@@QAEXH@Z,,0x00674240,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,ICF alias of existing matched body
 ?setStartPos@AnimateWindow@@QAEXUICoord2D@@@Z,,0x00495370,17,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ?setStartPos@ControlBarSchemeAnimation@@QAEXUICoord2D@@@Z,,0x00495390,17,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
