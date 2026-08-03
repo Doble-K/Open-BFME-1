@@ -1,85 +1,48 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class ElvenWoodSpecialPowerModuleData
+// Open-BFME5: ElvenWoodSpecialPowerModuleData ctor
+// Base call, vtbl, zeros at +0x210..+0x220/+0x228/+0x22c, float +0x224=10.0f.
+
+class ElvenWoodSpecialPowerModuleDataBase
 {
 public:
-    ElvenWoodSpecialPowerModuleData();
+	ElvenWoodSpecialPowerModuleDataBase();
+	virtual void elvenWoodModuleDataBaseAnchor();
+
+private:
+	unsigned char m_pad[0x20C];
 };
 
-__declspec(naked) ElvenWoodSpecialPowerModuleData::ElvenWoodSpecialPowerModuleData()
+extern "C" char ElvenWoodSpecialPowerModuleData_vtbl;
+
+class __declspec(novtable) ElvenWoodSpecialPowerModuleData
+	: public ElvenWoodSpecialPowerModuleDataBase
 {
-    __asm {
-        _emit 56h
-        _emit 8Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 0FCh
-        _emit 91h
-        _emit 0DBh
-        _emit 0FFh
-        _emit 33h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 06h
-        _emit 38h
-        _emit 4Ch
-        _emit 0Bh
-        _emit 01h
-        _emit 89h
-        _emit 86h
-        _emit 10h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 14h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 18h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 1Ch
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 20h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 28h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 2Ch
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 0C7h
-        _emit 86h
-        _emit 24h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 20h
-        _emit 41h
-        _emit 8Bh
-        _emit 0C6h
-        _emit 5Eh
-        _emit 0C3h
-    }
+public:
+	ElvenWoodSpecialPowerModuleData();
+
+private:
+	unsigned int m_210;
+	unsigned int m_214;
+	unsigned int m_218;
+	unsigned int m_21c;
+	unsigned int m_220;
+	float m_224;
+	unsigned int m_228;
+	unsigned int m_22c;
+};
+
+// ??0ElvenWoodSpecialPowerModuleData@@QAE@XZ
+ElvenWoodSpecialPowerModuleData::ElvenWoodSpecialPowerModuleData()
+{
+	*reinterpret_cast<char *volatile *>(this) =
+		&ElvenWoodSpecialPowerModuleData_vtbl;
+	*reinterpret_cast<unsigned int volatile *>(&m_210) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_214) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_218) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_21c) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_220) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_228) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_22c) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_224) = 0x41200000u; // 10.0f
 }

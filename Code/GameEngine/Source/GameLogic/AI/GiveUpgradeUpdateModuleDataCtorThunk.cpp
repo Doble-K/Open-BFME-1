@@ -1,85 +1,48 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class GiveUpgradeUpdateModuleData
+// Open-BFME5: GiveUpgradeUpdateModuleData ctor
+// Base call, vtbl, zeros +0x254..+0x268, float +0x26c=0.025, byte +0x270=0.
+
+class GiveUpgradeUpdateModuleDataBase
 {
 public:
-    GiveUpgradeUpdateModuleData();
+	GiveUpgradeUpdateModuleDataBase();
+	virtual void giveUpgradeModuleDataBaseAnchor();
+
+private:
+	unsigned char m_pad[0x250];
 };
 
-__declspec(naked) GiveUpgradeUpdateModuleData::GiveUpgradeUpdateModuleData()
+extern "C" char GiveUpgradeUpdateModuleData_vtbl;
+
+class __declspec(novtable) GiveUpgradeUpdateModuleData
+	: public GiveUpgradeUpdateModuleDataBase
 {
-    __asm {
-        _emit 56h
-        _emit 8Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 0Bh
-        _emit 18h
-        _emit 0DEh
-        _emit 0FFh
-        _emit 33h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 06h
-        _emit 0D0h
-        _emit 53h
-        _emit 0Bh
-        _emit 01h
-        _emit 89h
-        _emit 86h
-        _emit 54h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 58h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 5Ch
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 60h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 64h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 86h
-        _emit 68h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 88h
-        _emit 86h
-        _emit 70h
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 0C7h
-        _emit 86h
-        _emit 6Ch
-        _emit 02h
-        _emit 00h
-        _emit 00h
-        _emit 0CDh
-        _emit 0CCh
-        _emit 0CCh
-        _emit 3Ch
-        _emit 8Bh
-        _emit 0C6h
-        _emit 5Eh
-        _emit 0C3h
-    }
+public:
+	GiveUpgradeUpdateModuleData();
+
+private:
+	unsigned int m_254;
+	unsigned int m_258;
+	unsigned int m_25c;
+	unsigned int m_260;
+	unsigned int m_264;
+	unsigned int m_268;
+	unsigned int m_26c;
+	unsigned char m_270;
+};
+
+// ??0GiveUpgradeUpdateModuleData@@QAE@XZ
+GiveUpgradeUpdateModuleData::GiveUpgradeUpdateModuleData()
+{
+	*reinterpret_cast<char *volatile *>(this) =
+		&GiveUpgradeUpdateModuleData_vtbl;
+	*reinterpret_cast<unsigned int volatile *>(&m_254) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_258) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_25c) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_260) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_264) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_268) = 0;
+	*reinterpret_cast<unsigned char volatile *>(&m_270) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_26c) = 0x3CCCCCCDu; // ~0.025f
 }

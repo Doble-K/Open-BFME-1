@@ -796,6 +796,7 @@ name,address,notes
 ??0GhostObjectManager@@QAE@XZ,0x00008652
 ??0GhostObjectManager@@QAE@XZ,0x006BC530,real body via thunk 0x2ba49
 ??0GiveUpgradeUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,GiveUpgradeUpdate ctor base call; ILT thunk for SpecialAbilityUpdate ctor (body 0x002A6360)
+??0GiveUpgradeUpdateModuleDataBase@@QAE@XZ,0x0003F503,GiveUpgradeUpdateModuleData ctor base
 ??0GrabPassengerSpecialPowerModuleDataBase@@QAE@XZ,0x00015C44,GrabPassengerSpecialPowerModuleData base ctor
 ??0GrantScienceUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x00008878,pinharvest x1 (thunk)
 ??0GrantScienceUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000BAF0,pinharvest x1 (thunk)
@@ -830,7 +831,6 @@ name,address,notes
 ??0HiveStructureBodyModuleData@@QAE@XZ,0x0002AE6E,pinharvest x1 (thunk)
 ??0HiveStructureBodyModuleData@@QAE@XZ,0x000331A9,pinharvest x1 (thunk)
 ??0HordeGarrisonContainModuleData@@QAE@XZ,0x0000DF7B,HordeGarrisonContain ModuleData ctor
-??0SiegeEngineContainModuleData@@QAE@XZ,0x0003D055,SiegeEngineContain ModuleData ctor
 ??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00037619,derived-ICF
 ??0HordeUpdateModuleData@@QAE@XZ,0x00014EA2,pinharvest x1 (thunk)
 ??0HordeUpdateModuleData@@QAE@XZ,0x0001BE41,pinharvest x1 (thunk)
@@ -1203,6 +1203,7 @@ name,address,notes
 ??0SiegeAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,SiegeAIUpdate ctor base
 ??0SiegeAIUpdateModuleData@@QAE@XZ,0x00010C80,SiegeAIUpdate friend_newModuleData ModuleData ctor ILT
 ??0SiegeDeploySpecialPowerModuleDataBase@@QAE@XZ,0x00023FE7,SiegeDeploySpecialPowerModuleData base ctor from retail call site
+??0SiegeEngineContainModuleData@@QAE@XZ,0x0003D055,SiegeEngineContain ModuleData ctor
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00001CDA,pinharvest x1 (thunk)
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002D40C,pinharvest x1 (thunk)
 ??0SlavedUpdateModuleData@@QAE@XZ,0x0003AE86,pinharvest x1 (thunk)
@@ -1490,10 +1491,12 @@ name,address,notes
 ??1ArchivedFileInfo@@QAE@XZ,0x009CC600,archive directory entry dtor
 ??1ArrowStormUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base dtor pin
 ??1AsciiString@@QAE@XZ,0x00887940,pinharvest x4 (body)
+??1AttributeHandleStandIn@@QAE@XZ,0x0039D550,Open-BFME5 handle-release dtor (global-pool index) from AttributeModifierAuraUpdateModuleData dtor call site
 ??1AttributeModifierAuraUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1AttributeModifierAuraUpdateModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1AttributeModifierAuraUpdateModuleDataMemberC@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1AttributeModifierAuraUpdateModuleDataMemberD@@QAE@XZ,0x0001B97D,Open-BFME5 pin
+??1AttributeModifierStandIn@@QAE@XZ,0x00129C80,Open-BFME5 nested attribute-modifier struct dtor from AttributeModifierAuraUpdateModuleData dtor call site
 ??1AudioEventRTS@@UAE@XZ,0x0002671F
 ??1AudioEventRTS@@UAE@XZ,0x009409F0,pinharvest x1 (body)
 ??1AutoPickUpUpdateModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
@@ -4336,7 +4339,9 @@ DefaultProductionExitUpdateFieldParse,0x00423687,DefaultProductionExitUpdate fri
 DeflectSpecialPowerFieldParse,0x0044765E,DeflectSpecialPower FieldParse
 DelayedLuaEventUpdateFieldParse,0x0041B199,DelayedLuaEventUpdate FieldParse
 DeployStyleAIUpdateFieldParse,0x00406708,DeployStyleAIUpdate FieldParse
+ElvenWoodSpecialPowerModuleData_vtbl,0x010B4C38,ElvenWoodSpecialPowerModuleData main vtbl
 GateProxyBehaviorFieldParse,0x004141E1,GateProxyBehavior FieldParse
+GiveUpgradeUpdateModuleData_vtbl,0x010B53D0,GiveUpgradeUpdateModuleData main vtbl
 HordeGarrisonContainFieldParse,0x00405245,HordeGarrisonContain FieldParse
 LifetimeUpdateFieldParse,0x0040490D,LifetimeUpdate FieldParse
 ManTheWallsSpecialPowerFieldParse,0x0043EDEC,ManTheWallsSpecialPower FieldParse
@@ -4345,8 +4350,8 @@ RepairSpecialPowerFieldParse,0x0043A1DE,RepairSpecialPower FieldParse
 ShareBufferClassUnsignedShort_vtbl_final,0x011135AC,ShareBuffer ushort dtor final vtbl
 ShareBufferClassUnsignedShort_vtbl_interim,0x0113C110,ShareBuffer ushort dtor interim vtbl
 SpawnPointProductionExitUpdateFieldParse,0x00442979,SpawnPoint friend_newModuleData field parse table
-SplitHordeSpecialPowerFieldParse,0x0040D1F7,SplitHordeSpecialPower FieldParse
 SpecialDisguiseUpdateModuleData_vtbl,0x010B7770,SpecialDisguiseUpdateModuleData main vtbl
+SplitHordeSpecialPowerFieldParse,0x0040D1F7,SplitHordeSpecialPower FieldParse
 SquishCollideFieldParse,0x004173DC,SquishCollide FieldParse
 StealthUpdateFieldParse,0x0041D8F9,StealthUpdate FieldParse
 ToggleHiddenSpecialAbilityUpdateFieldParse,0x0040955C,ToggleHiddenSpecialAbilityUpdate FieldParse
@@ -4496,6 +4501,3 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
-
-??1AttributeHandleStandIn@@QAE@XZ,0x0039D550,Open-BFME5 handle-release dtor (global-pool index) from AttributeModifierAuraUpdateModuleData dtor call site
-??1AttributeModifierStandIn@@QAE@XZ,0x00129C80,Open-BFME5 nested attribute-modifier struct dtor from AttributeModifierAuraUpdateModuleData dtor call site
