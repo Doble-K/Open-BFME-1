@@ -1286,3 +1286,4 @@ zeroes +4 through +0x20 and +0x34/+0x38 at 0x0090D211, it carries a vtable, the
 D3D texture sits at +0x38, and three sibling vtables at VA 0x0113A668, 0x0113A6B0
 and 0x0113A6F8 share slots 0, 4, 5, 6, 7, 8, 10, 11 with slot 0 a plain getter
 rather than a destructor. The handle classes only make sense once it does.
+2026-08-03: tools/land_ambiguous.py currently requires reverse/ghidra_functions.csv, which is absent in this checkout; regenerate that inventory before using the ambiguous-copy pass.
