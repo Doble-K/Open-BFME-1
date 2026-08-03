@@ -7212,7 +7212,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Intersection_Test@CollisionMath@@SA_NABVSphereClass@@ABVAABoxClass@@@Z,,0x008E3600,164,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,object-symbol=?Intersection_Test@CollisionMath@@SA_NABVOBBoxClass@@ABVAABoxClass@@@Z;C++ alias
 ?Intersection_Test@CollisionMath@@SA_NABVSphereClass@@ABVOBBoxClass@@@Z,,0x008E3600,164,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,object-symbol=?Intersection_Test@CollisionMath@@SA_NABVOBBoxClass@@ABVAABoxClass@@@Z;C++ alias
 ?Inv_Sqrt@WWMath@@SIMM@Z,,0x00131C90,82,Code/Libraries/Source/WWVegas/WWMath/colmathaabox.cpp,matched,
-?Invalidate@DX8MeshRendererClass@@QAEX_N@Z,,0x00947BD0,289,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer_Invalidate.asm,matched,
+?Invalidate@DX8MeshRendererClass@@QAEX_N@Z,,0x00947BD0,289,Code/Libraries/Source/WWVegas/WW3D2/DX8MeshRendererClass_Invalidate_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Invalidate_Cached_Bounding_Volumes@RenderObjClass@@IBEXXZ,,0x00918790,8,Code/Libraries/Source/WWVegas/WW3D2/composite.cpp,matched,
 ?Invalidate_FVF_Category_Container_List@@YAXAAV?$MultiListClass@VDX8FVFCategoryContainer@@@@@Z,,0x00945FA0,31,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Inverse@?$Int@$0EA@@@QBE?AV1@ABV1@@Z,,0x009EAC20,79,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,
@@ -9811,7 +9811,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doFxAtBones@FXListAtBonePosFXNugget@@IBEXPBVObject@@H@Z,,0x00010CC6,5,Code/GameEngine/Source/GameClient/FXListAtBonePosFXNuggetDoFxAtBonesThunk.cpp,matched,5-byte protected const FX bone effect thunk converted to focused C++ source
 ?doGiveMoney@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002EF930,95,Code/GameEngine/Source/Common/ScriptActions_doGiveMoney_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doLetterBoxMode@ScriptActions@@IAEX_N@Z,,0x002EF4D0,72,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Display+0x130 enableLetterBox; Hide/ShowControlBar pins
-?doLocalDefeat@ScriptActions@@IAEXXZ,,0x002F1EC0,246,Code/masm_dumps/ScriptActions_doLocalDefeat.asm,matched,
+?doLocalDefeat@ScriptActions@@IAEXXZ,,0x002F1EC0,246,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doLocalDefeat_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doMapSetRankLevelLimit@ScriptActions@@IAEXH@Z,,0x002F0090,33,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x110 rank level limit
 ?doMip@TileData@@KAXPAEH0@Z,,0x006D6660,454,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
 ?doMoveCameraAlongWaypointPath@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002F8FD0,563,Code/masm_dumps/_sa13__doMoveCameraAlongWaypointPath_ScriptActions__IAEXABVAsciiString__MMMM_2F8FD0.asm,matched,multi-xref Open-BFME4+Grok  already exists. Failed Create.
@@ -9912,7 +9912,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?drawEmoticon@Drawable@@AAEXPBUIRegion2D@@@Z,,0x00414AF0,191,Code/GameEngine/Source/GameClient/Drawable_drawEmoticon_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?drawEnthusiastic@Drawable@@AAEXPBUIRegion2D@@@Z,,0x0041A780,511,Code/GameEngine/Source/GameClient/Drawable_drawEnthusiastic.asm,matched,exact 511B MASM true body 0x41A780 (queue 0x9A6703 mid-fn misplaced); WEAPONBONUS bit9/15 ICON 0x0B/0x0C; sibling drawEmoticon region+0x3C4
 ?drawEvents@W3DRadar@@IAEXHHHH@Z,,0x006C3170,729,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar_drawEvents.asm,matched,exact 729B MASM; true body (queue 0xC6E2C9 misplaced mid-stub)
-?drawScorches@BaseHeightMapRenderObjClass@@IAEXXZ,,0x006CA660,247,Code/masm_dumps/drawScorches_BaseHeightMapRenderObjClass_006CA660_f3b40f10.asm,matched,Certified packet 189 db-byte recovery SHA256 f3b40f10bc2966f8355ac4d8d5c6536615dfe2c87dd2b21e7284b5f974b9cb02
+?drawScorches@BaseHeightMapRenderObjClass@@IAEXXZ,,0x006CA660,247,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMapRenderObjClass_drawScorches_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?drawSkinnyBorder@@YAXHHHH@Z,,0x0079BCA0,2304,Code/masm_dumps/drawSkinnyBorder_YAXHHHH_Z_0079BCA0_packet353.asm,matched,certified packet 353 sealed RVA and SHA-256 reviewed identity evidence
 ?drawViewBox@W3DRadar@@IAEXHHHH@Z,,0x00784783,984,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar_drawViewBox.asm,matched,exact 984B via MASM
 ?drawViews@Display@@UAEXXZ,,0x0040DA30,44,Code/GameEngine/Source/GameClient/Display.cpp,matched,exact C++ loop with TU-local BFME View vtable slots draw +0x178 next +0x23c
@@ -12554,7 +12554,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseCloudBreakEffect@@YAXPAVINI@@@Z,,0x0040B270,82,Code/GameEngine/Source/GameClient/CloudBreakEffect.cpp,matched,BFME-only; saved/active override pair then a tail call to the cloud system through vtable slot 9
 ?parseColor@@YA_NPAHPAD@Z,,0x00484610,115,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?parseColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x008531E0,409,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
-?parseComboBoxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004849E0,237,Code/masm_dumps/_entry__parseComboBoxData_YA_NPADPAVWinInstanceData_0PAX_Z_4849E0.asm,matched,Exact 237B MASM; true body via COMBOBOXDATA table @0x4849E0 (drift 0x48623B inside parseDrawData)
+?parseComboBoxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004849E0,237,Code/GameEngine/Source/GameClient/GUI/parseComboBoxData_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseCommand@CommandButton@@SAXPAVINI@@PAX1PBX@Z,,0x0049AB90,124,Code/GameEngine/Source/Common/CommandButton_parseCommand_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseCommandButtonDefinition@INI@@SAXPAV1@@Z,,0x000B7F80,166,Code/GameEngine/Source/Common/INI/INICommandButton.cpp,matched,find-create-override on TheControlBar; unblocked by placing the CommandSet parser which showed the two override creators pair up at 0x00027CC3 and 0x00049ADA
 ?parseCommandSetDefinition@INI@@SAXPAV1@@Z,,0x004A2150,249,Code/GameEngine/Source/Common/INI/INICommandSet.cpp,matched,the INI registry binds the CommandSet keyword to this address; it was recorded as ?newCommandButtonOverride@ControlBar@@ against a MASM dump which has been removed
@@ -12720,7 +12720,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseTerrainDefinition@INI@@SAXPAV1@@Z,,0x000C2AC0,195,Code/GameEngine/Source/Common/INI/INITerrain.cpp,matched,find-then-create on TheTerrainTypes; the second call is the already-matched newTerrain which is what names findTerrain at the first
 ?parseTerrainRoadDefinition@INI@@SAXPAV1@@Z,,0x000C2EE0,271,Code/GameEngine/Source/Common/INI/INITerrainRoad.cpp,matched,searches the road list then checks the kind flag at +0x08; isBridge is inline in retail not a call
 ?parseTextColor@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485730,402,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
-?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C80,270,Code/masm_dumps/_entry__parseTextEntryData_YA_NPADPAVWinInstanceData_0PAX_Z_484C80.asm,matched,
+?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C80,270,Code/GameEngine/Source/GameClient/GUI/parseTextEntryData_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseThingTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAD60,186,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseTime@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066230,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseTooltipDelay@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484BD0,45,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
@@ -13166,7 +13166,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?saveLockGhostObjects@GhostObjectManager@@QAEX_N@Z,,0x0010CF20,10,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ?saveOffOriginalInfo@GameSlot@@QAEXXZ,,0x0061E560,19,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?saveReplay@@YAXVUnicodeString@@@Z,,0x004DE8E0,519,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay_saveReplay.asm,matched,Exact MASM: true body @0x4DE8E0 (queue 0x88836A misplaced StringBase); C++ blocked ZH QAE getReplayDir+wcscmp op== vs retail SA+StringBase::compare
-?saveTracks@WaterTracksRenderSystem@@QAEXXZ,,0x007AC680,251,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks_saveTracks.asm,matched,exact 251B via MASM
+?saveTracks@WaterTracksRenderSystem@@QAEXXZ,,0x007AC680,251,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/WaterTracksRenderSystem_saveTracks_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?sawFullGameList@GameSpyInfo@@UAEXXZ,,0x00637180,5,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,Vtable-bound GameSpyInfo mutator
 ?scale@Coord3D@@QAEXM@Z,0x000236AF,0x000B6CD0,31,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,scales x/y/z in place
 ?scanBool@@YAHPBDAA_N@Z,,0x00484470,44,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
@@ -13626,7 +13626,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setUnicodeString@Dict@@QAEXW4NameKeyType@@ABVUnicodeString@@@Z,,0x000688A0,41,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setUnignoreText@@YAXPAVWindowLayout@@VAsciiString@@H@Z,,0x004EB100,326,Code/masm_dumps/setUnignoreText_004EB100_packet274.asm,matched,Certified packet 274 exact retail db recovery
 ?setUninterruptable@AudioEventRTS@@QAEX_N@Z,,0x000B2350,10,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
-?setUpDownImages@ControlBar@@IAEXXZ,,0x0049D160,259,Code/masm_dumps/ControlBar_setUpDownImages.asm,matched,Exact retail MASM; source string and three caller paths prove ownership; preserves BFME ControlBar member offsets
+?setUpDownImages@ControlBar@@IAEXXZ,,0x0049D160,259,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setUpDownImages_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setUpdate@HijackerUpdate@@QAEX_N@Z,,0x00295AA0,10,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToHijackedVehicleCrateCollide.cpp,matched,
 ?setUpdate@WindowLayout@@QAEXP6AXPAV1@PAX@Z@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,ICF alias of existing matched body
 ?setUpgradeExecuted@UpgradeMux@@IAEX_N@Z,,0x001EE7D0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,
@@ -13699,7 +13699,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?size@File@@UAEHXZ,,0x009CB670,53,Code/GameEngine/Source/Common/System/File.cpp,matched,File vtable slot 11; measures by seek so it is shared by every subclass that does not override it
 ?size@MemoryReadFile@@UAEHXZ,,0x009CB170,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?size@MemoryWriteFile@@UAEHXZ,,0x009CB350,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
-?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,284,Code/masm_dumps/_rn6__sizeWindowsAlt_ControlBarResizer__QAEXXZ_4AB1A0.asm,matched,true size 284B; previous row claimed 277B
+?sizeWindowsAlt@ControlBarResizer@@QAEXXZ,,0x004AB1A0,284,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer_sizeWindowsAlt_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?sizeWindowsDefault@ControlBarResizer@@QAEXXZ,,0x004AB100,122,Code/GameEngine/Source/Common/ControlBarResizer_sizeWindowsDefault_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?skip@ButtonFlashTransition@@UAEXXZ,,0x0059AA80,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@ControlBarArrowTransition@@UAEXXZ,,0x0059B850,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
