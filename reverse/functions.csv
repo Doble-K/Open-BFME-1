@@ -3290,7 +3290,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1W3DStatusCircle@@UAE@XZ,,0x00725F40,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DStatusCircle.cpp,matched,icf-owner=??1DistLODClass@@UAE@XZ
 ??1W3DTreeDrawModuleData@@UAE@XZ,,0x0077F460,112,Code/GameEngine/Source/Common/W3DTreeDrawModuleDataDestructorThunk.cpp,matched,Exact 112B SEH dtor Open-BFME5
 ??1W3DVolumetricShadowManager@@QAE@XZ,,0x007BDE90,286,Code/GameEngine/Source/Common/W3DVolumetricShadowManagerDestructorThunk.cpp,matched,Exact 286B SEH dtor Open-BFME5
-??1WanderAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/masm_dumps/WanderAIUpdate_destructor.asm,matched,Exact 2099B SEH dtor Open-BFME4
+??1WanderAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/GameEngine/Source/Common/WanderAIUpdateDestructorThunk.cpp,matched,Exact 2099B SEH dtor Open-BFME4
 ??1WanderAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/WanderAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
 ??1WaterTracksRenderSystem@@QAE@XZ,,0x007AC7C0,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ??1Weapon@@MAE@XZ,,0x001E5490,111,Code/GameEngine/Source/Common/WeaponDestructorThunk.cpp,matched,Exact 111B @ 0x001E5490; allocateNewWeapon->ctor vtbl 0x10A13F4 slot0 scalar-del 0x1E6900->body; m_scatterTargets@+0x40; drift 0x9F2801 was TeamFactory
@@ -3300,7 +3300,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WeaponModeSpecialPowerUpdate@@UAE@XZ,,0x0026A820,156,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
 ??1WeaponModeSpecialPowerUpdateModuleData@@UAE@XZ,,0x002B2D70,79,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateModuleDataDestructorThunk.cpp,matched,Exact 79B SEH dtor Open-BFME5
 ??1WeaponSet@@QAE@XZ,,0x001EAD40,95,Code/GameEngine/Source/Common/WeaponSetDestructorThunk.cpp,matched,Exact 95B @ 0x1EAD40; scalar-dtor/vtable/4-slot weapons prove WeaponSet; queue 0x9F27F7 was PartitionManager pad
-??1WeaponSetSpecialAbilityUpdate@@UAE@XZ,,0x002A9850,2403,Code/masm_dumps/WeaponSetSpecialAbilityUpdate_destructor.asm,matched,Exact 2403B SEH dtor factory->vtable Open-BFME4
+??1WeaponSetSpecialAbilityUpdate@@UAE@XZ,,0x002A9850,2403,Code/GameEngine/Source/Common/WeaponSetSpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 2403B SEH dtor factory->vtable Open-BFME4
 ??1WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00072A40,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DDefaultDraw.cpp,matched,
 ??1Win32BIGFile@@UAE@XZ,,0x009D1500,95,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,
 ??1Win32BIGFileSystem@@UAE@XZ,,0x009CC370,11,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_dtor.cpp,matched,installs vtable 0x01143B40 then tail-jumps to the matched ~ArchiveFileSystem at 0x009CA550
