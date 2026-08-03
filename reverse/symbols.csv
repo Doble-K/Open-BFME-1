@@ -4277,3 +4277,12 @@ DefaultModuleTemplate6_vtbl8,0x01111004,DefaultModuleTemplate6 ctor vtbl anchor
 ??1UpgradeModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
 ??1W3DLaserDrawModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
 ??1WeaponFireSpecialAbilityUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base dtor pin
+??1ClearanceTestingSlowDeathBehaviorModuleDataBase@@UAE@XZ,0x00015645,Open-BFME5 base pin
+??1GiantBirdSlowDeathBehaviorModuleDataBase@@UAE@XZ,0x00015645,Open-BFME5 base pin
+??1LevelGrantSpecialPowerModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base pin
+??1ProductionSpeedBonusModuleDataBase@@UAE@XZ,0x0001D7B4,Open-BFME5 base pin
+??1SupplyTruckAIUpdateModuleDataBase@@UAE@XZ,0x00029D02,Open-BFME5 base pin
+??1ClearanceTestingSlowDeathBehaviorModuleDataMember@@QAE@XZ,0x000309F4,Open-BFME5 pin
+??1GiantBirdSlowDeathBehaviorModuleDataMember@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1ProductionSpeedBonusModuleDataMember@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1SupplyTruckAIUpdateModuleDataMember@@QAE@XZ,0x00026F35,Open-BFME5 pin
