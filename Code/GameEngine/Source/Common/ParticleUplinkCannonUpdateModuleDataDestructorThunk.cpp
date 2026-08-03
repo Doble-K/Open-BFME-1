@@ -1,130 +1,54 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: ParticleUplinkCannonUpdateModuleData dtor.
+// Members @+0x08/+0xa0/+0xac/+0xb0.
 
-class __declspec(novtable) ParticleUplinkCannonUpdateModuleData
+class ParticleUplinkCannonUpdateModuleDataMemberA
 {
 public:
-    virtual ~ParticleUplinkCannonUpdateModuleData();
+	~ParticleUplinkCannonUpdateModuleDataMemberA();
+private:
+	unsigned char m_pad[4];
+};
+
+class ParticleUplinkCannonUpdateModuleDataMemberB
+{
+public:
+	~ParticleUplinkCannonUpdateModuleDataMemberB();
+private:
+	unsigned char m_pad[4];
+};
+
+class Buffer
+{
+public:
+	~Buffer();
+private:
+	unsigned char m_pad[4];
+};
+
+class ParticleUplinkCannonUpdateModuleDataBase
+{
+public:
+	virtual ~ParticleUplinkCannonUpdateModuleDataBase() {}
+private:
+	unsigned char m_pad[4];
+};
+
+class __declspec(novtable) ParticleUplinkCannonUpdateModuleData
+	: public ParticleUplinkCannonUpdateModuleDataBase
+{
+public:
+	virtual ~ParticleUplinkCannonUpdateModuleData();
+private:
+	ParticleUplinkCannonUpdateModuleDataMemberA m_a;
+	unsigned char m_gap1[0x94];
+	ParticleUplinkCannonUpdateModuleDataMemberB m_b;
+	unsigned char m_gap2[0x8];
+	Buffer m_c;
+	Buffer m_d;
 };
 
 // ??1ParticleUplinkCannonUpdateModuleData@@UAE@XZ
-__declspec(naked) ParticleUplinkCannonUpdateModuleData::~ParticleUplinkCannonUpdateModuleData()
+ParticleUplinkCannonUpdateModuleData::~ParticleUplinkCannonUpdateModuleData()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x7f
-        __emit 0x26
-        __emit 0x01
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xb0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x50
-        __emit 0x52
-        __emit 0x5e
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xac
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x02
-        __emit 0xe8
-        __emit 0x40
-        __emit 0x52
-        __emit 0x5e
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xa0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x33
-        __emit 0xd6
-        __emit 0xd7
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xe4
-        __emit 0x7c
-        __emit 0xd7
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
