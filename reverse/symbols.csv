@@ -4530,5 +4530,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 
 
 
-??1UpdateModuleData@@UAE@XZ,0x009A1A40,Open-BFME5 ModuleData-family base dtor (ICF-folded with SubsystemInterface dtor) from AnimationSteering/PowerPlant/W3DPropDraw dtor call sites
 ??1W3DShadowHelperManager@@QAE@XZ,0x007C19A0,Open-BFME5 shadow helper manager dtor (two refcounted members) from retail ~W3DShadowManager call site
