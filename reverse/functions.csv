@@ -3170,7 +3170,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SidesInfo@@QAE@XZ,,0x0019AF30,148,Code/masm_dumps/SidesList_SidesInfo_destructor.asm,matched,
 ??1SidesList@@UAE@XZ,,0x0019E640,290,Code/masm_dumps/SidesList_destructor.asm,matched,Certified packet id 111 exact retail MASM SHA256 8699b70f447fd057fdb39875e2e20d185e658f90b877d8bebd4974b9aaee0f0e
 ??1SiegeDeployHordeSpecialPower@@UAE@XZ,,0x00265ED0,651,Code/masm_dumps/SiegeDeployHordeSpecialPower_destructor.asm,matched,Exact 651B SEH dtor factory->vtable Open-BFME4
-??1SiegeDeploySpecialPower@@UAE@XZ,,0x002664F0,125,Code/masm_dumps/SiegeDeploySpecialPower_destructor.asm,matched,Exact 125B; factory ownership Open-BFME4
+??1SiegeDeploySpecialPower@@UAE@XZ,,0x002664F0,125,Code/GameEngine/Source/Common/SiegeDeploySpecialPowerDestructorThunk.cpp,matched,Exact 125B; factory ownership Open-BFME4
 ??1SiegeDeploySpecialPowerModuleData@@UAE@XZ,,0x0025A4A0,112,Code/GameEngine/Source/Common/SiegeDeploySpecialPowerModuleDataDestructorThunk.cpp,matched,Exact 112B SEH dtor Open-BFME5
 ??1SiegeDockingBehavior@@UAE@XZ,,0x002067C0,166,Code/masm_dumps/SiegeDockingBehavior_destructor.asm,matched,Exact 166B @ 0x002067C0; Exact retail MASM; instance factory->vtable dtor; del 0x207200 ctor 0x2062C0 vt 0xCA6354
 ??1SiegeEngineContain@@UAE@XZ,,0x0022B870,183,Code/masm_dumps/SiegeEngineContain_destructor.asm,matched,Exact 183B @ 0x0022B870; Exact retail MASM; instance factory->vtable dtor; del 0x22BDB0 ctor 0x22BC50 vt 0xCAD088
