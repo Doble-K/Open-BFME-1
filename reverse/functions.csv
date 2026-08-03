@@ -3203,7 +3203,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SpawnBehavior@@UAE@XZ,,0x0020B180,207,Code/masm_dumps/SpawnBehavior_destructor.asm,matched,Exact 207B @ 0x0020B180; Exact retail MASM; instance factory->vtable dtor; del 0x20C020 ctor 0x20AE30 vt 0xCA6CCC
 ??1SpawnBehaviorModuleData@@UAE@XZ,,0x0012AA50,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM ICF alias
-??1SpecialAbilityUpdate@@UAE@XZ,,0x002AA910,153,Code/masm_dumps/SpecialAbilityUpdate_destructor.asm,matched,Exact 153B @ 0x002AA910; Exact retail MASM; instance factory->vtable dtor; del 0x2AAEC0 ctor 0x2A6360 vt 0xCC37B8
+??1SpecialAbilityUpdate@@UAE@XZ,,0x002AA910,153,Code/GameEngine/Source/Common/SpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 153B SEH dtor Open-BFME5
 ??1SpecialAbilityUpdateModuleData@@UAE@XZ,,0x002A5CC0,225,Code/GameEngine/Source/Common/SpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Exact 225B SEH dtor Open-BFME5
 ??1SpecialDisguiseUpdate@@UAE@XZ,,0x00137E80,284,Code/masm_dumps/SpecialDisguiseUpdate_destructor.asm,matched,Exact 284B SEH dtor Open-BFME4
 ??1SpecialDisguiseUpdateModuleData@@UAE@XZ,,0x00267A90,95,Code/GameEngine/Source/Common/SpecialDisguiseUpdateModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
@@ -3237,7 +3237,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SubsystemLegend@@UAE@XZ,,0x009A1540,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,explicit m_entries.clear() then implicit member+base dtor (base dtor 0x009A1A40)
 ??1SubsystemLegendEntry@@QAE@XZ,,0x00078210,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,element dtor; stand-in members keep AsciiString/vector release out-of-line (pins 0x00887940 / 0x000658A0)
 ??1SupplyCenterProductionExitUpdateModuleData@@UAE@XZ,,0x0037CC50,222,Code/GameEngine/Source/Common/SupplyCenterProductionExitUpdateModuleDataDestructorThunk.cpp,matched,Exact 222B SEH dtor Open-BFME5
-??1SupplyTruckAIUpdate@@UAE@XZ,,0x002C5580,154,Code/masm_dumps/SupplyTruckAIUpdate_destructor.asm,matched,Exact 154B @ 0x002C5580; Exact retail MASM; instance factory->vtable dtor; del 0x2C5E30 ctor 0x2C6AE0 vt 0xCC8FE8
+??1SupplyTruckAIUpdate@@UAE@XZ,,0x002C5580,154,Code/GameEngine/Source/Common/SupplyTruckAIUpdateDestructorThunk.cpp,matched,Exact 154B SEH dtor Open-BFME5
 ??1SupplyTruckAIUpdateModuleData@@UAE@XZ,,0x00124430,79,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SysTimeClass@@QAE@XZ,,0x009E64D0,9,Code/Libraries/Source/WWVegas/WWLib/systimer.cpp,matched,weak needle (dllimport call dominates); dtor at cluster addr; build.sh exact
 ??1Team@@MAE@XZ,,0x000F4250,480,Code/masm_dumps/Team_dtor_MAE_000F4250_packet238.asm,matched,certified packet 238 retail SHA256 b5f02508996b8030029cc75dab2c51a6216c596d95a010d25f3da7df1b37e417
@@ -3310,7 +3310,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WeaponChangeSpecialPowerModuleModuleData@@UAE@XZ,,0x0026CF10,95,Code/GameEngine/Source/Common/WeaponChangeSpecialPowerModuleModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
 ??1WeaponFireSpecialAbilityUpdate@@UAE@XZ,,0x0026D320,121,Code/GameEngine/Source/Common/WeaponFireSpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 121B @ 0x0026D320; Exact retail MASM; instance factory->vtable dtor; del 0x26D490 ctor 0x26D670 vt 0xCB8D18
 ??1WeaponFireSpecialAbilityUpdateModuleData@@UAE@XZ,,0x0026D7B0,79,Code/GameEngine/Source/GameLogic/Object/Update/WeaponFireSpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1WeaponModeSpecialPowerUpdate@@UAE@XZ,,0x0026A820,156,Code/masm_dumps/WeaponModeSpecialPowerUpdate_destructor.asm,matched,Exact 156B SEH dtor factory->vtable Open-BFME4
+??1WeaponModeSpecialPowerUpdate@@UAE@XZ,,0x0026A820,156,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
 ??1WeaponModeSpecialPowerUpdateModuleData@@UAE@XZ,,0x002B2D70,79,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateModuleDataDestructorThunk.cpp,matched,Exact 79B SEH dtor Open-BFME5
 ??1WeaponSet@@QAE@XZ,,0x001EAD40,95,Code/GameEngine/Source/Common/WeaponSetDestructorThunk.cpp,matched,Exact 95B @ 0x1EAD40; scalar-dtor/vtable/4-slot weapons prove WeaponSet; queue 0x9F27F7 was PartitionManager pad
 
