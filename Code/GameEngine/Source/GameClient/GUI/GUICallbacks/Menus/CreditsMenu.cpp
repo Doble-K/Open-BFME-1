@@ -143,7 +143,7 @@ void CreditsMenuUpdate( WindowLayout *layout, void *userData )
 	if(TheCredits)
 	{
 		TheWindowManager->winSetFocus( parentMainMenu );
-		TheCredits->update();
+		TheCredits->draw();
 		if(TheCredits->isFinished())
 			TheShell->pop();
 	}
