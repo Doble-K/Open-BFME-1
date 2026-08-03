@@ -7603,7 +7603,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Pre_Render_Update@LightEnvironmentClass@@QAEXABVMatrix3D@@@Z,,0x0094BB40,245,Code/Libraries/Source/WWVegas/WW3D2/LightEnvironmentClass_Pre_Render_Update_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Pre_Rotate_Z@Matrix3D@@QAEXM@Z,,0x0075B080,145,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?Pred@?$DLNodeClass@USmudgeSet@@@@QAEPAUSmudgeSet@@XZ,,0x005D3A70,14,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
-?Prepare_LOD@ParticleBufferClass@@UAEXAAVCameraClass@@@Z,,0x00984E60,437,Code/Libraries/Source/WWVegas/WW3D2/ParticleBufferClass_Prepare_LOD.asm,matched,exact 437B via MASM (vtable slot map blocked C++)
+?Prepare_LOD@ParticleBufferClass@@UAEXAAVCameraClass@@@Z,,0x00984E60,437,Code/Libraries/Source/WWVegas/WW3D2/ParticleBufferClass_Prepare_LOD_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?Prepend_Sub_Directory@SimpleFileFactoryClass@@QAEXPBD@Z,,0x009DD960,239,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ?PrintInfoRecursive@@YAXPAVGameWindow@@PAU_iobuf@@@Z,,0x004AAB60,187,Code/GameEngine/Source/GameClient/GUI/PrintInfoRecursive_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Process_Cache_Info@CPUDetectClass@@CAXI@Z,,0x009DDDF0,737,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,
@@ -11987,7 +11987,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,MultiIniFieldParse ctor inlined in this TU; ICF-folded with the AIUpdateInterfaceModuleData ctor
 ?initFromSides@TeamFactory@@QAEXPAVSidesList@@@Z,,0x000F83C0,260,Code/GameEngine/Source/GameLogic/TeamFactory_initFromSides_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?initHeightData@BaseHeightMapRenderObjClass@@UAEHHHPAVWorldHeightMap@@PAV?$RefMultiListIterator@VRenderObjClass@@@@_N@Z,,0x006D0590,1648,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_initHeightData.asm,matched,MASM exact 1648B @ 0x006D0590; queue 0x0077AFB7 was foreign epilogue+pad; m_map+0x2FF4; updateShorelineTiles via 0x3CA74; ret 0x10 (4 stack args); C++ layout/REL32 blocked
-?initMapStringFile@GameTextManager@@UAEXABVAsciiString@@@Z,,0x00438D50,432,Code/masm_dumps/GameTextManager_initMapStringFile_438D50.asm,matched,Certified packet 266 exact retail MASM recovery SHA256 f28f5290eb6cefbc311e91930450f2a92c175984d65d11f145be73d97689d17b
+?initMapStringFile@GameTextManager@@UAEXABVAsciiString@@@Z,,0x00438D50,432,Code/GameEngine/Source/Common/GameTextManager_initMapStringFile_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?initObserverControls@ControlBar@@QAEXXZ,,0x004A9CD0,1047,Code/masm_dumps/_str__initObserverControls_ControlBar_QAEXXZ_4A9CD0.asm,matched,
 ?initPolygonAssets@W3DMouse@@AAEXXZ,,0x00700950,174,Code/GameEngine/Source/Common/W3DMouse_initPolygonAssetsMethodThunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?initReverseAnimateWindow@ProcessAnimateWindowSlideFromBottomTimed@@UAEXPAVAnimateWindow@@I@Z,,0x00496860,150,Code/GameEngine/Source/Common/ProcessAnimateWindowSlideFromBottomTimed_initReverseAnimateWindow_Thunk.cpp,matched,Certified packet 199 vtable slot 2 ILT 0x180AC retail sha256 d16c132a59776ef0509a678575f14652168e6c65ddea6872684f8a702cb77eba
