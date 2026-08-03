@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Choose one naked asm function to decompile to clean C++.
 
-The default randomly chooses among the best-ranked distinct source files. Use
+The default picks uniformly at random from the whole candidate queue. Use
 ``--ranked`` to inspect the full ranking.
 """
 import argparse
 from collections import defaultdict
 import re
+import secrets
 
 import build
-from work_selection import choose_ranked
 
 
 NAKED_RE = re.compile(r"__declspec\s*\(\s*naked\s*\)")
@@ -142,13 +142,11 @@ def rank_candidates(candidates):
     return candidates
 
 
-def select_candidate(candidates, root=build.ROOT, include_untracked=False):
+def select_candidate(candidates):
     rank_candidates(candidates)
-    namespace = "naked-candidates:all" if include_untracked else "naked-candidates:tracked"
-    return choose_ranked(
-        candidates, lambda item: item["path"],
-        lambda item: (item["path"], item["line"], item.get("symbol")),
-        namespace, root)
+    if not candidates:
+        return None, {"pool": 0}
+    return candidates[secrets.randbelow(len(candidates))], {"pool": len(candidates)}
 
 
 def print_candidate(item):
@@ -240,12 +238,12 @@ def main():
 
     rank_candidates(candidates)
     if not args.ranked:
-        selected, meta = select_candidate(candidates, include_untracked=args.all)
+        selected, meta = select_candidate(candidates)
         if selected is None:
             print("No validated naked-asm candidates remain in the requested paths.")
             return
         print("== selected naked-asm conversion ==")
-        print(f"  randomized across {meta['pool_groups']} top-ranked source group(s)")
+        print(f"  chosen uniformly at random from {meta['pool']} candidate(s)")
         print_candidate(selected)
         return
 

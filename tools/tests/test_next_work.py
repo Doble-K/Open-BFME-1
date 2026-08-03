@@ -56,7 +56,7 @@ def test_ranked_view():
     print("PASS --ranked: full human/debug queue remains available")
 
 
-def test_random_selection_is_quality_bounded(ranked):
+def test_random_selection_is_uniform_over_queue(ranked):
     first = get_selection_json(["--tier", "structural"])
     second = get_selection_json(["--tier", "structural"])
     candidates = ranked["structural"]
@@ -64,20 +64,11 @@ def test_random_selection_is_quality_bounded(ranked):
         assert first["selection"] is None and second["selection"] is None
         return
 
-    top_sources = []
-    for candidate in candidates:
-        if candidate["source"] not in top_sources:
-            top_sources.append(candidate["source"])
-        if len(top_sources) == 64:
-            break
+    functions = {candidate["function"] for candidate in candidates}
     for result in (first, second):
-        assert result["selection"]["source"] in top_sources, result
-        assert result["selection_meta"]["pool_groups"] == len(top_sources), result
-    if len(top_sources) > 1:
-        assert first["selection"]["source"] != second["selection"]["source"], (
-            "automatic worktree-local recent history must avoid an immediate repeat")
-    print(f"PASS default picker: one of {len(top_sources)} top distinct source groups; "
-          "immediate repeat avoided")
+        assert result["selection"]["function"] in functions, result
+        assert result["selection_meta"]["pool"] == len(candidates), result
+    print(f"PASS default picker: uniform over all {len(candidates)} queue candidate(s)")
 
 
 def test_no_sharding_interface():
@@ -124,7 +115,7 @@ def test_corrupt_ledger():
         (temp / "tools").mkdir()
         (temp / "reverse" / "zh_sweep").mkdir(parents=True)
         (temp / "src" / "zh").mkdir(parents=True)
-        for name in ("next_work.py", "check_csv.py", "work_selection.py"):
+        for name in ("next_work.py", "check_csv.py"):
             (temp / "tools" / name).write_bytes((ROOT / "tools" / name).read_bytes())
         (temp / "src" / "zh" / "stub.cpp").write_text("// stub\n")
         row = "?Foo@@QAEXXZ,,0x00400000,16,src/zh/stub.cpp,matched,\r\n"
@@ -146,7 +137,7 @@ def main():
     ranked = get_ranked_json()
     test_plain_run(ranked)
     test_ranked_view()
-    test_random_selection_is_quality_bounded(ranked)
+    test_random_selection_is_uniform_over_queue(ranked)
     test_no_sharding_interface()
     test_ranked_json_shape(ranked)
     test_ghidra_candidates_validated(ranked)

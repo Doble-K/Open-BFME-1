@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Answer "what should I work on right now" with one validated candidate.
 
-The default randomly chooses one of the best-ranked distinct source groups, so
-independent contributors naturally spread out. ``--ranked`` is the human/debug
+The default picks uniformly at random from the selected tier's whole queue, so
+many concurrent contributors rarely collide. ``--ranked`` is the human/debug
 view of the complete queues. No network, no compiling — runs in seconds.
 
 Sections, in priority order:
@@ -22,12 +22,12 @@ import argparse
 import ast
 import csv
 import json
+import secrets
 import subprocess
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from work_selection import choose_ranked
 
 ROOT = Path(__file__).resolve().parents[1]
 # drift_report.csv is the shared drift classification (general RE infra, not the
@@ -409,7 +409,7 @@ def selected_queue(tier, drifts, structural, ghidra_absent):
 
 def print_candidate(label, candidate, meta):
     print(f"== selected work: {label} ==")
-    print(f"  randomized across {meta['pool_groups']} top-ranked source group(s)")
+    print(f"  chosen uniformly at random from {meta['pool']} candidate(s)")
     if label == "drift quick win":
         print(f"  {candidate['aligned_pct']:>3}% {candidate['class']:<14} "
               f"{candidate['function']}")
@@ -524,11 +524,8 @@ def main():
         return
 
     label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent)
-    namespace = f"next-work:{args.tier or label}:{'big' if args.big else 'normal'}"
-    candidate, meta = choose_ranked(
-        candidates, lambda item: item["source"],
-        lambda item: (item["function"], item.get("candidate_rva"),
-                      item.get("target_rva")), namespace, ROOT)
+    candidate = candidates[secrets.randbelow(len(candidates))] if candidates else None
+    meta = {"pool": len(candidates)}
     if args.json:
         print(json.dumps({"ledger": ledger, "tier": label,
                           "selection": candidate, "selection_meta": meta}, indent=2))
