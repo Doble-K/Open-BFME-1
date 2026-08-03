@@ -2989,7 +2989,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1HordeContain@@UAE@XZ,,0x0023EF90,414,Code/masm_dumps/HordeContain_destructor.asm,matched,Exact 414B @ 0x0023EF90; Exact retail MASM; instance factory->vtable dtor; del 0x2408B0 ctor 0x23EAF0 vt 0xCAF2C8
 ??1HordeContainModuleData@@UAE@XZ,,0x00129E90,184,Code/GameEngine/Source/Common/HordeContainModuleDataDestructorThunk.cpp,matched,Exact 184B SEH dtor Open-BFME5
 ??1HordeGarrisonContain@@UAE@XZ,,0x00249820,409,Code/masm_dumps/HordeGarrisonContain_destructor.asm,matched,Exact 409B SEH module dtor; factory->vtable recovery Open-BFME4
-??1HordeSiegeEngineContain@@UAE@XZ,,0x0024A180,183,Code/masm_dumps/HordeSiegeEngineContain_destructor.asm,matched,Exact 183B @ 0x0024A180; Exact retail MASM; instance factory->vtable dtor; del 0x24A6E0 ctor 0x24A560 vt 0xCB02A8
+??1HordeSiegeEngineContain@@UAE@XZ,,0x0024A180,183,Code/GameEngine/Source/Common/HordeSiegeEngineContainDestructorThunk.cpp,matched,Exact 183B @ 0x0024A180; Exact retail MASM; instance factory->vtable dtor; del 0x24A6E0 ctor 0x24A560 vt 0xCB02A8
 ??1HordeSiegeEngineContainModuleData@@UAE@XZ,,0x0022B0E0,95,Code/GameEngine/Source/Common/HordeSiegeEngineContainModuleDataDestructorThunk.cpp,matched,Exact 95B @ 0x0022B0E0; Exact retail MASM; factory->vtable dtor; del 0x22CC40 ctor 0x22CB80 vt 0xCAD180
 ??1HordeTransportContain@@UAE@XZ,,0x0024C530,820,Code/masm_dumps/HordeTransportContain_destructor.asm,matched,Exact 820B; factory ownership Open-BFME4
 ??1HordeUpdateModuleData@@UAE@XZ,,0x001FE260,198,Code/GameEngine/Source/Common/HordeUpdateModuleDataDestructorThunk.cpp,matched,Exact 198B SEH dtor Open-BFME5
