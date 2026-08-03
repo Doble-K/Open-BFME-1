@@ -13252,7 +13252,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setActiveBoundary@TerrainLogic@@QAEXH@Z,,0x001A8080,183,Code/masm_dumps/_setActiveBoundary_TerrainLogic__QAEXH_Z_1A8080.asm,matched,MASM exact; true body via doBorderSwitch call chain (queue 0xC70E5F was int3 pad; BFME 183B simplified rewrite not ZH 428B)
 ?setAdjustsDestination@AIInternalMoveToState@@IAEX_N@Z,,0x0014E630,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setAllowUninstall@W3DMaskMaterialPassClass@@QAEX_N@Z,,0x0079E3F0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
-?setAllowsObserver@CustomMatchPreferences@@QAEX_N@Z,,0x000ADD20,170,Code/masm_dumps/CustomMatchPreferences_setAllowsObserver.asm,matched,Ghidra-bound BFME observer setter
+?setAllowsObserver@CustomMatchPreferences@@QAEX_N@Z,,0x000ADD20,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setAllowsObserver_Thunk.cpp,matched,Ghidra-bound BFME observer setter
 ?setAlpha@Anim2D@@QAEXM@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of existing matched body
 ?setAngle@Shadow@@QAEXM@Z,,0x000AF9E0,10,Code/GameEngine/Source/GameClient/RadiusDecal.cpp,matched,
 ?setAngle@View@@UAEXM@Z,,0x000C8EF0,10,Code/GameEngine/Source/GameClient/View.cpp,matched,
@@ -13452,7 +13452,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setMaxPoints@QuickMatchPreferences@@QAEXH@Z,,0x000AD340,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setMaxPoints_Thunk.cpp,matched,Exact retail MASM; MaxPoints string-anchor; sibling setMaxDisconnects/setWaitTime/setNumPlayers
 ?setMaxShotCount@Weapon@@QAEXH@Z,,0x00087470,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setMaxTurnRate@Locomotor@@QAEXM@Z,,0x000C8DB0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/JetSlowDeathBehavior.cpp,matched,
-?setMinPoints@QuickMatchPreferences@@QAEXH@Z,,0x000AD420,169,Code/masm_dumps/_sa13__setMinPoints_QuickMatchPreferences__QAEXH_Z_AD420.asm,matched,Exact retail MASM; MinPoints string-anchor; sibling setMaxPoints/setMaxDisconnects/setWaitTime/setNumPlayers
+?setMinPoints@QuickMatchPreferences@@QAEXH@Z,,0x000AD420,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setMinPoints_Thunk.cpp,matched,Exact retail MASM; MinPoints string-anchor; sibling setMaxPoints/setMaxDisconnects/setWaitTime/setNumPlayers
 ?setMobState@MobMemberSlavedUpdate@@QAEXW4MobStates@@@Z,,0x000C8DB0,10,Code/GameEngine/Source/GameLogic/Object/Update/MobMemberSlavedUpdate.cpp,matched,
 ?setMotion@BridgeScaffoldBehavior@@UAEXW4ScaffoldTargetMotion@@@Z,,0x001F58C0,92,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setMouseCursor@InGameUI@@IAEXW4MouseCursor@Mouse@@@Z,,0x0043AA10,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
@@ -13477,7 +13477,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setNextScript@Script@@QAEXPAV1@@Z,,0x00087470,10,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?setNightColor@MultiplayerColorDefinition@@QAEXURGBColor@@@Z,,0x0008E100,75,Code/GameEngine/Source/Common/MultiplayerSettings.cpp,matched,
 ?setNumChunks@NetWrapperCommandMsg@@QAEXI@Z,,0x00673F30,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor thunk
-?setNumPlayers@QuickMatchPreferences@@QAEXH@Z,,0x000AD5E0,169,Code/masm_dumps/_sa13__setNumPlayers_QuickMatchPreferences__QAEXH_Z_AD5E0.asm,matched,multi-xref Open-BFME4+Grok NumPlayers
+?setNumPlayers@QuickMatchPreferences@@QAEXH@Z,,0x000AD5E0,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setNumPlayers_Thunk.cpp,matched,multi-xref Open-BFME4+Grok NumPlayers
 ?setNumRebuilds@BuildListInfo@@QAEXI@Z,,0x0016A630,10,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?setObjectID@AudioEventRTS@@QAEXW4ObjectID@@@Z,,0x000B2250,30,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ object-ID setter with retail layout offsets replaces MASM dump
 ?setObjectID@BuildListInfo@@QAEXW4ObjectID@@@Z,,0x0036B9A0,10,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
