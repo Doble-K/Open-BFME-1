@@ -2760,7 +2760,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$vector@VUnicodeString@@V?$allocator@VUnicodeString@@@_STL@@@_STL@@QAE@XZ,,0x005324C0,149,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ??1AABoxRenderObjClass@@UAE@XZ,,0x00957840,5,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,vtable-anchored: primary slot1 ??_G@0x957820 calls this 5B jmp to RenderObjClass dtor; queue 0x984B01 was INSIDE ParticleBufferClass dtor
 ??1AIPlayer@@MAE@XZ,,0x001613C0,87,Code/GameEngine/Source/Common/AIPlayerDestructorThunk.cpp,matched,MASM exact; AIPlayer vtbl slot0 deleting-wrapper chain; queue 0x9F2808 was INSIDE unrelated dtor
-??1AIUpdateInterface@@UAE@XZ,,0x0027EF60,367,Code/masm_dumps/AIUpdateInterface_destructor.asm,matched,Exact 367B @ 0x0027EF60; Exact retail MASM; instance factory->vtable dtor; del 0x27FAC0 ctor 0x27F4B0 vt 0xCBA8A8
+??1AIUpdateInterface@@UAE@XZ,,0x0027EF60,367,Code/GameEngine/Source/Common/AIUpdateInterfaceDestructorThunk.cpp,matched,Exact 367B @ 0x0027EF60; Exact retail MASM; instance factory->vtable dtor; del 0x27FAC0 ctor 0x27F4B0 vt 0xCBA8A8
 ??1AIUpdateModuleData@@UAE@XZ,,0x00887940,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=?releaseBuffer@?$StringBase@D@@AAEXXZ;C++ alias
 ??1AODHordeContain@@UAE@XZ,,0x00230980,273,Code/GameEngine/Source/Common/AODHordeContainDestructorThunk.cpp,matched,Exact 273B @ 0x00230980; Exact retail MASM; instance factory->vtable dtor; del 0x231BB0 ctor 0x230580 vt 0xCAE7A0
 ??1ActiveBodyModuleData@@UAE@XZ,,0x00128C50,162,Code/GameEngine/Source/Common/ActiveBodyModuleDataDestructorThunk.cpp,matched,Exact 162B SEH dtor Open-BFME5
@@ -2891,7 +2891,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1DeployStyleAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/DeployStyleAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME4
 ??1DestroyEnvironmentUpdate@@UAE@XZ,,0x0028D0C0,422,Code/masm_dumps/DestroyEnvironmentUpdate_destructor.asm,matched,Exact 422B; factory ownership Open-BFME4
 ??1DieModuleData@@UAE@XZ,,0x00101EB0,86,Code/GameEngine/Source/GameLogic/Object/Behavior/DieModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1Display@@UAE@XZ,,0x005CB360,402,Code/masm_dumps/Display_destructor_5CB360.asm,matched,Certified packet 109; Display vtable and derived destructor chains; retail sha256 70ba90e47128dd067f1534c8ad52d468cf88aa57081a16a2c8d8a800576e756b
+??1Display@@UAE@XZ,,0x005CB360,402,Code/GameEngine/Source/Common/DisplayDestructorThunk.cpp,matched,Certified packet 109; Display vtable and derived destructor chains; retail sha256 70ba90e47128dd067f1534c8ad52d468cf88aa57081a16a2c8d8a800576e756b
 ??1DistLODClass@@UAE@XZ,,0x00725F40,86,Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp,matched,
 ??1DownloadManager@@UAE@XZ,,0x00627730,75,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
 ??1DozerAIUpdate@@MAE@XZ,,0x002B6640,215,Code/GameEngine/Source/Common/DozerAIUpdateDestructorThunk.cpp,matched,Exact 215B SEH dtor Open-BFME5
@@ -3185,7 +3185,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SlavedUpdate@@UAE@XZ,,0x00113C60,131,Code/GameEngine/Source/Common/SlavedUpdateDestructorThunk.cpp,matched,Exact 131B; factory ownership Open-BFME4
 ??1SlavedUpdateModuleData@@UAE@XZ,,0x00126980,80,Code/GameEngine/Source/Common/SlavedUpdateModuleDataDestructorThunk.cpp,matched,Exact 80B SEH dtor Open-BFME5
 ??1SlowDeathBehaviorModuleData@@UAE@XZ,,0x002095F0,221,Code/GameEngine/Source/Common/SlowDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 221B SEH dtor Open-BFME5
-??1SmartBombTargetHomingUpdate@@UAE@XZ,,0x00287410,346,Code/masm_dumps/SmartBombTargetHomingUpdate_destructor.asm,matched,Exact 346B SEH dtor Open-BFME4
+??1SmartBombTargetHomingUpdate@@UAE@XZ,,0x00287410,346,Code/GameEngine/Source/Common/SmartBombTargetHomingUpdateDestructorThunk.cpp,matched,Exact 346B SEH dtor Open-BFME4
 ??1SmudgeManager@@UAE@XZ,,0x005D4390,239,Code/GameEngine/Source/Common/SmudgeManagerDestructorThunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ??1SmudgeSet@@UAE@XZ,,0x005D4190,89,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ??1Snapshot@@QAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,object-symbol=??1SubsystemInterface@@UAE@XZ;ICF alias converted to existing clean C++ body
