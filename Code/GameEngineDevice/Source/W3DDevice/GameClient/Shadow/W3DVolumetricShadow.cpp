@@ -2661,7 +2661,6 @@ void W3DVolumetricShadow::buildSilhouette(Int meshIndex, Vector3 *lightPosObject
 // buffer - to be rendered via a dynamic vertex buffer.
 //
 // ============================================================================
-// ?constructVolume@W3DVolumetricShadow@@IAEXPAVVector3@@MHH@Z present-unmatched
 void W3DVolumetricShadow::constructVolume( Vector3 *lightPosObject,Real shadowExtrudeDistance, Int volumeIndex, Int meshIndex )
 {
 	Geometry *shadowVolume;
@@ -2704,7 +2703,24 @@ void W3DVolumetricShadow::constructVolume( Vector3 *lightPosObject,Real shadowEx
 	if (!indicesPerMesh)
 		return;	//nothing to draw
 
-	geomMesh = m_geometry->getMesh(meshIndex);
+	// BFME layout view: retail stores the active geometry pointer at this+0x6c
+	// (0x30 past the ZH m_geometry slot) and W3DShadowGeometryMesh grew to
+	// 0x34 bytes with the mesh list at +0x14 inside W3DShadowGeometry.
+	struct BFMEConstructVolumeMesh
+	{
+		char m_beforeVerts[0x8];
+		const Vector3 *m_verts;
+		char m_afterVerts[0x28];
+	};
+	struct BFMEConstructVolumeGeometry
+	{
+		char m_beforeMeshList[0x14];
+		BFMEConstructVolumeMesh m_meshList[MAX_SHADOW_CASTER_MESHES];
+		BFMEConstructVolumeMesh *getMesh(Int index) { return &m_meshList[index]; }
+	};
+
+	geomMesh = (W3DShadowGeometryMesh *)((BFMEConstructVolumeGeometry *)
+		((W3DVolumetricShadow *)((char *)this + 0x30))->m_geometry)->getMesh(meshIndex);
 
 	shadowVolume->SetNumActivePolygon(0);
 	shadowVolume->SetNumActiveVertex(0);
