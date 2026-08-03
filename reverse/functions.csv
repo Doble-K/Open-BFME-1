@@ -13139,7 +13139,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?resize@?$vector@W4ObjectID@@V?$allocator@W4ObjectID@@@_STL@@@_STL@@QAEXIABW4ObjectID@@@Z,,0x002CD1B0,76,Code/GameEngine/Source/Common/VectorObjectIDResizeThunk.cpp,matched,Exact 76B Open-BFME5
 ?resize@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAEXI_N@Z,,0x002CD080,182,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?resolveBlockZones@@YIXHHPAGH@Z,,0x00402760,58,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
-?resolveFX@BridgeBehavior@@IAEXXZ,,0x001F2AF0,723,Code/masm_dumps/BridgeBehavior_resolveFX.asm,matched,Exact 723B @ 0x1F2AF0; queue 0x776416 INSIDE ModelConditionInfo ctor; true SEH body BODY x4 FX x3 OCL/FX/sound m_fxResolved@+0x47c
+?resolveFX@BridgeBehavior@@IAEXXZ,,0x001F2AF0,723,Code/GameEngine/Source/Common/BridgeBehavior_resolveFXMethodThunk.cpp,matched,Exact 723B @ 0x1F2AF0; queue 0x776416 INSIDE ModelConditionInfo ctor; true SEH body BODY x4 FX x3 OCL/FX/sound m_fxResolved@+0x47c
 ?resolvePlayerFromName@BFMEConnectionManager@@QAEXPAX@Z,,0x00667060,561,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?revalidateOccupiers@SpawnPointProductionExitUpdate@@AAEXXZ,,0x002D2150,59,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SpawnPointProductionExitUpdate.cpp,matched,thunk-dump converted to C++ naked body preserving retail occupier-array layout
 ?reverse@CountUpTransition@@UAEXXZ,,0x0059BCA0,39,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
