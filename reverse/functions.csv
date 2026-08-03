@@ -13832,7 +13832,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x000488F6,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState update
 ?update@AIMoveAndDeleteState@@UAE?AW4StateReturnType@@XZ,,0x0017A530,152,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?update@AIMoveOutOfTheWayState@@UAE?AW4StateReturnType@@XZ,,0x00173A10,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIMoveOutOfTheWayState update
-?update@AIMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00188290,522,Code/masm_dumps/AIMoveToState_update_188290.asm,matched,Certified packet 18 constructor-vtable recovery SHA256 a1d50190e6650677c3f9dadf8807b1aefc023cef7b8c339d3ecb0f2a2dc33a03
+?update@AIMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00188290,522,Code/GameEngine/Source/Common/AIMoveToState_updateMethodThunk.cpp,matched,Certified packet 18 constructor-vtable recovery SHA256 a1d50190e6650677c3f9dadf8807b1aefc023cef7b8c339d3ecb0f2a2dc33a03
 ?update@AIPanicState@@UAE?AW4StateReturnType@@XZ,,0x0017B840,399,Code/GameEngine/Source/Common/AIPanicState_update_Thunk.cpp,matched,true body @0x17B840 (399B); drift 0x77B0E1 mid-noise; vtbl 0x109A988 slot6; C++ blocked by layout; MASM exact
 ?update@AIPickUpCrateState@@UAE?AW4StateReturnType@@XZ,,0x00178E10,26,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?update@AIWaitState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
