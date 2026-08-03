@@ -1450,7 +1450,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DeployStyleAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B5510,151,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0DeployStyleAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/DeployStyleAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0DestroyDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00254F80,60,Code/GameEngine/Source/GameLogic/Object/Die/DestroyDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
-??0DestroyEnvironmentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028CD70,101,Code/masm_dumps/DestroyEnvironmentUpdate_constructor.asm,matched,Exact 101B; factory ownership Open-BFME4
+??0DestroyEnvironmentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028CD70,101,Code/GameEngine/Source/GameLogic/Object/Update/DestroyEnvironmentUpdateCtorThunk.cpp,matched,Exact 101B; factory ownership Open-BFME4
 ??0DestroyEnvironmentUpdateModuleData@@QAE@XZ,,0x0028CD30,23,Code/GameEngine/Source/GameLogic/Object/Update/DestroyEnvironmentUpdate.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0DetailedArchivedDirectoryInfo@@QAE@ABV0@@Z,,0x009D0DB0,98,Code/GameEngine/Source/Common/System/DetailedArchivedDirectoryInfoCopyConstructorThunk.cpp,matched,Exact 98B C++ raw copy-constructor thunk Open-BFME5
 ??0DevastateSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025A7C0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/DevastateSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
