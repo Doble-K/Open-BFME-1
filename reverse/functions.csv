@@ -2189,7 +2189,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SkirmishPreferences@@,,0x0009F850,377,Code/masm_dumps/_sa5___0SkirmishPreferences___9F850.asm,matched,Exact 377B Open-BFME4
 ??0SlaughterHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024E7A0,102,Code/GameEngine/Source/GameLogic/AI/SlaughterHordeContainCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
 ??0SlaughterHordeContainModuleData@@QAE@XZ,,0x0022B160,110,Code/GameEngine/Source/GameLogic/AI/SlaughterHordeContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
-??0SlaveWatcherBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00207300,134,Code/masm_dumps/SlaveWatcherBehavior_constructor.asm,matched,Exact 134B @ 0x00207300; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1174C0
+??0SlaveWatcherBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00207300,134,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorCtorThunk.cpp,matched,Open-BFME5 exact 134B retail module constructor
 ??0SlaveWatcherBehaviorModuleData@@QAE@XZ,,0x002074C0,17,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehavior.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A4260,112,Code/masm_dumps/SlavedUpdate_constructor.asm,matched,Exact 112B; factory ownership Open-BFME4
 ??0SlavedUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
