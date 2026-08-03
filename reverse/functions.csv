@@ -2349,7 +2349,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TransportStatus@@QAE@XZ,,0x000D16F0,23,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
 ??0TreadObjectInfo@W3DTankDraw@@QAE@XZ,,0x0077E0A0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp,matched,
 ??0TreadObjectInfo@W3DTankTruckDraw@@QAE@XZ,,0x0077E0A0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw.cpp,matched,
-??0TunnelContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022EE70,102,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
+??0TunnelContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022EE70,102,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit ctor thunk
 ??0TunnelContainModuleData@@QAE@XZ,,0x0024B580,133,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainModuleDataCtorThunk.cpp,matched,Exact 133B @ 0x0024B580; Exact retail MASM ModuleData ctor; unique factory 0x116470
 ??0TurretAI@@QAE@PAVObject@@PBVTurretAIData@@W4WhichTurretType@@@Z,,0x0018DED0,383,Code/GameEngine/Source/GameLogic/Object/Update/TurretAI_ctor_Thunk.cpp,matched,Open-BFME5 lift 383B retail MASM to standalone C++ thunk
 ??0TurretAIAimTurretState@@QAE@PAVTurretStateMachine@@@Z,,0x0018DA10,46,Code/GameEngine/Source/GameLogic/AI/TurretAIAimTurretStateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw TurretAIAimTurretState constructor
