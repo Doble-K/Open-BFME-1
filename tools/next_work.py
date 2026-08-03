@@ -204,7 +204,7 @@ def snap_rva(rva):
     return rva, None
 
 
-def structural_candidates(claimed, claimed_names, big=False):
+def structural_candidates(claimed, claimed_names, claimed_ranges, big=False):
     """The manual-RE tier: drifted functions whose source exists but whose code
     shape differs (class structural / register-swap). Workflow: docs/structural.md."""
     _, rows = read_csv(DRIFT, "python3 tools/drift_classify.py")
@@ -219,7 +219,14 @@ def structural_candidates(claimed, claimed_names, big=False):
         # the real ghidra start so the printed command is usable, and skip if either
         # the raw or corrected rva is already matched (the name filter catches the rest).
         crva, snap_note = snap_rva(rva)
-        if rva in claimed or crva in claimed or name in claimed_names:
+        # Alignment votes frequently land a few bytes into an already verified
+        # function.  A start-address-only check lets those stale rows through and
+        # sends contributors on an impossible reconstruction.  Reject both raw
+        # and corrected RVAs when either lies strictly inside a claimed range.
+        inside_claim = any(start < point < end
+                           for point in (rva, crva)
+                           for start, end in claimed_ranges)
+        if rva in claimed or crva in claimed or name in claimed_names or inside_claim:
             continue
         source = resolve_drift_source(row["source"], name)
         if source is None:
@@ -495,13 +502,17 @@ def main():
 
     ledger = check_ledger()  # exit 2 happens in there; nothing below matters if red
     drifts = drift_quick_wins() if args.tier not in ("structural", "ghidra") else []
-    claimed, claimed_names = set(), set()
+    claimed, claimed_names, claimed_ranges = set(), set(), []
     with FUNCTIONS.open(newline="") as fh:
         for row in csv.DictReader(fh):
             if row["target_rva"]:
-                claimed.add(int(row["target_rva"], 16))
+                start = int(row["target_rva"], 16)
+                claimed.add(start)
                 claimed_names.add(row["name"])
-    structural = (structural_candidates(claimed, claimed_names, big=args.big)
+                if row.get("target_size"):
+                    claimed_ranges.append((start, start + int(row["target_size"])))
+    structural = (structural_candidates(claimed, claimed_names, claimed_ranges,
+                                        big=args.big)
                   if args.tier not in ("harvest", "ghidra") else [])
     if args.tier not in ("harvest", "structural"):
         ghidra_absent, ghidra_meta = ghidra_absent_candidates(

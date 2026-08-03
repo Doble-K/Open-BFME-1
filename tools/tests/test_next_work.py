@@ -108,6 +108,20 @@ def test_ghidra_candidates_validated(data):
     print(f"PASS Ghidra queue: {len(data['ghidra_absent'])} validated candidates")
 
 
+def test_structural_candidates_do_not_start_inside_claimed_ranges(data):
+    ranges = []
+    with (ROOT / "reverse" / "functions.csv").open(newline="") as fh:
+        for row in csv.DictReader(fh):
+            if row["target_rva"] and row["target_size"]:
+                start = int(row["target_rva"], 16)
+                ranges.append((start, start + int(row["target_size"]), row["name"]))
+    for candidate in data["structural"]:
+        rva = int(candidate["candidate_rva"], 16)
+        overlaps = [name for start, end, name in ranges if start < rva < end]
+        assert not overlaps, (candidate, overlaps[:3])
+    print(f"PASS structural queue: {len(data['structural'])} candidates outside claimed ranges")
+
+
 def test_corrupt_ledger():
     (ROOT / "build").mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(dir=ROOT / "build") as temp:
@@ -141,6 +155,7 @@ def main():
     test_no_sharding_interface()
     test_ranked_json_shape(ranked)
     test_ghidra_candidates_validated(ranked)
+    test_structural_candidates_do_not_start_inside_claimed_ranges(ranked)
     test_corrupt_ledger()
     print("ALL TESTS PASSED")
 
