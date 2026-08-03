@@ -12815,7 +12815,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?preloadRoadSegment@W3DRoadBuffer@@IAEXPAVRoadSegment@@@Z,,0x0070AD70,285,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?preloadRoadsInVertexAndIndexBuffers@W3DRoadBuffer@@IAEXXZ,,0x0070FDA0,184,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z,,0x00853610,1037,Code/masm_dumps/prepFile_INI_IAEXVAsciiString_W4INILoadType_Z_853610.asm,matched,ret 8 - two args - and it tests m_file on entry; load is 0x00853A20
-?prepareForMP_or_Skirmish@SidesList@@QAEXXZ,,0x00352810,153,Code/masm_dumps/_sa12__prepareForMP_or_Skirmish_SidesList__QAEXXZ_352810.asm,matched,string-anchor Open-BFME4+Grok PlayerScriptsList
+?prepareForMP_or_Skirmish@SidesList@@QAEXXZ,,0x00352810,153,Code/GameEngine/Source/Common/SidesList_prepareForMP_or_SkirmishMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok PlayerScriptsList
 ?prepareNewGame@GameLogic@@QAEXHW4GameDifficulty@@H@Z,,0x00397190,234,Code/masm_dumps/prepareNewGame_GameLogic_QAEXHW4GameDifficulty_H_Z_00397190_9e4285aa.asm,matched,Certified packet 219 exact retail db body SHA-256 9e4285aae608dfc21d9a51be758f7c3009ca5f1388ed72633e4fe430fda42019
 ?prependViewToList@View@@MAEPAV1@PAV1@@Z,,0x0006F0C0,12,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?prev@LListNode@@QAEPAV1@XZ,,0x00105970,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
