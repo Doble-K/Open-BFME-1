@@ -2895,7 +2895,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1DistLODClass@@UAE@XZ,,0x00725F40,86,Code/Libraries/Source/WWVegas/WW3D2/distlod.cpp,matched,
 ??1DownloadManager@@UAE@XZ,,0x00627730,75,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
 ??1DozerAIUpdate@@MAE@XZ,,0x002B6640,215,Code/masm_dumps/DozerAIUpdate_destructor_MAE.asm,matched,icf-owner=??1DozerAIUpdate@@UAE@XZ; queue 0xFB3DF is int3 pad; true body 215B @ 0x2B6640; C++ emits MAE protected pool-glue dtor
-??1DozerAIUpdate@@UAE@XZ,,0x002B6640,215,Code/masm_dumps/DozerAIUpdate_destructor.asm,matched,Exact 215B @ 0x002B6640; Exact retail MASM; instance factory->vtable dtor; del 0x2B6B50 ctor 0x2B8680 vt 0xCC6A90
+??1DozerAIUpdate@@UAE@XZ,,0x002B6640,215,Code/GameEngine/Source/Common/DozerAIUpdateDestructorThunk.cpp,matched,Exact 215B @ 0x002B6640; Exact retail MASM; instance factory->vtable dtor; del 0x2B6B50 ctor 0x2B8680 vt 0xCC6A90
 ??1DrawableIconInfo@@MAE@XZ,,0x001DDFD0,70,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ??1DrawableLocoInfo@@MAE@XZ,,0x00415D50,1385,Code/masm_dumps/_sa3___1DrawableLocoInfo__MAE_XZ_415D50.asm,matched,Exact 1385B string-anchored Open-BFME4
 ??1DynamicAudioEventRTS@@MAE@XZ,,0x0078CFB0,73,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,
