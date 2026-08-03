@@ -7762,7 +7762,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?ReplayControlInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ReplayControls.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?ReplayControlSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C6A20,16,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ReplayControls.cpp,matched,
 ?ReplayMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,matched,
-?RequestBuddyAdd@@YAXHVAsciiString@@@Z,,0x004EDAD0,818,Code/masm_dumps/RequestBuddyAdd.asm,matched,true body 0x4EDAD0/818 (queue 968 padded int3); unique GUI:BuddyAddReq+Buddy:InviteSent+Buddy:InviteSentToPlayer; MASM exact; C++ blocked AsciiString+8/frame/BuddyMessage
 ?RequestChat@LANAPI@@UAEXVUnicodeString@@W4ChatType@LANAPIInterface@@@Z,,0x006865C0,347,Code/GameEngine/Source/Common/LANAPI_RequestChat_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?RequestGameCreate@LANAPI@@UAEXVUnicodeString@@_N@Z,,0x00687E90,722,Code/GameEngine/Source/GameNetwork/LANAPIRequestGameCreateThunk.cpp,matched,Exact 722B MASM conversion Open-BFME5
 ?RequestLobbyLeave@LANAPI@@UAEX_N@Z,,0x006850F0,75,Code/GameEngine/Source/Common/LANAPI_RequestLobbyLeave_Thunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit thunk
@@ -34598,4 +34597,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?PostStaticInit@Debug@@CAXXZ,0x0088AF60,0x0088AF60,841,Code/Libraries/Source/WWVegas/WWDebug/DebugPostStaticInitThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?W3DCommandBarHelpPopupDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x0079C7E0,844,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DCommandBarHelpPopupDrawThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?populateObserverInfoWindow@ControlBar@@QAEXXZ,,0x004AA200,923,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarPopulateObserverInfoWindowThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?RequestBuddyAdd@@YAXHVAsciiString@@@Z,,0x004EDAD0,818,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/RequestBuddyAddThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump

@@ -1138,57 +1138,8 @@ static void closeRightClickMenu(GameWindow *win)
 	}
 }
 
-void RequestBuddyAdd(Int profileID, AsciiString nick)
-{
-	// request to add a buddy
-	BuddyRequest req;
-	req.buddyRequestType = BuddyRequest::BUDDYREQUEST_ADDBUDDY;
-	req.arg.addbuddy.id = profileID;
-	UnicodeString buddyAddstr;
-	buddyAddstr = TheGameText->fetch("GUI:BuddyAddReq");
-	wcsncpy(req.arg.addbuddy.text, buddyAddstr.str(), MAX_BUDDY_CHAT_LEN);
-	req.arg.addbuddy.text[MAX_BUDDY_CHAT_LEN-1] = 0;
-	TheGameSpyBuddyMessageQueue->addRequest(req);
-
-	UnicodeString s;
-	Bool exists = TRUE;
-	s.format(TheGameText->fetch("Buddy:InviteSent", &exists));
-	if (!exists)
-	{
-		// no string yet.  don't display.
-		return;
-	}
-
-	// save message for future incarnations of the buddy window
-	BuddyMessageList *messages = TheGameSpyInfo->getBuddyMessages();
-	BuddyMessage message;
-	message.m_timestamp = time(NULL);
-	message.m_senderID = 0;
-	message.m_senderNick = "";
-	message.m_recipientID = TheGameSpyInfo->getLocalProfileID();
-	message.m_recipientNick = TheGameSpyInfo->getLocalBaseName();
-	message.m_message.format(TheGameText->fetch("Buddy:InviteSentToPlayer"), nick.str());
-
-	// insert status into box
-	messages->push_back(message);
-
-	DEBUG_LOG(("Inserting buddy add request\n"));
-
-	// put message on screen
-	insertChat(message);
-	
-	// play audio notification
-	AudioEventRTS buddyMsgAudio("GUIMessageReceived");
-	if( TheAudio )
-	{
-		TheAudio->addAudioEvent( &buddyMsgAudio );
-	}  // end if
-
-	lastNotificationWasStatus = FALSE;
-	numOnlineInNotification = 0;
-	showNotificationBox(AsciiString::TheEmptyString, s);
-}
-
+// RequestBuddyAdd exact retail body is emitted by
+// RequestBuddyAddThunk.cpp.
 WindowMsgHandledType WOLBuddyOverlayRCMenuSystem( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 )
 {
 
