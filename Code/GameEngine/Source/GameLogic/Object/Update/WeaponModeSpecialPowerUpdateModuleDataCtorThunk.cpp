@@ -1,68 +1,42 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class WeaponModeSpecialPowerUpdateModuleData
+// Open-BFME5: WeaponModeSpecialPowerUpdateModuleData ctor
+// Retail: base, xor eax, vtbl, zeros +0x1d0/+0x1d4, +0x1d8=3, zero +0x1dc twice.
+// Volatile stores preserve order under MSVC 7.1.
+
+class WeaponModeSpecialPowerUpdateModuleDataBase
 {
 public:
-    WeaponModeSpecialPowerUpdateModuleData();
+	WeaponModeSpecialPowerUpdateModuleDataBase();
+	virtual void weaponModeModuleDataBaseAnchor();
+
+private:
+	unsigned char m_pad[0x1CC];
 };
 
-__declspec(naked) WeaponModeSpecialPowerUpdateModuleData::WeaponModeSpecialPowerUpdateModuleData()
-{
-    __asm {
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 0EFh
-        _emit 012h
-        _emit 0D7h
-        _emit 0FFh
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 006h
-        _emit 010h
-        _emit 055h
-        _emit 00Ch
-        _emit 001h
-        _emit 089h
-        _emit 086h
-        _emit 0D0h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0D4h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 086h
-        _emit 0D8h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0DCh
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0DCh
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
-}
+extern "C" char WeaponModeSpecialPowerUpdateModuleData_vtbl;
 
+class __declspec(novtable) WeaponModeSpecialPowerUpdateModuleData
+	: public WeaponModeSpecialPowerUpdateModuleDataBase
+{
+public:
+	WeaponModeSpecialPowerUpdateModuleData();
+
+private:
+	unsigned int m_1d0;
+	unsigned int m_1d4;
+	unsigned int m_1d8;
+	unsigned int m_1dc;
+};
+
+// ??0WeaponModeSpecialPowerUpdateModuleData@@QAE@XZ
+WeaponModeSpecialPowerUpdateModuleData::WeaponModeSpecialPowerUpdateModuleData()
+{
+	*reinterpret_cast<char *volatile *>(this) =
+		&WeaponModeSpecialPowerUpdateModuleData_vtbl;
+	*reinterpret_cast<unsigned int volatile *>(&m_1d0) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_1d4) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_1d8) = 3;
+	*reinterpret_cast<unsigned int volatile *>(&m_1dc) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_1dc) = 0;
+}

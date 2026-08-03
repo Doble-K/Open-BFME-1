@@ -1,64 +1,44 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class WeaponFireSpecialAbilityUpdateModuleData
+// Open-BFME5: WeaponFireSpecialAbilityUpdateModuleData ctor
+// Retail: base call, xor eax, vtbl, then zeros at +0x254/+0x258/+0x25c/+0x260/+0x264.
+// All stores volatile so MSVC 7.1 cannot hoist field zeros above the vtbl write.
+
+class WeaponFireSpecialAbilityUpdateModuleDataBase
 {
 public:
-    WeaponFireSpecialAbilityUpdateModuleData();
+	WeaponFireSpecialAbilityUpdateModuleDataBase();
+	virtual void weaponFireModuleDataBaseAnchor();
+
+private:
+	unsigned char m_pad[0x250];
 };
 
-__declspec(naked) WeaponFireSpecialAbilityUpdateModuleData::WeaponFireSpecialAbilityUpdateModuleData()
-{
-    __asm {
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 0CBh
-        _emit 01Eh
-        _emit 0DDh
-        _emit 0FFh
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 006h
-        _emit 098h
-        _emit 08Dh
-        _emit 00Bh
-        _emit 001h
-        _emit 089h
-        _emit 086h
-        _emit 054h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 058h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 086h
-        _emit 05Ch
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 060h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 086h
-        _emit 064h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
-}
+extern "C" char WeaponFireSpecialAbilityUpdateModuleData_vtbl;
 
+class __declspec(novtable) WeaponFireSpecialAbilityUpdateModuleData
+	: public WeaponFireSpecialAbilityUpdateModuleDataBase
+{
+public:
+	WeaponFireSpecialAbilityUpdateModuleData();
+
+private:
+	unsigned int m_254;
+	unsigned int m_258;
+	unsigned char m_25c;
+	unsigned char m_pad25d[3];
+	unsigned int m_260;
+	unsigned char m_264;
+};
+
+// ??0WeaponFireSpecialAbilityUpdateModuleData@@QAE@XZ
+WeaponFireSpecialAbilityUpdateModuleData::WeaponFireSpecialAbilityUpdateModuleData()
+{
+	*reinterpret_cast<char *volatile *>(this) =
+		&WeaponFireSpecialAbilityUpdateModuleData_vtbl;
+	*reinterpret_cast<unsigned int volatile *>(&m_254) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_258) = 0;
+	*reinterpret_cast<unsigned char volatile *>(&m_25c) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_260) = 0;
+	*reinterpret_cast<unsigned char volatile *>(&m_264) = 0;
+}

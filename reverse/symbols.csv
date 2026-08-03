@@ -1223,6 +1223,7 @@ name,address,notes
 ??0SpawnPointProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00023858,module ctor (friend_newModuleInstance retail call target)
 ??0SpawnUnitBehaviorGrandBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,SpawnUnitBehavior ctor grandbase call; ILT thunk for ObjectModule ctor
 ??0SpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x002A6360,BFME SpecialAbilityUpdate constructor body
+??0SpecialDisguiseUpdateModuleDataBase@@QAE@XZ,0x0003F503,SpecialDisguiseUpdateModuleData ctor base
 ??0SpecialPowerCompletionDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x00008878,pinharvest x1 (thunk)
 ??0SpecialPowerCompletionDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000BAF0,pinharvest x1 (thunk)
 ??0SpecialPowerCompletionDie@@QAE@PAVThing@@PBVModuleData@@@Z,0x00034EDC,pinharvest x1 (thunk)
@@ -1425,6 +1426,8 @@ name,address,notes
 ??0WeaponBonusUpdateModuleData@@QAE@XZ,0x0002DA24,pinharvest x1 (thunk)
 ??0WeaponBonusUpdateModuleData@@QAE@XZ,0x0003CA01,pinharvest x1 (thunk)
 ??0WeaponBonusUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x000375B5,module ctor (friend_newModuleInstance retail call target)
+??0WeaponFireSpecialAbilityUpdateModuleDataBase@@QAE@XZ,0x0003F503,WeaponFireSpecialAbilityUpdateModuleData ctor base
+??0WeaponModeSpecialPowerUpdateModuleDataBase@@QAE@XZ,0x00023FE7,WeaponModeSpecialPowerUpdateModuleData ctor base
 ??0WeaponSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003406D,module ctor (friend_newModuleInstance retail call target)
 ??0WeatherSetting@@QAE@XZ,0x000157CB,harvested from parseWeatherDefinition (thunk)
 ??0WorkerAIUpdateModuleData@@QAE@XZ,0x00024BFE,pinharvest x1 (thunk)
@@ -4335,10 +4338,13 @@ ShareBufferClassUnsignedShort_vtbl_final,0x011135AC,ShareBuffer ushort dtor fina
 ShareBufferClassUnsignedShort_vtbl_interim,0x0113C110,ShareBuffer ushort dtor interim vtbl
 SpawnPointProductionExitUpdateFieldParse,0x00442979,SpawnPoint friend_newModuleData field parse table
 SplitHordeSpecialPowerFieldParse,0x0040D1F7,SplitHordeSpecialPower FieldParse
+SpecialDisguiseUpdateModuleData_vtbl,0x010B7770,SpecialDisguiseUpdateModuleData main vtbl
 SquishCollideFieldParse,0x004173DC,SquishCollide FieldParse
 StealthUpdateFieldParse,0x0041D8F9,StealthUpdate FieldParse
 ToggleHiddenSpecialAbilityUpdateFieldParse,0x0040955C,ToggleHiddenSpecialAbilityUpdate FieldParse
 WanderAIUpdateFieldParse,0x004027DE,WanderAIUpdate FieldParse
+WeaponFireSpecialAbilityUpdateModuleData_vtbl,0x010B8D98,WeaponFireSpecialAbilityUpdateModuleData main vtbl
+WeaponModeSpecialPowerUpdateModuleData_vtbl,0x010C5510,WeaponModeSpecialPowerUpdateModuleData main vtbl
 _D3DXMatrixInverse@12,0x009FB321
 _D3DXVec4Transform@12,0x009FAA48
 _HideControlBar,0x00002847,HideControlBar letterbox
