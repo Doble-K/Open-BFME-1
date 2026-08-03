@@ -4223,3 +4223,4 @@ DefaultModuleTemplate01FieldParse,0x01114958,DefaultModuleTemplate parse FieldPa
 DefaultModuleTemplate02FieldParse,0x011145B0,DefaultModuleTemplate parse FieldParse
 DefaultModuleTemplate05FieldParse,0x01113594,DefaultModuleTemplate parse FieldParse
 DefaultModuleTemplate0AFieldParse,0x01113460,DefaultModuleTemplate parse FieldParse
+?addAudioEventEx@AudioManager@@QAEIPBVAudioEventRTS@@HHH@Z,0x00020B08,AudioManager::addAudioEvent thiscall impl
