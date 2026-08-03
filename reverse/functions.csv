@@ -12151,7 +12151,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isLocalPlayerNextPacketRouter@DisconnectManager@@IAE_NPAVConnectionManager@@@Z,,0x0066C260,264,Code/GameEngine/Source/GameNetwork/DisconnectManager_isLocalPlayerNextPacketRouter_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?isLocallyControlled@Object@@QBE_NXZ,,0x001BE570,40,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?isMissing@W3DShadowTextureManager@@QAE_NPBD@Z,,0x007AF050,22,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
-?isMusicAlreadyLoaded@AudioManager@@UBE_NXZ,,0x006AC1A0,456,Code/masm_dumps/_s__isMusicAlreadyLoaded_AudioManager_6AC1A0.asm,matched,Exact 456B GameEngine::init vtbl+0x138; queue RVA 0xFB32D misplaced; C++ blocked AudioManager hash @+0x70 vs ZH +0x40
+?isMusicAlreadyLoaded@AudioManager@@UBE_NXZ,,0x006AC1A0,456,Code/GameEngine/Source/Common/AudioManager_isMusicAlreadyLoadedMethodThunk.cpp,matched,Exact 456B GameEngine::init vtbl+0x138; queue RVA 0xFB32D misplaced; C++ blocked AudioManager hash @+0x70 vs ZH +0x40
 ?isNearlyZero@@YA_NM@Z,,0x001B4140,28,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ?isNeutralControlled@Object@@QBE_NXZ,,0x001BE5B0,40,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?isNewerThan@SaveDate@@QAE_NPAU1@@Z,,0x0010CF30,120,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
