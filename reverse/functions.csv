@@ -2268,7 +2268,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StringClass@@QAE@PBD_N@Z,,0x007AF3A0,70,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ??0StringClass@@QAE@_N@Z,,0x00972B50,42,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ??0StringInfo@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameClient/GameText.cpp,matched,icf-owner=??0?$DLNodeClass@USmudge@@@@QAE@XZ
-??0StructureBodyModuleData@@QAE@XZ,,0x001293C0,118,Code/masm_dumps/StructureBodyModuleData_constructor.asm,matched,Exact 118B @ 0x001293C0; Exact retail MASM ModuleData ctor; unique factory 0x1294A0
+??0StructureBodyModuleData@@QAE@XZ,,0x001293C0,118,Code/GameEngine/Source/GameLogic/Object/Body/StructureBodyModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
 ??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004A345,5,Code/GameEngine/Source/Common/RTS/StructureCollapseUpdateCtorThunk.cpp,matched,5-byte incremental-link StructureCollapseUpdate constructor thunk converted to focused C++ source
 ??0StructureCollapseUpdateModuleData@@QAE@XZ,,0x00128940,224,Code/masm_dumps/StructureCollapseUpdateModuleData_constructor.asm,matched,Exact 224B @ 0x00128940; Exact retail MASM ModuleData ctor; unique factory 0x128B10
 ??0StructureToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00034711,5,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
