@@ -1,46 +1,37 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: WeaponStore constructor
+// SubsystemInterface base, vtbl, zero three dwords at +8/+0xC/+0x10.
+// Volatile stores keep vtbl before field zeros.
 
 class SubsystemInterface
 {
+public:
+	SubsystemInterface();
+	virtual void subsystemInterfaceAnchor();
+
+private:
+	unsigned int m_pad;
 };
 
-class WeaponStore : public SubsystemInterface
+extern "C" char WeaponStore_vtbl;
+
+class __declspec(novtable) WeaponStore : public SubsystemInterface
 {
 public:
-    WeaponStore();
+	WeaponStore();
+
+private:
+	unsigned int m_a;
+	unsigned int m_b;
+	unsigned int m_c;
 };
 
-__declspec(naked) WeaponStore::WeaponStore()
+// ??0WeaponStore@@QAE@XZ
+WeaponStore::WeaponStore()
 {
-    __asm {
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 098h
-        _emit 0C7h
-        _emit 07Bh
-        _emit 000h
-        _emit 033h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 006h
-        _emit 0C8h
-        _emit 013h
-        _emit 00Ah
-        _emit 001h
-        _emit 089h
-        _emit 046h
-        _emit 008h
-        _emit 089h
-        _emit 046h
-        _emit 00Ch
-        _emit 089h
-        _emit 046h
-        _emit 010h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
+	*reinterpret_cast<char *volatile *>(this) = &WeaponStore_vtbl;
+	*reinterpret_cast<unsigned int volatile *>(&m_a) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_b) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_c) = 0;
 }

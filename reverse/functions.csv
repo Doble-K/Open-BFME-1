@@ -2462,7 +2462,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WeaponSetSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026DC50,53,Code/GameEngine/Source/GameLogic/Object/Update/WeaponSetSpecialAbilityUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ empty SpecialAbilityUpdate derivative
 ??0WeaponSetSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026DC20,32,Code/GameEngine/Source/GameLogic/Object/Update/WeaponSetSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ SpecialPowerModuleData + two zero fields
 ??0WeaponSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002DA4E0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/WeaponSetUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2DA4E0
-??0WeaponStore@@QAE@XZ,,0x001E5290,29,Code/GameEngine/Source/GameLogic/Object/WeaponStoreCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk; Weapon.cpp retains STL COMDAT carrier
+??0WeaponStore@@QAE@XZ,,0x001E5290,29,Code/GameEngine/Source/GameLogic/Object/WeaponStoreCtorThunk.cpp,matched,Open-BFME5 clean C++ WeaponStore ctor
 ??0WeightInfoStruct@NamedPivotMapClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,ICF alias of existing matched body
 ??0Win32BIGFile@@QAE@XZ,,0x009D14E0,26,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFile.cpp,matched,
 ??0Win32LocalFile@@QAE@XZ,,0x009D1930,18,Code/GameEngine/Source/Common/System/File.cpp,matched,adds no members - a base call and a vptr store for 0x01143C10 - which is what Win32LocalFileSystem openFile allocates 0x18 bytes for
