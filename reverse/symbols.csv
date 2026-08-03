@@ -4249,3 +4249,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 ??0?$ConcreteModuleTemplate@UOutwardEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x0000E584,OutwardEmissionVelocity clone copy-ctor
 ??0UpgradeModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000C315,Open-BFME5 Upgrade module base call pin (ILT shared)
 ??0?$ConcreteModuleTemplate@UHemisphericalEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x0003FFA3,HemisphericalEmissionVelocity clone copy-ctor
+??0?$ConcreteModuleTemplate@UCylindricalEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x00018CC3,CylindricalEmissionVelocity clone copy-ctor
