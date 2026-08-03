@@ -4538,3 +4538,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1W3DShadowHelperManager@@QAE@XZ,0x007C19A0,Open-BFME5 shadow helper manager dtor (two refcounted members) from retail ~W3DShadowManager call site
 ?sendMessage@LANAPI@@QAEXPAULANMessage@@I@Z,0x0002B599,LANAPI::sendMessage(msg, ip) for RequestLobbyLeave
 ?update@Transport@@QAEXXZ,0x00001EC4,Transport::update for LANAPI::RequestLobbyLeave forced path
+??1ModuleTagString@@QAE@XZ,0x00026AB2,ModuleInfo::Nugget m_moduleTag AsciiString-like ILT
