@@ -1,4 +1,7 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: SphereEmissionVolumeModuleTemplate ConcreteModuleTemplate::clone
+// MSVC 7.1: integral N mangles as $(N-1) for N>=1 ($03 => N=4).
 
 namespace FXParticleSystem
 {
@@ -18,6 +21,8 @@ class SphereEmissionVolumeModule
 
 class SphereEmissionVolumeModuleTemplate
 {
+public:
+	virtual ~SphereEmissionVolumeModuleTemplate();
 };
 
 extern const char SPHERE_EMISSION_VOLUME_MODULE_KEY[1];
@@ -32,50 +37,26 @@ template <class Tag>
 class ConcreteModuleTemplate;
 
 typedef ModuleTag<5, SPHERE_EMISSION_VOLUME_MODULE_KEY, SPHERE_EMISSION_VOLUME_MODULE_NAME,
-    SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate,
-    DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > SphereEmissionVolumeTag;
+	SphereEmissionVolumeModule, SphereEmissionVolumeModuleTemplate,
+	DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > SphereEmissionVolumeTag;
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
 
 template <>
-class ConcreteModuleTemplate<SphereEmissionVolumeTag>
+class ConcreteModuleTemplate<SphereEmissionVolumeTag> : public SphereEmissionVolumeModuleTemplate
 {
 public:
-    virtual SphereEmissionVolumeModuleTemplate *clone() const;
+	ConcreteModuleTemplate(const ConcreteModuleTemplate &);
+	virtual SphereEmissionVolumeModuleTemplate *clone() const;
+
+private:
+	unsigned char m_pad[0x10];
 };
 
-__declspec(naked) SphereEmissionVolumeModuleTemplate *ConcreteModuleTemplate<SphereEmissionVolumeTag>::clone() const
+SphereEmissionVolumeModuleTemplate *ConcreteModuleTemplate<SphereEmissionVolumeTag>::clone() const
 {
-    __asm {
-        _emit 056h
-        _emit 06Ah
-        _emit 014h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 006h
-        _emit 050h
-        _emit 02Ah
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 074h
-        _emit 00Ah
-        _emit 056h
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 06Ah
-        _emit 01Eh
-        _emit 0A4h
-        _emit 0FFh
-        _emit 05Eh
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 05Eh
-        _emit 0C3h
-    }
+	return new ConcreteModuleTemplate<SphereEmissionVolumeTag>(*this);
 }
+
 }
