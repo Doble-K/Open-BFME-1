@@ -5159,7 +5159,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GRenderObjectDrawModuleInfo@FXParticleSystem@@UAEPAXI@Z,,0x005DE360,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??_GRenderObjectDrawModuleTemplate@FXParticleSystem@@UAEPAXI@Z,,0x005DE5B0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??_GRenderObjectUpdateModuleInfo@FXParticleSystem@@UAEPAXI@Z,,0x005D95B0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??_GRenderObjectUpdateModuleTemplate@FXParticleSystem@@UAEPAXI@Z,,0x005D97B0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
+??_GRenderObjectUpdateModuleTemplate@FXParticleSystem@@UAEPAXI@Z,,0x005D97B0,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/RenderObjectUpdateModuleTemplateDeletingDtorThunk.cpp,matched,Open-BFME5 deleting dtor emitted via virtual delete
 ??_GRepairDockUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GRepairDockUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GReplaceObjectUpgradeModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
