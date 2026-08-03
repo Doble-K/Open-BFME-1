@@ -1959,7 +1959,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ParticleSystemFXNugget@@QAE@XZ,,0x00429F80,350,Code/masm_dumps/ParticleSystemFXNugget_ctor_429F80.asm,matched,true body 0x429F80/350 via FX table ParticleSystem->ILT 0x42D4D->parse 0x42CB80 new(0x128)+ctor ILT 0x2ADC4; queue 0x6004EF inside matched RenderObjectUpdateModuleInfo@FXPS; MASM BFME rewrite sizeof 0x128
 ??0ParticleSystemInfo@FXParticleSystem@@QAE@ABV01@@Z,0x000199E8,0x0005EF60,415,Code/masm_dumps/___0ParticleSystemInfo_FXParticleSystem__QAE_ABV01__5EF60.asm,matched,
 ??0ParticleSystemInfo@FXParticleSystem@@QAE@XZ,0x0003128C,0x005C1DD0,168,Code/masm_dumps/___0ParticleSystemInfo_FXParticleSystem__QAE_XZ_5C1DD0.asm,matched,
-??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x00024E01,0x005D01F0,126,Code/masm_dumps/___0ParticleSystemTemplate_FXParticleSystem__QAE_AB_5D01F0.asm,matched,
+??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x00024E01,0x005D01F0,126,Code/GameEngine/Source/GameClient/System/FXParticleSystem/ParticleSystemTemplateCopyCtorThunk.cpp,matched,1:1 C++ thunk moved from bulk TU prologue drift
 ??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABVAsciiString@@@Z,0x0002677E,0x005CEB90,156,Code/masm_dumps/___0ParticleSystemTemplate_FXParticleSystem__QAE_AB_5CEB90.asm,matched,
 ??0ParticleUplinkCannonUpdateModuleData@@QAE@XZ,,0x002A2520,287,Code/GameEngine/Source/GameLogic/AI/ParticleUplinkCannonUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0PartitionContactListNode@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,ICF alias of existing matched body

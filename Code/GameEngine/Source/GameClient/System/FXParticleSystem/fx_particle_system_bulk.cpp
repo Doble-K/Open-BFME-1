@@ -12777,6 +12777,8 @@ __declspec(naked) ParticleSystemInfo::ParticleSystemInfo()
     }
 }
 
+// Moved to ParticleSystemTemplateCopyCtorThunk.cpp so the standalone body remains byte-exact.
+#if 0
 // ??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABV01@@Z
 __declspec(naked) ParticleSystemTemplate::ParticleSystemTemplate(const ParticleSystemTemplate &that)
 {
@@ -12909,6 +12911,7 @@ __declspec(naked) ParticleSystemTemplate::ParticleSystemTemplate(const ParticleS
         __emit 0x00
     }
 }
+#endif
 
 // ??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABVAsciiString@@@Z
 __declspec(naked) ParticleSystemTemplate::ParticleSystemTemplate(const AsciiString &name)
