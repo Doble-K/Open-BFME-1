@@ -2440,7 +2440,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WSEnvMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00965920,275,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,true size 275B; row claimed 167B (switch dispatch + case bodies)
 ??0WSEnvironmentMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00921570,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0WSYS_String@@QAE@PBD@Z,,0x0010A280,25,Code/GameEngine/Source/Common/System/String.cpp,matched,
-??0WallUpgradeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B2270,169,Code/masm_dumps/WallUpgradeUpdate_constructor.asm,matched,Exact 169B @ 0x002B2270; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C170
+??0WallUpgradeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B2270,169,Code/GameEngine/Source/GameLogic/Object/Update/WallUpgradeUpdateCtorThunk.cpp,matched,Exact 169B @ 0x002B2270; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C170
 ??0WanderAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7520,60,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WanderAIUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ AIUpdateInterface constructor
 ??0WanderAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/WanderAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0WargBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D980,46,Code/GameEngine/Source/GameLogic/AI/WargBehavior.cpp,matched,Luna Open-BFME5.0 clean C++ ObjectModule derived constructor
