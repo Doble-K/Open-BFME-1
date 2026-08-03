@@ -2333,7 +2333,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/GameEngine/Source/Common/RTS/ToggleMountedSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ SpecialPowerModuleData + dword/byte zeros
 ??0TooltipUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D93E0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/TooltipUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
 ??0TooltipUpgradeModuleData@@QAE@XZ,,0x0012BAE0,116,Code/GameEngine/Source/GameLogic/Object/Behavior/TooltipUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 116B ModuleData constructor
-??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B1060,187,Code/masm_dumps/ToppleUpdate_constructor.asm,matched,Exact 187B @ 0x002B1060; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11BB50
+??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B1060,187,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateCtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0ToppleUpdateModuleData@@QAE@XZ,,0x002B13A0,123,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataCtorThunk.cpp,matched,Exact 123B @ 0x002B13A0; Exact retail MASM ModuleData ctor; unique factory 0x11BBD0; converted to an exact standalone C++ thunk
 ??0TransitionDamageFX@@,,0x00251CF0,374,Code/masm_dumps/_sa7___0TransitionDamageFX___251CF0.asm,matched,Exact 374B Open-BFME4
 ??0TransitionDamageFXModuleData@@QAE@XZ,,0x002532B0,433,Code/masm_dumps/TransitionDamageFXModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x124770
@@ -9865,7 +9865,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doSpeechPlay@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x006AF840,973,Code/masm_dumps/_sa3__doSpeechPlay_ScriptActions__IAEXABVAsciiString____6AF840.asm,matched,Exact 973B string-anchored Open-BFME4
 ?doStopCameraFollowUnit@ScriptActions@@IAEXXZ,,0x002EFAB0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x19c void stop-follow tail-call
 ?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F95A0,144,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamAttackNamed_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/masm_dumps/_sa7__doTeamDecreasePriority_ScriptActions__IAEXABVAsci_2F3A60.asm,matched,Exact 196B Open-BFME4
+?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/GameEngine/Source/Common/ScriptActions_doTeamDecreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift
 ?doTeamFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002F3E90,282,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamFlash.asm,matched,exact 282B MASM; true body 0x2F3E90 (drift 0x933119 mid-fn x87)
 ?doTeamHuntWithCommandButton@ScriptActions@@,,0x002F7B80,895,Code/masm_dumps/_sa6__doTeamHuntWithCommandButton_ScriptActions___2F7B80.asm,matched,true size 895B; row claimed 211B
 ?doTeamIncreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3960,196,Code/GameEngine/Source/Common/ScriptActions_doTeamIncreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift
