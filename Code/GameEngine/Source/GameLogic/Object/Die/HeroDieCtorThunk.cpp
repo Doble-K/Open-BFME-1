@@ -1,74 +1,49 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: HeroDie module ctor.
+// Base call then interim dual iface vtbls at +0xC/+0x10, then three
+// most-derived vtbls at +0/+0xC/+0x10.
+
 class Thing;
 class ModuleData;
 
-class HeroDie
+class BehaviorModule
 {
 public:
-    HeroDie(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+private:
+	unsigned char m_data[8];
 };
 
-__declspec(naked) HeroDie::HeroDie(Thing *, const ModuleData *)
+class HeroDieIface1
 {
-    __asm _emit(0x8B);
-    __asm _emit(0x44);
-    __asm _emit(0x24);
-    __asm _emit(0x08);
-    __asm _emit(0x56);
-    __asm _emit(0x8B);
-    __asm _emit(0xF1);
-    __asm _emit(0x8B);
-    __asm _emit(0x4C);
-    __asm _emit(0x24);
-    __asm _emit(0x08);
-    __asm _emit(0x50);
-    __asm _emit(0x51);
-    __asm _emit(0x8B);
-    __asm _emit(0xCE);
-    __asm _emit(0xE8);
-    __asm _emit(0x60);
-    __asm _emit(0x1A);
-    __asm _emit(0xDC);
-    __asm _emit(0xFF);
-    __asm _emit(0xC7);
-    __asm _emit(0x46);
-    __asm _emit(0x0C);
-    __asm _emit(0xD0);
-    __asm _emit(0xC9);
-    __asm _emit(0x09);
-    __asm _emit(0x01);
-    __asm _emit(0xC7);
-    __asm _emit(0x46);
-    __asm _emit(0x10);
-    __asm _emit(0x7C);
-    __asm _emit(0x25);
-    __asm _emit(0x0A);
-    __asm _emit(0x01);
-    __asm _emit(0xC7);
-    __asm _emit(0x06);
-    __asm _emit(0x2C);
-    __asm _emit(0x31);
-    __asm _emit(0x0B);
-    __asm _emit(0x01);
-    __asm _emit(0xC7);
-    __asm _emit(0x46);
-    __asm _emit(0x0C);
-    __asm _emit(0x68);
-    __asm _emit(0x30);
-    __asm _emit(0x0B);
-    __asm _emit(0x01);
-    __asm _emit(0xC7);
-    __asm _emit(0x46);
-    __asm _emit(0x10);
-    __asm _emit(0x64);
-    __asm _emit(0x30);
-    __asm _emit(0x0B);
-    __asm _emit(0x01);
-    __asm _emit(0x8B);
-    __asm _emit(0xC6);
-    __asm _emit(0x5E);
-    __asm _emit(0xC2);
-    __asm _emit(0x08);
-    __asm _emit(0x00);
+public:
+	virtual void heroDieIface1Anchor();
+};
+
+class HeroDieIface2
+{
+public:
+	virtual void heroDieIface2Anchor();
+};
+
+class HeroDieBase : public BehaviorModule
+{
+public:
+	HeroDieBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class HeroDie : public HeroDieBase,
+	public HeroDieIface1,
+	public HeroDieIface2
+{
+public:
+	HeroDie(Thing *thing, const ModuleData *moduleData);
+};
+
+// ??0HeroDie@@QAE@PAVThing@@PBVModuleData@@@Z
+HeroDie::HeroDie(Thing *thing, const ModuleData *moduleData)
+	: HeroDieBase(thing, moduleData)
+{
 }

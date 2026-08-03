@@ -1326,7 +1326,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ChunkInputStream@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,ICF alias of existing matched body
 ??0ChunkLoadClass@@QAE@PAVBFMEChunkInput@@@Z,,0x009E1320,91,Code/Libraries/Source/WWVegas/WWLib/chunkio_load_ctor.cpp,matched,
 ??0ChunkSaveClass@@QAE@PAVFileClass@@@Z,,0x009E1690,91,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
-??0CivilianSpawnCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002173E0,60,Code/GameEngine/Source/GameLogic/Object/Behavior/CivilianSpawnCollideCtorThunk.cpp,matched,Open-BFME5 exact C++ raw CivilianSpawnCollide constructor
+??0CivilianSpawnCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002173E0,60,Code/GameEngine/Source/GameLogic/Object/Behavior/CivilianSpawnCollideCtorThunk.cpp,matched,Open-BFME5 clean C++ CivilianSpawnCollide MI ctor (base + dual iface)
+
 ??0CivilianSpawnCollideModuleData@@QAE@XZ,,0x00217360,69,Code/GameEngine/Source/GameLogic/AI/CivilianSpawnCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CivilianSpawnUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028A2F0,149,Code/GameEngine/Source/GameLogic/Object/Update/CivilianSpawnUpdateCtorThunk.cpp,matched,Open-BFME5 exact 149B retail module constructor
 ??0CivilianSpawnUpdateModuleData@@QAE@XZ,,0x0028A480,92,Code/GameEngine/Source/GameLogic/AI/CivilianSpawnUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
@@ -1656,7 +1657,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HeightDieUpdateModuleData@@QAE@XZ,,0x00295500,33,Code/GameEngine/Source/GameLogic/Object/Update/HeightDieUpdateModuleDataConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x295500
 ??0HemisphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0002DB50,0x005D7560,39,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??0HemisphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ,0x0002BF67,0x005D74F0,32,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
-??0HeroDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255670,60,Code/GameEngine/Source/GameLogic/Object/Die/HeroDieCtorThunk.cpp,matched,Open-BFME5 exact C++ raw HeroDie constructor
+??0HeroDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255670,60,Code/GameEngine/Source/GameLogic/Object/Die/HeroDieCtorThunk.cpp,matched,Open-BFME5 clean C++ HeroDie MI ctor (base + dual iface)
+
 ??0HeroDieModuleData@@QAE@XZ,,0x00255600,82,Code/GameEngine/Source/GameLogic/AI/HeroDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0HeroModeSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025F8A0,53,Code/GameEngine/Source/GameLogic/Object/Update/HeroModeSpecialAbilityUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw HeroModeSpecialAbilityUpdate constructor
 ??0HeroModeSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0025FAC0,112,Code/GameEngine/Source/GameLogic/Object/Update/HeroModeSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact 112B retail module-data constructor

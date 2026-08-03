@@ -1,77 +1,49 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: CivilianSpawnCollide module ctor.
+// Base call then interim dual iface vtbls at +0xC/+0x10, then three
+// most-derived vtbls at +0/+0xC/+0x10.
+
 class Thing;
 class ModuleData;
 
-class CivilianSpawnCollide
+class BehaviorModule
 {
 public:
-    CivilianSpawnCollide(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+private:
+	unsigned char m_data[8];
 };
 
-__declspec(naked) CivilianSpawnCollide::CivilianSpawnCollide(Thing *, const ModuleData *)
+class CivilianSpawnCollideIface1
 {
-    __asm {
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 008h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 050h
-        _emit 051h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 0F0h
-        _emit 0FCh
-        _emit 0DFh
-        _emit 0FFh
-        _emit 0C7h
-        _emit 046h
-        _emit 00Ch
-        _emit 0D0h
-        _emit 0C9h
-        _emit 009h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 010h
-        _emit 0E4h
-        _emit 01Dh
-        _emit 00Ah
-        _emit 001h
-        _emit 0C7h
-        _emit 006h
-        _emit 01Ch
-        _emit 0A2h
-        _emit 00Ah
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 00Ch
-        _emit 058h
-        _emit 0A1h
-        _emit 00Ah
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 010h
-        _emit 03Ch
-        _emit 0A1h
-        _emit 00Ah
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 008h
-        _emit 000h
-    }
-}
+public:
+	virtual void civilianSpawnCollideIface1Anchor();
+};
 
+class CivilianSpawnCollideIface2
+{
+public:
+	virtual void civilianSpawnCollideIface2Anchor();
+};
+
+class CivilianSpawnCollideBase : public BehaviorModule
+{
+public:
+	CivilianSpawnCollideBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class CivilianSpawnCollide : public CivilianSpawnCollideBase,
+	public CivilianSpawnCollideIface1,
+	public CivilianSpawnCollideIface2
+{
+public:
+	CivilianSpawnCollide(Thing *thing, const ModuleData *moduleData);
+};
+
+// ??0CivilianSpawnCollide@@QAE@PAVThing@@PBVModuleData@@@Z
+CivilianSpawnCollide::CivilianSpawnCollide(Thing *thing, const ModuleData *moduleData)
+	: CivilianSpawnCollideBase(thing, moduleData)
+{
+}
