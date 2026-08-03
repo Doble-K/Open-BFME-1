@@ -3097,7 +3097,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ParticleBufferClass@@UAE@XZ,,0x00984730,1029,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??1ParticleEmitterClass@@UAE@XZ,,0x0097ED10,203,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ??1ParticleEmitterDefClass@@UAE@XZ,,0x0098D230,106,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
-??1ParticleSystemInfo@FXParticleSystem@@UAE@XZ,0x00002F5E,0x0005EEE0,93,Code/GameEngine/Source/GameClient/System/FXParticleSystem/ParticleSystemInfoDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+??1ParticleSystemInfo@FXParticleSystem@@UAE@XZ,0x00002F5E,0x0005EEE0,93,Code/GameEngine/Source/GameClient/System/FXParticleSystem/ParticleSystemInfoDestructorThunk.cpp,matched,Open-BFME5 clean C++ ParticleSystemInfo triple-Buffer SEH dtor
 ??1ParticleSystemTemplate@FXParticleSystem@@UAE@XZ,0x0002083D,0x005CE4D0,101,Code/GameEngine/Source/Common/FXParticleSystem_ParticleSystemTemplateDestructorThunk.cpp,matched,
 ??1ParticleUplinkCannonUpdateModuleData@@UAE@XZ,,0x002A26C0,115,Code/GameEngine/Source/Common/ParticleUplinkCannonUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1PartitionManager@@UAE@XZ,,0x009F2800,115,Code/GameEngine/Source/Common/PartitionManagerDestructorThunk.cpp,matched,True owner via PartitionManager getName string; ICF-alias of mislabeled TeamFactory dtor @0x9F2800
