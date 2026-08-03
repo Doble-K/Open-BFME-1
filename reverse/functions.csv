@@ -12256,7 +12256,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?loadGarrisonPoints@GarrisonContain@@IAEXXZ,,0x0021EB50,908,Code/masm_dumps/GarrisonContain_loadGarrisonPoints_21EB50.asm,matched,Exact 908B @ 0x21EB50; queue 0x22ECF1/496 mid dtor+pad misplaced; 3x40 bone+flags+init
 ?loadH@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1_NM@Z,,0x0070F330,699,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?loadIniFilesFromLegend@SubsystemInterface@@UAE_NXZ,,0x009A1A50,286,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,vtable slot 2 - the legend lookup every subsystem inherits
-?loadLocalLadders@LadderList@@AAEXXZ,,0x0062BE40,379,Code/masm_dumps/LadderList_loadLocalLadders.asm,matched,Ghidra-bound retail ladder enumeration body
+?loadLocalLadders@LadderList@@AAEXXZ,,0x0062BE40,379,Code/GameEngine/Source/Common/LadderList_loadLocalLaddersMethodThunk.cpp,matched,Ghidra-bound retail ladder enumeration body
 ?loadMap@TerrainLogic@@UAE_NVAsciiString@@_N@Z,,0x001AC1E0,293,Code/GameEngine/Source/Common/TerrainLogic_loadMap_Thunk.cpp,matched,Exact 293B Open-BFME4
 ?loadMapINI@GameLogic@@QAEXVAsciiString@@@Z,,0x00386A30,754,Code/masm_dumps/_loadMapINI_GameLogic__QAEXVAsciiString___Z_386A30.asm,matched,Exact 754B string-anchored Open-BFME4
 ?loadPostProcess@Drawable@@MAEXXZ,,0x004120A0,45,Code/GameEngine/Source/Common/RTS/DrawableLoadPostProcessThunk.cpp,matched,Open-BFME5 exact C++ raw Drawable post-load hook
