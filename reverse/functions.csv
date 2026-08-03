@@ -3082,7 +3082,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1OathbreakersFadeAwayBehavior@@UAE@XZ,,0x001F1370,203,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1OathbreakersFadeAwayBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM ICF primary
 ??1ObjectCreationList@@QAE@XZ,,0x00072A40,14,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
-??1ObjectCreationListStore@@UAE@XZ,,0x001DA720,207,Code/masm_dumps/ObjectCreationListStore_destructor.asm,matched,Certified retail MASM recovery packet 263
+??1ObjectCreationListStore@@UAE@XZ,,0x001DA720,207,Code/GameEngine/Source/Common/ObjectCreationListStoreDestructorThunk.cpp,matched,Certified retail MASM recovery packet 263
 ??1ObjectCreationUpgrade@@UAE@XZ,,0x00137E80,284,Code/masm_dumps/ObjectCreationUpgrade_destructor.asm,matched,Exact 284B SEH dtor Open-BFME4
 ??1ObjectCreationUpgradeModuleData@@UAE@XZ,,0x002D7660,109,Code/GameEngine/Source/Common/ObjectCreationUpgradeModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1OneRingPenaltyUpdateModuleData@@UAE@XZ,,0x00298D60,113,Code/GameEngine/Source/Common/OneRingPenaltyUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x11A460 ctor 0x298D30 prove ownership
