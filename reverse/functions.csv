@@ -3182,7 +3182,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SlaveWatcherBehavior@@UAE@XZ,,0x00207580,142,Code/GameEngine/Source/Common/SlaveWatcherBehaviorDestructorThunk.cpp,matched,Exact 142B @ 0x00207580; Exact retail MASM; instance factory->vtable dtor; del 0x2076E0 ctor 0x207300 vt 0xCA64DC
 ??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
-??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
 ??1SlavedUpdate@@UAE@XZ,,0x00113C60,131,Code/GameEngine/Source/Common/SlavedUpdateDestructorThunk.cpp,matched,Exact 131B; factory ownership Open-BFME4
 ??1SlavedUpdateModuleData@@UAE@XZ,,0x00126980,80,Code/GameEngine/Source/Common/SlavedUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two AsciiString members + inlined base vftable store) converted from __emit thunk
 ??1SlowDeathBehaviorModuleData@@UAE@XZ,,0x002095F0,221,Code/GameEngine/Source/Common/SlowDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 221B SEH dtor Open-BFME5
@@ -3195,7 +3194,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SpawnBehaviorModuleData@@UAE@XZ,,0x0012AA50,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
-??1SpawnUnitBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer SEH ModuleData dtor
 ??1SpecialAbilityUpdate@@UAE@XZ,,0x002AA910,153,Code/GameEngine/Source/Common/SpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 153B SEH dtor Open-BFME5
 ??1SpecialAbilityUpdateModuleData@@UAE@XZ,,0x002A5CC0,225,Code/GameEngine/Source/Common/SpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Exact 225B SEH dtor Open-BFME5
 ??1SpecialDisguiseUpdate@@UAE@XZ,,0x00137E80,284,Code/GameEngine/Source/Common/SpecialDisguiseUpdateDestructorThunk.cpp,matched,Exact 284B SEH dtor Open-BFME4
@@ -3269,8 +3267,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1UpgradeCenter@@UAE@XZ,,0x0010A8C0,111,Code/GameEngine/Source/Common/UpgradeCenterDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1UpgradeDieModuleData@@UAE@XZ,,0x001268A0,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
 ??1UpgradeModuleData@@UAE@XZ,,0x00101EB0,86,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM ICF alias
-??1UpgradeDieModuleData@@UAE@XZ,,0x001268A0,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
-??1UpgradeModuleData@@UAE@XZ,,0x00101EB0,86,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (derived vftable at entry; two AsciiString members; base vftable store) converted from __emit thunk; ICF-identical to ??1DieModuleData@@UAE@XZ
 ??1UpgradeModuleModuleData@@UAE@XZ,,0x00128FA0,273,Code/GameEngine/Source/Common/UpgradeModuleModuleDataDestructorThunk.cpp,matched,Exact 273B SEH dtor Open-BFME5
 ??1UpgradeSoundSelectorClientBehaviorModuleData@@UAE@XZ,,0x00608F80,67,Code/GameEngine/Source/GameLogic/Object/Behavior/UpgradeSoundSelectorClientBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
 ??1UpgradeTemplate@@MAE@XZ,,0x0010ACB0,170,Code/GameEngine/Source/Common/UpgradeTemplateDestructorThunk.cpp,matched,Certified packet 262 exact retail MASM f78745debd90e92551686dc404ec95aed7f2fa59f73073f3484f0f90880b45e3
