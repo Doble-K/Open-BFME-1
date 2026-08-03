@@ -1,161 +1,67 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift SegLineRendererClass::operator= __emit thunk to clean C++.
+// Refcounted texture pointer at +0 (Add_Ref inline: inc word [p+4]; Release_Ref
+// out-of-line and matched), then the plain field copies.
+
+class TextureBaseClass
+{
+public:
+    void Add_Ref() { ++*(unsigned short *)((char *)this + 4); }
+    void Release_Ref();
+};
 
 class SegLineRendererClass
 {
 public:
-	SegLineRendererClass &operator=(const SegLineRendererClass &);
+    SegLineRendererClass &operator=(const SegLineRendererClass &that);
+
+private:
+    TextureBaseClass *m_texture;
+    unsigned int m_f04;
+    unsigned int m_f08;
+    unsigned int m_f0C;
+    unsigned int m_f10;
+    unsigned int m_f14;
+    unsigned int m_f18;
+    unsigned int m_f1C;
+    unsigned int m_f20;
+    unsigned int m_f24;
+    unsigned int m_f28;
+    unsigned int m_f2C;
+    unsigned int m_f30;
+    unsigned int m_f34;
+    unsigned int m_f38;
+    unsigned int m_f3C;
+    unsigned int m_f40;
+    unsigned int m_f44;
 };
 
 // ??4SegLineRendererClass@@QAEAAV0@ABV0@@Z
-__declspec(naked) SegLineRendererClass &SegLineRendererClass::operator=(const SegLineRendererClass &)
+SegLineRendererClass &SegLineRendererClass::operator=(const SegLineRendererClass &that)
 {
-	__asm {
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8b
-		__emit 0x7c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x3b
-		__emit 0xf7
-		__emit 0x74
-		__emit 0x7f
-		__emit 0x8b
-		__emit 0x07
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x04
-		__emit 0x66
-		__emit 0xff
-		__emit 0x40
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x0e
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x05
-		__emit 0xe8
-		__emit 0x8f
-		__emit 0xb6
-		__emit 0x08
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x07
-		__emit 0x89
-		__emit 0x06
-		__emit 0x8b
-		__emit 0x4f
-		__emit 0x04
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x57
-		__emit 0x08
-		__emit 0x89
-		__emit 0x56
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x1c
-		__emit 0x89
-		__emit 0x46
-		__emit 0x1c
-		__emit 0x8b
-		__emit 0x4f
-		__emit 0x0c
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x57
-		__emit 0x10
-		__emit 0x89
-		__emit 0x56
-		__emit 0x10
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x14
-		__emit 0x89
-		__emit 0x46
-		__emit 0x14
-		__emit 0x8b
-		__emit 0x4f
-		__emit 0x18
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x18
-		__emit 0x8b
-		__emit 0x57
-		__emit 0x20
-		__emit 0x89
-		__emit 0x56
-		__emit 0x20
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x24
-		__emit 0x89
-		__emit 0x46
-		__emit 0x24
-		__emit 0x8b
-		__emit 0x4f
-		__emit 0x28
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x28
-		__emit 0x8b
-		__emit 0x57
-		__emit 0x2c
-		__emit 0x89
-		__emit 0x56
-		__emit 0x2c
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x30
-		__emit 0x89
-		__emit 0x46
-		__emit 0x30
-		__emit 0x8b
-		__emit 0x4f
-		__emit 0x34
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x34
-		__emit 0x8b
-		__emit 0x57
-		__emit 0x38
-		__emit 0x89
-		__emit 0x56
-		__emit 0x38
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x3c
-		__emit 0x89
-		__emit 0x46
-		__emit 0x3c
-		__emit 0x8b
-		__emit 0x4f
-		__emit 0x40
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x40
-		__emit 0x8b
-		__emit 0x57
-		__emit 0x44
-		__emit 0x89
-		__emit 0x56
-		__emit 0x44
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
-	}
+    if (this == &that)
+        return *this;
+    if (that.m_texture)
+        that.m_texture->Add_Ref();
+    if (m_texture)
+        m_texture->Release_Ref();
+    m_texture = that.m_texture;
+    m_f04 = that.m_f04;
+    m_f08 = that.m_f08;
+    m_f1C = that.m_f1C;
+    m_f0C = that.m_f0C;
+    m_f10 = that.m_f10;
+    m_f14 = that.m_f14;
+    m_f18 = that.m_f18;
+    m_f20 = that.m_f20;
+    m_f24 = that.m_f24;
+    m_f28 = that.m_f28;
+    m_f2C = that.m_f2C;
+    m_f30 = that.m_f30;
+    m_f34 = that.m_f34;
+    m_f38 = that.m_f38;
+    m_f3C = that.m_f3C;
+    m_f40 = that.m_f40;
+    m_f44 = that.m_f44;
+    return *this;
 }

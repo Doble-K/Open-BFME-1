@@ -4248,7 +4248,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4RenderObjectUpdateModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0003850F,0x5d9770,46,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??4RoadSegment@@QAEAAV0@ABV0@@Z,,0x00707280,265,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ??4ScienceInfo@@QAEAAV0@ABV0@@Z,,0x000E85C0,81,Code/GameEngine/Source/Common/RTS/ScienceInfoAssignmentThunk.cpp,matched,Exact 81B C++ member thunk Open-BFME5
-??4SegLineRendererClass@@QAEAAV0@ABV0@@Z,,0x009600F0,146,Code/GameEngine/Source/Common/SegLineRendererClassAssignThunk.cpp,matched,Exact 146B Open-BFME5
+??4SegLineRendererClass@@QAEAAV0@ABV0@@Z,,0x009600F0,146,Code/GameEngine/Source/Common/SegLineRendererClassAssignThunk.cpp,matched,Open-BFME5 clean C++ refcounted assignment; Release_Ref via matched TextureBaseClassExact 146B Open-BFME5
 ??4SegmentedLineClass@@QAEAAV0@ABV0@@Z,,0x00950A90,103,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ??4SentenceDataStruct@Render2DSentenceClass@@QAEAAU01@ABU01@@Z,,0x005F6970,61,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,
 ??4Signature@DebugStackwalk@@QAEAAV01@ABV01@@Z,,0x0088C6A0,32,Code/Libraries/Source/WWVegas/WWDebug/debug_stack.cpp,matched,
