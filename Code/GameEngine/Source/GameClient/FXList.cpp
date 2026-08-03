@@ -847,11 +847,7 @@ FXListStore::FXListStore()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ??1FXListStore@@UAE@XZ present-unmatched
-FXListStore::~FXListStore()
-{
-	m_fxmap.clear();
-}
+// ??1FXListStore@@UAE@XZ body: FXListStoreDestructorThunk.cpp (exact retail @ 0x009F2800)
 
 //-------------------------------------------------------------------------------------------------
 const FXList *FXListStore::findFXList(const char* name) const
