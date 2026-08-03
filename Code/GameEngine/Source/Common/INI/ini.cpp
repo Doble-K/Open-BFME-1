@@ -223,53 +223,8 @@ Bool INI::isValidINIFilename( const char *filename )
 	* If we are to load subdirectories, we will load them *after* we load all the
 	* files in the current directory */
 //-------------------------------------------------------------------------------------------------
-// ?loadDirectory@INI@@QAEXVAsciiString@@_NW4INILoadType@@PAVXfer@@@Z present-unmatched
-void INI::loadDirectory( AsciiString dirName, Bool subdirs, INILoadType loadType, Xfer *pXfer )
-{
-	// sanity
-	if( dirName.isEmpty() )
-		throw INI_INVALID_DIRECTORY;
-
-	try
-	{
-		FilenameList filenameList;
-		dirName.concat('\\');
-		TheFileSystem->getFileListInDirectory(dirName, "*.ini", filenameList, TRUE);
-		// Load the INI files in the dir now, in a sorted order.  This keeps things the same between machines
-		// in a network game.
-		FilenameList::const_iterator it = filenameList.begin();
-		while (it != filenameList.end())
-		{
-			AsciiString tempname;
-			tempname = (*it).str() + dirName.getLength();
-
-			if ((tempname.find('\\') == NULL) && (tempname.find('/') == NULL)) {
-				// this file doesn't reside in a subdirectory, load it first.
-				load( *it, loadType, pXfer );
-			}
-			++it;
-		}
-
-		it = filenameList.begin();
-		while (it != filenameList.end())
-		{
-			AsciiString tempname;
-			tempname = (*it).str() + dirName.getLength();
-
-			if ((tempname.find('\\') != NULL) || (tempname.find('/') != NULL)) {
-				load( *it, loadType, pXfer );
-			}
-			++it;
-		}
-	} 
-	catch (...) 
-	{
-		// propagate the exception
-		throw;
-	}
-
-}  // end loadDirectory
-
+// ?loadDirectory@INI@@QAEXVAsciiString@@_NW4INILoadType@@PAVXfer@@@Z
+// Body in Code/masm_dumps/loadDirectory_INI_QAEXVAsciiString_NW4INILoadType_PAVXfer_Z_853F10.asm (exact 700B retail @ 0x00853F10).
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 // ?prepFile@INI@@IAEXVAsciiString@@W4INILoadType@@@Z present-unmatched
