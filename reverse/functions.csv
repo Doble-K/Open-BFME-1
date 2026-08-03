@@ -6372,7 +6372,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GameSpyIsOverlayOpen@@YA_NW4GSOverlayType@@@Z,,0x00627B40,19,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,
 ?GameSpyOpenOverlay@@YAXW4GSOverlayType@@@Z,,0x0002BA21,5,Code/GameEngine/Source/GameNetwork/GameSpyOpenOverlayThunk.cpp,matched,5-byte incremental-link global thunk converted to focused C++ source
 ?GameSpyPlayerInfoOverlayInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp,matched,
-?GameSpyPlayerInfoOverlaySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D99C0,816,Code/masm_dumps/_rn7__GameSpyPlayerInfoOverlaySystem__YA_AW4WindowMsgHandledType__PAVGameWi_4D99C0.asm,matched,reloc-needle Open-BFME4+Grok
 ?GameSpyToggleOverlay@@YAXW4GSOverlayType@@@Z,,0x00628240,29,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,
 ?GameWinDefaultInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?GameWinDefaultSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -34598,4 +34597,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?doSetRallyPoint@@YAXPAVObject@@ABUCoord3D@@@Z,,0x00396D40,880,Code/GameEngine/Source/GameLogic/System/GameLogicDispatchDoSetRallyPointThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseChildWindows@@YA_NPAVGameWindow@@PAVFile@@PAD@Z,,0x00487B50,850,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScriptParseChildWindowsThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?PopulateCustomLadderComboBox@@YAXXZ,,0x004D6420,936,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopulateCustomLadderComboBoxThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?GameSpyPlayerInfoOverlaySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D99C0,816,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameSpyPlayerInfoOverlaySystemThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
