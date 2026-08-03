@@ -1,81 +1,50 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHs-
+// Open-BFME5: lift RenderObjectUpdateModuleTemplate copy-ctor __emit thunk to
+// clean C++. Retail shape: the primary base subobject spans +0..+7 and itself
+// has two polymorphic bases (vtables at +0 and +4); a second direct base sits
+// at +8 and is copy constructed through the null-preserving src+8 adjustment
+// idiom. The nested +4 vtable store sinks to the end of the ctor, after the
+// direct subobject vtable stores. /EHs- because retail has no unwind frame.
+
+class ROUMT_VtblBaseA
+{
+public:
+    virtual ~ROUMT_VtblBaseA();
+};
+
+class ROUMT_VtblBaseB
+{
+public:
+    virtual ~ROUMT_VtblBaseB();
+};
+
+class ROUMT_CopyBase : public ROUMT_VtblBaseA, public ROUMT_VtblBaseB
+{
+public:
+    ROUMT_CopyBase(const ROUMT_CopyBase &);
+    virtual ~ROUMT_CopyBase();
+};
+
+class ROUMT_OffsetBase
+{
+public:
+    ROUMT_OffsetBase(const ROUMT_OffsetBase &);
+    virtual ~ROUMT_OffsetBase();
+};
 
 namespace FXParticleSystem
 {
 
-class RenderObjectUpdateModuleTemplate
+class RenderObjectUpdateModuleTemplate : public ROUMT_CopyBase, public ROUMT_OffsetBase
 {
 public:
     RenderObjectUpdateModuleTemplate(const RenderObjectUpdateModuleTemplate &);
 };
 
 // ??0RenderObjectUpdateModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z
-__declspec(naked) RenderObjectUpdateModuleTemplate::RenderObjectUpdateModuleTemplate(const RenderObjectUpdateModuleTemplate &)
+RenderObjectUpdateModuleTemplate::RenderObjectUpdateModuleTemplate(const RenderObjectUpdateModuleTemplate &that)
+    : ROUMT_CopyBase(that), ROUMT_OffsetBase(that)
 {
-    __asm {
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0xe8;
-        __emit 0x07;
-        __emit 0x3d;
-        __emit 0xa4;
-        __emit 0xff;
-        __emit 0x85;
-        __emit 0xff;
-        __emit 0x74;
-        __emit 0x05;
-        __emit 0x8d;
-        __emit 0x47;
-        __emit 0x08;
-        __emit 0xeb;
-        __emit 0x02;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x8d;
-        __emit 0x7e;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xe8;
-        __emit 0xb8;
-        __emit 0x79;
-        __emit 0xa5;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x07;
-        __emit 0xa4;
-        __emit 0x0d;
-        __emit 0x11;
-        __emit 0x01;
-        __emit 0x5f;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x90;
-        __emit 0x0d;
-        __emit 0x11;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x04;
-        __emit 0x8c;
-        __emit 0x0d;
-        __emit 0x11;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
 }
 
 }
