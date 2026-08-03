@@ -1,51 +1,44 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: CategoryModuleTemplate (ledger $07 / N=8) default ctor
+// Retail: construct sub at +4 (interim vtbl), set two bools at +8/+9 to 1,
+// then dual most-derived vtbls at +0/+4. novtable so final vtbls are sequenced
+// in the body after the bools.
 
 namespace FXParticleSystem
 {
-template <int Category>
-class CategoryModuleTemplate
+
+extern "C" char CategoryModuleTemplate8_vtbl0;
+extern "C" char CategoryModuleTemplate8_vtbl4;
+
+class CategoryModuleTemplate8Sub
 {
 public:
-    CategoryModuleTemplate();
+	virtual void dummy();
 };
 
-template <int Category>
-__declspec(naked) CategoryModuleTemplate<Category>::CategoryModuleTemplate()
+template <int N>
+class __declspec(novtable) CategoryModuleTemplate
 {
-    __asm {
-        _emit 08Bh
-        _emit 0C1h
-        _emit 0C7h
-        _emit 040h
-        _emit 004h
-        _emit 05Ch
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 0B1h
-        _emit 001h
-        _emit 088h
-        _emit 048h
-        _emit 008h
-        _emit 088h
-        _emit 048h
-        _emit 009h
-        _emit 0C7h
-        _emit 000h
-        _emit 048h
-        _emit 038h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 040h
-        _emit 004h
-        _emit 044h
-        _emit 038h
-        _emit 007h
-        _emit 001h
-        _emit 0C3h
-    }
+public:
+	CategoryModuleTemplate();
+
+private:
+	void *m_v0;
+	CategoryModuleTemplate8Sub m_sub;
+	bool m_a;
+	bool m_b;
+};
+
+// MSVC mangles CategoryModuleTemplate<8> as @$07
+template <int N>
+CategoryModuleTemplate<N>::CategoryModuleTemplate()
+	: m_a(true),
+	  m_b(true)
+{
+	m_v0 = &CategoryModuleTemplate8_vtbl0;
+	*reinterpret_cast<void **>(&m_sub) = &CategoryModuleTemplate8_vtbl4;
 }
 
-template class CategoryModuleTemplate<8>;
+template CategoryModuleTemplate<8>::CategoryModuleTemplate();
 }
