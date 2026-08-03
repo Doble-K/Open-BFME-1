@@ -13051,7 +13051,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removePos@Pathfinder@@QAEXPAVObject@@@Z,,0x0002F8DD,5,Code/Libraries/Source/WWVegas/WWLib/RadarRefreshTerrainThunk.cpp,matched,object-symbol=?refreshTerrain@Radar@@UAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
 ?removeProp@BaseHeightMapRenderObjClass@@QAEXH@Z,,0x006C8C80,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ?removeRadar@Player@@QAEX_N@Z,,0x000CC0B0,215,Code/GameEngine/Source/GameLogic/Player_removeRadar_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?removeSide@SidesList@@QAEXH@Z,,0x000C31B0,363,Code/masm_dumps/_sa14__removeSide_SidesList__QAEXH_Z_C31B0.asm,matched,sa14 Open-BFME4+Grok neutral
+?removeSide@SidesList@@QAEXH@Z,,0x000C31B0,363,Code/GameEngine/Source/Common/SidesList_removeSideMethodThunk.cpp,matched,sa14 Open-BFME4+Grok neutral
 ?removeSmudgeFromSet@SmudgeSet@@QAEXAAUSmudge@@@Z,,0x005D40A0,115,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ?removeSmudgeSet@SmudgeManager@@QAEXAAUSmudgeSet@@@Z,,0x005D4060,40,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ?removeStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00632A50,187,Code/GameEngine/Source/Common/GameSpyInfo_removeStagingRoom_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
