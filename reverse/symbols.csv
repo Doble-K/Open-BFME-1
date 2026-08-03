@@ -1271,6 +1271,7 @@ name,address,notes
 ??0SubObjectsUpgradeModuleData@@QAE@XZ,0x00044FA8,pinharvest x1 (thunk)
 ??0SubsystemInterface@@QAE@XZ,0x009A1A30
 ??0SupplyCenterDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00021CE2,module ctor (friend_newModuleInstance retail call target)
+??0SupplyCenterDockUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048EA5,SupplyCenterDockUpdate ctor base
 ??0SupplyCenterDockUpdateModuleData@@QAE@XZ,0x000118E7,pinharvest x1 (thunk)
 ??0SupplyCenterDockUpdateModuleData@@QAE@XZ,0x000261CA,pinharvest x1 (thunk)
 ??0SupplyCenterDockUpdateModuleData@@QAE@XZ,0x0003035A,pinharvest x1 (thunk)
