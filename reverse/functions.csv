@@ -1601,7 +1601,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GenericMultiListClass@@QAE@XZ,,0x006D11E0,39,Code/Libraries/Source/WWVegas/WWMath/lookuptable.cpp,matched,
 ??0GenericMultiListIterator@@QAE@PAVGenericMultiListClass@@@Z,,0x006CA3F0,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ??0GeometryInfo@@QAE@ABV0@@Z,,0x003A6360,24,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
-??0GeometryUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D5790,120,Code/masm_dumps/GeometryUpgrade_constructor.asm,matched,Exact 120B @ 0x002D5790; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11DF20
+??0GeometryUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D5790,120,Code/GameEngine/Source/GameLogic/Object/Upgrade/GeometryUpgradeCtorThunk.cpp,matched,Exact 120B @ 0x002D5790; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11DF20
 ??0GeometryUpgradeModuleData@@QAE@XZ,,0x002D5CE0,143,Code/GameEngine/Source/GameLogic/AI/GeometryUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0GettingBuiltBehaviorModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/GettingBuiltBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0GhostObjectManager@@QAE@XZ,,0x001B3AA0,20,Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp,matched,converted thunk to TU-scoped C++ constructor
