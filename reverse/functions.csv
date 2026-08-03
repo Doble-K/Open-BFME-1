@@ -5480,7 +5480,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Build_Matrix3D@@YAAAVMatrix3D@@ABVQuaternion@@AAV1@@Z,,0x00952410,218,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ?Build_Matrix4@@YA?AVMatrix4@@ABVQuaternion@@@Z,,0x008DBE10,286,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3@@@Z,,0x008DBB80,330,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
-?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3D@@@Z,,0x008DBA40,311,Code/masm_dumps/_sym1__Build_Quaternion__YA_AVQuaternion__ABVMatrix3D___Z_8DBA40.asm,matched,symbol-pin Open-BFME4+Grok
+?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3D@@@Z,,0x008DBA40,311,Code/GameEngine/Source/Common/Build_Quaternion_Thunk.cpp,matched,symbol-pin Open-BFME4+Grok
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix4@@@Z,,0x008DBCD0,311,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Build_Sentence_Not_Centered@Render2DSentenceClass@@AAE?AVVector2@@PBGPAH1_N@Z,,0x00942430,1934,Code/masm_dumps/__Build_Sentence_Not_Centered_Render2DSentenceClass_942430.asm,matched,
 ?Build_Textures@Render2DSentenceClass@@AAEXXZ,,0x0093DD60,530,Code/masm_dumps/__Build_Textures_Render2DSentenceClass__AAEXXZ_93DD60.asm,matched,
@@ -9241,7 +9241,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?canFireWeapon@ActionManager@@QAE_NPBVObject@@W4WeaponSlotType@@W4CommandSourceType@@@Z,,0x000C4300,37,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,reloc-needle Open-BFME4+Grok
 ?canOverrideSpecialPowerDestination@ActionManager@@QAE_NPBVObject@@PBUCoord3D@@W4SpecialPowerType@@W4CommandSourceType@@@Z,,0x000C4330,68,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,
 ?canRenderToTexture@W3DShaderManager@@SA_NXZ,,0x007D0A60,27,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
-?canRepairObject@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,,0x000C5230,316,Code/masm_dumps/ActionManager_canRepairObject.asm,matched,True body 0xC5230/316 (queue 0x5AB05D MISPLACED); thunk 0x338D4 + Dozer/Worker callers; ret 0xC
+?canRepairObject@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,,0x000C5230,316,Code/GameEngine/Source/Common/ActionManager_canRepairObject_Thunk.cpp,matched,True body 0xC5230/316 (queue 0x5AB05D MISPLACED); thunk 0x338D4 + Dozer/Worker callers; ret 0xC
 ?canResumeConstructionOf@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,,0x000C53C0,92,Code/GameEngine/Source/Common/ActionManager_canResumeConstructionOf_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?canSelectedObjectsEffectivelyUseWeapon@InGameUI@@QBE_NPBVCommandButton@@PBVObject@@PBUCoord3D@@W4SelectionRules@1@@Z,,0x0043EE20,269,Code/GameEngine/Source/GameClient/InGameUI_canSelectedObjectsEffectivelyUseWeapon_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?canSelectedObjectsNonAttackInteractWithObject@InGameUI@@QBE_NPBVObject@@W4SelectionRules@1@@Z,,0x00449140,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
@@ -10847,7 +10847,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getAsciiString@Dict@@QBE?AVAsciiString@@W4NameKeyType@@PA_N@Z,,0x0002FF6D,5,Code/GameEngine/Source/Common/RTS/DictGetAsciiStringThunk.cpp,matched,5-byte incremental-link Dict const member thunk converted to focused C++ source
 ?getAssaultTransportAIInterface@AIUpdateInterface@@UAEPAVAssaultTransportAIInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getAssaultTransportAIInterface@AIUpdateInterface@@UBEPBVAssaultTransportAIInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getAudioLengthMS@AudioManager@@UAEMPBVAudioEventRTS@@@Z,,0x0069FA00,323,Code/masm_dumps/getAudioLengthMS_AudioManager_69FA00.asm,matched,Certified packet 237 exact retail MASM SHA256 5cefa1c7f3e5e7d6fe3ad2dd58ec5f53ff3b21752dedfdbc12def2fb535e355b
+?getAudioLengthMS@AudioManager@@UAEMPBVAudioEventRTS@@@Z,,0x0069FA00,323,Code/GameEngine/Source/Common/AudioManager_getAudioLengthMS_Thunk.cpp,matched,Certified packet 237 exact retail MASM SHA256 5cefa1c7f3e5e7d6fe3ad2dd58ec5f53ff3b21752dedfdbc12def2fb535e355b
 ?getAudioPriority@AudioEventRTS@@QBE?AW4AudioPriority@@XZ,,0x00087410,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Retail thunk-bound BFME audio-priority getter
 ?getBattlePlansActiveSpecific@Player@@QBEHW4BattlePlanStatus@@@Z,,0x001C4310,575,Code/masm_dumps/_sa11__getBattlePlansActiveSpecific_Player__QBEHW4BattlePlanStatus___Z_1C4310.asm,matched,string-anchor Open-BFME4+Grok <No Object>
 ?getBehaviorModules@Object@@QBEPAPAVBehaviorModule@@XZ,,0x00478700,7,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,Ghidra-bound unique accessor
@@ -12317,7 +12317,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?militarySubtitle@InGameUI@@UAEXABVAsciiString@@H@Z,,0x00441D30,585,Code/masm_dumps/militarySubtitle_InGameUI_UAEXABVAsciiString_H_Z_00441D30_packet349.asm,matched,Certified packet 349 exact retail db body SHA-256 0497b9effcf396d5176dbffe01f01b9bc6576d950b93804954a1d8c24b372472
 ?minInt@@YAHHH@Z,,0x0094A8C0,15,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,ICF alias of existing matched body
 ?minf@@YAMMM@Z,,0x0075B460,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
-?missionSave@GameState@@QAE?AW4SaveCode@@XZ,,0x00110600,311,Code/masm_dumps/_sa4__missionSave_GameState__QAE_AW4SaveCode__XZ_110600.asm,matched,Exact 311B Open-BFME4
+?missionSave@GameState@@QAE?AW4SaveCode@@XZ,,0x00110600,311,Code/GameEngine/Source/Common/GameState_missionSave_Thunk.cpp,matched,Exact 311B Open-BFME4
 ?move@?$__char_traits_base@DH@_STL@@SAPADPADPBDI@Z,,0x000A32D0,23,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?move@?$__char_traits_base@GG@_STL@@SAPAGPAGPBGI@Z,,0x004D4100,25,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
 ?moveAllies@Pathfinder@@QAE_NPAVObject@@PAVPath@@@Z,,0x003EBA30,1268,Code/masm_dumps/moveAllies_Pathfinder_QAE_NPAVObject_PAVPath_Z_003EBA30_49772ebf.asm,matched,Certified packet 188 true body via reviewed caller thunk and ret 0x0C boundary
@@ -13726,7 +13726,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?startPowerRecharge@SpecialPowerModule@@UAEXXZ,,0x0026AE00,112,Code/GameEngine/Source/Common/promoted__startPowerRecharge_SpecialPowerModule_UAEXXZ_0026AE00.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 112B
 ?startRenderToTexture@W3DShaderManager@@SAXXZ,,0x000154E7,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
 ?startThread@GameSpyBuddyMessageQueue@@UAEXXZ,,0x0063C650,222,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameSpyBuddyMessageQueueStartThreadThunk.cpp,matched,Exact 222B C++ raw virtual-method thunk Open-BFME5
-?startTraining@AIPlayer@@MAE_NPAVWorkOrder@@_NVAsciiString@@@Z,,0x00166EF0,313,Code/masm_dumps/_str__startTraining_AIPlayer_MAE_NPAVWorkOrder__NVAsciiString_Z_166EF0.asm,matched,str Queuing true body 0x166ef0 not drift 0xC6C3D3 Open-BFME structural
+?startTraining@AIPlayer@@MAE_NPAVWorkOrder@@_NVAsciiString@@@Z,,0x00166EF0,313,Code/GameEngine/Source/Common/AIPlayer_startTraining_Thunk.cpp,matched,str Queuing true body 0x166ef0 not drift 0xC6C3D3 Open-BFME structural
 ?startsWith@?$StringBase@D@@QBE_NABV1@@Z,0x0004B6A0,0x0033CB50,50,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?startsWith@?$StringBase@D@@QBE_NPBD@Z,0x0001702B,0x00061DF0,50,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?startsWith@?$StringBase@D@@QBE_NPBDH@Z,0x008875A0,0x8875a0,60,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
@@ -13848,7 +13848,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@ControlBarScheme@@QAEXXZ,,0x004AD410,136,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ?update@CountUpTransition@@UAEXH@Z,,0x0059C0A0,430,Code/masm_dumps/CountUpTransition_update.asm,matched,Exact retail MASM; true body 0x59C0A0/430 via CountUp vtable@0xD0C688 slot2 (update); queue 0x59C06B was leading int3 pad
 ?update@DirectInputMouse@@UAEXXZ,,0x006BB8E0,64,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
-?update@DockUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002CB0A0,323,Code/masm_dumps/_sa11__update_DockUpdate__UAE_AW4UpdateSleepTime__XZ_2CB0A0.asm,matched,string-anchor Open-BFME4+Grok DockWaiting
+?update@DockUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002CB0A0,323,Code/GameEngine/Source/Common/DockUpdate_update_Thunk.cpp,matched,string-anchor Open-BFME4+Grok DockWaiting
 ?update@DockingState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@DownloadManager@@QAEJXZ,,0x00626950,7,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,Unique padded virtual tail call
 ?update@DozerActionDoActionState@@UAE?AW4StateReturnType@@XZ,,0x002B8FF0,1936,Code/masm_dumps/_str__update_DozerActionDoActionState_UAE_AW4StateReturnType_2B8FF0.asm,matched,
