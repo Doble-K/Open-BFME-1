@@ -1781,7 +1781,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MatBufferClass@@QAE@HPBD@Z,,0x0092A160,128,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ??0MatPassTaskClass@@QAE@PAVMaterialPassClass@@PAVMeshClass@@@Z,,0x009457C0,34,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??0MaterialCollectorClass@@QAE@XZ,,0x00931070,163,Code/masm_dumps/___0MaterialCollectorClass__QAE_XZ_931070.asm,matched,
-??0MaterialPassClass@@QAE@XZ,,0x009333A0,104,Code/masm_dumps/__0MaterialPassClass__QAE_XZ_9333A0.asm,matched,MASM exact retail dump
+??0MaterialPassClass@@QAE@XZ,,0x009333A0,104,Code/Libraries/Source/WWVegas/WW3D2/MaterialPassClassCtorThunk.cpp,matched,MASM exact retail dump; converted to an exact standalone C++ thunk
 ??0Material_Override@RenderObjClass@@QAE@XZ,,0x006BCB30,17,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DGhostObject.cpp,matched,
 ??0Matrix3@@QAE@ABV0@@Z,,0x005F6970,61,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ??0Matrix3@@QAE@ABVMatrix3D@@@Z,,0x008D9150,61,Code/Libraries/Source/WWVegas/WWMath/matrix3.cpp,matched,caller-derived

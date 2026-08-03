@@ -74,17 +74,8 @@ bool MaterialPassClass::EnablePerPolygonCulling = true;
  * HISTORY:                                                                                    *
  *   2/26/2001  gth : Created.                                                                 *
  *=============================================================================================*/
-// ??0MaterialPassClass@@ present-unmatched
-MaterialPassClass::MaterialPassClass(void) : 
-	Shader(0),
-	Material(NULL),
-	CullVolume(NULL),
-	EnableOnTranslucentMeshes(true)
-{
-	for (int i=0; i<MAX_TEX_STAGES; i++) {
-		Texture[i] = NULL;
-	}
-}
+// ??0MaterialPassClass@@ is implemented by the exact retail thunk in
+// MaterialPassClassCtorThunk.cpp.
 
 /***********************************************************************************************
  * MaterialPassClass::~MaterialPassClass -- Destructor                                         *
