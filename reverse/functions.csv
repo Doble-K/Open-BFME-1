@@ -2188,7 +2188,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SkirmishGameInfo@@QAE@XZ,,0x00619720,134,Code/masm_dumps/SkirmishGameInfo_constructor.asm,matched,Exact retail MASM; caller allocation vtables and eight-slot construction prove ownership; avoids systemic BFME/ZH layout drift
 ??0SkirmishPreferences@@,,0x0009F850,377,Code/masm_dumps/_sa5___0SkirmishPreferences___9F850.asm,matched,Exact 377B Open-BFME4
 ??0SlaughterHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024E7A0,102,Code/masm_dumps/SlaughterHordeContain_constructor.asm,matched,Exact 102B; factory ownership Open-BFME4
-??0SlaughterHordeContainModuleData@@QAE@XZ,,0x0022B160,110,Code/masm_dumps/SlaughterHordeContainModuleData_constructor.asm,matched,Exact 110B @ 0x0022B160; Exact retail MASM ModuleData ctor; unique factory 0x116750
+??0SlaughterHordeContainModuleData@@QAE@XZ,,0x0022B160,110,Code/GameEngine/Source/GameLogic/AI/SlaughterHordeContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
 ??0SlaveWatcherBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00207300,134,Code/masm_dumps/SlaveWatcherBehavior_constructor.asm,matched,Exact 134B @ 0x00207300; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1174C0
 ??0SlaveWatcherBehaviorModuleData@@QAE@XZ,,0x002074C0,17,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehavior.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A4260,112,Code/masm_dumps/SlavedUpdate_constructor.asm,matched,Exact 112B; factory ownership Open-BFME4
