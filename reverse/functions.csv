@@ -1522,7 +1522,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FXListDieModuleData@@QAE@XZ,,0x001234F0,86,Code/GameEngine/Source/GameLogic/AI/FXListDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0FXLocInfo@@QAE@XZ,,0x0010DB40,10,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
 ??0FXNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/FXList.cpp,matched,ICF alias of existing matched body
-??0FadeAndDieOrnamentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00292230,139,Code/masm_dumps/FadeAndDieOrnamentUpdate_constructor.asm,matched,Exact 139B; factory ownership Open-BFME4
+??0FadeAndDieOrnamentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00292230,139,Code/GameEngine/Source/Common/RTS/FadeAndDieOrnamentUpdateCtorThunk.cpp,matched,Exact 139B; factory ownership Open-BFME4
 ??0FadeAndDieOrnamentUpdateModuleData@@QAE@XZ,,0x00125B30,127,Code/GameEngine/Source/Common/RTS/FadeAndDieOrnamentUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0FailureState@@QAE@PAVStateMachine@@@Z,,0x00170E10,46,Code/GameEngine/Source/GameLogic/AI/FailureStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
 ??0FastAllocatorGeneral@@QAE@XZ,,0x00B027B0,113,Code/masm_dumps/___0FastAllocatorGeneral__QAE_XZ_B027B0.asm,matched,
