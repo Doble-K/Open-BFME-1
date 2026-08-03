@@ -1,112 +1,46 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-
+// Open-BFME5: lift Pathfinder::queueForPath __emit thunk to clean C++.
+// Retail is 102 bytes at 0x003D5540 (the old 96B claim is truncated): scan
+// the ring from head to tail for a duplicate, then append unless full.
+// The do-while re-reads m_tail each iteration; the insert uses the tail
+// value loaded at entry. /EHs- because retail has no unwind frame.
 
 enum ObjectID { OBJECT_ID_INVALID = 0 };
+
 class Pathfinder
 {
 public:
-	bool queueForPath(ObjectID);
+    bool queueForPath(ObjectID);
+
+private:
+    unsigned char m_pad[0x24718];
+    unsigned int m_queue[0x200];
+    int m_head;
+    int m_tail;
 };
 
 // ?queueForPath@Pathfinder@@QAE_NW4ObjectID@@@Z
-__declspec(naked) bool Pathfinder::queueForPath(ObjectID)
+bool Pathfinder::queueForPath(ObjectID id)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x91
-        __emit 0x1c
-        __emit 0x4f
-        __emit 0x02
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xb1
-        __emit 0x18
-        __emit 0x4f
-        __emit 0x02
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x3b
-        __emit 0xc2
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x74
-        __emit 0x23
-        __emit 0xeb
-        __emit 0x06
-        __emit 0x8d
-        __emit 0x9b
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x39
-        __emit 0xbc
-        __emit 0x81
-        __emit 0x18
-        __emit 0x47
-        __emit 0x02
-        __emit 0x00
-        __emit 0x74
-        __emit 0x36
-        __emit 0x40
-        __emit 0x3d
-        __emit 0x00
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x7c
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x3b
-        __emit 0x81
-        __emit 0x1c
-        __emit 0x4f
-        __emit 0x02
-        __emit 0x00
-        __emit 0x75
-        __emit 0xe5
-        __emit 0x8d
-        __emit 0x42
-        __emit 0x01
-        __emit 0x3d
-        __emit 0x00
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x7c
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x75
-        __emit 0x07
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x32
-        __emit 0xc0
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x89
-        __emit 0xbc
-        __emit 0x91
-        __emit 0x18
-        __emit 0x47
-        __emit 0x02
-        __emit 0x00
-        __emit 0x89
-        __emit 0x81
-        __emit 0x1c
-        __emit 0x4f
-        __emit 0x02
-        __emit 0x00
-        __emit 0x5f
-	}
+    int tail = m_tail;
+    int i = m_head;
+    while (i != m_tail) {
+        if (m_queue[i] == (unsigned int)id) {
+            return true;
+        }
+        ++i;
+        if (i >= 0x200) {
+            i = 0;
+        }
+    }
+    int next = tail + 1;
+    if (next >= 0x200) {
+        next = 0;
+    }
+    if (next == m_head) {
+        return false;
+    }
+    m_queue[tail] = id;
+    m_tail = next;
+    return true;
 }

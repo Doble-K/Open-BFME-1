@@ -12912,7 +12912,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?push_back@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAEX_N@Z,,0x002CCB10,109,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?qmProfileIDCallback@@YAXPAXHPBDH0@Z,,0x00642F40,31,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?queueDozer@AIPlayer@@MAEXXZ,,0x001657E0,490,Code/masm_dumps/_sa__queueDozer_AIPlayer__MAEXXZ_1657E0.asm,matched,Exact 490B string-anchored Open-BFME4
-?queueForPath@Pathfinder@@QAE_NW4ObjectID@@@Z,,0x003D5540,96,Code/GameEngine/Source/Common/Pathfinder_queueForPath_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?queueForPath@Pathfinder@@QAE_NW4ObjectID@@@Z,,0x003D5540,102,Code/GameEngine/Source/Common/Pathfinder_queueForPath_Thunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit thunk; old 96B claim was truncated
 ?queueLocalCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00662E80,484,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?queueParticleRender@W3DParticleSystemManager@@UAEXXZ,,0x0024A270,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DParticleSys.cpp,matched,
 ?queueSend@Transport@@QAE_NIGPBEH@Z,,0x00049F80,5,Code/GameEngine/Source/GameNetwork/TransportQueueSendThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x683830
