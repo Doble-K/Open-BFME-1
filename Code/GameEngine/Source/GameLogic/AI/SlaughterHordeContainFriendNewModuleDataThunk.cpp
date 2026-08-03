@@ -1,127 +1,41 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: SlaughterHordeContain::friend_newModuleData factory.
 
 class INI;
 class ModuleData;
 
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+class SlaughterHordeContainModuleData
+{
+public:
+	SlaughterHordeContainModuleData();
+	virtual ~SlaughterHordeContainModuleData();
+
+private:
+	unsigned char m_pad[0x314];
+};
+
+class INI
+{
+public:
+	void initFromINI(void *what, const void *parseTable);
+};
+
+extern "C" char SlaughterHordeContainFieldParse;
+
 class SlaughterHordeContain
 {
 public:
-    static ModuleData *friend_newModuleData(INI *);
+	static ModuleData *friend_newModuleData(INI *ini);
 };
 
 // ?friend_newModuleData@SlaughterHordeContain@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *SlaughterHordeContain::friend_newModuleData(INI *)
+ModuleData *SlaughterHordeContain::friend_newModuleData(INI *ini)
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 08Bh
-        _emit 0E9h
-        _emit 0FFh
-        _emit 000h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 056h
-        _emit 068h
-        _emit 018h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 0E8h
-        _emit 0BFh
-        _emit 0B7h
-        _emit 076h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 089h
-        _emit 044h
-        _emit 024h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 074h
-        _emit 00Bh
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 0ECh
-        _emit 057h
-        _emit 0F0h
-        _emit 0FFh
-        _emit 08Bh
-        _emit 0F0h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0F6h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 018h
-        _emit 085h
-        _emit 0C9h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 074h
-        _emit 00Bh
-        _emit 068h
-        _emit 0BAh
-        _emit 0FAh
-        _emit 040h
-        _emit 000h
-        _emit 056h
-        _emit 0E8h
-        _emit 084h
-        _emit 0B9h
-        _emit 073h
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
+	SlaughterHordeContainModuleData *data = new SlaughterHordeContainModuleData;
+	if (ini)
+		ini->initFromINI(data, &SlaughterHordeContainFieldParse);
+	return (ModuleData *)data;
 }
