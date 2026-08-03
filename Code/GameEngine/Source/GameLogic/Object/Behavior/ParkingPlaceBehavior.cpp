@@ -53,24 +53,7 @@
 #endif
 
 
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-// ??0ParkingPlaceBehavior@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
-ParkingPlaceBehavior::ParkingPlaceBehavior( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
-{
-	m_gotInfo = false;
-	
-	//Added By Sadullah Nader
-	//Initializations 
-	
-	m_heliRallyPoint.zero();
-	
-	//
-
-	m_heliRallyPointExists = FALSE;
-	m_nextHealFrame = FOREVER;
-	setWakeFrame(getObject(), UPDATE_SLEEP_NONE);
-}
+// The exact retail constructor is emitted by ParkingPlaceBehaviorCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
