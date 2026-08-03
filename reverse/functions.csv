@@ -1990,7 +1990,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0PhysicsBehaviorModuleData@@QAE@XZ,,0x0029A090,126,Code/GameEngine/Source/GameLogic/AI/PhysicsBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0PilotFindVehicleUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0Pinger@@QAE@XZ,,0x00660FD0,317,Code/GameEngine/Source/GameNetwork/Pinger_ctor_Thunk.cpp,matched,Open-BFME5 lift 317B retail MASM to standalone C++ thunk
-??0PivotClass@@QAE@ABU0@@Z,,0x00972D70,383,Code/masm_dumps/___0PivotClass__QAE_ABU0__Z_972D70.asm,matched,
+??0PivotClass@@QAE@ABU0@@Z,,0x00972D70,383,Code/GameEngine/Source/Common/PivotClass_copy_ctor_Thunk.cpp,matched,
 ??0PivotClass@@QAE@XZ,,0x009733F0,187,Code/Libraries/Source/WWVegas/WW3D2/PivotClassCtor_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0PivotMapClass@@QAE@XZ,,0x00974770,55,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??0PlaneClass@@QAE@ABV0@@Z,,0x0091FDD0,31,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
@@ -9532,7 +9532,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?createGhostObjectManager@GameLogic@@EAEPAVGhostObjectManager@@XZ,,0x006BAE20,86,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?createGridDecals@DynamicShroudClearingRangeUpdate@@QAEXABVRadiusDecalTemplate@@MABUCoord3D@@@Z,,0x0028E700,71,Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdateCreateGridDecalsBodyThunk.cpp,matched,Open-BFME5 exact C++ body;object-symbol=?DynamicShroudClearingRangeUpdateCreateGridDecalsBodyThunk@@YAXXZ
 ?createInGameUI@W3DGameClient@@MAEPAVInGameUI@@XZ,,0x006FB590,89,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,TU-local BFME retail InGameUI and W3DInGameUI ABI facades; ctor thunk pinned
-?createInactiveTeam@TeamFactory@@QAEPAVTeam@@ABVAsciiString@@@Z,,0x000F7AB0,390,Code/masm_dumps/TeamFactory_createInactiveTeam.asm,matched,True body via thunk 0xD15C; createTeam setActive wrapper; queue 0x853F0F was *.ini helper
+?createInactiveTeam@TeamFactory@@QAEPAVTeam@@ABVAsciiString@@@Z,,0x000F7AB0,390,Code/GameEngine/Source/Common/TeamFactory_createInactiveTeam_Thunk.cpp,matched,True body via thunk 0xD15C; createTeam setActive wrapper; queue 0x853F0F was *.ini helper
 ?createKey@DictPair@Dict@@CA?AW4DictPairKeyType@2@W4NameKeyType@@W4DataType@2@@Z,,0x00067CA0,14,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?createKeyboard@W3DGameClient@@MAEPAVKeyboard@@XZ,,0x006FB9E0,89,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,true RVA via W3DGameClient vtable slot 40 (GameClient::init call [eax+0xA0] -> TheKeyboard); TU-local BFME Keyboard/DirectInputKeyboard ABI facades (0xE1C/0xE24); ctor thunk pinned
 ?createLanguageFilter@@YAPAVLanguageFilter@@XZ,,0x0044E630,86,Code/GameEngine/Source/GameClient/LanguageFilter.cpp,matched,
@@ -11512,7 +11512,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getNext@?$CategoryModuleClass@$07@FXParticleSystem@@QBEPBV12@XZ,0x00032498,0x005C18A0,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns next module in category list
 ?getNext@?$CategoryModuleClass@$0A@@FXParticleSystem@@QBEPBV12@XZ,0x00014579,0x005C1220,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns next module in category list
 ?getNext@MapObject@@QBEPAV1@XZ,,0x00674250,4,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
-?getNextAsciiString@INI@@QAE?AVAsciiString@@XZ,,0x008516E0,393,Code/masm_dumps/getNextAsciiString_INI_QAE_AVAsciiString_XZ_8516E0.asm,matched,Ghidra boundary plus static quoted-token buffer flow
+?getNextAsciiString@INI@@QAE?AVAsciiString@@XZ,,0x008516E0,393,Code/GameEngine/Source/Common/INI_getNextAsciiString_Thunk.cpp,matched,Ghidra boundary plus static quoted-token buffer flow
 ?getNextFormationID@AI@@QAE?AW4FormationID@@XZ,,0x0014A570,10,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,
 ?getNextHeader@HeaderTemplateManager@@QAEPAVHeaderTemplate@@PAV2@@Z,,0x0048C440,42,Code/GameEngine/Source/GameClient/GUI/HeaderTemplate.cpp,matched,
 ?getNextMission@Campaign@@QAEPAVMission@@PAV2@@Z,,0x0003236C,5,Code/Libraries/Source/WWVegas/WWLib/CampaignMissionThunk.cpp,matched,Focused C++ thunk for Campaign::getNextMission
@@ -12396,7 +12396,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?obbtri_intersection_separation_test@@YA_NAAUBTIntersectStruct@@MM@Z,,0x008E8330,120,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
 ?obfuscate@@YA?AVAsciiString@@V1@@Z,,0x0007FBF0,254,Code/GameEngine/Source/Common/obfuscate_AsciiString_Thunk.cpp,matched,certified packet 147 sealed RVA and SHA-256
 ?obfuscate@@YAXPAUTransportMessage@@H@Z,,0x006832C0,62,Code/GameEngine/Source/GameNetwork/Transport_queueSend.cpp,matched,
-?objectChangedTeam@InGameUI@@UAEXPBVObject@@HH@Z,,0x00449FC0,394,Code/masm_dumps/InGameUI_objectChangedTeam_449FC0.asm,matched,MASM exact; true body via InGameUI vtbl after add/removeSW; queue 0x44C3FA was mid-fn at 0x44C250
+?objectChangedTeam@InGameUI@@UAEXPBVObject@@HH@Z,,0x00449FC0,394,Code/GameEngine/Source/Common/InGameUI_objectChangedTeam_Thunk.cpp,matched,MASM exact; true body via InGameUI vtbl after add/removeSW; queue 0x44C3FA was mid-fn at 0x44C250
 ?objectInteractsWithBridgeEnd@TerrainLogic@@UBE_NPAVObject@@H@Z,,0x001A7F70,216,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,object geometry pad fix
 ?objectUnderRadarPixel@Radar@@QAEPAVObject@@PBUICoord2D@@@Z,,0x00107CF0,83,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
 ?offset3Way@W3DRoadBuffer@@IAEXPAUTRoadPt@@00VVector2@@11M@Z,,0x00705530,545,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
