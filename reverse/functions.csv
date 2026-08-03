@@ -2202,7 +2202,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Snapshot@@QAE@XZ,0x00024C80,0x0006B180,9,Code/GameEngine/Source/Common/System/Snapshot.cpp,matched,sets vtable pointer
 ??0SnapshotBlock@GameState@@QAE@XZ,,0x00251CD0,10,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0SoundFXNugget@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/GameClient/FXList.cpp,matched,ICF alias of existing matched body
-??0SpawnBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020AE30,376,Code/masm_dumps/SpawnBehavior_constructor.asm,matched,Exact 376B @ 0x0020AE30; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x115590
+??0SpawnBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020AE30,376,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorCtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0SpawnBehaviorModuleData@@QAE@XZ,,0x0012A970,141,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact 141B retail module-data constructor
 ??0SpawnPointProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00023858,5,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SpawnPointProductionExitUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0SpawnPointProductionExitUpdateModuleData@@QAE@XZ,,0x0035F0F0,25,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
@@ -12354,7 +12354,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z,,0x005BB050,106,Code/GameEngine/Source/GameClient/System/Anim2DCollectionNewTemplateThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM constructor wall
 ?newTerrain@TerrainTypeCollection@@,,0x000A8680,204,Code/masm_dumps/_sa6__newTerrain_TerrainTypeCollection___A8680.asm,matched,Exact 204B Open-BFME4+Grok
 ?newUpgrade@UpgradeCenter@@QAEPAVUpgradeTemplate@@ABVAsciiString@@@Z,,0x0010B140,246,Code/GameEngine/Source/Common/UpgradeCenter_newUpgrade_Thunk.cpp,matched,Exact 246B Open-BFME4+Grok
-?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z,,0x001E7F50,261,Code/masm_dumps/newWeaponTemplate_WeaponStore_001E7F50_packet337.asm,matched,Certified packet 337 sealed exact retail bytes SHA256 90f8376182dd2aab1ea9669ea2e5a32b0bacccef12f18d64a555cff615bea476
+?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z,,0x001E7F50,261,Code/GameEngine/Source/GameLogic/Object/Weapon/WeaponStore_newWeaponTemplate_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?next@BezFwdIterator@@QAEXXZ,,0x000B6810,87,Code/GameEngine/Source/Common/bez_fwd_iterator.cpp,matched,
 ?next@LListNode@@QAEPAV1@XZ,,0x00105950,20,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?next@SimpleObjectIterator@@UAEPAVObject@@XZ,,0x001DDFB0,19,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,
