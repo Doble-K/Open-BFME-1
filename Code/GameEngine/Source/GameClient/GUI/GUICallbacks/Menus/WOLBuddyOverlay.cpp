@@ -58,6 +58,11 @@
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
 #include "GameNetwork/GameSpy/ThreadUtils.h"
 
+// Both bodies were lifted out of this TU into InitBuddyControlsThunk.cpp and
+// RequestBuddyAddThunk.cpp; the call sites below still need to see them.
+void InitBuddyControls(Int type);
+void RequestBuddyAdd(Int profileID, AsciiString nick);
+
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
 
 #ifdef _INTERNAL
