@@ -1,95 +1,75 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Lift the InGameUI::findSWInfo __emit thunk to clean C++.
+//
+// Retail indexes a 12-byte-per-player map array at this+0x5CC (the
+// lea eax,[eax+eax*2] / lea esi,[ecx+eax*4+0x5CC] pair is just index*12), looks
+// the name up, and bails when the result equals the map's end sentinel at +0x00.
+// The hit carries a circular list head at +0x14, which is walked comparing each
+// entry's id at SuperweaponInfo+0x18. The SpecialPowerTemplate parameter is
+// never read -- retail matches on the ObjectID alone.
 
-class SuperweaponInfo;
 class AsciiString;
 class SpecialPowerTemplate;
 enum ObjectID { OBJECT_ID_INVALID = 0 };
 
+class SuperweaponInfo
+{
+public:
+	unsigned char m_unreconstructed_00[0x18];
+	ObjectID m_id;								///< retail this+0x18
+};
+
+struct SuperweaponListNode
+{
+	SuperweaponListNode *m_next;				///< retail this+0x00
+	unsigned char m_unreconstructed_04[4];
+	SuperweaponInfo *m_info;					///< retail this+0x08
+};
+
+struct SuperweaponMapNode
+{
+	unsigned char m_unreconstructed_00[0x14];
+	SuperweaponListNode *m_list;				///< retail this+0x14; circular, head == end
+};
+
+class SuperweaponMap
+{
+public:
+	SuperweaponMapNode *find(const AsciiString &);	///< pinned to the ILT thunk at 0x0000DCFB
+
+	SuperweaponMapNode *m_end;					///< retail this+0x00
+	unsigned char m_unreconstructed_04[8];		///< keeps the whole map 12 bytes wide
+};
+
 class InGameUI
 {
 protected:
-    SuperweaponInfo *findSWInfo(int, const AsciiString &, ObjectID, const SpecialPowerTemplate *);
+	SuperweaponInfo *findSWInfo(int, const AsciiString &, ObjectID, const SpecialPowerTemplate *);
+
+private:
+	unsigned char m_unreconstructed_00[0x5CC];
+	SuperweaponMap m_superweapons[1];			///< retail this+0x5CC; one map per player
 };
 
 // ?findSWInfo@InGameUI@@IAEPAVSuperweaponInfo@@HABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z
-__declspec(naked) SuperweaponInfo *InGameUI::findSWInfo(int, const AsciiString &, ObjectID, const SpecialPowerTemplate *)
+SuperweaponInfo *InGameUI::findSWInfo(int playerIndex, const AsciiString &name, ObjectID id,
+									  const SpecialPowerTemplate *)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x56
-        __emit 0x8d
-        __emit 0x04
-        __emit 0x40
-        __emit 0x8d
-        __emit 0xb4
-        __emit 0x81
-        __emit 0xcc
-        __emit 0x05
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x70
-        __emit 0x3e
-        __emit 0xbc
-        __emit 0xff
-        __emit 0x3b
-        __emit 0x06
-        __emit 0x74
-        __emit 0x1f
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x74
-        __emit 0x16
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x64
-        __emit 0x24
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x70
-        __emit 0x08
-        __emit 0x39
-        __emit 0x56
-        __emit 0x18
-        __emit 0x74
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x75
-        __emit 0xf2
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x10
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x08
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x10
-        __emit 0x00
-    }
+	SuperweaponMap *map = &m_superweapons[playerIndex];
+
+	SuperweaponMapNode *node = map->find(name);
+	if (node != map->m_end)
+	{
+		SuperweaponListNode *head = node->m_list;
+		SuperweaponListNode *entry = head->m_next;
+		while (entry != head)
+		{
+			if (entry->m_info->m_id == id)
+				return entry->m_info;
+
+			entry = entry->m_next;
+		}
+	}
+
+	return 0;
 }

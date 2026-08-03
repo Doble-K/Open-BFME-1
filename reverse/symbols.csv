@@ -23216,3 +23216,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1GGS_Member@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??0?$BFMEFactoryModuleData@VWaveGuideUpdateModuleData@@$0BGM@@@QAE@XZ,0x00030945,Open-BFME5 exact factory storage constructor pin (ICF alias with ChinookAIUpdate/InternetHackContain)
 ?applyDefectionFrame@ObjectDefectionHelper@@QAEXPAVObject@@H@Z,0x000157DA,ILT thunk to the two-arg defection-frame setter at 0x002B2040
+?find@SuperweaponMap@@QAEPAUSuperweaponMapNode@@ABVAsciiString@@@Z,0x0000DCFB,ILT thunk to the superweapon-map find at 0x00448FE0

@@ -10178,7 +10178,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findPlayerTemplate@PlayerTemplateStore@@QBEPBVPlayerTemplate@@W4NameKeyType@@@Z,,0x000E0F30,996,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?findPlayerWithNameKey@PlayerList@@QAEPAVPlayer@@W4NameKeyType@@@Z,,0x000DF260,52,Code/GameEngine/Source/Common/RTS/PlayerList.cpp,matched,
 ?findPreviousCondition@OrCondition@@QAEPAVCondition@@PAV2@@Z,,0x0034FD70,34,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
-?findSWInfo@InGameUI@@IAEPAVSuperweaponInfo@@HABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x00449E70,75,Code/GameEngine/Source/Common/InGameUIFindSWInfoThunk.cpp,matched,reloc-needle Open-BFME4+Grok
+?findSWInfo@InGameUI@@IAEPAVSuperweaponInfo@@HABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x00449E70,75,Code/GameEngine/Source/Common/InGameUIFindSWInfoThunk.cpp,matched,clean C++ conversion; 12-byte-per-player map array at this+0x5CC; end sentinel at map+0x00; circular list head at node+0x14; matches on SuperweaponInfo+0x18 and never reads the SpecialPowerTemplate arg
 ?findScienceInfo@ScienceStore@@ABEPBVScienceInfo@@W4ScienceType@@@Z,,0x000E6D30,51,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ?findSingleBone@@YA_NPAVRenderObjClass@@ABVAsciiString@@AAVMatrix3D@@AAH@Z,,0x00761E90,135,Code/GameEngine/Source/Common/findSingleBone_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z,,0x0035F4E0,231,Code/GameEngine/Source/Common/SidesList_findSkirmishSideInfo_Thunk.cpp,matched,true size 231B; previous row claimed 224B
