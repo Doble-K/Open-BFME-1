@@ -9530,7 +9530,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?createGameDisplay@W3DGameClient@@MAEPAVDisplay@@XZ,,0x006BA9A0,89,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,
 ?createGarrisonHint@InGameUI@@UAEXPBVGameMessage@@@Z,,0x0043ACA0,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?createGhostObjectManager@GameLogic@@EAEPAVGhostObjectManager@@XZ,,0x006BAE20,86,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
-?createGridDecals@DynamicShroudClearingRangeUpdate@@QAEXABVRadiusDecalTemplate@@MABUCoord3D@@@Z,,0x0028E700,71,Code/masm_dumps/_cache__createGridDecals_DynamicShroudClearingRangeUpdate__QAE_28E700.asm,matched,cached-obj needle Open-BFME4+Grok
+?createGridDecals@DynamicShroudClearingRangeUpdate@@QAEXABVRadiusDecalTemplate@@MABUCoord3D@@@Z,,0x0028E700,71,Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdateCreateGridDecalsBodyThunk.cpp,matched,Open-BFME5 exact C++ body;object-symbol=?DynamicShroudClearingRangeUpdateCreateGridDecalsBodyThunk@@YAXXZ
 ?createInGameUI@W3DGameClient@@MAEPAVInGameUI@@XZ,,0x006FB590,89,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,TU-local BFME retail InGameUI and W3DInGameUI ABI facades; ctor thunk pinned
 ?createInactiveTeam@TeamFactory@@QAEPAVTeam@@ABVAsciiString@@@Z,,0x000F7AB0,390,Code/masm_dumps/TeamFactory_createInactiveTeam.asm,matched,True body via thunk 0xD15C; createTeam setActive wrapper; queue 0x853F0F was *.ini helper
 ?createKey@DictPair@Dict@@CA?AW4DictPairKeyType@2@W4NameKeyType@@W4DataType@2@@Z,,0x00067CA0,14,Code/GameEngine/Source/Common/Dict.cpp,matched,
