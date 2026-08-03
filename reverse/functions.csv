@@ -2821,7 +2821,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1BufferPipe@@UAE@XZ,,0x009E2070,76,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??1BufferStraw@@UAE@XZ,,0x00921790,76,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,definite (call-site resolved)
 ??1BufferedFileClass@@UAE@XZ,,0x009E7780,102,Code/Libraries/Source/WWVegas/WWLib/bufffile.cpp,matched,
-??1BuildListInfo@@MAE@XZ,,0x00194320,135,Code/masm_dumps/BuildListInfo_destructor_194320.asm,matched,Certified packet 93 exact retail MASM
+??1BuildListInfo@@MAE@XZ,,0x00194320,135,Code/GameEngine/Source/Common/BuildListInfoDestructorThunk.cpp,matched,Certified packet 93 exact retail MASM
 ??1ButterflyDrawModuleInfo@FXParticleSystem@@UAE@XZ,0x00001C08,0x005D8B50,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1ButterflyDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x0003BE8A,0x005D8CB0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=?destroy@QuadDrawDtorBody@FXParticleSystem@@QAEXXZ;C++ member body converted from 50B raw dtor;ICF twin of Quad dtor
 ??1CDManager@@UAE@XZ,,0x00101DB0,85,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,
@@ -2940,7 +2940,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1GameResultsQueue@@UAE@XZ,,0x0063D0F0,225,Code/masm_dumps/__1GameResultsQueue__UAE_XZ_63D0F0.asm,matched,MASM exact dump; true body via createNew vtbl chain (queue 0x9F27D9 was int3 pad)
 ??1GameResultsRequest@@QAE@XZ,,0x004E5C60,155,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
 ??1GameResultsResponse@@QAE@XZ,,0x00641300,39,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,thunk-dump converted to clean C++
-??1GameSpyGameSlot@@QAE@XZ,,0x004FA000,128,Code/masm_dumps/GameSpyGameSlot_destructor.asm,matched,MASM exact; StagingRoom vecdtor identity; queue RVA 0x9DB036 was INSIDE format parser
+??1GameSpyGameSlot@@QAE@XZ,,0x004FA000,128,Code/GameEngine/Source/Common/GameSpyGameSlotDestructorThunk.cpp,matched,MASM exact; StagingRoom vecdtor identity; queue RVA 0x9DB036 was INSIDE format parser
 ??1GameSpyGroupRoom@@QAE@XZ,,0x004F9850,76,Code/GameEngine/Source/GameNetwork/GameSpy/GameSpyGroupRoomDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1GameSpyLoginPreferences@@UAE@XZ,,0x00081E70,108,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,true dtor C++ empty body; misplaced drift 0x65D371 was inside dispatchEvents; pins Rb_tree map dtors 0xB992/0x29C58
 ??1GameSpyStagingRoom@@QAE@XZ,,0x004FA3D0,151,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs_GameSpyStagingRoom_dtor.asm,matched,Certified packet id 265; Ghidra ENTRY and ret-to-INT3 boundary; removeStagingRoom thunk ownership; exact retail db dump
@@ -3167,7 +3167,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ShareExperienceBehaviorModuleData@@UAE@XZ,,0x002059C0,67,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1ShellMenuScheme@@QAE@XZ,,0x00580FB0,238,Code/masm_dumps/dtor_ShellMenuScheme_QAE_XZ_00580FB0_packet334.asm,matched,Certified packet 334 sealed retail bytes SHA256 23a41c6e29805dbd06c52b28a4988f53307ef301816d3f60bc5f27824ad83ca4
 ??1ShroudCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/ShroudCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1SidesInfo@@QAE@XZ,,0x0019AF30,148,Code/masm_dumps/SidesList_SidesInfo_destructor.asm,matched,
+??1SidesInfo@@QAE@XZ,,0x0019AF30,148,Code/GameEngine/Source/Common/SidesInfoDestructorThunk.cpp,matched,
 ??1SidesList@@UAE@XZ,,0x0019E640,290,Code/masm_dumps/SidesList_destructor.asm,matched,Certified packet id 111 exact retail MASM SHA256 8699b70f447fd057fdb39875e2e20d185e658f90b877d8bebd4974b9aaee0f0e
 ??1SiegeDeployHordeSpecialPower@@UAE@XZ,,0x00265ED0,651,Code/masm_dumps/SiegeDeployHordeSpecialPower_destructor.asm,matched,Exact 651B SEH dtor factory->vtable Open-BFME4
 ??1SiegeDeploySpecialPower@@UAE@XZ,,0x002664F0,125,Code/GameEngine/Source/Common/SiegeDeploySpecialPowerDestructorThunk.cpp,matched,Exact 125B; factory ownership Open-BFME4
