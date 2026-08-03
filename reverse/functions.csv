@@ -2167,7 +2167,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ShellMenuSchemeLine@@QAE@XZ,,0x00580400,30,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp,matched,
 ??0ShroudCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218620,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ShroudCrateCollide.cpp,matched,MASM converted to clean C++
 ??0ShroudCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/ShroudCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
-??0SidesInfo@@QAE@XZ,,0x001985B0,34,Code/GameEngine/Source/GameLogic/Map/SidesInfoConstructorThunk.cpp,matched,Open-BFME5 exact C++ raw constructor thunk; retail SidesInfo layout initializes vector at +0x0c
+??0SidesInfo@@QAE@XZ,,0x001985B0,34,Code/GameEngine/Source/GameLogic/Map/SidesInfoConstructorThunk.cpp,matched,Open-BFME5 clean C++ SidesInfo ctor zero fields + sub at +4
 ??0SidesList@@QAE@XZ,,0x0019EA80,365,Code/GameEngine/Source/GameLogic/Map/SidesListCtorThunk.cpp,matched,Open-BFME5 exact C++ raw map SidesList constructor
 ??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0SiegeAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body

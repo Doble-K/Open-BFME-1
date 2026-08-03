@@ -4293,3 +4293,7 @@ DefaultModuleTemplate6_vtbl8,0x01111004,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultModuleTemplate00_vtbl0,0x011108B8,DefaultModuleTemplate00 outer vtbl0
 DefaultModuleTemplate00_vtbl4,0x011108B4,DefaultModuleTemplate00 outer vtbl4
 DefaultModuleTemplate00_sub_vtbl,0x011108CC,DefaultModuleTemplate00 sub vtbl
+CategoryModuleTemplate8_vtbl_temp,0x0107375C,CategoryModuleTemplate8 ctor intermediate vtbl at +4
+CategoryModuleTemplate8_vtbl0,0x01073848,CategoryModuleTemplate8 ctor vtbl at +0
+CategoryModuleTemplate8_vtbl4,0x01073844,CategoryModuleTemplate8 ctor vtbl at +4 final
+??0SidesInfoSub@@QAE@H@Z,0x00002ECD,SidesInfo subobject ctor with int arg

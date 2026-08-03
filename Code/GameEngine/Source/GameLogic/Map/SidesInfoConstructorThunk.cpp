@@ -1,47 +1,38 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: SidesInfo ctor
+// Retail: zero +0, construct sub at +4 with arg 0, zero +8..+14.
+
+class SidesInfoSub
+{
+public:
+	SidesInfoSub(int arg);
+
+private:
+	char opaque[4];
+};
 
 class SidesInfo
 {
 public:
-    SidesInfo();
+	SidesInfo();
+
+private:
+	unsigned int m_0;
+	SidesInfoSub m_sub;
+	unsigned int m_8;
+	unsigned int m_c;
+	unsigned int m_10;
+	unsigned int m_14;
 };
 
-__declspec(naked) SidesInfo::SidesInfo()
+// ??0SidesInfo@@QAE@XZ
+SidesInfo::SidesInfo()
+	: m_0(0)
+	, m_sub(0)
+	, m_8(0)
+	, m_c(0)
+	, m_10(0)
+	, m_14(0)
 {
-    __asm {
-        _emit 056h
-        _emit 057h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 033h
-        _emit 0FFh
-        _emit 057h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 004h
-        _emit 089h
-        _emit 03Eh
-        _emit 0E8h
-        _emit 00Ch
-        _emit 0A9h
-        _emit 0E6h
-        _emit 0FFh
-        _emit 089h
-        _emit 07Eh
-        _emit 008h
-        _emit 089h
-        _emit 07Eh
-        _emit 00Ch
-        _emit 089h
-        _emit 07Eh
-        _emit 010h
-        _emit 089h
-        _emit 07Eh
-        _emit 014h
-        _emit 05Fh
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
 }
