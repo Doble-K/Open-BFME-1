@@ -23163,3 +23163,7 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?b_00aaaa00@@YAXXZ,0x00AAAA00,gen-thunk body
 ?b_00aabf0f@@YAXXZ,0x00AABF0F,gen-thunk body
 ?b_00aa7d2a@@YAXXZ,0x00AA7D2A,gen-thunk body
+?m@T_00013e49@@QAEXXZ,0x00013E49,gen-shim call target
+?f_00881ef0@@YAXPAX@Z,0x00881EF0,gen-shim call target
+?m@T_000382c1@@QAEXXZ,0x000382C1,gen-shim call target
+?f_00881eb0@@YAXPAX@Z,0x00881EB0,gen-shim call target
