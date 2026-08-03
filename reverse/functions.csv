@@ -9041,7 +9041,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?attachPlayersFromGameInfo@BFMEConnectionManager@@QAEXPAX@Z,,0x00666610,597,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?attachToDrawable@ParticleSystem@@QAEXPBVDrawable@@@Z,,0x005BE130,40,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?attachTranslator@MessageStream@@QAEIPAVGameMessageTranslator@@I@Z,,0x0008A7B0,184,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
-?attemptDamage@Object@@QAEXPAVDamageInfo@@@Z,,0x001D0490,108,Code/masm_dumps/Object_attemptDamage_001D0490.asm,matched,Certified packet 114 exact db-only retail body SHA256 cb23f3ede890543aafd15c80d7bc495177f22aa5f690018a7b8253569d5e629a
+?attemptDamage@Object@@QAEXPAVDamageInfo@@@Z,,0x001D0490,108,Code/GameEngine/Source/Common/Object_attemptDamage_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?attemptToPurchaseScience@Player@@QAE_NW4ScienceType@@@Z,,0x000D55B0,60,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?back@?$deque@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@QAEAAPAVMapObject@@XZ,,0x00089750,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?backendHasLiveHandle@BFMENetwork@@QAE_NXZ,,0x00651780,15,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper slot +0x0c; delegates through backend pointer at +0x64
@@ -10196,7 +10196,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findSpecialPowerTemplateByID@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@I@Z,,0x000EB690,101,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
 ?findSpecialPowerWithOverridableDestinationActive@Object@@QBEPAVSpecialPowerUpdateInterface@@W4SpecialPowerType@@@Z,,0x001BF6F0,65,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME Object layout shim (m_behaviors@0x1f0)
 ?findStagingRoomByID@GameSpyInfo@@UAEPAVGameSpyStagingRoom@@H@Z,,0x00632B40,46,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
-?findStaticLODLevel@GameLODManager@@QAE?AW4StaticGameLODLevel@@XZ,,0x00090970,106,Code/masm_dumps/_sa14__findStaticLODLevel_GameLODManager__QAE_AW4StaticGameLODLevel__XZ_90970.asm,matched,sa14 Open-BFME4+Grok StaticGameLOD
+?findStaticLODLevel@GameLODManager@@QAE?AW4StaticGameLODLevel@@XZ,,0x00090970,106,Code/GameEngine/Source/Common/GameLODManager_findStaticLODLevel_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?findTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z,,0x005BB330,155,Code/GameEngine/Source/GameClient/System/Anim2DCollectionFindTemplateThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM compare body
 ?findTemplate@ParticleSystemManager@@QBEPAVParticleSystemTemplate@@ABVAsciiString@@@Z,,0x005C9F90,36,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ?findTrack@WaterTracksRenderSystem@@QAEPAVWaterTracksObj@@AAVVector2@@0W4waveType@@@Z,,0x007AB090,143,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
