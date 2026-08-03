@@ -4096,7 +4096,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4?$VectorClass@VModelNodeClass@HLodClass@@@@QAEAAV0@ABV0@@Z,,0x0097ACA0,234,Code/masm_dumps/___4__VectorClass_VModelNodeClass_HLodClass____QAEA_97ACA0.asm,matched,
 ??4?$VectorClass@VProxyClass@@@@QAEAAV0@ABV0@@Z,,0x0092F810,249,Code/masm_dumps/_icf3___4__VectorClass_VProxyClass____QAEAAV0_ABV0__Z_92F810.asm,matched,ICF Open-BFME4+Grok
 ??4?$VectorClass@VResolutionDescClass@@@@QAEAAV0@ABV0@@Z,,0x0092F810,249,Code/masm_dumps/_icf3___4__VectorClass_VResolutionDescClass____QAEAAV0_ABV0__Z_92F810.asm,matched,ICF Open-BFME4+Grok
-??4?$VectorClass@VStringClass@@@@QAEAAV0@ABV0@@Z,,0x00905C80,217,Code/masm_dumps/_sym3___4__VectorClass_VStringClass____QAEAAV0_ABV0__Z_905C80.asm,matched,symbol-pin Open-BFME4+Grok
+??4?$VectorClass@VStringClass@@@@QAEAAV0@ABV0@@Z,,0x00905C80,217,Code/Libraries/Source/WWVegas/WWLib/StringClassVectorAssignmentThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_StringClassVectorAssignment_905C80
 ??4?$VectorClass@VTangentsClass@HermiteSpline3DClass@@@@QAEAAV0@ABV0@@Z,,0x0092F810,249,Code/masm_dumps/_sym2___4__VectorClass_VTangentsClass_HermiteSpline3DClass____QAEAAV0_ABV0___92F810.asm,matched,symbol-pin Open-BFME4+Grok
 ??4?$_Rb_tree@GU?$pair@$$CBGE@_STL@@U?$_Select1st@U?$pair@$$CBGE@_STL@@@2@U?$less@G@2@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@QAEAAV01@ABV01@@Z,,0x0076ABF0,178,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ??4?$_Rb_tree@HU?$pair@$$CBHI@_STL@@U?$_Select1st@U?$pair@$$CBHI@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHI@_STL@@@2@@_STL@@QAEAAV01@ABV01@@Z,,0x004EE0E0,178,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
