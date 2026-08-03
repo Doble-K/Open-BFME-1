@@ -11315,7 +11315,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getID@DataChunkTableOfContents@@QAEIABVAsciiString@@@Z,,0x00103D40,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?getID@Drawable@@QBE?AW4DrawableID@@XZ,,0x004116B0,7,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; retail Drawable field load at +0x100
 ?getID@SpecialPowerTemplate@@QBEIXZ,,0x000BA900,27,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
-?getIdealStaticGameDetail@OptionPreferences@@QAEHXZ,,0x0007E0F0,942,Code/masm_dumps/_sa13__getIdealStaticGameDetail_OptionPreferences__QAEHXZ_7E0F0.asm,matched,multi-xref Open-BFME4+Grok IdealStaticGameLOD
+?getIdealStaticGameDetail@OptionPreferences@@QAEHXZ,,0x0007E0F0,942,Code/GameEngine/Source/Common/OptionPreferences_getIdealStaticGameDetail_Thunk.cpp,matched,multi-xref Open-BFME4+Grok IdealStaticGameLOD
 ?getIncomingBytesPerSecond@Transport@@QAEMXZ,,0x00683900,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?getIncomingPacketsPerSecond@Transport@@QAEMXZ,,0x00683A80,304,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?getIndicesNVertices@W3DBridge@@QAEXPAGPAUVertexFormatXYZNDUV1@@PAH2PAV?$RefMultiListIterator@VRenderObjClass@@@@@Z,,0x006D99F0,1095,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp,matched,
@@ -11568,7 +11568,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getParameter@Condition@@QAEPAVParameter@@H@Z,,0x002E27C0,25,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
 ?getParameter@ScriptAction@@QAEPAVParameter@@H@Z,,0x002E2760,25,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?getParkingPlaceBehaviorInterface@BehaviorModule@@UAEPAVParkingPlaceBehaviorInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getParticleCap@OptionPreferences@@QAEHXZ,,0x000914B0,136,Code/masm_dumps/_getParticleCap_OptionPreferences__QAEHXZ_914B0.asm,matched,Exact 136B; string-anchor MaxParticleCount; queue 0x560DB2 was OptionsMenuInit interior
+?getParticleCap@OptionPreferences@@QAEHXZ,,0x000914B0,136,Code/GameEngine/Source/Common/OptionPreferences_getParticleCap_Thunk.cpp,matched,Exact 136B; string-anchor MaxParticleCount; queue 0x560DB2 was OptionsMenuInit interior
 ?getParticleType@ParticleSystemTemplate@FXParticleSystem@@QBE?AW4ParticleType@2@XZ,0x0003CC31,0x0005CB60,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,returns particle type field
 ?getPasswordForEmail@GameSpyLoginPreferences@@QAE?AVAsciiString@@V2@@Z,,0x000813D0,426,Code/masm_dumps/_sa11__getPasswordForEmail_GameSpyLoginPreferences__QAE_AVAsciiString__V2__Z_813D0.asm,matched,string-anchor Open-BFME4+Grok %c%c%c%c
 ?getPath@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D1710,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 6; m_path at this+0x28
@@ -11756,7 +11756,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getTexture@BFMEShadowManagerLayout@@QAEPAVW3DShadowTexture@@PBD@Z,,0x0004088B,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/BFMEShadowManagerLayoutGetTextureThunk.cpp,matched,Open-BFME5 exact ILT thunk; retail projected-shadow texture lookup body
 ?getTexture@W3DShadowTextureManager@@QAEPAVW3DShadowTexture@@PBD@Z,,0x007AEF70,34,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?getTextureFilename@ParticleSystemTemplate@FXParticleSystem@@QBE?AVAsciiString@@XZ,0x00018755,0x0005F240,32,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,return texture filename
-?getTextureReduction@OptionPreferences@@QAEHXZ,,0x000915E0,139,Code/masm_dumps/getTextureReduction_OptionPreferences_QAEHXZ_000915E0_packet327.asm,matched,Certified packet 327: exact retail bytes SHA256 46ce9cd590baf46d18d10c88e6fa0d5fe8f5f9bd945ad8e9a9dd36e9b56fc7a8
+?getTextureReduction@OptionPreferences@@QAEHXZ,,0x000915E0,139,Code/GameEngine/Source/Common/OptionPreferences_getTextureReduction_Thunk.cpp,matched,Certified packet 327: exact retail bytes SHA256 46ce9cd590baf46d18d10c88e6fa0d5fe8f5f9bd945ad8e9a9dd36e9b56fc7a8
 ?getTimeOfDay@AudioEventRTS@@QBE?AW4TimeOfDay@@XZ,,0x000873E0,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Retail thunk-bound BFME time-of-day getter
 ?getTooltipText@WinInstanceData@@QAE?AVUnicodeString@@XZ,,0x00479AB0,24,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?getTotalDataLength@NetWrapperCommandMsg@@QAEIXZ,,0x00673F40,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor thunk
