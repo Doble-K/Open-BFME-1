@@ -1709,7 +1709,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0KeyClass@?$PrimitiveAnimationChannelClass@VVector2@@@@QAE@XZ,,0x000E49D0,10,Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp,matched,
 ??0KeyClass@?$PrimitiveAnimationChannelClass@VVector3@@@@QAE@XZ,,0x00473600,10,Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp,matched,
 ??0Keyframe@FXParticleSystem@@QAE@XZ,0x0002F21B,0x0005C6C0,16,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor zeroes frame and value
-??0LANGameInfo@@QAE@XZ,,0x0068E980,176,Code/masm_dumps/__0LANGameInfo__QAE_XZ_68E980.asm,matched,Exact 176B; queue 0xC6DD00 CRT pad; true body 8x0x68 slots@+0x58 match dtor layout
+??0LANGameInfo@@QAE@XZ,,0x0068E980,176,Code/GameEngine/Source/Common/LANGameInfoCtorThunk.cpp,matched,Exact 176B Open-BFME5
 ??0LANPreferences@@,,0x00086480,92,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LANPreferencesCtorThunk.cpp,matched,Exact 92B Open-BFME4;object-symbol=??0LANPreferences@@QAE@XZ
 ??0LList@@QAE@XZ,,0x00105A60,31,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ??0LListNode@@QAE@XZ,,0x001058D0,19,Code/GameEngine/Source/Common/System/List.cpp,matched,
@@ -1773,13 +1773,13 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LogicalDecalPoolClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
 ??0ManTheWallsSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00260600,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ManTheWallsSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ??0ManTheWallsSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0MapCache@@QAE@XZ,,0x00078F50,169,Code/masm_dumps/_rn7___0MapCache__QAE_XZ_78F50.asm,matched,reloc-needle Open-BFME4+Grok
+??0MapCache@@QAE@XZ,,0x00078F50,169,Code/GameEngine/Source/Common/MapCacheCtorThunk.cpp,matched,Exact 169B Open-BFME5
 ??0MapMetaDataReader@@QAE@XZ,,0x000C0EA0,334,Code/masm_dumps/MapMetaDataReader_constructor.asm,matched,Certified packet 252 exact retail MASM recovery sha256 ceb57c2a58892fac8b9485da85ae069861a754ecea27627fe5fc40863eb0812b
 ??0MapObject@@QAE@UCoord3D@@VAsciiString@@MHPBVDict@@PBVThingTemplate@@@Z,,0x00088160,386,Code/masm_dumps/MapObject_ctor.asm,matched,True body 0x88160/386; queue 0x88120 was 21B helper. SEH ctor ret 0x20 normalizeAngle color 0xFF00 Dict+0x24 matched MapObject field cluster
 ??0Mapping@@QAE@XZ,,0x00122DF0,16,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ??0MatBufferClass@@QAE@HPBD@Z,,0x0092A160,128,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ??0MatPassTaskClass@@QAE@PAVMaterialPassClass@@PAVMeshClass@@@Z,,0x009457C0,34,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
-??0MaterialCollectorClass@@QAE@XZ,,0x00931070,163,Code/masm_dumps/___0MaterialCollectorClass__QAE_XZ_931070.asm,matched,
+??0MaterialCollectorClass@@QAE@XZ,,0x00931070,163,Code/GameEngine/Source/Common/MaterialCollectorClassCtorThunk.cpp,matched,Exact 163B Open-BFME5
 ??0MaterialPassClass@@QAE@XZ,,0x009333A0,104,Code/Libraries/Source/WWVegas/WW3D2/MaterialPassClassCtorThunk.cpp,matched,MASM exact retail dump; converted to an exact standalone C++ thunk
 ??0Material_Override@RenderObjClass@@QAE@XZ,,0x006BCB30,17,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DGhostObject.cpp,matched,
 ??0Matrix3@@QAE@ABV0@@Z,,0x005F6970,61,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
@@ -2218,7 +2218,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SpecialPowerCompletionDieModuleData@@QAE@XZ,,0x00123620,82,Code/GameEngine/Source/GameLogic/AI/SpecialPowerCompletionDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0SpecialPowerReadyTimerType@@QAE@XZ,,0x000CBBA0,16,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0SpecialPowerStore@@QAE@XZ,,0x000EB9D0,32,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
-??0SpecialPowerTemplate@@QAE@XZ,,0x000EB4F0,176,Code/masm_dumps/_rn6___0SpecialPowerTemplate__QAE_XZ_EB4F0.asm,matched,reloc-needle Open-BFME4+Grok
+??0SpecialPowerTemplate@@QAE@XZ,,0x000EB4F0,176,Code/GameEngine/Source/Common/SpecialPowerTemplateCtorThunk.cpp,matched,Exact 176B Open-BFME5
 ??0SphereClass@@QAE@ABV0@@Z,,0x00702520,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DPropBuffer.cpp,matched,
 ??0SphereClass@@QAE@ABVVector3@@M@Z,,0x00396910,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ??0SphereClass@@QAE@PBVVector3@@H@Z,,0x006F77B0,986,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
