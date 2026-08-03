@@ -657,6 +657,8 @@ name,address,notes
 ??0DefectorSpecialPowerModuleData@@QAE@XZ,0x00037A51,pinharvest x1 (thunk)
 ??0DefectorSpecialPowerModuleData@@QAE@XZ,0x0003BDE5,pinharvest x1 (thunk)
 ??0DefectorSpecialPowerModuleData@@QAE@XZ,0x00044FA8,pinharvest x1 (thunk)
+??0DeflectSpecialPowerModuleData@@QAE@XZ,0x00046259,DeflectSpecialPower ModuleData ctor
+??0DelayedLuaEventUpdateModuleData@@QAE@XZ,0x00014E20,DelayedLuaEventUpdate ModuleData ctor
 ??0DeletionUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x016C52,module ctor (friend_newModuleInstance retail call target)
 ??0DeliverPayloadAIUpdateModuleData@@QAE@XZ,0x0000B997,pinharvest x1 (thunk)
 ??0DeliverPayloadAIUpdateModuleData@@QAE@XZ,0x00016C39,pinharvest x1 (thunk)
@@ -1234,6 +1236,7 @@ name,address,notes
 ??0SquishCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002DED4,pinharvest x1 (thunk)
 ??0SquishCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003CF56,pinharvest x1 (thunk)
 ??0SquishCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003ECA7,pinharvest x1 (thunk)
+??0SquishCollideModuleData@@QAE@XZ,0x00045737,SquishCollide ModuleData ctor
 ??0State@@QAE@PAVStateMachine@@VAsciiString@@@Z,0x000A19E0,hand-decoded from DozerPrimaryStateMachine ctor @0x2B7870 (DozerPrimaryIdleState/DozerPrimaryGoingHomeState sub-ctor calls, both overwrite [obj]=derived vtable right after); call site encodes thunk 0x35B2 (thunk_FUN_004a19e0) -- pinned to the real body
 ??0StateMachine@@QAE@PAVObject@@VAsciiString@@@Z,0x000A1BD0,hand-decoded from DozerPrimaryStateMachine ctor @0x2B7870+0x3C (base-class-init call, immediately followed by [esi]=derived vtable store); call site encodes thunk 0xF123 (thunk_FUN_004a1bd0) -- pinned to the real body
 ??0StatusBitsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000DFBC,module ctor (friend_newModuleInstance retail call target)
@@ -1242,7 +1245,7 @@ name,address,notes
 ??0StealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00006780,pinharvest x1 (thunk)
 ??0StealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002CD4F,pinharvest x1 (thunk)
 ??0StealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048167,pinharvest x1 (thunk)
-??0StealthUpdateModuleData@@QAE@XZ,0x00049AA3
+??0StealthUpdateModuleData@@QAE@XZ,0x00020B58
 ??0StealthUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x00019939,module ctor (friend_newModuleInstance retail call target)
 ??0StickyBombUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00037619,derived-ICF
 ??0StreakDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0000F56A,StreakDrawModuleTemplate clone copy-ctor pin
@@ -1283,6 +1286,7 @@ name,address,notes
 ??0TightenPathStruct@@QAE@PAVPathfinder@@PAVObject@@PBVLocomotorSet@@W4PathfindLayerEnum@@PBUCoord3D@@@Z,0x0002D7F9,tightenPath info init (thunk->0x003E1720)
 ??0TileData@@QAE@XZ,0x0003B6B5
 ??0TimeCodedBitChannelClass@@QAE@XZ,0x00977AF0
+??0ToggleHiddenSpecialAbilityUpdateModuleData@@QAE@XZ,0x00039F6D,ToggleHiddenSpecialAbilityUpdate ModuleData ctor
 ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00006780,pinharvest x1 (thunk)
 ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002CD4F,pinharvest x1 (thunk)
 ??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048167,pinharvest x1 (thunk)
@@ -4251,9 +4255,14 @@ DefaultModuleTemplate6_vtbl0,0x0111101C,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultModuleTemplate6_vtbl4,0x01111018,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultModuleTemplate6_vtbl8,0x01111004,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultProductionExitUpdateFieldParse,0x00423687,DefaultProductionExitUpdate friend_newModuleData field parse
+DeflectSpecialPowerFieldParse,0x0044765E,DeflectSpecialPower FieldParse
+DelayedLuaEventUpdateFieldParse,0x0041B199,DelayedLuaEventUpdate FieldParse
 ShareBufferClassUnsignedShort_vtbl_final,0x011135AC,ShareBuffer ushort dtor final vtbl
 ShareBufferClassUnsignedShort_vtbl_interim,0x0113C110,ShareBuffer ushort dtor interim vtbl
 SpawnPointProductionExitUpdateFieldParse,0x00442979,SpawnPoint friend_newModuleData field parse table
+SquishCollideFieldParse,0x004173DC,SquishCollide FieldParse
+StealthUpdateFieldParse,0x0041D8F9,StealthUpdate FieldParse
+ToggleHiddenSpecialAbilityUpdateFieldParse,0x0040955C,ToggleHiddenSpecialAbilityUpdate FieldParse
 _D3DXMatrixInverse@12,0x009FB321
 _D3DXVec4Transform@12,0x009FAA48
 _HideControlBar,0x00002847,HideControlBar letterbox
