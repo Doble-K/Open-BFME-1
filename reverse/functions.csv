@@ -13847,7 +13847,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@ControlBar@@,,0x0049FC90,818,Code/masm_dumps/_str3__update_ControlBar__49FC90.asm,matched,
 ?update@ControlBarArrowTransition@@UAEXH@Z,,0x0059B810,39,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@ControlBarScheme@@QAEXXZ,,0x004AD410,136,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
-?update@CountUpTransition@@UAEXH@Z,,0x0059C0A0,430,Code/masm_dumps/CountUpTransition_update.asm,matched,Exact retail MASM; true body 0x59C0A0/430 via CountUp vtable@0xD0C688 slot2 (update); queue 0x59C06B was leading int3 pad
+?update@CountUpTransition@@UAEXH@Z,,0x0059C0A0,430,Code/GameEngine/Source/Common/CountUpTransition_updateMethodThunk.cpp,matched,Exact retail MASM; true body 0x59C0A0/430 via CountUp vtable@0xD0C688 slot2 (update); queue 0x59C06B was leading int3 pad
 ?update@DirectInputMouse@@UAEXXZ,,0x006BB8E0,64,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?update@DockUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002CB0A0,323,Code/GameEngine/Source/Common/DockUpdate_update_Thunk.cpp,matched,string-anchor Open-BFME4+Grok DockWaiting
 ?update@DockingState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
