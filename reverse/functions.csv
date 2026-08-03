@@ -1236,7 +1236,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BaseRegenerateUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0BaseUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D3800,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/BaseUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
 ??0BaseUpgradeModuleData@@QAE@XZ,,0x002D3C50,127,Code/GameEngine/Source/GameLogic/AI/BaseUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0BattlePlanUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286260,383,Code/masm_dumps/BattlePlanUpdate_constructor.asm,matched,Exact 383B @ 0x00286260; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x119CD0
+??0BattlePlanUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286260,383,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdateCtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0BattlePlanUpdateModuleData@@QAE@XZ,,0x0003025B,5,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdateModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0BeaconClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
 ??0BeaconClientUpdateModuleData@@QAE@XZ,,0x006031C0,15,Code/GameEngine/Source/GameClient/Drawable/Update/BeaconClientUpdate.cpp,matched,exact 15B no-call ModuleData ctor; m_framesBetweenRadarPulses=30 m_radarPulseDuration=15; moduledata shim; replaces 5B thunk @0x286C3
@@ -9271,7 +9271,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?checkForDuplicateColors@@YAXPAVGameInfo@@@Z,,0x00386520,104,Code/GameEngine/Source/Common/checkForDuplicateColors_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?checkForMessage@CopyProtect@@SAXIJ@Z,,0x00102200,40,Code/GameEngine/Source/Common/System/CopyProtection.cpp,matched,
 ?checkForSupplyCenter@AIPlayer@@IAEXPAVBuildListInfo@@PAVObject@@@Z,,0x00162410,259,Code/GameEngine/Source/GameLogic/AI/AIPlayer_checkForSupplyCenter_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
-?checkLadder@LadderList@@AAEXVAsciiString@@H@Z,,0x0062BC60,380,Code/masm_dumps/LadderList_checkLadder.asm,matched,Ghidra-bound retail ladder validation body
+?checkLadder@LadderList@@AAEXVAsciiString@@H@Z,,0x0062BC60,380,Code/GameEngine/Source/GameNetwork/LadderList_checkLadder_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?checkLinkAfter@W3DRoadBuffer@@IAEXH@Z,,0x0070B510,312,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?checkLinkBefore@W3DRoadBuffer@@IAEXH@Z,,0x0070B160,745,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?checkLogin@@YAXXZ,,0x004FFFC0,418,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu_checkLogin.asm,matched,True body @ 0x4FFFC0/418 (queue 0x9D15B7 mid-insn elsewhere). WelcomeMenu+Pinger sequence; C++ blocked by GameSpyInfo vtable/stack layout (setPingString 0x110 vs 0xec). Exact MASM.
