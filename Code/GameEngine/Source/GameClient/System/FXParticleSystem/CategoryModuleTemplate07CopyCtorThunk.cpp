@@ -1,72 +1,42 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: CategoryModuleTemplate (N=8 / $07) copy ctor
+// Retail: base copy; null-preserving word at +8; dual outer vtbl.
 
 namespace FXParticleSystem
 {
-template<int Category>
+
+class CategoryModuleTemplate07BaseCopyShim
+{
+public:
+	void construct_from(const void *src);
+};
+
+extern "C" char CategoryModuleTemplate07_vtbl0;
+extern "C" char CategoryModuleTemplate07_vtbl4;
+
+template <int N>
 class CategoryModuleTemplate
 {
 public:
-    CategoryModuleTemplate(const CategoryModuleTemplate<Category> &);
+	CategoryModuleTemplate(const CategoryModuleTemplate &);
+
+private:
+	void *m_v0;
+	void *m_v4;
+	unsigned short m_word;
 };
 
-template<int Category>
-__declspec(naked) CategoryModuleTemplate<Category>::CategoryModuleTemplate(const CategoryModuleTemplate<Category> &)
+template <int N>
+CategoryModuleTemplate<N>::CategoryModuleTemplate(const CategoryModuleTemplate &that)
 {
-    __asm {
-        _emit 056h
-        _emit 057h
-        _emit 08Bh
-        _emit 07Ch
-        _emit 024h
-        _emit 00Ch
-        _emit 057h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 0A0h
-        _emit 0E4h
-        _emit 0FDh
-        _emit 0FFh
-        _emit 085h
-        _emit 0FFh
-        _emit 074h
-        _emit 005h
-        _emit 08Dh
-        _emit 047h
-        _emit 008h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0C0h
-        _emit 066h
-        _emit 08Bh
-        _emit 000h
-        _emit 066h
-        _emit 089h
-        _emit 046h
-        _emit 008h
-        _emit 05Fh
-        _emit 0C7h
-        _emit 006h
-        _emit 048h
-        _emit 038h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 004h
-        _emit 044h
-        _emit 038h
-        _emit 007h
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+	const void *src = &that;
+	((CategoryModuleTemplate07BaseCopyShim *)this)->construct_from(src);
+	const void *p = src ? (const char *)src + 8 : 0;
+	m_word = *(const unsigned short *)p;
+	m_v0 = &CategoryModuleTemplate07_vtbl0;
+	m_v4 = &CategoryModuleTemplate07_vtbl4;
 }
 
-template class CategoryModuleTemplate<8>;
+template CategoryModuleTemplate<8>::CategoryModuleTemplate(const CategoryModuleTemplate &);
 }

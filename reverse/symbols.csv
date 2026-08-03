@@ -4378,3 +4378,6 @@ CategoryModuleTemplate06_sub_vtbl,0x0110FC94,CMT06 sub vtbl
 ??1TunnelContainModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1TunnelContainModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1TunnelContainModuleDataBase@@UAE@XZ,0x000179B8,Open-BFME5 pin
+?construct_from@CategoryModuleTemplate07BaseCopyShim@FXParticleSystem@@QAEXPBX@Z,0x0003C84E,CMT07 copy base
+CategoryModuleTemplate07_vtbl0,0x01073848,CMT07 vtbl0
+CategoryModuleTemplate07_vtbl4,0x01073844,CMT07 vtbl4
