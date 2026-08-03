@@ -1,171 +1,31 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
+// Open-BFME5: lift ModuleData dtor MASM dump to clean C++.
+// Retail SEH dtor with two POD vector members (+0x14 then +0x08, reverse
+// declaration order), each deallocated inline through the STLport node_alloc
+// 0x80 threshold (big: operator delete; small: _M_deallocate), then the base
+// vftable store. #include <vector> comes first so node_alloc is used.
 
-class __declspec(novtable) HealContainModuleData
+#include <vector>
+
+class ModuleData
+{
+public:
+	virtual ~ModuleData() {}
+	unsigned int m_04;
+};
+
+class __declspec(novtable) HealContainModuleData : public ModuleData
 {
 public:
 	virtual ~HealContainModuleData();
+
+private:
+	std::vector<int> m_b;	// +0x08
+	std::vector<int> m_a;	// +0x14
 };
 
 // ??1HealContainModuleData@@UAE@XZ
-__declspec(naked) HealContainModuleData::~HealContainModuleData()
+HealContainModuleData::~HealContainModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x03
-		__emit 0x14
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x14
-		__emit 0x85
-		__emit 0xc9
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x27
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x1c
-		__emit 0x2b
-		__emit 0xc1
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x02
-		__emit 0xc1
-		__emit 0xe0
-		__emit 0x02
-		__emit 0x3d
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x76
-		__emit 0x0b
-		__emit 0x51
-		__emit 0xe8
-		__emit 0x2c
-		__emit 0x64
-		__emit 0x5f
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0xeb
-		__emit 0x0a
-		__emit 0x50
-		__emit 0x51
-		__emit 0xe8
-		__emit 0x60
-		__emit 0x2b
-		__emit 0x5a
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc9
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0x74
-		__emit 0x27
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x10
-		__emit 0x2b
-		__emit 0xc1
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x02
-		__emit 0xc1
-		__emit 0xe0
-		__emit 0x02
-		__emit 0x3d
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x76
-		__emit 0x0b
-		__emit 0x51
-		__emit 0xe8
-		__emit 0xf9
-		__emit 0x63
-		__emit 0x5f
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0xeb
-		__emit 0x0a
-		__emit 0x50
-		__emit 0x51
-		__emit 0xe8
-		__emit 0x2d
-		__emit 0x2b
-		__emit 0x5a
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }

@@ -2979,7 +2979,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1HRawAnimClass@@UAE@XZ,,0x0095AF40,126,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,
 ??1HTreeClass@@QAE@XZ,,0x00952790,42,Code/Libraries/Source/WWVegas/WW3D2/HTreeClass.cpp,matched,Open-BFME5 clean C++ HTreeClass dtor
 ??1HashTableClass@@QAE@XZ,,0x009DFFC0,28,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
-??1HealContainModuleData@@UAE@XZ,,0x0028BA40,156,Code/GameEngine/Source/Common/HealContainModuleDataDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
+??1HealContainModuleData@@UAE@XZ,,0x0028BA40,156,Code/GameEngine/Source/Common/HealContainModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two STLport node_alloc POD vector members) converted from __emit thunk
 ??1HealCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/HealCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ member-then-base SEH ModuleData dtor
 ??1HeightMapRenderObjClass@@UAE@XZ,,0x006D33B0,116,Code/GameEngine/Source/Common/HeightMapRenderObjClassDestructorThunk.cpp,matched,Ghidra-corrected body via constructor vtables and deleting destructor
 ??1HemisphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D7520,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$ModuleTag@$03$E?CYLINDRICAL_EMISSION_VELOCITY_MODULE_KEY@FXParticleSystem@@3QBDB$E?CYLINDRICAL_EMISSION_VELOCITY_MODULE_NAME@2@3QBDBVCylindricalEmissionVelocityModule@2@VCylindricalEmissionVelocityModuleTemplate@2@V?$DefaultParticleModule@$03@2@V?$DefaultParticleModuleTemplate@$03@2@@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
@@ -3209,7 +3209,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SphericalEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x0001BFDB,0x005D71D0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
 ??1SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D7380,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/SphericalEmissionVelocityModuleTemplateDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-vtbl empty dtor (this+8/this+4/this stores)
 ??1SpyVisionUpdateModuleData@@UAE@XZ,,0x003780A0,158,Code/GameEngine/Source/GameLogic/Object/Update/SpyVisionUpdateModuleDataDtorThunk.cpp,matched,Exact standalone C++ __emit thunk from certified retail destructor
-??1Squad@@MAE@XZ,,0x000D4090,156,Code/GameEngine/Source/Common/SquadDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
+??1Squad@@MAE@XZ,,0x000D4090,156,Code/GameEngine/Source/Common/SquadDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two STLport node_alloc POD vector members) converted from __emit thunk
 ??1StateMachine@@MAE@XZ,,0x000A1130,224,Code/GameEngine/Source/Common/StateMachineDestructorThunk.cpp,matched,Exact 224B SEH dtor Open-BFME5
 ??1StealthDetectorUpdateModuleData@@UAE@XZ,,0x00126B60,99,Code/GameEngine/Source/Common/StealthDetectorUpdateModuleDataDestructorThunk.cpp,matched,Exact 99B SEH dtor Open-BFME5
 ??1StealthUpdate@@UAE@XZ,,0x002AC620,1085,Code/GameEngine/Source/Common/StealthUpdateDestructorThunk.cpp,matched,Exact 1085B SEH module dtor; factory->vtable recovery Open-BFME4
