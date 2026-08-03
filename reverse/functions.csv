@@ -12451,7 +12451,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onExit@DozerPrimaryIdleState@@UAEXW4StateExitType@@@Z,,0x002B6350,50,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail owner and UI vtable shims
 ?onObjectCreated@BoneFXDamage@@MAEXXZ,,0x00250880,154,Code/GameEngine/Source/GameLogic/Object/Damage/BoneFXDamage_onObjectCreated.asm,matched,
 ?onObjectCreated@GarrisonContain@@MAEXXZ,,0x0021EA90,150,Code/GameEngine/Source/Common/GarrisonContain_onObjectCreated_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?onPlayerRankChanged@ControlBar@@QAEXPBVPlayer@@@Z,,0x0049DC90,111,Code/masm_dumps/ControlBar_onPlayerRankChanged.asm,matched,exact retail body; queue RVA 0xC6C40A was epilogue/pad misplace
+?onPlayerRankChanged@ControlBar@@QAEXPBVPlayer@@@Z,,0x0049DC90,111,Code/GameEngine/Source/Common/ControlBar_onPlayerRankChanged_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?onPowerBrownOutChange@Player@@QAEX_N@Z,,0x000D59F0,63,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?onRemoving@RiderChangeContain@@UAEXPAVObject@@@Z,,0x004A747F,715,Code/GameEngine/Source/GameLogic/Object/Contain/RiderChangeContain_onRemoving.asm,matched,exact 715B via MASM
 ?onSpecialPowerCreation@SpecialPowerModule@@UAEXXZ,,0x00269600,304,Code/masm_dumps/SpecialPowerModule_onSpecialPowerCreation.asm,matched,Certified packet 306 sealed db-only retail body SHA256 4c0f6dbab4ef3dcbedb8d695d3ffffb85a8a33969f953ae9c9bcc3603c7aaa4c
@@ -13577,7 +13577,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setSkillPointsModifier@Player@@QAEXM@Z,,0x00360740,13,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?setSkipParentXfrm@ParticleSystem@@QAEX_N@Z,,0x0016A830,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?setSlaveSystemName@ParticleSystemTemplate@FXParticleSystem@@QAEXABVAsciiString@@@Z,0x00041F47,0x005BE690,28,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,assigns slave system name and clears flag
-?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/masm_dumps/_rn7__setSlot_GameInfo__QAEXHVGameSlot___Z_61F630.asm,matched,reloc-needle Open-BFME4+Grok
+?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/GameEngine/Source/Common/GameInfo_setSlot_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setSlot@NetDisconnectVoteCommandMsg@@QAEXE@Z,,0x00673D20,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?setSlotPointer@GameInfo@@QAEXHPAVGameSlot@@@Z,,0x0061E9E0,24,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setSlotRankPoints@GameSpyGameSlot@@QAEXH@Z,,0x0045BEC0,10,Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp,matched,
@@ -14036,7 +14036,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winSetPrevInLayout@GameWindow@@QAEXPAV1@@Z,,0x00478DD0,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winSetSize@GameWindow@@QAEHHH@Z,,0x00478250,63,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; ILT thunk 0x482AC -> body 0x478250
 ?winSetStatus@GameWindow@@QAEII@Z,,0x00840FC0,19,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
-?winSetText@GameWindow@@UAEHVUnicodeString@@@Z,,0x00479660,114,Code/masm_dumps/winSetText_GameWindow_UAEHVUnicodeString_Z_479660.asm,matched,Exact 114B MASM; true body 0x479660 (queue 0x6EF270 inside mega-fn; prior 0x43E537 mid-thunk); m_instData+0x30 setText + BFME [this+4] vtbl+0xC; C++ blocked layout/notify
+?winSetText@GameWindow@@UAEHVUnicodeString@@@Z,,0x00479660,114,Code/GameEngine/Source/Common/GameWindow_winSetText_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?winSetTooltipFunc@GameWindow@@QAEHP6AXPAV1@PAVWinInstanceData@@I@Z@Z,,0x00478EB0,15,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_tooltip@0x1ec
 ?winSetUserData@GameWindow@@QAEXPAX@Z,,0x00478C80,10,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_userData@0x2c
 ?winTextLabelToText@GameWindowManager@@QAE?AVUnicodeString@@VAsciiString@@@Z,,0x0047E1B0,175,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_winTextLabelToText.asm,matched,exact 175B via MASM (SEH)
