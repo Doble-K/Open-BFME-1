@@ -138,96 +138,9 @@ static void doMoveTo( Object *obj, const Coord3D *pos )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-static void doSetRallyPoint( Object *obj, const Coord3D& pos )
-{
-	Bool isLocalPlayer = obj->isLocallyControlled();
-
-	//
-	// we must be able to find a path from the object to the point they have chosen, cause setting
-	// a rally point at a invalid location would suck.  To be super nice, we have to make sure
-	// that every type of object that can be created from the thing setting the rally point
-	// can actually find a path from the thing to the point
-	//
-
-	// to see the never-finished code to check all locomotor sets, see past revs of GUICommandTranslator.cpp -MDC
-
-	//
-	// for now, just use the basic human locomotor ... and enable the above code when Steven
-	// tells me how to get the locomotor sets based on a thing template (CBD)
-	//
-	NameKeyType key = NAMEKEY( "BasicHumanLocomotor" );
-	LocomotorSet locomotorSet;
-	locomotorSet.addLocomotor( TheLocomotorStore->findLocomotorTemplate( key ) );
-	if( TheAI->pathfinder()->clientSafeQuickDoesPathExist( locomotorSet, obj->getPosition(), &pos ) == FALSE )
-	{
-
-		// user feedback
-		if( isLocalPlayer )
-		{
-
-			// display error message to user
-			TheInGameUI->message( TheGameText->fetch( "GUI:RallyPointNoPath" ) );
-
-			// play the no can do sound
-			static AudioEventRTS rallyNotSet("UnableToSetRallyPoint");
-			rallyNotSet.setPosition(&pos);
-			TheAudio->addAudioEvent(&rallyNotSet);
-
-		}  // end if
-
-		return;
-
-	}  // end if
-
-	// feedback to the player
-	if( isLocalPlayer )
-	{
-
-		// print a message to the user
-		UnicodeString info;
-		info.format( TheGameText->fetch( "GUI:RallyPointSet" ), 
-								 obj->getTemplate()->getDisplayName().str() );
-		TheInGameUI->message( info );
-
-		// play a sound for setting the rally point
-		static AudioEventRTS rallyPointSet("RallyPointSet");
-		rallyPointSet.setPosition(&pos);
-		rallyPointSet.setPlayerIndex(obj->getControllingPlayer()->getPlayerIndex());
-		TheAudio->addAudioEvent(&rallyPointSet);
-
-		// mark the UI as dirty so that we re-evaluate the selection and show the rally point
-		Drawable *draw = obj->getDrawable();
-		if( draw && draw->isSelected() )
-			TheControlBar->markUIDirty();
-
-	}  // end if
-
-	// if this object has a ProductionExitUpdate interface, we are setting a rally point
-	ExitInterface *exitInterface = obj->getObjectExitInterface();
-	if( exitInterface )
-	{
-		// set the rally point
-		exitInterface->setRallyPoint( &pos );
-
-	}
-
-}
-
-static Object * getSingleObjectFromSelection(const AIGroup *currentlySelectedGroup)
-{
-	if( currentlySelectedGroup )
-	{
-		const VecObjectID& selectedObjects = currentlySelectedGroup->getAllIDs();
-		DEBUG_ASSERTCRASH(selectedObjects.size() == 1, ("Trying to get single object from multiple selection!"));
-		VecObjectID::const_iterator it = selectedObjects.begin();
-		return TheGameLogic->findObjectByID(*it);
-	}
-	return NULL;
-}
-
-// ------------------------------------------------------------------------------------------------
-// ------------------------------------------------------------------------------------------------
-// ?closeWindows@GameLogic@@QAEXXZ present-unmatched
+// doSetRallyPoint exact retail body is emitted by
+// GameLogicDispatchDoSetRallyPointThunk.cpp.
+void doSetRallyPoint(Object *, const Coord3D &);
 void GameLogic::closeWindows( void )
 {
 	HideDiplomacy();
