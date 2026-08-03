@@ -34600,3 +34600,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??0PlayerTemplate@@QAE@XZ,,0x000E3760,824,Code/GameEngine/Source/Common/RTS/PlayerTemplateCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?init@WaterTracksObj@@QAEXMMAAVVector2@@0PADH@Z,,0x007AB2B0,814,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
+?friend_newModuleData@WaveGuideUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,Open-BFME5 exact C++ ICF alias; corrected one-byte int3 boundary; retail size 0x16C and constructor pin 0x30945

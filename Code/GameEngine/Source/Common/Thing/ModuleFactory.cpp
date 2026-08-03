@@ -194,6 +194,7 @@ class ToppleUpdateModuleData;
 class TransitionDamageFXModuleData;
 class TransportContainModuleData;
 class TunnelContainModuleData;
+class WaveGuideUpdateModuleData;
 class WorkerAIUpdateModuleData;
 class UnitCrateCollideModuleData;
 class UpgradeDieModuleData;
@@ -232,6 +233,7 @@ template <> struct BFMEFactoryInstanceSize<ToppleUpdateModuleData> { enum { VALU
 template <> struct BFMEFactoryInstanceSize<TransitionDamageFXModuleData> { enum { VALUE = 0x1040 }; };
 template <> struct BFMEFactoryInstanceSize<TransportContainModuleData> { enum { VALUE = 0x17C }; };
 template <> struct BFMEFactoryInstanceSize<TunnelContainModuleData> { enum { VALUE = 0x248 }; };
+template <> struct BFMEFactoryInstanceSize<WaveGuideUpdateModuleData> { enum { VALUE = 0x16C }; };
 template <> struct BFMEFactoryInstanceSize<WorkerAIUpdateModuleData> { enum { VALUE = 0x100 }; };
 template <> struct BFMEFactoryInstanceSize<UnitCrateCollideModuleData> { enum { VALUE = 0x5C }; };
 template <> struct BFMEFactoryInstanceSize<UpgradeDieModuleData> { enum { VALUE = 0x38 }; };
@@ -278,6 +280,7 @@ BFME_FACTORY_DATA_CHOICE(TransportContainModuleData)
 BFME_FACTORY_DATA_CHOICE(TunnelContainModuleData)
 BFME_FACTORY_DATA_CHOICE(UnitCrateCollideModuleData)
 BFME_FACTORY_DATA_CHOICE(UpgradeDieModuleData)
+BFME_FACTORY_DATA_CHOICE(WaveGuideUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(WorkerAIUpdateModuleData)
 
 #undef BFME_FACTORY_DATA_CHOICE
