@@ -34596,3 +34596,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?m@Gen_00c6ffe0@@QAEXXZ,,0x00C6FFE0,1,Code/gen_small/fun_005.cpp,matched,gen-shim;skeleton=ret-void;ghidra=FUN_0106ffe0
 ?m@Gen_00c70bf0@@QAEXXZ,,0x00C70BF0,1,Code/gen_small/fun_006.cpp,matched,gen-shim;skeleton=ret-void;ghidra=FUN_01070bf0
 ?m@Gen_00c70e70@@QAEXXZ,,0x00C70E70,1,Code/gen_small/fun_006.cpp,matched,gen-shim;skeleton=ret-void;ghidra=FUN_01070e70
+?_com_issue_error@@YGXJ@Z,,0x00AFD540,16,Code/gen_small/named_000.cpp,matched,gen-named;family=com-issue-error;ghidra=_com_issue_error
