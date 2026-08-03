@@ -1814,7 +1814,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OBBoxIntersectionTestClass@@QAE@ABVAABoxIntersectionTestClass@@ABVMatrix3D@@@Z,,0x0092D8E0,176,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ??0OBBoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00957BC0,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0OBBoxRenderObjClass@@QAE@ABV0@@Z,,0x00957F40,111,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
-??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/masm_dumps/_rn4___0OBBoxRenderObjClass__QAE_ABVOBBoxClass___Z_957C20.asm,matched,reloc-needle Open-BFME4+Grok
 ??0OBBoxRenderObjClass@@QAE@XZ,,0x00957B30,80,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/GameEngine/Source/GameLogic/AI/OCLSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0OCLUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298960,80,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateConstructor.cpp,matched,Luna Open-BFME5.0 clean C++ inline UpdateModule constructor
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?updateNemesis@TunnelTracker@@QAEXPBVObject@@@Z,,0x000F90D0,124,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,MASM dump converted to clean C++; single-base TunnelTracker plus two extra BFME KindOf entries before KINDOF_AIRCRAFT
 ?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,MASM dump converted to clean C++; BFME TurretAI has one polymorphic base fewer so m_angle is at +0x18
 ??0AABoxRenderObjClass@@QAE@ABVAABoxClass@@@Z,,0x00957880,147,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,MASM dump converted to clean C++; BFME RenderObjClass has one more virtual at its tail
+??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,MASM dump converted to clean C++; Matrix3D::Set REL32 repointed to the Matrix3-spelled body

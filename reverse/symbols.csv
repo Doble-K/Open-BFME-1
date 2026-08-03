@@ -2282,7 +2282,7 @@ name,address,notes
 ?Scale@SegLineRendererClass@@QAEXM@Z,0x0095FF30
 ?Search_For_Node@?$IndexClass@HPAUINIEntry@@@@ABEPBUNodeElement@1@ABH@Z,0x009E2E60
 ?Search_For_Node@?$IndexClass@HPAUINISection@@@@ABEPBUNodeElement@1@ABH@Z,0x009E2FD0
-?Set@Matrix3D@@QAEXABVMatrix3x3@@ABVVector3@@@Z,0x00964150
+?Set@Matrix3D@@QAEXABVMatrix3x3@@ABVVector3@@@Z,0x008D6710,repointed: OBBoxRenderObjClass ctor @0x957C20 calls 0x8D6710 which the ledger already identifies as the Matrix3-spelled same function; 0x964150 is a 274-byte ICF group
 ?Set@Matrix3x3@@QAEXABVMatrix3D@@@Z,0x008D9000,Update_Frustum callee
 ?SetLobbyAttemptHostJoin@@YAX_N@Z,0x0000362A
 ?Set_Animation@Animatable3DObjClass@@UAEXPAVHAnimClass@@M0MM@Z,0x009822C0
