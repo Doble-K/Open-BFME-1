@@ -13916,7 +13916,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?updateRenderTargetTextures@WaterRenderObjClass@@QAEXPAVCameraClass@@@Z,,0x007A4AF0,61,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,clean C++ conditional replaces exact MASM dump
 ?updateRightHUDImage@ControlBar@@QAEXPBVImage@@@Z,,0x0049CFF0,26,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?updateScreenVB@W3DStatusCircle@@IAEHH@Z,,0x00725DE0,221,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DStatusCircle.cpp,matched,shaderclass fix
-?updateSegLighting@RoadSegment@@QAEXXZ,,0x007040D0,161,Code/masm_dumps/updateSegLighting_RoadSegment_QAEXXZ_007040D0_packet231.asm,matched,Certified packet 231 SHA256 7ed54371c0899c19e922b0651f854a9213948f4fc2c657989d546f729e579bc6
+?updateSegLighting@RoadSegment@@QAEXXZ,,0x007040D0,161,Code/GameEngine/Source/Common/RoadSegment_updateSegLightingMethodThunk.cpp,matched,Certified packet 231 SHA256 7ed54371c0899c19e922b0651f854a9213948f4fc2c657989d546f729e579bc6
 ?updateShorelineTiles@BaseHeightMapRenderObjClass@@QAEXHHHHPAVWorldHeightMap@@@Z,,0x006C76B0,1249,Code/masm_dumps/BaseHeightMapRenderObjClass_updateShorelineTiles_6C76B0.asm,matched,Certified packet 10 exact MASM SHA256 94c981791b3cffb3bec2c81f7e928e4865c91ee8427c27028af27bb4a12a7bd0
 ?updateSlotExitImage@ControlBar@@QAEXPBVImage@@@Z,,0x004AEE00,1188,Code/masm_dumps/_str2__updateSlotExitImage_ControlBar_QAEXPBVImage_Z_4AEE00.asm,matched,
 ?updateSpecialPowerShortcut@ControlBar@@IAEXXZ,,0x0049E240,650,Code/masm_dumps/_updateSpecialPowerShortcut_ControlBar__IAEXXZ_49E240.asm,matched,MASM exact body; queue 0x4A94BE misplaced INSIDE neighbor mid-insn; ID via populate last-call ILT 0x17643
