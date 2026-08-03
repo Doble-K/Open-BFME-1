@@ -34,13 +34,6 @@ FastAllocatorGeneral* FastAllocatorGeneral::Get_Allocator()
 	return generalAllocator;
 }
 
-// ??0FastAllocatorGeneral@@QAE@XZ present-unmatched
-FastAllocatorGeneral::FastAllocatorGeneral() : MemoryLeakLogEnabled(false), AllocatedWithMalloc(0), AllocatedWithMallocCount(0), ActualMemoryUsage(0)
-{
-	int alloc_size=ALLOC_STEP;
-	for (int i=0;i<MAX_ALLOC_SIZE/ALLOC_STEP;++i) {
-	   allocators[i].Init(alloc_size);
-		alloc_size+=ALLOC_STEP;
-	}
-}
+// ??0FastAllocatorGeneral@@ is implemented by the exact retail thunk in
+// FastAllocatorGeneralCtorThunk.cpp.
 

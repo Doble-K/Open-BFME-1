@@ -1525,9 +1525,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FadeAndDieOrnamentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00292230,139,Code/GameEngine/Source/Common/RTS/FadeAndDieOrnamentUpdateCtorThunk.cpp,matched,Exact 139B; factory ownership Open-BFME4
 ??0FadeAndDieOrnamentUpdateModuleData@@QAE@XZ,,0x00125B30,127,Code/GameEngine/Source/Common/RTS/FadeAndDieOrnamentUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0FailureState@@QAE@PAVStateMachine@@@Z,,0x00170E10,46,Code/GameEngine/Source/GameLogic/AI/FailureStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
-??0FastAllocatorGeneral@@QAE@XZ,,0x00B027B0,113,Code/masm_dumps/___0FastAllocatorGeneral__QAE_XZ_B027B0.asm,matched,
+??0FastAllocatorGeneral@@QAE@XZ,,0x00B027B0,113,Code/Libraries/Source/WWVegas/WWLib/FastAllocatorGeneralCtorThunk.cpp,matched,Converted to an exact standalone C++ thunk
 ??0FastCriticalSectionClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,ICF alias of existing matched body
-??0FastFixedAllocator@@QAE@I@Z,,0x00B02760,45,Code/Libraries/Source/WWVegas/WWLib/FastAllocator.cpp,matched,
+??0FastFixedAllocator@@QAE@I@Z,,0x00B02760,45,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,Converted to an exact standalone C++ thunk
 ??0FellBeastSwoopPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025CF40,60,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FellBeastSwoopPowerCtorThunk.cpp,matched,Open-BFME5 exact C++ raw FellBeastSwoopPower constructor
 ??0FellBeastSwoopPowerModuleData@@QAE@XZ,,0x0025CF10,32,Code/GameEngine/Source/GameLogic/Object/Update/FellBeastSwoopPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ??0File@@QAE@XZ,,0x009CB7A0,88,Code/GameEngine/Source/Common/System/File.cpp,matched,installs vtable 0x01143AF8 and sets the placeholder name
@@ -2918,7 +2918,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ExperienceTracker@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameLogic/Object/ExperienceTracker.cpp,matched,
 ??1FXBoneInfo@@QAE@XZ,,0x0037E1A0,8,Code/GameEngine/Source/GameLogic/Object/Update/FXBoneInfoDestructor.cpp,matched,thunk-dump converted to clean C++ destructor body at destination 0x37E1A0
 ??1FadeAndDieOrnamentUpdateModuleData@@UAE@XZ,,0x00126E70,67,Code/masm_dumps/FadeAndDieOrnamentUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
-??1FastFixedAllocator@@QAE@XZ,,0x00B02720,26,Code/Libraries/Source/WWVegas/WWLib/FastAllocator.cpp,matched,
+??1FastFixedAllocator@@QAE@XZ,,0x00B02720,26,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,Converted to an exact standalone C++ thunk
 ??1File@@UAE@XZ,,0x009CB8C0,133,Code/GameEngine/Source/Common/System/File.cpp,matched,scalar dtor reached from ??_GFile@@ at 0x009CB950; installs vtable 0x01143AF8
 ??1FileInfoStruct@MixFileCreator@@QAE@XZ,,0x005DBEA0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;C++ alias
 ??1FilePipe@@UAE@XZ,,0x009E7DC0,104,Code/Libraries/Source/WWVegas/WWLib/xpipe.cpp,matched,
@@ -4740,7 +4740,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_EWeightInfoStruct@NamedPivotMapClass@@QAEPAXI@Z,,0x0013A460,92,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,
 ??_EZoneBlock@@QAEPAXI@Z,,0x0005E880,84,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ??_FAcceleratorTracker@@QAEXXZ,,0x001B0CB0,14,Code/Libraries/Source/WWVegas/WWLib/msgloop.cpp,matched,
-??_FFastFixedAllocator@@QAEXXZ,,0x00B02790,24,Code/Libraries/Source/WWVegas/WWLib/FastAllocator.cpp,matched,
+??_FFastFixedAllocator@@QAEXXZ,,0x00B02790,24,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,object-symbol=?FastFixedAllocatorDefaultConstructorClosureThunk@@YAXXZ;converted to an exact standalone C++ thunk
 ??_FRandom3Class@@QAEXXZ,,0x001B0CB0,14,Code/Libraries/Source/WWVegas/WWLib/rndstraw.cpp,matched,
 ??_FStringClass@@QAEXXZ,,0x0013A550,31,Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp,matched,
 ??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
@@ -7125,7 +7125,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Init@ActiveCategoryStackClass@@QAEXH@Z,,0x00AFF160,29,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ?Init@BTCollisionStruct@@QAEXABVAABoxClass@@ABVVector3@@ABVTriClass@@1@Z,,0x008DF290,353,Code/Libraries/Source/WWVegas/WWMath/colmathaabtri.cpp,matched,
 ?Init@DX8MeshRendererClass@@QAEXXZ,,0x00945E80,75,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
-?Init@FastFixedAllocator@@QAEXI@Z,,0x00B02740,20,Code/Libraries/Source/WWVegas/WWLib/FastAllocator.cpp,matched,
+?Init@FastFixedAllocator@@QAEXI@Z,,0x00B02740,20,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,Converted to an exact standalone C++ thunk
 ?Init@FrustumClass@@QAEXABVMatrix3D@@ABVVector2@@1MM@Z,,0x00B00B00,3661,Code/Libraries/Source/WWVegas/WWMath/frustum.cpp,matched,
 ?Init@InputLightStruct@LightEnvironmentClass@@QAEXABVLightClass@@ABVVector3@@@Z,,0x0094B870,46,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,matched,
 ?Init@Matrix4@@QAEXABVMatrix3D@@@Z,,0x006CA420,95,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
