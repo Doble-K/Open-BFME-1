@@ -11410,7 +11410,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getMaxTargetPitch@WeaponTemplate@@QBEMXZ,,0x006CF980,4,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,icf-owner=?Get_Native_Screen_Size@RenderObjClass@@UBEMXZ
 ?getMaximumValue@GameClientRandomVariable@@QBEMXZ,0x0010BDA0,0x0010BDA0,4,Code/GameEngine/Source/Common/System/game_client_random_variable.cpp,matched,get maximum value
 ?getMaximumVisibleBox@BaseHeightMapRenderObjClass@@QAE_NABVFrustumClass@@PAVAABoxClass@@_N@Z,,0x006CC0A0,1439,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_getMaximumVisibleBox.asm,matched,exact 1439B via MASM (field-offset drift)
-?getMetaMapRec@MetaMap@@IAEPAVMetaMapRec@@W4Type@GameMessage@@@Z,,0x005B7110,111,Code/masm_dumps/MetaEvent_MetaMap_getMetaMapRec.asm,matched,
+?getMetaMapRec@MetaMap@@IAEPAVMetaMapRec@@W4Type@GameMessage@@@Z,,0x005B7110,111,Code/GameEngine/Source/GameClient/MessageStream/MetaMap_getMetaMapRecThunk.cpp,matched,Open-BFME5 MASM lift getMetaMapRec (MetaMapRec 0x24 layout)
 ?getMinHeightValue@WorldHeightMap@@SAHXZ,,0x006CF680,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getMinPoints@QuickMatchPreferences@@QAEHXZ,,0x000ABFF0,84,Code/GameEngine/Source/Common/promoted__getMinPoints_QuickMatchPreferences_QAEHXZ_000ABFF0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 84B
 ?getMinimumRequiredGameLOD@ModuleData@@UBE?AW4StaticGameLODLevel@@XZ,,0x006CF680,3,Code/GameEngine/Source/Common/Thing/Module.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
