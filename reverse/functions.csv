@@ -2833,7 +2833,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CameraShakerClass@CameraShakeSystemClass@@UAE@XZ,,0x006D1290,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,thunk-dump converted to clean C++
 ??1CampaignManager@@QAE@XZ,,0x005BC4E0,146,Code/GameEngine/Source/Common/CampaignManagerDestructorThunk.cpp,matched,Exact 146B SEH dtor Open-BFME5
 ??1CashHackSpecialPowerModuleData@@UAE@XZ,,0x00258E20,120,Code/GameEngine/Source/Common/CashHackSpecialPowerModuleDataDestructorThunk.cpp,matched,Exact 120B ModuleData SEH dtor Open-BFME4
-??1CastleBehavior@@UAE@XZ,,0x003728E0,433,Code/masm_dumps/CastleBehavior_destructor.asm,matched,Exact 433B @ 0x003728E0; Exact retail MASM; instance factory->vtable dtor; del 0x374EF0 ctor 0x376250 vt 0xCE9BFC
+??1CastleBehavior@@UAE@XZ,,0x003728E0,433,Code/GameEngine/Source/Common/CastleBehaviorDestructorThunk.cpp,matched,Exact 433B @ 0x003728E0; Exact retail MASM; instance factory->vtable dtor; del 0x374EF0 ctor 0x376250 vt 0xCE9BFC
 ??1CivilianSpawnCollideModuleData@@UAE@XZ,,0x002175C0,67,Code/GameEngine/Source/GameLogic/Object/Collide/CivilianSpawnCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
 ??1CivilianSpawnUpdate@@UAE@XZ,,0x0028A5A0,1025,Code/masm_dumps/CivilianSpawnUpdate_destructor.asm,matched,Exact 1025B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1CivilianSpawnUpdateModuleData@@UAE@XZ,,0x0028A530,80,Code/GameEngine/Source/Common/CivilianSpawnUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
@@ -3005,7 +3005,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1LANGameInfo@@QAE@XZ,,0x00686CD0,103,Code/GameEngine/Source/Common/LANGameInfoDestructorThunk.cpp,matched,Exact 103B SEH dtor Open-BFME5
 ??1LANPlayer@@QAE@XZ,,0x00685830,89,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,
 ??1LadderInfo@@QAE@XZ,,0x0062A9E0,194,Code/GameEngine/Source/Common/LadderInfoDestructorThunk.cpp,matched,Ghidra-bound retail destructor
-??1LadderList@@QAE@XZ,,0x0062AB10,452,Code/masm_dumps/LadderList_destructor.asm,matched,Ghidra-corrected retail destructor
+??1LadderList@@QAE@XZ,,0x0062AB10,452,Code/GameEngine/Source/Common/LadderListDestructorThunk.cpp,matched,Ghidra-corrected retail destructor
 ??1LadderPreferences@@UAE@XZ,,0x000ABB70,82,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ??1LanguageFilter@@UAE@XZ,,0x0044E400,150,Code/GameEngine/Source/GameClient/LanguageFilter.cpp,matched,
 ??1LargeGroupAudioUpdateModuleData@@UAE@XZ,,0x00297390,99,Code/GameEngine/Source/Common/LargeGroupAudioUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
@@ -3275,7 +3275,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Vertex_Split_Table@@QAE@XZ,,0x00944BC0,18,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??1VideoPlayer@@UAE@XZ,,0x0081C590,35,Code/GameEngine/Source/GameClient/VideoPlayerDestructorThunk.cpp,matched,Open-BFME5 exact C++ raw VideoPlayer destructor
 ??1W3DAnimationInfo@@QAE@XZ,,0x00020018,5,Code/Libraries/Source/WWVegas/WW3D2/W3DAnimationInfoDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
-??1W3DDebrisDraw@@UAE@XZ,,0x00750CC0,474,Code/masm_dumps/W3DDebrisDraw_destructor.asm,matched,Exact 474B SEH dtor factory->vtable Open-BFME4
+??1W3DDebrisDraw@@UAE@XZ,,0x00750CC0,474,Code/GameEngine/Source/Common/W3DDebrisDrawDestructorThunk.cpp,matched,Exact 474B SEH dtor factory->vtable Open-BFME4
 ??1W3DDisplayString@@MAE@XZ,,0x006F4C50,114,Code/GameEngine/Source/Common/W3DDisplayStringDestructorThunk.cpp,matched,Exact 114B SEH dtor Open-BFME5
 ??1W3DFileSystem@@UAE@XZ,,0x006F6280,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,
 ??1W3DLaserDrawModuleData@@UAE@XZ,,0x001FE260,198,Code/GameEngine/Source/Common/W3DLaserDrawModuleDataDestructorThunk.cpp,matched,Exact 198B SEH dtor Open-BFME5
