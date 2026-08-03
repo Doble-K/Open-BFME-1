@@ -88,17 +88,8 @@ OverchargeBehaviorModuleData::OverchargeBehaviorModuleData( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0OverchargeBehavior@@ present-unmatched
-OverchargeBehavior::OverchargeBehavior( Thing *thing, const ModuleData* moduleData ) 
-									 : UpdateModule( thing, moduleData )
-{
-
-	m_overchargeActive = FALSE;
-
-	// start off sleeping forever until we become active
-	setWakeFrame( getObject(), UPDATE_SLEEP_FOREVER );
-
-}  // end OverchargeBehavior
+// ??0OverchargeBehavior@@QAE@PAVThing@@PBVModuleData@@@Z
+// Exact retail ICF alias emitted by OverchargeBehaviorCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------

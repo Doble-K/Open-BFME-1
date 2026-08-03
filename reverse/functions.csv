@@ -1936,7 +1936,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OutwardEmissionVelocityInfo@FXParticleSystem@@QAE@XZ,0x000051C3,0x005D7A80,105,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0OutwardEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0003C6DC,0x005D7D40,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0OutwardEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ,0x00048DB0,0x005D7C70,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??0OverchargeBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/OverchargeBehavior_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
+??0OverchargeBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/GameEngine/Source/GameLogic/Object/Behavior/OverchargeBehaviorCtorThunk.cpp,matched,Exact 154B ICF alias; Open-BFME5 symbol-specific thunk
 ??0OverchargeBehaviorModuleData@@QAE@XZ,,0x0008A430,26,Code/GameEngine/Source/GameLogic/Object/Behavior/OverchargeBehavior.cpp,matched,
 ??0Overridable@@QAE@XZ,,0x000C3630,17,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ??0PKey@@QAE@PBX0@Z,,0x009EAA10,81,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,locate ghidra-unknown callee; build.sh exact match
