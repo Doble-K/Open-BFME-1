@@ -4286,3 +4286,5 @@ DefaultModuleTemplate6_vtbl8,0x01111004,DefaultModuleTemplate6 ctor vtbl anchor
 ??1GiantBirdSlowDeathBehaviorModuleDataMember@@QAE@XZ,0x00026F35,Open-BFME5 pin
 ??1ProductionSpeedBonusModuleDataMember@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1SupplyTruckAIUpdateModuleDataMember@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1W3DModelDrawModuleDataMember@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1W3DModelDrawModuleDataBase@@UAE@XZ,0x0000CAB3,Open-BFME5 pin
