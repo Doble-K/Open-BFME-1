@@ -13445,11 +13445,11 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setMapAvailability@GameSlot@@QAEX_N@Z,,0x0061EE70,16,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setMapContentsMask@GameInfo@@QAEXH@Z,,0x001BD300,10,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setMaxBraking@Locomotor@@QAEXM@Z,,0x000873F0,10,Code/GameEngine/Source/GameLogic/Object/Update/HelicopterSlowDeathUpdate.cpp,matched,
-?setMaxDisconnects@QuickMatchPreferences@@QAEXH@Z,,0x000AD260,169,Code/masm_dumps/_sa13__setMaxDisconnects_QuickMatchPreferences__QAEXH_Z_AD260.asm,matched,multi-xref Open-BFME4+Grok MaxDisconnects
+?setMaxDisconnects@QuickMatchPreferences@@QAEXH@Z,,0x000AD260,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setMaxDisconnects_Thunk.cpp,matched,multi-xref Open-BFME4+Grok MaxDisconnects
 ?setMaxLift@Locomotor@@QAEXM@Z,,0x00674240,10,Code/GameEngine/Source/GameLogic/Object/Behavior/JetSlowDeathBehavior.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
 ?setMaxMessagesPerUpdate@GameSpyInfo@@UAEXH@Z,,0x000FB8A0,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?setMaxPing@QuickMatchPreferences@@QAEXH@Z,,0x000AD6C0,169,Code/GameEngine/Source/Common/UserPreferences_setMaxPing.asm,matched,sealed packet exact 169B MASM sha256 90952915d280e24a9d2af1c4bcf59f925332b44430a64828c9ce74a49b8df221
-?setMaxPoints@QuickMatchPreferences@@QAEXH@Z,,0x000AD340,169,Code/masm_dumps/_sa13__setMaxPoints_QuickMatchPreferences__QAEXH_Z_AD340.asm,matched,Exact retail MASM; MaxPoints string-anchor; sibling setMaxDisconnects/setWaitTime/setNumPlayers
+?setMaxPoints@QuickMatchPreferences@@QAEXH@Z,,0x000AD340,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setMaxPoints_Thunk.cpp,matched,Exact retail MASM; MaxPoints string-anchor; sibling setMaxDisconnects/setWaitTime/setNumPlayers
 ?setMaxShotCount@Weapon@@QAEXH@Z,,0x00087470,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setMaxTurnRate@Locomotor@@QAEXM@Z,,0x000C8DB0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/JetSlowDeathBehavior.cpp,matched,
 ?setMinPoints@QuickMatchPreferences@@QAEXH@Z,,0x000AD420,169,Code/masm_dumps/_sa13__setMinPoints_QuickMatchPreferences__QAEXH_Z_AD420.asm,matched,Exact retail MASM; MinPoints string-anchor; sibling setMaxPoints/setMaxDisconnects/setWaitTime/setNumPlayers
@@ -13643,7 +13643,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setVisionRange@Object@@QAEXM@Z,,0x0098D2C0,13,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setVolume@AudioEventRTS@@QAEXM@Z,,0x000B23B0,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
 ?setVoteFrame@NetDisconnectVoteCommandMsg@@QAEXI@Z,,0x00673D50,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
-?setWaitTime@QuickMatchPreferences@@QAEXH@Z,,0x000AD500,169,Code/masm_dumps/_sa12__setWaitTime_QuickMatchPreferences__QAEXH_Z_AD500.asm,matched,string-anchor Open-BFME4+Grok WaitTime
+?setWaitTime@QuickMatchPreferences@@QAEXH@Z,,0x000AD500,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setWaitTime_Thunk.cpp,matched,string-anchor Open-BFME4+Grok WaitTime
 ?setWakeFrame@UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,,0x002B2040,30,Code/GameEngine/Source/GameLogic/Object/Update/UpdateModule.cpp,matched,
 ?setWaterAttenuationFactors@W3DTerrainVisual@@UAEXPBVWaterHandle@@MMMM@Z,,0x00730A20,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?setWaterGridHeightClamps@W3DTerrainVisual@@UAEXPBVWaterHandle@@MM@Z,,0x00730A00,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
