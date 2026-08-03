@@ -1,92 +1,56 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-
+// Open-BFME5: lift ScriptActions::doEnableOrDisableObjectDifficultyBonuses
+// __emit thunk to clean C++. Retail iterates a linked list from a global
+// manager (next pointer at +0x88), calls a per-element method with the bool,
+// then stores the bool into a byte flag at global2+0x17634; the compiler
+// sinks the flag store into both the loop-exit and empty-list paths.
+// /EHs- because retail has no unwind frame.
+
+class ScriptActionsDifficultyListManager;
+class ScriptActions;
+
+class ScriptActionsDifficultyListNode
+{
+public:
+    void applyDifficultyBonuses(bool);
+
+private:
+    unsigned char m_pad[0x88];
+    ScriptActionsDifficultyListNode *m_next;
+
+    friend class ScriptActions;
+};
+
+class ScriptActionsDifficultyListManager
+{
+public:
+    ScriptActionsDifficultyListNode *getDifficultyListHead();
+};
+
+class ScriptActionsDifficultyFlagHolder
+{
+public:
+    unsigned char m_pad[0x17634];
+    bool m_flag;
+};
+
+extern ScriptActionsDifficultyListManager *g_difficultyListManager;
+extern ScriptActionsDifficultyFlagHolder *g_difficultyFlagHolder;
 
 class ScriptActions
 {
 public:
-	virtual void doEnableOrDisableObjectDifficultyBonuses(bool);
+    virtual void doEnableOrDisableObjectDifficultyBonuses(bool);
 };
 
 // ?doEnableOrDisableObjectDifficultyBonuses@ScriptActions@@UAEX_N@Z
-__declspec(naked) void ScriptActions::doEnableOrDisableObjectDifficultyBonuses(bool)
+void ScriptActions::doEnableOrDisableObjectDifficultyBonuses(bool enable)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x98
-        __emit 0x08
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x72
-        __emit 0x50
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x27
-        __emit 0x53
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x53
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xcd
-        __emit 0x66
-        __emit 0xd2
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xb6
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x75
-        __emit 0xee
-        __emit 0xa1
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x88
-        __emit 0x98
-        __emit 0x34
-        __emit 0x76
-        __emit 0x01
-        __emit 0x00
-        __emit 0x5b
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x15
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x88
-        __emit 0x8a
-        __emit 0x34
-        __emit 0x76
-        __emit 0x01
-        __emit 0x00
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-	}
+    for (ScriptActionsDifficultyListNode *node = g_difficultyListManager->getDifficultyListHead();
+         node;
+         node = node->m_next)
+    {
+        node->applyDifficultyBonuses(enable);
+    }
+    g_difficultyFlagHolder->m_flag = enable;
 }

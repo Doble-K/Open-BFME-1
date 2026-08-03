@@ -4258,3 +4258,5 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 ??0?$ConcreteModuleTemplate@URenderObjectUpdateModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x0001104F,RenderObjectUpdate ConcreteModuleTemplate copy ctor
 ??0GiveUpgradeUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,GiveUpgradeUpdate ctor base call; ILT thunk for SpecialAbilityUpdate ctor (body 0x002A6360)
 ?constructBuddyMessageAt@@YAXPAXABVBuddyMessage@@@Z,0x00020E69,BuddyMessage list _M_create_node value construct
+?getDifficultyListHead@ScriptActionsDifficultyListManager@@QAEPAVScriptActionsDifficultyListNode@@XZ,0x000358BE,doEnableOrDisableObjectDifficultyBonuses list-head call; ILT thunk for body 0x00383090
+?applyDifficultyBonuses@ScriptActionsDifficultyListNode@@QAEX_N@Z,0x00016F2C,doEnableOrDisableObjectDifficultyBonuses per-node call; ILT thunk for body 0x001BE7D0
