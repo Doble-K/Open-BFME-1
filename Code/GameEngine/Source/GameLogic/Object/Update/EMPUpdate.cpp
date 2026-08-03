@@ -427,28 +427,8 @@ void EMPUpdate::loadPostProcess( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0LeafletDropBehavior@@ present-unmatched
-LeafletDropBehavior::LeafletDropBehavior( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
-{
-
-  m_fxFired = FALSE;
-	//s_lastInstanceSpunPositive = !s_lastInstanceSpunPositive; //TOGGLES STATIC BOOL 
-
-	const LeafletDropBehaviorModuleData *data = getLeafletDropBehaviorModuleData();
-	if ( data )
-	{
-		//SANITY
-		DEBUG_ASSERTCRASH( TheGameLogic, ("LeafletDropBehavior::LeafletDropBehavior - TheGameLogic is NULL\n" ) );
-		UnsignedInt now = TheGameLogic->getFrame();
-    m_startFrame = now + data->m_delayFrames;
-		
-		return;
-	}
-
-	//SANITY
-	DEBUG_ASSERTCRASH( data, ("LeafletDropBehavior::LeafletDropBehavior - getLeafletDropBehaviorModuleData is NULL\n" ) );
-	m_startFrame = TheGameLogic->getFrame() + 1;			
-}
+// ??0LeafletDropBehavior@@QAE@PAVThing@@PBVModuleData@@@Z
+// Exact retail ICF alias emitted by LeafletDropBehaviorCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
