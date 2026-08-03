@@ -1,130 +1,67 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
 
-class INI;
+// Open-BFME5: HordeAIUpdate::friend_newModuleData
+// Retail: new(0x64); base construct; outer vtbl; optional initFromINI.
+
 class ModuleData;
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+class HordeAIUpdateModuleDataBaseShim
+{
+public:
+	void construct();
+};
+
+class HordeAIUpdateModuleDataVtbl
+{
+public:
+	HordeAIUpdateModuleDataVtbl()
+	{
+	}
+	virtual void dummy();
+
+private:
+	unsigned char m_pad[0x60];
+};
+
+class __declspec(novtable) HordeAIUpdateModuleData
+{
+public:
+	HordeAIUpdateModuleData();
+	virtual void dummy();
+
+private:
+	unsigned char m_pad[0x60];
+};
+
+HordeAIUpdateModuleData::HordeAIUpdateModuleData()
+{
+	((HordeAIUpdateModuleDataBaseShim *)this)->construct();
+	((HordeAIUpdateModuleDataVtbl *)this)
+		->HordeAIUpdateModuleDataVtbl::HordeAIUpdateModuleDataVtbl();
+}
+
+class INI
+{
+public:
+	void initFromINI(void *what, const void *parseTable);
+};
+
+extern "C" char HordeAIUpdateFieldParse;
 
 class HordeAIUpdate
 {
 public:
-    static ModuleData *friend_newModuleData(INI *);
+	static ModuleData *friend_newModuleData(INI *ini);
 };
 
 // ?friend_newModuleData@HordeAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *HordeAIUpdate::friend_newModuleData(INI *)
+ModuleData *HordeAIUpdate::friend_newModuleData(INI *ini)
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 02Bh
-        _emit 015h
-        _emit 000h
-        _emit 001h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 056h
-        _emit 06Ah
-        _emit 064h
-        _emit 0E8h
-        _emit 062h
-        _emit 0DFh
-        _emit 075h
-        _emit 000h
-        _emit 08Bh
-        _emit 0F0h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 004h
-        _emit 085h
-        _emit 0F6h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 074h
-        _emit 00Fh
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 051h
-        _emit 04Ah
-        _emit 0F2h
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 0F8h
-        _emit 0A2h
-        _emit 008h
-        _emit 001h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0F6h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 018h
-        _emit 085h
-        _emit 0C9h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 074h
-        _emit 00Bh
-        _emit 068h
-        _emit 02Eh
-        _emit 057h
-        _emit 043h
-        _emit 000h
-        _emit 056h
-        _emit 0E8h
-        _emit 021h
-        _emit 0E1h
-        _emit 072h
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
+	HordeAIUpdateModuleData *data = new HordeAIUpdateModuleData;
+	if (ini)
+		ini->initFromINI(data, &HordeAIUpdateFieldParse);
+	return (ModuleData *)data;
 }
