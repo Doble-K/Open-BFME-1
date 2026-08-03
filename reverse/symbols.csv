@@ -1501,6 +1501,10 @@ name,address,notes
 ??1BaseUpgradeModuleDataMemberA@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1TooltipUpgradeModuleDataMemberA@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1ObjectCreationUpgradeModuleDataMemberA@@QAE@XZ,0x0001B97D,Open-BFME5 pin
+??1AttributeModifierAuraUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1AttributeModifierAuraUpdateModuleDataMemberB@@QAE@XZ,0x00026AB2,Open-BFME5 pin
+??1AttributeModifierAuraUpdateModuleDataMemberC@@QAE@XZ,0x0001A401,Open-BFME5 pin
+??1AttributeModifierAuraUpdateModuleDataMemberD@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1BuddyMessage@@QAE@XZ,0x00021445
 ??1Buffer@@QAE@XZ,0x0001A401,pinharvest x1 (thunk)
 ??1Buffer@@QAE@XZ,0x00887940,pinharvest x1 (body)
@@ -4455,3 +4459,14 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?construct@HordeAIUpdateModuleDataBaseShim@@QAEXXZ,0x00048A3B,HordeAIUpdate factory base construct
+??0SiegeAIUpdateModuleData@@QAE@XZ,0x00010C80,SiegeAIUpdate friend_newModuleData ModuleData ctor ILT
+??1ModuleDataListStandIn@@QAE@XZ,0x001468A0,Open-BFME5 list-style sentinel container dtor from AnimalAIUpdate-family ModuleData dtor call sites
+??0CivilianSpawnCollideBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,CivilianSpawnCollide ctor base
+??0HeroDieBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,HeroDie ctor base
+??0RespawnBodyBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00025509,RespawnBody ctor base
+??0ExperienceLevelCreateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00026CAB,ExperienceLevelCreate ctor base
+?erase@PrereqVector@@QAEPAXPAX0@Z,0x00010BB3,ThingTemplate parsePrerequisites vector range-erase helper (jmp thunk)
+
+
+
+

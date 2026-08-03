@@ -1,127 +1,37 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: W3DTreeDrawModuleData dtor.
+// Early derived vtbl; Buffers @+0x08/+0x0c/+0x28/+0x48; base vtbl.
 
-class __declspec(novtable) W3DTreeDrawModuleData
+class Buffer
+{
+public:
+	~Buffer();
+private:
+	unsigned char m_pad[4];
+};
+
+class W3DTreeDrawModuleDataBase
+{
+public:
+	virtual ~W3DTreeDrawModuleDataBase() {}
+private:
+	unsigned char m_pad[4];
+};
+
+class W3DTreeDrawModuleData : public W3DTreeDrawModuleDataBase
 {
 public:
 	virtual ~W3DTreeDrawModuleData();
+private:
+	Buffer m_a;
+	Buffer m_b;
+	unsigned char m_gap1[0x18];
+	Buffer m_c;
+	unsigned char m_gap2[0x1c];
+	Buffer m_d;
 };
 
 // ??1W3DTreeDrawModuleData@@UAE@XZ
-__declspec(naked) W3DTreeDrawModuleData::~W3DTreeDrawModuleData()
+W3DTreeDrawModuleData::~W3DTreeDrawModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x29
-		__emit 0x0a
-		__emit 0x05
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x08
-		__emit 0x5d
-		__emit 0x12
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x48
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xad
-		__emit 0x84
-		__emit 0x10
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x28
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x02
-		__emit 0xe8
-		__emit 0xa0
-		__emit 0x84
-		__emit 0x10
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x93
-		__emit 0x84
-		__emit 0x10
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x08
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x86
-		__emit 0x84
-		__emit 0x10
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
