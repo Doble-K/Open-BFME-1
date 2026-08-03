@@ -13941,7 +13941,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?validate@?$StringBase@D@@ABEXXZ,0x0001D4A3,0x0005D790,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op string validation
 ?validate@?$StringBase@G@@ABEXXZ,0x000390A9,0x0005D7A0,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op
 ?validate@FunctionLexicon@@QAE_NXZ,,0x00105380,126,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,MASM dump converted to clean C++ once the 12-table count was shimmed; true size is 126 not 123 - the old row cut 3 bytes off the epilogue
-?validate@ThingTemplate@@QAEXXZ,,0x00139B40,350,Code/masm_dumps/_sa11__validate_ThingTemplate__QAEXXZ_139B40.asm,matched,string-anchor Open-BFME4+Grok DefaultThingTemplate
+?validate@ThingTemplate@@QAEXXZ,,0x00139B40,350,Code/GameEngine/Source/Common/ThingTemplate_validateMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok DefaultThingTemplate
 ?validateAllyEnemyList@SidesList@@IAE_NABVAsciiString@@AAV2@@Z,,0x001A0390,2079,Code/masm_dumps/_sa11__validateAllyEnemyList_SidesList__IAE_NABVAsciiString__AAV2__Z_1A0390.asm,matched,string-anchor Open-BFME4+Grok PlyrCivilian
 ?validateAudio@ThingTemplate@@IAEXXZ,,0x0013E2F0,60,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,Exact 60B C++ raw function conversion Open-BFME5
 ?validateCachedBones@ModelConditionInfo@@ABEXPAVRenderObjectClass@@@Z,,0x00778590,3983,Code/masm_dumps/_sa3__validateCachedBones_ModelConditionInfo__ABEXPAVRe_778590.asm,matched,Exact 3983B string-anchored Open-BFME4
