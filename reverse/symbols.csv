@@ -837,6 +837,7 @@ name,address,notes
 ??0HordeUpdateModuleData@@QAE@XZ,0x00014EA2,pinharvest x1 (thunk)
 ??0HordeUpdateModuleData@@QAE@XZ,0x0001BE41,pinharvest x1 (thunk)
 ??0HordeUpdateModuleData@@QAE@XZ,0x00030EBD,pinharvest x1 (thunk)
+??0HorseHordeContainBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003A8FF,HorseHordeContain out-of-line base MI ctor
 ??0INIException@@QAA@HPBDZZ,0x00850600,INI retail variadic exception constructor
 ??0Image@@QAE@XZ,0x0000548E,constructed by the MappedImage block right after operator new(0x34) and handed to the matched ImageCollection::addImage(Image *)
 ??0InactiveBody@@QAE@PAVThing@@PBVModuleData@@@Z,0x00008878,pinharvest x1 (thunk)
