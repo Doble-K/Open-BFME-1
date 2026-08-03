@@ -1,94 +1,51 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHs-
+// Open-BFME5: lift LightningEmissionModuleTemplate copy-ctor naked __emit to
+// clean C++. Retail inlines CategoryModuleTemplate dual-vtable setup then
+// calls LightningEmissionInfo copy for the +8 subobject (null-preserving
+// src+8). /EHs- because retail has no unwind frame.
 
-namespace FXParticleSystem {
+class LEMT_VtblBaseA
+{
+public:
+    virtual ~LEMT_VtblBaseA();
+};
 
-class LightningEmissionModuleTemplate
+class LEMT_VtblBaseB
+{
+public:
+    virtual ~LEMT_VtblBaseB();
+};
+
+// Inline empty copy so MSVC emits intermediate dual-base vtable stores rather
+// than an external call into CategoryModuleTemplate.
+class LEMT_CategoryBase : public LEMT_VtblBaseA, public LEMT_VtblBaseB
+{
+public:
+    LEMT_CategoryBase(const LEMT_CategoryBase &) {}
+    virtual ~LEMT_CategoryBase();
+};
+
+namespace FXParticleSystem
+{
+
+// Declared only: REL32 resolves to the already-matched retail copy ctor.
+class LightningEmissionInfo
+{
+public:
+    LightningEmissionInfo(const LightningEmissionInfo &);
+    virtual ~LightningEmissionInfo();
+};
+
+class LightningEmissionModuleTemplate : public LEMT_CategoryBase, public LightningEmissionInfo
 {
 public:
     __declspec(nothrow) LightningEmissionModuleTemplate(const LightningEmissionModuleTemplate &that);
 };
 
 // ??0LightningEmissionModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z
-__declspec(naked) LightningEmissionModuleTemplate::LightningEmissionModuleTemplate(const LightningEmissionModuleTemplate &that)
+LightningEmissionModuleTemplate::LightningEmissionModuleTemplate(const LightningEmissionModuleTemplate &that)
+    : LEMT_CategoryBase(that), LightningEmissionInfo(that)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0xac
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0x57
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x20
-        __emit 0xfc
-        __emit 0x10
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x1c
-        __emit 0xfc
-        __emit 0x10
-        __emit 0x01
-        __emit 0x74
-        __emit 0x05
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x8d
-        __emit 0x7e
-        __emit 0x08
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x5c
-        __emit 0x77
-        __emit 0xa6
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x07
-        __emit 0xb8
-        __emit 0x0a
-        __emit 0x11
-        __emit 0x01
-        __emit 0x5f
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xa4
-        __emit 0x0a
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0xa0
-        __emit 0x0a
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
 }
 
 }
