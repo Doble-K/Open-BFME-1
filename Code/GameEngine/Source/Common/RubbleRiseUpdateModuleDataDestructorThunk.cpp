@@ -1,118 +1,34 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+﻿// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: RubbleRiseUpdateModuleData dtor.
+// Dual 4-element arrays of 0x0c elems at +0x54 and +0x84.
+
+class RubbleRiseElement
+{
+public:
+	~RubbleRiseElement();
+private:
+	unsigned char m_pad[0x0c];
+};
+
+class RubbleRiseUpdateModuleDataBase
+{
+public:
+	virtual ~RubbleRiseUpdateModuleDataBase() {}
+private:
+	unsigned char m_pad[0x50];
+};
 
 class __declspec(novtable) RubbleRiseUpdateModuleData
+	: public RubbleRiseUpdateModuleDataBase
 {
 public:
 	virtual ~RubbleRiseUpdateModuleData();
+private:
+	RubbleRiseElement m_a[4];
+	RubbleRiseElement m_b[4];
 };
 
 // ??1RubbleRiseUpdateModuleData@@UAE@XZ
-__declspec(naked) RubbleRiseUpdateModuleData::~RubbleRiseUpdateModuleData()
+RubbleRiseUpdateModuleData::~RubbleRiseUpdateModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x2e
-		__emit 0x1d
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x68
-		__emit 0x77
-		__emit 0x74
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x8d
-		__emit 0x86
-		__emit 0x84
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x6c
-		__emit 0xe1
-		__emit 0x8c
-		__emit 0x00
-		__emit 0x68
-		__emit 0x3b
-		__emit 0x2d
-		__emit 0x42
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x54
-		__emit 0x51
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x55
-		__emit 0xe1
-		__emit 0x8c
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
