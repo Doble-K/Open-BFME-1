@@ -390,28 +390,28 @@ void WeaponTemplate::reset( void )
 
 	if( stricmp(token, MIN_LABEL) == 0 )
 	{
-		// Two entry min/max
-		self->m_minDelayBetweenShots = INI::scanInt(ini->getNextToken(ini->getSepsColon()));
+	// Two entry min/max
+		*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B0) = INI::scanInt(ini->getNextToken(ini->getSepsColon()));
 		token = ini->getNextTokenOrNull(ini->getSepsColon());
 		if( stricmp(token, MAX_LABEL) != 0 )
 		{
 			// Messed up double entry
-			self->m_maxDelayBetweenShots = self->m_minDelayBetweenShots;
+			*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B4) = *reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B0);
 		}
 		else
-			self->m_maxDelayBetweenShots = INI::scanInt(ini->getNextToken(ini->getSepsColon()));
+			*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B4) = INI::scanInt(ini->getNextToken(ini->getSepsColon()));
 	}
 	else 
 	{
 		// single entry, as in no label so the first token is just a number
-		self->m_minDelayBetweenShots = INI::scanInt(token);
-		self->m_maxDelayBetweenShots = self->m_minDelayBetweenShots;
+		*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B0) = INI::scanInt(token);
+		*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B4) = *reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B0);
 	}
 
 	// No matter what we have now, we want to convert it to frames from msec. 
 	// ShotDelay used to use parseDurationUnsignedInt, and we are expanding on that.
-	self->m_minDelayBetweenShots = ceilf(ConvertDurationFromMsecsToFrames((Real)self->m_minDelayBetweenShots));
-	self->m_maxDelayBetweenShots = ceilf(ConvertDurationFromMsecsToFrames((Real)self->m_maxDelayBetweenShots));
+	*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B0) = ceilf(ConvertDurationFromMsecsToFrames((Real)*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B0)));
+	*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B4) = ceilf(ConvertDurationFromMsecsToFrames((Real)*reinterpret_cast<Int *>(reinterpret_cast<char *>(self) + 0x4B4)));
 
 }
 
