@@ -1,99 +1,54 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class ContestableContainModuleData
+// Open-BFME5: ContestableContainModuleData ctor
+// Base call, zeros at +0x17c/+0x180, then vtbl, then more field zeros.
+
+class ContestableContainModuleDataBase
 {
 public:
-    ContestableContainModuleData();
+	ContestableContainModuleDataBase();
+	virtual void contestableContainModuleDataBaseAnchor();
+
+private:
+	unsigned char m_pad[0x178];
 };
 
-__declspec(naked) ContestableContainModuleData::ContestableContainModuleData()
+extern "C" char ContestableContainModuleData_vtbl;
+
+class __declspec(novtable) ContestableContainModuleData
+	: public ContestableContainModuleDataBase
 {
-    __asm {
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 00Dh
-        _emit 0AAh
-        _emit 0DCh
-        _emit 0FFh
-        _emit 033h
-        _emit 0C0h
-        _emit 089h
-        _emit 086h
-        _emit 07Ch
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 080h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 006h
-        _emit 060h
-        _emit 0FEh
-        _emit 00Ah
-        _emit 001h
-        _emit 089h
-        _emit 086h
-        _emit 084h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 088h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 08Ch
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 09Ch
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0A0h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0A4h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 090h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 094h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 098h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
+public:
+	ContestableContainModuleData();
+
+private:
+	unsigned int m_17c;
+	unsigned int m_180;
+	unsigned int m_184;
+	unsigned int m_188;
+	unsigned int m_18c;
+	unsigned int m_190;
+	unsigned int m_194;
+	unsigned int m_198;
+	unsigned int m_19c;
+	unsigned int m_1a0;
+	unsigned int m_1a4;
+};
+
+// ??0ContestableContainModuleData@@QAE@XZ
+ContestableContainModuleData::ContestableContainModuleData()
+{
+	*reinterpret_cast<unsigned int volatile *>(&m_17c) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_180) = 0;
+	*reinterpret_cast<char *volatile *>(this) =
+		&ContestableContainModuleData_vtbl;
+	*reinterpret_cast<unsigned int volatile *>(&m_184) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_188) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_18c) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_19c) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_1a0) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_1a4) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_190) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_194) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_198) = 0;
 }

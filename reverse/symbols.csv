@@ -485,6 +485,7 @@ name,address,notes
 ??0ArchivedDirectoryInfo@@QAE@XZ,0x009CA460,the only non-allocator call in ArchiveFileSystem::ArchiveFileSystem at 0x009CAA34; m_rootDirectory is the only member needing a constructor
 ??0ArchivedFileInfo@@QAE@XZ,0x009CC650,archive directory entry ctor
 ??0ArmorUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003582D,module ctor (friend_newModuleInstance retail call target)
+??0ArrowStormUpdateModuleDataBase@@QAE@XZ,0x0003F503,ArrowStormUpdateModuleData ctor base
 ??0AsciiString@@AAE@PBD@Z,0x00888BC0,probe: plain-class variant of the StringBase<char> const char* constructor
 ??0AsciiString@@QAE@ABV0@@Z,0x00887B60,pinharvest x4 (body)
 ??0AsciiString@@QAE@PBD@Z,0x00888BC0,pinharvest x4 (body)
@@ -591,6 +592,7 @@ name,address,notes
 ??0CommandButtonHuntUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x020DCE,module ctor (friend_newModuleInstance retail call target)
 ??0CommandButtonHuntUpdateModuleData@@QAE@XZ,0x0002E500,module-glue cascade callee (from retail call site)
 ??0CommandSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003BB65,module ctor (friend_newModuleInstance retail call target)
+??0ContestableContainModuleDataBase@@QAE@XZ,0x00014565,ContestableContainModuleData ctor base
 ??0ControlBarSchemeImage@@QAE@XZ,0x00028489,parseAnimatingPartImage callee ILT thunk to 0x4ACD00
 ??0ConvertToCarBombCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001D3AE,pinharvest x1 (thunk)
 ??0ConvertToCarBombCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001F5C3,pinharvest x1 (thunk)
@@ -1506,19 +1508,13 @@ name,address,notes
 ??1BaseUpgradeModuleDataMemberA@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1BaseUpgradeModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1BaseUpgradeModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1BattlePlanUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1BfmeLegendString@@QAE@XZ,0x00887940,SubsystemLegend.cpp AsciiString stand-in dtor; folds with StringBase<char>::releaseBuffer
 ??1BfmeLegendStringVec@@QAE@XZ,0x000658A0,SubsystemLegend.cpp vector<AsciiString> stand-in dtor
 ??1BroadcastStealthUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1BroadcastStealthUpdateModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1BuddyMessage@@QAE@XZ,0x00021445
 ??1Buffer@@QAE@XZ,0x0001A401,pinharvest x1 (thunk)
-??1RiderChangeContainModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberB@@QAE@XZ,0x00026F35,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberC@@QAE@XZ,0x00026F35,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberD@@QAE@XZ,0x00026F35,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberE@@QAE@XZ,0x00887940,Open-BFME5 pin
-??1RiderChangeContainModuleDataMemberF@@QAE@XZ,0x0001A401,Open-BFME5 pin
-??1BattlePlanUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1Buffer@@QAE@XZ,0x00887940,pinharvest x1 (body)
 ??1Buffer@@QAE@XZ,0x009E1E60
 ??1BufferStraw@@UAE@XZ,0x00921790
@@ -1748,6 +1744,12 @@ name,address,notes
 ??1RegistryClass@@QAE@XZ,0x009DC280,pinharvest x4 (body)
 ??1RenderDeviceDescClass@@QAE@XZ,0x009077B0
 ??1RenderObjClass@@UAE@XZ,0x0091FC10,base dtor; derived from ~ParticleBufferClass call site
+??1RiderChangeContainModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberB@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberC@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberD@@QAE@XZ,0x00026F35,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberE@@QAE@XZ,0x00887940,Open-BFME5 pin
+??1RiderChangeContainModuleDataMemberF@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1RoadType@@QAE@XZ,0x00012968,pinharvest x1 (thunk)
 ??1RoadType@@QAE@XZ,0x00018FCF,pinharvest x1 (thunk)
 ??1RoadType@@QAE@XZ,0x00033A91,pinharvest x1 (thunk)
@@ -4305,6 +4307,7 @@ name,address,notes
 ?xferSaveData@GameState@@AAEXPAVXfer@@W4SnapshotType@@@Z,0x0010FBD0,GameState save-data walker (CHUNK_GameState/Campaign/LivingWorldLogic/Palantir/Audio); thunk 0x36674
 AODHordeContainFieldParse,0x004334F6,AODHordeContain FieldParse
 AnimalAIUpdateFieldParse,0x00436E30,AnimalAIUpdate FieldParse
+ArrowStormUpdateModuleData_vtbl,0x010B3668,ArrowStormUpdateModuleData main vtbl
 AssaultTransportAIUpdateFieldParse,0x0040A35D,AssaultTransportAIUpdate FieldParse
 CategoryModuleTemplate06_sub_vtbl,0x0110FC94,CMT06 sub vtbl
 CategoryModuleTemplate06_vtbl0,0x0110FC80,CMT06 vtbl0
@@ -4314,6 +4317,7 @@ CategoryModuleTemplate07_vtbl4,0x01073844,CMT07 vtbl4
 CategoryModuleTemplate8_vtbl0,0x01073848,CategoryModuleTemplate8 ctor vtbl at +0
 CategoryModuleTemplate8_vtbl4,0x01073844,CategoryModuleTemplate8 ctor vtbl at +4 final
 CategoryModuleTemplate8_vtbl_temp,0x0107375C,CategoryModuleTemplate8 ctor intermediate vtbl at +4
+ContestableContainModuleData_vtbl,0x010AFE60,ContestableContainModuleData main vtbl
 ConvertToCarBombCrateCollideFieldParse,0x00412751,ConvertToCarBombCrateCollide FieldParse
 DefaultModuleTemplate00FieldParse,0x01113360,DefaultModuleTemplate parse FieldParse
 DefaultModuleTemplate00_sub_vtbl,0x011108CC,DefaultModuleTemplate00 sub vtbl

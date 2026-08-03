@@ -1,74 +1,44 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class ArrowStormUpdateModuleData
+// Open-BFME5: ArrowStormUpdateModuleData ctor
+// Base call, vtbl, zeros/ones at +0x254..+0x268.
+
+class ArrowStormUpdateModuleDataBase
 {
 public:
-    ArrowStormUpdateModuleData();
+	ArrowStormUpdateModuleDataBase();
+	virtual void arrowStormModuleDataBaseAnchor();
+
+private:
+	unsigned char m_pad[0x250];
 };
 
-__declspec(naked) ArrowStormUpdateModuleData::ArrowStormUpdateModuleData()
+extern "C" char ArrowStormUpdateModuleData_vtbl;
+
+class __declspec(novtable) ArrowStormUpdateModuleData
+	: public ArrowStormUpdateModuleDataBase
 {
-    __asm {
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 02Bh
-        _emit 07Fh
-        _emit 0DEh
-        _emit 0FFh
-        _emit 033h
-        _emit 0C9h
-        _emit 0B8h
-        _emit 001h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 006h
-        _emit 068h
-        _emit 036h
-        _emit 00Bh
-        _emit 001h
-        _emit 089h
-        _emit 08Eh
-        _emit 054h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 05Ch
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 060h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 064h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 08Eh
-        _emit 058h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 08Eh
-        _emit 068h
-        _emit 002h
-        _emit 000h
-        _emit 000h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
+public:
+	ArrowStormUpdateModuleData();
+
+private:
+	unsigned int m_254;
+	unsigned int m_258;
+	unsigned int m_25c;
+	unsigned int m_260;
+	unsigned int m_264;
+	unsigned char m_268;
+};
+
+// ??0ArrowStormUpdateModuleData@@QAE@XZ
+ArrowStormUpdateModuleData::ArrowStormUpdateModuleData()
+{
+	*reinterpret_cast<char *volatile *>(this) =
+		&ArrowStormUpdateModuleData_vtbl;
+	*reinterpret_cast<unsigned int volatile *>(&m_254) = 0;
+	*reinterpret_cast<unsigned int volatile *>(&m_25c) = 1;
+	*reinterpret_cast<unsigned int volatile *>(&m_260) = 1;
+	*reinterpret_cast<unsigned int volatile *>(&m_264) = 1;
+	*reinterpret_cast<unsigned int volatile *>(&m_258) = 0;
+	*reinterpret_cast<unsigned char volatile *>(&m_268) = 0;
 }
