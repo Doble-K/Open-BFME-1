@@ -60,14 +60,8 @@ void FireWeaponCollideModuleData::buildFieldParse(MultiIniFieldParse& p)
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0FireWeaponCollide@@ present-unmatched
-FireWeaponCollide::FireWeaponCollide( Thing *thing, const ModuleData* moduleData ) : 
-	CollideModule( thing, moduleData ),
-	m_collideWeapon(NULL)
-{
-	m_collideWeapon = TheWeaponStore->allocateNewWeapon(getFireWeaponCollideModuleData()->m_collideWeaponTemplate, PRIMARY_WEAPON);
-	m_everFired = FALSE;
-}
+// ??0FireWeaponCollide@@QAE@PAVThing@@PBVModuleData@@@Z
+// Exact retail constructor emitted by FireWeaponCollideCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------

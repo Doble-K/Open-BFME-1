@@ -1539,7 +1539,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FireOCLAfterWeaponCooldownUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001EE950,276,Code/masm_dumps/FireOCLAfterWeaponCooldownUpdate_constructor.asm,matched,Exact 276B ICF alias Open-BFME4
 ??0FireSpreadUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004B510,5,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0FireSpreadUpdateModuleData@@QAE@XZ,,0x00292680,23,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdateModuleData.cpp,matched,incremental thunk @0x104B5; standalone codegen-blocked C++ emits exact 23B retail constructor body
-??0FireWeaponCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00216430,151,Code/masm_dumps/FireWeaponCollide_constructor.asm,matched,Exact 151B @ 0x00216430; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11EB20
+??0FireWeaponCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00216430,151,Code/GameEngine/Source/GameLogic/Object/Collide/FireWeaponCollideCtorThunk.cpp,matched,Exact 151B @ 0x00216430; 1:1 C++ thunk from certified retail constructor
 ??0FireWeaponCollideModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0FireWeaponNugget@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
 ??0FireWeaponUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00292CF0,168,Code/GameEngine/Source/GameLogic/Object/Update/FireWeaponUpdateCtorThunk.cpp,matched,Open-BFME5 exact 168B retail module constructor
