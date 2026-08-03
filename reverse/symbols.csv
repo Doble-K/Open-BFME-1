@@ -4288,3 +4288,8 @@ DefaultModuleTemplate6_vtbl8,0x01111004,DefaultModuleTemplate6 ctor vtbl anchor
 ??1SupplyTruckAIUpdateModuleDataMember@@QAE@XZ,0x00026F35,Open-BFME5 pin
 ??1W3DModelDrawModuleDataMember@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1W3DModelDrawModuleDataBase@@UAE@XZ,0x0000CAB3,Open-BFME5 pin
+?construct_from@DefaultModuleTemplate00BaseCopyShim@FXParticleSystem@@QAEXPBX@Z,0x000428A7,DefaultModuleTemplate00 copy base
+?construct_from@DefaultModuleTemplate00SubCopyShim@FXParticleSystem@@QAEXPBX@Z,0x0001E04C,DefaultModuleTemplate00 copy sub
+DefaultModuleTemplate00_vtbl0,0x011108B8,DefaultModuleTemplate00 outer vtbl0
+DefaultModuleTemplate00_vtbl4,0x011108B4,DefaultModuleTemplate00 outer vtbl4
+DefaultModuleTemplate00_sub_vtbl,0x011108CC,DefaultModuleTemplate00 sub vtbl
