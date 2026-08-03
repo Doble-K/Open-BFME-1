@@ -2771,7 +2771,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Anim2D@@MAE@XZ,,0x005BA670,61,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,C++ explicit list unlink with inline Snapshot vtable stores
 ??1Anim2DCollection@@UAE@XZ,,0x005BA3A0,108,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ??1Anim2DTemplate@@UAE@XZ,,0x005BAE20,34,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,clean C++ replaces MASM destructor
-??1AnimalAIUpdate@@UAE@XZ,,0x0027E5A0,843,Code/masm_dumps/AnimalAIUpdate_destructor.asm,matched,Exact 843B; factory ownership Open-BFME4
+??1AnimalAIUpdate@@UAE@XZ,,0x0027E5A0,843,Code/GameEngine/Source/Common/AnimalAIUpdateDestructorThunk.cpp,matched,Exact 843B; factory ownership Open-BFME4
 ??1AnimalAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/AnimalAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME4
 ??1Animatable3DObjClass@@UAE@XZ,,0x009828E0,114,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ??1AnimateWindow@@UAE@XZ,,0x0045CF30,14,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
@@ -2991,7 +2991,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1HordeGarrisonContain@@UAE@XZ,,0x00249820,409,Code/GameEngine/Source/Common/HordeGarrisonContainDestructorThunk.cpp,matched,Exact 409B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1HordeSiegeEngineContain@@UAE@XZ,,0x0024A180,183,Code/GameEngine/Source/Common/HordeSiegeEngineContainDestructorThunk.cpp,matched,Exact 183B @ 0x0024A180; Exact retail MASM; instance factory->vtable dtor; del 0x24A6E0 ctor 0x24A560 vt 0xCB02A8
 ??1HordeSiegeEngineContainModuleData@@UAE@XZ,,0x0022B0E0,95,Code/GameEngine/Source/Common/HordeSiegeEngineContainModuleDataDestructorThunk.cpp,matched,Exact 95B @ 0x0022B0E0; Exact retail MASM; factory->vtable dtor; del 0x22CC40 ctor 0x22CB80 vt 0xCAD180
-??1HordeTransportContain@@UAE@XZ,,0x0024C530,820,Code/masm_dumps/HordeTransportContain_destructor.asm,matched,Exact 820B; factory ownership Open-BFME4
+??1HordeTransportContain@@UAE@XZ,,0x0024C530,820,Code/GameEngine/Source/Common/HordeTransportContainDestructorThunk.cpp,matched,Exact 820B; factory ownership Open-BFME4
 ??1HordeUpdateModuleData@@UAE@XZ,,0x001FE260,198,Code/GameEngine/Source/Common/HordeUpdateModuleDataDestructorThunk.cpp,matched,Exact 198B SEH dtor Open-BFME5
 ??1HorseHordeContain@@UAE@XZ,,0x00137E80,284,Code/GameEngine/Source/Common/HorseHordeContainDestructorThunk.cpp,matched,Exact 284B SEH dtor Open-BFME4
 ??1INI@@QAE@XZ,,0x008512E0,80,Code/GameEngine/Source/Common/INIDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -3009,7 +3009,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1LadderPreferences@@UAE@XZ,,0x000ABB70,82,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,
 ??1LanguageFilter@@UAE@XZ,,0x0044E400,150,Code/GameEngine/Source/GameClient/LanguageFilter.cpp,matched,
 ??1LargeGroupAudioUpdateModuleData@@UAE@XZ,,0x00297390,99,Code/GameEngine/Source/Common/LargeGroupAudioUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
-??1LargeGroupBonusUpdate@@UAE@XZ,,0x00297930,812,Code/masm_dumps/LargeGroupBonusUpdate_destructor.asm,matched,Exact 812B SEH module dtor; factory->vtable recovery Open-BFME4
+??1LargeGroupBonusUpdate@@UAE@XZ,,0x00297930,812,Code/GameEngine/Source/Common/LargeGroupBonusUpdateDestructorThunk.cpp,matched,Exact 812B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1LargeGroupBonusUpdateModuleData@@UAE@XZ,,0x00297D60,93,Code/GameEngine/Source/GameLogic/AI/LargeGroupBonusUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM ICF alias
 ??1LaserUpdateModuleData@@UAE@XZ,,0x006043E0,93,Code/GameEngine/Source/Common/LaserUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x118DF0 ctor 0x603B90 prove ownership
 ??1LayoutFilename@@QAE@XZ,,0x00887940,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=?releaseBuffer@?$StringBase@D@@AAEXXZ;C++ alias
