@@ -736,7 +736,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$RefMultiListIterator@VRenderObjClass@@@@QAE@PAV?$RefMultiListClass@VRenderObjClass@@@@@Z,,0x006CB290,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
 ??0?$RemainderTable@V?$Int@$0EA@@@@@QAE@ABV?$Int@$0EA@@@@Z,,0x009EAC70,98,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,
 ??0?$ShareBufferClass@D@@QAE@HPBDH@Z,,0x00923EE0,131,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
-??0?$ShareBufferClass@E@@QAE@HPBDH@Z,,0x005F3A70,131,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,caller-derived
 ??0?$ShareBufferClass@G@@QAE@HPBDH@Z,,0x00923E50,135,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ??0?$ShareBufferClass@I@@QAE@ABV0@@Z,,0x0092A090,174,Code/Libraries/Source/WWVegas/WWLib/ShareBufferClassUIntCopyConstructorThunk.cpp,matched,Exact 174B C++ raw constructor thunk Open-BFME5
 ??0?$ShareBufferClass@I@@QAE@HPBDH@Z,,0x005F39C0,139,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTreeBuffer.cpp,matched,
@@ -34612,3 +34611,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??6Debug@@QAEAAV0@K@Z,,0x0088C1A0,79,Code/Libraries/Source/WWVegas/WWDebug/debug_operator_ulong.cpp,matched,exact C++ Debug::operator<<(unsigned long) body
 _$E56,,0x00C71520,40,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,MultiListNodeClass pool teardown funclet (global teardown loop)
 ?updateAnimateWindow@ProcessAnimateWindowSpiral@@UAE_NPAVAnimateWindow@@@Z,,0x00496DE0,266,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindowSpiral_updateAnimateWindow_Thunk.cpp,matched,Open-BFME-DS06 __emit thunk from retail bytes; C++ blocked by frame 0x1c vs 0x14 slot merge and setVel store order
+??0?$ShareBufferClass@E@@QAE@HPBDH@Z,,0x005F3A70,131,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,repointed from meshgeometry.cpp; the Reset_Geometry lift removed its only ShareBufferClass<uint8> instantiation there
