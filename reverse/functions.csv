@@ -8978,7 +8978,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?allocateNewWeapon@WeaponStore@@QBEPAVWeapon@@PBVWeaponTemplate@@W4WeaponSlotType@@@Z,,0x001BDD90,100,Code/masm_dumps/_rn5__allocateNewWeapon_WeaponStore__QBEPAVWeapon__PBVWeaponTemplate__W4Wea_1BDD90.asm,matched,reloc-needle Open-BFME4+Grok
 ?allocateNewWindow@GameWindowManager@@QAEPAVGameWindow@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?allow@PartitionFilterFlammable@@UAE_NPAVObject@@@Z,,0x002925C0,144,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,
-?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z,,0x001DD140,86,Code/masm_dumps/allow_PartitionFilterPlayerAffiliation_001DD140_2078175b.asm,matched,Certified packet 194 constructor-vtable-thunk ownership; SHA256 2078175b9d0720297cc0ee2d361385f4cbcf0665b77d3a01edc970e30a405646
+?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z,,0x001DD140,86,Code/GameEngine/Source/Common/PartitionFilterPlayerAffiliation_allow_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?allow@PartitionFilterPolygonTrigger@@MAE_NPAVObject@@@Z,,0x001DD490,64,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,exact C++ polygon check with BFME field offset and pinned call
 ?allow@PartitionFilterRelationship@@UAE_NPAVObject@@@Z,,0x001DC980,51,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,Open-BFME5 exact C++ __emit port of certified 51-byte retail method
 ?allowedToContinue@DisconnectManager@@QAE_NXZ,,0x0066B2C0,8,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,
@@ -9828,8 +9828,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doPing@PingThreadClass@@AAEHIH@Z,,0x0065E570,272,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?doPlaySoundEffect@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F22A0,266,Code/masm_dumps/ScriptActions_doPlaySoundEffect.asm,matched,
 ?doPlaySoundEffectAt@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F2120,306,Code/masm_dumps/ScriptActions_doPlaySoundEffectAt.asm,matched,Ghidra-bound exact retail body
-?doPlayerGrantScience@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F00C0,91,Code/masm_dumps/ScriptActions_doPlayerGrantScience.asm,matched,Ghidra-bound BFME grant-science body
-?doPlayerPurchaseScience@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F0140,91,Code/masm_dumps/ScriptActions_doPlayerPurchaseScience.asm,matched,Ghidra-bound BFME purchase-science body
+?doPlayerGrantScience@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F00C0,91,Code/GameEngine/Source/Common/ScriptActions_doPlayerGrantScience_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?doPlayerPurchaseScience@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F0140,91,Code/GameEngine/Source/Common/ScriptActions_doPlayerPurchaseScience_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doPlayerSetOverrideRelationToTeam@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F84C0,102,Code/masm_dumps/ScriptActions_doPlayerSetOverrideRelationToTeam.asm,matched,Ghidra-corrected body via executeAction dispatch thunk
 ?doPlayerSetScienceAvailability@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002F01C0,126,Code/masm_dumps/ScriptActions_doPlayerSetScienceAvailability.asm,matched,Corrected full BFME science-availability body
 ?doRadarCreateEvent@ScriptActions@@IAEXPAUCoord3D@@H@Z,,0x002EEC70,29,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
@@ -12509,7 +12509,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@TerrainScorchFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C600,245,Code/masm_dumps/TerrainScorchFXNugget_parse_42C600.asm,matched,Exact 245B MASM; FX table TerrainScorch ILT 0x1E3AD; drift 0x9A15F0 was interior of parseSideInfo@AI
 ?parse@ViewShakeFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C320,244,Code/masm_dumps/parse_ViewShakeFXNugget_SAXPAVINI_PAX1PBX_Z_0042C320_4717cc22.asm,matched,Certified packet 167 db-only MASM SHA256 4717cc225abc96cd5fa449fec9f04c8cca2043a94891684368ad9e8ca82d40ed
 ?parseAccelerationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D50,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
-?parseAddModule@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x0013E210,88,Code/masm_dumps/parseAddModule_ThingTemplate_13E210.asm,matched,FieldParse AddModule true body; drift 0x9A15E8 misplaced
+?parseAddModule@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x0013E210,88,Code/GameEngine/Source/Common/ThingTemplate_parseAddModule_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseAiDataDefinition@AI@@SAXPAVINI@@@Z,,0x0014E580,50,Code/GameEngine/Source/GameLogic/AI/ai.cpp,matched,Open-BFME5 C++ conversion of AI parseAiDataDefinition
 ?parseAllVetLevelsFXList@@YAXPAVINI@@PAX1PBX@Z,,0x001E10F0,51,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseAllVetLevelsPSys@@YAXPAVINI@@PAX1PBX@Z,,0x001E1190,51,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
