@@ -3030,7 +3030,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1LookAtTranslator@@UAE@XZ,,0x005A63A0,31,Code/GameEngine/Source/GameClient/MessageStream/LookAtXlat.cpp,matched,
 ??1ManTheWallsSpecialPower@@UAE@XZ,,0x00268F30,232,Code/GameEngine/Source/Common/ManTheWallsSpecialPowerDestructorThunk.cpp,matched,Exact 232B SEH dtor Open-BFME4
 ??1MapCache@@QAE@XZ,,0x00078E90,89,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
-??1MapObject@@MAE@XZ,,0x00088350,236,Code/masm_dumps/MapObject_destructor_MAE_00088350.asm,matched,Certified packet 46; reviewed vtable deleting-destructor chain and ownership teardown
+??1MapObject@@MAE@XZ,,0x00088350,236,Code/GameEngine/Source/Common/MapObjectDestructorThunk.cpp,matched,Certified packet 46; reviewed vtable deleting-destructor chain and ownership teardown
 ??1MatPassTaskClass@@QAE@XZ,,0x009457F0,32,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??1MaterialCollectorClass@@QAE@XZ,,0x00C5C6A8,21,Code/Libraries/Source/WWVegas/WW3D2/MaterialCollectorClassDestructorThunk.cpp,matched,Open-BFME5 exact C++ destructor thunk replacing MASM dump;object-symbol=??1MaterialCollectorClass@@QAE@XZ
 ??1MaxHealthUpgradeModuleData@@UAE@XZ,,0x002D65F0,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/MaxHealthUpgradeModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
@@ -3199,7 +3199,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SpecialEnemySenseUpdate@@UAE@XZ,,0x002AB0F0,543,Code/masm_dumps/SpecialEnemySenseUpdate_destructor.asm,matched,Exact 543B @ 0x002AB0F0; Exact retail MASM; instance factory->vtable dtor; del 0x2AB0F0 ctor 0x2AAF30 vt 0xCC3880
 ??1SpecialEnemySenseUpdateModuleData@@UAE@XZ,,0x00125890,67,Code/GameEngine/Source/GameLogic/Object/Update/SpecialEnemySenseUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
 ??1SpecialPowerCompletionDie@@UAE@XZ,,0x00255FD0,124,Code/GameEngine/Source/Common/SpecialPowerCompletionDieDestructorThunk.cpp,matched,Exact 124B SEH dtor factory->vtable Open-BFME4
-??1SpecialPowerModule@@MAE@XZ,,0x00268F30,232,Code/masm_dumps/SpecialPowerModule_destructor.asm,matched,Exact 232B ICF alias; true body 0x268F30 not queue pad 0x268F28; ctor-paired vtables 0x10B7C3C
+??1SpecialPowerModule@@MAE@XZ,,0x00268F30,232,Code/GameEngine/Source/Common/SpecialPowerModuleDestructorThunk.cpp,matched,Exact 232B ICF alias; true body 0x268F30 not queue pad 0x268F28; ctor-paired vtables 0x10B7C3C
 ??1SpecialPowerStore@@UAE@XZ,,0x000EBD30,219,Code/GameEngine/Source/Common/SpecialPowerStoreDestructorThunk.cpp,matched,Certified packet 329 vtable destructor chain and retail boundary hash dd831bc42554b7a6cbdabdd5b01b386808e324afcd5c363566dbaaf80ec53eaa
 ??1SpecialPowerTemplate@@MAE@XZ,,0x000EB5D0,146,Code/GameEngine/Source/Common/SpecialPowerTemplateDestructorThunk.cpp,matched,Exact 146B SEH dtor Open-BFME5
 ??1SphereEmissionVolumeInfo@FXParticleSystem@@UAE@XZ,0x00028E9D,0x005D6140,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,resets vtable pointer
