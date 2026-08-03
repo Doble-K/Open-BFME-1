@@ -9754,7 +9754,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?destroyWindows@WindowLayout@@UAEXXZ,,0x00497A50,40,Code/GameEngine/Source/GameClient/window_layout.cpp,matched,BFME rewrote: direct m_windowList loop
 ?destruct@BFMENetRequestPlayerLeaveCommandMsg@@QAEXXZ,,0x00674230,7,Code/GameEngine/Source/GameNetwork/native_netcommandmsg.cpp,matched,native BFME request-player-leave command destructor body
 ?detach@NetCommandMsg@@QAEXXZ,,0x00673610,16,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,codegen-blocked retail reference-count body; exact small __asm escape hatch in official C++ source
-?detectFirewall@FirewallHelperClass@@QAE_NXZ,,0x0066FCC0,232,Code/masm_dumps/FirewallHelper_detectFirewall.asm,matched,Exact retail MASM; true body 0x66FCC0 (232B) not queue 0x6B7958; FirewallNeedToRefresh string + thin AsciiString@0x888BC0; C++ blocked by fat AsciiString/map find
+?detectFirewall@FirewallHelperClass@@QAE_NXZ,,0x0066FCC0,232,Code/GameEngine/Source/Common/FirewallHelperClass_detectFirewallMethodThunk.cpp,matched,Exact retail MASM; true body 0x66FCC0 (232B) not queue 0x6B7958; FirewallNeedToRefresh string + thin AsciiString@0x888BC0; C++ blocked by fat AsciiString/map find
 ?detectFirewallBehavior@FirewallHelperClass@@AAEXXZ,,0x0066E810,15,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?detectionBeginUpdate@FirewallHelperClass@@QAE_NXZ,,0x000205F4,5,Code/GameEngine/Source/Common/RTS/FirewallHelperClassDetectionBeginUpdateThunk.cpp,matched,5-byte incremental-link FirewallHelperClass member thunk converted to focused C++ source
 ?detectionTest1Update@FirewallHelperClass@@QAE_NXZ,,0x0066F370,197,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
