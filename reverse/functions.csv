@@ -4238,7 +4238,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4Region2D@@QAEAAU0@ABU0@@Z,0x000068C5,0x007E6D20,34,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,copies bounds
 ??4Region3D@@QAEAAU0@ABU0@@Z,0x00023A5B,0x007E6EC0,46,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,copies bounds
 ??4RenderDeviceDescClass@@QAEAAV0@ABV0@@Z,,0x009078A0,188,Code/masm_dumps/_rn1___4RenderDeviceDescClass__QAEAAV0_ABV0__Z_9078A0.asm,matched,reloc-needle Open-BFME4+Grok
-??4RenderObjClass@@QAEAAV0@ABV0@@Z,,0x0091F790,157,Code/masm_dumps/___4RenderObjClass__QAEAAV0_ABV0__Z_91F790.asm,matched,
+??4RenderObjClass@@QAEAAV0@ABV0@@Z,,0x0091F790,157,Code/Libraries/Source/WWVegas/WW3D2/RenderObjClassAssignmentThunk.cpp,matched,Exact standalone C++ __emit thunk from certified retail assignment
 ??4RenderObjectDrawModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x00007E14,0x5d8e00,123,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??4RenderObjectDrawModuleTemplate@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x00026ED6,0x5d8ea0,46,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??4RenderObjectUpdateModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x0003E2C5,0x5d9440,295,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,

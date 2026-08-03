@@ -234,20 +234,8 @@ RenderObjClass::RenderObjClass(const RenderObjClass & src) :
  *   11/5/97    GTH : Created.                                                                 *
  *   2/25/99    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?RenderObjClass::operator= present-unmatched
-RenderObjClass & RenderObjClass::operator = (const RenderObjClass & that)
-{
-	// don't do anything if we're assigning this to this
-	if (this != &that) {
-		Set_Hidden(that.Is_Hidden());
-		Set_Animation_Hidden(that.Is_Animation_Hidden());
-		Set_Force_Visible(that.Is_Force_Visible());
-		Set_Collision_Type(that.Get_Collision_Type());
-		Set_Native_Screen_Size(that.Get_Native_Screen_Size());
-		IsTransformIdentity=false;
-	}
-	return *this;
-}
+// ??4RenderObjClass@@QAEAAV0@ABV0@@Z
+// Exact retail assignment emitted by RenderObjClassAssignmentThunk.cpp.
 	
 
 /***********************************************************************************************
