@@ -1,70 +1,58 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: HeroModeSpecialAbilityUpdate module ctor.
+// Base MI: vptrs at +0/+0xC/+0x10/+0x20.
+
 class Thing;
 class ModuleData;
 
-class HeroModeSpecialAbilityUpdate
+class BehaviorModule
 {
 public:
-    HeroModeSpecialAbilityUpdate(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+private:
+	unsigned char m_data[8];
 };
 
-__declspec(naked) HeroModeSpecialAbilityUpdate::HeroModeSpecialAbilityUpdate(Thing *, const ModuleData *)
+class SpecialPowerModuleInterface
 {
-    __asm {
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 008h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 050h
-        _emit 051h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 0AEh
-        _emit 03Bh
-        _emit 0DBh
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 0A0h
-        _emit 059h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 00Ch
-        _emit 0D8h
-        _emit 058h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 010h
-        _emit 0C8h
-        _emit 058h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 020h
-        _emit 09Ch
-        _emit 058h
-        _emit 00Bh
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 008h
-        _emit 000h
-    }
-}
+public:
+	virtual void specialPowerModuleInterfaceAnchor();
+};
 
+class SpecialPowerModuleExtra
+{
+public:
+	virtual void specialPowerExtraAnchor();
+
+private:
+	unsigned char m_pad[12];
+};
+
+class ModuleInterface
+{
+public:
+	virtual void moduleInterfaceAnchor();
+};
+
+class HeroModeSpecialAbilityUpdateBase : public BehaviorModule,
+	public SpecialPowerModuleInterface,
+	public SpecialPowerModuleExtra,
+	public ModuleInterface
+{
+public:
+	HeroModeSpecialAbilityUpdateBase( Thing *thing, const ModuleData *moduleData );
+};
+
+class HeroModeSpecialAbilityUpdate : public HeroModeSpecialAbilityUpdateBase
+{
+public:
+	HeroModeSpecialAbilityUpdate( Thing *thing, const ModuleData *moduleData );
+};
+
+// ??0HeroModeSpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+HeroModeSpecialAbilityUpdate::HeroModeSpecialAbilityUpdate( Thing *thing, const ModuleData *moduleData )
+	: HeroModeSpecialAbilityUpdateBase( thing, moduleData )
+{
+}

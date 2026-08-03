@@ -1,70 +1,58 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: LevelGrantSpecialPower module ctor.
+// Base MI: vptrs at +0/+0xC/+0x10/+0x20.
+
 class Thing;
 class ModuleData;
 
-class LevelGrantSpecialPower
+class BehaviorModule
 {
 public:
-    LevelGrantSpecialPower(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+private:
+	unsigned char m_data[8];
 };
 
-__declspec(naked) LevelGrantSpecialPower::LevelGrantSpecialPower(Thing *, const ModuleData *)
+class SpecialPowerModuleInterface
 {
-    __asm {
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 008h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 050h
-        _emit 051h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 02Eh
-        _emit 037h
-        _emit 0DBh
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 070h
-        _emit 05Ch
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 00Ch
-        _emit 0A8h
-        _emit 05Bh
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 010h
-        _emit 098h
-        _emit 05Bh
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 020h
-        _emit 06Ch
-        _emit 05Bh
-        _emit 00Bh
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 008h
-        _emit 000h
-    }
-}
+public:
+	virtual void specialPowerModuleInterfaceAnchor();
+};
 
+class SpecialPowerModuleExtra
+{
+public:
+	virtual void specialPowerExtraAnchor();
+
+private:
+	unsigned char m_pad[12];
+};
+
+class ModuleInterface
+{
+public:
+	virtual void moduleInterfaceAnchor();
+};
+
+class LevelGrantSpecialPowerBase : public BehaviorModule,
+	public SpecialPowerModuleInterface,
+	public SpecialPowerModuleExtra,
+	public ModuleInterface
+{
+public:
+	LevelGrantSpecialPowerBase( Thing *thing, const ModuleData *moduleData );
+};
+
+class LevelGrantSpecialPower : public LevelGrantSpecialPowerBase
+{
+public:
+	LevelGrantSpecialPower( Thing *thing, const ModuleData *moduleData );
+};
+
+// ??0LevelGrantSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z
+LevelGrantSpecialPower::LevelGrantSpecialPower( Thing *thing, const ModuleData *moduleData )
+	: LevelGrantSpecialPowerBase( thing, moduleData )
+{
+}
