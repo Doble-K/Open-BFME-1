@@ -1522,26 +1522,8 @@ Bool W3DView::setViewFilter(enum FilterTypes filter)
 //-------------------------------------------------------------------------------------------------
 /** Calculates how many pixels we scrolled since last frame for motion blur calculations. */
 //-------------------------------------------------------------------------------------------------
-// ?calcDeltaScroll@W3DView@@ present-unmatched
-void W3DView::calcDeltaScroll(Coord2D &screenDelta)
-{
-	screenDelta.x = 0;
-	screenDelta.y = 0;
-	Vector3 prevPos(m_previousLookAtPosition.x,m_previousLookAtPosition.y, m_groundLevel);
-	Vector3 prevScreen;
-	if (m_3DCamera->Project( prevScreen, prevPos ) != CameraClass::INSIDE_FRUSTUM)
-	{
-		return;
-	}
-	Vector3 pos(m_pos.x,m_pos.y, m_groundLevel);
-	Vector3 screen;
-	if (m_3DCamera->Project( screen, pos ) != CameraClass::INSIDE_FRUSTUM)
-	{
-		return;
-	}
-	screenDelta.x = screen.X-prevScreen.X;
-	screenDelta.y = screen.Y-prevScreen.Y;
-}
+// ?calcDeltaScroll@W3DView@@AAEXAAUCoord2D@@@Z
+// Exact retail helper emitted by W3DViewCalcDeltaScrollThunk.cpp.
 
 
 //-------------------------------------------------------------------------------------------------
