@@ -8579,7 +8579,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Write@UDP@@QAEHPBEIIG@Z,,0x00684A20,130,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?WriteActionDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003513F0,160,Code/GameEngine/Source/Common/ScriptAction_WriteActionDataChunk_Thunk.cpp,matched,Ghidra-bound BFME script-action writer
 ?WriteActionFalseDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003514C0,160,Code/GameEngine/Source/Common/ScriptAction_WriteActionFalseDataChunk_Thunk.cpp,matched,Ghidra-bound BFME false-action writer
-?WriteBuildInfo@Debug@@QAEXXZ,,0x0088A492,135,Code/Libraries/Source/WWVegas/WWDebug/Debug_WriteBuildInfo_Thunk.cpp,matched,Open-BFME5 lift 135B retail method MASM to standalone C++ thunk
+?WriteBuildInfo@Debug@@QAEXXZ,,0x0088A490,137,Code/Libraries/Source/WWVegas/WWDebug/Debug_WriteBuildInfo_Thunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit thunk; re-anchored 2 bytes earlier to the real push prologue
 ?WriteGroupDataChunk@ScriptGroup@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x00359EE0,204,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptGroup_WriteGroupDataChunk_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?WriteOrConditionDataChunk@OrCondition@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x00355C90,64,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?WriteParameter@Parameter@@QAEXAAVDataChunkOutput@@@Z,,0x00351320,167,Code/GameEngine/Source/GameLogic/ScriptEngine/Parameter_WriteParameter_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
