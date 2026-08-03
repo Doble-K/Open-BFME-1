@@ -3091,7 +3091,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1OrthoEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D6FC0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
 ??1OutwardEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x000206CB,0x005D7B10,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
 ??1OutwardEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D7D00,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
-??1OverchargeBehaviorModuleData@@UAE@XZ,,0x0008A450,105,Code/masm_dumps/OverchargeBehaviorModuleData_destructor.asm,matched,Exact 105B SEH dtor Open-BFME4
+??1OverchargeBehaviorModuleData@@UAE@XZ,,0x0008A450,105,Code/GameEngine/Source/Common/OverchargeBehaviorModuleDataDestructorThunk.cpp,matched,Exact 105B SEH dtor Open-BFME4
 ??1PSRequest@@QAE@XZ,,0x000A5490,319,Code/masm_dumps/_rn7___1PSRequest__QAE_XZ_A5490.asm,matched,reloc-needle Open-BFME4+Grok
 ??1PartTheHeavensUpdate@@UAE@XZ,,0x00299820,120,Code/masm_dumps/PartTheHeavensUpdate_destructor.asm,matched,Exact 120B; factory ownership Open-BFME4
 ??1PartTheHeavensUpdateModuleData@@UAE@XZ,,0x00299F50,220,Code/masm_dumps/PartTheHeavensUpdateModuleData_destructor.asm,matched,Exact 220B @ 0x00299F50; Exact retail MASM; factory->vtable dtor; del 0x299F20 ctor 0x299E10 vt 0xCC08A8
