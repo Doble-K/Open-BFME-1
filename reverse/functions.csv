@@ -1457,7 +1457,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DevastateSpecialPowerModuleData@@QAE@XZ,,0x0025AC10,44,Code/GameEngine/Source/Common/RTS/DevastateSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
 ??0Dict@@QAE@ABV0@@Z,,0x000C8CF0,20,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0Dict@@QAE@H@Z,,0x00068550,33,Code/GameEngine/Source/Common/Dict.cpp,matched,
-??0DieModuleData@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehavior.cpp,matched,
+??0DieModuleData@@QAE@XZ,,0x00101D50,74,Code/GameEngine/Source/GameLogic/Object/Behavior/DieModuleDataCtorThunk.cpp,matched,Exact 74B retail constructor extracted from target 0x00101D50; converted to an exact standalone C++ thunk
 ??0DieModuleModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0DisconnectManager@@QAE@XZ,,0x0066AF50,178,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ??0DiscreteCircle@@QAE@HHH@Z,,0x00069350,116,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
@@ -1702,7 +1702,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0InputLightStruct@LightEnvironmentClass@@QAE@ABU01@@Z,,0x0094AD80,139,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,matched,
 ??0InputStream@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,ICF alias of existing matched body
 ??0InstantDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200BA0,60,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw InstantDeathBehavior constructor
-??0InstantDeathBehaviorModuleData@@QAE@XZ,,0x00201650,111,Code/masm_dumps/InstantDeathBehaviorModuleData_constructor.asm,matched,Exact 111B @ 0x00201650; Exact retail MASM ModuleData ctor; unique factory 0x1153E0
+??0InstantDeathBehaviorModuleData@@QAE@XZ,,0x00201650,111,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehaviorModuleDataCtorThunk.cpp,matched,Exact 111B @ 0x00201650; Exact retail MASM ModuleData ctor; unique factory 0x1153E0; converted to an exact standalone C++ thunk
 ??0JetAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0KeepObjectDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00255870,60,Code/GameEngine/Source/GameLogic/Object/Die/KeepObjectDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
 ??0KeepObjectDieModuleData@@QAE@XZ,,0x00122ED0,69,Code/GameEngine/Source/GameLogic/AI/KeepObjectDieModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
@@ -5017,7 +5017,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GINIClass@@UAEPAXI@Z,,0x009E5C60,30,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??_GINISection@@UAEPAXI@Z,,0x009E3620,30,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??_GInstantDeathBehavior@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GInstantDeathBehaviorModuleData@@UAEPAXI@Z,,0x00201810,30,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehavior.cpp,matched,
+??_GInstantDeathBehaviorModuleData@@UAEPAXI@Z,,0x00201810,30,Code/GameEngine/Source/GameLogic/Object/Behavior/InstantDeathBehaviorModuleDataDeletingDtorThunk.cpp,matched,Compiler-owned deleting destructor paired with the retail scalar destructor
 ??_GKindOfPercentProductionChange@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GLANGameInfo@@QAEPAXI@Z,,0x006870C0,30,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,
 ??_GLANPlayer@@QAEPAXI@Z,,0x00686CA0,30,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,

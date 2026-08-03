@@ -56,14 +56,8 @@
 #include "GameClient/Drawable.h"
 
 //-------------------------------------------------------------------------------------------------
-// ??0InstantDeathBehaviorModuleData@@ present-unmatched
-InstantDeathBehaviorModuleData::InstantDeathBehaviorModuleData()
-{
-	// redundant.
-	//m_fx.clear();
-	//m_ocls.clear();
-	//m_weapons.clear();
-}
+// ??0InstantDeathBehaviorModuleData@@ is implemented by the exact retail
+// thunk in InstantDeathBehaviorModuleDataCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 static void parseFX( INI* ini, void *instance, void * /*store*/, const void* /*userData*/ )
