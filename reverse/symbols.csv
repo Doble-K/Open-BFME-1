@@ -253,6 +253,7 @@ name,address,notes
 ??0?$BFMEFactoryModuleData@VFireWeaponUpdateModuleData@@$0BA@@@QAE@XZ,0x0002DAA1,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VFireWeaponWhenDeadBehaviorModuleData@@$0LE@@@QAE@XZ,0x0000C063,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VGarrisonContainModuleData@@$0DDM@@@QAE@XZ,0x0001B9F5,ModuleFactory retail data facade
+??0?$BFMEFactoryModuleData@VInternetHackContainModuleData@@$0BGM@@@QAE@XZ,0x00030945,Open-BFME5 factory storage constructor pin for exact InternetHackContain factory
 ??0?$BFMEFactoryModuleData@VLaserUpdateModuleData@@$0BM@@@QAE@XZ,0x0002E069,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VMaxHealthUpgradeModuleData@@$0HI@@@QAE@XZ,0x00044FA8,ModuleFactory retail data facade
 ??0?$BFMEFactoryModuleData@VOCLSpecialPowerModuleData@@$0CDA@@@QAE@XZ,0x0003EFB8,ModuleFactory retail data facade

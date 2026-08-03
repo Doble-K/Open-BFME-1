@@ -175,6 +175,7 @@ class DynamicShroudClearingRangeUpdateModuleData;
 class FireWeaponUpdateModuleData;
 class FireWeaponWhenDeadBehaviorModuleData;
 class GarrisonContainModuleData;
+class InternetHackContainModuleData;
 class LaserUpdateModuleData;
 class MaxHealthUpgradeModuleData;
 class OCLSpecialPowerModuleData;
@@ -212,6 +213,7 @@ template <> struct BFMEFactoryInstanceSize<DynamicShroudClearingRangeUpdateModul
 template <> struct BFMEFactoryInstanceSize<FireWeaponUpdateModuleData> { enum { VALUE = 0x10 }; };
 template <> struct BFMEFactoryInstanceSize<FireWeaponWhenDeadBehaviorModuleData> { enum { VALUE = 0xB4 }; };
 template <> struct BFMEFactoryInstanceSize<GarrisonContainModuleData> { enum { VALUE = 0x33C }; };
+template <> struct BFMEFactoryInstanceSize<InternetHackContainModuleData> { enum { VALUE = 0x16C }; };
 template <> struct BFMEFactoryInstanceSize<LaserUpdateModuleData> { enum { VALUE = 0x1C }; };
 template <> struct BFMEFactoryInstanceSize<MaxHealthUpgradeModuleData> { enum { VALUE = 0x78 }; };
 template <> struct BFMEFactoryInstanceSize<OCLSpecialPowerModuleData> { enum { VALUE = 0x230 }; };
@@ -255,6 +257,7 @@ BFME_FACTORY_DATA_CHOICE(DynamicShroudClearingRangeUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(FireWeaponUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(FireWeaponWhenDeadBehaviorModuleData)
 BFME_FACTORY_DATA_CHOICE(GarrisonContainModuleData)
+BFME_FACTORY_DATA_CHOICE(InternetHackContainModuleData)
 BFME_FACTORY_DATA_CHOICE(LaserUpdateModuleData)
 BFME_FACTORY_DATA_CHOICE(MaxHealthUpgradeModuleData)
 BFME_FACTORY_DATA_CHOICE(OCLSpecialPowerModuleData)
