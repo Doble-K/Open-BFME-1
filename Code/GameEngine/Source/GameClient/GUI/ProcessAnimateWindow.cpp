@@ -758,7 +758,10 @@ void ProcessAnimateWindowSlideFromBottom::initAnimateWindow( AnimateWindow *anim
 	((BFMEAnimateWindowLayout *)animWin)->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
-// ?updateAnimateWindow@ProcessAnimateWindowSlideFromBottom@@UAE_NPAVAnimateWindow@@@Z present-unmatched
+// Retail body matched via __emit thunk: ProcessAnimateWindowSlideFromBottom_updateAnimateWindow_Thunk.cpp
+// (C++ blocked by the FPU-promoted vel.y kept on the x87 stack across the threshold branch,
+// the fcom-mem -1.0 clamp, and the setVel store order)
+#if 0
 Bool ProcessAnimateWindowSlideFromBottom::updateAnimateWindow( AnimateWindow *animWin )
 {
 	
@@ -808,6 +811,7 @@ Bool ProcessAnimateWindowSlideFromBottom::updateAnimateWindow( AnimateWindow *an
 	animWin->setVel(vel);
 	return FALSE;
 }
+#endif
 
 // Retail body matched via MASM: Code/masm_dumps/reverseAnimateWindow_ProcessAnimateWindowSlideFromBottom_4966E0.asm
 // (true body 0x4966E0 via SlideFromBottom vtbl slot4; queue 0x4965B0 is update; C++ blocked by
