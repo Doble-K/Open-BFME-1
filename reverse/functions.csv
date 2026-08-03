@@ -3246,7 +3246,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TimeCodedBitChannelClass@@QAE@XZ,,0x00978320,28,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??1TimeCodedMotionChannelClass@@QAE@XZ,,0x00978180,24,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??1TintEnvelope@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ
-??1TooltipUpgrade@@UAE@XZ,,0x00418B50,142,Code/masm_dumps/TooltipUpgrade_destructor.asm,matched,Exact 142B SEH dtor factory->vtable Open-BFME4
+??1TooltipUpgrade@@UAE@XZ,,0x00418B50,142,Code/GameEngine/Source/Common/TooltipUpgradeDestructorThunk.cpp,matched,Exact 142B SEH dtor factory->vtable Open-BFME4
 ??1TooltipUpgradeModuleData@@UAE@XZ,,0x0012BBB0,96,Code/GameEngine/Source/Common/TooltipUpgradeModuleDataDestructorThunk.cpp,matched,Exact 96B SEH dtor Open-BFME5
 ??1ToppleUpdateModuleData@@UAE@XZ,,0x002B15B0,67,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
 ??1TransitionDamageFXModuleData@@UAE@XZ,,0x00253500,197,Code/GameEngine/Source/Common/TransitionDamageFXModuleDataDestructorThunk.cpp,matched,Exact 197B SEH dtor Open-BFME5
