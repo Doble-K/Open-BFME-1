@@ -1,123 +1,80 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class INI;
+// Open-BFME5: SlavedUpdate::friend_newModuleData
+
 class ModuleData;
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+class SlavedUpdateModuleData
+{
+public:
+	SlavedUpdateModuleData()
+	{
+		// Store order mirrors retail factory body.
+		m_48 = 0;
+		m_4c = 0;
+		m_08 = 0;
+		m_0c = 0;
+		m_10 = 0;
+		m_14 = 0;
+		m_18 = 0;
+		m_1c = 0;
+		m_20 = 0;
+		m_30 = 0;
+		m_34 = 0;
+		m_28 = 0;
+		m_2c = 0;
+		m_40 = 0;
+		m_44 = 0;
+		m_38 = 0;
+		m_3c = 0;
+		m_50 = 0;
+	}
+	virtual ~SlavedUpdateModuleData();
+private:
+	unsigned int m_04;
+	unsigned int m_08;
+	unsigned int m_0c;
+	unsigned int m_10;
+	unsigned int m_14;
+	unsigned int m_18;
+	unsigned int m_1c;
+	unsigned int m_20;
+	unsigned int m_24;
+	unsigned int m_28;
+	unsigned int m_2c;
+	unsigned int m_30;
+	unsigned int m_34;
+	unsigned int m_38;
+	unsigned int m_3c;
+	unsigned int m_40;
+	unsigned int m_44;
+	unsigned int m_48;
+	unsigned int m_4c;
+	unsigned char m_50;
+};
+
+class INI
+{
+public:
+	void initFromINI(void *what, const void *parseTable);
+};
+
+extern "C" char SlavedUpdateFieldParse;
 
 class SlavedUpdate
 {
 public:
-    static ModuleData *friend_newModuleData(INI *);
+	static ModuleData *friend_newModuleData(INI *ini);
 };
 
 // ?friend_newModuleData@SlavedUpdate@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *SlavedUpdate::friend_newModuleData(INI *)
+ModuleData *SlavedUpdate::friend_newModuleData(INI *ini)
 {
-    __asm {
-        _emit 056h
-        _emit 06Ah
-        _emit 054h
-        _emit 0E8h
-        _emit 0C8h
-        _emit 0C4h
-        _emit 075h
-        _emit 000h
-        _emit 033h
-        _emit 0D2h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 03Bh
-        _emit 0C2h
-        _emit 074h
-        _emit 040h
-        _emit 0C7h
-        _emit 000h
-        _emit 030h
-        _emit 0E7h
-        _emit 008h
-        _emit 001h
-        _emit 089h
-        _emit 050h
-        _emit 048h
-        _emit 089h
-        _emit 050h
-        _emit 04Ch
-        _emit 089h
-        _emit 050h
-        _emit 008h
-        _emit 089h
-        _emit 050h
-        _emit 00Ch
-        _emit 089h
-        _emit 050h
-        _emit 010h
-        _emit 089h
-        _emit 050h
-        _emit 014h
-        _emit 089h
-        _emit 050h
-        _emit 018h
-        _emit 089h
-        _emit 050h
-        _emit 01Ch
-        _emit 089h
-        _emit 050h
-        _emit 020h
-        _emit 089h
-        _emit 050h
-        _emit 030h
-        _emit 089h
-        _emit 050h
-        _emit 034h
-        _emit 089h
-        _emit 050h
-        _emit 028h
-        _emit 089h
-        _emit 050h
-        _emit 02Ch
-        _emit 089h
-        _emit 050h
-        _emit 040h
-        _emit 089h
-        _emit 050h
-        _emit 044h
-        _emit 089h
-        _emit 050h
-        _emit 038h
-        _emit 089h
-        _emit 050h
-        _emit 03Ch
-        _emit 088h
-        _emit 050h
-        _emit 050h
-        _emit 08Bh
-        _emit 0F0h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0F6h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 03Bh
-        _emit 0CAh
-        _emit 074h
-        _emit 00Bh
-        _emit 068h
-        _emit 08Eh
-        _emit 097h
-        _emit 043h
-        _emit 000h
-        _emit 056h
-        _emit 0E8h
-        _emit 06Ah
-        _emit 0C6h
-        _emit 072h
-        _emit 000h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
+	SlavedUpdateModuleData *data = new SlavedUpdateModuleData;
+	if (ini)
+		ini->initFromINI(data, &SlavedUpdateFieldParse);
+	return (ModuleData *)data;
 }
