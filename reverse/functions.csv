@@ -9352,7 +9352,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clearAvailableGames@GameState@@AAEXXZ,,0x0051E900,136,Code/GameEngine/Source/Common/GameState_clearAvailableGamesMethodThunk.cpp,matched,multi-xref Open-BFME4+Grok 00000000.sav
 ?clearBuddyGames@@YAXXZ,,0x0062CFC0,39,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
 ?clearDeathTypeFlag@@YAIIW4DeathType@@@Z,,0x000B8E10,21,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?clearDisabled@Object@@QAE_NW4DisabledType@@@Z,,0x001C8440,492,Code/masm_dumps/_clearDisabled_Object__QAE_NW4DisabledType___Z_1C8440.asm,matched,Exact 492B MASM @ 0x1C8440 after setDisabledUntil; queue 0xFB36E misplaced
+?clearDisabled@Object@@QAE_NW4DisabledType@@@Z,,0x001C8440,492,Code/GameEngine/Source/Common/Object_clearDisabled_Thunk.cpp,matched,Exact 492B MASM @ 0x1C8440 after setDisabledUntil; queue 0xFB36E misplaced
 ?clearModelConditionState@Drawable@@QAEXW4ModelConditionFlagType@@@Z,,0x00527200,15,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?clearMoveOutOfWay@AIUpdateInterface@@QAEXXZ,,0x0016A770,15,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?clearParentCell@PathfindCell@@QAEXXZ,,0x003D4CC0,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
@@ -10182,7 +10182,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z,,0x004A0270,126,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarFields.cpp,matched,clean C++ body at thunk destination 0x004A0270 exact 126B match
 ?findNonConstCommandSet@ControlBar@@AAEPAVCommandSet@@ABVAsciiString@@@Z,,0x004A0270,126,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarFields.cpp,matched,object-symbol=?findNonConstCommandButton@ControlBar@@IAEPAVCommandButton@@ABVAsciiString@@@Z; C++ ICF alias replaces direct thunk dump
 ?findObjectCreationList@ObjectCreationListStore@@QBEPBVObjectCreationList@@PBD@Z,,0x001D7440,89,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
-?findObjectToRepair@@YAPAVObject@@PAV1@@Z,,0x002B82D0,505,Code/masm_dumps/findObjectToRepair_2B82D0.asm,matched,Certified packet 85 direct repair-search callee SHA256 a83dc6d663009226cf652695902d3f2680cb589604e1c0da563659d23654609e
+?findObjectToRepair@@YAPAVObject@@PAV1@@Z,,0x002B82D0,505,Code/GameEngine/Source/Common/findObjectToRepair_Thunk.cpp,matched,Certified packet 85 direct repair-search callee SHA256 a83dc6d663009226cf652695902d3f2680cb589604e1c0da563659d23654609e
 ?findPairByKey@Dict@@ABEPAUDictPair@1@W4NameKeyType@@@Z,,0x00067D90,75,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?findPath@Pathfinder@@EAEPAVPath@@PAVObject@@ABVLocomotorSet@@PBUCoord3D@@2@Z,,0x003F2F60,1016,Code/masm_dumps/findPath_Pathfinder_003F2F60_packet170.asm,matched,Certified packet 170 reviewed Ghidra entry vtable ownership diagnostics and internalFindPath call; SHA256 4cb112faf57f32084f6377380a5490b0232d9f2880632d4b3f03cbf3d3275973
 ?findPlayerTemplate@PlayerTemplateStore@@QBEPBVPlayerTemplate@@W4NameKeyType@@@Z,,0x000E0F30,996,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
@@ -10874,7 +10874,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getBuildList@SidesInfo@@QAEPAVBuildListInfo@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/Common/RTS/PlayerList.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?getBuildingOcclusionEnabled@OptionPreferences@@QAE_NXZ,,0x00091330,102,Code/GameEngine/Source/Common/promoted__getBuildingOcclusionEnabled_OptionPreferences_QAE_NXZ_00091330.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 102B
 ?getBuildingToNotPathAround@AIUpdateInterface@@UBE?AW4ObjectID@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?getCRC@GameLogic@@QAEIHVAsciiString@@@Z,,0x00383150,499,Code/masm_dumps/getCRC_GameLogic_QAEIHVAsciiString_Z_383150.asm,matched,Certified packet 352 exact retail db recovery SHA256 ff955c5275da3a4c9bbb2396a97aef2d5d543a35c0336ffaea6089c92b12f5e7
+?getCRC@GameLogic@@QAEIHVAsciiString@@@Z,,0x00383150,499,Code/GameEngine/Source/Common/GameLogic_getCRC_Thunk.cpp,matched,Certified packet 352 exact retail db recovery SHA256 ff955c5275da3a4c9bbb2396a97aef2d5d543a35c0336ffaea6089c92b12f5e7
 ?getCSFInfo@GameTextManager@@IAE_NPBD@Z,,0x00436150,47,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ?getCachedLocalPlayerStats@GameSpyInfo@@UAE?AVPSPlayerStats@@XZ,,0x006372D0,32,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?getCachedStats@GameSpyMiscPreferences@@QAE?AVAsciiString@@XZ,,0x000A9A00,113,Code/GameEngine/Source/Common/GameSpyMiscPreferences_getCachedStats_Thunk.cpp,matched,Unique CachedStats-string preference getter
@@ -12099,13 +12099,13 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isAnyKindOf@Thing@@QBE_NABV?$BitFlags@$0HE@@@@Z,,0x00132AE0,41,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail ThingTemplate kindof shim and REL32 pin
 ?isAnyTaskPending@DozerAIUpdate@@UAE_NXZ,,0x002B68D0,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,
 ?isAnyTaskPending@WorkerAIUpdate@@UAE_NXZ,,0x002C7F80,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,
-?isAttackViewBlockedByObstacle@Pathfinder@@QAE_NPBVObject@@ABUCoord3D@@01@Z,,0x003EA980,501,Code/masm_dumps/isAttackViewBlockedByObstacle_Pathfinder_QAE_NPBVObject_ABUCoord3D_01_Z_003EA980_c355d0a8.asm,matched,Ghidra-proven true body; queue RVA 0x3EAA5D was inside
+?isAttackViewBlockedByObstacle@Pathfinder@@QAE_NPBVObject@@ABUCoord3D@@01@Z,,0x003EA980,501,Code/GameEngine/Source/Common/Pathfinder_isAttackViewBlockedByObstacle_Thunk.cpp,matched,Ghidra-proven true body; queue RVA 0x3EAA5D was inside
 ?isBridgeBroken@TerrainLogic@@QAE_NPBVObject@@@Z,,0x001A3570,69,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?isBridgeRepaired@TerrainLogic@@QAE_NPBVObject@@@Z,,0x001A3510,69,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?isBuddy@GameSpyInfo@@UAE_NH@Z,,0x00632810,40,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?isCapableOfPurchasingScience@Player@@QBE_NW4ScienceType@@@Z,,0x000CFDF0,110,Code/GameEngine/Source/Common/RTS/PlayerFields.cpp,matched,BFME retail body; drops isScienceDisabled/isScienceHidden check vs ZH; m_sciences@0x234 m_sciencePurchasePoints@0x264 via reference/shims/player
 ?isCellOnEnd@Bridge@@QAE_NPBURegion2D@@@Z,,0x0000DAAD,5,Code/GameEngine/Source/Common/RTS/BridgeIsCellOnEndThunk.cpp,matched,5-byte incremental-link Bridge member thunk converted to focused C++ source
-?isCellOnSide@Bridge@@QAE_NPBURegion2D@@@Z,,0x001A26D0,504,Code/masm_dumps/Bridge_isCellOnSide_1A26D0.asm,matched,Certified packet 14 exact retail db recovery
+?isCellOnSide@Bridge@@QAE_NPBURegion2D@@@Z,,0x001A26D0,504,Code/GameEngine/Source/Common/Bridge_isCellOnSide_Thunk.cpp,matched,Certified packet 14 exact retail db recovery
 ?isClearToAdvance@DockUpdate@@UBE_NPBVObject@@H@Z,,0x002CBC00,143,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?isClearToApproach@DockUpdate@@UBE_NPBVObject@@@Z,,0x002CB030,78,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?isClearToEnter@DockUpdate@@UBE_NPBVObject@@@Z,,0x002CA770,18,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
@@ -12799,7 +12799,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?populateRandomStartPosition@@YAXPAVGameInfo@@@Z,,0x00390F90,1510,Code/masm_dumps/populateRandomStartPosition.asm,matched,Certified packet 37 retail db recovery sha256 bc2162546e1b9a6ba4fefc244e7ab5cfae5b1ff6afc6678e946cefde04b19904
 ?populateSaveGameListbox@GameState@@QAEXPAVGameWindow@@W4SaveLoadLayoutType@@@Z,,0x001121A0,1286,Code/masm_dumps/_sa__populateSaveGameListbox_GameState__QAEXPAVGameWin_1121A0.asm,matched,Exact 1286B string-anchored Open-BFME4
 ?populateSpecialPowerShortcut@ControlBar@@IAEXPAVPlayer@@@Z,,0x004A04C0,624,Code/masm_dumps/_sa11__populateSpecialPowerShortcut_ControlBar__IAEXPAVPlayer___Z_4A04C0.asm,matched,string-anchor Open-BFME4+Grok GUIGenShortcutClick
-?popupMessage@InGameUI@@UAEXABVAsciiString@@HHHH_N1@Z,,0x00442040,474,Code/masm_dumps/_saG__popupMessage_InGameUI__UAEXABVAsciiString__HHHH_N1_Z_442040.asm,matched,string-anchor MASM unique Open-BFME4+Grok
+?popupMessage@InGameUI@@UAEXABVAsciiString@@HHHH_N1@Z,,0x00442040,474,Code/GameEngine/Source/Common/InGameUI_popupMessage_Thunk.cpp,matched,string-anchor MASM unique Open-BFME4+Grok
 ?portableMapPathToRealMapPath@GameState@@QBE?AVAsciiString@@ABV2@@Z,,0x0010F550,572,Code/masm_dumps/portableMapPathToRealMapPath_GameState_0010F550_99a8c242.asm,matched,Certified packet 207 exact retail db recovery SHA256 99a8c242ad4b9a6353c479f84866e9d528d282c0eb2fa02dc7162494e8a7aa77
 ?position@File@@UAEHXZ,,0x009CB6B0,10,Code/GameEngine/Source/Common/System/File.cpp,matched,File vtable slot 12; named by slot 0 dtor in vtable 0x01143AF8
 ?position@MemoryReadFile@@UAEHXZ,,0x009CB180,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
