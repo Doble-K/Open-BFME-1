@@ -1,102 +1,77 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Lift the PartitionFilterPlayerAffiliation::allow __emit thunk to clean C++.
+//
+// Zero Hour's PartitionManager.h declares this filter with exactly the members
+// retail uses -- m_player, m_match, m_affiliation -- and they land on the retail
+// offsets +0x08/+0x0C/+0x10 in declaration order. The AllowPlayerRelationship
+// values from PlayerList.h also match the retail bit tests one for one:
+// ENEMIES tests 0x04, NEUTRAL tests 0x08, ALLIES tests 0x02.
 
-class Object;
+class Team;
+
+enum Relationship
+{
+	ENEMIES = 0,
+	NEUTRAL,
+	ALLIES
+};
+
+enum AllowPlayerRelationship
+{
+	ALLOW_SAME_PLAYER	= 0x01,
+	ALLOW_ALLIES		= 0x02,
+	ALLOW_ENEMIES		= 0x04,
+	ALLOW_NEUTRAL		= 0x08
+};
+
+class Player
+{
+public:
+	Relationship getRelationship(const Team *that) const;	///< pinned at 0x0003E77A
+};
+
+class Object
+{
+public:
+	Team *getTeam(void) const { return m_team; }
+
+private:
+	unsigned char m_unreconstructed_00[0x23C];
+	Team *m_team;											///< retail this+0x23C
+};
+
 class PartitionFilterPlayerAffiliation
 {
 protected:
 	virtual bool allow(Object *);
+
+private:
+	unsigned char m_unreconstructed_04[0x08 - 4];			///< vtable slot then unpinned base bytes
+	const Player *m_player;									///< retail this+0x08
+	bool m_match;											///< retail this+0x0C
+	unsigned int m_affiliation;								///< retail this+0x10
 };
 
 // ?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z
-__declspec(naked) bool PartitionFilterPlayerAffiliation::allow(Object *)
+bool PartitionFilterPlayerAffiliation::allow(Object *other)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x80
-        __emit 0x3c
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x24
-        __emit 0x16
-        __emit 0xe6
-        __emit 0xff
-        __emit 0x83
-        __emit 0xe8
-        __emit 0x00
-        __emit 0x74
-        __emit 0x20
-        __emit 0x48
-        __emit 0x74
-        __emit 0x10
-        __emit 0x48
-        __emit 0x75
-        __emit 0x27
-        __emit 0xf6
-        __emit 0x46
-        __emit 0x10
-        __emit 0x02
-        __emit 0x74
-        __emit 0x21
-        __emit 0x8a
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0xf6
-        __emit 0x46
-        __emit 0x10
-        __emit 0x08
-        __emit 0x74
-        __emit 0x14
-        __emit 0x8a
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0xf6
-        __emit 0x46
-        __emit 0x10
-        __emit 0x04
-        __emit 0x74
-        __emit 0x07
-        __emit 0x8a
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x4e
-        __emit 0x0c
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x84
-        __emit 0xc9
-        __emit 0x0f
-        __emit 0x94
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	switch (m_player->getRelationship(other->getTeam()))
+	{
+		case ENEMIES:
+			if (m_affiliation & ALLOW_ENEMIES)
+				return m_match;
+			break;
+
+		case NEUTRAL:
+			if (m_affiliation & ALLOW_NEUTRAL)
+				return m_match;
+			break;
+
+		case ALLIES:
+			if (m_affiliation & ALLOW_ALLIES)
+				return m_match;
+			break;
 	}
+
+	return !m_match;
 }
