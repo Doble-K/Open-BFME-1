@@ -210,57 +210,8 @@ Int DisconnectManager::getPingsRecieved()
 }
 
 
-void DisconnectManager::updateDisconnectStatus(ConnectionManager *conMgr) {
-	for (Int i = 0; i < MAX_SLOTS; ++i) {
-		if (conMgr->isPlayerConnected(i)) {
-			Int slot = translatedSlotPosition(i, conMgr->getLocalPlayerID());
-			if (slot != -1) {
-				time_t curTime = timeGetTime();
-				time_t newTime = TheGlobalData->m_networkPlayerTimeoutTime - (curTime - m_playerTimeouts[slot]);
-
-// if someone is more than 2/3 timed out, lets get our frame numbers sync'd up.  Also if someone is voted out
-// lets do the same thing.
-
-				if (m_haveNotifiedOtherPlayersOfCurrentFrame == FALSE) {
-					if ((newTime < TheGlobalData->m_networkPlayerTimeoutTime / 3) || (isPlayerVotedOut(slot, conMgr) == TRUE)) {
-						TheNetwork->notifyOthersOfCurrentFrame();
-						m_haveNotifiedOtherPlayersOfCurrentFrame = TRUE;
-					}
-
-					DEBUG_LOG(("DisconnectManager::updateDisconnectStatus - curTime = %d, m_timeOfDisconnectScreenOn = %d, curTime - m_timeOfDisconnectScreenOn = %d\n", curTime, m_timeOfDisconnectScreenOn, curTime - m_timeOfDisconnectScreenOn));
-
-					if (m_timeOfDisconnectScreenOn != 0) {
-						if ((curTime - m_timeOfDisconnectScreenOn) > TheGlobalData->m_networkDisconnectScreenNotifyTime) {
-							TheNetwork->notifyOthersOfCurrentFrame();
-							m_haveNotifiedOtherPlayersOfCurrentFrame = TRUE;
-						}
-					}
-				}
-
-				if ((newTime < 0) || (isPlayerVotedOut(slot, conMgr) == TRUE)) {
-					newTime = 0;
-					DEBUG_LOG(("DisconnectManager::updateDisconnectStatus - player %d(translated slot %d) has been voted out or timed out\n", i, slot));
-					if (allOnSameFrame(conMgr) == TRUE) {
-						DEBUG_LOG(("DisconnectManager::updateDisconnectStatus - all on same frame\n"));
-						if (isLocalPlayerNextPacketRouter(conMgr) == TRUE) {
-							DEBUG_LOG(("DisconnectManager::updateDisconnectStatus - local player is next packet router\n"));
-							DEBUG_LOG(("DisconnectManager::updateDisconnectStatus - about to do the disconnect procedure for player %d\n", i));
-							sendDisconnectCommand(i, conMgr);
-							disconnectPlayer(i, conMgr);
-							sendPlayerDestruct(i, conMgr);
-						} else {
-							DEBUG_LOG(("DisconnectManager::updateDisconnectStatus - local player is not the next packet router\n"));
-						}
-					} else {
-						DEBUG_LOG(("DisconnectManager::updateDisconnectStatus - not all on same frame\n"));
-					}
-				}
-				TheDisconnectMenu->setPlayerTimeoutTime(slot, newTime);
-			}
-		}
-	}
-}
-
+// ?updateDisconnectStatus@DisconnectManager@@IAEXPAVConnectionManager@@@Z
+// Body in Code/masm_dumps/DisconnectManager_updateDisconnectStatus.asm (exact 750B retail @ 0x0066C3B0).
 // ?updateWaitForPacketRouter@DisconnectManager@@IAEXPAVConnectionManager@@@Z present-unmatched
 void DisconnectManager::updateWaitForPacketRouter(ConnectionManager *conMgr) {
 /*
