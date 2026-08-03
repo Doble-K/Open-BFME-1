@@ -8708,7 +8708,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addShadow@W3DProjectedShadowManager@@QAEPAVW3DProjectedShadow@@PAVRenderObjClass@@PAUShadowTypeInfo@Shadow@@PAVDrawable@@@Z,,0x007B4340,322,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?addSide@SidesList@@QAEXPBVDict@@@Z,,0x000E0640,897,Code/masm_dumps/_sa15__addSide_SidesList__QAEXPBVDict___Z_E0640.asm,matched,sa15 Open-BFME4+Grok Faction
 ?addSkirmishTeam@SidesList@@QAEXPBVDict@@@Z,,0x00C50B39,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
-?addSmudgeSet@SmudgeManager@@QAEPAUSmudgeSet@@XZ,,0x005D4240,129,Code/masm_dumps/_rn6__addSmudgeSet_SmudgeManager__QAEPAUSmudgeSet__XZ_5D4240.asm,matched,reloc-needle Open-BFME4+Grok
 ?addSnapshotBlock@GameState@@AAEXVAsciiString@@PAVSnapshot@@W4SnapshotType@@@Z,,0x003BDB80,155,Code/masm_dumps/_sa7__addSnapshotBlock_GameState__AAEXVAsciiString__PAV_3BDB80.asm,matched,Exact 155B Open-BFME4
 ?addSuperweapon@InGameUI@@UAEXHABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x0044C970,338,Code/masm_dumps/_rn1__addSuperweapon_InGameUI__UAEXHABVAsciiString__W4ObjectID__PBVSpecialP_44C970.asm,matched,reloc-needle Open-BFME4+Grok
 ?addTeam@SidesList@@QAEXPBVDict@@@Z,,0x00C2787D,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Execute@DebugIOCon@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00891200,239,Code/Libraries/Source/debug/debug_io_con.cpp,matched,MASM dump converted to clean C++; BFME's Debug is polymorphic so operator<<(const char*) is a vtable call
 ??1SmudgeManager@@UAE@XZ,,0x005D4390,248,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,MASM dump converted to clean C++; BFME does not pool-allocate Smudge; size corrected from 239 to the padding-delimited 248
 ?init@W3DProjectedShadowManager@@QAE_NXZ,,0x007AF630,156,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,MASM dump converted to clean C++; 12 more bytes ahead of m_shadowCamera and no SpecialRenderInfoClass in BFME
+?addSmudgeSet@SmudgeManager@@QAEPAUSmudgeSet@@XZ,,0x005D4240,129,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,MASM dump converted to clean C++; SmudgeSet is not pool-allocated in BFME either

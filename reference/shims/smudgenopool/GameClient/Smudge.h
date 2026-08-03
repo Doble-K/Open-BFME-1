@@ -49,7 +49,9 @@ struct Smudge : public DLNodeClass<Smudge>
 
 struct SmudgeSet : public DLNodeClass<SmudgeSet>
 {
-	W3DMPO_GLUE(SmudgeSet)
+	// BFME does not pool-allocate SmudgeSet either: addSmudgeSet @0x5D4240
+	// takes one from a plain single-argument operator new where the glue would
+	// route through getClassMemoryPool and allocateFromW3DMemPool.
 
 public:
 
