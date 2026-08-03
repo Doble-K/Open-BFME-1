@@ -169,36 +169,8 @@ Bool ExitConditions::shouldExit(const StateMachine* machine) const
 
 //-- AIGuardMachine -------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
-// ??0AIGuardMachine@@ present-unmatched
-AIGuardMachine::AIGuardMachine( Object *owner ) : 
-	StateMachine(owner, "AIGuardMachine"),
-	m_targetToGuard(INVALID_ID),
-	m_areaToGuard(NULL),
-	m_nemesisToAttack(INVALID_ID),
-	m_guardMode(GUARDMODE_NORMAL)
-{
-	m_positionToGuard.zero();
-	
-	static const StateConditionInfo attackAggressors[] =
-	{
-		StateConditionInfo(hasAttackedMeAndICanReturnFire, AI_GUARD_ATTACK_AGGRESSOR, NULL),
-		StateConditionInfo(NULL, NULL, NULL)	// keep last
-	};
-
-	// order matters: first state is the default state.
-// srj sez: I made "return" the start state, so that if ordered to guard a position
-// that isn't the unit's current position, it moves to that position first.
-	//Kris: Except that guard return is more like an attack move, and will acquire targets while moving there.
-	//This breaks deployAI units because they have to completely unpack before realizing that there is a target in range.
-	//So I'm making AI_GUARD_INNER the first state.
-	defineState( AI_GUARD_INNER,						newInstance(AIGuardInnerState)( this ), AI_GUARD_OUTER, AI_GUARD_OUTER, attackAggressors );
-	defineState( AI_GUARD_RETURN,						newInstance(AIGuardReturnState)( this ), AI_GUARD_IDLE, AI_GUARD_INNER, attackAggressors );
-	defineState( AI_GUARD_IDLE,							newInstance(AIGuardIdleState)( this ), AI_GUARD_INNER, AI_GUARD_RETURN, attackAggressors );
-	defineState( AI_GUARD_OUTER,						newInstance(AIGuardOuterState)( this ), AI_GUARD_GET_CRATE, AI_GUARD_GET_CRATE );
-	defineState( AI_GUARD_GET_CRATE,				newInstance(AIGuardPickUpCrateState)( this ), AI_GUARD_RETURN, AI_GUARD_RETURN );
-	defineState( AI_GUARD_ATTACK_AGGRESSOR, newInstance(AIGuardAttackAggressorState)( this ), AI_GUARD_INNER, AI_GUARD_INNER );
-}
-
+// ??0AIGuardMachine@@QAE@PAVObject@@@Z
+// Body in Code/masm_dumps/_sa___0AIGuardMachine___15D1D0.asm (exact 691B retail @ 0x15D1D0).
 //--------------------------------------------------------------------------------------
 // ??1AIGuardMachine@@ present-unmatched
 AIGuardMachine::~AIGuardMachine()
@@ -949,4 +921,3 @@ void AIGuardAttackAggressorState::loadPostProcess()
 {
 	onEnter();
 }
-
