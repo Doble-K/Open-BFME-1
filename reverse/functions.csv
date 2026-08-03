@@ -1333,7 +1333,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ClassicEnvironmentMapperClass@@QAE@I@Z,,0x00921390,25,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0CleanupHazardUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D0620,125,Code/GameEngine/Source/GameLogic/Module/CleanupHazardUpdateConstructorThunk.cpp,matched,Exact 125B; factory ownership Open-BFME4
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0ClearanceTestingSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/GameEngine/Source/GameLogic/AI/ClearanceTestingSlowDeathBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 74B ICF primary
+??0ClearanceTestingSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/GameEngine/Source/GameLogic/AI/ClearanceTestingSlowDeathBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ ClearanceTestingSlowDeathBehavior MI ctor ICF74
 ??0ClearanceTestingSlowDeathBehaviorModuleData@@QAE@XZ,,0x001F72D0,149,Code/GameEngine/Source/GameLogic/AI/ClearanceTestingSlowDeathBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ClickReactionBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7860,151,Code/GameEngine/Source/GameLogic/Object/Behavior/ClickReactionBehaviorCtorThunk.cpp,matched,Open-BFME5 exact 151B retail module constructor
 ??0ClickReactionBehaviorModuleData@@QAE@XZ,,0x002001A0,40,Code/GameEngine/Source/Common/RTS/ClickReactionBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw ModuleData constructor
@@ -1373,7 +1373,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Coord3D@@QAE@MMM@Z,0x000156C7,0x000642F0,25,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,sets x/y/z from floats
 ??0Coord3D@@QAE@XZ,0x00016C93,0x00083330,3,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,empty constructor returns self
 ??0CostModifierUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D4570,71,Code/GameEngine/Source/GameLogic/Object/Upgrade/CostModifierUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ UpgradeModule constructor
-??0CountermeasuresBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/GameEngine/Source/GameLogic/Object/Behavior/CountermeasuresBehaviorCtorThunk.cpp,matched,Exact 74B ICF alias Open-BFME4
+??0CountermeasuresBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/GameEngine/Source/GameLogic/Object/Behavior/CountermeasuresBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ CountermeasuresBehavior MI ctor ICF74
 ??0CountermeasuresBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0CrateSystem@@QAE@XZ,,0x003799D0,69,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,
 ??0CreateCrateDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00253E70,60,Code/GameEngine/Source/GameLogic/Object/Die/CreateCrateDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor
@@ -1887,7 +1887,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0NetProgressCommandMsg@@QAE@XZ,,0x00673D60,45,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0NetWrapperCommandMsg@@QAE@XZ,,0x00673DD0,64,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ??0Network@@QAE@XZ,,0x0065AC30,306,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,object-symbol=??0BFMENetwork@@QAE@XZ;C++ ICF alias of Network ctor
-??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/GameEngine/Source/GameLogic/Object/Behavior/NeutronMissileSlowDeathBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias constructor
+??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7140,74,Code/GameEngine/Source/GameLogic/Object/Behavior/NeutronMissileSlowDeathBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ NeutronMissileSlowDeathBehavior MI ctor ICF74
 ??0NeutronMissileUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002CDA30,74,Code/GameEngine/Source/GameLogic/Object/Update/NeutronMissileUpdateConstructor.cpp,matched,thunk-dump converted to clean C++ shared ICF body at destination 0x2CDA30
 ??0NoString@@QAE@XZ,,0x0010DB40,10,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ??0NodeCompressedMotionStruct@@QAE@XZ,,0x0095AFF0,23,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
@@ -2333,7 +2333,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ToggleMountedSpecialAbilityUpdateModuleData@@QAE@XZ,,0x0026C520,38,Code/GameEngine/Source/Common/RTS/ToggleMountedSpecialAbilityUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ SpecialPowerModuleData + dword/byte zeros
 ??0TooltipUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D93E0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/TooltipUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
 ??0TooltipUpgradeModuleData@@QAE@XZ,,0x0012BAE0,116,Code/GameEngine/Source/GameLogic/Object/Behavior/TooltipUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 116B ModuleData constructor
-??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B1060,187,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateCtorThunk.cpp,matched,Open-BFME5 MASM lift
+??0ToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B1060,187,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateCtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0ToppleUpdateModuleData@@QAE@XZ,,0x002B13A0,123,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataCtorThunk.cpp,matched,Exact 123B @ 0x002B13A0; Exact retail MASM ModuleData ctor; unique factory 0x11BBD0; converted to an exact standalone C++ thunk
 ??0TransitionDamageFX@@,,0x00251CF0,374,Code/masm_dumps/_sa7___0TransitionDamageFX___251CF0.asm,matched,Exact 374B Open-BFME4
 ??0TransitionDamageFXModuleData@@QAE@XZ,,0x002532B0,433,Code/masm_dumps/TransitionDamageFXModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x124770
@@ -9865,7 +9865,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doSpeechPlay@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x006AF840,973,Code/masm_dumps/_sa3__doSpeechPlay_ScriptActions__IAEXABVAsciiString____6AF840.asm,matched,Exact 973B string-anchored Open-BFME4
 ?doStopCameraFollowUnit@ScriptActions@@IAEXXZ,,0x002EFAB0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x19c void stop-follow tail-call
 ?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F95A0,144,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamAttackNamed_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/GameEngine/Source/Common/ScriptActions_doTeamDecreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift
+?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/GameEngine/Source/Common/ScriptActions_doTeamDecreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift
 ?doTeamFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002F3E90,282,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamFlash.asm,matched,exact 282B MASM; true body 0x2F3E90 (drift 0x933119 mid-fn x87)
 ?doTeamHuntWithCommandButton@ScriptActions@@,,0x002F7B80,895,Code/masm_dumps/_sa6__doTeamHuntWithCommandButton_ScriptActions___2F7B80.asm,matched,true size 895B; row claimed 211B
 ?doTeamIncreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3960,196,Code/GameEngine/Source/Common/ScriptActions_doTeamIncreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift

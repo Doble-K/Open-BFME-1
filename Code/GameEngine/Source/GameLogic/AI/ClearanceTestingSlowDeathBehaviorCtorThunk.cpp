@@ -1,90 +1,76 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: ClearanceTestingSlowDeathBehavior module ctor (ICF 74B family).
+// Base call, interim vtbl at +0x50, then most-derived vtbls at
+// +0/+0xC/+0x10/+0x20/+0x24/+0x50.
+
 class Thing;
 class ModuleData;
 
-class ClearanceTestingSlowDeathBehavior
+class BehaviorModule
 {
 public:
-    ClearanceTestingSlowDeathBehavior(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+private:
+	unsigned char m_data[8];
 };
 
-__declspec(naked) ClearanceTestingSlowDeathBehavior::ClearanceTestingSlowDeathBehavior(Thing *, const ModuleData *)
+class ClearanceTestingSlowDeathBehaviorIface1
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0xa7;
-        __emit 0xd6;
-        __emit 0xe4;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x50;
-        __emit 0xd0;
-        __emit 0x2f;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xdc;
-        __emit 0x30;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x18;
-        __emit 0x30;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x08;
-        __emit 0x30;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0x04;
-        __emit 0x30;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0xf0;
-        __emit 0x2f;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x50;
-        __emit 0xe0;
-        __emit 0x2f;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+public:
+	virtual void clearanceTestingSlowDeathBehaviorIface1Anchor();
+};
+
+class ClearanceTestingSlowDeathBehaviorIface2
+{
+public:
+	virtual void clearanceTestingSlowDeathBehaviorIface2Anchor();
+
+private:
+	unsigned char m_pad[0xC];
+};
+
+class ClearanceTestingSlowDeathBehaviorIface3
+{
+public:
+	virtual void clearanceTestingSlowDeathBehaviorIface3Anchor();
+};
+
+class ClearanceTestingSlowDeathBehaviorIface4
+{
+public:
+	virtual void clearanceTestingSlowDeathBehaviorIface4Anchor();
+
+private:
+	unsigned char m_pad[0x28];
+};
+
+class ClearanceTestingSlowDeathBehaviorIface5
+{
+public:
+	virtual void clearanceTestingSlowDeathBehaviorIface5Anchor();
+};
+
+class ClearanceTestingSlowDeathBehaviorBase : public BehaviorModule,
+	public ClearanceTestingSlowDeathBehaviorIface1,
+	public ClearanceTestingSlowDeathBehaviorIface2,
+	public ClearanceTestingSlowDeathBehaviorIface3,
+	public ClearanceTestingSlowDeathBehaviorIface4
+{
+public:
+	ClearanceTestingSlowDeathBehaviorBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class ClearanceTestingSlowDeathBehavior : public ClearanceTestingSlowDeathBehaviorBase,
+	public ClearanceTestingSlowDeathBehaviorIface5
+{
+public:
+	ClearanceTestingSlowDeathBehavior(Thing *thing, const ModuleData *moduleData);
+};
+
+// ??0ClearanceTestingSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z
+ClearanceTestingSlowDeathBehavior::ClearanceTestingSlowDeathBehavior(Thing *thing, const ModuleData *moduleData)
+	: ClearanceTestingSlowDeathBehaviorBase(thing, moduleData)
+{
 }

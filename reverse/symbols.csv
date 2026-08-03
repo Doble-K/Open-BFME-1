@@ -586,6 +586,7 @@ name,address,notes
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,0x00030BC0,pinharvest x1 (thunk)
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,0x00038E97,pinharvest x1 (thunk)
 ??0CleanupHazardUpdateModuleData@@QAE@XZ,0x0003E4A5,pinharvest x1 (thunk)
+??0ClearanceTestingSlowDeathBehaviorBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000447FB,ClearanceTestingSlowDeathBehavior ctor base (ICF74 shared)
 ??0ClientUpdateModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00002874,Open-BFME5 SwayClientUpdate base ctor pin
 ??0CommandButtonHuntUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x020DCE,module ctor (friend_newModuleInstance retail call target)
 ??0CommandButtonHuntUpdateModuleData@@QAE@XZ,0x0002E500,module-glue cascade callee (from retail call site)
@@ -609,6 +610,7 @@ name,address,notes
 ??0CountermeasuresBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00006780,pinharvest x1 (thunk)
 ??0CountermeasuresBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002CD4F,pinharvest x1 (thunk)
 ??0CountermeasuresBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048167,pinharvest x1 (thunk)
+??0CountermeasuresBehaviorBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000447FB,CountermeasuresBehavior ctor base (ICF74 shared)
 ??0CountermeasuresBehaviorModuleData@@QAE@XZ,0x0003025B,derived-ICF
 ??0CrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x00217660,BFME CrateCollide ctor body; ILT 0x0002AC43 used by legacy crate constructors
 ??0CrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0024F450,late-layout CrateCollide ctor body; ILT 0x00026CAB used by constructor group at 0x0024FC20
@@ -970,6 +972,7 @@ name,address,notes
 ??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00006780,pinharvest x1 (thunk)
 ??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002CD4F,pinharvest x1 (thunk)
 ??0NeutronMissileSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048167,pinharvest x1 (thunk)
+??0NeutronMissileSlowDeathBehaviorBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000447FB,NeutronMissileSlowDeathBehavior ctor base (ICF74 shared)
 ??0NeutronMissileUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,0x00048F2C
 ??0NeutronMissileUpdateModuleData@@QAE@XZ,0x0003AE86,pinharvest x1 (thunk)
 ??0NeutronMissileUpdateModuleData@@QAE@XZ,0x000441CA,pinharvest x1 (thunk)
