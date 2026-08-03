@@ -67,3 +67,13 @@ nonmatching reconstruction in the tree.
   `reverse/exports.csv` wholesale into context.
 - Preserve unrelated work in a dirty tree. If an attempt fails verification,
   revert only that attempt.
+
+## Generated small-function claims
+
+`Code/gen_small/` holds machine-generated claim sources: `j_<rva>` ILT-thunk
+tail-calls, `ji_<rva>` import-thunk tail-calls, and `Gen_<rva>` shim methods.
+Their ledger notes start `gen-thunk;`/`gen-import;`/`gen-shim;` and all three
+are placeholder identities — byte-true, semantically anonymous. When you
+identify one's real function, repoint the row with
+`python3 tools/add_match.py <real-name> ... --replace-existing`; do not edit
+the generated source by hand.
