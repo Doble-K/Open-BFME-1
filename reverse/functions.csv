@@ -2207,7 +2207,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SpawnBehaviorModuleData@@QAE@XZ,,0x0012A970,141,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact 141B retail module-data constructor
 ??0SpawnPointProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00023858,5,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SpawnPointProductionExitUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0SpawnPointProductionExitUpdateModuleData@@QAE@XZ,,0x0035F0F0,25,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-??0SpawnUnitBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D0F0,99,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
+??0SpawnUnitBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D0F0,99,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit ctor thunk
 ??0SpawnUnitBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0SpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A6360,356,Code/masm_dumps/SpecialAbilityUpdate_constructor.asm,matched,Exact 356B @ 0x002A6360; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1140C0
 ??0SpecialAbilityUpdateModuleData@@QAE@XZ,,0x002A5AA0,434,Code/masm_dumps/SpecialAbilityUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x114140
