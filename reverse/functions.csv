@@ -12183,7 +12183,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isPriorityVisible@Radar@@QBE_NW4RadarPriorityType@@@Z,,0x00107280,23,Code/GameEngine/Source/Common/System/Radar.cpp,matched,
 ?isQueueEmpty@Connection@@QAE_NXZ,,0x00661C90,12,Code/GameEngine/Source/GameNetwork/Connection.cpp,matched,
 ?isRadarWindow@Radar@@QAE_NPAVGameWindow@@@Z,,0x0043A520,29,Code/GameEngine/Source/Common/System/RadarIsRadarWindowThunk.cpp,matched,Open-BFME5 clean C++ Radar::isRadarWindow
-?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isRepairMostImportant_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isRepairMostImportant_Thunk.cpp,matched,clean C++ conversion; walks State +0x1C -> +0x10 -> +0x204; filler virtuals pin the three calls to vtable +0x13C/+0x180/+0x14; dec-neg-sbb-inc is the ==1 idiom
 ?isSamePosition@@YA_NPBUCoord3D@@00@Z,,0x0016AA70,69,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?isScienceGrantable@ScienceStore@@QBE_NW4ScienceType@@@Z,,0x000E6DE0,25,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,thunk-dump converted to clean C++; true body 0xE6DE0 (25B ending before int3 pad at 0xE6DF9)
 ?isScorch@MapObject@@QBE_NXZ,,0x00730320,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
