@@ -163,20 +163,8 @@ HordeUpdateModuleData::HordeUpdateModuleData() :
 //-------------------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------------------------
-// ??0HordeUpdate@@ present-unmatched
-HordeUpdate::HordeUpdate( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
-{
-	m_inHorde = FALSE;
-	m_hasFlag = FALSE;
-	m_lastHordeRefreshFrame = TheGameLogic->getFrame();
-	// Added By Sadullah Nader
-	// Initializations missing and needed
-	m_trueHordeMember = FALSE;
-	//
-
-	UnsignedInt delay = getHordeUpdateModuleData()->m_updateRate;
-	setWakeFrame(getObject(), UPDATE_SLEEP(GameLogicRandomValue(1, delay)));
-}
+// ??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+// Exact retail ICF alias emitted by HordeUpdateCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 // ??1HordeUpdate@@ present-unmatched

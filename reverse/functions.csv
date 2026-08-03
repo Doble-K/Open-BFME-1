@@ -1676,7 +1676,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HordeSiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024A560,307,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0HordeSiegeEngineContainModuleData@@QAE@XZ,,0x0022CB80,148,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0HordeTransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024B6F0,115,Code/GameEngine/Source/GameLogic/AI/HordeTransportContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
-??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/HordeUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
+??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/GameEngine/Source/GameLogic/Object/Update/HordeUpdateCtorThunk.cpp,matched,Exact 154B ICF alias; Open-BFME5 symbol-specific thunk
 ??0HordeUpdateModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/HordeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0HorseHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024D220,108,Code/GameEngine/Source/GameLogic/AI/HorseHordeContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0HorseHordeContainModuleData@@QAE@XZ,,0x002472D0,531,Code/GameEngine/Source/GameLogic/AI/HorseHordeContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
