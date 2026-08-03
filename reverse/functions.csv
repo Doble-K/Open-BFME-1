@@ -747,7 +747,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$ShareBufferClass@VVector2@@@@QAE@ABV0@@Z,,0x0092B710,242,Code/Libraries/Source/WWVegas/WWLib/ShareBufferClassVector2CopyConstructorThunk.cpp,matched,Exact 242B C++ raw constructor thunk Open-BFME5
 ??0?$ShareBufferClass@VVector2@@@@QAE@HPBDH@Z,,0x006D79E0,224,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ??0?$ShareBufferClass@VVector3@@@@QAE@HPBDH@Z,,0x005F3BE0,226,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
-??0?$ShareBufferClass@VVector3i16@@@@QAE@HPBDH@Z,,0x00926520,225,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ??0?$ShareBufferClass@VVector4@@@@QAE@HPBDH@Z,,0x005F3D60,224,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DParticleSys.cpp,matched,
 ??0?$SimpleDynVecClass@E@@QAE@H@Z,,0x00989030,56,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??0?$SimpleDynVecClass@K@@QAE@H@Z,,0x009462C0,56,Code/Libraries/Source/WWVegas/WW3D2/decalmsh.cpp,matched,
@@ -5577,12 +5576,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Clear@?$DynamicVectorClass@VVector4@@@@UAEXXZ,,0x00974670,42,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ?Clear@?$IndexClass@HPAUINIEntry@@@@QAEXXZ,,0x009E27B0,32,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
 ?Clear@?$IndexClass@HPAUINISection@@@@QAEXXZ,,0x009E2CE0,32,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
-?Clear@?$ShareBufferClass@E@@QAEXXZ,,0x00923DA0,27,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ?Clear@?$ShareBufferClass@PAVTextureClass@@@@QAEXXZ,,0x00929020,30,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ?Clear@?$ShareBufferClass@PAVVertexMaterialClass@@@@QAEXXZ,,0x00929000,30,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ?Clear@?$ShareBufferClass@VShaderClass@@@@QAEXXZ,,0x00929050,30,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
-?Clear@?$ShareBufferClass@VVector3@@@@QAEXXZ,,0x00923D70,33,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
-?Clear@?$ShareBufferClass@VVector3i16@@@@QAEXXZ,,0x00923D50,32,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ?Clear@?$VectorClass@M@@UAEXXZ,,0x0000DBA7,5,Code/Libraries/Source/WWVegas/WWLib/VectorClassClearThunk.cpp,matched,ICF-group owner converted to focused C++ template thunk; remaining aliases retain shared target
 ?Clear@?$VectorClass@UAddInfoStruct@MixFileFactoryClass@@@@UAEXXZ,,0x0093D920,61,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
 ?Clear@?$VectorClass@UFileOffsetStruct@@@@UAEXXZ,,0x0093D920,61,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,
@@ -35112,3 +35108,7 @@ _$E56,,0x00C71520,40,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,M
 ?j_00001e33@@YAXXZ,,0x00001E33,5,Code/gen_small/gthunks_000.cpp,matched,gen-thunk;gap;target=0x0036BF90
 ?j_00001e38@@YAXXZ,,0x00001E38,5,Code/gen_small/gthunks_000.cpp,matched,gen-thunk;gap;target=0x00197620
 ?j_00001e42@@YAXXZ,,0x00001E42,5,Code/gen_small/gthunks_000.cpp,matched,gen-thunk;gap;target=0x00433BA0
+??0?$ShareBufferClass@VVector3i16@@@@QAE@HPBDH@Z,,0x00926520,225,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryShareBufferInstantiations.cpp,matched,reinstantiated after the Reset_Geometry lift removed meshgeometry.cpp only use
+?Clear@?$ShareBufferClass@E@@QAEXXZ,,0x00923DA0,27,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryShareBufferInstantiations.cpp,matched,reinstantiated after the Reset_Geometry lift removed meshgeometry.cpp only use
+?Clear@?$ShareBufferClass@VVector3@@@@QAEXXZ,,0x00923D70,33,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryShareBufferInstantiations.cpp,matched,reinstantiated after the Reset_Geometry lift removed meshgeometry.cpp only use
+?Clear@?$ShareBufferClass@VVector3i16@@@@QAEXXZ,,0x00923D50,32,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryShareBufferInstantiations.cpp,matched,reinstantiated after the Reset_Geometry lift removed meshgeometry.cpp only use
