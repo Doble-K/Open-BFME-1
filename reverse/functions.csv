@@ -1819,7 +1819,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MemoryReadFile@@QAE@PADH@Z,,0x009CB3D0,109,Code/GameEngine/Source/Common/System/File.cpp,matched,installs vtable 0x01143A38 and names itself MemoryReadFile
 ??0MemoryWriteFile@@QAE@PBD@Z,,0x009CB4E0,173,Code/GameEngine/Source/Common/System/File.cpp,matched,holds the <MemoryWriteFile> literal its else branch passes to setName; installs vtable 0x01143AA8
 ??0MeshLoadContextClass@@AAE@XZ,,0x00970180,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
-??0MeshMatDescClass@@QAE@XZ,,0x0092A2B0,267,Code/Libraries/Source/WWVegas/WW3D2/MeshMatDescClass_ctor_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
+??0MeshMatDescClass@@QAE@XZ,,0x0092A2B0,267,Code/Libraries/Source/WWVegas/WW3D2/MeshMatDescClass_ctor_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
 ??0MeshSaveContextClass@@QAE@XZ,,0x0096CAD0,28,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??0MetaEventTranslator@@QAE@XZ,,0x005B6B30,42,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,retail BFME layout offsets + loop; clean C++
 ??0MetaMap@@QAE@XZ,,0x000A71C0,25,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,
@@ -2162,7 +2162,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SelectionInfo@@QAE@XZ,,0x00458F60,58,Code/GameEngine/Source/GameClient/SelectionInfo.cpp,matched,
 ??0ShareExperienceBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00205740,148,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorCtorThunk.cpp,matched,Exact 148B @ 0x00205740; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x116BF0
 ??0ShareExperienceBehaviorModuleData@@QAE@XZ,,0x002056B0,80,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0Shell@@QAE@XZ,,0x0057F650,259,Code/GameEngine/Source/GameClient/GUI/Shell_ctor_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
+??0Shell@@QAE@XZ,,0x0057F650,259,Code/GameEngine/Source/GameClient/GUI/Shell_ctor_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
 ??0ShellGameLoadScreen@@QAE@XZ,,0x003367B0,17,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,
 ??0ShellMenuSchemeLine@@QAE@XZ,,0x00580400,30,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp,matched,
 ??0ShroudCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218620,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ShroudCrateCollide.cpp,matched,MASM converted to clean C++
@@ -2247,7 +2247,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StatusBitsUpgradeModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0StealthDetectorUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00036A0C,5,Code/GameEngine/Source/GameLogic/Object/Update/StealthDetectorUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0StealthDetectorUpdateModuleData@@QAE@XZ,,0x001269F0,250,Code/GameEngine/Source/GameLogic/Object/Update/StealthDetectorUpdateModuleDataCtorThunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x126BE0
-??0StealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002ACB70,252,Code/GameEngine/Source/GameLogic/Object/Update/StealthUpdate_ctor_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
+??0StealthUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002ACB70,252,Code/GameEngine/Source/GameLogic/Object/Update/StealthUpdate_ctor_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
 ??0StealthUpdateModuleData@@QAE@XZ,,0x00049AA3,5,Code/GameEngine/Source/GameLogic/Object/Update/StealthUpdateModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0StealthUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D8000,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/StealthUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2D8000
 ??0StealthUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/StealthUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ two SixDwords blocks plus sentinel -1
@@ -2433,7 +2433,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DTracerDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001EE950,276,Code/masm_dumps/W3DTracerDraw_constructor.asm,matched,Exact 276B ICF alias Open-BFME4
 ??0W3DTreeDrawModuleData@@QAE@XZ,,0x0077F360,192,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTreeDrawModuleDataConstructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0W3DTruckDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0W3DVolumetricShadowManager@@QAE@XZ,,0x007BB520,259,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DVolumetricShadowManager_ctor_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
+??0W3DVolumetricShadowManager@@QAE@XZ,,0x007BB520,259,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DVolumetricShadowManager_ctor_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
 ??0W3DWaypointBuffer@@,,0x007468B0,297,Code/masm_dumps/_sa7___0W3DWaypointBuffer___7468B0.asm,matched,Exact 297B Open-BFME4
 ??0WSClassicEnvironmentMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x009214E0,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0WSEnvMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00965920,275,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,true size 275B; row claimed 167B (switch dispatch + case bodies)
@@ -5675,7 +5675,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Compute_Point_Visibility@SimpleSceneClass@@UAEMAAVRenderInfoClass@@ABVVector3@@@Z,,0x009439B0,57,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
 ?Compute_Projected_Sphere_Radius@CameraClass@@QAEMMM@Z,,0x00931920,89,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,RenderObjClass +0x34 (camera shim)
 ?Compute_Rotations@CameraShakerClass@CameraShakeSystemClass@@QAEXABVVector3@@PAV3@@Z,,0x006D15C0,372,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
-?Compute_Texture_Coordinate@MatrixMapperClass@@QAEXABVVector3@@PAV2@@Z,,0x0094F300,334,Code/masm_dumps/_sym1__Compute_Texture_Coordinate_MatrixMapperClass__QAEXABVVector3__PAV2__Z_94F300.asm,matched,symbol-pin Open-BFME4+Grok
+?Compute_Texture_Coordinate@MatrixMapperClass@@QAEXABVVector3@@PAV2@@Z,,0x0094F300,334,Code/Libraries/Source/WWVegas/WW3D2/MatrixMapperClass_Compute_Texture_Coordinate_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Compute_Texture_Coordinate@ProjectorClass@@QAEXABVVector3@@PAV2@@Z,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/projector.cpp,matched,
 ?ConstructNetCommandMsgFromRawData@NetPacket@@SAPAVNetCommandRef@@PAEG@Z,,0x00682FF0,515,Code/masm_dumps/_sa4__ConstructNetCommandMsgFromRawData_NetPacket__SAPA_682FF0.asm,matched,Exact 515B Open-BFME4
 ?Contains@AABoxClass@@QBE_NABVVector3@@@Z,,0x008DDA80,139,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
@@ -9270,7 +9270,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?changeWaterHeight@W3DTerrainVisual@@UAEXMMM@Z,,0x00730B20,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?checkForDuplicateColors@@YAXPAVGameInfo@@@Z,,0x00386520,104,Code/GameEngine/Source/Common/checkForDuplicateColors_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?checkForMessage@CopyProtect@@SAXIJ@Z,,0x00102200,40,Code/GameEngine/Source/Common/System/CopyProtection.cpp,matched,
-?checkForSupplyCenter@AIPlayer@@IAEXPAVBuildListInfo@@PAVObject@@@Z,,0x00162410,259,Code/GameEngine/Source/GameLogic/AI/AIPlayer_checkForSupplyCenter_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
+?checkForSupplyCenter@AIPlayer@@IAEXPAVBuildListInfo@@PAVObject@@@Z,,0x00162410,259,Code/GameEngine/Source/GameLogic/AI/AIPlayer_checkForSupplyCenter_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
 ?checkLadder@LadderList@@AAEXVAsciiString@@H@Z,,0x0062BC60,380,Code/masm_dumps/LadderList_checkLadder.asm,matched,Ghidra-bound retail ladder validation body
 ?checkLinkAfter@W3DRoadBuffer@@IAEXH@Z,,0x0070B510,312,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?checkLinkBefore@W3DRoadBuffer@@IAEXH@Z,,0x0070B160,745,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
@@ -9475,7 +9475,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?copy@?$__char_traits_base@GG@_STL@@SAPAGPAGPBGI@Z,,0x004D4030,45,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
 ?copyChunkData@NetCommandWrapperListNode@@QAEXPAVNetWrapperCommandMsg@@@Z,,0x006764A0,122,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ?copyFrom@DictPair@Dict@@QAEXPAU12@@Z,,0x000682E0,180,Code/GameEngine/Source/Common/Dict.cpp,matched,BFME body; was ILT thunk at 0x13E94
-?copyFromBigToDir@@YAXABVAsciiString@@0@Z,,0x004508D0,303,Code/GameEngine/Source/GameClient/MapUtil_copyFromBigToDir.asm,matched,exact 303B MASM @0x4508D0; queue 0xABFB2C mid unrelated; File vtable+AsciiString str block C++
+?copyFromBigToDir@@YAXABVAsciiString@@0@Z,,0x004508D0,303,Code/GameEngine/Source/GameClient/MapUtil_copyFromBigToDir_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?copyFromQueueNode@BFMENetworkQueueItem1@@QAEXPAX@Z,,0x00032F6A,5,Code/Libraries/Source/WWVegas/WWLib/BFMENetworkQueueItemCopyThunks.cpp,matched,Focused C++ thunk for BFMENetworkQueueItem1::copyFromQueueNode
 ?copyFromQueueNode@BFMENetworkQueueItem@@QAEXPAX@Z,,0x00030C60,5,Code/Libraries/Source/WWVegas/WWLib/BFMENetworkQueueItemCopyThunks.cpp,matched,Focused C++ thunk for BFMENetworkQueueItem::copyFromQueueNode
 ?copyPairFrom@Dict@@QAEXABV1@W4NameKeyType@@@Z,,0x00068940,86,Code/GameEngine/Source/Common/Dict.cpp,matched,
@@ -10098,7 +10098,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?evaluateNamedInsideArea@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x0000696F,5,Code/GameEngine/Source/Common/RTS/ScriptConditionsEvaluateNamedInsideAreaThunk.cpp,matched,5-byte incremental-link ScriptConditions protected member thunk converted to focused C++ source
 ?evaluateNamedOutsideArea@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x00324AA0,23,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
 ?evaluateNamedOwnedByPlayer@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x00322780,115,Code/GameEngine/Source/Common/ScriptConditions_evaluateNamedOwnedByPlayer_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?evaluateNamedReachedWaypointsEnd@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x0032B390,311,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions_evaluateNamedReachedWaypointsEnd_Thunk.cpp,matched,Open-BFME5 MASM lift
+?evaluateNamedReachedWaypointsEnd@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x0032B390,311,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions_evaluateNamedReachedWaypointsEnd_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?evaluateSkirmishSuppliesWithinDistancePerimeter@ScriptConditions@@IAE_NPAVParameter@@000@Z,,0x0032D300,835,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions_evaluateSkirmishSuppliesWithinDistancePerimeter_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?evaluateSoloNexus@InGameUI@@IAEXPAVDrawable@@@Z,,0x00444340,213,Code/GameEngine/Source/GameClient/InGameUI_evaluateSoloNexus_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?evaluateTeamInsideAreaEntirely@ScriptConditions@@IAE_NPAVParameter@@00@Z,,0x00013219,5,Code/GameEngine/Source/Common/RTS/ScriptConditionsEvaluateTeamInsideAreaEntirelyThunk.cpp,matched,5-byte incremental-link ScriptConditions protected member thunk converted to focused C++ source
@@ -11838,7 +11838,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?get_far_extent@@YAXABVVector3@@0PAV1@@Z,,0x008DB190,95,Code/Libraries/Source/WWVegas/WWMath/colmathplane.cpp,matched,
 ?get_sort_flags@MeshModelClass@@IBEIH@Z,,0x0096DCB0,137,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?get_sort_flags@MeshModelClass@@IBEIXZ,,0x0096DD40,50,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
-?getframe@AdaptiveDeltaMotionChannelClass@@AAEMKK@Z,,0x00977FF0,330,Code/masm_dumps/__getframe_AdaptiveDeltaMotionChannelClass__AAEMKK__977FF0.asm,matched,
+?getframe@AdaptiveDeltaMotionChannelClass@@AAEMKK@Z,,0x00977FF0,330,Code/Libraries/Source/WWVegas/WW3D2/AdaptiveDeltaMotionChannelClass_getframe_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?giveUpgrade@Object@@QAEXPBVUpgradeTemplate@@@Z,,0x001C9F70,137,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME m_objectUpgradesCompleted@0x224 (6 words) m_contain@0x1fc Thing m_template@0x04
 ?gogoGadgetComboBox@GameWindowManager@@UAEPAVGameWindow@@PAV2@IHHHHPAVWinInstanceData@@PAU_ComboBoxData@@PAVGameFont@@_N@Z,,0x0047F757,1121,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoGadgetComboBox.asm,matched,exact 1121B via MASM
 ?gogoGadgetPushButton@GameWindowManager@@UAEPAVGameWindow@@PAV2@IHHHHPAVWinInstanceData@@PAVGameFont@@_N@Z,,0x0047DC50,241,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoGadgetPushButton.asm,matched,exact 241B via MASM; true start 0x47DC50 (queue 0x68F0DB misplaced mid-fn); GWM vtbl slot14 createGadget PUSHBUTTON
@@ -11858,7 +11858,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?handleGameAnnounce@LANAPI@@IAEXPAULANMessage@@I@Z,,0x0068C110,596,Code/GameEngine/Source/GameNetwork/LANAPIhandlers_handleGameAnnounce.asm,matched,true body via update jmp table MSG_GAME_ANNOUNCE (ILT 0x4233E); queue 0xC5FB21 misplaced; MASM exact 596B
 ?handleInActive@LANAPI@@IAEXPAULANMessage@@I@Z,,0x0068B920,323,Code/masm_dumps/LANAPI_handleInActive_68B920_packet303.asm,matched,certified packet 303 matched LANAPI update case 0x10 dispatch and padded ret 8 boundary
 ?handleJoinAccept@LANAPI@@IAEXPAULANMessage@@I@Z,,0x004D2D80,1291,Code/masm_dumps/_sa11__handleJoinAccept_LANAPI__IAEXPAULANMessage__I_Z_4D2D80.asm,matched,string-anchor Open-BFME4+Grok RemoteIP0
-?handleLobbyAnnounce@LANAPI@@IAEXPAULANMessage@@I@Z,,0x0068B1E0,331,Code/masm_dumps/handleLobbyAnnounce_LANAPI_IAEXPAULANMessage_I_Z_0068B1E0.asm,matched,Certified packet 112 exact retail db recovery
+?handleLobbyAnnounce@LANAPI@@IAEXPAULANMessage@@I@Z,,0x0068B1E0,331,Code/GameEngine/Source/GameNetwork/LANAPI_handleLobbyAnnounce_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?handleObjectsOnBridgeOnDie@BridgeBehavior@@IAEXXZ,,0x001F4F40,712,Code/masm_dumps/BridgeBehavior_handleObjectsOnBridgeOnDie.asm,matched,Certified packet 49; reviewed entry boundary call-chain and SHA-256 evidence
 ?handleQMMatch@PeerThreadClass@@QAEXXZ,,0x00649180,653,Code/masm_dumps/_sa3__handleQMMatch_PeerThreadClass__QAEXXZ_649180.asm,matched,Exact 653B string-anchored Open-BFME4
 ?handleRequestGameInfo@LANAPI@@IAEXPAULANMessage@@I@Z,,0x0068B380,254,Code/GameEngine/Source/GameNetwork/LANAPI_handleRequestGameInfo_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -12431,7 +12431,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onEnter@AIMoveAndTightenState@@UAE?AW4StateReturnType@@XZ,,0x00173A80,124,Code/GameEngine/Source/Common/AIMoveAndTightenState_onEnter_Thunk.cpp,matched,Certified packet 141 vtable slot thunk and exact retail SHA-256 3ac29c81d9079a97b9f1ebd1668a7ed0222c911ebf743a0a19dba0046e55a3b7
 ?onEnter@AIMoveAwayFromRepulsorsState@@UAE?AW4StateReturnType@@XZ,,0x00173D50,197,Code/GameEngine/Source/GameLogic/AI/AIMoveAwayFromRepulsorsState_onEnter_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?onEnter@AIMoveToState@@UAE?AW4StateReturnType@@XZ,,0x00173470,322,Code/GameEngine/Source/GameLogic/AI/AIMoveToState_onEnter_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?onEnter@AIPanicState@@UAE?AW4StateReturnType@@XZ,,0x0017B680,353,Code/masm_dumps/AIPanicState_onEnter.asm,matched,true body @0x17B680 (353B); drift 0x44824A INSIDE 0x8481C0; vtbl 0x109A988 slot4; C++ blocked by State/Object layout; MASM exact
+?onEnter@AIPanicState@@UAE?AW4StateReturnType@@XZ,,0x0017B680,353,Code/GameEngine/Source/GameLogic/AI/AIPanicState_onEnter_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?onEnter@ActAsDozerState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?onEnter@ActAsSupplyTruckState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?onEnter@ContinueState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -12520,7 +12520,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseAngleReal@INI@@SAXPAV1@PAX1PBX@Z,,0x00852D30,92,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseAngularVelocityReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9BA0,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseAnim2DTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x0004B556,5,Code/GameEngine/Source/Common/RTS/INIParseAnim2DTemplateThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
-?parseAnimatingPart@ControlBarSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x004AEA00,219,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSchemeManager_parseAnimatingPart_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
+?parseAnimatingPart@ControlBarSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x004AEA00,219,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSchemeManager_parseAnimatingPart_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
 ?parseAnimatingPartImage@ControlBarSchemeManager@@SAXPAVINI@@PAX1PBX@Z,,0x004ACE60,102,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ?parseAnimationSoundClientBehaviorGlobalSetting@@YAXPAVINI@@@Z,,0x004093C0,69,Code/GameEngine/Source/GameClient/AnimationSoundClientBehaviorGlobalSetting.cpp,matched,BFME-only; refuses map.ini overrides via the message-carrying throw INIException(3) with the text verbatim from the image
 ?parseArbitraryFXIntoMap@@YAXPAVINI@@PAX1PBX@Z,,0x00145C80,206,Code/GameEngine/Source/Common/parseArbitraryFXIntoMap_Thunk.cpp,matched,Certified packet 102 exact retail db recovery SHA256 f52d6a9a486b056efae3eb40e18809aec02d98b1b9ad8df6ebb50df1679f3b84
@@ -12627,7 +12627,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseListboxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484760,166,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseLivingWorldMapInfo@@YAXPAVINI@@@Z,,0x0060D6B0,40,Code/GameEngine/Source/Common/INI/INILivingWorld.cpp,matched,BFME-only; TheLivingWorldManager named from GameEngine::init string literal - class unnamed so reached through a local view
 ?parseLoadSubsystem@SubsystemLegend@@QAEXPAVINI@@@Z,,0x009A15C0,219,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,parses one LoadSubsystem INI block into an entry and appends it; FieldParse table 0x011415C0
-?parseLocomotorTemplateDefinition@LocomotorStore@@SAXPAVINI@@@Z,,0x001BAEC0,362,Code/masm_dumps/parseLocomotorTemplateDefinition_LocomotorStore_1BAEC0.asm,matched,Certified recovery packet 239 reviewed parser-table wrapper and call-graph identity
+?parseLocomotorTemplateDefinition@LocomotorStore@@SAXPAVINI@@@Z,,0x001BAEC0,362,Code/GameEngine/Source/GameLogic/LocomotorStore_parseLocomotorTemplateDefinition_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseLookupList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851130,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseMajorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x000660D0,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMappedImage@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAAA0,113,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
@@ -12745,7 +12745,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseWeaponBonusSet@WeaponBonusSet@@SAXPAVINI@@PAX1PBX@Z,,0x001E3910,15,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseWeaponBonusSetPtr@WeaponBonusSet@@SAXPAVINI@@PAX1PBX@Z,,0x001E3930,17,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
 ?parseWeaponTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAEC0,44,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
-?parseWeaponTemplateDefinition@WeaponStore@@SAXPAVINI@@@Z,,0x001E9C40,223,Code/GameEngine/Source/GameLogic/Object/WeaponStore_parseWeaponTemplateDefinition_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
+?parseWeaponTemplateDefinition@WeaponStore@@SAXPAVINI@@@Z,,0x001E9C40,223,Code/GameEngine/Source/GameLogic/Object/WeaponStore_parseWeaponTemplateDefinition_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
 ?parseWeaponTemplateSet@WeaponTemplateSet@@QAEXPAVINI@@PBVThingTemplate@@@Z,,0x001ECE50,28,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
 ?parseWeatherData@@YAXPAVINI@@@Z,,0x0039B380,167,Code/GameEngine/Source/GameClient/WeatherData.cpp,matched,BFME-only and distinct from the Weather block in Snow.cpp; five 8-byte entries at TheGlobalWeatherSystem+0x28 selected by name
 ?parseWeatherDefinition@INI@@SAXPAV1@@Z,,0x0045B130,306,Code/GameEngine/Source/GameClient/Snow.cpp,matched,INI block table node binds keyword Weather to this address
@@ -12985,7 +12985,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?read_dig@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,,0x0096D810,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?read_material_pass@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,,0x0096FB60,59,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?read_prelit_material@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,,0x0096FC30,249,Code/Libraries/Source/WWVegas/WW3D2/MeshModelClass_read_prelit_material_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?read_proxy_array@HLodDefClass@@AAE_NAAVChunkLoadClass@@@Z,,0x0097B990,325,Code/masm_dumps/_rn1__read_proxy_array_HLodDefClass__AAE_NAAVChunkLoadClass___Z_97B990.asm,matched,reloc-needle Open-BFME4+Grok
+?read_proxy_array@HLodDefClass@@AAE_NAAVChunkLoadClass@@@Z,,0x0097B990,325,Code/Libraries/Source/WWVegas/WW3D2/HLodDefClass_read_proxy_array_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?read_shader_ids@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,,0x0096D3C0,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?read_shaders@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,,0x0096EA60,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?read_stage_texcoords@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z,,0x0096E690,61,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
@@ -13186,7 +13186,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?scanUnsignedInt@INI@@SAIPBD@Z,,0x00852680,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
 ?screenPixelToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,,0x00107C50,126,Code/GameEngine/Source/Common/Radar_screenPixelToWorld_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABV2@@Z,,0x005B2AD0,135,Code/GameEngine/Source/GameClient/MessageStream/HotKeyManager_searchHotKey_Thunk.cpp,matched,Open-BFME5 lift 135B retail method MASM to standalone C++ thunk
-?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABVUnicodeString@@@Z,,0x005B27E0,245,Code/GameEngine/Source/GameClient/MessageStream/HotKeyManager_searchHotKey_Unicode_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
+?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABVUnicodeString@@@Z,,0x005B27E0,245,Code/GameEngine/Source/GameClient/MessageStream/HotKeyManager_searchHotKey_Unicode_Thunk.cpp,matched,Open-BFME5 lift retail MASM to standalone C++ thunk
 ?search_compfunc@?$IndexClass@HPAUINIEntry@@@@CAHPBX0@Z,,0x009E2390,33,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
 ?search_compfunc@?$IndexClass@HPAUINISection@@@@CAHPBX0@Z,,0x009E23C0,33,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
 ?seedRandom@@YAXIPAI@Z,,0x00096A10,48,Code/GameEngine/Source/Common/System/random_value.cpp,matched,
@@ -13925,7 +13925,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?updateTexture@W3DProjectedShadow@@QAEXAAVVector3@@@Z,,0x007AFF90,554,Code/masm_dumps/updateTexture_W3DProjectedShadow_QAEXAAVVector3_Z_007AFF90.asm,matched,exact MASM dump; true body 0x7AFF90/554 (drift 0xB0233D was v3_rnd epilogue; update@0x7B0250 calls thunk 0x26238)
 ?updateTreadPositions@W3DTankDraw@@IAEXM@Z,,0x0077E0C0,124,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp,matched,clean C++; retail m_treads/m_treadCount offsets +0x20c vs ZH header (raw-offset access); floorf->floor via dllimport IAT under /MD
 ?updateUpgradeModules@Object@@QAEXXZ,,0x00027FCF,5,Code/GameEngine/Source/GameLogic/Object/ObjectUpdateUpgradeModulesThunk.cpp,matched,Open-BFME5 exact ILT thunk; used by giveUpgrade call site
-?updateViewImpassableAreas@BaseHeightMapRenderObjClass@@QAEX_NHHHH@Z,,0x006D0DA0,328,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap_updateViewImpassableAreas.asm,matched,exact 328B via MASM
+?updateViewImpassableAreas@BaseHeightMapRenderObjClass@@QAEX_NHHHH@Z,,0x006D0DA0,328,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMapRenderObjClass_updateViewImpassableAreas_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?update_bounding_box@OBBoxIntersectionTestClass@@IAEXXZ,,0x0092C900,130,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ?update_cached_box@AABoxRenderObjClass@@MAEXXZ,,0x009575E0,114,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ?update_cached_box@OBBoxRenderObjClass@@MAEXXZ,,0x009576A0,158,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
