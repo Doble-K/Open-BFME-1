@@ -4257,3 +4257,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 ?TheVideoPlayer@@3PAVVideoPlayer@@A,0x0130B190,global TheVideoPlayer
 ??0?$ConcreteModuleTemplate@URenderObjectUpdateModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z,0x0001104F,RenderObjectUpdate ConcreteModuleTemplate copy ctor
 ??0GiveUpgradeUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,GiveUpgradeUpdate ctor base call; ILT thunk for SpecialAbilityUpdate ctor (body 0x002A6360)
+?constructBuddyMessageAt@@YAXPAXABVBuddyMessage@@@Z,0x00020E69,BuddyMessage list _M_create_node value construct
