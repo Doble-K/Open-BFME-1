@@ -1648,7 +1648,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HTreeIterator@@QAE@XZ,,0x003FD390,16,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
 ??0HashTableClass@@QAE@H@Z,,0x009E0060,55,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
 ??0HashTableIteratorClass@@QAE@AAVHashTableClass@@@Z,,0x00087A50,18,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
-??0HealContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00220190,88,Code/GameEngine/Source/GameLogic/Object/Contain/HealContainCtorThunk.cpp,matched,Exact 88B unique factory Open-BFME4
+??0HealContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00220190,88,Code/GameEngine/Source/GameLogic/Object/Contain/HealContainCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit ctor thunk
 ??0HealContainModuleData@@QAE@XZ,,0x0028B9E0,32,Code/GameEngine/Source/GameLogic/Object/Update/HealContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ constructor thunk
 ??0HealCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00217AD0,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/HealCrateCollide.cpp,matched,MASM converted to clean C++
 ??0HealCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/HealCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
