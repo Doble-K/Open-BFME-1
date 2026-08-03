@@ -4330,3 +4330,8 @@ DefaultModuleTemplate0A_sub_vtbl,0x0111090C,DMT0A sub vtbl
 ??1SpawnBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1UnitCrateCollideModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1UnitCrateCollideModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
+?construct_from@CategoryModuleTemplate06BaseCopyShim@FXParticleSystem@@QAEXPBX@Z,0x00026CC9,CMT06 copy base
+?construct_from@CategoryModuleTemplate06SubCopyShim@FXParticleSystem@@QAEXPBX@Z,0x00047410,CMT06 copy sub
+CategoryModuleTemplate06_vtbl0,0x0110FC80,CMT06 vtbl0
+CategoryModuleTemplate06_vtbl4,0x0110FC7C,CMT06 vtbl4
+CategoryModuleTemplate06_sub_vtbl,0x0110FC94,CMT06 sub vtbl

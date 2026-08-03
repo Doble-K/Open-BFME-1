@@ -1,82 +1,53 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: CategoryModuleTemplate (N=7 / $06) copy ctor
+// Retail: base copy; null-preserving sub at +8; dual outer vtbl + sub vtbl.
 
 namespace FXParticleSystem
 {
-template<int Category>
+
+class CategoryModuleTemplate06BaseCopyShim
+{
+public:
+	void construct_from(const void *src);
+};
+
+class CategoryModuleTemplate06SubCopyShim
+{
+public:
+	void construct_from(const void *src_sub_or_null);
+	virtual void dummy();
+};
+
+extern "C" char CategoryModuleTemplate06_vtbl0;
+extern "C" char CategoryModuleTemplate06_vtbl4;
+extern "C" char CategoryModuleTemplate06_sub_vtbl;
+
+template <int N>
 class CategoryModuleTemplate
 {
 public:
-    CategoryModuleTemplate(const CategoryModuleTemplate<Category> &);
+	CategoryModuleTemplate(const CategoryModuleTemplate &);
+
+private:
+	void *m_v0;
+	void *m_v4;
+	char m_sub[4];
 };
 
-template<int Category>
-__declspec(naked) CategoryModuleTemplate<Category>::CategoryModuleTemplate(const CategoryModuleTemplate<Category> &)
+template <int N>
+CategoryModuleTemplate<N>::CategoryModuleTemplate(const CategoryModuleTemplate &that)
 {
-    __asm {
-        _emit 056h
-        _emit 057h
-        _emit 08Bh
-        _emit 07Ch
-        _emit 024h
-        _emit 00Ch
-        _emit 057h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 0BBh
-        _emit 051h
-        _emit 0A6h
-        _emit 0FFh
-        _emit 085h
-        _emit 0FFh
-        _emit 074h
-        _emit 005h
-        _emit 08Dh
-        _emit 047h
-        _emit 008h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0C0h
-        _emit 08Dh
-        _emit 07Eh
-        _emit 008h
-        _emit 050h
-        _emit 08Bh
-        _emit 0CFh
-        _emit 0E8h
-        _emit 0ECh
-        _emit 058h
-        _emit 0A8h
-        _emit 0FFh
-        _emit 0C7h
-        _emit 007h
-        _emit 094h
-        _emit 0FCh
-        _emit 010h
-        _emit 001h
-        _emit 05Fh
-        _emit 0C7h
-        _emit 006h
-        _emit 080h
-        _emit 0FCh
-        _emit 010h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 004h
-        _emit 07Ch
-        _emit 0FCh
-        _emit 010h
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+	const void *src = &that;
+	((CategoryModuleTemplate06BaseCopyShim *)this)->construct_from(src);
+	const void *sub_src = src ? (const char *)src + 8 : 0;
+	CategoryModuleTemplate06SubCopyShim *sub =
+		(CategoryModuleTemplate06SubCopyShim *)((char *)this + 8);
+	sub->construct_from(sub_src);
+	*(void **)sub = &CategoryModuleTemplate06_sub_vtbl;
+	m_v0 = &CategoryModuleTemplate06_vtbl0;
+	m_v4 = &CategoryModuleTemplate06_vtbl4;
 }
 
-template class CategoryModuleTemplate<7>;
+template CategoryModuleTemplate<7>::CategoryModuleTemplate(const CategoryModuleTemplate &);
 }
