@@ -1744,7 +1744,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LightningDrawModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x0002AD4C,0x005D8F00,97,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0LightningDrawModuleInfo@FXParticleSystem@@QAE@XZ,0x0002FB8F,0x005F41B0,137,Code/masm_dumps/___0LightningDrawModuleInfo_FXParticleSystem__QAE_X_5F41B0.asm,matched,
 ??0LightningDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0004A89F,0x005D9170,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??0LightningDrawModuleTemplate@FXParticleSystem@@QAE@XZ,0x0003B2AA,0x005D90A0,106,Code/masm_dumps/___0LightningDrawModuleTemplate_FXParticleSystem__Q_5D90A0.asm,matched,
+??0LightningDrawModuleTemplate@FXParticleSystem@@QAE@XZ,0x0003B2AA,0x005D90A0,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/LightningDrawModuleTemplateCtorThunk.cpp,matched,Converted to an exact standalone C++ thunk
 ??0LightningEmissionInfo@FXParticleSystem@@QAE@ABV01@@Z,0x0003E32E,0x005D6780,271,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
 ??0LightningEmissionInfo@FXParticleSystem@@QAE@XZ,0x00041E2A,0x005FAFE0,291,Code/masm_dumps/___0LightningEmissionInfo_FXParticleSystem__QAE_XZ_5FAFE0.asm,matched,
 ??0LightningEmissionModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,0x0001FDF7,0x005D6BA0,76,Code/GameEngine/Source/GameClient/System/FXParticleSystem/LightningEmissionModuleTemplateCopyCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM copy ctor
