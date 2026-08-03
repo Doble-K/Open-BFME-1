@@ -1833,19 +1833,7 @@ Bool Condition::ParseConditionDataChunk(DataChunkInput &file, DataChunkInfo *inf
 }
 
 
-//-------------------------------------------------------------------------------------------------
-// ******************************** class  Template *********************************************
-//-------------------------------------------------------------------------------------------------
-// ??0Template@@QAE@XZ present-unmatched
-Template::Template() :
-m_numUiStrings(0),
-m_numParameters(0),
-#ifdef COUNT_SCRIPT_USAGE
-m_numTimesUsed(0),
-#endif
-m_uiName("UNUSED/(placeholder)/placeholder")
-{
-}
+// The exact retail constructor is emitted by TemplateCtorThunk.cpp.
 
 // ?getUiStrings@Template@@QBEHQAVAsciiString@@@Z present-unmatched
 Int Template::getUiStrings(AsciiString strings[MAX_PARMS]) const
