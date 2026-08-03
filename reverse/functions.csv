@@ -1478,7 +1478,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DozerActionState@@QAE@PAVStateMachine@@W4DozerTask@@@Z,,0x002B76F0,160,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerActionStateCtorThunk.cpp,matched,Exact standalone C++ __emit thunk; corrected constructor identity
 ??0DozerActionStateMachine@@QAE@PAVObject@@W4DozerTask@@@Z,,0x002B7450,365,Code/GameEngine/Source/GameLogic/AI/DozerActionStateMachine_ctor_Thunk.cpp,matched,Open-BFME5 lift 365B retail MASM to standalone C++ thunk
 ??0DozerPrimaryIdleState@@QAE@PAVStateMachine@@@Z,,0x002B7680,57,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerPrimaryIdleStateCtorThunk.cpp,matched,MASM converted to focused C++ constructor thunk
-??0DozerPrimaryStateMachine@@QAE@PAVObject@@@Z,,0x002B7870,551,Code/masm_dumps/_sa3___0DozerPrimaryStateMachine__QAE_PAVObject___Z_2B7870.asm,matched,MASM exact retail dump; corrects prior onExit@DozerActionState misID (Open-BFME4+Grok)
+??0DozerPrimaryStateMachine@@QAE@PAVObject@@@Z,,0x002B7870,551,Code/GameEngine/Source/GameLogic/AI/DozerPrimaryStateMachineCtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0DrawableIconInfo@@QAE@XZ,,0x00410940,32,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ??0DrawableLocoInfo@@QAE@XZ,,0x004109F0,78,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ??0DualWeaponBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F7E60,137,Code/GameEngine/Source/GameLogic/Object/Behavior/DualWeaponBehaviorCtorThunk.cpp,matched,Open-BFME5 exact 137B retail module constructor
@@ -7518,7 +7518,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?ParseScriptListDataChunk@ScriptList@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00350F50,153,Code/GameEngine/Source/Common/ScriptList_ParseScriptListDataChunkThunk.cpp,matched,Open-BFME5 MASM lift ParseScriptListDataChunk
 ?ParseScriptsDataChunk@ScriptList@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0035BFB0,211,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptList_ParseScriptsDataChunk_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ParseSizeOnly@@YA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00454220,152,Code/GameEngine/Source/GameClient/MapUtil.cpp,matched,
-?ParseSizeOnly@WorldHeightMap@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0074EF50,503,Code/masm_dumps/WorldHeightMap_ParseSizeOnly.asm,matched,Exact 503B retail ParseSizeOnly @0x74EF50 (queue 0x74EF4F was 1B int3 pad + wrong size 396). Layout m_width@+8 RefCount-only; BFME ret 8; v1 updates w/h distinguishes from twin ParseHeightMapData @0x74ECD0.
+?ParseSizeOnly@WorldHeightMap@@IAE_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0074EF50,503,Code/GameEngine/Source/GameLogic/World/WorldHeightMap_ParseSizeOnly_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?ParseSizeOnlyInChunk@@YA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x004542E0,16,Code/GameEngine/Source/GameClient/MapUtil.cpp,matched,
 ?ParseSizeOnlyInChunk@WorldHeightMap@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x001A8BB0,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,icf-owner=?ParseBlendTileDataChunk@WorldHeightMap@@KA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z
 ?ParseWorldDictDataChunk@@YA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x0044F710,87,Code/GameEngine/Source/GameClient/MapUtil.cpp,matched,
@@ -14093,7 +14093,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?xfer@ScriptGroup@@MAEXPAVXfer@@@Z,,0x00350E90,66,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptGroupXfer.cpp,matched,True body ScriptGroup vtbl slot3 0x350E90/66; queue 0xAF9B24 is jmp-table; BFME Version1+bool@+0xc only (no ZH script-list walk)
 ?xfer@ScriptList@@MAEXPAVXfer@@@Z,,0x003556A0,400,Code/GameEngine/Source/Common/ScriptList_xferMethodThunk.cpp,matched,Certified packet 106 vtable thunk identity; retail sha256 76e94c51960571955350c1034dad16ec4d08b4264a953c395ab3c33077191aca
 ?xfer@TerrainLogic@@MAEXPAVXfer@@@Z,,0x006BE430,45,Code/GameEngine/Source/GameLogic/Map/TerrainLogicXferThunk.cpp,matched,Open-BFME5 exact C++ raw TerrainLogic xfer wrapper
-?xferDrawableModules@Drawable@@IAEXPAVXfer@@@Z,,0x00417E20,530,Code/masm_dumps/xferDrawableModules_Drawable_IAEXPAVXfer_Z_417E20.asm,matched,Exact 530B MASM; true body 0x417E20 (queue 0x79CD36 int3); m_modules+0x150 NUM=3; callee of Drawable::xfer@0x41D290
+?xferDrawableModules@Drawable@@IAEXPAVXfer@@@Z,,0x00417E20,530,Code/GameEngine/Source/GameClient/Drawable_xferDrawableModules_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,,0x0003EE32,5,Code/GameEngine/Source/GameClient/System/FXParticleSystem/xferRandomVariable.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
 ?xferReal@Xfer@@QAEXPAM@Z,,0x006CF3A0,5,Code/GameEngine/Source/Common/System/Geometry.cpp,matched,icf-owner=?_bfme_ro_v28@RenderObjClass@@UBEHXZ
 ?xpSign@@YAHABVVector2@@0@Z,,0x00703F00,55,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
