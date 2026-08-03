@@ -2307,7 +2307,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TeamsInfoRec@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,icf-owner=??0?$DLNodeClass@USmudge@@@@QAE@XZ
 ??0TechBuildingBehaviorModuleData@@QAE@XZ,,0x0008A430,26,Code/GameEngine/Source/GameLogic/Object/Behavior/TechBuildingBehavior.cpp,matched,
 ??0Template@@QAE@XZ,,0x00351260,149,Code/GameEngine/Source/GameLogic/ScriptEngine/TemplateCtorThunk.cpp,matched,1:1 C++ thunk from certified retail ScriptEngine constructor
-??0TemporarilyDefectUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B0AD0,146,Code/GameEngine/Source/GameLogic/Object/Update/TemporarilyDefectUpdateCtorThunk.cpp,matched,Exact 146B ICF alias Open-BFME4
+??0TemporarilyDefectUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B0AD0,146,Code/GameEngine/Source/GameLogic/Object/Update/TemporarilyDefectUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ ctor; ICF-identical to PoisonedBehavior ctor
 ??0TemporarilyDefectUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0TensileFormationUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00252F50,92,Code/GameEngine/Source/GameLogic/Object/Update/TensileFormationUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
 ??0TensileFormationUpdateModuleData@@QAE@XZ,,0x002B65B0,29,Code/GameEngine/Source/GameLogic/Object/Update/TensileFormationUpdateModuleDataConstructor.cpp,matched,Open-BFME5 clean C++ base+three dword zeros
