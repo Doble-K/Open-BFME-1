@@ -2777,7 +2777,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AnimateWindow@@UAE@XZ,,0x0045CF30,14,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??1AnimateWindowManager@@UAE@XZ,,0x0045D950,238,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??1AnimationSoundClientBehavior@@UAE@XZ,,0x00604B40,103,Code/GameEngine/Source/Common/AnimationSoundClientBehaviorDestructorThunk.cpp,matched,Exact 103B @ 0x00604B40; Exact retail MASM; instance factory->vtable dtor; del 0x604E60 ctor 0x605380 vt 0xD155A0
-??1AnimationSoundClientBehaviorModuleData@@UAE@XZ,,0x00606120,67,Code/GameEngine/Source/GameLogic/Object/Behavior/AnimationSoundClientBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
+??1AnimationSoundClientBehaviorModuleData@@UAE@XZ,,0x00606120,67,Code/GameEngine/Source/GameLogic/Object/Behavior/AnimationSoundClientBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
 ??1AnimationSteeringUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/AnimationSteeringUpdateModuleDataDestructorThunk.cpp,matched,Exact 108B SEH dtor Open-BFME4
 ??1ArchiveFile@@UAE@XZ,,0x009D0BD0,94,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes m_file through File slot 2 then destroys m_rootDirectory at this+8
 ??1ArchiveFileSystem@@UAE@XZ,,0x009CA550,140,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08; reached as the scalar dtor from slot 0 at 0x009CAA50
@@ -2854,7 +2854,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CrateSystem@@UAE@XZ,,0x00379A40,204,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,
 ??1CreateCrateDie@@UAE@XZ,,0x00379440,320,Code/GameEngine/Source/Common/CreateCrateDieDestructorThunk.cpp,matched,Exact 320B SEH dtor factory->vtable Open-BFME4
 ??1CreateCrateDieModuleData@@UAE@XZ,,0x001299A0,106,Code/GameEngine/Source/Common/CreateCrateDieModuleDataDestructorThunk.cpp,matched,Exact 106B @ 0x001299A0; Exact retail MASM; factory->vtable dtor; del 0x129970 ctor 0x1298D0 vt 0xC8EF70
-??1CreateObjectDieModuleData@@UAE@XZ,,0x002548A0,67,Code/GameEngine/Source/GameLogic/Object/Die/CreateObjectDieModuleDataDestructorThunk.cpp,matched,Exact 67B SEH dtor factory->vtable Open-BFME4
+??1CreateObjectDieModuleData@@UAE@XZ,,0x002548A0,67,Code/GameEngine/Source/GameLogic/Object/Die/CreateObjectDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
 ??1CreditsLine@@QAE@XZ,,0x0040C230,134,Code/GameEngine/Source/Common/CreditsLineDestructorThunk.cpp,matched,Exact 134B SEH dtor Open-BFME5
 ??1CriticalSectionClass@@QAE@XZ,,0x009DB450,25,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??1CritterEmitterUpdateModuleData@@UAE@XZ,,0x001FA750,175,Code/GameEngine/Source/Common/CritterEmitterUpdateModuleDataDestructorThunk.cpp,matched,Exact 175B SEH dtor Open-BFME5
@@ -2907,7 +2907,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1EmissionVolumeInfo@FXParticleSystem@@UAE@XZ,0x0004AA61,0x005BD6B0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1EmotionTrackerUpdate@@UAE@XZ,,0x0028FCC0,183,Code/GameEngine/Source/Common/EmotionTrackerUpdateDestructorThunk.cpp,matched,Exact 183B @ 0x0028FCC0; Exact retail MASM; instance factory->vtable dtor; del 0x290190 ctor 0x290740 vt 0xCBE2AC
 ??1EmotionTrackerUpdateModuleData@@UAE@XZ,,0x0028FBB0,214,Code/GameEngine/Source/Common/EmotionTrackerUpdateModuleDataDestructorThunk.cpp,matched,Exact 214B SEH dtor Open-BFME5
-??1EnragedBehaviorModuleData@@UAE@XZ,,0x00203F30,67,Code/GameEngine/Source/GameLogic/Object/Behavior/EnragedBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
+??1EnragedBehaviorModuleData@@UAE@XZ,,0x00203F30,67,Code/GameEngine/Source/GameLogic/Object/Behavior/EnragedBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
 ??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ,,0x00013101,5,Code/Libraries/Source/WWVegas/WWLib/HashTemplateEntryDestructorThunk.cpp,matched,5-byte incremental-link template destructor thunk converted to focused C++ thunk TU
 ??1Entry@?$HashTemplateClass@VStringClass@@PAV?$DynamicVectorClass@PAVDefinitionClass@@@@@@QAE@XZ,,0x00013101,5,Code/Libraries/Source/WWVegas/WWLib/HashTemplateEntryDestructorThunk.cpp,matched,object-symbol=??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ;ICF alias converted to focused C++ thunk TU
 ??1Entry@?$HashTemplateClass@VStringClass@@PAVHTreeClass@@@@QAE@XZ,,0x00013101,5,Code/Libraries/Source/WWVegas/WWLib/HashTemplateEntryDestructorThunk.cpp,matched,object-symbol=??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ;ICF alias converted to focused C++ thunk TU
@@ -3049,7 +3049,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MobMemberSlavedUpdate@@UAE@XZ,,0x001FB0C0,226,Code/GameEngine/Source/Common/MobMemberSlavedUpdateDestructorThunk.cpp,matched,Exact 226B; factory ownership Open-BFME4
 ??1ModelArrayClass@HLodClass@@UAE@XZ,,0x005DB080,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$DefaultModuleTag@$02@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;ICF thunk converted to C++ alias
 ??1ModelConditionInfo@@QAE@XZ,,0x0013C3FE,292,Code/GameEngine/Source/Common/ModelConditionInfoDestructorThunk.cpp,matched,Exact retail MASM SEH dtor; member-layout SEH shape not emittable from ZH C++
-??1ModelConditionSoundSelectorClientBehaviorModuleData@@UAE@XZ,,0x00607710,67,Code/GameEngine/Source/GameLogic/Object/Behavior/ModelConditionSoundSelectorClientBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x121E30 ctor 0x607550 prove ownership
+??1ModelConditionSoundSelectorClientBehaviorModuleData@@UAE@XZ,,0x00607710,67,Code/GameEngine/Source/GameLogic/Object/Behavior/ModelConditionSoundSelectorClientBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
 ??1ModelConditionUpgradeModuleData@@UAE@XZ,,0x002D6B20,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/ModelConditionUpgradeModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor member@8 pin 0x1B97D (PropagandaTower pattern)
 ??1Module@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/Thing/Module.cpp,matched,
 ??1ModuleTemplate@FXParticleSystem@@UAE@XZ,0x00015A14,0x0005C7D0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable
@@ -3265,10 +3265,10 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1UpdateModuleModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/UpdateModuleModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
 ??1Upgrade@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
 ??1UpgradeCenter@@UAE@XZ,,0x0010A8C0,111,Code/GameEngine/Source/Common/UpgradeCenterDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1UpgradeDieModuleData@@UAE@XZ,,0x001268A0,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeDieModuleDataDestructorThunk.cpp,matched,Exact 67B SEH dtor factory->vtable Open-BFME4
+??1UpgradeDieModuleData@@UAE@XZ,,0x001268A0,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
 ??1UpgradeModuleData@@UAE@XZ,,0x00101EB0,86,Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM ICF alias
 ??1UpgradeModuleModuleData@@UAE@XZ,,0x00128FA0,273,Code/GameEngine/Source/Common/UpgradeModuleModuleDataDestructorThunk.cpp,matched,Exact 273B SEH dtor Open-BFME5
-??1UpgradeSoundSelectorClientBehaviorModuleData@@UAE@XZ,,0x00608F80,67,Code/GameEngine/Source/GameLogic/Object/Behavior/UpgradeSoundSelectorClientBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x121ED0 ctor 0x608DC0 prove ownership
+??1UpgradeSoundSelectorClientBehaviorModuleData@@UAE@XZ,,0x00608F80,67,Code/GameEngine/Source/GameLogic/Object/Behavior/UpgradeSoundSelectorClientBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor PropagandaTower pattern
 ??1UpgradeTemplate@@MAE@XZ,,0x0010ACB0,170,Code/GameEngine/Source/Common/UpgradeTemplateDestructorThunk.cpp,matched,Certified packet 262 exact retail MASM f78745debd90e92551686dc404ec95aed7f2fa59f73073f3484f0f90880b45e3
 ??1User@@MAE@XZ,,0x0078CFB0,73,Code/GameEngine/Source/GameNetwork/User.cpp,matched,
 ??1UserPreferences@@UAE@XZ,,0x0003F25B,5,Code/GameEngine/Source/Common/UserPreferencesDestructorThunk.cpp,matched,Focused C++ thunk for UserPreferences destructor
