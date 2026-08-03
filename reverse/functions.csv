@@ -9279,7 +9279,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?checkLinkBefore@W3DRoadBuffer@@IAEXH@Z,,0x0070B160,745,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?checkLogin@@YAXXZ,,0x004FFFC0,418,Code/GameEngine/Source/Common/checkLogin_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?checkQR2Queries@@YAXPAXI@Z,,0x00642E60,178,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
-?checkReadyTeams@AIPlayer@@MAEXXZ,,0x00162560,722,Code/masm_dumps/_sa__checkReadyTeams_AIPlayer__MAEXXZ_162560.asm,matched,Exact 722B string-anchored Open-BFME4
+?checkReadyTeams@AIPlayer@@MAEXXZ,,0x00162560,722,Code/GameEngine/Source/Common/AIPlayer_checkReadyTeamsMethodThunk.cpp,matched,Exact 722B string-anchored Open-BFME4
 ?chooseVictim@AIAttackSquadState@@QAEPAVObject@@XZ,,0x0017D2F0,949,Code/masm_dumps/chooseVictim_AIAttackSquadState_0017D2F0_packet310.asm,matched,Certified packet 310 reviewed identity exact retail byte recovery
 ?clamp_indices_to_grid@GridCullSystemClass@@IAEXPAH00@Z,,0x008DCE70,82,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?classifyCells@PathfindLayer@@QAEXXZ,,0x003FC790,1405,Code/GameEngine/Source/GameLogic/AI/AIPathfind_classifyCells.asm,matched,exact 1405B MASM true ENTRY 0x3FC790 (queue 0x73F191 mid-body of host 0x73E050); C++ blocked PathfindCell 0x10 packing
