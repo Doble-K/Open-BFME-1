@@ -3235,7 +3235,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TechAndSupplyImages@@QAE@XZ,,0x0068E6D0,76,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,icf-owner=??1?$pair@$$CBVUnicodeString@@V1@@_STL@@QAE@XZ
 ??1TechBuildingBehaviorModuleData@@UAE@XZ,,0x0008A450,105,Code/GameEngine/Source/Common/TechBuildingBehaviorModuleDataDestructorThunk.cpp,matched,Exact 105B SEH dtor Open-BFME5
 ??1Template@@MAE@XZ,,0x003394E0,125,Code/masm_dumps/destructor_Template_MAEXXZ_003394E0_packet331.asm,matched,certified packet 331 SHA256 b8579d5701e4a7fd18bda9ccfae90567ae367dd40d78cf8786240bd04fcf8785
-??1TensileFormationUpdate@@UAE@XZ,,0x00253090,119,Code/masm_dumps/TensileFormationUpdate_destructor.asm,matched,Exact 119B SEH dtor factory->vtable Open-BFME4
+??1TensileFormationUpdate@@UAE@XZ,,0x00253090,119,Code/GameEngine/Source/Common/TensileFormationUpdateDestructorThunk.cpp,matched,Exact 119B SEH dtor factory->vtable Open-BFME4
 ??1TerrainCollisionModuleInfo@FXParticleSystem@@UAE@XZ,,0x005DE650,67,Code/GameEngine/Source/GameClient/System/FXParticleSystem/TerrainCollisionModuleInfoDestructorThunk.cpp,matched,Open-BFME5 exact C++ TerrainCollisionModuleInfo destructor;object-symbol=??1TerrainCollisionModuleInfo@FXParticleSystem@@QAE@XZ;retail UAE identity carried by non-virtual destructor body
 ??1TerrainCollisionModuleTemplate@FXParticleSystem@@UAE@XZ,0x00038410,0x005DE870,118,Code/masm_dumps/___1TerrainCollisionModuleTemplate_FXParticleSystem_5DE870.asm,matched,
 ??1TerrainLogic@@UAE@XZ,,0x001ADD90,285,Code/masm_dumps/TerrainLogic_destructor_1ADD90.asm,matched,certified packet 172 exact db-only retail recovery sha256 024971c8cfc8c88bfd3e1380b4d81f7847bcbd909ebb2f33965b3c0adba3ebbd
