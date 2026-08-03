@@ -7648,7 +7648,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Randomize@?$Int@$0EA@@@QAEXAAVStraw@@ABV1@1@Z,,0x009EA7D0,40,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,
 ?Raw_Seek@RawFileClass@@IAEHHH@Z,,0x009E6910,115,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?ReAcquireResources@W3DVolumetricShadowManager@@QAE_NXZ,,0x0000F9B6,5,Code/Libraries/Source/WWVegas/WWLib/W3DVolumetricShadowManagerReAcquireThunk.cpp,matched,Focused C++ thunk for W3DVolumetricShadowManager::ReAcquireResources
-?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/masm_dumps/_sa11__ReAcquireResources_WaterRenderObjClass__QAEXXZ_7A0500.asm,matched,string-anchor Open-BFME4+Grok shaders\wave.pso
+?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/masm_dumps/_sa11__ReAcquireResources_WaterRenderObjClass__QAEXXZ_7A0500.asm,matched,string-anchor Open-BFME4+Grok shaders/wave.pso
 ?Re_Color@Line3DClass@@QAEXMMM@Z,,0x00951840,45,Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp,matched,
 ?Re_Orthogonalize@Matrix3@@QAEXXZ,,0x008D96B0,525,Code/Libraries/Source/WWVegas/WWMath/matrix3.cpp,matched,
 ?Re_Orthogonalize@Matrix3D@@QAEXXZ,,0x008D8260,534,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
@@ -9363,7 +9363,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clearStatus@Anim2D@@QAEXE@Z,,0x005BA2F0,17,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?clearStatus@Image@@QAEII@Z,,0x005D1C30,17,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
 ?clearStatus@Object@@QAEXV?$BitFlags@$0CN@@@@Z,,0x0019A720,20,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
-?clearUnseenMaps@MapCache@@AAE_NVAsciiString@@@Z,,0x004578EB,1059,Code/masm_dumps/_sa14__clearUnseenMaps_MapCache__AAE_NVAsciiString___Z_4578EB.asm,matched,sa14 Open-BFME4+Grok %s\%s%s
+?clearUnseenMaps@MapCache@@AAE_NVAsciiString@@@Z,,0x004578EB,1059,Code/masm_dumps/_sa14__clearUnseenMaps_MapCache__AAE_NVAsciiString___Z_4578EB.asm,matched,sa14 Open-BFME4+Grok %s/%s%s
 ?clearVeterancyLevelFlag@@YAIIW4VeterancyLevel@@@Z,,0x000B8DD0,21,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?clearVisibleSkinList@DX8SkinFVFCategoryContainer@@AAEXXZ,,0x00945D60,72,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,converted exact MASM method dump to clean C++ with BFME retail field shim
 ?clearWinList@@YAXAAV?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@@Z,,0x0045D660,53,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,MASM converted to clean C++
@@ -9518,7 +9518,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?create@ApplyRandomForceNugget@@UBEPAVObject@@PBV2@0I@Z,,0x001D64B0,70,Code/GameEngine/Source/Common/ApplyRandomForceNuggetCreateThunk.cpp,matched,Certified packet 298 exact retail bytes SHA256 40e0e7abb6a36d49fb449166623a71831df74d4cf8330e602871b9c6ec265bff
 ?create@AttackNugget@@UBEPAVObject@@PBV2@PBUCoord3D@@1MI@Z,,0x001D7BC0,334,Code/GameEngine/Source/Common/AttackNugget_create_Thunk.cpp,matched,Exact 334B MASM; true body via RadiusDecalUpdate+vtbl thunk 0xBD25; queue 0x3992F7 mid-fn; C++ blocked Object AI+0x204 RadiusDecalTemplate layout
 ?create@FireWeaponNugget@@UBEPAVObject@@PBV2@PBUCoord3D@@1MI@Z,,0x001D5EA0,24,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
-?create@GameSpyConfigInterface@@SAPAV1@VAsciiString@@@Z,,0x0062AD50,3077,Code/masm_dumps/_sa13__create_GameSpyConfigInterface__SAPAV1_VAsciiString___Z_62AD50.asm,matched,multi-xref Open-BFME4+Grok %s\%s\%s.map
+?create@GameSpyConfigInterface@@SAPAV1@VAsciiString@@@Z,,0x0062AD50,3077,Code/masm_dumps/_sa13__create_GameSpyConfigInterface__SAPAV1_VAsciiString___Z_62AD50.asm,matched,multi-xref Open-BFME4+Grok %s/%s/%s.map
 ?create@ObjectCreationNugget@@UBEPAVObject@@PBV2@0I@Z,,0x001D63B0,24,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ?createAWallFromMyFootprint@Pathfinder@@QAEXPAVObject@@@Z,,0x0051F380,15,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,
 ?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z,,0x009C8DC0,144,Code/GameEngine/Source/Common/System/FileSystem_createDirectory.cpp,matched,recovered as C++ from 144 emitted bytes; ZH body unchanged and it loads 0x0134D060 which symbols.csv names TheLocalFileSystem so it is not the source of that DIR32 conflict
@@ -9893,7 +9893,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doWeather@ScriptActions@@IAEX_N@Z,,0x002EF670,11,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,tail-call TheSnowManager->setVisible
 ?doZoomCamera@ScriptActions@@IAEXMMMM@Z,,0x002EDC20,74,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,true body 0x2EDC20 (drift 0x9DE809 mid-insn); View vtable+0xe8 force-fit
 ?do_encrypt@@YAPADPAD@Z,,0x00104760,278,Code/GameEngine/Source/Common/System/encrypt.cpp,matched,
-?doesFileExist@ArchiveFileSystem@@UBE_NPBD@Z,,0x009CA150,323,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,"vtable 0x01143A08 slot 8 reached by byte-matched FileSystem::doesFileExist; the two ""\/"" literals are its two nextToken calls"
+?doesFileExist@ArchiveFileSystem@@UBE_NPBD@Z,,0x009CA150,323,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,"vtable 0x01143A08 slot 8 reached by byte-matched FileSystem::doesFileExist; the two ""/"" literals are its two nextToken calls"
 ?doesFileExist@FileSystem@@QBE_NPBD@Z,,0x009C86A0,134,Code/GameEngine/Source/Common/System/FileSystem_doesFileExist.cpp,matched,BFME doesFileExist: sprintf path prefix then local+archive; C++ exact
 ?doesFileExist@Win32LocalFileSystem@@UBE_NPBD@Z,,0x009CDDC0,25,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,
 ?doesSaveGameExist@GameState@@QAE_NVAsciiString@@@Z,,0x0010FB20,133,Code/GameEngine/Source/Common/GameState_doesSaveGameExist_Thunk.cpp,matched,Exact 133B caller-anchored from loadGame; BFME FileSystem path not ZH XferLoad; drift 0x7892D8 was wrong body
@@ -11390,7 +11390,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getListboxBottomEntry@@YAHPAU_ListboxData@@@Z,,0x004B6BA0,63,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBoxGetBottomEntryThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 63-byte retail helper
 ?getListboxEntryBasedOnCoord@@YAHPAVGameWindow@@HHAAH1@Z,,0x004B69D0,273,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,clean C++; DisplayString vtable TU-shim (reference/shims/displaystring) drops ZH MEMORY_POOL_GLUE extra getObjectMemoryPool slot so getTextLength lands at retail vtbl+0xC; ListboxData raw-offset casts (listData@+0x18 endPos@+0x2c columnWidth@+0x14 displayPos/displayHeight@+0x3c/+0x44)
 ?getListboxTopEntry@@YAHPAU_ListboxData@@@Z,,0x004B6B60,44,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,direct C++ listbox top-entry helper with packed retail layout replaces MASM dump
-?getLoadScreen@GameLogic@@AAEPAVLoadScreen@@_N@Z,,0x006BACD7,83,Code/GameEngine/Source/GameLogic/System/GameLogic_getLoadScreen.asm,matched,exact 487B via MASM
+?getLoadScreen@GameLogic@@AAEPAVLoadScreen@@_N@Z,,0x006BACD7,83,Code/GameEngine/Source/GameLogic/System/GameLogic_getLoadScreen_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?getLocalAddr@UDP@@QAEHAAIAAG@Z,,0x006845C0,25,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?getLocalLadders@LadderList@@QAEPBV?$list@PAVLadderInfo@@V?$allocator@PAVLadderInfo@@@_STL@@@_STL@@XZ,,0x0062A160,3,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,Ghidra-bound unique accessor
 ?getLocalPlayerID@ConnectionManager@@QAEIXZ,,0x00663740,7,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,thunk-dump converted to clean C++; ConnectionManager layout TU-shimmed (reference/shims/connectionmanager)
@@ -11917,7 +11917,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@ControlBarArrowTransition@@UAEXPAVGameWindow@@@Z,,0x0059B980,23,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?init@ControlBarResizer@@QAEXXZ,,0x004AAF10,118,Code/GameEngine/Source/Common/promoted__init_ControlBarResizer_QAEXXZ_004AAF10.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 118B
 ?init@ControlBarScheme@@QAEXXZ,,0x004ABA80,3107,Code/masm_dumps/_s4__init_ControlBarScheme_QAEXXZ_4ABA80.asm,matched,Exact string-anchored Open-BFME4+Grok
-?init@ControlBarSchemeManager@@QAEXXZ,,0x004ADD60,177,Code/GameEngine/Source/Common/ControlBarSchemeManager_initMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok Data\INI\Default\ControlBarScheme.ini
+?init@ControlBarSchemeManager@@QAEXXZ,,0x004ADD60,177,Code/GameEngine/Source/Common/ControlBarSchemeManager_initMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok Data/INI/Default/ControlBarScheme.ini
 ?init@CountUpTransition@@UAEXPAVGameWindow@@@Z,,0x0059BE70,443,Code/GameEngine/Source/Common/CountUpTransition_initMethodThunk.cpp,matched,Exact retail MASM; true body 0x59BE70/443 via CountUp vtable slot1 (init); queue 0x59BE6F was leading int3 pad; BFME layout has Int start/end at +0x10/+0x14 before m_pos
 ?init@CreditsManager@@UAEXXZ,,0x0040C5E0,17,Code/GameEngine/Source/GameClient/Credits.cpp,matched,
 ?init@DirectInputMouse@@UAEXXZ,,0x006BBD20,76,Code/GameEngine/Source/Common/promoted__init_DirectInputMouse_UAEXXZ_006BBD20.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 76B
@@ -12245,7 +12245,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?link_object_to_list@GridCullSystemClass@@IAEXPAPAVCullableClass@@PAV2@@Z,,0x008DD8D0,42,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 ?load@GameSpyLoginPreferences@@UAE_NVAsciiString@@@Z,,0x00082190,977,Code/masm_dumps/GameSpyLoginPreferences_load.asm,matched,Exact retail MASM; date nick and password key literals prove ownership
 ?load@INI@@QAEXVAsciiString@@W4INILoadType@@PAVXfer@@@Z,,0x00853A20,259,Code/GameEngine/Source/Common/INI/ini.cpp,matched,the INI entry point; two catch handlers - the INIException one rebuilds and rethrows while the catch-all unPrepFiles - and the tail inlines unPrepFile which is what puts zero in ebx
-?load@ImageCollection@@QAEXH@Z,,0x005D23A0,600,Code/GameEngine/Source/Common/ImageCollection_loadMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok Data\INI\MappedImages\TextureSize_%d
+?load@ImageCollection@@QAEXH@Z,,0x005D23A0,600,Code/GameEngine/Source/Common/ImageCollection_loadMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok Data/INI/MappedImages/TextureSize_%d
 ?load@W3DBridge@@QAE_NW4BodyDamageType@@@Z,,0x006D8C10,2836,Code/masm_dumps/_sa3__load_W3DBridge__QAE_NW4BodyDamageType___Z_6D8C10.asm,matched,true size 2836B; row claimed 2808B
 ?load@WaterRenderObjClass@@QAEXXZ,,0x0079F160,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,
 ?loadAlphaJoin@W3DRoadBuffer@@IAEXPAVRoadSegment@@VVector2@@1M@Z,,0x0070ED90,566,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
