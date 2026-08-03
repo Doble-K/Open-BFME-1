@@ -3165,7 +3165,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SelectionTranslator@@UAE@XZ,,0x005B7BE0,73,Code/GameEngine/Source/GameClient/MessageStream/SelectionXlat.cpp,matched,
 ??1ShareExperienceBehavior@@UAE@XZ,,0x00205AC0,630,Code/masm_dumps/ShareExperienceBehavior_destructor.asm,matched,Exact 630B @ 0x00205AC0; Exact retail MASM; instance factory->vtable dtor; del 0x205AC0 ctor 0x205740 vt 0xCA5FC0
 ??1ShareExperienceBehaviorModuleData@@UAE@XZ,,0x002059C0,67,Code/GameEngine/Source/GameLogic/AI/ShareExperienceBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
-??1ShellMenuScheme@@QAE@XZ,,0x00580FB0,238,Code/masm_dumps/dtor_ShellMenuScheme_QAE_XZ_00580FB0_packet334.asm,matched,Certified packet 334 sealed retail bytes SHA256 23a41c6e29805dbd06c52b28a4988f53307ef301816d3f60bc5f27824ad83ca4
+??1ShellMenuScheme@@QAE@XZ,,0x00580FB0,238,Code/GameEngine/Source/Common/ShellMenuSchemeDestructorThunk.cpp,matched,Exact 238B SEH dtor Open-BFME5
 ??1ShroudCrateCollideModuleData@@UAE@XZ,,0x00125E40,67,Code/GameEngine/Source/GameLogic/AI/ShroudCrateCollideModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SidesInfo@@QAE@XZ,,0x0019AF30,148,Code/GameEngine/Source/Common/SidesInfoDestructorThunk.cpp,matched,
 ??1SidesList@@UAE@XZ,,0x0019E640,290,Code/masm_dumps/SidesList_destructor.asm,matched,Certified packet id 111 exact retail MASM SHA256 8699b70f447fd057fdb39875e2e20d185e658f90b877d8bebd4974b9aaee0f0e
@@ -3208,7 +3208,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D7380,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/SphericalEmissionVelocityModuleTemplateDestructorThunk.cpp,matched,MASM exact retail dump
 ??1SpyVisionUpdateModuleData@@UAE@XZ,,0x003780A0,158,Code/GameEngine/Source/GameLogic/Object/Update/SpyVisionUpdateModuleDataDtorThunk.cpp,matched,Exact standalone C++ __emit thunk from certified retail destructor
 ??1Squad@@MAE@XZ,,0x000D4090,156,Code/GameEngine/Source/Common/SquadDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5
-??1StateMachine@@MAE@XZ,,0x000A1130,224,Code/masm_dumps/StateMachine_dtor.asm,matched,exact 224B MASM; true body via subclass dtor chain not queue 0x9F27BE
+??1StateMachine@@MAE@XZ,,0x000A1130,224,Code/GameEngine/Source/Common/StateMachineDestructorThunk.cpp,matched,Exact 224B SEH dtor Open-BFME5
 ??1StealthDetectorUpdateModuleData@@UAE@XZ,,0x00126B60,99,Code/GameEngine/Source/Common/StealthDetectorUpdateModuleDataDestructorThunk.cpp,matched,Exact 99B SEH dtor Open-BFME5
 ??1StealthUpdate@@UAE@XZ,,0x002AC620,1085,Code/masm_dumps/StealthUpdate_destructor.asm,matched,Exact 1085B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1StopSpecialPowerModuleData@@UAE@XZ,,0x002693E0,426,Code/GameEngine/Source/Common/StopSpecialPowerModuleDataDestructorThunk.cpp,matched,Exact 426B SEH dtor Open-BFME5
