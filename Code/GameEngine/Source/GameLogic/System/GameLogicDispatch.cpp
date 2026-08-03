@@ -141,6 +141,23 @@ static void doMoveTo( Object *obj, const Coord3D *pos )
 // doSetRallyPoint exact retail body is emitted by
 // GameLogicDispatchDoSetRallyPointThunk.cpp.
 void doSetRallyPoint(Object *, const Coord3D &);
+
+// ------------------------------------------------------------------------------------------------
+// Lifting doSetRallyPoint out of this file took this static helper with it, but
+// six call sites further down still use it.
+// ------------------------------------------------------------------------------------------------
+static Object * getSingleObjectFromSelection(const AIGroup *currentlySelectedGroup)
+{
+	if( currentlySelectedGroup )
+	{
+		const VecObjectID& selectedObjects = currentlySelectedGroup->getAllIDs();
+		DEBUG_ASSERTCRASH(selectedObjects.size() == 1, ("Trying to get single object from multiple selection!"));
+		VecObjectID::const_iterator it = selectedObjects.begin();
+		return TheGameLogic->findObjectByID(*it);
+	}
+	return NULL;
+}
+
 void GameLogic::closeWindows( void )
 {
 	HideDiplomacy();
