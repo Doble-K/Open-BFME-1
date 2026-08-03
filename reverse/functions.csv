@@ -7455,7 +7455,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?OnError@DownloadManagerMunkee@@UAEJH@Z,,0x004C79A0,129,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,gametext vtable fix
 ?OnGameJoin@LANAPI@@UAEXW4ReturnType@LANAPIInterface@@PAVLANGameInfo@@@Z,,0x001F2E80,30,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
 ?OnNameChange@LANAPI@@UAEXIVUnicodeString@@@Z,,0x00689B70,30,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
-?OnProgressUpdate@DownloadManager@@UAEJHHHH@Z,,0x00626EE0,163,Code/masm_dumps/_sa12__OnProgressUpdate_DownloadManager__UAEJHHHH_Z_626EE0.asm,matched,string-anchor Open-BFME4+Grok FTP:StatusNone
+?OnProgressUpdate@DownloadManager@@UAEJHHHH@Z,,0x00626EE0,163,Code/GameEngine/Source/Common/DownloadManager_OnProgressUpdate_Thunk.cpp,matched,string-anchor Open-BFME4+Grok FTP:StatusNone
 ?OnProgressUpdate@DownloadManagerMunkee@@UAEJHHHH@Z,,0x004C7B60,521,Code/masm_dumps/_str3__OnProgressUpdate_DownloadManagerMunkee_UAEJHHHH_Z_4C7B60.asm,matched,
 ?OnQueryResume@DownloadManager@@UAEJXZ,,0x006CF680,3,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?OnStatusUpdate@DownloadManagerMunkee@@UAEJH@Z,,0x004C7DF0,62,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
@@ -12856,7 +12856,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?push@?$queue@VPingRequest@@V?$deque@VPingRequest@@V?$allocator@VPingRequest@@@_STL@@@_STL@@@_STL@@QAEXABVPingRequest@@@Z,,0x006613F0,59,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?push@?$queue@VPingResponse@@V?$deque@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@@_STL@@QAEXABVPingResponse@@@Z,,0x00661440,59,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?push@?$stack@PAVMapObject@@V?$deque@PAVMapObject@@V?$allocator@PAVMapObject@@@_STL@@@_STL@@@_STL@@QAEXABQAVMapObject@@@Z,,0x00089D60,37,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
-?push@Shell@@QAEXVAsciiString@@_N@Z,,0x00580080,164,Code/masm_dumps/_push_Shell__QAEXVAsciiString___N_Z_580080.asm,matched,MASM exact 164B; true body 0x580080 (queue 0x9D234B INSIDE unrelated 263B@0x9D22D0); Shell cluster+GameSpyClose+m_screenCount<16+pendingPush@+0x4c+StringBase::set; ZH isEmpty vs StringBase length blocks C++
+?push@Shell@@QAEXVAsciiString@@_N@Z,,0x00580080,164,Code/GameEngine/Source/Common/Shell_push_Thunk.cpp,matched,MASM exact 164B; true body 0x580080 (queue 0x9D234B INSIDE unrelated 263B@0x9D22D0); Shell cluster+GameSpyClose+m_screenCount<16+pendingPush@+0x4c+StringBase::set; ZH isEmpty vs StringBase length blocks C++
 ?pushList90@BFMENetwork@@QAEXVBFMENetworkListPayload@@@Z,,0x0065E340,268,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper slot +0x20; appends dispatcher payload list at +0x90
 ?pushQueue0@BFMENetwork@@QAEXPAVBFMENetworkQueueItem@@@Z,,0x0065E050,162,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper slot +0x10; pushes dispatcher queue +0x14
 ?pushQueue1@BFMENetwork@@QAEXPAVBFMENetworkQueueItem1@@@Z,,0x0065E120,162,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper slot +0x18; pushes callback queue +0x3c
