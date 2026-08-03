@@ -1355,7 +1355,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ContestableContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021BEE0,292,Code/GameEngine/Source/GameLogic/AI/ContestableContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0ContestableContainModuleData@@QAE@XZ,,0x00249B50,86,Code/GameEngine/Source/GameLogic/AI/ContestableContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ContinueState@@QAE@PAVStateMachine@@@Z,,0x00170EA0,46,Code/GameEngine/Source/GameLogic/AI/ContinueStateCtorThunk.cpp,matched,Open-BFME5 exact C++ isolated raw AI state constructor
-??0ControlBar@@QAE@XZ,,0x009F2730,146,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_ctor.asm,matched,Ghidra-confirmed SEH constructor boundary
+??0ControlBar@@QAE@XZ,,0x009F2730,146,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_ctor_Thunk.cpp,matched,Open-BFME5 lift 146B retail MASM to standalone C++ thunk
 ??0ControlBarSchemeAnimation@@QAE@XZ,,0x004ACD80,86,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ??0ControlBarSchemeImage@@QAE@XZ,,0x004ACD00,80,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ??0ConvertToCarBombCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
@@ -1590,7 +1590,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GameSpyInfoInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,ICF alias of existing matched body
 ??0GameSpyMiscPreferences@@QAE@XZ,,0x000AB910,192,Code/masm_dumps/GameSpyMiscPreferences_ctor.asm,matched,Unique BFME profile-path constructor
 ??0GameState@@QAE@XZ,,0x001111C0,171,Code/GameEngine/Source/Common/System/SaveGame/GameState_ctor.asm,matched,
-??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameText_GameTextManager.asm,matched,exact 161B via MASM (SEH ctor)
+??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameTextManager_ctor_Thunk.cpp,matched,Open-BFME5 lift 161B retail MASM to standalone C++ thunk
 ??0GameWindow@@QAE@XZ,,0x004792F0,156,Code/GameEngine/Source/GameClient/GUI/GameWindowDefaultConstructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0GarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021D820,312,Code/GameEngine/Source/GameLogic/AI/GarrisonContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0GarrisonContainModuleData@@QAE@XZ,,0x0022F7E0,153,Code/GameEngine/Source/GameLogic/AI/GarrisonContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
@@ -1832,7 +1832,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MissileLauncherBuildingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0MissingAnimClass@@QAE@PBD@Z,,0x007BB710,123,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ??0MissingTextureClass@@QAE@PBD@Z,,0x007B1050,125,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/MissingTextureClassCtorThunk.cpp,matched,1:1 C++ thunk; exact retail bytes from registerMissing body 0x42C3A->0x7B1050
-??0Mission@@QAE@XZ,,0x005BB9B0,164,Code/masm_dumps/Mission_ctor_QAE_XZ_005BB9B0_00ce5396.asm,matched,Certified packet 125 sealed SHA256 00ce53969820c2e8cd83042771cfe8f0c40f1ff1e40a9d2510479e6fa57aa808
+??0Mission@@QAE@XZ,,0x005BB9B0,164,Code/GameEngine/Source/GameClient/Mission_ctor_Thunk.cpp,matched,Open-BFME5 lift 164B retail MASM to standalone C++ thunk
 ??0MobMemberSlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FB5D0,652,Code/masm_dumps/MobMemberSlavedUpdate_constructor.asm,matched,Exact 652B; factory ownership Open-BFME4
 ??0ModalWindow@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,ICF alias of existing matched body
 ??0ModelArrayClass@HLodClass@@QAE@XZ,,0x0097C970,50,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -2412,7 +2412,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DDisplayStringManager@@QAE@XZ,,0x006F5600,53,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayStringManager.cpp,matched,
 ??0W3DGameWindowManager@@QAE@XZ,,0x006C05D0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindowManager.cpp,matched,thunk-dump converted to clean C++
 ??0W3DGhostObjectManager@@QAE@XZ,,0x006BC8C0,26,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DGhostObject.cpp,matched,
-??0W3DLaserDrawModuleData@@QAE@XZ,,0x001FE190,162,Code/masm_dumps/W3DLaserDrawModuleData_constructor.asm,matched,Exact 162B ICF alias MD Open-BFME4
+??0W3DLaserDrawModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDrawModuleData_ctor_Thunk.cpp,matched,Open-BFME5 lift 162B retail MASM to standalone C++ thunk
 ??0W3DModelDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0W3DOverlordAircraftDrawModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0W3DProjectileStreamDraw@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00369FD0,252,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DProjectileStreamDrawCtorThunk.cpp,matched,Exact 252B @ 0x00369FD0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1194C0
