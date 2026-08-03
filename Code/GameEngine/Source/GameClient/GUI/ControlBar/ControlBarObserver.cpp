@@ -298,7 +298,7 @@ void ControlBar::populateObserverList( void )
 }
 
 // ?populateObserverInfoWindow@ControlBar@@QAEXXZ
-// Body in Code/masm_dumps/_populateObserverInfoWindow_ControlBar_QAEXXZ_4AA200.asm
+// Exact body is emitted by ControlBarPopulateObserverInfoWindowThunk.cpp.
 // (exact 923B retail @ 0x004AA200; C++ blocked by ControlBar +0x274 layout + KindOf 0x18B).
 // Force-emit sibling COMDATs this TU previously only produced via that body:
 void (KindOfMaskType::*_bfme_force_KindOf_clear)() = &KindOfMaskType::clear;
