@@ -7633,7 +7633,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Put_Point@INIClass@@QAE_NPBD0ABV?$TPoint3D@H@@@Z,,0x009E42F0,69,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Put_Point@INIClass@@QAE_NPBD0ABV?$TPoint3D@M@@@Z,,0x009E4410,80,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Put_Rect@INIClass@@QAE_NPBD0ABV?$TRect@H@@@Z,,0x009E58F0,73,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
-?Put_String@INIClass@@QAE_NPBD00@Z,,0x009E3BD0,459,Code/Libraries/Source/WWVegas/WWLib/INIClass_Put_String.asm,matched,exact 459B via MASM (new-expr EH frame wall)
+?Put_String@INIClass@@QAE_NPBD00@Z,,0x009E3BD0,459,Code/Libraries/Source/WWVegas/WWLib/INIClass_Put_String_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?Put_TextBlock@INIClass@@QAE_NPBD0@Z,,0x009E56B0,257,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,identical-bytes drift row; string-anchored; ICF-folded template instantiation
 ?Put_To@Pipe@@UAEXPAV1@@Z,,0x009E7900,75,Code/Libraries/Source/WWVegas/WWLib/pipe.cpp,matched,
 ?Put_UUBlock@INIClass@@QAE_NPBD0PBXH@Z,,0x009E54E0,221,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
