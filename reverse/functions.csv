@@ -3830,9 +3830,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??3NetRunAheadCommandMsg@@SAXPAXW4NetRunAheadCommandMsgMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ??3NetRunAheadMetricsCommandMsg@@SAXPAXW4NetRunAheadMetricsCommandMsgMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ??3NetWrapperCommandMsg@@SAXPAXW4NetWrapperCommandMsgMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
-??3OCLSpecialPower@@SAXPAXW4OCLSpecialPowerMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,
-??3Object@@SAXPAXW4ObjectMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
-??3ObjectCreationUpgrade@@SAXPAXW4ObjectCreationUpgradeMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,
+??3OCLSpecialPower@@SAXPAXW4OCLSpecialPowerMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,
+??3Object@@SAXPAXW4ObjectMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
+??3ObjectCreationUpgrade@@SAXPAXW4ObjectCreationUpgradeMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,
 ??3ObjectDefectionHelper@@SAXPAXW4ObjectDefectionHelperMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ??3ObjectRepulsorHelper@@SAXPAXW4ObjectRepulsorHelperMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ??3ObjectSMCHelper@@SAXPAXW4ObjectSMCHelperMagicEnum@0@@Z,,0x007EFFF0,12,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
@@ -7649,7 +7649,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Randomize@?$Int@$0EA@@@QAEXAAVStraw@@ABV1@1@Z,,0x009EA7D0,40,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,
 ?Raw_Seek@RawFileClass@@IAEHHH@Z,,0x009E6910,115,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,
 ?ReAcquireResources@W3DVolumetricShadowManager@@QAE_NXZ,,0x0000F9B6,5,Code/Libraries/Source/WWVegas/WWLib/W3DVolumetricShadowManagerReAcquireThunk.cpp,matched,Focused C++ thunk for W3DVolumetricShadowManager::ReAcquireResources
-?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/masm_dumps/_sa11__ReAcquireResources_WaterRenderObjClass__QAEXXZ_7A0500.asm,matched,string-anchor Open-BFME4+Grok shaders/wave.pso
 ?Re_Color@Line3DClass@@QAEXMMM@Z,,0x00951840,45,Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp,matched,
 ?Re_Orthogonalize@Matrix3@@QAEXXZ,,0x008D96B0,525,Code/Libraries/Source/WWVegas/WWMath/matrix3.cpp,matched,
 ?Re_Orthogonalize@Matrix3D@@QAEXXZ,,0x008D8260,534,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
@@ -34599,3 +34598,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?friend_newModuleData@InternetHackContain@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,Open-BFME5 exact C++ ICF alias; corrected one-byte int3 boundary; retail size 0x16C and constructor pin 0x30945
 ?setControlBarSchemeByPlayer@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F8B0,790,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSetControlBarSchemeByPlayerThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?isSandbox@GameInfo@@QAE_NXZ,,0x00621600,843,Code/GameEngine/Source/GameNetwork/GameInfoIsSandboxThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
