@@ -2112,7 +2112,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RenderObjectUpdateModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x000310FC,0x005D92C0,301,Code/masm_dumps/___0RenderObjectUpdateModuleInfo_FXParticleSystem___5D92C0.asm,matched,
 ??0RenderObjectUpdateModuleInfo@FXParticleSystem@@QAE@XZ,0x000033EB,0x00600460,349,Code/masm_dumps/___0RenderObjectUpdateModuleInfo_FXParticleSystem___600460.asm,matched,
 ??0RenderObjectUpdateModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z,,0x005D9720,62,Code/GameEngine/Source/GameClient/System/FXParticleSystem/RenderObjectUpdateModuleTemplateCopyCtorThunk.cpp,matched,MASM exact retail dump; converted to an exact standalone C++ thunk
-??0RenderObjectUpdateModuleTemplate@FXParticleSystem@@QAE@XZ,0x00035490,0x005D9650,106,Code/masm_dumps/___0RenderObjectUpdateModuleTemplate_FXParticleSyst_5D9650.asm,matched,
+??0RenderObjectUpdateModuleTemplate@FXParticleSystem@@QAE@XZ,0x00035490,0x005D9650,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/RenderObjectUpdateModuleTemplateCtorThunk.cpp,matched,Converted to an exact standalone C++ thunk
 ??0RepairDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0001E8D0,5,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0RepairDockUpdateModuleData@@QAE@XZ,,0x002CEF40,25,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdate.cpp,matched,
 ??0RepairSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002647F0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/RepairSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
