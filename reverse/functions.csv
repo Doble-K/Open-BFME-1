@@ -7581,7 +7581,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?PopulateCustomLadderComboBox@@YAXXZ,,0x004D6420,936,Code/masm_dumps/PopulateCustomLadderComboBox.asm,matched,
 ?PopulateCustomLadderListBox@@YAXPAVGameWindow@@@Z,,0x004D5D90,1332,Code/masm_dumps/PopulateCustomLadderListBox_004D5D90_packet351.asm,matched,Certified packet 351 caller-thunk and GUI:NoLadder anchor; exact retail SHA-256 e76ece43bdf5e17c89b78ec86b68ecee02731d3e60d3351ad5e2c1a564c98ed2
 ?PopulateLobbyPlayerListbox@@YAXXZ,,0x000070B3,5,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/PopulateLobbyPlayerListbox.cpp,matched,5-byte incremental-link thunk converted from MASM dump to focused C++ source
-?PopulateRemoteIPComboBox@@YAXXZ,,0x004D2540,250,Code/masm_dumps/_cache__PopulateRemoteIPComboBox__YAXXZ_4D2540.asm,matched,cached-obj needle Open-BFME4+Grok
+?PopulateRemoteIPComboBox@@YAXXZ,,0x004D2540,250,Code/GameEngine/Source/Common/PopulateRemoteIPComboBox_Thunk.cpp,matched,cached-obj needle Open-BFME4+Grok
 ?PopupBuddyNotificationSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004E9C70,53,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp,matched,
 ?PopupCommunicatorInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupCommunicator.cpp,matched,
 ?PopupHostGameInit@@YAXPAVWindowLayout@@PAX@Z,,0x004D68C0,1253,Code/masm_dumps/PopupHostGameInit.asm,matched,Correct retail body from unique FunctionLexicon thunk 0x00032821
@@ -10187,7 +10187,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findSWInfo@InGameUI@@IAEPAVSuperweaponInfo@@HABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x00449E70,75,Code/GameEngine/Source/Common/InGameUIFindSWInfoThunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?findScienceInfo@ScienceStore@@ABEPBVScienceInfo@@W4ScienceType@@@Z,,0x000E6D30,51,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ?findSingleBone@@YA_NPAVRenderObjClass@@ABVAsciiString@@AAVMatrix3D@@AAH@Z,,0x00761E90,135,Code/GameEngine/Source/Common/findSingleBone_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
-?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z,,0x0035F4E0,231,Code/masm_dumps/_sa13__findSkirmishSideInfo_SidesList__QAEPAVSidesInfo__VAsciiString__PAH_Z_35F4E0.asm,matched,true size 231B; previous row claimed 224B
+?findSkirmishSideInfo@SidesList@@QAEPAVSidesInfo@@VAsciiString@@PAH@Z,,0x0035F4E0,231,Code/GameEngine/Source/Common/SidesList_findSkirmishSideInfo_Thunk.cpp,matched,true size 231B; previous row claimed 224B
 ?findSpareSocketByPort@FirewallHelperClass@@AAEPAUSpareSocketStruct@@G@Z,,0x0066E490,44,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
 ?findSpecialPowerCompletionDie@Object@@QBEPAVSpecialPowerCompletionDie@@XZ,,0x001BF8C0,111,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?findSpecialPowerTemplateByID@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@I@Z,,0x000EB690,101,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
@@ -12352,7 +12352,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?newTask@DozerAIUpdate@@UAEXW4DozerTask@@PAVObject@@@Z,,0x002B8A00,826,Code/masm_dumps/newTask_DozerAIUpdate_UAEXW4DozerTask_PAVObject_Z_2B8A00.asm,matched,Certified packet 7 ctor-vtable-thunk identity; exact retail byte dump SHA256 7fb953ce247e30885cb2697f9add5bee2932db814231a21ca3e9b1a68dcfd996
 ?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z,,0x005BB050,106,Code/GameEngine/Source/GameClient/System/Anim2DCollectionNewTemplateThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM constructor wall
 ?newTerrain@TerrainTypeCollection@@,,0x000A8680,204,Code/masm_dumps/_sa6__newTerrain_TerrainTypeCollection___A8680.asm,matched,Exact 204B Open-BFME4+Grok
-?newUpgrade@UpgradeCenter@@QAEPAVUpgradeTemplate@@ABVAsciiString@@@Z,,0x0010B140,246,Code/masm_dumps/_sa6__newUpgrade_UpgradeCenter__QAEPAVUpgradeTemplate___10B140.asm,matched,Exact 246B Open-BFME4+Grok
+?newUpgrade@UpgradeCenter@@QAEPAVUpgradeTemplate@@ABVAsciiString@@@Z,,0x0010B140,246,Code/GameEngine/Source/Common/UpgradeCenter_newUpgrade_Thunk.cpp,matched,Exact 246B Open-BFME4+Grok
 ?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z,,0x001E7F50,261,Code/masm_dumps/newWeaponTemplate_WeaponStore_001E7F50_packet337.asm,matched,Certified packet 337 sealed exact retail bytes SHA256 90f8376182dd2aab1ea9669ea2e5a32b0bacccef12f18d64a555cff615bea476
 ?next@BezFwdIterator@@QAEXXZ,,0x000B6810,87,Code/GameEngine/Source/Common/bez_fwd_iterator.cpp,matched,
 ?next@LListNode@@QAEPAV1@XZ,,0x00105950,20,Code/GameEngine/Source/Common/System/List.cpp,matched,
@@ -12393,7 +12393,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?obbtri_compute_contact_normal@@YAXABUBTCollisionStruct@@PAVVector3@@@Z,,0x008E6E80,708,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
 ?obbtri_compute_contact_point@@YAXAAUBTCollisionStruct@@PAUCastResultStruct@@@Z,,0x008E63D0,850,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
 ?obbtri_intersection_separation_test@@YA_NAAUBTIntersectStruct@@MM@Z,,0x008E8330,120,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,
-?obfuscate@@YA?AVAsciiString@@V1@@Z,,0x0007FBF0,254,Code/masm_dumps/obfuscate_AsciiString_0007FBF0_87e7c03c.asm,matched,certified packet 147 sealed RVA and SHA-256
+?obfuscate@@YA?AVAsciiString@@V1@@Z,,0x0007FBF0,254,Code/GameEngine/Source/Common/obfuscate_AsciiString_Thunk.cpp,matched,certified packet 147 sealed RVA and SHA-256
 ?obfuscate@@YAXPAUTransportMessage@@H@Z,,0x006832C0,62,Code/GameEngine/Source/GameNetwork/Transport_queueSend.cpp,matched,
 ?objectChangedTeam@InGameUI@@UAEXPBVObject@@HH@Z,,0x00449FC0,394,Code/masm_dumps/InGameUI_objectChangedTeam_449FC0.asm,matched,MASM exact; true body via InGameUI vtbl after add/removeSW; queue 0x44C3FA was mid-fn at 0x44C250
 ?objectInteractsWithBridgeEnd@TerrainLogic@@UBE_NPAVObject@@H@Z,,0x001A7F70,216,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,object geometry pad fix
@@ -12457,7 +12457,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onStructureProduced@AIPlayer@@UAEXPAVObject@@0@Z,,0x00162D30,613,Code/masm_dumps/onStructureProduced_AIPlayer_UAEXPAVObject_0_Z_00162D30_packet242.asm,matched,certified packet 242 exact retail db recovery sha256 081cc2309a4061b78fd9d0f6efc13d164fac701ad19fcb5cb3275ec264e67e99
 ?onStructureUndone@Player@@QAEXPAVObject@@@Z,,0x00C3546B,11,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?onVeterancyLevelChanged@Object@@QAEXW4VeterancyLevel@@0_N@Z,,0x0037F2AD,711,Code/GameEngine/Source/GameLogic/Object/Object_onVeterancyLevelChanged.asm,matched,exact 711B via MASM
-?open@CachedFileInputStream@@QAE_NVAsciiString@@@Z,,0x00102A60,253,Code/masm_dumps/CachedFileInputStream_open_102A60.asm,matched,Certified packet 268; Ghidra entry and ret4 boundary; constructor thunk and file-decompression call graph; retail SHA256 268da9848f4677cab7d4e2fe0fca88e8021b442690bd569e2ad86c174a2a59e3
+?open@CachedFileInputStream@@QAE_NVAsciiString@@@Z,,0x00102A60,253,Code/GameEngine/Source/Common/CachedFileInputStream_open_Thunk.cpp,matched,Certified packet 268; Ghidra entry and ret4 boundary; constructor thunk and file-decompression call graph; retail SHA256 268da9848f4677cab7d4e2fe0fca88e8021b442690bd569e2ad86c174a2a59e3
 ?open@File@@UAE_NPBDH@Z,,0x009CB800,118,Code/GameEngine/Source/Common/System/File.cpp,matched,File vtable slot 1
 ?open@MemoryReadFile@@UAE_NPBDH@Z,,0x009CB080,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?open@MemoryWriteFile@@UAE_NPBDH@Z,,0x009CB220,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
