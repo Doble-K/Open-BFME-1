@@ -33141,7 +33141,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?postMul@Matrix3D@@QAEXABV1@@Z,,0x001E0E80,338,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,
 ?postProcessLoad@W3DDisplayStringManager@@UAEXXZ,,0x006F5890,368,Code/GameEngine/Source/Common/W3DDisplayStringManager_postProcessLoadMethodThunk.cpp,matched,Exact 368B Open-BFME4
 ?postProcessLoad@WeaponStore@@UAEXXZ,,0x0023E5F0,1017,Code/masm_dumps/_sa14__postProcessLoad_WeaponStore__UAEXXZ_23E5F0.asm,matched,sa14 Open-BFME4+Grok NoSound
-?post_process_fog@MeshModelClass@@IAEXXZ,,0x0096EE60,929,Code/masm_dumps/_s4__post_process_fog_MeshModelClass_IAEXXZ_96EE60.asm,matched,Exact string-anchored Open-BFME4+Grok
 ?preAuthCDCallback@@YAXHHHPADPAX@Z,,0x00651810,27,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,
 ?preMul@Matrix3D@@QAEXABV1@@Z,,0x007598C0,302,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?preRender@ScreenCrossFadeFilter@@UAE_NAA_NAAW4CustomScenePassModes@@@Z,,0x007D36B0,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
@@ -34598,4 +34597,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?GameSpyPlayerInfoOverlaySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D99C0,816,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameSpyPlayerInfoOverlaySystemThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?GadgetListBoxMultiInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004B9A50,908,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBoxMultiInputThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Customized_Render@RTS3DScene@@UAEXAAVRenderInfoClass@@@Z,,0x007143B0,888,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS3DSceneCustomizedRenderThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?post_process_fog@MeshModelClass@@IAEXXZ,,0x0096EE60,929,Code/Libraries/Source/WWVegas/WW3D2/MeshModelClassPostProcessFogThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
