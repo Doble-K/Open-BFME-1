@@ -2926,65 +2926,8 @@ void ControlBar::updateRadarAttackGlow ( void )
 
 	
 }
-// ?initSpecialPowershortcutBar@ControlBar@@QAEXPAVPlayer@@@Z present-unmatched
-void ControlBar::initSpecialPowershortcutBar( Player *player)
-{
-
-	for( Int i = 0; i < MAX_SPECIAL_POWER_SHORTCUTS; ++i )
-	{
-		m_specialPowerShortcutButtonParents[i] = NULL;
-		m_specialPowerShortcutButtons[i] = NULL;
-	}
-
-	if(m_specialPowerLayout)
-	{
-		m_specialPowerLayout->destroyWindows();
-		m_specialPowerLayout->deleteInstance();
-		m_specialPowerLayout = NULL;
-	}
-	m_specialPowerShortcutParent = NULL;
-	m_currentlyUsedSpecialPowersButtons = 0;
-	const PlayerTemplate *pt = player->getPlayerTemplate();
-
-	if(!player || !pt|| !player->isLocalPlayer()
-			|| pt->getSpecialPowerShortcutButtonCount() == 0  
-			|| pt->getSpecialPowerShortcutWinName().isEmpty()
-			|| !player->isPlayerActive())
-		return;
-	m_currentlyUsedSpecialPowersButtons = pt->getSpecialPowerShortcutButtonCount();
-	AsciiString layoutName, tempName, windowName, parentName;
-	layoutName = pt->getSpecialPowerShortcutWinName();
-	m_specialPowerLayout = TheWindowManager->winCreateLayout(layoutName);
-	m_specialPowerLayout->hide(TRUE);
-
-	tempName = layoutName;
-	tempName.concat(":GenPowersShortcutBarParent");
-	NameKeyType id = TheNameKeyGenerator->nameToKey( tempName );
-	m_specialPowerShortcutParent = TheWindowManager->winGetWindowFromId( NULL, id );//m_scienceLayout->getFirstWindow();
-
-	tempName = layoutName;
-	tempName.concat(":ButtonCommand%d");
-	parentName = layoutName;
-	parentName.concat(":ButtonParent%d");
-	m_currentlyUsedSpecialPowersButtons = MIN(pt->getSpecialPowerShortcutButtonCount(), MAX_SPECIAL_POWER_SHORTCUTS);
-	for( i = 0; i < MAX_SPECIAL_POWER_SHORTCUTS; i++ )
-	{
-		windowName.format( tempName, i+1 );
-		id = TheNameKeyGenerator->nameToKey( windowName.str() );
-		m_specialPowerShortcutButtons[ i ] = 
-			TheWindowManager->winGetWindowFromId( m_specialPowerShortcutParent, id );
-		m_specialPowerShortcutButtons[ i ]->winSetStatus( WIN_STATUS_USE_OVERLAY_STATES );
-		// Oh god... this is a total hack for shortcut buttons to handle rendering text top left corner...
-		m_specialPowerShortcutButtons[ i ]->winSetStatus( WIN_STATUS_SHORTCUT_BUTTON );
-
-		windowName.format( parentName, i+1 );
-		id = TheNameKeyGenerator->nameToKey( windowName.str() );
-		m_specialPowerShortcutButtonParents[ i ] = 
-			TheWindowManager->winGetWindowFromId( m_specialPowerShortcutParent, id );
-	}  // end for i
-
-}
-
+// ?initSpecialPowershortcutBar@ControlBar@@QAEXPAVPlayer@@@Z
+// Body in Code/masm_dumps/_str3__initSpecialPowershortcutBar_ControlBar_QAEXPAVPlayer_Z_49F1C0.asm (exact 766B retail @ 0x0049F1C0).
 // ?populateSpecialPowerShortcut@ControlBar@@IAEXPAVPlayer@@@Z present-unmatched
 void ControlBar::populateSpecialPowerShortcut( Player *player)
 {
