@@ -12376,7 +12376,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?normalize@Coord3D@@QAEXXZ,0x0002BD82,0x000FB930,76,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,normalizes 3D vector in place with zero check
 ?normalizeAngle@@YAMM@Z,,0x001056F0,69,Code/GameEngine/Source/Common/System/GameCommon.cpp,matched,exact
 ?notifyShroudChanged@W3DPropBuffer@@QAEXXZ,,0x007024E0,50,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DPropBuffer.cpp,matched,
-?notifyUsersOfConnectionDone@NAT@@IAEXH@Z,,0x006712E0,578,Code/masm_dumps/_sa5__notifyUsersOfConnectionDone_NAT__IAEXH_Z_6712E0.asm,matched,Exact 578B Open-BFME4
+?notifyUsersOfConnectionDone@NAT@@IAEXH@Z,,0x006712E0,578,Code/GameEngine/Source/Common/NAT_notifyUsersOfConnectionDoneMethodThunk.cpp,matched,Exact 578B Open-BFME4
 ?nstrdup@@YAPADPBD@Z,,0x009E6410,61,Code/Libraries/Source/WWVegas/WWLib/nstrdup.cpp,matched,
 ?obb_check_axis@@YA_NAAUObbCollisionStruct@@MM@Z,,0x008E3B10,85,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
 ?obb_check_box0_basis@@YA_NAAUObbCollisionStruct@@H@Z,,0x008E3960,215,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
