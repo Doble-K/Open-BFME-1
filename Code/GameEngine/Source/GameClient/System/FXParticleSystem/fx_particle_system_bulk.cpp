@@ -12916,6 +12916,7 @@ __declspec(naked) ParticleSystemTemplate::ParticleSystemTemplate(const ParticleS
 }
 #endif
 
+#if 0 // exact constructor moved to ParticleSystemTemplateCtorThunk.cpp
 // ??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABVAsciiString@@@Z
 __declspec(naked) ParticleSystemTemplate::ParticleSystemTemplate(const AsciiString &name)
 {
@@ -13078,6 +13079,8 @@ __declspec(naked) ParticleSystemTemplate::ParticleSystemTemplate(const AsciiStri
         __emit 0x00
     }
 }
+
+#endif
 
 // ??0PointEmissionVolumeModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z
 PointEmissionVolumeModuleTemplate::PointEmissionVolumeModuleTemplate(const PointEmissionVolumeModuleTemplate &that)
