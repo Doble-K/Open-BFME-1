@@ -8469,7 +8469,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Unlock@CriticalSectionClass@@AAEXXZ,,0x009DB490,17,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ?Unlock@MutexClass@@AAEXXZ,,0x009DB390,17,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ?Unlock_Decal_Generator@DecalSystemClass@@UAEXPAVDecalGeneratorClass@@@Z,,0x0045DD60,23,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,
-?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z,,0x009438C0,134,Code/masm_dumps/_entry__Unregister_SimpleSceneClass_UAEXPAVRenderObjClass_W4RegType_9438C0.asm,matched,
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z,,0x009438C0,134,Code/GameEngine/Source/Common/SimpleSceneClass_Unregister_Thunk.cpp,matched,
 ?Update@W3DVolumetricShadow@@IAEXXZ,,0x007BF7D0,758,Code/masm_dumps/_Update_W3DVolumetricShadow__IAEXXZ.asm,matched,MASM exact; true body 0x7BF7D0/758 (queue 0x98B1BC was Render_Line interior); BFME Update(Bool) ret4; callchain updateVolumes/updateMeshVolume/constructVolume
 ?UpdateStartButton@@YAXXZ,,0x00505570,197,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,object-symbol=?update@BfmeQuickMatchUpdateStartButtonBody@@QAEXXZ;C++ body converted from exact 197B retail MASM
 ?Update_Bounding_Box@ParticleBufferClass@@IAEXXZ,,0x0098B460,740,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
@@ -11166,7 +11166,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getCurrentMissionNumber@CampaignManager@@QAEHXZ,,0x005BBDB0,41,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
 ?getCurrentStagingRoom@GameSpyInfo@@UAEPAVGameSpyStagingRoom@@XZ,,0x006327B0,72,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?getCurrentTexture@W3DShadowTextureManagerIterator@@QAEPAVW3DShadowTexture@@XZ,,0x007AE850,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
-?getCurrentWorldspaceClientBonePositions@W3DModelDraw@@UBE_NPBDAAVMatrix3D@@@Z,,0x0075C5F0,127,Code/masm_dumps/_rn4__getCurrentWorldspaceClientBonePositions_W3DModelDraw__UBE_NPBDAAVMatr_75C5F0.asm,matched,reloc-needle Open-BFME4+Grok
+?getCurrentWorldspaceClientBonePositions@W3DModelDraw@@UBE_NPBDAAVMatrix3D@@@Z,,0x0075C5F0,127,Code/GameEngine/Source/Common/W3DModelDraw_getCurrentWorldspaceClientBonePositions_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?getDX8Format@W3DBufferManager@@SAHW4VBM_FVF_TYPES@1@@Z,,0x0013A450,12,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DBufferManager.cpp,matched,
 ?getDamage@BehaviorModule@@UAEPAVDamageModuleInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getDamage@DamageModule@@UAEPAVDamageModuleInterface@@XZ,,0x0011A150,14,Code/GameEngine/Source/GameLogic/Object/Damage/TransitionDamageFX.cpp,matched,
@@ -12190,7 +12190,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isScreenVisible@DisconnectMenu@@QAE_NXZ,,0x00537670,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,
 ?isShift@Keyboard@@QAE_NXZ,,0x005A3230,19,Code/GameEngine/Source/GameClient/Input/Keyboard.cpp,matched,
 ?isSlotLocalAlly@@YA_NPBVGameSlot@@@Z,,0x0061ED20,89,Code/GameEngine/Source/Common/isSlotLocalAlly_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?isSpecificRiderFreeToExit@TransportContain@@MAE_NPAVObject@@@Z,,0x0022D0E0,126,Code/masm_dumps/_cache__isSpecificRiderFreeToExit_TransportContain__MAE_NPAVOb_22D0E0.asm,matched,cached-obj needle Open-BFME4+Grok
+?isSpecificRiderFreeToExit@TransportContain@@MAE_NPAVObject@@@Z,,0x0022D0E0,126,Code/GameEngine/Source/Common/TransportContain_isSpecificRiderFreeToExit_Thunk.cpp,matched,cached-obj needle Open-BFME4+Grok
 ?isStartPositionTaken@GameInfo@@QBE_NHH@Z,,0x0061EA50,63,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?isTaskPending@DozerAIUpdate@@UAE_NW4DozerTask@@@Z,,0x002B68B0,20,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,
 ?isTaskPending@WorkerAIUpdate@@UAE_NW4DozerTask@@@Z,,0x002C7F60,20,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,
@@ -12555,7 +12555,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseCommand@CommandButton@@SAXPAVINI@@PAX1PBX@Z,,0x0049AB90,124,Code/GameEngine/Source/Common/CommandButton_parseCommand_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseCommandButtonDefinition@INI@@SAXPAV1@@Z,,0x000B7F80,166,Code/GameEngine/Source/Common/INI/INICommandButton.cpp,matched,find-create-override on TheControlBar; unblocked by placing the CommandSet parser which showed the two override creators pair up at 0x00027CC3 and 0x00049ADA
 ?parseCommandSetDefinition@INI@@SAXPAV1@@Z,,0x004A2150,249,Code/GameEngine/Source/Common/INI/INICommandSet.cpp,matched,the INI registry binds the CommandSet keyword to this address; it was recorded as ?newCommandButtonOverride@ControlBar@@ against a MASM dump which has been removed
-?parseCommonStuff@@YAXPAVINI@@PBQBDAAW4VeterancyLevel@@2AAW4DamageType@@3@Z,,0x00065F80,125,Code/masm_dumps/__parseCommonStuff__YAXPAVINI__PBQBDAAW4VeterancyLe_65F80.asm,matched,
+?parseCommonStuff@@YAXPAVINI@@PBQBDAAW4VeterancyLevel@@2AAW4DamageType@@3@Z,,0x00065F80,125,Code/GameEngine/Source/Common/parseCommonStuff_Thunk.cpp,matched,
 ?parseConditionState@W3DModelDrawModuleData@@,,0x0077C860,748,Code/masm_dumps/_str3__parseConditionState_W3DModelDrawModuleData__77C860.asm,matched,
 ?parseConditionState@W3DModelDrawModuleData@@CAXPAVINI@@PAX1PBX@Z,,0x0077C860,748,Code/masm_dumps/_str3__parseConditionState_W3DModelDrawModuleData__77C860.asm,matched,object-symbol=?parseConditionState@W3DModelDrawModuleData@@;ICF alias of MASM body; structural queue RVA 0x852F4C is int3 pad before already-matched parseRGBColor@0x852F50
 ?parseControlBarResizerDefinition@INI@@SAXPAV1@@Z,,0x004AAD10,1,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,INI block table node binds keyword ControlBarResizer to this address
@@ -12614,7 +12614,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseInGameUIDefinition@INI@@SAXPAV1@@Z,,0x0043AAA0,36,Code/GameEngine/Source/GameClient/INIParseInGameUIDefinitionThunk.cpp,matched,Open-BFME5 clean C++ InGameUI null-check virtual 0x158 then applyDefinition
 ?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851050,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseInitialRoster@GarrisonContainModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x001230B0,104,Code/GameEngine/Source/Common/GarrisonContainModuleData_parseInitialRoster_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?parseInputCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486900,130,Code/masm_dumps/parseInputCallback_YA_NPADPAVWinInstanceData_0PAX_Z.asm,matched,parse table INPUTCALLBACK->0x486900; queue 0x4877E5 was wrong body; exact 130B MASM
+?parseInputCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486900,130,Code/GameEngine/Source/Common/parseInputCallback_Thunk.cpp,matched,parse table INPUTCALLBACK->0x486900; queue 0x4877E5 was wrong body; exact 130B MASM
 ?parseInt@@YAXPAVINI@@PAX1PBX@Z,,0x000B8160,55,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
 ?parseInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852A60,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,was a naked byte dump; now C++ with getNextToken inlined
 ?parseLODPreset@INI@@SAXPAV1@@Z,,0x0007D2D0,325,Code/masm_dumps/INI_parseLODPreset_7d2d0.asm,matched,MASM exact retail dump; true start 0x7D2D0 (queue 0x7D2FE was mid-body after SEH); size 325
