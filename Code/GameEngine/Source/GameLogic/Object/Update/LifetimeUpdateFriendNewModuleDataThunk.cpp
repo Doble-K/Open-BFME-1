@@ -1,124 +1,22 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: LifetimeUpdate::friend_newModuleData factory
 
 class INI;
 class ModuleData;
-
-class LifetimeUpdate
-{
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+class LifetimeUpdateModuleData {
 public:
-    static ModuleData *friend_newModuleData(INI *);
+	LifetimeUpdateModuleData();
+	virtual ~LifetimeUpdateModuleData();
+private:
+	unsigned char m_pad[0x14];
 };
-
-// ?friend_newModuleData@LifetimeUpdate@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *LifetimeUpdate::friend_newModuleData(INI *)
-{
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 0EBh
-        _emit 0F5h
-        _emit 0FFh
-        _emit 000h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 056h
-        _emit 06Ah
-        _emit 018h
-        _emit 0E8h
-        _emit 0C2h
-        _emit 07Bh
-        _emit 076h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 089h
-        _emit 044h
-        _emit 024h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 074h
-        _emit 00Bh
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 049h
-        _emit 043h
-        _emit 0F1h
-        _emit 0FFh
-        _emit 08Bh
-        _emit 0F0h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0F6h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 018h
-        _emit 085h
-        _emit 0C9h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 074h
-        _emit 00Bh
-        _emit 068h
-        _emit 00Dh
-        _emit 049h
-        _emit 040h
-        _emit 000h
-        _emit 056h
-        _emit 0E8h
-        _emit 087h
-        _emit 07Dh
-        _emit 073h
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
+class INI { public: void initFromINI(void *what, const void *parseTable); };
+extern "C" char LifetimeUpdateFieldParse;
+class LifetimeUpdate { public: static ModuleData *friend_newModuleData(INI *ini); };
+ModuleData *LifetimeUpdate::friend_newModuleData(INI *ini) {
+	LifetimeUpdateModuleData *data = new LifetimeUpdateModuleData;
+	if (ini) ini->initFromINI(data, &LifetimeUpdateFieldParse);
+	return (ModuleData *)data;
 }
