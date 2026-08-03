@@ -8421,7 +8421,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?TestWaterUpdate@@YAXXZ,,0x007ACBD0,2108,Code/masm_dumps/TestWaterUpdate.asm,matched,Ghidra-owned BFME water-track editor update
 ?Test_Z_Mode@DX8Wrapper@@KA_NW4_D3DFORMAT@@00@Z,,0x009022C0,70,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Thread_Function@BuddyThreadClass@@UAEXXZ,,0x0063D210,2654,Code/masm_dumps/_str2__Thread_Function_BuddyThreadClass_UAEXXZ_63D210.asm,matched,
-?Thread_Function@GameResultsThreadClass@@UAEXXZ,,0x00641E70,387,Code/masm_dumps/GameResultsThread_Thread_Function.asm,matched,Exact retail MASM; WSA loop global results queue and unique sendGameResults call prove ownership
+?Thread_Function@GameResultsThreadClass@@UAEXXZ,,0x00641E70,387,Code/GameEngine/Source/Common/GameResultsThreadClass_Thread_FunctionMethodThunk.cpp,matched,Exact retail MASM; WSA loop global results queue and unique sendGameResults call prove ownership
 ?Timestep@CameraShakeSystemClass@@QAEXM@Z,,0x006D1A80,215,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
 ?Timestep@CameraShakerClass@CameraShakeSystemClass@@QAEXM@Z,,0x006D1260,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
 ?ToggleGameListType@@YAXXZ,,0x0062E510,54,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,
