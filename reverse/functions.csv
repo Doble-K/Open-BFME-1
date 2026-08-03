@@ -2947,7 +2947,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1GameState@@UAE@XZ,,0x00110DF0,503,Code/GameEngine/Source/Common/System/SaveGame/GameState_dtor.asm,matched,
 ??1GameStateMap@@,,0x00112BF0,343,Code/masm_dumps/_sa9___1GameStateMap___112BF0.asm,matched,Exact 343B Open-BFME4
 ??1GameTextInterface@@UAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,object-symbol=??1SubsystemInterface@@UAE@XZ;ICF alias converted to existing clean C++ body
-??1GameTextManager@@UAE@XZ,,0x00438430,117,Code/masm_dumps/GameText_GameTextManager_destructor.asm,matched,exact retail destructor via MASM; ZH class has extra 0xA000-byte text buffer
+??1GameTextManager@@UAE@XZ,,0x00438430,117,Code/GameEngine/Source/Common/GameTextManagerDestructorThunk.cpp,matched,exact retail destructor via MASM; ZH class has extra 0xA000-byte text buffer
 ??1GameWindow@@MAE@XZ,,0x00479CD0,203,Code/masm_dumps/GameWindow_destructor.asm,matched,Certified complete destructor via vtable wrapper constructor ownership and ret boundary
 ??1GameWindowManager@@UAE@XZ,,0x00483810,156,Code/masm_dumps/_rn5___1GameWindowManager__UAE_XZ_483810.asm,matched,reloc-needle Open-BFME4+Grok
 ??1GarrisonContain@@UAE@XZ,,0x0021D9C0,151,Code/masm_dumps/GarrisonContain_destructor.asm,matched,Exact 151B @ 0x0021D9C0; Exact retail MASM; instance factory->vtable dtor; del 0x21E310 ctor 0x21D820 vt 0xCAB818
