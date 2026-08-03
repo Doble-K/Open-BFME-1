@@ -1,55 +1,35 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: CategoryModuleTemplate<8>::operator=
+// Retail: null-check other; p = other? other+8 : 0; copy *p ushort.
 
 namespace FXParticleSystem
 {
-template<int Category>
+
+template <int Category>
 class CategoryModuleTemplate
 {
 public:
-    CategoryModuleTemplate<Category> &operator=(const CategoryModuleTemplate<Category> &);
+	CategoryModuleTemplate &operator=(const CategoryModuleTemplate &other);
+
+private:
+	unsigned char m_pad[8];
+	unsigned short m_value;
 };
 
-template<int Category>
-__declspec(naked) CategoryModuleTemplate<Category> &CategoryModuleTemplate<Category>::operator=(const CategoryModuleTemplate<Category> &)
+template <int Category>
+CategoryModuleTemplate<Category> &CategoryModuleTemplate<Category>::operator=(const CategoryModuleTemplate &other)
 {
-    __asm {
-        _emit 08Bh
-        _emit 0C1h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 004h
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 00Dh
-        _emit 08Dh
-        _emit 051h
-        _emit 008h
-        _emit 066h
-        _emit 08Bh
-        _emit 00Ah
-        _emit 066h
-        _emit 089h
-        _emit 048h
-        _emit 008h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-        _emit 033h
-        _emit 0D2h
-        _emit 066h
-        _emit 08Bh
-        _emit 00Ah
-        _emit 066h
-        _emit 089h
-        _emit 048h
-        _emit 008h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+	const CategoryModuleTemplate *o = &other;
+	const unsigned short *p;
+	if (o)
+		p = (const unsigned short *)((const char *)o + 8);
+	else
+		p = 0;
+	m_value = *p;
+	return *this;
 }
 
 template class CategoryModuleTemplate<8>;
+
 }
