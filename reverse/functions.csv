@@ -8576,7 +8576,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Write@UDP@@QAEHPBEIIG@Z,,0x00684A20,130,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?WriteActionDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003513F0,160,Code/masm_dumps/ScriptAction_WriteActionDataChunk.asm,matched,Ghidra-bound BFME script-action writer
 ?WriteActionFalseDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003514C0,160,Code/masm_dumps/ScriptAction_WriteActionFalseDataChunk.asm,matched,Ghidra-bound BFME false-action writer
-?WriteBuildInfo@Debug@@QAEXXZ,,0x0088A492,135,Code/Libraries/Source/WWVegas/WWDebug/debug_debug_WriteBuildInfo.asm,matched,exact 135B via MASM
+?WriteBuildInfo@Debug@@QAEXXZ,,0x0088A492,135,Code/Libraries/Source/WWVegas/WWDebug/Debug_WriteBuildInfo_Thunk.cpp,matched,Open-BFME5 lift 135B retail method MASM to standalone C++ thunk
 ?WriteGroupDataChunk@ScriptGroup@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x00359EE0,204,Code/masm_dumps/ScriptGroup_WriteGroupDataChunk.asm,matched,Ghidra-bound BFME script-group writer
 ?WriteOrConditionDataChunk@OrCondition@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x00355C90,64,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?WriteParameter@Parameter@@QAEXAAVDataChunkOutput@@@Z,,0x00351320,167,Code/masm_dumps/Parameter_WriteParameter.asm,matched,Ghidra-bound BFME parameter writer
@@ -14078,7 +14078,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?writeINI@StreakDrawModuleTemplate@FXParticleSystem@@UBEXAAVFile@@I@Z,0x00042465,0x5f85c0,35,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?writeINI@TerrainCollisionModuleTemplate@FXParticleSystem@@UBEXAAVFile@@I@Z,0x00027DD6,0x5fd790,397,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?writeInt@DataChunkOutput@@QAEXH@Z,,0x00102560,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
-?writeNameKey@DataChunkOutput@@QAEXW4NameKeyType@@@Z,,0x00104300,134,Code/GameEngine/Source/Common/System/DataChunk_writeNameKey.asm,matched,exact 134B MASM; true body 0x104300 (queue 0x454F43 misplaced in MapUtil); keyToName+allocateID+shl8|or3
+?writeNameKey@DataChunkOutput@@QAEXW4NameKeyType@@@Z,,0x00104300,134,Code/GameEngine/Source/Common/System/DataChunkOutput_writeNameKey_Thunk.cpp,matched,Open-BFME5 lift 134B retail method MASM to standalone C++ thunk
 ?writeReal@DataChunkOutput@@QAEXM@Z,,0x00102540,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?writeReportIfMismatched@BFMEDesyncCheck@@QAEXXZ,,0x00065470,501,Code/GameEngine/Source/GameNetwork/native_desync_report.cpp,matched,
 ?xfer@AIAttackSquadState@@MAEXPAVXfer@@@Z,,0x00181C10,210,Code/masm_dumps/_sa13__xfer_AIAttackSquadState__MAEXPAVXfer___Z_181C10.asm,matched,multi-xref Open-BFME4+Grok AIAttackMachine
