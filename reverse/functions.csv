@@ -11655,7 +11655,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getReplayDir@RecorderClass@@SA?AVAsciiString@@XZ,0x00023F74,0x98a50,145,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getReplayExtention@RecorderClass@@SA?AVAsciiString@@XZ,0x000427F8,0x98b10,31,Code/GameEngine/Source/Common/Recorder.cpp,matched,
 ?getRequest@GameResultsQueue@@UAE_NAAVGameResultsRequest@@@Z,,0x00642440,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,MASM converted to clean C++
-?getRequest@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyRequest@@@Z,,0x0063C770,167,Code/masm_dumps/_rn7__getRequest_GameSpyBuddyMessageQueue__UAE_NAAVBuddyRequest___Z_63C770.asm,matched,reloc-needle Open-BFME4+Grok
+?getRequest@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyRequest@@@Z,,0x0063C770,167,Code/GameEngine/Source/Common/GameSpyBuddyMessageQueue_getRequest_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?getRequest@GameSpyPSMessageQueue@@UAE_NAAVPSRequest@@@Z,,0x0064C840,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,icf-owner=?getRequest@GameSpyPeerMessageQueue@@UAE_NAAVPeerRequest@@@Z
 ?getRequest@GameSpyPeerMessageQueue@@UAE_NAAVPeerRequest@@@Z,,0x0064C840,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?getRequest@Pinger@@UAE_NAAVPingRequest@@@Z,,0x00661190,235,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
@@ -11667,7 +11667,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getRequiresList@ProductionPrerequisite@@QBE?AVUnicodeString@@PBVPlayer@@@Z,,0x000E4BE0,1037,Code/masm_dumps/_str__getRequiresList_ProductionPrerequisite_QBE_AVUnicodeSt_E4BE0.asm,matched,
 ?getResolution@OptionPreferences@@QAEXPAH0@Z,,0x00091930,129,Code/GameEngine/Source/Common/OptionPreferences_getResolution_Thunk.cpp,matched,Open-BFME5 lift 129B retail method MASM to standalone C++ thunk
 ?getResponse@GameResultsQueue@@UAE_NAAVGameResultsResponse@@@Z,,0x00642510,237,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
-?getResponse@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyResponse@@@Z,,0x0063C840,167,Code/masm_dumps/_rn7__getResponse_GameSpyBuddyMessageQueue__UAE_NAAVBuddyResponse___Z_63C840.asm,matched,reloc-needle Open-BFME4+Grok
+?getResponse@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyResponse@@@Z,,0x0063C840,167,Code/GameEngine/Source/Common/GameSpyBuddyMessageQueue_getResponse_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?getResponse@GameSpyPeerMessageQueue@@UAE_NAAVPeerResponse@@@Z,,0x0064C910,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?getResponse@Pinger@@UAE_NAAVPingResponse@@@Z,,0x006612C0,235,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,
 ?getRestPos@AnimateWindow@@QAE?AUICoord2D@@XZ,,0x003D4D50,18,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
@@ -11701,7 +11701,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getSlot@NetDisconnectVoteCommandMsg@@QAEEXZ,,0x00673D30,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?getSlotIndex@@YAHPBVGameSlot@@@Z,,0x0061ECE0,48,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,true size 48B; row claimed 45B
 ?getSlotNum@GameInfo@@QBEHVAsciiString@@@Z,,0x00620390,301,Code/masm_dumps/getSlotNum_GameInfo_QBEHVAsciiString_Z_00620390_packet341.asm,matched,Certified packet 341 exact retail db body SHA-256 9cb2788c73a6a1d974bbed5e41b89d95b7a713038e267199a71dac8480f0463f
-?getSlotNum@LANGameInfo@@QAEHVUnicodeString@@@Z,,0x0068EB10,179,Code/masm_dumps/LANGameInfo_getSlotNum.asm,matched,Ghidra-corrected BFME LAN slot search
+?getSlotNum@LANGameInfo@@QAEHVUnicodeString@@@Z,,0x0068EB10,179,Code/GameEngine/Source/Common/LANGameInfo_getSlotNum_Thunk.cpp,matched,Ghidra-corrected BFME LAN slot search
 ?getSlotPort@NAT@@QAEHH@Z,,0x00670C60,26,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
 ?getSlowDeathBehaviorInterface@BehaviorModule@@UAEPAVSlowDeathBehaviorInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getSoundVolume@OptionPreferences@@QAEMXZ,,0x000917D0,129,Code/GameEngine/Source/Common/OptionPreferences_getSoundVolume_Thunk.cpp,matched,string-anchor SFXVolume; true 0x917d0 129B; queue 0x561741 OptionsMenuInit interior
@@ -12675,7 +12675,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parsePrerequisites@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x001485B0,63,Code/GameEngine/Source/Common/ThingTemplate_parsePrerequisites_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseProductionCostChange@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E2650,83,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,BFME PlayerTemplate production-cost map is at offset 0x60
 ?parseProductionTimeChange@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E2DA0,134,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,BFME uses an AsciiString production-time key map at offset 0x6C
-?parseProductionVeterancyLevel@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E26C0,170,Code/masm_dumps/parseProductionVeterancyLevel_PlayerTemplate_KAXPAVINI_PAX1PBX_Z_000E26C0_39c405d0.asm,matched,certified packet 126 sealed retail SHA256 39c405d06e4d4962be5614d5379d0ede677c2a0b0105cb91ea988de13bc3ad00
+?parseProductionVeterancyLevel@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E26C0,170,Code/GameEngine/Source/Common/PlayerTemplate_parseProductionVeterancyLevel_Thunk.cpp,matched,certified packet 126 sealed retail SHA256 39c405d06e4d4962be5614d5379d0ede677c2a0b0105cb91ea988de13bc3ad00
 ?parseQuotedAsciiString@INI@@SAXPAV1@PAX1PBX@Z,,0x00851F40,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseRGBAColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00853050,399,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
 ?parseRGBColor@INI@@SAXPAV1@PAX1PBX@Z,,0x00852F50,241,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,true size is 241B not 238B; scanInt inlined here
