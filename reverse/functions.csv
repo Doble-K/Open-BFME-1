@@ -3065,7 +3065,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SlavedUpdateModuleData@@UAE@XZ,,0x00126980,80,Code/masm_dumps/SlavedUpdateModuleData_destructor.asm,matched,Exact 80B; factory 0x125A60 vtable 0x108E730 slot0->0x126950->thunk 0x1EB96; AsciiString +0x4c/+0x48
 ??1SlowDeathBehaviorModuleData@@UAE@XZ,,0x002095F0,221,Code/masm_dumps/SlowDeathBehaviorModuleData_destructor.asm,matched,Exact retail MASM; ctor vtable and deleting-wrapper chain prove ownership; preserves four BFME phase-array destructors absent from ZH layout
 ??1SmartBombTargetHomingUpdate@@UAE@XZ,,0x00287410,346,Code/masm_dumps/SmartBombTargetHomingUpdate_destructor.asm,matched,Exact 346B SEH dtor Open-BFME4
-??1SmudgeManager@@UAE@XZ,,0x005D4390,239,Code/masm_dumps/_rn6___1SmudgeManager__UAE_XZ_5D4390.asm,matched,reloc-needle Open-BFME4+Grok
 ??1SmudgeSet@@UAE@XZ,,0x005D4190,89,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ??1Snapshot@@QAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,object-symbol=??1SubsystemInterface@@UAE@XZ;ICF alias converted to existing clean C++ body
 ??1Snapshot@@UAE@XZ,0x00001C80,0x0005C520,7,Code/GameEngine/Source/Common/System/Snapshot.cpp,matched,sets vtable pointer
@@ -11670,7 +11669,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@TextTypeTransition@@UAEXPAVGameWindow@@@Z,,0x005A07F0,220,Code/masm_dumps/init_TextTypeTransition_UAEXPAVGameWindow_Z_005A07F0_a2419f26.asm,matched,Certified vtable slot and constructor chain recovery; exact retail db bytes SHA256 a2419f2649de4939c78ca27f9528c905e6bb74f08cdfdd43de237dc8e943ef6f
 ?init@Transport@@QAE_NPBUTransportAddress@@@Z,,0x00684200,430,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?init@VideoPlayer@@UAEXXZ,,0x0081CB30,574,Code/masm_dumps/VideoPlayer_init.asm,matched,Exact contiguous retail MASM; VideoPlayer vtable and derived Bink init prove ownership; preserves BFME video-table construction
-?init@W3DProjectedShadowManager@@QAE_NXZ,,0x007AF630,156,Code/masm_dumps/init_W3DProjectedShadowManager_QAE_NXZ_007AF630_a1e7261b.asm,matched,Certified packet 108 exact retail db recovery sha256 a1e7261bc7da1bdbf3c7db1e609c068d2e7ffe4a1f6859a47e7f3bbbcaf1c5b6
 ?init@W3DShadowGeometry@@QAEHPAVRenderObjClass@@@Z,,0x00464830,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,tiny-locate
 ?init@W3DShadowManager@@QAE_NXZ,,0x007B751E,63,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp,matched,
 ?init@W3DView@@UAEXXZ,,0x00742700,432,Code/masm_dumps/_saG__init_W3DView__UAEXXZ_742700.asm,matched,string-anchor MASM unique Open-BFME4+Grok
@@ -13930,3 +13928,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?Initialize@AggregateDefClass@@QAEXAAVRenderObjClass@@@Z,,0x00980A60,163,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,MASM dump converted to clean C++; SUBOBJS_MATCH_LOD is bit 20 in BFME and two AggregateDefClass methods are not virtual
 ?Set_Default_Global_Render_States@DX8Wrapper@@KAXXZ,,0x009081D0,211,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,MASM dump converted to clean C++; BFME calls Set_DX8_ZBias out of line instead of the two-arg render-state helper
 ?Execute@DebugIOCon@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00891200,239,Code/Libraries/Source/debug/debug_io_con.cpp,matched,MASM dump converted to clean C++; BFME's Debug is polymorphic so operator<<(const char*) is a vtable call
+??1SmudgeManager@@UAE@XZ,,0x005D4390,248,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,MASM dump converted to clean C++; BFME does not pool-allocate Smudge; size corrected from 239 to the padding-delimited 248
+?init@W3DProjectedShadowManager@@QAE_NXZ,,0x007AF630,156,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,MASM dump converted to clean C++; 12 more bytes ahead of m_shadowCamera and no SpecialRenderInfoClass in BFME
