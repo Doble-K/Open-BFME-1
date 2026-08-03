@@ -1,15 +1,26 @@
 // cl: /DNDEBUG /MD /EHsc
-// Lift the isRepairMostImportant __emit thunk to clean C++.
+// Lift the ?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z __emit thunk to clean C++.
 //
-// Retail walks State +0x1C -> +0x10 -> +0x204 to reach the repair manager, then
-// makes three virtual calls. The filler virtuals below exist only to push the
-// three real ones onto their retail vtable offsets (+0x13C and +0x180 on the
-// manager, +0x14 on the target); none of them is ever defined or called.
-// The trailing `dec/neg/sbb/inc` in the dump is MSVC 7.1's `== 1` idiom.
+// Zero Hour's DozerAIUpdate.cpp carries this predicate, and retail keeps its
+// logic while inlining the two lookups at the top: ZH's
+// thisState->getMachineOwner() then dozer->getAIUpdateInterface() collapse into
+// the State +0x1C -> +0x10 -> +0x204 walk below. Retail's `dec eax` pins DOZER_TASK_REPAIR to 1.
+//
+// The filler virtuals only place the three real calls on their retail vtable
+// offsets (+0x13C and +0x180 on AIUpdateInterface, +0x14 on DozerAIInterface);
+// none of them is ever defined. MSVC 7.1 compiles the final equality to
+// sub/neg/sbb/inc, which is why the dump ends that way.
 
 class State;
 
-class RepairTarget
+enum DozerTask
+{
+	DOZER_TASK_BUILD = 0,
+	DOZER_TASK_REPAIR,
+	DOZER_TASK_FORTIFY
+};
+
+class DozerAIInterface
 {
 public:
 	virtual void unused00();
@@ -17,10 +28,10 @@ public:
 	virtual void unused02();
 	virtual void unused03();
 	virtual void unused04();
-	virtual int getCount();					///< vtable +0x14
+	virtual DozerTask getMostRecentCommand(void);		///< vtable +0x14
 };
 
-class RepairManager
+class AIUpdateInterface
 {
 public:
 	virtual void unused00();
@@ -102,7 +113,7 @@ public:
 	virtual void unused76();
 	virtual void unused77();
 	virtual void unused78();
-	virtual RepairTarget *getRepairTarget();	///< vtable +0x13C
+	virtual DozerAIInterface *getDozerAIInterface(void);	///< vtable +0x13C
 	virtual void unused80();
 	virtual void unused81();
 	virtual void unused82();
@@ -119,25 +130,25 @@ public:
 	virtual void unused93();
 	virtual void unused94();
 	virtual void unused95();
-	virtual bool isRepairActive();			///< vtable +0x180
+	virtual bool isIdle(void) const;					///< vtable +0x180
 };
 
-struct DozerStateLevel3
+struct DozerStateOwnerAI
 {
-	unsigned char m_pad[0x204];
-	RepairManager *m_manager;					///< this+0x204
-};
-
-struct DozerStateLevel2
-{
-	unsigned char m_pad[0x10];
-	DozerStateLevel3 *m_level3;					///< this+0x10
+	unsigned char m_unreconstructed_00[0x204];
+	AIUpdateInterface *m_ai;							///< retail this+0x204
 };
 
 struct DozerStateOwner
 {
-	unsigned char m_pad[0x1C];
-	DozerStateLevel2 *m_level2;					///< this+0x1C
+	unsigned char m_unreconstructed_00[0x10];
+	DozerStateOwnerAI *m_owner;						///< retail this+0x10
+};
+
+struct DozerStateMachineOwner
+{
+	unsigned char m_unreconstructed_00[0x1C];
+	DozerStateOwner *m_machine;						///< retail this+0x1C
 };
 
 class DozerPrimaryStateMachine
@@ -147,19 +158,19 @@ public:
 };
 
 // ?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z
-bool __cdecl DozerPrimaryStateMachine::isRepairMostImportant(State *state, void *)
+bool __cdecl DozerPrimaryStateMachine::isRepairMostImportant(State *thisState, void *)
 {
-	RepairManager *manager =
-		((DozerStateOwner *)state)->m_level2->m_level3->m_manager;
-	if (manager == 0)
+	AIUpdateInterface *ai =
+		((DozerStateMachineOwner *)thisState)->m_machine->m_owner->m_ai;
+	if (ai == 0)
 		return false;
 
-	RepairTarget *target = manager->getRepairTarget();
-	if (target == 0)
+	DozerAIInterface *dozerAI = ai->getDozerAIInterface();
+	if (dozerAI == 0)
 		return false;
 
-	if (!manager->isRepairActive())
+	if (!ai->isIdle())
 		return false;
 
-	return target->getCount() == 1;
+	return dozerAI->getMostRecentCommand() == DOZER_TASK_REPAIR;
 }
