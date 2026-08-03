@@ -11603,7 +11603,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPowerPlantUpdateInterface@BehaviorModule@@UAEPAVPowerPlantUpdateInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getPreAttackFinishedFrame@Weapon@@QBEIXZ,,0x00674250,4,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,icf-owner=?getRequestedPlayerID@BFMENetRequestPlayerLeaveCommandMsg@@QAEHXZ
 ?getPreferredColor@CustomMatchPreferences@@QAEHXZ,,0x000AC2A0,111,Code/GameEngine/Source/Common/promoted__getPreferredColor_CustomMatchPreferences_QAEHXZ_000AC2A0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 111B
-?getPreferredFaction@CustomMatchPreferences@@QAEHXZ,,0x000AC3B0,160,Code/masm_dumps/CustomMatchPreferences_getPreferredFaction.asm,matched,Ghidra-bound BFME preferred-faction getter
+?getPreferredFaction@CustomMatchPreferences@@QAEHXZ,,0x000AC3B0,160,Code/GameEngine/Source/Common/CustomMatchPreferences_getPreferredFaction_Thunk.cpp,matched,Open-BFME5 lift 160B retail method MASM to standalone C++ thunk
 ?getPreferredMap@CustomMatchPreferences@@QAE?AVAsciiString@@XZ,,0x000AC690,377,Code/masm_dumps/CustomMatchPreferences_getPreferredMap.asm,matched,Ghidra-bound BFME preferred-map getter; true body after DisallowNonAsian cluster
 ?getProcessAnimate@AnimateWindowManager@@AAEPAVProcessAnimateWindow@@W4AnimTypes@@@Z,,0x0045CDC0,70,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ?getProductionCostChangePercent@Player@@QBEMVAsciiString@@@Z,,0x000D47F0,91,Code/GameEngine/Source/Common/RTS/PlayerProductionCostChangePercentThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM body; retail cost map this+0x1CC
@@ -11661,7 +11661,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getRequiredScience@SpecialPowerModule@@UBE?AW4ScienceType@@XZ,,0x00268A30,33,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule.cpp,matched,
 ?getRequiredScience@SpecialPowerTemplate@@QBE?AW4ScienceType@@XZ,,0x000EB4C0,27,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?getRequiresList@ProductionPrerequisite@@QBE?AVUnicodeString@@PBVPlayer@@@Z,,0x000E4BE0,1037,Code/masm_dumps/_str__getRequiresList_ProductionPrerequisite_QBE_AVUnicodeSt_E4BE0.asm,matched,
-?getResolution@OptionPreferences@@QAEXPAH0@Z,,0x00091930,129,Code/masm_dumps/_sa13__getResolution_OptionPreferences__QAEXPAH0_Z_91930.asm,matched,multi-xref Open-BFME4+Grok MusicVolume
+?getResolution@OptionPreferences@@QAEXPAH0@Z,,0x00091930,129,Code/GameEngine/Source/Common/OptionPreferences_getResolution_Thunk.cpp,matched,Open-BFME5 lift 129B retail method MASM to standalone C++ thunk
 ?getResponse@GameResultsQueue@@UAE_NAAVGameResultsResponse@@@Z,,0x00642510,237,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
 ?getResponse@GameSpyBuddyMessageQueue@@UAE_NAAVBuddyResponse@@@Z,,0x0063C840,167,Code/masm_dumps/_rn7__getResponse_GameSpyBuddyMessageQueue__UAE_NAAVBuddyResponse___Z_63C840.asm,matched,reloc-needle Open-BFME4+Grok
 ?getResponse@GameSpyPeerMessageQueue@@UAE_NAAVPeerResponse@@@Z,,0x0064C910,164,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
@@ -13407,13 +13407,13 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setIsActive@GameEngine@@UAEX_N@Z,,0x002ED3C0,10,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ?setIsInVehicle@HijackerUpdate@@QAEX_N@Z,,0x00295AB0,10,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToHijackedVehicleCrateCollide.cpp,matched,
 ?setIsLogicalAudio@AudioEventRTS@@QAEX_N@Z,,0x000B2330,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,
-?setLANIPAddress@OptionPreferences@@QAEXVAsciiString@@@Z,,0x00092350,126,Code/masm_dumps/setLANIPAddress_OptionPreferences_92350.asm,matched,Certified packet 295 exact retail bytes SHA256 9afc0f7d0ab28d88a2f0c5a163522b02e5f16dced10180e174a718ea6b4868a1
+?setLANIPAddress@OptionPreferences@@QAEXVAsciiString@@@Z,,0x00092350,126,Code/GameEngine/Source/Common/OptionPreferences_setLANIPAddress_Thunk.cpp,matched,Open-BFME5 lift 126B retail method MASM to standalone C++ thunk
 ?setLOD@TerrainTextureClass@@QAEXH@Z,,0x006D4660,34,Code/GameEngineDevice/Source/W3DDevice/GameClient/TerrainTex.cpp,matched,
 ?setLastCommandSource@AIUpdateInterface@@IAEXW4CommandSourceType@@@Z,,0x001B49AE,10,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,
 ?setLastFrameInGame@GameSlot@@QAEXI@Z,,0x001BD780,10,Code/GameEngine/Source/GameLogic/ScriptEngine/VictoryConditions.cpp,matched,
 ?setLastHeard@LANGameInfo@@QAEXI@Z,,0x0020CC20,13,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ?setLastHeard@LANGameSlot@@QAEXI@Z,,0x000B23C0,10,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
-?setLastLadder@CustomMatchPreferences@@QAEXABVAsciiString@@G@Z,,0x000AD7A0,223,Code/masm_dumps/CustomMatchPreferences_setLastLadder.asm,matched,Ghidra ENTRY 223B LastLadderAddr/Port format+map assign MASM
+?setLastLadder@CustomMatchPreferences@@QAEXABVAsciiString@@G@Z,,0x000AD7A0,223,Code/GameEngine/Source/Common/CustomMatchPreferences_setLastLadder_Thunk.cpp,matched,Open-BFME5 lift 223B retail method MASM to standalone C++ thunk
 ?setLastLadder@QuickMatchPreferences@@QAEXABVAsciiString@@G@Z,,0x00029B36,5,Code/GameEngine/Source/Common/RTS/QuickMatchPreferencesSetLastLadderThunk.cpp,matched,5-byte incremental-link QuickMatchPreferences member thunk converted to focused C++ source
 ?setLateralSpeed@BridgeScaffoldBehavior@@UAEXM@Z,,0x00131DB0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setLayer@Bridge@@QAEXW4PathfindLayerEnum@@@Z,,0x0045BF90,13,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
@@ -13447,7 +13447,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setMaxDisconnects@QuickMatchPreferences@@QAEXH@Z,,0x000AD260,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setMaxDisconnects_Thunk.cpp,matched,multi-xref Open-BFME4+Grok MaxDisconnects
 ?setMaxLift@Locomotor@@QAEXM@Z,,0x00674240,10,Code/GameEngine/Source/GameLogic/Object/Behavior/JetSlowDeathBehavior.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
 ?setMaxMessagesPerUpdate@GameSpyInfo@@UAEXH@Z,,0x000FB8A0,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
-?setMaxPing@QuickMatchPreferences@@QAEXH@Z,,0x000AD6C0,169,Code/GameEngine/Source/Common/UserPreferences_setMaxPing.asm,matched,sealed packet exact 169B MASM sha256 90952915d280e24a9d2af1c4bcf59f925332b44430a64828c9ce74a49b8df221
+?setMaxPing@QuickMatchPreferences@@QAEXH@Z,,0x000AD6C0,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setMaxPing_Thunk.cpp,matched,Open-BFME5 lift 169B retail method MASM to standalone C++ thunk
 ?setMaxPoints@QuickMatchPreferences@@QAEXH@Z,,0x000AD340,169,Code/GameEngine/Source/Common/QuickMatchPreferences_setMaxPoints_Thunk.cpp,matched,Exact retail MASM; MaxPoints string-anchor; sibling setMaxDisconnects/setWaitTime/setNumPlayers
 ?setMaxShotCount@Weapon@@QAEXH@Z,,0x00087470,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setMaxTurnRate@Locomotor@@QAEXM@Z,,0x000C8DB0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/JetSlowDeathBehavior.cpp,matched,
@@ -14046,7 +14046,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?write@MemoryReadFile@@UAEHPBXH@Z,,0x009CB0E0,6,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?write@MemoryWriteFile@@UAEHPBXH@Z,,0x009CB240,135,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?write@SkirmishPreferences@@,,0x004559A0,830,Code/masm_dumps/_str3__write_SkirmishPreferences__4559A0.asm,matched,
-?write@UserPreferences@@UAE_NXZ,,0x000A9F60,162,Code/GameEngine/Source/Common/UserPreferences_write.asm,matched,exact 162B via MASM
+?write@UserPreferences@@UAE_NXZ,,0x000A9F60,162,Code/GameEngine/Source/Common/UserPreferences_write_Thunk.cpp,matched,Open-BFME5 lift 162B retail method MASM to standalone C++ thunk
 ?writeArrayOfBytes@DataChunkOutput@@QAEXPADH@Z,,0x001025A0,28,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?writeByte@DataChunkOutput@@QAEXD@Z,,0x00102580,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?writeCacheINI@MapCache@@AAEX_N@Z,,0x0000E2B4,5,Code/GameEngine/Source/Common/RTS/MapCacheWriteCacheINIThunk.cpp,matched,5-byte incremental-link MapCache private member thunk converted to focused C++ source
