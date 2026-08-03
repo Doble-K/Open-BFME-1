@@ -8936,7 +8936,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addSmudgeSet@SmudgeManager@@QAEPAUSmudgeSet@@XZ,,0x005D4240,129,Code/GameEngine/Source/Common/SmudgeManager_addSmudgeSet_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?addSnapshotBlock@GameState@@AAEXVAsciiString@@PAVSnapshot@@W4SnapshotType@@@Z,,0x003BDB80,155,Code/GameEngine/Source/Common/GameState_addSnapshotBlock_Thunk.cpp,matched,Open-BFME5 lift 155B retail MASM to standalone C++ thunk
 ?addStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z,,0x00635120,206,Code/GameEngine/Source/Common/GameSpyInfo_addStagingRoom_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
-?addSuperweapon@InGameUI@@UAEXHABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x0044C970,338,Code/masm_dumps/_rn1__addSuperweapon_InGameUI__UAEXHABVAsciiString__W4ObjectID__PBVSpecialP_44C970.asm,matched,reloc-needle Open-BFME4+Grok
+?addSuperweapon@InGameUI@@UAEXHABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x0044C970,338,Code/GameEngine/Source/Common/InGameUI_addSuperweapon_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?addTeam@SidesList@@QAEXPBVDict@@@Z,,0x00C2787D,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining aliases retain shared target
 ?addTeamPrototypeToList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000F3DA0,122,Code/GameEngine/Source/Common/TeamFactory_addTeamPrototypeToList_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -12215,7 +12215,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isZero3D@@YA_NABUCoord3D@@@Z,,0x005F85F0,66,Code/GameEngine/Source/GameLogic/Object/Update/PhysicsUpdate.cpp,matched,
 ?iterateObjects@Player@@QBEXP6AXPAVObject@@PAX@Z1@Z,,0x0002F1CB,5,Code/GameEngine/Source/Common/RTS/PlayerRadarAndIterationThunks.cpp,matched,5-byte incremental-link Player const member thunk converted to focused C++ source
 ?joinBestGroupRoom@GameSpyInfo@@UAEXXZ,,0x00634EF2,433,Code/masm_dumps/_joinBestGroupRoom_GameSpyInfo__UAEXXZ.asm,matched,
-?joinGame@@YAXVAsciiString@@@Z,,0x004D7580,359,Code/masm_dumps/joinGame.asm,matched,exact 359B MASM; true start 0x4D7580 (queue off-by-one 0x4D7581); GameSpyInfo vtbl/layout drift blocks C++
+?joinGame@@YAXVAsciiString@@@Z,,0x004D7580,359,Code/GameEngine/Source/Common/joinGame_Thunk.cpp,matched,exact 359B MASM; true start 0x4D7580 (queue off-by-one 0x4D7581); GameSpyInfo vtbl/layout drift blocks C++
 ?key@StaticNameKey@@QBE?AW4NameKeyType@@XZ,,0x00090290,33,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,
 ?keyToFunc@FunctionLexicon@@IAEPAXW4NameKeyType@@PAUTableEntry@1@@Z,,0x00105240,42,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,
 ?keyToName@NameKeyGenerator@@QAE?AVAsciiString@@W4NameKeyType@@@Z,,0x0003EC7A,5,Code/GameEngine/Source/Common/RTS/NameKeyGeneratorKeyToNameThunk.cpp,matched,5-byte incremental-link NameKeyGenerator member thunk converted to focused C++ source
@@ -12349,7 +12349,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?newModule@ModuleFactory@@QAEPAVModule@@PAVThing@@ABVAsciiString@@PBVModuleData@@W4ModuleType@@@Z,,0x00127E00,96,Code/GameEngine/Source/Common/ModuleFactory_newModule_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?newOverride@WeaponStore@@IAEPAVWeaponTemplate@@PAV2@@Z,,0x004A3710,55,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,SUSPECT: 0x004A3710 is the body ControlBar::newCommandButtonOverride reaches through thunk 0x00027CC3 from the now-matched CommandButton block parser and it disassembles to 146 bytes not 55. A WeaponStore method would not sit inside ControlBar code nor be called with TheControlBar in ecx
 ?newRoad@TerrainRoadCollection@@QAEPAVTerrainRoadType@@VAsciiString@@@Z,,0x006026F0,256,Code/GameEngine/Source/Common/TerrainRoadCollection_newRoad_Thunk.cpp,matched,Exact 256B Open-BFME4
-?newShellMenuScheme@ShellMenuSchemeManager@@QAEPAVShellMenuScheme@@VAsciiString@@@Z,,0x005815E0,341,Code/masm_dumps/newShellMenuScheme_ShellMenuSchemeManager_QAEPAVShellMenuScheme_VAsciiString_Z_5815E0.asm,matched,Certified packet 17 Ghidra ENTRY boundary and matched INI caller thunk; exact retail db recovery
+?newShellMenuScheme@ShellMenuSchemeManager@@QAEPAVShellMenuScheme@@VAsciiString@@@Z,,0x005815E0,341,Code/GameEngine/Source/Common/ShellMenuSchemeManager_newShellMenuScheme_Thunk.cpp,matched,Certified packet 17 Ghidra ENTRY boundary and matched INI caller thunk; exact retail db recovery
 ?newTask@DozerAIUpdate@@UAEXW4DozerTask@@PAVObject@@@Z,,0x002B8A00,826,Code/masm_dumps/newTask_DozerAIUpdate_UAEXW4DozerTask_PAVObject_Z_2B8A00.asm,matched,Certified packet 7 ctor-vtable-thunk identity; exact retail byte dump SHA256 7fb953ce247e30885cb2697f9add5bee2932db814231a21ca3e9b1a68dcfd996
 ?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z,,0x005BB050,106,Code/GameEngine/Source/GameClient/System/Anim2DCollectionNewTemplateThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM constructor wall
 ?newTerrain@TerrainTypeCollection@@,,0x000A8680,204,Code/masm_dumps/_sa6__newTerrain_TerrainTypeCollection___A8680.asm,matched,Exact 204B Open-BFME4+Grok
