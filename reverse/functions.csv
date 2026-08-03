@@ -3253,7 +3253,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ToppleUpdateModuleData@@UAE@XZ,,0x002B15B0,67,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member (PropagandaTower pattern)
 ??1TransitionDamageFXModuleData@@UAE@XZ,,0x00253500,197,Code/GameEngine/Source/Common/TransitionDamageFXModuleDataDestructorThunk.cpp,matched,Exact 197B SEH dtor Open-BFME5
 ??1TranslatorData@MessageStream@@QAE@XZ,,0x0008A260,15,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
-??1TransportAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/masm_dumps/TransportAIUpdate_destructor.asm,matched,Exact 2099B SEH dtor Open-BFME4
+??1TransportAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/GameEngine/Source/Common/TransportAIUpdateDestructorThunk.cpp,matched,Exact 2099B SEH dtor Open-BFME4
 ??1TransportAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/TransportAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
 ??1TransportContainModuleData@@UAE@XZ,,0x0021D560,79,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1TunnelContainModuleData@@UAE@XZ,,0x0024B660,95,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
