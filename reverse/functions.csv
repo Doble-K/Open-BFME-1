@@ -7601,7 +7601,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?PopupReplayInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004DEFE0,93,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?PopupReplaySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004DEB70,737,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay_System.asm,matched,Exact MASM: C++ only temp-slot mov-esp order at saveReplay by-value sites
 ?PopupReplayUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004DE180,90,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay.cpp,matched,C++ local vtable shim preserves BFME virtual WindowLayout::hide dispatch
-?PostStaticInit@Debug@@CAXXZ,0x0088AF60,0x0088AF60,841,Code/masm_dumps/__PostStaticInit_Debug__CAXXZ_88AF60.asm,matched,
 ?Power@VectorProcessorClass@@SAXPAM0MH@Z,,0x00B00190,56,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?PreStaticInit@Debug@@CAPAV1@XZ,0x00889500,0x00889500,114,Code/GameEngine/Source/Common/debug.cpp,matched,Debug PreStaticInit singleton allocator
 ?Pre_Render_Update@LightEnvironmentClass@@QAEXABVMatrix3D@@@Z,,0x0094BB40,245,Code/Libraries/Source/WWVegas/WW3D2/LightEnvironmentClass_Pre_Render_Update_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -34598,4 +34597,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?isSandbox@GameInfo@@QAE_NXZ,,0x00621600,843,Code/GameEngine/Source/GameNetwork/GameInfoIsSandboxThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?flush@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0072FEB0,892,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracksFlushThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Reset_Geometry@MeshGeometryClass@@QAEXHH@Z,,0x009268C0,800,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryClassResetGeometryThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?PostStaticInit@Debug@@CAXXZ,0x0088AF60,0x0088AF60,841,Code/Libraries/Source/WWVegas/WWDebug/DebugPostStaticInitThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
