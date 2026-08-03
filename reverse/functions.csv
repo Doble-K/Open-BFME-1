@@ -10220,7 +10220,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?flip@?$bitset@$0L@@_STL@@QAEAAV12@XZ,,0x00104710,15,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,
 ?flipTheRoad@W3DRoadBuffer@@IAEXPAVRoadSegment@@@Z,,0x00707F30,205,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?floor@@YAMM@Z,,0x00069750,20,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
-?flush@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0072FEB0,892,Code/masm_dumps/_flush_TerrainTracksRenderObjClassSystem__QAEXXZ_72FEB0.asm,matched,
 ?flush@WaterTracksRenderSystem@@QAEXAAVRenderInfoClass@@@Z,,0x007AD620,406,Code/GameEngineDevice/Source/W3DDevice/GameClient/WaterTracksRenderSystem_flush_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?flushTranslucentObjects@RTS3DScene@@IAEXAAVRenderInfoClass@@@Z,,0x00715340,392,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS3DScene_flushTranslucentObjects_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?fmod@@YAMMM@Z,,0x00097070,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,
@@ -34598,4 +34597,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?friend_newModuleData@InternetHackContain@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,Open-BFME5 exact C++ ICF alias; corrected one-byte int3 boundary; retail size 0x16C and constructor pin 0x30945
 ?setControlBarSchemeByPlayer@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F8B0,790,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSetControlBarSchemeByPlayerThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?isSandbox@GameInfo@@QAE_NXZ,,0x00621600,843,Code/GameEngine/Source/GameNetwork/GameInfoIsSandboxThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?flush@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0072FEB0,892,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracksFlushThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
