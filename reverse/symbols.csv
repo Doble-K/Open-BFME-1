@@ -4212,3 +4212,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?hideQuitMenu@WindowManager@@QAEXXZ,0x000290D2,HideQuitMenu tail-call target
 ?g_theWindowManager@@3PAVWindowManager@@A,0x012F19E8,HideQuitMenu WindowManager global
 ?g_quitMenuLayout@@3PAXA,0x012F4AD4,HideQuitMenu layout global
+??0UpgradeModuleDataSub@@QAE@XZ,0x0000F0A6,UpgradeModuleData subobject ctor ILT used by upgrade factories

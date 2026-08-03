@@ -1,75 +1,51 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
 class INI;
 class ModuleData;
 
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+// Retail constructs this at this+8 after installing the outer vtable.
+class UpgradeModuleDataSub
+{
+public:
+	UpgradeModuleDataSub();
+
+private:
+	char opaque[0x68];
+};
+
+class StealthUpgradeModuleData
+{
+public:
+	StealthUpgradeModuleData() {}
+	virtual void dummy();
+
+private:
+	int m_pad;
+	UpgradeModuleDataSub m_sub;
+};
+
+class INI
+{
+public:
+	void initFromINI(void *what, const void *parseTable);
+};
+
+extern "C" char StealthUpgradeFieldParse;
+
 class StealthUpgrade
 {
 public:
-    static ModuleData *friend_newModuleData(INI *ini);
+	static ModuleData *friend_newModuleData(INI *ini);
 };
 
 // ?friend_newModuleData@StealthUpgrade@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *StealthUpgrade::friend_newModuleData(INI *)
+ModuleData *StealthUpgrade::friend_newModuleData(INI *ini)
 {
-    __asm {
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x70
-        __emit 0xe8
-        __emit 0x28
-        __emit 0x60
-        __emit 0x75
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xd8
-        __emit 0xf1
-        __emit 0x08
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x87
-        __emit 0x31
-        __emit 0xee
-        __emit 0xff
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x68
-        __emit 0x98
-        __emit 0x07
-        __emit 0x42
-        __emit 0x00
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xfa
-        __emit 0x61
-        __emit 0x72
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc3
-    }
+	StealthUpgradeModuleData *data = new StealthUpgradeModuleData;
+	if (ini)
+		ini->initFromINI(data, &StealthUpgradeFieldParse);
+	return (ModuleData *)data;
 }
