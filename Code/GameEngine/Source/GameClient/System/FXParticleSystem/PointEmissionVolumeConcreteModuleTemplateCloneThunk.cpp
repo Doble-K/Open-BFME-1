@@ -1,59 +1,41 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: PointEmissionVolume ConcreteModuleTemplate::clone
 
 namespace FXParticleSystem
 {
+
 struct PointEmissionVolumeModuleTag
 {
 };
 
 class PointEmissionVolumeModuleTemplate
 {
+public:
+	virtual ~PointEmissionVolumeModuleTemplate();
 };
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
 
 template <class Tag>
 class ConcreteModuleTemplate;
 
 template <>
-class ConcreteModuleTemplate<PointEmissionVolumeModuleTag>
+class ConcreteModuleTemplate<PointEmissionVolumeModuleTag> : public PointEmissionVolumeModuleTemplate
 {
 public:
-    virtual PointEmissionVolumeModuleTemplate *clone() const;
+	ConcreteModuleTemplate(const ConcreteModuleTemplate &);
+	virtual PointEmissionVolumeModuleTemplate *clone() const;
+
+private:
+	unsigned char m_pad[0xc];
 };
 
-__declspec(naked) PointEmissionVolumeModuleTemplate *ConcreteModuleTemplate<PointEmissionVolumeModuleTag>::clone() const
+// ?clone@?@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@UBEPAVPointEmissionVolumeModuleTemplate@2@XZ
+PointEmissionVolumeModuleTemplate *ConcreteModuleTemplate<PointEmissionVolumeModuleTag>::clone() const
 {
-    __asm {
-        _emit 056h
-        _emit 06Ah
-        _emit 010h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 0D6h
-        _emit 050h
-        _emit 02Ah
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 074h
-        _emit 00Ah
-        _emit 056h
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 03Ah
-        _emit 0C3h
-        _emit 0A5h
-        _emit 0FFh
-        _emit 05Eh
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 05Eh
-        _emit 0C3h
-    }
+	return new ConcreteModuleTemplate<PointEmissionVolumeModuleTag>(*this);
 }
+
 }
