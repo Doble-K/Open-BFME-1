@@ -12563,7 +12563,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseControlBarSchemeDefinition@INI@@SAXPAV1@@Z,,0x000B8070,171,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,the scheme manager hangs off TheControlBar at +0x30 and is null-checked so a scheme block loaded before the control bar exists is skipped
 ?parseCoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x008533E0,60,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseCoord3D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853380,84,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?parseCrateCreationEntry@CrateTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x00379F80,258,Code/masm_dumps/parseCrateCreationEntry_CrateTemplate_00379F80_packet305.asm,matched,Certified packet 305 sealed retail body
+?parseCrateCreationEntry@CrateTemplate@@SAXPAVINI@@PAX1PBX@Z,,0x00379F80,258,Code/GameEngine/Source/Common/CrateTemplate_parseCrateCreationEntryMethodThunk.cpp,matched,Certified packet 305 sealed retail body
 ?parseCrateTemplateDefinition@CrateSystem@@SAXPAVINI@@@Z,,0x0037A490,232,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,find-then-create on TheCrateSystem; two load types take the override branch not one and retail loads m_loadType once there and compares it twice
 ?parseCredits@INI@@SAXPAV1@@Z,,0x0040BFC0,25,Code/GameEngine/Source/GameClient/Credits.cpp,matched,
 ?parseDamageFX@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAFD0,80,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
