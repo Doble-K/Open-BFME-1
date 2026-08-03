@@ -1,105 +1,67 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump _STL::__node_alloc::_M_deallocate to C++ thunk.
-// Retail mangling uses private static (CAX).
+// cl: /DNDEBUG /MD /EHsc /Og-
+// Open-BFME5: lift _STL::__node_alloc::_M_deallocate __emit thunk to clean
+// C++, mirroring the vendored stlport source: RAII _Node_Alloc_Lock whose
+// ctor/dtor guard acquire/release behind `if (__threads)` (emitted as
+// constant tests), free-list link updates in between.
 
 namespace _STL
 {
-template <bool thr, int inst>
+
+class NodeAllocMutex
+{
+public:
+    void _M_acquire_lock();
+    void _M_release_lock();
+};
+
+template <bool __threads, int __inst>
+class _Node_Alloc_Lock
+{
+    int m_dummy;
+    int m_dummy2;
+
+public:
+    _Node_Alloc_Lock()
+    {
+        if (__threads) {
+            _S_lock._M_acquire_lock();
+        }
+    }
+    ~_Node_Alloc_Lock()
+    {
+        if (__threads) {
+            _S_lock._M_release_lock();
+        }
+    }
+
+    static NodeAllocMutex _S_lock;
+};
+
+template <bool __threads, int __inst>
+NodeAllocMutex _Node_Alloc_Lock<__threads, __inst>::_S_lock;
+
+template <bool __threads, int __inst>
 class __node_alloc
 {
-	static void _M_deallocate(void *p, unsigned int n);
+    struct _Obj
+    {
+        _Obj *_M_free_list_link;
+    };
+
+    static _Obj *_S_free_list[0x10];
+
+    static void _M_deallocate(void *p, unsigned int n);
 };
-}
 
-// ?_M_deallocate@?$__node_alloc@$00$0A@@_STL@@CAXPAXI@Z
-__declspec(naked) void _STL::__node_alloc<true, 0>::_M_deallocate(void *, unsigned int)
+template <bool __threads, int __inst>
+void __node_alloc<__threads, __inst>::_M_deallocate(void *p, unsigned int n)
 {
-	__asm {
-		__emit 0x55
-		__emit 0x8b
-		__emit 0xec
-		__emit 0x83
-		__emit 0xec
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x45
-		__emit 0x0c
-		__emit 0x83
-		__emit 0xe8
-		__emit 0x01
-		__emit 0xc1
-		__emit 0xe8
-		__emit 0x03
-		__emit 0x8d
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xc0
-		__emit 0xb1
-		__emit 0x30
-		__emit 0x01
-		__emit 0x89
-		__emit 0x4d
-		__emit 0xfc
-		__emit 0xba
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x85
-		__emit 0xd2
-		__emit 0x74
-		__emit 0x0a
-		__emit 0xb9
-		__emit 0x54
-		__emit 0xb2
-		__emit 0x30
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xf4
-		__emit 0xf3
-		__emit 0xff
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x45
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x4d
-		__emit 0xfc
-		__emit 0x8b
-		__emit 0x11
-		__emit 0x89
-		__emit 0x10
-		__emit 0x8b
-		__emit 0x45
-		__emit 0xfc
-		__emit 0x8b
-		__emit 0x4d
-		__emit 0x08
-		__emit 0x89
-		__emit 0x08
-		__emit 0xba
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x85
-		__emit 0xd2
-		__emit 0x74
-		__emit 0x0a
-		__emit 0xb9
-		__emit 0x54
-		__emit 0xb2
-		__emit 0x30
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x0f
-		__emit 0xc7
-		__emit 0xff
-		__emit 0xff
-		__emit 0x8b
-		__emit 0xe5
-		__emit 0x5d
-		__emit 0xc3
-	}
+    _Obj * volatile *my_free_list = _S_free_list + ((n - 1) >> 3);
+    _Node_Alloc_Lock<__threads, __inst> lock_instance;
+    ((_Obj *)p)->_M_free_list_link = *my_free_list;
+    *my_free_list = (_Obj *)p;
 }
 
+template void __node_alloc<true, 0>::_M_deallocate(void *, unsigned int);
+
+}
