@@ -2085,7 +2085,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RawFileClass@@QAE@XZ,,0x009E6990,108,Code/Libraries/Source/WWVegas/WWLib/rawfile.cpp,matched,installs 0x01145548 whose slots are 14 matched @RawFileClass@@ methods incl ??_GRawFileClass@@UAEPAXI@Z - was recorded as ??0RAMFile@@QAE@XZ which belongs to the File subclass at 0x009D1980
 ??0RayCollisionTestClass@@QAE@ABV0@ABVMatrix3D@@@Z,,0x0092C8B0,60,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ??0RayCollisionTestClass@@QAE@ABVLineSegClass@@PAUCastResultStruct@@H_N2@Z,,0x00609A20,120,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
-??0RebuildHoleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F8B80,107,Code/masm_dumps/RebuildHoleBehavior_constructor.asm,matched,Exact 107B ICF alias Open-BFME4
+??0RebuildHoleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F8B80,107,Code/GameEngine/Source/GameLogic/Object/Behavior/RebuildHoleBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias constructor
 ??0RebuildHoleBehaviorModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0RebuildHoleExposeDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024FC20,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageCommandCenterCrateCollide.cpp,matched,object-symbol=??0SabotageCommandCenterCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z;C++ alias
 ??0RebuildHoleExposeDieModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
