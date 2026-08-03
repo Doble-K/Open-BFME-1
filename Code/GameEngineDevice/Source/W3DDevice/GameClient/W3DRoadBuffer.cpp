@@ -1541,9 +1541,11 @@ static Bool warnSegments = true;
 //=============================================================================
 /** Loads the roads from the map objects. */
 //=============================================================================
-// ?addMapObject@W3DRoadBuffer@@IAEXPAVRoadSegment@@_N@Z present-unmatched
 void W3DRoadBuffer::addMapObject(RoadSegment *pRoad, Bool updateTheCounts)
 {
+	// BFME added a guard vs ZH: refuses to add before init (proven by target
+	// byte read of this+0xc, m_initialized's proven offset).
+	if (!m_initialized) return;
 
 	RoadSegment cur = *pRoad;
 	Vector2 loc1, loc2;
