@@ -1,48 +1,41 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: MapObject::setWaypointName
+// Retail: Dict global setAsciiString(name) then assign result into this+0x24.
 
 class AsciiString
 {
+public:
+	unsigned int m_data;
+};
+
+class Dict
+{
+public:
+	AsciiString *setAsciiString(AsciiString name);
+};
+
+extern Dict g_theWaypointNameDict;
+
+class AsciiStringField
+{
+public:
+	void set(AsciiString *src);
 };
 
 class MapObject
 {
 public:
-    void setWaypointName(AsciiString);
+	void setWaypointName(AsciiString name);
+
+private:
+	char m_pad[0x24];
+	AsciiStringField m_name;
 };
 
-__declspec(naked) void MapObject::setWaypointName(AsciiString)
+// ?setWaypointName@MapObject@@QAEXVAsciiString@@@Z
+void MapObject::setWaypointName(AsciiString name)
 {
-    __asm {
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 004h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 050h
-        _emit 0B9h
-        _emit 0A8h
-        _emit 077h
-        _emit 02Ah
-        _emit 001h
-        _emit 0E8h
-        _emit 0A2h
-        _emit 014h
-        _emit 0F8h
-        _emit 0FFh
-        _emit 050h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 024h
-        _emit 0E8h
-        _emit 025h
-        _emit 031h
-        _emit 0FAh
-        _emit 0FFh
-        _emit 05Eh
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+	AsciiString *result = g_theWaypointNameDict.setAsciiString(name);
+	m_name.set(result);
 }

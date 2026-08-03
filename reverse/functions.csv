@@ -13652,7 +13652,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setWaterTransform@W3DTerrainVisual@@UAEXPBVMatrix3D@@@Z,,0x00730990,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?setWaterTransform@W3DTerrainVisual@@UAEXPBVWaterHandle@@MMMM@Z,,0x00730A20,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?setWaypointID@MapObject@@QAEXH@Z,,0x00087E20,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
-?setWaypointName@MapObject@@QAEXVAsciiString@@@Z,,0x00087E50,31,Code/GameEngine/Source/GameClient/MapObjectSetWaypointNameThunk.cpp,matched,Open-BFME5 exact C++ setter thunk
+?setWaypointName@MapObject@@QAEXVAsciiString@@@Z,,0x00087E50,31,Code/GameEngine/Source/GameClient/MapObjectSetWaypointNameThunk.cpp,matched,Open-BFME5 clean C++ Dict setAsciiString then field assign at +0x24
 ?setWhiner@BuildListInfo@@QAEX_N@Z,,0x0045A9A0,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?setWidth@GameLogic@@QAEXM@Z,,0x00360640,10,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?setWindowText@@YAXPAVGameWindow@@VAsciiString@@@Z,,0x004864E0,416,Code/masm_dumps/GameWindowManagerScript_setWindowText.asm,matched,Exact 416B MASM; true body 0x4864E0 (queue 0x4864C7 int3 pad); BFME AsciiString isEmpty/str blocks ZH C++
