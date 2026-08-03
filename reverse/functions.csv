@@ -4283,7 +4283,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??4WeightInfoStruct@NamedPivotMapClass@@QAEAAU01@ABU01@@Z,,0x009734B0,49,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??4WideStringClass@@QAEABV0@PBG@Z,,0x009DCD60,77,Code/Libraries/Source/WWVegas/WWLib/widestring.cpp,matched,
 ??4WindModuleInfo@FXParticleSystem@@QAEAAV01@ABV01@@Z,0x00017F53,0x5bda10,111,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??4WindowLayoutInfo@@QAEAAV0@ABV0@@Z,,0x00488AF0,115,Code/masm_dumps/WindowLayoutInfo_assignment_00488AF0.asm,matched,Certified packet 69 exact retail db recovery sha256 ceece250f7157e852936d36adbb303a63edecf47e73520ce4362469456cd9c50
+??4WindowLayoutInfo@@QAEAAV0@ABV0@@Z,,0x00488AF0,115,Code/GameEngine/Source/GameClient/GUI/WindowLayoutInfoAssignmentThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??4_ArcInfoStruct@VehicleCurveClass@@QAEAAU01@ABU01@@Z,,0x006098D0,85,Code/Libraries/Source/WWVegas/WWMath/vehiclecurve.cpp,matched,
 ??4_Bit_reference@_STL@@QAEAAU01@ABU01@@Z,,0x002CA950,43,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ??4_Bit_reference@_STL@@QAEAAU01@_N@Z,,0x002CA920,36,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
@@ -6848,7 +6848,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Texcoord_Array@MeshLoadContextClass@@AAEPAUW3dTexCoordStruct@@XZ,,0x0096CAA0,33,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Get_TextBlock@INIClass@@QBEHPBDPADH@Z,,0x009E57C0,192,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Get_Texture@MeshModelClass@@QBEPAVTextureClass@@HHH@Z,,0x006DB460,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
-?Get_Texture@ParticleBufferClass@@QBE?AVTextureHandleClass@1@XZ,,0x00988F60,110,Code/masm_dumps/__Get_Texture_ParticleBufferClass__QBE_AVTextureHan_988F60.asm,matched,
+?Get_Texture@ParticleBufferClass@@QBE?AVTextureHandleClass@1@XZ,,0x00988F60,110,Code/Libraries/Source/WWVegas/WW3D2/ParticleBufferClassGetTextureThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Get_Texture@SegLineRendererClass@@QBEPAVTextureClass@@XZ,,0x00973650,12,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,icf-owner=?Get_HAnim@HAnimComboDataClass@@QBEPAVHAnimClass@@XZ
 ?Get_Texture@StreakRendererClass@@QBEPAVTextureClass@@XZ,,0x00973650,12,Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp,matched,
 ?Get_Texture_Array@MeshMatDescClass@@QAEPAVTexBufferClass@@HH_N@Z,,0x0092BE50,246,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
@@ -13908,7 +13908,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?updateLoadProgress@GameLogic@@QAEXH@Z,,0x000DB020,3751,Code/masm_dumps/_sa16__updateLoadProgress_GameLogic__QAEXH_Z_DB020.asm,matched,sa16 Open-BFME4+Grok ReplayObserver
 ?updateMenuActions@@YAXXZ,,0x004DEF10,157,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp,matched,
 ?updateMips@TileData@@QAEXXZ,,0x006D6900,105,Code/GameEngineDevice/Source/W3DDevice/GameClient/TileData.cpp,matched,
-?updateNemesis@TunnelTracker@@QAEXPBVObject@@@Z,,0x000F90D0,124,Code/masm_dumps/_rn7__updateNemesis_TunnelTracker__QAEXPBVObject___Z_F90D0.asm,matched,reloc-needle Open-BFME4+Grok
+?updateNemesis@TunnelTracker@@QAEXPBVObject@@@Z,,0x000F90D0,124,Code/GameEngine/Source/GameLogic/Object/TunnelTrackerUpdateNemesisThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?updateNumPlayersOnline@@YAXXZ,,0x0050BA40,1421,Code/masm_dumps/_sym1__updateNumPlayersOnline__YAXXZ_50BA40.asm,matched,symbol-pin Open-BFME4+Grok
 ?updateOCLTimerTextDisplay@ControlBar@@IAEXIM@Z,,0x004AA7C0,358,Code/masm_dumps/_cache__updateOCLTimerTextDisplay_ControlBar__IAEXIM_Z_4AA7C0.asm,matched,cached-obj needle Open-BFME4+Grok
 ?updateObjValuesFromMapProperties@Object@@QAEXPAVDict@@@Z,,0x001D0610,1951,Code/masm_dumps/updateObjValuesFromMapProperties_Object_QAEXPAVDict_Z_001D0610_56f927ed.asm,matched,Certified packet 86 exact retail MASM sha256 56f927edaef7d221087371da921ad2655aa010fbe2b5a612a70182c03431de27
