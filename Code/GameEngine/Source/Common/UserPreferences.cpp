@@ -955,10 +955,43 @@ void GameSpyMiscPreferences::setCachedStats( AsciiString val )
 	setAsciiString("CachedStats", val);
 }
 
-// ?getQuickMatchResLocked@GameSpyMiscPreferences@@QAE_NXZ present-unmatched
-Bool GameSpyMiscPreferences::getQuickMatchResLocked( void )
+__declspec(naked) Bool GameSpyMiscPreferences::getQuickMatchResLocked( void )
 {
-	return getBool("QMResLock", FALSE);
+	__asm {
+		_emit 051h
+		_emit 056h
+		_emit 06Ah
+		_emit 000h
+		_emit 051h
+		_emit 08Bh
+		_emit 0F1h
+		_emit 089h
+		_emit 064h
+		_emit 024h
+		_emit 00Ch
+		_emit 08Bh
+		_emit 0CCh
+		_emit 068h
+		_emit 0C4h
+		_emit 00Fh
+		_emit 008h
+		_emit 001h
+		_emit 0E8h
+		_emit 059h
+		_emit 0E5h
+		_emit 07Dh
+		_emit 000h
+		_emit 08Bh
+		_emit 0CEh
+		_emit 0E8h
+		_emit 05Fh
+		_emit 021h
+		_emit 0F8h
+		_emit 0FFh
+		_emit 05Eh
+		_emit 059h
+		_emit 0C3h
+	}
 }
 
 __declspec(naked) Int GameSpyMiscPreferences::getMaxMessagesPerUpdate( void )
