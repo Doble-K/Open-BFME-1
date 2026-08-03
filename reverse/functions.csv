@@ -13786,7 +13786,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?top@Shell@@QAEPAVWindowLayout@@XZ,,0x0057F280,13,Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp,matched,
 ?topple@Object@@QAEXPBUCoord3D@@MI@Z,,0x001C1530,152,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?total_cell_count@GridCullSystemClass@@IAEHXZ,,0x008DCFA0,12,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
-?trackTargets@GarrisonContain@@IAEXXZ,,0x0021E6C0,379,Code/masm_dumps/GarrisonContain_trackTargets_21E6C0.asm,matched,Exact 379B @ 0x21E6C0; queue 0x49DE40 was SEH ret4 FUN 147B misplaced; update@0x21F920 calls thunk 0xD526; inlined findConditionIndex+calcDistSqr
+?trackTargets@GarrisonContain@@IAEXXZ,,0x0021E6C0,379,Code/GameEngine/Source/Common/GarrisonContain_trackTargetsMethodThunk.cpp,matched,Exact 379B @ 0x21E6C0; queue 0x49DE40 was SEH ret4 FUN 147B misplaced; update@0x21F920 calls thunk 0xD526; inlined findConditionIndex+calcDistSqr
 ?transformPoint@Thing@@QAEXPBUCoord3D@@PAU2@@Z,,0x00132780,139,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,
 ?translate@AsciiString@@QAEXABVUnicodeString@@@Z,0x00889050,0x00889050,54,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,translate UnicodeString to AsciiString
 ?translate@UnicodeString@@QAEXABVAsciiString@@@Z,0x008891F0,0x008891F0,54,Code/Libraries/Source/WWVegas/WWLib/unicode_string.cpp,matched,translate AsciiString to UnicodeString
