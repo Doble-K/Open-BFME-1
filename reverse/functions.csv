@@ -3114,7 +3114,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1PlayerList@@UAE@XZ,,0x000DF9A0,138,Code/GameEngine/Source/Common/PlayerListDestructorThunk.cpp,matched,Exact 138B vtbl-proven dtor; queue RVA 0x9F27E2 was int3 pad
 ??1PlayerTemplate@@QAE@XZ,,0x000181CE,5,Code/GameEngine/Source/Common/RTS/PlayerTemplateDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1PlayerTemplateStore@@UAE@XZ,,0x000E3F80,82,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
-??1PlayerUpgradeSpecialPowerModuleData@@UAE@XZ,,0x000658A0,149,Code/masm_dumps/PlayerUpgradeSpecialPowerModuleData_destructor.asm,matched,Exact 149B ModuleData SEH dtor Open-BFME4
+??1PlayerUpgradeSpecialPowerModuleData@@UAE@XZ,,0x000658A0,149,Code/GameEngine/Source/Common/PlayerUpgradeSpecialPowerModuleDataDestructorThunk.cpp,matched,Exact 149B ModuleData SEH dtor Open-BFME4
 ??1PointDefenseLaserUpdate@@UAE@XZ,,0x00287410,346,Code/masm_dumps/PointDefenseLaserUpdate_destructor.asm,matched,Exact 346B SEH dtor Open-BFME4
 ??1PointEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D58F0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
 ??1PolyRenderTaskClass@@QAE@XZ,,0x009457B0,13,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
