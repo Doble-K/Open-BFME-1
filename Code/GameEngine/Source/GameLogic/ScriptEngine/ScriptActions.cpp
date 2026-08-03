@@ -5431,7 +5431,6 @@ void ScriptActions::doWaterChangeHeightOverTime( const AsciiString& waterName, R
 //-------------------------------------------------------------------------------------------------
 /** doBorderSwitch */
 //-------------------------------------------------------------------------------------------------
-// ?doBorderSwitch@ScriptActions@@IAEXH@Z present-unmatched
 void ScriptActions::doBorderSwitch(Int borderToUse)
 {
 	/*
@@ -5461,8 +5460,8 @@ void ScriptActions::doBorderSwitch(Int borderToUse)
 	{
 		ThePartitionManager->revealMapForPlayerPermanently( observerPlayerIndex );
 	}
-	
-	ThePartitionManager->refreshShroudForLocalPlayer();
+	// BFME stops here: the retail body @0x2EFC50 returns straight after the
+	// reveal call, with no refreshShroudForLocalPlayer().
 }
 
 //-------------------------------------------------------------------------------------------------

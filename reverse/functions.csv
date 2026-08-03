@@ -9531,7 +9531,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z,,0x002EF2E0,30,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionsDoAmbientSoundsPauseThunk.cpp,matched,Open-BFME5 exact C++ ScriptActions audio pause/resume thunk replacing MASM dump;object-symbol=?doAmbientSoundsPause@ScriptActions@@IAEX_N@Z
 ?doAudioFeedback@@YAXPAVGameWindow@@@Z,,0x004B85F0,153,Code/masm_dumps/doAudioFeedback_YAXPAVGameWindow_Z_4B85F0.asm,matched,Exact retail body; queue RVA 0xC6C420 was CRT stubs misplace
 ?doAudioSetVolume@ScriptActions@@IAEXW4AudioAffect@@M@Z,,0x002EF830,91,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Audio vtable+0xd4 setVolume clamp /100
-?doBorderSwitch@ScriptActions@@IAEXH@Z,,0x002EFC50,102,Code/masm_dumps/_rn5__doBorderSwitch_ScriptActions__IAEXH_Z_2EFC50.asm,matched,reloc-needle Open-BFME4+Grok
 ?doBountyForKill@Player@@QAEXPBVObject@@0@Z,,0x000D5160,431,Code/GameEngine/Source/Common/RTS/Player_doBountyForKill.asm,matched,MASM exact 431B @ 0xD5160; queue 0x66556D int3 pad/wrong body; GUI:AddCash+deposit+format+ftol2; ret 8; C++ blocked BFME bounty/layout
 ?doC3CameraDisableSlaveMode@ScriptActions@@IAEXXZ,,0x002F06A0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x9c cameraDisableSlaveMode
 ?doChooseVictimAlwaysUsesNormal@ScriptActions@@IAEX_N@Z,,0x002F08A0,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,ScriptEngine+0x17635 choose-victim flag
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??_G?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@QAEPAXI@Z,,0x00631E50,30,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,repointed: the only body of this shape that calls the 0x34-node pair dtor
 ??0GameSpyInfo@@QAE@XZ,,0x00636D90,609,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME shifts m_localName on by 8 and GameSpyGroupRoom is one dword larger
 ?addToSavedIgnoreList@GameSpyInfo@@UAEXHVAsciiString@@@Z,,0x00635670,149,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME keeps AsciiString::set and releaseBuffer out of line
+?doBorderSwitch@ScriptActions@@IAEXH@Z,,0x002EFC50,102,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,MASM dump converted to clean C++; BFME omits the trailing refreshShroudForLocalPlayer call

@@ -4097,3 +4097,5 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??0IgnorePreferences@@QAE@XZ,0x0002E389,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
 ?setIgnore@IgnorePreferences@@QAEXABVAsciiString@@H_N@Z,0x00016789,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
 ??1IgnorePreferences@@UAE@XZ,0x00033A23,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+?undoRevealMapForPlayerPermanently@PartitionManager@@QAEXH@Z,0x008F7400,REL32 pin from ScriptActions::doBorderSwitch @0x2EFC50
+?revealMapForPlayerPermanently@PartitionManager@@QAEXH@Z,0x008F73E0,REL32 pin from ScriptActions::doBorderSwitch @0x2EFC50
