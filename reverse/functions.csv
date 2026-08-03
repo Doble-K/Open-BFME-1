@@ -9781,13 +9781,13 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doChooseVictimAlwaysUsesNormal@ScriptActions@@IAEX_N@Z,,0x002F08A0,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,ScriptEngine+0x17635 choose-victim flag
 ?doCollapseDoneStuff@StructureCollapseUpdate@@IAEXXZ,,0x002A38A0,123,Code/GameEngine/Source/GameLogic/Object/Update/StructureCollapseUpdate.cpp,matched,
 ?doCommandButtonAtPosition@Object@@QAEXPBVCommandButton@@PBUCoord3D@@W4CommandSourceType@@@Z,,0x001D1FA0,417,Code/masm_dumps/Object_doCommandButtonAtPosition_1D1FA0.asm,matched,exact 417B MASM; true body 0x1D1FA0 (queue 0x77B0CA INSIDE ctor 0x77B090); full SEH; isDisabled@+0x1a4; BFME ret 0x10
-?doCreateObject@ScriptActions@@IAEXABVAsciiString@@00PAUCoord3D@@M@Z,,0x0034CF60,526,Code/masm_dumps/_sa5__doCreateObject_ScriptActions__IAEXABVAsciiString__34CF60.asm,matched,Exact 526B Open-BFME4
+?doCreateObject@ScriptActions@@IAEXABVAsciiString@@00PAUCoord3D@@M@Z,,0x0034CF60,526,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doCreateObject_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doDamageLine@StructureToppleUpdate@@IAEXPAVObject@@PBVWeaponTemplate@@MMMM@Z,,0x002AF8F9,523,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate_doDamageLine.asm,matched,exact 523B via MASM
 ?doDebugMessage@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x002F20E0,51,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 exact C++ __emit port of 51-byte retail method
 ?doDefeat@ScriptActions@@IAEXXZ,,0x002F1D80,245,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doDefeat_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doDisableCountdownTimerDisplay@ScriptActions@@IAEXXZ,,0x002EF9B0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,showNamedTimerDisplay(false)
 ?doDisableSpecialPowerDisplay@ScriptActions@@IAEXXZ,,0x002EF770,17,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,InGameUI vtable+0x90 setSuperweaponDisplayEnabledByScript false
-?doDisplayCinematicText@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F3BD0,553,Code/masm_dumps/_sa14__doDisplayCinematicText_ScriptActions__IAEXABVAsciiString__0H_Z_2F3BD0.asm,matched,sa14 Open-BFME4+Grok [Bold]
+?doDisplayCinematicText@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F3BD0,553,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doDisplayCinematicText_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doDisplayCounter@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F9660,235,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doDisplayCounter.asm,matched,exact 235B via MASM; true body (drift 0x9DB075 was mid mega-fn); display counter isCountdown=false
 ?doDrawModule@W3DRopeDraw@@UAEXPBVMatrix3D@@@Z,,0x0075AD20,363,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/W3DRopeDraw.cpp,matched,
 ?doEnableCountdownTimerDisplay@ScriptActions@@IAEXXZ,,0x002EF9D0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,showNamedTimerDisplay(true)
