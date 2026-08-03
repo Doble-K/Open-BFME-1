@@ -1609,7 +1609,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GiantBirdAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0GiantBirdSlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FFB40,137,Code/GameEngine/Source/GameLogic/Object/Behavior/GiantBirdSlowDeathBehaviorCtorThunk.cpp,matched,Open-BFME5 exact 137B retail module constructor
 ??0GiantBirdSlowDeathBehaviorModuleData@@QAE@XZ,,0x001FFE40,171,Code/GameEngine/Source/GameLogic/AI/GiantBirdSlowDeathBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0GiveUpgradeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D9A0,73,Code/masm_dumps/GiveUpgradeUpdate_constructor.asm,matched,Exact 73B unique factory Open-BFME4
+??0GiveUpgradeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025D9A0,73,Code/GameEngine/Source/GameLogic/AI/GiveUpgradeUpdateCtorThunk.cpp,matched,Exact 73B unique factory Open-BFME4
 ??0GiveUpgradeUpdateModuleData@@QAE@XZ,,0x0025DCF0,72,Code/GameEngine/Source/GameLogic/AI/GiveUpgradeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0GloriousChargeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025E890,208,Code/masm_dumps/GloriousChargeUpdate_constructor.asm,matched,Exact 208B @ 0x0025E890; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x11C750
 ??0GloriousChargeUpdateModuleData@@QAE@XZ,,0x0025E7C0,38,Code/GameEngine/Source/Common/RTS/GloriousChargeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw special-power data constructor
