@@ -1,110 +1,107 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-
+// Open-BFME5: lift ControlBar::setSquishedControlBarConfig __emit thunk to
+// clean C++. Retail: early-out when the flag at +0x20 is already 1, then set
+// it and call arrange on the member at +0x34, a helper on this, Display's
+// vfn at slot 0x30 feeding Mouse's vfn at slot 0x40, and adjust on the
+// member at +0x30 with the window-manager inner field and 1.
+
+class ControlBarArranger
+{
+public:
+    void arrange(int, int);
+};
+
+class ControlBarAdjuster
+{
+public:
+    void adjust(int, int);
+};
+
+class CBDisplay
+{
+public:
+    virtual void v00();
+    virtual void v01();
+    virtual void v02();
+    virtual void v03();
+    virtual void v04();
+    virtual void v05();
+    virtual void v06();
+    virtual void v07();
+    virtual void v08();
+    virtual void v09();
+    virtual void v10();
+    virtual void v11();
+    virtual int vfn30();
+};
+
+class CBMouse
+{
+public:
+    virtual void v00();
+    virtual void v01();
+    virtual void v02();
+    virtual void v03();
+    virtual void v04();
+    virtual void v05();
+    virtual void v06();
+    virtual void v07();
+    virtual void v08();
+    virtual void v09();
+    virtual void v10();
+    virtual void v11();
+    virtual void v12();
+    virtual void v13();
+    virtual void v14();
+    virtual void v15();
+    virtual void vfn40(int);
+};
+
+class CBWindowManagerInner
+{
+public:
+    unsigned char m_pad[4];
+    int m_04;
+};
+
+class CBWindowManager
+{
+public:
+    unsigned char m_pad[0x0C];
+    CBWindowManagerInner *m_0C;
+};
+
+extern CBDisplay *g_cbDisplay;
+extern CBMouse *g_cbMouse;
+extern CBWindowManager *g_cbWindowManager;
 
 class ControlBar
 {
+public:
+    void helper();
+
 protected:
-	void setSquishedControlBarConfig();
+    void setSquishedControlBarConfig();
+
+private:
+    unsigned char m_pad[0x18];
+    int m_18;
+    int m_1C;
+    int m_20;
+    unsigned char m_pad2[0x0C];
+    ControlBarAdjuster *m_30;
+    ControlBarArranger *m_34;
 };
 
 // ?setSquishedControlBarConfig@ControlBar@@IAEXXZ
-__declspec(naked) void ControlBar::setSquishedControlBarConfig()
+void ControlBar::setSquishedControlBarConfig()
 {
-	__asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x83
-        __emit 0x7e
-        __emit 0x20
-        __emit 0x01
-        __emit 0x74
-        __emit 0x54
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x18
-        __emit 0x53
-        __emit 0x50
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x34
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xcc
-        __emit 0xc3
-        __emit 0xb7
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x73
-        __emit 0xbe
-        __emit 0xb9
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x70
-        __emit 0x12
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x15
-        __emit 0x00
-        __emit 0x16
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x1a
-        __emit 0xff
-        __emit 0x50
-        __emit 0x30
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x16
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x50
-        __emit 0xff
-        __emit 0x53
-        __emit 0x40
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x51
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x42
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x30
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xe2
-        __emit 0xa7
-        __emit 0xb9
-        __emit 0xff
-        __emit 0x5b
-        __emit 0x5e
-        __emit 0xc3
-	}
+    if (m_20 == 1) {
+        return;
+    }
+    m_20 = 1;
+    m_34->arrange(m_18, m_1C);
+    helper();
+    g_cbMouse->vfn40(g_cbDisplay->vfn30());
+    m_30->adjust(g_cbWindowManager->m_0C->m_04, 1);
 }
