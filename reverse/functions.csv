@@ -8988,7 +8988,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?angleClosestTo@@YAMMMM@Z,,0x002B1240,98,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdate.cpp,matched,
 ?animSlideRight@@YAXPAVControlBarSchemeAnimation@@@Z,,0x004AB840,91,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ?animateGridDecals@DynamicShroudClearingRangeUpdate@@QAEXXZ,,0x0028E760,227,Code/masm_dumps/_cache__animateGridDecals_DynamicShroudClearingRangeUpdate__QA_28E760.asm,matched,cached-obj needle Open-BFME4+Grok
-?animateSpecialPowerShortcut@ControlBar@@QAEX_N@Z,,0x0049D3F0,138,Code/masm_dumps/_animateSpecialPowerShortcut_ControlBar__QAEX_N_Z_49D3F0.asm,matched,Certified packet 52 exact retail db recovery SHA256 95668f392b888d19f05278bba0785edc983cc70ffb3339b60a3aa98dc91baea5
+?animateSpecialPowerShortcut@ControlBar@@QAEX_N@Z,,0x0049D3F0,138,Code/GameEngine/Source/Common/ControlBar_animateSpecialPowerShortcutMethodThunk.cpp,matched,Certified packet 52 exact retail db recovery SHA256 95668f392b888d19f05278bba0785edc983cc70ffb3339b60a3aa98dc91baea5
 ?any@?$BitFlags@$0ED@@@QBE_NXZ,,0x002083B0,20,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?any@?$bitset@$0ED@@_STL@@QBE_NXZ,,0x001DD630,20,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?anyIntersectionWith@?$BitFlags@$0HE@@@QBE_NABV1@@Z,,0x0003291B,5,Code/Libraries/Source/WWVegas/WWLib/BitFlagsBBCountInverseIntersectionThunk.cpp,matched,object-symbol=?countInverseIntersection@?$BitFlags@$0BB@@@QBEHABV1@@Z;ICF alias converted to focused C++ thunk TU
