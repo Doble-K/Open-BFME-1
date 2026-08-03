@@ -2785,7 +2785,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ArrowStormUpdate@@UAE@XZ,,0x00257940,106,Code/GameEngine/Source/Common/ArrowStormUpdateDestructorThunk.cpp,matched,Exact 106B @ 0x00257940; Exact retail MASM; instance factory->vtable dtor; del 0x257C70 ctor 0x2576E0 vt 0xCB37C0
 ??1ArrowStormUpdateModuleData@@UAE@XZ,,0x00257650,79,Code/GameEngine/Source/Common/ArrowStormUpdateModuleDataDestructorThunk.cpp,matched,Exact 79B SEH dtor factory->vtable Open-BFME4
 ??1AsciiString@@QAE@XZ,0x0000D828,0x0005EE90,5,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,AsciiString destructor
-??1AssaultTransportAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/masm_dumps/AssaultTransportAIUpdate_destructor.asm,matched,Exact 2099B SEH dtor Open-BFME4
+??1AssaultTransportAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/GameEngine/Source/Common/AssaultTransportAIUpdateDestructorThunk.cpp,matched,Exact 2099B SEH dtor Open-BFME4
 ??1AssaultTransportAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/AssaultTransportAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME4
 ??1AttributeModifierAuraUpdate@@UAE@XZ,,0x002803F0,1471,Code/GameEngine/Source/Common/AttributeModifierAuraUpdateDestructorThunk.cpp,matched,Exact 1471B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1AttributeModifierAuraUpdateModuleData@@UAE@XZ,,0x00280C40,106,Code/GameEngine/Source/Common/AttributeModifierAuraUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
@@ -2794,7 +2794,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AutoAbilityBehaviorModuleData@@UAE@XZ,,0x001EDCA0,1944,Code/GameEngine/Source/Common/AutoAbilityBehaviorModuleDataDestructorThunk.cpp,matched,Exact 1944B SEH dtor Open-BFME5
 ??1AutoDepositUpdateModuleData@@UAE@XZ,,0x00125960,67,Code/GameEngine/Source/GameLogic/Object/Update/AutoDepositUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer member plus base vtbl (PropagandaTower pattern)
 ??1AutoHealBehaviorModuleData@@UAE@XZ,,0x0012A910,67,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor member@8 pin 0x1B97D (PropagandaTower pattern)
-??1AutoPickUpUpdate@@UAE@XZ,,0x00281F40,1490,Code/masm_dumps/AutoPickUpUpdate_destructor.asm,matched,Exact 1490B SEH module dtor; factory->vtable recovery Open-BFME4
+??1AutoPickUpUpdate@@UAE@XZ,,0x00281F40,1490,Code/GameEngine/Source/Common/AutoPickUpUpdateDestructorThunk.cpp,matched,Exact 1490B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1AutoPickUpUpdateModuleData@@UAE@XZ,,0x00282A80,80,Code/GameEngine/Source/Common/AutoPickUpUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
 ??1BFMEAutoLockRef@@QAE@XZ,,0x009DB400,22,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME lock-ref release helper used by wrapper/backend
 ??1BFMENetRequestGameSpyStatsAuthKeyCommandMsg@@MAE@XZ,,0x00675B80,73,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
@@ -3000,7 +3000,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1INISection@@UAE@XZ,,0x009E3220,190,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??1ImageCollection@@UAE@XZ,,0x005D2C10,139,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
 ??1InGameUI@@UAE@XZ,,0x0044AE70,936,Code/masm_dumps/dtor_InGameUI_UAE_XZ_0044AE70_packet315.asm,matched,certified packet 315 sealed RVA size and SHA-256 verified
-??1InactiveBody@@UAE@XZ,,0x001CEFC0,1493,Code/masm_dumps/InactiveBody_destructor.asm,matched,Exact 1493B SEH dtor factory->vtable Open-BFME4
+??1InactiveBody@@UAE@XZ,,0x001CEFC0,1493,Code/GameEngine/Source/Common/InactiveBodyDestructorThunk.cpp,matched,Exact 1493B SEH dtor factory->vtable Open-BFME4
 ??1InstantDeathBehaviorModuleData@@UAE@XZ,,0x00201840,220,Code/GameEngine/Source/Common/InstantDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 220B SEH dtor Open-BFME5
 ??1LANGameInfo@@QAE@XZ,,0x00686CD0,103,Code/GameEngine/Source/Common/LANGameInfoDestructorThunk.cpp,matched,Exact 103B SEH dtor Open-BFME5
 ??1LANPlayer@@QAE@XZ,,0x00685830,89,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,
