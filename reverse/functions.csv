@@ -1320,7 +1320,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CaveContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00219B90,129,Code/GameEngine/Source/GameLogic/AI/CaveContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0CaveContainModuleData@@QAE@XZ,,0x00227200,398,Code/GameEngine/Source/GameLogic/AI/CaveContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0Cftp@@QAE@XZ,,0x00885AD0,18,Code/GameEngine/Source/GameNetwork/CftpConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0Cftp@@QAE@XZ
-??0CheckpointUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/masm_dumps/CheckpointUpdate_constructor.asm,matched,Exact 154B ICF alias Open-BFME4
+??0CheckpointUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/GameEngine/Source/GameLogic/Object/Update/CheckpointUpdateCtorThunk.cpp,matched,Open-BFME5 exact 154B ICF alias constructor
 ??0ChinookMoveToBldgState@@QAE@PAVStateMachine@@@Z,,0x0005D9A0,32,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/ChinookAIUpdate.cpp,matched,
 ??0ChunkHeader@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
 ??0ChunkInputStream@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,ICF alias of existing matched body
