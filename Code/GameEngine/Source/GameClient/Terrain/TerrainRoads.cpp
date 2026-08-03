@@ -207,24 +207,7 @@ const FieldParse TerrainRoadType::m_terrainBridgeFieldParseTable[] =
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0TerrainRoadType@@QAE@XZ present-unmatched
-TerrainRoadType::TerrainRoadType( void )
-{
-
-	m_isBridge = FALSE;
-	m_id = 0;
-	m_next = NULL;
-	m_roadWidth = 0.0f;
-	m_roadWidthInTexture = 0.0f;
-	m_bridgeScale = 1.0f;
-	m_radarColor.red = 0.0f;
-	m_radarColor.green = 0.0f;
-	m_radarColor.blue = 0.0f;
-	m_transitionEffectsHeight = 0.0f;
-	m_numFXPerType = 0;
-
-}  // end TerrainRoadType
-
+// ??0TerrainRoadType@@QAE@XZ matched from Common/TerrainRoadTypeConstructorThunk.cpp
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 // ??1TerrainRoadType@@MAE@XZ present-unmatched

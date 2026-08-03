@@ -34605,3 +34605,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ??4CameraClass@@QAEAAV0@ABV0@@Z,,0x009328F0,606,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,
 ?updateAnimateWindow@ProcessAnimateWindowSlideFromBottom@@UAE_NPAVAnimateWindow@@@Z,,0x004965B0,238,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindowSlideFromBottom_updateAnimateWindow_Thunk.cpp,matched,Open-BFME-DS04 exact C++ __emit thunk from retail bytes
 ?sendMangledSourcePort@NAT@@IAEXXZ,,0x00671A90,420,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
+??0TerrainRoadType@@QAE@XZ,,0x00601FE0,345,Code/GameEngine/Source/Common/TerrainRoadTypeConstructorThunk.cpp,matched,Exact 345B SEH ctor thunk Open-BFME5; MSVC7.1 assigns m_name a cleanup state retail omitted (maxState 0x12 vs 0x11)
