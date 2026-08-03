@@ -1901,7 +1901,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0OBBoxIntersectionTestClass@@QAE@ABVAABoxIntersectionTestClass@@ABVMatrix3D@@@Z,,0x0092D8E0,176,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
 ??0OBBoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00957BC0,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0OBBoxRenderObjClass@@QAE@ABV0@@Z,,0x00957F40,111,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
-??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/masm_dumps/_rn4___0OBBoxRenderObjClass__QAE_ABVOBBoxClass___Z_957C20.asm,matched,reloc-needle Open-BFME4+Grok
+??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/Libraries/Source/WWVegas/WW3D2/OBBoxRenderObjClass_CtorThunk.cpp,matched,Open-BFME5 MASM lift
 ??0OBBoxRenderObjClass@@QAE@XZ,,0x00957B30,80,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0OCLSpecialPowerModuleData@@QAE@XZ,,0x002631B0,120,Code/GameEngine/Source/GameLogic/AI/OCLSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0OCLUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00298960,80,Code/GameEngine/Source/GameLogic/Object/Update/OCLUpdateConstructor.cpp,matched,Luna Open-BFME5.0 clean C++ inline UpdateModule constructor
@@ -9868,7 +9868,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/masm_dumps/_sa7__doTeamDecreasePriority_ScriptActions__IAEXABVAsci_2F3A60.asm,matched,Exact 196B Open-BFME4
 ?doTeamFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002F3E90,282,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamFlash.asm,matched,exact 282B MASM; true body 0x2F3E90 (drift 0x933119 mid-fn x87)
 ?doTeamHuntWithCommandButton@ScriptActions@@,,0x002F7B80,895,Code/masm_dumps/_sa6__doTeamHuntWithCommandButton_ScriptActions___2F7B80.asm,matched,true size 895B; row claimed 211B
-?doTeamIncreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3960,196,Code/masm_dumps/_sa7__doTeamIncreasePriority_ScriptActions__IAEXABVAsci_2F3960.asm,matched,Exact 196B Open-BFME4
+?doTeamIncreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3960,196,Code/GameEngine/Source/Common/ScriptActions_doTeamIncreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift
 ?doTeamRadarCreateEvent@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002F4140,96,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActionsDoTeamRadarCreateEventThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM body
 ?doTeamUseCommandButtonOnNamed@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002F54C0,204,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamUseCommandButtonOnNamed_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doTeamUseCommandButtonOnNearestEnemy@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002FB170,713,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamUseCommandButtonOnNearestEnemy.asm,matched,exact 713B via MASM; true body @ 0x2FB170 (queue 0x614F94 INSIDE mislocated NearestKindof/INI)
