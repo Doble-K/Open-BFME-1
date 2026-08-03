@@ -269,46 +269,8 @@ MeshGeometryClass::~MeshGeometryClass(void)
  * HISTORY:                                                                                    *
  *   11/9/2000  gth : Created.                                                                 *
  *=============================================================================================*/
-void MeshGeometryClass::Reset_Geometry(int polycount,int vertcount)
-{
-	// Release everything we have and reset to initial state
-	Flags = 0;
-	PolyCount = 0;
-	VertexCount = 0;
-	SortLevel = SORT_LEVEL_NONE;
-
-	REF_PTR_RELEASE(MeshName);
-	REF_PTR_RELEASE(UserText);
-	REF_PTR_RELEASE(Poly);
-	REF_PTR_RELEASE(PolySurfaceType);	
-	REF_PTR_RELEASE(Vertex);
-	REF_PTR_RELEASE(VertexNorm);
-	REF_PTR_RELEASE(PlaneEq);
-	REF_PTR_RELEASE(VertexShadeIdx);
-	REF_PTR_RELEASE(VertexBoneLink);
-	REF_PTR_RELEASE(CullTree);
-
-	PolyCount = polycount;
-	VertexCount = vertcount;
-
-	// allocate new geometry arrays
-	if ((polycount != 0) && (vertcount != 0)) {
-		Poly = NEW_REF(ShareBufferClass<TriIndex>,(PolyCount, "MeshGeometryClass::Poly"));
-		PolySurfaceType = NEW_REF(ShareBufferClass<uint8>,(PolyCount, "MeshGeometryClass::PolySurfaceType"));
-		Vertex = NEW_REF(ShareBufferClass<Vector3>,(VertexCount, "MeshGeometryClass::Vertex"));
-
-		Poly->Clear();
-		PolySurfaceType->Clear();
-		Vertex->Clear();
-
-#if (!OPTIMIZE_VNORM_RAM)
-		VertexNorm = NEW_REF(ShareBufferClass<Vector3>,(VertexCount, "MeshGeometryClass::VertexNorm"));
-		VertexNorm->Clear();
-#endif
-	}
-
-	return ;
-}
+// MeshGeometryClass::Reset_Geometry exact retail body is emitted by
+// MeshGeometryClassResetGeometryThunk.cpp.
 
 
 /***********************************************************************************************
