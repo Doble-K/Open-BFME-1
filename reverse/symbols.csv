@@ -4263,3 +4263,4 @@ g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 DefaultModuleTemplate6_vtbl0,0x0111101C,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultModuleTemplate6_vtbl4,0x01111018,DefaultModuleTemplate6 ctor vtbl anchor
 DefaultModuleTemplate6_vtbl8,0x01111004,DefaultModuleTemplate6 ctor vtbl anchor
+?construct_from@DefaultModuleTemplate7CopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0000CC4D,DefaultModuleTemplate6 copy-ctor base shim

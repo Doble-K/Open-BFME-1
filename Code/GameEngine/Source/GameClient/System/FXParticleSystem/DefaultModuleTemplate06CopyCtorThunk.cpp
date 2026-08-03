@@ -1,59 +1,41 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: DefaultModuleTemplate (ledger $06 / N=7) copy ctor
+// Retail: push src; base copy; three vtbl stores at +0/+4/+8.
 
 namespace FXParticleSystem
 {
-template<int Category>
+
+class DefaultModuleTemplate7CopyCtorShim
+{
+public:
+	void construct_from(const void *src);
+};
+
+extern "C" char DefaultModuleTemplate6_vtbl0;
+extern "C" char DefaultModuleTemplate6_vtbl4;
+extern "C" char DefaultModuleTemplate6_vtbl8;
+
+template <int N>
 class DefaultModuleTemplate
 {
 public:
-    DefaultModuleTemplate(const DefaultModuleTemplate<Category> &);
+	DefaultModuleTemplate(const DefaultModuleTemplate &);
+
+private:
+	void *m_v0;
+	void *m_v4;
+	void *m_v8;
 };
 
-template<int Category>
-__declspec(naked) DefaultModuleTemplate<Category>::DefaultModuleTemplate(const DefaultModuleTemplate<Category> &)
+template <int N>
+DefaultModuleTemplate<N>::DefaultModuleTemplate(const DefaultModuleTemplate &that)
 {
-    __asm {
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 004h
-        _emit 056h
-        _emit 050h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 000h
-        _emit 019h
-        _emit 0A3h
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 01Ch
-        _emit 010h
-        _emit 011h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 004h
-        _emit 018h
-        _emit 010h
-        _emit 011h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 008h
-        _emit 004h
-        _emit 010h
-        _emit 011h
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
-}
+	((DefaultModuleTemplate7CopyCtorShim *)this)->construct_from(&that);
+	m_v0 = &DefaultModuleTemplate6_vtbl0;
+	m_v4 = &DefaultModuleTemplate6_vtbl4;
+	m_v8 = &DefaultModuleTemplate6_vtbl8;
 }
 
-template class FXParticleSystem::DefaultModuleTemplate<7>;
+template DefaultModuleTemplate<7>::DefaultModuleTemplate(const DefaultModuleTemplate &);
+}
