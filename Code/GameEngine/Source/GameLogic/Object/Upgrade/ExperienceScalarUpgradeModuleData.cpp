@@ -1,42 +1,49 @@
-// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
-#include "PreRTS.h"
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class ExperienceScalarUpgradeModuleData
+// Open-BFME5: ExperienceScalarUpgradeModuleData ctor
+// Retail: sub at +8, outer vtbl, dword +0x70 = 0.
+
+class UpgradeModuleDataSub
 {
 public:
-    ExperienceScalarUpgradeModuleData();
+	UpgradeModuleDataSub();
+
+private:
+	char opaque[0x68];
 };
 
-__declspec(naked) ExperienceScalarUpgradeModuleData::ExperienceScalarUpgradeModuleData()
+class __declspec(novtable) ExperienceScalarUpgradeModuleData
 {
-    __asm {
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 008h
-        _emit 0E8h
-        _emit 01Bh
-        _emit 09Fh
-        _emit 0D3h
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 0D8h
-        _emit 0C9h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 070h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
+public:
+	ExperienceScalarUpgradeModuleData();
+	virtual void dummy();
+
+private:
+	int m_pad;
+	char m_sub_space[0x68];
+	unsigned int m_scalar;
+};
+
+class ExperienceScalarUpgradeModuleDataVtbl
+{
+public:
+	ExperienceScalarUpgradeModuleDataVtbl() {}
+	virtual void dummy();
+
+private:
+	int m_pad;
+	char m_sub_space[0x68];
+	unsigned int m_scalar;
+};
+
+// ??0ExperienceScalarUpgradeModuleData@@QAE@XZ
+ExperienceScalarUpgradeModuleData::ExperienceScalarUpgradeModuleData()
+{
+	UpgradeModuleDataSub *sub =
+		(UpgradeModuleDataSub *)((char *)this + 8);
+	sub->UpgradeModuleDataSub::UpgradeModuleDataSub();
+	ExperienceScalarUpgradeModuleDataVtbl *v =
+		(ExperienceScalarUpgradeModuleDataVtbl *)this;
+	v->ExperienceScalarUpgradeModuleDataVtbl::ExperienceScalarUpgradeModuleDataVtbl();
+	m_scalar = 0;
 }
