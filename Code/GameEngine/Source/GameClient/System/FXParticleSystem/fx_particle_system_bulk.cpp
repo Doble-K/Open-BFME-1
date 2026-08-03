@@ -11674,6 +11674,8 @@ LightningDrawModuleInfo::LightningDrawModuleInfo(const LightningDrawModuleInfo &
     : m_gcrv1(that.m_gcrv1), m_gcrv2(that.m_gcrv2), m_gcrv3(that.m_gcrv3), m_field28(that.m_field28), m_flag(that.m_flag)
 {}
 
+// Moved to LightningDrawModuleInfoCtorThunk.cpp so the exact retail body is emitted standalone.
+#if 0
 // ??0LightningDrawModuleInfo@FXParticleSystem@@QAE@XZ
 __declspec(naked) LightningDrawModuleInfo::LightningDrawModuleInfo()
 {
@@ -11817,6 +11819,7 @@ __declspec(naked) LightningDrawModuleInfo::LightningDrawModuleInfo()
         __emit 0xc3
     }
 }
+#endif
 
 // ??0LightningDrawModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z
 LightningDrawModuleTemplate::LightningDrawModuleTemplate(const LightningDrawModuleTemplate &that)
