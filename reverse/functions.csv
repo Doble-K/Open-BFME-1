@@ -1711,7 +1711,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0KeyClass@?$PrimitiveAnimationChannelClass@VVector3@@@@QAE@XZ,,0x00473600,10,Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp,matched,
 ??0Keyframe@FXParticleSystem@@QAE@XZ,0x0002F21B,0x0005C6C0,16,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,default constructor zeroes frame and value
 ??0LANGameInfo@@QAE@XZ,,0x0068E980,176,Code/masm_dumps/__0LANGameInfo__QAE_XZ_68E980.asm,matched,Exact 176B; queue 0xC6DD00 CRT pad; true body 8x0x68 slots@+0x58 match dtor layout
-??0LANPreferences@@,,0x00086480,92,Code/masm_dumps/_sa9___0LANPreferences___86480.asm,matched,Exact 92B Open-BFME4
+??0LANPreferences@@,,0x00086480,92,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LANPreferencesCtorThunk.cpp,matched,Exact 92B Open-BFME4;object-symbol=??0LANPreferences@@QAE@XZ
 ??0LList@@QAE@XZ,,0x00105A60,31,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ??0LListNode@@QAE@XZ,,0x001058D0,19,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ??0LODHeapNode@@QAE@PAVRenderObjClass@@M@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp,matched,tiny-locate

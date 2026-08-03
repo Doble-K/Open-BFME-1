@@ -76,12 +76,8 @@ static Bool justEntered = FALSE;
 
 
 
-// ??0LANPreferences@@ present-unmatched
-LANPreferences::LANPreferences( void )
-{
-	// note, the superclass will put this in the right dir automatically, this is just a leaf name
-	load("Network.ini");
-}
+// ??0LANPreferences@@ is implemented by the exact retail thunk in
+// LANPreferencesCtorThunk.cpp.
 
 // ??1LANPreferences@@ present-unmatched
 LANPreferences::~LANPreferences()
