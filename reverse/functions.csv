@@ -3084,7 +3084,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ObjectCreationListStore@@UAE@XZ,,0x001DA720,207,Code/masm_dumps/ObjectCreationListStore_destructor.asm,matched,Certified retail MASM recovery packet 263
 ??1ObjectCreationUpgrade@@UAE@XZ,,0x00137E80,284,Code/masm_dumps/ObjectCreationUpgrade_destructor.asm,matched,Exact 284B SEH dtor Open-BFME4
 ??1ObjectCreationUpgradeModuleData@@UAE@XZ,,0x002D7660,109,Code/GameEngine/Source/Common/ObjectCreationUpgradeModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
-??1OneRingPenaltyUpdateModuleData@@UAE@XZ,,0x00298D60,113,Code/masm_dumps/OneRingPenaltyUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory 0x11A460 ctor 0x298D30 prove ownership
+??1OneRingPenaltyUpdateModuleData@@UAE@XZ,,0x00298D60,113,Code/GameEngine/Source/Common/OneRingPenaltyUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x11A460 ctor 0x298D30 prove ownership
 ??1OpenContain@@UAE@XZ,,0x002262E0,278,Code/masm_dumps/OpenContain_destructor.asm,matched,Exact 278B @ 0x002262E0; Exact retail MASM; instance factory->vtable dtor; del 0x227B30 ctor 0x2277A0 vt 0xCAC2B8
 ??1OptionPreferences@@UAE@XZ,,0x00090450,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,matched,thunk-dump converted to clean C++
 ??1OrthoEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x000346BC,0x005D6D90,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
