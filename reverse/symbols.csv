@@ -4554,3 +4554,5 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
+??0OCU_GrandBase@@QAE@XZ,0x0003D24E,ObjectCreationUpgrade ctor grandbase call; ILT thunk for body 0x002D9B80
+??0OCU_MidGrand@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,ObjectCreationUpgrade ctor mid-base call; ILT thunk for ObjectModule ctor (body 0x00113C60)
