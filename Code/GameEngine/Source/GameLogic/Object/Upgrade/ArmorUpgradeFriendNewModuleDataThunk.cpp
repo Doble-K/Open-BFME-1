@@ -1,8 +1,7 @@
 // cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
 // Open-BFME5: ArmorUpgrade::friend_newModuleData
-// Retail: new(0x78); sub-ctor at +8; outer vtbl;
-// byte +0x70/+0x71 = 0; dword +0x74 = 3.
+// Retail: new(0x78); sub at +8; vtbl; bytes +0x70/+0x71=0; dword +0x74=3.
 
 class ModuleData;
 
@@ -23,19 +22,20 @@ class ArmorUpgradeModuleData
 public:
 	ArmorUpgradeModuleData()
 	{
-		m_b70 = 0;
-		m_b71 = 0;
-		m_val74 = 3;
+		m_70 = 0;
+		m_71 = 0;
+		m_74 = 3;
 	}
 	virtual void dummy();
 
 private:
 	int m_pad;
 	char m_sub_space[0x68];
-	unsigned char m_b70;
-	unsigned char m_b71;
-	unsigned char m_pad72[2];
-	unsigned int m_val74;
+	unsigned char m_70;
+	unsigned char m_71;
+	unsigned char m_pad72;
+	unsigned char m_pad73;
+	unsigned int m_74;
 };
 
 class INI
