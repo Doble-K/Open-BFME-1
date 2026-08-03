@@ -13337,7 +13337,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setDisplayMode@Display@@UAE_NIII_N@Z,,0x0040DA80,311,Code/masm_dumps/Display_setDisplayMode_40DA80.asm,matched,Certified packet 53 exact retail db recovery SHA256 17487ff48887ebb513026b1e5623f96a1de2d631bce2f7409aff8da740319436
 ?setDisplayedMaxWarning@InGameUI@@UAEX_N@Z,,0x0044B3B0,10,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?setDockCrippled@DockUpdate@@UAEX_N@Z,,0x002CA790,10,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
-?setDockCrippled@SupplyWarehouseDockUpdate@@UAEX_N@Z,,0x002CFB70,142,Code/masm_dumps/setDockCrippled_SupplyWarehouseDockUpdate_002CFB70.asm,matched,Certified packet 45 constructor-vtable owned exact retail bytes SHA256 0b3482d73f54d3619916ccd9555de4c661b919e84b19f12c0f9f0dca5d927e22
+?setDockCrippled@SupplyWarehouseDockUpdate@@UAEX_N@Z,,0x002CFB70,142,Code/GameEngine/Source/Common/SupplyWarehouseDockUpdate_setDockCrippledMethodThunk.cpp,matched,Certified packet 45 constructor-vtable owned exact retail bytes SHA256 0b3482d73f54d3619916ccd9555de4c661b919e84b19f12c0f9f0dca5d927e22
 ?setDockOpen@DockUpdate@@UAEX_N@Z,,0x002CCE90,10,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdate.cpp,matched,
 ?setDragSelecting@SelectionTranslator@@QAEX_N@Z,,0x004021E0,10,Code/GameEngine/Source/GameClient/MessageStream/SelectionXlat.cpp,matched,
 ?setDrawableID@AudioEventRTS@@QAEXW4DrawableID@@@Z,,0x000B2290,30,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,direct C++ drawable-ID setter with retail layout offsets replaces MASM dump
