@@ -1680,7 +1680,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HordeUpdateModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/HordeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0HorseHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024D220,108,Code/GameEngine/Source/GameLogic/AI/HorseHordeContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0HorseHordeContainModuleData@@QAE@XZ,,0x002472D0,531,Code/GameEngine/Source/GameLogic/AI/HorseHordeContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
-??0HotKeyManager@@QAE@XZ,,0x005B39E0,146,Code/masm_dumps/HotKeyManager_ctor.asm,matched,Correct retail body from GameClient init thunk 0x0000B389 and TheHotKeyManager naming sequence
+??0HotKeyManager@@QAE@XZ,,0x005B39E0,146,Code/GameEngine/Source/GameClient/MessageStream/HotKeyManagerCtorThunk.cpp,matched,1:1 C++ thunk from certified GameClient initialization body
 ??0ICoord2D@@QAE@ABUICoord2DBase@@@Z,0x00001EB0,0x0008AA60,19,Code/Libraries/Source/WWVegas/WWMath/icoord.cpp,matched,copies x/y from ICoord2DBase
 ??0ICoord2D@@QAE@HH@Z,0x000160D6,0x00106690,18,Code/Libraries/Source/WWVegas/WWMath/icoord.cpp,matched,sets x/y from ints
 ??0ICoord2D@@QAE@XZ,0x00039130,0x00083360,3,Code/Libraries/Source/WWVegas/WWMath/icoord.cpp,matched,empty constructor returns self

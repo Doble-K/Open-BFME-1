@@ -143,12 +143,7 @@ HotKey::HotKey()
 	//
 }
 
-//-----------------------------------------------------------------------------
-// ??0HotKeyManager@@QAE@XZ present-unmatched
-HotKeyManager::HotKeyManager( void )
-{
-
-}
+// The exact retail constructor is emitted by HotKeyManagerCtorThunk.cpp.
 
 //-----------------------------------------------------------------------------
 // ??1HotKeyManager@@UAE@XZ present-unmatched
