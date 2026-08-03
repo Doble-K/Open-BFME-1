@@ -1892,6 +1892,7 @@ name,address,notes
 ??RUnicodeStringLessThan@@QBE_NVUnicodeString@@0@Z,0x000482B1,LanguageFilter map operator[] callee (ILT thunk -> body 0x0044D2A0)
 ??RWOLLoginAsciiStringLess@@QBE_NABVAsciiString@@0@Z,0x00043D42,WOLLogin retail AsciiString comparator thunk
 ??_7AODHordeContainModuleDataVtbl@@6B@,0x01089960,AODHordeContain ModuleData vtbl
+??_7AssaultTransportAIUpdateModuleDataVtbl@@6B@,0x01089CC0,AssaultTransportAIUpdate vtbl
 ??_7CategoryModuleTemplate8Sub@FXParticleSystem@@6B@,0x0107375C,CategoryModuleTemplate8 interim sub vtbl
 ??_7GateProxyBehaviorModuleDataVtbl@@6B@,0x0108A2A0,GateProxyBehavior ModuleData vtbl
 ??_7RAMFile@@6B@,0x01143C58,installed by RAMFile ctor at 0x009D1980 and by the matched ??1RAMFile@@MAE@XZ
@@ -1899,6 +1900,7 @@ name,address,notes
 ??_7RetailCollideModuleData@@6B@,0x0108A350,CollideModule factory vtable target
 ??_7RetailDamageModuleData@@6B@,0x0108A350,DamageModule factory vtable target
 ??_7RetailUpdateModuleData@@6B@,0x0108A350,UpdateModule factory vtable target
+??_7WanderAIUpdateModuleDataVtbl@@6B@,0x0108A5A8,WanderAIUpdate vtbl
 ??_C@_08MBMCFODG@CrushDie?$AA@,0x00C908A8,pool-glue cascade static (back-solved)
 ??_C@_09OMFJEEND@FXListDie?$AA@,0x00C908B4,pool-glue cascade static (back-solved)
 ??_C@_0BA@CLLFEOBD@CreateObjectDie?$AA@,0x00C90868,pool-glue cascade static (back-solved)
@@ -3138,6 +3140,7 @@ name,address,notes
 ?connectCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPConnectResponseArg@@@Z,0x000314AD
 ?construct@AODHordeContainModuleDataBaseShim@@QAEXXZ,0x0000ED77,AODHordeContain ModuleData base
 ?construct@AnimSetConstructShim@_STL@@SAXPAUAnimSet@GenericObjectCreationNugget@@ABU34@@Z,0x00754B20,_STL _Construct AnimSet incremental-link thunk target through a TU-local forwarding shim
+?construct@AssaultTransportAIUpdateModuleDataBaseShim@@QAEXXZ,0x00048A3B,AssaultTransportAIUpdate base
 ?construct@AutoHealBehaviorModuleData@@AAEXXZ,0x00285F10,AutoHealBehaviorModuleData real ctor body via 5-byte E9
 ?construct@AutoHealBehaviorModuleData@@QAEXXZ,0x00285F10,AutoHealBehaviorModuleData real ctor body via 5-byte E9
 ?construct@BoxEmissionVolumeModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0001B33D,BoxEmissionVolumeModule constructor thunk used through a TU-local layout shim
@@ -3199,6 +3202,7 @@ name,address,notes
 ?construct@StreakDrawTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00006FBE,StreakDrawModuleTemplate constructor thunk used through a TU-local layout shim
 ?construct@TerrainCollisionTemplateCopyCtorShim@FXParticleSystem@@QAEXPBX@Z,0x0002C3C7,TerrainCollisionModuleTemplate copy constructor thunk used through a TU-local layout shim
 ?construct@TerrainCollisionTemplateCtorShim@FXParticleSystem@@QAEXXZ,0x00012602,TerrainCollisionModuleTemplate constructor thunk used through a TU-local layout shim
+?construct@WanderAIUpdateModuleDataBaseShim@@QAEXXZ,0x00048A3B,WanderAIUpdate base
 ?constructBuddyMessageAt@@YAXPAXABVBuddyMessage@@@Z,0x00020E69,BuddyMessage list _M_create_node value construct
 ?construct_from@CategoryModuleTemplate06BaseCopyShim@FXParticleSystem@@QAEXPBX@Z,0x00026CC9,CMT06 copy base
 ?construct_from@CategoryModuleTemplate06SubCopyShim@FXParticleSystem@@QAEXPBX@Z,0x00047410,CMT06 copy sub
@@ -4238,6 +4242,7 @@ name,address,notes
 ?xferRandomVariable@@YAXAAVXfer@@AAVGameClientRandomVariable@@@Z,0x0004570F,RenderObjectDrawModuleInfo::DoXfer raw helper call target
 ?xferSaveData@GameState@@AAEXPAVXfer@@W4SnapshotType@@@Z,0x0010FBD0,GameState save-data walker (CHUNK_GameState/Campaign/LivingWorldLogic/Palantir/Audio); thunk 0x36674
 AODHordeContainFieldParse,0x004334F6,AODHordeContain FieldParse
+AssaultTransportAIUpdateFieldParse,0x0040A35D,AssaultTransportAIUpdate FieldParse
 CategoryModuleTemplate06_sub_vtbl,0x0110FC94,CMT06 sub vtbl
 CategoryModuleTemplate06_vtbl0,0x0110FC80,CMT06 vtbl0
 CategoryModuleTemplate06_vtbl4,0x0110FC7C,CMT06 vtbl4
@@ -4276,6 +4281,7 @@ SpawnPointProductionExitUpdateFieldParse,0x00442979,SpawnPoint friend_newModuleD
 SquishCollideFieldParse,0x004173DC,SquishCollide FieldParse
 StealthUpdateFieldParse,0x0041D8F9,StealthUpdate FieldParse
 ToggleHiddenSpecialAbilityUpdateFieldParse,0x0040955C,ToggleHiddenSpecialAbilityUpdate FieldParse
+WanderAIUpdateFieldParse,0x004027DE,WanderAIUpdate FieldParse
 _D3DXMatrixInverse@12,0x009FB321
 _D3DXVec4Transform@12,0x009FAA48
 _HideControlBar,0x00002847,HideControlBar letterbox

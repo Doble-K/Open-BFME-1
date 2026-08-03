@@ -1,145 +1,66 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: WanderAIUpdate::friend_newModuleData factory
+// Retail: new; base construct; outer vtbl; trailing field inits; optional initFromINI.
 
 class INI;
 class ModuleData;
 
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+class WanderAIUpdateModuleDataBaseShim
+{
+public:
+	void construct();
+};
+
+class WanderAIUpdateModuleDataVtbl
+{
+public:
+	WanderAIUpdateModuleDataVtbl() {}
+	virtual void dummy();
+
+private:
+	unsigned char m_pad[0x6C];
+};
+
+class __declspec(novtable) WanderAIUpdateModuleData
+{
+public:
+	WanderAIUpdateModuleData();
+	virtual void dummy();
+
+private:
+	unsigned char m_pad[0x6C];
+};
+
+WanderAIUpdateModuleData::WanderAIUpdateModuleData()
+{
+	((WanderAIUpdateModuleDataBaseShim *)this)->construct();
+	((WanderAIUpdateModuleDataVtbl *)this)->WanderAIUpdateModuleDataVtbl::WanderAIUpdateModuleDataVtbl();
+	*((unsigned char *)this + 0x64) = 0;
+	*(unsigned int *)((char *)this + 0x68) = 0xFFFFFFFF;
+	*((unsigned char *)this + 0x6C) = 1;
+}
+
+class INI
+{
+public:
+	void initFromINI(void *what, const void *parseTable);
+};
+
+extern "C" char WanderAIUpdateFieldParse;
+
 class WanderAIUpdate
 {
 public:
-    static ModuleData *friend_newModuleData(INI *);
+	static ModuleData *friend_newModuleData(INI *ini);
 };
 
-// ?friend_newModuleData@WanderAIUpdate@@SAPAVModuleData@@PAVINI@@@Z
-__declspec(naked) ModuleData *WanderAIUpdate::friend_newModuleData(INI *)
+ModuleData *WanderAIUpdate::friend_newModuleData(INI *ini)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x2b;
-        __emit 0xfc;
-        __emit 0xff;
-        __emit 0x00;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x6a;
-        __emit 0x70;
-        __emit 0xe8;
-        __emit 0x32;
-        __emit 0x60;
-        __emit 0x76;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xf0;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0x85;
-        __emit 0xf6;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x74;
-        __emit 0x1e;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x21;
-        __emit 0xcb;
-        __emit 0xf2;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xa8;
-        __emit 0xa5;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xc6;
-        __emit 0x46;
-        __emit 0x64;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x68;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xc6;
-        __emit 0x46;
-        __emit 0x6c;
-        __emit 0x01;
-        __emit 0xeb;
-        __emit 0x02;
-        __emit 0x33;
-        __emit 0xf6;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x85;
-        __emit 0xc9;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0x74;
-        __emit 0x0b;
-        __emit 0x68;
-        __emit 0xde;
-        __emit 0x27;
-        __emit 0x40;
-        __emit 0x00;
-        __emit 0x56;
-        __emit 0xe8;
-        __emit 0xe2;
-        __emit 0x61;
-        __emit 0x73;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	WanderAIUpdateModuleData *data = new WanderAIUpdateModuleData;
+	if (ini)
+		ini->initFromINI(data, &WanderAIUpdateFieldParse);
+	return (ModuleData *)data;
 }
