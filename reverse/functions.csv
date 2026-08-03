@@ -8919,7 +8919,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addObjectCreationNugget@ObjectCreationListStore@@QAEXPAVObjectCreationNugget@@@Z,,0x001D7970,53,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ?addObjectID@Squad@@QAEXW4ObjectID@@@Z,,0x0036B770,53,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,
 ?addObjectToPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,,0x0051F380,15,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
-?addPlayerByTemplate@SidesList@@QAEXVAsciiString@@@Z,,0x0019C590,722,Code/masm_dumps/SidesList_addPlayerByTemplate.asm,matched,Exact retail MASM; faction strings and validateSides caller prove ownership
+?addPlayerByTemplate@SidesList@@QAEXVAsciiString@@@Z,,0x0019C590,722,Code/GameEngine/Source/Common/SidesList_addPlayerByTemplateMethodThunk.cpp,matched,Exact retail MASM; faction strings and validateSides caller prove ownership
 ?addRayEffect@RayEffectSystem@@QAEXPBVDrawable@@PBUCoord3D@@1@Z,,0x005D3510,111,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
 ?addRequest@GameResultsQueue@@UAEXABVGameResultsRequest@@@Z,,0x006427F0,151,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,
 ?addRequest@GameSpyBuddyMessageQueue@@UAEXABVBuddyRequest@@@Z,,0x0063E2B0,185,Code/GameEngine/Source/Common/GameSpyBuddyMessageQueue_addRequest_Thunk.cpp,matched,vtable slot6; true body 0x63E2B0/185; queue 0x63E39F was addResponse mispair; sizeof BuddyRequest retail 0x2B8 vs ZH 0x208 blocks C++
