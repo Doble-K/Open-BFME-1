@@ -5729,7 +5729,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?CreateCDManager@@YAPAVCDManagerInterface@@XZ,,0x006BA540,80,Code/GameEngineDevice/Source/Win32Device/Common/Win32CDManager.cpp,matched,
 ?CreateGameTextInterface@@YAPAVGameTextInterface@@XZ,,0x004385A0,89,Code/GameEngine/Source/GameClient/GameText.cpp,matched,true body 0x4385A0 (SEH new 0x7840 GameTextManager + ctor-thunk 0x46C4); queue drift-RVA 0xB026E0 was bogus shared snap; BFME class drops ZH m_tbuffer and m_maxLabelLen
 ?Create_Decal@RenderObjClass@@UAEXPAVDecalGeneratorClass@@_N@Z,,0x006CF9A0,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,vtable slot 125
-?Create_GDI_Font@FontCharsClass@@AAEXPBD@Z,,0x0093C570,398,Code/masm_dumps/_sa11__Create_GDI_Font_FontCharsClass__AAEXPBD_Z_93C570.asm,matched,string-anchor Open-BFME4+Grok Generals
+?Create_GDI_Font@FontCharsClass@@AAEXPBD@Z,,0x0093C570,398,Code/GameEngine/Source/Common/FontCharsClass_Create_GDI_FontMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok Generals
 ?Create_Interpolated@HTreeClass@@SAPAV1@PBV1@000MM@Z,,0x00952DA0,436,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Create_Interpolated@HTreeClass@@SAPAV1@PBV1@00MM@Z,,0x00952F60,573,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,layout-fixed via PivotFade member
 ?Create_Morphed@HTreeClass@@SAPAV1@HQBMQAPBV1@@Z,,0x00952B90,524,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
