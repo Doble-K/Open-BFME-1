@@ -2916,7 +2916,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1EventModuleInfo@FXParticleSystem@@IAE@XZ,0x0002A298,0x0005C8B0,1,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty protected destructor
 ??1ExperienceScalarUpgradeModuleData@@UAE@XZ,,0x002D51E0,67,Code/GameEngine/Source/GameLogic/Object/Upgrade/ExperienceScalarUpgradeModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
 ??1ExperienceTracker@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/GameLogic/Object/ExperienceTracker.cpp,matched,
-??1FXBoneInfo@@QAE@XZ,,0x0037E1A0,8,Code/GameEngine/Source/GameLogic/Object/Update/FXBoneInfoDestructor.cpp,matched,thunk-dump converted to clean C++ destructor body at destination 0x37E1A0
+??1FXBoneInfo@@QAE@XZ,,0x0037E1A0,8,Code/GameEngine/Source/GameLogic/Object/Update/FXBoneInfoDestructor.cpp,matched,Open-BFME5 clean C++ FXBoneInfo dtor (AsciiString at +4)
 ??1FadeAndDieOrnamentUpdateModuleData@@UAE@XZ,,0x00126E70,67,Code/GameEngine/Source/GameLogic/Object/Die/FadeAndDieOrnamentUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
 ??1FastFixedAllocator@@QAE@XZ,,0x00B02720,26,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,Converted to an exact standalone C++ thunk
 ??1File@@UAE@XZ,,0x009CB8C0,133,Code/GameEngine/Source/Common/System/File.cpp,matched,scalar dtor reached from ??_GFile@@ at 0x009CB950; installs vtable 0x01143AF8

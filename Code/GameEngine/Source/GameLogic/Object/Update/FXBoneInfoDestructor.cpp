@@ -1,21 +1,24 @@
-// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: FXBoneInfo destructor - destroy AsciiString at +4
+
+class AsciiString
+{
+public:
+	~AsciiString();
+};
 
 class FXBoneInfo
 {
 public:
 	~FXBoneInfo();
+
+private:
+	int m_pad;
+	AsciiString m_name;
 };
 
-__declspec(naked) FXBoneInfo::~FXBoneInfo()
+// ??1FXBoneInfo@@QAE@XZ
+FXBoneInfo::~FXBoneInfo()
 {
-	__asm {
-		_emit 083h
-		_emit 0C1h
-		_emit 004h
-		_emit 0E9h
-		_emit 098h
-		_emit 097h
-		_emit 050h
-		_emit 000h
-	}
 }
