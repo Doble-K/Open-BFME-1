@@ -1313,7 +1313,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CameraShakerClass@CameraShakeSystemClass@@QAE@ABVVector3@@MMM@Z,,0x006D14B0,211,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
 ??0CashHackSpecialPowerModuleData@@QAE@XZ,,0x00258D70,98,Code/GameEngine/Source/GameLogic/AI/CashHackSpecialPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0CastResultStruct@@QAE@XZ,,0x006099F0,38,Code/Libraries/Source/WWVegas/WWMath/colmathaabox.cpp,matched,
-??0CastleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00376250,661,Code/masm_dumps/CastleBehavior_constructor.asm,matched,Exact 661B @ 0x00376250; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x114440
+??0CastleBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00376250,661,Code/GameEngine/Source/GameLogic/Object/Behavior/CastleBehaviorCtorThunk.cpp,matched,Open-BFME5 exact 661B retail module constructor
 ??0CastleMemberBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0036CDD0,58,Code/GameEngine/Source/GameLogic/Object/Behavior/CastleMemberBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw CastleMemberBehavior constructor
 ??0CastleUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D3E30,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/CastleUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
 ??0CastleUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/CastleUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
