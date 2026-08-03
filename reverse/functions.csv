@@ -9863,7 +9863,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doSpecialPowerAtLocation@CashHackSpecialPower@@UAEXPBUCoord3D@@MI@Z,,0x006CF660,3,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CashHackSpecialPower.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
 ?doSpecialPowerAtObject@CashHackSpecialPower@@UAEXPAVObject@@I@Z,,0x00258800,439,Code/masm_dumps/CashHackSpecialPower_doSpecialPowerAtObject.asm,matched,Exact 439B @ 0x258800 MASM; true start was 0x258800 not queue 0x258809; GUI:AddCash+LoseCash identity; Object/Player/InGameUI layout blocks C++
 ?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z,,0x001C3850,77,Code/GameEngine/Source/Common/Object_doSpecialPowerUsingWaypoints_Thunk.cpp,matched,Exact 77B Open-BFME5
-?doSpeechPlay@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x006AF840,973,Code/masm_dumps/_sa3__doSpeechPlay_ScriptActions__IAEXABVAsciiString____6AF840.asm,matched,Exact 973B string-anchored Open-BFME4
+?doSpeechPlay@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x006AF840,973,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doSpeechPlay_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doStopCameraFollowUnit@ScriptActions@@IAEXXZ,,0x002EFAB0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x19c void stop-follow tail-call
 ?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F95A0,144,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamAttackNamed_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doTeamDecreasePriority@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F3A60,196,Code/GameEngine/Source/Common/ScriptActions_doTeamDecreasePriorityThunk.cpp,matched,Open-BFME5 MASM lift
@@ -9921,7 +9921,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?duplicate@BuildListInfo@@QAEPAV1@XZ,,0x001944D0,194,Code/GameEngine/Source/Common/BuildListInfo_duplicate_Thunk.cpp,matched,Certified packet 163 exact retail db recovery SHA256 6d7e0f9b3bcca298be35f6b13d8b6e1f0175f79c1cf4a03289786dea5ed3258a
 ?duplicate@Condition@@QBEPAV1@XZ,,0x0001C189,5,Code/GameEngine/Source/Common/RTS/ConditionDuplicateThunk.cpp,matched,5-byte incremental-link Condition const member thunk converted to focused C++ source
 ?duplicate@OrCondition@@QBEPAV1@XZ,,0x0035A460,140,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
-?duplicate@ScriptAction@@QBEPAV1@XZ,,0x003560A0,532,Code/masm_dumps/duplicate_ScriptAction_003560A0_packet335.asm,matched,Certified packet 335 sealed SHA-256 b1b57dfc8fa47f49ebe2bdc67213543a27a2d9b45e9bdada25241478a55489d1
+?duplicate@ScriptAction@@QBEPAV1@XZ,,0x003560A0,532,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptAction_duplicate_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?emit_ArmorUpgrade@ModulePoolGlueBulk@@YAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D090,96,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,icf-owner=friend_newModuleInstance@ArmorUpgrade; Ghidra boundary
 ?emit_AutoDepositUpdate@ModulePoolGlueBulk@@YAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011A600,96,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,icf-owner=friend_newModuleInstance@AutoDepositUpdate; Ghidra boundary
 ?emit_AutoFindHealingUpdate@ModulePoolGlueBulk@@YAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00119780,96,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,icf-owner=friend_newModuleInstance@AutoFindHealingUpdate; Ghidra boundary
@@ -11773,7 +11773,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getUiText@Condition@@QAE?AVAsciiString@@XZ,,0x00352DB0,160,Code/GameEngine/Source/GameLogic/ScriptEngine/Condition_getUiText_Thunk.cpp,matched,Open-BFME5 lift 160B retail MASM to standalone C++ thunk
 ?getUiText@Parameter@@QBE?AVAsciiString@@XZ,,0x00352E80,3667,Code/masm_dumps/Parameter_getUiText.asm,matched,Exact retail MASM; unique UI strings and two script callers prove ownership
 ?getUiText@Script@@QAE?AVAsciiString@@XZ,,0x00357860,564,Code/masm_dumps/_sa7__getUiText_Script__QAE_AVAsciiString__XZ_357860.asm,matched,Exact 564B Open-BFME4
-?getUiText@ScriptAction@@QAE?AVAsciiString@@XZ,,0x00356340,395,Code/masm_dumps/ScriptAction_getUiText.asm,matched,Exact MASM 395B @ 0x356340; queue 0x601FFC was mid-ctor. Identity: Script::getUiText THEN/ELSE call 0x38b8b->here; unique [???]; engine vtbl +0x28 getActionTemplate
+?getUiText@ScriptAction@@QAE?AVAsciiString@@XZ,,0x00356340,395,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptAction_getUiText_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?getUnicodeBuildLocation@Version@@,,0x000AF220,273,Code/masm_dumps/_sa5__getUnicodeBuildLocation_Version___AF220.asm,matched,Exact 273B Open-BFME4
 ?getUnicodeBuildTime@Version@@,,0x000AF080,292,Code/masm_dumps/_sa5__getUnicodeBuildTime_Version___AF080.asm,matched,Exact 292B Open-BFME4
 ?getUnicodeBuildUser@Version@@,,0x000AF3B0,273,Code/masm_dumps/_sa5__getUnicodeBuildUser_Version___AF3B0.asm,matched,Exact 273B Open-BFME4
