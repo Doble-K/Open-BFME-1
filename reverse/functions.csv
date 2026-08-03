@@ -3241,7 +3241,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TerrainCollisionModuleInfo@FXParticleSystem@@UAE@XZ,,0x005DE650,67,Code/GameEngine/Source/GameClient/System/FXParticleSystem/TerrainCollisionModuleInfoDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer@+4 PropagandaTower pattern
 ??1TerrainCollisionModuleTemplate@FXParticleSystem@@UAE@XZ,0x00038410,0x005DE870,118,Code/GameEngine/Source/Common/FXParticleSystem_TerrainCollisionModuleTemplateDestructorThunk.cpp,matched,
 ??1TerrainLogic@@UAE@XZ,,0x001ADD90,285,Code/GameEngine/Source/Common/TerrainLogicDestructorThunk.cpp,matched,Exact 285B SEH dtor Open-BFME5
-??1TerrainRoadType@@MAE@XZ,,0x00602190,373,Code/masm_dumps/1TerrainRoadType_MAE_XZ_00602190_cbaed676.asm,matched,certified packet 347 exact retail db recovery sha256 cbaed676ad1cf73c0e9adae3efabec8faaffcfa09553bc5e0c3551f081f37870
+??1TerrainRoadType@@MAE@XZ,,0x00602190,373,Code/GameEngine/Source/Common/TerrainRoadTypeDestructorThunk.cpp,matched,Exact 373B SEH dtor Open-BFME5
 ??1TerrainTracksRenderObjClass@@UAE@XZ,,0x00725F40,86,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp,matched,icf-owner=??1DistLODClass@@UAE@XZ
 ??1TerrainTracksRenderObjClassSystem@@QAE@XZ,,0x0072FDD0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp,matched,
 ??1TextTypeTransition@@UAE@XZ,,0x005A0670,133,Code/GameEngine/Source/Common/TextTypeTransitionDestructorThunk.cpp,matched,Exact retail MASM; true RVA via vtable 0x110CCFC slot0 del-dtor 0x5A0A50; queue RVA 0x6F4C3C was W3DDisplayString pad/body
