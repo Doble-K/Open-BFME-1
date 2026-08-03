@@ -9877,7 +9877,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doTeamUseCommandButtonOnNearestObjectType@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002FE110,273,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamUseCommandButtonOnNearestObjectType_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doTesselatedUpdate@W3DTerrainBackground@@QAEXABUIRegion2D@@PAVWorldHeightMap@@_N@Z,,0x0072C7F0,2068,Code/masm_dumps/doTesselatedUpdate_W3DTerrainBackground_QAEXABUIRegion2D_PAVWorldHeightMap_N_Z_0072C7F0.asm,matched,Certified packet 35 exact retail MASM SHA256 504a258ce1cc90303f992b532de9d8d46c3935b14b3756ed9781e4a1da9a83b9
 ?doTheLight@BaseHeightMapRenderObjClass@@QAEXPAUVertexFormatXYZDUV2@@PAVVector3@@1PAV?$RefMultiListIterator@VRenderObjClass@@@@E@Z,,0x006CA7A0,1350,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
-?doThisConnectionRound@NAT@@IAEXXZ,,0x00805A70,484,Code/masm_dumps/_sa9__doThisConnectionRound_NAT__IAEXXZ_805A70.asm,matched,Exact 484B Open-BFME4
+?doThisConnectionRound@NAT@@IAEXXZ,,0x00805A70,484,Code/GameEngine/Source/Common/NAT_doThisConnectionRoundMethodThunk.cpp,matched,Exact 484B Open-BFME4
 ?doToppleDoneStuff@StructureToppleUpdate@@IAEXXZ,,0x002AF3D0,382,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate.cpp,matched,
 ?doUndoRevealMapAtWaypointPermanent@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002F05A0,33,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?doUnfreezeTime@ScriptActions@@IAEXXZ,,0x002EF690,11,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,tail-call ScriptEngine::doUnfreezeTime pin 0x336F10 (ScriptEngine+0x17624=0)
