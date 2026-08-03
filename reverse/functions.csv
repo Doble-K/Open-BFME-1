@@ -11476,7 +11476,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getMostRecentCommand@WorkerAIUpdate@@UAE?AW4DozerTask@@XZ,,0x002C8010,66,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp,matched,
 ?getMostValuableLocation@PartitionManager@@QAEXHIW4ValueOrThreat@@PAUCoord3D@@@Z,,0x0087C140,1002,Code/masm_dumps/_sa9__getMostValuableLocation_PartitionManager__QAEXHIW_87C140.asm,matched,Exact 1002B Open-BFME4
 ?getMusicVolume@OptionPreferences@@QAEMXZ,,0x00091B40,101,Code/GameEngine/Source/Common/promoted__getMusicVolume_OptionPreferences_QAEMXZ_00091B40.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 101B
-?getMyEnemyPlayerIndex@AISkirmishPlayer@@IAEHXZ,,0x001687B0,63,Code/masm_dumps/_cache__getMyEnemyPlayerIndex_AISkirmishPlayer__IAEHXZ_1687B0.asm,matched,cached-obj needle Open-BFME4+Grok
+?getMyEnemyPlayerIndex@AISkirmishPlayer@@IAEHXZ,,0x001687B0,63,Code/GameEngine/Source/GameLogic/AI/AISkirmishPlayerGetMyEnemyPlayerIndexThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?getNATPortAllocationScheme@FirewallHelperClass@@AAEHHPAG0AA_N1@Z,,0x00012F3F,5,Code/GameEngine/Source/Common/RTS/FirewallHelperClassGetNATPortAllocationSchemeThunk.cpp,matched,5-byte incremental-link FirewallHelperClass private member thunk converted to focused C++ source
 ?getName@?$CategoryModuleClass@$00@FXParticleSystem@@QBEPBDXZ,0x0003A689,0x005D4A40,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns module name string
 ?getName@?$CategoryModuleClass@$01@FXParticleSystem@@QBEPBDXZ,0x00033122,0x005D4AA0,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns module name string
