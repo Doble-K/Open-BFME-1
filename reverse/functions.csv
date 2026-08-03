@@ -3046,7 +3046,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MissingGeomClass@@UAE@XZ,,0x007B1130,73,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??1MissingTextureClass@@UAE@XZ,,0x007B1130,73,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ??1Mission@@MAE@XZ,,0x00BF4EB5,200,Code/masm_dumps/__1Mission__MAE_XZ.asm,matched,
-??1MobMemberSlavedUpdate@@UAE@XZ,,0x001FB0C0,226,Code/masm_dumps/MobMemberSlavedUpdate_destructor.asm,matched,Exact 226B; factory ownership Open-BFME4
+??1MobMemberSlavedUpdate@@UAE@XZ,,0x001FB0C0,226,Code/GameEngine/Source/Common/MobMemberSlavedUpdateDestructorThunk.cpp,matched,Exact 226B; factory ownership Open-BFME4
 ??1ModelArrayClass@HLodClass@@UAE@XZ,,0x005DB080,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@V?$DefaultModuleTag@$02@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;ICF thunk converted to C++ alias
 ??1ModelConditionInfo@@QAE@XZ,,0x0013C3FE,292,Code/masm_dumps/ModelConditionInfo_destructor.asm,matched,Exact retail MASM SEH dtor; member-layout SEH shape not emittable from ZH C++
 ??1ModelConditionSoundSelectorClientBehaviorModuleData@@UAE@XZ,,0x00607710,67,Code/GameEngine/Source/GameLogic/Object/Behavior/ModelConditionSoundSelectorClientBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x121E30 ctor 0x607550 prove ownership
