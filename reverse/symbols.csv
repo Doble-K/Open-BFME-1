@@ -4516,3 +4516,5 @@ g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 
 ??1UpdateModuleData@@UAE@XZ,0x009A1A40,Open-BFME5 ModuleData-family base dtor (ICF-folded with SubsystemInterface dtor) from AnimationSteering/PowerPlant/W3DPropDraw dtor call sites
+
+??1DeletionUpdateModuleDataBase@@UAE@XZ,0x0000E421,Open-BFME5 pin
