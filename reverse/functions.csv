@@ -8594,7 +8594,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?_Get_DX8_Transform@DX8Wrapper@@SAXW4_D3DTRANSFORMSTATETYPE@@AAVMatrix4@@@Z,,0x006E1A70,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTreeBuffer.cpp,matched,
 ?_Init@MemoryPool@@YAXXZ,0x008827D0,0x008827D0,366,Code/GameEngine/Source/Common/System/memory_pool.cpp,matched,initialize memory pool
 ?_Init_Filters@TextureFilterClass@@SAXW4TextureFilterMode@1@@Z,,0x00920D10,438,Code/masm_dumps/_sym1___Init_Filters_TextureFilterClass__SAXW4TextureFilterMode_1__Z_920D10.asm,matched,symbol-pin Open-BFME4+Grok
-?_Invalidate_Textures@WW3D@@SAXXZ,,0x008FD790,174,Code/masm_dumps/_leaf___Invalidate_Textures_WW3D__SAXXZ_8FD790.asm,matched,Exact 174B present-unmatched leaf Open-BFME4
+?_Invalidate_Textures@WW3D@@SAXXZ,,0x008FD790,174,Code/GameEngine/Source/Common/WW3D__Invalidate_TexturesMethodThunk.cpp,matched,Exact 174B present-unmatched leaf Open-BFME4
 ?_IsValidBlock@MemoryPool@@YA_NPAX@Z,0x00882D10,0x00882D10,38,Code/GameEngine/Source/Common/System/memory_pool.cpp,matched,validate heap block
 ?_M_advance@_Bit_iterator_base@_STL@@QAEXH@Z,,0x002CAA30,62,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?_M_allocate@?$__node_alloc@$00$0A@@_STL@@CAPAXI@Z,,0x0082E540,162,Code/masm_dumps/___M_allocate_____node_alloc__00_0A___STL__CAPAXI_Z_82E540.asm,matched,
