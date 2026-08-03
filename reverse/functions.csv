@@ -11951,7 +11951,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@ScienceStore@@UAEXXZ,,0x000D3F50,43,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ?init@ScoreScaleUpTransition@@UAEXPAVGameWindow@@@Z,,0x0059F360,140,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?init@ScreenBWFilter@@UAEHXZ,,0x007D0AF0,91,Code/GameEngine/Source/Common/promoted__init_ScreenBWFilter_UAEHXZ_007D0AF0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 91B
-?init@ScreenCrossFadeFilter@@UAEHXZ,,0x007D3760,268,Code/masm_dumps/_sa5__init_ScreenCrossFadeFilter__UAEHXZ_7D3760.asm,matched,Exact 268B Open-BFME4
+?init@ScreenCrossFadeFilter@@UAEHXZ,,0x007D3760,268,Code/GameEngine/Source/Common/ScreenCrossFadeFilter_initMethodThunk.cpp,matched,Exact 268B Open-BFME4
 ?init@ScreenDefaultFilter@@UAEHXZ,,0x007D4660,42,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
 ?init@ScreenMotionBlurFilter@@UAEHXZ,,0x007D8760,33,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
 ?init@ScriptEngine@@UAEXXZ,,0x003107F0,57072,Code/GameEngine/Source/GameLogic/ScriptEngine/script_engine.cpp,matched,real C++ (was naked asm); 542 action templates via a curTemplate cached base
