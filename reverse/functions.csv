@@ -9668,7 +9668,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?drawWindow@GameWindowManager@@IAEHPAVGameWindow@@@Z,,0x0047CBE0,193,Code/masm_dumps/_rn5__drawWindow_GameWindowManager__IAEHPAVGameWindow___Z_47CBE0.asm,matched,reloc-needle Open-BFME4+Grok
 ?drawableIconNameToIndex@@YA?AW4DrawableIconType@@PBD@Z,,0x00410A80,51,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?dumpPacketToLog@NetPacket@@IAEXXZ,,0x00679560,83,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
-?duplicate@BuildListInfo@@QAEPAV1@XZ,,0x001944D0,194,Code/masm_dumps/duplicate_BuildListInfo_QAEPAV1_XZ_001944D0_6d7e0f9b.asm,matched,Certified packet 163 exact retail db recovery SHA256 6d7e0f9b3bcca298be35f6b13d8b6e1f0175f79c1cf4a03289786dea5ed3258a
 ?duplicate@Condition@@QBEPAV1@XZ,,0x0001C189,5,Code/GameEngine/Source/Common/RTS/ConditionDuplicateThunk.cpp,matched,5-byte incremental-link Condition const member thunk converted to focused C++ source
 ?duplicate@OrCondition@@QBEPAV1@XZ,,0x0035A460,140,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ?duplicate@ScriptAction@@QBEPAV1@XZ,,0x003560A0,532,Code/masm_dumps/duplicate_ScriptAction_003560A0_packet335.asm,matched,Certified packet 335 sealed SHA-256 b1b57dfc8fa47f49ebe2bdc67213543a27a2d9b45e9bdada25241478a55489d1
@@ -13039,7 +13038,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setGuardMode@AIGuardMachine@@QAEXW4GuardMode@@@Z,,0x0016AEB0,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setGuardMode@AITNGuardMachine@@QAEXW4GuardMode@@@Z,,0x00150010,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setHandleToKill@AudioEventRTS@@QAEXI@Z,,0x000B2310,10,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,MASM converted to clean C++
-?setHealth@BuildListInfo@@QAEXH@Z,,0x00265BC0,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?setHeight@GameLogic@@QAEXM@Z,,0x00336640,10,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?setHeight@View@@UAEXH@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/View.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
 ?setHeightAboveGround@View@@UAEXM@Z,,0x0018F257,10,Code/GameEngine/Source/GameClient/View.cpp,matched,
@@ -13277,7 +13275,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setWaterTransform@W3DTerrainVisual@@UAEXPBVWaterHandle@@MMMM@Z,,0x00730A20,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?setWaypointID@MapObject@@QAEXH@Z,,0x00087E20,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
 ?setWaypointName@MapObject@@QAEXVAsciiString@@@Z,,0x00087E50,31,Code/GameEngine/Source/GameClient/MapObjectSetWaypointNameThunk.cpp,matched,Open-BFME5 exact C++ setter thunk
-?setWhiner@BuildListInfo@@QAEX_N@Z,,0x0045A9A0,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?setWidth@GameLogic@@QAEXM@Z,,0x00360640,10,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?setWindowText@@YAXPAVGameWindow@@VAsciiString@@@Z,,0x004864E0,416,Code/masm_dumps/GameWindowManagerScript_setWindowText.asm,matched,Exact 416B MASM; true body 0x4864E0 (queue 0x4864C7 int3 pad); BFME AsciiString isEmpty/str blocks ZH C++
 ?setWindowed@Display@@UAEX_N@Z,,0x00336610,10,Code/GameEngine/Source/GameClient/Display.cpp,matched,
@@ -13930,3 +13927,6 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?addToSavedIgnoreList@GameSpyInfo@@UAEXHVAsciiString@@@Z,,0x00635670,149,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME keeps AsciiString::set and releaseBuffer out of line
 ?doBorderSwitch@ScriptActions@@IAEXH@Z,,0x002EFC50,102,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,MASM dump converted to clean C++; BFME omits the trailing refreshShroudForLocalPlayer call
 ??0SwayClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x006044E0,68,Code/GameEngine/Source/GameClient/Drawable/Update/SwayClientUpdate.cpp,matched,MASM dump converted to clean C++; Module drops MemoryPoolObject in BFME and the class has two more dwords
+?setWhiner@BuildListInfo@@QAEX_N@Z,,0x001914A0,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,repointed: real body next to duplicate @0x1944D0; old address was a Snow ICF fold
+?setHealth@BuildListInfo@@QAEXH@Z,,0x00191490,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,repointed: real body next to duplicate @0x1944D0; folds with setFrameToEvaluate
+?duplicate@BuildListInfo@@QAEPAV1@XZ,,0x001944D0,194,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,MASM dump converted to clean C++; BuildListInfo has one merged base so every field drops a dword
