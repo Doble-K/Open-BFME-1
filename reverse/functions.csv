@@ -9248,7 +9248,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?canSelectedObjectsNonAttackInteractWithObject@InGameUI@@QBE_NPBVObject@@W4SelectionRules@1@@Z,,0x00449140,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?canSelectedObjectsOverrideSpecialPowerDestination@InGameUI@@QBE_NPBUCoord3D@@W4SelectionRules@1@W4SpecialPowerType@@@Z,,0x0043ED60,21,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
 ?canTransferSuppliesAt@ActionManager@@QAE_NPBVObject@@0@Z,,0x000C4E80,458,Code/masm_dumps/ActionManager_canTransferSuppliesAt.asm,matched,True body 0xC4E80/458 (queue 0x32C43F MISPLACED); SEH+ret8; warehouse+center NAMEKEYs; Object layout blocks C++
-?canUseSpecialPower@SpecialPowerStore@@QAE_NPAVObject@@PBVSpecialPowerTemplate@@@Z,,0x000EB710,120,Code/masm_dumps/SpecialPowerStore_canUseSpecialPower.asm,matched,Exact 120B MASM; true body 0xEB710 SpecialPowerStore cluster not queue 0x76E9AF INSIDE tryToRecruit; BFME Player post-science check
+?canUseSpecialPower@SpecialPowerStore@@QAE_NPAVObject@@PBVSpecialPowerTemplate@@@Z,,0x000EB710,120,Code/GameEngine/Source/Common/SpecialPowerStore_canUseSpecialPower_Thunk.cpp,matched,Exact 120B Open-BFME5
 ?cancelStartBecauseOfNoCD@@YA?AW4MessageBoxReturnType@@PAX@Z,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MainMenu.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?capacity@?$vector@U?$pair@UICoord2D@@UCoord3D@@@_STL@@V?$allocator@U?$pair@UICoord2D@@UCoord3D@@@_STL@@@2@@_STL@@QBEIXZ,,0x00350AB0,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
 ?capacity@?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QBEIXZ,,0x00068A60,24,Code/GameEngine/Source/GameLogic/Object/Behavior/ParkingPlaceBehavior.cpp,matched,
