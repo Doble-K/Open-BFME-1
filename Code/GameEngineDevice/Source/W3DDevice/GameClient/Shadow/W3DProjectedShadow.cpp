@@ -2347,8 +2347,8 @@ void W3DShadowTextureManager::invalidateCachedLightPositions(void)
 class MissingTextureClass : public HashableClass {
 
 public:
-	MissingTextureClass( const char * name ) : Name( name ) {}
-	virtual	~MissingTextureClass( void ) {}
+	MissingTextureClass( const char * name );
+	virtual	~MissingTextureClass( void );
 
 	virtual	const char * Get_Key( void )	{ return Name;	}
 
@@ -2356,6 +2356,8 @@ private:
 	StringClass	Name;
 
 };
+
+MissingTextureClass::~MissingTextureClass( void ) {}
 
 /*
 ** Missing Textures
