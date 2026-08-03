@@ -1,136 +1,49 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift WeaponFireSpecialAbilityUpdate dtor __emit thunk to clean
+// C++. Four entry vtables (+0x00/+0x0C/+0x10/+0x20), virtual-delete of the
+// heap pointer at +0xE8 with clear-to-zero, out-of-line SpecialAbilityUpdate
+// base dtor.
 
-class __declspec(novtable) WeaponFireSpecialAbilityUpdate
+class WFS_RootBase
+{
+public:
+    virtual ~WFS_RootBase();
+
+private:
+    unsigned char m_pad[8];
+};
+
+class WFS_Iface1 { public: virtual void slot(); };
+class WFS_Iface2 { public: virtual void slot(); private: unsigned char m_pad[0xC]; };
+class WFS_Iface3 { public: virtual void slot(); };
+
+class SpecialAbilityUpdate : public WFS_RootBase, public WFS_Iface1, public WFS_Iface2, public WFS_Iface3
+{
+public:
+    virtual ~SpecialAbilityUpdate();
+
+private:
+    unsigned char m_pad[0xC4];
+};
+
+class WFS_HeapObj
+{
+public:
+    virtual ~WFS_HeapObj();
+};
+
+class WeaponFireSpecialAbilityUpdate : public SpecialAbilityUpdate
 {
 public:
     virtual ~WeaponFireSpecialAbilityUpdate();
+
+private:
+    WFS_HeapObj *m_ptr;
 };
 
 // ??1WeaponFireSpecialAbilityUpdate@@UAE@XZ
-__declspec(naked) WeaponFireSpecialAbilityUpdate::~WeaponFireSpecialAbilityUpdate()
+WeaponFireSpecialAbilityUpdate::~WeaponFireSpecialAbilityUpdate()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xf8
-        __emit 0x01
-        __emit 0x01
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x18
-        __emit 0x8d
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8c
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0x44
-        __emit 0x8c
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0x18
-        __emit 0x8c
-        __emit 0x0b
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0xe8
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x86
-        __emit 0xe8
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x1e
-        __emit 0x70
-        __emit 0xdb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+    delete m_ptr;
+    m_ptr = 0;
 }
