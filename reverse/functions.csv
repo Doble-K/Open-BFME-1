@@ -2118,7 +2118,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0RepairSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002647F0,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/RepairSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ??0RepairSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0RepeatChar@Debug@@QAE@DH@Z,,0x00889270,18,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
-??0ReplenishUnitsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002044E0,253,Code/masm_dumps/ReplenishUnitsBehavior_constructor.asm,matched,Exact 253B @ 0x002044E0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1173A0
+??0ReplenishUnitsBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002044E0,253,Code/GameEngine/Source/GameLogic/Object/Behavior/ReplenishUnitsBehaviorCtorThunk.cpp,matched,Exact 253B @ 0x002044E0; Exact retail MASM module ctor; unique friend_newModuleInstance factory 0x1173A0
 ??0ResizerWindow@@QAE@XZ,,0x004AAED0,31,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp,matched,
 ??0ResolutionDescClass@@QAE@HHH@Z,,0x000642F0,25,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ??0ResolutionDescClass@@QAE@XZ,,0x0005C5D0,13,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,ICF alias of existing matched body
