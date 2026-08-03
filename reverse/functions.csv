@@ -4663,7 +4663,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??RRandom3Class@@QAEHXZ,,0x009E5ED0,244,Code/Libraries/Source/WWVegas/WWLib/random.cpp,matched,verbatim Generals WWLib
 ??RRandom4Class@@QAEHXZ,,0x009E6020,253,Code/Libraries/Source/WWVegas/WWLib/random.cpp,matched,verbatim Generals WWLib (Mersenne twister)
 ??RRandomClass@@QAEHXZ,,0x009E5E40,24,Code/Libraries/Source/WWVegas/WWLib/random.cpp,matched,
-??RUnicodeStringLessThan@@QBE_NVUnicodeString@@0@Z,,0x0044D2A0,95,Code/masm_dumps/RUnicodeStringLessThan_QBE_NVUnicodeString_0_Z_44D2A0.asm,matched,MASM exact 95B; true body 0x44D2A0 (queue 0x791C16 mid-fn float path); SEH+compareNoCase@StringBase@G ILT 0x1609F; C++ 126B inline _wcsicmp
+??RUnicodeStringLessThan@@QBE_NVUnicodeString@@0@Z,,0x0044D2A0,95,Code/GameEngine/Source/Common/UnicodeStringLessThan_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??Rvalue_compare@?$map@GEU?$less@G@_STL@@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@QBE_NABU?$pair@$$CBGE@2@0@Z,,0x0037AB30,21,Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp,matched,icf-owner=??R?$less@G@_STL@@QBE_NABG0@Z
 ??XCoord2D@@QAEAAV0@M@Z,0x00019C31,0x0014FF90,23,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,scales x/y in place
 ??XCoord3D@@QAEAAV0@M@Z,0x00002A13,0x0016A290,33,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,scales x/y/z in place
