@@ -1809,7 +1809,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Matrix4D@@QAE@XZ,0x000218D7,0x007E6050,3,Code/Libraries/Source/WWVegas/WWMath/matrix4d.cpp,matched,empty constructor returns self
 ??0Matrix4D@@QAE@_N@Z,0x0000F5F1,0x007E79D0,67,Code/Libraries/Source/WWVegas/WWMath/matrix4d.cpp,matched,optionally initializes identity
 ??0MaxHealthUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D63A0,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/MaxHealthUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2D63A0
-??0MaxHealthUpgradeModuleData@@QAE@XZ,,0x002D6590,29,Code/GameEngine/Source/GameLogic/Object/Upgrade/MaxHealthUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
+??0MaxHealthUpgradeModuleData@@QAE@XZ,,0x002D6590,29,Code/GameEngine/Source/GameLogic/Object/Upgrade/MaxHealthUpgradeModuleData.cpp,matched,Open-BFME5 clean C++ ctor sub-before-vtbl zero +0x70/+0x74
 ??0MemLogClass@@QAE@XZ,,0x00AFF830,42,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??0MemLogMutexLockClass@@QAE@XZ,,0x00AFE770,45,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??0MemoryCounterClass@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,ICF alias of existing matched body
