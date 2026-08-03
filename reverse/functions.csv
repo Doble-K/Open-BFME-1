@@ -2763,7 +2763,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AIUpdateInterface@@UAE@XZ,,0x0027EF60,367,Code/masm_dumps/AIUpdateInterface_destructor.asm,matched,Exact 367B @ 0x0027EF60; Exact retail MASM; instance factory->vtable dtor; del 0x27FAC0 ctor 0x27F4B0 vt 0xCBA8A8
 ??1AIUpdateModuleData@@UAE@XZ,,0x00887940,134,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=?releaseBuffer@?$StringBase@D@@AAEXXZ;C++ alias
 ??1AODHordeContain@@UAE@XZ,,0x00230980,273,Code/masm_dumps/AODHordeContain_destructor.asm,matched,Exact 273B @ 0x00230980; Exact retail MASM; instance factory->vtable dtor; del 0x231BB0 ctor 0x230580 vt 0xCAE7A0
-??1ActiveBodyModuleData@@UAE@XZ,,0x00128C50,162,Code/masm_dumps/ActiveBodyModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x210B40 ctor 0x20F7C0 vt 0xCA76C0
+??1ActiveBodyModuleData@@UAE@XZ,,0x00128C50,162,Code/GameEngine/Source/Common/ActiveBodyModuleDataDestructorThunk.cpp,matched,Exact 162B SEH dtor Open-BFME5
 ??1ActiveCategoryClass@@UAE@XZ,,0x00AFF180,73,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,
 ??1ActiveCategoryStackClass@@UAE@XZ,,0x00AFF130,45,Code/GameEngine/Source/Common/ActiveCategoryStackClassDestructorThunk.cpp,matched,object-symbol=??1ActiveCategoryStackClass@@UAE@XZ;Open-BFME5 ICF clean C++
 ??1AdaptiveDeltaMotionChannelClass@@QAE@XZ,,0x009783C0,51,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
@@ -2857,7 +2857,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CreateObjectDieModuleData@@UAE@XZ,,0x002548A0,67,Code/GameEngine/Source/GameLogic/Object/Die/CreateObjectDieModuleDataDestructorThunk.cpp,matched,Exact 67B SEH dtor factory->vtable Open-BFME4
 ??1CreditsLine@@QAE@XZ,,0x0040C230,134,Code/masm_dumps/_rn7___1CreditsLine__QAE_XZ_40C230.asm,matched,reloc-needle Open-BFME4+Grok
 ??1CriticalSectionClass@@QAE@XZ,,0x009DB450,25,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
-??1CritterEmitterUpdateModuleData@@UAE@XZ,,0x001FA750,175,Code/masm_dumps/CritterEmitterUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x1FA720 ctor 0x1FA3A0 vt 0xCA39F0
+??1CritterEmitterUpdateModuleData@@UAE@XZ,,0x001FA750,175,Code/GameEngine/Source/Common/CritterEmitterUpdateModuleDataDestructorThunk.cpp,matched,Exact 175B SEH dtor Open-BFME5
 ??1CrushDieModuleData@@UAE@XZ,,0x001255C0,77,Code/GameEngine/Source/GameLogic/AI/CrushDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1CullNodeStruct@AABTreeBuilderClass@@QAE@XZ,,0x0096B530,69,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ??1CullSystemClass@@UAE@XZ,,0x008E2150,7,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,
@@ -2961,7 +2961,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1Geometry@@QAE@XZ,,0x007BA140,57,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??1GeometryUpgrade@@UAE@XZ,,0x002D5900,103,Code/GameEngine/Source/Common/GeometryUpgradeDestructorThunk.cpp,matched,Exact 103B @ 0x002D5900; Exact retail MASM; instance factory->vtable dtor; del 0x2D58D0 ctor 0x2D5790 vt 0xCCCD5C
 ??1GeometryUpgradeModuleData@@UAE@XZ,,0x002D5DD0,144,Code/GameEngine/Source/Common/GeometryUpgradeModuleDataDestructorThunk.cpp,matched,Exact 144B @ 0x002D5DD0; Exact retail MASM; factory->vtable dtor; del 0x2D5DA0 ctor 0x2D5CE0 vt 0xCCCD90
-??1GettingBuiltBehaviorModuleData@@UAE@XZ,,0x001FE260,198,Code/masm_dumps/GettingBuiltBehaviorModuleData_destructor.asm,matched,Exact 198B SEH dtor Open-BFME4
+??1GettingBuiltBehaviorModuleData@@UAE@XZ,,0x001FE260,198,Code/GameEngine/Source/Common/GettingBuiltBehaviorModuleDataDestructorThunk.cpp,matched,Exact 198B SEH dtor Open-BFME5
 ??1GiantBirdAIUpdate@@UAE@XZ,,0x002C2720,173,Code/masm_dumps/GiantBirdAIUpdate_destructor.asm,matched,Exact 173B @ 0x002C2720; Exact retail MASM; instance factory->vtable dtor; del 0x2C2800 ctor 0x2C2430 vt 0xCC7F40
 ??1GiantBirdSlowDeathBehavior@@UAE@XZ,,0x001FFC10,110,Code/GameEngine/Source/Common/GiantBirdSlowDeathBehaviorDestructorThunk.cpp,matched,Exact 110B @ 0x001FFC10; Exact retail MASM; instance factory->vtable dtor; del 0x1FFDE0 ctor 0x1FFB40 vt 0xCA4984
 ??1GiantBirdSlowDeathBehaviorModuleData@@UAE@XZ,,0x001FFF50,79,Code/GameEngine/Source/GameLogic/AI/GiantBirdSlowDeathBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -2987,7 +2987,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1HitReactionBehaviorModuleData@@UAE@XZ,,0x00291EB0,80,Code/GameEngine/Source/Common/HitReactionBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
 ??1HordeAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/HordeAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME4
 ??1HordeContain@@UAE@XZ,,0x0023EF90,414,Code/masm_dumps/HordeContain_destructor.asm,matched,Exact 414B @ 0x0023EF90; Exact retail MASM; instance factory->vtable dtor; del 0x2408B0 ctor 0x23EAF0 vt 0xCAF2C8
-??1HordeContainModuleData@@UAE@XZ,,0x00129E90,184,Code/masm_dumps/HordeContainModuleData_destructor.asm,matched,Exact 184B SEH dtor Open-BFME4
+??1HordeContainModuleData@@UAE@XZ,,0x00129E90,184,Code/GameEngine/Source/Common/HordeContainModuleDataDestructorThunk.cpp,matched,Exact 184B SEH dtor Open-BFME5
 ??1HordeGarrisonContain@@UAE@XZ,,0x00249820,409,Code/masm_dumps/HordeGarrisonContain_destructor.asm,matched,Exact 409B SEH module dtor; factory->vtable recovery Open-BFME4
 ??1HordeSiegeEngineContain@@UAE@XZ,,0x0024A180,183,Code/masm_dumps/HordeSiegeEngineContain_destructor.asm,matched,Exact 183B @ 0x0024A180; Exact retail MASM; instance factory->vtable dtor; del 0x24A6E0 ctor 0x24A560 vt 0xCB02A8
 ??1HordeSiegeEngineContainModuleData@@UAE@XZ,,0x0022B0E0,95,Code/GameEngine/Source/Common/HordeSiegeEngineContainModuleDataDestructorThunk.cpp,matched,Exact 95B @ 0x0022B0E0; Exact retail MASM; factory->vtable dtor; del 0x22CC40 ctor 0x22CB80 vt 0xCAD180
@@ -3218,7 +3218,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1StreamingArchiveFile@@MAE@XZ,,0x009D2140,79,Code/GameEngine/Source/Common/System/StreamingArchiveFile.cpp,matched,installs vtable 0x01143CA8 (the one the StreamingArchiveFile ctor installs) and calls ~RAMFile at 0x009D19A0; was 0x00168710 which installs 0x01096FB0 so it destroyed a different class
 ??1StringInfo@@QAE@XZ,,0x004368F0,76,Code/GameEngine/Source/GameClient/StringInfoDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1StructureCollapseUpdateModuleData@@UAE@XZ,,0x00128A90,103,Code/GameEngine/Source/Common/StructureCollapseUpdateModuleDataDestructorThunk.cpp,matched,Exact 103B SEH dtor Open-BFME5
-??1StructureToppleUpdateModuleData@@UAE@XZ,,0x0012C180,163,Code/masm_dumps/StructureToppleUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x12C150 ctor 0x12BF50 vt 0xC8F700
+??1StructureToppleUpdateModuleData@@UAE@XZ,,0x0012C180,163,Code/GameEngine/Source/Common/StructureToppleUpdateModuleDataDestructorThunk.cpp,matched,Exact 163B SEH dtor Open-BFME5
 ??1SubObjectsUpgradeModuleData@@UAE@XZ,,0x002D8A60,343,Code/masm_dumps/SubObjectsUpgradeModuleData_destructor.asm,matched,Exact 343B @ 0x002D8A60; Exact retail MASM; factory->vtable dtor; del 0x12B7C0 ctor 0x12B6C0 vt 0xC8F548
 ??1SubsystemInterface@@UAE@XZ,,0x009A1A40,14,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,empty body; vptr then tail-jump to destroy m_name. Base vtable slot 0 (??_G at 0x009A1D00) calls THIS - the old 0x009D19A0 claim was a mislabel
 ??1SubsystemLegend@@UAE@XZ,,0x009A1540,115,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,explicit m_entries.clear() then implicit member+base dtor (base dtor 0x009A1A40)
@@ -3249,7 +3249,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TooltipUpgrade@@UAE@XZ,,0x00418B50,142,Code/masm_dumps/TooltipUpgrade_destructor.asm,matched,Exact 142B SEH dtor factory->vtable Open-BFME4
 ??1TooltipUpgradeModuleData@@UAE@XZ,,0x0012BBB0,96,Code/GameEngine/Source/Common/TooltipUpgradeModuleDataDestructorThunk.cpp,matched,Exact 96B SEH dtor Open-BFME5
 ??1ToppleUpdateModuleData@@UAE@XZ,,0x002B15B0,67,Code/GameEngine/Source/GameLogic/Object/Update/ToppleUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor vtable and deleting-wrapper chain prove ownership
-??1TransitionDamageFXModuleData@@UAE@XZ,,0x00253500,197,Code/masm_dumps/TransitionDamageFXModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x2534D0 ctor 0x2532B0 vt 0xCB2690
+??1TransitionDamageFXModuleData@@UAE@XZ,,0x00253500,197,Code/GameEngine/Source/Common/TransitionDamageFXModuleDataDestructorThunk.cpp,matched,Exact 197B SEH dtor Open-BFME5
 ??1TranslatorData@MessageStream@@QAE@XZ,,0x0008A260,15,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??1TransportAIUpdate@@UAE@XZ,,0x00271DB0,2099,Code/masm_dumps/TransportAIUpdate_destructor.asm,matched,Exact 2099B SEH dtor Open-BFME4
 ??1TransportAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/TransportAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
