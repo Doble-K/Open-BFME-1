@@ -9832,7 +9832,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doPlaySoundEffectAt@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F2120,306,Code/masm_dumps/ScriptActions_doPlaySoundEffectAt.asm,matched,Ghidra-bound exact retail body
 ?doPlayerGrantScience@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F00C0,91,Code/GameEngine/Source/Common/ScriptActions_doPlayerGrantScience_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doPlayerPurchaseScience@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F0140,91,Code/GameEngine/Source/Common/ScriptActions_doPlayerPurchaseScience_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?doPlayerSetOverrideRelationToTeam@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F84C0,102,Code/masm_dumps/ScriptActions_doPlayerSetOverrideRelationToTeam.asm,matched,Ghidra-corrected body via executeAction dispatch thunk
+?doPlayerSetOverrideRelationToTeam@ScriptActions@@IAEXABVAsciiString@@0H@Z,,0x002F84C0,102,Code/GameEngine/Source/Common/ScriptActions_doPlayerSetOverrideRelationToTeam_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doPlayerSetScienceAvailability@ScriptActions@@IAEXABVAsciiString@@00@Z,,0x002F01C0,126,Code/masm_dumps/ScriptActions_doPlayerSetScienceAvailability.asm,matched,Corrected full BFME science-availability body
 ?doRadarCreateEvent@ScriptActions@@IAEXPAUCoord3D@@H@Z,,0x002EEC70,29,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?doRadarDisable@ScriptActions@@IAEXXZ,,0x002EFD50,10,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,ICF with forceOn(true) @ Radar+0xd
@@ -11926,7 +11926,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@FlatTerrainShaderPixelShader@@UAEHXZ,,0x007C7DC0,212,Code/masm_dumps/_sa11__init_FlatTerrainShaderPixelShader__UAEHXZ_7C7DC0.asm,matched,string-anchor Open-BFME4+Grok shaders\fterrainnoise2.pso
 ?init@FrameData@@QAEXXZ,,0x00670170,135,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
 ?init@FrameDataManager@@QAEXXZ,,0x006705C0,72,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
-?init@FullFadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059D420,95,Code/masm_dumps/_sa__init_FullFadeTransition_UAEXPAVGameWindow_Z_59D420.asm,matched,
+?init@FullFadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059D420,95,Code/GameEngine/Source/Common/FullFadeTransition_init_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?init@GameEngine@@,,0x00079060,7123,Code/masm_dumps/_str2__init_GameEngine__79060.asm,matched,true size 7123B; previous row claimed only 6689B (no padding before ~GameEngine)
 ?init@GameLogic@@UAEXXZ,,0x0038A1F0,1014,Code/masm_dumps/_sa11__init_GameLogic__UAEXXZ_38A1F0.asm,matched,string-anchor Open-BFME4+Grok ThePartitionManager
 ?init@GameSpyLoadScreen@@,,0x00493120,2717,Code/masm_dumps/_str2__init_GameSpyLoadScreen__493120.asm,matched,
@@ -12914,7 +12914,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?push_back@?$vector@_NV?$allocator@_N@_STL@@@_STL@@QAEX_N@Z,,0x002CCB10,109,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?qmProfileIDCallback@@YAXPAXHPBDH0@Z,,0x00642F40,31,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,
 ?queueDozer@AIPlayer@@MAEXXZ,,0x001657E0,490,Code/masm_dumps/_sa__queueDozer_AIPlayer__MAEXXZ_1657E0.asm,matched,Exact 490B string-anchored Open-BFME4
-?queueForPath@Pathfinder@@QAE_NW4ObjectID@@@Z,,0x003D5540,96,Code/masm_dumps/_rn3__queueForPath_Pathfinder__QAE_NW4ObjectID___Z_3D5540.asm,matched,reloc-needle Open-BFME4+Grok
+?queueForPath@Pathfinder@@QAE_NW4ObjectID@@@Z,,0x003D5540,96,Code/GameEngine/Source/Common/Pathfinder_queueForPath_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?queueLocalCommand@BFMEConnectionManager@@QAEXPAX@Z,,0x00662E80,484,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?queueParticleRender@W3DParticleSystemManager@@UAEXXZ,,0x0024A270,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DParticleSys.cpp,matched,
 ?queueSend@Transport@@QAE_NIGPBEH@Z,,0x00049F80,5,Code/GameEngine/Source/GameNetwork/TransportQueueSendThunk.cpp,matched,Open-BFME5 exact ILT thunk; real body 0x683830
