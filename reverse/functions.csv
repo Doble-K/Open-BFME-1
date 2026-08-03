@@ -9847,7 +9847,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doRetryMetrics@Connection@@IAEXXZ,,0x00661D90,51,Code/GameEngine/Source/GameNetwork/Connection.cpp,matched,
 ?doRevealMapAtWaypointPermanent@ScriptActions@@IAEXABVAsciiString@@M00@Z,,0x002F0560,48,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?doRotateCameraTowardObject@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002EE060,118,Code/GameEngine/Source/Common/ScriptActions_doRotateCameraTowardObject_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?doRotateCameraTowardWaypoint@ScriptActions@@IAEXABVAsciiString@@MMM_N@Z,,0x002F26F0,116,Code/masm_dumps/doRotateCameraTowardWaypoint_ScriptActions_002F26F0.asm,matched,certified packet 75 exact retail db recovery
+?doRotateCameraTowardWaypoint@ScriptActions@@IAEXABVAsciiString@@MMM_N@Z,,0x002F26F0,116,Code/GameEngine/Source/Common/ScriptActions_doRotateCameraTowardWaypoint_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doSend@Transport@@QAE_NXZ,,0x006834B0,271,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
 ?doSetDrawIconUIMode@ScriptActions@@IAEX_N@Z,,0x002F0600,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x92 script flag
 ?doSetDynamicLODMode@ScriptActions@@IAEX_N@Z,,0x002F0620,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x93 script flag
@@ -10770,10 +10770,10 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@WeaponChangeSpecialPowerModule@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001203D0,96,Code/GameEngine/Source/GameLogic/AI/WeaponChangeSpecialPowerModuleFriendNewModuleInstanceThunk.cpp,matched,retail ModuleFactory registration ordinal 0xDC Ghidra confirmed
 ?friend_newModuleInstance@WeaponFireSpecialAbilityUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001193B0,99,Code/GameEngine/Source/GameLogic/Object/Update/WeaponFireSpecialAbilityUpdateFriendNewModuleInstanceThunk.cpp,matched,retail ModuleFactory registration ordinal 0x70; Ghidra confirmed
 ?friend_newModuleInstance@WeaponModeSpecialPowerUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00119670,96,Code/GameEngine/Source/GameLogic/Object/Update/WeaponModeSpecialPowerUpdateFriendNewModuleInstanceThunk.cpp,matched,retail ModuleFactory registration ordinal 0x6C; Ghidra confirmed
-?friend_newModuleInstance@WeaponSetSpecialAbilityUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00119270,99,Code/masm_dumps/WeaponSetSpecialAbilityUpdate_friend_newModuleInstance.asm,matched,retail ModuleFactory registration ordinal 0x72; Ghidra confirmed
+?friend_newModuleInstance@WeaponSetSpecialAbilityUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00119270,99,Code/GameEngine/Source/Common/WeaponSetSpecialAbilityUpdate_friend_newModuleInstance_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?friend_newModuleInstance@WeaponSetUpgrade@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D8D0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
 ?friend_newModuleInstance@WorkerAIUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011C060,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleInstance@WoundArrowUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00120F90,99,Code/masm_dumps/WoundArrowUpdate_friend_newModuleInstance.asm,matched,retail ModuleFactory registration ordinal 0xE7 Ghidra confirmed
+?friend_newModuleInstance@WoundArrowUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00120F90,99,Code/GameEngine/Source/Common/WoundArrowUpdate_friend_newModuleInstance_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?friend_parseScienceDefinition@ScienceStore@@SAXPAVINI@@@Z,,0x000E8630,445,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,INI block table node binds keyword Science to this address
 ?friend_setBridge@TerrainRoadType@@QAEX_N@Z,,0x003606F0,10,Code/GameEngine/Source/GameClient/Terrain/TerrainRoads.cpp,matched,
 ?friend_setBridgeScale@TerrainRoadType@@QAEXM@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/Terrain/TerrainRoads.cpp,matched,icf-owner=?Set_Back_Child@CullNodeStruct@AABTreeClass@@QAEXK@Z
