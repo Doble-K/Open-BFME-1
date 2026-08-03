@@ -384,7 +384,6 @@ AggregateDefClass::Load_Assets (const char *passet_name)
 //	Initialize
 //
 void
-// ?Initialize@AggregateDefClass@@QAEXAAVRenderObjClass@@@Z present-unmatched
 AggregateDefClass::Initialize (RenderObjClass &base_model)
 {
 	// Start with fresh lists
@@ -408,7 +407,11 @@ AggregateDefClass::Initialize (RenderObjClass &base_model)
 	// Create a new instance of the model which we can use
 	// to compare with the supplied model and determine
 	// which 'bones-models' and textures are new.
-	RenderObjClass *pvanilla_model = (RenderObjClass *)Create_Render_Object (orig_model_name);
+	// BFME calls the free Create_Render_Obj here, not the virtual member:
+	// retail @0x980A50 makes a direct call to 0x8FF290 where the virtual
+	// would go through the asset manager's vtable slot +0x48.
+	extern RenderObjClass *Create_Render_Obj (const char *passet_name);
+	RenderObjClass *pvanilla_model = (RenderObjClass *)Create_Render_Obj (orig_model_name);
 
 	// Build lists of changes from the delta between the original model and the provided one
 	Build_Subobject_List (*pvanilla_model, base_model);

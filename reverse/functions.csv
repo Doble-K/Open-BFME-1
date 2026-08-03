@@ -6977,7 +6977,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Init_Random@AABoxClass@@QAEXMMMM@Z,,0x008DB3D0,126,Code/Libraries/Source/WWVegas/WWMath/aabox.cpp,matched,
 ?Init_Rise_Processor_Type@CPUDetectClass@@CAXXZ,,0x009DE300,77,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,
 ?Init_VIA_Processor_Type@CPUDetectClass@@CAXXZ,,0x009DE2A0,81,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,
-?Initialize@AggregateDefClass@@QAEXAAVRenderObjClass@@@Z,,0x00980A60,163,Code/masm_dumps/__Initialize_AggregateDefClass__QAEXAAVRenderObjCla_980A60.asm,matched,
 ?Initialize@HLodDefClass@@QAEXAAVHLodClass@@@Z,,0x0097CA80,485,Code/masm_dumps/_sym1__Initialize_HLodDefClass__QAEXAAVHLodClass___Z_97CA80.asm,matched,symbol-pin Open-BFME4+Grok
 ?Initialize@INIClass@@AAEXXZ,,0x009E3640,98,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Initialize_Particle@ParticleEmitterClass@@AAEXPAUNewParticleStruct@@IABVQuaternion@@ABVVector3@@@Z,,0x0097F1F0,850,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?setWhiner@BuildListInfo@@QAEX_N@Z,,0x001914A0,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,repointed: real body next to duplicate @0x1944D0; old address was a Snow ICF fold
 ?setHealth@BuildListInfo@@QAEXH@Z,,0x00191490,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,repointed: real body next to duplicate @0x1944D0; folds with setFrameToEvaluate
 ?duplicate@BuildListInfo@@QAEPAV1@XZ,,0x001944D0,194,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,MASM dump converted to clean C++; BuildListInfo has one merged base so every field drops a dword
+?Initialize@AggregateDefClass@@QAEXAAVRenderObjClass@@@Z,,0x00980A60,163,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,MASM dump converted to clean C++; SUBOBJS_MATCH_LOD is bit 20 in BFME and two AggregateDefClass methods are not virtual
