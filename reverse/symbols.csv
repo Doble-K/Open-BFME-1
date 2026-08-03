@@ -4301,3 +4301,18 @@ CategoryModuleTemplate8_vtbl4,0x01073844,CategoryModuleTemplate8 ctor vtbl at +4
 ??1AutoPickUpUpdateModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1BroadcastStealthUpdateModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1BroadcastStealthUpdateModuleDataMemberA@@QAE@XZ,0x00887940,Open-BFME5 pin
+?construct_from@DefaultModuleTemplate01BaseCopyShim@FXParticleSystem@@QAEXPBX@Z,0x0001D435,DMT01 copy base
+?construct_from@DefaultModuleTemplate01SubCopyShim@FXParticleSystem@@QAEXPBX@Z,0x000052AE,DMT01 copy sub
+DefaultModuleTemplate01_vtbl0,0x01110C50,DMT01 vtbl0
+DefaultModuleTemplate01_vtbl4,0x01110C4C,DMT01 vtbl4
+DefaultModuleTemplate01_sub_vtbl,0x01110C64,DMT01 sub vtbl
+?construct_from@DefaultModuleTemplate05BaseCopyShim@FXParticleSystem@@QAEXPBX@Z,0x00029FF0,DMT05 copy base
+?construct_from@DefaultModuleTemplate05SubCopyShim@FXParticleSystem@@QAEXPBX@Z,0x0003BB0B,DMT05 copy sub
+DefaultModuleTemplate05_vtbl0,0x01110938,DMT05 vtbl0
+DefaultModuleTemplate05_vtbl4,0x01110934,DMT05 vtbl4
+DefaultModuleTemplate05_sub_vtbl,0x0111094C,DMT05 sub vtbl
+?construct_from@DefaultModuleTemplate0ABaseCopyShim@FXParticleSystem@@QAEXPBX@Z,0x00025CA7,DMT0A copy base
+?construct_from@DefaultModuleTemplate0ASubCopyShim@FXParticleSystem@@QAEXPBX@Z,0x000354F4,DMT0A copy sub
+DefaultModuleTemplate0A_vtbl0,0x011108F8,DMT0A vtbl0
+DefaultModuleTemplate0A_vtbl4,0x011108F4,DMT0A vtbl4
+DefaultModuleTemplate0A_sub_vtbl,0x0111090C,DMT0A sub vtbl
