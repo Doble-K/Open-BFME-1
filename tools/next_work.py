@@ -177,8 +177,12 @@ def snap_rva(rva):
     function start, trying both directions and keeping whichever is closer.
     Returns (corrected_rva, note|None)."""
     ordered, starts = _ghidra_starts()
-    if not ordered or rva in starts:
+    if rva in starts:
         return rva, None
+    if not ordered:
+        # No Ghidra inventory (it is gitignored, so this is the fresh-clone case):
+        # recover the boundary from the retail image instead of no-opping.
+        return padding_snap(rva)
     try:
         import bisect
         import build
@@ -203,7 +207,58 @@ def snap_rva(rva):
             return candidates[0][1], candidates[0][2]
     except Exception:
         pass
-    return rva, None
+    return padding_snap(rva)
+
+
+PAD_BYTES = (0xCC, 0x90)
+SNAP_WINDOW = 64
+
+
+def padding_snap(rva):
+    """Ghidra-free fallback for the correction above.
+
+    The Ghidra inventory is gitignored, so on a fresh clone `_ghidra_starts()` is
+    empty and every drift vote keeps its raw rva — which the docstring above says
+    is wrong ~99% of the time. MSVC pads between functions with int3, so the byte
+    after a padding run is a real function start and the image alone is enough to
+    recover one. Where no boundary is in range, say the candidate is interior
+    rather than invent a start: that verdict is what saves the 30-60 minutes."""
+    try:
+        import build
+        head = build.read_target_bytes(rva, SNAP_WINDOW)
+        back = build.read_target_bytes(rva - SNAP_WINDOW, SNAP_WINDOW)
+    except Exception:
+        return rva, None
+    if len(head) < 2 or len(back) < SNAP_WINDOW:
+        return rva, None
+
+    # The vote landed inside the pad run; the next real body starts after it.
+    if head[0] in PAD_BYTES:
+        off = 0
+        while off < len(head) and head[off] in PAD_BYTES:
+            off += 1
+        if off < len(head):
+            return rva + off, f"drift-corrected +{off}B (queued rva was int3 padding)"
+        return rva, None
+
+    # Otherwise the nearest preceding padding run ends on the real start. A lone
+    # 0xCC/0x90 is often just an operand byte, so trust a single-byte run only
+    # when it lands on MSVC's 16-byte function alignment.
+    for distance in range(1, SNAP_WINDOW + 1):
+        if back[SNAP_WINDOW - distance] not in PAD_BYTES:
+            continue
+        start = rva - distance + 1
+        run = 0
+        while (SNAP_WINDOW - distance - run) >= 0 and back[SNAP_WINDOW - distance - run] in PAD_BYTES:
+            run += 1
+        if run < 2 and start % 16:
+            return rva, (f"lone 0x{back[SNAP_WINDOW - distance]:02X} {distance - 1}B back is an "
+                         f"operand byte, not padding — no trustworthy boundary in {SNAP_WINDOW}B")
+        if distance == 1:
+            return rva, None  # already on a start
+        return start, f"drift-corrected -{distance - 1}B (snapped to int3-delimited start)"
+
+    return rva, f"no int3 boundary within {SNAP_WINDOW}B — candidate is function-interior"
 
 
 def structural_candidates(claimed, claimed_names, big=False):
