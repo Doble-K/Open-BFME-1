@@ -1,0 +1,119 @@
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift MASM dump to standalone C++ thunk.
+
+enum WhichTurretType { };
+enum WeaponSlotType { };
+class AIUpdateInterface
+{
+public:
+	WhichTurretType getWhichTurretForWeaponSlot(WeaponSlotType, float *, float *) const;
+};
+
+// ?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z
+__declspec(naked) WhichTurretType AIUpdateInterface::getWhichTurretForWeaponSlot(WeaponSlotType, float *, float *) const
+{
+	__asm {
+		__emit 0x53
+		__emit 0x55
+		__emit 0x8b
+		__emit 0x6c
+		__emit 0x24
+		__emit 0x0c
+		__emit 0x56
+		__emit 0x8b
+		__emit 0xd9
+		__emit 0x57
+		__emit 0x33
+		__emit 0xf6
+		__emit 0x8d
+		__emit 0xbb
+		__emit 0xe8
+		__emit 0x01
+		__emit 0x00
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x0f
+		__emit 0x85
+		__emit 0xc9
+		__emit 0x74
+		__emit 0x0a
+		__emit 0x55
+		__emit 0xe8
+		__emit 0x56
+		__emit 0xb1
+		__emit 0xdc
+		__emit 0xff
+		__emit 0x84
+		__emit 0xc0
+		__emit 0x75
+		__emit 0x13
+		__emit 0x46
+		__emit 0x83
+		__emit 0xc7
+		__emit 0x04
+		__emit 0x83
+		__emit 0xfe
+		__emit 0x02
+		__emit 0x7c
+		__emit 0xe7
+		__emit 0x5f
+		__emit 0x5e
+		__emit 0x5d
+		__emit 0x83
+		__emit 0xc8
+		__emit 0xff
+		__emit 0x5b
+		__emit 0xc2
+		__emit 0x0c
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x44
+		__emit 0x24
+		__emit 0x18
+		__emit 0x85
+		__emit 0xc0
+		__emit 0x74
+		__emit 0x0c
+		__emit 0x8b
+		__emit 0x8c
+		__emit 0xb3
+		__emit 0xe8
+		__emit 0x01
+		__emit 0x00
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x51
+		__emit 0x18
+		__emit 0x89
+		__emit 0x10
+		__emit 0x8b
+		__emit 0x44
+		__emit 0x24
+		__emit 0x1c
+		__emit 0x85
+		__emit 0xc0
+		__emit 0x74
+		__emit 0x0c
+		__emit 0x8b
+		__emit 0x8c
+		__emit 0xb3
+		__emit 0xe8
+		__emit 0x01
+		__emit 0x00
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x51
+		__emit 0x1c
+		__emit 0x89
+		__emit 0x10
+		__emit 0x5f
+		__emit 0x8b
+		__emit 0xc6
+		__emit 0x5e
+		__emit 0x5d
+		__emit 0x5b
+		__emit 0xc2
+		__emit 0x0c
+		__emit 0x00
+	}
+}

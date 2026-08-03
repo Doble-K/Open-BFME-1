@@ -9864,7 +9864,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doSoundRemoveType@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002EFE90,21,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Audio vtable+0x48 removeAudioEvent(name 0)
 ?doSpecialPowerAtLocation@CashHackSpecialPower@@UAEXPBUCoord3D@@MI@Z,,0x006CF660,3,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CashHackSpecialPower.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
 ?doSpecialPowerAtObject@CashHackSpecialPower@@UAEXPAVObject@@I@Z,,0x00258800,439,Code/masm_dumps/CashHackSpecialPower_doSpecialPowerAtObject.asm,matched,Exact 439B @ 0x258800 MASM; true start was 0x258800 not queue 0x258809; GUI:AddCash+LoseCash identity; Object/Player/InGameUI layout blocks C++
-?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z,,0x001C3850,77,Code/masm_dumps/_rn5__doSpecialPowerUsingWaypoints_Object__QAEXPBVSpecialPowerTemplate__PBV_1C3850.asm,matched,reloc-needle Open-BFME4+Grok
+?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z,,0x001C3850,77,Code/GameEngine/Source/Common/Object_doSpecialPowerUsingWaypoints_Thunk.cpp,matched,Exact 77B Open-BFME5
 ?doSpeechPlay@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x006AF840,973,Code/masm_dumps/_sa3__doSpeechPlay_ScriptActions__IAEXABVAsciiString____6AF840.asm,matched,Exact 973B string-anchored Open-BFME4
 ?doStopCameraFollowUnit@ScriptActions@@IAEXXZ,,0x002EFAB0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x19c void stop-follow tail-call
 ?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002F95A0,144,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamAttackNamed.asm,matched,exact 144B MASM; true body 0x2F95A0 (drift 0x3992C6 was mid logicMessageDispatcher)
@@ -11827,7 +11827,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getWeaponInWeaponSlot@WeaponSet@@QBEPAVWeapon@@W4WeaponSlotType@@@Z,,0x001EAF90,11,Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp,matched,
 ?getWheelInfo@Drawable@@QBEPBUTWheelInfo@@XZ,,0x0077F6B0,17,Code/GameEngine/Source/GameClient/DrawableFields.cpp,matched,thunk-dump converted; m_locoInfo@+0x138; DrawableLocoInfo layout unchanged from ZH
 ?getWhichTurretForCurWeapon@AIUpdateInterface@@QBE?AW4WhichTurretType@@XZ,,0x0026EB70,51,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,Open-BFME5 exact C++ __emit port of 51-byte retail method
-?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/masm_dumps/_rn3__getWhichTurretForWeaponSlot_AIUpdateInterface__QBE_AW4WhichTurretType_26EBB0.asm,matched,reloc-needle Open-BFME4+Grok
+?getWhichTurretForWeaponSlot@AIUpdateInterface@@QBE?AW4WhichTurretType@@W4WeaponSlotType@@PAM1@Z,,0x0026EBB0,102,Code/GameEngine/Source/Common/AIUpdateInterface_getWhichTurretForWeaponSlot_Thunk.cpp,matched,Exact 102B Open-BFME5
 ?getWidth@W3DDisplayString@@UAEHH@Z,,0x006F53A0,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,
 ?getWindowUnderCursor@GameWindowManager@@UAEPAVGameWindow@@HH_N@Z,,0x0047D570,378,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_getWindowUnderCursor.asm,matched,exact 378B via MASM (field-offset drift)
 ?getWorkerAIInterface@AIUpdateInterface@@UAEPAVWorkerAIInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
@@ -12212,7 +12212,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isValidRelationshipTarget@CommandButton@@QBE_NW4Relationship@@@Z,,0x0049AC50,77,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?isValidScience@ScienceStore@@QBE_NW4ScienceType@@@Z,,0x000E6EC0,19,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ?isWaypoint@MapObject@@QBE_NXZ,,0x00087420,10,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
-?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/masm_dumps/_rn3__isWeaponSlotOnTurretAndAimingAtTarget_AIUpdateInterface__QBE_NW4Weapo_26EA90.asm,matched,reloc-needle Open-BFME4+Grok
+?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/GameEngine/Source/Common/AIUpdateInterface_isWeaponSlotOnTurretAndAimingAtTarget_Thunk.cpp,matched,Exact 76B SEH body Open-BFME5
 ?isZero3D@@YA_NABUCoord3D@@@Z,,0x005F85F0,66,Code/GameEngine/Source/GameLogic/Object/Update/PhysicsUpdate.cpp,matched,
 ?iterateObjects@Player@@QBEXP6AXPAVObject@@PAX@Z1@Z,,0x0002F1CB,5,Code/GameEngine/Source/Common/RTS/PlayerRadarAndIterationThunks.cpp,matched,5-byte incremental-link Player const member thunk converted to focused C++ source
 ?joinBestGroupRoom@GameSpyInfo@@UAEXXZ,,0x00634EF2,433,Code/masm_dumps/_joinBestGroupRoom_GameSpyInfo__UAEXXZ.asm,matched,
