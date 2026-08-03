@@ -4103,3 +4103,5 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ??0BuildListInfo@@QAE@XZ,0x0000C982,REL32 pin from BuildListInfo::duplicate @0x1944D0
 ??4BuildListInfo@@QAEAAV0@ABV0@@Z,0x0000D4CC,REL32 pin from BuildListInfo::duplicate @0x1944D0
 ?Set_DX8_ZBias@DX8Wrapper@@SAXH@Z,0x00905990,REL32 pin from DX8Wrapper::Set_Default_Global_Render_States @0x9081D0
+?getName@Image@@QBE?AVAsciiString@@XZ,0x00047028,REL32 pin from ImageCollection::addImage @0x5D3410
+??A?$map@IPAVImage@@U?$less@I@_STL@@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@3@@_STL@@QAEAAPAVImage@@ABI@Z,0x0002A52C,REL32 pin from ImageCollection::addImage @0x5D3410
