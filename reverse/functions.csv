@@ -13294,7 +13294,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setCompletedWaypoint@AIUpdateInterface@@QAEXPBVWaypoint@@@Z,,0x0098D2E0,13,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setConditionType@Condition@@QAEXW4ConditionType@1@@Z,,0x00355D10,215,Code/masm_dumps/setConditionType_Condition_QAEXW4ConditionType_1_Z_00355D10_80d49b30.asm,matched,certified packet 71; exact retail db body; sha256 80d49b3022fbe120803c7cc2cf3b029ff172f1d5544c2a93e969bd7ab1610b12
 ?setConfig@GameSpyInfo@@UAEXABVAsciiString@@@Z,,0x00630E00,8,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
-?setConnectionState@NAT@@IAEXHW4NATConnectionState@@@Z,,0x00670DC0,116,Code/masm_dumps/_setConnectionState_NAT__IAEXHW4NATConnectionState___Z_670DC0.asm,matched,MASM exact retail dump
+?setConnectionState@NAT@@IAEXHW4NATConnectionState@@@Z,,0x00670DC0,116,Code/GameEngine/Source/GameNetwork/NAT_setConnectionStateThunk.cpp,matched,Open-BFME5 MASM lift NAT::setConnectionState
 ?setControlBarSchemeByName@ControlBar@@QAEXABVAsciiString@@@Z,,0x004A0090,68,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSetControlBarSchemeByNameThunk.cpp,matched,Exact 68B C++ raw member thunk Open-BFME5
 ?setControlBarSchemeByPlayer@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F8B0,790,Code/masm_dumps/ControlBar_setControlBarSchemeByPlayer.asm,matched,Correct retail body identified by unique public thunk at 0x00019B64
 ?setControlBarSchemeByPlayer@ControlBarSchemeManager@@QAEXPAVPlayer@@@Z,,0x004AE080,590,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme_setControlBarSchemeByPlayer.asm,matched,exact 590B via MASM (SEH)
