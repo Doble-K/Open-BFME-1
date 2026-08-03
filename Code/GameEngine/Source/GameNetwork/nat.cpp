@@ -748,7 +748,6 @@ void NAT::sendAProbe(UnsignedInt ip, UnsignedShort port, Int fromNode) {
 // find the next mangled source port, and then send it to the other player.
 // if this requires talking to the mangler, we'll have to wait till a later update
 // to send our port out.
-// ?sendMangledSourcePort@NAT@@IAEXXZ present-unmatched
 void NAT::sendMangledSourcePort() {
 	UnsignedShort sourcePort = getSlotPort(m_connectionNodes[m_localNodeNumber].m_slotIndex);
 
@@ -781,7 +780,6 @@ void NAT::sendMangledSourcePort() {
 								targetip >> 24, (targetip >> 16) & 0xff, (targetip >> 8) & 0xff, targetip & 0xff));
 
 		sendMangledPortNumberToTarget(sourcePort, targetSlot);
-		m_sourcePorts[m_targetNodeNumber] = sourcePort;
 		setConnectionState(m_localNodeNumber, NATCONNECTIONSTATE_WAITINGFORMANGLEDPORT);
 		// In case you're wondering, we don't set the m_previousSourcePort here because this will be a different source
 		// address than what other nodes will likely see (unless of course there are more than
@@ -796,7 +794,6 @@ void NAT::sendMangledSourcePort() {
 		DEBUG_LOG(("NAT::sendMangledSourcePort - no mangling, just using the source port\n"));
 		sendMangledPortNumberToTarget(sourcePort, targetSlot);
 		m_previousSourcePort = sourcePort;
-		m_sourcePorts[m_targetNodeNumber] = sourcePort;
 		setConnectionState(m_localNodeNumber, NATCONNECTIONSTATE_WAITINGFORMANGLEDPORT);
 		return;
 	}
@@ -810,7 +807,7 @@ void NAT::sendMangledSourcePort() {
 		if (m_previousSourcePort != 0) {
 			DEBUG_LOG(("NAT::sendMangledSourcePort - Previous source port was %d, using that one\n", m_previousSourcePort));
 			sendMangledPortNumberToTarget(m_previousSourcePort, targetSlot);
-			m_sourcePorts[m_targetNodeNumber] = m_previousSourcePort;
+			m_slotList[m_connectionNodes[m_localNodeNumber].m_slotIndex]->setPort(m_previousSourcePort);
 			setConnectionState(m_localNodeNumber, NATCONNECTIONSTATE_WAITINGFORMANGLEDPORT);
 			return;
 		} else {
@@ -832,7 +829,6 @@ void NAT::sendMangledSourcePort() {
 		DEBUG_LOG(("NAT::sendMangledSourcePort - gethostbyname failed for mangler address %s\n", manglerName));
 		// can't find the mangler, we're screwed so just send the source port.
 		sendMangledPortNumberToTarget(sourcePort, targetSlot);
-		m_sourcePorts[m_targetNodeNumber] = sourcePort;
 		setConnectionState(m_localNodeNumber, NATCONNECTIONSTATE_WAITINGFORMANGLEDPORT);
 		return;
 	}
