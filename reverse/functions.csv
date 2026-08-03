@@ -12444,7 +12444,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onExit@AIAttackMoveToState@@UAEXW4StateExitType@@@Z,,0x0017A400,29,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?onExit@AIAttackPursueTargetState@@UAEXW4StateExitType@@@Z,,0x00176560,21,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?onExit@AIAttackState@@UAEXW4StateExitType@@@Z,,0x00184C00,99,Code/GameEngine/Source/Common/AIAttackState_onExit_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?onExit@AIEnterState@@UAEXW4StateExitType@@@Z,,0x0017DA00,103,Code/masm_dumps/AIEnterState_onExit.asm,matched,MASM exact retail dump; true body via AIEnterState vtbl@0x109ABD0 slot5 (queue 0x17F217 was INSIDE AIPanicState::onExit)
+?onExit@AIEnterState@@UAEXW4StateExitType@@@Z,,0x0017DA00,103,Code/GameEngine/Source/Common/AIEnterState_onExit_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?onExit@AIInternalMoveToState@@UAEXW4StateExitType@@@Z,,0x00029311,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState onExit
 ?onExit@AIMoveAwayFromRepulsorsState@@UAEXW4StateExitType@@@Z,,0x00173EE0,54,Code/GameEngine/Source/GameLogic/AI/AIMoveAwayFromRepulsorsState_onExit.cpp,matched,Certified packet 357: true body 0x173EE0 (54B) via vtable 0xC9A368 slot5; queue 0x17F250 was scalar-deleting dtor; BFME State m_machine@+0x1c owner@+0x10; clear PANICKING bit@Object+0x118 + notify@0x2191D
 ?onExit@AIPanicState@@UAEXW4StateExitType@@@Z,,0x0017F1E0,84,Code/GameEngine/Source/Common/AIPanicState_onExit_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
@@ -12484,7 +12484,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@?$DefaultModuleTemplate@$05@FXParticleSystem@@QAEXPAVINI@@@Z,,0x005F3030,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate05ParseThunk.cpp,matched,Open-BFME5 clean C++ parse via INI::initFromINI this plus FieldParse
 ?parse@?$DefaultModuleTemplate@$0A@@FXParticleSystem@@QAEXPAVINI@@@Z,,0x005EF230,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultModuleTemplate0AParseThunk.cpp,matched,Open-BFME5 clean C++ parse via INI::initFromINI this plus FieldParse
 ?parse@ApplyRandomForceNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8800,64,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,Exact 64B C++ raw function conversion Open-BFME5
-?parse@AttackNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8770,105,Code/masm_dumps/AttackNugget_parse_1D8770.asm,matched,Exact 105B MASM; true body via FieldParse NumberOfShots/WeaponSlot/DeliveryDecal*; queue 0x1D87E2 INT3 pad; C++ blocked sizeof 0x40 vs ZH 0x2c RadiusDecalTemplate layout
+?parse@AttackNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8770,105,Code/GameEngine/Source/Common/AttackNugget_parse_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parse@BoxEmissionVolumeModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00027999,0x5f8650,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@ButterflyDrawModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0004391E,0x5f08f0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@CylinderEmissionVolumeModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00034B35,0x5f9360,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -12584,7 +12584,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseDurationUnsignedShort@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9CC0,68,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseDynamicAudioEventRTS@INI@@SAXPAV1@PAX1PBX@Z,,0x0002E2DA,5,Code/GameEngine/Source/Common/RTS/INIParseDynamicAudioEventRTSThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007D470,191,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table binds keyword DynamicGameLOD here - was a MASM dump
-?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C390,105,Code/masm_dumps/INI_parseDynamicGameLODLevel_7c390.asm,matched,MASM exact retail dump; DynamicGameLODNames count=5 VeryLow..VeryHigh; queue RVA 0x9A15D7 was mid-SEH-fn
+?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C390,105,Code/GameEngine/Source/Common/INI_parseDynamicGameLODLevel_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseEvaMessageFromIni@Eva@@SAXPAVINI@@PAX1PBX@Z,,0x00004B65,5,Code/GameEngine/Source/Common/RTS/EvaParseMessageFromIniThunk.cpp,matched,5-byte incremental-link static Eva parser thunk converted to focused C++ source
 ?parseEventFXListName@LifeEventModuleTemplate@FXParticleSystem@@SAXPAVINI@@PAX1PBX@Z,0x00045804,0x5fc2f0,13,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parseEventFXListName@TerrainCollisionModuleTemplate@FXParticleSystem@@SAXPAVINI@@PAX1PBX@Z,0x0002F74D,0x5fcee0,13,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
@@ -12616,7 +12616,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseImageStatus@Image@@SAXPAVINI@@PAX1PBX@Z,,0x005D2000,51,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
 ?parseInGameUIDefinition@INI@@SAXPAV1@@Z,,0x0043AAA0,36,Code/GameEngine/Source/GameClient/INIParseInGameUIDefinitionThunk.cpp,matched,Open-BFME5 clean C++ InGameUI null-check virtual 0x158 then applyDefinition
 ?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851050,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
-?parseInitialRoster@GarrisonContainModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x001230B0,104,Code/masm_dumps/GarrisonContainModuleData_parseInitialRoster.asm,matched,Exact 104B @ 0x001230B0; FieldParse InitialRoster thunk 0x26B61->body; m_initialRoster @+0x174/+0x178; queue RVA 0x29FCD6 was ProductionUpdate parseAppendQuantityModifier INSIDE
+?parseInitialRoster@GarrisonContainModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x001230B0,104,Code/GameEngine/Source/Common/GarrisonContainModuleData_parseInitialRoster_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseInputCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486900,130,Code/masm_dumps/parseInputCallback_YA_NPADPAVWinInstanceData_0PAX_Z.asm,matched,parse table INPUTCALLBACK->0x486900; queue 0x4877E5 was wrong body; exact 130B MASM
 ?parseInt@@YAXPAVINI@@PAX1PBX@Z,,0x000B8160,55,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
 ?parseInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852A60,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,was a naked byte dump; now C++ with getNextToken inlined
@@ -13916,7 +13916,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?updateOCLTimerTextDisplay@ControlBar@@IAEXIM@Z,,0x004AA7C0,358,Code/masm_dumps/_cache__updateOCLTimerTextDisplay_ControlBar__IAEXIM_Z_4AA7C0.asm,matched,cached-obj needle Open-BFME4+Grok
 ?updateObjValuesFromMapProperties@Object@@QAEXPAVDict@@@Z,,0x001D0610,1951,Code/masm_dumps/updateObjValuesFromMapProperties_Object_QAEXPAVDict_Z_001D0610_56f927ed.asm,matched,Certified packet 86 exact retail MASM sha256 56f927edaef7d221087371da921ad2655aa010fbe2b5a612a70182c03431de27
 ?updatePropPosition@W3DPropBuffer@@QAE_NHABUCoord3D@@MM@Z,,0x007026E0,453,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DPropBuffer.cpp,matched,
-?updateRadarAttackGlow@ControlBar@@IAEXXZ,,0x0049D370,102,Code/masm_dumps/ControlBar_updateRadarAttackGlow.asm,matched,Ghidra-corrected BFME radar-glow body
+?updateRadarAttackGlow@ControlBar@@IAEXXZ,,0x0049D370,102,Code/GameEngine/Source/Common/ControlBar_updateRadarAttackGlow_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?updateRenderTargetTextures@WaterRenderObjClass@@QAEXPAVCameraClass@@@Z,,0x007A4AF0,61,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,clean C++ conditional replaces exact MASM dump
 ?updateRightHUDImage@ControlBar@@QAEXPBVImage@@@Z,,0x0049CFF0,26,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?updateScreenVB@W3DStatusCircle@@IAEHH@Z,,0x00725DE0,221,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DStatusCircle.cpp,matched,shaderclass fix
