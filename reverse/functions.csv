@@ -3183,7 +3183,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SlaveWatcherBehavior@@UAE@XZ,,0x00207580,142,Code/GameEngine/Source/Common/SlaveWatcherBehaviorDestructorThunk.cpp,matched,Exact 142B @ 0x00207580; Exact retail MASM; instance factory->vtable dtor; del 0x2076E0 ctor 0x207300 vt 0xCA64DC
 ??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SlavedUpdate@@UAE@XZ,,0x00113C60,131,Code/GameEngine/Source/Common/SlavedUpdateDestructorThunk.cpp,matched,Exact 131B; factory ownership Open-BFME4
-??1SlavedUpdateModuleData@@UAE@XZ,,0x00126980,80,Code/GameEngine/Source/Common/SlavedUpdateModuleDataDestructorThunk.cpp,matched,Exact 80B SEH dtor Open-BFME5
+??1SlavedUpdateModuleData@@UAE@XZ,,0x00126980,80,Code/GameEngine/Source/Common/SlavedUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two AsciiString members + inlined base vftable store) converted from __emit thunk
 ??1SlowDeathBehaviorModuleData@@UAE@XZ,,0x002095F0,221,Code/GameEngine/Source/Common/SlowDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 221B SEH dtor Open-BFME5
 ??1SmartBombTargetHomingUpdate@@UAE@XZ,,0x00287410,346,Code/GameEngine/Source/Common/SmartBombTargetHomingUpdateDestructorThunk.cpp,matched,Exact 346B SEH dtor Open-BFME4
 ??1SmudgeManager@@UAE@XZ,,0x005D4390,239,Code/GameEngine/Source/Common/SmudgeManagerDestructorThunk.cpp,matched,reloc-needle Open-BFME4+Grok

@@ -1,95 +1,53 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift ModuleData dtor MASM dump to clean C++.
+// Retail @0x00126980: SEH dtor destroying two adjacent 4-byte string members
+// at this+0x4C then this+0x48 (reverse declaration order), then an inlined
+// base vftable store. SlavedUpdateModuleData's m_weldingSysName /
+// m_weldingFXBone sit at exactly those offsets after 8 base bytes and the
+// 16 int/real fields from the GeneralsMD SlavedUpdate.h layout.
 
-class __declspec(novtable) SlavedUpdateModuleData
+class AsciiString
+{
+	char *m_str;
+public:
+	~AsciiString();
+};
+
+class UpdateModuleData
+{
+public:
+	virtual ~UpdateModuleData() {}
+	unsigned int m_04;
+};
+
+class __declspec(novtable) SlavedUpdateModuleData : public UpdateModuleData
 {
 public:
 	virtual ~SlavedUpdateModuleData();
+
+private:
+	int m_guardMaxRange;
+	int m_guardWanderRange;
+	int m_attackRange;
+	int m_attackWanderRange;
+	int m_scoutRange;
+	int m_scoutWanderRange;
+	int m_distToTargetToGrantRangeBonus;
+	int m_repairRange;
+	float m_repairMinAltitude;
+	float m_repairMaxAltitude;
+	float m_repairRatePerSecond;
+	int m_repairWhenHealthBelowPercentage;
+	int m_minReadyFrames;
+	int m_maxReadyFrames;
+	int m_minWeldFrames;
+	int m_maxWeldFrames;
+	AsciiString m_weldingSysName;
+	AsciiString m_weldingFXBone;
+	unsigned char m_stayOnSameLayerAsMaster;
 };
 
 // ??1SlavedUpdateModuleData@@UAE@XZ
-__declspec(naked) SlavedUpdateModuleData::~SlavedUpdateModuleData()
+SlavedUpdateModuleData::~SlavedUpdateModuleData()
 {
-	__asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xa3
-        __emit 0x19
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x4c
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x93
-        __emit 0x0f
-        __emit 0x76
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x48
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x86
-        __emit 0x0f
-        __emit 0x76
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-	}
 }
