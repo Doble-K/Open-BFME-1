@@ -2777,7 +2777,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1AnimateWindowManager@@UAE@XZ,,0x0045D950,238,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
 ??1AnimationSoundClientBehavior@@UAE@XZ,,0x00604B40,103,Code/GameEngine/Source/Common/AnimationSoundClientBehaviorDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit dtor thunk
 ??1AnimationSoundClientBehaviorModuleData@@UAE@XZ,,0x00606120,67,Code/GameEngine/Source/GameLogic/Object/Behavior/AnimationSoundClientBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ member-then-base SEH ModuleData dtor
-??1AnimationSteeringUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/AnimationSteeringUpdateModuleDataDestructorThunk.cpp,matched,Exact 108B SEH dtor Open-BFME4
+??1AnimationSteeringUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/AnimationSteeringUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (linked-list delete loop + base dtor call) converted from __emit thunk
 ??1ArchiveFile@@UAE@XZ,,0x009D0BD0,94,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes m_file through File slot 2 then destroys m_rootDirectory at this+8
 ??1ArchiveFileSystem@@UAE@XZ,,0x009CA550,140,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,installs vtable 0x01143A08; reached as the scalar dtor from slot 0 at 0x009CAA50
 ??1ArchivedDirectoryInfo@@QAE@XZ,,0x009CA4F0,89,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,destroys m_files then m_directories then releases m_directoryName
@@ -3118,7 +3118,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1PointEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D58F0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
 ??1PolyRenderTaskClass@@QAE@XZ,,0x009457B0,13,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??1PopupMessageData@@MAE@XZ,,0x0078CFB0,73,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
-??1PowerPlantUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/PowerPlantUpdateModuleDataDestructorThunk.cpp,matched,Exact 108B SEH dtor Open-BFME4
+??1PowerPlantUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/PowerPlantUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (linked-list delete loop + base dtor call) converted from __emit thunk
 ??1ProductionPrerequisite@@QAE@XZ,,0x0003ECC0,5,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1ProductionSpeedBonus@@UAE@XZ,,0x00268F30,232,Code/GameEngine/Source/Common/ProductionSpeedBonusDestructorThunk.cpp,matched,Exact 232B SEH dtor Open-BFME4
 ??1ProductionSpeedBonusModuleData@@UAE@XZ,,0x00264750,79,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonusModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ member-then-base SEH ModuleData dtor
@@ -3279,7 +3279,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1W3DModelDraw@@MAE@XZ,,0x0077B090,682,Code/GameEngine/Source/Common/W3DModelDrawDestructorThunk.cpp,matched,Certified packet 234 exact retail MASM destructor body
 ??1W3DModelDrawModuleData@@UAE@XZ,,0x00213750,76,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDrawModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ member-then-base SEH ModuleData dtor
 ??1W3DProjectileStreamDraw@@UAE@XZ,,0x00369CF0,116,Code/GameEngine/Source/Common/W3DProjectileStreamDrawDestructorThunk.cpp,matched,Exact 116B @ 0x00369CF0; Exact retail MASM; instance factory->vtable dtor; del 0x36A110 ctor 0x369FD0 vt 0xCE92DC
-??1W3DPropDrawModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/W3DPropDrawModuleDataDestructorThunk.cpp,matched,Exact 108B SEH dtor Open-BFME5
+??1W3DPropDrawModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/W3DPropDrawModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (linked-list delete loop + base dtor call) converted from __emit thunk
 ??1W3DQuadrupedDrawModuleData@@UAE@XZ,,0x006BFF70,89,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DQuadrupedDrawModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1W3DRopeDraw@@UAE@XZ,,0x0075A730,143,Code/GameEngine/Source/Common/W3DRopeDrawDestructorThunk.cpp,matched,Exact 143B; factory ownership Open-BFME4
 ??1W3DShadowGeometryManager@@QAE@XZ,,0x007B0FF0,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
