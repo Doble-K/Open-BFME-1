@@ -1,4 +1,6 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: LightningDrawModuleTemplate ConcreteModuleTemplate::clone
 
 namespace FXParticleSystem
 {
@@ -18,6 +20,8 @@ class LightningDrawModule
 
 class LightningDrawModuleTemplate
 {
+public:
+	virtual ~LightningDrawModuleTemplate();
 };
 
 extern const char LIGHTNING_DRAW_MODULE_KEY[1];
@@ -32,50 +36,26 @@ template <class Tag>
 class ConcreteModuleTemplate;
 
 typedef ModuleTag<6, LIGHTNING_DRAW_MODULE_KEY, LIGHTNING_DRAW_MODULE_NAME,
-    LightningDrawModule, LightningDrawModuleTemplate,
-    DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > LightningDrawTag;
+	LightningDrawModule, LightningDrawModuleTemplate,
+	DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > LightningDrawTag;
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
 
 template <>
-class ConcreteModuleTemplate<LightningDrawTag>
+class ConcreteModuleTemplate<LightningDrawTag> : public LightningDrawModuleTemplate
 {
 public:
-    virtual LightningDrawModuleTemplate *clone() const;
+	ConcreteModuleTemplate(const ConcreteModuleTemplate &);
+	virtual LightningDrawModuleTemplate *clone() const;
+
+private:
+	unsigned char m_pad[0x34];
 };
 
-__declspec(naked) LightningDrawModuleTemplate *ConcreteModuleTemplate<LightningDrawTag>::clone() const
+LightningDrawModuleTemplate *ConcreteModuleTemplate<LightningDrawTag>::clone() const
 {
-    __asm {
-        _emit 056h
-        _emit 06Ah
-        _emit 038h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 076h
-        _emit 071h
-        _emit 02Ah
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 074h
-        _emit 00Ah
-        _emit 056h
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 04Bh
-        _emit 0E8h
-        _emit 0A3h
-        _emit 0FFh
-        _emit 05Eh
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 05Eh
-        _emit 0C3h
-    }
+	return new ConcreteModuleTemplate<LightningDrawTag>(*this);
 }
+
 }
