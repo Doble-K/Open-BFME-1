@@ -3119,7 +3119,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1PointEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D58F0,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=??1?$ConcreteModuleTemplate@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@QAE@XZ;Clean C++ alias
 ??1PolyRenderTaskClass@@QAE@XZ,,0x009457B0,13,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??1PopupMessageData@@MAE@XZ,,0x0078CFB0,73,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,
-??1PowerPlantUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/masm_dumps/PowerPlantUpdateModuleData_destructor.asm,matched,Exact 108B SEH dtor Open-BFME4
+??1PowerPlantUpdateModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/PowerPlantUpdateModuleDataDestructorThunk.cpp,matched,Exact 108B SEH dtor Open-BFME4
 ??1ProductionPrerequisite@@QAE@XZ,,0x0003ECC0,5,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteDestructorThunk.cpp,matched,5-byte incremental-link destructor thunk converted to focused C++ thunk TU
 ??1ProductionSpeedBonus@@UAE@XZ,,0x00268F30,232,Code/masm_dumps/ProductionSpeedBonus_destructor.asm,matched,Exact 232B SEH dtor Open-BFME4
 ??1ProductionSpeedBonusModuleData@@UAE@XZ,,0x00264750,79,Code/GameEngine/Source/GameLogic/AI/ProductionSpeedBonusModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
