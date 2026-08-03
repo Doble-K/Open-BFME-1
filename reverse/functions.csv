@@ -3198,7 +3198,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SpecialDisguiseUpdateModuleData@@UAE@XZ,,0x00267A90,95,Code/GameEngine/Source/Common/SpecialDisguiseUpdateModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
 ??1SpecialEnemySenseUpdate@@UAE@XZ,,0x002AB0F0,543,Code/masm_dumps/SpecialEnemySenseUpdate_destructor.asm,matched,Exact 543B @ 0x002AB0F0; Exact retail MASM; instance factory->vtable dtor; del 0x2AB0F0 ctor 0x2AAF30 vt 0xCC3880
 ??1SpecialEnemySenseUpdateModuleData@@UAE@XZ,,0x00125890,67,Code/GameEngine/Source/GameLogic/Object/Update/SpecialEnemySenseUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
-??1SpecialPowerCompletionDie@@UAE@XZ,,0x00255FD0,124,Code/masm_dumps/SpecialPowerCompletionDie_destructor.asm,matched,Exact 124B SEH dtor factory->vtable Open-BFME4
+??1SpecialPowerCompletionDie@@UAE@XZ,,0x00255FD0,124,Code/GameEngine/Source/Common/SpecialPowerCompletionDieDestructorThunk.cpp,matched,Exact 124B SEH dtor factory->vtable Open-BFME4
 ??1SpecialPowerModule@@MAE@XZ,,0x00268F30,232,Code/masm_dumps/SpecialPowerModule_destructor.asm,matched,Exact 232B ICF alias; true body 0x268F30 not queue pad 0x268F28; ctor-paired vtables 0x10B7C3C
 ??1SpecialPowerStore@@UAE@XZ,,0x000EBD30,219,Code/masm_dumps/SpecialPowerStore_destructor.asm,matched,Certified packet 329 vtable destructor chain and retail boundary hash dd831bc42554b7a6cbdabdd5b01b386808e324afcd5c363566dbaaf80ec53eaa
 ??1SpecialPowerTemplate@@MAE@XZ,,0x000EB5D0,146,Code/masm_dumps/dtor_SpecialPowerTemplate_MAE_XZ_000EB5D0_9e3fc815.asm,matched,Certified packet 148 exact retail db recovery sha256 9e3fc8158b09084c7c2e58034859a7cdbc1cd405dd5d54a24ea1a64f212ffbf6
