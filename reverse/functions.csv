@@ -10876,7 +10876,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getCRC@GameLogic@@QAEIHVAsciiString@@@Z,,0x00383150,499,Code/masm_dumps/getCRC_GameLogic_QAEIHVAsciiString_Z_383150.asm,matched,Certified packet 352 exact retail db recovery SHA256 ff955c5275da3a4c9bbb2396a97aef2d5d543a35c0336ffaea6089c92b12f5e7
 ?getCSFInfo@GameTextManager@@IAE_NPBD@Z,,0x00436150,47,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ?getCachedLocalPlayerStats@GameSpyInfo@@UAE?AVPSPlayerStats@@XZ,,0x006372D0,32,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
-?getCachedStats@GameSpyMiscPreferences@@QAE?AVAsciiString@@XZ,,0x000A9A00,113,Code/masm_dumps/GameSpyMiscPreferences_getCachedStats.asm,matched,Unique CachedStats-string preference getter
+?getCachedStats@GameSpyMiscPreferences@@QAE?AVAsciiString@@XZ,,0x000A9A00,113,Code/GameEngine/Source/Common/GameSpyMiscPreferences_getCachedStats_Thunk.cpp,matched,Unique CachedStats-string preference getter
 ?getCampaignDifficulty@OptionPreferences@@QAEHXZ,,0x00090630,114,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,matched,thunk-dump converted to exact C++ TU codegen body
 ?getCaveInterface@BehaviorModule@@UAEPAVCaveInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getCell@CellAndObjectIntersection@@QAEPAVPartitionCell@@XZ,,0x0010BDB0,3,Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
@@ -13521,8 +13521,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPosition@View@@IAEXPBUCoord3D@@@Z,,0x003D4E50,26,Code/GameEngine/Source/GameClient/View.cpp,matched,
 ?setPositions@BridgeScaffoldBehavior@@UAEXPBUCoord3D@@00@Z,,0x001F5860,74,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setPreAttackFinishedFrame@Weapon@@QAEXI@Z,,0x00674240,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,ICF alias of existing matched body
-?setPreferredColor@CustomMatchPreferences@@QAEXH@Z,,0x000ADE00,170,Code/masm_dumps/_sa13__setPreferredColor_CustomMatchPreferences__QAEXH_Z_ADE00.asm,matched,multi-xref Open-BFME4+Grok DisallowAsianText
-?setPreferredFaction@CustomMatchPreferences@@QAEXH@Z,,0x000ADA80,169,Code/masm_dumps/CustomMatchPreferences_setPreferredFaction.asm,matched,Ghidra-bound BFME preferred-faction setter
+?setPreferredColor@CustomMatchPreferences@@QAEXH@Z,,0x000ADE00,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setPreferredColor_Thunk.cpp,matched,multi-xref Open-BFME4+Grok DisallowAsianText
+?setPreferredFaction@CustomMatchPreferences@@QAEXH@Z,,0x000ADA80,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setPreferredFaction_Thunk.cpp,matched,Ghidra-bound BFME preferred-faction setter
 ?setPrep@Dict@@AAEPAUDictPair@1@W4NameKeyType@@W4DataType@1@@Z,,0x00068760,90,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setProducer@Object@@QAEXPBV1@@Z,,0x001BE450,25,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setProfileID@GameSpyGameSlot@@QAEXH@Z,,0x001A19C0,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,
