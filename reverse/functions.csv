@@ -2857,7 +2857,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1CreditsLine@@QAE@XZ,,0x0040C230,134,Code/GameEngine/Source/Common/CreditsLineDestructorThunk.cpp,matched,Exact 134B SEH dtor Open-BFME5
 ??1CriticalSectionClass@@QAE@XZ,,0x009DB450,25,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ??1CritterEmitterUpdateModuleData@@UAE@XZ,,0x001FA750,175,Code/GameEngine/Source/Common/CritterEmitterUpdateModuleDataDestructorThunk.cpp,matched,Exact 175B SEH dtor Open-BFME5
-??1CrushDieModuleData@@UAE@XZ,,0x001255C0,77,Code/GameEngine/Source/GameLogic/AI/CrushDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+??1CrushDieModuleData@@UAE@XZ,,0x001255C0,77,Code/GameEngine/Source/GameLogic/AI/CrushDieModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit dtor thunk
 ??1CullNodeStruct@AABTreeBuilderClass@@QAE@XZ,,0x0096B530,69,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ??1CullSystemClass@@UAE@XZ,,0x008E2150,7,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,
 ??1CullableClass@@UAE@XZ,,0x008E2220,7,Code/Libraries/Source/WWVegas/WWMath/cullsys.cpp,matched,

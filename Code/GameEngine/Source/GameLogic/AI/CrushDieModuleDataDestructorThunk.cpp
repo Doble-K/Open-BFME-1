@@ -1,91 +1,37 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift CrushDieModuleData dtor __emit thunk to clean C++.
+// Retail destroys the 0x70-element array member at this+0x34 through
+// __ehvec_dtor under an SEH frame, then runs the inlined base dtor (base
+// vtable store). The derived class emits no vtable store of its own.
 
-class __declspec(novtable) CrushDieModuleData
+class CrushDieElement
+{
+public:
+    ~CrushDieElement();
+
+private:
+    unsigned char m_pad[0x70];
+};
+
+class CrushDieModuleDataBase
+{
+public:
+    virtual ~CrushDieModuleDataBase() {}
+
+private:
+    unsigned char m_pad[0x30];
+};
+
+class __declspec(novtable) CrushDieModuleData : public CrushDieModuleDataBase
 {
 public:
     virtual ~CrushDieModuleData();
+
+private:
+    CrushDieElement m_arr[4];
 };
 
 // ??1CrushDieModuleData@@UAE@XZ
-__declspec(naked) CrushDieModuleData::~CrushDieModuleData()
+CrushDieModuleData::~CrushDieModuleData()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xe8
-        __emit 0x16
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x68
-        __emit 0x35
-        __emit 0x6f
-        __emit 0x42
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x04
-        __emit 0x6a
-        __emit 0x70
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x34
-        __emit 0x50
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x20
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x7f
-        __emit 0x17
-        __emit 0x8d
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
