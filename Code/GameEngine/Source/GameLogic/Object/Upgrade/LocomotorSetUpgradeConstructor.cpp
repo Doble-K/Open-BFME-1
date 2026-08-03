@@ -1,75 +1,58 @@
-// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /MD /EHsc
 
-class Thing
-{
-};
+// Open-BFME5: LocomotorSetUpgrade module ctor via UpgradeModule multi-inheritance.
 
-class ModuleData
-{
-};
+class Thing;
+class ModuleData;
 
-class LocomotorSetUpgrade
+class BehaviorModule
 {
 public:
-	LocomotorSetUpgrade( Thing *, const ModuleData * );
+	virtual void behaviorModuleAnchor();
+
+private:
+	unsigned char m_data[8];
 };
 
-__declspec(naked) LocomotorSetUpgrade::LocomotorSetUpgrade( Thing *, const ModuleData * )
+class BehaviorModuleInterface
 {
-	__asm {
-		_emit 08Bh
-		_emit 044h
-		_emit 024h
-		_emit 008h
-		_emit 056h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 050h
-		_emit 051h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 0A1h
-		_emit 061h
-		_emit 0D3h
-		_emit 0FFh
-		_emit 0C7h
-		_emit 006h
-		_emit 0BCh
-		_emit 0D0h
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 00Ch
-		_emit 0F8h
-		_emit 0CFh
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 010h
-		_emit 0A8h
-		_emit 0CFh
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 018h
-		_emit 098h
-		_emit 0CFh
-		_emit 00Ch
-		_emit 001h
-		_emit 08Bh
-		_emit 0C6h
-		_emit 05Eh
-		_emit 0C2h
-		_emit 008h
-		_emit 000h
-	}
-}
+public:
+	virtual void behaviorModuleInterfaceAnchor();
+};
 
+class UpgradeMux
+{
+public:
+	virtual void upgradeMuxAnchor();
+
+private:
+	bool m_upgradeExecuted;
+};
+
+class ModuleInterface
+{
+public:
+	virtual void moduleInterfaceAnchor();
+};
+
+class UpgradeModule : public BehaviorModule,
+	public BehaviorModuleInterface,
+	public UpgradeMux,
+	public ModuleInterface
+{
+public:
+	UpgradeModule( Thing *thing, const ModuleData *moduleData );
+};
+
+class LocomotorSetUpgrade : public UpgradeModule
+{
+public:
+	LocomotorSetUpgrade( Thing *thing, const ModuleData *moduleData );
+};
+
+// ??0LocomotorSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z
+LocomotorSetUpgrade::LocomotorSetUpgrade(
+	Thing *thing, const ModuleData *moduleData )
+	: UpgradeModule( thing, moduleData )
+{
+}
