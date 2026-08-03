@@ -6880,7 +6880,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_UV_Offset_Rate@SegmentedLineClass@@QAE?AVVector2@@XZ,,0x0094FC00,36,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ?Get_User_String@ParticleEmitterClass@@UBEPBDXZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?Get_User_Text@MeshClass@@QBEPBDXZ,,0x0092C310,11,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,
-?Get_User_Text@MeshGeometryClass@@QAEPBDXZ,,0x00924C30,14,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryMeshModelLeafThunks.cpp,matched,Open-BFME5 exact C++ ICF leaf thunk replacing MASM dump;object-symbol=?Get_User_Text@MeshGeometryClass@@QAEPBDXZ
+?Get_User_Text@MeshGeometryClass@@QAEPBDXZ,,0x00924C30,14,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryMeshModelLeafThunks.cpp,matched,Open-BFME5 clean C++ MeshGeometry Get_User_Text ICF owner
 ?Get_User_Type@ParticleEmitterClass@@UBEHXZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?Get_Value@HLodClass@@UBEMXZ,,0x00978DC0,16,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Get_Value@ParticleBufferClass@@UBEMXZ,,0x009837F0,20,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
