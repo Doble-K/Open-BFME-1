@@ -12214,7 +12214,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@QBE_NW4WeaponSlotType@@PBVObject@@@Z,,0x0026EA90,76,Code/GameEngine/Source/Common/AIUpdateInterface_isWeaponSlotOnTurretAndAimingAtTarget_Thunk.cpp,matched,Exact 76B SEH body Open-BFME5
 ?isZero3D@@YA_NABUCoord3D@@@Z,,0x005F85F0,66,Code/GameEngine/Source/GameLogic/Object/Update/PhysicsUpdate.cpp,matched,
 ?iterateObjects@Player@@QBEXP6AXPAVObject@@PAX@Z1@Z,,0x0002F1CB,5,Code/GameEngine/Source/Common/RTS/PlayerRadarAndIterationThunks.cpp,matched,5-byte incremental-link Player const member thunk converted to focused C++ source
-?joinBestGroupRoom@GameSpyInfo@@UAEXXZ,,0x00634EF2,433,Code/masm_dumps/_joinBestGroupRoom_GameSpyInfo__UAEXXZ.asm,matched,
+?joinBestGroupRoom@GameSpyInfo@@UAEXXZ,,0x00634EF2,433,Code/GameEngine/Source/Common/GameSpyInfo_joinBestGroupRoomMethodThunk.cpp,matched,
 ?joinGame@@YAXVAsciiString@@@Z,,0x004D7580,359,Code/GameEngine/Source/Common/joinGame_Thunk.cpp,matched,exact 359B MASM; true start 0x4D7580 (queue off-by-one 0x4D7581); GameSpyInfo vtbl/layout drift blocks C++
 ?key@StaticNameKey@@QBE?AW4NameKeyType@@XZ,,0x00090290,33,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,
 ?keyToFunc@FunctionLexicon@@IAEPAXW4NameKeyType@@PAUTableEntry@1@@Z,,0x00105240,42,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,
