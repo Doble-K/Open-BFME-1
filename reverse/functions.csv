@@ -5760,7 +5760,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Current_Item@SimpleSceneIterator@@UAEPAVRenderObjClass@@XZ,,0x00943950,17,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
 ?Current_Override_Flags@RenderInfoClass@@QAEAAW4RINFO_OVERRIDE_FLAGS@1@XZ,,0x00923760,14,Code/Libraries/Source/WWVegas/WW3D2/rinfo.cpp,matched,
 ?CustomMatchHideHostPopup@@YAX_N@Z,,0x004D3E60,21,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
-?Customized_Render@RTS3DScene@@UAEXAAVRenderInfoClass@@@Z,,0x007143B0,888,Code/masm_dumps/RTS3DScene_Customized_Render.asm,matched,Certified packet 162 vtable slot 0x5C SHA256 f1fef7b07c6f1fb189bfb1e5321ffe51992fb12c1946490598658858900dff4b
 ?D3DXVec4Dot@@YAMPBUD3DXVECTOR4@@0@Z,,0x000B6970,37,Code/GameEngine/Source/Common/bezier_segment.cpp,matched,
 ?DERDecode@?$Int@$0EA@@@QAEXPBE@Z,,0x009EA790,19,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,ghidra-unknown callee + identical DEREncode wrapper; disambiguated by call target; build.sh exact
 ?DEREncode@?$Int@$0EA@@@QBEHPAE@Z,,0x009E21F0,19,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,ghidra-unknown callee + identical DERDecode wrapper; disambiguated by call target; build.sh exact
@@ -34598,4 +34597,5 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?PopulateCustomLadderComboBox@@YAXXZ,,0x004D6420,936,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopulateCustomLadderComboBoxThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?GameSpyPlayerInfoOverlaySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D99C0,816,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameSpyPlayerInfoOverlaySystemThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?GadgetListBoxMultiInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004B9A50,908,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBoxMultiInputThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?Customized_Render@RTS3DScene@@UAEXAAVRenderInfoClass@@@Z,,0x007143B0,888,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS3DSceneCustomizedRenderThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?ReAcquireResources@WaterRenderObjClass@@QAEXXZ,,0x007A0500,891,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterReAcquireResourcesThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
