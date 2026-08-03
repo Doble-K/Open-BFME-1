@@ -4740,7 +4740,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_EWeightInfoStruct@NamedPivotMapClass@@QAEPAXI@Z,,0x0013A460,92,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,
 ??_EZoneBlock@@QAEPAXI@Z,,0x0005E880,84,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ??_FAcceleratorTracker@@QAEXXZ,,0x001B0CB0,14,Code/Libraries/Source/WWVegas/WWLib/msgloop.cpp,matched,
-??_FFastFixedAllocator@@QAEXXZ,,0x00B02790,24,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,object-symbol=?FastFixedAllocatorDefaultConstructorClosureThunk@@YAXXZ;converted to an exact standalone C++ thunk
+??_FFastFixedAllocator@@QAEXXZ,,0x00B02790,24,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,object-symbol=?DefaultConstructorClosure@FastFixedAllocator@@QAEXXZ;Open-BFME5 clean C++ ??_F member
 ??_FRandom3Class@@QAEXXZ,,0x001B0CB0,14,Code/Libraries/Source/WWVegas/WWLib/rndstraw.cpp,matched,
 ??_FStringClass@@QAEXXZ,,0x0013A550,31,Code/Libraries/Source/WWVegas/WW3D2/hmorphanim.cpp,matched,
 ??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,
