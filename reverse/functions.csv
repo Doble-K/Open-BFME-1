@@ -8022,7 +8022,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?SetMinVect@Coord3D@@QAEAAV1@XZ,0x0003053A,0x007E6010,16,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,sets x/y/z to minimum float bit pattern
 ?SetOutputBuffer@UDP@@QAEHI@Z,,0x006847E0,42,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
 ?SetPolygonIndex@Geometry@@QAEHJPAF@Z,,0x007B7FF0,59,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
-?SetPrefixAndRadix@Debug@@QAEXPBDH@Z,,0x00889B60,117,Code/masm_dumps/_sa12__SetPrefixAndRadix_Debug__QAEXPBDH_Z_889B60.asm,matched,string-anchor Open-BFME4+Grok HResult:0x
+?SetPrefixAndRadix@Debug@@QAEXPBDH@Z,,0x00889B60,117,Code/GameEngine/Source/Common/Debug_SetPrefixAndRadix_Thunk.cpp,matched,Exact 117B Open-BFME5
 ?SetUpGameSpy@@YAXPBD0@Z,,0x006377D0,723,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs_SetUpGameSpy.asm,matched,exact 723B MASM; true start after createNew @0x637760; queue RVA was inside createNew
 ?SetVertex@Geometry@@QAEPBVVector3@@HPBV2@@Z,,0x007B8060,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?SetVertexBuffer@RoadSegment@@QAEXPAUVertexFormatXYZDUV1@@H@Z,,0x00704B40,356,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
@@ -13604,7 +13604,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setText20@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675CE0,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?setText@NetChatCommandMsg@@QAEXV?$StringBase@G@@@Z,,0x006752B0,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?setText@NetDisconnectChatCommandMsg@@QAEXV?$StringBase@G@@@Z,,0x00675180,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?setText@WinInstanceData@@QAEXVUnicodeString@@@Z,,0x00499D60,123,Code/masm_dumps/setText_WinInstanceData_QAEXVUnicodeString_Z_499D60.asm,matched,Exact 123B MASM; true body 0x499D60 (ghidra ENTRY); queue 0x665642 inside FUN_00a655c0; C++ blocked DisplayStringManager/DisplayString vtbl slots
+?setText@WinInstanceData@@QAEXVUnicodeString@@@Z,,0x00499D60,123,Code/GameEngine/Source/Common/WinInstanceData_setText_Thunk.cpp,matched,Exact 123B Open-BFME5
 ?setTexture@W3DShadowTexture@@QAEXPAVTextureClass@@@Z,,0x00087470,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?setTextureFilename@ParticleSystemTemplate@FXParticleSystem@@QAEXAAVAsciiString@@@Z,0x000163FB,0x0005CB50,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,adjusts this pointer and assigns texture filename
 ?setTimeMultiplier@W3DView@@UAEXH@Z,,0x004F9600,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
