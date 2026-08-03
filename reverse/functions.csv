@@ -5877,7 +5877,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?DownloadMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x004C74B0,459,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,gametext vtable fix
 ?DownloadMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C8360,199,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
 ?DownloadMenuShutdown@@YAXPAVWindowLayout@@PAX@Z,,0x004C76F0,64,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp,matched,
-?DownloadMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004C7E40,363,Code/masm_dumps/DownloadMenuUpdate.asm,matched,Certified packet 73 exact retail db recovery SHA256 73b2419c80cb9d54555e5069f3c21832058fbfcb5b739d8cd66ccacc7be1ed1e
+?DownloadMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x004C7E40,363,Code/GameEngine/Source/Common/DownloadMenuUpdate_Thunk.cpp,matched,Certified packet 73 exact retail db recovery SHA256 73b2419c80cb9d54555e5069f3c21832058fbfcb5b739d8cd66ccacc7be1ed1e
 ?DuplicateCRCError@INIClass@@QAEXPBD00@Z,,0x009E2160,90,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?EmergencyFlush@DebugIOFlat@@UAEXXZ,,0x008903E0,24,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,
 ?Emit@ParticleEmitterClass@@UAEXXZ,,0x0097FC20,328,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
@@ -6086,7 +6086,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GadgetComboBoxSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004B42F0,2153,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetComboBoxSystem.asm,matched,Exact 2153B MASM; Ghidra ENTRY not assigned 2352; thunk 0x43A887 proves identity; ZH C++ frame 0x2C vs retail 0xA4
 ?GadgetListBoxAddEntryImage@@YAHPAVGameWindow@@PBVImage@@HHHH_NH@Z,0x0001712A,0x004B71A0,97,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,Native body replaces thunk-only MASM ownership
 ?GadgetListBoxAddEntryImage@@YAHPAVGameWindow@@PBVImage@@HH_NH@Z,,0x004B7220,43,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
-?GadgetListBoxAddEntryText@@YAHPAVGameWindow@@VUnicodeString@@HHH_N@Z,,0x004BB4B0,357,Code/masm_dumps/GadgetListBoxAddEntryText_4BB4B0.asm,matched,Exact MASM: retail GLM_ADD_ENTRY 0x4011 endPos+0x2C; C++ blocked on empty-string temp arg-home shape
+?GadgetListBoxAddEntryText@@YAHPAVGameWindow@@VUnicodeString@@HHH_N@Z,,0x004BB4B0,357,Code/GameEngine/Source/Common/GadgetListBoxAddEntryText_Thunk.cpp,matched,Exact MASM: retail GLM_ADD_ENTRY 0x4011 endPos+0x2C; C++ blocked on empty-string temp arg-home shape
 ?GadgetListBoxAddMultiSelect@@YAXPAVGameWindow@@@Z,,0x004BB800,109,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
 ?GadgetListBoxGetBottomVisibleEntry@@YAHPAVGameWindow@@@Z,,0x004B78B0,27,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
 ?GadgetListBoxGetColumnWidth@@YAHPAVGameWindow@@H@Z,,0x004B79D0,43,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,BFME list-box layout
@@ -7349,7 +7349,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Load_Animation@W3DAnimationLoader@@QAEXXZ,,0x0090C080,479,Code/Libraries/Source/WWVegas/WW3D2/Load_Animation_W3D.cpp,matched,BFME animation type loader exact 479B @ 0x90C080
 ?Load_Asset_Catalog@@YA_NPAX@Z,,0x00938150,1231,Code/GameEngineDevice/Source/W3DDevice/GameClient/Load_Asset_Catalog.cpp,matched,BFME ALAE catalog Load_3D stage exact 1231B @ 0x938150
 ?Load_Asset_Dat@@YA_NXZ,,0x00938620,1057,Code/GameEngineDevice/Source/W3DDevice/GameClient/Load_Asset_Dat.cpp,matched,BFME asset.dat bulk Load_3D_Assets entry exact 1057B @ 0x938620
-?Load_Geom@W3DShadowGeometryManager@@QAEHPAVRenderObjClass@@PBD@Z,,0x007BD140,342,Code/masm_dumps/W3DShadowGeometryManager_Load_Geom.asm,matched,Exact 342B MASM @0x7BD140; queue 0x7BD150 was mid-SEH. StringBase name@+0x10 not ZH char[]
+?Load_Geom@W3DShadowGeometryManager@@QAEHPAVRenderObjClass@@PBD@Z,,0x007BD140,342,Code/GameEngine/Source/Common/W3DShadowGeometryManager_Load_Geom_Thunk.cpp,matched,Exact 342B MASM @0x7BD140; queue 0x7BD150 was mid-SEH. StringBase name@+0x10 not ZH char[]
 ?Load_Hierarchy@W3DHierarchyLoader@@QAEXXZ,,0x00971990,403,Code/Libraries/Source/WWVegas/WW3D2/Load_Hierarchy_W3D.cpp,matched,BFME hierarchy type loader exact 403B @ 0x971990
 ?Load_Registry@RegistryClass@@SAXPBDPAD1@Z,,0x009DCEE0,817,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
 ?Load_W3D@AABTreeClass@@QAEXAAVChunkLoadClass@@@Z,,0x0096ABA0,219,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
@@ -7761,7 +7761,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?ReplayControlSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C6A20,16,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ReplayControls.cpp,matched,
 ?ReplayMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp,matched,
 ?RequestBuddyAdd@@YAXHVAsciiString@@@Z,,0x004EDAD0,818,Code/masm_dumps/RequestBuddyAdd.asm,matched,true body 0x4EDAD0/818 (queue 968 padded int3); unique GUI:BuddyAddReq+Buddy:InviteSent+Buddy:InviteSentToPlayer; MASM exact; C++ blocked AsciiString+8/frame/BuddyMessage
-?RequestChat@LANAPI@@UAEXVUnicodeString@@W4ChatType@LANAPIInterface@@@Z,,0x006865C0,347,Code/masm_dumps/_rn5__RequestChat_LANAPI__UAEXVUnicodeString__W4ChatType_LANAPIInterface____6865C0.asm,matched,reloc-needle Open-BFME4+Grok
+?RequestChat@LANAPI@@UAEXVUnicodeString@@W4ChatType@LANAPIInterface@@@Z,,0x006865C0,347,Code/GameEngine/Source/Common/LANAPI_RequestChat_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?RequestGameCreate@LANAPI@@UAEXVUnicodeString@@_N@Z,,0x00687E90,722,Code/masm_dumps/_sa7__RequestGameCreate_LANAPI__UAEXVUnicodeString___N__687E90.asm,matched,Exact 722B Open-BFME4
 ?RequestLobbyLeave@LANAPI@@UAEX_N@Z,,0x006850F0,75,Code/GameEngine/Source/Common/LANAPI_RequestLobbyLeave_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Reset@AABTreeBuilderClass@@AAEXXZ,,0x0096B630,118,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
@@ -12765,7 +12765,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?pickBridge@Bridge@@QAE_NABVVector3@@0PAV2@@Z,,0x001A73D0,265,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ?pickBridge@TerrainLogic@@UAE_NABVVector3@@0PAV2@@Z,,0x001AADA0,276,Code/GameEngine/Source/GameLogic/TerrainLogic_pickBridge_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?pingTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z,,0x004F14F0,150,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp,matched,
-?placeBuildAvailable@InGameUI@@UAEXPBVThingTemplate@@PAVDrawable@@@Z,,0x0043AF60,363,Code/masm_dumps/placeBuildAvailable_InGameUI_0043AF60.asm,matched,MASM exact dump; ghidra 363B true body (queue 402 was int3 pad); place fields +0x534/+0x538 mouseMode +0x824
+?placeBuildAvailable@InGameUI@@UAEXPBVThingTemplate@@PAVDrawable@@@Z,,0x0043AF60,363,Code/GameEngine/Source/Common/InGameUI_placeBuildAvailable_Thunk.cpp,matched,MASM exact dump; ghidra 363B true body (queue 402 was int3 pad); place fields +0x534/+0x538 mouseMode +0x824
 ?play@TintEnvelope@@QAEXPBURGBColor@@III@Z,,0x004156D0,23,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?playCameoMovie@InGameUI@@UAEXABVAsciiString@@@Z,,0x00441AF0,273,Code/GameEngine/Source/Common/InGameUI_playCameoMovie_Thunk.cpp,matched,Certified packet 272 exact retail MASM dump SHA256 096db9063a23865aacb71ddfff16effcdf87ef4da49ca7f7254f3ae1a85463d1
 ?playerHasPrereqsForScience@ScienceStore@@QBE_NPBVPlayer@@W4ScienceType@@@Z,,0x000E6E50,86,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,thunk-dump converted to clean C++; true body 0xE6E50 (86B before int3 pad at 0xE6EA6); OR-of-AND prereq group walk; hasScience pinned to 0x943F thunk
@@ -12953,7 +12953,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?readFileMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0067E8C0,284,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
 ?readFileProgressMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x006791A0,133,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readFrameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x006789E0,153,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
-?readFromDict@Handicap@@QAEXPBVDict@@@Z,,0x000C8220,362,Code/masm_dumps/_sa11__readFromDict_Handicap__QAEXPBVDict___Z_C8220.asm,matched,string-anchor Open-BFME4+Grok BUILDCOST
+?readFromDict@Handicap@@QAEXPBVDict@@@Z,,0x000C8220,362,Code/GameEngine/Source/Common/Handicap_readFromDict_Thunk.cpp,matched,string-anchor Open-BFME4+Grok BUILDCOST
 ?readGameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x0067E3F0,433,Code/GameEngine/Source/GameNetwork/NetPacket_readGameMessage.cpp,matched,
 ?readGameMessageArgumentFromPacket@NetPacket@@KAXW4GameMessageArgumentDataType@@PAVNetGameCommandMsg@@PAEAAH@Z,,0x0067CE30,26,Code/GameEngine/Source/GameNetwork/NetPacket.cpp,matched,
 ?readInformPlayerLeaveFrameMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z,,0x00679250,130,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,
