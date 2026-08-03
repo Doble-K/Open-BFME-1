@@ -12490,7 +12490,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@DataChunkInput@@QAE_NPAX@Z,,0x009D22F0,231,Code/GameEngine/Source/Common/System/DataChunkInput_parse_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parse@FireWeaponNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001D8720,23,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,reverted to 23B: extending to 55B tripped DIR32 consistency
 ?parse@LifeEventModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0003F553,0x5fc300,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-?parse@LightPulseFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042BE30,224,Code/masm_dumps/LightPulseFXNugget_parse_42BE30.asm,matched,Certified packet 31; LightPulse parser table ILT and Ghidra ret boundary; retail sha256 794285f856fbf02b8bb4305437cadc3c7f955c41640c3f12f132ec9ffea92e38
+?parse@LightPulseFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042BE30,224,Code/GameEngine/Source/Common/LightPulseFXNugget_parseMethodThunk.cpp,matched,Certified packet 31; LightPulse parser table ILT and Ghidra ret boundary; retail sha256 794285f856fbf02b8bb4305437cadc3c7f955c41640c3f12f132ec9ffea92e38
 ?parse@LightningDrawModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0003CBC3,0x5f4140,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@LightningEmissionModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00046006,0x5faf00,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@LineEmissionVolumeModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x00033807,0x5f9870,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
