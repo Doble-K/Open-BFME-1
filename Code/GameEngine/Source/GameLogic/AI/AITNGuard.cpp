@@ -152,34 +152,8 @@ Bool TunnelNetworkExitConditions::shouldExit(const StateMachine* machine) const
 
 //-- AITNGuardMachine -------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
-// ??0AITNGuardMachine@@ present-unmatched
-AITNGuardMachine::AITNGuardMachine( Object *owner ) : 
-	StateMachine(owner, "AITNGuardMachine"),
-	m_nemesisToAttack(INVALID_ID),
-	m_guardMode(GUARDMODE_NORMAL)
-{
-	m_positionToGuard.zero();
-	
-	static const StateConditionInfo attackAggressors[] =
-	{
-		StateConditionInfo(hasAttackedMeAndICanReturnFire, AI_TN_GUARD_ATTACK_AGGRESSOR, NULL),
-		StateConditionInfo(NULL, NULL, NULL)	// keep last
-	};
-
-	// order matters: first state is the default state.
-// srj sez: I made "return" the start state, so that if ordered to guard a position
-// that isn't the unit's current position, it moves to that position first.
-	defineState( AI_TN_GUARD_RETURN,						newInstance(AITNGuardReturnState)( this ), AI_TN_GUARD_IDLE, AI_TN_GUARD_INNER, attackAggressors );
-	defineState( AI_TN_GUARD_IDLE,							newInstance(AITNGuardIdleState)( this ), AI_TN_GUARD_INNER, AI_TN_GUARD_RETURN );
-	defineState( AI_TN_GUARD_INNER,						newInstance(AITNGuardInnerState)( this ), AI_TN_GUARD_OUTER, AI_TN_GUARD_OUTER , attackAggressors);
-	defineState( AI_TN_GUARD_OUTER,						newInstance(AITNGuardOuterState)( this ), AI_TN_GUARD_GET_CRATE, AI_TN_GUARD_GET_CRATE );
-	defineState( AI_TN_GUARD_GET_CRATE,				newInstance(AITNGuardPickUpCrateState)( this ), AI_TN_GUARD_RETURN, AI_TN_GUARD_RETURN );
-	defineState( AI_TN_GUARD_ATTACK_AGGRESSOR, newInstance(AITNGuardAttackAggressorState)( this ), AI_TN_GUARD_RETURN, AI_TN_GUARD_RETURN  );
-#ifdef STATE_MACHINE_DEBUG
-	setDebugOutput(true);
-#endif
-}
-
+// ??0AITNGuardMachine@@QAE@PAVObject@@@Z
+// Body in Code/masm_dumps/_sa___0AITNGuardMachine___18AFB0.asm (exact 753B retail @ 0x0018AFB0).
 //--------------------------------------------------------------------------------------
 // ??1AITNGuardMachine@@ present-unmatched
 AITNGuardMachine::~AITNGuardMachine()
@@ -922,4 +896,3 @@ void AITNGuardAttackAggressorState::loadPostProcess()
 {
 	onEnter();
 }
-
