@@ -1528,7 +1528,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FastAllocatorGeneral@@QAE@XZ,,0x00B027B0,113,Code/Libraries/Source/WWVegas/WWLib/FastAllocatorGeneralCtorThunk.cpp,matched,Converted to an exact standalone C++ thunk
 ??0FastCriticalSectionClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,ICF alias of existing matched body
 ??0FastFixedAllocator@@QAE@I@Z,,0x00B02760,45,Code/Libraries/Source/WWVegas/WWLib/FastFixedAllocatorThunks.cpp,matched,Converted to an exact standalone C++ thunk
-??0FellBeastSwoopPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025CF40,60,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FellBeastSwoopPowerCtorThunk.cpp,matched,Open-BFME5 exact C++ raw FellBeastSwoopPower constructor
+??0FellBeastSwoopPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025CF40,60,Code/GameEngine/Source/GameLogic/Object/SpecialPower/FellBeastSwoopPowerCtorThunk.cpp,matched,Open-BFME5 clean C++ FellBeastSwoopPower MI ctor + zero at +0xE8
+
 ??0FellBeastSwoopPowerModuleData@@QAE@XZ,,0x0025CF10,32,Code/GameEngine/Source/GameLogic/Object/Update/FellBeastSwoopPowerModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ SpecialPowerModuleData + two zero fields
 ??0File@@QAE@XZ,,0x009CB7A0,88,Code/GameEngine/Source/Common/System/File.cpp,matched,installs vtable 0x01143AF8 and sets the placeholder name
 ??0FileFactoryClass@@QAE@XZ,,0x00061D90,9,Code/Libraries/Source/WWVegas/WWLib/mixfile.cpp,matched,ICF alias of existing matched body
@@ -2169,7 +2170,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ShroudCrateCollideModuleData@@QAE@XZ,,0x00217870,147,Code/GameEngine/Source/GameLogic/AI/ShroudCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0SidesInfo@@QAE@XZ,,0x001985B0,34,Code/GameEngine/Source/GameLogic/Map/SidesInfoConstructorThunk.cpp,matched,Open-BFME5 clean C++ SidesInfo ctor zero fields + sub at +4
 ??0SidesList@@QAE@XZ,,0x0019EA80,365,Code/GameEngine/Source/GameLogic/Map/SidesListCtorThunk.cpp,matched,Open-BFME5 exact C++ raw map SidesList constructor
-??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0SiegeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C5330,60,Code/GameEngine/Source/GameLogic/AI/SiegeAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ SiegeAIUpdate MI ctor (5 vtbls)
+
 ??0SiegeAIUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0SiegeDeployHordeSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00265B20,77,Code/GameEngine/Source/GameLogic/Object/Update/DynamicGeometryInfoUpdateConstructor.cpp,matched,shared ICF owner converted to clean C++ body at destination 0x265B20
 ??0SiegeDeployHordeSpecialPowerModuleData@@QAE@XZ,,0x00265D90,25,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SiegeDeployHordeSpecialPowerModuleData.cpp,matched,Open-BFME5 clean C++ ModuleData ctor byte flag
@@ -2339,7 +2341,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TransitionDamageFXModuleData@@QAE@XZ,,0x002532B0,433,Code/masm_dumps/TransitionDamageFXModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x124770
 ??0TransitionInfo@State@@QAE@P6A_NPAV1@PAX@ZI1PBD@Z,,0x0009FF40,25,Code/GameEngine/Source/Common/StateMachine.cpp,matched,
 ??0TranslatorData@MessageStream@@QAE@XZ,,0x0008A240,19,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
-??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ TransportAIUpdate MI ctor (5 vtbls)
+
 ??0TransportAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/TransportAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0TransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022D010,128,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 128B constructor
 ??0TransportContainModuleData@@QAE@XZ,,0x0021FC80,216,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainModuleDataCtorThunk.cpp,matched,Exact 216B @ 0x0021FC80; Exact retail MASM ModuleData ctor; unique factory 0x125470

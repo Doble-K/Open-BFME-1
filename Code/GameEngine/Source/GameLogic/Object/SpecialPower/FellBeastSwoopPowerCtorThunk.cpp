@@ -1,74 +1,63 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: FellBeastSwoopPower module ctor.
+// SpecialPower-style MI base (4 vtbls at +0/+0xC/+0x10/+0x20), then zero at +0xE8.
+
 class Thing;
 class ModuleData;
 
-class FellBeastSwoopPower
+class BehaviorModule
 {
 public:
-    FellBeastSwoopPower(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+private:
+	unsigned char m_data[8];
 };
 
-__declspec(naked) FellBeastSwoopPower::FellBeastSwoopPower(Thing *, const ModuleData *)
+class SpecialPowerModuleInterface
 {
-    __asm _emit(0x8B);
-    __asm _emit(0x44);
-    __asm _emit(0x24);
-    __asm _emit(0x08);
-    __asm _emit(0x56);
-    __asm _emit(0x8B);
-    __asm _emit(0xF1);
-    __asm _emit(0x8B);
-    __asm _emit(0x4C);
-    __asm _emit(0x24);
-    __asm _emit(0x08);
-    __asm _emit(0x50);
-    __asm _emit(0x51);
-    __asm _emit(0x8B);
-    __asm _emit(0xCE);
-    __asm _emit(0xE8);
-    __asm _emit(0x0E);
-    __asm _emit(0x65);
-    __asm _emit(0xDB);
-    __asm _emit(0xFF);
-    __asm _emit(0xC7);
-    __asm _emit(0x06);
-    __asm _emit(0xE8);
-    __asm _emit(0x4E);
-    __asm _emit(0x0B);
-    __asm _emit(0x01);
-    __asm _emit(0xC7);
-    __asm _emit(0x46);
-    __asm _emit(0x0C);
-    __asm _emit(0x20);
-    __asm _emit(0x4E);
-    __asm _emit(0x0B);
-    __asm _emit(0x01);
-    __asm _emit(0xC7);
-    __asm _emit(0x46);
-    __asm _emit(0x10);
-    __asm _emit(0x10);
-    __asm _emit(0x4E);
-    __asm _emit(0x0B);
-    __asm _emit(0x01);
-    __asm _emit(0xC7);
-    __asm _emit(0x46);
-    __asm _emit(0x20);
-    __asm _emit(0xE4);
-    __asm _emit(0x4D);
-    __asm _emit(0x0B);
-    __asm _emit(0x01);
-    __asm _emit(0xC6);
-    __asm _emit(0x86);
-    __asm _emit(0xE8);
-    __asm _emit(0x00);
-    __asm _emit(0x00);
-    __asm _emit(0x00);
-    __asm _emit(0x00);
-    __asm _emit(0x8B);
-    __asm _emit(0xC6);
-    __asm _emit(0x5E);
-    __asm _emit(0xC2);
-    __asm _emit(0x08);
-    __asm _emit(0x00);
+public:
+	virtual void specialPowerModuleInterfaceAnchor();
+};
+
+class SpecialPowerModuleExtra
+{
+public:
+	virtual void specialPowerExtraAnchor();
+
+private:
+	unsigned char m_pad[0xC];
+};
+
+class ModuleInterface
+{
+public:
+	virtual void moduleInterfaceAnchor();
+};
+
+class FellBeastSwoopPowerBase : public BehaviorModule,
+	public SpecialPowerModuleInterface,
+	public SpecialPowerModuleExtra,
+	public ModuleInterface
+{
+public:
+	FellBeastSwoopPowerBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class FellBeastSwoopPower : public FellBeastSwoopPowerBase
+{
+public:
+	FellBeastSwoopPower(Thing *thing, const ModuleData *moduleData);
+
+private:
+	unsigned char m_pad[0xC4]; // 0x24 .. 0xE7
+	unsigned char m_e8;
+};
+
+// ??0FellBeastSwoopPower@@QAE@PAVThing@@PBVModuleData@@@Z
+FellBeastSwoopPower::FellBeastSwoopPower(Thing *thing, const ModuleData *moduleData)
+	: FellBeastSwoopPowerBase(thing, moduleData)
+{
+	m_e8 = 0;
 }
