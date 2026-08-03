@@ -1,63 +1,41 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
+
+// Open-BFME5: OrthoEmissionVelocity ConcreteModuleTemplate::clone
 
 namespace FXParticleSystem
 {
+
 struct OrthoEmissionVelocityModuleTag
 {
 };
 
 class OrthoEmissionVelocityModuleTemplate
 {
+public:
+	virtual ~OrthoEmissionVelocityModuleTemplate();
 };
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
 
 template <class Tag>
-class ConcreteModuleTemplate
-{
-public:
-    virtual OrthoEmissionVelocityModuleTemplate *clone() const;
-};
+class ConcreteModuleTemplate;
 
 template <>
-class ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>
+class ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag> : public OrthoEmissionVelocityModuleTemplate
 {
 public:
-    virtual OrthoEmissionVelocityModuleTemplate *clone() const;
+	ConcreteModuleTemplate(const ConcreteModuleTemplate &);
+	virtual OrthoEmissionVelocityModuleTemplate *clone() const;
+
+private:
+	unsigned char m_pad[0x2c];
 };
 
-__declspec(naked) OrthoEmissionVelocityModuleTemplate *ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>::clone() const
+// ?clone@?$ConcreteModuleTemplate@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@@FXParticleSystem@@UBEPAVOrthoEmissionVelocityModuleTemplate@2@XZ
+OrthoEmissionVelocityModuleTemplate *ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>::clone() const
 {
-    __asm {
-        _emit 056h
-        _emit 06Ah
-        _emit 030h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0E8h
-        _emit 0C6h
-        _emit 051h
-        _emit 02Ah
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 085h
-        _emit 0C0h
-        _emit 074h
-        _emit 00Ah
-        _emit 056h
-        _emit 08Bh
-        _emit 0C8h
-        _emit 0E8h
-        _emit 037h
-        _emit 04Fh
-        _emit 0A4h
-        _emit 0FFh
-        _emit 05Eh
-        _emit 0C3h
-        _emit 033h
-        _emit 0C0h
-        _emit 05Eh
-        _emit 0C3h
-    }
+	return new ConcreteModuleTemplate<OrthoEmissionVelocityModuleTag>(*this);
 }
+
 }
