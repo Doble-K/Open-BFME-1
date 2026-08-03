@@ -3194,7 +3194,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SpecialAbilityUpdate@@UAE@XZ,,0x002AA910,153,Code/GameEngine/Source/Common/SpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 153B SEH dtor Open-BFME5
 ??1SpecialAbilityUpdateModuleData@@UAE@XZ,,0x002A5CC0,225,Code/GameEngine/Source/Common/SpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Exact 225B SEH dtor Open-BFME5
 ??1SpecialDisguiseUpdate@@UAE@XZ,,0x00137E80,284,Code/GameEngine/Source/Common/SpecialDisguiseUpdateDestructorThunk.cpp,matched,Exact 284B SEH dtor Open-BFME4
-??1SpecialDisguiseUpdateModuleData@@UAE@XZ,,0x00267A90,95,Code/GameEngine/Source/Common/SpecialDisguiseUpdateModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
+??1SpecialDisguiseUpdateModuleData@@UAE@XZ,,0x00267A90,95,Code/GameEngine/Source/Common/SpecialDisguiseUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer-then-base SEH ModuleData dtor
 ??1SpecialEnemySenseUpdate@@UAE@XZ,,0x002AB0F0,543,Code/GameEngine/Source/Common/SpecialEnemySenseUpdateDestructorThunk.cpp,matched,Exact 543B @ 0x002AB0F0; Exact retail MASM; instance factory->vtable dtor; del 0x2AB0F0 ctor 0x2AAF30 vt 0xCC3880
 ??1SpecialEnemySenseUpdateModuleData@@UAE@XZ,,0x00125890,67,Code/GameEngine/Source/GameLogic/Object/Update/SpecialEnemySenseUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ member-then-base SEH ModuleData dtor
 ??1SpecialPowerCompletionDie@@UAE@XZ,,0x00255FD0,124,Code/GameEngine/Source/Common/SpecialPowerCompletionDieDestructorThunk.cpp,matched,Exact 124B SEH dtor factory->vtable Open-BFME4
@@ -3291,7 +3291,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1WanderAIUpdateModuleData@@UAE@XZ,,0x0027E4E0,145,Code/GameEngine/Source/Common/WanderAIUpdateModuleDataDestructorThunk.cpp,matched,Exact 145B SEH dtor Open-BFME5
 ??1WaterTracksRenderSystem@@QAE@XZ,,0x007AC7C0,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ??1Weapon@@MAE@XZ,,0x001E5490,111,Code/GameEngine/Source/Common/WeaponDestructorThunk.cpp,matched,Exact 111B @ 0x001E5490; allocateNewWeapon->ctor vtbl 0x10A13F4 slot0 scalar-del 0x1E6900->body; m_scatterTargets@+0x40; drift 0x9F2801 was TeamFactory
-??1WeaponChangeSpecialPowerModuleModuleData@@UAE@XZ,,0x0026CF10,95,Code/GameEngine/Source/Common/WeaponChangeSpecialPowerModuleModuleDataDestructorThunk.cpp,matched,Exact 95B SEH dtor Open-BFME5
+??1WeaponChangeSpecialPowerModuleModuleData@@UAE@XZ,,0x0026CF10,95,Code/GameEngine/Source/Common/WeaponChangeSpecialPowerModuleModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ dual-Buffer-then-base SEH ModuleData dtor
 ??1WeaponFireSpecialAbilityUpdate@@UAE@XZ,,0x0026D320,121,Code/GameEngine/Source/Common/WeaponFireSpecialAbilityUpdateDestructorThunk.cpp,matched,Exact 121B @ 0x0026D320; Exact retail MASM; instance factory->vtable dtor; del 0x26D490 ctor 0x26D670 vt 0xCB8D18
 ??1WeaponFireSpecialAbilityUpdateModuleData@@UAE@XZ,,0x0026D7B0,79,Code/GameEngine/Source/GameLogic/Object/Update/WeaponFireSpecialAbilityUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ member-then-base SEH ModuleData dtor
 ??1WeaponModeSpecialPowerUpdate@@UAE@XZ,,0x0026A820,156,Code/GameEngine/Source/Common/WeaponModeSpecialPowerUpdateDestructorThunk.cpp,matched,Exact 156B SEH dtor Open-BFME5

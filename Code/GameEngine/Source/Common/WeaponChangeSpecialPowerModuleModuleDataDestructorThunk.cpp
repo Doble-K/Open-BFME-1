@@ -1,110 +1,32 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: WeaponChangeSpecialPowerModuleModuleData dtor. 2x Buffer then base.
 
-class __declspec(novtable) WeaponChangeSpecialPowerModuleModuleData
+class Buffer
+{
+public:
+	~Buffer();
+private:
+	unsigned char m_pad[4];
+};
+
+class WeaponChangeSpecialPowerModuleModuleDataBase
+{
+public:
+	virtual ~WeaponChangeSpecialPowerModuleModuleDataBase();
+private:
+	unsigned char m_pad[0x218];
+};
+
+class __declspec(novtable) WeaponChangeSpecialPowerModuleModuleData : public WeaponChangeSpecialPowerModuleModuleDataBase
 {
 public:
 	virtual ~WeaponChangeSpecialPowerModuleModuleData();
+private:
+	Buffer m_0;
+	Buffer m_1;
 };
 
 // ??1WeaponChangeSpecialPowerModuleModuleData@@UAE@XZ
-__declspec(naked) WeaponChangeSpecialPowerModuleModuleData::~WeaponChangeSpecialPowerModuleModuleData()
+WeaponChangeSpecialPowerModuleModuleData::~WeaponChangeSpecialPowerModuleModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xd6
-		__emit 0x01
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x20
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x00
-		__emit 0xaa
-		__emit 0x61
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x1c
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xf0
-		__emit 0xa9
-		__emit 0x61
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x55
-		__emit 0x08
-		__emit 0xdb
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
