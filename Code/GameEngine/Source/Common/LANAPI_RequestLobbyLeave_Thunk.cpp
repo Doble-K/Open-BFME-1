@@ -1,0 +1,90 @@
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift MASM dump to standalone C++ thunk.
+
+class LANAPI
+{
+public:
+	virtual void RequestLobbyLeave(bool);
+};
+
+// ?RequestLobbyLeave@LANAPI@@UAEX_N@Z
+__declspec(naked) void LANAPI::RequestLobbyLeave(bool)
+{
+	__asm {
+        __emit 0x81
+        __emit 0xec
+        __emit 0xdc
+        __emit 0x01
+        __emit 0x00
+        __emit 0x00
+        __emit 0x56
+        __emit 0x8b
+        __emit 0xf1
+        __emit 0x8b
+        __emit 0x06
+        __emit 0x8d
+        __emit 0x4c
+        __emit 0x24
+        __emit 0x04
+        __emit 0x51
+        __emit 0x8b
+        __emit 0xce
+        __emit 0xc7
+        __emit 0x44
+        __emit 0x24
+        __emit 0x08
+        __emit 0x07
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0xff
+        __emit 0x90
+        __emit 0xc4
+        __emit 0x00
+        __emit 0x00
+        __emit 0x00
+        __emit 0x6a
+        __emit 0x00
+        __emit 0x8d
+        __emit 0x54
+        __emit 0x24
+        __emit 0x08
+        __emit 0x52
+        __emit 0x8b
+        __emit 0xce
+        __emit 0xe8
+        __emit 0x7b
+        __emit 0x64
+        __emit 0x9a
+        __emit 0xff
+        __emit 0x8a
+        __emit 0x84
+        __emit 0x24
+        __emit 0xe4
+        __emit 0x01
+        __emit 0x00
+        __emit 0x00
+        __emit 0x84
+        __emit 0xc0
+        __emit 0x74
+        __emit 0x08
+        __emit 0x8b
+        __emit 0x4e
+        __emit 0x4c
+        __emit 0xe8
+        __emit 0x93
+        __emit 0xcd
+        __emit 0x97
+        __emit 0xff
+        __emit 0x5e
+        __emit 0x81
+        __emit 0xc4
+        __emit 0xdc
+        __emit 0x01
+        __emit 0x00
+        __emit 0x00
+        __emit 0xc2
+        __emit 0x04
+        __emit 0x00
+	}
+}

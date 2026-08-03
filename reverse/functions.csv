@@ -7763,7 +7763,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?RequestBuddyAdd@@YAXHVAsciiString@@@Z,,0x004EDAD0,818,Code/masm_dumps/RequestBuddyAdd.asm,matched,true body 0x4EDAD0/818 (queue 968 padded int3); unique GUI:BuddyAddReq+Buddy:InviteSent+Buddy:InviteSentToPlayer; MASM exact; C++ blocked AsciiString+8/frame/BuddyMessage
 ?RequestChat@LANAPI@@UAEXVUnicodeString@@W4ChatType@LANAPIInterface@@@Z,,0x006865C0,347,Code/masm_dumps/_rn5__RequestChat_LANAPI__UAEXVUnicodeString__W4ChatType_LANAPIInterface____6865C0.asm,matched,reloc-needle Open-BFME4+Grok
 ?RequestGameCreate@LANAPI@@UAEXVUnicodeString@@_N@Z,,0x00687E90,722,Code/masm_dumps/_sa7__RequestGameCreate_LANAPI__UAEXVUnicodeString___N__687E90.asm,matched,Exact 722B Open-BFME4
-?RequestLobbyLeave@LANAPI@@UAEX_N@Z,,0x006850F0,75,Code/masm_dumps/_rn5__RequestLobbyLeave_LANAPI__UAEX_N_Z_6850F0.asm,matched,reloc-needle Open-BFME4+Grok
+?RequestLobbyLeave@LANAPI@@UAEX_N@Z,,0x006850F0,75,Code/GameEngine/Source/Common/LANAPI_RequestLobbyLeave_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Reset@AABTreeBuilderClass@@AAEXXZ,,0x0096B630,118,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ?Reset@AABTreeClass@@AAEXXZ,,0x0096A5E0,61,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ?Reset@AABTreeIterator@@QAEXXZ,,0x008E21C0,8,Code/Libraries/Source/WWVegas/WWMath/aabtreecull.cpp,matched,icf-owner=?First@AssetIterator@@UAEXXZ
@@ -8500,7 +8500,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Valid_File@FilePipe@@AAE_NXZ,,0x009E1B80,11,Code/Libraries/Source/WWVegas/WWLib/xpipe.cpp,matched,
 ?Valid_File@FileStraw@@AAE_NXZ,,0x009E7D40,11,Code/Libraries/Source/WWVegas/WWLib/xstraw.cpp,matched,
 ?Validate_Cached_Bounding_Volumes@RenderObjClass@@IBEXXZ,,0x0091FD90,8,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
-?Validate_Transform@RenderObjClass@@UBEXXZ,,0x00920270,80,Code/masm_dumps/_rn4__Validate_Transform_RenderObjClass__UBEXXZ_920270.asm,matched,reloc-needle Open-BFME4+Grok
+?Validate_Transform@RenderObjClass@@UBEXXZ,,0x00920270,80,Code/GameEngine/Source/Common/RenderObjClass_Validate_Transform_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Value@CRCEngine@@IBEJXZ,,0x009E8020,17,Code/Libraries/Source/WWVegas/WWLib/crc.cpp,matched,
 ?Version1@Xfer@@QAEXXZ,0x000429C9,0x000C7E90,21,Code/GameEngine/Source/Common/System/Xfer.cpp,matched,xfer version 1 marker
 ?Visibility_Check@RTS3DScene@@UAEXPAVCameraClass@@@Z,,0x009446F0,1075,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_Visibility_Check.asm,matched,exact 1075B via MASM
@@ -9793,7 +9793,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doDrawModule@W3DRopeDraw@@UAEXPBVMatrix3D@@@Z,,0x0075AD20,363,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/W3DRopeDraw.cpp,matched,
 ?doEnableCountdownTimerDisplay@ScriptActions@@IAEXXZ,,0x002EF9D0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,showNamedTimerDisplay(true)
 ?doEnableInput@ScriptActions@@IAEXXZ,,0x002EF090,27,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,InGameUI setInputEnabled + Mouse setVisibility pins
-?doEnableOrDisableObjectDifficultyBonuses@ScriptActions@@UAEX_N@Z,,0x002F0840,77,Code/masm_dumps/_rn5__doEnableOrDisableObjectDifficultyBonuses_ScriptActions__UAEX_N_Z_2F0840.asm,matched,reloc-needle Open-BFME4+Grok
+?doEnableOrDisableObjectDifficultyBonuses@ScriptActions@@UAEX_N@Z,,0x002F0840,77,Code/GameEngine/Source/Common/ScriptActions_doEnableOrDisableObjectDifficultyBonuses_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?doEnableSpecialPowerDisplay@ScriptActions@@IAEXXZ,,0x002EF790,17,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,InGameUI vtable+0x90 setSuperweaponDisplayEnabledByScript true
 ?doEvaEnabledDisabled@ScriptActions@@IAEX_N@Z,,0x002F03E0,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x96 EVA enabled
 ?doFXObj@FXListAtBonePosFXNugget@@UBEXPBVObject@@0@Z,,0x0042D8B0,35,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
