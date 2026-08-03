@@ -143,15 +143,8 @@ Int RiderChangeContain::getContainMax( void ) const
 // PUBLIC /////////////////////////////////////////////////////////////////////////////////////////
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0RiderChangeContain@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
-RiderChangeContain::RiderChangeContain( Thing *thing, const ModuleData *moduleData ) : 
-								 TransportContain( thing, moduleData )
-{
-	m_extraSlotsInUse = 0;
-	m_frameExitNotBusy = 0;
-	m_containing = FALSE;
-	m_scuttledOnFrame = 0;
-}
+// ??0RiderChangeContain@@ is implemented by the exact retail thunk in
+// RiderChangeContainCtorThunk.cpp.
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------

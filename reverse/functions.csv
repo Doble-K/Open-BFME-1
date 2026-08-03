@@ -2124,7 +2124,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ResolutionDescClass@@QAE@XZ,,0x0005C5D0,13,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,ICF alias of existing matched body
 ??0RespawnBody@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00214650,46,Code/GameEngine/Source/GameLogic/Object/Behavior/RespawnBodyCtorThunk.cpp,matched,Open-BFME5 exact C++ raw RespawnBody constructor
 ??0RespawnBodyModuleData@@QAE@XZ,,0x002149D0,190,Code/GameEngine/Source/GameLogic/Object/Behavior/RespawnBodyModuleDataCtorThunk.cpp,matched,Exact 190B @ 0x002149D0; Exact retail MASM ModuleData ctor; unique factory 0x11F7A0
-??0RiderChangeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00229FB0,124,Code/masm_dumps/RiderChangeContain_constructor.asm,matched,Exact 124B; factory ownership Open-BFME4
+??0RiderChangeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00229FB0,124,Code/GameEngine/Source/GameLogic/Object/Contain/RiderChangeContainCtorThunk.cpp,matched,Exact 124B; factory ownership Open-BFME4; converted to an exact standalone C++ thunk
 ??0RiderChangeContainModuleData@@QAE@XZ,,0x00268120,430,Code/masm_dumps/RiderChangeContainModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x1195C0
 ??0RiderInfo@@QAE@XZ,,0x0022A2D0,16,Code/GameEngine/Source/GameLogic/Object/Contain/RiderChangeContain.cpp,matched,
 ??0RoadSegment@@QAE@ABV0@@Z,,0x00704EB0,265,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
