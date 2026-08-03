@@ -12506,7 +12506,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parse@SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002337B,0x5fa650,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@StreakDrawModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002BCBA,0x5f7eb0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?parse@TerrainCollisionModuleTemplate@FXParticleSystem@@QAEXPAVINI@@@Z,0x0001EA60,0x5fcef0,18,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-?parse@TerrainScorchFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C600,245,Code/masm_dumps/TerrainScorchFXNugget_parse_42C600.asm,matched,Exact 245B MASM; FX table TerrainScorch ILT 0x1E3AD; drift 0x9A15F0 was interior of parseSideInfo@AI
+?parse@TerrainScorchFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C600,245,Code/GameEngine/Source/Common/TerrainScorchFXNugget_parseMethodThunk.cpp,matched,Exact 245B MASM; FX table TerrainScorch ILT 0x1E3AD; drift 0x9A15F0 was interior of parseSideInfo@AI
 ?parse@ViewShakeFXNugget@@SAXPAVINI@@PAX1PBX@Z,,0x0042C320,244,Code/GameEngine/Source/Common/ViewShakeFXNugget_parseMethodThunk.cpp,matched,Certified packet 167 db-only MASM SHA256 4717cc225abc96cd5fa449fec9f04c8cca2043a94891684368ad9e8ca82d40ed
 ?parseAccelerationReal@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9D50,43,Code/GameEngine/Source/Common/INI/ini.cpp,matched,row pointed at a 5B ILT thunk; real body is here
 ?parseAddModule@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x0013E210,88,Code/GameEngine/Source/Common/ThingTemplate_parseAddModule_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
