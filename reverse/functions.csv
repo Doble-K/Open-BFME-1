@@ -2897,7 +2897,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1DozerAIUpdate@@MAE@XZ,,0x002B6640,215,Code/GameEngine/Source/Common/DozerAIUpdateDestructorThunk.cpp,matched,Exact 215B SEH dtor Open-BFME5
 ??1DozerAIUpdate@@UAE@XZ,,0x002B6640,215,Code/GameEngine/Source/Common/DozerAIUpdateDestructorThunk.cpp,matched,Exact 215B @ 0x002B6640; Exact retail MASM; instance factory->vtable dtor; del 0x2B6B50 ctor 0x2B8680 vt 0xCC6A90;;object-symbol=??1DozerAIUpdate@@MAE@XZ
 ??1DrawableIconInfo@@MAE@XZ,,0x001DDFD0,70,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
-??1DrawableLocoInfo@@MAE@XZ,,0x00415D50,1385,Code/masm_dumps/_sa3___1DrawableLocoInfo__MAE_XZ_415D50.asm,matched,Exact 1385B string-anchored Open-BFME4
+??1DrawableLocoInfo@@MAE@XZ,,0x00415D50,1385,Code/GameEngine/Source/Common/DrawableLocoInfoDestructorThunk.cpp,matched,Exact 1385B SEH dtor Open-BFME5
 ??1DynamicAudioEventRTS@@MAE@XZ,,0x0078CFB0,73,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,
 ??1DynamicPortalBehaviour@@UAE@XZ,,0x001F8D10,141,Code/GameEngine/Source/Common/DynamicPortalBehaviourDestructorThunk.cpp,matched,Exact 141B SEH dtor Open-BFME4
 ??1DynamicShroudClearingRangeUpdate@@UAE@XZ,,0x0028E630,157,Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdateDtorThunk.cpp,matched,Exact standalone C++ __emit thunk from certified retail destructor
@@ -2999,7 +2999,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1INIException@@QAE@XZ,,0x00139FF0,14,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??1INISection@@UAE@XZ,,0x009E3220,190,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??1ImageCollection@@UAE@XZ,,0x005D2C10,139,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
-??1InGameUI@@UAE@XZ,,0x0044AE70,936,Code/masm_dumps/dtor_InGameUI_UAE_XZ_0044AE70_packet315.asm,matched,certified packet 315 sealed RVA size and SHA-256 verified
+??1InGameUI@@UAE@XZ,,0x0044AE70,936,Code/GameEngine/Source/Common/InGameUIDestructorThunk.cpp,matched,Exact 936B SEH dtor Open-BFME5
 ??1InactiveBody@@UAE@XZ,,0x001CEFC0,1493,Code/GameEngine/Source/Common/InactiveBodyDestructorThunk.cpp,matched,Exact 1493B SEH dtor factory->vtable Open-BFME4
 ??1InstantDeathBehaviorModuleData@@UAE@XZ,,0x00201840,220,Code/GameEngine/Source/Common/InstantDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 220B SEH dtor Open-BFME5
 ??1LANGameInfo@@QAE@XZ,,0x00686CD0,103,Code/GameEngine/Source/Common/LANGameInfoDestructorThunk.cpp,matched,Exact 103B SEH dtor Open-BFME5
