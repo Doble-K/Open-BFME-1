@@ -54,6 +54,56 @@
 #include "GameClient/GadgetRadioButton.h"
 #include "GameClient/GadgetCheckBox.h"
 #include "GameClient/GlobalLanguage.h"
+// BFME's GameWindowTransitionsHandler is 0x58 bytes; the vendored Zero Hour
+// GameWindowTransitions.h declares the old 0x1C-byte class, which made
+// GameWindowManager::init emit `push 0x1c` where retail has `push 0x58`. This
+// TU uses nothing else from that header, so block it via its own include guard
+// and declare the retail layout locally (same idea as the per-TU shims under
+// reference/shims/, but kept in-TU because a shim-header change forces the
+// full commit gate).
+//
+// Layout proven from the retail ctor body at 0x48BF40 (reached through ILT
+// thunk 0x29A5): base SubsystemInterface ctor called, vptr 0x10F9610, an
+// inlined std::list ctor at this+0x1C (operator new(0xC) head node, size
+// zeroed at +0x20), four group pointers zeroed at this+0x24..0x30, byte
+// stores at this+0x4C/0x4D/0x54/0x55, and 0x21 stored at this+0x50. The
+// 0x34..0x4B run and the trailing scalars are not semantically
+// reconstructed yet. (The base class is 4 bytes in this build, so member
+// offsets here sit 4 lower than retail's; only sizeof == 0x58 and the
+// base-class vtable slots for init/reset/update/draw matter to this TU.)
+#define __GAME_WINDOW_TRANSITIONS_H_
+class TransitionGroup;
+class GameWindowTransitionsHandler : public SubsystemInterface
+{
+public:
+	GameWindowTransitionsHandler( void );
+	~GameWindowTransitionsHandler( void );
+
+	void init( void );
+	void load( void );
+	void reset( void );
+	void update( void );
+	void draw( void );
+
+private:
+	typedef std::list<TransitionGroup *> TransitionGroupList;
+
+	Int m_unknown08[5];			///< ctor zeroes +0x0C..0x18 only
+	TransitionGroupList m_transitionGroupList;	///< this+0x1C
+	TransitionGroup *m_currentGroup;			///< this+0x24
+	TransitionGroup *m_pendingGroup;			///< this+0x28
+	TransitionGroup *m_drawGroup;				///< this+0x2C
+	TransitionGroup *m_secondaryDrawGroup;		///< this+0x30
+	Int m_unknown34[7];			///< untouched by the ctor; sized for sizeof == 0x58
+	bool m_unknown4C;				///< this+0x4C
+	bool m_unknown4D;				///< this+0x4D
+	Int m_unknown50;				///< this+0x50, ctor stores 0x21
+	bool m_unknown54;				///< this+0x54
+	bool m_unknown55;				///< this+0x55
+};  // end GameWindowTransitionsHandler (sizeof 0x58)
+
+extern GameWindowTransitionsHandler *TheTransitionHandler;
+
 #include "GameClient/GameWindowTransitions.h"
 #include "Common/NameKeyGenerator.h"
 
@@ -222,11 +272,11 @@ GameWindowManager::~GameWindowManager( void )
 //-------------------------------------------------------------------------------------------------
 /** Initialize the game window manager system */
 //-------------------------------------------------------------------------------------------------
-// ?init@GameWindowManager@@UAEXXZ present-unmatched
 void GameWindowManager::init( void )
 {
-	if(!TheTransitionHandler)
-		TheTransitionHandler = NEW GameWindowTransitionsHandler;
+	// retail news unconditionally (no TheTransitionHandler null check -- the
+	// branch Zero Hour has here is absent from the retail body)
+	TheTransitionHandler = NEW GameWindowTransitionsHandler;
 	TheTransitionHandler->load();
 	TheTransitionHandler->init();
 }  // end init
