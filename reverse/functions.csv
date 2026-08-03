@@ -33923,7 +33923,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setSkillPointsModifier@Player@@QAEXM@Z,,0x00360740,13,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
 ?setSkipParentXfrm@ParticleSystem@@QAEX_N@Z,,0x0016A830,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?setSlaveSystemName@ParticleSystemTemplate@FXParticleSystem@@QAEXABVAsciiString@@@Z,0x00041F47,0x005BE690,28,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,assigns slave system name and clears flag
-?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/GameEngine/Source/Common/GameInfo_setSlot_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?setSlot@GameInfo@@QAEXHVGameSlot@@@Z,,0x0061F630,114,Code/GameEngine/Source/Common/GameInfo_setSlot_Thunk.cpp,matched,Open-BFME5 clean C++ setSlot; by-value GameSlot SEHOpen-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setSlot@NetDisconnectVoteCommandMsg@@QAEXE@Z,,0x00673D20,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
 ?setSlotPointer@GameInfo@@QAEXHPAVGameSlot@@@Z,,0x0061E9E0,24,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?setSlotRankPoints@GameSpyGameSlot@@QAEXH@Z,,0x0045BEC0,10,Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp,matched,
