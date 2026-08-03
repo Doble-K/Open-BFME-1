@@ -2271,7 +2271,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0StructureCollapseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004A345,5,Code/GameEngine/Source/Common/RTS/StructureCollapseUpdateCtorThunk.cpp,matched,5-byte incremental-link StructureCollapseUpdate constructor thunk converted to focused C++ source
 ??0StructureCollapseUpdateModuleData@@QAE@XZ,,0x00128940,224,Code/GameEngine/Source/Common/RTS/StructureCollapseUpdateModuleDataCtorThunk.cpp,matched,Exact 224B @ 0x00128940; Exact retail MASM ModuleData ctor; unique factory 0x128B10
 ??0StructureToppleUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00034711,5,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
-??0StructureToppleUpdateModuleData@@QAE@XZ,,0x0012BF50,398,Code/masm_dumps/StructureToppleUpdateModuleData_constructor.asm,matched,Exact retail MASM ModuleData ctor; unique factory 0x12C250
+??0StructureToppleUpdateModuleData@@QAE@XZ,,0x0012BF50,398,Code/GameEngine/Source/Common/StructureToppleUpdateModuleData_ctor_Thunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x12C250
 ??0SubObjectArrayClass@HLodDefClass@@QAE@XZ,,0x009789F0,20,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ??0SubObjectsUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D83A0,69,Code/GameEngine/Source/GameLogic/Object/Upgrade/SubObjectsUpgradeCtorThunk.cpp,matched,Open-BFME5 clean C++ UpgradeModule multi-inheritance + global field
 ??0SubObjectsUpgradeModuleData@@QAE@XZ,,0x0012B6C0,194,Code/GameEngine/Source/GameLogic/Object/Upgrade/SubObjectsUpgradeModuleDataCtorThunk.cpp,matched,Exact 194B @ 0x0012B6C0; Exact retail MASM ModuleData ctor; unique factory 0x12B7F0
@@ -2424,7 +2424,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0W3DShadowGeometry@@QAE@XZ,,0x007BBCF0,131,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadowGeometryCtorThunk.cpp,matched,1:1 C++ thunk from certified Load_Geom constructor body
 ??0W3DShadowGeometryManager@@QAE@XZ,,0x007AEDA0,159,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??0W3DShadowGeometryManagerIterator@@QAE@AAVW3DShadowGeometryManager@@@Z,,0x007B96B0,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
-??0W3DShadowManager@@QAE@XZ,,0x007B7900,396,Code/masm_dumps/W3DShadowManager_ctor.asm,matched,MASM exact; true body 0x7B7900/396 (queue 0xA2DA77 misplaced); unique 0x7fa0a0a0; NEW0xC@0x73063a->TheW3DShadowManager; BFME 3 submgrs
+??0W3DShadowManager@@QAE@XZ,,0x007B7900,396,Code/GameEngine/Source/Common/W3DShadowManager_ctor_Thunk.cpp,matched,MASM exact; true body 0x7B7900/396 (queue 0xA2DA77 misplaced); unique 0x7fa0a0a0; NEW0xC@0x73063a->TheW3DShadowManager; BFME 3 submgrs
 ??0W3DShadowTextureManager@@QAE@XZ,,0x007AEDA0,159,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ??0W3DShadowTextureManagerIterator@@QAE@AAVW3DShadowTextureManager@@@Z,,0x007AE830,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ??0W3DShroudMaterialPassClass@@QAE@XZ,,0x00702300,22,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
@@ -9781,7 +9781,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doC3CameraDisableSlaveMode@ScriptActions@@IAEXXZ,,0x002F06A0,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,View vtable+0x9c cameraDisableSlaveMode
 ?doChooseVictimAlwaysUsesNormal@ScriptActions@@IAEX_N@Z,,0x002F08A0,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,ScriptEngine+0x17635 choose-victim flag
 ?doCollapseDoneStuff@StructureCollapseUpdate@@IAEXXZ,,0x002A38A0,123,Code/GameEngine/Source/GameLogic/Object/Update/StructureCollapseUpdate.cpp,matched,
-?doCommandButtonAtPosition@Object@@QAEXPBVCommandButton@@PBUCoord3D@@W4CommandSourceType@@@Z,,0x001D1FA0,417,Code/masm_dumps/Object_doCommandButtonAtPosition_1D1FA0.asm,matched,exact 417B MASM; true body 0x1D1FA0 (queue 0x77B0CA INSIDE ctor 0x77B090); full SEH; isDisabled@+0x1a4; BFME ret 0x10
+?doCommandButtonAtPosition@Object@@QAEXPBVCommandButton@@PBUCoord3D@@W4CommandSourceType@@@Z,,0x001D1FA0,417,Code/GameEngine/Source/Common/Object_doCommandButtonAtPosition_Thunk.cpp,matched,exact 417B MASM; true body 0x1D1FA0 (queue 0x77B0CA INSIDE ctor 0x77B090); full SEH; isDisabled@+0x1a4; BFME ret 0x10
 ?doCreateObject@ScriptActions@@IAEXABVAsciiString@@00PAUCoord3D@@M@Z,,0x0034CF60,526,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doCreateObject_Thunk.cpp,matched,Open-BFME5 MASM lift
 ?doDamageLine@StructureToppleUpdate@@IAEXPAVObject@@PBVWeaponTemplate@@MMMM@Z,,0x002AF8F9,523,Code/GameEngine/Source/GameLogic/Object/Update/StructureToppleUpdate_doDamageLine.asm,matched,exact 523B via MASM
 ?doDebugMessage@ScriptActions@@IAEXABVAsciiString@@_N@Z,,0x002F20E0,51,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 exact C++ __emit port of 51-byte retail method
@@ -11571,7 +11571,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getParkingPlaceBehaviorInterface@BehaviorModule@@UAEPAVParkingPlaceBehaviorInterface@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getParticleCap@OptionPreferences@@QAEHXZ,,0x000914B0,136,Code/GameEngine/Source/Common/OptionPreferences_getParticleCap_Thunk.cpp,matched,Exact 136B; string-anchor MaxParticleCount; queue 0x560DB2 was OptionsMenuInit interior
 ?getParticleType@ParticleSystemTemplate@FXParticleSystem@@QBE?AW4ParticleType@2@XZ,0x0003CC31,0x0005CB60,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,returns particle type field
-?getPasswordForEmail@GameSpyLoginPreferences@@QAE?AVAsciiString@@V2@@Z,,0x000813D0,426,Code/masm_dumps/_sa11__getPasswordForEmail_GameSpyLoginPreferences__QAE_AVAsciiString__V2__Z_813D0.asm,matched,string-anchor Open-BFME4+Grok %c%c%c%c
+?getPasswordForEmail@GameSpyLoginPreferences@@QAE?AVAsciiString@@V2@@Z,,0x000813D0,426,Code/GameEngine/Source/Common/GameSpyLoginPreferences_getPasswordForEmail_Thunk.cpp,matched,string-anchor Open-BFME4+Grok %c%c%c%c
 ?getPath@Win32BIGFile@@UAE?AVAsciiString@@XZ,,0x009D1710,32,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileNames.cpp,matched,Win32BIGFile vtable 0x01143BE8 slot 6; m_path at this+0x28
 ?getPath_UserData@GlobalData@@QBE?AVAsciiString@@XZ,,0x00083D70,35,Code/GameEngine/Source/Common/System/game_engine_subsystems.cpp,matched,thunk-dump converted to C++ naked GlobalData path accessor
 ?getPercentComplete@NetCommandWrapperList@@QAEHG@Z,,0x00676850,42,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
@@ -13655,7 +13655,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setWaypointName@MapObject@@QAEXVAsciiString@@@Z,,0x00087E50,31,Code/GameEngine/Source/GameClient/MapObjectSetWaypointNameThunk.cpp,matched,Open-BFME5 clean C++ Dict setAsciiString then field assign at +0x24
 ?setWhiner@BuildListInfo@@QAEX_N@Z,,0x0045A9A0,10,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?setWidth@GameLogic@@QAEXM@Z,,0x00360640,10,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
-?setWindowText@@YAXPAVGameWindow@@VAsciiString@@@Z,,0x004864E0,416,Code/masm_dumps/GameWindowManagerScript_setWindowText.asm,matched,Exact 416B MASM; true body 0x4864E0 (queue 0x4864C7 int3 pad); BFME AsciiString isEmpty/str blocks ZH C++
+?setWindowText@@YAXPAVGameWindow@@VAsciiString@@@Z,,0x004864E0,416,Code/GameEngine/Source/Common/setWindowText_Thunk.cpp,matched,Exact 416B MASM; true body 0x4864E0 (queue 0x4864C7 int3 pad); BFME AsciiString isEmpty/str blocks ZH C++
 ?setWindowed@Display@@UAEX_N@Z,,0x00336610,10,Code/GameEngine/Source/GameClient/Display.cpp,matched,
 ?setWins@GameSpyGameSlot@@QAEXH@Z,,0x0016A420,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,
 ?setWrappedCommandID@NetWrapperCommandMsg@@QAEGXZ,,0x00673F70,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,object-symbol=?setWrappedCommandID@NetWrapperCommandMsg@@QAEXG@Z;NetWrapperCommandMsg trivial accessor thunk
