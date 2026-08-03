@@ -3206,7 +3206,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SphereEmissionVolumeModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D6280,50,Code/masm_dumps/__1SphereEmissionVolumeModuleTemplate_FXParticleSystem__UAE_XZ_5D6280.asm,matched,MASM exact retail dump
 ??1SphericalEmissionVelocityInfo@FXParticleSystem@@UAE@XZ,0x0001BFDB,0x005D71D0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,empty dtor resets to EmissionVelocityInfo vtable
 ??1SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@UAE@XZ,,0x005D7380,50,Code/masm_dumps/__1SphericalEmissionVelocityModuleTemplate_FXParticleSystem__UAE_XZ_5D7380.asm,matched,MASM exact retail dump
-??1SpyVisionUpdateModuleData@@UAE@XZ,,0x003780A0,158,Code/masm_dumps/SpyVisionUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory→vtable dtor; del 0x378070 ctor 0x377D70 vt 0xCE9E78
+??1SpyVisionUpdateModuleData@@UAE@XZ,,0x003780A0,158,Code/GameEngine/Source/GameLogic/Object/Update/SpyVisionUpdateModuleDataDtorThunk.cpp,matched,Exact standalone C++ __emit thunk from certified retail destructor
 ??1Squad@@MAE@XZ,,0x000D4090,156,Code/masm_dumps/___1Squad__MAE_XZ_D4090.asm,matched,Exact 156B MASM; Squad vt@0xC83E78 slot0 G@0xD4060; queue 0x9F27DB int3; layout m_objectIDs@+4 m_objectsCached@+0x10
 ??1StateMachine@@MAE@XZ,,0x000A1130,224,Code/masm_dumps/StateMachine_dtor.asm,matched,exact 224B MASM; true body via subclass dtor chain not queue 0x9F27BE
 ??1StealthDetectorUpdateModuleData@@UAE@XZ,,0x00126B60,99,Code/masm_dumps/StealthDetectorUpdateModuleData_destructor.asm,matched,Exact retail MASM; factory ctor vtable and deleting-wrapper chain prove ownership
