@@ -2342,7 +2342,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TranslatorData@MessageStream@@QAE@XZ,,0x0008A240,19,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
 ??0TransportAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/TransportAIUpdateModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
-??0TransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022D010,128,Code/masm_dumps/TransportContain_constructor.asm,matched,Exact 128B; factory ownership Open-BFME4
+??0TransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022D010,128,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 128B constructor
 ??0TransportContainModuleData@@QAE@XZ,,0x0021FC80,216,Code/masm_dumps/TransportContainModuleData_constructor.asm,matched,Exact 216B @ 0x0021FC80; Exact retail MASM ModuleData ctor; unique factory 0x125470
 ??0TransportStatus@@QAE@XZ,,0x000D16F0,23,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
 ??0TreadObjectInfo@W3DTankDraw@@QAE@XZ,,0x0077E0A0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp,matched,
