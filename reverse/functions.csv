@@ -3228,7 +3228,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SupplyTruckAIUpdateModuleData@@UAE@XZ,,0x00124430,79,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdateModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SysTimeClass@@QAE@XZ,,0x009E64D0,9,Code/Libraries/Source/WWVegas/WWLib/systimer.cpp,matched,weak needle (dllimport call dominates); dtor at cluster addr; build.sh exact
 ??1Team@@MAE@XZ,,0x000F4250,480,Code/masm_dumps/Team_dtor_MAE_000F4250_packet238.asm,matched,certified packet 238 retail SHA256 b5f02508996b8030029cc75dab2c51a6216c596d95a010d25f3da7df1b37e417
-??1TeamFactory@@UAE@XZ,,0x009F2800,115,Code/masm_dumps/TeamFactory_dtor.asm,matched,TeamFactory primary and secondary vtables plus scalar deleting destructor prove ownership
+??1TeamFactory@@UAE@XZ,,0x009F2800,115,Code/GameEngine/Source/Common/TeamFactoryDestructorThunk.cpp,matched,TeamFactory primary and secondary vtables plus scalar deleting destructor prove ownership
 ??1TeamInQueue@@MAE@XZ,,0x00160ED0,112,Code/masm_dumps/TeamInQueue_dtor.asm,matched,Exact 112B @0x160ED0; queue 0x9F27D3 was TeamFactory-region thunk; vtbl+G-dtor chain+m_team@+0x1c vs disband
 ??1TeamTemplateInfo@@QAE@XZ,,0x000ED580,251,Code/masm_dumps/TeamTemplateInfo_dtor.asm,matched,
 ??1TeamsInfo@@QAE@XZ,,0x009DB7A0,117,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,object-symbol=?Free_String@StringClass@@AAEXXZ;C++ alias
