@@ -2109,51 +2109,8 @@ void ControlBar::showRallyPoint( const Coord3D *loc )
 /** Show a rally point marker at the world location specified.  If no location is specified
 	* any marker that we might have visible is hidden */
 // ------------------------------------------------------------------------------------------------
-// ?setControlBarSchemeByPlayer@ControlBar@@ present-unmatched
-void ControlBar::setControlBarSchemeByPlayer(Player *p)
-{
-	if(m_controlBarSchemeManager)
-		m_controlBarSchemeManager->setControlBarSchemeByPlayer(p);
-
-	static NameKeyType buttonPlaceBeaconID = NAMEKEY( "ControlBar.wnd:ButtonPlaceBeacon" );
-	static NameKeyType buttonIdleWorkerID = NAMEKEY("ControlBar.wnd:ButtonIdleWorker");
-	static NameKeyType buttonGeneralID = NAMEKEY("ControlBar.wnd:ButtonGeneral");
-	GameWindow *buttonPlaceBeacon = TheWindowManager->winGetWindowFromId( NULL, buttonPlaceBeaconID );
-	GameWindow *buttonIdleWorker = TheWindowManager->winGetWindowFromId( NULL, buttonIdleWorkerID );
-	GameWindow *buttonGeneral = TheWindowManager->winGetWindowFromId( NULL, buttonGeneralID );
-
-	if( !p->isPlayerActive() )
-	{
-		m_isObserverCommandBar = TRUE;
-		switchToContext( CB_CONTEXT_OBSERVER_LIST, NULL );
-		DEBUG_LOG(("We're loading the Observer Command Bar\n"));
-
-		if (buttonPlaceBeacon)
-			buttonPlaceBeacon->winHide(TRUE);
-		if (buttonIdleWorker)
-			buttonIdleWorker->winHide(TRUE);
-		if (buttonGeneral)
-			buttonGeneral->winEnable(FALSE);
-	}
-	else
-	{
-		switchToContext( CB_CONTEXT_NONE, NULL );
-		m_isObserverCommandBar = FALSE;
-
-		if (buttonPlaceBeacon)
-			buttonPlaceBeacon->winHide(
-			(TheGameLogic->getGameMode() != GAME_LAN && TheGameLogic->getGameMode() != GAME_INTERNET) ||
-			!TheGameInfo->isMultiPlayer());
-		if (buttonIdleWorker)
-			buttonIdleWorker->winHide(FALSE);
-		if (buttonGeneral)
-		{
-			buttonGeneral->winHide(FALSE);
-			buttonGeneral->winEnable(TRUE);
-		}
-	}
-	switchControlBarStage(CONTROL_BAR_STAGE_DEFAULT);
-}
+// ?setControlBarSchemeByPlayer@ControlBar@@ exact retail body is emitted by
+// ControlBarSetControlBarSchemeByPlayerThunk.cpp.
 
 // ?setControlBarSchemeByPlayerTemplate@ControlBar@@ present-unmatched
 void ControlBar::setControlBarSchemeByPlayerTemplate( const PlayerTemplate *pt)

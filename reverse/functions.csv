@@ -16852,9 +16852,9 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?j_00013ed5@@YAXXZ,,0x00013ED5,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_00848ee0
 ?j_00013eee@@YAXXZ,,0x00013EEE,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_007d5540
 ?j_00013efd@@YAXXZ,,0x00013EFD,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_00a853c0
-?j_00013f16@@YAXXZ,,0x00013F16,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_009e5560
-?j_00013f20@@YAXXZ,,0x00013F20,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_00a73d40
-?j_00013f2f@@YAXXZ,,0x00013F2F,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_009d5c20
+?j_00013f16@@YAXXZ,,0x00013F16,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_009e5560
+?j_00013f20@@YAXXZ,,0x00013F20,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_00a73d40
+?j_00013f2f@@YAXXZ,,0x00013F2F,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_009d5c20
 ?j_00013f66@@YAXXZ,,0x00013F66,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_00579550
 ?j_00013f89@@YAXXZ,,0x00013F89,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_00894a20
 ?j_00013fa2@@YAXXZ,,0x00013FA2,5,Code/gen_small/thunks_009.cpp,matched,gen-thunk;target=FUN_008336f0
@@ -33647,7 +33647,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setConfig@GameSpyInfo@@UAEXABVAsciiString@@@Z,,0x00630E00,8,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?setConnectionState@NAT@@IAEXHW4NATConnectionState@@@Z,,0x00670DC0,116,Code/GameEngine/Source/GameNetwork/NAT_setConnectionStateThunk.cpp,matched,Open-BFME5 MASM lift NAT::setConnectionState
 ?setControlBarSchemeByName@ControlBar@@QAEXABVAsciiString@@@Z,,0x004A0090,68,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSetControlBarSchemeByNameThunk.cpp,matched,Exact 68B C++ raw member thunk Open-BFME5
-?setControlBarSchemeByPlayer@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F8B0,790,Code/masm_dumps/ControlBar_setControlBarSchemeByPlayer.asm,matched,Correct retail body identified by unique public thunk at 0x00019B64
 ?setControlBarSchemeByPlayer@ControlBarSchemeManager@@QAEXPAVPlayer@@@Z,,0x004AE080,590,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme_setControlBarSchemeByPlayer.asm,matched,exact 590B via MASM (SEH)
 ?setControlBarSchemeByPlayerTemplate@ControlBar@@QAEXPBVPlayerTemplate@@@Z,,0x0049FC90,818,Code/masm_dumps/ControlBar_setControlBarSchemeByPlayerTemplate.asm,matched,Ghidra ENTRY 818; semantic body identity; exact MASM alias of immutable prior row
 ?setControlBarSchemeByPlayerTemplate@ControlBarSchemeManager@@QAEXPBVPlayerTemplate@@_N@Z,,0x003865B0,655,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSchemeManagerSetControlBarSchemeByPlayerTemplateThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_ControlBarSchemeManagerSetControlBarSchemeByPlayerTemplate_3865B0
@@ -34599,3 +34598,4 @@ _powf,,0x00097070,14,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 _sinf,,0x00873910,7,Code/GameEngine/Source/Common/Audio/GameAudio.cpp,matched,icf-owner=?Sin@@YAMM@Z
 _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?friend_newModuleData@InternetHackContain@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFEB0,110,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,Open-BFME5 exact C++ ICF alias; corrected one-byte int3 boundary; retail size 0x16C and constructor pin 0x30945
+?setControlBarSchemeByPlayer@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F8B0,790,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSetControlBarSchemeByPlayerThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
