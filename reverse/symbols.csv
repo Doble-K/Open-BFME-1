@@ -23210,3 +23210,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?bind@BFX_Member@@QAEHPAVMemoryPool@@@Z,0x0002AE23,Open-BFME5 pin
 ??1GameSlot@@QAE@XZ,0x0000B988,Open-BFME5 pin
 ?setSlotData@GI_SlotObj@@QAEXPAVGameSlot@@@Z,0x000126E8,Open-BFME5 pin
+??0RS_Base@@QAE@XZ,0x0003F503,Open-BFME5 pin
+??0RS_Member@@QAE@XZ,0x0003747A,Open-BFME5 pin
