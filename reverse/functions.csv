@@ -2370,7 +2370,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0UnitCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00218870,46,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/UnitCrateCollide.cpp,matched,MASM converted to clean C++
 ??0UnitCrateCollideModuleData@@QAE@XZ,,0x00125EA0,88,Code/GameEngine/Source/GameLogic/Object/Behavior/UnitCrateCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 88B ModuleData constructor
 ??0UnpauseSpecialPowerUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D9760,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/UnpauseSpecialPowerUpgradeConstructor.cpp,matched,thunk-dump converted to clean C++ constructor body at destination 0x2D9760
-??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ,,0x002D99B0,29,Code/GameEngine/Source/GameLogic/Object/SpecialPower/UnpauseSpecialPowerUpgradeModuleData.cpp,matched,Exact retail ModuleData constructor emitted in dedicated C++ TU.
+??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ,,0x002D99B0,29,Code/GameEngine/Source/GameLogic/Object/SpecialPower/UnpauseSpecialPowerUpgradeModuleData.cpp,matched,Open-BFME5 clean C++ ctor sub-before-vtbl dword+0x70 byte+0x74
 ??0UpdateModuleModuleData@@QAE@XZ,,0x0027EAE0,283,Code/masm_dumps/UpdateModuleModuleData_constructor.asm,matched,Exact 283B ICF alias MD Open-BFME4
 ??0UpgradeCenter@@QAE@XZ,,0x0010A6A0,29,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
 ??0UpgradeDie@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002560E0,60,Code/GameEngine/Source/GameLogic/Object/Die/UpgradeDie.cpp,matched,Luna Open-BFME5.0 clean C++ inline DieModule constructor

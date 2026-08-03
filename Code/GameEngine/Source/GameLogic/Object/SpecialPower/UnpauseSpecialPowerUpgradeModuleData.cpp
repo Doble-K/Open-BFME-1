@@ -1,43 +1,52 @@
-// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
-#include "PreRTS.h"
+// cl: /DNDEBUG /MD /GX- /O2 /Ob2
 
-class UnpauseSpecialPowerUpgradeModuleData
+// Open-BFME5: UnpauseSpecialPowerUpgradeModuleData ctor
+// Retail: sub at +8, dword +0x70=0, byte +0x74=0, outer vtbl.
+
+class UpgradeModuleDataSub
 {
 public:
-    UnpauseSpecialPowerUpgradeModuleData();
+	UpgradeModuleDataSub();
+
+private:
+	char opaque[0x68];
 };
 
-__declspec(naked) UnpauseSpecialPowerUpgradeModuleData::UnpauseSpecialPowerUpgradeModuleData()
+class __declspec(novtable) UnpauseSpecialPowerUpgradeModuleData
 {
-    __asm {
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 008h
-        _emit 0E8h
-        _emit 0EBh
-        _emit 056h
-        _emit 0D3h
-        _emit 0FFh
-        _emit 033h
-        _emit 0C0h
-        _emit 089h
-        _emit 046h
-        _emit 070h
-        _emit 088h
-        _emit 046h
-        _emit 074h
-        _emit 0C7h
-        _emit 006h
-        _emit 098h
-        _emit 0E4h
-        _emit 00Ch
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C3h
-    }
+public:
+	UnpauseSpecialPowerUpgradeModuleData();
+	virtual void dummy();
+
+private:
+	int m_pad;
+	char m_sub_space[0x68];
+	unsigned int m_70;
+	unsigned char m_74;
+};
+
+class UnpauseSpecialPowerUpgradeModuleDataVtbl
+{
+public:
+	UnpauseSpecialPowerUpgradeModuleDataVtbl() {}
+	virtual void dummy();
+
+private:
+	int m_pad;
+	char m_sub_space[0x68];
+	unsigned int m_70;
+	unsigned char m_74;
+};
+
+// ??0UnpauseSpecialPowerUpgradeModuleData@@QAE@XZ
+UnpauseSpecialPowerUpgradeModuleData::UnpauseSpecialPowerUpgradeModuleData()
+{
+	UpgradeModuleDataSub *sub =
+		(UpgradeModuleDataSub *)((char *)this + 8);
+	sub->UpgradeModuleDataSub::UpgradeModuleDataSub();
+	m_70 = 0;
+	m_74 = 0;
+	UnpauseSpecialPowerUpgradeModuleDataVtbl *v =
+		(UnpauseSpecialPowerUpgradeModuleDataVtbl *)this;
+	v->UnpauseSpecialPowerUpgradeModuleDataVtbl::UnpauseSpecialPowerUpgradeModuleDataVtbl();
 }
