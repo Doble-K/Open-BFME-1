@@ -13097,7 +13097,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?reset@ControlBar@@UAEXXZ,,0x004A2F80,684,Code/masm_dumps/_cache__reset_ControlBar__UAEXXZ_4A2F80.asm,matched,true size 684B; row claimed 583B
 ?reset@DisplayString@@UAEXXZ,,0x0040FFB0,20,Code/GameEngine/Source/GameClient/DisplayString.cpp,matched,
 ?reset@FirewallHelperClass@@QAEXXZ,,0x0066EBF0,66,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,
-?reset@GameInfo@@UAEXXZ,,0x0061F440,168,Code/masm_dumps/GameInfo_reset.asm,matched,Exact retail MASM; NOMAP anchor and reset semantics prove ownership
+?reset@GameInfo@@UAEXXZ,,0x0061F440,168,Code/GameEngine/Source/Common/GameInfo_resetMethodThunk.cpp,matched,Exact retail MASM; NOMAP anchor and reset semantics prove ownership
 ?reset@GameLogic@@UAEXXZ,,0x00388970,222,Code/masm_dumps/_sa11__reset_GameLogic__UAEXXZ_388970.asm,matched,string-anchor Open-BFME4+Grok AmericaVehicleHumVee
 ?reset@GameState@@UAEXXZ,,0x00110010,281,Code/masm_dumps/_sa14__reset_GameState__UAEXXZ_110010.asm,matched,SUSPECT ADDRESS: GameState vtable 0x010893E0 has slot 0 ??_GGameState@@ and slot 4 pointing at 0x0010EEE0 (111B) not here. Slot numbering is confirmed inside that same vtable by slot 1 being the matched ?init@GameState@@. Real reset clears two lists at +0x48 and +0x4c then calls 0x0010E430 which is unnamed - that callee is what blocks writing it as C++
 ?reset@GameTextManager@@UAEXXZ,,0x00437500,85,Code/GameEngine/Source/Common/promoted__reset_GameTextManager_UAEXXZ_00437500.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 85B
