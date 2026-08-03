@@ -3179,7 +3179,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1SimpleObjectIterator@@MAE@XZ,,0x001DDFD0,70,Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp,matched,
 ??1SlaughterHordeContain@@UAE@XZ,,0x0024EB00,329,Code/masm_dumps/SlaughterHordeContain_destructor.asm,matched,Exact 329B; factory ownership Open-BFME4
 ??1SlaughterHordeContainModuleData@@UAE@XZ,,0x0022B220,89,Code/GameEngine/Source/Common/SlaughterHordeContainModuleDataDestructorThunk.cpp,matched,Exact 89B SEH dtor Open-BFME5
-??1SlaveWatcherBehavior@@UAE@XZ,,0x00207580,142,Code/masm_dumps/SlaveWatcherBehavior_destructor.asm,matched,Exact 142B @ 0x00207580; Exact retail MASM; instance factory->vtable dtor; del 0x2076E0 ctor 0x207300 vt 0xCA64DC
+??1SlaveWatcherBehavior@@UAE@XZ,,0x00207580,142,Code/GameEngine/Source/Common/SlaveWatcherBehaviorDestructorThunk.cpp,matched,Exact 142B @ 0x00207580; Exact retail MASM; instance factory->vtable dtor; del 0x2076E0 ctor 0x207300 vt 0xCA64DC
 ??1SlaveWatcherBehaviorModuleData@@UAE@XZ,,0x00207510,80,Code/GameEngine/Source/GameLogic/Object/Behavior/SlaveWatcherBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1SlavedUpdate@@UAE@XZ,,0x00113C60,131,Code/masm_dumps/SlavedUpdate_destructor.asm,matched,Exact 131B; factory ownership Open-BFME4
 ??1SlavedUpdateModuleData@@UAE@XZ,,0x00126980,80,Code/GameEngine/Source/Common/SlavedUpdateModuleDataDestructorThunk.cpp,matched,Exact 80B SEH dtor Open-BFME5
