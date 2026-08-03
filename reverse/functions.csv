@@ -12606,7 +12606,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseGameLogicRandomDelay@@YAXPAVINI@@PAXPAVGameLogicRandomVariable@@@Z,,0x00287750,59,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,
 ?parseGeneralPersona@ChallengeGenerals@@CAXPAVINI@@PAX1PBX@Z,,0x004582D0,20,Code/GameEngine/Source/GameClient/GUI/ChallengeGenerals.cpp,matched,
 ?parseGlowEffect@@YAXPAVINI@@@Z,,0x00421EE0,80,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,BFME-only block; saved/active pair at 0x12b4ff8 and 0x12b501c with the write-back suppressed for override loads
-?parseHeaderTemplateDefinition@INI@@SAXPAV1@@Z,,0x0048CBD0,195,Code/masm_dumps/INI_parseHeaderTemplateDefinition_48CBD0.asm,matched,true body 0x48CBD0/195; queue 0x9A15AF was epilogue; FieldParse Font/Point/Bold; MASM ZH AsciiString block
+?parseHeaderTemplateDefinition@INI@@SAXPAV1@@Z,,0x0048CBD0,195,Code/GameEngine/Source/Common/INI_parseHeaderTemplateDefinitionMethodThunk.cpp,matched,true body 0x48CBD0/195; queue 0x9A15AF was epilogue; FieldParse Font/Point/Bold; MASM ZH AsciiString block
 ?parseICoord2D@INI@@SAXPAV1@PAX1PBX@Z,,0x00853420,60,Code/GameEngine/Source/Common/INI/ini.cpp,matched,C++ match via getNextSubToken + scanInt
 ?parseImage@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BB110,43,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?parseImageCoords@Image@@SAXPAVINI@@PAX1PBX@Z,,0x005D1E90,286,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,Ghidra
