@@ -4207,3 +4207,8 @@ g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?construct@AutoHealBehaviorModuleData@@AAEXXZ,0x00285F10,AutoHealBehaviorModuleData real ctor body via 5-byte E9
 ?construct@AutoHealBehaviorModuleData@@QAEXXZ,0x00285F10,AutoHealBehaviorModuleData real ctor body via 5-byte E9
+??0GameWindowTransitionsHandler@@QAE@XZ,0x000029A5,ILT thunk -> body 0x48BF40; retail GameWindowTransitionsHandler ctor called by GameWindowManager::init on TheTransitionHandler (0x012F3330)
+?load@GameWindowTransitionsHandler@@QAEXXZ,0x00027921,ILT thunk -> body 0x48B8D0; called by GameWindowManager::init on TheTransitionHandler (0x012F3330)
+?hideQuitMenu@WindowManager@@QAEXXZ,0x000290D2,HideQuitMenu tail-call target
+?g_theWindowManager@@3PAVWindowManager@@A,0x012F19E8,HideQuitMenu WindowManager global
+?g_quitMenuLayout@@3PAXA,0x012F4AD4,HideQuitMenu layout global
