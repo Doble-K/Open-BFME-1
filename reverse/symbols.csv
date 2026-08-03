@@ -4092,3 +4092,8 @@ _gameTextRelease,0x00881EF0,GameTextManager reset release helper shim
 ?incorporate@PSPlayerStats@@QAEXABV1@@Z,0x0002B0E4,REL32 pin from PSPlayerStats' copy ctor @0x6577D0 (thunk to 0x656D60)
 ?_M_erase@?$_Rb_tree@HU?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@U?$_Select1st@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@@Z,0x0003EA2C,REL32 pin: the recursive call goes through this thunk to 0x632FC0
 ?reset@GameSpyInfo@@UAEXXZ,0x00005966,REL32 pin from the GameSpyInfo constructor @0x636D90
+??A?$map@HVAsciiString@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@3@@_STL@@QAEAAVAsciiString@@ABH@Z,0x000488B0,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+?set@AsciiString@@QAEXABV1@@Z,0x00887C90,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+??0IgnorePreferences@@QAE@XZ,0x0002E389,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+?setIgnore@IgnorePreferences@@QAEXABVAsciiString@@H_N@Z,0x00016789,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+??1IgnorePreferences@@UAE@XZ,0x00033A23,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670

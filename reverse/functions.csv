@@ -8722,7 +8722,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addTexture@W3DShadowTextureManager@@QAE_NPAVW3DShadowTexture@@@Z,,0x007AEFA0,23,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?addToEndOfGroup@LList@@QAEX_N@Z,,0x00105A10,10,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?addToHead@LList@@QAEXPAVLListNode@@@Z,,0x00105A20,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
-?addToSavedIgnoreList@GameSpyInfo@@UAEXHVAsciiString@@@Z,,0x00635670,149,Code/masm_dumps/addToSavedIgnoreList_GameSpyInfo_635670.asm,matched,Certified packet 216 db-only MASM recovery
 ?addToTail@LList@@QAEXPAVLListNode@@@Z,,0x00105A40,23,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?addUpgrade@Player@@QAEPAVUpgrade@@PBVUpgradeTemplate@@W4UpgradeStatusType@@@Z,,0x00040327,5,Code/GameEngine/Source/Common/RTS/PlayerAddUpgradeThunk.cpp,matched,5-byte incremental-link Player member thunk converted to focused C++ source
 ?addVelocity@WaterRenderObjClass@@QAEXMMMM@Z,,0x0079F5F0,480,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,true size 480B; row claimed 471B
@@ -13930,3 +13929,4 @@ _tanf,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3D
 ?getCachedLocalPlayerStats@GameSpyInfo@@UAE?AVPSPlayerStats@@XZ,,0x00637480,35,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,repointed: 0x6372D0 copies an AsciiString at +0x78 not a PSPlayerStats
 ??_G?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@QAEPAXI@Z,,0x00631E50,30,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,repointed: the only body of this shape that calls the 0x34-node pair dtor
 ??0GameSpyInfo@@QAE@XZ,,0x00636D90,609,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME shifts m_localName on by 8 and GameSpyGroupRoom is one dword larger
+?addToSavedIgnoreList@GameSpyInfo@@UAEXHVAsciiString@@@Z,,0x00635670,149,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM dump converted to clean C++; BFME keeps AsciiString::set and releaseBuffer out of line
