@@ -1631,7 +1631,6 @@ bool DX8Wrapper::Test_Z_Mode(D3DFORMAT colorbuffer,D3DFORMAT backbuffer, D3DFORM
 }
 
 
-// ?Reset_Statistics@DX8Wrapper@@ present-unmatched
 void DX8Wrapper::Reset_Statistics()
 {
 	matrix_changes	= 0;
@@ -1657,7 +1656,6 @@ void DX8Wrapper::Reset_Statistics()
 	last_frame_draw_calls =0;
 }
 
-// ?Begin_Statistics@DX8Wrapper@@ present-unmatched
 void DX8Wrapper::Begin_Statistics()
 {
 	matrix_changes=0;
@@ -1672,7 +1670,6 @@ void DX8Wrapper::Begin_Statistics()
 	draw_calls=0;
 }
 
-// ?End_Statistics@DX8Wrapper@@ present-unmatched
 void DX8Wrapper::End_Statistics()
 {
 	last_frame_matrix_changes=matrix_changes;
@@ -4325,8 +4322,10 @@ const char* DX8Wrapper::Get_DX8_Texture_Arg_Name(unsigned value)
 	}
 }
 
-// ?Get_DX8_Texture_Filter_Name@DX8Wrapper@@ is emitted by
-// DX8WrapperGetDX8TextureFilterNameThunk.cpp.
+// DX8WrapperGetDX8TextureFilterNameThunk.cpp emits the retail body of
+// Get_DX8_Texture_Filter_Name (?Get_DX8_Texture_Filter_Name@DX8Wrapper@@).
+// Keep the mangled name off the start of a comment line: find_declared_unmatched
+// reads a leading "// ?" as an unmatched marker for the definition below.
 
 const char* DX8Wrapper::Get_DX8_Texture_Address_Name(unsigned value)
 {

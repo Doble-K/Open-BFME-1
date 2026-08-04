@@ -93090,3 +93090,8 @@ uw_00c56fc0,,0x00C56FC0,8,Code/gen_small/tgrid_122.cpp,matched,gen-funclet;paren
 ?Exists@?$HashTemplateClass@UTriangleSide@@USideIndexInfo@@@@QBE_NABUTriangleSide@@@Z,,0x0094E7E0,177,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
 ?Re_Hash@?$HashTemplateClass@VVector3@@I@@AAEXXZ,,0x0094E8F0,382,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
 ?Insert@?$HashTemplateClass@VVector3@@I@@QAEXABVVector3@@ABI@Z,,0x0094F520,115,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?Init@Matrix4x4@@QAEXMMMMMMMMMMMMMMMM@Z,,0x007A62F0,114,Code/Libraries/Source/WWVegas/WWMath/matrix4x4.cpp,matched,vendored=cnc-zh
+??YVector4@@QAEAAV0@ABV0@@Z,,0x005F0A00,42,Code/Libraries/Source/WWVegas/WWMath/matrix4x4.cpp,matched,vendored=cnc-zh
+?End_Statistics@DX8Wrapper@@SAXXZ,,0x009023C0,113,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,vendored=cnc-zh
+?Reset_Statistics@DX8Wrapper@@KAXXZ,,0x00902310,103,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,vendored=cnc-zh
+?Begin_Statistics@DX8Wrapper@@SAXXZ,,0x00902380,53,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,vendored=cnc-zh

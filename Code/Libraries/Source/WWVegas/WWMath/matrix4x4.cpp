@@ -28,3 +28,11 @@
 #include <matrix4.h>
 
 Matrix4x4 (*const Matrix4x4_Multiply_Address)(const Matrix4x4 &, const Matrix4x4 &) = &operator*;
+
+void (Matrix4x4::*const Matrix4x4_Init_Address)(float, float, float, float,
+                                                float, float, float, float,
+                                                float, float, float, float,
+                                                float, float, float, float) = &Matrix4x4::Init;
+
+typedef Vector4 & (Vector4::*V4AddAssign)(const Vector4 &);
+V4AddAssign Vector4_Add_Assign_Address = &Vector4::operator+=;
