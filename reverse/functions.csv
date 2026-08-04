@@ -69684,7 +69684,6 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?m@Gen_00889230@@QAEXXZ,,0x00889230,7,Code/gen_small/fun_005.cpp,matched,gen-shim;skeleton=store-imm-0;ghidra=FUN_00c89230
 ??0RepeatChar@Debug@@QAE@DH@Z,,0x00889270,18,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ?PreStaticInit@Debug@@CAPAV1@XZ,0x00889500,0x00889500,114,Code/GameEngine/Source/Common/debug.cpp,matched,Debug PreStaticInit singleton allocator
-?Delete@DebugCmdInterfaceDebug@@UAEXXZ,,0x008895D0,20,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ?Delete@DebugIOCon@@UAEXXZ,,0x008895D0,20,Code/Libraries/Source/debug/debug_io_con.cpp,matched,
 ?Delete@DebugIOOds@@UAEXXZ,,0x008895D0,20,Code/Libraries/Source/debug/debug_io_ods.cpp,matched,
 ??0Format@Debug@@QAA@PBDZZ,,0x008895F0,35,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
@@ -91256,3 +91255,4 @@ uw_00c1eb70,,0x00C1EB70,8,Code/gen_small/tgrid_114.cpp,matched,gen-funclet;paren
 ?Set_Index_Buffer_Index_Offset@DX8Wrapper@@SAXI@Z,,0x0072EAD0,32,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??_GDebugCmdInterfaceDebug@@UAEPAXI@Z,,0x0088A680,33,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,
 ?Create@OutputStream@DebugIOFlat@@SAPAV12@PBDI@Z,,0x0088FF60,94,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,clean C++ placement-new; /EHa matches retail's shared-epilogue EH shape
+?Delete@DebugCmdInterfaceDebug@@UAEXXZ,,0x008895D0,20,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,
