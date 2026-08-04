@@ -71687,7 +71687,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ??0ParticleEmitterClass@@QAE@ABV0@@Z,,0x0097EB20,484,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ??1ParticleEmitterClass@@UAE@XZ,,0x0097ED10,203,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Clone@ParticleEmitterClass@@UBEPAVRenderObjClass@@XZ,,0x0097EDF0,96,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
-?Scale@ParticleEmitterClass@@UAEXM@Z,,0x0097EE50,124,Code/GameEngine/Source/Common/ParticleEmitterClass_ScaleMethodThunk.cpp,matched,reloc-needle Open-BFME4+Grok
+?Scale@ParticleEmitterClass@@UAEXM@Z,,0x0097EE50,124,Code/GameEngine/Source/Common/ParticleEmitterClass_ScaleMethodThunk.cpp,matched,clean C++ conversion; ZH part_emt.cpp body; PosRand at this+0xD8 BaseVel Vector3 at 0xDC VelRand at 0xE8 OutwardVel at 0xEC Buffer at 0x130; randomizer Scale at vtable+0x10 and buffer Scale at vtable+0x16C
 ?On_Frame_Update@ParticleEmitterClass@@UAEXXZ,,0x0097EED0,273,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Reset@ParticleEmitterClass@@QAEXXZ,,0x0097EFF0,145,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Start@ParticleEmitterClass@@QAEXXZ,,0x0097F090,174,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,MASM converted to clean C++
