@@ -57440,7 +57440,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?floor@@YAMM@Z,,0x00069750,20,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
 _ceilf,,0x00069750,20,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyWarehouseDockUpdate.cpp,matched,
 ?deg2rad@@YAMM@Z,0x00018A7F,0x00069780,11,Code/GameEngine/Source/Common/System/Trig.cpp,matched,converts degrees to radians
-?fast_float2long_round@@YAJM@Z,,0x00069790,13,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ?m@Gen_000698b0@@QAEHH@Z,,0x000698B0,7,Code/gen_small/fun_000.cpp,matched,gen-shim;skeleton=ret-arg1;ghidra=FUN_004698b0
 ??$_Construct@U?$pair@$$CBW4NameKeyType@@VModuleTemplate@ModuleFactory@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@VModuleTemplate@ModuleFactory@@@0@ABU10@@Z,,0x000699F0,39,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?Set_Current_UV_Offset@SegLineRendererClass@@QAEXABVVector2@@@Z,,0x0006B090,18,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,
@@ -58663,7 +58662,6 @@ _XMP_Test_Bit,,0x000A2C80,33,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matc
 ?Set@Vector4@@QAEXMMMM@Z,,0x000FBB50,30,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ??AVector4@@QBEABMH@Z,,0x000FBB80,10,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ??AVector2@@QBEABMH@Z,,0x000FBB90,10,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
-??AMatrix3D@@QBEABVVector4@@H@Z,,0x000FBBA0,12,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,
 ?Adjust_Translation@Matrix3D@@QAEXABVVector3@@@Z,,0x000FBBB0,33,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,
 ?Make_Identity@Matrix3D@@QAEXXZ,,0x000FBBE0,43,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
 ?Rotate_Z@Matrix3D@@QAEXM@Z,,0x000FBC20,107,Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp,matched,
@@ -61039,7 +61037,6 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?m@Gen_0020b010@@QAEIXZ,,0x0020B010,6,Code/gen_small/fun_001.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_0060b010
 ?getClassMemoryPool@SpawnBehavior@@CAPAVMemoryPool@@XZ,,0x0020B0F0,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,pool-glue cascade; copy proven by verify_string_refs
 ??1SpawnBehavior@@UAE@XZ,,0x0020B180,207,Code/GameEngine/Source/Common/SpawnBehaviorDestructorThunk.cpp,matched,Exact 207B @ 0x0020B180; Exact retail MASM; instance factory->vtable dtor; del 0x20C020 ctor 0x20AE30 vt 0xCA6CCC
-?setLastHeard@LANGameInfo@@QAEXI@Z,,0x0020CC20,13,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ??0SpawnUnitBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D0F0,99,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit ctor thunk
 ?m@Gen_0020d170@@QAEIXZ,,0x0020D170,6,Code/gen_small/fun_001.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_0060d170
 ??0SupplyWarehouseCripplingBehaviorModuleData@@QAE@XZ,,0x0020D580,20,Code/GameEngine/Source/GameLogic/Object/Behavior/SupplyWarehouseCripplingBehavior.cpp,matched,converted thunk to TU-scoped C++ constructor
@@ -62538,7 +62535,6 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?Set_State@TextureLoadTaskClass@@QAEXW4StateType@1@@Z,,0x003607A0,13,Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp,matched,
 ?m@Gen_00360c90@@QAEPAXHH@Z,,0x00360C90,11,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=this-store-arg2;ghidra=FUN_00760c90
 ?m@Gen_00360d60@@QAEHH@Z,,0x00360D60,7,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=ret-arg1;ghidra=FUN_00760d60
-?get_allocator@?$vector@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QBE?AV?$allocator@PAVObject@@@2@XZ,,0x003615E0,7,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,STLport template-internal COMDAT emitted by this TU; thunk-dump repointed to real body
 ?get_allocator@?$vector@PBVLocomotorTemplate@@V?$allocator@PBVLocomotorTemplate@@@_STL@@@_STL@@QBE?AV?$allocator@PBVLocomotorTemplate@@@2@XZ,,0x003615E0,7,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,STLport template-internal COMDAT emitted by this TU; thunk-dump repointed to real body
 ?m@Gen_003616a0@@QAEPAXHH@Z,,0x003616A0,11,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=this-store-arg2;ghidra=FUN_007616a0
 ?m@Gen_00362bd0@@QAEIXZ,,0x00362BD0,6,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_00762bd0
@@ -67924,7 +67920,6 @@ __purecall,,0x006CF680,3,Code/Libraries/Source/WWVegas/WWLib/Except.cpp,matched,
 ?Add_Point@MinMaxAABoxClass@@QAEXABVVector3@@@Z,,0x00728B30,115,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainBackground.cpp,matched,
 ?updateCenter@W3DTerrainBackground@@QAEXPAVCameraClass@@@Z,,0x00728D30,874,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainBackground.cpp,matched,
 ?doTesselatedUpdate@W3DTerrainBackground@@QAEXABUIRegion2D@@PAVWorldHeightMap@@_N@Z,,0x0072C7F0,2068,Code/masm_dumps/doTesselatedUpdate_W3DTerrainBackground_QAEXABUIRegion2D_PAVWorldHeightMap_N_Z_0072C7F0.asm,matched,Certified packet 35 exact retail MASM SHA256 504a258ce1cc90303f992b532de9d8d46c3935b14b3756ed9781e4a1da9a83b9
-?Set_Index_Buffer_Index_Offset@DX8Wrapper@@SAXI@Z,,0x0072EAD0,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp,matched,
 ??1TerrainTracksRenderObjClassSystem@@QAE@XZ,,0x0072FDD0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracks.cpp,matched,
 ?flush@TerrainTracksRenderObjClassSystem@@QAEXXZ,,0x0072FEB0,892,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainTracksFlushThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?isLight@MapObject@@QBE_NXZ,,0x00730310,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
@@ -69701,7 +69696,6 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?WriteBuildInfo@Debug@@QAEXXZ,,0x0088A490,137,Code/Libraries/Source/WWVegas/WWDebug/Debug_WriteBuildInfo_Thunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit thunk; re-anchored 2 bytes earlier to the real push prologue
 ?IsWindowed@Debug@@AAE_NXZ,,0x0088A5F0,78,Code/Libraries/Source/WWVegas/WWDebug/DebugIsWindowedThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?m@Gen_0088a670@@QAEXXZ,,0x0088A670,1,Code/gen_small/fun_005.cpp,matched,gen-shim;skeleton=ret-void;ghidra=FUN_00c8a670
-??_GDebugCmdInterfaceDebug@@UAEPAXI@Z,,0x0088A680,33,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??_GDebugIOCon@@UAEPAXI@Z,,0x0088A680,33,Code/Libraries/Source/debug/debug_io_con.cpp,matched,
 ??_GDebugIOFlat@@UAEPAXI@Z,,0x0088A680,33,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,
 ??_GDebugIONet@@UAEPAXI@Z,,0x0088A680,33,Code/Libraries/Source/WWVegas/WWDebug/debug_io_net.cpp,matched,
@@ -91255,3 +91249,9 @@ uw_00c4d2d1,,0x00C4D2D1,8,Code/Libraries/Source/WWVegas/wwshade/shdrenderer.cpp,
 uw_00c1eb70,,0x00C1EB70,8,Code/gen_small/tgrid_114.cpp,matched,gen-funclet;parent=??0?$list@UGen_t_003c0c70_p12cd@@V?$allocator@UGen_t_003c0c70_p12cd@@@_STL@@@_STL@@QAE@I@Z;object-symbol=$L130155
 ?Write@DebugIOFlat@@UAEXW4StringType@DebugIOInterface@@PBD1@Z,,0x00890E60,126,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,DebugIOFlat::Write; BFME flushes every split when str==0
 ?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x0012B650,87,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SabotageMilitaryFactoryCrateCollideFriendNewModuleDataThunk.cpp,matched,naked body; retail inlines the base-at-+8 ModuleData ctor which MSVC 7.1 cannot emit from C++
+?fast_float2long_round@@YAJM@Z,,0x00069790,13,Code/GameEngineDevice/Source/W3DDevice/Common/W3DConvert.cpp,matched,
+??AMatrix3D@@QBEABVVector4@@H@Z,,0x000FBBA0,12,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,
+?setLastHeard@LANGameInfo@@QAEXI@Z,,0x0020CC20,13,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
+?get_allocator@?$vector@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QBE?AV?$allocator@PAVObject@@@2@XZ,,0x003615E0,7,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
+?Set_Index_Buffer_Index_Offset@DX8Wrapper@@SAXI@Z,,0x0072EAD0,32,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
+??_GDebugCmdInterfaceDebug@@UAEPAXI@Z,,0x0088A680,33,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,
