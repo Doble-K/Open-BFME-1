@@ -91674,3 +91674,20 @@ _HUFF_is@4,,0x00822DF0,116,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,
 _BTREE_is@4,,0x00822F80,41,Code/Libraries/Source/Compression/EAC/btreedecode.cpp,matched,stock EAC codec source; ggetm inlines here as it does in retail
 _REF_size@4,,0x008220D0,56,Code/Libraries/Source/Compression/EAC/refdecode.cpp,matched,stock EAC codec source; ggetm is a static switch that inlines on constant byte counts
 _HUFF_size@4,,0x00822E70,56,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,stock EAC codec source; ggetm is a static switch that inlines on constant byte counts
+_deprecated_func,,0x00995780,32,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_deprecated_funcs,,0x009957A0,53,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_luaB_assert,,0x009950A0,63,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_luaB_getglobal,,0x009947C0,32,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_luaB_rawget,,0x00994920,41,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_luaB_rawset,,0x00994950,49,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_luaB_setglobal,,0x00994790,37,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_luaB_settag,,0x00994820,53,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_luaB_type,,0x00994B20,45,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_lua_baselibopen,,0x009957E0,50,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_set2,,0x00995290,26,Code/Libraries/Source/Lua/lbaselib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_lua_setcallhook,,0x00996270,15,Code/Libraries/Source/Lua/ldebug.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_lua_setlinehook,,0x00996280,15,Code/Libraries/Source/Lua/ldebug.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_call_arith,,0x00997840,42,Code/Libraries/Source/Lua/lvm.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_check_condition,,0x0099AAE0,19,Code/Libraries/Source/Lua/lparser.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_new_localvarstr,,0x0099AEB0,28,Code/Libraries/Source/Lua/lparser.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_optional,,0x0099AB00,21,Code/Libraries/Source/Lua/lparser.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
