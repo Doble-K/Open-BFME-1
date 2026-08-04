@@ -57570,7 +57570,6 @@ __stringbase_isnone_cmp_char,,0x00075E00,91,Code/Libraries/Source/WWVegas/WWLib/
 ??0ScienceStore@@QAE@XZ,,0x00076E50,29,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??0RankInfoStore@@QAE@XZ,,0x00076EC0,29,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??_GRankInfoStore@@UAEPAXI@Z,,0x00076F00,30,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
-??0PlayerTemplateStore@@QAE@XZ,,0x00076F30,29,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?_M_erase@?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@3@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@UCoord3D@@@_STL@@@2@@Z,,0x00077390,61,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,
 ?j_000774e0@@YAXXZ,,0x000774E0,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_00476b00
 ??1?$_Rb_tree@VAsciiString@@V1@U?$_Identity@VAsciiString@@@_STL@@U?$less@VAsciiString@@@3@V?$allocator@VAsciiString@@@3@@_STL@@QAE@XZ,,0x000775F0,124,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,STLport template-internal COMDAT emitted by this TU; thunk-dump repointed (callees pinned)
@@ -91962,7 +91961,7 @@ uw_00c606e8,,0x00C606E8,11,Code/GameEngine/Source/Common/System/File.cpp,matched
 uw_00c60700,,0x00C60700,8,Code/GameEngine/Source/Common/System/File.cpp,matched,gen-funclet;parent=??1MemoryWriteFile@@UAE@XZ;object-symbol=$L33962
 uw_00c60740,,0x00C60740,11,Code/GameEngine/Source/Common/System/File.cpp,matched,gen-funclet;parent=??0File@@QAE@XZ;object-symbol=$L33863
 uw_00c60760,,0x00C60760,11,Code/GameEngine/Source/Common/System/File.cpp,matched,gen-funclet;parent=??1File@@UAE@XZ;object-symbol=$L33887
-uw_00bfafc0,,0x00BFAFC0,8,Code/GameEngine/Source/Common/System/FileSystem.cpp,matched,gen-funclet;parent=??1FileSystem@@UAE@XZ;object-symbol=$L38854
+uw_00bfafc0,,0x00BFAFC0,8,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,gen-funclet;parent=??1PlayerTemplateStore@@UAE@XZ;object-symbol=$L56340
 uw_00c60390,,0x00C60390,8,Code/GameEngine/Source/Common/System/FileSystem_createDirectory.cpp,matched,gen-funclet;parent=?createDirectory@FileSystem@@QAE_NVAsciiString@@@Z;object-symbol=$L33207
 uw_00bfd6f0,,0x00BFD6F0,11,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?getUnicodeDateBuffer@@YA?AVUnicodeString@@U_SYSTEMTIME@@@Z;object-symbol=$L73788
 uw_00bfda10,,0x00BFDA10,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?portableMapPathToRealMapPath@GameState@@QBE?AVAsciiString@@ABV2@@Z;object-symbol=$L74767
@@ -94117,4 +94116,5 @@ dup_8ff560,,0x008FF560,71,Code/gen_small/zhstl_fam0.cpp,matched,vendored=cnc-zh;
 dup_94c5e0,,0x0094C5E0,71,Code/gen_small/zhstl_fam0.cpp,matched,vendored=cnc-zh;zhstl-family;family=f71_c0dd8b;dup-of=??$find@I@?$_Rb_tree@IU?$pair@$$CBIPAVState@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVState@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIPAVState@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVState@@@_STL@@@2@@1@ABI@Z;object-symbol=??$find@I@?$_Rb_tree@IU?$pair@$$CBIPAVState@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVState@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIPAVState@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVState@@@_STL@@@2@@1@ABI@Z
 dup_9ec290,,0x009EC290,71,Code/gen_small/zhstl_fam0.cpp,matched,vendored=cnc-zh;zhstl-family;family=f71_c0dd8b;dup-of=??$find@I@?$_Rb_tree@IU?$pair@$$CBIPAVState@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVState@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIPAVState@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVState@@@_STL@@@2@@1@ABI@Z;object-symbol=??$find@I@?$_Rb_tree@IU?$pair@$$CBIPAVState@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVState@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVState@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBIPAVState@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIPAVState@@@_STL@@@2@@1@ABI@Z
 ??0FileSystem@@QAE@XZ,,0x001B7D70,105,Code/GameEngine/Source/Common/System/FileSystemCtor.cpp,matched,vendored=cnc-zh
-_send_heartbeat,,0x00856900,1617,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/qr2.c,matched,vendored=gamespy-2004
+_send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/qr2.c,matched,vendored=gamespy-2004
+??0PlayerTemplateStore@@QAE@XZ,,0x000E3F50,29,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,

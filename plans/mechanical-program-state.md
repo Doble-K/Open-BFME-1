@@ -167,6 +167,30 @@ Both rows are now retracted with tombstones, `FileSystem.cpp` carries a
 uses for its other unmatched members, and DIR32 is back to 0 new. No coverage was
 lost: the PlayerTemplateStore rows already claim those bytes.
 
+**Three more rows in the same knot, found afterwards and also fixed.**
+
+- `??0PlayerTemplateStore@@QAE@XZ` was on the **wrong address**, 0x00076F30 — a
+  byte-identical 29-byte twin installing vtable 0x01075F6C among the GameEngine.cpp
+  subsystem-store ctors. The real one is the previously-unclaimed body at
+  0x000E3F50 that installs 0x01084BA0, inside PlayerTemplate.cpp's own run. The two
+  bodies differ *only* at offsets 4-6 (base-ctor REL32) and 12-14 (vtable DIR32) —
+  both patched from the target — so it verified at either address. Repointed and
+  tombstoned. This is what made `audit_dtor_aliases` say "no claimed ctor" and
+  report both names as *unexplained*; that address now drops out of its report
+  entirely (51 → 50 multi-claimed dtor addresses, 109 → 108 wrong rows).
+- `uw_00bfafc0` claimed the funclet through FileSystem.cpp with
+  `parent=??1FileSystem@@UAE@XZ`. Retail's EH tables settle it: the 0x000E3F80 body
+  pushes stub 0x00FFAFC8 → FuncInfo 0x011E8594 → unwind[0] action 0x00FFAFC0, i.e.
+  this funclet. Repointed to PlayerTemplate.cpp `$L56340`, whose REL32 targets the
+  same `??1SubsystemInterface@@UAE@XZ` the retail funclet does. (Both classes derive
+  from SubsystemInterface, which is why FileSystem.cpp emitted an equivalent one.)
+- `_send_heartbeat` was landed at **1617 bytes**, a size inherited from the bogus
+  `getLastLadderPort` row it replaced. The real body is **1620**: the `ret` is at
+  0x00856F53, so 1617 cut `add esp,0x82C` in half and dropped the return. Resized
+  and re-verified. `audit_claim_boundaries` did not catch this — it checks that no
+  row *starts* mid-instruction, not that one ends on a boundary. A worthwhile
+  extension to that tool.
+
 ### 5. The round-1 `uw_` parent notes: do not mechanically rewrite
 
 Recomputing FuncInfo ownership for the 87 pre-drain `uw_` rows (the map CSV
