@@ -70456,7 +70456,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ??0DX8VertexBufferClass@@QAE@PBVVector3@@0PBVVector4@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F410,136,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
 ??0DX8VertexBufferClass@@QAE@PBVVector3@@PBVVector4@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F4A0,131,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
 ??0DX8VertexBufferClass@@QAE@PBVVector3@@PBVVector2@@GW4UsageType@0@@Z,,0x0091F530,126,Code/Libraries/Source/WWVegas/WW3D2/dx8vertexbuffer.cpp,matched,MASM converted to clean C++
-??4RenderObjClass@@QAEAAV0@ABV0@@Z,,0x0091F790,157,Code/Libraries/Source/WWVegas/WW3D2/RenderObjClassAssignmentThunk.cpp,matched,Exact standalone C++ __emit thunk from certified retail assignment
+??4RenderObjClass@@QAEAAV0@ABV0@@Z,,0x0091F790,157,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,landed in the real rendobj.cpp; ZH body plus a BFME accessor pair at vtable +0x5C/+0x60 for the float at this+0x98
 ?Set_Visible@RenderObjClass@@UAEXHH@Z,,0x0091F880,13,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,out-of-line in retail; stores scene visibility token at 0x90
 ?Set_Force_Visible@RenderObjClass@@UAEXH@Z,,0x0091F890,76,Code/Libraries/Source/WWVegas/WW3D2/RenderObjClassSetForceVisibleThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Remove_Sub_Objects_From_Bone@RenderObjClass@@UAEHH@Z,,0x0091F920,108,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,

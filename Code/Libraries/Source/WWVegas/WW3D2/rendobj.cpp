@@ -235,7 +235,23 @@ RenderObjClass::RenderObjClass(const RenderObjClass & src) :
  *   2/25/99    GTH : Created.                                                                 *
  *=============================================================================================*/
 // ??4RenderObjClass@@QAEAAV0@ABV0@@Z
-// Exact retail assignment emitted by RenderObjClassAssignmentThunk.cpp.
+// BFME adds one accessor pair to ZH's list -- the unidentified float at
+// this+0x98, through the virtuals at vtable +0x5C and +0x60 -- and takes the
+// default recurse argument on Set_Collision_Type, which is the lone push 0.
+RenderObjClass & RenderObjClass::operator = (const RenderObjClass & that)
+{
+	// don't do anything if we're assigning this to this
+	if (this != &that) {
+		Set_Hidden(that.Is_Hidden());
+		Set_Animation_Hidden(that.Is_Animation_Hidden());
+		Set_Force_Visible(that.Is_Force_Visible());
+		Set_Collision_Type(that.Get_Collision_Type());
+		Set_Native_Screen_Size(that.Get_Native_Screen_Size());
+		_bfme_ro_set_98(that._bfme_ro_get_98());
+		IsTransformIdentity=false;
+	}
+	return *this;
+}
 	
 
 /***********************************************************************************************
