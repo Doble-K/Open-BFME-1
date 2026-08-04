@@ -69734,7 +69734,6 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?Write@OutputStream@DebugIOFlat@@QAEXPBD@Z,,0x00890DD0,92,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,
 ??1DebugCmdInterfaceDebug@@UAE@XZ,,0x00890F10,85,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,Open-BFME5 clean C++ DebugCmdInterfaceDebug dtor (ICF DebugIOFlat FreeConsole)
 ??1DebugIOCon@@UAE@XZ,,0x00890F10,85,Code/GameEngine/Source/Common/DebugIOConDestructorThunk.cpp,matched,Exact 85B present-unmatched Open-BFME4
-??1DebugIOFlat@@UAE@XZ,,0x00890F10,85,Code/GameEngine/Source/Common/DebugIOFlatDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit dtor thunk
 ??1DebugIONet@@UAE@XZ,,0x00890F10,85,Code/GameEngine/Source/Common/DebugIONetDestructorThunk.cpp,matched,Exact 85B present-unmatched Open-BFME4
 ?Execute@DebugIOCon@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00891200,239,Code/Libraries/Source/debug/debug_io_con.cpp,matched,MASM dump converted to clean C++; BFME's Debug is polymorphic so operator<<(const char*) is a vtable call
 ?ji_00891690@@YAXXZ,,0x00891690,6,Code/gen_small/imports_000.cpp,matched,gen-import;slot=0x01337830;target=FUN_00c91690
@@ -91730,8 +91729,6 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?shutdown@CopyProtect@@SAXXZ,,0x00102270,27,Code/GameEngine/Source/Common/System/CopyProtection.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?setName@File@@IAEXPBD@Z,,0x009CB390,56,Code/GameEngine/Source/Common/System/File.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ??0FunctionLexicon@@QAE@XZ,,0x00105300,56,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
-?enter@CriticalSection@@QAEXXZ,,0x000874A0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
-?exit@CriticalSection@@QAEXXZ,,0x000874A0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,ICF alias; identical 11-byte body folded with CriticalSection::enter
 ?newModuleDataFromINI@ModuleFactory@@QAEPAVModuleData@@PAVINI@@ABVAsciiString@@W4ModuleType@@1@Z,,0x001295F0,192,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,unresolved REL32 to vector<ModuleData*>::_M_insert_overflow thunk; pin added; matches 192B
 ?deleteViews@Display@@MAEXXZ,,0x0040D970,53,Code/GameEngine/Source/GameClient/Display.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?getNextView@Display@@UAEPAVView@@PAV2@@Z,,0x0040F5E0,24,Code/GameEngine/Source/GameClient/Display.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
@@ -91756,3 +91753,4 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?setTurretTargetObject@AIUpdateInterface@@QAEXW4WhichTurretType@@PAVObject@@_N@Z,,0x0026E930,33,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,turret wrapper; TurretAI target pinned through its ILT thunk
 ?update@WaypointMap@@QAEXXZ,,0x00454EF0,366,Code/GameEngine/Source/GameClient/MapUtil_update.asm,matched,MASM exact 366B int3-delimited 0x454EEF/0x45505E; queue 361 + marker 363 both short. C++ blocked ESP SEH frame + AsciiString format by-value overload + out-of-line STLport map ops + StaticNameKey lazy key
 ?friend_turnTowardsPitch@TurretAI@@QAE_NMM@Z,,0x0018C660,192,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,BFME TurretAI layout shim: merged pooled-snapshot base (m_data +0x8 m_pitch +0x1C) plain-Bool state flags at +0xA4..+0xAB TurretAIData with no vptr and per-slot arrays at +0x10/+0x20 AudioEventRTS 0x70 bytes
+?recenterTurret@TurretAI@@QAEXXZ,,0x0018C8D0,11,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,merged MemoryPoolObject+Snapshot base and two more StateMachine virtuals ahead of setState

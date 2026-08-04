@@ -667,7 +667,6 @@ void TurretAI::setTurretTargetPosition( const Coord3D* pos )
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?recenterTurret@TurretAI@@QAEXXZ present-unmatched
 void TurretAI::recenterTurret()
 {
 	m_turretStateMachine->setState( TURRETAI_RECENTER );
