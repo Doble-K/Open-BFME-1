@@ -1263,14 +1263,13 @@ void ProcessAnimateWindowSlideFromTopFast::initReverseAnimateWindow( AnimateWind
 
 }
 
-// ?initAnimateWindow@ProcessAnimateWindowSlideFromTopFast@@UAEXPAVAnimateWindow@@@Z present-unmatched
 void ProcessAnimateWindowSlideFromTopFast::initAnimateWindow( AnimateWindow *animWin )
 {
 	ICoord2D restPos = {0,0};
 	ICoord2D startPos = {0,0};
 	ICoord2D curPos = {0,0};
 	ICoord2D endPos = {0,0};
-	Coord2D	vel = {0.0f,0.0f};
+	BFMECoord2D vel;
 	ICoord2D size = {0,0};
 	
 	if(!animWin)
@@ -1302,9 +1301,10 @@ void ProcessAnimateWindowSlideFromTopFast::initAnimateWindow( AnimateWindow *ani
 	win->winSetPosition(startPos.x, startPos.y);
 
 	//Now initialize the velocities
-	vel = m_maxVel;
+	vel.x = m_maxVel.x;
+	vel.y = m_maxVel.y;
 
-	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
+	((BFMEAnimateWindowLayout *)animWin)->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
 // Retail body matched via __emit thunk: ProcessAnimateWindowSlideFromTopFast_updateAnimateWindow_Thunk.cpp
