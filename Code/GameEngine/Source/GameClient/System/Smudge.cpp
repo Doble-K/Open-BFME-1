@@ -123,7 +123,6 @@ void SmudgeSet::reset(void)
 	}
 }
 
-// ?addSmudgeToSet@SmudgeSet@@QAEPAUSmudge@@XZ present-unmatched
 Smudge *SmudgeSet::addSmudgeToSet(void)
 {
 	Smudge* smudge=m_freeSmudgeList.Head();
