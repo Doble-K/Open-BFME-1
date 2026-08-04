@@ -68105,3 +68105,4 @@ _var_or_func_tail,0x0099C4B0,vendored=lua-4.0.1
 
 _ggetm,0x00822030,static ggetm copy emitted into refdecode.cpp; pinned by REF_size @0x8220D0
 _ggetm,0x00822D90,static ggetm copy emitted into huffdecode.cpp; pinned by HUFF_size @0x822E70
+_luaK_goiftrue,0x0099F6C0,pinned from cond @0x99CC40 which is byte-exact apart from this call; three-argument luaK_goiftrue(fs;v;0)

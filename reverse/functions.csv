@@ -91710,3 +91710,4 @@ _math_tan,,0x009912D0,42,Code/Libraries/Source/Lua/lmathlib.c,matched,pristine L
 ??0BTCollisionStruct@@QAE@ABVOBBoxClass@@ABVVector3@@ABVTriClass@@1@Z,,0x008E68D0,67,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ??0DebugIOFlat@@QAE@XZ,,0x00890380,90,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?Create@DebugIOFlat@@SAPAVDebugIOInterface@@XZ,,0x00890420,89,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_cond,,0x0099CC40,25,Code/Libraries/Source/Lua/lparser.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
