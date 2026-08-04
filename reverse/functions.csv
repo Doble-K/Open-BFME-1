@@ -91722,3 +91722,6 @@ _posrelat,,0x00991980,9,Code/Libraries/Source/Lua/lstrlib.c,matched,pristine Lua
 _checktag,,0x00998AE0,25,Code/Libraries/Source/Lua/ltm.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 _LoadChunk,,0x0099DED0,23,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getExitPosition@DockUpdate@@UAEXPAVObject@@PAUCoord3D@@@Z,,0x002CB6A0,128,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
+?getEnterPosition@DockUpdate@@UAEXPAVObject@@PAUCoord3D@@@Z,,0x002CB520,171,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
+?getDockPosition@DockUpdate@@UAEXPAVObject@@PAUCoord3D@@@Z,,0x002CB600,128,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
