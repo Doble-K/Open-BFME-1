@@ -1991,3 +1991,13 @@ void GarrisonContain::loadStationGarrisonPoints( void )
 
 
 
+
+// ?forceCoord3DVectorOverflow@@YAXAAV?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@ABUCoord3D@@@Z absent-from-retail
+// Nothing here grows a vector<Coord3D> any more, so the overflow helper the
+// ledger claims from this TU is no longer instantiated.
+#pragma inline_depth(0)
+void forceCoord3DVectorOverflow(std::vector<Coord3D> &v, const Coord3D &c)
+{
+	v.push_back(c);
+}
+#pragma inline_depth()
