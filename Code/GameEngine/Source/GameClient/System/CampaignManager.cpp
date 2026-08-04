@@ -318,7 +318,6 @@ void CampaignManager::setCampaign( AsciiString campaign )
 }
 
 //-----------------------------------------------------------------------------
-// ?getCurrentMap@CampaignManager@@QAE?AVAsciiString@@XZ present-unmatched
 AsciiString CampaignManager::getCurrentMap( void )
 {
 	if(!m_currentMission)

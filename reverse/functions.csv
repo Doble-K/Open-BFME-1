@@ -91781,3 +91781,7 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?removeFromBuildList@SidesInfo@@QAEHPAVBuildListInfo@@@Z,,0x00191570,78,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?setLocation@BuildListInfo@@QAEXUCoord3D@@@Z,,0x000C8F10,26,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?isOwnersCurWeaponOnTurret@TurretAI@@QBE_NXZ,,0x0018D0D0,53,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,Object::getCurrentWeapon pinned through its ILT thunk
+?isInContainer@TunnelTracker@@QAE_NPAVObject@@@Z,,0x000F88C0,39,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?iterateContained@TunnelTracker@@QAEXP6AXPAVObject@@PAX@Z1_N@Z,,0x000F8B10,106,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getCurrentMap@CampaignManager@@QAE?AVAsciiString@@XZ,,0x005BB960,56,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?healObjects@TunnelTracker@@QAEXM@Z,,0x000F8D10,47,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,healObject pinned through its ILT thunk
