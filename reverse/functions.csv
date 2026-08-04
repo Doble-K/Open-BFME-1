@@ -62324,7 +62324,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?m@Gen_002ed750@@QAEXXZ,,0x002ED750,13,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=vcall-null-0;ghidra=FUN_006ed750
 ?doZoomCamera@ScriptActions@@IAEXMMMM@Z,,0x002EDC20,74,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,true body 0x2EDC20 (drift 0x9DE809 mid-insn); View vtable+0xe8 force-fit
 ?doRotateCameraTowardObject@ScriptActions@@IAEXABVAsciiString@@MMMM@Z,,0x002EE060,118,Code/GameEngine/Source/Common/ScriptActions_doRotateCameraTowardObject_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?doNamedFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002EE7C0,124,Code/GameEngine/Source/Common/ScriptActions_doNamedFlash_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?doNamedFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z,,0x002EE7C0,124,Code/GameEngine/Source/Common/ScriptActions_doNamedFlash_Thunk.cpp,matched,clean C++ conversion; ZH ScriptActions.cpp body; seconds scaled by 5 then divided by 15; flash count at drawable+0x160 and colour at +0x164
 ?doSoundPlayFromNamed@ScriptActions@@IAEXABVAsciiString@@0@Z,,0x002EE880,165,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doSoundPlayFromNamed_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?enableScoring@ScriptActions@@IAEX_N@Z,,0x002EEBC0,19,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,GameLogic+0x90 scoring flag
 ?doRadarCreateEvent@ScriptActions@@IAEXPAUCoord3D@@H@Z,,0x002EEC70,29,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
