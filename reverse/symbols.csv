@@ -23222,3 +23222,50 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?find@SuperweaponMap@@QAEPAUSuperweaponMapNode@@ABVAsciiString@@@Z,0x0000DCFB,ILT thunk to the superweapon-map find at 0x00448FE0
 ?isWeaponSlotOnTurret@TurretAI@@QBE_NW4WeaponSlotType@@@Z,0x00039D24,ILT thunk to TurretAI::isWeaponSlotOnTurret at 0x0018C7A0
 ?isTryingToAimAtTarget@TurretAI@@QBE_NPBVObject@@@Z,0x000079D7,ILT thunk to TurretAI::isTryingToAimAtTarget at 0x0018D080
+??0PSPlayerStats@@QAE@ABV0@@Z,0x0001C783,REL32 pin: callers reach the body at 0x6577D0 through this thunk
+??1?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@QAE@XZ,0x00041C5E,repointed: thunk to the real body at 0x631920 used by the 0x34-node tree
+?Set@Matrix3D@@QAEXABVMatrix3x3@@ABVVector3@@@Z,0x008D6710,repointed: OBBoxRenderObjClass ctor @0x957C20 calls 0x8D6710 which the ledger already identifies as the Matrix3-spelled same function; 0x964150 is a 274-byte ICF group
+??0WeaponTemplate@@QAE@XZ,0x0004456C,newWeaponTemplate call target (incremental-link thunk)
+?_M_insert_overflow@?$vector@PAVWeaponTemplate@@V?$allocator@PAVWeaponTemplate@@@_STL@@@_STL@@IAEXPAPAVWeaponTemplate@@ABQAV3@ABU__true_type@2@I_N@Z,0x00012067,newWeaponTemplate STL growth call target (incremental-link thunk)
+?notifyTargetOfProbe@NAT@@IAEXPAVGameSlot@@@Z,0x00028D1C,probed call target (incremental-link thunk)
+?pop_front@?$deque@VBuddyRequest@@V?$allocator@VBuddyRequest@@@_STL@@@_STL@@QAEXXZ,0x00009BB5,BuddyThread queue call target (incremental-link thunk)
+?pop_front@?$deque@VBuddyResponse@@V?$allocator@VBuddyResponse@@@_STL@@@_STL@@QAEXXZ,0x0001C92C,BuddyThread queue call target (incremental-link thunk)
+?_M_push_back_aux_v@?$deque@VBuddyRequest@@V?$allocator@VBuddyRequest@@@_STL@@@_STL@@IAEXABVBuddyRequest@@@Z,0x00016BC6,BuddyThread queue call target (incremental-link thunk)
+?_M_push_back_aux_v@?$deque@VBuddyResponse@@V?$allocator@VBuddyResponse@@@_STL@@@_STL@@IAEXABVBuddyResponse@@@Z,0x0002992E,BuddyThread queue call target (incremental-link thunk)
+?freeStaticStrings@GameWindowManager@@UAEXXZ,0x00040B7E,GameWindowManager dtor call target (incremental-link thunk)
+??1?$_List_base@PAVGameWindow@@V?$allocator@PAVGameWindow@@@_STL@@@_STL@@QAE@XZ,0x00040278,GameWindowManager dtor call target (incremental-link thunk)
+??1Render2DSentenceClass@@QAE@XZ,0x009409F0,W3DDisplayString dtor call target
+??1DisplayString@@MAE@XZ,0x0000D823,W3DDisplayString dtor call target
+??0GameSpyStagingRoom@@QAE@ABV0@@Z,0x0004A2C8,addStagingRoom call target (incremental-link thunk)
+??0GameSpyStagingRoom@@QAE@XZ,0x000301B1,addStagingRoom call target (incremental-link thunk)
+??4GameSpyStagingRoom@@QAEAAV0@ABV0@@Z,0x00048ADB,addStagingRoom call target (incremental-link thunk)
+?cleanUpSlotPointers@GameSpyStagingRoom@@QAEXXZ,0x00022507,addStagingRoom call target (incremental-link thunk)
+?radarToWorld@Radar@@QAE_NPBUICoord2D@@PAUCoord3D@@@Z,0x00011513,screenPixelToWorld call target (incremental-link thunk)
+??4GameSlot@@QAEAAV0@ABV0@@Z,0x000126E8,setSlot call target (incremental-link thunk)
+??1DisplayString@@UAE@XZ,0x0000D823,W3DDisplayString dtor call target; same thunk as the MAE spelling (access level differs between our header and retail)
+?getSpecialPowerModule@Object@@QBEPAVSpecialPowerModuleInterface@@PBVSpecialPowerTemplate@@@Z,0x000401BF,doSpecialPowerUsingWaypoints call target (incremental-link thunk)
+?getFirstObject@GameLogic@@QAEPAVObject@@XZ,0x000358BE,doEnableOrDisableObjectDifficultyBonuses call target (incremental-link thunk)
+?setReceivingDifficultyBonus@Object@@QAEX_N@Z,0x00016F2C,doEnableOrDisableObjectDifficultyBonuses call target (incremental-link thunk)
+??0TunnelTracker@@QAE@XZ,0x0001E777,REL32 pin from CaveSystem::registerNewCave @0x378970
+?_M_insert_overflow@?$vector@PAVTunnelTracker@@V?$allocator@PAVTunnelTracker@@@_STL@@@_STL@@IAEXPAPAVTunnelTracker@@ABQAV3@ABU__true_type@2@I_N@Z,0x0001212A,REL32 pin from CaveSystem::registerNewCave @0x378970
+?repopulateBuildTooltipLayout@ControlBar@@QAEXXZ,0x00038F4B,REL32 pin from ControlBar::setSquishedControlBarConfig @0x49D0B0
+?setControlBarSchemeByPlayerTemplate@ControlBarSchemeManager@@QAEXPBVPlayerTemplate@@_N@Z,0x000378EE,REL32 pin: retail calls this through the incremental-link thunk at 0x378EE which jumps to 0x4ADE40
+??0GameSpyPeerMessageQueue@@QAE@XZ,0x0000A1B9,REL32 pin from createNewMessageQueue @0x64E620 (thunk to 0x64D650)
+?isOwnersCurWeaponOnTurret@TurretAI@@QBE_NXZ,0x0003FDEB,REL32 pin from AIUpdateInterface::getWhichTurretForCurWeapon @0x26EB70
+?getCurNemesis@TunnelTracker@@QAEPAVObject@@XZ,0x00025766,REL32 pin from TunnelTracker::updateNemesis @0xF90D0
+?isKindOf@Thing@@QBE_NW4KindOfType@@@Z,0x0003251F,REL32 pin from TunnelTracker::updateNemesis @0xF90D0
+?incorporate@PSPlayerStats@@QAEXABV1@@Z,0x0002B0E4,REL32 pin from PSPlayerStats' copy ctor @0x6577D0 (thunk to 0x656D60)
+?_M_erase@?$_Rb_tree@HU?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@U?$_Select1st@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBHVGameSpyGroupRoom@@@_STL@@@2@@Z,0x0003EA2C,REL32 pin: the recursive call goes through this thunk to 0x632FC0
+?reset@GameSpyInfo@@UAEXXZ,0x00005966,REL32 pin from the GameSpyInfo constructor @0x636D90
+??A?$map@HVAsciiString@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@3@@_STL@@QAEAAVAsciiString@@ABH@Z,0x000488B0,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+??0IgnorePreferences@@QAE@XZ,0x0002E389,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+?setIgnore@IgnorePreferences@@QAEXABVAsciiString@@H_N@Z,0x00016789,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+??1IgnorePreferences@@UAE@XZ,0x00033A23,REL32 pin from GameSpyInfo::addToSavedIgnoreList @0x635670
+?undoRevealMapForPlayerPermanently@PartitionManager@@QAEXH@Z,0x008F7400,REL32 pin from ScriptActions::doBorderSwitch @0x2EFC50
+?revealMapForPlayerPermanently@PartitionManager@@QAEXH@Z,0x008F73E0,REL32 pin from ScriptActions::doBorderSwitch @0x2EFC50
+??0BuildListInfo@@QAE@XZ,0x0000C982,REL32 pin from BuildListInfo::duplicate @0x1944D0
+??4BuildListInfo@@QAEAAV0@ABV0@@Z,0x0000D4CC,REL32 pin from BuildListInfo::duplicate @0x1944D0
+?Set_DX8_ZBias@DX8Wrapper@@SAXH@Z,0x00905990,REL32 pin from DX8Wrapper::Set_Default_Global_Render_States @0x9081D0
+?getName@Image@@QBE?AVAsciiString@@XZ,0x00047028,REL32 pin from ImageCollection::addImage @0x5D3410
+??A?$map@IPAVImage@@U?$less@I@_STL@@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@3@@_STL@@QAEAAPAVImage@@ABI@Z,0x0002A52C,REL32 pin from ImageCollection::addImage @0x5D3410
+?sendMessage@LANAPI@@IAEXPAULANMessage@@I@Z,0x0002B599,thunk to 0x684CF0; pinned by RequestLobbyLeave @0x6850F0 which is byte-exact apart from this call

@@ -561,6 +561,12 @@ private:
 	Bool m_dieOnDetonate;
 
 	mutable HistoricWeaponDamageList m_historicDamage;
+
+	// BFME's WeaponTemplate is 0x53C bytes, not the 0x1D4 this header adds up
+	// to: WeaponStore::newWeaponTemplate @0x1E7F50 passes 0x53C to operator
+	// new. What the extra 0x368 holds is unknown, so it is parked at the tail
+	// where it changes sizeof only and leaves every member offset alone.
+	char _bfme_pad_tail[0x53C - 0x1D4];
 };  
 
 // ---------------------------------------------------------

@@ -525,7 +525,6 @@ UnsignedShort FirewallHelperClass::getManglerResponse(UnsignedShort packetID, In
  * HISTORY:                                                                                    *
  *   3/22/01 10:23PM ST : Created                                                              *
  *=============================================================================================*/
-// ?writeFirewallBehavior@FirewallHelperClass@@QAEXXZ present-unmatched
 void FirewallHelperClass::writeFirewallBehavior(void)
 {
 	OptionPreferences pref;

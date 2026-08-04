@@ -40,9 +40,19 @@ while read -r _local_ref local_sha _remote_ref remote_sha; do
         git diff --quiet HEAD -- "$s" || fail "$s differs from HEAD; commit or stash before pushing"
         verify+=("$s")
     done
+    # Verify in chunks: a first push of a branch whose remote ref does not exist
+    # yet falls back to merge-base, which on a fork rebased onto a much newer
+    # upstream can list thousands of sources. Windows caps the argument list, so
+    # one giant ./build.sh call dies with "Argument list too long" and the push
+    # fails for an environment reason rather than a byte mismatch.
     if [ "${#verify[@]}" -ne 0 ]; then
-        BUILD_POOL="${BUILD_POOL:-4}" ./build.sh "${verify[@]}" \
-            || fail "byte-verify of outgoing sources (see above)"
+        chunk=200
+        i=0
+        while [ "$i" -lt "${#verify[@]}" ]; do
+            BUILD_POOL="${BUILD_POOL:-4}" ./build.sh "${verify[@]:$i:$chunk}" \
+                || fail "byte-verify of outgoing sources (see above)"
+            i=$((i + chunk))
+        done
     fi
     echo "PRE-PUSH OK (${#verify[@]} outgoing source(s) byte-verified)"
 done <<< "$refs"

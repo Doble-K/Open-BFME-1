@@ -1227,25 +1227,11 @@ WWINLINE void DX8Wrapper::Set_Projection_Transform_With_Z_Bias(const Matrix4x4& 
 	}
 }
 
-WWINLINE void DX8Wrapper::Set_DX8_ZBias(int zbias)
-{
-	if (zbias==ZBias) return;
-	if (zbias>15) zbias=15;
-	if (zbias<0) zbias=0;
-	ZBias=zbias;
-
-	if (!Get_Current_Caps()->Support_ZBias() && ZNear!=ZFar) {
-		Matrix4x4 tmp=ProjectionMatrix;
-		float tmp_zbias=ZBias;
-		tmp_zbias*=(1.0f/16.0f);
-		tmp_zbias*=1.0f / (ZFar - ZNear);
-		tmp[2][2]-=tmp_zbias*tmp[3][2];
-		DX8CALL(SetTransform(D3DTS_PROJECTION,(D3DMATRIX*)&tmp));
-	}
-	else {
-		Set_DX8_Render_State (D3DRS_ZBIAS, ZBias);
-	}
-}
+// BFME keeps DX8Wrapper::Set_DX8_ZBias out of line: retail's body is at
+// 0x905990 and Set_Default_Global_Render_States @0x9081D0 calls it. The ZH
+// inline body is dropped so the call is emitted; the declaration above is
+// enough, and no definition is added because ours does not match 0x905990
+// yet. Every other call site in the tree is commented out.
 
 WWINLINE void DX8Wrapper::Set_Transform(D3DTRANSFORMSTATETYPE transform,const Matrix4x4& m)
 {

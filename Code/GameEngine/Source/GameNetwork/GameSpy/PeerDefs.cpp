@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/asciistringsetoutofline /Ireference/shims/psplayerstats /Ireference/shims/peerdefs /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/WWLib
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -70,7 +70,6 @@ bool AsciiComparator::operator()(AsciiString s1, AsciiString s2) const
 	return stricmp(s1.str(), s2.str()) < 0;
 }
 
-// ??0GameSpyInfo@@QAE@XZ present-unmatched
 GameSpyInfo::GameSpyInfo()
 {
 	reset();
@@ -170,7 +169,6 @@ void GameSpyInfo::clearAdditionalDisconnects( void )
 	*reinterpret_cast<Int *>(reinterpret_cast<char *>(this) + 0x6f8) = 0;
 }
 
-// ?createNewGameSpyInfoInterface@GameSpyInfoInterface@@SAPAV1@XZ present-unmatched
 GameSpyInfoInterface* GameSpyInfoInterface::createNewGameSpyInfoInterface( void )
 {
 	return NEW GameSpyInfo;
@@ -198,6 +196,7 @@ GameSpyStagingRoom* GameSpyInfo::getCurrentStagingRoom( void )
 // ?setGameOptions@GameSpyInfo@@UAEXXZ
 // Body in PeerDefs_setGameOptions.asm (exact 383B retail).
 
+// ?isBuddy@GameSpyInfo@@UAE_NH@Z
 Bool GameSpyInfo::isBuddy( Int id )
 {
 	return m_buddyMap.find(id) != m_buddyMap.end();
@@ -386,7 +385,6 @@ void GameSpyInfo::clearStagingRoomList( void )
 	}
 }
 
-// ?addStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z present-unmatched
 void GameSpyInfo::addStagingRoom( GameSpyStagingRoom room )
 {
 	removeStagingRoom(room);
@@ -403,7 +401,6 @@ void GameSpyInfo::updateStagingRoom( GameSpyStagingRoom room )
 	addStagingRoom(room);
 }
 
-// ?removeStagingRoom@GameSpyInfo@@UAEXVGameSpyStagingRoom@@@Z present-unmatched
 void GameSpyInfo::removeStagingRoom( GameSpyStagingRoom room )
 {
 	StagingRoomMap::iterator it = m_stagingRooms.find(room.getID());
@@ -517,7 +514,6 @@ IgnoreList GameSpyInfo::returnIgnoreList( void )
  return m_ignoreList;
 }
 
-// ?addToSavedIgnoreList@GameSpyInfo@@UAEXHVAsciiString@@@Z present-unmatched
 void GameSpyInfo::addToSavedIgnoreList( Int profileID, AsciiString nick)
 {
 	m_savedIgnoreMap[profileID] = nick;

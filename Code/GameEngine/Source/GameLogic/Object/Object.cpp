@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /MD /EHsc /Ireference/shims/bfmeobjectlayout /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -2644,8 +2644,17 @@ Bool Object::didExit(const PolygonTrigger *pTrigger) const
 //-------------------------------------------------------------------------------------------------
 /** Returns whether an object is inside an area. */
 //-------------------------------------------------------------------------------------------------
-// isInside body in ObjectIsInsideThunk.cpp (Open-BFME5 clean C++)
-// ?isInside@Object@@QBE_NPBVPolygonTrigger@@@Z
+Bool Object::isInside(const PolygonTrigger *pTrigger) const
+{
+	DEBUG_ASSERTCRASH(!isKindOf(KINDOF_INERT), ("Asking whether an inert is inside a trigger area. This is invalid.\n"));
+
+	for (Int i=0; i<m_numTriggerAreasActive; i++) 
+	{
+		if (m_triggerInfo[i].isInside && m_triggerInfo[i].pTrigger == pTrigger) 
+			return true;
+	}
+	return false;
+}
 
 // ------------------------------------------------------------------------------------------------
 /** Get production exit interface in object is present */
@@ -5336,7 +5345,6 @@ void Object::doSpecialPowerAtLocation( const SpecialPowerTemplate *specialPowerT
 //-------------------------------------------------------------------------------------------------
 /** Execute special power */
 //-------------------------------------------------------------------------------------------------
-// ?doSpecialPowerUsingWaypoints@Object@@QAEXPBVSpecialPowerTemplate@@PBVWaypoint@@I_N@Z present-unmatched
 void Object::doSpecialPowerUsingWaypoints( const SpecialPowerTemplate *specialPowerTemplate, const Waypoint *way, UnsignedInt commandOptions, Bool forced )
 {
 

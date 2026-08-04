@@ -173,9 +173,17 @@ private:
 	PeerThreadClass *m_thread;
 
 	SerialAuthResult m_serialAuth;
+
+	// BFME-only tail. The retail constructor @0x64D650 runs MutexClass's ctor a
+	// third time on this+0x6C - the same one it uses for the two mutexes at +4
+	// and +0xC - and then zeroes this+0x74, which is why createNewMessageQueue
+	// @0x64E620 asks the allocator for 0x78 bytes and not 0x6C. Everything ahead
+	// of it is confirmed by the matched rows in this file (+0x14, +0x24, +0x3C,
+	// +0x64, +0x68), so the two extra members can only be here. Purpose unknown.
+	MutexClass _bfme_hole_thirdMutex;
+	Int _bfme_hole_tailWord;
 };
 
-// ?createNewMessageQueue@GameSpyPeerMessageQueueInterface@@ present-unmatched
 GameSpyPeerMessageQueueInterface* GameSpyPeerMessageQueueInterface::createNewMessageQueue( void )
 {
 	return NEW GameSpyPeerMessageQueue;

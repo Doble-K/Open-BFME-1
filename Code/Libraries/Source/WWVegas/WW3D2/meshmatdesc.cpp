@@ -601,8 +601,15 @@ ShaderClass * MeshMatDescClass::Get_Shader_Array(int pass,bool create)
 	return NULL;
 }
 
-// ?Make_UV_Array_Unique@MeshMatDescClass@@QAEXHH@Z
-// Exact retail helper emitted by MeshMatDescClassMakeUVArrayUniqueThunk.cpp.
+void MeshMatDescClass::Make_UV_Array_Unique(int pass,int stage)
+{
+	int uvindex = UVSource[pass][stage];
+	if (UV[uvindex]->Num_Refs() > 1) {
+		UVBufferClass * unique_uv = NEW_REF(UVBufferClass,(*UV[uvindex]));
+		UV[uvindex]->Release_Ref();
+		UV[uvindex] = unique_uv;
+	}
+}
 
 void MeshMatDescClass::Make_Color_Array_Unique(int array)
 {

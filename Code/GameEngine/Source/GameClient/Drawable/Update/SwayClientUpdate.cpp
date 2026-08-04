@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /MD /EHsc /DBFME_MODULE_NO_MPO /Ireference/shims/swayclientupdate /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib
 // stlport
 /*
 **	Command & Conquer Generals Zero Hour(tm)
@@ -53,8 +53,24 @@
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0SwayClientUpdate@@QAE@PAVThing@@PBVModuleData@@@Z is implemented by
-// SwayClientUpdateCtorThunk.cpp so the retail constructor bytes remain exact.
+SwayClientUpdate::SwayClientUpdate( Thing *thing, const ModuleData* moduleData ) :
+	ClientUpdateModule( thing, moduleData ),
+	m_curDelta(0),
+	m_curValue(0),
+	m_curAngle(0),
+	m_curAngleLimit(0),
+	m_leanAngle(0),
+	m_swaying(true),
+	m_unused(false),
+	_bfme_hole_a(0),
+	_bfme_hole_b(0),
+	m_curVersion(-1)	// so that we never match the first time
+{
+
+	// don't do updateSway here; wait till the first time we go thru our update loop.
+	//updateSway();
+
+}
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------

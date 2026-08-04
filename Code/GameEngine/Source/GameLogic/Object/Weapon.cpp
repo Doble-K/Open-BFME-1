@@ -1603,7 +1603,6 @@ WeaponTemplate *WeaponStore::findWeaponTemplatePrivate( NameKeyType key ) const
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?newWeaponTemplate@WeaponStore@@IAEPAVWeaponTemplate@@VAsciiString@@@Z present-unmatched
 WeaponTemplate *WeaponStore::newWeaponTemplate(AsciiString name)
 {
 

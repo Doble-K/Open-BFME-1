@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/aiupdatelayout /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -759,7 +759,6 @@ Bool AIUpdateInterface::isTurretInNaturalPosition(WhichTurretType tur) const
 }
 
 //=============================================================================
-// ?isWeaponSlotOnTurretAndAimingAtTarget@AIUpdateInterface@@ present-unmatched
 Bool AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget(WeaponSlotType wslot, const Object* victim) const
 {
 	for (int i = 0; i < MAX_TURRETS; i++)
@@ -797,66 +796,16 @@ Real AIUpdateInterface::getTurretTurnRate(WhichTurretType tur) const
 }
 
 //=============================================================================
-// ?getWhichTurretForCurWeapon@AIUpdateInterface@@ present-unmatched
-__declspec(naked) WhichTurretType AIUpdateInterface::getWhichTurretForCurWeapon() const
+WhichTurretType AIUpdateInterface::getWhichTurretForCurWeapon() const
 {
-	__asm {
-		__emit 0x56;
-		__emit 0x57;
-		__emit 0x33;
-		__emit 0xf6;
-		__emit 0x8d;
-		__emit 0xb9;
-		__emit 0xe8;
-		__emit 0x01;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x8d;
-		__emit 0x9b;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x00;
-		__emit 0x8b;
-		__emit 0x0f;
-		__emit 0x85;
-		__emit 0xc9;
-		__emit 0x74;
-		__emit 0x09;
-		__emit 0xe8;
-		__emit 0x60;
-		__emit 0x12;
-		__emit 0xdd;
-		__emit 0xff;
-		__emit 0x84;
-		__emit 0xc0;
-		__emit 0x75;
-		__emit 0x0f;
-		__emit 0x46;
-		__emit 0x83;
-		__emit 0xc7;
-		__emit 0x04;
-		__emit 0x83;
-		__emit 0xfe;
-		__emit 0x02;
-		__emit 0x7c;
-		__emit 0xe8;
-		__emit 0x5f;
-		__emit 0x83;
-		__emit 0xc8;
-		__emit 0xff;
-		__emit 0x5e;
-		__emit 0xc3;
-		__emit 0x5f;
-		__emit 0x8b;
-		__emit 0xc6;
-		__emit 0x5e;
-		__emit 0xc3;
-	}
+	for (int i = 0; i < MAX_TURRETS; ++i)
+		if (m_turretAI[i] && m_turretAI[i]->isOwnersCurWeaponOnTurret())
+			return (WhichTurretType)i;
+
+	return TURRET_INVALID;
 }
 
 //=============================================================================
-// ?getWhichTurretForWeaponSlot@AIUpdateInterface@@ present-unmatched
 WhichTurretType AIUpdateInterface::getWhichTurretForWeaponSlot(WeaponSlotType wslot, Real* turretAngle, Real* turretPitch) const
 {
 	for (int i = 0; i < MAX_TURRETS; ++i)

@@ -301,7 +301,6 @@ public:
 	Int m_netMinPlayers;					///< Min players needed to start a net game
 
 	UnsignedInt m_defaultIP;			///< preferred IP address for LAN
-	UnsignedInt m_firewallBehavior;	///< Last detected firewall behavior
 	// BFME's firewall block sits 0x384 bytes further into GlobalData than the
 	// reference's. detectionBeginUpdate reads m_firewallPortOverride at +0xB1C
 	// and m_firewallSendDelay at +0xB18, where this header would put them at
@@ -309,7 +308,14 @@ public:
 	// behind it, which is what the nat shim does -- nat.cpp only ever touches
 	// m_firewallPortAllocationDelta, so padding behind the other two was enough
 	// there and is wrong here.
-	char m_padToBFMEFirewallBlock[0xB18 - 0x794];
+	//
+	// m_firewallBehavior belongs to the moved block too: writeFirewallBehavior
+	// @0x66FDF0 reads it at +0xB14 and writes m_firewallPortAllocationDelta at
+	// +0xB20, so the pad moved one field earlier. That keeps every offset this
+	// shim already pinned (+0xB18/+0xB1C/+0xB20 all still land) and makes the
+	// whole 380-byte body byte-exact.
+	char m_padToBFMEFirewallBlock[0xB14 - 0x790];
+	UnsignedInt m_firewallBehavior;	///< +0xB14
 	Bool m_firewallSendDelay;			///< +0xB18
 	UnsignedInt m_firewallPortOverride;	///< +0xB1C
 	Short m_firewallPortAllocationDelta; ///< +0xB20

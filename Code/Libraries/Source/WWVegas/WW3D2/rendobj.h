@@ -580,7 +580,7 @@ public:
 	virtual void					Delete_Decal(uint32 decal_id)												{ }
 
 	void								Set_Sub_Objects_Match_LOD(int onoff)									{ if (onoff) { Bits |= SUBOBJS_MATCH_LOD; } else { Bits &= ~SUBOBJS_MATCH_LOD; } }
-	int								Is_Sub_Objects_Match_LOD_Enabled(void)									{ return Bits & SUBOBJS_MATCH_LOD; }
+	int								Is_Sub_Objects_Match_LOD_Enabled(void)									{ return (Bits & SUBOBJS_MATCH_LOD) != 0; }	// BFME normalises to 0/1
 
 	void								Set_Sub_Object_Transforms_Dirty(bool onoff)							{ if (onoff) { Bits |= SUBOBJ_TRANSFORMS_DIRTY; } else { Bits &= ~SUBOBJ_TRANSFORMS_DIRTY; } }
 	bool								Are_Sub_Object_Transforms_Dirty(void)									{ return (Bits & SUBOBJ_TRANSFORMS_DIRTY) != 0; }
@@ -641,7 +641,7 @@ protected:
 		BOUNDING_VOLUMES_VALID =	0x00020000,
 		IS_TRANSLUCENT =				0x10000000,			// is additive or alpha blended on any poly
 		IGNORE_LOD_COST =				0x00008000,			// ZH value (no retail evidence; overlaps IS_FORCE_VISIBLE)
-		SUBOBJS_MATCH_LOD =			0x00010000,			// force sub-objects to have same LOD level
+		SUBOBJS_MATCH_LOD =			0x00100000,			// BFME bit 20: AggregateDefClass::Initialize @0x980A50 reads it with shr eax,0x14 (ZH had 0x00010000)
 		SUBOBJ_TRANSFORMS_DIRTY =	0x00200000,			// my sub-objects need me to update their transform
 		IS_ALPHA = 0x00040000,	// added for Generals so we can default these meshes not to cast shadows. -MW
 		IS_ADDITIVE = 0x00400000,	//BFME retail mask (ZH had 0x00100000).

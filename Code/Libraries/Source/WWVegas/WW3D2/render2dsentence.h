@@ -125,17 +125,25 @@ private:
 	int									PixelOverlap;
 	int									PointSize;
 	StringClass							GDIFontName;
-	HFONT									OldGDIFont;
-	HBITMAP								OldGDIBitmap;
-	HBITMAP								GDIBitmap;	
-	HFONT									GDIFont;
 	uint8 *								GDIBitmapBits;
 	HDC									MemDC;
 	FontCharsClassCharDataStruct *					ASCIICharArray[256];
 	FontCharsClassCharDataStruct **					UnicodeCharArray;
+	// BFME moves 0x10 of this block past UnicodeCharArray: Grow_Unicode_Array
+	// @0x93D320 reads UnicodeCharArray at +0x44C and FirstUnicodeChar at
+	// +0x45C, where this header gives +0x45C and +0x460 - so 0x10 leaves the
+	// area before ASCIICharArray and reappears after the pointer. These four
+	// GDI handles are the group moved because nothing pins their position (a
+	// fourth, GDIFont, goes to the class tail so the gap here is 0xC while
+	// 0x10 still leaves the front);
+	// which members BFME really keeps here is NOT proven.
+	HFONT									OldGDIFont;
+	HBITMAP								OldGDIBitmap;
+	HBITMAP								GDIBitmap;	
 	uint16								FirstUnicodeChar;
 	uint16								LastUnicodeChar;
 	bool									IsBold;
+	HFONT									GDIFont;	// relocated to the tail; see the note above
 };
 
 /*

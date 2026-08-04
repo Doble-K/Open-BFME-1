@@ -258,7 +258,6 @@ GameTextInterface* CreateGameTextInterface( void )
 // GameTextManager::~GameTextManager
 //============================================================================
 
-// ??1GameTextManager@@UAE@XZ present-unmatched
 GameTextManager::~GameTextManager()
 {
 	deinit();

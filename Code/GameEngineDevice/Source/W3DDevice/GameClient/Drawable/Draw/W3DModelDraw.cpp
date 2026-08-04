@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /D_STLP_USE_STATIC_LIB /MD /EHsc /Ireference/shims/sweep /ICode/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /D_STLP_USE_STATIC_LIB /MD /EHsc /Ireference/shims/w3dmodeldraw /Ireference/shims/asciistring8 /Ireference/shims/sweep /ICode/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -3601,7 +3601,6 @@ Int W3DModelDraw::getPristineBonePositionsForConditionState(
 //-------------------------------------------------------------------------------------------------
 // (gth) C&C3 Added this accessor for the bounding box of a render object in a W3DModelDraw module
 // this method must ONLY be called from the client, NEVER From the logic, not even indirectly.
-// ?clientOnly_getRenderObjBoundBox@W3DModelDraw@@UBE_NPAVOBBoxClass@@@Z present-unmatched
 Bool W3DModelDraw::clientOnly_getRenderObjBoundBox(OBBoxClass * boundbox) const
 {
 	if (!m_renderObject)
@@ -3623,7 +3622,6 @@ Bool W3DModelDraw::clientOnly_getRenderObjBoundBox(OBBoxClass * boundbox) const
 //-------------------------------------------------------------------------------------------------
 // (gth) C&C3 Added this accessor for a bone transform in the render object
 // this method must ONLY be called from the client, NEVER From the logic, not even indirectly.
-// ?clientOnly_getRenderObjBoneTransform@W3DModelDraw@@UBE_NABVAsciiString@@PAVMatrix3D@@@Z present-unmatched
 Bool W3DModelDraw::clientOnly_getRenderObjBoneTransform(const AsciiString & boneName,Matrix3D * set_tm) const
 {
 	if (!m_renderObject) {
@@ -3642,7 +3640,6 @@ Bool W3DModelDraw::clientOnly_getRenderObjBoneTransform(const AsciiString & bone
 
 
 //-------------------------------------------------------------------------------------------------
-// ?getCurrentWorldspaceClientBonePositions@W3DModelDraw@@UBE_NPBDAAVMatrix3D@@@Z present-unmatched
 Bool W3DModelDraw::getCurrentWorldspaceClientBonePositions(const char* boneName, Matrix3D& transform) const
 {
 	if (!m_renderObject)

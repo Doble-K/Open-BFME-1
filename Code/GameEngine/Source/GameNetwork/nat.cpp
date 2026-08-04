@@ -979,7 +979,6 @@ void NAT::connectionFailed(Int slotIndex) {
 }
 
 // I have been probed by the target.
-// ?probed@NAT@@IAEXH@Z present-unmatched
 void NAT::probed(Int nodeNumber) {
 	GameSlot *localSlot = m_slotList[m_connectionNodes[m_localNodeNumber].m_slotIndex];
 	DEBUG_ASSERTCRASH(localSlot != NULL, ("NAT::probed - localSlot is NULL, WTF?"));
@@ -1349,7 +1348,6 @@ void NAT::processGlobalMessage(Int slotNum, const char *options) {
 	}
 }
 
-// ?setConnectionState@NAT@@IAEXHW4NATConnectionState@@@Z present-unmatched
 void NAT::setConnectionState(Int nodeNumber, NATConnectionState state) {
 	m_connectionStates[nodeNumber] = state;
 

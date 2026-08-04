@@ -176,8 +176,13 @@ class AggregateDefClass
 		//
 		virtual void				Free_Subobject_List (void);
 		virtual void				Add_Subobject (const W3dAggregateSubobjectStruct &subobj_info);
-		virtual bool				Load_Assets (const char *asset_name);
-		virtual RenderObjClass *Create_Render_Object (const char *passet_name);
+		// BFME: these two are not virtual. Initialize @0x980A60 reaches
+		// Build_Subobject_List through vtable +0x40 where they would put it at
+		// +0x48, and it calls the free Create_Render_Obj rather than the member.
+		// The four virtuals the ledger pins by mangling - Free_Subobject_List,
+		// Add_Subobject, Find_Subobject and Is_Object_In_List - stay virtual.
+		bool				Load_Assets (const char *asset_name);
+		RenderObjClass *Create_Render_Object (const char *passet_name);
 		virtual bool				Is_Object_In_List (const char *passet_name, DynamicVectorClass <RenderObjClass *> &node_list);
 
 		virtual void				Build_Subobject_List (RenderObjClass &original_model, RenderObjClass &model);
