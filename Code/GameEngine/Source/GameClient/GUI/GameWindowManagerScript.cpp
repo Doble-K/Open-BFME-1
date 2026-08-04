@@ -718,25 +718,29 @@ static Bool parseStyle( char *token, WinInstanceData *instData,
 // parseSystemCallback ========================================================
 /** Parse the system method callback for a window */
 //=============================================================================
+// TU-scoped mirror of the shared string setter the parse callbacks reach; the
+// runtime body is the two-argument set at 0x00887D20 (a generic body, also
+// claimed under other names), and retail inlines the strlen at the call site.
+struct ParseStringData
+{
+	char *m_data;
+	void set( const char *str, int len );
+};
+
 static Bool parseSystemCallback( char *token, WinInstanceData *instData,
 																 char *buffer, void *data )
 {
-	char *c, *ptr;
-//	char *seps = " ,\n\r\t";
-	char *stringSeps = "\"";
+	char *seps = " \n\r\t";
+	char *c = strtok( (char *)instData, seps );
+	ParseStringData &sysString = *(ParseStringData *)( (char *)data + 0x20 );
 
-	// scan to the first " mark
-	ptr = buffer;
-	while( *ptr != '"' )
-		ptr++;
-	ptr++;  // skip the first "
-	c = strtok( ptr, stringSeps );  // name value
+	sysString.set( c, c ? strlen( c ) : 0 );
 
-	// save a pointer of the function address
-	DEBUG_ASSERTCRASH( TheNameKeyGenerator && TheFunctionLexicon, ("Invalid singletons") );
-	theSystemString = c;
-	NameKeyType key = TheNameKeyGenerator->nameToKey( theSystemString );
-	systemFunc = TheFunctionLexicon->gameWinSystemFunc( key );
+	// nameToKey sees the inline storage of the string; an unset string falls
+	// back to the shared empty literal, exactly like the header's str()
+	const char *mtext = sysString.m_data;
+	NameKeyType key = TheNameKeyGenerator->nameToKey( mtext ? mtext + 8 : "" );
+	*(void **)( (char *)data + 0x10 ) = TheFunctionLexicon->gameWinSystemFunc( key, (FunctionLexicon::TableIndex)0xb );
 
 	return TRUE;
 

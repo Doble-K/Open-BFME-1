@@ -68101,3 +68101,4 @@ _str_checkname,0x0099AC90,vendored=lua-4.0.1
 _subexpr,0x0099CA60,vendored=lua-4.0.1
 _test_then_block,0x0099CEA0,vendored=lua-4.0.1
 _var_or_func_tail,0x0099C4B0,vendored=lua-4.0.1
+?set@ParseStringData@@QAEXPBDH@Z,0x000887D20,retail call target from parseSystemCallback (0x487818): shared two-arg string setter body
