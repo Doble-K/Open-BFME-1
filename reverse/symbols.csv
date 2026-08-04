@@ -68107,3 +68107,6 @@ _ggetm,0x00822030,static ggetm copy emitted into refdecode.cpp; pinned by REF_si
 _ggetm,0x00822D90,static ggetm copy emitted into huffdecode.cpp; pinned by HUFF_size @0x822E70
 _luaK_goiftrue,0x0099F6C0,pinned from cond @0x99CC40 which is byte-exact apart from this call; three-argument luaK_goiftrue(fs;v;0)
 ?_M_insert_overflow@?$vector@PBVModuleData@@V?$allocator@PBVModuleData@@@_STL@@@_STL@@IAEXPAPBVModuleData@@ABQBV3@ABU__true_type@2@I_N@Z,0x00043333,pinned from newModuleDataFromINI @0x1295F0 which is byte-exact apart from this call
+?isTurretInNaturalPosition@TurretAI@@QBE_NXZ,0x0003E469,ILT thunk to 0x18C8E0; pinned from AIUpdateInterface::isTurretInNaturalPosition @0x26EA60
+?recenterTurret@TurretAI@@QAEXXZ,0x0003B679,ILT thunk to 0x18C8D0; pinned from AIUpdateInterface::recenterTurret @0x26EA10
+?setTurretTargetObject@TurretAI@@QAEXPAVObject@@_N@Z,0x00043FFE,ILT thunk to 0x18D120; pinned from AIUpdateInterface::setTurretTargetObject @0x26E930

@@ -91745,3 +91745,12 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?getPitchDamping@Locomotor@@QBEMXZ,,0x00413150,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?getPitchStiffness@Locomotor@@QBEMXZ,,0x004130F0,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?getRollStiffness@Locomotor@@QBEMXZ,,0x00413120,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?setObjectsShouldReceiveDifficultyBonus@ScriptEngine@@QAEX_N@Z,,0x002ED530,13,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getDisabledFlags@Object@@QBE?AV?$BitFlags@$0N@@@XZ,,0x001BD400,15,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?isDisabled@Object@@QBE_NXZ,,0x00161D70,14,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?updateTriggerAreaFlags@Object@@IAEXXZ,,0x001BE8B0,86,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getTurretRotAndPitch@AIUpdateInterface@@QBE_NW4WhichTurretType@@PAM1@Z,,0x0026EAF0,61,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?setAttitude@AIUpdateInterface@@QAEXW4AttitudeType@@@Z,,0x0045DC60,13,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?isTurretInNaturalPosition@AIUpdateInterface@@QBE_NW4WhichTurretType@@@Z,,0x0026EA60,28,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,turret wrapper; TurretAI target pinned through its ILT thunk
+?recenterTurret@AIUpdateInterface@@QAEXW4WhichTurretType@@@Z,,0x0026EA10,23,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,turret wrapper; TurretAI target pinned through its ILT thunk
+?setTurretTargetObject@AIUpdateInterface@@QAEXW4WhichTurretType@@PAVObject@@_N@Z,,0x0026E930,33,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,turret wrapper; TurretAI target pinned through its ILT thunk

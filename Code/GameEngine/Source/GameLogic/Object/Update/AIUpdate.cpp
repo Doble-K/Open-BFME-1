@@ -681,7 +681,6 @@ AIUpdateInterface::~AIUpdateInterface( void )
 }
 
 //=============================================================================
-// ?setTurretTargetObject@AIUpdateInterface@@ present-unmatched
 void AIUpdateInterface::setTurretTargetObject(WhichTurretType tur, Object* o, Bool forceAttacking)
 {
 	if (m_turretAI[tur])
@@ -727,7 +726,6 @@ void AIUpdateInterface::setTurretEnabled(WhichTurretType tur, Bool enabled)
 }
 
 //=============================================================================
-// ?recenterTurret@AIUpdateInterface@@ present-unmatched
 void AIUpdateInterface::recenterTurret(WhichTurretType tur)
 {
 	if (m_turretAI[tur])
@@ -748,7 +746,6 @@ Bool AIUpdateInterface::isTurretEnabled( WhichTurretType tur ) const
 }
 
 //=============================================================================
-// ?isTurretInNaturalPosition@AIUpdateInterface@@ present-unmatched
 Bool AIUpdateInterface::isTurretInNaturalPosition(WhichTurretType tur) const
 {
 	if (m_turretAI[tur])
@@ -772,7 +769,6 @@ Bool AIUpdateInterface::isWeaponSlotOnTurretAndAimingAtTarget(WeaponSlotType wsl
 }
 
 //=============================================================================
-// ?getTurretRotAndPitch@AIUpdateInterface@@ present-unmatched
 Bool AIUpdateInterface::getTurretRotAndPitch(WhichTurretType tur, Real* turretAngle, Real* turretPitch) const
 {
 	if (m_turretAI[tur])
@@ -4521,7 +4517,6 @@ const Coord3D *AIUpdateInterface::getCurrentVictimPos( void ) const
 /**
  * Set the behavior modifier for this agent
  */
-// ?setAttitude@AIUpdateInterface@@ present-unmatched
 void AIUpdateInterface::setAttitude( AttitudeType tude )
 {
 	m_attitude = tude;
