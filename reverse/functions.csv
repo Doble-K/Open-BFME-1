@@ -93079,3 +93079,14 @@ uw_00c5ccf0,,0x00C5CCF0,11,Code/Libraries/Source/WWVegas/WWSaveLoad/parameter.cp
 uw_00c5ce11,,0x00C5CE11,11,Code/Libraries/Source/WWVegas/WWSaveLoad/pointerremap.cpp,matched,gen-funclet;parent=??0?$VectorClass@UPtrRemapStruct@PointerRemapClass@@@@QAE@HPBUPtrRemapStruct@PointerRemapClass@@@Z;object-symbol=$L3287
 uw_00c4bee0,,0x00C4BEE0,11,Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp,matched,gen-funclet;parent=?Create@?$SimpleDefinitionFactoryClass@VTwiddlerClass@@$0OAAA@$1?TwiddlerClassName@@3PADA@@UBEPAVDefinitionClass@@XZ;object-symbol=$L14353
 uw_00c56fc0,,0x00C56FC0,8,Code/gen_small/tgrid_122.cpp,matched,gen-funclet;parent=??1?$pair@$$CBUGen_t_00894a10_k4@@UGen_t_00894a10_p12cd@@@_STL@@QAE@XZ;object-symbol=$L63741
+??D@YA?AVMatrix4x4@@ABV0@0@Z,,0x009660E0,622,Code/Libraries/Source/WWVegas/WWMath/matrix4x4.cpp,matched,vendored=cnc-zh
+?Get_Hash_Value@?$HashTemplateKeyClass@VVector3@@@@SAIABVVector3@@@Z,,0x0094DB70,77,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?Remove_All@?$HashTemplateClass@VVector3@@I@@QAEXXZ,,0x0094DCB0,97,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?Remove_All@?$HashTemplateClass@UTriangleSide@@USideIndexInfo@@@@QAEXXZ,,0x0094DD70,97,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+??0TriangleSide@@QAE@ABVVector3@@0@Z,,0x0094E0D0,127,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+??8TriangleSide@@QAE_NABU0@@Z,,0x0094E160,66,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?Exists@?$HashTemplateClass@VVector3@@I@@QBE_NABVVector3@@@Z,,0x0094E680,122,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?Get@?$HashTemplateClass@UTriangleSide@@USideIndexInfo@@@@QBE?AUSideIndexInfo@@ABUTriangleSide@@@Z,,0x0094E700,209,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?Exists@?$HashTemplateClass@UTriangleSide@@USideIndexInfo@@@@QBE_NABUTriangleSide@@@Z,,0x0094E7E0,177,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?Re_Hash@?$HashTemplateClass@VVector3@@I@@AAEXXZ,,0x0094E8F0,382,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
+?Insert@?$HashTemplateClass@VVector3@@I@@QAEXABVVector3@@ABI@Z,,0x0094F520,115,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh

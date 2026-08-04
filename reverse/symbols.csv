@@ -68136,3 +68136,4 @@ _luaK_goiftrue,0x0099F6C0,pinned from cond @0x99CC40 which is byte-exact apart f
 ?Free_Object_Memory@ObjectPool@@QAEXPAX@Z,0x009DBEB0,object-pool free reached by MultiListNodeClass operator delete; same body as the AABTreeLinkClass pool row
 ?getVetUpgradeName@@YA?AVAsciiString@@W4VeterancyLevel@@@Z,0x0010AD90,returns AsciiString by value so the hidden result pointer is the first cdecl argument
 ??1?$_List_base@PAVResizerWindow@@V?$allocator@PAVResizerWindow@@@_STL@@@_STL@@QAE@XZ,0x000361BA,ILT thunk; retail call sites use the thunk
+?Get_Hash_Value@?$HashTemplateKeyClass@UTriangleSide@@@@SAIABUTriangleSide@@@Z,0x0094DBC0,ICF twin of the claimed Get_Hash_Value<StringClass>; meshmdl.cpp callers encode this name
