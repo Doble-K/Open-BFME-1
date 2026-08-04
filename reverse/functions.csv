@@ -91780,3 +91780,4 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?addToBuildList@SidesInfo@@QAEXPAVBuildListInfo@@H@Z,,0x00191510,74,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?removeFromBuildList@SidesInfo@@QAEHPAVBuildListInfo@@@Z,,0x00191570,78,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?setLocation@BuildListInfo@@QAEXUCoord3D@@@Z,,0x000C8F10,26,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?isOwnersCurWeaponOnTurret@TurretAI@@QBE_NXZ,,0x0018D0D0,53,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,Object::getCurrentWeapon pinned through its ILT thunk

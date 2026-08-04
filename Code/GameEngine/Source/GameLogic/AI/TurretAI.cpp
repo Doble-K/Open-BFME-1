@@ -513,7 +513,6 @@ Bool TurretAI::isTryingToAimAtTarget(const Object* victim) const
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?isOwnersCurWeaponOnTurret@TurretAI@@QBE_NXZ present-unmatched
 Bool TurretAI::isOwnersCurWeaponOnTurret() const
 {
 	WeaponSlotType wslot;
