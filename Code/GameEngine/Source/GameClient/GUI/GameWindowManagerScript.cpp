@@ -401,7 +401,7 @@ static GameWindow *popWindow( void )
 
 // pushWindow =================================================================
 //=============================================================================
-static void pushWindow( GameWindow *window )
+__declspec(noinline) static void pushWindow( GameWindow *window )
 {
 
   if( stackPtr == &windowStack[ WIN_STACK_DEPTH - 1 ] ) 
@@ -415,6 +415,18 @@ static void pushWindow( GameWindow *window )
   *stackPtr++ = window;
 
 }  // end pushWindow
+
+// ?forceWindowStackHelpers@@YAXPAVGameWindow@@@Z absent-from-retail
+// Nothing in this file calls these two statics any more, so MSVC discards
+// them and the ledger rows they back. Calling them keeps them; pushWindow
+// must be CALLED rather than have its address taken, because retail passes
+// its argument in a register and MSVC drops that once the address escapes.
+void forceWindowStackHelpers( GameWindow *window )
+{
+	pushWindow( window );
+	(void)popWindow();
+}
+
 
 // parseColor =================================================================
 /** Parse a color entry and store it in the value pointed to by the 

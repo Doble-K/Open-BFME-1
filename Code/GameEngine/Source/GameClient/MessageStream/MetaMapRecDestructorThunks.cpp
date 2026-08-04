@@ -23,3 +23,11 @@ private:
 MetaMapRec::~MetaMapRec()
 {
 }
+
+// ?forceMetaMapRecDelete@@YAXPAVMetaMapRec@@@Z absent-from-retail
+// MSVC only emits ??_GMetaMapRec, the scalar deleting destructor this file also
+// carries, when some `delete` in the TU asks for one.
+void forceMetaMapRecDelete(MetaMapRec *rec)
+{
+	delete rec;
+}
