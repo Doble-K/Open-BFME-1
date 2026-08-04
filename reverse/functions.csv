@@ -91733,3 +91733,15 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?enter@CriticalSection@@QAEXXZ,,0x000874A0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?exit@CriticalSection@@QAEXXZ,,0x000874A0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,ICF alias; identical 11-byte body folded with CriticalSection::enter
 ?newModuleDataFromINI@ModuleFactory@@QAEPAVModuleData@@PAVINI@@ABVAsciiString@@W4ModuleType@@1@Z,,0x001295F0,192,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,unresolved REL32 to vector<ModuleData*>::_M_insert_overflow thunk; pin added; matches 192B
+?deleteViews@Display@@MAEXXZ,,0x0040D970,53,Code/GameEngine/Source/GameClient/Display.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getNextView@Display@@UAEPAVView@@PAV2@@Z,,0x0040F5E0,24,Code/GameEngine/Source/GameClient/Display.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getAccelPitchLimit@Locomotor@@QBEMXZ,,0x001B5090,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getBounceKick@Locomotor@@QBEMXZ,,0x004130C0,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getDecelPitchLimit@Locomotor@@QBEMXZ,,0x00413090,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getElevatorCorrectionDegree@Locomotor@@QBEMXZ,,0x00413270,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getElevatorCorrectionRate@Locomotor@@QBEMXZ,,0x004132A0,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getForwardAccelCoef@Locomotor@@QBEMXZ,,0x001B50C0,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getLateralVelCoef@Locomotor@@QBEMXZ,,0x004131B0,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getPitchDamping@Locomotor@@QBEMXZ,,0x00413150,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getPitchStiffness@Locomotor@@QBEMXZ,,0x004130F0,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getRollStiffness@Locomotor@@QBEMXZ,,0x00413120,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
