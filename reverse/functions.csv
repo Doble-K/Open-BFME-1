@@ -91669,3 +91669,8 @@ _zlibVersion,,0x00828BB0,6,Code/Libraries/Source/Compression/ZLib/zutil.c,matche
 ?getPasswordForEmail@GameSpyLoginPreferences@@QAE?AVAsciiString@@V2@@Z,,0x000815F0,147,Code/GameEngine/Source/Common/GameSpyLoginPreferences_getPasswordForEmail_Thunk.cpp,matched,
 ?getDateForEmail@GameSpyLoginPreferences@@QAE?AVAsciiString@@V2@AAV2@11@Z,,0x000813D0,426,Code/GameEngine/Source/Common/GameSpyLoginPreferences_getDateForEmail_Thunk.cpp,matched,
 ?parseSystemCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004877E0,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,BFME rewrite of the ZH quote-scan body: strtok arg2 then string at data+0x20 and gameWinSystemFunc
+_REF_is@4,,0x00822090,52,Code/Libraries/Source/Compression/EAC/refdecode.cpp,matched,stock EAC codec source; ggetm inlines here as it does in retail
+_HUFF_is@4,,0x00822DF0,116,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,stock EAC codec source; ggetm inlines here as it does in retail
+_BTREE_is@4,,0x00822F80,41,Code/Libraries/Source/Compression/EAC/btreedecode.cpp,matched,stock EAC codec source; ggetm inlines here as it does in retail
+_REF_size@4,,0x008220D0,56,Code/Libraries/Source/Compression/EAC/refdecode.cpp,matched,stock EAC codec source; ggetm is a static switch that inlines on constant byte counts
+_HUFF_size@4,,0x00822E70,56,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,matched,stock EAC codec source; ggetm is a static switch that inlines on constant byte counts
