@@ -1626,3 +1626,52 @@ that one of them is wrong.
 - MSVC does not fold `a == K || a < K` into a single `jle`; it emits `cmp/je/jl` to the same target, exactly as written. A retail `cmp` followed by two conditional jumps to one label is therefore evidence of two source conditions, not one relational operator — and getting the split right can also settle register allocation that looked arbitrary.
 - A divide-by-constant magic pins a structure size exactly: brute-forcing which divisor reproduces `imul <magic>` + add-back + `sar n` over a range of inputs gave a unique answer (292 for PlayerTemplate). A plain pointer subtraction then regenerates the whole sequence.
 - MSVC returns a 4-byte struct in `eax`, so a one-pointer iterator will not reproduce a callee that takes a hidden return pointer. Declaring a copy constructor (never defined) makes the type non-trivial and forces the memory-return form — the same declaration trick that fixes by-value class arguments.
+=======
+
+## docs/ini_schema.md is a complete layout oracle for 96 classes, and nothing uses it
+
+Half the entries above are hand-triangulated class layouts — an offset read off
+one instruction, a size read off an `operator new`, a pad placed and then walked
+back when it broke a matched row. Meanwhile `docs/ini_schema.md` has been
+sitting in the tree with the **exact retail offset of every INI-parsed field of
+96 classes**, decoded from the binary's own `FieldParse` tables. Nothing in
+`lessons.md`, `AGENTS.md` or `docs/structural.md` mentions it. It is not
+inference: the table is plain data, `{ token, proc, userData, Int offset }`, and
+`tools/dump_ini_schema.py` walks it.
+
+Among the 96 are `Weapon`, `Object`, `Locomotor`, `Armor`, `Upgrade`,
+`Science`, `PlayerTemplate`, `Terrain`, `FXList`, `ObjectCreationList` and
+`CommandButton` — several of which have entries above describing exactly the
+guesswork this file would have replaced.
+
+**Correction to the WeaponTemplate entry.** It says "a class whose only proven
+fact is its SIZE takes a tail pad, not a mid-class one", having pinned 0x53C
+from `WeaponStore::newWeaponTemplate`. The size was not the only proven fact:
+the `Weapon` table carries **112 fields with offsets**, up to 0x535. A tail pad
+happens to keep every existing row green, but it is not the layout, and any
+field it puts in the wrong place will surface later as a one-instruction diff
+nobody can explain.
+
+**Worked example, CommandButton.** `CommandButton::isReady` (0x0049AD30, 146
+bytes — not the 93 the queue reports, which is our own body's length) reads
+`[this+0x34]` and hands it to the same callee our source reaches with
+`[this+0x24]`. The table says why, exactly:
+
+```
+Options   0x018    Object 0x01C   Upgrade 0x020      <- ours agree
+NeededUpgrade 0x024                                  <- BFME-only, 4 bytes
+BuildUpgrades 0x028  AsciiStringVector               <- BFME-only, 12 bytes
+SpecialPower  0x034                                  <- ours has it at 0x024
+```
+
+so the divergence is two added fields totalling exactly 0x10. Further down the
+same table shows `TextLabel` at 0x044 and `DescriptLabel` at 0x050 are
+*AsciiStringVectors* where ours are plain AsciiStrings, adding 8 bytes each. The
+class is reconstructable field by field rather than by triangulation.
+
+Two limits worth stating. The table only names fields the INI parser writes, so
+runtime-only members between them are still unconstrained — the offsets bracket
+those gaps rather than filling them. And it gives retail's layout, not our
+header: knowing `SpecialPower` belongs at 0x034 does not by itself say which of
+our members to grow, so the existing matched rows still decide between an
+insert, a pad and a relocation.
