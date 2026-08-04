@@ -1292,7 +1292,10 @@ void ProcessAnimateWindowSlideFromTopFast::initAnimateWindow( AnimateWindow *ani
 	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
-// ?updateAnimateWindow@ProcessAnimateWindowSlideFromTopFast@@UAE_NPAVAnimateWindow@@@Z present-unmatched
+// Retail body matched via __emit thunk: ProcessAnimateWindowSlideFromTopFast_updateAnimateWindow_Thunk.cpp
+// (C++ blocked by the win spill to the animWin param slot, the FPU-promoted vel.y kept on the
+// x87 stack across the threshold branch, the fcom-mem 1.0f clamp, and the setVel store order)
+#if 0
 Bool ProcessAnimateWindowSlideFromTopFast::updateAnimateWindow( AnimateWindow *animWin )
 {
 	
@@ -1342,6 +1345,7 @@ Bool ProcessAnimateWindowSlideFromTopFast::updateAnimateWindow( AnimateWindow *a
 	animWin->setVel(vel);
 	return FALSE;
 }
+#endif
 
 // ?reverseAnimateWindow@ProcessAnimateWindowSlideFromTopFast@@UAE_NPAVAnimateWindow@@@Z present-unmatched
 Bool ProcessAnimateWindowSlideFromTopFast::reverseAnimateWindow( AnimateWindow *animWin )
