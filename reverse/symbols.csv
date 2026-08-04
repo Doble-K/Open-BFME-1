@@ -68160,3 +68160,4 @@ _png_set_tRNS@20,0x00A63A5E,vendored=libpng-1.0.5
 _png_warning@8,0x00A62C5C,vendored=libpng-1.0.5
 _png_write_data@12,0x00A638A7,vendored=libpng-1.0.5
 _png_write_row@8,0x00A62F08,vendored=libpng-1.0.5
+?compareNoCase@AsciiString@@QBEHPBD@Z,0x000405E8,ILT thunk to the case-insensitive AsciiString compare at 0x00075E00
