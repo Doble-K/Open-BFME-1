@@ -317,20 +317,25 @@ DebugIOFlat::~DebugIOFlat()
   }
 }
 
-// ?Write@DebugIOFlat@@UAEXW4StringType@DebugIOInterface@@PBD1@Z present-unmatched
 void DebugIOFlat::Write(StringType type, const char *src, const char *str)
 {
   for (SplitListEntry *cur=m_firstSplit;cur;cur=cur->next)
   {
     if (!(cur->stringTypes&(1<<type)))
-      continue;
-    if (src&&*src&&!Debug::SimpleMatch(src,cur->items))
-      continue;
+    {
+      if (str)
+        continue;
+    }
+    else
+    {
+      if (str&&src&&*src&&!Debug::SimpleMatch(src,cur->items))
+        continue;
+    }
     cur->stream->Write(str);
-    break;
+    if (str)
+      return;
   }
-  if (!cur)
-    m_firstStream->stream->Write(str);
+  m_firstStream->stream->Write(str);
 }
 
 void DebugIOFlat::EmergencyFlush(void)

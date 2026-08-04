@@ -91253,3 +91253,4 @@ uw_00c61226,,0x00C61226,11,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matc
 uw_00c5a8b0,,0x00C5A8B0,8,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,gen-funclet;parent=??0GridCullSystemClass@@QAE@XZ;object-symbol=$L12048
 uw_00c4d2d1,,0x00C4D2D1,8,Code/Libraries/Source/WWVegas/wwshade/shdrenderer.cpp,matched,gen-funclet;parent=??0ShdDX8RendererNodeClass@@QAE@PAVMeshContainerClass@ShdDX8RendererClass@@PAVShdMeshClass@@PAVShdSubMeshClass@@@Z;object-symbol=$L33566
 uw_00c1eb70,,0x00C1EB70,8,Code/gen_small/tgrid_114.cpp,matched,gen-funclet;parent=??0?$list@UGen_t_003c0c70_p12cd@@V?$allocator@UGen_t_003c0c70_p12cd@@@_STL@@@_STL@@QAE@I@Z;object-symbol=$L130155
+?Write@DebugIOFlat@@UAEXW4StringType@DebugIOInterface@@PBD1@Z,,0x00890E60,126,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,DebugIOFlat::Write; BFME flushes every split when str==0
