@@ -88,3 +88,21 @@ function, repoint the row with
 `python3 tools/add_match.py <real-name> ... --replace-existing`; do not edit
 the generated source by hand. check_csv rejects a gen-* row sharing an exact
 range with a real-name row — the placeholder yields (tombstone it).
+
+check_csv stays silent when two *real* names share a range, because that is a
+legitimate ICF alias group in principle. Retail demonstrably does not fold
+identical COMDATs, so after landing a batch also sweep it against itself: one
+body per address, and a duplicate range among your own new rows is an
+over-claim to retract, not an alias (precedent: ed516d1e4).
+
+## Vendored third-party claims
+
+`vendored=<lib>-<ver>` marks a row whose bytes come from real upstream source
+compiled in place — `libpng-1.0.5`, `jpeg-6b`, `lua-4.0.1`, `zlib-1.1.4`,
+`gamespy-2004`, and `cnc-zh` for EA's own reference tree. These rows carry the
+upstream's real identities and are never `gen-` prefixed; the vendored file
+keeps a header comment naming the exact release and where it came from. Library
+sources live at their official BFME path (`Code/Libraries/Source/LibPNG/`,
+`Code/GameEngine/Source/GameNetwork/GameSpy/`, …). Pristine C TUs compile
+against the minimal Win32 substitutes in `reference/shims/gamespy/`, never a
+real Platform SDK.
