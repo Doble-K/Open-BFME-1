@@ -153,8 +153,10 @@ public:
 protected:
 	enum{
 	TEXTONFRAMETRANSITION_START = 0,
-	TEXTONFRAMETRANSITION_END	 = 1		// Max text type we'll allow.
+	TEXTONFRAMETRANSITION_END	 = 30		// Max text type we'll allow.
 	};
+	Int m_startFrame;
+	Int m_endFrame;
 
 };
 

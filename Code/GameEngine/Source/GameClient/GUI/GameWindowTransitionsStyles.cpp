@@ -1957,35 +1957,28 @@ void TextOnFrameTransition::init( GameWindow *win )
 	}
 }
 
-// ?update@TextOnFrameTransition@@UAEXH@Z present-unmatched
 void TextOnFrameTransition::update( Int frame )
 {
-	if(frame < TEXTONFRAMETRANSITION_START || frame > TEXTONFRAMETRANSITION_END)
+	if(frame < m_startFrame || frame > m_endFrame)
 	{
-		DEBUG_ASSERTCRASH(FALSE, ("TextOnFrameTransition::update - Frame is out of the range the this update can handle %d", frame));
 		return;
 	}
-	switch (frame) {
-	case TEXTONFRAMETRANSITION_START:
+	if(frame == m_startFrame)
+	{
+		if(!m_isForward && m_win)
 		{
-						
-			if(m_isForward || !m_win )
-				break;
-
 			m_win->winHide(TRUE);
 			m_isFinished = TRUE;
-
 		}
-		break;
-	case TEXTONFRAMETRANSITION_END:
+	}
+	else if(frame == m_endFrame)
+	{
+		if(m_isForward && m_win)
 		{
-			if(!m_isForward || !m_win )
-				break;
 			m_win->winHide(FALSE);
 			m_isFinished = TRUE;
-
 		}
-	}	
+	}
 }
 
 void TextOnFrameTransition::reverse( void )
