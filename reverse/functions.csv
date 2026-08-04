@@ -69685,7 +69685,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?EnumThreadWndProc@@YGHPAXJ@Z,,0x00889700,17,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,
 ??6Debug@@QAEAAV0@_N@Z,,0x008897C0,30,Code/Libraries/Source/WWVegas/WWDebug/debug_operator_bool.cpp,matched,Open-BFME5 exact C++ operator<< bool body
 ?SetPrefixAndRadix@Debug@@QAEXPBDH@Z,,0x00889B60,117,Code/GameEngine/Source/Common/Debug_SetPrefixAndRadix_Thunk.cpp,matched,Exact 117B Open-BFME5
-?AddPatternEntry@Debug@@AAEXI_NPBD@Z,,0x0088A300,147,Code/GameEngine/Source/Common/Debug_AddPatternEntry_Thunk.cpp,matched,Exact 147B Open-BFME5
+?AddPatternEntry@Debug@@AAEXI_NPBD@Z,,0x0088A300,147,Code/GameEngine/Source/Common/Debug_AddPatternEntry_Thunk.cpp,matched,clean C++ conversion; ZH debug_debug.cpp body plus a BFME _strlwr on the copied pattern; firstPatternEntry at this+0x9E00 and lastPatternEntry at +0x9E04; needs /Oy-
 ?WriteBuildInfo@Debug@@QAEXXZ,,0x0088A490,137,Code/Libraries/Source/WWVegas/WWDebug/Debug_WriteBuildInfo_Thunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit thunk; re-anchored 2 bytes earlier to the real push prologue
 ?IsWindowed@Debug@@AAE_NXZ,,0x0088A5F0,78,Code/Libraries/Source/WWVegas/WWDebug/DebugIsWindowedThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?m@Gen_0088a670@@QAEXXZ,,0x0088A670,1,Code/gen_small/fun_005.cpp,matched,gen-shim;skeleton=ret-void;ghidra=FUN_00c8a670
