@@ -91725,3 +91725,10 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?getExitPosition@DockUpdate@@UAEXPAVObject@@PAUCoord3D@@@Z,,0x002CB6A0,128,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?getEnterPosition@DockUpdate@@UAEXPAVObject@@PAUCoord3D@@@Z,,0x002CB520,171,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
 ?getDockPosition@DockUpdate@@UAEXPAVObject@@PAUCoord3D@@@Z,,0x002CB600,128,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,
+??0MultiIniFieldParse@@QAE@XZ,,0x00133210,30,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?getFileListInDirectory@ArchiveFileSystem@@QBEXABVAsciiString@@00AAV?$set@VAsciiString@@U?$less_than_nocase@VAsciiString@@@rts@@V?$allocator@VAsciiString@@@_STL@@@_STL@@_N@Z,,0x009C9510,82,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?shutdown@CopyProtect@@SAXXZ,,0x00102270,27,Code/GameEngine/Source/Common/System/CopyProtection.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?setName@File@@IAEXPBD@Z,,0x009CB390,56,Code/GameEngine/Source/Common/System/File.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+??0FunctionLexicon@@QAE@XZ,,0x00105300,56,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?enter@CriticalSection@@QAEXXZ,,0x000874A0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?exit@CriticalSection@@QAEXXZ,,0x000874A0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,ICF alias; identical 11-byte body folded with CriticalSection::enter

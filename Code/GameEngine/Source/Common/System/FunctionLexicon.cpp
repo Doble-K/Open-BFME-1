@@ -514,7 +514,6 @@ const char *FunctionLexicon::funcToName( void *func, TableEntry *table )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0FunctionLexicon@@QAE@XZ present-unmatched
 FunctionLexicon::FunctionLexicon( void )
 {
 	Int i;

@@ -472,7 +472,6 @@ AsciiString ArchiveFileSystem::getArchiveFilenameForFile(const AsciiString& file
 
 }
 
-// ?getFileListInDirectory@ArchiveFileSystem@@ present-unmatched
 void ArchiveFileSystem::getFileListInDirectory(const AsciiString& currentDirectory, const AsciiString& originalDirectory, const AsciiString& searchName, FilenameList &filenameList, Bool searchSubdirectories) const
 {
 	ArchiveFileMap::const_iterator it = m_archiveFileMap.begin();

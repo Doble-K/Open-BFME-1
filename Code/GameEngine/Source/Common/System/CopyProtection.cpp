@@ -225,7 +225,6 @@ Bool CopyProtect::validate(void)
 }
 
 // ---------------------------------------------------------------------------
-// ?shutdown@CopyProtect@@SAXXZ present-unmatched
 void CopyProtect::shutdown(void)
 {
 	DEBUG_LOG(("COPYPROTECTION - Shutdown\n"));
