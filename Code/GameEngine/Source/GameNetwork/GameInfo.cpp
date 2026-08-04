@@ -921,7 +921,6 @@ static Bool isSlotLocalAlly(GameInfo *game, const GameSlot *slot)
 	return slot->getTeamNumber() == localSlot->getTeamNumber();
 }
 
-// ?isSkirmish@GameInfo@@QAE_NXZ present-unmatched
 Bool GameInfo::isSkirmish(void)
 {
 	Bool sawAI = FALSE;
