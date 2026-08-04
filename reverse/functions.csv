@@ -67948,7 +67948,6 @@ __purecall,,0x006CF680,3,Code/Libraries/Source/WWVegas/WWLib/Except.cpp,matched,
 ?Set_Single_Shader@MeshModelClass@@QAEXVShaderClass@@H@Z,,0x00739640,28,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Get_Single_Shader@MeshModelClass@@QBE?AVShaderClass@@H@Z,,0x00739670,26,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ?Get_Element@MatBufferClass@@QAEPAVVertexMaterialClass@@H@Z,,0x00739780,35,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,ICF alias of existing matched body
-?Get_Element@TexBufferClass@@QAEPAVTextureClass@@H@Z,,0x00739780,35,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
 ?Get_Vertex_Material@MaterialInfoClass@@QAEPAVVertexMaterialClass@@H@Z,,0x00739780,35,Code/Libraries/Source/WWVegas/WW3D2/dynamesh.cpp,matched,icf-owner=?Get_Element@MatBufferClass@@QAEPAVVertexMaterialClass@@H@Z
 ?m@Gen_00739c30@@QAEXXZ,,0x00739C30,7,Code/gen_small/fun_004.cpp,matched,gen-shim;skeleton=store-imm-0;ghidra=FUN_00b39c30
 ?m@Gen_0073a7b0@@QAEXXZ,,0x0073A7B0,7,Code/gen_small/fun_004.cpp,matched,gen-shim;skeleton=store-imm-0;ghidra=FUN_00b3a7b0
@@ -71427,8 +71426,6 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ??A?$SimpleVecClass@VVector2@@@@QAEAAVVector2@@H@Z,,0x00973520,13,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Delete@?$DynamicVectorClass@PAVHAnimComboDataClass@@@@QAE_NH@Z,,0x009735D0,51,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Get_HAnim@HAnimComboDataClass@@QBEPAVHAnimClass@@XZ,,0x00973650,12,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,ICF alias of existing matched body
-?Get_Texture@SegLineRendererClass@@QBEPAVTextureClass@@XZ,,0x00973650,12,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,icf-owner=?Get_HAnim@HAnimComboDataClass@@QBEPAVHAnimClass@@XZ
-?Get_Texture@StreakRendererClass@@QBEPAVTextureClass@@XZ,,0x00973650,12,Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp,matched,
 ?Get_Pivot_Map@HAnimComboDataClass@@QBEPAVPivotMapClass@@XZ,,0x00973690,14,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??1HAnimClass@@UAE@XZ,,0x009736B0,21,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Update_Pivot_Map@NamedPivotMapClass@@QAEXPBVHTreeClass@@@Z,,0x009736D0,96,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
@@ -91222,7 +91219,7 @@ uw_00c4a6f0,,0x00C4A6F0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/came
 uw_00c4a710,,0x00C4A710,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,gen-funclet;parent=?Add_Camera_Shake@CameraShakeSystemClass@@QAEXABVVector3@@MMM@Z;object-symbol=$L65418
 uw_00c4a730,,0x00C4A730,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,gen-funclet;parent=?Timestep@CameraShakeSystemClass@@QAEXM@Z;object-symbol=$L65478
 uw_00c60de0,,0x00C60DE0,8,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileDtor.cpp,matched,gen-funclet;parent=??1Win32BIGFile@@UAE@XZ;object-symbol=$L625
-uw_00c5f5d0,,0x00C5F5D0,8,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,gen-funclet;parent=??1NamedPivotMapClass@@UAE@XZ;object-symbol=$L15409
+uw_00c5f5d0,,0x00C5F5D0,8,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,gen-funclet;parent=??1NamedPivotMapClass@@UAE@XZ;object-symbol=$L15416
 uw_00c5e3b0,,0x00C5E3B0,14,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,gen-funclet;parent=?Alter_Avatar_HTree@HTreeClass@@SAPAV1@PBV1@AAVVector3@@@Z;object-symbol=$L16574
 uw_00c61370,,0x00C61370,11,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,gen-funclet;parent=?Prepend_Sub_Directory@SimpleFileFactoryClass@@QAEXPBD@Z;object-symbol=$L3296
 uw_00c61390,,0x00C61390,11,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,gen-funclet;parent=?Append_Sub_Directory@SimpleFileFactoryClass@@QAEXPBD@Z;object-symbol=$L3312
@@ -91793,3 +91790,5 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ??0DX8PolygonRendererClass@@QAE@IPAVMeshModelClass@@PAVDX8TextureCategoryClass@@II_NI@Z,,0x00972B80,139,Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp,matched,
 ?initAnimateWindow@ProcessAnimateWindowSlideFromTopFast@@UAEXPAVAnimateWindow@@@Z,,0x00497000,249,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,BFME BFMECoord2D setAnimData temp + frame 0x30; full 249B int3-delimited body
 ?gogoMessageBox@GameWindowManager@@UAEPAVGameWindow@@HHHHGVUnicodeString@@0P6AXXZ111@Z,,0x0047DB60,183,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoMessageBoxFwd.cpp,matched,clean C++ forwarder lifted to own TU; sweep shim has gogoMessageBox at slots 13/14 vs retail 12/13
+??0DX8PolygonRendererClass@@QAE@ABV0@PAVMeshModelClass@@@Z,,0x00972C30,149,Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?Get_Render_State@DX8Wrapper@@SAXAAURenderStateStruct@@@Z,,0x00939850,816,Code/Libraries/Source/WWVegas/WW3D2/sortingrenderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search

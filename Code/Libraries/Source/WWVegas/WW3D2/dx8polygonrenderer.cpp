@@ -72,7 +72,6 @@ DX8PolygonRendererClass::DX8PolygonRendererClass(
 	mmc->PolygonRendererList.Add_Tail(this);
 }
 
-// ??0DX8PolygonRendererClass@@ present-unmatched
 DX8PolygonRendererClass::DX8PolygonRendererClass(const DX8PolygonRendererClass& src,MeshModelClass* mmc_)
 	:
 	mmc(mmc_), 

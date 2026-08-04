@@ -75,6 +75,13 @@ public:
 	// WORD refcount + flag bits — not RefCountClass's inline dec. Declaring a
 	// hider here makes call sites emit the call instead of the inline sequence.
 	void Release_Ref(void);
+	// The matching half. That refcount is the low WORD of the int at +4 and the
+	// high half carries flag bits, one of which Release_Ref @0x9EB7A0 tests as
+	// 0x1000000, so a texture add-ref is inc word ptr [reg+4] rather than
+	// RefCountClass's inc dword. Init_Alternate @0x929410 shows the word form.
+	// NumRefs is private in RefCountClass, so reach it the way retail does:
+	// vtable at +0, count at +4.
+	void Add_Ref(void)								{ ++*(unsigned short *)((char *)static_cast<RefCountClass *>(this) + 4); }
 private:
 	friend class TextureLoader;
 	friend class LoaderThreadClass;
