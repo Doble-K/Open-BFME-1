@@ -68166,3 +68166,5 @@ _free_pool@8,0x00AAA7E0,vendored=jpeg-6b
 _jpeg_add_quant_table@20,0x00A61E30,vendored=jpeg-6b
 _jpeg_free_small@12,0x00AC7FB0,vendored=jpeg-6b
 _jpeg_mem_term@4,0x00AC8180,vendored=jpeg-6b
+?ThePlayerTemplateStore@@3PAVPlayerTemplateStore@@A,0x00EED750,PlayerTemplateStore* global read by CustomMatchPreferences::getPreferredFaction
+?getNthPlayerTemplate@PlayerTemplateStore@@QAEPBVPlayerTemplate@@H@Z,0x00037BD2,ILT thunk to the indexed PlayerTemplate lookup

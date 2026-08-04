@@ -1,174 +1,123 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the CustomMatchPreferences::getPreferredFaction naked dump to clean C++.
+//
+// The preferences-getter opening is the family's; the tail validates the stored
+// index against ThePlayerTemplateStore. Retail routes every rejection to one
+// `or esi,-1` at the end rather than returning early, so the checks are written
+// as a chain that assigns to the index and falls through to a single return.
+//
+// The template count is not a stored field: retail loads the pointers at
+// store+0x08 and store+0x0C, subtracts them, and divides by 292 through the
+// usual imul-magic-plus-add-back sequence (0xE070381D with sar 8, which is
+// consistent with exactly one divisor). So the store holds PlayerTemplate by
+// value in a contiguous range and sizeof(PlayerTemplate) is 292 -- a plain
+// pointer subtraction reproduces the whole sequence.
+//
+// The index -1 is allowed through without a lookup: retail tests it after the
+// range check and jumps straight to the return, so "no preference" is a valid
+// stored value rather than a rejection.
+//
+// Retail pins the layout: the map is at this+0x04 and its first word is the end
+// sentinel, the mapped AsciiString is at node+0x14, str() inlines to
+// "m_data ? m_data+8 : empty", and the playable flag sits at template+0xBD.
 
-class CustomMatchPreferences {
+typedef int Int;
+
+extern "C" __declspec(dllimport) int __cdecl atoi(const char *);
+
+class AsciiStringData
+{
 public:
-	int getPreferredFaction();
+	unsigned char m_unreconstructed_00[8];
+	char m_chars[1];									///< retail this+0x08
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const char *);
+	~AsciiString();
+
+	const char *str(void) const { return m_data ? m_data->m_chars : ""; }
+
+private:
+	AsciiStringData *m_data;
+};
+
+struct PreferenceNode
+{
+	unsigned char m_unreconstructed_00[0x14];
+	AsciiString m_value;								///< retail this+0x14
+};
+
+class PreferenceMap
+{
+public:
+	PreferenceNode *find(const AsciiString &) const;
+	PreferenceNode *end(void) const { return m_end; }
+
+private:
+	PreferenceNode *m_end;								///< retail this+0x00
+};
+
+// 292 bytes total; only the playable flag is reconstructed.
+class PlayerTemplate
+{
+public:
+	unsigned char m_unreconstructed_00[0xBD];
+	bool m_isPlayableSide;								///< retail this+0xBD
+	unsigned char m_unreconstructed_BE[292 - 0xBE];
+};
+
+class PlayerTemplateStore
+{
+public:
+	const PlayerTemplate *getNthPlayerTemplate(Int index);	///< ILT thunk at 0x00037BD2
+
+	Int getPlayerTemplateCount(void) const { return m_end - m_begin; }
+
+private:
+	unsigned char m_unreconstructed_00[8];
+	PlayerTemplate *m_begin;							///< retail this+0x08
+	PlayerTemplate *m_end;								///< retail this+0x0C
+};
+
+extern PlayerTemplateStore *ThePlayerTemplateStore;		///< retail [0x012ED750]
+
+class CustomMatchPreferences
+{
+public:
+	Int getPreferredFaction(void);
+
+private:
+	unsigned char m_unreconstructed_00[4];
+	PreferenceMap m_prefs;								///< retail this+0x04
 };
 
 // ?getPreferredFaction@CustomMatchPreferences@@QAEHXZ
-__declspec(naked) int CustomMatchPreferences::getPreferredFaction()
+Int CustomMatchPreferences::getPreferredFaction(void)
 {
-	__asm {
-		__emit 0x51
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x68
-		__emit 0x58
-		__emit 0xc7
-		__emit 0x07
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xe8
-		__emit 0xfd
-		__emit 0xc7
-		__emit 0x7d
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x83
-		__emit 0xc6
-		__emit 0x04
-		__emit 0x50
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0xda
-		__emit 0xea
-		__emit 0xf5
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x8b
-		__emit 0xf8
-		__emit 0xe8
-		__emit 0x63
-		__emit 0xb5
-		__emit 0x7d
-		__emit 0x00
-		__emit 0x3b
-		__emit 0x3e
-		__emit 0x75
-		__emit 0x07
-		__emit 0x5f
-		__emit 0x83
-		__emit 0xc8
-		__emit 0xff
-		__emit 0x5e
-		__emit 0x59
-		__emit 0xc3
-		__emit 0x8b
-		__emit 0x7f
-		__emit 0x14
-		__emit 0x85
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x47
-		__emit 0x08
-		__emit 0x75
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x50
-		__emit 0xff
-		__emit 0x15
-		__emit 0x84
-		__emit 0x93
-		__emit 0x35
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xf0
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0x83
-		__emit 0xfe
-		__emit 0xfe
-		__emit 0x74
-		__emit 0x3f
-		__emit 0x7c
-		__emit 0x3d
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x50
-		__emit 0xd7
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x51
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x79
-		__emit 0x0c
-		__emit 0x2b
-		__emit 0xfa
-		__emit 0xb8
-		__emit 0x1d
-		__emit 0x38
-		__emit 0x70
-		__emit 0xe0
-		__emit 0xf7
-		__emit 0xef
-		__emit 0x03
-		__emit 0xd7
-		__emit 0xc1
-		__emit 0xfa
-		__emit 0x08
-		__emit 0x8b
-		__emit 0xc2
-		__emit 0xc1
-		__emit 0xe8
-		__emit 0x1f
-		__emit 0x03
-		__emit 0xc2
-		__emit 0x3b
-		__emit 0xf0
-		__emit 0x7d
-		__emit 0x18
-		__emit 0x85
-		__emit 0xf6
-		__emit 0x7c
-		__emit 0x17
-		__emit 0x56
-		__emit 0xe8
-		__emit 0x99
-		__emit 0xb7
-		__emit 0xf8
-		__emit 0xff
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x0a
-		__emit 0x8a
-		__emit 0x88
-		__emit 0xbd
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x84
-		__emit 0xc9
-		__emit 0x75
-		__emit 0x03
-		__emit 0x83
-		__emit 0xce
-		__emit 0xff
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x59
-		__emit 0xc3
+	PreferenceNode *it;
+	{
+		AsciiString key("PlayerTemplate");
+		it = m_prefs.find(key);
 	}
+
+	if (it == m_prefs.end())
+		return -1;
+
+	Int index = atoi(it->m_value.str());
+
+	if (index == -2 || index < -2 || index >= ThePlayerTemplateStore->getPlayerTemplateCount())
+	{
+		index = -1;
+	}
+	else if (index >= 0)
+	{
+		const PlayerTemplate *tmpl = ThePlayerTemplateStore->getNthPlayerTemplate(index);
+		if (tmpl == 0 || !tmpl->m_isPlayableSide)
+			index = -1;
+	}
+
+	return index;
 }

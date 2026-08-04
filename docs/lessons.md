@@ -1623,3 +1623,5 @@ Worth remembering as a positive result too: two byte-different copies of one
 compiler-generated body are normal when they take different thunk hops, so
 finding a second `??_G` for a class you have already placed is not evidence
 that one of them is wrong.
+- MSVC does not fold `a == K || a < K` into a single `jle`; it emits `cmp/je/jl` to the same target, exactly as written. A retail `cmp` followed by two conditional jumps to one label is therefore evidence of two source conditions, not one relational operator — and getting the split right can also settle register allocation that looked arbitrary.
+- A divide-by-constant magic pins a structure size exactly: brute-forcing which divisor reproduces `imul <magic>` + add-back + `sar n` over a range of inputs gave a unique answer (292 for PlayerTemplate). A plain pointer subtraction then regenerates the whole sequence.
