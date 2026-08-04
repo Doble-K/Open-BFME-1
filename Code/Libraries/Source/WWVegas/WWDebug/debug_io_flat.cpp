@@ -289,7 +289,6 @@ void DebugIOFlat::ExpandMagic(const char *src, const char *splitName, char *buf)
   strcpy(dst,".log");
 }
 
-// ??0DebugIOFlat@@QAE@XZ present-unmatched
 DebugIOFlat::DebugIOFlat(void):
   m_firstStream(NULL), m_firstSplit(NULL),
   m_lastStreamPtr(&m_firstStream), m_lastSplitPtr(&m_firstSplit)
@@ -554,7 +553,6 @@ void DebugIOFlat::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
   }
 }
 
-// ?Create@DebugIOFlat@@SAPAVDebugIOInterface@@XZ present-unmatched
 DebugIOInterface *DebugIOFlat::Create(void)
 {
   return new (DebugAllocMemory(sizeof(DebugIOFlat))) DebugIOFlat();
