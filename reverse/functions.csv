@@ -91711,3 +91711,14 @@ _math_tan,,0x009912D0,42,Code/Libraries/Source/Lua/lmathlib.c,matched,pristine L
 ??0DebugIOFlat@@QAE@XZ,,0x00890380,90,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?Create@DebugIOFlat@@SAPAVDebugIOInterface@@XZ,,0x00890420,89,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 _cond,,0x0099CC40,25,Code/Libraries/Source/Lua/lparser.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_HUFF_encode@16,,0x00820CB0,200,Code/Libraries/Source/Compression/EAC/huffencode.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_lua_dblibopen,,0x00991220,21,Code/Libraries/Source/Lua/ldblib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_settabsi,,0x00990C80,32,Code/Libraries/Source/Lua/ldblib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_settabss,,0x00990C60,30,Code/Libraries/Source/Lua/ldblib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_setfilebyname,,0x009930E0,26,Code/Libraries/Source/Lua/liolib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_leavebreak,,0x0099B190,26,Code/Libraries/Source/Lua/lparser.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_lua_strlibopen,,0x00992F50,21,Code/Libraries/Source/Lua/lstrlib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_posrelat,,0x00991980,9,Code/Libraries/Source/Lua/lstrlib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_checktag,,0x00998AE0,25,Code/Libraries/Source/Lua/ltm.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_LoadChunk,,0x0099DED0,23,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+_ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
