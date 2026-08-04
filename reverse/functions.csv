@@ -72159,7 +72159,7 @@ _BFMENetworkBackendThreadStart@4,,0x009DB630,25,Code/GameEngine/Source/GameNetwo
 ?Internal_Add@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@_N@Z,,0x009DBF60,125,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ?Internal_Add_Tail@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@_N@Z,,0x009DBFE0,125,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ?Internal_Add_After@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@PBV2@_N@Z,,0x009DC060,151,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
-?Internal_Remove@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@@Z,,0x009DC100,104,Code/Libraries/Source/WWVegas/WWLib/GenericMultiListClass_Internal_Remove_Thunk.cpp,matched,Open-BFME5 lift 104B retail method MASM to standalone C++ thunk
+?Internal_Remove@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@@Z,,0x009DC100,104,Code/Libraries/Source/WWVegas/WWLib/GenericMultiListClass_Internal_Remove_Thunk.cpp,matched,clean C++ conversion; verbatim ZH multilist.cpp; object list node at +0x04; node Prev/Next/NextList/List at +0x00/+0x04/+0x08/+0x10; pool-allocated node so delete is a class operator delete into the pool at 0x0134ECD4
 ?Internal_Remove_List_Head@GenericMultiListClass@@IAEPAVMultiListObjectClass@@XZ,,0x009DC170,27,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ??1MultiListObjectClass@@UAE@XZ,,0x009DC190,37,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ?Exists@RegistryClass@@SA_NPBD@Z,,0x009DC1C0,50,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
