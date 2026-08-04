@@ -1067,7 +1067,6 @@ void ProcessAnimateWindowSpiral::initReverseAnimateWindow( AnimateWindow *animWi
 }
 
 //-----------------------------------------------------------------------------
-// ?initAnimateWindow@ProcessAnimateWindowSpiral@@UAEXPAVAnimateWindow@@@Z present-unmatched
 void ProcessAnimateWindowSpiral::initAnimateWindow( AnimateWindow *animWin )
 {
 	ICoord2D restPos = {0,0};
@@ -1075,7 +1074,7 @@ void ProcessAnimateWindowSpiral::initAnimateWindow( AnimateWindow *animWin )
 	ICoord2D curPos = {0,0};
 	ICoord2D endPos = {0,0};
 	ICoord2D size = {0,0};
-	Coord2D	vel = {0.0f,0.0f};
+	BFMECoord2D vel;
 	
 	if(!animWin)
 	{
@@ -1105,7 +1104,7 @@ void ProcessAnimateWindowSpiral::initAnimateWindow( AnimateWindow *animWin )
 	//set the window's position to the new start positions.
 	win->winSetPosition(startPos.x, startPos.y);
 
-	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
+	((BFMEAnimateWindowLayout *)animWin)->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
 // Retail body matched via __emit thunk: ProcessAnimateWindowSpiral_updateAnimateWindow_Thunk.cpp
