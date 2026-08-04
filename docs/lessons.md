@@ -1405,3 +1405,34 @@ CRT functions reached under /MD are imported, so retail calls them indirectly th
 The build's default -EHsc- only clears the /EHc half, so /EHs stays on and any destructor-bearing temporary gets an SEH prologue plus unwind state variable; a retail body with no unwind frame needs /EHs-c- on the source's cl line.
 
 A boolean returned as `if (cond) return TRUE; return FALSE;` and as `return cond;` are not interchangeable: MSVC 7.1 computes the first in al (sbb al,al / inc al) and the second in eax (sbb eax,eax / inc eax). Read the ZH phrasing rather than assuming the compact form - it cost several attempts across the UserPreferences boolean getters. Check the String-ref verify line as well as Functions when batch-converting: a wrong literal still byte-matches because the DIR32 address is copied from the target.
+
+## Two byte-equal candidates: count the thunk's callers, then name the cluster
+
+`SimpleObjectIterator::firstWithNumeric` had two addresses on offer -- the
+ledger's 0x001DE040 and 0x001CE6D0, which a masked-body sweep also reports as an
+exact match for the same 51 bytes. Byte comparison cannot separate them and
+never will: both really are those bytes.
+
+Two cheap checks settle it, and neither needs a disassembly of the body.
+
+**Who reaches it.** Both addresses are reached only through an ILT thunk, so the
+question is who calls the thunk. 0x001DE040's thunk (0x000398C9) has exactly one
+rel32 caller, at 0x001DE032 -- code sitting immediately above the body itself.
+0x001CE6D0's thunk (0x00043126) has *zero* rel32 callers anywhere in `.text`: a
+dead incremental-link entry, which is no evidence at all.
+
+**Which translation unit owns the neighbourhood.** Functions from different TUs
+do not interleave in the image, so the nearest claimed rows name the cluster.
+0x001DE040 is surrounded by `sortFarToNear` (0x001DDF40), `next` (0x001DDFB0),
+`~SimpleObjectIterator` (0x001DDFD0) and `??_GSimpleObjectIterator`
+(0x001DE080) -- all SimpleObjectIterator.cpp. 0x001CE6D0 sits between
+`Object::reactToTransformChange` (0x001CDC30) and `Object::setDisabled`
+(0x001CE790), which is the Object.cpp/ObjectFields.cpp cluster and a different
+TU entirely.
+
+So the ledger row is right and the sweep's candidate is an unrelated 51-byte
+body that happens to compile the same. Nothing was changed; the point is the
+method. A sweep that reports several exact placements has not found several
+candidates of equal standing -- caller count and cluster membership usually
+leave exactly one, and both are two minutes of work against `functions.csv` and
+the rel32 sites. Do that before spending a cycle on the bytes.
