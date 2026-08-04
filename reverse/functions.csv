@@ -91707,3 +91707,4 @@ _math_randomseed,,0x009918D0,30,Code/Libraries/Source/Lua/lmathlib.c,matched,pri
 _math_sin,,0x00991270,40,Code/Libraries/Source/Lua/lmathlib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 _math_sqrt,,0x00991490,34,Code/Libraries/Source/Lua/lmathlib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 _math_tan,,0x009912D0,42,Code/Libraries/Source/Lua/lmathlib.c,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+??0BTCollisionStruct@@QAE@ABVOBBoxClass@@ABVVector3@@ABVTriClass@@1@Z,,0x008E68D0,67,Code/Libraries/Source/WWVegas/WWMath/colmathobbtri.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
