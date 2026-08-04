@@ -296,3 +296,18 @@ __imp__LeaveCriticalSection@4
 # 0x1135C9C: the same base-chain-dtor vptr family as the ??_7 ctor-vs-dtor
 # entries at the top of this file.
 ??_7DebugIOFlat@@6B@
+
+# libpng 1.0.5 is linked TWICE in retail, the same class as realcrc.cpp's
+# ?_Table@CRC@@0PAKA above. Two facts establish it rather than a wrong claim:
+# the matched rows form two separate code clusters (0xA62B80-0xA6641E, 48 rows;
+# 0xAABF2A-0xAB0167, 25 rows), and png.c's constant arrays exist as two
+# byte-identical .rdata copies -- png_pass_start holds 0,4,0,2,0,1,0 at BOTH
+# 0x11592E8 and 0x11595A4, png_sig holds the 89 50 4E 47 signature at both
+# 0x1150CDC and 0x1159358, and so on for each symbol below. Callers resolve
+# whichever copy their link site got; every referencing row byte-verifies.
+_png_IDAT
+_png_pass_inc
+_png_pass_start
+_png_pass_yinc
+_png_pass_ystart
+_png_sig
