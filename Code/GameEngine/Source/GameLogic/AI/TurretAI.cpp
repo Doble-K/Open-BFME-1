@@ -477,14 +477,12 @@ Bool TurretAI::isWeaponSlotOkToFire(WeaponSlotType wslot) const
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?getTurretFireAngleSweepForWeaponSlot@TurretAI@@QBEMW4WeaponSlotType@@@Z present-unmatched
 Real TurretAI::getTurretFireAngleSweepForWeaponSlot( WeaponSlotType slot ) const
 {
 	return m_data->m_turretFireAngleSweep[slot];	
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?getTurretSweepSpeedModifierForWeaponSlot@TurretAI@@QBEMW4WeaponSlotType@@@Z present-unmatched
 Real TurretAI::getTurretSweepSpeedModifierForWeaponSlot( WeaponSlotType slot ) const
 {
 	return m_data->m_turretSweepSpeedModifier[slot];
@@ -498,7 +496,6 @@ void TurretAI::notifyFired()
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?notifyNewVictimChosen@TurretAI@@UAEXPAVObject@@@Z present-unmatched
 void TurretAI::notifyNewVictimChosen(Object* victim)
 {
 	setTurretTargetObject(victim, FALSE);
@@ -525,7 +522,6 @@ Bool TurretAI::isOwnersCurWeaponOnTurret() const
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?isWeaponSlotOnTurret@TurretAI@@QBE_NW4WeaponSlotType@@@Z present-unmatched
 Bool TurretAI::isWeaponSlotOnTurret(WeaponSlotType wslot) const
 {
 	return (m_data->m_turretWeaponSlots & (1 << wslot)) != 0;
@@ -775,7 +771,6 @@ UpdateSleepTime TurretAI::updateTurretAI()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?setTurretEnabled@TurretAI@@QAEX_N@Z present-unmatched
 void TurretAI::setTurretEnabled( Bool enabled )
 {
 	if (enabled && !m_enabled)

@@ -137,7 +137,6 @@ SidesInfo& SidesInfo::operator=(const SidesInfo& that)
 * SidesInfo::addToBuildList - Adds a build list entry as the nth entry.
 *		
 */
-// ?addToBuildList@SidesInfo@@QAEXPAVBuildListInfo@@H@Z present-unmatched
 void SidesInfo::addToBuildList(BuildListInfo *pBuildList, Int position)
 {
 	DEBUG_ASSERTLOG(pBuildList->getNext()==NULL, ("WARNING***Adding already linked element."));
@@ -179,7 +178,6 @@ void SidesInfo::reorderInBuildList(BuildListInfo *pBuildList, Int newPosition)
 * Returns the position in the list that the item occupied.
 *		
 */
-// ?removeFromBuildList@SidesInfo@@QAEHPAVBuildListInfo@@@Z present-unmatched
 Int SidesInfo::removeFromBuildList(BuildListInfo *pBuildList)
 {
 	DEBUG_ASSERTCRASH(pBuildList, ("Removing NULL list."));
@@ -621,8 +619,10 @@ void SidesList::emptyTeams()
 	m_skirmishTeamrec.clear();
 }
 
-// ?addSide@SidesList@@QAEXPBVDict@@@Z exact retail body is emitted by
-// SidesListAddSideThunk.cpp.
+// SidesList::addSide has its exact retail body emitted by
+// SidesListAddSideThunk.cpp. (Name in prose: a comment line that starts with a
+// mangled name is read as a present-unmatched marker for whatever follows it.)
+
 void SidesList::addTeam(const Dict* d)
 {
 	m_teamrec.addTeam(d);
