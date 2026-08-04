@@ -58483,7 +58483,7 @@ _XMP_Test_Bit,,0x000A2C80,33,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matc
 ?isValidScience@ScienceStore@@QBE_NW4ScienceType@@@Z,,0x000E6EC0,19,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 ??$_Construct@U?$pair@$$CBI_N@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBI_N@0@ABU10@@Z,,0x000E7140,23,Code/GameEngine/Source/Common/System/FileSystem.cpp,matched,
 ?getInternalNameForScience@ScienceStore@@QBE?AVAsciiString@@W4ScienceType@@@Z,,0x000E71F0,62,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,MASM converted to exact __emit C++
-?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z,,0x000E7240,85,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,Exact 85B C++ raw function conversion Open-BFME5
+?friend_lookupScience@ScienceStore@@QBE?AW4ScienceType@@PBD@Z,,0x000E7240,85,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,clean C++ conversion in the real Science.cpp; ZH body but BFME throws INIException with a formatted message instead of ZH's bare INI_INVALID_DATA so the diagnostic survives release
 ?getScienceFromInternalName@ScienceStore@@QBE?AW4ScienceType@@ABVAsciiString@@@Z,,0x000E7460,41,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,Open-BFME5 exact C++ raw science name lookup
 ?j_000e7740@@YAXXZ,,0x000E7740,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_004e74c0
 ?init@RankInfoStore@@UAEXXZ,,0x000E79F0,43,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp,matched,
