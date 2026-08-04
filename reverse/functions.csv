@@ -91789,3 +91789,4 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?addSmudgeToSet@SmudgeSet@@QAEPAUSmudge@@XZ,,0x005D4320,83,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?findSingleSubObj@@YA_NPAVRenderObjClass@@ABVAsciiString@@AAVMatrix3D@@AAH@Z,,0x00761F40,243,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,AsciiString::isNone pinned to the body the ledger claims as StringBase<char>::isNone
 ??6Debug@@QAEAAV0@I@Z,,0x0088C100,79,Code/Libraries/Source/WWVegas/WWDebug/debug_operator_uint.cpp,matched,exact C++ Debug::operator<<(unsigned) body
+?removeMessageAtIndex@InGameUI@@IAEXH@Z,,0x0043CE10,71,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,

@@ -2197,15 +2197,19 @@ void InGameUI::addMessageText( const UnicodeString& formattedMessage, const RGBC
 //-------------------------------------------------------------------------------------------------
 /** Remove the message on screen at index i */
 //-------------------------------------------------------------------------------------------------
-// ?removeMessageAtIndex@InGameUI@@IAEXH@Z present-unmatched
 void InGameUI::removeMessageAtIndex( Int i )
 {
-
-	m_uiMessages[ i ].fullText.clear();
-	if( m_uiMessages[ i ].displayString )
-		TheDisplayStringManager->freeDisplayString( m_uiMessages[ i ].displayString );
-	m_uiMessages[ i ].displayString = NULL;
-	m_uiMessages[ i ].timestamp = 0;
+	// BFME: message entries at +0x56c, 6 of 0x10: fullText, displayString, timestamp, color.
+	unsigned char *self = reinterpret_cast<unsigned char *>(this);
+	reinterpret_cast<UnicodeString *>(self + i * 0x10 + 0x56c)->clear();
+	DisplayString *ds = *reinterpret_cast<DisplayString **>(self + (i + 0x57) * 0x10);
+	if( ds )
+	{
+		reinterpret_cast<DisplayStringManager_FreeSlot *>(TheDisplayStringManager)
+			->freeDisplayString(ds);
+	}
+	*reinterpret_cast<DisplayString **>(self + (i + 0x57) * 0x10) = NULL;
+	*reinterpret_cast<unsigned int *>(self + i * 0x10 + 0x574) = 0;
 
 }  // end removeMessageAtIndex
 
