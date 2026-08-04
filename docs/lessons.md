@@ -1518,3 +1518,46 @@ Following the call resolves through two thunks (0x0001E29F, 0x002C11D0,
 and AIMoveToState code — a different translation unit from AIUpdate.cpp. So the
 `??_G` belongs to one of the AI state classes, not to AIUpdateInterface. Chase
 the destructor, never the deleting destructor.
+
+## Interior int3 is the cheapest decisive test there is, and 18 rows fail it
+
+The AIAttackMoveStateMachine withdrawal above turned on one observation that
+generalises further than the row it killed: MSVC pads *between* functions with
+0xCC and never inside one, so a run of int3 strictly inside a claimed range
+proves the claim spans a function boundary. No disassembler, no Ghidra
+inventory, no second opinion -- the retail bytes say it outright.
+
+`tools/audit_internal_padding.py` runs it over the whole ledger. **Eighteen
+matched rows fail**, twelve of them with runs of 64 int3 or more:
+
+```
+0x1699C2 1654B  body ends at +0x468, then 294 int3  AIPlayer::recruitSpecificAITeam
+0x76E90A  568B  body ends at +0x15A, then 172 int3  Team::tryToRecruit
+0x6000B0  807B  body ends at +0x274, then 172 int3  DefaultModuleTemplate<1>::writeINI
+0x784783  984B  body ends at +0x0D2, then 171 int3  W3DRadar::drawViewBox
+0x2AF8F9  523B  body ends at +0x126, then 129 int3  StructureToppleUpdate::doDamageLine
+0x5A565D 1119B  body ends at +0x274, then 127 int3  LANAPI::handleRequestJoin
+0x2BAFB8 1701B  body ends at +0x13E, then 122 int3  Locomotor::locoUpdate_moveTowardsPosition
+0x6008AF 1257B  body ends at +0x2B9, then 120 int3  ParticleSystem::generateParticleInfo
+0x37F2AD  711B  body ends at +0x19E, then 117 int3  Object::onVeterancyLevelChanged
+0x4F1C4A  805B  body ends at +0x15E, then 104 int3  DownloadManagerMunkee::downloadFile
+0x614F8E  496B  body ends at +0x10E, then  84 int3  ScriptActions::doTeamUseCommandButtonOnNearestKindof
+0x0D93AC  487B  body ends at +0x11B, then  73 int3  Player::setRankLevel
+```
+
+Every one is a transcription of retail bytes -- a `.asm` dump, or the same
+thing spelled as a `__declspec(naked)` body with an `__asm` block, which is why
+three of the eighteen have `.cpp` sources. Both kinds byte-verify at any length,
+so the gate has never had an opinion about them.
+
+Worked example of what the overhang costs. `OptionPreferences::getLANIPAddress`
+claims 0x092436 for 488 bytes. The body ends `add esp,0x10; ret 4` at
+0x0924B1, 62 int3 follow, and 0x0924F0 -- 16-byte aligned -- opens `push -1;
+push <handler>`, an SEH prologue. So the real function is 124 bytes and the row
+has swallowed a whole SEH-bearing function that nobody can now claim, because
+its address already belongs to getLANIPAddress.
+
+Two cautions before acting on the list. Interior padding proves the *end* is
+wrong; it says nothing about the start, which has to be checked separately (a
+real start is 16-byte aligned or sits directly after a padding run). And these
+rows belong to other people's work -- the tool reports, it does not edit.
