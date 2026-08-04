@@ -1,161 +1,129 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the StreakLineClass::Set_Widths naked dump to clean C++.
+//
+// Zero Hour's streak.cpp body. PointWidths is a SimpleDynVecClass<float>, not a
+// DynamicVectorClass, and that matters: the whole function is the container's
+// inline machinery with only Resize left as an out-of-line virtual, so the
+// members have to be spelled the way simplevec.h spells them or nothing lines
+// up.
+//
+// The three arithmetic shapes in the dump are all from that header:
+//   * Delete_All -> ActiveCount = 0 then Shrink, which is
+//     `if (ActiveCount < VectorMax/4) Resize(ActiveCount)`. With ActiveCount
+//     just set to zero the compare folds to `VectorMax/4 > 0` and the call
+//     becomes Resize(0) -- that is the leading divide-by-four, not a growth
+//     step.
+//   * Grow -> MAX(Length() + Length()/4, Length() + 4) then MAX against the
+//     caller's hint, which is the second divide-by-four and the two
+//     compare-and-move pairs.
+//   * Add -> the `ActiveCount >= VectorMax` guard and the trailing
+//     `(*this)[ActiveCount++] = object`.
+//
+// Resize is vtable slot 1: the base declares the destructor first, then Resize,
+// then Uninitialised_Grow, and both call sites here go through [vtable+4].
+//
+// The WWASSERT(0) in the reject path is a no-op under NDEBUG, so the guard is
+// just the short-circuited `num_points < 2 || !widths`. MSVC shrink-wraps the
+// register saves around it, which is why ebp and edi are pushed only after the
+// first test passes.
+//
+// Retail pins the layout: PointWidths sits at this+0xF4, with Vector at +0x04,
+// VectorMax at +0x08 and ActiveCount at +0x0C of it.
+
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
+
+class SimpleVecClass
+{
+public:
+	virtual ~SimpleVecClass(void);						///< vtable +0x00
+	virtual bool Resize(int newsize);					///< vtable +0x04
+	virtual bool Uninitialised_Grow(int newsize);		///< vtable +0x08
+
+	float &operator[](int index) { return Vector[index]; }
+	int Length(void) const { return VectorMax; }
+
+protected:
+	float *Vector;										///< retail this+0x04
+	int VectorMax;										///< retail this+0x08
+};
+
+class SimpleDynVecClass : public SimpleVecClass
+{
+public:
+	virtual ~SimpleDynVecClass(void);
+	virtual bool Resize(int newsize);
+
+	float &operator[](int index) { return Vector[index]; }
+
+	bool Add(float const &object, int new_size_hint = 0)
+	{
+		if (ActiveCount >= VectorMax)
+		{
+			// We are out of space so tell the vector to grow
+			if (!Grow(new_size_hint))
+			{
+				return false;
+			}
+		}
+
+		(*this)[ActiveCount++] = object;
+		return true;
+	}
+
+	void Delete_All(bool allow_shrink = true)
+	{
+		ActiveCount = 0;
+
+		if (allow_shrink)
+		{
+			Shrink();
+		}
+	}
+
+protected:
+	bool Grow(int new_size_hint)
+	{
+		// grow to 25% bigger, at least 4 elements, at least up to the hint
+		int new_size = MAX(Length() + Length() / 4, Length() + 4);
+		new_size = MAX(new_size, new_size_hint);
+
+		return Resize(new_size);
+	}
+
+	bool Shrink(void)
+	{
+		// shrink the array if it is wasting more than 25%
+		if (ActiveCount < VectorMax / 4)
+		{
+			return Resize(ActiveCount);
+		}
+		return true;
+	}
+
+	int ActiveCount;									///< retail this+0x0C
+};
 
 class StreakLineClass
 {
 protected:
-	void Set_Widths(unsigned int, float *);
+	void Set_Widths(unsigned int num_points, float *widths);
+
+	unsigned char m_unreconstructed_00[0xF4];
+	SimpleDynVecClass PointWidths;						///< retail this+0xF4
 };
 
 // ?Set_Widths@StreakLineClass@@IAEXIPAM@Z
-__declspec(naked) void StreakLineClass::Set_Widths(unsigned int, float *)
+void StreakLineClass::Set_Widths(unsigned int num_points, float *widths)
 {
-	__asm {
-		__emit 0x53
-		__emit 0x8b
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x83
-		__emit 0xfb
-		__emit 0x02
-		__emit 0x0f
-		__emit 0x82
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x55
-		__emit 0x8b
-		__emit 0x6c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x57
-		__emit 0x33
-		__emit 0xff
-		__emit 0x3b
-		__emit 0xef
-		__emit 0x74
-		__emit 0x72
-		__emit 0x8b
-		__emit 0x81
-		__emit 0xfc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x8d
-		__emit 0xb1
-		__emit 0xf4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x99
-		__emit 0x83
-		__emit 0xe2
-		__emit 0x03
-		__emit 0x03
-		__emit 0xc2
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x02
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x0c
-		__emit 0x7e
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x06
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xff
-		__emit 0x50
-		__emit 0x04
-		__emit 0x3b
-		__emit 0xdf
-		__emit 0x76
-		__emit 0x48
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x08
-		__emit 0x39
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0x7c
-		__emit 0x28
-		__emit 0x8b
-		__emit 0xc1
-		__emit 0x99
-		__emit 0x83
-		__emit 0xe2
-		__emit 0x03
-		__emit 0x03
-		__emit 0xc2
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x02
-		__emit 0x03
-		__emit 0xc1
-		__emit 0x83
-		__emit 0xc1
-		__emit 0x04
-		__emit 0x3b
-		__emit 0xc1
-		__emit 0x7f
-		__emit 0x02
-		__emit 0x8b
-		__emit 0xc1
-		__emit 0x3b
-		__emit 0xc3
-		__emit 0x7f
-		__emit 0x02
-		__emit 0x8b
-		__emit 0xc3
-		__emit 0x8b
-		__emit 0x16
-		__emit 0x50
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xff
-		__emit 0x52
-		__emit 0x04
-		__emit 0x84
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x13
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x56
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x48
-		__emit 0x01
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0xbd
-		__emit 0x00
-		__emit 0x89
-		__emit 0x0c
-		__emit 0x82
-		__emit 0x47
-		__emit 0x3b
-		__emit 0xfb
-		__emit 0x72
-		__emit 0xb8
-		__emit 0x5e
-		__emit 0x5f
-		__emit 0x5d
-		__emit 0x5b
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
+	if (num_points < 2 || !widths)
+	{
+		// WWASSERT(0) -- compiled out under NDEBUG
+		return;
+	}
+
+	PointWidths.Delete_All();
+	for (unsigned int i = 0; i < num_points; i++)
+	{
+		PointWidths.Add(widths[i], num_points);
 	}
 }

@@ -70431,7 +70431,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?Add@?$SimpleDynVecClass@PAVFontCharsClass@@@@QAE_NABQAVFontCharsClass@@H@Z,,0x00919E60,86,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,
 ?Delete_All@?$SimpleDynVecClass@VVector4@@@@QAEX_N@Z,,0x00919EC0,47,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ?Set_UV_Offset_Rate@SegLineRendererClass@@QAEXABVVector2@@@Z,,0x00919F20,32,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,
-?Set_Widths@StreakLineClass@@IAEXIPAM@Z,,0x0091A380,146,Code/GameEngine/Source/Common/StreakLineClass_Set_Widths_Thunk.cpp,matched,Exact 146B Open-BFME5
+?Set_Widths@StreakLineClass@@IAEXIPAM@Z,,0x0091A380,146,Code/GameEngine/Source/Common/StreakLineClass_Set_Widths_Thunk.cpp,matched,clean C++ conversion; ZH streak.cpp body; PointWidths is SimpleDynVecClass<float> at this+0xF4; Delete_All Shrink Grow and Add all inline with Resize as vtable slot 1
 ?Get_Obj_Space_Bounding_Sphere@HLodClass@@UBEXAAVSphereClass@@@Z,,0x0091A690,93,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Define_Vendor@DX8Caps@@CA?AW4VendorIdType@1@I@Z,,0x0091A9F0,134,Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp,matched,
 ?Get_ATI_Device@DX8Caps@@CA?AW4DeviceTypeATI@1@I@Z,,0x0091AB80,458,Code/Libraries/Source/WWVegas/WW3D2/dx8caps.cpp,matched,
