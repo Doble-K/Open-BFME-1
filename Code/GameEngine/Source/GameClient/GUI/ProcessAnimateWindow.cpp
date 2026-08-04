@@ -135,14 +135,30 @@ void ProcessAnimateWindowSlideFromRight::initReverseAnimateWindow( AnimateWindow
 }
 
 //-----------------------------------------------------------------------------
-// ?initAnimateWindow@ProcessAnimateWindowSlideFromRight@@UAEXPAVAnimateWindow@@@Z present-unmatched
 void ProcessAnimateWindowSlideFromRight::initAnimateWindow( AnimateWindow *animWin )
 {
+	class BFMEDisplayLayout
+	{
+	public:
+		virtual void slot00( void ) = 0;
+		virtual void slot01( void ) = 0;
+		virtual void slot02( void ) = 0;
+		virtual void slot03( void ) = 0;
+		virtual void slot04( void ) = 0;
+		virtual void slot05( void ) = 0;
+		virtual void slot06( void ) = 0;
+		virtual void slot07( void ) = 0;
+		virtual void slot08( void ) = 0;
+		virtual void slot09( void ) = 0;
+		virtual void slot10( void ) = 0;
+		virtual UnsignedInt getWidth( void ) = 0;
+	};
+
 	ICoord2D restPos = {0,0};
 	ICoord2D startPos = {0,0};
 	ICoord2D curPos = {0,0};
 	ICoord2D endPos = {0,0};
-	Coord2D	vel = {0.0f,0.0f};
+	BFMECoord2D vel;
 	
 	if(!animWin)
 	{
@@ -164,7 +180,7 @@ void ProcessAnimateWindowSlideFromRight::initAnimateWindow( AnimateWindow *animW
 	endPos.y = restPos.y;
 
 	//set the initial positions for the window. In this case, off the Right of the screen
-	Int travelDistance = TheDisplay->getWidth();// / 4 * 3;
+	Int travelDistance = ((BFMEDisplayLayout *)TheDisplay)->getWidth();// / 4 * 3;
 	startPos.x = curPos.x = restPos.x + travelDistance;
 	startPos.y = curPos.y = restPos.y;
 
@@ -176,7 +192,7 @@ void ProcessAnimateWindowSlideFromRight::initAnimateWindow( AnimateWindow *animW
 	vel.y = 0.0f;
 
 
-	animWin->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
+	((BFMEAnimateWindowLayout *)animWin)->setAnimData(startPos, endPos, curPos, restPos, vel, timeGetTime() + animWin->getDelay(), 0);
 }
 
 
