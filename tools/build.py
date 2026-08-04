@@ -177,8 +177,15 @@ def read_object_symbols(data):
     return symbols
 
 
-def read_object_symbol_bytes(path, symbol_name, expected_size=None):
-    data = path.read_bytes()
+@functools.lru_cache(maxsize=256)
+def _object_layout(path_str, mtime_ns, size):
+    """Parsed COFF layout, keyed by (path, mtime, size) so a recompile misses.
+
+    The gate reads the SAME multi-MB object once per ledger row; with generated
+    claims putting hundreds of rows on one TU, re-reading and re-parsing per row
+    came to dominate full-gate wall time (91k rows over ~4k objects). One parse
+    per object version is behavior-identical."""
+    data = Path(path_str).read_bytes()
     section_count = u16(data, 2)
     section_table = 20
 
@@ -195,7 +202,12 @@ def read_object_symbol_bytes(path, symbol_name, expected_size=None):
             }
         )
 
-    symbols = read_object_symbols(data)
+    return data, sections, read_object_symbols(data)
+
+
+def read_object_symbol_bytes(path, symbol_name, expected_size=None):
+    stat = path.stat()
+    data, sections, symbols = _object_layout(str(path), stat.st_mtime_ns, stat.st_size)
     resolved_name = symbol_name
     if not any(s["name"] == symbol_name and s["section"] > 0 for s in symbols):
         # MSVC hashes the absolute source path into anonymous-namespace names,
