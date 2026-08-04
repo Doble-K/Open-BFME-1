@@ -64268,3 +64268,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?b_00aaa9c0@@YAXXZ,0x00AAA9C0,gen-thunk body
 ?b_00a89b69@@YAXXZ,0x00A89B69,gen-thunk body
 ?b_00ad5401@@YAXXZ,0x00AD5401,gen-thunk body
+___CxxFrameHandler,0x009F6DD6,__CxxFrameHandler import thunk; every __ehhandler$ stub jmps here
