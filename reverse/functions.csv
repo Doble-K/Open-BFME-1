@@ -88334,3 +88334,4 @@ eh_00c62083,,0x00C62083,10,Code/gen_small/eh_anchor.cpp,matched,gen-ehstub;objec
 ??_GGen_dtor_00b02600@@UAEPAXI@Z,,0x00B02600,30,Code/gen_small/dtors_010.cpp,matched,gen-dtor;ghidra=FUN_00f02600
 ??_GGen_dtor_00b02660@@UAEPAXI@Z,,0x00B02660,30,Code/gen_small/dtors_010.cpp,matched,gen-dtor;ghidra=FUN_00f02660
 ??_GGen_dtor_00b026c0@@UAEPAXI@Z,,0x00B026C0,30,Code/gen_small/dtors_010.cpp,matched,gen-dtor;ghidra=FUN_00f026c0
+?update@W3DProjectedShadow@@QAEXXZ,,0x007B0250,92,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
