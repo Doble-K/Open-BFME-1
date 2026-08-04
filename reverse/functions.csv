@@ -91255,8 +91255,6 @@ uw_00c1eb70,,0x00C1EB70,8,Code/gen_small/tgrid_114.cpp,matched,gen-funclet;paren
 ??_GDebugCmdInterfaceDebug@@UAEPAXI@Z,,0x0088A680,33,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,
 ?Create@OutputStream@DebugIOFlat@@SAPAV12@PBDI@Z,,0x0088FF60,94,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,clean C++ placement-new; /EHa matches retail's shared-epilogue EH shape
 ?Delete@DebugCmdInterfaceDebug@@UAEXXZ,,0x008895D0,20,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,
-_adler32,,0x00826FA0,297,Code/Libraries/Source/Compression/zlib/adler32.cpp,matched,stock zlib 1.1.4 adler32.c; version string at 0x112D2F8 names the release
-_zlibVersion,,0x00828BB0,6,Code/Libraries/Source/Compression/zlib/zutil.cpp,matched,stock zlib 1.1.4 zutil.c; returns the ZLIB_VERSION string at 0x112D2F8
 _compress2,,0x0081EE80,169,Code/Libraries/Source/Compression/ZLib/compress.c,matched,vendored=zlib-1.1.4
 _uncompress,,0x00821DD0,156,Code/Libraries/Source/Compression/ZLib/uncompr.c,matched,vendored=zlib-1.1.4
 _deflateSetDictionary,,0x00823250,238,Code/Libraries/Source/Compression/ZLib/deflate.c,matched,vendored=zlib-1.1.4
@@ -91667,3 +91665,5 @@ _readname,,0x0099FF90,141,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-
 _luaX_error,,0x009A0020,172,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1
 _luaX_checklimit,,0x009A0370,63,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1
 _inclinenumber,,0x009A03B0,108,Code/Libraries/Source/Lua/llex.c,matched,vendored=lua-4.0.1
+_adler32,,0x00826FA0,297,Code/Libraries/Source/Compression/ZLib/adler32.c,matched,stock zlib 1.1.4 adler32.c as vendored in the tree
+_zlibVersion,,0x00828BB0,6,Code/Libraries/Source/Compression/ZLib/zutil.c,matched,stock zlib 1.1.4 zutil.c; sits directly before zError at 0x828BC0
