@@ -1867,3 +1867,67 @@ free, and the matched rows still decide between an insert, a pad and a
 relocation.
 - The decorated name distinguishes `class` from `struct`: `PBURGBColor@@` is a pointer-to-const *struct*, `PBVAsciiString@@` a pointer-to-const *class*. Declaring the wrong one produces a differently-mangled symbol and `build.py` fails with "symbol not found in object" rather than a byte mismatch — read the `U`/`V` before writing the shim.
 - MSVC does not algebraically simplify integer division, so `LOGICFRAMES_PER_SECOND * t / DRAWABLE_FRAMES_PER_FLASH` stays a multiply followed by a divide instead of collapsing. Two constants in the source remain two operations in the bytes, which is what makes them individually recoverable.
+
+## $L-keyed funclet rows freeze 503 translation units against layout work
+
+A row whose note says `object-symbol=$L<n>` finds its compiled body by a
+compiler-generated label. The number depends on how much code precedes it in the
+translation unit, so *any* change that adds or removes code renumbers it and
+`build.py` stops with `symbol not found in object: $L48498` — a message that
+reads like a broken checkout and is really a layout change doing its job.
+
+Measured on the current ledger: **1,367 such rows across 503 translation
+units.** (An older note put it at 87; that number is stale.) The worst
+concentrations are `module_pool_glue_bulk.cpp` with 146,
+`subsystem_interface.cpp` with 63 and `UserPreferences.cpp` with 36.
+
+`tools/relabel.py` repairs the easy case and refuses the rest, correctly: it
+re-identifies a funclet by its bytes, funclets share a prologue and their one
+distinguishing operand is a masked rel32, so it falls back to a positional check
+— same label count, uniform shift, nth stays nth — and reports AMBIGUOUS when
+that does not hold. It does not hold whenever the edit changes how many labels
+the TU emits, which is exactly what adding a member with a constructor does.
+
+Two independent attempts hit this in one session, and neither was an unusual
+edit:
+
+- adding `NeededUpgrade` and a `std::vector<AsciiString> BuildUpgrades` to
+  `CommandButton` broke five funclet rows in ControlBar.cpp
+  (`uw_00c27f10`, `uw_00c27fe0`, `uw_00c27fee`, `uw_00c27ffc`, `uw_00c28250`),
+  all five AMBIGUOUS;
+- opting Upgrade.cpp into the existing AudioEventRTS shim broke `$L48498`.
+
+So the practical position is that the header layout of 503 TUs is frozen, and
+every structural finding that lands in a header has to fight this first. Fixing
+it is worth more than any single class: a funclet's real identity is its parent
+plus its position among that parent's funclets, which the object's unwind data
+states directly, and re-keying the rows that way would survive renumbering. Until
+then, expect to land a layout change and its funclet re-keying as one commit.
+
+## BFME's AudioEventRTS is 0x70 bytes, the shim proving it reaches one TU
+
+`reference/shims/turretai/Common/AudioEventRTS.h` already reconstructs the class
+at 112 bytes against our 100, and it is TU-scoped — `TurretAI.cpp` is the only
+file in the tree that opts in. The INI tables say what that costs everyone else.
+
+Two independent confirmations of the size, neither needing the shim. Retail's
+`MiscAudio` block is a run of `AudioEventRTS` fields at a uniform **0x70**
+stride (0x000, 0x070, 0x0E0, 0x150, …), and `UpgradeTemplate`'s two adjacent
+sound members sit 0x70 apart in retail (0x28 → 0x98) against 0x64 in our build
+(0x2c → 0x90).
+
+The blast radius, counted off `docs/ini_schema.md`: **47 embeds across six
+INI-parsed classes** — `MiscAudio` 32, `Weapon` 9, `Upgrade` 2, `SpecialPower`
+2, `ObjectCreationList` 1, `Campaign` 1. Every member after an embed is twelve
+bytes too low per embed in every TU that does not see the shim, which is all of
+them but one. It is a large part of why `WeaponTemplate` looks chaotic: nine
+embeds is 108 bytes of drift before anything else is wrong.
+
+The shim does generalise — opting Upgrade.cpp in moves `UnitSpecificSound` from
+0x90 to 0x9c and `ButtonImage` from 0x100 to 0x118, exactly one and two embeds
+of growth, and `tools/ini_layout_diff.py` measures it. What stops that being a
+one-line win is the paragraph above: the opt-in renumbers labels and breaks a
+`$L` row. What is left for UpgradeTemplate after the shim is small and fully
+specified by the table — retail adds `Tooltip` (0x14) and `UpgradeFX` (0x24),
+drops our `AcademyClassify`, and appends `Cursor` (0x118),
+`PersistsInCampaign` (0x11c) and `NoUpgradeDiscount` (0x11d).
