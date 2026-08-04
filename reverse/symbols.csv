@@ -2775,7 +2775,7 @@ name,address,notes
 ?_Init_Filters@TextureFilterClass@@SAXW4TextureFilterMode@1@@Z,0x00920D10,pinharvest x2 (body)
 ?_Invalidate_Textures@WW3D@@SAXXZ,0x008FD790,pinharvest x2 (body)
 ?_M_acquire_lock@NodeAllocMutex@_STL@@QAEXXZ,0x0082DA10,node_alloc deallocate lock acquire; thunk to real acquire 0x0082C760
-?_M_allocate@?$__node_alloc@$00$0A@@_STL@@CAPAXI@Z,0x00082E540,STLport _Node_alloc::_M_allocate called by list<Coord3D> copy ctor
+?_M_allocate@?$__node_alloc@$00$0A@@_STL@@CAPAXI@Z,0x0082E540,STLport _Node_alloc::_M_allocate called by list<Coord3D> copy ctor
 ?_M_bkt_num_key@?$hashtable@U?$pair@$$CBVAsciiString@@PAUAudioEventInfo@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@PAUAudioEventInfo@@@_STL@@@2@U?$equal_to@VAsciiString@@@5@V?$allocator@U?$pair@$$CBVAsciiString@@PAUAudioEventInfo@@@_STL@@@2@@_STL@@ABEIABVAsciiString@@I@Z,0x000103F7,resweep callee back-solved
 ?_M_bkt_num_key@?$hashtable@U?$pair@$$CBVAsciiString@@PAVParticleSystemTemplate@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@PAVParticleSystemTemplate@@@_STL@@@2@U?$equal_to@VAsciiString@@@5@V?$allocator@U?$pair@$$CBVAsciiString@@PAVParticleSystemTemplate@@@_STL@@@2@@_STL@@ABEIABVAsciiString@@I@Z,0x0001F843,rel32 pin for exact-ambiguous landing
 ?_M_bkt_num_key@?$hashtable@U?$pair@$$CBVAsciiString@@PBVCommandButton@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@PBVCommandButton@@@_STL@@@2@U?$equal_to@VAsciiString@@@5@V?$allocator@U?$pair@$$CBVAsciiString@@PBVCommandButton@@@_STL@@@2@@_STL@@ABEIABVAsciiString@@I@Z,0x0000E8E0,pinharvest x1 (thunk)
@@ -21801,7 +21801,7 @@ name,address,notes
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x0004AEFD,hit-decoded x3 (thunk)
 ?classifyObjectFootprint@Pathfinder@@IAEXPAVObject@@_N@Z,0x009407B0,hit-decoded x3 (body)
 ?clear@?$StringBase@D@@QAEXXZ,0x00887940,retail StringBase<char>::clear body (folds with releaseBuffer); SubsystemLegendEntry ctor calls it directly not via the 0x000680C0 thunk
-?clear@?$_List_base@VQueuedDownload@@V?$allocator@VQueuedDownload@@@_STL@@@_STL@@QAEXXZ,0x000627270,DownloadManager list_base<QueuedDownload> clear clone; ILT thunk 0x3AA1C
+?clear@?$_List_base@VQueuedDownload@@V?$allocator@VQueuedDownload@@@_STL@@@_STL@@QAEXXZ,0x00627270,DownloadManager list_base<QueuedDownload> clear clone; ILT thunk 0x3AA1C
 ?clear@?$hashtable@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@W4NameKeyType@@U?$hash@W4NameKeyType@@@rts@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@U?$equal_to@W4NameKeyType@@@5@V?$allocator@U?$pair@$$CBW4NameKeyType@@PAVBucket@@@_STL@@@2@@_STL@@QAEXXZ,0x0008F880,NameKeyGenerator aux hash_map hashtable<>::clear() proven via freeSockets tail-jmp
 ?clear@?$hashtable@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@PBVGameWindow@@UhashConstGameWindowPtr@WindowVideoManager@@U?$_Select1st@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@U?$equal_to@PBVGameWindow@@@2@V?$allocator@U?$pair@QBVGameWindow@@PAVWindowVideo@@@_STL@@@2@@_STL@@QAEXXZ,0x000458BD
 ?clear@AsciiString@@QAEXXZ,0x00887940,retail AsciiString::clear body called from DictPair::copyFrom
@@ -68101,8 +68101,7 @@ _str_checkname,0x0099AC90,vendored=lua-4.0.1
 _subexpr,0x0099CA60,vendored=lua-4.0.1
 _test_then_block,0x0099CEA0,vendored=lua-4.0.1
 _var_or_func_tail,0x0099C4B0,vendored=lua-4.0.1
-?set@ParseStringData@@QAEXPBDH@Z,0x000887D20,retail call target from parseSystemCallback (0x487818): shared two-arg string setter body
-
+?set@ParseStringData@@QAEXPBDH@Z,0x00887D20,retail call target from parseSystemCallback (0x487818): shared two-arg string setter body
 _ggetm,0x00822030,static ggetm copy emitted into refdecode.cpp; pinned by REF_size @0x8220D0
 _ggetm,0x00822D90,static ggetm copy emitted into huffdecode.cpp; pinned by HUFF_size @0x822E70
 _luaK_goiftrue,0x0099F6C0,pinned from cond @0x99CC40 which is byte-exact apart from this call; three-argument luaK_goiftrue(fs;v;0)

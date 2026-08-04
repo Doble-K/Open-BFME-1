@@ -238,6 +238,13 @@ def check_symbols(raw, problems):
         except ValueError:
             problems.append(f"symbols.csv line {i} ({name}): bad address '{address}'")
             continue
+        # Short addresses are only inconsistent zero-padding and parse fine, but
+        # more than eight hex digits cannot be a 32-bit RVA in any spelling, so
+        # it is always a typo — three such rows reached the ledger before this
+        # check existed, each one digit too long and silently parsing correctly.
+        if len(address.removeprefix("0x").removeprefix("0X")) > 8:
+            problems.append(f"symbols.csv line {i} ({name}): address '{address}' has "
+                            f"more than 8 hex digits; write it as 0x{addr:08X}")
         if (name, addr) in seen_exact:
             problems.append(f"symbols.csv line {i}: exact duplicate row for {name}. "
                             "Fix: python3 tools/dedup_csv.py")
