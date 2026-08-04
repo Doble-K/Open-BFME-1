@@ -142,8 +142,10 @@ static void doMoveTo( Object *obj, const Coord3D *pos )
 // GameLogicDispatchDoSetRallyPointThunk.cpp.
 void doSetRallyPoint(Object *, const Coord3D &);
 
-// Lifting doSetRallyPoint out took this helper with it, but six call sites
-// below still use it, so it stays here where they can see it.
+// ------------------------------------------------------------------------------------------------
+// Lifting doSetRallyPoint out of this file took this static helper with it, but
+// six call sites further down still use it.
+// ------------------------------------------------------------------------------------------------
 static Object * getSingleObjectFromSelection(const AIGroup *currentlySelectedGroup)
 {
 	if( currentlySelectedGroup )

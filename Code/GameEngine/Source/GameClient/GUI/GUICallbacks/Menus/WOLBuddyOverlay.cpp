@@ -58,11 +58,6 @@
 #include "GameNetwork/GameSpy/PersistentStorageThread.h"
 #include "GameNetwork/GameSpy/ThreadUtils.h"
 
-// Both bodies were lifted out of this TU into InitBuddyControlsThunk.cpp and
-// RequestBuddyAddThunk.cpp; the call sites below still need to see them.
-void InitBuddyControls(Int type);
-void RequestBuddyAdd(Int profileID, AsciiString nick);
-
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
 
 #ifdef _INTERNAL
@@ -156,7 +151,9 @@ enum
 };
 
 // ?InitBuddyControls@@YAXH@Z
-// Body in Code/masm_dumps/InitBuddyControls.asm (exact 776B retail @ 0x004EA9D0).
+// Body in InitBuddyControlsThunk.cpp (exact 776B retail @ 0x004EA9D0), so this
+// translation unit only needs the prototype its call sites below refer to.
+void InitBuddyControls( Int );
 WindowMsgHandledType BuddyControlSystem( GameWindow *window, UnsignedInt msg, 
 														 WindowMsgData mData1, WindowMsgData mData2)
 {
@@ -1144,7 +1141,9 @@ static void closeRightClickMenu(GameWindow *win)
 }
 
 // RequestBuddyAdd exact retail body is emitted by
-// RequestBuddyAddThunk.cpp.
+// RequestBuddyAddThunk.cpp, so this translation unit only needs the prototype
+// its call sites below refer to.
+void RequestBuddyAdd( Int, AsciiString );
 WindowMsgHandledType WOLBuddyOverlayRCMenuSystem( GameWindow *window, UnsignedInt msg, WindowMsgData mData1, WindowMsgData mData2 )
 {
 
