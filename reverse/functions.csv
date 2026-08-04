@@ -64524,7 +64524,7 @@ __stringbase_isnone_cmp_wchar,,0x004EA730,89,Code/Libraries/Source/WWVegas/WWLib
 ?init@FadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059C960,68,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@FlashTransition@@UAEXH@Z,,0x0059C9C0,137,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@FlashTransition@@UAEXXZ,,0x0059CAB0,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
-?init@FullFadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059D420,95,Code/GameEngine/Source/Common/FullFadeTransition_init_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?init@FullFadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059D420,95,Code/GameEngine/Source/Common/FullFadeTransition_init_Thunk.cpp,matched,clean C++ conversion; ZH body but BFME reads the update argument from this+0x10 and the frame count from this+0x14 instead of the FULLFADETRANSITION constants; flags at +0x08/+0x09; m_percent at +0x28
 ?m@Gen_0059d940@@QAEXXZ,,0x0059D940,9,Code/gen_small/fun_003.cpp,matched,gen-shim;skeleton=zero8-pair;ghidra=FUN_0099d940
 ?update@MainMenuMediumScaleUpTransition@@UAEXH@Z,,0x0059E010,161,Code/GameEngine/Source/Common/MainMenuMediumScaleUpTransition_updateMethodThunk.cpp,matched,Certified packet 339; Ghidra entry vtable slot constructor chain Medium string xref and ret boundary; retail SHA256 3ee58d8724c86dc1cd9eaee15cd97b2499a862e8d5b11672386c7d9aedab2c29
 ?reverse@MainMenuMediumScaleUpTransition@@UAEXXZ,,0x0059E0E0,23,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
