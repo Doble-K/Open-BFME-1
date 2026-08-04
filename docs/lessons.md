@@ -1403,3 +1403,5 @@ code outrank the 314 the conversion would have bought.
 CRT functions reached under /MD are imported, so retail calls them indirectly through the IAT (ff 15); declare them __declspec(dllimport) or the compiler emits a direct rel32 that is one byte shorter and shifts every rel32 after it (hit on ceil in SupplyWarehouseDockUpdate::setCashValue).
 
 The build's default -EHsc- only clears the /EHc half, so /EHs stays on and any destructor-bearing temporary gets an SEH prologue plus unwind state variable; a retail body with no unwind frame needs /EHs-c- on the source's cl line.
+
+A boolean returned as `if (cond) return TRUE; return FALSE;` and as `return cond;` are not interchangeable: MSVC 7.1 computes the first in al (sbb al,al / inc al) and the second in eax (sbb eax,eax / inc eax). Read the ZH phrasing rather than assuming the compact form - it cost several attempts across the UserPreferences boolean getters. Check the String-ref verify line as well as Functions when batch-converting: a wrong literal still byte-matches because the DIR32 address is copied from the target.
