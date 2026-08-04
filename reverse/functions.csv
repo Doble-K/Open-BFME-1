@@ -58709,7 +58709,7 @@ _XMP_Test_Bit,,0x000A2C80,33,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matc
 ?read@CachedFileInputStream@@UAEHPAXH@Z,,0x001023A0,74,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?absoluteSeek@CachedFileInputStream@@UAE_NI@Z,,0x00102410,27,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?eof@CachedFileInputStream@@UAE_NXZ,,0x00102440,12,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
-?closeDataChunk@DataChunkOutput@@QAEXXZ,,0x001024A0,118,Code/GameEngine/Source/Common/System/DataChunkOutputCloseDataChunkThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM method
+?closeDataChunk@DataChunkOutput@@QAEXXZ,,0x001024A0,118,Code/GameEngine/Source/Common/System/DataChunkOutputCloseDataChunkThunk.cpp,matched,clean C++ conversion; ZH DataChunk.cpp body unchanged; file handle at this+0x04 and chunk stack at this+0x18; chunk next at +0x04 and filepos at +0x0C
 ?writeReal@DataChunkOutput@@QAEXM@Z,,0x00102540,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?writeInt@DataChunkOutput@@QAEXH@Z,,0x00102560,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?writeByte@DataChunkOutput@@QAEXD@Z,,0x00102580,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
