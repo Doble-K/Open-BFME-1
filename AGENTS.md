@@ -77,9 +77,14 @@ repeating your 30-60 minutes; `--include-logged` shows them again for auditing.
 ## Generated small-function claims
 
 `Code/gen_small/` holds machine-generated claim sources: `j_<rva>` ILT-thunk
-tail-calls, `ji_<rva>` import-thunk tail-calls, and `Gen_<rva>` shim methods.
-Their ledger notes start `gen-thunk;`/`gen-import;`/`gen-shim;` and all three
-are placeholder identities — byte-true, semantically anonymous. When you
-identify one's real function, repoint the row with
+tail-calls (`gen-thunk;` notes; `gen-thunk;gap` for thunks outside the ghidra
+inventory), `ji_<rva>` import-thunk tail-calls (`gen-import;`), `Gen_<rva>`
+shim methods (`gen-shim;`), `eh_<rva>` EH-handler stubs bound to eh_anchor.cpp
+(`gen-ehstub;`), `Gen_dtor*_<rva>` deleting destructors (`gen-dtor;`),
+`tg_<rva>`/per-site STLport instantiations (`gen-tgrid;`), and `uw_<rva>` SEH
+funclet rows on their parents' objects (`gen-funclet;`). All are placeholder
+identities — byte-true, semantically anonymous. When you identify one's real
+function, repoint the row with
 `python3 tools/add_match.py <real-name> ... --replace-existing`; do not edit
-the generated source by hand.
+the generated source by hand. check_csv rejects a gen-* row sharing an exact
+range with a real-name row — the placeholder yields (tombstone it).
