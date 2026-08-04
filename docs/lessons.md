@@ -1436,3 +1436,38 @@ method. A sweep that reports several exact placements has not found several
 candidates of equal standing -- caller count and cluster membership usually
 leave exactly one, and both are two minutes of work against `functions.csv` and
 the rel32 sites. Do that before spending a cycle on the bytes.
+
+## The binary names the file that owns a gap, and the biggest gaps are not ours
+
+`gaps.py`-style output is a list of addresses, which cannot be picked up as
+work. It can be, though: retail kept the assert and DEBUG_LOG `__FILE__`
+strings, and they are absolute paths out of the original build tree --
+`F:\bfme\Code\gameengine\Source\GameLogic\Object\Update\AIUpdate.cpp`. A gap
+whose code pushes one of those addresses is that translation unit's code, named
+by the image rather than inferred. `tools/gap_owner.py` does the scan and rolls
+the result up per source file.
+
+Two things it establishes immediately.
+
+**The largest holes in `.text` are vendored Microsoft middleware.** Everything
+between roughly 0x9A0000 and 0xB00000 is statically linked library code:
+0xAC8183 is 216KB of DirectX error-string tables (`E_ABORT`, the `CO_E_*` and
+`DIERR_*` families), and 0xA40673 is 93KB of the D3DX shader assembler
+(`POSITION`, `BLENDWEIGHT`, `TESSFACTOR`, "internal error: unknown node").
+Those two alone are 310KB, they head every ranking of unclaimed bytes, and no
+amount of work on them belongs in this project. The headline coverage number is
+measured against a denominator that includes them.
+
+**The largest holes that are ours, with their addresses**, are
+`AIUpdate.cpp` (33,685 real bytes at 0x273DCE), `HordeContain.cpp` (26,101
+across four gaps from 0x2369B5), `AIGroup.cpp` (24,566 at 0x1527B2 and
+0x156C2E), `AptOnlineQuickMatch.cpp` (10,811 at 0x558F9E), `ScriptEngine.cpp`
+(10,601 at 0x344291), `SpecialAbilityUpdate.cpp` (10,165 at 0x2A6588) and
+`LuaScriptEngine.cpp` (9,695 at 0x2E3F04). Three of those -- HordeContain,
+AptOnlineQuickMatch and LuaScriptEngine -- have no Zero Hour counterpart at
+all, so they are reconstruction from the disassembly rather than porting.
+
+The coverage is sparse by nature: a release build keeps only the asserts that
+survived, and 118 gaps over 8KB hold 2.56MB of real bytes of which only 171KB
+sits in a gap that names anything. Anonymity is not evidence that a region is
+uninteresting -- it is usually just a file whose asserts were compiled out.
