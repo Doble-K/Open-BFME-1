@@ -93155,3 +93155,13 @@ dup_489b30,,0x00489B30,32,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 dup_361960,,0x00361960,32,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,vendored=cnc-zh;dup-of=?GetMyName@LANAPI@@UAE?AVUnicodeString@@XZ;object-symbol=?GetMyName@LANAPI@@UAE?AVUnicodeString@@XZ
 dup_6cb420,,0x006CB420,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,vendored=cnc-zh;dup-of=??0SphereClass@@QAE@ABVVector3@@M@Z;object-symbol=??0SphereClass@@QAE@ABVVector3@@M@Z
 dup_42ed10,,0x0042ED10,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,vendored=cnc-zh;dup-of=??0SphereClass@@QAE@ABVVector3@@M@Z;object-symbol=??0SphereClass@@QAE@ABVVector3@@M@Z
+??0LanguageFilter@@QAE@XZ,,0x0044E540,146,Code/GameEngine/Source/GameClient/LanguageFilterCtor.cpp,matched,vendored=cnc-zh
+??0ShellMenuScheme@@QAE@XZ,,0x00580F20,113,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuSchemeCtor.cpp,matched,vendored=cnc-zh
+??0FileSystem@@QAE@XZ,,0x001B7D70,105,Code/GameEngine/Source/Common/System/FileSystemCtor.cpp,matched,vendored=cnc-zh
+?resetWindowStack@@YAXXZ,,0x00484530,63,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,vendored=cnc-zh
+?NullifyControls@@YAXXZ,,0x004D0160,58,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp,matched,vendored=cnc-zh
+??4PingRequest@@QAEAAV0@ABV0@@Z,,0x00660AD0,50,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,vendored=cnc-zh
+?resetWindowDefaults@@YAXXZ,,0x00484580,38,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,vendored=cnc-zh
+??0ShellMenuSchemeManager@@QAE@XZ,,0x005810E0,37,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuSchemeCtor.cpp,matched,vendored=cnc-zh
+?buildFieldParse@ActiveShroudUpgradeModuleData@@SAXAAVMultiIniFieldParse@@@Z,,0x00124670,35,Code/GameEngine/Source/GameLogic/Object/Upgrade/ActiveShroudUpgrade.cpp,matched,vendored=cnc-zh
+??0PingRequest@@QAE@ABV0@@Z,,0x00660050,33,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,vendored=cnc-zh
