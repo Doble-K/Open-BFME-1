@@ -93165,3 +93165,5 @@ dup_42ed10,,0x0042ED10,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DR
 ??0ShellMenuSchemeManager@@QAE@XZ,,0x005810E0,37,Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuSchemeCtor.cpp,matched,vendored=cnc-zh
 ?buildFieldParse@ActiveShroudUpgradeModuleData@@SAXAAVMultiIniFieldParse@@@Z,,0x00124670,35,Code/GameEngine/Source/GameLogic/Object/Upgrade/ActiveShroudUpgrade.cpp,matched,vendored=cnc-zh
 ??0PingRequest@@QAE@ABV0@@Z,,0x00660050,33,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,vendored=cnc-zh
+??0WindowVideoManager@@QAE@XZ,,0x00499710,237,Code/GameEngine/Source/GameClient/GUI/WindowVideoManagerCtor.cpp,matched,vendored=cnc-zh
+??0DetailedArchivedDirectoryInfo@@QAE@XZ,,0x009D0790,137,Code/GameEngine/Source/Common/System/ArchiveFileCtor.cpp,matched,vendored=cnc-zh
