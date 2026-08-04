@@ -3396,7 +3396,6 @@ Int W3DShaderManager::setShroudTex(Int stage)
 
 
 
-// ?init@FlatTerrainShader2Stage@@UAEHXZ present-unmatched
 Int FlatTerrainShader2Stage::init( void )
 {
 	//no special device validation needed - anything in our min spec should handle this.
