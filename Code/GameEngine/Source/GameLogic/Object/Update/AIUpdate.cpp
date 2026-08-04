@@ -706,7 +706,6 @@ Object* AIUpdateInterface::getTurretTargetObject( WhichTurretType tur, Bool clea
 }
 
 //=============================================================================
-// ?setTurretTargetPosition@AIUpdateInterface@@ present-unmatched
 void AIUpdateInterface::setTurretTargetPosition(WhichTurretType tur, const Coord3D* pos)
 {
 	if (m_turretAI[tur])
@@ -716,7 +715,6 @@ void AIUpdateInterface::setTurretTargetPosition(WhichTurretType tur, const Coord
 }
 
 //=============================================================================
-// ?setTurretEnabled@AIUpdateInterface@@ present-unmatched
 void AIUpdateInterface::setTurretEnabled(WhichTurretType tur, Bool enabled)
 {
 	if (m_turretAI[tur])

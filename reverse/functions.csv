@@ -93095,3 +93095,5 @@ uw_00c56fc0,,0x00C56FC0,8,Code/gen_small/tgrid_122.cpp,matched,gen-funclet;paren
 ?End_Statistics@DX8Wrapper@@SAXXZ,,0x009023C0,113,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,vendored=cnc-zh
 ?Reset_Statistics@DX8Wrapper@@KAXXZ,,0x00902310,103,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,vendored=cnc-zh
 ?Begin_Statistics@DX8Wrapper@@SAXXZ,,0x00902380,53,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,vendored=cnc-zh
+?setTurretTargetPosition@AIUpdateInterface@@QAEXW4WhichTurretType@@PBUCoord3D@@@Z,,0x0026E9B0,28,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,forwards to TurretAI::setTurretTargetPosition through the ILT thunk at 0x468F8; fills a gap in the contiguous AIUpdate.cpp turret block between setTurretTargetObject 0x26E930 and recenterTurret 0x26EA10
+?setTurretEnabled@AIUpdateInterface@@QAEXW4WhichTurretType@@_N@Z,,0x0026E9E0,28,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,forwards to TurretAI::setTurretEnabled; fills the gap between setTurretTargetPosition 0x26E9B0 and recenterTurret 0x26EA10
