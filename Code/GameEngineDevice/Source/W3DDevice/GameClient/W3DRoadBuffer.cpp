@@ -2893,10 +2893,12 @@ void W3DRoadBuffer::insertCrossTypeJoins(void)
 //=============================================================================
 /** Adjusts the end points to create a smooth miter join between road segments. */
 //=============================================================================
-// ?miter@W3DRoadBuffer@@IAEXHH@Z present-unmatched
 void W3DRoadBuffer::miter(Int ndx1, Int ndx2)
 {
 	// adjust a mitered join.  jba.
+	if (!m_initialized) {
+		return;
+	}
 	Vector3 p1 = Vector3(m_roads[ndx1].m_pt1.top.X, m_roads[ndx1].m_pt1.top.Y, 0);
 	Vector3 p2 = Vector3(m_roads[ndx1].m_pt2.top.X, m_roads[ndx1].m_pt2.top.Y, 0);
 	LineSegClass offsetLine1(p1, p2);
