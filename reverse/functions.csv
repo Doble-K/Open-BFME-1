@@ -64521,7 +64521,6 @@ __stringbase_isnone_cmp_wchar,,0x004EA730,89,Code/Libraries/Source/WWVegas/WWLib
 ?init@FlashTransition@@UAEXPAVGameWindow@@@Z,,0x0059C310,68,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@FadeTransition@@UAEXH@Z,,0x0059C370,118,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@FadeTransition@@UAEXXZ,,0x0059C440,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
-?skip@FullFadeTransition@@UAEXXZ,,0x0059C440,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,icf-owner=?skip@FadeTransition@@UAEXXZ
 ?init@FadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059C960,68,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@FlashTransition@@UAEXH@Z,,0x0059C9C0,137,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?skip@FlashTransition@@UAEXXZ,,0x0059CAB0,8,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
@@ -91756,3 +91755,5 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?recenterTurret@TurretAI@@QAEXXZ,,0x0018C8D0,11,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,merged MemoryPoolObject+Snapshot base and two more StateMachine virtuals ahead of setState
 ?miter@W3DRoadBuffer@@IAEXHH@Z,,0x0070D5F0,834,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?setCampaign@CampaignManager@@QAEXVAsciiString@@@Z,,0x005BC5D0,256,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
+?skip@FullFadeTransition@@UAEXXZ,,0x0059D560,10,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,real skip reads m_endFrame; old 0x59C440 row was FadeTransition::skip fold
+?update@FullFadeTransition@@UAEXH@Z,,0x0059D4A0,132,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,BFME FullFadeTransition carries m_startFrame/m_endFrame; bounds read from members

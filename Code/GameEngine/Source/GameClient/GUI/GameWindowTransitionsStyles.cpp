@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /MD /EHsc /Ireference/shims/fullfade /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -1822,6 +1822,8 @@ void ControlBarArrowTransition::skip( void )
 FullFadeTransition::FullFadeTransition ( void )
 {
 	m_frameLength = FULLFADETRANSITION_END;
+	m_startFrame = FULLFADETRANSITION_START;
+	m_endFrame = FULLFADETRANSITION_END;
 	m_win = NULL;
 	m_drawState = -1;
 	m_isForward = TRUE;
@@ -1855,37 +1857,30 @@ void FullFadeTransition::init( GameWindow *win )
 
 }
 
-// ?update@FullFadeTransition@@UAEXH@Z present-unmatched
 void FullFadeTransition::update( Int frame )
 {
 	m_drawState = -1;
-	if(frame < FULLFADETRANSITION_START || frame > FULLFADETRANSITION_END)
+	if(frame < m_startFrame || frame > m_endFrame)
 	{
-		DEBUG_ASSERTCRASH(FALSE, ("FullFadeTransition::update - Frame is out of the range the this update can handle %d", frame));
 		return;
 	}
-	switch (frame) {
-	case FULLFADETRANSITION_START:
+	if(frame == m_startFrame)
+	{
+		if(!m_isForward && m_win)
 		{
-						
-			if(m_isForward || !m_win )
-				break;
-
 			m_win->winHide(TRUE);
 			m_isFinished = TRUE;
-
 		}
-		break;
-	case FULLFADETRANSITION_END:
+	}
+	else if(frame == m_endFrame)
+	{
+		if(m_isForward && m_win)
 		{
-			if(!m_isForward || !m_win )
-				break;
 			m_win->winHide(FALSE);
 			m_isFinished = TRUE;
-
 		}
 	}	
-	if(frame == FULLFADETRANSITION_END/2)
+	if(frame == m_endFrame/2)
 	{
 		if(m_isForward)
 			m_win->winHide(FALSE);	
@@ -1918,7 +1913,7 @@ void FullFadeTransition::draw( void )
 	
 void FullFadeTransition::skip( void )
 {
-	update(FULLFADETRANSITION_END);
+	update(m_endFrame);
 }
 
 //-----------------------------------------------------------------------------
