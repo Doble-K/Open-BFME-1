@@ -68,7 +68,7 @@ by fc259afc2 (since restored, see below) and the three rows ed516d1e4 retracted
 | 1 | DIR32 gate dropped valid rows on `__ehhandler$*` | FIXED — 4a80433f2 |
 | 2 | malformed 9-hex address in symbols.csv | FIXED — 19ce96f89, plus a gate rule |
 | 3 | `?getLastLadderPort@CustomMatchPreferences@@QAEGXZ` claims 1,617B | WRONG CLAIM — retracted and replaced, 5769a2191 |
-| 4 | ICF pair at 0x000E3F80 | DECIDED — FileSystem is the wrong half; see below |
+| 4 | ICF pair at 0x000E3F80 | FIXED — FileSystem was the wrong half; see below |
 | 5 | 87 round-1 `uw_` rows with contested `parent=` notes | DOCUMENTED, deliberately not rewritten — see below |
 | 6 | Microsoft SDK trees one `git add build/` from being committed | FIXED — b5c2b796a |
 | 7 | stray `origin` ref | NOT REPRODUCIBLE, nothing to remove — see below |
@@ -146,16 +146,25 @@ class's COMDATs out of one TU.
 
 Verdict: `??1PlayerTemplateStore@@UAE@XZ` and `??_GPlayerTemplateStore@@UAEPAXI@Z`
 are right; `??1FileSystem@@UAE@XZ` (82B @ 0x000E3F80) and
-`??_GFileSystem@@UAEPAXI@Z` (30B @ 0x000E4170) are the wrong half.
+`??_GFileSystem@@UAEPAXI@Z` (30B @ 0x000E4170) were the wrong half. The second
+row even carried `icf-owner=??_GPlayerTemplateStore@@UAEPAXI@Z`, so the alias was
+registered deliberately.
 
-NOT retracted here, deliberately. The remediation costs no coverage at all —
-the PlayerTemplateStore rows already claim those bytes — but removing the two
-FileSystem rows leaves `FileSystem.cpp` defining functions the ledger no longer
-declares, so it also needs `// <name> present-unmatched` markers, and
-`verify_source_claims` fails the FULL gate if a marker contradicts the ledger.
-That is a source edit to a shared file, and it was not worth risking the one
-end-to-end gate that closes this phase. FileSystem.cpp keeps 3 other matched
-rows, so the "every .cpp owns a matched row" rule survives the deletion.
+**The full gate then proved it independently.** Restoring the FileSystem
+constructor row (above) gave `FileSystem.cpp` a second DIR32 reference to
+`??_7FileSystem@@6B@`, and the consistency check resolved that one symbol to two
+bases: 0x1084BA0 through the destructor row, and 0x109DF10 — FileSystem's real
+vtable — through the rest of the TU. One symbol, one address; the destructor row
+was the half pointing at PlayerTemplateStore's vtable.
+
+That also explains fc259afc2. The phase-3 executor almost certainly hit this
+same red gate, and removed the *new* constructor row rather than the *wrong* old
+destructor row — which is exactly why the drop went unexplained.
+
+Both rows are now retracted with tombstones, `FileSystem.cpp` carries a
+`// ??1FileSystem@@ present-unmatched` marker in the pattern the file already
+uses for its other unmatched members, and DIR32 is back to 0 new. No coverage was
+lost: the PlayerTemplateStore rows already claim those bytes.
 
 ### 5. The round-1 `uw_` parent notes: do not mechanically rewrite
 

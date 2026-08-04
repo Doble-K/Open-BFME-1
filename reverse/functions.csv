@@ -58446,10 +58446,8 @@ _XMP_Test_Bit,,0x000A2C80,33,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matc
 ??$__destroy@PAVPlayerTemplate@@V1@@_STL@@YAXPAVPlayerTemplate@@00@Z,,0x000E3D20,36,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ??$_Destroy@PAVPlayerTemplate@@@_STL@@YAXPAVPlayerTemplate@@0@Z,,0x000E3D50,36,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?erase@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@QAEPAVPlayerTemplate@@PAV3@0@Z,,0x000E3E60,79,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
-??1FileSystem@@UAE@XZ,,0x000E3F80,82,Code/GameEngine/Source/Common/System/FileSystem.cpp,matched,
 ??1PlayerTemplateStore@@UAE@XZ,,0x000E3F80,82,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?clear@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@QAEXXZ,,0x000E3FF0,13,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
-??_GFileSystem@@UAEPAXI@Z,,0x000E4170,30,Code/GameEngine/Source/Common/System/FileSystem.cpp,matched,icf-owner=??_GPlayerTemplateStore@@UAEPAXI@Z
 ??_GPlayerTemplateStore@@UAEPAXI@Z,,0x000E4170,30,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?init@PlayerTemplateStore@@UAEXXZ,,0x000E41A0,17,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?push_back@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@QAEXABVPlayerTemplate@@@Z,,0x000E41C0,64,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
