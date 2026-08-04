@@ -91668,6 +91668,4 @@ _adler32,,0x00826FA0,297,Code/Libraries/Source/Compression/ZLib/adler32.c,matche
 _zlibVersion,,0x00828BB0,6,Code/Libraries/Source/Compression/ZLib/zutil.c,matched,stock zlib 1.1.4 zutil.c; sits directly before zError at 0x828BC0
 ?getPasswordForEmail@GameSpyLoginPreferences@@QAE?AVAsciiString@@V2@@Z,,0x000815F0,147,Code/GameEngine/Source/Common/GameSpyLoginPreferences_getPasswordForEmail_Thunk.cpp,matched,
 ?getDateForEmail@GameSpyLoginPreferences@@QAE?AVAsciiString@@V2@AAV2@11@Z,,0x000813D0,426,Code/GameEngine/Source/Common/GameSpyLoginPreferences_getDateForEmail_Thunk.cpp,matched,
-_adler32,,0x00826FA0,297,Code/Libraries/Source/Compression/zlib/adler32.cpp,matched,stock zlib 1.1.4 adler32.c; version string at 0x112D2F8 names the release
-_zlibVersion,,0x00828BB0,6,Code/Libraries/Source/Compression/zlib/zutil.cpp,matched,stock zlib 1.1.4 zutil.c; returns the ZLIB_VERSION string at 0x112D2F8
 ?parseSystemCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004877E0,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,BFME rewrite of the ZH quote-scan body: strtok arg2 then string at data+0x20 and gameWinSystemFunc
