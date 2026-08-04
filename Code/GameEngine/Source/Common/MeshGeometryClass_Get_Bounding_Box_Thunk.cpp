@@ -1,162 +1,84 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the MeshGeometryClass::Get_Bounding_Box naked dump to clean C++.
+//
+// Zero Hour's meshgeometry.cpp body. The WWASSERT is a no-op under NDEBUG and
+// retail has no trace of it, so the two assignments are the whole function.
+//
+// The subtraction fixes the layout: `fld [ecx+0x74] / fsub [ecx+0x68]` puts
+// BoundBoxMax at +0x74 and BoundBoxMin at +0x68.
+//
+// The addition does not read off as directly. MSVC does not emit the operands
+// in source order and is not even consistent between components -- for
+// Max + Min it loads Min.X first but Max.Y and Max.Z first. So an operand order
+// that looks wrong for one component is not evidence; only flipping the whole
+// expression and re-comparing settles it, and ZH's Max + Min is what matches.
+//
+// The twelve bytes of frame are one Vector3 temporary: each expression keeps
+// its X component in st(0) and spills Y and Z, which is why the stores to the
+// destination come out fxch'd rather than in order.
+//
+// Retail pins the layout: the bounds live at this+0x68 and this+0x74, and the
+// box's Center and Extent are at +0x00 and +0x0C.
 
-class AABoxClass;
+// Vector3 replicated from the reference WWMath header rather than hand-rolled:
+// the user-defined copy constructor and assignment operator, and constructor
+// bodies that assign rather than use an initialiser list, are what let MSVC
+// keep each component in the FPU instead of round-tripping the temporaries
+// through memory with integer moves.
+class Vector3
+{
+public:
+	float X;
+	float Y;
+	float Z;
+
+	Vector3(void) {};
+	Vector3(const Vector3 &v) { X = v.X; Y = v.Y; Z = v.Z; }
+	Vector3(float x, float y, float z) { X = x; Y = y; Z = z; }
+
+	Vector3 &operator = (const Vector3 &v) { X = v.X; Y = v.Y; Z = v.Z; return *this; }
+
+	friend Vector3 operator * (const Vector3 &a, float k);
+	friend Vector3 operator + (const Vector3 &a, const Vector3 &b);
+	friend Vector3 operator - (const Vector3 &a, const Vector3 &b);
+};
+
+inline Vector3 operator * (const Vector3 &a, float k)
+{
+	return Vector3((a.X * k), (a.Y * k), (a.Z * k));
+}
+
+inline Vector3 operator + (const Vector3 &a, const Vector3 &b)
+{
+	return Vector3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+}
+
+inline Vector3 operator - (const Vector3 &a, const Vector3 &b)
+{
+	return Vector3(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+}
+
+class AABoxClass
+{
+public:
+	Vector3 Center;										///< retail this+0x00
+	Vector3 Extent;										///< retail this+0x0C
+};
+
 class MeshGeometryClass
 {
 public:
-	void Get_Bounding_Box(AABoxClass *);
+	void Get_Bounding_Box(AABoxClass *set_box);
+
+private:
+	unsigned char m_unreconstructed_00[0x68];
+	Vector3 BoundBoxMin;								///< retail this+0x68
+	Vector3 BoundBoxMax;								///< retail this+0x74
 };
 
 // ?Get_Bounding_Box@MeshGeometryClass@@QAEXPAVAABoxClass@@@Z
-__declspec(naked) void MeshGeometryClass::Get_Bounding_Box(AABoxClass *)
+void MeshGeometryClass::Get_Bounding_Box(AABoxClass *set_box)
 {
-	__asm {
-		__emit 0x83
-		__emit 0xec
-		__emit 0x0c
-		__emit 0xd9
-		__emit 0x41
-		__emit 0x68
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xd8
-		__emit 0x41
-		__emit 0x74
-		__emit 0xd9
-		__emit 0x41
-		__emit 0x78
-		__emit 0xd8
-		__emit 0x41
-		__emit 0x6c
-		__emit 0xd9
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x04
-		__emit 0xd9
-		__emit 0x41
-		__emit 0x7c
-		__emit 0xd8
-		__emit 0x41
-		__emit 0x70
-		__emit 0xd9
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xd8
-		__emit 0x0d
-		__emit 0x3c
-		__emit 0x53
-		__emit 0x07
-		__emit 0x01
-		__emit 0xd9
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0xd8
-		__emit 0x0d
-		__emit 0x3c
-		__emit 0x53
-		__emit 0x07
-		__emit 0x01
-		__emit 0xd9
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0xd8
-		__emit 0x0d
-		__emit 0x3c
-		__emit 0x53
-		__emit 0x07
-		__emit 0x01
-		__emit 0xd9
-		__emit 0xca
-		__emit 0xd9
-		__emit 0x18
-		__emit 0xd9
-		__emit 0x58
-		__emit 0x04
-		__emit 0xd9
-		__emit 0x58
-		__emit 0x08
-		__emit 0xd9
-		__emit 0x41
-		__emit 0x74
-		__emit 0xd8
-		__emit 0x61
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x41
-		__emit 0x78
-		__emit 0xd8
-		__emit 0x61
-		__emit 0x6c
-		__emit 0xd9
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x04
-		__emit 0xd9
-		__emit 0x41
-		__emit 0x7c
-		__emit 0xd8
-		__emit 0x61
-		__emit 0x70
-		__emit 0xd9
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xd8
-		__emit 0x0d
-		__emit 0x3c
-		__emit 0x53
-		__emit 0x07
-		__emit 0x01
-		__emit 0xd9
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0xd8
-		__emit 0x0d
-		__emit 0x3c
-		__emit 0x53
-		__emit 0x07
-		__emit 0x01
-		__emit 0xd9
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0xd8
-		__emit 0x0d
-		__emit 0x3c
-		__emit 0x53
-		__emit 0x07
-		__emit 0x01
-		__emit 0xd9
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xd9
-		__emit 0xc9
-		__emit 0xd9
-		__emit 0x58
-		__emit 0x0c
-		__emit 0x89
-		__emit 0x48
-		__emit 0x14
-		__emit 0xd9
-		__emit 0x58
-		__emit 0x10
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
-	}
+	set_box->Center = (BoundBoxMax + BoundBoxMin) * 0.5f;
+	set_box->Extent = (BoundBoxMax - BoundBoxMin) * 0.5f;
 }
