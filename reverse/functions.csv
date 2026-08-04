@@ -91732,3 +91732,4 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ??0FunctionLexicon@@QAE@XZ,,0x00105300,56,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?enter@CriticalSection@@QAEXXZ,,0x000874A0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?exit@CriticalSection@@QAEXXZ,,0x000874A0,11,Code/GameEngine/Source/Common/System/GameMemory.cpp,matched,ICF alias; identical 11-byte body folded with CriticalSection::enter
+?newModuleDataFromINI@ModuleFactory@@QAEPAVModuleData@@PAVINI@@ABVAsciiString@@W4ModuleType@@1@Z,,0x001295F0,192,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,unresolved REL32 to vector<ModuleData*>::_M_insert_overflow thunk; pin added; matches 192B
