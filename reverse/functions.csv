@@ -71743,7 +71743,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?Blend_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimClass@@M1MM@Z,,0x00981E80,59,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Combo_Update@Animatable3DObjClass@@IAEXABVMatrix3D@@PAVHAnimComboClass@@@Z,,0x00981EC0,39,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ??0Animatable3DObjClass@@QAE@PBD@Z,,0x00981EF0,393,Code/Libraries/Source/WWVegas/WW3D2/Animatable3DObjClassStringConstructorThunk.cpp,matched,Exact 393B C++ raw string constructor thunk Open-BFME5
-?Release@Animatable3DObjClass@@IAEXXZ,,0x00982090,128,Code/GameEngine/Source/Common/Animatable3DObjClass_Release_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?Release@Animatable3DObjClass@@IAEXXZ,,0x00982090,128,Code/GameEngine/Source/Common/Animatable3DObjClass_Release_Thunk.cpp,matched,clean C++ conversion; ZH animobj.cpp switch plus an extra HTree release at this+0x100 that ZH does not have; case values are one higher than ZH's enum
 ?Set_Transform@Animatable3DObjClass@@UAEXABVMatrix3D@@@Z,,0x00982110,24,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Set_Position@Animatable3DObjClass@@UAEXABVVector3@@@Z,,0x00982130,24,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
 ?Get_Num_Bones@Animatable3DObjClass@@UAEHXZ,,0x00982150,20,Code/Libraries/Source/WWVegas/WW3D2/animobj.cpp,matched,
