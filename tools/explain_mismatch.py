@@ -35,10 +35,38 @@ def hexdump(data, base, mark=None, width=8):
     return lines
 
 
+def disassemble_capstone(data, base):
+    """Fallback for hosts without binutils. capstone is already a dependency of
+    the reversing tools, and losing the disassembly is losing the whole point of
+    this script -- a hexdump does not tell you that a frame is four bytes larger
+    or that two adjacent stores got swapped."""
+    try:
+        import capstone
+    except ImportError:
+        return None
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    lines = []
+    consumed = 0
+    for instruction in md.disasm(data, base):
+        lines.append("%x:\t%-21s\t%s %s" % (
+            instruction.address,
+            " ".join("%02x" % b for b in instruction.bytes),
+            instruction.mnemonic,
+            instruction.op_str,
+        ))
+        consumed = instruction.address - base + instruction.size
+    if consumed < len(data):
+        lines.append("%x:\t(decode stopped; %d byte(s) left)" % (base + consumed, len(data) - consumed))
+    return lines
+
+
 def disassemble(data, base):
     objdump = shutil.which("objdump") or shutil.which("llvm-objdump")
     if objdump is None:
-        return ["objdump not found; install binutils for disassembly"]
+        lines = disassemble_capstone(data, base)
+        if lines is not None:
+            return lines
+        return ["no disassembler: install binutils, or pip install capstone"]
 
     with tempfile.NamedTemporaryFile(prefix="bfme-bytes-", delete=False) as handle:
         handle.write(data)
