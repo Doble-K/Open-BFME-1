@@ -1931,3 +1931,4 @@ one-line win is the paragraph above: the opt-in renumbers labels and breaks a
 specified by the table — retail adds `Tooltip` (0x14) and `UpgradeFX` (0x24),
 drops our `AcademyClassify`, and appends `Cursor` (0x118),
 `PersistsInCampaign` (0x11c) and `NoUpgradeDiscount` (0x11d).
+- The byte gate cannot check *which* CRT import a declaration names: `build.py` fills the IAT slot as a DIR32 copied from the target, so `_stricmp` and `_strcmpi` produce identical bytes. Read the import directory to settle it — this binary imports `_strcmpi` and never `_stricmp`, so declarations must say `_strcmpi`. Same applies to any dllimport reached through the IAT.

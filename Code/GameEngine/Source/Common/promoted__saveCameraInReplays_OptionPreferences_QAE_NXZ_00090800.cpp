@@ -13,7 +13,7 @@
 // /EHs-c- because the build default only clears the /EHc half, and the key's
 // destructor would otherwise pull in an SEH prologue retail does not have.
 
-extern "C" __declspec(dllimport) int __cdecl _stricmp(const char *, const char *);
+extern "C" __declspec(dllimport) int __cdecl _strcmpi(const char *, const char *);
 
 class AsciiStringData
 {
@@ -72,7 +72,7 @@ bool OptionPreferences::saveCameraInReplays(void)
 	if (it == m_prefs.end())
 		return true;
 
-	if (_stricmp(it->m_value.str(), "y") == 0)
+	if (_strcmpi(it->m_value.str(), "y") == 0)
 	{
 		return true;
 	}

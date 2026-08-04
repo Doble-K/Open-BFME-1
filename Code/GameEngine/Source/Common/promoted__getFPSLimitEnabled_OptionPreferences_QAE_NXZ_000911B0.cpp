@@ -14,12 +14,12 @@
 // sentinel, the mapped AsciiString is at node+0x14, str() inlines to
 // "m_data ? m_data+8 : empty", and the default reads TheWritableGlobalData+0x1E.
 //
-// _stricmp goes through the IAT so the comparison is a call; the neg/sbb/inc tail is MSVC's 8-bit == 0.
+// _strcmpi goes through the IAT so the comparison is a call; the neg/sbb/inc tail is MSVC's 8-bit == 0.
 //
 // /EHs-c- because the build default only clears the /EHc half, and the key's
 // destructor would otherwise pull in an SEH prologue retail does not have.
 
-extern "C" __declspec(dllimport) int __cdecl _stricmp(const char *, const char *);
+extern "C" __declspec(dllimport) int __cdecl _strcmpi(const char *, const char *);
 
 class AsciiStringData
 {
@@ -87,7 +87,7 @@ bool OptionPreferences::getFPSLimitEnabled(void)
 	if (it == m_prefs.end())
 		return TheWritableGlobalData->m_fpsLimitEnabled;
 
-	if (_stricmp(it->m_value.str(), "yes") == 0)
+	if (_strcmpi(it->m_value.str(), "yes") == 0)
 	{
 		return true;
 	}

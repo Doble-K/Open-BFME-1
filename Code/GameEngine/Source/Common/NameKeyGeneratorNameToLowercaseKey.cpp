@@ -63,7 +63,7 @@ NameKeyType NameKeyGenerator::nameToLowercaseKey(const char* nameString)
 	// hmm, do we have it already?
 	for (LegacyBucket *b = sockets[hash]; b; b = b->m_nextInSocket)
 	{
-		if (_stricmp(nameString, b->m_nameString.str()) == 0)
+		if (_strcmpi(nameString, b->m_nameString.str()) == 0)
 			return b->m_key; 
 	}
 
