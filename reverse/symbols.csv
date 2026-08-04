@@ -68066,3 +68066,38 @@ ___CxxFrameHandler,0x009F6DD6,__CxxFrameHandler import thunk; every __ehhandler$
 ?insert_unique@?$_Rb_tree@IU?$pair@$$CBIUGen_t_009009f0_m12pod@@@_STL@@U?$_Select1st@U?$pair@$$CBIUGen_t_009009f0_m12pod@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIUGen_t_009009f0_m12pod@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIUGen_t_009009f0_m12pod@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIUGen_t_009009f0_m12pod@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIUGen_t_009009f0_m12pod@@@2@@Z,0x008FFE90,family-emit payload member
 ?insert_unique@?$_Rb_tree@IU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Select1st@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBIUGen_t_0094cf90_m12pod@@@_STL@@@2@@_STL@@_N@2@ABU?$pair@$$CBIUGen_t_0094cf90_m12pod@@@2@@Z,0x0094CCF0,family-emit payload member
 ?SimpleMatch@Debug@@SA_NPBD0@Z,0x0088A3A0,retail call target from DebugIOFlat::Write (0x890EA1)
+__setjmp3,0x009F7E40,vendored=lua-4.0.1
+_assignment,0x0099CB80,vendored=lua-4.0.1
+_check,0x0099AA50,vendored=lua-4.0.1
+_check_match,0x0099AB20,vendored=lua-4.0.1
+_chunk,0x0099D2D0,vendored=lua-4.0.1
+_collecttable,0x00999D50,vendored=lua-4.0.1
+_discharge,0x0099F1D0,vendored=lua-4.0.1
+_getobjname,0x00996950,vendored=lua-4.0.1
+_invalidaterefs,0x00999C40,vendored=lua-4.0.1
+_luaH_set,0x00999790,vendored=lua-4.0.1
+_luaK_adjuststack,0x0099F010,vendored=lua-4.0.1
+_luaK_code2,0x0099E840,vendored=lua-4.0.1
+_luaK_jump,0x0099EC90,vendored=lua-4.0.1
+_luaK_kstr,0x0099ED80,vendored=lua-4.0.1
+_luaK_patchlistaux,0x0099E5F0,vendored=lua-4.0.1
+_luaK_tostack,0x0099F760,vendored=lua-4.0.1
+_luaO_equalObj,0x00996F60,vendored=lua-4.0.1
+_luaV_execute,0x00997C80,vendored=lua-4.0.1
+_luaV_lessthan,0x009978E0,vendored=lua-4.0.1
+_luaV_pack,0x00997B70,vendored=lua-4.0.1
+_luaV_strconc,0x009979D0,vendored=lua-4.0.1
+_luaV_tostring,0x00997200,vendored=lua-4.0.1
+_luaY_parser,0x0099D380,vendored=lua-4.0.1
+_lua_pushcclosure,0x009904E0,vendored=lua-4.0.1
+_markall,0x0099A170,vendored=lua-4.0.1
+_markobject,0x00999B30,vendored=lua-4.0.1
+_next,0x0099A9A0,vendored=lua-4.0.1
+_parlist,0x0099BD30,vendored=lua-4.0.1
+_pushclosure,0x0099B1B0,vendored=lua-4.0.1
+_pushupvalue,0x0099B000,vendored=lua-4.0.1
+_setnodevector,0x00999580,vendored=lua-4.0.1
+_str_checkname,0x0099AC90,vendored=lua-4.0.1
+_subexpr,0x0099CA60,vendored=lua-4.0.1
+_test_then_block,0x0099CEA0,vendored=lua-4.0.1
+_var_or_func_tail,0x0099C4B0,vendored=lua-4.0.1
