@@ -58830,7 +58830,7 @@ _floorf,,0x001066D0,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScen
 ?friend_makeVeterancyUpgrade@UpgradeTemplate@@QAEXW4VeterancyLevel@@@Z,,0x0010B010,156,Code/GameEngine/Source/Common/System/UpgradeTemplate_friend_makeVeterancyUpgrade_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?newUpgrade@UpgradeCenter@@QAEPAVUpgradeTemplate@@ABVAsciiString@@@Z,,0x0010B140,246,Code/GameEngine/Source/Common/UpgradeCenter_newUpgrade_Thunk.cpp,matched,Exact 246B Open-BFME4+Grok
 ?parseUpgradeDefinition@UpgradeCenter@@SAXPAVINI@@@Z,,0x0010B280,172,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,
-?findVeterancyUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@W4VeterancyLevel@@@Z,,0x0010B480,101,Code/GameEngine/Source/Common/System/UpgradeFindVeterancyUpgradeThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM lookup body
+?findVeterancyUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@W4VeterancyLevel@@@Z,,0x0010B480,101,Code/GameEngine/Source/Common/System/UpgradeFindVeterancyUpgradeThunk.cpp,matched,clean C++ conversion; verbatim ZH Upgrade.cpp; keeps /EHsc since the AsciiString temporary genuinely needs unwind; getVetUpgradeName returns by value so the hidden result pointer is the first cdecl argument
 ??_GBFMEAutoLockRef@@QAEPAXI@Z,,0x0010B690,30,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,
 ?Get_Frame@HAnimComboDataClass@@QBEMXZ,,0x0010BD90,4,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,icf-owner=?getMinimumValue@GameClientRandomVariable@@QBEMXZ
 ?Get_Height@Vector3SolidCylinderRandomizer@@UBEMXZ,,0x0010BD90,4,Code/Libraries/Source/WWVegas/WWMath/v3_rnd.cpp,matched,icf-owner=?getMinimumValue@GameClientRandomVariable@@QBEMXZ
