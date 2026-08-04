@@ -68168,3 +68168,5 @@ _jpeg_free_small@12,0x00AC7FB0,vendored=jpeg-6b
 _jpeg_mem_term@4,0x00AC8180,vendored=jpeg-6b
 ?ThePlayerTemplateStore@@3PAVPlayerTemplateStore@@A,0x00EED750,PlayerTemplateStore* global read by CustomMatchPreferences::getPreferredFaction
 ?getNthPlayerTemplate@PlayerTemplateStore@@QAEPBVPlayerTemplate@@H@Z,0x00037BD2,ILT thunk to the indexed PlayerTemplate lookup
+?find@ModuleTemplateMap@@QBE?AUModuleTemplateMapIterator@@ABH@Z,0x0000C054,ILT thunk to the NameKey-keyed module template map find at 0x001265D0
+?makeDecoratedNameKey@ModuleFactory@@SAHABVAsciiString@@W4ModuleType@@@Z,0x0004B439,ILT thunk to the module name decorator at 0x00126260

@@ -59786,7 +59786,7 @@ _floorf,,0x001066D0,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScen
 ??0UpgradeModuleModuleData@@QAE@XZ,,0x00128D20,92,Code/GameEngine/Source/GameLogic/AI/UpgradeModuleModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
 ?friend_newModuleData@UpgradeModule@@SAPAVModuleData@@PAVINI@@@Z,,0x00128DA0,107,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??1UpgradeModuleModuleData@@UAE@XZ,,0x00128FA0,273,Code/GameEngine/Source/Common/UpgradeModuleModuleDataDestructorThunk.cpp,matched,Exact 273B SEH dtor Open-BFME5
-?findModuleInterfaceMask@ModuleFactory@@QAEHABVAsciiString@@W4ModuleType@@@Z,,0x00129100,84,Code/GameEngine/Source/Common/ModuleFactory_findModuleInterfaceMask_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?findModuleInterfaceMask@ModuleFactory@@QAEHABVAsciiString@@W4ModuleType@@@Z,,0x00129100,84,Code/GameEngine/Source/Common/ModuleFactory_findModuleInterfaceMask_Thunk.cpp,matched,clean C++ conversion; ZH body with findModuleTemplate inlined; map at this+0x0C and mapped ModuleTemplate at node+0x14; iterator needs a declared copy ctor to force the hidden-pointer return
 ?clear@?$vector@UUpgrades@OCLSpecialPowerModuleData@@V?$allocator@UUpgrades@OCLSpecialPowerModuleData@@@_STL@@@_STL@@QAEXXZ,,0x001291B0,43,Code/GameEngine/Source/GameLogic/Object/SpecialPower/OCLSpecialPower.cpp,matched,
 ??0StructureBodyModuleData@@QAE@XZ,,0x001293C0,118,Code/GameEngine/Source/GameLogic/Object/Body/StructureBodyModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ thunk replacing MASM dump
 ?j_00129490@@YAXXZ,,0x00129490,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_00528c50
