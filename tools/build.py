@@ -962,6 +962,12 @@ def verify_dir32_consistency(rows):
             # power for double-linked TUs (those always expose externals too).
             if re.fullmatch(r"\$[A-Za-z]+\d+", sym):
                 continue
+            # __ehhandler$<mangled> is the same case one step out: the compiler
+            # emits one per TU alongside the COMDAT it guards, and retail does
+            # not fold COMDATs, so a template instantiation claimed at N retail
+            # addresses legitimately resolves its handler to N stub addresses.
+            if sym.startswith("__ehhandler$"):
+                continue
             final = struct.unpack_from("<I", target, off)[0]
             addend = struct.unpack_from("<I", body, off)[0]
             sym2base[sym].add((final - addend) & 0xFFFFFFFF)
