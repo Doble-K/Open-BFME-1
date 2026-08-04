@@ -91256,3 +91256,4 @@ uw_00c1eb70,,0x00C1EB70,8,Code/gen_small/tgrid_114.cpp,matched,gen-funclet;paren
 ??_GDebugCmdInterfaceDebug@@UAEPAXI@Z,,0x0088A680,33,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,
 ?Create@OutputStream@DebugIOFlat@@SAPAV12@PBDI@Z,,0x0088FF60,94,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,clean C++ placement-new; /EHa matches retail's shared-epilogue EH shape
 ?Delete@DebugCmdInterfaceDebug@@UAEXXZ,,0x008895D0,20,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,
+_adler32,,0x00826FA0,297,Code/Libraries/Source/Compression/zlib/adler32.cpp,matched,stock zlib 1.1.4 adler32.c; version string at 0x112D2F8 names the release
