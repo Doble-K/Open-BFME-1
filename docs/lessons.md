@@ -1477,3 +1477,44 @@ The OptionPreferences boolean getters backed by a GlobalData default compare the
 SEH-framed bodies are convertible - findVeterancyUpgrade landed - but two have now died on MSVC bookkeeping order rather than logic: amIHost stores the EH frame pointer before setting up ecx for a by-value AsciiString temporary and parseAddModule pushes call arguments before storing a member flag, and neither order is reachable by rephrasing the source. Everything up to that point matched byte for byte in both.
 
 For a by-value class argument built from a temporary at the call site, declare the copy constructor even though it is never called: without it MSVC materialises the temporary in a separate slot and re-pushes, with it the object is constructed straight into the reserved argument slot as retail does. That leaves only the EH-record store and the ctor this-pointer setup swapped (mov [esp+N],esp before mov ecx,esp in retail); no source phrasing and no /Ox /Og /O1 /Ob2 /Oy- /Gy /GF variation moved it, and it currently blocks ControlBarResizer::init and GameSpyStagingRoom::amIHost at one instruction pair.
+
+## A dump row can be wrong at both ends, and the .asm file says so itself
+
+`??0AIAttackMoveStateMachine@@QAE@PAVObject@@VAsciiString@@@Z` claimed 0x002C1061
+for 501 bytes and byte-verified forever, because a MASM dump is the retail bytes.
+It was wrong three ways over, each independently sufficient:
+
+- **The start is inside another function.** The body containing 0x002C1061
+  begins at 0x002C0FE0 — 16-byte aligned, preceded by `int3` padding — so the
+  claim starts 129 bytes in. `audit_claim_boundaries.py` stays silent on this:
+  it tests for a start inside an *instruction*, and 0x002C1061 is a clean
+  instruction boundary. Being decodable is not being a function.
+- **The range spans a boundary, and the dump admits it.** `0CCh` repeated
+  twenty-seven times sits in the middle of the `db` lines. A function body does
+  not contain a run of int3. Past that padding the claim covers two real
+  functions, 0x002C11A0 and the thunk at 0x002C11D0.
+- **The stack pop contradicts the name.** The body ends `c3`, `ret 0`. A
+  `QAE@PAVObject@@VAsciiString@@` constructor is `__thiscall` with two
+  parameters and must end `ret 8`.
+
+Two things worth carrying forward. Reading the `db` lines of a dump for an int3
+run costs nothing and catches the over-long ones directly — no disassembler
+required. And with `reverse/ghidra_functions.csv` present you can ask the wider
+question the boundary audit does not: which matched rows start strictly inside
+a recovered function body? 319 rows do, overwhelmingly `Code/*.asm`. That is a
+lead list, not a verdict — Ghidra also merges adjacent functions, so a row
+ending exactly where its enclosing function ends is usually fine. Confirm with
+padding and alignment before withdrawing anything.
+
+### The address it was blocking is a trap of its own
+
+`locate.py` places `??_GAIUpdateInterface@@MAEPAXI@Z` at the freed 0x002C11A0
+and it will keep doing so. Do not land it. The body is the canonical scalar
+deleting destructor — `push esi; mov esi,ecx; call <dtor>; test [esp+8],1; …;
+ret 4` — whose only identifying operand is the destructor it calls, and
+`build.py` fills that REL32 in from the target, so any class's `??_G` matches.
+Following the call resolves through two thunks (0x0001E29F, 0x002C11D0,
+0x0004AAF7) to a destructor body at 0x00172430, which sits among AIStates.cpp
+and AIMoveToState code — a different translation unit from AIUpdate.cpp. So the
+`??_G` belongs to one of the AI state classes, not to AIUpdateInterface. Chase
+the destructor, never the deleting destructor.

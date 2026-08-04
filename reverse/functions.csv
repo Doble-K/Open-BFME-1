@@ -62034,7 +62034,6 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?j_002be220@@YAXXZ,,0x002BE220,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_004a1b30
 ?m@Gen_002bec50@@QAEIXZ,,0x002BEC50,6,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_006bec50
 ?m@Gen_002c04c0@@QAEIXZ,,0x002C04C0,6,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_006c04c0
-??0AIAttackMoveStateMachine@@QAE@PAVObject@@VAsciiString@@@Z,,0x002C1061,501,Code/GameEngine/Source/GameLogic/AI/AIStates_0AIAttackMoveStateMachine.asm,matched,exact 501B via MASM
 ?j_002c1ac0@@YAXXZ,,0x002C1AC0,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_004a1b30
 ?j_002c1b00@@YAXXZ,,0x002C1B00,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_004a1b30
 ?j_002c1b40@@YAXXZ,,0x002C1B40,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_004a1b30
