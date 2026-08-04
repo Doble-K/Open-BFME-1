@@ -91255,3 +91255,4 @@ uw_00c1eb70,,0x00C1EB70,8,Code/gen_small/tgrid_114.cpp,matched,gen-funclet;paren
 ?get_allocator@?$vector@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QBE?AV?$allocator@PAVObject@@@2@XZ,,0x003615E0,7,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?Set_Index_Buffer_Index_Offset@DX8Wrapper@@SAXI@Z,,0x0072EAD0,32,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
 ??_GDebugCmdInterfaceDebug@@UAEPAXI@Z,,0x0088A680,33,Code/GameEngine/Source/Common/DebugCmdInterfaceDebugDestructorThunk.cpp,matched,
+?Create@OutputStream@DebugIOFlat@@SAPAV12@PBDI@Z,,0x0088FF60,94,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,clean C++ placement-new; /EHa matches retail's shared-epilogue EH shape
