@@ -1,117 +1,62 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the ControlBar::updateRadarAttackGlow __emit thunk to clean C++.
+//
+// Verbatim Zero Hour ControlBar.cpp: count the glow down, switch the window
+// back on when it expires, and otherwise toggle it every Nth frame.
+//
+// Retail pins what ZH leaves symbolic: the on flag is the byte at this+0x2E0,
+// the remaining frame count is at this+0x2E4, the window pointer at this+0x2E8,
+// and the toggle period is 15 (the `idiv` by 0x0F).
+//
+// The toggle argument compiles to shr 3 / not al / and 0xFFFFFF01 rather than a
+// setcc, which is BitTest expanding to a plain mask-and-compare on the status
+// word: WIN_STATUS_ENABLED is bit 3, so the shift lands it in bit 0 and the
+// negation is done in place.
+
+typedef int Int;
+
+#define BitTest(x, i) (((x) & (i)) != 0)
+
+enum { WIN_STATUS_ENABLED = 0x00000008 };
+enum { RADAR_ATTACK_GLOW_NUM_TIMES = 15 };
+
+class GameWindow
+{
+public:
+	Int winEnable(bool enable);								///< ILT thunk at 0x0004A1FB
+	unsigned int winGetStatus(void);						///< ILT thunk at 0x00023DDA
+};
 
 class ControlBar
 {
 protected:
-	void updateRadarAttackGlow();
+	void updateRadarAttackGlow(void);
+
+private:
+	unsigned char m_unreconstructed_00[0x2E0];
+	unsigned char m_radarAttackGlowOn;						///< retail this+0x2E0
+	unsigned char m_unreconstructed_2E1[3];
+	Int m_remainingRadarAttackGlowFrames;					///< retail this+0x2E4
+	GameWindow *m_radarAttackGlowWindow;					///< retail this+0x2E8
 };
 
 // ?updateRadarAttackGlow@ControlBar@@IAEXXZ
-__declspec(naked) void ControlBar::updateRadarAttackGlow()
+void ControlBar::updateRadarAttackGlow(void)
 {
-	__asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8a
-        __emit 0x86
-        __emit 0xe0
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0xe8
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x4d
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xbe
-        __emit 0xe4
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x4f
-        __emit 0x8b
-        __emit 0xc7
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x89
-        __emit 0xbe
-        __emit 0xe4
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x7f
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xc6
-        __emit 0x86
-        __emit 0xe0
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x52
-        __emit 0xce
-        __emit 0xba
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x99
-        __emit 0xbf
-        __emit 0x0f
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xf7
-        __emit 0xff
-        __emit 0x85
-        __emit 0xd2
-        __emit 0x75
-        __emit 0x1b
-        __emit 0xe8
-        __emit 0x1d
-        __emit 0x6a
-        __emit 0xb8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0xe8
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc1
-        __emit 0xe8
-        __emit 0x03
-        __emit 0xf6
-        __emit 0xd0
-        __emit 0x25
-        __emit 0x01
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x28
-        __emit 0xce
-        __emit 0xba
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc3
+	if (!m_radarAttackGlowOn || !m_radarAttackGlowWindow)
+		return;
+
+	m_remainingRadarAttackGlowFrames--;
+	if (m_remainingRadarAttackGlowFrames <= 0)
+	{
+		m_radarAttackGlowOn = 0;
+		m_radarAttackGlowWindow->winEnable(true);
+		return;
+	}
+
+	if (m_remainingRadarAttackGlowFrames % RADAR_ATTACK_GLOW_NUM_TIMES == 0)
+	{
+		m_radarAttackGlowWindow->winEnable(
+			!BitTest(m_radarAttackGlowWindow->winGetStatus(), WIN_STATUS_ENABLED));
 	}
 }
