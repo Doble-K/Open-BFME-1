@@ -673,16 +673,13 @@ void TurretAI::recenterTurret()
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?isTurretInNaturalPosition@TurretAI@@QBE_NXZ present-unmatched
 Bool TurretAI::isTurretInNaturalPosition() const
 {
-
-  if( this->getOwner()->testStatus( OBJECT_STATUS_UNDER_CONSTRUCTION))
-    return true;//ML so that under-construction base-defenses do not re-center while under construction
-
-
-
-	if( getNaturalTurretAngle() == getTurretAngle() && 
+	// BFME has no OBJECT_STATUS_UNDER_CONSTRUCTION early-out here: retail's body
+	// at 0x18C8E0 is 39 bytes and starts straight into the two float compares,
+	// against 51 bytes with the check. The check is a later Generals/Zero Hour
+	// addition - its own comment says so - and predates neither branch equally.
+	if( getNaturalTurretAngle() == getTurretAngle() &&
 			getNaturalTurretPitch() == getTurretPitch() )
 	{
 		return true;

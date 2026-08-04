@@ -91757,3 +91757,4 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?setCampaign@CampaignManager@@QAEXVAsciiString@@@Z,,0x005BC5D0,256,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
 ?skip@FullFadeTransition@@UAEXXZ,,0x0059D560,10,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,real skip reads m_endFrame; old 0x59C440 row was FadeTransition::skip fold
 ?update@FullFadeTransition@@UAEXH@Z,,0x0059D4A0,132,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,BFME FullFadeTransition carries m_startFrame/m_endFrame; bounds read from members
+?isTurretInNaturalPosition@TurretAI@@QBE_NXZ,,0x0018C8E0,39,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,BFME lacks the ZH OBJECT_STATUS_UNDER_CONSTRUCTION early-out
