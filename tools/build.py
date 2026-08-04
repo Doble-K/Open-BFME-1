@@ -955,6 +955,13 @@ def verify_dir32_consistency(rows):
         for off, rtype, sym in relocs:
             if rtype != 0x0006 or off + 4 > tsz or off + 4 > len(body) or sym.startswith("??_C@"):
                 continue
+            # Compiler-local labels ($L1234 funclets, $T294 funcinfo, $SG strings)
+            # are TU-scoped: object-symbol= rows alias ONE anchor TU's label onto
+            # thousands of retail instances by design, so "one symbol, one
+            # address" only holds for external symbols. Locals add no detection
+            # power for double-linked TUs (those always expose externals too).
+            if re.fullmatch(r"\$[A-Za-z]+\d+", sym):
+                continue
             final = struct.unpack_from("<I", target, off)[0]
             addend = struct.unpack_from("<I", body, off)[0]
             sym2base[sym].add((final - addend) & 0xFFFFFFFF)
