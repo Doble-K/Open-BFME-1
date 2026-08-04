@@ -91785,3 +91785,4 @@ _ZNAME,,0x0099D450,10,Code/Libraries/Source/Lua/lundump.c,matched,pristine Lua 4
 ?iterateContained@TunnelTracker@@QAEXP6AXPAVObject@@PAX@Z1_N@Z,,0x000F8B10,106,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?getCurrentMap@CampaignManager@@QAE?AVAsciiString@@XZ,,0x005BB960,56,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?healObjects@TunnelTracker@@QAEXM@Z,,0x000F8D10,47,Code/GameEngine/Source/Common/RTS/TunnelTracker.cpp,matched,healObject pinned through its ILT thunk
+?Set_Sub_Objects_Match_LOD@RenderObjClass@@QAEXH@Z,,0x009807D0,33,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
