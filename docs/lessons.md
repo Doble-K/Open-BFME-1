@@ -1477,7 +1477,6 @@ The OptionPreferences boolean getters backed by a GlobalData default compare the
 SEH-framed bodies are convertible - findVeterancyUpgrade landed - but two have now died on MSVC bookkeeping order rather than logic: amIHost stores the EH frame pointer before setting up ecx for a by-value AsciiString temporary and parseAddModule pushes call arguments before storing a member flag, and neither order is reachable by rephrasing the source. Everything up to that point matched byte for byte in both.
 
 For a by-value class argument built from a temporary at the call site, declare the copy constructor even though it is never called: without it MSVC materialises the temporary in a separate slot and re-pushes, with it the object is constructed straight into the reserved argument slot as retail does. That leaves only the EH-record store and the ctor this-pointer setup swapped (mov [esp+N],esp before mov ecx,esp in retail); no source phrasing and no /Ox /Og /O1 /Ob2 /Oy- /Gy /GF variation moved it, and it currently blocks ControlBarResizer::init and GameSpyStagingRoom::amIHost at one instruction pair.
-
 ## A dump row can be wrong at both ends, and the .asm file says so itself
 
 `??0AIAttackMoveStateMachine@@QAE@PAVObject@@VAsciiString@@@Z` claimed 0x002C1061
@@ -1561,3 +1560,6 @@ Two cautions before acting on the list. Interior padding proves the *end* is
 wrong; it says nothing about the start, which has to be checked separately (a
 real start is 16-byte aligned or sits directly after a padding run). And these
 rows belong to other people's work -- the tool reports, it does not edit.
+
+- The if-form/expression-form split covers `!= 0` too: `if (x != 0) return true; return false;` gives `test eax,eax / setne al`, while `return x != 0;` gives the 32-bit `neg / sbb / neg`.
+- `strcmp` is an intrinsic under `/Oi` so it inlines as `mov ecx,N / xor edx,edx / repe cmpsb`; `_stricmp` has no intrinsic and goes through the IAT. A retail `repe cmpsb` against a literal therefore means the case-sensitive one.

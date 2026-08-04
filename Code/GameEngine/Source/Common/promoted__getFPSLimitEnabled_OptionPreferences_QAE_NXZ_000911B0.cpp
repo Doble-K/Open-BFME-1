@@ -1,115 +1,95 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Grok promote from masm_dumps — retail 0x000911B0 size 102
-// was: Code/masm_dumps/_getFPSLimitEnabled_OptionPreferences__QAE_NXZ_911B0.asm
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the OptionPreferences::getFPSLimitEnabled naked dump to clean C++.
+//
+// Same three steps as the rest of the boolean preferences family: build the
+// key, look it up, compare the mapped string. What is new here is the default:
+// where the earlier getters returned a literal, these fall back to a field of
+// TheWritableGlobalData when the key is absent, so the missing-key branch is a
+// global read rather than a constant.
+//
+// The key lives in its own scope so it is destroyed after the lookup and before
+// the end() comparison, which is the order retail uses.
+//
+// Retail pins the layout: the map is at this+0x04 and its first word is the end
+// sentinel, the mapped AsciiString is at node+0x14, str() inlines to
+// "m_data ? m_data+8 : empty", and the default reads TheWritableGlobalData+0x1E.
+//
+// _stricmp goes through the IAT so the comparison is a call; the neg/sbb/inc tail is MSVC's 8-bit == 0.
+//
+// /EHs-c- because the build default only clears the /EHc half, and the key's
+// destructor would otherwise pull in an SEH prologue retail does not have.
 
-class OptionPreferences { public: bool getFPSLimitEnabled(void); };
+extern "C" __declspec(dllimport) int __cdecl _stricmp(const char *, const char *);
+
+class AsciiStringData
+{
+public:
+	unsigned char m_unreconstructed_00[8];
+	char m_chars[1];									///< retail this+0x08
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const char *);
+	~AsciiString();
+
+	const char *str(void) const { return m_data ? m_data->m_chars : ""; }
+
+private:
+	AsciiStringData *m_data;
+};
+
+struct PreferenceNode
+{
+	unsigned char m_unreconstructed_00[0x14];
+	AsciiString m_value;								///< retail this+0x14
+};
+
+class PreferenceMap
+{
+public:
+	PreferenceNode *find(const AsciiString &) const;
+	PreferenceNode *end(void) const { return m_end; }
+
+private:
+	PreferenceNode *m_end;								///< retail this+0x00
+};
+
+class GlobalData
+{
+public:
+	unsigned char m_unreconstructed_00[0x1E];
+	bool m_fpsLimitEnabled;					///< retail this+0x1E
+};
+
+extern GlobalData *TheWritableGlobalData;				///< retail [0x012ED5C8]
+
+class OptionPreferences
+{
+public:
+	bool getFPSLimitEnabled(void);
+
+private:
+	unsigned char m_unreconstructed_00[4];
+	PreferenceMap m_prefs;								///< retail this+0x04
+};
 
 // ?getFPSLimitEnabled@OptionPreferences@@QAE_NXZ
-__declspec(naked) bool OptionPreferences::getFPSLimitEnabled(void)
+bool OptionPreferences::getFPSLimitEnabled(void)
 {
-__asm {
-		_emit 051h
-		_emit 056h
-		_emit 057h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 068h
-		_emit 050h
-		_emit 06Dh
-		_emit 007h
-		_emit 001h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 00Ch
-		_emit 0E8h
-		_emit 0FDh
-		_emit 079h
-		_emit 07Fh
-		_emit 000h
-		_emit 08Dh
-		_emit 044h
-		_emit 024h
-		_emit 008h
-		_emit 083h
-		_emit 0C6h
-		_emit 004h
-		_emit 050h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 0DAh
-		_emit 09Ch
-		_emit 0F7h
-		_emit 0FFh
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 08Bh
-		_emit 0F8h
-		_emit 0E8h
-		_emit 063h
-		_emit 067h
-		_emit 07Fh
-		_emit 000h
-		_emit 03Bh
-		_emit 03Eh
-		_emit 075h
-		_emit 00Dh
-		_emit 08Bh
-		_emit 00Dh
-		_emit 0C8h
-		_emit 0D5h
-		_emit 02Eh
-		_emit 001h
-		_emit 08Ah
-		_emit 041h
-		_emit 01Eh
-		_emit 05Fh
-		_emit 05Eh
-		_emit 059h
-		_emit 0C3h
-		_emit 08Bh
-		_emit 07Fh
-		_emit 014h
-		_emit 085h
-		_emit 0FFh
-		_emit 08Dh
-		_emit 047h
-		_emit 008h
-		_emit 075h
-		_emit 005h
-		_emit 0B8h
-		_emit 08Bh
-		_emit 038h
-		_emit 007h
-		_emit 001h
-		_emit 068h
-		_emit 06Ch
-		_emit 0C7h
-		_emit 007h
-		_emit 001h
-		_emit 050h
-		_emit 0FFh
-		_emit 015h
-		_emit 03Ch
-		_emit 093h
-		_emit 035h
-		_emit 001h
-		_emit 083h
-		_emit 0C4h
-		_emit 008h
-		_emit 0F7h
-		_emit 0D8h
-		_emit 01Ah
-		_emit 0C0h
-		_emit 05Fh
-		_emit 0FEh
-		_emit 0C0h
-		_emit 05Eh
-		_emit 059h
-		_emit 0C3h
+	PreferenceNode *it;
+	{
+		AsciiString key("FPSLimit");
+		it = m_prefs.find(key);
 	}
-}
 
+	if (it == m_prefs.end())
+		return TheWritableGlobalData->m_fpsLimitEnabled;
+
+	if (_stricmp(it->m_value.str(), "yes") == 0)
+	{
+		return true;
+	}
+	return false;
+}
