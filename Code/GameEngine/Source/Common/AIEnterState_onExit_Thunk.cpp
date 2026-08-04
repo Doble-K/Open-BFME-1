@@ -1,119 +1,151 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the AIEnterState::onExit __emit thunk to clean C++.
+//
+// Verbatim Zero Hour AIStates.cpp: chain to the base onExit, stop the pathfinder
+// ignoring this object, and tell whatever the goal was that it no longer wants
+// to enter or exit.
+//
+// Retail pins what ZH leaves symbolic: the state machine is at this+0x1C with
+// its owner at machine+0x10, the AI at Object+0x204, the current locomotor at
+// AIUpdateInterface+0x1CC, the pending entry id at this+0x50, and the contain
+// module at Object+0x1FC with onObjectWantsToEnterOrExit on its vtable at +0x34.
+//
+// setAllowInvalidPosition(false) is inlined to a single `and [esi+0x40], ~2`,
+// so the flag is bit 1 of the word at Locomotor+0x40 rather than a call.
+
+typedef int Int;
 
 enum StateExitType { EXIT_NORMAL = 0 };
-class AIEnterState
+enum ObjectEnterExitType { WANTS_NEITHER = 0, WANTS_TO_ENTER = 1, WANTS_TO_EXIT = 2 };
+
+class Object;
+
+class Locomotor
+{
+public:
+	void setAllowInvalidPosition(bool allow)
+	{
+		if (!allow)
+			m_flags &= ~ALLOW_INVALID_POSITION;
+	}
+
+private:
+	enum { ALLOW_INVALID_POSITION = 0x00000002 };
+
+	unsigned char m_unreconstructed_00[0x40];
+	unsigned int m_flags;							///< retail this+0x40
+};
+
+class AIUpdateInterface
+{
+public:
+	void ignoreObstacle(Object *obj);					///< ILT thunk at 0x0000315C
+
+	Locomotor *getCurLocomotor(void) const { return m_curLocomotor; }
+
+private:
+	unsigned char m_unreconstructed_00[0x1CC];
+	Locomotor *m_curLocomotor;						///< retail this+0x1CC
+};
+
+class ContainModuleInterface
+{
+public:
+	virtual void unused00();
+	virtual void unused01();
+	virtual void unused02();
+	virtual void unused03();
+	virtual void unused04();
+	virtual void unused05();
+	virtual void unused06();
+	virtual void unused07();
+	virtual void unused08();
+	virtual void unused09();
+	virtual void unused10();
+	virtual void unused11();
+	virtual void unused12();
+	virtual void onObjectWantsToEnterOrExit(Object *obj, ObjectEnterExitType wants);	///< vtable +0x34
+};
+
+class Object
+{
+public:
+	AIUpdateInterface *getAI(void) const { return m_ai; }
+	ContainModuleInterface *getContain(void) const { return m_contain; }
+
+private:
+	unsigned char m_unreconstructed_00[0x1FC];
+	ContainModuleInterface *m_contain;				///< retail this+0x1FC
+	unsigned char m_unreconstructed_200[4];
+	AIUpdateInterface *m_ai;						///< retail this+0x204
+};
+
+class GameLogic
+{
+public:
+	Object *findObjectByID(Int id);					///< ILT thunk at 0x0001F253
+};
+
+extern GameLogic *TheGameLogic;						///< retail [0x012F0898]
+
+class StateMachine
+{
+public:
+	unsigned char m_unreconstructed_00[0x10];
+	Object *m_owner;								///< retail this+0x10
+};
+
+class AIInternalMoveToState
+{
+public:
+	virtual void onExit(StateExitType);				///< ILT thunk at 0x00029311
+
+	Object *getMachineOwner(void) const { return m_machine->m_owner; }
+
+protected:
+	unsigned char m_unreconstructed_04[0x1C - 4];
+	StateMachine *m_machine;						///< retail this+0x1C
+};
+
+class AIEnterState : public AIInternalMoveToState
 {
 public:
 	virtual void onExit(StateExitType);
+
+private:
+	unsigned char m_unreconstructed_20[0x50 - 0x20];
+	Int m_entryToClear;								///< retail this+0x50
 };
 
 // ?onExit@AIEnterState@@UAEXW4StateExitType@@@Z
-__declspec(naked) void AIEnterState::onExit(StateExitType)
+void AIEnterState::onExit(StateExitType status)
 {
-	__asm {
-        __emit 0x53
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x58
-        __emit 0x10
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xfa
-        __emit 0xb8
-        __emit 0xea
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xb3
-        __emit 0x04
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x17
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x32
-        __emit 0x57
-        __emit 0xe8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xb6
-        __emit 0xcc
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x04
-        __emit 0x83
-        __emit 0x66
-        __emit 0x40
-        __emit 0xfd
-        __emit 0x8b
-        __emit 0x7f
-        __emit 0x50
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x22
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x98
-        __emit 0x08
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x08
-        __emit 0x18
-        __emit 0xea
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x88
-        __emit 0xfc
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x02
-        __emit 0x53
-        __emit 0xff
-        __emit 0x52
-        __emit 0x34
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	Object *obj = getMachineOwner();
+	AIInternalMoveToState::onExit(status);
+
+	// tell the pathfinder to stop ignoring the object
+	AIUpdateInterface *ai = obj->getAI();
+	if (ai)
+	{
+		ai->ignoreObstacle(0);
+		if (ai->getCurLocomotor())
+		{
+			ai->getCurLocomotor()->setAllowInvalidPosition(false);
+		}
+	}
+
+	// use this, rather than getMachineGoalObject, in case the goal
+	// is killed while we were waiting...
+	if (m_entryToClear != 0)
+	{
+		Object *goal = TheGameLogic->findObjectByID(m_entryToClear);
+		if (goal)
+		{
+			ContainModuleInterface *contain = goal->getContain();
+			if (contain)
+			{
+				contain->onObjectWantsToEnterOrExit(obj, WANTS_TO_EXIT);
+			}
+		}
 	}
 }
