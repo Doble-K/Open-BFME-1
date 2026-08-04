@@ -1599,3 +1599,27 @@ six through unchanged.
 
 To claim one of these properly, pin the class destructor first from something
 outside the body: a vtable slot, or a caller that is already byte-matched.
+
+### And 0x002C11A0 really is identifiable — by the destructor, not by the bytes
+
+Chasing the destructor instead of the deleting destructor settles it. The `??_G`
+at 0x002C11A0 calls thunk 0x0001E29F, which reaches 0x00172430 via 0x002C11D0
+and 0x0004AAF7. That body installs vtable VA 0x1095B08, and slots 4, 5 and 6 of
+that table are the already-matched `onEnter`, `onExit` and `update` of
+`AIInternalMoveToState` — so 0x00172430 is that class's destructor, named by
+evidence entirely outside the bytes being compared.
+
+Which makes 0x002C11A0 the *second* `??_G` of AIInternalMoveToState. The first
+is at 0x0014F350, sitting in slot 0 of the same vtable, and the two differ by
+exactly one operand: 0x0014F350 calls the thunk at 0x0004AAF7 directly, while
+0x002C11A0 goes the long way through 0x0001E29F. Two translation units emitted
+the same deleting destructor, the linker could not fold them because their call
+chains differ, and both survived. Neither belongs to ActionManager,
+AIUpdateInterface, AssaultTransportAIUpdate, ChinookAIStateMachine,
+DeliverPayloadAIUpdate or W3DProjectedShadow, all of which the tool was happy
+to put there.
+
+Worth remembering as a positive result too: two byte-different copies of one
+compiler-generated body are normal when they take different thunk hops, so
+finding a second `??_G` for a class you have already placed is not evidence
+that one of them is wrong.
