@@ -41,3 +41,65 @@ Decompile it, including callers/data references and direct callees, with:
 
     analyzeHeadless build/toolchains/bfme_ghidra bfme -process lotrbfme.exe -noanalysis \
         -scriptPath tools/ghidra -postScript decompile_function.java 0x82190
+
+## Windows
+
+`analyzeHeadless.bat` is the entry point, and the project directory **must
+already exist** — headless aborts with "Directory not found: ..." rather than
+creating it, which looks like a script error and is not. Ghidra 12.1.2 with
+Microsoft OpenJDK 21 reproduces this repository's artifacts exactly (see the
+validation note below), and neither is packaged in winget: take the Ghidra
+release zip from GitHub and the JDK zip from `aka.ms/download-jdk`, and expand
+both with PowerShell's `Expand-Archive` — Git Bash's GNU `tar` cannot read a
+zip, and `--force-local` fixes only the drive-letter path, not the format.
+
+```powershell
+$root = "<repo root>"
+$env:JAVA_HOME = "$root\build\toolchains\jdk21\jdk-21.0.12+8"
+$env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
+New-Item -ItemType Directory -Force "$root\build\toolchains\bfme_ghidra"
+& "$root\build\toolchains\ghidra_12.1.2_PUBLIC\support\analyzeHeadless.bat" `
+    "$root\build\toolchains\bfme_ghidra" bfme `
+    -import "$root\baselines\bfme1\workshop-vanilla-1.03\files\lotrbfme.exe" -overwrite `
+    -scriptPath "$root\tools\ghidra" -postScript list_functions.java `
+    "$root\reverse\ghidra_functions.csv"
+```
+
+Analysis takes about 13 minutes and recovers ~78,500 functions. Reuse the saved
+project with `-process lotrbfme.exe -noanalysis` for the other two scripts;
+those finish in seconds.
+
+## Is the inventory any good?
+
+Two independent checks, worth re-running after any Ghidra upgrade.
+
+**Against a tracked artifact.** `reverse/vtables.tsv` is committed. Re-exporting
+it with `export_vtables.java` must produce a byte-identical file (562 lines, 205
+vtables). If it does, this Ghidra version agrees with the one the project was
+built against; if it does not, treat every other export as suspect before using
+it.
+
+**Against the ledger.** A `matched` row is a byte-verified fact, so the fraction
+Ghidra reproduces is a real score. Measured 2026-08-04 with 12.1.2:
+
+| Row kind | rows | rva is a Ghidra function start | size exact |
+|---|---|---|---|
+| real source | 14,737 | 65.2% | 96.4% of those |
+| `gen_small` | 76,884 | 32.9% | 100% of those |
+| `masm_dumps` | 179 | 91.1% | **81.0%** of those |
+
+Read it as: where Ghidra has a boundary it is nearly always right, so
+`harvest.py` taking its sizes is safe, and the third of real-source rows it
+misses are simply absent rather than wrong. The `masm_dumps` row is the outlier
+and it is not a Ghidra defect — 19% of dump rows disagree with it because dumps
+byte-verify at any length, which is what `tools/audit_internal_padding.py`
+exists to find.
+
+## Without the inventory
+
+`locate.py`, `harvest.py`, `explain_mismatch.py`, `audit_claim_boundaries.py`,
+`decode_calls.py` and `drift_classify.py` all raise `FileNotFoundError` on a
+fresh clone, because `reverse/ghidra_functions.csv` is gitignored. That is the
+whole function-finding pipeline, and the failure is loud but easy to
+misdiagnose as a broken checkout. Regenerate before concluding a tool is
+broken.

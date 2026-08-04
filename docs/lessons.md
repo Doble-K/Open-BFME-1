@@ -1676,7 +1676,160 @@ those gaps rather than filling them. And it gives retail's layout, not our
 header: knowing `SpecialPower` belongs at 0x034 does not by itself say which of
 our members to grow, so the existing matched rows still decide between an
 insert, a pad and a relocation.
-=======
 - A hand-rolled value type is not a substitute for the reference one. Replacing WWMath's `Vector3` with an equivalent-looking class (initialiser-list constructor, compiler-generated copy and assignment) made MSVC round-trip every temporary through memory with integer moves; copying the real header's form — user-defined copy constructor and `operator=`, constructor bodies that assign — kept each component in the FPU and the body collapsed onto retail.
 - MSVC does not evaluate float operands in source order, and is not consistent between components of the same expression: `Max + Min` loaded `Min.X` first but `Max.Y` and `Max.Z` first. A reversed-looking operand pair in one component proves nothing on its own — flip the whole expression and re-compare.
 - When a body is mostly a container's inline machinery, identify the exact container first — `SimpleDynVecClass` and `DynamicVectorClass` have different member order and different growth rules, so guessing costs a full reconstruction. Two divide-by-four sequences in one function were `Shrink` (`ActiveCount < VectorMax/4`, folding to `VectorMax/4 > 0` right after `Delete_All` zeroes the count) and `Grow` (`Length() + Length()/4`) — same idiom, unrelated meanings.
+
+## Ledger and git traps that cost pushes rather than cycles
+
+Three of these are specific to how the ledgers are stored and one is generic
+git, and between them they cost several failed pushes in a single session.
+
+**`symbols.csv` is CRLF, but not uniformly.** At least one row ends with a bare
+LF. Appending after such a row leaves `\n\r\n`, and the union merge driver then
+sees your line and the peer copy of the same pin as different lines, so the next
+rebase produces an exact duplicate and `check_csv` blocks the push. Append by
+taking `upstream/master`'s copy of the file and adding your line with `\r\n`,
+rather than appending to whatever the working tree happens to hold.
+
+**Do not reach for `tools/dedup_csv.py` when that happens.** It rewrites both
+ledgers with normalised terminators — a 157,000-line diff that conflicts with
+every other agent and destroys the `\r\r\n` rows `add_match` indexes by raw
+line. Delete the duplicated line by hand; it is one line.
+
+**`git reset --soft upstream/master` while upstream is ahead of your rebase base
+stages a revert of the peer commits in between.** The index keeps your tree,
+which relative to the newer base looks like undoing their work. Check
+`git status --short` for files you never touched before committing.
+
+**`docs/lessons.md` conflicts on almost every push** because everyone appends to
+it. Both sides are appends, so keeping both hunks is always the resolution — but
+a conflicted rebase still needs the merge checked, since `functions.csv` uses
+union merge and has no concept of a deletion.
+
+## Where the mechanical methods stand, so nobody re-runs them
+
+Ranked by what they still return, as of 2026-08-04.
+
+**Structural findings** remain the best return by far: one fact about a class
+unlocks many functions at once, and `docs/ini_schema.md` now makes that fact
+cheap for 96 INI-parsed classes (see the oracle entry above).
+
+**Pinning through ILT thunks** still works and is the only way to get an address
+that exists nowhere else. Pin the *thunk*, not the body — call sites encode the
+thunk.
+
+**The masked-body sweep (`tools/landsmall.py`) is exhausted.** It produced ~90
+functions historically and produced nothing at all across four fresh attempts:
+`Common/StateMachine.cpp`, all 51 files of `GameLogic/Object/SpecialPower`, and
+the three largest gap-owning files (`AIUpdate.cpp`, `AIGroup.cpp`,
+`W3DTreeBuffer.cpp`). Previously swept and empty: zlib, Lua, EAC, WWMath,
+WWLib, WW3D2, WWDebug/WWSaveLoad, the Upgrade/Contain/Die/Body/Create modules,
+GUI/Thing/ScriptEngine, most of GameClient and GameNetwork. Re-run it only when
+a class layout changes and reopens what that class blocked.
+
+**Thunk-located bodies (`tools/thunkchase.py`, `tools/claimlocated.py`)** are
+nearly finished: down from 276 wrapper sites to ~29 distinct bodies, of which a
+full run landed one.
+
+So the remaining queue is genuinely structural. `tools/next_work.py --ranked`
+tops out around 87% agreement and its `ghidra` tier is empty — "No
+Ghidra-anchored absent function candidates remain."
+
+## Open leads with addresses, so they are not rediscovered
+
+**`AIInternalMoveToState`'s destructor is identified but unclaimed** at
+0x00172430, 98 bytes. The proof is deliberately not its own bytes: it installs
+vtable VA 0x1095B08 (RVA 0xC95B08), and slots 4, 5 and 6 of that table are the
+already-matched `onEnter`, `onExit` and `update` of that class. Exactly two
+sites in the image store the pointer — this destructor, and a store at
+0x0014F2BF inside the 149-byte function at 0x0014F280, which is the constructor
+and is also unclaimed, with the class's own `??_G` at 0x0014F350 behind it. The
+destructor carries an SEH frame, a global null-check and a virtual call through
+`[edx+0x4c]`, so it is a reconstruction rather than a transcription.
+
+**`CommandButton` layout is proven and landing is blocked by five funclet rows.**
+The INI field table gives the front exactly: `Options` 0x018, `Object` 0x01C and
+`Upgrade` 0x020 agree with ours, then BFME inserts `NeededUpgrade` (0x024, 4B)
+and `BuildUpgrades` (0x028, AsciiStringVector, 12B), which is why retail reads
+`m_specialPower` at +0x34 where ours sits at +0x24. `CommandButton::isReady`
+@0x0049AD30 is what exposed it — and note its real length is **146 bytes**, not
+the 93 the work queue reports, which is our own body's length; it also needs a
+BFME-only branch (`cmp [this+0x10],0x16`) that the Zero Hour source lacks.
+Adding the two members to `reference/shims/controlbarlayout` compiles but
+renumbers the compiler-generated labels in ControlBar.cpp, breaking five
+`object-symbol=$L…` funclet rows (`uw_00c27f10`, `uw_00c27fe0`, `uw_00c27fee`,
+`uw_00c27ffc`, `uw_00c28250`). `tools/relabel.py` reports **all five ambiguous**
+and refuses them: the `std::vector` member adds code, so the labels do not shift
+uniformly and its positional check fails. Landing this needs the layout and the
+funclet re-keying in one commit, deriving each funclet's label from its position
+inside its parent. Further down the same table `TextLabel` (0x044) and
+`DescriptLabel` (0x050) are AsciiStringVectors where ours are plain
+AsciiStrings, so the tail needs more than these two inserts.
+
+**Still open, unchanged:** `MeshMatDescClass::Init_Alternate` @0x929410 (1047B,
+80% agreement, remainder is SIB order and spill-register choice rather than
+layout); `TurretAI::setTurretTargetObject` @0x18D120 (280B, 218 diffs, base
+layout already correct so what is left is its own logic);
+`?loadD3DCursorTextures@W3DMouse@@` (ledger name is truncated with no signature,
+and the body diverges — retail 559B against our 332).
+
+**`StateMachine` has no addresses at all.** `StateMachine.cpp` shows 10 matched
+rows but every one is an STL helper; all 27 real methods are
+`present-unmatched`, none is in the export table or in `reverse/vtables.tsv`,
+and the masked sweep places none of them.
+`reference/shims/turretai/Common/StateMachine.h` already encodes two extra BFME
+virtuals ahead of `setState` (pinned by `recenterTurret` @0x18C8D0) but keeps
+both Zero Hour bases — and the merged `MemoryPoolObject`+`Snapshot` finding
+recorded above has never been tested on this class.
+
+**Dropped as stale:** the `bfmeFactoryAnchor*` question in ModuleFactory.cpp. No
+row in `functions.csv` and no pin in `symbols.csv` mentions those symbols any
+more.
+
+## The unclaimed gaps that are actually ours
+
+From `tools/gap_owner.py`, which names the owning translation unit from the
+`F:\bfme\Code\...` assert strings retail kept. Several of these files have no
+translation unit in `Code/` at all — they are BFME-only and would be
+reconstruction from the disassembly rather than porting.
+
+| Real bytes | Address | Owner |
+|---|---|---|
+| 33,685 | 0x273DCE | `AIUpdate.cpp` |
+| 26,101 | 0x2369B5, 0x2408CE, 0x23B6D5, 0x244AD5 | `HordeContain.cpp` — **no TU** |
+| 24,566 | 0x1527B2, 0x156C2E | `AIGroup.cpp` |
+| 10,811 | 0x558F9E | `AptOnlineQuickMatch.cpp` — **no TU**, Flash/Apt UI |
+| 10,601 | 0x344291 | `ScriptEngine.cpp` |
+| 10,165 | 0x2A6588 | `SpecialAbilityUpdate.cpp` — **no TU** |
+| 9,695 | 0x2E3F04 | `LuaScriptEngine.cpp` — **no TU** |
+| 9,588 | 0x73670E | `W3DTreeBuffer.cpp` |
+| 8,932 | 0x76569E | `W3DScriptedModelDraw.cpp` — no TU |
+| 8,912 | 0x71A140 | `W3DShrubBuffer.cpp` — no TU |
+| 8,138 | 0x6ACB6D | `MilesAudioManager.cpp` — no TU |
+
+## Triaging the eighteen over-long rows
+
+Interior padding proves the end is wrong and says nothing about the start, so
+each row still needs its start checked. Doing that — is it a Ghidra function
+start, is it 16-byte aligned, is it preceded by padding — leaves only **three**
+that are plain over-long rows safe to shrink:
+
+| Row | claims | real body | start evidence |
+|---|---|---|---|
+| `DefaultModuleTemplate<1>::writeINI` @0x6000B0 | 807 | 628 | Ghidra start, aligned, padded |
+| `RTS3DScene::Visibility_Check` @0x9446F0 | 1075 | 456 | 16-byte aligned |
+| `StructureToppleUpdate::update` @0x8F7E80 | 1211 | 52 | 16-byte aligned |
+
+The other fifteen have starts nothing corroborates, which puts them in the same
+class as the withdrawn AIAttackMoveStateMachine row — but that is a triage
+signal and not a verdict, since Ghidra misses a third of real-source starts and
+MSVC does not align every function. Two are worth looking at first because the
+arithmetic is extreme: `OptionPreferences::getLANIPAddress` claims 488 bytes for
+a 124-byte body and `getOnlineIPAddress` claims 397 for 124, and both are
+`__declspec(naked)` `.cpp` sources rather than dumps, so withdrawing them means
+deleting source too.
+
+Note that shrinking a dump row is not a one-line ledger edit: the `.asm` must
+have its `db` lines truncated to the same length, or the source and the row
+disagree about what is being verified.
