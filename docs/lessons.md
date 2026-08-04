@@ -1564,3 +1564,38 @@ rows belong to other people's work -- the tool reports, it does not edit.
 - The if-form/expression-form split covers `!= 0` too: `if (x != 0) return true; return false;` gives `test eax,eax / setne al`, while `return x != 0;` gives the 32-bit `neg / sbb / neg`.
 - `strcmp` is an intrinsic under `/Oi` so it inlines as `mov ecx,N / xor edx,edx / repe cmpsb`; `_stricmp` has no intrinsic and goes through the IAT. A retail `repe cmpsb` against a literal therefore means the case-sensitive one.
 - A float local that MSVC keeps in st(0) is invisible except in the width of its constant loads: `fcom dword` / `fld dword` mean `float`, `fcom qword` / `fld qword` mean `double`. Assigning `atof`'s double to a float local emits no narrowing store at all, so the constants are the only evidence of the type.
+
+## locate.py derived the evidence from the placement, and deleting destructors exploited it
+
+`locate.py` validates a candidate placement by reading each REL32 out of the
+retail bytes and recording what it points at — "callee addresses read from the
+binary". For most bodies that is sound: the unmasked bytes carry the real
+evidence and the callee is a bonus. For a deleting destructor there are no
+other bytes. `??_G` is
+
+    push esi / mov esi,ecx / call <the class destructor> /
+    test [esp+8],1 / je / push esi / call operator delete / add esp,4 /
+    mov eax,esi / pop esi / ret 4
+
+and once the two calls are masked, what remains is identical for every class in
+the program. So its identity *is* the destructor it calls — and that address
+was just derived from the placement being tested. The placement proves itself.
+
+This is not theoretical. Running `locate.py` over sixteen sources offered
+**0x002C11A0 to six different translation units**, as `??_GActionManager`,
+`??_GAIUpdateInterface`, `??_GAssaultTransportAIUpdate`,
+`??_GChinookAIStateMachine`, `??_GDeliverPayloadAIUpdate` and
+`??_GDozerPrimaryStateMachine`, each with its own invented `symbols.csv` pin
+putting that class's `??1` at 0x0001E29F. Any one `--emit` would have landed a
+false row *and* a false pin, and the pin is the worse half — it would go on to
+"resolve" call sites in unrelated functions.
+
+The tool now refuses these and reports them as SELF-CONFIRMING. The check that
+works is narrow: for `??_G`/`??_E`, require that the **class destructor** callee
+already has a known address. Requiring merely *some* known callee does not
+work, because the body also calls `operator delete`, whose address is always
+known and says nothing about which class this is — that first attempt let all
+six through unchanged.
+
+To claim one of these properly, pin the class destructor first from something
+outside the body: a vtable slot, or a caller that is already byte-matched.
