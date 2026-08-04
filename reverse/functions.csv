@@ -93097,3 +93097,8 @@ uw_00c56fc0,,0x00C56FC0,8,Code/gen_small/tgrid_122.cpp,matched,gen-funclet;paren
 ?Begin_Statistics@DX8Wrapper@@SAXXZ,,0x00902380,53,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,vendored=cnc-zh
 ?setTurretTargetPosition@AIUpdateInterface@@QAEXW4WhichTurretType@@PBUCoord3D@@@Z,,0x0026E9B0,28,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,forwards to TurretAI::setTurretTargetPosition through the ILT thunk at 0x468F8; fills a gap in the contiguous AIUpdate.cpp turret block between setTurretTargetObject 0x26E930 and recenterTurret 0x26EA10
 ?setTurretEnabled@AIUpdateInterface@@QAEXW4WhichTurretType@@_N@Z,,0x0026E9E0,28,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,forwards to TurretAI::setTurretEnabled; fills the gap between setTurretTargetPosition 0x26E9B0 and recenterTurret 0x26EA10
+??_G?$VectorClass@PAUW3dAggregateSubobjectStruct@@@@UAEPAXI@Z,,0x0005E820,72,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,vendored=cnc-zh
+??1?$VectorClass@PAUW3dAggregateSubobjectStruct@@@@UAE@XZ,,0x0005E5D0,45,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,vendored=cnc-zh
+?Clear@?$VectorClass@PAUW3dAggregateSubobjectStruct@@@@UAEXXZ,,0x0005DBB0,39,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,vendored=cnc-zh
+?_Set_Default_Min_Filter@TextureFilterClass@@SAXW4FilterType@1@@Z,,0x00920A70,109,Code/Libraries/Source/WWVegas/WW3D2/texturefilter.cpp,matched,vendored=cnc-zh
+?Record_Sorting_Polys_And_Vertices@Debug_Statistics@@YAXHH@Z,,0x009371F0,41,Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp,matched,vendored=cnc-zh
