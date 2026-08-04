@@ -1471,3 +1471,5 @@ The coverage is sparse by nature: a release build keeps only the asserts that
 survived, and 118 gaps over 8KB hold 2.56MB of real bytes of which only 171KB
 sits in a gap that names anything. Anonymity is not evidence that a region is
 uninteresting -- it is usually just a file whose asserts were compiled out.
+
+The OptionPreferences boolean getters backed by a GlobalData default compare their value with an inlined 4-byte repe cmpsb against "yes" plus sete, not a stricmp call - a plain memcmp with #pragma intrinsic still emits a real call under these flags, so that sub-shape is still unsolved and those rows remain naked.
