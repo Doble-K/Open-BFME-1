@@ -1835,3 +1835,33 @@ have its `db` lines truncated to the same length, or the source and the row
 disagree about what is being verified.
 - Padding filler must account for the vtable pointer explicitly, and whether one exists depends on the *shim* class, not the real one. A filler of `[0xD8]` in a class that declares a virtual puts the next member at 0xDC; the same filler in a class that declares none puts it at 0xD8. Both mistakes shift every offset in the dump by four and read like a different layout rather than an off-by-one-slot — check the shim's own virtuals before re-deriving the layout.
 - `mov reg,0` where `xor reg,reg` would do is not a different constant: `xor` clobbers flags, so MSVC picks the longer encoding when a comparison has already set flags that a later branch still needs.
+
+## The oracle is now a diff: tools/ini_layout_diff.py
+
+The entry above says an INI-parsed class is reconstructable field by field
+rather than by triangulation. `tools/ini_layout_diff.py` does it in one command:
+it reads our `FieldParse` table out of the compiled object, lines it up by token
+against retail's decoded table in `docs/ini_schema.md`, and prints the per-field
+offset delta plus the list of fields retail parses that our table does not —
+which is the list of members to add.
+
+It reproduces, in seconds, the CommandButton analysis that took an hour of
+disassembly: four fields agreeing, `SpecialPower` at our 0x24 against retail
+0x34, the cascade to +24 and +32 as `TextLabel` and `DescriptLabel` widen into
+vectors, and `NeededUpgrade` 0x024 / `BuildUpgrades` 0x028 at the head of the
+additions list. That agreement with an independent measurement is the reason to
+trust it.
+
+Two things it immediately says about classes nobody had numbers for. Our
+`WeaponTemplate` table has 76 fields against retail's 112, and its front is
+0x24 *too high* — `AttackRange` sits at our 0x38 where retail has 0x14 — so the
+tail pad recorded earlier is not merely incomplete, the class is smaller at the
+front and larger later. `LocomotorTemplate` agrees on exactly one field out of
+fifty, despite Locomotor.cpp verifying 44/44, which is a reminder that a green
+translation unit says nothing about a template class whose accessors are not
+among the matched rows.
+
+Read the deltas as evidence about retail, not as instructions. The table only
+constrains fields the parser writes, runtime-only members between them are
+free, and the matched rows still decide between an insert, a pad and a
+relocation.
