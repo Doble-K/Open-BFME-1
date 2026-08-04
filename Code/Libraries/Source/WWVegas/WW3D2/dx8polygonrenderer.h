@@ -70,6 +70,8 @@ class DX8PolygonRendererClass : public MultiListObjectClass
 	unsigned							index_count;				// number of indices
 	unsigned							min_vertex_index;			// relative index of the first vertex our polys reference
 	unsigned							vertex_index_range;		// range to the last vertex our polys reference
+	unsigned							min_vertex_index2;			// BFME: second index set (split table)
+	unsigned							vertex_index_range2;		// BFME: range to the last vertex of the second set
 	bool								strip;						// is this a strip?
 	unsigned							pass;					// rendering pass
 
