@@ -1,138 +1,91 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump MetaMap::getMetaMapRec to standalone C++ thunk.
-// Retail uses non-polymorphic 0x24-byte MetaMapRec layout (zeros +0x1c/+0x20).
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the MetaMap::getMetaMapRec __emit thunk to clean C++.
+//
+// Verbatim Zero Hour MetaEvent.cpp: look for an existing record for this message
+// type, and failing that allocate one, fill in the defaults and push it on the
+// front of the list.
+//
+// Retail pins the record layout: m_next at +0x00, m_meta +0x04, m_key +0x08,
+// m_transition +0x0C, m_modState +0x10, m_usableIn +0x14, m_category +0x18 and
+// the two UnicodeStrings at +0x1C/+0x20, giving the 0x24 byte allocation. The
+// list head lives at MetaMap+0x08, and CATEGORY_MISC is 6 -- the one non-zero
+// default, read straight off the store.
+//
+// ZH allocates with newInstance(); retail calls plain operator new, so the null
+// check and the two string constructors sit inside the allocation branch while
+// the field assignments follow the merge. clear() on a UnicodeString folds with
+// the wide-string destructor body, which is why both calls land on one address.
 
-class MetaMapRec;
+typedef int Int;
 
 class GameMessage
 {
 public:
-	enum Type
-	{
-		X
-	};
+	enum Type { MSG_INVALID = 0 };
+};
+
+class UnicodeString
+{
+public:
+	UnicodeString(void) : m_data(0) {}
+
+	void clear(void);										///< retail body at 0x008881D0
+
+private:
+	void *m_data;
+};
+
+enum { MK_NONE = 0 };
+enum MappableKeyTransition { DOWN = 0 };
+enum MappableKeyModState { NONE = 0 };
+enum CommandUsableInType { COMMANDUSABLE_NONE = 0 };
+enum MetaMapCategory { CATEGORY_MISC = 6 };
+
+class MetaMapRec
+{
+public:
+	MetaMapRec *m_next;										///< retail this+0x00
+	Int m_meta;												///< retail this+0x04
+	Int m_key;												///< retail this+0x08
+	Int m_transition;										///< retail this+0x0C
+	Int m_modState;											///< retail this+0x10
+	Int m_usableIn;											///< retail this+0x14
+	Int m_category;											///< retail this+0x18
+	UnicodeString m_description;							///< retail this+0x1C
+	UnicodeString m_displayName;							///< retail this+0x20
 };
 
 class MetaMap
 {
 protected:
-	MetaMapRec *getMetaMapRec(GameMessage::Type type);
+	MetaMapRec *getMetaMapRec(GameMessage::Type t);
+
+private:
+	unsigned char m_unreconstructed_00[8];
+	MetaMapRec *m_metaMaps;									///< retail this+0x08
 };
 
 // ?getMetaMapRec@MetaMap@@IAEPAVMetaMapRec@@W4Type@GameMessage@@@Z
-__declspec(naked) MetaMapRec *MetaMap::getMetaMapRec(GameMessage::Type)
+MetaMapRec *MetaMap::getMetaMapRec(GameMessage::Type t)
 {
-	__asm {
-		__emit 0x53
-		__emit 0x55
-		__emit 0x8b
-		__emit 0x6c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0xd9
-		__emit 0x8b
-		__emit 0x43
-		__emit 0x08
-		__emit 0x57
-		__emit 0x33
-		__emit 0xff
-		__emit 0x3b
-		__emit 0xc7
-		__emit 0x74
-		__emit 0x0b
-		__emit 0x39
-		__emit 0x68
-		__emit 0x04
-		__emit 0x74
-		__emit 0x52
-		__emit 0x8b
-		__emit 0x00
-		__emit 0x3b
-		__emit 0xc7
-		__emit 0x75
-		__emit 0xf5
-		__emit 0x56
-		__emit 0x6a
-		__emit 0x24
-		__emit 0xe8
-		__emit 0xfb
-		__emit 0xad
-		__emit 0x2c
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0x3b
-		__emit 0xc7
-		__emit 0x74
-		__emit 0x0a
-		__emit 0x89
-		__emit 0x78
-		__emit 0x1c
-		__emit 0x89
-		__emit 0x78
-		__emit 0x20
-		__emit 0x8b
-		__emit 0xf0
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xf6
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x1c
-		__emit 0x89
-		__emit 0x6e
-		__emit 0x04
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x08
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x0c
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x10
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x14
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x18
-		__emit 0x06
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x6a
-		__emit 0x10
-		__emit 0x2d
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x20
-		__emit 0xe8
-		__emit 0x62
-		__emit 0x10
-		__emit 0x2d
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x43
-		__emit 0x08
-		__emit 0x89
-		__emit 0x06
-		__emit 0x89
-		__emit 0x73
-		__emit 0x08
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x5f
-		__emit 0x5d
-		__emit 0x5b
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
+	for (MetaMapRec *map = m_metaMaps; map; map = map->m_next)
+	{
+		if (map->m_meta == t)
+			return map;
 	}
+
+	// not found.. create a new one.
+	MetaMapRec *m = new MetaMapRec;
+	m->m_meta = t;
+	m->m_key = MK_NONE;
+	m->m_transition = DOWN;
+	m->m_modState = NONE;
+	m->m_usableIn = COMMANDUSABLE_NONE;
+	m->m_category = CATEGORY_MISC;
+	m->m_description.clear();
+	m->m_displayName.clear();
+	m->m_next = m_metaMaps;
+	m_metaMaps = m;
+
+	return m;
 }
