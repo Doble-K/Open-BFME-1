@@ -23,8 +23,9 @@ Baseline `4b0f15bbe`: 91,800 matched rows, 2,466,592 unique .text bytes
 Phase 6 then added 105 bytes (`??0FileSystem@@QAE@XZ` restored) and moved 1,617
 bytes from ASM-only to C++ (`_send_heartbeat` replacing a wrong MASM claim).
 
-Final: **13.07% C++ / 19.78% total** (+0.91pp C++, +0.88pp total; ASM-only
-−4,129 bytes).
+Final: **13.07% C++ / 19.78% total** (+0.91pp C++, +0.88pp total). The
+total-exact delta below is the drain's and is stable; the C++/ASM split keeps
+moving as the fleet converts dumps, so read it from `progress.py`, not here.
 
 The whole-drain `progress.py 4b0f15bbe` delta reconciles to the byte:
 
