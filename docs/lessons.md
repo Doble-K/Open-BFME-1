@@ -2563,3 +2563,30 @@ saw -- and that is not recoverable by trying spellings. When a body of this kind
 stalls within single digits of exact with all instructions present, stop varying the
 source and record it; the next lever is evidence about the original TU, not another
 rewrite.
+
+## WW3DErrorType is not renumbered globally, whatever Save_Info looks like
+
+`AggregateDefClass::Save_Info` (0x00980B90) reads unambiguously: `xor bl, bl` before
+`Begin_Chunk`, `mov bl, 1` after a successful `Write`, and a subobject loop that runs
+while `cmp bl, 1` holds. Taken alone that says BFME numbers the assume-error value 0
+and `WW3D_ERROR_OK` 1 -- the reverse of Zero Hour -- and the appealing part is that
+the Zero Hour source text would then already be correct with only the values changed.
+
+It is refused by evidence elsewhere. Reordering the enum in
+`Code/Libraries/Source/WWVegas/WW3D2/w3derr.h` breaks four matched rows in
+meshmdlio.cpp -- `read_texture_stage`, `read_material_pass` and two neighbours --
+each by a single byte in a jump displacement, meaning the Zero Hour numbering is what
+those bodies were built against. A per-file enum is not a real thing, so one of the
+two readings is wrong, and the four matched rows outweigh the one unmatched function.
+
+The likeliest resolution is that `bl` in Save_Info is not a WW3DErrorType at all: the
+virtual it calls through `[edx+0x24]` may return a Bool, with the 0/1 being FALSE and
+TRUE and the conversion happening at the return. That would explain the byte-width
+operations too, which are the other thing the enum theory never accounted for --
+retail keeps this value in `bl` throughout while an int-sized enum gives `ebx`, and
+the decorated name `?AW4WW3DErrorType@@` forbids changing the type to something
+byte-sized.
+
+So: do not renumber this enum, and treat a Save_/Load_ status variable held in a byte
+register as evidence that the source variable is not the enum it is eventually
+returned as.
