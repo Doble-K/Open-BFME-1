@@ -63864,7 +63864,7 @@ _atanf,,0x0045B6F0,9,Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp,matched,
 ??_GControlBarSchemeManager@@QAEPAXI@Z,,0x0049CAB0,30,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?updateContextPurchaseScience@ControlBar@@IAEXXZ,,0x0049CAE0,139,Code/GameEngine/Source/Common/ControlBar_updateContextPurchaseScience_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?getStarImage@ControlBar@@QAEPBVImage@@XZ,,0x0049CC00,208,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_getStarImage_Thunk.cpp,matched,clean C++ conversion; ZH ControlBar.cpp body; not-flashing arm sets the three window images directly; images at this+0x2C0 and +0x2C4 flag at +0x2C8 and last value at +0x2CC
-?setCommandBarBorder@ControlBar@@AAEXPAVGameWindow@@W4CommandButtonMappedBorderType@@@Z,,0x0049CE10,153,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setCommandBarBorder_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?setCommandBarBorder@ControlBar@@AAEXPAVGameWindow@@W4CommandButtonMappedBorderType@@@Z,,0x0049CE10,153,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setCommandBarBorder_Thunk.cpp,matched,clean C++ conversion; ZH ControlBar.cpp switch plus a fifth BFME border type; colours at this+0x280 through +0x290 in an order that differs from the enum
 ?setPortraitByImage@ControlBar@@IAEXPBVImage@@@Z,,0x0049CF10,164,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
 ?m@Gen_0049cfe0@@QAEXH@Z,,0x0049CFE0,3,Code/gen_small/fun_003.cpp,matched,gen-shim;skeleton=ret-void-4;ghidra=FUN_0089cfe0
 ?updateRightHUDImage@ControlBar@@QAEXPBVImage@@@Z,,0x0049CFF0,26,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,

@@ -68399,3 +68399,4 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?registerGameWindow@AnimateWindowManager@@QAEXPAVGameWindow@@H_NHH@Z,0x00045322,ILT thunk to the window animation registration
 ?hasAnyShortcutSpecialPower@Player@@QAEHXZ,0x0002331C,ILT thunk to the local player shortcut special power check
 ?populateSpecialPowerShortcut@ControlBar@@AAEXPAVPlayer@@@Z,0x00024695,ILT thunk to the shortcut population helper
+?GadgetButtonSetBorder@@YAXPAVGameWindow@@IH@Z,0x00002982,ILT thunk to the gadget button border setter
