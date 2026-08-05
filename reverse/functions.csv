@@ -71477,7 +71477,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?Resize@?$VectorClass@UWeightInfoStruct@NamedPivotMapClass@@@@UAE_NHPBUWeightInfoStruct@NamedPivotMapClass@@@Z,,0x00974A30,376,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??_G?$VectorClass@UWeightInfoStruct@NamedPivotMapClass@@@@UAEPAXI@Z,,0x00974BB0,94,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Build_Active_Pivot_Map@HAnimComboDataClass@@QAEXXZ,,0x00974C60,351,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
-?Reset@HAnimComboClass@@QAEXXZ,,0x00974DC0,95,Code/GameEngine/Source/Common/promoted__Reset_HAnimComboClass_QAEXXZ_00974DC0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 95B
+?Reset@HAnimComboClass@@QAEXXZ,,0x00974DC0,95,Code/GameEngine/Source/Common/promoted__Reset_HAnimComboClass_QAEXXZ_00974DC0.cpp,matched,clean C++ conversion; ZH hanim.cpp body; element delete inlines the destructor then frees to an ObjectPoolClass<T 256>; pivot map counted base at +0x18 forces a polymorphic leading base
 ??1NamedPivotMapClass@@UAE@XZ,,0x00974E20,176,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??_GNamedPivotMapClass@@UAEPAXI@Z,,0x00974EF0,30,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??1HAnimComboClass@@QAE@XZ,,0x00974F10,102,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
