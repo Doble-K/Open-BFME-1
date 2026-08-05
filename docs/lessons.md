@@ -1994,3 +1994,68 @@ the allocator as different expressions and it frees eax afterwards in one and no
 other. So when a residue is nothing but a scratch-register choice, try swapping raw
 member reads for the accessors the original almost certainly used -- it is a real
 codegen lever, not just style.
+
+## The $L freeze is breakable: re-key funclets by position, not by bytes
+
+The entry above measures the problem -- 1,367 rows keyed to `object-symbol=$L<n>`
+across 503 translation units, renumbered by any edit that changes how much code
+precedes them, with `relabel.py` refusing most of them because funclets share a
+prologue and their one distinguishing operand is masked. It is the standing
+obstacle in front of every header and shim change.
+
+Position survives renumbering even when bytes cannot tell the labels apart. The
+compiler emits them in a fixed order, so the nth `$L` symbol of a given size
+before the edit is the nth of that size after it. `tools/rekey_funclets.py`
+records the label set first, and maps across afterwards.
+
+Worked example. Opting Scripts.cpp into a shim broke four rows -- `uw_00c19370`,
+`uw_00c19378`, `uw_00c194a8`, `uw_00c196c0` -- which `relabel.py` reported
+AMBIGUOUS with seven and eight byte-identical candidates each. Positionally they
+map to `$L64250`, `$L64251`, `$L65497` and `$L69079`: **all four shifted by
+exactly -43**, and Scripts.cpp then verified 33/33.
+
+That uniform shift is the corroboration to insist on. If every row moves by the
+same delta the mapping is almost certainly right; a ragged one means code landed
+between the funclets and the result needs checking by hand. Either way
+`./build.sh <source>` decides, because a wrong label either fails to resolve or
+fails the byte comparison -- there is no silent way to be wrong here, which is
+what makes the positional guess safe to make.
+
+The workflow is: snapshot, edit, re-key, verify.
+
+    python3 tools/rekey_funclets.py --snapshot <source.cpp> /tmp/before.json
+    # make the header or shim change
+    python3 tools/rekey_funclets.py <source.cpp> /tmp/before.json
+    ./build.sh <source.cpp>
+
+## Two BFME facts that unlock ScriptEngine's callers
+
+Both were needed for `ScriptAction::WriteActionDataChunk` (0x003513F0) and its
+False twin, and a translation-unit-scoped shim keeps them off everyone else.
+
+**ScriptEngine carries three more virtuals right after its destructor.**
+WriteActionDataChunk reaches `getActionTemplate` through vtable +0x28 where the
+Zero Hour header lands it at +0x1C. That is the same trio already recorded for
+GameWindowManager and DisplayStringManager: a `SubsystemInterface` derivative
+whose pin is exactly three slots late.
+
+**Template has no base and no vtable.** `script_conditions.cpp` had already
+derived the layout -- `lea edi,[esi+0x10720]` points straight at `m_uiName`, and
+sizeof is 0x7C -- but the finding sat in one file's local stand-in class rather
+than anywhere the real header could use it. It is why retail reads
+`m_internalNameKey` at +0x0C where the pooled Zero Hour class, carrying
+MemoryPoolObject's vptr in front, puts it at +0x10. Worth checking the other
+locally-declared stand-ins in converted thunk files for layouts nobody promoted.
+
+### And where the next three are NOT
+
+`ScriptActions::doUnitGarrisonSpecificBuilding` (0x00302570) shows there are
+three *more* BFME virtuals somewhere between `getActionTemplate` and
+`getUnitNamed`: with only the trio after the destructor it reaches getUnitNamed
+at +0x5C where retail has +0x68. Parking them immediately before getUnitNamed
+gets that slot right and is still wrong -- it breaks
+`doEnableOrDisableObjectDifficultyBonuses` and
+`setObjectsShouldReceiveDifficultyBonus`, which pin slots in that range where
+they are. Those two bound the search: the three go above whatever slots they
+reach, not directly in front of getUnitNamed. Reverted rather than landed, so
+ScriptActions.cpp stays 66/66.
