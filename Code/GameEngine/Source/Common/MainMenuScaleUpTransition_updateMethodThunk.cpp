@@ -1,165 +1,87 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the MainMenuScaleUpTransition::update naked dump to clean C++.
+//
+// Zero Hour's GameWindowTransitionsStyles.cpp body with two BFME differences.
+//
+// First, the frame bounds are data rather than constants: retail compares
+// against this+0x10 and this+0x14 where ZH uses MAINMENUSCALEUPTRANSITION_START
+// and _END. That is the same parameterisation already seen in
+// FullFadeTransition::init, and it has a knock-on effect -- ZH's switch cannot
+// survive, because a switch needs constant cases, so the two frame tests are an
+// if/else-if chain.
+//
+// Second, ZH's `if (frame == 1)` block builds an AudioEventRTS and plays it.
+// Retail has no trace of it, and could not: that temporary has a destructor and
+// would have forced an SEH frame onto a function that has none.
+//
+// Retail pins the layout: m_isFinished and m_isForward are adjacent bytes at
+// +0x08 and +0x09, m_win at +0x0C, the frame bounds at +0x10 and +0x14,
+// m_drawState at +0x28 and m_growWin at +0x4C.
 
-class __declspec(novtable) MainMenuScaleUpTransition
+typedef int Int;
+typedef unsigned char Bool;
+
+class GameWindow
 {
 public:
-    virtual void update(int);
+	void winHide(Bool hide);							///< ILT thunk at 0x00027F2A
+};
+
+class MainMenuScaleUpTransition
+{
+public:
+	virtual void update(Int frame);
+
+private:
+	// the vtable pointer occupies +0x00
+	unsigned char m_unreconstructed_04[8 - 4];
+	Bool m_isFinished;									///< retail this+0x08
+	Bool m_isForward;									///< retail this+0x09
+	unsigned char m_unreconstructed_0A[2];
+	GameWindow *m_win;									///< retail this+0x0C
+	Int m_startFrame;									///< retail this+0x10
+	Int m_endFrame;										///< retail this+0x14
+	unsigned char m_unreconstructed_18[0x28 - 0x18];
+	Int m_drawState;									///< retail this+0x28
+	unsigned char m_unreconstructed_2C[0x4C - 0x2C];
+	GameWindow *m_growWin;								///< retail this+0x4C
 };
 
 // ?update@MainMenuScaleUpTransition@@UAEXH@Z
-__declspec(naked) void MainMenuScaleUpTransition::update(int)
+void MainMenuScaleUpTransition::update( Int frame )
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x10
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x3b
-        __emit 0xf8
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x28
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x7c
-        __emit 0x7b
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x14
-        __emit 0x3b
-        __emit 0xf9
-        __emit 0x7f
-        __emit 0x74
-        __emit 0x3b
-        __emit 0xf8
-        __emit 0x75
-        __emit 0x19
-        __emit 0x8a
-        __emit 0x46
-        __emit 0x09
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x40
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x39
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x4c
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x32
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xeb
-        __emit 0x25
-        __emit 0x3b
-        __emit 0xf9
-        __emit 0x75
-        __emit 0x2a
-        __emit 0x8a
-        __emit 0x46
-        __emit 0x09
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x23
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x4c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x15
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xc0
-        __emit 0x98
-        __emit 0xa8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x4c
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xb6
-        __emit 0x98
-        __emit 0xa8
-        __emit 0xff
-        __emit 0xc6
-        __emit 0x46
-        __emit 0x08
-        __emit 0x01
-        __emit 0x3b
-        __emit 0x7e
-        __emit 0x10
-        __emit 0x7e
-        __emit 0x24
-        __emit 0x3b
-        __emit 0x7e
-        __emit 0x14
-        __emit 0x7d
-        __emit 0x1f
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x07
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x9a
-        __emit 0x98
-        __emit 0xa8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x4c
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x07
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x8c
-        __emit 0x98
-        __emit 0xa8
-        __emit 0xff
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x28
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+	m_drawState = -1;
+	if(frame < m_startFrame || frame > m_endFrame)
+	{
+		return;
+	}
+
+	if (frame == m_startFrame)
+	{
+		if(!m_isForward && m_win && m_growWin)
+		{
+//			m_win->winHide(TRUE);
+			m_growWin->winHide(1);
+			m_isFinished = 1;
+		}
+	}
+	else if (frame == m_endFrame)
+	{
+		if(m_isForward && m_win && m_growWin)
+		{
+			m_win->winHide(1);
+			m_growWin->winHide(0);
+			m_isFinished = 1;
+		}
+	}
+
+	if(frame > m_startFrame && frame < m_endFrame)
+	{
+		if(m_win)
+			m_win->winHide(1);
+		if(m_growWin)
+			m_growWin->winHide(1);
+		m_drawState = frame;
+	}
+
 }

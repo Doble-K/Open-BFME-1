@@ -68387,3 +68387,4 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?find@TeamPrototypeMap@@QBEPAUTeamPrototypeNode@@ABUTeamPrototypeKey@@@Z,0x00011CB6,ILT thunk to the team prototype map lookup
 ??ATeamPrototypeMap@@QAEAAPAVTeamPrototype@@ABUTeamPrototypeKey@@@Z,0x00003B20,ILT thunk to the team prototype map slot accessor
 ??4GameWindowList@@QAEAAV0@ABV0@@Z,0x00036C69,ILT thunk to the window list assignment used by WindowLayoutInfo's implicit operator=
+?winHide@GameWindow@@QAEXE@Z,0x00027F2A,ILT thunk to GameWindow::winHide at 0x00478390 which sets status bit 0x10 and notifies the window manager
