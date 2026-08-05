@@ -2502,3 +2502,34 @@ What does not:
 The second point is general: a callee with both an export thunk and a body will be
 reached by whichever the *call site* encodes, and rows carrying an export_rva do not
 automatically make call sites use it.
+
+## UnitCrateCollideModuleData's destructor: three bytes of EH state encoding
+
+`??1UnitCrateCollideModuleData@@UAE@XZ` (0x001270F0, 83 bytes) reconstructs almost
+completely. The body destroys two members at +0x58 then +0x44 -- reverse declaration
+order, so +0x44 is declared first -- both through 0x00887940, which is
+`StringBase<char>::releaseBuffer` and the body a dozen AsciiString-destructor rows
+already alias. Afterwards the base vptr goes back at `[esi]` with no base destructor
+call, so the base's destructor is trivial and inlined.
+
+Two details that took a pass each to find, and both generalise:
+
+  * The member class needs a name of its own. `??1AsciiString@@QAE@XZ` is a
+    functions.csv row on the 5-byte jump at 0x0005EE90, so a member declared as
+    AsciiString resolves to the jump rather than to the body. Aliasing under a
+    distinct name with a symbols.csv pin at 0x00887940 is what
+    BFMEPlayerTemplateAsciiString and its siblings already do.
+
+  * `__declspec(novtable)` on the derived class is load-bearing, and the previous
+    agent's naked stub already carried it. Without it MSVC stores the derived vptr
+    at destructor entry, six bytes retail does not have; retail only restores the
+    base vptr at the end.
+
+With both, the body is 80 bytes against 83 and every instruction present. The
+remainder is EH state encoding: retail writes state 0 then state 1, both as dwords,
+where we write 1 as a dword then 0 as a byte. Increasing state indices in a
+destructor is backwards from the usual pattern, and no arrangement of two members in
+one class reproduces it -- swapping declaration order is impossible without moving
+the offsets, and giving the two members distinct types changes nothing. Whatever
+orders those states is structural, the same conclusion the StealthUpgradeModuleData
+entry above reached from a different direction.
