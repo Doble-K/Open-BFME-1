@@ -63246,7 +63246,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?fetch@GameTextManager@@UAE?AVUnicodeString@@VAsciiString@@PA_N@Z,,0x00436F90,47,Code/GameEngine/Source/GameClient/GameText.cpp,matched,
 ?reset@GameTextManager@@UAEXXZ,,0x00437500,85,Code/GameEngine/Source/Common/promoted__reset_GameTextManager_UAEXXZ_00437500.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 85B
 ?parseCSF@GameTextManager@@IAE_NPBD@Z,,0x00437570,672,Code/GameEngine/Source/GameClient/GameTextManagerParseCSFThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_GameTextManagerParseCSF_437570
-?deinit@GameTextManager@@UAEXXZ,,0x00437A80,137,Code/GameEngine/Source/Common/GameTextManager_deinit_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?deinit@GameTextManager@@UAEXXZ,,0x00437A80,137,Code/GameEngine/Source/Common/GameTextManager_deinit_Thunk.cpp,matched,clean C++ conversion; ZH GameText.cpp body; text count at this+0x08 arrays at +0x780C and +0x7810 flag at +0x7814 and list head at +0x7818; needs /EHsc for the vector destructor iterator
 ??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameTextManager_ctor_Thunk.cpp,matched,Open-BFME5 lift 161B retail MASM to standalone C++ thunk
 ?update@GameTextManager@@UAEXXZ,,0x00438420,1,Code/GameEngine/Source/GameClient/GameText.cpp,matched,Ghidra-vtable anchored empty update override; exact C++ RET
 ??1GameTextManager@@UAE@XZ,,0x00438430,117,Code/GameEngine/Source/GameClient/GameText.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes

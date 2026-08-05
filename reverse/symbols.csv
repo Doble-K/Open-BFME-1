@@ -68392,3 +68392,4 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?_bfme_allowsSpecialPower@Player@@QAEEPBVSpecialPowerTemplate@@@Z,0x0000226B,ILT thunk to an unidentified Player check at 0x000C9890 that forwards the template to the global at 0x012F0FF8
 ?kill@Object@@QAEXW4DamageType@@W4DeathType@@@Z,0x00014506,ILT thunk to Object::kill
 ?aiIdle@AICommandInterface@@QAEXW4CommandSourceType@@@Z,0x00024D70,ILT thunk to the AI idle command reached through the base at ai+0x20
+??1NoString@@QAE@XZ,0x0002349D,ILT thunk to the missing-string node destructor walked by GameTextManager::deinit

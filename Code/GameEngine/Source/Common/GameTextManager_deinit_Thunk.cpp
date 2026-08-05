@@ -1,152 +1,98 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// Lift the GameTextManager::deinit naked dump to clean C++.
+//
+// Zero Hour's GameText.cpp body; the DEBUG_LOGs around the missing-string walk
+// compile out and leave the loop.
+//
+// The two array deletes are not the same shape and that is the layout evidence.
+// m_stringInfo goes through the vector destructor iterator -- retail reads the
+// element count from the word ahead of the array, pushes a per-element
+// destructor and an element size of 8, then frees the block -- so its element
+// type has a destructor and is eight bytes, where ZH's StringInfo is twelve.
+// m_stringLUT is freed with a bare operator delete[], so its elements are
+// trivially destructible.
+//
+// Retail pins the layout: the text count is at this+0x08, the two arrays at
+// +0x780C and +0x7810, the initialised flag at +0x7814 and the missing-string
+// list head at +0x7818, with each node's next pointer at its own +0x00.
+
+typedef int Int;
+typedef bool Bool;
+
+class AsciiString
+{
+	void *m_data;
+};
+
+class UnicodeString
+{
+	void *m_data;
+};
+
+// Eight bytes with a destructor, which is what the vector destructor iterator
+// call proves; the member names follow ZH for the two that fit.
+class StringInfo
+{
+public:
+	~StringInfo();
+
+	AsciiString label;
+	UnicodeString text;
+};
+
+class NoString
+{
+public:
+	~NoString();
+
+	NoString *next;										///< retail this+0x00
+	UnicodeString text;
+};
 
 class GameTextManager
 {
 public:
-	virtual void deinit();
+	virtual void deinit(void);
+
+private:
+	unsigned char m_unreconstructed_04[8 - 4];
+	Int m_textCount;									///< retail this+0x08
+	unsigned char m_unreconstructed_0C[0x780C - 0x0C];
+	StringInfo *m_stringInfo;							///< retail this+0x780C
+	StringInfo **m_stringLUT;							///< retail this+0x7810
+	Bool m_initialized;									///< retail this+0x7814
+	unsigned char m_unreconstructed_7815[3];
+	NoString *m_noStringList;							///< retail this+0x7818
 };
 
 // ?deinit@GameTextManager@@UAEXXZ
-__declspec(naked) void GameTextManager::deinit()
+void GameTextManager::deinit( void )
 {
-	__asm {
-        __emit 0x53
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0x87
-        __emit 0x0c
-        __emit 0x78
-        __emit 0x00
-        __emit 0x00
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x74
-        __emit 0x23
-        __emit 0x8b
-        __emit 0x48
-        __emit 0xfc
-        __emit 0x8d
-        __emit 0x70
-        __emit 0xfc
-        __emit 0x68
-        __emit 0x0e
-        __emit 0x51
-        __emit 0x41
-        __emit 0x00
-        __emit 0x51
-        __emit 0x6a
-        __emit 0x08
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xd1
-        __emit 0xf2
-        __emit 0x5b
-        __emit 0x00
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x45
-        __emit 0xa4
-        __emit 0x44
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x9f
-        __emit 0x0c
-        __emit 0x78
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x87
-        __emit 0x10
-        __emit 0x78
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x74
-        __emit 0x0f
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x2c
-        __emit 0xa4
-        __emit 0x44
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x9f
-        __emit 0x10
-        __emit 0x78
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xb7
-        __emit 0x18
-        __emit 0x78
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xf3
-        __emit 0x89
-        __emit 0x5f
-        __emit 0x08
-        __emit 0x74
-        __emit 0x1f
-        __emit 0x55
-        __emit 0xeb
-        __emit 0x03
-        __emit 0x8d
-        __emit 0x49
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x2e
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xb4
-        __emit 0xb9
-        __emit 0xbe
-        __emit 0xff
-        __emit 0x56
-        __emit 0xe8
-        __emit 0xc1
-        __emit 0xa3
-        __emit 0x44
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xeb
-        __emit 0x8b
-        __emit 0xf5
-        __emit 0x75
-        __emit 0xe8
-        __emit 0x5d
-        __emit 0x89
-        __emit 0x9f
-        __emit 0x18
-        __emit 0x78
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x9f
-        __emit 0x14
-        __emit 0x78
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc3
+
+	if( m_stringInfo != 0 )
+	{
+		delete [] m_stringInfo;
+		m_stringInfo = 0;
 	}
+
+	if( m_stringLUT != 0 )
+	{
+		delete [] m_stringLUT;
+		m_stringLUT = 0;
+	}
+
+	m_textCount = 0;
+
+	NoString *noString = m_noStringList;
+
+	while ( noString )
+	{
+		NoString *next = noString->next;
+		delete noString;
+		noString = next;
+	}
+
+	m_noStringList = 0;
+
+	m_initialized = false;
 }
