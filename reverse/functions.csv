@@ -58505,7 +58505,7 @@ _XMP_Test_Bit,,0x000A2C80,33,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matc
 ??0SpecialPowerTemplate@@QAE@XZ,,0x000EB4F0,176,Code/GameEngine/Source/Common/SpecialPowerTemplateCtorThunk.cpp,matched,Exact 176B Open-BFME5
 ??1SpecialPowerTemplate@@MAE@XZ,,0x000EB5D0,146,Code/GameEngine/Source/Common/SpecialPowerTemplateDestructorThunk.cpp,matched,Exact 146B SEH dtor Open-BFME5
 ?findSpecialPowerTemplateByID@SpecialPowerStore@@QAEPBVSpecialPowerTemplate@@I@Z,,0x000EB690,101,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
-?canUseSpecialPower@SpecialPowerStore@@QAE_NPAVObject@@PBVSpecialPowerTemplate@@@Z,,0x000EB710,120,Code/GameEngine/Source/Common/SpecialPowerStore_canUseSpecialPower_Thunk.cpp,matched,Exact 120B Open-BFME5
+?canUseSpecialPower@SpecialPowerStore@@QAE_NPAVObject@@PBVSpecialPowerTemplate@@@Z,,0x000EB710,120,Code/GameEngine/Source/Common/SpecialPowerStore_canUseSpecialPower_Thunk.cpp,matched,clean C++ conversion; ZH SpecialPower.cpp body plus a BFME player check at the end; required science at template+0x1C reached through one unrolled level of the override chain
 ??0SpecialPowerStore@@QAE@XZ,,0x000EB9D0,32,Code/GameEngine/Source/Common/RTS/SpecialPower.cpp,matched,
 ??0VideoPlayer@@QAE@XZ,,0x000EB9D0,32,Code/GameEngine/Source/GameClient/VideoPlayer.cpp,matched,icf-owner=??0SpecialPowerStore@@QAE@XZ
 ??1SpecialPowerStore@@UAE@XZ,,0x000EBD30,219,Code/GameEngine/Source/Common/SpecialPowerStoreDestructorThunk.cpp,matched,Certified packet 329 vtable destructor chain and retail boundary hash dd831bc42554b7a6cbdabdd5b01b386808e324afcd5c363566dbaaf80ec53eaa
