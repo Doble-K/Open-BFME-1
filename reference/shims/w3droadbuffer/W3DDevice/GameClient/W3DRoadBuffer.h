@@ -220,24 +220,29 @@ protected:
 	Bool		m_initialized;		///< True if the subsystem initialized.
 	WorldHeightMap *m_map;		///< Pointer to the height map data.
 	RefRenderObjListIterator *m_lightsIterator;	///< Lighting iterator.
+	// BFME-only fields inserted here vs ZH (TU-scoped shim). insertTee and
+	// insert4Way's CHECK_SEGMENTS macro reads m_maxRoadSegments at target
+	// this+0x38 against ZH's this+0x28, which fixes the size of the gap at
+	// 0x10 (four dwords) but not where it sits: anywhere between
+	// m_lightsIterator and m_maxRoadSegments produces the same 0x38.
+	//
+	// loadRoadSegment (0x00704610) settles it. That function compares
+	// pRoad->m_uniqueID against m_curUniqueID at target this+0x28, where the
+	// gap-after-m_curRoadType placement leaves it at this+0x18; putting the
+	// four dwords ahead of m_curUniqueID lands it on 0x28 and still leaves
+	// m_maxRoadVertex on 0x3c, which the same function already agreed on.
+	// True field identities remain unknown -- no landed function reads them.
+	Int m__bfmeUnk0;
+	Int m__bfmeUnk1;
+	Int m__bfmeUnk2;
+	Int m__bfmeUnk3;
+
 	Int m_curUniqueID;				///< Road type we are rendering at this pass.
 	Int m_curRoadType;
 #ifdef LOAD_TEST_ASSETS
 	Int m_maxUID;				///< Maximum UID.
 	Int m_curOpenRoad;  ///< First road type not used.
 #endif
-
-	// BFME-only fields inserted here vs ZH (TU-scoped shim). Proven from
-	// retail bytes: insertTee/insert4Way's CHECK_SEGMENTS macro reads
-	// m_maxRoadSegments at target this+0x38, but with LOAD_TEST_ASSETS's two
-	// Ints already counted, ZH layout puts it at this+0x28 -- a 0x10 (4
-	// dword) gap. True field identities/semantics unknown (unused by any
-	// landed function); padding preserves the byte offset for everything
-	// that follows.
-	Int m__bfmeUnk0;
-	Int m__bfmeUnk1;
-	Int m__bfmeUnk2;
-	Int m__bfmeUnk3;
 
 	Int m_maxRoadSegments;  ///< Size of m_roads.
 	Int m_maxRoadVertex;		///< Size of m_vertexRoad.
