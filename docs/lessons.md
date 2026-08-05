@@ -2172,3 +2172,24 @@ This is worth solving once rather than per function: every preferences getter an
 named-state constructor passes an AsciiString by value, so the same six bytes block a
 whole family. The next thing to vary is the shape of AsciiString itself -- how its
 destructor and copy constructor are declared -- rather than anything at the call site.
+
+## Probe the compiler directly instead of guessing through the byte gate
+
+I spent six builds trying to make MSVC emit one `mov [esp+N],esp` by rewriting the
+source around it -- five declarations of the class, three forms of the call site --
+and every one of them compiled to identical bytes. The full build-and-compare loop is a
+slow way to ask a narrow question.
+
+Writing throwaway variants under Code/ and calling tools/build.py's own compile_source
+on each answers the same question in one shot, and lets you check for two things at once
+(does the idiom appear, does an SEH prologue appear) instead of eyeballing a diff. That
+immediately localised it: the idiom is not a source-shape artifact at all, it is the
+exception model. /EHs-c- never emits it, /EHs emits it cleanly, /EHsc and /EHa emit it
+with an SEH prologue attached.
+
+Two cautions the first pass got wrong. Search the object for BOTH the thing you want and
+the thing that would disqualify it -- my first probe only looked for the idiom and
+reported /EHs and /EHa as equal winners, when /EHa also drags in SEH. And remember the
+probe is not the function: a probe with no destructible local said /EHs was clean, while
+the real function has one and got an SEH prologue anyway. Give the probe the same locals
+as the target, or drive the object with explicit init/destroy calls so it has none.
