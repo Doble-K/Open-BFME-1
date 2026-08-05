@@ -481,13 +481,12 @@ inline void AsciiString::set(const char* s)
 }
 
 // -----------------------------------------------------
-inline AsciiString& AsciiString::operator=(const AsciiString& stringSrc)
-{
-	validate();
-	set(stringSrc);
-	validate();
-	return *this;
-}
+// Deliberately NOT defined here, which is the point of this shim: retail calls
+// AsciiString::operator=(const AsciiString&) out of line (0x00887C90, folded
+// with UnicodeString::set), and a member assignment that inlines instead costs
+// the caller a self-assignment guard, the buffer walk and a register.
+// The declaration above stands alone and the call resolves through the pin in
+// reverse/symbols.csv.
 
 // -----------------------------------------------------
 inline AsciiString& AsciiString::operator=(const char* s)

@@ -64623,7 +64623,6 @@ __stringbase_isnone_cmp_wchar,,0x004EA730,89,Code/Libraries/Source/WWVegas/WWLib
 ?draw@Anim2D@@QAEXHHHH@Z,,0x005BABA0,22,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ??_GAnim2DCollection@@UAEPAXI@Z,,0x005BAD20,30,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ?update@Anim2DCollection@@UAEXXZ,,0x005BAD50,30,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
-??0Anim2DTemplate@@QAE@VAsciiString@@@Z,,0x005BAD80,124,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_ctor_dtor.asm,matched,
 ??1Anim2DTemplate@@UAE@XZ,,0x005BAE20,34,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,clean C++ replaces MASM destructor
 ?parseNumImages@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BAE50,158,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_parse_walls.asm,matched,
 ?storeImage@Anim2DTemplate@@QAEXPBVImage@@@Z,,0x005BAF20,201,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_parse_walls.asm,matched,
@@ -94118,3 +94117,4 @@ _send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/
 ??0PivotClass@@QAE@ABU0@@Z,,0x00972D70,383,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,clean C++; copies PivotFade like every other member
 ??4PivotClass@@QAEAAU0@ABU0@@Z,,0x00972EF0,395,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,clean C++; copies PivotFade like every other member
 ??0PivotClass@@QAE@XZ,,0x009733F0,187,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,clean C++; BFME initialises PivotFade to 1.0f which the Zero Hour ctor has no member for
+??0Anim2DTemplate@@QAE@VAsciiString@@@Z,,0x005BAD80,124,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_ctor.cpp,matched,clean C++ lifted from Anim2DTemplate_ctor_dtor.asm; standalone TU so Anim2D.cpp labels do not renumber; needs asciistring_outofline so m_name = name calls operator= at 0x887C90
