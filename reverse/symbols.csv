@@ -68406,3 +68406,5 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?friend_getFinalOverride@LocomotorOverridable@@QAEPAV1@XZ,0x000022BB,ILT thunk to the locomotor override-chain walker at 0x00087A80; a distinct body from the SpecialPowerTemplate walker at 0x00097880
 ?_bfme_slotStateInRange@ConnectionManager@@QAE_NH@Z,0x000486B2,ILT thunk to a per-slot state test at 0x00662C30 reading conMgr+0x12080; unidentified beyond its shape
 ?_bfme_slotIsLocalOrLive@ConnectionManager@@QAE_NH@Z,0x0001F136,ILT thunk to a per-slot predicate at 0x00662A50 that answers true for the local slot; unidentified beyond its shape
+?set@AsciiString@@QAEXPBDH@Z,0x00887D20,AsciiString assignment from a pointer and length
+?writeAsciiString@DataChunkOutput@@QAEXABVAsciiString@@@Z,0x0001EBBE,ILT thunk to the chunk writer string output
