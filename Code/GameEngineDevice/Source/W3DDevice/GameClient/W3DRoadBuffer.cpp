@@ -1368,7 +1368,6 @@ void W3DRoadBuffer::loadLitRoadsInVertexAndIndexBuffers(RefRenderObjListIterator
 //=============================================================================
 /** Loads a road segment into the vertex buffer for drawing. */
 //=============================================================================
-// ?loadRoadSegment@W3DRoadBuffer@@IAEXPAGPAUVertexFormatXYZDUV1@@PAVRoadSegment@@@Z present-unmatched
 void W3DRoadBuffer::loadRoadSegment(UnsignedShort *ib, VertexFormatXYZDUV1 *vb, RoadSegment *pRoad)
 {
 	if (pRoad->m_uniqueID != m_curUniqueID) {
