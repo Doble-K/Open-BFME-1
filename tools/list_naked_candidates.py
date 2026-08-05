@@ -6,14 +6,52 @@ The default picks uniformly at random from the whole candidate queue. Use
 """
 import argparse
 from collections import defaultdict
+import importlib.util
+from pathlib import Path
 import re
 import secrets
+import struct
 
 import build
+
+_spec = importlib.util.spec_from_file_location(
+    "audit_ret_arity", str(Path(__file__).resolve().parent / "audit_ret_arity.py"))
+audit_ret_arity = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(audit_ret_arity)
 
 
 NAKED_RE = re.compile(r"__declspec\s*\(\s*naked\s*\)")
 EMIT_RE = re.compile(r"__emit\s+0x([0-9a-fA-F]{1,2})")
+
+
+def actual_ret(data):
+    """Bytes the transcribed body pops, or None for a tail call / no return."""
+    if data and data[-1] == 0xC3:
+        return 0
+    if len(data) >= 3 and data[-3] == 0xC2:
+        return struct.unpack_from("<H", data, len(data) - 3 + 1)[0]
+    return None
+
+
+def arity_contradicts(symbol, data):
+    """True when the decorated name cannot possibly produce this body.
+
+    A name says how many bytes a callee-cleaned function must pop and the
+    transcribed bytes say how many it does pop. When they disagree the row's
+    name is on the wrong body, so no amount of writing the C++ correctly will
+    ever make it compile to these bytes -- offering it as a conversion
+    candidate only burns an afternoon. audit_ret_arity.py already reports these
+    repo-wide; this keeps them out of the queue that hands out work.
+    """
+    if not symbol:
+        return False
+    want, _convention = audit_ret_arity.expected_ret(symbol)
+    if want is None:                      # varargs, drifted parse: no opinion
+        return False
+    got = actual_ret(data)
+    if got is None:                       # tail call: nothing to compare
+        return False
+    return got != want
 
 
 def collect_rows():
@@ -189,6 +227,7 @@ def main():
 
     candidates = []
     already_matched = 0
+    arity_conflicts = 0
     for path in files:
         rel = path.relative_to(build.ROOT).as_posix()
         text = path.read_text(encoding="utf-8", errors="replace")
@@ -217,6 +256,9 @@ def main():
                     already_matched += 1
                     continue
             if not row and not args.all:
+                continue
+            if arity_contradicts(symbol, data):
+                arity_conflicts += 1
                 continue
             score, reasons = score_candidate(data, sig)
             candidates.append(
@@ -249,6 +291,10 @@ def main():
 
     if already_matched:
         print(f"{already_matched} excluded as already matched in reverse/functions.csv")
+    if arity_conflicts:
+        print(f"{arity_conflicts} excluded because the decorated name's stack cleanup "
+              "contradicts the body -- the name is on the wrong function "
+              "(tools/audit_ret_arity.py lists them)")
     if args.groups:
         groups = defaultdict(list)
         for item in candidates:

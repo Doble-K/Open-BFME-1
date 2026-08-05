@@ -2399,6 +2399,7 @@ differences from exact: an instruction-scheduling swap at the top, and one extra
 `mov dword ptr [esi+4], 0` -- the second vptr that the two-base State installs and
 retail's single-vptr State does not. Landing it needs a State whose layout is merged
 without disturbing those six rows, which is a narrower shim than the one tried here.
+
 ## The by-value AsciiString stash is not reachable by any /EH setting
 
 Eighteen flag combinations compiled against the exact shape of
@@ -2421,3 +2422,28 @@ further flag probing is wasted effort -- either the retail translation unit was 
 by a compiler that differs from the vendored one in this detail, or the stash comes
 from a source construct none of the shapes tried so far models. Five class
 declarations and three call-site forms are already ruled out (see re_attempts).
+
+## Keep names-on-the-wrong-body out of the queue that hands out work
+
+Three candidates in a row from `list_naked_candidates.py` turned out to be
+unconvertible for the same reason, and the reason was already known. The decorated
+name says how many bytes a callee-cleaned function must pop; the transcribed bytes
+say how many it does pop. When they disagree the name is on the wrong body and no
+amount of writing the C++ correctly will ever produce those bytes.
+
+  * `?getGroup@Object@@QAEPAVAIGroup@@XZ` at 0x008F9550 -- name takes nothing,
+    body does `ret 8` and returns 0/1/2.
+  * `?xfer@GarrisonContain@@MAEXPAVXfer@@@Z` at 0x00853EC0 -- name takes a pointer,
+    body does `ret 0`, zeroes `[esi+4..0x10]` and returns `eax = esi`: a constructor.
+  * `?removeObjectBuilt@ScoreKeeper@@QAEXPBVObject@@@Z` at 0x0056E160 -- name takes a
+    pointer, body does `ret 0` and frees `[this]` with element size 0x44.
+
+`audit_ret_arity.py` has flagged all three the whole time; the picker just was not
+asking it. It does now, and the exclusion is reported rather than silent (8 rows at
+--max-bytes 130). The general point is worth generalising beyond this tool: a check
+that exists but is not wired into the thing that hands out work will keep costing
+people the same afternoon.
+
+Fixing the rows themselves is a separate job and harder than the getSlot repoint
+was, because none of the three has a direct caller to name the body from -- 0x0056E160
+is reached only through a vtable, so there is no call site whose thunk settles it.
