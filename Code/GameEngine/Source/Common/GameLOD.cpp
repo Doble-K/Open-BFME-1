@@ -129,6 +129,7 @@ static const FieldParse TheDynamicGameLODFieldParseTable[] =
 
 static const char *DynamicGameLODNames[]=
 {
+	"VeryLow",
 	"Low",
 	"Medium",
 	"High",
@@ -613,7 +614,6 @@ void INI::parseDynamicGameLODDefinition( INI* ini )
 }
 
 /**Parse an LOD level*/
-// ?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z present-unmatched
 void INI::parseDynamicGameLODLevel( INI* ini, void * , void *store, const void*)
 {
 	const char *tok=ini->getNextToken();
@@ -623,8 +623,7 @@ void INI::parseDynamicGameLODLevel( INI* ini, void * , void *store, const void*)
 			return;
 		}
 
-	DEBUG_CRASH(("invalid GameLODLevel token %s -- expected LOW/MEDIUM/HIGH\n",tok));
-	throw INI_INVALID_DATA;
+	throw INIException( 3, "invalid GameLODLevel token %s -- expected LOW/MEDIUM/HIGH", tok );
 }
 
 /**Convert LOD name to an index*/

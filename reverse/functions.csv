@@ -57611,7 +57611,6 @@ __stringbase_isnone_cmp_char,,0x00075E00,91,Code/Libraries/Source/WWVegas/WWLib/
 ?newBenchProfile@RetailGameLODManager@?1??parseBenchProfile@INI@@SAXPAV3@@Z@QAEPAUBenchProfile@@XZ,,0x0007C160,32,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ?getStaticGameLODLevelName@GameLODManager@@QAEPBDW4StaticGameLODLevel@@@Z,,0x0007C370,14,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ?parseObjectCreationList@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C370,14,Code/GameEngine/Source/Common/GameLOD.cpp,matched,object-symbol=?getStaticGameLODLevelName@GameLODManager@@QAEPBDW4StaticGameLODLevel@@@Z;C++ alias
-?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C390,105,Code/GameEngine/Source/Common/INI_parseDynamicGameLODLevel_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?getDynamicGameLODLevelName@GameLODManager@@QAEPBDW4DynamicGameLODLevel@@@Z,,0x0007C420,14,Code/GameEngine/Source/Common/GameLOD.cpp,matched,
 ?parseBenchProfile@INI@@SAXPAV1@@Z,,0x0007C7F0,131,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME retail GameLOD layout
 ?parseStaticGameLODDefinition@INI@@SAXPAV1@@Z,,0x0007CEC0,191,Code/GameEngine/Source/Common/GameLOD.cpp,matched,INI block table node binds keyword StaticGameLOD to this address
@@ -91802,9 +91801,9 @@ uw_00c0f278,,0x00C0F278,14,Code/GameEngine/Source/Common/ElvenWoodSpecialPowerMo
 uw_00c3a490,,0x00C3A490,8,Code/GameEngine/Source/Common/FXParticleSystem_ParticleSystemTemplateDestructorThunk.cpp,matched,gen-funclet;parent=??1ParticleSystemTemplate@FXParticleSystem@@UAE@XZ;object-symbol=$L341
 uw_00bf2b00,,0x00BF2B00,11,Code/GameEngine/Source/Common/GameEngine.cpp,matched,gen-funclet;parent=?createMessageStream@GameEngine@@MAEPAVMessageStream@@XZ;object-symbol=$L94091
 uw_00c49580,,0x00C49580,11,Code/GameEngine/Source/Common/GameEngine.cpp,matched,gen-funclet;parent=?createFileSystem@GameEngine@@MAEPAVFileSystem@@XZ;object-symbol=$L94104
-uw_00bf43c0,,0x00BF43C0,8,Code/GameEngine/Source/Common/GameLOD.cpp,matched,gen-funclet;parent=?parseStaticGameLODDefinition@INI@@SAXPAV1@@Z;object-symbol=$L48138
-uw_00bf4420,,0x00BF4420,8,Code/GameEngine/Source/Common/GameLOD.cpp,matched,gen-funclet;parent=?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z;object-symbol=$L48387
-uw_00bf4440,,0x00BF4440,8,Code/GameEngine/Source/Common/GameLOD.cpp,matched,gen-funclet;parent=?parseAudioLODDefinition@INI@@SAXPAV1@@Z;object-symbol=$L48223
+uw_00bf43c0,,0x00BF43C0,8,Code/GameEngine/Source/Common/GameLOD.cpp,matched,gen-funclet;parent=?parseStaticGameLODDefinition@INI@@SAXPAV1@@Z;object-symbol=$L48144
+uw_00bf4420,,0x00BF4420,8,Code/GameEngine/Source/Common/GameLOD.cpp,matched,gen-funclet;parent=?parseDynamicGameLODDefinition@INI@@SAXPAV1@@Z;object-symbol=$L48393
+uw_00bf4440,,0x00BF4440,8,Code/GameEngine/Source/Common/GameLOD.cpp,matched,gen-funclet;parent=?parseAudioLODDefinition@INI@@SAXPAV1@@Z;object-symbol=$L48229
 uw_00c2cf20,,0x00C2CF20,8,Code/GameEngine/Source/Common/GameSpyGameSlotDestructorThunk.cpp,matched,gen-funclet;parent=??1GameSpyGameSlot@@QAE@XZ;object-symbol=$L319
 uw_00bf2b60,,0x00BF2B60,8,Code/GameEngine/Source/Common/HijackerUpdateModuleDataDestructorThunk.cpp,matched,gen-funclet;parent=??1HijackerUpdateModuleData@@UAE@XZ;object-symbol=$L328
 uw_00c119b8,,0x00C119B8,11,Code/GameEngine/Source/Common/HitReactionBehaviorModuleDataDestructorThunk.cpp,matched,gen-funclet;parent=??1HitReactionBehaviorModuleData@@UAE@XZ;object-symbol=$L348
@@ -94118,3 +94117,4 @@ _send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/
 ?alignOnTerrain@TerrainLogic@@UAE?AW4PathfindLayerEnum@@MABUCoord3D@@_NAAVMatrix3D@@@Z,,0x001A8BD0,117,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,BFME 2-arg getLayerForDestination (thunk 0x0001C675); extra vtable slot ahead of getLayerHeight; layer > LAYER_GROUND
 ?getSlot@GameInfo@@QAEPAVGameSlot@@H@Z,,0x0061E8B0,32,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,BFME shape: array null check plus && where ZH has ||; call sites reach it through ILT thunk 0x0001EC18
 ?checkForDuplicateColors@@YAXPAVGameInfo@@@Z,,0x00386520,104,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,MultiplayerSettings colour block at +0x30; getSlot repointed to 0x0061E8B0
+?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C390,105,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME adds a fifth VeryLow level; throws variadic INIException(3 fmt tok) instead of DEBUG_CRASH plus bare throw

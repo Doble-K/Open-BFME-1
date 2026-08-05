@@ -58,6 +58,10 @@ enum StaticGameLODLevel
 enum DynamicGameLODLevel
 {
 	DYNAMIC_GAME_LOD_UNKNOWN=-1,
+	// BFME has a fifth level ahead of LOW: the name table parseDynamicGameLODLevel
+	// (0x0007C390) walks holds five entries starting at "VeryLow", and its loop
+	// compares against 5.
+	DYNAMIC_GAME_LOD_VERY_LOW,
 	DYNAMIC_GAME_LOD_LOW,
 	DYNAMIC_GAME_LOD_MEDIUM,
 	DYNAMIC_GAME_LOD_HIGH,

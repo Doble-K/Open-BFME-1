@@ -2239,3 +2239,63 @@ are caller-cleaned. Return None for all of those and treat None as no opinion. W
 backreference digits resolved and a class-by-value return charged its hidden pointer,
 the same screen reports 73 findings out of 964 naked rows, and the ones I have checked
 by hand all hold up.
+
+## A name on a byte-identical neighbour proves nothing -- follow the caller's thunk
+
+`?getSlot@GameInfo@@QAEPAVGameSlot@@H@Z` sat on 0x0061E8E0 as `matched` and had done
+for a long time. It was on the wrong body. The 25 bytes at 0x0061E8E0 are identical
+to the 25 at 0x0061E900 that `getConstSlot` claims, so compiling our getSlot and
+finding it agrees with one of them says only that we produced a plausible accessor,
+not that we produced *this* accessor. Two byte-equal bodies mean the verifier cannot
+tell them apart, and a `matched` row is then a coincidence dressed as evidence.
+
+The discriminator is a caller. `checkForDuplicateColors` (0x00386520) calls getSlot
+through the ILT thunk at 0x0001EC18, and that thunk jumps to 0x0061E8B0 -- a third,
+32-byte body 0x30 earlier that nobody had claimed. Call sites encode the thunk, the
+thunk names one body, and that is the only statement in the image about which of the
+lookalikes carries the name. Whenever a short accessor has a byte-twin nearby, treat
+its row as unproven until some caller points at it.
+
+Two practical notes. First, the thunk target has to be decoded, not read off the
+ledger note: functions.csv recorded `target=FUN_00a1e8b0` for 0x0001EC18, while the
+`e9` displacement actually resolves to 0x0061E8B0. Second, repointing is cheap to
+test -- the full gate went from 94119/94119 to 94119/94119 with the row moved, which
+proves no matched caller had been leaning on the old address. Had the count dropped,
+the old address would have been the right one.
+
+## Confirm a source shape on a probe TU before touching the ledger
+
+Rewriting a function to chase a hypothesis breaks its existing row the moment you
+save, so the tree goes red while you are still guessing. Instead put the hypothesis
+in a throwaway TU with just enough class around it to fix the offsets, compile it
+with `build.compile_source`, and read the bytes back with `build.read_object_symbol_bytes`:
+
+    import sys, pathlib; sys.path.insert(0, 'tools'); import build as B
+    src = pathlib.Path('Code/probe.cpp').resolve()
+    obj = pathlib.Path('build/obj_probe/probe.obj').resolve()
+    B.compile_source(src, obj)                       # both args must be Path
+    print(B.read_object_symbol_bytes(obj, '<mangled>', <size>)[0].hex(' '))
+
+Compare against the retail bytes, and only edit the real source once they agree. This
+is how the getSlot shape above was settled: the `&&`-for-`||` difference and the
+never-firing array null check both had to be present, and the probe said so in one
+compile without putting a single row at risk. `locate.py` is the wrong tool here --
+it wants a unique placement in .text, and a short accessor with byte-twins is exactly
+the case it refuses.
+
+## BFME's INI parsers throw a variadic INIException where Zero Hour crashes
+
+Zero Hour's parse helpers end with `DEBUG_CRASH((fmt, tok)); throw INI_INVALID_DATA;`,
+which under NDEBUG leaves a bare throw of a constant. BFME replaced both with one
+`throw INIException(code, fmt, ...)` -- a `__cdecl` variadic constructor, pinned at
+0x00850600 as `??0INIException@@QAA@HPBDZZ`. In the image it shows up as pushes of the
+argument, the format string, a small integer code, and a stack buffer, then the throw
+helper with the same throw-info pointer the bare throw would have used. `ini.cpp` and
+`GameLOD.cpp` already had the idiom; `parseDynamicGameLODLevel` (0x0007C390) needed it
+with code 3 and the format string still readable at 0x01076BCC.
+
+The same function also carries a content difference worth generalising: BFME's
+`DynamicGameLODNames` has five entries, not four, with `"VeryLow"` inserted ahead of
+`"Low"`, so every level constant after it shifts by one. When a parse loop's `cmp` is
+one higher than the table you have, check the table before you check the codegen --
+the pointers are sitting in .rdata and dumping them settles it immediately.
