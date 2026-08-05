@@ -2120,3 +2120,16 @@ Reverted rather than landed: with the merged base and no stubs TurretAI.cpp goes
 19/20, and the one casualty is recenterTurret itself. Anyone picking this up has
 State confirmed, StateMachine's member offsets to check separately, and one slot
 to account for.
+## A declared copy constructor is what lets MSVC throw in place
+
+`throw T(args)` should construct the exception object once. With `T` holding only
+plain members and no declared copy constructor, MSVC 7.1 instead built the temporary,
+then copied it memberwise into a second slot and threw that -- eight extra bytes of
+frame and a run of movs the retail body does not have. The tell that it was a copy and
+not just different addressing is that the loads came through the constructor's returned
+`this` in eax rather than the stack slot the compiler had just written. Declaring a copy
+constructor (no definition needed) removed the copy entirely and the function matched:
+once the copy has to be a call, MSVC constructs directly into the exception temporary
+instead. Same lever as forcing a hidden-pointer return -- a user-declared copy
+constructor changes what the compiler is allowed to do inline -- but here it removes
+work rather than adding it. /EHsc versus /EHs-c- made no difference at all.
