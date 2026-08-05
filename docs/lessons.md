@@ -2299,6 +2299,7 @@ The same function also carries a content difference worth generalising: BFME's
 `"Low"`, so every level constant after it shifts by one. When a parse loop's `cmp` is
 one higher than the table you have, check the table before you check the codegen --
 the pointers are sitting in .rdata and dumping them settles it immediately.
+
 ## A getter that returns a class zero-initialises what the scalar ones do not
 
 Three preferences getters share one skeleton -- build a key, look it up in the map at
@@ -2309,3 +2310,32 @@ constructor call, which was the entire eight-byte difference on an otherwise exa
 body. In the shim that is `CustomAsciiStringShim key = { 0 };` rather than a plain
 declaration. Worth remembering when porting a skeleton between siblings: the by-value
 return changes more than the epilogue.
+
+## BFME's INI object puts the scalars first and the buffers last
+
+Zero Hour's `INI` starts with `File *m_file`, then drops an 8 KB `m_readBuffer`
+immediately after it, so `m_loadType` lands at `+0x2010` and every other scalar sits
+past the buffer too. BFME reordered the object: `parsePrerequisites` (0x001485B0)
+reads the load type at `[ini+8]`, which is where it falls if `m_file`, `m_filename`
+and `m_loadType` are the first three words and both character buffers move to the
+end. `reference/shims/ini_bfme/Common/INI.h` is that reordering and nothing else.
+
+The evidence is narrow but clean: with the shim in force parsePrerequisites compiles
+to exactly retail's 63 bytes and the `cmp dword ptr [edi+8], 2` matches, where the
+Zero Hour order gave 66 bytes and `[edi+0x2010]`. ThingTemplate.cpp's other 110
+matched rows are untouched by the change, which is the useful half of the result --
+nothing in that file was leaning on the old order, so the reorder is free to adopt
+wherever it helps.
+
+What it does not do is land the function. parsePrerequisites also reads
+`m_prereqInfo` at `+0x2c4` where our ThingTemplate puts it at `+0x15c`, and 0x168
+bytes of BFME additions inside a class that large is its own project.
+`tools/ini_layout_diff.py` is the right instrument for it but refuses this block:
+the source has 115 tokens against 110 live entries in the object because a
+conditional entry compiles out, so position-based alignment is not safe. Teaching
+the tool to skip conditional entries is the unblocking step, not more hand-reading.
+
+Two smaller negatives from the same sweep, so nobody repeats them: parsePreferredAgainst
+(0x0010FE90) compiles to 50 bytes against retail's 204 and parseArbitraryFXIntoMap
+(0x00145C80) to 310 against 206, both with unresolved template callees. Neither is an
+INI-layout problem and the shim does not move them.
