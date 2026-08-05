@@ -829,10 +829,19 @@ void DX8Caps::Check_Depth_Stencil_Support(WW3DFormat display_format, const D3DCA
 	}
 }
 
-// ?Check_Maximum_Texture_Support@DX8Caps@@AAEXABU_D3DCAPS8@@@Z present-unmatched
+// 0x284 falls immediately after the two shader-version words the overlay below
+// places at 0x27c and 0x280, which is the corroboration that these are one layout.
+struct BFME_DX8Caps_MaxTextureField
+{
+	char pad[0x284];
+	int maxSimultaneousTextures;			// 0x284
+};
+
+// ?Check_Maximum_Texture_Support@DX8Caps@@AAEXABU_D3DCAPS8@@@Z
 void DX8Caps::Check_Maximum_Texture_Support(const D3DCAPS8& caps)
 {
-	MaxSimultaneousTextures=caps.MaxSimultaneousTextures;
+	BFME_DX8Caps_MaxTextureField *retail = (BFME_DX8Caps_MaxTextureField *)this;
+	retail->maxSimultaneousTextures=caps.MaxSimultaneousTextures;
 }
 
 struct BFME_DX8Caps_CheckShaderFields
