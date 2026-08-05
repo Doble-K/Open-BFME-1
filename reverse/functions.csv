@@ -61214,7 +61214,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?m@Gen_0022cdd0@@QAEXXZ,,0x0022CDD0,1,Code/gen_small/fun_001.cpp,matched,gen-shim;skeleton=ret-void;ghidra=FUN_0062cdd0
 ?getClassMemoryPool@TransportContain@@CAPAVMemoryPool@@XZ,,0x0022CEC0,104,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,pool-glue cascade; copy proven by verify_string_refs
 ??0TransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022D010,128,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 128B constructor
-?isSpecificRiderFreeToExit@TransportContain@@MAE_NPAVObject@@@Z,,0x0022D0E0,126,Code/GameEngine/Source/Common/TransportContain_isSpecificRiderFreeToExit_Thunk.cpp,matched,cached-obj needle Open-BFME4+Grok
+?isSpecificRiderFreeToExit@TransportContain@@MAE_NPAVObject@@@Z,,0x0022D0E0,126,Code/GameEngine/Source/Common/TransportContain_isSpecificRiderFreeToExit_Thunk.cpp,matched,clean C++ conversion; ZH TransportContain.cpp body unchanged; contained object at this+0x08 AI at object+0x204 position at +0x38 locomotor at ai+0x1CC and pathfinder at TheAI+0x0C
 ??0Player@@QAE@H@Z,,0x0022E820,43,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??0TunnelContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022EE70,102,Code/GameEngine/Source/GameLogic/Object/Contain/TunnelContainCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit ctor thunk
 ?m@Gen_0022ef00@@QAEPADXZ,,0x0022EF00,14,Code/gen_small/fun_001.cpp,matched,gen-shim;skeleton=adjustor;ghidra=FUN_0062ef00
