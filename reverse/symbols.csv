@@ -68410,3 +68410,5 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?writeAsciiString@DataChunkOutput@@QAEXABVAsciiString@@@Z,0x0001EBBE,ILT thunk to the chunk writer string output
 ?unidentified_001BFE20@Object@@QBEPAVPlayer@@XZ,0x0000D3B9,UNIDENTIFIED accessor at 0x001BFE20 reads Object+0x1FC and tail-calls its virtual +0x68; address-derived name; do not treat as an identity; distinct from Object::getControllingPlayer at 0x001BE3F0
 ?unidentified_0034DB40@ScriptEngine@@QAEGABVAsciiString@@@Z,0x000230B5,UNIDENTIFIED mask resolver at 0x0034DB40 forwarding to TheScriptEngine virtual +0x4C; address-derived name; do not treat as an identity; distinct from the doGiveMoney resolver at 0x0034CB60
+?getScienceFromInternalName@ScienceStore@@QAE?AW4ScienceType@@ABVAsciiString@@@Z,0x0004B36C,ILT thunk to the ScienceStore name lookup; identity from Zero Hour ScriptActions.cpp doPlayerGrantScience
+?grantScience@Player@@QAEXW4ScienceType@@@Z,0x0000C33D,ILT thunk to Player::grantScience; identity from Zero Hour ScriptActions.cpp doPlayerGrantScience
