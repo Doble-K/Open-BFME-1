@@ -71128,7 +71128,6 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ??0OBBoxRenderObjClass@@QAE@XZ,,0x00957B30,80,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ?j_00957bb0@@YAXXZ,,0x00957BB0,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=FUN_00d1fc10
 ??0OBBoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00957BC0,87,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
-??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/Libraries/Source/WWVegas/WW3D2/OBBoxRenderObjClass_CtorThunk.cpp,matched,MASM dump converted to clean C++; Matrix3D::Set REL32 repointed to the Matrix3-spelled body
 ??4OBBoxRenderObjClass@@QAEAAV0@ABV0@@Z,,0x00957CD0,43,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ?Render@OBBoxRenderObjClass@@UAEXAAVRenderInfoClass@@@Z,,0x00957D00,263,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Get_Obj_Space_Bounding_Sphere@OBBoxRenderObjClass@@UBEXAAVSphereClass@@@Z,,0x00957E10,98,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
@@ -94118,3 +94117,4 @@ _send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/
 ?Convert_Shader@W3dUtilityClass@@SAXABUW3dShaderStruct@@PAVShaderClass@@@Z,,0x00978760,186,Code/Libraries/Source/WWVegas/WW3D2/w3d_util_convert_shader.cpp,matched,clean C++ from the reference; needs the BFME shader bit layout (post-detail fields one bit later)
 ?Convert_Shader@W3dUtilityClass@@SAXABVShaderClass@@PAUW3dShaderStruct@@@Z,,0x00978820,164,Code/Libraries/Source/WWVegas/WW3D2/w3d_util_convert_shader.cpp,matched,clean C++ from the reference; the ShaderClass-to-struct direction
 ?findSingleBone@@YA_NPAVRenderObjClass@@ABVAsciiString@@AAVMatrix3D@@AAH@Z,,0x00761E90,135,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,clean C++ already present in W3DModelDraw.cpp; naked byte-dump thunk retired
+??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,clean C++ already in boxrobj.cpp; needs the BFME BoxRenderObjClass virtual ahead of update_cached_box so it lands at vtable +0x20C

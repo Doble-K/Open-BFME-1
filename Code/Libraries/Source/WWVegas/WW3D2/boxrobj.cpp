@@ -960,7 +960,6 @@ void AABoxRenderObjClass::Get_Obj_Space_Bounding_Box(AABoxClass & box) const
  * HISTORY:                                                                                    *
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
-// ??0OBBoxRenderObjClass@@ present-unmatched
 OBBoxRenderObjClass::OBBoxRenderObjClass(void)
 {
 	update_cached_box();
@@ -979,7 +978,6 @@ OBBoxRenderObjClass::OBBoxRenderObjClass(void)
  * HISTORY:                                                                                    *
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
-// ??0OBBoxRenderObjClass@@ present-unmatched
 OBBoxRenderObjClass::OBBoxRenderObjClass(const W3dBoxStruct & def) :
 	BoxRenderObjClass(def)
 {

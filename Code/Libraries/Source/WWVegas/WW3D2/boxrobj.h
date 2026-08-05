@@ -101,7 +101,15 @@ public:
 	const Vector3 &					Get_Local_Extent(void) { return ObjSpaceExtent; }
 
 protected:
-	
+
+	// BFME has one more BoxRenderObjClass virtual ahead of update_cached_box:
+	// OBBoxRenderObjClass's constructor (0x00957C20) reaches it through vtable
+	// +0x20C where this header lands it at +0x208. The slot belongs to this
+	// class rather than to RenderObjClass -- putting it at the end of
+	// RenderObjClass instead moves Animatable3DObjClass's own virtuals too, and
+	// Simple_Evaluate_Bone (+0x214) and HLodClass::Get_Obj_Space_Bounding_Box
+	// (+0x218) are already matched where they are.
+	virtual void						_bfme_box_slot(void) { }
 	virtual void						update_cached_box(void) = 0;
 	void									render_box(RenderInfoClass & rinfo,const Vector3 & center,const Vector3 & extent);
 	void									vis_render_box(SpecialRenderInfoClass & rinfo,const Vector3 & center,const Vector3 & extent);
