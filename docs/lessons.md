@@ -2133,3 +2133,21 @@ once the copy has to be a call, MSVC constructs directly into the exception temp
 instead. Same lever as forcing a hidden-pointer return -- a user-declared copy
 constructor changes what the compiler is allowed to do inline -- but here it removes
 work rather than adding it. /EHsc versus /EHs-c- made no difference at all.
+
+## A naked byte dump proves its bytes, never its name
+
+The byte gate compares a symbol's compiled bytes against the retail bytes at its recorded
+address. For a `__declspec(naked)` body those bytes were copied from that address, so the
+comparison is a tautology -- it passes for any name someone attached to the dump. Every
+naked row therefore carries an unverified identity by construction, no matter which pass
+produced it (the bad ones I have found span four different provenance tags, so this is not
+one careless batch). Converting to real C++ is the first thing that actually tests a name,
+because the mangled name has to compile from a declaration whose class, return type,
+constness and arity all produce exactly those bytes.
+
+So read the body against the claimed signature BEFORE starting. The cheapest tells:
+a claimed `_N` return against a body ending `or eax,-1`; a claimed `X` (void) return
+against a body that loads eax; `ret N` disagreeing with the decorated argument list; and
+`this`-relative offsets that make no sense for the claimed class -- a GameLODManager method
+has no reason to run _M_find over a map at this+4 while loading TheGameLODManager
+separately from a global.
