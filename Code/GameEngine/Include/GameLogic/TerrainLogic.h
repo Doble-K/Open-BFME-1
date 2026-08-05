@@ -231,6 +231,10 @@ public:
 	virtual void newMap( Bool saveGame );	///< Initialize the logic for new map.
 
 	virtual Real getGroundHeight( Real x, Real y, Coord3D* normal = NULL )  const;
+	// BFME carries one more slot ahead of getLayerHeight: alignOnTerrain
+	// (0x001A8BD0) reaches it through vtable +0x1c where this list lands it
+	// at +0x18.
+	virtual void _bfme_tl_pre_layerheight( void ) {}
 	virtual Real getLayerHeight(Real x, Real y, PathfindLayerEnum layer, Coord3D* normal = NULL, Bool clip = true) const;
 	virtual void getExtent( Region3D *extent ) const { DEBUG_CRASH(("not implemented"));  }		///< @todo This should not be a stub - this should own this functionality
 	virtual void getExtentIncludingBorder( Region3D *extent ) const { DEBUG_CRASH(("not implemented"));  }		///< @todo This should not be a stub - this should own this functionality
@@ -282,7 +286,9 @@ public:
 	virtual void _bfme_tl_v6( void ) {}
 	virtual void _bfme_tl_v7( void ) {}
 	virtual void _bfme_tl_v8( void ) {}
-	virtual void _bfme_tl_v9( void ) {}
+	// v9 retired: the slot alignOnTerrain proves ahead of getLayerHeight is one
+	// of this run, not an extra on top of it -- the bridge virtuals below have
+	// to stay where they already match.
 
 	///Gets the first bridge.  Traverse all bridges using bridge->getNext();
 	virtual Bridge *getFirstBridge(void) const { return m_bridgeListHead; }
@@ -313,6 +319,13 @@ public:
 	void getBridgeAttackPoints(const Object *bridge, TBridgeAttackInfo *info); ///< Get bridge attack points.
 
 	PathfindLayerEnum getLayerForDestination(const Coord3D *pos);
+
+	// BFME's real entry point takes a nullable Object* ahead of the destination:
+	// ILT thunk at 0x0001C675 -> 0x001A7C20, pinned in symbols.csv. alignOnTerrain
+	// and tightenPath both reach it; the Object* is 0 when there is no mover.
+	// Declared as an overload so the 1-arg call sites already matched elsewhere
+	// keep resolving the way they do today.
+	PathfindLayerEnum getLayerForDestination(Object *obj, const Coord3D *pos);
 
 	// this is just like getLayerForDestination, but always return the highest layer that will be <= z at that point
 	// (unlike getLayerForDestination, which will return the closest layer)

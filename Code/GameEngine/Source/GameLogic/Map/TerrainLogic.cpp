@@ -1538,17 +1538,16 @@ void makeAlignToNormalMatrix( Real angle, const Coord3D& pos, const Coord3D& nor
 /** given angle and position, return the matrix aligning this
 	* position with the ground */
 //-------------------------------------------------------------------------------------------------
-// ?alignOnTerrain@TerrainLogic@@UAE?AW4PathfindLayerEnum@@MABUCoord3D@@_NAAVMatrix3D@@@Z present-unmatched
 PathfindLayerEnum TerrainLogic::alignOnTerrain( Real angle, const Coord3D& pos, Bool stickToGround, Matrix3D& mtx)
 {
 	Coord3D terrainNormal;
 	PathfindLayerEnum layer;
 
-	layer = getLayerForDestination(&pos);
+	layer = getLayerForDestination(NULL, &pos);
 
 	// get the normal of the terrain at our position
 	Real terrainAtPos = getLayerHeight(pos.x, pos.y, layer, &terrainNormal );
-	if (layer != LAYER_GROUND) {
+	if (layer > LAYER_GROUND) {
 		/// @todo - fix brutal hack for bridges that are too high. jba
 		terrainAtPos += 2.5f;
 	}
