@@ -2473,3 +2473,32 @@ Worth stating as a rule: a group of stores rebased onto a second register is
 evidence about how the members are *nested*, not about how they are written. When
 the flat version already gets every store right, stop varying the statements and go
 looking for the sub-object.
+
+## Two things stand between LifeEventModuleInfo's constructor and exact
+
+`??0LifeEventModuleInfo@FXParticleSystem@@QAE@XZ` (0x005FC710, 90 bytes) is worth
+writing down because the reconstruction is *known*, not guessed, and still does not
+land. The class is a vtable, an int at +0x04, a `GameClientRandomVariable` at +0x08
+and an int at +0x14; the three stores at `[esi+8..0x10]` are that variable's default
+constructor zeroing `distribution`, `minimum` and `maximum`, and the call is
+`setRange(0.0f, 0.0f, UNIFORM)`. All of that reproduces.
+
+What does not:
+
+  * **The unwind frame.** Written plainly the constructor compiles to 41 bytes with
+    no SEH at all. Giving `GameClientRandomVariable` a declared destructor brings the
+    frame in and gets to 85 of 90 with every store and the call present. The last
+    five bytes are the state transition: retail writes `mov byte ptr [esp+0x1c], 1`
+    after constructing the member, ours writes a dword zero and never transitions.
+    So retail tracks one more constructed object than our shape does.
+
+  * **The call goes through the export thunk.** Retail calls 0x00006C58, which is the
+    `export_rva` on setRange's own functions.csv row; our build resolves the same
+    name to the `target_rva` 0x00096F40 and emits a direct call. There is no
+    symbols.csv pin for the thunk, and adding one under a name that already has a
+    functions.csv row is not obviously safe, so this needs deciding rather than
+    guessing.
+
+The second point is general: a callee with both an export thunk and a body will be
+reached by whichever the *call site* encodes, and rows carrying an export_rva do not
+automatically make call sites use it.
