@@ -1,7 +1,71 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the ScriptActions::doPlayerSetScienceAvailability __emit thunk to clean C++.
+//
+// Zero Hour resolves one Player and sets one science's availability on it. BFME
+// walks a player mask instead, the same generalisation as doGiveMoney and
+// doPlayerGrantScience, with getEachPlayerFromMask consuming the mask by
+// reference so the trailing `cmp word ptr` closes the loop.
+//
+// This one is a while and not a do-while: the loop head is aligned and retail
+// jumps over the padding to enter it, and the callee-saved registers are pushed
+// after the mask guard rather than in the prologue. Both follow from the
+// pre-tested form.
+//
+// The two lookups are per-player and run in the opposite order from the
+// parameter list -- the availability name is resolved first and the science name
+// second, but they are pushed science-then-availability, which is the argument
+// order of the setter.
+//
+// The availability lookup is a Player member here rather than a ScienceStore
+// one, which is not where Zero Hour puts it, so it carries an address-derived
+// name instead of ZH's.
+
+typedef int Int;
+typedef unsigned short UnsignedShort;
 
 class AsciiString;
+
+enum ScienceType
+{
+	SCIENCE_INVALID = -1
+};
+
+enum ScienceAvailabilityType
+{
+	SCIENCE_AVAILABILITY_INVALID = -1
+};
+
+class Player
+{
+public:
+	/// address-derived name -- do not treat as an identity. Body at 0x000CFE80.
+	ScienceAvailabilityType unidentified_000CFE80(const AsciiString &name);	///< ILT thunk at 0x00030260
+
+	void setScienceAvailability(ScienceType science, ScienceAvailabilityType avail);	///< ILT thunk at 0x00010DED
+};
+
+class PlayerList
+{
+public:
+	Player *getEachPlayerFromMask(UnsignedShort &mask);			///< ILT thunk at 0x0002EE60
+};
+
+class ScienceStore
+{
+public:
+	ScienceType getScienceFromInternalName(const AsciiString &name);	///< ILT thunk at 0x0004B36C
+};
+
+class BfmeScriptEngine_getPlayerMaskFromAsciiString
+{
+public:
+	UnsignedShort getPlayerMaskFromAsciiString(const AsciiString &name, bool *unused);	///< ILT thunk at 0x0004B290
+};
+
+extern ScienceStore *TheScienceStore;								///< retail [0x012ED7AC]
+extern BfmeScriptEngine_getPlayerMaskFromAsciiString *TheScriptEngine;	///< retail [0x012F076C]
+extern PlayerList *ThePlayerList;									///< retail [0x012ED748]
+
 class ScriptActions
 {
 protected:
@@ -9,134 +73,25 @@ protected:
 };
 
 // ?doPlayerSetScienceAvailability@ScriptActions@@IAEXABVAsciiString@@00@Z
-__declspec(naked) void ScriptActions::doPlayerSetScienceAvailability(const AsciiString &, const AsciiString &, const AsciiString &)
+void ScriptActions::doPlayerSetScienceAvailability(const AsciiString &playerName,
+	const AsciiString &scienceName, const AsciiString &availabilityName)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xbe
-        __emit 0xb0
-        __emit 0xd5
-        __emit 0xff
-        __emit 0x66
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x74
-        __emit 0x60
-        __emit 0x53
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x55
-        __emit 0x8b
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x56
-        __emit 0x57
-        __emit 0xeb
-        __emit 0x07
-        __emit 0x8d
-        __emit 0xa4
-        __emit 0x24
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x60
-        __emit 0xec
-        __emit 0xd3
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x29
-        __emit 0x53
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x52
-        __emit 0x00
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xfe
-        __emit 0xff
-        __emit 0x74
-        __emit 0x1a
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xac
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x55
-        __emit 0xe8
-        __emit 0x4b
-        __emit 0xb1
-        __emit 0xd5
-        __emit 0xff
-        __emit 0x83
-        __emit 0xf8
-        __emit 0xff
-        __emit 0x74
-        __emit 0x09
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xbe
-        __emit 0x0b
-        __emit 0xd2
-        __emit 0xff
-        __emit 0x66
-        __emit 0x83
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0x75
-        __emit 0xb9
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x0c
-        __emit 0x00
+	UnsignedShort mask = TheScriptEngine->getPlayerMaskFromAsciiString(playerName, 0);
+
+	while (mask != 0)
+	{
+		Player *player = ThePlayerList->getEachPlayerFromMask(mask);
+		if (player)
+		{
+			ScienceAvailabilityType avail = player->unidentified_000CFE80(availabilityName);
+			if (avail != SCIENCE_AVAILABILITY_INVALID)
+			{
+				ScienceType science = TheScienceStore->getScienceFromInternalName(scienceName);
+				if (science != SCIENCE_INVALID)
+				{
+					player->setScienceAvailability(science, avail);
+				}
+			}
+		}
 	}
 }

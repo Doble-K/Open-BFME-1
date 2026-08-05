@@ -68413,3 +68413,5 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?getScienceFromInternalName@ScienceStore@@QAE?AW4ScienceType@@ABVAsciiString@@@Z,0x0004B36C,ILT thunk to the ScienceStore name lookup; identity from Zero Hour ScriptActions.cpp doPlayerGrantScience
 ?grantScience@Player@@QAEXW4ScienceType@@@Z,0x0000C33D,ILT thunk to Player::grantScience; identity from Zero Hour ScriptActions.cpp doPlayerGrantScience
 ?attemptToPurchaseScience@Player@@QAE_NW4ScienceType@@@Z,0x00004BC4,ILT thunk to Player::attemptToPurchaseScience; identity from Zero Hour ScriptActions.cpp doPlayerPurchaseScience
+?unidentified_000CFE80@Player@@QAE?AW4ScienceAvailabilityType@@ABVAsciiString@@@Z,0x00030260,UNIDENTIFIED availability-name lookup at 0x000CFE80; address-derived name; do not treat as an identity; a Player member here rather than the ScienceStore member Zero Hour uses
+?setScienceAvailability@Player@@QAEXW4ScienceType@@W4ScienceAvailabilityType@@@Z,0x00010DED,ILT thunk to Player::setScienceAvailability; identity from Zero Hour ScriptActions.cpp
