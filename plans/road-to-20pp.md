@@ -46,8 +46,9 @@ restore:
   discs, and its absence was never someone trimming the toolchain.
 - `atlmfc/` **is** a genuine VS2003 component (Disc 1) that had been removed.
 
-Both are proprietary Microsoft trees, kept local and never committed;
-`.gitignore` now refuses them so a careless `git add build/` cannot stage them.
+2026-08-04, maintainer decision: both trees (plus the DX8.1 SDK headers at
+build/toolchains/dx81/) are COMMITTED so every clone carries the complete
+byte-exact build environment; the earlier .gitignore refusal is reverted.
 
 ## The three levers left, in descending value
 

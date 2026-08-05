@@ -3,14 +3,8 @@ build/*
 build/toolchains/*
 !build/toolchains/vs2003/
 !build/toolchains/vs2003/**
-
-# The vs2003 un-ignore above is deliberately wide, which leaves the two
-# Microsoft SDKs staged back into the toolchain by tools/toolchain restore
-# one `git add build/` away from being committed. They are proprietary and
-# redistributable to nobody: PlatformSDK is the XP SP2 (Aug 2004) Platform
-# SDK, atlmfc is the VS2003 ATL/MFC component. Both must stay local.
-build/toolchains/vs2003/**/Vc7/PlatformSDK/
-build/toolchains/vs2003/**/Vc7/atlmfc/
+!build/toolchains/dx81/
+!build/toolchains/dx81/**
 
 .venv/
 __pycache__/
