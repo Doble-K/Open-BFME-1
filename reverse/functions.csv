@@ -63329,7 +63329,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?j_004427c0@@YAXXZ,,0x004427C0,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_00840400
 ?j_00442870@@YAXXZ,,0x00442870,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_00840510
 ?j_00442a50@@YAXXZ,,0x00442A50,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_008406f0
-?removeMilitarySubtitle@InGameUI@@UAEXXZ,,0x004431B0,154,Code/GameEngine/Source/Common/InGameUI_removeMilitarySubtitleMethodThunk.cpp,matched,Certified packet 182 exact retail db recovery sha256 17ea0741497e1a63201ab4f1808d1e17de5bd396ce235973b1842c379a4c2cce
+?removeMilitarySubtitle@InGameUI@@UAEXXZ,,0x004431B0,154,Code/GameEngine/Source/Common/InGameUI_removeMilitarySubtitleMethodThunk.cpp,matched,clean C++ conversion; ZH InGameUI.cpp body plus a BFME free of the string at subtitle+0x28; display strings at +0x08 not +0x10; subtitle pointer at this+0x818
 ?j_00443550@@YAXXZ,,0x00443550,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=thunk_FUN_008428e0
 ?selectFriends@SelectionTranslator@@AAE_NPAVDrawable@@PAVGameMessage@@_N@Z,,0x00443F60,794,Code/masm_dumps/_cache__selectFriends_SelectionTranslator__AAE_NPAVDrawable__P_443F60.asm,matched,cached-obj needle Open-BFME4+Grok
 ?evaluateSoloNexus@InGameUI@@IAEXPAVDrawable@@@Z,,0x00444340,213,Code/GameEngine/Source/GameClient/InGameUI_evaluateSoloNexus_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
