@@ -1,117 +1,72 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the CustomMatchPreferences::getLastLadderAddr __emit thunk to clean C++.
+//
+// Same preferences skeleton as getMaxDisconnects and getLanguageFilter: a plain
+// shim key driven by explicit init/destroy rather than a C++ object with a
+// destructor, the map at this+4, and the map's header node doubling as the end
+// sentinel. The key is built before the map pointer is formed, because retail
+// holds plain `this` in esi across the constructor and only then does
+// `add esi,4`.
+//
+// This one returns AsciiString by value, so it carries a hidden return pointer
+// and ends `ret 4`. Both exits copy-construct into that buffer: the empty string
+// global on a miss, and the value at node+0x14 on a hit.
 
 class AsciiString
 {
+public:
+	AsciiString(const AsciiString &other);			///< body at 0x00887B60
+	~AsciiString();									///< body at 0x00887940
+
+	static AsciiString TheEmptyString;				///< retail [0x01336E50]
+
+private:
+	void *m_data;
+};
+
+// Shim names an earlier CustomMatchPreferences conversion already pinned.
+struct CustomAsciiStringShim
+{
+	void *m_data;
+	void init(const char *s);						///< body at 0x00888BC0
+	void destroy(void);								///< body at 0x00887940
+};
+
+struct CustomMapNodeShim
+{
+	unsigned char m_unreconstructed_00[0x14];
+	AsciiString m_value;							///< retail node+0x14
+};
+
+struct CustomPreferenceMapShim
+{
+	CustomMapNodeShim *m_header;					///< doubles as the end sentinel
+	CustomMapNodeShim *find(CustomAsciiStringShim *key);	///< ILT thunk at 0x0000AEAC
 };
 
 class CustomMatchPreferences
 {
 public:
-	AsciiString getLastLadderAddr();
+	AsciiString getLastLadderAddr(void);
 };
 
 // ?getLastLadderAddr@CustomMatchPreferences@@QAE?AVAsciiString@@XZ
-__declspec(naked) AsciiString CustomMatchPreferences::getLastLadderAddr()
+AsciiString CustomMatchPreferences::getLastLadderAddr(void)
 {
-	__asm {
-		__emit 0x51
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x68
-		__emit 0x5c
-		__emit 0x11
-		__emit 0x08
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xf5
-		__emit 0xc9
-		__emit 0x7d
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x83
-		__emit 0xc6
-		__emit 0x04
-		__emit 0x50
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0xd2
-		__emit 0xec
-		__emit 0xf5
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x8b
-		__emit 0xf8
-		__emit 0xe8
-		__emit 0x5b
-		__emit 0xb7
-		__emit 0x7d
-		__emit 0x00
-		__emit 0x3b
-		__emit 0x3e
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x24
-		__emit 0x10
-		__emit 0x8b
-		__emit 0xce
-		__emit 0x75
-		__emit 0x12
-		__emit 0x68
-		__emit 0x50
-		__emit 0x6e
-		__emit 0x33
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x67
-		__emit 0xb9
-		__emit 0x7d
-		__emit 0x00
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x59
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc7
-		__emit 0x14
-		__emit 0x57
-		__emit 0xe8
-		__emit 0x56
-		__emit 0xb9
-		__emit 0x7d
-		__emit 0x00
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x59
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
+	// Zero-initialised: retail nulls the slot before constructing into it, which
+	// the sibling getters that return a scalar do not do.
+	CustomAsciiStringShim key = { 0 };
+	key.init("LastLadderAddr");
+
+	CustomPreferenceMapShim *map =
+		(CustomPreferenceMapShim *)((unsigned char *)this + 4);
+	CustomMapNodeShim *node = map->find(&key);
+	key.destroy();
+
+	if (node == map->m_header)
+	{
+		return AsciiString::TheEmptyString;
 	}
+
+	return node->m_value;
 }

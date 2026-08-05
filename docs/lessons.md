@@ -2299,3 +2299,13 @@ The same function also carries a content difference worth generalising: BFME's
 `"Low"`, so every level constant after it shifts by one. When a parse loop's `cmp` is
 one higher than the table you have, check the table before you check the codegen --
 the pointers are sitting in .rdata and dumping them settles it immediately.
+## A getter that returns a class zero-initialises what the scalar ones do not
+
+Three preferences getters share one skeleton -- build a key, look it up in the map at
+this+4, compare the node against the map header. Two of them return a scalar and
+construct the key straight into its slot. The third returns AsciiString by value and
+nulls the key slot first, `mov dword ptr [esp+0xc],0` immediately before the
+constructor call, which was the entire eight-byte difference on an otherwise exact
+body. In the shim that is `CustomAsciiStringShim key = { 0 };` rather than a plain
+declaration. Worth remembering when porting a skeleton between siblings: the by-value
+return changes more than the epilogue.
