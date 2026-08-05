@@ -658,179 +658,36 @@ __declspec(naked) Matrix4D &Matrix4D::Set(const Coord3D &v, float w)
 }
 
 // ?Transpose@Matrix4D@@QAEAAV1@XZ
-__declspec(naked) Matrix4D &Matrix4D::Transpose()
+// In-place transpose: the six off-diagonal pairs, each swapped through the
+// three-XOR idiom on the raw dwords. Zero Hour's Matrix4x4::Transpose is a
+// different function -- it is const and returns a new matrix by value; BFME's
+// returns a reference and rewrites this one.
+Matrix4D &Matrix4D::Transpose()
 {
-    __asm {
-        __emit 0x8b
-        __emit 0xc1
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x89
-        __emit 0x50
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x10
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x89
-        __emit 0x50
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x08
-        __emit 0x89
-        __emit 0x50
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x20
-        __emit 0x33
-        __emit 0xca
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x89
-        __emit 0x50
-        __emit 0x20
-        __emit 0x89
-        __emit 0x48
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x08
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x30
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x0c
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x89
-        __emit 0x50
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x30
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x89
-        __emit 0x50
-        __emit 0x30
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x0c
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x18
-        __emit 0x89
-        __emit 0x50
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x24
-        __emit 0x33
-        __emit 0xca
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x89
-        __emit 0x50
-        __emit 0x24
-        __emit 0x89
-        __emit 0x48
-        __emit 0x18
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x18
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x34
-        __emit 0x89
-        __emit 0x50
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x1c
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x89
-        __emit 0x50
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x34
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x89
-        __emit 0x50
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x1c
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x38
-        __emit 0x89
-        __emit 0x50
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x2c
-        __emit 0x33
-        __emit 0xca
-        __emit 0x33
-        __emit 0xd1
-        __emit 0x89
-        __emit 0x48
-        __emit 0x38
-        __emit 0x89
-        __emit 0x50
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x31
-        __emit 0x48
-        __emit 0x38
-        __emit 0xc3
-    }
+    *(unsigned int *)&values[1] ^= *(unsigned int *)&values[4];
+    *(unsigned int *)&values[4] ^= *(unsigned int *)&values[1];
+    *(unsigned int *)&values[1] ^= *(unsigned int *)&values[4];
+
+    *(unsigned int *)&values[2] ^= *(unsigned int *)&values[8];
+    *(unsigned int *)&values[8] ^= *(unsigned int *)&values[2];
+    *(unsigned int *)&values[2] ^= *(unsigned int *)&values[8];
+
+    *(unsigned int *)&values[3] ^= *(unsigned int *)&values[12];
+    *(unsigned int *)&values[12] ^= *(unsigned int *)&values[3];
+    *(unsigned int *)&values[3] ^= *(unsigned int *)&values[12];
+
+    *(unsigned int *)&values[6] ^= *(unsigned int *)&values[9];
+    *(unsigned int *)&values[9] ^= *(unsigned int *)&values[6];
+    *(unsigned int *)&values[6] ^= *(unsigned int *)&values[9];
+
+    *(unsigned int *)&values[7] ^= *(unsigned int *)&values[13];
+    *(unsigned int *)&values[13] ^= *(unsigned int *)&values[7];
+    *(unsigned int *)&values[7] ^= *(unsigned int *)&values[13];
+
+    *(unsigned int *)&values[14] ^= *(unsigned int *)&values[11];
+    *(unsigned int *)&values[11] ^= *(unsigned int *)&values[14];
+    *(unsigned int *)&values[14] ^= *(unsigned int *)&values[11];
+    return *this;
 }
 
 // ?Determinant@Matrix4D@@QBEMXZ
