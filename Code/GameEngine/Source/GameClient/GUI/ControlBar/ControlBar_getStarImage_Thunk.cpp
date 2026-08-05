@@ -1,224 +1,191 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the ControlBar::getStarImage naked dump to clean C++.
+//
+// Zero Hour's ControlBar.cpp body with one BFME difference: where ZH calls the
+// gadget helper in all three arms, retail only calls it in the two flashing
+// arms. The not-flashing arm sets the three window images itself -- the enabled
+// image at index 0 and null at indices 5 and 6 -- through the same
+// winSetEnabledImage already pinned for the transition work.
+//
+// The modulus independently confirms LOGICFRAMES_PER_SECOND is 5 here rather
+// than ZH's 30: retail divides the frame by 5 and compares the remainder
+// against 2, which is that constant and its half. That agrees with the
+// ScriptActions::doNamedFlash conversion, which scaled seconds by the same 5.
+//
+// The points value is read once where ZH writes three calls, and the local
+// player once where ZH writes three, both plain common-subexpression work.
+//
+// Retail pins the layout: the enabled and highlight images are at this+0x2C0
+// and +0x2C4, the flash flag at +0x2C8 and the last flashed value at +0x2CC;
+// the science purchase points are at player+0x264 and the frame at
+// TheGameLogic+0x3C, which agrees with the DisconnectManager conversion.
+
+typedef int Int;
+typedef unsigned int UnsignedInt;
+typedef bool Bool;
 
 class Image;
+
+enum { LOGICFRAMES_PER_SECOND = 5 };
+
+enum NameKeyType { NAMEKEY_INVALID = 0 };
+
+class NameKeyGenerator
+{
+public:
+	NameKeyType nameToKey(const char *name);			///< ILT thunk at 0x0003ADD7
+};
+
+extern NameKeyGenerator *TheNameKeyGenerator;			///< retail [0x012ED600]
+
+class GameWindow
+{
+public:
+	Int winSetEnabledImage(Int index, const Image *image);	///< ILT thunk at 0x00035E09
+};
+
+void GadgetButtonSetEnabledImage(GameWindow *win, const Image *image);	///< ILT thunk at 0x00038A23
+
+class Player
+{
+public:
+	Int getSciencePurchasePoints(void) const { return m_sciencePurchasePoints; }
+
+private:
+	unsigned char m_unreconstructed_00[0x264];
+	Int m_sciencePurchasePoints;						///< retail this+0x264
+};
+
+class PlayerList
+{
+public:
+	Player *getLocalPlayer(void) { return m_localPlayer; }
+
+private:
+	unsigned char m_unreconstructed_00[0x0C];
+	Player *m_localPlayer;								///< retail this+0x0C
+};
+
+extern PlayerList *ThePlayerList;						///< retail [0x012ED748]
+
+class GameLogic
+{
+public:
+	UnsignedInt getFrame(void) const { return m_frame; }
+
+private:
+	unsigned char m_unreconstructed_00[0x3C];
+	UnsignedInt m_frame;								///< retail this+0x3C
+};
+
+extern GameLogic *TheGameLogic;							///< retail [0x012F0898]
+
+// Only the lookup is reconstructed; the slots ahead of it place it.
+class GameWindowManager
+{
+public:
+	virtual void unused00();
+	virtual void unused01();
+	virtual void unused02();
+	virtual void unused03();
+	virtual void unused04();
+	virtual void unused05();
+	virtual void unused06();
+	virtual void unused07();
+	virtual void unused08();
+	virtual void unused09();
+	virtual void unused10();
+	virtual void unused11();
+	virtual void unused12();
+	virtual void unused13();
+	virtual void unused14();
+	virtual void unused15();
+	virtual void unused16();
+	virtual void unused17();
+	virtual void unused18();
+	virtual void unused19();
+	virtual void unused20();
+	virtual void unused21();
+	virtual void unused22();
+	virtual void unused23();
+	virtual void unused24();
+	virtual void unused25();
+	virtual void unused26();
+	virtual void unused27();
+	virtual void unused28();
+	virtual void unused29();
+	virtual void unused30();
+	virtual void unused31();
+	virtual void unused32();
+	virtual void unused33();
+	virtual void unused34();
+	virtual void unused35();
+	virtual void unused36();
+	virtual void unused37();
+	virtual void unused38();
+	virtual void unused39();
+	virtual void unused40();
+	virtual void unused41();
+	virtual void unused42();
+	virtual void unused43();
+	virtual void unused44();
+	virtual void unused45();
+	virtual void unused46();
+	virtual void unused47();
+	virtual void unused48();
+	virtual void unused49();
+	virtual void unused50();
+	virtual void unused51();
+	virtual void unused52();
+	virtual void unused53();
+	virtual void unused54();
+
+	virtual GameWindow *winGetWindowFromId(GameWindow *window, NameKeyType id);	///< vtable +0xDC
+};
+
+extern GameWindowManager *TheWindowManager;				///< retail [0x012F1B40]
+
 class ControlBar
 {
 public:
-	const Image * getStarImage();
+	const Image *getStarImage(void);
+
+private:
+	unsigned char m_unreconstructed_00[0x2C0];
+	const Image *m_generalButtonEnable;					///< retail this+0x2C0
+	const Image *m_generalButtonHighlight;				///< retail this+0x2C4
+	Bool m_genStarFlash;								///< retail this+0x2C8
+	unsigned char m_unreconstructed_2C9[3];
+	Int m_lastFlashedAtPointValue;						///< retail this+0x2CC
 };
 
 // ?getStarImage@ControlBar@@QAEPBVImage@@XZ
-__declspec(naked) const Image * ControlBar::getStarImage()
+const Image *ControlBar::getStarImage(void )
 {
-	__asm {
-        __emit 0xa1
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x81
-        __emit 0x64
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x39
-        __emit 0x86
-        __emit 0xcc
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x57
-        __emit 0x7f
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7e
-        __emit 0x08
-        __emit 0x89
-        __emit 0x86
-        __emit 0xcc
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0xeb
-        __emit 0x07
-        __emit 0xc6
-        __emit 0x86
-        __emit 0xc8
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x15
-        __emit 0x40
-        __emit 0x1b
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x00
-        __emit 0xd6
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x68
-        __emit 0x44
-        __emit 0xb8
-        __emit 0x0f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x92
-        __emit 0xe1
-        __emit 0xb9
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x40
-        __emit 0x1b
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x50
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xff
-        __emit 0x97
-        __emit 0xdc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x71
-        __emit 0x8a
-        __emit 0x86
-        __emit 0xc8
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x2b
-        __emit 0x8b
-        __emit 0x86
-        __emit 0xc0
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x95
-        __emit 0x91
-        __emit 0xb9
-        __emit 0xff
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x05
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x8a
-        __emit 0x91
-        __emit 0xb9
-        __emit 0xff
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x06
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x7f
-        __emit 0x91
-        __emit 0xb9
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x98
-        __emit 0x08
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x3c
-        __emit 0x33
-        __emit 0xd2
-        __emit 0xb9
-        __emit 0x05
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xf7
-        __emit 0xf1
-        __emit 0x83
-        __emit 0xfa
-        __emit 0x02
-        __emit 0x76
-        __emit 0x15
-        __emit 0x8b
-        __emit 0x96
-        __emit 0xc4
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x52
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x70
-        __emit 0xbd
-        __emit 0xb9
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x86
-        __emit 0xc0
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x5b
-        __emit 0xbd
-        __emit 0xb9
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x5f
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc3
+	if(m_lastFlashedAtPointValue > ThePlayerList->getLocalPlayer()->getSciencePurchasePoints() || ThePlayerList->getLocalPlayer()->getSciencePurchasePoints() <= 0)
+		m_genStarFlash = false;
+	else
+		m_lastFlashedAtPointValue = ThePlayerList->getLocalPlayer()->getSciencePurchasePoints();
+
+	GameWindow *win= TheWindowManager->winGetWindowFromId( 0, TheNameKeyGenerator->nameToKey( "ControlBar.wnd:ButtonGeneral" ) );
+	if(!win)
+		return 0;
+	if(!m_genStarFlash)
+	{
+		win->winSetEnabledImage(0, m_generalButtonEnable);
+		win->winSetEnabledImage(5, 0);
+		win->winSetEnabledImage(6, 0);
+		return 0;
 	}
+
+	if(TheGameLogic->getFrame()% LOGICFRAMES_PER_SECOND > LOGICFRAMES_PER_SECOND/2)
+	{
+		GadgetButtonSetEnabledImage(win, m_generalButtonHighlight);
+		return 0;
+	}
+
+	GadgetButtonSetEnabledImage(win, m_generalButtonEnable);
+
+	return 0;
+
 }
