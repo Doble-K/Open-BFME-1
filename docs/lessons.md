@@ -2073,3 +2073,20 @@ form -- a pre-tested loop merges its entry test with the function's trailing
 `return false`, which changes what the register save dominates. Changing do-while to
 while fixed all of it in one edit. Read the entry jump before choosing the loop form,
 and do not carry the form over from a sibling function just because the body matches.
+
+### ScriptActions.cpp cannot take the same shim, and the reason is worth knowing
+
+The trio works for Scripts.cpp and breaks ScriptActions.cpp: opting that file
+into `reference/shims/scriptenginevtable` fails
+`doEnableOrDisableObjectDifficultyBonuses` and
+`setObjectsShouldReceiveDifficultyBonus`, whose setter writes
+`[ecx+0x16F20]` where retail has `[ecx+0x17634]`.
+
+The first guess -- that the shim, being a copy of the plain reference header,
+had lost `reference/shims/scriptenginelayout`'s 0x6868 pad -- is wrong. Rebasing
+it on the layout shim so the two differ *only* by the three stubs leaves the
+member exactly 0x714 low all the same. So three added virtuals move a member of
+that class by 1,812 bytes, which a normal derived class cannot do: whatever
+`scriptenginelayout` declares, its ScriptEngine is a stand-in whose size and its
+vtable are not independent. Anyone widening that shim has to understand that
+first; ScriptActions.cpp was left on the layout shim alone, 66/66.
