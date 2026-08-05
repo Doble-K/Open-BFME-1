@@ -45,6 +45,13 @@ def arity_contradicts(symbol, data):
     """
     if not symbol:
         return False
+    # A name that stops at the class terminator carries no signature at all --
+    # ?beginBlock@XferSave@@ is a row title, not something the compiler can emit.
+    # There is nothing to write C++ against, so it is unconvertible for the same
+    # practical reason as an arity clash even though the arity check has no
+    # opinion on it.
+    if symbol.startswith("?") and symbol.endswith("@@"):
+        return True
     want, _convention = audit_ret_arity.expected_ret(symbol)
     if want is None:                      # varargs, drifted parse: no opinion
         return False
@@ -292,9 +299,10 @@ def main():
     if already_matched:
         print(f"{already_matched} excluded as already matched in reverse/functions.csv")
     if arity_conflicts:
-        print(f"{arity_conflicts} excluded because the decorated name's stack cleanup "
-              "contradicts the body -- the name is on the wrong function "
-              "(tools/audit_ret_arity.py lists them)")
+        print(f"{arity_conflicts} excluded because the decorated name cannot produce the "
+              "body: either its stack cleanup contradicts the bytes, so the name is on the "
+              "wrong function (tools/audit_ret_arity.py lists those), or the name carries no "
+              "signature at all")
     if args.groups:
         groups = defaultdict(list)
         for item in candidates:
