@@ -521,7 +521,16 @@ void GameInfo::setSlot( Int slotNum, GameSlot slotInfo )
 GameSlot* GameInfo::getSlot( Int slotNum )
 {
 	DEBUG_ASSERTCRASH( slotNum >= 0 && slotNum < MAX_SLOTS, ("GameInfo::getSlot - Invalid slot number"));
-	if (slotNum < 0 || slotNum >= MAX_SLOTS)
+
+	// BFME spells this differently from Zero Hour, and the difference is visible
+	// in the image: a null check on the array itself, which the compiler keeps as
+	// lea/test even though it can never fire, and && where Zero Hour has ||. With
+	// && the guard is unreachable for every slotNum, so out-of-range indices read
+	// past the array instead of returning NULL. Reproduced as retail has it.
+	if (m_slot == NULL)
+		return NULL;
+
+	if (slotNum < 0 && slotNum >= MAX_SLOTS)
 		return NULL;
 
 	return m_slot[slotNum];

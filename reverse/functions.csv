@@ -62609,7 +62609,6 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?empty@?$hashtable@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@@2@U?$equal_to@VAsciiString@@@5@V?$allocator@U?$pair@$$CBVAsciiString@@W4BuildableStatus@@@_STL@@@2@@_STL@@QBE_NXZ,,0x00385750,11,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?empty@?$hashtable@U?$pair@$$CBVAsciiString@@PBVCommandButton@@@_STL@@VAsciiString@@U?$hash@VAsciiString@@@rts@@U?$_Select1st@U?$pair@$$CBVAsciiString@@PBVCommandButton@@@_STL@@@2@U?$equal_to@VAsciiString@@@5@V?$allocator@U?$pair@$$CBVAsciiString@@PBVCommandButton@@@_STL@@@2@@_STL@@QBE_NXZ,,0x00385760,11,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,
 ?m@Gen_00385f00@@QAEXXZ,,0x00385F00,7,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=store-imm-0;ghidra=FUN_00785f00
-?checkForDuplicateColors@@YAXPAVGameInfo@@@Z,,0x00386520,104,Code/GameEngine/Source/Common/checkForDuplicateColors_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setControlBarSchemeByPlayerTemplate@ControlBarSchemeManager@@QAEXPBVPlayerTemplate@@_N@Z,,0x003865B0,655,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarSchemeManagerSetControlBarSchemeByPlayerTemplateThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_ControlBarSchemeManagerSetControlBarSchemeByPlayerTemplate_3865B0
 ?j_00386a20@@YAXXZ,,0x00386A20,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=releaseBuffer
 ?loadMapINI@GameLogic@@QAEXVAsciiString@@@Z,,0x00386A30,754,Code/GameEngine/Source/Common/GameLogic_loadMapINIMethodThunk.cpp,matched,Exact 754B string-anchored Open-BFME4
@@ -66187,7 +66186,6 @@ __stringbase_isnone_cmp_wchar,,0x004EA730,89,Code/Libraries/Source/WWVegas/WWLib
 ?getNumPlayers@GameInfo@@QBEHXZ,,0x0061E6B0,148,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?getNumNonObserverPlayers@GameInfo@@QBEHXZ,,0x0061E770,175,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?endGame@GameInfo@@QAEXXZ,,0x0061E8A0,9,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
-?getSlot@GameInfo@@QAEPAVGameSlot@@H@Z,,0x0061E8E0,25,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?getConstSlot@GameInfo@@QBEPBVGameSlot@@H@Z,,0x0061E900,25,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?m@Gen_0061e9c0@@QAEXH@Z,,0x0061E9C0,10,Code/gen_small/fun_004.cpp,matched,gen-shim;skeleton=setter-d8;ghidra=FUN_00a1e9c0
 ?setOptimalExtrusionPadding@W3DVolumetricShadow@@IAEXM@Z,,0x0061E9D0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
@@ -94118,3 +94116,5 @@ _send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/
 ?findSingleBone@@YA_NPAVRenderObjClass@@ABVAsciiString@@AAVMatrix3D@@AAH@Z,,0x00761E90,135,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,clean C++ already present in W3DModelDraw.cpp; naked byte-dump thunk retired
 ??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z,,0x00957C20,167,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,clean C++ already in boxrobj.cpp; needs the BFME BoxRenderObjClass virtual ahead of update_cached_box so it lands at vtable +0x20C
 ?alignOnTerrain@TerrainLogic@@UAE?AW4PathfindLayerEnum@@MABUCoord3D@@_NAAVMatrix3D@@@Z,,0x001A8BD0,117,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,BFME 2-arg getLayerForDestination (thunk 0x0001C675); extra vtable slot ahead of getLayerHeight; layer > LAYER_GROUND
+?getSlot@GameInfo@@QAEPAVGameSlot@@H@Z,,0x0061E8B0,32,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,BFME shape: array null check plus && where ZH has ||; call sites reach it through ILT thunk 0x0001EC18
+?checkForDuplicateColors@@YAXPAVGameInfo@@@Z,,0x00386520,104,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,MultiplayerSettings colour block at +0x30; getSlot repointed to 0x0061E8B0
