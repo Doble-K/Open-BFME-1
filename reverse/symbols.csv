@@ -68386,3 +68386,4 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?validMovementTerrain@Pathfinder@@QAE_NHPBVLocomotor@@PBUCoord3D@@@Z,0x0001B405,ILT thunk to the pathfinder terrain check at 0x003D85C0
 ?find@TeamPrototypeMap@@QBEPAUTeamPrototypeNode@@ABUTeamPrototypeKey@@@Z,0x00011CB6,ILT thunk to the team prototype map lookup
 ??ATeamPrototypeMap@@QAEAAPAVTeamPrototype@@ABUTeamPrototypeKey@@@Z,0x00003B20,ILT thunk to the team prototype map slot accessor
+??4GameWindowList@@QAEAAV0@ABV0@@Z,0x00036C69,ILT thunk to the window list assignment used by WindowLayoutInfo's implicit operator=

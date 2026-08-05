@@ -1,129 +1,66 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the WindowLayoutInfo::operator= naked dump to clean C++.
+//
+// There is no hand-written body here: retail copies every member in
+// declaration order -- five scalars inline, then five AsciiString assignments,
+// then the window list -- which is exactly the compiler-generated copy
+// assignment. So the source is the class definition, and the only trick is
+// forcing MSVC to emit the implicit operator out of line, which taking its
+// address does.
+//
+// BFME widens ZH's record. Zero Hour's GameWindowManager.h has four scalars and
+// three name strings; retail has five scalars at +0x00 through +0x10 and five
+// AsciiStrings at +0x14 through +0x24, with the window list at +0x28. The three
+// ZH names are kept for the members whose positions match; the two extra
+// strings and the extra scalar are only located, not identified, so they carry
+// _bfme_ names rather than invented ones.
 
-class WindowLayoutInfo {
+typedef unsigned int UnsignedInt;
+
+class GameWindow;
+class WindowLayout;
+
+typedef void (*WindowLayoutInitFunc)(WindowLayout *, void *);
+typedef void (*WindowLayoutUpdateFunc)(WindowLayout *, void *);
+typedef void (*WindowLayoutShutdownFunc)(WindowLayout *, void *);
+
+class AsciiString
+{
 public:
-    WindowLayoutInfo &operator=(WindowLayoutInfo const &);
+	AsciiString &operator=(const AsciiString &other);	///< retail body at 0x00887C90
+
+private:
+	void *m_data;
+};
+
+// std::list<GameWindow *>; only its assignment is reached from here.
+class GameWindowList
+{
+public:
+	GameWindowList &operator=(const GameWindowList &other);	///< ILT thunk at 0x00036C69
+
+private:
+	unsigned char m_unreconstructed_00[12];
+};
+
+class WindowLayoutInfo
+{
+public:
+	UnsignedInt version;								///< retail this+0x00
+	WindowLayoutInitFunc init;							///< retail this+0x04
+	WindowLayoutUpdateFunc update;						///< retail this+0x08
+	WindowLayoutShutdownFunc shutdown;					///< retail this+0x0C
+	void *_bfme_unk_10;									///< retail this+0x10
+	AsciiString initNameString;							///< retail this+0x14
+	AsciiString updateNameString;						///< retail this+0x18
+	AsciiString shutdownNameString;						///< retail this+0x1C
+	AsciiString _bfme_unk_20;							///< retail this+0x20
+	AsciiString _bfme_unk_24;							///< retail this+0x24
+	GameWindowList windows;								///< retail this+0x28
 };
 
 // ??4WindowLayoutInfo@@QAEAAV0@ABV0@@Z
-__declspec(naked) WindowLayoutInfo &WindowLayoutInfo::operator=(WindowLayoutInfo const &)
-{
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x07
-        __emit 0x89
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x04
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x14
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x14
-        __emit 0xe8
-        __emit 0x70
-        __emit 0xf1
-        __emit 0x3f
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x18
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x18
-        __emit 0xe8
-        __emit 0x64
-        __emit 0xf1
-        __emit 0x3f
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4f
-        __emit 0x1c
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x1c
-        __emit 0xe8
-        __emit 0x58
-        __emit 0xf1
-        __emit 0x3f
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x57
-        __emit 0x20
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x20
-        __emit 0xe8
-        __emit 0x4c
-        __emit 0xf1
-        __emit 0x3f
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x24
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x24
-        __emit 0xe8
-        __emit 0x40
-        __emit 0xf1
-        __emit 0x3f
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x28
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x28
-        __emit 0xe8
-        __emit 0x0d
-        __emit 0xe1
-        __emit 0xba
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
-}
+// Taking the address is what makes MSVC emit the implicit operator out of line
+// instead of inlining it at each use.
+WindowLayoutInfo &(WindowLayoutInfo::*_bfme_emit_WindowLayoutInfo_assign)(const WindowLayoutInfo &) =
+		&WindowLayoutInfo::operator=;
