@@ -110,24 +110,45 @@ def main():
     table_symbol = symbols[0]
 
     body, relocs = build.read_object_symbol_bytes(obj, table_symbol)
-    relocated = {off for off, _, _ in relocs}
+    relocated = {off: name for off, _, name in relocs}
     ours = []
     for index in range(len(body) // ENTRY):
         base = index * ENTRY
         if base not in relocated:        # NULL token: end of table
             break
-        ours.append(struct.unpack_from("<i", body, base + OFFSET_IN_ENTRY)[0])
+        ours.append((relocated[base],
+                     struct.unpack_from("<i", body, base + OFFSET_IN_ENTRY)[0]))
 
-    tokens = source_tokens(args.source, table_symbol)
-    if len(tokens) != len(ours):
-        raise SystemExit(f"{len(tokens)} tokens in the source but {len(ours)} live entries in the "
-                         "object -- a conditional entry is compiled out, so the two cannot be "
-                         "lined up by position")
+    # Take each entry's token from the string the token slot relocates to, not from
+    # the source. Any table with a conditional entry has fewer live entries in the
+    # object than tokens in the .cpp, and lining the two up by position then pairs
+    # every field after the gap with the wrong offset -- silently, which is worse
+    # than refusing. The object is self-describing here, so use it.
+    pairs = []
+    for literal, offset in ours:
+        try:
+            text, _ = build.read_object_symbol_bytes(obj, literal)
+        except ValueError:
+            pairs = []
+            break
+        pairs.append((text.split(b"\0")[0].decode("ascii", "replace"), offset))
 
-    print(f"{args.block}: {len(ours)} fields in our table, {len(retail)} in retail's\n")
+    if pairs:
+        tokens_ours = pairs
+    else:
+        # No usable string symbols (some toolchains emit the literals unnamed);
+        # fall back to the source order, which is only safe when the counts agree.
+        tokens = source_tokens(args.source, table_symbol)
+        if len(tokens) != len(ours):
+            raise SystemExit(f"{len(tokens)} tokens in the source but {len(ours)} live entries "
+                             "in the object, and the token strings could not be read back from "
+                             "the object either -- nothing safe to line up on")
+        tokens_ours = list(zip(tokens, (offset for _, offset in ours)))
+
+    print(f"{args.block}: {len(tokens_ours)} fields in our table, {len(retail)} in retail's\n")
     agree = missing = 0
     diffs = []
-    for token, offset in zip(tokens, ours):
+    for token, offset in tokens_ours:
         if token not in retail:
             missing += 1
             continue
@@ -140,7 +161,7 @@ def main():
         print("%-38s %8s %8s %8s" % ("field", "ours", "retail", "delta"))
         for token, mine, theirs in sorted(diffs, key=lambda d: d[1]):
             print("%-38s %8s %8s %+8d" % (token, hex(mine), hex(theirs), theirs - mine))
-    extra = sorted(set(retail) - set(tokens), key=lambda t: retail[t])
+    extra = sorted(set(retail) - {t for t, _ in tokens_ours}, key=lambda t: retail[t])
     if extra:
         print(f"\nfields retail parses that our table does not ({len(extra)}) -- "
               "these are the BFME additions, and where the offsets above came from:")
