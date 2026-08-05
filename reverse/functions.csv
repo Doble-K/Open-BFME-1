@@ -64525,7 +64525,7 @@ __stringbase_isnone_cmp_wchar,,0x004EA730,89,Code/Libraries/Source/WWVegas/WWLib
 ?update@MainMenuMediumScaleUpTransition@@UAEXH@Z,,0x0059E010,161,Code/GameEngine/Source/Common/MainMenuMediumScaleUpTransition_updateMethodThunk.cpp,matched,clean C++ conversion; same shape as the ScaleUp sibling with growWin at this+0x44 and the two winHide arguments swapped
 ?reverse@MainMenuMediumScaleUpTransition@@UAEXXZ,,0x0059E0E0,23,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?winGetDisabledColor@GameWindow@@QAEHH@Z,,0x0059E4A0,14,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
-?init@MainMenuScaleUpTransition@@UAEXPAVGameWindow@@@Z,,0x0059E4E0,234,Code/GameEngine/Source/GameClient/GUI/MainMenuScaleUpTransition_init_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?init@MainMenuScaleUpTransition@@UAEXPAVGameWindow@@@Z,,0x0059E4E0,234,Code/GameEngine/Source/GameClient/GUI/MainMenuScaleUpTransition_init_Thunk.cpp,matched,clean C++ conversion; ZH GameWindowTransitionsStyles.cpp body; update frame and increment divisor come from members at this+0x10 and +0x14; winGetDisabledImage inlines to win+0xB4
 ?update@MainMenuScaleUpTransition@@UAEXH@Z,,0x0059E610,150,Code/GameEngine/Source/Common/MainMenuScaleUpTransition_updateMethodThunk.cpp,matched,clean C++ conversion; ZH GameWindowTransitionsStyles.cpp body; frame bounds are members at this+0x10 and +0x14 so the switch becomes if/else-if; growWin at +0x4C
 ?m@Gen_0059e6d0@@QAEXXZ,,0x0059E6D0,9,Code/gen_small/fun_003.cpp,matched,gen-shim;skeleton=zero8-pair;ghidra=FUN_0099e6d0
 ?update@MainMenuSmallScaleDownTransition@@UAEXH@Z,,0x0059E910,204,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
