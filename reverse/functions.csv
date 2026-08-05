@@ -63182,7 +63182,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?m@Gen_004199f0@@QAEPAXXZ,,0x004199F0,3,Code/gen_small/fun_003.cpp,matched,gen-shim;skeleton=ret-this;ghidra=FUN_008199f0
 ?drawEnthusiastic@Drawable@@AAEXPBUIRegion2D@@@Z,,0x0041A780,511,Code/GameEngine/Source/GameClient/Drawable_drawEnthusiastic.asm,matched,exact 511B MASM true body 0x41A780 (queue 0x9A6703 mid-fn misplaced); WEAPONBONUS bit9/15 ICON 0x0B/0x0C; sibling drawEmoticon region+0x3C4
 ?calcPhysicsXformWheels@Drawable@@IAEXPBVLocomotor@@AAUPhysicsXformInfo@1@@Z,,0x0041F2A0,2092,Code/masm_dumps/calcPhysicsXformWheels_Drawable_IAEXPBVLocomotor_AAUPhysicsXformInfo_1_Z_0041F2A0_01a9ed8d.asm,matched,Certified packet 166: sealed RVA and 2092B extent hash verified; matched dispatcher thunk source xref and owned switch table reviewed
-?calcPhysicsXform@Drawable@@IAE_NAAUPhysicsXformInfo@1@@Z,,0x004213F0,232,Code/GameEngine/Source/GameClient/Drawable_calcPhysicsXform_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?calcPhysicsXform@Drawable@@IAE_NAAUPhysicsXformInfo@1@@Z,,0x004213F0,232,Code/GameEngine/Source/GameClient/Drawable_calcPhysicsXform_Thunk.cpp,matched,clean C++ conversion; ZH Drawable.cpp body without the denormal hotfix; BFME regroups the appearance cases and the jump table sits inside the compared bytes
 ?m@Gen_00421e10@@QAEIXZ,,0x00421E10,6,Code/gen_small/fun_003.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_00821e10
 ?m@Gen_00421e40@@QAEIXZ,,0x00421E40,6,Code/gen_small/fun_003.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_00821e40
 ?m@Gen_00421e70@@QAEIXZ,,0x00421E70,6,Code/gen_small/fun_003.cpp,matched,gen-shim;skeleton=ret-imm;ghidra=FUN_00821e70
