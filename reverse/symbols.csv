@@ -68408,3 +68408,4 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?_bfme_slotIsLocalOrLive@ConnectionManager@@QAE_NH@Z,0x0001F136,ILT thunk to a per-slot predicate at 0x00662A50 that answers true for the local slot; unidentified beyond its shape
 ?set@AsciiString@@QAEXPBDH@Z,0x00887D20,AsciiString assignment from a pointer and length
 ?writeAsciiString@DataChunkOutput@@QAEXABVAsciiString@@@Z,0x0001EBBE,ILT thunk to the chunk writer string output
+?unidentified_001BFE20@Object@@QBEPAVPlayer@@XZ,0x0000D3B9,UNIDENTIFIED accessor at 0x001BFE20 reads Object+0x1FC and tail-calls its virtual +0x68; address-derived name; do not treat as an identity; distinct from Object::getControllingPlayer at 0x001BE3F0

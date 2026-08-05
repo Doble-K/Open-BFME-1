@@ -1980,3 +1980,17 @@ but added a fourth slot for the by-value copy; declaring it `setVel(const Coord2
 removed that slot but cost a different one and spilled the FPU stack. The frame size
 told me the accepted answer has three slots before any byte of the body was in doubt,
 which is a much sharper constraint than reading the statements back.
+
+## An inline accessor is not always the same code as the member read
+
+ScriptActions::doUnitReceiveUpgrade came down to two bytes: retail loads the vtable
+for the second virtual call with `mov eax,[esi]` where mine used `mov edx,[esi]`. The
+first virtual call in the same block picks edx in both builds, because eax is busy
+holding the argument there -- so the question was only why eax stayed unavailable in
+mine. Neither the callee's return type nor the if-form moved it. What moved it was
+reading the argument through `templ->getUpgradeMask()` instead of `templ->m_upgradeMask`.
+Both are one `mov eax,[edi+0x20]`, but the inlined call and the direct member read reach
+the allocator as different expressions and it frees eax afterwards in one and not the
+other. So when a residue is nothing but a scratch-register choice, try swapping raw
+member reads for the accessors the original almost certainly used -- it is a real
+codegen lever, not just style.
