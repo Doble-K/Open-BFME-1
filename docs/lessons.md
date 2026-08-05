@@ -2590,3 +2590,23 @@ byte-sized.
 So: do not renumber this enum, and treat a Save_/Load_ status variable held in a byte
 register as evidence that the source variable is not the enum it is eventually
 returned as.
+
+## Save_Info's status is a byte, and that is the whole remaining gap
+
+Following the entry above to its end: holding `ret_val` as `unsigned char` instead of
+`WW3DErrorType` reproduces everything the enum theory could not. `xor bl, bl`,
+`mov bl, 1`, `cmp bl, 1` and `mov bl, al` all match, and the subobject assignment is a
+raw low-byte copy rather than a `test`/`setne` -- so `Save_Subobject`'s value is taken
+as a byte, not converted from an int.
+
+That leaves 111 bytes against 109, and the two are the return: retail does
+`mov al, bl` and leaves the rest of eax alone, which is what MSVC emits when the
+declared return type is byte-sized. Ours does `movzx eax, bl` because the declared
+type is an int-sized enum. Both cannot be true of the same declaration, and the enum
+cannot be byte-sized because meshmdlio.cpp's matched rows depend on the int one.
+
+The reading that fits every observation is that BFME's Save_Info does not return
+WW3DErrorType at all -- it returns a byte type, and the row's name came from Zero
+Hour. If so the decorated name should be `_N` rather than `?AW4WW3DErrorType@@`, which
+is checkable against the vtable slot and is the next step rather than another cast.
+Reverted; a two-byte near-miss is still a near-miss.
