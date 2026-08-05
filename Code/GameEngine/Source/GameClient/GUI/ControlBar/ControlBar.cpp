@@ -397,9 +397,28 @@ Bool CommandButton::isValidToUseOn(const Object *sourceObj, const Object *target
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?isReady@CommandButton@@QBE_NPBVObject@@@Z present-unmatched
 Bool CommandButton::isReady(const Object *sourceObj) const
 {
+	if (sourceObj == NULL)
+		return FALSE;
+
+	// BFME branches command type 22 off to a frame comparison of its own: the
+	// upgrade has to be un-owned, and then TheGameLogic's counter at +0x3c has to
+	// have caught up with the object's stamp at +0x36c. Both are reached by offset
+	// because neither member is named yet -- the same way Science.cpp already
+	// reaches TheGameLogic+0x10c.
+	if (m_command == GUI_COMMAND_PURCHASE_SCIENCE)
+	{
+		if (m_upgradeTemplate && !sourceObj->hasUpgrade(m_upgradeTemplate))
+			return FALSE;
+
+		const Bool ready = *reinterpret_cast<const UnsignedInt *>(
+					reinterpret_cast<const char *>(sourceObj) + 0x36c)
+			<= *reinterpret_cast<const UnsignedInt *>(
+					reinterpret_cast<const char *>(TheGameLogic) + 0x3c);
+		return ready;
+	}
+
 	SpecialPowerModuleInterface *mod = sourceObj->getSpecialPowerModule( m_specialPower );
 	if( mod && mod->getPercentReady() == 1.0f ) 
 		return true;
