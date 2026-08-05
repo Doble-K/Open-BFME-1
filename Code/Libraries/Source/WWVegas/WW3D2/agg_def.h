@@ -157,8 +157,8 @@ class AggregateDefClass
 		//	Saving methods
 		//
 		virtual WW3DErrorType		Save_Header (ChunkSaveClass &chunk_save);
-		virtual WW3DErrorType		Save_Info (ChunkSaveClass &chunk_save);
-		virtual WW3DErrorType		Save_Subobject (ChunkSaveClass &chunk_save, W3dAggregateSubobjectStruct *psubobject);
+		virtual bool				Save_Info (ChunkSaveClass &chunk_save);
+		virtual bool				Save_Subobject (ChunkSaveClass &chunk_save, W3dAggregateSubobjectStruct *psubobject);
 		virtual WW3DErrorType		Save_Class_Info (ChunkSaveClass &chunk_save);
 
 		//

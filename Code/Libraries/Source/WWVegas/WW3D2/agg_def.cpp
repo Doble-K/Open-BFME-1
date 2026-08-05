@@ -736,7 +736,7 @@ AggregateDefClass::Save_W3D (ChunkSaveClass &chunk_save)
 		
 		// Attempt to save the different sections of the aggregate definition
 		if ((Save_Header (chunk_save) == WW3D_ERROR_OK) &&
-			 (Save_Info (chunk_save) == WW3D_ERROR_OK) &&
+			 (Save_Info (chunk_save) == true) &&
 			 (Save_Class_Info (chunk_save) == WW3D_ERROR_OK)) {
 			
 			// Success!
@@ -791,12 +791,13 @@ AggregateDefClass::Save_Header (ChunkSaveClass &chunk_save)
 //
 //	Save_Info
 //
-WW3DErrorType
+bool
 // ?Save_Info@AggregateDefClass@@MAE?AW4WW3DErrorType@@AAVChunkSaveClass@@@Z present-unmatched
 AggregateDefClass::Save_Info (ChunkSaveClass &chunk_save)
 {
-	// Assume error
-	WW3DErrorType ret_val = WW3D_ERROR_SAVE_FAILED;
+	// BFME returns a byte here, not WW3DErrorType: retail keeps the status in bl
+	// throughout and finishes with mov al, bl, leaving the rest of eax alone.
+	bool ret_val = false;
 
 	// Begin a chunk that identifies the aggregate settings
 	if (chunk_save.Begin_Chunk (W3D_CHUNK_AGGREGATE_INFO) == TRUE) {
@@ -804,11 +805,11 @@ AggregateDefClass::Save_Info (ChunkSaveClass &chunk_save)
 		// Write the settings structure out to the chunk
 		if (chunk_save.Write (&m_Info, sizeof (m_Info)) == sizeof (m_Info)) {
 			// Success!
-			ret_val = WW3D_ERROR_OK;
+			ret_val = true;
 
 			// Write all the subobjects to the file
 			for (int isubobject = 0;
-			     (isubobject < m_SubobjectList.Count ()) && (ret_val == WW3D_ERROR_OK);
+			     (isubobject < m_SubobjectList.Count ()) && (ret_val == true);
 				  isubobject ++) {
 
 				// Write this object to the file
@@ -829,7 +830,7 @@ AggregateDefClass::Save_Info (ChunkSaveClass &chunk_save)
 //
 //	Save_Subobject
 //
-WW3DErrorType
+bool
 AggregateDefClass::Save_Subobject
 (
 	ChunkSaveClass &chunk_save,
