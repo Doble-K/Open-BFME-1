@@ -2151,3 +2151,24 @@ against a body that loads eax; `ret N` disagreeing with the decorated argument l
 `this`-relative offsets that make no sense for the claimed class -- a GameLODManager method
 has no reason to run _M_find over a map at this+4 while loading TheGameLODManager
 separately from a global.
+
+## The `mov [esp+N], esp` before a by-value AsciiString is still unsolved
+
+Two unrelated functions emit the same idiom and neither reproduces it. In
+OptionPreferences::getIdealStaticGameDetail (0x00090900) retail reserves the argument
+slot with `push ecx`, then `mov [esp+0xC],esp`, then `mov ecx,esp` and only then
+computes the source. In the AITunnelNetworkGuardState constructor (0x001717B0) it is
+`push ecx` / `mov [esp+8],esp` / `mov ecx,esp` before building the name string. In both
+cases the slot being written is an earlier `push ecx` reservation that nothing reads
+again, so the compiler is stashing the address of a by-value class argument there.
+
+What it is NOT: exception state (compiling /EHsc adds a full SEH prologue retail does
+not have, and /EHs-c- reproduces everything else exactly); the argument expression
+(member access, an explicit pointer cast and an explicit temporary all emit identical
+bytes); or the ordering of the surrounding statements, which was already fixed and made
+the rest of getIdealStaticGameDetail match to the byte.
+
+This is worth solving once rather than per function: every preferences getter and every
+named-state constructor passes an AsciiString by value, so the same six bytes block a
+whole family. The next thing to vary is the shape of AsciiString itself -- how its
+destructor and copy constructor are declared -- rather than anything at the call site.
