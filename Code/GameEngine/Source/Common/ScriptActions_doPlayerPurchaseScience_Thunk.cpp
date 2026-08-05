@@ -1,7 +1,58 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the ScriptActions::doPlayerPurchaseScience __emit thunk to clean C++.
+//
+// Zero Hour resolves one Player from the name and has it buy the science.
+// BFME generalised the player half exactly as it did for doGiveMoney: the name
+// becomes a 16-bit mask and the body walks every player in it, with
+// getEachPlayerFromMask consuming the mask by reference, which is what makes the
+// trailing `cmp word ptr [esp+0xc], 0` the loop condition.
+//
+// The science is resolved first, before the player mask -- retail reads the
+// second parameter at [esp+8] before it has pushed anything. ZH resolves the
+// player first, so the two statements are swapped relative to the reference.
+//
+// SCIENCE_INVALID is -1 rather than 0, so the guard is a cmp against -1 and not
+// a test; the mask guard right after it is a plain test because 0 is its
+// sentinel.
+
+typedef int Int;
+typedef unsigned short UnsignedShort;
 
 class AsciiString;
+
+enum ScienceType
+{
+	SCIENCE_INVALID = -1
+};
+
+class Player
+{
+public:
+	bool attemptToPurchaseScience(ScienceType science);			///< ILT thunk at 0x00004BC4
+};
+
+class PlayerList
+{
+public:
+	Player *getEachPlayerFromMask(UnsignedShort &mask);			///< ILT thunk at 0x0002EE60
+};
+
+class ScienceStore
+{
+public:
+	ScienceType getScienceFromInternalName(const AsciiString &name);	///< ILT thunk at 0x0004B36C
+};
+
+class BfmeScriptEngine_getPlayerMaskFromAsciiString
+{
+public:
+	UnsignedShort getPlayerMaskFromAsciiString(const AsciiString &name, bool *unused);	///< ILT thunk at 0x0004B290
+};
+
+extern ScienceStore *TheScienceStore;								///< retail [0x012ED7AC]
+extern BfmeScriptEngine_getPlayerMaskFromAsciiString *TheScriptEngine;	///< retail [0x012F076C]
+extern PlayerList *ThePlayerList;									///< retail [0x012ED748]
+
 class ScriptActions
 {
 protected:
@@ -9,99 +60,26 @@ protected:
 };
 
 // ?doPlayerPurchaseScience@ScriptActions@@IAEXABVAsciiString@@0@Z
-__declspec(naked) void ScriptActions::doPlayerPurchaseScience(const AsciiString &, const AsciiString &)
+void ScriptActions::doPlayerPurchaseScience(const AsciiString &playerName, const AsciiString &scienceName)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xac
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x56
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x1b
-        __emit 0xb2
-        __emit 0xd5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xfe
-        __emit 0xff
-        __emit 0x74
-        __emit 0x3f
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x26
-        __emit 0xb1
-        __emit 0xd5
-        __emit 0xff
-        __emit 0x66
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x74
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x52
-        __emit 0xe8
-        __emit 0xdd
-        __emit 0xec
-        __emit 0xd3
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x08
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0xe8
-        __emit 0x35
-        __emit 0x4a
-        __emit 0xd1
-        __emit 0xff
-        __emit 0x66
-        __emit 0x83
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x00
-        __emit 0x75
-        __emit 0xdc
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	ScienceType science = TheScienceStore->getScienceFromInternalName(scienceName);
+	if (science == SCIENCE_INVALID)
+	{
+		return;
 	}
+
+	UnsignedShort mask = TheScriptEngine->getPlayerMaskFromAsciiString(playerName, 0);
+	if (mask == 0)
+	{
+		return;
+	}
+
+	do
+	{
+		Player *player = ThePlayerList->getEachPlayerFromMask(mask);
+		if (player)
+		{
+			player->attemptToPurchaseScience(science);
+		}
+	} while (mask != 0);
 }
