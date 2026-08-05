@@ -2399,3 +2399,25 @@ differences from exact: an instruction-scheduling swap at the top, and one extra
 `mov dword ptr [esi+4], 0` -- the second vptr that the two-base State installs and
 retail's single-vptr State does not. Landing it needs a State whose layout is merged
 without disturbing those six rows, which is a narrower shim than the one tried here.
+## The by-value AsciiString stash is not reachable by any /EH setting
+
+Eighteen flag combinations compiled against the exact shape of
+OptionPreferences::getIdealStaticGameDetail, each object checked for three things at
+once: the `mov [esp+N],esp` stash, an SEH prologue, and the frame size. The result is
+clean and negative.
+
+    /EHs-c-                     no stash,  no SEH,  4-byte frame   <- retail's frame
+    /EHs, /EHsc, /EHc, and
+      every /EHs + /GS- /Gy /GF
+      /Gf /Ob0 /Ob1 /Ot /G6
+      /G7 /GR /Gd variant       stash,     no SEH,  8-byte frame
+    /EHa                        stash,     SEH,     8-byte frame
+    /EHs /Oy-, /EHs /Os         no stash
+
+Retail has the stash, no SEH, and a 4-byte frame. Nothing produces that combination:
+turning exceptions on always buys the stash together with a 4-byte EH state slot, and
+turning them off loses both. So this is not a flag we are missing on our side, and
+further flag probing is wasted effort -- either the retail translation unit was built
+by a compiler that differs from the vendored one in this detail, or the stash comes
+from a source construct none of the shapes tried so far models. Five class
+declarations and three call-site forms are already ruled out (see re_attempts).
