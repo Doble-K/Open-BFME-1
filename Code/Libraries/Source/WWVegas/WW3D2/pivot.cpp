@@ -70,6 +70,7 @@ PivotClass::PivotClass(void) :
 	CapTransform(1),
 	Index(0),
 	IsVisible(true),
+	PivotFade(1.0f),
 	WorldSpaceTranslation(false),
 	IsCaptured(false),
 	Unused(false)
@@ -92,6 +93,7 @@ PivotClass::PivotClass(const PivotClass& that) :
 	CapTransform(that.CapTransform),
 	Index(that.Index),
 	IsVisible(that.IsVisible),
+	PivotFade(that.PivotFade),
 	WorldSpaceTranslation(that.WorldSpaceTranslation),
 	IsCaptured(that.IsCaptured),
 	Unused(that.Unused)
@@ -130,6 +132,7 @@ PivotClass& PivotClass::operator=(const PivotClass& that)
 		CapTransform = that.CapTransform;
 		Index = that.Index;
 		IsVisible = that.IsVisible;
+		PivotFade = that.PivotFade;
 		WorldSpaceTranslation = that.WorldSpaceTranslation;
 		IsCaptured = that.IsCaptured;
 		Unused = that.Unused;

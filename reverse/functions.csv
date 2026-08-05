@@ -71411,10 +71411,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ??0StringClass@@QAE@_N@Z,,0x00972B50,42,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ??_GDX8PolygonRendererClass@@UAEPAXI@Z,,0x00972C10,30,Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp,matched,
 ?Log@DX8PolygonRendererClass@@QAEXXZ,,0x00972CD0,158,Code/Libraries/Source/WWVegas/WW3D2/dx8polygonrenderer.cpp,matched,
-??0PivotClass@@QAE@ABU0@@Z,,0x00972D70,383,Code/GameEngine/Source/Common/PivotClass_copy_ctor_Thunk.cpp,matched,
-??4PivotClass@@QAEAAU0@ABU0@@Z,,0x00972EF0,395,Code/GameEngine/Source/Common/PivotClass_assign_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?Capture_Update@PivotClass@@QAEXXZ,,0x00973080,865,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,layout-fixed via PivotFade member
-??0PivotClass@@QAE@XZ,,0x009733F0,187,Code/Libraries/Source/WWVegas/WW3D2/PivotClassCtor_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??4WeightInfoStruct@NamedPivotMapClass@@QAEAAU01@ABU01@@Z,,0x009734B0,49,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??0HAnimComboDataClass@@QAE@_N@Z,,0x009734F0,29,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??A?$SimpleVecClass@VVector2@@@@QAEAAVVector2@@H@Z,,0x00973520,13,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
@@ -94118,3 +94115,6 @@ dup_9ec290,,0x009EC290,71,Code/gen_small/zhstl_fam0.cpp,matched,vendored=cnc-zh;
 _send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/qr2.c,matched,vendored=gamespy-2004
 ??0PlayerTemplateStore@@QAE@XZ,,0x000E3F50,29,Code/GameEngine/Source/Common/RTS/PlayerTemplate.cpp,matched,
 ?isSlotLocalAlly@@YA_NPBVGameSlot@@@Z,,0x0061ED20,89,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,clean C++ already present in GameInfo.cpp beside getSlotIndex; naked byte-dump thunk retired
+??0PivotClass@@QAE@ABU0@@Z,,0x00972D70,383,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,clean C++; copies PivotFade like every other member
+??4PivotClass@@QAEAAU0@ABU0@@Z,,0x00972EF0,395,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,clean C++; copies PivotFade like every other member
+??0PivotClass@@QAE@XZ,,0x009733F0,187,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,clean C++; BFME initialises PivotFade to 1.0f which the Zero Hour ctor has no member for
