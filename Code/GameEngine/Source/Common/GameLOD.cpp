@@ -418,6 +418,11 @@ void INI::parseStaticGameLODLevel( INI* ini, void * , void *store, const void*)
 			return;
 		}
 
+	// The dynamic sibling at 0x0007C390 throws INIException(3, ...) here, and it
+	// is tempting to assume this one does too -- but with that change the body
+	// still does not appear anywhere in .text, so BFME's static parser differs by
+	// more than the throw. Left as Zero Hour has it until a caller or a located
+	// placement says otherwise.
 	DEBUG_CRASH(("invalid GameLODLevel token %s -- expected LOW/MEDIUM/HIGH\n",tok));
 	throw INI_INVALID_DATA;
 }

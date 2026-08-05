@@ -94118,3 +94118,4 @@ _send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/
 ?getSlot@GameInfo@@QAEPAVGameSlot@@H@Z,,0x0061E8B0,32,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,BFME shape: array null check plus && where ZH has ||; call sites reach it through ILT thunk 0x0001EC18
 ?checkForDuplicateColors@@YAXPAVGameInfo@@@Z,,0x00386520,104,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,MultiplayerSettings colour block at +0x30; getSlot repointed to 0x0061E8B0
 ?parseDynamicGameLODLevel@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C390,105,Code/GameEngine/Source/Common/GameLOD.cpp,matched,BFME adds a fifth VeryLow level; throws variadic INIException(3 fmt tok) instead of DEBUG_CRASH plus bare throw
+??0?$pair@$$CBVAsciiString@@V1@@_STL@@QAE@ABVAsciiString@@0@Z,,0x00192D80,80,Code/GameEngine/Source/Common/GameLOD.cpp,matched,located by unique masked byte-scan from GameLOD.cpp
