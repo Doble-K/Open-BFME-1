@@ -1,131 +1,118 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the ScriptConditions::evaluateNamedOwnedByPlayer __emit thunk to clean C++.
+//
+// Zero Hour compares one unit's controlling player against one named player.
+// BFME resolves the player name to a 16-bit mask instead and walks every player
+// in it, exactly like ScriptActions::doGiveMoney -- same PlayerList accessor,
+// same by-reference mask that the accessor consumes, so the trailing
+// `cmp word ptr [esp+0xc], 0` is the loop condition rather than a second test.
+//
+// The mask lands in the first parameter's stack slot: both Parameters are dead
+// by then and MSVC reuses the space. It is stored with a full dword `mov` even
+// though it is 16 bits wide, because the reused slot is four bytes and only the
+// `cmp word ptr` that closes the loop reads it back.
+//
+// Both ScriptEngine entry points take the AsciiString rather than the Parameter,
+// which only works because Parameter carries its string at offset 0 -- getString
+// compiles to nothing and the raw Parameter pointer is what gets pushed. The
+// second one is not identified: ILT 0x000230B5 lands on 0x0034DB40, an SEH body
+// that forwards to TheScriptEngine's virtual +0x4C and returns the mask. That is
+// a different body from the mask resolver at 0x0034CB60 already pinned for
+// doGiveMoney, so it carries an address-derived name.
 
-class Parameter;
+typedef int Int;
+typedef bool Bool;
+typedef unsigned short UnsignedShort;
+
+class Player;
+
+class AsciiString
+{
+	unsigned char m_unreconstructed_00[4];
+};
+
+class Parameter
+{
+public:
+	const AsciiString &getString(void) const { return m_string; }
+
+private:
+	// retail pushes the Parameter pointer unchanged, so the string is at +0x00
+	AsciiString m_string;
+};
+
+class Object
+{
+public:
+	Player *getControllingPlayer(void) const;		///< ILT thunk at 0x00020824
+};
+
+class PlayerList
+{
+public:
+	Player *getEachPlayerFromMask(UnsignedShort &mask);	///< ILT thunk at 0x0002EE60
+};
+
+class ScriptEngine
+{
+public:
+	virtual void unused00();
+	virtual void unused01();
+	virtual void unused02();
+	virtual void unused03();
+	virtual void unused04();
+	virtual void unused05();
+	virtual void unused06();
+	virtual void unused07();
+	virtual void unused08();
+	virtual void unused09();
+	virtual void unused10();
+	virtual void unused11();
+	virtual void unused12();
+	virtual void unused13();
+	virtual void unused14();
+	virtual void unused15();
+	virtual void unused16();
+	virtual void unused17();
+	virtual void unused18();
+	virtual void unused19();
+	virtual void unused20();
+	virtual void unused21();
+	virtual void unused22();
+	virtual void unused23();
+	virtual void unused24();
+	virtual void unused25();
+	virtual Object *getUnitNamed(const AsciiString &name);	///< vtable +0x68
+
+	/// address-derived name -- do not treat as an identity. Body at 0x0034DB40
+	/// forwards to TheScriptEngine's virtual +0x4C.
+	UnsignedShort unidentified_0034DB40(const AsciiString &name);	///< ILT thunk at 0x000230B5
+};
+
+extern ScriptEngine *TheScriptEngine;					///< retail [0x012F076C]
+extern PlayerList *ThePlayerList;						///< retail [0x012ED748]
+
 class ScriptConditions
 {
 protected:
-	bool evaluateNamedOwnedByPlayer(Parameter *, Parameter *);
+	Bool evaluateNamedOwnedByPlayer(Parameter *, Parameter *);
 };
 
 // ?evaluateNamedOwnedByPlayer@ScriptConditions@@IAE_NPAVParameter@@0@Z
-__declspec(naked) bool ScriptConditions::evaluateNamedOwnedByPlayer(Parameter *, Parameter *)
+Bool ScriptConditions::evaluateNamedOwnedByPlayer(Parameter *unitParm, Parameter *playerParm)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x57
-        __emit 0x52
-        __emit 0xff
-        __emit 0x50
-        __emit 0x68
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0x85
-        __emit 0xff
-        __emit 0x75
-        __emit 0x06
-        __emit 0x32
-        __emit 0xc0
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x56
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x07
-        __emit 0x09
-        __emit 0xd0
-        __emit 0xff
-        __emit 0x66
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x74
-        __emit 0x2e
-        __emit 0xeb
-        __emit 0x07
-        __emit 0x8d
-        __emit 0xa4
-        __emit 0x24
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x90
-        __emit 0xc6
-        __emit 0xd0
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xe8
-        __emit 0x4b
-        __emit 0xe0
-        __emit 0xcf
-        __emit 0xff
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x74
-        __emit 0x0f
-        __emit 0x66
-        __emit 0x83
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x00
-        __emit 0x75
-        __emit 0xdb
-        __emit 0x5e
-        __emit 0x32
-        __emit 0xc0
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x5e
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	Object *theUnit = TheScriptEngine->getUnitNamed(unitParm->getString());
+	if (!theUnit) {
+		return false;
 	}
+
+	UnsignedShort mask = TheScriptEngine->unidentified_0034DB40(playerParm->getString());
+	while (mask != 0) {
+		Player *player = ThePlayerList->getEachPlayerFromMask(mask);
+		if (theUnit->getControllingPlayer() == player) {
+			return true;
+		}
+	}
+
+	return false;
 }

@@ -62407,7 +62407,7 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?executeAction@ScriptActions@@UAEXPAVScriptAction@@@Z,,0x00303BF0,39600,Code/masm_dumps/ScriptActions_executeAction.asm,matched,Certified packet 160 sealed RVA size SHA256 and ScriptActions vtable slot 9 identity
 ?init@ScriptEngine@@UAEXXZ,,0x003107F0,57072,Code/GameEngine/Source/GameLogic/ScriptEngine/script_engine.cpp,matched,real C++ (was naked asm); 542 action templates via a curTemplate cached base
 ?setShadowLengthScale@W3DVolumetricShadow@@IAEXM@Z,,0x00321FB0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
-?evaluateNamedOwnedByPlayer@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x00322780,115,Code/GameEngine/Source/Common/ScriptConditions_evaluateNamedOwnedByPlayer_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?evaluateNamedOwnedByPlayer@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x00322780,115,Code/GameEngine/Source/Common/ScriptConditions_evaluateNamedOwnedByPlayer_Thunk.cpp,matched,clean C++; BFME walks a player mask like doGiveMoney but with a while loop; second resolver pinned as unidentified_0034DB40
 ??1ScriptConditions@@UAE@XZ,,0x003244B0,106,Code/GameEngine/Source/Common/ScriptConditionsDestructorThunk.cpp,matched,True body via ctor vtbl 0x10E1F44; queue 0x9F27F1 was PartitionManager getName+pad+matched dtor
 ??_GScriptConditions@@UAEPAXI@Z,,0x00324570,30,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
 ?evaluateNamedOutsideArea@ScriptConditions@@IAE_NPAVParameter@@0@Z,,0x00324AA0,23,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,

@@ -2059,3 +2059,17 @@ gets that slot right and is still wrong -- it breaks
 they are. Those two bound the search: the three go above whatever slots they
 reach, not directly in front of getUnitNamed. Reverted rather than landed, so
 ScriptActions.cpp stays 66/66.
+## `jmp` over the alignment padding means a while loop, not a do-while
+
+MSVC pads a loop head for alignment, and when the loop is pre-tested it has to jump
+over that padding to enter the body: `je EXIT` / `jmp HEAD` / a multi-byte nop such as
+`8d a4 24 00 00 00 00` / `HEAD:`. A do-while falls straight into the body and never
+emits that `jmp`. On ScriptConditions::evaluateNamedOwnedByPlayer I wrote the mask walk
+as a do-while, copying ScriptActions::doGiveMoney, and got the loop body byte-for-byte
+with three things wrong outside it: the callee-saved `push esi` sat after the second
+early return instead of before it, and consequently the two `return false` blocks
+swapped which one was inlined and which one jumped. All three followed from the loop
+form -- a pre-tested loop merges its entry test with the function's trailing
+`return false`, which changes what the register save dominates. Changing do-while to
+while fixed all of it in one edit. Read the entry jump before choosing the loop form,
+and do not carry the form over from a sibling function just because the body matches.
