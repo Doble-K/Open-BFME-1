@@ -2090,3 +2090,33 @@ that class by 1,812 bytes, which a normal derived class cannot do: whatever
 `scriptenginelayout` declares, its ScriptEngine is a stand-in whose size and its
 vtable are not independent. Anyone widening that shim has to understand that
 first; ScriptActions.cpp was left on the layout shim alone, 66/66.
+
+## The merged pooled-snapshot base fits State's members but not StateMachine's vtable
+
+`TurretAIIdleState::onEnter` (0x0018CB40) reads the machine pointer at
+`[esi+0x1C]` where `State : public MemoryPoolObject, public Snapshot` puts it at
++0x20, so State really does get BFME's merged base -- deriving it from Snapshot
+alone moves that read onto retail's offset, which is the prediction the TurretAI
+entry above makes for "any ZH class inheriting both".
+
+The vtable does not follow, and the numbers are worth writing down because they
+bound the answer. `TurretAI::recenterTurret` pins `StateMachine::setState` at
+vtable +0x20. With both Zero Hour bases that needs two invented slots in front
+of it, which is what `reference/shims/turretai` carries. Give StateMachine the
+merged base and remove those two, and setState lands at **+0x24** -- one slot
+too late. Each invented stub is worth 4, so the merged-base layout needs one
+*fewer* virtual before setState than the Zero Hour declaration list provides,
+not one more.
+
+Counting the reference headers does not explain it: Snapshot has exactly three
+pure virtuals and a non-virtual destructor, `MEMORY_POOL_GLUE_WITHOUT_GCMP`
+contributes one virtual destructor, `GCMP_CREATE`'s getClassMemoryPool is
+static, and StateMachine declares four virtuals before setState. That is slot 8
+= +0x20 on paper against +0x24 measured. So one of those four is not virtual in
+BFME, or the merged base contributes two slots rather than three -- and
+recenterTurret alone cannot say which.
+
+Reverted rather than landed: with the merged base and no stubs TurretAI.cpp goes
+19/20, and the one casualty is recenterTurret itself. Anyone picking this up has
+State confirmed, StateMachine's member offsets to check separately, and one slot
+to account for.
