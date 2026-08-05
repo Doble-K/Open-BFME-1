@@ -2447,3 +2447,29 @@ people the same afternoon.
 Fixing the rows themselves is a separate job and harder than the getSlot repoint
 was, because none of the three has a direct caller to name the body from -- 0x0056E160
 is reached only through a vtable, so there is no call site whose thunk settles it.
+
+## A rebased store group is a shape signal that survives guessing
+
+`??0StealthUpgradeModuleData@@QAE@XZ` (0x00129C10, 90 bytes) is the friendliest kind
+of body there is: no calls, no branches, no vtable, 0x68 bytes of members zeroed
+except `+0x5c` which starts at -1. Writing the obvious struct with the obvious
+constructor gets 86 of the 90 bytes and every store correct.
+
+The four bytes are addressing. Retail does `mov edx, eax` and stores the first six
+words through `[edx+0..0x14]`, then `lea edx, [eax+0x18]` and stores the next six the
+same way, and only then switches to flat `[eax+0x30..]`. That is what an inlined
+sub-object constructor looks like -- `ecx` is holding the zero constant, so the
+inlined `this` has to live somewhere else. Ours addresses all twenty-two words
+straight off `eax`.
+
+Three shapes were tried and all three collapse to flat addressing: two named members
+of a six-word class, the same with an initialiser list instead of assignments, and a
+two-element array of it. Compile flags are not the lever either -- the sibling
+thunk's `/GX- /O2 /Ob2` gives byte-identical output to `/EHsc` here. Whatever keeps
+that pointer alive in retail is structural and is not any of those, so the row stays
+a transcription rather than a 86-byte near-miss sitting in the tree.
+
+Worth stating as a rule: a group of stores rebased onto a second register is
+evidence about how the members are *nested*, not about how they are written. When
+the flat version already gets every store right, stop varying the statements and go
+looking for the sub-object.
