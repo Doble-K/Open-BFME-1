@@ -68380,3 +68380,4 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?getIndicatorColor@Object@@QBEIXZ,0x00009CA0,ILT thunk to the object indicator colour used as the default flash colour
 ?getAsInt@RGBColor@@QBEIXZ,0x0002D989,ILT thunk to the RGBColor packer
 ??1MilitarySubtitleData@InGameUI@@QAE@XZ,0x00018CE1,ILT thunk to the military subtitle record destructor
+?getName@Anim2DTemplate@@QBE?AVAsciiString@@XZ,0x00012E72,ILT thunk to the Anim2D template name accessor
