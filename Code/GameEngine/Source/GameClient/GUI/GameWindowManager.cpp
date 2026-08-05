@@ -391,7 +391,6 @@ void GameWindowManager::linkWindow( GameWindow *window )
 	* be a window in the master list or a child of any window in that master
 	* list */
 //-------------------------------------------------------------------------------------------------
-// ?insertWindowAheadOf@GameWindowManager@@QAEXPAVGameWindow@@0@Z present-unmatched
 void GameWindowManager::insertWindowAheadOf( GameWindow *window, 
 																						 GameWindow *aheadOf )
 {
@@ -452,7 +451,6 @@ void GameWindowManager::insertWindowAheadOf( GameWindow *window,
 //-------------------------------------------------------------------------------------------------
 /** Takes a window off the window list */
 //-------------------------------------------------------------------------------------------------
-// ?unlinkWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z present-unmatched
 void GameWindowManager::unlinkWindow( GameWindow *window )
 {
 
@@ -474,7 +472,6 @@ void GameWindowManager::unlinkWindow( GameWindow *window )
 //-------------------------------------------------------------------------------------------------
 /** Takes a child window off its parent's window list */
 //-------------------------------------------------------------------------------------------------
-// ?unlinkChildWindow@GameWindowManager@@QAEXPAVGameWindow@@@Z present-unmatched
 void GameWindowManager::unlinkChildWindow( GameWindow *window )
 {
 
@@ -517,7 +514,6 @@ void GameWindowManager::unlinkChildWindow( GameWindow *window )
 //-------------------------------------------------------------------------------------------------
 /** Check window and parents to see if this window is enabled */
 //-------------------------------------------------------------------------------------------------
-// ?isEnabled@GameWindowManager@@UAE_NPAVGameWindow@@@Z present-unmatched
 Bool GameWindowManager::isEnabled( GameWindow *win )
 {
 
@@ -546,7 +542,6 @@ Bool GameWindowManager::isEnabled( GameWindow *win )
 //-------------------------------------------------------------------------------------------------
 /** Check window and parents to see if this window is hidden */
 //-------------------------------------------------------------------------------------------------
-// ?isHidden@GameWindowManager@@UAE_NPAVGameWindow@@@Z present-unmatched
 Bool GameWindowManager::isHidden( GameWindow *win )
 {
 
@@ -575,7 +570,6 @@ Bool GameWindowManager::isHidden( GameWindow *win )
 //-------------------------------------------------------------------------------------------------
 // Adds a child window to its parent.
 //-------------------------------------------------------------------------------------------------
-// ?addWindowToParent@GameWindowManager@@UAEXPAVGameWindow@@0@Z present-unmatched
 void GameWindowManager::addWindowToParent( GameWindow *window, 
 																					 GameWindow *parent )
 {
@@ -601,7 +595,6 @@ void GameWindowManager::addWindowToParent( GameWindow *window,
 /** Add a child window to the parent, put place it at the end of the 
 	* parent window child list */
 //-------------------------------------------------------------------------------------------------
-// ?addWindowToParentAtEnd@GameWindowManager@@UAEXPAVGameWindow@@0@Z present-unmatched
 void GameWindowManager::addWindowToParentAtEnd( GameWindow *window,	
 																								GameWindow *parent )
 {
@@ -1470,7 +1463,6 @@ void GameWindowManager::winRepaint( void )
 //-------------------------------------------------------------------------------------------------
 /** Dump information about all the windows for resource problems */
 //-------------------------------------------------------------------------------------------------
-// ?dumpWindow@GameWindowManager@@IAEXPAVGameWindow@@@Z present-unmatched
 void GameWindowManager::dumpWindow( GameWindow *window )
 {
 #ifndef FINAL
@@ -1631,7 +1623,6 @@ Int GameWindowManager::winDestroy( GameWindow *window )
 //-------------------------------------------------------------------------------------------------
 /** Destroy all windows on the window list IMMEDIATELY */
 //-------------------------------------------------------------------------------------------------
-// ?winDestroyAll@GameWindowManager@@UAEHXZ present-unmatched
 Int GameWindowManager::winDestroyAll( void )
 {
 	GameWindow *win, *next;

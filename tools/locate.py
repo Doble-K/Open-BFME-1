@@ -160,6 +160,7 @@ def main():
     source_text = source.read_text(errors="replace")
 
     accepted, ambiguous, unlocated, conflicts, weak = [], [], [], [], []
+    circular = []  # placements whose only evidence is a callee derived from themselves
     pending_multi = []
     deferred = []
     validate_hits = None  # bound inside the scan loop; reused by the fixpoint pass
@@ -390,6 +391,25 @@ def main():
                     conflicts.append(f"{name}: callee {sym} = 0x{addr:08X} here but known addresses are "
                                      + ", ".join(f"0x{a:08X}" for a in sorted(known)))
                     return True
+            # A deleting destructor is boilerplate: push esi / mov esi,ecx /
+            # call <the class destructor> / test [esp+8],1 / call operator
+            # delete / ret 4. Mask the two calls and what is left is byte for
+            # byte the same for every class in the program, so its identity IS
+            # the destructor it calls -- and that address was just derived from
+            # this very placement. Accepting it therefore proves nothing, and
+            # the failure is not hypothetical: one batch offered 0x002C11A0 to
+            # six different translation units as ??_GActionManager,
+            # ??_GAIUpdateInterface, ??_GAssaultTransportAIUpdate,
+            # ??_GChinookAIStateMachine, ??_GDeliverPayloadAIUpdate and
+            # ??_GDozerPrimaryStateMachine, each with its own invented pin for
+            # the destructor. Require one callee that is known independently.
+            # Note the callee that must be known is the class destructor
+            # specifically: the body also calls operator delete, whose address
+            # is always known and says nothing about which class this is.
+            if name.startswith(("??_G", "??_E")) and not any(
+                    known_addresses(sym) for sym in callees if sym.startswith("??1")):
+                circular.append((name, size, rva))
+                return True
             callee_map.update(callees)
             accepted_addr[name] = rva
             taken.add(rva)
@@ -435,7 +455,8 @@ def main():
 
     print(f"{source.name}: {len(accepted)} located, {len(ambiguous)} ambiguous, "
           f"{len(unlocated)} unlocated, {len(conflicts)} conflicts, "
-          f"{len(weak)} weak-needle, {skipped_small} below --min-size {args.min_size}")
+          f"{len(weak)} weak-needle, {len(circular)} self-confirming, "
+          f"{skipped_small} below --min-size {args.min_size}")
     rows = []
     for name, rva, size, _ in sorted(accepted, key=lambda entry: entry[1]):
         export = f"0x{export_rva[name]:08X}" if name in export_rva else ""
@@ -452,6 +473,10 @@ def main():
         print(f"  CONFLICT {line}")
     for name, size in weak:
         print(f"  WEAK NEEDLE {name} ({size}B): longest relocation-free run under {MIN_NEEDLE} bytes")
+    for name, size, rva in circular:
+        print(f"  SELF-CONFIRMING {name} ({size}B) at 0x{rva:08X}: a deleting destructor whose "
+              "only distinguishing operand is a callee derived from this placement; pin the "
+              "class destructor from a caller or a vtable first")
     if unlocated:
         print("  unlocated (drifted or not in this binary): "
               + ", ".join(f"{n}({s}B)" for n, s in sorted(unlocated, key=lambda e: -e[1])[:20]))

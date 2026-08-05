@@ -177,8 +177,15 @@ def read_object_symbols(data):
     return symbols
 
 
-def read_object_symbol_bytes(path, symbol_name, expected_size=None):
-    data = path.read_bytes()
+@functools.lru_cache(maxsize=256)
+def _object_layout(path_str, mtime_ns, size):
+    """Parsed COFF layout, keyed by (path, mtime, size) so a recompile misses.
+
+    The gate reads the SAME multi-MB object once per ledger row; with generated
+    claims putting hundreds of rows on one TU, re-reading and re-parsing per row
+    came to dominate full-gate wall time (91k rows over ~4k objects). One parse
+    per object version is behavior-identical."""
+    data = Path(path_str).read_bytes()
     section_count = u16(data, 2)
     section_table = 20
 
@@ -195,7 +202,12 @@ def read_object_symbol_bytes(path, symbol_name, expected_size=None):
             }
         )
 
-    symbols = read_object_symbols(data)
+    return data, sections, read_object_symbols(data)
+
+
+def read_object_symbol_bytes(path, symbol_name, expected_size=None):
+    stat = path.stat()
+    data, sections, symbols = _object_layout(str(path), stat.st_mtime_ns, stat.st_size)
     resolved_name = symbol_name
     if not any(s["name"] == symbol_name and s["section"] > 0 for s in symbols):
         # MSVC hashes the absolute source path into anonymous-namespace names,
@@ -942,6 +954,19 @@ def verify_dir32_consistency(rows):
             continue
         for off, rtype, sym in relocs:
             if rtype != 0x0006 or off + 4 > tsz or off + 4 > len(body) or sym.startswith("??_C@"):
+                continue
+            # Compiler-local labels ($L1234 funclets, $T294 funcinfo, $SG strings)
+            # are TU-scoped: object-symbol= rows alias ONE anchor TU's label onto
+            # thousands of retail instances by design, so "one symbol, one
+            # address" only holds for external symbols. Locals add no detection
+            # power for double-linked TUs (those always expose externals too).
+            if re.fullmatch(r"\$[A-Za-z]+\d+", sym):
+                continue
+            # __ehhandler$<mangled> is the same case one step out: the compiler
+            # emits one per TU alongside the COMDAT it guards, and retail does
+            # not fold COMDATs, so a template instantiation claimed at N retail
+            # addresses legitimately resolves its handler to N stub addresses.
+            if sym.startswith("__ehhandler$"):
                 continue
             final = struct.unpack_from("<I", target, off)[0]
             addend = struct.unpack_from("<I", body, off)[0]

@@ -401,7 +401,7 @@ static GameWindow *popWindow( void )
 
 // pushWindow =================================================================
 //=============================================================================
-static void pushWindow( GameWindow *window )
+__declspec(noinline) static void pushWindow( GameWindow *window )
 {
 
   if( stackPtr == &windowStack[ WIN_STACK_DEPTH - 1 ] ) 
@@ -415,6 +415,18 @@ static void pushWindow( GameWindow *window )
   *stackPtr++ = window;
 
 }  // end pushWindow
+
+// ?forceWindowStackHelpers@@YAXPAVGameWindow@@@Z absent-from-retail
+// Nothing in this file calls these two statics any more, so MSVC discards
+// them and the ledger rows they back. Calling them keeps them; pushWindow
+// must be CALLED rather than have its address taken, because retail passes
+// its argument in a register and MSVC drops that once the address escapes.
+void forceWindowStackHelpers( GameWindow *window )
+{
+	pushWindow( window );
+	(void)popWindow();
+}
+
 
 // parseColor =================================================================
 /** Parse a color entry and store it in the value pointed to by the 
@@ -706,25 +718,29 @@ static Bool parseStyle( char *token, WinInstanceData *instData,
 // parseSystemCallback ========================================================
 /** Parse the system method callback for a window */
 //=============================================================================
+// TU-scoped mirror of the shared string setter the parse callbacks reach; the
+// runtime body is the two-argument set at 0x00887D20 (a generic body, also
+// claimed under other names), and retail inlines the strlen at the call site.
+struct ParseStringData
+{
+	char *m_data;
+	void set( const char *str, int len );
+};
+
 static Bool parseSystemCallback( char *token, WinInstanceData *instData,
 																 char *buffer, void *data )
 {
-	char *c, *ptr;
-//	char *seps = " ,\n\r\t";
-	char *stringSeps = "\"";
+	char *seps = " \n\r\t";
+	char *c = strtok( (char *)instData, seps );
+	ParseStringData &sysString = *(ParseStringData *)( (char *)data + 0x20 );
 
-	// scan to the first " mark
-	ptr = buffer;
-	while( *ptr != '"' )
-		ptr++;
-	ptr++;  // skip the first "
-	c = strtok( ptr, stringSeps );  // name value
+	sysString.set( c, c ? strlen( c ) : 0 );
 
-	// save a pointer of the function address
-	DEBUG_ASSERTCRASH( TheNameKeyGenerator && TheFunctionLexicon, ("Invalid singletons") );
-	theSystemString = c;
-	NameKeyType key = TheNameKeyGenerator->nameToKey( theSystemString );
-	systemFunc = TheFunctionLexicon->gameWinSystemFunc( key );
+	// nameToKey sees the inline storage of the string; an unset string falls
+	// back to the shared empty literal, exactly like the header's str()
+	const char *mtext = sysString.m_data;
+	NameKeyType key = TheNameKeyGenerator->nameToKey( mtext ? mtext + 8 : "" );
+	*(void **)( (char *)data + 0x10 ) = TheFunctionLexicon->gameWinSystemFunc( key, (FunctionLexicon::TableIndex)0xb );
 
 	return TRUE;
 

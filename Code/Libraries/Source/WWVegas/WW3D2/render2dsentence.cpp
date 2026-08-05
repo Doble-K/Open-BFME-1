@@ -1779,7 +1779,6 @@ FontCharsClass::Grow_Unicode_Array (WCHAR ch)
 //
 ////////////////////////////////////////////////////////////////////////////////////
 void
-// ?Free_Character_Arrays@FontCharsClass@@AAEXXZ present-unmatched
 FontCharsClass::Free_Character_Arrays (void)
 {
 	if ( UnicodeCharArray != NULL ) {
@@ -1790,8 +1789,8 @@ FontCharsClass::Free_Character_Arrays (void)
 		//	Delete each member of the unicode array
 		//
 		for (int index = 0; index < count; index ++) {
-			if ( UnicodeCharArray[index] != NULL ) {
-				delete UnicodeCharArray[index];
+			if ( UnicodeCharArray[index] != NULL && UnicodeCharArray[index] != (FontCharsClassCharDataStruct *)-1 ) {
+				::operator delete( UnicodeCharArray[index] );
 				UnicodeCharArray[index] = NULL;
 			}
 		}
@@ -1799,7 +1798,7 @@ FontCharsClass::Free_Character_Arrays (void)
 		//
 		//	Delete the array itself
 		//
-		delete [] UnicodeCharArray;
+		::operator delete[]( UnicodeCharArray );
 		UnicodeCharArray = NULL;
 	}
 
@@ -1807,8 +1806,8 @@ FontCharsClass::Free_Character_Arrays (void)
 	//	Delete each member of the ascii character array
 	//
 	for (int index = 0; index < 256; index ++) {		
-		if ( ASCIICharArray[index] != NULL ) {
-			delete ASCIICharArray[index];
+		if ( ASCIICharArray[index] != NULL && ASCIICharArray[index] != (FontCharsClassCharDataStruct *)-1 ) {
+			::operator delete( ASCIICharArray[index] );
 			ASCIICharArray[index] = NULL;
 		}
 	}

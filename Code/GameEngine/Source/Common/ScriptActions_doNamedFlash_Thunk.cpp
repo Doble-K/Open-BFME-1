@@ -1,141 +1,135 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the ScriptActions::doNamedFlash naked dump to clean C++.
+//
+// Zero Hour's ScriptActions.cpp body. The two named constants are the only
+// thing retail changes, and it does not name them: the seconds are multiplied
+// by 5 (a `lea ecx,[eax+eax*4]`) and the product divided by 15 (magic
+// 0x88888889 with add-back and sar 3, which brute-forces to exactly one
+// divisor). MSVC does not algebraically fold 5*t/15 into t/3, so the two steps
+// stay separate exactly as the two constants in the source are.
+//
+// Only the two virtual slots are reconstructed -- getUnitNamed at vtable +0x68
+// and getDrawable at +0x28 -- and the entries ahead of them are declared to
+// place them and never defined or called.
+//
+// Retail pins the layout: the flash count is at drawable+0x160 and the flash
+// colour at +0x164, and the colour comes from the object when the caller passes
+// no RGBColor.
+
+typedef int Int;
+typedef unsigned int UnsignedInt;
+typedef UnsignedInt Color;
 
 class AsciiString;
-struct RGBColor;
+class Drawable;
+
+// The bytes prove the product and the divisor, not which named constant is
+// which; ZH spells them LOGICFRAMES_PER_SECOND and DRAWABLE_FRAMES_PER_FLASH.
+enum
+{
+	LOGICFRAMES_PER_SECOND = 5,
+	DRAWABLE_FRAMES_PER_FLASH = 15
+};
+
+struct RGBColor
+{
+	Color getAsInt(void) const;							///< ILT thunk at 0x0002D989
+};
+
+class Object
+{
+public:
+	virtual void unused00();
+	virtual void unused01();
+	virtual void unused02();
+	virtual void unused03();
+	virtual void unused04();
+	virtual void unused05();
+	virtual void unused06();
+	virtual void unused07();
+	virtual void unused08();
+	virtual void unused09();
+
+	virtual Drawable *getDrawable(void) const;			///< vtable +0x28
+
+	Color getIndicatorColor(void) const;				///< ILT thunk at 0x00009CA0
+};
+
+class ScriptEngine
+{
+public:
+	virtual void unused00();
+	virtual void unused01();
+	virtual void unused02();
+	virtual void unused03();
+	virtual void unused04();
+	virtual void unused05();
+	virtual void unused06();
+	virtual void unused07();
+	virtual void unused08();
+	virtual void unused09();
+	virtual void unused10();
+	virtual void unused11();
+	virtual void unused12();
+	virtual void unused13();
+	virtual void unused14();
+	virtual void unused15();
+	virtual void unused16();
+	virtual void unused17();
+	virtual void unused18();
+	virtual void unused19();
+	virtual void unused20();
+	virtual void unused21();
+	virtual void unused22();
+	virtual void unused23();
+	virtual void unused24();
+	virtual void unused25();
+
+	virtual Object *getUnitNamed(const AsciiString &name);	///< vtable +0x68
+};
+
+extern ScriptEngine *TheScriptEngine;					///< retail [0x012F076C]
+
+class Drawable
+{
+public:
+	void setFlashCount(Int count) { m_flashCount = count; }
+	void setFlashColor(Color color) { m_flashColor = color; }
+
+private:
+	unsigned char m_unreconstructed_00[0x160];
+	Int m_flashCount;									///< retail this+0x160
+	Color m_flashColor;									///< retail this+0x164
+};
+
 class ScriptActions
 {
 protected:
-	void doNamedFlash(const AsciiString &, int, const RGBColor *);
+	void doNamedFlash(const AsciiString &unitName, Int timeInSeconds, const RGBColor *color);
 };
 
 // ?doNamedFlash@ScriptActions@@IAEXABVAsciiString@@HPBURGBColor@@@Z
-__declspec(naked) void ScriptActions::doNamedFlash(const AsciiString &, int, const RGBColor *)
+void ScriptActions::doNamedFlash(const AsciiString &unitName, Int timeInSeconds, const RGBColor *color)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x57
-        __emit 0x52
-        __emit 0xff
-        __emit 0x50
-        __emit 0x68
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x61
-        __emit 0x8b
-        __emit 0x07
-        __emit 0x53
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xff
-        __emit 0x50
-        __emit 0x28
-        __emit 0x8b
-        __emit 0xd8
-        __emit 0x85
-        __emit 0xdb
-        __emit 0x74
-        __emit 0x52
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7e
-        __emit 0x4a
-        __emit 0x8d
-        __emit 0x0c
-        __emit 0x80
-        __emit 0xb8
-        __emit 0x89
-        __emit 0x88
-        __emit 0x88
-        __emit 0x88
-        __emit 0xf7
-        __emit 0xe9
-        __emit 0x03
-        __emit 0xd1
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xc1
-        __emit 0xfa
-        __emit 0x03
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf2
-        __emit 0xc1
-        __emit 0xee
-        __emit 0x1f
-        __emit 0x03
-        __emit 0xf2
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x75
-        __emit 0x19
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x8d
-        __emit 0xb4
-        __emit 0xd1
-        __emit 0xff
-        __emit 0x89
-        __emit 0xb3
-        __emit 0x60
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x89
-        __emit 0x83
-        __emit 0x64
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x0c
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x5f
-        __emit 0xf1
-        __emit 0xd3
-        __emit 0xff
-        __emit 0x89
-        __emit 0xb3
-        __emit 0x60
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x83
-        __emit 0x64
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x0c
-        __emit 0x00
+	//sanity
+	Object *obj = TheScriptEngine->getUnitNamed( unitName );
+	if ( !obj )
+	{
+		return;
+	}
+	Drawable *drawable = obj->getDrawable();
+	if( !drawable )
+	{
+		return;
+	}
+
+	if( timeInSeconds > 0 )
+	{
+		Int frames = LOGICFRAMES_PER_SECOND * timeInSeconds;
+		Int count = frames / DRAWABLE_FRAMES_PER_FLASH;
+		Color flashy = (color == 0) ? obj->getIndicatorColor() : color->getAsInt();
+		drawable->setFlashColor( flashy );
+		drawable->setFlashCount( count );
+		return;
 	}
 }

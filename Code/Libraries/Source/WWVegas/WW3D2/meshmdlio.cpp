@@ -2695,3 +2695,13 @@ WW3DErrorType MeshModelClass::write_stage_texcoords(ChunkSaveClass & csave,MeshS
 }
 
 #endif // 0 (disabled mesh saving code)
+
+// ?forceGetDCGSource@@YAXPAVMeshMatDescClass@@H@Z absent-from-retail
+// Every caller inlines this getter, so nothing emits the out-of-line copy the
+// ledger claims; one call compiled with inlining off brings it back.
+#pragma inline_depth(0)
+void forceGetDCGSource(MeshMatDescClass *desc, int pass)
+{
+	desc->Get_DCG_Source(pass);
+}
+#pragma inline_depth()

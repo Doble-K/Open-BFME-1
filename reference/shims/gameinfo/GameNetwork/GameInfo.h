@@ -177,7 +177,16 @@ class GameInfo
 {
 public:
 	GameInfo();
-	
+
+	// BFME's GameInfo vtable (retail 0x01102F7C) has two leading virtuals at
+	// slots 0/1 that compile to `xor eax,eax; ret` (Int 0; bodies 0x00475CC0
+	// and 0x00475CD0). They shift every Generals virtual down two slots, so
+	// amIHost lands at slot 0x10 and getLocalSlotNum at slot 0x14 (Generals
+	// put them at 0x08/0x0C). Names are placeholders for these BFME-only
+	// virtuals; the retail bodies are tiny Int-0 stubs.
+	virtual Int _bfme_gi_slot0( void );
+	virtual Int _bfme_gi_slot1( void );
+
 	void init( void );
 	virtual void reset( void );
 

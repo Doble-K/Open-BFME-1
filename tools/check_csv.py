@@ -170,15 +170,25 @@ def check_functions(raw, problems, sources_ok):
         seen_exact.add(key)
 
         rva = int(target_rva, 16)
+        gen_row = _notes.lstrip().startswith("gen-")
         if rva in by_rva and by_rva[rva][0] != name:
-            prev_name, prev_size = by_rva[rva]
+            prev_name, prev_size, prev_gen = by_rva[rva]
             if prev_size != size:
                 problems.append(f"functions.csv: two names claim target_rva {target_rva} with "
                                 f"different sizes: {prev_name} ({prev_size}B) and {name} ({size}B). "
                                 "Byte-verify decides which is real.")
-            # same (rva, size): ICF alias group — identical COMDATs folded to one
-            # address in retail; each name byte-verifies independently. Allowed.
-        by_rva.setdefault(rva, (name, size))
+            elif gen_row != prev_gen:
+                # A gen-* placeholder sharing an exact range with a real identity
+                # is not an ICF alias — the placeholder is the same function under
+                # a synthetic name and must yield (union merges land both sides
+                # silently; this is the only gate that can see it).
+                problems.append(f"functions.csv: {name} and {prev_name} claim the same range "
+                                f"at {target_rva} but exactly one is a gen-* placeholder. "
+                                "Retract the placeholder row and tombstone it in "
+                                "reverse/deleted_rows.csv.")
+            # same (rva, size), same kind: ICF alias group — identical COMDATs
+            # folded to one address in retail; each byte-verifies independently.
+        by_rva.setdefault(rva, (name, size, gen_row))
 
         if name in by_name and by_name[name] != rva and name not in ALLOWED_DUP_NAMES:
             problems.append(f"functions.csv: {name} claims two addresses: "
@@ -228,6 +238,13 @@ def check_symbols(raw, problems):
         except ValueError:
             problems.append(f"symbols.csv line {i} ({name}): bad address '{address}'")
             continue
+        # Short addresses are only inconsistent zero-padding and parse fine, but
+        # more than eight hex digits cannot be a 32-bit RVA in any spelling, so
+        # it is always a typo — three such rows reached the ledger before this
+        # check existed, each one digit too long and silently parsing correctly.
+        if len(address.removeprefix("0x").removeprefix("0X")) > 8:
+            problems.append(f"symbols.csv line {i} ({name}): address '{address}' has "
+                            f"more than 8 hex digits; write it as 0x{addr:08X}")
         if (name, addr) in seen_exact:
             problems.append(f"symbols.csv line {i}: exact duplicate row for {name}. "
                             "Fix: python3 tools/dedup_csv.py")

@@ -332,3 +332,13 @@ void FlammableUpdate::loadPostProcess( void )
 	UpdateModule::loadPostProcess();
 
 }  // end loadPostProcess
+
+// ?forceFlammableOnBodyDamageStateChange@@YAXPAVFlammableUpdate@@@Z absent-from-retail
+// This empty inline virtual only gets an out-of-line copy when something in the
+// TU needs one; a qualified call with inlining off is the smallest way to ask.
+#pragma inline_depth(0)
+void forceFlammableOnBodyDamageStateChange(FlammableUpdate *u)
+{
+	u->FlammableUpdate::onBodyDamageStateChange(NULL, BODY_PRISTINE, BODY_PRISTINE);
+}
+#pragma inline_depth()

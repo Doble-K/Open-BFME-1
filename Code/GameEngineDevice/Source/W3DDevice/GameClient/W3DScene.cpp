@@ -174,13 +174,12 @@ objects.
 @todo:  Need some kind of scene subdivision or find way to use Partition manger to speed up the ray
 intersection tests.  Maybe truncate the ray to terrain length before using it?
 */
-// ?flagOccludedObjects@RTS3DScene@@IAEXPAVCameraClass@@@Z present-unmatched
 void RTS3DScene::flagOccludedObjects(CameraClass * camera)
 {
 	Vector3 camPosition=camera->Get_Position();
 
 	//Find which objects are actually occluded
-	RenderObjClass **occludee=m_potentialOccludees;
+	RenderObjClass **occludee=*(RenderObjClass ***)(reinterpret_cast<char *>(this)+0x87c);
 	LineSegClass lineseg;
 	CastResultStruct result;
 	Bool hit=FALSE;
@@ -189,16 +188,16 @@ void RTS3DScene::flagOccludedObjects(CameraClass * camera)
 	RayCollisionTestClass raytest(lineseg,&result,COLL_TYPE_ALL,false,false);
 	raytest.CollisionType=COLL_TYPE_ALL;
 
-	m_occludedObjectsCount=0;
+	*(Int *)(reinterpret_cast<char *>(this)+0x874)=0;
 
-	for (Int i=0; i<m_numPotentialOccludees; i++,occludee++)
+	for (Int i=0; i<*(Int *)(reinterpret_cast<char *>(this)+0x888); i++,occludee++)
 	{	
 		raytest.Ray.Set(camPosition,(*occludee)->Get_Position());
 
-		RenderObjClass **occluder=m_potentialOccluders;
+		RenderObjClass **occluder=*(RenderObjClass ***)(reinterpret_cast<char *>(this)+0x878);
 
 		//Check this object against all other possible blocking objects
-		for (Int j=0; j<m_numPotentialOccluders; j++,occluder++)
+		for (Int j=0; j<*(Int *)(reinterpret_cast<char *>(this)+0x884); j++,occluder++)
 		{
 			// Do a quick ray-sphere test (Graphics Gems I,  p388)
 			RenderObjClass *robj=*occluder;
@@ -232,7 +231,7 @@ void RTS3DScene::flagOccludedObjects(CameraClass * camera)
 		{	//ocludee was blocked by something so flag it for custom rendering
 			DrawableInfo *drawInfo=(DrawableInfo *)(*occludee)->Get_User_Data();
 			drawInfo->m_flags |= DrawableInfo::ERF_IS_OCCLUDED;
-			m_potentialOccludees[m_occludedObjectsCount++] = *occludee;
+			(*(RenderObjClass ***)(reinterpret_cast<char *>(this)+0x87c))[(*(Int *)(reinterpret_cast<char *>(this)+0x874))++] = *occludee;
 		}
 	}
 }

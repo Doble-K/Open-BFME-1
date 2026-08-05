@@ -1399,3 +1399,551 @@ So the +4 the box constructors want cannot come from the end of
 The two constructors stay as their naked thunk TUs, which do not depend on the
 vtable at all, so no bytes are lost by leaving this alone. 495 bytes of matched
 code outrank the 314 the conversion would have bought.
+
+CRT functions reached under /MD are imported, so retail calls them indirectly through the IAT (ff 15); declare them __declspec(dllimport) or the compiler emits a direct rel32 that is one byte shorter and shifts every rel32 after it (hit on ceil in SupplyWarehouseDockUpdate::setCashValue).
+
+The build's default -EHsc- only clears the /EHc half, so /EHs stays on and any destructor-bearing temporary gets an SEH prologue plus unwind state variable; a retail body with no unwind frame needs /EHs-c- on the source's cl line.
+
+A boolean returned as `if (cond) return TRUE; return FALSE;` and as `return cond;` are not interchangeable: MSVC 7.1 computes the first in al (sbb al,al / inc al) and the second in eax (sbb eax,eax / inc eax). Read the ZH phrasing rather than assuming the compact form - it cost several attempts across the UserPreferences boolean getters. Check the String-ref verify line as well as Functions when batch-converting: a wrong literal still byte-matches because the DIR32 address is copied from the target.
+
+## Two byte-equal candidates: count the thunk's callers, then name the cluster
+
+`SimpleObjectIterator::firstWithNumeric` had two addresses on offer -- the
+ledger's 0x001DE040 and 0x001CE6D0, which a masked-body sweep also reports as an
+exact match for the same 51 bytes. Byte comparison cannot separate them and
+never will: both really are those bytes.
+
+Two cheap checks settle it, and neither needs a disassembly of the body.
+
+**Who reaches it.** Both addresses are reached only through an ILT thunk, so the
+question is who calls the thunk. 0x001DE040's thunk (0x000398C9) has exactly one
+rel32 caller, at 0x001DE032 -- code sitting immediately above the body itself.
+0x001CE6D0's thunk (0x00043126) has *zero* rel32 callers anywhere in `.text`: a
+dead incremental-link entry, which is no evidence at all.
+
+**Which translation unit owns the neighbourhood.** Functions from different TUs
+do not interleave in the image, so the nearest claimed rows name the cluster.
+0x001DE040 is surrounded by `sortFarToNear` (0x001DDF40), `next` (0x001DDFB0),
+`~SimpleObjectIterator` (0x001DDFD0) and `??_GSimpleObjectIterator`
+(0x001DE080) -- all SimpleObjectIterator.cpp. 0x001CE6D0 sits between
+`Object::reactToTransformChange` (0x001CDC30) and `Object::setDisabled`
+(0x001CE790), which is the Object.cpp/ObjectFields.cpp cluster and a different
+TU entirely.
+
+So the ledger row is right and the sweep's candidate is an unrelated 51-byte
+body that happens to compile the same. Nothing was changed; the point is the
+method. A sweep that reports several exact placements has not found several
+candidates of equal standing -- caller count and cluster membership usually
+leave exactly one, and both are two minutes of work against `functions.csv` and
+the rel32 sites. Do that before spending a cycle on the bytes.
+
+## The binary names the file that owns a gap, and the biggest gaps are not ours
+
+`gaps.py`-style output is a list of addresses, which cannot be picked up as
+work. It can be, though: retail kept the assert and DEBUG_LOG `__FILE__`
+strings, and they are absolute paths out of the original build tree --
+`F:\bfme\Code\gameengine\Source\GameLogic\Object\Update\AIUpdate.cpp`. A gap
+whose code pushes one of those addresses is that translation unit's code, named
+by the image rather than inferred. `tools/gap_owner.py` does the scan and rolls
+the result up per source file.
+
+Two things it establishes immediately.
+
+**The largest holes in `.text` are vendored Microsoft middleware.** Everything
+between roughly 0x9A0000 and 0xB00000 is statically linked library code:
+0xAC8183 is 216KB of DirectX error-string tables (`E_ABORT`, the `CO_E_*` and
+`DIERR_*` families), and 0xA40673 is 93KB of the D3DX shader assembler
+(`POSITION`, `BLENDWEIGHT`, `TESSFACTOR`, "internal error: unknown node").
+Those two alone are 310KB, they head every ranking of unclaimed bytes, and no
+amount of work on them belongs in this project. The headline coverage number is
+measured against a denominator that includes them.
+
+**The largest holes that are ours, with their addresses**, are
+`AIUpdate.cpp` (33,685 real bytes at 0x273DCE), `HordeContain.cpp` (26,101
+across four gaps from 0x2369B5), `AIGroup.cpp` (24,566 at 0x1527B2 and
+0x156C2E), `AptOnlineQuickMatch.cpp` (10,811 at 0x558F9E), `ScriptEngine.cpp`
+(10,601 at 0x344291), `SpecialAbilityUpdate.cpp` (10,165 at 0x2A6588) and
+`LuaScriptEngine.cpp` (9,695 at 0x2E3F04). Three of those -- HordeContain,
+AptOnlineQuickMatch and LuaScriptEngine -- have no Zero Hour counterpart at
+all, so they are reconstruction from the disassembly rather than porting.
+
+The coverage is sparse by nature: a release build keeps only the asserts that
+survived, and 118 gaps over 8KB hold 2.56MB of real bytes of which only 171KB
+sits in a gap that names anything. Anonymity is not evidence that a region is
+uninteresting -- it is usually just a file whose asserts were compiled out.
+
+The OptionPreferences boolean getters backed by a GlobalData default compare their value with an inlined 4-byte repe cmpsb against "yes" plus sete, not a stricmp call - a plain memcmp with #pragma intrinsic still emits a real call under these flags, so that sub-shape is still unsolved and those rows remain naked.
+
+SEH-framed bodies are convertible - findVeterancyUpgrade landed - but two have now died on MSVC bookkeeping order rather than logic: amIHost stores the EH frame pointer before setting up ecx for a by-value AsciiString temporary and parseAddModule pushes call arguments before storing a member flag, and neither order is reachable by rephrasing the source. Everything up to that point matched byte for byte in both.
+
+For a by-value class argument built from a temporary at the call site, declare the copy constructor even though it is never called: without it MSVC materialises the temporary in a separate slot and re-pushes, with it the object is constructed straight into the reserved argument slot as retail does. That leaves only the EH-record store and the ctor this-pointer setup swapped (mov [esp+N],esp before mov ecx,esp in retail); no source phrasing and no /Ox /Og /O1 /Ob2 /Oy- /Gy /GF variation moved it, and it currently blocks ControlBarResizer::init and GameSpyStagingRoom::amIHost at one instruction pair.
+## A dump row can be wrong at both ends, and the .asm file says so itself
+
+`??0AIAttackMoveStateMachine@@QAE@PAVObject@@VAsciiString@@@Z` claimed 0x002C1061
+for 501 bytes and byte-verified forever, because a MASM dump is the retail bytes.
+It was wrong three ways over, each independently sufficient:
+
+- **The start is inside another function.** The body containing 0x002C1061
+  begins at 0x002C0FE0 — 16-byte aligned, preceded by `int3` padding — so the
+  claim starts 129 bytes in. `audit_claim_boundaries.py` stays silent on this:
+  it tests for a start inside an *instruction*, and 0x002C1061 is a clean
+  instruction boundary. Being decodable is not being a function.
+- **The range spans a boundary, and the dump admits it.** `0CCh` repeated
+  twenty-seven times sits in the middle of the `db` lines. A function body does
+  not contain a run of int3. Past that padding the claim covers two real
+  functions, 0x002C11A0 and the thunk at 0x002C11D0.
+- **The stack pop contradicts the name.** The body ends `c3`, `ret 0`. A
+  `QAE@PAVObject@@VAsciiString@@` constructor is `__thiscall` with two
+  parameters and must end `ret 8`.
+
+Two things worth carrying forward. Reading the `db` lines of a dump for an int3
+run costs nothing and catches the over-long ones directly — no disassembler
+required. And with `reverse/ghidra_functions.csv` present you can ask the wider
+question the boundary audit does not: which matched rows start strictly inside
+a recovered function body? 319 rows do, overwhelmingly `Code/*.asm`. That is a
+lead list, not a verdict — Ghidra also merges adjacent functions, so a row
+ending exactly where its enclosing function ends is usually fine. Confirm with
+padding and alignment before withdrawing anything.
+
+### The address it was blocking is a trap of its own
+
+`locate.py` places `??_GAIUpdateInterface@@MAEPAXI@Z` at the freed 0x002C11A0
+and it will keep doing so. Do not land it. The body is the canonical scalar
+deleting destructor — `push esi; mov esi,ecx; call <dtor>; test [esp+8],1; …;
+ret 4` — whose only identifying operand is the destructor it calls, and
+`build.py` fills that REL32 in from the target, so any class's `??_G` matches.
+Following the call resolves through two thunks (0x0001E29F, 0x002C11D0,
+0x0004AAF7) to a destructor body at 0x00172430, which sits among AIStates.cpp
+and AIMoveToState code — a different translation unit from AIUpdate.cpp. So the
+`??_G` belongs to one of the AI state classes, not to AIUpdateInterface. Chase
+the destructor, never the deleting destructor.
+
+## Interior int3 is the cheapest decisive test there is, and 18 rows fail it
+
+The AIAttackMoveStateMachine withdrawal above turned on one observation that
+generalises further than the row it killed: MSVC pads *between* functions with
+0xCC and never inside one, so a run of int3 strictly inside a claimed range
+proves the claim spans a function boundary. No disassembler, no Ghidra
+inventory, no second opinion -- the retail bytes say it outright.
+
+`tools/audit_internal_padding.py` runs it over the whole ledger. **Eighteen
+matched rows fail**, twelve of them with runs of 64 int3 or more:
+
+```
+0x1699C2 1654B  body ends at +0x468, then 294 int3  AIPlayer::recruitSpecificAITeam
+0x76E90A  568B  body ends at +0x15A, then 172 int3  Team::tryToRecruit
+0x6000B0  807B  body ends at +0x274, then 172 int3  DefaultModuleTemplate<1>::writeINI
+0x784783  984B  body ends at +0x0D2, then 171 int3  W3DRadar::drawViewBox
+0x2AF8F9  523B  body ends at +0x126, then 129 int3  StructureToppleUpdate::doDamageLine
+0x5A565D 1119B  body ends at +0x274, then 127 int3  LANAPI::handleRequestJoin
+0x2BAFB8 1701B  body ends at +0x13E, then 122 int3  Locomotor::locoUpdate_moveTowardsPosition
+0x6008AF 1257B  body ends at +0x2B9, then 120 int3  ParticleSystem::generateParticleInfo
+0x37F2AD  711B  body ends at +0x19E, then 117 int3  Object::onVeterancyLevelChanged
+0x4F1C4A  805B  body ends at +0x15E, then 104 int3  DownloadManagerMunkee::downloadFile
+0x614F8E  496B  body ends at +0x10E, then  84 int3  ScriptActions::doTeamUseCommandButtonOnNearestKindof
+0x0D93AC  487B  body ends at +0x11B, then  73 int3  Player::setRankLevel
+```
+
+Every one is a transcription of retail bytes -- a `.asm` dump, or the same
+thing spelled as a `__declspec(naked)` body with an `__asm` block, which is why
+three of the eighteen have `.cpp` sources. Both kinds byte-verify at any length,
+so the gate has never had an opinion about them.
+
+Worked example of what the overhang costs. `OptionPreferences::getLANIPAddress`
+claims 0x092436 for 488 bytes. The body ends `add esp,0x10; ret 4` at
+0x0924B1, 62 int3 follow, and 0x0924F0 -- 16-byte aligned -- opens `push -1;
+push <handler>`, an SEH prologue. So the real function is 124 bytes and the row
+has swallowed a whole SEH-bearing function that nobody can now claim, because
+its address already belongs to getLANIPAddress.
+
+Two cautions before acting on the list. Interior padding proves the *end* is
+wrong; it says nothing about the start, which has to be checked separately (a
+real start is 16-byte aligned or sits directly after a padding run). And these
+rows belong to other people's work -- the tool reports, it does not edit.
+
+- The if-form/expression-form split covers `!= 0` too: `if (x != 0) return true; return false;` gives `test eax,eax / setne al`, while `return x != 0;` gives the 32-bit `neg / sbb / neg`.
+- `strcmp` is an intrinsic under `/Oi` so it inlines as `mov ecx,N / xor edx,edx / repe cmpsb`; `_stricmp` has no intrinsic and goes through the IAT. A retail `repe cmpsb` against a literal therefore means the case-sensitive one.
+- A float local that MSVC keeps in st(0) is invisible except in the width of its constant loads: `fcom dword` / `fld dword` mean `float`, `fcom qword` / `fld qword` mean `double`. Assigning `atof`'s double to a float local emits no narrowing store at all, so the constants are the only evidence of the type.
+
+## locate.py derived the evidence from the placement, and deleting destructors exploited it
+
+`locate.py` validates a candidate placement by reading each REL32 out of the
+retail bytes and recording what it points at — "callee addresses read from the
+binary". For most bodies that is sound: the unmasked bytes carry the real
+evidence and the callee is a bonus. For a deleting destructor there are no
+other bytes. `??_G` is
+
+    push esi / mov esi,ecx / call <the class destructor> /
+    test [esp+8],1 / je / push esi / call operator delete / add esp,4 /
+    mov eax,esi / pop esi / ret 4
+
+and once the two calls are masked, what remains is identical for every class in
+the program. So its identity *is* the destructor it calls — and that address
+was just derived from the placement being tested. The placement proves itself.
+
+This is not theoretical. Running `locate.py` over sixteen sources offered
+**0x002C11A0 to six different translation units**, as `??_GActionManager`,
+`??_GAIUpdateInterface`, `??_GAssaultTransportAIUpdate`,
+`??_GChinookAIStateMachine`, `??_GDeliverPayloadAIUpdate` and
+`??_GDozerPrimaryStateMachine`, each with its own invented `symbols.csv` pin
+putting that class's `??1` at 0x0001E29F. Any one `--emit` would have landed a
+false row *and* a false pin, and the pin is the worse half — it would go on to
+"resolve" call sites in unrelated functions.
+
+The tool now refuses these and reports them as SELF-CONFIRMING. The check that
+works is narrow: for `??_G`/`??_E`, require that the **class destructor** callee
+already has a known address. Requiring merely *some* known callee does not
+work, because the body also calls `operator delete`, whose address is always
+known and says nothing about which class this is — that first attempt let all
+six through unchanged.
+
+To claim one of these properly, pin the class destructor first from something
+outside the body: a vtable slot, or a caller that is already byte-matched.
+
+### And 0x002C11A0 really is identifiable — by the destructor, not by the bytes
+
+Chasing the destructor instead of the deleting destructor settles it. The `??_G`
+at 0x002C11A0 calls thunk 0x0001E29F, which reaches 0x00172430 via 0x002C11D0
+and 0x0004AAF7. That body installs vtable VA 0x1095B08, and slots 4, 5 and 6 of
+that table are the already-matched `onEnter`, `onExit` and `update` of
+`AIInternalMoveToState` — so 0x00172430 is that class's destructor, named by
+evidence entirely outside the bytes being compared.
+
+Which makes 0x002C11A0 the *second* `??_G` of AIInternalMoveToState. The first
+is at 0x0014F350, sitting in slot 0 of the same vtable, and the two differ by
+exactly one operand: 0x0014F350 calls the thunk at 0x0004AAF7 directly, while
+0x002C11A0 goes the long way through 0x0001E29F. Two translation units emitted
+the same deleting destructor, the linker could not fold them because their call
+chains differ, and both survived. Neither belongs to ActionManager,
+AIUpdateInterface, AssaultTransportAIUpdate, ChinookAIStateMachine,
+DeliverPayloadAIUpdate or W3DProjectedShadow, all of which the tool was happy
+to put there.
+
+Worth remembering as a positive result too: two byte-different copies of one
+compiler-generated body are normal when they take different thunk hops, so
+finding a second `??_G` for a class you have already placed is not evidence
+that one of them is wrong.
+- MSVC does not fold `a == K || a < K` into a single `jle`; it emits `cmp/je/jl` to the same target, exactly as written. A retail `cmp` followed by two conditional jumps to one label is therefore evidence of two source conditions, not one relational operator — and getting the split right can also settle register allocation that looked arbitrary.
+- A divide-by-constant magic pins a structure size exactly: brute-forcing which divisor reproduces `imul <magic>` + add-back + `sar n` over a range of inputs gave a unique answer (292 for PlayerTemplate). A plain pointer subtraction then regenerates the whole sequence.
+- MSVC returns a 4-byte struct in `eax`, so a one-pointer iterator will not reproduce a callee that takes a hidden return pointer. Declaring a copy constructor (never defined) makes the type non-trivial and forces the memory-return form — the same declaration trick that fixes by-value class arguments.
+
+
+
+## docs/ini_schema.md is a complete layout oracle for 96 classes, and nothing uses it
+
+Half the entries above are hand-triangulated class layouts — an offset read off
+one instruction, a size read off an `operator new`, a pad placed and then walked
+back when it broke a matched row. Meanwhile `docs/ini_schema.md` has been
+sitting in the tree with the **exact retail offset of every INI-parsed field of
+96 classes**, decoded from the binary's own `FieldParse` tables. Nothing in
+`lessons.md`, `AGENTS.md` or `docs/structural.md` mentions it. It is not
+inference: the table is plain data, `{ token, proc, userData, Int offset }`, and
+`tools/dump_ini_schema.py` walks it.
+
+Among the 96 are `Weapon`, `Object`, `Locomotor`, `Armor`, `Upgrade`,
+`Science`, `PlayerTemplate`, `Terrain`, `FXList`, `ObjectCreationList` and
+`CommandButton` — several of which have entries above describing exactly the
+guesswork this file would have replaced.
+
+**Correction to the WeaponTemplate entry.** It says "a class whose only proven
+fact is its SIZE takes a tail pad, not a mid-class one", having pinned 0x53C
+from `WeaponStore::newWeaponTemplate`. The size was not the only proven fact:
+the `Weapon` table carries **112 fields with offsets**, up to 0x535. A tail pad
+happens to keep every existing row green, but it is not the layout, and any
+field it puts in the wrong place will surface later as a one-instruction diff
+nobody can explain.
+
+**Worked example, CommandButton.** `CommandButton::isReady` (0x0049AD30, 146
+bytes — not the 93 the queue reports, which is our own body's length) reads
+`[this+0x34]` and hands it to the same callee our source reaches with
+`[this+0x24]`. The table says why, exactly:
+
+```
+Options   0x018    Object 0x01C   Upgrade 0x020      <- ours agree
+NeededUpgrade 0x024                                  <- BFME-only, 4 bytes
+BuildUpgrades 0x028  AsciiStringVector               <- BFME-only, 12 bytes
+SpecialPower  0x034                                  <- ours has it at 0x024
+```
+
+so the divergence is two added fields totalling exactly 0x10. Further down the
+same table shows `TextLabel` at 0x044 and `DescriptLabel` at 0x050 are
+*AsciiStringVectors* where ours are plain AsciiStrings, adding 8 bytes each. The
+class is reconstructable field by field rather than by triangulation.
+
+Two limits worth stating. The table only names fields the INI parser writes, so
+runtime-only members between them are still unconstrained — the offsets bracket
+those gaps rather than filling them. And it gives retail's layout, not our
+header: knowing `SpecialPower` belongs at 0x034 does not by itself say which of
+our members to grow, so the existing matched rows still decide between an
+insert, a pad and a relocation.
+- A hand-rolled value type is not a substitute for the reference one. Replacing WWMath's `Vector3` with an equivalent-looking class (initialiser-list constructor, compiler-generated copy and assignment) made MSVC round-trip every temporary through memory with integer moves; copying the real header's form — user-defined copy constructor and `operator=`, constructor bodies that assign — kept each component in the FPU and the body collapsed onto retail.
+- MSVC does not evaluate float operands in source order, and is not consistent between components of the same expression: `Max + Min` loaded `Min.X` first but `Max.Y` and `Max.Z` first. A reversed-looking operand pair in one component proves nothing on its own — flip the whole expression and re-compare.
+- When a body is mostly a container's inline machinery, identify the exact container first — `SimpleDynVecClass` and `DynamicVectorClass` have different member order and different growth rules, so guessing costs a full reconstruction. Two divide-by-four sequences in one function were `Shrink` (`ActiveCount < VectorMax/4`, folding to `VectorMax/4 > 0` right after `Delete_All` zeroes the count) and `Grow` (`Length() + Length()/4`) — same idiom, unrelated meanings.
+
+## Ledger and git traps that cost pushes rather than cycles
+
+Three of these are specific to how the ledgers are stored and one is generic
+git, and between them they cost several failed pushes in a single session.
+
+**`symbols.csv` is CRLF, but not uniformly.** At least one row ends with a bare
+LF. Appending after such a row leaves `\n\r\n`, and the union merge driver then
+sees your line and the peer copy of the same pin as different lines, so the next
+rebase produces an exact duplicate and `check_csv` blocks the push. Append by
+taking `upstream/master`'s copy of the file and adding your line with `\r\n`,
+rather than appending to whatever the working tree happens to hold.
+
+**Do not reach for `tools/dedup_csv.py` when that happens.** It rewrites both
+ledgers with normalised terminators — a 157,000-line diff that conflicts with
+every other agent and destroys the `\r\r\n` rows `add_match` indexes by raw
+line. Delete the duplicated line by hand; it is one line.
+
+**`git reset --soft upstream/master` while upstream is ahead of your rebase base
+stages a revert of the peer commits in between.** The index keeps your tree,
+which relative to the newer base looks like undoing their work. Check
+`git status --short` for files you never touched before committing.
+
+**`docs/lessons.md` conflicts on almost every push** because everyone appends to
+it. Both sides are appends, so keeping both hunks is always the resolution — but
+a conflicted rebase still needs the merge checked, since `functions.csv` uses
+union merge and has no concept of a deletion.
+
+## Where the mechanical methods stand, so nobody re-runs them
+
+Ranked by what they still return, as of 2026-08-04.
+
+**Structural findings** remain the best return by far: one fact about a class
+unlocks many functions at once, and `docs/ini_schema.md` now makes that fact
+cheap for 96 INI-parsed classes (see the oracle entry above).
+
+**Pinning through ILT thunks** still works and is the only way to get an address
+that exists nowhere else. Pin the *thunk*, not the body — call sites encode the
+thunk.
+
+**The masked-body sweep (`tools/landsmall.py`) is exhausted.** It produced ~90
+functions historically and produced nothing at all across four fresh attempts:
+`Common/StateMachine.cpp`, all 51 files of `GameLogic/Object/SpecialPower`, and
+the three largest gap-owning files (`AIUpdate.cpp`, `AIGroup.cpp`,
+`W3DTreeBuffer.cpp`). Previously swept and empty: zlib, Lua, EAC, WWMath,
+WWLib, WW3D2, WWDebug/WWSaveLoad, the Upgrade/Contain/Die/Body/Create modules,
+GUI/Thing/ScriptEngine, most of GameClient and GameNetwork. Re-run it only when
+a class layout changes and reopens what that class blocked.
+
+**Thunk-located bodies (`tools/thunkchase.py`, `tools/claimlocated.py`)** are
+nearly finished: down from 276 wrapper sites to ~29 distinct bodies, of which a
+full run landed one.
+
+So the remaining queue is genuinely structural. `tools/next_work.py --ranked`
+tops out around 87% agreement and its `ghidra` tier is empty — "No
+Ghidra-anchored absent function candidates remain."
+
+## Open leads with addresses, so they are not rediscovered
+
+**`AIInternalMoveToState`'s destructor is identified but unclaimed** at
+0x00172430, 98 bytes. The proof is deliberately not its own bytes: it installs
+vtable VA 0x1095B08 (RVA 0xC95B08), and slots 4, 5 and 6 of that table are the
+already-matched `onEnter`, `onExit` and `update` of that class. Exactly two
+sites in the image store the pointer — this destructor, and a store at
+0x0014F2BF inside the 149-byte function at 0x0014F280, which is the constructor
+and is also unclaimed, with the class's own `??_G` at 0x0014F350 behind it. The
+destructor carries an SEH frame, a global null-check and a virtual call through
+`[edx+0x4c]`, so it is a reconstruction rather than a transcription.
+
+**`CommandButton` layout is proven and landing is blocked by five funclet rows.**
+The INI field table gives the front exactly: `Options` 0x018, `Object` 0x01C and
+`Upgrade` 0x020 agree with ours, then BFME inserts `NeededUpgrade` (0x024, 4B)
+and `BuildUpgrades` (0x028, AsciiStringVector, 12B), which is why retail reads
+`m_specialPower` at +0x34 where ours sits at +0x24. `CommandButton::isReady`
+@0x0049AD30 is what exposed it — and note its real length is **146 bytes**, not
+the 93 the work queue reports, which is our own body's length; it also needs a
+BFME-only branch (`cmp [this+0x10],0x16`) that the Zero Hour source lacks.
+Adding the two members to `reference/shims/controlbarlayout` compiles but
+renumbers the compiler-generated labels in ControlBar.cpp, breaking five
+`object-symbol=$L…` funclet rows (`uw_00c27f10`, `uw_00c27fe0`, `uw_00c27fee`,
+`uw_00c27ffc`, `uw_00c28250`). `tools/relabel.py` reports **all five ambiguous**
+and refuses them: the `std::vector` member adds code, so the labels do not shift
+uniformly and its positional check fails. Landing this needs the layout and the
+funclet re-keying in one commit, deriving each funclet's label from its position
+inside its parent. Further down the same table `TextLabel` (0x044) and
+`DescriptLabel` (0x050) are AsciiStringVectors where ours are plain
+AsciiStrings, so the tail needs more than these two inserts.
+
+**Still open, unchanged:** `MeshMatDescClass::Init_Alternate` @0x929410 (1047B,
+80% agreement, remainder is SIB order and spill-register choice rather than
+layout); `TurretAI::setTurretTargetObject` @0x18D120 (280B, 218 diffs, base
+layout already correct so what is left is its own logic);
+`?loadD3DCursorTextures@W3DMouse@@` (ledger name is truncated with no signature,
+and the body diverges — retail 559B against our 332).
+
+**`StateMachine` has no addresses at all.** `StateMachine.cpp` shows 10 matched
+rows but every one is an STL helper; all 27 real methods are
+`present-unmatched`, none is in the export table or in `reverse/vtables.tsv`,
+and the masked sweep places none of them.
+`reference/shims/turretai/Common/StateMachine.h` already encodes two extra BFME
+virtuals ahead of `setState` (pinned by `recenterTurret` @0x18C8D0) but keeps
+both Zero Hour bases — and the merged `MemoryPoolObject`+`Snapshot` finding
+recorded above has never been tested on this class.
+
+**Dropped as stale:** the `bfmeFactoryAnchor*` question in ModuleFactory.cpp. No
+row in `functions.csv` and no pin in `symbols.csv` mentions those symbols any
+more.
+
+## The unclaimed gaps that are actually ours
+
+From `tools/gap_owner.py`, which names the owning translation unit from the
+`F:\bfme\Code\...` assert strings retail kept. Several of these files have no
+translation unit in `Code/` at all — they are BFME-only and would be
+reconstruction from the disassembly rather than porting.
+
+| Real bytes | Address | Owner |
+|---|---|---|
+| 33,685 | 0x273DCE | `AIUpdate.cpp` |
+| 26,101 | 0x2369B5, 0x2408CE, 0x23B6D5, 0x244AD5 | `HordeContain.cpp` — **no TU** |
+| 24,566 | 0x1527B2, 0x156C2E | `AIGroup.cpp` |
+| 10,811 | 0x558F9E | `AptOnlineQuickMatch.cpp` — **no TU**, Flash/Apt UI |
+| 10,601 | 0x344291 | `ScriptEngine.cpp` |
+| 10,165 | 0x2A6588 | `SpecialAbilityUpdate.cpp` — **no TU** |
+| 9,695 | 0x2E3F04 | `LuaScriptEngine.cpp` — **no TU** |
+| 9,588 | 0x73670E | `W3DTreeBuffer.cpp` |
+| 8,932 | 0x76569E | `W3DScriptedModelDraw.cpp` — no TU |
+| 8,912 | 0x71A140 | `W3DShrubBuffer.cpp` — no TU |
+| 8,138 | 0x6ACB6D | `MilesAudioManager.cpp` — no TU |
+
+## Triaging the eighteen over-long rows
+
+Interior padding proves the end is wrong and says nothing about the start, so
+each row still needs its start checked. Doing that — is it a Ghidra function
+start, is it 16-byte aligned, is it preceded by padding — leaves only **three**
+that are plain over-long rows safe to shrink:
+
+| Row | claims | real body | start evidence |
+|---|---|---|---|
+| `DefaultModuleTemplate<1>::writeINI` @0x6000B0 | 807 | 628 | Ghidra start, aligned, padded |
+| `RTS3DScene::Visibility_Check` @0x9446F0 | 1075 | 456 | 16-byte aligned |
+| `StructureToppleUpdate::update` @0x8F7E80 | 1211 | 52 | 16-byte aligned |
+
+The other fifteen have starts nothing corroborates, which puts them in the same
+class as the withdrawn AIAttackMoveStateMachine row — but that is a triage
+signal and not a verdict, since Ghidra misses a third of real-source starts and
+MSVC does not align every function. Two are worth looking at first because the
+arithmetic is extreme: `OptionPreferences::getLANIPAddress` claims 488 bytes for
+a 124-byte body and `getOnlineIPAddress` claims 397 for 124, and both are
+`__declspec(naked)` `.cpp` sources rather than dumps, so withdrawing them means
+deleting source too.
+
+Note that shrinking a dump row is not a one-line ledger edit: the `.asm` must
+have its `db` lines truncated to the same length, or the source and the row
+disagree about what is being verified.
+- Padding filler must account for the vtable pointer explicitly, and whether one exists depends on the *shim* class, not the real one. A filler of `[0xD8]` in a class that declares a virtual puts the next member at 0xDC; the same filler in a class that declares none puts it at 0xD8. Both mistakes shift every offset in the dump by four and read like a different layout rather than an off-by-one-slot — check the shim's own virtuals before re-deriving the layout.
+- `mov reg,0` where `xor reg,reg` would do is not a different constant: `xor` clobbers flags, so MSVC picks the longer encoding when a comparison has already set flags that a later branch still needs.
+
+## The oracle is now a diff: tools/ini_layout_diff.py
+
+The entry above says an INI-parsed class is reconstructable field by field
+rather than by triangulation. `tools/ini_layout_diff.py` does it in one command:
+it reads our `FieldParse` table out of the compiled object, lines it up by token
+against retail's decoded table in `docs/ini_schema.md`, and prints the per-field
+offset delta plus the list of fields retail parses that our table does not —
+which is the list of members to add.
+
+It reproduces, in seconds, the CommandButton analysis that took an hour of
+disassembly: four fields agreeing, `SpecialPower` at our 0x24 against retail
+0x34, the cascade to +24 and +32 as `TextLabel` and `DescriptLabel` widen into
+vectors, and `NeededUpgrade` 0x024 / `BuildUpgrades` 0x028 at the head of the
+additions list. That agreement with an independent measurement is the reason to
+trust it.
+
+Two things it immediately says about classes nobody had numbers for. Our
+`WeaponTemplate` table has 76 fields against retail's 112, and its front is
+0x24 *too high* — `AttackRange` sits at our 0x38 where retail has 0x14 — so the
+tail pad recorded earlier is not merely incomplete, the class is smaller at the
+front and larger later. `LocomotorTemplate` agrees on exactly one field out of
+fifty, despite Locomotor.cpp verifying 44/44, which is a reminder that a green
+translation unit says nothing about a template class whose accessors are not
+among the matched rows.
+
+Read the deltas as evidence about retail, not as instructions. The table only
+constrains fields the parser writes, runtime-only members between them are
+free, and the matched rows still decide between an insert, a pad and a
+relocation.
+- The decorated name distinguishes `class` from `struct`: `PBURGBColor@@` is a pointer-to-const *struct*, `PBVAsciiString@@` a pointer-to-const *class*. Declaring the wrong one produces a differently-mangled symbol and `build.py` fails with "symbol not found in object" rather than a byte mismatch — read the `U`/`V` before writing the shim.
+- MSVC does not algebraically simplify integer division, so `LOGICFRAMES_PER_SECOND * t / DRAWABLE_FRAMES_PER_FLASH` stays a multiply followed by a divide instead of collapsing. Two constants in the source remain two operations in the bytes, which is what makes them individually recoverable.
+
+## $L-keyed funclet rows freeze 503 translation units against layout work
+
+A row whose note says `object-symbol=$L<n>` finds its compiled body by a
+compiler-generated label. The number depends on how much code precedes it in the
+translation unit, so *any* change that adds or removes code renumbers it and
+`build.py` stops with `symbol not found in object: $L48498` — a message that
+reads like a broken checkout and is really a layout change doing its job.
+
+Measured on the current ledger: **1,367 such rows across 503 translation
+units.** (An older note put it at 87; that number is stale.) The worst
+concentrations are `module_pool_glue_bulk.cpp` with 146,
+`subsystem_interface.cpp` with 63 and `UserPreferences.cpp` with 36.
+
+`tools/relabel.py` repairs the easy case and refuses the rest, correctly: it
+re-identifies a funclet by its bytes, funclets share a prologue and their one
+distinguishing operand is a masked rel32, so it falls back to a positional check
+— same label count, uniform shift, nth stays nth — and reports AMBIGUOUS when
+that does not hold. It does not hold whenever the edit changes how many labels
+the TU emits, which is exactly what adding a member with a constructor does.
+
+Two independent attempts hit this in one session, and neither was an unusual
+edit:
+
+- adding `NeededUpgrade` and a `std::vector<AsciiString> BuildUpgrades` to
+  `CommandButton` broke five funclet rows in ControlBar.cpp
+  (`uw_00c27f10`, `uw_00c27fe0`, `uw_00c27fee`, `uw_00c27ffc`, `uw_00c28250`),
+  all five AMBIGUOUS;
+- opting Upgrade.cpp into the existing AudioEventRTS shim broke `$L48498`.
+
+So the practical position is that the header layout of 503 TUs is frozen, and
+every structural finding that lands in a header has to fight this first. Fixing
+it is worth more than any single class: a funclet's real identity is its parent
+plus its position among that parent's funclets, which the object's unwind data
+states directly, and re-keying the rows that way would survive renumbering. Until
+then, expect to land a layout change and its funclet re-keying as one commit.
+
+## BFME's AudioEventRTS is 0x70 bytes, the shim proving it reaches one TU
+
+`reference/shims/turretai/Common/AudioEventRTS.h` already reconstructs the class
+at 112 bytes against our 100, and it is TU-scoped — `TurretAI.cpp` is the only
+file in the tree that opts in. The INI tables say what that costs everyone else.
+
+Two independent confirmations of the size, neither needing the shim. Retail's
+`MiscAudio` block is a run of `AudioEventRTS` fields at a uniform **0x70**
+stride (0x000, 0x070, 0x0E0, 0x150, …), and `UpgradeTemplate`'s two adjacent
+sound members sit 0x70 apart in retail (0x28 → 0x98) against 0x64 in our build
+(0x2c → 0x90).
+
+The blast radius, counted off `docs/ini_schema.md`: **47 embeds across six
+INI-parsed classes** — `MiscAudio` 32, `Weapon` 9, `Upgrade` 2, `SpecialPower`
+2, `ObjectCreationList` 1, `Campaign` 1. Every member after an embed is twelve
+bytes too low per embed in every TU that does not see the shim, which is all of
+them but one. It is a large part of why `WeaponTemplate` looks chaotic: nine
+embeds is 108 bytes of drift before anything else is wrong.
+
+The shim does generalise — opting Upgrade.cpp in moves `UnitSpecificSound` from
+0x90 to 0x9c and `ButtonImage` from 0x100 to 0x118, exactly one and two embeds
+of growth, and `tools/ini_layout_diff.py` measures it. What stops that being a
+one-line win is the paragraph above: the opt-in renumbers labels and breaks a
+`$L` row. What is left for UpgradeTemplate after the shim is small and fully
+specified by the table — retail adds `Tooltip` (0x14) and `UpgradeFX` (0x24),
+drops our `AcademyClassify`, and appends `Cursor` (0x118),
+`PersistsInCampaign` (0x11c) and `NoUpgradeDiscount` (0x11d).
+- The byte gate cannot check *which* CRT import a declaration names: `build.py` fills the IAT slot as a DIR32 copied from the target, so `_stricmp` and `_strcmpi` produce identical bytes. Read the import directory to settle it — this binary imports `_strcmpi` and never `_stricmp`, so declarations must say `_strcmpi`. Same applies to any dllimport reached through the IAT.
+- A `push ebp / mov ebp,esp` prologue with parameters read as `[ebp+N]` is not a sign of an unoptimised body — it is `/Oy-` on that translation unit. If everything else in the dump already matches and only the frame differs, add `/Oy-` rather than re-deriving the source.
+- Before hand-rolling a shim for a W3D class, check whether the tree already carries a reconciled one — `Code/Libraries/Source/WWVegas/WW3D2/rendobj.h` and `reference/shims/sweep/rendobj.h` already map RenderObjClass's 128-slot vtable and carry BFME's signature changes. Enumerating a header's virtuals in declaration order and printing `index*4` turns a raw `call [vtable+0x1DC]` into a named method in one step.
+- A lone `push` before a getter call may belong to the *setter* that consumes its result, not to the getter: arguments go right-to-left, so `Set_X(that.Get_X())` with a defaulted second parameter emits `push 0` before the getter call. Attributing it to the getter would have meant changing a signature with twenty other call sites.
+- An implicitly-generated destructor is not always a call: when the only non-trivial member is something like `UnicodeString`, MSVC inlines the implicit destructor into a direct call of *that member's* destructor. If retail calls the record's own destructor instead, declare `~Record();` out of line (never defined) and pin it — otherwise the rel32 points at the member's destructor and everything else in the body still matches, which makes it look like a wrong callee rather than a missing declaration.
+- Third member of the if-form family, this time for a *value* rather than a return: `r = cmp ? cmp : fallback;` branches on the compare result in place (`test/je/mov/jmp/mov`), while `r = cmp; if (r == 0) r = fallback;` assigns first and then tests the variable. Two instructions apart and otherwise identical bodies.
+- Inline accessors show up as repeated null tests of the same pointer: reading a length at `data+4` and characters at `data+8` through two separate `test/je` pairs on `m_data` means two accessors, not one that returns both.
+- MSVC lays a polymorphic base out at offset zero regardless of declaration order, so a byte-array filler base followed by a counted base does **not** put the counted base at the filler's size — it lands at +0x00 and the release site loses its pointer adjustment. Give the leading base a virtual of its own to hold offset zero. A `lea ecx,[reg+N]` before a refcount decrement is direct evidence of the counted base sitting N bytes in.
+- Before pinning a call target, grep `symbols.csv` for the address: ICF folds template instantiations onto one body, so the address may already carry several names. Matching one of them tells you the *shape* of the callee — `ObjectPoolClass<T,256>::Free_Object_Memory` rather than a generic `freeBlock` — and the right move is to add another alias, not a new name.
+- Arguments pushed before an intervening call are not that call's arguments. `push a / push b / call F / push eax / call G` reads like F takes two arguments, but if F ends in a bare `ret` it takes none — the pushes are G's later arguments evaluated first, and the whole thing is one call `G(F(), b, a)`. Follow the callee and check how it returns before splitting an expression to match.
+- Passing two computed values as constructor or function arguments lets MSVC hoist their shared setup ahead of both calls. If retail interleaves — compute, call, compute, call — assign each to its own named local first. The arguments-in-one-expression form reorders even when the calls themselves stay in order.
+- A body that copies every member in declaration order — scalars inline, then one `operator=` call per non-trivial member — is the *compiler-generated* copy assignment, not a hand-written one. There is no body to reconstruct: write the class and force MSVC to emit the implicit operator out of line by taking its address (`&C::operator=`), otherwise it is inlined at each use and never emitted as a standalone symbol.
+- `rep movsd` run lengths identify POD members outright: 0x130 and 0x44C bytes are `sizeof(D3DCAPS8)` and `sizeof(D3DADAPTER_IDENTIFIER8)`, which named two members and confirmed they sit contiguously. Check a run length against known struct sizes before modelling it as an anonymous byte array.
+- A call to a base's `operator=` followed by two inline dword copies is `DynamicVectorClass`'s own inline assignment (base, then ActiveCount and GrowthStep). Recognising the pair identifies the member type without needing its element type, which ICF has folded away anyway.
+- Parameterised bounds break ZH's `switch`. Where BFME reads a frame range from members instead of using named constants, the case labels are no longer constant expressions, so the source must be an if/else-if chain — the same body, but a `switch` will not compile and would not match anyway.
+- An absent block can be evidence rather than a puzzle: ZH's audio blocks here construct an `AudioEventRTS` temporary, which has a destructor. A function with no SEH frame cannot contain one under these flags, so the block's absence is consistent rather than a missing piece to hunt for.

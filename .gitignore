@@ -3,6 +3,9 @@ build/*
 build/toolchains/*
 !build/toolchains/vs2003/
 !build/toolchains/vs2003/**
+!build/toolchains/dx81/
+!build/toolchains/dx81/**
+
 .venv/
 __pycache__/
 *.pyc

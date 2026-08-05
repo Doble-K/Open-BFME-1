@@ -253,7 +253,31 @@ __declspec(dllimport) void * __cdecl galloc(long size);
 __declspec(dllimport) int   __cdecl gfree(void *memptr);
 void          gputm(void *memptr, unsigned long val, int numbytes);
 void          gputi(void *memptr, unsigned long val, int numbytes);
+#if defined(__WATCOMC__)
 unsigned long ggetm(const void *memptr, int numbytes);
+#else
+/* BFME is an MSVC build, where the #pragma aux forms below are ignored, and
+   retail shows ggetm as a static inline rather than a linked function: REF_is
+   @0x822090 reads its two-byte signature in place (xor edx,edx / mov dh,[ecx] /
+   mov dl,[ecx+1]) while REF_size @0x8220D0, whose byte count is a runtime 3 or
+   4, calls an out-of-line copy - and that copy sits at a different address in
+   each object (0x822030 in refdecode, 0x822D90 in huffdecode), which is what
+   internal linkage gives you. */
+static unsigned long ggetm(const void *memptr, int numbytes)
+{
+	const unsigned char *p = (const unsigned char *)memptr;
+
+	switch (numbytes)
+	{
+		case 1:  return (unsigned long)p[0];
+		case 2:  return ((unsigned long)p[0] << 8) | p[1];
+		case 3:  return ((((unsigned long)p[0] << 8) | p[1]) << 8) | p[2];
+		case 4:  return ((((((unsigned long)p[0] << 8) | p[1]) << 8) | p[2]) << 8) | p[3];
+	}
+
+	return 0;
+}
+#endif
 unsigned long ggeti(void *memptr, int numbytes);
 
 /****************************************************************************/

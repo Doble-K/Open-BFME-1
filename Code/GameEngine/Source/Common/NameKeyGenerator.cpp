@@ -222,7 +222,7 @@ NameKeyType NameKeyGenerator::nameToLowercaseKey(const char* nameString)
 	// hmm, do we have it already?
 	for (b = m_sockets[hash]; b; b = b->m_nextInSocket)
 	{
-		if (_stricmp(nameString, b->m_nameString.str()) == 0)
+		if (_strcmpi(nameString, b->m_nameString.str()) == 0)
 			return b->m_key; 
 	}
 
@@ -263,6 +263,7 @@ NameKeyType NameKeyGenerator::nameToLowercaseKey(const char* nameString)
 //------------------------------------------------------------------------------------------------- 
 // Get a string out of the INI. Store it into a NameKeyType
 //------------------------------------------------------------------------------------------------- 
+// ?parseStringAsNameKeyType@NameKeyGenerator@@ present-unmatched
 void NameKeyGenerator::parseStringAsNameKeyType( INI *ini, void *instance, void *store, const void* userData )
 {
   *(NameKeyType *)store = TheNameKeyGenerator->nameToKey( ini->getNextToken() );

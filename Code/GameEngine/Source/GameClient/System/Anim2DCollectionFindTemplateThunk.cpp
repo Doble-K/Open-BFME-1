@@ -1,172 +1,101 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the Anim2DCollection::findTemplate naked dump to clean C++.
+//
+// Zero Hour's Anim2D.cpp loop. What retail spells out is the comparison: it
+// takes the shorter of the two lengths, runs an inline memcmp over that many
+// bytes, and falls back to the length difference when the prefixes are equal.
+// That is a three-way compare tested against zero, not a plain strcmp -- the
+// `repe cmpsb` followed by `sbb eax,eax / sbb eax,-1` is MSVC's memcmp
+// intrinsic returning -1, 0 or 1.
+//
+// getName returns AsciiString by value, so retail builds a temporary through a
+// hidden pointer and destroys it after the comparison but before the branch --
+// which is exactly the lifetime of a temporary in the condition of an if.
+//
+// Both operands are read through two separate null tests of m_data, one for the
+// length at data+0x04 and one for the characters at data+0x08, so the length
+// and the string are two inline accessors rather than one.
+//
+// Retail pins the layout: the list head is at collection+0x08 and each
+// template's next pointer is at +0x04.
 
-class AsciiString;
-class Anim2DTemplate;
+typedef int Int;
+
+extern "C" int __cdecl memcmp(const void *, const void *, unsigned int);
+
+class AsciiStringData
+{
+public:
+	unsigned char m_unreconstructed_00[4];
+	unsigned short m_len;								///< retail this+0x04
+	unsigned char m_unreconstructed_06[2];
+	char m_chars[1];									///< retail this+0x08
+};
+
+class AsciiString
+{
+public:
+	AsciiString();
+	~AsciiString();
+
+	Int len(void) const { return m_data ? m_data->m_len : 0; }
+	const char *str(void) const { return m_data ? m_data->m_chars : ""; }
+
+private:
+	AsciiStringData *m_data;
+};
+
+inline bool operator==(const AsciiString &a, const AsciiString &b)
+{
+	Int blen = b.len();
+	const char *bs = b.str();
+	Int alen = a.len();
+	const char *as = a.str();
+	Int count = (alen < blen) ? alen : blen;
+
+	Int cmp = memcmp(as, bs, count);
+	Int result = cmp ? cmp : (alen - blen);
+
+	return result == 0;
+}
+
+class Anim2DTemplate
+{
+public:
+	AsciiString getName(void) const;					///< ILT thunk at 0x00012E72
+
+	Anim2DTemplate *friend_getNextTemplate(void) const { return m_nextTemplate; }
+
+private:
+	unsigned char m_unreconstructed_00[4];
+	Anim2DTemplate *m_nextTemplate;						///< retail this+0x04
+};
 
 class Anim2DCollection
 {
 public:
-    Anim2DTemplate *findTemplate(const AsciiString &name);
+	Anim2DTemplate *findTemplate(const AsciiString &name);
+
+private:
+	unsigned char m_unreconstructed_00[8];
+	Anim2DTemplate *m_templateList;						///< retail this+0x08
 };
 
 // ?findTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z
-__declspec(naked) Anim2DTemplate *Anim2DCollection::findTemplate(const AsciiString &name)
+Anim2DTemplate *Anim2DCollection::findTemplate( const AsciiString& name )
 {
-    __asm {
-        __emit 0x51
-        __emit 0x53
-        __emit 0x55
-        __emit 0x8b
-        __emit 0x69
-        __emit 0x08
-        __emit 0x85
-        __emit 0xed
-        __emit 0x56
-        __emit 0x57
-        __emit 0x74
-        __emit 0x7b
-        __emit 0x8d
-        __emit 0x64
-        __emit 0x24
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0x26
-        __emit 0x7b
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x09
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x59
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x8d
-        __emit 0x79
-        __emit 0x08
-        __emit 0x75
-        __emit 0x05
-        __emit 0xbf
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x06
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x50
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xd2
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x08
-        __emit 0x75
-        __emit 0x05
-        __emit 0xbe
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x3b
-        __emit 0xd3
-        __emit 0x8b
-        __emit 0xca
-        __emit 0x7c
-        __emit 0x02
-        __emit 0x8b
-        __emit 0xcb
-        __emit 0x33
-        __emit 0xc0
-        __emit 0xf3
-        __emit 0xa6
-        __emit 0x74
-        __emit 0x05
-        __emit 0x1b
-        __emit 0xc0
-        __emit 0x83
-        __emit 0xd8
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xeb
-        __emit 0x04
-        __emit 0x2b
-        __emit 0xd3
-        __emit 0x8b
-        __emit 0xf2
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0xe8
-        __emit 0x94
-        __emit 0xc5
-        __emit 0x2c
-        __emit 0x00
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x6d
-        __emit 0x04
-        __emit 0x85
-        __emit 0xed
-        __emit 0x75
-        __emit 0x89
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x5b
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x8b
-        __emit 0xc5
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+
+	// search the list
+	for( Anim2DTemplate *animTemplate = m_templateList;
+			 animTemplate;
+			 animTemplate = animTemplate->friend_getNextTemplate() )
+	{
+
+		if( animTemplate->getName() == name )
+			return animTemplate;
+
+	}  // end for
+
+	return 0;  // template not found
+
 }

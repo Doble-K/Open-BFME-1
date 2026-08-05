@@ -1,111 +1,95 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Grok promote from masm_dumps — retail 0x00092070 size 98
-// was: Code/masm_dumps/getUseHeatEffects_OptionPreferences_92070.asm
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the OptionPreferences::getUseHeatEffects naked dump to clean C++.
+//
+// Same three steps as the rest of the boolean preferences family: build the
+// key, look it up, compare the mapped string. What is new here is the default:
+// where the earlier getters returned a literal, these fall back to a field of
+// TheWritableGlobalData when the key is absent, so the missing-key branch is a
+// global read rather than a constant.
+//
+// The key lives in its own scope so it is destroyed after the lookup and before
+// the end() comparison, which is the order retail uses.
+//
+// Retail pins the layout: the map is at this+0x04 and its first word is the end
+// sentinel, the mapped AsciiString is at node+0x14, str() inlines to
+// "m_data ? m_data+8 : empty", and the default reads TheWritableGlobalData+0x1D.
+//
+// strcmp is an intrinsic under /Oi so retail inlines it as repe cmpsb over the 4 bytes of "yes" rather than calling out.
+//
+// /EHs-c- because the build default only clears the /EHc half, and the key's
+// destructor would otherwise pull in an SEH prologue retail does not have.
 
-class OptionPreferences { public: bool getUseHeatEffects(void); };
+extern "C" int __cdecl strcmp(const char *, const char *);
+
+class AsciiStringData
+{
+public:
+	unsigned char m_unreconstructed_00[8];
+	char m_chars[1];									///< retail this+0x08
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const char *);
+	~AsciiString();
+
+	const char *str(void) const { return m_data ? m_data->m_chars : ""; }
+
+private:
+	AsciiStringData *m_data;
+};
+
+struct PreferenceNode
+{
+	unsigned char m_unreconstructed_00[0x14];
+	AsciiString m_value;								///< retail this+0x14
+};
+
+class PreferenceMap
+{
+public:
+	PreferenceNode *find(const AsciiString &) const;
+	PreferenceNode *end(void) const { return m_end; }
+
+private:
+	PreferenceNode *m_end;								///< retail this+0x00
+};
+
+class GlobalData
+{
+public:
+	unsigned char m_unreconstructed_00[0x1D];
+	bool m_useHeatEffects;					///< retail this+0x1D
+};
+
+extern GlobalData *TheWritableGlobalData;				///< retail [0x012ED5C8]
+
+class OptionPreferences
+{
+public:
+	bool getUseHeatEffects(void);
+
+private:
+	unsigned char m_unreconstructed_00[4];
+	PreferenceMap m_prefs;								///< retail this+0x04
+};
 
 // ?getUseHeatEffects@OptionPreferences@@QAE_NXZ
-__declspec(naked) bool OptionPreferences::getUseHeatEffects(void)
+bool OptionPreferences::getUseHeatEffects(void)
 {
-__asm {
-		_emit 051h
-		_emit 056h
-		_emit 057h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 068h
-		_emit 0C8h
-		_emit 0FBh
-		_emit 007h
-		_emit 001h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 00Ch
-		_emit 0E8h
-		_emit 03Dh
-		_emit 06Bh
-		_emit 07Fh
-		_emit 000h
-		_emit 08Dh
-		_emit 044h
-		_emit 024h
-		_emit 008h
-		_emit 083h
-		_emit 0C6h
-		_emit 004h
-		_emit 050h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 01Ah
-		_emit 08Eh
-		_emit 0F7h
-		_emit 0FFh
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 08Bh
-		_emit 0F8h
-		_emit 0E8h
-		_emit 0A3h
-		_emit 058h
-		_emit 07Fh
-		_emit 000h
-		_emit 03Bh
-		_emit 03Eh
-		_emit 075h
-		_emit 00Dh
-		_emit 08Bh
-		_emit 00Dh
-		_emit 0C8h
-		_emit 0D5h
-		_emit 02Eh
-		_emit 001h
-		_emit 08Ah
-		_emit 041h
-		_emit 01Dh
-		_emit 05Fh
-		_emit 05Eh
-		_emit 059h
-		_emit 0C3h
-		_emit 08Bh
-		_emit 07Fh
-		_emit 014h
-		_emit 085h
-		_emit 0FFh
-		_emit 08Dh
-		_emit 077h
-		_emit 008h
-		_emit 075h
-		_emit 005h
-		_emit 0BEh
-		_emit 08Bh
-		_emit 038h
-		_emit 007h
-		_emit 001h
-		_emit 0BFh
-		_emit 06Ch
-		_emit 0C7h
-		_emit 007h
-		_emit 001h
-		_emit 0B9h
-		_emit 004h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 033h
-		_emit 0D2h
-		_emit 0F3h
-		_emit 0A6h
-		_emit 05Fh
-		_emit 00Fh
-		_emit 094h
-		_emit 0C0h
-		_emit 05Eh
-		_emit 059h
-		_emit 0C3h
+	PreferenceNode *it;
+	{
+		AsciiString key("HeatEffects");
+		it = m_prefs.find(key);
 	}
-}
 
+	if (it == m_prefs.end())
+		return TheWritableGlobalData->m_useHeatEffects;
+
+	if (strcmp(it->m_value.str(), "yes") == 0)
+	{
+		return true;
+	}
+	return false;
+}

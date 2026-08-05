@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHa /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -289,7 +289,6 @@ void DebugIOFlat::ExpandMagic(const char *src, const char *splitName, char *buf)
   strcpy(dst,".log");
 }
 
-// ??0DebugIOFlat@@QAE@XZ present-unmatched
 DebugIOFlat::DebugIOFlat(void):
   m_firstStream(NULL), m_firstSplit(NULL),
   m_lastStreamPtr(&m_firstStream), m_lastSplitPtr(&m_firstSplit)
@@ -317,20 +316,25 @@ DebugIOFlat::~DebugIOFlat()
   }
 }
 
-// ?Write@DebugIOFlat@@UAEXW4StringType@DebugIOInterface@@PBD1@Z present-unmatched
 void DebugIOFlat::Write(StringType type, const char *src, const char *str)
 {
   for (SplitListEntry *cur=m_firstSplit;cur;cur=cur->next)
   {
     if (!(cur->stringTypes&(1<<type)))
-      continue;
-    if (src&&*src&&!Debug::SimpleMatch(src,cur->items))
-      continue;
+    {
+      if (str)
+        continue;
+    }
+    else
+    {
+      if (str&&src&&*src&&!Debug::SimpleMatch(src,cur->items))
+        continue;
+    }
     cur->stream->Write(str);
-    break;
+    if (str)
+      return;
   }
-  if (!cur)
-    m_firstStream->stream->Write(str);
+  m_firstStream->stream->Write(str);
 }
 
 void DebugIOFlat::EmergencyFlush(void)
@@ -549,7 +553,6 @@ void DebugIOFlat::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
   }
 }
 
-// ?Create@DebugIOFlat@@SAPAVDebugIOInterface@@XZ present-unmatched
 DebugIOInterface *DebugIOFlat::Create(void)
 {
   return new (DebugAllocMemory(sizeof(DebugIOFlat))) DebugIOFlat();

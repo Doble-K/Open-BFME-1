@@ -1,119 +1,94 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the GenericMultiListClass::Internal_Remove __emit thunk to clean C++.
+//
+// Verbatim Zero Hour multilist.cpp: walk the object's chain of list nodes to
+// find the one belonging to this list, unlink it from both the object list and
+// the node chain, then free it. The assert in ZH's else branch compiles away.
+//
+// Retail pins the layout: an object keeps its first list node at +0x04, and a
+// node holds Prev at +0x00, Next at +0x04, NextList at +0x08 and its owning
+// List at +0x10.
+//
+// The node is pool-allocated, so `delete` is not the CRT one: it becomes a
+// two-instruction call into the object pool at 0x0134ECD4. Modelling that as a
+// class-specific operator delete reproduces it exactly, and MSVC then duplicates
+// the free-and-return-true tail into both arms of the unlink, which is why the
+// same three instructions appear twice at the end of the retail body.
 
-class MultiListObjectClass;
-class GenericMultiListClass {
+class GenericMultiListClass;
+
+class ObjectPool
+{
+public:
+	void Free_Object_Memory(void *block);					///< retail body at 0x009DBEB0
+};
+
+extern ObjectPool TheMultiListNodePool;						///< retail object at 0x0134ECD4
+
+class MultiListNodeClass
+{
+public:
+	void operator delete(void *block) { TheMultiListNodePool.Free_Object_Memory(block); }
+
+	MultiListNodeClass *Prev;								///< retail this+0x00
+	MultiListNodeClass *Next;								///< retail this+0x04
+	MultiListNodeClass *NextList;							///< retail this+0x08
+	unsigned char m_unreconstructed_0C[4];
+	GenericMultiListClass *List;							///< retail this+0x10
+};
+
+class MultiListObjectClass
+{
+public:
+	MultiListNodeClass *Get_List_Node(void) const { return ListNode; }
+	void Set_List_Node(MultiListNodeClass *node) { ListNode = node; }
+
+private:
+	unsigned char m_unreconstructed_00[4];
+	MultiListNodeClass *ListNode;							///< retail this+0x04
+};
+
+class GenericMultiListClass
+{
 protected:
-	bool Internal_Remove(MultiListObjectClass *);
+	bool Internal_Remove(MultiListObjectClass *obj);
 };
 
 // ?Internal_Remove@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@@Z
-__declspec(naked) bool GenericMultiListClass::Internal_Remove(MultiListObjectClass *)
+bool GenericMultiListClass::Internal_Remove(MultiListObjectClass *obj)
 {
-	__asm {
-		__emit 0x56
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x24
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x04
-		__emit 0x33
-		__emit 0xd2
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x57
-		__emit 0x74
-		__emit 0x0f
-		__emit 0x90
-		__emit 0x39
-		__emit 0x48
-		__emit 0x10
-		__emit 0x74
-		__emit 0x10
-		__emit 0x8b
-		__emit 0xd0
-		__emit 0x8b
-		__emit 0x40
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x75
-		__emit 0xf2
-		__emit 0x5f
-		__emit 0x32
-		__emit 0xc0
-		__emit 0x5e
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
-		__emit 0x85
-		__emit 0xd2
-		__emit 0x8b
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x78
-		__emit 0x04
-		__emit 0x89
-		__emit 0x79
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x48
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x89
-		__emit 0x39
-		__emit 0x74
-		__emit 0x18
-		__emit 0x8b
-		__emit 0x48
-		__emit 0x08
-		__emit 0x89
-		__emit 0x4a
-		__emit 0x08
-		__emit 0x50
-		__emit 0xb9
-		__emit 0xd4
-		__emit 0xec
-		__emit 0x34
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x67
-		__emit 0xfd
-		__emit 0xff
-		__emit 0xff
-		__emit 0x5f
-		__emit 0xb0
-		__emit 0x01
-		__emit 0x5e
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x50
-		__emit 0x08
-		__emit 0x50
-		__emit 0xb9
-		__emit 0xd4
-		__emit 0xec
-		__emit 0x34
-		__emit 0x01
-		__emit 0x89
-		__emit 0x56
-		__emit 0x04
-		__emit 0xe8
-		__emit 0x4f
-		__emit 0xfd
-		__emit 0xff
-		__emit 0xff
-		__emit 0x5f
-		__emit 0xb0
-		__emit 0x01
-		__emit 0x5e
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
+	// find the list node in this object that belongs to this list
+	MultiListNodeClass *lnode = obj->Get_List_Node();
+	MultiListNodeClass *prevlnode = 0;
+
+	while ((lnode) && (lnode->List != this))
+	{
+		prevlnode = lnode;
+		lnode = lnode->NextList;
 	}
+
+	if (lnode == 0)
+	{
+		return false;
+	}
+
+	// now we've found the node which corresponds to this list,
+	// unlink from the list of objects
+	lnode->Prev->Next = lnode->Next;
+	lnode->Next->Prev = lnode->Prev;
+
+	// unlink from the list of list nodes
+	if (prevlnode)
+	{
+		prevlnode->NextList = lnode->NextList;
+	}
+	else
+	{
+		obj->Set_List_Node(lnode->NextList);
+	}
+
+	// delete the link
+	delete lnode;
+
+	return true;
 }

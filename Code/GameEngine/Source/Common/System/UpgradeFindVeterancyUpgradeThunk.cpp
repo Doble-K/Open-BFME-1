@@ -1,118 +1,42 @@
 // cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// Lift the UpgradeCenter::findVeterancyUpgrade __emit thunk to clean C++.
+//
+// Verbatim Zero Hour Upgrade.cpp -- two lines: name the veterancy upgrade, then
+// look it up. Keeps /EHsc unlike most conversions in this tree: the AsciiString
+// temporary really does need unwind here, and retail carries the matching SEH
+// prologue with its state variable moving -1 -> 0 -> -1 around the lookup.
+//
+// getVetUpgradeName returns AsciiString by value, so MSVC passes the hidden
+// result pointer as the first cdecl argument -- that is the `lea ecx,[esp+0x18]`
+// pushed after the level, not a second parameter.
 
 class UpgradeTemplate;
-enum VeterancyLevel { VETERANCY_LEVEL_PLACEHOLDER };
+
+enum VeterancyLevel { LEVEL_REGULAR = 0 };
+
+class AsciiString
+{
+public:
+	AsciiString(void);
+	AsciiString(const AsciiString &other);
+	~AsciiString(void);
+
+private:
+	void *m_data;
+};
+
+AsciiString getVetUpgradeName(VeterancyLevel level);		///< retail body at 0x0010AD90
 
 class UpgradeCenter
 {
 public:
-    const UpgradeTemplate *findVeterancyUpgrade(VeterancyLevel level) const;
+	const UpgradeTemplate *findVeterancyUpgrade(VeterancyLevel level) const;
+	const UpgradeTemplate *findUpgrade(const AsciiString &name) const;	///< ILT thunk at 0x0002F95A
 };
 
 // ?findVeterancyUpgrade@UpgradeCenter@@QBEPBVUpgradeTemplate@@W4VeterancyLevel@@@Z
-__declspec(naked) const UpgradeTemplate *UpgradeCenter::findVeterancyUpgrade(VeterancyLevel level) const
+const UpgradeTemplate *UpgradeCenter::findVeterancyUpgrade(VeterancyLevel level) const
 {
-    __asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x98
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x00
-        __emit 0x50
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x51
-        __emit 0xe8
-        __emit 0xe9
-        __emit 0xf8
-        __emit 0xff
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x14
-        __emit 0x52
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x9c
-        __emit 0x44
-        __emit 0xf2
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x6f
-        __emit 0xc4
-        __emit 0x77
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+	AsciiString tmp = getVetUpgradeName(level);
+	return findUpgrade(tmp);
 }

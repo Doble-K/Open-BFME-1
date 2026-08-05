@@ -20,6 +20,7 @@ Exit codes: 0 ok, 1 missing/bad inputs, 2 ledger corrupt.
 """
 import argparse
 import ast
+import bisect
 import csv
 import json
 import secrets
@@ -269,6 +270,17 @@ def structural_candidates(claimed, claimed_names, claimed_ranges, big=False):
     for row in rows:
         if row["class"] in ("structural", "register-swap"):
             last[row["function"]] = row
+    # Matched ranges never overlap (identical ICF ranges aside), so "strictly
+    # inside any claimed range" is one bisect instead of a scan of ~90k rows
+    # per candidate — the scan went quadratic as generated claims tripled the
+    # ledger and put next_work minutes over its ten-second budget.
+    ranges = sorted(claimed_ranges)
+    starts = [start for start, _ in ranges]
+
+    def inside_any(point):
+        i = bisect.bisect_left(starts, point) - 1
+        return i >= 0 and point < ranges[i][1]
+
     out = []
     for name, row in last.items():
         rva = to_int(row["candidate_rva"], 16, f"drift_report.csv candidate_rva for {name}")
@@ -280,9 +292,7 @@ def structural_candidates(claimed, claimed_names, claimed_ranges, big=False):
         # function.  A start-address-only check lets those stale rows through and
         # sends contributors on an impossible reconstruction.  Reject both raw
         # and corrected RVAs when either lies strictly inside a claimed range.
-        inside_claim = any(start < point < end
-                           for point in (rva, crva)
-                           for start, end in claimed_ranges)
+        inside_claim = inside_any(rva) or inside_any(crva)
         if rva in claimed or crva in claimed or name in claimed_names or inside_claim:
             continue
         source = resolve_drift_source(row["source"], name)

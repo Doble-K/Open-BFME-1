@@ -2467,7 +2467,6 @@ void Object::pauseAllSpecialPowers( const Bool disabling ) const
 //-------------------------------------------------------------------------------------------------
 /** Clear the previous entered/exited flags. */
 //-------------------------------------------------------------------------------------------------
-// ?updateTriggerAreaFlags@Object@@IAEXXZ present-unmatched
 void Object::updateTriggerAreaFlags()
 {
 	Int j = 0;

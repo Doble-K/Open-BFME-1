@@ -921,7 +921,6 @@ Int ModuleFactory::findModuleInterfaceMask(const AsciiString& name, ModuleType t
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?newModuleDataFromINI@ModuleFactory@@QAEPAVModuleData@@PAVINI@@ABVAsciiString@@W4ModuleType@@1@Z present-unmatched
 ModuleData* ModuleFactory::newModuleDataFromINI(INI* ini, const AsciiString& name, ModuleType type,
 																								const AsciiString& moduleTag)
 {

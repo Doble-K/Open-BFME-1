@@ -286,7 +286,10 @@ static void getExtent( Region3D *extent )
 //-------------------------------------------------------------------------------
 
 // ?update@WaypointMap@@QAEXXZ
-// Body in MapUtil_update.asm (exact 363B retail).
+// Body in MapUtil_update.asm (exact 366B retail @ 0x00454EF0).
+// Queue 0x454EF0/361 and the old 363 marker both underestimate the int3-delimited
+// body; it ends at the ret 0x45505D (366B). C++ blocked by the ESP SEH frame, the
+// format(AsciiString,...) by-value overload shape, and out-of-line STLport map ops.
 
 const char * MapCache::m_mapCacheName = "MapCache.ini";
 

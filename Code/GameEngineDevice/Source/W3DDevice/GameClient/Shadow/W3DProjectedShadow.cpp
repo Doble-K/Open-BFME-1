@@ -2159,27 +2159,15 @@ void W3DProjectedShadow::updateProjectionParameters(const Matrix3D &cameraXform)
 		m_shadowProjector->Pre_Render_Update(cameraXform);
 }
 
-// ?update@W3DProjectedShadow@@QAEXXZ present-unmatched
 void W3DProjectedShadow::update(void)
 {
-	if (m_shadowTexture[0]->getLightPosHistory() != TheW3DShadowManager->getLightPosWorld(0))
+	//retail W3DProjectedShadow stores m_shadowTexture[0] at +0x68; the reference
+	//layout shim (BFMEShadowManagerLayout) carries the same offsets.
+	W3DShadowTexture *texture = *(W3DShadowTexture **)((char *)this + 0x68);
+	Vector3 &lastPos = texture->getLightPosHistory();
+	if (lastPos != TheW3DShadowManager->getLightPosWorld(0))
 	{	//light has moved since last time this shadow was calculated. Need update
 		updateTexture(TheW3DShadowManager->getLightPosWorld(0));
-	}
-	if (m_lastObjPosition != m_robj->Get_Position())
-	{	//object has moved.  Texture stays the same but projection matrix needs updating.
-		//force light always 2000 units from object - for some reason projection fails if
-		//light is too far.
-		///@todo: See why infinite light sources don't project shadows correctly.
-		if (m_type == SHADOW_PROJECTION)
-		{
-			Vector3 objToLight=TheW3DShadowManager->getLightPosWorld(0) - m_robj->Get_Position();
-			objToLight.Normalize();
-			objToLight =  m_robj->Get_Position() + objToLight * 2000.0f;
-
-			m_shadowProjector->Compute_Perspective_Projection(m_robj,objToLight);
-		}
-		setObjPosHistory(m_robj->Get_Position());
 	}
 }
 

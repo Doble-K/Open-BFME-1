@@ -1,126 +1,80 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Grok promote from masm_dumps — retail 0x00090D00 size 113
-// was: Code/masm_dumps/_getFirewallNeedToRefresh_OptionPreferences__QAE_NXZ_90D00.asm
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the OptionPreferences::getFirewallNeedToRefresh naked dump to clean C++.
+//
+// Same preferences-getter opening as the rest of the family -- build the key,
+// look it up, compare the mapped string -- but this one does not read the
+// mapped AsciiString in place. It copies it into a second local and calls
+// AsciiString::compareNoCase on the copy, which is why retail reserves eight
+// bytes up front for two string slots rather than the family's usual one.
+//
+// The result is accumulated into a variable rather than returned from inside
+// the if: retail zeroes bl before the compare, sets it to 1 on equality, and
+// runs the copy's destructor once before moving bl into al. An if-form with a
+// return in each arm would have emitted the destructor twice.
+//
+// Retail pins the layout: the map is at this+0x04 and its first word is the end
+// sentinel, and the mapped AsciiString is at node+0x14.
+//
+// /EHs-c- because the build default only clears the /EHc half, and the two
+// locals' destructors would otherwise pull in an SEH prologue retail lacks.
 
-class OptionPreferences { public: bool getFirewallNeedToRefresh(void); };
+class AsciiString
+{
+public:
+	AsciiString(const char *);
+	AsciiString(const AsciiString &);
+	~AsciiString();
+
+	int compareNoCase(const char *) const;				///< ILT thunk at 0x000405E8
+
+private:
+	void *m_data;
+};
+
+struct PreferenceNode
+{
+	unsigned char m_unreconstructed_00[0x14];
+	AsciiString m_value;								///< retail this+0x14
+};
+
+class PreferenceMap
+{
+public:
+	PreferenceNode *find(const AsciiString &) const;
+	PreferenceNode *end(void) const { return m_end; }
+
+private:
+	PreferenceNode *m_end;								///< retail this+0x00
+};
+
+class OptionPreferences
+{
+public:
+	bool getFirewallNeedToRefresh(void);
+
+private:
+	unsigned char m_unreconstructed_00[4];
+	PreferenceMap m_prefs;								///< retail this+0x04
+};
 
 // ?getFirewallNeedToRefresh@OptionPreferences@@QAE_NXZ
-__declspec(naked) bool OptionPreferences::getFirewallNeedToRefresh(void)
+bool OptionPreferences::getFirewallNeedToRefresh(void)
 {
-__asm {
-		_emit 083h
-		_emit 0ECh
-		_emit 008h
-		_emit 056h
-		_emit 057h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 068h
-		_emit 060h
-		_emit 0FAh
-		_emit 007h
-		_emit 001h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 00Ch
-		_emit 0E8h
-		_emit 0ABh
-		_emit 07Eh
-		_emit 07Fh
-		_emit 000h
-		_emit 08Dh
-		_emit 044h
-		_emit 024h
-		_emit 008h
-		_emit 083h
-		_emit 0C6h
-		_emit 004h
-		_emit 050h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 088h
-		_emit 0A1h
-		_emit 0F7h
-		_emit 0FFh
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 08Bh
-		_emit 0F8h
-		_emit 0E8h
-		_emit 011h
-		_emit 06Ch
-		_emit 07Fh
-		_emit 000h
-		_emit 03Bh
-		_emit 03Eh
-		_emit 075h
-		_emit 008h
-		_emit 05Fh
-		_emit 032h
-		_emit 0C0h
-		_emit 05Eh
-		_emit 083h
-		_emit 0C4h
-		_emit 008h
-		_emit 0C3h
-		_emit 053h
-		_emit 083h
-		_emit 0C7h
-		_emit 014h
-		_emit 057h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 014h
-		_emit 032h
-		_emit 0DBh
-		_emit 0E8h
-		_emit 015h
-		_emit 06Eh
-		_emit 07Fh
-		_emit 000h
-		_emit 068h
-		_emit 058h
-		_emit 0FAh
-		_emit 007h
-		_emit 001h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 014h
-		_emit 0E8h
-		_emit 08Fh
-		_emit 0F8h
-		_emit 0FAh
-		_emit 0FFh
-		_emit 085h
-		_emit 0C0h
-		_emit 075h
-		_emit 002h
-		_emit 0B3h
-		_emit 001h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 010h
-		_emit 0E8h
-		_emit 0D8h
-		_emit 06Bh
-		_emit 07Fh
-		_emit 000h
-		_emit 08Ah
-		_emit 0C3h
-		_emit 05Bh
-		_emit 05Fh
-		_emit 05Eh
-		_emit 083h
-		_emit 0C4h
-		_emit 008h
-		_emit 0C3h
+	PreferenceNode *it;
+	{
+		AsciiString key("FirewallNeedToRefresh");
+		it = m_prefs.find(key);
 	}
-}
 
+	if (it == m_prefs.end())
+		return false;
+
+	bool needToRefresh = false;
+	AsciiString val = it->m_value;
+	if (val.compareNoCase("TRUE") == 0)
+	{
+		needToRefresh = true;
+	}
+
+	return needToRefresh;
+}

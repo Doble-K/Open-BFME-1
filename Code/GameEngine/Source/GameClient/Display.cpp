@@ -91,7 +91,6 @@ Display::~Display()
 /**
 	* Delete all views in the Display
 	*/
-// ?deleteViews@Display@@MAEXXZ present-unmatched
 void Display::deleteViews( void )
 {
 	View *v, *next;

@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/turretai /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 /*
@@ -434,7 +434,6 @@ Bool TurretAI::friend_turnTowardsAngle(Real desiredAngle, Real rateModifier, Rea
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?friend_turnTowardsPitch@TurretAI@@QAE_NMM@Z present-unmatched
 Bool TurretAI::friend_turnTowardsPitch(Real desiredPitch, Real rateModifier)
 {
 	if (!isAllowsPitch())
@@ -478,14 +477,12 @@ Bool TurretAI::isWeaponSlotOkToFire(WeaponSlotType wslot) const
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?getTurretFireAngleSweepForWeaponSlot@TurretAI@@QBEMW4WeaponSlotType@@@Z present-unmatched
 Real TurretAI::getTurretFireAngleSweepForWeaponSlot( WeaponSlotType slot ) const
 {
 	return m_data->m_turretFireAngleSweep[slot];	
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?getTurretSweepSpeedModifierForWeaponSlot@TurretAI@@QBEMW4WeaponSlotType@@@Z present-unmatched
 Real TurretAI::getTurretSweepSpeedModifierForWeaponSlot( WeaponSlotType slot ) const
 {
 	return m_data->m_turretSweepSpeedModifier[slot];
@@ -499,7 +496,6 @@ void TurretAI::notifyFired()
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?notifyNewVictimChosen@TurretAI@@UAEXPAVObject@@@Z present-unmatched
 void TurretAI::notifyNewVictimChosen(Object* victim)
 {
 	setTurretTargetObject(victim, FALSE);
@@ -517,7 +513,6 @@ Bool TurretAI::isTryingToAimAtTarget(const Object* victim) const
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?isOwnersCurWeaponOnTurret@TurretAI@@QBE_NXZ present-unmatched
 Bool TurretAI::isOwnersCurWeaponOnTurret() const
 {
 	WeaponSlotType wslot;
@@ -526,7 +521,6 @@ Bool TurretAI::isOwnersCurWeaponOnTurret() const
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?isWeaponSlotOnTurret@TurretAI@@QBE_NW4WeaponSlotType@@@Z present-unmatched
 Bool TurretAI::isWeaponSlotOnTurret(WeaponSlotType wslot) const
 {
 	return (m_data->m_turretWeaponSlots & (1 << wslot)) != 0;
@@ -668,23 +662,19 @@ void TurretAI::setTurretTargetPosition( const Coord3D* pos )
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?recenterTurret@TurretAI@@QAEXXZ present-unmatched
 void TurretAI::recenterTurret()
 {
 	m_turretStateMachine->setState( TURRETAI_RECENTER );
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?isTurretInNaturalPosition@TurretAI@@QBE_NXZ present-unmatched
 Bool TurretAI::isTurretInNaturalPosition() const
 {
-
-  if( this->getOwner()->testStatus( OBJECT_STATUS_UNDER_CONSTRUCTION))
-    return true;//ML so that under-construction base-defenses do not re-center while under construction
-
-
-
-	if( getNaturalTurretAngle() == getTurretAngle() && 
+	// BFME has no OBJECT_STATUS_UNDER_CONSTRUCTION early-out here: retail's body
+	// at 0x18C8E0 is 39 bytes and starts straight into the two float compares,
+	// against 51 bytes with the check. The check is a later Generals/Zero Hour
+	// addition - its own comment says so - and predates neither branch equally.
+	if( getNaturalTurretAngle() == getTurretAngle() &&
 			getNaturalTurretPitch() == getTurretPitch() )
 	{
 		return true;
@@ -780,7 +770,6 @@ UpdateSleepTime TurretAI::updateTurretAI()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?setTurretEnabled@TurretAI@@QAEX_N@Z present-unmatched
 void TurretAI::setTurretEnabled( Bool enabled )
 {
 	if (enabled && !m_enabled)

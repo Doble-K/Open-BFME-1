@@ -1,108 +1,80 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Grok promote from masm_dumps — retail 0x000AC610 size 95
-// was: Code/masm_dumps/CustomMatchPreferences_getDisallowNonAsianText.asm
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the CustomMatchPreferences::getDisallowNonAsianText naked dump to clean C++.
+//
+// The preferences object is a string->string map, so every getter is the same
+// three steps: build the key, look it up, atoi the mapped string. The key lives
+// in its own scope so it is destroyed after the lookup and before the end()
+// comparison, which is the order retail uses.
+//
+// Retail pins the layout: the map is at this+0x04 and its first word is the end
+// sentinel, the mapped AsciiString is at node+0x14, and str() inlines to
+// "m_data ? m_data+8 : empty".
+//
+// /EHs-c- because the build default only clears the /EHc half, and the key's
+// destructor would otherwise pull in an SEH prologue retail does not have.
 
-class CustomMatchPreferences { public: bool getDisallowNonAsianText(void); };
+extern "C" __declspec(dllimport) int __cdecl _strcmpi(const char *, const char *);
+
+class AsciiStringData
+{
+public:
+	unsigned char m_unreconstructed_00[8];
+	char m_chars[1];									///< retail this+0x08
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const char *);
+	~AsciiString();
+
+	const char *str(void) const { return m_data ? m_data->m_chars : ""; }
+
+private:
+	AsciiStringData *m_data;
+};
+
+struct PreferenceNode
+{
+	unsigned char m_unreconstructed_00[0x14];
+	AsciiString m_value;								///< retail this+0x14
+};
+
+class PreferenceMap
+{
+public:
+	PreferenceNode *find(const AsciiString &) const;
+	PreferenceNode *end(void) const { return m_end; }
+
+private:
+	PreferenceNode *m_end;								///< retail this+0x00
+};
+
+class CustomMatchPreferences
+{
+public:
+	bool getDisallowNonAsianText(void);
+
+private:
+	unsigned char m_unreconstructed_00[4];
+	PreferenceMap m_prefs;								///< retail this+0x04
+};
 
 // ?getDisallowNonAsianText@CustomMatchPreferences@@QAE_NXZ
-__declspec(naked) bool CustomMatchPreferences::getDisallowNonAsianText(void)
+bool CustomMatchPreferences::getDisallowNonAsianText(void)
 {
-__asm {
-		_emit 051h
-		_emit 056h
-		_emit 057h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 068h
-		_emit 014h
-		_emit 012h
-		_emit 008h
-		_emit 001h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 00Ch
-		_emit 0E8h
-		_emit 09Dh
-		_emit 0C5h
-		_emit 07Dh
-		_emit 000h
-		_emit 08Dh
-		_emit 044h
-		_emit 024h
-		_emit 008h
-		_emit 083h
-		_emit 0C6h
-		_emit 004h
-		_emit 050h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 07Ah
-		_emit 0E8h
-		_emit 0F5h
-		_emit 0FFh
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 08Bh
-		_emit 0F8h
-		_emit 0E8h
-		_emit 003h
-		_emit 0B3h
-		_emit 07Dh
-		_emit 000h
-		_emit 03Bh
-		_emit 03Eh
-		_emit 075h
-		_emit 006h
-		_emit 05Fh
-		_emit 032h
-		_emit 0C0h
-		_emit 05Eh
-		_emit 059h
-		_emit 0C3h
-		_emit 08Bh
-		_emit 07Fh
-		_emit 014h
-		_emit 085h
-		_emit 0FFh
-		_emit 08Dh
-		_emit 047h
-		_emit 008h
-		_emit 075h
-		_emit 005h
-		_emit 0B8h
-		_emit 08Bh
-		_emit 038h
-		_emit 007h
-		_emit 001h
-		_emit 068h
-		_emit 0C0h
-		_emit 00Fh
-		_emit 008h
-		_emit 001h
-		_emit 050h
-		_emit 0FFh
-		_emit 015h
-		_emit 03Ch
-		_emit 093h
-		_emit 035h
-		_emit 001h
-		_emit 083h
-		_emit 0C4h
-		_emit 008h
-		_emit 0F7h
-		_emit 0D8h
-		_emit 01Ah
-		_emit 0C0h
-		_emit 05Fh
-		_emit 0FEh
-		_emit 0C0h
-		_emit 05Eh
-		_emit 059h
-		_emit 0C3h
+	PreferenceNode *it;
+	{
+		AsciiString key("DisallowNonAsianText");
+		it = m_prefs.find(key);
 	}
-}
 
+	if (it == m_prefs.end())
+		return false;
+
+	if (_strcmpi(it->m_value.str(), "1") == 0)
+	{
+		return true;
+	}
+	return false;
+}

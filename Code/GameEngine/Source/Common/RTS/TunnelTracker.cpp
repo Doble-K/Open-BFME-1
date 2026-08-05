@@ -70,7 +70,6 @@ TunnelTracker::~TunnelTracker()
 }
 
 // ------------------------------------------------------------------------
-// ?iterateContained@TunnelTracker@@ present-unmatched
 void TunnelTracker::iterateContained( ContainIterateFunc func, void *userData, Bool reverse )
 {
 	if (reverse)
@@ -208,7 +207,6 @@ void TunnelTracker::removeFromContain( Object *obj, Bool exposeStealthUnits )
 }
 
 // ------------------------------------------------------------------------
-// ?isInContainer@TunnelTracker@@ present-unmatched
 Bool TunnelTracker::isInContainer( Object *obj )
 {
 	return (std::find(m_containList.begin(), m_containList.end(), obj) != m_containList.end()) ;
@@ -263,7 +261,6 @@ void TunnelTracker::destroyObject( Object *obj, void * )
 
 // ------------------------------------------------------------------------
 	// heal all the objects within the tunnel system using the iterateContained function
-// ?healObjects@TunnelTracker@@ present-unmatched
 void TunnelTracker::healObjects(Real frames)
 {
 	iterateContained(healObject, &frames, FALSE);
