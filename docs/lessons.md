@@ -2362,3 +2362,40 @@ positional mapping had been right. Build before believing the warning either way
 And `next_work.py`'s size for an unclaimed candidate is a hint: it offered isReady at
 93 bytes, but the body branches to 0x49ADBB, and the int3 run does not start until
 146 bytes in. Check the branch targets against the claimed extent before working to it.
+
+## AsciiString's const char* constructor is out of line in retail
+
+`reference/shims/asciistring_outofline` existed to push `operator=` out of line;
+the `const char*` constructor needed the same treatment and did not have it. Retail
+calls it at 0x00888BC0, already pinned as `??0AsciiString@@QAE@PBD@Z`, while the
+inline body in the shim expands every construction from a literal into an
+`ensureUniqueBufferOfSize` sequence. Removing the body -- leaving only the
+declaration -- turns that into the single call retail makes.
+
+The cost is nil where it has been tried: AIStates.cpp and Anim2DTemplate_ctor.cpp
+both stay at 140/140 combined with the constructor out of line, so no matched row in
+either was depending on the inline expansion. Any state or template constructor that
+builds an AsciiString from a literal is a candidate for the same wiring.
+
+## State's merged base does not generalise from TurretAI to AIStates
+
+The entry above on `TurretAIIdleState::onEnter` concluded that State gets BFME's
+merged pooled-snapshot base, and predicted the same for any Zero Hour class
+inheriting both. AIStates.cpp says otherwise. Give `State` the merged base there --
+`class State : public Snapshot` instead of `public MemoryPoolObject, public Snapshot`
+-- and six matched rows break immediately: `setAdjustsDestination`,
+`AIAttackPursueTargetState::onExit`, `AIPickUpCrateState::update`,
+`AIAttackMoveToState::onExit`, `AIMoveAndDeleteState::update` and
+`AIEnterState::update`. Those rows match today with both bases, which is direct
+evidence against the merged layout for the State that AIStates.cpp compiles against.
+
+So the prediction is narrower than it was written: TurretAI's own State-derived
+classes want the merged base, and the AI states do not. Do not apply it file-wide on
+the strength of the TurretAI measurement alone.
+
+The concrete casualty of this is `??0AITunnelNetworkGuardState@@QAE@PAVStateMachine@@@Z`
+(0x001717B0, 53 bytes). With the AsciiString constructor out of line it is two
+differences from exact: an instruction-scheduling swap at the top, and one extra
+`mov dword ptr [esi+4], 0` -- the second vptr that the two-base State installs and
+retail's single-vptr State does not. Landing it needs a State whose layout is merged
+without disturbing those six rows, which is a narrower shim than the one tried here.

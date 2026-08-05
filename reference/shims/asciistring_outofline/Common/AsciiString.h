@@ -360,16 +360,11 @@ inline AsciiString::AsciiString() : m_data(0)
 }
 
 // -----------------------------------------------------
-inline AsciiString::AsciiString(const char* s) : m_data(0)
-{
-	//DEBUG_ASSERTCRASH(isMemoryManagerOfficiallyInited(), ("Initializing AsciiStrings prior to main (ie, as static vars) can cause memory leak reporting problems. Are you sure you want to do this?\n"));
-	int len = (s)?strlen(s):0;
-	if (len)
-	{
-		ensureUniqueBufferOfSize(len + 1, false, s, NULL);
-	}
-	validate();
-}
+// Declaration only, on purpose: retail calls this constructor out of line at
+// 0x00888BC0, pinned as ??0AsciiString@@QAE@PBD@Z. Leaving the body here makes
+// every construction from a literal inline into an ensureUniqueBufferOfSize
+// call sequence instead, which is the whole difference on bodies like
+// ??0AITunnelNetworkGuardState@@QAE@PAVStateMachine@@@Z (0x001717B0).
 
 // -----------------------------------------------------
 inline AsciiString::AsciiString(const AsciiString& stringSrc) : m_data(stringSrc.m_data)
