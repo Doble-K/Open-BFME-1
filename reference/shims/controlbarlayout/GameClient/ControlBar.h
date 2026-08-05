@@ -373,6 +373,13 @@ private:
 	UnsignedInt										m_options;										///< command options (see CommandOption enum)
 	const ThingTemplate*					m_thingTemplate;							///< for commands that use thing templates in command data
 	const UpgradeTemplate*				m_upgradeTemplate;						///< for commands that use upgrade templates in command data
+	// BFME parses two more fields here, and tools/ini_layout_diff.py reads their
+	// offsets straight out of retail's own FieldParse table: NeededUpgrade at
+	// this+0x24 and BuildUpgrades at this+0x28. Together they are the 16 bytes
+	// that put m_specialPower at 0x34 instead of 0x24, and every parsed field
+	// after it shifts by the same 16 until the later additions add more.
+	const UpgradeTemplate*				m_neededUpgrade;							///< retail this+0x24  NeededUpgrade
+	std::vector<const UpgradeTemplate *>	m_buildUpgrades;				///< retail this+0x28  BuildUpgrades
 	const SpecialPowerTemplate*		m_specialPower;								///< actual special power template
 	RadiusCursorType							m_radiusCursor;								///< radius cursor, if any
 	AsciiString										m_cursorName;									///< cursor name for placement (NEED_TARGET_POS) or valid version (CONTEXTMODE_COMMAND)

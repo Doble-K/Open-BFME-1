@@ -92104,11 +92104,11 @@ uw_00c20910,,0x00C20910,8,Code/GameEngine/Source/GameClient/Drawable.cpp,matched
 uw_00c3d540,,0x00C3D540,14,Code/GameEngine/Source/GameClient/Drawable/Update/SwayClientUpdate.cpp,matched,gen-funclet;parent=?getModuleNameKey@SwayClientUpdate@@UBE?AW4NameKeyType@@XZ;object-symbol=$L59728
 uw_00c24480,,0x00C24480,8,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,gen-funclet;parent=??0AnimateWindowManager@@QAE@XZ;object-symbol=$L38076
 uw_00c24520,,0x00C24520,8,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,gen-funclet;parent=??1AnimateWindowManager@@UAE@XZ;object-symbol=$L38477
-uw_00c27f10,,0x00C27F10,8,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?showRallyPoint@ControlBar@@IAEXPBUCoord3D@@@Z;object-symbol=$L83083
-uw_00c27fe0,,0x00C27FE0,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?setControlBarSchemeByPlayerTemplate@ControlBar@@QAEXPBVPlayerTemplate@@@Z;object-symbol=$L87440
-uw_00c27fee,,0x00C27FEE,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?setControlBarSchemeByPlayerTemplate@ControlBar@@QAEXPBVPlayerTemplate@@@Z;object-symbol=$L87441
-uw_00c27ffc,,0x00C27FFC,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?setControlBarSchemeByPlayerTemplate@ControlBar@@QAEXPBVPlayerTemplate@@@Z;object-symbol=$L87442
-uw_00c28250,,0x00C28250,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?evaluateContextUI@ControlBar@@IAEXXZ;object-symbol=$L88494
+uw_00c27f10,,0x00C27F10,8,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?showRallyPoint@ControlBar@@IAEXPBUCoord3D@@@Z;object-symbol=$L83664
+uw_00c27fe0,,0x00C27FE0,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?setControlBarSchemeByPlayerTemplate@ControlBar@@QAEXPBVPlayerTemplate@@@Z;object-symbol=$L88214
+uw_00c27fee,,0x00C27FEE,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?setControlBarSchemeByPlayerTemplate@ControlBar@@QAEXPBVPlayerTemplate@@@Z;object-symbol=$L88215
+uw_00c27ffc,,0x00C27FFC,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?setControlBarSchemeByPlayerTemplate@ControlBar@@QAEXPBVPlayerTemplate@@@Z;object-symbol=$L88216
+uw_00c28250,,0x00C28250,14,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,gen-funclet;parent=?evaluateContextUI@ControlBar@@IAEXXZ;object-symbol=$L89613
 uw_00bf8950,,0x00BF8950,8,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,gen-funclet;parent=?parseControlBarSchemeDefinition@INI@@SAXPAV1@@Z;object-symbol=$L55985
 uw_00c28660,,0x00C28660,8,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,gen-funclet;parent=??0ControlBarSchemeImage@@QAE@XZ;object-symbol=$L52647
 uw_00c28680,,0x00C28680,8,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,gen-funclet;parent=??0ControlBarSchemeAnimation@@QAE@XZ;object-symbol=$L52672

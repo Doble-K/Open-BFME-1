@@ -2339,3 +2339,26 @@ Two smaller negatives from the same sweep, so nobody repeats them: parsePreferre
 (0x0010FE90) compiles to 50 bytes against retail's 204 and parseArbitraryFXIntoMap
 (0x00145C80) to 310 against 206, both with unresolved template callees. Neither is an
 INI-layout problem and the shim does not move them.
+
+## The field table names BFME's inserts, so stop guessing at pad sizes
+
+With `ini_layout_diff.py` reading tokens out of the object, CommandButton falls out
+in one run: every parsed field from `SpecialPower` onward is +16 against retail, and
+retail's table has two entries ours does not at exactly the offsets that gap covers
+-- `NeededUpgrade` at 0x24 and `BuildUpgrades` at 0x28. Four bytes for a pointer plus
+twelve for a container is the 16, and `m_specialPower` moves from 0x24 to 0x34 where
+`isReady` (0x0049AD30) reads it. No instruction-reading, no trial pad.
+
+The general shape: when a run of parsed fields is off by a constant, look for retail
+tokens missing from our table whose offsets fall inside the gap. They are the
+insertion, they come with names, and the sizes are usually forced once you know
+whether each is a scalar or a container.
+
+Two operational notes. Adding a `std::vector` member introduces destructor unwind
+funclets, so `rekey_funclets.py` reports a RAGGED shift (105 labels before, 107
+after, three distinct deltas) rather than a uniform one. Ragged is a warning, not a
+verdict -- here all 51 matched rows in ControlBar.cpp still verified, so the
+positional mapping had been right. Build before believing the warning either way.
+And `next_work.py`'s size for an unclaimed candidate is a hint: it offered isReady at
+93 bytes, but the body branches to 0x49ADBB, and the int3 run does not start until
+146 bytes in. Check the branch targets against the claimed extent before working to it.
