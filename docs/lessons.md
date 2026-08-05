@@ -2222,3 +2222,20 @@ Next step for whoever picks it up: drop the 0x00964150 pin and the Matrix3x3
 row, then re-check `??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z` (0x00957C20,
 167 bytes), whose C++ is already in boxrobj.cpp and which the sweep reports at
 exactly retail's size.
+
+## Size the argument list before reading a single instruction
+
+The decorated name says how many bytes a callee-cleaned function must pop, and the
+body says how many it does pop. When they disagree the name is wrong and no amount of
+getting the body right will make it build -- the mangled name is what the compiler
+emits, so a five-argument name can never produce `ret 0x18`. This is the cheapest
+possible check and it needs no disassembly beyond the last instruction.
+
+The catch is sizing the list honestly. A first attempt that guessed at class and enum
+return types reported 175 hits, nearly all noise from mis-consuming names. The fix is
+to refuse rather than guess: a class passed by value has no size in the name, template
+names embed their own `@@` so scanning for the terminator lands mid-name, and varargs
+are caller-cleaned. Return None for all of those and treat None as no opinion. With
+backreference digits resolved and a class-by-value return charged its hidden pointer,
+the same screen reports 73 findings out of 964 naked rows, and the ones I have checked
+by hand all hold up.
