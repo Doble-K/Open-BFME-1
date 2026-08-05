@@ -60,6 +60,8 @@ private:
 	Color m_colorNight;				// 0x20
 };
 
+typedef std::map<Int, MultiplayerColorDefinition> MultiplayerColorList;
+
 class MultiplayerSettings : public SubsystemInterface
 {
 public:
@@ -73,6 +75,7 @@ public:
 	static const FieldParse m_multiplayerSettingsFieldParseTable[];
 	const FieldParse *getFieldParse( void ) const { return m_multiplayerSettingsFieldParseTable; }
 
+	MultiplayerColorDefinition * getColor(Int which);
 	MultiplayerColorDefinition * findMultiplayerColorDefinitionByName(AsciiString name);
 	MultiplayerColorDefinition * newMultiplayerColorDefinition(AsciiString name);
 
@@ -82,6 +85,18 @@ public:
 	inline Bool showRandomPlayerTemplate( void ) { return m_showRandomPlayerTemplate; }
 	inline Bool showRandomStartPos( void ) { return m_showRandomStartPos; }
 	inline Bool showRandomColor( void ) { return m_showRandomColor; }
+
+	// checkForDuplicateColors (0x00386520) inlines this and reaches m_numColors
+	// through [ecx+0x3c] and the tree's node count through [ecx+0x34]. Those are
+	// literal displacements, not DIR32 slots, so unlike the rest of the pad below
+	// these two offsets are fixed by the image and naming them is not invention.
+	inline Int getNumColors( void )
+	{
+		if (m_numColors == 0) {
+			m_numColors = m_colorList.size();
+		}
+		return m_numColors;
+	}
 
 private:
 	// The SubsystemInterface base is 8 bytes -- vptr plus its AsciiString
@@ -94,7 +109,9 @@ private:
 	Bool m_showRandomStartPos;					// 0x1A  ShowRandomStartPos
 	Bool m_showRandomColor;						// 0x1B  ShowRandomColor
 	Int m_initialCredits[ 5 ];					// 0x1C  VeryLow Low Medium High VeryHigh
-	char m_unknown30[ 0x88 - 0x30 ];			// 0x30  colour list, count, observer/random colours
+	MultiplayerColorList m_colorList;			// 0x30  node count lands at 0x34
+	Int m_numColors;							// 0x3c
+	char m_unknown40[ 0x88 - 0x40 ];			// 0x40  observer/random colours
 };
 
 // singleton

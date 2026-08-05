@@ -91822,8 +91822,8 @@ uw_00bf8f2b,,0x00BF8F2B,11,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,mat
 uw_00bf9180,,0x00BF9180,8,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,gen-funclet;parent=?setName@Image@@QAEXVAsciiString@@@Z;object-symbol=$L33218
 uw_00bf91a0,,0x00BF91A0,8,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,gen-funclet;parent=?parseMappedImageDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33243
 uw_00bf91a8,,0x00BF91A8,11,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,gen-funclet;parent=?parseMappedImageDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33244
-uw_00bf91d0,,0x00BF91D0,11,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,gen-funclet;parent=?parseMultiplayerSettingsDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33323
-uw_00bf91f0,,0x00BF91F0,8,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,gen-funclet;parent=?parseMultiplayerColorDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33343
+uw_00bf91d0,,0x00BF91D0,11,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,gen-funclet;parent=?parseMultiplayerSettingsDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33740
+uw_00bf91f0,,0x00BF91F0,8,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,gen-funclet;parent=?parseMultiplayerColorDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33760
 uw_00bf9210,,0x00BF9210,8,Code/GameEngine/Source/Common/INI/INIObject.cpp,matched,gen-funclet;parent=?parseObjectDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33178
 uw_00bf9230,,0x00BF9230,8,Code/GameEngine/Source/Common/INI/INIObject.cpp,matched,gen-funclet;parent=?parseObjectReskinDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33198
 uw_00bf9238,,0x00BF9238,8,Code/GameEngine/Source/Common/INI/INIObject.cpp,matched,gen-funclet;parent=?parseObjectReskinDefinition@INI@@SAXPAV1@@Z;object-symbol=$L33199
@@ -92768,9 +92768,9 @@ uw_00c1af30,,0x00C1AF30,8,Code/GameEngine/Source/GameLogic/System/CrateSystem.cp
 uw_00c1afc0,,0x00C1AFC0,8,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,gen-funclet;parent=??1CrateSystem@@UAE@XZ;object-symbol=$L36976
 uw_00c1b0b0,,0x00C1B0B0,8,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,gen-funclet;parent=?newCrateTemplate@CrateSystem@@QAEPAVCrateTemplate@@VAsciiString@@@Z;object-symbol=$L37854
 uw_00c1b0e0,,0x00C1B0E0,8,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,gen-funclet;parent=?parseCrateTemplateDefinition@CrateSystem@@SAXPAVINI@@@Z;object-symbol=$L37923
-uw_00c1b9d0,,0x00C1B9D0,8,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,gen-funclet;parent=?loadMapINI@GameLogic@@QAEXVAsciiString@@@Z;object-symbol=$L121312
-uw_00c49560,,0x00C49560,11,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,gen-funclet;parent=?createTerrainLogic@GameLogic@@EAEPAVTerrainLogic@@XZ;object-symbol=$L121732
-uw_00c495a0,,0x00C495A0,11,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,gen-funclet;parent=?createGhostObjectManager@GameLogic@@EAEPAVGhostObjectManager@@XZ;object-symbol=$L121719
+uw_00c1b9d0,,0x00C1B9D0,8,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,gen-funclet;parent=?loadMapINI@GameLogic@@QAEXVAsciiString@@@Z;object-symbol=$L120991
+uw_00c49560,,0x00C49560,11,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,gen-funclet;parent=?createTerrainLogic@GameLogic@@EAEPAVTerrainLogic@@XZ;object-symbol=$L121411
+uw_00c495a0,,0x00C495A0,11,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,gen-funclet;parent=?createGhostObjectManager@GameLogic@@EAEPAVGhostObjectManager@@XZ;object-symbol=$L121398
 uw_00c1cdf8,,0x00C1CDF8,11,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp,matched,gen-funclet;parent=??1RankInfo@@MAE@XZ;object-symbol=$L43871
 uw_00c1ce20,,0x00C1CE20,8,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp,matched,gen-funclet;parent=??1RankInfoStore@@UAE@XZ;object-symbol=$L43951
 uw_00c447f0,,0x00C447F0,8,Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp,matched,gen-funclet;parent=?populateDisconnectScreen@DisconnectManager@@IAEXPAVConnectionManager@@@Z;object-symbol=$L49106
