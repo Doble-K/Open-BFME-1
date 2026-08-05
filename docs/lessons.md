@@ -1967,3 +1967,16 @@ drops our `AcademyClassify`, and appends `Cursor` (0x118),
 - Loop-alignment padding (`8b ff` or `90` before a loop body) is not driven by the source: a `for` and an equivalent `while` produce byte-identical output. It appears to depend on the function's offset within its object section, which a standalone thunk starting at offset zero cannot reproduce — so when padding is the only residue, the source is probably already correct and the remaining lever is where the function sits, not what it says.
 - `jae` where `jge` would do means the bound is unsigned — typically a `sizeof(array)/sizeof(array[0])` rather than a literal, since the literal would keep the comparison signed. A preceding signed `< 0` check does not change that: both appear together when the source guards a negative index and then compares against an array's own size.
 - Local stack-slot assignment is not reliably steerable from declaration order. When two locals land in each other's slots, moving the declarations — outside the loop, inside it, or splitting declaration from assignment — can leave the assignment unchanged; treat slot order as a symptom to check against, not a lever to pull.
+
+## Frame size counts local slots, so it constrains the signature
+
+`sub esp,N` is a direct count of the local slots MSVC allocated, and each is 4 bytes
+(or the object's size). When a body otherwise matches and only the frame constant and
+the esp displacements differ, do not look at the statements -- enumerate what would
+occupy the slots. On ProcessAnimateWindowSlideFromLeft::updateAnimateWindow retail's
+`sub esp,0x10` is exactly three locals: the saved `this`, one float temp, and the
+8-byte Coord2D. Declaring the setter as `setVel(Coord2D)` reproduced every instruction
+but added a fourth slot for the by-value copy; declaring it `setVel(const Coord2D &)`
+removed that slot but cost a different one and spilled the FPU stack. The frame size
+told me the accepted answer has three slots before any byte of the body was in doubt,
+which is a much sharper constraint than reading the statements back.
