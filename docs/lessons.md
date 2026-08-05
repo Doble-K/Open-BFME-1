@@ -2193,3 +2193,32 @@ reported /EHs and /EHa as equal winners, when /EHa also drags in SEH. And rememb
 probe is not the function: a probe with no destructible local said /EHs was clean, while
 the real function has one and got an SEH prologue anyway. Give the probe the same locals
 as the target, or drive the object with explicit init/destroy calls so it has none.
+## A repointed pin leaves the wrong row behind, and both survive the gate
+
+The Matrix3D entry above records that `?Set@Matrix3D@@QAEXABVMatrix3x3@@ABVVector3@@@Z`
+was pinned to 0x00964150 -- a 274-byte ICF group shared with
+`?setEaseTimes@ParabolicEase@@QAEXMM@Z` -- and that the pin was repointed to the
+real 82-byte body at 0x008D6710. Two things it did not do survive today.
+
+`reverse/symbols.csv` still carries **both** lines: line 2576 pins the symbol at
+0x00964150 with no note, line 60243 pins it at 0x008D6710 with the repointing
+rationale. The gate is happy either way, because a symbol legitimately has
+several addresses -- the thunk and the body -- so nothing distinguishes a stale
+pin from a real second one.
+
+And `reverse/functions.csv` still claims the Matrix3x3 spelling **as a row** at
+0x00964150, 274 bytes, from a `__declspec(naked)` `__emit` source, sharing that
+address and size with `setEaseTimes`. The entry above already argues that
+address cannot be an 82-byte function.
+
+That is the shape to watch for whenever a pin is repointed: the note lands on
+the new line, the old line stays, and a transcribed row keeps the wrong name
+alive because it matches whatever bytes it was cut from. 498 symbols in
+symbols.csv are pinned to more than one distinct address; most are the honest
+thunk-and-body pair, and telling those apart from stale repoints needs the
+5-byte `E9` test, not a count.
+
+Next step for whoever picks it up: drop the 0x00964150 pin and the Matrix3x3
+row, then re-check `??0OBBoxRenderObjClass@@QAE@ABVOBBoxClass@@@Z` (0x00957C20,
+167 bytes), whose C++ is already in boxrobj.cpp and which the sweep reports at
+exactly retail's size.
