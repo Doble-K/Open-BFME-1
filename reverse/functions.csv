@@ -71515,8 +71515,6 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?W3d_Shader_Get_Detail_Color_Func@@YAHPBUW3dShaderStruct@@@Z,,0x00978730,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
 ?W3d_Shader_Get_Detail_Alpha_Func@@YAHPBUW3dShaderStruct@@@Z,,0x00978740,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
 ?W3d_Shader_Get_Alpha_Test@@YAHPBUW3dShaderStruct@@@Z,,0x00978750,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
-?Convert_Shader@W3dUtilityClass@@SAXABUW3dShaderStruct@@PAVShaderClass@@@Z,,0x00978760,186,Code/Libraries/Source/WWVegas/WW3D2/W3dUtilityClass_Convert_Shader_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?Convert_Shader@W3dUtilityClass@@SAXABVShaderClass@@PAUW3dShaderStruct@@@Z,,0x00978820,164,Code/Libraries/Source/WWVegas/WW3D2/W3dUtilityClass_Convert_Shader_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0ProxyRecordClass@@QAE@XZ,,0x009788D0,37,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ?Init@ProxyRecordClass@@QAEXABUW3dHLodSubObjectStruct@@@Z,,0x00978900,30,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ??0SubObjectArrayClass@HLodDefClass@@QAE@XZ,,0x009789F0,20,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
@@ -94118,3 +94116,5 @@ _send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/
 ??0Anim2DTemplate@@QAE@VAsciiString@@@Z,,0x005BAD80,124,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_ctor.cpp,matched,clean C++ lifted from Anim2DTemplate_ctor_dtor.asm; standalone TU so Anim2D.cpp labels do not renumber; needs asciistring_outofline so m_name = name calls operator= at 0x887C90
 ?WriteActionDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003513F0,160,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,clean C++; needs reference/shims/scriptenginevtable for the three BFME virtuals ahead of getActionTemplate and for Template having no pooled base
 ?WriteActionFalseDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003514C0,160,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,clean C++; same shim as its twin
+?Convert_Shader@W3dUtilityClass@@SAXABUW3dShaderStruct@@PAVShaderClass@@@Z,,0x00978760,186,Code/Libraries/Source/WWVegas/WW3D2/w3d_util_convert_shader.cpp,matched,clean C++ from the reference; needs the BFME shader bit layout (post-detail fields one bit later)
+?Convert_Shader@W3dUtilityClass@@SAXABVShaderClass@@PAUW3dShaderStruct@@@Z,,0x00978820,164,Code/Libraries/Source/WWVegas/WW3D2/w3d_util_convert_shader.cpp,matched,clean C++ from the reference; the ShaderClass-to-struct direction

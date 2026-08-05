@@ -69,8 +69,13 @@ enum ShaderShiftConstants
 	SHIFT_NPATCHENABLE			= 17,	// bit shift for npatch enabling
 	SHIFT_ALPHATEST				= 18,	// bit shift for alpha test setting
 	SHIFT_CULLMODE					= 19,	// bit shift for cullmode setting
-	SHIFT_POSTDETAILCOLORFUNC	= 20,	// bit shift for post-detail color function setting
-	SHIFT_POSTDETAILALPHAFUNC	= 24	// bit shift for post-detail alpha function setting
+	// BFME puts one more bit between the cull mode and the post-detail fields:
+	// W3dUtilityClass::Convert_Shader (0x00978760) writes them with shl 0x15 and
+	// shl 0x19 against masks ~0x01E00000 and ~0x0E000000, one bit later than the
+	// Zero Hour layout. Whether the extra bit belongs to the cull mode or is a
+	// field of its own is not decided by that function.
+	SHIFT_POSTDETAILCOLORFUNC	= 21,	// bit shift for post-detail color function setting
+	SHIFT_POSTDETAILALPHAFUNC	= 25	// bit shift for post-detail alpha function setting
 };
 
 #define SHADE_CNST(depth_compare, depth_mask, color_mask, src_blend, dst_blend, fog, pri_grad, sec_grad, texture, alpha_test, cullmode, post_det_color, post_det_alpha) \
@@ -246,8 +251,8 @@ public:
 		// at 0x98B750 tests [bits & 0xC0000] == 0x40000).
 		MASK_ALPHATEST				= (3<<18),			// mask for alpha test enable
 		MASK_CULLMODE				= (1<<19),			// mask for cullmode setting
-		MASK_POSTDETAILCOLORFUNC= (15<<20),			// mask for post detail color function setting
-		MASK_POSTDETAILALPHAFUNC= (7<<24)			// mask for post detail alpha function setting
+		MASK_POSTDETAILCOLORFUNC= (15<<21),			// mask for post detail color function setting
+		MASK_POSTDETAILALPHAFUNC= (7<<25)			// mask for post detail alpha function setting
 	};
 
 	ShaderClass(void)
