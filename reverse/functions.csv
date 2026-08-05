@@ -70249,7 +70249,7 @@ _asinf,,0x00873950,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W
 ?Resize@?$DynamicVectorClass@PAVRenderObjClass@@@@UAE_NHPBQAVRenderObjClass@@@Z,,0x00907520,47,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,
 ??YStringClass@@QAEABV0@PBD@Z,,0x00907590,127,Code/Libraries/Source/WWVegas/WWLib/ffactory.cpp,matched,
 ??0RenderDeviceDescClass@@QAE@XZ,,0x00907610,408,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
-??4RenderDeviceDescClass@@QAEAAV0@ABV0@@Z,,0x009078A0,188,Code/Libraries/Source/WWVegas/WW3D2/RenderDeviceDescClass_assign_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+??4RenderDeviceDescClass@@QAEAAV0@ABV0@@Z,,0x009078A0,188,Code/Libraries/Source/WWVegas/WW3D2/RenderDeviceDescClass_assign_Thunk.cpp,matched,clean C++ conversion; ZH rddesc.h body unchanged; nine StringClass slots then D3DCAPS8 at +0x24 and D3DADAPTER_IDENTIFIER8 at +0x154 and the resolution vector at +0x5A0
 ?Get_DX8_Render_State_Value_Name@DX8Wrapper@@SAXAAVStringClass@@KI@Z,,0x00907BE0,652,Code/Libraries/Source/WWVegas/WW3D2/DX8WrapperGetRenderStateValueNameThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_DX8WrapperGetRenderStateValueName_907BE0
 ?Add@?$DynamicVectorClass@VStringClass@@@@QAE_NABVStringClass@@@Z,,0x00907F80,82,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
 ?Add@?$DynamicVectorClass@VRenderDeviceDescClass@@@@QAE_NABVRenderDeviceDescClass@@@Z,,0x00907FE0,87,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
