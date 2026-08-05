@@ -2533,3 +2533,33 @@ one class reproduces it -- swapping declaration order is impossible without movi
 the offsets, and giving the two members distinct types changes nothing. Whatever
 orders those states is structural, the same conclusion the StealthUpgradeModuleData
 entry above reached from a different direction.
+
+## The ModuleData destructor family: what reproduces and what does not
+
+Three of these were attempted in one sitting and they fail in the same shape, so it
+is worth one note rather than three. Each reconstructs to within a handful of bytes
+with every instruction present, and the residue is always something the compiler
+decides rather than something the source says.
+
+`??1MinefieldBehaviorModuleData@@UAE@XZ` (0x0036CE20, 100 bytes) is one inlined WW3D
+Release_Ref on a refcounted pointer at +0x24: null-check it, InterlockedDecrement its
+counter at +0x04 through the IAT, and on reaching zero go through vtable slot 0 with
+a 1, which is what `delete` on a polymorphic pointer compiles to. Unlike the
+UnitCrate destructor this class is *not* novtable -- retail stores the derived vptr
+at entry and the base vptr at the end, with no base destructor call.
+
+That reconstructs to 96 of 100. The four bytes are a second `test esi,esi / je`
+before the delete, on a pointer retail has already null-checked and cached in a
+register. MSVC folds that check away for us under every spelling tried: `&&` versus
+nested ifs, a local versus re-reading the member, an inline `Release_Ref` member, an
+inline `Delete_Instance(p)` free function with the check written out explicitly, and
+/Ob1 to hold inlining back. Retail keeps it every time.
+
+Taken with the StealthUpgradeModuleData rebasing and the UnitCrate EH-state ordering,
+the pattern across the family is that the last few bytes are never reachable by
+rewriting the statements. They come from how the retail translation unit was
+structured -- what was a separate function, what was in a header, what the inliner
+saw -- and that is not recoverable by trying spellings. When a body of this kind
+stalls within single digits of exact with all instructions present, stop varying the
+source and record it; the next lever is evidence about the original TU, not another
+rewrite.
