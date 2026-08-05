@@ -68396,3 +68396,4 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?getIgnoredObstacleID@AIUpdateInterface@@QAEHXZ,0x0001A36B,ILT thunk to a plain read of ai+0x164
 ?worldToCell@Pathfinder@@AAEXPBUCoord3D@@PAUICoord2D@@@Z,0x000171E8,ILT thunk to the world-to-cell conversion at 0x003D7EC0; name is descriptive of what the body does
 ?iterateCellsAlongLine@Pathfinder@@AAEXPBUICoord2D@@0W4PathfindLayerEnum@@PAUMADStruct@@@Z,0x00014092,ILT thunk to the cell-space line walk at 0x003ED9F0; ZH's role but not ZH's signature -- cell coordinates and no callback
+?registerGameWindow@AnimateWindowManager@@QAEXPAVGameWindow@@H_NHH@Z,0x00045322,ILT thunk to the window animation registration
