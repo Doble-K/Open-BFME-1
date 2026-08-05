@@ -58544,7 +58544,7 @@ _XMP_Test_Bit,,0x000A2C80,33,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matc
 ??E?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAEAAU01@XZ,,0x000F1C10,22,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?j_000f21b0@@YAXXZ,,0x000F21B0,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_004f1ad0
 ??0TeamFactory@@QAE@XZ,,0x000F2250,130,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,1:1 C++ thunk from certified TeamFactory vtable body
-?addTeamPrototypeToList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000F3DA0,122,Code/GameEngine/Source/Common/TeamFactory_addTeamPrototypeToList_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?addTeamPrototypeToList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000F3DA0,122,Code/GameEngine/Source/Common/TeamFactory_addTeamPrototypeToList_Thunk.cpp,matched,clean C++ conversion; ZH Team.cpp body but BFME keys the prototype map on a pair of name keys from the strings at prototype+0x10 and +0x14; map at this+0x0C
 ?j_000f4240@@YAXXZ,,0x000F4240,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_004f3980
 ??1Team@@MAE@XZ,,0x000F4250,480,Code/GameEngine/Source/Common/TeamDestructorThunk.cpp,matched,Exact 480B SEH dtor Open-BFME5
 ?reset@TeamFactory@@UAEXXZ,,0x000F7570,13,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
