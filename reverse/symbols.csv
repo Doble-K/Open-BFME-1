@@ -68393,3 +68393,6 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?kill@Object@@QAEXW4DamageType@@W4DeathType@@@Z,0x00014506,ILT thunk to Object::kill
 ?aiIdle@AICommandInterface@@QAEXW4CommandSourceType@@@Z,0x00024D70,ILT thunk to the AI idle command reached through the base at ai+0x20
 ??1NoString@@QAE@XZ,0x0002349D,ILT thunk to the missing-string node destructor walked by GameTextManager::deinit
+?getIgnoredObstacleID@AIUpdateInterface@@QAEHXZ,0x0001A36B,ILT thunk to a plain read of ai+0x164
+?worldToCell@Pathfinder@@AAEXPBUCoord3D@@PAUICoord2D@@@Z,0x000171E8,ILT thunk to the world-to-cell conversion at 0x003D7EC0; name is descriptive of what the body does
+?iterateCellsAlongLine@Pathfinder@@AAEXPBUICoord2D@@0W4PathfindLayerEnum@@PAUMADStruct@@@Z,0x00014092,ILT thunk to the cell-space line walk at 0x003ED9F0; ZH's role but not ZH's signature -- cell coordinates and no callback

@@ -1,145 +1,103 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the Pathfinder::moveAlliesAwayFromDestination naked dump to clean C++.
+//
+// Zero Hour's AIPathfind.cpp body with three BFME changes, two of which the
+// already-pinned getLayerForDestination confirms outright: it takes the object
+// as well as the destination here, where ZH passes only the destination.
+//
+// The line walk is the bigger change. ZH hands iterateCellsAlongLine two world
+// positions and a callback; retail converts both positions to integer cell
+// coordinates first -- through a helper that scales by a constant and rounds --
+// and then passes the two cell pairs, the layer and the user data, with no
+// callback among them. The name is kept because the role is ZH's, but the
+// signature is not; the callback ZH passes is simply not a parameter.
+//
+// The third change is the user data: retail writes only the object and the
+// ignored obstacle id, never a back-pointer to the pathfinder, so the record is
+// two fields rather than ZH's three.
+//
+// Retail pins the layout: the AI pointer is at object+0x204 and the position at
+// object+0x38, both agreeing with earlier conversions, and the ignored obstacle
+// id is a plain read of ai+0x164.
+
+typedef int Int;
+
+struct Coord3D
+{
+	float x, y, z;
+};
+
+struct ICoord2D
+{
+	Int x, y;
+};
+
+enum PathfindLayerEnum { LAYER_GROUND = 1 };
 
 class Object;
-struct Coord3D { };
+
+class AIUpdateInterface
+{
+public:
+	Int getIgnoredObstacleID(void);						///< ILT thunk at 0x0001A36B
+};
+
+class Object
+{
+public:
+	Int getLayer(void) const;							///< ILT thunk at 0x0003A391
+
+	AIUpdateInterface *getAI(void) { return m_ai; }
+	const Coord3D *getPosition(void) const { return &m_position; }
+
+private:
+	unsigned char m_unreconstructed_00[0x38];
+	Coord3D m_position;									///< retail this+0x38
+	unsigned char m_unreconstructed_44[0x204 - 0x44];
+	AIUpdateInterface *m_ai;							///< retail this+0x204
+};
+
+class TerrainLogic
+{
+public:
+	PathfindLayerEnum getLayerForDestination(Object *obj, const Coord3D *destination);	///< ILT thunk at 0x0001C675
+};
+
+extern TerrainLogic *TheTerrainLogic;					///< retail [0x012EF4CC]
+
+// Two fields: retail never stores a back-pointer to the pathfinder.
+struct MADStruct
+{
+	Object *obj;										///< retail this+0x00
+	Int ignoreID;										///< retail this+0x04
+};
 
 class Pathfinder
 {
 public:
-	void moveAlliesAwayFromDestination(Object *, const Coord3D &);
+	void moveAlliesAwayFromDestination(Object *obj, const Coord3D &destination);
+
+private:
+	void worldToCell(const Coord3D *world, ICoord2D *cell);	///< ILT thunk at 0x000171E8
+	void iterateCellsAlongLine(const ICoord2D *from, const ICoord2D *to,
+			PathfindLayerEnum layer, MADStruct *info);		///< ILT thunk at 0x00014092
 };
 
 // ?moveAlliesAwayFromDestination@Pathfinder@@QAEXPAVObject@@ABUCoord3D@@@Z
-__declspec(naked) void Pathfinder::moveAlliesAwayFromDestination(Object *, const Coord3D &)
+void Pathfinder::moveAlliesAwayFromDestination(Object *obj,const Coord3D& destination)
 {
-	__asm {
-		__emit 0x83
-		__emit 0xec
-		__emit 0x18
-		__emit 0x53
-		__emit 0x55
-		__emit 0x56
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x24
-		__emit 0x28
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xf9
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0xbd
-		__emit 0x74
-		__emit 0xc4
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x6c
-		__emit 0x24
-		__emit 0x30
-		__emit 0x8b
-		__emit 0xd8
-		__emit 0x83
-		__emit 0xfb
-		__emit 0x01
-		__emit 0x75
-		__emit 0x0f
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0xcc
-		__emit 0xf4
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x55
-		__emit 0x56
-		__emit 0xe8
-		__emit 0x89
-		__emit 0x97
-		__emit 0xc2
-		__emit 0xff
-		__emit 0x8b
-		__emit 0xd8
-		__emit 0x8b
-		__emit 0x8e
-		__emit 0x04
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x10
-		__emit 0xe8
-		__emit 0x6e
-		__emit 0x74
-		__emit 0xc2
-		__emit 0xff
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x50
-		__emit 0x83
-		__emit 0xc6
-		__emit 0x38
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0xd7
-		__emit 0x42
-		__emit 0xc2
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x18
-		__emit 0x51
-		__emit 0x55
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0xca
-		__emit 0x42
-		__emit 0xc2
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x54
-		__emit 0x24
-		__emit 0x10
-		__emit 0x52
-		__emit 0x53
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x50
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x2c
-		__emit 0x51
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0x5d
-		__emit 0x11
-		__emit 0xc2
-		__emit 0xff
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x5b
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x18
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
+	PathfindLayerEnum layer = (PathfindLayerEnum)obj->getLayer();
+	if (layer==LAYER_GROUND) {
+		layer = TheTerrainLogic->getLayerForDestination(obj, &destination);
 	}
+
+	MADStruct info;
+	info.obj = obj;
+	info.ignoreID = obj->getAI()->getIgnoredObstacleID();
+
+	ICoord2D from, to;
+	worldToCell(obj->getPosition(), &from);
+	worldToCell(&destination, &to);
+	iterateCellsAlongLine(&from, &to, layer, &info);
+
 }
