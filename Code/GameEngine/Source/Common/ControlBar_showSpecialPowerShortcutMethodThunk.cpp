@@ -1,168 +1,98 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+// Lift the ControlBar::showSpecialPowerShortcut naked dump to clean C++.
+//
+// Zero Hour's ControlBar.cpp body with one BFME simplification: ZH's final
+// guard asks two questions -- whether the local player has any shortcut special
+// power and whether the control bar has any shortcut selection -- where retail
+// asks only the first.
+//
+// isGameEnding does not survive as a call; it inlines to a signed test of the
+// field at TheScriptEngine+0x17080, so the guard is a comparison rather than a
+// call. And the array null check is kept even though it cannot fail: retail
+// takes the address of the member array with lea and tests that, which is what
+// `!m_specialPowerShortcutButtons` compiles to when the member is an array
+// rather than a pointer.
+//
+// The loop and the layout are the same as animateSpecialPowerShortcut: button
+// array at this+0xCC, count at +0xF4, shortcut parent at +0xFC, and the count
+// re-read on every iteration.
 
-class __declspec(novtable) ControlBar
+typedef int Int;
+typedef bool Bool;
+
+class Player;
+
+class GameWindow
 {
 public:
-    void showSpecialPowerShortcut();
+	void *winGetUserData(void);							///< ILT thunk at 0x00046538
+	void winHide(unsigned char hide);					// matches the pin already in symbols.csv							///< ILT thunk at 0x00027F2A
+};
+
+class ScriptEngine
+{
+public:
+	Bool isGameEnding(void) const { return m_endGameTimer >= 0; }
+
+private:
+	unsigned char m_unreconstructed_00[0x17080];
+	Int m_endGameTimer;									///< retail this+0x17080
+};
+
+extern ScriptEngine *TheScriptEngine;					///< retail [0x012F076C]
+
+class Player
+{
+public:
+	// returns a 32-bit value: retail tests eax, not al
+	Int hasAnyShortcutSpecialPower(void);				///< ILT thunk at 0x0002331C
+};
+
+class PlayerList
+{
+public:
+	Player *getLocalPlayer(void) { return m_localPlayer; }
+
+private:
+	unsigned char m_unreconstructed_00[0x0C];
+	Player *m_localPlayer;								///< retail this+0x0C
+};
+
+extern PlayerList *ThePlayerList;						///< retail [0x012ED748]
+
+class ControlBar
+{
+public:
+	void showSpecialPowerShortcut(void);
+
+private:
+	void populateSpecialPowerShortcut(Player *player);	///< ILT thunk at 0x00024695
+
+	unsigned char m_unreconstructed_00[0xCC];
+	GameWindow *m_specialPowerShortcutButtons[10];		///< retail this+0xCC
+	Int m_currentlyUsedSpecialPowersButtons;			///< retail this+0xF4
+	unsigned char m_unreconstructed_F8[4];
+	GameWindow *m_specialPowerShortcutParent;			///< retail this+0xFC
 };
 
 // ?showSpecialPowerShortcut@ControlBar@@QAEXXZ
-__declspec(naked) void ControlBar::showSpecialPowerShortcut()
+void ControlBar::showSpecialPowerShortcut( void )
 {
-    __asm {
-        __emit 0xa1
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x88
-        __emit 0x80
-        __emit 0x70
-        __emit 0x01
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x0f
-        __emit 0x8d
-        __emit 0x81
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x86
-        __emit 0xfc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x77
-        __emit 0x53
-        __emit 0x8d
-        __emit 0x9e
-        __emit 0xcc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xdb
-        __emit 0x74
-        __emit 0x6b
-        __emit 0xa1
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x62
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x5b
-        __emit 0x8b
-        __emit 0x86
-        __emit 0xf4
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x57
-        __emit 0x33
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7e
-        __emit 0x4d
-        __emit 0x8b
-        __emit 0x0b
-        __emit 0xe8
-        __emit 0x19
-        __emit 0x5d
-        __emit 0xba
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x86
-        __emit 0xf4
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x47
-        __emit 0x83
-        __emit 0xc3
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xf8
-        __emit 0x7c
-        __emit 0xe7
-        __emit 0x5f
-        __emit 0x5b
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x49
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0xd9
-        __emit 0x2a
-        __emit 0xb8
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x1e
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0xfc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xd6
-        __emit 0x76
-        __emit 0xb8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x15
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x42
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x30
-        __emit 0x3e
-        __emit 0xb8
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5b
-        __emit 0x5e
-        __emit 0xc3
-    }
+	if(TheScriptEngine->isGameEnding() || !m_specialPowerShortcutParent
+		||!m_specialPowerShortcutButtons || !ThePlayerList || !ThePlayerList->getLocalPlayer())
+		return;
+	Bool dontAnimate = true;
+	for( Int i = 0; i < m_currentlyUsedSpecialPowersButtons; ++i )
+	{
+		if (m_specialPowerShortcutButtons[i]->winGetUserData())
+		{
+			dontAnimate = false;
+			break;
+		}
+	}
+	if( dontAnimate || !ThePlayerList->getLocalPlayer()->hasAnyShortcutSpecialPower() )
+		return;
+	m_specialPowerShortcutParent->winHide(false);
+	populateSpecialPowerShortcut(ThePlayerList->getLocalPlayer());
+
 }
