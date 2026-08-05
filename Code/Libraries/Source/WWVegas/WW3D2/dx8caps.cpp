@@ -668,13 +668,32 @@ void DX8Caps::Compute_Caps(WW3DFormat display_format, const D3DADAPTER_IDENTIFIE
 //
 // ----------------------------------------------------------------------------
 
-// ?Check_Bumpmap_Support@DX8Caps@@AAEXABU_D3DCAPS8@@@Z present-unmatched
+// Same overlay trick as BFME_DX8Caps_CheckShaderFields below: BFME's DX8Caps is
+// laid out differently from Zero Hour's and reconciling the whole class is a
+// separate job, so the two members this function touches are reached at retail's
+// offsets. SupportBumpEnvmap sits at 0x13c where our class puts it at 0xe0, and
+// CapsLog at 0x2a4 where ours has 0x14c -- the same 0x2a4 the shader overlay
+// already uses, which is the corroboration that these two are one layout and not
+// two guesses.
+struct BFME_DX8Caps_CheckBumpmapFields
+{
+	char pad[0x13c];
+	bool supportBumpEnvmap;					// 0x13c
+	bool supportBumpEnvmapLuminance;		// 0x13d
+	char padAfterFlags[0x2a4 - 0x13e];
+	StringClass capsLog;					// 0x2a4
+};
+
+// ?Check_Bumpmap_Support@DX8Caps@@AAEXABU_D3DCAPS8@@@Z
 void DX8Caps::Check_Bumpmap_Support(const D3DCAPS8& caps)
 {
-	SupportBumpEnvmap=!!(caps.TextureOpCaps & D3DTEXOPCAPS_BUMPENVMAP);
-	SupportBumpEnvmapLuminance=!!(caps.TextureOpCaps & D3DTEXOPCAPS_BUMPENVMAPLUMINANCE);
-	DXLOG(("Bumpmap support: %s\r\n",SupportBumpEnvmap ? "Yes" : "No"));
-	DXLOG(("Bumpmap luminance support: %s\r\n",SupportBumpEnvmapLuminance ? "Yes" : "No"));
+	BFME_DX8Caps_CheckBumpmapFields *retail = (BFME_DX8Caps_CheckBumpmapFields *)this;
+	retail->supportBumpEnvmap=!!(caps.TextureOpCaps & D3DTEXOPCAPS_BUMPENVMAP);
+	retail->supportBumpEnvmapLuminance=!!(caps.TextureOpCaps & D3DTEXOPCAPS_BUMPENVMAPLUMINANCE);
+	CapsWorkString.Format("Bumpmap support: %s\r\n",retail->supportBumpEnvmap ? "Yes" : "No");
+	retail->capsLog+=CapsWorkString;
+	CapsWorkString.Format("Bumpmap luminance support: %s\r\n",retail->supportBumpEnvmapLuminance ? "Yes" : "No");
+	retail->capsLog+=CapsWorkString;
 }
 
 // ----------------------------------------------------------------------------
