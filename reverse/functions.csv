@@ -62478,8 +62478,6 @@ _atan2f,,0x001486E0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?ParseScriptListDataChunk@ScriptList@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,,0x00350F50,153,Code/GameEngine/Source/Common/ScriptList_ParseScriptListDataChunkThunk.cpp,matched,Open-BFME5 MASM lift ParseScriptListDataChunk
 ??0Template@@QAE@XZ,,0x00351260,149,Code/GameEngine/Source/GameLogic/ScriptEngine/TemplateCtorThunk.cpp,matched,1:1 C++ thunk from certified retail ScriptEngine constructor
 ?WriteParameter@Parameter@@QAEXAAVDataChunkOutput@@@Z,,0x00351320,167,Code/GameEngine/Source/GameLogic/ScriptEngine/Parameter_WriteParameter_Thunk.cpp,matched,clean C++ conversion; ZH Scripts.cpp body; getNameFromSingleBit inlines to a bounds-checked table lookup over 181 entries; type at this+0x00 int at +0x08 real at +0x0C string at +0x10 coord at +0x14
-?WriteActionDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003513F0,160,Code/GameEngine/Source/Common/ScriptAction_WriteActionDataChunk_Thunk.cpp,matched,Ghidra-bound BFME script-action writer
-?WriteActionFalseDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003514C0,160,Code/GameEngine/Source/Common/ScriptAction_WriteActionFalseDataChunk_Thunk.cpp,matched,Ghidra-bound BFME false-action writer
 ?m@Gen_00351720@@QAEPAXHH@Z,,0x00351720,11,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=this-store-arg2;ghidra=FUN_00751720
 ?m@Gen_00351730@@QAEPAXHH@Z,,0x00351730,11,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=this-store-arg2;ghidra=FUN_00751730
 ?m@Gen_00351790@@QAEPAXHH@Z,,0x00351790,11,Code/gen_small/fun_002.cpp,matched,gen-shim;skeleton=this-store-arg2;ghidra=FUN_00751790
@@ -92767,10 +92765,10 @@ uw_00c18e50,,0x00C18E50,8,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptAc
 uw_00c172c0,,0x00C172C0,8,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,gen-funclet;parent=?evaluateHasUnits@ScriptConditions@@IAE_NPAVParameter@@@Z;object-symbol=$L86514
 uw_00c17370,,0x00C17370,8,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,gen-funclet;parent=?evaluateNamedReachedWaypointsEnd@ScriptConditions@@IAE_NPAVParameter@@0@Z;object-symbol=$L85583
 uw_00c17493,,0x00C17493,14,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,gen-funclet;parent=?evaluateSkirmishSuppliesWithinDistancePerimeter@ScriptConditions@@IAE_NPAVParameter@@000@Z;object-symbol=$L92093
-uw_00c19370,,0x00C19370,8,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,gen-funclet;parent=?getUiText@Parameter@@QBE?AVAsciiString@@XZ;object-symbol=$L64293
-uw_00c19378,,0x00C19378,8,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,gen-funclet;parent=?getUiText@Parameter@@QBE?AVAsciiString@@XZ;object-symbol=$L64294
-uw_00c194a8,,0x00C194A8,19,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,gen-funclet;parent=?getUiText@ScriptAction@@QAE?AVAsciiString@@XZ;object-symbol=$L65540
-uw_00c196c0,,0x00C196C0,8,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,gen-funclet;parent=?ParseOrConditionDataChunk@OrCondition@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z;object-symbol=$L69122
+uw_00c19370,,0x00C19370,8,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,gen-funclet;parent=?getUiText@Parameter@@QBE?AVAsciiString@@XZ;object-symbol=$L64250
+uw_00c19378,,0x00C19378,8,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,gen-funclet;parent=?getUiText@Parameter@@QBE?AVAsciiString@@XZ;object-symbol=$L64251
+uw_00c194a8,,0x00C194A8,19,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,gen-funclet;parent=?getUiText@ScriptAction@@QAE?AVAsciiString@@XZ;object-symbol=$L65497
+uw_00c196c0,,0x00C196C0,8,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,gen-funclet;parent=?ParseOrConditionDataChunk@OrCondition@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z;object-symbol=$L69079
 uw_00c1af30,,0x00C1AF30,8,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,gen-funclet;parent=?setName@CrateTemplate@@QAEXVAsciiString@@@Z;object-symbol=$L34530
 uw_00c1afc0,,0x00C1AFC0,8,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,gen-funclet;parent=??1CrateSystem@@UAE@XZ;object-symbol=$L36976
 uw_00c1b0b0,,0x00C1B0B0,8,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,gen-funclet;parent=?newCrateTemplate@CrateSystem@@QAEPAVCrateTemplate@@VAsciiString@@@Z;object-symbol=$L37854
@@ -94118,3 +94116,5 @@ _send_heartbeat,,0x00856900,1620,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/
 ??4PivotClass@@QAEAAU0@ABU0@@Z,,0x00972EF0,395,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,clean C++; copies PivotFade like every other member
 ??0PivotClass@@QAE@XZ,,0x009733F0,187,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,clean C++; BFME initialises PivotFade to 1.0f which the Zero Hour ctor has no member for
 ??0Anim2DTemplate@@QAE@VAsciiString@@@Z,,0x005BAD80,124,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_ctor.cpp,matched,clean C++ lifted from Anim2DTemplate_ctor_dtor.asm; standalone TU so Anim2D.cpp labels do not renumber; needs asciistring_outofline so m_name = name calls operator= at 0x887C90
+?WriteActionDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003513F0,160,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,clean C++; needs reference/shims/scriptenginevtable for the three BFME virtuals ahead of getActionTemplate and for Template having no pooled base
+?WriteActionFalseDataChunk@ScriptAction@@SAXAAVDataChunkOutput@@PAV1@@Z,,0x003514C0,160,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,clean C++; same shim as its twin
