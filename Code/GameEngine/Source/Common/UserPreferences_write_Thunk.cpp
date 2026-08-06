@@ -1,176 +1,82 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift UserPreferences::write to clean C++.
+typedef int Int;
+typedef bool Bool;
 
-class __declspec(novtable) UserPreferences {
+struct FILEShim;
+
+extern "C" __declspec(dllimport) FILEShim *__cdecl fopen(const char *path, const char *mode);
+extern "C" __declspec(dllimport) int __cdecl fprintf(FILEShim *fp, const char *fmt, ...);
+extern "C" __declspec(dllimport) int __cdecl fclose(FILEShim *fp);
+
+struct AsciiStringDataShim
+{
+	unsigned char m_unreconstructed_00[4];
+	unsigned short m_length;
+	unsigned char m_unreconstructed_06[2];
+};
+
+class AsciiString
+{
 public:
-	virtual bool write();
+	Bool isEmpty(void) const { return m_data == 0 || m_data->m_length == 0; }
+	const char *str(void) const
+	{
+		return m_data ? (const char *)((unsigned char *)m_data + 8) : "";
+	}
+	AsciiStringDataShim *m_data;
+};
+
+struct PrefMapNodeShim
+{
+	unsigned char m_unreconstructed_00[0x10];
+	AsciiString m_key;
+	AsciiString m_value;
+};
+
+struct PrefMapShim
+{
+	unsigned char m_unreconstructed_00[8];
+	PrefMapNodeShim *m_begin;
+};
+
+PrefMapNodeShim *prefMapIncrement(PrefMapNodeShim *node);
+
+class UserPreferences
+{
+public:
+	virtual Bool write(void);
+
+private:
+	PrefMapShim *m_map;									///< this+0x04
+	unsigned char m_unreconstructed_08[8];
+	AsciiString m_filename;								///< this+0x10
 };
 
 // ?write@UserPreferences@@UAE_NXZ
-__declspec(naked) bool UserPreferences::write()
+Bool UserPreferences::write(void)
 {
-	__asm {
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xf9
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x10
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x07
-		__emit 0x66
-		__emit 0x83
-		__emit 0x78
-		__emit 0x04
-		__emit 0x00
-		__emit 0x75
-		__emit 0x04
-		__emit 0x32
-		__emit 0xc0
-		__emit 0x5f
-		__emit 0xc3
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x10
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x8c
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x53
-		__emit 0x68
-		__emit 0xa8
-		__emit 0x6f
-		__emit 0x07
-		__emit 0x01
-		__emit 0x50
-		__emit 0xff
-		__emit 0x15
-		__emit 0x68
-		__emit 0x93
-		__emit 0x35
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xd8
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xdb
-		__emit 0x74
-		__emit 0x61
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x04
-		__emit 0x56
-		__emit 0x8b
-		__emit 0x70
-		__emit 0x08
-		__emit 0x3b
-		__emit 0xf0
-		__emit 0x74
-		__emit 0x46
-		__emit 0x55
-		__emit 0x8b
-		__emit 0x2d
-		__emit 0xc0
-		__emit 0x93
-		__emit 0x35
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x14
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x8d
-		__emit 0x48
-		__emit 0x08
-		__emit 0x75
-		__emit 0x05
-		__emit 0xb9
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x10
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x51
-		__emit 0x50
-		__emit 0x68
-		__emit 0xa0
-		__emit 0x0f
-		__emit 0x08
-		__emit 0x01
-		__emit 0x53
-		__emit 0xff
-		__emit 0xd5
-		__emit 0x56
-		__emit 0xe8
-		__emit 0x90
-		__emit 0x18
-		__emit 0x78
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xf0
-		__emit 0x8b
-		__emit 0x47
-		__emit 0x04
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x14
-		__emit 0x3b
-		__emit 0xf0
-		__emit 0x75
-		__emit 0xc4
-		__emit 0x5d
-		__emit 0x53
-		__emit 0xff
-		__emit 0x15
-		__emit 0xa0
-		__emit 0x93
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0xb0
-		__emit 0x01
-		__emit 0x5f
-		__emit 0xc3
-		__emit 0x5b
-		__emit 0x32
-		__emit 0xc0
-		__emit 0x5f
-		__emit 0xc3
+	if (m_filename.isEmpty())
+		return false;
+
+	FILEShim *fp = fopen(m_filename.str(), "w");
+
+	// Success is the fall-through and the open failure jumps forward to a tail
+	// return: writing `if (!fp) return false;` inlines that exit instead, which
+	// retail does only for the empty-filename case, where the register state
+	// differs and the two cannot share an epilogue anyway.
+	if (fp)
+	{
+		PrefMapNodeShim *node = m_map->m_begin;
+		while (node != (PrefMapNodeShim *)m_map)
+		{
+			fprintf(fp, "%s = %s\n", node->m_key.str(), node->m_value.str());
+			node = prefMapIncrement(node);
+		}
+
+		fclose(fp);
+		return true;
 	}
+
+	return false;
 }
