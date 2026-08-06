@@ -2610,3 +2610,27 @@ WW3DErrorType at all -- it returns a byte type, and the row's name came from Zer
 Hour. If so the decorated name should be `_N` rather than `?AW4WW3DErrorType@@`, which
 is checkable against the vtable slot and is the next step rather than another cast.
 Reverted; a two-byte near-miss is still a near-miss.
+
+## What actually blocks the naked backlog, counted
+
+972 rows still carry a `__declspec(naked)` body. Sorting them by the first blocker
+each one hits:
+
+    625  64.3%  172,346B  SEH prologue -- needs unwind funclets
+    224  23.0%   52,272B  no known blocker
+     59   6.1%   27,352B  name contradicted by its own bytes (tools/screen_identity.py)
+     44   4.5%   13,290B  by-value class stash, which no /EH setting reproduces
+     20   2.1%    6,300B  ebp frame, so not /O2 as this build is configured
+
+Two things worth taking from that. The SEH bucket is nearly two thirds of the backlog
+and a third of its bytes, so learning to reproduce unwind funclets is worth more than
+any number of individual conversions -- everything else is a rounding error beside it.
+
+And the 224 unblocked rows are a real pool, not a residue. I had previously concluded
+the easy candidates were exhausted; that was wrong, and wrong in an instructive way.
+The sweep behind that claim also demanded a size window and an arity match, and the
+arity check silently skips every row whose argument list cannot be sized from the name
+-- classes by value, templates, varargs. Those skips are correct as "no opinion" for
+flagging, but treating them as disqualifying turned a wide pool into a handful of rows.
+A filter built from several signals inherits the narrowest one; check what it excluded,
+not just what it returned.
