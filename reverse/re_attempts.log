@@ -799,3 +799,9 @@ tools/screen_blockers.py			tool	ranks naked rows by blocker byte signature; firs
 ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	/O1 and /O2 /Os put zero in a register matching retail; /O2 puts the one in a register and aligns loops; retail has both
 ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	/O2 /G6 made no difference on this body
 tools/build.py			fix	source_extra_flags now reads utf-8-sig; a BOM used to silently drop the whole // cl: directive
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	progress	/GX- /O2 /Ob2 removes the SEH prologue and gets the ctor inlined; both earlier blockers gone
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	remaining gap is zero sharing: retail uses test esi esi then a fresh xor per member ctor with its own lea'd this
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	rebuild hoists one zero into edi costing push edi and folds both lea's into [esi+disp] addressing
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	/Og- overshoots: inlining stops entirely and an ebp frame with stack locals appears
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	splitting the two runs into distinct struct types changed nothing so the merge is not source-steerable
+flags			reference	/DNDEBUG /MD /GX- /O2 /Ob2 is already proven on 118 files in the tree; try it before any bespoke flag search

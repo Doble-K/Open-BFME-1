@@ -2853,3 +2853,45 @@ experiment is known to have run. Four builds were spent concluding a flag did no
 matter, when the flag was never passed. Before believing a negative result, prove the
 input reached the thing under test -- here, a `#ifndef GUARD / #error` in the source
 answered it in one build.
+
+
+## Survey the flag sets already proven in the tree before inventing one
+
+Two functions were written off this session as blocked on "constant materialisation",
+with the reasoning that no source spelling moved them. That reasoning was sound and the
+conclusion was still wrong, because the per-file `// cl:` directive is a second axis and
+it had never been searched.
+
+There is no need to search it blind. The tree already records every flag set that has
+been proven to reproduce retail bytes, one per source file, and counting them takes a
+second:
+
+    1704  /DNDEBUG /MD /EHsc
+     118  /DNDEBUG /MD /GX- /O2 /Ob2
+      59  /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+       1  /DNDEBUG /MD /EHsc /Og-
+
+That /GX- /O2 /Ob2 line is 118 files' worth of evidence that some of this binary was
+built with exceptions off and aggressive inlining on. Applied to
+SabotageMilitaryFactoryCrateCollide::friend_newModuleData it removed both of that
+function's recorded blockers at once -- the SEH prologue that /EHsc wraps around a new
+expression, and the out-of-line constructor call that no amount of defining the
+constructor in the translation unit would inline.
+
+What is left there is narrower and worth stating precisely, because it is the same shape
+seen elsewhere: retail checks the allocation with test esi,esi and then builds each of
+the two member runs independently, a fresh xor for its zero and its own lea'd this
+pointer. The rebuild finds the common zero, hoists it into edi at the cost of saving the
+register, and folds both lea's into [esi+disp] addressing. Splitting the two runs into
+distinct struct types did not stop the merge, so that part genuinely is not source-
+steerable -- but note that this is the mirror image of removeAllShadows, where the
+rebuild refused to share a zero that retail did share. Same flags, opposite decisions,
+which is what makes it a heuristic rather than a switch.
+
+/Og- is not the answer either: it overshoots, stopping inlining altogether and producing
+an ebp frame with stack locals.
+
+The general point: when the source has been ruled out, the flags are the next axis, and
+the cheapest move is to sort the existing directives by frequency and try the ones the
+project has already proven rather than reasoning from first principles about /O1 versus
+/O2.
