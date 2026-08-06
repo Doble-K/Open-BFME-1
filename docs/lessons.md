@@ -2925,3 +2925,36 @@ same bytes, so it is not any of the settings the tree has already established.
 Worth noting retail's form is the larger one -- 39 bytes against 35 -- so whatever
 selects it is not favouring size, and /O1 is therefore unlikely to be the answer here
 even though it was decisive on removeAllShadows.
+
+
+## Two reusable levers: the element destructor, and signedness
+
+??0FastAllocatorGeneral@@QAE@XZ went from nothing to three of its four divergences
+solved in three builds, and two of the fixes generalise to any similar row.
+
+The leading call is the vector constructor iterator ??_L. Its arguments are the whole
+layout, free of charge: (this, 0x18, 0x80, ctor, dtor) says the first member is an array
+of 128 objects of size 0x18 at offset 0, which is why the zeroed run that follows starts
+at exactly +0xC00. Reading the helper's arguments settled the class in one step where
+guessing offsets would have taken several builds.
+
+Getting that helper emitted at all is the first lever. A member array of class type is
+built with an inline loop calling the element constructor unless the element type has a
+destructor -- then MSVC needs cleanup for a partially constructed array and switches to
+??_L, passing the destructor as the fifth argument. So a call to ??_L in the target is
+positive evidence that the element type has a declared destructor, and declaring one is
+what makes the rebuild match.
+
+The second lever is signedness, which is visible in a single byte. Retail compares the
+running allocation size with jb, the unsigned branch; the same source with a signed int
+gives jl. A `72` where the rebuild has `7c` is not a scheduling difference or a register
+choice, it is the declared type of a local, and it is worth checking for directly
+whenever a comparison is the only thing out of place.
+
+What is still open is narrow and precisely stated: retail zeroes the 128-entry free list
+with an explicit store loop -- lea, a down-counter in edx, then mov [eax],ecx / add
+eax,4 / dec edx / jne -- while MSVC recognises the fill and emits rep stosd. An indexed
+for loop, an explicit pointer walked with a do-while down-counter, and /Oi- all produce
+rep stosd; /Oi- governs intrinsic functions like memcpy, not this loop-idiom
+recognition, so it is the wrong knob. Everything else in the function, including the
+whole second loop and the tail, already matches byte for byte.

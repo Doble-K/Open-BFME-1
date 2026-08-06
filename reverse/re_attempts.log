@@ -811,3 +811,9 @@ flags			reference	/DNDEBUG /MD /GX- /O2 /Ob2 is already proven on 118 files in t
 ??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	note	tried two named members and a two-element array; byte-identical output so the shape is not source-steerable
 ??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	note	tried /EHsc default and the proven /GX- /O2 /Ob2; byte-identical output
 ??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	note	use this row to test any future flag hypothesis: one build and the signal is unambiguous
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	near-miss	three of four divergences solved in three builds; only the zero-fill loop remains
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	solved	declaring a destructor on the element type switches array construction from an inline loop to the ??_L vector ctor iterator
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	solved	the running size must be unsigned; retail compares with jb and a signed int gives jl
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	solved	layout confirmed by the ??_L arguments: 128 elements of 0x18 at offset 0 then the free list at +0xC00 then four fields at +0xE00
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	open	MSVC turns the 128-dword zero fill into rep stosd; retail stores through a running pointer with add 4 and dec
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	note	tried an indexed for loop then an explicit pointer with a do-while down-counter then /Oi-; all still emit rep stosd
