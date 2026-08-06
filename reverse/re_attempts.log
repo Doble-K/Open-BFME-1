@@ -844,3 +844,10 @@ tools/screen_blockers.py			tool	candidate pool at 150 bytes drops from 25 to 19 
 ?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	note	shape is if the AsciiString at +0x4c is empty then set it from one of two literals with lengths 7 and 6 via ?set@AsciiString@@QAEXPBDH@Z
 ?friend_newModuleData@FireWeaponCollide@@SAPAVModuleData@@PAVINI@@@Z	0x00127D00	106	mapped	same materialised-pointer shape as the Sabotage row so it is in the folding family
 ?friend_newModuleData@FireWeaponCollide@@SAPAVModuleData@@PAVINI@@@Z	0x00127D00	106	note	two 12-byte groups at +0x0C and +0x18 are each zeroed twice with a different zero register each time
+?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	identity-suspect	body has nothing to do with audio; not converted under this name
+?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	evidence	sets the AsciiString at +0x4c to the literal shadows length 7 or shadow length 6 via ?set@AsciiString@@QAEXPBDH@Z
+?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	evidence	the selector at 0x0087E8D0 tests a vector of 36-byte elements at +0x2c and +0x30 for size 1 and first field 2
+?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	evidence	only reachable from ?parseObjectDefinition@INI@@ through the thunk at 0x0001D44E; no vtable slot holds it
+?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	evidence	Zero Hour's validateAudio is wholly inside #if _DEBUG or _INTERNAL and contains only assertion macros so a release build has no such body
+?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	note	not tombstoned: the pair is unsupported by the evidence but the correct name is not yet known
+?b_0087e8d0@@YAXXZ	0x0087E8D0	48	unpinned	selector used by 14 call sites; naming it unblocks this row and probably several nearby

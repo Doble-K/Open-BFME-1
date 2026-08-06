@@ -3061,3 +3061,34 @@ The scope matters for deciding whether to keep pushing: constructors of the form
 them still naked. This one optimisation stands in front of most of that. It is a better
 target than any individual row, and it is the strongest reason yet to suspect the
 retail build used a compiler configuration this toolchain cannot express.
+
+
+## Read a naked row's literals and its callers before trusting its name
+
+A __declspec(naked) row byte-matches whatever name is attached to it, so the gate never
+tests identity. tools/screen_identity.py catches the signature-level contradictions --
+return width, stack cleanup -- but it cannot see meaning, and meaning is where this one
+went wrong.
+
+?validateAudio@ThingTemplate@@IAEXXZ at 0x0013E2F0 is sixty bytes that set the
+AsciiString at +0x4c to "shadows" or "shadow" -- literals of length 7 and 6, passed to
+?set@AsciiString@@QAEXPBDH@Z -- choosing between them on a test of a vector of 36-byte
+elements. There is no audio anywhere in it. It is reachable only from
+?parseObjectDefinition@INI@@ via the thunk at 0x0001D44E, and no vtable slot holds its
+address. And Zero Hour's validateAudio is wholly inside #if defined(_DEBUG) ||
+defined(_INTERNAL) and contains nothing but assertion macros, so a release build has no
+such function at all.
+
+Three cheap checks did that, and all three are worth running on any naked row before
+spending build time on it: read its string literals, list its callers, and compare the
+reference implementation's build-configuration guards. None of them needs a compile.
+
+The row is flagged rather than tombstoned. The evidence does not support the pair, but
+the correct name is not known yet, and tombstoning a row someone else may be anchored to
+on the strength of "this looks wrong" would trade one error for another.
+
+One mechanical trap found on the way. Function addresses in this project are RVAs, but
+the absolute operands inside the instructions are virtual addresses, and the image base
+is 0x00400000. Reading a string at the address printed in a disassembly listing without
+subtracting the base silently lands outside every section -- which at least fails loudly.
+Getting it wrong in the other direction, on an address that happens to map, would not.
