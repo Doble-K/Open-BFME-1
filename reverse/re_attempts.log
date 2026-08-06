@@ -817,3 +817,9 @@ flags			reference	/DNDEBUG /MD /GX- /O2 /Ob2 is already proven on 118 files in t
 ??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	solved	layout confirmed by the ??_L arguments: 128 elements of 0x18 at offset 0 then the free list at +0xC00 then four fields at +0xE00
 ??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	open	MSVC turns the 128-dword zero fill into rep stosd; retail stores through a running pointer with add 4 and dec
 ??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	note	tried an indexed for loop then an explicit pointer with a do-while down-counter then /Oi-; all still emit rep stosd
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	blocked	rep stosd conversion is inside /Og and /Og- is unusable; no available setting reproduces retail
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	note	/Og- does remove rep stosd but degrades the whole function to an ebp frame with stack locals
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	note	/G5 changed nothing so the string-instruction choice is not processor-target dependent here
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	note	making the free list a constructed member array does not help; MSVC recognises the fill after inlining the element ctor
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	note	only the vs2003 toolchain is vendored so an alternate compiler version is not an available axis
+??0FastAllocatorGeneral@@QAE@XZ	0x00B027B0	113	note	everything except that one loop matches byte for byte including the ??_L call and the whole second loop

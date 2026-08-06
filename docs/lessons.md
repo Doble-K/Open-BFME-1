@@ -2958,3 +2958,36 @@ for loop, an explicit pointer walked with a do-while down-counter, and /Oi- all 
 rep stosd; /Oi- governs intrinsic functions like memcpy, not this loop-idiom
 recognition, so it is the wrong knob. Everything else in the function, including the
 whole second loop and the tail, already matches byte for byte.
+
+
+## Bounding a blocker is a result: rep stosd lives inside /Og
+
+The one thing still separating ??0FastAllocatorGeneral@@QAE@XZ from byte-exact is a
+128-entry zero fill that retail writes as an explicit store loop and MSVC turns into
+rep stosd. This pass bounded it rather than solved it, and the bound is worth recording
+because it closes several axes at once.
+
+Source form does not control it. An indexed for loop, an explicit pointer walked with a
+do-while down-counter, and -- the most promising idea, since retail's shape is exactly
+what MSVC's own array construction emits -- making the free list an array of a small
+class whose constructor zeroes its member, all produce identical bytes. That last one is
+the informative failure: MSVC builds the member array with an inline loop, inlines the
+element constructor into it, and then recognises the resulting fill. The recognition
+happens after inlining, so no amount of hiding the fill behind a constructor escapes it.
+
+Flags do not control it either, within what is reachable. /Oi- governs intrinsic
+functions like memcpy, not this loop idiom. /G5 changes nothing, so it is not a
+processor-target decision. /Og- does remove the rep stosd -- which pins the transform
+inside the global optimiser -- but /Og is load-bearing for everything else in the
+function, and with it off the body degrades to an ebp frame with stack locals and
+nothing else matches. There is no middle setting.
+
+And the compiler itself is not an axis: only the vs2003 toolchain is vendored, so
+"maybe this file was built with a different compiler" cannot be tested here even though
+it remains the most likely explanation.
+
+So the honest statement is that no configuration reachable from this tree reproduces
+this loop, with everything else in the function -- the ??_L call, the four field stores,
+the entire second loop and the tail -- already byte-identical. That is a much more
+useful thing to leave behind than "blocked": it tells the next person which four ideas
+not to spend builds on.
