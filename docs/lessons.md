@@ -2739,3 +2739,39 @@ genuinely different spellings compile to the same bytes, the lever is not in the
 Also, second validation of the funclet re-key: tools/rekey_funclets.py reported RAGGED
 again on this translation unit and was again correct, with all 559 other rows still
 verifying. The warning flags a non-uniform shift, not a failure.
+
+
+## Where a constant lives is the compiler's decision, and it cascades
+
+removeAllShadows walks three shadow lists, clearing each head and setting a byte flag
+on every node. The structure fell out of the disassembly immediately and the rebuild
+reproduced all of it. The whole delta is that retail materialises zero into edx and uses
+it nine times -- `cmp eax,edx` for six null tests and `mov [ecx+N],edx` for three head
+clears -- where the rebuild emits `test eax,eax` and `c7` immediate stores.
+
+The cascade is what makes this worth recording. Because retail spent edx on the zero,
+the constant 1 for the flag had to go somewhere else, so it landed in ebx, so the
+function pays a push and a pop it would not otherwise need. One allocation decision
+changed the encoding of nine instructions, the choice of two registers, and the
+prologue. Reading the diff as several independent problems would be wrong; it is one.
+
+Three genuinely different source structures were tried: three inline loops, a named
+null constant used by every site, and a helper taking the head by reference and inlined
+three times. All three compiled to byte-identical output. Adding /O1 to the per-file cl
+directive changed nothing either, even though retail's encoding is the smaller one, so
+it is not simply a size-versus-speed setting.
+
+That is the strongest form of the diagnostic already recorded here: when several
+genuinely different spellings produce identical bytes, the lever is not in the source.
+Four builds is too many to spend confirming it, and the tell was available after the
+first -- a diff consisting only of constant-materialisation forms, with every load,
+branch and memory offset already correct, is this family and should be abandoned at
+once rather than probed.
+
+Note also how the screening tool failed. tools/screen_blockers.py rejects rows carrying
+a known blocker signature, and its first version matched the function-local static guard
+as a byte load followed directly by `test al,cl`. MSVC puts `mov eax,1` in between, so
+the pattern never matched and the entire family -- the one proven blocked an hour
+earlier -- was reported as clear. It was caught only by running the screener against a
+row already known to be blocked. A detector that has never been shown a true positive
+is not yet evidence of anything.

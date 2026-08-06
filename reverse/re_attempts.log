@@ -781,3 +781,10 @@ __CxxThrowException@8	no-match	ledger hazard found while converting ThingTemplat
 ?getInstance@?$ConcreteModuleClass@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	note	same cause keeps the base vtable store alive: independent immediate stores never become recognisably dead
 ?getInstance@?$ConcreteModuleClass@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	note	spelling this vs a local self pointer in the inlined ctor produced byte-identical output so the lever is not in the source
 ?getInstance@?$ConcreteModuleClass@UOrthoEmissionVelocityModuleTag@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	note	funclet re-key validated a second time: RAGGED warning again yet all 559 other rows in the TU still verified
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	blocked	constant-in-register family; 4 builds; reverted
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	structure correct: three list walks clearing heads at +0x0C then +4 then +8 flag byte at +4 link at +0xD4
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	retail keeps zero in edx using cmp eax edx and mov [ecx+N] edx; rebuild uses test eax eax and c7 immediate stores
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	that one choice cascades: retail needs ebx for the 1 and pays push/pop where the rebuild uses dl and needs no save
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	three source structures gave byte-identical output: three inline loops then a named null constant then a helper inlined three times
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	adding /O1 to the per-file cl directive also changed nothing even though retails encoding is the smaller one
+tools/screen_blockers.py			tool	ranks naked rows by blocker byte signature; first version passed the whole static-fn family as clear
