@@ -2707,3 +2707,35 @@ kind of thing that costs several builds to find by trial if you start from a fla
 Built byte-exact on the first attempt -- the first candidate this session chosen by
 predicting which blocker family it would land in before writing any of it, rather than
 discovering the blocker after two or three builds.
+
+
+## A function-local static folds its own address, and that changes the whole body
+
+ConcreteModuleClass<Tag>::getInstance is the MSVC function-local static idiom, and the
+constructor it inlines is already byte-exact as its own row, so writing getInstance as
+`static X theInstance; return theInstance;` looked like it should fall straight out.
+It does not, and the reason generalises.
+
+Retail materialises &theInstance into edx once and then stores from registers -- a3 for
+the value in eax, 89 15 and 89 0d for edx and ecx. The rebuild folds the static's address
+into every store as a c7 05 immediate, because to the compiler that address genuinely is
+a compile-time constant. Fifteen bytes longer, every load otherwise identical and in the
+same form.
+
+The second-order effect is the interesting part. The constructor writes the base vtable
+at +0 and then immediately overwrites it with the derived vtable. Retail eliminates the
+first store; the rebuild keeps it. That is the same cause, not a separate one: once each
+store is an independent absolute-address instruction rather than a chain through one
+register, the redundant one no longer presents as dead in the same way. One allocation
+decision moved both the encoding and the dead-store elimination.
+
+So this joins the immediate-versus-register split as a blocker family, and it is worth
+recognising early: whenever the target holds an object's address in a register across
+several stores and the rebuild emits absolute forms, the difference is not going to be
+fixed by rephrasing. Rewriting the inlined constructor to store through a named local
+instead of `this` produced byte-identical output, which is the confirmation -- when two
+genuinely different spellings compile to the same bytes, the lever is not in the source.
+
+Also, second validation of the funclet re-key: tools/rekey_funclets.py reported RAGGED
+again on this translation unit and was again correct, with all 559 other rows still
+verifying. The warning flags a non-uniform shift, not a failure.
