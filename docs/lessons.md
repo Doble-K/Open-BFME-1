@@ -2661,3 +2661,21 @@ So the state is: no source form tried reproduces this, and the reason is the coa
 the addressing. Two rules fall out. Probe in the context the code actually appears in, and
 search for the thing that would DISPROVE the result rather than the thing that would
 confirm it -- a substring that can occur incidentally is not evidence.
+
+## Group locals into the struct they came from to fix frame layout
+
+W3DCameoMovieDraw came down to two displacement bytes: four out-parameters that retail
+reaches high in the frame and my version placed the other way round. Written as four
+loose Ints the pairs came out adjacent but in the wrong order, and swapping the
+declaration order did not move them -- which looked like confirmation of the older note
+here that local slot assignment is not steerable.
+
+It is steerable, just not by declaration order. Declaring the position and size as two
+ICoord2D structs -- which is what Zero Hour uses -- fixed it outright. A struct forces
+both the adjacency and the relative order of its members, where separate locals leave
+both to the allocator and it has its own opinion.
+
+So when a body is otherwise byte-identical and only stack displacements differ, the
+question is not what order the locals were declared in but whether they were locals at
+all. Two Ints passed by address to a pair of accessors is very often one small struct in
+the original, and the frame layout is the evidence for it.

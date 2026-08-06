@@ -11407,7 +11407,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Value@CRCEngine@@IBEJXZ,,0x009E8020,17,Code/Libraries/Source/WWVegas/WWLib/crc.cpp,matched,
 ?Version1@Xfer@@QAEXXZ,0x000429C9,0x000C7E90,21,Code/GameEngine/Source/Common/System/Xfer.cpp,matched,xfer version 1 marker
 ?Visibility_Check@RTS3DScene@@UAEXPAVCameraClass@@@Z,,0x009446F0,1075,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_Visibility_Check.asm,matched,exact 1075B via MASM
-?W3DCameoMovieDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x00799D00,148,Code/GameEngine/Source/Common/W3DCameoMovieDraw_Thunk.cpp,matched,Exact 148B Open-BFME5
+?W3DCameoMovieDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x00799D00,148,Code/GameEngine/Source/Common/W3DCameoMovieDraw_Thunk.cpp,matched,clean C++; ICoord2D pairs rather than loose Ints to fix the frame layout
 ?W3DCommandBarGenExpDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x0079B7D0,983,Code/masm_dumps/W3DCommandBarGenExpDraw.asm,matched,Exact MASM; true ENTRY 0x79B7D0 size 983 (queue 0x79C736 was int3 pad). Identity: unique GenExpBarTop1/Bottom1/GenExpBar1 string pushes.
 ?W3DCommandBarGridDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x00799FA0,634,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DControlBarCommandBarGridDrawThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_W3DCommandBarGridDraw_799FA0
 ?W3DCommandBarHelpPopupDraw@@YAXPAVGameWindow@@PAVWinInstanceData@@@Z,,0x0079C7E0,844,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/W3DCommandBarHelpPopupDrawThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
