@@ -68417,3 +68417,5 @@ _StringHash,0x0085A310,vendored=gamespy-2004
 ?setScienceAvailability@Player@@QAEXW4ScienceType@@W4ScienceAvailabilityType@@@Z,0x00010DED,ILT thunk to Player::setScienceAvailability; identity from Zero Hour ScriptActions.cpp
 ?hasUpgrade@Object@@QBE_NPBVUpgradeTemplate@@@Z,0x0000BA37,Open-BFME5 ILT thunk from CommandButton::isReady call sites (body 0x001C9F50)
 ?affectedByUpgrade@Object@@QBE_NPBVUpgradeTemplate@@@Z,0x000077B6,Open-BFME5 ILT thunk from CommandButton::isReady call site (body 0x001C5A30)
+?unidentified_0003ADD7@NameKeyGeneratorShim@@QAEHPBD@Z,0x0003ADD7,UNIDENTIFIED characters-to-key call used by Player::getProductionCostChangePercent; address-derived name; ICF-folded so the existing findMemoryPool and concat pins share these bytes but describe other call sites
+?find@CostMapShim@@QAE?AUCostMapIteratorShim@@ABH@Z,0x0001D980,ILT thunk to the name-keyed map find behind Player+0x1CC; returns its iterator by value

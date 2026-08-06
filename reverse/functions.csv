@@ -58388,7 +58388,7 @@ _XMP_Test_Bit,,0x000A2C80,33,Code/Libraries/Source/WWVegas/WWLib/mpmath.cpp,matc
 ?j_000d3f90@@YAXXZ,,0x000D3F90,5,Code/gen_small/thunks_036.cpp,matched,gen-thunk;target=thunk_FUN_004d3170
 ??_GSquad@@MAEPAXI@Z,,0x000D4060,30,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ??1Squad@@MAE@XZ,,0x000D4090,156,Code/GameEngine/Source/Common/SquadDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (two STLport node_alloc POD vector members) converted from __emit thunk
-?getProductionCostChangePercent@Player@@QBEMVAsciiString@@@Z,,0x000D47F0,91,Code/GameEngine/Source/Common/RTS/PlayerProductionCostChangePercentThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM body; retail cost map this+0x1CC
+?getProductionCostChangePercent@Player@@QBEMABVAsciiString@@@Z,,0x000D47F0,91,Code/GameEngine/Source/Common/RTS/PlayerProductionCostChangePercentThunk.cpp,matched,clean C++; parameter is a const reference not by value
 ?doBountyForKill@Player@@QAEXPBVObject@@0@Z,,0x000D5160,431,Code/GameEngine/Source/Common/RTS/Player_doBountyForKill_Thunk.cpp,matched,Open-BFME5 lift 431B retail MASM to standalone C++ thunk
 ?attemptToPurchaseScience@Player@@QAE_NW4ScienceType@@@Z,,0x000D55B0,60,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?grantScience@Player@@QAE_NW4ScienceType@@@Z,,0x000D5600,42,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
