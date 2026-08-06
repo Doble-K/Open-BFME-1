@@ -768,3 +768,9 @@ __CxxThrowException@8	no-match	ledger hazard found while converting ThingTemplat
 ?updateDefaults@ScriptList@@SAXXZ	0x0035C8A0	183	note	two identical 0x20 initialiser blocks at +0x0C and +0x2C are one member type used twice not sixteen fields
 ?updateDefaults@ScriptList@@SAXXZ	0x0035C8A0	183	note	stores at +4 and +8 precede the vtable store so they come from a base with no virtuals which MSVC pushes to +4
 ?updateDefaults@ScriptList@@SAXXZ	0x0035C8A0	183	note	accessor yields null out of range; the caller dereferences it unchecked so the source has no null test
+?getInstance@?$ConcreteModuleClass@...@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	mapped	family of 25 identical-shape rows; one template definition may cover all of them
+?getInstance@?$ConcreteModuleClass@...@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	note	MSVC function-local static: one-bit guard at 0x12F6B50 tested with test al cl then inline construction then atexit
+?getInstance@?$ConcreteModuleClass@...@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	note	atexit at 0x009F6E26 already pinned; its argument is a DIR32 so the generated dtor helper address needs no pin
+?getInstance@?$ConcreteModuleClass@...@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	note	instance is 0x10 bytes: vtable at +0 then two values read through pointer globals then +0x0C takes the old list head
+?getInstance@?$ConcreteModuleClass@...@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	note	intrusive registration: inst+0x0C = old [0x12F64F8] then both [0x12F64F8] and [0x12F64D4] take &inst
+?getInstance@?$ConcreteModuleClass@...@FXParticleSystem@@SAABV12@XZ	0x005E0B00	111	note	lives in fx_particle_system_bulk.cpp so editing it renumbers funclets; re-key procedure validated earlier this session
