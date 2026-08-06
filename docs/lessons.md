@@ -2991,3 +2991,38 @@ this loop, with everything else in the function -- the ??_L call, the four field
 the entire second loop and the tail -- already byte-identical. That is a much more
 useful thing to leave behind than "blocked": it tells the next person which four ideas
 not to spend builds on.
+
+
+## The member-init list versus the constructor body is a real ordering lever
+
+Every previous attempt to steer statement order in this project failed, and the note
+here has been that the source cannot control scheduling. That is too strong. There is
+one control that works, and W3DDebrisDraw's constructor is the demonstration.
+
+Its retail body writes members at +0x10 through +0x24, then +0x34 through +0x44, and
+only then +0x28 through +0x30. Those last three sit in the middle of the layout, so the
+order is not declaration order and not address order. Writing every field as a plain
+assignment in the constructor body reproduces none of it -- MSVC clusters the stores its
+own way.
+
+The explanation is that MSVC emits member-init list entries in declaration order, ahead
+of the constructor body. So a field whose stores appear out of layout order in the
+target was assigned in the body while its neighbours were in the init list. Moving
+exactly those three fields into the body and leaving the rest in the init list
+reproduced retail's ordering exactly, all fourteen stores in the right sequence.
+
+That is worth remembering as a diagnostic and not just a fix: an out-of-order run of
+stores in a constructor tells you which fields the original author assigned in the body.
+
+Two smaller things fell out of the same row. A REL32 to a thunk resolves by decorated
+name, so the base class has to be named for whatever is pinned at that address -- here
+??0DrawableModule@@ among eight names ICF-folded onto 0x00002874. And an offset written
+twice, first with one vtable and then another, means a base constructed inline: its own
+vtable goes down first and the derived class overwrites it.
+
+What remains is narrow and, again, scheduling. MSVC sinks every c7-form immediate store
+-- both vtable pointers and the single -1 -- to the end of the function, where retail
+leaves them in program order among the register-sourced zero stores. Both versions
+contain the same instructions in the same count; only the order differs. /GX- /O2 /Ob2
+does not change it. This is the immediate-versus-register family showing up a third way:
+not encoding, not register allocation, but placement.
