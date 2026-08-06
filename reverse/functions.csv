@@ -79472,7 +79472,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseImageStatus@Image@@SAXPAVINI@@PAX1PBX@Z,,0x005D2000,51,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
 ?parseInGameUIDefinition@INI@@SAXPAV1@@Z,,0x0043AAA0,36,Code/GameEngine/Source/GameClient/INIParseInGameUIDefinitionThunk.cpp,matched,Open-BFME5 clean C++ InGameUI null-check virtual 0x158 then applyDefinition
 ?parseIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x00851050,91,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
-?parseInitialRoster@GarrisonContainModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x001230B0,104,Code/GameEngine/Source/Common/GarrisonContainModuleData_parseInitialRoster_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?parseInitialRoster@GarrisonContainModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x001230B0,104,Code/GameEngine/Source/Common/GarrisonContainModuleData_parseInitialRoster_Thunk.cpp,matched,clean C++; INI roster parse with an optional count defaulting to 1 and an inline strlen
 ?parseInputCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00486900,130,Code/GameEngine/Source/Common/parseInputCallback_Thunk.cpp,matched,parse table INPUTCALLBACK->0x486900; queue 0x4877E5 was wrong body; exact 130B MASM
 ?parseInt@@YAXPAVINI@@PAX1PBX@Z,,0x000B8160,55,Code/GameEngine/Source/Common/INI/INIDrawGroupInfo.cpp,matched,
 ?parseInt@INI@@SAXPAV1@PAX1PBX@Z,,0x00852A60,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,was a naked byte dump; now C++ with getNextToken inlined

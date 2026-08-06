@@ -1,120 +1,60 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift GarrisonContainModuleData::parseInitialRoster to clean C++.
+//
+// The standard INI roster parse: a required name token, then an optional count
+// token which defaults to 1 when absent. Both token calls pass a null separator
+// list, which is where the two `push 0` come from.
+//
+// The name's length is measured inline rather than left to the string class --
+// retail walks the bytes and subtracts, which is MSVC's strlen intrinsic -- and
+// the walk is guarded, so a null name stores a length of zero rather than
+// running off. The result goes to AsciiString::set with an explicit length, not
+// through assignment.
+//
+// The roster fields sit at instance+0x174 and instance+0x178. The third and
+// fourth parameters are unused; being cdecl, nothing pops them.
 
-class INI;
+typedef int Int;
+
+extern "C" unsigned int __cdecl strlen(const char *s);
+
+class AsciiString
+{
+public:
+	void set(const char *s, Int len);					///< ILT thunk at 0x00887D20
+
+private:
+	void *m_data;
+};
+
+class INI
+{
+public:
+	const char *getNextToken(const char *seps = 0);		///< ILT thunk at 0x00850970
+	const char *getNextTokenOrNull(const char *seps = 0);	///< ILT thunk at 0x008509C0
+	static Int scanInt(const char *s);					///< ILT thunk at 0x00852620
+};
+
 class GarrisonContainModuleData
 {
 public:
-	static void __cdecl parseInitialRoster(INI *, void *, void *, const void *);
+	static void parseInitialRoster(INI *, void *, void *, const void *);
+
+private:
+	unsigned char m_unreconstructed_00[0x174];
+	AsciiString m_initialRosterName;					///< retail this+0x174
+	Int m_initialRosterCount;							///< retail this+0x178
 };
 
 // ?parseInitialRoster@GarrisonContainModuleData@@SAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void __cdecl GarrisonContainModuleData::parseInitialRoster(INI *, void *, void *, const void *)
+void GarrisonContainModuleData::parseInitialRoster(INI *ini, void *instance, void *store,
+	const void *userData)
 {
-	__asm {
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xb0
-        __emit 0xd8
-        __emit 0x72
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0xe8
-        __emit 0xf5
-        __emit 0xd8
-        __emit 0x72
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0d
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x4b
-        __emit 0xf5
-        __emit 0x72
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xd8
-        __emit 0xeb
-        __emit 0x05
-        __emit 0xbb
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x16
-        __emit 0x8b
-        __emit 0xc7
-        __emit 0x8d
-        __emit 0x50
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x9b
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x08
-        __emit 0x40
-        __emit 0x84
-        __emit 0xc9
-        __emit 0x75
-        __emit 0xf9
-        __emit 0x2b
-        __emit 0xc2
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x14
-        __emit 0x50
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0x74
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x12
-        __emit 0x4c
-        __emit 0x76
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x9e
-        __emit 0x78
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc3
-	}
+	const char *name = ini->getNextToken();
+	const char *countToken = ini->getNextTokenOrNull();
+	Int count = countToken ? INI::scanInt(countToken) : 1;
+
+	GarrisonContainModuleData *self = (GarrisonContainModuleData *)instance;
+	self->m_initialRosterName.set(name, name ? (Int)strlen(name) : 0);
+	self->m_initialRosterCount = count;
 }
