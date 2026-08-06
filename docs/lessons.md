@@ -2775,3 +2775,38 @@ the pattern never matched and the entire family -- the one proven blocked an hou
 earlier -- was reported as clear. It was caught only by running the screener against a
 row already known to be blocked. A detector that has never been shown a true positive
 is not yet evidence of anything.
+
+
+## Check whether a family member is typical before reusing the family's template
+
+friend_newModuleData is the largest family in the ledger: 269 rows across 141 source
+files, and 140 of those files are already clean C++. Exactly one is still naked, which
+looked like the easiest remaining conversion in the project -- copy the neighbour and
+change the names.
+
+It is not, and the reason is worth knowing before reaching for any family template. The
+other 140 declare the module data constructor and never define it, so MSVC has nothing
+to inline and emits a call, which is what their retail bodies contain. This one's retail
+body inlines the constructor instead: the base sub-object is built through
+lea ecx,[esi+8], the vtable goes in at +0, and two three-word member runs follow at
++0x70 and +0x7C. Same family, opposite requirement.
+
+Defining the constructor in the translation unit did not produce the inlined form. MSVC
+emitted an out-of-line call anyway and wrapped the allocation in an unwind frame so that
+operator delete runs if a member constructor throws -- an SEH prologue retail does not
+carry. Four builds, no movement.
+
+One loose end recorded rather than asserted: removing /EHsc and then setting /EHsc-
+explicitly changed the output by not one byte, which should not be true if the flag is
+reaching the compiler. Worth confirming that the per-file `// cl:` directive is applied
+before anyone spends more builds on the exception-handling axis, here or elsewhere.
+
+The layout is settled and costs nothing to reuse when that is resolved: size 0x88, base
+sub-object at +8 whose constructor is pinned at 0x0000F0A6, vtable 0x0108F4F0, field
+parse table at 0x004102C6.
+
+A separate process note. The cache line `Compile: 0 of 1 TU(s) (deps-cache: 1 current)`
+appears when a re-run reuses an object, and it is easy to read a diagnostic re-run's
+cache hit as evidence that an earlier real build never happened. build.py keys the cache
+on the source hash and the full command fingerprint, so an edited source always
+recompiles. Read that line against the run that actually did the work.

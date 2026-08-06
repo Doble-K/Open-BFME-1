@@ -788,3 +788,10 @@ __CxxThrowException@8	no-match	ledger hazard found while converting ThingTemplat
 ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	three source structures gave byte-identical output: three inline loops then a named null constant then a helper inlined three times
 ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	adding /O1 to the per-file cl directive also changed nothing even though retails encoding is the smaller one
 tools/screen_blockers.py			tool	ranks naked rows by blocker byte signature; first version passed the whole static-fn family as clear
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	blocked	ctor will not inline and new emits an unwind frame; 4 builds; reverted
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	this is the last naked row of a 141-file friend_newModuleData family; the other 140 are already clean C++
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	the family template does not apply: the other 140 declare the module data ctor undefined so MSVC calls it
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	retail inlines the ctor here instead: base ctor at +8 then vtable at +0 then two three-word member runs at +0x70 and +0x7C
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	defining the ctor in the TU still produced an out-of-line call plus an SEH prologue retail does not have
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	open	neither dropping /EHsc nor setting /EHsc- changed a single byte; confirm the per-file cl directive actually reaches cl.exe
+?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	layout is settled and reusable: size 0x88 base sub-object at +8 vtable 0x0108F4F0 field parse table at 0x004102C6
