@@ -2757,16 +2757,23 @@ prologue. Reading the diff as several independent problems would be wrong; it is
 
 Three genuinely different source structures were tried: three inline loops, a named
 null constant used by every site, and a helper taking the head by reference and inlined
-three times. All three compiled to byte-identical output. Adding /O1 to the per-file cl
-directive changed nothing either, even though retail's encoding is the smaller one, so
-it is not simply a size-versus-speed setting.
+three times. All three compiled to byte-identical output.
 
-That is the strongest form of the diagnostic already recorded here: when several
-genuinely different spellings produce identical bytes, the lever is not in the source.
-Four builds is too many to spend confirming it, and the tell was available after the
-first -- a diff consisting only of constant-materialisation forms, with every load,
-branch and memory offset already correct, is this family and should be abandoned at
-once rather than probed.
+CORRECTION. This section originally went on to say that adding /O1 to the per-file cl
+directive changed nothing either, and concluded the lever was not in the source. The
+/O1 test was invalid: the file had been rewritten with PowerShell's
+`Set-Content -Encoding UTF8`, which prepends a UTF-8 BOM, and a BOM stops build.py
+matching `// cl:` on line 1, so the directive -- new flag and original flags alike --
+was silently dropped. With /O1 actually applied the body changes substantially and
+picks up retail's zero-in-register form: xor edx,edx, mov [ecx+N],edx, cmp eax,edx.
+So this is a flag axis, not a dead end. See "The optimisation level decides which
+constants get registers" below.
+
+The source-spelling half of that still holds: three genuinely different spellings
+compiling to identical bytes does mean no rephrasing will help. What does not follow --
+and what was wrongly concluded here -- is that nothing will help. Identical output
+across spellings only rules out the source; it says nothing about the flags, and the
+flags turned out to be exactly where the difference lived.
 
 Note also how the screening tool failed. tools/screen_blockers.py rejects rows carrying
 a known blocker signature, and its first version matched the function-local static guard
@@ -2810,3 +2817,39 @@ appears when a re-run reuses an object, and it is easy to read a diagnostic re-r
 cache hit as evidence that an earlier real build never happened. build.py keys the cache
 on the source hash and the full command fingerprint, so an edited source always
 recompiles. Read that line against the run that actually did the work.
+
+
+## The optimisation level decides which constants get registers
+
+removeAllShadows differed from retail only in how constants were materialised: retail
+holds zero in edx and one in bl, the rebuild emitted immediates. Three source spellings
+could not move it. The optimisation flag moves it immediately, and not in the direction
+a single switch would suggest:
+
+  /O2 (base)   one in a register (mov dl,1), zero as c7 immediates, loops aligned
+  /O1, /O2 /Os zero in a register (xor edx,edx, mov [ecx+N],edx), one as an immediate,
+               no loop alignment
+  retail       BOTH in registers, and loops aligned
+
+So retail is not reproduced by either setting. Favour-size promotes the zero, favour-
+speed promotes the one and aligns the loops, and retail has all three at once. /G6
+changed nothing on this body. That is a real, narrow, still-open question, and it is
+worth far more than another round of respelling: the same mixture shows up in the
+immediate-versus-register family generally, which is the single largest blocker
+recorded here after SEH.
+
+Two process points came out of finding this.
+
+A UTF-8 BOM silently disables the per-file `// cl:` directive, because build.py matched
+`line.startswith("// cl:")` and the BOM sits in front of the slashes. Nothing warns; the
+file simply compiles with base flags. Windows PowerShell's `Set-Content -Encoding UTF8`
+writes a BOM by default, so any flag experiment driven from PowerShell was testing
+nothing. build.py now reads with utf-8-sig, and the five files in the tree that already
+carried a BOM -- every one of them with a `// cl:` line being ignored -- have been
+stripped and reverified.
+
+And the general lesson: an experiment that changes nothing is only evidence once the
+experiment is known to have run. Four builds were spent concluding a flag did not
+matter, when the flag was never passed. Before believing a negative result, prove the
+input reached the thing under test -- here, a `#ifndef GUARD / #error` in the source
+answered it in one build.

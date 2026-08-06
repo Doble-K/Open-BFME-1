@@ -1,4 +1,4 @@
-﻿// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: SiegeEngineContain::friend_newModuleData factory
 
 class INI;

@@ -795,3 +795,7 @@ tools/screen_blockers.py			tool	ranks naked rows by blocker byte signature; firs
 ?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	defining the ctor in the TU still produced an out-of-line call plus an SEH prologue retail does not have
 ?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	open	neither dropping /EHsc nor setting /EHsc- changed a single byte; confirm the per-file cl directive actually reaches cl.exe
 ?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	layout is settled and reusable: size 0x88 base sub-object at +8 vtable 0x0108F4F0 field parse table at 0x004102C6
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	correction	earlier /O1 result was invalid; a BOM had silently voided the cl directive
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	/O1 and /O2 /Os put zero in a register matching retail; /O2 puts the one in a register and aligns loops; retail has both
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ	0x007AEA90	95	note	/O2 /G6 made no difference on this body
+tools/build.py			fix	source_extra_flags now reads utf-8-sig; a BOM used to silently drop the whole // cl: directive

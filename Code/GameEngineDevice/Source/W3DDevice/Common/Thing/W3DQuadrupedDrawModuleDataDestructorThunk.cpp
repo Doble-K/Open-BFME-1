@@ -1,4 +1,4 @@
-﻿// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: W3DQuadrupedDrawModuleData dtor.
 // 4-element array of 4-byte elems at +0x15c, base dtor.
 

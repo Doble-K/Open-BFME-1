@@ -1,4 +1,4 @@
-﻿// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: DeletionUpdateModuleData dtor.
 // Walk list at +0x08 (next +0x04), delete, zero head and +0x0c, base dtor.
 

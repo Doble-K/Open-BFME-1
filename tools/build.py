@@ -358,7 +358,13 @@ def source_extra_flags(source):
     # A source that needs different compiler flags (e.g. /EHsc for functions the
     # original built with exception handling) declares them in its first lines:
     #   // cl: /EHsc
-    with source.open("r", encoding="utf-8", errors="replace") as handle:
+    # A UTF-8 BOM lands in front of the very first line, so `// cl:` on line 1
+    # stops matching and the file silently compiles with the base flags instead.
+    # That is invisible in the output -- the build just quietly ignores the
+    # directive -- and it costs whole sessions to spot, so strip it here rather
+    # than relying on every editor to write BOM-free files. Windows PowerShell's
+    # `Set-Content -Encoding UTF8` writes one by default.
+    with source.open("r", encoding="utf-8-sig", errors="replace") as handle:
         for line in handle.read(2048).splitlines():
             if line.startswith("// cl:"):
                 # Use '-' style options so MSYS/Cygwin shells don't rewrite

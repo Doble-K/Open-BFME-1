@@ -1,4 +1,4 @@
-﻿// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: RubbleRiseUpdateModuleData dtor.
 // Dual 4-element arrays of 0x0c elems at +0x54 and +0x84.
 
