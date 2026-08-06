@@ -1,152 +1,78 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the parseName window-file parser to clean C++.
+//
+// The same skeleton as parseInputCallback -- scan to the opening quote, step
+// past it, find the next quote with strstr on the one-character needle, store
+// the result with an explicit guarded length -- with two differences.
+//
+// It writes to the AsciiString member at instData+0x18C rather than to a global,
+// and it null-checks the name-key generator before using it where
+// parseInputCallback does not. The resulting key goes to instData+0x04.
+//
+// The generator call at ILT 0x0003ADD7 is the same one parseInputCallback and
+// Player::getProductionCostChangePercent reach, still unidentified beyond its
+// address.
 
-class WinInstanceData;
+typedef int Int;
+typedef bool Bool;
 
-bool parseName(char *, WinInstanceData *, char *, void *);
+extern "C" __declspec(dllimport) char *__cdecl strstr(const char *haystack, const char *needle);
+extern "C" unsigned int __cdecl strlen(const char *s);
+
+class AsciiString
+{
+public:
+	void set(const char *s, Int len);					///< ILT thunk at 0x00887D20
+
+	const char *str(void) const
+	{
+		return m_data ? (const char *)((unsigned char *)m_data + 8) : "";
+	}
+
+	void *m_data;
+};
+
+class NameKeyGeneratorShim
+{
+public:
+	/// address-derived name -- do not treat as an identity.
+	Int unidentified_0003ADD7(const char *name);		///< ILT thunk at 0x0003ADD7
+};
+
+extern NameKeyGeneratorShim *TheNameKeyGeneratorShim;	///< retail [0x012ED600]
+
+class WinInstanceData
+{
+public:
+	unsigned char m_unreconstructed_00[4];
+	Int m_id;											///< retail this+0x04
+	unsigned char m_unreconstructed_08[0x18C - 0x08];
+	AsciiString m_name;									///< retail this+0x18C
+};
 
 // ?parseName@@YA_NPADPAVWinInstanceData@@0PAX@Z
-__declspec(naked) bool parseName(char *, WinInstanceData *, char *, void *)
+Bool parseName(char *token, WinInstanceData *instData, char *line, void *userData)
 {
-	__asm {
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x80
-		__emit 0x38
-		__emit 0x22
-		__emit 0x74
-		__emit 0x10
-		__emit 0x8d
-		__emit 0xa4
-		__emit 0x24
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8a
-		__emit 0x48
-		__emit 0x01
-		__emit 0x40
-		__emit 0x80
-		__emit 0xf9
-		__emit 0x22
-		__emit 0x75
-		__emit 0xf7
-		__emit 0x53
-		__emit 0x56
-		__emit 0x40
-		__emit 0x68
-		__emit 0xa4
-		__emit 0x94
-		__emit 0x0f
-		__emit 0x01
-		__emit 0x50
-		__emit 0xff
-		__emit 0x15
-		__emit 0xd8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x18
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x8d
-		__emit 0xb3
-		__emit 0x8c
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x13
-		__emit 0x8b
-		__emit 0xc8
-		__emit 0x57
-		__emit 0x8d
-		__emit 0x79
-		__emit 0x01
-		__emit 0x90
-		__emit 0x8a
-		__emit 0x11
-		__emit 0x41
-		__emit 0x84
-		__emit 0xd2
-		__emit 0x75
-		__emit 0xf9
-		__emit 0x2b
-		__emit 0xcf
-		__emit 0x5f
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xc9
-		__emit 0x51
-		__emit 0x50
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0xd9
-		__emit 0x15
-		__emit 0x40
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x00
-		__emit 0xd6
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x25
-		__emit 0x8b
-		__emit 0x06
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x11
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x77
-		__emit 0x46
-		__emit 0xbb
-		__emit 0xff
-		__emit 0x89
-		__emit 0x43
-		__emit 0x04
-		__emit 0x5e
-		__emit 0xb0
-		__emit 0x01
-		__emit 0x5b
-		__emit 0xc3
-		__emit 0xb8
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x64
-		__emit 0x46
-		__emit 0xbb
-		__emit 0xff
-		__emit 0x89
-		__emit 0x43
-		__emit 0x04
-		__emit 0x5e
-		__emit 0xb0
-		__emit 0x01
-		__emit 0x5b
-		__emit 0xc3
+	char *p = line;
+	while (*p != '"')
+	{
+		++p;
 	}
+	++p;
+
+	char *close = strstr(p, "\"");
+
+	// Named before the length is measured: retail loads instData and computes
+	// the member address ahead of the null branch, which folding the access into
+	// the set() call defers past it.
+	AsciiString *name = &instData->m_name;
+	name->set(close, close ? (Int)strlen(close) : 0);
+
+	if (TheNameKeyGeneratorShim)
+	{
+		instData->m_id =
+			TheNameKeyGeneratorShim->unidentified_0003ADD7(name->str());
+	}
+
+	return true;
 }
