@@ -830,3 +830,10 @@ flags			reference	/DNDEBUG /MD /GX- /O2 /Ob2 is already proven on 118 files in t
 ??0W3DDebrisDraw@@QAE@PAVThing@@PBVModuleData@@@Z	0x007505C0	94	open	MSVC sinks every c7-form immediate store to the end; retail keeps both vtable stores and the -1 in program order
 ??0W3DDebrisDraw@@QAE@PAVThing@@PBVModuleData@@@Z	0x007505C0	94	note	same instruction set and same count in both; this is purely a scheduling order difference
 ??0W3DDebrisDraw@@QAE@PAVThing@@PBVModuleData@@@Z	0x007505C0	94	note	/GX- /O2 /Ob2 did not change the scheduling
+??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z	0x002A4260	112	blocked	vptr-store sinking; matches byte for byte through +0x1c then diverges only in placement
+??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z	0x002A4260	112	solved	base pinned as ??0ObjectModule@@ at the 0x000170E4 thunk; three further bases at +0x0C +0x10 +0x20 are constructed inline
+??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z	0x002A4260	112	solved	layout from the double-written offsets: vtable-only base at +0x0C then vtable plus three fields at +0x10 then vtable plus one at +0x20
+??0SlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z	0x002A4260	112	note	the two -1s share ecx via or ecx 0xffffffff and the zeros share eax exactly as retail does
+vptr-sinking			family	MSVC sinks compiler-generated vtable stores past member initialisation; retail leaves them in canonical position
+vptr-sinking			family	seen identically in W3DDebrisDraw 0x007505C0 and SlavedUpdate 0x002A4260; unaffected by /EHsc /O1 and /GX- /O2 /Ob2
+vptr-sinking			family	blocks the module-constructor family: 240 rows across 222 source files of which 139 are still naked

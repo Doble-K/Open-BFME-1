@@ -3026,3 +3026,38 @@ leaves them in program order among the register-sourced zero stores. Both versio
 contain the same instructions in the same count; only the order differs. /GX- /O2 /Ob2
 does not change it. This is the immediate-versus-register family showing up a third way:
 not encoding, not register allocation, but placement.
+
+
+## vptr-store sinking is the blocker in front of the module-constructor family
+
+Two constructors this session reached the same wall from different directions, and
+together they characterise it well enough to name.
+
+MSVC's canonical constructor order is: call the base constructors, write the derived
+class's vtable pointers, then initialise members. Retail follows that exactly. The
+rebuild instead sinks every compiler-generated vtable store past the member
+initialisation to the end of the function, because nothing between them dispatches
+virtually and the stores are free to move.
+
+SlavedUpdate is the clean demonstration. It matches byte for byte from the prologue
+through the last inlined base constructor -- the base call, three inlined base
+constructors writing their own vtables at +0x0C, +0x10 and +0x20, the two -1s sharing
+ecx through `or ecx,0xffffffff`, the zeros sharing eax -- and then diverges only in
+where the four derived vtable stores sit. Same instructions, same count, same
+registers. Placement alone.
+
+W3DDebrisDraw shows the identical behaviour with two vtables rather than four, so this
+is systematic rather than a scheduling coincidence. /EHsc, /O1 and the proven
+/GX- /O2 /Ob2 all sink; /O1 additionally degrades the prologue, so it is strictly worse.
+
+Two layout diagnostics are worth keeping from these rows, both free. An offset written
+twice with two different vtable values is a base constructed inline: its own vtable
+lands first and the derived class overwrites it -- so counting doubly-written offsets
+counts the inline bases and gives their positions. And the gaps between those offsets
+give each base's size, which fixes the whole layout before a line is written.
+
+The scope matters for deciding whether to keep pushing: constructors of the form
+??0X@@QAE@PAVThing@@PBVModuleData@@@Z number 240 rows across 222 source files, 139 of
+them still naked. This one optimisation stands in front of most of that. It is a better
+target than any individual row, and it is the strongest reason yet to suspect the
+retail build used a compiler configuration this toolchain cannot express.
