@@ -1,109 +1,86 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift ActionManager::canResumeConstructionOf to clean C++.
+//
+// Zero Hour's shape: reject null objects, require the actor to be the right kind,
+// require an allied relationship, require the target to be under construction,
+// then check the actor is the one that was building it.
+//
+// The bytes fix the constants Zero Hour leaves symbolic. The kind is 0x0E. The
+// relationship compares against 2, so ALLIES is 2 in this enum. The
+// under-construction flag is bit 2 of the byte at Object+0x90, and bit 0 of the
+// byte at Object+0x344 disqualifies the actor. The builder identity read from
+// the target is compared against Object+0x74 of the actor, and a zero there
+// passes -- an unbuilt target is resumable by anyone.
+//
+// The third parameter is never read; retail still pops it, which is how the
+// three-argument name and `ret 0xC` agree.
 
-class Object;
-enum CommandSourceType { CMD_SRC_PLACEHOLDER = 0 };
+typedef bool Bool;
+typedef int Int;
+
+enum KindOfType
+{
+	KINDOF_UNRECONSTRUCTED_0E = 0x0E
+};
+
+enum Relationship
+{
+	ALLIES = 2
+};
+
+enum CommandSourceType
+{
+	CMD_FROM_PLAYER = 0
+};
+
+class Thing
+{
+public:
+	Bool isKindOf(KindOfType kind) const;					///< ILT thunk at 0x0003251F
+};
+
+class Object : public Thing
+{
+public:
+	Relationship getRelationship(const Object *that) const;	///< ILT thunk at 0x0004A719
+
+	/// address-derived name -- do not treat as an identity. Returns the value
+	/// compared against the actor's field at +0x74.
+	Int unidentified_000029D7(void) const;					///< ILT thunk at 0x000029D7
+
+	unsigned char m_unreconstructed_00[0x74];
+	Int m_id74;												///< retail this+0x74
+	unsigned char m_unreconstructed_78[0x90 - 0x78];
+	unsigned char m_status90;								///< retail this+0x90
+	unsigned char m_unreconstructed_91[0x344 - 0x91];
+	unsigned char m_flags344;								///< retail this+0x344
+};
+
 class ActionManager
 {
 public:
-	bool canResumeConstructionOf(const Object *, const Object *, CommandSourceType);
+	Bool canResumeConstructionOf(const Object *, const Object *, CommandSourceType);
 };
 
 // ?canResumeConstructionOf@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z
-__declspec(naked) bool ActionManager::canResumeConstructionOf(const Object *, const Object *, CommandSourceType)
+Bool ActionManager::canResumeConstructionOf(const Object *obj, const Object *objectToResume,
+	CommandSourceType commandSource)
 {
-	__asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x4b
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x10
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x43
-        __emit 0x6a
-        __emit 0x0e
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x44
-        __emit 0xd1
-        __emit 0xf6
-        __emit 0xff
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x36
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x32
-        __emit 0x53
-        __emit 0xf8
-        __emit 0xff
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x02
-        __emit 0x75
-        __emit 0x29
-        __emit 0xf6
-        __emit 0x86
-        __emit 0x90
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x04
-        __emit 0x74
-        __emit 0x20
-        __emit 0xf6
-        __emit 0x87
-        __emit 0x44
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x01
-        __emit 0x75
-        __emit 0x17
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xd2
-        __emit 0xd5
-        __emit 0xf3
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x05
-        __emit 0x3b
-        __emit 0x47
-        __emit 0x74
-        __emit 0x75
-        __emit 0x07
-        __emit 0x5f
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x0c
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x32
-        __emit 0xc0
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x0c
-        __emit 0x00
+	// One condition, not a ladder of early returns: retail pushes both callee-saved
+	// registers in the prologue and jumps every failure to a single shared epilogue.
+	// Separate `return false` statements let MSVC shrink-wrap the second push, which
+	// makes the exits differ and stops it merging them.
+	if (obj != 0
+		&& objectToResume != 0
+		&& obj->isKindOf(KINDOF_UNRECONSTRUCTED_0E)
+		&& obj->getRelationship(objectToResume) == ALLIES
+		&& (objectToResume->m_status90 & 4) != 0
+		&& (obj->m_flags344 & 1) == 0)
+	{
+		Int builder = objectToResume->unidentified_000029D7();
+		if (builder == 0 || builder == obj->m_id74)
+			return true;
 	}
+
+	return false;
 }
