@@ -805,3 +805,9 @@ tools/build.py			fix	source_extra_flags now reads utf-8-sig; a BOM used to silen
 ?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	/Og- overshoots: inlining stops entirely and an ebp frame with stack locals appears
 ?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	note	splitting the two runs into distinct struct types changed nothing so the merge is not source-steerable
 flags			reference	/DNDEBUG /MD /GX- /O2 /Ob2 is already proven on 118 files in the tree; try it before any bespoke flag search
+??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	minimal-repro	CANONICAL test case for materialised-vs-folded member pointers; 86 of 90 bytes identical
+??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	note	tail from +0x30 onward matches exactly including the byte store the -1 immediate and the two trailing zeros
+??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	note	only divergence: retail walks the two six-word runs via mov edx eax then lea edx [eax+0x18]; rebuild folds both to [eax+disp]
+??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	note	tried two named members and a two-element array; byte-identical output so the shape is not source-steerable
+??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	note	tried /EHsc default and the proven /GX- /O2 /Ob2; byte-identical output
+??0StealthUpgradeModuleData@@QAE@XZ	0x00129C10	90	note	use this row to test any future flag hypothesis: one build and the signal is unambiguous

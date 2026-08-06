@@ -2895,3 +2895,33 @@ The general point: when the source has been ruled out, the flags are the next ax
 the cheapest move is to sort the existing directives by frequency and try the ones the
 project has already proven rather than reasoning from first principles about /O1 versus
 /O2.
+
+
+## A minimal reproducer is worth more than another blocked row
+
+??0StealthUpgradeModuleData@@QAE@XZ is 90 bytes of straight-line stores with no calls
+and no branches, and the rebuild gets 86 of them exactly right. The tail from +0x30
+onward -- ten zeroed words, a byte store, a -1 written as an immediate, two more zeroed
+words -- is byte-identical, which incidentally confirms the heuristic is not simply
+"constants go in registers": retail keeps the zero it uses twenty-eight times in ecx and
+still writes the single -1 as an immediate, exactly as the rebuild does.
+
+The whole difference is four bytes. Retail walks the two six-word runs at +0 and +0x18
+through a materialised pointer -- mov edx,eax, then lea edx,[eax+0x18] -- while the
+rebuild folds both into [eax+disp] addressing off this. Nothing else differs anywhere in
+the function.
+
+That makes this row worth keeping as the reference case for the materialised-versus-
+folded family, which is the same divergence that stopped friend_newModuleData. It is
+far more useful than a normal blocked row: no calls to pin, no branches, no relocations,
+no unwind, so a single build gives an unambiguous yes or no on any hypothesis. Anyone
+testing a flag idea should try it here first and only then on a real candidate.
+
+What has already been ruled out on it: two separately named members and a two-element
+array of the same type both compile to byte-identical output, so the shape is not
+source-steerable; and /EHsc, the base /O2, and the proven /GX- /O2 /Ob2 all produce the
+same bytes, so it is not any of the settings the tree has already established.
+
+Worth noting retail's form is the larger one -- 39 bytes against 35 -- so whatever
+selects it is not favouring size, and /O1 is therefore unlikely to be the answer here
+even though it was decisive on removeAllShadows.
