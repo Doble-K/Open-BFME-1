@@ -78,7 +78,54 @@ def blockers(body):
     # only used to rank, never to reject outright.
     if any(0xD8 <= c <= 0xDF for c in body):
         found.append("x87?")
+    if _writes_an_offset_twice(body):
+        found.append("vptr-sink")
     return found
+
+
+def _writes_an_offset_twice(body):
+    """True if some destination takes two different `mov [reg+disp],imm32`.
+
+    That is the inline-base signature: a base constructed in place writes its own
+    vtable and the derived class overwrites it at the same offset. Wherever it
+    appears, the derived vtable stores have to sit between the base constructors
+    and the member initialisation -- and MSVC sinks them past the members
+    instead, which no source spelling or available flag corrects. Rows carrying
+    it are blocked before any build, so they are worth rejecting up front.
+    """
+    seen = {}
+    i = 0
+    while i < len(body) - 1:
+        if body[i] != 0xC7:
+            i += 1
+            continue
+        modrm = body[i + 1]
+        if (modrm >> 3) & 7:            # /0 only: this is MOV r/m32, imm32
+            i += 1
+            continue
+        mod, rm = modrm >> 6, modrm & 7
+        if mod == 3:                    # register destination, not a store
+            i += 1
+            continue
+        if rm == 4:                     # SIB byte; skip rather than mis-decode
+            i += 1
+            continue
+        if mod == 0:
+            disp_len = 4 if rm == 5 else 0
+        elif mod == 1:
+            disp_len = 1
+        else:
+            disp_len = 4
+        start = i + 2 + disp_len
+        if start + 4 > len(body):
+            break
+        key = body[i + 1:start]
+        imm = body[start:start + 4]
+        if key in seen and seen[key] != imm:
+            return True
+        seen[key] = imm
+        i = start + 4
+    return False
 
 
 def call_targets(body, rva):

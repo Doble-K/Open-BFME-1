@@ -837,3 +837,10 @@ flags			reference	/DNDEBUG /MD /GX- /O2 /Ob2 is already proven on 118 files in t
 vptr-sinking			family	MSVC sinks compiler-generated vtable stores past member initialisation; retail leaves them in canonical position
 vptr-sinking			family	seen identically in W3DDebrisDraw 0x007505C0 and SlavedUpdate 0x002A4260; unaffected by /EHsc /O1 and /GX- /O2 /Ob2
 vptr-sinking			family	blocks the module-constructor family: 240 rows across 222 source files of which 139 are still naked
+tools/screen_blockers.py			tool	added the vptr-sink signature: an offset taking two different c7 imm32 stores means an inline base and a blocked row
+tools/screen_blockers.py			tool	validated against W3DDebrisDraw and SlavedUpdate as true positives and updateDefaults and StealthUpgrade as true negatives
+tools/screen_blockers.py			tool	candidate pool at 150 bytes drops from 25 to 19 rows
+?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	mapped	blocked on one name: the thiscall at 0x0087E8D0 taking this+0x60 and returning bool is unpinned
+?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	note	shape is if the AsciiString at +0x4c is empty then set it from one of two literals with lengths 7 and 6 via ?set@AsciiString@@QAEXPBDH@Z
+?friend_newModuleData@FireWeaponCollide@@SAPAVModuleData@@PAVINI@@@Z	0x00127D00	106	mapped	same materialised-pointer shape as the Sabotage row so it is in the folding family
+?friend_newModuleData@FireWeaponCollide@@SAPAVModuleData@@PAVINI@@@Z	0x00127D00	106	note	two 12-byte groups at +0x0C and +0x18 are each zeroed twice with a different zero register each time
