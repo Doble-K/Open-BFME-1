@@ -68420,3 +68420,4 @@ g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
+?unidentified_00025CD4@WindowLookupShim@@QAEPAXHH@Z,0x00025CD4,UNIDENTIFIED lookup on the global at 0x012ED88C taking a name key and a flag; address-derived name; do not treat as an identity

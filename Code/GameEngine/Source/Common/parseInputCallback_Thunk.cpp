@@ -1,143 +1,74 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the parseInputCallback window-file parser to clean C++.
+//
+// The third argument is a line from a window file. Scan to the opening quote,
+// step past it, then find the next quote with strstr -- the needle is the
+// one-character literal "\"" rather than a character search, which is why this
+// goes through the import table instead of compiling to an inline scan.
+//
+// The result is stored into the global AsciiString at 0x012F2574 with an
+// explicit length, guarded so a missing closing quote stores nothing rather than
+// measuring a null pointer. Its characters then go through the name-to-key call
+// on the generator at 0x012ED600 -- the same one Player::getProductionCostChange
+// Percent uses, and still not identified beyond its address -- and the key is
+// looked up on the global at 0x012ED88C with a second argument of 1. The result
+// lands in 0x012F255C and the function reports success unconditionally.
+
+typedef int Int;
+typedef bool Bool;
+
+extern "C" __declspec(dllimport) char *__cdecl strstr(const char *haystack, const char *needle);
+extern "C" unsigned int __cdecl strlen(const char *s);
+
+class AsciiString
+{
+public:
+	void set(const char *s, Int len);					///< ILT thunk at 0x00887D20
+
+	const char *str(void) const
+	{
+		return m_data ? (const char *)((unsigned char *)m_data + 8) : "";
+	}
+
+	void *m_data;
+};
+
+class NameKeyGeneratorShim
+{
+public:
+	/// address-derived name -- do not treat as an identity.
+	Int unidentified_0003ADD7(const char *name);		///< ILT thunk at 0x0003ADD7
+};
+
+class WindowLookupShim
+{
+public:
+	/// address-derived name -- do not treat as an identity.
+	void *unidentified_00025CD4(Int key, Int flag);		///< ILT thunk at 0x00025CD4
+};
 
 class WinInstanceData;
 
-bool parseInputCallback(char *, WinInstanceData *, char *, void *);
+extern AsciiString TheParsedCallbackName;				///< retail [0x012F2574]
+extern NameKeyGeneratorShim *TheNameKeyGeneratorShim;	///< retail [0x012ED600]
+extern WindowLookupShim *TheWindowLookupShim;			///< retail [0x012ED88C]
+extern void *TheParsedCallbackResult;					///< retail [0x012F255C]
 
 // ?parseInputCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z
-__declspec(naked) bool parseInputCallback(char *, WinInstanceData *, char *, void *)
+Bool parseInputCallback(char *token, WinInstanceData *instData, char *line, void *userData)
 {
-	__asm {
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x80
-		__emit 0x38
-		__emit 0x22
-		__emit 0x74
-		__emit 0x10
-		__emit 0x8d
-		__emit 0xa4
-		__emit 0x24
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8a
-		__emit 0x48
-		__emit 0x01
-		__emit 0x40
-		__emit 0x80
-		__emit 0xf9
-		__emit 0x22
-		__emit 0x75
-		__emit 0xf7
-		__emit 0x40
-		__emit 0x68
-		__emit 0xa4
-		__emit 0x94
-		__emit 0x0f
-		__emit 0x01
-		__emit 0x50
-		__emit 0xff
-		__emit 0x15
-		__emit 0xd8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x12
-		__emit 0x8b
-		__emit 0xc8
-		__emit 0x56
-		__emit 0x8d
-		__emit 0x71
-		__emit 0x01
-		__emit 0x8a
-		__emit 0x11
-		__emit 0x41
-		__emit 0x84
-		__emit 0xd2
-		__emit 0x75
-		__emit 0xf9
-		__emit 0x2b
-		__emit 0xce
-		__emit 0x5e
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xc9
-		__emit 0x51
-		__emit 0x50
-		__emit 0xb9
-		__emit 0x74
-		__emit 0x25
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xd3
-		__emit 0x13
-		__emit 0x40
-		__emit 0x00
-		__emit 0xa1
-		__emit 0x74
-		__emit 0x25
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x00
-		__emit 0xd6
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x6b
-		__emit 0x44
-		__emit 0xbb
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x8c
-		__emit 0xd8
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x5a
-		__emit 0xf3
-		__emit 0xb9
-		__emit 0xff
-		__emit 0xa3
-		__emit 0x5c
-		__emit 0x25
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xb0
-		__emit 0x01
-		__emit 0xc3
+	char *p = line;
+	while (*p != '"')
+	{
+		++p;
 	}
+	++p;
+
+	char *close = strstr(p, "\"");
+	TheParsedCallbackName.set(close, close ? (Int)strlen(close) : 0);
+
+	Int key = TheNameKeyGeneratorShim->unidentified_0003ADD7(TheParsedCallbackName.str());
+	TheParsedCallbackResult = TheWindowLookupShim->unidentified_00025CD4(key, 1);
+
+	return true;
 }
