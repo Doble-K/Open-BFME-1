@@ -1,198 +1,73 @@
 // cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class ScriptList
+class ScriptList;
+
+struct SidesInfo
+{
+	void *m_dict;
+	void *m_buildList;
+	ScriptList *m_scriptList;
+	void *m_rest[3];
+};
+
+class SidesList
 {
 public:
-	static void __cdecl updateDefaults();
+	unsigned char m_head[0x28];
+	int m_numSides;
+	SidesInfo m_sides[1];
+
+	int getNumSides(void) { return m_numSides; }
+	SidesInfo *getSideInfo(int i)
+	{
+		return (i >= 0 && i < m_numSides) ? &m_sides[i] : 0;
+	}
+};
+
+extern SidesList *TheSidesList;
+
+// The two 0x20-byte blocks at +0x0C and +0x2C are byte-for-byte the same
+// initialiser, so they are one member type used twice rather than sixteen
+// separate fields.
+struct ScriptGroup
+{
+	void *m_a;
+	void *m_b;
+	void *m_c;
+	void *m_d;
+	void *m_e;
+	void *m_f;
+	int m_g;
+	int m_h;
+	ScriptGroup(void) : m_a(0), m_b(0), m_c(0), m_d(0), m_e(0), m_f(0), m_g(-1), m_h(-1) {}
+};
+
+// Zeroed before the vtable store, so they belong to a base with no virtuals of
+// its own: MSVC puts the derived vfptr at +0 and pushes such a base to +4.
+class ScriptListBase
+{
+public:
+	void *m_x;
+	void *m_y;
+	ScriptListBase(void) : m_x(0), m_y(0) {}
+};
+
+class ScriptList : public ScriptListBase
+{
+public:
+	ScriptGroup m_first;
+	ScriptGroup m_second;
+
+	virtual void reset(void);
+	static void updateDefaults(void);
 };
 
 // ?updateDefaults@ScriptList@@SAXXZ
-__declspec(naked) void __cdecl ScriptList::updateDefaults()
+void ScriptList::updateDefaults(void)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x28
-        __emit 0xf4
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x28
-        __emit 0x53
-        __emit 0x56
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x0f
-        __emit 0x8e
-        __emit 0x9d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x55
-        __emit 0x57
-        __emit 0x33
-        __emit 0xff
-        __emit 0x83
-        __emit 0xcd
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xff
-        __emit 0x3b
-        __emit 0xfe
-        __emit 0x7c
-        __emit 0x0a
-        __emit 0x3b
-        __emit 0xd8
-        __emit 0x7d
-        __emit 0x06
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x0f
-        __emit 0x2c
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x39
-        __emit 0x70
-        __emit 0x08
-        __emit 0x75
-        __emit 0x6e
-        __emit 0x6a
-        __emit 0x4c
-        __emit 0xe8
-        __emit 0x54
-        __emit 0x56
-        __emit 0x52
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x74
-        __emit 0x3e
-        __emit 0x89
-        __emit 0x70
-        __emit 0x04
-        __emit 0x89
-        __emit 0x70
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x00
-        __emit 0xa8
-        __emit 0x8c
-        __emit 0x0e
-        __emit 0x01
-        __emit 0x89
-        __emit 0x70
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x70
-        __emit 0x10
-        __emit 0x89
-        __emit 0x70
-        __emit 0x14
-        __emit 0x89
-        __emit 0x70
-        __emit 0x18
-        __emit 0x89
-        __emit 0x70
-        __emit 0x1c
-        __emit 0x89
-        __emit 0x70
-        __emit 0x20
-        __emit 0x89
-        __emit 0x68
-        __emit 0x24
-        __emit 0x89
-        __emit 0x68
-        __emit 0x28
-        __emit 0x89
-        __emit 0x70
-        __emit 0x2c
-        __emit 0x89
-        __emit 0x70
-        __emit 0x30
-        __emit 0x89
-        __emit 0x70
-        __emit 0x34
-        __emit 0x89
-        __emit 0x70
-        __emit 0x38
-        __emit 0x89
-        __emit 0x70
-        __emit 0x3c
-        __emit 0x89
-        __emit 0x70
-        __emit 0x40
-        __emit 0x89
-        __emit 0x68
-        __emit 0x44
-        __emit 0x89
-        __emit 0x68
-        __emit 0x48
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x3b
-        __emit 0xfe
-        __emit 0x7c
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x28
-        __emit 0xf4
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x3b
-        __emit 0x59
-        __emit 0x28
-        __emit 0x7d
-        __emit 0x06
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x0f
-        __emit 0x2c
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x89
-        __emit 0x41
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x28
-        __emit 0xf4
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x28
-        __emit 0x43
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x18
-        __emit 0x3b
-        __emit 0xd8
-        __emit 0x0f
-        __emit 0x8c
-        __emit 0x6e
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5d
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc3
+	for (int i = 0; i < TheSidesList->getNumSides(); i++) {
+		if (TheSidesList->getSideInfo(i)->m_scriptList == 0)
+			TheSidesList->getSideInfo(i)->m_scriptList = new ScriptList;
 	}
 }

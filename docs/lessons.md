@@ -2679,3 +2679,31 @@ So when a body is otherwise byte-identical and only stack displacements differ, 
 question is not what order the locals were declared in but whether they were locals at
 all. Two Ints passed by address to a pair of accessors is very often one small struct in
 the original, and the frame layout is the evidence for it.
+
+
+
+## Repeated initialiser blocks are one member type, not many fields
+
+ScriptList::updateDefaults allocates 0x4C bytes and then writes, in order, zero at +4
+and +8, the vtable at +0, zero across +0x0C..+0x20, -1 at +0x24 and +0x28, zero across
++0x2C..+0x40, and -1 at +0x44 and +0x48. Written out as a flat class that is nineteen
+fields to invent names and initialisers for, and getting any of their widths wrong
+shifts everything after it.
+
+Read as structure it is three declarations. The two 0x20-byte runs are byte-for-byte the
+same initialiser -- six zeros then two -1s -- so they are one member type used twice, not
+sixteen fields that happen to coincide. The stores at +4 and +8 land before the vtable
+store, and MSVC always writes the vptr after the base constructors and before the member
+initialisers, so those two belong to a base with no virtuals of its own, which MSVC
+places at +4 with the derived vfptr taking offset 0. That leaves 4 + 8 + 0x20 + 0x20 =
+0x4C exactly, so the size confirms the reading before anything is compiled.
+
+The general rule: within a constructor the store order is base, then vptr, then members
+in declaration order, and it is a total order you can invert. A store that precedes the
+vptr came from a base; a repeated run of identical stores came from a repeated member
+type. Both of those are structure the disassembly hands you for free, and both are the
+kind of thing that costs several builds to find by trial if you start from a flat class.
+
+Built byte-exact on the first attempt -- the first candidate this session chosen by
+predicting which blocker family it would land in before writing any of it, rather than
+discovering the blocker after two or three builds.
