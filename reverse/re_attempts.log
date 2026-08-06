@@ -851,3 +851,9 @@ tools/screen_blockers.py			tool	candidate pool at 150 bytes drops from 25 to 19 
 ?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	evidence	Zero Hour's validateAudio is wholly inside #if _DEBUG or _INTERNAL and contains only assertion macros so a release build has no such body
 ?validateAudio@ThingTemplate@@IAEXXZ	0x0013E2F0	60	note	not tombstoned: the pair is unsupported by the evidence but the correct name is not yet known
 ?b_0087e8d0@@YAXXZ	0x0087E8D0	48	unpinned	selector used by 14 call sites; naming it unblocks this row and probably several nearby
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009438C0	134	identity-impossible	body pops 4 but the name's arguments size to 8; the pair cannot be correct
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009438C0	134	evidence	one stack argument only; Unregister takes a RenderObjClass pointer and a RegType enum which is 8 bytes
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009438C0	134	evidence	body notifies the object through a virtual at +0x68 then removes it from lists at +0xbc +0xd4 +0xec +0x5c and releases refs twice
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009438C0	134	candidate	?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z fits: virtual one argument same semantics and absent from the ledger
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009438C0	134	note	arity proves the current name wrong but not that the candidate is right; correction transaction deferred rather than asserted
+tools/screen_blockers.py			tool	now rejects rows screen_identity contradicts; the two screeners did not talk and this row was offered as clear

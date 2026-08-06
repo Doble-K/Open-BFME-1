@@ -40,6 +40,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 EXE = ROOT / "baselines" / "bfme1" / "workshop-vanilla-1.03" / "files" / "lotrbfme.exe"
 
+# A row whose body contradicts its own decorated name is not a conversion
+# candidate at all -- writing C++ for a name the bytes do not belong to cannot
+# succeed. screen_identity.py already finds those, and this screener used to
+# report them as clear, which is how ?Unregister@SimpleSceneClass@@ -- a row that
+# pops 4 bytes under a name whose arguments size to 8 -- was picked as a
+# candidate and read in full before the mismatch surfaced.
+try:
+    from screen_identity import arg_bytes, body_facts, split_name
+except ImportError:                      # keep working if that tool is absent
+    split_name = None
+
 
 def rva2off(data, rva):
     lfanew = struct.unpack_from("<I", data, 0x3C)[0]
@@ -128,6 +139,36 @@ def _writes_an_offset_twice(body):
     return False
 
 
+def _name_contradicts_body(name, body, rva):
+    """True when the bytes pop a different amount than the name's arguments need.
+
+    Only the stack-cleanup check is reused here, because it is the one that never
+    fires on a merely-unusual function: a callee-cleaned function pops exactly
+    its argument list, so a disagreement means the name is on the wrong bytes.
+    arg_bytes returns None whenever the list cannot be sized from the name alone,
+    and None must stay "no opinion" rather than becoming a finding.
+    """
+    if split_name is None:
+        return False
+    parts = split_name(name)
+    if not parts:
+        return False
+    access, ret, argstr = parts
+    if argstr.startswith("Z") or access[2] == "A":       # varargs: caller cleans
+        return False
+    if access[2] not in "EIM":                            # not callee-cleaned
+        return False
+    want = arg_bytes(argstr)
+    if want is None:
+        return False
+    facts = body_facts(body, rva)
+    if not facts or not facts["ret_pops"]:
+        return False
+    if ret in ("?AV", "V"):                               # hidden return pointer
+        want += 4
+    return want not in facts["ret_pops"]
+
+
 def call_targets(body, rva):
     """REL32 call destinations. e8 is the only direct-call encoding used here."""
     out = []
@@ -190,6 +231,8 @@ def main():
                 continue
             body = data[off:off + size]
             found = blockers(body)
+            if _name_contradicts_body(name, body, rva):
+                found.append("identity")
             if found and not args.show_blocked:
                 continue
             calls = call_targets(body, rva)

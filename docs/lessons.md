@@ -3092,3 +3092,33 @@ the absolute operands inside the instructions are virtual addresses, and the ima
 is 0x00400000. Reading a string at the address printed in a disassembly listing without
 subtracting the base silently lands outside every section -- which at least fails loudly.
 Getting it wrong in the other direction, on an address that happens to map, would not.
+
+
+## Two screeners that do not talk to each other will hand you a bad row
+
+tools/screen_identity.py has been reporting ~60 naked rows whose bytes contradict their
+own decorated names. tools/screen_blockers.py ranks naked rows by conversion difficulty.
+Neither consulted the other, so a row already known to be misnamed was offered as a
+clean candidate, chosen, and read in full before the contradiction surfaced.
+
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z ends in
+ret 4. Its name takes a pointer and a RegType enum, which is eight bytes of arguments,
+and a callee-cleaned function pops exactly its argument list. The pair cannot be right,
+and screen_identity had already said so. screen_blockers now runs that check and drops
+such rows, which is a two-line change that would have saved most of a pass.
+
+The body is not Unregister at all. It notifies the object through a virtual at +0x68,
+removes it from lists at +0xbc, +0xd4, +0xec and +0x5c, and releases references twice.
+Zero Hour's SimpleSceneClass::Remove_Render_Object is virtual, takes exactly one
+RenderObjClass pointer, and does that work -- and that name appears nowhere in the
+ledger. It is the obvious candidate.
+
+It is recorded as a candidate and not applied. The arity contradiction is a proof that
+the current name is wrong; it is not evidence that any particular replacement is right,
+and those are different claims. Renaming on the strength of "this is the obvious one"
+would replace a detectably wrong row with an undetectably wrong one -- strictly worse,
+because the next screener pass would no longer flag it.
+
+The general point, now true of three tools here: a check is only worth having if
+whatever selects work actually consults it. screen_identity found this row weeks of
+passes ago and nothing was reading it.
