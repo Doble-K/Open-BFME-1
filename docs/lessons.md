@@ -2635,24 +2635,29 @@ flagging, but treating them as disqualifying turned a wide pool into a handful o
 A filter built from several signals inherits the narrowest one; check what it excluded,
 not just what it returned.
 
-## Probe in the context the code actually appears in
+## Probe in the context the code actually appears in -- and detect precisely
 
 The blocker on two module-data constructors is that retail materialises each member's
 address before storing -- `lea ecx,[esi+0x70]` then stores through ecx -- where my source
-kept folding onto the object pointer. Probing six source forms said several of them,
-including inline member constructors, produce the register form. They do, but only when
-the constructor is compiled standalone, where `this` arrives in a register anyway. The
-real constructor is inlined into a factory after a `new`, and the answer there is
-different: only inline member constructors and inline member functions keep the register
-form; plain member assignment and a pointer local both fold. A probe that does not
-reproduce the surrounding context answers a question you did not ask.
+folds onto the object pointer. Probing source forms for this produced two wrong answers
+in a row, each wrong for its own reason, and both are worth keeping.
 
-That still leaves a gap, and it is worth naming precisely because it looks like a
-success at first glance. With inline member constructors the real function coalesced:
-two adjacent three-word members at +0x70 and +0x7C became one run of six stores through
-the object pointer. Retail keeps them as two groups, each with its own `lea` and its own
-zeroing register. So MSVC will emit the register form, and will also throw it away again
-when it notices the members abut. Whatever the real members are, something stops that
-merge -- different types, an alignment gap, or a member between them that this layout
-does not have. Reproducing the addressing is not the remaining problem; preventing the
-coalesce is.
+The first probe compiled the constructor standalone and reported that several forms give
+the register addressing. They do -- standalone, `this` already arrives in a register, so
+the question was never asked. The real constructor is inlined into a factory after a
+`new`, which is a different question entirely.
+
+The second probe fixed the context but detected by searching the whole object for bytes
+like `89 01`. Those occur in vtables and in neighbouring functions, so it reported success
+for inline member constructors when there was none. Detecting the ABSENCE of the folded
+form (`mov [esi+0x70], reg`) and counting `lea`s at the member offsets says the opposite:
+across seven layouts -- same and different member types, int members, a nested type with
+its own constructor, the +8 subobject as a base and as a member, with and without a
+leading pad -- MSVC coalesces the two adjacent three-word members into one run of six
+stores through the object pointer every single time. Retail keeps two groups, each with
+its own `lea` and its own zeroing register.
+
+So the state is: no source form tried reproduces this, and the reason is the coalesce, not
+the addressing. Two rules fall out. Probe in the context the code actually appears in, and
+search for the thing that would DISPROVE the result rather than the thing that would
+confirm it -- a substring that can occur incidentally is not evidence.
