@@ -2634,3 +2634,25 @@ arity check silently skips every row whose argument list cannot be sized from th
 flagging, but treating them as disqualifying turned a wide pool into a handful of rows.
 A filter built from several signals inherits the narrowest one; check what it excluded,
 not just what it returned.
+
+## Probe in the context the code actually appears in
+
+The blocker on two module-data constructors is that retail materialises each member's
+address before storing -- `lea ecx,[esi+0x70]` then stores through ecx -- where my source
+kept folding onto the object pointer. Probing six source forms said several of them,
+including inline member constructors, produce the register form. They do, but only when
+the constructor is compiled standalone, where `this` arrives in a register anyway. The
+real constructor is inlined into a factory after a `new`, and the answer there is
+different: only inline member constructors and inline member functions keep the register
+form; plain member assignment and a pointer local both fold. A probe that does not
+reproduce the surrounding context answers a question you did not ask.
+
+That still leaves a gap, and it is worth naming precisely because it looks like a
+success at first glance. With inline member constructors the real function coalesced:
+two adjacent three-word members at +0x70 and +0x7C became one run of six stores through
+the object pointer. Retail keeps them as two groups, each with its own `lea` and its own
+zeroing register. So MSVC will emit the register form, and will also throw it away again
+when it notices the members abut. Whatever the real members are, something stops that
+merge -- different types, an alignment gap, or a member between them that this layout
+does not have. Reproducing the addressing is not the remaining problem; preventing the
+coalesce is.
