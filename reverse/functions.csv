@@ -79411,7 +79411,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseColor@@YA_NPAHPAD@Z,,0x00484610,115,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?parseColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x008531E0,409,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
 ?parseComboBoxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004849E0,237,Code/GameEngine/Source/GameClient/GUI/parseComboBoxData_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?parseCommand@CommandButton@@SAXPAVINI@@PAX1PBX@Z,,0x0049AB90,124,Code/GameEngine/Source/Common/CommandButton_parseCommand_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?parseCommand@CommandButton@@SAXPAVINI@@PAX1PBX@Z,,0x0049AB90,124,Code/GameEngine/Source/Common/CommandButton_parseCommand_Thunk.cpp,matched,clean C++; INI name-to-index lookup via _strcmpi with an INIException on a miss
 ?parseCommandButtonDefinition@INI@@SAXPAV1@@Z,,0x000B7F80,166,Code/GameEngine/Source/Common/INI/INICommandButton.cpp,matched,find-create-override on TheControlBar; unblocked by placing the CommandSet parser which showed the two override creators pair up at 0x00027CC3 and 0x00049ADA
 ?parseCommandSetDefinition@INI@@SAXPAV1@@Z,,0x004A2150,249,Code/GameEngine/Source/Common/INI/INICommandSet.cpp,matched,the INI registry binds the CommandSet keyword to this address; it was recorded as ?newCommandButtonOverride@ControlBar@@ against a MASM dump which has been removed
 ?parseCommonStuff@@YAXPAVINI@@PBQBDAAW4VeterancyLevel@@2AAW4DamageType@@3@Z,,0x00065F80,125,Code/GameEngine/Source/Common/parseCommonStuff_Thunk.cpp,matched,

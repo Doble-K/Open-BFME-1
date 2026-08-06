@@ -1,140 +1,65 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift CommandButton::parseCommand to clean C++.
+//
+// An INI name-to-index lookup: take the next token, walk a null-terminated table
+// of names comparing case-insensitively, and store the matching index through the
+// store pointer. A miss throws.
+//
+// The comparison goes through the import table -- MSVC hoists the slot into a
+// register before the loop and calls through it -- and the retail binary imports
+// _strcmpi, not _stricmp. Declaring the wrong one of that pair still builds and
+// still byte-matches, because the slot address is a copied DIR32, so it has to
+// be got right by reading the imports rather than by trusting the build.
+//
+// The throw is the same shape as ThingTemplate::parseAddModule: a variadic and
+// therefore __cdecl constructor taking `this` as its first stack argument, and
+// the exception type needs a declared copy constructor or MSVC builds the object
+// and then copies it into a second slot instead of constructing it in place.
 
-class INI;
+typedef int Int;
+
+extern "C" __declspec(dllimport) int __cdecl _strcmpi(const char *a, const char *b);
+
+class INIException
+{
+public:
+	INIException(Int code, const char *msg, ...);		///< direct call to 0x00850600
+	INIException(const INIException &other);
+
+private:
+	Int m_code;
+	const char *m_msg;
+};
+
+class INI
+{
+public:
+	const char *getNextToken(const char *seps = 0);		///< ILT thunk at 0x00850970
+};
+
+extern const char *TheCommandNames[];					///< retail [0x012B5F80]
+
 class CommandButton
 {
 public:
-	static void __cdecl parseCommand(INI *, void *, void *, const void *);
+	static void parseCommand(INI *, void *, void *, const void *);
 };
 
 // ?parseCommand@CommandButton@@SAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void __cdecl CommandButton::parseCommand(INI *, void *, void *, const void *)
+void CommandButton::parseCommand(INI *ini, void *instance, void *store, const void *userData)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xce
-        __emit 0x5d
-        __emit 0x3b
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xd8
-        __emit 0xa1
-        __emit 0x80
-        __emit 0x5f
-        __emit 0x2b
-        __emit 0x01
-        __emit 0x33
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x2b
-        __emit 0x8b
-        __emit 0x2d
-        __emit 0x3c
-        __emit 0x93
-        __emit 0x35
-        __emit 0x01
-        __emit 0xb8
-        __emit 0x80
-        __emit 0x5f
-        __emit 0x2b
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x8d
-        __emit 0x64
-        __emit 0x24
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x53
-        __emit 0x50
-        __emit 0xff
-        __emit 0xd5
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x31
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x04
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x04
-        __emit 0x47
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x75
-        __emit 0xe6
-        __emit 0x53
-        __emit 0x68
-        __emit 0xc0
-        __emit 0xb5
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x6a
-        __emit 0x03
-        __emit 0x52
-        __emit 0xe8
-        __emit 0x14
-        __emit 0x5a
-        __emit 0x3b
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0x68
-        __emit 0x30
-        __emit 0xfc
-        __emit 0x1d
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x02
-        __emit 0xc1
-        __emit 0x55
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x24
-        __emit 0x89
-        __emit 0x39
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0xc3
+	const char *token = ini->getNextToken();
+
+	Int index = 0;
+	while (TheCommandNames[index])
+	{
+		if (_strcmpi(TheCommandNames[index], token) == 0)
+		{
+			*(Int *)store = index;
+			return;
+		}
+		++index;
 	}
+
+	throw INIException(3, "Command '%s' not found", token);
 }
