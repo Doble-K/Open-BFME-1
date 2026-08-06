@@ -162,7 +162,7 @@ def arg_bytes(argstr):
             i += 2
             continue
         if pair == "W4":             # enum by value: one slot
-            j = _skip_class(body, i)
+            j = _skip_class(body, i + 2)
             if j is None:
                 return None
             seen.append(4)
@@ -174,7 +174,11 @@ def arg_bytes(argstr):
             if j >= len(body):
                 return None
             if body[j] in "VUT" or body[j] == "W":
-                nxt = _skip_class(body, j)
+                # step past the V/U/T (or W4) tag: _skip_class segments on `@`,
+                # and leaving the tag in makes the first segment "V1" rather
+                # than the lone "1" that marks a name backreference, so
+                # PAV1@ is mis-sized and a correct row is condemned.
+                nxt = _skip_class(body, j + (2 if body[j] == "W" else 1))
                 if nxt is None:
                     return None
                 i = nxt
@@ -244,10 +248,44 @@ def body_facts(blob, rva):
     return facts
 
 
+# Cases worked out by hand from the MSVC mangling rules. Two bugs have already
+# shipped here, both from scanning a qualified name for `@@` when it can end at
+# a backreference instead, and both would have condemned correct rows. Anything
+# touching _skip_class or arg_bytes should run --selftest.
+SELFTEST = [
+    ("XZ", 0),                              # no arguments
+    ("PBDH@Z", 8),                          # const char*, int
+    ("ABVAsciiString@@0@Z", 8),             # const ref, then a type backreference
+    ("PAVTextureClass@@0@Z", 8),            # pointer to class, then a backreference
+    ("PAV1@W4CrushSquishTestType@@@Z", 8),  # pointer via name backref, then an enum
+    ("IIPBDH@Z", 16),                       # two uints, const char*, int
+    ("_N@Z", 4),                            # bool
+    ("N@Z", 8),                             # double takes two slots
+    ("VAsciiString@@@Z", None),             # class by value: size not in the name
+    ("ZZ", None),                           # varargs: caller-cleaned
+]
+
+
+def selftest():
+    bad = 0
+    for argstr, want in SELFTEST:
+        got = arg_bytes(argstr)
+        ok = got == want
+        bad += not ok
+        print(f"  {'ok  ' if ok else 'FAIL'} {argstr:34} -> {got!r:6} expected {want!r}")
+    print("selftest:", "OK" if not bad else f"{bad} FAILURE(S)")
+    return 1 if bad else 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--limit", type=int, default=40)
+    ap.add_argument("--selftest", action="store_true",
+                    help="check the argument sizer against hand-computed cases and exit")
     args = ap.parse_args()
+
+    if args.selftest:
+        return selftest()
 
     data = EXE.read_bytes()
 
