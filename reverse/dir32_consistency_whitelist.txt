@@ -311,3 +311,15 @@ _png_pass_start
 _png_pass_yinc
 _png_pass_ystart
 _png_sig
+# ??_7CullLinkClass@@6B@ -- ??0CullLinkClass at 0x00087A50 is an ICF alias
+# (its own note says so). The folded body is a generic `p[0]=0; p[1]=arg`
+# stub that stores a literal zero where a real constructor stores the
+# vtable, so it resolves this symbol to 0 while ??_GCullLinkClass resolves
+# it to the true table at 0x01137808. The two cannot be reconciled from
+# source; the alias is not really this constructor.
+??_7CullLinkClass@@6B@
+# __imp__fopen and __imp__strstr -- the image carries TWO IAT slots for each
+# (0x01359368/0x013593BC and 0x013594D0/0x013594D8) and different objects
+# bind to different slots. A property of the retail link, not of any source.
+__imp__fopen
+__imp__strstr

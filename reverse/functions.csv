@@ -94150,3 +94150,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??_GHAnimComboClass@@UAEPAXI@Z,,0x00973D60,72,Code/Libraries/Source/WWVegas/WW3D2/HAnimComboClass_Dtor_Thunk.cpp,matched,
 ??_GProxyArrayClass@@UAEPAXI@Z,,0x0097B5D0,72,Code/Libraries/Source/WWVegas/WW3D2/ProxyArrayClass_Dtor_Thunk.cpp,matched,
 ??_GStaticSortListClass@@UAEPAXI@Z,,0x00958040,31,Code/Libraries/Source/WWVegas/WW3D2/StaticSortListClass_Dtor_Thunk.cpp,matched,
+??1DX8FVFCategoryContainer@@UAE@XZ,,0x00946B20,219,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,

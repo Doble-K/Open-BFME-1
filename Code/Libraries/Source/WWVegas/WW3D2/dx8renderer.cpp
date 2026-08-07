@@ -455,10 +455,16 @@ DX8FVFCategoryContainer::DX8FVFCategoryContainer(unsigned FVF_,bool sorting_)
 
 // ----------------------------------------------------------------------------
 
-// ??1DX8FVFCategoryContainer@@UAE@XZ present-unmatched
 DX8FVFCategoryContainer::~DX8FVFCategoryContainer()
 {
-	REF_PTR_RELEASE(index_buffer);
+	// Not index_buffer, and not REF_PTR_RELEASE. This build releases the
+	// refcounted member at +0xD8 and leaves index_buffer at +0xD0 alone; and
+	// the reference refcount.h clears outside the guard where retail clears
+	// inside, which these ported files pick up through /Ireference.
+	if (unknown_D8) {
+		unknown_D8->Release_Ref();
+		unknown_D8 = NULL;
+	}
 
 	for (unsigned p=0;p<passes;++p) {
 		while (DX8TextureCategoryClass * tex = texture_category_list[p].Remove_Head()) {

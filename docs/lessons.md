@@ -3979,3 +3979,51 @@ the wrong field; here the draft is the wrong implementation, and no amount of
 adjustment converges. The tell is structural: when the target's instruction count
 and the draft's statement count are not even the same order, stop reading the
 diff and start reading the target.
+
+
+## The function that would not move told me where the bytes go
+
+The contradiction from last tick resolved on the first build once I asked which
+function was the more constrained. Inserting eight bytes ahead of index_buffer
+matched the destructor and broke the constructor; the constructor is the one that
+cannot be argued with, because it writes +0xC8, +0xCC and +0xD0 and then stops. It
+pins index_buffer at +0xD0 and says nothing whatever about what follows.
+
+So the eight bytes had to go above index_buffer rather than below it, and putting
+them between used_indices and FVF moves passes to +0xE4 where the destructor reads
+it while leaving every offset the constructor touches alone. 110/110 in the
+translation unit, and 428/428 across all twelve that include the header.
+
+The part worth keeping is the second conclusion, which fell out of the first. If
+the released pointer is at +0xD8 and index_buffer is at +0xD0, then this build's
+destructor does not release index_buffer at all -- it releases one of the added
+members. The ported draft releases index_buffer because that is what the Generals
+destructor does, and it was never going to converge by nudging offsets. A
+refcount release followed by a loop over passes looks identical whichever pointer
+it releases, which is exactly why the draft looked so close.
+
+Ask which field an access reaches before deciding a layout is off by N. The offset
+delta was real and uniform and still pointed at the wrong edit.
+
+
+## The delta gate cannot see what the full gate checks
+
+Committing a header change ran the full gate for the first time in many ticks, and
+it failed -- not on the header change, which matched 94152/94152, but on three
+DIR32 consistency violations that had been sitting in master unnoticed. One was
+mine: ??_7CullLinkClass@@6B@ resolves to 0x01137808 in the deleting destructor I
+landed several ticks ago and to 0x00000000 in gridcull.cpp.
+
+The per-source gate that runs on an ordinary commit verifies the staged sources
+byte for byte, which is exactly what it promises, and cross-object properties are
+not that. So a source-only commit can introduce a whole-image inconsistency and
+report OK, and the next person to touch a header inherits the failure. Worth
+knowing which commits are cheap and which are the ones that actually check.
+
+All three turned out to be genuine and irreconcilable rather than bugs.
+??0CullLinkClass at 0x00087A50 is an ICF alias -- its own ledger note says so --
+and the folded body is a generic two-word stub that stores a literal zero where a
+constructor would store the vtable, so it resolves the symbol to 0 and always
+will. __imp__fopen and __imp__strstr have two IAT slots each in the image itself,
+and different objects bind to different ones. Whitelisted with the reasoning
+written down, which is what that file is for.

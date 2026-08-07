@@ -150,6 +150,23 @@ protected:
 	
 	IndexBufferClass *									index_buffer;
 	int														used_indices;
+
+	// Two members this build inserts between used_indices and FVF.
+	//
+	// The constructor writes visible_matpass_head, visible_matpass_tail and
+	// index_buffer at +0xC8, +0xCC and +0xD0 and nothing else, so it pins
+	// index_buffer where the reference layout has it and says nothing about
+	// what follows. The destructor reads its loop bound at +0xE4, which is
+	// where passes lands once eight bytes go in here rather than in front of
+	// index_buffer -- the placement that matched the destructor and broke the
+	// constructor.
+	//
+	// The first is refcounted and is what the destructor releases. That it is
+	// released at +0xD8 and not at +0xD0 is the whole reason the ported draft
+	// could not match: it releases index_buffer, which this build's destructor
+	// leaves alone.
+	IndexBufferClass *									unknown_D8;
+	unsigned											unknown_DC;
 	unsigned													FVF;
 	unsigned													passes;
 	unsigned													uv_coordinate_channels;
