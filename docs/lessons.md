@@ -4315,3 +4315,33 @@ over an out-of-line base. Both landed on the first build with no new levers --
 element size from the sar/shl pair, inlined-or-called from whether the element
 has a destructor, novtable from the absence of an entry vptr store. The catalogue
 is doing the work now.
+
+
+## The corrected filter opened a pool of seventy
+
+With x87 decoded rather than pattern-matched, seventy naked thunks of 140 bytes
+or less turn out to have no floating point and every callee already named. That
+pool is entirely an artefact of fixing the detector; none of it was visible last
+tick.
+
+Two attempts from it, both reverted at the build limit, both landing a few
+instructions short in the same way.
+
+UnicodeStringLessThan::operator() is compareNoCase followed by setl, and that
+part reproduces byte for byte. What does not is the unwind bookkeeping: retail
+writes state 0 at entry and -1 before the last destructor, while two by-value
+class parameters give 1, 0, -1. Retail is protecting one of the two parameters,
+not both, and I could not find the source form that says so.
+
+StealthUpgradeModuleData's constructor matches from +0x30 onward -- ten words, a
+byte, a -1, two more words, all off a single base register. The first two
+sub-objects do not. Retail copies this into edx, writes six dwords through it,
+then advances with lea edx,[eax+0x18] and writes six more; every form I tried
+(two members, an array of two, an out-of-line element constructor) folds those
+twelve writes into the flat run through eax and loses the cursor.
+
+Both are the same open question in different clothes: what makes MSVC 7.1 keep a
+separate pointer for an inlined sub-object rather than folding its stores into
+the enclosing base register. Recording it as such is more useful than either
+individual failure, because the answer would unlock a family rather than a
+function.
