@@ -4509,3 +4509,27 @@ So declining to claim the name several ticks ago was right, for a better reason
 than the one I had then. It also means individual names in that set are weak
 evidence about anything -- they were produced in bulk -- and the class owning
 vtable 0x01143B78 stays unidentified rather than being assumed.
+
+
+## Two bytes out of a hundred and six
+
+Anim2DCollection::newTemplate came down to a single transposed pair. Everything
+else matches: the EH funcinfo, the size pushed to operator new, the copy
+constructor and the template constructor with their displacements, the list
+link-in, the epilogue. What differs is that retail writes the temporary's address
+into the EH slot and then loads ecx with it, while the compile loads ecx first.
+
+Both fixes that got it there were free readings rather than guesses. The size
+pushed to operator new is the class size exactly -- 0x1C said seven words where I
+had four -- and `mov [eax+4], ecx` said the list link is the second word, not the
+first. Neither needed a build to discover, only a build to confirm.
+
+/EHa is not the lever. It does not nudge the ordering, it changes the exception
+model outright: byte-sized state writes instead of dword, an extra jump around
+the constructor, different use of the funcinfo. /EHsc is right and is now
+recorded as such alongside /O1 and the /G flags.
+
+That is three functions differing by one or two transposed instructions around
+compiler-generated bookkeeping. Reverting each is correct -- a near miss is not a
+match -- but the pattern is sharp enough now to be worth attacking directly
+rather than one function at a time.
