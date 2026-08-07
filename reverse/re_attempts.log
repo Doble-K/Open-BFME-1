@@ -920,3 +920,6 @@ tools/vtable_gaps.py			tool	labels a slot whose body byte-matches an already-cla
 ?Scale@RenderObjClass@@UAEXMMM@Z	0x006CF660	3	mis-anchored?	claimed here; the vtable dispatches to 0x0097BC10 which is the same ret 0xc body
 ?Class_ID@Vector3SolidBoxRandomizer@@UBEIXZ	0x006CF680	3	mis-anchored?	claimed at the shared xor eax eax ret stub; the vtable dispatches to 0x00B021C0
 tools/vtable_gaps.py			tool	duplicate filter lowered to three bytes; ret 0xc and xor eax eax ret are whole functions here and were being offered as unconverted
+?Get_HTree@Animatable3DObjClass@@UBEPBVHTreeClass@@XZ	0x0097BBF0	7	converted	vtable slot 78 right after Control_Bone; animobj.h declares it inline as return HTree; member at +0xFC
+Animatable3DObjClass			note	slot 79 at 0x00981D80 takes a pointer calls its virtual at +0xE4 and compares with [this+0x100]; looks like Set_HTree but animobj.h puts two Simple_Evaluate_Bone overloads in between so the mapping is not clean; left unclaimed
+Animatable3DObjClass			corroboration	slots 74 to 77 (Capture_Bone Release_Bone Is_Bone_Captured Control_Bone) all read the same +0xFC member that Get_HTree returns
