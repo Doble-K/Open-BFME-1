@@ -863,3 +863,8 @@ tools/screen_blockers.py			tool	now rejects rows screen_identity contradicts; th
 ?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	evidence	body opens by inlining ?Remove_Render_Object@SceneClass@@ at 0x00942C20 which is a 15-byte tail-call to the object's virtual at +0x68
 ?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	evidence	the SimpleSceneClass override was absent from the ledger while the SceneClass base was already claimed
 ??Add_Render_Object@SimpleSceneClass	0x00942FA0		unclaimed	the Add twin at slot 2 is still unnamed and is the obvious next claim
+?Internal_Add@GenericMultiListClass@@IAE_NPAVMultiListObjectClass@@_N@Z	0x009DBF60		pinned	head insertion and ret 8; the reference declares Internal_Add(obj onlyonce=true) and Internal_Add_Tail has the same arity so the linking end decided it
+?Add_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x00942FA0	86	unclaimed-mapped	vtable slot 2; notifies via +0x64 calls Internal_Add and increments the refcount; ends ret 4 at 0x00942FF3
+?Register@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x00943000		unclaimed-mapped	five-case jump table on the second argument adding to lists at +0x74 and +0x8c and incrementing refcounts; ret 8
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z			lead	the mirror of Register removing rather than adding should sit just after 0x00943000; the name is tombstoned only against 0x009438C0
+?b_009dbfe0@@YAXXZ	0x009DBFE0		unpinned	second add variant used by Register for the list at +0x8c; likely Internal_Add_Tail
