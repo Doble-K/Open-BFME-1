@@ -1,152 +1,57 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) PropagandaTowerBehaviorModuleData
+// Two vector members torn down in reverse declaration order, then the base
+// vftable store. The unwind states count down 1 then 0, which is what members of
+// one class look like.
+//
+// The two vectors compile differently and that is what identifies their
+// elements. The one at +0x14 is destroyed by an out-of-line call, so its element
+// has a destructor -- an AsciiString. The one at +0x08 is torn down inline with
+// no destroy loop at all, so its element is trivially destructible, and the
+// arithmetic gives its size: multiply-high by 0x2AAAAAAB then sar 3 is a divide
+// by 48, and the lea eax,[eax+eax*2] with shl 4 that follows multiplies straight
+// back to bytes. A 48-byte POD.
+//
+// The 0x80 comparison is STLport's node allocator threshold, not anything about
+// this class: small blocks go back to _M_deallocate, larger ones to operator
+// delete. #include <vector> comes first so that allocator is the one in scope.
+
+#include <vector>
+
+class AsciiString
 {
 public:
-    virtual ~PropagandaTowerBehaviorModuleData();
+	~AsciiString();
+
+private:
+	char *m_str;
+};
+
+struct PropagandaEntry
+{
+	int m_words[12];
+};
+
+class ModuleData
+{
+public:
+	virtual ~ModuleData() {}
+
+	unsigned int m_04;
+};
+
+class __declspec(novtable) PropagandaTowerBehaviorModuleData : public ModuleData
+{
+public:
+	virtual ~PropagandaTowerBehaviorModuleData();
+
+private:
+	std::vector<PropagandaEntry> m_entries;	// +0x08
+	std::vector<AsciiString> m_names;	// +0x14
 };
 
 // ??1PropagandaTowerBehaviorModuleData@@UAE@XZ
-__declspec(naked) PropagandaTowerBehaviorModuleData::~PropagandaTowerBehaviorModuleData()
+PropagandaTowerBehaviorModuleData::~PropagandaTowerBehaviorModuleData()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x23
-        __emit 0x16
-        __emit 0x01
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x14
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x74
-        __emit 0x8d
-        __emit 0xd9
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x7e
-        __emit 0x08
-        __emit 0x85
-        __emit 0xff
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0x74
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x2b
-        __emit 0xcf
-        __emit 0xb8
-        __emit 0xab
-        __emit 0xaa
-        __emit 0xaa
-        __emit 0x2a
-        __emit 0xf7
-        __emit 0xe9
-        __emit 0xc1
-        __emit 0xfa
-        __emit 0x03
-        __emit 0x8b
-        __emit 0xc2
-        __emit 0xc1
-        __emit 0xe8
-        __emit 0x1f
-        __emit 0x03
-        __emit 0xc2
-        __emit 0x8d
-        __emit 0x04
-        __emit 0x40
-        __emit 0xc1
-        __emit 0xe0
-        __emit 0x04
-        __emit 0x3d
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x76
-        __emit 0x0b
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x3d
-        __emit 0x41
-        __emit 0x5f
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x0a
-        __emit 0x50
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x71
-        __emit 0x08
-        __emit 0x5a
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }

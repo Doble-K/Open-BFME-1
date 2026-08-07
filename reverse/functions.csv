@@ -3820,7 +3820,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ProductionUpdate@@UAE@XZ,,0x0029D460,200,Code/GameEngine/Source/Common/ProductionUpdateDestructorThunk.cpp,matched,Exact 200B @ 0x0029D460; Exact retail MASM; instance factory->vtable dtor; del 0x29E300 ctor 0x29C9E0 vt 0xCC0F34
 ??1ProductionUpdateModuleData@@UAE@XZ,,0x0029E260,126,Code/GameEngine/Source/Common/ProductionUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1PropagandaTowerBehavior@@UAE@XZ,,0x002034F0,67,Code/GameEngine/Source/GameLogic/Object/Behavior/PropagandaTowerBehaviorDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit dtor thunk
-??1PropagandaTowerBehaviorModuleData@@UAE@XZ,,0x0028DD10,137,Code/GameEngine/Source/Common/PropagandaTowerBehaviorModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x11CB70 ctor 0x28DC60 ownership
+??1PropagandaTowerBehaviorModuleData@@UAE@XZ,,0x0028DD10,137,Code/GameEngine/Source/Common/PropagandaTowerBehaviorModuleDataDestructorThunk.cpp,matched,clean C++; vector<AsciiString> at +0x14 and a 48-byte POD vector at +0x08
 ??1ProxyArrayClass@@UAE@XZ,,0x0097C9D0,62,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
 ??1QuadDrawModuleInfo@FXParticleSystem@@UAE@XZ,0x0001C5CB,0x005D88A0,7,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,destructor resets vtable pointer
 ??1QuadDrawModuleTemplate@FXParticleSystem@@UAE@XZ,0x000459F8,0x005D8A00,50,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,object-symbol=?destroy@QuadDrawDtorBody@FXParticleSystem@@QAEXXZ;C++ member body converted from 50B raw dtor

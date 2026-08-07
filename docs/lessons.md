@@ -5704,3 +5704,21 @@ a formality. And when a heredoc collapses backslashes -- as one did here, twice,
 making a search string and its replacement identical so the fix silently no-opped
 while reporting success -- build the strings from character codes and assert the
 two differ before replacing.
+
+
+## A magic divide names the element size
+
+PropagandaTowerBehaviorModuleData's destructor tears down a vector inline and the
+arithmetic says exactly what is in it. Multiply-high by 0x2AAAAAAB then sar 3 is
+a divide by 48, and the lea eax,[eax+eax*2] with shl 4 that follows multiplies
+the count straight back to bytes. Forty-eight byte elements, and no destroy loop
+survives, so they are trivially destructible.
+
+The other vector in the same class is destroyed by an out-of-line call, which
+says its element has a destructor. One class, two vectors, and both element types
+readable without a single name.
+
+Landed on the first build by composing two existing conversions -- the POD-vector
+base and novtable shape from HealContainModuleData, the vector<AsciiString>
+member from AnimalAIUpdateModuleData. When the shape is already solved twice,
+the work is picking the right two files.
