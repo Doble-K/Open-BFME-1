@@ -1,132 +1,71 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class StructureBodyModuleData
+// A base constructed out of line, this class's vptr, then one guarded lookup.
+//
+// The global's string is read once into a register and every test and use works
+// from that copy, which is the two inline accessors sharing a common
+// subexpression. isNotEmpty is the pair of jumps to the same target -- the data
+// pointer non-null and the length word at +4 non-zero -- and str() is the
+// conditional that yields m_data + 8 or the empty literal.
+//
+// The null test inside str() is not redundant despite the guard above it: the
+// accessor is a separate inline function and the compiler does not carry the
+// fact across.
+class FXList;
+
+class BFMERetailAsciiString
 {
 public:
-    StructureBodyModuleData();
+	const char *str(void) const { return m_data ? m_data + 8 : ""; }
+
+	bool isNotEmpty(void) const
+	{
+		return m_data != 0 && *(const unsigned short *)(m_data + 4) != 0;
+	}
+
+	char *m_data;
+};
+
+class FXListStore
+{
+public:
+	const FXList *findFXList(const char *name) const;
+};
+
+class GlobalData
+{
+public:
+	unsigned char m_head[0xAA8];
+	BFMERetailAsciiString m_structureDamageFX;
+};
+
+extern GlobalData *TheGlobalData;
+extern FXListStore *TheFXListStore;
+
+class ActiveBodyModuleData
+{
+public:
+	ActiveBodyModuleData();
+
+	virtual ~ActiveBodyModuleData();
+
+private:
+	unsigned char m_head[0x44];
+};
+
+class StructureBodyModuleData : public ActiveBodyModuleData
+{
+public:
+	StructureBodyModuleData();
+
+private:
+	const FXList *m_fxList;
 };
 
 // ??0StructureBodyModuleData@@QAE@XZ
-__declspec(naked) StructureBodyModuleData::StructureBodyModuleData()
+StructureBodyModuleData::StructureBodyModuleData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x98;
-        __emit 0x1e;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0xe8;
-        __emit 0x36;
-        __emit 0xd4;
-        __emit 0xf0;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x20;
-        __emit 0xed;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0x0d;
-        __emit 0xc8;
-        __emit 0xd5;
-        __emit 0x2e;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0x81;
-        __emit 0xa8;
-        __emit 0x0a;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x66;
-        __emit 0x83;
-        __emit 0x78;
-        __emit 0x04;
-        __emit 0x00;
-        __emit 0x74;
-        __emit 0x1d;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0x74;
-        __emit 0x05;
-        __emit 0x83;
-        __emit 0xc0;
-        __emit 0x08;
-        __emit 0xeb;
-        __emit 0x05;
-        __emit 0xb8;
-        __emit 0x8b;
-        __emit 0x38;
-        __emit 0x07;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0x0d;
-        __emit 0x4c;
-        __emit 0x14;
-        __emit 0x2f;
-        __emit 0x01;
-        __emit 0x50;
-        __emit 0xe8;
-        __emit 0x7d;
-        __emit 0xd2;
-        __emit 0xee;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x48;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	if (TheGlobalData->m_structureDamageFX.isNotEmpty()) {
+		m_fxList = TheFXListStore->findFXList(TheGlobalData->m_structureDamageFX.str());
+	}
 }

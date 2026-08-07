@@ -1,126 +1,53 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class HeroModeSpecialAbilityUpdateModuleData
+// A base constructed out of line, this class's vptr, then a layout string set
+// from an empty literal, then two fields.
+//
+// ecx is loaded with the member's address before the vptr store and reused for
+// both its own zeroing and the set call that follows -- the thiscall argument
+// set up early rather than a separate cursor. The length pushed is zero, which
+// is the literal's own length.
+//
+// Two unwind states count the two destructible things standing when the call
+// that can throw is made: the base and the member.
+class RetailLayoutString
 {
 public:
-    HeroModeSpecialAbilityUpdateModuleData();
+	RetailLayoutString() : m_data(0) {}
+	~RetailLayoutString();
+
+	void set(const char *text, int length);
+
+private:
+	void *m_data;
+};
+
+class SpecialAbilityUpdateModuleData
+{
+public:
+	SpecialAbilityUpdateModuleData();
+
+	virtual ~SpecialAbilityUpdateModuleData();
+
+private:
+	unsigned char m_head[0x250];
+};
+
+class HeroModeSpecialAbilityUpdateModuleData : public SpecialAbilityUpdateModuleData
+{
+public:
+	HeroModeSpecialAbilityUpdateModuleData();
+
+private:
+	RetailLayoutString m_layout;
+	int m_258;
+	bool m_25c;
 };
 
 // ??0HeroModeSpecialAbilityUpdateModuleData@@QAE@XZ
-__declspec(naked) HeroModeSpecialAbilityUpdateModuleData::HeroModeSpecialAbilityUpdateModuleData()
+HeroModeSpecialAbilityUpdateModuleData::HeroModeSpecialAbilityUpdateModuleData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x56;
-        __emit 0xf5;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0xe8;
-        __emit 0x21;
-        __emit 0xfa;
-        __emit 0xdd;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x54;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x08;
-        __emit 0x5a;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0x1c;
-        __emit 0x30;
-        __emit 0x07;
-        __emit 0x01;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x13;
-        __emit 0x82;
-        __emit 0x62;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x86;
-        __emit 0x58;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc6;
-        __emit 0x86;
-        __emit 0x5c;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_layout.set("", 0);
+	m_258 = 0;
+	m_25c = false;
 }

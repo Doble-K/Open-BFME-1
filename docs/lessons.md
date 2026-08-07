@@ -4874,3 +4874,31 @@ order would not reproduce it.
 The screening is what made the difference rather than any single insight. Picking
 from candidates that survive the convention audit means the remaining work is
 modelling, and modelling is now mostly transcription.
+
+
+## One load, two accessors
+
+StructureBodyModuleData's constructor reads the global's string data pointer once
+and does everything from that copy: tests it non-null, tests the length word at
++4, then adds eight to it or substitutes the empty literal. Written as two
+separate inline accessor calls -- isNotEmpty() and str() on the same member --
+that is exactly what MSVC produces, because it shares the load between them.
+
+Which is why the shape is readable in the first place. A single register holding
+the member across four uses looks like a hand-written temporary until you notice
+the accessors would have produced it anyway.
+
+The null test inside str() is worth pointing at again. The guard above already
+proved the pointer good, and the test survives regardless, because str() is a
+separate inline function and MSVC does not carry the fact across the boundary.
+That is the same effect as delete this inside Release_Ref, seen from the other
+side: a check that looks redundant marks where one function ended before the
+inliner ran.
+
+## An empty literal is still a literal
+
+HeroModeSpecialAbilityUpdateModuleData pushes a pointer into .rdata and a length
+of zero. The pointer is a real empty string, and writing set("", 0) reproduces
+it -- the string-ref gate confirms it as an empty-string reference rather than a
+literal, which is a distinction the gate makes and worth knowing before assuming
+a zero length means no string at all.

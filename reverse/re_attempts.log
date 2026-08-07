@@ -1132,3 +1132,8 @@ thunk-pinned-bases			lever	when a base constructor call is unresolved look at wh
 ??0MaterialPassClass@@QAE@XZ	0x009333A0	104	converted	first build; refcount base set to one an array of eight at +8 then four fields in retail's order
 MAE-is-protected			lever	the access letter in the mangled name is not decoration. MAE means a protected member so the destructor must be declared protected or the symbol comes out UAE and is not found in the object
 field-order			lever	write the tail assignments in the order retail stores them not in address order. MaterialPassClass writes +0x28 +0x2C +0x34 then the byte at +0x30 and sorting them would not reproduce
+??0HeroModeSpecialAbilityUpdateModuleData@@QAE@XZ	0x0025FAC0	112	converted	first build; same shape as UpgradeModuleModuleData with an empty literal and a zero length
+??0StructureBodyModuleData@@QAE@XZ	0x001293C0	118	converted	first build; a guarded findFXList on a global's string read once and shared between isNotEmpty and str
+accessor-CSE			lever	two inline accessors on the same member compile to one load. The global's data pointer is fetched once and every test and use works from that copy which is what makes the shape readable at all
+str-null-check			lever	the null test inside str() survives even under a guard that already proved the pointer good, because the accessor is a separate inline function. Same boundary effect as delete this inside Release_Ref
+empty-literal			note	a zero pushed as the length with a pointer into .rdata is an empty string. The string-ref gate verifies it as an empty-string ref rather than a literal
