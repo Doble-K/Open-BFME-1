@@ -4731,3 +4731,36 @@ It also settles something that had looked odd a few ticks earlier.
 ??1SlavedUpdate -- a constructor calling a destructor, which I noted as strange
 and moved past. They were calling their base constructor all along, and the
 strangeness was the name, not the code.
+
+
+## The real header can delete calls the target makes
+
+Two ticks ago including a reference header fixed a conversion; here it broke one,
+and the rule that covers both is about what the header does rather than whether
+it is authentic.
+
+LANGameSlot::isUser calls GameSlot::getName and UnicodeString::compareNoCase out
+of line. Both are declared inline in the reference headers, so including them
+removes the two calls entirely and replaces them with inlined field reads and a
+hand-written string comparison. Replacing both with plain declarations put the
+calls back on the third build.
+
+So: include the reference header when what you need from it is codegen the
+compiler must see -- constructors, destructors, copy semantics of a temporary.
+Declare it yourself when the target CALLS something the reference would inline.
+The header is authoritative about Generals, and BFME moved several functions out
+of line.
+
+## When no evidence names a class
+
+??1SlavedUpdate is a constructor by every available sign: it reads two stack
+arguments, initialises members from them, stores a vptr, returns this in eax and
+pops eight bytes. Destructors do none of that. But the obvious correct name,
+??0SlavedUpdate with two parameters, is already claimed at another address, and
+the vtable this function installs is stored nowhere else in the image, with slot
+0 pointing at a synthetic thunk.
+
+So the row is wrong and the right name is not recoverable from the binary. Worth
+recording as exactly that rather than guessing: a wrong name with no evidence for
+the right one is a different state from an unidentified function, and pretending
+otherwise would put a fabricated name in a ledger that 94158 rows depend on.
