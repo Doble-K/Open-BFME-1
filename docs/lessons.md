@@ -4791,3 +4791,28 @@ So the residual there is specific to that function -- the global clear next to
 the base call -- not to the shape. Worth checking a sibling before concluding a
 family is blocked; two conversions this tick came from a list that included the
 function I had failed on.
+
+
+## A tool that reports 143 and prints 40
+
+I grepped audit_ret_arity's output for ?onExit@AIAttackState, found nothing, and
+concluded the audit had missed a contradiction I had just verified by hand. It had
+not. The tool prints its first forty findings by default while its header reports
+the true count, and onExit is there at --limit 200.
+
+The mistake is worth recording because the output invites it: a header saying 143
+above a list of 40 reads as a complete list unless you count. Anything scripted
+against that output needs the limit raised first, and a negative result from a
+truncated list is not a negative result.
+
+## Screening candidates against the audit
+
+Two of this tick's three picks were rows whose calling convention contradicts
+their own name -- onExit pops nothing where its StateExitType parameter requires
+four, and it is really an allocation of a 0x44-byte state machine built from
+this+0x10 and a literal. No source can match a row like that, because the name it
+must emit is not the name of the function that is there.
+
+So candidate screens should subtract the audit's flagged set before ranking
+anything. That is cheaper than discovering it one disassembly at a time, which is
+what I did twice today.
