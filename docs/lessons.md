@@ -5286,3 +5286,40 @@ codegen alone.
 That file verifies 560 rows on every build. A candidate inside it is not a
 cheap three-build experiment, and that should be weighed before starting rather
 than discovered halfway through.
+
+
+## Screen on the things that actually blocked the last three attempts
+
+Three ticks of picking uniformly at random hit three different walls, and all
+three were visible in the bytes before a line of C++ was written. Six vptr
+stores meant multiple inheritance. A callee whose only name was ?b_000b2cc0
+meant pinning a guessed signature. A candidate inside a bulk file meant 560 rows
+verified per build.
+
+tools/screen_naked.py now ranks on exactly those: vtable stores in the body,
+callees that resolve only to synthetic names, and how many rows the source file
+carries. 240 candidates come back with at most one vtable, no synthetic callee,
+and a single-row source. That is a queue where a three-build experiment costs
+three short builds.
+
+## Four ways not to get a sub-object cursor
+
+StealthUpgradeModuleData zeroes two 0x18 blocks at 0 and 0x18 through a register
+-- `mov edx,eax`, six stores, `lea edx,[eax+0x18]`, six more -- and then writes
+everything from 0x30 up directly off the object pointer. The second half matches
+byte for byte on the first build, including the byte at 0x58 and the -1 at 0x5c.
+
+The cursor does not come from any of the obvious sources. A member type with an
+inline constructor, the same constructor moved out of line, and an array of two
+elements all produce byte-identical output: direct addressing off eax with no
+cursor at all. Replacing the constructor with memset produces one merged 48-byte
+rep stosd for both blocks, which is further away still.
+
+That MSVC normalises all three of the first shapes to the same instructions is
+the useful part -- it means the cursor is not a matter of how the sub-object's
+initialisation is spelled, and the next hypothesis has to come from somewhere
+else.
+
+This took four builds against a three-build rule. The fourth was taken on a
+specific stated hypothesis rather than another guess, and it was wrong; noting
+the overrun because a limit that is quietly relaxed is not a limit.
