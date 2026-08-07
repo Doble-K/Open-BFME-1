@@ -4639,3 +4639,35 @@ Getting that backwards would have modelled the wrong function and blamed the
 mismatch on something else. Backreferences are cheap to resolve and worth
 resolving whenever a class has overloads -- the numbering runs over every name
 already seen in the mangling, return type included.
+
+
+## A row whose name its own bytes refute
+
+?getAlternateMouseModeEnabled@OptionPreferences@@QAE_NXZ is claimed at
+0x00092670. QAE_NXZ is thiscall, no arguments, returning Bool, so the body should
+end in a bare ret. It ends in ret 4, and what it does is build an AsciiString key
+from a literal, subscript the preference map, and assign a by-value string into
+it. That is a setter with one argument, and the key literal is GameSpyIPAddress,
+which the reference header names setOnlineIPAddress.
+
+The check that caught it costs nothing and I had already written it down two
+ticks ago: compare the calling convention encoded in the mangled name against the
+prologue and the return. XZ means no stack arguments; ret 4 means one. They
+cannot both be right.
+
+## Reference headers can be wrong about slots
+
+WinInstanceData::setText reproduces completely once two vtable slots are
+corrected: BFME reaches newDisplayString at +0x24 where the reference header puts
+it at +0x18, and DisplayString::setText at +4 where the header puts it at +8.
+Including those headers does not help, it actively supplies the wrong number.
+
+So the real-header rule needs its own qualification. Including a reference header
+is right when it fixes codegen -- a class's constructors, its temporaries, its
+copy semantics -- and wrong when the thing you need from it is a vtable layout
+BFME has changed. Here the answer was both at once: the real UnicodeString for
+the temporary, hand-written interfaces for the two vtables.
+
+And the lever is narrower than last tick suggested. The real UnicodeString did not
+fix the transposition that the real AsciiString fixed in newTemplate, so
+"include the real class" is not sufficient on its own.
