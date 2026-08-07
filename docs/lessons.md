@@ -3605,3 +3605,35 @@ nothing to call them; and a RenderObjClass slot whose body tests a virtual and t
 members in a shape that matches none of the inline one-liners the header declares in that
 range. Declining is the right outcome for all three -- what would have been wrong is
 picking the closest-looking header declaration and calling it identified.
+
+
+## One address fills 2519 vtable slots, and it is unclaimed
+
+Chasing a filesystem vtable turned up seven consecutive slots all pointing at 0x0088C500.
+Counting across the whole image, 2519 aligned .rdata slots hold that address. That is the
+signature of the pure-virtual stub: MSVC puts one in every slot of an abstract class that
+has no implementation, so a single body ends up referenced once per pure virtual in the
+program.
+
+It is unclaimed, and its body is not the three-instruction CRT stub -- it pushes an error
+code, calls a reporter, then makes several virtual calls through a global at 0x01336E5C.
+This build supplied its own handler.
+
+Meanwhile __purecall is claimed, at 0x006CF680, three bytes, and its own ledger note
+records icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ -- it is the shared
+`xor eax,eax; ret` body. That cannot be a pure-virtual handler; returning zero is exactly
+what such a stub must not do.
+
+Not repointed. One name means one address, the existing row belongs to someone else, and
+a 3-byte ICF-folded body is precisely the case established earlier as unadjudicable. But
+the reference count is unusually strong evidence, so it is recorded as a correction
+candidate rather than left to be rediscovered.
+
+The same investigation exposed a limitation worth stating about vtable_gaps. A run of
+consecutive code pointers spans several class vtables: run 0x01143AF8 begins with
+??_GFile@@ and only reaches ArchiveFileSystem thirty slots later. So "slot k of n" is a
+position in the run, not in any class's vtable, and neighbours several slots away may
+belong to a different class entirely. Every conversion this method has produced relied on
+immediate neighbours -- one or two slots either side -- which is the range where the run
+and the real vtable still coincide. Distant neighbours in the tool's output are not
+evidence.

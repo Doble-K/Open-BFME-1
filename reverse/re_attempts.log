@@ -953,3 +953,8 @@ tools/vtable_gaps.py			fix	candidates must be preceded by int3; a function entry
 delegation-family			exhausted	only one other unclaimed dispatched body calls a virtual at +0xC4 and it belongs to ParticleEmitterDefClass not the bone API
 0x008DCCB0 0x008DDED0			unnameable	both are scalar deleting destructors; the only storer of their vtable 0x01137808 carries the synthetic name Gen_008dd8a0
 0x0091F830			unidentified	slot 118 tests a virtual at +0x19c then members at +0x80 and +0x90; none of rendobj.h's inline one-liners in that range match
+0x0088C500			unclaimed	referenced by 2519 aligned .rdata slots; reports through a global at 0x01336E5C; almost certainly this build's pure-virtual stub
+__purecall	0x006CF680	3	suspect	currently anchored to the shared xor eax eax ret body whose own note records icf-owner Get_Sort_Level; that body cannot be a purecall handler
+purecall			note	not repointed: one name one address and the existing row is another contributor's; recorded as a correction candidate with the reference count as evidence
+vtable-runs			limitation	a run of code pointers spans several class vtables; run 0x01143AF8 starts with ??_GFile@@ and reaches ArchiveFileSystem later so slot k of n is a run position not a class slot
+tools/vtable_gaps.py			fix	skip candidates whose first byte is int3; those are padding inside a run rather than zero-length functions

@@ -254,6 +254,9 @@ def main():
             so = off_of_text(s)
             if so is None or so == 0 or data[so - 1] != 0xCC:
                 continue
+            # int3 on both sides is padding, not a zero-length function.
+            if data[so] == 0xCC:
+                continue
             # A vtable slot tells you which METHOD a body is. For a template
             # it does not tell you which INSTANTIATION: identical
             # instantiations fold, so one table can carry names from several
