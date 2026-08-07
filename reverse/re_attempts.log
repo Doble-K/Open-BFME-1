@@ -878,3 +878,8 @@ SimpleSceneClass			summary	slot 2 Add_Render_Object 0x00942FA0 slot 3 Remove_Ren
 ?End@Pipe@@UAEHXZ	0x009E1EB0	5	converted	clean C++ found by tools/vtable_gaps.py; two builds
 ?End@Pipe@@UAEHXZ	0x009E1EB0	5	note	an inline virtual is not emitted unless something forces it; defining it out of line is what produced the symbol
 tools/vtable_gaps.py			tool	ranks unclaimed vtable slots by how many named neighbours bound them; generated placeholders are excluded or every table looks fully named
+?File_Name@RawFileClass@@UBEPBDXZ	0x009E6A10	4	converted	vtable slot 1 between the destructor and Set_Name; returns the Filename member at +0x14
+?Get_File_Handle@RawFileClass@@UAEPAXXZ	0x009E6A00	4	converted	vtable slot 17; getter for the handle member at +0x10
+?Error@RawFileClass@@UAEXHHPBD@Z	0x009E6560	3	converted	vtable slot 18; bare ret 0xc so the release build has no body
+RawFileClass			note	BFME made Bias virtual and swapped Error with Get_File_Handle relative to RAWFILE.H so slot order alone could not assign these two
+vtable-gaps-method			note	four conversions in two passes from the ranking; signature shape decides when declaration order disagrees with the reference
