@@ -5722,3 +5722,32 @@ Landed on the first build by composing two existing conversions -- the POD-vecto
 base and novtable shape from HealContainModuleData, the vector<AsciiString>
 member from AnimalAIUpdateModuleData. When the shape is already solved twice,
 the work is picking the right two files.
+
+
+## Assignment order in the body is not declaration order
+
+WaterTransparencySetting assigns the river multiplier at 0x34 before the blend
+flag at 0x2c, which is the reverse of how the members are declared. Member
+construction follows declaration order and is not negotiable, but statements in
+the body are emitted in the order written, so the two can disagree and the bytes
+show which is which.
+
+The same function also shows what a constructor does not do. The two words at
+0x38 and 0x3c are members, and retail never writes them -- they take no INI field
+and are runtime-only state. A source that helpfully zeroes them would be three
+stores longer than retail and would not match. Absence of a store is evidence as
+much as a store is.
+
+## Three conversions off one triage pass
+
+CampaignManager::init, PropagandaTowerBehaviorModuleData and
+WaterTransparencySetting all landed on the first or second build, in one tick,
+having been picked by a fan-out that classified twelve queue candidates against
+the levers and blockers already on record.
+
+The contrast with the preceding ticks is the point. Sampling the queue uniformly
+kept landing on the FXParticleSystem ModuleInfo family, on mis-anchored rows and
+on the by-value transposition -- all already known-blocked, none of which the
+size-ordered screen could see. Screening on structure got the pool down to 133;
+classifying against what is already known got three conversions out of the next
+three attempts.
