@@ -938,3 +938,8 @@ chunk-id-scan			negative	W3D_CHUNK ids below 0x100 collide with Class_ID returns
 chunk-id-scan			negative	only 4 bodies return a distinctive chunk id >= 0x100 and all four have zero references anywhere in the image
 chunk-id-scan			note	reference scanner validated against a known-dispatched address before trusting the zero-reference result
 0x00118D60 0x00119650 0x006BEF30 0x008A0DF0			dead	unreferenced bodies returning W3D_CHUNK_LIGHTSCAPE HIERARCHY LODMODEL ANIMATION; no witness available to name them
+?Remove_Sub_Objects_From_Bone@RenderObjClass@@UAEHPBD@Z	0x0091F990	31	converted	name overload delegating through the virtual at 0xC4 to the int overload at 0x9C
+vtable-offset-calls			method	a body calling this->virt at a fixed offset pins that method's slot index; declare placeholders so the offsets land exactly
+vtable-offset-calls			gotcha	MSVC groups an overload set into consecutive slots wherever the second one is declared so a late declaration shifts every later slot
+vtable-offset-calls			gotcha	within the group the order is reversed; the last declared overload occupies the lower slot
+0x00007FD1			note	vtable_gaps offered this as a 31-byte body but it is an ILT jump thunk; the extent measure walks into adjacent thunks

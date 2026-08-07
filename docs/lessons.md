@@ -3502,3 +3502,38 @@ reads the +0xC8 member that Set_Name writes, and the neighbouring slots hold
 Get_Base_Model_Name and Set_Base_Model_Name of the same class. HLodClass derives from
 CompositeRenderObjClass and does not override Get_Name, so the inherited implementation
 is what the slot carries.
+
+
+## A call through this-vtable pins the callee's slot, and overloads move it
+
+RenderObjClass::Remove_Sub_Objects_From_Bone(const char *) is thirty-one bytes that
+convert the argument through the virtual at vtable offset 0xC4 and pass the result to
+the virtual at 0x9C. Those two offsets are the identification: a name-to-index
+delegation, with the int overload it delegates to sitting in the adjacent slot.
+
+They are also the whole difficulty. Reproducing the body means the placeholder class must
+put Get_Bone_Index at slot 49 and the int overload at slot 39, because the emitted
+instruction encodes the byte offset. Two MSVC behaviours interfere, and both took a
+failed build to pin down.
+
+An overload set occupies consecutive slots, placed where the *second* declaration
+appears. Declaring the const char* version at the end of the class did not append it --
+MSVC pulled it up beside the int version and pushed every later slot down by one, so both
+call offsets came out four bytes high.
+
+And within the group the order is reversed: the last declared overload takes the lower
+slot. Declaring int then name put name at 39 and int at 40, so 0x9C was still wrong by
+one slot after the first fix. Declaring name then int lands the int version at 0x9C, and
+that reversal matches the image, where the name overload occupies the slot before the int
+one.
+
+The general point is that a virtual call at a fixed offset is strong evidence -- it names
+the callee's slot exactly -- but cashing it in requires reproducing the class's vtable
+layout, and the overload rules make that layout non-obvious. Both corrections showed up
+as an offset wrong by exactly four, which is a useful signature: it means the slot
+counting is off by one, not that the identification is wrong.
+
+Separately, vtable_gaps offered 0x00007FD1 as a thirty-one byte candidate. It is an ILT
+jump thunk, and the extent measure simply walked through the adjacent thunks to the next
+int3. Thunk regions have no int3 padding between entries, so any size it reports there is
+meaningless.
