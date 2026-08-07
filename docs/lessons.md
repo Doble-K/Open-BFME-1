@@ -4559,3 +4559,33 @@ a function that already produces the thing you want and read how. And prefer the
 real header to a stand-in whenever one exists -- a stand-in is a claim that only
 layout matters, and for anything with a constructor, a destructor or a temporary,
 that claim is wrong.
+
+
+## Scoping the real-header lever before trusting it
+
+Last tick's finding -- that a hand-rolled stand-in, not a compiler flag, caused an
+ordering residual -- was worth generalising, so I tried it on the three functions
+it seemed to explain. All three still fail, each for a different reason, and the
+lever is narrower than one success suggested.
+
+ScriptConditions was written against the real SubsystemInterface and did not
+budge. The stand-in that matters there is the type of the global being deleted,
+and 0x012F06AC is unnamed in both ledgers, so there is no real class to reach
+for.
+
+LifeEventModuleInfo got worse. The reference GameClientRandomVariable has no
+zeroing constructor, where BFME's zeroes three words, so including the real
+header removed instructions instead of reordering them. BFME's class is simply
+not Generals' class.
+
+Template did not change at all, because the stand-in was never its problem -- the
+AsciiString constructor call already matched byte for byte, and the residual is
+field stores interleaved around the ??_L call plus a zero constant split across
+edi and ecx.
+
+So the rule is: a stand-in explains a residual only when the class it stands in
+for both exists in the reference with the same definition AND is the thing whose
+codegen differs. That is what newTemplate had -- a by-value AsciiString temporary
+whose copy construction and destruction are the whole reason the function has an
+EH frame. Where the stand-in is peripheral, replacing it changes nothing, and
+where BFME diverged from Generals, it makes things worse.
