@@ -1127,3 +1127,8 @@ candidate-screening			method	screens should subtract the audit's flagged set. Tw
 ?friend_newModuleInstance@ModelConditionSoundSelectorClientBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z	0x00126190	104	converted	same source with the class renamed; the differing vtable addresses are DIR32 relocations copied from the target
 audit-filtered-screen			method	subtracting the audit's 143 flagged rows and everything already logged left 26 candidates from the naked pool and the first pick converted. Two of last tick's three picks were rows the filter would have removed
 thunk-pinned-bases			lever	when a base constructor call is unresolved look at what is already pinned at that incremental-link thunk. Eight module constructors share 0x00002874 and picking the right one from that list named the base without guessing
+??1Weapon@@MAE@XZ	0x001E5490	111	converted	first build; one vector of 4-byte elements at +0x40 and an inlined Snapshot base
+??0SlaughterHordeContainModuleData@@QAE@XZ	0x0022B160	110	converted	first build; base constructor called then an array of eight 24-byte elements at +0x24C then three fields
+??0MaterialPassClass@@QAE@XZ	0x009333A0	104	converted	first build; refcount base set to one an array of eight at +8 then four fields in retail's order
+MAE-is-protected			lever	the access letter in the mangled name is not decoration. MAE means a protected member so the destructor must be declared protected or the symbol comes out UAE and is not found in the object
+field-order			lever	write the tail assignments in the order retail stores them not in address order. MaterialPassClass writes +0x28 +0x2C +0x34 then the byte at +0x30 and sorting them would not reproduce

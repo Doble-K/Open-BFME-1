@@ -1,118 +1,53 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class MaterialPassClass
+// A refcount base, an array of eight, then four fields.
+//
+// The base's constructor is inlined and is just the count at +4 set to one,
+// which is what a reference-counted object starts life with. ??_L gives the
+// array outright: base +8, eight elements, four bytes each, with a constructor
+// and a destructor -- so the element is a class holding one pointer, not a raw
+// pointer, or there would be no iterator call at all.
+//
+// The tail is written in the order retail has it rather than in address order:
+// +0x28, +0x2C, +0x34, then the byte at +0x30 last.
+class RefCountClass
 {
 public:
-    MaterialPassClass();
+	RefCountClass() : m_numRefs(1) {}
+
+	virtual ~RefCountClass();
+
+	int m_numRefs;
+};
+
+class MaterialPassStage
+{
+public:
+	MaterialPassStage();
+	~MaterialPassStage();
+
+private:
+	void *m_ptr;
+};
+
+class MaterialPassClass : public RefCountClass
+{
+public:
+	MaterialPassClass();
+
+private:
+	MaterialPassStage m_stages[8];
+	int m_28;
+	int m_2c;
+	bool m_30;
+	int m_34;
 };
 
 // ??0MaterialPassClass@@QAE@XZ
-__declspec(naked) MaterialPassClass::MaterialPassClass()
+MaterialPassClass::MaterialPassClass()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xa8;
-        __emit 0xcf;
-        __emit 0x05;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0x52;
-        __emit 0x06;
-        __emit 0x43;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0xd6;
-        __emit 0x10;
-        __emit 0x41;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0x08;
-        __emit 0x6a;
-        __emit 0x04;
-        __emit 0x8d;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x33;
-        __emit 0xff;
-        __emit 0x50;
-        __emit 0x89;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x28;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x84;
-        __emit 0xc8;
-        __emit 0x13;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xfc;
-        __emit 0x3a;
-        __emit 0x0c;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x28;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x2c;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x34;
-        __emit 0xc6;
-        __emit 0x46;
-        __emit 0x30;
-        __emit 0x01;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_28 = 0;
+	m_2c = 0;
+	m_34 = 0;
+	m_30 = true;
 }

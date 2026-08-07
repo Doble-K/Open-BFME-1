@@ -4845,3 +4845,32 @@ fabricated symbol in symbols.csv forever.
 The sibling then cost nothing. Its vtable addresses differ, but those are DIR32
 relocations copied from the target, so the same source with one identifier
 changed reproduces a different function exactly.
+
+
+## Three in a row, and none of them needed a second build
+
+Weapon's destructor, SlaughterHordeContainModuleData's constructor and
+MaterialPassClass's constructor all went in first time, from the pool the audit
+screen left behind. Nothing new was needed for any of them -- the levers already
+written down did the work:
+
+  - ??_L and ??_M spell an array out from their arguments: base, count, element
+    size, constructor, destructor. Eight times twenty-four landing exactly on the
+    next field is the confirmation that the reading was right.
+  - The sar/shl pair after a vector's capacity subtraction gives sizeof(element),
+    and no destroy loop before the free means the element has no destructor.
+  - An entry vptr store means not novtable; a different vptr stored at the end
+    means an inlined base destructor.
+  - A refcount base whose constructor is inlined shows up as nothing more than
+    the count at +4 set to one.
+
+Two small things were new. MAE rather than UAE in the mangled name means a
+protected member, and declaring the destructor public makes the symbol come out
+UAE and vanish from the object -- a missing-symbol failure, not a byte mismatch.
+And the tail fields have to be written in the order retail stores them:
+MaterialPassClass writes +0x28, +0x2C, +0x34, then the byte at +0x30, and address
+order would not reproduce it.
+
+The screening is what made the difference rather than any single insight. Picking
+from candidates that survive the convention audit means the remaining work is
+modelling, and modelling is now mostly transcription.

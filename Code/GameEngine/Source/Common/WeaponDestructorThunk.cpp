@@ -1,126 +1,35 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) Weapon
+// One vector member and an inlined base destructor.
+//
+// The teardown is STLport's size-dispatched deallocate: capacity in bytes from
+// +0x48 minus +0x40, rounded by the sar 2 / shl 2 pair to a multiple of four, so
+// the element is four bytes and has no destructor -- there is no loop before the
+// free.
+//
+// This class stores its own vptr at entry, so it is not novtable, and the store
+// of 0x01073744 at the end is Snapshot's from the base destructor inlined last.
+// The mangling is MAE rather than UAE, which makes the destructor protected.
+#include <vector>
+
+class Snapshot
+{
+public:
+	virtual ~Snapshot() {}
+};
+
+class Weapon : public Snapshot
 {
 protected:
-    virtual ~Weapon();
+	virtual ~Weapon();
+
+private:
+	unsigned char m_gap[0x3C];
+	std::vector<int> m_entries;
 };
 
 // ??1Weapon@@MAE@XZ
-__declspec(naked) Weapon::~Weapon()
+Weapon::~Weapon()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xa8
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xf4
-        __emit 0x13
-        __emit 0x0a
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x40
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x27
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x48
-        __emit 0x2b
-        __emit 0xc1
-        __emit 0xc1
-        __emit 0xf8
-        __emit 0x02
-        __emit 0xc1
-        __emit 0xe0
-        __emit 0x02
-        __emit 0x3d
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x76
-        __emit 0x0b
-        __emit 0x51
-        __emit 0xe8
-        __emit 0xd6
-        __emit 0xc9
-        __emit 0x69
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x0a
-        __emit 0x50
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x0a
-        __emit 0x91
-        __emit 0x64
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
