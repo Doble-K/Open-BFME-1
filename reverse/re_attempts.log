@@ -868,3 +868,7 @@ tools/screen_blockers.py			tool	now rejects rows screen_identity contradicts; th
 ?Register@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x00943000		unclaimed-mapped	five-case jump table on the second argument adding to lists at +0x74 and +0x8c and incrementing refcounts; ret 8
 ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z			lead	the mirror of Register removing rather than adding should sit just after 0x00943000; the name is tombstoned only against 0x009438C0
 ?b_009dbfe0@@YAXXZ	0x009DBFE0		unpinned	second add variant used by Register for the list at +0x8c; likely Internal_Add_Tail
+?Add_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x00942FA0	86	claimed	new coverage; verified through add_match
+?Register@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x00943000	232	claimed	range includes the trailing five-entry jump table at 0x009430D4
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009430F0		lead	same switch shape as Register directly after its table; claim once its own table extent is measured
+jump-table-extent			convention	confirmed from Define_FVF@DX8FVFCategoryContainer and other switch rows: when the table follows the code it is inside the claimed size

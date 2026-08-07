@@ -94120,3 +94120,5 @@ uw_00c61fc1,,0x00C61FC1,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 uw_00c61fe0,,0x00C61FE0,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,gen-funclet;parent=?Resize@?$VectorClass@VActiveCategoryStackClass@@@@UAE_NHPBVActiveCategoryStackClass@@@Z;object-symbol=$L6068
 uw_00c62010,,0x00C62010,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,gen-funclet;parent=??0ActiveCategoryClass@@QAE@XZ;object-symbol=$L6106
 uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,matched,gen-funclet;parent=?Get_Log@WWMemoryLogClass@@KAPAVMemLogClass@@XZ;object-symbol=$L6477
+?Add_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z,,0x00942FA0,86,Code/GameEngine/Source/Common/SimpleSceneClass_Add_Render_Object_Thunk.cpp,matched,vtable slot 2 twin of Remove_Render_Object; notifies via +0x64 then Internal_Add and addref
+?Register@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z,,0x00943000,232,Code/GameEngine/Source/Common/SimpleSceneClass_Register_Thunk.cpp,matched,five-case RegType switch adding via Internal_Add and addref; range includes the trailing jump table at 0x009430D4
