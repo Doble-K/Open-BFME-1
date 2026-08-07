@@ -3323,3 +3323,35 @@ a dead duplicate. Recorded as a lead rather than acted on -- repointing another
 contributor's row is not something to do on the strength of a single pass, and the
 existing claim is not exactly wrong either, since both copies are genuinely that
 function's code.
+
+
+## Look for the reference header by class, not by the file you expect
+
+GridCullSystemClass's vtable had three unclaimed slots after nine named ones, and the
+obvious reference file -- cullsys.h, which defines the base CullSystemClass -- does not
+mention the derived class at all. It would have been easy to conclude no reference
+existed and either guess or move on. Grepping the whole tree for the class name found
+gridcull.h immediately, and with it the declaration order.
+
+That order settled slot 9 in one step: the header declares
+`virtual int Get_Object_Count(void) const { return ObjCount; }` immediately after Save,
+and slot 9 -- the first gap after Save at slot 8 -- is a four-byte getter returning the
+int member at +0x54. Converted first build.
+
+Two details from the same vtable worth keeping.
+
+Overloads appear in reverse declaration order. The header declares Collect_Objects for
+Vector3, AABox, OBBox then Frustum; the vtable holds Frustum, OBBox, AABox, Vector3.
+That is normal for an overload group and would look like a mismatch to anyone checking
+declaration order naively.
+
+And slots 10 and 11 sit past the end of the reference's list, so they are additions this
+build made and the reference cannot name them. Recognising where the reference stops
+being evidence is as useful as reading it -- those two were left alone rather than
+guessed at from their bodies.
+
+Separately, the pre-commit hook now rejects a staged tools/*.py that will not parse. The
+previous pass committed a tool with an unterminated string literal, cleanly, because the
+hook byte-verifies Code/ sources and checks ledger integrity and a script is neither. One
+ast.parse per staged tool closes it; verified by staging a deliberately broken file and
+watching the commit fail with its filename and line number.

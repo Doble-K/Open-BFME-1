@@ -906,3 +906,7 @@ vtable-anchor-audit			lead	audit idea: a claimed virtual whose address appears i
 tools/vtable_anchor_audit.py			tool	finds virtual rows anchored to a copy no vtable dispatches to; needs a 16-byte floor or ICF-folded stubs swamp it
 ?Destroy_Iterator@SimpleSceneClass@@UAEXPAVSceneIterator@@@Z	0x007C1100	23	mis-anchored?	no vtable points here; the dispatched copy is 0x00942DB0 which is slot 5 of the SimpleSceneClass vtable right after Create_Iterator
 ?Release_Render_Obj_Iterator@WW3DAssetManager@@UAEXPAVRenderObjIterator@@@Z	0x006F62A0	23	mis-anchored?	same dispatched twin 0x00942DB0 so that body serves both names by folding
+?Get_Object_Count@GridCullSystemClass@@UBEHXZ	0x008DCE10	4	converted	vtable slot 9 right after Save; gridcull.h declares it inline as return ObjCount
+GridCullSystemClass			note	vtable slots 10 and 11 sit past the reference's declaration list so they are BFME additions and were left alone
+GridCullSystemClass			note	the four Collect_Objects overloads appear in the vtable in reverse declaration order which is normal for an overload group
+.githooks/pre-commit			fix	rejects a staged tools/*.py that will not ast.parse; a broken tool used to commit cleanly and fail only when next run
