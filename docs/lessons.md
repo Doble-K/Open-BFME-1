@@ -5496,3 +5496,39 @@ landed on the first attempt.
 Both were worth deferring. Stopping preserved the rule, and writing the
 hypothesis down meant the next tick opened with a specific test rather than a
 fresh guess -- which is the whole value the rule was costing before.
+
+
+## The vector constructor iterator names the element type for free
+
+FastAllocatorGeneral's constructor starts with a call to ??_L, and its arguments
+answer three questions at once. The count and size, 0x80 and 0x18, multiply to
+0xC00, which is exactly where the next initialisation begins -- so the array
+spans the whole front of the object and nothing has to be inferred about its
+extent. The two function pointers it is handed are ??_F and ??1 of
+FastFixedAllocator, so the element type is named outright rather than guessed.
+
+??_F is the default constructor closure. It does not get written; declaring the
+member array is enough for the compiler to emit it and reference it.
+
+## Unsigned is visible in the branch
+
+The clamp compiled to jl where retail has jb. Making the running size unsigned
+fixed it in one build. That is the same signed-versus-unsigned tell already
+recorded for loop indices, and it applies just as well to a clamp: jb and jbe
+mean the source type was unsigned, jl and jle mean it was signed.
+
+Worth noting the clamp is not dead code even though the running size starts at 16
+and only grows. The compiler cannot prove that, so it emits the comparison, and a
+source without the clamp would not match.
+
+## rep stosd is an optimiser rewrite, not an intrinsic
+
+The 128-dword zero loop compiles to rep stosd; retail runs an explicit pointer
+and counter. /Oi-, which disables intrinsic expansion, changes nothing -- so the
+rewrite happens in the optimiser rather than at the memset intrinsic, and no
+flag reachable from here turns it off.
+
+The sharing half of the problem did work. Declaring a local zero and assigning
+every scalar from it puts the value in one register, and the compile uses al for
+the byte at 0xe00 and eax for the three dwords above it, which is what retail
+does with cl and ecx. Only the loop form is left.
