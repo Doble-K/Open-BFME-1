@@ -1,150 +1,21 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/ini /Ireference/shims/iniexception /Ireference/shims/ini_noinline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// stlport
 
-class AsciiString {};
-class HotKeyManager {
-public:
-	AsciiString searchHotKey(const AsciiString &);
-};
+// The AsciiString overload forwards to the UnicodeString one through a text
+// lookup.
+//
+// The label is copied into a by-value AsciiString temporary, handed to a virtual
+// at +0x24 on the global text manager, and the UnicodeString that comes back is
+// passed straight to the sibling overload. Only the UnicodeString is released
+// here -- the AsciiString copy is a by-value argument and the callee destroys it.
+#include "PreRTS.h"
+#include "Common/AsciiString.h"
+#include "Common/UnicodeString.h"
+#include "GameClient/GameText.h"
+#include "GameClient/HotKey.h"
 
 // ?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABV2@@Z
-__declspec(naked) AsciiString HotKeyManager::searchHotKey(const AsciiString &)
+AsciiString HotKeyManager::searchHotKey( const AsciiString& label )
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xa1
-		__emit 0x8f
-		__emit 0x03
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xec
-		__emit 0x08
-		__emit 0x56
-		__emit 0x57
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x51
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x2c
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x64
-		__emit 0x24
-		__emit 0x14
-		__emit 0x8b
-		__emit 0xcc
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x59
-		__emit 0x50
-		__emit 0x2d
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x7c
-		__emit 0x14
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x11
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x2c
-		__emit 0x50
-		__emit 0xff
-		__emit 0x52
-		__emit 0x24
-		__emit 0x8b
-		__emit 0x7c
-		__emit 0x24
-		__emit 0x20
-		__emit 0x50
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x1d
-		__emit 0xff
-		__emit 0xa5
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x24
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x8e
-		__emit 0x56
-		__emit 0x2d
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x8b
-		__emit 0xc7
-		__emit 0x5f
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5e
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x14
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-	}
+	return searchHotKey( TheGameText->fetch( label ) );
 }

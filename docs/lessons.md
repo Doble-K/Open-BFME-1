@@ -4613,3 +4613,29 @@ constructed right to left, so the last argument's temporary is built first. Both
 of these construct the value or the default before the key, and the unwind states
 number in that same order -- which is how the two temporaries can be told apart
 in the bytes at all.
+
+
+## Sometimes the reference has already written it
+
+OptionPreferences::setLANIPAddress and HotKeyManager::searchHotKey are both
+declared verbatim in the reference headers, down to the parameter types. Including
+the header rather than hand-rolling means the class, its base chain, its layout
+and the signature all arrive correct at once, and the only thing left to write is
+the body -- one line in each case.
+
+Three conversions this tick, all on the first build, all from the same filter:
+naked thunks whose mangled signature mentions a class the reference defines
+unchanged. The pool of four such AsciiString functions is now empty.
+
+## Reading a backreference before believing an overload
+
+?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABV2@@Z has two candidate
+meanings, because the class declares both an AsciiString and a UnicodeString
+overload. The ABV2@ settles it: 2 backreferences the return type, AsciiString, so
+this is the AsciiString overload. The UnicodeString one is what it calls, not what
+it is.
+
+Getting that backwards would have modelled the wrong function and blamed the
+mismatch on something else. Backreferences are cheap to resolve and worth
+resolving whenever a class has overloads -- the numbering runs over every name
+already seen in the mangling, return type included.

@@ -1096,3 +1096,8 @@ real-headers			scope	the lever is narrower than it looked. It fixes a residual o
 argument-evaluation-order			lever	by-value class arguments are constructed right to left so the LAST argument's temporary is built first. Both of these build the value or default before the key and the unwind states follow that order
 vtable-slot-cross-check			method	the two functions reach slots 6 and 7 of the same class at +0x18 and +0x1C. Converting a pair from one class checks both slot numbers against each other for free
 real-headers			confirmation	the lever holds exactly where scoped last tick -- both of these turn on a by-value AsciiString temporary whose construction and destruction are why the function has an EH frame at all
+?setLANIPAddress@OptionPreferences@@QAEXVAsciiString@@@Z	0x00092350	126	converted	first build. One map subscript and one assignment; UserPreferences and OptionPreferences both come from the reference header
+?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABV2@@Z	0x005B2AD0	135	converted	first build. The AsciiString overload forwards to the UnicodeString one through TheGameText->fetch
+reference-declares-it			lever	several of these functions are declared verbatim in the reference headers so the class the layout the base chain and the signature all come for free. Include the header and write only the body
+overload-backreference			lever	ABV2@ in ?searchHotKey@HotKeyManager@@QAE?AVAsciiString@@ABV2@@Z backreferences the return type so the parameter is const AsciiString& not UnicodeString. The UnicodeString overload is what this one CALLS
+AsciiString-pool			measurement	the four naked thunks whose signature mentions AsciiString are now all converted. Extending the same filter to other real classes is the next pool
