@@ -4382,3 +4382,37 @@ the argument pushes with the member's zero stores and the compiler emits the
 zeros first. I went a build past my own limit chasing it and should not have --
 the residual had no source-level lever left in it, and that was visible one build
 earlier.
+
+
+## Who owns offset zero is written in one lea
+
+UpgradeModuleModuleData's constructor calls its base with this passed straight
+through in ecx. My first version emitted lea ecx,[esi+4] before that call, and
+the reason was a modelling choice I had made without noticing: I gave the derived
+class a virtual of its own and left the base non-polymorphic, which puts the
+vptr at offset 0 and pushes the base subobject to +4.
+
+Retail has no lea, so the base owns offset 0 -- it is polymorphic itself and the
+derived merely overwrites the vptr with its own table. Making the base's
+destructor virtual and dropping the derived's invented virtual matched on the
+next build.
+
+It is a cheap check worth doing before writing anything: a base constructor call
+with a bare ecx means the base is at offset 0, and any lea in front of it is the
+compiler stepping over something the derived class put there first.
+
+## Screening by shape beat screening by size
+
+Two ticks went into functions whose sub-objects are zeroed through a register
+cursor that no source form I tried reproduces. Rather than keep drawing from the
+same pool, the shape itself is now a filter -- a lea into a register followed
+within two bytes by a store through that register. It takes the 28 clean naked
+candidates to 24, and the one picked from what remained went in on the second
+build.
+
+The two it rejected were worth rejecting. SabotageMilitaryFactoryCrateCollide's
+factory carries the cursor twice, with different registers and different zero
+registers for each sub-object and no call after either -- the same open question
+with more of it. DeflectSpecialPower stores six vptrs, at +0, +0xC, +0x10, +0x20,
++0x24 and +0x38, so every base of a multiple-inheritance hierarchy would have to
+be laid out correctly before a single byte matched.
