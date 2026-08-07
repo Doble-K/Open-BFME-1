@@ -1,263 +1,106 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift retail bytes to a standalone C++ thunk.
-//
-// Five-case jump table on the RegType argument, each arm adding the object's
-// node to one of the scene lists through GenericMultiListClass::Internal_Add at
-// 0x009DBF60 (or its tail variant at 0x009DBFE0) and incrementing the object's
-// reference count. Unregister is the mirror of this and sits at 0x009430F0.
-//
-// The claimed range includes the jump table at 0x009430D4: the compiler placed
-// it immediately after the code, so its five entries are part of the compared
-// bytes, exactly as in Define_FVF@DX8FVFCategoryContainer and the other
-// switch-dispatch rows already in the ledger.
 
+// The Add mirror of Unregister: five cases on RegType over the same 24-byte
+// scene lists running from +0x5C, confirmed by Add_Render_Object,
+// Remove_Render_Object and Unregister all indexing that same table.
+//
+// Three shapes appear. The +0x74 and +0xA4 arms insert at the head and take a
+// reference when the node was not already in the list; +0x8C does the same
+// through Internal_Add_Tail; +0xBC and +0xD4 insert without taking a reference,
+// which is what lets those two tail call.
+//
+// The reference test is written `== true` because retail compares with cmp al,1
+// rather than test al,al.
+//
+// The list primitives are called directly rather than through the Add wrappers
+// the real headers declare. Written as wrappers the compiler declines to inline
+// them and emits an out-of-line call per arm, which is not what retail has --
+// there the whole body is one flat switch over Internal_Add. The bytes decide
+// the shape; the wrapper is where the name lives, not where the code does.
 class RenderObjClass;
+
+class MultiListObjectClass
+{
+public:
+	void *m_prev;
+	void *m_next;
+};
+
+class GenericMultiListClass
+{
+	// The primitives stay protected so they mangle as I-- , which is how the
+	// ledger already carries them. Friendship is what makes them reachable from
+	// a scene rather than from a list, and it does not touch the mangling.
+	friend class SimpleSceneClass;
+
+protected:
+	bool Internal_Add(MultiListObjectClass *obj, bool onlyonce = true);
+	bool Internal_Add_Tail(MultiListObjectClass *obj, bool onlyonce = true);
+
+private:
+	unsigned char m_head[24];
+};
+
+class RenderObjBase
+{
+public:
+	virtual ~RenderObjBase();
+	int m_refCount;
+
+	void Add_Ref(void) { m_refCount++; }
+};
+
+// The node base is the second base, so every upcast to it is null preserving --
+// that is the test/lea/xor sequence in front of each call.
+class RenderObjClass : public RenderObjBase, public MultiListObjectClass
+{
+};
+
 class SceneClass
 {
 public:
 	enum RegType { };
 };
+
 class SimpleSceneClass
 {
 public:
-	virtual void Register(RenderObjClass *, SceneClass::RegType);
+	virtual void Register(RenderObjClass *obj, SceneClass::RegType for_what);
+
+private:
+	unsigned char m_pad[0x58];
+	GenericMultiListClass m_list5C;
+	GenericMultiListClass m_list74;
+	GenericMultiListClass m_list8C;
+	GenericMultiListClass m_listA4;
+	GenericMultiListClass m_listBC;
+	GenericMultiListClass m_listD4;
 };
 
 // ?Register@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z
-__declspec(naked) void SimpleSceneClass::Register(RenderObjClass *, SceneClass::RegType)
+void SimpleSceneClass::Register(RenderObjClass *obj, SceneClass::RegType for_what)
 {
-	__asm {
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x83
-		__emit 0xf8
-		__emit 0x04
-		__emit 0x77
-		__emit 0x2a
-		__emit 0x56
-		__emit 0xff
-		__emit 0x24
-		__emit 0x85
-		__emit 0xd4
-		__emit 0x30
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x24
-		__emit 0x08
-		__emit 0x85
-		__emit 0xf6
-		__emit 0x74
-		__emit 0x05
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x50
-		__emit 0x83
-		__emit 0xc1
-		__emit 0x74
-		__emit 0xe8
-		__emit 0x35
-		__emit 0x8f
-		__emit 0x09
-		__emit 0x00
-		__emit 0x3c
-		__emit 0x01
-		__emit 0x75
-		__emit 0x03
-		__emit 0xff
-		__emit 0x46
-		__emit 0x04
-		__emit 0x5e
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x24
-		__emit 0x08
-		__emit 0x85
-		__emit 0xf6
-		__emit 0x74
-		__emit 0x13
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x08
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x50
-		__emit 0x81
-		__emit 0xc1
-		__emit 0x8c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x91
-		__emit 0x8f
-		__emit 0x09
-		__emit 0x00
-		__emit 0xeb
-		__emit 0xda
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x50
-		__emit 0x81
-		__emit 0xc1
-		__emit 0x8c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x7f
-		__emit 0x8f
-		__emit 0x09
-		__emit 0x00
-		__emit 0xeb
-		__emit 0xc8
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x24
-		__emit 0x08
-		__emit 0x85
-		__emit 0xf6
-		__emit 0x74
-		__emit 0x0e
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x08
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x50
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xa4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xeb
-		__emit 0xad
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x50
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xa4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xeb
-		__emit 0xa0
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x5e
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xbc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe9
-		__emit 0xb3
-		__emit 0x8e
-		__emit 0x09
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x5e
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe9
-		__emit 0x8c
-		__emit 0x8e
-		__emit 0x09
-		__emit 0x00
-		__emit 0x11
-		__emit 0x30
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x36
-		__emit 0x30
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x63
-		__emit 0x30
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x86
-		__emit 0x30
-		__emit 0xd4
-		__emit 0x00
-		__emit 0xad
-		__emit 0x30
-		__emit 0xd4
-		__emit 0x00
+	switch (for_what) {
+	case 0:
+		if (m_list74.Internal_Add(obj, true) == true) {
+			obj->Add_Ref();
+		}
+		break;
+	case 1:
+		if (m_list8C.Internal_Add_Tail(obj, true) == true) {
+			obj->Add_Ref();
+		}
+		break;
+	case 2:
+		if (m_listA4.Internal_Add(obj, true) == true) {
+			obj->Add_Ref();
+		}
+		break;
+	case 3:
+		m_listBC.Internal_Add(obj, true);
+		break;
+	case 4:
+		m_listD4.Internal_Add(obj, true);
+		break;
 	}
 }

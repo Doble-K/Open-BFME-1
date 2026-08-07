@@ -972,3 +972,9 @@ SimpleSceneClass			layout	this build puts lists at +0x5C +0xBC +0xD4 +0xEC and a
 ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009430F0	180	blocked	three of five cases call through the ILT thunk at 0x00018EC6
 0x00018EC6			pin-gap	thunk to 0x00711B70 whose real name ?Remove@?$RefMultiListClass@VRenderObjClass@@ is pinned at the body; a C++ call to that name would target the body not the thunk
 thunk-pins			convention	real names are pinned at thunk addresses elsewhere -- eight are pinned at 0x00002874 -- so the same is presumably needed here
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009430F0	180	converted	byte dump promoted to clean C++ on the first build; last tick's pin-gap blocker was wrong
+thunk-pins			resolved	build_call_thunks discovers ILT thunks itself; a matched name maps to [thunk body] and the comparison takes whichever the call site encodes. No pin was needed
+?Register@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x00943000	232	converted	five-case RegType switch; three builds
+template-wrappers			lever	MSVC 7.1 declined to inline the in-class Add wrappers at /O2 and emitted one out-of-line call per arm. Calling the list primitives directly at each switch arm reproduced retail exactly
+access-and-mangling			lever	a member's access specifier is part of its mangled name -- Q public I protected A private. Widening access to reach a member from a non-derived class renames it and orphans its ledger row; friend grants the access and leaves the name alone
+SimpleSceneClass			layout	seven 24-byte lists contiguous from +0x5C now confirmed across Add_Render_Object Unregister and Register; the +0x74 +0x8C +0xA4 arms hold a reference and +0xBC +0xD4 do not

@@ -1,212 +1,97 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift retail bytes to a standalone C++ thunk.
-//
-// The real Unregister. This name was previously attached to 0x009438C0, where it
-// was impossible -- that body ends in ret 4 while these arguments size to 8 --
-// and 0x009438C0 is now correctly claimed as Remove_Render_Object. The tombstone
-// binds the name only to that address, leaving it free here.
-//
-// Five-case jump table on the RegType argument, the mirror of Register at
-// 0x00943000: each arm removes the object's node from a scene list through
-// GenericMultiListClass::Internal_Remove at 0x009DC100. The claimed range
-// includes the trailing table at 0x00943190, whose five entries all point back
-// into this code.
 
+// Five-case switch on RegType, each arm removing the object from one scene list.
+// The lists are 24 bytes each and contiguous from +0x5C, which the Add and Remove
+// conversions in this class already established: +0x5C, +0x74, +0x8C, +0xA4,
+// +0xBC, +0xD4, +0xEC.
+//
+// The first three arms call an out-of-line Remove, the last two inline it into
+// Internal_Remove with the pointer adjustment visible -- a null-preserving upcast
+// to the list-node base at offset 8. That difference is what says the two groups
+// are different list types: a Ref-counting one whose Remove is not inline, and a
+// plain one whose Remove is.
 class RenderObjClass;
+
+class MultiListObjectClass
+{
+public:
+	void *m_prev;
+	void *m_next;
+};
+
+class GenericMultiListClass
+{
+protected:
+	bool Internal_Remove(MultiListObjectClass *obj);
+
+private:
+	unsigned char m_head[24];
+};
+
+template <class T>
+class MultiListClass : public GenericMultiListClass
+{
+public:
+	bool Remove(T *obj) { return Internal_Remove(obj); }
+};
+
+template <class T>
+class RefMultiListClass : public MultiListClass<T>
+{
+public:
+	bool Remove(T *obj);
+};
+
+class RenderObjBase
+{
+public:
+	virtual ~RenderObjBase();
+	int m_refCount;
+};
+
+class RenderObjClass : public RenderObjBase, public MultiListObjectClass
+{
+};
+
 class SceneClass
 {
 public:
 	enum RegType { };
 };
+
 class SimpleSceneClass
 {
 public:
-	virtual void Unregister(RenderObjClass *, SceneClass::RegType);
+	virtual void Unregister(RenderObjClass *obj, SceneClass::RegType for_what);
+
+private:
+	unsigned char m_pad[0x58];
+	RefMultiListClass<RenderObjClass> m_list5C;
+	RefMultiListClass<RenderObjClass> m_list74;
+	RefMultiListClass<RenderObjClass> m_list8C;
+	RefMultiListClass<RenderObjClass> m_listA4;
+	MultiListClass<RenderObjClass> m_listBC;
+	MultiListClass<RenderObjClass> m_listD4;
 };
 
 // ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z
-__declspec(naked) void SimpleSceneClass::Unregister(RenderObjClass *, SceneClass::RegType)
+void SimpleSceneClass::Unregister(RenderObjClass *obj, SceneClass::RegType for_what)
 {
-	__asm {
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x83
-		__emit 0xf8
-		__emit 0x04
-		__emit 0x0f
-		__emit 0x87
-		__emit 0x90
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xff
-		__emit 0x24
-		__emit 0x85
-		__emit 0x90
-		__emit 0x31
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x50
-		__emit 0x83
-		__emit 0xc1
-		__emit 0x74
-		__emit 0xe8
-		__emit 0xb5
-		__emit 0x5d
-		__emit 0x6d
-		__emit 0xff
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x54
-		__emit 0x24
-		__emit 0x04
-		__emit 0x52
-		__emit 0x81
-		__emit 0xc1
-		__emit 0x8c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xa2
-		__emit 0x5d
-		__emit 0x6d
-		__emit 0xff
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x50
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xa4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x8f
-		__emit 0x5d
-		__emit 0x6d
-		__emit 0xff
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x12
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xbc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xaf
-		__emit 0x8f
-		__emit 0x09
-		__emit 0x00
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xbc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x9e
-		__emit 0x8f
-		__emit 0x09
-		__emit 0x00
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x12
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x84
-		__emit 0x8f
-		__emit 0x09
-		__emit 0x00
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x81
-		__emit 0xc1
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x73
-		__emit 0x8f
-		__emit 0x09
-		__emit 0x00
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-		__emit 0x04
-		__emit 0x31
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x14
-		__emit 0x31
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x27
-		__emit 0x31
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x3a
-		__emit 0x31
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x65
-		__emit 0x31
-		__emit 0xd4
-		__emit 0x00
+	switch (for_what) {
+	case 0:
+		m_list74.Remove(obj);
+		break;
+	case 1:
+		m_list8C.Remove(obj);
+		break;
+	case 2:
+		m_listA4.Remove(obj);
+		break;
+	case 3:
+		m_listBC.Remove(obj);
+		break;
+	case 4:
+		m_listD4.Remove(obj);
+		break;
 	}
 }

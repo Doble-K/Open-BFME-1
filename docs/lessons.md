@@ -3732,3 +3732,49 @@ intended or would make resolution ambiguous.
 
 Recorded rather than attempted. The remaining two arms of Unregister call Internal_Remove
 directly and would reproduce; it is only the thunked three that need this settled.
+
+
+## The thunk question answered itself
+
+The previous entry stopped short of pinning a real name at an ILT thunk because it was
+unclear whether a second mapping would conflict with the functions.csv row at the body.
+Reading tools/build.py rather than reasoning about it settled the matter in one look:
+build_call_thunks discovers the thunks on its own, a matched function maps to the pair
+[thunk, body], and the comparison picks whichever the target actually encoded. The pin
+mechanism is additive besides -- each pinned address is one more candidate, so a matched
+name and a hand-pinned thunk coexist without ambiguity.
+
+So Unregister was never blocked. Written as ordinary C++ against a RefMultiListClass whose
+Remove is out-of-line, it matched on the first build with no ledger change at all. The cost
+of the wrong conclusion was a whole tick spent recording a blocker that did not exist. The
+tool was already documented; guessing at its behaviour was the mistake, and it is cheaper
+to read a hundred lines of build.py than to write a paragraph of speculation about it.
+
+## Two ways to reach a protected member, and only one keeps the name
+
+Register's five arms call Internal_Add and Internal_Add_Tail on lists that SimpleSceneClass
+merely owns -- it does not derive from GenericMultiListClass, so protected access does not
+apply. The obvious fix is to make the primitives public. That builds, and then the linker
+cannot find them: MSVC encodes the access specifier in the mangled name, Q for public and
+I for protected, so ?Internal_Add@GenericMultiListClass@@QAE... is a different symbol from
+the ?Internal_Add@GenericMultiListClass@@IAE... the ledger already carries. The build
+reported them as unresolved calls needing new symbols.csv rows -- two pins for names that
+do not exist in retail.
+
+friend class SimpleSceneClass grants exactly the same access and changes nothing about the
+declaration, so the name stays IAE and resolves against the existing row. Access widening
+is a rename; friendship is not. Worth remembering because the failure is quiet -- it looks
+like a missing pin rather than like the modelling error it is.
+
+## Retail's shape says the wrapper was not there
+
+The first attempt at Register modelled the lists as RefMultiListClass and MultiListClass
+with Add defined in-class, mirroring the Unregister file that had just matched. MSVC 7.1
+declined to inline them and emitted a call per arm; retail has the whole thing flat, with
+Internal_Add called directly from each case and the reference count incremented in line.
+
+Given the same compiler and the same flags, an inline the compiler refuses is an inline
+retail did not have either. That is a usable signal in both directions: where the target is
+flat and the model is not, the model has invented a layer. Rewriting the arms as direct
+primitive calls reproduced all 232 bytes including the jump table, differing only in the
+four relocations, which is what an unresolved call looks like.
