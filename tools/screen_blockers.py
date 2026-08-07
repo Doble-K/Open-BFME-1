@@ -66,6 +66,22 @@ def rva2off(data, rva):
     return None
 
 
+def _decoded_x87(body):
+    """True only if an x87 escape opcode D8..DF starts an instruction.
+
+    The loose byte test this replaces flagged 753 of the naked thunks where only
+    150 really use x87 -- it was matching the opcode inside call displacements
+    and immediates. Ranking on that buried hundreds of convertible functions
+    under a blocker they did not have.
+    """
+    try:
+        import capstone
+    except ImportError:
+        return any(0xD8 <= c <= 0xDF for c in body)
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    return any(0xD8 <= ins.bytes[0] <= 0xDF for ins in md.disasm(body, 0))
+
+
 def blockers(body):
     """Byte signatures of the known families. Order is not significant."""
     found = []
@@ -87,8 +103,8 @@ def blockers(body):
     # x87: the escape opcodes D8..DF. Checking the first byte of each
     # instruction properly needs a decoder, so this is deliberately loose and
     # only used to rank, never to reject outright.
-    if any(0xD8 <= c <= 0xDF for c in body):
-        found.append("x87?")
+    if _decoded_x87(body):
+        found.append("x87")
     if _writes_an_offset_twice(body):
         found.append("vptr-sink")
     return found

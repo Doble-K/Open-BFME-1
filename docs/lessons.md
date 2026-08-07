@@ -4282,3 +4282,36 @@ The name that call resolves to needed a pin, and the address was already claimed
 under a different name -- the folded one above. symbols.csv being additive is
 what makes that legal: the vector destructor's real mangled name and the
 ModuleData name it folded with can both point at 0x000658A0.
+
+
+## Six out of seven x87 blockers were not x87
+
+OCLSpecialPowerModuleData was tagged x87 by list_naked_candidates and I skipped it
+for that reason in an earlier tick. It contains no floating point whatever. The
+byte that triggered the tag is the dc in e8 82 32 dc ff -- part of a call
+displacement.
+
+The test was `any byte in D8..DF`, and an x87 escape opcode only means anything
+when it starts an instruction. Decoding the naked thunks properly puts the damage
+at 753 functions flagged where 150 really use x87: 603 false positives, each one
+carrying an eighteen-point ranking penalty that pushed convertible work to the
+bottom of the queue. My own screen_blockers had the same test; it at least
+labelled the result x87? and documented it as loose, which is why the tally in
+the earlier backlog census -- 41 x87 rows out of 400 -- has to be retracted
+rather than trusted.
+
+Both now decode with capstone and fall back to the byte test only when the
+decoder is missing, saying so in the label when they do. The general point is
+duller than the number: a substring test on machine code finds opcodes inside
+displacements, immediates and ModRM bytes, and the more common the opcode range
+the worse it gets. D8..DF is eight of 256 values, so a hundred-byte function hits
+it by chance more often than not.
+
+## Two more shapes, both first build
+
+PartTheHeavensUpdateModuleData is three vectors of sixteen-byte PODs and a
+string; OCLSpecialPowerModuleData is a vector of PODs and a vector of strings
+over an out-of-line base. Both landed on the first build with no new levers --
+element size from the sar/shl pair, inlined-or-called from whether the element
+has a destructor, novtable from the absence of an entry vptr store. The catalogue
+is doing the work now.

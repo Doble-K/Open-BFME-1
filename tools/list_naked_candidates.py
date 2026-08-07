@@ -134,6 +134,24 @@ def block_bytes(lines, start):
     return bytes(data), end
 
 
+def _has_x87(data):
+    """True only if an x87 escape opcode starts an instruction.
+
+    Testing whether any byte is in D8..DF finds the opcode wherever it lands --
+    inside a call displacement, an immediate, a ModRM byte. Across the naked
+    thunks that test flags 753 functions where only 150 contain x87, so six out
+    of seven of its hits are wrong, and every one of them was being pushed down
+    the ranking by the penalty below. Decode instead; fall back to the loose
+    test only if capstone is unavailable, and say so by returning None.
+    """
+    try:
+        import capstone
+    except ImportError:
+        return None
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    return any(0xD8 <= ins.bytes[0] <= 0xDF for ins in md.disasm(data, 0))
+
+
 def score_candidate(data, sig):
     score = 100
     reasons = []
@@ -158,7 +176,12 @@ def score_candidate(data, sig):
         score -= jumps * 6
         reasons.append(f"{jumps} branch(es)")
 
-    if any(byte in data for byte in (0xD8, 0xD9, 0xDA, 0xDB, 0xDC, 0xDD, 0xDE, 0xDF)):
+    x87 = _has_x87(data)
+    if x87 is None:
+        if any(0xD8 <= b <= 0xDF for b in data):
+            score -= 18
+            reasons.append("x87? (no decoder)")
+    elif x87:
         score -= 18
         reasons.append("x87")
 
