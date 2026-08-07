@@ -3156,3 +3156,34 @@ what separates a correction from a guess. The row was renamed, the impossible pa
 tombstoned, and screen_identity's contradiction count went from 60 to 59.
 
 The twin at 0x00942FA0 is still unclaimed, which is the obvious next thing to name.
+
+
+## Vtable position identifies a function that is unidentifiable alone
+
+Following one correction outward produced four functions over the last few passes, all
+identified by position and by their twins rather than by disassembling them cold. That
+is a method, not a coincidence, so it is now a tool: tools/vtable_gaps.py scans .rdata
+for runs of code pointers, attributes each slot to a ledger row, and ranks the unclaimed
+slots by how many named neighbours bound them.
+
+One detail decides whether the output is usable. Most claimed rows in this image are
+gen-thunks carrying synthetic names like ?j_00035eb8@@YAXXZ, and counting those as
+"named" makes nearly every table look fully identified while burying the handful of gaps
+that sit between real methods. Excluding them changed the top of the ranking completely.
+
+Its first suggestion converted. Slot 2 of Pipe's vtable was unclaimed, bounded by Flush
+at slot 1 and Put_To at slot 3. The body is five bytes -- load the vtable, jump to slot
+1 -- and PIPE.H declares, inline, `virtual int End(void) {return(Flush());}`. Position
+gave the candidate, the tail-call target confirmed it, and the reference header settled
+the spelling. No disassembly of the body was needed to know what it was.
+
+One MSVC detail cost the first build. Writing End inline in the class, exactly as the
+header does, produced no symbol at all: an inline virtual is only emitted when something
+forces it, and nothing in the translation unit constructs a Pipe. Defining it out of
+line emits it, and the bytes are identical either way. So a faithful transcription of
+the original declaration is not always the one that compiles to a checkable object --
+match the header for layout, but define the function you are claiming.
+
+Worth noting what this method is good for. It finds functions whose *identity* is the
+obstacle, which is a different backlog from the one the byte-level blockers govern. 729
+unclaimed slots currently sit next to a real name.

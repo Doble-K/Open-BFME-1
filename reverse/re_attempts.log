@@ -875,3 +875,6 @@ jump-table-extent			convention	confirmed from Define_FVF@DX8FVFCategoryContainer
 ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009430F0	180	claimed	the name's real address; removes via Internal_Remove; range includes the table at 0x00943190
 tombstone-semantics			confirmed	a tombstone binds a name to one address only; the same name claimed at a different address passes check_csv which is exactly what a mis-attribution needs
 SimpleSceneClass			summary	slot 2 Add_Render_Object 0x00942FA0 slot 3 Remove_Render_Object 0x009438C0 plus Register 0x00943000 and Unregister 0x009430F0 all now claimed
+?End@Pipe@@UAEHXZ	0x009E1EB0	5	converted	clean C++ found by tools/vtable_gaps.py; two builds
+?End@Pipe@@UAEHXZ	0x009E1EB0	5	note	an inline virtual is not emitted unless something forces it; defining it out of line is what produced the symbol
+tools/vtable_gaps.py			tool	ranks unclaimed vtable slots by how many named neighbours bound them; generated placeholders are excluded or every table looks fully named
