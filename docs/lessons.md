@@ -5779,3 +5779,32 @@ before a build is spent: the ModuleInfo family on vptr sinking, mis-anchored row
 on their own arity, unnamed callees on the naming rule. Screening on structure
 got the pool to 133; classifying that pool against what is already known is what
 turned it into conversions.
+
+
+## A recipe is worth more than a conversion
+
+CampaignManager::init took a tick to work out: TU-local INI at 0x848 so the frame
+does not take a __chkstk probe, and the shim AsciiString so the by-value
+temporary comes out in retail's order. ControlBarResizer::init is the same
+function with a different literal and took one build and no thinking.
+
+So after landing something, ask what else has that shape. Here the answer was
+small -- three functions in the image build a stack-local INI and call load -- but
+finding that out cost one query and closed the family for good. Two converted,
+one blocked, nothing left to rediscover later.
+
+## Dead code that survives in retail and not in the compile
+
+ControlBarSchemeManager::init loads two INI files, which reproduces exactly, and
+then walks its scheme list counting nodes into edx and never stores the count.
+It is size() with the result discarded, and MSVC deletes it.
+
+The knock-on is what makes it unfixable from source rather than merely different:
+with the count gone, `this` is unused, so the push esi that saves it disappears
+and every stack offset in the function shifts by four. One eliminated loop moves
+the whole frame.
+
+This is the same class as the duplicate zero store in
+WeaponChangeSpecialPowerModuleModuleData -- retail's build kept dead code that
+this toolchain removes. Two functions now, so it is worth naming as a family
+rather than filing twice as a curiosity.
