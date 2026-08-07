@@ -910,3 +910,8 @@ tools/vtable_anchor_audit.py			tool	finds virtual rows anchored to a copy no vta
 GridCullSystemClass			note	vtable slots 10 and 11 sit past the reference's declaration list so they are BFME additions and were left alone
 GridCullSystemClass			note	the four Collect_Objects overloads appear in the vtable in reverse declaration order which is normal for an overload group
 .githooks/pre-commit			fix	rejects a staged tools/*.py that will not ast.parse; a broken tool used to commit cleanly and fail only when next run
+ParticleEmitterDefClass			mis-anchored	Set_Merge_Abort_Factor claimed 0x0021A220 but the vtable dispatches to 0x0098D4E0; bodies byte-identical
+ParticleEmitterDefClass			mis-anchored	Set_Texture_Tile_Factor claimed 0x00253D20 but the vtable dispatches to 0x0098D4F0; bodies byte-identical
+ParticleEmitterDefClass			mis-anchored	Set_Burst_Size Set_Elasticity Set_Emission_Rate Set_Gravity and others show the same split
+ParticleEmitterDefClass			note	slots 47 to 55 are the Read_* chunk loaders at 87 to 261 bytes each so they are not quick wins
+tools/vtable_gaps.py			tool	labels a slot whose body byte-matches an already-claimed row of the same extent and holds it back; 109 gaps to 99

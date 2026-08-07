@@ -3355,3 +3355,37 @@ previous pass committed a tool with an unterminated string literal, cleanly, bec
 hook byte-verifies Code/ sources and checks ledger integrity and a script is neither. One
 ast.parse per staged tool closes it; verified by staging a deliberately broken file and
 watching the commit fail with its filename and line number.
+
+
+## An unclaimed vtable slot is not always unconverted work
+
+ParticleEmitterDefClass looked like a rich seam: nine unclaimed slots in one vtable and a
+reference header giving the full declaration order. Two of the gaps are thirteen-byte
+inline setters sitting exactly where the header puts Set_Merge_Abort_Factor and
+Set_Texture_Tile_Factor, writing consecutive floats at +0x214 and +0x218 -- confirmed by
+the already-claimed Set_UV_Offset_Rate next door writing +0x21C and +0x220.
+
+Both names are already in the ledger. Not at these addresses: Set_Merge_Abort_Factor is
+claimed at 0x0021A220 and Set_Texture_Tile_Factor at 0x00253D20, and the bodies there are
+byte-identical to the ones the vtable actually dispatches to. The same split shows up for
+Set_Burst_Size, Set_Elasticity, Set_Emission_Rate and Set_Gravity.
+
+So the seam is not new work at all. These functions are named; they are just named
+against copies nothing calls, and the live copies then present as gaps. vtable_gaps now
+detects that -- a slot whose bytes match an already-claimed row, ending at the same int3,
+is labelled a duplicate and held back -- which takes its candidate list from 109 to 99.
+
+Two things follow that are worth keeping separate.
+
+The ranking overstated available work, and would have kept doing so. Ten of its
+candidates were functions the project had already converted. Every filter added to this
+tool so far has been of that kind: interior hits meant the run was not a vtable at all,
+template neighbours meant the instantiation was unknowable, SEH meant the body was
+unwritable. The tool is only as good as the things it knows to exclude, and each
+exclusion was found by following a bad suggestion to the end.
+
+And the Read_* group at slots 47 to 55 is genuinely unconverted -- but at 87 to 261 bytes
+each they are chunk-loading routines, not the accessors this method has been landing.
+Worth naming as a boundary: identifying a function by vtable position is cheap, and
+writing it byte-exactly afterwards is not, so the two should be judged separately when
+picking work.

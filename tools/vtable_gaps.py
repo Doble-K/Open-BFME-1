@@ -70,17 +70,54 @@ def main():
     ap.add_argument("--min-known-frac", type=float, default=0.5,
                     help="only report vtables at least this fraction named")
     ap.add_argument("--min-slots", type=int, default=4)
+    ap.add_argument("--duplicates", action="store_true",
+                    help="include slots that are the live copy of an already-claimed row")
     ap.add_argument("--templates", action="store_true",
                     help="include gaps whose neighbours are template instantiations")
     args = ap.parse_args()
 
     data = EXE.read_bytes()
     secs = sections(data)
-    tva, tvsz, _, _ = secs[".text"]
+    tva, tvsz, troff, trsz = secs[".text"]
     rva0, _, rroff, rrsz = secs[".rdata"]
     rdata = data[rroff:rroff + rrsz]
 
     rows = load_owners()
+
+    def off_of_text(rva):
+        if tva <= rva < tva + tvsz and rva - tva < trsz:
+            return troff + (rva - tva)
+        return None
+
+    # An unclaimed slot is not always unexplored work. MSVC emits inline
+    # virtuals into every translation unit that needs them and the linker
+    # keeps the copies it cannot fold; only one lands in the vtable. Where a
+    # row was claimed against one of the dead copies, the live copy shows up
+    # here looking like a gap while the function is already named. Those are
+    # a ledger-anchoring problem, not a conversion opportunity, so they are
+    # labelled and held back -- see tools/vtable_anchor_audit.py.
+    bodies = {}
+    for rva, size, nm in rows:
+        if 8 <= size <= 64:
+            o = off_of_text(rva)
+            if o is not None:
+                bodies.setdefault(data[o:o + size], nm)
+
+    def duplicate_of(rva):
+        o = off_of_text(rva)
+        if o is None:
+            return None
+        for size in range(8, 65):
+            # int3 marks the end of a function, so a claimed body of this length
+            # ending here means the two functions have the same extent, not just
+            # the same opening bytes.
+            if o + size >= len(data) or data[o + size] != 0xCC:
+                continue
+            nm = bodies.get(data[o:o + size])
+            if nm:
+                return nm
+        return None
+
     starts = [r[0] for r in rows]
     exact = {r[0]: r[2] for r in rows}
 
@@ -168,8 +205,11 @@ def main():
             # it is built with -GR-, so there is no RTTI to ask.
             if not args.templates and any('?$' in (x or '') for x in (before, after)):
                 continue
+            dup = duplicate_of(s)
+            if dup and not args.duplicates:
+                continue
             findings.append((-(known / n), s, rva0 + off + IMAGE_BASE, k, n,
-                             known, before, after))
+                             known, before, after, dup))
 
     # dedupe: the same function can sit in many vtables
     findings.sort()
@@ -182,13 +222,15 @@ def main():
 
     print("%d vtable-like run(s); %d distinct unclaimed slot(s) with named neighbours\n"
           % (len(tables), len(out)))
-    for frac, rva, tbl, k, n, known, before, after in out[:args.limit]:
+    for frac, rva, tbl, k, n, known, before, after, dup in out[:args.limit]:
         print("0x%08X  slot %d/%d of vtable 0x%08X  (%d/%d named)"
               % (rva, k, n, tbl, known, n))
         if before:
             print("     after : " + before[:104])
         if after:
             print("     before: " + after[:104])
+        if dup:
+            print("     DUPLICATE of claimed " + dup[:96])
     if len(out) > args.limit:
         print("\n... %d more (--limit)" % (len(out) - args.limit))
 
