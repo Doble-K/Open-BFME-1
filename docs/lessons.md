@@ -5227,3 +5227,62 @@ as a sibling worth copying. It is a naked _emit dump. So are the rest of them.
 
 The note describes an intention, not the file, and reading it as a description of
 the source cost a detour. Open the file.
+
+
+## The by-value transposition is not a source or a flag problem
+
+Twelve builds against the 53-byte reproduction, all producing the same two
+instructions in the same wrong order -- `mov ecx,esp` then `mov [esp+8],esp`
+where retail has them reversed.
+
+Source shapes tried: a declared destructor on AsciiString, a declared copy
+constructor, and an explicit AsciiString(...) temporary rather than an implicit
+conversion. The first two changed nothing at all. The explicit temporary changed
+the frame instead, replacing `mov ecx,esp` with `lea ecx,[esp+8]` -- different,
+and further away.
+
+Flags tried: /O1, /Os, /Ox, /Oy-, /Gy, /GF, /Ob0, /MT. /O1, /Os and /Oy- add a
+frame pointer the target does not have, which is strictly worse. The rest are
+byte-identical to /O2.
+
+So the ordering survives every source shape and every optimisation flag this
+toolchain offers. That is worth knowing precisely because those are the two
+things one would try first, and it points the remaining explanation somewhere
+else -- a different compiler build for the shipped binary, or this function
+having been compiled in a translation unit whose contents changed the schedule.
+Both are testable, neither is testable from this file alone.
+
+Also worth recording: the store is dead. It writes the temporary's address into
+a slot nothing ever reads, in both retail and every compile here. The two
+instructions disagree only about which order to be useless in.
+
+
+## Aliasing keeps a dead store alive
+
+The 50 ConcreteModuleClass::getInstance bodies in fx_particle_system_bulk.cpp are
+all naked and none has been converted. The natural source -- a function-local
+static and a return -- gets the hard parts right first time: the guard byte test,
+the atexit registration, the instance address, the final vptr immediate.
+
+It fails on one store. The constructor sets the base vptr 0x01110850 and then the
+derived vptr 0x011113c4 into the same slot, and retail drops the first as dead.
+The compile keeps it, and the reason is visible in the constructor's own source:
+between the two vptr writes it stores through absolute addresses --
+*(void **)0x012f64d0 = this and *(void **)0x012f64f4 = this. Nothing tells the
+compiler those cannot be the object's first word, so the earlier store has to
+stand.
+
+That is not a fact about inlining, it is a fact about what the source says the
+program might do. The idiom of writing globals as casts from integer literals is
+what makes these functions tractable at all, and it is also what blocks this one.
+
+Worth knowing before the next attempt: the constructor's standalone body is a
+matched row, so the source that produces the aliasing cannot simply be reordered
+to suit the inlined copy. Whatever fixes this has to leave the standalone
+codegen alone.
+
+## Cost of a build is part of the screen
+
+That file verifies 560 rows on every build. A candidate inside it is not a
+cheap three-build experiment, and that should be weighed before starting rather
+than discovered halfway through.
