@@ -38,7 +38,7 @@ MD.detail = True
 
 ROOT = Path(__file__).resolve().parents[1]
 SYNTHETIC = re.compile(
-    r"^\?[jb]_[0-9a-f]{6,}@@|^Gen_[0-9a-f]+|^\?\w+@Gen_[0-9a-f]+|^tg_[0-9a-f]+")
+    r"^\?[jb]_[0-9a-f]{6,}@@|^Gen_|^\?\w+@Gen_|^tg_[0-9a-f]+")
 
 
 def main():

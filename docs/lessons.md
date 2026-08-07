@@ -5532,3 +5532,39 @@ The sharing half of the problem did work. Declaring a local zero and assigning
 every scalar from it puts the value in one register, and the compile uses al for
 the byte at 0xe00 and eax for the three dwords above it, which is what retail
 does with cl and ecx. Only the loop form is left.
+
+
+## rep stosd survives every source shape tried
+
+The do-while pointer walk was the recorded hypothesis and it is refuted: MSVC
+still rewrites it. Across two ticks the rewrite has survived an indexed loop, a
+pointer walk with a counted do-while, and /Oi-. Retail runs the explicit loop, so
+its build did not do this, but nothing reachable from source or flags here
+reproduces that.
+
+Two of three hypotheses deferred this way have now landed and one has not. That
+is a reasonable rate for something that costs nothing but a line in the log.
+
+## A dead loop is a source construct, not dead code to delete
+
+ProductionPrerequisite's constructor ends with a loop whose trip count is
+computed as `mov ecx,eax` then `sub ecx,eax` -- zero, always, and the branch over
+it is always taken. It is tempting to read that as garbage.
+
+It is erase(begin(), end()) on a vector of a 4-byte POD, inlined. The copy that
+would move the tail down has nothing to move, so the count folds to zero while
+the loop survives; the `sar ecx,2` still names the element size, and the final
+store of the begin pointer into the end slot is the clear itself. Writing a
+source without that erase would lose the whole tail of the function.
+
+The other vector in the same constructor is cleared by a real call, because its
+element type is not POD. One class, two vectors, two entirely different shapes
+for the same operation -- which is the tell for whether an element has a
+destructor.
+
+## Not every synthetic name looks like Gen_<hex>
+
+The screen excluded callees named Gen_ followed by hex. MultiplayerSettings'
+destructor calls Gen_setmd_0008eb60, which has a word in the middle and passed
+straight through, so a candidate blocked on an unnamed member destructor reached
+the top of the queue. Widened to any Gen_ prefix; the queue went from 136 to 134.
