@@ -4121,3 +4121,39 @@ last from the inlined base destructor.
 Whoever lifted the bytes had already worked that out. A naked lift is not just a
 byte dump waiting to be replaced; the declarations wrapped around it are evidence,
 and dropping them costs a build to rediscover.
+
+
+## Correction: the naked lift did not know about novtable
+
+Last entry claimed the naked wrapper's __declspec(novtable) was evidence I had
+carelessly discarded. It is not. All forty naked ModuleData destructor thunks
+declare it, and eighteen of them emit an early vptr store -- exactly what
+novtable suppresses. The attribute is boilerplate on a wrapper whose body is
+__asm, where the declaration only has to compile, so it says nothing about the
+class. It was right for UnitCrateCollideModuleData by coincidence.
+
+The real discriminator is in the bytes and costs one regex. An early
+mov [reg], imm32 means the class installs its own vptr and novtable is wrong.
+Its absence, with a store of some other class's table at the end, means the only
+surviving store is an inlined base destructor's and novtable is right.
+
+Correcting this matters more than the usual slip because the wrong version told
+future work to trust the declarations wrapped around a byte dump. Half of them
+contradict their own bytes.
+
+## The family, measured
+
+Forty naked ModuleData destructors, and they are not one shape. Fifteen have no
+lea-based member destruction at all -- they are inlined STL container teardown,
+with vector deallocations and node-allocator calls, and are a different problem.
+The remaining twenty-five destroy between one and eight members, and several
+shapes repeat exactly: three files destroy two members at +0x18 and +0x14 with
+states 4 then 3, two share (2,1,0), two share (1,0,2) at +0x74/+0x70/+0x8, two
+share (6,5,0).
+
+Repeated shapes are the point. A shape solved once should transfer to its
+siblings, which is why the census is worth more than any single conversion in it.
+What blocks the two nearest siblings is not their shape but their callees:
+ProductionUpdate and CommandSetUpgrade each destroy a member whose destructor is
+unclaimed, reachable only through an ILT thunk, so converting them means naming a
+function this project has not named yet.
