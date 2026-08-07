@@ -5389,3 +5389,40 @@ reasoning about bytes that came from the previous compile. Deleting the object
 and forcing a rebuild produced identical bytes, so the flag was irrelevant
 anyway, but that was luck rather than method. The line saying how many
 translation units actually compiled is right there in the output.
+
+
+## A raw address is honest where a name would be a guess
+
+The FireWeaponCollide factory pushes a field-parse function pointer. It points at
+an ILT jump whose target carries no name in the ledger, so declaring
+`&FireWeaponCollideModuleData::buildFieldParse` would have meant inventing a
+symbol and pinning it -- the thing declined on SupplyTruck.
+
+Casting the address instead produces the identical instruction and asserts
+nothing: `(void (*)(MultiIniFieldParse &))0x0043ABC0`. The byte `68 c0 ab 43 00`
+matched first time. The tree already uses integer-literal casts for globals, and
+it works the same way for code addresses.
+
+Worth being clear about when this is right. It is right when the address is
+evidence and the name is not. Where a name is already attested -- as
+StatusBitsUpgradeModuleData was, by its own buildFieldParse symbol -- use the
+name, because it carries information the literal throws away.
+
+## throw() confirmed twice, inlining still open
+
+Declaring the constructors throw() removed the exception frame again, on a second
+factory in a different family. Everything outside the constructor now matches
+byte for byte: the allocation, the null test, the branch, the pushed literal, the
+call to initFromINIMultiProc, the epilogue.
+
+What is left is that retail inlines the module data constructor and MSVC emits a
+call to it. Defining the constructor inside the class body does not change that,
+and __forceinline on a constructor is ignored outright by MSVC 7.1. Two different
+classes now, one with two bases and one with a single base, so it is not about
+the inheritance.
+
+Stopping at three builds rather than taking a fourth on a stated hypothesis, as
+happened last tick. The hypothesis is written down instead: an exception
+specification may itself be what blocks the inliner, and __declspec(nothrow) is
+the spelling that carries no specification. That is where the next attempt
+starts.
