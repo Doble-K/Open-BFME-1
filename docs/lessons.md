@@ -3472,3 +3472,33 @@ bytes could belong to many functions, identification has to come from outside th
 Two outside sources that fail for unrelated reasons are worth more than any amount of
 staring at the disassembly, and the ratio here -- three of forty -- is a fair measure of
 how often a single source would have been wrong.
+
+
+## The constant-return trick needs a distinctive constant and a live body
+
+Class_ID overrides fell to the two-witness rule, so the same treatment was tried on
+Chunk_Type, which rendobj.h and hlod.h declare the same way -- inline, returning a
+W3D_CHUNK constant. It produced nothing, and both reasons are worth keeping.
+
+Most chunk ids are small. Scanning for bodies returning any W3D_CHUNK value found five
+candidates, and one of them -- 0x009213D0, returning 2 -- had already appeared in the
+Class_ID scan as CLASSID_DISTLOD. A constant of 2 belongs to every enum ever written. It
+is only evidence when the value is large enough to be unusual, which for these means
+0x100 and up.
+
+Restricting to those leaves four bodies, returning W3D_CHUNK_LIGHTSCAPE, HIERARCHY,
+LODMODEL and ANIMATION. All four have zero references anywhere in the image: no vtable
+slot, no call site, no data pointer. They are copies the linker kept and nothing reaches.
+So the second witness is not merely missing, it cannot exist, and naming them would
+repeat the anchoring mistake this log has been documenting for several passes.
+
+The zero-reference result was checked before being believed -- the same scanner reports
+one reference for a Class_ID body known to sit in a vtable. A detector that has only
+ever returned zero has not been shown to work.
+
+The pass still converted CompositeRenderObjClass::Get_Name, which had three agreeing
+witnesses: it sits between Class_ID and Set_Name exactly as rendobj.h orders them, it
+reads the +0xC8 member that Set_Name writes, and the neighbouring slots hold
+Get_Base_Model_Name and Set_Base_Model_Name of the same class. HLodClass derives from
+CompositeRenderObjClass and does not override Get_Name, so the inherited implementation
+is what the slot carries.

@@ -933,3 +933,8 @@ classid-scan			method	claim only where the enum value AND the vtable neighbours 
 ?Class_ID@Null3DObjClass@@UBEHXZ	0x00972750	6	converted	returns 22 = CLASSID_NULL; same two-witness pattern
 classid-scan			result	40 enum-valued candidates; only 3 had a neighbour class agreeing with the value; all 3 converted first build
 classid-scan			method	the agreeing neighbour must be the class's own destructor or Clone since rendobj.h orders dtor Clone Class_ID
+?Get_Name@CompositeRenderObjClass@@UBEPBDXZ	0x00982F70	7	converted	HLodClass vtable slot 27 between Class_ID and Set_Name; reads +0xC8 which Set_Name writes
+chunk-id-scan			negative	W3D_CHUNK ids below 0x100 collide with Class_ID returns; one address matched both enums so small constants are not evidence
+chunk-id-scan			negative	only 4 bodies return a distinctive chunk id >= 0x100 and all four have zero references anywhere in the image
+chunk-id-scan			note	reference scanner validated against a known-dispatched address before trusting the zero-reference result
+0x00118D60 0x00119650 0x006BEF30 0x008A0DF0			dead	unreferenced bodies returning W3D_CHUNK_LIGHTSCAPE HIERARCHY LODMODEL ANIMATION; no witness available to name them
