@@ -2555,7 +2555,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ScienceStore@@QAE@XZ,,0x00076E50,29,Code/GameEngine/Source/Common/GameEngine.cpp,matched,
 ??0ScoreScaleUpTransition@@QAE@XZ,,0x0048B8D0,847,Code/masm_dumps/_sa3___0ScoreScaleUpTransition__QAE_XZ_48B8D0.asm,matched,Exact 847B string-anchored Open-BFME4
 ??0ScreenMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00922680,37,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
-??0SegLineRendererClass@@QAE@ABV0@@Z,,0x00960990,148,Code/Libraries/Source/WWVegas/WW3D2/SegLineRendererClassCopyCtorThunk.cpp,matched,1:1 C++ thunk from certified retail copy constructor
+??0SegLineRendererClass@@QAE@ABV0@@Z,,0x00960990,148,Code/Libraries/Source/WWVegas/WW3D2/SegLineRendererClassCopyCtorThunk.cpp,matched,clean C++; reference initialiser list with the unwind owner at offset 0
 ??0SegLineRendererClass@@QAE@XZ,,0x0095FFD0,86,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,
 ??0SegmentedLineClass@@QAE@ABV0@@Z,,0x009509D0,181,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,
 ??0SegmentedLineClass@@QAE@XZ,,0x00950D50,127,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,

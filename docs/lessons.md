@@ -5635,3 +5635,23 @@ fits.
 The general point is that the registration's position is evidence, not noise. It
 localises which sub-object owns the cleanup, the same way the state count says
 how many there are.
+
+
+## The frame-slot store localises the unwind owner, confirmed
+
+SegLineRendererClass matched on the first build of this tick, from the hypothesis
+recorded at the end of the last one: move the declared destructor off the member
+at offset 4 and onto the member at offset 0.
+
+The reasoning was that the store of this into the frame slot is emitted before
+the first destructible sub-object is constructed. Retail emits it before the
+store to offset 0; with the destructor at offset 4 the compile emitted it two
+instructions later, after offset 4 was loaded. Nothing else in 148 bytes
+differed, so the position was the only evidence available -- and it was enough.
+
+Three readings of a constructor's exception frame now stand together. Whether a
+frame exists at all says some member has a destructor, since a destructor on the
+class itself produces none. How many states there are counts the destructible
+members. And where the frame slot is written says which member owns the state.
+
+Three of four deferred hypotheses have now landed.
