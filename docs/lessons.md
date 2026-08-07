@@ -5029,3 +5029,35 @@ code the compiler kept anyway.
 Worth recognising on sight rather than puzzling over: cmp eax,eax is not a
 mistake in the disassembly, it is a container operation that optimised away to
 almost nothing.
+
+
+## Two categories of residual, and only one is worth another build
+
+loadTable came down to a single instruction's register allocation: retail loads
+the index into eax and this into ecx, the compile uses ecx and edx, and the store
+is otherwise identical. Three builds got everything else -- the 0xC entry stride
+with key before name, the table pointer at +8 behind a vptr, a named local rather
+than an unnamed temporary so the string is read from its frame slot, and the loop
+as a for so the next name loads before the pointer advances.
+
+Stopping there was the call, and the reason is worth stating. TeamTemplateInfo
+took four builds and the fourth was right, because its residual was a structural
+misreading -- count and size swapped -- and structure is something source
+controls. Register allocation is not. Across this session I have never moved a
+register assignment from source, and every attempt has cost the rest of the tick.
+
+So: a residual that names a structure is worth another build. A residual that
+names a register is worth writing down.
+
+## Screening on the byte before
+
+??1Mission is claimed at 0x00BF4EB5, which is not a function start at all. The
+byte before it is ff, where every real entry in this image is preceded by int3
+padding, and the surrounding bytes repeat a fourteen-byte pattern -- load a
+member, add a constant, jump -- so the row covers about fourteen small forwarding
+stubs rather than one destructor.
+
+The check is one byte and it would have dropped the row before it cost a
+disassembly. It is now part of the screen, alongside the convention audit. Worth
+noting that the naked dump still matches byte for byte, so nothing in the normal
+gate could ever have flagged this.
