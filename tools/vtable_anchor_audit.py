@@ -52,8 +52,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--limit", type=int, default=25)
     ap.add_argument("--min-bytes", type=int, default=16,
-                    help="ignore bodies too short to be distinctive; at 3 bytes
-                          this reports 209 rows and means nothing, at 16 it reports 5")
+                    help="ignore bodies too short to be distinctive; with no floor "
+                         "this reports 209 rows and means nothing, at 16 it reports 5")
     ap.add_argument("--max-bytes", type=int, default=64,
                     help="only compare bodies this small; large ones rarely duplicate")
     args = ap.parse_args()
