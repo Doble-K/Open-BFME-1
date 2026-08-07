@@ -4589,3 +4589,27 @@ codegen differs. That is what newTemplate had -- a by-value AsciiString temporar
 whose copy construction and destruction are the whole reason the function has an
 EH frame. Where the stand-in is peripheral, replacing it changes nothing, and
 where BFME diverged from Generals, it makes things worse.
+
+
+## Selecting for the lever rather than hoping for it
+
+Last tick scoped the real-header lever to functions whose by-value class
+temporaries are the reason they carry an EH frame. This tick selected for that
+directly -- naked thunks whose mangled signature mentions AsciiString -- and the
+first two both went in on the first build.
+
+That is the whole method. Rather than draw a candidate and hope the levers apply,
+filter the pool by the property the lever needs. The filter is a substring of the
+mangled name, which costs nothing, and it turned a queue that had produced one
+conversion in four ticks into two conversions in one.
+
+Both functions also confirmed each other. setCachedStats reaches virtual slot 7
+at +0x1C and getCachedStats reaches slot 6 at +0x18, on the same class. Neither
+number was checkable alone; together they are, and converting a pair from one
+class gets that verification for free.
+
+One thing worth writing down about argument order: by-value class arguments are
+constructed right to left, so the last argument's temporary is built first. Both
+of these construct the value or the default before the key, and the unwind states
+number in that same order -- which is how the two temporaries can be told apart
+in the bytes at all.
