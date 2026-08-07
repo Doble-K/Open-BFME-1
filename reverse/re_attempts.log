@@ -1036,3 +1036,8 @@ callee-callers			measurement	13 of the 40 naked ModuleData destructors have ever
 ??1W3DLaserDrawModuleData@@UAE@XZ	0x001FE260	198	converted	same body
 icf-shared-bodies			note	the three names share address 0x001FE260 so the classes have byte-identical destructors. Each still needs its own source emitting its own symbol but the C++ differs only in the class name
 iat-hoisting			lever	one dllimport call site emits call dword ptr [__imp__...]; three or more make the compiler load the table entry into a callee-saved register once and call through it. Not a source difference -- it falls out of the number of uses
+??1CashHackSpecialPowerModuleData@@UAE@XZ	0x00258E20	120	converted	vector at +0x210 with an 8-byte element; two builds
+??1GiveUpgradeUpdateModuleData@@UAE@XZ	0x0025DE90	120	converted	same shape with the vector at +0x254 and a 4-byte element; one build
+_STLP_USE_STATIC_LIB			lever	without it STLport's allocator entry points are dllimport and a vector teardown collapses to one indirect call. With it the size dispatch inlines -- cmp against 0x80 then operator delete or _M_deallocate. Several already-matching thunks carry the define; it belongs on any source with an STL container
+element-size			lever	the sar N / shl N pair after subtracting the vector's start from its end_of_storage rounds the byte count to a multiple of the element size so N gives sizeof(T) directly -- 3 for eight bytes 2 for four
+base-dtor-inline-or-called			lever	an out-of-line call to the base destructor means the base has a non-inline destructor and no vptr store appears in the derived one; an inline empty base destructor puts its vptr store at the end instead

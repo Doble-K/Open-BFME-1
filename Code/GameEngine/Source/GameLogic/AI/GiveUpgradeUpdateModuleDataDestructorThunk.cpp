@@ -1,135 +1,39 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift the exact retail MASM destructor into a C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) GiveUpgradeUpdateModuleData
+// The same shape as CashHackSpecialPowerModuleData with two numbers changed: the
+// vector sits at +0x254 and its element is four bytes rather than eight, which
+// the sar 2 / shl 2 pair gives away where the other had sar 3 / shl 3.
+//
+// Teardown is STLport's size-dispatched deallocate -- capacity in bytes from
+// +0x25C minus +0x254, then operator delete above 128 bytes and the node
+// allocator's _M_deallocate at or below. _STLP_USE_STATIC_LIB is what makes that
+// dispatch appear inline; without it the allocator entry points are dllimport
+// and the whole thing collapses to one indirect call.
+//
+// The base destructor is called rather than inlined, so it is declared without a
+// body and no vptr store appears here.
+#include <vector>
+
+class SpecialAbilityUpdateModuleData
 {
 public:
-    virtual ~GiveUpgradeUpdateModuleData();
+	virtual ~SpecialAbilityUpdateModuleData();
+
+private:
+	unsigned char m_head[0x250];
+};
+
+class __declspec(novtable) GiveUpgradeUpdateModuleData : public SpecialAbilityUpdateModuleData
+{
+public:
+	virtual ~GiveUpgradeUpdateModuleData();
+
+private:
+	std::vector<int> m_upgrades;
 };
 
 // ??1GiveUpgradeUpdateModuleData@@UAE@XZ
-__declspec(naked) GiveUpgradeUpdateModuleData::~GiveUpgradeUpdateModuleData()
+GiveUpgradeUpdateModuleData::~GiveUpgradeUpdateModuleData()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x88
-        __emit 0xf3
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x54
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x2a
-        __emit 0x8b
-        __emit 0x86
-        __emit 0x5c
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x2b
-        __emit 0xc1
-        __emit 0xc1
-        __emit 0xf8
-        __emit 0x02
-        __emit 0xc1
-        __emit 0xe0
-        __emit 0x02
-        __emit 0x3d
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x76
-        __emit 0x0b
-        __emit 0x51
-        __emit 0xe8
-        __emit 0xd6
-        __emit 0x3f
-        __emit 0x62
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x0a
-        __emit 0x50
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x0a
-        __emit 0x07
-        __emit 0x5d
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x15
-        __emit 0xb9
-        __emit 0xdb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }

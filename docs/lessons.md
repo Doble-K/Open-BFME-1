@@ -4223,3 +4223,29 @@ different coat: a verification step that passes because it verified the old
 thing. The assert that now checks the rewritten files contain no __emit is the
 cheap guard, and the scratchpad directory is the path both halves of this
 environment agree on.
+
+
+## One define decides whether the allocator is visible at all
+
+The vector teardown in these destructors is STLport's size-dispatched deallocate:
+subtract the vector's start from its end_of_storage, round to a multiple of the
+element size, and send anything above 128 bytes to operator delete and the rest
+to the node allocator's _M_deallocate. My first attempt produced the capacity
+arithmetic exactly and then made a single indirect call where retail has the
+whole dispatch.
+
+_STLP_USE_STATIC_LIB is the difference. Without it STLport declares its allocator
+entry points dllimport, so the dispatch lives behind an exported function and the
+call comes out as call dword ptr [...]. With it the inline body is visible to the
+compiler and lands byte for byte. Several thunks in the tree already carry the
+define, which is where I found it -- worth reading the flags on files that match
+before theorising about the ones that do not.
+
+Two other numbers in that sequence are free information. The sar N / shl N pair
+gives sizeof(T) directly: 3 for an eight-byte element, 2 for a four-byte one. And
+whether the base destructor is called or inlined says how to declare it -- a call
+means a non-inline base destructor and no vptr store in the derived function,
+while an inline empty base puts its store at the end.
+
+With those, the second of these two took one build and differed from the first
+only in two constants.
