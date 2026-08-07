@@ -4937,3 +4937,32 @@ the class certainly has a vtable somewhere.
 Reverted with the constraint stated rather than a guess recorded: something owns
 offset zero that is not a vptr, and the virtualness comes from elsewhere. Two
 builds were enough to establish that much and not enough to place it.
+
+
+## A store the optimizer is right to delete
+
+WeaponChangeSpecialPowerModuleModuleData writes zero to +0x210 twice: once before
+the two string members are constructed and once after. Moving the three words
+into the initialiser list put the first group in the right place -- list entries
+run in declaration order ahead of the body -- and reproduced everything except
+that repeat, because MSVC eliminates the first store as dead.
+
+It is right to. Nothing between the two writes is opaque: the string
+constructors are inline stores through this, and the compiler can see straight
+through them. For retail to keep both, something in the real source must break
+that visibility, and it is not the member construction.
+
+Recorded as an open question rather than guessed at. The alternative -- writing
+the member twice and hoping -- produces a source that says something false about
+the code even if the bytes were to line up.
+
+## Choosing not to start
+
+parseDrawCallback was the other candidate this tick and I read it without
+building: two inline character loops, a quote scan and a strlen, a strstr through
+the import table, and three globals. Every piece is recoverable and the whole is
+a poor ratio of builds to bytes, which is the kind of function that has cost me
+whole ticks before.
+
+Worth noting the decision explicitly. Reading a disassembly costs one call;
+discovering the same thing three builds in costs the tick.
