@@ -4416,3 +4416,29 @@ registers for each sub-object and no call after either -- the same open question
 with more of it. DeflectSpecialPower stores six vptrs, at +0, +0xC, +0x10, +0x20,
 +0x24 and +0x38, so every base of a multiple-inheritance hierarchy would have to
 be laid out correctly before a single byte matched.
+
+
+## Three failures, one cause: the compiler sinks vptr stores
+
+W3DDebrisDraw's constructor reproduces completely -- the base call and its
+displacement, the second base's inlined vptr store, both vtable values, and all
+fourteen field stores in retail's deliberately unsorted order. One thing is out
+of place: my compile puts this class's own two vptr stores at the END of the
+body, and retail has them immediately after the base constructor returns.
+
+That is worth stating as a cause rather than a symptom, because it is the same
+thing that stopped LifeEventModuleInfo and it is what the StealthUpgrade cursor
+work kept bumping into. MSVC 7.1 sinks a constructor's vptr initialisation past
+the body when nothing in the body dispatches virtually; retail's compile did not.
+Three functions, one difference.
+
+Two things it is not. /O1 is not the answer -- it changes the prologue to
+push [esp+N] forms and turns the -1 store into or dword ptr [esi+0x14], -1, so
+/O2 is right. And moving field assignments between the member initialiser list
+and the body produces byte-identical output, so that is not a lever either; MSVC
+treats the two the same once inlining has run.
+
+Which leaves the question narrowed rather than answered, and narrowed usefully:
+what makes the vptr live across the body. Something in retail's source must make
+the object's dynamic type observable inside the constructor, and finding it once
+would settle a family rather than a function.
