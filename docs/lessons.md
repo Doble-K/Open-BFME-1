@@ -5163,3 +5163,37 @@ It earns its keep on large distinctive bodies, which is how it settled
 debug_io_flat.cpp in a single run. The 9729 unresolved drafts across 453 files
 are concentrated in the big engine sources, and that is where to point it -- not
 at files whose small functions have already been worked.
+
+
+## The markers bind by position, not by label
+
+Clearing markers whose label resolves to a matched row broke two files, and the
+way it broke them is the useful part. Removing `??0MatBufferClass@@` from
+meshmatdesc.cpp did not produce a complaint about MatBufferClass -- it produced
+one about TexBufferClass::Get_Element. Removing `??0Format@@` from
+debug_debug.cpp exposed Debug::StaticExit.
+
+find_declared_unmatched associates a marker with the definition that follows it,
+by position. The label is documentation and nothing checks that it names that
+definition. So a marker can carry a label that is genuinely stale while still
+being the only thing suppressing a different definition underneath it, and
+removing it on the strength of the label alone uncovers work that was never
+claimed.
+
+The rule that survives: resolving the label is enough to suspect a marker, never
+enough to delete one. Clear it, then run find_declared_unmatched --fail over the
+changed files and restore anything that flips. That caught both of these; 29 of
+31 removals in this batch were sound and the two that were not cost nothing
+because the check ran before the commit.
+
+## Silence from a search is not an answer
+
+cfind on ScriptActions.cpp reported 770 defined symbols and printed 92 lines --
+39 already claimed, 53 ambiguous. The other 678 produced no output whatsoever,
+because a symbol with zero placements is simply not printed.
+
+Read quickly, that looks like a file with 92 interesting symbols. It is really a
+file where 678 compiled bodies do not appear in retail at all, which is a much
+stronger statement about how far this source has drifted from the shipped one.
+The same shape as the staleness check that had never fired: absence of output
+and absence of findings are different claims, and only one of them was earned.

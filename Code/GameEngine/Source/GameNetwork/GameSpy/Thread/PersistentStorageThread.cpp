@@ -519,7 +519,6 @@ void GameSpyPSMessageQueue::addRequest( const PSRequest& req )
 	m_requests.push(req);
 }
 
-// ?getRequest@GameSpyPSMessageQueue@@ present-unmatched
 Bool GameSpyPSMessageQueue::getRequest( PSRequest& req )
 {
 	MutexClass::LockClass m(m_requestMutex, 0);
@@ -1089,7 +1088,6 @@ void PSThreadClass::Thread_Function()
 }
 
 //-------------------------------------------------------------------------
-// ??0PSPlayerStats@@ present-unmatched
 PSPlayerStats::PSPlayerStats( void )
 {
 	reset();

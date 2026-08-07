@@ -441,7 +441,6 @@ MultiFixedPoolDecalSystemClass::LogicalDecalClass & MultiFixedPoolDecalSystemCla
 ** MultiFixedPoolDecalSystemClass::LogicalDecalClass implementation
 */
 
-// ??0LogicalDecalClass@@ present-unmatched
 MultiFixedPoolDecalSystemClass::LogicalDecalClass::LogicalDecalClass(void)
 {
 }
@@ -491,7 +490,6 @@ void MultiFixedPoolDecalSystemClass::LogicalDecalClass::Clear(uint32 decal_id)
 ** MultiFixedPoolDecalSystemClass::LogicalDecalPoolClass implementation
 */
 
-// ??0LogicalDecalPoolClass@@ present-unmatched
 MultiFixedPoolDecalSystemClass::LogicalDecalPoolClass::LogicalDecalPoolClass(void) :
 	Array(0),
 	Size(0)

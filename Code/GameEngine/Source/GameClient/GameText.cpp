@@ -1326,7 +1326,6 @@ UnicodeString GameTextManager::fetch( const Char *label, Bool *exists )
 // *GameTextManager::fetch
 //============================================================================
 
-// ?fetch@GameTextManager@@ present-unmatched
 UnicodeString GameTextManager::fetch( AsciiString label, Bool *exists )
 {
 	return fetch(label.str(), exists);

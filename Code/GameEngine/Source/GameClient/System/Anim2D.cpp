@@ -525,7 +525,6 @@ void Anim2D::draw( Int x, Int y )
 // ------------------------------------------------------------------------------------------------
 /** Drawing an Anim2D using a forced width and height */
 // ------------------------------------------------------------------------------------------------
-// ?draw@Anim2D@@ present-unmatched
 void Anim2D::draw( Int x, Int y, Int width, Int height )
 {
 

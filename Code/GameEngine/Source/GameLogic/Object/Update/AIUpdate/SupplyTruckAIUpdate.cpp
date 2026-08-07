@@ -729,7 +729,6 @@ TheInGameUI->DEBUG_addFloatingText("entering docking state", getMachineOwner()->
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?update@DockingState@@ present-unmatched
 StateReturnType DockingState::update()
 {
 	return STATE_CONTINUE;

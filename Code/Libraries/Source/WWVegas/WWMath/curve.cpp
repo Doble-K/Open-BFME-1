@@ -145,7 +145,6 @@ float Curve3DClass::Get_End_Time(void)
 	}
 }
 
-// ?Key_Count@Curve3DClass@@ present-unmatched
 int Curve3DClass::Key_Count(void)
 {
 	return Keys.Count();
@@ -408,7 +407,6 @@ float Curve1DClass::Get_End_Time(void)
 	}
 }
 
-// ?Key_Count@Curve1DClass@@ present-unmatched
 int Curve1DClass::Key_Count(void)
 {
 	return Keys.Count();

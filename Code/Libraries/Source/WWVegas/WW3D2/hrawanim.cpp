@@ -148,7 +148,6 @@ NodeMotionStruct::~NodeMotionStruct()
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ??0HRawAnimClass@@ present-unmatched
 HRawAnimClass::HRawAnimClass(void) :
 	NumFrames(0),
 	NumNodes(0),
@@ -190,7 +189,6 @@ HRawAnimClass::~HRawAnimClass(void)
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?Free@HRawAnimClass@@ present-unmatched
 void HRawAnimClass::Free(void)
 {
 	if (NodeMotion != NULL) {
@@ -418,7 +416,6 @@ void HRawAnimClass::add_channel(MotionChannelClass * newchan)
  * HISTORY:                                                                                    *
  *   1/19/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?read_bit_channel@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::read_bit_channel(ChunkLoadClass & cload,BitChannelClass * * newchan,bool pre30)
 {
 	*newchan = W3DNEW BitChannelClass;
@@ -444,7 +441,6 @@ bool HRawAnimClass::read_bit_channel(ChunkLoadClass & cload,BitChannelClass * * 
  * HISTORY:                                                                                    *
  *   1/19/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?add_bit_channel@HRawAnimClass@@ present-unmatched
 void HRawAnimClass::add_bit_channel(BitChannelClass * newchan)
 {
 	int idx = newchan->Get_Pivot();
@@ -469,7 +465,6 @@ void HRawAnimClass::add_bit_channel(BitChannelClass * newchan)
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?Get_Translation@HRawAnimClass@@ present-unmatched
 void HRawAnimClass::Get_Translation(Vector3& trans, int pividx, float frame ) const
 {
 	struct NodeMotionStruct * motion = &NodeMotion[pividx];
@@ -535,7 +530,6 @@ void HRawAnimClass::Get_Translation(Vector3& trans, int pividx, float frame ) co
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?Get_Orientation@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
 {
 //	int frame0 = (int)frame;
@@ -618,7 +612,6 @@ bool HRawAnimClass::Get_Orientation(Quaternion& q, int pividx,float frame) const
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?Get_Transform@HRawAnimClass@@ present-unmatched
 void HRawAnimClass::Get_Transform(Matrix3D& mtx, int pividx, float frame ) const
 {
 	struct NodeMotionStruct * motion = &NodeMotion[pividx];
@@ -692,7 +685,6 @@ void HRawAnimClass::Get_Transform(Matrix3D& mtx, int pividx, float frame ) const
  * HISTORY:                                                                                    *
  *   1/19/98    GTH : Created.                                                                 *
  *=============================================================================================*/
-// ?Get_Visibility@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::Get_Visibility(int pividx,float frame)
 {
 	if (NodeMotion[pividx].Vis != NULL) {
@@ -716,7 +708,6 @@ bool HRawAnimClass::Get_Visibility(int pividx,float frame)
  * HISTORY:                                                                                    *
  *   3/23/99    EHC : Created.                                                                 *
  *=============================================================================================*/
-// ?Is_Node_Motion_Present@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::Is_Node_Motion_Present(int pividx) 
 {
 	WWASSERT((pividx >= 0) && (pividx < NumNodes));
@@ -733,35 +724,30 @@ bool HRawAnimClass::Is_Node_Motion_Present(int pividx)
 	return false;
 }
 
-// ?Has_X_Translation@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::Has_X_Translation (int pividx)
 {
 	WWASSERT((pividx >= 0) && (pividx < NumNodes));
 	return NodeMotion[pividx].X != NULL;
 }
 
-// ?Has_Y_Translation@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::Has_Y_Translation (int pividx)
 {
 	WWASSERT((pividx >= 0) && (pividx < NumNodes));
 	return NodeMotion[pividx].Y != NULL;
 }
 
-// ?Has_Z_Translation@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::Has_Z_Translation (int pividx)
 {
 	WWASSERT((pividx >= 0) && (pividx < NumNodes));
 	return NodeMotion[pividx].Z != NULL;
 }
 
-// ?Has_Rotation@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::Has_Rotation (int pividx)
 {
 	WWASSERT((pividx >= 0) && (pividx < NumNodes));
 	return NodeMotion[pividx].Q != NULL;
 }
 
-// ?Has_Visibility@HRawAnimClass@@ present-unmatched
 bool HRawAnimClass::Has_Visibility (int pividx)
 {
 	WWASSERT((pividx >= 0) && (pividx < NumNodes));

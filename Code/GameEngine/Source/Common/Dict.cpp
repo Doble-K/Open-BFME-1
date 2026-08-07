@@ -218,7 +218,6 @@ Dict::DictPair *Dict::ensureUnique(int numPairsNeeded, Bool preserveData, DictPa
 
 
 // -----------------------------------------------------
-// ?clear@Dict@@ present-unmatched
 void Dict::clear()
 {
 	releaseData();
@@ -425,7 +424,6 @@ AsciiString Dict::getNthAsciiString(Int n) const
 }
 
 // -----------------------------------------------------
-// ?getNthUnicodeString@Dict@@ present-unmatched
 UnicodeString Dict::getNthUnicodeString(Int n) const
 {
 	validate();

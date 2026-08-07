@@ -178,7 +178,6 @@ void Pinger::addRequest( const PingRequest& req )
 	m_requests.push(req);
 }
 
-// ?getRequest@Pinger@@ present-unmatched
 Bool Pinger::getRequest( PingRequest& req )
 {
 	MutexClass::LockClass m(m_requestMutex, 0);
@@ -207,7 +206,6 @@ void Pinger::addResponse( const PingResponse& resp )
 	}
 }
 
-// ?getResponse@Pinger@@ present-unmatched
 Bool Pinger::getResponse( PingResponse& resp )
 {
 	MutexClass::LockClass m(m_responseMutex, 0);
@@ -221,7 +219,6 @@ Bool Pinger::getResponse( PingResponse& resp )
 	return true;
 }
 
-// ?arePingsInProgress@Pinger@@ present-unmatched
 Bool Pinger::arePingsInProgress( void )
 {
 	return (m_requestCount != m_responseCount);
