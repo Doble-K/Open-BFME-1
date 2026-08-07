@@ -4999,3 +4999,33 @@ at the same time.
 
 Two facts worth keeping together: where the single store falls says member versus
 base, and whether it appears at all says declared versus implicit.
+
+
+## One instruction separated two identical functions
+
+SpecialPowerStore and RankInfoStore have the same destructor: delete every
+element of a vector of pointers, clear it, let the member and base tear
+themselves down. Both went in on the first build, and the only thing that had to
+be read differently between them was the branch mnemonic.
+
+jb and jbe mean the loop index is unsigned and compares directly against size().
+jl and jle mean it is signed, which in source means the size was cast to int --
+`i < (int)v.size()` rather than `i < v.size()`. The first test differs to match:
+the unsigned form shifts the byte span right by two and tests the result, while
+the signed form tests against 0xFFFFFFFC, masking the low two bits off before
+checking the sign.
+
+That is a satisfying kind of difference to find, because it is not a judgement
+call. The mnemonic is either signed or it is not.
+
+## What is left of a cleared vector
+
+Both functions contain a compare of a register with itself followed by a branch
+that can never be taken. That is vector::clear() after inlining --
+erase(begin(), end()) reduces to a range copy whose two ends are the same
+pointer, so the guard comparing them is trivially true and the copy path is dead
+code the compiler kept anyway.
+
+Worth recognising on sight rather than puzzling over: cmp eax,eax is not a
+mistake in the disassembly, it is a container operation that optimised away to
+almost nothing.

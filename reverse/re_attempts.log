@@ -1148,3 +1148,8 @@ dead-store-survival			open	retail keeps a store the optimizer removes. Whatever 
 ??_M-argument-order			correction	the arguments are destructor COUNT size base. Reading the middle two the other way gives the same total span so the arithmetic check cannot catch it -- 32 elements of 4 bytes and 4 of 32 both end in the same place
 polymorphic-member-vs-base			lever	a single vptr store at the END and none at entry means the polymorphic thing is a MEMBER at offset zero not a base. Deriving from it adds an entry store because the derived class gets its own table
 implicit-vs-declared-dtor			lever	an implicit destructor on a polymorphic class is trivial and emits nothing at all. Declaring it empty is what produces the vptr store and what makes the member destructible enough to take an unwind state
+??1SpecialPowerStore@@UAE@XZ	0x000EBD30	219	converted	first build; delete-each loop with an unsigned index then clear then a field then the member and base teardown
+??1RankInfoStore@@UAE@XZ	0x003A0BA0	212	converted	first build; the same shape with a signed index and no trailing field
+loop-signedness			lever	jb and jbe mean the index is unsigned; jl and jle mean it is signed and the size was cast to int. That one instruction was the whole difference between these two otherwise identical destructors
+signed-size-test			lever	test eax 0xFFFFFFFC then jle is the compiler's signed form of dividing a byte span by four and checking the sign -- masking the low two bits rather than shifting. The unsigned form shifts first then tests
+degenerate-erase			lever	a compare of a register with itself and a branch that can never be taken is what vector::clear() leaves behind: erase(begin(), end()) with both ends the same pointer

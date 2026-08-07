@@ -1,234 +1,50 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) SpecialPowerStore
+// Delete every element, clear the vector, zero one field, then let the member
+// and the base tear themselves down.
+//
+// size() is recomputed on each iteration rather than hoisted, which is what
+// `i < v.size()` compiles to, and the comparisons are jb and jbe -- unsigned, so
+// the index is unsigned too. A signed loop counter would give jl.
+//
+// The clear() is the degenerate erase(begin(), end()): the compare of finish
+// against itself and the branch that can never be taken are what is left of the
+// range copy once both ends are the same pointer.
+#include <vector>
+
+class SpecialPowerTemplate
 {
 public:
-    virtual ~SpecialPowerStore();
+	virtual ~SpecialPowerTemplate();
+};
+
+class SubsystemInterface
+{
+public:
+	virtual ~SubsystemInterface();
+
+private:
+	int m_04;
+};
+
+class SpecialPowerStore : public SubsystemInterface
+{
+public:
+	virtual ~SpecialPowerStore();
+
+private:
+	std::vector<SpecialPowerTemplate *> m_templates;
+	int m_14;
 };
 
 // ??1SpecialPowerStore@@UAE@XZ
-__declspec(naked) SpecialPowerStore::~SpecialPowerStore()
+SpecialPowerStore::~SpecialPowerStore()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x93
-        __emit 0xb5
-        __emit 0xff
-        __emit 0x00
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xc4
-        __emit 0x5c
-        __emit 0x08
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x2b
-        __emit 0x46
-        __emit 0x08
-        __emit 0xc1
-        __emit 0xf8
-        __emit 0x02
-        __emit 0x33
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x76
-        __emit 0x23
-        __emit 0xeb
-        __emit 0x03
-        __emit 0x8d
-        __emit 0x49
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x0c
-        __emit 0xb8
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x2b
-        __emit 0x46
-        __emit 0x08
-        __emit 0x47
-        __emit 0xc1
-        __emit 0xf8
-        __emit 0x02
-        __emit 0x3b
-        __emit 0xf8
-        __emit 0x72
-        __emit 0xe2
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x3b
-        __emit 0xc0
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x75
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xc1
-        __emit 0xeb
-        __emit 0x12
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0x2b
-        __emit 0xf8
-        __emit 0x57
-        __emit 0x50
-        __emit 0x51
-        __emit 0xff
-        __emit 0x15
-        __emit 0x5c
-        __emit 0x94
-        __emit 0x35
-        __emit 0x01
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0x03
-        __emit 0xc7
-        __emit 0x89
-        __emit 0x46
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x14
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0x74
-        __emit 0x27
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x10
-        __emit 0x2b
-        __emit 0xc1
-        __emit 0xc1
-        __emit 0xf8
-        __emit 0x02
-        __emit 0xc1
-        __emit 0xe0
-        __emit 0x02
-        __emit 0x3d
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x76
-        __emit 0x0b
-        __emit 0x51
-        __emit 0xe8
-        __emit 0xd4
-        __emit 0x60
-        __emit 0x79
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x0a
-        __emit 0x50
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x08
-        __emit 0x28
-        __emit 0x74
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x46
-        __emit 0x5c
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	for (unsigned int i = 0; i < m_templates.size(); i++) {
+		delete m_templates[i];
+	}
+
+	m_templates.clear();
+	m_14 = 0;
 }
