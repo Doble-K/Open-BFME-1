@@ -4902,3 +4902,38 @@ of zero. The pointer is a real empty string, and writing set("", 0) reproduces
 it -- the string-ref gate confirms it as an empty-string reference rather than a
 literal, which is a distinction the gate makes and worth knowing before assuming
 a zero length means no string at all.
+
+
+## The transposition is a UnicodeString problem, not a stand-in problem
+
+winSetText is the third function to come down to one transposed pair -- retail
+writes the temporary's address into the EH slot then loads ecx with it, and the
+compile does the reverse. newTemplate had exactly this and the real AsciiString
+header fixed it. Here the real UnicodeString does not, and neither did it for
+WinInstanceData::setText.
+
+So the split is by type rather than by whether a stand-in was used: AsciiString
+temporaries come out in retail's order with the reference header, UnicodeString
+temporaries do not. Something about BFME's UnicodeString differs from the
+reference's in a way the copy constructor's call site does not reveal -- the call
+itself matches, only its surrounding order does not.
+
+The practical response is to screen for it. A body containing mov [esp+N], esp
+has a registered by-value temporary, and that is the family; removing those took
+21 screened candidates to 17 and cost nothing.
+
+## Offset zero rules out a class introducing its own vtable
+
+Template's destructor destroys five things and the last of them sits at offset
+zero, with no vptr stored anywhere in the function. Any class that introduces a
+vtable puts the vptr at offset zero and pushes every member to +4, which is
+precisely the error the first build produced -- every offset four too high.
+
+Moving the data into a primary base does not rescue it: the base's implicit
+destructor is non-trivial, so MSVC emits it out of line and the derived
+destructor collapses to a thunk. And the mangling is MAE, protected virtual, so
+the class certainly has a vtable somewhere.
+
+Reverted with the constraint stated rather than a guess recorded: something owns
+offset zero that is not a vptr, and the virtualness comes from elsewhere. Two
+builds were enough to establish that much and not enough to place it.
