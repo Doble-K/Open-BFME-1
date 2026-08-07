@@ -3778,3 +3778,28 @@ retail did not have either. That is a usable signal in both directions: where th
 flat and the model is not, the model has invented a layer. Rewriting the arms as direct
 primitive calls reproduced all 232 bytes including the jump table, differing only in the
 four relocations, which is what an unresolved call looks like.
+
+
+## A vtable run tells you where it breaks, if you ask the bodies
+
+vtable_gaps offered 0x008DCCB0 as slot 10 of a twelve-slot run whose other names
+are all GridCullSystemClass, which made it look like an unnamed GridCullSystemClass
+method sitting two slots past Get_Object_Count. It is nothing of the kind. The body
+stores 0x01137808 into its object, and 0x01137808 is the address of slot 10 -- the
+slot the body itself occupies. A constructor or destructor installs the vptr of the
+table its class owns, so a body whose vptr equals its own slot address is slot 0 of
+a new table, not slot N of the old one.
+
+That single test partitions the run: ten slots of GridCullSystemClass, then a
+one-slot table at 0x01137808, then a one-slot table at 0x0113780C. It needs no
+names and no reference header, only the bytes, and it is the missing half of the
+??_G observation -- a scalar deleting destructor is almost always slot 0, so a ??_G
+neighbour is a boundary marker rather than evidence about the slot beside it. Both
+of the leads this run produced were on the far side of a boundary from the names
+that recommended them.
+
+Naming the two tables afterwards was ordinary work: 0x0113780C is installed by
+??0GridLinkClass, so it is GridLinkClass, and the destructor in it delegates to the
+one that installs 0x01137808, so that class is GridLinkClass's base. cullsys.h has
+exactly one candidate, CullLinkClass, and the single-slot tables agree with it --
+the destructor is the only virtual either class declares.
