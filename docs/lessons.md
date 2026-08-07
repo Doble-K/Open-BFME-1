@@ -3247,3 +3247,43 @@ evidence about the class the table belongs to. Read the slot order, not the name
 The practical consequence: template families are the cheapest place to convert, because
 the cost is understanding one class rather than one function. Worth preferring them over
 individually-interesting rows while the ranking still has them.
+
+
+## Template instantiation names are not reliably tied to addresses here
+
+The last pass established VectorClass's six-slot vtable order and used it to convert two
+slots, and the obvious next step was to scale it: 25 unclaimed ID(const T*) bodies sit in
+the image, all byte-identical four-byte-element copies, each presumably belonging to a
+different instantiation. Naming them needs the instantiation, and the method used so far
+was to read it off a named neighbour in the same vtable. That method does not hold up.
+
+Three findings, in order of how badly each damages it.
+
+A single vtable carries names from four different instantiations. Table 0x011BC44C has
+operator== named for VectorClass<int>, Resize for VectorClass<VertexMaterialClass*>, ID
+for VectorClass<FontCharsBuffer*>. Identical instantiations fold, so the ledger name on
+a slot records which instantiation somebody claimed first, not which class owns the
+table.
+
+The constructor evidence contradicts the body evidence. ??0?$VectorClass@G@@ stores that
+same vtable -- unsigned short, a two-byte element -- while its slot 5 divides by four. A
+two-byte element cannot do that, so at least one of those two attributions is wrong, and
+nothing in the image says which.
+
+And a claimed row can sit outside every vtable. Resize for VectorClass<FontCharsBuffer*>
+is a genuine body at 0x0005E610, not a thunk, referenced by no vtable slot at all -- a
+duplicate instantiation the linker kept while the vtables point at the folded copy.
+
+RTTI would settle all of it, and is not available: the image is built with -GR-, so there
+is no complete object locator behind these vtables.
+
+The two rows already claimed this way are body-compatible -- Clear does not depend on the
+element type at all, and the ID overload's shr 2 matches a four-byte element sitting at
+slot 5 beside the slot 4 overload of the same name -- so they are recorded with the
+caveat that the instantiation is inherited rather than proven, instead of being quietly
+left to look verified.
+
+The rule this leaves: vtable position is sound evidence for *which method* a body is, and
+that is what it was introduced for. It is not evidence for *which instantiation* a
+templated body belongs to. Twenty-five plausible-looking claims were one step away, and
+plausible is the wrong standard for a ledger other people build on.
