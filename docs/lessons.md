@@ -4700,3 +4700,34 @@ ledger the whole time.
 
 Worth treating notes as claims rather than decoration. This one disagreed with
 its own name field, and that disagreement was the finding.
+
+
+## The easiest rows to check were the ones being skipped
+
+audit_ret_arity compares the stack cleanup a decorated name implies against the
+ret the retail body actually performs. It was checking 8636 rows and skipping
+85522 as unparsable, and among the skipped were every constructor and every
+destructor in the ledger.
+
+The reason is small. A constructor or destructor encodes no return type -- the
+convention letter is followed straight by '@' -- and handing that to the
+return-type skipper drifts the parse, which the tool then correctly refuses to
+accuse on. But these are the easiest rows in the whole ledger to check, not the
+hardest: a destructor takes nothing and must pop nothing, and no parameter
+parsing is needed to say so. Three lines later the tool checks 10852 rows and
+reports 143 contradictions instead of 69.
+
+Worth remembering that a conservative tool's skip list is where its blind spots
+live. "Skipped 85522" reads like caution and was hiding a whole family.
+
+## A destructor that returns this
+
+??1SlavedUpdate@@UAE@XZ reads a stack argument, returns this in eax, and pops
+eight bytes. Destructors do none of those things; constructors taking two
+arguments do all three. The row is a constructor wearing a destructor's name.
+
+It also settles something that had looked odd a few ticks earlier.
+??0TensileFormationUpdate and ??0CritterEmitterUpdate both appeared to call
+??1SlavedUpdate -- a constructor calling a destructor, which I noted as strange
+and moved past. They were calling their base constructor all along, and the
+strangeness was the name, not the code.

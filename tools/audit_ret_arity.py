@@ -144,7 +144,15 @@ def expected_ret(sym):
         return None, None
     i = pos + 1
     try:
-        i = skip_type(sym, i)             # return type
+        # Constructors and destructors encode no return type at all -- the
+        # convention letter is followed straight by '@'. Handing that to
+        # skip_type drifts the parse, which is why every ??0 and ??1 row was
+        # being skipped as unparsable. They are the easiest rows to check, not
+        # the hardest: a destructor takes nothing and must pop nothing.
+        if re.match(r"\?\?[01]", sym) and i < len(sym) and sym[i] == "@":
+            i += 1
+        else:
+            i = skip_type(sym, i)         # return type
         total = 0
         registers = 2 if convention == "__fastcall" else 0
         if sym[i:] == "XZ":               # explicit void parameter list
