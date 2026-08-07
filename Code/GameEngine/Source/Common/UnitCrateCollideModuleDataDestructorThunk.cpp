@@ -1,98 +1,64 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) UnitCrateCollideModuleData
+// Two string members and an inlined base destructor, under the C++ EH frame the
+// two destructible members require.
+//
+// The members are destroyed at +0x58 then +0x44 -- reverse declaration order, as
+// destructors do -- and both calls resolve to the same address, so they are the
+// same type. That address is the folded releaseBuffer body, which is what
+// BFMERetailAsciiString's inline destructor leaves behind at a call site: the
+// destructor itself inlines away and the private out-of-line call remains.
+//
+// The vptr store at the end is not this class's. A destructor installs its own
+// vptr first, and here nothing observes it -- the only calls are non-virtual
+// ones on members -- so MSVC drops it. What is left is the inlined base
+// destructor running last, and 0x01073744 is Snapshot's table: ??0Snapshot and
+// ??1Snapshot both install it.
+class BFMERetailAsciiString
+{
+public:
+	~BFMERetailAsciiString() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+
+	char *m_data;
+};
+
+class Snapshot
+{
+public:
+	virtual ~Snapshot() {}
+};
+
+// The two strings sit in different classes. Destruction runs +0x58 then +0x44,
+// which is a derived member going before an inlined base's rather than two
+// members of one class in reverse order -- those would run +0x58 then +0x44 too,
+// but with the unwind states counting down. Retail counts up, 0 then 1.
+//
+// novtable on both is what suppresses their own vptr stores; the only one that
+// survives is Snapshot's, from the base destructor inlined last.
+class __declspec(novtable) CrateCollideModuleData : public Snapshot
+{
+public:
+	virtual ~CrateCollideModuleData() {}
+
+private:
+	unsigned char m_head[0x40];
+	BFMERetailAsciiString m_first;
+};
+
+class __declspec(novtable) UnitCrateCollideModuleData : public CrateCollideModuleData
 {
 public:
 	virtual ~UnitCrateCollideModuleData();
+
+private:
+	unsigned char m_middle[0x10];
+	BFMERetailAsciiString m_second;
 };
 
 // ??1UnitCrateCollideModuleData@@UAE@XZ
-__declspec(naked) UnitCrateCollideModuleData::~UnitCrateCollideModuleData()
+UnitCrateCollideModuleData::~UnitCrateCollideModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x40
-		__emit 0x1b
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x58
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x23
-		__emit 0x08
-		__emit 0x76
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x44
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x13
-		__emit 0x08
-		__emit 0x76
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }

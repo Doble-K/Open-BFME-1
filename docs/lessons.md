@@ -4087,3 +4087,37 @@ The queue is useful for finding candidates and its hint line says "verify the
 prologue" for a reason. Check the calling convention against the mangled name
 before spending a build: SA is static, QAE and UAE are thiscall, and the
 prologue and return instruction say which one the bytes are.
+
+
+## Which direction the unwind state counts says where the members live
+
+A naked ModuleData destructor: two string members destroyed at +0x58 then +0x44,
+both calls landing on the same folded releaseBuffer body, then a vptr store.
+Modelled as two members of one class it came out nearly right and stayed wrong in
+one place -- retail sets the unwind state to 0 before the first destruction and 1
+before the second, and mine set 1 then 0.
+
+Down is what a destructor does across members of a single class: they die in
+reverse declaration order and the state counts down with them. Up means the two
+objects are not peers. A derived member destroyed before an inlined base's member
+gives +0x58 first and the state ascending, because the two belong to different
+unwind scopes rather than to one list. Splitting the strings across a two-level
+hierarchy -- one in the base, one in the derived -- matched on the next build.
+
+The direction is worth reading first. It costs nothing, it is visible in two
+instructions, and it decides a structural question that is otherwise invisible:
+both layouts destroy the higher address first, so the order alone cannot tell
+them apart.
+
+## The lift already knew something I threw away
+
+The naked file declared the class __declspec(novtable) and I dropped it when
+rewriting, on the grounds that a class with a real base does not need it. It is
+load-bearing. novtable suppresses the vptr store MSVC puts at the top of every
+constructor and destructor, and without it the compiled body opened with a store
+retail does not have -- the only vptr store in the target is Snapshot's, arriving
+last from the inlined base destructor.
+
+Whoever lifted the bytes had already worked that out. A naked lift is not just a
+byte dump waiting to be replaced; the declarations wrapped around it are evidence,
+and dropping them costs a build to rediscover.
