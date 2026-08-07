@@ -928,3 +928,8 @@ Animatable3DObjClass			corroboration	slots 74 to 77 (Capture_Bone Release_Bone I
 classid-scan			lead	40 unclaimed dispatched mov eax N ret bodies have an N inside the ClassID enum; most are NOT Class_ID
 classid-scan			caution	five distinct addresses return 1; if all were one class's Class_ID they would have folded, so returning a small constant is not evidence on its own
 classid-scan			method	claim only where the enum value AND the vtable neighbours agree; AABOX and OBBOX candidates have only Gen_dtor neighbours and were rejected
+?Class_ID@ParticleEmitterClass@@UBEHXZ	0x0097E990	6	converted	returns 15 = CLASSID_PARTICLEEMITTER; slot after the destructor and Clone of the same class
+?Class_ID@ParticleBufferClass@@UBEHXZ	0x00984B60	6	converted	returns 16 = CLASSID_PARTICLEBUFFER; same two-witness pattern
+?Class_ID@Null3DObjClass@@UBEHXZ	0x00972750	6	converted	returns 22 = CLASSID_NULL; same two-witness pattern
+classid-scan			result	40 enum-valued candidates; only 3 had a neighbour class agreeing with the value; all 3 converted first build
+classid-scan			method	the agreeing neighbour must be the class's own destructor or Clone since rendobj.h orders dtor Clone Class_ID

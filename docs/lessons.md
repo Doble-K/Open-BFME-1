@@ -3445,3 +3445,30 @@ Position is corrupted by folding and by BFME's additions to the declaration list
 returned constant is corrupted by coincidence. Neither weakness touches the other, which
 is why agreement between them is worth much more than either being individually
 convincing.
+
+
+## The two-witness rule, applied mechanically, converts three of forty
+
+The previous pass established that a Class_ID override can be identified two ways --
+by the constant it returns, mapped through rendobj.h's enum, and by its vtable position
+-- and that neither is safe alone. Applying both mechanically across the whole image
+turns out to be a short script and a sharp filter.
+
+Forty unclaimed bodies of the form `mov eax,N; ret` sit in vtables with an N inside the
+ClassID enum. Requiring that some class named in the three slots above also matches that
+enum entry leaves three. All three converted first build, and all three have the same
+shape: the class's own destructor two slots up, its Clone override one slot up, then the
+candidate -- which is exactly rendobj.h's declaration order of destructor, Clone,
+Class_ID.
+
+The thirty-seven rejects are the useful part of the number. Five of them return 1, and
+had they all been one class's Class_ID they would have folded to a single address, so at
+most one is. The rest are ordinary functions returning a small integer, sitting in
+vtables whose named slots say nothing about them. Each looked exactly as convincing as
+the three that survived, right up until the second witness was demanded.
+
+Worth stating as a rule of thumb for this project: when a body is small enough that its
+bytes could belong to many functions, identification has to come from outside the body.
+Two outside sources that fail for unrelated reasons are worth more than any amount of
+staring at the disassembly, and the ratio here -- three of forty -- is a fair measure of
+how often a single source would have been wrong.
