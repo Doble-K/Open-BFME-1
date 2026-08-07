@@ -943,3 +943,8 @@ vtable-offset-calls			method	a body calling this->virt at a fixed offset pins th
 vtable-offset-calls			gotcha	MSVC groups an overload set into consecutive slots wherever the second one is declared so a late declaration shifts every later slot
 vtable-offset-calls			gotcha	within the group the order is reversed; the last declared overload occupies the lower slot
 0x00007FD1			note	vtable_gaps offered this as a 31-byte body but it is an ILT jump thunk; the extent measure walks into adjacent thunks
+?Add_Sub_Object_To_Bone@RenderObjClass@@UAEHPAV1@PBDPBVVector3@@@Z	0x0091F8F0	43	converted	name overload via Get_Bone_Index at 0xC4 forwarding to the int overload at 0x94
+mangling			gotcha	a parameter whose type is the enclosing class mangles as PAV1@ not PAVClassName@@; the wrong spelling fails as symbol not found in object
+register-allocation			lever	nesting the inner call kept the vtable pointer in a saved register; assigning it to a named local let it be re-read and matched retail
+register-allocation			note	the one-argument Remove sibling matched with the nested form so the lever depends on argument count and pressure not on style
+tools/vtable_gaps.py			fix	extent now sorts ILT jump thunks last instead of measuring through the neighbouring thunks

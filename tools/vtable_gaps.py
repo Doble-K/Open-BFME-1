@@ -108,6 +108,24 @@ def main():
             if o is not None:
                 bodies.setdefault(data[o:o + size], nm)
 
+    def resolve_thunk(rva):
+        """Follow an ILT jump to the body it stands for.
+
+        A vtable slot often points at a five-byte `jmp rel32` in the thunk
+        region rather than at the function itself. Those regions have no int3
+        between entries, so measuring an extent there just walks through the
+        neighbouring thunks -- 0x00007FD1 was offered as a 31-byte candidate on
+        exactly that basis. Following the jump gives the real body.
+        """
+        seen = set()
+        while rva not in seen:
+            seen.add(rva)
+            o = off_of_text(rva)
+            if o is None or data[o] != 0xE9:
+                return rva
+            rva = (rva + 5 + struct.unpack_from('<i', data, o + 1)[0]) & 0xFFFFFFFF
+        return rva
+
     def extent(rva):
         """Bytes from the entry to the int3 padding that follows it.
 
@@ -119,6 +137,14 @@ def main():
         o = off_of_text(rva)
         if o is None:
             return 9999
+        # An ILT jump thunk is not the function. Thunk regions have no int3
+        # between entries, so walking to the next one measures the neighbours
+        # too -- 0x00007FD1 was offered as a 31-byte candidate on that basis
+        # when it is five bytes of `jmp`. Sort them last rather than lie about
+        # the cost; the body they stand for is reached through the jump and is
+        # usually claimed already under the thunk's own name.
+        if data[o] == 0xE9:
+            return 9998
         j = o
         while j < o + 4000 and j < len(data) and data[j] != 0xCC:
             j += 1

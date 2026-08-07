@@ -3537,3 +3537,38 @@ Separately, vtable_gaps offered 0x00007FD1 as a thirty-one byte candidate. It is
 jump thunk, and the extent measure simply walked through the adjacent thunks to the next
 int3. Thunk regions have no int3 padding between entries, so any size it reports there is
 meaningless.
+
+
+## A named local for an intermediate result can change register allocation
+
+Add_Sub_Object_To_Bone's name overload is the three-argument sibling of the
+Remove_Sub_Objects_From_Bone conversion: resolve the bone name through the virtual at
+0xC4, forward object, index and offset to the int overload at 0x94. Both call offsets
+matched immediately, so the identification was settled; what did not match was register
+allocation. Retail re-reads the vtable pointer for each call, into eax and then edx.
+Written as one nested expression, MSVC instead hoists it into edi and pays a push and pop
+for the saved register.
+
+Splitting it into two statements -- assign Get_Bone_Index's result to a named local,
+then pass the local -- reproduces retail exactly.
+
+What makes that worth recording is that the one-argument sibling matched with the nested
+form. So this is not a style rule about how the original was written; it is register
+pressure. With three arguments to marshal, keeping the vtable pointer live across both
+calls costs a callee-saved register, and the source shape decides whether the compiler
+takes that cost. Where a body differs only in which registers hold what, introducing or
+removing a named temporary is a cheap thing to try before writing the row off.
+
+Two smaller things from the same pass.
+
+A parameter whose type is the enclosing class mangles as PAV1@, a backreference, not
+PAVClassName@@. Spelling it out fails as "symbol not found in object" rather than as a
+byte mismatch, which is a helpfully different error -- byte mismatches mean the code is
+wrong, symbol-not-found means the name is.
+
+And vtable_gaps was reporting ILT jump thunks with invented sizes, because thunk regions
+have no int3 between entries and the extent walk ran through the neighbours. Resolving
+the thunk to its target seemed like the fix but was worse: many claimed rows are the
+thunks themselves, so rewriting slot addresses broke ownership and the candidate list
+jumped from 84 to 427. Sorting thunks last instead leaves ownership alone and keeps them
+out of the cheap end of the ranking.
