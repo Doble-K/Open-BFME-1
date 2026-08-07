@@ -165,6 +165,62 @@ def main():
                 return nm
         return None
 
+    def installs_own_slot(rva, slot_va):
+        """True if the body at rva stores the address of the slot it sits in.
+
+        A constructor or destructor installs the vptr of the table its own class
+        owns, so a body writing the address of its own slot is slot 0 of a new
+        table rather than slot N of the one before it.
+
+        This is the only boundary marker a run of code pointers carries, and it
+        needs no names, no reference header and no RTTI -- which this image does
+        not have, being built with -GR-. Without it the run at 0x011377E0 reads
+        as one twelve-slot GridCullSystemClass vtable and offers its last two
+        slots as unnamed methods of that class; they are actually the single-slot
+        vtables of CullLinkClass and GridLinkClass, and every name that
+        recommended them was across a boundary.
+        """
+        o = off_of_text(rva)
+        if o is None:
+            return False
+        end = o
+        while end < o + 256 and end < len(data) and data[end] != 0xCC:
+            end += 1
+        return struct.pack("<I", slot_va) in data[o:end]
+
+    def is_deleting_dtor(rva, name):
+        """True if this slot holds a scalar deleting destructor.
+
+        Those are always slot 0, so they mark a boundary too -- and they catch
+        the case the address test misses. A derived deleting destructor need not
+        store its own vptr: where the destructor body is trivial and calls
+        nothing virtual, MSVC drops the store as redundant and goes straight to
+        the base, which is exactly what ??_GGridLinkClass does. Its own address
+        appears nowhere in it.
+        """
+        if name:
+            return bool(re.match(r"\?\?_[GE]", name))
+        o = off_of_text(rva)
+        if o is None:
+            return False
+        end = o
+        while end < o + 128 and end < len(data) and data[end] != 0xCC:
+            end += 1
+        body = data[o:end]
+        # `test byte ptr [esp+N], 1` against the __flags argument, and `ret 4`
+        # to clear it. Together they are the shape of the deleting stub.
+        return bool(re.search(rb"\xf6\x44\x24.\x01", body)) and body.endswith(b"\xc2\x04\x00")
+
+    def segments(slots, base_va, names):
+        """Label each slot with which vtable inside the run it belongs to."""
+        out, cur = [], 0
+        for k, s in enumerate(slots):
+            if k and (installs_own_slot(s, base_va + k * 4)
+                      or is_deleting_dtor(s, names[k])):
+                cur += 1
+            out.append(cur)
+        return out
+
     starts = [r[0] for r in rows]
     exact = {r[0]: r[2] for r in rows}
 
@@ -235,6 +291,7 @@ def main():
         known = sum(1 for nm in names if nm)
         if known < n * args.min_known_frac or known == n:
             continue
+        segs = segments(slots, rva0 + off + IMAGE_BASE, names)
         for k, (s, nm) in enumerate(zip(slots, names)):
             if nm:
                 continue
@@ -244,11 +301,13 @@ def main():
             # slot says nothing about this one. Every conversion this method has
             # produced came from a neighbour one or two slots away, which is the
             # range where the run and the real vtable still coincide.
+            # A neighbour in a different vtable of the same run is not a
+            # neighbour at all, so the segment has to match as well.
             NEAR = 2
             before = next((names[p] for p in range(k - 1, max(-1, k - 1 - NEAR), -1)
-                           if names[p]), None)
+                           if names[p] and segs[p] == segs[k]), None)
             after = next((names[p] for p in range(k + 1, min(n, k + 1 + NEAR))
-                          if names[p]), None)
+                          if names[p] and segs[p] == segs[k]), None)
             if not before and not after:
                 continue
             if blocked(s):
