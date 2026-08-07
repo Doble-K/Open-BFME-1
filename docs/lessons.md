@@ -5751,3 +5751,31 @@ on the by-value transposition -- all already known-blocked, none of which the
 size-ordered screen could see. Screening on structure got the pool down to 133;
 classifying against what is already known got three conversions out of the next
 three attempts.
+
+
+## Statement order in a constructor body is recoverable from the schedule
+
+ToppleUpdateModuleData needed two builds and the second changed nothing but the
+order of five assignments. MSVC groups stores that share a value -- the two 0.2f
+fields go out together through eax, the four false flags through bl -- but it does
+not reorder across those groups. So the emitted order is the source order with
+same-valued stores coalesced, and reading it back gives the statement order
+directly: the flag at 0x24 sits between the bl run and the two float immediates,
+so it is written there.
+
+That makes body order a recoverable fact rather than a guess, which is worth
+knowing because it is otherwise the sort of residual that reads as scheduling
+noise and gets abandoned.
+
+## Four conversions from one triage pass
+
+CampaignManager::init, PropagandaTowerBehaviorModuleData, WaterTransparencySetting
+and ToppleUpdateModuleData, all in two ticks, all first or second build. The
+preceding six ticks landed one conversion between them while sampling the queue
+uniformly at random.
+
+The difference is not effort, it is that candidates are now rejected on evidence
+before a build is spent: the ModuleInfo family on vptr sinking, mis-anchored rows
+on their own arity, unnamed callees on the naming rule. Screening on structure
+got the pool to 133; classifying that pool against what is already known is what
+turned it into conversions.
