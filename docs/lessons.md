@@ -4533,3 +4533,29 @@ That is three functions differing by one or two transposed instructions around
 compiler-generated bookkeeping. Reverting each is correct -- a near miss is not a
 match -- but the pattern is sharp enough now to be worth attacking directly
 rather than one function at a time.
+
+
+## The stand-in was the bug
+
+Three ticks went into instruction orderings I could not reproduce, and the answer
+was not a flag, a scheduler or a compiler build. It was that I had been writing
+minimal hand-rolled classes -- a four-byte AsciiString with a declared copy
+constructor, a base with the right size and one virtual -- which reproduce a
+class's layout but not its code generation.
+
+Anim2DCollection::newTemplate differed from retail by exactly one transposed
+pair. Replacing the stand-in AsciiString with #include "PreRTS.h" and the real
+Common/AsciiString.h matched on the first build, with nothing else changed.
+
+The way to find it was a control experiment rather than another guess. Scanning
+.text for the byte sequence I could not produce -- 89 64 24 xx 8b cc -- and
+attributing each hit to its ledger row gave 348 matched functions that emit it.
+Filtering out naked dumps, which match by construction and so demonstrate
+nothing, left 110 clean C++ sources. Every one of them includes the real headers.
+Reading a single file answered what four builds of guessing had not.
+
+Two habits fall out. When a difference resists source-level explanation, look for
+a function that already produces the thing you want and read how. And prefer the
+real header to a stand-in whenever one exists -- a stand-in is a claim that only
+layout matters, and for anything with a constructor, a destructor or a temporary,
+that claim is wrong.

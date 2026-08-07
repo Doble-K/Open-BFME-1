@@ -1,123 +1,48 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/ini /Ireference/shims/iniexception /Ireference/shims/ini_noinline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// stlport
 
-class AsciiString;
-class Anim2DTemplate;
+// Allocate, construct, push onto the front of a list.
+//
+// 0x1C is pushed to operator new, so the template is twenty-eight bytes, and
+// `mov [eax+4], ecx` puts the list link in the second word rather than the first.
+//
+// The constructor takes its AsciiString by value, so a temporary is
+// copy-constructed on the stack and the function needs an EH frame to destroy it
+// if the constructor throws. That temporary is why this uses the real
+// AsciiString rather than a stand-in: a hand-rolled four-byte class with a
+// declared copy constructor produces the same instructions in a different order.
+#include "PreRTS.h"
+#include "Common/AsciiString.h"
+
+class Anim2DTemplate
+{
+public:
+	Anim2DTemplate( AsciiString name );
+
+	Int m_00;
+	Anim2DTemplate *m_next;
+
+private:
+	Int m_08, m_0c, m_10, m_14, m_18;
+};
 
 class Anim2DCollection
 {
 public:
-    Anim2DTemplate *newTemplate(const AsciiString &name);
+	Anim2DTemplate *newTemplate( const AsciiString &name );
+
+private:
+	unsigned char m_head[8];
+	Anim2DTemplate *m_templateList;
 };
 
 // ?newTemplate@Anim2DCollection@@QAEPAVAnim2DTemplate@@ABVAsciiString@@@Z
-__declspec(naked) Anim2DTemplate *Anim2DCollection::newTemplate(const AsciiString &name)
+Anim2DTemplate *Anim2DCollection::newTemplate( const AsciiString &name )
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xfb
-        __emit 0x93
-        __emit 0x03
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0xe8
-        __emit 0xbd
-        __emit 0x6e
-        __emit 0x2c
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x3b
-        __emit 0xf0
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x74
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x20
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xc9
-        __emit 0xca
-        __emit 0x2c
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x43
-        __emit 0xc2
-        __emit 0xa6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4f
-        __emit 0x08
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x89
-        __emit 0x47
-        __emit 0x08
-        __emit 0x5f
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+	Anim2DTemplate *tmpl = new Anim2DTemplate( name );
+
+	tmpl->m_next = m_templateList;
+	m_templateList = tmpl;
+
+	return tmpl;
 }
