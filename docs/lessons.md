@@ -5426,3 +5426,38 @@ happened last tick. The hypothesis is written down instead: an exception
 specification may itself be what blocks the inliner, and __declspec(nothrow) is
 the spelling that carries no specification. That is where the next attempt
 starts.
+
+
+## The constructor-into-new-expression inline is not reachable from source
+
+Two ticks on it now. MSVC 7.1 emits a call to the constructor where retail has it
+inlined, and none of these changes it: defining the constructor out of line,
+defining it inside the class, __forceinline on it, throw(), __declspec(nothrow),
+or giving the base a defined destructor rather than a declared one. Two different
+classes, one with two bases and one with a single base.
+
+The exception-specification hypothesis from last tick is refuted. Recording that
+plainly because it was the reason for stopping at three builds then, and a
+hypothesis worth deferring a tick for is worth reporting the answer to.
+
+Factories of this shape are parked until someone finds the lever. What is not
+parked is everything else about them -- throw() removing the exception frame, and
+the address-literal for an unnamed field-parse pointer, both still hold.
+
+## /O1 and /O2 each get half of removeAllShadows
+
+Three lists walked identically: read the head, null it, follow the chain at
++0xd4 setting a byte at +4. The structure compiles exactly, alignment padding
+included -- 8d a4 24 00 00 00 00 in the right places.
+
+What differs is how the constants are held. Retail keeps 0 in edx and 1 in bl,
+pushing ebx to afford the second register, and stores registers rather than
+immediates. Under /O2 the compile uses immediates throughout. Under /O1 and /Os
+it produces retail's register form exactly -- 33 d2, then 89 51 0c -- but
+rotates the loops differently and drops the alignment padding.
+
+So retail is neither: /O2's rotation with /O1's constants. That is worth knowing
+because it means the flag sweep cannot settle this one, and the next thing to try
+is a source change that raises the constant's value to the compiler -- a static
+helper called three times, so the 1 is shared across three inlined copies and
+earns a callee-saved register on merit.
