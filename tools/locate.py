@@ -114,7 +114,18 @@ def main():
     text_end = text_raw + text_size
 
     ghidra = {}
-    with (build.ROOT / "reverse" / "ghidra_functions.csv").open(newline="") as handle:
+    inventory = build.ROOT / "reverse" / "ghidra_functions.csv"
+    if not inventory.exists():
+        # Not optional here, whatever the module docstring implies. The
+        # inventory gates acceptance in plausible_small_start and in
+        # ghidra_boundary, and this tool LANDS claims -- running without it
+        # would not merely weaken the search, it would drop the boundary
+        # evidence that stops a tail match being accepted as a function start.
+        sys.exit("""reverse/ghidra_functions.csv not found - this tool needs the Ghidra
+inventory for the boundary evidence that gates its claims. It is a generated,
+gitignored file; regenerate it per tools/ghidra/README.md, or pick another rung
+of the ladder (python3 tools/next_work.py).""")
+    with inventory.open(newline="") as handle:
         for row in csv.DictReader(handle):
             ghidra[int(row["rva"], 16)] = int(row["size"])
     ghidra_starts = sorted(ghidra)

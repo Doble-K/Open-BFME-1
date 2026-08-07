@@ -4050,3 +4050,40 @@ The other eleven translation units that include the same header yielded nothing.
 The reopening was specific to the file whose class changed, not to everything
 that sees the declaration -- worth knowing before sweeping broadly on the next
 layout correction.
+
+
+## Do not soften a guard to make a tool run
+
+locate.py died with a traceback because reverse/ghidra_functions.csv is absent,
+and its own docstring calls the inventory optional. The obvious fix -- load it if
+present, carry on if not -- would have been wrong. That dict gates acceptance in
+two places, and this tool lands claims: without it, plausible_small_start loses
+the check that rejects a start sitting inside a recovered function, which is the
+common tail-match false positive, and ghidra_boundary loses its evidence
+entirely. Running would not have degraded the search, it would have removed the
+reason to trust the result.
+
+So it now exits with the message land_ambiguous.py already gives for the same
+missing file. A tool that cannot be trusted should refuse, not proceed quietly.
+
+The machine has no JDK and no Ghidra, so the inventory cannot be regenerated
+here. Worth recording what that costs: locate.py, land_ambiguous.py and
+next_work's third tier are all unavailable, and vtables.tsv would give BFME's
+exact vtable slot order -- which is precisely what vtable_gaps and vtable_owner
+reconstruct by hand from byte evidence.
+
+## A work queue is a suggestion, not an address
+
+next_work's first pick was ?AddCommands@Debug@@SA_NPBDPAVDebugCmdInterface@@@Z at
+0x00891510, 83 bytes. What is actually there is a 31-byte thiscall deleting
+destructor -- push esi, mov esi ecx, call the destructor, test the flag, ret 4 --
+followed by int3 padding. A static function taking two pointers is cdecl and
+returns with ret; this is neither, and the queue's own hint admitted it had
+drift-corrected the address by -31 bytes.
+
+It is not an isolated slip. parseData and getDataTemplate are both queued at
+0x004850C0 with different sizes, and two ScriptActions entries share 0x006827A0.
+The queue is useful for finding candidates and its hint line says "verify the
+prologue" for a reason. Check the calling convention against the mangled name
+before spending a build: SA is static, QAE and UAE are thiscall, and the
+prologue and return instruction say which one the bytes are.
