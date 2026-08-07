@@ -4442,3 +4442,37 @@ Which leaves the question narrowed rather than answered, and narrowed usefully:
 what makes the vptr live across the body. Something in retail's source must make
 the object's dynamic type observable inside the constructor, and finding it once
 would settle a family rather than a function.
+
+
+## The compiler is not the problem, and the arithmetic says so
+
+Four functions now reproduce completely except for instruction order, and the
+tempting conclusion is that the vendored MSVC 7.1 is not quite the build EA used
+-- a different point release with a different scheduler would explain all four at
+once.
+
+It cannot be. 94158 functions match byte for byte with this compiler. A scheduler
+that ordered stores differently from retail's would not fail four functions, it
+would fail thousands. Whatever is moving these instructions is in the source, not
+the toolchain, and the hypothesis is retired before it costs a tick.
+
+The processor-targeting flags are ruled out too: /G5, /G6 and /G7 all leave
+W3DDebrisDraw's store order exactly as the default blended model does. Together
+with /O1 and the initialiser-list test from last tick, that is four flag-level
+explanations eliminated.
+
+## One transposed pair
+
+ScriptConditions' destructor is the closest miss so far. Every byte matches --
+the EH funcinfo, both vptr values, the global's address, the delete expansion's
+single null test, the base destructor call and its displacement -- with one pair
+of instructions swapped: retail loads ecx with this before clearing the global,
+and the compile clears the global first.
+
+Worth recording precisely because it is nearly a proof by exhaustion. The
+structure is right: two vptr stores mean an intermediate base whose destructor is
+empty and inlined, since a direct base would write its own vptr inside its own
+destructor and nothing would appear here. The body is right: one delete and one
+assignment, and the single null test is the delete expansion's rather than a
+source-level if, which would have produced two. What remains is two instructions
+in the wrong order, and no source form I have tried moves them.
