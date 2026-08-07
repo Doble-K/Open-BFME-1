@@ -4157,3 +4157,34 @@ What blocks the two nearest siblings is not their shape but their callees:
 ProductionUpdate and CommandSetUpgrade each destroy a member whose destructor is
 unclaimed, reachable only through an ILT thunk, so converting them means naming a
 function this project has not named yet.
+
+
+## A redundant null check names the function it came from
+
+The last two instructions of difference on this destructor were a test the
+compiler should not have emitted: after the interlocked decrement, retail tests
+the pointer again before the virtual delete, although the same pointer was
+already tested a few instructions above and nothing could have changed it. My
+version, with both halves written in one destructor, correctly omitted it -- and
+no rearrangement of that one function was going to put it back, because the
+optimiser is right.
+
+The check survives only if the two tests are in different functions. delete this
+inside RefCountedThing::Release_Ref does it: once inlined, the callee's this is a
+value MSVC does not connect to the pointer the caller tested, so the delete
+expansion's own null check stays. Writing it that way matched on the next build,
+and the register allocation fell into place with it -- this moved to edi and the
+pointer to esi, exactly as retail has them, because the two now have different
+live ranges.
+
+So a check that looks redundant is a boundary. It marks where one function ended
+and another began before the inliner ran, which is otherwise invisible in the
+bytes.
+
+## dllimport is visible in one byte of the call
+
+The same function needed InterlockedDecrement declared __declspec(dllimport).
+Plain, it compiles to a direct e8 to a local thunk; dllimport compiles to
+call dword ptr [__imp__...], and retail has the indirect form. That is a
+one-line source fact recoverable from the opcode, and worth checking first
+whenever a call to an OS API does not line up.
