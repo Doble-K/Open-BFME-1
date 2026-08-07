@@ -967,3 +967,8 @@ backlog-census			note	the clear-and-pinned dozen are the rows already examined a
 ?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	blocked	one unpinned callee at 0x00943430 on the object at this+0x34
 0x00943430			unnamed	non-virtual helper taking a RenderObjClass and reading its +0x94; also called from Visibility_Check@RTS3DScene
 SimpleSceneClass			layout	this build puts lists at +0x5C +0xBC +0xD4 +0xEC and an unidentified object at +0x34; the reference declares four adjacent lists and no such member
+0x00943430			resolved-negative	NOT GridCullSystemClass::unlink_object; that name is claimed at 0x008DDC60 and the whole class lives in the 0x8D region
+0x00943430			note	it decodes obj+0x94 as three 10-bit signed grid coordinates so the object at SimpleSceneClass+0x34 is a second spatial grid this build added
+?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009430F0	180	blocked	three of five cases call through the ILT thunk at 0x00018EC6
+0x00018EC6			pin-gap	thunk to 0x00711B70 whose real name ?Remove@?$RefMultiListClass@VRenderObjClass@@ is pinned at the body; a C++ call to that name would target the body not the thunk
+thunk-pins			convention	real names are pinned at thunk addresses elsewhere -- eight are pinned at 0x00002874 -- so the same is presumably needed here

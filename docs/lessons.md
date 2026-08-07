@@ -3703,3 +3703,32 @@ that also serves Visibility_Check@RTS3DScene. Naming that one function converts 
 134-byte row. It cannot be read off the reference, because this build's SimpleSceneClass
 does not match it: lists sit at +0x5C, +0xBC, +0xD4 and +0xEC with an unidentified member
 at +0x34, where the reference declares four adjacent lists and nothing else.
+
+
+## A call through an ILT thunk needs the name pinned at the thunk
+
+Remove_Render_Object turned out to be blocked on a helper that is not what it looks like.
+The body at 0x00943430 decodes its argument's +0x94 field as three signed ten-bit
+quantities -- a packed grid cell address -- and unlinks the object from cell lists, which
+reads exactly like GridCullSystemClass::unlink_object. It is not: that name is already
+claimed at 0x008DDC60, and every other GridCullSystemClass method sits in the 0x8D
+region while this one is at 0x94. The object at SimpleSceneClass+0x34 is a second spatial
+grid this build added, with no counterpart in the reference. So the row stays blocked, but
+on a definite answer rather than an open question.
+
+Unregister, in the same neighbourhood and already understood, is blocked differently and
+more interestingly. Three of its five switch arms call 0x00018EC6, an ILT jump thunk
+whose target 0x00711B70 is claimed as
+?Remove@?$RefMultiListClass@VRenderObjClass@@@@QAE_NPAVRenderObjClass@@@Z. Writing that
+call in C++ emits a call to whatever address that name resolves to -- the body -- while
+the retail bytes target the thunk five bytes of displacement away.
+
+The project already handles this: eight real names are pinned at 0x00002874, itself a
+thunk, and ??0DrawableModule@@ among them is how the W3DDebrisDraw conversion resolved
+its base constructor. So the mechanism is to pin the real name at the thunk address. What
+is not obvious, and not something to guess at, is what happens when that name is already
+mapped to the body in functions.csv -- whether a second mapping in symbols.csv is
+intended or would make resolution ambiguous.
+
+Recorded rather than attempted. The remaining two arms of Unregister call Internal_Remove
+directly and would reproduce; it is only the thunked three that need this settled.
