@@ -26,6 +26,8 @@ import struct
 import sys
 from pathlib import Path
 
+from screen_blockers import blockers, rva2off
+
 ROOT = Path(__file__).resolve().parent.parent
 EXE = ROOT / "baselines" / "bfme1" / "workshop-vanilla-1.03" / "files" / "lotrbfme.exe"
 IMAGE_BASE = 0x00400000
@@ -118,6 +120,19 @@ def main():
             tables.append((i, (j - i) // 4))
         i = j
 
+    def blocked(rva):
+        """Reject candidates whose bytes already carry a known blocker.
+
+        An identity found here still has to be written as C++ afterwards, so a
+        slot sitting on an SEH prologue is not a lead worth following -- that
+        family has no source-level fix. Sixteen bytes is enough: an SEH prologue
+        is the first thing in a function, never buried in the middle.
+        """
+        off = rva2off(data, rva)
+        if off is None:
+            return ["unmapped"]
+        return [b for b in blockers(data[off:off + 16]) if b in ("seh", "ebp-frame")]
+
     findings = []
     for off, n in tables:
         slots = [struct.unpack_from("<I", rdata, off + k * 4)[0] - IMAGE_BASE
@@ -133,6 +148,8 @@ def main():
             before = next((names[p] for p in range(k - 1, -1, -1) if names[p]), None)
             after = next((names[p] for p in range(k + 1, n) if names[p]), None)
             if not before and not after:
+                continue
+            if blocked(s):
                 continue
             findings.append((-(known / n), s, rva0 + off + IMAGE_BASE, k, n,
                              known, before, after))

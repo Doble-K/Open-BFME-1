@@ -3187,3 +3187,36 @@ match the header for layout, but define the function you are claiming.
 Worth noting what this method is good for. It finds functions whose *identity* is the
 obstacle, which is a different backlog from the one the byte-level blockers govern. 729
 unclaimed slots currently sit next to a real name.
+
+
+## A reciprocal multiply hands you sizeof(T) exactly
+
+VectorClass<RenderDeviceDescClass>::ID has two overloads. Slot 4, taking a const
+reference, was already claimed; slot 5 was not, and its body divides the byte distance
+between a pointer argument and the Vector member by the element size -- which is the
+pointer overload, `((unsigned long)ptr - (unsigned long)Vector) / sizeof(T)`.
+
+Writing that byte-exact needs sizeof(T), and the division supplies it. MSVC compiles it
+as a reciprocal multiply: load 0xB30F6353, multiply, keep the high dword, shift right by
+ten. Only one divisor makes that sequence agree with integer division across the whole
+range, and a short search finds it: 1464. Declaring RenderDeviceDescClass as 1464 bytes
+of padding was enough; nothing about its actual members mattered.
+
+So a magic constant is not an obstacle to reproducing a divide, it is a measurement of a
+type whose definition you do not have. Solve for the divisor rather than trying to
+reconstruct the class.
+
+Two smaller results from the same pass.
+
+vtable_gaps now rejects candidates whose first sixteen bytes carry an SEH prologue. An
+identity found by position still has to be written as C++ afterwards, and the SEH family
+has no source-level fix, so offering those wastes the pass -- which is exactly what
+happened before the filter went in. Same integration mistake as screen_blockers not
+consulting screen_identity, made twice now: a tool that selects work has to know what
+the other tools already rule out.
+
+And a caution about slot inference. SimpleVecClass<Vector3>::Resize looked like the
+obvious name for an unclaimed slot bounded by that class's destructor -- but it is
+already claimed, at a completely different address, because the same template is
+instantiated in several translation units and the vtables hold different copies. Before
+inferring a name from a slot, check the name is not already live somewhere else.

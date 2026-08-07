@@ -883,3 +883,6 @@ tools/vtable_gaps.py			tool	ranks unclaimed vtable slots by how many named neigh
 ?Error@RawFileClass@@UAEXHHPBD@Z	0x009E6560	3	converted	vtable slot 18; bare ret 0xc so the release build has no body
 RawFileClass			note	BFME made Bias virtual and swapped Error with Get_File_Handle relative to RAWFILE.H so slot order alone could not assign these two
 vtable-gaps-method			note	four conversions in two passes from the ranking; signature shape decides when declaration order disagrees with the reference
+?ID@?$VectorClass@VRenderDeviceDescClass@@@@UAEHPBVRenderDeviceDescClass@@@Z	0x00908170	36	converted	vtable slot 5 pointer overload; sizeof element 1464 recovered from the reciprocal-multiply divisor
+tools/vtable_gaps.py			tool	now skips candidates whose first 16 bytes carry an SEH prologue or ebp frame; 513 candidates down to 501
+?Resize@?$SimpleVecClass@VVector3@@@@UAE_NH@Z	0x0079FF40		note	already claimed here so the unclaimed slot at 0x00919BC0 is a different instantiation; check a name is free at OTHER addresses before inferring it from a slot
