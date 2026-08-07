@@ -17,6 +17,25 @@ fail() {
 # clones. Reflects the staged index, so a colliding add is caught before it lands.
 python3 tools/check_case_collisions.py || fail "case-only path collision (see above)"
 
+# A script under tools/ is neither a Code/ source nor a ledger file, so nothing
+# else in this hook looks at it: one with a syntax error commits cleanly and only
+# fails when somebody next runs it. That has happened. One parse per staged tool
+# costs nothing and closes it.
+mapfile -t staged_tools < <(git diff --cached --name-only --diff-filter=ACM -- 'tools/*.py')
+if [ "${#staged_tools[@]}" -ne 0 ]; then
+    python3 - "${staged_tools[@]}" <<'PY' || fail "python syntax error in a staged tool (see above)"
+import ast, sys
+bad = 0
+for path in sys.argv[1:]:
+    try:
+        ast.parse(open(path, encoding="utf-8").read(), filename=path)
+    except SyntaxError as exc:
+        print("  %s:%s: %s" % (path, exc.lineno, exc.msg), file=sys.stderr)
+        bad = 1
+sys.exit(bad)
+PY
+fi
+
 staged_sources=()
 ledger_changed=0
 wide_change=0
