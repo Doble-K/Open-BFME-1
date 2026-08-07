@@ -5568,3 +5568,39 @@ The screen excluded callees named Gen_ followed by hex. MultiplayerSettings'
 destructor calls Gen_setmd_0008eb60, which has a word in the middle and passed
 straight through, so a candidate blocked on an unnamed member destructor reached
 the top of the queue. Widened to any Gen_ prefix; the queue went from 136 to 134.
+
+
+## memmove or a copy loop tells you whether the element is a POD
+
+ProductionPrerequisite's second clear runs an element-wise dword loop -- mov edi,
+[eax] then mov [edx],edi. STLport only does that when the element is not
+trivially copyable; a plain enum or int gets memmove instead. So the science
+entry is a four-byte class with its own assignment operator, not the bare enum
+the Generals reference declares, and giving it one took the compile from a folded
+`cmp eax,eax` with no loop at all to retail's exact sequence.
+
+That is a second, independent reading of the same vector alongside the one
+already recorded. The element's destructor decides whether erase is a call or is
+inlined; the element's copy assignment decides whether the inlined form is
+memmove or a loop. Both are visible without knowing the type's name.
+
+## clear() folds harder than erase(begin(), end())
+
+Written as clear(), the compile folded the whole tail away -- the trip count
+became `cmp eax,eax`, the copy loop vanished, and forty bytes of retail had no
+counterpart. Written as an explicit erase(begin(), end()) the arithmetic
+survives: the subtraction, the sar that names the element size, and the guarded
+loop.
+
+They are the same call in STLport. The difference is only how much the optimiser
+sees through, and the more explicit spelling is the one that reproduces retail
+here.
+
+## Three separate things, each necessary
+
+Getting this to one register pair took stlport with a real std::vector, the
+explicit erase spelling, and a non-trivially-copyable element. None of the three
+would have shown up as an obvious next step from the others, and each was
+readable from the bytes: the mangled erase name demanded the real container, the
+surviving arithmetic demanded the explicit spelling, and the copy loop demanded
+the non-POD element.
