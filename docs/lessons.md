@@ -4764,3 +4764,30 @@ So the row is wrong and the right name is not recoverable from the binary. Worth
 recording as exactly that rather than guessing: a wrong name with no evidence for
 the right one is a different state from an unidentified function, and pretending
 otherwise would put a fabricated name in a ledger that 94158 rows depend on.
+
+
+## Two release idioms, told apart by one instruction
+
+RenderObjClass releases its container with a plain dec of the count at +4 and, if
+that reaches zero, a virtual call at slot 0 taking no argument. The ModuleData
+family releases with InterlockedDecrement and then delete this. Both are
+"Release_Ref", and the bytes tell them apart at a glance: dec versus an indirect
+call through the import table, and a bare virtual call versus one preceded by a
+push of 1 and a redundant null test.
+
+Which matters because the second form's redundant null test is the inlining
+boundary noted several ticks ago -- it is delete this inside the callee. The first
+form has no such test because Delete_This is an ordinary virtual on a pointer the
+caller already knows is good.
+
+## A shape that failed once is not a shape that fails
+
+ScriptConditions stalled on one transposed pair around its base destructor call,
+and it would have been easy to write off the whole SubsystemInterface-derived
+family. UpgradeCenter has the same base, the same out-of-line call, the same
+entry vptr store, and matched on the first build.
+
+So the residual there is specific to that function -- the global clear next to
+the base call -- not to the shape. Worth checking a sibling before concluding a
+family is blocked; two conversions this tick came from a list that included the
+function I had failed on.

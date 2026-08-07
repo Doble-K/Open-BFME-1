@@ -1,134 +1,66 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) RenderObjClass
+// Two bases and one refcounted member.
+//
+// Both base vptrs are stored up front, the second through edi held at +8, and at
+// the end the first base's own vptr is stored again by its inlined destructor --
+// so the base at +8 has an out-of-line destructor and the one at 0 does not.
+// Bases are destroyed in reverse declaration order, which is why the +8 one is
+// called first.
+//
+// The member release is the guarded form with the clear inside the guard, and
+// the decrement is a plain dec rather than an interlocked one. There is no null
+// test before the virtual call because Delete_This is an ordinary virtual on a
+// pointer already known good, not a delete expression.
+class RefCountClass
 {
 public:
-    virtual ~RenderObjClass();
+	virtual void Delete_This(void);
+
+	void Release_Ref(void)
+	{
+		if (--m_numRefs == 0) {
+			Delete_This();
+		}
+	}
+
+	int m_numRefs;
+};
+
+class PersistClass
+{
+public:
+	virtual ~PersistClass() {}
+
+private:
+	int m_04;
+};
+
+class MultiListObjectClass
+{
+public:
+	virtual ~MultiListObjectClass();
+
+private:
+	void *m_prev;
+	void *m_next;
+};
+
+class RenderObjClass : public PersistClass, public MultiListObjectClass
+{
+public:
+	virtual ~RenderObjClass();
+
+private:
+	unsigned char m_gap[0x88];
+	RefCountClass *m_container;
 };
 
 // ??1RenderObjClass@@UAE@XZ
-__declspec(naked) RenderObjClass::~RenderObjClass()
+RenderObjClass::~RenderObjClass()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x6f
-        __emit 0xc1
-        __emit 0x05
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x7e
-        __emit 0x08
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x88
-        __emit 0xbd
-        __emit 0x13
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x84
-        __emit 0xbd
-        __emit 0x13
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x9c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x13
-        __emit 0xff
-        __emit 0x49
-        __emit 0x04
-        __emit 0x75
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x86
-        __emit 0x9c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x20
-        __emit 0xc5
-        __emit 0x0b
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xac
-        __emit 0x35
-        __emit 0x11
-        __emit 0x01
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
-    }
+	if (m_container) {
+		m_container->Release_Ref();
+		m_container = 0;
+	}
 }
