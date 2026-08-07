@@ -3940,3 +3940,42 @@ in context rather than a replace script, since it fails loudly on a missed match
 And do not put a verification run in the same command as the commit that depends
 on it -- when the check and the irreversible step share a command, the check
 cannot gate anything.
+
+
+## Two offsets that cannot both be right, and what that told me
+
+The DX8FVFCategoryContainer destructor reads a refcounted pointer at +0xD8 and a
+loop bound at +0xE4, where the ported header puts index_buffer at +0xD0 and passes
+at +0xDC. Eight bytes short, uniformly, so I inserted two words ahead of
+index_buffer. The destructor then matched -- and the constructor broke, because it
+writes index_buffer at +0xD0 and my insertion moved it to +0xD8.
+
+Both functions store the same vtable, 0x0113D024, so they are the same class, and
+one class does not have two layouts. The contradiction is the useful part. If the
+constructor is right that index_buffer sits at +0xD0, the eight bytes cannot go in
+front of it; putting them after used_indices instead leaves index_buffer where the
+constructor wants it and still moves FVF to +0xE0 and passes to +0xE4, which is
+what the destructor reads.
+
+That relocates the conclusion. The pointer released at +0xD8 is then not
+index_buffer at all -- it is one of the two members this build added -- and the
+ported draft, which releases index_buffer because that is what the Generals
+destructor does, is releasing the wrong field. The draft looked structurally
+perfect against the disassembly and the resemblance was luck: a refcount release
+followed by a loop over passes looks the same whichever pointer it releases.
+
+Reverted at three builds with 109/109 still matching. The next attempt has a
+specific shape to test rather than a delta to nudge.
+
+## A ported draft can be the wrong function entirely
+
+??1DebugIOFlat was the other address recovered from a stub, and it is not a
+matching problem. Retail stores a vptr and makes one call on a member at +0x9E6F
+under an SEH frame. The draft walks two linked lists freeing entries, which is
+what the Generals destructor does and bears no relation to the bytes.
+
+Worth separating from the DX8 case. There the draft was the right function with
+the wrong field; here the draft is the wrong implementation, and no amount of
+adjustment converges. The tell is structural: when the target's instruction count
+and the draft's statement count are not even the same order, stop reading the
+diff and start reading the target.
