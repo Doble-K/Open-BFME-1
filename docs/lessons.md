@@ -5808,3 +5808,37 @@ This is the same class as the duplicate zero store in
 WeaponChangeSpecialPowerModuleModuleData -- retail's build kept dead code that
 this toolchain removes. Two functions now, so it is worth naming as a family
 rather than filing twice as a curiosity.
+
+
+## Run the control before believing a negative
+
+A triage pass argued that ??1Template@@MAE@XZ is a mis-named row, partly because
+no vtable anywhere references its address. Checking the same property on
+??1PlayerUpgradeSpecialPowerModuleData gave the same answer, which looked like
+confirmation of a pattern.
+
+It is not. The control settles it: ??1PropagandaTowerBehaviorModuleData, which is
+genuinely a virtual destructor and was converted byte-exact this session, also has
+zero references in every section of the image. Vtable slots hold the deleting
+stub ??_G, and ??_G calls ??1 -- so a virtual destructor is never referenced from
+a vtable, and finding no references says nothing at all.
+
+The cost of the control was one line added to a query I was already running. The
+cost of skipping it would have been retiring a correctly-named row on reasoning
+that proves nothing, which is precisely the mistake the DebugIOOds correction was
+about.
+
+## A body that no class can produce
+
+PlayerUpgradeSpecialPowerModuleData's destructor tears down a vector<AsciiString>
+whose begin, end and capacity sit at 0, 4 and 8, and it stores no vptr anywhere.
+A UAE destructor means the class is polymorphic, which puts the vptr at offset 0
+and every member after it; __declspec(novtable) suppresses the store but not the
+slot. So no faithful class definition produces these bytes.
+
+That makes it an ICF-folded ~vector<AsciiString> wearing a retail name rather
+than a conversion candidate, and the ledger holds only the one name because that
+is all the harvest recovered. Landing it would mean the alias mechanism, not a
+class -- worth recognising early, because the body reads as a perfectly ordinary
+destructor right up until the offsets are checked against what the mangling
+implies.
