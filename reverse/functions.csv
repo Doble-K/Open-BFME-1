@@ -11373,7 +11373,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Unlock@CriticalSectionClass@@AAEXXZ,,0x009DB490,17,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ?Unlock@MutexClass@@AAEXXZ,,0x009DB390,17,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,
 ?Unlock_Decal_Generator@DecalSystemClass@@UAEXPAVDecalGeneratorClass@@@Z,,0x0045DD60,23,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,
-?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z,,0x009438C0,134,Code/GameEngine/Source/Common/SimpleSceneClass_Unregister_Thunk.cpp,matched,
+?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z,,0x009438C0,134,Code/GameEngine/Source/Common/SimpleSceneClass_Remove_Render_Object_Thunk.cpp,matched,re-identified from Unregister; that name needs 8 argument bytes and this body pops 4; vtable slot 3 paired with Add_Render_Object at slot 2
 ?Update@W3DVolumetricShadow@@IAEXXZ,,0x007BF7D0,758,Code/GameEngine/Source/Common/W3DVolumetricShadow_UpdateMethodThunk.cpp,matched,MASM exact; true body 0x7BF7D0/758 (queue 0x98B1BC was Render_Line interior); BFME Update(Bool) ret4; callchain updateVolumes/updateMeshVolume/constructVolume
 ?UpdateStartButton@@YAXXZ,,0x00505570,197,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp,matched,object-symbol=?update@BfmeQuickMatchUpdateStartButtonBody@@QAEXXZ;C++ body converted from exact 197B retail MASM
 ?Update_Bounding_Box@ParticleBufferClass@@IAEXXZ,,0x0098B460,740,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,

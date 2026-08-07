@@ -3122,3 +3122,37 @@ because the next screener pass would no longer flag it.
 The general point, now true of three tools here: a check is only worth having if
 whatever selects work actually consults it. screen_identity found this row weeks of
 passes ago and nothing was reading it.
+
+
+## A vtable slot plus its twin identifies a virtual almost for free
+
+?Unregister@SimpleSceneClass@@ was provably misnamed -- ret 4 under a name whose
+arguments size to 8 -- but knowing a name is wrong does not supply the right one. Four
+cheap checks did, none of them a compile.
+
+Search .rdata for the function's virtual address. It appeared at slot 3 of six
+different vtables, and the neighbours were shared across all six while slot 1 varied,
+which identifies slot 1 as the per-class destructor and everything below it as
+inherited implementations. That fixes the slot numbering without needing to know how
+many virtuals the base declares.
+
+Then read the neighbours. Slot 2 notifies the object through a virtual at +0x64, calls
+0x009DBF60, and increments the object's refcount. Slot 3 notifies through +0x68, calls
+0x009DC100, and decrements it. Add and Remove, identified by behaviour rather than by
+position -- which matters, because the position argument alone was ambiguous once BFME's
+class turned out to declare more virtuals than Zero Hour's.
+
+Then check what the body opens with. ?Remove_Render_Object@SceneClass@@ was already in
+the ledger at 0x00942C20: fifteen bytes that tail-call the object's virtual at +0x68.
+The body under investigation begins by doing exactly that inline, which is the base
+class call the derived override is documented to make.
+
+And confirm the gap. The SceneClass base was claimed; the SimpleSceneClass override was
+absent. A body that behaves like the missing override, in the slot the missing override
+would occupy, is the missing override.
+
+Any one of those would be suggestive. Together they are a proof, and that distinction is
+what separates a correction from a guess. The row was renamed, the impossible pair
+tombstoned, and screen_identity's contradiction count went from 60 to 59.
+
+The twin at 0x00942FA0 is still unclaimed, which is the obvious next thing to name.

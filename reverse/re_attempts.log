@@ -857,3 +857,9 @@ tools/screen_blockers.py			tool	candidate pool at 150 bytes drops from 25 to 19 
 ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009438C0	134	candidate	?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z fits: virtual one argument same semantics and absent from the ledger
 ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z	0x009438C0	134	note	arity proves the current name wrong but not that the candidate is right; correction transaction deferred rather than asserted
 tools/screen_blockers.py			tool	now rejects rows screen_identity contradicts; the two screeners did not talk and this row was offered as clear
+?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	corrected	re-identified from ?Unregister@SimpleSceneClass@@; old pair tombstoned; contradicted rows 60 to 59
+?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	evidence	vtable slot 3 across six vtables with the Add twin at slot 2 and the per-class destructor at slot 1
+?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	evidence	slot 2 notifies via +0x64 calls list-add 0x009DBF60 and increments the refcount; slot 3 notifies via +0x68 calls list-remove 0x009DC100 and decrements
+?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	evidence	body opens by inlining ?Remove_Render_Object@SceneClass@@ at 0x00942C20 which is a 15-byte tail-call to the object's virtual at +0x68
+?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	evidence	the SimpleSceneClass override was absent from the ledger while the SceneClass base was already claimed
+??Add_Render_Object@SimpleSceneClass	0x00942FA0		unclaimed	the Add twin at slot 2 is still unnamed and is the obvious next claim

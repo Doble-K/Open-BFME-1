@@ -1,20 +1,22 @@
 // cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: lift MASM dump to standalone C++ thunk.
+//
+// Re-identified from ?Unregister@SimpleSceneClass@@. That name's arguments size
+// to 8 bytes and this body ends in ret 4, so the pair was impossible. Slot 3 of
+// the SimpleSceneClass vtable, paired with Add_Render_Object at slot 2, and the
+// body opens by inlining SceneClass::Remove_Render_Object -- the 15-byte
+// tail-call to the object's virtual at +0x68 -- then removes it from the scene
+// lists and releases its references.
 
 class RenderObjClass;
-class SceneClass
-{
-public:
-	enum RegType { };
-};
 class SimpleSceneClass
 {
 public:
-	virtual void Unregister(RenderObjClass *, SceneClass::RegType);
+	virtual void Remove_Render_Object(RenderObjClass *);
 };
 
-// ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z
-__declspec(naked) void SimpleSceneClass::Unregister(RenderObjClass *, SceneClass::RegType)
+// ?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z
+__declspec(naked) void SimpleSceneClass::Remove_Render_Object(RenderObjClass *)
 {
 	__asm {
 		__emit 0x53
