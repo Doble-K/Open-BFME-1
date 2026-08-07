@@ -3882,3 +3882,39 @@ Freeing it means repointing a row that fx_particle_system.cpp currently verifies
 which is a different job from writing a destructor. Left alone and logged. The
 useful part is that "is this function claimed" and "is this name available" are
 two questions, and under ICF the second is the one that stops you.
+
+
+## A backlog nine thousand deep that carries no addresses
+
+Chasing destructor/stub pairs turned up something larger than the pairs. There
+are 9842 `present-unmatched` markers across Code -- functions already written in
+C++ that do not yet compile to the retail bytes. Every row in functions.csv has
+status `matched`, so none of these has a ledger row, and build.py only verifies
+claimed rows, which means a file can carry forty of them and still report OK.
+
+The thing that makes them hard is not the C++. It is that the marker names a
+function and nothing tells you where it lives. A naked-asm row at least has an
+address and a size to compare against; a present-unmatched marker has neither, so
+there is nothing to iterate against even though the draft is right there.
+
+Which is what makes the destructor pairing worth keeping despite a forward yield
+of zero. A claimed ??_GX calls ??1X, so the stub hands over the destructor's
+address, and that turns two of these markers from untestable drafts into ordinary
+work. ??1DebugIOFlat is at 0x00889620 and ??1DX8FVFCategoryContainer at
+0x00946B20, both already drafted in their files. add_match reverted both, so the
+drafts are wrong -- but now they are wrong at a known address, which is the
+difference between a bug and a blank.
+
+## Alias rows lie about what their source emits
+
+The one candidate the forward pass produced was ??_GAIUpdateModuleData, paired
+with a ??1AIUpdateModuleData row in string_base.cpp. String_base.cpp has no such
+class. The row is an alias -- its note records the object symbol as
+?releaseBuffer@?$StringBase@D@@AAEXXZ -- so the name in the ledger is not the
+symbol the source produces.
+
+That is the second tool this has caught out, after vtable_owner. Under ICF a name
+and a body are many to many, and these rows are exactly where the two come apart,
+so anything reasoning from ledger names has to drop them first. add_match caught
+it regardless: it appended, rebuilt, failed to find the symbol, and reverted
+without touching anything.
