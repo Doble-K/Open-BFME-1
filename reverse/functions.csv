@@ -14198,7 +14198,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getAdjustedVisionRangeForObject@AI@@SAMPBVObject@@H@Z,,0x0002481B,5,Code/GameEngine/Source/Common/ExactStaticThunks.cpp,matched,5-byte incremental-link static thunk converted to focused C++ source
 ?getAiEnemy@AIPlayer@@UAEPAVPlayer@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getAllPossibleBuildFacilityTemplates@ProductionPrerequisite@@QBEHQAPBVThingTemplate@@H@Z,,0x000E4770,103,Code/GameEngine/Source/Common/RTS/ProductionPrerequisite.cpp,matched,
-?getAlternateMouseModeEnabled@OptionPreferences@@QAE_NXZ,,0x00092670,126,Code/GameEngine/Source/Common/OptionPreferences_getAlternateMouseModeEnabledMethodThunk.cpp,matched,multi-xref Open-BFME4+Grok GameSpyIPAddress
 ?getApparentColor@GameSlot@@QBEHXZ,,0x0061EDD0,59,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?getApparentPlayerTemplate@GameSlot@@QBEHXZ,,0x0061ED90,40,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?getApparentPlayerTemplateDisplayName@GameSlot@@QBE?AVUnicodeString@@XZ,,0x0061F130,175,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,gametext vtable fix
@@ -94157,3 +94156,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Add_Delayed_Visible_Material_Pass@DX8RigidFVFCategoryContainer@@UAEXPAVMaterialPassClass@@PAVMeshClass@@@Z,,0x009468A0,109,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?Add_Visible_Material_Pass@DX8FVFCategoryContainer@@QAEXPAVMaterialPassClass@@PAVMeshClass@@@Z,,0x009466D0,109,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?Render@DX8PolygonRendererClass@@QAEXH@Z,,0x0092CB30,118,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?setOnlineIPAddress@OptionPreferences@@QAEXVAsciiString@@@Z,,0x00092670,126,Code/GameEngine/Source/Common/OptionPreferences_setOnlineIPAddress_Thunk.cpp,matched,

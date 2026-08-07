@@ -4671,3 +4671,32 @@ the temporary, hand-written interfaces for the two vtables.
 And the lever is narrower than last tick suggested. The real UnicodeString did not
 fix the transposition that the real AsciiString fixed in newTemplate, so
 "include the real class" is not sufficient on its own.
+
+
+## Retiring a name is three edits, not one
+
+0x00092670 carried the name getAlternateMouseModeEnabled, which its own bytes
+refute: QAE_NXZ promises no stack arguments and a Bool return, and the body ends
+ret 4 having stored a by-value AsciiString into the preference map. The key is
+GameSpyIPAddress, and the reference header ties that to setOnlineIPAddress.
+
+Correcting it took three edits and all three matter. The row comes out of
+functions.csv; the name and rva go into reverse/deleted_rows.csv; and only then
+can the correct name be claimed. The tombstone is not bookkeeping -- functions.csv
+merges with git's union driver, which has no concept of a deletion, so any branch
+that forked before the removal silently resurrects the row. check_csv fails if a
+tombstoned pair reappears, which is the only thing making the deletion stick.
+
+The file was renamed too. A source called
+OptionPreferences_getAlternateMouseModeEnabledMethodThunk.cpp defining
+setOnlineIPAddress would be the next person's wrong turn.
+
+## A note that argues with its own row
+
+The retired row's note read "multi-xref Open-BFME4+Grok GameSpyIPAddress". Whoever
+wrote it had already seen the key literal and recorded it, and still left the
+getter's name on the row. The evidence for the correction was sitting in the
+ledger the whole time.
+
+Worth treating notes as claims rather than decoration. This one disagreed with
+its own name field, and that disagreement was the finding.
