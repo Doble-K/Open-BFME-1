@@ -5323,3 +5323,27 @@ else.
 This took four builds against a three-build rule. The fourth was taken on a
 specific stated hypothesis rather than another guess, and it was wrong; noting
 the overrun because a limit that is quietly relaxed is not a limit.
+
+
+## The same byte-matching mistake, made again
+
+The first cut of screen_naked counted vtable stores by finding c7 and reading the
+immediate four bytes later. That is only correct when the store has no
+displacement. `mov [esi+0x38], imm32` encodes as c7 46 38 followed by the
+immediate, so the read lands one byte early and returns garbage.
+
+DeflectSpecialPower stores six vtables. The screen reported one, and it went
+straight to the top of the queue as a clean candidate -- the exact failure the
+screen was written to prevent, reintroduced by the screen itself.
+
+This repository already learned this: the x87 detector in screen_blockers was
+byte-matching and flagged 753 of 1041 naked thunks when only 150 really used x87,
+and the fix was to decode with capstone. Screening on raw byte patterns for a
+variable-length instruction set does not work, and knowing that in one file did
+not stop me writing it in another.
+
+Decoding dropped the queue from 240 to 143. Two other filters came out of the
+same pass: calls through the import table, which an e8-only search cannot see and
+which made a dynamic-import stub look call-free, and bodies with a frame pointer
+and a stack frame, which were compiled without the project's -O2 and are a
+different matching problem entirely.

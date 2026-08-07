@@ -29,7 +29,12 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import capstone
+
 from vtable_gaps import EXE, IMAGE_BASE, load_owners, sections
+
+MD = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+MD.detail = True
 
 ROOT = Path(__file__).resolve().parents[1]
 SYNTHETIC = re.compile(r"^\?[jb]_[0-9a-f]{6,}@@|^Gen_[0-9a-f]+|^\?\w+@Gen_[0-9a-f]+")
@@ -103,31 +108,41 @@ def main():
             continue
         body = data[o:o + size]
 
-        vptrs = 0
-        for m in re.finditer(rb"\xc7[\x00-\xbf]", body):
-            i = m.start()
-            if i + 6 <= len(body):
-                imm = struct.unpack_from("<I", body, i + 2)[0]
-                if is_vtable(imm):
+        # Decode. The first version of this counted vtable stores by matching
+        # c7 and reading the immediate at a fixed offset, which ignores the
+        # ModRM displacement -- `mov [esi+0x38], imm32` encodes as c7 46 38
+        # and the immediate starts a byte later. DeflectSpecialPower stores six
+        # vtables and the regex reported one, which is the same mistake the x87
+        # screen made before it was changed to decode.
+        vptrs = indirect = unnamed = named = 0
+        unoptimised = False
+        for ins in MD.disasm(body, rva):
+            if ins.mnemonic == "mov" and len(ins.operands) == 2:
+                dst_op, src_op = ins.operands
+                if (dst_op.type == capstone.x86.X86_OP_MEM
+                        and src_op.type == capstone.x86.X86_OP_IMM
+                        and is_vtable(src_op.imm & 0xFFFFFFFF)):
                     vptrs += 1
-
-        unnamed = named = 0
-        for m in re.finditer(rb"\xe8", body):
-            i = m.start()
-            if i + 5 > len(body):
-                break
-            t = (rva + i + 5 + struct.unpack_from("<i", body, i + 1)[0]) & 0xFFFFFFFF
-            oo = troff + (t - tva)
-            if 0 <= oo < len(data) and data[oo] == 0xE9:
-                t = (t + 5 + struct.unpack_from("<i", data, oo + 1)[0]) & 0xFFFFFFFF
-            nm = owner(t)
-            if nm is None or SYNTHETIC.match(nm):
-                unnamed += 1
-            else:
-                named += 1
-        if unnamed:
-            continue
-        if vptrs > 1:
+            elif ins.mnemonic == "call":
+                op = ins.operands[0]
+                if op.type != capstone.x86.X86_OP_IMM:
+                    indirect += 1
+                    continue
+                t = op.imm & 0xFFFFFFFF
+                oo = troff + (t - tva)
+                if 0 <= oo < len(data) and data[oo] == 0xE9:
+                    t = (t + 5 + struct.unpack_from("<i", data, oo + 1)[0]) & 0xFFFFFFFF
+                nm = owner(t)
+                if nm is None or SYNTHETIC.match(nm):
+                    unnamed += 1
+                else:
+                    named += 1
+        # A frame pointer and a stack frame in a body this small means the
+        # translation unit was not built with the project's -O2, so matching it
+        # is a different job from the rest of the queue.
+        if body[:3] == bytes((0x55, 0x8B, 0xEC)) and bytes((0x83, 0xEC)) in body[:8]:
+            unoptimised = True
+        if unnamed or indirect or unoptimised or vptrs > 1:
             continue
         out.append((cost, size, vptrs, named, rva, name, src))
 
