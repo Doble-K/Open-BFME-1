@@ -278,7 +278,6 @@ void DX8FVFCategoryContainer::Remove_Texture_Category(DX8TextureCategoryClass* t
 	TheDX8MeshRenderer.fvf_category_container_delete_list.Add_Tail(this);
 }
 
-// ?Add_Visible_Material_Pass@DX8FVFCategoryContainer@@QAEXPAVMaterialPassClass@@PAVMeshClass@@@Z present-unmatched
 void DX8FVFCategoryContainer::Add_Visible_Material_Pass(MaterialPassClass * pass,MeshClass * mesh)
 {
 	MatPassTaskClass * new_mpr = new MatPassTaskClass(pass,mesh);
@@ -333,7 +332,6 @@ void DX8FVFCategoryContainer::Render_Procedural_Material_Passes(void)
 	visible_matpass_tail = renderTasksRemaining ? last_mpr : NULL;
 }
 
-// ?Add_Delayed_Visible_Material_Pass@DX8RigidFVFCategoryContainer@@UAEXPAVMaterialPassClass@@PAVMeshClass@@@Z present-unmatched
 void DX8RigidFVFCategoryContainer::Add_Delayed_Visible_Material_Pass(MaterialPassClass * pass, MeshClass * mesh)
 {
 	MatPassTaskClass * new_mpr = new MatPassTaskClass(pass,mesh);
@@ -761,7 +759,6 @@ unsigned DX8FVFCategoryContainer::Define_FVF(MeshModelClass* mmc,bool enable_lig
 
 // ----------------------------------------------------------------------------
 
-// ??0DX8RigidFVFCategoryContainer@@QAE@I_N@Z present-unmatched
 DX8RigidFVFCategoryContainer::DX8RigidFVFCategoryContainer(unsigned FVF,bool sorting_)
 	:
 	DX8FVFCategoryContainer(FVF,sorting_),

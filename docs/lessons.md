@@ -4027,3 +4027,26 @@ constructor would store the vtable, so it resolves the symbol to 0 and always
 will. __imp__fopen and __imp__strstr have two IAT slots each in the image itself,
 and different objects bind to different ones. Whitelisted with the reasoning
 written down, which is what that file is for.
+
+
+## One layout fix paid for itself six times
+
+landsmall's docstring says it is essentially exhausted and worth re-running only
+after a class layout changes, because that reopens whatever the class blocked.
+Correcting DX8FVFCategoryContainer's eight bytes did exactly that: a sweep of
+dx8renderer.cpp landed three functions with no work at all, and three more once
+their callees were pinned.
+
+The three that needed pins were not hard, just unaddressed. Each failed with
+"unresolved call(s)", and an unresolved call is not a mystery -- the target
+already encodes where it goes. Disassembling the retail body at the address
+landsmall found gives the callee's address directly, and the only judgement
+needed was which of two calls in DX8PolygonRendererClass::Render was Draw_Strip
+and which Draw_Triangles. The header puts the strip branch first in the if/else,
+so the first call is Draw_Strip, and the byte gate confirmed it rather than my
+reading of the branch order.
+
+The other eleven translation units that include the same header yielded nothing.
+The reopening was specific to the file whose class changed, not to everything
+that sees the declaration -- worth knowing before sweeping broadly on the next
+layout correction.

@@ -94151,3 +94151,9 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??_GProxyArrayClass@@UAEPAXI@Z,,0x0097B5D0,72,Code/Libraries/Source/WWVegas/WW3D2/ProxyArrayClass_Dtor_Thunk.cpp,matched,
 ??_GStaticSortListClass@@UAEPAXI@Z,,0x00958040,31,Code/Libraries/Source/WWVegas/WW3D2/StaticSortListClass_Dtor_Thunk.cpp,matched,
 ??1DX8FVFCategoryContainer@@UAE@XZ,,0x00946B20,219,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
+??0DX8RigidFVFCategoryContainer@@QAE@I_N@Z,,0x00946F30,58,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?Set_Post_Detail_Alpha_Func@ShaderClass@@QAEXW4DetailAlphaFuncType@1@@Z,,0x006C52B0,21,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?Set_Post_Detail_Color_Func@ShaderClass@@QAEXW4DetailColorFuncType@1@@Z,,0x006C52D0,21,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?Add_Delayed_Visible_Material_Pass@DX8RigidFVFCategoryContainer@@UAEXPAVMaterialPassClass@@PAVMeshClass@@@Z,,0x009468A0,109,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?Add_Visible_Material_Pass@DX8FVFCategoryContainer@@QAEXPAVMaterialPassClass@@PAVMeshClass@@@Z,,0x009466D0,109,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
+?Render@DX8PolygonRendererClass@@QAEXH@Z,,0x0092CB30,118,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search

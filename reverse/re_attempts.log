@@ -1006,3 +1006,8 @@ REF_PTR_RELEASE			lever	the reference refcount.h clears outside the guard and th
 ??1DX8FVFCategoryContainer@@UAE@XZ	0x00946B20	219	converted	the 8 bytes go after used_indices; the destructor releases the added refcounted member at +0xD8 and leaves index_buffer alone. 110/110 in the TU and 428/428 across all 12 that include the header
 DX8FVFCategoryContainer			layout	two members inserted between used_indices and FVF. FVF moves to +0xE0 and passes to +0xE4. The constructor writes only +0xC8 +0xCC +0xD0 which is why it pinned index_buffer and constrained nothing above it
 present-unmatched			method	a draft that resembles the disassembly can still be the wrong function. Confirm which FIELD each access reaches before adjusting offsets -- the resemblance here was a refcount release followed by a loop over passes which looks the same whichever pointer it releases
+landsmall			harvest	6 functions landed from dx8renderer.cpp after the DX8FVFCategoryContainer layout fix reopened the TU. The tool's own docstring says to re-run it after a class layout changes and that is exactly what paid
+?Draw_Strip@DX8Wrapper@@SAXGGGG@Z	0x00906E40		pin	first of the two calls in DX8PolygonRendererClass::Render; dx8polygonrenderer.h puts the strip branch first and the gate confirms the order
+?Draw_Triangles@DX8Wrapper@@SAXGGGG@Z	0x00906DF0		pin	second call in the same if/else
+?Allocate_Object_Memory@?$ObjectPoolClass@VMatPassTaskClass@@$0BAA@@@QAEPAVMatPassTaskClass@@XZ	0x009452D0		pin	unblocked both Add_Visible_Material_Pass and Add_Delayed_Visible_Material_Pass
+landsmall			measurement	the other 11 TUs that include dx8renderer.h yielded nothing. The reopening was specific to the file whose class changed
