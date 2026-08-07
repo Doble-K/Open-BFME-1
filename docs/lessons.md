@@ -4345,3 +4345,40 @@ separate pointer for an inlined sub-object rather than folding its stores into
 the enclosing base register. Recording it as such is more useful than either
 individual failure, because the answer would unlock a family rather than a
 function.
+
+
+## Half an answer to the cursor question
+
+LifeEventModuleInfo's constructor has the same shape that defeated
+StealthUpgradeModuleData: a sub-object whose words are written through a register
+rather than off this. Here the reason is plain. ecx holds the sub-object's
+address because it is the this for the setRange call two instructions later, and
+the inlined constructor's stores simply use the register that is already being
+set up. The cursor is a thiscall argument, not a pointer variable.
+
+That does not transfer to StealthUpgradeModuleData, which has the same cursor and
+makes no call at all. Five source forms are now eliminated there -- two separate
+members, an array of two, an out-of-line element constructor, an explicit member
+function call, and a loop over the array -- and all five fold the writes into the
+flat run. The question stays open, narrower than it was.
+
+## A constructor's EH frame counts its destructible members
+
+Modelling the random-variable member as a plain struct produced no EH frame at
+all where retail has one, because a constructor only needs unwind protection if
+something already built has to be torn down when a later step throws. Giving the
+member a destructor produced the frame. One unwind state remained missing, and
+that was the second destructible member -- the four-byte one at +0x04 that I had
+modelled as an int.
+
+So the count is readable: the number of states in a constructor is the number of
+destructible sub-objects built before the last thing that can throw. It took two
+builds to walk from no frame to the right frame with the right state count, and
+both steps were determined rather than guessed.
+
+What stopped it was scheduling. The final version has retail's instruction
+multiset, the same call displacement and the same epilogue, but retail interleaves
+the argument pushes with the member's zero stores and the compiler emits the
+zeros first. I went a build past my own limit chasing it and should not have --
+the residual had no source-level lever left in it, and that was visible one build
+earlier.
