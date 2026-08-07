@@ -238,8 +238,17 @@ def main():
         for k, (s, nm) in enumerate(zip(slots, names)):
             if nm:
                 continue
-            before = next((names[p] for p in range(k - 1, -1, -1) if names[p]), None)
-            after = next((names[p] for p in range(k + 1, n) if names[p]), None)
+            # Only immediate neighbours count. A run of code pointers spans
+            # several class vtables -- run 0x01143AF8 opens with ??_GFile@@ and
+            # reaches ArchiveFileSystem thirty slots on -- so a distant named
+            # slot says nothing about this one. Every conversion this method has
+            # produced came from a neighbour one or two slots away, which is the
+            # range where the run and the real vtable still coincide.
+            NEAR = 2
+            before = next((names[p] for p in range(k - 1, max(-1, k - 1 - NEAR), -1)
+                           if names[p]), None)
+            after = next((names[p] for p in range(k + 1, min(n, k + 1 + NEAR))
+                          if names[p]), None)
             if not before and not after:
                 continue
             if blocked(s):

@@ -958,3 +958,7 @@ __purecall	0x006CF680	3	suspect	currently anchored to the shared xor eax eax ret
 purecall			note	not repointed: one name one address and the existing row is another contributor's; recorded as a correction candidate with the reference count as evidence
 vtable-runs			limitation	a run of code pointers spans several class vtables; run 0x01143AF8 starts with ??_GFile@@ and reaches ArchiveFileSystem later so slot k of n is a run position not a class slot
 tools/vtable_gaps.py			fix	skip candidates whose first byte is int3; those are padding inside a run rather than zero-length functions
+?Add_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x00942FA0	86	converted	byte dump promoted to clean C++; two builds
+bool-compare			lever	cmp al,1 comes from `== true`; a bare `if (x)` on a bool emits test al,al
+vtable-gaps			fix	neighbours restricted to two slots either side; runs span several class vtables so distant names are not evidence. 73 candidates to 45
+Win32LocalFileSystem			note	vtable slots 48 and 49 are one-byte empty voids past createDirectory so they are additions this build made; not nameable from the reference

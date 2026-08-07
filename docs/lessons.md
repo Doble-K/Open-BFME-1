@@ -3637,3 +3637,32 @@ belong to a different class entirely. Every conversion this method has produced 
 immediate neighbours -- one or two slots either side -- which is the range where the run
 and the real vtable still coincide. Distant neighbours in the tool's output are not
 evidence.
+
+
+## cmp al,1 is `== true`, and a bare if is test al,al
+
+SimpleSceneClass::Add_Render_Object promoted from its byte dump to clean C++ in two
+builds, and the second build turned on a single instruction pair. Everything matched
+except the test after the first list insertion: retail has `cmp al,1; jne`, the rebuild
+had `test al,al; je`.
+
+Those are different source spellings. A bare `if (x)` on a bool compiles to test al,al;
+writing `if (x == true)` compiles to cmp al,1. The original author wrote the comparison
+out, and reproducing the byte requires writing it out too -- which looks redundant in C++
+and is not.
+
+Worth adding to the small list of source spellings that are visible in the output, beside
+the named-temporary lever from the Add_Sub_Object_To_Bone pass. Both are cases where the
+obvious way to write the code is not the way it was written, and both cost exactly one
+build to find once the diff is down to a couple of bytes.
+
+The rest of the function fell straight out of the layout the body dictates: the object
+notified through the virtual at +0x64, three scene lists at this+0x5C, +0xBC and +0xD4,
+a reference taken only when the first insertion reports the node was new, and the list
+at +0xD4 fed only when the object's predicate at +0x19C agrees. Remove_Render_Object
+does the mirror of all four, which is what made both safe to identify in the first place.
+
+Separately, vtable_gaps now only reports neighbours within two slots. A run of code
+pointers spans several class vtables, so a named slot thirty positions away belongs to a
+different class and says nothing. That took the candidate list from 73 to 45 and removes
+a class of suggestion that looked well-evidenced and was not.
