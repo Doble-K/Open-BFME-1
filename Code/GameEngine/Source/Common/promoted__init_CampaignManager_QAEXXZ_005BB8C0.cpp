@@ -1,131 +1,53 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Grok promote from masm_dumps — retail 0x005BB8C0 size 118
-// was: Code/masm_dumps/_sa12__init_CampaignManager__QAEXXZ_5BB8C0.asm
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
 
-class CampaignManager { public: void init(void); };
+// INI ini; ini.load(AsciiString("Data\\INI\\Campaign.ini"), INI_LOAD_OVERWRITE, NULL);
+//
+// That is the whole function, and it is what the real source says in
+// CampaignManager.cpp. It stays in its own translation unit for one reason: the
+// INI object is a 0x848-byte stack local, and every INI header in the tree
+// carries an 8K read buffer that makes the class roughly 0x2438 -- large enough
+// that the frame takes a __chkstk probe retail does not have. BFME's INI is the
+// two 1028-byte line buffers plus about 64 bytes and nothing more.
+//
+// Declaring INI here rather than shadowing Common/INI.h keeps that size local to
+// this function. CampaignManager.cpp needs the real header for its field-parse
+// tables, which reference INI::parseAsciiString and INI::parseBool.
+//
+// The AsciiString is the shim's rather than a hand-rolled stand-in. The
+// temporary is passed by value, and only the StringBase-backed shim emits
+// `mov [esp+N],esp` before `mov ecx,esp` the way retail does.
+#include "Common/AsciiString.h"
+
+class Xfer;
+
+enum INILoadType
+{
+	INI_LOAD_INVALID = 0,
+	INI_LOAD_OVERWRITE = 1,
+	INI_LOAD_CREATE_OVERRIDES = 2
+};
+
+class INI
+{
+public:
+	INI();
+	~INI();
+
+	void load(AsciiString filename, INILoadType loadType, Xfer *xfer);
+
+private:
+	char m_storage[0x848];
+};
+
+class CampaignManager
+{
+public:
+	void init(void);
+};
 
 // ?init@CampaignManager@@QAEXXZ
-__declspec(naked) void CampaignManager::init(void)
+void CampaignManager::init(void)
 {
-__asm {
-		_emit 06Ah
-		_emit 0FFh
-		_emit 068h
-		_emit 07Bh
-		_emit 094h
-		_emit 003h
-		_emit 001h
-		_emit 064h
-		_emit 0A1h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 050h
-		_emit 064h
-		_emit 089h
-		_emit 025h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 081h
-		_emit 0ECh
-		_emit 04Ch
-		_emit 008h
-		_emit 000h
-		_emit 000h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 004h
-		_emit 0E8h
-		_emit 04Ch
-		_emit 059h
-		_emit 029h
-		_emit 000h
-		_emit 06Ah
-		_emit 000h
-		_emit 06Ah
-		_emit 001h
-		_emit 051h
-		_emit 089h
-		_emit 064h
-		_emit 024h
-		_emit 00Ch
-		_emit 08Bh
-		_emit 0CCh
-		_emit 068h
-		_emit 03Ch
-		_emit 0F6h
-		_emit 010h
-		_emit 001h
-		_emit 0C7h
-		_emit 084h
-		_emit 024h
-		_emit 064h
-		_emit 008h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 0E8h
-		_emit 0BCh
-		_emit 0D2h
-		_emit 02Ch
-		_emit 000h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 010h
-		_emit 0E8h
-		_emit 013h
-		_emit 081h
-		_emit 029h
-		_emit 000h
-		_emit 08Dh
-		_emit 04Ch
-		_emit 024h
-		_emit 004h
-		_emit 0C7h
-		_emit 084h
-		_emit 024h
-		_emit 054h
-		_emit 008h
-		_emit 000h
-		_emit 000h
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0E8h
-		_emit 0BFh
-		_emit 059h
-		_emit 029h
-		_emit 000h
-		_emit 08Bh
-		_emit 08Ch
-		_emit 024h
-		_emit 04Ch
-		_emit 008h
-		_emit 000h
-		_emit 000h
-		_emit 064h
-		_emit 089h
-		_emit 00Dh
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 081h
-		_emit 0C4h
-		_emit 058h
-		_emit 008h
-		_emit 000h
-		_emit 000h
-		_emit 0C3h
-	}
+	INI ini;
+	ini.load(AsciiString("Data\\INI\\Campaign.ini"), INI_LOAD_OVERWRITE, 0);
 }
-

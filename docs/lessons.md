@@ -5655,3 +5655,52 @@ class itself produces none. How many states there are counts the destructible
 members. And where the frame slot is written says which member owns the state.
 
 Three of four deferred hypotheses have now landed.
+
+
+## Correction: the by-value temporary is solved for AsciiString
+
+I have been recording the `mov [esp+N],esp` / `mov ecx,esp` transposition as an
+open blocker that survives every source shape. That is true only for hand-rolled
+stand-in classes. The StringBase-backed shim at
+reference/shims/campaignmanagerascii reproduces retail's order, and has done
+since Anim2DCollection::newTemplate landed; CampaignManager::init has now done it
+again on the first build.
+
+The failed attempts, AITunnelNetworkGuardState among them, all declared their own
+four-byte AsciiString rather than including the shim. So the rule already in this
+file -- include the real header when you need codegen the compiler must see --
+was the answer, and I did not apply it to my own open problem for several ticks.
+
+Only the UnicodeString flavour of the transposition is still open.
+
+## A stack local's size is a fact about the class, and it shows in one instruction
+
+CampaignManager::init is three lines and it failed on `sub esp`. Retail reserves
+0x84C; the compile reserved 0x2438 and took a __chkstk probe, because every INI
+header in this tree carries an 8K read buffer. BFME's INI does not have one: 0x848
+is the two 1028-byte line buffers plus about sixty bytes.
+
+Declaring INI in the function's own translation unit fixed it without disturbing
+CampaignManager.cpp, which needs the real header for field-parse tables
+referencing INI::parseAsciiString and INI::parseBool. Shadowing a header for a
+whole TU to fix one function is the wrong shape when the rest of the TU depends
+on it.
+
+
+## The string-ref check catches what the byte gate cannot
+
+CampaignManager::init passed the byte gate while its source literal read
+DataINICampaign.ini. The backslashes had been lost, MSVC dropped them as unknown
+escapes, and the bytes still matched because what the instruction encodes is the
+literal's ADDRESS, not its text -- and the address is copied from the target.
+
+The string-ref verifier compares the text and failed the commit. Without it the
+row would have been recorded as clean C++ that produces a different string, which
+is worse than a naked dump: it looks correct and is not.
+
+Two things follow. A literal that only appears as a relocation is not verified by
+byte equality, so the string check is doing real work and a failure there is not
+a formality. And when a heredoc collapses backslashes -- as one did here, twice,
+making a search string and its replacement identical so the fix silently no-opped
+while reporting success -- build the strings from character codes and assert the
+two differ before replacing.
