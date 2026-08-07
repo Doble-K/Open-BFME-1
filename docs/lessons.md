@@ -3220,3 +3220,30 @@ obvious name for an unclaimed slot bounded by that class's destructor -- but it 
 already claimed, at a completely different address, because the same template is
 instantiated in several translation units and the vtables hold different copies. Before
 inferring a name from a slot, check the name is not already live somewhere else.
+
+
+## Learn a template's vtable shape once and every instantiation opens up
+
+VectorClass has a fixed six-slot vtable -- destructor, operator==, Resize, Clear,
+ID(const T&), ID(const T*) -- and once that order is established from one vtable where
+most slots are named, every other instantiation in the image can be read off by
+position. Two more conversions came out of it this pass with no cold disassembly: slot 3
+was Clear and slot 5 the pointer overload of ID, in a vtable whose other four slots were
+already named.
+
+Two details make the template case easier rather than harder.
+
+The element size is visible in the divide. A pointer-element instantiation shifts right
+by two; a class-element one does a reciprocal multiply whose divisor is recoverable, as
+with the 1464-byte element earlier. So the same source text serves every instantiation
+and the only thing to determine is sizeof(T), which the body states.
+
+And identical instantiations fold. The bodies claimed here appear in several vtables at
+once because pointer-element vectors compile to the same code, which is why a single
+vtable can show Resize named for one instantiation and ID named for another -- the names
+in a vtable listing are whichever instantiation happened to be claimed first, not
+evidence about the class the table belongs to. Read the slot order, not the names.
+
+The practical consequence: template families are the cheapest place to convert, because
+the cost is understanding one class rather than one function. Worth preferring them over
+individually-interesting rows while the ranking still has them.

@@ -886,3 +886,7 @@ vtable-gaps-method			note	four conversions in two passes from the ranking; signa
 ?ID@?$VectorClass@VRenderDeviceDescClass@@@@UAEHPBVRenderDeviceDescClass@@@Z	0x00908170	36	converted	vtable slot 5 pointer overload; sizeof element 1464 recovered from the reciprocal-multiply divisor
 tools/vtable_gaps.py			tool	now skips candidates whose first 16 bytes carry an SEH prologue or ebp frame; 513 candidates down to 501
 ?Resize@?$SimpleVecClass@VVector3@@@@UAE_NH@Z	0x0079FF40		note	already claimed here so the unclaimed slot at 0x00919BC0 is a different instantiation; check a name is free at OTHER addresses before inferring it from a slot
+?Clear@?$VectorClass@PAVFontCharsBuffer@@@@UAEXXZ	0x00AFEB30	39	converted	vtable slot 3; matches the reference Clear exactly
+?ID@?$VectorClass@PAVFontCharsBuffer@@@@UAEHPBQAVFontCharsBuffer@@@Z	0x00AFEBA0	25	converted	vtable slot 5; pointer element so the divide is shr 2 not a reciprocal multiply
+VectorClass			pattern	six-slot vtable: dtor then operator== then Resize then Clear then ID(const T&) then ID(const T*)
+VectorClass			note	pointer-element instantiations fold to one body so a single conversion fills the slot in several vtables at once
