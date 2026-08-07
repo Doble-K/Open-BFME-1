@@ -901,3 +901,8 @@ rtti			note	the image is built with -GR- so vtables have no complete object loca
 ?Get_Maximum_Extent@Vector3SolidSphereRandomizer@@UAEMXZ	0x0010BD90	4	mis-anchored?	the claimed address is referenced by no vtable slot at all
 ?Get_Maximum_Extent@Vector3SolidSphereRandomizer@@UAEMXZ	0x00B02050	4	unclaimed	byte-identical body referenced by slot 10 of the SolidSphere vtable so this is the copy that actually dispatches
 vtable-anchor-audit			lead	audit idea: a claimed virtual whose address appears in no vtable while an identical body elsewhere does is probably anchored to a dead duplicate copy
+?Class_ID@Vector3HollowSphereRandomizer@@UBEIXZ	0x00B02390	6	converted	vtable slot between destructor and Get_Vector; constant class id 2
+?Class_ID@Vector3SolidCylinderRandomizer@@UBEIXZ	0x00B024E0	6	converted	vtable slot between destructor and Get_Vector; constant class id 3
+tools/vtable_anchor_audit.py			tool	finds virtual rows anchored to a copy no vtable dispatches to; needs a 16-byte floor or ICF-folded stubs swamp it
+?Destroy_Iterator@SimpleSceneClass@@UAEXPAVSceneIterator@@@Z	0x007C1100	23	mis-anchored?	no vtable points here; the dispatched copy is 0x00942DB0 which is slot 5 of the SimpleSceneClass vtable right after Create_Iterator
+?Release_Render_Obj_Iterator@WW3DAssetManager@@UAEXPAVRenderObjIterator@@@Z	0x006F62A0	23	mis-anchored?	same dispatched twin 0x00942DB0 so that body serves both names by folding
