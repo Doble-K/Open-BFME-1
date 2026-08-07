@@ -1,158 +1,78 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+
+// Look up a meta type by name, then its record, then hand the record to the
+// field parser. Each lookup throws on a miss.
+//
+// Both MetaMap methods mangle IAE -- protected -- so INI has to reach them as a
+// friend. Widening them to public would rename the symbols to QAE and the calls
+// would no longer resolve.
+//
+// The throw follows the shape already established for CommandButton::parseCommand:
+// a variadic and therefore __cdecl constructor taking this as its first stack
+// argument, with a declared copy constructor so MSVC builds the exception in
+// place rather than constructing it and copying it into a second slot.
+typedef int Int;
+
+class INIException
+{
+public:
+	INIException(Int code, const char *msg, ...);
+	INIException(const INIException &other);
+
+private:
+	Int m_code;
+	const char *m_msg;
+};
+
+struct FieldParse;
+
+class GameMessage
+{
+public:
+	enum Type
+	{
+		MSG_INVALID = 0
+	};
+};
+
+class MetaMapRec;
+class INI;
+
+class MetaMap
+{
+	friend class INI;
+
+protected:
+	GameMessage::Type findGameMessageMetaType(const char *name);
+
+	MetaMapRec *getMetaMapRec(GameMessage::Type type);
+};
+
+extern MetaMap *TheMetaMap;
+extern const FieldParse TheMetaMapFieldParseTable[];
 
 class INI
 {
 public:
-	static void __cdecl parseMetaMapDefinition(INI *);
+	const char *getNextToken(const char *seps = 0);
+
+	void initFromINI(void *what, const FieldParse *table);
+
+	static void parseMetaMapDefinition(INI *ini);
 };
 
 // ?parseMetaMapDefinition@INI@@SAXPAV1@@Z
-__declspec(naked) void __cdecl INI::parseMetaMapDefinition(INI *)
+void INI::parseMetaMapDefinition(INI *ini)
 {
-	__asm {
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xbe
-        __emit 0x97
-        __emit 0x29
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x98
-        __emit 0x4c
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x72
-        __emit 0x81
-        __emit 0xa8
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x24
-        __emit 0x56
-        __emit 0x68
-        __emit 0x84
-        __emit 0xf0
-        __emit 0x10
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x6a
-        __emit 0x03
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x2a
-        __emit 0x94
-        __emit 0x29
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0x68
-        __emit 0x30
-        __emit 0xfc
-        __emit 0x1d
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x18
-        __emit 0xfb
-        __emit 0x43
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x98
-        __emit 0x4c
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xed
-        __emit 0xc5
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x24
-        __emit 0x56
-        __emit 0x68
-        __emit 0x5c
-        __emit 0xf0
-        __emit 0x10
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x10
-        __emit 0x6a
-        __emit 0x03
-        __emit 0x52
-        __emit 0xe8
-        __emit 0xf6
-        __emit 0x93
-        __emit 0x29
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0x68
-        __emit 0x30
-        __emit 0xfc
-        __emit 0x1d
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xe4
-        __emit 0xfa
-        __emit 0x43
-        __emit 0x00
-        __emit 0x68
-        __emit 0x70
-        __emit 0xe5
-        __emit 0x10
-        __emit 0x01
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x77
-        __emit 0xae
-        __emit 0x29
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0xc3
-	}
+	const char *token = ini->getNextToken();
+
+	GameMessage::Type type = TheMetaMap->findGameMessageMetaType(token);
+	if (type == GameMessage::MSG_INVALID)
+		throw INIException(3, "Game message meta type for '%s' not found", token);
+
+	MetaMapRec *rec = TheMetaMap->getMetaMapRec(type);
+	if (rec == 0)
+		throw INIException(3, "Meta map entry for '%s' not found", token);
+
+	ini->initFromINI(rec, TheMetaMapFieldParseTable);
 }

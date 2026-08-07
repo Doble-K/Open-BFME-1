@@ -79487,7 +79487,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseMajorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x000660D0,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMappedImage@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAAA0,113,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseMappedImageDefinition@INI@@SAXPAV1@@Z,,0x000C2480,238,Code/GameEngine/Source/Common/INI/INIMappedImage.cpp,matched,find-then-create against TheMappedImageCollection; both collection methods were already matched so only Image ctor and setName were new
-?parseMetaMapDefinition@INI@@SAXPAV1@@Z,,0x005B71A0,143,Code/GameEngine/Source/GameClient/MessageStream/INI_parseMetaMapDefinition_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?parseMetaMapDefinition@INI@@SAXPAV1@@Z,,0x005B71A0,143,Code/GameEngine/Source/GameClient/MessageStream/INI_parseMetaMapDefinition_Thunk.cpp,matched,clean C++ with INI as a friend of MetaMap so the protected lookups keep IAE
 ?parseMinorFXList@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066180,135,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseMiscAudio@INI@@SAXPAV1@@Z,,0x000C25B0,30,Code/GameEngine/Source/Common/INI/INIMiscAudio.cpp,matched,MiscAudio block parser; forwards to TheAudio->friend_getMiscAudio() through AudioManager vtable slot 75 (+0x12C) which ZH has non-virtual
 ?parseMiscEvaData@INI@@SAXPAV1@@Z,,0x00422BD0,74,Code/GameEngine/Source/GameClient/Eva.cpp,matched,BFME-only MiscEvaData block; Eva holds it at +0x60 and refuses map.ini overrides via throw INIException(8)
