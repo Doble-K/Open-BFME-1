@@ -1,115 +1,64 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) MinefieldBehaviorModuleData
+// A single reference member at +0x24 and nothing else. The class installs its
+// own vptr at entry so it is not novtable, and the store of 0x01073744 at the
+// end is Snapshot's, from the base destructor inlined last.
+//
+// The release is `delete this` inside Release_Ref, which is what keeps the
+// second null test after the caller has already tested the pointer: once
+// inlined, the callee's this is a value the optimiser does not connect to what
+// the caller tested, so the delete expansion keeps its own check.
+//
+// InterlockedDecrement is dllimport. With one call site it stays as
+// call dword ptr [__imp__...] rather than being hoisted into a register.
+extern "C" __declspec(dllimport) long __stdcall InterlockedDecrement(long volatile *lpAddend);
+
+class RefCountedThing
 {
 public:
-    virtual ~MinefieldBehaviorModuleData();
+	virtual ~RefCountedThing();
+
+	void Release_Ref(void)
+	{
+		if (InterlockedDecrement(&m_refCount) <= 0) {
+			delete this;
+		}
+	}
+
+	long m_refCount;
+};
+
+class ThingRef
+{
+public:
+	~ThingRef()
+	{
+		if (m_ptr) {
+			m_ptr->Release_Ref();
+		}
+	}
+
+private:
+	RefCountedThing *m_ptr;
+};
+
+class Snapshot
+{
+public:
+	virtual ~Snapshot() {}
+};
+
+class MinefieldBehaviorModuleData : public Snapshot
+{
+public:
+	virtual ~MinefieldBehaviorModuleData();
+
+private:
+	unsigned char m_gap0[0x20];
+	ThingRef m_ref;
 };
 
 // ??1MinefieldBehaviorModuleData@@UAE@XZ
-__declspec(naked) MinefieldBehaviorModuleData::~MinefieldBehaviorModuleData()
+MinefieldBehaviorModuleData::~MinefieldBehaviorModuleData()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x78
-        __emit 0xa5
-        __emit 0x01
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x89
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x07
-        __emit 0xc8
-        __emit 0x97
-        __emit 0x0e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x77
-        __emit 0x24
-        __emit 0x85
-        __emit 0xf6
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x1a
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x04
-        __emit 0x50
-        __emit 0xff
-        __emit 0x15
-        __emit 0x54
-        __emit 0x8e
-        __emit 0x35
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7f
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }

@@ -68426,3 +68426,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?Allocate_Object_Memory@?$ObjectPoolClass@VMatPassTaskClass@@$0BAA@@@QAEPAVMatPassTaskClass@@XZ,0x009452D0,
 ?Draw_Strip@DX8Wrapper@@SAXGGGG@Z,0x00906E40,
 ?Draw_Triangles@DX8Wrapper@@SAXGGGG@Z,0x00906DF0,
+??1?$vector@VBFMERetailAsciiString@@V?$allocator@VBFMERetailAsciiString@@@_STL@@@_STL@@QAE@XZ,0x000658A0,vector<AsciiString> dtor; the address is claimed as ??1PlayerUpgradeSpecialPowerModuleData which ICF folded onto it

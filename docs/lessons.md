@@ -4249,3 +4249,36 @@ while an inline empty base puts its store at the end.
 
 With those, the second of these two took one build and differed from the first
 only in two constants.
+
+
+## Offset zero with no vptr means it is not the class you were told
+
+PlayerUpgradeSpecialPowerModuleData's destructor destroys a vector whose start
+pointer is at offset 0 of the object, with no vptr store anywhere and no base
+destructor call. A class with a virtual destructor -- and the mangled name says
+UAE, so it has one -- puts its vptr at offset 0, which leaves nowhere for that
+vector to live. The body is vector<AsciiString>::~vector, and the ModuleData name
+is sitting on it because ICF folded the two.
+
+That is worth checking before modelling anything: if the first member lands at
+offset 0 in a function whose name claims a virtual destructor, the name and the
+bytes belong to different functions. It cost nothing to notice and would have
+cost several builds to discover by fitting layouts.
+
+## Whether the vector destructor is called or inlined is the element type
+
+Two of these conversions inline the whole STLport deallocate dispatch; two call
+an out-of-line destructor instead. The difference is not the container or the
+flags -- it is whether the element has a destructor. A POD element leaves only
+the deallocate, small enough to inline; an element with a destructor needs a
+loop over the range first, which MSVC emits once as a COMDAT and calls from
+every instantiation.
+
+So the call is not an obstacle to reproduce, it is a description of the element.
+Seeing it means writing vector<something-with-a-destructor> and letting the
+compiler make the same choice, which it did.
+
+The name that call resolves to needed a pin, and the address was already claimed
+under a different name -- the folded one above. symbols.csv being additive is
+what makes that legal: the vector destructor's real mangled name and the
+ModuleData name it folded with can both point at 0x000658A0.

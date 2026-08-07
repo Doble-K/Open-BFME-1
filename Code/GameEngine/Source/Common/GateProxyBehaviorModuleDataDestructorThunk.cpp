@@ -1,260 +1,87 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) GateProxyBehaviorModuleData
+// Seven members, destroyed in reverse declaration order with the unwind state
+// counting down from 6: two vectors of strings at +0x34 and +0x28, four
+// references at +0x24 through +0x18, and a string at +0x14.
+//
+// The vectors' destructor is CALLED rather than inlined -- an element with its
+// own destructor makes the teardown a loop, which MSVC emits once as a COMDAT
+// and calls, where a POD element inlines the whole thing. Both forms appear in
+// this family and the difference is only the element type.
+//
+// The class installs its own vptr at entry so it is not novtable, and the store
+// of 0x01073744 at the end is Snapshot's from the base destructor inlined last.
+// The reference release is `delete this` inside Release_Ref, which is what keeps
+// the second null test after the caller has already tested the pointer; with
+// four uses the import entry is hoisted into ebx.
+#include <vector>
+
+extern "C" __declspec(dllimport) long __stdcall InterlockedDecrement(long volatile *lpAddend);
+
+class BFMERetailAsciiString
+{
+public:
+	~BFMERetailAsciiString() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+
+	char *m_data;
+};
+
+class RefCountedThing
+{
+public:
+	virtual ~RefCountedThing();
+
+	void Release_Ref(void)
+	{
+		if (InterlockedDecrement(&m_refCount) <= 0) {
+			delete this;
+		}
+	}
+
+	long m_refCount;
+};
+
+class ThingRef
+{
+public:
+	~ThingRef()
+	{
+		if (m_ptr) {
+			m_ptr->Release_Ref();
+		}
+	}
+
+private:
+	RefCountedThing *m_ptr;
+};
+
+class Snapshot
+{
+public:
+	virtual ~Snapshot() {}
+};
+
+class GateProxyBehaviorModuleData : public Snapshot
 {
 public:
 	virtual ~GateProxyBehaviorModuleData();
+
+private:
+	unsigned char m_gap0[0x10];
+	BFMERetailAsciiString m_name;
+	ThingRef m_ref0;
+	ThingRef m_ref1;
+	ThingRef m_ref2;
+	ThingRef m_ref3;
+	std::vector<BFMERetailAsciiString> m_vec0;
+	std::vector<BFMERetailAsciiString> m_vec1;
 };
 
 // ??1GateProxyBehaviorModuleData@@UAE@XZ
-__declspec(naked) GateProxyBehaviorModuleData::~GateProxyBehaviorModuleData()
+GateProxyBehaviorModuleData::~GateProxyBehaviorModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x1a
-		__emit 0xb4
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x53
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x57
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x10
-		__emit 0x42
-		__emit 0x0a
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x34
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x06
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x2d
-		__emit 0x9f
-		__emit 0xe2
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x28
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x05
-		__emit 0xe8
-		__emit 0x20
-		__emit 0x9f
-		__emit 0xe2
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x24
-		__emit 0x85
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x1d
-		__emit 0x54
-		__emit 0x8e
-		__emit 0x35
-		__emit 0x01
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x04
-		__emit 0x74
-		__emit 0x16
-		__emit 0x8d
-		__emit 0x47
-		__emit 0x04
-		__emit 0x50
-		__emit 0xff
-		__emit 0xd3
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7f
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xff
-		__emit 0x74
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x17
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x12
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x20
-		__emit 0x85
-		__emit 0xff
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x03
-		__emit 0x74
-		__emit 0x16
-		__emit 0x8d
-		__emit 0x47
-		__emit 0x04
-		__emit 0x50
-		__emit 0xff
-		__emit 0xd3
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7f
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xff
-		__emit 0x74
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x17
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x12
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x1c
-		__emit 0x85
-		__emit 0xff
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x02
-		__emit 0x74
-		__emit 0x16
-		__emit 0x8d
-		__emit 0x47
-		__emit 0x04
-		__emit 0x50
-		__emit 0xff
-		__emit 0xd3
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7f
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xff
-		__emit 0x74
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x17
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x12
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x18
-		__emit 0x85
-		__emit 0xff
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x01
-		__emit 0x74
-		__emit 0x16
-		__emit 0x8d
-		__emit 0x47
-		__emit 0x04
-		__emit 0x50
-		__emit 0xff
-		__emit 0xd3
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7f
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xff
-		__emit 0x74
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x17
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x12
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x14
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x13
-		__emit 0xad
-		__emit 0x68
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x5f
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
