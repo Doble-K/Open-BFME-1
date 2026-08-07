@@ -3389,3 +3389,32 @@ each they are chunk-loading routines, not the accessors this method has been lan
 Worth naming as a boundary: identifying a function by vtable position is cheap, and
 writing it byte-exactly afterwards is not, so the two should be judged separately when
 picking work.
+
+
+## Rank by what a gap costs to write, not just by how identifiable it is
+
+The vtable ranking sorted by how many named neighbours bounded a gap, which measures how
+easy the function is to *identify* and says nothing about how hard it is to *reproduce*.
+Those are unrelated: a four-byte accessor and a 260-byte chunk loader are equally
+identifiable. Sorting by the distance from the entry to its trailing int3 puts the cheap
+ones first, and the difference in what the tool offers is immediate.
+
+The first two suggestions under the new order converted. HLodClass slots 100 and 101 are
+seven-byte int getters bounded by Set_LOD_Level and Set_LOD_Bias, and hlod.h declares
+exactly two virtuals in that gap -- Get_LOD_Level then Get_LOD_Count. Distinct names
+rather than an overload group, so the vtable keeps declaration order, unlike the
+Collect_Objects and Scale sets which appear reversed. Both first build.
+
+Getting there meant lowering the duplicate filter from eight bytes to three. `ret 0xc`
+and `xor eax,eax; ret` are entire functions in this image, and several are claimed
+against copies nothing dispatches to, so the ranking kept offering
+RenderObjClass::Scale(float,float,float) and Vector3SolidBoxRandomizer::Class_ID as
+though they were unconverted work. Nineteen candidates are now held back on that basis,
+up from ten.
+
+At three bytes the anchoring question stops being answerable, and that is worth stating
+plainly rather than papering over. Dozens of unrelated virtuals compile to `xor eax,eax;
+ret`, ICF folds them onto one address, and which copy "belongs" to a given name is not a
+question the image answers. Those rows are recorded as suspect and left alone. The
+useful line is between a distinctive body claimed at a dead duplicate, which is a real
+anchoring error worth fixing, and a generic stub, which is not an error at all.

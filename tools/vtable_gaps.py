@@ -96,18 +96,39 @@ def main():
     # here looking like a gap while the function is already named. Those are
     # a ledger-anchoring problem, not a conversion opportunity, so they are
     # labelled and held back -- see tools/vtable_anchor_audit.py.
+    #
+    # Down to three bytes, deliberately. `ret 0xc` and `xor eax,eax; ret` are
+    # whole functions here and plenty of them are claimed against an
+    # undispatched copy; leaving them in kept offering RenderObjClass::Scale
+    # and Vector3SolidBoxRandomizer::Class_ID as though they were unconverted.
     bodies = {}
     for rva, size, nm in rows:
-        if 8 <= size <= 64:
+        if 3 <= size <= 64:
             o = off_of_text(rva)
             if o is not None:
                 bodies.setdefault(data[o:o + size], nm)
+
+    def extent(rva):
+        """Bytes from the entry to the int3 padding that follows it.
+
+        Identifying a function from its slot is cheap; writing it byte-exactly
+        afterwards is not, and the two are unrelated. A four-byte accessor and
+        a 260-byte chunk loader are equally identifiable and nothing like
+        equally convertible, so the cost belongs in the ranking.
+        """
+        o = off_of_text(rva)
+        if o is None:
+            return 9999
+        j = o
+        while j < o + 4000 and j < len(data) and data[j] != 0xCC:
+            j += 1
+        return j - o
 
     def duplicate_of(rva):
         o = off_of_text(rva)
         if o is None:
             return None
-        for size in range(8, 65):
+        for size in range(3, 65):
             # int3 marks the end of a function, so a claimed body of this length
             # ending here means the two functions have the same extent, not just
             # the same opening bytes.
@@ -208,23 +229,23 @@ def main():
             dup = duplicate_of(s)
             if dup and not args.duplicates:
                 continue
-            findings.append((-(known / n), s, rva0 + off + IMAGE_BASE, k, n,
-                             known, before, after, dup))
+            findings.append((extent(s), -(known / n), s, rva0 + off + IMAGE_BASE,
+                             k, n, known, before, after, dup))
 
     # dedupe: the same function can sit in many vtables
     findings.sort()
     seen, out = set(), []
     for f in findings:
-        if f[1] in seen:
+        if f[2] in seen:
             continue
-        seen.add(f[1])
+        seen.add(f[2])
         out.append(f)
 
     print("%d vtable-like run(s); %d distinct unclaimed slot(s) with named neighbours\n"
           % (len(tables), len(out)))
-    for frac, rva, tbl, k, n, known, before, after, dup in out[:args.limit]:
-        print("0x%08X  slot %d/%d of vtable 0x%08X  (%d/%d named)"
-              % (rva, k, n, tbl, known, n))
+    for ext, frac, rva, tbl, k, n, known, before, after, dup in out[:args.limit]:
+        print("0x%08X ~%-4dB slot %d/%d of vtable 0x%08X  (%d/%d named)"
+              % (rva, ext, k, n, tbl, known, n))
         if before:
             print("     after : " + before[:104])
         if after:
