@@ -1,165 +1,70 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) GameSpyStagingRoom {
+// Six destructible members, destroyed in reverse declaration order with the
+// unwind state counting down 4 to -1.
+//
+// ??_M gives the array: base +0x58, eight elements, 0x78 bytes each. Eight times
+// 0x78 is 0x3C0, which lands exactly on +0x418 where the next member starts --
+// the arithmetic checking out is what confirms the reading.
+//
+// Two different releaseBuffer targets appear, so two string types: the narrow one
+// and StringBase<unsigned short> for the wide member at +0x418. The name is QAE,
+// public and non-virtual, so there is no vptr and the layout starts with data.
+class BFMERetailAsciiString
+{
+public:
+	~BFMERetailAsciiString() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+
+	char *m_data;
+};
+
+template <class T>
+class StringBase
+{
+public:
+	~StringBase() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+
+	T *m_data;
+};
+
+class UnicodeString : public StringBase<unsigned short>
+{
+};
+
+class GameSpyStagingRoomSlot
+{
+public:
+	~GameSpyStagingRoomSlot();
+
+private:
+	unsigned char m_body[0x78];
+};
+
+class GameSpyStagingRoom
+{
 public:
 	~GameSpyStagingRoom();
+
+private:
+	unsigned char m_gap0[0x3C];
+	BFMERetailAsciiString m_name;
+	unsigned char m_gap1[0x18];
+	GameSpyStagingRoomSlot m_slots[8];
+	UnicodeString m_wide;
+	unsigned char m_gap2[0x08];
+	BFMERetailAsciiString m_424;
+	unsigned char m_gap3[0x1C];
+	BFMERetailAsciiString m_444;
+	BFMERetailAsciiString m_448;
 };
 
 // ??1GameSpyStagingRoom@@QAE@XZ
-__declspec(naked) GameSpyStagingRoom::~GameSpyStagingRoom()
+GameSpyStagingRoom::~GameSpyStagingRoom()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd0
-		__emit 0x02
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x48
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x40
-		__emit 0xd5
-		__emit 0x38
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x44
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x03
-		__emit 0xe8
-		__emit 0x30
-		__emit 0xd5
-		__emit 0x38
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x24
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x02
-		__emit 0xe8
-		__emit 0x20
-		__emit 0xd5
-		__emit 0x38
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x18
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xa0
-		__emit 0xdd
-		__emit 0x38
-		__emit 0x00
-		__emit 0x68
-		__emit 0x92
-		__emit 0x7d
-		__emit 0x40
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x08
-		__emit 0x6a
-		__emit 0x78
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x58
-		__emit 0x50
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x2f
-		__emit 0xc9
-		__emit 0x4f
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x3c
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0xe9
-		__emit 0xd4
-		__emit 0x38
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }

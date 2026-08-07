@@ -1,266 +1,88 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) TeamTemplateInfo
+// Twelve destructible members, destroyed in reverse declaration order with the
+// unwind state counting down from 0xB.
+//
+// Two arrays, both spelled out by ??_M, whose arguments are pushed destructor,
+// COUNT, size, base -- in that order, which is worth stating because reading the
+// middle two the other way round gives four elements of thirty-two bytes rather
+// than thirty-two of four. Both spans end in the same place either way, so the
+// arithmetic does not catch it: seven twelve-byte elements at +4 ending on +0x58,
+// and thirty-two four-byte elements at +0xC4 ending on +0x144.
+//
+// The name is QAE, so this destructor is not virtual, and the single vptr store
+// falls at the very end rather than at entry. Deriving from the polymorphic type
+// would put a store at entry too, since a derived class gets its own table. A
+// Snapshot MEMBER at offset zero gives one store in the right place: members are
+// destroyed in reverse declaration order, so the first-declared one goes last.
+class BFMERetailAsciiString
+{
+public:
+	~BFMERetailAsciiString() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+
+	char *m_data;
+};
+
+class TeamGenericEntry
+{
+public:
+	~TeamGenericEntry();
+
+private:
+	unsigned char m_body[0x0C];
+};
+
+class TeamWideEntry
+{
+public:
+	~TeamWideEntry();
+
+private:
+	unsigned char m_body[0x04];
+};
+
+class Snapshot
+{
+public:
+	virtual void unknownVirtual(void);
+
+	// Declared and empty rather than implicit. An implicit destructor on a
+	// polymorphic class is trivial and emits nothing, which loses the vptr
+	// store entirely; declaring it makes the member destructible, which is
+	// also the twelfth unwind state.
+	~Snapshot() {}
+};
+
+class TeamTemplateInfo
 {
 public:
 	~TeamTemplateInfo();
+
+private:
+	Snapshot m_snapshot;
+	TeamGenericEntry m_generic[7];
+	unsigned char m_gap0[0x14];
+	BFMERetailAsciiString m_6c;
+	BFMERetailAsciiString m_70;
+	BFMERetailAsciiString m_74;
+	unsigned char m_gap1[0x04];
+	BFMERetailAsciiString m_7c;
+	BFMERetailAsciiString m_80;
+	BFMERetailAsciiString m_84;
+	BFMERetailAsciiString m_88;
+	unsigned char m_gap2[0x20];
+	BFMERetailAsciiString m_ac;
+	BFMERetailAsciiString m_b0;
+	unsigned char m_gap3[0x08];
+	BFMERetailAsciiString m_bc;
+	unsigned char m_gap4[0x04];
+	TeamWideEntry m_wide[0x20];
 };
 
 // ??1TeamTemplateInfo@@QAE@XZ
-__declspec(naked) TeamTemplateInfo::~TeamTemplateInfo()
+TeamTemplateInfo::~TeamTemplateInfo()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xae
-		__emit 0xb6
-		__emit 0xff
-		__emit 0x00
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x20
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x86
-		__emit 0xc4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x0b
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xbc
-		__emit 0x97
-		__emit 0x90
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xbc
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x0a
-		__emit 0xe8
-		__emit 0x76
-		__emit 0xa3
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xb0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x09
-		__emit 0xe8
-		__emit 0x66
-		__emit 0xa3
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xac
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x08
-		__emit 0xe8
-		__emit 0x56
-		__emit 0xa3
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x88
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x07
-		__emit 0xe8
-		__emit 0x46
-		__emit 0xa3
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x84
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x06
-		__emit 0xe8
-		__emit 0x36
-		__emit 0xa3
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x05
-		__emit 0xe8
-		__emit 0x26
-		__emit 0xa3
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x7c
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x04
-		__emit 0xe8
-		__emit 0x19
-		__emit 0xa3
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x74
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x03
-		__emit 0xe8
-		__emit 0x0c
-		__emit 0xa3
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x70
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x02
-		__emit 0xe8
-		__emit 0xff
-		__emit 0xa2
-		__emit 0x79
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x6c
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xf2
-		__emit 0xa2
-		__emit 0x79
-		__emit 0x00
-		__emit 0x68
-		__emit 0x51
-		__emit 0x02
-		__emit 0x43
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x07
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x04
-		__emit 0x51
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x11
-		__emit 0x97
-		__emit 0x90
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }

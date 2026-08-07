@@ -4966,3 +4966,36 @@ whole ticks before.
 
 Worth noting the decision explicitly. Reading a disassembly costs one call;
 discovering the same thing three builds in costs the tick.
+
+
+## The arithmetic check I trusted cannot catch this
+
+I have been reading ??_M's arguments as destructor, count, size, base and
+confirming the reading by checking that count times size lands exactly on the
+next member. For TeamTemplateInfo I read 4 elements of 0x20 where retail has 32
+of 4 -- and the check passed, because 4 times 32 and 32 times 4 end in the same
+place.
+
+So the span landing correctly confirms the product and nothing else. When count
+and size are both plausible sizes the two are indistinguishable that way, and the
+only thing that separates them is the push order itself: destructor first, then
+count, then size, then base.
+
+Three builds went into structure before this surfaced, and it would have been the
+first build if I had read the order rather than the product.
+
+## A polymorphic member, not a polymorphic base
+
+TeamTemplateInfo stores one vptr and stores it at the very end. Deriving from the
+polymorphic type gives two stores -- the derived class gets its own table and
+writes it at entry -- so the Snapshot at offset zero is a member, destroyed last
+because it is declared first.
+
+That alone was not enough. An implicit destructor on a polymorphic class is
+trivial and emits nothing, so the member vanished from the output entirely.
+Declaring it empty brings back both the vptr store and the twelfth unwind state,
+which is how the state numbering starting at 0xB rather than 0xA gets explained
+at the same time.
+
+Two facts worth keeping together: where the single store falls says member versus
+base, and whether it appears at all says declared versus implicit.
