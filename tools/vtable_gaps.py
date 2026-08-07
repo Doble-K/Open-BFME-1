@@ -244,6 +244,16 @@ def main():
                 continue
             if blocked(s):
                 continue
+            # A function entry in this image is preceded by int3 padding.
+            # Without that check a run whose first dword merely looks like a
+            # code pointer gets reported, and the candidate lands mid-function:
+            # 0x00184F42 was offered as slot 0 of a vtable while actually being
+            # the tail of some other body, popping registers it never pushed.
+            # The interior test above only catches addresses inside CLAIMED
+            # rows, so it does not see this case.
+            so = off_of_text(s)
+            if so is None or so == 0 or data[so - 1] != 0xCC:
+                continue
             # A vtable slot tells you which METHOD a body is. For a template
             # it does not tell you which INSTANTIATION: identical
             # instantiations fold, so one table can carry names from several

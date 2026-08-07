@@ -3572,3 +3572,36 @@ the thunk to its target seemed like the fix but was worse: many claimed rows are
 thunks themselves, so rewriting slot addresses broke ownership and the candidate list
 jumped from 84 to 427. Sorting thunks last instead leaves ownership alone and keeps them
 out of the cheap end of the ranking.
+
+
+## Half the remaining vtable gaps were not function entries
+
+vtable_gaps already discarded runs containing an address interior to a claimed row, on
+the grounds that a real vtable slot points at a function's entry. That test only sees
+claimed rows, and most of the image is unclaimed, so it missed the commoner case: a run
+whose first dword merely looks like a code pointer, landing partway into some unclaimed
+body.
+
+0x00184F42 was the example that surfaced it -- offered as slot 0 of a thirteen-slot
+table, and actually the tail of another function, starting `mov ecx,edi` and popping ebp,
+edi and ebx without ever pushing them. The five slots after it are genuine
+VectorClass methods, so the table is real; it simply starts one dword later than the run
+detector thought.
+
+The fix is one line and does not need the ledger at all: a function entry in this image
+is preceded by int3 padding. Requiring that took the candidate list from 83 to 38. More
+than half of what remained was noise, and it had been at the top of the ranking for
+several passes because the false entries tend to be small.
+
+That is the fourth exclusion this tool has needed -- interior hits, template neighbours,
+SEH bodies, duplicates of claimed rows, and now non-entries -- and every one was found by
+following a bad suggestion far enough to see why it was bad. The ranking is only as
+honest as the list of things it knows to leave out, and there is no way to enumerate
+those in advance.
+
+The pass converted nothing. Three candidates were examined and declined: two scalar
+deleting destructors whose class is named only by a synthetic Gen_ symbol, so there is
+nothing to call them; and a RenderObjClass slot whose body tests a virtual and two
+members in a shape that matches none of the inline one-liners the header declares in that
+range. Declining is the right outcome for all three -- what would have been wrong is
+picking the closest-looking header declaration and calling it identified.
