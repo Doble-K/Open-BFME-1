@@ -5461,3 +5461,38 @@ because it means the flag sweep cannot settle this one, and the next thing to tr
 is a source change that raises the constant's value to the compiler -- a static
 helper called three times, so the 1 is shared across three inlined copies and
 earns a callee-saved register on merit.
+
+
+## Factor the repetition and the constants find registers
+
+removeAllShadows matched on the first build of this tick, from the hypothesis
+written down at the end of the last one.
+
+Three lists are walked identically. Written out as three loops, the compile is
+structurally exact -- right rotation, right alignment padding -- but materialises
+0 and 1 fresh in each loop as immediates. Written as one static helper called
+three times, the same two values are live across all three inlined bodies, so
+they earn registers on merit: edx for the zero, bl for the one, with ebx pushed
+to afford the second. That is precisely what retail holds them in.
+
+The general shape: when the residual is that retail keeps a constant in a
+register and the compile uses immediates, the question is not which flag to pass.
+It is whether the source gives that constant a longer life. Repetition written
+out three times has three short lives; repetition factored into a callee has one
+long one.
+
+This also explains why the flag sweep could not settle it. /O1 and /Os produced
+the register form but changed the rotation, /O2 kept the rotation but used
+immediates, and retail wanted both -- because the difference was never about the
+optimisation level, it was about how many times the source said the same thing.
+
+## Deferring a hypothesis is not the same as abandoning it
+
+Two ticks running I stopped at the build limit and wrote the next hypothesis into
+the log instead of spending one more build on it. The first, that an exception
+specification blocked the inliner, was wrong. The second was this one, and it
+landed on the first attempt.
+
+Both were worth deferring. Stopping preserved the rule, and writing the
+hypothesis down meant the next tick opened with a specific test rather than a
+fresh guess -- which is the whole value the rule was costing before.

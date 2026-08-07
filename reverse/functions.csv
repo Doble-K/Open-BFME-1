@@ -79958,7 +79958,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?remove@LListNode@@QAEXXZ,,0x00105930,21,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ?removeAllBibs@W3DTerrainVisual@@UAEXXZ,,0x00731000,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?removeAllProps@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006C8CA0,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,
-?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ,,0x007AEA90,95,Code/GameEngine/Source/Common/promoted__removeAllShadows_W3DProjectedShadowManager_QAEXXZ_007AEA90.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 95B
+?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ,,0x007AEA90,95,Code/GameEngine/Source/Common/promoted__removeAllShadows_W3DProjectedShadowManager_QAEXXZ_007AEA90.cpp,matched,clean C++; three lists walked by a shared static helper so the constants earn registers
 ?removeAllTerrainBibs@BaseHeightMapRenderObjClass@@QAEXXZ,,0x006CB050,31,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,object-symbol=?setShoreLineDetail@BaseHeightMapRenderObjClass@@QAEXXZ;thunk-dump converted to clean C++ ICF alias at destination 0x006CB050
 ?removeBib@W3DBibBuffer@@QAEXW4ObjectID@@@Z,,0x006D6B20,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
 ?removeBibDrawable@W3DBibBuffer@@QAEXW4DrawableID@@@Z,,0x006D6B80,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,

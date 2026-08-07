@@ -1,108 +1,65 @@
 // cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Grok promote from masm_dumps — retail 0x007AEA90 size 95
-// was: Code/masm_dumps/removeAllShadows_W3DProjectedShadowManager_QAEXXZ_007AEA90_f24fcc50.asm
 
-class W3DProjectedShadowManager { public: void removeAllShadows(void); };
-
-// ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ
-__declspec(naked) void W3DProjectedShadowManager::removeAllShadows(void)
+// Three lists, walked the same way: take the head, null it, then mark every
+// entry unused and follow the link at +0xd4. Nothing is freed here -- the flag
+// at +4 is what defers that.
+//
+// The walk is a helper rather than three copies of a loop. Written out three
+// times the compiler materialises the constants afresh in each; shared, the
+// values 0 and 1 are live across all three bodies and earn registers, which is
+// what retail holds them in -- edx and bl, with ebx pushed to afford the second.
+//
+// The reference declares two lists, m_shadowList and m_decalList. Retail walks
+// three and takes the one at +0xc first, so BFME added a list ahead of the pair
+// in processing order but behind them in the layout.
+class W3DProjectedShadow
 {
-__asm {
-		_emit 08Bh
-		_emit 041h
-		_emit 00Ch
-		_emit 033h
-		_emit 0D2h
-		_emit 03Bh
-		_emit 0C2h
-		_emit 053h
-		_emit 089h
-		_emit 051h
-		_emit 00Ch
-		_emit 0B3h
-		_emit 001h
-		_emit 074h
-		_emit 00Eh
-		_emit 090h
-		_emit 088h
-		_emit 058h
-		_emit 004h
-		_emit 08Bh
-		_emit 080h
-		_emit 0D4h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 03Bh
-		_emit 0C2h
-		_emit 075h
-		_emit 0F3h
-		_emit 08Bh
-		_emit 041h
-		_emit 004h
-		_emit 03Bh
-		_emit 0C2h
-		_emit 089h
-		_emit 051h
-		_emit 004h
-		_emit 074h
-		_emit 016h
-		_emit 0EBh
-		_emit 007h
-		_emit 08Dh
-		_emit 0A4h
-		_emit 024h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 088h
-		_emit 058h
-		_emit 004h
-		_emit 08Bh
-		_emit 080h
-		_emit 0D4h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 03Bh
-		_emit 0C2h
-		_emit 075h
-		_emit 0F3h
-		_emit 08Bh
-		_emit 041h
-		_emit 008h
-		_emit 03Bh
-		_emit 0C2h
-		_emit 089h
-		_emit 051h
-		_emit 008h
-		_emit 074h
-		_emit 016h
-		_emit 0EBh
-		_emit 007h
-		_emit 08Dh
-		_emit 0A4h
-		_emit 024h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 088h
-		_emit 058h
-		_emit 004h
-		_emit 08Bh
-		_emit 080h
-		_emit 0D4h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 03Bh
-		_emit 0C2h
-		_emit 075h
-		_emit 0F3h
-		_emit 05Bh
-		_emit 0C3h
+public:
+	unsigned char m_head[4];
+	bool m_unused;
+	unsigned char m_body[0xCF];
+	W3DProjectedShadow *m_next;
+};
+
+static void markListUnused(W3DProjectedShadow *shadow)
+{
+	while (shadow) {
+		shadow->m_unused = true;
+		shadow = shadow->m_next;
 	}
 }
 
+class ProjectedShadowManager
+{
+public:
+	virtual ~ProjectedShadowManager();
+};
+
+class W3DProjectedShadowManager : public ProjectedShadowManager
+{
+public:
+	void removeAllShadows(void);
+
+private:
+	W3DProjectedShadow *m_shadowList;
+	W3DProjectedShadow *m_decalList;
+	W3DProjectedShadow *m_simpleDecalList;
+};
+
+// ?removeAllShadows@W3DProjectedShadowManager@@QAEXXZ
+void W3DProjectedShadowManager::removeAllShadows(void)
+{
+	W3DProjectedShadow *shadow;
+
+	shadow = m_simpleDecalList;
+	m_simpleDecalList = 0;
+	markListUnused(shadow);
+
+	shadow = m_shadowList;
+	m_shadowList = 0;
+	markListUnused(shadow);
+
+	shadow = m_decalList;
+	m_decalList = 0;
+	markListUnused(shadow);
+}
