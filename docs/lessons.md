@@ -4476,3 +4476,36 @@ destructor and nothing would appear here. The body is right: one delete and one
 assignment, and the single null test is the delete expansion's rather than a
 source-level if, which would have produced two. What remains is two instructions
 in the wrong order, and no source form I have tried moves them.
+
+
+## The vector destructor iterator hands over the array
+
+LANGameInfo's destructor went in on the first build, and the reason is that one
+of its three members required no inference at all. The call to ??_M takes four
+arguments and they are the array: the element destructor's address, the count,
+the element size, and the base pointer. Eight elements of 0x68 bytes at +0x58,
+read straight off the pushes.
+
+Two other things were free. The mangled name is QAE rather than UAE, so the
+destructor is not virtual, the class has no vtable, and the layout starts with
+data at offset zero -- no vptr store to place and none of the sinking that has
+blocked four other functions. And the unwind state counting down 1, 0, -1 says
+three members of one class rather than anything inherited.
+
+Worth contrasting with the last few attempts: nothing here had to be guessed and
+adjusted. Where a function's structure is fully determined by its arguments and
+its mangling, the conversion is transcription. Where it depends on how the
+compiler chose to order stores, it has not gone in yet.
+
+## A hundred and seventy-nine names on one body
+
+??_GLocalFileSystem sits at 0x005BF290, which I had suspected of being a
+mis-naming that could be corrected to free the name for the real function at
+0x009CDDF0. It is not. That address carries 179 rows, every one an alias of a
+single thirty-byte deleting-destructor body that ICF folded across 179 classes,
+and the whole set was recorded deliberately.
+
+So declining to claim the name several ticks ago was right, for a better reason
+than the one I had then. It also means individual names in that set are weak
+evidence about anything -- they were produced in bulk -- and the class owning
+vtable 0x01143B78 stays unidentified rather than being assumed.

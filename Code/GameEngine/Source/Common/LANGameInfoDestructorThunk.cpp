@@ -1,118 +1,60 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) LANGameInfo
+// Three destructible members and no vptr -- the name says QAE, so the destructor
+// is not virtual and the class has no base with a table.
+//
+// They go in reverse declaration order with the unwind state counting down 1, 0,
+// -1: the wide string at +0x3A0, then the array at +0x58, then the narrow string
+// at +0x3C. The middle one is destroyed through the vector destructor iterator,
+// whose four arguments spell the array out completely -- element destructor,
+// count 8, element size 0x68, and the base address.
+//
+// Both strings inline their destructor down to the private releaseBuffer of the
+// StringBase they derive from, wide and narrow reaching different ones.
+template <class T>
+class StringBase
+{
+public:
+	~StringBase() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+
+	T *m_data;
+};
+
+class BFMERetailAsciiString : public StringBase<char>
+{
+};
+
+class UnicodeString : public StringBase<unsigned short>
+{
+};
+
+class LANPlayer
+{
+public:
+	~LANPlayer();
+
+private:
+	unsigned char m_body[0x68];
+};
+
+class LANGameInfo
 {
 public:
 	~LANGameInfo();
+
+private:
+	unsigned char m_gap0[0x3C];
+	BFMERetailAsciiString m_name;
+	unsigned char m_gap1[0x18];
+	LANPlayer m_players[8];
+	unsigned char m_gap2[0x08];
+	UnicodeString m_text;
 };
 
 // ??1LANGameInfo@@QAE@XZ
-__declspec(naked) LANGameInfo::~LANGameInfo()
+LANGameInfo::~LANGameInfo()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x9e
-		__emit 0x64
-		__emit 0x04
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xa0
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xd0
-		__emit 0x14
-		__emit 0x20
-		__emit 0x00
-		__emit 0x68
-		__emit 0x69
-		__emit 0x9a
-		__emit 0x42
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x08
-		__emit 0x6a
-		__emit 0x68
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x58
-		__emit 0x50
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x5f
-		__emit 0x00
-		__emit 0x37
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x3c
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x19
-		__emit 0x0c
-		__emit 0x20
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }

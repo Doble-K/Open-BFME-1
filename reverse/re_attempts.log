@@ -1075,3 +1075,8 @@ initialiser-list-vs-body			negative	moving field assignments between the member 
 /G5 /G6 /G7			negative	none of the processor-targeting flags change the store ordering on W3DDebrisDraw. The scheduler target is not the difference
 toolchain-hypothesis			retired	the vendored cl.exe cannot be the cause. 94158 functions match with it; a scheduler that differed from retail's would break far more than the four functions blocked on ordering. The residuals are source differences not toolchain differences
 scheduling-residuals			measurement	four functions now differ only in instruction order -- LifeEventModuleInfo W3DDebrisDraw StealthUpgradeModuleData and ScriptConditions. Three are constructors where this class's vptr stores sink past the body; ScriptConditions is a destructor with one transposed pair
+??1LANGameInfo@@QAE@XZ	0x00686CD0	103	converted	wide string array of eight and narrow string; first build
+vector-destructor-iterator			lever	the four arguments to ??_M spell an array out completely -- element destructor address then count then element size then base. No inference needed: 8 elements of 0x68 bytes at +0x58
+QAE-means-no-vptr			lever	a destructor mangled QAE rather than UAE is not virtual so the class has no vtable and no vptr store; the layout starts with data at offset zero
+??_GLocalFileSystem@@UAEPAXI@Z	0x005BF290	30	resolved-negative	not a mis-naming. 179 rows share that address as deliberate aliases of one ICF-folded 30-byte body. Declining to claim the name earlier was correct
+landsmall			measurement	yields nothing on files carrying present-unmatched markers -- zero candidates examined not zero landed. Its guards exclude them so that backlog needs a different route
