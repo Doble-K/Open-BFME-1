@@ -187,7 +187,6 @@ void LightEnvironmentClass::InputLightStruct::Init_From_Directional_Light
 }
 
 
-// ?Contribution@InputLightStruct@@ present-unmatched
 float LightEnvironmentClass::InputLightStruct::Contribution(void)
 {
 	return Diffuse.Length2();

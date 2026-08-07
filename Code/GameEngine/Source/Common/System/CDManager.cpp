@@ -140,7 +140,6 @@ AsciiString CDDrive::getDiskName( void )
 	return m_diskName;
 }
 
-// ?refreshInfo@CDDrive@@ present-unmatched
 void CDDrive::refreshInfo( void )
 {
 		// map disk names to disk ID
@@ -161,7 +160,6 @@ CD::Disk CDDrive::getDisk( void )
 // CDDrive::setPath
 //============================================================================
 
-// ?setPath@CDDrive@@ present-unmatched
 void CDDrive::setPath( const Char *path )
 {
 	m_drivePath = path;

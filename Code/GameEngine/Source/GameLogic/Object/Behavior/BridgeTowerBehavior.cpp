@@ -250,7 +250,6 @@ void BridgeTowerBehavior::onHealing( DamageInfo *damageInfo )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?onBodyDamageStateChange@BridgeTowerBehavior@@ present-unmatched
 void BridgeTowerBehavior::onBodyDamageStateChange( const DamageInfo* damageInfo, 
 																									 BodyDamageType oldState, 
 																									 BodyDamageType newState )

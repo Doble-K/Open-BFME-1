@@ -118,13 +118,11 @@ static void InitDbghelp(void)
 
 //////////////////////////////////////////////////////////////////////////////
 
-// ??0Signature@@ present-unmatched
 DebugStackwalk::Signature::Signature(const Signature &src)
 {
   *this=src;
 }
 
-// ??4Signature@@ present-unmatched
 DebugStackwalk::Signature& DebugStackwalk::Signature::operator=(const Signature& src)
 {
   if (&src!=this)
@@ -135,7 +133,6 @@ DebugStackwalk::Signature& DebugStackwalk::Signature::operator=(const Signature&
   return *this;
 }
 
-// ?GetAddress@Signature@@ present-unmatched
 unsigned DebugStackwalk::Signature::GetAddress(int n) const
 {
   DFAIL_IF_MSG(n<0||n>=MAX_ADDR,n << "/" << MAX_ADDR) return 0;

@@ -101,7 +101,6 @@ W3DParticleSystemManager::~W3DParticleSystemManager()
  * multiple times per frame.  We only want to render once.
  * @todo Clean up the flag/Flush hack.
  */
-// ?queueParticleRender@W3DParticleSystemManager@@ present-unmatched
 void W3DParticleSystemManager::queueParticleRender()
 {
 	m_readyToRender = true;

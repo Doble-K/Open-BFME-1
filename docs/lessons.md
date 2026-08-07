@@ -5130,3 +5130,36 @@ from asm elsewhere, which is correct bookkeeping rather than pending work. The
 count in the commit hook -- "9 unclaimed definition(s)" -- was inflated by two
 thirds. cfind, the masked-body search, settled it in one run by placing every
 compiled body at an address that was already claimed under its own name.
+
+
+## Not inventing a symbol to get a match
+
+SupplyTruckAIUpdateModuleData's constructor reads cleanly against the Generals
+reference: three counters zeroed at 0x64, 0x68 and 0x6c, and
+m_warehouseScanDistance holding 100.0f at 0x70 exactly as the reference
+initialises it. BFME then adds a bool at 0x74, 50.0f at 0x78, and two ones at
+0x7c and 0x80. All of that is solid.
+
+It stops at the member at 0x84. The reference says AudioEventRTS, but the call
+takes a global pointer and a zero, and the callee at 0x000B2CC0 carries only
+?b_000b2cc0 -- a synthetic gen-thunk name, not an identification. Converting
+would mean declaring a class and pinning a constructor signature I would be
+guessing at.
+
+A pin is an assertion about what a body is, and symbols.csv is consulted
+project-wide. The DebugIOOds row cost a real correction precisely because
+somebody wrote down a name that byte evidence did not support. A guessed
+signature that happens to compile to the right bytes is the same mistake with
+better luck, so this one is logged rather than forced.
+
+## Where masked-body search pays and where it does not
+
+cfind found nothing on hrawanim.cpp, debug_stack.cpp or camerashakesystem.cpp --
+every compiled symbol was either already claimed or ambiguous. On parameter.cpp
+the deleting stubs reported 2339 identical placements each. Under ICF a small
+body is not a fingerprint at all.
+
+It earns its keep on large distinctive bodies, which is how it settled
+debug_io_flat.cpp in a single run. The 9729 unresolved drafts across 453 files
+are concentrated in the big engine sources, and that is where to point it -- not
+at files whose small functions have already been worked.

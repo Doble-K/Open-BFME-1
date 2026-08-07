@@ -113,7 +113,6 @@ Player *PlayerList::findPlayerWithNameKey(NameKeyType key)
 }
 
 //-----------------------------------------------------------------------------
-// ?reset@PlayerList@@ present-unmatched
 void PlayerList::reset()
 {
 	TheTeamFactory->clear(); // cleans up energy, among other things

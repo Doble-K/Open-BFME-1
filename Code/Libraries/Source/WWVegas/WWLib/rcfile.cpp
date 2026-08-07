@@ -135,7 +135,6 @@ int ResourceFileClass::Size(void)
 	return EndOfFile - FileBytes;
 }
 
-// ?Error@ResourceFileClass@@ present-unmatched
 void ResourceFileClass::Error(int /*error*/, int /*canretry*/, char const * /*filename*/)
 {
 }

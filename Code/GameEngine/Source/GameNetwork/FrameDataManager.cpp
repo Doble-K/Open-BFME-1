@@ -262,7 +262,6 @@ void FrameDataManager::destroyGameMessages() {
 /**
  * Sets the quit frame, also sets the isQuitting flag.
  */
-// ?setQuitFrame@FrameDataManager@@ present-unmatched
 void FrameDataManager::setQuitFrame(UnsignedInt frame) {
 	m_isQuitting = TRUE;
 	m_quitFrame = frame;

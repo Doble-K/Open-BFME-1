@@ -31,7 +31,6 @@
 
 #include "GameNetwork/IPEnumeration.h"
 
-// ??0IPEnumeration@@ present-unmatched
 IPEnumeration::IPEnumeration( void )
 {
 	m_IPlist = NULL;

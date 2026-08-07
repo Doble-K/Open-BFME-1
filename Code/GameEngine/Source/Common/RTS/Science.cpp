@@ -141,7 +141,6 @@ __declspec(naked) ScienceType ScienceStore::getScienceFromInternalName(const Asc
 }
 
 //-----------------------------------------------------------------------------
-// ?getInternalNameForScience@ScienceStore@@ present-unmatched
 __declspec(naked) AsciiString ScienceStore::getInternalNameForScience(ScienceType science) const
 {
 	__asm {
@@ -364,7 +363,6 @@ public:
 };
 extern RecorderClass* TheRecorder;
 
-// ?getSciencePurchaseCost@ScienceStore@@ present-unmatched
 Int ScienceStore::getSciencePurchaseCost(ScienceType st) const
 {
 	const ScienceInfo* si = findScienceInfo(st);
@@ -482,7 +480,6 @@ ScienceType ScienceStore::friend_lookupScience(const char *scienceName) const
 }
 
 //-----------------------------------------------------------------------------
-// ?isValidScience@ScienceStore@@ present-unmatched
 Bool ScienceStore::isValidScience(ScienceType st) const
 {
 	const ScienceInfo* si = findScienceInfo(st);

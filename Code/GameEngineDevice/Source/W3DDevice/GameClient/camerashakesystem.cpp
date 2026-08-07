@@ -135,13 +135,11 @@ CameraShakeSystemClass::CameraShakerClass::CameraShakerClass
 	Phi.Z = WWMath::Random_Float(MIN_PHI,MAX_PHI);
 }
 
-// ??1CameraShakerClass@@ present-unmatched
 CameraShakeSystemClass::CameraShakerClass::~CameraShakerClass(void)
 {
 }
 
 
-// ?Compute_Rotations@CameraShakerClass@@ present-unmatched
 void CameraShakeSystemClass::CameraShakerClass::Compute_Rotations(const Vector3 & camera_position, Vector3 * set_angles)
 {
 	WWASSERT(set_angles != NULL);
