@@ -3840,3 +3840,45 @@ already spends elsewhere and left two rows fighting over it. The tool checked
 whether the address was claimed and not whether the name was, which are different
 checks: ICF folding and duplicate emission mean a name and an address are many to
 many here. It now checks both, and the listing went from four to two.
+
+
+## The store at the top of a destructor does not always name it
+
+Both anchor conflicts from last tick came from one wrong inference, and the
+inference is nearly right. A destructor sets the vptr to its own class's table
+before running its body, so a store in the first few bytes of ??1X is X's table.
+That held for every case until it did not.
+
+When X's destructor is trivial and calls nothing virtual, the store is dead --
+nothing can observe the vptr between setting it and the object ceasing to exist --
+and MSVC drops it. What remains in the body is the inlined base destructor's
+store, which is now first by default and reads exactly like X's own.
+??1Win32LocalFileSystem is that case: its only vptr store is 0x01143B78 at +2,
+and 0x01143B78 is LocalFileSystem's. ??1DefaultStaticSortListClass is the milder
+version, where the base store sits at +0x43 with nothing above it.
+
+So the accusation I recorded last tick was wrong in both directions. The existing
+ledger anchors are correct -- Win32LocalFileSystem's table is 0x01143B98,
+installed at 0x009CDE14, and its deleting stub is slot 0 of that -- and the
+candidates were never those classes' destructors. They are their BASES', which is
+a better outcome than the conflict I thought I had: two new functions rather than
+two disputed rows.
+
+The confirming witness costs nothing once you look for it. Slots 1 through 7 of
+0x01143B78 are all the same address, the shared __purecall handler. Seven pure
+virtuals and a virtual destructor is an abstract base, and LocalFileSystem
+declares exactly that.
+
+## A name can be spent even when the function is unclaimed
+
+StaticSortListClass went in on the first build. LocalFileSystem did not, and not
+for any reason to do with its bytes: ??_GLocalFileSystem is already in the ledger
+at 0x005BF290, recorded as a C++ alias for a CategoryModuleTemplate body that
+folded with it. The ledger enforces one name to one address, so the name is gone
+even though 0x009CDDF0 is unclaimed and, by position and by the pure-virtual
+slots, is the function that deserves it.
+
+Freeing it means repointing a row that fx_particle_system.cpp currently verifies,
+which is a different job from writing a destructor. Left alone and logged. The
+useful part is that "is this function claimed" and "is this name available" are
+two questions, and under ICF the second is the one that stops you.

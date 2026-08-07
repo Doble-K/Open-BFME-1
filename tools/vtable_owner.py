@@ -121,23 +121,35 @@ def main():
         cls = names.pop()
         if not is_deleting_dtor(slot0):
             continue
-        # The name may already be claimed somewhere else. Both 31-byte
-        # candidates this first produced were like that:
-        # ??_GWin32LocalFileSystem is held at 0x009CDE30 as slot 0 of
-        # 0x01143B98, while the table here is 0x01143B78 twenty bytes below it.
-        # One of the two anchors is wrong and finding out which is a ledger
-        # question, not a conversion -- offering it as work to write invites
-        # claiming a name the image already spends elsewhere.
+        # If that class already owns a deleting destructor elsewhere, this
+        # table is not its own -- it belongs to a base.
+        #
+        # The installer is still real evidence, just about the wrong class. A
+        # destructor stores its own vptr first, so a store at the top of ??1X
+        # reads as X's table; but when X's destructor is trivial and calls
+        # nothing virtual MSVC drops that store as redundant, and the inlined
+        # base destructor's store is the only one left. It is then first by
+        # default and names the base. ??1Win32LocalFileSystem is exactly that,
+        # and ??1DefaultStaticSortListClass is the milder version where the base
+        # store survives at +0x43 with nothing above it.
+        #
+        # Mangling cannot supply the base's name, so these are reported for the
+        # reference headers to answer rather than named here. Both of the first
+        # two were real: LocalFileSystem and StaticSortListClass.
+        base_of = None
         if "??_G%s@@UAEPAXI@Z" % cls in taken:
-            continue
-        findings.append((len(body(slot0, 4000)), slot0, slot_va, cls, claimed))
+            base_of = cls
+            cls = None
+        findings.append((len(body(slot0, 4000)), slot0, slot_va, cls, claimed, base_of))
 
     findings.sort()
     print("%d table(s) named by their installer with an unclaimed deleting destructor\n"
           % len(findings))
-    for size, slot0, slot_va, cls, claimed in findings[:args.limit]:
-        print("0x%08X ~%-4dB  vtable 0x%08X  ??_G%s@@UAEPAXI@Z%s"
-              % (slot0, size, slot_va, cls, "   [claimed: %s]" % claimed if claimed else ""))
+    for size, slot0, slot_va, cls, claimed, base_of in findings[:args.limit]:
+        who = ("??_G%s@@UAEPAXI@Z" % cls if cls
+               else "??_G<base of %s>@@UAEPAXI@Z" % base_of)
+        print("0x%08X ~%-4dB  vtable 0x%08X  %s%s"
+              % (slot0, size, slot_va, who, "   [claimed: %s]" % claimed if claimed else ""))
     if len(findings) > args.limit:
         print("\n... %d more (--limit)" % (len(findings) - args.limit))
 
