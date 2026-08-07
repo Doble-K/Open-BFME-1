@@ -5604,3 +5604,34 @@ would have shown up as an obvious next step from the others, and each was
 readable from the bytes: the mangled erase name demanded the real container, the
 surviving arithmetic demanded the explicit spelling, and the copy loop demanded
 the non-POD element.
+
+
+## A constructor's exception frame comes from members, not from the class
+
+SegLineRendererClass's copy constructor has an SEH frame and one unwind state.
+Declaring a destructor on the class itself does not produce one, which is right --
+destroying a complete object is the caller's job. Declaring a destructor on a
+member does, immediately, because now the constructor owns cleanup for what it
+has already built if the body throws.
+
+So the presence of a frame in a constructor is a statement about the members, and
+the number of states counts the destructible ones. One state here means exactly
+one member has a destructor.
+
+## Where the frame-slot store sits says which member it is
+
+With the destructor on the member at offset 4, everything matched except one
+instruction's position: retail writes this into the frame slot immediately after
+zeroing the register, before the first member store, while the compile writes it
+two instructions later, after the member at offset 4 is loaded.
+
+That store is the registration, and it is emitted before the first destructible
+sub-object is constructed. Retail registers before the store to offset 0, which
+puts the destructor on the member at offset 0 -- the texture pointer, held by
+something with a destructor rather than being a raw pointer. The reference's
+operator= uses REF_PTR_SET on it and the destructor uses REF_PTR_RELEASE, which
+fits.
+
+The general point is that the registration's position is evidence, not noise. It
+localises which sub-object owns the cleanup, the same way the state count says
+how many there are.
