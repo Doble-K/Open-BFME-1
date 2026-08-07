@@ -5096,3 +5096,37 @@ and it does not depend on getting the vptr or literal addresses right beforehand
 its destructor. Both rows verify. The stub is most likely another DebugIO class
 wearing the name from the same harvest, but the byte gate has no way to notice
 the disagreement, so it is logged rather than resolved.
+
+
+## A check that had never fired once
+
+find_declared_unmatched has always flagged a present-unmatched marker whose
+function is matched from that same file -- the annotation is stale and the marker
+lies about the state of the work. It compared the marker's label against ledger
+names exactly, and across the whole tree it had reported zero.
+
+Zero was wrong. There are 79 stale markers in 36 files, and every single one is
+invisible to the exact test because the labels are abbreviated: the marker says
+`??0OutputStream@@` where the ledger says
+`??0OutputStream@DebugIOFlat@@AAE@PBDI@Z`. Not one marker in the tree uses the
+full name, so the equality test never had a chance to match anything.
+
+A check that has never fired is not evidence of a clean tree. It is equally
+consistent with a check that cannot fire, and telling those apart costs one
+query -- count what it would have caught under a looser rule.
+
+The fix resolves the label by prefix, but only when the answer is unambiguous:
+one marker carrying the label, and one matched row it could mean. Overloads
+share an abbreviated label -- ?isPlayer@GameSlot@@ appears three times in
+GameInfo.cpp -- and claiming one of them says nothing about the other two, so a
+count mismatch is not evidence about any individual marker. GameInfo.cpp is
+correctly silent under the new rule.
+
+## What the markers were hiding
+
+In debug_io_flat.cpp six of the nine markers were stale, and the file's real
+state was three: one genuinely unmatched destructor, and two functions matched
+from asm elsewhere, which is correct bookkeeping rather than pending work. The
+count in the commit hook -- "9 unclaimed definition(s)" -- was inflated by two
+thirds. cfind, the masked-body search, settled it in one run by placing every
+compiled body at an address that was already claimed under its own name.

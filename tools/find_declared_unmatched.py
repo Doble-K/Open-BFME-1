@@ -198,10 +198,31 @@ def main():
                 f"function before committing this file, or whitelist it with a reason "
                 f"(reverse/unclaimed_sources_whitelist.txt)"
             )
+        own_names = {n for n, srcs in matched_sources.items()
+                     if rel_path.as_posix() in srcs}
+        label_counts = {}
+        for label, _m in marker_labels:
+            label_counts[label] = label_counts.get(label, 0) + 1
         for label, marker in marker_labels:
             # matched from ANOTHER file is correct bookkeeping (asm-whale scaffolds
             # claim symbols the verbatim ZH copy also defines); matched from THIS
             # file means the marker is stale
+            if rel_path.as_posix() not in matched_sources.get(label, ()):
+                # An abbreviated label -- `??0OutputStream@@` standing in for
+                # `??0OutputStream@DebugIOFlat@@AAE@PBDI@Z` -- never equals a
+                # ledger name, so the exact test above cannot fire. Every stale
+                # marker in this tree is of that form, which is exactly why this
+                # check had never reported one. Resolve by prefix instead, but
+                # only when the answer is unambiguous: one marker carrying the
+                # label, and one matched row it could mean. Overloads share an
+                # abbreviated label -- ?isPlayer@GameSlot@@ appears three times
+                # in GameInfo.cpp -- and claiming one says nothing about the
+                # others, so a count mismatch is not evidence about any of them.
+                key = label[:-2] if label.endswith("@@") else label
+                cand = [n for n in own_names if n.startswith(key + "@")]
+                if len(cand) != 1 or label_counts[label] != 1:
+                    continue
+                label = cand[0]
             if rel_path.as_posix() in matched_sources.get(label, ()):
                 violations.append(
                     f"{rel_path}: {label} is matched in functions.csv from this file but "

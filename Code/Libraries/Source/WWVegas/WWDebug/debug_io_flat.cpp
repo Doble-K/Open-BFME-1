@@ -33,7 +33,6 @@
 #include <stdlib.h>
 #include <new>      // needed for placement new prototype
 
-// ??0OutputStream@@ present-unmatched
 DebugIOFlat::OutputStream::OutputStream(const char *filename, unsigned maxSize):
   m_bufferUsed(0), m_nextChar(0)
 {
@@ -55,13 +54,11 @@ DebugIOFlat::OutputStream::~OutputStream()
 {
 }
 
-// ?Create@OutputStream@@ present-unmatched
 DebugIOFlat::OutputStream *DebugIOFlat::OutputStream::Create(const char *filename, unsigned maxSize)
 {
   return new (DebugAllocMemory(sizeof(OutputStream))) OutputStream(filename,maxSize);
 }
 
-// ?Delete@OutputStream@@ present-unmatched
 void DebugIOFlat::OutputStream::Delete(const char *path)
 {
   Flush();
@@ -115,7 +112,6 @@ void DebugIOFlat::OutputStream::Delete(const char *path)
   DebugFreeMemory(this);
 }
 
-// ?Write@OutputStream@@ present-unmatched
 void DebugIOFlat::OutputStream::Write(const char *src)
 {
   if (!src)
@@ -138,7 +134,6 @@ void DebugIOFlat::OutputStream::Write(const char *src)
   }
 }
 
-// ?InternalWrite@OutputStream@@ present-unmatched
 void DebugIOFlat::OutputStream::InternalWrite(const char *src, unsigned len)
 {
   __ASSERT(len<=m_bufferSize);
@@ -173,7 +168,6 @@ void DebugIOFlat::OutputStream::InternalWrite(const char *src, unsigned len)
   }
 }
 
-// ?Flush@OutputStream@@ present-unmatched
 void DebugIOFlat::OutputStream::Flush(void)
 {
   if (!m_limitedFileSize)
