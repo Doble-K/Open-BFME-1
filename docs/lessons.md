@@ -3418,3 +3418,30 @@ ret`, ICF folds them onto one address, and which copy "belongs" to a given name 
 question the image answers. Those rows are recorded as suspect and left alone. The
 useful line is between a distinctive body claimed at a dead duplicate, which is a real
 anchoring error worth fixing, and a generic stub, which is not an error at all.
+
+
+## A returned constant can name the class, but only with a second witness
+
+HLodClass::Class_ID is six bytes returning 0x19. Counting rendobj.h's ClassID enum from
+CLASSID_MESH = 0 puts CLASSID_HLOD at 25, which is 0x19 -- so the constant identifies the
+class outright, without reference to which slot the body sits in. That is a stronger kind
+of evidence than position, because it survives the ICF folding that makes vtable slot
+names unreliable.
+
+It is also easy to over-apply, and the scan showed exactly how. Forty unclaimed bodies of
+the form `mov eax,N; ret` sit in vtables with an N that lands inside that enum. Five of
+them return 1. If all five were HModelClass::Class_ID they would have folded to one
+address, so at most one is -- the rest are simply functions returning a small integer,
+and the enum match is coincidence.
+
+So the rule is two witnesses. CameraClass::Class_ID qualifies: the slots below it are
+??_GCameraClass and Clone@CameraClass, rendobj.h declares destructor, Clone, Class_ID in
+that order, and the value 8 is CLASSID_CAMERA. Both converted first build. The AABOX and
+OBBOX candidates have only anonymous Gen_dtor neighbours, so the value stands alone and
+they were left.
+
+Worth noting what makes this pairing work: the two witnesses fail independently.
+Position is corrupted by folding and by BFME's additions to the declaration lists; a
+returned constant is corrupted by coincidence. Neither weakness touches the other, which
+is why agreement between them is worth much more than either being individually
+convincing.
