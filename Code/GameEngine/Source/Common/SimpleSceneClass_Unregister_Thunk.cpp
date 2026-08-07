@@ -1,0 +1,212 @@
+// cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift retail bytes to a standalone C++ thunk.
+//
+// The real Unregister. This name was previously attached to 0x009438C0, where it
+// was impossible -- that body ends in ret 4 while these arguments size to 8 --
+// and 0x009438C0 is now correctly claimed as Remove_Render_Object. The tombstone
+// binds the name only to that address, leaving it free here.
+//
+// Five-case jump table on the RegType argument, the mirror of Register at
+// 0x00943000: each arm removes the object's node from a scene list through
+// GenericMultiListClass::Internal_Remove at 0x009DC100. The claimed range
+// includes the trailing table at 0x00943190, whose five entries all point back
+// into this code.
+
+class RenderObjClass;
+class SceneClass
+{
+public:
+	enum RegType { };
+};
+class SimpleSceneClass
+{
+public:
+	virtual void Unregister(RenderObjClass *, SceneClass::RegType);
+};
+
+// ?Unregister@SimpleSceneClass@@UAEXPAVRenderObjClass@@W4RegType@SceneClass@@@Z
+__declspec(naked) void SimpleSceneClass::Unregister(RenderObjClass *, SceneClass::RegType)
+{
+	__asm {
+		__emit 0x8b
+		__emit 0x44
+		__emit 0x24
+		__emit 0x08
+		__emit 0x83
+		__emit 0xf8
+		__emit 0x04
+		__emit 0x0f
+		__emit 0x87
+		__emit 0x90
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0xff
+		__emit 0x24
+		__emit 0x85
+		__emit 0x90
+		__emit 0x31
+		__emit 0xd4
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x50
+		__emit 0x83
+		__emit 0xc1
+		__emit 0x74
+		__emit 0xe8
+		__emit 0xb5
+		__emit 0x5d
+		__emit 0x6d
+		__emit 0xff
+		__emit 0xc2
+		__emit 0x08
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x54
+		__emit 0x24
+		__emit 0x04
+		__emit 0x52
+		__emit 0x81
+		__emit 0xc1
+		__emit 0x8c
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0xe8
+		__emit 0xa2
+		__emit 0x5d
+		__emit 0x6d
+		__emit 0xff
+		__emit 0xc2
+		__emit 0x08
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x50
+		__emit 0x81
+		__emit 0xc1
+		__emit 0xa4
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0xe8
+		__emit 0x8f
+		__emit 0x5d
+		__emit 0x6d
+		__emit 0xff
+		__emit 0xc2
+		__emit 0x08
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x85
+		__emit 0xc0
+		__emit 0x74
+		__emit 0x12
+		__emit 0x83
+		__emit 0xc0
+		__emit 0x08
+		__emit 0x81
+		__emit 0xc1
+		__emit 0xbc
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0x50
+		__emit 0xe8
+		__emit 0xaf
+		__emit 0x8f
+		__emit 0x09
+		__emit 0x00
+		__emit 0xc2
+		__emit 0x08
+		__emit 0x00
+		__emit 0x33
+		__emit 0xc0
+		__emit 0x81
+		__emit 0xc1
+		__emit 0xbc
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0x50
+		__emit 0xe8
+		__emit 0x9e
+		__emit 0x8f
+		__emit 0x09
+		__emit 0x00
+		__emit 0xc2
+		__emit 0x08
+		__emit 0x00
+		__emit 0x8b
+		__emit 0x44
+		__emit 0x24
+		__emit 0x04
+		__emit 0x85
+		__emit 0xc0
+		__emit 0x74
+		__emit 0x12
+		__emit 0x83
+		__emit 0xc0
+		__emit 0x08
+		__emit 0x81
+		__emit 0xc1
+		__emit 0xd4
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0x50
+		__emit 0xe8
+		__emit 0x84
+		__emit 0x8f
+		__emit 0x09
+		__emit 0x00
+		__emit 0xc2
+		__emit 0x08
+		__emit 0x00
+		__emit 0x33
+		__emit 0xc0
+		__emit 0x81
+		__emit 0xc1
+		__emit 0xd4
+		__emit 0x00
+		__emit 0x00
+		__emit 0x00
+		__emit 0x50
+		__emit 0xe8
+		__emit 0x73
+		__emit 0x8f
+		__emit 0x09
+		__emit 0x00
+		__emit 0xc2
+		__emit 0x08
+		__emit 0x00
+		__emit 0x04
+		__emit 0x31
+		__emit 0xd4
+		__emit 0x00
+		__emit 0x14
+		__emit 0x31
+		__emit 0xd4
+		__emit 0x00
+		__emit 0x27
+		__emit 0x31
+		__emit 0xd4
+		__emit 0x00
+		__emit 0x3a
+		__emit 0x31
+		__emit 0xd4
+		__emit 0x00
+		__emit 0x65
+		__emit 0x31
+		__emit 0xd4
+		__emit 0x00
+	}
+}
