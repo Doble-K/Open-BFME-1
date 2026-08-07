@@ -68427,3 +68427,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?Draw_Strip@DX8Wrapper@@SAXGGGG@Z,0x00906E40,
 ?Draw_Triangles@DX8Wrapper@@SAXGGGG@Z,0x00906DF0,
 ??1?$vector@VBFMERetailAsciiString@@V?$allocator@VBFMERetailAsciiString@@@_STL@@@_STL@@QAE@XZ,0x000658A0,vector<AsciiString> dtor; the address is claimed as ??1PlayerUpgradeSpecialPowerModuleData which ICF folded onto it
+??_7DebugIOFlat@@6B@,0x0113517C,vptr stored at entry of ??1DebugIOFlat 0x00890780
+??_7DebugIOInterface@@6B@,0x01135044,base vptr restored at exit of ??1DebugIOFlat 0x00890780

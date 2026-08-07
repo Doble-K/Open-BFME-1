@@ -5061,3 +5061,38 @@ The check is one byte and it would have dropped the row before it cost a
 disassembly. It is now part of the screen, alongside the convention audit. Worth
 noting that the naked dump still matches byte for byte, so nothing in the normal
 gate could ever have flagged this.
+
+
+## A name pinned to six addresses is a candidate set, not an identification
+
+symbols.csv pins ??1DebugIOFlat to six addresses, all tagged "pinharvest x1
+(body)". It pins ??1DebugIOOds to the same six. The harvest never separated the
+DebugIO destructors from each other, so any row built by taking one of them is a
+coin flip, and ??1DebugIOOds at 0x00890780 was exactly that -- backed by nothing
+but a naked __emit dump, which carries no evidence about which class it is.
+
+The bytes there free a split list, null m_firstSplit, then walk a stream list
+calling OutputStream::Delete with m_copyDir at +0x114. That is DebugIOFlat's
+layout and nothing else's, and the draft for it was already sitting in
+debug_io_flat.cpp behind a present-unmatched marker.
+
+## Compile the draft to get a fingerprint to search with
+
+The route in was a wrong address. dtor_pairs' mirror pass follows the first call
+in a claimed deleting stub, which pointed at 0x00889620, and the draft compiled
+to something completely different. That failure was the useful part: it produced
+142 bytes of real codegen, and the frame setup -- push ecx, push ebx, mov ebx ecx,
+push esi, push edi, mov [ebp-0x10] ebx -- is a fingerprint that survives every
+DIR32 difference. Matching that prefix against all six candidates hit 0x00890780
+exactly, and the claim then verified 15/15 first try.
+
+So when a name has an ambiguous pin set and a draft exists, compile the draft
+first and let its prefix pick the address. It is cheaper than reading six bodies
+and it does not depend on getting the vptr or literal addresses right beforehand.
+
+## What the gate still cannot see
+
+??_GDebugIOFlat at 0x0088A680 calls 0x00889620, not the address now claimed as
+its destructor. Both rows verify. The stub is most likely another DebugIO class
+wearing the name from the same harvest, but the byte gate has no way to notice
+the disagreement, so it is logged rather than resolved.

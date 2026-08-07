@@ -296,7 +296,6 @@ DebugIOFlat::DebugIOFlat(void):
   *m_copyDir=0;
 }
 
-// ??1DebugIOFlat@@UAE@XZ present-unmatched
 DebugIOFlat::~DebugIOFlat()
 {
   for (SplitListEntry *cur=m_firstSplit;cur;)
