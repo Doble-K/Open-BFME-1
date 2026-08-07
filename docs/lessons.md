@@ -4816,3 +4816,32 @@ must emit is not the name of the function that is there.
 So candidate screens should subtract the audit's flagged set before ranking
 anything. That is cheaper than discovering it one disassembly at a time, which is
 what I did twice today.
+
+
+## Screening against the audit, as promised
+
+Last tick ended with two of three picks turning out to be rows whose calling
+convention contradicts their own name -- functions no source can match, because
+the name they must emit is not the name of the code that is there. The fix was to
+subtract audit_ret_arity's flagged set from the candidate pool before ranking.
+
+Done properly this tick, with the audit run at --limit 1000 so the list is
+complete, it left 26 candidates out of the naked pool. The first pick converted,
+and its sibling followed from the same source with the class name changed.
+
+## The thunk already knows the base
+
+The first build of the factory was byte-identical except one relocation: the base
+constructor I had invented, ??0Module, resolves to nothing. Rather than pin a
+name I made up, the answer was to look at what is already pinned at the
+incremental-link thunk the call goes through. Eight module constructors share
+0x00002874, and ClientUpdateModule is among them -- the right base for a client
+behavior, and a name the ledger already carries.
+
+Naming the base after one of those made the call resolve and the function match.
+Inventing ??0Module and pinning it would also have "worked", and would have put a
+fabricated symbol in symbols.csv forever.
+
+The sibling then cost nothing. Its vtable addresses differ, but those are DIR32
+relocations copied from the target, so the same source with one identifier
+changed reproduces a different function exactly.
