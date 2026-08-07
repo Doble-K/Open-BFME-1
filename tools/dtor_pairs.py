@@ -133,6 +133,44 @@ def main():
     if len(findings) > args.limit:
         print("\n... %d more (--limit)" % (len(findings) - args.limit))
 
+    # The other direction, which is where the yield actually is. A claimed stub
+    # gives its destructor's address away for free, because it calls it. That
+    # address is recorded nowhere else: an unmatched function has no ledger row,
+    # and the source marker naming it carries no address, so the draft sitting in
+    # the file has nothing to be compared against.
+    STUB = re.compile(r"^\?\?_G(\w[\w@$?]*?)@@UAEPAXI@Z$")
+    mirror = []
+    for rva, size, nm in rows:
+        m = STUB.match(nm)
+        if not m or nm not in src:
+            continue
+        cls = m.group(1)
+        if cls.startswith(("Gen_", "j_", "b_")):
+            continue
+        if "??1%s@@UAE@XZ" % cls in taken:
+            continue
+        b = body(rva, size)
+        for c in re.finditer(rb"\xe8", b):
+            p = c.start()
+            if p + 5 > len(b):
+                break
+            t = (rva + p + 5 + struct.unpack_from("<i", b, p + 1)[0]) & 0xFFFFFFFF
+            o = off_of_text(t)
+            # A stub whose destructor was trivial enough to inline calls only
+            # operator delete, and an ILT jump is the route to a destructor
+            # rather than the destructor itself. Neither is an address to claim.
+            if o is None or claimed_at(t) or data[o] == 0xE9:
+                continue
+            mirror.append((len(body(t, 4000)), t, "??1%s@@UAE@XZ" % cls, src[nm]))
+            break
+
+    mirror.sort()
+    print("\n%d destructor(s) whose address is recoverable from a claimed stub\n"
+          % len(mirror))
+    for size, rva, name, source in mirror[:args.limit]:
+        print("0x%08X %3dB  %s" % (rva, size, name))
+        print("            %s" % source)
+
 
 if __name__ == "__main__":
     sys.exit(main())

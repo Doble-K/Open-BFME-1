@@ -3918,3 +3918,25 @@ and a body are many to many, and these rows are exactly where the two come apart
 so anything reasoning from ledger names has to drop them first. add_match caught
 it regardless: it appended, rebuilt, failed to find the symbol, and reverted
 without touching anything.
+
+
+## A silent no-op shipped a tool that did not match its message
+
+The reverse pass described in the previous commit was not in it. The patch that
+added it did a string replacement whose search text contained a backslash-n
+inside an ordinary Python string, so it became a real newline and never matched
+the literal two characters in the file. str.replace does not complain when it
+replaces nothing, so the tool was written, run, committed and pushed still doing
+only the forward pass -- and the forward pass returns zero, which looks exactly
+like a tool that ran fine.
+
+The output was there to be read: the mirror section prints unconditionally, so
+its absence from the run was the whole answer. It went unnoticed because the run
+was piped through tail alongside a commit in one command, and a zero-result tool
+and a tool missing half its body print the same thing.
+
+Two habits would each have caught it. Use the editor for edits to files already
+in context rather than a replace script, since it fails loudly on a missed match.
+And do not put a verification run in the same command as the commit that depends
+on it -- when the check and the irreversible step share a command, the check
+cannot gate anything.

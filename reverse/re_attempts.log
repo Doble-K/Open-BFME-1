@@ -998,3 +998,4 @@ dtor_pairs			tool	pairs ??1 with ??_G in both directions. Forward yield is zero 
 ??1DebugIOFlat@@UAE@XZ	0x00889620	66	present-unmatched	debug_io_flat.cpp already defines it; add_match reverted on a byte mismatch not a missing row
 ??1DX8FVFCategoryContainer@@UAE@XZ	0x00946B20	219	present-unmatched	same in dx8renderer.cpp
 backlog			measurement	9842 present-unmatched markers across Code. Every functions.csv row is matched so these carry no ledger row and no address; the marker is the only record and build.py does not check them
+dtor_pairs			fix	the previous commit shipped only the forward pass. The reverse direction it described was written into a patch whose old_string contained an escaped newline that became a real one so the replacement silently no-opped and the tool went out not doing what its message said
