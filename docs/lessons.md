@@ -5197,3 +5197,33 @@ file where 678 compiled bodies do not appear in retail at all, which is a much
 stronger statement about how far this source has drifted from the shipped one.
 The same shape as the staleness check that had never fired: absence of output
 and absence of findings are different claims, and only one of them was earned.
+
+
+## A minimal reproduction of the by-value temporary transposition
+
+AITunnelNetworkGuardState's constructor came within one transposition of exact.
+51 of 53 bytes agree -- the string literal, the base call, the vptr store, the
+member zero, the epilogue. The two that do not are adjacent and swapped: retail
+runs `mov [esp+8],esp` then `mov ecx,esp`, the compile emits them the other way
+round.
+
+This is the same by-value temporary ordering that has blocked UnicodeString
+arguments elsewhere, and it now has a 53-byte reproduction with nothing else
+wrong, which is worth more than the conversion would have been.
+
+Two things were settled on the way. The argument type is named AsciiString, not
+the BFMERetailAsciiString stand-in used elsewhere in the tree -- the pinned
+??0State@@QAE@PAVStateMachine@@VAsciiString@@@Z spells the parameter
+VAsciiString@@, and the stand-in would encode VBFMERetailAsciiString@@ and miss
+the call. And the temporary is owned by the callee: there is no unwind frame and
+no destructor call on the way out. Dropping /EHsc, on the theory that the absent
+EH frame meant the file should not opt into it, changed nothing at all.
+
+## The ledger note is not the code
+
+The AI state constructors carry notes reading "Open-BFME5 exact C++ isolated raw
+AI state constructor". AIAttackAreaState is 54 bytes to this one's 53 and reads
+as a sibling worth copying. It is a naked _emit dump. So are the rest of them.
+
+The note describes an intention, not the file, and reading it as a description of
+the source cost a detour. Open the file.
