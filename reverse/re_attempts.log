@@ -1031,3 +1031,8 @@ ModuleData-dtor-family			census	40 naked destructors. 15 have no lea-based membe
 __declspec(dllimport)			lever	an API function declared plain emits a direct e8 call; declared dllimport it emits call dword ptr [IAT] which is what retail has for InterlockedDecrement
 delete-this-inlined			lever	a null check that survives a dominating null test on the same pointer means the delete is inside an inlined member function. delete this in Release_Ref keeps the check because the callee's this is a different value to what the caller tested; writing both halves in one function removes it and no amount of restructuring puts it back
 callee-callers			measurement	13 of the 40 naked ModuleData destructors have every direct callee already named. Three of them -- GettingBuiltBehavior HordeUpdate W3DLaserDraw -- are 198 bytes with an identical shape so one solution should cover all three
+??1HordeUpdateModuleData@@UAE@XZ	0x001FE260	198	converted	one build using the OneRingPenalty template
+??1GettingBuiltBehaviorModuleData@@UAE@XZ	0x001FE260	198	converted	same body -- ICF folds all three names onto one address
+??1W3DLaserDrawModuleData@@UAE@XZ	0x001FE260	198	converted	same body
+icf-shared-bodies			note	the three names share address 0x001FE260 so the classes have byte-identical destructors. Each still needs its own source emitting its own symbol but the C++ differs only in the class name
+iat-hoisting			lever	one dllimport call site emits call dword ptr [__imp__...]; three or more make the compiler load the table entry into a callee-saved register once and call through it. Not a source difference -- it falls out of the number of uses

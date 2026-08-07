@@ -1,213 +1,83 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) W3DLaserDrawModuleData
+// Five members destroyed in reverse declaration order -- the strings at +0x18
+// and +0x14, then the three references at +0x10, +0x0C and +0x08 -- with the
+// unwind state counting down 4 to 0, which is a single class's member list. The
+// class installs its own vptr at entry so it is not novtable, and the store of
+// 0x01073744 at the end is Snapshot's, from the base destructor inlined last.
+//
+// The reference release is `delete this` inside Release_Ref. That is what keeps
+// the second null test in each of the three copies: the caller has already
+// tested the pointer, but once Release_Ref is inlined its `this` is a value the
+// optimiser does not connect to what the caller tested, so the delete keeps its
+// own check.
+//
+// InterlockedDecrement is dllimport, so the call goes through the import table.
+// With three uses the compiler loads the table entry into ebx once rather than
+// spelling out call dword ptr [...] at each site.
+extern "C" __declspec(dllimport) long __stdcall InterlockedDecrement(long volatile *lpAddend);
+
+class BFMERetailAsciiString
+{
+public:
+	~BFMERetailAsciiString() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+
+	char *m_data;
+};
+
+class RefCountedThing
+{
+public:
+	virtual ~RefCountedThing();
+
+	void Release_Ref(void)
+	{
+		if (InterlockedDecrement(&m_refCount) <= 0) {
+			delete this;
+		}
+	}
+
+	long m_refCount;
+};
+
+class ThingRef
+{
+public:
+	~ThingRef()
+	{
+		if (m_ptr) {
+			m_ptr->Release_Ref();
+		}
+	}
+
+private:
+	RefCountedThing *m_ptr;
+};
+
+class Snapshot
+{
+public:
+	virtual ~Snapshot() {}
+};
+
+class W3DLaserDrawModuleData : public Snapshot
 {
 public:
 	virtual ~W3DLaserDrawModuleData();
+
+private:
+	unsigned char m_gap0[0x04];
+	ThingRef m_ref0;
+	ThingRef m_ref1;
+	ThingRef m_ref2;
+	BFMERetailAsciiString m_name0;
+	BFMERetailAsciiString m_name1;
 };
 
 // ??1W3DLaserDrawModuleData@@UAE@XZ
-__declspec(naked) W3DLaserDrawModuleData::~W3DLaserDrawModuleData()
+W3DLaserDrawModuleData::~W3DLaserDrawModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x74
-		__emit 0xb6
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x53
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x57
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xc7
-		__emit 0x06
-		__emit 0xe0
-		__emit 0x42
-		__emit 0x0a
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x18
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xab
-		__emit 0x96
-		__emit 0x68
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x14
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x03
-		__emit 0xe8
-		__emit 0x9e
-		__emit 0x96
-		__emit 0x68
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x10
-		__emit 0x85
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x1d
-		__emit 0x54
-		__emit 0x8e
-		__emit 0x35
-		__emit 0x01
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x02
-		__emit 0x74
-		__emit 0x16
-		__emit 0x8d
-		__emit 0x47
-		__emit 0x04
-		__emit 0x50
-		__emit 0xff
-		__emit 0xd3
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7f
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xff
-		__emit 0x74
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x17
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x12
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xff
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x01
-		__emit 0x74
-		__emit 0x16
-		__emit 0x8d
-		__emit 0x47
-		__emit 0x04
-		__emit 0x50
-		__emit 0xff
-		__emit 0xd3
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7f
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xff
-		__emit 0x74
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x17
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x12
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x08
-		__emit 0x85
-		__emit 0xff
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x00
-		__emit 0x74
-		__emit 0x16
-		__emit 0x8d
-		__emit 0x47
-		__emit 0x04
-		__emit 0x50
-		__emit 0xff
-		__emit 0xd3
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7f
-		__emit 0x0c
-		__emit 0x85
-		__emit 0xff
-		__emit 0x74
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x17
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x12
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x5f
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }

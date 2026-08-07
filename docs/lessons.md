@@ -4188,3 +4188,38 @@ Plain, it compiles to a direct e8 to a local thunk; dllimport compiles to
 call dword ptr [__imp__...], and retail has the indirect form. That is a
 one-line source fact recoverable from the opcode, and worth checking first
 whenever a call to an OS API does not line up.
+
+
+## Three files, one body, one template
+
+GettingBuiltBehaviorModuleData, HordeUpdateModuleData and W3DLaserDrawModuleData
+all claim 0x001FE260. ICF folded them because their destructors are byte
+identical, which means the three classes have the same member layout as far as
+destruction is concerned: three references at +0x08, +0x0C and +0x10 and two
+strings at +0x14 and +0x18. Each file still has to emit its own symbol, so the
+source differs only in the class name.
+
+They went in on the first build because the previous conversion had already paid
+for the hard part -- delete this inside Release_Ref, and dllimport on
+InterlockedDecrement. That is the argument for censusing a family before working
+it: the second, third and fourth members of a shape cost almost nothing once the
+first is understood, and the census is what tells you a shape has siblings.
+
+One thing fell out rather than being written. With a single dllimport call site
+the compiler emits call dword ptr [__imp__...]; with three it loads the import
+table entry into ebx once and calls through the register. Nothing in the source
+says that, and trying to force it would have been a mistake -- it follows from
+the number of uses.
+
+## A path that exists for bash need not exist for python
+
+The template went to /tmp/tmpl.txt, written by a bash heredoc and read by
+Windows Python, which cannot see that path. The write succeeded, the read threw,
+and the build that followed in the same command reported OK 1/1 -- because it had
+compiled the unchanged naked file, which of course still matches.
+
+That is the same trap as the silent no-op patch a few ticks ago, wearing a
+different coat: a verification step that passes because it verified the old
+thing. The assert that now checks the rewritten files contain no __emit is the
+cheap guard, and the scratchpad directory is the path both halves of this
+environment agree on.
