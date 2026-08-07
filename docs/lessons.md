@@ -3803,3 +3803,40 @@ Naming the two tables afterwards was ordinary work: 0x0113780C is installed by
 one that installs 0x01137808, so that class is GridLinkClass's base. cullsys.h has
 exactly one candidate, CullLinkClass, and the single-slot tables agree with it --
 the destructor is the only virtual either class declares.
+
+
+## Fixing the search cost me the thing it was finding
+
+Partitioning vtable runs made every recommendation correct and, in the same
+stroke, deleted the cheapest family of work from the listing. A scalar deleting
+destructor is slot 0 of its table; once runs were split at their real boundaries,
+every one of them became a first slot, and a first slot has no neighbour above it
+to be identified by. The tool that had just been made right stopped offering the
+bodies that had just been proved easy.
+
+They never needed a neighbour. A constructor installs the vptr of its own class,
+so the code that stores a table's address names the class, and slot 0 of that
+table is that class's destructor. That is a different question put to the same
+bytes, and tools/vtable_owner.py asks it: four tables, two of which converted on
+the first build.
+
+Worth noticing that the fix and the loss came from one change. A filter that
+removes false leads removes true ones whenever the property it filters on is
+shared, and "is the first slot of a table" was shared by every bad suggestion and
+every cheap conversion at once. The answer was not to loosen the filter -- it was
+right -- but to find the second route to the same targets.
+
+## The name may be spent already
+
+The first two candidates vtable_owner produced were ??_GWin32LocalFileSystem and
+??_GDefaultStaticSortListClass, both 31 bytes, both the shape that had just gone
+through first try. Both were traps. The names are already in functions.csv at
+other addresses, and each existing row is anchored to a different table from the
+one the candidate installs -- 0x01143B98 against 0x01143B78, twenty bytes apart.
+
+One anchor in each pair is wrong, and which one is a real question, but it is a
+ledger question. Writing the candidate would have claimed a name the image
+already spends elsewhere and left two rows fighting over it. The tool checked
+whether the address was claimed and not whether the name was, which are different
+checks: ICF folding and duplicate emission mean a name and an address are many to
+many here. It now checks both, and the listing went from four to two.

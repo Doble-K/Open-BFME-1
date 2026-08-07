@@ -94147,3 +94147,5 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Add_Sub_Object_To_Bone@RenderObjClass@@UAEHPAV1@PBDPBVVector3@@@Z,,0x0091F8F0,43,Code/Libraries/Source/WWVegas/WW3D2/RenderObjClass_Add_Sub_Object_To_Bone_Thunk.cpp,matched,name overload resolving via Get_Bone_Index at 0xC4 then forwarding to the int overload at 0x94
 ?_M_insert_overflow@?$vector@PAVScienceInfo@@V?$allocator@PAVScienceInfo@@@_STL@@@_STL@@IAEXPAPAVScienceInfo@@ABQAV3@ABU__true_type@2@I_N@Z,,0x000E77E0,265,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,located through the ILT thunk its claimed caller tail-calls
 ??_GCullLinkClass@@UAEPAXI@Z,,0x008DCCB0,31,Code/Libraries/Source/WWVegas/WW3D2/CullLinkClass_Dtor_Thunk.cpp,matched,
+??_GHAnimComboClass@@UAEPAXI@Z,,0x00973D60,72,Code/Libraries/Source/WWVegas/WW3D2/HAnimComboClass_Dtor_Thunk.cpp,matched,
+??_GProxyArrayClass@@UAEPAXI@Z,,0x0097B5D0,72,Code/Libraries/Source/WWVegas/WW3D2/ProxyArrayClass_Dtor_Thunk.cpp,matched,

@@ -983,3 +983,8 @@ vtable-runs			lever	a body that stores a vptr equal to the address of its own sl
 0x011377E0			layout	the twelve-slot run is three tables: ten slots of GridCullSystemClass then one-slot CullLinkClass at 0x01137808 then one-slot GridLinkClass at 0x0113780C. Each link class has the destructor as its only virtual
 ??_GGridLinkClass@@UAEPAXI@Z	0x008DDED0	36	lead	slot at 0x0113780C which ??0GridLinkClass installs; delegates to the CullLinkClass destructor then frees through the pool at 0x0133D1AC. Blocked on the unnamed pooled free at 0x008DDA50
 vtable_gaps			fix	runs are now partitioned into the vtables they actually hold: a slot whose body installs its own address is slot 0 of a new table and so is a scalar deleting destructor. Neighbours must share a segment. 25 candidates to 22 and no cross-boundary recommendations left
+??_GHAnimComboClass@@UAEPAXI@Z	0x00973D60	72	converted	guarded release of an owned buffer then clear flag and count; one build
+??_GProxyArrayClass@@UAEPAXI@Z	0x0097B5D0	72	converted	identical to HAnimComboClass but the member goes through operator delete[] at 0x00881EF0; one build
+vtable_owner			tool	names a vtable from the constructor that installs it and claims slot 0 as that class's deleting destructor. Needs no neighbour so it reaches the first slots vtable_gaps cannot see
+??_GWin32LocalFileSystem@@UAEPAXI@Z	0x009CDDF0	31	conflict	the name is held at 0x009CDE30 as slot 0 of 0x01143B98 while this body installs 0x01143B78 twenty bytes below. One anchor is wrong; a ledger question not a conversion
+??_GDefaultStaticSortListClass@@UAEPAXI@Z	0x00958040	31	conflict	same shape: name held at 0x009581E0 while this body installs 0x0113DE30
