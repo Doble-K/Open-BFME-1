@@ -3666,3 +3666,40 @@ Separately, vtable_gaps now only reports neighbours within two slots. A run of c
 pointers spans several class vtables, so a named slot thirty positions away belongs to a
 different class and says nothing. That took the candidate list from 73 to 45 and removes
 a class of suggestion that looked well-evidenced and was not.
+
+
+## Census: what is actually left in the naked backlog
+
+Both seams this session has worked -- vtable gaps and naked rows -- came up naming-limited
+in the same pass, so it was worth measuring rather than guessing. Screening the first 400
+naked rows by blocker signature:
+
+    ~286  carry an SEH prologue (alone or with others)
+      41  x87 only
+      24  function-local static guard
+      12  clear, every call pinned
+       4  clear, but with unpinned call targets
+    the rest  esp-stash, vptr-sink, ebp-frame, identity, in combination
+
+Two things follow.
+
+SEH is not one blocker among several, it is roughly seventy per cent of the remaining
+work in this sample. Everything else put together is a minority. Any further large gain
+in this backlog goes through unwind funclets, not through the codegen levers this session
+has been accumulating.
+
+And the clear-and-pinned pool is twelve rows, all of which have already been examined and
+are blocked on codegen rather than on anything new: removeAllShadows, FastAllocatorGeneral,
+StealthUpgradeModuleData and the two friend_newModuleData factories. There is no
+unexplored cheap remainder; the cheap rows are done.
+
+The census covers 400 of roughly 948 naked rows, so the proportions are a sample rather
+than a total. That is worth stating rather than rounding away.
+
+Concretely for the next attempt: Remove_Render_Object is fully understood -- its twin was
+converted last pass and the class layout came with it -- and blocked on exactly one
+unnamed callee, 0x00943430, a non-virtual helper on the object at SimpleSceneClass+0x34
+that also serves Visibility_Check@RTS3DScene. Naming that one function converts a
+134-byte row. It cannot be read off the reference, because this build's SimpleSceneClass
+does not match it: lists sit at +0x5C, +0xBC, +0xD4 and +0xEC with an unidentified member
+at +0x34, where the reference declares four adjacent lists and nothing else.

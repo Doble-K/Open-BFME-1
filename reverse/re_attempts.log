@@ -962,3 +962,8 @@ tools/vtable_gaps.py			fix	skip candidates whose first byte is int3; those are p
 bool-compare			lever	cmp al,1 comes from `== true`; a bare `if (x)` on a bool emits test al,al
 vtable-gaps			fix	neighbours restricted to two slots either side; runs span several class vtables so distant names are not evidence. 73 candidates to 45
 Win32LocalFileSystem			note	vtable slots 48 and 49 are one-byte empty voids past createDirectory so they are additions this build made; not nameable from the reference
+backlog-census			measurement	of the first 400 naked rows screened: about 286 carry an SEH prologue, 12 are clear with every call pinned, 4 are clear with unpinned calls
+backlog-census			note	the clear-and-pinned dozen are the rows already examined and blocked on codegen: removeAllShadows FastAllocatorGeneral StealthUpgrade and the friend_newModuleData pair
+?Remove_Render_Object@SimpleSceneClass@@UAEXPAVRenderObjClass@@@Z	0x009438C0	134	blocked	one unpinned callee at 0x00943430 on the object at this+0x34
+0x00943430			unnamed	non-virtual helper taking a RenderObjClass and reading its +0x94; also called from Visibility_Check@RTS3DScene
+SimpleSceneClass			layout	this build puts lists at +0x5C +0xBC +0xD4 +0xEC and an unidentified object at +0x34; the reference declares four adjacent lists and no such member
