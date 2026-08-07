@@ -5347,3 +5347,45 @@ same pass: calls through the import table, which an e8-only search cannot see an
 which made a dynamic-import stub look call-free, and bodies with a frame pointer
 and a stack frame, which were compiled without the project's -O2 and are a
 different matching problem entirely.
+
+
+## throw() is the lever that removes an EH frame from a new-expression
+
+A factory that does `new T` gets an exception frame even under -EHsc-, because if
+T's constructor throws the compiler must call operator delete. Retail's factory
+at 0x0012B650 has no such frame, and the difference was worth 22 bytes of
+prologue and a pile of state stores.
+
+Declaring the constructors throw() removes it outright. The compile then matches
+the allocation, the null check, the INI branch and the epilogue, and the target's
+whole opening sequence appears where it should. Any constructor the factory can
+reach has to be marked, including the one that is only declared -- an undefined
+constructor is assumed to throw.
+
+This generalises to every new-based factory in the tree, and friend_newModuleData
+is a large family.
+
+## What is left, and what did not move it
+
+Retail inlines the module data constructor into the factory; MSVC emits a call to
+it. __forceinline on the constructor changes nothing -- MSVC 7.1 will not inline
+a constructor whose class has two bases, one of them with an out-of-line
+constructor of its own.
+
+The class identity came free from the call: the pushed pointer 0x004102C6 is an
+ILT jump to ?buildFieldParse@StatusBitsUpgradeModuleData, so the object is that
+module data whatever the row happens to be called. Layout follows from the
+constructor -- a polymorphic 8-byte base at 0, StealthUpgradeModuleData as a
+second base at +8 whose 0x68 bytes land the next store exactly on 0x70, then two
+twelve-byte members, total 0x88. A base at +8 is ordinary multiple inheritance
+and the existing row note calling it inexpressible is too pessimistic; the
+inlining is the real obstacle.
+
+## Read the build's own report before theorising
+
+After editing the // cl: line the build printed "Compile: 0 of 1 TU(s)
+(deps-cache: 1 current)" -- it had not recompiled, and I spent two exchanges
+reasoning about bytes that came from the previous compile. Deleting the object
+and forcing a rebuild produced identical bytes, so the flag was irrelevant
+anyway, but that was luck rather than method. The line saying how many
+translation units actually compiled is right there in the output.

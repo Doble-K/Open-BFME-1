@@ -37,7 +37,8 @@ MD = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
 MD.detail = True
 
 ROOT = Path(__file__).resolve().parents[1]
-SYNTHETIC = re.compile(r"^\?[jb]_[0-9a-f]{6,}@@|^Gen_[0-9a-f]+|^\?\w+@Gen_[0-9a-f]+")
+SYNTHETIC = re.compile(
+    r"^\?[jb]_[0-9a-f]{6,}@@|^Gen_[0-9a-f]+|^\?\w+@Gen_[0-9a-f]+|^tg_[0-9a-f]+")
 
 
 def main():
@@ -105,6 +106,13 @@ def main():
             continue
         o = troff + (rva - tva)
         if o < 0 or o + size > len(data):
+            continue
+        # Every real entry in this image is preceded by int3 padding. A row
+        # anchored anywhere else is not at a function start, and no amount of
+        # C++ will match it -- ?xfer@GarrisonContain is claimed at a byte
+        # preceded by 00, and its body returns this with a bare ret, so it is a
+        # constructor rather than the xfer the name promises.
+        if o == 0 or data[o - 1] != 0xCC:
             continue
         body = data[o:o + size]
 
