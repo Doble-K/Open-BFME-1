@@ -897,3 +897,7 @@ vectorclass-attribution			evidence	?Resize@?$VectorClass@PAVFontCharsBuffer@@ at
 ?Clear@?$VectorClass@PAVFontCharsBuffer@@@@UAEXXZ	0x00AFEB30	39	caveat	body is element-type independent so the name is body-compatible; the instantiation is inherited from the slot 4 row and is not independently confirmed
 ?ID@?$VectorClass@PAVFontCharsBuffer@@@@UAEHPBQAVFontCharsBuffer@@@Z	0x00AFEBA0	25	caveat	shr 2 matches a four-byte element and sits at slot 5 beside the slot 4 overload of the same name; instantiation inherited not proven
 rtti			note	the image is built with -GR- so vtables have no complete object locator; class identity cannot be read from RTTI
+?Class_ID@Vector3SolidSphereRandomizer@@UBEIXZ	0x00B02290	6	converted	vtable slot between the destructor and Get_Vector; returns the constant class id
+?Get_Maximum_Extent@Vector3SolidSphereRandomizer@@UAEMXZ	0x0010BD90	4	mis-anchored?	the claimed address is referenced by no vtable slot at all
+?Get_Maximum_Extent@Vector3SolidSphereRandomizer@@UAEMXZ	0x00B02050	4	unclaimed	byte-identical body referenced by slot 10 of the SolidSphere vtable so this is the copy that actually dispatches
+vtable-anchor-audit			lead	audit idea: a claimed virtual whose address appears in no vtable while an identical body elsewhere does is probably anchored to a dead duplicate copy

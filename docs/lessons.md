@@ -3287,3 +3287,39 @@ The rule this leaves: vtable position is sound evidence for *which method* a bod
 that is what it was introduced for. It is not evidence for *which instantiation* a
 templated body belongs to. Twenty-five plausible-looking claims were one step away, and
 plausible is the wrong standard for a ledger other people build on.
+
+
+## Two more filters, and a way to tell a live body from a dead duplicate
+
+vtable_gaps was reporting mostly noise, for two separate reasons now fixed.
+
+Runs of .rdata dwords that merely fall inside the code range are not vtables. The tell is
+free: a real vtable slot points at a function's entry, never into the middle of one. So
+if any slot resolves to the interior of a claimed function, the whole run is data and gets
+discarded. That alone took the candidate list from 432 to 113.
+
+And template gaps are excluded by default now, per the previous pass: a slot identifies
+which method a body is, not which instantiation it belongs to.
+
+What the cleaned-up ranking then produced is worth recording as a technique in itself.
+Vector3SolidSphereRandomizer had two gaps; v3_rnd.h gives the base's virtual order as
+destructor, Class_ID, Get_Vector, Get_Maximum_Extent, Scale, Clone, so the slot after the
+destructor is Class_ID and the one between Get_Vector and Scale is Get_Maximum_Extent.
+Both bodies confirm it without reference to position -- one returns a constant unsigned
+int, the other loads a float member onto the x87 stack, which is exactly how each
+declared return type leaves a function.
+
+Class_ID converted. Get_Maximum_Extent could not, because that name is already claimed --
+at 0x0010BD90, a byte-identical four-byte body. Which raises the question of which copy is
+real, and there is a clean answer: count vtable references. The claimed address is
+referenced by no vtable slot anywhere in the image. The unclaimed one at 0x00B02050 is
+referenced by exactly slot 10 of the SolidSphere vtable. The compiler emitted this
+function in several translation units, the linker kept more than one copy, and only one of
+them is ever dispatched to.
+
+That generalises into an audit worth building: a claimed virtual method whose address
+appears in no vtable, while an identical body elsewhere does appear in one, is anchored to
+a dead duplicate. Recorded as a lead rather than acted on -- repointing another
+contributor's row is not something to do on the strength of a single pass, and the
+existing claim is not exactly wrong either, since both copies are genuinely that
+function's code.

@@ -70,6 +70,8 @@ def main():
     ap.add_argument("--min-known-frac", type=float, default=0.5,
                     help="only report vtables at least this fraction named")
     ap.add_argument("--min-slots", type=int, default=4)
+    ap.add_argument("--templates", action="store_true",
+                    help="include gaps whose neighbours are template instantiations")
     args = ap.parse_args()
 
     data = EXE.read_bytes()
@@ -138,6 +140,13 @@ def main():
         slots = [struct.unpack_from("<I", rdata, off + k * 4)[0] - IMAGE_BASE
                  for k in range(n)]
         names = [owner(s) for s in slots]
+        # A real vtable slot points at a function's entry, never into the
+        # middle of one. An interior hit means this run of .text-looking
+        # dwords is not a vtable at all -- .rdata is full of data that
+        # coincidentally falls in the code range -- so the whole run is
+        # discarded rather than reported with nonsense neighbours.
+        if any(nm and nm.endswith('(interior)') for nm in names):
+            continue
         names = [nm if informative(nm) else None for nm in names]
         known = sum(1 for nm in names if nm)
         if known < n * args.min_known_frac or known == n:
@@ -150,6 +159,14 @@ def main():
             if not before and not after:
                 continue
             if blocked(s):
+                continue
+            # A vtable slot tells you which METHOD a body is. For a template
+            # it does not tell you which INSTANTIATION: identical
+            # instantiations fold, so one table can carry names from several
+            # of them and the name records who claimed it first. Those gaps
+            # are only nameable with evidence this image does not carry --
+            # it is built with -GR-, so there is no RTTI to ask.
+            if not args.templates and any('?$' in (x or '') for x in (before, after)):
                 continue
             findings.append((-(known / n), s, rva0 + off + IMAGE_BASE, k, n,
                              known, before, after))
