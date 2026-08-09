@@ -237,6 +237,8 @@ PrototypeClass *HLodLoaderClass::Load_W3D( ChunkLoadClass &cload )
 }
 
 
+
+
 /*
 ** HLod Prototype Implementation
 */
@@ -1296,6 +1298,7 @@ HLodClass & HLodClass::operator = (const HLodClass & that)
 				ModelNodeClass newnode;
 				newnode.Model = that.Lod[lod][model].Model->Clone();	
 				newnode.BoneIndex = that.Lod[lod][model].BoneIndex;
+				newnode.Offset.X = newnode.Offset.Y = newnode.Offset.Z = 0.0f;
 				newnode.Model->Set_Container(this);
 				if (Is_In_Scene()) {
 					newnode.Model->Notify_Added(Scene);
@@ -1311,6 +1314,7 @@ HLodClass & HLodClass::operator = (const HLodClass & that)
 			ModelNodeClass newnode;
 			newnode.Model = that.AdditionalModels[model].Model->Clone();	
 			newnode.BoneIndex = that.AdditionalModels[model].BoneIndex;
+			newnode.Offset = that.AdditionalModels[model].Offset;
 			newnode.Model->Set_Container(this);
 			if (Is_In_Scene()) {
 				newnode.Model->Notify_Added(Scene);
@@ -3758,4 +3762,3 @@ void HLodClass::Set_Hidden(int onoff)
 	Animatable3DObjClass::Set_Hidden(onoff);
 	return ;
 }
-
