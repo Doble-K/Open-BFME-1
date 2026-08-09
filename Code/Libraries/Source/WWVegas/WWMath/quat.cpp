@@ -1,7 +1,7 @@
 // cl: /DNDEBUG /ICode/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WW3D2 /ICode/Libraries/Source/WWVegas/WWMath /ICode/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/Wwutil /ICode/Libraries/Source/WWVegas/WWDownload /ICode/Libraries/Source/Compression /ICode/Libraries/Source/WWVegas/WWDebug /Ireference/shims/sweep
 // Quaternion routines, verbatim from the Generals reference
 // (Libraries/Source/WWVegas/WWMath/quat.cpp). Only functions located in the
-// binary are defined here. Trackball, Fast_Slerp, Build_Quaternion(Matrix3D)
+// binary are defined here. Trackball, Build_Quaternion(Matrix3D)
 // and Randomize are absent/drifted in lotrbfme.exe and were dropped.
 // project_to_sphere is kept (its only caller, Trackball, was dropped) by
 // removing its `static` storage class so the compiler still emits it; the
@@ -17,6 +17,13 @@
 #include <assert.h>
 
 #define SLERP_EPSILON		0.001
+
+extern bool Fast_Slerp_Use_Inline;
+extern void ji_009fcfc0();
+extern "C" void _ReadWriteBarrier();
+#pragma intrinsic(_ReadWriteBarrier)
+
+typedef void (__stdcall *Fast_Slerp_Dispatch)(Quaternion&, const Quaternion&, const Quaternion&, float);
 
 static int _nxt[3] = { 1 , 2 , 0 };
 
@@ -74,6 +81,56 @@ Quaternion Axis_To_Quat(const Vector3 &a, float phi)
 	q[3] =  WWMath::Cos(phi / 2.0f);
 
 	return q;
+}
+
+void __cdecl Fast_Slerp(Quaternion& res, const Quaternion & p,const Quaternion & q,float alpha)
+{
+	float beta;			// complementary interploation parameter
+	float theta;		// angle between p and q
+	float cos_t; 		// sine, cosine of theta
+	float oo_sin_t;
+	int qflip;			// use flip of q?
+
+	if (!Fast_Slerp_Use_Inline) {
+		((Fast_Slerp_Dispatch)ji_009fcfc0)(res, p, q, alpha);
+		_ReadWriteBarrier();
+	} else {
+
+	// cos theta = dot product of p and q
+	cos_t = p.X * q.X + p.Y * q.Y + p.Z * q.Z + p.W * q.W;
+
+	// if q is on opposite hemisphere from A, use -B instead
+	if (cos_t < 0.0f) {
+		cos_t = -cos_t;
+		qflip = true;
+	} else {
+		qflip = false;
+	}
+
+	if (1.0f - cos_t < WWMATH_EPSILON * WWMATH_EPSILON) {
+
+		// if q is very close to p, just linearly interpolate
+		// between the two.
+		beta = 1.0f - alpha;
+
+	} else {
+
+		theta = WWMath::Fast_Acos(cos_t);
+		float sin_t = WWMath::Fast_Sin(theta);
+		oo_sin_t = 1.0f / sin_t;
+		beta = WWMath::Fast_Sin(theta - alpha*theta) * oo_sin_t;
+		alpha = WWMath::Fast_Sin(alpha*theta) * oo_sin_t;
+	}
+
+	if (qflip) {
+		alpha = -alpha;
+	}
+
+	res.X = beta*p.X + alpha*q.X;
+	res.Y = beta*p.Y + alpha*q.Y;
+	res.Z = beta*p.Z + alpha*q.Z;
+	res.W = beta*p.W + alpha*q.W;
+	}
 }
 
 void Slerp(Quaternion& res, const Quaternion & p,const Quaternion & q,float alpha)
