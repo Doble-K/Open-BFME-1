@@ -5201,6 +5201,7 @@ name,address,notes
 ?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@0PBVVector2@@PBVVector4@@II@Z,0x0091EB40,DX8VertexBufferClass ctor copy helper
 ?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@PBVVector2@@II@Z,0x0091E690,DX8VertexBufferClass ctor copy helper
 ?Copy@DX8VertexBufferClass@@QAEXPBVVector3@@PBVVector2@@PBVVector4@@II@Z,0x0091EDE0,DX8VertexBufferClass ctor copy helper
+?Create_Device@DX8Wrapper@@KA_NXZ,0x0090AE60,retail call target for Set_Render_Device
 ?Create_New_Particles@ParticleEmitterClass@@AAEXABVQuaternion@@ABVVector3@@@Z,0x0097F930,rel32 pin for exact-ambiguous landing
 ?Create_Vertex_Buffer@DX8VertexBufferClass@@IAEXW4UsageType@1@@Z,0x0091E0C0,DX8VertexBufferClass ctor helper
 ?Cull@AABoxCollisionTestClass@@QAE_NABVVector3@@0@Z,0x0096A700

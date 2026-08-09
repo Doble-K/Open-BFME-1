@@ -197,7 +197,27 @@ static unsigned				last_frame_draw_calls									= 0;
 
 static D3DDISPLAYMODE DesktopMode;
 
-static D3DPRESENT_PARAMETERS								_PresentParameters;
+/* BFME's retail presentation block has a reserved DWORD before SwapEffect. */
+struct BFME_PRESENT_PARAMETERS {
+	UINT BackBufferWidth;
+	UINT BackBufferHeight;
+	D3DFORMAT BackBufferFormat;
+	UINT BackBufferCount;
+	DWORD MultiSampleType;
+	DWORD Reserved;
+	DWORD SwapEffect;
+	HWND hDeviceWindow;
+	BOOL Windowed;
+	BOOL EnableAutoDepthStencil;
+	D3DFORMAT AutoDepthStencilFormat;
+	DWORD Flags;
+	UINT FullScreen_RefreshRateInHz;
+	UINT FullScreen_PresentationInterval;
+};
+
+enum { BFME_D3DSWAPEFFECT_FLIP = 2 };
+
+static BFME_PRESENT_PARAMETERS								_PresentParameters;
 static DynamicVectorClass<StringClass>					_RenderDeviceNameTable;
 static DynamicVectorClass<StringClass>					_RenderDeviceShortNameTable;
 static DynamicVectorClass<RenderDeviceDescClass>	_RenderDeviceDescriptionTable;
@@ -587,7 +607,7 @@ bool DX8Wrapper::Create_Device(void)
 		WW3D_DEVTYPE,
 		_Hwnd,
 		Vertex_Processing_Behavior,
-		&_PresentParameters,
+		reinterpret_cast<D3DPRESENT_PARAMETERS *>(&_PresentParameters),
 		&D3DDevice 
 	);
 
@@ -610,7 +630,7 @@ bool DX8Wrapper::Create_Device(void)
 				WW3D_DEVTYPE,
 				_Hwnd,
 				Vertex_Processing_Behavior,
-				&_PresentParameters,
+				reinterpret_cast<D3DPRESENT_PARAMETERS *>(&_PresentParameters),
 				&D3DDevice 
 			);
 
@@ -662,7 +682,7 @@ bool DX8Wrapper::Reset_Device(bool reload_assets)
 
 		HRESULT hr=_Get_D3D_Device8()->TestCooperativeLevel();
 		if (hr != D3DERR_DEVICELOST )
-		{	DX8CALL_HRES(Reset(&_PresentParameters),hr)
+		{	DX8CALL_HRES(Reset(reinterpret_cast<D3DPRESENT_PARAMETERS *>(&_PresentParameters)),hr)
 			if (hr != D3D_OK)
 				return false;	//reset failed.
 		}
@@ -925,9 +945,6 @@ bool DX8Wrapper::Set_Render_Device(int dev, int width, int height, int bits, int
 	if (width != -1)		ResolutionWidth = width;
 	if (height != -1)		ResolutionHeight = height;
 	
-	// Initialize Render2DClass Screen Resolution
-	Render2DClass::Set_Screen_Resolution( RectClass( 0, 0, ResolutionWidth, ResolutionHeight ) );
-
 	if (bits != -1)		BitDepth = bits;
 	if (windowed != -1)	IsWindowed = (windowed != 0);
 	DX8Wrapper_IsWindowed = IsWindowed;
@@ -981,15 +998,14 @@ bool DX8Wrapper::Set_Render_Device(int dev, int width, int height, int bits, int
 	/*
 	** Initialize values for D3DPRESENT_PARAMETERS members. 	
 	*/
-	::ZeroMemory(&_PresentParameters, sizeof(D3DPRESENT_PARAMETERS));
+	::ZeroMemory(&_PresentParameters, sizeof(BFME_PRESENT_PARAMETERS));
 
 	_PresentParameters.BackBufferWidth = ResolutionWidth;
 	_PresentParameters.BackBufferHeight = ResolutionHeight;
 	_PresentParameters.BackBufferCount = IsWindowed ? 1 : 2;
 	
 	_PresentParameters.MultiSampleType = D3DMULTISAMPLE_NONE;
-	//I changed this to discard all the time (even when full-screen) since that the most efficient. 07-16-03 MW:
-	_PresentParameters.SwapEffect = D3DSWAPEFFECT_DISCARD;//IsWindowed ? D3DSWAPEFFECT_DISCARD : D3DSWAPEFFECT_FLIP;		// Shouldn't this be D3DSWAPEFFECT_FLIP?
+	_PresentParameters.SwapEffect = IsWindowed ? D3DSWAPEFFECT_DISCARD : BFME_D3DSWAPEFFECT_FLIP;
 	_PresentParameters.hDeviceWindow = _Hwnd;
 	_PresentParameters.Windowed = IsWindowed;
 
@@ -1880,7 +1896,6 @@ void DX8Wrapper::Clear(bool clear_color, bool clear_z_stencil, const Vector3 &co
 	}
 }
 
-// ?Set_Viewport@DX8Wrapper@@ present-unmatched
 void DX8Wrapper::Set_Viewport(CONST D3DVIEWPORT8* pViewport)
 {
 	DX8_THREAD_ASSERT();
