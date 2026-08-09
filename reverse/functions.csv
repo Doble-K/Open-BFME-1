@@ -80726,7 +80726,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?strtrim@@YAPADPAD@Z,,0x009E7EB0,102,Code/Libraries/Source/WWVegas/WWLib/trim.cpp,matched,
 ?sub@Coord3D@@QAEXPBU1@@Z,,0x000C3CE0,31,Code/GameEngine/Source/Common/Audio/GameSounds.cpp,matched,
 ?sub@Coord3D@@QAEXPBUCoord3DBase@@@Z,0x00045084,0x000C3CE0,31,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,subtracts Coord3DBase pointer
-?subdivision_util@StreakRendererClass@@AAEXIPBVVector3@@PBMPAIPAV2@PAM@Z,,0x0095CA00,1141,Code/masm_dumps/_rn4__subdivision_util_StreakRendererClass__AAEXIPBVVector3__PBMPAIPAV2_PAM_95CA00.asm,matched,reloc-needle Open-BFME4+Grok
 ?submul@@YAMABVVector4@@MMM@Z,,0x00131F30,29,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,
 ?swap@?$StringBase@D@@QAEXAAV1@@Z,0x0002E4E7,0x0006F4E0,17,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,swap m_data pointers
 ?swap@?$StringBase@G@@QAEXAAV1@@Z,0x000325F1,0x004B22E0,17,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,swap m_data pointers
@@ -94157,3 +94156,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Fast_Slerp@@YAXAAVQuaternion@@ABV1@1M@Z,,0x008DC4C0,942,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ??4HLodClass@@QAEAAV0@ABV0@@Z,,0x0097D3B0,932,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,symbol-pin Open-BFME4+Grok
 ?getMostValuableLocation@PartitionManager@@QAEXHIW4ValueOrThreat@@PAUCoord3D@@@Z,,0x0087C140,1002,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,vendored=gamespy-2004;object-symbol=_ghiDoReceivingHeaders;Open-BFME5 clean C++ body repoint
+?subdivision_util@StreakRendererClass@@AAEXIPBVVector3@@PBMPAIPAV2@PAM@Z,,0x0095CA00,1141,Code/Libraries/Source/WWVegas/WW3D2/streakRender.cpp,matched,reloc-needle Open-BFME4+Grok

@@ -170,6 +170,7 @@ void StreakRendererClass::Set_Texture(TextureClass *texture)
 	REF_PTR_SET(Texture,texture); 
 }
 
+// ?Get_Texture@StreakRendererClass@@ present-unmatched
 TextureClass * StreakRendererClass::Get_Texture(void) const
 {
 	if (Texture != NULL) {
@@ -223,14 +224,30 @@ void StreakRendererClass::Render
 
 
 
-// ?subdivision_util@StreakRendererClass@@ present-unmatched
 void StreakRendererClass::subdivision_util(unsigned int point_cnt, const Vector3 *xformed_pts,
 	const float *base_tex_v, unsigned int *p_sub_point_cnt, Vector3 *xformed_subdiv_pts,
 	float *subdiv_tex_v)
 {
 	// CAUTION: freezing the random offsets will make it more readily apparent that the offsets
 	// are in camera space rather than worldspace.
-	int freeze_random = Is_Freeze_Random();
+	struct StreakRendererRetailLayout {
+		TextureClass *Texture;
+		ShaderClass Shader;
+		float Width;
+		Vector3 Color;
+		float Opacity;
+		unsigned int SubdivisionLevel;
+		float NoiseAmplitude;
+		float MergeAbortFactor;
+		float TextureTileFactor;
+		unsigned int LastUsedSyncTime;
+		Vector2 CurrentUVOffset;
+		Vector2 UVOffsetDeltaPerMS;
+		unsigned int Bits;
+	};
+	const StreakRendererRetailLayout *retail_this =
+		reinterpret_cast<const StreakRendererRetailLayout *>(this);
+	int freeze_random = retail_this->Bits & FREEZE_RANDOM;
 	Random3Class randomize;
 	const float oo_int_max = 1.0f / (float)INT_MAX;
 	Vector3SolidBoxRandomizer randomizer(Vector3(1,1,1));
