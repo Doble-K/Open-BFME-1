@@ -68,10 +68,96 @@
 // zeroed at +0x20), four group pointers zeroed at this+0x24..0x30, byte
 // stores at this+0x4C/0x4D/0x54/0x55, and 0x21 stored at this+0x50. The
 // 0x34..0x4B run and the trailing scalars are not semantically
-// reconstructed yet. (The base class is 4 bytes in this build, so member
-// offsets here sit 4 lower than retail's; only sizeof == 0x58 and the
-// base-class vtable slots for init/reset/update/draw matter to this TU.)
+// reconstructed yet. (The base class is 8 bytes in this build (vptr plus
+// m_name), so the map begins at +0x08 and the list at +0x1C; only sizeof ==
+// 0x58 and the base-class vtable slots for init/reset/update/draw matter to
+// this TU.)
+#include "Common/STLTypedefs.h"
+#include "Common/NameKeyGenerator.h"
+
 #define __GAME_WINDOW_TRANSITIONS_H_
+class Transition;
+
+// BFME adds a name-keyed transition-factory registry at this+0x08.  Keep its
+// STLport type local to this TU because the vendored transition header predates
+// that member and is still used by the other transition sources.
+typedef Transition *(*WindowTransitionFactory)( void );
+typedef std::hash_map<NameKeyType, WindowTransitionFactory,
+	rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > WindowTransitionMap;
+
+// BFME's INI object is 0x848 bytes; the ZH Common/INI.h selected by the rest
+// of this TU describes a different, 0x2438-byte object.  These declarations
+// retain the BFME ABI for this loader without changing the established ZH
+// declarations used by the other functions in this file.
+template <typename T> class StringBase
+{
+friend class WindowTransitionAsciiString;
+
+private:
+	StringBase( void );
+	StringBase( const StringBase<T> &that );
+	StringBase( const T *text );
+	void releaseBuffer( void );
+
+public:
+};
+
+class WindowTransitionAsciiString
+{
+public:
+	WindowTransitionAsciiString( const char *text )
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase( text );
+	}
+	WindowTransitionAsciiString( const WindowTransitionAsciiString &that )
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(
+			*(const StringBase<char> *)&that );
+	}
+	~WindowTransitionAsciiString( void );
+
+private:
+	char *m_text;
+};
+
+enum WindowTransitionINILoadType
+{
+	WINDOW_TRANSITION_INI_LOAD_OVERWRITE = 1
+};
+
+class Xfer;
+class WindowTransitionINI
+{
+public:
+	WindowTransitionINI( void );
+	~WindowTransitionINI( void );
+	void loadFile( WindowTransitionAsciiString filename,
+		WindowTransitionINILoadType loadType, Xfer *xfer );
+
+private:
+	char m_unported[0x848];
+};
+
+extern Transition *createImageFadeTransition( void );
+extern Transition *createImageCrossFadeTransition( void );
+extern Transition *createScreenFadeTransition( void );
+extern Transition *createTextTypeTransition( void );
+extern Transition *createTextOnFrameTransition( void );
+extern Transition *createCountUpTransition( void );
+extern Transition *createWinFadeTransition( void );
+extern Transition *createFullFadeTransition( void );
+extern Transition *createFlashTransition( void );
+extern Transition *createButtonFlashTransition( void );
+extern Transition *createScaleUpTransition( void );
+extern Transition *createMainMenuScaleUpTransition( void );
+extern Transition *createMainMenuMediumScaleUpTransition( void );
+extern Transition *createMainMenuSmallScaleDownTransition( void );
+extern Transition *createControlBarArrowTransition( void );
+extern Transition *createScoreScaleUpTransition( void );
+extern Transition *createReverseSoundTransition( void );
+extern Transition *createSoundFadeTransition( void );
+extern Transition *createFreezePostLoadSoundsTransition( void );
+
 class TransitionGroup;
 class GameWindowTransitionsHandler : public SubsystemInterface
 {
@@ -88,7 +174,7 @@ public:
 private:
 	typedef std::list<TransitionGroup *> TransitionGroupList;
 
-	Int m_unknown08[5];			///< ctor zeroes +0x0C..0x18 only
+	WindowTransitionMap m_transitionMap;		///< this+0x08, BFME factory registry
 	TransitionGroupList m_transitionGroupList;	///< this+0x1C
 	TransitionGroup *m_currentGroup;			///< this+0x24
 	TransitionGroup *m_pendingGroup;			///< this+0x28
@@ -105,7 +191,34 @@ private:
 extern GameWindowTransitionsHandler *TheTransitionHandler;
 
 #include "GameClient/GameWindowTransitions.h"
-#include "Common/NameKeyGenerator.h"
+// ?load@GameWindowTransitionsHandler@@QAEXXZ present-unmatched
+void GameWindowTransitionsHandler::load( void )
+{
+	WindowTransitionINI ini;
+
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "IMAGEFADE" )] = createImageFadeTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "IMAGECROSSFADE" )] = createImageCrossFadeTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "SCREENFADE" )] = createScreenFadeTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "TYPETEXT" )] = createTextTypeTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "TEXTONFRAME" )] = createTextOnFrameTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "COUNTUP" )] = createCountUpTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "WINFADE" )] = createWinFadeTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "FULLFADE" )] = createFullFadeTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "FLASH" )] = createFlashTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "BUTTONFLASH" )] = createButtonFlashTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "WINSCALEUP" )] = createScaleUpTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "MAINMENUSCALEUP" )] = createMainMenuScaleUpTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "MAINMENUMEDIUMSCALEUP" )] = createMainMenuMediumScaleUpTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "MAINMENUSMALLSCALEDOWN" )] = createMainMenuSmallScaleDownTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "CONTROLBARARROW" )] = createControlBarArrowTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "SCORESCALEUP" )] = createScoreScaleUpTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "REVERSESOUND" )] = createReverseSoundTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "SOUNDFADE" )] = createSoundFadeTransition;
+	m_transitionMap[TheNameKeyGenerator->nameToKey( "FREEZE_POST_LOAD_SOUNDS" )] = createFreezePostLoadSoundsTransition;
+
+	ini.loadFile( WindowTransitionAsciiString( "Data\\INI\\WindowTransitions.ini" ),
+		(WindowTransitionINILoadType)WINDOW_TRANSITION_INI_LOAD_OVERWRITE, NULL );
+}
 
 // PUBLIC DATA ////////////////////////////////////////////////////////////////////////////////////
 GameWindowManager *TheWindowManager = NULL;

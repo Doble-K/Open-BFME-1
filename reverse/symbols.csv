@@ -68432,3 +68432,7 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??_7AITunnelNetworkGuardState@@6B@,0x00C982B8,vptr stored by ??0AITunnelNetworkGuardState 0x001717B0 right after the State base ctor
 ??_7StatusBitsUpgradeModuleData@@6B@,0x00C8F4F0,vptr stored by the factory at 0x0012B650 whose field-parse pointer resolves to ?buildFieldParse@StatusBitsUpgradeModuleData
 ??_7FireWeaponCollideModuleData@@6B@,0x00C8EB50,vptr stored by ?friend_newModuleData@FireWeaponCollide 0x00127D00 into the object it allocates
+??0WindowTransitionINI@@QAE@XZ,0x00851230,TU-local BFME INI ABI declaration for GameWindowTransitionsHandler::load
+??1WindowTransitionINI@@QAE@XZ,0x008512E0,TU-local BFME INI ABI declaration for GameWindowTransitionsHandler::load
+?loadFile@WindowTransitionINI@@QAEXVWindowTransitionAsciiString@@W4WindowTransitionINILoadType@@PAVXfer@@@Z,0x00853A20,TU-local BFME INI loadFile ABI declaration for GameWindowTransitionsHandler::load
+??A?$hash_map@W4NameKeyType@@P6APAVTransition@@XZU?$hash@W4NameKeyType@@@rts@@U?$equal_to@W4NameKeyType@@@4@V?$allocator@U?$pair@$$CBW4NameKeyType@@P6APAVTransition@@XZ@_STL@@@_STL@@@_STL@@QAEAAP6APAVTransition@@XZABW4NameKeyType@@@Z,0x0000F2FE,TU-local factory map member uses the retail STLport operator[] thunk
