@@ -2501,7 +2501,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Region3D@@QAE@XZ,0x00024573,0x000BEC80,3,Code/Libraries/Source/WWVegas/WWMath/region.cpp,matched,empty constructor returns self
 ??0RegistryClass@@QAE@PBD_N@Z,,0x009DC200,123,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
 ??0RenderDeviceDescClass@@QAE@XZ,,0x00907610,408,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
-??0RenderObjClass@@QAE@ABV0@@Z,,0x0091FFE0,402,Code/masm_dumps/___0RenderObjClass__QAE_ABV0__Z_91FFE0.asm,matched,
 ??0RenderObjClass@@QAE@XZ,,0x009204B0,208,Code/Libraries/Source/WWVegas/WW3D2/RenderObjClassCtor_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0RenderObjIterator@@QAE@XZ,,0x003FD390,16,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
 ??0RenderObjectDrawModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,,0x005DE270,187,Code/GameEngine/Source/GameClient/System/FXParticleSystem/RenderObjectDrawModuleInfoCopyCtorThunk.cpp,matched,Open-BFME5 exact C++ RenderObjectDrawModuleInfo copy constructor;object-symbol=??0RenderObjectDrawModuleInfo@FXParticleSystem@@QAE@ABV01@@Z;MASM comment size 372 was stale and ledger target is 187
@@ -94157,3 +94156,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Render@DX8PolygonRendererClass@@QAEXH@Z,,0x0092CB30,118,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?setOnlineIPAddress@OptionPreferences@@QAEXVAsciiString@@@Z,,0x00092670,126,Code/GameEngine/Source/Common/OptionPreferences_setOnlineIPAddress_Thunk.cpp,matched,
 ??1DebugIOFlat@@UAE@XZ,,0x00890780,142,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,
+??0RenderObjClass@@QAE@ABV0@@Z,,0x0091FFE0,402,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,clean C++ BFME copy constructor

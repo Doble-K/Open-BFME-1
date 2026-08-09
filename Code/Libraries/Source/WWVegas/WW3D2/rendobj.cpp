@@ -200,14 +200,18 @@ RenderObjClass::RenderObjClass(void) :
  *   11/5/97    GTH : Created.                                                                 *
  *   1/28/98    EHC : Created.                                                                 *
  *=============================================================================================*/
-// ?RenderObjClass::RenderObjClass present-unmatched
 RenderObjClass::RenderObjClass(const RenderObjClass & src) :
 	Bits(src.Bits),
+	_bfme_unk_14(src._bfme_unk_14),
 	Transform(src.Transform),
 	NativeScreenSize(src.NativeScreenSize),
 	Scene(NULL),
 	Container(NULL),
 	User_Data(NULL),
+	_bfme_unk_8c(src._bfme_unk_8c),
+	_bfme_unk_90(0),
+	_bfme_unk_94(0xFFFFFFFF),
+	_bfme_unk_98(-1.0f),
 	RenderHook(NULL),
 	ObjectScale(1.0),
 	ObjectColor(0),
@@ -218,6 +222,13 @@ RenderObjClass::RenderObjClass(const RenderObjClass & src) :
 	// Even though we're copying an object which might be in a scene
 	// this copy won't be so I'm clearing the scene pointer, same logic
 	// follows for things like the Container pointer.
+	*(unsigned long *)_bfme_base_pad = *(const unsigned long *)src._bfme_base_pad;
+	_bfme_base_pad[0x24] = src._bfme_base_pad[0x24];
+	Set_Hidden(src.Is_Hidden());
+
+	for (int i = 4; i < 0x24; ++i) {
+		_bfme_base_pad[i] = src._bfme_base_pad[i];
+	}
 }
 
 
@@ -1408,5 +1419,3 @@ bool RenderObjClass::Load (ChunkLoadClass &cload)
 	WWASSERT(0); // this should never hit with the persist factory we're using.
 	return true;
 }
-
-
