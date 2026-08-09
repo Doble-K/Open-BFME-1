@@ -68437,3 +68437,5 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1WindowTransitionINI@@QAE@XZ,0x008512E0,TU-local BFME INI ABI declaration for GameWindowTransitionsHandler::load
 ?loadFile@WindowTransitionINI@@QAEXVWindowTransitionAsciiString@@W4WindowTransitionINILoadType@@PAVXfer@@@Z,0x00853A20,TU-local BFME INI loadFile ABI declaration for GameWindowTransitionsHandler::load
 ??A?$hash_map@W4NameKeyType@@P6APAVTransition@@XZU?$hash@W4NameKeyType@@@rts@@U?$equal_to@W4NameKeyType@@@4@V?$allocator@U?$pair@$$CBW4NameKeyType@@P6APAVTransition@@XZ@_STL@@@_STL@@@_STL@@QAEAAP6APAVTransition@@XZABW4NameKeyType@@@Z,0x0000F2FE,TU-local factory map member uses the retail STLport operator[] thunk
+_ghiResetBuffer,0x0087DA30,vendored=gamespy-2004
+_ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
