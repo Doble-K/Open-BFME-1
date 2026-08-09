@@ -33,6 +33,26 @@
 #include <stdlib.h>
 #include <new>      // needed for placement new prototype
 
+class DebugIOFlatDebugShim
+{
+public:
+  virtual ~DebugIOFlatDebugShim();
+  virtual void pad01();
+  virtual void pad02();
+  virtual void pad03();
+  virtual void pad04();
+  virtual void pad05();
+  virtual void pad06();
+  virtual void pad07();
+  virtual void pad08();
+  virtual void pad09();
+  virtual void pad10();
+  virtual void pad11();
+  virtual void pad12();
+  virtual void pad13();
+  virtual DebugIOFlatDebugShim &operator<<(const char *);
+};
+
 DebugIOFlat::OutputStream::OutputStream(const char *filename, unsigned maxSize):
   m_bufferUsed(0), m_nextChar(0)
 {
@@ -336,19 +356,20 @@ void DebugIOFlat::EmergencyFlush(void)
     cur->stream->Flush();
 }
 
-// ?Execute@DebugIOFlat@@UAEXAAVDebug@@PBD_NIPBQBD@Z present-unmatched
 void DebugIOFlat::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
                           unsigned argn, const char * const * argv)
 {
+  DebugIOFlatDebugShim &flatDbg=reinterpret_cast<DebugIOFlatDebugShim &>(dbg);
+
   if (!cmd||!strcmp(cmd,"help"))
   {
     if (!argn)
-      dbg << "flat I/O help:\n"
+      flatDbg << "flat I/O help:\n"
              "The following I/O commands are defined:\n"
              "  add, copy, splitadd, splitview, splitremove\n"
              "Type in debug.io flat help <cmd> for a detailed command help.\n";
     else if (!strcmp(argv[0],"add"))
-      dbg <<
+      flatDbg <<
         "add [ <filename> [ <size in kb> ] ]\n\n"
         "Create flat file I/O (optionally specifying file name and file size).\n"
         "If a filename is specified all output is written to that file. Otherwise\n"
@@ -372,22 +393,21 @@ void DebugIOFlat::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
         "program exits. If no size is given then the size of the log file is not \n"
         "limited and any log data is written out immediately.\n";
     else if (!strcmp(argv[0],"copy"))
-      dbg <<
+      flatDbg <<
         "copy <directory>\n\n"
         "Copies generated log file(s) into the given directory if the program\n"
         "exists or crashes. If there is already a log file with the same\n"
         "name a unique number is appended to the current log files' name.\n";
     else if (!strcmp(argv[0],"splitadd"))
-      dbg <<
+      flatDbg <<
         "splitadd <types> <filter> <name> [ <size in kb> ]\n\n"
         "Splits off part of the log data. Multiple splits can be defined. They \n"
         "are written out to the first matching split file.\n"
         "\n"
         "'types' defines one or more string types which should be split off:\n"
         "- a: asserts\n"
-        "- c: checks\n"
+        "- c: crash\n"
         "- l: logs\n"
-        "- h: crash\n"
         "- x: exceptions\n"
         "- r: replies from commands\n"
         "- o: other messages \n"
@@ -411,13 +431,13 @@ void DebugIOFlat::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
         "If no size is given then the size of the log file is not limited and \n"
         "any log data is written out immediately.\n";
     else if (!strcmp(argv[0],"splitview"))
-      dbg << "splitview\n\n"
+      flatDbg << "splitview\n\n"
              "Shows all existing splits in the order they are evaluated.";
     else if (!strcmp(argv[0],"splitremove"))
-      dbg << "splitremove <namepattern>\n\n"
+      flatDbg << "splitremove <namepattern>\n\n"
              "Removes all active splits matching the given name pattern.";
     else 
-      dbg << "Unknown flat I/O command";
+      flatDbg << "Unknown flat I/O command";
   }
   else if (!strcmp(cmd,"add"))
   {
@@ -459,13 +479,12 @@ void DebugIOFlat::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
       {
         switch(*p)
         {
-          case 'a': cur->stringTypes|=1<<Assert; break;
-          case 'c': cur->stringTypes|=1<<Check; break;
-          case 'l': cur->stringTypes|=1<<Log; break;
-          case 'h': cur->stringTypes|=1<<Crash; break;
-          case 'x': cur->stringTypes|=1<<Exception; break;
-          case 'r': cur->stringTypes|=1<<CmdReply; break;
-          case 'o': cur->stringTypes|=1<<Other; break;
+          case 'a': cur->stringTypes|=1<<0; break;
+          case 'c': cur->stringTypes|=1<<2; break;
+          case 'l': cur->stringTypes|=1<<1; break;
+          case 'x': cur->stringTypes|=1<<3; break;
+          case 'r': cur->stringTypes|=1<<4; break;
+          case 'o': cur->stringTypes|=1<<6; break;
         }
       }
       if (!cur->stringTypes)
@@ -500,22 +519,21 @@ void DebugIOFlat::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
     // splitview
     for (SplitListEntry *cur=m_firstSplit;cur;cur=cur->next)
     {
-      for (StringType t=Assert;t<MAX;t=(StringType)(t+1))
+      for (int t=0;t<7;++t)
       {
-        if (t==StructuredCmdReply||!(cur->stringTypes&(1<<t)))
+        if (t==5||!(cur->stringTypes&(1<<t)))
           continue;
         switch(t)
         {
-          case Assert:    dbg << "a"; break;
-          case Check:     dbg << "c"; break;
-          case Log:       dbg << "l"; break;
-          case Crash:     dbg << "h"; break;
-          case Exception: dbg << "x"; break;
-          case CmdReply:  dbg << "r"; break;
-          case Other:     dbg << "o"; break;
+          case 0: flatDbg << "a"; break;
+          case 1: flatDbg << "c"; break;
+          case 2: flatDbg << "l"; break;
+          case 3: flatDbg << "x"; break;
+          case 4: flatDbg << "r"; break;
+          case 6: flatDbg << "o"; break;
         }
       }
-      dbg << " " << cur->items << " " << cur->name << "\n";
+      flatDbg << " " << cur->items << " " << cur->name << "\n";
     }
   }
   else if (!strcmp(cmd,"splitremove"))
