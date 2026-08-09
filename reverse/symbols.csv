@@ -68439,3 +68439,13 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??A?$hash_map@W4NameKeyType@@P6APAVTransition@@XZU?$hash@W4NameKeyType@@@rts@@U?$equal_to@W4NameKeyType@@@4@V?$allocator@U?$pair@$$CBW4NameKeyType@@P6APAVTransition@@XZ@_STL@@@_STL@@@_STL@@QAEAAP6APAVTransition@@XZABW4NameKeyType@@@Z,0x0000F2FE,TU-local factory map member uses the retail STLport operator[] thunk
 _ghiResetBuffer,0x0087DA30,vendored=gamespy-2004
 _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
+??0BoxDynamicVBAccessClass@@QAE@IIGI@Z,0x0091F730,TU-local DynamicVB ABI for BoxRenderObjClass::render_box
+??0WriteLockClass@BoxDynamicVBAccessClass@@QAE@PAV1@@Z,0x0091F160,TU-local DynamicVB lock ABI for BoxRenderObjClass::render_box
+??1WriteLockClass@BoxDynamicVBAccessClass@@QAE@XZ,0x0091F240,TU-local DynamicVB lock ABI for BoxRenderObjClass::render_box
+??1BoxDynamicVBAccessClass@@QAE@XZ,0x0091D9E0,TU-local DynamicVB ABI for BoxRenderObjClass::render_box
+?BoxSetTexture@@YAXIAAPAVTextureBaseClass@@@Z,0x00905AC0,TU-local texture binding ABI for BoxRenderObjClass::render_box
+??0WriteLockClass@DynamicIBAccessClass@@QAE@PAV1@@Z,0x0091D410,DynamicIB lock ABI for BoxRenderObjClass::render_box
+??1WriteLockClass@DynamicIBAccessClass@@QAE@XZ,0x0091D4E0,DynamicIB lock ABI for BoxRenderObjClass::render_box
+??1DynamicIBAccessClass@@QAE@XZ,0x0091D350,DynamicIB ABI for BoxRenderObjClass::render_box
+?Set_Vertex_Buffer@DX8Wrapper@@SAXABVDynamicVBAccessClass@@@Z,0x00904510,DynamicVB binding ABI for BoxRenderObjClass::render_box
+?Draw_Triangles@DX8Wrapper@@SAXIGGGG@Z,0x00906D70,BoxRenderObjClass::render_box draw ABI

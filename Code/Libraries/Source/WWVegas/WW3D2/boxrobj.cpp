@@ -169,6 +169,44 @@ static ShaderClass					_BoxShader;
 ** BoxRenderObjClass Implementation
 */
 
+class BoxDynamicVBAccessClass
+{
+	unsigned FVFInfo;
+	unsigned Type;
+	unsigned FVF;
+	unsigned VertexBuffer;
+	unsigned short VertexCount;
+	unsigned short VertexBufferOffset;
+	unsigned Buffer;
+
+public:
+	BoxDynamicVBAccessClass(unsigned type,unsigned fvf,unsigned short vertex_count,unsigned buffer);
+	~BoxDynamicVBAccessClass();
+
+	class WriteLockClass
+	{
+		BoxDynamicVBAccessClass *DynamicVBAccess;
+		VertexFormatXYZNDUV2 *Vertices;
+
+	public:
+		WriteLockClass(BoxDynamicVBAccessClass *vb_access);
+		~WriteLockClass();
+		VertexFormatXYZNDUV2 *Get_Formatted_Vertex_Array() { return Vertices; }
+	};
+};
+
+void BoxSetTexture(unsigned stage,TextureBaseClass *& texture);
+
+class BoxTextureRef
+{
+	TextureBaseClass *Texture;
+
+public:
+	BoxTextureRef() : Texture(NULL) {}
+	~BoxTextureRef() { if (Texture) Texture->Release_Ref(); }
+	operator TextureBaseClass *&() { return Texture; }
+};
+
 
 /***********************************************************************************************
  * BoxRenderObjClass::BoxRenderObjClass -- Constructor                                         *
@@ -453,7 +491,6 @@ int BoxRenderObjClass::Get_Box_Display_Mask(void)
  * HISTORY:                                                                                    *
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
-// ?render_box@BoxRenderObjClass@@ present-unmatched
 void BoxRenderObjClass::render_box(RenderInfoClass & rinfo,const Vector3 & center,const Vector3 & extent)
 {
 	if (!IsInitted) return;
@@ -475,9 +512,9 @@ void BoxRenderObjClass::render_box(RenderInfoClass & rinfo,const Vector3 & cente
 		
 		int buffer_type = BUFFER_TYPE_DYNAMIC_DX8;
 
-		DynamicVBAccessClass vbaccess(buffer_type,dynamic_fvf_type,NUM_BOX_VERTS);
+		BoxDynamicVBAccessClass vbaccess(buffer_type,5,NUM_BOX_VERTS,0);
 		{
-			DynamicVBAccessClass::WriteLockClass lock(&vbaccess);
+			BoxDynamicVBAccessClass::WriteLockClass lock(&vbaccess);
 			//unsigned char *vb=(unsigned char *) lock.Get_Vertex_Array();
 			VertexFormatXYZNDUV2* vb=lock.Get_Formatted_Vertex_Array();
 
@@ -519,10 +556,13 @@ void BoxRenderObjClass::render_box(RenderInfoClass & rinfo,const Vector3 & cente
 		*/
 		DX8Wrapper::Set_Material(_BoxMaterial);
 		DX8Wrapper::Set_Shader(_BoxShader);
-		DX8Wrapper::Set_Texture(0,NULL);
+		{
+			BoxTextureRef texture;
+			BoxSetTexture(0,texture);
+		}
 		
 		DX8Wrapper::Set_Index_Buffer(ibaccess,0);
-		DX8Wrapper::Set_Vertex_Buffer(vbaccess);
+		DX8Wrapper::Set_Vertex_Buffer(*reinterpret_cast<DynamicVBAccessClass *>(&vbaccess));
 
 		SphereClass sphere;
 		Get_Obj_Space_Bounding_Sphere(sphere); 
@@ -1412,5 +1452,4 @@ RenderObjClass * BoxPrototypeClass::Create(void)
 ** Global instance of the box loader
 */
 BoxLoaderClass _BoxLoader;
-
 
