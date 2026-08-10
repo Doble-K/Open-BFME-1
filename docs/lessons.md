@@ -6401,3 +6401,34 @@ with its allocator.
 Half a screen that is reliable is still worth having. The thirty-five parked
 constructors are genuinely not worth a build; the sixteen are worth exactly one
 each.
+
+
+## Floats reach the FPU by being passed, not by being assigned
+
+Get_Diffuse copies three floats and retail does it on the x87 stack: three loads,
+an exchange to undo the stack's reversal, three stores. Writing three field
+assignments gives integer moves instead, and so does a whole-struct copy -- MSVC
+treats a float lvalue copy as a bit pattern.
+
+What does put them on the FPU is passing them by value into an inlined setter.
+That produced real fld and fstp instructions in the right places. It still was not
+exact: MSVC folded one of the three back to an integer move where retail kept all
+three on the stack, and that is instruction selection rather than anything the
+source can express.
+
+The transferable part is the mechanism. If retail uses x87 for something that
+looks like a plain copy, the source is passing the values somewhere, not
+assigning them.
+
+## Calling convention is part of the name, and can be wrong in the ledger
+
+getListboxBottomEntry reads its parameter from ecx in the first instruction and
+returns with a bare ret. That is __fastcall. The row calls it
+?getListboxBottomEntry@@YAHPAU_ListboxData@@@Z, where YA is cdecl and the
+argument would live at [esp+4].
+
+Both cannot be true, and the bytes win. The row needs repairing to YI before the
+function can be attempted -- writing it as declared produces a source that reads
+the wrong location, and writing it as __fastcall produces a symbol the row does
+not name. This is the third mis-named row found by reading arity and convention
+off the body rather than trusting the mangled name.
