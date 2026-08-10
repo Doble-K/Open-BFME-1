@@ -216,6 +216,33 @@ public:
     void construct(const void *source);
 };
 
+class CylinderEmissionVolumeTemplateParseShim {
+public:
+    void parse(INI *ini);
+};
+
+class CylinderEmissionVolumeTemplateAllocation {
+public:
+    __forceinline CylinderEmissionVolumeTemplateAllocation()
+    {
+        volatile unsigned int *vtableSlots = (unsigned int *)this;
+        vtableSlots[1] = 0x0110f9ac;
+        *((volatile unsigned char *)this + 0x0c) = 0;
+        vtableSlots[2] = 0x01110a4c;
+        vtableSlots[4] = 0;
+        vtableSlots[5] = 0;
+        vtableSlots[6] = 0;
+        vtableSlots[7] = 0;
+        vtableSlots[8] = 0;
+        vtableSlots[0] = 0x0111122c;
+        vtableSlots[1] = 0x01111228;
+        vtableSlots[2] = 0x01111214;
+    }
+
+private:
+    unsigned char m_storage[0x24];
+};
+
 class CylinderEmissionVolumeModuleCtorShim {
 public:
     void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
@@ -3295,147 +3322,12 @@ ConcreteModuleClass<ModuleTag<5, CYLINDER_EMISSION_VOLUME_MODULE_KEY, CYLINDER_E
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?CYLINDER_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?CYLINDER_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVCylinderEmissionVolumeModule@2@VCylinderEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVCylinderEmissionVolumeModuleTemplate@2@PAVINI@@@Z
-__declspec(naked) CylinderEmissionVolumeModuleTemplate *ConcreteModuleClass<ModuleTag<5, CYLINDER_EMISSION_VOLUME_MODULE_KEY, CYLINDER_EMISSION_VOLUME_MODULE_NAME, CylinderEmissionVolumeModule, CylinderEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createTemplate(INI *ini) const
+CylinderEmissionVolumeModuleTemplate *ConcreteModuleClass<ModuleTag<5, CYLINDER_EMISSION_VOLUME_MODULE_KEY, CYLINDER_EMISSION_VOLUME_MODULE_NAME, CylinderEmissionVolumeModule, CylinderEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createTemplate(INI *ini) const
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xf8
-        __emit 0xb4
-        __emit 0x03
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x24
-        __emit 0xe8
-        __emit 0xd2
-        __emit 0x04
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x74
-        __emit 0x38
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xac
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0x88
-        __emit 0x48
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x4c
-        __emit 0x0a
-        __emit 0x11
-        __emit 0x01
-        __emit 0x89
-        __emit 0x48
-        __emit 0x10
-        __emit 0x89
-        __emit 0x48
-        __emit 0x14
-        __emit 0x89
-        __emit 0x48
-        __emit 0x18
-        __emit 0x89
-        __emit 0x48
-        __emit 0x1c
-        __emit 0x89
-        __emit 0x48
-        __emit 0x20
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x2c
-        __emit 0x12
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0x28
-        __emit 0x12
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x14
-        __emit 0x12
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x80
-        __emit 0x30
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    std::auto_ptr<CylinderEmissionVolumeModuleTemplate> moduleTemplate(
+        (CylinderEmissionVolumeModuleTemplate *)new CylinderEmissionVolumeTemplateAllocation);
+    ((CylinderEmissionVolumeTemplateParseShim *)moduleTemplate.get())->parse(ini);
+    return moduleTemplate.release();
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?CYLINDER_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?CYLINDER_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVCylinderEmissionVolumeModule@2@VCylinderEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVCylinderEmissionVolumeModuleTemplate@2@XZ
