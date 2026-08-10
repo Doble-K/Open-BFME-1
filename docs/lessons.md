@@ -5900,3 +5900,21 @@ Retiring 0x00090970's name without a replacement also drops a byte-verified clai
 literal, so only the row's name is in question, and that name predates the
 conversion. The next step is xref work on 0x00090970's callers to name it, after
 which all three can move together.
+
+## novtable hides a base's unwind entry
+
+BuildListInfo's destructor tracks unwind states 3/2/1/0 for three AsciiString
+members. Three members should give 2/1/0/-1, so the extra state is the base
+subobject, and getting the count wrong is what made a first attempt three bytes
+short rather than merely mis-registered.
+
+The cause was `__declspec(novtable)` on the stand-in base. It suppresses the
+vptr store, and with it the base's entry in the unwind table, so every state
+number shifts down by one. Dropping novtable restored 3/2/1/0 and the size.
+
+Worth knowing as a diagnostic in both directions: if compiled EH states are
+uniformly one below retail's, look for a base whose destructor the compiler
+decided it need not unwind, and novtable is the usual reason. The state numbers
+are a member count you can read straight off the disassembly before writing any
+source -- retail's highest state plus one is how many destructible subobjects the
+class has, bases included.
