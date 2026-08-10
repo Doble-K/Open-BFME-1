@@ -5083,28 +5083,32 @@ void InGameUI::updateFloatingText( void )
 //-------------------------------------------------------------------------------------------------
 /** Itterates through and draws each floating text */
 //-------------------------------------------------------------------------------------------------
-// ?drawFloatingText@InGameUI@@IAEXXZ present-unmatched
 void InGameUI::drawFloatingText( void )
 {
+	typedef Int (View::*RetailWorldToScreen)( const Coord3D *, ICoord2D * );
+	typedef void (DisplayString::*RetailSetDisplayStringColors)( Color, Color );
+	typedef void (DisplayString::*RetailGetDisplayStringSize)( Int *, Int * );
+	typedef void (DisplayString::*RetailDrawDisplayString)( Int, Int, Int, Int );
+	register InGameUI *self = this;
 	FloatingTextData *ftd;
+	// BFME stores the floating-text list and movement speed at these retail
+	// offsets; the shared Generals header has additional fields before them.
+	FloatingTextList &floatingTextList = *reinterpret_cast<FloatingTextList *>( reinterpret_cast<char *>( self ) + 0x1298 );
+	const Real &floatingTextMoveUpSpeed = *reinterpret_cast<const Real *>( reinterpret_cast<const char *>( self ) + 0x12A0 );
 	// loop through and draw all the texts
-	for(FloatingTextListIt it = m_floatingTextList.begin(); it != m_floatingTextList.end(); ++it)
+	for(FloatingTextListIt it = floatingTextList.begin(); it != floatingTextList.end(); ++it)
 	{
 		ftd = *it;
 		ICoord2D pos;
 		// get the local player's index
 		Int playerNdx = ThePlayerList->getLocalPlayer()->getPlayerIndex();
 
-		// which PartitionManager cells are we looking at?
-		Int pCX, pCY;
-		ThePartitionManager->worldToCell(ftd->m_pos3D.x, ftd->m_pos3D.y, &pCX, &pCY);
-
 		// translate it's 3d pos into a 2d screen pos
-		if( TheTacticalView->worldToScreen(&ftd->m_pos3D, &pos) 
+		if( !( TheTacticalView->*(*(RetailWorldToScreen *)&(*(void ***)TheTacticalView)[0x15C / sizeof( void *)]) )( &ftd->m_pos3D, &pos )
 			&& ftd->m_dString 
-			&& ThePartitionManager->getShroudStatusForPlayer(playerNdx, pCX, pCY) == CELLSHROUD_CLEAR )
+			&& ThePartitionManager->getShroudStatusForPlayer(playerNdx, &ftd->m_pos3D) == CELLSHROUD_CLEAR )
 		{
-			pos.y -= ftd->m_frameCount * m_floatingTextMoveUpSpeed;
+			pos.y -= ftd->m_frameCount * floatingTextMoveUpSpeed / *reinterpret_cast<const Int *>( reinterpret_cast<const char *>( TheGameEngine ) + 0x34 );
 			Color dropColor;
 			UnsignedByte r, g, b, a;
 			Int width;
@@ -5112,9 +5116,10 @@ void InGameUI::drawFloatingText( void )
 			// make drop color black, but use the alpha setting of the fill color specified (for fading)
 			GameGetColorComponents( ftd->m_color, &r, &g, &b, &a );
 			dropColor = GameMakeColor( 0, 0, 0, a );
-			ftd->m_dString->getSize(&width, NULL);
+			( ftd->m_dString->*(*(RetailGetDisplayStringSize *)&(*(void ***)ftd->m_dString)[0x3C / sizeof( void *)]) )( &width, NULL );
 			// draw it!
-			ftd->m_dString->draw(pos.x - (width / 2), pos.y, ftd->m_color,dropColor);
+			( ftd->m_dString->*(*(RetailSetDisplayStringColors *)&(*(void ***)ftd->m_dString)[0x28 / sizeof( void *)]) )( ftd->m_color, dropColor );
+			( ftd->m_dString->*(*(RetailDrawDisplayString *)&(*(void ***)ftd->m_dString)[0x38 / sizeof( void *)]) )( pos.x - (width / 2), pos.y, 1, 1 );
 		}
 
 	}

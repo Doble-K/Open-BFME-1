@@ -230,6 +230,10 @@ void WorkerAIUpdate::createMachines( void )
 //----------------------------------------------------------------------------------------
 UnsignedInt WorkerAIUpdate::getActionDelayForDock( Object *dock )
 {
+	// BFME's AIUpdate module-data pointer is at retail this-0x340.  The
+	// ZH-shaped module header exposes the same fields through a shorter base;
+	// this source-level displacement combines with the multiple-inheritance
+	// this adjustment to emit the retail slot without changing that header.
 	// Decide whether to use my Center or Warehouse delay time
 	static const NameKeyType key_warehouseUpdate = NAMEKEY("SupplyWarehouseDockUpdate");
 	SupplyWarehouseDockUpdate *warehouseModule = (SupplyWarehouseDockUpdate*) dock->findUpdateModule( key_warehouseUpdate );
