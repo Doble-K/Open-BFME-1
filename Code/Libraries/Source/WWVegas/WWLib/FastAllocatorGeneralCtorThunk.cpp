@@ -1,127 +1,54 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// One 24-byte fixed-size pool per allocation bucket. The element has both a
+// constructor and a destructor, so the array member below is built through
+// `eh vector constructor iterator' (??_L) rather than the plain ??_H form.
+class FastAllocatorPool
+{
+public:
+    FastAllocatorPool();
+    ~FastAllocatorPool();
+
+    unsigned int m_head;
+    unsigned int m_allocSize;
+    unsigned int m_reserved[4];
+};
+
 class FastAllocatorGeneral
 {
 public:
     FastAllocatorGeneral();
+
+    FastAllocatorPool m_pools[128];
+    void *m_freeLists[128];
+    char m_initialized;
+    int m_totalAllocs;
+    int m_totalFrees;
+    int m_totalBytes;
 };
 
 // ??0FastAllocatorGeneral@@QAE@XZ
-__declspec(naked) FastAllocatorGeneral::FastAllocatorGeneral()
+FastAllocatorGeneral::FastAllocatorGeneral()
 {
-    __asm {
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x68;
-        __emit 0x20;
-        __emit 0x27;
-        __emit 0xf0;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0x90;
-        __emit 0x27;
-        __emit 0xf0;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0x80;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x6a;
-        __emit 0x18;
-        __emit 0x56;
-        __emit 0xe8;
-        __emit 0x19;
-        __emit 0x47;
-        __emit 0xef;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x86;
-        __emit 0x00;
-        __emit 0x0c;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xba;
-        __emit 0x80;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0x89;
-        __emit 0x08;
-        __emit 0x83;
-        __emit 0xc0;
-        __emit 0x04;
-        __emit 0x4a;
-        __emit 0x75;
-        __emit 0xf8;
-        __emit 0x88;
-        __emit 0x8e;
-        __emit 0x00;
-        __emit 0x0e;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x8e;
-        __emit 0x04;
-        __emit 0x0e;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x8e;
-        __emit 0x08;
-        __emit 0x0e;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x8e;
-        __emit 0x0c;
-        __emit 0x0e;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xb8;
-        __emit 0x10;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x04;
-        __emit 0xbf;
-        __emit 0x80;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xf8;
-        __emit 0x04;
-        __emit 0xba;
-        __emit 0x04;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x72;
-        __emit 0x02;
-        __emit 0x8b;
-        __emit 0xd0;
-        __emit 0x89;
-        __emit 0x11;
-        __emit 0x83;
-        __emit 0xc0;
-        __emit 0x10;
-        __emit 0x83;
-        __emit 0xc1;
-        __emit 0x18;
-        __emit 0x4f;
-        __emit 0x75;
-        __emit 0xe9;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc3;
+    // Retail keeps an explicit store loop here (lea/xor/mov-add-dec-jne) and
+    // holds the zero in ecx so the four scalar stores below can reuse it. Any
+    // plain zero-fill loop is folded to `rep stosd` by MSVC 7.1's memset idiom,
+    // so the volatile qualifier is a codegen pin, not a semantic claim.
+    void *volatile *freeList = m_freeLists;
+    int remaining = 128;
+    do {
+        *freeList = 0;
+        ++freeList;
+    } while (--remaining);
+
+    m_initialized = 0;
+    m_totalAllocs = 0;
+    m_totalFrees = 0;
+    m_totalBytes = 0;
+
+    unsigned int size = 16;
+    for (int i = 0; i < 128; ++i) {
+        m_pools[i].m_allocSize = size < 4 ? 4 : size;
+        size += 16;
     }
 }
