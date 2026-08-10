@@ -2162,6 +2162,7 @@ name,address,notes
 ??1AttributeModifierAuraUpdateModuleDataMemberD@@QAE@XZ,0x0001B97D,Open-BFME5 pin
 ??1AttributeModifierStandIn@@QAE@XZ,0x00129C80,Open-BFME5 nested attribute-modifier struct dtor from AttributeModifierAuraUpdateModuleData dtor call site
 ??1AudioEventRTS@@UAE@XZ,0x0002671F
+?init@AudioEventRTS@@QAEXABVAsciiString@@W4ObjectID@@@Z,0x000B2CC0,GiantBirdSlowDeathBehavior audio member initializer
 ??1AudioEventRTS@@UAE@XZ,0x009409F0,pinharvest x1 (body)
 ??1AutoPickUpUpdateModuleDataMemberA@@QAE@XZ,0x0001A401,Open-BFME5 pin
 ??1AutoPickUpUpdateModuleDataMemberB@@QAE@XZ,0x00045016,Open-BFME5 pin
