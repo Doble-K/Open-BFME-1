@@ -1,169 +1,54 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class LevelGrantSpecialPowerModuleData
+#include <string.h>
+
+class RS_Base
+{
+public:
+    RS_Base();
+    virtual ~RS_Base();
+
+private:
+    unsigned char m_pad[0x250];
+};
+
+class RS_Member
+{
+public:
+    RS_Member();
+
+    unsigned int m_dummy;
+    volatile unsigned int m_second;
+};
+
+struct SixDwords
+{
+    SixDwords() { memset(this, 0, sizeof(*this)); }
+
+    volatile unsigned int v[6];
+};
+
+class LevelGrantSpecialPowerModuleData : public RS_Base
 {
 public:
     LevelGrantSpecialPowerModuleData();
+
+private:
+    volatile unsigned int m_field254;
+    unsigned int m_field258;
+    volatile unsigned int m_field25c;
+    RS_Member m_member;
+    SixDwords m_fields268;
+    unsigned char m_field280;
 };
 
 // ??0LevelGrantSpecialPowerModuleData@@QAE@XZ
-__declspec(naked) LevelGrantSpecialPowerModuleData::LevelGrantSpecialPowerModuleData()
+LevelGrantSpecialPowerModuleData::LevelGrantSpecialPowerModuleData()
+    : m_field258(0), m_fields268()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xd8;
-        __emit 0xf5;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xe8;
-        __emit 0xf0;
-        __emit 0xf5;
-        __emit 0xdd;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x60;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xd8;
-        __emit 0x5c;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x58;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x4a;
-        __emit 0x75;
-        __emit 0xdd;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x86;
-        __emit 0x68;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0x8b;
-        __emit 0xd0;
-        __emit 0x89;
-        __emit 0x0a;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x5c;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x64;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x86;
-        __emit 0x54;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x14;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x88;
-        __emit 0x9e;
-        __emit 0x80;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+    m_field25c = 0;
+    m_member.m_second = 0;
+    m_field254 = 1;
+    memset(&m_fields268, 0, sizeof(m_fields268));
+    m_field280 = 0;
 }
