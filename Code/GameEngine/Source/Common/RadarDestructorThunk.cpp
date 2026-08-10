@@ -1,133 +1,73 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the retail Radar destructor to clean C++.
 
-class __declspec(novtable) Radar
+class Snapshot
 {
+public:
+    virtual ~Snapshot() {}
+};
+
+class __declspec(novtable) SubsystemInterface
+{
+public:
+    SubsystemInterface();
+    virtual ~SubsystemInterface();
+
+private:
+    unsigned m_name;
+};
+
+class RadarEventReference
+{
+public:
+    virtual void release(int);
+    int m_referenceCount;
+};
+
+struct RadarEvent
+{
+    int m_type;
+    bool m_active;
+    unsigned char m_padding[0x47];
+    RadarEventReference *m_reference;
+
+    RadarEvent() : m_reference(0) {}
+
+    ~RadarEvent()
+    {
+        RadarEventReference *reference = m_reference;
+        if (reference != 0)
+        {
+            int referenceCount = --reference->m_referenceCount;
+            if (referenceCount <= 0)
+            {
+                reference->release(1);
+            }
+        }
+    }
+};
+
+class Radar : public Snapshot, public SubsystemInterface
+{
+protected:
+    void deleteListResources();
+
+private:
+    bool m_radarHidden;
+    bool m_radarForceOn;
+    void *m_objectList;
+    void *m_localObjectList;
+    float m_terrainAverageZ;
+    float m_waterAverageZ;
+    float m_xSample;
+    float m_ySample;
+    RadarEvent m_event[64];
+
 public:
     virtual ~Radar();
 };
 
-// ??1Radar@@UAE@XZ
-__declspec(naked) Radar::~Radar()
+Radar::~Radar()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xf5
-        __emit 0xce
-        __emit 0xff
-        __emit 0x00
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x8d
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xac
-        __emit 0x88
-        __emit 0x08
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x80
-        __emit 0x88
-        __emit 0x08
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x1a
-        __emit 0x53
-        __emit 0xf2
-        __emit 0xff
-        __emit 0x68
-        __emit 0x15
-        __emit 0x5d
-        __emit 0x42
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x40
-        __emit 0x6a
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x28
-        __emit 0x50
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x28
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x03
-        __emit 0xf7
-        __emit 0x8e
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xc1
-        __emit 0xa3
-        __emit 0x89
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
-    }
+    deleteListResources();
 }
