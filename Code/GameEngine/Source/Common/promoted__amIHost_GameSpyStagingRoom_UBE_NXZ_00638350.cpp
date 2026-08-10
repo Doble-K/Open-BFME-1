@@ -1,122 +1,52 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
-// Grok promote from masm_dumps — retail 0x00638350 size 109
-// was: Code/masm_dumps/_rn7__amIHost_GameSpyStagingRoom__UBE_NXZ_638350.asm
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
 
-class GameSpyStagingRoom { public: virtual bool amIHost(void) const; };
+// Not in game, no host. Otherwise ask the first slot whether the local name is
+// its player.
+//
+// The AsciiString comes from the shim rather than a hand-rolled stand-in: it is
+// passed to isPlayer by value, and that only comes out in retail's order with
+// the real StringBase-backed class. This row was parked on exactly that.
+//
+// Arguments evaluate right to left, which is why the string temporary is built
+// before getConstSlot is called rather than after.
+#include "Common/AsciiString.h"
+
+typedef int Int;
+typedef bool Bool;
+
+class GameSlot
+{
+public:
+	Bool isPlayer(AsciiString name) const;
+};
+
+class GameInfo
+{
+public:
+	const GameSlot *getConstSlot(Int which) const;
+
+	virtual ~GameInfo();
+
+private:
+	unsigned char m_head[8];
+};
+
+class GameSpyStagingRoom : public GameInfo
+{
+public:
+	virtual Bool amIHost(void) const;
+
+private:
+	bool m_inGame;
+	unsigned char m_gap0d[0x424 - 0x0D];
+	AsciiString m_localName;
+};
 
 // ?amIHost@GameSpyStagingRoom@@UBE_NXZ
-__declspec(naked) bool GameSpyStagingRoom::amIHost(void) const
+Bool GameSpyStagingRoom::amIHost(void) const
 {
-__asm {
-		_emit 06Ah
-		_emit 0FFh
-		_emit 068h
-		_emit 0C8h
-		_emit 013h
-		_emit 004h
-		_emit 001h
-		_emit 064h
-		_emit 0A1h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 050h
-		_emit 064h
-		_emit 089h
-		_emit 025h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 051h
-		_emit 056h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 08Ah
-		_emit 046h
-		_emit 00Ch
-		_emit 084h
-		_emit 0C0h
-		_emit 075h
-		_emit 012h
-		_emit 032h
-		_emit 0C0h
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 064h
-		_emit 089h
-		_emit 00Dh
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 05Eh
-		_emit 083h
-		_emit 0C4h
-		_emit 010h
-		_emit 0C3h
-		_emit 051h
-		_emit 08Dh
-		_emit 086h
-		_emit 024h
-		_emit 004h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 064h
-		_emit 024h
-		_emit 008h
-		_emit 08Bh
-		_emit 0CCh
-		_emit 050h
-		_emit 0E8h
-		_emit 0CBh
-		_emit 0F7h
-		_emit 024h
-		_emit 000h
-		_emit 06Ah
-		_emit 000h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0C7h
-		_emit 044h
-		_emit 024h
-		_emit 018h
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0FFh
-		_emit 0E8h
-		_emit 0BAh
-		_emit 010h
-		_emit 09Fh
-		_emit 0FFh
-		_emit 08Bh
-		_emit 0C8h
-		_emit 0E8h
-		_emit 03Eh
-		_emit 06Dh
-		_emit 09Eh
-		_emit 0FFh
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 064h
-		_emit 089h
-		_emit 00Dh
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 05Eh
-		_emit 083h
-		_emit 0C4h
-		_emit 010h
-		_emit 0C3h
-	}
-}
+	if (!m_inGame)
+		return false;
 
+	return getConstSlot(0)->isPlayer(m_localName);
+}

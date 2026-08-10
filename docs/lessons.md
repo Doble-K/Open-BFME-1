@@ -6486,3 +6486,32 @@ That is not a spill. It is the source naming the global again instead of the
 local it already has, and writing it through the local produces one fewer load.
 The register the compiler happens to have is not evidence about what the source
 said.
+
+
+## Sweeping a retired blocker pays immediately
+
+Closing the by-value transposition parked four rows that were waiting on it.
+Three of them converted this tick -- amIHost and resetIdleWorker on the first
+build, GadgetComboBoxSetText on the third.
+
+This is the second time the sweep has been worth running and the second time I
+had to be reminded to run it. When a blocker retires, the rows it parked are the
+best-understood candidates available: each already has a disassembly, a diagnosis
+and a reason it failed. They should be the next thing attempted, not something
+noticed later.
+
+## Hoisting a call out of an argument list changes when it runs
+
+GadgetComboBoxSetText builds a string copy for its second argument and calls
+winGetUserData for its first. Retail evaluates right to left, so the copy is
+built first and the accessor runs after it.
+
+Writing the accessor as its own statement before the call inverts that, and the
+two are not interchangeable: a call in an argument list is sequenced with the
+other arguments, a call in a preceding statement is not. Putting it back inside
+-- via a small inlined helper, since MSVC rejects assignment-in-condition as
+C4706 here -- matched.
+
+So when a temporary appears earlier in retail than the source suggests, look at
+which expressions are arguments and which have been lifted into locals. Lifting
+is not free.
