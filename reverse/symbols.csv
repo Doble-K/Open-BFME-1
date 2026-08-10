@@ -68465,3 +68465,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??0DrawModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00002874,Open-BFME5 W3DRopeDraw constructor base-call pin
 ??0ObjectWeaponStatusHelperBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00021BE8,ObjectWeaponStatusHelper ctor base call
 ?setWakeFrame@ObjectWeaponStatusHelperBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
+??0GeometryUpgradeBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000C315,GeometryUpgrade ctor base call
