@@ -6143,3 +6143,36 @@ file. The pattern that is safe reads:
 
 Recovery was one git checkout because the file is tracked, which is the only
 reason this cost minutes rather than the session.
+
+
+## The shim closes the by-value transposition for good
+
+AITunnelNetworkGuardState sat parked for several ticks on the `mov [esp+8],esp` /
+`mov ecx,esp` pair, and the note said the transposition survived every source
+shape. It did not survive using the real shim AsciiString instead of a
+hand-rolled four-byte stand-in. Five 46-byte State constructors -- AIBusyState,
+FailureState, ContinueState, AIWaitState, AIDeadState -- then converted on the
+first build each.
+
+Two ticks ago I recorded this correction for CampaignManager and did not go back
+and re-try the functions I had already parked on it. Parked rows should be
+re-queued when the blocker that parked them is retired; that is a cheap sweep and
+it was worth five conversions here.
+
+## A shape screen hides exactly what it matches on
+
+Seven candidates were selected because their bytes matched the family pattern
+byte for byte. Three of them failed, and the difference was a single call
+displacement -- the base constructor. They resolve to 0x0014F280 and 0x0018D890
+where the others resolve to State's 0x000A19E0, so those classes derive from an
+intermediate class rather than from State directly.
+
+The relocated operand is excluded from a shape match by construction: that is what
+makes the screen useful across a family, and it is also the one field that can
+hide a structural difference. When a shape-selected batch fails, look at the
+relocations first, because they are the part the screen was blind to by design.
+
+My first reading of this was that retail used a different ILT thunk for the same
+function. That was wrong -- only one thunk targets State's constructor -- and
+resolving the jump chain took one query that I should have run before forming the
+theory.

@@ -1,61 +1,39 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+// State subclass constructor: build the name, hand it to the base by value,
+// install this class's vptr.
+//
+// The AsciiString is the shim's rather than a hand-rolled four-byte stand-in.
+// That is the whole difference between matching and not: the temporary is passed
+// by value, and only the StringBase-backed shim emits `mov [esp+8],esp` before
+// `mov ecx,esp` the way retail does. An earlier attempt at this family declared
+// its own AsciiString and stalled on exactly that pair.
+//
+// The base's mangled name spells its second parameter VAsciiString@@, so the
+// class has to carry that name for the call to mangle the same way.
+#include "Common/AsciiString.h"
 
 class StateMachine;
 
-class AIBusyState
+class State
 {
 public:
-    AIBusyState(StateMachine *);
+	State(StateMachine *machine, AsciiString name);
+
+	virtual ~State();
+
+private:
+	unsigned char m_head[0x20];
 };
 
-__declspec(naked) AIBusyState::AIBusyState(StateMachine *)
+class AIBusyState : public State
 {
-    __asm {
-        _emit 051h
-        _emit 056h
-        _emit 051h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 064h
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0CCh
-        _emit 068h
-        _emit 090h
-        _emit 07Ah
-        _emit 009h
-        _emit 001h
-        _emit 0E8h
-        _emit 0EBh
-        _emit 07Bh
-        _emit 071h
-        _emit 000h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 050h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 0D1h
-        _emit 025h
-        _emit 0E9h
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 0A0h
-        _emit 07Ah
-        _emit 009h
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 059h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+public:
+	AIBusyState(StateMachine *machine);
+};
+
+// ??0AIBusyState@@QAE@PAVStateMachine@@@Z
+AIBusyState::AIBusyState(StateMachine *machine) :
+	State(machine, "AIBusyState")
+{
 }
