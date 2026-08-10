@@ -94165,3 +94165,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?addRadar@Player@@QAEX_N@Z,,0x000FB3F0,206,Code/GameEngine/Source/GameLogic/Player_addRadar_Thunk.cpp,matched,Open-BFME5 retail body; Player layout requires standalone naked thunk
 ?reserveApproachPosition@DockUpdate@@UAE_NPAVObject@@PAUCoord3D@@PAH@Z,,0x002CD210,500,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,ret-delimited body; retail REL32 pins for Coord3D _Construct and DockUpdate vector thunks
 ?Save_W3D@AggregateDefClass@@UAE?AW4WW3DErrorType@@AAVChunkSaveClass@@@Z,,0x00980590,83,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,
+?insertCrossTypeJoins@W3DRoadBuffer@@IAEXXZ,,0x0070CE00,1611,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,Open-BFME5 exact C++ after restoring the retail m_initialized guard

@@ -2792,9 +2792,12 @@ void W3DRoadBuffer::adjustStacking(Int topUniqueID, Int bottomUniqueID)
 //=============================================================================
 /** Inserts alpha blend type joins at open ends. */
 //=============================================================================
-// ?insertCrossTypeJoins@W3DRoadBuffer@@IAEXXZ present-unmatched
 void W3DRoadBuffer::insertCrossTypeJoins(void)
 {
+	if (!m_initialized) {
+		return;
+	}
+
 	// Insert the curve segments. 
 	Int numRoadSegments = m_numRoads;
 	Int i;
