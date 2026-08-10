@@ -67561,6 +67561,7 @@ name,address,notes
 ?parse@LightningDrawTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0003CBC3,Open-BFME5 pin
 ?parse@CylinderEmissionVolumeTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x00034B35,Open-BFME5 pin
 ?parse@PointEmissionVolumeTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x00041731,Open-BFME5 pin
+?parse@QuadDrawTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x00043BF8,Open-BFME5 pin
 ?parse@RenderObjectUpdateTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x00002E3C,Open-BFME5 pin
 ?parse@TerrainCollisionTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0001EA60,Open-BFME5 pin
 ?parse@TransitionDamageFXModuleDataParseFXListShim@@SAXPAVINI@@PAX1PBX@Z,0x00251ED0,TransitionDamageFXModuleData parseFXList incremental-link thunk target through a TU-local forwarding shim
