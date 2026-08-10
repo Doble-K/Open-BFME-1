@@ -1,171 +1,81 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
 
-class __declspec(novtable) DynamicShroudClearingRangeUpdate
+// The retail object is an UpdateModule-shaped multiple-inheritance object with
+// a 30-element RadiusDecal member array.  These declarations are TU-local so
+// the destructor can be emitted without changing the shared engine headers.
+
+class Gen_dtor_00113f20
 {
 public:
-    virtual ~DynamicShroudClearingRangeUpdate();
+	virtual ~Gen_dtor_00113f20();
+
+private:
+	const void *m_moduleData;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void getBehaviorModuleInterface() = 0;
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterface() = 0;
+};
+
+class ObjectModule : public Gen_dtor_00113f20
+{
+private:
+	void *m_object;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+public:
+	virtual ~BehaviorModule() {}
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+private:
+	unsigned int m_nextCallFrameAndPhase;
+	int m_indexInLogic;
+	unsigned int m_updateState;
+
+public:
+	virtual ~UpdateModule() {}
+};
+
+class RadiusDecal
+{
+public:
+	void clear();
+	~RadiusDecal();
+
+private:
+	const void *m_template;
+	void *m_decal;
+	unsigned char m_empty;
+	unsigned char m_pad[4];
+};
+
+class DynamicShroudClearingRangeUpdate : public UpdateModule
+{
+public:
+	virtual ~DynamicShroudClearingRangeUpdate();
+
+private:
+	unsigned char m_data[0x30];
+	RadiusDecal m_gridDecal[30];
 };
 
 // ??1DynamicShroudClearingRangeUpdate@@UAE@XZ
-__declspec(naked) DynamicShroudClearingRangeUpdate::~DynamicShroudClearingRangeUpdate()
+DynamicShroudClearingRangeUpdate::~DynamicShroudClearingRangeUpdate()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xbe;
-        __emit 0x16;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x55;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xc4;
-        __emit 0xe0;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x00;
-        __emit 0xe0;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xf4;
-        __emit 0xdf;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x8d;
-        __emit 0x6e;
-        __emit 0x50;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xfd;
-        __emit 0xbb;
-        __emit 0x1e;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xe8;
-        __emit 0x2c;
-        __emit 0xc2;
-        __emit 0xdb;
-        __emit 0xff;
-        __emit 0x83;
-        __emit 0xc7;
-        __emit 0x10;
-        __emit 0x4b;
-        __emit 0x75;
-        __emit 0xf3;
-        __emit 0x68;
-        __emit 0xa3;
-        __emit 0xa9;
-        __emit 0x44;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0x1e;
-        __emit 0x6a;
-        __emit 0x10;
-        __emit 0x55;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x2c;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0xdf;
-        __emit 0x86;
-        __emit 0x76;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xac;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x5c;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x98;
-        __emit 0xca;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x99;
-        __emit 0x95;
-        __emit 0xdb;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x5f;
-        __emit 0x5e;
-        __emit 0x5d;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	for (int d = 0; d < 30; ++d)
+	{
+		m_gridDecal[d].clear();
+	}
 }
