@@ -1,137 +1,75 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: clean-C++ SupplyTruckAIUpdateModuleData constructor.
 
-class SupplyTruckAIUpdateModuleData
+class AnimalAIUpdateModuleDataBaseShim
 {
 public:
-    SupplyTruckAIUpdateModuleData();
+	void construct();
+};
+
+class AsciiString
+{
+public:
+	static AsciiString TheEmptyString;
+};
+
+enum ObjectID
+{
+	INVALID_OBJECT_ID = 0
+};
+
+class AudioEventRTS
+{
+public:
+	void init(const AsciiString &, ObjectID);
+
+private:
+	void *m_vtable;
+	unsigned char m_data[0x6c];
+};
+
+class __declspec(novtable) SupplyTruckAIUpdateModuleDataBase
+{
+public:
+	SupplyTruckAIUpdateModuleDataBase()
+	{
+		AnimalAIUpdateModuleDataBaseShim *base =
+			(AnimalAIUpdateModuleDataBaseShim *)this;
+		base->construct();
+	}
+	virtual ~SupplyTruckAIUpdateModuleDataBase();
+
+private:
+	unsigned char m_pad[0x60];
+};
+
+extern "C" char SupplyTruckAIUpdateModuleData_vtbl;
+
+class __declspec(novtable) SupplyTruckAIUpdateModuleData
+	: public SupplyTruckAIUpdateModuleDataBase
+{
+public:
+	SupplyTruckAIUpdateModuleData();
+	virtual ~SupplyTruckAIUpdateModuleData();
+
+private:
+	unsigned char m_pad[0x20];
+	AudioEventRTS m_suppliesDepletedVoice;
 };
 
 // ??0SupplyTruckAIUpdateModuleData@@QAE@XZ
-__declspec(naked) SupplyTruckAIUpdateModuleData::SupplyTruckAIUpdateModuleData()
+SupplyTruckAIUpdateModuleData::SupplyTruckAIUpdateModuleData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xc8;
-        __emit 0xfa;
-        __emit 0xff;
-        __emit 0x00;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xe8;
-        __emit 0xb8;
-        __emit 0xd1;
-        __emit 0xf2;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x53;
-        __emit 0x68;
-        __emit 0x50;
-        __emit 0x6e;
-        __emit 0x33;
-        __emit 0x01;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x84;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xa8;
-        __emit 0xa3;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x66;
-        __emit 0x9a;
-        __emit 0xf0;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xb8;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x7c;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x80;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x68;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x6c;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x74;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x70;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc8;
-        __emit 0x42;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x78;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x48;
-        __emit 0x42;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	unsigned int zero = 0;
+	unsigned int one = 1;
+	*(reinterpret_cast<char *volatile *>(this)) = &SupplyTruckAIUpdateModuleData_vtbl;
+	m_suppliesDepletedVoice.init(AsciiString::TheEmptyString, (ObjectID)zero);
+	*(unsigned int *)((char *)this + 0x7c) = one;
+	*(unsigned int *)((char *)this + 0x80) = one;
+	*(unsigned int *)((char *)this + 0x64) = zero;
+	*(unsigned int *)((char *)this + 0x68) = zero;
+	*(unsigned int *)((char *)this + 0x6c) = zero;
+	*((unsigned char *)this + 0x74) = (unsigned char)zero;
+	*(unsigned int *)((char *)this + 0x70) = 0x42c80000;
+	*(unsigned int *)((char *)this + 0x78) = 0x42480000;
 }
