@@ -1,130 +1,48 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// stlport
+#define Matrix4x4 Matrix4
+#define __PLACEMENT_VEC_NEW_INLINE
+#include <map>
 
-class __declspec(novtable) PartitionManager
+class SubsystemInterface
 {
 public:
-    virtual ~PartitionManager();
+	virtual ~SubsystemInterface();
+
+private:
+	void *m_name;
+};
+
+class Snapshot
+{
+public:
+	~Snapshot() {}
+	virtual void crc() = 0;
+	virtual void xfer() = 0;
+	virtual void loadPostProcess() = 0;
+};
+
+enum NameKeyType
+{
+	NAMEKEY_INVALID = 0
+};
+
+class TeamPrototype;
+typedef std::map<NameKeyType, TeamPrototype *, std::less<NameKeyType> > TeamPrototypeMap;
+
+class PartitionManager : public SubsystemInterface, public Snapshot
+{
+public:
+	virtual ~PartitionManager();
+
+private:
+	TeamPrototypeMap *m_prototypes;
+	unsigned int m_uniqueTeamPrototypeID;
+	unsigned int m_uniqueTeamID;
 };
 
 // ??1PartitionManager@@UAE@XZ
-__declspec(naked) PartitionManager::~PartitionManager()
+PartitionManager::~PartitionManager()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x3f
-        __emit 0x1e
-        __emit 0x06
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xf8
-        __emit 0x57
-        __emit 0x14
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x57
-        __emit 0x14
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x7e
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x2d
-        __emit 0x31
-        __emit 0x00
-        __emit 0x00
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x67
-        __emit 0xf6
-        __emit 0xe8
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x08
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xde
-        __emit 0xf1
-        __emit 0xfa
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
-    }
+	delete m_prototypes;
 }
