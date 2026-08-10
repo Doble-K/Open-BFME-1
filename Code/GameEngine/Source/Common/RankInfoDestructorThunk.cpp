@@ -1,161 +1,61 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) RankInfo
+// RankInfo has a POD science vector, a UnicodeString, and an Overridable base.
+// Keeping the BFME fields in their retail order lets the compiler emit the
+// complete SEH destructor, including the inline STLport vector teardown.
+#include <vector>
+
+class UnicodeString
+{
+public:
+	~UnicodeString()
+	{
+		releaseBuffer();
+	}
+
+protected:
+	void releaseBuffer();
+	void *m_data;
+};
+
+class Overridable
+{
+protected:
+	__forceinline virtual ~Overridable()
+	{
+		if (m_nextOverride)
+			m_nextOverride->deleteInstance();
+		m_nextOverride = 0;
+	}
+
+	void deleteInstance()
+	{
+		delete this;
+	}
+
+	Overridable *m_nextOverride;
+	bool m_isOverride;
+};
+
+class __declspec(novtable) RankInfo : public Overridable
 {
 protected:
 	virtual ~RankInfo();
+
+private:
+	UnicodeString m_rankName;
+	int m_skillPointsNeededDefault;
+	int m_skillPointsNeededCampaign;
+	int m_skillPointsNeededGondor;
+	int m_skillPointsNeededRohan;
+	int m_skillPointsNeededMordor;
+	int m_skillPointsNeededIsengard;
+	int m_sciencePurchasePointsGranted;
+	std::vector<int> m_sciencesGranted;
 };
 
 // ??1RankInfo@@MAE@XZ
-__declspec(naked) RankInfo::~RankInfo()
+RankInfo::~RankInfo()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x03
-		__emit 0xce
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x2c
-		__emit 0x85
-		__emit 0xc9
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x27
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x34
-		__emit 0x2b
-		__emit 0xc1
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x02
-		__emit 0xc1
-		__emit 0xe0
-		__emit 0x02
-		__emit 0x3d
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x76
-		__emit 0x0b
-		__emit 0x51
-		__emit 0xe8
-		__emit 0x8c
-		__emit 0x13
-		__emit 0x4e
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0xeb
-		__emit 0x0a
-		__emit 0x50
-		__emit 0x51
-		__emit 0xe8
-		__emit 0xc0
-		__emit 0xda
-		__emit 0x48
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x90
-		__emit 0x76
-		__emit 0x4e
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x04
-		__emit 0x85
-		__emit 0xc9
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xc7
-		__emit 0x06
-		__emit 0xb0
-		__emit 0xfc
-		__emit 0x07
-		__emit 0x01
-		__emit 0x74
-		__emit 0x06
-		__emit 0x8b
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x01
-		__emit 0xff
-		__emit 0x10
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
