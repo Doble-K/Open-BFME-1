@@ -4772,6 +4772,9 @@ name,address,notes
 ??1SortingNodeStruct@@QAE@XZ,0x0093B200
 ??1SpawnBehaviorModuleDataMemberA@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1SpawnBehaviorModuleDataMemberB@@QAE@XZ,0x0001B97D,Open-BFME5 pin
+??0SpawnBehaviorModuleDataMemberC@@QAE@XZ,0x000071E4,Open-BFME5 constructor callee pin
+??1UpgradeModuleDataSub@@QAE@XZ,0x0001B97D,Open-BFME5 ICF dtor callee pin
+?erase@SpawnBehaviorModuleDataMemberA@@QAEXPAI0@Z,0x00024C17,Open-BFME5 range-erase callee pin
 ??1SpecialDisguiseUpdateModuleDataBase@@UAE@XZ,0x0001980D,Open-BFME5 base pin
 ??1SpecialPowerModuleDataMemberA@@QAE@XZ,0x00026F35,Open-BFME5 pin
 ??1SpecialPowerModuleDataMemberB@@QAE@XZ,0x00026F35,Open-BFME5 pin

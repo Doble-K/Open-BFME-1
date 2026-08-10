@@ -1,155 +1,117 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: SpawnBehaviorModuleData constructor lifted from the retail body.
 
-class SpawnBehaviorModuleData
+class SpawnBehaviorModuleDataMemberAFirst
 {
 public:
-    SpawnBehaviorModuleData();
+	SpawnBehaviorModuleDataMemberAFirst()
+	{
+		m_begin = 0;
+		m_end = 0;
+	}
+
+	public:
+	unsigned int *m_begin;
+	unsigned int *m_end;
+};
+
+class SpawnBehaviorModuleDataMemberAEnd
+{
+public:
+	SpawnBehaviorModuleDataMemberAEnd()
+		: m_capacity(0)
+	{
+	}
+
+private:
+	unsigned int *m_capacity;
+};
+
+class SpawnBehaviorModuleDataMemberA
+{
+public:
+	SpawnBehaviorModuleDataMemberA()
+	{
+	}
+
+	~SpawnBehaviorModuleDataMemberA();
+
+	void clear()
+	{
+		erase(m_first.m_begin, m_first.m_end);
+	}
+
+	void erase(unsigned int *first, unsigned int *last);
+
+private:
+	SpawnBehaviorModuleDataMemberAFirst m_first;
+	SpawnBehaviorModuleDataMemberAEnd m_end;
+};
+
+class SpawnBehaviorModuleDataMemberC
+{
+public:
+	SpawnBehaviorModuleDataMemberC();
+
+private:
+	unsigned char m_pad[0x2c];
+};
+
+class UpgradeModuleDataSub
+{
+public:
+	UpgradeModuleDataSub();
+	~UpgradeModuleDataSub();
+
+private:
+	unsigned char m_pad[0x68];
+};
+
+class SpawnBehaviorModuleDataBase
+{
+public:
+	virtual ~SpawnBehaviorModuleDataBase() {}
+
+private:
+	unsigned char m_pad[4];
+};
+
+class SpawnBehaviorModuleData : public SpawnBehaviorModuleDataBase
+{
+public:
+	SpawnBehaviorModuleData();
+	virtual ~SpawnBehaviorModuleData();
+
+private:
+	unsigned int m_spawnNumberData;
+	unsigned int m_spawnStartNumberData;
+	unsigned int m_spawnReplaceDelayData;
+	unsigned char m_isOneShotData;
+	unsigned char m_canReclaimOrphans;
+	unsigned char m_aggregateHealth;
+	unsigned char m_exitByBudding;
+	unsigned char m_spawnedRequireSpawner;
+	unsigned char m_slavesHaveFreeWill;
+	unsigned int m_alignment;
+	SpawnBehaviorModuleDataMemberA m_spawnTemplateNameData;
+	SpawnBehaviorModuleDataMemberC m_damageTypesToPropagateToSlaves;
+	UpgradeModuleDataSub m_dieMuxData;
 };
 
 // ??0SpawnBehaviorModuleData@@QAE@XZ
-__declspec(naked) SpawnBehaviorModuleData::SpawnBehaviorModuleData()
+SpawnBehaviorModuleData::SpawnBehaviorModuleData()
+	: m_spawnTemplateNameData(),
+	  m_damageTypesToPropagateToSlaves(),
+	  m_dieMuxData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x7e;
-        __emit 0x22;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x8d;
-        __emit 0x7e;
-        __emit 0x20;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x30;
-        __emit 0xf2;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x1f;
-        __emit 0x89;
-        __emit 0x5f;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x5f;
-        __emit 0x08;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x2c;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x31;
-        __emit 0xc8;
-        __emit 0xed;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x58;
-        __emit 0xe8;
-        __emit 0xeb;
-        __emit 0x46;
-        __emit 0xee;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x10;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x14;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x15;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x16;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x17;
-        __emit 0x8b;
-        __emit 0x47;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x0f;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x20;
-        __emit 0x02;
-        __emit 0xe8;
-        __emit 0x34;
-        __emit 0xa2;
-        __emit 0xef;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x18;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x19;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_spawnNumberData = 0;
+	m_spawnStartNumberData = 0;
+	m_spawnReplaceDelayData = 0;
+	m_isOneShotData = 0;
+	m_canReclaimOrphans = 0;
+	m_aggregateHealth = 0;
+	m_exitByBudding = 0;
+	m_spawnTemplateNameData.clear();
+	m_spawnedRequireSpawner = 0;
+	m_slavesHaveFreeWill = 0;
 }

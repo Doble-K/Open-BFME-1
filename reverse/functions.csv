@@ -2602,7 +2602,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SnapshotBlock@GameState@@QAE@XZ,,0x00251CD0,10,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0SoundFXNugget@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/GameClient/FXList.cpp,matched,ICF alias of existing matched body
 ??0SpawnBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020AE30,376,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorCtorThunk.cpp,matched,Open-BFME5 MASM lift
-??0SpawnBehaviorModuleData@@QAE@XZ,,0x0012A970,141,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact 141B retail module-data constructor
+??0SpawnBehaviorModuleData@@QAE@XZ,,0x0012A970,141,Code/GameEngine/Source/GameLogic/Object/Behavior/SpawnBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ 141B retail module-data constructor
 ??0SpawnPointProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00023858,5,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SpawnPointProductionExitUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0SpawnPointProductionExitUpdateModuleData@@QAE@XZ,,0x0035F0F0,25,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ??0SpawnUnitBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D0F0,99,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit ctor thunk
