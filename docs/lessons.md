@@ -6692,3 +6692,37 @@ with the argument -- a setter taking a const UnicodeString reference.
 Logged rather than repaired: the address and size are probably fine, but the
 true name is not derivable from the body, and inventing one is worse than
 leaving the row visibly wrong.
+
+
+## The new-expression blocker is two problems, and throw() solves one of them
+
+"Constructor inlined into a new-expression" has been recorded as one blocker with
+throw() among its refuted fixes. The Sabotage factory shows that is wrong: it is
+two independent problems, and throw() solves the first cleanly.
+
+Without it MSVC wraps the whole factory in an EH frame -- push -1, the handler,
+the fs:[0] chain -- so operator delete can run if a constructor throws. Retail
+has no frame at all. Putting throw() on every constructor the new-expression
+reaches (the class, both bases, and the two member sub-objects) removed it, and
+the prologue then matched retail instruction for instruction.
+
+What remains is narrower: MSVC emits a call to the derived constructor where
+retail inlines it. Three further shapes produced byte-identical output -- the
+constructor defined in-class, both destructors defined rather than merely
+declared, and no user-declared constructor at all so MSVC synthesises one. So
+the refuted list for the *inlining* half now also covers defined-own-destructor
+and implicit-constructor.
+
+Recording the split matters because the EH frame was the visible symptom. Any
+future row of this shape should get throw() first and be judged on what is left.
+
+Two things read off retail on the way. Base constructors run before the
+most-derived vptr store, so a constructor call at a non-zero offset appearing
+*before* that store is a second base under multiple inheritance -- here
+UpgradeModuleDataSub at +8, which the reference confirms does not inherit from
+ModuleData. And a member zeroed via `lea reg,[obj+N]` then stores at [reg],
+[reg+4], [reg+8] is a sub-object with its own inlined constructor, not a plain
+array; an array member would be stored through the object register directly.
+
+FireWeaponCollide's factory, the same shape, zeroes 0x0c through 0x24 twice
+over. That is the duplicate-zero-store family, so it was not attempted.
