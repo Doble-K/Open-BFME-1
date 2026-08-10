@@ -1,172 +1,75 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
 
-struct Coord2D;
+// Project two world points and take the screen-space difference. Either
+// projection failing leaves the output at the zero written on entry, which is
+// why both branches jump to the same epilogue rather than to a cleanup.
+//
+// The class is declared here from padding rather than pulled from a header: only
+// four offsets matter and the real W3DView drags in most of the device layer.
+// m_pos at 0xC, the camera at 0x104, the previous look-at at 0x23E4 and the
+// ground level at 0x23F8.
+struct Coord2D
+{
+	float x;
+	float y;
+};
+
+class Vector3
+{
+public:
+	Vector3(void) {}
+
+	Vector3(float x, float y, float z) : X(x), Y(y), Z(z) {}
+
+	float X;
+	float Y;
+	float Z;
+};
+
+class CameraClass
+{
+public:
+	enum ProjectionResType
+	{
+		INSIDE_FRUSTUM = 0
+	};
+
+	ProjectionResType Project(Vector3 &dest, const Vector3 &src) const;
+};
 
 class W3DView
 {
-    void calcDeltaScroll(Coord2D &);
+private:
+	// AAE is private. Declaring this public would mangle QAE and the ledger
+	// row would fail as symbol-not-found rather than as a byte mismatch.
+	void calcDeltaScroll(Coord2D &delta);
+
+	unsigned char m_pad00[0x0C];
+	Coord2D m_pos;
+	unsigned char m_pad14[0x104 - 0x14];
+	CameraClass *m_3DCamera;
+	unsigned char m_pad108[0x23E4 - 0x108];
+	Coord2D m_previousLookAtPosition;
+	unsigned char m_pad23EC[0x23F8 - 0x23EC];
+	float m_groundLevel;
 };
 
 // ?calcDeltaScroll@W3DView@@AAEXAAUCoord2D@@@Z
-__declspec(naked) void W3DView::calcDeltaScroll(Coord2D &)
+void W3DView::calcDeltaScroll(Coord2D &delta)
 {
-    __asm {
-        __emit 0x83;
-        __emit 0xec;
-        __emit 0x30;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x3c;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0xc7;
-        __emit 0x07;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x47;
-        __emit 0x04;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x86;
-        __emit 0xe4;
-        __emit 0x23;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x8e;
-        __emit 0xe8;
-        __emit 0x23;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x96;
-        __emit 0xf8;
-        __emit 0x23;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x8d;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x8d;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x30;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x8e;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x54;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0xe8;
-        __emit 0xb5;
-        __emit 0x74;
-        __emit 0x1f;
-        __emit 0x00;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0x75;
-        __emit 0x46;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x0c;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x8b;
-        __emit 0x8e;
-        __emit 0xf8;
-        __emit 0x23;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x54;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x8d;
-        __emit 0x54;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x52;
-        __emit 0x8d;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x24;
-        __emit 0x89;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0x8e;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0xe8;
-        __emit 0x84;
-        __emit 0x74;
-        __emit 0x1f;
-        __emit 0x00;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0x75;
-        __emit 0x15;
-        __emit 0xd9;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x20;
-        __emit 0xd8;
-        __emit 0x64;
-        __emit 0x24;
-        __emit 0x2c;
-        __emit 0xd9;
-        __emit 0x1f;
-        __emit 0xd9;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x24;
-        __emit 0xd8;
-        __emit 0x64;
-        __emit 0x24;
-        __emit 0x30;
-        __emit 0xd9;
-        __emit 0x5f;
-        __emit 0x04;
-        __emit 0x5f;
-        __emit 0x5e;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x30;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+	delta.x = 0.0f;
+	delta.y = 0.0f;
+
+	Vector3 prevWorld(m_previousLookAtPosition.x, m_previousLookAtPosition.y, m_groundLevel);
+	Vector3 prevScreen;
+	if (m_3DCamera->Project(prevScreen, prevWorld) != CameraClass::INSIDE_FRUSTUM)
+		return;
+
+	Vector3 world(m_pos.x, m_pos.y, m_groundLevel);
+	Vector3 screen;
+	if (m_3DCamera->Project(screen, world) != CameraClass::INSIDE_FRUSTUM)
+		return;
+
+	delta.x = screen.X - prevScreen.X;
+	delta.y = screen.Y - prevScreen.Y;
 }

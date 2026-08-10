@@ -6076,3 +6076,29 @@ fixed it in one build.
 So when a call comes out zeroed, stop reading the disassembly and read the
 mangled name of the callee instead. W4 is an enum, I is unsigned int, H is int,
 and they are three different functions as far as the linker is concerned.
+
+
+## Output parameters are not initialised, and that shows
+
+calcDeltaScroll passes two Vector3 locals to CameraClass::Project as destinations.
+Giving them a zero constructor added six stores retail does not have. They are
+output parameters -- the callee fills them -- so the source declares them and
+says nothing more, which needs a do-nothing default constructor rather than the
+three-float one.
+
+That is the same rule as the untouched words in WaterTransparencySetting, in a
+different costume: what a function does not write is as much a constraint as what
+it does. Here it also decides the shape of the class being modelled, because a
+Vector3 with only a three-argument constructor cannot express an uninitialised
+local at all.
+
+## Symbol-not-found is an access-modifier message
+
+The first build failed with "symbol not found in object" rather than a byte
+mismatch, because the method was declared public. The row's name says AAE, which
+is private; public mangles QAE and nothing in the object matches.
+
+Worth separating the two failure modes when reading build output. A byte
+mismatch means the code is wrong. Symbol-not-found means the declaration is
+wrong -- access, return type, constness or parameter types -- and no amount of
+staring at the disassembly will help until the mangled name is read back.
