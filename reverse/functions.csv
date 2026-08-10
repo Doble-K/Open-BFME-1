@@ -3972,7 +3972,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1W3DProjectileStreamDraw@@UAE@XZ,,0x00369CF0,116,Code/GameEngine/Source/Common/W3DProjectileStreamDrawDestructorThunk.cpp,matched,Exact 116B @ 0x00369CF0; Exact retail MASM; instance factory->vtable dtor; del 0x36A110 ctor 0x369FD0 vt 0xCE92DC
 ??1W3DPropDrawModuleData@@UAE@XZ,,0x000A7210,108,Code/GameEngine/Source/Common/W3DPropDrawModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor (linked-list delete loop + base dtor call) converted from __emit thunk
 ??1W3DQuadrupedDrawModuleData@@UAE@XZ,,0x006BFF70,89,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DQuadrupedDrawModuleDataDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-??1W3DRopeDraw@@UAE@XZ,,0x0075A730,143,Code/GameEngine/Source/Common/W3DRopeDrawDestructorThunk.cpp,matched,Exact 143B; factory ownership Open-BFME4
+??1W3DRopeDraw@@UAE@XZ,,0x0075A730,143,Code/GameEngine/Source/Common/W3DRopeDrawDestructorThunk.cpp,matched,Exact 143B clean C++ destructor; Open-BFME5
 ??1W3DShadowGeometryManager@@QAE@XZ,,0x007B0FF0,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ??1W3DShadowManager@@QAE@XZ,,0x007B7AF0,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp,matched,Open-BFME5 clean C++ dtor; retail deletes a third shadow helper manager (stand-in) before the volumetric one
 ??1W3DShadowTextureManager@@QAE@XZ,,0x007B0FF0,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
