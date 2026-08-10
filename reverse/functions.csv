@@ -13159,7 +13159,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?doesFileExist@ArchiveFileSystem@@UBE_NPBD@Z,,0x009CA150,323,Code/GameEngine/Source/Common/System/ArchiveFileSystem.cpp,matched,"vtable 0x01143A08 slot 8 reached by byte-matched FileSystem::doesFileExist; the two ""/"" literals are its two nextToken calls"
 ?doesFileExist@FileSystem@@QBE_NPBD@Z,,0x009C86A0,134,Code/GameEngine/Source/Common/System/FileSystem_doesFileExist.cpp,matched,BFME doesFileExist: sprintf path prefix then local+archive; C++ exact
 ?doesFileExist@Win32LocalFileSystem@@UBE_NPBD@Z,,0x009CDDC0,25,Code/GameEngineDevice/Source/Win32Device/Common/Win32LocalFileSystem.cpp,matched,
-?doesSaveGameExist@GameState@@QAE_NVAsciiString@@@Z,,0x0010FB20,133,Code/GameEngine/Source/Common/GameState_doesSaveGameExist_Thunk.cpp,matched,Exact 133B caller-anchored from loadGame; BFME FileSystem path not ZH XferLoad; drift 0x7892D8 was wrong body
 ?done@?$DLINK_ITERATOR@VObject@@@@QBE_NXZ,,0x00087830,10,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?done@?$DLINK_ITERATOR@VTeam@@@@QBE_NXZ,,0x00087940,10,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?done@?$DLINK_ITERATOR@VTeamInQueue@@@@QBE_NXZ,,0x000C9EB0,10,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
@@ -94170,3 +94169,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?drawFloatingText@InGameUI@@IAEXXZ,,0x0043F2A0,274,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,Open-BFME5 exact C++ conversion; BFME retail InGameUI and display-string ABI offsets
 ?populateGroupRoomListbox@@YAXPAVGameWindow@@@Z,,0x005397D0,298,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu_populateGroupRoomListbox_Thunk.cpp,matched,Open-BFME5 exact standalone C++ thunk from retail body
 ??1DebugIOOds@@UAE@XZ,,0x00890780,142,Code/GameEngine/Source/Common/DebugIOOdsDestructorThunk.cpp,matched,Open-BFME5 exact C++ thunk; ICF alias of DebugIOFlat retail body
+?doesSaveGameExist@GameState@@QAE_NVAsciiString@@@Z,,0x0010FB20,133,Code/GameEngine/Source/Common/GameState_doesSaveGameExist_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; BFME AsciiString data header is 8 bytes; direct FileSystem path check

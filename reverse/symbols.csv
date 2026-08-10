@@ -15056,6 +15056,7 @@ name,address,notes
 ?b_0010f820@@YAXXZ,0x0010F820,gen-thunk body
 ?b_0010fb20@@YAXXZ,0x0010FB20,gen-thunk body
 ?b_0010fbd0@@YAXXZ,0x0010FBD0,gen-thunk body
+?getFilePathInSaveDirectory@GameState@@QBE?AVAsciiString@@ABV2@@Z,0x0001D8C2,incremental-link thunk called by doesSaveGameExist
 ?b_0010fe90@@YAXXZ,0x0010FE90,gen-thunk body
 ?b_0010ff90@@YAXXZ,0x0010FF90,gen-thunk body
 ?b_0010ffe0@@YAXXZ,0x0010FFE0,gen-thunk body
