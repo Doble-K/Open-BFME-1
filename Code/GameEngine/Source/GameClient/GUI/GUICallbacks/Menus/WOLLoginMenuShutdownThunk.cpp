@@ -1,100 +1,108 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/ini /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /ICode/Libraries/Source/WWVegas/WWLib
 
-class WindowLayout;
+#include "Common/AsciiString.h"
+
+typedef bool Bool;
+
+class WindowLayout
+{
+public:
+    virtual void unused00();
+    virtual void unused01();
+    virtual void unused02();
+    virtual void unused03();
+    virtual void hide(Bool hide);
+};
+
+class GameWindowManager
+{
+public:
+    virtual void unused00(); virtual void unused01(); virtual void unused02();
+    virtual void unused03(); virtual void unused04(); virtual void unused05();
+    virtual void unused06(); virtual void unused07(); virtual void unused08();
+    virtual void unused09(); virtual void unused10(); virtual void unused11();
+    virtual void unused12(); virtual void unused13(); virtual void unused14();
+    virtual void unused15(); virtual void unused16(); virtual void unused17();
+    virtual void unused18(); virtual void unused19(); virtual void unused20();
+    virtual void unused21(); virtual void unused22(); virtual void unused23();
+    virtual void unused24(); virtual void unused25(); virtual void unused26();
+    virtual void unused27(); virtual void unused28(); virtual void unused29();
+    virtual void unused30(); virtual void unused31(); virtual void unused32();
+    virtual void unused33(); virtual void unused34(); virtual void unused35();
+    virtual void unused36(); virtual void unused37(); virtual void unused38();
+    virtual void unused39();
+    virtual void clearTabList();
+};
+
+class Shell
+{
+public:
+    void shutdownComplete(WindowLayout *layout, Bool impendingPush);
+    void push(char *screen);
+    void reverseAnimatewindow();
+};
+
+class GameSpyLoginPreferences
+{
+public:
+    void write();
+};
+
+class GameWindowTransitionsHandler
+{
+public:
+    void reverse(AsciiString groupName);
+};
+
+extern GameWindowManager *TheWindowManager;
+extern Shell *TheShell;
+extern GameWindowTransitionsHandler *TheTransitionHandler;
+
+static Bool isShuttingDown;
+static Bool loggedInOK;
+static GameSpyLoginPreferences *loginPref;
+static char *nextScreen;
+
+static __declspec(noinline) void shutdownComplete(WindowLayout *layout)
+{
+    isShuttingDown = false;
+    layout->hide(true);
+    TheShell->shutdownComplete(layout, nextScreen != 0);
+
+    if (nextScreen != 0)
+    {
+        if (loginPref != 0)
+        {
+            loginPref->write();
+            delete loginPref;
+            loginPref = 0;
+        }
+        TheShell->push(nextScreen);
+    }
+    else if (loginPref != 0)
+    {
+        loginPref->write();
+        delete loginPref;
+        loginPref = 0;
+    }
+
+    nextScreen = 0;
+}
 
 // ?WOLLoginMenuShutdown@@YAXPAVWindowLayout@@PAX@Z
-__declspec(naked) void WOLLoginMenuShutdown(WindowLayout *layout, void *userData)
+void WOLLoginMenuShutdown(WindowLayout *layout, void *userData)
 {
-    __asm {
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x40
-        __emit 0x1b
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x56
-        __emit 0xc6
-        __emit 0x05
-        __emit 0x80
-        __emit 0x46
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x01
-        __emit 0xc6
-        __emit 0x05
-        __emit 0x20
-        __emit 0x47
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x00
-        __emit 0xff
-        __emit 0x90
-        __emit 0xa0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x80
-        __emit 0x39
-        __emit 0x00
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x01
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x58
-        __emit 0x4b
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xa2
-        __emit 0xe1
-        __emit 0xb3
-        __emit 0xff
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x68
-        __emit 0xa4
-        __emit 0x35
-        __emit 0x10
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x63
-        __emit 0x90
-        __emit 0x38
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x30
-        __emit 0x33
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xc4
-        __emit 0x46
-        __emit 0xb1
-        __emit 0xff
-        __emit 0x5e
-        __emit 0xc3
+    isShuttingDown = true;
+    loggedInOK = false;
+    TheWindowManager->clearTabList();
+
+    Bool popImmediate = *(Bool *)userData;
+    if (popImmediate)
+    {
+        shutdownComplete(layout);
+        return;
     }
+
+    TheShell->reverseAnimatewindow();
+    TheTransitionHandler->reverse("GameSpyLoginProfileFade");
 }
