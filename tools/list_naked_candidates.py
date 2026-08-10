@@ -8,6 +8,7 @@ import argparse
 from collections import defaultdict
 import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import re
 import secrets
@@ -290,6 +291,8 @@ def main():
                         help="additional TSV no-match log (repeatable)")
     parser.add_argument("--include-logged", action="store_true",
                         help="include candidates retired by no-match evidence")
+    parser.add_argument("--json", action="store_true",
+                        help="emit the filtered candidate queue as machine-readable JSON")
     args = parser.parse_args()
     if args.groups and not args.ranked:
         parser.error("--groups requires --ranked")
@@ -364,6 +367,17 @@ def main():
                   if candidate["symbol"] not in retired]
     candidates = apply_shard(candidates, args.shard)
     rank_candidates(candidates)
+    if args.json:
+        serializable = []
+        for candidate in candidates:
+            item = {key: value for key, value in candidate.items() if key != "bytes"}
+            item["bytes_hex"] = candidate["bytes"].hex()
+            serializable.append(item)
+        print(json.dumps({"candidates": serializable,
+                          "excluded_matched": already_matched,
+                          "excluded_arity": arity_conflicts,
+                          "excluded_logged": retired_count}, indent=2))
+        return
     if not args.ranked:
         selected, meta = select_candidate(candidates)
         if selected is None:

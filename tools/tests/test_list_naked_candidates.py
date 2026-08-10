@@ -2,6 +2,8 @@
 """Fast unit tests for fleet partitioning and dead-end memory."""
 
 import tempfile
+import json
+import subprocess
 from pathlib import Path
 
 import sys
@@ -35,6 +37,16 @@ def main():
                        "?candidate8@@YAXXZ\tother\tnot terminal\n",
                        encoding="utf-8")
         assert queue.logged_no_match([log]) == {"?candidate7@@YAXXZ"}
+    proc = subprocess.run(
+        [sys.executable, str(Path(__file__).resolve().parents[1] /
+                             "list_naked_candidates.py"),
+         "Code/GameEngine/Source/Common/FireWeaponUpdateDestructorThunk.cpp", "--json"],
+        cwd=Path(__file__).resolve().parents[2], capture_output=True, text=True,
+        timeout=60, check=True,
+    )
+    payload = json.loads(proc.stdout)
+    assert isinstance(payload["candidates"], list)
+    assert all("bytes" not in item and "bytes_hex" in item for item in payload["candidates"])
     print("PASS naked queue: stable shards and no-match filtering")
 
 
