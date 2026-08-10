@@ -6456,3 +6456,33 @@ share a name and nothing else.
 
 Check the mangled signature before going to look for the source. XZ means no
 arguments and it is right there in the row.
+
+
+## The by-value transposition is closed for UnicodeString too
+
+ResetInGameChat passes a UnicodeString by value and matched on the first build
+using the shim's class from reference/shims/languagefilter. The blocker that was
+recorded as surviving every source shape, and later narrowed to "only the
+UnicodeString flavour remains open", is now closed on both sides.
+
+The rule was the same both times and it was already written down: use the real
+StringBase-backed class, not a four-byte stand-in of your own. AsciiString is
+StringBase<D> and UnicodeString is StringBase<G> -- the same template, so it was
+never plausible that one would need a different fix than the other, and treating
+them as separate problems cost several ticks.
+
+Every row parked on this blocker is now worth re-queueing: resetIdleWorker,
+GadgetComboBoxSetText, isUser@LANGameSlot, amIHost@GameSpyStagingRoom. Retiring
+a blocker means sweeping what it parked, which is the same lesson the AsciiString
+closure taught and which I again did not act on immediately.
+
+## A reloaded global is a second read in the source
+
+HideSaveLoadMenu writes three fields and retail reloads the menu pointer from its
+global before the middle one, despite holding it in a register from the null
+check two instructions earlier.
+
+That is not a spill. It is the source naming the global again instead of the
+local it already has, and writing it through the local produces one fewer load.
+The register the compiler happens to have is not evidence about what the source
+said.
