@@ -228,19 +228,22 @@ void WorkerAIUpdate::createMachines( void )
 
 //-------------------------------------------------------------------------------------------------
 //----------------------------------------------------------------------------------------
-// ?getActionDelayForDock@WorkerAIUpdate@@ present-unmatched
 UnsignedInt WorkerAIUpdate::getActionDelayForDock( Object *dock )
 {
 	// Decide whether to use my Center or Warehouse delay time
 	static const NameKeyType key_warehouseUpdate = NAMEKEY("SupplyWarehouseDockUpdate");
 	SupplyWarehouseDockUpdate *warehouseModule = (SupplyWarehouseDockUpdate*) dock->findUpdateModule( key_warehouseUpdate );
 	if (warehouseModule) {
-		return getWorkerAIUpdateModuleData()->m_warehouseDelay;
+		// The source class view is 0x204 bytes past BFME's retail layout; this -0x13c
+		// therefore emits the retail module-data load at adjusted-this - 0x340.
+		const char *moduleData = *reinterpret_cast<const char * const *>(reinterpret_cast<const char *>(this) - 0x13c);
+		return *reinterpret_cast<const UnsignedInt *>(moduleData + 0x78);
 	}
 	static const NameKeyType key_centerUpdate = NAMEKEY("SupplyCenterDockUpdate");
 	SupplyCenterDockUpdate *centerModule = (SupplyCenterDockUpdate*) dock->findUpdateModule( key_centerUpdate );
 	if (centerModule) {
-		return getWorkerAIUpdateModuleData()->m_centerDelay;
+		const char *moduleData = *reinterpret_cast<const char * const *>(reinterpret_cast<const char *>(this) - 0x13c);
+		return *reinterpret_cast<const UnsignedInt *>(moduleData + 0x74);
 	}
 
 	return 0;
