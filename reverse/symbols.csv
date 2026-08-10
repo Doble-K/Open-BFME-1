@@ -1,4 +1,6 @@
 name,address,notes
+??1GenericObjectCreationNuggetNames@@QAE@XZ,0x00026AB2,GenericObjectCreationNugget destructor names-member call target
+??1GenericObjectCreationNuggetAnimSets@@QAE@XZ,0x00006375,GenericObjectCreationNugget destructor anim-sets member call target
 ??1?$_List_base@HV?$allocator@H@_STL@@@_STL@@QAE@XZ,0x00013449,SpecialAbilityUpdate list member destructor call target
 ??1AudioEventRTS@@UAE@XZ,0x00026F35,SpecialAbilityUpdate audio member destructor call target
 ?onExit@SpecialAbilityUpdate@@AAEX_N0@Z,0x0000F975,SpecialAbilityUpdate destructor cleanup call target

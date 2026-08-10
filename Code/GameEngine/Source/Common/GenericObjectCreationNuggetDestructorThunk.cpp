@@ -1,159 +1,70 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: retail-layout C++ conversion of the GenericObjectCreationNugget destructor.
 
-class __declspec(novtable) GenericObjectCreationNugget
+class AsciiString
 {
+private:
+	char *m_text;
+
+public:
+	~AsciiString();
+};
+
+class GenericObjectCreationNuggetNames
+{
+private:
+	void *m_begin;
+	void *m_end;
+	void *m_capacity;
+
+public:
+	~GenericObjectCreationNuggetNames();
+};
+
+class GenericObjectCreationNuggetAnimSets
+{
+private:
+	void *m_begin;
+	void *m_end;
+	void *m_capacity;
+
+public:
+	~GenericObjectCreationNuggetAnimSets();
+};
+
+class AudioEventRTS
+{
+private:
+	unsigned char m_data[0xb0];
+
+public:
+	virtual ~AudioEventRTS();
+};
+
+class ObjectCreationNugget
+{
+public:
+	virtual ~ObjectCreationNugget() {}
+};
+
+class GenericObjectCreationNugget : public ObjectCreationNugget
+{
+private:
+	GenericObjectCreationNuggetNames m_names;
+	AsciiString m_putInContainer;
+	GenericObjectCreationNuggetAnimSets m_animSets;
+	void *m_fxFinal;
+	AsciiString m_particleSysName;
+	unsigned char m_data[0x58];
+	AsciiString m_fadeSoundName;
+	unsigned char m_tail[0x10];
+	AudioEventRTS m_bounceSound;
+
 protected:
 	virtual ~GenericObjectCreationNugget();
 };
 
 // ??1GenericObjectCreationNugget@@MAE@XZ
-__declspec(naked) GenericObjectCreationNugget::~GenericObjectCreationNugget()
+GenericObjectCreationNugget::~GenericObjectCreationNugget()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x02
-		__emit 0x9c
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0xc7
-		__emit 0x06
-		__emit 0xe8
-		__emit 0xf5
-		__emit 0x09
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x94
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x05
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xdf
-		__emit 0xec
-		__emit 0xe4
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x04
-		__emit 0xe8
-		__emit 0xda
-		__emit 0xf6
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x24
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x03
-		__emit 0xe8
-		__emit 0xcd
-		__emit 0xf6
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x14
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x02
-		__emit 0xe8
-		__emit 0xf5
-		__emit 0xe0
-		__emit 0xe2
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x10
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xb3
-		__emit 0xf6
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x04
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x18
-		__emit 0xe8
-		__emit 0xe4
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x06
-		__emit 0xc4
-		__emit 0xf0
-		__emit 0x09
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
