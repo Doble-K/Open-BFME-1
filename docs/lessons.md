@@ -6234,3 +6234,29 @@ one is a coin toss.
 
 A hypothesis from one positive case earned a re-test, got one, and lost. That is
 the cheap outcome -- the expensive one would have been screening the family on it.
+
+
+## Two base classes named the same way, and one access modifier that mattered
+
+TurretState was recovered exactly as AIInternalMoveToState was: five retail
+subclasses call one unnamed address, the reference declares a class with exactly
+that set of children, and its constructor signature matches what the body does.
+All five converted on the first build.
+
+The difference between the two was the access modifier. AIInternalMoveToState's
+constructor is public and mangles QAE; TurretState's is protected and mangles
+IAE. Pinning the public spelling would have produced a symbol nothing calls, and
+the failure would have read as symbol-not-found rather than as a byte mismatch --
+which is the tell for a declaration problem, already recorded. Reading the
+reference's access specifier before writing the pin cost nothing and saved a
+build.
+
+## The class name is not the state name
+
+TurretAIHoldTurretState passes "AIHoldTurretState" as its state name. The class
+and the string disagree, and nothing but the pushed literal shows it -- every
+other member of the family passes its own class name, so a generator that
+assumes the two are equal produces five correct files and one that fails.
+
+Worth checking per candidate rather than deriving, because it is exactly the kind
+of detail a family template makes invisible.

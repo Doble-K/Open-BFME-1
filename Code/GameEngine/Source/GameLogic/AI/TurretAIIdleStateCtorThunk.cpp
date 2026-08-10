@@ -1,69 +1,46 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+// Derives from TurretState, which the base call at 0x0018D890 names -- five
+// retail states go there and the reference declares exactly that set as its
+// children. Its constructor is protected, so it mangles IAE; making it public
+// would rename the symbol QAE and the call would stop resolving.
+//
+// TurretState adds nothing of its own, so this class's members start at 0x24.
+#include "Common/AsciiString.h"
+
+class StateMachine;
 
 class TurretStateMachine;
 
-class TurretAIIdleState
+class State
 {
 public:
-    TurretAIIdleState(TurretStateMachine *);
+	State(StateMachine *machine, AsciiString name);
+
+	virtual ~State();
+
+private:
+	unsigned char m_head[0x20];
 };
 
-__declspec(naked) TurretAIIdleState::TurretAIIdleState(TurretStateMachine *)
+class TurretState : public State
 {
-    __asm {
-        _emit 051h
-        _emit 056h
-        _emit 051h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 064h
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0CCh
-        _emit 068h
-        _emit 0C4h
-        _emit 0BCh
-        _emit 009h
-        _emit 001h
-        _emit 0E8h
-        _emit 07Bh
-        _emit 0B2h
-        _emit 06Fh
-        _emit 000h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 050h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 006h
-        _emit 061h
-        _emit 0E8h
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 070h
-        _emit 0BCh
-        _emit 009h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 024h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 059h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
-}
+protected:
+	TurretState(TurretStateMachine *machine, AsciiString name);
+};
 
+class TurretAIIdleState : public TurretState
+{
+public:
+	TurretAIIdleState(TurretStateMachine *machine);
+
+private:
+	unsigned int m_nextIdleScan;
+};
+
+// ??0TurretAIIdleState@@QAE@PAVTurretStateMachine@@@Z
+TurretAIIdleState::TurretAIIdleState(TurretStateMachine *machine) :
+	TurretState(machine, "TurretAIIdleState"),
+	m_nextIdleScan(0)
+{
+}
