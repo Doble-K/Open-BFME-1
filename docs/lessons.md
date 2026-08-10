@@ -6287,3 +6287,26 @@ body must not use it.
 Writing the obvious source, which assigns the parameter to the member at 0x24,
 would have produced a store retail does not have. The argument being present in
 the signature says nothing about whether the body touches it.
+
+
+## Half the parked cases were not blocked at all
+
+Last tick four constructors were parked as vptr-sinking failures. Applying the
+sharpened screen -- park only where retail keeps the store in FRONT of several
+member stores -- showed two of them have retail sinking as well, so the compiler
+was never disagreeing about placement.
+
+Their actual defect was store order. Retail writes the flag at 0x54 before the
+word at 0x50, and an initialiser list emits members in declaration order, which
+cannot express that. Moving the two assignments into the body, in retail's order,
+matched both on the first build.
+
+Two lessons already recorded separately turn out to compose: body statements are
+emitted as written, and the vptr blocker is only the disagreement. Neither alone
+would have unparked these; the combination did, and the cost was one build each.
+
+Worth being blunt about the failure mode. Attributing a failure to a known
+blocker is the cheapest possible explanation and it is wrong half the time here.
+A blocker should be assigned only after the specific evidence for it -- in this
+case which side of the member stores the vptr sits on -- has actually been
+checked.

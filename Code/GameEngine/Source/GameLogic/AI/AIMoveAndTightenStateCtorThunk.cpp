@@ -1,69 +1,49 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+// Derives from AIInternalMoveToState, so its own members start at 0x50.
+//
+// The two stores are written in the body, not the initialiser list, and in
+// retail's order: the flag at 0x54 before the word at 0x50. Member
+// initialisation follows declaration order and cannot express that; body
+// statements are emitted as written and can.
+#include "Common/AsciiString.h"
 
 class StateMachine;
 
-class AIMoveAndTightenState
+class State
 {
 public:
-    AIMoveAndTightenState(StateMachine *);
+	State(StateMachine *machine, AsciiString name);
+
+	virtual ~State();
+
+private:
+	unsigned char m_head[0x20];
 };
 
-__declspec(naked) AIMoveAndTightenState::AIMoveAndTightenState(StateMachine *)
+class AIInternalMoveToState : public State
 {
-    __asm {
-        _emit 051h
-        _emit 056h
-        _emit 051h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 064h
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0CCh
-        _emit 068h
-        _emit 048h
-        _emit 0A3h
-        _emit 009h
-        _emit 001h
-        _emit 0E8h
-        _emit 01Bh
-        _emit 098h
-        _emit 070h
-        _emit 000h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 050h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 0D1h
-        _emit 02Dh
-        _emit 0EBh
-        _emit 0FFh
-        _emit 033h
-        _emit 0C0h
-        _emit 088h
-        _emit 046h
-        _emit 054h
-        _emit 089h
-        _emit 046h
-        _emit 050h
-        _emit 0C7h
-        _emit 006h
-        _emit 0F0h
-        _emit 0A2h
-        _emit 009h
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 059h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+public:
+	AIInternalMoveToState(StateMachine *machine, AsciiString name);
+
+private:
+	unsigned char m_body[0x2C];
+};
+
+class AIMoveAndTightenState : public AIInternalMoveToState
+{
+public:
+	AIMoveAndTightenState(StateMachine *machine);
+
+private:
+	int m_50;
+	bool m_54;
+};
+
+// ??0AIMoveAndTightenState@@QAE@PAVStateMachine@@@Z
+AIMoveAndTightenState::AIMoveAndTightenState(StateMachine *machine) :
+	AIInternalMoveToState(machine, "AIMoveAndTightenState")
+{
+	m_54 = false;
+	m_50 = 0;
 }
