@@ -1,137 +1,75 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class WeaponChangeSpecialPowerModuleModuleData
+class BFMERetailAsciiString
 {
 public:
-    WeaponChangeSpecialPowerModuleModuleData();
+	BFMERetailAsciiString()
+	{
+		m_data = 0;
+	}
+
+	~BFMERetailAsciiString()
+	{
+		releaseBuffer();
+	}
+
+	void clear(void)
+	{
+		releaseBuffer();
+	}
+
+private:
+	void releaseBuffer(void);
+
+	char *m_data;
+};
+
+class ZeroWord
+{
+public:
+	ZeroWord()
+	{
+		m_value = 0;
+	}
+
+	void clear(void)
+	{
+		m_value = 0;
+	}
+
+private:
+	volatile unsigned int m_value;
+};
+
+class ModuleDataBase_DefectorSpecialPowerModuleData
+{
+public:
+	ModuleDataBase_DefectorSpecialPowerModuleData();
+	virtual ~ModuleDataBase_DefectorSpecialPowerModuleData();
+
+private:
+	unsigned char m_pad[0x20c];
+};
+
+class WeaponChangeSpecialPowerModuleModuleData
+	: public ModuleDataBase_DefectorSpecialPowerModuleData
+{
+public:
+	WeaponChangeSpecialPowerModuleModuleData();
+
+private:
+	ZeroWord m_210;
+	unsigned int m_214;
+	unsigned int m_218;
+	BFMERetailAsciiString m_21c;
+	BFMERetailAsciiString m_220;
 };
 
 // ??0WeaponChangeSpecialPowerModuleModuleData@@QAE@XZ
-__declspec(naked) WeaponChangeSpecialPowerModuleModuleData::WeaponChangeSpecialPowerModuleModuleData()
+WeaponChangeSpecialPowerModuleModuleData::WeaponChangeSpecialPowerModuleModuleData()
+	: ModuleDataBase_DefectorSpecialPowerModuleData(), m_210(), m_214(0), m_218(0)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xa4;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xe8;
-        __emit 0xe1;
-        __emit 0x8d;
-        __emit 0xda;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xc0;
-        __emit 0x8b;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x10;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x1c;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x14;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x18;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x01;
-        __emit 0x8d;
-        __emit 0xbe;
-        __emit 0x20;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x07;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x02;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x10;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x9f;
-        __emit 0xaa;
-        __emit 0x61;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xe8;
-        __emit 0x98;
-        __emit 0xaa;
-        __emit 0x61;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_210.clear();
+	m_21c.clear();
+	m_220.clear();
 }
