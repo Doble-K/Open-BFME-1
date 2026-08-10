@@ -1,127 +1,108 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the ControlBar::onPlayerRankChanged MASM dump to clean C++.
+//
+// Zero Hour's body is ControlBar.cpp:1675 and BFME kept it, with two changes
+// retail shows: setGroup takes a second argument, always zero, and
+// getInputEnabled tests two bytes at +0xD and +0xE rather than one.
+//
+// getLocalPlayer, getSciencePurchasePoints, getInputEnabled and markUIDirty are
+// all inlined to direct member access; only isLocalPlayer and setGroup are calls.
+// The AsciiString argument is passed by value and destroyed by the callee, which
+// is why no destructor and no EH frame appear here.
 
-class Player;
+class AsciiString;
+
+template <class T>
+class StringBase
+{
+private:
+	friend class AsciiString;
+
+	StringBase(const char *s);			///< body at 0x00888BC0
+	~StringBase();
+
+	void *m_data;
+};
+
+class AsciiString : public StringBase<char>
+{
+public:
+	AsciiString(const char *s) : StringBase<char>(s) {}
+	~AsciiString() {}
+};
+
+class Player
+{
+public:
+	bool isLocalPlayer(void) const;		///< ILT 0x00013877
+
+	unsigned char m_unreconstructed_00[0x264];
+	int m_sciencePurchasePoints;		///< retail player+0x264
+
+	int getSciencePurchasePoints(void) const { return m_sciencePurchasePoints; }
+};
+
+class PlayerList
+{
+public:
+	Player *getLocalPlayer(void) const { return m_localPlayer; }
+
+	unsigned char m_unreconstructed_00[0xC];
+	Player *m_localPlayer;			///< retail list+0x0C
+};
+
+class InGameUI
+{
+public:
+	bool getInputEnabled(void) const { return m_inputEnabled && m_inputAllowed; }
+
+	unsigned char m_unreconstructed_00[0xD];
+	bool m_inputEnabled;				///< retail ui+0x0D
+	bool m_inputAllowed;				///< retail ui+0x0E
+};
+
+class TransitionHandler
+{
+public:
+	void setGroup(AsciiString name, int flag);	///< ILT 0x00045C28
+};
+
+extern PlayerList *ThePlayerList;			///< retail [0x012ED748]
+extern TransitionHandler *TheTransitionHandler;	///< retail [0x012F3330]
+extern InGameUI *TheInGameUI;				///< retail [0x012F148C]
+
 class ControlBar
 {
 public:
-	void onPlayerRankChanged(const Player *);
+	void onPlayerRankChanged(const Player *p);
+
+private:
+	void markUIDirty(void) { m_UIDirty = true; }
+
+	unsigned char m_unreconstructed_00[0x24];
+	bool m_UIDirty;					///< retail this+0x24
+	unsigned char m_unreconstructed_25[0x2A3];
+	bool m_genStarFlash;				///< retail this+0x2C8
+	unsigned char m_unreconstructed_2c9[3];
+	int m_lastFlashedAtPointValue;		///< retail this+0x2CC
 };
 
 // ?onPlayerRankChanged@ControlBar@@QAEXPBVPlayer@@@Z
-__declspec(naked) void ControlBar::onPlayerRankChanged(const Player *)
+void ControlBar::onPlayerRankChanged(const Player *p)
 {
-	__asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xe8
-        __emit 0xdb
-        __emit 0x5b
-        __emit 0xb7
-        __emit 0xff
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x5b
-        __emit 0xa1
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x80
-        __emit 0x64
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x39
-        __emit 0x86
-        __emit 0xcc
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x7f
-        __emit 0x3a
-        __emit 0xa1
-        __emit 0x30
-        __emit 0x33
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x31
-        __emit 0xa1
-        __emit 0x8c
-        __emit 0x14
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8a
-        __emit 0x48
-        __emit 0x0d
-        __emit 0x84
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x25
-        __emit 0x8a
-        __emit 0x48
-        __emit 0x0e
-        __emit 0x84
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x1e
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xb8
-        __emit 0x0f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xdb
-        __emit 0xae
-        __emit 0x3e
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x30
-        __emit 0x33
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x38
-        __emit 0x7f
-        __emit 0xba
-        __emit 0xff
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x88
-        __emit 0x86
-        __emit 0xc8
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x46
-        __emit 0x24
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	if (!p->isLocalPlayer())
+	{
+		return;
 	}
+
+	if (!(m_lastFlashedAtPointValue > ThePlayerList->getLocalPlayer()->getSciencePurchasePoints()))
+	{
+		if (TheTransitionHandler && TheInGameUI->getInputEnabled())
+		{
+			TheTransitionHandler->setGroup("ControlBarArrow", 0);
+		}
+	}
+
+	m_genStarFlash = true;
+	markUIDirty();
 }
