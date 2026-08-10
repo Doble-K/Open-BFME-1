@@ -1,147 +1,55 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class TunnelContainModuleData
+class HordeGarrisonContainModuleData
+{
+public:
+    HordeGarrisonContainModuleData();
+    virtual ~HordeGarrisonContainModuleData();
+
+private:
+    unsigned char m_pad[0x220];
+};
+
+class RS_Member
+{
+public:
+    RS_Member();
+
+public:
+    unsigned int m_dummy;
+    unsigned int m_second;
+};
+
+class TC_Triple
+{
+public:
+    float m_x;
+    float m_y;
+    float m_z;
+};
+
+class TunnelContainModuleData : public HordeGarrisonContainModuleData
 {
 public:
     TunnelContainModuleData();
+
+private:
+    RS_Member m_member;
+    unsigned int m_b;
+    unsigned int m_c;
+    float m_framesForFullHeal;
+    unsigned char m_d;
+    unsigned char m_e;
+    unsigned char m_padding[2];
+    TC_Triple m_values;
 };
 
 // ??0TunnelContainModuleData@@QAE@XZ
-__declspec(naked) TunnelContainModuleData::TunnelContainModuleData()
+TunnelContainModuleData::TunnelContainModuleData()
+    : m_b(0), m_c(0), m_values()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xd8;
-        __emit 0xe2;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xe8;
-        __emit 0xd8;
-        __emit 0x29;
-        __emit 0xdc;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x24;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x30;
-        __emit 0x03;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xc0;
-        __emit 0xbe;
-        __emit 0xde;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x2c;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x30;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x3c;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x41;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0x28;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x9e;
-        __emit 0x38;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x9e;
-        __emit 0x39;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x86;
-        __emit 0x34;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x3f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+    m_member.m_second = 0;
+    m_d = 0;
+    m_e = 0;
+    m_framesForFullHeal = 1.0f;
 }
