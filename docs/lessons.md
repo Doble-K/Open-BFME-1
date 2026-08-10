@@ -6328,3 +6328,24 @@ further -- same underlying cause, three surface forms.
 That also means the screen needs stating more carefully than last tick: compare
 the vptr's position against the member stores exactly, not just which side it
 falls on.
+
+
+## What the vptr sink actually does
+
+Enough cases have now been measured to state the compiler's half exactly. MSVC
+sinks a constructor's vptr store to the end of the leading run of member stores
+that share a value, and no further. AIWanderState zeroes ten members and then
+writes a byte to 1; the store lands after the ten and before the one. AIIdleState
+zeroes two bytes and then writes 1 and 0xffff; the store lands after the two.
+
+Retail's half is not predictable from anything measured so far. It sometimes puts
+the store ahead of every member store, sometimes after all of them including
+differing values. A function matches when the two happen to coincide -- which is
+why single-member cases and uniform-value tails nearly always work, and why a
+tail with a differently-valued store at the end nearly always fails.
+
+That turns the blocker into a screen rather than a mystery. Before writing a
+constructor in this family, compare retail's vptr position with the end of the
+leading same-valued run. If they agree the function is convertible; if not, it is
+parked and no ordering of the source will change it, because the source cannot
+address vptr placement at all.

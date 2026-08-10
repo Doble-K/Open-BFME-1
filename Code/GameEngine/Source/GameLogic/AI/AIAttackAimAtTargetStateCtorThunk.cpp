@@ -1,83 +1,39 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+// Two bool arguments stored at 0x24 and 0x27, with 0x25 and 0x26 zeroed first.
+#include "Common/AsciiString.h"
 
 class StateMachine;
 
-class AIAttackAimAtTargetState
+class State
 {
 public:
-    AIAttackAimAtTargetState(StateMachine *, bool, bool);
+	State(StateMachine *machine, AsciiString name);
+
+	virtual ~State();
+
+private:
+	unsigned char m_head[0x20];
 };
 
-__declspec(naked) AIAttackAimAtTargetState::AIAttackAimAtTargetState(StateMachine *, bool, bool)
+class AIAttackAimAtTargetState : public State
 {
-    __asm {
-        _emit 051h
-        _emit 056h
-        _emit 051h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 064h
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0CCh
-        _emit 068h
-        _emit 0B4h
-        _emit 07Ch
-        _emit 009h
-        _emit 001h
-        _emit 0E8h
-        _emit 02Bh
-        _emit 07Ah
-        _emit 071h
-        _emit 000h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 050h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 011h
-        _emit 024h
-        _emit 0E9h
-        _emit 0FFh
-        _emit 08Ah
-        _emit 04Ch
-        _emit 024h
-        _emit 010h
-        _emit 08Ah
-        _emit 054h
-        _emit 024h
-        _emit 014h
-        _emit 032h
-        _emit 0C0h
-        _emit 088h
-        _emit 046h
-        _emit 025h
-        _emit 088h
-        _emit 046h
-        _emit 026h
-        _emit 0C7h
-        _emit 006h
-        _emit 060h
-        _emit 07Ch
-        _emit 009h
-        _emit 001h
-        _emit 088h
-        _emit 04Eh
-        _emit 024h
-        _emit 088h
-        _emit 056h
-        _emit 027h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 059h
-        _emit 0C2h
-        _emit 00Ch
-        _emit 000h
-    }
+public:
+	AIAttackAimAtTargetState(StateMachine *machine, bool a, bool b);
+
+private:
+	bool m_24;
+	bool m_25;
+	bool m_26;
+	bool m_27;
+};
+
+// ??0AIAttackAimAtTargetState@@QAE@PAVStateMachine@@_N1@Z
+AIAttackAimAtTargetState::AIAttackAimAtTargetState(StateMachine *machine, bool a, bool b) :
+	State(machine, "AIAttackAimAtTargetState")
+{
+	m_25 = false;
+	m_26 = false;
+	m_24 = a;
+	m_27 = b;
 }
