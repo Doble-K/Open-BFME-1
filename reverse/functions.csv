@@ -3825,7 +3825,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1QueueProductionExitUpdate@@UAE@XZ,,0x001F8D10,141,Code/GameEngine/Source/Common/QueueProductionExitUpdateDestructorThunk.cpp,matched,Exact 141B SEH dtor Open-BFME4
 ??1QuickMatchPreferences@@UAE@XZ,,0x000AAFA0,11,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,thunk-dump converted to clean C++
 ??1RAMFile@@MAE@XZ,,0x009D19A0,93,Code/Libraries/Source/WWVegas/WWLib/RAMFileDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit dtor thunk
-??1RTS2DScene@@UAE@XZ,,0x00711980,143,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS2DSceneDestructorThunk.cpp,matched,Open-BFME5 lift 143B retail MASM to standalone C++ thunk
+??1RTS2DScene@@UAE@XZ,,0x00711980,143,Code/GameEngineDevice/Source/W3DDevice/GameClient/RTS2DSceneDestructorThunk.cpp,matched,Open-BFME5 exact clean C++ destructor with retail multiple-inheritance layout
 ??1RTS3DScene@@UAE@XZ,,0x00C5FD7E,328,Code/GameEngine/Source/Common/RTS3DSceneDestructorThunk.cpp,matched,Exact 328B SEH dtor Open-BFME5
 ??1Radar@@UAE@XZ,,0x00107620,118,Code/GameEngine/Source/Common/RadarDestructorThunk.cpp,matched,Exact retail MASM; dual-vtable wrapper chain proves ownership; preserves BFME vector-destructor machinery absent from ZH layout
 ??1RadarObject@@MAE@XZ,,0x001B0DB0,79,Code/GameEngine/Source/Common/System/Radar.cpp,matched,icf-owner=??1Upgrade@@MAE@XZ

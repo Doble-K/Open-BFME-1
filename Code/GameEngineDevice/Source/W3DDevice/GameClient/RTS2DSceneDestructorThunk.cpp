@@ -1,157 +1,63 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: convert the retail RTS2DScene destructor to clean C++.
 
-class __declspec(novtable) RTS2DScene {
+class RefCountClass
+{
+public:
+	void Release_Ref(void)
+	{
+		NumRefs--;
+		if (NumRefs == 0)
+		{
+			Delete_This();
+		}
+	}
+
+protected:
+	virtual void Delete_This(void);
+	int NumRefs;
+};
+
+class RenderObjClass : public RefCountClass
+{
+};
+
+class SimpleSceneClass
+{
+public:
+	virtual ~SimpleSceneClass();
+	virtual void Remove_Render_Object(RenderObjClass *obj);
+
+private:
+	unsigned char m_pad[0x104];
+};
+
+class SubsystemInterface
+{
+public:
+	virtual ~SubsystemInterface();
+
+private:
+	unsigned char m_pad[4];
+};
+
+class RTS2DScene : public SimpleSceneClass, public SubsystemInterface
+{
 public:
 	virtual ~RTS2DScene();
+
+private:
+	RenderObjClass *m_status;
+	void *m_camera;
 };
 
 // ??1RTS2DScene@@UAE@XZ
-__declspec(naked) RTS2DScene::~RTS2DScene()
+RTS2DScene::~RTS2DScene()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x04
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xec
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x57
-		__emit 0x8d
-		__emit 0xbe
-		__emit 0x08
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x80
-		__emit 0x0a
-		__emit 0x12
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x07
-		__emit 0x50
-		__emit 0x0a
-		__emit 0x12
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x86
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xfa
-		__emit 0x1e
-		__emit 0x23
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x8e
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x13
-		__emit 0xff
-		__emit 0x49
-		__emit 0x04
-		__emit 0x75
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x11
-		__emit 0xff
-		__emit 0x12
-		__emit 0xc7
-		__emit 0x86
-		__emit 0x10
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x51
-		__emit 0x00
-		__emit 0x29
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x72
-		__emit 0x24
-		__emit 0x23
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x14
-		__emit 0xc3
+	Remove_Render_Object(m_status);
+	if (m_status)
+	{
+		m_status->Release_Ref();
+		m_status = 0;
 	}
 }
