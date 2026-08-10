@@ -6648,3 +6648,47 @@ family, which no source spelling reproduces.
 Both cost one disassembly and no builds. The screen ranks candidates by shape;
 it cannot see either of these, and a minute of reading is cheaper than three
 builds discovering the same thing.
+
+
+## Correction: a virtual destructor does NOT always store a vptr
+
+Last tick I wrote that a virtual destructor always emits a vptr store, and used
+that to prove Template's row was mis-named. The conclusion was right; the rule
+as stated is wrong, and stated that way it would condemn a lot of correct rows.
+
+Screening every naked single-row destructor with a virtual access letter turned
+up 29 of 134 with no vptr store. Classes like MultiplayerSettings and
+StealthUpdate are certainly polymorphic, so the rule cannot be that strong.
+
+What MultiplayerSettings shows is the real shape: it ends by calling
+??1SubsystemInterface@@UAE@XZ, its base destructor. When ~Derived runs, the
+object's vptr already holds Derived's vtable -- the constructor put it there, or
+a more-derived destructor reset it on the way down -- so storing it again is
+redundant and MSVC elides it. The base destructor still stores the *base*
+vtable, because after ~Derived's body the dynamic type really does change.
+
+So the store survives only where it is not redundant: in a **root** polymorphic
+class's destructor. That is exactly the case Template presented, which is why
+building it as MAE emitted one.
+
+The usable test is therefore a conjunction: no vptr store AND no base-destructor
+call. Neither half alone means anything. Even that over-reports here, because
+base destructor calls often go through synthetic j_ thunks whose targets the
+name resolver does not follow, so 25 of the 29 survive a check that should
+eliminate most of them.
+
+The wider lesson is about how I generalised. One positive case -- Template
+emitting the store -- became "always". The screen that should have tested the
+rule was written after the rule was published, and it immediately refuted it.
+Run the screen first when the claim is cheap to check across the whole ledger.
+
+## TooltipUpgrade's row is not a destructor
+
+??1TooltipUpgrade@@UAE@XZ ends in `ret 4`. A destructor takes no arguments, so
+that alone settles it. The body builds an AsciiString from a literal, then
+either releases a UnicodeString at this+0x2d4 or calls set@UnicodeString on it
+with the argument -- a setter taking a const UnicodeString reference.
+
+Logged rather than repaired: the address and size are probably fine, but the
+true name is not derivable from the body, and inventing one is worse than
+leaving the row visibly wrong.
