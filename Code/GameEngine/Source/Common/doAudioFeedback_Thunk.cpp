@@ -1,166 +1,92 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Lift doAudioFeedback to clean C++ with the BFME GUI and audio layouts.
 
-class GameWindow;
+typedef bool Bool;
 
-void doAudioFeedback(GameWindow *);
+class GameWindow
+{
+public:
+	void *winGetUserData(void);                         ///< ILT thunk at 0x00046538
+};
+
+struct ListboxData
+{
+	unsigned char m_unreconstructed_00[0x0e];
+	Bool audioFeedback;                                 ///< retail this+0x0e
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const char *name);
+	~AsciiString();
+
+private:
+	void *m_data;
+};
+
+enum ObjectID
+{
+	OBJECT_ID_UNUSED = 0
+};
+
+class AudioEventRTS
+{
+public:
+	AudioEventRTS(const AsciiString& eventName, ObjectID ownerID);
+	virtual ~AudioEventRTS();
+
+private:
+	unsigned char m_unreconstructed_04[0x6c];
+};
+
+class AudioManager
+{
+public:
+	virtual void unused00();
+	virtual void unused01();
+	virtual void unused02();
+	virtual void unused03();
+	virtual void unused04();
+	virtual void unused05();
+	virtual void unused06();
+	virtual void unused07();
+	virtual void unused08();
+	virtual void unused09();
+	virtual void unused10();
+	virtual void unused11();
+	virtual void unused12();
+	virtual void unused13();
+	virtual void unused14();
+	virtual void unused15();
+	virtual void unused16();
+	virtual unsigned int addAudioEvent(const AudioEventRTS *eventToAdd);
+};
+
+extern AudioManager *TheAudio;                        ///< retail [0x012ED668]
 
 // ?doAudioFeedback@@YAXPAVGameWindow@@@Z
-__declspec(naked) void doAudioFeedback(GameWindow *)
+__declspec(noinline) static void doAudioFeedback(GameWindow *window)
 {
-	__asm {
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xb0
-		__emit 0x8c
-		__emit 0x02
-		__emit 0x01
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xec
-		__emit 0x74
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x6b
-		__emit 0xe8
-		__emit 0x27
-		__emit 0xdf
-		__emit 0xb8
-		__emit 0xff
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x62
-		__emit 0x8a
-		__emit 0x48
-		__emit 0x0e
-		__emit 0x84
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x5b
-		__emit 0x68
-		__emit 0x90
-		__emit 0xd8
-		__emit 0x0f
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x04
-		__emit 0xe8
-		__emit 0x96
-		__emit 0x05
-		__emit 0x3d
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x02
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x50
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xc7
-		__emit 0x84
-		__emit 0x24
-		__emit 0x84
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xc1
-		__emit 0xcc
-		__emit 0xb6
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x0c
-		__emit 0x24
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x7c
-		__emit 0x02
-		__emit 0xe8
-		__emit 0xee
-		__emit 0xf2
-		__emit 0x3c
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x68
-		__emit 0xd6
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x0a
-		__emit 0x8b
-		__emit 0x11
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x50
-		__emit 0xff
-		__emit 0x52
-		__emit 0x44
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x04
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x7c
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0xbe
-		__emit 0xe8
-		__emit 0xb6
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x74
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x81
-		__emit 0xc4
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc3
+	if (!window)
+		return;
+
+	ListboxData *lData = (ListboxData *)window->winGetUserData();
+	if (!lData)
+		return;
+
+	if (lData->audioFeedback)
+	{
+		AudioEventRTS buttonClick("GUIComboBoxClick", (ObjectID)2);
+
+		if (TheAudio)
+		{
+			TheAudio->addAudioEvent(&buttonClick);
+		}
 	}
+}
+
+__declspec(noinline) void doAudioFeedbackAnchor(GameWindow *window)
+{
+	doAudioFeedback(window);
 }
