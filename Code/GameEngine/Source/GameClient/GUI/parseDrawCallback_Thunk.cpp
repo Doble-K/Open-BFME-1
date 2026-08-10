@@ -1,142 +1,72 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHs-c-
+// Lift the draw-callback window-file parser to clean C++.
 
+typedef int Int;
+typedef bool Bool;
+
+extern "C" __declspec(dllimport) char *__cdecl strtok(char *string, const char *separators);
+extern "C" unsigned int __cdecl strlen(const char *string);
+
+class AsciiString
+{
+public:
+	void set(const char *string, Int length);
+
+	const char *str(void) const
+	{
+		return m_data ? (const char *)((unsigned char *)m_data + 8) : "";
+	}
+
+	void *m_data;
+};
+
+enum NameKeyType
+{
+	NAMEKEY_INVALID = 0,
+	FORCE_NAMEKEYTYPE_LONG = 0x7fffffff
+};
+
+class NameKeyGenerator
+{
+public:
+	NameKeyType nameToKey(const char *name);
+};
+
+class GameWindow;
 class WinInstanceData;
-bool parseDrawCallback(char *, WinInstanceData *, char *, void *);
+typedef void (__cdecl *GameWinDrawFunc)(GameWindow *, WinInstanceData *);
+
+class FunctionLexicon
+{
+public:
+	enum TableIndex
+	{
+		TABLE_ANY = -1
+	};
+
+	GameWinDrawFunc gameWinDrawFunc(NameKeyType key, TableIndex index = TABLE_ANY);
+};
+
+extern AsciiString theDrawString;
+extern NameKeyGenerator *TheNameKeyGenerator;
+extern FunctionLexicon *TheFunctionLexicon;
+extern GameWinDrawFunc drawFunc;
 
 // ?parseDrawCallback@@YA_NPADPAVWinInstanceData@@0PAX@Z
-__declspec(naked) bool parseDrawCallback(char *, WinInstanceData *, char *, void *)
+Bool parseDrawCallback(char *token, WinInstanceData *instData, char *buffer, void *data)
 {
-	__asm {
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x80
-		__emit 0x38
-		__emit 0x22
-		__emit 0x74
-		__emit 0x10
-		__emit 0x8d
-		__emit 0xa4
-		__emit 0x24
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8a
-		__emit 0x48
-		__emit 0x01
-		__emit 0x40
-		__emit 0x80
-		__emit 0xf9
-		__emit 0x22
-		__emit 0x75
-		__emit 0xf7
-		__emit 0x40
-		__emit 0x68
-		__emit 0xa4
-		__emit 0x94
-		__emit 0x0f
-		__emit 0x01
-		__emit 0x50
-		__emit 0xff
-		__emit 0x15
-		__emit 0xd8
-		__emit 0x94
-		__emit 0x35
-		__emit 0x01
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x12
-		__emit 0x8b
-		__emit 0xc8
-		__emit 0x56
-		__emit 0x8d
-		__emit 0x71
-		__emit 0x01
-		__emit 0x8a
-		__emit 0x11
-		__emit 0x41
-		__emit 0x84
-		__emit 0xd2
-		__emit 0x75
-		__emit 0xf9
-		__emit 0x2b
-		__emit 0xce
-		__emit 0x5e
-		__emit 0xeb
-		__emit 0x02
-		__emit 0x33
-		__emit 0xc9
-		__emit 0x51
-		__emit 0x50
-		__emit 0xb9
-		__emit 0x7c
-		__emit 0x25
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x73
-		__emit 0x12
-		__emit 0x40
-		__emit 0x00
-		__emit 0xa1
-		__emit 0x7c
-		__emit 0x25
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x00
-		__emit 0xd6
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x0b
-		__emit 0x43
-		__emit 0xbb
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x8c
-		__emit 0xd8
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xa4
-		__emit 0x25
-		__emit 0xb9
-		__emit 0xff
-		__emit 0xa3
-		__emit 0x60
-		__emit 0x25
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xb0
-		__emit 0x01
-		__emit 0xc3
-	}
+	char *c, *ptr;
+	char *stringSeps = "\"";
+
+	ptr = buffer;
+	while (*ptr != '"')
+		ptr++;
+	ptr++;
+	c = strtok(ptr, stringSeps);
+
+	theDrawString.set(c, c ? (Int)strlen(c) : 0);
+	NameKeyType key = TheNameKeyGenerator->nameToKey(theDrawString.str());
+	drawFunc = TheFunctionLexicon->gameWinDrawFunc(key);
+
+	return true;
 }
