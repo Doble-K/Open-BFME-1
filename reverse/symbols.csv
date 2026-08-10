@@ -68472,3 +68472,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?setWakeFrame@WeaponModeSpecialPowerUpdateBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ?createGroup@AI@@QAEPAVAIGroup@@XZ,0x0003B570,doTeamAttackNamed BFME createGroup thunk
 ?getTeamAsAIGroup@Team@@QAEXPAVAIGroup@@@Z,0x00022EC1,doTeamAttackNamed BFME Team::getTeamAsAIGroup thunk
+??0BridgeTowerBehaviorBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,BridgeTowerBehavior ctor base call

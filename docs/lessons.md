@@ -5944,3 +5944,24 @@ ILT thunk, and three vtable stores at +0/+0xC/+0x10. The recipe is a
 single-virtual anchor on the module base, two novtable interface bases, a
 <Name>Base holding the ctor declaration pinned to the thunk in symbols.csv, and
 the real body from the Zero Hour header.
+
+## Where a store sits tells you which class owns the member
+
+Module constructors write their interface vtables twice when the interface bases
+are not novtable: once as each subobject is constructed, once for the
+most-derived set. Any member store that lands *between* those two groups cannot
+be in the constructor body, because the body runs after the most-derived vtables
+are installed. It is a base subobject's member initialiser.
+
+BridgeTowerBehavior matched at 96/96 on that reading alone: the two zeroed words
+at +0x1C/+0x20 sit between the interim and most-derived groups, so they belong to
+the fourth interface base and are initialised in its constructor, and the derived
+body is empty.
+
+The reading has a limit worth knowing. SiegeDeploySpecialPower has four zero
+stores before the vtable group and eleven after; moving the first four onto the
+last base is right, but the eleven in the body then hoist up to join them,
+because they all share the one zeroed register and MSVC groups such stores freely
+across the vtable writes. So the rule places members reliably only when nothing
+remains on the other side to be hoisted. Where stores appear on both sides of the
+vtable group, source ordering does not reach it.

@@ -1,112 +1,74 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: BridgeTowerBehavior module ctor.
+//
+// Four interface bases, none novtable, so retail writes each interface vtbl
+// twice: once at +0xC/+0x10/+0x14/+0x18 as the subobjects are constructed, then
+// again with the most-derived set including +0.
+//
+// The two zeroed words at +0x1C/+0x20 land between those two groups, which is
+// where base-subobject member initialisers run -- before the most-derived vtbl
+// writes. They therefore belong to the last interface base, not to the body.
+
 class Thing;
 class ModuleData;
+class Object;
 
-class BridgeTowerBehavior
+class BehaviorModule
 {
 public:
-    BridgeTowerBehavior(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+	unsigned int m_04;
+	Object *m_object;							///< retail this+0x08
 };
 
-__declspec(naked) BridgeTowerBehavior::BridgeTowerBehavior(Thing *, const ModuleData *)
+class BridgeTowerBehaviorIface1
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0xd0;
-        __emit 0x10;
-        __emit 0xe2;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x58;
-        __emit 0x2a;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x7c;
-        __emit 0x25;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0xfc;
-        __emit 0x1b;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x1c;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x54;
-        __emit 0x2b;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x90;
-        __emit 0x2a;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x7c;
-        __emit 0x2a;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x78;
-        __emit 0x2a;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0x68;
-        __emit 0x2a;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+public:
+	virtual void bridgeTowerIface1Anchor();
+};
+
+class BridgeTowerBehaviorIface2
+{
+public:
+	virtual void bridgeTowerIface2Anchor();
+};
+
+class BridgeTowerBehaviorIface3
+{
+public:
+	virtual void bridgeTowerIface3Anchor();
+};
+
+class BridgeTowerBehaviorIface4
+{
+public:
+	BridgeTowerBehaviorIface4() : m_1c(0), m_20(0) {}
+	virtual void bridgeTowerIface4Anchor();
+
+	unsigned int m_1c;							///< retail this+0x1C
+	unsigned int m_20;							///< retail this+0x20
+};
+
+class BridgeTowerBehaviorBase : public BehaviorModule
+{
+public:
+	BridgeTowerBehaviorBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class BridgeTowerBehavior : public BridgeTowerBehaviorBase,
+	public BridgeTowerBehaviorIface1,
+	public BridgeTowerBehaviorIface2,
+	public BridgeTowerBehaviorIface3,
+	public BridgeTowerBehaviorIface4
+{
+public:
+	BridgeTowerBehavior(Thing *thing, const ModuleData *moduleData);
+};
+
+// ??0BridgeTowerBehavior@@QAE@PAVThing@@PBVModuleData@@@Z
+BridgeTowerBehavior::BridgeTowerBehavior(Thing *thing, const ModuleData *moduleData)
+	: BridgeTowerBehaviorBase(thing, moduleData)
+{
 }
