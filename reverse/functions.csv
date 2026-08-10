@@ -80558,7 +80558,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setText20@BFMENetGameSpyStatsAuthKeyCommandMsg@@QAEXV?$StringBase@D@@@Z,,0x00675CE0,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?setText@NetChatCommandMsg@@QAEXV?$StringBase@G@@@Z,,0x006752B0,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?setText@NetDisconnectChatCommandMsg@@QAEXV?$StringBase@G@@@Z,,0x00675180,75,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
-?setText@WinInstanceData@@QAEXVUnicodeString@@@Z,,0x00499D60,123,Code/GameEngine/Source/Common/WinInstanceData_setText_Thunk.cpp,matched,Exact 123B Open-BFME5
+?setText@WinInstanceData@@QAEXVUnicodeString@@@Z,,0x00499D60,123,Code/GameEngine/Source/Common/WinInstanceData_setText_Thunk.cpp,matched,Open-BFME5 clean C++; display string created on first use via manager vtable +0x24
 ?setTexture@W3DShadowTexture@@QAEXPAVTextureClass@@@Z,,0x00087470,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?setTextureFilename@ParticleSystemTemplate@FXParticleSystem@@QAEXAAVAsciiString@@@Z,0x000163FB,0x0005CB50,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,adjusts this pointer and assigns texture filename
 ?setTimeMultiplier@W3DView@@UAEXH@Z,,0x004F9600,13,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,

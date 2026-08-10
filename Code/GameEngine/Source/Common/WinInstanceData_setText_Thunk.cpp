@@ -1,142 +1,76 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the WinInstanceData::setText MASM dump to clean C++.
+//
+// Same StringBase<unsigned short> friend shim as GameWindow::winSetText: private
+// constructors on the base are what mangle the copy and destructor to
+// ??0?$StringBase@G@@AAE@ABV0@@Z and ??1?$StringBase@G@@AAE@XZ.
+//
+// The display string at this+0x19C is created on first use through the manager
+// global's tenth virtual, then given the text through its second. The by-value
+// parameter is copied for that call and destroyed here at the end, which is
+// MSVC's callee-destroys rule for value parameters.
 
-class UnicodeString
+class UnicodeString;
+
+template <class T>
+class StringBase
 {
+private:
+	friend class UnicodeString;
+
+	StringBase(const StringBase<T> &other);		///< body at 0x00888400
+	~StringBase();								///< body at 0x008881D0
+
+	void *m_data;
 };
+
+class UnicodeString : public StringBase<unsigned short>
+{
+public:
+	UnicodeString(const UnicodeString &other) : StringBase<unsigned short>(other) {}
+	~UnicodeString() {}
+};
+
+class DisplayString
+{
+public:
+	virtual void displayStringSlot0();
+	virtual void setText(UnicodeString text);	///< vtable +0x04
+};
+
+class DisplayStringManager
+{
+public:
+	virtual void managerSlot0();
+	virtual void managerSlot1();
+	virtual void managerSlot2();
+	virtual void managerSlot3();
+	virtual void managerSlot4();
+	virtual void managerSlot5();
+	virtual void managerSlot6();
+	virtual void managerSlot7();
+	virtual void managerSlot8();
+	virtual DisplayString *newDisplayString();	///< vtable +0x24
+};
+
+extern DisplayStringManager *TheDisplayStringManager;	///< retail [0x012F12CC]
 
 class WinInstanceData
 {
 public:
-	void setText(UnicodeString);
+	void setText(UnicodeString text);
+
+	unsigned char m_unreconstructed_00[0x19C];
+	DisplayString *m_text;						///< retail this+0x19C
 };
 
 // ?setText@WinInstanceData@@QAEXVUnicodeString@@@Z
-__declspec(naked) void WinInstanceData::setText(UnicodeString)
+void WinInstanceData::setText(UnicodeString text)
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x38
-		__emit 0x79
-		__emit 0x02
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x8b
-		__emit 0x86
-		__emit 0x9c
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x85
-		__emit 0xc0
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x75
-		__emit 0x11
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0xcc
-		__emit 0x12
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x01
-		__emit 0xff
-		__emit 0x50
-		__emit 0x24
-		__emit 0x89
-		__emit 0x86
-		__emit 0x9c
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x8d
-		__emit 0x54
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x89
-		__emit 0x64
-		__emit 0x24
-		__emit 0x08
-		__emit 0x8b
-		__emit 0xcc
-		__emit 0x52
-		__emit 0xe8
-		__emit 0x53
-		__emit 0xe6
-		__emit 0x3e
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x8e
-		__emit 0x9c
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x01
-		__emit 0xff
-		__emit 0x50
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x18
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x07
-		__emit 0xe4
-		__emit 0x3e
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5e
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
+	if (m_text == 0)
+	{
+		m_text = TheDisplayStringManager->newDisplayString();
 	}
+
+	m_text->setText(text);
 }
