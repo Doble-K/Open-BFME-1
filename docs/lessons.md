@@ -6176,3 +6176,30 @@ My first reading of this was that retail used a different ILT thunk for the same
 function. That was wrong -- only one thunk targets State's constructor -- and
 resolving the jump chain took one query that I should have run before forming the
 theory.
+
+
+## Screen on behaviour, not on byte shape
+
+The first pass at this family screened on the exact 46-byte pattern and found
+seven, three of which had the wrong base class. Screening instead on what the
+body does -- an AsciiString constructor call followed by exactly one more call,
+with a literal pushed -- found thirty-one across every size from 46 to 124 bytes,
+and grouped them by the address of that second call.
+
+Grouping by the base's address is what makes the batch safe. Thirteen call
+State's constructor, thirteen call 0x0014F280 and five call 0x0018D890, and those
+last two groups are the ones that failed when a shape screen lumped them in with
+the first. The property that decides whether a source compiles is the base class,
+and it is directly observable; matching bytes around it is not a proxy for it.
+
+## The vptr store scheduled itself
+
+Retail puts the vptr store first in the 53-byte members of this family and last
+in the 54-byte ones. Writing the added members as initialisers in both cases
+produced retail's order each time without the source saying anything about it --
+MSVC sinks the store past a run of same-valued member stores and leaves it in
+front of a single immediate one.
+
+Worth knowing because vptr placement has been treated here as a blocker to be
+worked around. In this family it is simply a consequence of what the members are,
+and the source that describes the members correctly gets the placement for free.

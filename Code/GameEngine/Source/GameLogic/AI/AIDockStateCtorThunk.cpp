@@ -1,69 +1,40 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+// State subclass constructor: build the name, hand it to the base by value,
+// install this class's vptr, initialise the members this class adds.
+//
+// The AsciiString is the shim's rather than a hand-rolled stand-in -- the
+// temporary is passed by value and only the StringBase-backed shim emits
+// `mov [esp+8],esp` before `mov ecx,esp` the way retail does.
+#include "Common/AsciiString.h"
 
 class StateMachine;
 
-class AIDockState
+class State
 {
 public:
-    AIDockState(StateMachine *);
+	State(StateMachine *machine, AsciiString name);
+
+	virtual ~State();
+
+private:
+	unsigned char m_head[0x20];
 };
 
-__declspec(naked) AIDockState::AIDockState(StateMachine *)
+class AIDockState : public State
 {
-    __asm {
-        _emit 051h
-        _emit 056h
-        _emit 051h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 064h
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0CCh
-        _emit 068h
-        _emit 05Ch
-        _emit 07Fh
-        _emit 009h
-        _emit 001h
-        _emit 0E8h
-        _emit 08Bh
-        _emit 077h
-        _emit 071h
-        _emit 000h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 050h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 071h
-        _emit 021h
-        _emit 0E9h
-        _emit 0FFh
-        _emit 033h
-        _emit 0C0h
-        _emit 089h
-        _emit 046h
-        _emit 024h
-        _emit 088h
-        _emit 046h
-        _emit 028h
-        _emit 0C7h
-        _emit 006h
-        _emit 008h
-        _emit 07Fh
-        _emit 009h
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 059h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+public:
+	AIDockState(StateMachine *machine);
+
+private:
+	int m_24;
+	bool m_28;
+};
+
+// ??0AIDockState@@QAE@PAVStateMachine@@@Z
+AIDockState::AIDockState(StateMachine *machine) :
+	State(machine, "AIDockState"),
+	m_24(0),
+	m_28(false)
+{
 }
