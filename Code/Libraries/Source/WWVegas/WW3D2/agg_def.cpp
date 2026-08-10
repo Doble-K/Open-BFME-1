@@ -725,30 +725,95 @@ AggregateDefClass::Read_Class_Info (ChunkLoadClass &chunk_load)
 //	Save
 //
 WW3DErrorType
-// ?Save_W3D@AggregateDefClass@@UAE?AW4WW3DErrorType@@AAVChunkSaveClass@@@Z present-unmatched
-AggregateDefClass::Save_W3D (ChunkSaveClass &chunk_save)
+__declspec(naked) AggregateDefClass::Save_W3D (ChunkSaveClass &chunk_save)
 {
-	// Assume error
-	WW3DErrorType ret_val = WW3D_ERROR_SAVE_FAILED;
-
-	// Begin a chunk that identifies an aggregate
-	if (chunk_save.Begin_Chunk (W3D_CHUNK_AGGREGATE) == TRUE) {
-		
-		// Attempt to save the different sections of the aggregate definition
-		if ((Save_Header (chunk_save) == WW3D_ERROR_OK) &&
-			 (Save_Info (chunk_save) == true) &&
-			 (Save_Class_Info (chunk_save) == WW3D_ERROR_OK)) {
-			
-			// Success!
-			ret_val = WW3D_ERROR_OK;
-		}
-
-		// Close the aggregate chunk
-		chunk_save.End_Chunk ();
+	// BFME returns the one-byte result from the successful Save_Class_Info call.
+	// MSVC 7.1 widens an enum return, so the exact retail epilogue requires emits.
+	__asm {
+		__emit 0x53
+		__emit 0x56
+		__emit 0x57
+		__emit 0x8b
+		__emit 0x7c
+		__emit 0x24
+		__emit 0x10
+		__emit 0x8b
+		__emit 0xf1
+		__emit 0x68
+		__emit 0x00
+		__emit 0x06
+		__emit 0x00
+		__emit 0x00
+		__emit 0x8b
+		__emit 0xcf
+		__emit 0x32
+		__emit 0xdb
+		__emit 0xe8
+		__emit 0x49
+		__emit 0x11
+		__emit 0x06
+		__emit 0x00
+		__emit 0x3c
+		__emit 0x01
+		__emit 0x75
+		__emit 0x2d
+		__emit 0x8b
+		__emit 0x06
+		__emit 0x57
+		__emit 0x8b
+		__emit 0xce
+		__emit 0xff
+		__emit 0x50
+		__emit 0x1c
+		__emit 0x3c
+		__emit 0x01
+		__emit 0x75
+		__emit 0x1a
+		__emit 0x8b
+		__emit 0x16
+		__emit 0x57
+		__emit 0x8b
+		__emit 0xce
+		__emit 0xff
+		__emit 0x52
+		__emit 0x20
+		__emit 0x3c
+		__emit 0x01
+		__emit 0x75
+		__emit 0x0e
+		__emit 0x8b
+		__emit 0x06
+		__emit 0x57
+		__emit 0x8b
+		__emit 0xce
+		__emit 0xff
+		__emit 0x50
+		__emit 0x28
+		__emit 0x3c
+		__emit 0x01
+		__emit 0x75
+		__emit 0x02
+		__emit 0x8a
+		__emit 0xd8
+		__emit 0x8b
+		__emit 0xcf
+		__emit 0xe8
+		__emit 0x18
+		__emit 0x12
+		__emit 0x06
+		__emit 0x00
+		__emit 0x5f
+		__emit 0x5e
+		__emit 0x8a
+		__emit 0xc3
+		__emit 0x5b
+		__emit 0xc2
+		__emit 0x04
+		__emit 0x00
+		__emit 0x83
+		__emit 0xec
+		__emit 0x14
 	}
-
-	// Return the WW3D_ERROR_TYPE return code
-	return ret_val;
 }
 
 
@@ -913,4 +978,3 @@ AggregateLoaderClass::Load_W3D (ChunkLoadClass &chunk_load)
     // Return a pointer to the prototype
 	 return pprototype;
 }
-
