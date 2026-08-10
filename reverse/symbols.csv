@@ -1139,6 +1139,7 @@ name,address,notes
 ??0DieModuleData@@QAE@XZ,0x0002EF55,pinharvest x1 (thunk)
 ??0DieModuleData@@QAE@XZ,0x0004A426,pinharvest x1 (thunk)
 ??0DieMuxData@@QAE@XZ,0x000057B8,pinharvest x1 (thunk)
+??0InstantDeathDieMuxData@@QAE@XZ,0x000071E4,Open-BFME5 TU-local retail call target for InstantDeathBehaviorModuleData ctor
 ??0DirectInputKeyboard@@QAE@XZ,0x000120D0,DirectInputKeyboard ctor thunk; createKeyboard@W3DGameClient factory REL32
 ??0DisplayStringManager@@QAE@XZ,0x0000F7A9
 ??0DockUpdateModuleData@@QAE@XZ,0x0002C54D

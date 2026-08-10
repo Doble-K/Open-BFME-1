@@ -1,125 +1,63 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: clean C++ reconstruction of the retail ModuleData constructor.
+// The declarations below retain the BFME object layout while keeping this
+// translation unit independent of the reference headers.
 
-class InstantDeathBehaviorModuleData
+class Snapshot
 {
 public:
-    InstantDeathBehaviorModuleData();
+	Snapshot() {}
+	virtual ~Snapshot() {}
+
+private:
+	unsigned char m_pad[4];
+};
+
+class InstantDeathDieMuxData
+{
+public:
+	InstantDeathDieMuxData();
+
+private:
+	unsigned char m_data[0x2c];
+};
+
+class DieModuleData : public Snapshot
+{
+public:
+	DieModuleData() {}
+	virtual void dieModuleDataAnchor();
+
+private:
+	InstantDeathDieMuxData m_dieMuxData;
+};
+
+class VectorStorage
+{
+public:
+	VectorStorage() : m_start(0), m_finish(0), m_endOfStorage(0), m_allocator(0)
+	{
+	}
+
+private:
+	void *m_start;
+	void *m_finish;
+	void *m_endOfStorage;
+	void *m_allocator;
+};
+
+class InstantDeathBehaviorModuleData : public DieModuleData
+{
+public:
+	InstantDeathBehaviorModuleData();
+
+private:
+	VectorStorage m_fx;
+	VectorStorage m_ocls;
+	VectorStorage m_weapons;
 };
 
 // ??0InstantDeathBehaviorModuleData@@QAE@XZ
-__declspec(naked) InstantDeathBehaviorModuleData::InstantDeathBehaviorModuleData()
+InstantDeathBehaviorModuleData::InstantDeathBehaviorModuleData()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x58;
-        __emit 0xb8;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x33;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x78;
-        __emit 0xaf;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x62;
-        __emit 0x5b;
-        __emit 0xe0;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x58;
-        __emit 0x4f;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x34;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x38;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x3c;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x40;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x44;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x48;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x4c;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x50;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x54;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x58;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x5c;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x60;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
 }
