@@ -1,177 +1,67 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class AsciiString;
+// Base, vptr, a copied name, then twelve zeroed words.
+//
+// The order in the body is the order retail emits: the eleven words from 0xA0
+// up, and only then the one at 0x9C. Member construction runs first and is fixed
+// by declaration order, but these are body statements, so the source has to say
+// them the way the bytes do.
+//
+// The zero lives in edi across all of it, which is also why the unwind state is
+// stored as the four-byte register form rather than the eight-byte immediate --
+// a difference that shows up in the function's total size, not in its shape.
+class AsciiString
+{
+public:
+	AsciiString(void);
+	AsciiString(const AsciiString &other);
+	~AsciiString(void);
+
+private:
+	char *m_data;
+};
 
 namespace FXParticleSystem
 {
 
-class ParticleSystemTemplate
+class ParticleSystemInfo
 {
 public:
-    ParticleSystemTemplate(const AsciiString &);
+	ParticleSystemInfo(void);
+
+	virtual ~ParticleSystemInfo(void);
+
+private:
+	unsigned char m_pad[0x94];
+};
+
+class ParticleSystemTemplate : public ParticleSystemInfo
+{
+public:
+	ParticleSystemTemplate(const AsciiString &name);
+
+private:
+	AsciiString m_name;
+	int m_slaveTemplate;
+	void *m_a0[11];
 };
 
 // ??0ParticleSystemTemplate@FXParticleSystem@@QAE@ABVAsciiString@@@Z
-__declspec(naked) ParticleSystemTemplate::ParticleSystemTemplate(const AsciiString &)
+ParticleSystemTemplate::ParticleSystemTemplate(const AsciiString &name) :
+	m_name(name)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x98;
-        __emit 0xa5;
-        __emit 0x03;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xe8;
-        __emit 0xd9;
-        __emit 0x26;
-        __emit 0xa6;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x33;
-        __emit 0xff;
-        __emit 0x50;
-        __emit 0x8d;
-        __emit 0x8e;
-        __emit 0x98;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x64;
-        __emit 0xfe;
-        __emit 0x10;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x91;
-        __emit 0x8f;
-        __emit 0x2b;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xa0;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xa4;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xa8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xac;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xb0;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xb4;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xb8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xbc;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xc0;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xc4;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0xc8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0x9c;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+	m_a0[0] = 0;
+	m_a0[1] = 0;
+	m_a0[2] = 0;
+	m_a0[3] = 0;
+	m_a0[4] = 0;
+	m_a0[5] = 0;
+	m_a0[6] = 0;
+	m_a0[7] = 0;
+	m_a0[8] = 0;
+	m_a0[9] = 0;
+	m_a0[10] = 0;
+	m_slaveTemplate = 0;
 }
 
 }

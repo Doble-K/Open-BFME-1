@@ -6102,3 +6102,44 @@ Worth separating the two failure modes when reading build output. A byte
 mismatch means the code is wrong. Symbol-not-found means the declaration is
 wrong -- access, return type, constness or parameter types -- and no amount of
 staring at the disassembly will help until the mangled name is read back.
+
+
+## The vptr-sinking blocker is narrower than recorded
+
+ParticleSystemTemplate's constructor sits in the FXParticleSystem family that
+vptr sinking was recorded as blocking wholesale, and it converted on the first
+build with the vptr store exactly where retail has it, ahead of the member copy
+constructor.
+
+The difference from the family members that really are stuck is what the body
+contains. LifeEventModuleInfo and DefaultPhysicsModuleInfo call setRange three
+times and their vptr stores sink past those calls. This one's body is nothing but
+stores, and the store stays put.
+
+Working hypothesis from one positive case rather than a proof: the sink needs a
+call in the body to move past, not merely statements. Worth acting on, because it
+means the family should be re-screened on what its bodies call instead of skipped
+by name. A blocker recorded at family granularity is cheap to write and expensive
+to believe.
+
+## open(path, "wb") truncates before the argument is evaluated
+
+This emptied functions.csv -- all 94171 rows -- in a single statement:
+
+    io.open(p, "wb").write(raw.replace(m.group(0), new, 1))
+
+A regex had missed, so m was None and m.group(0) raised. But Python evaluates
+io.open(p, "wb") first, and opening for write truncates immediately; the
+exception then landed after the file was already zero bytes. The assert I would
+normally have written was not there, and the guard that did exist -- the crash
+itself -- arrived too late to protect anything.
+
+Compute the new bytes into a variable, assert on them, and only then open the
+file. The pattern that is safe reads:
+
+    out = raw.replace(old, new, 1)
+    assert len(out) > len(raw)
+    io.open(p, "wb").write(out)
+
+Recovery was one git checkout because the file is tracked, which is the only
+reason this cost minutes rather than the session.
