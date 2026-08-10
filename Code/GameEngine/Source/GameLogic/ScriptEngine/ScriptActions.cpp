@@ -1670,7 +1670,7 @@ void ScriptActions::doTeamAttackArea(const AsciiString& teamName, const AsciiStr
 /** doTeamAttackNamed */
 //-------------------------------------------------------------------------------------------------
 // ?doTeamAttackNamed@ScriptActions@@IAEXABVAsciiString@@0@Z
-// Body in ScriptActions_doTeamAttackNamed.asm (exact 144B retail @ 0x2F95A0).
+// Body in ScriptActions_doTeamAttackNamed_Thunk.cpp (exact 144B retail @ 0x2F95A0).
 // Queue RVA 0x3992C6 was INSIDE already-matched logicMessageDispatcher (misplaced drift).
 
 
@@ -6556,8 +6556,8 @@ static void (GameLogic::* const s_bfmeForceDynamicLODEmit)(Bool) =
 	&GameLogic::setShowDynamicLOD;
 static void (Radar::* const s_bfmeForceRadarHideEmit)(Bool) = &Radar::hide;
 static void (Radar::* const s_bfmeForceRadarForceOnEmit)(Bool) = &Radar::forceOn;
-// doTeamAttackNamed moved to MASM — keep AIGroup::groupAttackObject COMDAT
-// (matched row claims this TU as its only emitter).
+// doTeamAttackNamed is emitted by its standalone clean-C++ thunk TU — keep
+// AIGroup::groupAttackObject COMDAT (matched row claims this TU as its only emitter).
 static void (AIGroup::* const s_bfmeForceGroupAttackObjectEmit)(Object *, Int, CommandSourceType) =
 	&AIGroup::groupAttackObject;
 
