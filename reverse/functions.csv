@@ -2520,7 +2520,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ResolutionDescClass@@QAE@XZ,,0x0005C5D0,13,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,ICF alias of existing matched body
 ??0RespawnBody@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00214650,46,Code/GameEngine/Source/GameLogic/Object/Behavior/RespawnBodyCtorThunk.cpp,matched,Open-BFME5 clean C++ RespawnBody MI ctor (base hosts 3 vtbls)
 ??0RespawnBodyModuleData@@QAE@XZ,,0x002149D0,190,Code/GameEngine/Source/GameLogic/Object/Behavior/RespawnBodyModuleDataCtorThunk.cpp,matched,Exact 190B @ 0x002149D0; Exact retail MASM ModuleData ctor; unique factory 0x11F7A0
-??0RiderChangeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00229FB0,124,Code/GameEngine/Source/GameLogic/Object/Contain/RiderChangeContainCtorThunk.cpp,matched,Exact 124B; factory ownership Open-BFME4; converted to an exact standalone C++ thunk
+??0RiderChangeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00229FB0,124,Code/GameEngine/Source/GameLogic/Object/Contain/RiderChangeContainCtorThunk.cpp,matched,Open-BFME5 clean C++ module ctor; ten novtable ifaces; last base inits +0x100..+0x10C
 ??0RiderChangeContainModuleData@@QAE@XZ,,0x00268120,430,Code/GameEngine/Source/Common/RiderChangeContainModuleData_ctor_Thunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x1195C0
 ??0RiderInfo@@QAE@XZ,,0x0022A2D0,16,Code/GameEngine/Source/GameLogic/Object/Contain/RiderChangeContain.cpp,matched,
 ??0RoadSegment@@QAE@ABV0@@Z,,0x00704EB0,265,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
@@ -2609,7 +2609,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SpawnUnitBehaviorModuleData@@QAE@XZ,,0x00125CE0,114,Code/GameEngine/Source/GameLogic/AI/SpawnUnitBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0SpecialAbilityUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002A6360,356,Code/GameEngine/Source/GameLogic/Object/Update/SpecialAbilityUpdate_ctor_Thunk.cpp,matched,Open-BFME5 lift 356B retail MASM to standalone C++ thunk
 ??0SpecialAbilityUpdateModuleData@@QAE@XZ,,0x002A5AA0,434,Code/GameEngine/Source/Common/SpecialAbilityUpdateModuleData_ctor_Thunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x114140
-??0SpecialDisguiseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00267820,87,Code/GameEngine/Source/GameLogic/Object/Update/SpecialDisguiseUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 87B constructor
+??0SpecialDisguiseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00267820,87,Code/GameEngine/Source/GameLogic/Object/Update/SpecialDisguiseUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ module ctor; +0xE8 iface non-novtable so its inits precede the vtbls
 ??0SpecialDisguiseUpdateModuleData@@QAE@XZ,,0x002677D0,56,Code/GameEngine/Source/GameLogic/Object/Update/SpecialDisguiseUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ SpecialDisguiseUpdateModuleData ctor
 ??0SpecialEnemySenseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002AAF30,131,Code/GameEngine/Source/GameLogic/Object/Behavior/SpecialEnemySenseUpdateCtorThunk.cpp,matched,Open-BFME5 exact 131B retail module constructor
 ??0SpecialEnemySenseUpdateModuleData@@QAE@XZ,,0x00123D00,83,Code/GameEngine/Source/GameLogic/Object/Behavior/SpecialEnemySenseUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 83B ModuleData constructor

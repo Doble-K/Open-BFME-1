@@ -1,103 +1,77 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: SpecialDisguiseUpdate module ctor.
+//
+// Five vtbls at +0/+0xC/+0x10/+0x20/+0xE8. Only the one at +0xE8 is written
+// twice, so that interface base alone is non-novtable, and the two members it
+// zeroes at +0xEC/+0xF0 land between the two writes -- base-subobject
+// initialisers, which is why the derived body is empty.
+
 class Thing;
 class ModuleData;
+class Object;
 
-class SpecialDisguiseUpdate
+class BehaviorModule
 {
 public:
-    SpecialDisguiseUpdate(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+	unsigned int m_04;
+	Object *m_object;							///< retail this+0x08
 };
 
-__declspec(naked) SpecialDisguiseUpdate::SpecialDisguiseUpdate(Thing *, const ModuleData *)
+class __declspec(novtable) SpecialDisguiseUpdateIface1
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x2e;
-        __emit 0xbc;
-        __emit 0xda;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x86;
-        __emit 0xe8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x2c;
-        __emit 0x37;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0xec;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x86;
-        __emit 0xf0;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x08;
-        __emit 0x77;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x40;
-        __emit 0x76;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x30;
-        __emit 0x76;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0x04;
-        __emit 0x76;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x86;
-        __emit 0xe8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xf4;
-        __emit 0x75;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+public:
+	virtual void specialDisguiseIface1Anchor();
+};
+
+class __declspec(novtable) SpecialDisguiseUpdateIface2
+{
+public:
+	virtual void specialDisguiseIface2Anchor();
+
+	unsigned int m_14;
+	unsigned int m_18;
+	unsigned int m_1c;
+};
+
+class __declspec(novtable) SpecialDisguiseUpdateIface3
+{
+public:
+	virtual void specialDisguiseIface3Anchor();
+
+	unsigned char m_unreconstructed_24[0xC4];	///< retail this+0x24 .. +0xE8
+};
+
+class SpecialDisguiseUpdateIface4
+{
+public:
+	SpecialDisguiseUpdateIface4() : m_ec(0), m_f0(false) {}
+	virtual void specialDisguiseIface4Anchor();
+
+	unsigned int m_ec;							///< retail this+0xEC
+	bool m_f0;									///< retail this+0xF0
+};
+
+class SpecialDisguiseUpdateBase : public BehaviorModule
+{
+public:
+	SpecialDisguiseUpdateBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class SpecialDisguiseUpdate : public SpecialDisguiseUpdateBase,
+	public SpecialDisguiseUpdateIface1,
+	public SpecialDisguiseUpdateIface2,
+	public SpecialDisguiseUpdateIface3,
+	public SpecialDisguiseUpdateIface4
+{
+public:
+	SpecialDisguiseUpdate(Thing *thing, const ModuleData *moduleData);
+};
+
+// ??0SpecialDisguiseUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+SpecialDisguiseUpdate::SpecialDisguiseUpdate(Thing *thing, const ModuleData *moduleData)
+	: SpecialDisguiseUpdateBase(thing, moduleData)
+{
 }
