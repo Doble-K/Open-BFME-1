@@ -1,104 +1,38 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift the StealthUpgradeModuleData ctor dump to clean C++.
+
+#include <string.h>
+
+struct SixDwords
+{
+    SixDwords() { memset(this, 0, sizeof(*this)); }
+
+    unsigned int v[6];
+};
 
 class StealthUpgradeModuleData
 {
 public:
     StealthUpgradeModuleData();
+
+private:
+    SixDwords m_block0;
+    SixDwords m_block1;
+    unsigned int m0, m1, m2, m3, m4, m5, m6, m7, m8, m9;
+    unsigned char m_byte;
+    int m_sentinel;
+    int m_a;
+    int m_b;
 };
 
 // ??0StealthUpgradeModuleData@@QAE@XZ
-__declspec(naked) StealthUpgradeModuleData::StealthUpgradeModuleData()
+StealthUpgradeModuleData::StealthUpgradeModuleData()
+    : m_block0(),
+      m_block1(),
+      m0(0), m1(0), m2(0), m3(0), m4(0), m5(0), m6(0), m7(0), m8(0), m9(0),
+      m_byte(0),
+      m_sentinel(-1),
+      m_a(0),
+      m_b(0)
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0xc1;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0x8b;
-        __emit 0xd0;
-        __emit 0x89;
-        __emit 0x0a;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x14;
-        __emit 0x8d;
-        __emit 0x50;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x0a;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x4a;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x30;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x34;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x38;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x3c;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x40;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x44;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x48;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x4c;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x50;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x54;
-        __emit 0x88;
-        __emit 0x48;
-        __emit 0x58;
-        __emit 0xc7;
-        __emit 0x40;
-        __emit 0x5c;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x60;
-        __emit 0x89;
-        __emit 0x48;
-        __emit 0x64;
-        __emit 0xc3;
-    }
 }
