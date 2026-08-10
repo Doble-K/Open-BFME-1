@@ -6,6 +6,7 @@ name,address,notes
 ??1?$_List_base@HV?$allocator@H@_STL@@@_STL@@QAE@XZ,0x00013449,SpecialAbilityUpdate list member destructor call target
 ??1AudioEventRTS@@UAE@XZ,0x00026F35,SpecialAbilityUpdate audio member destructor call target
 ??0AudioEventRTS@@QAE@ABVAsciiString@@W4ObjectID@@@Z,0x00025306,doAudioFeedback AudioEventRTS constructor thunk
+??0AudioEventRTS@@QAE@ABVAsciiString@@W4ObjectID@@@Z,0x0003961C,FlammableUpdate::startBurningSound constructor call thunk
 ?onExit@SpecialAbilityUpdate@@AAEX_N0@Z,0x0000F975,SpecialAbilityUpdate destructor cleanup call target
 ??1BehaviorModule@@UAE@XZ,0x00019565,Open-BFME5 SiegeDeploySpecialPower base dtor pin
 ??1RadiusDecal@@QAE@XZ,0x00458340,RadiusDecal destructor body at 0x00458340; callee of assigned RadiusDecalUpdate destructor
