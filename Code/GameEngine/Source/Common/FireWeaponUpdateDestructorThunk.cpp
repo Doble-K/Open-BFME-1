@@ -1,136 +1,66 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) FireWeaponUpdate
+class Gen_dtor_00113f20
 {
 public:
-    virtual ~FireWeaponUpdate();
+	virtual ~Gen_dtor_00113f20();
+
+private:
+	const void *m_moduleData;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void getBehaviorModuleInterface() = 0;
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterface() = 0;
+};
+
+class ObjectModule : public Gen_dtor_00113f20
+{
+private:
+	void *m_object;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+public:
+	virtual ~BehaviorModule() {}
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+private:
+	unsigned int m_nextCallFrameAndPhase;
+	int m_indexInLogic;
+	int m_indexInUpdate;
+
+public:
+	virtual ~UpdateModule() {}
+};
+
+class Weapon
+{
+public:
+	virtual ~Weapon();
+};
+
+class FireWeaponUpdate : public UpdateModule
+{
+public:
+	virtual ~FireWeaponUpdate();
+
+private:
+	Weapon *m_weapon;
 };
 
 // ??1FireWeaponUpdate@@UAE@XZ
-__declspec(naked) FireWeaponUpdate::~FireWeaponUpdate()
+FireWeaponUpdate::~FireWeaponUpdate()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x98
-        __emit 0x1a
-        __emit 0x01
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x34
-        __emit 0xed
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x70
-        __emit 0xec
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0x64
-        __emit 0xec
-        __emit 0x0b
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x20
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xac
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x5c
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x98
-        __emit 0xca
-        __emit 0x09
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x9a
-        __emit 0x50
-        __emit 0xdb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	delete m_weapon;
 }
