@@ -6349,3 +6349,33 @@ constructor in this family, compare retail's vptr position with the end of the
 leading same-valued run. If they agree the function is convertible; if not, it is
 parked and no ordering of the source will change it, because the source cannot
 address vptr placement at all.
+
+
+## Turning the vptr rule into a screen
+
+The characterisation from last tick is mechanical enough to run: predict MSVC's
+vptr position as the end of the leading run of same-valued member stores, treat a
+run shorter than two as no sink at all, and compare against where retail actually
+put it. tools/screen_vptr.py does that and splits the naked constructor pool into
+16 convertible and 35 parked.
+
+It is calibrated against every case measured by hand -- the single-member ones
+that agreed at position zero, the uniform-value tails that matched, and
+AIWanderState, AIIdleState and AIMoveAndEvacuateState which did not. That is the
+part worth insisting on: a screen built from the successes alone would have had
+no way to be wrong.
+
+The value is not the sixteen it found. It is that thirty-five constructors now
+have a reason not to be attempted, and the reason is checkable rather than
+remembered.
+
+## An unwritten word is still a member
+
+PhysicsBehaviorModuleData writes twenty-four members and every offset was four
+too low. The vptr sits at 0 and the first written member at 8, so a word lies
+between them that the constructor never touches -- and it still has to be
+declared, because everything after it depends on where it ends.
+
+The same reading as the untouched tail words in WaterTransparencySetting, from
+the opposite direction: there, absence of a store meant do not initialise; here it
+means do not forget to declare.
