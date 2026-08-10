@@ -22,6 +22,7 @@ import argparse
 import ast
 import bisect
 import csv
+import hashlib
 import json
 import secrets
 import subprocess
@@ -288,6 +289,12 @@ def structural_candidates(claimed, claimed_names, claimed_ranges, big=False):
         # the real ghidra start so the printed command is usable, and skip if either
         # the raw or corrected rva is already matched (the name filter catches the rest).
         crva, snap_note = snap_rva(rva)
+        # A snap result that says the vote is inside a function (or cannot
+        # establish a boundary) is not actionable work. Previously these rows
+        # were still queued, making agents prove the queue's own warning right.
+        if snap_note and ("function-interior" in snap_note
+                          or "no trustworthy boundary" in snap_note):
+            continue
         # Alignment votes frequently land a few bytes into an already verified
         # function.  A start-address-only check lets those stale rows through and
         # sends contributors on an impossible reconstruction.  Reject both raw
@@ -491,21 +498,48 @@ def drop_logged(candidates):
     reports the count so a shrunken queue is visibly explained, not mistaken
     for an exhausted tier.
 
-    A logged verdict describes the boundary that agent actually examined, and
-    most existing rows reject a *stale* one. So a row only retires a candidate
-    while the boundary still matches: once the image-derived snap moves the
-    candidate somewhere else, the old verdict no longer covers it and it comes
-    back. Without that, this filter would permanently bury exactly the
-    candidates the snap just repaired."""
+    A logged verdict is terminal for automatic selection. A human can use
+    --include-logged when new evidence warrants reopening it; workers must not
+    repeatedly rediscover an already recorded dead end."""
     logged = logged_no_match()
     kept, dropped = [], 0
     for candidate in candidates:
-        if (candidate["function"] in logged
-                and "drift-corrected" not in candidate.get("hint", "")):
+        if candidate["function"] in logged:
             dropped += 1
             continue
         kept.append(candidate)
     return kept, dropped
+
+
+def parse_shard(value):
+    """Parse INDEX/COUNT using zero-based indexes."""
+    try:
+        index_text, count_text = value.split("/", 1)
+        index, count = int(index_text), int(count_text)
+    except (AttributeError, TypeError, ValueError):
+        raise argparse.ArgumentTypeError("shard must be INDEX/COUNT, for example 0/3")
+    if count <= 0 or index < 0 or index >= count:
+        raise argparse.ArgumentTypeError(
+            "shard requires COUNT > 0 and 0 <= INDEX < COUNT")
+    return index, count
+
+
+def shard_key(candidate):
+    """Return a stable key independent of queue order and processes."""
+    for field in ("target_rva", "candidate_rva"):
+        value = candidate.get(field)
+        if value:
+            return int(value, 16)
+    digest = hashlib.sha256(candidate["function"].encode("utf-8")).digest()
+    return int.from_bytes(digest[:8], "big")
+
+
+def apply_shard(candidates, shard):
+    if shard is None:
+        return candidates
+    index, count = shard
+    return [candidate for candidate in candidates
+            if shard_key(candidate) % count == index]
 
 
 def selected_queue(tier, drifts, structural, ghidra_absent):
@@ -609,6 +643,8 @@ def main():
                     help="show complete ranked queues for humans/debugging")
     ap.add_argument("--tier", choices=("harvest", "structural", "ghidra"),
                     help="choose from only this task lane")
+    ap.add_argument("--shard", type=parse_shard, metavar="INDEX/COUNT",
+                    help="stable zero-based partition for concurrent workers")
     ap.add_argument("--big", action="store_true",
                     help="sort structural candidates by size (byte yield) instead of alignment")
     ap.add_argument("--include-logged", action="store_true",
@@ -645,6 +681,12 @@ def main():
         ghidra_absent, dropped_ghidra = drop_logged(ghidra_absent)
         suppressed = dropped_drift + dropped_structural + dropped_ghidra
 
+    drifts = apply_shard(drifts, args.shard)
+    structural = apply_shard(structural, args.shard)
+    ghidra_absent = apply_shard(ghidra_absent, args.shard)
+    shard_meta = (None if args.shard is None else
+                  {"index": args.shard[0], "count": args.shard[1]})
+
     if args.ranked and args.json:
         print(json.dumps({
             "ledger": ledger,
@@ -652,6 +694,7 @@ def main():
             "structural": structural,
             "ghidra_meta": ghidra_meta, "ghidra_absent": ghidra_absent,
             "suppressed_logged": suppressed,
+            "shard": shard_meta,
             "pointers": [cmd for cmd, _ in POINTERS],
         }, indent=2))
         return
@@ -663,7 +706,8 @@ def main():
 
     label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent)
     candidate = candidates[secrets.randbelow(len(candidates))] if candidates else None
-    meta = {"pool": len(candidates), "suppressed_logged": suppressed}
+    meta = {"pool": len(candidates), "suppressed_logged": suppressed,
+            "shard": shard_meta}
     if args.json:
         print(json.dumps({"ledger": ledger, "tier": label,
                           "selection": candidate, "selection_meta": meta}, indent=2))

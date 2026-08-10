@@ -3,7 +3,6 @@
 
 import csv
 import json
-import os
 import subprocess
 import sys
 import tempfile
@@ -71,14 +70,27 @@ def test_random_selection_is_uniform_over_queue(ranked):
     print(f"PASS default picker: uniform over all {len(candidates)} queue candidate(s)")
 
 
-def test_no_sharding_interface():
-    env = os.environ.copy()
-    env.update({"AGENT_SLOT": "0", "AGENT_POOL": "0"})
-    result = get_selection_json(["--tier", "structural"], env=env)
-    assert "slot" not in result and "pool" not in result and "filtered" not in result
+def test_explicit_stable_sharding(ranked):
+    full = ranked["structural"]
+    shards = [get_ranked_json(["--tier", "structural", "--shard", f"{i}/3"])
+              for i in range(3)]
+    names = [{candidate["function"] for candidate in data["structural"]}
+             for data in shards]
+    assert not (names[0] & names[1] or names[0] & names[2] or names[1] & names[2])
+    assert set().union(*names) == {candidate["function"] for candidate in full}
+    for index, data in enumerate(shards):
+        assert data["shard"] == {"index": index, "count": 3}, data["shard"]
+
+    selection = get_selection_json(["--tier", "structural", "--shard", "1/3"])
+    assert selection["selection_meta"]["shard"] == {"index": 1, "count": 3}
+    if selection["selection"]:
+        assert selection["selection"]["function"] in names[1]
+
+    invalid = run(["--shard", "3/3"])
+    assert invalid.returncode != 0 and "0 <= INDEX < COUNT" in invalid.stderr
     obsolete = run(["--any"])
     assert obsolete.returncode != 0 and "unrecognized arguments: --any" in obsolete.stderr
-    print("PASS no sharding: worker environment ignored and --any removed")
+    print("PASS explicit sharding: stable, disjoint, complete partitions")
 
 
 def test_ranked_json_shape(data):
@@ -87,6 +99,7 @@ def test_ranked_json_shape(data):
         assert key in data, f"ranked JSON missing key {key!r}"
     for stale in ("slot", "pool", "filtered"):
         assert stale not in data, f"ranked JSON retained sharding field {stale!r}"
+    assert data["shard"] is None
     print(f"PASS ranked JSON: {len(data['structural'])} structural and "
           f"{len(data['ghidra_absent'])} Ghidra candidates")
 
@@ -135,15 +148,8 @@ def test_logged_no_match_suppressed(ranked):
 
     queues = ("drift_quick_wins", "structural", "ghidra_absent")
     for key in queues:
-        # A logged verdict retires a candidate only while its boundary is
-        # unchanged; a snap-corrected boundary is new evidence and comes back.
-        stale = [c["function"] for c in ranked[key]
-                 if c["function"] in logged and "drift-corrected" not in c["hint"]]
+        stale = [c["function"] for c in ranked[key] if c["function"] in logged]
         assert not stale, f"{key} served {len(stale)} already-no-match candidate(s): {stale[:3]}"
-        revived = [c for c in ranked[key]
-                   if c["function"] in logged and "drift-corrected" in c["hint"]]
-        for candidate in revived:
-            assert "drift-corrected" in candidate["hint"], candidate
 
     full = get_ranked_json(["--include-logged"])
     hidden = sum(len(full[key]) - len(ranked[key]) for key in queues)
@@ -183,7 +189,7 @@ def main():
     test_plain_run(ranked)
     test_ranked_view()
     test_random_selection_is_uniform_over_queue(ranked)
-    test_no_sharding_interface()
+    test_explicit_stable_sharding(ranked)
     test_ranked_json_shape(ranked)
     test_ghidra_candidates_validated(ranked)
     test_structural_candidates_do_not_start_inside_claimed_ranges(ranked)

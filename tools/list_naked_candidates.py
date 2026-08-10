@@ -6,6 +6,7 @@ The default picks uniformly at random from the whole candidate queue. Use
 """
 import argparse
 from collections import defaultdict
+import hashlib
 import importlib.util
 from pathlib import Path
 import re
@@ -217,6 +218,33 @@ def select_candidate(candidates):
     return candidates[secrets.randbelow(len(candidates))], {"pool": len(candidates)}
 
 
+def parse_shard(value):
+    try:
+        index_text, count_text = value.split("/", 1)
+        index, count = int(index_text), int(count_text)
+    except (AttributeError, TypeError, ValueError):
+        raise argparse.ArgumentTypeError("shard must be INDEX/COUNT, for example 0/6")
+    if count <= 0 or index < 0 or index >= count:
+        raise argparse.ArgumentTypeError(
+            "shard requires COUNT > 0 and 0 <= INDEX < COUNT")
+    return index, count
+
+
+def apply_shard(candidates, shard):
+    """Give concurrent workers stable, disjoint candidate pools."""
+    if shard is None:
+        return candidates
+    index, count = shard
+    kept = []
+    for candidate in candidates:
+        identity = candidate["symbol"] or (
+            f"{candidate['path']}:{candidate['line']}:{candidate['signature']}")
+        digest = hashlib.sha256(identity.encode("utf-8")).digest()
+        if int.from_bytes(digest[:8], "big") % count == index:
+            kept.append(candidate)
+    return kept
+
+
 def print_candidate(item):
     location = f"{item['path']}:{item['line']}"
     reasons = ", ".join(item["reasons"])
@@ -241,6 +269,8 @@ def main():
     parser.add_argument("--limit", type=int, default=30,
                         help="max items/groups with --ranked (default 30)")
     parser.add_argument("--max-bytes", type=int, default=160)
+    parser.add_argument("--shard", type=parse_shard, metavar="INDEX/COUNT",
+                        help="stable zero-based partition for concurrent workers")
     args = parser.parse_args()
     if args.groups and not args.ranked:
         parser.error("--groups requires --ranked")
@@ -308,6 +338,7 @@ def main():
                 }
             )
 
+    candidates = apply_shard(candidates, args.shard)
     rank_candidates(candidates)
     if not args.ranked:
         selected, meta = select_candidate(candidates)
