@@ -3924,7 +3924,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1TeamsInfo@@QAE@XZ,,0x009DB7A0,117,Code/Libraries/Source/WWVegas/WWLib/wwstring.cpp,matched,object-symbol=?Free_String@StringClass@@AAEXXZ;C++ alias
 ??1TechAndSupplyImages@@QAE@XZ,,0x0068E6D0,76,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,icf-owner=??1?$pair@$$CBVUnicodeString@@V1@@_STL@@QAE@XZ
 ??1TechBuildingBehaviorModuleData@@UAE@XZ,,0x0008A450,105,Code/GameEngine/Source/Common/TechBuildingBehaviorModuleDataDestructorThunk.cpp,matched,Exact 105B SEH dtor Open-BFME5
-??1Template@@MAE@XZ,,0x003394E0,125,Code/GameEngine/Source/Common/TemplateDestructorThunk.cpp,matched,Exact 125B SEH dtor Open-BFME5
+??1Template@@IAE@XZ,,0x003394E0,125,Code/GameEngine/Source/Common/TemplateDestructorThunk.cpp,matched,Exact 125B SEH dtor Open-BFME5
 ??1TensileFormationUpdate@@UAE@XZ,,0x00253090,119,Code/GameEngine/Source/Common/TensileFormationUpdateDestructorThunk.cpp,matched,Exact 119B SEH dtor factory->vtable Open-BFME4
 ??1TerrainCollisionModuleInfo@FXParticleSystem@@UAE@XZ,,0x005DE650,67,Code/GameEngine/Source/GameClient/System/FXParticleSystem/TerrainCollisionModuleInfoDestructorThunk.cpp,matched,Open-BFME5 clean C++ SEH dtor Buffer@+4 PropagandaTower pattern
 ??1TerrainCollisionModuleTemplate@FXParticleSystem@@UAE@XZ,0x00038410,0x005DE870,118,Code/GameEngine/Source/Common/FXParticleSystem_TerrainCollisionModuleTemplateDestructorThunk.cpp,matched,

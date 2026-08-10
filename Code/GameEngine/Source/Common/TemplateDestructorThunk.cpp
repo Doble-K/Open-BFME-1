@@ -1,140 +1,34 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
 
-class __declspec(novtable) Template
+// The ScriptEngine Template from Scripts.h. Retail has no vptr here: the
+// constructor at 0x351260 builds an AsciiString at offset 0 from a literal
+// rather than storing a vtable, and the layout only lines up without one --
+// m_uiStrings at 0x14, m_parameters at 0x48, m_helpText at 0x78. A virtual
+// destructor provably emits a vptr store, so this one is not virtual and the
+// ledger's MAE was corrected to IAE. Protected comes from the reference,
+// where MEMORY_POOL_GLUE and EMPTY_DTOR put the destructor there.
+#include "Common/AsciiString.h"
+
+enum { MAX_PARMS = 12 };
+
+class Template
 {
 protected:
-	virtual ~Template();
+	~Template();
+
+public:
+	AsciiString m_uiName;
+	AsciiString m_uiName2;
+	AsciiString m_internalName;
+	int m_internalNameKey;
+	int m_numUiStrings;
+	AsciiString m_uiStrings[MAX_PARMS];
+	int m_numParameters;
+	int m_parameters[MAX_PARMS];
+	AsciiString m_helpText;
 };
 
-// ??1Template@@MAE@XZ
-__declspec(naked) Template::~Template()
+// ??1Template@@IAE@XZ
+Template::~Template()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x64
-		__emit 0x76
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x78
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x33
-		__emit 0xe4
-		__emit 0x54
-		__emit 0x00
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x14
-		__emit 0x50
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x02
-		__emit 0xe8
-		__emit 0x52
-		__emit 0xd8
-		__emit 0x6b
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x08
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x0f
-		__emit 0xe4
-		__emit 0x54
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x04
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x02
-		__emit 0xe4
-		__emit 0x54
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0xf3
-		__emit 0xe3
-		__emit 0x54
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }

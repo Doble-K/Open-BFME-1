@@ -6608,3 +6608,43 @@ and every string-heavy function with this shape unblocks at once.
 getSlotNum stays parked regardless, because it also has esi and edi swapped
 against retail for this-versus-loop-counter, which is the register allocation
 residual and not something the source can address.
+
+
+## A virtual destructor always stores a vptr, so its absence disproves the name
+
+The ledger had Template's destructor as ??1Template@@MAE@XZ, where M means
+protected *virtual*. But retail calls releaseBuffer on this+0, which leaves no
+room for a vptr, and the already-dumped constructor builds an AsciiString there
+from a literal rather than storing a vtable.
+
+Building it as declared settled it: MSVC emitted `c7 06 <vtable>` at the top and
+shifted every subsequent member offset by four. So the class is not polymorphic
+and the name could not be right. Renamed to IAE -- non-virtual from this
+evidence, protected from the reference, where MEMORY_POOL_GLUE and EMPTY_DTOR
+put Template's destructor there. Byte-exact immediately after.
+
+Worth generalising: the access letter in a mangled name is invisible to the byte
+gate, but the *virtual* bit is not. M/U/E versus I/Q/A is testable, because a
+virtual destructor cannot avoid its vptr store. When a destructor row will not
+convert and the first member looks like real data, check that bit before
+anything else.
+
+The reference also explained why the name was plausible. Generals' Template
+derives from MemoryPoolObject and does have a virtual destructor; BFME's does
+not. Inheriting a name from the reference is a good first guess and a bad last
+word.
+
+## Two candidates rejected by reading before building
+
+AIAttackState::onExit ends in a bare `ret`. A one-argument thiscall must `ret 4`,
+so the declared W4StateExitType parameter is wrong -- the body takes nothing.
+Logged as suspect rather than attempted.
+
+ProductionPrerequisite's constructor contains `mov ecx,eax` immediately followed
+by `sub ecx,eax`, so the shift and compare that follow work on a provable zero
+and the copy loop below can never execute. That is the dead-code-retail-keeps
+family, which no source spelling reproduces.
+
+Both cost one disassembly and no builds. The screen ranks candidates by shape;
+it cannot see either of these, and a minute of reading is cheaper than three
+builds discovering the same thing.

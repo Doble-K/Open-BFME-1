@@ -1,163 +1,40 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+// Same layout as the destructor at 0x3394E0: no vptr, m_uiStrings at 0x14,
+// m_parameters at 0x48, m_helpText at 0x78. Everything through m_helpText is
+// member construction in declaration order; only the m_parameters clear is a
+// body statement, which is why it comes after m_helpText's zero store.
+#include "Common/AsciiString.h"
+
+enum { MAX_PARMS = 12 };
 
 class Template
 {
 public:
-    Template();
+	Template();
+
+protected:
+	~Template();
+
+public:
+	AsciiString m_uiName;
+	AsciiString m_uiName2;
+	AsciiString m_internalName;
+	int m_internalNameKey;
+	int m_numUiStrings;
+	AsciiString m_uiStrings[MAX_PARMS];
+	int m_numParameters;
+	int m_parameters[MAX_PARMS];
+	AsciiString m_helpText;
 };
 
 // ??0Template@@QAE@XZ
-__declspec(naked) Template::Template()
+Template::Template() :
+	m_uiName("UNUSED/(placeholder)/placeholder"),
+	m_internalNameKey(0),
+	m_numUiStrings(0),
+	m_numParameters(0)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x4e;
-        __emit 0x92;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x68;
-        __emit 0xf0;
-        __emit 0x84;
-        __emit 0x0e;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0x38;
-        __emit 0x79;
-        __emit 0x53;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x08;
-        __emit 0x68;
-        __emit 0x28;
-        __emit 0xd8;
-        __emit 0x40;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0xd9;
-        __emit 0x7b;
-        __emit 0x41;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0x0c;
-        __emit 0x6a;
-        __emit 0x04;
-        __emit 0x8d;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x50;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x28;
-        __emit 0x02;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x10;
-        __emit 0xe8;
-        __emit 0x2e;
-        __emit 0x5c;
-        __emit 0x6a;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x44;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x78;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x48;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x4c;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x50;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x54;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x58;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x5c;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x60;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x68;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x6c;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x70;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x74;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	for (int i = 0; i < MAX_PARMS; i++)
+		m_parameters[i] = 0;
 }
