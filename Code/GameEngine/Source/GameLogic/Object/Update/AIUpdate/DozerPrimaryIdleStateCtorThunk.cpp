@@ -1,72 +1,37 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+// Three members zeroed, then the vptr -- retail sinks the store past them so the compiler's own sink agrees.
+#include "Common/AsciiString.h"
 
 class StateMachine;
 
-class DozerPrimaryIdleState
+class State
 {
 public:
-    DozerPrimaryIdleState(StateMachine *);
+	State(StateMachine *machine, AsciiString name);
+
+	virtual ~State();
+
+private:
+	unsigned char m_head[0x20];
 };
 
-__declspec(naked) DozerPrimaryIdleState::DozerPrimaryIdleState(StateMachine *)
+class DozerPrimaryIdleState : public State
 {
-    __asm {
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x64;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0xcc;
-        __emit 0x68;
-        __emit 0x54;
-        __emit 0x6f;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x2b;
-        __emit 0x15;
-        __emit 0x5d;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x50;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x11;
-        __emit 0xbf;
-        __emit 0xd4;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x28;
-        __emit 0x88;
-        __emit 0x46;
-        __emit 0x2c;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x00;
-        __emit 0x6f;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x59;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+public:
+	DozerPrimaryIdleState(StateMachine *machine);
+
+private:
+	int m_24;
+	int m_28;
+	bool m_2c;
+};
+
+// ??0DozerPrimaryIdleState@@QAE@PAVStateMachine@@@Z
+DozerPrimaryIdleState::DozerPrimaryIdleState(StateMachine *machine) :
+	State(machine, "DozerPrimaryIdleState")
+{
+	m_24 = 0;
+	m_28 = 0;
+	m_2c = false;
 }

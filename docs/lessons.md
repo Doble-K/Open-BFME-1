@@ -6310,3 +6310,21 @@ blocker is the cheapest possible explanation and it is wrong half the time here.
 A blocker should be assigned only after the specific evidence for it -- in this
 case which side of the member stores the vptr sits on -- has actually been
 checked.
+
+
+## The vptr disagreement has a third form: how far it sinks
+
+AIIdleState writes five members and its body order already matches retail store
+for store. The only difference is where the vptr lands: retail sinks it past all
+four of the leading member stores, MSVC sinks it past the two that share the
+zeroed byte register and emits it there.
+
+So the disagreement is not simply in-front versus behind. It is how far the store
+travels, and the compiler stops at the end of a same-valued run while retail
+carries on past stores of different values. Two of this family are blocked
+because retail keeps the store in front, and this one because retail moves it
+further -- same underlying cause, three surface forms.
+
+That also means the screen needs stating more carefully than last tick: compare
+the vptr's position against the member stores exactly, not just which side it
+falls on.
