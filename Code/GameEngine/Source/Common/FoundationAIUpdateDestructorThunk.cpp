@@ -1,138 +1,76 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift FoundationAIUpdate destructor to clean C++.
 
-class __declspec(novtable) FoundationAIUpdate
+class Gen_dtor_00113f20
 {
 public:
-    virtual ~FoundationAIUpdate();
+	virtual ~Gen_dtor_00113f20();
+
+private:
+	const void *m_moduleData;
+};
+
+class ObjectModule : public Gen_dtor_00113f20
+{
+private:
+	void *m_object;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void behaviorModuleInterfaceAnchor() = 0;
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterfaceAnchor() = 0;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+public:
+	virtual ~BehaviorModule() {}
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+public:
+	virtual ~UpdateModule() {}
+
+private:
+	unsigned int m_14;
+	int m_18;
+	int m_1c;
+};
+
+class FoundationAIUpdateIface3
+{
+public:
+	virtual void interface3Anchor() = 0;
+};
+
+class Gen_dtor_000b33c0
+{
+public:
+	virtual ~Gen_dtor_000b33c0();
+
+private:
+	unsigned char m_data[0x6c];
+};
+
+class FoundationAIUpdate : public UpdateModule,
+	public FoundationAIUpdateIface3
+{
+public:
+	virtual ~FoundationAIUpdate();
+
+private:
+	Gen_dtor_000b33c0 m_member;
 };
 
 // ??1FoundationAIUpdate@@UAE@XZ
-__declspec(naked) FoundationAIUpdate::~FoundationAIUpdate()
+FoundationAIUpdate::~FoundationAIUpdate()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x58
-        __emit 0x35
-        __emit 0x01
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x4c
-        __emit 0x73
-        __emit 0x0c
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x88
-        __emit 0x72
-        __emit 0x0c
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0x7c
-        __emit 0x72
-        __emit 0x0c
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0x54
-        __emit 0x72
-        __emit 0x0c
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x24
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x8d
-        __emit 0xd1
-        __emit 0xd6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xac
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x5c
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x98
-        __emit 0xca
-        __emit 0x09
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x88
-        __emit 0xde
-        __emit 0xd8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
