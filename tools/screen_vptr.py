@@ -18,6 +18,18 @@ DozerPrimaryIdleState and AIMoveAndTightenState and AIAttackAimAtTargetState (ru
 reaches retail's index, all matched), AIWanderState and AIIdleState and
 AIMoveAndEvacuateState (disagree, all parked).
 
+Known limitation, measured rather than assumed. The prediction reads retail's
+register allocation, and MSVC does not always reproduce it. In
+GarrisonContainModuleData retail holds 1.0f in ecx while the zero run is in eax,
+so retail's run ends at eleven; the compile put both constants in eax, making
+the run thirteen and carrying the vptr past two more stores. The screen called
+it convertible and it was not.
+
+So a 'convertible' verdict is a candidate, not a promise -- it means nothing in
+retail's own bytes rules the function out. A 'parked' verdict is the stronger
+one: those genuinely cannot agree whatever the allocator does, because retail
+puts the store somewhere the compiler will never place it.
+
 Usage: python tools/screen_vptr.py [--limit N] [--all]
 """
 import argparse

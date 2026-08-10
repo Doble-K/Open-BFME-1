@@ -6379,3 +6379,25 @@ declared, because everything after it depends on where it ends.
 The same reading as the untouched tail words in WaterTransparencySetting, from
 the opposite direction: there, absence of a store meant do not initialise; here it
 means do not forget to declare.
+
+
+## The screen's two verdicts are not equally sound
+
+GarrisonContainModuleData was the screen's pick and it failed. Base pinned,
+all eighteen member offsets right, and the vptr still landed two stores late.
+
+The cause is in the screen itself. It predicts where MSVC will sink the store by
+reading retail's instruction stream, which means it inherits retail's register
+allocation. Retail keeps 1.0f in ecx beside a zero run in eax, so its run of
+register-sourced stores ends at eleven. The compile put both constants in eax,
+making the run thirteen, and the store travelled two further.
+
+That asymmetry is worth stating in the tool and not just here. A "parked" verdict
+is sound: retail puts the store where no allocation of registers could place it,
+so the function cannot match. A "convertible" verdict only means nothing in
+retail's own bytes rules it out -- the compiler still gets a vote, and it votes
+with its allocator.
+
+Half a screen that is reliable is still worth having. The thirty-five parked
+constructors are genuinely not worth a build; the sixteen are worth exactly one
+each.
