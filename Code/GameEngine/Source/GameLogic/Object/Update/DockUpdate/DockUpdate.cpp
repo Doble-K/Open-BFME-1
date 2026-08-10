@@ -39,6 +39,19 @@
 #include "GameLogic/PartitionManager.h"
 #include "GameLogic/Module/DockUpdate.h"
 
+_STLP_BEGIN_NAMESPACE
+template<>
+__declspec(noinline) void _Construct<Coord3D, Coord3D>( Coord3D *destination, const Coord3D &value )
+{
+	if( destination != NULL )
+	{
+		destination->x = value.x;
+		destination->y = value.y;
+		destination->z = value.z;
+	}
+}
+_STLP_END_NAMESPACE
+
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
@@ -138,7 +151,6 @@ Bool DockUpdate::isClearToApproach( Object const* docker ) const
 	return FALSE;
 }
 
-// ?reserveApproachPosition@DockUpdate@@UAE_NPAVObject@@PAUCoord3D@@PAH@Z present-unmatched
 Bool DockUpdate::reserveApproachPosition( Object* docker, Coord3D *position, Int *index )
 {
 
@@ -652,4 +664,3 @@ void DockUpdate::loadPostProcess( void )
 	UpdateModule::loadPostProcess();
 
 }  // end loadPostProcess
-

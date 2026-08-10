@@ -94163,3 +94163,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Calculate_Fill_Light@LightEnvironmentClass@@QAEXXZ,,0x0094B1F0,1650,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,matched,BFME leading layout word restored; Add_Fill_Light callee pinned at 0x0094ACB0
 ?winLayoutInitFunc@FunctionLexicon@@QAEP6AXPAVWindowLayout@@PAX@ZW4NameKeyType@@W4TableIndex@1@@Z,,0x001054E0,76,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,BFME enum ordering restored from retail table indices 7 and 8
 ?addRadar@Player@@QAEX_N@Z,,0x000FB3F0,206,Code/GameEngine/Source/GameLogic/Player_addRadar_Thunk.cpp,matched,Open-BFME5 retail body; Player layout requires standalone naked thunk
+?reserveApproachPosition@DockUpdate@@UAE_NPAVObject@@PAUCoord3D@@PAH@Z,,0x002CD210,500,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,ret-delimited body; retail REL32 pins for Coord3D _Construct and DockUpdate vector thunks
