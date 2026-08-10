@@ -1,61 +1,43 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+// Derives from AIInternalMoveToState, not from State directly. The base call
+// resolves to 0x0014F280, which is where thirteen of these subclasses go, and
+// the reference declares exactly that set as AIInternalMoveToState's children.
+//
+// That base takes the name by value and passes it on by value, which is why its
+// own body copy-constructs a second AsciiString before calling State.
+#include "Common/AsciiString.h"
 
 class StateMachine;
 
-class AIMoveOutOfTheWayState
+class State
 {
 public:
-    AIMoveOutOfTheWayState(StateMachine *);
+	State(StateMachine *machine, AsciiString name);
+
+	virtual ~State();
+
+private:
+	unsigned char m_head[0x20];
 };
 
-__declspec(naked) AIMoveOutOfTheWayState::AIMoveOutOfTheWayState(StateMachine *)
+class AIInternalMoveToState : public State
 {
-    __asm {
-        _emit 051h
-        _emit 056h
-        _emit 051h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 064h
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0CCh
-        _emit 068h
-        _emit 0D0h
-        _emit 0A2h
-        _emit 009h
-        _emit 001h
-        _emit 0E8h
-        _emit 05Bh
-        _emit 098h
-        _emit 070h
-        _emit 000h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 050h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 011h
-        _emit 02Eh
-        _emit 0EBh
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 078h
-        _emit 0A2h
-        _emit 009h
-        _emit 001h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 059h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
-    }
+public:
+	AIInternalMoveToState(StateMachine *machine, AsciiString name);
+
+private:
+	unsigned char m_body[0x1C];
+};
+
+class AIMoveOutOfTheWayState : public AIInternalMoveToState
+{
+public:
+	AIMoveOutOfTheWayState(StateMachine *machine);
+};
+
+// ??0AIMoveOutOfTheWayState@@QAE@PAVStateMachine@@@Z
+AIMoveOutOfTheWayState::AIMoveOutOfTheWayState(StateMachine *machine) :
+	AIInternalMoveToState(machine, "AIMoveOutOfTheWayState")
+{
 }

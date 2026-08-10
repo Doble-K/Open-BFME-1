@@ -6203,3 +6203,34 @@ front of a single immediate one.
 Worth knowing because vptr placement has been treated here as a blocker to be
 worked around. In this family it is simply a consequence of what the members are,
 and the source that describes the members correctly gets the placement for free.
+
+
+## Naming a base class from thirteen callers and a reference header
+
+Thirteen retail State subclasses call 0x0014F280 as their base constructor, and
+it has no ledger row. The reference declares AIInternalMoveToState with exactly
+that set of children -- AIMoveToState, AIMoveOutOfTheWayState, AIEnterState and
+the rest -- and its constructor takes StateMachine* and an AsciiString by value,
+which is precisely why the body at that address copy-constructs the string a
+second time before calling State.
+
+That is enough to pin the name. It is not an invention: the caller set, the
+signature and the by-value copy all agree, and any one of them alone would not
+have been. Four conversions followed immediately.
+
+## Correcting the vptr-sinking narrowing
+
+Two ticks ago I proposed that the sink needs a call in the body to move past,
+from one positive case. That is wrong. AIMoveAndEvacuateState has no call after
+its base constructor and MSVC still sinks the vptr store past three member
+stores, where retail keeps it in front.
+
+What the evidence actually supports: with a single added member, compiler and
+retail agree on placement. With several, MSVC always sinks and retail sometimes
+does -- AIMoveAndTightenState sinks in retail too, AIMoveAndEvacuateState does
+not, from sources that look the same shape. So the rule is not about calls and
+is not yet known; the honest statement is that one member is safe and more than
+one is a coin toss.
+
+A hypothesis from one positive case earned a re-test, got one, and lost. That is
+the cheap outcome -- the expensive one would have been screening the family on it.
