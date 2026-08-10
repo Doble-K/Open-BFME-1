@@ -2593,7 +2593,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0SlavedUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0SlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00207B60,321,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior_ctor_Thunk.cpp,matched,Open-BFME5 lift 321B retail MASM to standalone C++ thunk
 ??0SlowDeathBehaviorModuleData@@QAE@XZ,,0x002093F0,404,Code/GameEngine/Source/Common/SlowDeathBehaviorModuleData_ctor_Thunk.cpp,matched,Exact retail MASM ModuleData ctor; unique factory 0x1154F0
-??0SmartBombTargetHomingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286F80,154,Code/GameEngine/Source/GameLogic/Object/Update/SmartBombTargetHomingUpdateCtorThunk.cpp,matched,Open-BFME5 exact 154B ICF-alias constructor
+??0SmartBombTargetHomingUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286F80,154,Code/GameEngine/Source/GameLogic/Object/Update/SmartBombTargetHomingUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ exact 154B ICF-alias constructor
 ??0Smudge@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,ICF alias of existing matched body
 ??0SmudgeManager@@QAE@XZ,,0x005D3A90,40,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
 ??0SmudgeSet@@QAE@XZ,,0x005D4160,36,Code/GameEngine/Source/GameClient/System/Smudge.cpp,matched,
