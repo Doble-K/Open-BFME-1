@@ -1719,7 +1719,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ChunkSaveClass@@QAE@PAVFileClass@@@Z,,0x009E1690,91,Code/Libraries/Source/WWVegas/WWLib/chunkio.cpp,matched,
 ??0CivilianSpawnCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002173E0,60,Code/GameEngine/Source/GameLogic/Object/Behavior/CivilianSpawnCollideCtorThunk.cpp,matched,Open-BFME5 clean C++ CivilianSpawnCollide MI ctor (base + dual iface)
 ??0CivilianSpawnCollideModuleData@@QAE@XZ,,0x00217360,69,Code/GameEngine/Source/GameLogic/AI/CivilianSpawnCollideModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0CivilianSpawnUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028A2F0,149,Code/GameEngine/Source/GameLogic/Object/Update/CivilianSpawnUpdateCtorThunk.cpp,matched,Open-BFME5 exact 149B retail module constructor
+??0CivilianSpawnUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028A2F0,149,Code/GameEngine/Source/GameLogic/Object/Update/CivilianSpawnUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ exact 149B retail module constructor
 ??0CivilianSpawnUpdateModuleData@@QAE@XZ,,0x0028A480,92,Code/GameEngine/Source/GameLogic/AI/CivilianSpawnUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ClassicEnvironmentMapperClass@@QAE@I@Z,,0x00921390,25,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0CleanupHazardUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D0620,125,Code/GameEngine/Source/GameLogic/Module/CleanupHazardUpdateConstructorThunk.cpp,matched,Exact 125B; factory ownership Open-BFME4
