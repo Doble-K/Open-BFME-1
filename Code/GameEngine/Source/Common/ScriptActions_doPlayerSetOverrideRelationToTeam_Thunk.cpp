@@ -1,118 +1,124 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift ScriptActions::doPlayerSetOverrideRelationToTeam to clean C++.
 
-class AsciiString;
+typedef int Int;
+
+class Player;
+class Team;
+
+template <class T> class StringBase
+{
+    friend class AsciiString;
+
+public:
+    struct Header;
+    Header *m_data;
+
+private:
+    StringBase(const StringBase &);
+    ~StringBase();
+};
+
+class AsciiString
+{
+public:
+    AsciiString(const AsciiString &that)
+    {
+        ((StringBase<char> *)this)->StringBase<char>::StringBase(
+            *(const StringBase<char> *)&that);
+    }
+    ~AsciiString();
+
+public:
+    struct AsciiStringData;
+    AsciiStringData *m_data;
+};
+
+enum NameKeyType
+{
+    NAMEKEY_INVALID = 0
+};
+
+class NameKeyGenerator
+{
+public:
+    NameKeyType nameToKey(const char *);
+};
+
+extern NameKeyGenerator *g_theNameKeyGenerator;
+extern "C" char g_NAMEKEY_empty_string;
+
+NameKeyType NAMEKEY(const AsciiString &s)
+{
+    const char *p;
+    if (s.m_data)
+    {
+        p = (const char *)s.m_data + 8;
+    }
+    else
+    {
+        p = &g_NAMEKEY_empty_string;
+    }
+    return g_theNameKeyGenerator->nameToKey(p);
+}
+
+class PlayerList
+{
+public:
+    Player *findPlayerWithNameKey(NameKeyType);
+};
+
+enum Relationship
+{
+    RELATIONSHIP_UNUSED = 0
+};
+
+class Player
+{
+public:
+    void setTeamRelationship(const Team *, Relationship);
+};
+
+class ScriptEngine
+{
+public:
+    virtual void _slot00() = 0;
+    virtual void _slot01() = 0;
+    virtual void _slot02() = 0;
+    virtual void _slot03() = 0;
+    virtual void _slot04() = 0;
+    virtual void _slot05() = 0;
+    virtual void _slot06() = 0;
+    virtual void _slot07() = 0;
+    virtual void _slot08() = 0;
+    virtual void _slot09() = 0;
+    virtual void _slot10() = 0;
+    virtual void _slot11() = 0;
+    virtual void _slot12() = 0;
+    virtual void _slot13() = 0;
+    virtual void _slot14() = 0;
+    virtual void _slot15() = 0;
+    virtual void _slot16() = 0;
+    virtual Team *getTeamNamed(AsciiString, bool = false);
+};
+
+extern PlayerList *ThePlayerList;
+extern ScriptEngine *TheScriptEngine;
+
 class ScriptActions
 {
 protected:
-	void doPlayerSetOverrideRelationToTeam(const AsciiString &, const AsciiString &, int);
+    void doPlayerSetOverrideRelationToTeam(const AsciiString &, const AsciiString &, Int);
 };
 
 // ?doPlayerSetOverrideRelationToTeam@ScriptActions@@IAEXABVAsciiString@@0H@Z
-__declspec(naked) void ScriptActions::doPlayerSetOverrideRelationToTeam(const AsciiString &, const AsciiString &, int)
+void ScriptActions::doPlayerSetOverrideRelationToTeam(
+    const AsciiString &playerName, const AsciiString &otherTeam, Int relation)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x56
-        __emit 0x74
-        __emit 0x05
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x05
-        __emit 0xb8
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x00
-        __emit 0xd6
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xf6
-        __emit 0x28
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x99
-        __emit 0x70
-        __emit 0xd3
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x52
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xe8
-        __emit 0x5e
-        __emit 0xf6
-        __emit 0x58
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x01
-        __emit 0xff
-        __emit 0x50
-        __emit 0x44
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x11
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0d
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x51
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xb4
-        __emit 0xc2
-        __emit 0xd1
-        __emit 0xff
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x0c
-        __emit 0x00
-	}
+    Player *thePlayer = ThePlayerList->findPlayerWithNameKey(NAMEKEY(playerName));
+    Team *theOtherTeam = TheScriptEngine->getTeamNamed(otherTeam);
+    if (thePlayer && theOtherTeam)
+    {
+        thePlayer->setTeamRelationship(theOtherTeam, (Relationship)relation);
+    }
 }
