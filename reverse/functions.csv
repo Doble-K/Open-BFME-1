@@ -1556,7 +1556,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Anim2DCollection@@QAE@XZ,,0x005BA370,26,Code/GameEngine/Source/GameClient/System/Anim2D.cpp,matched,
 ??0Anim2DTemplate@@QAE@VAsciiString@@@Z,,0x005BAD80,124,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_ctor.cpp,matched,clean C++ lifted from Anim2DTemplate_ctor_dtor.asm; standalone TU so Anim2D.cpp labels do not renumber; needs asciistring_outofline so m_name = name calls operator= at 0x887C90
 ??0AnimSet@GenericObjectCreationNugget@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
-??0AnimalAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B3090,118,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0AnimalAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B3090,118,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ module ctor; vtbl base split from field base at +0x340
 ??0AnimalAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/AnimalAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0Animatable3DObjClass@@QAE@ABV0@@Z,,0x00982D10,193,Code/Libraries/Source/WWVegas/WW3D2/Animatable3DObjClassCopyConstructorThunk.cpp,matched,Exact 193B C++ raw copy-constructor thunk Open-BFME5
 ??0Animatable3DObjClass@@QAE@PBD@Z,,0x00981EF0,393,Code/Libraries/Source/WWVegas/WW3D2/Animatable3DObjClassStringConstructorThunk.cpp,matched,Exact 393B C++ raw string constructor thunk Open-BFME5

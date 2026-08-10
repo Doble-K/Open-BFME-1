@@ -5990,3 +5990,20 @@ So when picking from the family, disassemble first and take the ones whose membe
 stores are either absent after the vtable group or followed by a call. The ones
 with bare trailing stores need a different lever than source ordering, and there
 is no point spending builds on them until someone finds it.
+
+## Split the vtable base from the field base
+
+AnimalAIUpdate came down to one instruction out of place: retail stores the
++0x340 interface vtable and only then materialises the zero it uses for six
+member writes, while the compile hoisted `xor eax,eax` above the vtable store.
+
+No ordering inside a single class reaches that, because the vtable write and the
+member initialisers both belong to the same subobject and MSVC schedules them
+together. Splitting them into two bases does: a four-byte polymorphic base
+carrying the vtable at +0x340, then a non-polymorphic base holding the fields and
+zeroing them in its constructor. Base subobjects are constructed in declaration
+order, so the vtable write is pinned ahead of the zero. 118/118 on that build.
+
+Generalises the same way as the earlier reading: when two groups of stores must
+stay in a fixed order and no source ordering inside one class produces it, ask
+whether retail's layout is telling you they belong to different subobjects.

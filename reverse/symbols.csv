@@ -68480,3 +68480,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?find@PassMap@@QAEPAUPassMapNode@@ABVAsciiString@@@Z,0x0000AEAC,GameSpyLoginPreferences password map find ILT
 ??0SpecialDisguiseUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00013462,SpecialDisguiseUpdate ctor base call
 ??0RiderChangeContainBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00049378,RiderChangeContain ctor base call
+??0AnimalAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,AnimalAIUpdate ctor base call
