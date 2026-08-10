@@ -23,6 +23,21 @@ _spec.loader.exec_module(audit_ret_arity)
 
 NAKED_RE = re.compile(r"__declspec\s*\(\s*naked\s*\)")
 EMIT_RE = re.compile(r"__emit\s+0x([0-9a-fA-F]{1,2})")
+RE_ATTEMPTS = build.ROOT / "reverse" / "re_attempts.log"
+
+
+def logged_no_match(paths):
+    """Return decorated names retired by the shared or worker-local logs."""
+    symbols = set()
+    for path in paths:
+        if not path.exists():
+            continue
+        with path.open(encoding="utf-8", errors="replace") as stream:
+            for line in stream:
+                fields = line.rstrip("\r\n").split("\t")
+                if len(fields) >= 2 and fields[1] == "no-match":
+                    symbols.add(fields[0])
+    return symbols
 
 
 def actual_ret(data):
@@ -271,6 +286,10 @@ def main():
     parser.add_argument("--max-bytes", type=int, default=160)
     parser.add_argument("--shard", type=parse_shard, metavar="INDEX/COUNT",
                         help="stable zero-based partition for concurrent workers")
+    parser.add_argument("--exclude-file", action="append", type=Path, default=[],
+                        help="additional TSV no-match log (repeatable)")
+    parser.add_argument("--include-logged", action="store_true",
+                        help="include candidates retired by no-match evidence")
     args = parser.parse_args()
     if args.groups and not args.ranked:
         parser.error("--groups requires --ranked")
@@ -338,6 +357,11 @@ def main():
                 }
             )
 
+    retired = (set() if args.include_logged else
+               logged_no_match([RE_ATTEMPTS, *args.exclude_file]))
+    retired_count = sum(candidate["symbol"] in retired for candidate in candidates)
+    candidates = [candidate for candidate in candidates
+                  if candidate["symbol"] not in retired]
     candidates = apply_shard(candidates, args.shard)
     rank_candidates(candidates)
     if not args.ranked:
@@ -352,6 +376,8 @@ def main():
 
     if already_matched:
         print(f"{already_matched} excluded as already matched in reverse/functions.csv")
+    if retired_count:
+        print(f"{retired_count} excluded as already no-match in the investigation log")
     if arity_conflicts:
         print(f"{arity_conflicts} excluded because the decorated name cannot produce the "
               "body: either its stack cleanup contradicts the bytes, so the name is on the "
