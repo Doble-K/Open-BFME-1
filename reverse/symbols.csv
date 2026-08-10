@@ -68484,3 +68484,7 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??0AnimalAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,AnimalAIUpdate ctor base call
 ??0TransportContainBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00036E49,TransportContain ctor base call
 ??0HordeTransportContainBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000023A1,HordeTransportContain ctor base call
+??0HordeAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,HordeAIUpdate ctor base call
+?setWakeFrame@HordeAIUpdateBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
+??0AssaultTransportAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,AssaultTransportAIUpdate ctor base call
+?call_0002105d@AssaultTransportAIUpdateBase@@IAEXXZ,0x0002105D,unnamed body 0x002B4320 via ILT thunk

@@ -1582,7 +1582,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AsciiString@@QAE@PBD@Z,0x00012C42,0x0005EE70,19,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,AsciiString(const char *)
 ??0AsciiString@@QAE@PBDH@Z,0x0002B832,0x000AFF00,24,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,AsciiString(const char *
 ??0AsciiString@@QAE@XZ,0x00017BD9,0x00062030,9,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,default constructor sets text pointer to null
-??0AssaultTransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B46F0,97,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0AssaultTransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002B46F0,97,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ module ctor; +0x398 immediate then unnamed thiscall ILT 0x2105D
 ??0AssaultTransportAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/AssaultTransportAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0AssetIterator@@IAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/assetmgr.cpp,matched,ICF alias of existing matched body
 ??0AssistanceRequestData@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,ICF alias of existing matched body
@@ -2061,7 +2061,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HitReactionBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00200200,137,Code/GameEngine/Source/GameLogic/Object/Behavior/HitReactionBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 137B constructor
 ??0HitReactionBehaviorModuleData@@QAE@XZ,,0x00291950,114,Code/GameEngine/Source/GameLogic/Object/Behavior/HitReactionBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 114B ModuleData constructor
 ??0HiveStructureBodyModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0HordeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C43A0,141,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw AI module constructor
+??0HordeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C43A0,141,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ module ctor; no member inits; body is the wake call
 ??0HordeAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/AI/HordeAIUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0HordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0023EAF0,819,Code/GameEngine/Source/GameLogic/AI/HordeContainCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0HordeContainModuleData@@QAE@XZ,,0x00220530,28,Code/GameEngine/Source/GameLogic/Object/Update/HordeUpdateModuleData.cpp,matched,Open-BFME5 clean C++ ModuleData ctor

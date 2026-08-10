@@ -1,157 +1,93 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: HordeAIUpdate module ctor.
+//
+// Same base and layout as AnimalAIUpdate (base ctor ILT 0x000292A3, six vtbls
+// with only +0x340 written twice), but this one initialises no members at all:
+// the whole body is the wake call, so the interface base at +0x340 needs no
+// field split.
+
 class Thing;
 class ModuleData;
+class Object;
 
-class HordeAIUpdate
+enum UpdateSleepTime
 {
-public:
-    HordeAIUpdate(Thing *, const ModuleData *);
+	UPDATE_SLEEP_NONE = 1
 };
 
-__declspec(naked) HordeAIUpdate::HordeAIUpdate(Thing *, const ModuleData *)
+class BehaviorModule
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 068h
-        _emit 03Dh
-        _emit 001h
-        _emit 001h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 018h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 018h
-        _emit 050h
-        _emit 051h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 00Ch
-        _emit 0E8h
-        _emit 0D5h
-        _emit 04Eh
-        _emit 0D6h
-        _emit 0FFh
-        _emit 0C7h
-        _emit 086h
-        _emit 040h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 0E0h
-        _emit 081h
-        _emit 00Ch
-        _emit 001h
-        _emit 08Bh
-        _emit 056h
-        _emit 008h
-        _emit 06Ah
-        _emit 001h
-        _emit 052h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 018h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 006h
-        _emit 098h
-        _emit 083h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 00Ch
-        _emit 0D0h
-        _emit 082h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 010h
-        _emit 0C0h
-        _emit 082h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 020h
-        _emit 0BCh
-        _emit 082h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 024h
-        _emit 0A0h
-        _emit 082h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 086h
-        _emit 040h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 040h
-        _emit 082h
-        _emit 00Ch
-        _emit 001h
-        _emit 0E8h
-        _emit 0C1h
-        _emit 013h
-        _emit 0D5h
-        _emit 0FFh
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C2h
-        _emit 008h
-        _emit 000h
-    }
+public:
+	virtual void behaviorModuleAnchor();
+	virtual ~BehaviorModule();
+
+	unsigned int m_04;
+	Object *m_object;							///< retail this+0x08
+};
+
+class __declspec(novtable) HordeAIUpdateIface1
+{
+public:
+	virtual void hordeAIIface1Anchor();
+};
+
+class __declspec(novtable) HordeAIUpdateIface2
+{
+public:
+	virtual void hordeAIIface2Anchor();
+
+	unsigned int m_14;
+	unsigned int m_18;
+	unsigned int m_1c;
+};
+
+class __declspec(novtable) HordeAIUpdateIface3
+{
+public:
+	virtual void hordeAIIface3Anchor();
+};
+
+class __declspec(novtable) HordeAIUpdateIface4
+{
+public:
+	virtual void hordeAIIface4Anchor();
+
+	unsigned char m_unreconstructed_28[0x318];	///< retail this+0x28 .. +0x340
+};
+
+class HordeAIUpdateIface5
+{
+public:
+	virtual void hordeAIIface5Anchor();
+};
+
+class HordeAIUpdateBase : public BehaviorModule
+{
+public:
+	HordeAIUpdateBase(Thing *thing, const ModuleData *moduleData);
+
+protected:
+	void setWakeFrame(Object *obj, UpdateSleepTime when);
+};
+
+class HordeAIUpdate : public HordeAIUpdateBase,
+	public HordeAIUpdateIface1,
+	public HordeAIUpdateIface2,
+	public HordeAIUpdateIface3,
+	public HordeAIUpdateIface4,
+	public HordeAIUpdateIface5
+{
+public:
+	HordeAIUpdate(Thing *thing, const ModuleData *moduleData);
+
+protected:
+	Object *getObject(void) const { return m_object; }
+};
+
+// ??0HordeAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+HordeAIUpdate::HordeAIUpdate(Thing *thing, const ModuleData *moduleData)
+	: HordeAIUpdateBase(thing, moduleData)
+{
+	setWakeFrame(getObject(), UPDATE_SLEEP_NONE);
 }
