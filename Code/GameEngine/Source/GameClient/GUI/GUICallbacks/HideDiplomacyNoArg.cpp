@@ -1,55 +1,45 @@
-// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
+// cl: /DNDEBUG /MD /EHsc
 
-__declspec(naked) void HideDiplomacy()
+// The no-argument overload: bail if the window is absent or already hidden,
+// otherwise set both flags and hand off to the window manager.
+//
+// Globals are read as addresses, which is this tree's idiom for them. Both flags
+// are set to true and retail keeps the 1 in a register across the two stores,
+// which falls out of writing them as two assignments of the same value.
+//
+// The final call is in tail position and compiles to a jmp; nothing in the
+// source asks for that beyond the call being last and returning void.
+class WindowManager
 {
-	__asm {
-		_emit 0A1h
-		_emit 0E4h
-		_emit 049h
-		_emit 02Fh
-		_emit 001h
-		_emit 085h
-		_emit 0C0h
-		_emit 074h
-		_emit 025h
-		_emit 08Ah
-		_emit 088h
-		_emit 054h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 084h
-		_emit 0C9h
-		_emit 075h
-		_emit 01Bh
-		_emit 0B1h
-		_emit 001h
-		_emit 088h
-		_emit 088h
-		_emit 054h
-		_emit 002h
-		_emit 000h
-		_emit 000h
-		_emit 0A1h
-		_emit 058h
-		_emit 04Bh
-		_emit 02Fh
-		_emit 001h
-		_emit 088h
-		_emit 048h
-		_emit 050h
-		_emit 08Bh
-		_emit 00Dh
-		_emit 0E8h
-		_emit 019h
-		_emit 02Fh
-		_emit 001h
-		_emit 0E9h
-		_emit 0C4h
-		_emit 0E2h
-		_emit 0AFh
-		_emit 0FFh
-		_emit 0C3h
-	}
-}
+public:
+	void hideQuitMenu(void);
+};
 
+struct DiplomacyWindow
+{
+	unsigned char m_head[0x254];
+	bool m_hidden;
+};
+
+struct InGameUI
+{
+	unsigned char m_head[0x50];
+	bool m_diplomacyHidden;
+};
+
+// ?HideDiplomacy@@YAXXZ
+void HideDiplomacy(void)
+{
+	DiplomacyWindow *window = *(DiplomacyWindow **)0x012F49E4;
+
+	if (!window)
+		return;
+
+	if (window->m_hidden)
+		return;
+
+	window->m_hidden = true;
+	(*(InGameUI **)0x012F4B58)->m_diplomacyHidden = true;
+
+	(*(WindowManager **)0x012F19E8)->hideQuitMenu();
+}

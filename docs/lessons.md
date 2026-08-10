@@ -6432,3 +6432,27 @@ function can be attempted -- writing it as declared produces a source that reads
 the wrong location, and writing it as __fastcall produces a symbol the row does
 not name. This is the third mis-named row found by reading arity and convention
 off the body rather than trusting the mangled name.
+
+
+## Put last tick's failures into the screen, not just the log
+
+Two builds were lost last tick to an x87 float copy and to a row whose calling
+convention did not match its name. Both are cheap to test for, so both went into
+the non-constructor screen: exclude bodies containing x87 instructions, and
+exclude free functions whose name says cdecl while the body reads an argument out
+of ecx. Thirteen and one candidate respectively, and getListboxBottomEntry -- the
+one that cost the build -- is gone from the list.
+
+The first pick after that filtering, HideDiplomacy, matched on the first build.
+That is the argument for spending the failure: a build lost to a cause you then
+encode is cheaper than the same build lost twice.
+
+## The same name can be two functions
+
+?HideDiplomacy@@YAXXZ takes no arguments. Diplomacy.cpp already contains a clean
+HideDiplomacy(Bool), which is a different overload with a different mangled name,
+and reading that file to understand the naked row was wasted effort -- the two
+share a name and nothing else.
+
+Check the mangled signature before going to look for the source. XZ means no
+arguments and it is right there in the row.
