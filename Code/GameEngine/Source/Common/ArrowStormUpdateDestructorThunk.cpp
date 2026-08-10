@@ -1,121 +1,59 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
+// stlport
 
-class __declspec(novtable) ArrowStormUpdate
+#include <list>
+
+class ArrowStormUpdateRootBase
+{
+public:
+    virtual ~ArrowStormUpdateRootBase();
+
+private:
+    unsigned char m_pad[8];
+};
+
+class ArrowStormUpdateBaseInterface1 { public: virtual void slot(); };
+class ArrowStormUpdateBaseInterface2 { public: virtual void slot(); private: unsigned char m_pad[0xC]; };
+class ArrowStormUpdateBaseInterface3 { public: virtual void slot(); };
+
+class ArrowStormUpdateObjectModule : public ArrowStormUpdateRootBase
+{
+};
+
+class ArrowStormUpdateBehaviorModule : public ArrowStormUpdateObjectModule,
+    public ArrowStormUpdateBaseInterface1
+{
+public:
+    virtual ~ArrowStormUpdateBehaviorModule() {}
+};
+
+class ArrowStormUpdateUpdateModule : public ArrowStormUpdateBehaviorModule,
+    public ArrowStormUpdateBaseInterface2,
+    public ArrowStormUpdateBaseInterface3
+{
+public:
+    virtual ~ArrowStormUpdateUpdateModule() {}
+};
+
+class SpecialAbilityUpdate : public ArrowStormUpdateUpdateModule
+{
+public:
+    virtual ~SpecialAbilityUpdate();
+
+private:
+    unsigned char m_pad[0xC4];
+};
+
+class ArrowStormUpdate : public SpecialAbilityUpdate
 {
 public:
     virtual ~ArrowStormUpdate();
+
+private:
+    _STL::list<int> m_specialObjectIDList;
 };
 
 // ??1ArrowStormUpdate@@UAE@XZ
-__declspec(naked) ArrowStormUpdate::~ArrowStormUpdate()
+ArrowStormUpdate::~ArrowStormUpdate()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x68
-        __emit 0xee
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xc0
-        __emit 0x37
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0xf8
-        __emit 0x36
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xe8
-        __emit 0x36
-        __emit 0x0b
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0xbc
-        __emit 0x36
-        __emit 0x0b
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xe8
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xbe
-        __emit 0xba
-        __emit 0xdb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x0d
-        __emit 0xca
-        __emit 0xdc
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
