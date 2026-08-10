@@ -1,121 +1,77 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: retail-layout C++ conversion of the AttackNugget parser.
 
 class INI;
-class AttackNugget
+typedef void (*INIFieldParseProc)(INI *, void *, void *, const void *);
+
+struct FieldParse
+{
+	const char *token;
+	INIFieldParseProc parse;
+	const void *userData;
+	int offset;
+};
+
+class INI
 {
 public:
-	static void __cdecl parse(INI *, void *, void *, const void *);
+	void initFromINI(void *, const FieldParse *);
+	static void parseInt(INI *, void *, void *, const void *);
+	static void parseLookupList(INI *, void *, void *, const void *);
+	static void parseReal(INI *, void *, void *, const void *);
+};
+
+class RadiusDecalTemplate
+{
+public:
+	static void parseRadiusDecalTemplate(INI *, void *, void *, const void *);
+
+private:
+	unsigned char m_retailLayout[0x30];
+};
+
+class ObjectCreationNugget
+{
+public:
+	virtual void create();
+};
+
+class ObjectCreationList
+{
+public:
+	void addObjectCreationNugget(ObjectCreationNugget *);
+};
+
+extern "C" const char TheWeaponSlotTypeNamesLookupList;
+
+class AttackNugget : public ObjectCreationNugget
+{
+public:
+	AttackNugget();
+	virtual void create();
+
+	static void parse(INI *, void *, void *, const void *);
+
+private:
+	RadiusDecalTemplate m_deliveryDecalTemplate;
+	float m_deliveryDecalRadius;
+	int m_numberOfShots;
+	int m_weaponSlot;
 };
 
 // ?parse@AttackNugget@@SAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void __cdecl AttackNugget::parse(INI *, void *, void *, const void *)
+void AttackNugget::parse(INI *ini, void *instance, void *, const void *)
 {
-	__asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x4b
-        __emit 0x9c
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x40
-        __emit 0xe8
-        __emit 0xa2
-        __emit 0x97
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x10
-        __emit 0x74
-        __emit 0x09
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0xe8
-        __emit 0x9c
-        __emit 0xa3
-        __emit 0xe4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x68
-        __emit 0x78
-        __emit 0xf6
-        __emit 0x09
-        __emit 0x01
-        __emit 0x56
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xe1
-        __emit 0x98
-        __emit 0x67
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x87
-        __emit 0x84
-        __emit 0xe6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-	}
+	static const FieldParse myFieldParse[] =
+	{
+		{ "NumberOfShots", INI::parseInt, 0, 0x38 },
+		{ "WeaponSlot", INI::parseLookupList, &TheWeaponSlotTypeNamesLookupList, 0x3c },
+		{ "DeliveryDecal", RadiusDecalTemplate::parseRadiusDecalTemplate, 0, 0x04 },
+		{ "DeliveryDecalRadius", INI::parseReal, 0, 0x34 },
+		{ 0, 0, 0, 0 }
+	};
+
+	AttackNugget *nugget = new AttackNugget;
+	ini->initFromINI(nugget, myFieldParse);
+	((ObjectCreationList *)instance)->addObjectCreationNugget(nugget);
 }
