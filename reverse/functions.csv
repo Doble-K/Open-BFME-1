@@ -2446,7 +2446,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Quaternion@@QAE@ABVVector3@@M@Z,,0x008DB600,92,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ??0Quaternion@@QAE@MMMM@Z,,0x008DB4F0,32,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ??0Quaternion@@QAE@_N@Z,,0x00959750,30,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
-??0QueueProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F8B80,107,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/QueueProductionExitUpdateCtorThunk.cpp,matched,Exact 107B ICF alias Open-BFME4; converted to an exact standalone C++ thunk
+??0QueueProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F8B80,107,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/QueueProductionExitUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ layout shim; TU-local base-constructor pin at 0x0000C315
 ??0QueuedDownload@@QAE@XZ,,0x001DE7E0,22,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,
 ??0QuickMatchPreferences@@QAE@XZ,,0x0002E802,5,Code/GameEngine/Source/Common/QuickMatchPreferencesCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0RAMFile@@QAE@XZ,,0x009D1980,29,Code/GameEngine/Source/Common/System/File.cpp,matched,chains to File::File at 0x009CB7A0 and installs 0x01143C58 which inherits File print/lock/unlock at slots 10/15/16; the name was previously held by RawFileClass ctor at 0x009E6990
