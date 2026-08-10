@@ -1,125 +1,78 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the retail destructor to clean C++.
 
-class __declspec(novtable) GiantBirdSlowDeathBehavior
+class Gen_dtor_000b33c0
+{
+public:
+    virtual ~Gen_dtor_000b33c0();
+
+private:
+    unsigned char m_data[0x6c];
+};
+
+class SlowDeathBehaviorPrimary
+{
+public:
+    virtual void slowDeathBehaviorPrimaryAnchor();
+
+private:
+    unsigned char m_data[8];
+};
+
+class SlowDeathBehaviorSecondary
+{
+public:
+    virtual void slowDeathBehaviorSecondaryAnchor();
+};
+
+class SlowDeathBehaviorTertiary
+{
+public:
+    virtual void slowDeathBehaviorTertiaryAnchor();
+
+private:
+    unsigned char m_data[0xc];
+};
+
+class SlowDeathBehaviorDieInterface
+{
+public:
+    virtual void slowDeathBehaviorDieAnchor();
+};
+
+class SlowDeathBehaviorInterface
+{
+public:
+    virtual void slowDeathBehaviorAnchor();
+};
+
+class Gen_dtor_00207da0 : public SlowDeathBehaviorPrimary,
+    public SlowDeathBehaviorSecondary,
+    public SlowDeathBehaviorTertiary,
+    public SlowDeathBehaviorDieInterface,
+    public SlowDeathBehaviorInterface
+{
+public:
+    virtual ~Gen_dtor_00207da0();
+
+private:
+    unsigned char m_data[0x28];
+};
+
+class GiantBirdSlowDeathBehavior : public Gen_dtor_00207da0
 {
 public:
     virtual ~GiantBirdSlowDeathBehavior();
+
+private:
+    unsigned int m_acceleratedTimeScale;
+    Gen_dtor_000b33c0 m_deathSound;
+    unsigned char m_pad[0xc];
+    unsigned int m_unknownD0;
+    unsigned char m_unknownD4;
 };
 
 // ??1GiantBirdSlowDeathBehavior@@UAE@XZ
-__declspec(naked) GiantBirdSlowDeathBehavior::~GiantBirdSlowDeathBehavior()
+GiantBirdSlowDeathBehavior::~GiantBirdSlowDeathBehavior()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x38
-        __emit 0xb7
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x84
-        __emit 0x49
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0xc0
-        __emit 0x48
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xb4
-        __emit 0x48
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0xb0
-        __emit 0x48
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x24
-        __emit 0x9c
-        __emit 0x48
-        __emit 0x0a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x54
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xd6
-        __emit 0x72
-        __emit 0xe2
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x23
-        __emit 0x2a
-        __emit 0xe3
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
