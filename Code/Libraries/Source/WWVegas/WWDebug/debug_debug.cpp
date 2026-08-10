@@ -114,6 +114,7 @@ void Debug::PreStaticInit(void)
 
 // ?PostStaticInit@Debug@@CAXXZ exact retail body is emitted by
 // DebugPostStaticInitThunk.cpp.
+// ?StaticExit@Debug@@CAXXZ present-unmatched
 void Debug::StaticExit(void)
 {
   // yes, we do leave memory 'leaks' but Win32 will take care of these
@@ -151,7 +152,6 @@ Debug& Debug::operator<<(RepeatChar &c)
   return *this;
 }
 
-// ??0Format@@ present-unmatched
 Debug::Format::Format(const char *format, ...)
 {
   va_list va;
@@ -860,16 +860,6 @@ Debug& Debug::operator<<(const MemDump &dump)
   }
 
   return *this;
-}
-
-Debug& Debug::operator<<(HResult hres)
-{
-  for (unsigned k=0;k<numHrTranslators;k++)
-    if (hrTranslators[k].func(*this,hres.m_hresult,hrTranslators[k].user))
-      return *this;
-  (*this) << "HResult:0x";
-  char help[9];
-  return (*this) << _ultoa(hres.m_hresult,help,16);
 }
 
 // ?IsLogEnabled@Debug@@SA_NPBD@Z present-unmatched
