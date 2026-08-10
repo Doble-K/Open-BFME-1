@@ -1,156 +1,70 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the retail default-color parser to clean C++.
 
-class File;
+class AsciiString
+{
+public:
+	AsciiString() : m_data(0) {}
+	~AsciiString() { freeBytes(); }
 
-bool parseDefaultColor(int *, File *, char *);
+private:
+	void freeBytes();
+	void *m_data;
+};
+
+class File
+{
+public:
+	virtual ~File() = 0;
+	virtual void open() = 0;
+	virtual void close() = 0;
+	virtual int read(void *, int) = 0;
+	virtual int write(const void *, int) = 0;
+	virtual int seek(int, int) = 0;
+	virtual void nextLine(char *, int) = 0;
+	virtual bool scanInt(int &) = 0;
+	virtual bool scanReal(float &) = 0;
+	virtual bool scanString(AsciiString &) = 0;
+};
+
+void readUntilSemicolon(File *, char *, int);
+static bool parseColor(int *, char *);
+extern "C" int __cdecl strcmp(const char *, const char *);
 
 // ?parseDefaultColor@@YA_NPAHPAVFile@@PAD@Z
-__declspec(naked) bool parseDefaultColor(int *, File *, char *)
+// The retail helper is file-local.  Its sibling call graph gives MSVC 7.1 an
+// internal register ABI, so the TU-local parseColor and call helper below keep
+// that same compiler context while this body remains ordinary C++.
+static bool parseDefaultColor(int *color, File *inFile, char *buffer)
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x88
-		__emit 0x69
-		__emit 0x02
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x55
-		__emit 0x8b
-		__emit 0x6c
-		__emit 0x24
-		__emit 0x18
-		__emit 0x56
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x8b
-		__emit 0x06
-		__emit 0x51
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xff
-		__emit 0x50
-		__emit 0x24
-		__emit 0x68
-		__emit 0x00
-		__emit 0x08
-		__emit 0x00
-		__emit 0x00
-		__emit 0x53
-		__emit 0x56
-		__emit 0xe8
-		__emit 0x2f
-		__emit 0xea
-		__emit 0xff
-		__emit 0xff
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0xbf
-		__emit 0x48
-		__emit 0x94
-		__emit 0x0f
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xf3
-		__emit 0xb9
-		__emit 0x0c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x33
-		__emit 0xd2
-		__emit 0xf3
-		__emit 0xa6
-		__emit 0x75
-		__emit 0x09
-		__emit 0xc7
-		__emit 0x45
-		__emit 0x00
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0x00
-		__emit 0xeb
-		__emit 0x0b
-		__emit 0x55
-		__emit 0x8b
-		__emit 0xc3
-		__emit 0xe8
-		__emit 0x39
-		__emit 0xec
-		__emit 0xff
-		__emit 0xff
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x55
-		__emit 0x1f
-		__emit 0x40
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0xb0
-		__emit 0x01
-		__emit 0x5d
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
+	AsciiString str;
+	inFile->scanString(str);
+	readUntilSemicolon(inFile, buffer, 0x800);
+
+	if (!strcmp(buffer, "TRANSPARENT"))
+	{
+		*color = 0xFFFFFF;
 	}
+	else
+	{
+		parseColor(color, buffer);
+	}
+
+	return true;
+}
+
+extern "C" __declspec(dllimport) int __cdecl atoi(const char *);
+
+__declspec(noinline) static bool parseColor(int *color, char *buffer)
+{
+	*color = atoi(buffer);
+	return true;
+}
+
+static int parseDefaultColorValue;
+static char parseDefaultColorBuffer[0x800];
+
+bool parseDefaultColorCall(File *inFile)
+{
+	return parseDefaultColor(&parseDefaultColorValue, inFile, parseDefaultColorBuffer);
 }
