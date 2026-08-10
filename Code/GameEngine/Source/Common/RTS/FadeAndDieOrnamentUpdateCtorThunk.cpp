@@ -3,154 +3,73 @@
 class Thing;
 class ModuleData;
 
-class FadeAndDieOrnamentUpdate
+class ObjectModule
 {
 public:
-    FadeAndDieOrnamentUpdate(Thing *, const ModuleData *);
+	virtual void objectModuleAnchor();
+	ObjectModule(Thing *, const ModuleData *);
+
+protected:
+	const ModuleData *m_moduleData;
+	void *m_object;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void behaviorModuleInterfaceAnchor();
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterfaceAnchor();
+};
+
+class FadeAndDieOrnamentData
+{
+public:
+	FadeAndDieOrnamentData()
+		: m_00(0x3f800000), m_04(0x3f800000), m_08(0x3f800000), m_0c(0),
+		  m_10(1), m_14(1), m_18(1), m_1c(-1), m_20(-1), m_24(0)
+	{
+	}
+
+	unsigned int m_00;
+	unsigned int m_04;
+	unsigned int m_08;
+	unsigned int m_0c;
+	unsigned int m_10;
+	unsigned int m_14;
+	unsigned int m_18;
+	int m_1c;
+	int m_20;
+	int m_24;
+};
+
+class FadeAndDieOrnamentUpdate : public ObjectModule,
+	public BehaviorModuleInterface,
+	public UpdateModuleInterface
+{
+public:
+	FadeAndDieOrnamentUpdate(Thing *, const ModuleData *);
+
+private:
+	unsigned int m_14;
+	int m_18;
+	int m_1c;
+	unsigned int m_20;
+	unsigned int m_24;
+	FadeAndDieOrnamentData m_data;
 };
 
 // ??0FadeAndDieOrnamentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) FadeAndDieOrnamentUpdate::FadeAndDieOrnamentUpdate(Thing *, const ModuleData *)
+FadeAndDieOrnamentUpdate::FadeAndDieOrnamentUpdate(
+	Thing *thing, const ModuleData *moduleData)
+	: ObjectModule(thing, moduleData),
+	  m_14(0), m_18(-1), m_1c(-1)
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xd9;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xcb;
-        __emit 0xe8;
-        __emit 0x9e;
-        __emit 0x4e;
-        __emit 0xd8;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x43;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x43;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x8d;
-        __emit 0x7b;
-        __emit 0x28;
-        __emit 0xc7;
-        __emit 0x03;
-        __emit 0xb4;
-        __emit 0xe9;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x43;
-        __emit 0x0c;
-        __emit 0xf0;
-        __emit 0xe8;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x43;
-        __emit 0x10;
-        __emit 0xe0;
-        __emit 0xe8;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x43;
-        __emit 0x14;
-        __emit 0x83;
-        __emit 0xc9;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x4b;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x4b;
-        __emit 0x1c;
-        __emit 0xba;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x3f;
-        __emit 0x89;
-        __emit 0x17;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x47;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x4f;
-        __emit 0x1c;
-        __emit 0x89;
-        __emit 0x4f;
-        __emit 0x20;
-        __emit 0x89;
-        __emit 0x47;
-        __emit 0x24;
-        __emit 0xba;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x57;
-        __emit 0x18;
-        __emit 0x8b;
-        __emit 0x73;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x43;
-        __emit 0x20;
-        __emit 0x89;
-        __emit 0x43;
-        __emit 0x24;
-        __emit 0x83;
-        __emit 0xc6;
-        __emit 0x0c;
-        __emit 0xb9;
-        __emit 0x0a;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xf3;
-        __emit 0xa5;
-        __emit 0x5f;
-        __emit 0x5e;
-        __emit 0x8b;
-        __emit 0xc3;
-        __emit 0x5b;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+	m_20 = 0;
+	m_24 = 0;
+	m_data = *(const FadeAndDieOrnamentData *)((const unsigned char *)m_moduleData + 0x0c);
 }
