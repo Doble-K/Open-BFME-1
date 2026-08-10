@@ -5965,3 +5965,28 @@ because they all share the one zeroed register and MSVC groups such stores freel
 across the vtable writes. So the rule places members reliably only when nothing
 remains on the other side to be hoisted. Where stores appear on both sides of the
 vtable group, source ordering does not reach it.
+
+## Which module ctors are reachable: look for a call after the vtables
+
+Seven module constructors in, the failures separate from the successes on one
+observable, and it can be read off the disassembly before writing any source.
+
+MSVC will hoist the constructor body's member stores above the most-derived
+vtable writes. Retail does not. So a conversion only lands when nothing needs to
+sit after those writes, or when something anchors it there.
+
+  matched   ObjectWeaponStatusHelper   no member stores, call after
+  matched   GeometryUpgrade            string ctor + releaseBuffer call after
+  matched   WeaponModeSpecialPowerUpdate  one byte store, call after
+  matched   BridgeTowerBehavior        nothing after the vtables at all
+  reverted  TensileFormationUpdate     three stores after, no call
+  reverted  SiegeDeploySpecialPower     eleven stores after, no call
+
+A call after the vtable group pins the stores before it; with no call they float
+up and no source arrangement -- body assignment or member-init list -- brings
+them back down.
+
+So when picking from the family, disassemble first and take the ones whose member
+stores are either absent after the vtable group or followed by a call. The ones
+with bare trailing stores need a different lever than source ordering, and there
+is no point spending builds on them until someone finds it.
