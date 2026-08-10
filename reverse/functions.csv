@@ -1708,7 +1708,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0CastleMemberBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0036CDD0,58,Code/GameEngine/Source/GameLogic/Object/Behavior/CastleMemberBehaviorCtorThunk.cpp,matched,object-symbol=??0CastleMemberBehavior@@QAE@XZ;Open-BFME5 clean C++ no-arg ctor body
 ??0CastleUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D3E30,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/CastleUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
 ??0CastleUpgradeModuleData@@QAE@XZ,,0x00129C10,90,Code/GameEngine/Source/GameLogic/AI/CastleUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
-??0CaveContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00219B90,129,Code/GameEngine/Source/GameLogic/AI/CaveContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
+??0CaveContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00219B90,129,Code/GameEngine/Source/GameLogic/AI/CaveContainCtorThunk.cpp,matched,Open-BFME5 clean C++ module ctor; field base at +0xD8; immediate tail store
 ??0CaveContainModuleData@@QAE@XZ,,0x00227200,398,Code/GameEngine/Source/GameLogic/AI/CaveContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-primary raw module-data constructor
 ??0Cftp@@QAE@XZ,,0x00885AD0,18,Code/GameEngine/Source/GameNetwork/CftpConstructorThunk.cpp,matched,Open-BFME5 exact C++ constructor byte prefix replacing MASM dump;object-symbol=??0Cftp@@QAE@XZ
 ??0CheckpointUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/GameEngine/Source/GameLogic/Object/Update/CheckpointUpdateCtorThunk.cpp,matched,Open-BFME5 exact 154B ICF alias constructor
