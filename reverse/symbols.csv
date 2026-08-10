@@ -68531,3 +68531,8 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?parse@DataChunkInput@@QAE_NPAX@Z,0x00028BFA,DataChunkInput::parse via ILT thunk
 ?addArgType@GameMessageParser@@IAEXHH@Z,0x0000B569,GameMessageParser::addArgType via ILT thunk
 ?getArgumentDataType@GameMessage@@QAEHH@Z,0x0001A3D4,GameMessage::getArgumentDataType via ILT thunk
+?getCommandSetString@Object@@QBEABVAsciiString@@XZ,0x00029DC0,Object::getCommandSetString via ILT thunk
+?findCommandSet@ControlBar@@QAEPBVCommandSet@@ABVAsciiString@@@Z,0x00048CCA,ControlBar::findCommandSet via ILT thunk
+?doCommandButton@Object@@QAEXPBVCommandButton@@HH@Z,0x000063CF,Object::doCommandButton via ILT thunk
+?getCommandButton@CommandSetShim@@QBEPBVCommandButton@@H@Z,0x00003F80,CommandSet::getCommandButton via ILT thunk
+?compare@AsciiStringCompareShim@@QBEHABVAsciiString@@@Z,0x000220C5,AsciiString::compare via ILT thunk
