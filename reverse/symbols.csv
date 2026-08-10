@@ -1,5 +1,7 @@
 name,address,notes
 ??1BehaviorModule@@UAE@XZ,0x00019565,Open-BFME5 SiegeDeploySpecialPower base dtor pin
+??1RadiusDecal@@QAE@XZ,0x00458340,RadiusDecal destructor body at 0x00458340; callee of assigned RadiusDecalUpdate destructor
+?clear@RadiusDecal@@QAEXXZ,0x00458310,RadiusDecal::clear body at 0x00458310; callee of assigned RadiusDecalUpdate destructor
 ??1MemoryPool@@QAE@XZ,0x0003C740,Open-BFME5 SiegeDeploySpecialPower pool cleanup pin
 ?SiegeDeploySpecialPower_getPool@@YAPAVMemoryPool@@PAVObject@@@Z,0x0002FC7A,Open-BFME5 SiegeDeploySpecialPower pool lookup pin
 ??1?$_Rb_tree@W4NameKeyType@@U?$pair@$$CBW4NameKeyType@@PAVTeamPrototype@@@_STL@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@PAVTeamPrototype@@@_STL@@@3@U?$less@W4NameKeyType@@@3@V?$allocator@U?$pair@$$CBW4NameKeyType@@PAVTeamPrototype@@@_STL@@@3@@_STL@@QAE@XZ,0x009F5970,TeamFactory destructor map delete body
