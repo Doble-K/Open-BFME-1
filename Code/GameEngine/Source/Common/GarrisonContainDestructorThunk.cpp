@@ -1,166 +1,74 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) GarrisonContain
+// The retail GarrisonContain object has OpenContain's nine polymorphic
+// subobjects followed by its 3x40 Coord3D array at offset 0x3fc.  Keeping
+// those subobjects and the non-trivial coordinate destructor here lets the
+// compiler emit the complete destructor, including its SEH cleanup and
+// base-destructor call.
+
+class OpenContainPrimaryBase
+{
+public:
+	virtual ~OpenContainPrimaryBase() {}
+
+private:
+	unsigned char m_pad[8];
+};
+
+template <int Number>
+class OpenContainSecondaryBase
+{
+public:
+	virtual ~OpenContainSecondaryBase() {}
+};
+
+class OpenContainWideSecondaryBase
+{
+public:
+	virtual ~OpenContainWideSecondaryBase() {}
+
+private:
+	unsigned char m_pad[12];
+};
+
+class __declspec(novtable) OpenContain
+	: public OpenContainPrimaryBase,
+	  public OpenContainSecondaryBase<1>,
+	  public OpenContainWideSecondaryBase,
+	  public OpenContainSecondaryBase<2>,
+	  public OpenContainSecondaryBase<3>,
+	  public OpenContainSecondaryBase<4>,
+	  public OpenContainSecondaryBase<5>,
+	  public OpenContainSecondaryBase<6>,
+	  public OpenContainSecondaryBase<7>
+{
+public:
+	virtual ~OpenContain();
+
+private:
+	unsigned char m_pad[0x3c4];
+};
+
+class Coord3D
+{
+	public:
+	~Coord3D() {}
+
+	private:
+	float m_value[3];
+};
+
+class GarrisonContain : public OpenContain
 {
 public:
 	virtual ~GarrisonContain();
+
+private:
+	Coord3D m_garrisonPoint[3][40];
 };
 
 // ??1GarrisonContain@@UAE@XZ
-__declspec(naked) GarrisonContain::~GarrisonContain()
+GarrisonContain::~GarrisonContain()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xd8
-		__emit 0xce
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x18
-		__emit 0xb8
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x0c
-		__emit 0x50
-		__emit 0xb7
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x10
-		__emit 0x40
-		__emit 0xb7
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x20
-		__emit 0x98
-		__emit 0xb5
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x24
-		__emit 0x78
-		__emit 0xb5
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x28
-		__emit 0x74
-		__emit 0xb5
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x2c
-		__emit 0x64
-		__emit 0xb5
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x30
-		__emit 0x28
-		__emit 0xb5
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x34
-		__emit 0x18
-		__emit 0xb5
-		__emit 0x0a
-		__emit 0x01
-		__emit 0x68
-		__emit 0x4c
-		__emit 0x36
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x78
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x8d
-		__emit 0x86
-		__emit 0xfc
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x3e
-		__emit 0x93
-		__emit 0x7d
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x23
-		__emit 0xc3
-		__emit 0xe1
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
