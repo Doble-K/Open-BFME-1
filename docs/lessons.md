@@ -5842,3 +5842,28 @@ is all the harvest recovered. Landing it would mean the alias mechanism, not a
 class -- worth recognising early, because the body reads as a perfectly ordinary
 destructor right up until the offsets are checked against what the mangling
 implies.
+
+## The stash without the frame
+
+Two facts about GameLODManager::findStaticLODLevel looked contradictory. Retail
+emits `mov [esp+0xC],esp` before setting up the by-value AsciiString argument --
+the /EHsc temporary stash, reusing the dead key slot -- and retail carries no SEH
+prologue at all. /EHs-c- reproduces everything except the stash and lands four
+bytes short; /EHsc reproduces the stash and adds a 78-byte frame.
+
+They are only contradictory if the frame is unavoidable under /EHsc. It is not.
+The frame exists to destroy the inner-scope key if the lookup throws, so the frame
+is a property of what the lookup is allowed to do, not of the exception model.
+Declaring the find shim `throw()` removes the reason for the frame and leaves the
+stash, and the function matched at 106 bytes on that build.
+
+This is the residue the sibling OptionPreferences::getIdealStaticGameDetail was
+reverted over, logged in re_attempts as "not EH bookkeeping: /EHsc adds a full SEH
+prologue retail does not have". The conclusion was half right -- it is EH
+bookkeeping, and the prologue is separable from it. That accessor has the same
+shape around the "IdealStaticGameLOD" key and should now go in the same way.
+
+The general form: /EHsc versus /EHs-c- is not one lever but two, the temporary
+bookkeeping and the unwind frame. When retail shows one without the other, the
+throw-specifications on the callees are what tell them apart, and they are worth
+reaching for before concluding the exception model is wrong.
