@@ -1,150 +1,60 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
 
-class AsciiString
+// Retail reaches both compareNoCase and releaseBuffer as StringBase<G>
+// members so UnicodeString is spelled as the derived class rather than a
+// stand-in. That also rules out the languagefilter shim here -- its minimal
+// StringBase would redefine the real one that AsciiString.h pulls in.
+#include "Common/AsciiString.h"
+
+enum SlotState
 {
+	SLOT_OPEN,
+	SLOT_CLOSED,
+	SLOT_EASY_AI,
+	SLOT_MED_AI,
+	SLOT_BRUTAL_AI,
+	SLOT_PLAYER
+};
+
+// Modelled on the AsciiString shim rather than derived from StringBase: the
+// real StringBase default ctor is out of line so inheriting it emits a call
+// where retail inlines a single zero store and shares the zero with the EH
+// state. An undefined ~UnicodeString is already pinned to the same address as
+// releaseBuffer<G>. unsigned short not wchar_t because this TU compiles with
+// /Zc:wchar_t- and pulls no header declaring wchar_t; G is unsigned short.
+class UnicodeString
+{
+public:
+	UnicodeString() { m_text = 0; }
+	~UnicodeString();
+
+	void translate(const AsciiString& stringSrc);
+
+	int compareNoCase(const UnicodeString& that) const
+	{
+		return ((const StringBase<unsigned short> *)this)->compareNoCase(
+			*(const StringBase<unsigned short> *)&that);
+	}
+
+private:
+	unsigned short *m_text;
 };
 
 class GameSlot
 {
 public:
-    bool isPlayer(AsciiString) const;
+	virtual void reset(void) = 0;	// vptr; m_state therefore lands at offset 4
+	bool isPlayer(AsciiString userName) const;
+protected:
+	SlotState m_state;
+	unsigned char m_gap08[0x28 - 0x08];
+	UnicodeString m_name;
 };
 
-__declspec(naked) bool GameSlot::isPlayer(AsciiString) const
+// ?isPlayer@GameSlot@@QBE_NVAsciiString@@@Z
+bool GameSlot::isPlayer(AsciiString userName) const
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x20;
-        __emit 0xf3;
-        __emit 0x03;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x8d;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0xb3;
-        __emit 0x01;
-        __emit 0x50;
-        __emit 0x8d;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x88;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0xe8;
-        __emit 0xa8;
-        __emit 0x8f;
-        __emit 0x26;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0x7e;
-        __emit 0x04;
-        __emit 0x05;
-        __emit 0x75;
-        __emit 0x11;
-        __emit 0x8d;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x51;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x28;
-        __emit 0xe8;
-        __emit 0x44;
-        __emit 0x5e;
-        __emit 0x9f;
-        __emit 0xff;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0x74;
-        __emit 0x02;
-        __emit 0x32;
-        __emit 0xdb;
-        __emit 0x8d;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x61;
-        __emit 0x7f;
-        __emit 0x26;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xe8;
-        __emit 0xc0;
-        __emit 0x76;
-        __emit 0x26;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5e;
-        __emit 0x8a;
-        __emit 0xc3;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+	UnicodeString uName;
+	uName.translate(userName);
+	return (m_state == SLOT_PLAYER && !m_name.compareNoCase(uName));
 }

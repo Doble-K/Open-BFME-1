@@ -6568,3 +6568,43 @@ Two things worth keeping. A gate that runs rarely accumulates debt silently, so
 the rare run is worth reading carefully rather than clearing. And when a majority
 of references agree on an address, check whether they agree for a reason or
 because the linker folded them -- ICF makes wrong names look consistent.
+
+
+## Do not derive from StringBase when retail inlines the default construction
+
+isPlayer builds a local UnicodeString and translates into it. Deriving
+UnicodeString from StringBase<G> is the obvious spelling and it costs a call:
+the real StringBase default ctor is declared out of line, so construction emits
+one, where retail inlines a single zero store and shares that zero with the EH
+state register.
+
+The campaignmanagerascii AsciiString shim already has the right shape -- a
+standalone class with its own inline `m_text = 0` ctor, an undefined destructor
+that is pinned to releaseBuffer's address, and every real operation reached by
+casting to StringBase<T>*. Copying that shape matched. Reach for it whenever
+retail inlines part of a string class and calls out for the rest.
+
+Two smaller notes from the same file. wchar_t is not a keyword under
+/Zc:wchar_t- and nothing in that include set declares it, so the template
+argument has to be spelled `unsigned short` -- which is what G means in the
+mangling anyway. And guessing a function's RVA to disassemble it produces a
+plausible-looking listing with every call annotation silently wrong; the
+instruction sequence still reads correctly, which is what makes it dangerous.
+Look the address up.
+
+## The throw() lever is blocked when the declaration is in real source
+
+getSlotNum shows the same unwind-state bump isUser had, for the by-value copy
+passed to the inlined isPlayer. The fix that worked for isUser -- declare the
+only call in that window throw() -- is not available the same way here: isUser
+went through the languagefilter shim, which is TU-scoped, while getSlotNum uses
+the real Code/Libraries/.../string_base.h that hundreds of TUs include.
+
+Editing it is a legitimate experiment and the full gate would arbitrate, but it
+belongs in its own tick rather than inside a conversion. Worth doing: if retail's
+compareNoCase really is non-throwing, the declaration is simply more accurate,
+and every string-heavy function with this shape unblocks at once.
+
+getSlotNum stays parked regardless, because it also has esi and edi swapped
+against retail for this-versus-loop-counter, which is the register allocation
+residual and not something the source can address.
