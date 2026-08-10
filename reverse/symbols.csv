@@ -68491,3 +68491,5 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??0InactiveBodyBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,InactiveBody ctor base call
 ?call_00030887@Object@@QAEXH@Z,0x00030887,unnamed body 0x001C7E60 via ILT thunk
 ??0CaveContainBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00036E49,CaveContain ctor base call
+??0DeployStyleAIUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000292A3,DeployStyleAIUpdate ctor base call
+??0DeployStyleAIUpdateMember@@QAE@XZ,0x0001A9B0,DeployStyleAIUpdate member ctor at this+0x340

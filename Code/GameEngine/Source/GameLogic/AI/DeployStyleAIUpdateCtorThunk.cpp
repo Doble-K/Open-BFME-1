@@ -1,167 +1,115 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: DeployStyleAIUpdate module ctor.
+//
+// AnimalAIUpdate's base (ILT 0x000292A3) and five novtable interface bases. The
+// object at +0x340 is a member rather than a base: retail loads its address
+// before the vtbl writes but calls its constructor after them, which is where
+// member initialisation runs.
+//
+// The thirteen zero stores that follow are in retail's order, which is neither
+// declaration nor address order. They sit behind a call, so they do not float
+// above the vtbl group.
+
 class Thing;
 class ModuleData;
+class Object;
 
-class DeployStyleAIUpdate
+class BehaviorModule
 {
 public:
-    DeployStyleAIUpdate(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+	unsigned int m_04;
+	Object *m_object;							///< retail this+0x08
 };
 
-__declspec(naked) DeployStyleAIUpdate::DeployStyleAIUpdate(Thing *, const ModuleData *)
+class __declspec(novtable) DeployStyleAIUpdateIface1
 {
-    __asm {
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 008h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 050h
-        _emit 051h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 07Fh
-        _emit 03Dh
-        _emit 0D7h
-        _emit 0FFh
-        _emit 08Dh
-        _emit 08Eh
-        _emit 040h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 006h
-        _emit 0B0h
-        _emit 064h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 00Ch
-        _emit 0E8h
-        _emit 063h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 010h
-        _emit 0DCh
-        _emit 063h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 020h
-        _emit 0D8h
-        _emit 063h
-        _emit 00Ch
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 024h
-        _emit 0BCh
-        _emit 063h
-        _emit 00Ch
-        _emit 001h
-        _emit 0E8h
-        _emit 05Fh
-        _emit 054h
-        _emit 0D6h
-        _emit 0FFh
-        _emit 033h
-        _emit 0C0h
-        _emit 088h
-        _emit 086h
-        _emit 0E0h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0E4h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0E8h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0ECh
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 086h
-        _emit 000h
-        _emit 004h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 086h
-        _emit 004h
-        _emit 004h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 086h
-        _emit 003h
-        _emit 004h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 086h
-        _emit 001h
-        _emit 004h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0F0h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 086h
-        _emit 002h
-        _emit 004h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0F4h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0F8h
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 089h
-        _emit 086h
-        _emit 0FCh
-        _emit 003h
-        _emit 000h
-        _emit 000h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 008h
-        _emit 000h
-    }
+public:
+	virtual void deployStyleIface1Anchor();
+};
+
+class __declspec(novtable) DeployStyleAIUpdateIface2
+{
+public:
+	virtual void deployStyleIface2Anchor();
+
+	unsigned int m_14;
+	unsigned int m_18;
+	unsigned int m_1c;
+};
+
+class __declspec(novtable) DeployStyleAIUpdateIface3
+{
+public:
+	virtual void deployStyleIface3Anchor();
+};
+
+class __declspec(novtable) DeployStyleAIUpdateIface4
+{
+public:
+	virtual void deployStyleIface4Anchor();
+
+	unsigned char m_unreconstructed_28[0x318];	///< retail this+0x28 .. +0x340
+};
+
+class DeployStyleAIUpdateMember
+{
+public:
+	DeployStyleAIUpdateMember();				///< ILT 0x0001A9B0
+
+	unsigned char m_unreconstructed_00[0xA0];	///< retail this+0x340 .. +0x3E0
+};
+
+class DeployStyleAIUpdateBase : public BehaviorModule
+{
+public:
+	DeployStyleAIUpdateBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class DeployStyleAIUpdate : public DeployStyleAIUpdateBase,
+	public DeployStyleAIUpdateIface1,
+	public DeployStyleAIUpdateIface2,
+	public DeployStyleAIUpdateIface3,
+	public DeployStyleAIUpdateIface4
+{
+public:
+	DeployStyleAIUpdate(Thing *thing, const ModuleData *moduleData);
+
+protected:
+	DeployStyleAIUpdateMember m_340;			///< retail this+0x340
+
+	bool m_3e0;
+	unsigned int m_3e4;
+	unsigned int m_3e8;
+	unsigned int m_3ec;
+	unsigned int m_3f0;
+	unsigned int m_3f4;
+	unsigned int m_3f8;
+	unsigned int m_3fc;
+	bool m_400;
+	bool m_401;
+	bool m_402;
+	bool m_403;
+	bool m_404;
+};
+
+// ??0DeployStyleAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+DeployStyleAIUpdate::DeployStyleAIUpdate(Thing *thing, const ModuleData *moduleData)
+	: DeployStyleAIUpdateBase(thing, moduleData)
+{
+	m_3e0 = false;
+	m_3e4 = 0;
+	m_3e8 = 0;
+	m_3ec = 0;
+	m_400 = false;
+	m_404 = false;
+	m_403 = false;
+	m_401 = false;
+	m_3f0 = 0;
+	m_402 = false;
+	m_3f4 = 0;
+	m_3f8 = 0;
+	m_3fc = 0;
 }
