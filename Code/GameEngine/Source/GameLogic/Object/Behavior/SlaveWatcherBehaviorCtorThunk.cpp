@@ -1,151 +1,54 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: SlaveWatcherBehavior module ctor.
 
 class Thing;
 class ModuleData;
+class Object;
+enum UpdateSleepTime { UPDATE_SLEEP_NONE = 1 };
 
-class SlaveWatcherBehavior
+class PB_DeepBase
+{
+public:
+    PB_DeepBase(Thing *, const ModuleData *);
+    virtual ~PB_DeepBase();
+
+protected:
+    void *m_p4;
+    Object *m_object;
+};
+
+class SlaveWatcherBehaviorIface1 { public: virtual void slot(); };
+class SlaveWatcherBehaviorIface2 { public: virtual void slot(); };
+
+class UpdateModule : public PB_DeepBase, public SlaveWatcherBehaviorIface1,
+    public SlaveWatcherBehaviorIface2
+{
+public:
+    UpdateModule(Thing *thing, const ModuleData *moduleData)
+        : PB_DeepBase(thing, moduleData), m_f14(0), m_f18(-1), m_f1c(-1) {}
+
+protected:
+    void setWakeFrame(Object *, UpdateSleepTime);
+    Object *getObject() const { return m_object; }
+
+private:
+    unsigned int m_f14;
+    int m_f18;
+    int m_f1c;
+};
+
+class SlaveWatcherBehavior : public UpdateModule
 {
 public:
     SlaveWatcherBehavior(Thing *, const ModuleData *);
+
+private:
+    unsigned int m_f20;
 };
 
 // ??0SlaveWatcherBehavior@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) SlaveWatcherBehavior::SlaveWatcherBehavior(Thing *, const ModuleData *)
+SlaveWatcherBehavior::SlaveWatcherBehavior(Thing *thing, const ModuleData *moduleData)
+    : UpdateModule(thing, moduleData), m_f20(0)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x08;
-        __emit 0xbf;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0xb6;
-        __emit 0xfd;
-        __emit 0xe0;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x83;
-        __emit 0xc9;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x1c;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x08;
-        __emit 0x6a;
-        __emit 0x01;
-        __emit 0x52;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xdc;
-        __emit 0x64;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x18;
-        __emit 0x64;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x08;
-        __emit 0x64;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0xe8;
-        __emit 0x68;
-        __emit 0xe4;
-        __emit 0xe0;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+    setWakeFrame(getObject(), UPDATE_SLEEP_NONE);
 }
