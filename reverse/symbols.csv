@@ -68462,3 +68462,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?find@CustomPreferenceMapShim@@QAEPAUCustomMapNodeShim@@ABVAsciiString@@@Z,0x0000AEAC
 ?shutdownComplete@@YAXPAVWindowLayout@@@Z,0x004FFA40,WOLLoginMenuShutdown static helper
 ?reverse@GameWindowTransitionsHandler@@QAEXVAsciiString@@@Z,0x0048AEC0,WOLLoginMenuShutdown transition helper
+??0DrawModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00002874,Open-BFME5 W3DRopeDraw constructor base-call pin
