@@ -11,3 +11,6 @@ build/toolchains/vs2003/** -text
 reverse/functions.csv merge=union
 reverse/symbols.csv merge=union
 reverse/re_attempts.log merge=union
+# Append-only like the log above: two sessions adding sections at the end is
+# not a conflict, it is both of them being right.
+docs/lessons.md merge=union

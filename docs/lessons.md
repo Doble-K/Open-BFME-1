@@ -6040,3 +6040,21 @@ size is the only evidence, and it is enough.
 
 That is the same move as reading a vector's element size off its magic divide,
 applied to a tree instead.
+
+
+## Two sessions, one ledger
+
+Another session pushed seventy-seven commits while this one worked, and the
+rebase surfaced exactly one conflict: docs/lessons.md. functions.csv and
+re_attempts.log merged silently because .gitattributes gives them merge=union,
+and lessons.md is append-only in the same way but was never listed. It is now.
+
+The mistake worth recording is mine rather than the tooling's. My resolver's
+pattern did not match CRLF line endings, so it asserted and changed nothing --
+and I ran git add and rebase --continue anyway, committing three conflict
+markers into the file. The assert did its job; I ignored it because it was two
+commands earlier in the same block.
+
+An assert that fires and a command that proceeds regardless is worse than no
+assert, because the failure is now silent at the point it matters. When a guard
+fires in a batch, the rest of the batch is void.
