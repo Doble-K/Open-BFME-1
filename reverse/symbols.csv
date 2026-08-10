@@ -1,4 +1,6 @@
 name,address,notes
+?requestApproachPath@AIUpdateInterface@@QAEXPAUCoord3D@@@Z,0x00015D93,AIMoveAndTightenState::onEnter retail REL32 call target
+?removeGoal@Pathfinder@@QAEXPAVObject@@@Z,0x00015D02,AIMoveAndTightenState::onEnter retail REL32 call target
 ?freeMapResources@HeightMapRenderObjClass@@UAEHXZ,0x000225D4,HeightMapRenderObjClass destructor call target through retail ILT
 ?allocateID@DataChunkTableOfContents@@QAEIABVAsciiString@@@Z,0x0003EAA4,DataChunkOutput::writeNameKey retail ILT call target for DataChunkTableOfContents::allocateID body at 0x00103D60
 ??1GenericObjectCreationNuggetNames@@QAE@XZ,0x00026AB2,GenericObjectCreationNugget destructor names-member call target

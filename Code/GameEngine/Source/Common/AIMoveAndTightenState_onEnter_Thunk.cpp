@@ -1,141 +1,115 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the retail AIMoveAndTightenState::onEnter body to C++.
 
-enum StateReturnType { };
+enum StateReturnType
+{
+};
 
-class AIMoveAndTightenState
+struct Coord3D
+{
+	float x;
+	float y;
+	float z;
+};
+
+class Object;
+
+class Pathfinder
+{
+public:
+	void removeGoal(Object *obj);
+};
+
+class AIUpdateInterface
+{
+public:
+	void requestApproachPath(Coord3D *destination);
+};
+
+class AI
+{
+public:
+	Pathfinder *pathfinder(void) { return m_pathfinder; }
+
+private:
+	unsigned char m_unreconstructed_00[0x0C];
+	Pathfinder *m_pathfinder;
+};
+
+class Object
+{
+public:
+	AIUpdateInterface *getAI(void) { return m_ai; }
+
+private:
+	unsigned char m_unreconstructed_00[0x204];
+	AIUpdateInterface *m_ai;
+};
+
+class StateMachine
+{
+public:
+	unsigned char m_unreconstructed_00[0x10];
+	Object *m_owner;
+	unsigned char m_unreconstructed_14[0x10];
+	Coord3D m_goalPosition;
+};
+
+class AIInternalMoveToState
 {
 public:
 	virtual StateReturnType onEnter();
+
+	Object *getMachineOwner(void) const { return m_machine->m_owner; }
+	const Coord3D *getMachineGoalPosition(void) const { return &m_machine->m_goalPosition; }
+
+	protected:
+	unsigned char m_unreconstructed_04[0x18];
+	StateMachine *m_machine;
+	unsigned char m_unreconstructed_20[4];
+	Coord3D m_goalPosition;
+	unsigned char m_unreconstructed_30[0x1C];
+	unsigned char m_adjustDestinations;
 };
 
-// ?onEnter@AIMoveAndTightenState@@UAE?AW4StateReturnType@@XZ
-__declspec(naked) StateReturnType AIMoveAndTightenState::onEnter()
+class AIMoveAndTightenState : public AIInternalMoveToState
 {
-	__asm {
-		__emit 0xa0
-		__emit 0x39
-		__emit 0x02
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x84
-		__emit 0xc0
-		__emit 0x53
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x74
-		__emit 0x17
-		__emit 0xa1
-		__emit 0xfc
-		__emit 0xd4
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x0e
-		__emit 0x68
-		__emit 0x48
-		__emit 0x90
-		__emit 0x09
-		__emit 0x01
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xd8
-		__emit 0x66
-		__emit 0xec
-		__emit 0xff
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x1c
-		__emit 0xc6
-		__emit 0x46
-		__emit 0x4c
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x40
-		__emit 0x10
-		__emit 0x8b
-		__emit 0xb8
-		__emit 0x04
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0xb9
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x50
-		__emit 0x88
-		__emit 0x4e
-		__emit 0x54
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x14
-		__emit 0xf2
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x49
-		__emit 0x0c
-		__emit 0x50
-		__emit 0xe8
-		__emit 0x33
-		__emit 0x22
-		__emit 0xea
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x56
-		__emit 0x1c
-		__emit 0x83
-		__emit 0xc2
-		__emit 0x24
-		__emit 0x8b
-		__emit 0x1a
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x24
-		__emit 0x8b
-		__emit 0xc8
-		__emit 0x89
-		__emit 0x19
-		__emit 0x8b
-		__emit 0x5a
-		__emit 0x04
-		__emit 0x89
-		__emit 0x59
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x52
-		__emit 0x08
-		__emit 0x89
-		__emit 0x51
-		__emit 0x08
-		__emit 0x50
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0xa1
-		__emit 0x22
-		__emit 0xea
-		__emit 0xff
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xce
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0xe9
-		__emit 0x2b
-		__emit 0xe3
-		__emit 0xea
-		__emit 0xff
+public:
+	virtual StateReturnType onEnter();
+
+private:
+	int m_okToRepathTimes;
+	unsigned char m_checkForPath;
+};
+
+// These are the retail globals read by the debug guard and the pathfinder call.
+extern unsigned char g_012F0239;
+extern void *g_012ED4FC;
+extern AI *TheAI;
+
+// Existing incremental-link thunks.  Their generated declarations are no-arg
+// identities; the casts below supply the retail call signatures at each site.
+extern void j_0003a17a(void);
+
+typedef void (__cdecl *DebugLogFunction)(void *, const char *);
+
+// ?onEnter@AIMoveAndTightenState@@UAE?AW4StateReturnType@@XZ
+StateReturnType AIMoveAndTightenState::onEnter()
+{
+	if (g_012F0239 && g_012ED4FC)
+	{
+		((DebugLogFunction)j_0003a17a)(g_012ED4FC,
+			"CritterDesync: setAdjustDestination(FALSE) 7");
 	}
+
+	StateMachine *machine = m_machine;
+	m_adjustDestinations = 0;
+	Object *obj = machine->m_owner;
+	AIUpdateInterface *ai = obj->getAI();
+	m_okToRepathTimes = 1;
+	m_checkForPath = 1;
+	TheAI->pathfinder()->removeGoal(obj);
+	m_goalPosition = *getMachineGoalPosition();
+	ai->requestApproachPath(&m_goalPosition);
+	return AIInternalMoveToState::onEnter();
 }
