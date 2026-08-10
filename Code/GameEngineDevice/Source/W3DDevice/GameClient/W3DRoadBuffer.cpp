@@ -2931,9 +2931,11 @@ void W3DRoadBuffer::miter(Int ndx1, Int ndx2)
 //=============================================================================
 /** Insertes curves at the corner of 2 segments. */
 //=============================================================================
-// ?insertCurveSegmentAt@W3DRoadBuffer@@IAEXHH@Z present-unmatched
 void W3DRoadBuffer::insertCurveSegmentAt(Int ndx1, Int ndx2)
 {
+	if (!m_initialized) {
+		return;
+	}
 	const Real DOT_LIMIT = 0.5f;	// If the dot product of the new line is less than this, abort.
 	Real radius = m_roads[ndx1].m_curveRadius*m_roads[ndx1].m_scale;
 	Vector2 originalPt = m_roads[ndx1].m_pt1.loc;
@@ -3468,4 +3470,3 @@ void W3DRoadBuffer::drawRoads(CameraClass * camera, TextureClass *cloudTexture, 
 #endif
 	m_curRoadType = 0;
 }
-
