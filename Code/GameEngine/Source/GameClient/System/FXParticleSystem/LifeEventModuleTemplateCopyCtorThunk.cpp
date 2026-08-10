@@ -1,171 +1,67 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /O2 /Ob2
 
 namespace FXParticleSystem
 {
-class LifeEventModuleTemplate
+
+class LifeEventModuleInfo
 {
 public:
-    LifeEventModuleTemplate(const LifeEventModuleTemplate &);
+    LifeEventModuleInfo(const LifeEventModuleInfo &);
+    virtual ~LifeEventModuleInfo();
 };
 
-__declspec(naked) LifeEventModuleTemplate::LifeEventModuleTemplate(const LifeEventModuleTemplate &)
+class LifeEventCategoryBaseA
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 018h
-        _emit 0AEh
-        _emit 003h
-        _emit 001h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 014h
-        _emit 085h
-        _emit 0C0h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 0C7h
-        _emit 046h
-        _emit 004h
-        _emit 05Ch
-        _emit 037h
-        _emit 007h
-        _emit 001h
-        _emit 057h
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 008h
-        _emit 0C7h
-        _emit 006h
-        _emit 030h
-        _emit 038h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 004h
-        _emit 02Ch
-        _emit 038h
-        _emit 007h
-        _emit 001h
-        _emit 074h
-        _emit 005h
-        _emit 08Dh
-        _emit 048h
-        _emit 008h
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0C9h
-        _emit 066h
-        _emit 08Bh
-        _emit 009h
-        _emit 066h
-        _emit 089h
-        _emit 04Eh
-        _emit 008h
-        _emit 0C7h
-        _emit 006h
-        _emit 048h
-        _emit 038h
-        _emit 007h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 004h
-        _emit 044h
-        _emit 038h
-        _emit 007h
-        _emit 001h
-        _emit 085h
-        _emit 0C0h
-        _emit 0C7h
-        _emit 044h
-        _emit 024h
-        _emit 014h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 074h
-        _emit 005h
-        _emit 083h
-        _emit 0C0h
-        _emit 00Ch
-        _emit 0EBh
-        _emit 002h
-        _emit 033h
-        _emit 0C0h
-        _emit 08Dh
-        _emit 07Eh
-        _emit 00Ch
-        _emit 050h
-        _emit 08Bh
-        _emit 0CFh
-        _emit 0E8h
-        _emit 0BDh
-        _emit 06Ah
-        _emit 0A2h
-        _emit 0FFh
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 00Ch
-        _emit 0C7h
-        _emit 007h
-        _emit 0A4h
-        _emit 012h
-        _emit 011h
-        _emit 001h
-        _emit 0C7h
-        _emit 006h
-        _emit 090h
-        _emit 012h
-        _emit 011h
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 004h
-        _emit 08Ch
-        _emit 012h
-        _emit 011h
-        _emit 001h
-        _emit 05Fh
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C2h
-        _emit 004h
-        _emit 000h
+public:
+    virtual ~LifeEventCategoryBaseA();
+};
+
+class LifeEventCategoryBaseB
+{
+public:
+    virtual ~LifeEventCategoryBaseB();
+};
+
+class LifeEventCategoryBase
+    : public LifeEventCategoryBaseA,
+      public LifeEventCategoryBaseB
+{
+public:
+    LifeEventCategoryBase(const LifeEventCategoryBase &) {}
+    virtual ~LifeEventCategoryBase();
+};
+
+class LifeEventCategoryTemplate : public LifeEventCategoryBase
+{
+public:
+    LifeEventCategoryTemplate(const LifeEventCategoryTemplate &that)
+        : LifeEventCategoryBase(that)
+    {
+        const void *source = &that;
+        const void *word_source = source ? (const unsigned char *)source + 8 : 0;
+        m_word = *(const unsigned short *)word_source;
+        *(volatile unsigned int *)this = 0x01073848;
+        *(volatile unsigned int *)((unsigned char *)this + 4) = 0x01073844;
     }
+    virtual ~LifeEventCategoryTemplate();
+
+private:
+    volatile unsigned short m_word;
+};
+
+class LifeEventModuleTemplate : public LifeEventCategoryTemplate,
+                                       public LifeEventModuleInfo
+{
+public:
+    LifeEventModuleTemplate(const LifeEventModuleTemplate &that);
+    virtual ~LifeEventModuleTemplate();
+};
+
+// ??0LifeEventModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z
+LifeEventModuleTemplate::LifeEventModuleTemplate(const LifeEventModuleTemplate &that)
+    : LifeEventCategoryTemplate(that),
+      LifeEventModuleInfo(that)
+{
 }
+
 }

@@ -1,156 +1,87 @@
 // cl: /DNDEBUG /MD /EHsc
+// Cloned from the DynamicPortalBehaviour model: identical body once relocation
+// immediates are masked so the same class shape reproduces it.
 // Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) QueueProductionExitUpdate
+class MemoryPool
+{
+public:
+    ~MemoryPool();
+};
+
+class Gen_dtor_00113f20
+{
+public:
+    virtual void anchor();
+    virtual ~Gen_dtor_00113f20();
+    const void *m_moduleData;
+};
+
+class DynamicPortalObjectModule : public Gen_dtor_00113f20
+{
+public:
+    void *m_object;
+};
+
+class QueueProductionExitUpdateInterface
+{
+public:
+    virtual void anchor();
+};
+
+class DynamicPortalUpgradeMux
+{
+public:
+    virtual void anchor();
+    bool m_upgradeExecuted;
+};
+
+class DynamicPortalModuleInterface
+{
+public:
+    virtual void anchor();
+};
+
+class QueueProductionExitUpdateModule
+    : public DynamicPortalObjectModule,
+      public QueueProductionExitUpdateInterface
+{
+public:
+    virtual ~QueueProductionExitUpdateModule() {}
+};
+
+class DynamicPortalUpgradeModule
+    : public QueueProductionExitUpdateModule,
+      public DynamicPortalUpgradeMux,
+      public DynamicPortalModuleInterface
+{
+public:
+    virtual ~DynamicPortalUpgradeModule() {}
+};
+
+class DynamicPortalBase4
+{
+public:
+    virtual void anchor();
+};
+
+class DynamicPortalBase5
+{
+public:
+    virtual void anchor();
+};
+
+class QueueProductionExitUpdate
+    : public DynamicPortalUpgradeModule,
+      public DynamicPortalBase4,
+      public DynamicPortalBase5
 {
 public:
     virtual ~QueueProductionExitUpdate();
 };
 
 // ??1QueueProductionExitUpdate@@UAE@XZ
-__declspec(naked) QueueProductionExitUpdate::~QueueProductionExitUpdate()
+QueueProductionExitUpdate::~QueueProductionExitUpdate()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x38
-        __emit 0xb0
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x7c
-        __emit 0x39
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0xb8
-        __emit 0x38
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0x68
-        __emit 0x38
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0x58
-        __emit 0x38
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x54
-        __emit 0x38
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0x44
-        __emit 0x38
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xdd
-        __emit 0x39
-        __emit 0xe4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xe0
-        __emit 0x36
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0xcc
-        __emit 0x36
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x5c
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x98
-        __emit 0xca
-        __emit 0x09
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xc6
-        __emit 0xee
-        __emit 0xe4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+    reinterpret_cast<MemoryPool *>(this)->~MemoryPool();
 }

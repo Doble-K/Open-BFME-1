@@ -6726,3 +6726,42 @@ array; an array member would be stored through the object register directly.
 
 FireWeaponCollide's factory, the same shape, zeroes 0x0c through 0x24 twice
 over. That is the duplicate-zero-store family, so it was not attempted.
+
+
+## A naked source passes the byte gate, so OK N/N can be a false positive
+
+Writing seven cloned files and building them reported `Functions: OK 7/7
+matched`. No files had been written -- an assertion earlier in the same script
+had fired and stopped it. The seven sources were still `__declspec(naked)`
+dumps, and a naked dump reproduces its own bytes by construction.
+
+The gate answers "do these bytes match", which is the right question only once
+the source is real C++. It cannot tell a correct conversion from an unconverted
+one. Every batch that writes sources should assert afterwards that none of the
+targets still contains `__declspec(naked)`, and that is now in the clone script.
+
+This is the second time in two ticks that an assertion fired mid-batch and the
+rest of the batch ran anyway. The rule already existed. What was missing was a
+post-condition that would have caught it regardless of why the write did not
+happen.
+
+## Matching normalised bodies finds work that needs no analysis
+
+Two ticks of picking candidates by shape produced no conversions. Normalising
+every naked single-row body instead -- zeroing rel32 operands and any four-byte
+immediate that looks like an image address -- and hashing it against the bodies
+of already-converted rows found 20 exact twins out of 982.
+
+Twelve converted immediately, most by substituting one class name into an
+existing model, because ICF folds identical bodies and the ledger carries a row
+per name. Seven UpgradeModuleData constructors are literally one body at
+0x129C10 with seven names.
+
+Only the final class name reaches the mangled symbol, so helper classes in a
+model can keep their original names; a token substitution on the one name that
+matters is enough. One of the twenty did not clone -- DynamicPortalBehaviour's
+constructor against QueueProductionExitUpdate's -- so an exact normalised match
+is a strong lead rather than a guarantee.
+
+Worth doing again whenever a batch of conversions lands: each newly converted
+body becomes a model for whatever still matches it.

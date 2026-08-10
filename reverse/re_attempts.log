@@ -2838,3 +2838,17 @@ dtor-virtual-bit-screen		134	tooling	screened every naked single-row destructor 
 ?friend_newModuleData@SabotageMilitaryFactoryCrateCollide@@SAPAVModuleData@@PAVINI@@@Z	0x0012B650	87	attempted	4 builds; reverted. throw() on every ctor the new-expression reaches removed the EH frame and the prologue then matched retail exactly. Residual is that MSVC emits a call to the derived ctor instead of inlining it; in-class definition defined destructors and a fully implicit ctor all produced byte-identical output
 ?friend_newModuleData@FireWeaponCollide@@SAPAVModuleData@@PAVINI@@@Z	0x00127D00	106	suspect-blocker	not attempted. Zeroes 0x0c through 0x24 twice over -- the duplicate-zero-store dead-code family
 ??$__destroy@U?$_Deque_iterator@VGameResultsRequest@@	0x00641550	78	skipped	forwards two 16-byte deque iterators by value to a synthetic j_ callee; would require inventing that signature
+??0ArmorUpgradeModuleData@@QAE@XZ	0x00129C10	90	converted	cloned from StealthUpgradeModuleData; same ICF-folded body
+??0AttributeModifierUpgradeModuleData@@QAE@XZ	0x00129C10	90	converted	cloned from StealthUpgradeModuleData
+??0CastleUpgradeModuleData@@QAE@XZ	0x00129C10	90	converted	cloned from StealthUpgradeModuleData
+??0DelayedUpgradeModuleData@@QAE@XZ	0x00129C10	90	converted	cloned from StealthUpgradeModuleData
+??0LevelUpUpgradeModuleData@@QAE@XZ	0x00129C10	90	converted	cloned from StealthUpgradeModuleData
+??0LocomotorSetUpgradeModuleData@@QAE@XZ	0x00129C10	90	converted	cloned from StealthUpgradeModuleData
+??0RadarUpgradeModuleData@@QAE@XZ	0x00129C10	90	converted	cloned from StealthUpgradeModuleData
+??1QueueProductionExitUpdate@@UAE@XZ		141	converted	cloned from DynamicPortalBehaviour's destructor
+??1RebuildHoleBehavior@@UAE@XZ		141	converted	cloned from DynamicPortalBehaviour's destructor
+??1BaseUpgradeModuleData@@UAE@XZ		96	converted	cloned from TooltipUpgradeModuleData's destructor
+??0RenderObjectDrawModuleTemplate@FXParticleSystem@@QAE@XZ		106	converted	cloned from LightningDrawModuleTemplate
+??0LifeEventModuleTemplate@FXParticleSystem@@QAE@ABV01@@Z		155	converted	cloned from TerrainCollisionModuleTemplate's copy ctor
+??0DynamicPortalBehaviour@@QAE@PAVThing@@PBVModuleData@@@Z		107	attempted	1 build; reverted. Normalised body matches QueueProductionExitUpdate's ctor but cloning that model did not reproduce it
+clone-screen		982	tooling	normalised every naked single-row body -- masking rel32 operands and absolute-address immediates -- and matched against converted rows. 20 of 982 had an exact twin; 12 converted this tick
