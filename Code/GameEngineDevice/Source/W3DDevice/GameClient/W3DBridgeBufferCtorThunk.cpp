@@ -1,153 +1,67 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift the W3DBridgeBuffer constructor MASM dump to clean C++.
+//
+// The 200-element array of 0x114-byte bridges at +0x18 is built through
+// `eh vector constructor iterator' (??_L at 0x009F6EE4), which is what the
+// pushed size/count/ctor/dtor quartet is; 0x18 + 200 * 0x114 lands exactly on
+// +0xD7B8, so the two scalars behind it close the object.
+//
 
-class W3DBridgeBuffer
+class BridgeInfo
 {
 public:
-    W3DBridgeBuffer();
+	BridgeInfo();					///< element ctor at 0x00437AF6
+	~BridgeInfo();				///< element dtor at 0x00418174
+
+private:
+	unsigned char m_unreconstructed_00[0x114];
+};
+
+// Retail tracks two unwind states -- 0 before the array call, 1 after -- so a
+// destructible subobject precedes the array. The six words at +0 are that base:
+// its constructor writes +0xC, which is the one store retail makes before the
+// array is built, and its declared destructor is what earns the extra state.
+class BridgeBufferBase
+{
+public:
+	BridgeBufferBase() : m_0c(0) {}
+	~BridgeBufferBase();
+
+	unsigned int m_00;
+	unsigned int m_04;
+	unsigned int m_08;
+	unsigned int m_0c;
+	unsigned int m_10;
+	unsigned int m_14;
+};
+
+class W3DBridgeBuffer : public BridgeBufferBase
+{
+public:
+	W3DBridgeBuffer();
+
+private:
+	void freeBridgeBuffers(void);		///< ILT 0x00003E59
+	void allocateBridgeBuffers(void);	///< ILT 0x0002EF2D
+
+	BridgeInfo m_bridges[200];		///< retail this+0x18 .. +0xD7B8
+	unsigned int m_d7b8;
+	bool m_d7bc;
 };
 
 // ??0W3DBridgeBuffer@@QAE@XZ
-__declspec(naked) W3DBridgeBuffer::W3DBridgeBuffer()
+W3DBridgeBuffer::W3DBridgeBuffer()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x57;
-        __emit 0xab;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x0c;
-        __emit 0x68;
-        __emit 0x74;
-        __emit 0x81;
-        __emit 0x41;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0xf6;
-        __emit 0x7a;
-        __emit 0x43;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0xc8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0x14;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0x50;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x28;
-        __emit 0xe8;
-        __emit 0x40;
-        __emit 0xe3;
-        __emit 0x31;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x01;
-        __emit 0x88;
-        __emit 0x9e;
-        __emit 0xbc;
-        __emit 0xd7;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x1e;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x9e;
-        __emit 0xb8;
-        __emit 0xd7;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x8f;
-        __emit 0xb2;
-        __emit 0x92;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x5c;
-        __emit 0x63;
-        __emit 0x95;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xc6;
-        __emit 0x86;
-        __emit 0xbc;
-        __emit 0xd7;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_d7bc = false;
+	m_08 = 0;
+	m_00 = 0;
+	m_04 = 0;
+	m_10 = 0;
+	m_14 = 0;
+	m_d7b8 = 0;
+
+	freeBridgeBuffers();
+	allocateBridgeBuffers();
+
+	m_d7bc = true;
 }
