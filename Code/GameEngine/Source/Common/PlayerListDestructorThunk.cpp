@@ -1,153 +1,52 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// stlport
+#define Matrix4x4 Matrix4
+#define __PLACEMENT_VEC_NEW_INLINE
 
-class __declspec(novtable) PlayerList
+class SubsystemInterface
 {
 public:
-    virtual ~PlayerList();
+	virtual ~SubsystemInterface();
+
+private:
+	void *m_name;
 };
 
-// ??1PlayerList@@UAE@XZ
-__declspec(naked) PlayerList::~PlayerList()
+class Snapshot
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x4f
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x00
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x53
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x89
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x7c
-        __emit 0x41
-        __emit 0x08
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x47
-        __emit 0x08
-        __emit 0x68
-        __emit 0x41
-        __emit 0x08
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x77
-        __emit 0x14
-        __emit 0xbb
-        __emit 0x20
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x0e
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x04
-        __emit 0x4b
-        __emit 0x75
-        __emit 0xe8
-        __emit 0xc7
-        __emit 0x05
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xc7
-        __emit 0x47
-        __emit 0x08
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x28
-        __emit 0x20
-        __emit 0x8c
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
-    }
+public:
+	~Snapshot() {}
+	virtual void crc() = 0;
+	virtual void xfer() = 0;
+	virtual void loadPostProcess() = 0;
+};
+
+class Player
+{
+public:
+	virtual ~Player();
+};
+
+class PlayerList : public SubsystemInterface, public Snapshot
+{
+public:
+	virtual ~PlayerList();
+
+private:
+	Player *m_local;
+	int m_playerCount;
+	Player *m_players[32];
+};
+
+extern PlayerList *ThePlayerList;
+
+// ??1PlayerList@@UAE@XZ
+PlayerList::~PlayerList()
+{
+	for (int i = 0; i < 32; ++i) {
+		delete m_players[i];
+		m_players[i] = 0;
+	}
+
+	ThePlayerList = 0;
 }
