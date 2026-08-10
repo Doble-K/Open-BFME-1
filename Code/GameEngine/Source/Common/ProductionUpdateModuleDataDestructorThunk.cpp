@@ -1,141 +1,80 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: clean C++ lift of the ProductionUpdateModuleData destructor.
 
-class __declspec(novtable) ProductionUpdateModuleData
+extern "C" __declspec(dllimport) long __stdcall InterlockedDecrement(long volatile *lpAddend);
+
+class BFMERetailAsciiString
 {
 public:
-    virtual ~ProductionUpdateModuleData();
+	~BFMERetailAsciiString() { releaseBuffer(); }
+
+private:
+	void releaseBuffer();
+
+	char *m_data;
+};
+
+class RefCountedThing
+{
+public:
+	virtual ~RefCountedThing();
+
+	void Release_Ref(void)
+	{
+		if (InterlockedDecrement(&m_refCount) <= 0) {
+			delete this;
+		}
+	}
+
+	long m_refCount;
+};
+
+class ThingRef
+{
+public:
+	~ThingRef()
+	{
+		if (m_ptr) {
+			m_ptr->Release_Ref();
+		}
+	}
+
+private:
+	RefCountedThing *m_ptr;
+};
+
+class Snapshot
+{
+public:
+	virtual ~Snapshot() {}
+
+private:
+	unsigned char m_pad[0x18];
+};
+
+// Stand-in for the non-inline 12-byte member teardown at retail 0x0003BD59.
+class ProductionUpdateModuleDataBase
+{
+public:
+	virtual ~ProductionUpdateModuleDataBase();
+
+private:
+	unsigned char m_pad[8];
+};
+
+class ProductionUpdateModuleData : public Snapshot
+{
+public:
+	virtual ~ProductionUpdateModuleData();
+
+private:
+	ProductionUpdateModuleDataBase m_quantityModifiers;
+	unsigned char m_gap[0x18];
+	BFMERetailAsciiString m_name;
+	ThingRef m_ref;
 };
 
 // ??1ProductionUpdateModuleData@@UAE@XZ
-__declspec(naked) ProductionUpdateModuleData::~ProductionUpdateModuleData()
+ProductionUpdateModuleData::~ProductionUpdateModuleData()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x5e
-        __emit 0x23
-        __emit 0x01
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x68
-        __emit 0x0f
-        __emit 0x0c
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x7e
-        __emit 0x44
-        __emit 0x85
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x1a
-        __emit 0x8d
-        __emit 0x47
-        __emit 0x04
-        __emit 0x50
-        __emit 0xff
-        __emit 0x15
-        __emit 0x54
-        __emit 0x8e
-        __emit 0x35
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7f
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x17
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xff
-        __emit 0x12
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x40
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x86
-        __emit 0x96
-        __emit 0x5e
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x1c
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x92
-        __emit 0xda
-        __emit 0xd9
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
