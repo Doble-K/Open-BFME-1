@@ -94,6 +94,31 @@ private:
     unsigned char m_storage[0x10];
 };
 
+class BoxEmissionVolumeTemplateParseShim {
+public:
+    void parse(INI *ini);
+};
+
+class BoxEmissionVolumeTemplateAllocation {
+public:
+    __forceinline BoxEmissionVolumeTemplateAllocation()
+    {
+        volatile unsigned int *vtableSlots = (unsigned int *)this;
+        vtableSlots[1] = 0x0110f9ac;
+        *((volatile unsigned char *)this + 0x0c) = 0;
+        vtableSlots[2] = 0x011109cc;
+        vtableSlots[4] = 0;
+        vtableSlots[5] = 0;
+        vtableSlots[6] = 0;
+        vtableSlots[0] = 0x011111d4;
+        vtableSlots[1] = 0x011111d0;
+        vtableSlots[2] = 0x011111bc;
+    }
+
+private:
+    unsigned char m_storage[0x1c];
+};
+
 class PointEmissionVolumeModuleCtorShim {
 public:
     void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
@@ -3046,141 +3071,12 @@ ConcreteModuleClass<ModuleTag<5, BOX_EMISSION_VOLUME_MODULE_KEY, BOX_EMISSION_VO
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?BOX_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?BOX_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVBoxEmissionVolumeModule@2@VBoxEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVBoxEmissionVolumeModuleTemplate@2@PAVINI@@@Z
-__declspec(naked) BoxEmissionVolumeModuleTemplate *ConcreteModuleClass<ModuleTag<5, BOX_EMISSION_VOLUME_MODULE_KEY, BOX_EMISSION_VOLUME_MODULE_NAME, BoxEmissionVolumeModule, BoxEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createTemplate(INI *ini) const
+BoxEmissionVolumeModuleTemplate *ConcreteModuleClass<ModuleTag<5, BOX_EMISSION_VOLUME_MODULE_KEY, BOX_EMISSION_VOLUME_MODULE_NAME, BoxEmissionVolumeModule, BoxEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createTemplate(INI *ini) const
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xb8
-        __emit 0xb4
-        __emit 0x03
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x1c
-        __emit 0xe8
-        __emit 0xf2
-        __emit 0x07
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x74
-        __emit 0x32
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xac
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0x88
-        __emit 0x48
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0xcc
-        __emit 0x09
-        __emit 0x11
-        __emit 0x01
-        __emit 0x89
-        __emit 0x48
-        __emit 0x10
-        __emit 0x89
-        __emit 0x48
-        __emit 0x14
-        __emit 0x89
-        __emit 0x48
-        __emit 0x18
-        __emit 0xc7
-        __emit 0x00
-        __emit 0xd4
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xd0
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0xbc
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x0a
-        __emit 0x62
-        __emit 0xa4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    std::auto_ptr<BoxEmissionVolumeModuleTemplate> moduleTemplate(
+        (BoxEmissionVolumeModuleTemplate *)new BoxEmissionVolumeTemplateAllocation);
+    ((BoxEmissionVolumeTemplateParseShim *)moduleTemplate.get())->parse(ini);
+    return moduleTemplate.release();
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?BOX_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?BOX_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVBoxEmissionVolumeModule@2@VBoxEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVBoxEmissionVolumeModuleTemplate@2@XZ
