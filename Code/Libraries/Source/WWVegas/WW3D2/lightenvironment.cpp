@@ -386,26 +386,27 @@ void LightEnvironmentClass::Add_Fill_Light(void)
 ** This final light is used to support the top 3 lights by providing a calulated fill to augment the lights.
 **
 ************************************************************************************************/
-// ?Calculate_Fill_Light@LightEnvironmentClass@@QAEXXZ present-unmatched
 void LightEnvironmentClass::Calculate_Fill_Light(void)
 {	
+	LightEnvironmentClass *bfme = reinterpret_cast<LightEnvironmentClass *>(reinterpret_cast<char *>(this) + 4);
+
 	// Early exit if we have no lights at all or if the fill light intensity is zero
-	if (LightCount == 0 || FillIntensity == 0.0f) return;
+	if (bfme->LightCount == 0 || bfme->FillIntensity == 0.0f) return;
 
 	// Initialize the averaged light to the primary light source (light with the most contribution)
-	float primary_contribution = InputLights[0].Contribution();
-	InputLightStruct average_light = InputLights[0]; 
+	float primary_contribution = bfme->InputLights[0].Contribution();
+	InputLightStruct average_light = bfme->InputLights[0];
 
 	// Loop through the remaining lights on the list (up to 2) and add their contributions to the averaged light
-	int num_lights = min(LightCount, MAX_LIGHTS - 1); 
+	int num_lights = min(bfme->LightCount, MAX_LIGHTS - 1);
 	for (int i = 1; i < num_lights; ++i) {
 		
 		// The ratio is the percentage of the remaining light's contribution compared to the primary light source
-		float ratio = InputLights[i].Contribution() / primary_contribution;
+		float ratio = bfme->InputLights[i].Contribution() / primary_contribution;
 		
-		average_light.Direction += (InputLights[i].Direction * ratio);
-		average_light.Ambient	+= (InputLights[i].Ambient * ratio);
-		average_light.Diffuse	+= (InputLights[i].Diffuse * ratio);
+		average_light.Direction += (bfme->InputLights[i].Direction * ratio);
+		average_light.Ambient	+= (bfme->InputLights[i].Ambient * ratio);
+		average_light.Diffuse	+= (bfme->InputLights[i].Diffuse * ratio);
 	}
 	
 	// Normalize the averaged light direction
@@ -419,18 +420,16 @@ void LightEnvironmentClass::Calculate_Fill_Light(void)
 	if(temp.X > 360.0f) {
 		temp.X -= 360.0f;
 	}
-	temp.Z *= FillIntensity;	// fraction of the intensity
-	HSV_To_RGB(FillLight.Diffuse, temp);	
+	temp.Z *= bfme->FillIntensity;	// fraction of the intensity
+	HSV_To_RGB(bfme->FillLight.Diffuse, temp);
 
 	// Zero out the fill ambient
-	FillLight.Ambient.Set(0.0f, 0.0f, 0.0f);
+	bfme->FillLight.Ambient.Set(0.0f, 0.0f, 0.0f);
 
 	// now we set the fill light direction to be opposite the average light
-	FillLight.Direction = average_light.Direction * (-1.0f);		
-	FillLight.DiffuseRejected = false;
+	bfme->FillLight.Direction = average_light.Direction * (-1.0f);
+	bfme->FillLight.DiffuseRejected = false;
 
 	// Add the fill light into the InputLights list
 	Add_Fill_Light();
 }
-
-

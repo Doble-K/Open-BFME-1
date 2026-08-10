@@ -5131,6 +5131,7 @@ name,address,notes
 ?Add_Prototype_Impl@AssetRegistry@@QAEXPAX@Z,0x009EF1A0,Add_Prototype thiscall impl body
 ?Add_To_Collection@CullSystemClass@@IAEXPAVCullableClass@@@Z,0x008E21D0
 ?Add_To_Static_Sort_List@WW3D@@SAXPAVRenderObjClass@@I@Z,0x008FD4C0
+?Add_Fill_Light@LightEnvironmentClass@@QAEXXZ,0x0094ACB0,retail callee for Calculate_Fill_Light
 ?Alloc@FastAllocatorGeneral@@QAEPAXI@Z,0x00AFEE40,decoded from Allocate_Memory call site
 ?Allocate_DX8_Dynamic_Buffer@DynamicIBAccessClass@@QAEXXZ,0x0091D560
 ?Allocate_Object_Memory@?$ObjectPoolClass@VCameraShakerClass@CameraShakeSystemClass@@$0BAA@@@QAEPAVCameraShakerClass@CameraShakeSystemClass@@XZ,0x00002603,pinharvest x1 (thunk)
