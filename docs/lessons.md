@@ -6260,3 +6260,30 @@ assumes the two are equal produces five correct files and one that fails.
 
 Worth checking per candidate rather than deriving, because it is exactly the kind
 of detail a family template makes invisible.
+
+
+## The vptr blocker is only the disagreement, not the sink
+
+AIAttackSquadState has two zeroed members and retail sinks its vptr store past
+them. MSVC sinks identically, and it matched on the first build.
+
+That sharpens what was recorded last tick. The blocker is not "more than one
+member" -- it is only the subset where retail keeps the store in front and MSVC
+sinks it anyway. Where retail sinks, the compiler agrees for free and there is
+nothing to work around. AIMoveAndEvacuateState is blocked because retail does not
+sink; AIAttackSquadState is not blocked because retail does.
+
+So the screen for this family is: read whether the vptr store precedes or follows
+the member stores in retail, and only park the ones where it precedes them and
+there is more than one member.
+
+## A parameter that is never stored
+
+AIAttackSquadState takes an AttackExitConditionsInterface* and does nothing with
+it -- retail zeroes both members and ignores the argument. The signature is not
+optional, because it is in the mangled name and the caller pushes it, but the
+body must not use it.
+
+Writing the obvious source, which assigns the parameter to the member at 0x24,
+would have produced a store retail does not have. The argument being present in
+the signature says nothing about whether the body touches it.
