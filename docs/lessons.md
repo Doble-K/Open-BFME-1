@@ -6058,3 +6058,21 @@ commands earlier in the same block.
 An assert that fires and a command that proceeds regardless is worse than no
 assert, because the failure is now silent at the point it matters. When a guard
 fires in a batch, the rest of the batch is void.
+
+
+## A zero displacement means the symbol, not the code
+
+friend_makeVeterancyUpgrade compiled to retail's exact instruction sequence with
+one call left as e8 00 00 00 00. A zero REL32 is not a scheduling difference or a
+wrong address -- it is the linker having nothing to resolve, because the symbol
+the source declared is not the symbol that is pinned.
+
+Here the culprit was a return type. nameToKey mangles as
+?nameToKey@NameKeyGenerator@@QAE?AW4NameKeyType@@PBD@Z, where ?AW4NameKeyType@@
+says the return is an enum. Declaring NameKeyType as a typedef to unsigned int
+mangles the same function as ...QAEIPBD@Z and nothing matches. Making it an enum
+fixed it in one build.
+
+So when a call comes out zeroed, stop reading the disassembly and read the
+mangled name of the callee instead. W4 is an enum, I is unsigned int, H is int,
+and they are three different functions as far as the linker is concerned.

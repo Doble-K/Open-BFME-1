@@ -68497,3 +68497,5 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??0DeployStyleAIUpdateMember@@QAE@XZ,0x0001A9B0,DeployStyleAIUpdate member ctor at this+0x340
 ??0?$StringBase@D@@AAE@ABV0@@Z,0x00887B60,ScriptActions doPlayerSetOverrideRelationToTeam AsciiString temporary copy
 ?setTeamRelationship@Player@@QAEXPBVTeam@@W4Relationship@@@Z,0x000147D6,ScriptActions doPlayerSetOverrideRelationToTeam Player member call
+
+?releaseBuffer@AsciiString@@AAEXXZ,0x00887940,same body already pinned as ?releaseBuffer@BFMERetailAsciiString and ??1AsciiString; BFMERetailAsciiString is this tree's stand-in name for the same class
