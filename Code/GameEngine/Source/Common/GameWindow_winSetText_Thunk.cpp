@@ -1,135 +1,72 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the GameWindow::winSetText MASM dump to clean C++.
+//
+// The string body lives on StringBase<unsigned short> with private constructors
+// and UnicodeString as the friend, which is what mangles the copy and the
+// destructor to ??0?$StringBase@G@@AAE@ABV0@@Z and ??1?$StringBase@G@@AAE@XZ
+// rather than to UnicodeString's own names.
+//
+// The by-value parameter is copied once for the instance-data setter and then
+// passed by address to the callback's fourth virtual, and MSVC destroys the
+// parameter in the callee, which is the trailing releaseBuffer call.
 
-class UnicodeString
+class UnicodeString;
+
+template <class T>
+class StringBase
+{
+private:
+	friend class UnicodeString;
+
+	StringBase(const StringBase<T> &other);		///< body at 0x00888400
+	~StringBase();								///< body at 0x008881D0
+
+	void *m_data;
+};
+
+class UnicodeString : public StringBase<unsigned short>
 {
 public:
-	unsigned char pad[16];
+	UnicodeString(const UnicodeString &other) : StringBase<unsigned short>(other) {}
+	~UnicodeString() {}
+};
+
+// Shim so the call keeps retail's ILT thunk at 0x00004205 rather than resolving
+// to the matched WinInstanceData::setText body directly.
+class WinInstanceDataShim
+{
+public:
+	void setText(UnicodeString text);
+};
+
+class GameWindowCallback
+{
+public:
+	virtual void callbackSlot0();
+	virtual void callbackSlot1();
+	virtual void callbackSlot2();
+	virtual void onTextChanged(UnicodeString *text);	///< vtable +0xC
 };
 
 class GameWindow
 {
 public:
-	virtual int winSetText(UnicodeString);
+	virtual int winSetText(UnicodeString text);
+
+	GameWindowCallback *m_callback;				///< retail this+0x04
+	unsigned char m_unreconstructed_08[0x28];
+	WinInstanceDataShim m_instData;				///< retail this+0x30
 };
 
 // ?winSetText@GameWindow@@UAEHVUnicodeString@@@Z
-__declspec(naked) int GameWindow::winSetText(UnicodeString)
+int GameWindow::winSetText(UnicodeString text)
 {
-	__asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x58
-        __emit 0x64
-        __emit 0x02
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x50
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x6e
-        __emit 0xed
-        __emit 0x40
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x30
-        __emit 0xe8
-        __emit 0x6b
-        __emit 0xab
-        __emit 0xb8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x50
-        __emit 0xff
-        __emit 0x52
-        __emit 0x0c
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x12
-        __emit 0xeb
-        __emit 0x40
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	m_instData.setText(text);
+
+	if (m_callback != 0)
+	{
+		m_callback->onTextChanged(&text);
 	}
+
+	return 0;
 }

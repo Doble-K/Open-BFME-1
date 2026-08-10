@@ -68523,3 +68523,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 
 ??0AIInternalMoveToState@@QAE@PAVStateMachine@@VAsciiString@@@Z,0x0014F280,base ctor of 13 retail State subclasses; the reference declares exactly those classes deriving from AIInternalMoveToState and its ctor takes (StateMachine* AsciiString) by value which matches the copy-then-pass at this address
 ??0TurretState@@IAE@PAVTurretStateMachine@@VAsciiString@@@Z,0x0018D890,base ctor of the five retail TurretAI states; the reference declares TurretState with exactly those children and its ctor is protected taking TurretStateMachine* and AsciiString by value
+?setText@WinInstanceDataShim@@QAEXVUnicodeString@@@Z,0x00004205,WinInstanceData::setText via ILT thunk

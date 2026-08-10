@@ -81005,7 +81005,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winSetPrevInLayout@GameWindow@@QAEXPAV1@@Z,,0x00478DD0,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
 ?winSetSize@GameWindow@@QAEHHH@Z,,0x00478250,63,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,thunk-dump converted to clean C++; ILT thunk 0x482AC -> body 0x478250
 ?winSetStatus@GameWindow@@QAEII@Z,,0x00840FC0,19,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,
-?winSetText@GameWindow@@UAEHVUnicodeString@@@Z,,0x00479660,114,Code/GameEngine/Source/Common/GameWindow_winSetText_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?winSetText@GameWindow@@UAEHVUnicodeString@@@Z,,0x00479660,114,Code/GameEngine/Source/Common/GameWindow_winSetText_Thunk.cpp,matched,Open-BFME5 clean C++; StringBase<G> friend shim; setText via ILT 0x4205
 ?winSetTooltipFunc@GameWindow@@QAEHP6AXPAV1@PAVWinInstanceData@@I@Z@Z,,0x00478EB0,15,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_tooltip@0x1ec
 ?winSetUserData@GameWindow@@QAEXPAX@Z,,0x00478C80,10,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_userData@0x2c
 ?winTextLabelToText@GameWindowManager@@QAE?AVUnicodeString@@VAsciiString@@@Z,,0x0047E1B0,175,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_winTextLabelToText_Thunk.cpp,matched,Open-BFME5 lift 175B retail MASM to standalone C++ thunk
