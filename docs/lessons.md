@@ -5867,3 +5867,36 @@ The general form: /EHsc versus /EHs-c- is not one lever but two, the temporary
 bookkeeping and the unwind frame. When retail shows one without the other, the
 throw-specifications on the callees are what tell them apart, and they are worth
 reaching for before concluding the exception model is wrong.
+
+## Three LOD rows look rotated
+
+Converting 0x00090970 turned up an identity problem in its neighbours, and the
+evidence is worth banking even though the fix is not yet determined.
+
+0x0007E0F0, filed as OptionPreferences::getIdealStaticGameDetail, is Zero Hour's
+GameLODManager::findStaticLODLevel almost line for line: `cmp [esi+0x1708],-1`
+is `m_idealDetailLevel == STATIC_GAME_LOD_UNKNOWN`, the six pushes plus
+`lea edi,[esi+0x1710]` and `add esp,0x1C` are the seven-argument
+`testMinimumRequirements(&m_videoChipType,NULL,...)`, `mov [esi+0x1708],0` is the
+assignment to STATIC_GAME_LOD_LOW, and `mov eax,[edi]; test eax,eax; jne;
+mov [edi],1` is the DC_UNKNOWN-to-DC_TNT2 fixup. A 942-byte hardware benchmark is
+also not a shape any preferences accessor takes.
+
+That matters because 0x00090970 is filed as GameLODManager::findStaticLODLevel,
+and one binary cannot hold that name twice. 0x00090970 keys a map at this+4 --
+the OptionPreferences/CustomMatchPreferences skeleton, not GameLODManager -- so it
+reads as a preferences accessor for "StaticGameLOD". Its neighbour 0x00090900 has
+the identical shape over "IdealStaticGameLOD" and returns -1 on a miss, which is
+an Int return, not the _N its useCameraInReplays row claims.
+
+So the three rows appear rotated one step. What blocks fixing it is that only two
+of the three destinations are known: 0x0007E0F0 is findStaticLODLevel and
+0x00090900 is getIdealStaticGameDetail, but nothing in symbols.csv or exports.csv
+names the "StaticGameLOD" accessor at 0x00090970, and repointing 0x0007E0F0 while
+0x00090970 still carries the name would put findStaticLODLevel on two addresses.
+Retiring 0x00090970's name without a replacement also drops a byte-verified claim.
+
+0x00090970 is converted and byte-exact regardless -- the offsets it encodes are
+literal, so only the row's name is in question, and that name predates the
+conversion. The next step is xref work on 0x00090970's callers to name it, after
+which all three can move together.
