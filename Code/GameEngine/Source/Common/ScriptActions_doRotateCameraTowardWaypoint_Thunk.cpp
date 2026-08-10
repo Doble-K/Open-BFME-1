@@ -1,132 +1,160 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: clean C++ reconstruction of ScriptActions::doRotateCameraTowardWaypoint.
 
-class AsciiString;
+typedef int Int;
+typedef float Real;
+typedef bool Bool;
+
+template <class T> class StringBase
+{
+	friend class AsciiString;
+
+public:
+	struct Header;
+	Header *m_data;
+
+private:
+	StringBase(const StringBase &);
+	~StringBase();
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const AsciiString &that)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(
+			*(const StringBase<char> *)&that);
+	}
+	~AsciiString();
+
+private:
+	char *m_text;
+};
+
+struct Coord3D;
+
+class Waypoint
+{
+public:
+	const Coord3D *getLocation(void) const
+	{
+		return reinterpret_cast<const Coord3D *>(reinterpret_cast<const char *>(this) + 0xc);
+	}
+};
+
+class TerrainLogic
+{
+public:
+	virtual void d00(void) {}
+	virtual void d01(void) {}
+	virtual void d02(void) {}
+	virtual void d03(void) {}
+	virtual void d04(void) {}
+	virtual void d05(void) {}
+	virtual void d06(void) {}
+	virtual void d07(void) {}
+	virtual void d08(void) {}
+	virtual void d09(void) {}
+	virtual void d10(void) {}
+	virtual void d11(void) {}
+	virtual void d12(void) {}
+	virtual void d13(void) {}
+	virtual void d14(void) {}
+	virtual void d15(void) {}
+	virtual void d16(void) {}
+	virtual void d17(void) {}
+	virtual void d18(void) {}
+	virtual void d19(void) {}
+	virtual void d20(void) {}
+	virtual void d21(void) {}
+	virtual void d22(void) {}
+	virtual void d23(void) {}
+	virtual void d24(void) {}
+	virtual void d25(void) {}
+	virtual void d26(void) {}
+	virtual void d27(void) {}
+	virtual void d28(void) {}
+	virtual void d29(void) {}
+	virtual void d30(void) {}
+	virtual Waypoint *getWaypointByName(AsciiString);
+};
+
+extern TerrainLogic *TheTerrainLogic;
+
+class View
+{
+public:
+	virtual void d00(void) {}
+	virtual void d01(void) {}
+	virtual void d02(void) {}
+	virtual void d03(void) {}
+	virtual void d04(void) {}
+	virtual void d05(void) {}
+	virtual void d06(void) {}
+	virtual void d07(void) {}
+	virtual void d08(void) {}
+	virtual void d09(void) {}
+	virtual void d10(void) {}
+	virtual void d11(void) {}
+	virtual void d12(void) {}
+	virtual void d13(void) {}
+	virtual void d14(void) {}
+	virtual void d15(void) {}
+	virtual void d16(void) {}
+	virtual void d17(void) {}
+	virtual void d18(void) {}
+	virtual void d19(void) {}
+	virtual void d20(void) {}
+	virtual void d21(void) {}
+	virtual void d22(void) {}
+	virtual void d23(void) {}
+	virtual void d24(void) {}
+	virtual void d25(void) {}
+	virtual void d26(void) {}
+	virtual void d27(void) {}
+	virtual void d28(void) {}
+	virtual void d29(void) {}
+	virtual void d30(void) {}
+	virtual void d31(void) {}
+	virtual void d32(void) {}
+	virtual void d33(void) {}
+	virtual void d34(void) {}
+	virtual void d35(void) {}
+	virtual void d36(void) {}
+	virtual void d37(void) {}
+	virtual void d38(void) {}
+	virtual void d39(void) {}
+	virtual void d40(void) {}
+	virtual void d41(void) {}
+	virtual void d42(void) {}
+	virtual void d43(void) {}
+	virtual void d44(void) {}
+	virtual void d45(void) {}
+	virtual void d46(void) {}
+	virtual void d47(void) {}
+	virtual void d48(void) {}
+	virtual void d49(void) {}
+	virtual void d50(void) {}
+	virtual void d51(void) {}
+	virtual void rotateCameraTowardPosition(const Coord3D *, Int, Real, Real, Bool) = 0;
+};
+
+extern View *TheTacticalView;
+
 class ScriptActions
 {
 protected:
-	void doRotateCameraTowardWaypoint(const AsciiString &, float, float, float, bool);
+	void doRotateCameraTowardWaypoint(const AsciiString &, Real, Real, Real, Bool);
 };
 
 // ?doRotateCameraTowardWaypoint@ScriptActions@@IAEXABVAsciiString@@MMM_N@Z
-__declspec(naked) void ScriptActions::doRotateCameraTowardWaypoint(const AsciiString &, float, float, float, bool)
+void ScriptActions::doRotateCameraTowardWaypoint(const AsciiString &waypointName,
+	Real sec, Real easeIn, Real easeOut, Bool reverseRotation)
 {
-	__asm {
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x53
-        __emit 0x56
-        __emit 0x57
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x5b
-        __emit 0x54
-        __emit 0x59
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xcc
-        __emit 0xf4
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x52
-        __emit 0x7c
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x47
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x20
-        __emit 0xd8
-        __emit 0x0d
-        __emit 0x68
-        __emit 0x5c
-        __emit 0x07
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x3d
-        __emit 0x00
-        __emit 0x16
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x1f
-        __emit 0x50
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x04
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x28
-        __emit 0xd8
-        __emit 0x0d
-        __emit 0x68
-        __emit 0x5c
-        __emit 0x07
-        __emit 0x01
-        __emit 0xd9
-        __emit 0x1c
-        __emit 0x24
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0xd8
-        __emit 0x0d
-        __emit 0x68
-        __emit 0x5c
-        __emit 0x07
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xe8
-        __emit 0x46
-        __emit 0x70
-        __emit 0x00
-        __emit 0x50
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x0c
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xff
-        __emit 0x93
-        __emit 0xd0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x14
-        __emit 0x00
-	}
+	Waypoint *way = TheTerrainLogic->getWaypointByName(waypointName);
+	if (way == 0)
+		return;
+	TheTacticalView->rotateCameraTowardPosition(way->getLocation(), sec * 1000.0f,
+		easeIn * 1000.0f, easeOut * 1000.0f, reverseRotation);
 }
