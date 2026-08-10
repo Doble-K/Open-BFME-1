@@ -6007,3 +6007,20 @@ order, so the vtable write is pinned ahead of the zero. 118/118 on that build.
 Generalises the same way as the earlier reading: when two groups of stores must
 stay in a fixed order and no source ordering inside one class produces it, ask
 whether retail's layout is telling you they belong to different subobjects.
+
+## Refining the tail-store rule: immediates do not hoist
+
+The post-vtable-store rule said trailing member stores float above the vtable
+group unless a call anchors them. HordeTransportContain has two trailing stores
+and no call, and matched anyway.
+
+The difference is what they store. TensileFormationUpdate and
+SiegeDeploySpecialPower write a shared zeroed register, and MSVC groups every
+such store together, which is what carries them over the vtable writes.
+HordeTransportContain writes two immediates -- a byte 0 and -1000 -- so there is
+no shared register and nothing to group with, and they stay where the source puts
+them.
+
+So the rule reads: trailing stores are safe when they are immediates or when a
+call follows, and unreachable when they share a materialised constant with stores
+on the other side of the vtable group.

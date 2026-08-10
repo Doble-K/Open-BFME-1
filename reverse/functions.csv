@@ -2069,7 +2069,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0HordeGarrisonContainModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0HordeSiegeEngineContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024A560,307,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0HordeSiegeEngineContainModuleData@@QAE@XZ,,0x0022CB80,148,Code/GameEngine/Source/GameLogic/AI/HordeSiegeEngineContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0HordeTransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024B6F0,115,Code/GameEngine/Source/GameLogic/AI/HordeTransportContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
+??0HordeTransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024B6F0,115,Code/GameEngine/Source/GameLogic/AI/HordeTransportContainCtorThunk.cpp,matched,Open-BFME5 clean C++ module ctor; ten novtable ifaces; immediate tail stores
 ??0HordeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/GameEngine/Source/GameLogic/Object/Update/HordeUpdateCtorThunk.cpp,matched,Exact 154B ICF alias; Open-BFME5 symbol-specific thunk
 ??0HordeUpdateModuleData@@QAE@XZ,,0x001FE190,162,Code/GameEngine/Source/GameLogic/AI/HordeUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias raw module-data constructor
 ??0HorseHordeContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0024D220,108,Code/GameEngine/Source/GameLogic/AI/HorseHordeContainCtorThunk.cpp,matched,Open-BFME5 clean C++ multi-vtbl MI empty derived ctor
@@ -2741,7 +2741,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0TranslatorData@MessageStream@@QAE@XZ,,0x0008A240,19,Code/GameEngine/Source/Common/MessageStream.cpp,matched,
 ??0TransportAIUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002C7020,60,Code/GameEngine/Source/GameLogic/AI/TransportAIUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ TransportAIUpdate MI ctor (5 vtbls)
 ??0TransportAIUpdateModuleData@@QAE@XZ,,0x0027EAE0,283,Code/GameEngine/Source/GameLogic/Object/Update/TransportAIUpdateModuleData_ctor_Thunk.cpp,matched,Open-BFME5 lift 283B retail MASM to standalone C++ thunk
-??0TransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022D010,128,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of 128B constructor
+??0TransportContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0022D010,128,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainCtorThunk.cpp,matched,Open-BFME5 clean C++ module ctor; vtbl base split from field base at +0xD4
 ??0TransportContainModuleData@@QAE@XZ,,0x0021FC80,216,Code/GameEngine/Source/GameLogic/Object/Contain/TransportContainModuleDataCtorThunk.cpp,matched,Exact 216B @ 0x0021FC80; Exact retail MASM ModuleData ctor; unique factory 0x125470
 ??0TransportStatus@@QAE@XZ,,0x000D16F0,23,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
 ??0TreadObjectInfo@W3DTankDraw@@QAE@XZ,,0x0077E0A0,18,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp,matched,

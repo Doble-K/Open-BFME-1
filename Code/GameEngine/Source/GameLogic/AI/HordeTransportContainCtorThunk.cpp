@@ -1,131 +1,115 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: HordeTransportContain module ctor.
+//
+// Ten vtbls at +0/+0xC/+0x10/+0x20..+0x34/+0xD4, each written once, so every
+// interface base is novtable. The two stores after the vtbl group are the
+// derived body: they use immediates rather than a shared register, so there is
+// nothing for MSVC to group them with above the vtbls.
+
 class Thing;
 class ModuleData;
+class Object;
 
-class HordeTransportContain
+class BehaviorModule
 {
 public:
-    HordeTransportContain(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+	unsigned int m_04;
+	Object *m_object;							///< retail this+0x08
 };
 
-__declspec(naked) HordeTransportContain::HordeTransportContain(Thing *, const ModuleData *)
+class __declspec(novtable) HordeTransportContainIface1
 {
-    __asm {
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 008h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 050h
-        _emit 051h
-        _emit 08Bh
-        _emit 0CEh
-        _emit 0E8h
-        _emit 09Dh
-        _emit 06Ch
-        _emit 0DBh
-        _emit 0FFh
-        _emit 0C7h
-        _emit 006h
-        _emit 088h
-        _emit 006h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 00Ch
-        _emit 0C0h
-        _emit 005h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 010h
-        _emit 0B0h
-        _emit 005h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 020h
-        _emit 008h
-        _emit 004h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 024h
-        _emit 0ECh
-        _emit 003h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 028h
-        _emit 0E8h
-        _emit 003h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 02Ch
-        _emit 0D8h
-        _emit 003h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 030h
-        _emit 09Ch
-        _emit 003h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 046h
-        _emit 034h
-        _emit 08Ch
-        _emit 003h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C7h
-        _emit 086h
-        _emit 0D4h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 003h
-        _emit 00Bh
-        _emit 001h
-        _emit 0C6h
-        _emit 086h
-        _emit 0E8h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 0C7h
-        _emit 086h
-        _emit 0E4h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 018h
-        _emit 0FCh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 0C2h
-        _emit 008h
-        _emit 000h
-    }
+public:
+	virtual void hordeTransportIface1Anchor();
+};
+
+class __declspec(novtable) HordeTransportContainIface2
+{
+public:
+	virtual void hordeTransportIface2Anchor();
+
+	unsigned int m_14;
+	unsigned int m_18;
+	unsigned int m_1c;
+};
+
+class __declspec(novtable) HordeTransportContainIface3
+{
+public:
+	virtual void hordeTransportIface3Anchor();
+};
+
+class __declspec(novtable) HordeTransportContainIface4
+{
+public:
+	virtual void hordeTransportIface4Anchor();
+};
+
+class __declspec(novtable) HordeTransportContainIface5
+{
+public:
+	virtual void hordeTransportIface5Anchor();
+};
+
+class __declspec(novtable) HordeTransportContainIface6
+{
+public:
+	virtual void hordeTransportIface6Anchor();
+};
+
+class __declspec(novtable) HordeTransportContainIface7
+{
+public:
+	virtual void hordeTransportIface7Anchor();
+};
+
+class __declspec(novtable) HordeTransportContainIface8
+{
+public:
+	virtual void hordeTransportIface8Anchor();
+
+	unsigned char m_unreconstructed_38[0x9C];	///< retail this+0x38 .. +0xD4
+};
+
+class __declspec(novtable) HordeTransportContainIface9
+{
+public:
+	virtual void hordeTransportIface9Anchor();
+};
+
+class HordeTransportContainBase : public BehaviorModule
+{
+public:
+	HordeTransportContainBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class HordeTransportContain : public HordeTransportContainBase,
+	public HordeTransportContainIface1,
+	public HordeTransportContainIface2,
+	public HordeTransportContainIface3,
+	public HordeTransportContainIface4,
+	public HordeTransportContainIface5,
+	public HordeTransportContainIface6,
+	public HordeTransportContainIface7,
+	public HordeTransportContainIface8,
+	public HordeTransportContainIface9
+{
+public:
+	HordeTransportContain(Thing *thing, const ModuleData *moduleData);
+
+protected:
+	unsigned char m_unreconstructed_d8[0xC];	///< retail this+0xD8 .. +0xE4
+	int m_e4;									///< retail this+0xE4
+	bool m_e8;									///< retail this+0xE8
+};
+
+// ??0HordeTransportContain@@QAE@PAVThing@@PBVModuleData@@@Z
+HordeTransportContain::HordeTransportContain(Thing *thing, const ModuleData *moduleData)
+	: HordeTransportContainBase(thing, moduleData)
+{
+	m_e8 = false;
+	m_e4 = -1000;
 }

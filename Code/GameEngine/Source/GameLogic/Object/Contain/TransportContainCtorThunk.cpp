@@ -1,144 +1,125 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: TransportContain module ctor.
+//
+// Eleven vtbls; only +0xD4 is written twice, so that interface base alone is
+// non-novtable. Retail stores that vtbl before materialising the zero used for
+// the three members behind it, so the vtbl and the fields are split across two
+// subobjects -- a four-byte polymorphic base then a plain field base.
+
 class Thing;
 class ModuleData;
+class Object;
 
-class TransportContain
+class BehaviorModule
 {
 public:
-    TransportContain(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+	unsigned int m_04;
+	Object *m_object;							///< retail this+0x08
 };
 
-__declspec(naked) TransportContain::TransportContain(Thing *, const ModuleData *)
+class __declspec(novtable) TransportContainIface1
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x25;
-        __emit 0x9e;
-        __emit 0xe0;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x86;
-        __emit 0xd4;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe4;
-        __emit 0xd1;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0xd8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0xdc;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x88;
-        __emit 0x86;
-        __emit 0xe0;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xe8;
-        __emit 0xd4;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x20;
-        __emit 0xd4;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x10;
-        __emit 0xd4;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0x68;
-        __emit 0xd2;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x4c;
-        __emit 0xd2;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x28;
-        __emit 0x48;
-        __emit 0xd2;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x2c;
-        __emit 0x38;
-        __emit 0xd2;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x30;
-        __emit 0xfc;
-        __emit 0xd1;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x34;
-        __emit 0xec;
-        __emit 0xd1;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x86;
-        __emit 0xd4;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0xd1;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+public:
+	virtual void transportContainIface1Anchor();
+};
+
+class __declspec(novtable) TransportContainIface2
+{
+public:
+	virtual void transportContainIface2Anchor();
+
+	unsigned int m_14;
+	unsigned int m_18;
+	unsigned int m_1c;
+};
+
+class __declspec(novtable) TransportContainIface3
+{
+public:
+	virtual void transportContainIface3Anchor();
+};
+
+class __declspec(novtable) TransportContainIface4
+{
+public:
+	virtual void transportContainIface4Anchor();
+};
+
+class __declspec(novtable) TransportContainIface5
+{
+public:
+	virtual void transportContainIface5Anchor();
+};
+
+class __declspec(novtable) TransportContainIface6
+{
+public:
+	virtual void transportContainIface6Anchor();
+};
+
+class __declspec(novtable) TransportContainIface7
+{
+public:
+	virtual void transportContainIface7Anchor();
+};
+
+class __declspec(novtable) TransportContainIface8
+{
+public:
+	virtual void transportContainIface8Anchor();
+
+	unsigned char m_unreconstructed_38[0x9C];	///< retail this+0x38 .. +0xD4
+};
+
+class TransportContainIface9
+{
+public:
+	virtual void transportContainIface9Anchor();
+};
+
+// Not polymorphic: keeps the +0xD4 vtbl write ahead of the zero it precedes.
+class TransportContainFields
+{
+public:
+	TransportContainFields()
+	{
+		m_d8 = 0;
+		m_dc = 0;
+		m_e0 = false;
+	}
+
+	unsigned int m_d8;							///< retail this+0xD8
+	unsigned int m_dc;
+	bool m_e0;
+};
+
+class TransportContainBase : public BehaviorModule
+{
+public:
+	TransportContainBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class TransportContain : public TransportContainBase,
+	public TransportContainIface1,
+	public TransportContainIface2,
+	public TransportContainIface3,
+	public TransportContainIface4,
+	public TransportContainIface5,
+	public TransportContainIface6,
+	public TransportContainIface7,
+	public TransportContainIface8,
+	public TransportContainIface9,
+	public TransportContainFields
+{
+public:
+	TransportContain(Thing *thing, const ModuleData *moduleData);
+};
+
+// ??0TransportContain@@QAE@PAVThing@@PBVModuleData@@@Z
+TransportContain::TransportContain(Thing *thing, const ModuleData *moduleData)
+	: TransportContainBase(thing, moduleData)
+{
 }
