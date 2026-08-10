@@ -92743,9 +92743,9 @@ tg_009f45d0,,0x009F45D0,71,Code/gen_small/tgrid_000.cpp,matched,gen-tgrid;object
 tg_009f4b80,,0x009F4B80,43,Code/gen_small/tgrid_000.cpp,matched,gen-tgrid;object-symbol=??$__uninitialized_copy@PAUGen_p8pod@@PAU1@@_STL@@YAPAUGen_p8pod@@PAU1@00ABU__false_type@0@@Z
 tg_009f5530,,0x009F5530,65,Code/gen_small/tgrid_000.cpp,matched,gen-tgrid;object-symbol=??1?$_Vector_base@UGen_p24cd@@V?$allocator@UGen_p24cd@@@_STL@@@_STL@@QAE@XZ
 tg_009f5690,,0x009F5690,45,Code/gen_small/tgrid_000.cpp,matched,gen-tgrid;object-symbol=??1?$_Vector_base@UGen_p8cd@@V?$allocator@UGen_p8cd@@@_STL@@@_STL@@QAE@XZ
-uw_00bf2b00,,0x00BF2B00,11,Code/GameEngine/Source/Common/GameEngine.cpp,matched,gen-funclet;parent=?createMessageStream@GameEngine@@MAEPAVMessageStream@@XZ;object-symbol=$L94091
+uw_00bf2b00,,0x00BF2B00,11,Code/GameEngine/Source/Common/GameEngine.cpp,matched,gen-funclet;parent=?createMessageStream@GameEngine@@MAEPAVMessageStream@@XZ;object-symbol=$L94091
 uw_00bf2b60,,0x00BF2B60,8,Code/GameEngine/Source/Common/HijackerUpdateModuleDataDestructorThunk.cpp,matched,gen-funclet;parent=??1HijackerUpdateModuleData@@UAE@XZ;object-symbol=$L328
-uw_00bf3330,,0x00BF3330,8,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,gen-funclet;parent=?setName@GameSlot@@QAEXVUnicodeString@@@Z;object-symbol=$L56916
+uw_00bf3330,,0x00BF3330,8,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,gen-funclet;parent=?setName@GameSlot@@QAEXVUnicodeString@@@Z;object-symbol=$L56916
 uw_00bf3370,,0x00BF3370,8,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,gen-funclet;parent=??$initSubsystem@VSubsystemLegend@@@@YAXAAPAVSubsystemLegend@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z;object-symbol=$L11781
 uw_00bf3390,,0x00BF3390,8,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,gen-funclet;parent=??$initSubsystem@VGlobalData@@@@YAXAAPAVGlobalData@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z;object-symbol=$L12103
 uw_00bf33b0,,0x00BF33B0,8,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,gen-funclet;parent=??$initSubsystem@VGlobalLanguage@@@@YAXAAPAVGlobalLanguage@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z;object-symbol=$L12678
@@ -93855,11 +93855,11 @@ uw_00c44cf0,,0x00C44CF0,8,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,
 uw_00c44d2a,,0x00C44D2A,8,Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp,matched,gen-funclet;parent=?flagNeedToRefresh@FirewallHelperClass@@QAEX_N@Z;object-symbol=$L42615
 uw_00c44d50,,0x00C44D50,11,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,gen-funclet;parent=?init@FrameData@@QAEXXZ;object-symbol=$L38639
 uw_00c44d70,,0x00C44D70,11,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,gen-funclet;parent=??0FrameDataManager@@QAE@_N@Z;object-symbol=$L38701
-uw_00c44e20,,0x00C44E20,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L44420
-uw_00c44e2b,,0x00C44E2B,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L44421
-uw_00c44e36,,0x00C44E36,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L44422
-uw_00c44e41,,0x00C44E41,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L44423
-uw_00c44e4c,,0x00C44E4C,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L44424
+uw_00c44e20,,0x00C44E20,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L45419
+uw_00c44e2b,,0x00C44E2B,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L45420
+uw_00c44e36,,0x00C44E36,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L45421
+uw_00c44e41,,0x00C44E41,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L45422
+uw_00c44e4c,,0x00C44E4C,11,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,gen-funclet;parent=?notifyUsersOfConnectionDone@NAT@@IAEXH@Z;object-symbol=$L45423
 uw_00c455e0,,0x00C455E0,11,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList_getReadyCommands.cpp,matched,gen-funclet;parent=?getReadyCommands@NetCommandWrapperList@@QAEPAVNetCommandList@@XZ;object-symbol=$L477
 uw_00c45660,,0x00C45660,11,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,gen-funclet;parent=?readAckBothMessage@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z;object-symbol=$L2092
 uw_00c45680,,0x00C45680,11,Code/GameEngine/Source/GameNetwork/NetPacket_read.cpp,matched,gen-funclet;parent=?readAckStage1Message@NetPacket@@KAPAVNetCommandMsg@@PAEAAH@Z;object-symbol=$L2105
@@ -93903,7 +93903,7 @@ uw_00c49440,,0x00C49440,11,Code/GameEngineDevice/Source/Win32Device/Common/Win32
 uw_00c494c0,,0x00C494C0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,gen-funclet;parent=?createWindowManager@W3DGameClient@@MAEPAVGameWindowManager@@XZ;object-symbol=$L86007
 uw_00c494e0,,0x00C494E0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient.cpp,matched,gen-funclet;parent=?createGameDisplay@W3DGameClient@@MAEPAVDisplay@@XZ;object-symbol=$L85977
 uw_00c49560,,0x00C49560,11,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,gen-funclet;parent=?createTerrainLogic@GameLogic@@EAEPAVTerrainLogic@@XZ;object-symbol=$L121411
-uw_00c49580,,0x00C49580,11,Code/GameEngine/Source/Common/GameEngine.cpp,matched,gen-funclet;parent=?createFileSystem@GameEngine@@MAEPAVFileSystem@@XZ;object-symbol=$L94104
+uw_00c49580,,0x00C49580,11,Code/GameEngine/Source/Common/GameEngine.cpp,matched,gen-funclet;parent=?createFileSystem@GameEngine@@MAEPAVFileSystem@@XZ;object-symbol=$L94104
 uw_00c495a0,,0x00C495A0,11,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,gen-funclet;parent=?createGhostObjectManager@GameLogic@@EAEPAVGhostObjectManager@@XZ;object-symbol=$L121398
 uw_00c495e0,,0x00C495E0,8,Code/GameEngineDevice/Source/Win32Device/Common/Win32OSDisplay.cpp,matched,gen-funclet;parent=?OSDisplayWarningBox@@YA?AW4OSDisplayButtonType@@VAsciiString@@0II@Z;object-symbol=$L24352
 uw_00c495e8,,0x00C495E8,8,Code/GameEngineDevice/Source/Win32Device/Common/Win32OSDisplay.cpp,matched,gen-funclet;parent=?OSDisplayWarningBox@@YA?AW4OSDisplayButtonType@@VAsciiString@@0II@Z;object-symbol=$L24353
@@ -94169,3 +94169,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??4LANGameSlot@@QAEAAV0@ABV0@@Z,,0x0068DEE0,105,Code/GameEngine/Source/GameNetwork/LANGameSlot_operator.cpp,matched,clean C++ implicit assignment with TU-scoped BFME layout and thin AsciiString shim; live body 105B; queued 140B includes INT3 padding
 ?drawFloatingText@InGameUI@@IAEXXZ,,0x0043F2A0,274,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,Open-BFME5 exact C++ conversion; BFME retail InGameUI and display-string ABI offsets
 ?populateGroupRoomListbox@@YAXPAVGameWindow@@@Z,,0x005397D0,298,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu_populateGroupRoomListbox_Thunk.cpp,matched,Open-BFME5 exact standalone C++ thunk from retail body
+??1DebugIOOds@@UAE@XZ,,0x00890780,142,Code/GameEngine/Source/Common/DebugIOOdsDestructorThunk.cpp,matched,Open-BFME5 exact C++ thunk; ICF alias of DebugIOFlat retail body

@@ -323,3 +323,12 @@ _png_sig
 # bind to different slots. A property of the retail link, not of any source.
 __imp__fopen
 __imp__strstr
+
+# HLodClass's ModelArray destructor is linked at two retail sites in hlod.cpp;
+# the matched deleting-destructor and assignment rows resolve the same decorated
+# name to their respective duplicate library copies.
+??1ModelArrayClass@HLodClass@@UAE@XZ
+
+# 0x30000000 is a per-TU floating constant: ParticleBufferClass reset methods
+# and StreakRendererClass::subdivision_util retain distinct retail copies.
+__real@30000000

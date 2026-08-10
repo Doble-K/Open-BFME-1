@@ -63,19 +63,15 @@ public:
 		TABLE_GAME_WIN_TOOLTIP,
 		TABLE_GAME_WIN_DEVICEDRAW,
 		TABLE_GAME_WIN_DRAW,
-		TABLE_WIN_LAYOUT_INIT,
+		// BFME inserts two unidentified tables before the layout callbacks and
+		// one after them. Retail winLayoutInitFunc reads device-init at slot 8
+		// and init at slot 7; update and shutdown therefore follow at 9 and 10.
+		TABLE_BFME_UNIDENTIFIED_5,
+		TABLE_BFME_UNIDENTIFIED_6,
+		TABLE_WIN_LAYOUT_INIT = 7,
 		TABLE_WIN_LAYOUT_DEVICEINIT,
 		TABLE_WIN_LAYOUT_UPDATE,
 		TABLE_WIN_LAYOUT_SHUTDOWN,
-
-		// BFME has 12 lookup tables, not ZH's 9: both retail bodies that walk
-		// every table bound the loop with 12 — findFunction @0x105280
-		// (`cmp esi, 0xc` stepping m_tables by 4) and validate @0x105380
-		// (`mov [esp+0x14], 0xc`). What the three extra tables hold is not yet
-		// identified; only the count is proven, and m_tables is the last
-		// member so the larger array shifts no other offset.
-		TABLE_BFME_UNIDENTIFIED_9,
-		TABLE_BFME_UNIDENTIFIED_10,
 		TABLE_BFME_UNIDENTIFIED_11,
 
 		MAX_FUNCTION_TABLES			// keep this last
