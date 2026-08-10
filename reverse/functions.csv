@@ -2121,7 +2121,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LargeGroupBonusUpdateModuleData@@QAE@XZ,,0x002978A0,105,Code/GameEngine/Source/GameLogic/AI/LargeGroupBonusUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ ICF-alias module-data constructor
 ??0LaserUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00035D91,5,Code/GameEngine/Source/GameLogic/Object/Update/LaserUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0LaserUpdateModuleData@@QAE@XZ,,0x00076E50,29,Code/GameEngine/Source/GameLogic/Object/Update/LaserUpdate.cpp,matched,
-??0LeafletDropBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/GameEngine/Source/GameLogic/Object/Update/LeafletDropBehaviorCtorThunk.cpp,matched,Exact 154B ICF alias; Open-BFME5 symbol-specific thunk
 ??0LegacyMaterialClass@MeshLoadContextClass@@QAE@XZ,,0x0096D0E0,54,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??0LevelGrantSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0025FD20,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/LevelGrantSpecialPowerCtorThunk.cpp,matched,Open-BFME5 exact C++ raw LevelGrantSpecialPower constructor
 ??0LevelGrantSpecialPowerModuleData@@QAE@XZ,,0x0025FEF0,155,Code/GameEngine/Source/GameLogic/Object/Upgrade/LevelGrantSpecialPowerModuleDataCtorThunk.cpp,matched,Exact 155B @ 0x0025FEF0; Exact retail MASM ModuleData ctor; unique factory 0x120010
@@ -94170,3 +94169,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??0DestroyEnvironmentUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0028CD70,101,Code/GameEngine/Source/GameLogic/Object/Update/DestroyEnvironmentUpdateCtorThunk.cpp,matched,Open-BFME5 clean C++ UpdateModule constructor with retail frame initialization
 ??0FireWeaponCollide@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00216430,151,Code/GameEngine/Source/GameLogic/Object/Collide/FireWeaponCollideCtorThunk.cpp,matched,Open-BFME5 clean C++ with TU-local BFME layout shim; exact 151B retail ctor
 ??0LightningEmissionModuleTemplate@FXParticleSystem@@QAE@XZ,,0x005D6AD0,106,Code/GameEngine/Source/GameClient/System/FXParticleSystem/LightningEmissionModuleTemplateCtorThunk.cpp,matched,Open-BFME5 exact clean C++ ctor; retail body ends at ret 0x005D6B39; padding follows through 0x005D6B5F
+??0LeafletDropBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020D5C0,154,Code/GameEngine/Source/GameLogic/Object/Update/LeafletDropBehaviorCtorThunk.cpp,matched,Open-BFME5 clean C++ UpdateModule+DieModuleInterface ctor; exact 154B ICF alias
