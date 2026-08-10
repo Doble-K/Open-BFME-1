@@ -708,7 +708,6 @@ GameWinDrawFunc FunctionLexicon::gameWinDrawFunc( NameKeyType key, TableIndex in
 	return (GameWinDrawFunc)findFunction( key, index ); 
 }
 
-// ?winLayoutInitFunc@FunctionLexicon@@QAEP6AXPAVWindowLayout@@PAX@ZW4NameKeyType@@W4TableIndex@1@@Z present-unmatched
 WindowLayoutInitFunc FunctionLexicon::winLayoutInitFunc( NameKeyType key, TableIndex index )
 {
 	if ( index == TABLE_ANY )
@@ -716,10 +715,11 @@ WindowLayoutInitFunc FunctionLexicon::winLayoutInitFunc( NameKeyType key, TableI
 		// first search the device depended table then the device independent table
 		WindowLayoutInitFunc func;
 
-		func = (WindowLayoutInitFunc)findFunction( key, TABLE_WIN_LAYOUT_DEVICEINIT ); 
+		// BFME places the device-init and init tables at slots 8 and 7.
+		func = (WindowLayoutInitFunc)findFunction( key, (TableIndex)8 );
 		if ( func == NULL )
 		{
-			func = (WindowLayoutInitFunc)findFunction( key, TABLE_WIN_LAYOUT_INIT ); 
+			func = (WindowLayoutInitFunc)findFunction( key, (TableIndex)7 );
 		}
 		return func;
 	}
