@@ -464,6 +464,14 @@ class StringBase;
 template <typename T>
 class StringBase
 {
+public:
+	// BFME also keeps compareNoCase out of line (retail body at 0x9EFE0).
+	// UnicodeString::compareNoCase above is inline and folds to _wcsicmp, so a
+	// caller that needs retail's call reaches the base declaration instead.
+	// throw() matters: it is the only call between a getName() temporary's
+	// construction and its destruction, so declaring it non-throwing lets MSVC
+	// drop the unwind-state bump and guard the temporary with a flag alone.
+	int compareNoCase(const StringBase& src) const throw();
 private:
 	StringBase(const StringBase& src);
 	friend class UnicodeString;

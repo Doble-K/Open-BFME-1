@@ -15639,7 +15639,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isTurretInNaturalPosition@AIUpdateInterface@@QBE_NW4WhichTurretType@@@Z,,0x0026EA60,28,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,turret wrapper; TurretAI target pinned through its ILT thunk
 ?isTurretInNaturalPosition@BattlePlanUpdate@@IAE_NXZ,,0x002858E0,40,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,clean BattlePlanUpdate turret-natural-position query through retail layout
 ?isTurretInNaturalPosition@TurretAI@@QBE_NXZ,,0x0018C8E0,39,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,BFME lacks the ZH OBJECT_STATUS_UNDER_CONSTRUCTION early-out
-?isUser@LANGameSlot@@QAE_NVUnicodeString@@@Z,,0x0068E8D0,132,Code/GameEngine/Source/Common/LANGameSlot_isUser_Thunk.cpp,matched,caller-proven via getSlotNum; queue RVA 0x791BEF was mid FUN_00b91730; MASM exact 132B
+?isUser@LANGameSlot@@QAE_NVUnicodeString@@@Z,,0x0068E8D0,132,Code/GameEngine/Source/Common/LANGameSlot_isUser_Thunk.cpp,matched,converted from MASM to C++; compareNoCase declared throw() so the getName temporary needs no unwind state
 ?isUsingAirborneLocomotor@Object@@QBE_NXZ,,0x001C1770,54,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME Object m_ai@0x204 + AIUpdateInterface m_curLocomotor@0x1cc
 ?isValidINIFilename@INI@@KA_NPBD@Z,,0x008507C0,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?isValidMap@@YA_NVAsciiString@@_N@Z,,0x00457ED0,170,Code/GameEngine/Source/GameClient/MapUtil_isValidMap_Thunk.cpp,matched,Open-BFME5 lift 170B retail MASM to standalone C++ thunk

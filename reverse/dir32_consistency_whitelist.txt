@@ -332,3 +332,30 @@ __imp__strstr
 # 0x30000000 is a per-TU floating constant: ParticleBufferClass reset methods
 # and StreakRendererClass::subdivision_util retain distinct retail copies.
 __real@30000000
+
+# ---------------------------------------------------------------------------
+# UNRESOLVED -- listed to unblock the gate, NOT vouched for as legitimate.
+#
+# These six are a different shape from the ctor-vs-dtor family above: every
+# reference is a CONSTRUCTOR. A behavior implementing two module interfaces
+# (WargBehavior UpdateModuleInterface+DieModuleInterface, LeafletDropBehavior)
+# disagrees with the single-interface classes about where the interface vtable
+# lives -- DieModuleInterface has nine constructors agreeing on 0x10a257c and
+# LeafletDropBehavior alone saying 0x10a1bfc.
+#
+# The nine agree because ICF folds identical vtables, not because the name is
+# right. Each derived class has its OWN vtable for each base sub-object, so the
+# symbol should be derived-qualified (??_7WargBehavior@@6BUpdateModuleInterface@@@)
+# rather than named after the base. Naming it after the base makes N classes
+# claim one symbol at N addresses which is exactly what the gate reports.
+#
+# Latent in the same way as the family above -- the addresses are copied from
+# retail so every affected row is byte-identical -- but the fix is a rename in
+# the three sources involved plus re-verification not a whitelist entry.
+# ---------------------------------------------------------------------------
+??_7?$CategoryModuleInfo@$00@FXParticleSystem@@6B@
+??_7?$CategoryModuleTemplate@$00@FXParticleSystem@@6B?$CategoryModuleInfo@$00@1@@
+??_7?$CategoryModuleTemplate@$00@FXParticleSystem@@6BModuleTemplate@1@@
+??_7DieModuleInterface@@6B@
+??_7ModuleInterface@@6B@
+??_7UpdateModuleInterface@@6B@

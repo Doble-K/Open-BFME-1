@@ -6515,3 +6515,56 @@ C4706 here -- matched.
 So when a temporary appears earlier in retail than the source suggests, look at
 which expressions are arguments and which have been lifted into locals. Lifting
 is not free.
+
+
+## throw() also removes unwind states for temporaries, not just EH frames
+
+The known form of this lever was: put `throw()` on a constructor a
+`new`-expression reaches, and MSVC stops building the EH frame that exists only
+to run `operator delete`. isUser generalises it.
+
+isUser evaluates `!userName.compareNoCase(getName())`. The `getName()` temporary
+is conditionally constructed -- `&&` short-circuits -- so it needs a
+did-we-construct-it flag either way. Retail keeps that flag in ebx and never
+touches the unwind state. My build kept the flag in a separate stack dword *and*
+bumped the unwind state to 1, costing an extra local.
+
+The unwind state exists to destroy the temporary if something throws while it is
+alive. The only thing that runs while it is alive is compareNoCase. Declaring
+that `throw()` makes the window provably exception-free, the state bump
+disappears, and the flag collapses into ebx. Byte-exact.
+
+So the rule is wider than constructors: `throw()` on **whatever executes between
+a temporary's construction and its destruction** removes that temporary's unwind
+state. When retail guards a temporary with a plain flag and no state transition,
+look at what runs in that window and try marking it non-throwing.
+
+The ledger corroborated this before the build did -- the function has exactly one
+generated unwind funclet, and one funclet cannot cover both the by-value argument
+and an EH-protected temporary. Counting funclets is a cheap check on how many
+things retail unwinds.
+
+
+## Touching a shim runs the full gate, which is where latent problems surface
+
+Adding one declaration to the languagefilter shim tripped the pre-commit rule
+that any header change runs the full gate instead of the delta verify. It found
+six DIR32 inconsistencies that had nothing to do with the change -- none of the
+files involved include that header.
+
+They had been latent because the full gate almost never runs. Delta verify sees
+only the sources you touched, so a cross-source inconsistency introduced by one
+commit stays invisible until somebody edits a header months later.
+
+The finding itself: constructors of behaviors implementing two module interfaces
+disagree with single-interface classes about where an interface vtable lives.
+The sources name the vptr after the base (??_7UpdateModuleInterface@@6B@) when
+each derived class has its own vtable for that base sub-object, so N classes
+claim one symbol at N addresses. Nine single-interface Die constructors agree
+only because ICF folds identical vtables -- agreement by coincidence, not by
+correctness.
+
+Two things worth keeping. A gate that runs rarely accumulates debt silently, so
+the rare run is worth reading carefully rather than clearing. And when a majority
+of references agree on an address, check whether they agree for a reason or
+because the linker folded them -- ICF makes wrong names look consistent.
