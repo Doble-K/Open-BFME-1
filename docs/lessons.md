@@ -5918,3 +5918,29 @@ decided it need not unwind, and novtable is the usual reason. The state numbers
 are a member count you can read straight off the disassembly before writing any
 source -- retail's highest state plus one is how many destructible subobjects the
 class has, bases included.
+
+## novtable is the switch for interim vtable stores
+
+A module constructor that delegates to a base and then carries interface bases
+writes each interface vtable twice: once as the interface subobject is
+constructed, once when the most-derived class installs its own. Retail's
+ObjectWeaponStatusHelper writes each only once, and the compile was 14 bytes
+long -- exactly the two extra 7-byte stores.
+
+`__declspec(novtable)` on the interface bases removes them. It tells the compiler
+the base is never instantiated on its own, so the interim initialisation is
+dropped and only the most-derived stores remain. With it the ctor matched at
+107/107.
+
+Two of these now point the same way, in opposite directions. Here novtable was
+needed to remove stores; on BuildListInfo's destructor novtable had to be removed
+to restore a base's unwind entry. So read it as one knob with two visible
+effects -- the interim vptr store and the unwind entry -- and set it by which of
+those retail shows, not by habit.
+
+This matters beyond one function: the (Thing *, const ModuleData *) module ctors
+are a large family with the same skeleton, an SEH frame, a base call through an
+ILT thunk, and three vtable stores at +0/+0xC/+0x10. The recipe is a
+single-virtual anchor on the module base, two novtable interface bases, a
+<Name>Base holding the ctor declaration pinned to the thunk in symbols.csv, and
+the real body from the Zero Hour header.

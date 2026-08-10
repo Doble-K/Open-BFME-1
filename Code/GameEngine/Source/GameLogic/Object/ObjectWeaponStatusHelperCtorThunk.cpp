@@ -1,124 +1,70 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc
+
+// Open-BFME5: ObjectWeaponStatusHelper module ctor.
+//
+// Zero Hour has this one inline in ObjectWeaponStatusHelper.h and BFME kept it:
+// delegate to the ObjectHelper base, then wake the helper up immediately, since
+// unlike the other helpers this one has to run every frame.
+//
+// Base call then three most-derived vtbls at +0/+0xC/+0x10, so the class carries
+// two single-virtual interface bases behind the module base. getObject() reads
+// this+8, and UPDATE_SLEEP_NONE is the pushed 1.
 
 class Thing;
 class ModuleData;
+class Object;
 
-class ObjectWeaponStatusHelper
+enum UpdateSleepTime
+{
+	UPDATE_SLEEP_NONE = 1
+};
+
+class BehaviorModule
 {
 public:
-    ObjectWeaponStatusHelper(Thing *thing, const ModuleData *moduleData);
+	virtual void behaviorModuleAnchor();
+	virtual ~BehaviorModule();
+
+	unsigned int m_04;
+	Object *m_object;							///< retail this+0x08
+};
+
+class __declspec(novtable) ObjectWeaponStatusHelperIface1
+{
+public:
+	virtual void objectWeaponStatusIface1Anchor();
+};
+
+class __declspec(novtable) ObjectWeaponStatusHelperIface2
+{
+public:
+	virtual void objectWeaponStatusIface2Anchor();
+};
+
+class ObjectWeaponStatusHelperBase : public BehaviorModule
+{
+public:
+	ObjectWeaponStatusHelperBase(Thing *thing, const ModuleData *moduleData);
+
+protected:
+	void setWakeFrame(Object *obj, UpdateSleepTime when);
+};
+
+class ObjectWeaponStatusHelper : public ObjectWeaponStatusHelperBase,
+	public ObjectWeaponStatusHelperIface1,
+	public ObjectWeaponStatusHelperIface2
+{
+public:
+	ObjectWeaponStatusHelper(Thing *thing, const ModuleData *moduleData);
+
+protected:
+	Object *getObject(void) const { return m_object; }
 };
 
 // ??0ObjectWeaponStatusHelper@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) ObjectWeaponStatusHelper::ObjectWeaponStatusHelper(Thing *thing, const ModuleData *moduleData)
+ObjectWeaponStatusHelper::ObjectWeaponStatusHelper(Thing *thing, const ModuleData *moduleData)
+	: ObjectWeaponStatusHelperBase(thing, moduleData)
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xb8
-        __emit 0x8d
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x50
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0x7a
-        __emit 0x08
-        __emit 0xe6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x56
-        __emit 0x08
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x52
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xd4
-        __emit 0xe8
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x10
-        __emit 0xe8
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0x04
-        __emit 0xe8
-        __emit 0x09
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x43
-        __emit 0x44
-        __emit 0xe5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-    }
+	// Unlike other helpers, this one needs to start active.
+	setWakeFrame(getObject(), UPDATE_SLEEP_NONE);
 }
