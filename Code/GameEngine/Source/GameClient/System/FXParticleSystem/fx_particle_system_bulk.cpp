@@ -72,6 +72,28 @@ public:
     void construct(const void *source);
 };
 
+class PointEmissionVolumeTemplateParseShim {
+public:
+    void parse(INI *ini);
+};
+
+class PointEmissionVolumeTemplateAllocation {
+public:
+    __forceinline PointEmissionVolumeTemplateAllocation()
+    {
+        volatile unsigned int *vtableSlots = (unsigned int *)this;
+        vtableSlots[1] = 0x0110f9ac;
+        vtableSlots[2] = 0x0110f980;
+        *((volatile unsigned char *)this + 0x0c) = 0;
+        vtableSlots[0] = 0x0111117c;
+        vtableSlots[1] = 0x01111178;
+        vtableSlots[2] = 0x01111164;
+    }
+
+private:
+    unsigned char m_storage[0x10];
+};
+
 class PointEmissionVolumeModuleCtorShim {
 public:
     void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
@@ -7030,132 +7052,12 @@ ConcreteModuleClass<PointEmissionVolumeModuleTag>::~ConcreteModuleClass()
 }
 
 // ?createTemplate@?$ConcreteModuleClass@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@UBEPAVPointEmissionVolumeModuleTemplate@2@PAVINI@@@Z
-__declspec(naked) PointEmissionVolumeModuleTemplate *ConcreteModuleClass<PointEmissionVolumeModuleTag>::createTemplate(INI *ini) const
+PointEmissionVolumeModuleTemplate *ConcreteModuleClass<PointEmissionVolumeModuleTag>::createTemplate(INI *ini) const
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x78
-        __emit 0xb4
-        __emit 0x03
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x10
-        __emit 0xe8
-        __emit 0x12
-        __emit 0x0b
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x74
-        __emit 0x29
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xac
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x80
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0x88
-        __emit 0x48
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x7c
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0x78
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x64
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xcb
-        __emit 0x02
-        __emit 0xa6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    std::auto_ptr<PointEmissionVolumeModuleTemplate> moduleTemplate(
+        (PointEmissionVolumeModuleTemplate *)new PointEmissionVolumeTemplateAllocation);
+    ((PointEmissionVolumeTemplateParseShim *)moduleTemplate.get())->parse(ini);
+    return moduleTemplate.release();
 }
 
 // ?createTemplate@?$ConcreteModuleClass@UPointEmissionVolumeModuleTag@FXParticleSystem@@@FXParticleSystem@@UBEPAVPointEmissionVolumeModuleTemplate@2@XZ
