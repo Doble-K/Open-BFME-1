@@ -6024,3 +6024,19 @@ them.
 So the rule reads: trailing stores are safe when they are immediates or when a
 call follows, and unreachable when they share a materialised constant with stores
 on the other side of the vtable group.
+
+## A node allocation size fixes the element type
+
+HotKeyManager's constructor has an empty body; everything is member
+construction. Each of its two maps allocates a single 0x1c node and wires it as
+its own header -- colour byte zeroed, parent null, left and right pointing back
+at the node.
+
+Twenty-eight bytes is the arithmetic that names the element. Sixteen of those are
+the red-black node header (colour plus three pointers), so the value type is
+twelve, which beside a four-byte key fixes the mapped type at eight. No element is
+ever inserted, so nothing else in the function constrains it -- the allocation
+size is the only evidence, and it is enough.
+
+That is the same move as reading a vector's element size off its magic divide,
+applied to a tree instead.

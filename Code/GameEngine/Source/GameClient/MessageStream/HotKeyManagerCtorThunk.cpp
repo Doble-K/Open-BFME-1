@@ -1,160 +1,58 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class HotKeyManager
+// Base then two maps, and the body is empty -- everything here is member
+// construction.
+//
+// Each map allocates one 0x1c node and wires it as its own header: colour byte
+// zeroed, parent null, left and right pointing back at the node. Twenty-eight
+// bytes is sixteen of node header plus a twelve-byte value, which fixes the
+// mapped type at eight bytes beside a four-byte key.
+//
+// The unwind states count up, 0 before the first map and 1 before the second,
+// which is the base followed by two destructible members.
+#include <map>
+
+class AsciiString
 {
 public:
-    HotKeyManager();
+	AsciiString();
+	~AsciiString();
+
+	bool operator<(const AsciiString &other) const;
+
+private:
+	char *m_data;
+};
+
+struct HotKey
+{
+	void *m_a;
+	void *m_b;
+};
+
+class SubsystemInterface
+{
+public:
+	SubsystemInterface();
+
+	virtual ~SubsystemInterface();
+
+private:
+	int m_04;
+};
+
+class HotKeyManager : public SubsystemInterface
+{
+public:
+	HotKeyManager();
+
+private:
+	std::map<AsciiString, HotKey> m_hotKeys;
+	std::map<AsciiString, HotKey> m_commandKeys;
 };
 
 // ??0HotKeyManager@@QAE@XZ
-__declspec(naked) HotKeyManager::HotKeyManager()
+HotKeyManager::HotKeyManager()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x73;
-        __emit 0x90;
-        __emit 0x03;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xe8;
-        __emit 0x2d;
-        __emit 0xe0;
-        __emit 0x3e;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x08;
-        __emit 0xde;
-        __emit 0x10;
-        __emit 0x01;
-        __emit 0x6a;
-        __emit 0x1c;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x08;
-        __emit 0xe8;
-        __emit 0x27;
-        __emit 0xab;
-        __emit 0x27;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x0c;
-        __emit 0x88;
-        __emit 0x18;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x58;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x40;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x40;
-        __emit 0x0c;
-        __emit 0x6a;
-        __emit 0x1c;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x14;
-        __emit 0xe8;
-        __emit 0xfe;
-        __emit 0xaa;
-        __emit 0x27;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x18;
-        __emit 0x88;
-        __emit 0x18;
-        __emit 0x8b;
-        __emit 0x4e;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x59;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x40;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x40;
-        __emit 0x0c;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
 }
