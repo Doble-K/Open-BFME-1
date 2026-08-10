@@ -1,138 +1,64 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
-// object-symbol uses PBQAV (MSVC) vs CSV QAPAV decoration.
+// Open-BFME5: lift the ScriptList::WriteScriptsDataChunk MASM dump to clean C++.
+//
+// Zero Hour keeps the per-list body in WriteScriptListDataChunk
+// (Scripts.cpp:604); BFME inlines it here, and writes the group before the
+// script where the reference does the reverse.
+//
+// The array parameter is spelled as a pointer to const pointer rather than with
+// array syntax: ScriptList *const [] picks up a top-level const and mangles QB,
+// where the ledger row wants PB.
 
-class DataChunkOutput;
+class DataChunkOutput
+{
+public:
+	void openDataChunk(char *name, unsigned short version);	///< body at 0x0003A256
+	void closeDataChunk(void);								///< ILT 0x00004B42
+};
+
+class Script;
+class ScriptGroup;
+class ScriptList;
+
+void WriteGroupDataChunk(DataChunkOutput &chunkWriter, ScriptList *list, ScriptGroup *group);
+void WriteScriptDataChunk(DataChunkOutput &chunkWriter, ScriptList *list, Script *script);
+
 class ScriptList
 {
 public:
-	static void WriteScriptsDataChunk(DataChunkOutput &, ScriptList *const *, int);
+	static void WriteScriptsDataChunk(DataChunkOutput &chunkWriter, ScriptList *const *scriptLists, int numLists);
+
+	unsigned int m_00;
+	Script *m_firstScript;						///< retail this+0x04
+	ScriptGroup *m_firstGroup;					///< retail this+0x08
 };
 
 // ?WriteScriptsDataChunk@ScriptList@@SAXAAVDataChunkOutput@@QAPAV1@H@Z
-__declspec(naked) void ScriptList::WriteScriptsDataChunk(DataChunkOutput &, ScriptList *const *, int)
+void ScriptList::WriteScriptsDataChunk(DataChunkOutput &chunkWriter, ScriptList *const *scriptLists, int numLists)
 {
-	__asm {
-		__emit 0x53
-		__emit 0x57
-		__emit 0x8b
-		__emit 0x7c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x6a
-		__emit 0x05
-		__emit 0x68
-		__emit 0x44
-		__emit 0x85
-		__emit 0x0e
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0x92
-		__emit 0xed
-		__emit 0xcd
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x33
-		__emit 0xdb
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7e
-		__emit 0x52
-		__emit 0x55
-		__emit 0x8b
-		__emit 0x6c
-		__emit 0x24
-		__emit 0x14
-		__emit 0x56
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x68
-		__emit 0x98
-		__emit 0x8c
-		__emit 0x0e
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0x74
-		__emit 0xed
-		__emit 0xcd
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x9d
-		__emit 0x00
-		__emit 0x85
-		__emit 0xf6
-		__emit 0x74
-		__emit 0x24
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x0b
-		__emit 0x50
-		__emit 0x56
-		__emit 0x57
-		__emit 0xe8
-		__emit 0xda
-		__emit 0xd0
-		__emit 0xcc
-		__emit 0xff
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x04
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x0b
-		__emit 0x50
-		__emit 0x56
-		__emit 0x57
-		__emit 0xe8
-		__emit 0x05
-		__emit 0x6e
-		__emit 0xca
-		__emit 0xff
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0x2d
-		__emit 0x96
-		__emit 0xca
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x43
-		__emit 0x3b
-		__emit 0xd8
-		__emit 0x7c
-		__emit 0xb6
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0x5f
-		__emit 0x5b
-		__emit 0xe9
-		__emit 0x19
-		__emit 0x96
-		__emit 0xca
-		__emit 0xff
+	chunkWriter.openDataChunk("PlayerScriptsList", 5);
+
+	for (int i = 0; i < numLists; i++)
+	{
+		chunkWriter.openDataChunk("ScriptList", 1);
+
+		ScriptList *list = scriptLists[i];
+
+		if (list != 0)
+		{
+			if (list->m_firstGroup != 0)
+			{
+				WriteGroupDataChunk(chunkWriter, list, list->m_firstGroup);
+			}
+
+			if (list->m_firstScript != 0)
+			{
+				WriteScriptDataChunk(chunkWriter, list, list->m_firstScript);
+			}
+		}
+
+		chunkWriter.closeDataChunk();
 	}
+
+	chunkWriter.closeDataChunk();
 }
