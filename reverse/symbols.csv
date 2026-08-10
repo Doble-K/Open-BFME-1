@@ -68529,3 +68529,5 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?WriteScriptDataChunk@@YAXAAVDataChunkOutput@@PAVScriptList@@PAVScript@@@Z,0x00002310,ScriptList script writer via ILT thunk
 ?registerParser@DataChunkInput@@QAEXABVAsciiString@@PAUDataChunkInfo@@P6A_NAAV1@1PAX@ZH@Z,0x00015BD1,DataChunkInput::registerParser via ILT thunk
 ?parse@DataChunkInput@@QAE_NPAX@Z,0x00028BFA,DataChunkInput::parse via ILT thunk
+?addArgType@GameMessageParser@@IAEXHH@Z,0x0000B569,GameMessageParser::addArgType via ILT thunk
+?getArgumentDataType@GameMessage@@QAEHH@Z,0x0001A3D4,GameMessage::getArgumentDataType via ILT thunk

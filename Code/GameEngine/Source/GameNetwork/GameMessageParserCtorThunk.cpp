@@ -1,158 +1,78 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift the GameMessageParser(GameMessage *) MASM dump to clean C++.
+//
+// Zero Hour's body is GameMessageParser.cpp:38 and BFME kept it unchanged: run-
+// length encode the message's argument types, emitting one addArgType per run.
+// BFME's object has one more field than the reference -- +4, +8 and +0xC are all
+// zeroed, and it is +0xC that addArgType's counter increments.
+//
+// getArgumentCount is inlined to a byte load from the message at +0x18, so it is
+// modelled as an inline accessor rather than a call; getArgumentDataType and
+// addArgType are unnamed in the ledger and pinned at their ILT thunks.
 
-class GameMessage;
+class GameMessage
+{
+public:
+	unsigned char getArgumentCount(void) const { return m_argCount; }
+
+	int getArgumentDataType(int index);			///< ILT 0x0001A3D4
+
+	unsigned char m_unreconstructed_00[0x18];
+	unsigned char m_argCount;					///< retail msg+0x18
+};
+
+enum GameMessageArgumentDataType
+{
+	ARGUMENTDATATYPE_UNKNOWN = 12
+};
 
 class GameMessageParser
 {
 public:
-    GameMessageParser(GameMessage *);
+	GameMessageParser(GameMessage *msg);
+	virtual ~GameMessageParser();
+
+protected:
+	void addArgType(int type, int count);		///< ILT 0x0000B569
+
+	void *m_first;								///< retail this+0x04
+	void *m_last;								///< retail this+0x08
+	int m_argTypeCount;							///< retail this+0x0C
 };
 
 // ??0GameMessageParser@@QAE@PAVGameMessage@@@Z
-__declspec(naked) GameMessageParser::GameMessageParser(GameMessage *)
+GameMessageParser::GameMessageParser(GameMessage *msg)
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0x83;
-        __emit 0xec;
-        __emit 0x08;
-        __emit 0x55;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x33;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xec;
-        __emit 0x76;
-        __emit 0x11;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x0c;
-        __emit 0x8a;
-        __emit 0x40;
-        __emit 0x18;
-        __emit 0x84;
-        __emit 0xc0;
-        __emit 0xbd;
-        __emit 0x0c;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x76;
-        __emit 0x5a;
-        __emit 0x0f;
-        __emit 0xb6;
-        __emit 0xc8;
-        __emit 0x89;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x53;
-        __emit 0x8b;
-        __emit 0x54;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x52;
-        __emit 0xe8;
-        __emit 0xc1;
-        __emit 0x6c;
-        __emit 0x9f;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0xd8;
-        __emit 0x3b;
-        __emit 0xdd;
-        __emit 0x74;
-        __emit 0x14;
-        __emit 0x85;
-        __emit 0xff;
-        __emit 0x7e;
-        __emit 0x0c;
-        __emit 0x57;
-        __emit 0x55;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x43;
-        __emit 0x7e;
-        __emit 0x9e;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x8b;
-        __emit 0xeb;
-        __emit 0x33;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x47;
-        __emit 0x41;
-        __emit 0x48;
-        __emit 0x89;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x75;
-        __emit 0xc3;
-        __emit 0x85;
-        __emit 0xff;
-        __emit 0x5b;
-        __emit 0x7e;
-        __emit 0x0c;
-        __emit 0x57;
-        __emit 0x55;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x19;
-        __emit 0x7e;
-        __emit 0x9e;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5d;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x08;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+	m_first = 0;
+	m_last = 0;
+	m_argTypeCount = 0;
+
+	unsigned char argCount = msg->getArgumentCount();
+	int lasttype = ARGUMENTDATATYPE_UNKNOWN;
+	int thisTypeCount = 0;
+
+	for (unsigned char i = 0; i < argCount; ++i)
+	{
+		int type = msg->getArgumentDataType(i);
+
+		if (type != lasttype)
+		{
+			if (thisTypeCount > 0)
+			{
+				addArgType(lasttype, thisTypeCount);
+				++m_argTypeCount;
+			}
+
+			lasttype = type;
+			thisTypeCount = 0;
+		}
+
+		++thisTypeCount;
+	}
+
+	if (thisTypeCount > 0)
+	{
+		addArgType(lasttype, thisTypeCount);
+		++m_argTypeCount;
+	}
 }
