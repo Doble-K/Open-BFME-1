@@ -1,69 +1,32 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+
+#include "Common/AsciiString.h"
 
 class StateMachine;
 
-class AITunnelNetworkGuardState
+class State
 {
 public:
-    AITunnelNetworkGuardState(StateMachine *machine);
+	State(StateMachine *machine, AsciiString name);
+
+	virtual ~State();
+
+private:
+	unsigned char m_head[0x20];
+};
+
+class AITunnelNetworkGuardState : public State
+{
+public:
+	AITunnelNetworkGuardState(StateMachine *machine);
+
+private:
+	void *m_guardMachine;
 };
 
 // ??0AITunnelNetworkGuardState@@QAE@PAVStateMachine@@@Z
-__declspec(naked) AITunnelNetworkGuardState::AITunnelNetworkGuardState(StateMachine *machine)
+AITunnelNetworkGuardState::AITunnelNetworkGuardState(StateMachine *machine) :
+	State(machine, "AITunnelNetworkGuardState"),
+	m_guardMachine(0)
 {
-    __asm {
-        __emit 0x51
-        __emit 0x56
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x68
-        __emit 0x0c
-        __emit 0x83
-        __emit 0x09
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xfb
-        __emit 0x73
-        __emit 0x71
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xe1
-        __emit 0x1d
-        __emit 0xe9
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xb8
-        __emit 0x82
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x24
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
 }
