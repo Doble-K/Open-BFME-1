@@ -1,172 +1,87 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump DoShadows free function to C++ thunk.
+// Open-BFME5: lift DoShadows free function to clean C++.
 
-class RenderInfoClass;
+class FrustumClass;
+
+class Vector3
+{
+	float X;
+	float Y;
+	float Z;
+};
+
+class RenderObjClass
+{
+public:
+	Vector3 Get_Position() const;
+};
+
+class CameraClass : public RenderObjClass
+{
+public:
+	const FrustumClass &Get_Frustum() const
+	{
+		Update_Frustum();
+		return *(const FrustumClass *)((const char *)this + 0x104);
+	}
+
+
+protected:
+	void Update_Frustum() const;
+};
+
+class RenderInfoClass
+{
+public:
+	CameraClass &Camera;
+};
+
+class W3DShadowManager
+{
+public:
+	bool isShadowScene() { return m_isShadowScene; }
+	void queueShadows(bool state) { m_isShadowScene = state; }
+
+private:
+	bool m_isShadowScene;
+};
+
+class W3DProjectedShadowManager
+{
+public:
+	int renderShadows(RenderInfoClass &);
+};
+
+class W3DVolumetricShadowManager
+{
+public:
+	void renderShadows(bool);
+};
+
+extern const FrustumClass *shadowCameraFrustum;
+extern Vector3 ShadowCameraPosition;
+extern W3DShadowManager *TheW3DShadowManager;
+extern W3DProjectedShadowManager *TheW3DProjectedShadowManager;
+extern W3DVolumetricShadowManager *TheW3DVolumetricShadowManager;
 
 // ?DoShadows@@YAXAAVRenderInfoClass@@_N@Z
-__declspec(naked) void __cdecl DoShadows(RenderInfoClass &, bool)
+void __cdecl DoShadows(RenderInfoClass &rinfo, bool stencilPass)
 {
-	__asm {
-		__emit 0x83
-		__emit 0xec
-		__emit 0x0c
-		__emit 0x53
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8b
-		__emit 0x7c
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x8b
-		__emit 0x37
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0x0d
-		__emit 0xaa
-		__emit 0x17
-		__emit 0x00
-		__emit 0x81
-		__emit 0xc6
-		__emit 0x04
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x89
-		__emit 0x35
-		__emit 0xe8
-		__emit 0x6e
-		__emit 0x30
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x0f
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xc5
-		__emit 0x8e
-		__emit 0x16
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x08
-		__emit 0x8a
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x20
-		__emit 0x84
-		__emit 0xdb
-		__emit 0x89
-		__emit 0x0d
-		__emit 0xf0
-		__emit 0x6e
-		__emit 0x30
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x50
-		__emit 0x04
-		__emit 0x89
-		__emit 0x15
-		__emit 0xf4
-		__emit 0x6e
-		__emit 0x30
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x40
-		__emit 0x08
-		__emit 0xa3
-		__emit 0xf8
-		__emit 0x6e
-		__emit 0x30
-		__emit 0x01
-		__emit 0x75
-		__emit 0x1d
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0xf0
-		__emit 0x6d
-		__emit 0x30
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x33
-		__emit 0x8b
-		__emit 0x15
-		__emit 0xec
-		__emit 0x6e
-		__emit 0x30
-		__emit 0x01
-		__emit 0x80
-		__emit 0x3a
-		__emit 0x00
-		__emit 0x74
-		__emit 0x28
-		__emit 0x57
-		__emit 0xe8
-		__emit 0x64
-		__emit 0x21
-		__emit 0x87
-		__emit 0xff
-		__emit 0xeb
-		__emit 0x20
-		__emit 0x80
-		__emit 0xfb
-		__emit 0x01
-		__emit 0x75
-		__emit 0x1b
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x18
-		__emit 0x6f
-		__emit 0x30
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x11
-		__emit 0xa1
-		__emit 0xec
-		__emit 0x6e
-		__emit 0x30
-		__emit 0x01
-		__emit 0x80
-		__emit 0x38
-		__emit 0x00
-		__emit 0x74
-		__emit 0x07
-		__emit 0x6a
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xf8
-		__emit 0xf5
-		__emit 0x88
-		__emit 0xff
-		__emit 0xa1
-		__emit 0xec
-		__emit 0x6e
-		__emit 0x30
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x07
-		__emit 0x84
-		__emit 0xdb
-		__emit 0x74
-		__emit 0x03
-		__emit 0xc6
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0xc3
-	}
-}
+	shadowCameraFrustum = &rinfo.Camera.Get_Frustum();
+	ShadowCameraPosition = rinfo.Camera.Get_Position();
 
+	if (stencilPass == false && TheW3DProjectedShadowManager)
+	{
+		if (TheW3DShadowManager->isShadowScene())
+			TheW3DProjectedShadowManager->renderShadows(rinfo);
+	}
+
+	if (stencilPass == true && TheW3DVolumetricShadowManager)
+	{
+		if (TheW3DShadowManager->isShadowScene())
+			TheW3DVolumetricShadowManager->renderShadows(0);
+	}
+
+	if (TheW3DShadowManager && stencilPass)
+		TheW3DShadowManager->queueShadows(false);
+}
