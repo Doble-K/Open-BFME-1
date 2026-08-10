@@ -2012,6 +2012,7 @@ name,address,notes
 ??1?$_List_base@PAVControlBarSchemeAnimation@@V?$allocator@PAVControlBarSchemeAnimation@@@_STL@@@_STL@@QAE@XZ,0x00011EFA
 ??1?$_List_base@PAVGameWindow@@V?$allocator@PAVGameWindow@@@_STL@@@_STL@@QAE@XZ,0x00040278,GameWindowManager dtor call target (incremental-link thunk)
 ??1?$_List_base@PAVResizerWindow@@V?$allocator@PAVResizerWindow@@@_STL@@@_STL@@QAE@XZ,0x000361BA,ILT thunk; retail call sites use the thunk
+??1?$_List_base@PAVCampaign@@V?$allocator@PAVCampaign@@@_STL@@@_STL@@QAE@XZ,0x00015686,CampaignManager destructor STLport list base teardown
 ??1?$_List_base@UICoord2D@@V?$allocator@UICoord2D@@@_STL@@@_STL@@QAE@XZ,0x008881D0,derived-ICF
 ??1?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@QAE@XZ,0x0004AB6A
 ??1?$_Rb_tree@IU?$pair@$$CBIPAVImage@@@_STL@@U?$_Select1st@U?$pair@$$CBIPAVImage@@@_STL@@@2@U?$less@I@2@V?$allocator@U?$pair@$$CBIPAVImage@@@_STL@@@2@@_STL@@QAE@XZ,0x005D2900
