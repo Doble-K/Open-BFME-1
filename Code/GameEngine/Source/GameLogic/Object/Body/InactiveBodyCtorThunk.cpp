@@ -1,142 +1,78 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: InactiveBody module ctor.
+//
+// Two non-novtable interface bases, so the interim +0xC/+0x10 vtbls precede the
+// most-derived set. The 1.0f at +0x14 is written between the two groups, so it
+// is a base-subobject initialiser; the bool at +0x18 is written after them and
+// is the derived body.
+//
+// The trailing call is on m_object rather than on this -- retail loads ecx from
+// this+8 -- and its target is unnamed in both ledgers (ILT 0x00030887 onto
+// 0x001C7E60), so it carries an address-derived shim name.
+
 class Thing;
 class ModuleData;
 
-class InactiveBody
+class Object
 {
 public:
-    InactiveBody(Thing *, const ModuleData *);
+	void call_00030887(int value);				///< unnamed body at 0x001C7E60
 };
 
-__declspec(naked) InactiveBody::InactiveBody(Thing *, const ModuleData *)
+class BehaviorModule
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x08;
-        __emit 0xc8;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0xc6;
-        __emit 0x34;
-        __emit 0xe0;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x48;
-        __emit 0x73;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x3f;
-        __emit 0x8b;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x6a;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x74;
-        __emit 0x8b;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xb0;
-        __emit 0x8a;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xe0;
-        __emit 0x89;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x88;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0xe8;
-        __emit 0x2d;
-        __emit 0xcc;
-        __emit 0xe1;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+public:
+	virtual void behaviorModuleAnchor();
+	virtual ~BehaviorModule();
+
+	unsigned int m_04;
+	Object *m_object;							///< retail this+0x08
+};
+
+class InactiveBodyIface1
+{
+public:
+	virtual void inactiveBodyIface1Anchor();
+};
+
+class InactiveBodyIface2
+{
+public:
+	virtual void inactiveBodyIface2Anchor();
+};
+
+class InactiveBodyFields
+{
+public:
+	InactiveBodyFields() : m_14(1.0f) {}
+
+	float m_14;									///< retail this+0x14
+};
+
+class InactiveBodyBase : public BehaviorModule
+{
+public:
+	InactiveBodyBase(Thing *thing, const ModuleData *moduleData);
+};
+
+class InactiveBody : public InactiveBodyBase,
+	public InactiveBodyIface1,
+	public InactiveBodyIface2,
+	public InactiveBodyFields
+{
+public:
+	InactiveBody(Thing *thing, const ModuleData *moduleData);
+
+protected:
+	bool m_18;									///< retail this+0x18
+};
+
+// ??0InactiveBody@@QAE@PAVThing@@PBVModuleData@@@Z
+InactiveBody::InactiveBody(Thing *thing, const ModuleData *moduleData)
+	: InactiveBodyBase(thing, moduleData)
+{
+	m_18 = false;
+
+	m_object->call_00030887(1);
 }
