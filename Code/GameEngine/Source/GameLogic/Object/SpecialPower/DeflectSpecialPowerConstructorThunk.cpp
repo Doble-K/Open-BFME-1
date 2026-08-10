@@ -3,97 +3,76 @@
 class Thing;
 class ModuleData;
 
-class DeflectSpecialPower
+class BehaviorModule
 {
 public:
-    DeflectSpecialPower(Thing *, const ModuleData *);
+	virtual void behaviorModuleAnchor();
+
+private:
+	unsigned char m_data[8];
+};
+
+class DeflectSpecialPowerIface1
+{
+public:
+	virtual void deflectSpecialPowerIface1Anchor();
+};
+
+class DeflectSpecialPowerIface2
+{
+public:
+	virtual void deflectSpecialPowerIface2Anchor();
+
+private:
+	unsigned char m_pad[0xC];
+};
+
+class DeflectSpecialPowerIface3
+{
+public:
+	virtual void deflectSpecialPowerIface3Anchor();
+};
+
+class DeflectSpecialPowerIface4
+{
+public:
+	virtual void deflectSpecialPowerIface4Anchor();
+
+private:
+	unsigned char m_pad[0x10];
+};
+
+class WeaponModeSpecialPowerUpdateBase : public BehaviorModule,
+	public DeflectSpecialPowerIface1,
+	public DeflectSpecialPowerIface2,
+	public DeflectSpecialPowerIface3,
+	public DeflectSpecialPowerIface4
+{
+public:
+	WeaponModeSpecialPowerUpdateBase(Thing *, const ModuleData *);
+};
+
+class DeflectSpecialPowerIface5
+{
+public:
+	virtual void deflectSpecialPowerIface5Anchor();
+};
+
+class DeflectSpecialPower : public WeaponModeSpecialPowerUpdateBase,
+	public DeflectSpecialPowerIface5
+{
+public:
+	DeflectSpecialPower(Thing *, const ModuleData *);
+
+private:
+	unsigned char m_byte3C;
+	unsigned char m_byte3D;
 };
 
 // ??0DeflectSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) DeflectSpecialPower::DeflectSpecialPower(Thing *, const ModuleData *)
+DeflectSpecialPower::DeflectSpecialPower(Thing *thing, const ModuleData *moduleData)
+	: WeaponModeSpecialPowerUpdateBase(thing, moduleData)
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x7c;
-        __emit 0x3b;
-        __emit 0xdc;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x38;
-        __emit 0xe4;
-        __emit 0x1d;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x32;
-        __emit 0xc0;
-        __emit 0x88;
-        __emit 0x46;
-        __emit 0x3c;
-        __emit 0x88;
-        __emit 0x46;
-        __emit 0x3d;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xec;
-        __emit 0x44;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x28;
-        __emit 0x44;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x1c;
-        __emit 0x44;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0xf0;
-        __emit 0x43;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x78;
-        __emit 0x43;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x38;
-        __emit 0x58;
-        __emit 0x43;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+	m_byte3C = 0;
+	m_byte3D = 0;
 }
