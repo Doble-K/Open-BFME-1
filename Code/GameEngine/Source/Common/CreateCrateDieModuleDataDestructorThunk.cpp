@@ -1,121 +1,40 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
+// stlport
 // Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) CreateCrateDieModuleData
+#include <list>
+
+struct Gen_t_000800c0_p4cd
+{
+public:
+	~Gen_t_000800c0_p4cd();
+
+private:
+	char *m_data;
+};
+
+typedef Gen_t_000800c0_p4cd AsciiString;
+
+class CreateCrateDieModuleDataBase
+{
+public:
+	virtual ~CreateCrateDieModuleDataBase() {}
+
+private:
+	unsigned char m_pad[0x30];
+};
+
+class CreateCrateDieModuleData : public CreateCrateDieModuleDataBase
 {
 public:
     virtual ~CreateCrateDieModuleData();
+
+private:
+	_STL::list<AsciiString> m_crateNameList;
 };
 
 // ??1CreateCrateDieModuleData@@UAE@XZ
-__declspec(naked) CreateCrateDieModuleData::~CreateCrateDieModuleData()
+CreateCrateDieModuleData::~CreateCrateDieModuleData()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x33
-        __emit 0x1f
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x89
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x70
-        __emit 0xef
-        __emit 0x08
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x77
-        __emit 0x34
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x35
-        __emit 0xf6
-        __emit 0xee
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x29
-        __emit 0xf6
-        __emit 0xee
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x36
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x6a
-        __emit 0x0c
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x00
-        __emit 0x4c
-        __emit 0x70
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	m_crateNameList.clear();
 }
