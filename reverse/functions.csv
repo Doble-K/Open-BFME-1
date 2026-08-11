@@ -79132,7 +79132,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?miter@W3DRoadBuffer@@IAEXHH@Z,,0x0070D5F0,834,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?move@?$__char_traits_base@DH@_STL@@SAPADPADPBDI@Z,,0x000A32D0,23,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
 ?move@?$__char_traits_base@GG@_STL@@SAPAGPAGPBGI@Z,,0x004D4100,25,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
-?moveAllies@Pathfinder@@QAE_NPAVObject@@PAVPath@@@Z,,0x003EBA30,1268,Code/masm_dumps/moveAllies_Pathfinder_QAE_NPAVObject_PAVPath_Z_003EBA30_49772ebf.asm,matched,Certified packet 188 true body via reviewed caller thunk and ret 0x0C boundary
+?moveAllies@Pathfinder@@QAE_NPAVObject@@PAVPath@@@Z,,0x003EBA30,1268,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,Open-BFME5 exact retail emits; certified packet 188 true body via reviewed caller thunk and ret 0x0C boundary
 ?moveAlliesAwayFromDestination@Pathfinder@@QAEXPAVObject@@ABUCoord3D@@@Z,,0x003F2EC0,127,Code/GameEngine/Source/Common/Pathfinder_moveAlliesAwayFromDestination_Thunk.cpp,matched,clean C++ conversion; ZH AIPathfind.cpp body; BFME converts both positions to cell coordinates before the line walk and passes no callback; user data is two fields not three
 ?moveRoadSegTo@W3DRoadBuffer@@IAEXHH@Z,,0x0070B040,230,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,thunk-dump converted to clean C++ (source already ported from ZH reference)
 ?moveRowsDown@@YAHPAU_ListboxData@@H@Z,,0x004B6C30,212,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
