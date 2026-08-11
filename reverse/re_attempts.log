@@ -3013,3 +3013,4 @@ agent-fanout		13	tooling	13 parallel agents each converting one naked function i
 ??0W3DStatusCircle@@QAE@XZ		90	attempted	agent reported matched; central re-verify says otherwise. Reverted
 ??1MapObject@@MAE@XZ	0x00088350	236	blocked	Canonical WorldHeightMap.cpp destructor diverges after SEH prologue: BFME member offsets and chained MapObject deletion ABI differ from available ZH headers/source.
 ??0SlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z	0x00207B60	321	blocked	Canonical constructor lacks BFME retail interface-vtable/member initialization and four module-data consistency checks; available class/source ABI diverges after base construction.
+?wantToSquishTarget@@YA_NPAVState@@PAX@Z	0x00171FF0	174	blocked	Canonical control flow aligns, but BFME State/Object ABI differs: retail offsets +1c/+10 and +214/+204 with kind flag 0x5b; current headers emit +20/+14 and +1b0/+19c with flag 0x57.
