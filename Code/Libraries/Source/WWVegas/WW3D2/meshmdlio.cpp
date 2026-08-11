@@ -1246,8 +1246,61 @@ WW3DErrorType MeshModelClass::read_shader_ids(ChunkLoadClass & cload,MeshLoadCon
  *   9/1/2000   gth : Added alternate material desc support                                    *
  *   2/9/2001   gth : converted to handle dx8 limitations                                      *
  *=============================================================================================*/
-// ?read_dcg@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z
-// Body in Code/masm_dumps/_leaf__read_dcg_MeshModelClass__IAE_AW4WW3DErr_96D500.asm (exact 770B retail @ 0x0096D500).
+// ?read_dcg@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z present-unmatched
+WW3DErrorType MeshModelClass::read_dcg(ChunkLoadClass & cload,MeshLoadContextClass * context)
+{
+	/*
+	** Determine whether this chunk should be read into the default or alternate material description
+	*/
+	MeshMatDescClass * matdesc = DefMatDesc;
+	if (DefMatDesc->Get_DCG_Source(context->CurPass) != VertexMaterialClass::MATERIAL) {
+		matdesc = &(context->AlternateMatDesc);
+	}
+
+	/*
+	** The W3D file format supports arbitrary vertex color arrays for each pass; however since
+	** our conversion to hardware T&L, we only support two unique color arrays.  So here is 
+	** what is happening in this function:
+	**
+	** 1 - If this is the first diffuse color array we've encountered, load the values.
+	** 2 - Otherwise, if we are in PRELIT_VERTEX mode, put the alpha from this array into the color array.
+	** 3 - Always set the DCG source for this pass to the array.
+	**
+	** Our tools *currently* will only generate two color arrays in the case where one of them
+	** is being used for alpha and the other is used for precomputed vertex lighting...  This will
+	** break if our tools change.  The file format isn't restricting you from defining something
+	** we can't render right now...
+	*/
+	if (matdesc->Has_Color_Array(0) == false) {
+		W3dRGBAStruct color;
+		unsigned * dcg = matdesc->Get_Color_Array(0);
+
+		for (int i=0; i<Get_Vertex_Count(); i++) {
+			cload.Read(&color,sizeof(color));
+			Vector4 col;
+			W3dUtilityClass::Convert_Color(color,&col);
+			dcg[i]=DX8Wrapper::Convert_Color(col);
+		}
+	} else if (context->PrelitChunkID==W3D_CHUNK_PRELIT_VERTEX) {
+		
+		W3dRGBAStruct color;
+		unsigned * dcg = matdesc->Get_Color_Array(0);
+
+		for (int i=0; i<Get_Vertex_Count(); i++) {
+			cload.Read(&color,sizeof(color));
+			Vector4 col;
+			col=DX8Wrapper::Convert_Color(dcg[i]);
+			col.W = float(color.A)/255.0f;
+			dcg[i]=DX8Wrapper::Convert_Color(col);
+		}
+	}
+
+	matdesc->Set_DCG_Source(context->CurPass,VertexMaterialClass::COLOR1);
+
+	return WW3D_ERROR_OK;
+}
+
+
 /***********************************************************************************************
  * MeshModelClass::read_dig -- read the per-vertex diffuse illumination for a pass             *
  *                                                                                             *
@@ -2782,7 +2835,6 @@ WW3DErrorType MeshModelClass::write_stage_texcoords(ChunkSaveClass & csave,MeshS
 }
 
 #endif // 0 (disabled mesh saving code)
-
 // ?forceGetDCGSource@@YAXPAVMeshMatDescClass@@H@Z absent-from-retail
 // Every caller inlines this getter, so nothing emits the out-of-line copy the
 // ledger claims; one call compiled with inlining off brings it back.
