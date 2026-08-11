@@ -68575,3 +68575,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??0UpgradeTemplate@@QAE@XZ,0x0001D39A,UpgradeCenter newUpgrade retail constructor thunk
 ??4UpgradeTemplate@@QAEAAV0@ABV0@@Z,0x000047B4,UpgradeCenter newUpgrade retail copy-assignment thunk
 ?nameToKey@NameKeyGenerator@@QAEHPBD@Z,0x0003ADD7,UpgradeCenter newUpgrade retail name-key thunk
+?construct@DefaultModule6CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000391F3,Default draw module category-6 retail constructor thunk
