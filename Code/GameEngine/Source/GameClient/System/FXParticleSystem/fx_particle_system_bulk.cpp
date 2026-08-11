@@ -597,6 +597,33 @@ public:
     void construct(const void *source);
 };
 
+class LineEmissionVolumeTemplateParseShim {
+public:
+    void parse(INI *ini);
+};
+
+class LineEmissionVolumeTemplateAllocation {
+public:
+    __forceinline LineEmissionVolumeTemplateAllocation()
+    {
+        *(volatile unsigned int *)((unsigned char *)this + 4) = 0x0110f9ac;
+        *((volatile unsigned char *)this + 0x0c) = 0;
+        *(volatile unsigned int *)((unsigned char *)this + 8) = 0x0111098c;
+        *(volatile unsigned int *)((unsigned char *)this + 0x10) = 0;
+        *(volatile unsigned int *)((unsigned char *)this + 0x14) = 0;
+        *(volatile unsigned int *)((unsigned char *)this + 0x18) = 0;
+        *(volatile unsigned int *)((unsigned char *)this + 0x1c) = 0;
+        *(volatile unsigned int *)((unsigned char *)this + 0x20) = 0;
+        *(volatile unsigned int *)((unsigned char *)this + 0x24) = 0;
+        *(volatile unsigned int *)this = 0x011111a8;
+        *(volatile unsigned int *)((unsigned char *)this + 4) = 0x011111a4;
+        *(volatile unsigned int *)((unsigned char *)this + 8) = 0x01111190;
+    }
+
+private:
+    unsigned char m_storage[0x28];
+};
+
 class SphericalEmissionVelocityTemplateCopyCtorShim {
 public:
     void construct(const void *source);
@@ -3281,150 +3308,12 @@ ConcreteModuleClass<ModuleTag<5, LINE_EMISSION_VOLUME_MODULE_KEY, LINE_EMISSION_
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?LINE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?LINE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVLineEmissionVolumeModule@2@VLineEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVLineEmissionVolumeModuleTemplate@2@PAVINI@@@Z
-__declspec(naked) LineEmissionVolumeModuleTemplate *ConcreteModuleClass<ModuleTag<5, LINE_EMISSION_VOLUME_MODULE_KEY, LINE_EMISSION_VOLUME_MODULE_NAME, LineEmissionVolumeModule, LineEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createTemplate(INI *ini) const
+LineEmissionVolumeModuleTemplate *ConcreteModuleClass<ModuleTag<5, LINE_EMISSION_VOLUME_MODULE_KEY, LINE_EMISSION_VOLUME_MODULE_NAME, LineEmissionVolumeModule, LineEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createTemplate(INI *ini) const
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x98
-        __emit 0xb4
-        __emit 0x03
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x6a
-        __emit 0x28
-        __emit 0xe8
-        __emit 0x92
-        __emit 0x09
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x74
-        __emit 0x3b
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xac
-        __emit 0xf9
-        __emit 0x10
-        __emit 0x01
-        __emit 0x88
-        __emit 0x48
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x8c
-        __emit 0x09
-        __emit 0x11
-        __emit 0x01
-        __emit 0x89
-        __emit 0x48
-        __emit 0x10
-        __emit 0x89
-        __emit 0x48
-        __emit 0x14
-        __emit 0x89
-        __emit 0x48
-        __emit 0x18
-        __emit 0x89
-        __emit 0x48
-        __emit 0x1c
-        __emit 0x89
-        __emit 0x48
-        __emit 0x20
-        __emit 0x89
-        __emit 0x48
-        __emit 0x24
-        __emit 0xc7
-        __emit 0x00
-        __emit 0xa8
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0xa4
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x90
-        __emit 0x11
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x0f
-        __emit 0x22
-        __emit 0xa5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-    }
+    std::auto_ptr<LineEmissionVolumeModuleTemplate> moduleTemplate(
+        (LineEmissionVolumeModuleTemplate *)new LineEmissionVolumeTemplateAllocation);
+    ((LineEmissionVolumeTemplateParseShim *)moduleTemplate.get())->parse(ini);
+    return moduleTemplate.release();
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?LINE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?LINE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVLineEmissionVolumeModule@2@VLineEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVLineEmissionVolumeModuleTemplate@2@XZ
