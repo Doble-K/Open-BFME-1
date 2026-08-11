@@ -1,236 +1,89 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+typedef int Int;
 
-class GameWindow;
+struct ICoord2D
+{
+	Int x;
+	Int y;
+};
+
+class UnicodeString
+{
+public:
+	UnicodeString();
+	UnicodeString(const UnicodeString &source);
+	~UnicodeString();
+	void set(const UnicodeString &source);
+	UnicodeString &operator=(const UnicodeString &source)
+	{
+		set(source);
+		return *this;
+	}
+	Int getLength() const
+	{
+		return m_data ? *reinterpret_cast<const unsigned short *>(
+			reinterpret_cast<const unsigned char *>(m_data) + 4) : 0;
+	}
+private:
+	void *m_data;
+};
+
+class GameWindow
+{
+public:
+	Int winGetSize(Int *width, Int *height);
+	Int winGetScreenPosition(Int *x, Int *y);
+};
+
+class DisplayString;
+class DisplayStringManager
+{
+public:
+	virtual void slot00(); virtual void slot01(); virtual void slot02();
+	virtual void slot03(); virtual void slot04(); virtual void slot05();
+	virtual void slot06(); virtual void slot07(); virtual void slot08();
+	virtual DisplayString *newDisplayString();
+};
+extern DisplayStringManager *TheDisplayStringManager;
+
+UnicodeString GadgetStaticTextGetText(GameWindow *window);
+
 class TextTypeTransition
 {
 public:
-	virtual void init(GameWindow *);
+	virtual ~TextTypeTransition();
+	virtual void init(GameWindow *window);
+	virtual void update(Int frame);
+private:
+	Int m_frameLength;
+	bool m_isFinished;
+	bool m_isForward;
+	unsigned char m_pad0a[2];
+	GameWindow *m_win;
+	Int m_startFrame;
+	Int m_endFrame;
+	ICoord2D m_pos;
+	ICoord2D m_size;
+	Int m_drawState;
+	UnicodeString m_fullText;
+	UnicodeString m_partialText;
+	DisplayString *m_dStr;
 };
 
-// ?init@TextTypeTransition@@UAEXPAVGameWindow@@@Z
-__declspec(naked) void TextTypeTransition::init(GameWindow *)
+void TextTypeTransition::init(GameWindow *window)
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x08
-        __emit 0x85
-        __emit 0x03
-        __emit 0x01
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x57
-        __emit 0x74
-        __emit 0x20
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x24
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x56
-        __emit 0x20
-        __emit 0x52
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0x9b
-        __emit 0x66
-        __emit 0xa9
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x18
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0x1a
-        __emit 0xf1
-        __emit 0xa8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc6
-        __emit 0x46
-        __emit 0x09
-        __emit 0x00
-        __emit 0xff
-        __emit 0x52
-        __emit 0x08
-        __emit 0xc6
-        __emit 0x46
-        __emit 0x08
-        __emit 0x00
-        __emit 0xc6
-        __emit 0x46
-        __emit 0x09
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xcc
-        __emit 0x12
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x52
-        __emit 0x24
-        __emit 0x89
-        __emit 0x46
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x51
-        __emit 0xe8
-        __emit 0xdf
-        __emit 0x81
-        __emit 0xa7
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x7e
-        __emit 0x2c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xb6
-        __emit 0x7c
-        __emit 0x2e
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x45
-        __emit 0x79
-        __emit 0x2e
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x3f
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x06
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x47
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x14
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x7d
-        __emit 0x16
-        __emit 0x89
-        __emit 0x46
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x89
-        __emit 0x4e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5f
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	if (window)
+	{
+		m_win = window;
+		m_win->winGetSize(&m_size.x, &m_size.y);
+		m_win->winGetScreenPosition(&m_pos.x, &m_pos.y);
 	}
+	m_isForward = false;
+	update(m_startFrame);
+	m_isFinished = false;
+	m_isForward = true;
+	m_dStr = TheDisplayStringManager->newDisplayString();
+	m_fullText = GadgetStaticTextGetText(m_win);
+	Int length = m_fullText.getLength();
+	m_frameLength = length < m_endFrame ? length : m_endFrame;
 }
