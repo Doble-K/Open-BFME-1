@@ -79366,7 +79366,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseCloudBreakEffect@@YAXPAVINI@@@Z,,0x0040B270,82,Code/GameEngine/Source/GameClient/CloudBreakEffect.cpp,matched,BFME-only; saved/active override pair then a tail call to the cloud system through vtable slot 9
 ?parseColor@@YA_NPAHPAD@Z,,0x00484610,115,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?parseColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x008531E0,409,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
-?parseComboBoxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004849E0,237,Code/GameEngine/Source/GameClient/GUI/parseComboBoxData_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseCommand@CommandButton@@SAXPAVINI@@PAX1PBX@Z,,0x0049AB90,124,Code/GameEngine/Source/Common/CommandButton_parseCommand_Thunk.cpp,matched,clean C++; INI name-to-index lookup via _strcmpi with an INIException on a miss
 ?parseCommandButtonDefinition@INI@@SAXPAV1@@Z,,0x000B7F80,166,Code/GameEngine/Source/Common/INI/INICommandButton.cpp,matched,find-create-override on TheControlBar; unblocked by placing the CommandSet parser which showed the two override creators pair up at 0x00027CC3 and 0x00049ADA
 ?parseCommandSetDefinition@INI@@SAXPAV1@@Z,,0x004A2150,249,Code/GameEngine/Source/Common/INI/INICommandSet.cpp,matched,the INI registry binds the CommandSet keyword to this address; it was recorded as ?newCommandButtonOverride@ControlBar@@ against a MASM dump which has been removed
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Get_DX8_Stencil_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902EC0,104,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; repointed from the 17-byte prefix claim at 0x00902E10 which is the compare-function switch
 ?Get_DX8_Cmp_Func_Name@DX8Wrapper@@SAPBDI@Z,,0x00902E10,104,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; extended from the 17-byte prefix claim to the whole switch
 ??0MapCache@@QAE@XZ,,0x00078F50,169,Code/GameEngine/Source/GameClient/MapCache_ctor_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; MapCache constructs base metadata map seen map and allowed-map set with retail STLPort node sizes
+?parseComboBoxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004849E0,237,Code/GameEngine/Source/GameClient/GUI/parseComboBoxData_Thunk.cpp,matched,Open-BFME5 exact C++ combo-box data parser

@@ -1,249 +1,69 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift parseComboBoxData to clean C++.
+
+#include <stdio.h>
+#include <string.h>
+
+typedef bool Bool;
+typedef int Int;
 
 class WinInstanceData;
-bool __cdecl parseComboBoxData(char *, WinInstanceData *, char *, void *);
+
+struct ComboBoxData
+{
+	Bool isEditable;
+	char m_pad[3];
+	Int maxDisplay;
+	Int maxChars;
+	unsigned int flags;
+};
+
+static Int scanBool(const char *source, Bool &val)
+{
+	Int temp = 0;
+	Int ret = sscanf(source, "%d", &temp);
+	val = (Bool)temp;
+	return ret;
+}
+
+static Int scanInt(const char *source, Int &val)
+{
+	return sscanf(source, "%d", &val);
+}
 
 // ?parseComboBoxData@@YA_NPADPAVWinInstanceData@@0PAX@Z
-__declspec(naked) bool __cdecl parseComboBoxData(char *, WinInstanceData *, char *, void *)
+bool __cdecl parseComboBoxData(char *, WinInstanceData *, char *buffer, void *data)
 {
-	__asm {
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x35
-        __emit 0xd8
-        __emit 0x94
-        __emit 0x35
-        __emit 0x01
-        __emit 0x57
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x50
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x33
-        __emit 0xed
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8b
-        __emit 0x3d
-        __emit 0x94
-        __emit 0x94
-        __emit 0x35
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x20
-        __emit 0x51
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x89
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x40
-        __emit 0x3b
-        __emit 0xcd
-        __emit 0x0f
-        __emit 0x95
-        __emit 0xc2
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0x88
-        __emit 0x13
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8d
-        __emit 0x4b
-        __emit 0x08
-        __emit 0x51
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x40
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8d
-        __emit 0x53
-        __emit 0x04
-        __emit 0x52
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0x89
-        __emit 0x6b
-        __emit 0x0c
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x48
-        __emit 0x51
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x89
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x54
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x54
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x30
-        __emit 0x3b
-        __emit 0xc5
-        __emit 0x74
-        __emit 0x04
-        __emit 0x83
-        __emit 0x4b
-        __emit 0x0c
-        __emit 0x10
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x34
-        __emit 0x52
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x89
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x40
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x40
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0xc5
-        __emit 0x74
-        __emit 0x04
-        __emit 0x83
-        __emit 0x4b
-        __emit 0x0c
-        __emit 0x40
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x5b
-        __emit 0x59
-        __emit 0xc3
-	}
+	ComboBoxData *comboData = (ComboBoxData *)data;
+	char *c;
+	char *seps = " :,\n\r\t";
+
+	c = strtok(buffer, seps);
+	c = strtok(0, seps);
+	scanBool(c, comboData->isEditable);
+
+	c = strtok(0, seps);
+	c = strtok(0, seps);
+	scanInt(c, comboData->maxChars);
+
+	c = strtok(0, seps);
+	c = strtok(0, seps);
+	scanInt(c, comboData->maxDisplay);
+
+	comboData->flags = 0;
+	c = strtok(0, seps);
+	c = strtok(0, seps);
+	Bool asciiOnly;
+	scanBool(c, asciiOnly);
+	if (asciiOnly)
+		comboData->flags |= 0x10;
+
+	c = strtok(0, seps);
+	c = strtok(0, seps);
+	Bool lettersAndNumbersOnly;
+	scanBool(c, lettersAndNumbersOnly);
+	if (lettersAndNumbersOnly)
+		comboData->flags |= 0x40;
+
+	return true;
 }
