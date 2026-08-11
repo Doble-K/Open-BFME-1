@@ -8340,7 +8340,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Build_Matrix3D@@YAAAVMatrix3D@@ABVQuaternion@@AAV1@@Z,,0x00952410,218,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ?Build_Matrix4@@YA?AVMatrix4@@ABVQuaternion@@@Z,,0x008DBE10,286,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3@@@Z,,0x008DBB80,330,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
-?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3D@@@Z,,0x008DBA40,311,Code/GameEngine/Source/Common/Build_Quaternion_Thunk.cpp,matched,symbol-pin Open-BFME4+Grok
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix4@@@Z,,0x008DBCD0,311,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Build_Sentence_Not_Centered@Render2DSentenceClass@@AAE?AVVector2@@PBGPAH1_N@Z,,0x00942430,1934,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,Open-BFME5 exact retail emits
 ?Build_Textures@Render2DSentenceClass@@AAEXXZ,,0x0093DD60,530,Code/GameEngine/Source/Common/Render2DSentenceClass_Build_TexturesMethodThunk.cpp,matched,
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??1ObjectCreationListStore@@UAE@XZ,,0x001DA720,207,Code/GameEngine/Source/Common/ObjectCreationListStoreDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion; official destructor deletes owned nuggets clears and frees pointer vector then destroys OCL map and subsystem base
 ??1InstantDeathBehaviorModuleData@@UAE@XZ,,0x00201840,220,Code/GameEngine/Source/Common/InstantDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 220B clean C++ destructor Open-BFME5
 ??1EmotionTrackerUpdateModuleData@@UAE@XZ,,0x0028FBB0,214,Code/GameEngine/Source/Common/EmotionTrackerUpdateModuleDataDestructorThunk.cpp,matched,Exact 214B clean C++ destructor Open-BFME5
+?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3D@@@Z,,0x008DBA40,311,Code/GameEngine/Source/Common/Build_Quaternion_Thunk.cpp,matched,
