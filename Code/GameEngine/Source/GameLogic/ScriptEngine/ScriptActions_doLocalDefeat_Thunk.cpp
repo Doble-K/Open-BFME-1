@@ -1,261 +1,108 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+typedef bool Bool;
+
+class AsciiString
+{
+public:
+	AsciiString(const char *text);
+	~AsciiString();
+private:
+	void *m_data;
+};
+
+class GameWindow
+{
+	unsigned char m_pad[0x118];
+public:
+	Bool m_existingState;
+};
+
+class ScriptEngine
+{
+public:
+	virtual void slot00(); virtual void slot01(); virtual void slot02();
+	virtual void slot03(); virtual void slot04(); virtual void slot05();
+	virtual void slot06(); virtual void slot07(); virtual void slot08();
+	virtual void slot09(); virtual void slot10(); virtual void slot11();
+	virtual void slot12(); virtual void slot13();
+	virtual void startCloseWindowTimer();
+	void markMPLocalDefeatWindowShown();
+};
+extern ScriptEngine *TheScriptEngine;
+
+class GameLogic
+{
+public:
+	void closeWindows();
+};
+extern GameLogic *TheGameLogic;
+
+class VictoryConditions
+{
+public:
+	virtual void slot00(); virtual void slot01(); virtual void slot02(); virtual void slot03();
+	virtual void slot04(); virtual void slot05(); virtual void slot06(); virtual void slot07();
+	virtual void slot08(); virtual void slot09(); virtual void slot10(); virtual void slot11();
+	virtual void slot12(); virtual void slot13(); virtual void slot14(); virtual void slot15();
+	virtual Bool amIObserver();
+	virtual void slot17();
+	virtual void showScreen(const AsciiString &eventName, Bool existingWindowState,
+		const AsciiString &screen, const void *table);
+};
+extern VictoryConditions *TheVictoryConditions;
+
+class BfmeDefeatScreenHolder
+{
+	unsigned char m_pad[4];
+public:
+	GameWindow *m_window;
+};
+
+class BfmeGameClient
+{
+	unsigned char m_pad[0x0c];
+public:
+	BfmeDefeatScreenHolder *m_defeatScreenHolder;
+};
+extern BfmeGameClient *TheGameClient;
+extern unsigned char BfmeDefeatScreenTable[];
+
+class CampaignManager
+{
+	unsigned char m_pad[0x1d];
+public:
+	Bool m_victorious;
+};
+extern CampaignManager *TheCampaignManager;
 
 class ScriptActions
 {
 protected:
 	void doLocalDefeat();
+private:
+	unsigned char m_pad[4];
+	GameWindow *m_messageWindow;
+	Bool m_suppressNewWindows;
 };
 
-// ?doLocalDefeat@ScriptActions@@IAEXXZ
-__declspec(naked) void ScriptActions::doLocalDefeat()
+void ScriptActions::doLocalDefeat()
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x20
-        __emit 0x5f
-        __emit 0x01
-        __emit 0x01
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xe5
-        __emit 0x0b
-        __emit 0xd1
-        __emit 0xff
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x98
-        __emit 0x08
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x8f
-        __emit 0x15
-        __emit 0xd1
-        __emit 0xff
-        __emit 0x38
-        __emit 0x5e
-        __emit 0x08
-        __emit 0x0f
-        __emit 0x85
-        __emit 0x91
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x9c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x3b
-        __emit 0xcb
-        __emit 0x0f
-        __emit 0x84
-        __emit 0x83
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x01
-        __emit 0xff
-        __emit 0x50
-        __emit 0x40
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x7a
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x48
-        __emit 0xd7
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x71
-        __emit 0x0c
-        __emit 0x3b
-        __emit 0xf3
-        __emit 0x74
-        __emit 0x6d
-        __emit 0x68
-        __emit 0xe0
-        __emit 0x00
-        __emit 0x0d
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0xe8
-        __emit 0x8e
-        __emit 0x6c
-        __emit 0x59
-        __emit 0x00
-        __emit 0x68
-        __emit 0xd0
-        __emit 0x00
-        __emit 0x0d
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0xe8
-        __emit 0x7c
-        __emit 0x6c
-        __emit 0x59
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x01
-        __emit 0x74
-        __emit 0x08
-        __emit 0x8a
-        __emit 0x80
-        __emit 0x18
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x32
-        __emit 0xc0
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x9c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x68
-        __emit 0x50
-        __emit 0x6e
-        __emit 0x33
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x74
-        __emit 0x24
-        __emit 0x10
-        __emit 0x56
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x50
-        __emit 0xff
-        __emit 0x52
-        __emit 0x48
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x88
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x18
-        __emit 0xe8
-        __emit 0xbe
-        __emit 0x59
-        __emit 0x59
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xaf
-        __emit 0x59
-        __emit 0x59
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x24
-        __emit 0x10
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x88
-        __emit 0x59
-        __emit 0x1d
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x52
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
+	TheScriptEngine->markMPLocalDefeatWindowShown();
+	m_suppressNewWindows = false;
+	TheGameLogic->closeWindows();
+	if (!m_suppressNewWindows && TheVictoryConditions && !TheVictoryConditions->amIObserver())
+	{
+		BfmeDefeatScreenHolder *holder = TheGameClient->m_defeatScreenHolder;
+		if (holder)
+		{
+			AsciiString screen("Gui_DefeatScreen");
+			AsciiString eventName("APT:EndDefeat");
+			GameWindow *existingWindow = holder->m_window;
+			TheVictoryConditions->showScreen(eventName,
+				existingWindow ? existingWindow->m_existingState : false,
+				screen, BfmeDefeatScreenTable);
+		}
 	}
+	TheCampaignManager->m_victorious = false;
+	TheScriptEngine->startCloseWindowTimer();
 }

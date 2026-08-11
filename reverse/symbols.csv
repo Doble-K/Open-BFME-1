@@ -68620,3 +68620,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?resize@EvaCheckVec@@QAEXH@Z,0x000153D4,ILT thunk to the retail vector<EvaCheck> resize-with-default at 0x00426100; unidentified beyond its shape
 ?_bfme_releaseElements@EvaSideSoundsVec@@QAEXXZ,0x00037BF0,ILT thunk to the retail Eva side-sound element release loop at 0x00424300; unidentified beyond its shape
 ?_bfme_copyElements@EvaSideSoundsVec@@QAEXABV1@@Z,0x00033E1A,ILT thunk to the retail Eva side-sound element deep-copy at 0x00424380; unidentified beyond its shape
+?markMPLocalDefeatWindowShown@ScriptEngine@@QAEXXZ,0x00002ACC,local defeat retail ILT
