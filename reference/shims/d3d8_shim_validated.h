@@ -295,9 +295,9 @@ struct IDirect3DDevice8 {
 	virtual BOOL __stdcall ShowCursor(BOOL) = 0;
 	virtual HRESULT __stdcall CreateAdditionalSwapChain(struct _D3DPRESENT_PARAMETERS*, IDirect3DSwapChain8**) = 0;
 	virtual HRESULT __stdcall Reset(void*) = 0;
-	virtual HRESULT __stdcall Present(const void*, const void*, HWND, const void*) = 0;
 	virtual HRESULT __stdcall GetBackBuffer(UINT, DWORD, IDirect3DSurface8**) = 0;
 	virtual HRESULT __stdcall GetRasterStatus(void*) = 0;
+	virtual HRESULT __stdcall Present(const void*, const void*, HWND, const void*) = 0;
 	virtual void __stdcall SetGammaRamp(DWORD, const void*) = 0;
 	virtual void __stdcall GetGammaRamp(void*) = 0;
 	virtual HRESULT __stdcall CreateTexture(UINT, UINT, UINT, DWORD, D3DFORMAT, D3DPOOL, IDirect3DTexture8**) = 0;
