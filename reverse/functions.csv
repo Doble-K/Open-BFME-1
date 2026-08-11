@@ -8747,7 +8747,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?DoXfer@StreakDrawModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z,0x0001B1A3,0x5f7f00,27,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?DoXfer@TerrainCollisionModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z,0x000320A1,0x5fcf10,75,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ?DoXfer@WindModuleInfo@FXParticleSystem@@UAEXAAVXfer@@@Z,0x0000B235,0x5fe750,242,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-?Do_Mappers_Need_Normals@MeshMatDescClass@@QAE_NXZ,,0x00929AD0,267,Code/Libraries/Source/WWVegas/WW3D2/MeshMatDescClass_Do_Mappers_Need_Normals_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?DoesCommandRequireACommandID@@YAHW4NetCommandType@@@Z,,0x00682D20,113,Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp,matched,
 ?DotProduct@VectorProcessorClass@@SAXPAMABVVector3@@PBV2@H@Z,,0x00B008F0,213,Code/Libraries/Source/WWVegas/WWMath/vp.cpp,matched,
 ?Dot_Product@Vector2@@SAMABV1@0@Z,,0x00703E00,21,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?getReadyFrame@SpecialPowerModule@@UBEIXZ,,0x0026ABC0,126,Code/GameEngine/Source/Common/SpecialPowerModule_getReadyFrame_Thunk.cpp,matched,Open-BFME5 clean C++ ready-frame calculation with exact BFME subobject offsets and shared-player synchronization
 ??0DefaultAlphaModuleInfo@FXParticleSystem@@QAE@XZ,,0x005EE4C0,102,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultAlphaModuleInfoCtorThunk.cpp,matched,Open-BFME5 clean C++ default-alpha constructor with exact snapshot-base SEH and eight keyframe initializations
 ??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameTextManager_ctor_Thunk.cpp,matched,Open-BFME5 clean C++ GameTextManager constructor with exact retail layout and failed-message initialization
+?Do_Mappers_Need_Normals@MeshMatDescClass@@QAE_NXZ,,0x00929AD0,267,Code/Libraries/Source/WWVegas/WW3D2/MeshMatDescClass_Do_Mappers_Need_Normals_Thunk.cpp,matched,Open-BFME5 clean C++ mapper-normal scan with exact BFME retail mapper-array ABI
