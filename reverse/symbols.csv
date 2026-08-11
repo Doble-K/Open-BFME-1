@@ -68658,6 +68658,8 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??0AudioEventRTS@@QAE@PAXH@Z,0x00025306,Open-BFME5 AudioEventRTS retail constructor
 ?construct@ShaderVectorBaseCtorShim@@QAEXHH@Z,0x009305D0,Open-BFME5 shader vector retail base constructor
 ?construct@TextureVectorBaseCtorShim@@QAEXHH@Z,0x0092FBA0,Open-BFME5 texture vector retail base constructor
+??1UpgradeStringMember@@QAE@XZ,0x00887940,Open-BFME5 UpgradeTemplate string member destructor
+??1UpgradeAudioMember@@UAE@XZ,0x00026F35,Open-BFME5 UpgradeTemplate audio member destructor
 ?init@TerrainShader2Stage@@QAEHXZ,0x00023272,Open-BFME5 terrain two-stage shader initializer ILT
 ?OpenBFME5_netCRCInterval@@3HA,0x012A7040,Open-BFME5 retail network CRC interval global
 __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer

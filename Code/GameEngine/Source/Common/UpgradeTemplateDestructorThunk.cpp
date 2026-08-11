@@ -1,185 +1,46 @@
 // cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) UpgradeTemplate
+class UpgradeStringMember
+{
+public:
+    ~UpgradeStringMember();
+
+private:
+    char *m_text;
+};
+
+class UpgradeAudioMember
+{
+public:
+    virtual ~UpgradeAudioMember();
+
+private:
+    unsigned char m_data[0x6c];
+};
+
+class UpgradeTemplate
 {
 protected:
     virtual ~UpgradeTemplate();
+
+private:
+    unsigned int m_pad04;
+    UpgradeStringMember m_member08;
+    unsigned char m_pad0c[4];
+    UpgradeStringMember m_member10;
+    UpgradeStringMember m_member14;
+    unsigned char m_pad18[0x0c];
+    UpgradeStringMember m_member24;
+    UpgradeAudioMember m_member28;
+    UpgradeAudioMember m_member98;
+    unsigned char m_pad108[8];
+    UpgradeStringMember m_member110;
+    unsigned char m_pad114[4];
+    UpgradeStringMember m_member118;
 };
 
 // ??1UpgradeTemplate@@MAE@XZ
-__declspec(naked) UpgradeTemplate::~UpgradeTemplate()
+UpgradeTemplate::~UpgradeTemplate()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x83
-        __emit 0xd3
-        __emit 0xff
-        __emit 0x00
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x64
-        __emit 0x8d
-        __emit 0x08
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0x18
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x06
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x5a
-        __emit 0xcc
-        __emit 0x77
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0x10
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x05
-        __emit 0xe8
-        __emit 0x4a
-        __emit 0xcc
-        __emit 0x77
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0x98
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x04
-        __emit 0xe8
-        __emit 0x2f
-        __emit 0xc2
-        __emit 0xf1
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x28
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x03
-        __emit 0xe8
-        __emit 0x22
-        __emit 0xc2
-        __emit 0xf1
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x24
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x02
-        __emit 0xe8
-        __emit 0x20
-        __emit 0xcc
-        __emit 0x77
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x14
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x13
-        __emit 0xcc
-        __emit 0x77
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x10
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x06
-        __emit 0xcc
-        __emit 0x77
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xf6
-        __emit 0xcb
-        __emit 0x77
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
