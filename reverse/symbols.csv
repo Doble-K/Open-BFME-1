@@ -68657,3 +68657,6 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?ParseConditionDataChunk@Condition@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,0x00449292,Open-BFME5 Condition parser function pointer
 ??0AudioEventRTS@@QAE@PAXH@Z,0x00025306,Open-BFME5 AudioEventRTS retail constructor
 ?init@TerrainShader2Stage@@QAEHXZ,0x00023272,Open-BFME5 terrain two-stage shader initializer ILT
+?OpenBFME5_netCRCInterval@@3HA,0x012A7040,Open-BFME5 retail network CRC interval global
+__imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
+?set@AsciiString@@AAEXABV1@@Z,0x00887C90,Open-BFME5 private AsciiString copy-set body

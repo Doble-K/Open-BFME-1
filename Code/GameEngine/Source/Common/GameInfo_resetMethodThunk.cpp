@@ -1,183 +1,73 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: retail GameInfo reset in C++.
+
+extern "C" __declspec(dllimport) unsigned long __stdcall GetTickCount();
+
+class AsciiString
+{
+public:
+	AsciiString(const char *text);
+	~AsciiString();
+	__forceinline AsciiString &operator=(const AsciiString &other)
+	{
+		set(other);
+		return *this;
+	}
+private:
+	void set(const AsciiString &other);
+	char *m_data;
+};
+
+class GameSlot
+{
+public:
+	virtual void reset();
+};
+
+extern int OpenBFME5_netCRCInterval;
 
 class __declspec(novtable) GameInfo
 {
 public:
-    virtual void reset();
+	virtual void reset();
+private:
+	int m_preorderMask;
+	int m_crcInterval;
+	unsigned char m_inGame;
+	unsigned char m_inProgress;
+	unsigned char m_oldFactionsOnly;
+	unsigned char m_padding0f;
+	int m_gameID;
+	GameSlot *m_slots[8];
+	unsigned int m_localIP;
+	unsigned int m_padding38;
+	AsciiString m_mapName;
+	unsigned int m_mapCRC;
+	unsigned int m_mapSize;
+	int m_mapMask;
+	int m_seed;
+	int m_useStats;
 };
 
-// ?reset@GameInfo@@UAEXXZ
-__declspec(naked) void GameInfo::reset()
+void GameInfo::reset()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x28
-        __emit 0xf2
-        __emit 0x03
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0xa1
-        __emit 0x40
-        __emit 0x70
-        __emit 0x2a
-        __emit 0x01
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x68
-        __emit 0x5c
-        __emit 0x76
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x89
-        __emit 0x46
-        __emit 0x08
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x0c
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x0d
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x10
-        __emit 0xe8
-        __emit 0x43
-        __emit 0x97
-        __emit 0x26
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x3c
-        __emit 0x52
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x20
-        __emit 0xe8
-        __emit 0x02
-        __emit 0x88
-        __emit 0x26
-        __emit 0x00
-        __emit 0x83
-        __emit 0xcf
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x89
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0xe8
-        __emit 0xa2
-        __emit 0x84
-        __emit 0x26
-        __emit 0x00
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x48
-        __emit 0xff
-        __emit 0x15
-        __emit 0x0c
-        __emit 0x8e
-        __emit 0x35
-        __emit 0x01
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x50
-        __emit 0x89
-        __emit 0x46
-        __emit 0x4c
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x0e
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x40
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x44
-        __emit 0x8d
-        __emit 0x7e
-        __emit 0x14
-        __emit 0xbd
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x07
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0x8b
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x04
-        __emit 0x4d
-        __emit 0x75
-        __emit 0xee
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x04
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	m_crcInterval = OpenBFME5_netCRCInterval;
+	m_inGame = 0;
+	m_inProgress = 0;
+	m_gameID = 0;
+	{
+		AsciiString mapName("NOMAP");
+		m_mapName = mapName;
+	}
+	m_mapMask = 0;
+	m_seed = (int)GetTickCount();
+	m_useStats = -1;
+	m_oldFactionsOnly = 0;
+	m_mapCRC = 0;
+	m_mapSize = 0;
+	for (int i = 0; i < 8; ++i) {
+		if (m_slots[i])
+			m_slots[i]->reset();
+	}
+	m_preorderMask = 0;
 }
