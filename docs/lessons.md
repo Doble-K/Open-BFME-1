@@ -6824,3 +6824,41 @@ Neither of these would have surfaced from a screen; both came from an agent
 reading its own compiled .obj's actual symbol and relocation tables rather
 than trusting build.py's summary line, after exhausting the build budget
 honestly instead of padding a report.
+
+
+## A recurring EH-bookkeeping scheduling artifact now has a name and four instances
+
+ParticleSystemInfo's copy constructor failed on exactly one residual: retail
+stores the this-pointer to its EH-frame stack slot as the very first
+instruction after the prologue's initial push, before loading the source
+object pointer or the vptr. Every source shape compiled instead defers that
+store to immediately before the first call that could throw, a few bytes
+later, shifting the whole function's length.
+
+This is not a one-off. The same shape is already on record for addRadar@Player,
+getIdealStaticGameDetail@OptionPreferences, and two destructors elsewhere in
+this project. Four independent sightings across unrelated functions makes this
+a real, recognized residual class -- MSVC 7.1 choosing to schedule the
+EH-frame's this-store at the top of the function in some cases and just before
+first use in others, for reasons not yet tied to anything expressible in
+source. Worth a dedicated screen once enough instances accumulate to look for
+what they have in common.
+
+## Not every naked function has a discoverable fix, and that is a legitimate outcome
+
+A 4-agent swarm this tick landed zero conversions -- all four candidates were
+diagnosed precisely and reverted cleanly, no exceptions. Two hit the
+calling-convention/ledger-ABI conflict already on record (this is now three
+occurrences: DequePartitionCellInitializeMap, VectorICoord2D::_M_insert_overflow,
+and by the same shape likely more waiting in the pool). One hit a
+register-allocation residual. One found a genuinely new structural fact --
+MapMetaDataReader has an 8-element array of an unidentified 20-byte "slot
+record" type nobody has named in this codebase yet -- and reported that instead
+of inventing a plausible-sounding class to paper over it.
+
+The pool of readily-available naked functions at the size/call-count tier this
+swarm searched is thinning out: what is left after three swarm runs skews
+toward known-hard categories rather than easy wins. Future candidate selection
+should either widen further (larger functions, more calls) or specifically hunt
+for instances of the already-named blocker classes, since those are at least
+diagnosable even when not fixable from a single file.
