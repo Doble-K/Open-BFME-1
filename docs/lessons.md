@@ -6628,3 +6628,28 @@ intended or would make resolution ambiguous.
 
 Recorded rather than attempted. The remaining two arms of Unregister call Internal_Remove
 directly and would reproduce; it is only the thunked three that need this settled.
+
+## Where an unwind state sits tells you whether a subobject is a base or a base's member
+
+CritterEmitterUpdateModuleData's destructor destroys five things: four at unwind states
+3, 2, 1, 0 and the subobject at 0x08 last, at state 4. Reading that as "four members and
+a base" and writing `class X : public RootBase, public Base08 { ...four members... }`
+reproduces every instruction and gets the numbering exactly backwards -- MSVC emits it as
+base 0, members 1..4, because bases are constructed before members and numbered in
+construction order.
+
+The shape that does reproduce it is an intermediate class with an inline destructor:
+
+    class Mid : public RootBase { InnerAt08 m_at08; public: virtual ~Mid() {} };
+    class X : public Mid { AsciiString a; vector b; UnknownB4 c; AsciiString d; };
+
+~Mid is inlined into ~X, so its member's cleanup is emitted after X's own members and
+numbered after them. State 4 running last is therefore not "a base numbered oddly", it is
+positive evidence that 0x08 belongs to an intermediate class rather than to this one --
+the numbering distinguishes two hierarchies that produce identical instructions.
+
+The same function needed __declspec(novtable) on both the intermediate and the derived
+class. Retail stores exactly one vptr, the root base's restore at the very end; without
+novtable MSVC opens the destructor by storing the derived vptr and stores the
+intermediate's again before its member. That is the same lever as the two vptr sections
+above, applied to a class that is not the most-derived one at runtime.
