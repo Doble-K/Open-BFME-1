@@ -1,4 +1,5 @@
 name,address,notes
+?clear@?$_List_base@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAEXXZ,0x0001900B,LadderInfo AsciiString list clear helper pin
 ?construct@LightningEmissionModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00024C8F,Lightning emission module constructor ILT pin
 ?_M_erase@?$_Rb_tree@HU?$pair@$$CBHVAsciiString@@@_STL@@U?$_Select1st@U?$pair@$$CBHVAsciiString@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@Z,0x0004887E,SavedIgnoreMap clear helper pin
 ?getIgnores@IgnorePreferences@@QAE?AV?$map@HVAsciiString@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@3@@_STL@@XZ,0x00011257,Saved ignore preferences getter pin
