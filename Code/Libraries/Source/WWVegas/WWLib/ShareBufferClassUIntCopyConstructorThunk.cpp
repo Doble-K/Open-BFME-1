@@ -1,192 +1,61 @@
 // cl: /DNDEBUG /MD /EHsc
 
-template <class Type>
-class ShareBufferClass
+void *operator new[](unsigned int size);
+
+// BFME ShareBufferClass<T> layout (see sharebuf.h): RefCountClass base (vtbl +
+// NumRefs), then RawBuffer (actual allocation), Array (aligned view handed
+// out), Count, Alignment. The 2-arg copy constructor always allocates a fresh
+// buffer sized off Count and, when Alignment is non-zero, rounds the raw
+// allocation up to that alignment for Array while keeping RawBuffer pointed
+// at the original allocation (freed later by the destructor).
+class RefCountClass
 {
 public:
-    ShareBufferClass(const ShareBufferClass &);
+    RefCountClass(void) : NumRefs(1) {}
+    RefCountClass(const RefCountClass &) : NumRefs(1) {}
+    void Add_Ref(void) { NumRefs++; }
+    void Release_Ref(void);
+    int Num_Refs(void) { return NumRefs; }
+    virtual void Delete_This(void);
+
+protected:
+    virtual ~RefCountClass(void) {}
+
+private:
+    int NumRefs;
 };
 
 template <class Type>
-__declspec(naked) ShareBufferClass<Type>::ShareBufferClass(const ShareBufferClass<Type> &)
+class ShareBufferClass : public RefCountClass
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x18;
-        __emit 0xc9;
-        __emit 0x05;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x54;
-        __emit 0xe1;
-        __emit 0x11;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0x47;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x8b;
-        __emit 0x47;
-        __emit 0x14;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x75;
-        __emit 0x14;
-        __emit 0x8b;
-        __emit 0x4e;
-        __emit 0x10;
-        __emit 0xc1;
-        __emit 0xe1;
-        __emit 0x02;
-        __emit 0x51;
-        __emit 0xe8;
-        __emit 0x8d;
-        __emit 0x7e;
-        __emit 0xf5;
-        __emit 0xff;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xeb;
-        __emit 0x1e;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x10;
-        __emit 0x8d;
-        __emit 0x04;
-        __emit 0x90;
-        __emit 0x50;
-        __emit 0xe8;
-        __emit 0x79;
-        __emit 0x7e;
-        __emit 0xf5;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4e;
-        __emit 0x14;
-        __emit 0x8d;
-        __emit 0x54;
-        __emit 0x01;
-        __emit 0xff;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x04;
-        __emit 0x49;
-        __emit 0xf7;
-        __emit 0xd1;
-        __emit 0x23;
-        __emit 0xd1;
-        __emit 0x89;
-        __emit 0x56;
-        __emit 0x0c;
-        __emit 0x8b;
-        __emit 0x4e;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x85;
-        __emit 0xc9;
-        __emit 0x7e;
-        __emit 0x14;
-        __emit 0x8b;
-        __emit 0x4f;
-        __emit 0x0c;
-        __emit 0x8b;
-        __emit 0x0c;
-        __emit 0x81;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x0c;
-        __emit 0x82;
-        __emit 0x8b;
-        __emit 0x4e;
-        __emit 0x10;
-        __emit 0x40;
-        __emit 0x3b;
-        __emit 0xc1;
-        __emit 0x7c;
-        __emit 0xec;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
+public:
+    ShareBufferClass(const ShareBufferClass &);
+
+protected:
+    Type *RawBuffer;
+    Type *Array;
+    int Count;
+    int Alignment;
+};
+
+template <class Type>
+ShareBufferClass<Type>::ShareBufferClass(const ShareBufferClass<Type> &that) :
+    Count(that.Count)
+{
+    Alignment = that.Alignment;
+    void *raw;
+    if (Alignment == 0) {
+        raw = ::operator new[](Count * sizeof(Type));
+        Array = (Type *)raw;
+    } else {
+        raw = ::operator new[](Count * sizeof(Type) + Alignment);
+        Array = (Type *)(((unsigned int)raw + Alignment - 1) & ~(unsigned int)(Alignment - 1));
+    }
+    RawBuffer = (Type *)raw;
+    for (int i = 0; i < Count; i++) {
+        Array[i] = that.Array[i];
     }
 }
 
-template __declspec(naked) ShareBufferClass<unsigned int>::ShareBufferClass(
+template ShareBufferClass<unsigned int>::ShareBufferClass(
     const ShareBufferClass<unsigned int> &);

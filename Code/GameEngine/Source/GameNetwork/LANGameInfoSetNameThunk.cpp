@@ -1,95 +1,18 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/languagefilter /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
 
-class UnicodeString
-{
-};
+#include "Common/UnicodeString.h"
 
 class LANGameInfo
 {
 public:
-    void setName(UnicodeString);
+	void setName(UnicodeString name);
+private:
+	unsigned char m_pad[0x3a0];
+	UnicodeString m_gameName;
 };
 
-__declspec(naked) void LANGameInfo::setName(UnicodeString)
+// ?setName@LANGameInfo@@QAEXVUnicodeString@@@Z
+void LANGameInfo::setName(UnicodeString name)
 {
-    __asm {
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x58;
-        __emit 0x62;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x81;
-        __emit 0xc1;
-        __emit 0xa0;
-        __emit 0x03;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x83;
-        __emit 0x30;
-        __emit 0x20;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xe8;
-        __emit 0x12;
-        __emit 0x2d;
-        __emit 0x20;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x0c;
-        __emit 0x24;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x0c;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+	m_gameName = name;
 }

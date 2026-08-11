@@ -1,106 +1,25 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /ICode/Libraries/Source/WWVegas/WWLib
+
+#include "Common/AsciiString.h"
+
+typedef unsigned int UnsignedInt;
 
 class ArchivedFileInfo
 {
 public:
-    ArchivedFileInfo(const ArchivedFileInfo &);
+    AsciiString m_filename;
+    AsciiString m_archiveFilename;
+    UnsignedInt m_offset;
+    UnsignedInt m_size;
+
+    ArchivedFileInfo(const ArchivedFileInfo &that);
 };
 
-__declspec(naked) ArchivedFileInfo::ArchivedFileInfo(const ArchivedFileInfo &)
+// ??0ArchivedFileInfo@@QAE@ABV0@@Z
+ArchivedFileInfo::ArchivedFileInfo(const ArchivedFileInfo &that) :
+    m_filename(that.m_filename),
+    m_archiveFilename(that.m_archiveFilename)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x98;
-        __emit 0x0a;
-        __emit 0x06;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0x48;
-        __emit 0x8f;
-        __emit 0xeb;
-        __emit 0xff;
-        __emit 0x8d;
-        __emit 0x47;
-        __emit 0x04;
-        __emit 0x50;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x04;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x34;
-        __emit 0x8f;
-        __emit 0xeb;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4f;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x57;
-        __emit 0x0c;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x56;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+    m_offset = that.m_offset;
+    m_size = that.m_size;
 }

@@ -1,133 +1,71 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: BuddyMessage(const BuddyMessage &) copy constructor.
+// Members, in declaration order: UnsignedInt timestamp, GPProfile senderID,
+// AsciiString senderNick, GPProfile recipientID, AsciiString recipientNick,
+// UnicodeString message. The two AsciiString members and the UnicodeString
+// member each forward to their StringBase<T> copy constructor (StringBase<D>
+// for the narrow strings, StringBase<G> for the wide one), matching the two
+// distinct call targets in the retail thunk.
+
+template <class T>
+class StringBase
+{
+	friend class AsciiString;
+	friend class UnicodeString;
+
+private:
+	StringBase(const StringBase<T> &that);
+	T *m_data;
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const AsciiString &that)
+	{
+		((StringBase<char> *)this)->StringBase<char>::StringBase(*(const StringBase<char> *)&that);
+	}
+	~AsciiString();
+
+private:
+	char *m_text;
+};
+
+class UnicodeString
+{
+public:
+	UnicodeString(const UnicodeString &that)
+	{
+		((StringBase<unsigned short> *)this)->StringBase<unsigned short>::StringBase(*(const StringBase<unsigned short> *)&that);
+	}
+	~UnicodeString();
+
+private:
+	unsigned short *m_text;
+};
+
 class BuddyMessage
 {
 public:
-    BuddyMessage(const BuddyMessage &);
+	BuddyMessage(const BuddyMessage &);
+
+private:
+	unsigned int m_timestamp;
+	unsigned int m_senderID;
+	AsciiString m_senderNick;
+	unsigned int m_recipientID;
+	AsciiString m_recipientNick;
+	UnicodeString m_message;
 };
 
-__declspec(naked) BuddyMessage::BuddyMessage(const BuddyMessage &)
+// ??0BuddyMessage@@QAE@ABV0@@Z
+BuddyMessage::BuddyMessage(const BuddyMessage &that)
+	: m_timestamp(that.m_timestamp),
+	  m_senderID(that.m_senderID),
+	  m_senderNick(that.m_senderNick),
+	  m_recipientID(that.m_recipientID),
+	  m_recipientNick(that.m_recipientNick),
+	  m_message(that.m_message)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x66;
-        __emit 0xbb;
-        __emit 0x02;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x8b;
-        __emit 0x07;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x06;
-        __emit 0x8b;
-        __emit 0x4f;
-        __emit 0x04;
-        __emit 0x8d;
-        __emit 0x57;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x04;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0x52;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0x08;
-        __emit 0xd6;
-        __emit 0x39;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x47;
-        __emit 0x0c;
-        __emit 0x8d;
-        __emit 0x57;
-        __emit 0x10;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x10;
-        __emit 0x52;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0xee;
-        __emit 0xd5;
-        __emit 0x39;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc7;
-        __emit 0x14;
-        __emit 0x57;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x14;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x7d;
-        __emit 0xde;
-        __emit 0x39;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
 }

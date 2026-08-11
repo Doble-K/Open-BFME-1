@@ -1,206 +1,37 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /ICode/Libraries/Source/WWVegas/WWMath /ICode/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/WW3D2 /ICode/Libraries/Source/WWVegas/Wwutil /ICode/Libraries/Source/WWVegas/WWDownload /ICode/Libraries/Source/Compression /ICode/Libraries/Source/WWVegas/WWDebug /Ireference/shims/sweep
+#define Matrix4x4 Matrix4
+#include "winbase_shim.h"
 
-class Animatable3DObjClass
-{
-public:
-    Animatable3DObjClass(const Animatable3DObjClass &);
-};
+#include "animobj.h"
+#include "htree.h"
+#include "assetmgr.h"
+#include "hanim.h"
+#include "hcanim.h"
+#include "ww3d.h"
+#include "wwmemlog.h"
+#include "animatedsoundmgr.h"
 
-__declspec(naked) Animatable3DObjClass::Animatable3DObjClass(const Animatable3DObjClass &)
+// ??0Animatable3DObjClass@@QAE@ABV0@@Z
+Animatable3DObjClass::Animatable3DObjClass(const Animatable3DObjClass & src) :
+	CompositeRenderObjClass(src),
+	IsTreeValid(0),
+	CurMotionMode(BASE_POSE),
+	HTree(NULL),
+	_bfme_a3o_v0(NULL)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x08;
-        __emit 0xfb;
-        __emit 0x05;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0x18;
-        __emit 0x08;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x10;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x48;
-        __emit 0xf1;
-        __emit 0x13;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x44;
-        __emit 0xf1;
-        __emit 0x13;
-        __emit 0x01;
-        __emit 0x88;
-        __emit 0x86;
-        __emit 0xf8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0xfc;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x86;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x0d;
-        __emit 0x20;
-        __emit 0xf4;
-        __emit 0x33;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x8e;
-        __emit 0x18;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xb9;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x3f;
-        __emit 0x89;
-        __emit 0x8e;
-        __emit 0x20;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x8e;
-        __emit 0x1c;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x10;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x14;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x18;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x86;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0xa4;
-        __emit 0xfb;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x04;
-        __emit 0x00;
-    }
+   // Inline struct members can't be initialized in init list for some reason...
+	ModeAnim.Motion=NULL;
+	ModeAnim.Frame=0.0f;
+	ModeAnim.PrevFrame=0.0f;
+	ModeAnim.LastSyncTime=WW3D::Get_Sync_Time();
+	ModeAnim.frameRateMultiplier=1.0;	// 020607 srj -- added
+	ModeAnim.animDirection=1.0;	// 020607 srj -- added
+	ModeInterp.Motion0=NULL;
+	ModeInterp.Motion1=NULL;
+	ModeInterp.Frame0=0.0f;
+	ModeInterp.Frame1=0.0f;
+	ModeInterp.Percentage=0.0f;
+	ModeCombo.AnimCombo=NULL;
+
+	*this = src;
 }

@@ -1,119 +1,58 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /ICode/Libraries/Source/WWVegas/WWLib
+// Open-BFME5: GameSpyGroupRoom default ctor. AsciiString @+0 then
+// UnicodeString @+4 (no gap between them in this ctor's own evidence -- the
+// UnicodeString::set() call below runs with this==&m_name+4), then five
+// zero-initialised Int fields packed at +8..+0x18.
+#include "string_base.h"
+
+class AsciiString
+{
+public:
+	static const AsciiString TheEmptyString;
+	AsciiString() { m_text = 0; }
+	~AsciiString();
+	AsciiString &operator=(const AsciiString &that)
+	{
+		((StringBase<char> *)this)->set(*(const StringBase<char> *)&that);
+		return *this;
+	}
+private:
+	char *m_text;
+};
+
+class UnicodeString
+{
+public:
+	static const UnicodeString TheEmptyString;
+	UnicodeString() { m_text = 0; }
+	~UnicodeString();
+	UnicodeString &operator=(const UnicodeString &that)
+	{
+		((StringBase<unsigned short> *)this)->set(*(const StringBase<unsigned short> *)&that);
+		return *this;
+	}
+private:
+	unsigned short *m_text;
+};
 
 class GameSpyGroupRoom
 {
 public:
-    GameSpyGroupRoom();
+	GameSpyGroupRoom();
+private:
+	AsciiString m_name;
+	UnicodeString m_translatedName;
+	int m_groupID;
+	int m_numWaiting;
+	int m_maxWaiting;
+	int m_numGames;
+	int m_numPlaying;
 };
 
-__declspec(naked) GameSpyGroupRoom::GameSpyGroupRoom()
+// ??0GameSpyGroupRoom@@QAE@XZ
+GameSpyGroupRoom::GameSpyGroupRoom()
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x43;
-        __emit 0xd8;
-        __emit 0x02;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x1e;
-        __emit 0x8d;
-        __emit 0x7e;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x1f;
-        __emit 0x68;
-        __emit 0x50;
-        __emit 0x6e;
-        __emit 0x33;
-        __emit 0x01;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xa5;
-        __emit 0x82;
-        __emit 0x38;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0x54;
-        __emit 0x6e;
-        __emit 0x33;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xe8;
-        __emit 0x39;
-        __emit 0x8b;
-        __emit 0x38;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x08;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_name = AsciiString::TheEmptyString;
+	m_translatedName = UnicodeString::TheEmptyString;
+	m_groupID = m_numWaiting = m_maxWaiting = m_numGames = m_numPlaying = 0;
 }
