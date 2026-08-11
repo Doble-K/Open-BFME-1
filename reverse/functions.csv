@@ -1983,7 +1983,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0GameSpyInfoInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,ICF alias of existing matched body
 ??0GameSpyMiscPreferences@@QAE@XZ,,0x000AB910,192,Code/GameEngine/Source/GameNetwork/GameSpy/GameSpyMiscPreferences_Ctor_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0GameState@@QAE@XZ,,0x001111C0,171,Code/GameEngine/Source/Common/System/SaveGame/GameState_ctor_Thunk.cpp,matched,Open-BFME5 lift 171B retail MASM to standalone C++ thunk
-??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameTextManager_ctor_Thunk.cpp,matched,Open-BFME5 lift 161B retail MASM to standalone C++ thunk
 ??0GameWindow@@QAE@XZ,,0x004792F0,156,Code/GameEngine/Source/GameClient/GUI/GameWindowDefaultConstructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0GarrisonContain@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0021D820,312,Code/GameEngine/Source/GameLogic/AI/GarrisonContainCtorThunk.cpp,matched,Open-BFME5 exact C++ raw contain constructor
 ??0GarrisonContainModuleData@@QAE@XZ,,0x0022F7E0,153,Code/GameEngine/Source/GameLogic/AI/GarrisonContainModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
@@ -94590,3 +94589,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??1AIPlayer@@MAE@XZ,,0x001613C0,87,Code/GameEngine/Source/Common/AIPlayerDestructorThunk.cpp,matched,Open-BFME5 clean C++ AIPlayer destructor; exact queue cleanup calls and base vtable transition
 ?getReadyFrame@SpecialPowerModule@@UBEIXZ,,0x0026ABC0,126,Code/GameEngine/Source/Common/SpecialPowerModule_getReadyFrame_Thunk.cpp,matched,Open-BFME5 clean C++ ready-frame calculation with exact BFME subobject offsets and shared-player synchronization
 ??0DefaultAlphaModuleInfo@FXParticleSystem@@QAE@XZ,,0x005EE4C0,102,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultAlphaModuleInfoCtorThunk.cpp,matched,Open-BFME5 clean C++ default-alpha constructor with exact snapshot-base SEH and eight keyframe initializations
+??0GameTextManager@@QAE@XZ,,0x00438350,161,Code/GameEngine/Source/GameClient/GameTextManager_ctor_Thunk.cpp,matched,Open-BFME5 clean C++ GameTextManager constructor with exact retail layout and failed-message initialization
