@@ -79639,7 +79639,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?postMul@Matrix3D@@QAEXABV1@@Z,,0x001E0E80,338,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,
 ?postProcessLoad@W3DDisplayStringManager@@UAEXXZ,,0x006F5890,368,Code/GameEngine/Source/Common/W3DDisplayStringManager_postProcessLoadMethodThunk.cpp,matched,Exact 368B Open-BFME4
 ?postProcessLoad@WeaponStore@@UAEXXZ,,0x0023E5F0,1017,Code/GameEngine/Source/GameLogic/Object/WeaponStorePostProcessLoadThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
-?post_process_fog@MeshModelClass@@IAEXXZ,,0x0096EE60,929,Code/masm_dumps/_s4__post_process_fog_MeshModelClass_IAEXXZ_96EE60.asm,matched,Exact string-anchored Open-BFME4+Grok
+?post_process_fog@MeshModelClass@@IAEXXZ,,0x0096EE60,929,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,Exact C++ naked emit thunk 929B from string-anchored retail body (Open-BFME5)
 ?preAuthCDCallback@@YAXHHHPADPAX@Z,,0x00651810,27,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,
 ?preMul@Matrix3D@@QAEXABV1@@Z,,0x007598C0,302,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?preRender@ScreenCrossFadeFilter@@UAE_NAA_NAAW4CustomScenePassModes@@@Z,,0x007D36B0,45,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DShaderManager.cpp,matched,
