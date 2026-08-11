@@ -80231,7 +80231,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setCanOptimize@PathNode@@QAEX_N@Z,,0x000F9250,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?setCaptionText@Drawable@@QAEXABVUnicodeString@@@Z,,0x00418880,381,Code/GameEngine/Source/Common/Drawable_setCaptionText_Thunk.cpp,matched,Certified packet 192 sealed retail bytes SHA256 1cd21ef4ec3eb2769021a3deb7453a6cb282def2d452afc5bf833f5eb01a8a9f
 ?setCashValue@SupplyWarehouseDockUpdate@@QAEXH@Z,,0x002CFA50,81,Code/GameEngine/Source/Common/promoted__setCashValue_SupplyWarehouseDockUpdate_QAEXH_Z_002CFA50.cpp,matched,clean C++ conversion; ZH body; m_baseValuePerSupplyBox at GlobalData+0xB24; m_boxesStored at this+0x88; getDrawable on object vtable +0x28; ceil needs dllimport
-?setChatSizeSlider@CustomMatchPreferences@@QAEXH@Z,,0x000AD9A0,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setChatSizeSlider_Thunk.cpp,matched,Ghidra-bound BFME chat-slider setter
 ?setChunkNumber@NetWrapperCommandMsg@@QAEXI@Z,,0x00673F10,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor thunk
 ?setCloseEnoughDist@Locomotor@@QAEXM@Z,,0x001F5AF0,10,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setColor@MapObject@@QAEXH@Z,,0x003C4B20,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?setAllowsObserver@CustomMatchPreferences@@QAEX_N@Z,,0x000ADD20,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setAllowsObserver_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
 ?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADEE0,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setDisallowNonAsianText_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
 ?setPreferredFaction@CustomMatchPreferences@@QAEXH@Z,,0x000ADA80,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setPreferredFaction_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 169-byte retail setter
+?setChatSizeSlider@CustomMatchPreferences@@QAEXH@Z,,0x000AD9A0,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setChatSizeSlider_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 169-byte retail setter
