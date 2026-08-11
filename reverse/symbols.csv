@@ -68570,3 +68570,5 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?decompressData@CompressionManager@@SAHPBXHPAXH@Z,0x0081E890,CachedFileInputStream open retail decompression call
 ??A?$map@W4NameKeyType@@W4VeterancyLevel@@U?$less@W4NameKeyType@@@_STL@@V?$allocator@U?$pair@$$CBW4NameKeyType@@W4VeterancyLevel@@@_STL@@@4@@_STL@@QAEAAW4VeterancyLevel@@ABW4NameKeyType@@@Z,0x00019F33,Open-BFME5 production-veterancy map operator thunk
 ?LoadAndCreateD3DShader@W3DShaderManager@@SAJPBDPAK@Z,0x0001FC99,FlatTerrainShaderPixelShader retail two-argument loader thunk
+?removeAll_TeamBuildQueue@AIPlayer@@IAEXP6AXPAVTeamInQueue@@@Z@Z,0x000497DD,Open-BFME5 AIPlayer destructor queue cleanup callee
+?removeAll_TeamReadyQueue@AIPlayer@@IAEXP6AXPAVTeamInQueue@@@Z@Z,0x00012B20,Open-BFME5 AIPlayer destructor ready-queue cleanup callee
