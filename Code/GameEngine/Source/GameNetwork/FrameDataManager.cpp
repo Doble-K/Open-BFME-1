@@ -238,7 +238,6 @@ UnsignedInt FrameDataManager::getFrameCommandCount(UnsignedInt frame) {
 /**
  * Set both the command count and the frame command count to 0 for the given frames.
  */
-// ?zeroFrames@FrameDataManager@@ present-unmatched
 void FrameDataManager::zeroFrames(UnsignedInt startingFrame, UnsignedInt numFrames) {
 	UnsignedInt frameIndex = startingFrame % FRAME_DATA_LENGTH;
 	for (UnsignedInt i = 0; i < numFrames; ++i) {
