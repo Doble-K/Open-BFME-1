@@ -68631,3 +68631,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?construct@LifeEventModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00034C57,Open-BFME5 LifeEventModule retail constructor
 ?construct@DefaultModule2CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0003331B,Open-BFME5 DefaultModule2 retail constructor
 ?construct@DefaultModule0CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00033550,Open-BFME5 DefaultModule0 retail constructor
+?construct@DefaultModule7CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000237FE,Open-BFME5 DefaultModule7 retail constructor
