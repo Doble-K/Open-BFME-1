@@ -68614,3 +68614,5 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??1BannerCarrierString@@QAE@XZ,0x00887940,BannerCarrier object-name string destructor
 ??1BannerCarrierUpgrade@@QAE@XZ,0x000438AB,BannerCarrier upgrade destructor thunk
 ?Collide@CollisionMath@@YA_NAAVOBBoxCollisionTestData@@AAVTriClass@@@Z,0x008E85F0,AABTree OB-box compact collision helper
+??0SpawnBehaviorFourthBase@@QAE@XZ,0x0003D24E,SpawnBehavior fourth interface base constructor ILT
+?findTemplate@ThingFactory@@QAEPAVThingTemplate@@ABVAsciiString@@@Z,0x00028560,SpawnBehavior retail findTemplate ILT
