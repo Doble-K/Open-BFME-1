@@ -75,7 +75,6 @@ DebugIOCon::~DebugIOCon()
     FreeConsole();
 }
 
-// ?Read@DebugIOCon@@UAEHPADH@Z present-unmatched
 int DebugIOCon::Read(char *buf, int maxchar)
 {
   // We are not supporting reading from the console
@@ -92,7 +91,12 @@ int DebugIOCon::Read(char *buf, int maxchar)
   if (m_inputRead)
   {
     int numRead;
-    if (maxchar>m_inputUsed-m_inputRead)
+    // BFME declares m_inputUsed and m_inputRead as int, not unsigned as the
+    // reference internal_io.h does, so retail compares this signed (jle at
+    // 0x00890FBC) where the unsigned reference fields give jbe. The cast is
+    // scoped here rather than fixed in the header because a header edit costs
+    // the host-wide full gate for one byte (AGENTS.md, docs/lessons.md).
+    if (maxchar>(int)(m_inputUsed-m_inputRead))
     {
       // return all
       numRead=m_inputUsed-m_inputRead;
@@ -174,7 +178,10 @@ int DebugIOCon::Read(char *buf, int maxchar)
 
   SMALL_RECT r;
   r.Left=r.Top=r.Bottom=0; r.Right=info.dwSize.X-1;
-  WriteConsoleOutput(h,ci+(m_inputUsed<=info.dwSize.X?0:m_inputUsed-info.dwSize.X),
+  // Signed for the same reason as the maxchar test above: BFME's m_inputUsed
+  // is int, so retail compares this against the short dwSize.X with jg at
+  // 0x0089115B where the unsigned reference field gives ja.
+  WriteConsoleOutput(h,ci+((int)m_inputUsed<=info.dwSize.X?0:m_inputUsed-info.dwSize.X),
                       srcSize,srcCoord,&r);
 
   // return data now?
