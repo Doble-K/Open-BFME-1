@@ -668,7 +668,6 @@ void RegistryClass::Delete_Registry_Values(HKEY key)
  * HISTORY:                                                                                    *
  *   11/21/2001 3:38PM ST : Created                                                            *
  *=============================================================================================*/
-// ?Delete_Registry_Tree@RegistryClass@@SAXPAD@Z present-unmatched
 void RegistryClass::Delete_Registry_Tree(char *path)
 {
 	if (!IsLocked) {
