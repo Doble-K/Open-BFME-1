@@ -1,85 +1,50 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: clean C++ lift of the retail pooled-list destructor.
+
+class ScriptPoolObject
+{
+public:
+	void deleteInstance(int destroy);
+};
+
+class ScriptGroupPoolObject
+{
+public:
+	void deleteInstance(int destroy);
+};
+
+template <class T>
+class PoolAllocation
+{
+public:
+	~PoolAllocation()
+	{
+		if (m_object)
+			m_object->deleteInstance(1);
+	}
+
+private:
+	T *m_object;
+};
 
 class __declspec(novtable) ScriptGroup
 {
 protected:
-    virtual ~ScriptGroup();
+	virtual ~ScriptGroup();
+
+private:
+	PoolAllocation<ScriptPoolObject> *m_firstScript;
+	PoolAllocation<ScriptGroupPoolObject> *m_nextGroup;
 };
 
 // ??1ScriptGroup@@MAE@XZ
-__declspec(naked) ScriptGroup::~ScriptGroup()
+ScriptGroup::~ScriptGroup()
 {
-    __asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x44
-        __emit 0x37
-        __emit 0x07
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x7e
-        __emit 0x08
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x16
-        __emit 0x8b
-        __emit 0x0f
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x07
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xca
-        __emit 0xf9
-        __emit 0xca
-        __emit 0xff
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x3c
-        __emit 0xf5
-        __emit 0x52
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x76
-        __emit 0x04
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x16
-        __emit 0x8b
-        __emit 0x0e
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x07
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xae
-        __emit 0xf6
-        __emit 0xcc
-        __emit 0xff
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x1f
-        __emit 0xf5
-        __emit 0x52
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc3
-    }
+	*(volatile unsigned int *)this = 0x01073744;
+	PoolAllocation<ScriptGroupPoolObject> *nextGroup =
+		*(PoolAllocation<ScriptGroupPoolObject> * volatile *)&m_nextGroup;
+	delete nextGroup;
+	PoolAllocation<ScriptPoolObject> *firstScript =
+		*(PoolAllocation<ScriptPoolObject> * volatile *)&m_firstScript;
+	delete firstScript;
 }
