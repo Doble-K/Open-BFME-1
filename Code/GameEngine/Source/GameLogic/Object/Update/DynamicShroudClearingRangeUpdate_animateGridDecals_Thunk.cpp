@@ -1,242 +1,72 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the dynamic-shroud decal animation to clean C++.
+
+#include <math.h>
+
+struct Coord3D
+{
+	float x;
+	float y;
+	float z;
+};
+
+class Object
+{
+public:
+	const Coord3D *getPosition() const { return &m_cachedPos; }
+
+private:
+	unsigned char m_unreconstructed_00[0x38];
+	Coord3D m_cachedPos;
+};
+
+class RadiusDecal
+{
+public:
+	void setPosition(const Coord3D &);
+	void setOpacity(float);
+
+private:
+	unsigned char m_unreconstructed_00[0x10];
+};
 
 class DynamicShroudClearingRangeUpdate
 {
 public:
 	void animateGridDecals();
+
+private:
+	unsigned char m_unreconstructed_00[0x08];
+	Object *m_object;
+	unsigned char m_unreconstructed_0c[0x18];
+	int m_stateCountDown;
+	int m_totalFrames;
+	unsigned char m_unreconstructed_2c[0x1c];
+	float m_nativeClearingRange;
+	float m_currentClearingRange;
+	RadiusDecal m_gridDecal[30];
 };
 
 // ?animateGridDecals@DynamicShroudClearingRangeUpdate@@QAEXXZ
-__declspec(naked) void DynamicShroudClearingRangeUpdate::animateGridDecals()
+void DynamicShroudClearingRangeUpdate::animateGridDecals()
 {
-	__asm {
-        __emit 0x83
-        __emit 0xec
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x28
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x71
-        __emit 0x24
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x79
-        __emit 0x08
-        __emit 0x2b
-        __emit 0xc6
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x38
-        __emit 0xd1
-        __emit 0xe0
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0xdb
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x71
-        __emit 0x50
-        __emit 0xd8
-        __emit 0x41
-        __emit 0x4c
-        __emit 0xbb
-        __emit 0x1e
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xd9
-        __emit 0x41
-        __emit 0x4c
-        __emit 0xd8
-        __emit 0x71
-        __emit 0x48
-        __emit 0xd8
-        __emit 0x2d
-        __emit 0x34
-        __emit 0x53
-        __emit 0x07
-        __emit 0x01
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x18
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xd9
-        __emit 0xfe
-        __emit 0xd8
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xd8
-        __emit 0x07
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xd9
-        __emit 0xff
-        __emit 0xd8
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xd8
-        __emit 0x47
-        __emit 0x04
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0xe8
-        __emit 0x60
-        __emit 0x86
-        __emit 0x76
-        __emit 0x00
-        __emit 0x99
-        __emit 0xb9
-        __emit 0x17
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xf7
-        __emit 0xf9
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0xdb
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0xd8
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0xd9
-        __emit 0xc0
-        __emit 0xe8
-        __emit 0x41
-        __emit 0x86
-        __emit 0x76
-        __emit 0x00
-        __emit 0x99
-        __emit 0xb9
-        __emit 0x17
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xf7
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0xce
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0xdb
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x52
-        __emit 0xd8
-        __emit 0xe9
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x24
-        __emit 0xdd
-        __emit 0xd8
-        __emit 0xe8
-        __emit 0x35
-        __emit 0x96
-        __emit 0xd7
-        __emit 0xff
-        __emit 0x55
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x7e
-        __emit 0x0a
-        __emit 0xdb
-        __emit 0xff
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xd8
-        __emit 0x05
-        __emit 0xf8
-        __emit 0xe0
-        __emit 0x0b
-        __emit 0x01
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x10
-        __emit 0x4b
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x0f
-        __emit 0x85
-        __emit 0x77
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x18
-        __emit 0xc3
+	const Coord3D *center = m_object->getPosition();
+	Coord3D position;
+	position.z = 0.0f;
+
+	float radius = m_currentClearingRange + ((m_totalFrames - m_stateCountDown) * 2);
+	float angle = 0.0f;
+	float angleIncrement = (3.14159265358979323846f * 2.0f) / 30.0f;
+	float opacity = 1.0f - (m_currentClearingRange / m_nativeClearingRange);
+
+	for (int decal = 0; decal < 30; ++decal)
+	{
+		position.x = center->x + sinf(angle) * radius;
+		position.y = center->y + cosf(angle) * radius;
+		position.x -= ((int)position.x) % 23;
+		position.y -= ((int)position.y) % 23;
+		m_gridDecal[decal].setPosition(position);
+		m_gridDecal[decal].setOpacity(opacity);
+		angle += angleIncrement;
 	}
 }
