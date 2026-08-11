@@ -3733,7 +3733,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1MotionChannelClass@@QAE@XZ,,0x00978140,24,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 ??1MultiListObjectClass@@UAE@XZ,,0x009DC190,37,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
 ??1MultiPlayerLoadScreen@@,,0x0052C220,844,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MultiPlayerLoadScreen_destructor_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_MultiPlayerLoadScreen_destructor_52C220
-??1MultiplayerSettings@@UAE@XZ,,0x0008F0E0,102,Code/GameEngine/Source/Common/MultiplayerSettingsDestructorThunk.cpp,matched,MASM exact retail dtor; true body 0x8F0E0 (queue 0x9F282F misplaced inside 0x9F2800)
+
 ??1NameKeyGenerator@@UAE@XZ,,0x00168710,79,Code/GameEngine/Source/Common/NameKeyGenerator.cpp,matched,
 ??1NamedPivotMapClass@@UAE@XZ,,0x00974E20,176,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ??1NetChatCommandMsg@@MAE@XZ,,0x00675250,73,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
@@ -94571,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??1EmotionTrackerUpdateModuleData@@UAE@XZ,,0x0028FBB0,214,Code/GameEngine/Source/Common/EmotionTrackerUpdateModuleDataDestructorThunk.cpp,matched,Exact 214B clean C++ destructor Open-BFME5
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3D@@@Z,,0x008DBA40,311,Code/GameEngine/Source/Common/Build_Quaternion_Thunk.cpp,matched,
 ??1ScriptGroup@@MAE@XZ,,0x00352950,71,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptGroupDestructorThunk.cpp,matched,Exact 71B clean C++ pooled-list destructor Open-BFME5
+??1MultiplayerSettings@@UAE@XZ,,0x0008F0E0,102,Code/GameEngine/Source/Common/MultiplayerSettingsDestructorThunk.cpp,matched,Exact 102B clean C++ settings destructor Open-BFME5

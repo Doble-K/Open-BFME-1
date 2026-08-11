@@ -68672,3 +68672,5 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 ??1EmotionTrackerUpdateName@@QAE@XZ,0x0001A401,Open-BFME5 retail emotion-tracker string destructor thunk
 ?deleteInstance@ScriptGroupPoolObject@@QAEXH@Z,0x00002338,Open-BFME5 retail pooled ScriptGroup deletion thunk
 ?deleteInstance@ScriptPoolObject@@QAEXH@Z,0x00022039,Open-BFME5 retail pooled Script deletion thunk
+??1MultiplayerColorDefinition@@QAE@XZ,0x00887940,Open-BFME5 retail color-definition string destructor body
+??1MultiplayerColorList@@QAE@XZ,0x0004A01B,Open-BFME5 retail multiplayer color-map destructor thunk
