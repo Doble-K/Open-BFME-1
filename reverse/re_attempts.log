@@ -3012,3 +3012,4 @@ agent-fanout		13	tooling	13 parallel agents each converting one naked function i
 ??0ParticleSystemInfo@FXParticleSystem@@QAE@XZ		168	attempted	agent reported matched; central re-verify says otherwise. Reverted
 ??0W3DStatusCircle@@QAE@XZ		90	attempted	agent reported matched; central re-verify says otherwise. Reverted
 ??1MapObject@@MAE@XZ	0x00088350	236	blocked	Canonical WorldHeightMap.cpp destructor diverges after SEH prologue: BFME member offsets and chained MapObject deletion ABI differ from available ZH headers/source.
+??0SlowDeathBehavior@@QAE@PAVThing@@PBVModuleData@@@Z	0x00207B60	321	blocked	Canonical constructor lacks BFME retail interface-vtable/member initialization and four module-data consistency checks; available class/source ABI diverges after base construction.
