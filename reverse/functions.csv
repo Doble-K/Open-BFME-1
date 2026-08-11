@@ -8592,7 +8592,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Cos@@YAMM@Z,0x00873920,0x00873920,7,Code/GameEngine/Source/Common/System/Trig.cpp,matched,returns cosine of radians
 ?Cos@WWMath@@SAMM@Z,,0x005F0990,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?Count@GenericMultiListClass@@QAEHXZ,,0x009DBF10,25,Code/Libraries/Source/WWVegas/WWLib/multilist.cpp,matched,
-?CrashDone@Debug@@QAE_N_N@Z,,0x0088BB60,1353,Code/masm_dumps/_sa7__CrashDone_Debug__QAE_N_N_Z_88BB60.asm,matched,true size 1353B; previous row claimed 955B
+?CrashDone@Debug@@QAE_N_N@Z,,0x0088BB60,1353,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,true size 1353B; previous row claimed 955B
 ?Create@?$SimpleDefinitionFactoryClass@VTwiddlerClass@@$0OAAA@$1?TwiddlerClassName@@3PADA@@UBEPAVDefinitionClass@@XZ,,0x006FB600,86,Code/Libraries/Source/WWVegas/WWSaveLoad/twiddler.cpp,matched,
 ?Create@DebugIOFlat@@SAPAVDebugIOInterface@@XZ,,0x00890420,89,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?Create@OutputStream@DebugIOFlat@@SAPAV12@PBDI@Z,,0x0088FF60,94,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,clean C++ placement-new; /EHa matches retail's shared-epilogue EH shape
