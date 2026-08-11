@@ -1,4 +1,5 @@
 name,address,notes
+?construct@DefaultModule3CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00022AFC,DefaultModule 3 allocation constructor ILT pin
 ??1ScienceVecStandIn@@QAE@XZ,0x00016B58,ScienceInfo ScienceVec destructor ILT
 ?renderShadows@W3DVolumetricShadowManager@@QAEX_N@Z,0x00046A51,DoShadows REL32 call via ILT thunk
 ?requestApproachPath@AIUpdateInterface@@QAEXPAUCoord3D@@@Z,0x00015D93,AIMoveAndTightenState::onEnter retail REL32 call target

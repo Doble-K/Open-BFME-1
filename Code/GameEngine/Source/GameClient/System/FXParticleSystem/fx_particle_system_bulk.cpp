@@ -187,6 +187,25 @@ public:
     void construct(const void *source);
 };
 
+class DefaultModule3CtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+class DefaultModule3Allocation {
+public:
+    __forceinline DefaultModule3Allocation(TrackingPtr<ParticleSystem> &sys, const void *source)
+    {
+        ((DefaultModule3CtorShim *)this)->construct(sys, source);
+        *(volatile unsigned int *)this = 0x01112050;
+        *(volatile unsigned int *)((unsigned char *)this + 0x14) = 0x0111204c;
+        *(volatile unsigned int *)((unsigned char *)this + 0x18) = 0x01112048;
+        *(volatile unsigned int *)((unsigned char *)this + 0x1c) = 0x01112034;
+    }
+private:
+    unsigned char m_storage[0x3c];
+};
+
 class DefaultModuleTemplate6CtorShim {
 public:
     void construct();
@@ -7260,6 +7279,12 @@ ConcreteModuleTemplate<DefaultModuleTag<3> > &ConcreteModuleTemplate<DefaultModu
 }
 
 // ?createModule@?$ConcreteModuleTemplate@V?$DefaultModuleTag@$02@FXParticleSystem@@@FXParticleSystem@@UAEPAV?$DefaultModule@$02@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
+DefaultModule<3> *ConcreteModuleTemplate<DefaultModuleTag<3> >::createModule(TrackingPtr<ParticleSystem> &sys)
+{
+    return (DefaultModule<3> *)new DefaultModule3Allocation(sys, this);
+}
+
+#if 0
 __declspec(naked) DefaultModule<3> *ConcreteModuleTemplate<DefaultModuleTag<3> >::createModule(TrackingPtr<ParticleSystem> &sys)
 {
     __asm {
@@ -7378,6 +7403,7 @@ __declspec(naked) DefaultModule<3> *ConcreteModuleTemplate<DefaultModuleTag<3> >
         __emit 0x00
     }
 }
+#endif
 
 // ??0?$ConcreteModuleTemplate@V?$DefaultModuleTag@$05@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
 ConcreteModuleTemplate<DefaultModuleTag<6> >::ConcreteModuleTemplate(const ConcreteModuleTemplate<DefaultModuleTag<6> > &that)
