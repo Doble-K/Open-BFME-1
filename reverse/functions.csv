@@ -9056,7 +9056,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GadgetProgressBarSetHiliteImageSmallCenter@@YAXPAVGameWindow@@PBVImage@@@Z,,0x0047A4E0,17,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?GadgetProgressBarSetProgress@@YAXPAVGameWindow@@H@Z,,0x004BBCF0,38,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetProgressBar.cpp,matched,
 ?GadgetProgressBarSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004BBCB0,42,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetProgressBar.cpp,matched,
-?GadgetPushButtonInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004BBFC0,1383,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetPushButton.cpp,matched,Certified packet 355 exact retail db recovery
+?GadgetPushButtonInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004BBFC0,1383,Code/masm_dumps/GadgetPushButtonInput_004BBFC0_packet355.asm,matched,Certified packet 355 exact retail db recovery
 ?GadgetRadioButtonInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004BCFD0,47,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetRadioButton.cpp,matched,
 ?GadgetRadioButtonSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004BD2A0,270,Code/GameEngine/Source/GameClient/GUI/GadgetRadioButtonSystem_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?GadgetRadioGetDisabledBorderColor@@YAHPAVGameWindow@@@Z,,0x0047B4C0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DRadioButton.cpp,matched,
@@ -11412,7 +11412,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?WOLCustomScoreScreenSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004F0470,141,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLCustomScoreScreen.cpp,matched,
 ?WOLGameSetupMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?WOLLadderScreenInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLadderScreen.cpp,matched,
-?WOLLobbyMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x004FBBE0,1711,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,Correct retail body from unique FunctionLexicon thunk 0x00035878 and WOLCustomLobby strings
+?WOLLobbyMenuInit@@YAXPAVWindowLayout@@PAX@Z,,0x004FBBE0,1711,Code/masm_dumps/WOLLobbyMenuInit.asm,matched,Correct retail body from unique FunctionLexicon thunk 0x00035878 and WOLCustomLobby strings
 ?WOLLobbyMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x0050B080,78,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?WOLLobbyMenuShutdown@@YAXPAVWindowLayout@@PAX@Z,,0x004FAF70,299,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenuShutdown_Thunk.cpp,matched,Open-BFME5 lift 299B retail MASM to standalone C++ thunk
 ?WOLLobbyMenuSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004FC7C0,3452,Code/masm_dumps/WOLLobbyMenuSystem.asm,matched,True ENTRY 0x4FC7C0/3452 (queue 0x4FC807 mid-switch); unique ButtonGameListToggle GWM_CREATE; MASM exact
@@ -11422,7 +11422,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?WOLLoginMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004FF910,78,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?WOLLoginMenuShutdown@@YAXPAVWindowLayout@@PAX@Z,,0x004FFB10,90,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenuShutdownThunk.cpp,matched,Open-BFME5 exact clean C++ conversion of MASM shutdown callback
 ?WOLLoginMenuSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x00501B90,7078,Code/masm_dumps/_depth_WOLLoginMenuSystem_501B90.asm,matched,WOLLoginMenuSystem exact MASM (was mislabeled forgetLogin) Open-BFME4+Grok
-?WOLLoginMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x005001D0,1693,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,Certified callback registry thunk and sealed retail SHA-256 recovery
+?WOLLoginMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x005001D0,1693,Code/masm_dumps/WOLLoginMenuUpdate_5001D0.asm,matched,Certified callback registry thunk and sealed retail SHA-256 recovery
 ?WOLMessageWindowInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp,matched,
 ?WOLMessageWindowSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004F0470,141,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp,matched,
 ?WOLQMScoreScreenInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp,matched,
