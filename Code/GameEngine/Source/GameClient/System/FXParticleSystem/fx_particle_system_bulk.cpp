@@ -36,6 +36,26 @@ public:
     void assign(const void *source);
 };
 
+class RenderObjectUpdateModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+class RenderObjectUpdateModuleAllocation {
+public:
+    __forceinline RenderObjectUpdateModuleAllocation(TrackingPtr<ParticleSystem> &sys, const void *source)
+    {
+        ((RenderObjectUpdateModuleCtorShim *)this)->construct(sys, source);
+        *(volatile unsigned int *)this = 0x01112e4c;
+        *(volatile unsigned int *)((unsigned char *)this + 0x14) = 0x01112e48;
+        *(volatile unsigned int *)((unsigned char *)this + 0x18) = 0x01112e44;
+        *(volatile unsigned int *)((unsigned char *)this + 0x1c) = 0x01112e30;
+    }
+
+private:
+    unsigned char m_storage[0xb4];
+};
+
 class ParticleSystemTemplateInfoAssignShim {
 public:
     void assign(const void *source);
@@ -7815,6 +7835,7 @@ ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT
 // Converted to RenderObjectUpdateConcreteModuleTemplateCloneThunk.cpp.
 
 // ?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$01$E?RENDEROBJECT_UPDATE_MODULE_KEY@FXParticleSystem@@3QBDB$E?RENDEROBJECT_UPDATE_MODULE_NAME@2@3QBDBVRenderObjectUpdateModule@2@VRenderObjectUpdateModuleTemplate@2@VRenderObjectParticleUpdateModule@2@VRenderObjectParticleUpdateModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@UAEPAVRenderObjectUpdateModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
+#if 0
 __declspec(naked) RenderObjectUpdateModule *ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME, RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate, RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> >::createModule(TrackingPtr<ParticleSystem> &sys)
 {
     __asm {
@@ -7935,6 +7956,12 @@ __declspec(naked) RenderObjectUpdateModule *ConcreteModuleTemplate<ModuleTag<2, 
         __emit 0x04
         __emit 0x00
     }
+}
+#endif
+
+__declspec(noinline) RenderObjectUpdateModule *ConcreteModuleTemplate<ModuleTag<2, RENDEROBJECT_UPDATE_MODULE_KEY, RENDEROBJECT_UPDATE_MODULE_NAME, RenderObjectUpdateModule, RenderObjectUpdateModuleTemplate, RenderObjectParticleUpdateModule, RenderObjectParticleUpdateModuleTemplate> >::createModule(TrackingPtr<ParticleSystem> &sys)
+{
+    return (RenderObjectUpdateModule *)new RenderObjectUpdateModuleAllocation(sys, this);
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$03$E?CYLINDRICAL_EMISSION_VELOCITY_MODULE_KEY@FXParticleSystem@@3QBDB$E?CYLINDRICAL_EMISSION_VELOCITY_MODULE_NAME@2@3QBDBVCylindricalEmissionVelocityModule@2@VCylindricalEmissionVelocityModuleTemplate@2@V?$DefaultParticleModule@$03@2@V?$DefaultParticleModuleTemplate@$03@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
