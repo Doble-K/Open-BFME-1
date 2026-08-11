@@ -1,4 +1,4 @@
-"""The naming harvester, and the invariants of what it publishes.
+"""The naming harvester, what it publishes, and what the queue serves from it.
 
 The mechanism these pin down is easy to get subtly wrong in a way that still
 produces a plausible-looking file: resolving the callee through symbols.csv
@@ -8,6 +8,7 @@ function. Both mistakes score zero new identity while looking like they worked.
 """
 import csv
 import importlib.util
+import re
 import struct
 import sys
 from pathlib import Path
@@ -16,6 +17,7 @@ TOOLS = Path(__file__).resolve().parents[1]
 ROOT = TOOLS.parent
 RELOC_NAMES = ROOT / "reverse" / "reloc_names.csv"
 REL32 = 0x0014
+NOTES_RE = re.compile(r"reloc-derived;call-sites=[1-9]\d*;identity=(real|generated)")
 
 
 def _load(name):
@@ -28,6 +30,7 @@ def _load(name):
 
 sys.path.insert(0, str(TOOLS))
 build = _load("build")
+next_work = _load("next_work")
 
 
 def call_row(caller_rva, callee_rva, opcode=0xE8, symbol="?callee@@YAXXZ"):
@@ -111,24 +114,78 @@ def test_a_generated_placeholder_name_is_marked_not_passed_off_as_identity():
     print("PASS a gen_dump-minted name is published marked, not as identity")
 
 
-def test_published_rows_are_unambiguous_unclaimed_and_anonymous():
+def published_rows():
     with RELOC_NAMES.open(newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
         assert "status" not in reader.fieldnames, (
             "a derived name file must not carry a status column: what is "
             "byte-verified here is the evidence, not the named body")
-        rows = list(reader)
-    inventory = {int(row["rva"], 16): row["name"] for row in csv.DictReader(
-        (ROOT / "reverse" / "ghidra_functions.csv").open(newline="", encoding="utf-8"))}
-    claimed = {int(row["target_rva"], 16) for row in build.load_all_function_rows()}
+        return list(reader)
+
+
+def test_published_rows_are_unambiguous_anonymous_and_sized_by_the_inventory():
+    """What a generated file can be held to is how it was generated.
+
+    Not that it is still unclaimed: the fleet claims these addresses -- that is
+    the file doing its job -- and asserting otherwise would fail every
+    contributor for someone else's landing. Anonymity does not decay the same
+    way, because ghidra_functions.csv is a Ghidra export that only ever gains
+    appended FUN_ rows; nothing renames one, so a published row that has stopped
+    being anonymous means the file no longer matches the inventory it was cut
+    from. Sizes come from that same inventory, and the names are the whole point
+    of the file, so all three are pinned here.
+    """
+    rows = published_rows()
+    inventory = {int(row["rva"], 16): (int(row["size"]), row["name"])
+                 for row in csv.DictReader((ROOT / "reverse" /
+                 "ghidra_functions.csv").open(newline="", encoding="utf-8"))}
 
     seen = {}
     for row in rows:
         rva = int(row["target_rva"], 16)
-        assert rva not in seen, f"0x{rva:X} published twice"
-        assert rva not in claimed, f"0x{rva:X} is already claimed by the ledger"
-        assert inventory.get(rva, "").startswith("FUN_"), (
-            f"0x{rva:X} is not an anonymous function")
-        assert int(row["target_size"]) > 0 and row["name"] and row["source"]
+        assert row["target_rva"] == f"0x{rva:08X}", (
+            f"non-canonical target_rva {row['target_rva']!r}")
+        assert rva not in seen, (
+            f"0x{rva:X} published twice, as {seen[rva]!r} and {row['name']!r}: "
+            f"an address named two ways is a coin flip, not identity")
+        assert rva in inventory, f"0x{rva:X} is in no inventory row"
+        assert inventory[rva][1].startswith("FUN_"), (
+            f"0x{rva:X} is named {inventory[rva][1]} in the inventory, so "
+            f"publishing a derived name for it is not new identity")
+        assert int(row["target_size"]) == inventory[rva][0], (
+            f"0x{rva:X}: published size {row['target_size']} but the inventory "
+            f"says {inventory[rva][0]}")
+        assert row["name"] and row["source"]
+        assert NOTES_RE.fullmatch(row["notes"]), (
+            f"0x{rva:X}: unreadable notes {row['notes']!r}")
         seen[rva] = row["name"]
-    print(f"PASS {len(rows)} published name(s) unambiguous, unclaimed, anonymous")
+    print(f"PASS {len(rows)} published name(s) unambiguous, anonymous, "
+          f"sized by the inventory")
+
+
+def test_the_queue_drops_published_rows_the_ledger_has_claimed():
+    """Staleness is the consumer's job, which is why the file may carry it.
+
+    reloc_names.csv is a snapshot of who was unclaimed when the gate last ran,
+    and the ledger moves under it every few minutes. Serving a claimed address
+    as available work is the real defect, and it lives here, not in the file --
+    so it is tested here, against claim sets this test states outright rather
+    than whatever the ledger happens to hold this minute.
+    """
+    rva = int(published_rows()[0]["target_rva"], 16)
+
+    served, note = next_work.reloc_named_candidates(set(), [])
+    assert len(served) == len(published_rows()), note
+    assert "already landed" not in note, note
+
+    claimed, note = next_work.reloc_named_candidates({rva}, [])
+    assert rva not in {int(c["target_rva"], 16) for c in claimed}
+    assert len(claimed) == len(served) - 1
+    assert "1 already landed" in note, note
+
+    # A worker that lands a bigger function swallows the address without ever
+    # claiming it by name; the queue has to notice that too.
+    inside, note = next_work.reloc_named_candidates(set(), [(rva - 4, rva + 4)])
+    assert rva not in {int(c["target_rva"], 16) for c in inside}
+    assert "1 already landed" in note, note
+    print(f"PASS the queue drops 0x{rva:X} once claimed, by name or by range")
