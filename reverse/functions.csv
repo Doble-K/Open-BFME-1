@@ -15204,7 +15204,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?gogoMessageBox@GameWindowManager@@UAEPAVGameWindow@@HHHHGVUnicodeString@@0P6AXXZ111@Z,,0x0047DB60,183,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoMessageBoxFwd.cpp,matched,clean C++ forwarder lifted to own TU; sweep shim has gogoMessageBox at slots 13/14 vs retail 12/13
 ?gogoMessageBox@GameWindowManager@@UAEPAVGameWindow@@HHHHGVUnicodeString@@0P6AXXZ111_N@Z,,0x0047EF70,1518,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoMessageBox.cpp,matched,real C++ lifted to its own TU because GameWindowManager.cpp builds against Zero Hour's AsciiString; button bits are YES=1 NO=2 CANCEL=4 OK=8
 ?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
-?gotMangledPort@NAT@@IAEXHG@Z,,0x00671EB0,179,Code/GameEngine/Source/GameNetwork/NAT_gotMangledPort_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?gotoNextMission@CampaignManager@@QAEPAVMission@@XZ,,0x005BC5A0,32,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
 ?grabHexInt@@YAHPBD@Z,,0x0050B030,54,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?grantScience@Player@@QAE_NW4ScienceType@@@Z,,0x000D5600,42,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?findDamageFX@DamageFXStore@@QBEPBVDamageFX@@VAsciiString@@@Z,,0x00067440,192,Code/GameEngine/Source/Common/DamageFXStore_findDamageFX_Thunk.cpp,matched,Open-BFME5 clean C++ DamageFX STLport lookup with exact BFME AsciiString payload ABI
 ?setGUICommand@InGameUI@@UAEXPBVCommandButton@@@Z,,0x0043ADE0,212,Code/GameEngine/Source/GameClient/InGameUI_setGUICommand_Thunk.cpp,matched,Open-BFME5 exact C++ retail ABI conversion
 ?Reset@Line3DClass@@QAEXABVVector3@@0@Z,,0x00951F90,302,Code/Libraries/Source/WWVegas/WW3D2/Line3DClass_Reset_Thunk.cpp,matched,Open-BFME5 exact C++ Line3D reset
+?gotMangledPort@NAT@@IAEXHG@Z,,0x00671EB0,179,Code/GameEngine/Source/GameNetwork/NAT_gotMangledPort_Thunk.cpp,matched,Open-BFME5 exact C++ NAT mangled-port handler

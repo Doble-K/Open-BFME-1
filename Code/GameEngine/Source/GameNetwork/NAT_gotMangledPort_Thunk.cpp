@@ -1,194 +1,70 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: recovered BFME NAT mangled-port state machine.
+
+class GameSlot
+{
+public:
+	unsigned int getIP() const { return m_ip; }
+	unsigned short getPort() const { return m_port; }
+	void setPort(unsigned short port) { m_port = port; }
+	unsigned char getNATBehavior() const { return m_natBehavior; }
+private:
+	unsigned char m_pad[0x30];
+	unsigned int m_ip;
+	unsigned short m_port;
+	unsigned char m_pad2[2];
+	unsigned char m_natBehavior;
+};
+
+struct NATConnectionNode
+{
+	int m_slotIndex;
+	int m_unused;
+};
 
 class NAT
 {
 protected:
-	void gotMangledPort(int, unsigned short);
+	void gotMangledPort(int nodeNumber, unsigned short mangledPort);
+	void setConnectionStateRetail(int nodeNumber, int state);
+	void sendAProbe(unsigned int ip, unsigned short port, int nodeNumber);
+	void notifyTargetOfProbe(GameSlot *slot);
+
+private:
+	unsigned char m_pad0[8];
+	GameSlot **m_slotList;
+	unsigned char m_pad1[4];
+	int m_localNodeNumber;
+	int m_targetNodeNumber;
+	unsigned char m_pad2[0x22];
+	unsigned char m_beenProbed;
+	unsigned char m_pad3[9];
+	int m_connectionStates[9];
+	NATConnectionNode m_connectionNodes[11];
+	unsigned char m_pad4[4];
+	unsigned char m_applyMangledPort;
 };
 
-// ?gotMangledPort@NAT@@IAEXHG@Z
-__declspec(naked) void NAT::gotMangledPort(int, unsigned short)
+void NAT::gotMangledPort(int nodeNumber, unsigned short mangledPort)
 {
-	__asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x83
-        __emit 0x7c
-        __emit 0x8e
-        __emit 0x44
-        __emit 0x05
-        __emit 0x0f
-        __emit 0x84
-        __emit 0x9e
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x56
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x08
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x8b
-        __emit 0x3c
-        __emit 0xb8
-        __emit 0x85
-        __emit 0xff
-        __emit 0x75
-        __emit 0x0f
-        __emit 0x6a
-        __emit 0x06
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xf4
-        __emit 0xcc
-        __emit 0x9b
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x53
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0xce
-        __emit 0x68
-        __emit 0x8b
-        __emit 0x04
-        __emit 0x98
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x10
-        __emit 0x6a
-        __emit 0x06
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xd9
-        __emit 0xcc
-        __emit 0x9b
-        __emit 0xff
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x39
-        __emit 0x54
-        __emit 0x24
-        __emit 0x10
-        __emit 0x75
-        __emit 0x59
-        __emit 0x8a
-        __emit 0x8e
-        __emit 0xc4
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x09
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x66
-        __emit 0x89
-        __emit 0x4f
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x83
-        __emit 0x7c
-        __emit 0x8e
-        __emit 0x44
-        __emit 0x02
-        __emit 0x74
-        __emit 0x3c
-        __emit 0x8a
-        __emit 0x58
-        __emit 0x38
-        __emit 0xb2
-        __emit 0x08
-        __emit 0x84
-        __emit 0xda
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x80
-        __emit 0x7e
-        __emit 0x3a
-        __emit 0x01
-        __emit 0x74
-        __emit 0x05
-        __emit 0x84
-        __emit 0x57
-        __emit 0x38
-        __emit 0x74
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x47
-        __emit 0x30
-        __emit 0x33
-        __emit 0xd2
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x57
-        __emit 0x34
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0x52
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x91
-        __emit 0x3d
-        __emit 0x9b
-        __emit 0xff
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xcc
-        __emit 0x6d
-        __emit 0x9b
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x10
-        __emit 0x6a
-        __emit 0x04
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x74
-        __emit 0xcc
-        __emit 0x9b
-        __emit 0xff
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	if (m_connectionStates[m_localNodeNumber] == 5) return;
+	GameSlot *targetSlot = m_slotList[m_connectionNodes[m_targetNodeNumber].m_slotIndex];
+	if (!targetSlot) {
+		setConnectionStateRetail(m_localNodeNumber, 6);
+		return;
+	}
+	GameSlot *localSlot = m_slotList[m_connectionNodes[m_localNodeNumber].m_slotIndex];
+	if (!localSlot) {
+		setConnectionStateRetail(m_localNodeNumber, 6);
+		return;
+	}
+	if (nodeNumber != m_targetNodeNumber) return;
+	if (m_applyMangledPort) targetSlot->setPort(mangledPort);
+	if (m_connectionStates[m_localNodeNumber] == 2) return;
+	if (!(localSlot->getNATBehavior() & 8) || m_beenProbed == 1 ||
+		((localSlot->getNATBehavior() & 8) && (targetSlot->getNATBehavior() & 8))) {
+		sendAProbe(targetSlot->getIP(), targetSlot->getPort(), m_localNodeNumber);
+		notifyTargetOfProbe(targetSlot);
+		setConnectionStateRetail(m_localNodeNumber, 4);
 	}
 }

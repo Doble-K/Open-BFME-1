@@ -68604,6 +68604,7 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?isContextCommand@CommandButton@@QBE_NXZ,0x0004B1DC,InGameUI retail call uses the import thunk to FUN_0089AE80
 ?parse@StreakDrawTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002BCBA,Streak draw template parse call pin
 ?construct@StreakDrawModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00046C22,Streak draw module base constructor call pin
+?setConnectionStateRetail@NAT@@IAEXHH@Z,0x0002EBD1,NAT retail setConnectionState import thunk
 ?getControllingPlayer@TeamPrototype@@QBEPAVPlayer@@XZ,0x0000F2DB,TeamInQueue disband call pin
 ?AppendDebugMessage@ScriptEngine@@QAEXABVAsciiString@@_N@Z,0x00028CE0,TeamInQueue disband call pin
 ?transferUnitsTo@Team@@QAEXPAV1@@Z,0x00020E55,TeamInQueue disband call pin
