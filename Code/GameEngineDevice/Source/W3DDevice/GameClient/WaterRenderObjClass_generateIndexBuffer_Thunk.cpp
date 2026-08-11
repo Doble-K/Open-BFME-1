@@ -1,252 +1,84 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the water index-buffer generator to clean C++.
+
+typedef unsigned char BYTE;
+typedef unsigned short WORD;
+typedef unsigned short UnsignedShort;
+typedef int Int;
+typedef long HRESULT;
+
+class RetailIndexBuffer
+{
+public:
+	virtual void slot00() = 0; virtual void slot01() = 0; virtual void slot02() = 0;
+	virtual void slot03() = 0; virtual void slot04() = 0; virtual void slot05() = 0;
+	virtual void slot06() = 0; virtual void slot07() = 0; virtual void slot08() = 0;
+	virtual void slot09() = 0; virtual void slot10() = 0;
+	virtual HRESULT __stdcall Lock(unsigned int, unsigned int, BYTE **, unsigned int) = 0;
+	virtual HRESULT __stdcall Unlock() = 0;
+};
+
+class RetailDevice
+{
+public:
+	virtual void slot00() = 0; virtual void slot01() = 0; virtual void slot02() = 0;
+	virtual void slot03() = 0; virtual void slot04() = 0; virtual void slot05() = 0;
+	virtual void slot06() = 0; virtual void slot07() = 0; virtual void slot08() = 0;
+	virtual void slot09() = 0; virtual void slot10() = 0; virtual void slot11() = 0;
+	virtual void slot12() = 0; virtual void slot13() = 0; virtual void slot14() = 0;
+	virtual void slot15() = 0; virtual void slot16() = 0; virtual void slot17() = 0;
+	virtual void slot18() = 0; virtual void slot19() = 0; virtual void slot20() = 0;
+	virtual void slot21() = 0; virtual void slot22() = 0; virtual void slot23() = 0;
+	virtual void slot24() = 0; virtual void slot25() = 0; virtual void slot26() = 0;
+	virtual HRESULT __stdcall CreateIndexBuffer(unsigned int, unsigned int, unsigned int,
+		unsigned int, RetailIndexBuffer **, void *) = 0;
+};
+
+extern RetailDevice *g_retailWaterDevice;
 
 class WaterRenderObjClass
 {
 protected:
-	long generateIndexBuffer(int, int);
+	HRESULT generateIndexBuffer(Int sizeX, Int sizeY);
+
+private:
+	unsigned char m_gap0[0x128];
+	RetailIndexBuffer *m_indexBufferD3D;
+	unsigned char m_gap1[0x14];
+	Int m_numIndices;
 };
 
 // ?generateIndexBuffer@WaterRenderObjClass@@IAEJHH@Z
-__declspec(naked) long WaterRenderObjClass::generateIndexBuffer(int, int)
+HRESULT WaterRenderObjClass::generateIndexBuffer(Int sizeX, Int sizeY)
 {
-	__asm {
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x49
-        __emit 0x8d
-        __emit 0x46
-        __emit 0x01
-        __emit 0x0f
-        __emit 0xaf
-        __emit 0xc1
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x9f
-        __emit 0x28
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x53
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x00
-        __emit 0xfe
-        __emit 0x6a
-        __emit 0x65
-        __emit 0x89
-        __emit 0x87
-        __emit 0x40
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x34
-        __emit 0x05
-        __emit 0x34
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x00
-        __emit 0x04
-        __emit 0x50
-        __emit 0x51
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x30
-        __emit 0xff
-        __emit 0x52
-        __emit 0x6c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x8c
-        __emit 0x9d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x03
-        __emit 0x8b
-        __emit 0x08
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x14
-        __emit 0x52
-        __emit 0x8b
-        __emit 0x97
-        __emit 0x40
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xd1
-        __emit 0xe2
-        __emit 0x52
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x50
-        __emit 0xff
-        __emit 0x51
-        __emit 0x2c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7c
-        __emit 0x7f
-        __emit 0x8b
-        __emit 0x97
-        __emit 0x40
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x85
-        __emit 0xd2
-        __emit 0x7e
-        __emit 0x5f
-        __emit 0x8b
-        __emit 0xd6
-        __emit 0x55
-        __emit 0x8d
-        __emit 0xa4
-        __emit 0x24
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xca
-        __emit 0x7d
-        __emit 0x1d
-        __emit 0x8b
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8d
-        __emit 0x1c
-        __emit 0x31
-        __emit 0x66
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x45
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x66
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x43
-        __emit 0x02
-        __emit 0x41
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x02
-        __emit 0x3b
-        __emit 0xca
-        __emit 0x7c
-        __emit 0xe3
-        __emit 0x3b
-        __emit 0x87
-        __emit 0x40
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x7d
-        __emit 0x1b
-        __emit 0x8b
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8d
-        __emit 0x59
-        __emit 0xff
-        __emit 0x66
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x45
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8d
-        __emit 0x1c
-        __emit 0x0e
-        __emit 0x66
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x45
-        __emit 0x02
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x02
-        __emit 0x8b
-        __emit 0x9f
-        __emit 0x40
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x03
-        __emit 0xd6
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x7c
-        __emit 0xb0
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x5d
-        __emit 0x8b
-        __emit 0x03
-        __emit 0x8b
-        __emit 0x08
-        __emit 0x50
-        __emit 0xff
-        __emit 0x51
-        __emit 0x30
-        __emit 0x33
-        __emit 0xd2
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x9d
-        __emit 0xc2
-        __emit 0x4a
-        __emit 0x23
-        __emit 0xc2
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	HRESULT hr;
+	m_numIndices = (sizeY - 1) * (sizeX * 2 + 2) - 2;
+	WORD *pIndices;
+
+	if ((hr = g_retailWaterDevice->CreateIndexBuffer((m_numIndices + 2) * sizeof(WORD),
+		8, 101, 1, &m_indexBufferD3D, 0)) < 0)
+		return hr;
+
+	if ((hr = m_indexBufferD3D->Lock(0, m_numIndices * sizeof(WORD), (BYTE **)&pIndices, 0)) < 0)
+		return hr;
+
+	Int i, j, k;
+	for (i = 0, j = 0, k = 0; i < m_numIndices; j++)
+	{
+		for (; k < sizeX * (j + 1); k++, i += 2)
+		{
+			pIndices[i] = (UnsignedShort)k + sizeX;
+			pIndices[i + 1] = (UnsignedShort)k;
+		}
+		if (i < m_numIndices)
+		{
+			pIndices[i] = k - 1;
+			pIndices[i + 1] = k + sizeX;
+			i += 2;
+		}
 	}
+
+	if ((hr = m_indexBufferD3D->Unlock()) < 0)
+		return hr;
+	return 0;
 }
