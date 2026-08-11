@@ -1,0 +1,45 @@
+d3dx9.lib — Microsoft D3DX9 static library, as linked into lotrbfme.exe
+=======================================================================
+
+d3dx9.lib
+  sha256  9496d4ce606998c2ad7588f2db9aada3c59786515244482230fde0cd6099ed56
+  size    5,534,754 bytes
+  dated   2003-09-09
+  from    DirectX 9.0 SDK Update (Summer 2003), Lib/d3dx9.lib
+
+Why this exact SDK
+------------------
+The retail exe embeds the string
+
+    Microsoft (R) D3DX9 Shader Assembler 4.09.00.1126
+
+which is the assembler version stamped into this release and no other. The
+three neighbouring releases were checked and each one is a different build:
+the 9.0/9.0a/9.0b lib (Dec 2002) carries no assembler stamp and reproduces
+44.9% of the region, Summer 2004 stamps 5.04.00.2904 and reproduces 4.9%, and
+December 2004 stamps 9.04.91.0000 and reproduces 2.8%. This lib reproduces
+94.7% of it.
+
+The game statically linked this library, so 806 KB of the retail .text is
+Microsoft's compiled code rather than the game's. Ledger rows sourced here
+carry `vendored=d3dx9-summer2003` and name the archive member their bytes come
+from; ./build.sh extracts that member and byte-compares it against retail like
+any other row.
+
+Region
+------
+RVA 0x00A00000-0x00A62000 and 0x00A67000-0x00AD5000 (851,968 bytes).
+
+Re-obtaining it
+---------------
+    https://archive.org/download/dx90updatesdk/dx90updatesdk.exe   (191 MB)
+
+A WEXTRACT self-extractor wrapping a CAB wrapping the inner installer; `7z x`
+handles every layer. Extract to a real filesystem, not a tmpfs scratch dir.
+
+Licence
+-------
+Redistribution of the DirectX SDK libraries is governed by the DirectX SDK
+EULA. The file is committed as a build input for byte-verification only: it is
+read to prove that retail bytes match Microsoft's shipped code, and none of it
+is compiled into or redistributed as part of any binary this repo produces.
