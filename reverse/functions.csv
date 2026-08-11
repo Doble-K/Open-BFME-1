@@ -80560,7 +80560,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setTower@BridgeBehavior@@UAEXW4BridgeTowerType@@PAVObject@@@Z,,0x001F1F70,42,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ?setTowerObjectID@Bridge@@QAEXW4ObjectID@@W4BridgeTowerType@@@Z,,0x001F1F00,15,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ?setTransformMatrix@Thing@@QAEXPBVMatrix3D@@@Z,,0x00023D49,5,Code/Libraries/Source/WWVegas/WWLib/ThingShadowTransformThunks.cpp,matched,Focused C++ thunk for Thing::setTransformMatrix
-?setTriggerAreaFlagsForChangeInPosition@Object@@IAEXXZ,,0x001C8E7D,749,Code/GameEngine/Source/GameLogic/Object/Object_setTriggerAreaFlagsForChangeInPosition.asm,matched,exact 749B via MASM
+?setTriggerAreaFlagsForChangeInPosition@Object@@IAEXXZ,,0x001C8E7D,749,Code/GameEngine/Source/GameLogic/Object/Object_setTriggerAreaFlagsForChangeInPosition_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_Object_setTriggerAreaFlagsForChangeInPosition_1C8E7D
 ?setTurning@PhysicsBehavior@@QAEXW4PhysicsTurningType@@@Z,,0x005BD440,10,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ?setTurretEnabled@AIUpdateInterface@@QAEXW4WhichTurretType@@_N@Z,,0x0026E9E0,28,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,forwards to TurretAI::setTurretEnabled; fills the gap between setTurretTargetPosition 0x26E9B0 and recenterTurret 0x26EA10
 ?setTurretEnabled@TurretAI@@QAEX_N@Z,,0x0018C930,42,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
