@@ -8,6 +8,7 @@
 // clean C++ body lands over the same range with add_match --replace-existing.
 
 // ghidra: FUN_008ea5f0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004ea5f0@@YAXXZ
 __declspec(naked) void d_004ea5f0()
 {
     __asm {
@@ -264,6 +265,7 @@ __declspec(naked) void d_004ea5f0()
 }
 
 // ghidra: FUN_008af520  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004af520@@YAXXZ
 __declspec(naked) void d_004af520()
 {
     __asm {
@@ -516,6 +518,7 @@ __declspec(naked) void d_004af520()
 }
 
 // ghidra: FUN_00906230  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00506230@@YAXXZ
 __declspec(naked) void d_00506230()
 {
     __asm {
@@ -767,6 +770,7 @@ __declspec(naked) void d_00506230()
 }
 
 // ghidra: FUN_0090aa52  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0050aa52@@YAXXZ
 __declspec(naked) void d_0050aa52()
 {
     __asm {
@@ -1263,6 +1267,7 @@ __declspec(naked) void d_0050aa52()
 }
 
 // ghidra: FUN_0090eb00  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0050eb00@@YAXXZ
 __declspec(naked) void d_0050eb00()
 {
     __asm {
@@ -1758,6 +1763,7 @@ __declspec(naked) void d_0050eb00()
 }
 
 // ghidra: FUN_0085ab10  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0045ab10@@YAXXZ
 __declspec(naked) void d_0045ab10()
 {
     __asm {
@@ -2006,6 +2012,7 @@ __declspec(naked) void d_0045ab10()
 }
 
 // ghidra: FUN_00917220  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00517220@@YAXXZ
 __declspec(naked) void d_00517220()
 {
     __asm {
@@ -2254,6 +2261,7 @@ __declspec(naked) void d_00517220()
 }
 
 // ghidra: FUN_005bd0d0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_001bd0d0@@YAXXZ
 __declspec(naked) void d_001bd0d0()
 {
     __asm {
@@ -2501,6 +2509,7 @@ __declspec(naked) void d_001bd0d0()
 }
 
 // ghidra: FUN_004d6cf0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000d6cf0@@YAXXZ
 __declspec(naked) void d_000d6cf0()
 {
     __asm {
@@ -2984,6 +2993,7 @@ __declspec(naked) void d_000d6cf0()
 }
 
 // ghidra: FUN_005cb730  (identity lead in reverse/anchored_candidates.csv)
+// ?d_001cb730@@YAXXZ
 __declspec(naked) void d_001cb730()
 {
     __asm {
@@ -3464,6 +3474,7 @@ __declspec(naked) void d_001cb730()
 }
 
 // ghidra: FUN_008d1120  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004d1120@@YAXXZ
 __declspec(naked) void d_004d1120()
 {
     __asm {
@@ -3942,6 +3953,7 @@ __declspec(naked) void d_004d1120()
 }
 
 // ghidra: FUN_008e9590  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004e9590@@YAXXZ
 __declspec(naked) void d_004e9590()
 {
     __asm {
@@ -4420,6 +4432,7 @@ __declspec(naked) void d_004e9590()
 }
 
 // ghidra: FUN_00463ba0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00063ba0@@YAXXZ
 __declspec(naked) void d_00063ba0()
 {
     __asm {
@@ -4895,6 +4908,7 @@ __declspec(naked) void d_00063ba0()
 }
 
 // ghidra: FUN_005cb4e0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_001cb4e0@@YAXXZ
 __declspec(naked) void d_001cb4e0()
 {
     __asm {
@@ -5366,6 +5380,7 @@ __declspec(naked) void d_001cb4e0()
 }
 
 // ghidra: FUN_0090b200  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0050b200@@YAXXZ
 __declspec(naked) void d_0050b200()
 {
     __asm {
@@ -5829,6 +5844,7 @@ __declspec(naked) void d_0050b200()
 }
 
 // ghidra: FUN_008ade40  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004ade40@@YAXXZ
 __declspec(naked) void d_004ade40()
 {
     __asm {
@@ -6290,6 +6306,7 @@ __declspec(naked) void d_004ade40()
 }
 
 // ghidra: FUN_00911cc0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00511cc0@@YAXXZ
 __declspec(naked) void d_00511cc0()
 {
     __asm {
@@ -6747,6 +6764,7 @@ __declspec(naked) void d_00511cc0()
 }
 
 // ghidra: FUN_00c1ae20  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0081ae20@@YAXXZ
 __declspec(naked) void d_0081ae20()
 {
     __asm {
@@ -7204,6 +7222,7 @@ __declspec(naked) void d_0081ae20()
 }
 
 // ghidra: FUN_00c84c40  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00884c40@@YAXXZ
 __declspec(naked) void d_00884c40()
 {
     __asm {
@@ -7660,6 +7679,7 @@ __declspec(naked) void d_00884c40()
 }
 
 // ghidra: FUN_00a032f0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_006032f0@@YAXXZ
 __declspec(naked) void d_006032f0()
 {
     __asm {
@@ -8105,6 +8125,7 @@ __declspec(naked) void d_006032f0()
 }
 
 // ghidra: FUN_00a304a0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_006304a0@@YAXXZ
 __declspec(naked) void d_006304a0()
 {
     __asm {
@@ -8330,6 +8351,7 @@ __declspec(naked) void d_006304a0()
 }
 
 // ghidra: FUN_008da760  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004da760@@YAXXZ
 __declspec(naked) void d_004da760()
 {
     __asm {
@@ -8771,6 +8793,7 @@ __declspec(naked) void d_004da760()
 }
 
 // ghidra: FUN_008d3d20  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004d3d20@@YAXXZ
 __declspec(naked) void d_004d3d20()
 {
     __asm {
@@ -8994,6 +9017,7 @@ __declspec(naked) void d_004d3d20()
 }
 
 // ghidra: FUN_00960052  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00560052@@YAXXZ
 __declspec(naked) void d_00560052()
 {
     __asm {
@@ -9433,6 +9457,7 @@ __declspec(naked) void d_00560052()
 }
 
 // ghidra: FUN_008331d0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004331d0@@YAXXZ
 __declspec(naked) void d_004331d0()
 {
     __asm {
@@ -9652,6 +9677,7 @@ __declspec(naked) void d_004331d0()
 }
 
 // ghidra: FUN_00748e70  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00348e70@@YAXXZ
 __declspec(naked) void d_00348e70()
 {
     __asm {
@@ -10083,6 +10109,7 @@ __declspec(naked) void d_00348e70()
 }
 
 // ghidra: FUN_00c7b9c0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0087b9c0@@YAXXZ
 __declspec(naked) void d_0087b9c0()
 {
     __asm {
@@ -10511,6 +10538,7 @@ __declspec(naked) void d_0087b9c0()
 }
 
 // ghidra: FUN_0074f570  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0034f570@@YAXXZ
 __declspec(naked) void d_0034f570()
 {
     __asm {
@@ -10938,6 +10966,7 @@ __declspec(naked) void d_0034f570()
 }
 
 // ghidra: FUN_008a3830  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004a3830@@YAXXZ
 __declspec(naked) void d_004a3830()
 {
     __asm {
@@ -11361,6 +11390,7 @@ __declspec(naked) void d_004a3830()
 }
 
 // ghidra: FUN_00825720  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00425720@@YAXXZ
 __declspec(naked) void d_00425720()
 {
     __asm {
@@ -11572,6 +11602,7 @@ __declspec(naked) void d_00425720()
 }
 
 // ghidra: FUN_006523e0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_002523e0@@YAXXZ
 __declspec(naked) void d_002523e0()
 {
     __asm {
@@ -11982,6 +12013,7 @@ __declspec(naked) void d_002523e0()
 }
 
 // ghidra: FUN_00a4aa70  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0064aa70@@YAXXZ
 __declspec(naked) void d_0064aa70()
 {
     __asm {
@@ -12390,6 +12422,7 @@ __declspec(naked) void d_0064aa70()
 }
 
 // ghidra: FUN_004aed00  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000aed00@@YAXXZ
 __declspec(naked) void d_000aed00()
 {
     __asm {
@@ -12595,6 +12628,7 @@ __declspec(naked) void d_000aed00()
 }
 
 // ghidra: FUN_00deedf0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_009eedf0@@YAXXZ
 __declspec(naked) void d_009eedf0()
 {
     __asm {
@@ -12799,6 +12833,7 @@ __declspec(naked) void d_009eedf0()
 }
 
 // ghidra: FUN_005819f0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_001819f0@@YAXXZ
 __declspec(naked) void d_001819f0()
 {
     __asm {
@@ -13199,6 +13234,7 @@ __declspec(naked) void d_001819f0()
 }
 
 // ghidra: FUN_008c8660  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004c8660@@YAXXZ
 __declspec(naked) void d_004c8660()
 {
     __asm {
@@ -13401,6 +13437,7 @@ __declspec(naked) void d_004c8660()
 }
 
 // ghidra: FUN_00684c80  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00284c80@@YAXXZ
 __declspec(naked) void d_00284c80()
 {
     __asm {
@@ -13798,6 +13835,7 @@ __declspec(naked) void d_00284c80()
 }
 
 // ghidra: FUN_00797350  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00397350@@YAXXZ
 __declspec(naked) void d_00397350()
 {
     __asm {
@@ -14195,6 +14233,7 @@ __declspec(naked) void d_00397350()
 }
 
 // ghidra: FUN_0090ae10  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0050ae10@@YAXXZ
 __declspec(naked) void d_0050ae10()
 {
     __asm {
@@ -14591,6 +14630,7 @@ __declspec(naked) void d_0050ae10()
 }
 
 // ghidra: FUN_00a718a0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_006718a0@@YAXXZ
 __declspec(naked) void d_006718a0()
 {
     __asm {
@@ -14986,6 +15026,7 @@ __declspec(naked) void d_006718a0()
 }
 
 // ghidra: FUN_004aea60  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000aea60@@YAXXZ
 __declspec(naked) void d_000aea60()
 {
     __asm {
@@ -15184,6 +15225,7 @@ __declspec(naked) void d_000aea60()
 }
 
 // ghidra: FUN_008aa980  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004aa980@@YAXXZ
 __declspec(naked) void d_004aa980()
 {
     __asm {
@@ -15379,6 +15421,7 @@ __declspec(naked) void d_004aa980()
 }
 
 // ghidra: FUN_00c8eb90  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0088eb90@@YAXXZ
 __declspec(naked) void d_0088eb90()
 {
     __asm {
@@ -15574,6 +15617,7 @@ __declspec(naked) void d_0088eb90()
 }
 
 // ghidra: FUN_00a71100  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00671100@@YAXXZ
 __declspec(naked) void d_00671100()
 {
     __asm {
@@ -15955,6 +15999,7 @@ __declspec(naked) void d_00671100()
 }
 
 // ghidra: FUN_004afff0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000afff0@@YAXXZ
 __declspec(naked) void d_000afff0()
 {
     __asm {
@@ -16148,6 +16193,7 @@ __declspec(naked) void d_000afff0()
 }
 
 // ghidra: FUN_008f0520  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004f0520@@YAXXZ
 __declspec(naked) void d_004f0520()
 {
     __asm {
@@ -16527,6 +16573,7 @@ __declspec(naked) void d_004f0520()
 }
 
 // ghidra: FUN_009050c0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_005050c0@@YAXXZ
 __declspec(naked) void d_005050c0()
 {
     __asm {
@@ -16906,6 +16953,7 @@ __declspec(naked) void d_005050c0()
 }
 
 // ghidra: FUN_004b83b0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000b83b0@@YAXXZ
 __declspec(naked) void d_000b83b0()
 {
     __asm {
@@ -17098,6 +17146,7 @@ __declspec(naked) void d_000b83b0()
 }
 
 // ghidra: FUN_004a29e0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000a29e0@@YAXXZ
 __declspec(naked) void d_000a29e0()
 {
     __asm {
@@ -17473,6 +17522,7 @@ __declspec(naked) void d_000a29e0()
 }
 
 // ghidra: FUN_008aaa70  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004aaa70@@YAXXZ
 __declspec(naked) void d_004aaa70()
 {
     __asm {
@@ -17662,6 +17712,7 @@ __declspec(naked) void d_004aaa70()
 }
 
 // ghidra: FUN_0073e9a0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0033e9a0@@YAXXZ
 __declspec(naked) void d_0033e9a0()
 {
     __asm {
@@ -18029,6 +18080,7 @@ __declspec(naked) void d_0033e9a0()
 }
 
 // ghidra: FUN_00d27360  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00927360@@YAXXZ
 __declspec(naked) void d_00927360()
 {
     __asm {
@@ -18386,6 +18438,7 @@ __declspec(naked) void d_00927360()
 }
 
 // ghidra: FUN_00581f60  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00181f60@@YAXXZ
 __declspec(naked) void d_00181f60()
 {
     __asm {
@@ -18740,6 +18793,7 @@ __declspec(naked) void d_00181f60()
 }
 
 // ghidra: FUN_008879a0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004879a0@@YAXXZ
 __declspec(naked) void d_004879a0()
 {
     __asm {
@@ -19093,6 +19147,7 @@ __declspec(naked) void d_004879a0()
 }
 
 // ghidra: FUN_00c53cb0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00853cb0@@YAXXZ
 __declspec(naked) void d_00853cb0()
 {
     __asm {
@@ -19445,6 +19500,7 @@ __declspec(naked) void d_00853cb0()
 }
 
 // ghidra: FUN_00d27230  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00927230@@YAXXZ
 __declspec(naked) void d_00927230()
 {
     __asm {
@@ -19623,6 +19679,7 @@ __declspec(naked) void d_00927230()
 }
 
 // ghidra: FUN_00740c9e  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00340c9e@@YAXXZ
 __declspec(naked) void d_00340c9e()
 {
     __asm {
@@ -19796,6 +19853,7 @@ __declspec(naked) void d_00340c9e()
 }
 
 // ghidra: FUN_00ab1b40  (identity lead in reverse/anchored_candidates.csv)
+// ?d_006b1b40@@YAXXZ
 __declspec(naked) void d_006b1b40()
 {
     __asm {
@@ -20135,6 +20193,7 @@ __declspec(naked) void d_006b1b40()
 }
 
 // ghidra: FUN_008e08d0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004e08d0@@YAXXZ
 __declspec(naked) void d_004e08d0()
 {
     __asm {
@@ -20465,6 +20524,7 @@ __declspec(naked) void d_004e08d0()
 }
 
 // ghidra: FUN_00dc4b70  (identity lead in reverse/anchored_candidates.csv)
+// ?d_009c4b70@@YAXXZ
 __declspec(naked) void d_009c4b70()
 {
     __asm {
@@ -20632,6 +20692,7 @@ __declspec(naked) void d_009c4b70()
 }
 
 // ghidra: FUN_00bff100  (identity lead in reverse/anchored_candidates.csv)
+// ?d_007ff100@@YAXXZ
 __declspec(naked) void d_007ff100()
 {
     __asm {
@@ -20959,6 +21020,7 @@ __declspec(naked) void d_007ff100()
 }
 
 // ghidra: FUN_00509d10  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00109d10@@YAXXZ
 __declspec(naked) void d_00109d10()
 {
     __asm {
@@ -21122,6 +21184,7 @@ __declspec(naked) void d_00109d10()
 }
 
 // ghidra: FUN_00509de0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00109de0@@YAXXZ
 __declspec(naked) void d_00109de0()
 {
     __asm {
@@ -21285,6 +21348,7 @@ __declspec(naked) void d_00109de0()
 }
 
 // ghidra: FUN_004921d0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000921d0@@YAXXZ
 __declspec(naked) void d_000921d0()
 {
     __asm {
@@ -21594,6 +21658,7 @@ __declspec(naked) void d_000921d0()
 }
 
 // ghidra: FUN_00499980  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00099980@@YAXXZ
 __declspec(naked) void d_00099980()
 {
     __asm {
@@ -21751,6 +21816,7 @@ __declspec(naked) void d_00099980()
 }
 
 // ghidra: FUN_0094da10  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0054da10@@YAXXZ
 __declspec(naked) void d_0054da10()
 {
     __asm {
@@ -21906,6 +21972,7 @@ __declspec(naked) void d_0054da10()
 }
 
 // ghidra: FUN_00905b40  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00505b40@@YAXXZ
 __declspec(naked) void d_00505b40()
 {
     __asm {
@@ -22060,6 +22127,7 @@ __declspec(naked) void d_00505b40()
 }
 
 // ghidra: FUN_0073eb70  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0033eb70@@YAXXZ
 __declspec(naked) void d_0033eb70()
 {
     __asm {
@@ -22361,6 +22429,7 @@ __declspec(naked) void d_0033eb70()
 }
 
 // ghidra: FUN_00590610  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00190610@@YAXXZ
 __declspec(naked) void d_00190610()
 {
     __asm {
@@ -22514,6 +22583,7 @@ __declspec(naked) void d_00190610()
 }
 
 // ghidra: FUN_00b4a4a0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0074a4a0@@YAXXZ
 __declspec(naked) void d_0074a4a0()
 {
     __asm {
@@ -22667,6 +22737,7 @@ __declspec(naked) void d_0074a4a0()
 }
 
 // ghidra: FUN_00c601f0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_008601f0@@YAXXZ
 __declspec(naked) void d_008601f0()
 {
     __asm {
@@ -22817,6 +22888,7 @@ __declspec(naked) void d_008601f0()
 }
 
 // ghidra: FUN_007395a0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_003395a0@@YAXXZ
 __declspec(naked) void d_003395a0()
 {
     __asm {
@@ -22964,6 +23036,7 @@ __declspec(naked) void d_003395a0()
 }
 
 // ghidra: FUN_008c85b0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_004c85b0@@YAXXZ
 __declspec(naked) void d_004c85b0()
 {
     __asm {
@@ -23108,6 +23181,7 @@ __declspec(naked) void d_004c85b0()
 }
 
 // ghidra: FUN_0091e0f0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0051e0f0@@YAXXZ
 __declspec(naked) void d_0051e0f0()
 {
     __asm {
@@ -23252,6 +23326,7 @@ __declspec(naked) void d_0051e0f0()
 }
 
 // ghidra: FUN_00740b80  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00340b80@@YAXXZ
 __declspec(naked) void d_00340b80()
 {
     __asm {
@@ -23531,6 +23606,7 @@ __declspec(naked) void d_00340b80()
 }
 
 // ghidra: FUN_00904e10  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00504e10@@YAXXZ
 __declspec(naked) void d_00504e10()
 {
     __asm {
@@ -23810,6 +23886,7 @@ __declspec(naked) void d_00504e10()
 }
 
 // ghidra: FUN_00b7ea70  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0077ea70@@YAXXZ
 __declspec(naked) void d_0077ea70()
 {
     __asm {
@@ -23950,6 +24027,7 @@ __declspec(naked) void d_0077ea70()
 }
 
 // ghidra: FUN_004aff40  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000aff40@@YAXXZ
 __declspec(naked) void d_000aff40()
 {
     __asm {
@@ -24085,6 +24163,7 @@ __declspec(naked) void d_000aff40()
 }
 
 // ghidra: FUN_004cfe80  (identity lead in reverse/anchored_candidates.csv)
+// ?d_000cfe80@@YAXXZ
 __declspec(naked) void d_000cfe80()
 {
     __asm {
@@ -24218,6 +24297,7 @@ __declspec(naked) void d_000cfe80()
 }
 
 // ghidra: FUN_00a96150  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00696150@@YAXXZ
 __declspec(naked) void d_00696150()
 {
     __asm {
@@ -24348,6 +24428,7 @@ __declspec(naked) void d_00696150()
 }
 
 // ghidra: FUN_00885ab0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00485ab0@@YAXXZ
 __declspec(naked) void d_00485ab0()
 {
     __asm {
@@ -24476,6 +24557,7 @@ __declspec(naked) void d_00485ab0()
 }
 
 // ghidra: FUN_0073da70  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0033da70@@YAXXZ
 __declspec(naked) void d_0033da70()
 {
     __asm {
@@ -24593,6 +24675,7 @@ __declspec(naked) void d_0033da70()
 }
 
 // ghidra: FUN_00736fb0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00336fb0@@YAXXZ
 __declspec(naked) void d_00336fb0()
 {
     __asm {
@@ -24709,6 +24792,7 @@ __declspec(naked) void d_00336fb0()
 }
 
 // ghidra: FUN_00491e40  (identity lead in reverse/anchored_candidates.csv)
+// ?d_00091e40@@YAXXZ
 __declspec(naked) void d_00091e40()
 {
     __asm {
@@ -24817,6 +24901,7 @@ __declspec(naked) void d_00091e40()
 }
 
 // ghidra: FUN_0056faa0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_0016faa0@@YAXXZ
 __declspec(naked) void d_0016faa0()
 {
     __asm {
@@ -24923,6 +25008,7 @@ __declspec(naked) void d_0016faa0()
 }
 
 // ghidra: FUN_006c71d0  (identity lead in reverse/anchored_candidates.csv)
+// ?d_002c71d0@@YAXXZ
 __declspec(naked) void d_002c71d0()
 {
     __asm {
@@ -25029,6 +25115,7 @@ __declspec(naked) void d_002c71d0()
 }
 
 // ghidra: FUN_006c7700  (identity lead in reverse/anchored_candidates.csv)
+// ?d_002c7700@@YAXXZ
 __declspec(naked) void d_002c7700()
 {
     __asm {
@@ -25135,6 +25222,7 @@ __declspec(naked) void d_002c7700()
 }
 
 // ghidra: FUN_005aac30
+// ?d_001aac30@@YAXXZ
 __declspec(naked) void d_001aac30()
 {
     __asm {
@@ -25397,6 +25485,7 @@ __declspec(naked) void d_001aac30()
 }
 
 // ghidra: FUN_005e0370
+// ?d_001e0370@@YAXXZ
 __declspec(naked) void d_001e0370()
 {
     __asm {
@@ -25659,6 +25748,7 @@ __declspec(naked) void d_001e0370()
 }
 
 // ghidra: FUN_007c9670
+// ?d_003c9670@@YAXXZ
 __declspec(naked) void d_003c9670()
 {
     __asm {
@@ -25921,6 +26011,7 @@ __declspec(naked) void d_003c9670()
 }
 
 // ghidra: FUN_0088b410
+// ?d_0048b410@@YAXXZ
 __declspec(naked) void d_0048b410()
 {
     __asm {
@@ -26183,6 +26274,7 @@ __declspec(naked) void d_0048b410()
 }
 
 // ghidra: FUN_0095e320
+// ?d_0055e320@@YAXXZ
 __declspec(naked) void d_0055e320()
 {
     __asm {
@@ -26445,6 +26537,7 @@ __declspec(naked) void d_0055e320()
 }
 
 // ghidra: FUN_00965720
+// ?d_00565720@@YAXXZ
 __declspec(naked) void d_00565720()
 {
     __asm {
@@ -26707,6 +26800,7 @@ __declspec(naked) void d_00565720()
 }
 
 // ghidra: FUN_0096d430
+// ?d_0056d430@@YAXXZ
 __declspec(naked) void d_0056d430()
 {
     __asm {
@@ -26969,6 +27063,7 @@ __declspec(naked) void d_0056d430()
 }
 
 // ghidra: FUN_00a655c0
+// ?d_006655c0@@YAXXZ
 __declspec(naked) void d_006655c0()
 {
     __asm {
@@ -27231,6 +27326,7 @@ __declspec(naked) void d_006655c0()
 }
 
 // ghidra: FUN_00ac5840
+// ?d_006c5840@@YAXXZ
 __declspec(naked) void d_006c5840()
 {
     __asm {
@@ -27493,6 +27589,7 @@ __declspec(naked) void d_006c5840()
 }
 
 // ghidra: FUN_00c0f430
+// ?d_0080f430@@YAXXZ
 __declspec(naked) void d_0080f430()
 {
     __asm {
@@ -27755,6 +27852,7 @@ __declspec(naked) void d_0080f430()
 }
 
 // ghidra: FUN_00c4ba90
+// ?d_0084ba90@@YAXXZ
 __declspec(naked) void d_0084ba90()
 {
     __asm {
@@ -28017,6 +28115,7 @@ __declspec(naked) void d_0084ba90()
 }
 
 // ghidra: FUN_00e07905
+// ?d_00a07905@@YAXXZ
 __declspec(naked) void d_00a07905()
 {
     __asm {
@@ -28279,6 +28378,7 @@ __declspec(naked) void d_00a07905()
 }
 
 // ghidra: FUN_00e07a04
+// ?d_00a07a04@@YAXXZ
 __declspec(naked) void d_00a07a04()
 {
     __asm {
@@ -28541,6 +28641,7 @@ __declspec(naked) void d_00a07a04()
 }
 
 // ghidra: FUN_00e0a842
+// ?d_00a0a842@@YAXXZ
 __declspec(naked) void d_00a0a842()
 {
     __asm {
@@ -28803,6 +28904,7 @@ __declspec(naked) void d_00a0a842()
 }
 
 // ghidra: FUN_00e5499f
+// ?d_00a5499f@@YAXXZ
 __declspec(naked) void d_00a5499f()
 {
     __asm {
@@ -29065,6 +29167,7 @@ __declspec(naked) void d_00a5499f()
 }
 
 // ghidra: FUN_00e5646b
+// ?d_00a5646b@@YAXXZ
 __declspec(naked) void d_00a5646b()
 {
     __asm {
@@ -29327,6 +29430,7 @@ __declspec(naked) void d_00a5646b()
 }
 
 // ghidra: FUN_004a3820
+// ?d_000a3820@@YAXXZ
 __declspec(naked) void d_000a3820()
 {
     __asm {
@@ -29845,6 +29949,7 @@ __declspec(naked) void d_000a3820()
 }
 
 // ghidra: FUN_004eae70
+// ?d_000eae70@@YAXXZ
 __declspec(naked) void d_000eae70()
 {
     __asm {
@@ -30363,6 +30468,7 @@ __declspec(naked) void d_000eae70()
 }
 
 // ghidra: FUN_0054b150
+// ?d_0014b150@@YAXXZ
 __declspec(naked) void d_0014b150()
 {
     __asm {
@@ -30881,6 +30987,7 @@ __declspec(naked) void d_0014b150()
 }
 
 // ghidra: FUN_0079de20
+// ?d_0039de20@@YAXXZ
 __declspec(naked) void d_0039de20()
 {
     __asm {
@@ -31399,6 +31506,7 @@ __declspec(naked) void d_0039de20()
 }
 
 // ghidra: FUN_007d8940
+// ?d_003d8940@@YAXXZ
 __declspec(naked) void d_003d8940()
 {
     __asm {
@@ -31917,6 +32025,7 @@ __declspec(naked) void d_003d8940()
 }
 
 // ghidra: FUN_0081ca50
+// ?d_0041ca50@@YAXXZ
 __declspec(naked) void d_0041ca50()
 {
     __asm {
@@ -32435,6 +32544,7 @@ __declspec(naked) void d_0041ca50()
 }
 
 // ghidra: FUN_00913bf0
+// ?d_00513bf0@@YAXXZ
 __declspec(naked) void d_00513bf0()
 {
     __asm {
@@ -32953,6 +33063,7 @@ __declspec(naked) void d_00513bf0()
 }
 
 // ghidra: FUN_00c312e0
+// ?d_008312e0@@YAXXZ
 __declspec(naked) void d_008312e0()
 {
     __asm {
@@ -33471,6 +33582,7 @@ __declspec(naked) void d_008312e0()
 }
 
 // ghidra: FUN_00db58f0
+// ?d_009b58f0@@YAXXZ
 __declspec(naked) void d_009b58f0()
 {
     __asm {
@@ -33989,6 +34101,7 @@ __declspec(naked) void d_009b58f0()
 }
 
 // ghidra: FUN_00de0700
+// ?d_009e0700@@YAXXZ
 __declspec(naked) void d_009e0700()
 {
     __asm {
@@ -34507,6 +34620,7 @@ __declspec(naked) void d_009e0700()
 }
 
 // ghidra: FUN_00e547a0
+// ?d_00a547a0@@YAXXZ
 __declspec(naked) void d_00a547a0()
 {
     __asm {
@@ -35025,6 +35139,7 @@ __declspec(naked) void d_00a547a0()
 }
 
 // ghidra: FUN_00507d60
+// ?d_00107d60@@YAXXZ
 __declspec(naked) void d_00107d60()
 {
     __asm {
@@ -35542,6 +35657,7 @@ __declspec(naked) void d_00107d60()
 }
 
 // ghidra: FUN_005a2950
+// ?d_001a2950@@YAXXZ
 __declspec(naked) void d_001a2950()
 {
     __asm {
@@ -36059,6 +36175,7 @@ __declspec(naked) void d_001a2950()
 }
 
 // ghidra: FUN_00915e60
+// ?d_00515e60@@YAXXZ
 __declspec(naked) void d_00515e60()
 {
     __asm {
@@ -36576,6 +36693,7 @@ __declspec(naked) void d_00515e60()
 }
 
 // ghidra: FUN_00c51bf0
+// ?d_00851bf0@@YAXXZ
 __declspec(naked) void d_00851bf0()
 {
     __asm {
@@ -37093,6 +37211,7 @@ __declspec(naked) void d_00851bf0()
 }
 
 // ghidra: FUN_00cc3c00
+// ?d_008c3c00@@YAXXZ
 __declspec(naked) void d_008c3c00()
 {
     __asm {
@@ -37610,6 +37729,7 @@ __declspec(naked) void d_008c3c00()
 }
 
 // ghidra: FUN_004b0990
+// ?d_000b0990@@YAXXZ
 __declspec(naked) void d_000b0990()
 {
     __asm {
@@ -37871,6 +37991,7 @@ __declspec(naked) void d_000b0990()
 }
 
 // ghidra: FUN_004e4890
+// ?d_000e4890@@YAXXZ
 __declspec(naked) void d_000e4890()
 {
     __asm {
@@ -38132,6 +38253,7 @@ __declspec(naked) void d_000e4890()
 }
 
 // ghidra: FUN_005fa0b0
+// ?d_001fa0b0@@YAXXZ
 __declspec(naked) void d_001fa0b0()
 {
     __asm {
@@ -38393,6 +38515,7 @@ __declspec(naked) void d_001fa0b0()
 }
 
 // ghidra: FUN_00601960
+// ?d_00201960@@YAXXZ
 __declspec(naked) void d_00201960()
 {
     __asm {
@@ -38654,6 +38777,7 @@ __declspec(naked) void d_00201960()
 }
 
 // ghidra: FUN_006e1f80
+// ?d_002e1f80@@YAXXZ
 __declspec(naked) void d_002e1f80()
 {
     __asm {
@@ -38915,6 +39039,7 @@ __declspec(naked) void d_002e1f80()
 }
 
 // ghidra: FUN_0076fbe0
+// ?d_0036fbe0@@YAXXZ
 __declspec(naked) void d_0036fbe0()
 {
     __asm {
@@ -39176,6 +39301,7 @@ __declspec(naked) void d_0036fbe0()
 }
 
 // ghidra: FUN_0093a5d0
+// ?d_0053a5d0@@YAXXZ
 __declspec(naked) void d_0053a5d0()
 {
     __asm {
@@ -39437,6 +39563,7 @@ __declspec(naked) void d_0053a5d0()
 }
 
 // ghidra: FUN_009ee1d0
+// ?d_005ee1d0@@YAXXZ
 __declspec(naked) void d_005ee1d0()
 {
     __asm {
@@ -39698,6 +39825,7 @@ __declspec(naked) void d_005ee1d0()
 }
 
 // ghidra: FUN_00bbac10
+// ?d_007bac10@@YAXXZ
 __declspec(naked) void d_007bac10()
 {
     __asm {
@@ -39959,6 +40087,7 @@ __declspec(naked) void d_007bac10()
 }
 
 // ghidra: FUN_00c16160
+// ?d_00816160@@YAXXZ
 __declspec(naked) void d_00816160()
 {
     __asm {
@@ -40220,6 +40349,7 @@ __declspec(naked) void d_00816160()
 }
 
 // ghidra: FUN_00c18500
+// ?d_00818500@@YAXXZ
 __declspec(naked) void d_00818500()
 {
     __asm {
@@ -40481,6 +40611,7 @@ __declspec(naked) void d_00818500()
 }
 
 // ghidra: FUN_00ccd2f0
+// ?d_008cd2f0@@YAXXZ
 __declspec(naked) void d_008cd2f0()
 {
     __asm {
@@ -40742,6 +40873,7 @@ __declspec(naked) void d_008cd2f0()
 }
 
 // ghidra: FUN_00d9bd30
+// ?d_0099bd30@@YAXXZ
 __declspec(naked) void d_0099bd30()
 {
     __asm {
@@ -41003,6 +41135,7 @@ __declspec(naked) void d_0099bd30()
 }
 
 // ghidra: FUN_00dc6800
+// ?d_009c6800@@YAXXZ
 __declspec(naked) void d_009c6800()
 {
     __asm {
@@ -41264,6 +41397,7 @@ __declspec(naked) void d_009c6800()
 }
 
 // ghidra: FUN_00e19ceb
+// ?d_00a19ceb@@YAXXZ
 __declspec(naked) void d_00a19ceb()
 {
     __asm {
@@ -41525,6 +41659,7 @@ __declspec(naked) void d_00a19ceb()
 }
 
 // ghidra: FUN_00e1a5e3
+// ?d_00a1a5e3@@YAXXZ
 __declspec(naked) void d_00a1a5e3()
 {
     __asm {
@@ -41786,6 +41921,7 @@ __declspec(naked) void d_00a1a5e3()
 }
 
 // ghidra: FUN_00e1b048
+// ?d_00a1b048@@YAXXZ
 __declspec(naked) void d_00a1b048()
 {
     __asm {
@@ -42047,6 +42183,7 @@ __declspec(naked) void d_00a1b048()
 }
 
 // ghidra: FUN_00e1b890
+// ?d_00a1b890@@YAXXZ
 __declspec(naked) void d_00a1b890()
 {
     __asm {
@@ -42308,6 +42445,7 @@ __declspec(naked) void d_00a1b890()
 }
 
 // ghidra: FUN_00e239d6
+// ?d_00a239d6@@YAXXZ
 __declspec(naked) void d_00a239d6()
 {
     __asm {
@@ -42569,6 +42707,7 @@ __declspec(naked) void d_00a239d6()
 }
 
 // ghidra: FUN_00ebd2cf
+// ?d_00abd2cf@@YAXXZ
 __declspec(naked) void d_00abd2cf()
 {
     __asm {
@@ -42830,6 +42969,7 @@ __declspec(naked) void d_00abd2cf()
 }
 
 // ghidra: FUN_00ec13e0
+// ?d_00ac13e0@@YAXXZ
 __declspec(naked) void d_00ac13e0()
 {
     __asm {
@@ -43091,6 +43231,7 @@ __declspec(naked) void d_00ac13e0()
 }
 
 // ghidra: FUN_00555490
+// ?d_00155490@@YAXXZ
 __declspec(naked) void d_00155490()
 {
     __asm {
@@ -43607,6 +43748,7 @@ __declspec(naked) void d_00155490()
 }
 
 // ghidra: FUN_005c81c0
+// ?d_001c81c0@@YAXXZ
 __declspec(naked) void d_001c81c0()
 {
     __asm {
@@ -44123,6 +44265,7 @@ __declspec(naked) void d_001c81c0()
 }
 
 // ghidra: FUN_00850fc0
+// ?d_00450fc0@@YAXXZ
 __declspec(naked) void d_00450fc0()
 {
     __asm {
@@ -44639,6 +44782,7 @@ __declspec(naked) void d_00450fc0()
 }
 
 // ghidra: FUN_009adc10
+// ?d_005adc10@@YAXXZ
 __declspec(naked) void d_005adc10()
 {
     __asm {
@@ -45155,6 +45299,7 @@ __declspec(naked) void d_005adc10()
 }
 
 // ghidra: FUN_0064c010
+// ?d_0024c010@@YAXXZ
 __declspec(naked) void d_0024c010()
 {
     __asm {
@@ -45670,6 +45815,7 @@ __declspec(naked) void d_0024c010()
 }
 
 // ghidra: FUN_006e8c30
+// ?d_002e8c30@@YAXXZ
 __declspec(naked) void d_002e8c30()
 {
     __asm {
@@ -46185,6 +46331,7 @@ __declspec(naked) void d_002e8c30()
 }
 
 // ghidra: FUN_0077c600
+// ?d_0037c600@@YAXXZ
 __declspec(naked) void d_0037c600()
 {
     __asm {
@@ -46700,6 +46847,7 @@ __declspec(naked) void d_0037c600()
 }
 
 // ghidra: FUN_0080f260
+// ?d_0040f260@@YAXXZ
 __declspec(naked) void d_0040f260()
 {
     __asm {
@@ -47215,6 +47363,7 @@ __declspec(naked) void d_0040f260()
 }
 
 // ghidra: FUN_00969e10
+// ?d_00569e10@@YAXXZ
 __declspec(naked) void d_00569e10()
 {
     __asm {
@@ -47730,6 +47879,7 @@ __declspec(naked) void d_00569e10()
 }
 
 // ghidra: FUN_00c16bf0
+// ?d_00816bf0@@YAXXZ
 __declspec(naked) void d_00816bf0()
 {
     __asm {
@@ -48245,6 +48395,7 @@ __declspec(naked) void d_00816bf0()
 }
 
 // ghidra: FUN_00c32970
+// ?d_00832970@@YAXXZ
 __declspec(naked) void d_00832970()
 {
     __asm {
@@ -48760,6 +48911,7 @@ __declspec(naked) void d_00832970()
 }
 
 // ghidra: FUN_00c6b0d0
+// ?d_0086b0d0@@YAXXZ
 __declspec(naked) void d_0086b0d0()
 {
     __asm {
@@ -49275,6 +49427,7 @@ __declspec(naked) void d_0086b0d0()
 }
 
 // ghidra: FUN_00c7bf30
+// ?d_0087bf30@@YAXXZ
 __declspec(naked) void d_0087bf30()
 {
     __asm {
@@ -49790,6 +49943,7 @@ __declspec(naked) void d_0087bf30()
 }
 
 // ghidra: FUN_00cfc830
+// ?d_008fc830@@YAXXZ
 __declspec(naked) void d_008fc830()
 {
     __asm {
@@ -50305,6 +50459,7 @@ __declspec(naked) void d_008fc830()
 }
 
 // ghidra: FUN_00eab290
+// ?d_00aab290@@YAXXZ
 __declspec(naked) void d_00aab290()
 {
     __asm {
@@ -50820,6 +50975,7 @@ __declspec(naked) void d_00aab290()
 }
 
 // ghidra: FUN_0059b640
+// ?d_0019b640@@YAXXZ
 __declspec(naked) void d_0019b640()
 {
     __asm {
@@ -51080,6 +51236,7 @@ __declspec(naked) void d_0019b640()
 }
 
 // ghidra: FUN_005a3770
+// ?d_001a3770@@YAXXZ
 __declspec(naked) void d_001a3770()
 {
     __asm {
@@ -51340,6 +51497,7 @@ __declspec(naked) void d_001a3770()
 }
 
 // ghidra: FUN_005fc7e0
+// ?d_001fc7e0@@YAXXZ
 __declspec(naked) void d_001fc7e0()
 {
     __asm {
@@ -51600,6 +51758,7 @@ __declspec(naked) void d_001fc7e0()
 }
 
 // ghidra: FUN_0073c120
+// ?d_0033c120@@YAXXZ
 __declspec(naked) void d_0033c120()
 {
     __asm {
@@ -51860,6 +52019,7 @@ __declspec(naked) void d_0033c120()
 }
 
 // ghidra: FUN_00803ec0
+// ?d_00403ec0@@YAXXZ
 __declspec(naked) void d_00403ec0()
 {
     __asm {
@@ -52120,6 +52280,7 @@ __declspec(naked) void d_00403ec0()
 }
 
 // ghidra: FUN_0082baa0
+// ?d_0042baa0@@YAXXZ
 __declspec(naked) void d_0042baa0()
 {
     __asm {
@@ -52380,6 +52541,7 @@ __declspec(naked) void d_0042baa0()
 }
 
 // ghidra: FUN_0083e260
+// ?d_0043e260@@YAXXZ
 __declspec(naked) void d_0043e260()
 {
     __asm {
@@ -52640,6 +52802,7 @@ __declspec(naked) void d_0043e260()
 }
 
 // ghidra: FUN_0088b550
+// ?d_0048b550@@YAXXZ
 __declspec(naked) void d_0048b550()
 {
     __asm {
@@ -52900,6 +53063,7 @@ __declspec(naked) void d_0048b550()
 }
 
 // ghidra: FUN_008991d0
+// ?d_004991d0@@YAXXZ
 __declspec(naked) void d_004991d0()
 {
     __asm {
@@ -53160,6 +53324,7 @@ __declspec(naked) void d_004991d0()
 }
 
 // ghidra: FUN_0092fb30
+// ?d_0052fb30@@YAXXZ
 __declspec(naked) void d_0052fb30()
 {
     __asm {
@@ -53420,6 +53585,7 @@ __declspec(naked) void d_0052fb30()
 }
 
 // ghidra: FUN_0097f7a0
+// ?d_0057f7a0@@YAXXZ
 __declspec(naked) void d_0057f7a0()
 {
     __asm {
@@ -53680,6 +53846,7 @@ __declspec(naked) void d_0057f7a0()
 }
 
 // ghidra: FUN_009c98e0
+// ?d_005c98e0@@YAXXZ
 __declspec(naked) void d_005c98e0()
 {
     __asm {
@@ -53940,6 +54107,7 @@ __declspec(naked) void d_005c98e0()
 }
 
 // ghidra: FUN_00a3ca60
+// ?d_0063ca60@@YAXXZ
 __declspec(naked) void d_0063ca60()
 {
     __asm {
@@ -54200,6 +54368,7 @@ __declspec(naked) void d_0063ca60()
 }
 
 // ghidra: FUN_00b31050
+// ?d_00731050@@YAXXZ
 __declspec(naked) void d_00731050()
 {
     __asm {
@@ -54460,6 +54629,7 @@ __declspec(naked) void d_00731050()
 }
 
 // ghidra: FUN_00c12cd0
+// ?d_00812cd0@@YAXXZ
 __declspec(naked) void d_00812cd0()
 {
     __asm {
@@ -54720,6 +54890,7 @@ __declspec(naked) void d_00812cd0()
 }
 
 // ghidra: FUN_00d24ea0
+// ?d_00924ea0@@YAXXZ
 __declspec(naked) void d_00924ea0()
 {
     __asm {
@@ -54980,6 +55151,7 @@ __declspec(naked) void d_00924ea0()
 }
 
 // ghidra: FUN_00d4d250
+// ?d_0094d250@@YAXXZ
 __declspec(naked) void d_0094d250()
 {
     __asm {
@@ -55240,6 +55412,7 @@ __declspec(naked) void d_0094d250()
 }
 
 // ghidra: FUN_00d4e1b0
+// ?d_0094e1b0@@YAXXZ
 __declspec(naked) void d_0094e1b0()
 {
     __asm {
@@ -55500,6 +55673,7 @@ __declspec(naked) void d_0094e1b0()
 }
 
 // ghidra: FUN_00d9ca60
+// ?d_0099ca60@@YAXXZ
 __declspec(naked) void d_0099ca60()
 {
     __asm {
@@ -55760,6 +55934,7 @@ __declspec(naked) void d_0099ca60()
 }
 
 // ghidra: FUN_0063f1a0
+// ?d_0023f1a0@@YAXXZ
 __declspec(naked) void d_0023f1a0()
 {
     __asm {
@@ -56274,6 +56449,7 @@ __declspec(naked) void d_0023f1a0()
 }
 
 // ghidra: FUN_00c78ce0
+// ?d_00878ce0@@YAXXZ
 __declspec(naked) void d_00878ce0()
 {
     __asm {
@@ -56788,6 +56964,7 @@ __declspec(naked) void d_00878ce0()
 }
 
 // ghidra: FUN_00e3563b
+// ?d_00a3563b@@YAXXZ
 __declspec(naked) void d_00a3563b()
 {
     __asm {
@@ -57302,6 +57479,7 @@ __declspec(naked) void d_00a3563b()
 }
 
 // ghidra: FUN_00e477a3
+// ?d_00a477a3@@YAXXZ
 __declspec(naked) void d_00a477a3()
 {
     __asm {
@@ -57816,6 +57994,7 @@ __declspec(naked) void d_00a477a3()
 }
 
 // ghidra: FUN_00966ec0
+// ?d_00566ec0@@YAXXZ
 __declspec(naked) void d_00566ec0()
 {
     __asm {
@@ -58329,6 +58508,7 @@ __declspec(naked) void d_00566ec0()
 }
 
 // ghidra: FUN_00d07120
+// ?d_00907120@@YAXXZ
 __declspec(naked) void d_00907120()
 {
     __asm {
@@ -58842,6 +59022,7 @@ __declspec(naked) void d_00907120()
 }
 
 // ghidra: FUN_00e77f83
+// ?d_00a77f83@@YAXXZ
 __declspec(naked) void d_00a77f83()
 {
     __asm {
@@ -59355,6 +59536,7 @@ __declspec(naked) void d_00a77f83()
 }
 
 // ghidra: FUN_00546130
+// ?d_00146130@@YAXXZ
 __declspec(naked) void d_00146130()
 {
     __asm {
@@ -59614,6 +59796,7 @@ __declspec(naked) void d_00146130()
 }
 
 // ghidra: FUN_005a7e30
+// ?d_001a7e30@@YAXXZ
 __declspec(naked) void d_001a7e30()
 {
     __asm {
@@ -59873,6 +60056,7 @@ __declspec(naked) void d_001a7e30()
 }
 
 // ghidra: FUN_005ae4d0
+// ?d_001ae4d0@@YAXXZ
 __declspec(naked) void d_001ae4d0()
 {
     __asm {
@@ -60132,6 +60316,7 @@ __declspec(naked) void d_001ae4d0()
 }
 
 // ghidra: FUN_00615930
+// ?d_00215930@@YAXXZ
 __declspec(naked) void d_00215930()
 {
     __asm {
@@ -60391,6 +60576,7 @@ __declspec(naked) void d_00215930()
 }
 
 // ghidra: FUN_00687bc0
+// ?d_00287bc0@@YAXXZ
 __declspec(naked) void d_00287bc0()
 {
     __asm {
@@ -60650,6 +60836,7 @@ __declspec(naked) void d_00287bc0()
 }
 
 // ghidra: FUN_00687d00
+// ?d_00287d00@@YAXXZ
 __declspec(naked) void d_00287d00()
 {
     __asm {
@@ -60909,6 +61096,7 @@ __declspec(naked) void d_00287d00()
 }
 
 // ghidra: FUN_00687e40
+// ?d_00287e40@@YAXXZ
 __declspec(naked) void d_00287e40()
 {
     __asm {
@@ -61168,6 +61356,7 @@ __declspec(naked) void d_00287e40()
 }
 
 // ghidra: FUN_006f6d70
+// ?d_002f6d70@@YAXXZ
 __declspec(naked) void d_002f6d70()
 {
     __asm {
@@ -61427,6 +61616,7 @@ __declspec(naked) void d_002f6d70()
 }
 
 // ghidra: FUN_0072a550
+// ?d_0032a550@@YAXXZ
 __declspec(naked) void d_0032a550()
 {
     __asm {
@@ -61686,6 +61876,7 @@ __declspec(naked) void d_0032a550()
 }
 
 // ghidra: FUN_0081abe0
+// ?d_0041abe0@@YAXXZ
 __declspec(naked) void d_0041abe0()
 {
     __asm {
@@ -61945,6 +62136,7 @@ __declspec(naked) void d_0041abe0()
 }
 
 // ghidra: FUN_0086f910
+// ?d_0046f910@@YAXXZ
 __declspec(naked) void d_0046f910()
 {
     __asm {
@@ -62204,6 +62396,7 @@ __declspec(naked) void d_0046f910()
 }
 
 // ghidra: FUN_008b2330
+// ?d_004b2330@@YAXXZ
 __declspec(naked) void d_004b2330()
 {
     __asm {
@@ -62463,6 +62656,7 @@ __declspec(naked) void d_004b2330()
 }
 
 // ghidra: FUN_0092f280
+// ?d_0052f280@@YAXXZ
 __declspec(naked) void d_0052f280()
 {
     __asm {
@@ -62722,6 +62916,7 @@ __declspec(naked) void d_0052f280()
 }
 
 // ghidra: FUN_00965940
+// ?d_00565940@@YAXXZ
 __declspec(naked) void d_00565940()
 {
     __asm {
@@ -62981,6 +63176,7 @@ __declspec(naked) void d_00565940()
 }
 
 // ghidra: FUN_00a1da30
+// ?d_0061da30@@YAXXZ
 __declspec(naked) void d_0061da30()
 {
     __asm {
@@ -63240,6 +63436,7 @@ __declspec(naked) void d_0061da30()
 }
 
 // ghidra: FUN_00a4e7b0
+// ?d_0064e7b0@@YAXXZ
 __declspec(naked) void d_0064e7b0()
 {
     __asm {
@@ -63499,6 +63696,7 @@ __declspec(naked) void d_0064e7b0()
 }
 
 // ghidra: FUN_00ab1a00
+// ?d_006b1a00@@YAXXZ
 __declspec(naked) void d_006b1a00()
 {
     __asm {
@@ -63758,6 +63956,7 @@ __declspec(naked) void d_006b1a00()
 }
 
 // ghidra: FUN_00aeb070
+// ?d_006eb070@@YAXXZ
 __declspec(naked) void d_006eb070()
 {
     __asm {
@@ -64017,6 +64216,7 @@ __declspec(naked) void d_006eb070()
 }
 
 // ghidra: FUN_00b7f570
+// ?d_0077f570@@YAXXZ
 __declspec(naked) void d_0077f570()
 {
     __asm {
@@ -64276,6 +64476,7 @@ __declspec(naked) void d_0077f570()
 }
 
 // ghidra: FUN_00c33170
+// ?d_00833170@@YAXXZ
 __declspec(naked) void d_00833170()
 {
     __asm {
@@ -64535,6 +64736,7 @@ __declspec(naked) void d_00833170()
 }
 
 // ghidra: FUN_00c33430
+// ?d_00833430@@YAXXZ
 __declspec(naked) void d_00833430()
 {
     __asm {
@@ -64794,6 +64996,7 @@ __declspec(naked) void d_00833430()
 }
 
 // ghidra: FUN_00c339b0
+// ?d_008339b0@@YAXXZ
 __declspec(naked) void d_008339b0()
 {
     __asm {
@@ -65053,6 +65256,7 @@ __declspec(naked) void d_008339b0()
 }
 
 // ghidra: FUN_00c34610
+// ?d_00834610@@YAXXZ
 __declspec(naked) void d_00834610()
 {
     __asm {
@@ -65312,6 +65516,7 @@ __declspec(naked) void d_00834610()
 }
 
 // ghidra: FUN_00c348d0
+// ?d_008348d0@@YAXXZ
 __declspec(naked) void d_008348d0()
 {
     __asm {
@@ -65571,6 +65776,7 @@ __declspec(naked) void d_008348d0()
 }
 
 // ghidra: FUN_00c34e50
+// ?d_00834e50@@YAXXZ
 __declspec(naked) void d_00834e50()
 {
     __asm {
@@ -65830,6 +66036,7 @@ __declspec(naked) void d_00834e50()
 }
 
 // ghidra: FUN_00c4d990
+// ?d_0084d990@@YAXXZ
 __declspec(naked) void d_0084d990()
 {
     __asm {
@@ -66089,6 +66296,7 @@ __declspec(naked) void d_0084d990()
 }
 
 // ghidra: FUN_00cf5e90
+// ?d_008f5e90@@YAXXZ
 __declspec(naked) void d_008f5e90()
 {
     __asm {
@@ -66348,6 +66556,7 @@ __declspec(naked) void d_008f5e90()
 }
 
 // ghidra: FUN_00da2420
+// ?d_009a2420@@YAXXZ
 __declspec(naked) void d_009a2420()
 {
     __asm {
@@ -66607,6 +66816,7 @@ __declspec(naked) void d_009a2420()
 }
 
 // ghidra: FUN_00dff3c1
+// ?d_009ff3c1@@YAXXZ
 __declspec(naked) void d_009ff3c1()
 {
     __asm {
@@ -66866,6 +67076,7 @@ __declspec(naked) void d_009ff3c1()
 }
 
 // ghidra: FUN_00e0b739
+// ?d_00a0b739@@YAXXZ
 __declspec(naked) void d_00a0b739()
 {
     __asm {
@@ -67125,6 +67336,7 @@ __declspec(naked) void d_00a0b739()
 }
 
 // ghidra: FUN_00e11235
+// ?d_00a11235@@YAXXZ
 __declspec(naked) void d_00a11235()
 {
     __asm {
@@ -67384,6 +67596,7 @@ __declspec(naked) void d_00a11235()
 }
 
 // ghidra: FUN_00e6e96e
+// ?d_00a6e96e@@YAXXZ
 __declspec(naked) void d_00a6e96e()
 {
     __asm {
@@ -67643,6 +67856,7 @@ __declspec(naked) void d_00a6e96e()
 }
 
 // ghidra: FUN_00e7e12d
+// ?d_00a7e12d@@YAXXZ
 __declspec(naked) void d_00a7e12d()
 {
     __asm {
@@ -67902,6 +68116,7 @@ __declspec(naked) void d_00a7e12d()
 }
 
 // ghidra: FUN_00ec12e0
+// ?d_00ac12e0@@YAXXZ
 __declspec(naked) void d_00ac12e0()
 {
     __asm {
@@ -68161,6 +68376,7 @@ __declspec(naked) void d_00ac12e0()
 }
 
 // ghidra: FUN_00598f00
+// ?d_00198f00@@YAXXZ
 __declspec(naked) void d_00198f00()
 {
     __asm {
@@ -68673,6 +68889,7 @@ __declspec(naked) void d_00198f00()
 }
 
 // ghidra: FUN_00599ec0
+// ?d_00199ec0@@YAXXZ
 __declspec(naked) void d_00199ec0()
 {
     __asm {
@@ -69185,6 +69402,7 @@ __declspec(naked) void d_00199ec0()
 }
 
 // ghidra: FUN_007419f0
+// ?d_003419f0@@YAXXZ
 __declspec(naked) void d_003419f0()
 {
     __asm {
@@ -69697,6 +69915,7 @@ __declspec(naked) void d_003419f0()
 }
 
 // ghidra: FUN_00741c70
+// ?d_00341c70@@YAXXZ
 __declspec(naked) void d_00341c70()
 {
     __asm {
@@ -70209,6 +70428,7 @@ __declspec(naked) void d_00341c70()
 }
 
 // ghidra: FUN_00741ef0
+// ?d_00341ef0@@YAXXZ
 __declspec(naked) void d_00341ef0()
 {
     __asm {
@@ -70721,6 +70941,7 @@ __declspec(naked) void d_00341ef0()
 }
 
 // ghidra: FUN_00742170
+// ?d_00342170@@YAXXZ
 __declspec(naked) void d_00342170()
 {
     __asm {
@@ -71233,6 +71454,7 @@ __declspec(naked) void d_00342170()
 }
 
 // ghidra: FUN_0076f4d0
+// ?d_0036f4d0@@YAXXZ
 __declspec(naked) void d_0036f4d0()
 {
     __asm {
@@ -71744,6 +71966,7 @@ __declspec(naked) void d_0036f4d0()
 }
 
 // ghidra: FUN_00969720
+// ?d_00569720@@YAXXZ
 __declspec(naked) void d_00569720()
 {
     __asm {
@@ -72255,6 +72478,7 @@ __declspec(naked) void d_00569720()
 }
 
 // ghidra: FUN_00d9f1d0
+// ?d_0099f1d0@@YAXXZ
 __declspec(naked) void d_0099f1d0()
 {
     __asm {
@@ -72766,6 +72990,7 @@ __declspec(naked) void d_0099f1d0()
 }
 
 // ghidra: FUN_00defd40
+// ?d_009efd40@@YAXXZ
 __declspec(naked) void d_009efd40()
 {
     __asm {
@@ -73277,6 +73502,7 @@ __declspec(naked) void d_009efd40()
 }
 
 // ghidra: FUN_00508140
+// ?d_00108140@@YAXXZ
 __declspec(naked) void d_00108140()
 {
     __asm {
@@ -73535,6 +73761,7 @@ __declspec(naked) void d_00108140()
 }
 
 // ghidra: FUN_006a3950
+// ?d_002a3950@@YAXXZ
 __declspec(naked) void d_002a3950()
 {
     __asm {
@@ -73793,6 +74020,7 @@ __declspec(naked) void d_002a3950()
 }
 
 // ghidra: FUN_0077a610
+// ?d_0037a610@@YAXXZ
 __declspec(naked) void d_0037a610()
 {
     __asm {
@@ -74051,6 +74279,7 @@ __declspec(naked) void d_0037a610()
 }
 
 // ghidra: FUN_00861bf0
+// ?d_00461bf0@@YAXXZ
 __declspec(naked) void d_00461bf0()
 {
     __asm {
@@ -74309,6 +74538,7 @@ __declspec(naked) void d_00461bf0()
 }
 
 // ghidra: FUN_0086cf80
+// ?d_0046cf80@@YAXXZ
 __declspec(naked) void d_0046cf80()
 {
     __asm {
@@ -74567,6 +74797,7 @@ __declspec(naked) void d_0046cf80()
 }
 
 // ghidra: FUN_0086da70
+// ?d_0046da70@@YAXXZ
 __declspec(naked) void d_0046da70()
 {
     __asm {
@@ -74825,6 +75056,7 @@ __declspec(naked) void d_0046da70()
 }
 
 // ghidra: FUN_00938ce0
+// ?d_00538ce0@@YAXXZ
 __declspec(naked) void d_00538ce0()
 {
     __asm {
@@ -75083,6 +75315,7 @@ __declspec(naked) void d_00538ce0()
 }
 
 // ghidra: FUN_00a7e620
+// ?d_0067e620@@YAXXZ
 __declspec(naked) void d_0067e620()
 {
     __asm {
@@ -75341,6 +75574,7 @@ __declspec(naked) void d_0067e620()
 }
 
 // ghidra: FUN_00a7ec70
+// ?d_0067ec70@@YAXXZ
 __declspec(naked) void d_0067ec70()
 {
     __asm {
@@ -75599,6 +75833,7 @@ __declspec(naked) void d_0067ec70()
 }
 
 // ghidra: FUN_00a7f430
+// ?d_0067f430@@YAXXZ
 __declspec(naked) void d_0067f430()
 {
     __asm {
@@ -75857,6 +76092,7 @@ __declspec(naked) void d_0067f430()
 }
 
 // ghidra: FUN_00af4de0
+// ?d_006f4de0@@YAXXZ
 __declspec(naked) void d_006f4de0()
 {
     __asm {
@@ -76115,6 +76351,7 @@ __declspec(naked) void d_006f4de0()
 }
 
 // ghidra: FUN_00bb4e40
+// ?d_007b4e40@@YAXXZ
 __declspec(naked) void d_007b4e40()
 {
     __asm {
@@ -76373,6 +76610,7 @@ __declspec(naked) void d_007b4e40()
 }
 
 // ghidra: FUN_00c336f0
+// ?d_008336f0@@YAXXZ
 __declspec(naked) void d_008336f0()
 {
     __asm {
@@ -76631,6 +76869,7 @@ __declspec(naked) void d_008336f0()
 }
 
 // ghidra: FUN_00c34b90
+// ?d_00834b90@@YAXXZ
 __declspec(naked) void d_00834b90()
 {
     __asm {
@@ -76889,6 +77128,7 @@ __declspec(naked) void d_00834b90()
 }
 
 // ghidra: FUN_00c59790
+// ?d_00859790@@YAXXZ
 __declspec(naked) void d_00859790()
 {
     __asm {
@@ -77147,6 +77387,7 @@ __declspec(naked) void d_00859790()
 }
 
 // ghidra: FUN_00d29310
+// ?d_00929310@@YAXXZ
 __declspec(naked) void d_00929310()
 {
     __asm {
@@ -77405,6 +77646,7 @@ __declspec(naked) void d_00929310()
 }
 
 // ghidra: FUN_00d9f5c0
+// ?d_0099f5c0@@YAXXZ
 __declspec(naked) void d_0099f5c0()
 {
     __asm {
@@ -77663,6 +77905,7 @@ __declspec(naked) void d_0099f5c0()
 }
 
 // ghidra: FUN_00e175df
+// ?d_00a175df@@YAXXZ
 __declspec(naked) void d_00a175df()
 {
     __asm {
@@ -77921,6 +78164,7 @@ __declspec(naked) void d_00a175df()
 }
 
 // ghidra: FUN_00e99958
+// ?d_00a99958@@YAXXZ
 __declspec(naked) void d_00a99958()
 {
     __asm {
@@ -78179,6 +78423,7 @@ __declspec(naked) void d_00a99958()
 }
 
 // ghidra: FUN_00562190
+// ?d_00162190@@YAXXZ
 __declspec(naked) void d_00162190()
 {
     __asm {
@@ -78689,6 +78934,7 @@ __declspec(naked) void d_00162190()
 }
 
 // ghidra: FUN_00c9e2b0
+// ?d_0089e2b0@@YAXXZ
 __declspec(naked) void d_0089e2b0()
 {
     __asm {
@@ -79199,6 +79445,7 @@ __declspec(naked) void d_0089e2b0()
 }
 
 // ghidra: FUN_00db3800
+// ?d_009b3800@@YAXXZ
 __declspec(naked) void d_009b3800()
 {
     __asm {
@@ -79709,6 +79956,7 @@ __declspec(naked) void d_009b3800()
 }
 
 // ghidra: FUN_00dccc50
+// ?d_009ccc50@@YAXXZ
 __declspec(naked) void d_009ccc50()
 {
     __asm {
@@ -80219,6 +80467,7 @@ __declspec(naked) void d_009ccc50()
 }
 
 // ghidra: FUN_00478640
+// ?d_00078640@@YAXXZ
 __declspec(naked) void d_00078640()
 {
     __asm {
@@ -80728,6 +80977,7 @@ __declspec(naked) void d_00078640()
 }
 
 // ghidra: FUN_00564130
+// ?d_00164130@@YAXXZ
 __declspec(naked) void d_00164130()
 {
     __asm {
@@ -81237,6 +81487,7 @@ __declspec(naked) void d_00164130()
 }
 
 // ghidra: FUN_0080de00
+// ?d_0040de00@@YAXXZ
 __declspec(naked) void d_0040de00()
 {
     __asm {
@@ -81746,6 +81997,7 @@ __declspec(naked) void d_0040de00()
 }
 
 // ghidra: FUN_00a23bc0
+// ?d_00623bc0@@YAXXZ
 __declspec(naked) void d_00623bc0()
 {
     __asm {
@@ -82255,6 +82507,7 @@ __declspec(naked) void d_00623bc0()
 }
 
 // ghidra: FUN_00a624a0
+// ?d_006624a0@@YAXXZ
 __declspec(naked) void d_006624a0()
 {
     __asm {
@@ -82764,6 +83017,7 @@ __declspec(naked) void d_006624a0()
 }
 
 // ghidra: FUN_00aa28d0
+// ?d_006a28d0@@YAXXZ
 __declspec(naked) void d_006a28d0()
 {
     __asm {
@@ -83273,6 +83527,7 @@ __declspec(naked) void d_006a28d0()
 }
 
 // ghidra: FUN_00c833c0
+// ?d_008833c0@@YAXXZ
 __declspec(naked) void d_008833c0()
 {
     __asm {
@@ -83782,6 +84037,7 @@ __declspec(naked) void d_008833c0()
 }
 
 // ghidra: FUN_00e589d9
+// ?d_00a589d9@@YAXXZ
 __declspec(naked) void d_00a589d9()
 {
     __asm {
@@ -84291,6 +84547,7 @@ __declspec(naked) void d_00a589d9()
 }
 
 // ghidra: FUN_00e8465d
+// ?d_00a8465d@@YAXXZ
 __declspec(naked) void d_00a8465d()
 {
     __asm {
@@ -84800,6 +85057,7 @@ __declspec(naked) void d_00a8465d()
 }
 
 // ghidra: FUN_00ebfc5b
+// ?d_00abfc5b@@YAXXZ
 __declspec(naked) void d_00abfc5b()
 {
     __asm {
@@ -85309,6 +85567,7 @@ __declspec(naked) void d_00abfc5b()
 }
 
 // ghidra: FUN_004c1d10
+// ?d_000c1d10@@YAXXZ
 __declspec(naked) void d_000c1d10()
 {
     __asm {
@@ -85566,6 +85825,7 @@ __declspec(naked) void d_000c1d10()
 }
 
 // ghidra: FUN_004d34c0
+// ?d_000d34c0@@YAXXZ
 __declspec(naked) void d_000d34c0()
 {
     __asm {
@@ -85823,6 +86083,7 @@ __declspec(naked) void d_000d34c0()
 }
 
 // ghidra: FUN_004d7b60
+// ?d_000d7b60@@YAXXZ
 __declspec(naked) void d_000d7b60()
 {
     __asm {
@@ -86080,6 +86341,7 @@ __declspec(naked) void d_000d7b60()
 }
 
 // ghidra: FUN_0050c980
+// ?d_0010c980@@YAXXZ
 __declspec(naked) void d_0010c980()
 {
     __asm {
@@ -86337,6 +86599,7 @@ __declspec(naked) void d_0010c980()
 }
 
 // ghidra: FUN_00535b10
+// ?d_00135b10@@YAXXZ
 __declspec(naked) void d_00135b10()
 {
     __asm {
@@ -86594,6 +86857,7 @@ __declspec(naked) void d_00135b10()
 }
 
 // ghidra: FUN_00570cd0
+// ?d_00170cd0@@YAXXZ
 __declspec(naked) void d_00170cd0()
 {
     __asm {
@@ -86851,6 +87115,7 @@ __declspec(naked) void d_00170cd0()
 }
 
 // ghidra: FUN_005ce3f0
+// ?d_001ce3f0@@YAXXZ
 __declspec(naked) void d_001ce3f0()
 {
     __asm {
@@ -87108,6 +87373,7 @@ __declspec(naked) void d_001ce3f0()
 }
 
 // ghidra: FUN_005f22d0
+// ?d_001f22d0@@YAXXZ
 __declspec(naked) void d_001f22d0()
 {
     __asm {
@@ -87365,6 +87631,7 @@ __declspec(naked) void d_001f22d0()
 }
 
 // ghidra: FUN_0079c590
+// ?d_0039c590@@YAXXZ
 __declspec(naked) void d_0039c590()
 {
     __asm {
@@ -87622,6 +87889,7 @@ __declspec(naked) void d_0039c590()
 }
 
 // ghidra: FUN_0079d630
+// ?d_0039d630@@YAXXZ
 __declspec(naked) void d_0039d630()
 {
     __asm {
@@ -87879,6 +88147,7 @@ __declspec(naked) void d_0039d630()
 }
 
 // ghidra: FUN_007c1050
+// ?d_003c1050@@YAXXZ
 __declspec(naked) void d_003c1050()
 {
     __asm {
@@ -88136,6 +88405,7 @@ __declspec(naked) void d_003c1050()
 }
 
 // ghidra: FUN_007cf650
+// ?d_003cf650@@YAXXZ
 __declspec(naked) void d_003cf650()
 {
     __asm {
@@ -88393,6 +88663,7 @@ __declspec(naked) void d_003cf650()
 }
 
 // ghidra: FUN_0099ff70
+// ?d_0059ff70@@YAXXZ
 __declspec(naked) void d_0059ff70()
 {
     __asm {
@@ -88650,6 +88921,7 @@ __declspec(naked) void d_0059ff70()
 }
 
 // ghidra: FUN_00a17b20
+// ?d_00617b20@@YAXXZ
 __declspec(naked) void d_00617b20()
 {
     __asm {
@@ -88907,6 +89179,7 @@ __declspec(naked) void d_00617b20()
 }
 
 // ghidra: FUN_00a7e2b0
+// ?d_0067e2b0@@YAXXZ
 __declspec(naked) void d_0067e2b0()
 {
     __asm {
@@ -89164,6 +89437,7 @@ __declspec(naked) void d_0067e2b0()
 }
 
 // ghidra: FUN_00ad2130
+// ?d_006d2130@@YAXXZ
 __declspec(naked) void d_006d2130()
 {
     __asm {
@@ -89421,6 +89695,7 @@ __declspec(naked) void d_006d2130()
 }
 
 // ghidra: FUN_00b656b0
+// ?d_007656b0@@YAXXZ
 __declspec(naked) void d_007656b0()
 {
     __asm {
@@ -89678,6 +89953,7 @@ __declspec(naked) void d_007656b0()
 }
 
 // ghidra: FUN_00bfd2d0
+// ?d_007fd2d0@@YAXXZ
 __declspec(naked) void d_007fd2d0()
 {
     __asm {
@@ -89935,6 +90211,7 @@ __declspec(naked) void d_007fd2d0()
 }
 
 // ghidra: FUN_00cb90f0
+// ?d_008b90f0@@YAXXZ
 __declspec(naked) void d_008b90f0()
 {
     __asm {
@@ -90192,6 +90469,7 @@ __declspec(naked) void d_008b90f0()
 }
 
 // ghidra: FUN_00d0cf90
+// ?d_0090cf90@@YAXXZ
 __declspec(naked) void d_0090cf90()
 {
     __asm {
@@ -90449,6 +90727,7 @@ __declspec(naked) void d_0090cf90()
 }
 
 // ghidra: FUN_00d43e70
+// ?d_00943e70@@YAXXZ
 __declspec(naked) void d_00943e70()
 {
     __asm {
@@ -90706,6 +90985,7 @@ __declspec(naked) void d_00943e70()
 }
 
 // ghidra: FUN_00d4e580
+// ?d_0094e580@@YAXXZ
 __declspec(naked) void d_0094e580()
 {
     __asm {
@@ -90963,6 +91243,7 @@ __declspec(naked) void d_0094e580()
 }
 
 // ghidra: FUN_00e12fdc
+// ?d_00a12fdc@@YAXXZ
 __declspec(naked) void d_00a12fdc()
 {
     __asm {
@@ -91220,6 +91501,7 @@ __declspec(naked) void d_00a12fdc()
 }
 
 // ghidra: FUN_00e130d6
+// ?d_00a130d6@@YAXXZ
 __declspec(naked) void d_00a130d6()
 {
     __asm {
@@ -91477,6 +91759,7 @@ __declspec(naked) void d_00a130d6()
 }
 
 // ghidra: FUN_00e1441f
+// ?d_00a1441f@@YAXXZ
 __declspec(naked) void d_00a1441f()
 {
     __asm {
@@ -91734,6 +92017,7 @@ __declspec(naked) void d_00a1441f()
 }
 
 // ghidra: FUN_00e14519
+// ?d_00a14519@@YAXXZ
 __declspec(naked) void d_00a14519()
 {
     __asm {
@@ -91991,6 +92275,7 @@ __declspec(naked) void d_00a14519()
 }
 
 // ghidra: FUN_00e62a80
+// ?d_00a62a80@@YAXXZ
 __declspec(naked) void d_00a62a80()
 {
     __asm {
@@ -92248,6 +92533,7 @@ __declspec(naked) void d_00a62a80()
 }
 
 // ghidra: FUN_00ed4f03
+// ?d_00ad4f03@@YAXXZ
 __declspec(naked) void d_00ad4f03()
 {
     __asm {
@@ -92505,6 +92791,7 @@ __declspec(naked) void d_00ad4f03()
 }
 
 // ghidra: FUN_004629d0
+// ?d_000629d0@@YAXXZ
 __declspec(naked) void d_000629d0()
 {
     __asm {
@@ -93013,6 +93300,7 @@ __declspec(naked) void d_000629d0()
 }
 
 // ghidra: FUN_006a4880
+// ?d_002a4880@@YAXXZ
 __declspec(naked) void d_002a4880()
 {
     __asm {
@@ -93521,6 +93809,7 @@ __declspec(naked) void d_002a4880()
 }
 
 // ghidra: FUN_0078a770
+// ?d_0038a770@@YAXXZ
 __declspec(naked) void d_0038a770()
 {
     __asm {
@@ -94029,6 +94318,7 @@ __declspec(naked) void d_0038a770()
 }
 
 // ghidra: FUN_00995ac0
+// ?d_00595ac0@@YAXXZ
 __declspec(naked) void d_00595ac0()
 {
     __asm {
@@ -94537,6 +94827,7 @@ __declspec(naked) void d_00595ac0()
 }
 
 // ghidra: FUN_00aea890
+// ?d_006ea890@@YAXXZ
 __declspec(naked) void d_006ea890()
 {
     __asm {
@@ -95045,6 +95336,7 @@ __declspec(naked) void d_006ea890()
 }
 
 // ghidra: FUN_00c314e0
+// ?d_008314e0@@YAXXZ
 __declspec(naked) void d_008314e0()
 {
     __asm {
@@ -95553,6 +95845,7 @@ __declspec(naked) void d_008314e0()
 }
 
 // ghidra: FUN_007d1020
+// ?d_003d1020@@YAXXZ
 __declspec(naked) void d_003d1020()
 {
     __asm {
@@ -96060,6 +96353,7 @@ __declspec(naked) void d_003d1020()
 }
 
 // ghidra: FUN_00eaac20
+// ?d_00aaac20@@YAXXZ
 __declspec(naked) void d_00aaac20()
 {
     __asm {
@@ -96567,6 +96861,7 @@ __declspec(naked) void d_00aaac20()
 }
 
 // ghidra: FUN_004b7d30
+// ?d_000b7d30@@YAXXZ
 __declspec(naked) void d_000b7d30()
 {
     __asm {
@@ -96823,6 +97118,7 @@ __declspec(naked) void d_000b7d30()
 }
 
 // ghidra: FUN_00625960
+// ?d_00225960@@YAXXZ
 __declspec(naked) void d_00225960()
 {
     __asm {
@@ -97079,6 +97375,7 @@ __declspec(naked) void d_00225960()
 }
 
 // ghidra: FUN_006f9c60
+// ?d_002f9c60@@YAXXZ
 __declspec(naked) void d_002f9c60()
 {
     __asm {
@@ -97335,6 +97632,7 @@ __declspec(naked) void d_002f9c60()
 }
 
 // ghidra: FUN_00745910
+// ?d_00345910@@YAXXZ
 __declspec(naked) void d_00345910()
 {
     __asm {
@@ -97591,6 +97889,7 @@ __declspec(naked) void d_00345910()
 }
 
 // ghidra: FUN_0074d640
+// ?d_0034d640@@YAXXZ
 __declspec(naked) void d_0034d640()
 {
     __asm {
@@ -97847,6 +98146,7 @@ __declspec(naked) void d_0034d640()
 }
 
 // ghidra: FUN_0074d780
+// ?d_0034d780@@YAXXZ
 __declspec(naked) void d_0034d780()
 {
     __asm {
@@ -98103,6 +98403,7 @@ __declspec(naked) void d_0034d780()
 }
 
 // ghidra: FUN_0074d8c0
+// ?d_0034d8c0@@YAXXZ
 __declspec(naked) void d_0034d8c0()
 {
     __asm {
@@ -98359,6 +98660,7 @@ __declspec(naked) void d_0034d8c0()
 }
 
 // ghidra: FUN_0074da00
+// ?d_0034da00@@YAXXZ
 __declspec(naked) void d_0034da00()
 {
     __asm {
@@ -98615,6 +98917,7 @@ __declspec(naked) void d_0034da00()
 }
 
 // ghidra: FUN_00767330
+// ?d_00367330@@YAXXZ
 __declspec(naked) void d_00367330()
 {
     __asm {
@@ -98871,6 +99174,7 @@ __declspec(naked) void d_00367330()
 }
 
 // ghidra: FUN_007a95d0
+// ?d_003a95d0@@YAXXZ
 __declspec(naked) void d_003a95d0()
 {
     __asm {
@@ -99127,6 +99431,7 @@ __declspec(naked) void d_003a95d0()
 }
 
 // ghidra: FUN_008779c0
+// ?d_004779c0@@YAXXZ
 __declspec(naked) void d_004779c0()
 {
     __asm {
@@ -99383,6 +99688,7 @@ __declspec(naked) void d_004779c0()
 }
 
 // ghidra: FUN_0088ad80
+// ?d_0048ad80@@YAXXZ
 __declspec(naked) void d_0048ad80()
 {
     __asm {
@@ -99639,6 +99945,7 @@ __declspec(naked) void d_0048ad80()
 }
 
 // ghidra: FUN_00aebaf0
+// ?d_006ebaf0@@YAXXZ
 __declspec(naked) void d_006ebaf0()
 {
     __asm {
@@ -99895,6 +100202,7 @@ __declspec(naked) void d_006ebaf0()
 }
 
 // ghidra: FUN_00ba0960
+// ?d_007a0960@@YAXXZ
 __declspec(naked) void d_007a0960()
 {
     __asm {
@@ -100151,6 +100459,7 @@ __declspec(naked) void d_007a0960()
 }
 
 // ghidra: FUN_00bf2c10
+// ?d_007f2c10@@YAXXZ
 __declspec(naked) void d_007f2c10()
 {
     __asm {
@@ -100407,6 +100716,7 @@ __declspec(naked) void d_007f2c10()
 }
 
 // ghidra: FUN_00c4cea0
+// ?d_0084cea0@@YAXXZ
 __declspec(naked) void d_0084cea0()
 {
     __asm {
@@ -100663,6 +100973,7 @@ __declspec(naked) void d_0084cea0()
 }
 
 // ghidra: FUN_00c4d0a0
+// ?d_0084d0a0@@YAXXZ
 __declspec(naked) void d_0084d0a0()
 {
     __asm {
@@ -100919,6 +101230,7 @@ __declspec(naked) void d_0084d0a0()
 }
 
 // ghidra: FUN_00c51fa0
+// ?d_00851fa0@@YAXXZ
 __declspec(naked) void d_00851fa0()
 {
     __asm {
@@ -101175,6 +101487,7 @@ __declspec(naked) void d_00851fa0()
 }
 
 // ghidra: FUN_00c5ab70
+// ?d_0085ab70@@YAXXZ
 __declspec(naked) void d_0085ab70()
 {
     __asm {
@@ -101431,6 +101744,7 @@ __declspec(naked) void d_0085ab70()
 }
 
 // ghidra: FUN_00c8e970
+// ?d_0088e970@@YAXXZ
 __declspec(naked) void d_0088e970()
 {
     __asm {
@@ -101687,6 +102001,7 @@ __declspec(naked) void d_0088e970()
 }
 
 // ghidra: FUN_00e04efe
+// ?d_00a04efe@@YAXXZ
 __declspec(naked) void d_00a04efe()
 {
     __asm {
@@ -101943,6 +102258,7 @@ __declspec(naked) void d_00a04efe()
 }
 
 // ghidra: FUN_00e10319
+// ?d_00a10319@@YAXXZ
 __declspec(naked) void d_00a10319()
 {
     __asm {
@@ -102199,6 +102515,7 @@ __declspec(naked) void d_00a10319()
 }
 
 // ghidra: FUN_00e69fed
+// ?d_00a69fed@@YAXXZ
 __declspec(naked) void d_00a69fed()
 {
     __asm {
@@ -102455,6 +102772,7 @@ __declspec(naked) void d_00a69fed()
 }
 
 // ghidra: FUN_006c87b0
+// ?d_002c87b0@@YAXXZ
 __declspec(naked) void d_002c87b0()
 {
     __asm {
@@ -102961,6 +103279,7 @@ __declspec(naked) void d_002c87b0()
 }
 
 // ghidra: FUN_00a1f6c0
+// ?d_0061f6c0@@YAXXZ
 __declspec(naked) void d_0061f6c0()
 {
     __asm {
@@ -103467,6 +103786,7 @@ __declspec(naked) void d_0061f6c0()
 }
 
 // ghidra: FUN_00eb1200
+// ?d_00ab1200@@YAXXZ
 __declspec(naked) void d_00ab1200()
 {
     __asm {
@@ -103973,6 +104293,7 @@ __declspec(naked) void d_00ab1200()
 }
 
 // ghidra: FUN_006f2bd0
+// ?d_002f2bd0@@YAXXZ
 __declspec(naked) void d_002f2bd0()
 {
     __asm {
@@ -104478,6 +104799,7 @@ __declspec(naked) void d_002f2bd0()
 }
 
 // ghidra: FUN_00765df0
+// ?d_00365df0@@YAXXZ
 __declspec(naked) void d_00365df0()
 {
     __asm {
@@ -104983,6 +105305,7 @@ __declspec(naked) void d_00365df0()
 }
 
 // ghidra: FUN_00990480
+// ?d_00590480@@YAXXZ
 __declspec(naked) void d_00590480()
 {
     __asm {
@@ -105488,6 +105811,7 @@ __declspec(naked) void d_00590480()
 }
 
 // ghidra: FUN_00b89980
+// ?d_00789980@@YAXXZ
 __declspec(naked) void d_00789980()
 {
     __asm {
@@ -105993,6 +106317,7 @@ __declspec(naked) void d_00789980()
 }
 
 // ghidra: FUN_0046adc0
+// ?d_0006adc0@@YAXXZ
 __declspec(naked) void d_0006adc0()
 {
     __asm {
@@ -106248,6 +106573,7 @@ __declspec(naked) void d_0006adc0()
 }
 
 // ghidra: FUN_005c6640
+// ?d_001c6640@@YAXXZ
 __declspec(naked) void d_001c6640()
 {
     __asm {
@@ -106503,6 +106829,7 @@ __declspec(naked) void d_001c6640()
 }
 
 // ghidra: FUN_005c70c0
+// ?d_001c70c0@@YAXXZ
 __declspec(naked) void d_001c70c0()
 {
     __asm {
@@ -106758,6 +107085,7 @@ __declspec(naked) void d_001c70c0()
 }
 
 // ghidra: FUN_006265f0
+// ?d_002265f0@@YAXXZ
 __declspec(naked) void d_002265f0()
 {
     __asm {
@@ -107013,6 +107341,7 @@ __declspec(naked) void d_002265f0()
 }
 
 // ghidra: FUN_006ebf60
+// ?d_002ebf60@@YAXXZ
 __declspec(naked) void d_002ebf60()
 {
     __asm {
@@ -107268,6 +107597,7 @@ __declspec(naked) void d_002ebf60()
 }
 
 // ghidra: FUN_00723b70
+// ?d_00323b70@@YAXXZ
 __declspec(naked) void d_00323b70()
 {
     __asm {
@@ -107523,6 +107853,7 @@ __declspec(naked) void d_00323b70()
 }
 
 // ghidra: FUN_007247a0
+// ?d_003247a0@@YAXXZ
 __declspec(naked) void d_003247a0()
 {
     __asm {
@@ -107778,6 +108109,7 @@ __declspec(naked) void d_003247a0()
 }
 
 // ghidra: FUN_00a2a7d0
+// ?d_0062a7d0@@YAXXZ
 __declspec(naked) void d_0062a7d0()
 {
     __asm {
@@ -108033,6 +108365,7 @@ __declspec(naked) void d_0062a7d0()
 }
 
 // ghidra: FUN_00ae9c00
+// ?d_006e9c00@@YAXXZ
 __declspec(naked) void d_006e9c00()
 {
     __asm {
@@ -108288,6 +108621,7 @@ __declspec(naked) void d_006e9c00()
 }
 
 // ghidra: FUN_00b47490
+// ?d_00747490@@YAXXZ
 __declspec(naked) void d_00747490()
 {
     __asm {
@@ -108543,6 +108877,7 @@ __declspec(naked) void d_00747490()
 }
 
 // ghidra: FUN_00b67b30
+// ?d_00767b30@@YAXXZ
 __declspec(naked) void d_00767b30()
 {
     __asm {
@@ -108798,6 +109133,7 @@ __declspec(naked) void d_00767b30()
 }
 
 // ghidra: FUN_00bf3980
+// ?d_007f3980@@YAXXZ
 __declspec(naked) void d_007f3980()
 {
     __asm {
@@ -109053,6 +109389,7 @@ __declspec(naked) void d_007f3980()
 }
 
 // ghidra: FUN_00bf3b50
+// ?d_007f3b50@@YAXXZ
 __declspec(naked) void d_007f3b50()
 {
     __asm {
@@ -109308,6 +109645,7 @@ __declspec(naked) void d_007f3b50()
 }
 
 // ghidra: FUN_00c4c6f0
+// ?d_0084c6f0@@YAXXZ
 __declspec(naked) void d_0084c6f0()
 {
     __asm {
@@ -109563,6 +109901,7 @@ __declspec(naked) void d_0084c6f0()
 }
 
 // ghidra: FUN_00c4c8f0
+// ?d_0084c8f0@@YAXXZ
 __declspec(naked) void d_0084c8f0()
 {
     __asm {
@@ -109818,6 +110157,7 @@ __declspec(naked) void d_0084c8f0()
 }
 
 // ghidra: FUN_00c66010
+// ?d_00866010@@YAXXZ
 __declspec(naked) void d_00866010()
 {
     __asm {
@@ -110073,6 +110413,7 @@ __declspec(naked) void d_00866010()
 }
 
 // ghidra: FUN_00c71930
+// ?d_00871930@@YAXXZ
 __declspec(naked) void d_00871930()
 {
     __asm {
@@ -110328,6 +110669,7 @@ __declspec(naked) void d_00871930()
 }
 
 // ghidra: FUN_00c83fb0
+// ?d_00883fb0@@YAXXZ
 __declspec(naked) void d_00883fb0()
 {
     __asm {
@@ -110583,6 +110925,7 @@ __declspec(naked) void d_00883fb0()
 }
 
 // ghidra: FUN_00d6ff70
+// ?d_0096ff70@@YAXXZ
 __declspec(naked) void d_0096ff70()
 {
     __asm {
@@ -110838,6 +111181,7 @@ __declspec(naked) void d_0096ff70()
 }
 
 // ghidra: FUN_00d77db0
+// ?d_00977db0@@YAXXZ
 __declspec(naked) void d_00977db0()
 {
     __asm {
@@ -111093,6 +111437,7 @@ __declspec(naked) void d_00977db0()
 }
 
 // ghidra: FUN_00da85f0
+// ?d_009a85f0@@YAXXZ
 __declspec(naked) void d_009a85f0()
 {
     __asm {
@@ -111348,6 +111693,7 @@ __declspec(naked) void d_009a85f0()
 }
 
 // ghidra: FUN_00e0edf2
+// ?d_00a0edf2@@YAXXZ
 __declspec(naked) void d_00a0edf2()
 {
     __asm {
@@ -111603,6 +111949,7 @@ __declspec(naked) void d_00a0edf2()
 }
 
 // ghidra: FUN_00e11503
+// ?d_00a11503@@YAXXZ
 __declspec(naked) void d_00a11503()
 {
     __asm {
@@ -111858,6 +112205,7 @@ __declspec(naked) void d_00a11503()
 }
 
 // ghidra: FUN_00e39460
+// ?d_00a39460@@YAXXZ
 __declspec(naked) void d_00a39460()
 {
     __asm {
@@ -112113,6 +112461,7 @@ __declspec(naked) void d_00a39460()
 }
 
 // ghidra: FUN_00e6424b
+// ?d_00a6424b@@YAXXZ
 __declspec(naked) void d_00a6424b()
 {
     __asm {
@@ -112368,6 +112717,7 @@ __declspec(naked) void d_00a6424b()
 }
 
 // ghidra: _com_handle_excepinfo
+// ?d_00afe280@@YAXXZ
 __declspec(naked) void d_00afe280()
 {
     __asm {
@@ -112623,6 +112973,7 @@ __declspec(naked) void d_00afe280()
 }
 
 // ghidra: FUN_00f01950
+// ?d_00b01950@@YAXXZ
 __declspec(naked) void d_00b01950()
 {
     __asm {
@@ -112878,6 +113229,7 @@ __declspec(naked) void d_00b01950()
 }
 
 // ghidra: FUN_008f44e0
+// ?d_004f44e0@@YAXXZ
 __declspec(naked) void d_004f44e0()
 {
     __asm {
@@ -113382,6 +113734,7 @@ __declspec(naked) void d_004f44e0()
 }
 
 // ghidra: FUN_009a3460
+// ?d_005a3460@@YAXXZ
 __declspec(naked) void d_005a3460()
 {
     __asm {
@@ -113886,6 +114239,7 @@ __declspec(naked) void d_005a3460()
 }
 
 // ghidra: FUN_00b13510
+// ?d_00713510@@YAXXZ
 __declspec(naked) void d_00713510()
 {
     __asm {
@@ -114390,6 +114744,7 @@ __declspec(naked) void d_00713510()
 }
 
 // ghidra: FUN_00b3ff30
+// ?d_0073ff30@@YAXXZ
 __declspec(naked) void d_0073ff30()
 {
     __asm {
@@ -114894,6 +115249,7 @@ __declspec(naked) void d_0073ff30()
 }
 
 // ghidra: FUN_00c12dd0
+// ?d_00812dd0@@YAXXZ
 __declspec(naked) void d_00812dd0()
 {
     __asm {
@@ -115398,6 +115754,7 @@ __declspec(naked) void d_00812dd0()
 }
 
 // ghidra: FUN_00c836f0
+// ?d_008836f0@@YAXXZ
 __declspec(naked) void d_008836f0()
 {
     __asm {
@@ -115902,6 +116259,7 @@ __declspec(naked) void d_008836f0()
 }
 
 // ghidra: FUN_004e6220
+// ?d_000e6220@@YAXXZ
 __declspec(naked) void d_000e6220()
 {
     __asm {
@@ -116405,6 +116763,7 @@ __declspec(naked) void d_000e6220()
 }
 
 // ghidra: FUN_006593f0
+// ?d_002593f0@@YAXXZ
 __declspec(naked) void d_002593f0()
 {
     __asm {
@@ -116908,6 +117267,7 @@ __declspec(naked) void d_002593f0()
 }
 
 // ghidra: FUN_007dc510
+// ?d_003dc510@@YAXXZ
 __declspec(naked) void d_003dc510()
 {
     __asm {
@@ -117411,6 +117771,7 @@ __declspec(naked) void d_003dc510()
 }
 
 // ghidra: FUN_00815790
+// ?d_00415790@@YAXXZ
 __declspec(naked) void d_00415790()
 {
     __asm {
@@ -117914,6 +118275,7 @@ __declspec(naked) void d_00415790()
 }
 
 // ghidra: FUN_0086df00
+// ?d_0046df00@@YAXXZ
 __declspec(naked) void d_0046df00()
 {
     __asm {
@@ -118417,6 +118779,7 @@ __declspec(naked) void d_0046df00()
 }
 
 // ghidra: FUN_00b40cf0
+// ?d_00740cf0@@YAXXZ
 __declspec(naked) void d_00740cf0()
 {
     __asm {
@@ -118920,6 +119283,7 @@ __declspec(naked) void d_00740cf0()
 }
 
 // ghidra: FUN_00c15300
+// ?d_00815300@@YAXXZ
 __declspec(naked) void d_00815300()
 {
     __asm {
@@ -119423,6 +119787,7 @@ __declspec(naked) void d_00815300()
 }
 
 // ghidra: FUN_00ea92b0
+// ?d_00aa92b0@@YAXXZ
 __declspec(naked) void d_00aa92b0()
 {
     __asm {
@@ -119926,6 +120291,7 @@ __declspec(naked) void d_00aa92b0()
 }
 
 // ghidra: FUN_0049c6f0
+// ?d_0009c6f0@@YAXXZ
 __declspec(naked) void d_0009c6f0()
 {
     __asm {
@@ -120180,6 +120546,7 @@ __declspec(naked) void d_0009c6f0()
 }
 
 // ghidra: FUN_0049de50
+// ?d_0009de50@@YAXXZ
 __declspec(naked) void d_0009de50()
 {
     __asm {
@@ -120434,6 +120801,7 @@ __declspec(naked) void d_0009de50()
 }
 
 // ghidra: FUN_004f5592
+// ?d_000f5592@@YAXXZ
 __declspec(naked) void d_000f5592()
 {
     __asm {
@@ -120688,6 +121056,7 @@ __declspec(naked) void d_000f5592()
 }
 
 // ghidra: FUN_0058d120
+// ?d_0018d120@@YAXXZ
 __declspec(naked) void d_0018d120()
 {
     __asm {
@@ -120942,6 +121311,7 @@ __declspec(naked) void d_0018d120()
 }
 
 // ghidra: FUN_005a3bd0
+// ?d_001a3bd0@@YAXXZ
 __declspec(naked) void d_001a3bd0()
 {
     __asm {
@@ -121196,6 +121566,7 @@ __declspec(naked) void d_001a3bd0()
 }
 
 // ghidra: FUN_005cbae0
+// ?d_001cbae0@@YAXXZ
 __declspec(naked) void d_001cbae0()
 {
     __asm {
@@ -121450,6 +121821,7 @@ __declspec(naked) void d_001cbae0()
 }
 
 // ghidra: FUN_006e4180
+// ?d_002e4180@@YAXXZ
 __declspec(naked) void d_002e4180()
 {
     __asm {
@@ -121704,6 +122076,7 @@ __declspec(naked) void d_002e4180()
 }
 
 // ghidra: FUN_00b82ed0
+// ?d_00782ed0@@YAXXZ
 __declspec(naked) void d_00782ed0()
 {
     __asm {
@@ -121958,6 +122331,7 @@ __declspec(naked) void d_00782ed0()
 }
 
 // ghidra: FUN_00c38ae0
+// ?d_00838ae0@@YAXXZ
 __declspec(naked) void d_00838ae0()
 {
     __asm {
@@ -122212,6 +122586,7 @@ __declspec(naked) void d_00838ae0()
 }
 
 // ghidra: FUN_00c38be0
+// ?d_00838be0@@YAXXZ
 __declspec(naked) void d_00838be0()
 {
     __asm {
@@ -122466,6 +122841,7 @@ __declspec(naked) void d_00838be0()
 }
 
 // ghidra: FUN_00c3a9e0
+// ?d_0083a9e0@@YAXXZ
 __declspec(naked) void d_0083a9e0()
 {
     __asm {
@@ -122720,6 +123096,7 @@ __declspec(naked) void d_0083a9e0()
 }
 
 // ghidra: FUN_00c3aae0
+// ?d_0083aae0@@YAXXZ
 __declspec(naked) void d_0083aae0()
 {
     __asm {
@@ -122974,6 +123351,7 @@ __declspec(naked) void d_0083aae0()
 }
 
 // ghidra: FUN_00d04be0
+// ?d_00904be0@@YAXXZ
 __declspec(naked) void d_00904be0()
 {
     __asm {
@@ -123228,6 +123606,7 @@ __declspec(naked) void d_00904be0()
 }
 
 // ghidra: FUN_00e25208
+// ?d_00a25208@@YAXXZ
 __declspec(naked) void d_00a25208()
 {
     __asm {
@@ -123482,6 +123861,7 @@ __declspec(naked) void d_00a25208()
 }
 
 // ghidra: FUN_00e7286b
+// ?d_00a7286b@@YAXXZ
 __declspec(naked) void d_00a7286b()
 {
     __asm {
@@ -123736,6 +124116,7 @@ __declspec(naked) void d_00a7286b()
 }
 
 // ghidra: FUN_00e9a06c
+// ?d_00a9a06c@@YAXXZ
 __declspec(naked) void d_00a9a06c()
 {
     __asm {
@@ -123990,6 +124371,7 @@ __declspec(naked) void d_00a9a06c()
 }
 
 // ghidra: FUN_00ec0d00
+// ?d_00ac0d00@@YAXXZ
 __declspec(naked) void d_00ac0d00()
 {
     __asm {
@@ -124244,6 +124626,7 @@ __declspec(naked) void d_00ac0d00()
 }
 
 // ghidra: FUN_006db5e0
+// ?d_002db5e0@@YAXXZ
 __declspec(naked) void d_002db5e0()
 {
     __asm {
@@ -124746,6 +125129,7 @@ __declspec(naked) void d_002db5e0()
 }
 
 // ghidra: FUN_007c3850
+// ?d_003c3850@@YAXXZ
 __declspec(naked) void d_003c3850()
 {
     __asm {
@@ -125248,6 +125632,7 @@ __declspec(naked) void d_003c3850()
 }
 
 // ghidra: FUN_0090e320
+// ?d_0050e320@@YAXXZ
 __declspec(naked) void d_0050e320()
 {
     __asm {
@@ -125750,6 +126135,7 @@ __declspec(naked) void d_0050e320()
 }
 
 // ghidra: FUN_00ab66a0
+// ?d_006b66a0@@YAXXZ
 __declspec(naked) void d_006b66a0()
 {
     __asm {
@@ -126252,6 +126638,7 @@ __declspec(naked) void d_006b66a0()
 }
 
 // ghidra: FUN_00b98f30
+// ?d_00798f30@@YAXXZ
 __declspec(naked) void d_00798f30()
 {
     __asm {
@@ -126754,6 +127141,7 @@ __declspec(naked) void d_00798f30()
 }
 
 // ghidra: FUN_00c36300
+// ?d_00836300@@YAXXZ
 __declspec(naked) void d_00836300()
 {
     __asm {
@@ -127256,6 +127644,7 @@ __declspec(naked) void d_00836300()
 }
 
 // ghidra: FUN_00ec59f0
+// ?d_00ac59f0@@YAXXZ
 __declspec(naked) void d_00ac59f0()
 {
     __asm {
@@ -127758,6 +128147,7 @@ __declspec(naked) void d_00ac59f0()
 }
 
 // ghidra: FUN_00bfdff0
+// ?d_007fdff0@@YAXXZ
 __declspec(naked) void d_007fdff0()
 {
     __asm {
@@ -128259,6 +128649,7 @@ __declspec(naked) void d_007fdff0()
 }
 
 // ghidra: FUN_00cc4da0
+// ?d_008c4da0@@YAXXZ
 __declspec(naked) void d_008c4da0()
 {
     __asm {
@@ -128760,6 +129151,7 @@ __declspec(naked) void d_008c4da0()
 }
 
 // ghidra: FUN_00e87904
+// ?d_00a87904@@YAXXZ
 __declspec(naked) void d_00a87904()
 {
     __asm {
@@ -129261,6 +129653,7 @@ __declspec(naked) void d_00a87904()
 }
 
 // ghidra: FUN_004a7af0
+// ?d_000a7af0@@YAXXZ
 __declspec(naked) void d_000a7af0()
 {
     __asm {
@@ -129514,6 +129907,7 @@ __declspec(naked) void d_000a7af0()
 }
 
 // ghidra: FUN_00551d10
+// ?d_00151d10@@YAXXZ
 __declspec(naked) void d_00151d10()
 {
     __asm {
@@ -129767,6 +130161,7 @@ __declspec(naked) void d_00151d10()
 }
 
 // ghidra: FUN_00573680
+// ?d_00173680@@YAXXZ
 __declspec(naked) void d_00173680()
 {
     __asm {
@@ -130020,6 +130415,7 @@ __declspec(naked) void d_00173680()
 }
 
 // ghidra: FUN_00578c30
+// ?d_00178c30@@YAXXZ
 __declspec(naked) void d_00178c30()
 {
     __asm {
@@ -130273,6 +130669,7 @@ __declspec(naked) void d_00178c30()
 }
 
 // ghidra: FUN_0057d8c0
+// ?d_0017d8c0@@YAXXZ
 __declspec(naked) void d_0017d8c0()
 {
     __asm {
@@ -130526,6 +130923,7 @@ __declspec(naked) void d_0017d8c0()
 }
 
 // ghidra: FUN_00682910
+// ?d_00282910@@YAXXZ
 __declspec(naked) void d_00282910()
 {
     __asm {
@@ -130779,6 +131177,7 @@ __declspec(naked) void d_00282910()
 }
 
 // ghidra: FUN_006ea5d0
+// ?d_002ea5d0@@YAXXZ
 __declspec(naked) void d_002ea5d0()
 {
     __asm {
@@ -131032,6 +131431,7 @@ __declspec(naked) void d_002ea5d0()
 }
 
 // ghidra: FUN_0076e420
+// ?d_0036e420@@YAXXZ
 __declspec(naked) void d_0036e420()
 {
     __asm {

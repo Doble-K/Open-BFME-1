@@ -49,9 +49,14 @@ HEADER = """\
 // clean C++ body lands over the same range with add_match --replace-existing.
 """
 
+# The ledger symbol must sit alone on the comment line nearest the body:
+# list_naked_candidates.symbol_comment reads exactly that line and looks it up
+# in the ledger, so anything sharing the line (a ghidra name, a lead marker)
+# misses the lookup and hides the whole wave from the convert lane.
 BODY = """\
 
 // ghidra: {ghidra}{lead}
+// ?d_{rva:08x}@@YAXXZ
 __declspec(naked) void d_{rva:08x}()
 {{
     __asm {{
