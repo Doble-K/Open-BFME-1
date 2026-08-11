@@ -68625,6 +68625,7 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?BfmeShouldShowGameOverEvent@@YA_NXZ,0x000271AB,BFME defeat event selector ILT
 ?construct@QuadDrawModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00047AAF,Open-BFME5 QuadDrawModule retail constructor
 ?construct@ButterflyDrawModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0000AF1F,Open-BFME5 ButterflyDrawModule retail constructor
+?construct@DefaultModule1CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00040214,DefaultModule 1 retail constructor ILT
 ?construct@LightningDrawModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x0002A76B,Open-BFME5 LightningDrawModule retail constructor
 ?construct@TerrainCollisionModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00028E4D,Open-BFME5 TerrainCollisionModule retail constructor
 ?construct@LifeEventModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00034C57,Open-BFME5 LifeEventModule retail constructor

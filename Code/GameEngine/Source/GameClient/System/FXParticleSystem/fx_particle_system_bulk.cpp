@@ -242,6 +242,26 @@ public:
     void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
 };
 
+class DefaultModule1CtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+class DefaultModule1Allocation {
+public:
+    __forceinline DefaultModule1Allocation(TrackingPtr<ParticleSystem> &sys, const void *source)
+    {
+        ((DefaultModule1CtorShim *)this)->construct(sys, source);
+        *(volatile unsigned int *)this = 0x01112dec;
+        *(volatile unsigned int *)((unsigned char *)this + 0x14) = 0x01112de8;
+        *(volatile unsigned int *)((unsigned char *)this + 0x18) = 0x01112de4;
+        *(volatile unsigned int *)((unsigned char *)this + 0x1c) = 0x01112dd0;
+    }
+
+private:
+    unsigned char m_storage[0xa0];
+};
+
 class DefaultModule2Allocation {
 public:
     __forceinline DefaultModule2Allocation(TrackingPtr<ParticleSystem> &sys, const void *source)
