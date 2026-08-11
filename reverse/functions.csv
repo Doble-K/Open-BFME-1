@@ -80710,7 +80710,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?swap@?$vector@PAXV?$allocator@PAX@_STL@@@_STL@@QAEXAAV12@@Z,,0x00069C80,45,Code/gen_small/zhstl_001.cpp,matched,vendored=cnc-zh;zhstl
 ?swap@?$vector@UGen_t_00272aa0_p12cd@@V?$allocator@UGen_t_00272aa0_p12cd@@@_STL@@@_STL@@QAEXAAV12@@Z,,0x00272AA0,45,Code/gen_small/tgrid_109.cpp,matched,gen-tgrid;template=vec_p12cd
 ?switchControlBarStage@ControlBar@@QAEXW4ControlBarStages@@@Z,,0x0049F140,98,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,
-?switchToContext@ControlBar@@IAEXW4ControlBarContext@@PAVDrawable@@@Z,,0x0049E901,869,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_switchToContext.asm,matched,exact 869B via MASM
+?switchToContext@ControlBar@@IAEXW4ControlBarContext@@PAVDrawable@@@Z,,0x0049E901,869,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_switchToContext_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_ControlBar_switchToContext_49E901
 ?tan@@YAMM@Z,,0x00873930,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,ICF alias of existing matched body
 ?testFlagBit@@YA_NHH@Z,,0x006958A0,22,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?testGrab@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x0047D750,13,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
