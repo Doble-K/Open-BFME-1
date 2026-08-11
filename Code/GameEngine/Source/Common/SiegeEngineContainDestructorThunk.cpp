@@ -1,198 +1,120 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) SiegeEngineContain
+// SiegeEngineContain's destructor, lifted from its MASM dump to C++.
+//
+// The retail body is the ordinary compiler-generated shape: restore this
+// object's ten subobject vptrs, run the three container members in reverse
+// declaration order under an SEH funclet apiece, then tail into the base
+// destructor. Nothing here is hand-written code, so the whole job is spelling
+// the layout the compiler must see.
+//
+// The first nine vptrs sit at 0x00, 0x0C, 0x10, 0x20, 0x24, 0x28, 0x2C, 0x30
+// and 0x34 -- the same OpenContain subobject group that
+// GarrisonContainDestructorThunk.cpp already models, reused verbatim. A tenth
+// lands at 0xD4, so a further polymorphic base follows OpenContain's 0xD4 bytes.
+//
+// HordeSiegeEngineContain's destructor next door tails into the SAME base
+// destructor at 0x0003FF49 and has the same three members eight bytes higher,
+// which is what fixes the split: the shared base ends at 0x0E4, and this class
+// puts its first member there directly.
+//
+// The members are read off the destructor's own call sites:
+//
+//   0x0E4  _STL::list<int>                         thunk 0x0000E68D -> 0x000CEBD0
+//   0x0F0  _STL::map<int, 4-byte pod>              thunk 0x0001311A -> 0x00223550
+//   0x0FC  _STL::list<int>                         thunk 0x00013449 -> 0x000E5E70
+//
+// The map's payload is spelled the way Code/gen_small/tgrid_108.cpp spells that
+// instantiation, so the emitted _Rb_tree destructor mangles to the name the
+// ledger already carries at 0x00223550. The two list members are the same
+// _List_base<int> destructor reached through two different COMDAT copies, both
+// already pinned.
+
+#include <list>
+#include <map>
+
+// 0x00223550 tree_int_p4pod -- payload spelling from Code/gen_small/tgrid_108.cpp
+struct Gen_t_00223550_p4pod { int a[1]; };
+bool operator==(const Gen_t_00223550_p4pod&, const Gen_t_00223550_p4pod&);
+bool operator<(const Gen_t_00223550_p4pod&, const Gen_t_00223550_p4pod&);
+
+class OpenContainPrimaryBase
 {
 public:
-    virtual ~SiegeEngineContain();
+	virtual ~OpenContainPrimaryBase() {}
+
+private:
+	unsigned char m_pad[8];
+};
+
+template <int Number>
+class OpenContainSecondaryBase
+{
+public:
+	virtual ~OpenContainSecondaryBase() {}
+};
+
+class OpenContainWideSecondaryBase
+{
+public:
+	virtual ~OpenContainWideSecondaryBase() {}
+
+private:
+	unsigned char m_pad[12];
+};
+
+class __declspec(novtable) OpenContain
+	: public OpenContainPrimaryBase,
+	  public OpenContainSecondaryBase<1>,
+	  public OpenContainWideSecondaryBase,
+	  public OpenContainSecondaryBase<2>,
+	  public OpenContainSecondaryBase<3>,
+	  public OpenContainSecondaryBase<4>,
+	  public OpenContainSecondaryBase<5>,
+	  public OpenContainSecondaryBase<6>,
+	  public OpenContainSecondaryBase<7>
+{
+public:
+	virtual ~OpenContain() {}
+
+private:
+	unsigned char m_pad[0x9c];					///< out to sizeof() == 0xD4
+};
+
+class SiegeEngineContainTenthBase
+{
+public:
+	virtual ~SiegeEngineContainTenthBase() {}
+};
+
+class __declspec(novtable) SiegeEngineContainBase
+	: public OpenContain,
+	  public SiegeEngineContainTenthBase	///< vptr at 0xD4
+{
+public:
+	virtual ~SiegeEngineContainBase();
+
+private:
+	unsigned char m_pad[0x0c];					///< out to sizeof() == 0xE4
+};
+
+class SiegeEngineContain : public SiegeEngineContainBase
+{
+public:
+	virtual ~SiegeEngineContain();
+
+private:
+	_STL::list<int> m_listA;											///< retail this+0x0E4
+	// _List_base<int> is one pointer, so the destructor's `lea ecx,[esi+0xF0]`
+	// puts eight unmodelled bytes between the list and the map. They are never
+	// touched here -- whatever lives there is trivially destructible.
+	unsigned char m_unreconstructed_e8[8];								///< retail this+0x0E8
+	_STL::map<int, Gen_t_00223550_p4pod> m_map;							///< retail this+0x0F0
+	_STL::list<int> m_listB;											///< retail this+0x0FC
 };
 
 // ??1SiegeEngineContain@@UAE@XZ
-__declspec(naked) SiegeEngineContain::~SiegeEngineContain()
+SiegeEngineContain::~SiegeEngineContain()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x14
-        __emit 0xd6
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x88
-        __emit 0xd0
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0xc0
-        __emit 0xcf
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xb0
-        __emit 0xcf
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0x08
-        __emit 0xce
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x24
-        __emit 0xe8
-        __emit 0xcd
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x28
-        __emit 0xe4
-        __emit 0xcd
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x2c
-        __emit 0xd4
-        __emit 0xcd
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x30
-        __emit 0x98
-        __emit 0xcd
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x34
-        __emit 0x88
-        __emit 0xcd
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x86
-        __emit 0xd4
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xcd
-        __emit 0x0a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xfc
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x61
-        __emit 0x7b
-        __emit 0xde
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xf0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x22
-        __emit 0x78
-        __emit 0xde
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0xe4
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x85
-        __emit 0x2d
-        __emit 0xde
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x32
-        __emit 0x46
-        __emit 0xe1
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }

@@ -12,8 +12,12 @@
 // The first nine vptrs sit at 0x00, 0x0C, 0x10, 0x20, 0x24, 0x28, 0x2C, 0x30
 // and 0x34 -- the same OpenContain subobject group that
 // GarrisonContainDestructorThunk.cpp already models, reused verbatim. A tenth
-// lands at 0xD4, so a further polymorphic base follows OpenContain's 0xD4 bytes,
-// and 0x14 bytes of data separate it from the members.
+// lands at 0xD4, so a further polymorphic base follows OpenContain's 0xD4 bytes.
+//
+// SiegeEngineContain's destructor next door tails into the SAME base destructor
+// at 0x0003FF49 and puts its own first member at 0x0E4, which is what fixes the
+// split: the shared base ends at 0x0E4, and the eight bytes before this class's
+// first member are its own.
 //
 // The members are read off the destructor's own call sites:
 //
@@ -78,29 +82,30 @@ private:
 	unsigned char m_pad[0x9c];					///< out to sizeof() == 0xD4
 };
 
-class HordeSiegeEngineContainTenthBase
+class SiegeEngineContainTenthBase
 {
 public:
-	virtual ~HordeSiegeEngineContainTenthBase() {}
+	virtual ~SiegeEngineContainTenthBase() {}
 };
 
-class __declspec(novtable) HordeSiegeEngineContainBase
+class __declspec(novtable) SiegeEngineContainBase
 	: public OpenContain,
-	  public HordeSiegeEngineContainTenthBase	///< vptr at 0xD4
+	  public SiegeEngineContainTenthBase	///< vptr at 0xD4
 {
 public:
-	virtual ~HordeSiegeEngineContainBase();
+	virtual ~SiegeEngineContainBase();
 
 private:
-	unsigned char m_pad[0x14];					///< out to sizeof() == 0xEC
+	unsigned char m_pad[0x0c];					///< out to sizeof() == 0xE4
 };
 
-class HordeSiegeEngineContain : public HordeSiegeEngineContainBase
+class HordeSiegeEngineContain : public SiegeEngineContainBase
 {
 public:
 	virtual ~HordeSiegeEngineContain();
 
 private:
+	unsigned char m_unreconstructed_e4[8];								///< retail this+0x0E4
 	_STL::list<int> m_listA;											///< retail this+0x0EC
 	// _List_base<int> is one pointer, so the destructor's `lea ecx,[esi+0xF8]`
 	// puts eight unmodelled bytes between the list and the map. They are never
