@@ -1,269 +1,86 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /ICode/Libraries/Source/Compression/EAC
 
-int __cdecl BTREE_decompress(unsigned char *, unsigned char *);
+#include "codex.h"
 
-// ?BTREE_decompress@@YAHPAE0@Z
-__declspec(naked) int __cdecl BTREE_decompress(unsigned char *, unsigned char *)
+struct BTreeDecodeContext
 {
-	__asm {
-        __emit 0x55
-        __emit 0x8b
-        __emit 0xec
-        __emit 0x83
-        __emit 0xe4
-        __emit 0xf8
-        __emit 0x81
-        __emit 0xec
-        __emit 0x0c
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x84
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x57
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xd9
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x26
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x02
-        __emit 0x8a
-        __emit 0x46
-        __emit 0xff
-        __emit 0x3d
-        __emit 0xfb
-        __emit 0x47
-        __emit 0x00
-        __emit 0x00
-        __emit 0x75
-        __emit 0x03
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x03
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x56
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x8a
-        __emit 0x2e
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x03
-        __emit 0x8d
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8a
-        __emit 0x4e
-        __emit 0xfe
-        __emit 0xc1
-        __emit 0xe1
-        __emit 0x08
-        __emit 0x0b
-        __emit 0xca
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xb9
-        __emit 0x40
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xf3
-        __emit 0xab
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x06
-        __emit 0x46
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x04
-        __emit 0x10
-        __emit 0x01
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x06
-        __emit 0x46
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7e
-        __emit 0x27
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0x80
-        __emit 0xca
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xff
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x06
-        __emit 0x8a
-        __emit 0x5e
-        __emit 0x01
-        __emit 0x46
-        __emit 0x46
-        __emit 0x88
-        __emit 0x9c
-        __emit 0x04
-        __emit 0x10
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x1e
-        __emit 0x46
-        __emit 0x49
-        __emit 0x88
-        __emit 0x9c
-        __emit 0x04
-        __emit 0x10
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x54
-        __emit 0x04
-        __emit 0x10
-        __emit 0x75
-        __emit 0xe0
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x1e
-        __emit 0x8a
-        __emit 0x44
-        __emit 0x1c
-        __emit 0x10
-        __emit 0x46
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x84
-        __emit 0x24
-        __emit 0x10
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x18
-        __emit 0xff
-        __emit 0x84
-        __emit 0x24
-        __emit 0x10
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0xeb
-        __emit 0xe2
-        __emit 0x7d
-        __emit 0x2d
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x8a
-        __emit 0x8c
-        __emit 0x1c
-        __emit 0x10
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x10
-        __emit 0x51
-        __emit 0x52
-        __emit 0xe8
-        __emit 0x1c
-        __emit 0xfe
-        __emit 0xff
-        __emit 0xff
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x8a
-        __emit 0x84
-        __emit 0x1c
-        __emit 0x18
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x50
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x08
-        __emit 0xfe
-        __emit 0xff
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xeb
-        __emit 0xb3
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x06
-        __emit 0x46
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x94
-        __emit 0x24
-        __emit 0x10
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x88
-        __emit 0x02
-        __emit 0xff
-        __emit 0x84
-        __emit 0x24
-        __emit 0x10
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0xeb
-        __emit 0x99
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x8b
-        __emit 0xe5
-        __emit 0x5d
-        __emit 0xc3
+	signed char cluetbl[256];
+	unsigned char left[256];
+	unsigned char right[256];
+	unsigned char *d;
+};
+
+static void BTREE_chase(BTreeDecodeContext *dc, unsigned char node)
+{
+	if (dc->cluetbl[node]) {
+		BTREE_chase(dc, dc->left[node]);
+		BTREE_chase(dc, dc->right[node]);
+		return;
 	}
+	*dc->d++ = node;
+}
+
+static int BTREE_decompress(unsigned char *packbuf, unsigned char *unpackbuf)
+{
+	int node;
+	int i;
+	int nodes;
+	int clue;
+	int ulen;
+	unsigned char *s;
+	signed char c;
+	unsigned int type;
+	BTreeDecodeContext dc;
+
+	s = packbuf;
+	dc.d = unpackbuf;
+	ulen = 0;
+
+	if (s) {
+		type = ggetm(s, 2);
+		s += 2;
+		if (type == 0x47fb)
+			s += 3;
+		ulen = ggetm(s, 3);
+		s += 3;
+
+		for (i = 0; i < 256; ++i)
+			dc.cluetbl[i] = 0;
+
+		clue = *s++;
+		dc.cluetbl[clue] = 1;
+		nodes = *s++;
+		for (i = 0; i < nodes; ++i) {
+			node = *s++;
+			dc.left[node] = *s++;
+			dc.right[node] = *s++;
+			dc.cluetbl[node] = -1;
+		}
+
+		for (;;) {
+			node = *s++;
+			c = dc.cluetbl[node];
+			if (!c) {
+				*dc.d++ = (unsigned char)node;
+				continue;
+			}
+			if (c < 0) {
+				BTREE_chase(&dc, dc.left[node]);
+				BTREE_chase(&dc, dc.right[node]);
+				continue;
+			}
+			node = *s++;
+			if (node) {
+				*dc.d++ = (unsigned char)node;
+				continue;
+			}
+			break;
+		}
+	}
+	return ulen;
+}
+
+int __cdecl BTREE_decode(void *dest, const void *compresseddata, int *)
+{
+	return BTREE_decompress((unsigned char *)compresseddata, (unsigned char *)dest);
 }
