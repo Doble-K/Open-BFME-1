@@ -2875,7 +2875,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0WorldHeightMap@@QAE@PAVChunkInputStream@@_N@Z,,0x0074EB10,352,Code/GameEngine/Source/Common/WorldHeightMap_stream_ctor_Thunk.cpp,matched,Open-BFME5 lift 352B retail MASM to standalone C++ thunk
 ??0WoundArrowUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0026DFB0,60,Code/GameEngine/Source/GameLogic/Object/Update/WoundArrowUpdate.cpp,matched,Luna Open-BFME5.0 clean C++ SpecialAbilityUpdate constructor
 ??0WoundArrowUpdateModuleData@@QAE@XZ,,0x0026DF50,38,Code/GameEngine/Source/Common/RTS/WoundArrowUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ SpecialPowerModuleData + 100.0f and zero
-??0WriteLockClass@VertexBufferClass@@QAE@PAV1@H@Z,,0x0091DD70,150,Code/masm_dumps/___0WriteLockClass_VertexBufferClass__QAE_PAV1_H_Z_91DD70.asm,matched,
+??0WriteLockClass@VertexBufferClass@@QAE@PAV1@H@Z,,0x0091DD70,150,Code/Libraries/Source/WWVegas/WW3D2/VertexBufferWriteLockConstructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??0Xfer@@QAE@XZ,0x00041BAF,0x007E7660,9,Code/GameEngine/Source/Common/System/Xfer.cpp,matched,constructor sets vtable
 ??0ZigZagLinearOffsetTextureMapperClass@@QAE@ABV0@@Z,,0x00965500,92,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ??0ZigZagLinearOffsetTextureMapperClass@@QAE@ABVINIClass@@PBDI@Z,,0x00965420,209,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
