@@ -1,143 +1,99 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: retail-layout C++ conversion of construction completion dispatch.
 
 class Object;
+
+class ScriptEngine
+{
+public:
+	void notifyOfObjectCreationOrDestruction();
+};
+
+class Pathfinder
+{
+public:
+	void removeObjectFromPathfindMap(Object *);
+	void addObjectToPathfindMap(Object *);
+};
+
+class AI
+{
+private:
+	char Pad[0x0C];
+
+public:
+	Pathfinder *PathfinderInstance;
+};
+
+class AIPlayer
+{
+public:
+	virtual void Slot0();
+	virtual void Slot1();
+	virtual void Slot2();
+	virtual void Slot3();
+	virtual void Slot4();
+	virtual void Slot5();
+	virtual void Slot6();
+	virtual void Slot7();
+	virtual void onStructureProduced(Object *, Object *);
+};
+
+class StructureCompletionInterface
+{
+public:
+	virtual void Slot0();
+	virtual void Slot1();
+	virtual void Slot2();
+	virtual void onConstructionComplete(Object *);
+};
+
+class Object
+{
+public:
+	void friend_adjustPowerForPlayer(bool);
+	StructureCompletionInterface *getStructureCompletionInterface();
+};
+
+class ControlBar
+{
+private:
+	char Pad[0x24];
+
+public:
+	bool UIDirty;
+};
 
 class Player
 {
 public:
 	void onStructureConstructionComplete(Object *, Object *, bool);
+
+private:
+	char Pad[0x220];
+	AIPlayer *PlayerAI;
 };
 
-// ?onStructureConstructionComplete@Player@@QAEXPAVObject@@0_N@Z
-__declspec(naked) void Player::onStructureConstructionComplete(Object *, Object *, bool)
+extern ScriptEngine *TheScriptEngine;
+extern AI *TheAI;
+extern ControlBar *TheControlBar;
+
+void Player::onStructureConstructionComplete(Object *builder, Object *structure, bool)
 {
-	__asm {
-		__emit 0x53
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xf9
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x6c
-		__emit 0x07
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x4b
-		__emit 0x1b
-		__emit 0xf7
-		__emit 0xff
-		__emit 0xa1
-		__emit 0x14
-		__emit 0xf2
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x24
-		__emit 0x14
-		__emit 0x8b
-		__emit 0x48
-		__emit 0x0c
-		__emit 0x56
-		__emit 0xe8
-		__emit 0x5d
-		__emit 0xd7
-		__emit 0xf3
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x14
-		__emit 0xf2
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x49
-		__emit 0x0c
-		__emit 0x56
-		__emit 0xe8
-		__emit 0xea
-		__emit 0x21
-		__emit 0xf4
-		__emit 0xff
-		__emit 0x6a
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0x5d
-		__emit 0x7c
-		__emit 0xf5
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x87
-		__emit 0x20
-		__emit 0x02
-		__emit 0x00
-		__emit 0x00
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x8b
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x74
-		__emit 0x09
-		__emit 0x8b
-		__emit 0xc8
-		__emit 0x8b
-		__emit 0x11
-		__emit 0x56
-		__emit 0x53
-		__emit 0xff
-		__emit 0x52
-		__emit 0x20
-		__emit 0xa1
-		__emit 0xf8
-		__emit 0x33
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x04
-		__emit 0xc6
-		__emit 0x40
-		__emit 0x24
-		__emit 0x01
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0x74
-		__emit 0xbb
-		__emit 0xf6
-		__emit 0xff
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x0f
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0x69
-		__emit 0xbb
-		__emit 0xf6
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x10
-		__emit 0x53
-		__emit 0x8b
-		__emit 0xc8
-		__emit 0xff
-		__emit 0x52
-		__emit 0x0c
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0xc2
-		__emit 0x0c
-		__emit 0x00
+	TheScriptEngine->notifyOfObjectCreationOrDestruction();
+	TheAI->PathfinderInstance->removeObjectFromPathfindMap(structure);
+	TheAI->PathfinderInstance->addObjectToPathfindMap(structure);
+	structure->friend_adjustPowerForPlayer(true);
+
+	if (PlayerAI != 0) {
+		PlayerAI->onStructureProduced(builder, structure);
+	}
+
+	if (TheControlBar != 0) {
+		TheControlBar->UIDirty = true;
+	}
+
+	if (structure->getStructureCompletionInterface() != 0) {
+		structure->getStructureCompletionInterface()->onConstructionComplete(builder);
 	}
 }

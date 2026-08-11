@@ -68675,3 +68675,8 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 ??1MultiplayerColorDefinition@@QAE@XZ,0x00887940,Open-BFME5 retail color-definition string destructor body
 ??1MultiplayerColorList@@QAE@XZ,0x0004A01B,Open-BFME5 retail multiplayer color-map destructor thunk
 ??0MeshModelClass@@QAE@ABV0@@Z,0x0094EC20,Open-BFME5 retail MeshModelClass copy constructor pin
+?notifyOfObjectCreationOrDestruction@ScriptEngine@@QAEXXZ,0x0003B15B,Open-BFME5 retail script notification thunk
+?removeObjectFromPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,0x00006D7F,Open-BFME5 retail pathfinder removal thunk
+?addObjectToPathfindMap@Pathfinder@@QAEXPAVObject@@@Z,0x0000B81B,Open-BFME5 retail pathfinder addition thunk
+?friend_adjustPowerForPlayer@Object@@QAEX_N@Z,0x00021297,Open-BFME5 retail object power adjustment thunk
+?getStructureCompletionInterface@Object@@QAEPAVStructureCompletionInterface@@XZ,0x000351D9,Open-BFME5 retail unidentified structure interface getter thunk
