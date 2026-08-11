@@ -4866,6 +4866,7 @@ name,address,notes
 ??1UpgradeModuleDataBase@@UAE@XZ,0x00887940,Open-BFME5 base dtor pin
 ??1UpgradeSoundSelectorClientBehaviorModuleDataMember@@QAE@XZ,0x0001EA97,UpgradeSoundSelectorClientBehaviorModuleData dtor member +0x8
 ??1UserPreferences@@UAE@XZ,0x0003F25B
+??1PSPlayerStats@@QAE@XZ,0x00025C1B,PSRequest retail member destructor
 ??1Video@@QAE@XZ,0x0001642D
 ??1W3DAnimationInfo@@QAE@XZ,0x00020018,ILT thunk used by call site
 ??1W3DAnimationInfo@@QAE@XZ,0x00034AE0,STLport callee exact retail rel32 target (incremental-link thunk); resolves repointed STL template thunk-dump
