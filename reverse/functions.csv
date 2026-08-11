@@ -8237,7 +8237,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Add@NamedPivotMapClass@@QAEXPBDM@Z,,0x00973F40,76,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,
 ?Add@RenderObjClass@@UAEXPAVSceneClass@@@Z,,0x0091FBA0,21,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
 ?Add@Vector3@@SAXABV1@0PAV1@@Z,,0x004106B0,37,Code/Libraries/Source/WWVegas/WWMath/colmathobbobb.cpp,matched,
-?AddOutput@Debug@@AAEXPBDI@Z,,0x0088A8F0,675,Code/Libraries/Source/WWVegas/WWDebug/debug_debug_AddOutput.asm,matched,exact 675B via MASM
+?AddOutput@Debug@@AAEXPBDI@Z,,0x0088A8F0,675,Code/Libraries/Source/WWVegas/WWDebug/debug_debug_AddOutput_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_Debug_AddOutput_88A8F0
 ?AddPatternEntry@Debug@@AAEXI_NPBD@Z,,0x0088A300,147,Code/GameEngine/Source/Common/Debug_AddPatternEntry_Thunk.cpp,matched,clean C++ conversion; ZH debug_debug.cpp body plus a BFME _strlwr on the copied pattern; firstPatternEntry at this+0x9E00 and lastPatternEntry at +0x9E04; needs /Oy-
 ?Add_Anim@HAnimManagerClass@@QAE_NPAVHAnimClass@@@Z,,0x007B9B30,23,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ?Add_Box@MinMaxAABoxClass@@QAEXABVAABoxClass@@@Z,,0x00979230,237,Code/Libraries/Source/WWVegas/WWMath/aabox.cpp,matched,
