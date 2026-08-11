@@ -14135,7 +14135,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?gameAcceptTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z,,0x004F1430,150,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp,matched,
 ?gameTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z,,0x0062CFF0,1656,Code/GameEngine/Source/GameNetwork/GameSpy/GameTooltipThunk.cpp,matched,Open-BFME5 exact C++ emits;object-symbol=_bfme_gameTooltip_62CFF0
 ?gameWinDrawFunc@FunctionLexicon@@QAEP6AXPAVGameWindow@@PAVWinInstanceData@@@ZW4NameKeyType@@W4TableIndex@1@@Z,,0x00105420,76,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,
-?gatherDebugStats@W3DDisplay@@,,0x006F0300,4490,Code/masm_dumps/_str__gatherDebugStats_W3DDisplay__6F0300.asm,matched,
+?gatherDebugStats@W3DDisplay@@,,0x006F0300,4490,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayGatherDebugStatsThunk.cpp,matched,object-symbol=_bfme_W3DDisplay_gatherDebugStats_6F0300;Exact 4490B C++ thunk converted from MASM; Open-BFME5
 ?generateEdgePairs@DiscreteCircle@@IAEXHHH@Z,,0x00069250,194,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
 ?generateGameSpyGameResultsPacket@GameSpyStagingRoom@@,,0x0085E420,233,Code/GameEngine/Source/Common/GameSpyStagingRoomGenerateGameResultsPacketThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_GameSpyStagingRoomGenerateGameResultsPacket_85E420
 ?generateLadderGameResultsPacket@GameSpyStagingRoom@@,,0x00639190,1580,Code/GameEngine/Source/GameNetwork/GameSpy/GenerateLadderGameResultsPacketThunk.cpp,matched,Open-BFME5 exact C++ emits;object-symbol=_bfme_generateLadderGameResultsPacket_639190
