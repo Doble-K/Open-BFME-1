@@ -617,14 +617,27 @@ def load_symbol_map():
         body = int(row["target_rva"], 16)
         symbol_map[row["name"]] = thunks.get(body, []) + [body]
     if SYMBOLS.exists():
+        # Membership sets mirroring the candidate lists, built only for the names
+        # symbols.csv actually pins: `candidate not in candidates` is a linear
+        # scan of a list that reaches 9,155 entries, and cost 2.72s of this
+        # function's 3.09s. Building all 160k up front would just move the cost.
+        # The lists stay lists, in append order — the resolver seeds from
+        # candidates[0], stops at the first displacement that reproduces retail,
+        # and reports the last one on failure.
+        members = {}
         with SYMBOLS.open("r", encoding="utf-8", newline="") as handle:
             for row in csv.DictReader(handle):
                 address = int(row["address"], 16)
-                candidates = symbol_map.setdefault(row["name"], [])
+                name = row["name"]
+                candidates = symbol_map.setdefault(name, [])
+                seen = members.get(name)
+                if seen is None:
+                    seen = members[name] = set(candidates)
                 # a pinned body gets its incremental-link thunks too, same as a
                 # ledger row: call sites encode the thunk, not the body
                 for candidate in thunks.get(address, []) + [address]:
-                    if candidate not in candidates:
+                    if candidate not in seen:
+                        seen.add(candidate)
                         candidates.append(candidate)
     return symbol_map
 
