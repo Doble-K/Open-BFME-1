@@ -3758,7 +3758,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1OathbreakersFadeAwayBehavior@@UAE@XZ,,0x001F1370,203,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorDestructorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ??1OathbreakersFadeAwayBehaviorModuleData@@UAE@XZ,,0x00126F00,80,Code/GameEngine/Source/GameLogic/AI/OathbreakersFadeAwayBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ Buffer-then-base SEH ModuleData dtor
 ??1ObjectCreationList@@QAE@XZ,,0x00072A40,14,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
-??1ObjectCreationListStore@@UAE@XZ,,0x001DA720,207,Code/GameEngine/Source/Common/ObjectCreationListStoreDestructorThunk.cpp,matched,Certified retail MASM recovery packet 263
 ??1ObjectCreationUpgrade@@UAE@XZ,,0x00137E80,284,Code/GameEngine/Source/Common/ObjectCreationUpgradeDestructorThunk.cpp,matched,Exact 284B SEH dtor Open-BFME4
 ??1ObjectCreationUpgradeModuleData@@UAE@XZ,,0x002D7660,109,Code/GameEngine/Source/Common/ObjectCreationUpgradeModuleDataDestructorThunk.cpp,matched,Exact retail MASM; unique factory ctor+dtor vtable chain proves ownership
 ??1OneRingPenaltyUpdateModuleData@@UAE@XZ,,0x00298D60,113,Code/GameEngine/Source/Common/OneRingPenaltyUpdateModuleDataDestructorThunk.cpp,matched,Exact retail MASM; factory 0x11A460 ctor 0x298D30 prove ownership
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C80,270,Code/GameEngine/Source/GameClient/GUI/parseTextEntryData_Thunk.cpp,matched,Open-BFME5 exact C++ text-entry data parser
 ??0BridgeBehaviorModuleData@@QAE@XZ,,0x001F53A0,124,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion; official constructor builds BridgeFXInfo and BridgeOCLInfo STLPort lists then assigns both scaffold speeds
 ?generateIndexBuffer@WaterRenderObjClass@@IAEJHH@Z,,0x0079EEA0,237,Code/GameEngineDevice/Source/W3DDevice/GameClient/WaterRenderObjClass_generateIndexBuffer_Thunk.cpp,matched,Open-BFME5 exact C++ water index-buffer generator
+??1ObjectCreationListStore@@UAE@XZ,,0x001DA720,207,Code/GameEngine/Source/Common/ObjectCreationListStoreDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion; official destructor deletes owned nuggets clears and frees pointer vector then destroys OCL map and subsystem base

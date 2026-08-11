@@ -68666,3 +68666,4 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 ?set@AsciiString@@AAEXABV1@@Z,0x00887C90,Open-BFME5 private AsciiString copy-set body
 ?clear@?$_List_base@UBridgeFXInfo@@V?$allocator@UBridgeFXInfo@@@_STL@@@_STL@@QAEXXZ,0x0001E9ED,Open-BFME5 BridgeFXInfo STLPort list clear body
 ?clear@?$_List_base@UBridgeOCLInfo@@V?$allocator@UBridgeOCLInfo@@@_STL@@@_STL@@QAEXXZ,0x000034F9,Open-BFME5 BridgeOCLInfo STLPort list clear body
+??1ObjectCreationListMap@@QAE@XZ,0x0001D110,Open-BFME5 retail ObjectCreationList map destructor body
