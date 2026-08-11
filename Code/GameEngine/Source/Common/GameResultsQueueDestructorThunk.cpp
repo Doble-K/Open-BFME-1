@@ -1,240 +1,69 @@
 // cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) GameResultsQueue
+extern "C" void _ReadWriteBarrier();
+#pragma intrinsic(_ReadWriteBarrier)
+
+class GameResultsInterface
 {
 public:
-    virtual ~GameResultsQueue();
+	virtual ~GameResultsInterface() {}
 };
 
-// ??1GameResultsQueue@@UAE@XZ
-__declspec(naked) GameResultsQueue::~GameResultsQueue()
+class GameResultsMutex { public: ~GameResultsMutex(); private: void *m_data[2]; };
+class GameResultsRequestQueue { public: ~GameResultsRequestQueue(); private: unsigned char m_data[0x28]; };
+class GameResultsResponseQueue { public: ~GameResultsResponseQueue(); private: unsigned char m_data[0x28]; };
+class GameResultsCounter { public: ~GameResultsCounter(); private: void *m_data[2]; };
+
+class GameResultsThreadAux
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x2a
-        __emit 0x19
-        __emit 0x04
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x70
-        __emit 0x8e
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x64
-        __emit 0x85
-        __emit 0xc0
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x06
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x33
-        __emit 0x8b
-        __emit 0x7e
-        __emit 0x70
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xcf
-        __emit 0xe2
-        __emit 0x39
-        __emit 0x00
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x79
-        __emit 0x4d
-        __emit 0x24
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x70
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x64
-        __emit 0xe8
-        __emit 0x57
-        __emit 0xe4
-        __emit 0x39
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x64
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x7e
-        __emit 0x70
-        __emit 0x85
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x64
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x05
-        __emit 0x74
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x90
-        __emit 0xe2
-        __emit 0x39
-        __emit 0x00
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x3a
-        __emit 0x4d
-        __emit 0x24
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x68
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x04
-        __emit 0xe8
-        __emit 0xca
-        __emit 0xe1
-        __emit 0x39
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x3c
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x03
-        __emit 0xe8
-        __emit 0xf6
-        __emit 0x06
-        __emit 0xa0
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x14
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x02
-        __emit 0xe8
-        __emit 0xc2
-        __emit 0x42
-        __emit 0x9f
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x0c
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xa3
-        __emit 0xe1
-        __emit 0x39
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x04
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x96
-        __emit 0xe1
-        __emit 0x39
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x04
-        __emit 0x8e
-        __emit 0x11
-        __emit 0x01
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+public:
+	~GameResultsThreadAux();
+};
+
+class GameResultsThreadAuxHolder
+{
+public:
+	~GameResultsThreadAuxHolder() { delete m_ptr; }
+	GameResultsThreadAux *get() const { return m_ptr; }
+	void clear() { m_ptr = 0; }
+
+private:
+	GameResultsThreadAux *m_ptr;
+};
+
+class GameResultsThread
+{
+public:
+	virtual ~GameResultsThread();
+	void shutdown();
+};
+
+class GameResultsQueue : public GameResultsInterface
+{
+public:
+	virtual ~GameResultsQueue();
+
+private:
+	GameResultsMutex m_requestMutex;
+	GameResultsMutex m_responseMutex;
+	GameResultsRequestQueue m_requests;
+	GameResultsResponseQueue m_responses;
+	GameResultsThread *m_worker;
+	GameResultsCounter m_counters;
+	GameResultsThreadAuxHolder m_aux;
+};
+
+GameResultsQueue::~GameResultsQueue()
+{
+	if (m_worker)
+	{
+		delete m_aux.get();
+		m_aux.clear();
+		// Preserve the thread-owner clear before reloading the worker.
+		_ReadWriteBarrier();
+		m_worker->shutdown();
+		delete m_worker;
+	}
+	m_worker = 0;
 }

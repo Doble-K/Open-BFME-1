@@ -68692,3 +68692,9 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 ??1GiantBirdMemberB@@QAE@XZ,0x00013449,Open-BFME5 GiantBird second member destructor ILT pin
 ??1GiantBirdMemberA@@QAE@XZ,0x00008B61,Open-BFME5 GiantBird first member destructor ILT pin
 ??1GiantBirdAIBase@@UAE@XZ,0x0001C774,Open-BFME5 GiantBird update base destructor ILT pin
+??1GameResultsThreadAux@@QAE@XZ,0x009DB400,Open-BFME5 GameResultsQueue auxiliary destructor
+?shutdown@GameResultsThread@@QAEXXZ,0x009DB5A0,Open-BFME5 GameResultsQueue worker shutdown
+??1GameResultsCounter@@QAE@XZ,0x009DB350,Open-BFME5 GameResultsQueue counter destructor
+??1GameResultsResponseQueue@@QAE@XZ,0x0003D889,Open-BFME5 GameResultsQueue response queue destructor ILT
+??1GameResultsRequestQueue@@QAE@XZ,0x00031462,Open-BFME5 GameResultsQueue request queue destructor ILT
+??1GameResultsMutex@@QAE@XZ,0x009DB350,Open-BFME5 GameResultsQueue mutex destructor
