@@ -13,6 +13,7 @@ import sys
 import threading
 from pathlib import Path
 
+from coffar import RELOC_WIDTH, read_archive
 from gen_case_shims import ensure_case_shims
 from portable_lock import lock, unlock
 
@@ -26,15 +27,97 @@ BUILD_DIR = ROOT / "build" / "match"
 PATCH_DIR = ROOT / "build" / "patch"
 
 
-def obj_path(source):
+LIB_SUFFIX = ".lib"
+# A row whose bytes are compared with every relocation site masked out is only
+# as good as the bytes that remain. Below this many concrete bytes the
+# comparison proves nothing, so the row is not evidence and the gate says so.
+MIN_LIB_CONCRETE = 8
+
+
+def obj_path(source, member=None):
     # Namespace objs by the source's repo-relative path, not its bare stem:
     # same-basename sources in different tree dirs must not collide.
     # Encode uppercase as ^x because wine resolves paths case-insensitively:
     # INI.cpp and ini.cpp would otherwise overwrite each other's obj.
     rel = Path(source).resolve().relative_to(ROOT)
     stem = "_".join(rel.with_suffix("").parts)
+    if member is not None:
+        # One .lib holds hundreds of members and a row names exactly one, so the
+        # obj is per (source, member) — keying on the source alone would give
+        # 2,000 rows spanning 136 members a single shared output path.
+        stem += "_" + member_stem(member)
     encoded = "".join(("^" + c.lower()) if c.isupper() else c for c in stem)
     return BUILD_DIR / (encoded + ".obj")
+
+
+def member_stem(member):
+    """Filename part of an archive member name (`obj\\i386\\d3dx9tex.obj`)."""
+    return re.split(r"[\\/]", member)[-1].removesuffix(".obj")
+
+
+def ledger_member(row):
+    """The archive member a .lib-sourced row's bytes come from."""
+    match = re.search(r"(?:^|;)member=([^;]+)", row.get("notes", ""))
+    if match is None:
+        raise SystemExit(
+            f"{row['name']}: source {row['source']} is a static library but the row "
+            "has no `member=` note naming the object its bytes come from")
+    return match.group(1)
+
+
+def row_object(row):
+    """The object file holding this row's code: a compiled TU, or a lib member."""
+    source = ROOT / row["source"]
+    if source.suffix.lower() == LIB_SUFFIX:
+        return obj_path(source, ledger_member(row))
+    return obj_path(source)
+
+
+def require_row_object(row):
+    """row_object, but a missing object is fatal rather than skipped.
+
+    The string-ref and DIR32 verifiers used to `continue` past an absent obj
+    while still reporting "0 unverified/skipped", so a whole source's rows could
+    drop out of both checks and leave the summary line saying everything passed.
+    """
+    obj = row_object(row)
+    if not obj.exists():
+        raise SystemExit(
+            f"{row['name']} ({row['source']}): object {obj.relative_to(ROOT)} is missing, "
+            "so this row cannot be verified. Run the full ./build.sh, which builds it.")
+    return obj
+
+
+def extract_lib_members(rows):
+    """Unpack every archive member the given rows name into the build dir.
+
+    A member is a verbatim COFF object, so extracting it verbatim is all a
+    .lib-sourced row needs: from here it goes through the same symbol lookup,
+    relocation read and byte comparison as a compiled translation unit.
+    """
+    wanted = {}
+    for row in rows:
+        source = ROOT / row["source"]
+        if source.suffix.lower() == LIB_SUFFIX:
+            wanted.setdefault(source, set()).add(ledger_member(row))
+    for source, names in sorted(wanted.items()):
+        if not source.exists():
+            raise SystemExit(f"functions.csv references missing static library: "
+                             f"{source.relative_to(ROOT)}")
+        members = dict(read_archive(source))
+        BUILD_DIR.mkdir(parents=True, exist_ok=True)
+        for name in sorted(names):
+            if name not in members:
+                raise SystemExit(
+                    f"{source.relative_to(ROOT)}: no member named {name!r} — a row's "
+                    "`member=` note does not match any object in the archive")
+            output = obj_path(source, name)
+            body = members[name]
+            if not output.exists() or output.read_bytes() != body:
+                output.write_bytes(body)
+    if wanted:
+        print(f"Lib members: {sum(len(n) for n in wanted.values())} extracted from "
+              f"{len(wanted)} archive(s)")
 NOOP_EXE = PATCH_DIR / "lotrbfme.noop.exe"
 DEFAULT_VC71_ROOT = (
     ROOT
@@ -384,6 +467,10 @@ def compiler_command(source, output):
         if wine is None:
             raise SystemExit("wine not found. Install Wine to run MSVC 7.1 on this host.")
         command.append(wine)
+
+    if source.suffix.lower() == LIB_SUFFIX:
+        raise SystemExit(f"{source.relative_to(ROOT)}: a static library is not compiled — "
+                         "its rows read an archive member (see extract_lib_members)")
 
     if source.suffix.lower() == ".asm":
         # Pure MASM for bodies C++ cannot emit (e.g. SEH array-ctor prologues).
@@ -755,12 +842,24 @@ def compile_function(row, symbol_map, output):
             raise
         compiled, relocs = read_object_symbol_bytes(output, recovered, target_size)
 
+    # A lib member is pre-link code: every relocation site still holds an addend
+    # rather than the address the linker wrote, and its callees are
+    # library-internal symbols no ledger row gives an address for, so none of
+    # them can be resolved the way a compiled TU's are. Mask them all instead
+    # and compare only the bytes in between; `concrete` reports how many that
+    # leaves, because a comparison over too few bytes is not evidence.
+    masked = (ROOT / row["source"]).suffix.lower() == LIB_SUFFIX
     resolved = bytearray(compiled[:target_size])
     unresolved = []
+    covered = bytearray(target_size)
     for offset, rtype, sym_name in relocs:
         if offset >= target_size:
             continue  # reloc belongs to a later function sharing the COMDAT section
-        if rtype == 0x0006:  # IMAGE_REL_I386_DIR32
+        if masked:
+            width = min(RELOC_WIDTH.get(rtype, 4), target_size - offset)
+            resolved[offset : offset + width] = target[offset : offset + width]
+            covered[offset : offset + width] = b"\1" * width
+        elif rtype == 0x0006:  # IMAGE_REL_I386_DIR32
             resolved[offset : offset + 4] = target[offset : offset + 4]
         elif rtype == 0x0014:  # IMAGE_REL_I386_REL32
             if sym_name in symbol_map:
@@ -783,6 +882,8 @@ def compile_function(row, symbol_map, output):
         "source": row["source"],
         "unresolved": unresolved,
         "relocs": relocs,
+        "masked": masked,
+        "concrete": target_size - sum(covered),
     }
 
 
@@ -932,6 +1033,10 @@ def verify_functions(only=None):
         raise SystemExit("functions.csv references missing source file(s): "
                          + ", ".join(str(m) for m in missing)
                          + " - a commit added rows without adding the file")
+    # Split by kind BEFORE anything reaches the compiler: a .lib is a build
+    # input to read, not a translation unit, and cl.exe would choke on it.
+    extract_lib_members(rows)
+    sources = [s for s in sources if s.suffix.lower() != LIB_SUFFIX]
     source_outputs = {s: obj_path(s) for s in sources}
     if len(set(source_outputs.values())) != len(source_outputs):
         raise SystemExit("obj stem collision between sources; refusing parallel compile")
@@ -997,17 +1102,21 @@ def verify_functions(only=None):
     failures = 0
     patches = []
     for row in rows:
-        source = ROOT / row["source"]
-        patch = compile_function(row, symbol_map, source_outputs[source])
+        patch = compile_function(row, symbol_map, row_object(row))
         target = patch["target"]
         compiled = patch["bytes"]
 
-        if compiled == target:
+        thin = patch["masked"] and patch["concrete"] < MIN_LIB_CONCRETE
+        if compiled == target and not thin:
             patches.append(patch)
             continue
 
         failures += 1
         print(f"  FAIL {row['name']} ({row['source']})")
+        if thin and compiled == target:
+            print(f"    only {patch['concrete']} of {len(target)} byte(s) lie outside a "
+                  "relocation site; a masked comparison this thin proves nothing")
+            continue
         if patch["unresolved"]:
             calls = ", ".join(sorted(set(patch["unresolved"])))
             print(f"    unresolved call(s): {calls} (add to reverse/symbols.csv)")
@@ -1085,9 +1194,7 @@ def verify_string_refs(rows):
     checked = 0
     empty_ok = 0
     for row in rows:
-        obj = obj_path(ROOT / row["source"])
-        if not obj.exists():
-            continue
+        obj = require_row_object(row)
         target_rva = int(row["target_rva"], 16)
         target_size = int(row["target_size"])
         target = read_target_bytes(target_rva, target_size)
@@ -1146,9 +1253,7 @@ def verify_dir32_consistency(rows):
     whitelist_path = ROOT / "reverse" / "dir32_consistency_whitelist.txt"
     sym2base = defaultdict(set)
     for row in rows:
-        obj = obj_path(ROOT / row["source"])
-        if not obj.exists():
-            continue
+        obj = require_row_object(row)
         trva, tsz = int(row["target_rva"], 16), int(row["target_size"])
         target = read_target_bytes(trva, tsz)
         try:

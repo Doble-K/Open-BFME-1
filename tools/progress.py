@@ -26,6 +26,11 @@ ROOT = Path(__file__).resolve().parents[1]
 FUNCTIONS = "reverse/functions.csv"
 CPP_SUFFIXES = {".c", ".cc", ".cpp", ".cxx"}
 ASM_SUFFIXES = {".asm", ".s"}
+# A prebuilt static library the game linked. On the code axis it counts with
+# assembly, not with clean C++: nobody wrote or ported these bytes, they are
+# matched against the shipped binary. On the identity axis vendor/ already
+# routes it to the vendored lane.
+LIB_SUFFIXES = {".lib"}
 # Upstream libraries vendored into the tree. Reproducing their bytes is real
 # code, but it is not recovering this game's identity, so they get their own
 # lane instead of inflating the reverse-engineered figure. EA-authored
@@ -111,7 +116,7 @@ def source_kind(source):
     suffix = Path(source).suffix.lower()
     if suffix in CPP_SUFFIXES:
         return "cpp"
-    if suffix in ASM_SUFFIXES:
+    if suffix in ASM_SUFFIXES or suffix in LIB_SUFFIXES:
         return "asm"
     raise SystemExit(
         f"matched source has unsupported suffix {suffix or '<none>'}: {source}")
