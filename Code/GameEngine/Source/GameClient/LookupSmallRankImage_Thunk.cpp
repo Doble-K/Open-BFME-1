@@ -1,314 +1,76 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift LookupSmallRankImage to clean C++.
+
+#include "../../../Libraries/Source/WWVegas/WWLib/ascii_string.h"
+
+typedef int Int;
 
 class Image;
-const Image * __cdecl LookupSmallRankImage(int, int);
+
+class MappedImageCollection
+{
+public:
+	const Image *findImageByName(const AsciiString &name);
+};
+
+class RankPoints
+{
+public:
+	Int m_ranks[11];
+};
+
+extern RankPoints *TheRankPointValues;
+extern MappedImageCollection *TheMappedImageCollection;
+
+static __forceinline const char *asciiStringText(const AsciiString &text)
+{
+	void *data = *(void * const *)&text;
+	return data ? (const char *)data + 8 : "";
+}
+
+static const char *rankNames[] = {
+	"Private",
+	"Corporal",
+	"Sergeant",
+	"Lieutenant",
+	"Captain",
+	"Major",
+	"Colonel",
+	"General",
+	"Brigadier",
+	"Commander",
+};
 
 // ?LookupSmallRankImage@@YAPBVImage@@HH@Z
-__declspec(naked) const Image * __cdecl LookupSmallRankImage(int, int)
+const Image * __cdecl LookupSmallRankImage(Int side, Int rankPoints)
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xf0
-        __emit 0xce
-        __emit 0x02
-        __emit 0x01
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x56
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xf7
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xa1
-        __emit 0x1c
-        __emit 0x40
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x04
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x3b
-        __emit 0xca
-        __emit 0x7c
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x04
-        __emit 0x46
-        __emit 0x3b
-        __emit 0xca
-        __emit 0x7d
-        __emit 0xf5
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x0f
-        __emit 0x8c
-        __emit 0xd3
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xfe
-        __emit 0x0a
-        __emit 0x0f
-        __emit 0x8d
-        __emit 0xca
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x68
-        __emit 0xcc
-        __emit 0x2f
-        __emit 0x10
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x24
-        __emit 0xe8
-        __emit 0x80
-        __emit 0xee
-        __emit 0x38
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x83
-        __emit 0xe8
-        __emit 0x02
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x14
-        __emit 0x48
-        __emit 0x74
-        __emit 0x0a
-        __emit 0x48
-        __emit 0x75
-        __emit 0x1c
-        __emit 0x68
-        __emit 0x40
-        __emit 0x0c
-        __emit 0x10
-        __emit 0x01
-        __emit 0xeb
-        __emit 0x0c
-        __emit 0x68
-        __emit 0xc8
-        __emit 0x2f
-        __emit 0x10
-        __emit 0x01
-        __emit 0xeb
-        __emit 0x05
-        __emit 0x68
-        __emit 0x6c
-        __emit 0x1d
-        __emit 0x10
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x24
-        __emit 0xe8
-        __emit 0x46
-        __emit 0xee
-        __emit 0xb2
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x20
-        __emit 0x85
-        __emit 0xc0
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x01
-        __emit 0x74
-        __emit 0x05
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x05
-        __emit 0xb8
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x8b
-        __emit 0x04
-        __emit 0xb5
-        __emit 0xfc
-        __emit 0x6f
-        __emit 0x2b
-        __emit 0x01
-        __emit 0x50
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x68
-        __emit 0xc0
-        __emit 0x2f
-        __emit 0x10
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x14
-        __emit 0xee
-        __emit 0x38
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x3a
-        __emit 0xf2
-        __emit 0x38
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x24
-        __emit 0x69
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x04
-        __emit 0x52
-        __emit 0xe8
-        __emit 0x3d
-        __emit 0x38
-        __emit 0xb2
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x67
-        __emit 0xdb
-        __emit 0x38
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x20
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x56
-        __emit 0xdb
-        __emit 0x38
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
+	if (rankPoints == 0)
+		return 0;
+
+	Int rank = 0;
+	while (rankPoints >= TheRankPointValues->m_ranks[rank + 1])
+		++rank;
+
+	if (rank < 0 || rank >= 10)
+		return 0;
+
+	AsciiString sideStr = "N";
+	switch (side)
+	{
+		case 2:
+			sideStr = "USA";
+			break;
+
+		case 3:
+			sideStr = "CHA";
+			break;
+
+		case 4:
+			sideStr = "GLA";
+			break;
 	}
+
+	AsciiString fullImageName;
+	fullImageName.format("%s-%s", rankNames[rank], asciiStringText(sideStr));
+	return TheMappedImageCollection->findImageByName(fullImageName);
 }
