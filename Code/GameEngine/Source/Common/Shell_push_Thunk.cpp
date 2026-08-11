@@ -1,183 +1,69 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: clean C++ reconstruction of the shell layout push path.
+
+struct AsciiStringData
+{
+	unsigned short m_refCount;
+	unsigned short m_allocated;
+	unsigned short m_length;
+};
 
 class AsciiString
 {
+public:
+	~AsciiString();
+	AsciiString &operator=(const AsciiString &);
+	bool isEmpty() const { return m_data == 0 || m_data->m_length == 0; }
+private:
+	AsciiStringData *m_data;
 };
+
+class WindowLayout
+{
+public:
+	virtual void slot0();
+	virtual void slot1();
+	virtual void slot2();
+	virtual void runShutdown(bool *immediate);
+	unsigned char m_pad[0x10];
+	bool m_hidden;
+};
+
+extern void *TheGameSpyInfo;
+void GameSpyCloseAllOverlays();
 
 class Shell
 {
 public:
-	void push(AsciiString, bool);
+	void push(AsciiString filename, bool shutdownImmediate);
+	void shutdownComplete(WindowLayout *layout, int unknown);
+private:
+	unsigned char m_unknown0[4];
+	WindowLayout *m_screenStack[17];
+	int m_screenCount;
+	bool m_pendingPush;
+	unsigned char m_gap[7];
+	AsciiString m_pendingPushName;
 };
 
-// ?push@Shell@@QAEXVAsciiString@@_N@Z
-__declspec(naked) void Shell::push(AsciiString, bool)
+void Shell::push(AsciiString filename, bool shutdownImmediate)
 {
-	__asm {
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xd8
-		__emit 0x68
-		__emit 0x03
-		__emit 0x01
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x85
-		__emit 0xc0
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x59
-		__emit 0x66
-		__emit 0x83
-		__emit 0x78
-		__emit 0x04
-		__emit 0x00
-		__emit 0x74
-		__emit 0x52
-		__emit 0xa1
-		__emit 0x94
-		__emit 0x71
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x05
-		__emit 0xe8
-		__emit 0xee
-		__emit 0xf4
-		__emit 0xa8
-		__emit 0xff
-		__emit 0x83
-		__emit 0x7e
-		__emit 0x48
-		__emit 0x10
-		__emit 0x7d
-		__emit 0x3e
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x54
-		__emit 0x50
-		__emit 0xc6
-		__emit 0x46
-		__emit 0x4c
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xbc
-		__emit 0x7b
-		__emit 0x30
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x48
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x1b
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x86
-		__emit 0x04
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x13
-		__emit 0x8a
-		__emit 0x41
-		__emit 0x14
-		__emit 0x84
-		__emit 0xc0
-		__emit 0x75
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x11
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x50
-		__emit 0xff
-		__emit 0x52
-		__emit 0x0c
-		__emit 0xeb
-		__emit 0x0b
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0x1c
-		__emit 0x2e
-		__emit 0xa8
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x14
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x2e
-		__emit 0x78
-		__emit 0x30
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x04
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5e
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0xc2
-		__emit 0x08
-		__emit 0x00
-	}
+	if (filename.isEmpty())
+		return;
+
+	if (TheGameSpyInfo)
+		GameSpyCloseAllOverlays();
+
+	if (m_screenCount >= 16)
+		return;
+
+	AsciiString *pendingName = &m_pendingPushName;
+	m_pendingPush = true;
+	*pendingName = filename;
+
+	WindowLayout *currentTop = m_screenCount ? m_screenStack[m_screenCount] : 0;
+	if (currentTop && !currentTop->m_hidden)
+		currentTop->runShutdown(&shutdownImmediate);
+	else
+		shutdownComplete(0, 0);
 }

@@ -68565,6 +68565,8 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?find@MapCache@@QAEPAUMapCacheNode@@ABVAsciiString@@@Z,0x000263D7,isValidMap lookup thunk
 ?setIsLogicalAudio@AudioEventRTS@@QAEX_N@Z,0x00008206,doSoundPlayFromNamed logical-audio ILT thunk
 ?setPlayerIndex@AudioEventRTS@@QAEXH@Z,0x0003AC88,doSoundPlayFromNamed player-index ILT thunk
+?GameSpyCloseAllOverlays@@YAXXZ,0x0000F5AB,Shell push overlay-close thunk
+?shutdownComplete@Shell@@QAEXPAVWindowLayout@@H@Z,0x00002F1D,Shell push immediate-completion thunk
 ?isLocalPlayer@Player@@QBE_NXZ,0x00013877,Player::isLocalPlayer via ILT thunk
 ?setGroup@TransitionHandler@@QAEXVAsciiString@@H@Z,0x00045C28,TransitionHandler::setGroup via ILT thunk
 ?freeBridgeBuffers@W3DBridgeBuffer@@AAEXXZ,0x00003E59,W3DBridgeBuffer::freeBridgeBuffers via ILT thunk
