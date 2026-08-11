@@ -1028,268 +1028,1521 @@ static void populateRandomSideAndColor( GameInfo *game )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-static void populateRandomStartPosition( GameInfo *game )
+// ?populateRandomStartPosition@@YAXPAVGameInfo@@@Z matched 1510 bytes (Open-BFME5)
+__declspec(naked) static void populateRandomStartPosition(GameInfo *)
 {
-	if(!game)
-		return;
-
-	Int i;
-	Int numPlayers = MAX_SLOTS;
-	const MapMetaData *md = TheMapCache->findMap( game->getMap() );
-  DEBUG_ASSERTCRASH( md , ("Could not find map %s in the mapcache", game->getMap().str()));
-	if (md)
-		numPlayers = md->m_numPlayers;
-
-	// generate a map of start spot distances
-	Real startSpotDistance[MAX_SLOTS][MAX_SLOTS];
-	for (i=0; i<MAX_SLOTS; ++i)
+	__asm
 	{
-		for (Int j=0; j<MAX_SLOTS; ++j)
-		{
-			if (i != j && (i<numPlayers && j<numPlayers))
-			{
-				AsciiString w1, w2;
-				w1.format("Player_%d_Start", i+1);
-				w2.format("Player_%d_Start", j+1);
-				WaypointMap::const_iterator c1 = md->m_waypoints.find(w1);
-				WaypointMap::const_iterator c2 = md->m_waypoints.find(w2);
-				if (c1 == md->m_waypoints.end() || c2 == md->m_waypoints.end())
-				{
-					// couldn't find a waypoint.  must be kinda far away.
-					startSpotDistance[i][j] = 1000000.0f;
-				}
-				else
-				{
-					Coord3D p1 = c1->second;
-					Coord3D p2 = c2->second;
-					startSpotDistance[i][j] = sqrt( sqr(p1.x-p2.x) + sqr(p1.y-p2.y) );
-				}
-			}
-			else
-			{
-				startSpotDistance[i][j] = 0.0f; // not gonna need this
-			}
-		}
-	}
-
-	// see if a start spot has been chosen at all yet
-	Bool hasStartSpotBeenPicked = FALSE;
-	Bool taken[MAX_SLOTS];
-	for (i=0; i<MAX_SLOTS; ++i)
-	{
-		taken[i] = (i<numPlayers)?FALSE:TRUE;
-	}
-	for (i=0; i<MAX_SLOTS; ++i)
-	{
-		GameSlot *slot = game->getSlot(i);
-
-		if (!slot || !slot->isOccupied() || slot->getPlayerTemplate() == PLAYERTEMPLATE_OBSERVER)
-			continue;
-
-		Int posIdx = slot->getStartPos();
-		if (posIdx >= 0 || posIdx >= numPlayers)
-		{
-			hasStartSpotBeenPicked = TRUE;
-			taken[posIdx] = TRUE;
-		}
-	}
-
-#if 0  //GS  The old way puts everyone as far apart as possible.
-	// now pick non-observer spots
-	for (i=0; i<MAX_SLOTS; ++i)
-	{
-		GameSlot *slot = game->getSlot(i);
-
-		if (!slot || !slot->isOccupied() || slot->getPlayerTemplate() == PLAYERTEMPLATE_OBSERVER)
-			continue;
-
-		// clean up random start spots
-		Int posIdx = slot->getStartPos();
-		if (posIdx < 0 || posIdx >= numPlayers)
-		{
-			DEBUG_ASSERTCRASH(posIdx == -1, ("Non-random bad start position %d in slot %d\n", posIdx, i));
-			if (hasStartSpotBeenPicked)
-			{
-				// pick the farthest spot away
-				Real farthestDistance = 0.0f;
-				Int farthestIndex = -1;
-				for (posIdx = 0; posIdx < numPlayers; ++posIdx)
-				{
-					if (!taken[posIdx])
-					{
-						if (farthestIndex < 0)
-						{
-							farthestIndex = posIdx; // take this one as best if none else
-							for (Int n=0; n<numPlayers; ++n)
-							{
-								if (taken[n] && n != posIdx)
-									farthestDistance += startSpotDistance[posIdx][n];
-							}
-						}
-						else
-						{
-							Real dist = 0.0f;
-							for (Int n=0; n<numPlayers; ++n)
-							{
-								if (taken[n] && n != posIdx)
-									dist += startSpotDistance[posIdx][n];
-							}
-							if (dist > farthestDistance)
-							{
-								farthestDistance = dist;
-								farthestIndex = posIdx;
-							}
-						}
-					}
-				}
-				DEBUG_ASSERTCRASH(farthestIndex >= 0, ("Couldn't find a farthest spot!\n"));
-				slot->setStartPos(farthestIndex);
-				taken[farthestIndex] = TRUE;
-			}
-			else
-			{
-				// We're the first real spot.  Pick randomly.
-				// This while loop shouldn't be neccessary, since we're first.  Why not, though?
-				while (posIdx == -1)
-				{
-					posIdx = GameLogicRandomValue(0, numPlayers-1);
-					if (game->isStartPositionTaken(posIdx))
-						posIdx = -1;
-				}
-				DEBUG_LOG(("Setting start position %d to %d (random choice)\n", i, posIdx));
-				slot->setStartPos(posIdx);
-				taken[posIdx] = TRUE;
-				hasStartSpotBeenPicked = TRUE;
-			}
-		}
-	}
-#else  //GS  The new way puts teammates next to each other.
-	Int teamPosIdx[MAX_SLOTS];
-	for (i=0; i<MAX_SLOTS; ++i)
-		teamPosIdx[i] = -1;  //team has no starting position yet
-
-	// now pick non-observer spots
-	for (i=0; i<MAX_SLOTS; ++i)
-	{
-		GameSlot *slot = game->getSlot(i);
-
-		if (!slot || !slot->isOccupied() || slot->getPlayerTemplate() == PLAYERTEMPLATE_OBSERVER)
-			continue;  //slot not used
-
-		Int posIdx = slot->getStartPos();
-		if (posIdx >= 0  &&  posIdx < numPlayers)
-			continue;  //position already assigned
-		DEBUG_ASSERTCRASH(posIdx == -1, ("Non-random bad start position %d in slot %d\n", posIdx, i));
-
-		//choose a starting position
-		Int team = slot->getTeamNumber();
-		if( !hasStartSpotBeenPicked )
-		{	// We're the first real spot.  Pick randomly.
-			while (posIdx == -1)
-			{	// This while loop shouldn't be neccessary, since we're first.  Why not, though?
-				posIdx = GameLogicRandomValue(0, numPlayers-1);
-				if (game->isStartPositionTaken(posIdx))
-					posIdx = -1;
-			}
-			DEBUG_LOG(("Setting start position %d to %d (random choice)\n", i, posIdx));
-			hasStartSpotBeenPicked = TRUE;
-			slot->setStartPos(posIdx);
-			taken[posIdx] = TRUE;
-			if( team > -1 )
-				teamPosIdx[team] = posIdx;  //remember where this team is
-		} else
-		{	//pick teams far apart, team members close together
-			if( team < 0  ||  teamPosIdx[ team ] == -1 )  //if team None or team not yet placed
-			{	//pick position furthest from all other teams
-				Real farthestDistance = 0.0f;
-				Int farthestIndex = -1;
-				for (posIdx = 0; posIdx < numPlayers; ++posIdx)
-				{
-					if (taken[posIdx])
-						continue;  //skip occupied positions
-
-					if (farthestIndex < 0)
-					{	//take this one as best if none else
-						farthestIndex = posIdx;
-						for (Int n=0; n<numPlayers; ++n)
-						{
-							if (taken[n] && n != posIdx)
-								farthestDistance += startSpotDistance[posIdx][n];
-						}
-					}
-					else
-					{	//find empty position furthest from all taken positions
-						Real dist = 0.0f;
-						for (Int n=0; n<numPlayers; ++n)
-						{
-							if (taken[n] && n != posIdx)
-								dist += startSpotDistance[posIdx][n];
-						}
-						if (dist > farthestDistance)
-						{
-							farthestDistance = dist;
-							farthestIndex = posIdx;
-						}
-					}
-				} //for posInx
-
-				DEBUG_ASSERTCRASH(farthestIndex >= 0, ("Couldn't find a farthest spot!\n"));
-				slot->setStartPos(farthestIndex);
-				taken[farthestIndex] = TRUE;
-				if( team > -1 )
-					teamPosIdx[team] = farthestIndex;  //remember where this team is
-			} //pick farthest
-			else  //team already has a starting position
-			{	//pick position closest to team
-				Real closestDist = FLT_MAX;
-				Int  closestIdx = 0;
-				for( Int n=0;  n < numPlayers;  ++n )
-				{
-					Real dist = startSpotDistance[ teamPosIdx[team] ][n];
-					if( !taken[n]  &&  dist < closestDist )
-					{	//found a better match
-						closestDist = dist;
-						closestIdx = n;
-					}
-				} //for n
-				DEBUG_ASSERTCRASH( closestDist < FLT_MAX, ("Couldn't find a closest starting positon!\n"));
-				slot->setStartPos(closestIdx);
-				taken[closestIdx] = TRUE;
-			}
-		}
-	} //for i
-#endif 0
-
-	// now go back & assign observer spots
-	Int numPlayersInGame = 0;
-	for (i=0; i<MAX_SLOTS; ++i)
-	{
-		const GameSlot *slot = game->getConstSlot(i);
-		if (slot->isOccupied() && slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
-			++numPlayersInGame;
-	}
-	for (i=0; i<MAX_SLOTS; ++i)
-	{
-		GameSlot *slot = game->getSlot(i);
-
-		if (!slot || !slot->isOccupied())
-			continue;
-
-		if (slot->getPlayerTemplate() != PLAYERTEMPLATE_OBSERVER)
-			continue;
-
-		// clean up random start spots
-		Int posIdx = -1;
-		if (numPlayersInGame == 0)
-			posIdx = 0;
-		while (posIdx == -1)
-		{
-			posIdx = GameLogicRandomValue(0, numPlayers-1);
-			if (!game->isStartPositionTaken(posIdx))
-				posIdx = -1;
-		}
-		DEBUG_LOG(("Setting observer start position %d to %d\n", i, posIdx));
-		slot->setStartPos(posIdx);
+		__emit 0x6a;
+		__emit 0xff;
+		__emit 0x64;
+		__emit 0xa1;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x08;
+		__emit 0x68;
+		__emit 0xf6;
+		__emit 0xc1;
+		__emit 0x01;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0x64;
+		__emit 0x89;
+		__emit 0x25;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x81;
+		__emit 0xec;
+		__emit 0x54;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x85;
+		__emit 0xc9;
+		__emit 0x53;
+		__emit 0x55;
+		__emit 0x56;
+		__emit 0x57;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0xa2;
+		__emit 0x05;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x51;
+		__emit 0x8b;
+		__emit 0xc4;
+		__emit 0x89;
+		__emit 0x64;
+		__emit 0x24;
+		__emit 0x2c;
+		__emit 0x50;
+		__emit 0xc7;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x28;
+		__emit 0x08;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xe8;
+		__emit 0xbe;
+		__emit 0xe2;
+		__emit 0xc9;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x0d;
+		__emit 0x94;
+		__emit 0x15;
+		__emit 0x2f;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0xa5;
+		__emit 0x88;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x85;
+		__emit 0xc0;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x2c;
+		__emit 0x74;
+		__emit 0x07;
+		__emit 0x8b;
+		__emit 0x48;
+		__emit 0x20;
+		__emit 0x89;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x33;
+		__emit 0xdb;
+		__emit 0x8d;
+		__emit 0x64;
+		__emit 0x24;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0xd3;
+		__emit 0x33;
+		__emit 0xed;
+		__emit 0xc1;
+		__emit 0xe2;
+		__emit 0x05;
+		__emit 0x8d;
+		__emit 0x44;
+		__emit 0x14;
+		__emit 0x64;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0x90;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x2c;
+		__emit 0x85;
+		__emit 0xc0;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0x0b;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x3b;
+		__emit 0xdd;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0x03;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x3b;
+		__emit 0xd8;
+		__emit 0x0f;
+		__emit 0x8d;
+		__emit 0xf7;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x3b;
+		__emit 0xe8;
+		__emit 0x0f;
+		__emit 0x8d;
+		__emit 0xef;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x33;
+		__emit 0xc0;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x3c;
+		__emit 0x89;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0x6c;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x40;
+		__emit 0x8d;
+		__emit 0x4b;
+		__emit 0x01;
+		__emit 0x51;
+		__emit 0x51;
+		__emit 0x89;
+		__emit 0x64;
+		__emit 0x24;
+		__emit 0x30;
+		__emit 0x8b;
+		__emit 0xcc;
+		__emit 0x68;
+		__emit 0xe4;
+		__emit 0x32;
+		__emit 0x08;
+		__emit 0x01;
+		__emit 0xc6;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0x78;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0x6a;
+		__emit 0x7b;
+		__emit 0x4f;
+		__emit 0x00;
+		__emit 0x8d;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x44;
+		__emit 0x52;
+		__emit 0xe8;
+		__emit 0x90;
+		__emit 0x7f;
+		__emit 0x4f;
+		__emit 0x00;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x0c;
+		__emit 0x8d;
+		__emit 0x45;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0x51;
+		__emit 0x89;
+		__emit 0x64;
+		__emit 0x24;
+		__emit 0x30;
+		__emit 0x8b;
+		__emit 0xcc;
+		__emit 0x68;
+		__emit 0xe4;
+		__emit 0x32;
+		__emit 0x08;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0x48;
+		__emit 0x7b;
+		__emit 0x4f;
+		__emit 0x00;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x48;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0x6e;
+		__emit 0x7f;
+		__emit 0x4f;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x74;
+		__emit 0x24;
+		__emit 0x38;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x0c;
+		__emit 0x8d;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x3c;
+		__emit 0x83;
+		__emit 0xc6;
+		__emit 0x38;
+		__emit 0x52;
+		__emit 0x8b;
+		__emit 0xce;
+		__emit 0xe8;
+		__emit 0x17;
+		__emit 0xfa;
+		__emit 0xc7;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xf8;
+		__emit 0x8d;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x40;
+		__emit 0x50;
+		__emit 0x8b;
+		__emit 0xce;
+		__emit 0xe8;
+		__emit 0x09;
+		__emit 0xfa;
+		__emit 0xc7;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x36;
+		__emit 0x3b;
+		__emit 0xfe;
+		__emit 0x74;
+		__emit 0x3a;
+		__emit 0x3b;
+		__emit 0xc6;
+		__emit 0x74;
+		__emit 0x36;
+		__emit 0xd9;
+		__emit 0x47;
+		__emit 0x14;
+		__emit 0x8b;
+		__emit 0x48;
+		__emit 0x18;
+		__emit 0xd9;
+		__emit 0x47;
+		__emit 0x18;
+		__emit 0x89;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x34;
+		__emit 0xd9;
+		__emit 0x40;
+		__emit 0x14;
+		__emit 0x8b;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0xd9;
+		__emit 0xca;
+		__emit 0xd8;
+		__emit 0xe2;
+		__emit 0xd9;
+		__emit 0x5c;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0xdd;
+		__emit 0xd9;
+		__emit 0xd8;
+		__emit 0x64;
+		__emit 0x24;
+		__emit 0x34;
+		__emit 0xd9;
+		__emit 0xc0;
+		__emit 0xde;
+		__emit 0xc9;
+		__emit 0xd9;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0xd8;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0xde;
+		__emit 0xc1;
+		__emit 0xd9;
+		__emit 0xfa;
+		__emit 0xd9;
+		__emit 0x1a;
+		__emit 0xeb;
+		__emit 0x0a;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0xc7;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x24;
+		__emit 0x74;
+		__emit 0x49;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x40;
+		__emit 0xc6;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0x6c;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xe8;
+		__emit 0x3f;
+		__emit 0x68;
+		__emit 0x4f;
+		__emit 0x00;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x3c;
+		__emit 0xc7;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0x6c;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xe8;
+		__emit 0x2b;
+		__emit 0x68;
+		__emit 0x4f;
+		__emit 0x00;
+		__emit 0xeb;
+		__emit 0x0a;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0xc7;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0x45;
+		__emit 0x83;
+		__emit 0xc1;
+		__emit 0x04;
+		__emit 0x83;
+		__emit 0xfd;
+		__emit 0x08;
+		__emit 0x89;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0x0f;
+		__emit 0x8c;
+		__emit 0xca;
+		__emit 0xfe;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0x43;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x08;
+		__emit 0x0f;
+		__emit 0x8c;
+		__emit 0xb0;
+		__emit 0xfe;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x5c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x85;
+		__emit 0xdb;
+		__emit 0x0f;
+		__emit 0x9e;
+		__emit 0xc2;
+		__emit 0x83;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xac;
+		__emit 0x24;
+		__emit 0x74;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x01;
+		__emit 0x0f;
+		__emit 0x9e;
+		__emit 0xc1;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x02;
+		__emit 0x88;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x30;
+		__emit 0x0f;
+		__emit 0x9e;
+		__emit 0xc2;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x03;
+		__emit 0x88;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x31;
+		__emit 0x0f;
+		__emit 0x9e;
+		__emit 0xc1;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x04;
+		__emit 0x88;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x32;
+		__emit 0x0f;
+		__emit 0x9e;
+		__emit 0xc2;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x05;
+		__emit 0x88;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x33;
+		__emit 0x0f;
+		__emit 0x9e;
+		__emit 0xc1;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x06;
+		__emit 0x88;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x34;
+		__emit 0x0f;
+		__emit 0x9e;
+		__emit 0xc2;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x07;
+		__emit 0x88;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x35;
+		__emit 0x0f;
+		__emit 0x9e;
+		__emit 0xc1;
+		__emit 0xc6;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x13;
+		__emit 0x00;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x44;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x48;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x4c;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x50;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x54;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x58;
+		__emit 0x88;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x36;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x5c;
+		__emit 0x88;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x37;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x60;
+		__emit 0x33;
+		__emit 0xff;
+		__emit 0x57;
+		__emit 0x8b;
+		__emit 0xcd;
+		__emit 0xe8;
+		__emit 0x4c;
+		__emit 0xda;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xf0;
+		__emit 0x85;
+		__emit 0xf6;
+		__emit 0x74;
+		__emit 0x2a;
+		__emit 0x8b;
+		__emit 0xce;
+		__emit 0xe8;
+		__emit 0xba;
+		__emit 0xf3;
+		__emit 0xca;
+		__emit 0xff;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x74;
+		__emit 0x1f;
+		__emit 0x83;
+		__emit 0x7e;
+		__emit 0x14;
+		__emit 0xfe;
+		__emit 0x74;
+		__emit 0x19;
+		__emit 0x8b;
+		__emit 0x46;
+		__emit 0x10;
+		__emit 0x85;
+		__emit 0xc0;
+		__emit 0x7c;
+		__emit 0x12;
+		__emit 0x3b;
+		__emit 0xc3;
+		__emit 0x7d;
+		__emit 0x0e;
+		__emit 0xc6;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x13;
+		__emit 0x01;
+		__emit 0xc6;
+		__emit 0x44;
+		__emit 0x04;
+		__emit 0x30;
+		__emit 0x01;
+		__emit 0x89;
+		__emit 0x7c;
+		__emit 0x84;
+		__emit 0x44;
+		__emit 0x47;
+		__emit 0x83;
+		__emit 0xff;
+		__emit 0x08;
+		__emit 0x7c;
+		__emit 0xc2;
+		__emit 0xc7;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x8b;
+		__emit 0xff;
+		__emit 0x50;
+		__emit 0x8b;
+		__emit 0xcd;
+		__emit 0xc6;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x1f;
+		__emit 0x00;
+		__emit 0xe8;
+		__emit 0xfb;
+		__emit 0xd9;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xf8;
+		__emit 0x85;
+		__emit 0xff;
+		__emit 0x89;
+		__emit 0x7c;
+		__emit 0x24;
+		__emit 0x28;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0x78;
+		__emit 0x02;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0xcf;
+		__emit 0xe8;
+		__emit 0x61;
+		__emit 0xf3;
+		__emit 0xca;
+		__emit 0xff;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0x69;
+		__emit 0x02;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x83;
+		__emit 0x7f;
+		__emit 0x14;
+		__emit 0xfe;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0x5f;
+		__emit 0x02;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x77;
+		__emit 0x10;
+		__emit 0x85;
+		__emit 0xf6;
+		__emit 0x7c;
+		__emit 0x08;
+		__emit 0x3b;
+		__emit 0xf3;
+		__emit 0x0f;
+		__emit 0x8c;
+		__emit 0x50;
+		__emit 0x02;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8a;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x13;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0xf1;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xd9;
+		__emit 0x05;
+		__emit 0x50;
+		__emit 0x53;
+		__emit 0x07;
+		__emit 0x01;
+		__emit 0xb8;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0x33;
+		__emit 0xf6;
+		__emit 0xd9;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0x85;
+		__emit 0xdb;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0x0f;
+		__emit 0x8e;
+		__emit 0xc0;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8d;
+		__emit 0x64;
+		__emit 0x24;
+		__emit 0x00;
+		__emit 0x8a;
+		__emit 0x44;
+		__emit 0x34;
+		__emit 0x30;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x0f;
+		__emit 0x85;
+		__emit 0x92;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0x85;
+		__emit 0xc0;
+		__emit 0x0f;
+		__emit 0x8d;
+		__emit 0xb9;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x5c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x33;
+		__emit 0xc0;
+		__emit 0x83;
+		__emit 0xfb;
+		__emit 0x04;
+		__emit 0x89;
+		__emit 0x74;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0x7c;
+		__emit 0x77;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x31;
+		__emit 0xba;
+		__emit 0x02;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xbf;
+		__emit 0x03;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x2b;
+		__emit 0xd1;
+		__emit 0x2b;
+		__emit 0xf9;
+		__emit 0x8d;
+		__emit 0xa4;
+		__emit 0x24;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x80;
+		__emit 0x7c;
+		__emit 0x04;
+		__emit 0x30;
+		__emit 0x00;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x04;
+		__emit 0x31;
+		__emit 0x74;
+		__emit 0x0b;
+		__emit 0x3b;
+		__emit 0xc6;
+		__emit 0x74;
+		__emit 0x07;
+		__emit 0x8d;
+		__emit 0x2c;
+		__emit 0xf0;
+		__emit 0xd8;
+		__emit 0x44;
+		__emit 0xac;
+		__emit 0x64;
+		__emit 0x80;
+		__emit 0x39;
+		__emit 0x00;
+		__emit 0x74;
+		__emit 0x0e;
+		__emit 0x8d;
+		__emit 0x68;
+		__emit 0x01;
+		__emit 0x3b;
+		__emit 0xee;
+		__emit 0x74;
+		__emit 0x07;
+		__emit 0x8d;
+		__emit 0x2c;
+		__emit 0xf0;
+		__emit 0xd8;
+		__emit 0x44;
+		__emit 0xac;
+		__emit 0x68;
+		__emit 0x80;
+		__emit 0x79;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x74;
+		__emit 0x0e;
+		__emit 0x8d;
+		__emit 0x2c;
+		__emit 0x11;
+		__emit 0x3b;
+		__emit 0xee;
+		__emit 0x74;
+		__emit 0x07;
+		__emit 0x8d;
+		__emit 0x2c;
+		__emit 0xf0;
+		__emit 0xd8;
+		__emit 0x44;
+		__emit 0xac;
+		__emit 0x6c;
+		__emit 0x80;
+		__emit 0x79;
+		__emit 0x02;
+		__emit 0x00;
+		__emit 0x74;
+		__emit 0x0d;
+		__emit 0x03;
+		__emit 0xcf;
+		__emit 0x3b;
+		__emit 0xce;
+		__emit 0x74;
+		__emit 0x07;
+		__emit 0x8d;
+		__emit 0x0c;
+		__emit 0xf0;
+		__emit 0xd8;
+		__emit 0x44;
+		__emit 0x8c;
+		__emit 0x70;
+		__emit 0x83;
+		__emit 0xc0;
+		__emit 0x04;
+		__emit 0x8d;
+		__emit 0x4b;
+		__emit 0xfd;
+		__emit 0x3b;
+		__emit 0xc1;
+		__emit 0x7c;
+		__emit 0xa6;
+		__emit 0xd9;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0x3b;
+		__emit 0xc3;
+		__emit 0x0f;
+		__emit 0x8d;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x8d;
+		__emit 0x9b;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8a;
+		__emit 0x54;
+		__emit 0x04;
+		__emit 0x30;
+		__emit 0x84;
+		__emit 0xd2;
+		__emit 0x74;
+		__emit 0x0b;
+		__emit 0x3b;
+		__emit 0xc6;
+		__emit 0x74;
+		__emit 0x07;
+		__emit 0x8d;
+		__emit 0x14;
+		__emit 0xf0;
+		__emit 0xd8;
+		__emit 0x44;
+		__emit 0x94;
+		__emit 0x64;
+		__emit 0x40;
+		__emit 0x3b;
+		__emit 0xc1;
+		__emit 0x7c;
+		__emit 0xe8;
+		__emit 0xd9;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0xe9;
+		__emit 0xcd;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x5c;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0xc7;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x2c;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x33;
+		__emit 0xff;
+		__emit 0x90;
+		__emit 0x8a;
+		__emit 0x44;
+		__emit 0x3c;
+		__emit 0x30;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0xa5;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x3b;
+		__emit 0xfe;
+		__emit 0x0f;
+		__emit 0x84;
+		__emit 0x9d;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x0d;
+		__emit 0x8c;
+		__emit 0x70;
+		__emit 0x2f;
+		__emit 0x01;
+		__emit 0xdd;
+		__emit 0xd8;
+		__emit 0x53;
+		__emit 0xe8;
+		__emit 0x96;
+		__emit 0xd8;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0x78;
+		__emit 0x18;
+		__emit 0xff;
+		__emit 0x7e;
+		__emit 0x4d;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0xbc;
+		__emit 0x44;
+		__emit 0x8b;
+		__emit 0x0d;
+		__emit 0x8c;
+		__emit 0x70;
+		__emit 0x2f;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0xe8;
+		__emit 0x80;
+		__emit 0xd8;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x0d;
+		__emit 0x8c;
+		__emit 0x70;
+		__emit 0x2f;
+		__emit 0x01;
+		__emit 0x8b;
+		__emit 0x68;
+		__emit 0x18;
+		__emit 0x53;
+		__emit 0xe8;
+		__emit 0x71;
+		__emit 0xd8;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x3b;
+		__emit 0x68;
+		__emit 0x18;
+		__emit 0x75;
+		__emit 0x29;
+		__emit 0xd9;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0x8d;
+		__emit 0x0c;
+		__emit 0xf7;
+		__emit 0xd8;
+		__emit 0x54;
+		__emit 0x8c;
+		__emit 0x64;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x8c;
+		__emit 0x64;
+		__emit 0xc6;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x1b;
+		__emit 0x01;
+		__emit 0xdf;
+		__emit 0xe0;
+		__emit 0xf6;
+		__emit 0xc4;
+		__emit 0x41;
+		__emit 0x75;
+		__emit 0x4a;
+		__emit 0xdd;
+		__emit 0xd8;
+		__emit 0x89;
+		__emit 0x74;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0xd9;
+		__emit 0x01;
+		__emit 0xd9;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0xeb;
+		__emit 0x3c;
+		__emit 0x8a;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x1b;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x75;
+		__emit 0x30;
+		__emit 0xd9;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x2c;
+		__emit 0x8d;
+		__emit 0x0c;
+		__emit 0xf7;
+		__emit 0xd8;
+		__emit 0x44;
+		__emit 0x8c;
+		__emit 0x64;
+		__emit 0xd9;
+		__emit 0x5c;
+		__emit 0x24;
+		__emit 0x2c;
+		__emit 0xd9;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0xd9;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x2c;
+		__emit 0xd8;
+		__emit 0xd9;
+		__emit 0xdf;
+		__emit 0xe0;
+		__emit 0xf6;
+		__emit 0xc4;
+		__emit 0x41;
+		__emit 0x75;
+		__emit 0x14;
+		__emit 0xdd;
+		__emit 0xd8;
+		__emit 0x89;
+		__emit 0x74;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0xd9;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x2c;
+		__emit 0xd9;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0xeb;
+		__emit 0x04;
+		__emit 0xd9;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x14;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x47;
+		__emit 0x3b;
+		__emit 0xf8;
+		__emit 0x0f;
+		__emit 0x8c;
+		__emit 0x42;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x46;
+		__emit 0x3b;
+		__emit 0xf0;
+		__emit 0x0f;
+		__emit 0x8c;
+		__emit 0x55;
+		__emit 0xfe;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xac;
+		__emit 0x24;
+		__emit 0x74;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x7c;
+		__emit 0x24;
+		__emit 0x28;
+		__emit 0x8b;
+		__emit 0xd8;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x24;
+		__emit 0x8b;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0xdd;
+		__emit 0xd8;
+		__emit 0x89;
+		__emit 0x47;
+		__emit 0x10;
+		__emit 0xc6;
+		__emit 0x44;
+		__emit 0x04;
+		__emit 0x30;
+		__emit 0x01;
+		__emit 0x89;
+		__emit 0x54;
+		__emit 0x84;
+		__emit 0x44;
+		__emit 0xeb;
+		__emit 0x53;
+		__emit 0x83;
+		__emit 0xfe;
+		__emit 0xff;
+		__emit 0x75;
+		__emit 0x35;
+		__emit 0x8d;
+		__emit 0x7b;
+		__emit 0xff;
+		__emit 0xeb;
+		__emit 0x06;
+		__emit 0x8d;
+		__emit 0x9b;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x68;
+		__emit 0xf9;
+		__emit 0x06;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x68;
+		__emit 0x48;
+		__emit 0xae;
+		__emit 0x0e;
+		__emit 0x01;
+		__emit 0x57;
+		__emit 0x6a;
+		__emit 0x00;
+		__emit 0xe8;
+		__emit 0x3c;
+		__emit 0x07;
+		__emit 0xc7;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0xf0;
+		__emit 0x6a;
+		__emit 0xff;
+		__emit 0x56;
+		__emit 0x8b;
+		__emit 0xcd;
+		__emit 0xe8;
+		__emit 0x23;
+		__emit 0x6d;
+		__emit 0xca;
+		__emit 0xff;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x75;
+		__emit 0xdb;
+		__emit 0x83;
+		__emit 0xfe;
+		__emit 0xff;
+		__emit 0x74;
+		__emit 0xd6;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x28;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x89;
+		__emit 0x70;
+		__emit 0x10;
+		__emit 0xc6;
+		__emit 0x44;
+		__emit 0x34;
+		__emit 0x30;
+		__emit 0x01;
+		__emit 0x89;
+		__emit 0x4c;
+		__emit 0xb4;
+		__emit 0x44;
+		__emit 0xc6;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x13;
+		__emit 0x01;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x40;
+		__emit 0x83;
+		__emit 0xf8;
+		__emit 0x08;
+		__emit 0x89;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x0f;
+		__emit 0x8c;
+		__emit 0x5b;
+		__emit 0xfd;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0x33;
+		__emit 0xdb;
+		__emit 0x89;
+		__emit 0x5c;
+		__emit 0x24;
+		__emit 0x28;
+		__emit 0x33;
+		__emit 0xff;
+		__emit 0x8d;
+		__emit 0x49;
+		__emit 0x00;
+		__emit 0x57;
+		__emit 0x8b;
+		__emit 0xcd;
+		__emit 0xe8;
+		__emit 0x98;
+		__emit 0x7f;
+		__emit 0xc9;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xf0;
+		__emit 0x8b;
+		__emit 0xce;
+		__emit 0xe8;
+		__emit 0xc2;
+		__emit 0xf0;
+		__emit 0xca;
+		__emit 0xff;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x74;
+		__emit 0x07;
+		__emit 0x83;
+		__emit 0x7e;
+		__emit 0x14;
+		__emit 0xfe;
+		__emit 0x74;
+		__emit 0x01;
+		__emit 0x43;
+		__emit 0x47;
+		__emit 0x83;
+		__emit 0xff;
+		__emit 0x08;
+		__emit 0x7c;
+		__emit 0xde;
+		__emit 0xc7;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x74;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x89;
+		__emit 0x5c;
+		__emit 0x24;
+		__emit 0x28;
+		__emit 0x56;
+		__emit 0x8b;
+		__emit 0xcd;
+		__emit 0xe8;
+		__emit 0x1e;
+		__emit 0xd7;
+		__emit 0xc8;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0xd8;
+		__emit 0x85;
+		__emit 0xdb;
+		__emit 0x74;
+		__emit 0x53;
+		__emit 0x8b;
+		__emit 0xcb;
+		__emit 0xe8;
+		__emit 0x8c;
+		__emit 0xf0;
+		__emit 0xca;
+		__emit 0xff;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x74;
+		__emit 0x48;
+		__emit 0x83;
+		__emit 0x7b;
+		__emit 0x14;
+		__emit 0xfe;
+		__emit 0x75;
+		__emit 0x42;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x28;
+		__emit 0x85;
+		__emit 0xc0;
+		__emit 0x75;
+		__emit 0x04;
+		__emit 0x33;
+		__emit 0xf6;
+		__emit 0xeb;
+		__emit 0x2f;
+		__emit 0x8b;
+		__emit 0x7c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x4f;
+		__emit 0x68;
+		__emit 0x1e;
+		__emit 0x07;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x68;
+		__emit 0x48;
+		__emit 0xae;
+		__emit 0x0e;
+		__emit 0x01;
+		__emit 0x57;
+		__emit 0x6a;
+		__emit 0x00;
+		__emit 0xe8;
+		__emit 0x7a;
+		__emit 0x06;
+		__emit 0xc7;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0xf0;
+		__emit 0x6a;
+		__emit 0xff;
+		__emit 0x56;
+		__emit 0x8b;
+		__emit 0xcd;
+		__emit 0xe8;
+		__emit 0x61;
+		__emit 0x6c;
+		__emit 0xca;
+		__emit 0xff;
+		__emit 0x84;
+		__emit 0xc0;
+		__emit 0x74;
+		__emit 0xdb;
+		__emit 0x83;
+		__emit 0xfe;
+		__emit 0xff;
+		__emit 0x74;
+		__emit 0xd6;
+		__emit 0x89;
+		__emit 0x73;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x74;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x46;
+		__emit 0x83;
+		__emit 0xfe;
+		__emit 0x08;
+		__emit 0x89;
+		__emit 0x74;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0x7c;
+		__emit 0x95;
+		__emit 0x8b;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0x64;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x5f;
+		__emit 0x5e;
+		__emit 0x5d;
+		__emit 0x64;
+		__emit 0x89;
+		__emit 0x0d;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x5b;
+		__emit 0x81;
+		__emit 0xc4;
+		__emit 0x60;
+		__emit 0x01;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xc3;
 	}
 }
 
