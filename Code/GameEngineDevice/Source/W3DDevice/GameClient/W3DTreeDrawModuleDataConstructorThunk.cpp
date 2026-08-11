@@ -1,205 +1,81 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class W3DTreeDrawModuleData {
-public:
-    W3DTreeDrawModuleData();
-};
-// ??0W3DTreeDrawModuleData@@QAE@XZ
-__declspec(naked) W3DTreeDrawModuleData::W3DTreeDrawModuleData()
+class Buffer
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xe4
-        __emit 0x09
-        __emit 0x05
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0x33
-        __emit 0xdb
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x08
-        __emit 0x5d
-        __emit 0x12
-        __emit 0x01
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x08
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x0c
-        __emit 0xb8
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x28
-        __emit 0x89
-        __emit 0x46
-        __emit 0x10
-        __emit 0x89
-        __emit 0x46
-        __emit 0x14
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x18
-        __emit 0x00
-        __emit 0x00
-        __emit 0x80
-        __emit 0x3f
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x1c
-        __emit 0x89
-        __emit 0x19
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x48
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x04
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x20
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x24
-        __emit 0xe8
-        __emit 0x83
-        __emit 0x85
-        __emit 0x10
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xb8
-        __emit 0x32
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x46
-        __emit 0x40
-        __emit 0x89
-        __emit 0x46
-        __emit 0x4c
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x3d
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x50
-        __emit 0x88
-        __emit 0x5e
-        __emit 0x54
-        __emit 0xc6
-        __emit 0x46
-        __emit 0x3c
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x2c
-        __emit 0xcd
-        __emit 0xcc
-        __emit 0x4c
-        __emit 0x3e
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x30
-        __emit 0x0a
-        __emit 0xd7
-        __emit 0x23
-        __emit 0x3c
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x34
-        __emit 0x9a
-        __emit 0x99
-        __emit 0x99
-        __emit 0x3e
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x38
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3f
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x44
-        __emit 0x00
-        __emit 0x00
-        __emit 0xa0
-        __emit 0x41
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x58
-        __emit 0x05
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x5c
-        __emit 0x69
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x60
-        __emit 0x00
-        __emit 0x00
-        __emit 0x20
-        __emit 0x42
-        __emit 0x8b
-        __emit 0xc6
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+public:
+	Buffer() : m_data(0) {}
+	~Buffer();
+	void clear();
+
+private:
+	void *m_data;
+};
+
+class W3DTreeDrawModuleDataBase
+{
+public:
+	virtual ~W3DTreeDrawModuleDataBase() {}
+
+private:
+	unsigned char m_pad[4];
+};
+
+class W3DTreeDrawModuleData : public W3DTreeDrawModuleDataBase
+{
+public:
+	W3DTreeDrawModuleData();
+	virtual ~W3DTreeDrawModuleData();
+
+private:
+	Buffer m_modelName;
+	Buffer m_textureName;
+	unsigned int m_framesToMoveOutward;
+	unsigned int m_framesToMoveInward;
+	float m_maxOutwardMovement;
+	float m_darkening;
+	void *m_toppleFX;
+	void *m_bounceFX;
+	Buffer m_stumpName;
+	float m_initialVelocityPercent;
+	float m_initialAccelPercent;
+	float m_bounceVelocityPercent;
+	float m_minimumToppleSpeed;
+	bool m_killWhenToppled;
+	bool m_doTopple;
+	unsigned char m_pad3e[2];
+	unsigned int m_sinkFrames;
+	float m_sinkDistance;
+	Buffer m_bfmeName;
+	unsigned int m_bfmeFrames;
+	unsigned int m_bfmeZero;
+	bool m_doShadow;
+	unsigned char m_pad55[3];
+	unsigned int m_bfmeFive;
+	unsigned int m_bfmeHundredFive;
+	float m_bfmeForty;
+};
+
+W3DTreeDrawModuleData::W3DTreeDrawModuleData() :
+	m_framesToMoveOutward(1),
+	m_framesToMoveInward(1),
+	m_maxOutwardMovement(1.0f),
+	m_darkening(0.0f)
+{
+	m_toppleFX = 0;
+	m_bounceFX = 0;
+	m_stumpName.clear();
+	m_killWhenToppled = true;
+	m_doTopple = false;
+	m_bfmeZero = 0;
+	m_doShadow = false;
+	m_initialVelocityPercent = 0.2f;
+	m_initialAccelPercent = 0.01f;
+	m_bounceVelocityPercent = 0.3f;
+	m_minimumToppleSpeed = 0.5f;
+	m_sinkFrames = 50;
+	m_sinkDistance = 20.0f;
+	m_bfmeFrames = 50;
+	m_bfmeFive = 5;
+	m_bfmeHundredFive = 105;
+	m_bfmeForty = 40.0f;
 }
