@@ -15271,7 +15271,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@AudioManager@@,,0x006B8220,953,Code/masm_dumps/_s6__init_AudioManager__6B8220.asm,matched,Exact 953B 'AudioSettings.ini' Open-BFME4+Grok
 ?init@BFMEConnectionManager@@QAEXXZ,,0x00669050,694,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?init@BFMENetwork@@QAEXXZ,,0x006548C0,204,Code/GameEngine/Source/GameNetwork/native_network.cpp,matched,native BFME network wrapper vtable slot +0x04; creates backend and calls backend slot +0x04
-?init@ButtonFlashTransition@@UAEXPAVGameWindow@@@Z,,0x0059B070,161,Code/GameEngine/Source/Common/ButtonFlashTransition_init_Thunk.cpp,matched,ICF true init @0x59B070/161; unique Gradient push; queue 0x5A07ED was int3+other fn
+?init@ButtonFlashTransition@@UAEXPAVGameWindow@@@Z,,0x0059B070,161,Code/GameEngine/Source/Common/ButtonFlashTransition_init_Thunk.cpp,matched,Open-BFME5 clean C++ button flash initialization with exact retail window geometry and Gradient lookup
 ?init@CDManager@@UAEXXZ,,0x00101C30,1,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,slot 1 of the CDManager vtable; one byte so the slot is the evidence not the body
 ?init@CampaignManager@@QAEXXZ,,0x005BB8C0,118,Code/GameEngine/Source/Common/promoted__init_CampaignManager_QAEXXZ_005BB8C0.cpp,matched,clean C++; TU-local INI sized 0x848 and the shim AsciiString for the by-value temporary
 ?init@ControlBar@@UAEXXZ,,0x004A0F70,3660,Code/masm_dumps/_str2__init_ControlBar_UAEXXZ_4A0F70.asm,matched,
@@ -80789,7 +80789,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@BFMEDisconnectManager@@QAEXPAX@Z,,0x0066C8D0,1122,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
 ?update@BoneFXUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x00289580,467,Code/GameEngine/Source/Common/BoneFXUpdate_update_Thunk.cpp,matched,Exact retail MASM; true body 0x289580 size 467 (queue was off-by-one 0x289581/337 compiled size); initTimes@0x2F775 + FX/OCL/PS loops prove BoneFXUpdate::update
 ?update@BridgeBehavior@@UAE?AW4UpdateSleepTime@@XZ,,0x001F38A0,721,Code/GameEngine/Source/Common/BridgeBehavior_updateMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok ParentObject
-?update@ButtonFlashTransition@@UAEXH@Z,,0x0059B070,161,Code/GameEngine/Source/Common/ButtonFlashTransition_updateMethodThunk.cpp,matched,string-anchor Open-BFME4+Grok Gradient
 ?update@CDManager@@UAEXXZ,,0x00101C40,33,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,slot 5 of the CDManager vtable via tools/subsystem_virtuals.py; 33 real bytes so the body proves it too
 ?update@CleanUpState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DeliverPayloadAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?update@ContinueState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ

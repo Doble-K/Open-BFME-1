@@ -1,177 +1,81 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class GameWindow;
-class ButtonFlashTransition
+struct ICoord2D
+{
+	int x;
+	int y;
+};
+
+class AsciiString
+{
+public:
+	AsciiString(const char *);
+	~AsciiString();
+
+private:
+	void *m_data;
+};
+
+class GameWindow
+{
+public:
+	int winGetSize(int *, int *);
+	int winGetScreenPosition(int *, int *);
+};
+
+class Image;
+
+class MappedImageCollection
+{
+public:
+	const Image *findImageByName(const AsciiString &);
+};
+
+extern MappedImageCollection *TheMappedImageCollection;
+
+class Transition
+{
+public:
+	virtual ~Transition();
+	virtual void init(GameWindow *) = 0;
+	virtual void update(int) = 0;
+	virtual void reverse() = 0;
+	virtual void draw() = 0;
+	virtual void skip() = 0;
+
+protected:
+	int m_frameLength;
+	bool m_isFinished;
+	bool m_isForward;
+	bool m_isReversed;
+	unsigned char m_pad0b;
+	GameWindow *m_win;
+};
+
+class ButtonFlashTransition : public Transition
 {
 public:
 	virtual void init(GameWindow *);
+
+protected:
+	ICoord2D m_pos;
+	ICoord2D m_size;
+	int m_drawState;
+	const Image *m_gradient;
 };
 
 // ?init@ButtonFlashTransition@@UAEXPAVGameWindow@@@Z
-__declspec(naked) void ButtonFlashTransition::init(GameWindow *)
+void ButtonFlashTransition::init(GameWindow *win)
 {
-	__asm {
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x88
-		__emit 0x81
-		__emit 0x03
-		__emit 0x01
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x14
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x20
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x1c
-		__emit 0x50
-		__emit 0x8d
-		__emit 0x56
-		__emit 0x18
-		__emit 0x52
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0xe8
-		__emit 0x1c
-		__emit 0xbe
-		__emit 0xa9
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x14
-		__emit 0x50
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x10
-		__emit 0x51
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0xe8
-		__emit 0x9b
-		__emit 0x48
-		__emit 0xa9
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x16
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc6
-		__emit 0x46
-		__emit 0x09
-		__emit 0x00
-		__emit 0xff
-		__emit 0x52
-		__emit 0x08
-		__emit 0x68
-		__emit 0x40
-		__emit 0xc6
-		__emit 0x10
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x18
-		__emit 0xc6
-		__emit 0x46
-		__emit 0x08
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x46
-		__emit 0x09
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xed
-		__emit 0xda
-		__emit 0x2e
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x24
-		__emit 0x69
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x50
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x1b
-		__emit 0x25
-		__emit 0xa8
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x14
-		__emit 0x89
-		__emit 0x46
-		__emit 0x24
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0x41
-		__emit 0xc8
-		__emit 0x2e
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x04
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5e
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
+	if (win) {
+		m_win = win;
+		m_win->winGetSize(&m_size.x, &m_size.y);
+		m_win->winGetScreenPosition(&m_pos.x, &m_pos.y);
 	}
+	m_isForward = false;
+	update(0);
+	m_isFinished = false;
+	m_isForward = true;
+	AsciiString gradient("Gradient");
+	m_gradient = TheMappedImageCollection->findImageByName(gradient);
 }
