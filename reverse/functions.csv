@@ -79602,7 +79602,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?position@MemoryReadFile@@UAEHXZ,,0x009CB180,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?position@MemoryWriteFile@@UAEHXZ,,0x009CB360,4,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?positionProjectileForLaunch@Weapon@@SAXPAVObject@@PBV2@W4WeaponSlotType@@H@Z,,0x001E37F0,55,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
-?postDraw@InGameUI@@UAEXXZ,,0x004469F0,3333,Code/masm_dumps/InGameUI_postDraw_4469F0.asm,matched,Exact MASM unique postDraw format anchors and timer/RMB semantics
+?postDraw@InGameUI@@UAEXXZ,,0x004469F0,3333,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,Open-BFME5 exact retail emits; unique GUI/timer anchors and verified 7-byte SEH tail
 ?postMul@Matrix3D@@QAEXABV1@@Z,,0x001E0E80,338,Code/Libraries/Source/WWVegas/WW3D2/pivot.cpp,matched,
 ?postProcessLoad@W3DDisplayStringManager@@UAEXXZ,,0x006F5890,368,Code/GameEngine/Source/Common/W3DDisplayStringManager_postProcessLoadMethodThunk.cpp,matched,Exact 368B Open-BFME4
 ?postProcessLoad@WeaponStore@@UAEXXZ,,0x0023E5F0,1017,Code/GameEngine/Source/GameLogic/Object/WeaponStorePostProcessLoadThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
