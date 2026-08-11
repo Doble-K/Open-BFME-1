@@ -9420,23 +9420,16 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_D3D_Projection_Matrix@CameraClass@@QAEXPAVMatrix4@@@Z,,0x009323C0,241,Code/Libraries/Source/WWVegas/WW3D2/camera.cpp,matched,RenderObjClass +0x34 (camera shim)
 ?Get_DCG_Source@MeshMatDescClass@@QAE?AW4ColorSourceType@VertexMaterialClass@@H@Z,,0x0096CF50,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ?Get_DX8_Blend_Name@DX8Wrapper@@SAPBDI@Z,,0x00902D40,156,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 156B; row claimed 17B (switch dispatch + case bodies)
-?Get_DX8_Blend_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C00,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
-?Get_DX8_Cmp_Func_Name@DX8Wrapper@@SAPBDI@Z,,0x00902E10,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Cull_Mode_Name@DX8Wrapper@@SAPBDI@Z,,0x00902DE0,37,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Debug_Monitor_Token_Name@DX8Wrapper@@SAPBDI@Z,,0x00902FD0,30,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Fill_Mode_Name@DX8Wrapper@@SAPBDI@Z,,0x00902CE0,37,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
-?Get_DX8_Fog_Mode_Name@DX8Wrapper@@SAPBDI@Z,,0x00902BC0,16,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Material_Source_Name@DX8Wrapper@@SAPBDI@Z,,0x00902F30,39,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Patch_Edge_Style_Name@DX8Wrapper@@SAPBDI@Z,,0x00902FB0,30,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Render_State_Name@DX8Wrapper@@SAPBDK@Z,,0x00873DA0,673,Code/Libraries/Source/WWVegas/WW3D2/DX8WrapperGetRenderStateNameThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_DX8WrapperGetRenderStateName_873DA0
 ?Get_DX8_Render_State_Value_Name@DX8Wrapper@@,,0x009095A0,5155,Code/masm_dumps/_str2__Get_DX8_Render_State_Value_Name_DX8Wrapper__9095A0.asm,matched,
 ?Get_DX8_Render_State_Value_Name@DX8Wrapper@@SAXAAVStringClass@@KI@Z,,0x00907BE0,652,Code/Libraries/Source/WWVegas/WW3D2/DX8WrapperGetRenderStateValueNameThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_DX8WrapperGetRenderStateValueName_907BE0
 ?Get_DX8_Shade_Mode_Name@DX8Wrapper@@SAPBDI@Z,,0x00902D10,37,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
-?Get_DX8_Stencil_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902E10,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
-?Get_DX8_Texture_Address_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C00,17,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Texture_Arg_Name@DX8Wrapper@@SAPBDI@Z,,0x00902B20,157,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 157B; row claimed 23B (switch dispatch + case bodies)
-?Get_DX8_Texture_Filter_Name@DX8Wrapper@@,,0x00902EC0,71,Code/Libraries/Source/WWVegas/WW3D2/DX8WrapperGetDX8TextureFilterNameThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=?Get_DX8_Texture_Filter_Name@DX8Wrapper@@SAPBDI@Z
-?Get_DX8_Texture_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902A00,21,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_DX8_Texture_Stage_State_Value_Name@DX8Wrapper@@,,0x00906FE0,264,Code/Libraries/Source/WWVegas/WW3D2/DX8WrapperGetTextureStageStateValueNameThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_DX8WrapperGetTextureStageStateValueName_906FE0
 ?Get_DX8_Texture_Transform_Flag_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C50,88,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,true size 88B; row claimed 25B (switch dispatch + case bodies)
 ?Get_DX8_Vertex_Blend_Flag_Name@DX8Wrapper@@SAPBDI@Z,,0x00902F60,74,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
@@ -94596,3 +94589,10 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Add_Camera_Shake@W3DView@@UAEXABUCoord3D@@MMM@Z,,0x0073D470,62,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView_AddCameraShakeThunk.cpp,matched,Open-BFME5 exact C++; BFME reaches the shaker through a pointer where ZH uses a global object
 ?Set_NPatches_Level@WW3D@@SAXI@Z,,0x008FD080,87,Code/Libraries/Source/WWVegas/WW3D2/WW3D_SetNPatchesLevelThunk.cpp,matched,Open-BFME5 exact C++; BFME reaches the mesh renderer through a pointer and Invalidate takes a bool
 ?Read@DebugIOCon@@UAEHPADH@Z,,0x00890F80,561,Code/Libraries/Source/debug/debug_io_con.cpp,matched,Open-BFME5 exact C++; BFME declares the console input counters signed where the reference header has them unsigned
+?Get_DX8_Blend_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00903010,53,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; repointed from the 17-byte prefix claim at 0x00902C00 which is the texture-address switch
+?Get_DX8_Texture_Address_Name@DX8Wrapper@@SAPBDI@Z,,0x00902C00,53,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; extended from the 17-byte prefix claim to the whole switch
+?Get_DX8_Texture_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902A00,183,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; extended from the 21-byte prefix claim to the whole switch
+?Get_DX8_Fog_Mode_Name@DX8Wrapper@@SAPBDI@Z,,0x00902E80,46,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; repointed from 0x00902BC0 which is the texture-filter switch prologue
+?Get_DX8_Texture_Filter_Name@DX8Wrapper@@SAPBDI@Z,,0x00902BC0,46,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++ replacing the naked lift; BFME drops the two cubic filter cases
+?Get_DX8_Stencil_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902EC0,71,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; repointed from the 17-byte prefix claim at 0x00902E10 which is the compare-function switch
+?Get_DX8_Cmp_Func_Name@DX8Wrapper@@SAPBDI@Z,,0x00902E10,71,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; extended from the 17-byte prefix claim to the whole switch

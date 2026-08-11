@@ -39,3 +39,4 @@ name,target_rva,reason
 ?getAlternateMouseModeEnabled@OptionPreferences@@QAE_NXZ,0x00092670,name says QAE_NXZ (no stack args) but the body ends ret 4 and assigns a by-value AsciiString into the preference map under the key GameSpyIPAddress; that is setOnlineIPAddress(AsciiString) which the reference header declares
 uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to WorkerAIUpdate_getModuleNameKey_Thunk.cpp and object symbol $L80071 is absent from this translation unit
 ??_GGen_dtor_00426bd0@@UAEPAXI@Z,0x00426BD0,placeholder yields to ??_GEva@@UAEPAXI@Z; the body calls the Eva destructor at 0x00426560 through ILT 0x00026A7B and is slot 0 of the Eva vtable at 0x010F1FA8
+?Get_DX8_Texture_Filter_Name@DX8Wrapper@@,0x00902EC0,wrong address and a naked lift; 0x00902EC0 returns the D3DSTENCILOP_ strings so it is Get_DX8_Stencil_Op_Name. The texture-filter switch is the D3DTEXF_ one at 0x00902BC0 and is now clean C++ in dx8wrapper.cpp

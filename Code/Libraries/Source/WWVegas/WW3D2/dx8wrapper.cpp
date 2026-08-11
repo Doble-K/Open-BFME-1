@@ -4336,10 +4336,19 @@ const char* DX8Wrapper::Get_DX8_Texture_Arg_Name(unsigned value)
 	}
 }
 
-// DX8WrapperGetDX8TextureFilterNameThunk.cpp emits the retail body of
-// Get_DX8_Texture_Filter_Name (?Get_DX8_Texture_Filter_Name@DX8Wrapper@@).
-// Keep the mangled name off the start of a comment line: find_declared_unmatched
-// reads a leading "// ?" as an unmatched marker for the definition below.
+// BFME stops at D3DTEXF_ANISOTROPIC: retail dispatches on "cmp eax, 3", where
+// the reference body's two extra cases (D3DTEXF_FLATCUBIC and
+// D3DTEXF_GAUSSIANCUBIC) would make it 5.
+const char* DX8Wrapper::Get_DX8_Texture_Filter_Name(unsigned value)
+{
+	switch (value) {
+	case D3DTEXF_NONE				: return "D3DTEXF_NONE";
+	case D3DTEXF_POINT			: return "D3DTEXF_POINT";
+	case D3DTEXF_LINEAR			: return "D3DTEXF_LINEAR";
+	case D3DTEXF_ANISOTROPIC	: return "D3DTEXF_ANISOTROPIC";
+	default					      : return "UNKNOWN";
+	}
+}
 
 const char* DX8Wrapper::Get_DX8_Texture_Address_Name(unsigned value)
 {
