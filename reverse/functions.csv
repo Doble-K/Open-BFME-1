@@ -1818,7 +1818,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0DataChunkTableOfContents@@QAE@XZ,,0x001025D0,20,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ??0DebugIOFlat@@QAE@XZ,,0x00890380,90,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ??0DefaultAlphaModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x0001E04C,0x005D4F60,32,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
-??0DefaultAlphaModuleInfo@FXParticleSystem@@QAE@XZ,0x00045D04,0x005EE4C0,102,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultAlphaModuleInfoCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM SEH array ctor
 ??0DefaultColorModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x000354F4,0x005D52E0,60,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0DefaultColorModuleInfo@FXParticleSystem@@QAE@XZ,0x0003832F,0x005EF600,147,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
 ??0DefaultDrawModuleInfo@FXParticleSystem@@QAE@ABV01@@Z,0x0003BB0B,0x005D56A0,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,copy constructor sets vtable pointer
@@ -94590,3 +94589,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?parseProductionVeterancyLevel@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E26C0,170,Code/GameEngine/Source/Common/PlayerTemplate_parseProductionVeterancyLevel_Thunk.cpp,matched,Open-BFME5 clean C++ production-veterancy parser; exact 170-byte retail body
 ??1AIPlayer@@MAE@XZ,,0x001613C0,87,Code/GameEngine/Source/Common/AIPlayerDestructorThunk.cpp,matched,Open-BFME5 clean C++ AIPlayer destructor; exact queue cleanup calls and base vtable transition
 ?getReadyFrame@SpecialPowerModule@@UBEIXZ,,0x0026ABC0,126,Code/GameEngine/Source/Common/SpecialPowerModule_getReadyFrame_Thunk.cpp,matched,Open-BFME5 clean C++ ready-frame calculation with exact BFME subobject offsets and shared-player synchronization
+??0DefaultAlphaModuleInfo@FXParticleSystem@@QAE@XZ,,0x005EE4C0,102,Code/GameEngine/Source/GameClient/System/FXParticleSystem/DefaultAlphaModuleInfoCtorThunk.cpp,matched,Open-BFME5 clean C++ default-alpha constructor with exact snapshot-base SEH and eight keyframe initializations
