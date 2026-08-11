@@ -80849,7 +80849,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@VictoryConditions@@,,0x0035F920,986,Code/masm_dumps/_str__update_VictoryConditions__35F920.asm,matched,
 ?update@W3DProjectedShadow@@QAEXXZ,,0x007B0250,92,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?update@WaterTracksObj@@QAEHH@Z,,0x007AAB80,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
-?update@WaypointMap@@QAEXXZ,,0x00454EF0,366,Code/GameEngine/Source/GameClient/MapUtil_update.asm,matched,MASM exact 366B int3-delimited 0x454EEF/0x45505E; queue 361 + marker 363 both short. C++ blocked ESP SEH frame + AsciiString format by-value overload + out-of-line STLport map ops + StaticNameKey lazy key
+?update@WaypointMap@@QAEXXZ,,0x00454EF0,366,Code/GameEngine/Source/GameClient/MapUtil_update_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_WaypointMapUpdate_454EF0
 ?updateAndDrawWorldAnimations@InGameUI@@IAEXXZ,,0x0043F640,450,Code/GameEngine/Source/Common/InGameUI_updateAndDrawWorldAnimationsMethodThunk.cpp,matched,Exact retail MASM; preDraw caller and world-animation loop prove ownership
 ?updateAnim@ControlBarScheme@@QAEXPAVControlBarSchemeAnimation@@@Z,,0x004AC9B0,19,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp,matched,
 ?updateAnimateWindow@ProcessAnimateWindowSlideFromBottom@@UAE_NPAVAnimateWindow@@@Z,,0x004965B0,238,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindowSlideFromBottom_updateAnimateWindow_Thunk.cpp,matched,Open-BFME-DS04 exact C++ __emit thunk from retail bytes
