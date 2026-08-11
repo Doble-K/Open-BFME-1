@@ -80589,7 +80589,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setUpgradeExecuted@UpgradeMux@@IAEX_N@Z,,0x001EE7D0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp,matched,
 ?setUseStats@GameInfo@@QAEXH@Z,,0x0016A390,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,
 ?setUsesLongGameList@CustomMatchPreferences@@QAEX_N@Z,,0x000ADC40,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesLongGameList_Thunk.cpp,matched,Ghidra-bound BFME long-game-list setter
-?setUsesSystemMapDir@CustomMatchPreferences@@QAEX_N@Z,,0x000ADB60,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesSystemMapDir_Thunk.cpp,matched,Ghidra-bound BFME system-map-directory setter
 ?setVel@AnimateWindow@@QAEXUCoord2D@@@Z,,0x00495630,17,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ?setVerticalSpeed@BridgeScaffoldBehavior@@UAEXM@Z,,0x00160EA0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setVeterancyLevelFlag@@YAIIW4VeterancyLevel@@@Z,,0x000B8DB0,17,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?_M_reallocate_map@?$deque@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@IAEXI_N@Z,,0x009EE360,367,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,drift-report exact-ambiguous; string-anchor disambiguated placement
 ??$__find_if@V?$reverse_iterator@PBD@_STL@@U?$_Not_within_traits@V?$char_traits@D@_STL@@@2@@_STL@@YA?AV?$reverse_iterator@PBD@0@V10@0U?$_Not_within_traits@V?$char_traits@D@_STL@@@0@ABUrandom_access_iterator_tag@0@@Z,,0x00653F30,392,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp,matched,drift-report exact-ambiguous; string-anchor disambiguated placement
 ?ID@?$DynamicVectorClass@VRenderDeviceDescClass@@@@UAEHPBVRenderDeviceDescClass@@@Z,,0x0090B510,36,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,locate.py unique masked-byte placement
+?setUsesSystemMapDir@CustomMatchPreferences@@QAEX_N@Z,,0x000ADB60,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesSystemMapDir_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
