@@ -1,221 +1,63 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: retail-layout C++ conversion of debris nugget parsing.
 
-class INI;
+struct FieldParse;
+extern const FieldParse GenericObjectCreationNuggetCommonFields[];
+extern const FieldParse GenericObjectCreationNuggetDebrisFields[];
 
-class __declspec(novtable) GenericObjectCreationNugget
+class MultiIniFieldParse
 {
 public:
-    static void parseDebris(class INI *, void *, void *, void const *);
+	MultiIniFieldParse()
+	{
+		Count = 0;
+		for (int i = 0; i < 16; ++i) {
+			Offsets[i] = 0;
+			Fields[i] = 0;
+		}
+	}
+	void add(const FieldParse *, unsigned int = 0);
+
+private:
+	const FieldParse *Fields[16];
+	unsigned int Offsets[16];
+	unsigned int Count;
 };
 
-// ?parseDebris@GenericObjectCreationNugget@@SAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void GenericObjectCreationNugget::parseDebris(class INI *, void *, void *, void const *)
+class INI
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x8e
-        __emit 0x9e
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x81
-        __emit 0xec
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x53
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x56
-        __emit 0x89
-        __emit 0x9c
-        __emit 0x24
-        __emit 0x8c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x33
-        __emit 0xc0
-        __emit 0xeb
-        __emit 0x06
-        __emit 0x8d
-        __emit 0x9b
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x84
-        __emit 0x4c
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x84
-        __emit 0x0c
-        __emit 0x40
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x10
-        __emit 0x7c
-        __emit 0xf2
-        __emit 0x53
-        __emit 0x68
-        __emit 0x20
-        __emit 0xf3
-        __emit 0x09
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xe8
-        __emit 0x93
-        __emit 0x5a
-        __emit 0x67
-        __emit 0x00
-        __emit 0x53
-        __emit 0x68
-        __emit 0x78
-        __emit 0xfa
-        __emit 0x09
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xe8
-        __emit 0x84
-        __emit 0x5a
-        __emit 0x67
-        __emit 0x00
-        __emit 0x68
-        __emit 0x48
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x8a
-        __emit 0x70
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x89
-        __emit 0x9c
-        __emit 0x24
-        __emit 0x98
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x0b
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0xe8
-        __emit 0xf2
-        __emit 0xbe
-        __emit 0xe2
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x8b
-        __emit 0x8c
-        __emit 0x24
-        __emit 0xa0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x56
-        __emit 0xc7
-        __emit 0x84
-        __emit 0x24
-        __emit 0xa0
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x88
-        __emit 0x9e
-        __emit 0x14
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x28
-        __emit 0x6a
-        __emit 0x67
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x8c
-        __emit 0x24
-        __emit 0xa4
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0xe8
-        __emit 0x5b
-        __emit 0x5d
-        __emit 0xe6
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x8c
-        __emit 0x24
-        __emit 0x90
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x81
-        __emit 0xc4
-        __emit 0x94
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc3
-    }
+public:
+	void initFromINIMulti(void *, const MultiIniFieldParse &);
+};
+
+class ObjectCreationNugget {};
+
+class GenericObjectCreationNugget : public ObjectCreationNugget
+{
+public:
+	GenericObjectCreationNugget();
+	static void parseDebris(INI *, void *, void *, const void *);
+
+private:
+	char BeforeNameAreObjects[0x114];
+	bool NameAreObjects;
+	char RetailTail[0x33];
+};
+
+class ObjectCreationList
+{
+public:
+	void addObjectCreationNugget(ObjectCreationNugget *);
+};
+
+void GenericObjectCreationNugget::parseDebris(INI *ini, void *instance, void *, const void *)
+{
+	MultiIniFieldParse fields;
+	fields.add(GenericObjectCreationNuggetCommonFields);
+	fields.add(GenericObjectCreationNuggetDebrisFields);
+
+	GenericObjectCreationNugget *nugget = new GenericObjectCreationNugget;
+	nugget->NameAreObjects = false;
+	ini->initFromINIMulti(nugget, fields);
+	((ObjectCreationList *)instance)->addObjectCreationNugget(nugget);
 }
