@@ -68684,3 +68684,7 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 ??1ObjectModule@@UAE@XZ,0x00047C53,Open-BFME5 FireWeaponCollide base destructor ILT pin
 ??1PB_DeepBase@@UAE@XZ,0x00047C53,Open-BFME5 SlaveWatcherBehavior base destructor ILT pin
 ??1W3DProjectileStreamResources@@QAE@XZ,0x00027EAD,Open-BFME5 W3DProjectileStreamDraw resource cleanup ILT pin
+??1GiantBirdNestedTail@@QAE@XZ,0x00021E18,Open-BFME5 GiantBird nested-tail destructor ILT pin
+??1GiantBirdMemberB@@QAE@XZ,0x00013449,Open-BFME5 GiantBird second member destructor ILT pin
+??1GiantBirdMemberA@@QAE@XZ,0x00008B61,Open-BFME5 GiantBird first member destructor ILT pin
+??1GiantBirdAIBase@@UAE@XZ,0x0001C774,Open-BFME5 GiantBird update base destructor ILT pin
