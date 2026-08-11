@@ -1,318 +1,42 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /ICode/Libraries/Source/WWVegas/WWMath /ICode/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/WW3D2 /ICode/Libraries/Source/WWVegas/Wwutil /ICode/Libraries/Source/WWVegas/WWDownload /ICode/Libraries/Source/Compression /ICode/Libraries/Source/WWVegas/WWDebug /Ireference/shims/sweep
+#define Matrix4x4 Matrix4
 
-class Vector3;
-class Line3DClass
+#include "line3d.h"
+
+class RetailScaleDispatch
 {
 public:
-	void Reset(const Vector3 &, const Vector3 &);
+	virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03(); virtual void v04();
+	virtual void v05(); virtual void v06(); virtual void v07(); virtual void v08(); virtual void v09();
+	virtual void v10(); virtual void v11(); virtual void v12(); virtual void v13(); virtual void v14();
+	virtual void v15(); virtual void v16(); virtual void v17(); virtual void v18(); virtual void v19();
+	virtual void v20(); virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+	virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28(); virtual void v29();
+	virtual void v30(); virtual void v31(); virtual void v32(); virtual void v33(); virtual void v34();
+	virtual void v35(); virtual void v36(); virtual void v37(); virtual void v38(); virtual void v39();
+	virtual void v40(); virtual void v41(); virtual void v42(); virtual void v43(); virtual void v44();
+	virtual void v45(); virtual void v46(); virtual void v47(); virtual void v48(); virtual void v49();
+	virtual void v50(); virtual void v51(); virtual void v52(); virtual void v53(); virtual void v54();
+	virtual void v55(); virtual void v56(); virtual void v57(); virtual void v58(); virtual void v59();
+	virtual void v60(); virtual void v61(); virtual void v62(); virtual void v63(); virtual void v64();
+	virtual void v65(); virtual void v66(); virtual void v67(); virtual void v68(); virtual void v69();
+	virtual void v70(); virtual void v71(); virtual void v72(); virtual void v73(); virtual void v74();
+	virtual void v75(); virtual void v76(); virtual void v77(); virtual void v78(); virtual void v79();
+	virtual void v80(); virtual void v81(); virtual void v82(); virtual void v83(); virtual void v84();
+	virtual void v85(); virtual void v86(); virtual void v87(); virtual void v88(); virtual void v89();
+	virtual void Scale(float, float, float);
 };
 
-// ?Reset@Line3DClass@@QAEXABVVector3@@0@Z
-__declspec(naked) void Line3DClass::Reset(const Vector3 &, const Vector3 &)
+void Line3DClass::Reset(const Vector3 &new_start, const Vector3 &new_end)
 {
-	__asm {
-        __emit 0x83
-        __emit 0xec
-        __emit 0x30
-        __emit 0x53
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x38
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x44
-        __emit 0xd9
-        __emit 0x07
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0xd8
-        __emit 0x23
-        __emit 0xd9
-        __emit 0x47
-        __emit 0x04
-        __emit 0xd8
-        __emit 0x63
-        __emit 0x04
-        __emit 0xd9
-        __emit 0x47
-        __emit 0x08
-        __emit 0xd8
-        __emit 0x63
-        __emit 0x08
-        __emit 0xd9
-        __emit 0xc0
-        __emit 0xd8
-        __emit 0xc9
-        __emit 0xd9
-        __emit 0xc2
-        __emit 0xd8
-        __emit 0xcb
-        __emit 0xde
-        __emit 0xc1
-        __emit 0xd9
-        __emit 0xc3
-        __emit 0xd8
-        __emit 0xcc
-        __emit 0xde
-        __emit 0xc1
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x44
-        __emit 0xdd
-        __emit 0xd8
-        __emit 0xdd
-        __emit 0xd8
-        __emit 0xdd
-        __emit 0xd8
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x44
-        __emit 0xd9
-        __emit 0xfa
-        __emit 0xd9
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x40
-        __emit 0xd9
-        __emit 0x05
-        __emit 0x50
-        __emit 0x53
-        __emit 0x07
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x40
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x40
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x44
-        __emit 0xda
-        __emit 0xe9
-        __emit 0xdf
-        __emit 0xe0
-        __emit 0xf6
-        __emit 0xc4
-        __emit 0x44
-        __emit 0x7a
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x44
-        __emit 0x6f
-        __emit 0x12
-        __emit 0x83
-        __emit 0x3a
-        __emit 0xd9
-        __emit 0x44
-        __emit 0x24
-        __emit 0x44
-        __emit 0x8b
-        __emit 0x16
-        __emit 0xd8
-        __emit 0xb6
-        __emit 0xc8
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x68
-        __emit 0x00
-        __emit 0x00
-        __emit 0x80
-        __emit 0x3f
-        __emit 0x68
-        __emit 0x00
-        __emit 0x00
-        __emit 0x80
-        __emit 0x3f
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xd9
-        __emit 0x1c
-        __emit 0x24
-        __emit 0xff
-        __emit 0x92
-        __emit 0x68
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x44
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x57
-        __emit 0x53
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x89
-        __emit 0x86
-        __emit 0xc8
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x00
-        __emit 0x00
-        __emit 0x80
-        __emit 0x3f
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x20
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x28
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x80
-        __emit 0x3f
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x30
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x38
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x3c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x40
-        __emit 0x00
-        __emit 0x00
-        __emit 0x80
-        __emit 0x3f
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x44
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xd0
-        __emit 0x4c
-        __emit 0xf8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x54
-        __emit 0x81
-        __emit 0x66
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xfd
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x84
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x74
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x11
-        __emit 0xff
-        __emit 0x92
-        __emit 0x10
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x30
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-	}
+	float new_length = (new_end - new_start).Length();
+	if (new_length == 0) new_length = 0.001f;
+	((RetailScaleDispatch *)this)->Scale(new_length / Length, 1.0f, 1.0f);
+	Length = new_length;
+	Matrix3D transform(true);
+	transform.Obj_Look_At(new_start, new_end, 0.0);
+	Set_Transform(transform);
+	Invalidate_Cached_Bounding_Volumes();
+	RenderObjClass *container = Get_Container();
+	if (container) container->Update_Obj_Space_Bounding_Volumes();
 }

@@ -10662,7 +10662,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Reset@GridTextureMapperClass@@UAEXXZ,,0x009648F0,52,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ?Reset@HAnimComboClass@@QAEXXZ,,0x00974DC0,95,Code/GameEngine/Source/Common/promoted__Reset_HAnimComboClass_QAEXXZ_00974DC0.cpp,matched,clean C++ conversion; ZH hanim.cpp body; element delete inlines the destructor then frees to an ObjectPoolClass<T 256>; pivot map counted base at +0x18 forces a polymorphic leading base
 ?Reset@HashTableClass@@QAEXXZ,,0x009DFFE0,34,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,true size 34B; row claimed 28B
-?Reset@Line3DClass@@QAEXABVVector3@@0@Z,,0x00951F90,302,Code/Libraries/Source/WWVegas/WW3D2/Line3DClass_Reset_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Reset@Line3DClass@@QAEXABVVector3@@0M@Z,,0x009520C0,336,Code/GameEngine/Source/Common/Line3DClass_Reset_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?Reset@LinearOffsetTextureMapperClass@@UAEXXZ,,0x00966A10,17,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
 ?Reset@ParticleEmitterClass@@QAEXXZ,,0x0097EFF0,145,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?findWeaponTemplate@WeaponStore@@QBEPBVWeaponTemplate@@VAsciiString@@@Z,,0x001E4F50,183,Code/GameEngine/Source/Common/WeaponStore_findWeaponTemplate_Thunk.cpp,matched,Open-BFME5 clean C++ weapon-template lookup with exact BFME AsciiString payload ABI
 ?findDamageFX@DamageFXStore@@QBEPBVDamageFX@@VAsciiString@@@Z,,0x00067440,192,Code/GameEngine/Source/Common/DamageFXStore_findDamageFX_Thunk.cpp,matched,Open-BFME5 clean C++ DamageFX STLport lookup with exact BFME AsciiString payload ABI
 ?setGUICommand@InGameUI@@UAEXPBVCommandButton@@@Z,,0x0043ADE0,212,Code/GameEngine/Source/GameClient/InGameUI_setGUICommand_Thunk.cpp,matched,Open-BFME5 exact C++ retail ABI conversion
+?Reset@Line3DClass@@QAEXABVVector3@@0@Z,,0x00951F90,302,Code/Libraries/Source/WWVegas/WW3D2/Line3DClass_Reset_Thunk.cpp,matched,Open-BFME5 exact C++ Line3D reset
