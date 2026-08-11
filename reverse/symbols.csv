@@ -67695,6 +67695,8 @@ name,address,notes
 ?release@W3DShadowContainerShim@@QAEXXZ,0x0001E344,W3DProjectedShadowManager ReleaseResources container helper shim
 ?releaseBuffer@AsciiString@@IAEXXZ,0x00887940,Ghidra GrabWindowInfo direct callee
 ?releaseBuffer@BFMERetailAsciiString@@AAEXXZ,0x00887940
+?RetailScriptVTable@@3PAPAXA,0x010E858C,Open-BFME5 retail Script vtable value
+?EmptyScript@ScriptList@@0PAVScript@@A,0x012F078C,Open-BFME5 retail ScriptList recovery singleton
 ??0Vector3@@QAE@XZ,0x0004677C,Open-BFME5 ShareBuffer Vector3 default constructor thunk
 ??_7?$ShareBufferClass@VVector3@@@@6B@,0x011135D0,Open-BFME5 ShareBuffer Vector3 retail vtable
 ??0GenericObjectCreationNugget@@QAE@XZ,0x00006DB1,Open-BFME5 parseDebris retail constructor thunk
