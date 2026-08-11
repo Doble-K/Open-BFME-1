@@ -15004,7 +15004,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getRawTileData@WorldHeightMap@@QAE_NFHPAEH@Z,,0x00747D70,217,Code/GameEngineDevice/Source/W3DDevice/GameClient/WorldHeightMap.cpp,matched,clean C++; BFME m_sourceTiles@+0xa4 raw-offset access and NUM_SOURCE_TILES=4096 (retail drift vs ZH header proven from getTerrainColorAt)
 ?getRayEffectData@RayEffectSystem@@QAEXPBVDrawable@@PAURayEffectData@@@Z,,0x005D35F0,42,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
 ?getReadyCommands@NetCommandWrapperList@@QAEPAVNetCommandList@@XZ,,0x00676890,256,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList_getReadyCommands.cpp,matched,
-?getReadyFrame@SpecialPowerModule@@UBEIXZ,,0x0026ABC0,126,Code/GameEngine/Source/Common/SpecialPowerModule_getReadyFrame_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?getReal@Dict@@QBEMW4NameKeyType@@PA_N@Z,,0x00067EC0,56,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?getRealFilename@NetFileAnnounceCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675610,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ?getRealFilename@NetFileCommandMsg@@QAE?AV?$StringBase@D@@XZ,,0x00675450,37,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
@@ -94590,3 +94589,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?MD5Update@@YAXPAUMD5_CTX@@PAEI@Z,,0x0086AE20,185,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,Open-BFME5 canonical C++ conversion using retail intrinsic memcpy
 ?parseProductionVeterancyLevel@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x000E26C0,170,Code/GameEngine/Source/Common/PlayerTemplate_parseProductionVeterancyLevel_Thunk.cpp,matched,Open-BFME5 clean C++ production-veterancy parser; exact 170-byte retail body
 ??1AIPlayer@@MAE@XZ,,0x001613C0,87,Code/GameEngine/Source/Common/AIPlayerDestructorThunk.cpp,matched,Open-BFME5 clean C++ AIPlayer destructor; exact queue cleanup calls and base vtable transition
+?getReadyFrame@SpecialPowerModule@@UBEIXZ,,0x0026ABC0,126,Code/GameEngine/Source/Common/SpecialPowerModule_getReadyFrame_Thunk.cpp,matched,Open-BFME5 clean C++ ready-frame calculation with exact BFME subobject offsets and shared-player synchronization
