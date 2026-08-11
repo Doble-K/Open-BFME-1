@@ -68580,3 +68580,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?construct@DefaultModule6CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000391F3,Default draw module category-6 retail constructor thunk
 ??0GameInfo@@QAE@XZ,0x0002D5BF,SkirmishGameInfo retail base-constructor thunk
 ?findImageByName@MappedImageCollection@@QAEPBVImage@@ABVAsciiString@@@Z,0x0001D606
+?addPublicBone@ModelConditionInfo@@QBEXABVAsciiString@@@Z,0x00005BCD
