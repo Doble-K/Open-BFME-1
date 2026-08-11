@@ -80773,7 +80773,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@AIFollowPathState@@UAE?AW4StateReturnType@@XZ,,0x00179150,809,Code/masm_dumps/AIFollowPathState_update.asm,matched,
 ?update@AIFollowWaypointPathExactState@@UAE?AW4StateReturnType@@XZ,,0x0017AE10,35,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?update@AIFollowWaypointPathState@@UAE?AW4StateReturnType@@XZ,,0x001888D9,794,Code/GameEngine/Source/GameLogic/AI/AIFollowWaypointPathState_update_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_AIFollowWaypointPathState_update_1888D9
-?update@AIHuntState@@UAE?AW4StateReturnType@@XZ,,0x0017E480,800,Code/masm_dumps/AIHuntState_update_17E480.asm,matched,Certified packet 152 exact retail MASM SHA256 80b88dde9572dbde5a8ad4b63b7d6ec0817a76928ab797f5922d383a00fad311
+?update@AIHuntState@@UAE?AW4StateReturnType@@XZ,,0x0017E480,800,Code/GameEngine/Source/GameLogic/AI/AIHuntState_update_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_AIHuntState_update_17E480
 ?update@AIInternalMoveToState@@UAE?AW4StateReturnType@@XZ,,0x000488F6,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIInternalMoveToState update
 ?update@AIMoveAndDeleteState@@UAE?AW4StateReturnType@@XZ,,0x0017A530,152,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?update@AIMoveOutOfTheWayState@@UAE?AW4StateReturnType@@XZ,,0x00173A10,5,Code/GameEngine/Source/GameLogic/AI/AIInternalMoveToStateThunks.cpp,matched,Focused C++ thunk for AIMoveOutOfTheWayState update
