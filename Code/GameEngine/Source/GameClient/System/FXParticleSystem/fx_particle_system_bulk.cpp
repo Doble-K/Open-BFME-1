@@ -651,6 +651,25 @@ public:
     void construct();
 };
 
+class StreakDrawModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+class StreakDrawModuleAllocation {
+public:
+    __forceinline StreakDrawModuleAllocation(TrackingPtr<ParticleSystem> &sys, const void *source)
+    {
+        ((StreakDrawModuleCtorShim *)this)->construct(sys, source);
+        *(volatile unsigned int *)this = 0x01111df0;
+        *(volatile unsigned int *)((unsigned char *)this + 0x14) = 0x01111dec;
+        *(volatile unsigned int *)((unsigned char *)this + 0x18) = 0x01111dd8;
+    }
+
+private:
+    unsigned char m_storage[0x1c];
+};
+
 class StreakDrawTemplateParseShim {
 public:
     void parse(INI *ini);
@@ -9227,7 +9246,8 @@ StreakDrawModuleTemplate *ConcreteModuleTemplate<ModuleTag<6, STREAK_DRAW_MODULE
 }
 
 // ?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$05$E?STREAK_DRAW_MODULE_KEY@FXParticleSystem@@3QBDB$E?STREAK_DRAW_MODULE_NAME@2@3QBDBVStreakDrawModule@2@VStreakDrawModuleTemplate@2@V?$DefaultParticleModule@$05@2@V?$DefaultParticleModuleTemplate@$05@2@@FXParticleSystem@@@FXParticleSystem@@UAEPAVStreakDrawModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
-__declspec(naked) StreakDrawModule *ConcreteModuleTemplate<ModuleTag<6, STREAK_DRAW_MODULE_KEY, STREAK_DRAW_MODULE_NAME, StreakDrawModule, StreakDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::createModule(TrackingPtr<ParticleSystem> &sys)
+#if 0
+__declspec(noinline) StreakDrawModule *ConcreteModuleTemplate<ModuleTag<6, STREAK_DRAW_MODULE_KEY, STREAK_DRAW_MODULE_NAME, StreakDrawModule, StreakDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::createModule(TrackingPtr<ParticleSystem> &sys)
 {
     __asm {
         __emit 0x6a
@@ -9337,6 +9357,13 @@ __declspec(naked) StreakDrawModule *ConcreteModuleTemplate<ModuleTag<6, STREAK_D
         __emit 0x04
         __emit 0x00
     }
+}
+
+#endif
+
+StreakDrawModule *ConcreteModuleTemplate<ModuleTag<6, STREAK_DRAW_MODULE_KEY, STREAK_DRAW_MODULE_NAME, StreakDrawModule, StreakDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::createModule(TrackingPtr<ParticleSystem> &sys)
+{
+    return (StreakDrawModule *)new StreakDrawModuleAllocation(sys, this);
 }
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
