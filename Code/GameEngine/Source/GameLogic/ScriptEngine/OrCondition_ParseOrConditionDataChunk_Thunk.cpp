@@ -1,193 +1,76 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: retail OrCondition chunky parser in C++.
 
+class AsciiString
+{
+public:
+	AsciiString(const char *text);
+	~AsciiString();
+private:
+	unsigned int m_data;
+};
+
+class OrConditionAllocation
+{
+public:
+	__forceinline OrConditionAllocation()
+	{
+		m_vtable = 0x010e84d8;
+		m_next = 0;
+		m_first = 0;
+	}
+private:
+	unsigned int m_vtable;
+public:
+	OrConditionAllocation *m_next;
+private:
+	void *m_first;
+};
+
+struct DataChunkInfo { AsciiString label; };
 class DataChunkInput;
-struct DataChunkInfo;
+typedef bool (__cdecl *ChunkParser)(DataChunkInput &, DataChunkInfo *, void *);
+
+class DataChunkInput
+{
+public:
+	void registerParser(const AsciiString &name, const AsciiString &parent, ChunkParser parser, void *user_data);
+	bool parse(void *instance);
+};
+
+class ScriptLayout
+{
+public:
+	unsigned char m_prefix[0x1c];
+	OrConditionAllocation *m_or_condition;
+};
+
+class Condition
+{
+public:
+	static bool __cdecl ParseConditionDataChunk(DataChunkInput &, DataChunkInfo *, void *);
+};
+
 class OrCondition
 {
 public:
 	static bool __cdecl ParseOrConditionDataChunk(DataChunkInput &, DataChunkInfo *, void *);
 };
 
-// ?ParseOrConditionDataChunk@OrCondition@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z
-__declspec(naked) bool __cdecl OrCondition::ParseOrConditionDataChunk(DataChunkInput &, DataChunkInfo *, void *)
+bool __cdecl OrCondition::ParseOrConditionDataChunk(DataChunkInput &file, DataChunkInfo *info, void *user_data)
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xc8
-        __emit 0x96
-        __emit 0x01
-        __emit 0x01
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0x12
-        __emit 0x68
-        __emit 0x52
-        __emit 0x00
-        __emit 0x33
-        __emit 0xf6
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x74
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x00
-        __emit 0xd8
-        __emit 0x84
-        __emit 0x0e
-        __emit 0x01
-        __emit 0x89
-        __emit 0x70
-        __emit 0x04
-        __emit 0x89
-        __emit 0x70
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x42
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x74
-        __emit 0x0d
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xce
-        __emit 0x74
-        __emit 0x60
-        __emit 0x8b
-        __emit 0xc1
-        __emit 0x3b
-        __emit 0xc6
-        __emit 0x75
-        __emit 0xf3
-        __emit 0x89
-        __emit 0x7a
-        __emit 0x1c
-        __emit 0x68
-        __emit 0x28
-        __emit 0xe0
-        __emit 0x09
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x24
-        __emit 0xe8
-        __emit 0x5e
-        __emit 0xd4
-        __emit 0x52
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x56
-        __emit 0x68
-        __emit 0x92
-        __emit 0x92
-        __emit 0x44
-        __emit 0x00
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x20
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x50
-        __emit 0xa4
-        __emit 0xcb
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x20
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xae
-        __emit 0xc1
-        __emit 0x52
-        __emit 0x00
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x60
-        __emit 0xd4
-        __emit 0xcc
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5f
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0xc3
-        __emit 0x89
-        __emit 0x78
-        __emit 0x04
-        __emit 0xeb
-        __emit 0xa4
+	OrConditionAllocation *condition = new OrConditionAllocation;
+	ScriptLayout *script = (ScriptLayout *)user_data;
+	OrConditionAllocation *last = script->m_or_condition;
+	while (last && last->m_next)
+		last = last->m_next;
+	if (last)
+		last->m_next = condition;
+	else
+		script->m_or_condition = condition;
+	{
+		AsciiString name("Condition");
+		file.registerParser(name, info->label, Condition::ParseConditionDataChunk, 0);
 	}
+	return file.parse(condition);
 }

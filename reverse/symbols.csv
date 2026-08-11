@@ -68653,3 +68653,5 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?parse@LineEmissionVolumeTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x00033807,Open-BFME5 LineEmissionVolumeTemplate retail parser
 ?parse@LifeEventTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0003F553,Open-BFME5 LifeEventModuleTemplate retail parser
 ?parse@OrthoEmissionVelocityTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002FEEB,Open-BFME5 OrthoEmissionVelocityTemplate retail parser
+?registerParser@DataChunkInput@@QAEXABVAsciiString@@0P6A_NAAV1@PAUDataChunkInfo@@PAX@Z3@Z,0x00015BD1,Open-BFME5 DataChunkInput parser registration ILT
+?ParseConditionDataChunk@Condition@@SA_NAAVDataChunkInput@@PAUDataChunkInfo@@PAX@Z,0x00449292,Open-BFME5 Condition parser function pointer
