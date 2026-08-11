@@ -80472,7 +80472,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setPositions@BridgeScaffoldBehavior@@UAEXPBUCoord3D@@00@Z,,0x001F5860,74,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeScaffoldBehavior.cpp,matched,
 ?setPreAttackFinishedFrame@Weapon@@QAEXI@Z,,0x00674240,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,ICF alias of existing matched body
 ?setPreferredColor@CustomMatchPreferences@@QAEXH@Z,,0x000ADE00,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setPreferredColor_Thunk.cpp,matched,multi-xref Open-BFME4+Grok DisallowAsianText
-?setPreferredFaction@CustomMatchPreferences@@QAEXH@Z,,0x000ADA80,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setPreferredFaction_Thunk.cpp,matched,Ghidra-bound BFME preferred-faction setter
 ?setPrep@Dict@@AAEPAUDictPair@1@W4NameKeyType@@W4DataType@1@@Z,,0x00068760,90,Code/GameEngine/Source/Common/Dict.cpp,matched,
 ?setProducer@Object@@QAEXPBV1@@Z,,0x001BE450,25,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setProfileID@GameSpyGameSlot@@QAEXH@Z,,0x001A19C0,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?setUsesLongGameList@CustomMatchPreferences@@QAEX_N@Z,,0x000ADC40,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesLongGameList_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
 ?setAllowsObserver@CustomMatchPreferences@@QAEX_N@Z,,0x000ADD20,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setAllowsObserver_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
 ?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADEE0,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setDisallowNonAsianText_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
+?setPreferredFaction@CustomMatchPreferences@@QAEXH@Z,,0x000ADA80,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setPreferredFaction_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 169-byte retail setter
