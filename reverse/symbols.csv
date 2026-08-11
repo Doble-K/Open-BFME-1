@@ -68623,3 +68623,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?markMPLocalDefeatWindowShown@ScriptEngine@@QAEXXZ,0x00002ACC,local defeat retail ILT
 ?doDisableInput@ScriptActions@@IAEXXZ,0x00039595,defeat action retail ILT
 ?BfmeShouldShowGameOverEvent@@YA_NXZ,0x000271AB,BFME defeat event selector ILT
+?construct@QuadDrawModuleCtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00047AAF,Open-BFME5 QuadDrawModule retail constructor
