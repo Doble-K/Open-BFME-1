@@ -1643,262 +1643,779 @@ Particle *ParticleSystem::createParticle( const ParticleInfo *info,
 // ------------------------------------------------------------------------------------------------
 /** Update this particle system, potentially generating new particles */
 // ------------------------------------------------------------------------------------------------
-// ?update@ParticleSystem@@UAE_NH@Z present-unmatched
-Bool ParticleSystem::update( Int localPlayerIndex  )
+// ?update@ParticleSystem@@UAE_NH@Z matched 767 bytes (Open-BFME5)
+__declspec(naked) Bool ParticleSystem::update( Int )
 {
-	if (TheGlobalData->m_useFX == FALSE)
-		return false;
-
-	// do initial delay ... note, this currently delays the lifetime
-	if (m_delayLeft)
+	__asm
 	{
-		--m_delayLeft;
-
-		// system actually "starts" once initial delay is over
-		/// @todo reset start time when system is stopped/started
-		if (m_delayLeft == 0)
-			m_startTimestamp = TheGameClient->getFrame();
-
-		return true;
+		__emit 0x6a;
+		__emit 0xff;
+		__emit 0x68;
+		__emit 0x26;
+		__emit 0xcc;
+		__emit 0x03;
+		__emit 0x01;
+		__emit 0x64;
+		__emit 0xa1;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x50;
+		__emit 0x64;
+		__emit 0x89;
+		__emit 0x25;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x81;
+		__emit 0xec;
+		__emit 0xdc;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x56;
+		__emit 0x57;
+		__emit 0x8b;
+		__emit 0xbc;
+		__emit 0x24;
+		__emit 0xf4;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8d;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x50;
+		__emit 0x8b;
+		__emit 0xf1;
+		__emit 0x57;
+		__emit 0x56;
+		__emit 0xe8;
+		__emit 0x49;
+		__emit 0x94;
+		__emit 0xa4;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x0c;
+		__emit 0x6a;
+		__emit 0x01;
+		__emit 0x6a;
+		__emit 0x10;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x1c;
+		__emit 0xe8;
+		__emit 0x8a;
+		__emit 0xef;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x46;
+		__emit 0x0c;
+		__emit 0x83;
+		__emit 0xf8;
+		__emit 0x01;
+		__emit 0xc7;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xec;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x74;
+		__emit 0x22;
+		__emit 0x8b;
+		__emit 0x94;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x8d;
+		__emit 0x0c;
+		__emit 0x85;
+		__emit 0x44;
+		__emit 0x02;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x51;
+		__emit 0x68;
+		__emit 0xd8;
+		__emit 0x91;
+		__emit 0x08;
+		__emit 0x01;
+		__emit 0x52;
+		__emit 0x8d;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x50;
+		__emit 0xe8;
+		__emit 0x7c;
+		__emit 0x0d;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4e;
+		__emit 0x10;
+		__emit 0x81;
+		__emit 0xf9;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x40;
+		__emit 0x8d;
+		__emit 0x46;
+		__emit 0x10;
+		__emit 0x74;
+		__emit 0x1b;
+		__emit 0x8b;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x50;
+		__emit 0x68;
+		__emit 0x54;
+		__emit 0x47;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x51;
+		__emit 0x8d;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x52;
+		__emit 0xe8;
+		__emit 0xda;
+		__emit 0x08;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4e;
+		__emit 0x14;
+		__emit 0x81;
+		__emit 0xf9;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x96;
+		__emit 0x42;
+		__emit 0x8d;
+		__emit 0x46;
+		__emit 0x14;
+		__emit 0x74;
+		__emit 0x1b;
+		__emit 0x50;
+		__emit 0x8b;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xfc;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x68;
+		__emit 0x38;
+		__emit 0x47;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0xb1;
+		__emit 0x08;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4e;
+		__emit 0x18;
+		__emit 0x81;
+		__emit 0xf9;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x48;
+		__emit 0x43;
+		__emit 0x8d;
+		__emit 0x46;
+		__emit 0x18;
+		__emit 0x74;
+		__emit 0x1b;
+		__emit 0x8b;
+		__emit 0x94;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x50;
+		__emit 0x68;
+		__emit 0x1c;
+		__emit 0x47;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x52;
+		__emit 0x8d;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x50;
+		__emit 0xe8;
+		__emit 0x88;
+		__emit 0x08;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4e;
+		__emit 0x24;
+		__emit 0x81;
+		__emit 0xf9;
+		__emit 0x9a;
+		__emit 0x99;
+		__emit 0x19;
+		__emit 0x3e;
+		__emit 0x8d;
+		__emit 0x46;
+		__emit 0x24;
+		__emit 0x74;
+		__emit 0x1b;
+		__emit 0x8b;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x50;
+		__emit 0x68;
+		__emit 0x04;
+		__emit 0x47;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x51;
+		__emit 0x8d;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x52;
+		__emit 0xe8;
+		__emit 0x5f;
+		__emit 0x08;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4e;
+		__emit 0x28;
+		__emit 0x81;
+		__emit 0xf9;
+		__emit 0x66;
+		__emit 0x66;
+		__emit 0xe6;
+		__emit 0x3e;
+		__emit 0x8d;
+		__emit 0x46;
+		__emit 0x28;
+		__emit 0x74;
+		__emit 0x1b;
+		__emit 0x50;
+		__emit 0x8b;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xfc;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x68;
+		__emit 0xec;
+		__emit 0x46;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0x36;
+		__emit 0x08;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0xd9;
+		__emit 0x05;
+		__emit 0x50;
+		__emit 0x53;
+		__emit 0x07;
+		__emit 0x01;
+		__emit 0x8d;
+		__emit 0x4e;
+		__emit 0x30;
+		__emit 0xd9;
+		__emit 0x01;
+		__emit 0xda;
+		__emit 0xe9;
+		__emit 0xdf;
+		__emit 0xe0;
+		__emit 0xf6;
+		__emit 0xc4;
+		__emit 0x44;
+		__emit 0x7b;
+		__emit 0x1b;
+		__emit 0x8b;
+		__emit 0x94;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x51;
+		__emit 0x68;
+		__emit 0xcc;
+		__emit 0x46;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x52;
+		__emit 0x8d;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x50;
+		__emit 0xe8;
+		__emit 0x07;
+		__emit 0x08;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4e;
+		__emit 0x34;
+		__emit 0x81;
+		__emit 0xf9;
+		__emit 0xdb;
+		__emit 0x0f;
+		__emit 0x49;
+		__emit 0x3f;
+		__emit 0x8d;
+		__emit 0x46;
+		__emit 0x34;
+		__emit 0x74;
+		__emit 0x1b;
+		__emit 0x8b;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x50;
+		__emit 0x68;
+		__emit 0xac;
+		__emit 0x46;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x51;
+		__emit 0x8d;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x52;
+		__emit 0xe8;
+		__emit 0xde;
+		__emit 0x07;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4e;
+		__emit 0x3c;
+		__emit 0x81;
+		__emit 0xf9;
+		__emit 0xe0;
+		__emit 0xed;
+		__emit 0xaf;
+		__emit 0x40;
+		__emit 0x8d;
+		__emit 0x46;
+		__emit 0x3c;
+		__emit 0x74;
+		__emit 0x1b;
+		__emit 0x50;
+		__emit 0x8b;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xfc;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x68;
+		__emit 0x90;
+		__emit 0x46;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0xb5;
+		__emit 0x07;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4e;
+		__emit 0x40;
+		__emit 0x81;
+		__emit 0xf9;
+		__emit 0xdb;
+		__emit 0x0f;
+		__emit 0xc9;
+		__emit 0x40;
+		__emit 0x8d;
+		__emit 0x46;
+		__emit 0x40;
+		__emit 0x74;
+		__emit 0x1b;
+		__emit 0x8b;
+		__emit 0x94;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x50;
+		__emit 0x68;
+		__emit 0x74;
+		__emit 0x46;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x52;
+		__emit 0x8d;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x50;
+		__emit 0xe8;
+		__emit 0x8c;
+		__emit 0x07;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0xd9;
+		__emit 0x05;
+		__emit 0x50;
+		__emit 0x53;
+		__emit 0x07;
+		__emit 0x01;
+		__emit 0x8d;
+		__emit 0x4e;
+		__emit 0x48;
+		__emit 0xd9;
+		__emit 0x01;
+		__emit 0xda;
+		__emit 0xe9;
+		__emit 0xdf;
+		__emit 0xe0;
+		__emit 0xf6;
+		__emit 0xc4;
+		__emit 0x44;
+		__emit 0x7b;
+		__emit 0x1b;
+		__emit 0x51;
+		__emit 0x8b;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0xfc;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x68;
+		__emit 0x5c;
+		__emit 0x46;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x51;
+		__emit 0x8d;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x52;
+		__emit 0xe8;
+		__emit 0x5d;
+		__emit 0x07;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0xd9;
+		__emit 0x05;
+		__emit 0x50;
+		__emit 0x53;
+		__emit 0x07;
+		__emit 0x01;
+		__emit 0x8d;
+		__emit 0x4e;
+		__emit 0x4c;
+		__emit 0xd9;
+		__emit 0x01;
+		__emit 0xda;
+		__emit 0xe9;
+		__emit 0xdf;
+		__emit 0xe0;
+		__emit 0xf6;
+		__emit 0xc4;
+		__emit 0x44;
+		__emit 0x7b;
+		__emit 0x1b;
+		__emit 0x8b;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x51;
+		__emit 0x68;
+		__emit 0x44;
+		__emit 0x46;
+		__emit 0x11;
+		__emit 0x01;
+		__emit 0x50;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x20;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0x2e;
+		__emit 0x07;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x10;
+		__emit 0x8d;
+		__emit 0x54;
+		__emit 0x24;
+		__emit 0x08;
+		__emit 0x52;
+		__emit 0x8d;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x18;
+		__emit 0xe8;
+		__emit 0xb9;
+		__emit 0xd4;
+		__emit 0xa1;
+		__emit 0xff;
+		__emit 0x8b;
+		__emit 0x08;
+		__emit 0x8b;
+		__emit 0x40;
+		__emit 0x04;
+		__emit 0x8b;
+		__emit 0x17;
+		__emit 0x2b;
+		__emit 0xc1;
+		__emit 0x50;
+		__emit 0x51;
+		__emit 0x8b;
+		__emit 0xcf;
+		__emit 0xc6;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xf4;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x01;
+		__emit 0xff;
+		__emit 0x52;
+		__emit 0x10;
+		__emit 0x8b;
+		__emit 0x4c;
+		__emit 0x24;
+		__emit 0x08;
+		__emit 0x8b;
+		__emit 0x44;
+		__emit 0x24;
+		__emit 0x10;
+		__emit 0x2b;
+		__emit 0xc1;
+		__emit 0x85;
+		__emit 0xc9;
+		__emit 0xc6;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xec;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x74;
+		__emit 0x1c;
+		__emit 0x3d;
+		__emit 0x80;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x76;
+		__emit 0x0b;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0x08;
+		__emit 0x29;
+		__emit 0x28;
+		__emit 0x00;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x04;
+		__emit 0xeb;
+		__emit 0x0a;
+		__emit 0x50;
+		__emit 0x51;
+		__emit 0xe8;
+		__emit 0x3c;
+		__emit 0xf0;
+		__emit 0x22;
+		__emit 0x00;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x08;
+		__emit 0x8d;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0xf8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x51;
+		__emit 0x57;
+		__emit 0xe8;
+		__emit 0xc7;
+		__emit 0x6b;
+		__emit 0xa4;
+		__emit 0xff;
+		__emit 0x83;
+		__emit 0xc4;
+		__emit 0x08;
+		__emit 0x8d;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0x84;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xc7;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0xec;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xff;
+		__emit 0xe8;
+		__emit 0x9b;
+		__emit 0xa2;
+		__emit 0xa2;
+		__emit 0xff;
+		__emit 0x8d;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0x84;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xc7;
+		__emit 0x84;
+		__emit 0x24;
+		__emit 0x84;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xc4;
+		__emit 0xeb;
+		__emit 0x12;
+		__emit 0x01;
+		__emit 0xe8;
+		__emit 0x3a;
+		__emit 0x01;
+		__emit 0x24;
+		__emit 0x00;
+		__emit 0x8b;
+		__emit 0x8c;
+		__emit 0x24;
+		__emit 0xe4;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x5f;
+		__emit 0x5e;
+		__emit 0x64;
+		__emit 0x89;
+		__emit 0x0d;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x81;
+		__emit 0xc4;
+		__emit 0xe8;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0x00;
+		__emit 0xc2;
+		__emit 0x08;
+		__emit 0x00;
 	}
-
-	// update the wind motion
-	if (m_windMotion != ParticleSystemInfo::WIND_MOTION_NOT_USED )
-		updateWindMotion();
-
-	// if this system is attached to a Drawable/Object, update the current transform
-	// matrix so generated particles' are relative to the parent Drawable's
-	// position and orientation
-	Bool transformSet = false;
-	const Matrix3D *parentXfrm = NULL;
-	Bool isShrouded = false;
-
-	if (m_attachedToDrawableID)
-	{
-		Drawable *attachedTo = TheGameClient->findDrawableByID( m_attachedToDrawableID );
-
-		if (attachedTo)
-		{
-			if (attachedTo->getFullyObscuredByShroud())
-				isShrouded = true;
-
-			parentXfrm = attachedTo->getTransformMatrix();
-
-			m_lastPos = m_pos;
-			m_pos = *attachedTo->getPosition();
-		}
-		else
-		{ 
-			// Drawable has been destroyed - lose our attachment to it
-			m_attachedToDrawableID = INVALID_DRAWABLE_ID;
-
-			// destroy ourselves
-			destroy();
-		}
-	}
-	else if (m_attachedToObjectID)
-	{
-		Object *objectAttachedTo = TheGameLogic->findObjectByID( m_attachedToObjectID );
-
-		if (objectAttachedTo)
-		{
-			if (!isShrouded)
-				isShrouded = (objectAttachedTo->getShroudedStatus(localPlayerIndex) >= OBJECTSHROUD_FOGGED);
- 
-      const Drawable * draw = objectAttachedTo->getDrawable();
-      if ( draw )
-  			parentXfrm = draw->getTransformMatrix();
-      else
-  			parentXfrm = objectAttachedTo->getTransformMatrix();
-      
-
-
-
-			m_lastPos = m_pos;
-			m_pos = *objectAttachedTo->getPosition();
-		}
-		else
-		{ 
-			// Drawable has been destroyed - lose our attachment to it
-			m_attachedToObjectID = INVALID_ID;
-
-			// destroy ourselves
-			destroy();
-		}
-	}
-
-
-
-	if (parentXfrm)
-	{
-    if (m_skipParentXfrm)
-    {
-      //this particle system is already in world space so no need to apply parent xform.
-      m_transform = m_localTransform;
-    }
-    else
-    {
-		  // if system has its own local transform, concatenate them
-		  if (m_isLocalIdentity == false)
-  #ifdef ALLOW_TEMPORARIES
-			  m_transform = (*parentXfrm) * m_localTransform;
-  #else
-			  m_transform.mul(*parentXfrm, m_localTransform);
-  #endif
-		  else
-			  m_transform = *parentXfrm;
-    }
-
-		  m_isIdentity = false;
-		  transformSet = true;
-	}
-
-
-	if (transformSet == false)
-	{
-		if (m_isLocalIdentity == false)
-		{
-			m_transform = m_localTransform;
-			m_isIdentity = false;
-		}
-		else
-		{
-			m_isIdentity = true;
-		}
-	}
-
-	// if we are controlled by a particle, its position is local origin
-	if (m_controlParticle)
-	{
-		const Coord3D *controlPos = m_controlParticle->getPosition();
-		/// @todo Concatenate this, instead of overriding (MSB)
-		m_transform.Set_X_Translation( controlPos->x );
-		m_transform.Set_Y_Translation( controlPos->y );
-		m_transform.Set_Z_Translation( controlPos->z );
-		m_isIdentity = false;
-		m_lastPos = m_pos;
-		m_pos = *controlPos;
-	}
-
-
-	//
-	// Generate new particles if the system hasn't been 'stopped' or 'destroyed'
-	// If we are a slave system, do not generate particles ourselves - our master will force us to
-	//
-	if (m_isDestroyed == false)
-	{
-		if (m_isForever || (m_isForever == false && m_systemLifetimeLeft > 0))
-		{
-			if (!isShrouded && m_isStopped == false && m_masterSystem == NULL)
-			{
-				if (m_burstDelayLeft == 0)
-				{
-					ParticlePriorityType priority = getPriority();
-
-					// emit a burst of particles
-					Int count = REAL_TO_INT(m_burstCount.getValue());
-
-					count *= m_countCoeff;
-
-					for( Int i=0; i<count; i++ )
-					{
-						// generate this particle's unique attributes
-						const ParticleInfo *info = generateParticleInfo(i, count);
-						if (!m_isEmitAboveGroundOnly || (info->m_pos.z >= TheTerrainLogic->getGroundHeight(info->m_pos.x, info->m_pos.y)))
-						{
-							// actually create a particle
-							Particle *p = createParticle( info, priority );
-							if (p == NULL)
-								continue;
-
-							if (m_attachedSystemName.isEmpty() == false)
-							{
-								const ParticleSystemTemplate *tmp = TheParticleSystemManager->findTemplate( m_attachedSystemName );
-								if (tmp)
-								{
-									ParticleSystem *sys = TheParticleSystemManager->createParticleSystem( tmp, TRUE );
-									sys->setControlParticle( p );
-									p->controlParticleSystem( sys );
-								}
-							}
-
-							// create a slave particle, if necessary
-							if (m_slaveSystem)
-							{
-								ParticleInfo mergeInfo = ParticleSystem::mergeRelatedParticleSystems(this, m_slaveSystem, false);
-
-								// create slaved particle
-								m_slaveSystem->createParticle( &mergeInfo, priority );
-							}
-						}
-					}
-						
-					// compute next burst delay
-					m_burstDelayLeft = (UnsignedInt)m_burstDelay.getValue();
-					m_burstDelayLeft *= m_delayCoeff;
-				}
-				else
-				{
-					m_burstDelayLeft--;
-				}
-
-			} // end if stopped check
-		} // end if system lifetime check
-	} // end if is destroyed
-
-	//
-	// Update all particles in the system
-	//
-	Particle *p = m_systemParticlesHead;
-	Particle *oldParticle;
-	while (p)
-	{
-
-		// apply 'gravity' force
-		if (m_gravity != 0.0f)
-		{
-			Coord3D force;
-			force.x = 0.0f;
-			force.y = 0.0f;
-			force.z = m_gravity;
-			p->applyForce( &force );
-		}
-
-		if (p->update() == false)
-		{
-			oldParticle = p;
-			p = p->m_systemNext;
-			oldParticle->deleteInstance();
-		} else {
-			p = p->m_systemNext;
-		}
-	}
-
-	//
-	// If we have been "destroyed", wait for all of our particles to die off,
-	// then destroy ourselves (return false).
-	//
-	if (m_isDestroyed && !m_systemParticlesHead)
-		return false;
-
-
-	// monitor particle system lifetime
-	if (m_isForever == false)
-	{
-		// decrement lifetime if not zero
-		if (m_systemLifetimeLeft)
-			m_systemLifetimeLeft--;
-
-		// if there are still particles "in the air", don't destroy yet
-		if (getParticleCount())
-			return true;
-
-		// check if time is up
-		if (m_systemLifetimeLeft == 0)
-			return false;
-	}
-
-	return true;
 }
 
 // ------------------------------------------------------------------------------------------------
