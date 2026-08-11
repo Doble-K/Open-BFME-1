@@ -1,195 +1,72 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/asciistring_outofline /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+typedef bool Bool;
 
-class __declspec(novtable) TeamInQueue
+class AsciiString
 {
+	void *m_data;
 public:
-    void disband();
+	AsciiString(const AsciiString &source);
+	~AsciiString();
+	void concat(const char *text, int length);
 };
 
-// ?disband@TeamInQueue@@QAEXXZ
-__declspec(naked) void TeamInQueue::disband()
+class Team;
+
+class Player
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x18
-        __emit 0x54
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x04
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x56
-        __emit 0xd8
-        __emit 0xea
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0xb8
-        __emit 0x30
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x14
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0xc2
-        __emit 0x60
-        __emit 0x72
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x26
-        __emit 0x68
-        __emit 0x84
-        __emit 0x69
-        __emit 0x09
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xaa
-        __emit 0x62
-        __emit 0x72
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x52
-        __emit 0xe8
-        __emit 0x18
-        __emit 0x72
-        __emit 0xec
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0xcf
-        __emit 0x74
-        __emit 0x23
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x80
-        __emit 0xf3
-        __emit 0xeb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x04
-        __emit 0xf6
-        __emit 0x40
-        __emit 0x18
-        __emit 0x01
-        __emit 0x75
-        __emit 0x0a
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x1c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x3d
-        __emit 0x5e
-        __emit 0x72
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	unsigned char m_pad[0x230];
+public:
+	Team *m_defaultTeam;
+	Team *getDefaultTeam() { return m_defaultTeam; }
+};
+
+class TeamPrototype
+{
+	unsigned char m_pad[0x14];
+public:
+	AsciiString m_name;
+	unsigned int m_flags;
+	Player *getControllingPlayer() const;
+	const AsciiString &getName() const { return m_name; }
+	Bool getIsSingleton() const { return (m_flags & 1) != 0; }
+};
+
+class Team
+{
+public:
+	virtual ~Team();
+	TeamPrototype *m_proto;
+	TeamPrototype *getPrototype() { return m_proto; }
+	void transferUnitsTo(Team *newTeam);
+};
+
+class ScriptEngine
+{
+public:
+	void AppendDebugMessage(const AsciiString &message, Bool forcePause);
+};
+
+extern ScriptEngine *TheScriptEngine;
+
+class TeamInQueue
+{
+	unsigned char m_pad[0x1c];
+public:
+	Team *m_team;
+	void disband();
+};
+
+void TeamInQueue::disband()
+{
+	Team *newTeam = m_team->getPrototype()->getControllingPlayer()->getDefaultTeam();
+	AsciiString teamName = m_team->getPrototype()->getName();
+	teamName.concat(" - team disbanded, build time expired.", 38);
+	TheScriptEngine->AppendDebugMessage(teamName, false);
+	if (m_team != newTeam)
+	{
+		m_team->transferUnitsTo(newTeam);
+		if (!m_team->getPrototype()->getIsSingleton())
+			delete m_team;
+		m_team = 0;
+	}
 }
