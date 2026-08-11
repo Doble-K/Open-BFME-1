@@ -94594,3 +94594,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??1Eva@@UAE@XZ,,0x00426560,207,Code/GameEngine/Source/GameClient/EvaDestructor.cpp,matched,Open-BFME5 exact C++ retail-layout Eva destructor
 ??_GEva@@UAEPAXI@Z,,0x00426BD0,30,Code/GameEngine/Source/GameClient/EvaDestructor.cpp,matched,Open-BFME5 exact C++ scalar deleting destructor; slot 0 of the Eva vtable at 0x010F1FA8
 ?Add_Camera_Shake@W3DView@@UAEXABUCoord3D@@MMM@Z,,0x0073D470,62,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView_AddCameraShakeThunk.cpp,matched,Open-BFME5 exact C++; BFME reaches the shaker through a pointer where ZH uses a global object
+?Set_NPatches_Level@WW3D@@SAXI@Z,,0x008FD080,87,Code/Libraries/Source/WWVegas/WW3D2/WW3D_SetNPatchesLevelThunk.cpp,matched,Open-BFME5 exact C++; BFME reaches the mesh renderer through a pointer and Invalidate takes a bool
