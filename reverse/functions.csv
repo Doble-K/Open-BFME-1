@@ -15317,7 +15317,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?initAnimateWindow@ProcessAnimateWindowSlideFromTopFast@@UAEXPAVAnimateWindow@@@Z,,0x00497000,249,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,BFME BFMECoord2D setAnimData temp + frame 0x30; full 249B int3-delimited body
 ?initAnimateWindow@ProcessAnimateWindowSpiral@@UAEXPAVAnimateWindow@@@Z,,0x00496AE0,262,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,
 ?initD3DAssets@W3DMouse@@AAEXXZ,,0x007005F0,72,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,
-?initForLTA@ThingTemplate@@QAEXABVAsciiString@@@Z,,0x00147F10,1334,Code/masm_dumps/_str2__initForLTA_ThingTemplate_QAEXABVAsciiString_Z_147F10.asm,matched,
+?initForLTA@ThingTemplate@@QAEXABVAsciiString@@@Z,,0x00147F10,1334,Code/GameEngine/Source/Common/Thing/ThingTemplateInitForLTAThunk.cpp,matched,Open-BFME5 exact C++ emits;object-symbol=_bfme_ThingTemplate_initForLTA_147F10
 ?initFromDict@Player@@QAEXPBVDict@@@Z,,0x000A2D40,220,Code/GameEngine/Source/GameLogic/Player_initFromDict_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?initFromINI@INI@@QAEXPAXPBUFieldParse@@@Z,,0x008520A0,132,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,MultiIniFieldParse ctor+add inlined in this TU
 ?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,MultiIniFieldParse ctor inlined in this TU; ICF-folded with the AIUpdateInterfaceModuleData ctor
