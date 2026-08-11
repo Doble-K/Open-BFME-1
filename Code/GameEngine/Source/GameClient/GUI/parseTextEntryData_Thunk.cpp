@@ -1,282 +1,77 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift parseTextEntryData to clean C++.
+
+#include <stdio.h>
+#include <string.h>
+
+typedef bool Bool;
+typedef int Int;
+typedef short Short;
 
 class WinInstanceData;
-bool __cdecl parseTextEntryData(char *, WinInstanceData *, char *, void *);
+
+struct EntryData
+{
+	void *text;
+	void *secretTextDisplay;
+	void *constructText;
+	unsigned int flags;
+	Short maxTextLen;
+	Bool secretText;
+};
+
+static Int scanBool(const char *source, Bool &val)
+{
+	Int temp = 0;
+	Int ret = sscanf(source, "%d", &temp);
+	val = (Bool)temp;
+	return ret;
+}
+
+static Int scanShort(const char *source, Short &val)
+{
+	Int temp = 0;
+	Int ret = sscanf(source, "%d", &temp);
+	val = (Short)temp;
+	return ret;
+}
 
 // ?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z
-__declspec(naked) bool __cdecl parseTextEntryData(char *, WinInstanceData *, char *, void *)
+bool __cdecl parseTextEntryData(char *, WinInstanceData *, char *buffer, void *data)
 {
-	__asm {
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x35
-        __emit 0xd8
-        __emit 0x94
-        __emit 0x35
-        __emit 0x01
-        __emit 0x57
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x50
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x33
-        __emit 0xed
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8b
-        __emit 0x3d
-        __emit 0x94
-        __emit 0x94
-        __emit 0x35
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x20
-        __emit 0x51
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x89
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x66
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x40
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0x66
-        __emit 0x89
-        __emit 0x53
-        __emit 0x10
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x50
-        __emit 0x51
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x89
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x5c
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x39
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x5c
-        __emit 0x0f
-        __emit 0x95
-        __emit 0xc2
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0x88
-        __emit 0x53
-        __emit 0x12
-        __emit 0x89
-        __emit 0x6b
-        __emit 0x0c
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x40
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x51
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x89
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x38
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x38
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0x3b
-        __emit 0xc5
-        __emit 0x74
-        __emit 0x04
-        __emit 0x83
-        __emit 0x4b
-        __emit 0x0c
-        __emit 0x20
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x34
-        __emit 0x52
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x89
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x40
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x40
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0xc5
-        __emit 0x74
-        __emit 0x04
-        __emit 0x83
-        __emit 0x4b
-        __emit 0x0c
-        __emit 0x40
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x68
-        __emit 0x34
-        __emit 0x94
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x55
-        __emit 0xff
-        __emit 0xd6
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x34
-        __emit 0x51
-        __emit 0x68
-        __emit 0xb4
-        __emit 0xc7
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0x89
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x40
-        __emit 0xff
-        __emit 0xd7
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x40
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x1c
-        __emit 0x3b
-        __emit 0xc5
-        __emit 0x74
-        __emit 0x04
-        __emit 0x83
-        __emit 0x4b
-        __emit 0x0c
-        __emit 0x10
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x5b
-        __emit 0x59
-        __emit 0xc3
-	}
+	EntryData *entryData = (EntryData *)data;
+	char *c;
+	char *seps = " :,\n\r\t";
+
+	c = strtok(buffer, seps);
+	c = strtok(0, seps);
+	scanShort(c, entryData->maxTextLen);
+
+	c = strtok(0, seps);
+	c = strtok(0, seps);
+	scanBool(c, entryData->secretText);
+
+	entryData->flags = 0;
+	c = strtok(0, seps);
+	c = strtok(0, seps);
+	Bool numericalOnly;
+	scanBool(c, numericalOnly);
+	if (numericalOnly)
+		entryData->flags |= 0x20;
+
+	c = strtok(0, seps);
+	c = strtok(0, seps);
+	Bool alphaNumericalOnly;
+	scanBool(c, alphaNumericalOnly);
+	if (alphaNumericalOnly)
+		entryData->flags |= 0x40;
+
+	c = strtok(0, seps);
+	c = strtok(0, seps);
+	Bool asciiOnly;
+	scanBool(c, asciiOnly);
+	if (asciiOnly)
+		entryData->flags |= 0x10;
+
+	return true;
 }

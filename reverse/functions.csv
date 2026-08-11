@@ -79529,7 +79529,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseTerrainDefinition@INI@@SAXPAV1@@Z,,0x000C2AC0,195,Code/GameEngine/Source/Common/INI/INITerrain.cpp,matched,find-then-create on TheTerrainTypes; the second call is the already-matched newTerrain which is what names findTerrain at the first
 ?parseTerrainRoadDefinition@INI@@SAXPAV1@@Z,,0x000C2EE0,271,Code/GameEngine/Source/Common/INI/INITerrainRoad.cpp,matched,searches the road list then checks the kind flag at +0x08; isBridge is inline in retail not a call
 ?parseTextColor@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00485730,402,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
-?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C80,270,Code/GameEngine/Source/GameClient/GUI/parseTextEntryData_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?parseThingTemplate@INI@@SAXPAV1@PAX1PBX@Z,,0x000BAD60,186,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseTime@DamageFX@@CAXPAVINI@@PAX1PBX@Z,,0x00066230,138,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ?parseTooltipDelay@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484BD0,45,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??0MapCache@@QAE@XZ,,0x00078F50,169,Code/GameEngine/Source/GameClient/MapCache_ctor_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; MapCache constructs base metadata map seen map and allowed-map set with retail STLPort node sizes
 ?parseComboBoxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004849E0,237,Code/GameEngine/Source/GameClient/GUI/parseComboBoxData_Thunk.cpp,matched,Open-BFME5 exact C++ combo-box data parser
 ??1BridgeBehaviorModuleData@@UAE@XZ,,0x001F5440,147,Code/GameEngine/Source/Common/BridgeBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion; official destructor clears BridgeFXInfo and BridgeOCLInfo STLPort lists then destroys their 20-byte nodes
+?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C80,270,Code/GameEngine/Source/GameClient/GUI/parseTextEntryData_Thunk.cpp,matched,Open-BFME5 exact C++ text-entry data parser
