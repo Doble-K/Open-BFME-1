@@ -1746,7 +1746,6 @@ void DX8Wrapper::End_Scene(bool flip_frames)
 }
 
 
-// ?Flip_To_Primary@DX8Wrapper@@ present-unmatched
 void DX8Wrapper::Flip_To_Primary(void)
 {
 	// If we are fullscreen and the current frame is odd then we need
