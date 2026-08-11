@@ -68712,3 +68712,6 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 ??1GameResultsResponseQueue@@QAE@XZ,0x0003D889,Open-BFME5 GameResultsQueue response queue destructor ILT
 ??1GameResultsRequestQueue@@QAE@XZ,0x00031462,Open-BFME5 GameResultsQueue request queue destructor ILT
 ??1GameResultsMutex@@QAE@XZ,0x009DB350,Open-BFME5 GameResultsQueue mutex destructor
+_ghiAppendCharToBuffer,0x0087D980,GameSpy ghttp buffer append char retail callee
+_ghiPostGetContentType,0x0087CD80,GameSpy ghttp post content type retail callee
+_ghiSendBuffer,0x0087DA50,GameSpy ghttp send buffer retail callee

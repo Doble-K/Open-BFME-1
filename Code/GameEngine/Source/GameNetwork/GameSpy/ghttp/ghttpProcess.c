@@ -286,7 +286,8 @@ void ghiDoSendingRequest
 		else
 			requestType = "GET ";
 		ghiAppendDataToBuffer(&connection->sendBuffer, requestType, 0);
-		if(ghiProxyAddress)
+		/* BFME adds a per-connection proxy flag at +0x12C after the vendored SDK fields. */
+		if(*(int *)((char *)connection + 0x12C) || ghiProxyAddress)
 			ghiAppendDataToBuffer(&connection->sendBuffer, connection->URL, 0);
 		else
 			ghiAppendDataToBuffer(&connection->sendBuffer, connection->requestPath, 0);

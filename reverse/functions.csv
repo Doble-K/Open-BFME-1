@@ -94126,7 +94126,6 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?d_00560052@@YAXXZ,,0x00560052,432,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00960052
 ?d_004331d0@@YAXXZ,,0x004331D0,212,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_008331d0
 ?d_00348e70@@YAXXZ,,0x00348E70,424,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00748e70
-?d_0087b9c0@@YAXXZ,,0x0087B9C0,421,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c7b9c0
 ?d_0034f570@@YAXXZ,,0x0034F570,420,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0074f570
 ?d_004a3830@@YAXXZ,,0x004A3830,416,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_008a3830
 ?d_00425720@@YAXXZ,,0x00425720,204,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00825720
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?d_0094e1b0@@YAXXZ,,0x0094E1B0,253,Code/Libraries/Source/WWVegas/WWLib/ShareBufferClassVector3CopyConstructorThunk.cpp,matched,Open-BFME5 C++ ShareBufferClass Vector3 copy constructor;object-symbol=??0?$ShareBufferClass@VVector3@@@@QAE@ABV0@@Z
 ?xfer@ScriptList@@MAEXPAVXfer@@@Z,,0x003556A0,400,Code/GameEngine/Source/Common/ScriptList_xferMethodThunk.cpp,matched,Open-BFME5 exact C++ retail ScriptList transfer
 ?initControls@RecorderClass@@QAEXXZ,,0x00099980,150,Code/GameEngine/Source/Common/RecorderInitControls_Thunk.cpp,matched,Open-BFME5 recorder controls C++ lift
+_ghiDoSendingRequest,,0x0087B9C0,421,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,
