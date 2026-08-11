@@ -27,6 +27,15 @@ if ! python3 tools/check_csv.py; then
 fi
 
 base="$(git merge-base HEAD origin/master)"
+
+# PR commits were made under the contributor's hooks, or none: re-run the
+# conversion-direction gate over the whole PR range before spending build time.
+if ! python3 tools/conversion_gate.py "$base" HEAD; then
+    echo "PR #$pr FAILED conversion-direction gate" >&2
+    restore
+    exit 1
+fi
+
 mapfile -t delta < <(python3 tools/delta_sources.py --range "$base" HEAD)
 if [ "${#delta[@]}" -ne 0 ] && [ -n "${delta[0]}" ]; then
     echo "byte-verifying ${#delta[@]} source(s) changed by PR #$pr..."

@@ -121,6 +121,12 @@ original compiler machinery, x87 shape, SEH, or another proven codegen blocker
 prevents exact C++. A five-byte `E9 rel32` dump should be repointed to an exact
 C++ body when available.
 
+Lifting a MASM dump into a `__declspec(naked)`/`__emit` .cpp is **not** a
+conversion: it scores +0 on `progress.py` and deletes the C++ body the next
+converter needed. The commit gate (`tools/conversion_gate.py`) refuses new
+naked/`__emit` bodies outside `Code/gen_small/` and refuses repointing a
+clean-C++ row back at assembly.
+
 Ghidra boundaries, xrefs, callees, vtables, and the retail executable are
 identity evidence; decompiled C is not byte-match proof. Resolve REL32 pins only
 while call sites align. After several failed shapes or roughly 30 minutes without
