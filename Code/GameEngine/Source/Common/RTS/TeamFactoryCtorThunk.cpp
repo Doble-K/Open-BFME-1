@@ -1,144 +1,97 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class TeamFactory
+// TeamFactory's default constructor, lifted from its MASM dump to C++.
+//
+// Retail body @ 0x000F2250 (130B):
+//   - calls SubsystemInterface::SubsystemInterface() (0x009A1A30, already
+//     matched in Code/GameEngine/Source/Common/System/SubsystemInterface.cpp)
+//     to build the first base (vptr + AsciiString m_name, 8 bytes @ +0x00).
+//   - inlines a second, trivial base ctor (no call reaches the bytes) that
+//     just stores its own identity vptr @ +0x08 -- this is Snapshot, whose
+//     real ctor (Common/System/Snapshot.cpp) is an empty {} body, so the
+//     compiler folds it away and only its vptr store survives.
+//   - stores TeamFactory's own vtables over both subobjects (+0x00, +0x08),
+//     which only happens because TeamFactory overrides virtuals from each
+//     base -- forcing a distinct combined vtable per polymorphic subobject.
+//   - default-constructs an STLport std::map member @ +0x0c: allocates a
+//     0x1c-byte header node (color + parent/left/right + a 12-byte unused
+//     value slot), then links left/right back to itself for an empty tree.
+//     The 0x1c node size keys the map by a 2-word (8-byte) type, matching
+//     TeamFactoryList.cpp's independently-established finding that BFME's
+//     m_prototypes is keyed by pair<NameKeyType,NameKeyType> (not the single
+//     NameKeyType key ZH's Team.h declares). The exact key/value C++ types
+//     don't affect this constructor's bytes (default ctor never compares
+//     keys), only their combined size, so plain ints stand in here.
+//   - zero-initializes two trailing Int members @ +0x18 / +0x1c
+//     (m_uniqueTeamPrototypeID, m_uniqueTeamID). The map's own third
+//     (empty, comparator) word @ +0x14 is a real member but is never
+//     written -- an empty functor has no state to store.
+//
+// Object layout: SubsystemInterface(0x08) + Snapshot(0x04) + map(0x0c) +
+// 2 Ints(0x08) = 0x20 total.
+//
+#define __PLACEMENT_VEC_NEW_INLINE
+#include <map>		// before PreRTS.h so STLport node_alloc is used (not NEWALLOC)
+
+// Modelled first base: only its ABI shape (vptr + one pointer-sized data
+// member) and its ctor's mangled name matter here -- the real body lives in
+// Code/GameEngine/Source/Common/System/SubsystemInterface.cpp (already
+// matched), so the ctor below is declared, never defined, and resolves
+// there as an external call.
+class SubsystemInterface
 {
 public:
-    TeamFactory();
+	SubsystemInterface();
+	virtual ~SubsystemInterface();
+
+	virtual void init(void);
+	virtual void reset(void);
+	virtual void update(void);
+
+private:
+	void *m_name;
+};
+
+// Modelled second base: matches Snapshot's shape. Its ctor is trivial and
+// defined right here (inline) so the compiler folds the call away, exactly
+// as retail's bytes show -- only the resulting vptr store reaches the
+// target function.
+class Snapshot
+{
+public:
+	Snapshot() {}
+	virtual ~Snapshot();
+
+	virtual void crc(void);
+	virtual void xfer(void);
+	virtual void loadPostProcess(void);
+};
+
+class TeamFactory : public SubsystemInterface, public Snapshot
+{
+public:
+	TeamFactory();
+	virtual ~TeamFactory();
+
+	virtual void init(void);
+	virtual void reset(void);
+	virtual void update(void);
+
+protected:
+	virtual void crc(void);
+	virtual void xfer(void);
+	virtual void loadPostProcess(void);
+
+private:
+	typedef std::pair<int, int> BfmeTeamPrototypeKey;
+	std::map<BfmeTeamPrototypeKey, void *, std::less<BfmeTeamPrototypeKey> > m_prototypes;
+	int m_uniqueTeamPrototypeID;
+	int m_uniqueTeamID;
 };
 
 // ??0TeamFactory@@QAE@XZ
-__declspec(naked) TeamFactory::TeamFactory()
+TeamFactory::TeamFactory()
+	: m_uniqueTeamPrototypeID(0), m_uniqueTeamID(0)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xd3;
-        __emit 0xba;
-        __emit 0xff;
-        __emit 0x00;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xe8;
-        __emit 0xbd;
-        __emit 0xf7;
-        __emit 0x8a;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x44;
-        __emit 0x37;
-        __emit 0x07;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x1c;
-        __emit 0x5f;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x08;
-        __emit 0x5f;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0x6a;
-        __emit 0x1c;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x0c;
-        __emit 0xe8;
-        __emit 0xa4;
-        __emit 0xc2;
-        __emit 0x73;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x10;
-        __emit 0x88;
-        __emit 0x18;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x58;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x40;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x40;
-        __emit 0x0c;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x1c;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
 }

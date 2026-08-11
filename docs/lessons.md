@@ -6766,3 +6766,61 @@ nothing was committed on an agent's word alone.
 The cheap structural protection is that each agent owns exactly one file. That
 makes reverting a bad claim a one-line operation and keeps a wrong answer from
 contaminating anything else.
+
+
+## The byte gate does not catch a naked body wrapped as non-naked
+
+A swarm agent found that removing only the `__declspec(naked)` keyword from a
+function whose body is purely `__asm { __emit ... }` still passes the byte
+gate: MSVC 7.1 does not force a stack frame around a plain function whose body
+is an inline-asm block with no locals, so the emitted bytes are unchanged.
+`grep -c "__declspec(naked)"` then reports 0 and `Functions: OK 1/1 matched`
+still prints, even though nothing was actually converted -- the naked marker
+check I added as a swarm safeguard is necessary but not sufficient on its own;
+what actually matters is "no __asm/__emit anywhere in the file", and that is
+what the check needs to be, not just the naked keyword.
+
+Confirmed by sweeping the whole tree: this was the only non-naked file, out of
+several thousand, still containing __emit. Rejected regardless of the byte
+match and reverted.
+
+The underlying disassembly finding is worth keeping even though the
+conversion isn't: the retail bytes at this address are 18 back-to-back E9 jmp
+instructions to unrelated targets, 17 of them unreachable dead code after the
+first. That is not a shape any compiler emits for a real function body -- it
+reads like an ILT thunk table or jump-table data captured as if it were code,
+and whoever attempts this row next should start from that theory rather than
+re-deriving it.
+
+## A ledger's existing status/notes can predate real conversion and be stale
+
+The rejected row's own functions.csv entry already said status=matched with
+notes claiming "exact C++ __emit thunk converted from MASM dump" -- before the
+swarm ever touched it. Git history showed why: the file was committed already
+naked, by the same commit that added the row, with that boilerplate note. A
+naked dump trivially matches the byte gate (documented earlier this session),
+so "status=matched" on a ledger row is not itself proof a real conversion
+happened -- it can be the leftover state from the initial dump commit. Check
+what is actually on disk, not just what the ledger claims about it.
+
+## Failed agents can be more valuable than agents that report a match
+
+Five of eight agents in this swarm self-reported matched:false with precise,
+independently-verified residuals rather than guessing a fourth build. Two of
+those diagnoses are new, real findings, not restatements of known blockers:
+
+- MeshMatDescClass's constructor implies Texture/TextureArray are a small
+  ref-counting smart pointer type, not the plain TextureClass* the shared
+  header currently declares, based on an eh_vector_constructor_iterator call
+  and per-element Release_Ref that only exist for a non-trivial element type.
+- DequePartitionCellInitializeMap's ledger pin forces an extern "C" free
+  function (cdecl), but the target bytes are thiscall shape. No MSVC 7.1
+  calling-convention keyword produces both the pinned plain symbol name and
+  thiscall ABI at once -- __thiscall is illegal on free functions (C4234),
+  __fastcall decorates the symbol with @N even under extern "C". This is a
+  ledger-level conflict, not a source-level one.
+
+Neither of these would have surfaced from a screen; both came from an agent
+reading its own compiled .obj's actual symbol and relocation tables rather
+than trusting build.py's summary line, after exhausting the build budget
+honestly instead of padding a report.
