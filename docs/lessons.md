@@ -240,36 +240,6 @@ they have a spare register retail does not. Total 61 to 81 bytes short depending
 on how the decode is spelled -- and spelling the decode differently does not
 help, because the difference is not in the decode. Find the frame slot first.
 
-## The RenderObjClass vtable is still five slots long above slot 96
-
-The slot-40 fix corrected slots 40 through 47. There is a second divergence
-further down, and it is now measured rather than suspected:
-
-- slot 96 is right. `Animatable3DObjClass::Render` matches, and it reaches
-  `Is_Not_Hidden_At_All` as `call [eax+0x180]`.
-- slot 133 is five too high. Writing the two-argument
-  `Simple_Evaluate_Bone` produced a body identical to retail except for one
-  displacement: it forwards to the three-argument overload as
-  `call [edx+0x228]` where retail has `call [edx+0x214]` -- 138 against 133.
-
-So the headers carry five virtuals that retail does not, somewhere between slots
-97 and 132. Retail's own layout in that range, read off the
-`Animatable3DObjClass` vtable at 0x0113F148, is: 97 unnamed, 98 `Set_Visible`,
-99..110 the Is_/Set_ flag pairs through `Set_Additive`, 111..118 the eight
-`_bfme_ro_flag*` placeholders, 119 `Get_Collision_Type`, 120
-`Set_Collision_Type`, 121 `Is_Complete`, 122 `Is_In_Scene`, 123
-`Get_Native_Screen_Size`, 124 `Set_Native_Screen_Size`, 125 `Create_Decal`, 126
-and 127 unnamed, 128 `Update_Cached_Bounding_Volumes`, 129
-`Update_Sub_Object_Bits`, then Animatable3DObjClass's own five: 130
-`Set_Animation_Frame_Rate_Multiplier`, 131 `Peek_Animation_And_Info`, 132
-`Is_Animation_Complete`, 133 and 134 the two `Simple_Evaluate_Bone` overloads.
-The vtable is 136 slots.
-
-Anything that calls a slot above 96 through a render object is blocked on this.
-The cheapest way to find the five is a probe translation unit that includes the
-real headers and calls a handful of virtuals, then reading the displacements out
-of the object file -- one compile answers it, where guessing costs a build each.
-
 ## To name a global, find its setter and then the setter's callers
 
 `FileSystem::openFile` reads three globals that nothing named. Reading the
@@ -1628,7 +1598,6 @@ that one of them is wrong.
 - MSVC returns a 4-byte struct in `eax`, so a one-pointer iterator will not reproduce a callee that takes a hidden return pointer. Declaring a copy constructor (never defined) makes the type non-trivial and forces the memory-return form — the same declaration trick that fixes by-value class arguments.
 
 
-
 ## docs/ini_schema.md is a complete layout oracle for 96 classes, and nothing uses it
 
 Half the entries above are hand-triangulated class layouts — an offset read off
@@ -1903,70 +1872,6 @@ it is worth more than any single class: a funclet's real identity is its parent
 plus its position among that parent's funclets, which the object's unwind data
 states directly, and re-keying the rows that way would survive renumbering. Until
 then, expect to land a layout change and its funclet re-keying as one commit.
-
-## BFME's AudioEventRTS is 0x70 bytes, the shim proving it reaches one TU
-
-`reference/shims/turretai/Common/AudioEventRTS.h` already reconstructs the class
-at 112 bytes against our 100, and it is TU-scoped — `TurretAI.cpp` is the only
-file in the tree that opts in. The INI tables say what that costs everyone else.
-
-Two independent confirmations of the size, neither needing the shim. Retail's
-`MiscAudio` block is a run of `AudioEventRTS` fields at a uniform **0x70**
-stride (0x000, 0x070, 0x0E0, 0x150, …), and `UpgradeTemplate`'s two adjacent
-sound members sit 0x70 apart in retail (0x28 → 0x98) against 0x64 in our build
-(0x2c → 0x90).
-
-The blast radius, counted off `docs/ini_schema.md`: **47 embeds across six
-INI-parsed classes** — `MiscAudio` 32, `Weapon` 9, `Upgrade` 2, `SpecialPower`
-2, `ObjectCreationList` 1, `Campaign` 1. Every member after an embed is twelve
-bytes too low per embed in every TU that does not see the shim, which is all of
-them but one. It is a large part of why `WeaponTemplate` looks chaotic: nine
-embeds is 108 bytes of drift before anything else is wrong.
-
-The shim does generalise — opting Upgrade.cpp in moves `UnitSpecificSound` from
-0x90 to 0x9c and `ButtonImage` from 0x100 to 0x118, exactly one and two embeds
-of growth, and `tools/ini_layout_diff.py` measures it. What stops that being a
-one-line win is the paragraph above: the opt-in renumbers labels and breaks a
-`$L` row. What is left for UpgradeTemplate after the shim is small and fully
-specified by the table — retail adds `Tooltip` (0x14) and `UpgradeFX` (0x24),
-drops our `AcademyClassify`, and appends `Cursor` (0x118),
-`PersistsInCampaign` (0x11c) and `NoUpgradeDiscount` (0x11d).
-- The byte gate cannot check *which* CRT import a declaration names: `build.py` fills the IAT slot as a DIR32 copied from the target, so `_stricmp` and `_strcmpi` produce identical bytes. Read the import directory to settle it — this binary imports `_strcmpi` and never `_stricmp`, so declarations must say `_strcmpi`. Same applies to any dllimport reached through the IAT.
-- A `push ebp / mov ebp,esp` prologue with parameters read as `[ebp+N]` is not a sign of an unoptimised body — it is `/Oy-` on that translation unit. If everything else in the dump already matches and only the frame differs, add `/Oy-` rather than re-deriving the source.
-- Before hand-rolling a shim for a W3D class, check whether the tree already carries a reconciled one — `Code/Libraries/Source/WWVegas/WW3D2/rendobj.h` and `reference/shims/sweep/rendobj.h` already map RenderObjClass's 128-slot vtable and carry BFME's signature changes. Enumerating a header's virtuals in declaration order and printing `index*4` turns a raw `call [vtable+0x1DC]` into a named method in one step.
-- A lone `push` before a getter call may belong to the *setter* that consumes its result, not to the getter: arguments go right-to-left, so `Set_X(that.Get_X())` with a defaulted second parameter emits `push 0` before the getter call. Attributing it to the getter would have meant changing a signature with twenty other call sites.
-- An implicitly-generated destructor is not always a call: when the only non-trivial member is something like `UnicodeString`, MSVC inlines the implicit destructor into a direct call of *that member's* destructor. If retail calls the record's own destructor instead, declare `~Record();` out of line (never defined) and pin it — otherwise the rel32 points at the member's destructor and everything else in the body still matches, which makes it look like a wrong callee rather than a missing declaration.
-- Third member of the if-form family, this time for a *value* rather than a return: `r = cmp ? cmp : fallback;` branches on the compare result in place (`test/je/mov/jmp/mov`), while `r = cmp; if (r == 0) r = fallback;` assigns first and then tests the variable. Two instructions apart and otherwise identical bodies.
-- Inline accessors show up as repeated null tests of the same pointer: reading a length at `data+4` and characters at `data+8` through two separate `test/je` pairs on `m_data` means two accessors, not one that returns both.
-- MSVC lays a polymorphic base out at offset zero regardless of declaration order, so a byte-array filler base followed by a counted base does **not** put the counted base at the filler's size — it lands at +0x00 and the release site loses its pointer adjustment. Give the leading base a virtual of its own to hold offset zero. A `lea ecx,[reg+N]` before a refcount decrement is direct evidence of the counted base sitting N bytes in.
-- Before pinning a call target, grep `symbols.csv` for the address: ICF folds template instantiations onto one body, so the address may already carry several names. Matching one of them tells you the *shape* of the callee — `ObjectPoolClass<T,256>::Free_Object_Memory` rather than a generic `freeBlock` — and the right move is to add another alias, not a new name.
-- Arguments pushed before an intervening call are not that call's arguments. `push a / push b / call F / push eax / call G` reads like F takes two arguments, but if F ends in a bare `ret` it takes none — the pushes are G's later arguments evaluated first, and the whole thing is one call `G(F(), b, a)`. Follow the callee and check how it returns before splitting an expression to match.
-- Passing two computed values as constructor or function arguments lets MSVC hoist their shared setup ahead of both calls. If retail interleaves — compute, call, compute, call — assign each to its own named local first. The arguments-in-one-expression form reorders even when the calls themselves stay in order.
-- A body that copies every member in declaration order — scalars inline, then one `operator=` call per non-trivial member — is the *compiler-generated* copy assignment, not a hand-written one. There is no body to reconstruct: write the class and force MSVC to emit the implicit operator out of line by taking its address (`&C::operator=`), otherwise it is inlined at each use and never emitted as a standalone symbol.
-- `rep movsd` run lengths identify POD members outright: 0x130 and 0x44C bytes are `sizeof(D3DCAPS8)` and `sizeof(D3DADAPTER_IDENTIFIER8)`, which named two members and confirmed they sit contiguously. Check a run length against known struct sizes before modelling it as an anonymous byte array.
-- A call to a base's `operator=` followed by two inline dword copies is `DynamicVectorClass`'s own inline assignment (base, then ActiveCount and GrowthStep). Recognising the pair identifies the member type without needing its element type, which ICF has folded away anyway.
-- Parameterised bounds break ZH's `switch`. Where BFME reads a frame range from members instead of using named constants, the case labels are no longer constant expressions, so the source must be an if/else-if chain — the same body, but a `switch` will not compile and would not match anyway.
-- An absent block can be evidence rather than a puzzle: ZH's audio blocks here construct an `AudioEventRTS` temporary, which has a destructor. A function with no SEH frame cannot contain one under these flags, so the block's absence is consistent rather than a missing piece to hunt for.
-- Grep `symbols.csv` for a callee's *name* before declaring it, not just its address: a pin for `friend_getFinalOverride` already existed as a non-const method, and declaring the obvious `const` version mangles differently, resolves elsewhere and produces a wrong rel32 with no "unresolved call" warning to explain it. Match the pinned signature.
-- Differing rel32 values are not evidence of a wrong callee when the body length differs earlier — the call sits at a different address, so the displacement changes. Fix the shape first and re-diff before chasing the symbol.
-- Narrowing a byte-returning callee to a `bool` return is what emits `test al,al / setne al`. A `!= 0` comparison gives the 32-bit `neg/sbb/neg` instead, and a same-type passthrough emits nothing at all — three distinguishable tails from one apparent expression.
-- A base class with virtuals but no data members is only four bytes, so a second base follows at +0x04. When retail adjusts by more — `add ecx,0x20` before a call — the primary base carries that much data and its filler has to be declared, or every secondary-base call site lands at the wrong offset.
-- The same tail call appearing twice is usually the optimiser duplicating it rather than two source statements: a path that ends in its own epilogue gets its own copy of a trailing shared call.
-- `delete[]` on a class with a destructor compiles two different ways depending on exception handling: under `/EHsc` MSVC calls the vector destructor iterator (pushing pointer, element size, count and a per-element destructor), while under `/EHs-c-` it emits an inline destruction loop instead. Seeing the helper call in retail is a reason to try `/EHsc` even when the function has no SEH prologue of its own — the helper is what carries the unwinding.
-- The two array deletes in one function need not match: a bare `operator delete[]` means trivially destructible elements, while the helper call means the element type has a destructor, and the pushed element size gives its width directly.
-- An already-pinned callee can settle a signature change for free: `getLayerForDestination` was pinned taking the object *and* the destination where ZH passes only the destination, which confirmed the extra argument without any reasoning about the bytes. Grep the pins for every callee before deciding what a divergence means.
-- A null check that cannot fail is still emitted: `!m_array` where the member is an array compiles to `lea` of its address followed by a test, which always passes. Seeing an impossible check is a hint the member is an array rather than a pointer, not a sign of a misread.
-- A bare `fistp` where a float-to-int conversion belongs means `/QIfist`, not a source difference: without it MSVC calls `__ftol`. Worth trying whenever a conversion site is the only thing that will not match.
-- `/Op` is not the general fix for float-shaped mismatches. It forces narrowing everywhere, including storing and reloading a member before a call that retail loads directly with `fld`, so it usually replaces one mismatch with several.
-- BFME's LOGICFRAMES_PER_SECOND is 5, not ZH's 30. Two independent functions now show it: `ScriptActions::doNamedFlash` scales seconds by 5, and `ControlBar::getStarImage` divides the frame by 5 and compares the remainder against 2 (the constant and its half). Treat a bare `div` by 5 or a `lea reg,[r+r*4]` on a frame count as that constant rather than an unknown.
-- Read the jump table before writing a `switch`: it sits just past the function so it is outside the compared bytes, but it tells you how many cases there are and which body each value reaches. An identity table means the case bodies are in source order, which then fixes the order the cases must be written in — and the body order can differ from the member declaration order, so do not infer one from the other.
-- A jump table is sometimes *inside* the claimed byte range and sometimes past it — check before assuming. When it is inside, its entries are compared too, so any length difference earlier shifts the table and truncates an entry, which shows up as a missing last entry rather than as the real error.
-- Two cases calling the same helper through *separate* bodies is not a fall-through: a fall-through emits one body with two table entries pointing at it. Separate bodies mean the source repeats the call in each case.
-- The same-named helper can exist as several distinct bodies. Two override-chain walkers here live at different addresses and are not ICF aliases, so declaring the obvious shared name silently resolves to the wrong one — give each its own class name and pin.
-- `cmp al,1` and `test al,al` distinguish `x == TRUE` from a plain truth test, and both appear in the same condition chain here. When a guard has several boolean calls, each one's comparison form has to be read separately — writing them all the same way leaves exactly one instruction wrong.
-- Loop-alignment padding (`8b ff` or `90` before a loop body) is not driven by the source: a `for` and an equivalent `while` produce byte-identical output. It appears to depend on the function's offset within its object section, which a standalone thunk starting at offset zero cannot reproduce — so when padding is the only residue, the source is probably already correct and the remaining lever is where the function sits, not what it says.
-- `jae` where `jge` would do means the bound is unsigned — typically a `sizeof(array)/sizeof(array[0])` rather than a literal, since the literal would keep the comparison signed. A preceding signed `< 0` check does not change that: both appear together when the source guards a negative index and then compares against an array's own size.
-- Local stack-slot assignment is not reliably steerable from declaration order. When two locals land in each other's slots, moving the declarations — outside the loop, inside it, or splitting declaration from assignment — can leave the assignment unchanged; treat slot order as a symptom to check against, not a lever to pull.
 
 ## Frame size counts local slots, so it constrains the signature
 
@@ -2681,7 +2586,6 @@ all. Two Ints passed by address to a pair of accessors is very often one small s
 the original, and the frame layout is the evidence for it.
 
 
-
 ## Repeated initialiser blocks are one member type, not many fields
 
 ScriptList::updateDefaults allocates 0x4C bytes and then writes, in order, zero at +4
@@ -2853,48 +2757,6 @@ experiment is known to have run. Four builds were spent concluding a flag did no
 matter, when the flag was never passed. Before believing a negative result, prove the
 input reached the thing under test -- here, a `#ifndef GUARD / #error` in the source
 answered it in one build.
-
-
-## Survey the flag sets already proven in the tree before inventing one
-
-Two functions were written off this session as blocked on "constant materialisation",
-with the reasoning that no source spelling moved them. That reasoning was sound and the
-conclusion was still wrong, because the per-file `// cl:` directive is a second axis and
-it had never been searched.
-
-There is no need to search it blind. The tree already records every flag set that has
-been proven to reproduce retail bytes, one per source file, and counting them takes a
-second:
-
-    1704  /DNDEBUG /MD /EHsc
-     118  /DNDEBUG /MD /GX- /O2 /Ob2
-      59  /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
-       1  /DNDEBUG /MD /EHsc /Og-
-
-That /GX- /O2 /Ob2 line is 118 files' worth of evidence that some of this binary was
-built with exceptions off and aggressive inlining on. Applied to
-SabotageMilitaryFactoryCrateCollide::friend_newModuleData it removed both of that
-function's recorded blockers at once -- the SEH prologue that /EHsc wraps around a new
-expression, and the out-of-line constructor call that no amount of defining the
-constructor in the translation unit would inline.
-
-What is left there is narrower and worth stating precisely, because it is the same shape
-seen elsewhere: retail checks the allocation with test esi,esi and then builds each of
-the two member runs independently, a fresh xor for its zero and its own lea'd this
-pointer. The rebuild finds the common zero, hoists it into edi at the cost of saving the
-register, and folds both lea's into [esi+disp] addressing. Splitting the two runs into
-distinct struct types did not stop the merge, so that part genuinely is not source-
-steerable -- but note that this is the mirror image of removeAllShadows, where the
-rebuild refused to share a zero that retail did share. Same flags, opposite decisions,
-which is what makes it a heuristic rather than a switch.
-
-/Og- is not the answer either: it overshoots, stopping inlining altogether and producing
-an ebp frame with stack locals.
-
-The general point: when the source has been ruled out, the flags are the next axis, and
-the cheapest move is to sort the existing directives by frequency and try the ones the
-project has already proven rather than reasoning from first principles about /O1 versus
-/O2.
 
 
 ## A minimal reproducer is worth more than another blocked row
@@ -3705,35 +3567,6 @@ does not match it: lists sit at +0x5C, +0xBC, +0xD4 and +0xEC with an unidentifi
 at +0x34, where the reference declares four adjacent lists and nothing else.
 
 
-## A call through an ILT thunk needs the name pinned at the thunk
-
-Remove_Render_Object turned out to be blocked on a helper that is not what it looks like.
-The body at 0x00943430 decodes its argument's +0x94 field as three signed ten-bit
-quantities -- a packed grid cell address -- and unlinks the object from cell lists, which
-reads exactly like GridCullSystemClass::unlink_object. It is not: that name is already
-claimed at 0x008DDC60, and every other GridCullSystemClass method sits in the 0x8D
-region while this one is at 0x94. The object at SimpleSceneClass+0x34 is a second spatial
-grid this build added, with no counterpart in the reference. So the row stays blocked, but
-on a definite answer rather than an open question.
-
-Unregister, in the same neighbourhood and already understood, is blocked differently and
-more interestingly. Three of its five switch arms call 0x00018EC6, an ILT jump thunk
-whose target 0x00711B70 is claimed as
-?Remove@?$RefMultiListClass@VRenderObjClass@@@@QAE_NPAVRenderObjClass@@@Z. Writing that
-call in C++ emits a call to whatever address that name resolves to -- the body -- while
-the retail bytes target the thunk five bytes of displacement away.
-
-The project already handles this: eight real names are pinned at 0x00002874, itself a
-thunk, and ??0DrawableModule@@ among them is how the W3DDebrisDraw conversion resolved
-its base constructor. So the mechanism is to pin the real name at the thunk address. What
-is not obvious, and not something to guess at, is what happens when that name is already
-mapped to the body in functions.csv -- whether a second mapping in symbols.csv is
-intended or would make resolution ambiguous.
-
-Recorded rather than attempted. The remaining two arms of Unregister call Internal_Remove
-directly and would reproduce; it is only the thunked three that need this settled.
-
-
 ## The thunk question answered itself
 
 The previous entry stopped short of pinning a real name at an ILT thunk because it was
@@ -4027,29 +3860,6 @@ constructor would store the vtable, so it resolves the symbol to 0 and always
 will. __imp__fopen and __imp__strstr have two IAT slots each in the image itself,
 and different objects bind to different ones. Whitelisted with the reasoning
 written down, which is what that file is for.
-
-
-## One layout fix paid for itself six times
-
-landsmall's docstring says it is essentially exhausted and worth re-running only
-after a class layout changes, because that reopens whatever the class blocked.
-Correcting DX8FVFCategoryContainer's eight bytes did exactly that: a sweep of
-dx8renderer.cpp landed three functions with no work at all, and three more once
-their callees were pinned.
-
-The three that needed pins were not hard, just unaddressed. Each failed with
-"unresolved call(s)", and an unresolved call is not a mystery -- the target
-already encodes where it goes. Disassembling the retail body at the address
-landsmall found gives the callee's address directly, and the only judgement
-needed was which of two calls in DX8PolygonRendererClass::Render was Draw_Strip
-and which Draw_Triangles. The header puts the strip branch first in the if/else,
-so the first call is Draw_Strip, and the byte gate confirmed it rather than my
-reading of the branch order.
-
-The other eleven translation units that include the same header yielded nothing.
-The reopening was specific to the file whose class changed, not to everything
-that sees the declaration -- worth knowing before sweeping broadly on the next
-layout correction.
 
 
 ## Do not soften a guard to make a tool run
@@ -5657,22 +5467,6 @@ members. And where the frame slot is written says which member owns the state.
 Three of four deferred hypotheses have now landed.
 
 
-## Correction: the by-value temporary is solved for AsciiString
-
-I have been recording the `mov [esp+N],esp` / `mov ecx,esp` transposition as an
-open blocker that survives every source shape. That is true only for hand-rolled
-stand-in classes. The StringBase-backed shim at
-reference/shims/campaignmanagerascii reproduces retail's order, and has done
-since Anim2DCollection::newTemplate landed; CampaignManager::init has now done it
-again on the first build.
-
-The failed attempts, AITunnelNetworkGuardState among them, all declared their own
-four-byte AsciiString rather than including the shim. So the rule already in this
-file -- include the real header when you need codegen the compiler must see --
-was the answer, and I did not apply it to my own open problem for several ticks.
-
-Only the UnicodeString flavour of the transposition is still open.
-
 ## A stack local's size is a fact about the class, and it shows in one instruction
 
 CampaignManager::init is three lines and it failed on `sub esp`. Retail reserves
@@ -6765,3 +6559,72 @@ is a strong lead rather than a guarantee.
 
 Worth doing again whenever a batch of conversions lands: each newly converted
 body becomes a model for whatever still matches it.
+
+## Survey the flag sets already proven in the tree before inventing one
+
+Two functions were written off this session as blocked on "constant materialisation",
+with the reasoning that no source spelling moved them. That reasoning was sound and the
+conclusion was still wrong, because the per-file `// cl:` directive is a second axis and
+it had never been searched.
+
+There is no need to search it blind. The tree already records every flag set that has
+been proven to reproduce retail bytes, one per source file, and counting them takes a
+second:
+
+    1704  /DNDEBUG /MD /EHsc
+     118  /DNDEBUG /MD /GX- /O2 /Ob2
+      59  /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHs-c-
+       1  /DNDEBUG /MD /EHsc /Og-
+
+That /GX- /O2 /Ob2 line is 118 files' worth of evidence that some of this binary was
+built with exceptions off and aggressive inlining on. Applied to
+SabotageMilitaryFactoryCrateCollide::friend_newModuleData it removed both of that
+function's recorded blockers at once -- the SEH prologue that /EHsc wraps around a new
+expression, and the out-of-line constructor call that no amount of defining the
+constructor in the translation unit would inline.
+
+What is left there is narrower and worth stating precisely, because it is the same shape
+seen elsewhere: retail checks the allocation with test esi,esi and then builds each of
+the two member runs independently, a fresh xor for its zero and its own lea'd this
+pointer. The rebuild finds the common zero, hoists it into edi at the cost of saving the
+register, and folds both lea's into [esi+disp] addressing. Splitting the two runs into
+distinct struct types did not stop the merge, so that part genuinely is not source-
+steerable -- but note that this is the mirror image of removeAllShadows, where the
+rebuild refused to share a zero that retail did share. Same flags, opposite decisions,
+which is what makes it a heuristic rather than a switch.
+
+/Og- is not the answer either: it overshoots, stopping inlining altogether and producing
+an ebp frame with stack locals.
+
+The general point: when the source has been ruled out, the flags are the next axis, and
+the cheapest move is to sort the existing directives by frequency and try the ones the
+project has already proven rather than reasoning from first principles about /O1 versus
+/O2.
+
+## A call through an ILT thunk needs the name pinned at the thunk
+
+Remove_Render_Object turned out to be blocked on a helper that is not what it looks like.
+The body at 0x00943430 decodes its argument's +0x94 field as three signed ten-bit
+quantities -- a packed grid cell address -- and unlinks the object from cell lists, which
+reads exactly like GridCullSystemClass::unlink_object. It is not: that name is already
+claimed at 0x008DDC60, and every other GridCullSystemClass method sits in the 0x8D
+region while this one is at 0x94. The object at SimpleSceneClass+0x34 is a second spatial
+grid this build added, with no counterpart in the reference. So the row stays blocked, but
+on a definite answer rather than an open question.
+
+Unregister, in the same neighbourhood and already understood, is blocked differently and
+more interestingly. Three of its five switch arms call 0x00018EC6, an ILT jump thunk
+whose target 0x00711B70 is claimed as
+?Remove@?$RefMultiListClass@VRenderObjClass@@@@QAE_NPAVRenderObjClass@@@Z. Writing that
+call in C++ emits a call to whatever address that name resolves to -- the body -- while
+the retail bytes target the thunk five bytes of displacement away.
+
+The project already handles this: eight real names are pinned at 0x00002874, itself a
+thunk, and ??0DrawableModule@@ among them is how the W3DDebrisDraw conversion resolved
+its base constructor. So the mechanism is to pin the real name at the thunk address. What
+is not obvious, and not something to guess at, is what happens when that name is already
+mapped to the body in functions.csv -- whether a second mapping in symbols.csv is
+intended or would make resolution ambiguous.
+
+Recorded rather than attempted. The remaining two arms of Unregister call Internal_Remove
+directly and would reproduce; it is only the thunked three that need this settled.
