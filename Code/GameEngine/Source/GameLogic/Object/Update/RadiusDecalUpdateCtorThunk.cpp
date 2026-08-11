@@ -1,185 +1,78 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift the radius-decal update constructor to clean C++.
 
 class Thing;
 class ModuleData;
+class Object;
 
-class RadiusDecalUpdate
+class ObjectModule
 {
 public:
-    RadiusDecalUpdate(Thing *, const ModuleData *);
+	ObjectModule(Thing *, const ModuleData *);
+	virtual ~ObjectModule();
+
+protected:
+	const ModuleData *m_moduleData;
+	Object *m_object;
+	Object *getObject() const { return m_object; }
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterfaceAnchor();
+};
+
+class ModuleInterface
+{
+public:
+	virtual void moduleInterfaceAnchor();
+};
+
+class UpdateModule : public ObjectModule, public UpdateModuleInterface, public ModuleInterface
+{
+public:
+	UpdateModule(Thing *thing, const ModuleData *moduleData)
+		: ObjectModule(thing, moduleData), m_f14(0), m_f18(-1), m_f1c(-1) {}
+	virtual ~UpdateModule() {}
+	void setWakeFrame(Object *, unsigned int);
+
+private:
+	unsigned int m_f14;
+	int m_f18;
+	int m_f1c;
+};
+
+class RadiusDecal
+{
+public:
+	RadiusDecal();
+	~RadiusDecal();
+	void clear();
+
+private:
+	const void *m_template;
+	void *m_decal;
+	unsigned char m_empty;
+	unsigned char m_pad[4];
+};
+
+class RadiusDecalUpdate : public UpdateModule
+{
+public:
+	RadiusDecalUpdate(Thing *, const ModuleData *);
+	virtual ~RadiusDecalUpdate();
+
+private:
+	RadiusDecal m_deliveryDecal;
+	bool m_killWhenNoLongerAttacking;
 };
 
 // ??0RadiusDecalUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) RadiusDecalUpdate::RadiusDecalUpdate(Thing *, const ModuleData *)
+RadiusDecalUpdate::RadiusDecalUpdate(Thing *thing, const ModuleData *moduleData)
+	: UpdateModule(thing, moduleData)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x43;
-        __emit 0x25;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0xe8;
-        __emit 0x75;
-        __emit 0x6a;
-        __emit 0xd7;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x83;
-        __emit 0xc8;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x1c;
-        __emit 0x8d;
-        __emit 0x7e;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x54;
-        __emit 0x16;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x90;
-        __emit 0x15;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x80;
-        __emit 0x15;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x1e;
-        __emit 0x67;
-        __emit 0xd9;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xea;
-        __emit 0xa1;
-        __emit 0xda;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x08;
-        __emit 0x68;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0x3f;
-        __emit 0x52;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xc6;
-        __emit 0x46;
-        __emit 0x30;
-        __emit 0x00;
-        __emit 0xe8;
-        __emit 0x07;
-        __emit 0x51;
-        __emit 0xd7;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+	m_deliveryDecal.clear();
+	m_killWhenNoLongerAttacking = false;
+	setWakeFrame(getObject(), 0x3FFFFFFF);
 }

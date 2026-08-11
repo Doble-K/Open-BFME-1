@@ -68593,3 +68593,5 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?Collide@CollisionMath@@YA_NAAVAABoxCollisionTestData@@AAVTriClass@@@Z,0x008E85F0,AABTree AA-box compact collision helper
 ?Init_Caps@DX8Caps@@AAEXPAUIDirect3DDevice8@@@Z,0x0091B6E0
 ?Compute_Caps@DX8Caps@@AAEXW4WW3DFormat@@ABU_D3DADAPTER_IDENTIFIER8@@@Z,0x0091C230
+??0RadiusDecal@@QAE@XZ,0x00036DD1
+?setWakeFrame@UpdateModule@@QAEXPAVObject@@I@Z,0x000157DA
