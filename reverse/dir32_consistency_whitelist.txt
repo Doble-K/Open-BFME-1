@@ -359,3 +359,52 @@ __real@30000000
 ??_7DieModuleInterface@@6B@
 ??_7ModuleInterface@@6B@
 ??_7UpdateModuleInterface@@6B@
+
+# D3DX9 file-local statics. Every symbol below is IMAGE_SYM_CLASS_STATIC in the
+# vendor/d3dx9/d3dx9.lib member that defines it, so it has no external linkage
+# and "one symbol, one address" was never true of it — the same reason the check
+# already skips $L labels and __ehhandler$ stubs, just under a real name.
+#
+# Two shapes, both verified from the archive's symbol tables:
+#   - defined STATIC in several members at once (AMDSSE_two in d3dxvec2.obj and
+#     d3dxvec3.obj; _x_rgcbTypeSizes in eight X-file loader objects), so the
+#     linker keeps one copy per member and each member references its own;
+#   - defined STATIC once in D3DX's embedded zlib AND again in the game's own
+#     copy at Code/Libraries/Source/Compression/ZLib (trees.c declares
+#     `local ct_data static_ltree[]`). Both zlibs are linked, so each table
+#     exists twice — the doubly-linked TU case this file already documents.
+#
+# None is a function, and a misplaced row could not hide here: it would have
+# failed the byte comparison in verify_functions first.
+
+?start_input_pass@D3DX@@YGXPAUjpeg_decompress_struct@1@@Z
+AMDSSE_two
+_base_dist
+_base_length
+_bl_order
+_border
+_configuration_table
+_cpdext
+_cpdist
+_cplens
+_cplext
+_extend_offset
+_extend_test
+_extra_dbits
+_extra_lbits
+_flPi
+_iAbsMask
+_simdExpBias
+_simdExpMask
+_simdExpMin
+_simdImplicitMask
+_simdMantMask
+_simdSignMask
+_static_bl_desc
+_static_d_desc
+_static_dtree
+_static_l_desc
+_static_ltree
+_x_rgcbTypeSizes
+_x_rgdwTexCoordSize
+_x_rgszSemanticString
