@@ -68572,3 +68572,6 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?LoadAndCreateD3DShader@W3DShaderManager@@SAJPBDPAK@Z,0x0001FC99,FlatTerrainShaderPixelShader retail two-argument loader thunk
 ?removeAll_TeamBuildQueue@AIPlayer@@IAEXP6AXPAVTeamInQueue@@@Z@Z,0x000497DD,Open-BFME5 AIPlayer destructor queue cleanup callee
 ?removeAll_TeamReadyQueue@AIPlayer@@IAEXP6AXPAVTeamInQueue@@@Z@Z,0x00012B20,Open-BFME5 AIPlayer destructor ready-queue cleanup callee
+??0UpgradeTemplate@@QAE@XZ,0x0001D39A,UpgradeCenter newUpgrade retail constructor thunk
+??4UpgradeTemplate@@QAEAAV0@ABV0@@Z,0x000047B4,UpgradeCenter newUpgrade retail copy-assignment thunk
+?nameToKey@NameKeyGenerator@@QAEHPBD@Z,0x0003ADD7,UpgradeCenter newUpgrade retail name-key thunk
