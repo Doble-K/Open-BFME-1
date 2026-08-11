@@ -61,15 +61,16 @@ def call_targets(rows, data, sections, text_low, text_high):
     Decoded straight from the retail bytes, and stepped a whole instruction at a
     time past each call: restarting one byte in would decode displacement bytes
     as opcodes and invent targets. An incremental-link thunk is followed to the
-    body it stands for, so one function is not discovered twice.
+    body it stands for, so one function is not discovered twice -- but only when
+    its displacement stays in .text, since a target this decode invented can
+    begin with 0xE9 without being a thunk at all.
     """
     thunks = {}
 
     def follow(rva):
         if rva not in thunks:
-            offset = build.rva_to_file_offset(sections, rva)
-            thunks[rva] = (rva + 5 + struct.unpack_from("<i", data, offset + 1)[0]
-                           if data[offset] == 0xE9 else rva)
+            thunks[rva] = build.follow_thunk(
+                data, sections, rva, text_low, text_high)
         return thunks[rva]
 
     targets = {}
@@ -84,8 +85,8 @@ def call_targets(rows, data, sections, text_low, text_high):
                 continue
             destination = rva + index + 5 + struct.unpack_from("<i", body, index + 1)[0]
             if body[index] == 0xE8 and text_low <= destination < text_high:
-                targets.setdefault(follow(destination), 0)
-                targets[follow(destination)] += 1
+                target = follow(destination)
+                targets[target] = targets.get(target, 0) + 1
             index += 5
     return targets
 

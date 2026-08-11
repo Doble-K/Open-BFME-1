@@ -662,6 +662,22 @@ def load_function_rows():
     return [row for row in load_all_function_rows() if row["status"] == "matched"]
 
 
+def follow_thunk(data, sections, rva, low, high):
+    """The body an incremental-link thunk stands for, or rva when it is not one.
+
+    The .text bound is what tells a thunk from a coincidence. Any byte can be
+    0xE9 -- 0xA5E88E is the tail of a `mov` immediate inside a d3dx9 body -- and
+    reading the four bytes after one as a displacement then yields an arbitrary
+    address. Unbounded, that address is not merely wrong but unmappable: it
+    reached new_starts.py's boundary scan as RVA -0x2AD9506D and crashed it.
+    """
+    offset = rva_to_file_offset(sections, rva)
+    if data[offset] != 0xE9:
+        return rva
+    body = rva + 5 + struct.unpack_from("<i", data, offset + 1)[0]
+    return body if low <= body < high else rva
+
+
 def build_call_thunks():
     # Intra-module calls don't target a function's body directly -- they go through
     # the incremental-link thunk table, a block of 5-byte `jmp body` entries near the
@@ -927,9 +943,7 @@ def harvest_reloc_names(patches):
 
     def follow(rva):
         if rva not in thunks:
-            offset = rva_to_file_offset(sections, rva)
-            thunks[rva] = (rva + 5 + struct.unpack_from("<i", data, offset + 1)[0]
-                           if data[offset] == 0xE9 else rva)
+            thunks[rva] = follow_thunk(data, sections, rva, low, high)
         return thunks[rva]
 
     named = {}
