@@ -1,235 +1,107 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the AAB-tree OB-box polygon intersection to clean C++.
+
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+
+struct Vector3
+{
+	float x;
+	float y;
+	float z;
+};
+
+struct TriIndex
+{
+	uint16 index[3];
+	const uint16 &operator[](int position) const { return index[position]; }
+};
+
+class TriClass
+{
+public:
+	void Compute_Normal();
+	Vector3 *N;
+	const Vector3 *V[3];
+};
+
+class AABoxCollisionTestData;
+
+class OBBoxIntersectionTestClass
+{
+public:
+	unsigned char m_unreconstructed_00[4];
+	AABoxCollisionTestData *getCollisionData()
+	{
+		return reinterpret_cast<AABoxCollisionTestData *>(m_unreconstructed_00 + 4);
+	}
+};
+
+namespace CollisionMath
+{
+	bool Collide(AABoxCollisionTestData &, TriClass &);
+}
+
+template <class T> class VectorStorage
+{
+private:
+	unsigned char m_unreconstructed_00[0x0C];
+public:
+	T *data;
+};
+
+class MeshGeometryClass
+{
+private:
+	unsigned char m_unreconstructed_00[0x2C];
+public:
+	VectorStorage<TriIndex> *polygons;
+	VectorStorage<Vector3> *vertices;
+};
 
 class AABTreeClass
 {
 private:
-	struct CullNodeStruct;
-	bool Intersect_OBBox_With_Polys(CullNodeStruct *, class OBBoxIntersectionTestClass &);
+	struct CullNodeStruct
+	{
+		Vector3 minimum;
+		Vector3 maximum;
+		uint32 frontOrPolygon0;
+		uint32 backOrPolygonCount;
+		int Get_Poly0() { return frontOrPolygon0 & 0x7FFFFFFF; }
+		int Get_Poly_Count() { return backOrPolygonCount; }
+	};
+
+	unsigned char m_unreconstructed_00[0x14];
+	uint32 *PolyIndices;
+	MeshGeometryClass *Mesh;
+
+	bool Intersect_OBBox_With_Polys(CullNodeStruct *, OBBoxIntersectionTestClass &);
 };
 
 // ?Intersect_OBBox_With_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVOBBoxIntersectionTestClass@@@Z
-__declspec(naked) bool AABTreeClass::Intersect_OBBox_With_Polys(AABTreeClass::CullNodeStruct *, class OBBoxIntersectionTestClass &)
+bool AABTreeClass::Intersect_OBBox_With_Polys(
+	CullNodeStruct *node, OBBoxIntersectionTestClass &boxTest)
 {
-	__asm {
-        __emit 0x83
-        __emit 0xec
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x18
-        __emit 0x53
-        __emit 0x55
-        __emit 0x8b
-        __emit 0xd9
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x1c
-        __emit 0x56
-        __emit 0x81
-        __emit 0xe2
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x7f
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x57
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x0f
-        __emit 0x8e
-        __emit 0x9e
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x43
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x70
-        __emit 0x30
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0x76
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x68
-        __emit 0x0c
-        __emit 0x83
-        __emit 0xc1
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x38
-        __emit 0x8d
-        __emit 0x3c
-        __emit 0x95
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x53
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x04
-        __emit 0x17
-        __emit 0x8d
-        __emit 0x04
-        __emit 0x40
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x4c
-        __emit 0x45
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x45
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x0c
-        __emit 0x49
-        __emit 0x8d
-        __emit 0x14
-        __emit 0x8e
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x24
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x48
-        __emit 0x02
-        __emit 0x8d
-        __emit 0x0c
-        __emit 0x49
-        __emit 0x8d
-        __emit 0x14
-        __emit 0x8e
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x28
-        __emit 0x0f
-        __emit 0xb7
-        __emit 0x40
-        __emit 0x04
-        __emit 0x8d
-        __emit 0x04
-        __emit 0x40
-        __emit 0x8d
-        __emit 0x0c
-        __emit 0x86
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x14
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x20
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x20
-        __emit 0xe8
-        __emit 0xba
-        __emit 0xa2
-        __emit 0x6c
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x38
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x20
-        __emit 0x50
-        __emit 0x51
-        __emit 0xe8
-        __emit 0x68
-        __emit 0xd6
-        __emit 0xf7
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x40
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc1
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0x7c
-        __emit 0x8d
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x32
-        __emit 0xc0
-        __emit 0x5b
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x20
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x5b
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x20
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
+	int polygon0 = node->Get_Poly0();
+	int polygonCount = node->Get_Poly_Count();
+	if (polygonCount > 0)
+	{
+		const Vector3 *locations = Mesh->vertices->data;
+		const TriIndex *polygonVertices = Mesh->polygons->data;
+		for (int polygonCounter = 0; polygonCounter < polygonCount; ++polygonCounter)
+		{
+			int polygonIndex = PolyIndices[polygon0 + polygonCounter];
+			TriClass triangle;
+			triangle.V[0] = &locations[polygonVertices[polygonIndex][0]];
+			triangle.V[1] = &locations[polygonVertices[polygonIndex][1]];
+			triangle.V[2] = &locations[polygonVertices[polygonIndex][2]];
+			Vector3 normal;
+			triangle.N = &normal;
+			triangle.Compute_Normal();
+			if (CollisionMath::Collide(*boxTest.getCollisionData(), triangle))
+				return true;
+		}
 	}
+	return false;
 }
