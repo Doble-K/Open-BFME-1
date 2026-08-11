@@ -10243,7 +10243,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Make_Identity@Quaternion@@QAEXXZ,,0x009523F0,18,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,matched,
 ?Make_UV_Array_Unique@MeshMatDescClass@@QAEXHH@Z,,0x0092C010,158,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,MASM dump converted to clean C++; ZH body already compiles to retail bytes
 ?Make_UV_Array_Unique@MeshModelClass@@QAEXHH@Z,,0x0094DB30,11,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
-?Make_Unique@MeshClass@@QAEX_N@Z,,0x0092C400,170,Code/GameEngine/Source/Common/MeshClass_Make_UniqueMethodThunk.cpp,matched,symbol-pin Open-BFME4+Grok
 ?MapSelectMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D17B0,194,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MapSelectMenu.cpp,matched,
 ?Mapper_ID@TextureMapperClass@@UBEHXZ,,0x006CF680,3,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?Max@WWMath@@SAMMM@Z,,0x006DFAB0,25,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3D@@@Z,,0x008DBA40,311,Code/GameEngine/Source/Common/Build_Quaternion_Thunk.cpp,matched,
 ??1ScriptGroup@@MAE@XZ,,0x00352950,71,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptGroupDestructorThunk.cpp,matched,Exact 71B clean C++ pooled-list destructor Open-BFME5
 ??1MultiplayerSettings@@UAE@XZ,,0x0008F0E0,102,Code/GameEngine/Source/Common/MultiplayerSettingsDestructorThunk.cpp,matched,Exact 102B clean C++ settings destructor Open-BFME5
+?Make_Unique@MeshClass@@QAEX_N@Z,,0x0092C400,170,Code/GameEngine/Source/Common/MeshClass_Make_UniqueMethodThunk.cpp,matched,Open-BFME5 exact C++ MeshClass Make_Unique retail layout
