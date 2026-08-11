@@ -68562,3 +68562,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??1Gen_dtor_00113d40@@UAE@XZ,0x00047C53,OpenContain base destructor call target
 ??1?$_List_base@HV?$allocator@H@_STL@@@_STL@@QAE@XZ,0x000383CF,HordeContain list member destructor call target (third COMDAT copy 0x0020ACD0)
 ?removeEntry@ProductionUpdate@@AAEXPAVProductionEntry@@@Z,0x0002F3C4,ProductionUpdate destructor queue-drain call target
+?stopDocking@SiegeDockingBehavior@@AAEXXZ,0x00018F89,SiegeDockingBehavior destructor body call target

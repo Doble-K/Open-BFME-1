@@ -1,181 +1,96 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) SiegeDockingBehavior
+// SiegeDockingBehavior's destructor, lifted from its MASM dump to C++.
+//
+// The module-destructor shape OpenContainDestructorThunk.cpp works out: the
+// UpdateModule base's vptrs at 0x00, 0x0C and 0x10, the inlined ~UpdateModule
+// and ~BehaviorModule vptr restores, and the out-of-line base destructor at
+// 0x00113D40. One interface base follows at 0x20.
+//
+// There is one tracked entity, a vector<int> at 0x24 that retail frees inline,
+// and the destructor body ahead of it is a single call on this. Retail runs
+// that call at unwind state 0 -- the same state as the vector -- and never
+// changes the state again.
+//
+// That is what the `throw()` on stopDocking is for. Declared normally, the call
+// can throw, so MSVC gives the body its own region and the states come out 1
+// then 0; declared nothrow, the body needs no region of its own and merges into
+// the vector's, which is the retail numbering. Nothing else in the function
+// changes.
+//
+// The method itself is unclaimed at 0x00206710 and is pinned at the thunk
+// address the call site encodes.
+
+#include <vector>
+
+class Gen_dtor_00113d40
+{
+public:
+	virtual ~Gen_dtor_00113d40();
+
+private:
+	const void *m_moduleData;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void getBehaviorModuleInterface() = 0;
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterface() = 0;
+};
+
+class ObjectModule : public Gen_dtor_00113d40
+{
+private:
+	void *m_object;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+public:
+	virtual ~BehaviorModule() {}
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+public:
+	virtual ~UpdateModule() {}
+
+private:
+	unsigned int m_nextCallFrameAndPhase;
+	int m_indexInLogic;
+	unsigned int m_updateState;					///< out to sizeof() == 0x20
+};
+
+// Plain virtual rather than a virtual destructor: retail gives this subobject a
+// vptr write and no unwind state.
+class SiegeDockingBehaviorSecondaryBase
+{
+public:
+	virtual void slot();
+};
+
+class SiegeDockingBehavior
+	: public UpdateModule,
+	  public SiegeDockingBehaviorSecondaryBase		///< vptr at 0x20
 {
 public:
 	virtual ~SiegeDockingBehavior();
+
+private:
+	void stopDocking() throw();
+
+	_STL::vector<int> m_vector;						///< retail this+0x24
 };
 
 // ??1SiegeDockingBehavior@@UAE@XZ
-__declspec(naked) SiegeDockingBehavior::~SiegeDockingBehavior()
+SiegeDockingBehavior::~SiegeDockingBehavior()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x98
-		__emit 0xbe
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x54
-		__emit 0x63
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x0c
-		__emit 0x90
-		__emit 0x62
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x10
-		__emit 0x80
-		__emit 0x62
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x20
-		__emit 0x6c
-		__emit 0x62
-		__emit 0x0a
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x84
-		__emit 0x27
-		__emit 0xe1
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x24
-		__emit 0x85
-		__emit 0xc9
-		__emit 0x74
-		__emit 0x27
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x2c
-		__emit 0x2b
-		__emit 0xc1
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x02
-		__emit 0xc1
-		__emit 0xe0
-		__emit 0x02
-		__emit 0x3d
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x76
-		__emit 0x0b
-		__emit 0x51
-		__emit 0xe8
-		__emit 0x8c
-		__emit 0xb6
-		__emit 0x67
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0xeb
-		__emit 0x0a
-		__emit 0x50
-		__emit 0x51
-		__emit 0xe8
-		__emit 0xc0
-		__emit 0x7d
-		__emit 0x62
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x10
-		__emit 0xac
-		__emit 0xcb
-		__emit 0x09
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x5c
-		__emit 0xcb
-		__emit 0x09
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x0c
-		__emit 0x98
-		__emit 0xca
-		__emit 0x09
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xfd
-		__emit 0x13
-		__emit 0xe4
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
+	stopDocking();
 }
