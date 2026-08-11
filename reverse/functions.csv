@@ -80952,7 +80952,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?winSetText@GameWindow@@UAEHVUnicodeString@@@Z,,0x00479660,114,Code/GameEngine/Source/Common/GameWindow_winSetText_Thunk.cpp,matched,Open-BFME5 clean C++; StringBase<G> friend shim; setText via ILT 0x4205
 ?winSetTooltipFunc@GameWindow@@QAEHP6AXPAV1@PAVWinInstanceData@@I@Z@Z,,0x00478EB0,15,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_tooltip@0x1ec
 ?winSetUserData@GameWindow@@QAEXPAX@Z,,0x00478C80,10,Code/GameEngine/Source/GameClient/GUI/GameWindowFields.cpp,matched,BFME m_userData@0x2c
-?winTextLabelToText@GameWindowManager@@QAE?AVUnicodeString@@VAsciiString@@@Z,,0x0047E1B0,175,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_winTextLabelToText_Thunk.cpp,matched,Open-BFME5 lift 175B retail MASM to standalone C++ thunk
 ?windowHiding@GameWindowManager@@UAEXPAVGameWindow@@@Z,,0x0047C7E0,109,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?worldToCell@Pathfinder@@QAE_NPBUCoord3D@@PAUICoord2D@@@Z,,0x003D7EC0,156,Code/GameEngine/Source/GameLogic/AI/pathfind_getcell.cpp,matched,clean C++; BFME fast_float_floor calls CRT floor() via dllimport IAT not ZH bit-trick
 ?worldToGridSpace@WaterRenderObjClass@@QAE_NMMAAM0@Z,,0x007303B0,184,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Make_Unique@MeshClass@@QAEX_N@Z,,0x0092C400,170,Code/GameEngine/Source/Common/MeshClass_Make_UniqueMethodThunk.cpp,matched,Open-BFME5 exact C++ MeshClass Make_Unique retail layout
 ?onStructureConstructionComplete@Player@@QAEXPAVObject@@0_N@Z,,0x000C9600,126,Code/GameEngine/Source/Common/Player_onStructureConstructionComplete_Thunk.cpp,matched,Open-BFME5 exact C++ BFME construction completion dispatch
 ?onEnter@TurretAIIdleState@@UAE?AW4StateReturnType@@XZ,,0x0018CB40,173,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleState_onEnter_Thunk.cpp,matched,Open-BFME5 exact C++ TurretAI idle entry retail layout
+?winTextLabelToText@GameWindowManager@@QAE?AVUnicodeString@@VAsciiString@@@Z,,0x0047E1B0,175,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_winTextLabelToText_Thunk.cpp,matched,Open-BFME5 exact C++ retail text-label translation
