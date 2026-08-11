@@ -68633,3 +68633,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?construct@DefaultModule7CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x000237FE,Open-BFME5 DefaultModule7 retail constructor
 ?parse@ButterflyDrawTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0004391E,Open-BFME5 ButterflyDrawTemplate retail parser
 ?parse@HemisphericalEmissionVelocityTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002337B,Open-BFME5 HemisphericalEmissionVelocityTemplate retail parser
+?parse@SphericalEmissionVelocityTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002337B,Open-BFME5 SphericalEmissionVelocityTemplate retail parser
