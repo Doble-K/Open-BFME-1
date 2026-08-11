@@ -15304,7 +15304,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@W3DShadowManager@@QAE_NXZ,,0x007B751E,63,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadow.cpp,matched,
 ?init@W3DView@@UAEXXZ,,0x00742700,432,Code/GameEngine/Source/Common/W3DView_initMethodThunk.cpp,matched,string-anchor MASM unique Open-BFME4+Grok
 ?init@W3DVolumetricShadowManager@@QAE_NXZ,,0x007C19E0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,clean C++ body calls ReAcquireResources; exact retail call/return bytes
-?init@WaterRenderObjClass@@QAEHMMMPAVSceneClass@@W4WaterType@@@Z,,0x007A5200,1383,Code/masm_dumps/_sa3__init_WaterRenderObjClass__QAEHMMMPAVSceneClass__W_7A5200.asm,matched,Exact 1383B string-anchored Open-BFME4
+?init@WaterRenderObjClass@@QAEHMMMPAVSceneClass@@W4WaterType@@@Z,,0x007A5200,1383,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/WaterRenderObjInitThunk.cpp,matched,Open-BFME5 exact C++ emits;object-symbol=_bfme_WaterRenderObj_init_7A5200
 ?init@WaterTracksObj@@QAEXMAAVVector2@@0PAD@Z,,0x007AB6B0,520,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ?init@WaterTracksObj@@QAEXMMAAVVector2@@0PADH@Z,,0x007AB2B0,814,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ?init@Win32BIGFileSystem@@UAEXXZ,,0x009CC590,111,Code/GameEngineDevice/Source/Win32Device/Common/Win32BIGFileSystem_init.cpp,matched,vtable 0x01143B40 slot 1; the *.big literal at 0x0107532C names the class
