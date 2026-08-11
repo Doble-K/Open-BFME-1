@@ -652,59 +652,7 @@ bool DX8Wrapper::Create_Device(void)
 	return true;
 }
 
-// ?Reset_Device@DX8Wrapper@@ present-unmatched
-bool DX8Wrapper::Reset_Device(bool reload_assets)
-{
-	WWDEBUG_SAY(("Resetting device.\n"));
-	DX8_THREAD_ASSERT();
-	if ((IsInitted) && (D3DDevice != NULL)) {
-		// Release all non-MANAGED stuff
-		WW3D::_Invalidate_Textures();
-
-		for (unsigned i=0;i<MAX_VERTEX_STREAMS;++i) 
-		{
-			Set_Vertex_Buffer (NULL,i);
-		}
-		Set_Index_Buffer (NULL, 0);
-		if (m_pCleanupHook) {
-			m_pCleanupHook->ReleaseResources();
-		}
-		DynamicVBAccessClass::_Deinit();
-		DynamicIBAccessClass::_Deinit();
-		DX8TextureManagerClass::Release_Textures();
-		SHD_SHUTDOWN_SHADERS;
-
-		// Reset frame count to reflect the flipping chain being reset by Reset()
-		FrameCount = 0;
-
-		memset(Vertex_Shader_Constants,0,sizeof(Vector4)*MAX_VERTEX_SHADER_CONSTANTS);
-		memset(Pixel_Shader_Constants,0,sizeof(Vector4)*MAX_PIXEL_SHADER_CONSTANTS);
-
-		HRESULT hr=_Get_D3D_Device8()->TestCooperativeLevel();
-		if (hr != D3DERR_DEVICELOST )
-		{	DX8CALL_HRES(Reset(reinterpret_cast<D3DPRESENT_PARAMETERS *>(&_PresentParameters)),hr)
-			if (hr != D3D_OK)
-				return false;	//reset failed.
-		}
-		else
-			return false;	//device is lost and can't be reset.
-
-		if (reload_assets)
-		{
-			DX8TextureManagerClass::Recreate_Textures();
-			if (m_pCleanupHook) {
-				m_pCleanupHook->ReAcquireResources();
-			}
-		}
-		Invalidate_Cached_Render_States();
-		Set_Default_Global_Render_States();
-		SHD_INIT_SHADERS;
-		WWDEBUG_SAY(("Device reset completed\n"));
-		return true;
-	}
-	WWDEBUG_SAY(("Device reset failed\n"));
-	return false;
-}
+// DX8Wrapper::Reset_Device is defined in DX8WrapperResetDeviceThunk.cpp.
 
 // ?Release_Device@DX8Wrapper@@ present-unmatched
 void DX8Wrapper::Release_Device(void)
