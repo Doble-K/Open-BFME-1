@@ -967,8 +967,22 @@ Bool GameInfo::isMultiPlayer(void)
 	return FALSE;
 }
 
-// ?isSandbox@GameInfo@@QAE_NXZ exact retail body is emitted by
-// GameInfoIsSandboxThunk.cpp.
+// ?isSandbox@GameInfo@@QAE_NXZ present-unmatched
+Bool GameInfo::isSandbox(void)
+{
+	Int localSlotNum = getLocalSlotNum();
+	Int localTeam = getConstSlot(localSlotNum)->getTeamNumber();
+	for (Int i=0; i<MAX_SLOTS; ++i)
+	{
+		if (i == localSlotNum)
+			continue;
+
+		const GameSlot *slot = getConstSlot(i);
+		if (slot->isOccupied() && (slot->getTeamNumber() < 0 || slot->getTeamNumber() != localTeam))
+			return FALSE;
+	}
+	return TRUE;
+}
 
 
 // Convenience Functions ----------------------------------------
@@ -1700,4 +1714,5 @@ void SkirmishGameInfo::xfer( Xfer *xfer )
 void SkirmishGameInfo::loadPostProcess( void )
 {
 }  // end loadPostProcess
+
 
