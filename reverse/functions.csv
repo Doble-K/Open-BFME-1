@@ -80201,7 +80201,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setActiveBoundary@TerrainLogic@@QAEXH@Z,,0x001A8080,183,Code/GameEngine/Source/GameLogic/TerrainLogic_setActiveBoundary_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setAdjustsDestination@AIInternalMoveToState@@IAEX_N@Z,,0x0014E630,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
 ?setAllowUninstall@W3DMaskMaterialPassClass@@QAEX_N@Z,,0x0079E3F0,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,
-?setAllowsObserver@CustomMatchPreferences@@QAEX_N@Z,,0x000ADD20,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setAllowsObserver_Thunk.cpp,matched,Ghidra-bound BFME observer setter
 ?setAlpha@Anim2D@@QAEXM@Z,,0x00674240,10,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of existing matched body
 ?setAngle@Shadow@@QAEXM@Z,,0x000AF9E0,10,Code/GameEngine/Source/GameClient/RadiusDecal.cpp,matched,
 ?setAngle@View@@UAEXM@Z,,0x000C8EF0,10,Code/GameEngine/Source/GameClient/View.cpp,matched,
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?ID@?$DynamicVectorClass@VRenderDeviceDescClass@@@@UAEHPBVRenderDeviceDescClass@@@Z,,0x0090B510,36,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,locate.py unique masked-byte placement
 ?setUsesSystemMapDir@CustomMatchPreferences@@QAEX_N@Z,,0x000ADB60,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesSystemMapDir_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
 ?setUsesLongGameList@CustomMatchPreferences@@QAEX_N@Z,,0x000ADC40,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesLongGameList_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
+?setAllowsObserver@CustomMatchPreferences@@QAEX_N@Z,,0x000ADD20,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setAllowsObserver_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
