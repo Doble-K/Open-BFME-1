@@ -1,151 +1,24 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /ICode/Libraries/Source/WWVegas/WWLib
+// Open-BFME5: exact C++ lift of the retail scratch-save cleanup body.
 
-class __declspec(novtable) GameState
+#include "Common/AsciiString.h"
+
+class GameState
 {
+public:
+    AsciiString getFilePathInSaveDirectory(const AsciiString &leaf) const;
+
 private:
     void clearAvailableGames();
 };
 
+extern GameState *TheGameState;
+extern "C" __declspec(dllimport) int __stdcall DeleteFileA(const char *fileName);
+
 // ?clearAvailableGames@GameState@@AAEXXZ
-__declspec(naked) void GameState::clearAvailableGames()
+void GameState::clearAvailableGames()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xa0
-        __emit 0xfc
-        __emit 0x02
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x08
-        __emit 0x68
-        __emit 0x20
-        __emit 0xdb
-        __emit 0x0e
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0xe8
-        __emit 0x9a
-        __emit 0xa2
-        __emit 0x36
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x04
-        __emit 0x24
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x90
-        __emit 0xf1
-        __emit 0x2e
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x80
-        __emit 0xef
-        __emit 0xaf
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x0c
-        __emit 0x24
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x02
-        __emit 0xe8
-        __emit 0xf1
-        __emit 0x8f
-        __emit 0x36
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x05
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x05
-        __emit 0xb8
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x50
-        __emit 0xff
-        __emit 0x15
-        __emit 0x10
-        __emit 0x8d
-        __emit 0x35
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0xc7
-        __emit 0x8f
-        __emit 0x36
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0xc3
-    }
+    AsciiString fileName = TheGameState->getFilePathInSaveDirectory(AsciiString("00000000.sav"));
+    const char *text = *(const char **)&fileName;
+    DeleteFileA(text ? text + 8 : "");
 }
