@@ -68648,3 +68648,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??1EvaCheckInfoVec@@QAE@XZ,0x00002D15,ILT thunk to the retail vector<EvaCheckInfo> destructor at 0x00426220; unidentified beyond its shape
 ??1EvaSideSoundsVec@@QAE@XZ,0x0003763C,ILT thunk to the retail Eva side-sound container destructor at 0x00424890; unidentified beyond its shape
 ?parse@CylindricalEmissionVelocityTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002DE7A,Open-BFME5 CylindricalEmissionVelocityTemplate retail parser
+?parse@OutwardEmissionVelocityTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0001F3E3,Open-BFME5 OutwardEmissionVelocityTemplate retail parser
