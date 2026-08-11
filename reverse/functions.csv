@@ -2109,7 +2109,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LList@@QAE@XZ,,0x00105A60,31,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ??0LListNode@@QAE@XZ,,0x001058D0,19,Code/GameEngine/Source/Common/System/List.cpp,matched,
 ??0LODHeapNode@@QAE@PAVRenderObjClass@@M@Z,,0x009E5EB0,18,Code/Libraries/Source/WWVegas/WW3D2/predlod.cpp,matched,tiny-locate
-??0LadderInfo@@QAE@XZ,,0x0062A910,161,Code/GameEngine/Source/GameNetwork/LadderInfo_ctor_Thunk.cpp,matched,Open-BFME5 lift 161B retail MASM to standalone C++ thunk
+??0LadderInfo@@QAE@XZ,,0x0062A910,161,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,C++ exact with retail static STLport linkage
 ??0LadderList@@QAE@XZ,,0x0062C020,925,Code/masm_dumps/LadderList_constructor.asm,matched,Ghidra-bound retail constructor
 ??0LadderPref@@QAE@ABV0@@Z,,0x000A9BE0,95,Code/GameEngine/Source/Common/LadderPrefCtorThunk.cpp,matched,Open-BFME5 exact C++ raw LadderPref copy constructor
 ??0LadderPref@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/Common/UserPreferences.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
@@ -93773,20 +93773,20 @@ uw_00c3ff35,,0x00C3FF35,8,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cp
 uw_00c3ff4d,,0x00C3FF4D,8,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,gen-funclet;parent=??0GameSpyConfig@@QAE@VAsciiString@@@Z;object-symbol=$L43119
 uw_00c3ff55,,0x00C3FF55,8,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,gen-funclet;parent=??0GameSpyConfig@@QAE@VAsciiString@@@Z;object-symbol=$L43135
 uw_00c3ff5d,,0x00C3FF5D,8,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,gen-funclet;parent=??0GameSpyConfig@@QAE@VAsciiString@@@Z;object-symbol=$L43130
-uw_00c40060,,0x00C40060,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderInfo@@QAE@XZ;object-symbol=$L46906
-uw_00c40068,,0x00C40068,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderInfo@@QAE@XZ;object-symbol=$L46907
-uw_00c40073,,0x00C40073,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderInfo@@QAE@XZ;object-symbol=$L46908
-uw_00c400a0,,0x00C400A0,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47115
-uw_00c400a8,,0x00C400A8,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47116
-uw_00c400b3,,0x00C400B3,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47117
-uw_00c400d4,,0x00C400D4,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47120
-uw_00c400df,,0x00C400DF,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47121
+uw_00c40060,,0x00C40060,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderInfo@@QAE@XZ;object-symbol=$L47270
+uw_00c40068,,0x00C40068,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderInfo@@QAE@XZ;object-symbol=$L47271
+uw_00c40073,,0x00C40073,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderInfo@@QAE@XZ;object-symbol=$L47272
+uw_00c400a0,,0x00C400A0,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47527
+uw_00c400a8,,0x00C400A8,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47528
+uw_00c400b3,,0x00C400B3,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47529
+uw_00c400d4,,0x00C400D4,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47532
+uw_00c400df,,0x00C400DF,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??1LadderInfo@@QAE@XZ;object-symbol=$L47533
 uw_00c40150,,0x00C40150,8,Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp,matched,gen-funclet;parent=?create@GameSpyConfigInterface@@SAPAV1@VAsciiString@@@Z;object-symbol=$L46407
-uw_00c40280,,0x00C40280,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=?checkLadder@LadderList@@AAEXVAsciiString@@H@Z;object-symbol=$L50735
-uw_00c40288,,0x00C40288,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=?checkLadder@LadderList@@AAEXVAsciiString@@H@Z;object-symbol=$L50736
-uw_00c4030e,,0x00C4030E,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderList@@QAE@XZ;object-symbol=$L51509
-uw_00c40316,,0x00C40316,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderList@@QAE@XZ;object-symbol=$L51511
-uw_00c4031e,,0x00C4031E,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderList@@QAE@XZ;object-symbol=$L51510
+uw_00c40280,,0x00C40280,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=?checkLadder@LadderList@@AAEXVAsciiString@@H@Z;object-symbol=$L51931
+uw_00c40288,,0x00C40288,11,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=?checkLadder@LadderList@@AAEXVAsciiString@@H@Z;object-symbol=$L51932
+uw_00c4030e,,0x00C4030E,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderList@@QAE@XZ;object-symbol=$L52733
+uw_00c40316,,0x00C40316,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderList@@QAE@XZ;object-symbol=$L52735
+uw_00c4031e,,0x00C4031E,8,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,gen-funclet;parent=??0LadderList@@QAE@XZ;object-symbol=$L52734
 uw_00c40398,,0x00C40398,8,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,gen-funclet;parent=?gameTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z;object-symbol=$L50784
 uw_00c403a0,,0x00C403A0,8,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,gen-funclet;parent=?gameTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z;object-symbol=$L50790
 uw_00c403e0,,0x00C403E0,8,Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp,matched,gen-funclet;parent=?gameTooltip@@YAXPAVGameWindow@@PAVWinInstanceData@@I@Z;object-symbol=$L50803
