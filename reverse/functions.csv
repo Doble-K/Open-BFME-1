@@ -8339,7 +8339,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Build_Matrix4@@YA?AVMatrix4@@ABVQuaternion@@@Z,,0x008DBE10,286,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix3@@@Z,,0x008DBB80,330,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Build_Quaternion@@YA?AVQuaternion@@ABVMatrix4@@@Z,,0x008DBCD0,311,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
-?Build_Sentence_Not_Centered@Render2DSentenceClass@@AAE?AVVector2@@PBGPAH1_N@Z,,0x00942430,1934,Code/masm_dumps/__Build_Sentence_Not_Centered_Render2DSentenceClass_942430.asm,matched,
+?Build_Sentence_Not_Centered@Render2DSentenceClass@@AAE?AVVector2@@PBGPAH1_N@Z,,0x00942430,1934,Code/Libraries/Source/WWVegas/WW3D2/Render2DSentenceBuildNotCenteredThunk.cpp,matched,object-symbol=_bfme_Render2DSentence_BuildNotCentered_942430;Exact 1934B C++ thunk converted from MASM; Open-BFME5
 ?Build_Textures@Render2DSentenceClass@@AAEXXZ,,0x0093DD60,530,Code/GameEngine/Source/Common/Render2DSentenceClass_Build_TexturesMethodThunk.cpp,matched,
 ?Build_Tree@AABTreeBuilderClass@@AAEXPAUCullNodeStruct@1@HPAH@Z,,0x0096C530,412,Code/Libraries/Source/WWVegas/WW3D2/aabtreebuilder.cpp,matched,
 ?Build_Tree_Recursive@AABTreeClass@@AAEXPAUCullNodeStruct@AABTreeBuilderClass@@AAH@Z,,0x0096AAF0,171,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
