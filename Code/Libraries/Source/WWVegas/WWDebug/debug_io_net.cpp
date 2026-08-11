@@ -86,15 +86,33 @@ void DebugIONet::EmergencyFlush(void)
 {
 }
 
-// ?Execute@DebugIONet@@UAEXAAVDebug@@PBD_NIPBQBD@Z present-unmatched
+class BFMEDebugABI
+{
+public:
+  virtual void f0() = 0; virtual void f1() = 0; virtual void f2() = 0;
+  virtual void f3() = 0; virtual void f4() = 0; virtual void f5() = 0;
+  virtual void f6() = 0; virtual void f7() = 0; virtual void f8() = 0;
+  virtual void f9() = 0; virtual void f10() = 0; virtual void f11() = 0;
+  virtual void f12() = 0; virtual void f13() = 0;
+  virtual void writeString(const char *) = 0;
+};
+
+class BFMENetABI
+{
+public:
+  virtual void f0() = 0; virtual void f1() = 0; virtual void f2() = 0;
+  virtual void write(int, const char *, const char *) = 0;
+};
+
 void DebugIONet::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
                          unsigned argn, const char * const * argv)
 {
   if (!cmd||!strcmp(cmd,"help"))
   {
-    dbg << "net I/O help:\n"
-           "  add [ <machine> ]\n"
-           "    create net I/O (optionally specifying the machine to connect to)\n";
+    ((BFMEDebugABI *) &dbg)->writeString(
+      "net I/O help:\n"
+      "  add [ <machine> ]\n"
+      "    create net I/O (optionally specifying the machine to connect to)\n");
   }
   else if (!strcmp(cmd,"add"))
   {
@@ -106,7 +124,7 @@ void DebugIONet::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
                       0,NULL,OPEN_EXISTING,0,NULL);
     if (m_pipe==INVALID_HANDLE_VALUE)
     {
-      dbg << "Could not connect to given machine.\n";
+      ((BFMEDebugABI *) &dbg)->writeString("Could not connect to given machine.\n");
       return;
     }
 
@@ -119,7 +137,7 @@ void DebugIONet::Execute(class Debug& dbg, const char *cmd, bool structuredCmd,
     mode=sizeof(comp);
     GetComputerName(comp,&mode);
     wsprintf(buf,"Client at %s\n",comp);
-    Write(Other,NULL,buf);
+    ((BFMENetABI *) this)->write(6, NULL, buf);
   }
 }
 

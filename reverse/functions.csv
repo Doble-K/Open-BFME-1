@@ -8769,7 +8769,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?ExecCommand@Debug@@AAEXPBD0@Z,,0x0088ABA0,788,Code/Libraries/Source/WWVegas/WWDebug/debug_debug.cpp,matched,Exact C++ naked emit thunk 788B from string-anchored retail body (Open-BFME5)
 ?Execute@DebugIOCon@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00891200,239,Code/Libraries/Source/debug/debug_io_con.cpp,matched,MASM dump converted to clean C++; BFME's Debug is polymorphic so operator<<(const char*) is a vtable call
 ?Execute@DebugIOFlat@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x00890810,1460,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,true size 1460B; row claimed 1250B
-?Execute@DebugIONet@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x0088FCE0,283,Code/Libraries/Source/WWVegas/WWDebug/DebugIONet_Execute_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?Execute@DebugIONet@@UAEXAAVDebug@@PBD_NIPBQBD@Z,,0x0088FCE0,283,Code/Libraries/Source/WWVegas/WWDebug/debug_io_net.cpp,matched,Open-BFME5 convert retail implementation from emitted-byte thunk
 ?Exists@?$HashTemplateClass@UTriangleSide@@USideIndexInfo@@@@QBE_NABUTriangleSide@@@Z,,0x0094E7E0,177,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
 ?Exists@?$HashTemplateClass@VVector3@@I@@QBE_NABVVector3@@@Z,,0x0094E680,122,Code/Libraries/Source/WWVegas/WW3D2/meshmdl_sidehash.cpp,matched,vendored=cnc-zh
 ?Exists@RegistryClass@@SA_NPBD@Z,,0x009DC1C0,50,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,
