@@ -68635,6 +68635,13 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?parse@HemisphericalEmissionVelocityTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002337B,Open-BFME5 HemisphericalEmissionVelocityTemplate retail parser
 ?parse@SphericalEmissionVelocityTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0002337B,Open-BFME5 SphericalEmissionVelocityTemplate retail parser
 ?construct@DefaultModule1CtorShim@FXParticleSystem@@QAEXAAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@PBX@Z,0x00040214,Open-BFME5 DefaultModule1 retail constructor
+??1HordeContainMember14@@QAE@XZ,0x00026AB2,Open-BFME5 HordeContain member at 0x158 destructor
+??1HordeContainMember38@@QAE@XZ,0x000225E3,Open-BFME5 HordeContain member at 0x120 destructor
+?cleanup@HordeContainOwnedBuffer@@AAEXXZ,0x00047B4F,Open-BFME5 HordeContain owned-buffer cleanup
+?freeHordeContainOwnedBuffer@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 HordeContain owned-buffer deallocator
+??1HordeContainMember4A@@QAE@XZ,0x0001A401,Open-BFME5 HordeContain four-byte member destructor
+??1HordeContainMember70@@QAE@XZ,0x00026F35,Open-BFME5 HordeContain 0x70-byte member destructor
+??_7HordeContainModuleDataBase@@6B@,0x01073744,Open-BFME5 HordeContain base vtable
 ?TheGameLogic@@3PAVGameLogic@@A,0x00EF0898,GameLogic* global; the same 0x012F0898 the matched ?doEvaEnabledDisabled@ScriptActions@@IAEX_N@Z writes at +0x96
 ?_bfme_serviceHighestPriorityCheck@Eva@@AAEXXZ,0x0000F32B,ILT thunk to the retail Eva check-servicing body at 0x004237E0 called from Eva::update; unidentified beyond its shape
 ?parse@RenderObjectDrawTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x00037713,Open-BFME5 RenderObjectDrawTemplate retail parser
