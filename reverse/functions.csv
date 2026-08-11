@@ -14138,7 +14138,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?gatherDebugStats@W3DDisplay@@,,0x006F0300,4490,Code/masm_dumps/_str__gatherDebugStats_W3DDisplay__6F0300.asm,matched,
 ?generateEdgePairs@DiscreteCircle@@IAEXHHH@Z,,0x00069250,194,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
 ?generateGameSpyGameResultsPacket@GameSpyStagingRoom@@,,0x0085E420,233,Code/GameEngine/Source/Common/GameSpyStagingRoomGenerateGameResultsPacketThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_GameSpyStagingRoomGenerateGameResultsPacket_85E420
-?generateLadderGameResultsPacket@GameSpyStagingRoom@@,,0x00639190,1580,Code/masm_dumps/_str2__generateLadderGameResultsPacket_GameSpyStagingRoom__639190.asm,matched,
+?generateLadderGameResultsPacket@GameSpyStagingRoom@@,,0x00639190,1580,Code/GameEngine/Source/GameNetwork/GameSpy/GenerateLadderGameResultsPacketThunk.cpp,matched,Open-BFME5 exact C++ emits;object-symbol=_bfme_generateLadderGameResultsPacket_639190
 ?generateParticleInfo@ParticleSystem@@IAEPBVParticleInfo@@HH@Z,,0x006008AF,1257,Code/GameEngine/Source/GameClient/System/ParticleSys_generateParticleInfo.asm,matched,exact 1257B via MASM
 ?generateVertexBuffer@WaterRenderObjClass@@IAEJHHH_N@Z,,0x0079EAB0,790,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterGenerateVertexBufferThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?get@CRC@@QBEIXZ,,0x0010BDB0,3,Code/GameEngine/Source/Common/RandomValue.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
