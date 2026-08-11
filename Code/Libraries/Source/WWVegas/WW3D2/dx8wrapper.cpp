@@ -1901,6 +1901,35 @@ void DX8Wrapper::Set_Viewport(CONST D3DVIEWPORT8* pViewport)
 	DX8CALL(SetViewport(pViewport));
 }
 
+void DX8Wrapper::Set_DX8_Texture_Stage_State_Body(unsigned stage, D3DTEXTURESTAGESTATETYPE state, unsigned value)
+{
+	typedef HRESULT (__stdcall *BFMESetTextureStageState)(IDirect3DDevice8 *, DWORD, DWORD, DWORD);
+
+	if (stage >= MAX_TEXTURE_STAGES) {
+		IDirect3DDevice8 *device = _Get_D3D_Device8();
+		(*(BFMESetTextureStageState **)device)[67](device, stage, state, value);
+		number_of_DX8_calls++;
+		return;
+	}
+
+	if (TextureStageStates[stage][(unsigned int)state] == value) return;
+#ifdef MESH_RENDER_SNAPSHOT_ENABLED
+	if (WW3D::Is_Snapshot_Activated()) {
+		StringClass value_name(0, true);
+		Get_DX8_Texture_Stage_State_Value_Name(value_name, state, value);
+		SNAPSHOT_SAY(("DX8 - SetTextureStageState(stage: %d, state: %s, value: %s)\n",
+			stage,
+			Get_DX8_Texture_Stage_State_Name(state),
+			value_name));
+	}
+#endif
+	TextureStageStates[stage][(unsigned int)state] = value;
+	IDirect3DDevice8 *device = _Get_D3D_Device8();
+	(*(BFMESetTextureStageState **)device)[67](device, stage, state, value);
+	number_of_DX8_calls++;
+	DX8_RECORD_TEXTURE_STAGE_STATE_CHANGE();
+}
+
 // ----------------------------------------------------------------------------
 //
 // Set vertex buffer. A reference to previous vertex buffer is released and

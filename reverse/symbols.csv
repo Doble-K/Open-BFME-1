@@ -68715,3 +68715,4 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 _ghiAppendCharToBuffer,0x0087D980,GameSpy ghttp buffer append char retail callee
 _ghiPostGetContentType,0x0087CD80,GameSpy ghttp post content type retail callee
 _ghiSendBuffer,0x0087DA50,GameSpy ghttp send buffer retail callee
+?Get_DX8_Texture_Stage_State_Value_Name@DX8Wrapper@@SAXAAVStringClass@@KI@Z,0x00906FE0,DX8 texture-stage snapshot value-name retail callee
