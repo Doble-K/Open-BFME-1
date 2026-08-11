@@ -127,9 +127,13 @@ while call sites align. After several failed shapes or roughly 30 minutes withou
 byte progress, revert the experiment and take a fresh candidate. Never leave a
 nonmatching reconstruction in the tree.
 
-When you abandon a candidate, record it in `reverse/re_attempts.log` as
-`<symbol><TAB>no-match<TAB><evidence>`, citing the real INT3-delimited boundary
-you found rather than just "did not match". `tools/next_work.py` drops those
+When you abandon a candidate, record the verdict with
+`python3 tools/re_log.py record <symbol> <rva> <size> <status> <evidence>` —
+never append to `reverse/re_attempts.log` by hand (editor tools normalise the
+file's line endings and the index tolerates three shapes of past damage).
+Cite the real INT3-delimited boundary you found rather than just "did not
+match", and include `t=<minutes>` and your model in the evidence: that is the
+data future selection weights are fitted from. `tools/next_work.py` drops those
 symbols from every queue, so a logged dead end is what stops the next agent
 repeating your 30-60 minutes; `--include-logged` shows them again for auditing.
 

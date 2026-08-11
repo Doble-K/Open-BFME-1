@@ -68544,3 +68544,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?setGroup@TransitionHandler@@QAEXVAsciiString@@H@Z,0x00045C28,TransitionHandler::setGroup via ILT thunk
 ?freeBridgeBuffers@W3DBridgeBuffer@@AAEXXZ,0x00003E59,W3DBridgeBuffer::freeBridgeBuffers via ILT thunk
 ?allocateBridgeBuffers@W3DBridgeBuffer@@AAEXXZ,0x0002EF2D,W3DBridgeBuffer::allocateBridgeBuffers via ILT thunk
+?_Rebalance@?$_Rb_global@_N@_STL@@SAXPAU_Rb_tree_node_base@2@AAPAU32@@Z,0x0082C9D0,insert-side twin of the _Rebalance_for_erase pin 0x190 later; called by every matched _Rb_tree _M_insert instantiation; body opens x->_M_color=red

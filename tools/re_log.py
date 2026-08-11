@@ -105,3 +105,44 @@ def stats():
     _load()
     dead = sum(1 for status in _LATEST.values() if status in DEAD_END_STATUSES)
     return dead, len(_LATEST)
+
+
+def _record(argv):
+    """Append one verdict row with correct framing; the safe path for agents.
+
+    Hand-appending has produced three shapes of damage this index has to
+    tolerate: LF/CRLF mixes (editor tools normalise the whole file on touch),
+    missing columns, and status words nothing recognises. This writes exactly
+    one 5-field CRLF row and refuses statuses outside the vocabulary, loudly.
+
+    Usage:
+      python3 tools/re_log.py record <symbol> <rva> <size> <status> <evidence...>
+
+    Put attempt duration and model in the evidence free-text (e.g. "t=25min
+    model=haiku ...") — that is what lets the selection weights in
+    tools/yield_model.py be refit from outcomes instead of guessed.
+    """
+    if len(argv) < 5:
+        raise SystemExit(_record.__doc__)
+    symbol, rva_text, size_text, status = argv[0], argv[1], argv[2], argv[3]
+    evidence = " ".join(argv[4:])
+    if status not in VERDICT_STATUSES:
+        raise SystemExit(
+            f"unknown status {status!r}. Dead ends: {sorted(DEAD_END_STATUSES)}; "
+            f"resolutions: {sorted(RESOLVED_STATUSES)}. An unrecognised status "
+            f"would be ignored by every queue, so it is refused here.")
+    int(rva_text, 16), int(size_text)          # fail loudly on malformed fields
+    row = f"{symbol}\t{rva_text}\t{size_text}\t{status}\t{evidence}\r\n"
+    with RE_ATTEMPTS.open("ab") as handle:
+        handle.write(row.encode("utf-8"))
+    print(f"recorded: {symbol} @ {rva_text} -> {status}")
+
+
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "record":
+        _record(sys.argv[2:])
+    else:
+        dead, total = stats()
+        print(f"{dead} standing dead ends of {total} symbols with verdicts; "
+              f"append with: re_log.py record <symbol> <rva> <size> <status> <evidence>")
