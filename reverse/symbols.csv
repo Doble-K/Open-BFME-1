@@ -68601,3 +68601,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?setWakeFrame@UpdateModule@@QAEXPAVObject@@I@Z,0x000157DA
 ?_M_initialize_map@?$_Deque_base@VPingRequest@@V?$allocator@VPingRequest@@@_STL@@@_STL@@IAEXI@Z,0x0001FD7A
 ?_M_initialize_map@?$_Deque_base@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@IAEXI@Z,0x0001E8C6
+?isContextCommand@CommandButton@@QBE_NXZ,0x0004B1DC,InGameUI retail call uses the import thunk to FUN_0089AE80

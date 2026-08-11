@@ -1,228 +1,104 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: recovered command-selection logic with the BFME retail ABI.
 
-class CommandButton;
+enum RecorderModeType { RECORDER_MODE_PLAYBACK = 1 };
+
+class RecorderClass
+{
+public:
+	RecorderModeType getMode();
+};
+
+class CommandButton
+{
+public:
+	bool isContextCommand() const;
+	int getOptions() const { return m_options; }
+	const void *getSpecialPowerTemplate() const { return m_specialPowerTemplate; }
+	int getRadiusCursorType() const { return m_radiusCursorType; }
+	int getWeaponSlot() const { return m_weaponSlot; }
+
+private:
+	unsigned char m_pad0[0x18];
+	int m_options;
+	unsigned char m_pad1[0x18];
+	const void *m_specialPowerTemplate;
+	int m_radiusCursorType;
+	unsigned char m_pad2[0x30];
+	int m_weaponSlot;
+};
+
+class Mouse
+{
+public:
+	virtual void v00(); virtual void v01(); virtual void v02(); virtual void v03();
+	virtual void v04(); virtual void v05(); virtual void v06(); virtual void v07();
+	virtual void v08(); virtual void v09(); virtual void v10(); virtual void v11();
+	virtual void v12(); virtual void v13();
+	virtual void setMouseCursor(int);
+	int getMouseCursor() const { return m_mouseCursor; }
+
+private:
+	unsigned char m_pad[0x4DA4];
+	int m_mouseCursor;
+};
+
 class InGameUI
 {
 public:
 	virtual void setGUICommand(const CommandButton *);
+	virtual void v01(); virtual void v02(); virtual void v03(); virtual void v04();
+	virtual void v05(); virtual void v06(); virtual void v07(); virtual void v08();
+	virtual void v09(); virtual void v10(); virtual void v11(); virtual void v12();
+	virtual void v13(); virtual void v14(); virtual void v15(); virtual void v16();
+	virtual void v17(); virtual void v18(); virtual void v19(); virtual void v20();
+	virtual void v21(); virtual void v22(); virtual void v23(); virtual void v24();
+	virtual void v25(); virtual void v26(); virtual void v27(); virtual void v28();
+	virtual void v29(); virtual void v30(); virtual void v31(); virtual void v32();
+	virtual void v33(); virtual void v34(); virtual void v35(); virtual void v36();
+	virtual void v37(); virtual void v38(); virtual void v39(); virtual void v40();
+	virtual void v41(); virtual void v42(); virtual void v43(); virtual void v44();
+	virtual void v45(); virtual void v46(); virtual void v47(); virtual void v48();
+	virtual void v49(); virtual void v50(); virtual void v51(); virtual void v52();
+	virtual void v53(); virtual void v54(); virtual void v55(); virtual void v56();
+	virtual void v57(); virtual void v58(); virtual void v59(); virtual void v60();
+	virtual void v61(); virtual void v62(); virtual void v63(); virtual void v64();
+	virtual void v65(); virtual void v66(); virtual void v67(); virtual void v68();
+	virtual void v69();
+	virtual void setRadiusCursor(int, const void *, int, bool);
+	virtual void setRadiusCursorNone();
+
+private:
+	unsigned char m_pad0[0x22C];
+	const CommandButton *m_pendingGUICommand;
+	unsigned char m_pad1[0x5F0];
+	int m_mouseMode;
+	int m_mouseModeCursor;
 };
 
-// ?setGUICommand@InGameUI@@UAEXPBVCommandButton@@@Z
-__declspec(naked) void InGameUI::setGUICommand(const CommandButton *)
+extern RecorderClass *TheRecorder;
+extern Mouse *TheMouse;
+
+void InGameUI::setGUICommand(const CommandButton *command)
 {
-	__asm {
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xf9
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x2c
-        __emit 0xd6
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x0e
-        __emit 0xe8
-        __emit 0xf9
-        __emit 0x90
-        __emit 0xc0
-        __emit 0xff
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x01
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xb5
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x85
-        __emit 0xf6
-        __emit 0xb8
-        __emit 0x27
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x2a
-        __emit 0x85
-        __emit 0x46
-        __emit 0x18
-        __emit 0x75
-        __emit 0x19
-        __emit 0x5e
-        __emit 0xc7
-        __emit 0x87
-        __emit 0x30
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x87
-        __emit 0x24
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x87
-        __emit 0x24
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xeb
-        __emit 0x0a
-        __emit 0xc7
-        __emit 0x87
-        __emit 0x24
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x89
-        __emit 0xb7
-        __emit 0x30
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x3b
-        __emit 0x85
-        __emit 0x46
-        __emit 0x18
-        __emit 0x74
-        __emit 0x36
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x89
-        __emit 0x03
-        __emit 0xc1
-        __emit 0xff
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x2b
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x5c
-        __emit 0x4c
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x07
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x02
-        __emit 0xff
-        __emit 0x50
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x6c
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x17
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x50
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x38
-        __emit 0x51
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xff
-        __emit 0x92
-        __emit 0x18
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xeb
-        __emit 0x1b
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x5c
-        __emit 0x4c
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x07
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x02
-        __emit 0xff
-        __emit 0x52
-        __emit 0x38
-        __emit 0x8b
-        __emit 0x07
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xff
-        __emit 0x90
-        __emit 0x1c
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x5c
-        __emit 0x4c
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x91
-        __emit 0xa8
-        __emit 0x4d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x97
-        __emit 0x28
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x5f
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	if (TheRecorder && TheRecorder->getMode() == 1) return;
+	if (command) {
+		if ((command->getOptions() & 0x227) == 0) {
+			m_pendingGUICommand = 0;
+			m_mouseMode = 0;
+			return;
+		}
+		m_mouseMode = 2;
+	} else {
+		m_mouseMode = 0;
 	}
+	m_pendingGUICommand = command;
+	if (command && (command->getOptions() & 0x227) && !command->isContextCommand()) {
+		if (TheMouse) TheMouse->setMouseCursor(2);
+		setRadiusCursor(command->getRadiusCursorType(), command->getSpecialPowerTemplate(), command->getWeaponSlot(), true);
+	} else {
+		if (TheMouse) TheMouse->setMouseCursor(2);
+		setRadiusCursorNone();
+	}
+	m_mouseModeCursor = TheMouse->getMouseCursor();
 }

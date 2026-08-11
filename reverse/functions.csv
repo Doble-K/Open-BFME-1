@@ -80314,7 +80314,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setFramesPerSecondLimit@GameEngine@@UAEXH@Z,,0x0006B6F0,10,Code/GameEngine/Source/Common/GameEngine.cpp,matched,BFME FPS-limit setter
 ?setFromInt@RGBColor@@QAEXH@Z,0x0002CDC7,0x00083370,84,Code/Libraries/Source/WWVegas/WWMath/color.cpp,matched,sets RGB channels from packed int
 ?setFrontCrushed@ActiveBody@@UAEX_N@Z,,0x007AE630,13,Code/GameEngine/Source/GameLogic/Object/Body/ActiveBody.cpp,matched,
-?setGUICommand@InGameUI@@UAEXPBVCommandButton@@@Z,,0x0043ADE0,212,Code/GameEngine/Source/GameClient/InGameUI_setGUICommand_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setGameInProgress@GameInfo@@QAEX_N@Z,,0x0006B6C0,10,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,
 ?setGameMode@GameLogic@@QAEXH@Z,,0x00942F00,13,Code/GameEngine/Source/GameLogic/System/GameLogicDispatch.cpp,matched,
 ?setGameWindow@AnimateWindow@@QAEXPAVGameWindow@@@Z,,0x000873F0,10,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Do_Mappers_Need_Normals@MeshMatDescClass@@QAE_NXZ,,0x00929AD0,267,Code/Libraries/Source/WWVegas/WW3D2/MeshMatDescClass_Do_Mappers_Need_Normals_Thunk.cpp,matched,Open-BFME5 clean C++ mapper-normal scan with exact BFME retail mapper-array ABI
 ?findWeaponTemplate@WeaponStore@@QBEPBVWeaponTemplate@@VAsciiString@@@Z,,0x001E4F50,183,Code/GameEngine/Source/Common/WeaponStore_findWeaponTemplate_Thunk.cpp,matched,Open-BFME5 clean C++ weapon-template lookup with exact BFME AsciiString payload ABI
 ?findDamageFX@DamageFXStore@@QBEPBVDamageFX@@VAsciiString@@@Z,,0x00067440,192,Code/GameEngine/Source/Common/DamageFXStore_findDamageFX_Thunk.cpp,matched,Open-BFME5 clean C++ DamageFX STLport lookup with exact BFME AsciiString payload ABI
+?setGUICommand@InGameUI@@UAEXPBVCommandButton@@@Z,,0x0043ADE0,212,Code/GameEngine/Source/GameClient/InGameUI_setGUICommand_Thunk.cpp,matched,Open-BFME5 exact C++ retail ABI conversion
