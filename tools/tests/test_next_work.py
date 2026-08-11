@@ -238,28 +238,131 @@ def test_structural_candidates_do_not_start_inside_claimed_ranges(data):
     print(f"PASS structural queue: {len(data['structural'])} candidates outside claimed ranges")
 
 
+QUEUES = ("reloc_named", "drift_quick_wins", "structural", "ghidra_absent")
+
+
+def served_names(candidate):
+    """Every name a queue item stands for: the structural tier collapses each
+    address to one item carrying all of them."""
+    return candidate.get("functions") or [candidate["function"]]
+
+
+def item_rva(candidate):
+    return int((candidate.get("candidate_rva") or candidate.get("target_rva") or "0"), 16)
+
+
+def leaked_names(candidate):
+    """Names on this item that a standing verdict should have retired.
+
+    The item's hint belongs to the name it is served under, so that one is
+    checked exactly. The names collapsed in alongside it kept no hint of their
+    own, so they are read the most forgiving way -- `boundary_moved=True`
+    retires a name only where the log gives no boundary to have moved, which is
+    exactly the leak this filter exists to close.
+    """
+    import re_log
+
+    rva, names = item_rva(candidate), served_names(candidate)
+    moved = "drift-corrected" in candidate.get("hint", "")
+    leaked = [names[0]] if re_log.is_dead_end(names[0], rva, boundary_moved=moved) else []
+    return leaked + [name for name in names[1:]
+                     if re_log.is_dead_end(name, rva, boundary_moved=True)]
+
+
 def test_logged_dead_ends_suppressed(ranked):
     """A standing dead-end verdict is a finished investigation, so the queues
     must not serve that boundary again; --include-logged restores it."""
-    import re_log
-
-    queues = ("reloc_named", "drift_quick_wins", "structural", "ghidra_absent")
-    for key in queues:
+    for key in QUEUES:
         # A verdict retires a candidate only while its boundary is unchanged;
         # a snap-corrected boundary is new evidence and comes back.
-        stale = [c["function"] for c in ranked[key]
-                 if re_log.is_dead_end(
-                     c["function"],
-                     int((c.get("candidate_rva") or c.get("target_rva") or "0"), 16),
-                     boundary_moved="drift-corrected" in c.get("hint", ""))]
+        stale = [name for c in ranked[key] for name in leaked_names(c)]
         assert not stale, f"{key} served {len(stale)} finished candidate(s): {stale[:3]}"
 
+    # Compare names, not items: dropping one dead name off a shared address
+    # removes a name from the collapsed item, not the address. More names come
+    # back than the log retires, because an address with no Ghidra extent is
+    # validated over the range it would serve, and restoring the candidates
+    # ahead of it in the ranking changes which range that is.
     full = get_ranked_json(["--include-logged"])
-    hidden = sum(len(full[key]) - len(ranked[key]) for key in queues)
-    assert hidden == ranked["suppressed_logged"], (hidden, ranked["suppressed_logged"])
-    assert hidden >= 0
-    print(f"PASS re_attempts filter: {hidden} finished candidate(s) suppressed, "
-          f"--include-logged restores them")
+    shown = {name for key in QUEUES for c in ranked[key] for name in served_names(c)}
+    restored = {name for key in QUEUES for c in full[key]
+                for name in served_names(c)} - shown
+    retired = {name for key in QUEUES for c in full[key] for name in leaked_names(c)}
+    assert retired, "no queued candidate carries a standing verdict at all"
+    assert retired <= restored, sorted(retired - restored)[:3]
+    assert len(restored) <= ranked["suppressed_logged"], (
+        len(restored), ranked["suppressed_logged"])
+    print(f"PASS re_attempts filter: {ranked['suppressed_logged']} finished "
+          f"candidate(s) suppressed, --include-logged restores {len(restored)} "
+          f"name(s) including all {len(retired)} with a standing verdict")
+
+
+def test_a_verdict_with_no_boundary_is_not_released_by_a_snap(ranked):
+    """Every drift candidate is snap-corrected by construction, so reading
+    "the boundary moved" as "the verdict no longer applies" released every
+    3-field verdict in the log -- 374 already-investigated candidates went
+    straight back into the queue, and the fleet worked several of them twice.
+    A row that records no boundary is a finding about the symbol."""
+    import re_log
+
+    repeat_offender = "?PreStaticInit@Debug@@CAXXZ"   # three no-match rows, no rva
+    assert re_log.is_dead_end(repeat_offender, 0x00C6E37E, boundary_moved=True)
+    assert re_log.is_dead_end(repeat_offender, 0x00C6E37E, boundary_moved=False)
+    served = {name for key in QUEUES for c in ranked[key] for name in served_names(c)}
+    assert repeat_offender not in served
+
+    # A verdict that DOES record its boundary still only retires that boundary.
+    at_boundary = "??0FastAllocatorGeneral@@QAE@XZ"
+    assert re_log.is_dead_end(at_boundary, 0x00B027B0)
+    assert not re_log.is_dead_end(at_boundary, 0x00B027B0 + 0x40, boundary_moved=True)
+    print("PASS dead-end verdicts recorded without an rva survive a boundary snap")
+
+
+def test_structural_queue_is_collapsed_and_validated(ranked):
+    """One item per address, each carrying every name that still fits its body,
+    and the retail extent -- not the drifted source size -- in the command."""
+    queue = ranked["structural"]
+    meta = ranked["structural_meta"]
+    if not queue:
+        pytest.skip("structural tier is empty")
+
+    addresses = [c["candidate_rva"] for c in queue]
+    assert len(set(addresses)) == len(addresses), "an address was served twice"
+    assert meta["served"] == len(queue), meta
+    assert meta["names"] == sum(len(c["functions"]) for c in queue) >= len(queue)
+    assert meta["rejected"] and meta["addresses"] == meta["served"] + meta["rejected"]
+
+    for candidate in queue:
+        assert candidate["function"] == candidate["functions"][0], candidate
+        served = candidate["extent"] or candidate["size"]
+        assert f"--rva {candidate['candidate_rva']} --size {served} " in \
+            candidate["command"], candidate
+    # `size` stays the compiled size: candidate_weight reads it, and overwriting
+    # it with the extent would retune the selection weights as a side effect.
+    drifted = [c for c in queue if c["extent"] and c["extent"] != c["size"]]
+    assert drifted, "no candidate disagrees with retail on size — suspicious"
+    assert all(c["warnings"] for c in drifted)
+    print(f"PASS structural queue: {meta['served']} address(es) carrying "
+          f"{meta['names']} name(s), {meta['refuted']} refuted by arity, "
+          f"{meta['rejected']} address(es) refused")
+
+
+def test_padding_snap_refuses_an_all_padding_window():
+    """padding_snap returned (rva, None) when the whole window was padding, and
+    a None note reads as "nothing wrong here" -- which is how all 76 int3-headed
+    addresses reached the queue."""
+    import build
+    import next_work
+
+    original = build.read_target_bytes
+    build.read_target_bytes = lambda rva, count: b"\xcc" * count
+    try:
+        rva, note = next_work.padding_snap(0x00C6E37E)
+    finally:
+        build.read_target_bytes = original
+    assert rva == 0x00C6E37E, rva
+    assert "no trustworthy boundary" in note, note
+    print("PASS padding_snap: an all-padding window is refused, not passed through")
 
 
 def test_dead_end_index_reads_both_log_shapes():
@@ -287,7 +390,8 @@ def test_corrupt_ledger():
         (temp / "tools").mkdir()
         (temp / "reverse" / "zh_sweep").mkdir(parents=True)
         (temp / "src" / "zh").mkdir(parents=True)
-        for name in ("next_work.py", "check_csv.py", "re_log.py", "yield_model.py"):
+        for name in ("next_work.py", "check_csv.py", "re_log.py", "yield_model.py",
+                     "boundary_validator.py", "audit_ret_arity.py"):
             (temp / "tools" / name).write_bytes((ROOT / "tools" / name).read_bytes())
         (temp / "src" / "zh" / "stub.cpp").write_text("// stub\n")
         row = "?Foo@@QAEXXZ,,0x00400000,16,src/zh/stub.cpp,matched,\r\n"
@@ -318,6 +422,9 @@ def main():
     test_ghidra_candidates_validated(ranked)
     test_structural_candidates_do_not_start_inside_claimed_ranges(ranked)
     test_logged_dead_ends_suppressed(ranked)
+    test_a_verdict_with_no_boundary_is_not_released_by_a_snap(ranked)
+    test_structural_queue_is_collapsed_and_validated(ranked)
+    test_padding_snap_refuses_an_all_padding_window()
     test_dead_end_index_reads_both_log_shapes()
     test_corrupt_ledger()
     print("ALL TESTS PASSED")

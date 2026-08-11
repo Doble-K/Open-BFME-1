@@ -20,7 +20,9 @@ Two rules keep this from over-suppressing, which would be worse than the leak:
   in `refuted` after three `solved` rows and must stay retired.
 * A verdict describes the boundary its author examined. Where the row records an
   RVA the comparison is exact, so once an image-derived snap moves a candidate
-  somewhere else the old verdict no longer covers it.
+  somewhere else the old verdict no longer covers it. Where the row records no
+  RVA there is no boundary to have moved, and the verdict stands: the 3-field
+  shape is a finding about the symbol.
 """
 from pathlib import Path
 
@@ -87,7 +89,11 @@ def is_dead_end(symbol, rva=None, *, boundary_moved=False):
 
     `boundary_moved` is the caller's evidence that this candidate's address was
     re-derived since the log was written (a drift snap): a verdict recorded
-    against a different or unstated boundary does not retire it.
+    against a *different* boundary does not retire it. A verdict recorded
+    against no boundary at all still does, because it is a finding about the
+    symbol rather than about an address -- reading it the other way leaked 377
+    already-investigated candidates back into the queue, every drift candidate
+    being snap-corrected by construction.
     """
     _load()
     verdicts = _BY_BOUNDARY.get(symbol)
@@ -95,7 +101,7 @@ def is_dead_end(symbol, rva=None, *, boundary_moved=False):
         return False
     if rva is not None and rva in verdicts:
         return verdicts[rva] in DEAD_END_STATUSES
-    if boundary_moved:
+    if boundary_moved and None not in verdicts:
         return False
     return _LATEST.get(symbol) in DEAD_END_STATUSES
 

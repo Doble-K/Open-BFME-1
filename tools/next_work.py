@@ -33,6 +33,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import boundary_validator
 import re_log
 import yield_model
 
@@ -156,21 +157,31 @@ def resolve_drift_source(basename, function=None):
 
 
 _GHIDRA_STARTS = None
+_GHIDRA_SIZES = None
 
 
-def _ghidra_starts():
-    """(sorted-list, set) of ghidra function-start RVAs, cached. Empty on a fresh
-    clone without the generated inventory, so correction silently no-ops."""
-    global _GHIDRA_STARTS
-    if _GHIDRA_STARTS is None:
-        starts = set()
+def _ghidra_sizes():
+    """{function start rva: body size} from the inventory, cached. Empty on a
+    fresh clone without the generated inventory, so correction silently no-ops."""
+    global _GHIDRA_SIZES
+    if _GHIDRA_SIZES is None:
+        sizes = {}
         if GHIDRA_FUNCTIONS.exists():
             with GHIDRA_FUNCTIONS.open(newline="") as fh:
                 for row in csv.DictReader(fh):
                     try:
-                        starts.add(int(row["rva"], 16))
+                        sizes[int(row["rva"], 16)] = int(row["size"])
                     except (ValueError, KeyError, TypeError):
                         pass
+        _GHIDRA_SIZES = sizes
+    return _GHIDRA_SIZES
+
+
+def _ghidra_starts():
+    """(sorted-list, set) of ghidra function-start RVAs, cached."""
+    global _GHIDRA_STARTS
+    if _GHIDRA_STARTS is None:
+        starts = set(_ghidra_sizes())
         _GHIDRA_STARTS = (sorted(starts), starts)
     return _GHIDRA_STARTS
 
@@ -246,7 +257,11 @@ def padding_snap(rva):
             off += 1
         if off < len(head):
             return rva + off, f"drift-corrected +{off}B (queued rva was int3 padding)"
-        return rva, None
+        # A whole window of padding is still padding: saying so is what keeps the
+        # interior filter below from serving the address anyway, which is how all
+        # 76 int3-headed addresses in the live queue got there.
+        return rva, (f"queued rva is int3 padding for at least {SNAP_WINDOW}B — "
+                     f"no trustworthy boundary in range")
 
     # Otherwise the nearest preceding padding run ends on the real start. A lone
     # 0xCC/0x90 is often just an operand byte, so trust a single-byte run only
@@ -496,9 +511,9 @@ def drop_logged(candidates):
     rediscover a recorded dead end; --include-logged reopens it for humans.
     It describes the boundary that agent actually examined, so a row only
     retires a candidate while the boundary still matches: where the log
-    records the RVA (5-field shape) that comparison is exact; where it does
-    not, `drift-corrected` in the hint is evidence our boundary moved.
-    See tools/re_log.py."""
+    records the RVA (5-field shape) that comparison is exact. Where it records
+    none, there is no boundary to have moved and the verdict stands however
+    the hint reads. See tools/re_log.py."""
     kept, dropped = [], 0
     for candidate in candidates:
         if re_log.is_dead_end(
@@ -508,6 +523,82 @@ def drop_logged(candidates):
             continue
         kept.append(candidate)
     return kept, dropped
+
+
+def structural_validator():
+    """Boundary validator over the retail image and the Ghidra inventory."""
+    import build
+    return boundary_validator.BoundaryValidator(build.read_target_bytes,
+                                                _ghidra_sizes())
+
+
+def collapse_and_validate(candidates, validator=None):
+    """Serve one item per address, and only where the address is a boundary.
+
+    `structural_candidates` dedupes by symbol name and never by address, so the
+    same body is queued once per name that drifted onto it: 3,923 candidates
+    over 1,200 addresses, one 40-byte body claimed by 1,231 names out of 409
+    source files. Collapsing is also what makes the arity check pay -- a shared
+    address keeps only the names whose stack cleanup its body can satisfy, and
+    an address that keeps none is not work at all.
+
+    The collapsed item keeps every scalar key a single candidate had, because
+    shard_key, cluster_of and print_candidate all read them, and adds the full
+    surviving name list, retail's own body size, and any size warning. `size`
+    deliberately stays the compiled size: candidate_weight reads it, so writing
+    the extent there would retune the selection weights as a side effect.
+
+    Group order is the queue's own ranking, so the representative is the best
+    candidate at that address under whichever order the caller asked for.
+    Returns (items, meta); `validator` is injected by the replay tests.
+    """
+    groups = {}
+    for candidate in candidates:
+        rva = _candidate_rva(candidate)
+        if rva is None:
+            raise SystemExit(f"structural candidate {candidate['function']} carries no "
+                             f"usable rva ({candidate.get('candidate_rva')!r}) — "
+                             f"regenerate drift_report.csv")
+        groups.setdefault(rva, []).append(candidate)
+    if groups and validator is None:
+        validator = structural_validator()
+
+    kept, refuted, reasons = [], 0, {}
+    for rva, group in groups.items():
+        verdict = validator.validate([c["function"] for c in group], rva,
+                                     group[0]["size"])
+        refuted += len(verdict["refuted"])
+        if verdict["reject"]:
+            reasons[verdict["reject"]] = reasons.get(verdict["reject"], 0) + 1
+            continue
+        surviving = set(verdict["names"])
+        group = [c for c in group if c["function"] in surviving]
+        best = group[0]
+        served = verdict["extent"] or best["size"]
+        kept.append(dict(
+            best,
+            functions=[c["function"] for c in group],
+            extent=verdict["extent"],
+            warnings=verdict["warnings"],
+            command=(f"python3 tools/explain_mismatch.py '{best['function']}' "
+                     f"--rva {best['candidate_rva']} --size {served} "
+                     f"--source {best['source']}")))
+    meta = {"addresses": len(groups), "served": len(kept),
+            "rejected": len(groups) - len(kept),
+            "names": sum(len(item["functions"]) for item in kept),
+            "refuted": refuted,
+            "reasons": dict(sorted(reasons.items(), key=lambda item: -item[1]))}
+    return kept, meta
+
+
+def validator_note(meta):
+    """One line for what the boundary validator removed, or None if it ran on
+    nothing. Never silent: a queue that shrank by three quarters has to say so."""
+    if not meta["addresses"]:
+        return None
+    return (f"boundary validator: {meta['served']} of {meta['addresses']} structural "
+            f"address(es) survive ({meta['rejected']} are not a function boundary), "
+            f"carrying {meta['names']} name(s) ({meta['refuted']} refuted by arity)")
 
 
 def parse_shard(value):
@@ -760,6 +851,12 @@ def print_candidate(label, candidate, meta, candidates=()):
               f"{candidate['function']}")
         print(f"       {candidate['source']} @ {candidate['candidate_rva']}  "
               f"hint: {candidate['hint']}")
+        for warning in candidate.get("warnings", ()):
+            print(f"       warning: {warning}")
+        shared = len(candidate.get("functions", ())) - 1
+        if shared > 0:
+            print(f"       {shared} other drifted name(s) claim this same address; "
+                  f"the body decides which one it is")
         print(f"       start: {candidate['command']}")
     elif label == "string-anchored unclaimed function":
         print(f"  {candidate['confidence']:<6} {candidate['size']:>5}B "
@@ -782,12 +879,14 @@ def print_candidate(label, candidate, meta, candidates=()):
 
 
 def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent,
-                 suppressed=0, named=(), named_note=""):
+                 suppressed=0, named=(), named_note="", structural_meta=None):
     print("== 0. ledger health ==")
     print(f"  {ledger}")
     if suppressed:
         print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
               f"investigated (--include-logged to show)")
+    if structural_meta and validator_note(structural_meta):
+        print(f"  {validator_note(structural_meta)}")
 
     if args.tier in (None, "named"):
         print(f"\n== 1. reloc-named unclaimed functions ({len(named)}) ==")
@@ -810,11 +909,13 @@ def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent,
 
     if args.tier not in ("named", "harvest", "ghidra"):
         shown = structural[:args.limit]
-        print(f"\n== 3. structural reconciliation — manual RE ({len(structural)}; "
-              f"workflow: docs/structural.md) ==")
+        print(f"\n== 3. structural reconciliation — manual RE ({len(structural)} "
+              f"address(es); workflow: docs/structural.md) ==")
         for candidate in shown:
+            shared = len(candidate.get("functions", ())) - 1
             print(f"  {candidate['aligned_pct']:>3}% {candidate['size']:>5}B "
-                  f"{candidate['function']}")
+                  f"{candidate['function']}"
+                  + (f"  (+{shared} name(s) at this address)" if shared > 0 else ""))
             print(f"       {candidate['source']} @ {candidate['candidate_rva']}  "
                   f"hint: {candidate['hint']}")
             print(f"       start: {candidate['command']}")
@@ -904,6 +1005,10 @@ def main():
         suppressed = (dropped_named + dropped_drift + dropped_structural
                       + dropped_ghidra + dropped_anchored)
 
+    # After the log filter, so one dead name cannot retire a whole address, and
+    # before sharding, so every worker sees the same collapsed queue.
+    structural, structural_meta = collapse_and_validate(structural)
+
     named = apply_shard(named, args.shard)
     drifts = apply_shard(drifts, args.shard)
     structural = apply_shard(structural, args.shard)
@@ -920,6 +1025,7 @@ def main():
             "structural": structural,
             "ghidra_meta": ghidra_meta, "ghidra_absent": ghidra_absent,
             "anchored_meta": anchored_note, "anchored": anchored,
+            "structural_meta": structural_meta,
             "suppressed_logged": suppressed,
             "shard": shard_meta,
             "pointers": [cmd for cmd, _ in POINTERS],
@@ -928,7 +1034,7 @@ def main():
 
     if args.ranked:
         print_ranked(args, ledger, drifts, structural, ghidra_meta,
-                     ghidra_absent, suppressed, named, named_note)
+                     ghidra_absent, suppressed, named, named_note, structural_meta)
         return
 
     label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent,
@@ -948,6 +1054,8 @@ def main():
     if suppressed:
         print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
               f"investigated (--include-logged to show)")
+    if validator_note(structural_meta):
+        print(f"  {validator_note(structural_meta)}")
     if candidate is None:
         print(f"\nNo {label} candidates remain.")
         return
