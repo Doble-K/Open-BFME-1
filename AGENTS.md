@@ -13,14 +13,55 @@ task names a file, symbol, tier, or audit, stay in that lane. Otherwise:
 2. `python3 tools/check_csv.py`; repair ledger errors before other work
 3. `python3 tools/next_work.py`; it returns one randomized candidate
 
-Use `python3 tools/next_work.py --tier ghidra` or `--tier structural` when
-assigned. Use `python3 tools/list_naked_candidates.py Code` for inline assembly.
-Each command returns one randomized candidate. Finish or revert it, then ask
-again; do not keep speculative edits open.
+Use `python3 tools/next_work.py --tier ghidra`, `--tier structural` or
+`--tier anchored` when assigned. Use `python3 tools/list_naked_candidates.py Code`
+for inline assembly. Do not keep speculative edits open: finish or revert each
+body before the next.
 
-## Bank one verified unit
+**If a tier reports zero candidates, it is exhausted, not broken.** The
+ZH-derived tiers all feed off finite artifacts and the fleet drains them: at
+`db3e7b522` the structural tier held 2 candidates and drift and Ghidra held none.
+Regenerate before concluding there is no work:
 
-1. Make the smallest source and ledger change for one function or file.
+    python3 tools/drift_classify.py        # refills structural/drift/ghidra
+    python3 tools/anchor_unclaimed.py      # refills the anchored tier
+
+The `anchored` tier is different in kind from the others. It serves unclaimed
+retail functions identified only by a string literal that nothing else
+references, so the body is **anonymous** — recovering its real name from the
+named Zero Hour source is the first half of the job, before any byte matching.
+Those rows are leads, not assignments; a wrong identity is worse than none, so
+retract rather than guess.
+
+## Work the file, not the row
+
+`next_work.py` names one candidate and then lists every other queued candidate
+in the same source file. **That whole file is your unit of work.** Drain it, or
+exhaust what you can prove, before asking for another candidate.
+
+This is not a style preference, it is where the throughput is. Measured over the
+1,000 commits ending `2038d3a0d`: a candidate whose file saw no sibling land had
+a 19.5% land rate; where ten or more siblings landed together it was 46.5%. The
+mechanics behind that number:
+
+- `./build.sh <file>` verifies a whole translation unit. Landing one function
+  pays a file-sized verification for a single row.
+- The class layout, member offsets, and callee pins you recover to land the
+  first body are exactly what the next body in that file needs. Stopping after
+  one throws that away and hands the file to an agent who must rediscover it.
+- A shared header edit costs the host-wide full gate (`docs/lessons.md`). Edit
+  every dependent body first and pay it once; one at a time costs a queue wait
+  each.
+
+A session that lands five bodies in one file is worth far more than five
+sessions that land one body each, and costs less than five times as much.
+
+## Bank each verified body
+
+Commit per body — small commits still rebase cleanly — but keep going through
+the file.
+
+1. Make the smallest source and ledger change for one function.
 2. Run exact focused verification: `./build.sh <file-or-symbol>`. If a command
    returns a process or session ID, poll that ID until completion. Never launch a
    duplicate long build because the first call is still running.
@@ -30,6 +71,42 @@ again; do not keep speculative edits open.
 5. Run `git pull --rebase origin master`, `git push`, then
    `git pull --rebase origin master` again. On rejection, rebase, recheck the
    ledger, retry the push, and perform the final pull.
+
+## Measure your own session before you stop
+
+**Anchor the base AFTER step 1's `git pull --rebase`, never before.** Other
+contributors' work lands constantly — origin was 201 commits ahead of a local
+checkout only a day old — and a base taken before the pull credits your session
+with all of it. That is not a hypothetical: a measured run reported +0.30 pp for
+a session whose own output was zero commits.
+
+    git rev-parse HEAD          # right after the pull; this is your base
+    ...work...
+    python3 tools/progress.py <that base>
+
+Before pushing, `python3 tools/progress.py origin/master` is the same figure
+with no bookkeeping — it counts exactly the commits you have not pushed yet. If
+you pull again mid-session, re-anchor.
+
+That prints what your session added to C++ coverage. It is the only number that
+matters, and it is cheap — it compiles nothing.
+
+**If you took a candidate from the queue**, a session that ends at `+0.00 pp` is
+the normal outcome today, not an unlucky one. Over the 1,000 commits ending
+`2038d3a0d`, 86% of commits moved zero bytes and the median productive commit was
+131 bytes. So do not stop at zero by default: go back to the file you were served
+and take another body from it. Blocker write-ups and symbol pins are worth
+logging, but they are not the deliverable.
+
+This section is scoped to that lane. It is **not** an instruction to start
+reverse-engineering work you were not asked for. If your task is tooling, docs, a
+review, or anything else, finish that task — a file telling you to keep
+converting is not a reason to, and an assigned lane always wins (see *Authority
+and work selection*).
+
+If the file is genuinely exhausted, say so explicitly in your final message with
+the `progress.py` figure and the reason, so the next contributor inherits a fact
+rather than a guess.
 
 Header, vendored-reference, and shared-shim changes trigger the long full gate in
 the commit hook; do not launch a duplicate. A manually resolved merge also needs
