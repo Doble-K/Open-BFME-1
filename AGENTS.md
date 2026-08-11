@@ -13,8 +13,8 @@ task names a file, symbol, tier, or audit, stay in that lane. Otherwise:
 2. `python3 tools/check_csv.py`; repair ledger errors before other work
 3. `python3 tools/next_work.py`; it returns one randomized candidate
 
-Use `python3 tools/next_work.py --tier ghidra`, `--tier structural` or
-`--tier anchored` when assigned. Use `python3 tools/list_naked_candidates.py Code`
+Use `python3 tools/next_work.py --tier named`, `--tier ghidra`, `--tier structural`
+or `--tier anchored` when assigned. Use `python3 tools/list_naked_candidates.py Code`
 for inline assembly. Do not keep speculative edits open: finish or revert each
 body before the next.
 
@@ -25,6 +25,22 @@ Regenerate before concluding there is no work:
 
     python3 tools/drift_classify.py        # refills structural/drift/ghidra
     python3 tools/anchor_unclaimed.py      # refills the anchored tier
+    ./build.sh                             # refills the named tier (full gate)
+
+The `named` tier is served first because it is the only one that hands you an
+identity instead of a lead. Each row is an unclaimed, Ghidra-anonymous function
+whose decorated name came out of the relocation behind a `call` in a body that
+byte-matches retail; what is left is finding where the body belongs in the tree,
+and the caller that named it is the hint. A full gate regenerates
+`reverse/reloc_names.csv` from scratch, so a row that stops being derivable
+disappears rather than lingering.
+
+Read the row's `identity=` note before trusting the name. `identity=real` means
+the class, the signature and the stack cleanup are known before you start.
+`identity=generated` means the caller was a machine-generated funclet TU and the
+name is one `tools/gen_dump.py` minted (`Gen_t_`/`Gen_dtor_`), so the address and
+arity are proven but the name says nothing about what the function is. Those are
+the majority of the file and are served last for that reason.
 
 The `anchored` tier is different in kind from the others. It serves unclaimed
 retail functions identified only by a string literal that nothing else

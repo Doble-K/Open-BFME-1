@@ -782,7 +782,133 @@ def compile_function(row, symbol_map, output):
         "bytes": bytes(resolved),
         "source": row["source"],
         "unresolved": unresolved,
+        "relocs": relocs,
     }
+
+
+REL32 = 0x0014
+GHIDRA_FUNCTIONS = ROOT / "reverse" / "ghidra_functions.csv"
+RELOC_NAMES = ROOT / "reverse" / "reloc_names.csv"
+# MSVC hashes the absolute source path into anonymous-namespace symbols, so the
+# same function carries a different token in every clone. Naming a retail
+# address after one would churn this file on each contributor's gate.
+CLONE_LOCAL_RE = re.compile(r"\?A0x[0-9A-Fa-f]{8}")
+# tools/gen_dump.py mints Gen_t_/Gen_dtor_ classes for the machine-generated
+# funclet TUs. Those names are this project's own bookkeeping, not identity
+# recovered from retail, and they outnumber the recovered names roughly two to
+# one. Published marked so the queue can tell a real class and signature from a
+# placeholder that only looks like one.
+GEN_PLACEHOLDER_RE = re.compile(r"Gen_(?:t|dtorv?)_[0-9a-f]{8}")
+
+
+def harvest_reloc_names(patches):
+    """Name retail functions from the call sites of rows proven byte-true.
+
+    A byte-true row's compiled bytes ARE the retail bytes, so each REL32
+    relocation sits exactly where retail encodes that call's displacement and
+    the relocation carries the callee's mangled name. The callee is therefore
+    decoded from the RETAIL bytes, gated on the byte in front of the
+    displacement being the call opcode: asking compile_function's resolver
+    instead would only ever return callees already listed in symbols.csv, which
+    is no new identity at all.
+
+    The decoded address is usually not the body. Intra-module calls go through
+    an incremental-link thunk, so a lone `jmp` at the target is followed to the
+    body it stands for.
+
+    Returns {body rva: {"names": set, "sources": set, "sites": int}}.
+    """
+    data, sections = exe_image()
+    text = next(section for section in sections if section["name"] == ".text")
+    low, high = text["rva"], text["rva"] + text["size"]
+
+    thunks = {}
+
+    def follow(rva):
+        if rva not in thunks:
+            offset = rva_to_file_offset(sections, rva)
+            thunks[rva] = (rva + 5 + struct.unpack_from("<i", data, offset + 1)[0]
+                           if data[offset] == 0xE9 else rva)
+        return thunks[rva]
+
+    named = {}
+    for patch in patches:
+        target = patch["target"]
+        for offset, rtype, symbol in patch["relocs"]:
+            if rtype != REL32 or offset < 1 or offset + 4 > len(target):
+                continue
+            if target[offset - 1] != 0xE8:
+                continue
+            callee = (patch["target_rva"] + offset + 4
+                      + struct.unpack_from("<i", target, offset)[0])
+            if not low <= callee < high:
+                continue
+            entry = named.setdefault(follow(callee),
+                                     {"names": set(), "sources": set(), "sites": 0})
+            entry["names"].add(symbol)
+            entry["sources"].add(patch["source"])
+            entry["sites"] += 1
+    return named
+
+
+def select_reloc_names(named):
+    """Keep only harvested names that identify one unclaimed anonymous function.
+
+    Both filters are load-bearing. Identical-code folding gives one address
+    several legitimate names, and a shared address that acquires two of them is
+    a contradiction the arity gate cannot see, so an address named more than one
+    way is dropped rather than guessed at. Addresses the ledger already claims,
+    or that Ghidra already names, are not new identity.
+    """
+    inventory = {}
+    with GHIDRA_FUNCTIONS.open("r", encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            inventory[int(row["rva"], 16)] = (int(row["size"]), row["name"])
+    claimed = {int(row["target_rva"], 16) for row in load_all_function_rows()}
+
+    selected = []
+    for rva, entry in sorted(named.items()):
+        if len(entry["names"]) != 1:
+            continue
+        name = next(iter(entry["names"]))
+        if CLONE_LOCAL_RE.search(name):
+            continue
+        known = inventory.get(rva)
+        if known is None or not known[1].startswith("FUN_") or rva in claimed:
+            continue
+        selected.append({
+            "name": name,
+            "target_rva": f"0x{rva:08X}",
+            "target_size": str(known[0]),
+            "source": min(entry["sources"]),
+            "notes": (f"reloc-derived;call-sites={entry['sites']};identity="
+                      + ("generated" if GEN_PLACEHOLDER_RE.search(name)
+                         else "real")),
+        })
+    return selected
+
+
+def write_reloc_names(patches):
+    """Regenerate reverse/reloc_names.csv from this gate's byte-true rows.
+
+    Regenerated, never appended: it is derived output, and a row that stops
+    being re-derivable must stop being published. There is deliberately no
+    status column — what is byte-verified here is the naming evidence, not the
+    named function's body, and no derived file gets to imply otherwise.
+    """
+    selected = select_reloc_names(harvest_reloc_names(patches))
+    with RELOC_NAMES.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle, ["name", "target_rva", "target_size", "source", "notes"],
+            lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(selected)
+    real = sum(1 for row in selected if row["notes"].endswith("identity=real"))
+    print(f"Reloc names: {len(selected)} anonymous function(s) named from "
+          f"byte-true call sites ({real} recovered identity, "
+          f"{len(selected) - real} generated placeholder) -> "
+          f"{RELOC_NAMES.relative_to(ROOT)}")
+    return selected
 
 
 def verify_functions(only=None):
@@ -900,6 +1026,11 @@ def verify_functions(only=None):
         print(f"  {row['name']} ({row['source']})")
     else:
         print(f"Functions: OK {total}/{total} matched across {source_count} source file(s)")
+
+    # Only a full gate may rewrite the derived file: a scoped run proves a
+    # handful of rows and would silently publish that handful as the whole set.
+    if not only:
+        write_reloc_names(patches)
 
     return patches
 

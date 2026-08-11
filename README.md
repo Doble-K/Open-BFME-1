@@ -20,7 +20,8 @@ The number that matters is **byte-exact C++**: about **13.5% of `.text`**, which
 needs no source and is excluded from the honest denominator). A further ~6% is
 byte-verified assembly awaiting conversion. Every row in `reverse/functions.csv`
 compiles or assembles to bytes identical to retail; `python3 tools/progress.py <ref>`
-prints the current split. The pipeline: scripts claim unidentified functions as
+prints both denominators and the split, so the real-code figure above is a number
+you can check rather than one you have to take on trust. The pipeline: scripts claim unidentified functions as
 byte-true ASM dumps, and agents convert ASM to exact C++ — conversion is the
 contribution.
 

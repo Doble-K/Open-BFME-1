@@ -49,12 +49,13 @@ def test_plain_run(ranked):
     proc = run()
     assert proc.returncode == 0, f"plain run failed (rc {proc.returncode}):\n{proc.stderr}"
     available = any(ranked[key] for key in
-                    ("drift_quick_wins", "structural", "ghidra_absent"))
+                    ("reloc_named", "drift_quick_wins", "structural",
+                     "ghidra_absent"))
     if available:
         assert proc.stdout.count("== selected work:") == 1, proc.stdout
         assert proc.stdout.count("       start:") + proc.stdout.count(
             "then byte-verify:") == 1, proc.stdout
-        assert "== 1. drift quick wins" not in proc.stdout, proc.stdout
+        assert "== 2. drift quick wins" not in proc.stdout, proc.stdout
     else:
         assert "No validated queue candidates remain." in proc.stdout
     print("PASS plain run: one work unit, no ranked queue dump")
@@ -63,10 +64,12 @@ def test_plain_run(ranked):
 def test_ranked_view():
     proc = run(["--ranked", "--limit", "2"])
     assert proc.returncode == 0, proc.stderr
-    for needle in ("== 0. ledger health ==", "== 1. drift quick wins",
-                   "== 2. structural reconciliation",
-                   "== 3. Ghidra-anchored absent functions",
-                   "== 4. rest of the ladder =="):
+    for needle in ("== 0. ledger health ==",
+                   "== 1. reloc-named unclaimed functions",
+                   "== 2. drift quick wins",
+                   "== 3. structural reconciliation",
+                   "== 4. Ghidra-anchored absent functions",
+                   "== 5. rest of the ladder =="):
         assert needle in proc.stdout, f"ranked output missing {needle!r}"
     print("PASS --ranked: full human/debug queue remains available")
 
@@ -240,7 +243,7 @@ def test_logged_dead_ends_suppressed(ranked):
     must not serve that boundary again; --include-logged restores it."""
     import re_log
 
-    queues = ("drift_quick_wins", "structural", "ghidra_absent")
+    queues = ("reloc_named", "drift_quick_wins", "structural", "ghidra_absent")
     for key in queues:
         # A verdict retires a candidate only while its boundary is unchanged;
         # a snap-corrected boundary is new evidence and comes back.
