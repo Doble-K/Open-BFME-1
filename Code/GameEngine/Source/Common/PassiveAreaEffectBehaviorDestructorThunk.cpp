@@ -1,131 +1,75 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) PassiveAreaEffectBehavior
+// PassiveAreaEffectBehavior's destructor, lifted from its MASM dump to C++.
+//
+// The smallest instance of the module-destructor shape
+// OpenContainDestructorThunk.cpp works out in full: three vptr writes at 0x00,
+// 0x0C and 0x10, one container member, then the inlined ~UpdateModule and
+// ~BehaviorModule vptr restores (0x109CBAC at 0x10, 0x109CB5C at 0x00,
+// 0x109CA98 at 0x0C) and the out-of-line base destructor at 0x00113D40.
+//
+// UpdateModule ends at 0x20 and the member sits at 0x24, so this class adds one
+// word of its own ahead of it. The member is an _STL::list<int> reached through
+// the 0x000E5E70 copy of _List_base<int>::~_List_base.
+
+#include <list>
+
+class Gen_dtor_00113d40
 {
 public:
-    virtual ~PassiveAreaEffectBehavior();
+	virtual ~Gen_dtor_00113d40();
+
+private:
+	const void *m_moduleData;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void getBehaviorModuleInterface() = 0;
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterface() = 0;
+};
+
+class ObjectModule : public Gen_dtor_00113d40
+{
+private:
+	void *m_object;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+public:
+	virtual ~BehaviorModule() {}
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+public:
+	virtual ~UpdateModule() {}
+
+private:
+	unsigned int m_nextCallFrameAndPhase;
+	int m_indexInLogic;
+	unsigned int m_updateState;					///< out to sizeof() == 0x20
+};
+
+class PassiveAreaEffectBehavior : public UpdateModule
+{
+public:
+	virtual ~PassiveAreaEffectBehavior();
+
+private:
+	unsigned char m_unreconstructed_20[4];		///< retail this+0x20
+	_STL::list<int> m_list;						///< retail this+0x24
 };
 
 // ??1PassiveAreaEffectBehavior@@UAE@XZ
-__declspec(naked) PassiveAreaEffectBehavior::~PassiveAreaEffectBehavior()
+PassiveAreaEffectBehavior::~PassiveAreaEffectBehavior()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x48
-        __emit 0xb9
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x04
-        __emit 0x53
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x40
-        __emit 0x52
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0x34
-        __emit 0x52
-        __emit 0x0a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x24
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x58
-        __emit 0x11
-        __emit 0xe1
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xac
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x5c
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x98
-        __emit 0xca
-        __emit 0x09
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x3f
-        __emit 0x59
-        __emit 0xe4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
