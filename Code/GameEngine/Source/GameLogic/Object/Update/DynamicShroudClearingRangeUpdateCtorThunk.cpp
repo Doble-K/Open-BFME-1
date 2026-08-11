@@ -1,314 +1,145 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift the dynamic-shroud update constructor to clean C++.
 
 class Thing;
 class ModuleData;
+class Player;
 
-class DynamicShroudClearingRangeUpdate
+class Object
 {
 public:
-    DynamicShroudClearingRangeUpdate(Thing *, const ModuleData *);
+	Player *getControllingPlayer() const;
+	float getShroudClearingRange() const;
 };
 
-// ??0DynamicShroudClearingRangeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) DynamicShroudClearingRangeUpdate::DynamicShroudClearingRangeUpdate(Thing *, const ModuleData *)
+class GameLogic
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x5e;
-        __emit 0x16;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x53;
-        __emit 0x55;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x28;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x50;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0xe8;
-        __emit 0xa5;
-        __emit 0x8c;
-        __emit 0xd8;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x83;
-        __emit 0xc8;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x1c;
-        __emit 0x68;
-        __emit 0xa3;
-        __emit 0xa9;
-        __emit 0x44;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0xd1;
-        __emit 0x6d;
-        __emit 0x43;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0x1e;
-        __emit 0x6a;
-        __emit 0x10;
-        __emit 0x8d;
-        __emit 0x6e;
-        __emit 0x50;
-        __emit 0x55;
-        __emit 0x89;
-        __emit 0x5c;
-        __emit 0x24;
-        __emit 0x30;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xc4;
-        __emit 0xe0;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x00;
-        __emit 0xe0;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xf4;
-        __emit 0xdf;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x5a;
-        __emit 0x8a;
-        __emit 0x76;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x3c;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x44;
-        __emit 0x8b;
-        __emit 0x57;
-        __emit 0x0c;
-        __emit 0x03;
-        __emit 0x57;
-        __emit 0x08;
-        __emit 0xb9;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x88;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x89;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x28;
-        __emit 0x3b;
-        __emit 0xd1;
-        __emit 0x89;
-        __emit 0x10;
-        __emit 0x8d;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x28;
-        __emit 0x7c;
-        __emit 0x02;
-        __emit 0x8b;
-        __emit 0xc8;
-        __emit 0x8b;
-        __emit 0x09;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x28;
-        __emit 0x8b;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x47;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0xd1;
-        __emit 0x2b;
-        __emit 0xd0;
-        __emit 0x89;
-        __emit 0x56;
-        __emit 0x34;
-        __emit 0x8b;
-        __emit 0x57;
-        __emit 0x10;
-        __emit 0x8b;
-        __emit 0xc1;
-        __emit 0x2b;
-        __emit 0xc2;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x2c;
-        __emit 0x8b;
-        __emit 0x57;
-        __emit 0x14;
-        __emit 0x8b;
-        __emit 0x7e;
-        __emit 0x08;
-        __emit 0x2b;
-        __emit 0xc2;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x30;
-        __emit 0xa1;
-        __emit 0x98;
-        __emit 0x08;
-        __emit 0x2f;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0x50;
-        __emit 0x3c;
-        __emit 0x03;
-        __emit 0xd1;
-        __emit 0x3b;
-        __emit 0xfb;
-        __emit 0x89;
-        __emit 0x56;
-        __emit 0x38;
-        __emit 0x88;
-        __emit 0x5e;
-        __emit 0x40;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x48;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x48;
-        __emit 0x43;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x4c;
-        __emit 0x89;
-        __emit 0x5e;
-        __emit 0x20;
-        __emit 0x74;
-        __emit 0x29;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xe8;
-        __emit 0x24;
-        __emit 0x23;
-        __emit 0xd9;
-        __emit 0xff;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0x74;
-        __emit 0x1e;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xe8;
-        __emit 0xc2;
-        __emit 0x41;
-        __emit 0xda;
-        __emit 0xff;
-        __emit 0xd9;
-        __emit 0x5e;
-        __emit 0x48;
-        __emit 0x8b;
-        __emit 0xfd;
-        __emit 0xbb;
-        __emit 0x1e;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xcf;
-        __emit 0xe8;
-        __emit 0x8d;
-        __emit 0xc3;
-        __emit 0xdb;
-        __emit 0xff;
-        __emit 0x83;
-        __emit 0xc7;
-        __emit 0x10;
-        __emit 0x4b;
-        __emit 0x75;
-        __emit 0xf3;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x5d;
-        __emit 0x5b;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+public:
+	unsigned char m_unreconstructed_00[0x3C];
+	unsigned int m_frame;
+	unsigned int getFrame() const { return m_frame; }
+};
+
+extern GameLogic *TheGameLogic;
+
+class ObjectModule
+{
+public:
+	ObjectModule(Thing *, const ModuleData *);
+	virtual ~ObjectModule();
+
+protected:
+	const ModuleData *m_moduleData;
+	Object *m_object;
+	Object *getObject() const { return m_object; }
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterfaceAnchor();
+};
+
+class ModuleInterface
+{
+public:
+	virtual void moduleInterfaceAnchor();
+};
+
+class UpdateModule : public ObjectModule, public UpdateModuleInterface, public ModuleInterface
+{
+public:
+	UpdateModule(Thing *thing, const ModuleData *moduleData)
+		: ObjectModule(thing, moduleData), m_f14(0), m_f18(-1), m_f1c(-1) {}
+	virtual ~UpdateModule() {}
+
+private:
+	unsigned int m_f14;
+	int m_f18;
+	int m_f1c;
+};
+
+class RadiusDecal
+{
+public:
+	RadiusDecal();
+	~RadiusDecal();
+	void clear();
+
+private:
+	const void *m_template;
+	void *m_decal;
+	unsigned char m_empty;
+	unsigned char m_pad[4];
+};
+
+class DynamicShroudClearingRangeUpdateModuleData
+{
+public:
+	unsigned char m_unreconstructed_00[0x08];
+	unsigned int m_shrinkDelay;
+	unsigned int m_shrinkTime;
+	unsigned int m_growDelay;
+	unsigned int m_growTime;
+};
+
+class DynamicShroudClearingRangeUpdate : public UpdateModule
+{
+public:
+	DynamicShroudClearingRangeUpdate(Thing *, const ModuleData *);
+	virtual ~DynamicShroudClearingRangeUpdate();
+
+private:
+	int m_state;
+	int m_stateCountDown;
+	int m_totalFrames;
+	unsigned int m_growStartDeadline;
+	unsigned int m_sustainDeadline;
+	unsigned int m_shrinkStartDeadline;
+	unsigned int m_doneForeverFrame;
+	unsigned int m_changeIntervalCountdown;
+	unsigned char m_decalsCreated;
+	unsigned char m_pad_41[3];
+	float m_visionChangePerInterval;
+	float m_nativeClearingRange;
+	float m_currentClearingRange;
+	RadiusDecal m_gridDecal[30];
+};
+
+template <class T>
+static const T &bfmeMax(const T &left, const T &right)
+{
+	return right < left ? left : right;
+}
+
+// ??0DynamicShroudClearingRangeUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+DynamicShroudClearingRangeUpdate::DynamicShroudClearingRangeUpdate(
+	Thing *thing, const ModuleData *moduleData)
+	: UpdateModule(thing, moduleData)
+{
+	const DynamicShroudClearingRangeUpdateModuleData *md =
+		(const DynamicShroudClearingRangeUpdateModuleData *)moduleData;
+	m_changeIntervalCountdown = 0;
+	m_visionChangePerInterval = 0.0f;
+	m_stateCountDown = md->m_shrinkDelay + md->m_shrinkTime;
+	m_totalFrames = bfmeMax(1, m_stateCountDown);
+	m_shrinkStartDeadline = m_stateCountDown - md->m_shrinkDelay;
+	m_growStartDeadline = m_stateCountDown - md->m_growDelay;
+	m_sustainDeadline = m_growStartDeadline - md->m_growTime;
+	m_doneForeverFrame = TheGameLogic->getFrame() + m_stateCountDown;
+	m_decalsCreated = 0;
+	m_nativeClearingRange = 200.0f;
+	m_currentClearingRange = 0.0f;
+	m_state = 0;
+
+	Object *object = getObject();
+	if (!object)
+		return;
+	Player *controller = object->getControllingPlayer();
+	if (!controller)
+		return;
+	m_nativeClearingRange = object->getShroudClearingRange();
+
+	for (int decal = 0; decal < 30; ++decal)
+		m_gridDecal[decal].clear();
 }
