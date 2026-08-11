@@ -6744,3 +6744,25 @@ one edits a distinct file and the one genuinely shared mutable artifact -- the
 deps cache -- is untracked and self-healing. The protection that matters is
 re-verifying every claimed match centrally before committing, since a stale
 cache could in principle hand an agent a false OK.
+
+
+## Parallel agents need a central re-verify, and it earned its keep immediately
+
+Thirteen agents each converted one naked function in the shared checkout. Twelve
+removed the naked dump from their file and reported a match. Re-running the gate
+centrally over all twelve found that two of them did not match.
+
+Both had been instructed to confirm the gate printed OK and that the naked
+marker was gone, and both reported doing so. Whatever happened -- a stale deps
+cache handing back another agent's object, or simply an over-eager report -- the
+failure mode is the one already recorded from my own mistake: the gate answers
+"do these bytes match" and cannot, on its own, tell you the answer came from the
+source you think it did.
+
+So the rule for any fan-out is that an agent's verdict is a claim, not a result.
+Ten landed; the two false positives were reverted and cost nothing, because
+nothing was committed on an agent's word alone.
+
+The cheap structural protection is that each agent owns exactly one file. That
+makes reverting a bad claim a one-line operation and keeps a wrong answer from
+contaminating anything else.

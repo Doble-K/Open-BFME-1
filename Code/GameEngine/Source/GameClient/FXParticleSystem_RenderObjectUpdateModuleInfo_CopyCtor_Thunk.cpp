@@ -1,317 +1,42 @@
 // cl: /DNDEBUG /MD /EHsc
 // Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-namespace FXParticleSystem { class RenderObjectUpdateModuleInfo; }
-class FXParticleSystem::RenderObjectUpdateModuleInfo
-{
+class Xfer;
+
+namespace FXParticleSystem {
+
+class RenderObjectUpdateModuleInfo {
 public:
-	RenderObjectUpdateModuleInfo(const RenderObjectUpdateModuleInfo &);
+    RenderObjectUpdateModuleInfo(const RenderObjectUpdateModuleInfo &that);
+    virtual ~RenderObjectUpdateModuleInfo();
+    virtual const char *GetSnapshotName();
+    virtual void LoadPostProcess();
+    virtual void DoXfer(Xfer &xfer);
+    RenderObjectUpdateModuleInfo &operator=(const RenderObjectUpdateModuleInfo &that);
 };
 
 // ??0RenderObjectUpdateModuleInfo@FXParticleSystem@@QAE@ABV01@@Z
-__declspec(naked) FXParticleSystem::RenderObjectUpdateModuleInfo::RenderObjectUpdateModuleInfo(const FXParticleSystem::RenderObjectUpdateModuleInfo &)
+RenderObjectUpdateModuleInfo::RenderObjectUpdateModuleInfo(const RenderObjectUpdateModuleInfo &that)
 {
-	__asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x8b
-        __emit 0xc1
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x78
-        __emit 0x0d
-        __emit 0x11
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x04
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x10
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x1c
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x28
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x34
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x40
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x40
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x4c
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x4c
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x58
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x58
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x64
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x64
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x70
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x70
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x51
-        __emit 0x7c
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0x70
-        __emit 0x7c
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x91
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x3a
-        __emit 0x8d
-        __emit 0xb0
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x89
-        __emit 0x3e
-        __emit 0x8b
-        __emit 0x7a
-        __emit 0x04
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x52
-        __emit 0x08
-        __emit 0x89
-        __emit 0x56
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x89
-        __emit 0x94
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5f
-        __emit 0x89
-        __emit 0x88
-        __emit 0x94
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-	}
+    struct VariableBlock {
+        unsigned int value0;
+        unsigned int value1;
+        unsigned int value2;
+    };
+
+    *(VariableBlock *)((char *)this + 0x4) = *(const VariableBlock *)((const char *)&that + 0x4);
+    *(VariableBlock *)((char *)this + 0x10) = *(const VariableBlock *)((const char *)&that + 0x10);
+    *(VariableBlock *)((char *)this + 0x1c) = *(const VariableBlock *)((const char *)&that + 0x1c);
+    *(VariableBlock *)((char *)this + 0x28) = *(const VariableBlock *)((const char *)&that + 0x28);
+    *(VariableBlock *)((char *)this + 0x34) = *(const VariableBlock *)((const char *)&that + 0x34);
+    *(VariableBlock *)((char *)this + 0x40) = *(const VariableBlock *)((const char *)&that + 0x40);
+    *(VariableBlock *)((char *)this + 0x4c) = *(const VariableBlock *)((const char *)&that + 0x4c);
+    *(VariableBlock *)((char *)this + 0x58) = *(const VariableBlock *)((const char *)&that + 0x58);
+    *(VariableBlock *)((char *)this + 0x64) = *(const VariableBlock *)((const char *)&that + 0x64);
+    *(VariableBlock *)((char *)this + 0x70) = *(const VariableBlock *)((const char *)&that + 0x70);
+    *(VariableBlock *)((char *)this + 0x7c) = *(const VariableBlock *)((const char *)&that + 0x7c);
+    *(VariableBlock *)((char *)this + 0x88) = *(const VariableBlock *)((const char *)&that + 0x88);
+    *(unsigned int *)((char *)this + 0x94) = *(const unsigned int *)((const char *)&that + 0x94);
+}
+
 }

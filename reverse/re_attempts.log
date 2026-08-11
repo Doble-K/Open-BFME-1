@@ -3008,3 +3008,6 @@ uw_00c3b860	0x00C3B860	11	refuted	Phase 2 gate repair: no symbol in a freshly co
 ?setMinPoints@QuickMatchPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key MinPoints read out of the binary
 ?setNumPlayers@QuickMatchPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key NumPlayers read out of the binary
 ?setWaitTime@QuickMatchPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key WaitTime read out of the binary
+agent-fanout		13	tooling	13 parallel agents each converting one naked function in the shared checkout. 12 de-naked their file and reported matched; central re-verification found 2 of those did NOT match. 10 landed
+??0ParticleSystemInfo@FXParticleSystem@@QAE@XZ		168	attempted	agent reported matched; central re-verify says otherwise. Reverted
+??0W3DStatusCircle@@QAE@XZ		90	attempted	agent reported matched; central re-verify says otherwise. Reverted

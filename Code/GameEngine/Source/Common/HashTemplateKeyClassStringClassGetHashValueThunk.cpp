@@ -1,5 +1,14 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// HashTemplateKeyClass<StringClass>::Get_Hash_Value.
+//
+// BFME's StringClass specialization is the byte-wise FNV-ish hash of the
+// WW3D2/meshmdl.cpp family (see Code/Libraries/Source/WWVegas/WW3D2/
+// meshmdl_sidehash.cpp, whose Vector3 sibling at 0x0094DB70 is the identical
+// body with a trip count of 12): it hashes sizeof(T) raw bytes of the object
+// rather than the string contents, so the loop bound is a compile-time
+// constant and MSVC unrolls it six-wide -- 24 / 6 == 4 loop iterations.
+// StringClass itself is never dereferenced, so a forward declaration suffices
+// and the wwstring.h/StringBase shims are not pulled in.
 
 class StringClass;
 
@@ -10,86 +19,13 @@ public:
 	static unsigned int Get_Hash_Value(const T &);
 };
 
-// ?Get_Hash_Value@?@VStringClass@@@@SAIABVStringClass@@@Z
-__declspec(naked) unsigned int HashTemplateKeyClass<StringClass>::Get_Hash_Value(const StringClass &)
+// ?Get_Hash_Value@?$HashTemplateKeyClass@VStringClass@@@@SAIABVStringClass@@@Z
+unsigned int HashTemplateKeyClass<StringClass>::Get_Hash_Value(const StringClass &s)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x41
-        __emit 0xba
-        __emit 0x04
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8d
-        __emit 0x49
-        __emit 0x00
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x71
-        __emit 0xff
-        __emit 0x6b
-        __emit 0xc0
-        __emit 0x26
-        __emit 0x03
-        __emit 0xf0
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x01
-        __emit 0x6b
-        __emit 0xf6
-        __emit 0x26
-        __emit 0x03
-        __emit 0xf0
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x41
-        __emit 0x01
-        __emit 0x6b
-        __emit 0xf6
-        __emit 0x26
-        __emit 0x03
-        __emit 0xf0
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x41
-        __emit 0x02
-        __emit 0x6b
-        __emit 0xf6
-        __emit 0x26
-        __emit 0x03
-        __emit 0xf0
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x41
-        __emit 0x03
-        __emit 0x6b
-        __emit 0xf6
-        __emit 0x26
-        __emit 0x03
-        __emit 0xf0
-        __emit 0x0f
-        __emit 0xb6
-        __emit 0x41
-        __emit 0x04
-        __emit 0x6b
-        __emit 0xf6
-        __emit 0x26
-        __emit 0x03
-        __emit 0xc6
-        __emit 0x83
-        __emit 0xc1
-        __emit 0x06
-        __emit 0x4a
-        __emit 0x75
-        __emit 0xc5
-        __emit 0x5e
-        __emit 0xc3
+	const unsigned char *buffer = (const unsigned char *)&s;
+	unsigned int hval = 0;
+	for (unsigned int a = 0; a < 24U; ++a) {
+		hval += 37 * hval + buffer[a];
 	}
+	return hval;
 }

@@ -1,235 +1,75 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Os
 
-extern "C" __declspec(naked) void bfme_CPUDetectGetProcessorManufacturerName_A5EAED()
+extern "C" unsigned int bfme_CPUDetectGetProcessorManufacturerName_A5EAED()
 {
-    __asm {
-        __emit 0x55;
-        __emit 0x8b;
-        __emit 0xec;
-        __emit 0x83;
-        __emit 0xec;
-        __emit 0x28;
-        __emit 0x53;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0xbe;
-        __emit 0x80;
-        __emit 0xf4;
-        __emit 0x14;
-        __emit 0x01;
-        __emit 0x8d;
-        __emit 0x7d;
-        __emit 0xe8;
-        __emit 0xa5;
-        __emit 0xa5;
-        __emit 0xa5;
-        __emit 0xa4;
-        __emit 0xbe;
-        __emit 0xb8;
-        __emit 0x38;
-        __emit 0x14;
-        __emit 0x01;
-        __emit 0x8d;
-        __emit 0x7d;
-        __emit 0xd8;
-        __emit 0xa5;
-        __emit 0xa5;
-        __emit 0xa5;
-        __emit 0xa4;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x33;
-        __emit 0xdb;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0x33;
-        __emit 0xd2;
-        __emit 0x0f;
-        __emit 0xa2;
-        __emit 0xc7;
-        __emit 0x45;
-        __emit 0xfc;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x0f;
-        __emit 0xa2;
-        __emit 0x89;
-        __emit 0x5d;
-        __emit 0xe8;
-        __emit 0x89;
-        __emit 0x55;
-        __emit 0xec;
-        __emit 0x89;
-        __emit 0x4d;
-        __emit 0xf0;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0x0f;
-        __emit 0x84;
-        __emit 0x95;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0x4d;
-        __emit 0xfc;
-        __emit 0x02;
-        __emit 0xb8;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x0f;
-        __emit 0xa2;
-        __emit 0x89;
-        __emit 0x45;
-        __emit 0xf8;
-        __emit 0xb9;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x00;
-        __emit 0x23;
-        __emit 0xca;
-        __emit 0xf7;
-        __emit 0xd9;
-        __emit 0x1b;
-        __emit 0xc9;
-        __emit 0x83;
-        __emit 0xe1;
-        __emit 0x20;
-        __emit 0x09;
-        __emit 0x4d;
-        __emit 0xfc;
-        __emit 0xb9;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x02;
-        __emit 0x23;
-        __emit 0xca;
-        __emit 0xf7;
-        __emit 0xd9;
-        __emit 0x1b;
-        __emit 0xc9;
-        __emit 0x83;
-        __emit 0xe1;
-        __emit 0x40;
-        __emit 0x09;
-        __emit 0x4d;
-        __emit 0xfc;
-        __emit 0xb8;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x0f;
-        __emit 0xa2;
-        __emit 0x3d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x76;
-        __emit 0x57;
-        __emit 0x83;
-        __emit 0x4d;
-        __emit 0xfc;
-        __emit 0x04;
-        __emit 0xb8;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x0f;
-        __emit 0xa2;
-        __emit 0xb9;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x80;
-        __emit 0x23;
-        __emit 0xca;
-        __emit 0xf7;
-        __emit 0xd9;
-        __emit 0x1b;
-        __emit 0xc9;
-        __emit 0x81;
-        __emit 0xe1;
-        __emit 0x80;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x09;
-        __emit 0x4d;
-        __emit 0xfc;
-        __emit 0x8d;
-        __emit 0x75;
-        __emit 0xd8;
-        __emit 0x8d;
-        __emit 0x7d;
-        __emit 0xe8;
-        __emit 0xb9;
-        __emit 0x0c;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xfc;
-        __emit 0xf3;
-        __emit 0xa6;
-        __emit 0xb9;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x40;
-        __emit 0x23;
-        __emit 0xca;
-        __emit 0xf7;
-        __emit 0xd9;
-        __emit 0x1b;
-        __emit 0xc9;
-        __emit 0x81;
-        __emit 0xe1;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x09;
-        __emit 0x4d;
-        __emit 0xfc;
-        __emit 0xb9;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x40;
-        __emit 0x00;
-        __emit 0x23;
-        __emit 0xca;
-        __emit 0xf7;
-        __emit 0xd9;
-        __emit 0x1b;
-        __emit 0xc9;
-        __emit 0x81;
-        __emit 0xe1;
-        __emit 0x00;
-        __emit 0x02;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x09;
-        __emit 0x4d;
-        __emit 0xfc;
-        __emit 0xeb;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x45;
-        __emit 0xfc;
-        __emit 0x5f;
-        __emit 0x5e;
-        __emit 0x5b;
-        __emit 0xc9;
-        __emit 0xc3;
-    }
+	unsigned int features;
+	unsigned int signature;
+	char vendor_id[13] = "UnknownVendr";
+	char amd_id[13] = "AuthenticAMD";
+
+	__asm {
+		xor		eax, eax
+		xor		ebx, ebx
+		xor		ecx, ecx
+		xor		edx, edx
+		cpuid
+		mov		features, 1
+		xor		eax, eax
+		cpuid
+		mov		dword ptr vendor_id[0], ebx
+		mov		dword ptr vendor_id[4], edx
+		mov		dword ptr vendor_id[8], ecx
+		test	eax, eax
+		jz		Done
+		or		features, 2
+		mov		eax, 1
+		cpuid
+		mov		signature, eax
+		mov		ecx, 000800000h
+		and		ecx, edx
+		neg		ecx
+		sbb		ecx, ecx
+		and		ecx, 000000020h
+		or		features, ecx
+		mov		ecx, 002000000h
+		and		ecx, edx
+		neg		ecx
+		sbb		ecx, ecx
+		and		ecx, 000000040h
+		or		features, ecx
+		mov		eax, 080000000h
+		cpuid
+		cmp		eax, 080000000h
+		jbe		Done
+		or		features, 4
+		mov		eax, 080000001h
+		cpuid
+		mov		ecx, 080000000h
+		and		ecx, edx
+		neg		ecx
+		sbb		ecx, ecx
+		and		ecx, 000000080h
+		or		features, ecx
+		lea		esi, amd_id
+		lea		edi, vendor_id
+		mov		ecx, 12
+		cld
+		repe	cmpsb
+		mov		ecx, 040000000h
+		and		ecx, edx
+		neg		ecx
+		sbb		ecx, ecx
+		and		ecx, 000000100h
+		or		features, ecx
+		mov		ecx, 000400000h
+		and		ecx, edx
+		neg		ecx
+		sbb		ecx, ecx
+		and		ecx, 000000200h
+		or		features, ecx
+		jmp		Done
+Done:
+	}
+
+	return features;
 }

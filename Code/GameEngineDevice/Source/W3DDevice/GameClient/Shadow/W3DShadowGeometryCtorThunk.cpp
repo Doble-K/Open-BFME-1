@@ -1,145 +1,79 @@
 // cl: /DNDEBUG /MD /EHsc
+// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class W3DShadowGeometry
+#define MAX_SHADOW_CASTER_MESHES 160
+
+typedef int Int;
+
+class RefCountClass
 {
 public:
-    W3DShadowGeometry();
+	RefCountClass(void) : NumRefs(1) {}
+	void Add_Ref(void) { NumRefs++; }
+	int Num_Refs(void) { return NumRefs; }
+	virtual void Delete_This(void);
+
+protected:
+	virtual ~RefCountClass(void) {}
+
+private:
+	int NumRefs;
+};
+
+class HashableClass
+{
+public:
+	HashableClass(void) : NextHash(0) {}
+	virtual ~HashableClass(void) {}
+	virtual const char *Get_Key(void) = 0;
+
+private:
+	HashableClass *NextHash;
+};
+
+struct AsciiStringData;
+
+// BFME drift: the geometry name is a StringBase-derived string object at +0x10,
+// not Zero Hour's inline char[2*W3D_NAME_LEN].
+class AsciiString
+{
+public:
+	AsciiString(void) : m_data(0) {}
+	~AsciiString(void);
+	const char *str(void) const;
+
+private:
+	AsciiStringData *m_data;
+};
+
+class W3DShadowGeometryMesh
+{
+public:
+	W3DShadowGeometryMesh(void);
+	~W3DShadowGeometryMesh(void);
+
+private:
+	int m_opaque[13];
+};
+
+class W3DShadowGeometry : public RefCountClass, public HashableClass
+{
+public:
+	W3DShadowGeometry(void);
+	~W3DShadowGeometry(void) {}
+
+	virtual const char *Get_Key(void);
+
+private:
+	AsciiString m_namebuf;
+	W3DShadowGeometryMesh m_meshList[MAX_SHADOW_CASTER_MESHES];
+	Int m_meshCount;
+	Int m_numTotalsVerts;
 };
 
 // ??0W3DShadowGeometry@@QAE@XZ
-__declspec(naked) W3DShadowGeometry::W3DShadowGeometry()
+W3DShadowGeometry::W3DShadowGeometry(void)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xfe;
-        __emit 0x2b;
-        __emit 0x05;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x57;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x04;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x33;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0xc8;
-        __emit 0x83;
-        __emit 0x12;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x0c;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x10;
-        __emit 0x85;
-        __emit 0x12;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x08;
-        __emit 0x04;
-        __emit 0x85;
-        __emit 0x12;
-        __emit 0x01;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x10;
-        __emit 0x68;
-        __emit 0x47;
-        __emit 0x9e;
-        __emit 0x42;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0xb3;
-        __emit 0x15;
-        __emit 0x41;
-        __emit 0x00;
-        __emit 0x68;
-        __emit 0xa0;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0x34;
-        __emit 0x8d;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x50;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x28;
-        __emit 0x02;
-        __emit 0xe8;
-        __emit 0x90;
-        __emit 0xb1;
-        __emit 0x23;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0x98;
-        __emit 0x20;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0xbe;
-        __emit 0x94;
-        __emit 0x20;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+	m_numTotalsVerts = 0;
+	m_meshCount = 0;
 }

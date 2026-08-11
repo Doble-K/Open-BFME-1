@@ -1,6 +1,54 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class PSResponse;
+// STLport's raw placement-construct helper for PSResponse.  The retail body is
+// the new-expression expanded inline: the placement operator new returns its
+// argument (hence the `test esi,esi` null check), the compiler-generated
+// PSResponse copy constructor is inlined member-by-member, and the AsciiString
+// member forwards to the private StringBase<char> copy constructor.  The SEH
+// frame is the new-expression's cleanup region for the matching placement
+// operator delete.
+
+template <typename T>
+class StringBase
+{
+    friend class AsciiString;
+
+private:
+    StringBase(const StringBase<T> &src);
+
+private:
+    void *m_data;
+};
+
+class AsciiString
+{
+public:
+    AsciiString(const AsciiString &that)
+    {
+        ((StringBase<char> *)this)->StringBase<char>::StringBase(*(const StringBase<char> *)&that);
+    }
+
+private:
+    char *m_text;
+};
+
+class PSResponse
+{
+public:
+    int m_responseType;
+    AsciiString m_text;
+    int m_valueA;
+    int m_valueB;
+};
+
+inline void *__cdecl operator new(unsigned int, void *place)
+{
+    return place;
+}
+
+inline void __cdecl operator delete(void *, void *)
+{
+}
 
 namespace _STL
 {
@@ -8,104 +56,10 @@ template <class T, class U>
 void _Construct(T *, const U &);
 
 template <class T, class U>
-__declspec(naked) void _Construct(T *, const U &)
+void _Construct(T *p, const U &v)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x11;
-        __emit 0xa3;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0x85;
-        __emit 0xf6;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x74;
-        __emit 0x22;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0x07;
-        __emit 0x8d;
-        __emit 0x4f;
-        __emit 0x04;
-        __emit 0x51;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x06;
-        __emit 0xe8;
-        __emit 0x60;
-        __emit 0xf5;
-        __emit 0x51;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x57;
-        __emit 0x08;
-        __emit 0x89;
-        __emit 0x56;
-        __emit 0x08;
-        __emit 0x8b;
-        __emit 0x47;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+    new (p) T(v);
 }
 
-template __declspec(naked) void _Construct<PSResponse, PSResponse>(PSResponse *, const PSResponse &);
+template void _Construct<PSResponse, PSResponse>(PSResponse *, const PSResponse &);
 }
