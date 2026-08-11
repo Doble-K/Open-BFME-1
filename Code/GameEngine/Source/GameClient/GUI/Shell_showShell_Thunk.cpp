@@ -1,195 +1,59 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWLib
+// Open-BFME5: exact C++ reconstruction of BFME shell activation.
+
+#include "Common/AsciiString.h"
+
+class WindowLayout
+{
+public:
+	virtual void runInit(void *);
+};
+
+struct RetailGlobalData
+{
+	char pad0[0xB80];
+	void *initialFileData;
+	char padB84[4];
+	bool alternateShell;
+	char padB89[0x2B];
+	bool shellMapOn;
+};
 
 class Shell
 {
 public:
 	void showShell(bool);
+	void push(AsciiString, bool immediate = false);
+
+private:
+	void *unknown0;
+	WindowLayout *screens[17];
+	int screenCount;
+	char pad4C[12];
+	bool shellActive;
 };
 
-// ?showShell@Shell@@QAEX_N@Z
-__declspec(naked) void Shell::showShell(bool)
+extern RetailGlobalData *TheGlobalData;
+extern Shell *TheShell;
+extern "C" __declspec(dllimport) char *getenv(const char *);
+
+void Shell::showShell(bool runInit)
 {
-	__asm {
-        __emit 0x8b
-        __emit 0x15
-        __emit 0xc8
-        __emit 0xd5
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x82
-        __emit 0x80
-        __emit 0x0b
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x74
-        __emit 0x15
-        __emit 0x66
-        __emit 0x83
-        __emit 0x78
-        __emit 0x04
-        __emit 0x00
-        __emit 0x74
-        __emit 0x0e
-        __emit 0x8a
-        __emit 0x82
-        __emit 0x88
-        __emit 0x0b
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x0f
-        __emit 0x84
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8a
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x1b
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x48
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x86
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x15
-        __emit 0xc8
-        __emit 0xd5
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8a
-        __emit 0x82
-        __emit 0xb4
-        __emit 0x0b
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x48
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x50
-        __emit 0x68
-        __emit 0x98
-        __emit 0x60
-        __emit 0x07
-        __emit 0x01
-        __emit 0xff
-        __emit 0x15
-        __emit 0xfc
-        __emit 0x93
-        __emit 0x35
-        __emit 0x01
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xc8
-        __emit 0xd5
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8a
-        __emit 0x81
-        __emit 0x88
-        __emit 0x0b
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x10
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x68
-        __emit 0x68
-        __emit 0x7a
-        __emit 0x08
-        __emit 0x01
-        __emit 0xeb
-        __emit 0x0e
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x51
-        __emit 0x89
-        __emit 0x64
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0xcc
-        __emit 0x68
-        __emit 0xd4
-        __emit 0xb5
-        __emit 0x10
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xcf
-        __emit 0x89
-        __emit 0x30
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x58
-        __emit 0x4b
-        __emit 0x2f
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xaa
-        __emit 0x37
-        __emit 0xab
-        __emit 0xff
-        __emit 0xc6
-        __emit 0x46
-        __emit 0x58
-        __emit 0x01
-        __emit 0x5e
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	const char *initial = (const char *)TheGlobalData->initialFileData;
+	if (initial && *(const unsigned short *)(initial + 4) && !TheGlobalData->alternateShell)
+		return;
+
+	if (runInit && screenCount) {
+		WindowLayout *layout = screens[screenCount];
+		if (layout)
+			layout->runInit(0);
 	}
+
+	if (!TheGlobalData->shellMapOn && screenCount == 0) {
+		if (getenv("_EA_RTS_HEADLESS") == 0 && !TheGlobalData->alternateShell)
+			TheShell->push(AsciiString("MainMenu.apt"));
+		else
+			TheShell->push(AsciiString("Menus/LanLobbyMenu.wnd"));
+	}
+	shellActive = true;
 }
