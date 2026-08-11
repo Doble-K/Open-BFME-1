@@ -10,8 +10,13 @@ build/toolchains/*
 __pycache__/
 *.pyc
 reverse/exports.csv
-reverse/ghidra_functions.csv
-reverse/string_xrefs.tsv
+# reverse/ghidra_functions.csv and reverse/string_xrefs.tsv are NOT ignored.
+# They are derived from the baseline binary, but so is the committed
+# reverse/vtables.tsv, and withholding them silently cripples every fresh clone:
+# next_work.py's structural tier drops from 493 candidates to 1 and its Ghidra
+# tier reports "outputs unavailable". Regenerating them needs Ghidra plus a
+# JDK 21, which no drive-by contributor will do. 2.5MB against the 256MB of
+# toolchains and baselines this repo already ships.
 reverse/.add_match.lock
 reverse/zh_sweep/locate_state.json
 
