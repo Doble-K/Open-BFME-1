@@ -3678,7 +3678,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1ImageCollection@@UAE@XZ,,0x005D2C10,139,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,
 ??1InGameUI@@UAE@XZ,,0x0044AE70,936,Code/GameEngine/Source/Common/InGameUIDestructorThunk.cpp,matched,Exact 936B SEH dtor Open-BFME5
 ??1InactiveBody@@UAE@XZ,,0x001CEFC0,1493,Code/GameEngine/Source/Common/InactiveBodyDestructorThunk.cpp,matched,Exact 1493B SEH dtor factory->vtable Open-BFME4
-??1InstantDeathBehaviorModuleData@@UAE@XZ,,0x00201840,220,Code/GameEngine/Source/Common/InstantDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 220B SEH dtor Open-BFME5
 ??1LANGameInfo@@QAE@XZ,,0x00686CD0,103,Code/GameEngine/Source/Common/LANGameInfoDestructorThunk.cpp,matched,Exact 103B SEH dtor Open-BFME5
 ??1LANPlayer@@QAE@XZ,,0x00685830,89,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,
 ??1LadderInfo@@QAE@XZ,,0x0062A9E0,194,Code/GameEngine/Source/Common/LadderInfoDestructorThunk.cpp,matched,Ghidra-bound retail destructor
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??0BridgeBehaviorModuleData@@QAE@XZ,,0x001F53A0,124,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion; official constructor builds BridgeFXInfo and BridgeOCLInfo STLPort lists then assigns both scaffold speeds
 ?generateIndexBuffer@WaterRenderObjClass@@IAEJHH@Z,,0x0079EEA0,237,Code/GameEngineDevice/Source/W3DDevice/GameClient/WaterRenderObjClass_generateIndexBuffer_Thunk.cpp,matched,Open-BFME5 exact C++ water index-buffer generator
 ??1ObjectCreationListStore@@UAE@XZ,,0x001DA720,207,Code/GameEngine/Source/Common/ObjectCreationListStoreDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion; official destructor deletes owned nuggets clears and frees pointer vector then destroys OCL map and subsystem base
+??1InstantDeathBehaviorModuleData@@UAE@XZ,,0x00201840,220,Code/GameEngine/Source/Common/InstantDeathBehaviorModuleDataDestructorThunk.cpp,matched,Exact 220B clean C++ destructor Open-BFME5
