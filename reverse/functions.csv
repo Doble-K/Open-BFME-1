@@ -15215,7 +15215,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?guardSupplyCenter@AIPlayer@@QAEXPAVTeam@@H@Z,,0x001668C0,269,Code/GameEngine/Source/GameLogic/AI/AIPlayer_guardSupplyCenter_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?handleGameAnnounce@LANAPI@@IAEXPAULANMessage@@I@Z,,0x0068C110,596,Code/GameEngine/Source/GameNetwork/LANAPIhandlers_handleGameAnnounce_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_LANAPIHandleGameAnnounce_68C110
 ?handleInActive@LANAPI@@IAEXPAULANMessage@@I@Z,,0x0068B920,323,Code/GameEngine/Source/GameNetwork/LANAPI_handleInActive_Thunk.cpp,matched,Open-BFME5 lift 323B retail MASM to standalone C++ thunk
-?handleJoinAccept@LANAPI@@IAEXPAULANMessage@@I@Z,,0x004D2D80,1291,Code/masm_dumps/_sa11__handleJoinAccept_LANAPI__IAEXPAULANMessage__I_Z_4D2D80.asm,matched,string-anchor Open-BFME4+Grok RemoteIP0
+?handleJoinAccept@LANAPI@@IAEXPAULANMessage@@I@Z,,0x004D2D80,1291,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,string-anchor Open-BFME4+Grok RemoteIP0
 ?handleLobbyAnnounce@LANAPI@@IAEXPAULANMessage@@I@Z,,0x0068B1E0,331,Code/GameEngine/Source/GameNetwork/LANAPI_handleLobbyAnnounce_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?handleObjectsOnBridgeOnDie@BridgeBehavior@@IAEXXZ,,0x001F4F40,712,Code/GameEngine/Source/Common/BridgeBehavior_handleObjectsOnBridgeOnDieMethodThunk.cpp,matched,Certified packet 49; reviewed entry boundary call-chain and SHA-256 evidence
 ?handleQMMatch@PeerThreadClass@@QAEXXZ,,0x00649180,653,Code/GameEngine/Source/Common/PeerThreadClass_handleQMMatchMethodThunk.cpp,matched,Exact 653B string-anchored Open-BFME4
