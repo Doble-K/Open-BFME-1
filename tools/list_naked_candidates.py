@@ -13,8 +13,11 @@ from pathlib import Path
 import re
 import secrets
 import struct
+import sys
 
 import build
+import re_log
+import yield_model
 
 _spec = importlib.util.spec_from_file_location(
     "audit_ret_arity", str(Path(__file__).resolve().parent / "audit_ret_arity.py"))
@@ -227,11 +230,50 @@ def rank_candidates(candidates):
     return candidates
 
 
+def drop_logged(candidates):
+    """Remove candidates the fleet has already investigated, per re_attempts.log.
+
+    This tool had no such filter, which is why one dump could be drawn and
+    re-analysed by independent agents over and over — ??0FastAllocatorGeneral
+    was logged fourteen times and suppressed none of them."""
+    kept, dropped = [], 0
+    for item in candidates:
+        rva = item.get("rva")
+        try:
+            rva = int(rva, 16) if rva else None
+        except ValueError:
+            rva = None
+        if item["symbol"] and re_log.is_dead_end(item["symbol"], rva):
+            dropped += 1
+            continue
+        kept.append(item)
+    return kept, dropped
+
+
+def candidate_weights(candidates):
+    """Selection weight per candidate: see tools/yield_model.weight.
+
+    Deliberately NOT weighted by this tool's own `score`. That score is an
+    unvalidated convertibility heuristic, and the one feature of its kind that
+    has been measured — drift `aligned_pct` — turned out not to predict landing
+    at all. Weighting on an unmeasured feature concentrates the queue without
+    buying anything. `score` still orders the ranked view for humans."""
+    return [yield_model.weight(item["size"]) for item in candidates]
+
+
 def select_candidate(candidates):
+    """Draw one candidate weighted by expected yield. Still random, so
+    concurrent contributors rarely collide; no longer worth the pool average."""
     rank_candidates(candidates)
     if not candidates:
         return None, {"pool": 0}
-    return candidates[secrets.randbelow(len(candidates))], {"pool": len(candidates)}
+    weights = candidate_weights(candidates)
+    cutoff = secrets.randbelow(sum(weights))
+    for item, weight in zip(candidates, weights):
+        cutoff -= weight
+        if cutoff < 0:
+            return item, {"pool": len(candidates)}
+    raise AssertionError("select_candidate fell through its cumulative walk")
 
 
 def parse_shard(value):
@@ -350,6 +392,7 @@ def main():
                     "line": index + 1,
                     "end": end + 1,
                     "size": len(data),
+                    "rva": row["target_rva"] if row else None,
                     "bytes": data,
                     "symbol": symbol,
                     "tracked": row is not None,
@@ -367,6 +410,14 @@ def main():
                   if candidate["symbol"] not in retired]
     candidates = apply_shard(candidates, args.shard)
     rank_candidates(candidates)
+    # Layer the boundary/status-aware index on top of the 3-field retirement
+    # above: logged_no_match reads only the AGENTS.md log shape, so 5-field
+    # verdicts (441 rows) pass through it. drop_logged (tools/re_log.py) is
+    # what actually retires them.
+    suppressed = 0
+    if not args.include_logged:
+        candidates, suppressed = drop_logged(candidates)
+        retired_count += suppressed
     if args.json:
         serializable = []
         for candidate in candidates:
@@ -384,7 +435,7 @@ def main():
             print("No validated naked-asm candidates remain in the requested paths.")
             return
         print("== selected naked-asm conversion ==")
-        print(f"  chosen uniformly at random from {meta['pool']} candidate(s)")
+        print(f"  drawn from {meta['pool']} candidate(s), weighted by measured land rate")
         print_candidate(selected)
         return
 

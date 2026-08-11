@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Answer "what should I work on right now" with one validated candidate.
 
-The default picks uniformly at random from the selected tier's whole queue, so
-many concurrent contributors rarely collide. ``--ranked`` is the human/debug
+The default draws one candidate at random from the selected tier, weighted by
+measured land rate for its size, so concurrent contributors still rarely
+collide but no draw is worth merely the pool average. ``--ranked`` is the human/debug
 view of the complete queues. No network, no compiling — runs in seconds.
 
 Sections, in priority order:
@@ -31,6 +32,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import re_log
+import yield_model
+
 ROOT = Path(__file__).resolve().parents[1]
 # drift_report.csv is the shared drift classification (general RE infra, not the
 # retired ZH source-porting sweep) — it feeds the drift/structural/ghidra tiers.
@@ -38,8 +42,7 @@ DRIFT = ROOT / "reverse" / "zh_sweep" / "drift_report.csv"
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
 GHIDRA_FUNCTIONS = ROOT / "reverse" / "ghidra_functions.csv"
 STRING_XREFS = ROOT / "reverse" / "string_xrefs.tsv"
-RE_ATTEMPTS = ROOT / "reverse" / "re_attempts.log"
-_NO_MATCH = None
+ANCHORED = ROOT / "reverse" / "anchored_candidates.csv"
 _SOURCE_INDEX = None
 _SOURCE_TEXT = {}
 
@@ -473,24 +476,13 @@ def ghidra_absent_candidates(claimed, claimed_names):
     return out, (f"{len(functions)} Ghidra functions + {len(xrefs)} string literals loaded")
 
 
-def logged_no_match():
-    """Symbols already reduced to a `no-match` verdict in reverse/re_attempts.log.
-
-    Those boundaries were investigated and rejected — stale drift votes, interior
-    fragments, absent bodies — so re-serving them spends another agent's 30-60
-    minutes rediscovering a known dead end. The log is TSV (symbol, status, prose)
-    and append-only, so reading it is cheap."""
-    global _NO_MATCH
-    if _NO_MATCH is None:
-        symbols = set()
-        if RE_ATTEMPTS.exists():
-            with RE_ATTEMPTS.open(encoding="utf-8", errors="replace") as fh:
-                for line in fh:
-                    fields = line.rstrip("\r\n").split("\t")
-                    if len(fields) >= 2 and fields[1] == "no-match":
-                        symbols.add(fields[0])
-        _NO_MATCH = symbols
-    return _NO_MATCH
+def _candidate_rva(candidate):
+    """The address this candidate would actually be worked at, as an int."""
+    text = candidate.get("candidate_rva") or candidate.get("target_rva")
+    try:
+        return int(text, 16) if text else None
+    except ValueError:
+        return None
 
 
 def drop_logged(candidates):
@@ -498,13 +490,18 @@ def drop_logged(candidates):
     reports the count so a shrunken queue is visibly explained, not mistaken
     for an exhausted tier.
 
-    A logged verdict is terminal for automatic selection. A human can use
-    --include-logged when new evidence warrants reopening it; workers must not
-    repeatedly rediscover an already recorded dead end."""
-    logged = logged_no_match()
+    A logged verdict is terminal for automatic selection — workers must not
+    rediscover a recorded dead end; --include-logged reopens it for humans.
+    It describes the boundary that agent actually examined, so a row only
+    retires a candidate while the boundary still matches: where the log
+    records the RVA (5-field shape) that comparison is exact; where it does
+    not, `drift-corrected` in the hint is evidence our boundary moved.
+    See tools/re_log.py."""
     kept, dropped = [], 0
     for candidate in candidates:
-        if candidate["function"] in logged:
+        if re_log.is_dead_end(
+                candidate["function"], _candidate_rva(candidate),
+                boundary_moved="drift-corrected" in candidate.get("hint", "")):
             dropped += 1
             continue
         kept.append(candidate)
@@ -542,24 +539,145 @@ def apply_shard(candidates, shard):
             if shard_key(candidate) % count == index]
 
 
-def selected_queue(tier, drifts, structural, ghidra_absent):
+def candidate_weight(candidate):
+    """Selection weight for one candidate: see tools/yield_model.weight.
+
+    The queues already rank themselves and the selector used to throw that
+    ranking away, so every draw was worth the pool average."""
+    return yield_model.weight(
+        candidate.get("size") or candidate.get("target_size") or 1)
+
+
+def weighted_choice(candidates):
+    """Draw one candidate with probability proportional to candidate_weight.
+
+    Still random, so concurrent contributors still rarely collide — collision
+    avoidance never required a flat distribution.
+    """
+    weights = [candidate_weight(c) for c in candidates]
+    cutoff = secrets.randbelow(sum(weights))
+    for candidate, weight in zip(candidates, weights):
+        cutoff -= weight
+        if cutoff < 0:
+            return candidate
+    raise AssertionError("weighted_choice fell through its cumulative walk")
+
+
+def anchored_candidates(claimed, claimed_names, claimed_ranges):
+    """Unclaimed retail functions identified by a literal only they reference.
+
+    The Ghidra tier anchors strings starting from a drift row, so it only ever
+    reaches functions that already have a Zero Hour counterpart -- a finite
+    input, now drained. tools/anchor_unclaimed.py runs the same evidence from
+    the image side and caches the result here, because scanning 5,512 reference
+    files does not fit this tool's ten-second budget.
+
+    These carry an identity LEAD, not a name: the anchor says which ZH source
+    the body came from, and recovering the symbol is the first part of the job.
+    """
+    if not ANCHORED.exists():
+        return [], (f"{ANCHORED.relative_to(ROOT)} not generated — "
+                    f"run python3 tools/anchor_unclaimed.py")
+    _, rows = read_csv(ANCHORED, "python3 tools/anchor_unclaimed.py")
+    ranges = sorted(claimed_ranges)
+    starts = [start for start, _ in ranges]
+
+    def inside_any(point):
+        index = bisect.bisect_left(starts, point) - 1
+        return index >= 0 and point < ranges[index][1]
+
+    out, stale = [], 0
+    for row in rows:
+        rva = to_int(row["target_rva"], 16,
+                     f"anchored_candidates.csv target_rva for {row['ghidra_name']}")
+        if rva in claimed or inside_any(rva):
+            stale += 1          # landed since the cache was generated
+            continue
+        source = resolve_drift_source(row["zh_source"])
+        out.append({
+            "function": row["ghidra_name"],
+            "source": source or f"(no Code/ file yet; ZH: {row['zh_source']})",
+            "zh_source": row["zh_source"],
+            "target_rva": row["target_rva"],
+            "size": int(row["target_size"]),
+            "confidence": row["confidence"],
+            "alternates": int(row["alternates"]),
+            "anchor": row["anchor"],
+            "command": (f"python3 tools/decode_calls.py --rva {row['target_rva']} "
+                        f"--size {row['target_size']}"),
+        })
+    out.sort(key=lambda c: (c["confidence"] != "high", -c["size"]))
+    note = f"{len(out)} anchored candidate(s)"
+    if stale:
+        note += f"; {stale} already landed (regenerate with anchor_unclaimed.py)"
+    return out, note
+
+
+def selected_queue(tier, drifts, structural, ghidra_absent, anchored):
     queues = {
         "harvest": ("drift quick win", drifts),
         "structural": ("structural reconciliation", structural),
         "ghidra": ("Ghidra-anchored absent function", ghidra_absent),
+        "anchored": ("string-anchored unclaimed function", anchored),
     }
     if tier:
         return queues[tier]
-    for name in ("harvest", "structural", "ghidra"):
+    for name in ("harvest", "structural", "ghidra", "anchored"):
         label, candidates = queues[name]
         if candidates:
             return label, candidates
     return "validated queue", []
 
 
-def print_candidate(label, candidate, meta):
+def cluster_of(candidate, candidates):
+    """Every queued candidate sharing this candidate's source file.
+
+    The file is the real unit of work here, not the function. `./build.sh <file>`
+    verifies a whole translation unit at once, a shared-header edit pays the
+    host-wide gate once for the file rather than once per function, and the
+    class layout an agent recovers to land one body is exactly what the next
+    body in that file needs.
+
+    It shows up in the outcomes: over the 1,000 commits ending 2038d3a0d, a
+    drift candidate whose file saw no other row land had a 19.5% land rate;
+    where ten or more siblings landed together it was 46.5%. Serving one
+    function per session throws that away and hands the file to another agent.
+    """
+    same = [c for c in candidates if c["source"] == candidate["source"]]
+    same.sort(key=lambda c: -yield_model.land_rate(
+        c.get("size") or c.get("target_size") or 1))
+    return same
+
+
+def print_cluster(candidate, candidates):
+    siblings = cluster_of(candidate, candidates)
+    if len(siblings) < 2:
+        return
+    total = sum(c.get("size") or c.get("target_size") or 0 for c in siblings)
+    print(f"\n  == the rest of {candidate['source']} ({len(siblings)} queued, "
+          f"{total:,}B) ==")
+    print("  Take the file, not just the row above. Recover the layout once and "
+          "the siblings")
+    print("  follow; verify them together with a single "
+          f"`./build.sh {candidate['source']}`.")
+    for sibling in siblings[:12]:
+        size = sibling.get("size") or sibling.get("target_size") or 0
+        marker = "->" if sibling is candidate else "  "
+        print(f"   {marker} {size:>5}B  "
+              f"{int(100 * yield_model.land_rate(size)):>2}% land  "
+              f"{sibling['function'][:88]}")
+    if len(siblings) > 12:
+        print(f"      ... and {len(siblings) - 12} more in this file")
+    print("  Bank each body as its own commit, but do not stop at one: the gate "
+          "and the")
+    print("  layout work are already paid for. If a shared header is involved, "
+          "edit every")
+    print("  dependent body first and pay the full gate once (docs/lessons.md).")
+
+
+def print_candidate(label, candidate, meta, candidates=()):
     print(f"== selected work: {label} ==")
-    print(f"  chosen uniformly at random from {meta['pool']} candidate(s)")
+    print(f"  drawn from {meta['pool']} candidate(s), weighted by measured land rate")
     if label == "drift quick win":
         print(f"  {candidate['aligned_pct']:>3}% {candidate['class']:<14} "
               f"{candidate['function']}")
@@ -572,6 +690,15 @@ def print_candidate(label, candidate, meta):
         print(f"       {candidate['source']} @ {candidate['candidate_rva']}  "
               f"hint: {candidate['hint']}")
         print(f"       start: {candidate['command']}")
+    elif label == "string-anchored unclaimed function":
+        print(f"  {candidate['confidence']:<6} {candidate['size']:>5}B "
+              f"{candidate['function']}  (anonymous — recovering the name is step 1)")
+        print(f"       {candidate['target_rva']} anchored by {candidate['anchor']!r}")
+        print(f"       that literal appears in ZH {candidate['zh_source']}"
+              + (f" (+{candidate['alternates']} other file(s))"
+                 if candidate['alternates'] else ""))
+        print(f"       local source: {candidate['source']}")
+        print(f"       start: {candidate['command']}")
     else:
         anchors = ", ".join(repr(value) for value in candidate["anchors"][:3])
         print(f"  {candidate['confidence']:<6} {candidate['target_size']:>5}B "
@@ -580,6 +707,7 @@ def print_candidate(label, candidate, meta):
               f"{candidate['ghidra_name']} ({len(candidate['anchors'])} anchor(s): "
               f"{anchors}; {candidate['alternates']} alternate(s))")
         print(f"       start: {candidate['command']}")
+    print_cluster(candidate, candidates)
 
 
 def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent,
@@ -588,7 +716,7 @@ def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent,
     print(f"  {ledger}")
     if suppressed:
         print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
-              f"no-match (--include-logged to show)")
+              f"investigated (--include-logged to show)")
 
     if args.tier not in ("structural", "ghidra"):
         print(f"\n== 1. drift quick wins: literal-only diffs ({len(drifts)}) ==")
@@ -641,7 +769,8 @@ def main():
                     help="machine-readable selected item (or full queues with --ranked)")
     ap.add_argument("--ranked", action="store_true",
                     help="show complete ranked queues for humans/debugging")
-    ap.add_argument("--tier", choices=("harvest", "structural", "ghidra"),
+    ap.add_argument("--tier",
+                    choices=("harvest", "structural", "ghidra", "anchored"),
                     help="choose from only this task lane")
     ap.add_argument("--shard", type=parse_shard, metavar="INDEX/COUNT",
                     help="stable zero-based partition for concurrent workers")
@@ -665,8 +794,13 @@ def main():
                     claimed_ranges.append((start, start + int(row["target_size"])))
     structural = (structural_candidates(claimed, claimed_names, claimed_ranges,
                                         big=args.big)
-                  if args.tier not in ("harvest", "ghidra") else [])
-    if args.tier not in ("harvest", "structural"):
+                  if args.tier not in ("harvest", "ghidra", "anchored") else [])
+    if args.tier in (None, "anchored"):
+        anchored, anchored_note = anchored_candidates(
+            claimed, claimed_names, claimed_ranges)
+    else:
+        anchored, anchored_note = [], "anchored tier not requested"
+    if args.tier not in ("harvest", "structural", "anchored"):
         ghidra_absent, ghidra_meta = ghidra_absent_candidates(
             claimed, claimed_names)
     else:
@@ -679,11 +813,14 @@ def main():
         drifts, dropped_drift = drop_logged(drifts)
         structural, dropped_structural = drop_logged(structural)
         ghidra_absent, dropped_ghidra = drop_logged(ghidra_absent)
-        suppressed = dropped_drift + dropped_structural + dropped_ghidra
+        anchored, dropped_anchored = drop_logged(anchored)
+        suppressed = (dropped_drift + dropped_structural + dropped_ghidra
+                      + dropped_anchored)
 
     drifts = apply_shard(drifts, args.shard)
     structural = apply_shard(structural, args.shard)
     ghidra_absent = apply_shard(ghidra_absent, args.shard)
+    anchored = apply_shard(anchored, args.shard)
     shard_meta = (None if args.shard is None else
                   {"index": args.shard[0], "count": args.shard[1]})
 
@@ -693,6 +830,7 @@ def main():
             "drift_quick_wins": drifts,
             "structural": structural,
             "ghidra_meta": ghidra_meta, "ghidra_absent": ghidra_absent,
+            "anchored_meta": anchored_note, "anchored": anchored,
             "suppressed_logged": suppressed,
             "shard": shard_meta,
             "pointers": [cmd for cmd, _ in POINTERS],
@@ -704,11 +842,15 @@ def main():
                      ghidra_absent, suppressed)
         return
 
-    label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent)
-    candidate = candidates[secrets.randbelow(len(candidates))] if candidates else None
+    label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent,
+                                       anchored)
+    candidate = weighted_choice(candidates) if candidates else None
     meta = {"pool": len(candidates), "suppressed_logged": suppressed,
             "shard": shard_meta}
     if args.json:
+        meta = dict(meta, cluster=[
+            c["function"] for c in cluster_of(candidate, candidates)]) \
+            if candidate else meta
         print(json.dumps({"ledger": ledger, "tier": label,
                           "selection": candidate, "selection_meta": meta}, indent=2))
         return
@@ -716,12 +858,12 @@ def main():
     print(f"  {ledger}")
     if suppressed:
         print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
-              f"no-match (--include-logged to show)")
+              f"investigated (--include-logged to show)")
     if candidate is None:
         print(f"\nNo {label} candidates remain.")
         return
     print()
-    print_candidate(label, candidate, meta)
+    print_candidate(label, candidate, meta, candidates)
 
 
 if __name__ == "__main__":
