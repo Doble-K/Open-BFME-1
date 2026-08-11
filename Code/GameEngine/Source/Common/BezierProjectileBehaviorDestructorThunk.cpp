@@ -1,214 +1,96 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) BezierProjectileBehavior
+// BezierProjectileBehavior's destructor, lifted from its MASM dump to C++.
+//
+// The module-destructor shape from OpenContain: the UpdateModule base's vptrs
+// at 0x00, 0x0C and 0x10, the inlined ~UpdateModule and ~BehaviorModule vptr
+// restores, and the out-of-line base destructor at 0x00113D40. Two interface
+// bases follow at 0x20 and 0x24.
+//
+// Two members, unwind states 0 and 1:
+//
+//   0x44  _STL::vector<12-byte pod>   inlined (imul 0x2AAAAAAB then *12)
+//   0x7C  _STL::list<int>             thunk 0x00013449 -> 0x000E5E70
+//
+// The vector's elements are trivially destructible, so retail frees it inline
+// and the 12-byte stride is the only thing the bytes pin.
+
+#include <list>
+#include <vector>
+
+class Gen_dtor_00113d40
 {
 public:
-    virtual ~BezierProjectileBehavior();
+	virtual ~Gen_dtor_00113d40();
+
+private:
+	const void *m_moduleData;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void getBehaviorModuleInterface() = 0;
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterface() = 0;
+};
+
+class ObjectModule : public Gen_dtor_00113d40
+{
+private:
+	void *m_object;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+public:
+	virtual ~BehaviorModule() {}
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+public:
+	virtual ~UpdateModule() {}
+
+private:
+	unsigned int m_nextCallFrameAndPhase;
+	int m_indexInLogic;
+	unsigned int m_updateState;					///< out to sizeof() == 0x20
+};
+
+// vector elements: trivially destructible, so only their size reaches the bytes
+struct Gen_p12pod { int a[3]; };
+
+// Plain virtuals rather than virtual destructors: retail gives these subobjects
+// a vptr write and no unwind state.
+template <int Number>
+class BezierProjectileBehaviorSecondaryBase
+{
+public:
+	virtual void slot();
+};
+
+class BezierProjectileBehavior
+	: public UpdateModule,
+	  public BezierProjectileBehaviorSecondaryBase<1>,		///< vptr at 0x20
+	  public BezierProjectileBehaviorSecondaryBase<2>		///< vptr at 0x24
+{
+public:
+	virtual ~BezierProjectileBehavior();
+
+private:
+	unsigned char m_unreconstructed_28[0x1c];
+	_STL::vector<Gen_p12pod> m_vector;						///< retail this+0x44
+	unsigned char m_unreconstructed_50[0x2c];
+	_STL::list<int> m_list;									///< retail this+0x7C
 };
 
 // ??1BezierProjectileBehavior@@UAE@XZ
-__declspec(naked) BezierProjectileBehavior::~BezierProjectileBehavior()
+BezierProjectileBehavior::~BezierProjectileBehavior()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xd3
-        __emit 0xa8
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x57
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x3c
-        __emit 0x25
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x78
-        __emit 0x24
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0x50
-        __emit 0x24
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x24
-        __emit 0x34
-        __emit 0x24
-        __emit 0x0a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x7c
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0xb9
-        __emit 0x31
-        __emit 0xe2
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x7e
-        __emit 0x44
-        __emit 0x85
-        __emit 0xff
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x00
-        __emit 0x74
-        __emit 0x37
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x4c
-        __emit 0x2b
-        __emit 0xcf
-        __emit 0xb8
-        __emit 0xab
-        __emit 0xaa
-        __emit 0xaa
-        __emit 0x2a
-        __emit 0xf7
-        __emit 0xe9
-        __emit 0xd1
-        __emit 0xfa
-        __emit 0x8b
-        __emit 0xc2
-        __emit 0xc1
-        __emit 0xe8
-        __emit 0x1f
-        __emit 0x03
-        __emit 0xc2
-        __emit 0x8d
-        __emit 0x04
-        __emit 0x40
-        __emit 0xc1
-        __emit 0xe0
-        __emit 0x02
-        __emit 0x3d
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x76
-        __emit 0x0b
-        __emit 0x57
-        __emit 0xe8
-        __emit 0xec
-        __emit 0x1b
-        __emit 0x69
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0xeb
-        __emit 0x0a
-        __emit 0x50
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x20
-        __emit 0xe3
-        __emit 0x63
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xac
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x5c
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x98
-        __emit 0xca
-        __emit 0x09
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x5d
-        __emit 0x79
-        __emit 0xe5
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }

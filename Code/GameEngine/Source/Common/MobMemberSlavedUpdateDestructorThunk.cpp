@@ -1,241 +1,115 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) MobMemberSlavedUpdate
+// MobMemberSlavedUpdate's destructor, lifted from its MASM dump to C++.
+//
+// The module-destructor shape from OpenContain: the UpdateModule base's vptrs
+// at 0x00, 0x0C and 0x10, the inlined ~UpdateModule and ~BehaviorModule vptr
+// restores, and the out-of-line base destructor at 0x00113D40. Two interface
+// bases follow, at 0x20 and 0x28 -- the gap says the first of them carries a
+// word of data.
+//
+// The body is eight `delete` statements over eight pointer members running from
+// 0x2C to 0x48, each emitted as the null check plus a call through vtable slot 0
+// with the flag argument, which is what `delete p` compiles to when p's class
+// has a virtual destructor. There are no destructible members of this class
+// itself.
+
+class Gen_dtor_00113d40
 {
 public:
-    virtual ~MobMemberSlavedUpdate();
+	virtual ~Gen_dtor_00113d40();
+
+private:
+	const void *m_moduleData;
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void getBehaviorModuleInterface() = 0;
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateModuleInterface() = 0;
+};
+
+class ObjectModule : public Gen_dtor_00113d40
+{
+private:
+	void *m_object;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+public:
+	virtual ~BehaviorModule() {}
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+public:
+	virtual ~UpdateModule() {}
+
+private:
+	unsigned int m_nextCallFrameAndPhase;
+	int m_indexInLogic;
+	unsigned int m_updateState;					///< out to sizeof() == 0x20
+};
+
+class MobMemberSlave
+{
+public:
+	virtual ~MobMemberSlave();
+};
+
+// Plain virtuals rather than virtual destructors: retail gives these subobjects
+// a vptr write and no unwind state.
+class MobMemberSlavedUpdateSecondaryBase1
+{
+public:
+	virtual void slot();
+
+private:
+	unsigned char m_unreconstructed_24[4];
+};
+
+class MobMemberSlavedUpdateSecondaryBase2
+{
+public:
+	virtual void slot();
+};
+
+class MobMemberSlavedUpdate
+	: public UpdateModule,
+	  public MobMemberSlavedUpdateSecondaryBase1,		///< vptr at 0x20
+	  public MobMemberSlavedUpdateSecondaryBase2		///< vptr at 0x28
+{
+public:
+	virtual ~MobMemberSlavedUpdate();
+
+private:
+	MobMemberSlave *m_slave0;							///< retail this+0x2C
+	MobMemberSlave *m_slave1;							///< retail this+0x30
+	MobMemberSlave *m_slave2;							///< retail this+0x34
+	MobMemberSlave *m_slave3;							///< retail this+0x38
+	MobMemberSlave *m_slave4;							///< retail this+0x3C
+	MobMemberSlave *m_slave5;							///< retail this+0x40
+	MobMemberSlave *m_slave6;							///< retail this+0x44
+	MobMemberSlave *m_slave7;							///< retail this+0x48
 };
 
 // ??1MobMemberSlavedUpdate@@UAE@XZ
-__declspec(naked) MobMemberSlavedUpdate::~MobMemberSlavedUpdate()
+MobMemberSlavedUpdate::~MobMemberSlavedUpdate()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xb8
-        __emit 0xb2
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x04
-        __emit 0x3f
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x40
-        __emit 0x3e
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0x34
-        __emit 0x3e
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x20
-        __emit 0xe8
-        __emit 0x3d
-        __emit 0x0a
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x28
-        __emit 0xd4
-        __emit 0x3d
-        __emit 0x0a
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x2c
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x30
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x34
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x38
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x3c
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x40
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x44
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x48
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x12
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x10
-        __emit 0xac
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x06
-        __emit 0x5c
-        __emit 0xcb
-        __emit 0x09
-        __emit 0x01
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x0c
-        __emit 0x98
-        __emit 0xca
-        __emit 0x09
-        __emit 0x01
-        __emit 0xe8
-        __emit 0xc1
-        __emit 0xca
-        __emit 0xe4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
+	delete m_slave0;
+	delete m_slave1;
+	delete m_slave2;
+	delete m_slave3;
+	delete m_slave4;
+	delete m_slave5;
+	delete m_slave6;
+	delete m_slave7;
 }
