@@ -1,271 +1,95 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: lift the retail cached-file open/decompression path to C++.
+
+typedef int Int;
+typedef bool Bool;
+void *operator new[](unsigned int size);
 
 class AsciiString
 {
+public:
+	~AsciiString();
+	const char *str() const { return m_data ? m_data + 8 : ""; }
+private:
+	const char *m_data;
 };
+
+class File
+{
+public:
+	virtual void reserved0();
+	virtual void reserved1();
+	virtual void close();
+	virtual void reserved3();
+	virtual void reserved4();
+	virtual void reserved5();
+	virtual void reserved6();
+	virtual void reserved7();
+	virtual void reserved8();
+	virtual void reserved9();
+	virtual void reserved10();
+	virtual Int size();
+	virtual void reserved12();
+	virtual char *readEntireAndClose();
+};
+
+class FileSystem
+{
+public:
+	File *openFile(const char *name, Int mode);
+};
+
+class CompressionManager
+{
+public:
+	static Bool isDataCompressed(const void *data, Int size);
+	static Int getUncompressedSize(const void *data, Int size);
+	static Int decompressData(const void *data, Int size, void *output, Int outputSize);
+};
+
+extern FileSystem *TheFileSystem;
+
 class CachedFileInputStream
 {
 public:
-	bool open(AsciiString);
+	virtual Int read(void *, Int);
+	virtual unsigned int tell();
+	virtual Bool absoluteSeek(unsigned int);
+	virtual Bool eof();
+	Bool open(AsciiString path);
+private:
+	Int m_size;
+	char *m_buffer;
+	Int m_pos;
 };
 
-// ?open@CachedFileInputStream@@QAE_NVAsciiString@@@Z
-__declspec(naked) bool CachedFileInputStream::open(AsciiString)
+Bool CachedFileInputStream::open(AsciiString path)
 {
-	__asm {
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x28
-		__emit 0xc9
-		__emit 0xff
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x53
-		__emit 0x55
-		__emit 0x56
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x33
-		__emit 0xdb
-		__emit 0x3b
-		__emit 0xc3
-		__emit 0x89
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x18
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x48
-		__emit 0xcb
-		__emit 0x34
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x41
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xbf
-		__emit 0x5d
-		__emit 0x8c
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xf8
-		__emit 0x3b
-		__emit 0xfb
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x04
-		__emit 0x74
-		__emit 0x1d
-		__emit 0x8b
-		__emit 0x07
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x50
-		__emit 0x2c
-		__emit 0x3b
-		__emit 0xc3
-		__emit 0x89
-		__emit 0x46
-		__emit 0x04
-		__emit 0x74
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x17
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x52
-		__emit 0x34
-		__emit 0x89
-		__emit 0x46
-		__emit 0x08
-		__emit 0x33
-		__emit 0xff
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x0c
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x08
-		__emit 0x50
-		__emit 0x51
-		__emit 0xe8
-		__emit 0xac
-		__emit 0xbe
-		__emit 0x71
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x84
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x47
-		__emit 0x8b
-		__emit 0x56
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x08
-		__emit 0x52
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xe8
-		__emit 0xbb
-		__emit 0x71
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xd8
-		__emit 0x53
-		__emit 0xe8
-		__emit 0x80
-		__emit 0xf4
-		__emit 0x77
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x56
-		__emit 0x08
-		__emit 0x53
-		__emit 0x8b
-		__emit 0xe8
-		__emit 0x55
-		__emit 0x51
-		__emit 0x52
-		__emit 0xe8
-		__emit 0x8f
-		__emit 0xbd
-		__emit 0x71
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x1c
-		__emit 0x3b
-		__emit 0xc3
-		__emit 0x75
-		__emit 0x11
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x08
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xdf
-		__emit 0xf3
-		__emit 0x77
-		__emit 0x00
-		__emit 0x89
-		__emit 0x6e
-		__emit 0x08
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x04
-		__emit 0xeb
-		__emit 0x06
-		__emit 0x55
-		__emit 0xe8
-		__emit 0xd1
-		__emit 0xf3
-		__emit 0x77
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0x85
-		__emit 0xff
-		__emit 0x74
-		__emit 0x07
-		__emit 0x8b
-		__emit 0x07
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xff
-		__emit 0x50
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x04
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x20
-		__emit 0x0f
-		__emit 0x95
-		__emit 0xc3
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0xfa
-		__emit 0x4d
-		__emit 0x78
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x10
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x8a
-		__emit 0xc3
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5b
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
+	File *file = TheFileSystem->openFile(path.str(), 0x41);
+	m_size = 0;
+	if (file) {
+		m_size = file->size();
+		if (m_size) {
+			m_buffer = file->readEntireAndClose();
+			file = 0;
+		}
+		m_pos = 0;
 	}
+
+	if (CompressionManager::isDataCompressed(m_buffer, m_size)) {
+		Int uncompLen = CompressionManager::getUncompressedSize(m_buffer, m_size);
+		char *uncompBuffer = static_cast<char *>(::operator new[](uncompLen));
+		Int actualLen = CompressionManager::decompressData(m_buffer, m_size, uncompBuffer, uncompLen);
+		if (actualLen == uncompLen) {
+			delete[] m_buffer;
+			m_buffer = uncompBuffer;
+			m_size = uncompLen;
+		} else {
+			delete[] uncompBuffer;
+		}
+	}
+
+	if (file)
+		file->close();
+	return m_size != 0;
 }

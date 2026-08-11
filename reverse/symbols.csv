@@ -68565,3 +68565,6 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?stopDocking@SiegeDockingBehavior@@AAEXXZ,0x00018F89,SiegeDockingBehavior destructor body call target
 ??1CritterEmitterUpdateModuleDataInner@@QAE@XZ,0x0001B97D,CritterEmitterUpdateModuleData 0x08 member destructor call target
 ??1CritterEmitterUpdateModuleDataUnknownB4@@QAE@XZ,0x00038055,CritterEmitterUpdateModuleData 0xB4 member destructor call target
+?isDataCompressed@CompressionManager@@SA_NPBXH@Z,0x0081E980,CachedFileInputStream open retail compression probe
+?getUncompressedSize@CompressionManager@@SAHPBXH@Z,0x0081E6D0,CachedFileInputStream open retail uncompressed-size query
+?decompressData@CompressionManager@@SAHPBXHPAXH@Z,0x0081E890,CachedFileInputStream open retail decompression call
