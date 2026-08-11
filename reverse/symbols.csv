@@ -68559,3 +68559,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ??1?$_List_base@UGen_p8pod@@V?$allocator@UGen_p8pod@@@_STL@@@_STL@@QAE@XZ,0x000078C4,ContestableContain list member destructor call target (tg_0021aed0)
 ??1?$_List_base@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QAE@XZ,0x0000E68D,OpenContain m_containList destructor call target
 ??1Gen_dtor_00113d40@@UAE@XZ,0x00047C53,OpenContain base destructor call target
+??1?$_List_base@HV?$allocator@H@_STL@@@_STL@@QAE@XZ,0x000383CF,HordeContain list member destructor call target (third COMDAT copy 0x0020ACD0)
