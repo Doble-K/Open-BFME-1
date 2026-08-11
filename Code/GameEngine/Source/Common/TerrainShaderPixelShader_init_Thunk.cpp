@@ -1,161 +1,76 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: retail three-variant terrain pixel-shader setup in C++.
 
-class TerrainShaderPixelShader
+typedef unsigned long DWORD;
+typedef long HRESULT;
+
+enum ChipsetType
 {
-private:
-	virtual int init();
+	DC_UNKNOWN = 0,
+	DC_GENERIC_PIXEL_SHADER_1_1 = 3
 };
 
-// ?init@TerrainShaderPixelShader@@EAEHXZ
-__declspec(naked) int TerrainShaderPixelShader::init()
+class W3DShaderInterface
 {
-	__asm {
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0xb9
-		__emit 0xe8
-		__emit 0xc2
-		__emit 0x2b
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x05
-		__emit 0x13
-		__emit 0x84
-		__emit 0xff
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x74
-		__emit 0x7d
-		__emit 0xe8
-		__emit 0x31
-		__emit 0x43
-		__emit 0x83
-		__emit 0xff
-		__emit 0x83
-		__emit 0xf8
-		__emit 0x03
-		__emit 0x7c
-		__emit 0x73
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x08
-		__emit 0x50
-		__emit 0x68
-		__emit 0xe8
-		__emit 0x8c
-		__emit 0x12
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x10
-		__emit 0xdd
-		__emit 0x83
-		__emit 0xff
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7c
-		__emit 0x5e
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x0c
-		__emit 0x51
-		__emit 0x68
-		__emit 0xc8
-		__emit 0x8c
-		__emit 0x12
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xfb
-		__emit 0xdc
-		__emit 0x83
-		__emit 0xff
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7c
-		__emit 0x49
-		__emit 0x83
-		__emit 0xc6
-		__emit 0x10
-		__emit 0x56
-		__emit 0x68
-		__emit 0xa8
-		__emit 0x8c
-		__emit 0x12
-		__emit 0x01
-		__emit 0xe8
-		__emit 0xe6
-		__emit 0xdc
-		__emit 0x83
-		__emit 0xff
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x85
-		__emit 0xc0
-		__emit 0x7c
-		__emit 0x34
-		__emit 0xb8
-		__emit 0x40
-		__emit 0xc3
-		__emit 0x2b
-		__emit 0x01
-		__emit 0xa3
-		__emit 0x8c
-		__emit 0x9c
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xa3
-		__emit 0x90
-		__emit 0x9c
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xa3
-		__emit 0x94
-		__emit 0x9c
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xa3
-		__emit 0x98
-		__emit 0x9c
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xb8
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xa3
-		__emit 0x44
-		__emit 0x9c
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xa3
-		__emit 0x48
-		__emit 0x9c
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xa3
-		__emit 0x4c
-		__emit 0x9c
-		__emit 0x2f
-		__emit 0x01
-		__emit 0xa3
-		__emit 0x50
-		__emit 0x9c
-		__emit 0x2f
-		__emit 0x01
-		__emit 0x5e
-		__emit 0xc3
-		__emit 0x33
-		__emit 0xc0
-		__emit 0x5e
-		__emit 0xc3
+public:
+	virtual int set(int) = 0;
+	virtual int init() = 0;
+private:
+	DWORD m_pad;
+};
+
+class TerrainShaderPixelShader : public W3DShaderInterface
+{
+public:
+	virtual int set(int);
+private:
+	virtual int init();
+	DWORD m_dwBasePixelShader;
+	DWORD m_dwBaseNoise1PixelShader;
+	DWORD m_dwBaseNoise2PixelShader;
+};
+
+class TerrainShader2Stage
+{
+public:
+	int init();
+};
+
+class W3DShaderManager
+{
+public:
+	static ChipsetType getChipset();
+	static HRESULT LoadAndCreateD3DShader(const char *filename, DWORD *shader);
+};
+
+extern TerrainShader2Stage OpenBFME5_terrainShader2Stage;
+extern W3DShaderInterface *OpenBFME5_W3DShaders[4];
+extern DWORD OpenBFME5_W3DShadersPassCount[4];
+extern TerrainShaderPixelShader OpenBFME5_terrainShaderPixelShader;
+
+int TerrainShaderPixelShader::init()
+{
+	int res;
+	if (OpenBFME5_terrainShader2Stage.init() &&
+		(res = W3DShaderManager::getChipset()) >= DC_GENERIC_PIXEL_SHADER_1_1) {
+		if (res >= DC_GENERIC_PIXEL_SHADER_1_1) {
+			HRESULT hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrain.pso", &m_dwBasePixelShader);
+			if (hr < 0) return 0;
+			hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrainnoise.pso", &m_dwBaseNoise1PixelShader);
+			if (hr < 0) return 0;
+			hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrainnoise2.pso", &m_dwBaseNoise2PixelShader);
+			if (hr < 0) return 0;
+
+			OpenBFME5_W3DShaders[0] = &OpenBFME5_terrainShaderPixelShader;
+			OpenBFME5_W3DShaders[1] = &OpenBFME5_terrainShaderPixelShader;
+			OpenBFME5_W3DShaders[2] = &OpenBFME5_terrainShaderPixelShader;
+			OpenBFME5_W3DShaders[3] = &OpenBFME5_terrainShaderPixelShader;
+			OpenBFME5_W3DShadersPassCount[0] = 1;
+			OpenBFME5_W3DShadersPassCount[1] = 1;
+			OpenBFME5_W3DShadersPassCount[2] = 1;
+			OpenBFME5_W3DShadersPassCount[3] = 1;
+			return 1;
+		}
 	}
+	return 0;
 }
