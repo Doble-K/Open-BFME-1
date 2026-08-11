@@ -1,142 +1,54 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
 
-class __declspec(novtable) ScienceInfo
+class UnicodeString
+{
+public:
+    ~UnicodeString();
+
+private:
+    void *m_data;
+};
+
+class ScienceVecStandIn
+{
+public:
+    ~ScienceVecStandIn();
+
+private:
+    void *m_begin;
+    void *m_end;
+    void *m_capacity;
+};
+
+class Overridable
+{
+public:
+    virtual ~Overridable()
+    {
+        if (m_nextOverride)
+            delete m_nextOverride;
+        m_nextOverride = 0;
+    }
+
+private:
+    Overridable *m_nextOverride;
+    bool m_isOverride;
+};
+
+class ScienceInfo : public Overridable
 {
 protected:
     virtual ~ScienceInfo();
+
+private:
+    int m_science;
+    UnicodeString m_name;
+    UnicodeString m_description;
+    ScienceVecStandIn m_rootSciences;
+    int m_sciencePurchasePointCost;
+    bool m_grantable;
 };
 
-// ??1ScienceInfo@@MAE@XZ
-__declspec(naked) ScienceInfo::~ScienceInfo()
+ScienceInfo::~ScienceInfo()
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x5e
-        __emit 0xb3
-        __emit 0xff
-        __emit 0x00
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x51
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x89
-        __emit 0x74
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xc0
-        __emit 0x4c
-        __emit 0x08
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x18
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x02
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x05
-        __emit 0xe6
-        __emit 0xf2
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x14
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x01
-        __emit 0xe8
-        __emit 0x70
-        __emit 0xfc
-        __emit 0x79
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4e
-        __emit 0x10
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x63
-        __emit 0xfc
-        __emit 0x79
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xc7
-        __emit 0x06
-        __emit 0xb0
-        __emit 0xfc
-        __emit 0x07
-        __emit 0x01
-        __emit 0x74
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-    }
 }
