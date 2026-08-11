@@ -1,200 +1,29 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /DZH_EMIT_POOL_GLUE /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad
+// stlport
+#define Matrix4x4 Matrix4
+#include "PreRTS.h"
+#include <stdio.h>
+#include "GameClient/GameWindowManager.h"
 
-class GameWindow;
-struct _iobuf;
-void __cdecl PrintInfoRecursive(GameWindow *, _iobuf *);
-
-// ?PrintInfoRecursive@@YAXPAVGameWindow@@PAU_iobuf@@@Z
-__declspec(naked) void __cdecl PrintInfoRecursive(GameWindow *, _iobuf *)
+static const char *RetailAsciiString(const void *stringObject)
 {
-	__asm {
-        __emit 0x83
-        __emit 0xec
-        __emit 0x10
-        __emit 0x57
-        __emit 0x8b
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x85
-        __emit 0xff
-        __emit 0x0f
-        __emit 0x84
-        __emit 0xa6
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0xb8
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x08
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xfc
-        __emit 0xb9
-        __emit 0xb8
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xf8
-        __emit 0x9d
-        __emit 0xb8
-        __emit 0xff
-        __emit 0x05
-        __emit 0x8c
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x05
-        __emit 0x83
-        __emit 0xc0
-        __emit 0x08
-        __emit 0xeb
-        __emit 0x05
-        __emit 0xb8
-        __emit 0x8b
-        __emit 0x38
-        __emit 0x07
-        __emit 0x01
-        __emit 0x53
-        __emit 0x8b
-        __emit 0x1d
-        __emit 0xc0
-        __emit 0x93
-        __emit 0x35
-        __emit 0x01
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x24
-        __emit 0x50
-        __emit 0x68
-        __emit 0x3c
-        __emit 0xc3
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x56
-        __emit 0xff
-        __emit 0xd3
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x51
-        __emit 0x52
-        __emit 0x68
-        __emit 0x1c
-        __emit 0xc3
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x56
-        __emit 0xff
-        __emit 0xd3
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x30
-        __emit 0x50
-        __emit 0x51
-        __emit 0x68
-        __emit 0x00
-        __emit 0xc3
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x56
-        __emit 0xff
-        __emit 0xd3
-        __emit 0x68
-        __emit 0x08
-        __emit 0x5f
-        __emit 0x0f
-        __emit 0x01
-        __emit 0x56
-        __emit 0xff
-        __emit 0xd3
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x34
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xfb
-        __emit 0xd1
-        __emit 0xb6
-        __emit 0xff
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x3b
-        __emit 0xe2
-        __emit 0xb5
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0xa5
-        __emit 0x26
-        __emit 0xb6
-        __emit 0xff
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x2a
-        __emit 0xe2
-        __emit 0xb5
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x08
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x10
-        __emit 0xc3
-	}
+	const char *data = *(const char * const *)stringObject;
+	return data ? data + 8 : (const char *)0x0107388B;
+}
+
+void PrintInfoRecursive(GameWindow *win, FILE *fp)
+{
+	if (!win)
+		return;
+
+	ICoord2D pos, size;
+	win->winGetSize(&size.x, &size.y);
+	win->winGetPosition(&pos.x, &pos.y);
+	fprintf(fp, "ControlBarResizer %s\n", RetailAsciiString((const char *)win->winGetInstanceData() + 0x18C));
+	fprintf(fp, "  AltPosition = X:%d Y:%d\n", pos.x, pos.y);
+	fprintf(fp, "  AltSize = X:%d Y:%d\n", size.x, size.y);
+	fprintf(fp, "END\n\n");
+
+	PrintInfoRecursive(win->winGetChild(), fp);
+	PrintInfoRecursive(win->winGetNext(), fp);
 }
