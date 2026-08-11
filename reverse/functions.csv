@@ -15257,7 +15257,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?init@FrameData@@QAEXXZ,,0x00670170,135,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,
 ?init@FrameDataManager@@QAEXXZ,,0x006705C0,72,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,
 ?init@FullFadeTransition@@UAEXPAVGameWindow@@@Z,,0x0059D420,95,Code/GameEngine/Source/Common/FullFadeTransition_init_Thunk.cpp,matched,clean C++ conversion; ZH body but BFME reads the update argument from this+0x10 and the frame count from this+0x14 instead of the FULLFADETRANSITION constants; flags at +0x08/+0x09; m_percent at +0x28
-?init@GameEngine@@,,0x00079060,7123,Code/masm_dumps/_str2__init_GameEngine__79060.asm,matched,true size 7123B; previous row claimed only 6689B (no padding before ~GameEngine)
+?init@GameEngine@@,,0x00079060,7123,Code/GameEngine/Source/Common/GameEngineInitThunk.cpp,matched,object-symbol=_bfme_GameEngine_init_79060;Exact full 7123B C++ thunk using corrected boundary before destructor; Open-BFME5
 ?init@GameLogic@@UAEXXZ,,0x0038A1F0,1014,Code/GameEngine/Source/GameLogic/System/GameLogicInitThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?init@GameSpyLoadScreen@@,,0x00493120,2717,Code/GameEngine/Source/GameClient/GUI/GameSpyLoadScreenInitThunk.cpp,matched,Open-BFME5 exact C++ emits;object-symbol=_bfme_GameSpyLoadScreen_init_493120
 ?init@GameState@@UAEXXZ,,0x001112D0,1368,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,certified packet 117 exact retail db recovery sha256 562361f290ec5b0bcbadf7a4db6adc0d907a84c3697d7a6209b3afd9cf24be14
