@@ -694,12 +694,66 @@ def compile_source(source, output):
               f"{source.relative_to(ROOT)} ({attempt + 2}/3)", file=sys.stderr)
 
 
+def resolve_funclet_by_evidence(path, row, target):
+    """Re-find a gen-funclet body whose recorded $L label no longer exists.
+
+    An SEH funclet has no name of its own, so those rows pin it to the
+    compiler-local label its parent's COMDAT happened to receive. Those numbers
+    are assigned per translation unit and shift whenever ANY unrelated edit to
+    the TU changes how many labels precede them, which silently breaks rows
+    whose funclet is byte-for-byte untouched. That has taken the full build
+    down repeatedly; a hand repair goes stale the next time the TU is touched.
+
+    Recover it from evidence instead of bookkeeping: inside the section that
+    also holds __ehhandler$<parent> -- the parent's own funclet group -- take
+    the $L symbols whose bytes equal retail at this row's address once
+    relocation sites are masked. Only a unique answer is accepted, so an
+    ambiguous group still fails loudly rather than guessing.
+    """
+    parent = re.search(r"(?:^|;)parent=([^;]+)", row.get("notes", ""))
+    if not parent:
+        return None
+    stat = path.stat()
+    data, sections, symbols = _object_layout(str(path), stat.st_mtime_ns, stat.st_size)
+    handler = f"__ehhandler${parent.group(1)}"
+    group = [s["section"] for s in symbols
+             if s["name"] == handler and s["section"] > 0]
+    if not group:
+        return None
+    size = len(target)
+    hits = []
+    for symbol in symbols:
+        if symbol["section"] != group[0] or not re.fullmatch(r"\$L\d+", symbol["name"]):
+            continue
+        try:
+            body, relocs = read_object_symbol_bytes(path, symbol["name"], size)
+        except ValueError:
+            continue
+        if len(body) < size:
+            continue
+        left, right = bytearray(body[:size]), bytearray(target)
+        for offset, _rtype, _sym in relocs:
+            if offset + 4 <= size:
+                left[offset:offset + 4] = right[offset:offset + 4] = b"\0\0\0\0"
+        if left == right:
+            hits.append(symbol["name"])
+    return hits[0] if len(hits) == 1 else None
+
+
 def compile_function(row, symbol_map, output):
     target_rva = int(row["target_rva"], 16)
     target_size = int(row["target_size"])
     target = read_target_bytes(target_rva, target_size)
-    compiled, relocs = read_object_symbol_bytes(
-        output, ledger_object_symbol(row), target_size)
+    object_symbol = ledger_object_symbol(row)
+    try:
+        compiled, relocs = read_object_symbol_bytes(output, object_symbol, target_size)
+    except ValueError:
+        recovered = None
+        if "gen-funclet" in (row.get("notes") or "") and re.fullmatch(r"\$L\d+", object_symbol):
+            recovered = resolve_funclet_by_evidence(output, row, target)
+        if recovered is None:
+            raise
+        compiled, relocs = read_object_symbol_bytes(output, recovered, target_size)
 
     resolved = bytearray(compiled[:target_size])
     unresolved = []
