@@ -80280,7 +80280,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setDisabled@Object@@QAEXW4DisabledType@@@Z,,0x001CE790,18,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,
 ?setDisabledUntil@Object@@QAEXW4DisabledType@@I@Z,,0x0003364A,5,Code/Libraries/Source/WWVegas/WWLib/MoneyObjectThunks.cpp,matched,Focused C++ thunk for Object::setDisabledUntil
 ?setDisallowAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630760,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
-?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADEE0,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setDisallowNonAsianText_Thunk.cpp,matched,multi-xref Open-BFME4+Grok DisallowNonAsianText
 ?setDisallowNonAsianText@GameSpyInfo@@UAEX_N@Z,,0x00630770,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,MASM converted to clean C++
 ?setDisconnectFrame@NetDisconnectFrameCommandMsg@@QAEXI@Z,,0x00674120,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?setDisconnectFrame@NetDisconnectPlayerCommandMsg@@QAEXI@Z,,0x00673C90,10,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,
@@ -94589,3 +94588,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?setUsesSystemMapDir@CustomMatchPreferences@@QAEX_N@Z,,0x000ADB60,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesSystemMapDir_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
 ?setUsesLongGameList@CustomMatchPreferences@@QAEX_N@Z,,0x000ADC40,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setUsesLongGameList_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
 ?setAllowsObserver@CustomMatchPreferences@@QAEX_N@Z,,0x000ADD20,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setAllowsObserver_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
+?setDisallowNonAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADEE0,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setDisallowNonAsianText_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 170-byte retail setter
