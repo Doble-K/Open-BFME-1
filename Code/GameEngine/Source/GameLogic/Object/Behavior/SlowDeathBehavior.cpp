@@ -593,57 +593,7 @@ UpdateSleepTime SlowDeathBehavior::update()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?onDie@SlowDeathBehavior@@UAEXPBVDamageInfo@@@Z present-unmatched
-void SlowDeathBehavior::onDie( const DamageInfo *damageInfo )
-{
-	Object *obj = getObject();
-
-	if (!isDieApplicable(damageInfo))
-		return;
-
-	AIUpdateInterface *ai = obj->getAIUpdateInterface();
-	if (ai)
-	{
-		// has another AI already handled us. (hopefully another SlowDeathBehavior)
-		if (ai->isAiInDeadState())
-			return;
-		ai->markAsDead();
-	}
-
-	// deselect this unit for all players.
-	TheGameLogic->deselectObject(obj, PLAYERMASK_ALL, TRUE);
-
-	Int total = 0;
-	for (BehaviorModule** update = obj->getBehaviorModules(); *update; ++update)
-	{
-		SlowDeathBehaviorInterface* sdu = (*update)->getSlowDeathBehaviorInterface();
-		if (sdu != NULL && sdu->isDieApplicable(damageInfo))
-		{
-			total += sdu->getProbabilityModifier( damageInfo );
-		}
-	}
-	DEBUG_ASSERTCRASH(total > 0, ("Hmm, this is wrong"));
-
-
-	// this returns a value from 1...total, inclusive
-	Int roll = GameLogicRandomValue(1, total);
-
-	for (/* UpdateModuleInterface** */ update = obj->getBehaviorModules(); *update; ++update)
-	{
-		SlowDeathBehaviorInterface* sdu = (*update)->getSlowDeathBehaviorInterface();
-		if (sdu != NULL && sdu->isDieApplicable(damageInfo))
-		{
-			roll -= sdu->getProbabilityModifier( damageInfo );
-			if (roll <= 0)
-			{
-				sdu->beginSlowDeath(damageInfo);
-				return;
-			}
-		}
-	}
-
-	DEBUG_CRASH(("We should never get here"));
-}
+// SlowDeathBehavior::onDie is defined in SlowDeathBehaviorOnDieThunk.cpp.
 
 // ------------------------------------------------------------------------------------------------
 /** CRC */
