@@ -94164,7 +94164,6 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?d_00109d10@@YAXXZ,,0x00109D10,156,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00509d10
 ?d_00109de0@@YAXXZ,,0x00109DE0,156,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00509de0
 ?d_000921d0@@YAXXZ,,0x000921D0,302,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_004921d0
-?d_00099980@@YAXXZ,,0x00099980,150,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00499980
 ?d_0054da10@@YAXXZ,,0x0054DA10,148,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0094da10
 ?d_00505b40@@YAXXZ,,0x00505B40,147,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00905b40
 ?d_0033eb70@@YAXXZ,,0x0033EB70,294,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0073eb70
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?parseDebris@GenericObjectCreationNugget@@SAXPAVINI@@PAX1PBX@Z,,0x001DAE40,204,Code/GameEngine/Source/Common/GenericObjectCreationNugget_parseDebrisMethodThunk.cpp,matched,Open-BFME5 exact C++ retail parseDebris layout
 ?d_0094e1b0@@YAXXZ,,0x0094E1B0,253,Code/Libraries/Source/WWVegas/WWLib/ShareBufferClassVector3CopyConstructorThunk.cpp,matched,Open-BFME5 C++ ShareBufferClass Vector3 copy constructor;object-symbol=??0?$ShareBufferClass@VVector3@@@@QAE@ABV0@@Z
 ?xfer@ScriptList@@MAEXPAVXfer@@@Z,,0x003556A0,400,Code/GameEngine/Source/Common/ScriptList_xferMethodThunk.cpp,matched,Open-BFME5 exact C++ retail ScriptList transfer
+?initControls@RecorderClass@@QAEXXZ,,0x00099980,150,Code/GameEngine/Source/Common/RecorderInitControls_Thunk.cpp,matched,Open-BFME5 recorder controls C++ lift

@@ -68476,6 +68476,9 @@ _var_or_func_tail,0x0099C4B0,vendored=lua-4.0.1
 g_NAMEKEY_empty_string,0x0107388B,NAMEKEY empty string literal
 g_statsConnection,0x012D9038,Open-BFME5 IsStatsConnected global
 g_theNameKeyGenerator,0x012ED600,TheNameKeyGenerator
+?TheNameKeyGenerator@@3PAVNameKeyGenerator@@A,0x012ED600,BFME global name-key generator pointer
+?TheWindowManager@@3PAVGameWindowManager@@A,0x012F1B40,BFME global game-window manager pointer
+?winHide@GameWindow@@QAEX_N@Z,0x00027F2A,BFME incremental-link thunk
 g_theWaypointNameDict,0x012A77A8,MapObject setWaypointName Dict global
 g_windGlobalA,0x012F7004,WindModuleInfo ctor global
 g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
