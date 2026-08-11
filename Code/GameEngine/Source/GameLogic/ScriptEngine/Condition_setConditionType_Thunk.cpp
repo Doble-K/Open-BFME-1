@@ -1,231 +1,116 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+
+void *__cdecl operator new(unsigned int);
+void __cdecl operator delete(void *);
+
+class AsciiString
+{
+	void *m_data;
+public:
+	AsciiString() : m_data(0) {}
+	~AsciiString();
+};
+
+struct Coord3D
+{
+	float x, y, z;
+};
+
+class ObjectStatusMask
+{
+	unsigned int m_bits[2];
+public:
+	ObjectStatusMask() { m_bits[0] = 0; m_bits[1] = 0; }
+};
+
+class Parameter
+{
+public:
+	enum ParameterType { INT = 0 };
+	Parameter(ParameterType type, int value = 0) :
+		m_initialized(false),
+		m_paramType(type),
+		m_int(value),
+		m_real(0)
+	{
+		m_coord.x = 0;
+		m_coord.y = 0;
+		m_coord.z = 0;
+	}
+	void deleteInstance() { delete this; }
+
+private:
+	ParameterType m_paramType;
+	bool m_initialized;
+	unsigned char m_padding[3];
+	int m_int;
+	float m_real;
+	AsciiString m_string;
+	Coord3D m_coord;
+	ObjectStatusMask m_objectStatus;
+};
+
+class ConditionTemplate
+{
+	unsigned char m_pad[0x44];
+	int m_numParameters;
+	Parameter::ParameterType m_parameters[12];
+public:
+	int getNumParameters() const { return m_numParameters; }
+	Parameter::ParameterType getParameterType(int index) const
+	{
+		if (index >= 0 && index < m_numParameters)
+			return m_parameters[index];
+		return Parameter::INT;
+	}
+};
+
+class ScriptEngine
+{
+public:
+	virtual void slot00();
+	virtual void slot01();
+	virtual void slot02();
+	virtual void slot03();
+	virtual void slot04();
+	virtual void slot05();
+	virtual void slot06();
+	virtual void slot07();
+	virtual void slot08();
+	virtual void slot09();
+	virtual void slot10();
+	virtual const ConditionTemplate *getConditionTemplate(int type);
+};
+
+extern ScriptEngine *TheScriptEngine;
 
 class Condition
 {
 public:
 	enum ConditionType {};
-	void setConditionType(ConditionType);
+	void setConditionType(ConditionType type);
+
+private:
+	unsigned int m_poolLink;
+	ConditionType m_conditionType;
+	int m_numParms;
+	Parameter *m_parms[12];
 };
 
 // ?setConditionType@Condition@@QAEXW4ConditionType@1@@Z
-__declspec(naked) void Condition::setConditionType(Condition::ConditionType)
+void Condition::setConditionType(ConditionType type)
 {
-	__asm {
-        __emit 0x51
-        __emit 0x53
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x08
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x33
-        __emit 0xed
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x57
-        __emit 0x7e
-        __emit 0x2f
-        __emit 0x8d
-        __emit 0x7e
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x07
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x74
-        __emit 0x15
-        __emit 0x8d
-        __emit 0x48
-        __emit 0x10
-        __emit 0xe8
-        __emit 0x09
-        __emit 0x1c
-        __emit 0x53
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x6f
-        __emit 0xc1
-        __emit 0x52
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x1f
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x08
-        __emit 0x45
-        __emit 0x83
-        __emit 0xc7
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xe8
-        __emit 0x7c
-        __emit 0xd4
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x18
-        __emit 0x89
-        __emit 0x46
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x50
-        __emit 0xff
-        __emit 0x52
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x44
-        __emit 0x33
-        __emit 0xff
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x89
-        __emit 0x46
-        __emit 0x08
-        __emit 0x7e
-        __emit 0x69
-        __emit 0x83
-        __emit 0xc1
-        __emit 0x48
-        __emit 0x8d
-        __emit 0x6e
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x6a
-        __emit 0x28
-        __emit 0xe8
-        __emit 0xa9
-        __emit 0xc1
-        __emit 0x52
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x74
-        __emit 0x36
-        __emit 0x3b
-        __emit 0xfb
-        __emit 0x7c
-        __emit 0x11
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x3b
-        __emit 0x79
-        __emit 0x44
-        __emit 0x7d
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x0a
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc9
-        __emit 0x89
-        __emit 0x08
-        __emit 0x88
-        __emit 0x58
-        __emit 0x04
-        __emit 0x89
-        __emit 0x58
-        __emit 0x08
-        __emit 0x89
-        __emit 0x58
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x58
-        __emit 0x10
-        __emit 0x89
-        __emit 0x58
-        __emit 0x20
-        __emit 0x89
-        __emit 0x58
-        __emit 0x24
-        __emit 0x89
-        __emit 0x58
-        __emit 0x14
-        __emit 0x89
-        __emit 0x58
-        __emit 0x18
-        __emit 0x89
-        __emit 0x58
-        __emit 0x1c
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x89
-        __emit 0x45
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x08
-        __emit 0x47
-        __emit 0x83
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x83
-        __emit 0xc5
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xf8
-        __emit 0x89
-        __emit 0x54
-        __emit 0x24
-        __emit 0x18
-        __emit 0x7c
-        __emit 0xa1
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x5d
-        __emit 0x5b
-        __emit 0x59
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+	int i;
+	for (i = 0; i < m_numParms; ++i)
+	{
+		if (m_parms[i])
+			m_parms[i]->deleteInstance();
+		m_parms[i] = 0;
 	}
+
+	m_conditionType = type;
+	const ConditionTemplate *conditionTemplate = TheScriptEngine->getConditionTemplate(m_conditionType);
+	m_numParms = conditionTemplate->getNumParameters();
+	for (i = 0; i < m_numParms; ++i)
+		m_parms[i] = new Parameter(conditionTemplate->getParameterType(i));
 }
