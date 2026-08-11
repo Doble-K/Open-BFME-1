@@ -1,186 +1,93 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// stlport
+// Open-BFME5: canonical production-veterancy parser with BFME retail layouts.
 
-class INI;
+enum NameKeyType { NAME_KEY_INVALID = 0 };
+enum VeterancyLevel { VETERANCY_INVALID = 0 };
+
+class AsciiString;
+
+template <typename T>
+class StringBase
+{
+    T *m_text;
+
+    friend class AsciiString;
+    StringBase(const T *text);
+
+public:
+    const T *str() const { return m_text ? m_text + 8 : ""; }
+};
+
+class AsciiString
+{
+    char *m_text;
+
+public:
+    AsciiString(const char *text)
+    {
+        ((StringBase<char> *)this)->StringBase<char>::StringBase(text);
+    }
+    ~AsciiString();
+    const char *str() const
+    {
+        return ((const StringBase<char> *)this)->str();
+    }
+};
+
+class INI
+{
+public:
+    const char *getNextToken(const char *separators = 0);
+    static int scanIndexList(const char *token, const char *const *names);
+};
+
+class NameKeyGenerator
+{
+public:
+    NameKeyType nameToKey(const char *name);
+};
+
+extern "C" NameKeyGenerator *g_theNameKeyGenerator;
+extern "C" const char *g_theVeterancyNames[];
+
+namespace _STL
+{
+template <typename T> struct less;
+template <typename T> class allocator;
+template <typename First, typename Second> struct pair;
+
+template <typename Key, typename Value, typename Compare,
+          typename Allocator>
+class map
+{
+public:
+    Value &operator[](const Key &key);
+};
+}
+
+typedef _STL::map<NameKeyType, VeterancyLevel, _STL::less<NameKeyType>,
+                  _STL::allocator<_STL::pair<const NameKeyType,
+                                              VeterancyLevel> > >
+    ProductionVeterancyMap;
+
 class PlayerTemplate
 {
 protected:
-	static void parseProductionVeterancyLevel(INI *, void *, void *, void const *);
+    static void parseProductionVeterancyLevel(INI *ini, void *instance,
+                                               void *store,
+                                               const void *userData);
 };
 
-// ?parseProductionVeterancyLevel@PlayerTemplate@@KAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void PlayerTemplate::parseProductionVeterancyLevel(INI *, void *, void *, void const *)
+void PlayerTemplate::parseProductionVeterancyLevel(INI *ini, void *instance,
+                                                    void *, const void *)
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x78
-		__emit 0xa8
-		__emit 0xff
-		__emit 0x00
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xec
-		__emit 0x08
-		__emit 0x56
-		__emit 0x8b
-		__emit 0x74
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0xe8
-		__emit 0x8a
-		__emit 0xe2
-		__emit 0x76
-		__emit 0x00
-		__emit 0x50
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xe8
-		__emit 0xd0
-		__emit 0x64
-		__emit 0x7a
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x85
-		__emit 0xc0
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x05
-		__emit 0x83
-		__emit 0xc0
-		__emit 0x08
-		__emit 0xeb
-		__emit 0x05
-		__emit 0xb8
-		__emit 0x8b
-		__emit 0x38
-		__emit 0x07
-		__emit 0x01
-		__emit 0x8b
-		__emit 0x0d
-		__emit 0x00
-		__emit 0xd6
-		__emit 0x2e
-		__emit 0x01
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xc1
-		__emit 0x86
-		__emit 0xf5
-		__emit 0xff
-		__emit 0x68
-		__emit 0xb4
-		__emit 0x9f
-		__emit 0x2a
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x00
-		__emit 0x8b
-		__emit 0xce
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xe8
-		__emit 0x48
-		__emit 0xe2
-		__emit 0x76
-		__emit 0x00
-		__emit 0x50
-		__emit 0xe8
-		__emit 0xb2
-		__emit 0xe2
-		__emit 0x76
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x28
-		__emit 0x8b
-		__emit 0xf0
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x8d
-		__emit 0x44
-		__emit 0x24
-		__emit 0x08
-		__emit 0x50
-		__emit 0x81
-		__emit 0xc1
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xec
-		__emit 0x77
-		__emit 0xf3
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x04
-		__emit 0x89
-		__emit 0x30
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0xe6
-		__emit 0x51
-		__emit 0x7a
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x14
-		__emit 0xc3
-	}
+    AsciiString templateName(ini->getNextToken());
+    NameKeyType templateKey =
+        g_theNameKeyGenerator->nameToKey(templateName.str());
+    VeterancyLevel startLevel = (VeterancyLevel)INI::scanIndexList(
+        ini->getNextToken(), g_theVeterancyNames);
+
+    (*(ProductionVeterancyMap *)((char *)instance + 0x80))[templateKey] =
+        startLevel;
 }
