@@ -15,7 +15,14 @@ Goal: source code that rebuilds BFME 1's executable byte-for-byte.
 
 We currently have C++ functions in `Code/` and a patcher which can patch same-size custom functions into `lotrbfme.exe`. This is useful for modding.
 
-About **8% of the game's functions** — and **~15% of its code bytes** — have been reverse-engineered and byte-for-byte verified against retail `lotrbfme.exe` (~6,300 of the exe's 78,506 functions). Every function in `reverse/functions.csv` compiles to bytes identical to the original.
+The number that matters is **byte-exact C++**: about **13.5% of `.text`**, which is
+**~18% of the game's real code** (a quarter of `.text` is linker `int3` padding that
+needs no source and is excluded from the honest denominator). A further ~6% is
+byte-verified assembly awaiting conversion. Every row in `reverse/functions.csv`
+compiles or assembles to bytes identical to retail; `python3 tools/progress.py <ref>`
+prints the current split. The pipeline: scripts claim unidentified functions as
+byte-true ASM dumps, and agents convert ASM to exact C++ — conversion is the
+contribution.
 
 ## Roadmap
 
@@ -33,7 +40,15 @@ ping `redbracket` on Discord if there's something else you want to change this r
 
 ## How You Can Help
 
-Just tell your favorite AI agent to make a PR in this repo, where each commit in the PR is an individual contribution. Your agent will know what to do from there (just make sure it keeps looping and making more commits), and I will be able to merge your PR.
+Clone the repo and give your AI agent this exact prompt — measured on six agent
+sessions, a vaguer prompt reliably produces zero progress:
+
+> Read AGENTS.md and follow it. Loop: take the served candidate's whole file,
+> convert bodies to byte-exact C++, bank each verified body as its own commit,
+> and before stopping run `python3 tools/progress.py origin/master` — if C++
+> exact is +0 bytes, keep going. Make a PR when you have a few landed bodies.
+
+Each commit in the PR is one verified function, and I will be able to merge it.
 
 !! All such AI-generated PRs are appreciated !!
 

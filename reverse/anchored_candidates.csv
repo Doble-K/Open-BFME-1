@@ -1,0 +1,118 @@
+target_rva,target_size,zh_source,alternates,confidence,ghidra_name,anchor
+0x0041D290,4756,Drawable.cpp,0,high,FUN_0081d290,StructureHeal
+0x00795140,2761,W3DPushButton.cpp,0,high,FUN_00b95140,Cameo_push
+0x004F2C00,2751,WOLGameSetupMenu.cpp,0,high,FUN_008f2c00,GameSpyGameOptionsMenu.wnd:ListboxChatWindowGameSpyGameSetup
+0x0088EC50,2713,debug_cmd.cpp,0,high,FUN_00c8ec50,"list (g|l|d|a|c) [ <pattern> ]  Shows some or all items of a specific type.  The following items are supported: - g: command groups - l: log groups (only those encountered yet) - d: log groups with descriptions (only those that have descriptions) - a: asserts (only those hit yet) - c: crashes (only those failed yet)  If a pattern is specified only items matching that pattern are shown. A pattern can contain any character, letter, or a wildcard '*'.  Please note that assert and crash items have their line number appended to the current file name, e.g. debug.cpp(13). "
+0x0042F5A0,2666,GameClient.cpp,0,high,FUN_0082f5a0,TheAnimationSoundModuleManager
+0x001D88C0,2556,ObjectCreationList.cpp,0,high,FUN_005d88c0,GenericDebris
+0x00346D60,1950,ScriptEngine.cpp,0,high,FUN_00746d60,Advancing SeqScript '
+0x005091F0,1890,WOLQuickMatchMenu.cpp,0,high,FUN_009091f0,WOLQuickMatchMenu.wnd:StaticTextTitle
+0x0050C160,1867,WOLWelcomeMenu.cpp,0,high,FUN_0090c160,WOLWelcomeMenu.wnd:StaticTextHighscorePoints
+0x004CDF20,1709,LanGameOptionsMenu.cpp,0,high,FUN_008cdf20,Menus/LanMapSelectMenu.wnd
+0x005A92D0,1661,CommandXlat.cpp,0,high,FUN_009a92d0,VoiceEnterStateAttackUnit
+0x0064FB90,1440,PeerThread.cpp,0,high,FUN_00a4fb90,maxRealPlayers
+0x004E8DC0,1422,ScoreScreen.cpp,0,high,FUN_008e8dc0,ScoreScreen.wnd:StaticTextGameSaveComplete
+0x00791730,1380,W3DHorizontalSlider.cpp,0,high,FUN_00b91730," Highlighted: (%d,%d) -> (%d,%d), step %d/%g, full %d/%d"
+0x00432010,1361,Drawable.h,0,high,FUN_00832010,Drawable
+0x004E5420,1170,ScoreScreen.cpp,0,high,FUN_008e5420,ScoreScreen.wnd:ButtonAdd%d
+0x002BE4A0,1160,CreateObjectDie.h,0,high,FUN_006be4a0,CreateObjectDie
+0x00712F60,1112,W3DScene.cpp,0,high,FUN_00b12f60,RTS3DScene
+0x00503FA0,1100,WOLMapSelectMenu.cpp,0,high,FUN_00903fa0,WOLMapSelectMenu.wnd:ButtonMapStartPosition%d
+0x0053E870,1090,WOLLobbyMenu.cpp,0,high,FUN_0093e870,GUI:JoinFailedUnknownLadder
+0x0007EEB0,1063,GameLOD.cpp,0,high,FUN_0047eeb0,BenchProfile = %s %d %f %f %f
+0x004C8B40,1026,GameInfoWindow.cpp,0,high,FUN_008c8b40,GameinfoOBSRVR
+0x004D0230,1010,LanMapSelectMenu.cpp,0,high,FUN_008d0230,LanMapSelectMenu.wnd:ButtonMapStartPosition%d
+0x00886B00,987,urlBuilder.cpp,0,high,FUN_00c86b00,http://servserv.generals.ea.com/servserv/
+0x004C3DE0,962,Diplomacy.cpp,0,high,FUN_008c3de0,Diplomacy.wnd:RadioButtonBuddies
+0x004A5950,959,ControlBarCommand.cpp,0,high,FUN_008a5950,ControlBar.wnd:ButtonQueue01
+0x00937900,951,statistics.cpp,0,high,FUN_00d37900,Set_DX8_Texture count: %d actual changes: %d  id      refs changes  size      name -------------------------------------- 
+0x00371650,947,AIPlayer.cpp,0,high,FUN_00771650, - Building completed.
+0x0050B440,942,WOLWelcomeMenu.cpp,0,high,FUN_0090b440,WOLWelcomeMenu.wnd:StaticTextChinaLastWeek
+0x002B5800,941,DeployStyleAIUpdate.cpp,0,high,FUN_006b5800,Undeploy
+0x003492A0,928,ScriptEngine.cpp,0,high,FUN_007492a0,DestroyDebugDialog
+0x0088DC68,875,debug_except.cpp,0,high,FUN_00c8dc68,No stack data available - check for dbghelp.dll
+0x004D1370,868,MapSelectMenu.cpp,0,high,FUN_008d1370,MapSelectMenu.wnd:RadioButtonSystemMaps
+0x009F808E,849,Except.cpp,0,high,GetImageInfo,CreateToolhelp32Snapshot
+0x0088D430,845,debug_except.cpp,0,high,FUN_00c8d430,"The thread tried to read or write data that is misaligned on hardware that does not provide alignment. For example, 16-bit values must be aligned on 2-byte boundaries; 32-bit values on 4-byte boundaries, and so on."
+0x003928E0,839,LoadScreen.cpp,0,high,FUN_007928e0,TitleScreen
+0x0034F160,829,Scripts.h,0,high,FUN_0074f160,<This Team>
+0x004DDD10,823,PopupPlayerInfo.cpp,0,high,FUN_008ddd10,PopupPlayerInfo.wnd:CheckBoxNonAsianText
+0x004E1D00,808,ReplayMenu.cpp,0,high,FUN_008e1d00,ReplayMenu.wnd:ButtonDeleteReplay
+0x0033E490,783,ScriptEngine.cpp,0,high,FUN_0073e490,***WARNING: Script contains multiple non-singleton team conditions::***
+0x004CAA90,781,KeyboardOptionsMenu.cpp,0,high,FUN_008caa90,KeyboardOptionsMenu.wnd:ParentKeyboardOptionsMenu
+0x006A9910,747,MilesAudioManager.cpp,0,high,FUN_00aa9910,"  To remove this message, go to options.ini and change the line UseEAX3For3DAudio=1 to UseEAX3For3DAudio=0"
+0x002683D0,745,NeutronBlastBehavior.h,0,high,FUN_006683d0,AttributeModifierWeatherBased
+0x004C50F0,730,InGamePopupMessage.cpp,0,high,FUN_008c50f0,InGamePopupMessage.wnd:InGamePopupMessageParent
+0x0078D810,723,W3DGameWindow.cpp,0,high,FUN_00b8d810,BorderBottomShort
+0x00168ED0,716,AISkirmishPlayer.cpp,0,high,FUN_00568ed0, acquiring target enemy player: 
+0x004C3480,714,Diplomacy.cpp,0,high,FUN_008c3480,Diplomacy.wnd:StaticTextStatus%d
+0x0050D030,707,WOLWelcomeMenu.cpp,0,high,FUN_0090d030,Menus/WOLQuickMatchMenu.wnd
+0x0033E040,703,ScriptEngine.cpp,0,high,FUN_0073e040,***Attempting to set attack priority on an invalid thing:***
+0x0034CB60,635,Scripts.h,0,high,FUN_0074cb60,<Local Player's Allies incl Self>
+0x004AF6A0,627,ControlBarUnderConstruction.cpp,0,high,FUN_008af6a0,Command_CancelConstruction
+0x0048D9C0,581,IMEManager.cpp,0,high,FUN_0088d9c0,IMECandidateWindow.wnd:DownArrow
+0x00505830,573,WOLQuickMatchMenu.cpp,0,high,FUN_00905830,WOLQuickMatchMenu.wnd:ComboBoxMaxDisconnects
+0x006715C0,569,NAT.cpp,0,high,FUN_00a715c0,CONNFAILED%d
+0x004E8050,568,ScoreScreen.cpp,0,high,FUN_008e8050,MutiPlayer_ScoreScreen
+0x0010FBD0,550,GameState.cpp,0,high,FUN_0050fbd0,CHUNK_LivingWorldLogic
+0x004FF030,548,WOLLocaleSelectPopup.cpp,0,high,FUN_008ff030,PopupLocaleSelect.wnd:ListBoxLocaleSelect
+0x0009E130,534,SkirmishBattleHonors.cpp,0,high,FUN_0049e130,SkirmishStats.ini
+0x0062E8F0,286,MainMenuUtils.cpp,0,high,FUN_00a2e8f0,PatchAccessTest.txt
+0x0033C8E0,197,ScriptEngine.cpp,0,high,FUN_0073c8e0,AppendMessage
+0x00902A00,183,dx8wrapper.cpp,0,high,FUN_00d02a00,D3DTOP_MODULATEINVCOLOR_ADDALPHA
+0x004C84C0,126,EstablishConnectionsWindow.cpp,0,high,FUN_008c84c0,WOLQuickMatchMenuParent
+0x0050B930,93,WOLWelcomeMenu.cpp,0,high,FUN_0090b930,WOLWelcomeMenu.wnd
+0x000904E0,92,OptionsMenu.cpp,0,high,FUN_004904e0,Options.ini
+0x0015CE00,79,AIGuard.h,0,high,FUN_0055ce00,AIGuardInner
+0x0015CED0,79,AIGuard.h,0,high,FUN_0055ced0,AIGuardOuter
+0x00137E20,75,FileSystem.h,0,high,FUN_00537e20,***TESTING
+0x00902E10,71,dx8wrapper.cpp,0,high,FUN_00d02e10,D3DCMP_GREATEREQUAL
+0x00AABED8,55,motion.cpp,0,high,FUN_00eabed8,Out of Memory
+0x00903010,53,dx8wrapper.cpp,0,high,FUN_00d03010,D3DBLENDOP_REVSUBTRACT
+0x008BF100,18655,SkinCopy.cpp,1,medium,FUN_00cbf100,getUTCMilliseconds
+0x004E5DF0,7004,NetworkDirectConnect.cpp,2,medium,FUN_008e5df0,GUI:Player
+0x004A4240,4572,BattlePlanUpdate.h,2,medium,FUN_008a4240,BattlePlanUpdate
+0x004DBE80,4126,PopupPlayerInfo.cpp,1,medium,FUN_008dbe80,StaticTextPlayerStatisticsLabel
+0x001D9630,2725,FloatUpdate.h,2,medium,FUN_005d9630,FadeAndDieOrnamentUpdate
+0x004F5D10,2352,GameSpyOverlay.cpp,1,medium,FUN_008f5d10,Menus/WOLMapSelectMenu.wnd
+0x004CBBB0,2178,LanGameOptionsMenu.cpp,1,medium,FUN_008cbbb0,LanGameOptionsMenu.wnd:ButtonMapStartPosition%d
+0x004DD2B0,2086,PopupPlayerInfo.cpp,1,medium,FUN_008dd2b0,GUI:PSCannotConnect
+0x005307B0,2068,WOLGameSetupMenu.cpp,1,medium,FUN_009307b0,TOOLTIP:ProfiledPlayer
+0x005A8A10,1790,CommandXlat.cpp,1,medium,FUN_009a8a10,VoiceSalvageGroup2
+0x006386F0,1684,AIPlayer.h,1,medium,FUN_00a386f0,\seed\%d\hostname\%s\mapname\%s\numplayers\%d\duration\%d\gamemode\exiting\localplayer\%d\ladder\%s
+0x00180810,1387,MemoryInit.cpp,1,medium,FUN_00580810,FailureState
+0x004C3800,1194,Diplomacy.cpp,1,medium,FUN_008c3800,GUI:PlayerObserverGone
+0x00216D90,1138,ConvertToHijackedVehicleCrateCollide.cpp,3,medium,FUN_00616d90,HijackerUpdate
+0x006BFFE0,1136,MemoryInit.cpp,8,medium,FUN_00abffe0,W3DScriptedModelDraw
+0x00550AD0,1130,MainMenuUtils.cpp,1,medium,FUN_00950ad0,useProfiles
+0x00508C80,1063,LobbyUtils.cpp,2,medium,FUN_00908c80,GUI:ChooseLadder
+0x00689F00,989,GameSpy.cpp,2,medium,FUN_00a89f00,StartPos
+0x00625AF0,947,Chat.cpp,3,medium,FUN_00a25af0,GUIMessageReceived
+0x0055A240,843,WOLGameSetupMenu.cpp,1,medium,FUN_0095a240,GUI:NATNegotiationFailed
+0x0062FA20,843,PeerThread.cpp,1,medium,FUN_00a2fa20,ccgenerals
+0x002A8540,814,AutoHealBehavior.h,2,medium,FUN_006a8540,AutoHealBehavior
+0x00454B00,802,MapUtil.cpp,3,medium,FUN_00854b00,ObjectsList
+0x004EFAF0,784,WOLBuddyOverlay.cpp,1,medium,FUN_008efaf0,Menus/RCBuddyRequestMenu.wnd
+0x0053DFC0,769,WOLGameSetupMenu.cpp,1,medium,FUN_0093dfc0,GUI:JoinFailedBadPassword
+0x0007E5F0,758,GameLOD.cpp,2,medium,FUN_0047e5f0,BuildingOcclusion
+0x0062EA60,741,MainMenuUtils.cpp,2,medium,FUN_00a2ea60,GUI:CannotConnectToServservTitle
+0x0026CF90,722,BitFlags.cpp,1,medium,FUN_0066cf90,FIRING_OR_PREATTACK_B
+0x00688CD0,709,LANAPICallbacks.cpp,1,medium,FUN_00a88cd0,GUI:PlayerNoMapWillTransfer
+0x00244B10,676,ControlBarScheme.cpp,1,medium,FUN_00644b10,RevokedWeaponCondition
+0x0054CC82,599,DatGen.cpp,4,medium,FUN_0094cc82,DisableButtonCreate
+0x00813A50,595,NetworkUtil.cpp,3,medium,FUN_00c13a50,localhost
+0x00086C70,563,LanLobbyMenu.cpp,1,medium,FUN_00486c70,RemoteIP%d
+0x00646AA0,551,GameSpy.cpp,1,medium,FUN_00a46aa0,Chatting
+0x00627FA0,535,GameSpyGP.cpp,1,medium,FUN_00a27fa0,GUICommunicatorOpen
+0x00594AD0,524,CostModifierUpgrade.h,1,medium,FUN_00994ad0,APT:CostModifierUpgrade
+0x004D33D0,512,IPEnumeration.cpp,3,medium,FUN_008d33d0,%d.%d.%d.%d
+0x004CB810,480,LanGameOptionsMenu.cpp,1,medium,FUN_008cb810,StartPos=%d
+0x00484F60,270,GameWindowManagerScript.cpp,1,medium,FUN_00884f60,TABCONTROL
+0x00183AF0,198,AIStateMachine.h,2,medium,FUN_00583af0,AIMoveToState
+0x0069D240,101,PeerThread.cpp,2,medium,FUN_00a9d240,<Unknown>
+0x00439280,84,GlobalLanguage.cpp,1,medium,FUN_00839280,Arial Unicode MS
+0x0017F980,80,AIStateMachine.h,1,medium,FUN_0057f980,AIFollowWaypointPathState
+0x0015D090,79,AIGuard.cpp,2,medium,FUN_0055d090,AIGuardAttackAggressorState
+0x0015F070,79,AIGuardRetaliate.cpp,2,medium,FUN_0055f070,AIGuardRetaliateAttackAggressorState
+0x001720D0,68,AIStateMachine.h,2,medium,FUN_005720d0,AIIdleState
+0x002C6170,46,MemoryInit.cpp,1,medium,FUN_006c6170,RegroupingState

@@ -326,7 +326,10 @@ def main():
                         help="with --ranked, group repeated naked byte patterns")
     parser.add_argument("--limit", type=int, default=30,
                         help="max items/groups with --ranked (default 30)")
-    parser.add_argument("--max-bytes", type=int, default=160)
+    parser.add_argument("--max-bytes", type=int, default=512,
+                        help="serve naked bodies up to this size (measured land "
+                             "rates peak at 128-255B and gen_dump waves run to "
+                             "511B; the old 160 default hid most of the fuel)")
     parser.add_argument("--shard", type=parse_shard, metavar="INDEX/COUNT",
                         help="stable zero-based partition for concurrent workers")
     parser.add_argument("--exclude-file", action="append", type=Path, default=[],
