@@ -592,7 +592,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??$initSubsystem@VWeaponStore@@@@YAXAAPAVWeaponStore@@VAsciiString@@PAV0@PAVXfer@@PBD44@Z,,0x00073F10,154,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,GameEngine::init registers TheWeaponStore; class name proven by its ctor
 ??$insert@U?$_List_iterator@PAVDrawable@@U?$_Const_traits@PAVDrawable@@@_STL@@@_STL@@@?$list@PAVDrawable@@V?$allocator@PAVDrawable@@@_STL@@@_STL@@QAEXU?$_List_iterator@PAVDrawable@@U?$_Nonconst_traits@PAVDrawable@@@_STL@@@1@U?$_List_iterator@PAVDrawable@@U?$_Const_traits@PAVDrawable@@@_STL@@@1@1@Z,,0x001C6280,32,Code/GameEngine/Source/GameClient/MessageStream/SelectionXlat.cpp,matched,
 ??$insert@U?$_List_iterator@PAVGameWindow@@U?$_Const_traits@PAVGameWindow@@@_STL@@@_STL@@@?$list@PAVGameWindow@@V?$allocator@PAVGameWindow@@@_STL@@@_STL@@QAEXU?$_List_iterator@PAVGameWindow@@U?$_Nonconst_traits@PAVGameWindow@@@_STL@@@1@U?$_List_iterator@PAVGameWindow@@U?$_Const_traits@PAVGameWindow@@@_STL@@@1@1@Z,,0x00483B60,32,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
-??$insert@U?$_List_iterator@PAVParticleSystem@@U?$_Const_traits@PAVParticleSystem@@@_STL@@@_STL@@@?$list@PAVParticleSystem@@V?$allocator@PAVParticleSystem@@@_STL@@@_STL@@QAEXU?$_List_iterator@PAVParticleSystem@@U?$_Nonconst_traits@PAVParticleSystem@@@_STL@@@1@U?$_List_iterator@PAVParticleSystem@@U?$_Const_traits@PAVParticleSystem@@@_STL@@@1@1@Z,,0x0076D6E0,32,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ??$insert@U?$_List_iterator@UCoord3D@@U?$_Const_traits@UCoord3D@@@_STL@@@_STL@@@?$list@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXU?$_List_iterator@UCoord3D@@U?$_Nonconst_traits@UCoord3D@@@_STL@@@1@U?$_List_iterator@UCoord3D@@U?$_Const_traits@UCoord3D@@@_STL@@@1@1@Z,,0x000BF380,32,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,
 ??$insert@U?$_List_iterator@VAsciiString@@U?$_Const_traits@VAsciiString@@@_STL@@@_STL@@@?$list@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAEXU?$_List_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@1@U?$_List_iterator@VAsciiString@@U?$_Const_traits@VAsciiString@@@_STL@@@1@1@Z,,0x000805D0,32,Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp,matched,
 ??$iter_swap@PAU?$pair@W4ObjectID@@I@_STL@@PAU12@@_STL@@YAXPAU?$pair@W4ObjectID@@I@0@0@Z,,0x00095420,33,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
@@ -865,7 +864,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$IndexClass@HPAUINISection@@@@QAE@XZ,,0x009E2710,19,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??0?$Int@$0EA@@@QAE@K@Z,,0x009E21D0,25,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,
 ??0?$Int@$0EA@@@QAE@XZ,,0x009EA760,20,Code/Libraries/Source/WWVegas/WWLib/int.cpp,matched,
-??0?$LatchRestore@H@@QAE@AAHABH@Z,,0x00337640,31,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ??0?$LatchRestore@_N@@QAE@AA_NAB_N@Z,,0x0010D330,31,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0?$MultiListClass@VCameraShakerClass@CameraShakeSystemClass@@@@QAE@XZ,,0x006D12A0,39,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
 ??0?$MultiListClass@VDX8FVFCategoryContainer@@@@QAE@XZ,,0x00710FC0,39,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
@@ -1409,7 +1407,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0?$hash_map@HUGen_t_009f20f0_p12cd@@U?$hash@H@_STL@@U?$equal_to@H@3@V?$allocator@U?$pair@$$CBHUGen_t_009f20f0_p12cd@@@_STL@@@3@@_STL@@QAE@XZ,,0x009F20F0,72,Code/gen_small/tgrid_132.cpp,matched,gen-tgrid;template=hash_int_p12cd
 ??0?$list@PAVFXNugget@@V?$allocator@PAVFXNugget@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x00887B60,121,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,object-symbol=??0?$StringBase@D@@AAE@ABV0@@Z;C++ alias
 ??0?$list@PAVGameWindow@@V?$allocator@PAVGameWindow@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x004FFF30,111,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,
-??0?$list@PAVParticleSystem@@V?$allocator@PAVParticleSystem@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x0076F640,111,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,C++ STLport list copy constructor; TU-scoped BFME 0x2c node tail and static allocator mode
 ??0?$list@PAVParticleSystem@@V?$allocator@PAVParticleSystem@@@_STL@@@_STL@@QAE@ABV?$allocator@PAVParticleSystem@@@1@@Z,,0x0076F610,32,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ??0?$list@PAVSuperweaponInfo@@V?$allocator@PAVSuperweaponInfo@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x0076F640,111,Code/GameEngine/Source/GameClient/InGameUI.cpp,matched,ICF alias of exact STLport list copy constructor body with BFME 0x2c node tail
 ??0?$list@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAE@ABV01@@Z,,0x000BF580,111,Code/GameEngine/Source/Common/INI/INIMapCache.cpp,matched,copy ctor for Coord3DList; BFME uses STLport node allocator
@@ -1499,7 +1496,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AABTreeClass@@QAE@PAVAABTreeBuilderClass@@@Z,,0x0096ACC0,149,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ??0AABTreeClass@@QAE@XZ,,0x0096A8E0,33,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
 ??0AABTreeIterator@@QAE@PAVAABTreeCullSystemClass@@@Z,,0x000C9440,18,Code/Libraries/Source/WWVegas/WWMath/aabtreecull.cpp,matched,
-??0AABoxClass@@QAE@ABV0@@Z,,0x006FCED0,43,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
+??0AABoxClass@@QAE@ABV0@@Z,,0x006FCED0,43,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,object-symbol=??4AABoxClass@@QAEAAV0@ABV0@@Z
 ??0AABoxClass@@QAE@ABVMinMaxAABoxClass@@@Z,,0x0097B280,154,Code/Libraries/Source/WWVegas/WWMath/aabox.cpp,matched,
 ??0AABoxClass@@QAE@ABVVector3@@0@Z,,0x00728AE0,46,Code/Libraries/Source/WWVegas/WW3D2/part_buf.cpp,matched,
 ??0AABoxRenderObjClass@@QAE@ABUW3dBoxStruct@@@Z,,0x00957850,39,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
@@ -1604,7 +1601,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0AutoHealBehaviorModuleData@@QAE@XZ,,0x000287C7,5,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0AutoPickUpUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00281AB0,175,Code/GameEngine/Source/GameLogic/AI/AutoPickUpUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
 ??0AutoPickUpUpdateModuleData@@QAE@XZ,,0x002827E0,242,Code/GameEngine/Source/GameLogic/AI/AutoPickUpUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
-??0AvailableGameInfo@@QAE@XZ,,0x0010DB60,19,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??0BFMEAutoLockRef@@QAE@PAVBFMENetworkLock@@I@Z,,0x009DB3B0,72,Code/Libraries/Source/WWVegas/WWLib/mutex.cpp,matched,object-symbol=??0LockClass@MutexClass@@QAE@AAV1@H@Z;C++ alias
 ??0BFMENetGameSpyStatsAuthKeyCommandMsg@@QAE@XZ,,0x00675BE0,48,Code/GameEngine/Source/GameNetwork/NetCommandMsg_text.cpp,matched,
 ??0BFMENetInformPlayerLeaveFrameCommandMsg@@QAE@XZ,,0x00674130,47,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
@@ -3043,7 +3039,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??1?$HashTemplateClass@VVector3@@I@@QAE@XZ,,0x00690980,36,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ??1?$IndexClass@HPAUINIEntry@@@@QAE@XZ,,0x009E2800,32,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
 ??1?$IndexClass@HPAUINISection@@@@QAE@XZ,,0x009E2D60,32,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,IndexClass sibling
-??1?$LatchRestore@H@@UAE@XZ,,0x00337670,15,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ??1?$LatchRestore@_N@@UAE@XZ,,0x0010D360,15,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??1?$MultiListClass@VCameraShakerClass@CameraShakeSystemClass@@@@UAE@XZ,,0x006D17A0,98,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,
 ??1?$MultiListClass@VDX8FVFCategoryContainer@@@@UAE@XZ,,0x00946000,98,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
@@ -5587,7 +5582,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_G?$DynamicVectorClass@U_ArcInfoStruct@VehicleCurveClass@@@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_G?$DynamicVectorClass@VStringClass@@@@UAEPAXI@Z,,0x0013BD70,30,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ??_G?$IndexClass@HPAUINISection@@@@QAEPAXI@Z,,0x009E32E0,53,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
-??_G?$LatchRestore@H@@UAEPAXI@Z,,0x003377A0,39,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ??_G?$LatchRestore@_N@@UAEPAXI@Z,,0x0010D3E0,39,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,
 ??_G?$MultiListClass@VCameraShakerClass@CameraShakeSystemClass@@@@UAEPAXI@Z,,0x006D1840,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,icf-owner=??_G?$MultiListClass@VRenderObjClass@@@@UAEPAXI@Z
 ??_G?$MultiListClass@VDX8FVFCategoryContainer@@@@UAEPAXI@Z,,0x00946240,30,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
@@ -9296,7 +9290,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GetMyName@LANAPI@@UAE?AVUnicodeString@@XZ,,0x004C7970,32,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 ?GetName@FXParticleSystem@@YAPBDW4ModuleCategory@1@@Z,0x00048B58,0x005D4510,12,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,returns name for module category
 ?GetOutputBuffer@UDP@@QAEHXZ,,0x00684870,55,Code/GameEngine/Source/GameNetwork/udp.cpp,matched,
-?GetPolygonIndex@Geometry@@QBEPAGJPAF@Z,,0x007B7FA0,63,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?GetPolygonNormal@W3DShadowGeometryMesh@@QBEABVVector3@@J@Z,,0x0098E990,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,
 ?GetRoadSegInfo@RoadSegment@@QAEXPAUTRoadSegInfo@@@Z,,0x00707EE0,16,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,
 ?GetSnapshotName@ButterflyDrawModuleInfo@FXParticleSystem@@UAEPBDXZ,0x000204E1,0x005D46E0,6,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,returns class name
@@ -14830,7 +14823,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getName@?$CategoryModuleClass@$06@FXParticleSystem@@QBEPBDXZ,0x0003A963,0x005D4AC0,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns module name string
 ?getName@?$CategoryModuleClass@$07@FXParticleSystem@@QBEPBDXZ,0x000014E2,0x005D4AE0,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns module name string
 ?getName@?$CategoryModuleClass@$0A@@FXParticleSystem@@QBEPBDXZ,0x0004ACA0,0x005D4A60,4,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_category_accessors.cpp,matched,returns module name string
-?getName@GameSlot@@QBE?AVUnicodeString@@XZ,,0x003879C0,32,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,
 ?getName@LANPlayer@@QAE?AVUnicodeString@@XZ,,0x0008E280,29,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,
 ?getName@Object@@QBEABVAsciiString@@XZ,,0x0005CBA0,7,Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToCarBombCrateCollide.cpp,matched,icf-owner=?getUV@ParticleSystemTemplate@FXParticleSystem@@QBEPBURegion2D@@XZ
 ?getName@ParticleSystemTemplate@FXParticleSystem@@QBE?AVAsciiString@@XZ,0x00001E5B,0x0005F210,35,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,return particle system name
@@ -15150,7 +15142,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getUpgradeActivationMasks@UpgradeModule@@MBEXAAV?$BitFlags@$0IA@@@0@Z,,0x001F8920,11,Code/GameEngine/Source/GameLogic/Object/Upgrade/ModelConditionUpgrade.cpp,matched,
 ?getUpgradedSupplyBoost@SupplyTruckAIUpdate@@UBEHXZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?getUseHeatEffects@OptionPreferences@@QAE_NXZ,,0x00092070,98,Code/GameEngine/Source/Common/promoted__getUseHeatEffects_OptionPreferences_QAE_NXZ_00092070.cpp,matched,clean C++ conversion; boolean preferences getter; missing key defaults to TheWritableGlobalData+0x1D; strcmp intrinsic inlines as repe cmpsb over yes
-?getUser@LANGameSlot@@QAEPAVLANPlayer@@XZ,,0x0068DE20,145,Code/GameEngine/Source/Common/LANGameSlot_getUser_Thunk.cpp,matched,Certified packet 140 SHA256 3d5a0c45aafdb9ef17384528c8dc02e5df9270260c32da84fbee2f997e9ebb5d
 ?getUserMapDir@MapCache@@QBE?AVAsciiString@@XZ,,0x000139E9,5,Code/GameEngine/Source/Common/RTS/MapCacheGetUserMapDirThunk.cpp,matched,5-byte incremental-link MapCache const member thunk converted to focused C++ source
 ?getValue@GameClientRandomVariable@@QBEMXZ,0x0000D7B5,0x00096F60,123,Code/GameEngine/Source/Common/System/game_client_random_variable.cpp,matched,evaluate distribution value
 ?getValue@GameLogicRandomVariable@@QBEMXZ,,0x00096F60,123,Code/GameEngine/Source/Common/RandomValue.cpp,matched,
@@ -15620,7 +15611,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isTurretInNaturalPosition@AIUpdateInterface@@QBE_NW4WhichTurretType@@@Z,,0x0026EA60,28,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,turret wrapper; TurretAI target pinned through its ILT thunk
 ?isTurretInNaturalPosition@BattlePlanUpdate@@IAE_NXZ,,0x002858E0,40,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,clean BattlePlanUpdate turret-natural-position query through retail layout
 ?isTurretInNaturalPosition@TurretAI@@QBE_NXZ,,0x0018C8E0,39,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,BFME lacks the ZH OBJECT_STATUS_UNDER_CONSTRUCTION early-out
-?isUser@LANGameSlot@@QAE_NVUnicodeString@@@Z,,0x0068E8D0,132,Code/GameEngine/Source/Common/LANGameSlot_isUser_Thunk.cpp,matched,converted from MASM to C++; compareNoCase declared throw() so the getName temporary needs no unwind state
 ?isUsingAirborneLocomotor@Object@@QBE_NXZ,,0x001C1770,54,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,matched,thunk-dump converted to clean C++; BFME Object m_ai@0x204 + AIUpdateInterface m_curLocomotor@0x1cc
 ?isValidINIFilename@INI@@KA_NPBD@Z,,0x008507C0,77,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?isValidMap@@YA_NVAsciiString@@_N@Z,,0x00457ED0,170,Code/GameEngine/Source/GameClient/MapUtil_isValidMap_Thunk.cpp,matched,Open-BFME5 lift 170B retail MASM to standalone C++ thunk
@@ -79373,7 +79363,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseCashHackUpgradePair@@YAXPAVINI@@PAX1PBX@Z,,0x00258F10,120,Code/GameEngine/Source/GameLogic/Object/SpecialPower/CashHackSpecialPower.cpp,matched,
 ?parseChallengeModeDefinition@INI@@SAXPAV1@@Z,,0x0040BFC0,25,Code/GameEngine/Source/GameClient/GUI/ChallengeGenerals.cpp,matched,
 ?parseChildObjectDefinition@INI@@SAXPAV1@@Z,,0x000C2930,151,Code/GameEngine/Source/Common/INI/INIObject.cpp,matched,BFME-only; passes the second name as childOf - the fourth argument - which is what distinguishes it from ObjectReskin
-?parseChildWindows@@YA_NPAVGameWindow@@PAVFile@@PAD@Z,,0x00487B50,850,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Exact C++ naked emit thunk 850B from true retail entry (Open-BFME5)
 ?parseCloudBreakEffect@@YAXPAVINI@@@Z,,0x0040B270,82,Code/GameEngine/Source/GameClient/CloudBreakEffect.cpp,matched,BFME-only; saved/active override pair then a tail call to the cloud system through vtable slot 9
 ?parseColor@@YA_NPAHPAD@Z,,0x00484610,115,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,resweep exact post-GWM-fix (exact-ambiguous)
 ?parseColorInt@INI@@SAXPAV1@PAX1PBX@Z,,0x008531E0,409,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,getNextTokenOrNull + scanInt inlined in this TU
@@ -79515,7 +79504,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseScience@INI@@SAXPAV1@PAX1PBX@Z,,0x000B9BE0,59,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?parseScienceVector@INI@@SAXPAV1@PAX1PBX@Z,,0x00042609,5,Code/GameEngine/Source/Common/RTS/INIParseScienceVectorThunk.cpp,matched,5-byte incremental-link static INI parser thunk converted to focused C++ source
 ?parseScorchType@TerrainScorchFXNugget@@KAXPAVINI@@PAX1PBX@Z,,0x00427610,32,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
-?parseScreenRect@@YA_NPAD0PAH111@Z,,0x004854F0,453,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseShakeType@ViewShakeFXNugget@@KAXPAVINI@@PAX1PBX@Z,,0x00427610,32,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
 ?parseShellMenuSchemeDefinition@INI@@SAXPAV1@@Z,,0x00581790,171,Code/GameEngine/Source/Common/INI_parseShellMenuSchemeDefinitionMethodThunk.cpp,matched,MASM exact; true body via ShellMenuScheme typeTable; queue 0x7D46F was parseDynamicGameLODDefinition
 ?parseShort@INI@@SAXPAV1@PAX1PBX@Z,,0x00852960,124,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
@@ -79580,7 +79568,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?peek@?$StringBase@D@@ABEPADXZ,0x0002B26A,0x0005E5B0,6,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns pointer to data
 ?peek@?$StringBase@G@@ABEPAGXZ,0x0002264C,0x0005E5C0,6,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,returns pointer to data
 ?peekTexture@W3DShadowTextureManager@@QAEPAVW3DShadowTexture@@PBD@Z,,0x007AEF40,27,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
-?peekWindow@@YAPAVGameWindow@@XZ,,0x004845B0,19,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?peerParseQuery@@YAHPAXPADHPAUsockaddr@@@Z,,0x00857570,34,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerParseQueryThunk.cpp,matched,Open-BFME5 exact C++ raw GameSpy peer query helper; profile/error fallback chain preserved
 ?performUpgradeFX@FireWeaponWhenDeadBehavior@@MAEXXZ,,0x001F8930,16,Code/GameEngine/Source/GameLogic/Object/Behavior/FireWeaponWhenDeadBehavior.cpp,matched,
 ?performUpgradeFX@GenerateMinefieldBehavior@@MAEXXZ,,0x001EE900,16,Code/GameEngine/Source/GameLogic/Object/Behavior/GenerateMinefieldBehavior.cpp,matched,
@@ -82570,7 +82557,6 @@ dup_39c7f0,,0x0039C7F0,43,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,
 dup_3a0cb0,,0x003A0CB0,43,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,vendored=cnc-zh;dup-of=?init@ScienceStore@@UAEXXZ;object-symbol=?init@ScienceStore@@UAEXXZ
 dup_3ad1d0,,0x003AD1D0,32,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarObserver.cpp,matched,vendored=cnc-zh;dup-of=?getPlayerDisplayName@Player@@QAE?AVUnicodeString@@XZ;object-symbol=?getPlayerDisplayName@Player@@QAE?AVUnicodeString@@XZ
 dup_3ad290,,0x003AD290,32,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarObserver.cpp,matched,vendored=cnc-zh;dup-of=?getPlayerDisplayName@Player@@QAE?AVUnicodeString@@XZ;object-symbol=?getPlayerDisplayName@Player@@QAE?AVUnicodeString@@XZ
-dup_3ad380,,0x003AD380,32,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,vendored=cnc-zh;dup-of=?getName@GameSlot@@QBE?AVUnicodeString@@XZ;object-symbol=?getName@GameSlot@@QBE?AVUnicodeString@@XZ
 dup_3b9980,,0x003B9980,59,Code/gen_small/zhstl_002.cpp,matched,vendored=cnc-zh;zhstl;dup-of=?erase@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@QAEPAU?$pair@W4ObjectID@@W41@@2@PAU32@0@Z;object-symbol=?erase@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@QAEPAU?$pair@W4ObjectID@@W41@@2@PAU32@0@Z
 dup_3b9ed0,,0x003B9ED0,43,Code/gen_small/zhstl_002.cpp,matched,vendored=cnc-zh;zhstl;dup-of=?clear@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@QAEXXZ;object-symbol=?clear@?$vector@U?$pair@W4ObjectID@@W41@@_STL@@V?$allocator@U?$pair@W4ObjectID@@W41@@_STL@@@2@@_STL@@QAEXXZ
 dup_3bf930,,0x003BF930,40,Code/gen_small/zhstl_003.cpp,matched,vendored=cnc-zh;zhstl;dup-of=??0?$_List_base@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAE@ABV?$allocator@UCoord3D@@@1@@Z;object-symbol=??0?$_List_base@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAE@ABV?$allocator@UCoord3D@@@1@@Z
@@ -92935,24 +92921,19 @@ uw_00bfca80,,0x00BFCA80,8,Code/GameEngine/Source/Common/System/DataChunk.cpp,mat
 uw_00bfd2b0,,0x00BFD2B0,8,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,gen-funclet;parent=??1UpgradeCenter@@UAE@XZ;object-symbol=$L48498
 uw_00bfd330,,0x00BFD330,11,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,gen-funclet;parent=??1UpgradeTemplate@@MAE@XZ;object-symbol=$L48368
 uw_00bfd33b,,0x00BFD33B,11,Code/GameEngine/Source/Common/System/Upgrade.cpp,matched,gen-funclet;parent=??1UpgradeTemplate@@MAE@XZ;object-symbol=$L48369
-uw_00bfd6f0,,0x00BFD6F0,11,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?getUnicodeDateBuffer@@YA?AVUnicodeString@@U_SYSTEMTIME@@@Z;object-symbol=$L73788
-uw_00bfda10,,0x00BFDA10,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?portableMapPathToRealMapPath@GameState@@QBE?AVAsciiString@@ABV2@@Z;object-symbol=$L74767
-uw_00bfdb60,,0x00BFDB60,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78256
-uw_00bfdb68,,0x00BFDB68,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78257
-uw_00bfdb70,,0x00BFDB70,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78259
-uw_00bfdb78,,0x00BFDB78,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78261
-uw_00bfdb90,,0x00BFDB90,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78267
-uw_00bfdbd0,,0x00BFDBD0,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?missionSave@GameState@@QAE?AW4SaveCode@@XZ;object-symbol=$L78792
-uw_00bfdbe0,,0x00BFDBE0,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?missionSave@GameState@@QAE?AW4SaveCode@@XZ;object-symbol=$L78791
-uw_00bfdc28,,0x00BFDC28,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?loadGame@GameState@@QAE?AW4SaveCode@@UAvailableGameInfo@@@Z;object-symbol=$L78913
-uw_00bfdc70,,0x00BFDC70,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??1GameState@@UAE@XZ;object-symbol=$L79416
-uw_00bfdc9f,,0x00BFDC9F,22,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??1GameState@@UAE@XZ;object-symbol=$L79420
-uw_00bfdcd6,,0x00BFDCD6,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??1GameState@@UAE@XZ;object-symbol=$L79601
-uw_00bfdd50,,0x00BFDD50,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??0GameState@@QAE@XZ;object-symbol=$L80150
-uw_00bfdd63,,0x00BFDD63,22,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??0GameState@@QAE@XZ;object-symbol=$L80152
-uw_00bfddb0,,0x00BFDDB0,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?getSaveGameInfoFromFile@GameState@@QAEXVAsciiString@@PAVSaveGameInfo@@@Z;object-symbol=$L80670
-uw_00bfddc0,,0x00BFDDC0,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?getSaveGameInfoFromFile@GameState@@QAEXVAsciiString@@PAVSaveGameInfo@@@Z;object-symbol=$L80671
-uw_00bfddf0,,0x00BFDDF0,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?addGameToAvailableList@@YAXVAsciiString@@PAX@Z;object-symbol=$L80970
+uw_00bfdb60,,0x00BFDB60,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78132
+uw_00bfdb68,,0x00BFDB68,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78133
+uw_00bfdb70,,0x00BFDB70,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78135
+uw_00bfdb78,,0x00BFDB78,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78137
+uw_00bfdb90,,0x00BFDB90,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?saveGame@GameState@@QAE?AW4SaveCode@@VAsciiString@@VUnicodeString@@W4SaveFileType@@W4SnapshotType@@@Z;object-symbol=$L78143
+uw_00bfdbd0,,0x00BFDBD0,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?missionSave@GameState@@QAE?AW4SaveCode@@XZ;object-symbol=$L78668
+uw_00bfdbe0,,0x00BFDBE0,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?missionSave@GameState@@QAE?AW4SaveCode@@XZ;object-symbol=$L78667
+uw_00bfdc28,,0x00BFDC28,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=?loadGame@GameState@@QAE?AW4SaveCode@@UAvailableGameInfo@@@Z;object-symbol=$L78789
+uw_00bfdc70,,0x00BFDC70,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??1GameState@@UAE@XZ;object-symbol=$L79292
+uw_00bfdc9f,,0x00BFDC9F,22,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??1GameState@@UAE@XZ;object-symbol=$L79296
+uw_00bfdcd6,,0x00BFDCD6,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??1GameState@@UAE@XZ;object-symbol=$L79477
+uw_00bfdd50,,0x00BFDD50,8,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??0GameState@@QAE@XZ;object-symbol=$L80026
+uw_00bfdd63,,0x00BFDD63,22,Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp,matched,gen-funclet;parent=??0GameState@@QAE@XZ;object-symbol=$L80028
 uw_00bfe100,,0x00BFE100,11,Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehaviorFriendNewModuleInstanceThunk.cpp,matched,gen-funclet;parent=?friend_newModuleInstance@AutoHealBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z;object-symbol=$L308
 uw_00bfe140,,0x00BFE140,11,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,gen-funclet;parent=?friend_newModuleData@W3DLaserDraw@@SAPAVModuleData@@PAVINI@@@Z;object-symbol=$L56186
 uw_00bfe160,,0x00BFE160,11,Code/GameEngine/Source/GameLogic/AI/FoundationAIUpdateFriendNewModuleInstanceThunk.cpp,matched,gen-funclet;parent=?friend_newModuleInstance@FoundationAIUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z;object-symbol=$L308
@@ -93372,19 +93353,19 @@ uw_00c109a0,,0x00C109A0,14,Code/GameEngine/Source/GameLogic/Object/module_pool_g
 uw_00c10a00,,0x00C10A00,14,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,gen-funclet;parent=?getClassMemoryPool@AutoFindHealingUpdate@@CAPAVMemoryPool@@XZ;object-symbol=$L105755
 uw_00c10b68,,0x00C10B68,11,Code/GameEngine/Source/Common/AutoPickUpUpdateModuleDataDestructorThunk.cpp,matched,gen-funclet;parent=??1AutoPickUpUpdateModuleData@@UAE@XZ;object-symbol=$L360
 uw_00c10d30,,0x00C10D30,14,Code/GameEngine/Source/GameLogic/Object/module_pool_glue_bulk.cpp,matched,gen-funclet;parent=?getClassMemoryPool@BattlePlanUpdate@@CAPAVMemoryPool@@XZ;object-symbol=$L105791
-uw_00c10d88,,0x00C10D88,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84131
-uw_00c10d93,,0x00C10D93,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84132
-uw_00c10d9e,,0x00C10D9E,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84133
-uw_00c10da9,,0x00C10DA9,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84134
-uw_00c10db4,,0x00C10DB4,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84135
-uw_00c10dbf,,0x00C10DBF,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84136
-uw_00c10dca,,0x00C10DCA,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84137
-uw_00c10dd5,,0x00C10DD5,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84138
-uw_00c10de0,,0x00C10DE0,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84139
-uw_00c10deb,,0x00C10DEB,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84140
-uw_00c10df6,,0x00C10DF6,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84141
-uw_00c10e01,,0x00C10E01,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84142
-uw_00c10e0c,,0x00C10E0C,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L84143
+uw_00c10d88,,0x00C10D88,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83908
+uw_00c10d93,,0x00C10D93,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83909
+uw_00c10d9e,,0x00C10D9E,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83910
+uw_00c10da9,,0x00C10DA9,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83911
+uw_00c10db4,,0x00C10DB4,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83912
+uw_00c10dbf,,0x00C10DBF,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83913
+uw_00c10dca,,0x00C10DCA,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83914
+uw_00c10dd5,,0x00C10DD5,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83915
+uw_00c10de0,,0x00C10DE0,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83916
+uw_00c10deb,,0x00C10DEB,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83917
+uw_00c10df6,,0x00C10DF6,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83918
+uw_00c10e01,,0x00C10E01,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83919
+uw_00c10e0c,,0x00C10E0C,11,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate.cpp,matched,gen-funclet;parent=??1BattlePlanUpdateModuleData@@UAE@XZ;object-symbol=$L83920
 uw_00c10fe8,,0x00C10FE8,22,Code/GameEngine/Source/Common/BoneFXUpdateModuleDataDestructorThunk.cpp,matched,gen-funclet;parent=??1BoneFXUpdateModuleData@@UAE@XZ;object-symbol=$L354
 uw_00c10ffe,,0x00C10FFE,24,Code/GameEngine/Source/Common/BoneFXUpdateModuleDataDestructorThunk.cpp,matched,gen-funclet;parent=??1BoneFXUpdateModuleData@@UAE@XZ;object-symbol=$L355
 uw_00c11090,,0x00C11090,14,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,gen-funclet;parent=?getModuleNameKey@BoneFXUpdate@@UBE?AW4NameKeyType@@XZ;object-symbol=$L66567
@@ -93486,7 +93467,7 @@ uw_00c1b9d0,,0x00C1B9D0,8,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,
 uw_00c1cdf8,,0x00C1CDF8,11,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp,matched,gen-funclet;parent=??1RankInfo@@MAE@XZ;object-symbol=$L43871
 uw_00c1ce20,,0x00C1CE20,8,Code/GameEngine/Source/GameLogic/System/RankInfo.cpp,matched,gen-funclet;parent=??1RankInfoStore@@UAE@XZ;object-symbol=$L43951
 uw_00c1eb70,,0x00C1EB70,8,Code/gen_small/tgrid_114.cpp,matched,gen-funclet;parent=??0?$list@UGen_t_003c0c70_p12cd@@V?$allocator@UGen_t_003c0c70_p12cd@@@_STL@@@_STL@@QAE@I@Z;object-symbol=$L130155
-uw_00c1ffa0,,0x00C1FFA0,11,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,gen-funclet;parent=?allocateBlocks@PathfindZoneManager@@QAEXABUIRegion2D@@@Z;object-symbol=$L85134
+uw_00c1ffa0,,0x00C1FFA0,11,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,gen-funclet;parent=?allocateBlocks@PathfindZoneManager@@QAEXABUIRegion2D@@@Z;object-symbol=$L83477
 uw_00c20270,,0x00C20270,11,Code/GameEngine/Source/GameClient/Credits.cpp,matched,gen-funclet;parent=??1CreditsLine@@QAE@XZ;object-symbol=$L35537
 uw_00c2027b,,0x00C2027B,11,Code/GameEngine/Source/GameClient/Credits.cpp,matched,gen-funclet;parent=??1CreditsLine@@QAE@XZ;object-symbol=$L35538
 uw_00c20910,,0x00C20910,8,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,gen-funclet;parent=?setCaptionText@Drawable@@QAEXABVUnicodeString@@@Z;object-symbol=$L93728
@@ -93670,25 +93651,20 @@ uw_00c3a490,,0x00C3A490,8,Code/GameEngine/Source/Common/FXParticleSystem_Particl
 uw_00c3a900,,0x00C3A900,8,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,gen-funclet;parent=??1ImageCollection@@UAE@XZ;object-symbol=$L35445
 uw_00c3a930,,0x00C3A930,8,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,gen-funclet;parent=??0ImageCollection@@QAE@XZ;object-symbol=$L36068
 uw_00c3a990,,0x00C3A990,8,Code/GameEngine/Source/GameClient/System/Image.cpp,matched,gen-funclet;parent=?addImage@ImageCollection@@QAEXPAVImage@@@Z;object-symbol=$L36446
-uw_00c3aa90,,0x00C3AA90,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0OrthoEmissionVelocityInfo@FXParticleSystem@@QAE@XZ;object-symbol=$L13889
-uw_00c3aab0,,0x00C3AAB0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0OrthoEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L15332
-uw_00c3aad0,,0x00C3AAD0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0SphericalEmissionVelocityInfo@FXParticleSystem@@QAE@XZ;object-symbol=$L13950
-uw_00c3aaf0,,0x00C3AAF0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L15548
-uw_00c3ab10,,0x00C3AB10,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0CylindricalEmissionVelocityInfo@FXParticleSystem@@QAE@XZ;object-symbol=$L13824
-uw_00c3ab30,,0x00C3AB30,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0CylindricalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L15241
-uw_00c3ab50,,0x00C3AB50,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0OutwardEmissionVelocityInfo@FXParticleSystem@@QAE@XZ;object-symbol=$L13916
-uw_00c3ab70,,0x00C3AB70,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0OutwardEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L15372
-uw_00c3abb0,,0x00C3ABB0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0QuadDrawModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L15458
-uw_00c3abd0,,0x00C3ABD0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0ButterflyDrawModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L15157
+uw_00c3aab0,,0x00C3AAB0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0OrthoEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L17789
+uw_00c3aaf0,,0x00C3AAF0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0SphericalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L18005
+uw_00c3ab30,,0x00C3AB30,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0CylindricalEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L17698
+uw_00c3ab70,,0x00C3AB70,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0OutwardEmissionVelocityModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L17829
+uw_00c3abb0,,0x00C3ABB0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0QuadDrawModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L17915
+uw_00c3abd0,,0x00C3ABD0,8,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=??0ButterflyDrawModuleTemplate@FXParticleSystem@@QAE@XZ;object-symbol=$L17614
 uw_00c3afb0,,0x00C3AFB0,14,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_module_keys.cpp,matched,gen-funclet;parent=?GetValue@?$DefaultModuleKey@$05@FXParticleSystem@@CAPBDXZ;object-symbol=$L913
 uw_00c3b150,,0x00C3B150,14,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_module_keys.cpp,matched,gen-funclet;parent=?GetValue@?$DefaultModuleKey@$00@FXParticleSystem@@CAPBDXZ;object-symbol=$L829
 uw_00c3b190,,0x00C3B190,14,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_module_keys.cpp,matched,gen-funclet;parent=?GetValue@?$DefaultModuleKey@$0A@@FXParticleSystem@@CAPBDXZ;object-symbol=$L797
 uw_00c3b1d0,,0x00C3B1D0,14,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_module_keys.cpp,matched,gen-funclet;parent=?GetValue@?$DefaultModuleKey@$02@FXParticleSystem@@CAPBDXZ;object-symbol=$L885
 uw_00c3b210,,0x00C3B210,14,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_module_keys.cpp,matched,gen-funclet;parent=?GetValue@?$DefaultModuleKey@$01@FXParticleSystem@@CAPBDXZ;object-symbol=$L857
 uw_00c3b250,,0x00C3B250,14,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_module_keys.cpp,matched,gen-funclet;parent=?GetValue@?$DefaultModuleKey@$06@FXParticleSystem@@CAPBDXZ;object-symbol=$L941
-uw_00c3b510,,0x00C3B510,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?LIGHTNING_EMISSION_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIGHTNING_EMISSION_MODULE_NAME@2@3QBDBVLightningEmissionModule@2@VLightningEmissionModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QBEPAVLightningEmissionModuleTemplate@2@PAVINI@@@Z;object-symbol=$L16195
-uw_00c3b860,,0x00C3B860,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$07$E?LIFE_EVENT_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIFE_EVENT_MODULE_NAME@2@3QBDBVLifeEventModule@2@VLifeEventModuleTemplate@2@VParticleLifeEventModule@2@VParticleLifeEventModuleTemplate@2@@FXParticleSystem@@@FXParticleSystem@@QBEPAVLifeEventModuleTemplate@2@XZ;object-symbol=$L14612
-uw_00c3bb50,,0x00C3BB50,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$05$E?RENDEROBJECT_DRAW_MODULE_KEY@FXParticleSystem@@3QBDB$E?RENDEROBJECT_DRAW_MODULE_NAME@2@3QBDBVRenderObjectDrawModule@2@V?$DefaultParticleModule@$05@2@V?$DefaultParticleModuleTemplate@$05@2@@FXParticleSystem@@@FXParticleSystem@@QAEPAVRenderObjectDrawModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z;object-symbol=$L14967
+uw_00c3b510,,0x00C3B510,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$04$E?LIGHTNING_EMISSION_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIGHTNING_EMISSION_MODULE_NAME@2@3QBDBVLightningEmissionModule@2@VLightningEmissionModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QBEPAVLightningEmissionModuleTemplate@2@PAVINI@@@Z;object-symbol=$L18652
+uw_00c3bb50,,0x00C3BB50,11,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,gen-funclet;parent=?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$05$E?RENDEROBJECT_DRAW_MODULE_KEY@FXParticleSystem@@3QBDB$E?RENDEROBJECT_DRAW_MODULE_NAME@2@3QBDBVRenderObjectDrawModule@2@V?$DefaultParticleModule@$05@2@V?$DefaultParticleModuleTemplate@$05@2@@FXParticleSystem@@@FXParticleSystem@@QAEPAVRenderObjectDrawModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z;object-symbol=$L17424
 uw_00c3c3a8,,0x00C3C3A8,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DParticleSys.cpp,matched,gen-funclet;parent=??0?$ShareBufferClass@VVector3@@@@QAE@HPBDH@Z;object-symbol=$L59281
 uw_00c3c3d8,,0x00C3C3D8,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DParticleSys.cpp,matched,gen-funclet;parent=??0?$ShareBufferClass@VVector4@@@@QAE@HPBDH@Z;object-symbol=$L59301
 uw_00c3d100,,0x00C3D100,11,Code/GameEngine/Source/GameClient/Terrain/TerrainRoads.cpp,matched,gen-funclet;parent=??1TerrainRoadType@@MAE@XZ;object-symbol=$L37222
@@ -93852,8 +93828,8 @@ uw_00c463d0,,0x00C463D0,8,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,
 uw_00c463d8,,0x00C463D8,11,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,gen-funclet;parent=?RequestChat@LANAPI@@UAEXVUnicodeString@@W4ChatType@LANAPIInterface@@@Z;object-symbol=$L50819
 uw_00c46628,,0x00C46628,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp,matched,gen-funclet;parent=?WOLWelcomeMenuUpdate@@YAXPAVWindowLayout@@PAX@Z;object-symbol=$L50714
 uw_00c46800,,0x00C46800,8,Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp,matched,gen-funclet;parent=?OnNameChange@LANAPI@@UAEXIVUnicodeString@@@Z;object-symbol=$L56960
-uw_00c46996,,0x00C46996,11,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,gen-funclet;parent=?handleRequestLocations@LANAPI@@IAEXPAULANMessage@@I@Z;object-symbol=$L50191
-uw_00c469c0,,0x00C469C0,8,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,gen-funclet;parent=?handleLobbyAnnounce@LANAPI@@IAEXPAULANMessage@@I@Z;object-symbol=$L50425
+uw_00c46996,,0x00C46996,11,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,gen-funclet;parent=?handleRequestLocations@LANAPI@@IAEXPAULANMessage@@I@Z;object-symbol=$L49481
+uw_00c469c0,,0x00C469C0,8,Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp,matched,gen-funclet;parent=?handleLobbyAnnounce@LANAPI@@IAEXPAULANMessage@@I@Z;object-symbol=$L49715
 uw_00c46b06,,0x00C46B06,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,gen-funclet;parent=?WOLLoginMenuSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z;object-symbol=$L71162
 uw_00c46cf0,,0x00C46CF0,8,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,gen-funclet;parent=??1?$pair@$$CBVUnicodeString@@V1@@_STL@@QAE@XZ;object-symbol=$L47539
 uw_00c46d10,,0x00C46D10,8,Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp,matched,gen-funclet;parent=??0?$pair@$$CBVUnicodeString@@V1@@_STL@@QAE@ABVUnicodeString@@0@Z;object-symbol=$L47660
@@ -93876,7 +93852,7 @@ uw_00c49990,,0x00C49990,11,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W
 uw_00c49b50,,0x00C49B50,11,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DQuadrupedDrawModuleDataFactory.cpp,matched,gen-funclet;parent=?friend_newModuleData@W3DQuadrupedDraw@@SAPAVModuleData@@PAVINI@@@Z;object-symbol=$L330
 uw_00c49b70,,0x00C49B70,8,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DQuadrupedDrawModuleDataDestructorThunk.cpp,matched,gen-funclet;parent=??1W3DQuadrupedDrawModuleData@@UAE@XZ;object-symbol=$L328
 uw_00c49ec0,,0x00C49EC0,14,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar.cpp,matched,gen-funclet;parent=?drawEvents@W3DRadar@@IAEXHHHH@Z;object-symbol=$L75443
-uw_00c4a260,,0x00C4A260,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,gen-funclet;parent=??1BaseHeightMapRenderObjClass@@UAE@XZ;object-symbol=$L76566
+uw_00c4a260,,0x00C4A260,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,gen-funclet;parent=??1BaseHeightMapRenderObjClass@@UAE@XZ;object-symbol=$L76468
 uw_00c4a6b0,,0x00C4A6B0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,gen-funclet;parent=??0CameraShakerClass@CameraShakeSystemClass@@QAE@ABVVector3@@MMM@Z;object-symbol=$L65130
 uw_00c4a6d0,,0x00C4A6D0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,gen-funclet;parent=??1?$MultiListClass@VCameraShakerClass@CameraShakeSystemClass@@@@UAE@XZ;object-symbol=$L65330
 uw_00c4a6f0,,0x00C4A6F0,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/camerashakesystem.cpp,matched,gen-funclet;parent=??1CameraShakeSystemClass@@QAE@XZ;object-symbol=$L65395
@@ -93919,7 +93895,7 @@ uw_00c4ea40,,0x00C4EA40,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Dra
 uw_00c4ec10,,0x00C4EC10,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/W3DRopeDraw.cpp,matched,gen-funclet;parent=?getModuleNameKey@W3DRopeDraw@@UBE?AW4NameKeyType@@XZ;object-symbol=$L60796
 uw_00c4f370,,0x00C4F370,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,gen-funclet;parent=?WOLLoginMenuSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z;object-symbol=$L71096
 uw_00c4f4f0,,0x00C4F4F0,8,Code/GameEngine/Source/Common/Thing/ModuleInfoNuggetDestructor.cpp,matched,gen-funclet;parent=??1Nugget@ModuleInfo@@QAE@XZ;object-symbol=$L322
-uw_00c4f960,,0x00C4F960,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,gen-funclet;parent=?parseWeaponBoneName@@YAXPAVINI@@PAX1PBX@Z;object-symbol=$L125108
+uw_00c4f960,,0x00C4F960,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,gen-funclet;parent=?parseWeaponBoneName@@YAXPAVINI@@PAX1PBX@Z;object-symbol=$L100542
 uw_00c50830,,0x00C50830,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDraw.cpp,matched,gen-funclet;parent=?getClassMemoryPool@W3DSupplyDraw@@CAPAVMemoryPool@@XZ;object-symbol=$L44847
 uw_00c50930,,0x00C50930,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDraw.cpp,matched,gen-funclet;parent=?getClassMemoryPool@W3DTankDraw@@CAPAVMemoryPool@@XZ;object-symbol=$L109086
 uw_00c50990,,0x00C50990,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTreeDraw.cpp,matched,gen-funclet;parent=?getClassMemoryPool@W3DTreeDraw@@CAPAVMemoryPool@@XZ;object-symbol=$L62959
@@ -93945,11 +93921,11 @@ uw_00c519fc,,0x00C519FC,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI
 uw_00c51d30,,0x00C51D30,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,gen-funclet;parent=?Resize@?$SimpleVecClass@VVector3@@@@UAE_NH@Z;object-symbol=$L71006
 uw_00c51d50,,0x00C51D50,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWater.cpp,matched,gen-funclet;parent=?Uninitialised_Grow@?$SimpleVecClass@VVector3@@@@UAE_NH@Z;object-symbol=$L71021
 uw_00c52530,,0x00C52530,8,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,gen-funclet;parent=?TestWaterUpdate@@YAXXZ;object-symbol=$L65500
-uw_00c527c0,,0x00C527C0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,gen-funclet;parent=?Register_Missing@W3DShadowGeometryManager@@QAEXPBD@Z;object-symbol=$L67905
+uw_00c527c0,,0x00C527C0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,gen-funclet;parent=?Register_Missing@W3DShadowGeometryManager@@QAEXPBD@Z;object-symbol=$L67531
 uw_00c52af1,,0x00C52AF1,11,Code/Libraries/Source/WWVegas/WW3D2/hmdldef.cpp,matched,gen-funclet;parent=??0?$VectorClass@VVector3@@@@QAE@HPBVVector3@@@Z;object-symbol=$L5696
 uw_00c52bc0,,0x00C52BC0,11,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,gen-funclet;parent=?Register_Missing@HAnimManagerClass@@QAEXPBD@Z;object-symbol=$L15039
-uw_00c52ca0,,0x00C52CA0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,gen-funclet;parent=?Load_Geom@W3DShadowGeometryManager@@QAEHPAVRenderObjClass@@PBD@Z;object-symbol=$L68682
-uw_00c52cc0,,0x00C52CC0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,gen-funclet;parent=?buildPolygonNormals@W3DShadowGeometryMesh@@QAEXXZ;object-symbol=$L68735
+uw_00c52ca0,,0x00C52CA0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,gen-funclet;parent=?Load_Geom@W3DShadowGeometryManager@@QAEHPAVRenderObjClass@@PBD@Z;object-symbol=$L68308
+uw_00c52cc0,,0x00C52CC0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,gen-funclet;parent=?buildPolygonNormals@W3DShadowGeometryMesh@@QAEXXZ;object-symbol=$L68361
 uw_00c545e0,,0x00C545E0,8,Code/Libraries/Source/WWVegas/WWLib/ascii_string.cpp,matched,gen-funclet;parent=??H@YA?AVAsciiString@@V0@D@Z;object-symbol=$L2123
 uw_00c56320,,0x00C56320,11,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,gen-funclet;parent=??0INI@@QAE@XZ;object-symbol=$L34210
 uw_00c56360,,0x00C56360,8,Code/GameEngine/Source/Common/INI/ini.cpp,matched,gen-funclet;parent=?parseLine@INI@@IAEXVAsciiString@@@Z;object-symbol=$L62375

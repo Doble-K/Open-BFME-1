@@ -6653,3 +6653,54 @@ class. Retail stores exactly one vptr, the root base's restore at the very end; 
 novtable MSVC opens the destructor by storing the derived vptr and stores the
 intermediate's again before its member. That is the same lever as the two vptr sections
 above, applied to a class that is not the most-derived one at runtime.
+
+## A byte-exact conversion can silently break rows in its own translation unit
+
+Converting a body to real C++ changes the whole TU's codegen, and the rows most
+exposed are the `gen-funclet` unwind stubs, because their `object-symbol=` is a
+compiler-assigned `$L` label with no stable meaning. Landing one conversion
+renumbers every label after it, and each orphaned row then fails the gate with
+`symbol not found in object`, not with a byte mismatch.
+
+The renumbering is a **constant shift per translation unit**, and that is what
+makes the repair mechanical rather than a guess. Measured across seven files
+whose gate had gone red: -124 in GameState.cpp, -223 in BattlePlanUpdate.cpp,
+-374 in W3DVolumetricShadow.cpp, -710 in LANAPIhandlers.cpp, -1657 in
+AIPathfind.cpp, +2457 in fx_particle_system_bulk.cpp, -24566 in W3DModelDraw.cpp.
+Take the rows whose new label is unambiguous, read the shift off them, apply it
+to the rest, and re-verify each one byte-for-byte; 43 of 67 broken rows came
+back that way.
+
+Two traps in the diagnosis:
+
+* Comparing retail bytes against **raw** object bytes proves nothing, because a
+  relocated field is zero in the object and resolved in retail. An 8-byte
+  funclet is `mov ecx,[ebp-X]; jmp <rel32>`, so four of its eight bytes are the
+  relocation. Resolve first, exactly as `compile_function` does, then compare —
+  a raw comparison reports every row as unrepairable and sends you to retract
+  rows that were only renumbered.
+* Because the resolver *searches* symbols.csv for a displacement that
+  reproduces retail, a tiny funclet can be "matched" by several different
+  labels. Ambiguity there is not evidence of anything; use the TU's shift to
+  choose, not the first hit.
+
+What does not come back is a row whose function the source no longer emits at
+all — an unreferenced template instantiation, a constructor that became trivial,
+or an identity that was wrong to begin with. Retract those rather than adding a
+reference or an explicit instantiation to force emission: fitting the source to
+the ledger makes the gate green without proving anything about retail.
+
+## The pre-push hook only verifies outgoing sources, so cross-TU rot lands unseen
+
+`verify_pr.sh` byte-verifies the sources a push touches. That is sound for the
+pusher's own rows and blind to everyone else's: a conversion that shifts codegen
+breaks rows in the same TU that the pusher never re-verifies, and nothing looks
+at them again until somebody runs a full gate. Sixty-seven rows across ten files
+accumulated this way, and the count grew from 42 to 63 over about an hour of
+fleet pushes while the breakage was being diagnosed.
+
+The tell is that the full gate dies on the *first* broken row, so the visible
+symptom is one `ValueError` naming one label, and the actual population is
+whatever a full sweep finds. Before concluding a red gate is a single bad row,
+sweep every row and count: `compile_function` over the whole ledger reports the
+unresolvable and the mismatching separately, and they have different causes.
