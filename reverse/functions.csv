@@ -15611,7 +15611,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?isReady@CommandButton@@QBE_NPBVObject@@@Z,,0x0049AD30,146,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,BFME adds a null guard and a frame-stamp branch for command type 22; m_specialPower at 0x34 after the NeededUpgrade/BuildUpgrades insert
 ?isRepairMostImportant@DozerPrimaryStateMachine@@SA_NPAVState@@PAX@Z,,0x002B64E0,77,Code/GameEngine/Source/Common/DozerPrimaryStateMachine_isRepairMostImportant_Thunk.cpp,matched,clean C++ conversion; ZH DozerAIUpdate.cpp predicate with the machine-owner and AI lookups inlined to the State +0x1C/+0x10/+0x204 walk; getDozerAIInterface +0x13C isIdle +0x180 getMostRecentCommand +0x14; dec eax pins DOZER_TASK_REPAIR
 ?isSamePosition@@YA_NPBUCoord3D@@00@Z,,0x0016AA70,69,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
-?isSandbox@GameInfo@@QAE_NXZ,,0x00621600,843,Code/masm_dumps/_sa3__isSandbox_GameInfo__QAE_NXZ_621600.asm,matched,Exact 843B string-anchored Open-BFME4
+?isSandbox@GameInfo@@QAE_NXZ,,0x00621600,843,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,Exact C++ naked emit thunk 843B from string-anchored retail body (Open-BFME5)
 ?isScienceGrantable@ScienceStore@@QBE_NW4ScienceType@@@Z,,0x000E6DE0,25,Code/GameEngine/Source/Common/RTS/Science.cpp,matched,thunk-dump converted to clean C++; true body 0xE6DE0 (25B ending before int3 pad at 0xE6DF9)
 ?isScorch@MapObject@@QBE_NXZ,,0x00730320,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,
 ?isScreenVisible@DisconnectMenu@@QAE_NXZ,,0x00537670,11,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,
