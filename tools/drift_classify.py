@@ -24,6 +24,7 @@ Usage:
 Report: reverse/zh_sweep/drift_report.csv (function,source,...,class,hint)
 """
 import argparse
+import bisect
 import csv
 import re
 import struct
@@ -94,10 +95,33 @@ def in_matched_span(rva, spans):
     spans must be sorted by start address."""
     if not spans:
         return False
-    import bisect
-    starts = [s for s, _ in spans]
+    starts = _span_starts(spans)
     i = bisect.bisect_right(starts, rva) - 1
     return i >= 0 and spans[i][0] <= rva < spans[i][1]
+
+
+_STARTS_CACHE = {}
+
+
+def _span_starts(spans):
+    """The bisect key for `spans`, built once instead of once per lookup.
+
+    This rebuilt a list of every matched start on every call, and the caller is
+    per candidate vote, so the cost scaled with the ledger: at 94,158 rows it
+    measured 7.6ms a call, which is minutes of pure list-building over a single
+    run and is why regenerating the report stopped completing. Same pathology
+    already fixed in next_work.structural_candidates.
+
+    Keyed on identity, holding a reference so the id cannot be reused by a
+    later object, and single-entry because callers pass one long-lived list.
+    """
+    cached = _STARTS_CACHE.get(id(spans))
+    if cached is not None and cached[0] is spans:
+        return cached[1]
+    starts = [start for start, _end in spans]
+    _STARTS_CACHE.clear()
+    _STARTS_CACHE[id(spans)] = (spans, starts)
+    return starts
 
 
 def offset_to_rva(pe, off):
