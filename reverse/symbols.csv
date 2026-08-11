@@ -68561,6 +68561,8 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?doCommandButton@Object@@QAEXPBVCommandButton@@HH@Z,0x000063CF,Object::doCommandButton via ILT thunk
 ?getCommandButton@CommandSetShim@@QBEPBVCommandButton@@H@Z,0x00003F80,CommandSet::getCommandButton via ILT thunk
 ?compare@AsciiStringCompareShim@@QBEHABVAsciiString@@@Z,0x000220C5,AsciiString::compare via ILT thunk
+?updateCache@MapCache@@QAEXXZ,0x00018F0C,isValidMap cache refresh thunk
+?find@MapCache@@QAEPAUMapCacheNode@@ABVAsciiString@@@Z,0x000263D7,isValidMap lookup thunk
 ?isLocalPlayer@Player@@QBE_NXZ,0x00013877,Player::isLocalPlayer via ILT thunk
 ?setGroup@TransitionHandler@@QAEXVAsciiString@@H@Z,0x00045C28,TransitionHandler::setGroup via ILT thunk
 ?freeBridgeBuffers@W3DBridgeBuffer@@AAEXXZ,0x00003E59,W3DBridgeBuffer::freeBridgeBuffers via ILT thunk
