@@ -1,141 +1,95 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+
+class Overridable
+{
+public:
+	Overridable *friend_getFinalOverride(void)
+	{
+		if (m_next)
+			return m_next->m_next ? m_next->m_next->friend_getFinalOverride() : m_next;
+		return this;
+	}
+
+private:
+	void *m_vtable;
+	Overridable *m_next;
+};
+
+class SpecialPowerTemplate : public Overridable
+{
+public:
+	bool isSharedNSync(void) const
+	{
+		SpecialPowerTemplate *self = const_cast<SpecialPowerTemplate *>(this);
+		return ((const SpecialPowerTemplate *)self->friend_getFinalOverride())->m_sharedNSync;
+	}
+
+private:
+	unsigned char m_unreconstructed_08[0x10d];
+	bool m_sharedNSync;
+};
+
+class Player
+{
+public:
+	unsigned int getOrStartSpecialPowerReadyFrame(const SpecialPowerTemplate *);
+};
+
+class Object
+{
+public:
+	Player *getControllingPlayer(void) const;
+	bool isDisabled(void) const { return m_disabledMask != 0; }
+
+private:
+	unsigned char m_unreconstructed_00[0x1a4];
+	unsigned int m_disabledMask;
+};
+
+class GameLogic
+{
+public:
+	unsigned char m_unreconstructed_00[0x3c];
+	unsigned int m_frame;
+};
+
+extern GameLogic *TheGameLogic;
 
 class SpecialPowerModule
 {
 public:
-	virtual unsigned int getReadyFrame() const;
+	virtual void unused00() const; virtual void unused01() const;
+	virtual void unused02() const; virtual void unused03() const;
+	virtual void unused04() const; virtual void unused05() const;
+	virtual const SpecialPowerTemplate *getSpecialPowerTemplate(void) const;
+	virtual unsigned int getReadyFrame(void) const;
+	Object *getObject(void) const
+	{
+		return *(Object *const *)((const char *)this - 0x1c);
+	}
+
+private:
+	unsigned int m_availableOnFrame;
+	int m_pausedCount;
+	unsigned int m_pausedOnFrame;
 };
 
 // ?getReadyFrame@SpecialPowerModule@@UBEIXZ
-__declspec(naked) unsigned int SpecialPowerModule::getReadyFrame() const
+unsigned int SpecialPowerModule::getReadyFrame(void) const
 {
-	__asm {
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x57
-        __emit 0xff
-        __emit 0x50
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x50
-        __emit 0x04
-        __emit 0x85
-        __emit 0xd2
-        __emit 0x74
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x4a
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x07
-        __emit 0xe8
-        __emit 0x85
-        __emit 0xe0
-        __emit 0xdd
-        __emit 0xff
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x8b
-        __emit 0xc2
-        __emit 0x8a
-        __emit 0x88
-        __emit 0x15
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x24
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0xe4
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x1d
-        __emit 0xe8
-        __emit 0x2e
-        __emit 0x5c
-        __emit 0xdb
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x12
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x18
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcf
-        __emit 0xe8
-        __emit 0x24
-        __emit 0x84
-        __emit 0xda
-        __emit 0xff
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x08
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x7f
-        __emit 0x13
-        __emit 0x8b
-        __emit 0x46
-        __emit 0xe4
-        __emit 0x8b
-        __emit 0x88
-        __emit 0xa4
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x75
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x04
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc3
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x98
-        __emit 0x08
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x41
-        __emit 0x3c
-        __emit 0x8b
-        __emit 0x56
-        __emit 0x0c
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x04
-        __emit 0x2b
-        __emit 0xc2
-        __emit 0x5f
-        __emit 0x03
-        __emit 0xc1
-        __emit 0x5e
-        __emit 0xc3
+	if (getSpecialPowerTemplate()->isSharedNSync())
+	{
+		const Object *object = getObject();
+		if (object)
+		{
+			Player *player = object->getControllingPlayer();
+			if (player)
+				return player->getOrStartSpecialPowerReadyFrame(getSpecialPowerTemplate());
+		}
 	}
+
+	if (m_pausedCount > 0 || getObject()->isDisabled())
+		return m_availableOnFrame + TheGameLogic->m_frame - m_pausedOnFrame;
+
+	return m_availableOnFrame;
 }
