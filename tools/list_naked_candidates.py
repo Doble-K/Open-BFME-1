@@ -440,6 +440,12 @@ def main():
         print("== selected naked-asm conversion ==")
         print(f"  drawn from {meta['pool']} candidate(s), weighted by measured land rate")
         print_candidate(selected)
+        # The queue now serves gen_dump waves, whose bodies byte-verify by
+        # construction. Without this, a green build.sh reads as a landed
+        # conversion: 56 __emit lifts were reverted across 10 commits, and one
+        # A/B session reported five conversions having converted nothing.
+        print("  NOTE: a passing byte check proves nothing here — the naked body IS the "
+              "retail bytes; it converts only once that __emit body is gone.")
         return
 
     if already_matched:
