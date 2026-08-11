@@ -3359,7 +3359,6 @@ void W3DVolumetricShadow::deleteShadowVolume( Int volumeIndex )
 // option where their resoures were released back to a pool rather than
 // delete and allocate new storage space
 // ============================================================================
-// ?resetShadowVolume@W3DVolumetricShadow@@IAEXHH@Z present-unmatched
 void W3DVolumetricShadow::resetShadowVolume( Int volumeIndex, Int meshIndex )
 {
 	Geometry *geometry;
