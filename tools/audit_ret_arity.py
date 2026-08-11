@@ -176,6 +176,19 @@ def expected_ret(sym):
     return total, convention
 
 
+def actual_ret(body):
+    """Bytes this body pops, or None when it does not end in a `ret` at all.
+
+    A tail-called or non-returning body says nothing about arity, and must not
+    be read as `ret 0`.
+    """
+    if body and body[-1] == 0xC3:
+        return 0
+    if len(body) >= 3 and body[-3] == 0xC2:
+        return struct.unpack_from("<H", body, len(body) - 2)[0]
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=40)
@@ -199,13 +212,8 @@ def main():
             offset = rva_to_offset(data, int(rva_text, 16))
             if offset is None or size < 1:
                 continue
-            body = data[offset:offset + size]
-            tail = body[-3:]
-            if len(body) and body[-1] == 0xC3:
-                got = 0
-            elif len(tail) == 3 and tail[0] == 0xC2:
-                got = struct.unpack_from("<H", tail, 1)[0]
-            else:
+            got = actual_ret(data[offset:offset + size])
+            if got is None:
                 skipped += 1                 # tail call or non-returning body
                 continue
             checked += 1
