@@ -1,178 +1,54 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: clean C++ lift of the retail Mission constructor.
 
-class Mission {
+class AsciiString
+{
 public:
-	Mission();
+	AsciiString() : m_data(0) {}
+	~AsciiString();
+
+	static const AsciiString TheEmptyString;
+
+private:
+	char *m_data;
 };
 
-// ??0Mission@@QAE@XZ
-__declspec(naked) Mission::Mission()
+enum ObjectID {};
+
+class AudioEventRTS
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xeb
-		__emit 0x94
-		__emit 0x03
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x57
-		__emit 0x33
-		__emit 0xff
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x58
-		__emit 0xf6
-		__emit 0x10
-		__emit 0x01
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x08
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x04
-		__emit 0x89
-		__emit 0x7c
-		__emit 0x24
-		__emit 0x14
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x08
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x0c
-		__emit 0x89
-		__emit 0x7e
-		__emit 0x10
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x05
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x14
-		__emit 0x50
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x28
-		__emit 0x03
-		__emit 0xe8
-		__emit 0xe2
-		__emit 0xb4
-		__emit 0x43
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x02
-		__emit 0x68
-		__emit 0x50
-		__emit 0x6e
-		__emit 0x33
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x28
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x04
-		__emit 0xe8
-		__emit 0xf0
-		__emit 0x98
-		__emit 0xa6
-		__emit 0xff
-		__emit 0x89
-		__emit 0xbe
-		__emit 0x98
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x03
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0x9c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x28
-		__emit 0x06
-		__emit 0xe8
-		__emit 0xa9
-		__emit 0xb4
-		__emit 0x43
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x89
-		__emit 0xbe
-		__emit 0xa8
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
+public:
+	AudioEventRTS(const AsciiString &eventName = AsciiString::TheEmptyString, ObjectID ownerID = (ObjectID)2);
+	~AudioEventRTS();
+
+private:
+	unsigned char m_data[112];
+};
+
+class MemoryPoolObject
+{
+public:
+	virtual void deleteInstance();
+};
+
+class Mission : public MemoryPoolObject
+{
+public:
+	Mission();
+	virtual ~Mission();
+
+private:
+	AsciiString m_name;
+	AsciiString m_mapName;
+	AsciiString m_nextMission;
+	AsciiString m_movieLabel;
+	AsciiString m_missionObjectivesLabel[5];
+	AudioEventRTS m_briefingVoice;
+	AsciiString m_locationNameLabel;
+	AsciiString m_unitNames[3];
+	int m_voiceLength;
+};
+
+Mission::Mission() : m_voiceLength(0)
+{
 }

@@ -2217,7 +2217,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0MissileLauncherBuildingUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0MissingAnimClass@@QAE@PBD@Z,,0x007BB710,125,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
 ??0MissingTextureClass@@QAE@PBD@Z,,0x007B1050,125,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/MissingTextureClassCtorThunk.cpp,matched,Open-BFME5 clean C++ constructor from the ZH reference body
-??0Mission@@QAE@XZ,,0x005BB9B0,164,Code/GameEngine/Source/GameClient/Mission_ctor_Thunk.cpp,matched,Open-BFME5 lift 164B retail MASM to standalone C++ thunk
+??0Mission@@QAE@XZ,,0x005BB9B0,164,Code/GameEngine/Source/GameClient/Mission_ctor_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; Mission member construction and BFME retail layout including objective and unit string arrays
 ??0MobMemberSlavedUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001FB5D0,652,Code/GameEngine/Source/GameLogic/Object/Update/MobMemberSlavedUpdateCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_MobMemberSlavedUpdateCtor_1FB5D0
 ??0ModalWindow@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,ICF alias of existing matched body
 ??0ModelArrayClass@HLodClass@@QAE@XZ,,0x0097C970,50,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,
