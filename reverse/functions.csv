@@ -79241,7 +79241,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?onEnter@ContinueState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?onEnter@State@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/Common/StateMachine.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?onEnter@TurretAIAimTurretState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?onEnter@TurretAIIdleState@@UAE?AW4StateReturnType@@XZ,,0x0018CB40,173,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleState_onEnter_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?onEnter@TurretAIRecenterTurretState@@UAE?AW4StateReturnType@@XZ,,0x006CF680,3,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?onExit@AIAttackApproachTargetState@@UAEXW4StateExitType@@@Z,,0x001751B0,181,Code/GameEngine/Source/GameLogic/AI/AIAttackApproachTargetState_onExit_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?onExit@AIAttackMoveToState@@UAEXW4StateExitType@@@Z,,0x0017A400,29,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ??1MultiplayerSettings@@UAE@XZ,,0x0008F0E0,102,Code/GameEngine/Source/Common/MultiplayerSettingsDestructorThunk.cpp,matched,Exact 102B clean C++ settings destructor Open-BFME5
 ?Make_Unique@MeshClass@@QAEX_N@Z,,0x0092C400,170,Code/GameEngine/Source/Common/MeshClass_Make_UniqueMethodThunk.cpp,matched,Open-BFME5 exact C++ MeshClass Make_Unique retail layout
 ?onStructureConstructionComplete@Player@@QAEXPAVObject@@0_N@Z,,0x000C9600,126,Code/GameEngine/Source/Common/Player_onStructureConstructionComplete_Thunk.cpp,matched,Open-BFME5 exact C++ BFME construction completion dispatch
+?onEnter@TurretAIIdleState@@UAE?AW4StateReturnType@@XZ,,0x0018CB40,173,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleState_onEnter_Thunk.cpp,matched,Open-BFME5 exact C++ TurretAI idle entry retail layout
