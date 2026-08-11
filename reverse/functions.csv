@@ -81001,7 +81001,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?write@GameSpyLoginPreferences@@UAE_NXZ,,0x00080F40,927,Code/masm_dumps/GameSpyLoginPreferences_write.asm,matched,Certified packet 59 exact retail db recovery
 ?write@MemoryReadFile@@UAEHPBXH@Z,,0x009CB0E0,6,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?write@MemoryWriteFile@@UAEHPBXH@Z,,0x009CB240,135,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
-?write@SkirmishPreferences@@,,0x004559A0,830,Code/masm_dumps/_str3__write_SkirmishPreferences__4559A0.asm,matched,
+?write@SkirmishPreferences@@,,0x004559A0,830,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishPreferences_write_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_SkirmishPreferences_write_4559A0
 ?write@UserPreferences@@UAE_NXZ,,0x000A9F60,162,Code/GameEngine/Source/Common/UserPreferences_write_Thunk.cpp,matched,clean C++; STL tree walk printing each entry with success as the fall-through
 ?writeArrayOfBytes@DataChunkOutput@@QAEXPADH@Z,,0x001025A0,28,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?writeByte@DataChunkOutput@@QAEXD@Z,,0x00102580,25,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
