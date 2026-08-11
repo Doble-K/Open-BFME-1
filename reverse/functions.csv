@@ -80828,7 +80828,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?update@TextOnFrameTransition@@UAEXH@Z,,0x005A0310,87,Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp,matched,
 ?update@TextTypeTransition@@UAEXH@Z,,0x005A0910,180,Code/GameEngine/Source/GameClient/GUI/TextTypeTransition_update_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?update@Transport@@QAE_NXZ,,0x00684420,78,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,
-?update@VictoryConditions@@,,0x0035F920,986,Code/masm_dumps/_str__update_VictoryConditions__35F920.asm,matched,
+?update@VictoryConditions@@,,0x0035F920,986,Code/GameEngine/Source/GameLogic/ScriptEngine/VictoryConditionsUpdateThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=?update@VictoryConditions@@UAEXXZ
 ?update@W3DProjectedShadow@@QAEXXZ,,0x007B0250,92,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?update@WaterTracksObj@@QAEHH@Z,,0x007AAB80,15,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/W3DWaterTracks.cpp,matched,
 ?update@WaypointMap@@QAEXXZ,,0x00454EF0,366,Code/GameEngine/Source/GameClient/MapUtil_update_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_WaypointMapUpdate_454EF0
