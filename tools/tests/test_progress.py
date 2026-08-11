@@ -142,14 +142,26 @@ def test_c_naked_signature_matches_decorated_row():
 
 
 def test_live_naked_and_clean_rows_are_distinguished():
+    """Every naked classification must point at a source that really contains a
+    naked body, and clean rows must dominate.
+
+    This used to pin two symbols by name, which rots by design: the project's
+    goal is to convert every naked row, so any pinned naked symbol eventually
+    becomes clean and the test breaks on progress (it died when the fleet
+    converted ?construct@BFMENetworkBackend). Self-consistency over whatever
+    is naked right now cannot rot, and an empty naked set is success."""
     matched = progress.matched_at("HEAD")
     naked = progress.naked_cpp_rows_at(matched, "HEAD")
-    by_name = {name: key for key in matched for name in (key[0],)}
-    raw = by_name["?construct@BFMENetworkBackend@@QAEPAXPAVBFMENetworkLock@@@Z"]
-    clean = by_name["??0GhostObjectManager@@QAE@XZ"]
-    assert raw in naked, "known naked native_network body classified as clean C++"
-    assert clean not in naked, "known clean GhostObject constructor classified as ASM"
-    print("PASS live ledger distinguishes known naked and clean .cpp rows")
+    texts = progress.naked_source_texts(matched, "HEAD")
+    for key in naked:
+        source = matched[key][1]
+        assert source in texts and progress.NAKED_RE.search(texts[source]), (
+            f"{key} classified naked but {source} carries no naked marker")
+    clean = {key for key, (_, src) in matched.items()
+             if src.endswith(".cpp")} - set(naked)
+    assert len(clean) > len(naked), (len(clean), len(naked))
+    print(f"PASS live ledger: {len(naked)} naked rows all self-consistent, "
+          f"{len(clean)} clean")
 
 
 def test_b08_is_zero_byte_progress():
