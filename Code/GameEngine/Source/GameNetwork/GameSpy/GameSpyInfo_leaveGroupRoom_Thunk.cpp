@@ -1,203 +1,44 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /Ireference/shims/asciistringsetoutofline /Ireference/shims/psplayerstats /Ireference/shims/peerdefs /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/WWLib
+// stlport
+// Open-BFME5: lift GameSpyInfo::leaveGroupRoom to clean C++.
 
-class GameSpyInfo
+#define Matrix4x4 Matrix4
+class INI;
+#include "GameNetwork/GameSpy/PeerDefsImplementation.h"
+#include "GameNetwork/GameSpy/PeerThread.h"
+
+class BFMEGroupRoomInterface
 {
 public:
-	virtual void leaveGroupRoom();
+	virtual void slot00();
+	virtual void slot04();
+	virtual void slot08();
+	virtual void slot0C();
+	virtual void slot10();
+	virtual void slot14();
+	virtual void slot18();
+	virtual void slot1C();
+	virtual void slot20();
+	virtual void slot24();
+	virtual void setCurrentGroupRoom(Int groupID);
+	virtual Int getCurrentGroupRoom();
+};
+
+struct BFMERetailPeerRequest
+{
+	PeerRequest request;
+	unsigned char m_tailPad[4];
 };
 
 // ?leaveGroupRoom@GameSpyInfo@@UAEXXZ
-__declspec(naked) void GameSpyInfo::leaveGroupRoom()
+void GameSpyInfo::leaveGroupRoom(void)
 {
-	__asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x4b
-        __emit 0x0b
-        __emit 0x04
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x81
-        __emit 0xec
-        __emit 0x94
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0xe8
-        __emit 0xf5
-        __emit 0x24
-        __emit 0x9e
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xc7
-        __emit 0x84
-        __emit 0x24
-        __emit 0xa0
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x05
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xff
-        __emit 0x50
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0xc8
-        __emit 0x71
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x89
-        __emit 0x84
-        __emit 0x24
-        __emit 0xe8
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x50
-        __emit 0xff
-        __emit 0x52
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x6a
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xff
-        __emit 0x52
-        __emit 0x28
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x50
-        __emit 0x83
-        __emit 0xc6
-        __emit 0x4c
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x27
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x04
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xba
-        __emit 0x11
-        __emit 0xa0
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x89
-        __emit 0x40
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x16
-        __emit 0xc7
-        __emit 0x42
-        __emit 0x04
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x89
-        __emit 0x40
-        __emit 0x0c
-        __emit 0xc7
-        __emit 0x46
-        __emit 0x04
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x84
-        __emit 0x24
-        __emit 0xa0
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x4f
-        __emit 0x1e
-        __emit 0x9e
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x8c
-        __emit 0x24
-        __emit 0x98
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x81
-        __emit 0xc4
-        __emit 0xa0
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc3
-	}
+	BFMERetailPeerRequest retailRequest;
+	PeerRequest &request = retailRequest.request;
+	request.peerRequestType = PeerRequest::PEERREQUEST_LEAVEGROUPROOM;
+	BFMEGroupRoomInterface *roomInterface = (BFMEGroupRoomInterface *)this;
+	request.groupRoom.id = roomInterface->getCurrentGroupRoom();
+	TheGameSpyPeerMessageQueue->addRequest(request);
+	roomInterface->setCurrentGroupRoom(0);
+	m_playerInfoMap.clear();
 }
