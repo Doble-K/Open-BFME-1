@@ -68584,3 +68584,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?getShroudClearingRange@Object@@QBEMXZ,0x000326CD
 ?setPosition@RadiusDecal@@QAEXABUCoord3D@@@Z,0x00007E50
 ?setOpacity@RadiusDecal@@QAEXM@Z,0x0003F2A1
+?Collide@CollisionMath@@YA_NAAVAABoxCollisionTestData@@AAVTriClass@@@Z,0x008E85F0,AABTree AA-box compact collision helper
