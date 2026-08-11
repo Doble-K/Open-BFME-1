@@ -651,6 +651,11 @@ public:
     void construct();
 };
 
+class StreakDrawTemplateParseShim {
+public:
+    void parse(INI *ini);
+};
+
 class StreakDrawTemplateCopyCtorShim {
 public:
     void construct(const void *source);
@@ -5445,7 +5450,8 @@ ConcreteModuleClass<ModuleTag<6, STREAK_DRAW_MODULE_KEY, STREAK_DRAW_MODULE_NAME
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$05$E?STREAK_DRAW_MODULE_KEY@FXParticleSystem@@3QBDB$E?STREAK_DRAW_MODULE_NAME@2@3QBDBVStreakDrawModule@2@VStreakDrawModuleTemplate@2@V?$DefaultParticleModule@$05@2@V?$DefaultParticleModuleTemplate@$05@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVStreakDrawModuleTemplate@2@PAVINI@@@Z
-__declspec(naked) StreakDrawModuleTemplate *ConcreteModuleClass<ModuleTag<6, STREAK_DRAW_MODULE_KEY, STREAK_DRAW_MODULE_NAME, StreakDrawModule, StreakDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::createTemplate(INI *ini) const
+#if 0
+__declspec(noinline) StreakDrawModuleTemplate *ConcreteModuleClass<ModuleTag<6, STREAK_DRAW_MODULE_KEY, STREAK_DRAW_MODULE_NAME, StreakDrawModule, StreakDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::createTemplate(INI *ini) const
 {
     __asm {
         __emit 0x6a
@@ -5575,6 +5581,16 @@ __declspec(naked) StreakDrawModuleTemplate *ConcreteModuleClass<ModuleTag<6, STR
         __emit 0x04
         __emit 0x00
     }
+}
+
+#endif
+
+StreakDrawModuleTemplate *ConcreteModuleClass<ModuleTag<6, STREAK_DRAW_MODULE_KEY, STREAK_DRAW_MODULE_NAME, StreakDrawModule, StreakDrawModuleTemplate, DefaultParticleModule<6>, DefaultParticleModuleTemplate<6> > >::createTemplate(INI *ini) const
+{
+    std::auto_ptr<StreakDrawModuleTemplate> moduleTemplate(
+        (StreakDrawModuleTemplate *)new StreakDrawTemplateAllocation);
+    ((StreakDrawTemplateParseShim *)moduleTemplate.get())->parse(ini);
+    return moduleTemplate.release();
 }
 
 // ?createTemplate@?$ConcreteModuleClass@V?$ModuleTag@$05$E?STREAK_DRAW_MODULE_KEY@FXParticleSystem@@3QBDB$E?STREAK_DRAW_MODULE_NAME@2@3QBDBVStreakDrawModule@2@VStreakDrawModuleTemplate@2@V?$DefaultParticleModule@$05@2@V?$DefaultParticleModuleTemplate@$05@2@@FXParticleSystem@@@FXParticleSystem@@UBEPAVStreakDrawModuleTemplate@2@XZ
