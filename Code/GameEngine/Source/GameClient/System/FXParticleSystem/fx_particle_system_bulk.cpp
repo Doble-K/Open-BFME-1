@@ -475,6 +475,26 @@ public:
     void construct();
 };
 
+class LightningEmissionModuleCtorShim {
+public:
+    void construct(TrackingPtr<ParticleSystem> &sys, const void *source);
+};
+
+class LightningEmissionModuleAllocation {
+public:
+    __forceinline LightningEmissionModuleAllocation(TrackingPtr<ParticleSystem> &sys, const void *source)
+    {
+        ((LightningEmissionModuleCtorShim *)this)->construct(sys, source);
+        *(volatile unsigned int *)this = 0x01112420;
+        *(volatile unsigned int *)((unsigned char *)this + 0x14) = 0x0111241c;
+        *(volatile unsigned int *)((unsigned char *)this + 0x18) = 0x01112418;
+        *(volatile unsigned int *)((unsigned char *)this + 0x1c) = 0x01112404;
+    }
+
+private:
+    unsigned char m_storage[0xa8];
+};
+
 class LightningEmissionTemplateParseShim {
 public:
     void parse(INI *ini);
@@ -8375,6 +8395,12 @@ LightningEmissionModuleTemplate *ConcreteModuleTemplate<ModuleTag<5, LIGHTNING_E
 }
 
 // ?createModule@?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?LIGHTNING_EMISSION_MODULE_KEY@FXParticleSystem@@3QBDB$E?LIGHTNING_EMISSION_MODULE_NAME@2@3QBDBVLightningEmissionModule@2@VLightningEmissionModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@UAEPAVLightningEmissionModule@2@AAV?$TrackingPtr@VParticleSystem@FXParticleSystem@@@@@Z
+LightningEmissionModule *ConcreteModuleTemplate<ModuleTag<5, LIGHTNING_EMISSION_MODULE_KEY, LIGHTNING_EMISSION_MODULE_NAME, LightningEmissionModule, LightningEmissionModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
+{
+    return (LightningEmissionModule *)new LightningEmissionModuleAllocation(sys, this);
+}
+
+#if 0
 __declspec(naked) LightningEmissionModule *ConcreteModuleTemplate<ModuleTag<5, LIGHTNING_EMISSION_MODULE_KEY, LIGHTNING_EMISSION_MODULE_NAME, LightningEmissionModule, LightningEmissionModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::createModule(TrackingPtr<ParticleSystem> &sys)
 {
     __asm {
@@ -8496,6 +8522,7 @@ __declspec(naked) LightningEmissionModule *ConcreteModuleTemplate<ModuleTag<5, L
         __emit 0x00
     }
 }
+#endif
 
 // ??0?$ConcreteModuleTemplate@V?$ModuleTag@$04$E?LINE_EMISSION_VOLUME_MODULE_KEY@FXParticleSystem@@3QBDB$E?LINE_EMISSION_VOLUME_MODULE_NAME@2@3QBDBVLineEmissionVolumeModule@2@VLineEmissionVolumeModuleTemplate@2@V?$DefaultParticleModule@$04@2@V?$DefaultParticleModuleTemplate@$04@2@@FXParticleSystem@@@FXParticleSystem@@QAE@ABV01@@Z
 ConcreteModuleTemplate<ModuleTag<5, LINE_EMISSION_VOLUME_MODULE_KEY, LINE_EMISSION_VOLUME_MODULE_NAME, LineEmissionVolumeModule, LineEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > >::ConcreteModuleTemplate(const ConcreteModuleTemplate<ModuleTag<5, LINE_EMISSION_VOLUME_MODULE_KEY, LINE_EMISSION_VOLUME_MODULE_NAME, LineEmissionVolumeModule, LineEmissionVolumeModuleTemplate, DefaultParticleModule<5>, DefaultParticleModuleTemplate<5> > > &that)
