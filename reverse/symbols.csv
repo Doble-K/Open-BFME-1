@@ -68616,3 +68616,7 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?Collide@CollisionMath@@YA_NAAVOBBoxCollisionTestData@@AAVTriClass@@@Z,0x008E85F0,AABTree OB-box compact collision helper
 ??0SpawnBehaviorFourthBase@@QAE@XZ,0x0003D24E,SpawnBehavior fourth interface base constructor ILT
 ?findTemplate@ThingFactory@@QAEPAVThingTemplate@@ABVAsciiString@@@Z,0x00028560,SpawnBehavior retail findTemplate ILT
+?_bfme_assign@EvaCheckInfoVec@@QAEXABV1@@Z,0x00031DBD,ILT thunk to the retail vector<EvaCheckInfo> copy-assign at 0x004263D0; unidentified beyond its shape
+?resize@EvaCheckVec@@QAEXH@Z,0x000153D4,ILT thunk to the retail vector<EvaCheck> resize-with-default at 0x00426100; unidentified beyond its shape
+?_bfme_releaseElements@EvaSideSoundsVec@@QAEXXZ,0x00037BF0,ILT thunk to the retail Eva side-sound element release loop at 0x00424300; unidentified beyond its shape
+?_bfme_copyElements@EvaSideSoundsVec@@QAEXABV1@@Z,0x00033E1A,ILT thunk to the retail Eva side-sound element deep-copy at 0x00424380; unidentified beyond its shape
