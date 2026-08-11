@@ -1,190 +1,103 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) CritterEmitterUpdateModuleData
+// CritterEmitterUpdateModuleData's destructor, lifted from its MASM dump to C++.
+//
+// Five things are destroyed and the unwind states say how they are related:
+// four run at 3, 2, 1, 0 and the subobject at 0x08 runs last, at state 4.
+// That ordering is the whole puzzle. A base class cannot produce it -- MSVC
+// numbers bases before members, so making 0x08 a direct base numbers it 0 and
+// pushes the members to 1..4. What does produce it is an intermediate class
+// with an inline destructor: its member is destroyed after the derived class's
+// own members and gets a state numbered after them.
+//
+//   0x08  member of the intermediate base   thunk 0x0001B97D -> 0x00129C80
+//   0xA4  AsciiString                       direct 0x00887940
+//   0xA8  _STL::vector<8-byte pod>          inlined (sar 3 / shl 3)
+//   0xB4  12-byte member with a destructor  thunk 0x00038055 -> 0x001FA220
+//   0xC0  AsciiString                       direct 0x00887940
+//
+// The trailing `mov [esi],0x1073744` is the root base's vptr restore with its
+// destructor inlined away, so that base is a vptr plus one word. It is also the
+// ONLY vptr store retail emits, which is what the two __declspec(novtable)s are
+// for: without them MSVC opens the destructor by storing this class's vptr and
+// stores the intermediate base's again before its member, and retail does
+// neither.
+//
+// 0x00887940 is the AsciiString destructor body the ledger already pins under
+// that name. The destructors at 0x00129C80 and 0x001FA220 are unclaimed and
+// unidentified; they are named for their offsets here and pinned at the thunk
+// addresses their call sites encode, which is all the bytes say about them.
+
+#include <vector>
+
+// vector elements: trivially destructible, so only their size reaches the bytes
+struct Gen_p8pod { int a[2]; };
+
+class AsciiString
+{
+public:
+	~AsciiString();
+
+private:
+	char *m_data;
+};
+
+// Member at 0x08 of the intermediate base, destroyed out-of-line at 0x00129C80.
+// Identity unknown.
+class CritterEmitterUpdateModuleDataInner
+{
+public:
+	~CritterEmitterUpdateModuleDataInner();
+
+private:
+	unsigned char m_unreconstructed_00[0x9c];			///< 0x08 out to 0xA4
+};
+
+// Member at 0xB4, destroyed out-of-line at 0x001FA220. Identity unknown.
+class CritterEmitterUpdateModuleDataUnknownB4
+{
+public:
+	~CritterEmitterUpdateModuleDataUnknownB4();
+
+private:
+	unsigned char m_unreconstructed_00[12];
+};
+
+// Root base: vptr plus one word, destructor inlined to the vptr restore.
+class CritterEmitterUpdateModuleDataRootBase
+{
+public:
+	virtual ~CritterEmitterUpdateModuleDataRootBase() {}
+
+private:
+	void *m_unreconstructed_04;
+};
+
+// Intermediate base: destructor inline, so its member's cleanup is emitted here
+// and numbered after the derived class's members.
+class __declspec(novtable) CritterEmitterUpdateModuleDataBase : public CritterEmitterUpdateModuleDataRootBase
+{
+public:
+	virtual ~CritterEmitterUpdateModuleDataBase() {}
+
+private:
+	CritterEmitterUpdateModuleDataInner m_unreconstructed_08;	///< retail this+0x008
+};
+
+class __declspec(novtable) CritterEmitterUpdateModuleData : public CritterEmitterUpdateModuleDataBase
 {
 public:
 	virtual ~CritterEmitterUpdateModuleData();
+
+private:
+	AsciiString m_unreconstructed_a4;					///< retail this+0x0A4
+	_STL::vector<Gen_p8pod> m_vector;					///< retail this+0x0A8
+	CritterEmitterUpdateModuleDataUnknownB4 m_unreconstructed_b4;	///< retail this+0x0B4
+	AsciiString m_unreconstructed_c0;					///< retail this+0x0C0
 };
 
 // ??1CritterEmitterUpdateModuleData@@UAE@XZ
-__declspec(naked) CritterEmitterUpdateModuleData::~CritterEmitterUpdateModuleData()
+CritterEmitterUpdateModuleData::~CritterEmitterUpdateModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x0a
-		__emit 0xb2
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xc0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xc0
-		__emit 0xd1
-		__emit 0x68
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xb4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x02
-		__emit 0xe8
-		__emit 0xc5
-		__emit 0xd8
-		__emit 0xe3
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x8e
-		__emit 0xa8
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x85
-		__emit 0xc9
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x01
-		__emit 0x74
-		__emit 0x2a
-		__emit 0x8b
-		__emit 0x86
-		__emit 0xb0
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x2b
-		__emit 0xc1
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x03
-		__emit 0xc1
-		__emit 0xe0
-		__emit 0x03
-		__emit 0x3d
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x76
-		__emit 0x0b
-		__emit 0x51
-		__emit 0xe8
-		__emit 0xf6
-		__emit 0x76
-		__emit 0x68
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0xeb
-		__emit 0x0a
-		__emit 0x50
-		__emit 0x51
-		__emit 0xe8
-		__emit 0x2a
-		__emit 0x3e
-		__emit 0x63
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xa4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x67
-		__emit 0xd1
-		__emit 0x68
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x94
-		__emit 0x11
-		__emit 0xe2
-		__emit 0xff
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
