@@ -68651,3 +68651,4 @@ _ghiProcessIncomingFileData,0x0087BF30,vendored=gamespy-2004
 ?parse@OutwardEmissionVelocityTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0001F3E3,Open-BFME5 OutwardEmissionVelocityTemplate retail parser
 ?parse@SphereEmissionVolumeTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x00034847,Open-BFME5 SphereEmissionVolumeTemplate retail parser
 ?parse@LineEmissionVolumeTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x00033807,Open-BFME5 LineEmissionVolumeTemplate retail parser
+?parse@LifeEventTemplateParseShim@FXParticleSystem@@QAEXPAVINI@@@Z,0x0003F553,Open-BFME5 LifeEventModuleTemplate retail parser
