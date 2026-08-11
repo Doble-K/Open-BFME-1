@@ -19,12 +19,25 @@ from functools import lru_cache
 from pathlib import Path
 
 import build
+from gaps import padding_split
 from list_naked_candidates import NAKED_RE, block_bytes, symbol_comment
 
 ROOT = Path(__file__).resolve().parents[1]
 FUNCTIONS = "reverse/functions.csv"
 CPP_SUFFIXES = {".c", ".cc", ".cpp", ".cxx"}
 ASM_SUFFIXES = {".asm", ".s"}
+# Upstream libraries vendored into the tree. Reproducing their bytes is real
+# code, but it is not recovering this game's identity, so they get their own
+# lane instead of inflating the reverse-engineered figure. EA-authored
+# libraries (EAC, DirtySock, debug) are the game and stay out of this list.
+VENDORED_ROOTS = (
+    "Code/Libraries/Source/Compression/ZLib/",
+    "Code/Libraries/Source/JPEG/",
+    "Code/Libraries/Source/LibPNG/",
+    "Code/Libraries/Source/Lua/",
+    "vendor/",
+)
+GEN_NOTE_RE = re.compile(r"(?:^|;)\s*gen-[a-z]")
 EMIT_RE = re.compile(
     r"\b_{1,2}emit\s+(?:0x([0-9a-fA-F]{1,2})|([0-9a-fA-F]{1,3})h)\b",
     re.IGNORECASE,
@@ -35,24 +48,37 @@ ASM_BLOCK_RE = re.compile(r"^\s*__asm\b")
 ASM_MARKER_GREP = r"__declspec[[:space:]]*\([[:space:]]*naked|_emit"
 
 
+@lru_cache(maxsize=None)
+def _functions_text(ref):
+    """Return the whole ledger as text for one repository state."""
+    if ref is None:
+        return (ROOT / FUNCTIONS).read_text(encoding="utf-8")
+    proc = subprocess.run(
+        ["git", "show", f"{ref}:{FUNCTIONS}"],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    if proc.returncode != 0:
+        raise SystemExit(f"cannot read {FUNCTIONS} at {ref}: {proc.stderr.strip()}")
+    return proc.stdout
+
+
 def matched_at(ref):
     """Return {(name, target_rva): (size, source)} for one repository state."""
-    if ref is None:
-        text = (ROOT / FUNCTIONS).read_text(encoding="utf-8")
-    else:
-        proc = subprocess.run(
-            ["git", "show", f"{ref}:{FUNCTIONS}"],
-            cwd=ROOT, capture_output=True, text=True,
-        )
-        if proc.returncode != 0:
-            raise SystemExit(f"cannot read {FUNCTIONS} at {ref}: {proc.stderr.strip()}")
-        text = proc.stdout
     out = {}
-    for row in csv.DictReader(text.splitlines()):
+    for row in csv.DictReader(_functions_text(ref).splitlines()):
         if row["status"] == "matched":
             out[(row["name"], row["target_rva"])] = (
                 int(row["target_size"]), row["source"])
     return out
+
+
+def notes_at(ref):
+    """Return {(name, target_rva): notes} for the matched rows at one state."""
+    return {
+        (row["name"], row["target_rva"]): row["notes"]
+        for row in csv.DictReader(_functions_text(ref).splitlines())
+        if row["status"] == "matched"
+    }
 
 
 def retail_text():
@@ -311,6 +337,53 @@ def coverage(matched, text_start, text_size, naked_rows=()):
     }
 
 
+def identity_lane(source, notes):
+    """Return the identity-axis lane for a matched row.
+
+    This axis is independent of the code axis on purpose. A gen-* funclet is
+    compiled C++ on the code axis and a placeholder on this one, and both
+    statements are true at once, so neither axis can contradict the other.
+    """
+    if GEN_NOTE_RE.search(notes):
+        return "generated"
+    if source.startswith(VENDORED_ROOTS):
+        return "vendored"
+    return "real"
+
+
+def identity_split(matched, notes, text_start, text_size):
+    """Return per-lane .text bytes on the identity axis.
+
+    Real identity wins an overlap the way clean C++ does on the code axis: an
+    ICF alias shared with a generated placeholder is still a named function.
+    """
+    text_end = text_start + text_size
+    lanes = {"real": [], "vendored": [], "generated": []}
+    for key, (size, source) in matched.items():
+        start = max(int(key[1], 16), text_start)
+        end = min(int(key[1], 16) + size, text_end)
+        if start >= end:
+            continue
+        lanes[identity_lane(source, notes[key])].append((start, end))
+    real = interval_bytes(lanes["real"])
+    vendored = interval_bytes(lanes["real"] + lanes["vendored"]) - real
+    total = interval_bytes(lanes["real"] + lanes["vendored"] + lanes["generated"])
+    return {"real": real, "vendored": vendored,
+            "generated": total - real - vendored}
+
+
+def real_code_denominator(text_start, text_size):
+    """Return (0xCC padding bytes, real code bytes) across the whole section.
+
+    This is the denominator the porting effort is actually measured against:
+    3.3 MB of the section is inter-function 0xCC filler that no one will ever
+    port, including a single 982,242-byte block at 0xB028EE. Counted over the
+    whole section rather than over unclaimed gaps so the denominator does not
+    drift every time a function is matched.
+    """
+    return padding_split(build.read_target_bytes(text_start, text_size))
+
+
 def percent(count, total):
     return 100.0 * count / total if total else 0.0
 
@@ -334,6 +407,23 @@ def print_scorecard(ref1, label2, old_stats, new_stats):
         delta = format_delta(value, old_stats[key], total)
         print(f"  {label:<15} {value:>10,} bytes ({percent(value, total):6.2f}%)"
               f"  delta {delta}")
+
+
+def print_real_code(padding, denominator, old_stats, new_stats,
+                    old_identity, new_identity):
+    print(f"\nreal-code view (.text minus {padding:,} bytes of 0xCC padding "
+          f"= {denominator:,} bytes)")
+    rows = (
+        ("Total exact", new_stats["exact"], old_stats["exact"]),
+        ("code: C++", new_stats["cpp"], old_stats["cpp"]),
+        ("code: assembly", new_stats["asm_only"], old_stats["asm_only"]),
+        ("identity: real", new_identity["real"], old_identity["real"]),
+        ("identity: generated", new_identity["generated"], old_identity["generated"]),
+        ("identity: vendored", new_identity["vendored"], old_identity["vendored"]),
+    )
+    for label, value, previous in rows:
+        print(f"  {label:<20} {value:>10,} bytes ({percent(value, denominator):6.2f}%)"
+              f"  delta {format_delta(value, previous, denominator)}")
 
 
 def marker_delta(ref1, ref2):
@@ -428,6 +518,11 @@ def main():
     label2 = ref2 or "worktree"
 
     print_scorecard(ref1, label2, old_stats, new_stats)
+    padding, denominator = real_code_denominator(text_start, text_size)
+    print_real_code(
+        padding, denominator, old_stats, new_stats,
+        identity_split(old, notes_at(ref1), text_start, text_size),
+        identity_split(new, notes_at(ref2), text_start, text_size))
     if args.details:
         print_details(ref1, ref2, old, new, old_naked, new_naked)
     print("\nledger-derived; a clean build.sh run is the byte-match proof.")

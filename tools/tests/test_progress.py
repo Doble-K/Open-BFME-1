@@ -221,9 +221,13 @@ def test_b08_is_zero_byte_progress():
     proc = subprocess.run(
         [sys.executable, str(TOOL), f"{COMMIT}^..{COMMIT}"],
         cwd=ROOT, capture_output=True, text=True, check=True)
-    assert proc.stdout.count("delta +0 bytes, +0.00 pp") == 4, proc.stdout
+    # Every delta the scorecard prints must be zero, on whichever views exist.
+    # Pinning the line count instead broke the moment the real-code view added
+    # six more of them, which is a report gaining detail, not progress moving.
+    deltas = proc.stdout.count("delta ")
+    assert deltas and proc.stdout.count("delta +0 bytes, +0.00 pp") == deltas, proc.stdout
     assert "matched rows" not in proc.stdout, proc.stdout
-    print("PASS b08 reports zero unique/C++/ASM byte progress")
+    print(f"PASS b08 reports zero byte progress on all {deltas} reported lanes")
 
 
 def test_details_are_opt_in():
