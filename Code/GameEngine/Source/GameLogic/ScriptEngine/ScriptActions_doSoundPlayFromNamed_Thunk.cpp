@@ -1,181 +1,80 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: clean C++ reconstruction of positional named-unit audio.
 
 class AsciiString;
+enum ObjectID {};
+
+class Player
+{
+public:
+	int getPlayerIndex() const { return m_playerIndex; }
+	unsigned char m_pad[0x24];
+	int m_playerIndex;
+};
+
+class Object
+{
+public:
+	Player *getControllingPlayer() const;
+	ObjectID getID() const { return m_id; }
+	unsigned char m_pad[0x74];
+	ObjectID m_id;
+};
+
+class AudioEventRTS
+{
+public:
+	AudioEventRTS(const AsciiString &, ObjectID);
+	virtual ~AudioEventRTS();
+	void setIsLogicalAudio(bool);
+	void setPlayerIndex(int);
+private:
+	unsigned char m_data[0x6C];
+};
+
+class ScriptEngine
+{
+public:
+	virtual void slot0(); virtual void slot1(); virtual void slot2(); virtual void slot3();
+	virtual void slot4(); virtual void slot5(); virtual void slot6(); virtual void slot7();
+	virtual void slot8(); virtual void slot9(); virtual void slot10(); virtual void slot11();
+	virtual void slot12(); virtual void slot13(); virtual void slot14(); virtual void slot15();
+	virtual void slot16(); virtual void slot17(); virtual void slot18(); virtual void slot19();
+	virtual void slot20(); virtual void slot21(); virtual void slot22(); virtual void slot23();
+	virtual void slot24(); virtual void slot25();
+	virtual Object *getUnitNamed(const AsciiString &name);
+};
+
+class AudioManager
+{
+public:
+	virtual void slot0(); virtual void slot1(); virtual void slot2(); virtual void slot3();
+	virtual void slot4(); virtual void slot5(); virtual void slot6(); virtual void slot7();
+	virtual void slot8(); virtual void slot9(); virtual void slot10(); virtual void slot11();
+	virtual void slot12(); virtual void slot13(); virtual void slot14(); virtual void slot15();
+	virtual void slot16();
+	virtual void addAudioEvent(const AudioEventRTS *event);
+};
+
+extern ScriptEngine *TheScriptEngine;
+extern AudioManager *TheAudio;
+
 class ScriptActions
 {
 protected:
 	void doSoundPlayFromNamed(const AsciiString &, const AsciiString &);
 };
 
-// ?doSoundPlayFromNamed@ScriptActions@@IAEXABVAsciiString@@0@Z
-__declspec(naked) void ScriptActions::doSoundPlayFromNamed(const AsciiString &, const AsciiString &)
+void ScriptActions::doSoundPlayFromNamed(const AsciiString &soundName, const AsciiString &unitName)
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x6c
-        __emit 0x07
-        __emit 0x2f
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x08
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x78
-        __emit 0x5d
-        __emit 0x01
-        __emit 0x01
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x01
-        __emit 0x83
-        __emit 0xec
-        __emit 0x70
-        __emit 0x56
-        __emit 0x52
-        __emit 0xff
-        __emit 0x50
-        __emit 0x68
-        __emit 0x8b
-        __emit 0xf0
-        __emit 0x85
-        __emit 0xf6
-        __emit 0x74
-        __emit 0x64
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x74
-        __emit 0x50
-        __emit 0x8b
-        __emit 0x84
-        __emit 0x24
-        __emit 0x88
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0x58
-        __emit 0xad
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x84
-        __emit 0x24
-        __emit 0x80
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x2c
-        __emit 0x99
-        __emit 0xd1
-        __emit 0xff
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0x43
-        __emit 0x1f
-        __emit 0xd3
-        __emit 0xff
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x0d
-        __emit 0x8b
-        __emit 0x40
-        __emit 0x24
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xe8
-        __emit 0x96
-        __emit 0xc3
-        __emit 0xd4
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x0d
-        __emit 0x68
-        __emit 0xd6
-        __emit 0x2e
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x11
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x04
-        __emit 0x50
-        __emit 0xff
-        __emit 0x52
-        __emit 0x44
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x7c
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x22
-        __emit 0x86
-        __emit 0xd3
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x74
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x7c
-        __emit 0xc2
-        __emit 0x08
-        __emit 0x00
-	}
+	Object *unit = TheScriptEngine->getUnitNamed(unitName);
+	if (!unit)
+		return;
+
+	AudioEventRTS event(soundName, unit->getID());
+	event.setIsLogicalAudio(true);
+	Player *player = unit->getControllingPlayer();
+	if (player)
+		event.setPlayerIndex(player->getPlayerIndex());
+	TheAudio->addAudioEvent(&event);
 }
