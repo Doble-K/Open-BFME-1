@@ -2164,7 +2164,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0LogicalDecalPoolClass@MultiFixedPoolDecalSystemClass@@QAE@XZ,,0x0005C6C0,16,Code/Libraries/Source/WWVegas/WW3D2/decalsys.cpp,matched,icf-owner=??0?$_Bit_iter@U_Bit_reference@_STL@@PAU12@@_STL@@QAE@XZ
 ??0ManTheWallsSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00260600,46,Code/GameEngine/Source/GameLogic/Object/SpecialPower/ManTheWallsSpecialPower.cpp,matched,clean C++ empty derived constructor with BFME interface layout
 ??0ManTheWallsSpecialPowerModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0MapCache@@QAE@XZ,,0x00078F50,169,Code/GameEngine/Source/GameClient/MapCache_ctor_Thunk.cpp,matched,Open-BFME5 lift 169B retail MASM to standalone C++ thunk
 ??0MapMetaDataReader@@QAE@XZ,,0x000C0EA0,334,Code/GameEngine/Source/GameClient/MapMetaDataReader_ctor_Thunk.cpp,matched,Open-BFME5 lift 334B retail MASM to standalone C++ thunk
 ??0MapObject@@QAE@UCoord3D@@VAsciiString@@MHPBVDict@@PBVThingTemplate@@@Z,,0x00088160,386,Code/GameEngine/Source/Common/MapObjectCtorThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_MapObjectCtor_088160
 ??0Mapping@@QAE@XZ,,0x00122DF0,16,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
@@ -94596,3 +94595,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?Get_DX8_Texture_Filter_Name@DX8Wrapper@@SAPBDI@Z,,0x00902BC0,64,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++ replacing the naked lift; BFME drops the two cubic filter cases
 ?Get_DX8_Stencil_Op_Name@DX8Wrapper@@SAPBDI@Z,,0x00902EC0,104,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; repointed from the 17-byte prefix claim at 0x00902E10 which is the compare-function switch
 ?Get_DX8_Cmp_Func_Name@DX8Wrapper@@SAPBDI@Z,,0x00902E10,104,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 exact C++; extended from the 17-byte prefix claim to the whole switch
+??0MapCache@@QAE@XZ,,0x00078F50,169,Code/GameEngine/Source/GameClient/MapCache_ctor_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; MapCache constructs base metadata map seen map and allowed-map set with retail STLPort node sizes
