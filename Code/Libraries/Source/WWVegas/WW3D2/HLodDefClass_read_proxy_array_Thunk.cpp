@@ -1,341 +1,62 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /ICode/Libraries/Source/WWVegas/WWMath /ICode/Libraries/Source/WWVegas/WWLib /ICode/Libraries/Source/WWVegas/WWSaveLoad /ICode/Libraries/Source/WWVegas/WW3D2 /ICode/Libraries/Source/WWVegas/Wwutil /ICode/Libraries/Source/WWVegas/WWDownload /ICode/Libraries/Source/Compression /ICode/Libraries/Source/WWVegas/WWDebug /Ireference/shims/sweep
+#define Matrix4x4 Matrix4
 
-class ChunkLoadClass;
-class HLodDefClass
+#include "hlod.h"
+#include "chunkio.h"
+
+class ProxyRecordClass
 {
-private:
-	bool read_proxy_array(ChunkLoadClass &);
+public:
+	ProxyRecordClass() : BoneIndex(0) { memset(Name, 0, sizeof(Name)); }
+	bool operator==(const ProxyRecordClass &) { return false; }
+	bool operator!=(const ProxyRecordClass &that) { return !(*this == that); }
+	void Init(const W3dHLodSubObjectStruct &data)
+	{
+		BoneIndex = data.BoneIndex;
+		strncpy(Name, data.Name, sizeof(Name));
+	}
+protected:
+	int BoneIndex;
+	char Name[2 * W3D_NAME_LEN];
 };
 
-// ?read_proxy_array@HLodDefClass@@AAE_NAAVChunkLoadClass@@@Z
-__declspec(naked) bool HLodDefClass::read_proxy_array(ChunkLoadClass &)
+class ProxyArrayClass : public VectorClass<ProxyRecordClass>, public RefCountClass
 {
-	__asm {
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0x5b
-        __emit 0xf7
-        __emit 0x05
-        __emit 0x01
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x2c
-        __emit 0x55
-        __emit 0x56
-        __emit 0x8b
-        __emit 0xf1
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x20
-        __emit 0x57
-        __emit 0x33
-        __emit 0xff
-        __emit 0x3b
-        __emit 0xc7
-        __emit 0x74
-        __emit 0x0f
-        __emit 0x8d
-        __emit 0x48
-        __emit 0x10
-        __emit 0xff
-        __emit 0x49
-        __emit 0x04
-        __emit 0x75
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x01
-        __emit 0xff
-        __emit 0x10
-        __emit 0x89
-        __emit 0x7e
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x6c
-        __emit 0x24
-        __emit 0x48
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0xb0
-        __emit 0x59
-        __emit 0x06
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x2c
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0x65
-        __emit 0x5a
-        __emit 0x06
-        __emit 0x00
-        __emit 0x3d
-        __emit 0x03
-        __emit 0x07
-        __emit 0x00
-        __emit 0x00
-        __emit 0x75
-        __emit 0x1e
-        __emit 0x6a
-        __emit 0x08
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0xd0
-        __emit 0x5b
-        __emit 0x06
-        __emit 0x00
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x08
-        __emit 0x75
-        __emit 0x0b
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0xe4
-        __emit 0x59
-        __emit 0x06
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x75
-        __emit 0x16
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x32
-        __emit 0xc0
-        __emit 0x5d
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x38
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x6a
-        __emit 0x18
-        __emit 0xe8
-        __emit 0x13
-        __emit 0x65
-        __emit 0xf0
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x89
-        __emit 0x44
-        __emit 0x24
-        __emit 0x48
-        __emit 0x3b
-        __emit 0xc7
-        __emit 0x89
-        __emit 0x7c
-        __emit 0x24
-        __emit 0x40
-        __emit 0x74
-        __emit 0x0e
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x52
-        __emit 0x8b
-        __emit 0xc8
-        __emit 0xe8
-        __emit 0x48
-        __emit 0xfd
-        __emit 0xff
-        __emit 0xff
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xc0
-        __emit 0x89
-        __emit 0x46
-        __emit 0x20
-        __emit 0x39
-        __emit 0x78
-        __emit 0x08
-        __emit 0x53
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x44
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x7e
-        __emit 0x5a
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x90
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0x29
-        __emit 0x59
-        __emit 0x06
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x63
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0xde
-        __emit 0x59
-        __emit 0x06
-        __emit 0x00
-        __emit 0x3d
-        __emit 0x04
-        __emit 0x07
-        __emit 0x00
-        __emit 0x00
-        __emit 0x75
-        __emit 0x55
-        __emit 0x6a
-        __emit 0x24
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x50
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0x49
-        __emit 0x5b
-        __emit 0x06
-        __emit 0x00
-        __emit 0x83
-        __emit 0xf8
-        __emit 0x24
-        __emit 0x75
-        __emit 0x42
-        __emit 0x8b
-        __emit 0xcd
-        __emit 0xe8
-        __emit 0x5d
-        __emit 0x59
-        __emit 0x06
-        __emit 0x00
-        __emit 0x84
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x37
-        __emit 0x8b
-        __emit 0x56
-        __emit 0x20
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x51
-        __emit 0x8b
-        __emit 0x4a
-        __emit 0x04
-        __emit 0x03
-        __emit 0xcb
-        __emit 0xe8
-        __emit 0x67
-        __emit 0xce
-        __emit 0xff
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x46
-        __emit 0x20
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x08
-        __emit 0x47
-        __emit 0x83
-        __emit 0xc3
-        __emit 0x24
-        __emit 0x3b
-        __emit 0xf9
-        __emit 0x7c
-        __emit 0xa9
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xb0
-        __emit 0x01
-        __emit 0x5d
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x38
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x3c
-        __emit 0x5b
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0x32
-        __emit 0xc0
-        __emit 0x5d
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x38
-        __emit 0xc2
-        __emit 0x04
-        __emit 0x00
+public:
+	ProxyArrayClass(int size) : VectorClass<ProxyRecordClass>(size) {}
+};
+
+// Open-BFME5: replace the opcode dump with the original C++ loader.
+bool HLodDefClass::read_proxy_array(ChunkLoadClass &cload)
+{
+	REF_PTR_RELEASE(ProxyArray);
+
+	if (!cload.Open_Chunk())
+		return false;
+	if (cload.Cur_Chunk_ID() != W3D_CHUNK_HLOD_SUB_OBJECT_ARRAY_HEADER)
+		return false;
+
+	W3dHLodArrayHeaderStruct header;
+	if (cload.Read(&header, sizeof(header)) != sizeof(header))
+		return false;
+	if (!cload.Close_Chunk())
+		return false;
+
+	ProxyArray = NEW_REF(ProxyArrayClass, (header.ModelCount));
+
+	for (int imodel = 0; imodel < ProxyArray->Length(); ++imodel) {
+		if (!cload.Open_Chunk())
+			return false;
+		if (cload.Cur_Chunk_ID() != W3D_CHUNK_HLOD_SUB_OBJECT)
+			return false;
+
+		W3dHLodSubObjectStruct subobjdef;
+		if (cload.Read(&subobjdef, sizeof(subobjdef)) != sizeof(subobjdef))
+			return false;
+		if (!cload.Close_Chunk())
+			return false;
+
+		(*ProxyArray)[imodel].Init(subobjdef);
 	}
+	return true;
 }
