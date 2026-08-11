@@ -68683,3 +68683,4 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 ?resetNextMoodCheckTime@AIUpdateInterface@@QAEXXZ,0x00022C82,Open-BFME5 retail AI mood-check reset thunk
 ??1ObjectModule@@UAE@XZ,0x00047C53,Open-BFME5 FireWeaponCollide base destructor ILT pin
 ??1PB_DeepBase@@UAE@XZ,0x00047C53,Open-BFME5 SlaveWatcherBehavior base destructor ILT pin
+??1W3DProjectileStreamResources@@QAE@XZ,0x00027EAD,Open-BFME5 W3DProjectileStreamDraw resource cleanup ILT pin
