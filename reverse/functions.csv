@@ -94591,3 +94591,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?gotMangledPort@NAT@@IAEXHG@Z,,0x00671EB0,179,Code/GameEngine/Source/GameNetwork/NAT_gotMangledPort_Thunk.cpp,matched,Open-BFME5 exact C++ NAT mangled-port handler
 ?setEvaEnabled@Eva@@QAEX_N@Z,,0x00422C30,53,Code/GameEngine/Source/GameClient/EvaSetEvaEnabled.cpp,matched,Open-BFME5 exact C++ retail-layout Eva enable setter
 ?reset@Eva@@UAEXXZ,,0x004267D0,127,Code/GameEngine/Source/GameClient/EvaReset.cpp,matched,Open-BFME5 exact C++ retail-layout Eva reset
+?update@Eva@@UAEXXZ,,0x00423B70,153,Code/GameEngine/Source/GameClient/EvaUpdate.cpp,matched,Open-BFME5 exact C++ retail-layout Eva update
