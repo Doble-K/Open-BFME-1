@@ -68668,3 +68668,5 @@ __imp__GetTickCount@0,0x01358E0C,Open-BFME5 retail GetTickCount import pointer
 ?clear@?$_List_base@UBridgeOCLInfo@@V?$allocator@UBridgeOCLInfo@@@_STL@@@_STL@@QAEXXZ,0x000034F9,Open-BFME5 BridgeOCLInfo STLPort list clear body
 ??1ObjectCreationListMap@@QAE@XZ,0x0001D110,Open-BFME5 retail ObjectCreationList map destructor body
 ??1InstantDeathBehaviorModuleDataAllocator@@QAE@XZ,0x00017391,Open-BFME5 retail trailing allocator destructor body
+??1EmotionTrackerUpdateEntry@@QAE@XZ,0x00028FCE,Open-BFME5 retail emotion-tracker entry destructor body
+??1EmotionTrackerUpdateName@@QAE@XZ,0x0001A401,Open-BFME5 retail emotion-tracker string destructor thunk
