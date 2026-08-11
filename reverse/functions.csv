@@ -1654,7 +1654,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0BoxRenderObjClass@@QAE@XZ,,0x00956C70,127,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,
 ??0Bridge@@,,0x001A98A0,861,Code/GameEngine/Source/GameLogic/Bridge_ctor_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_Bridge_ctor_1A98A0
 ??0BridgeBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001F3390,379,Code/GameEngine/Source/GameLogic/AI/BridgeBehaviorCtorThunk.cpp,matched,Open-BFME5 exact C++ raw behavior constructor
-??0BridgeBehaviorModuleData@@QAE@XZ,,0x0001F7F3,5,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehaviorModuleDataCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0BridgeFXInfo@@QAE@XZ,,0x000ED560,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
 ??0BridgeInfo@@QAE@XZ,,0x001A1EC0,85,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,
 ??0BridgeOCLInfo@@QAE@XZ,,0x000E49D0,10,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp,matched,
@@ -94572,3 +94571,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?parseComboBoxData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004849E0,237,Code/GameEngine/Source/GameClient/GUI/parseComboBoxData_Thunk.cpp,matched,Open-BFME5 exact C++ combo-box data parser
 ??1BridgeBehaviorModuleData@@UAE@XZ,,0x001F5440,147,Code/GameEngine/Source/Common/BridgeBehaviorModuleDataDestructorThunk.cpp,matched,Open-BFME5 clean C++ conversion; official destructor clears BridgeFXInfo and BridgeOCLInfo STLPort lists then destroys their 20-byte nodes
 ?parseTextEntryData@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x00484C80,270,Code/GameEngine/Source/GameClient/GUI/parseTextEntryData_Thunk.cpp,matched,Open-BFME5 exact C++ text-entry data parser
+??0BridgeBehaviorModuleData@@QAE@XZ,,0x001F53A0,124,Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehaviorModuleDataCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion; official constructor builds BridgeFXInfo and BridgeOCLInfo STLPort lists then assigns both scaffold speeds
