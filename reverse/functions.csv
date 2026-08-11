@@ -10259,7 +10259,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?MD5Final@@YAXQAEPAUMD5_CTX@@@Z,,0x0086AEE0,174,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,
 ?MD5Init@@YAXPAUMD5_CTX@@@Z,,0x0086A400,40,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,
 ?MD5Transform@@YAXQAKQAE@Z,,0x0086A540,2268,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,
-?MD5Update@@YAXPAUMD5_CTX@@PAEI@Z,,0x0086AE20,185,Code/GameEngine/Source/Common/System/MD5Update_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?MOTDSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x0079CEC0,97,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/GUICallbacks/w3dmotd.cpp,matched,
 ?Make_Closest@Quaternion@@QAEAAV1@ABV1@@Z,,0x008DB490,80,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Make_Color_Array_Unique@MeshMatDescClass@@QAEXH@Z,,0x0092A4D0,131,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
@@ -94590,3 +94589,4 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?setChatSizeSlider@CustomMatchPreferences@@QAEXH@Z,,0x000AD9A0,169,Code/GameEngine/Source/Common/CustomMatchPreferences_setChatSizeSlider_Thunk.cpp,matched,Open-BFME5 clean C++ conversion; exact 169-byte retail setter
 ?setDisallowAsianText@CustomMatchPreferences@@QAEX_N@Z,,0x000ADE00,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setPreferredColor_Thunk.cpp,matched,Open-BFME5 corrected retail identity; clean C++ exact ICF alias
 ?setPreferredColor@CustomMatchPreferences@@QAEXH@Z,,0x000ADE00,170,Code/GameEngine/Source/Common/CustomMatchPreferences_setPreferredColor_Thunk.cpp,matched,Open-BFME5 clean C++ historical ICF alias of setDisallowAsianText
+?MD5Update@@YAXPAUMD5_CTX@@PAEI@Z,,0x0086AE20,185,Code/Libraries/Source/WWVegas/WWLib/md5.cpp,matched,Open-BFME5 canonical C++ conversion using retail intrinsic memcpy

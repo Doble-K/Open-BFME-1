@@ -44,6 +44,7 @@ documentation and/or software.
 
 #include "global.h"
 #include "md5.h"
+#include <string.h>
 
 /* Constants for MD5Transform routine.
  */
@@ -323,11 +324,7 @@ static void Decode (UINT4 *output, unsigned char *input, unsigned int len)
 
 static void MD5_memcpy (POINTER output, POINTER input, unsigned int len)
 {
-  unsigned int i;
-
-  for (i = 0; i < len; i++)
-
- output[i] = input[i];
+  memcpy(output, input, len);
 }
 
 /* Note: Replace "for loop" with standard memset if possible.
