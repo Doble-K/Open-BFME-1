@@ -1,177 +1,61 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class __declspec(novtable) ActiveBodyModuleData
+// ActiveBodyModuleData's destructor, lifted from its MASM dump to C++.
+//
+// The ModuleData shape: no leading vptr store at all, four members at unwind
+// states 3..0, and a single trailing `mov [esi],0x1073744` -- the root base's
+// vptr restore with its destructor inlined away. The __declspec(novtable) is
+// what suppresses the leading store; without it MSVC opens the destructor by
+// writing this class's own vptr and retail does not.
+//
+//   0x2C  AsciiString                  direct 0x00887940
+//   0x30  AsciiString                  direct 0x00887940
+//   0x34  AsciiString                  direct 0x00887940
+//   0x50  _STL::vector<12-byte pod>    inlined (imul 0x2AAAAAAB then *12)
+//
+// 0x00887940 is the AsciiString destructor body the ledger already pins under
+// that name. The vector's elements are trivially destructible, so retail frees
+// it inline and the 12-byte stride is all the bytes pin.
+
+#include <vector>
+
+// vector elements: trivially destructible, so only their size reaches the bytes
+struct Gen_p12pod { int a[3]; };
+
+class AsciiString
+{
+public:
+	~AsciiString();
+
+private:
+	char *m_data;
+};
+
+// Root base: vptr plus data out to 0x2C, destructor inlined to the vptr restore.
+class ActiveBodyModuleDataBase
+{
+public:
+	virtual ~ActiveBodyModuleDataBase() {}
+
+private:
+	unsigned char m_unreconstructed_04[0x28];			///< out to sizeof() == 0x2C
+};
+
+class __declspec(novtable) ActiveBodyModuleData : public ActiveBodyModuleDataBase
 {
 public:
 	virtual ~ActiveBodyModuleData();
+
+private:
+	AsciiString m_unreconstructed_2c;					///< retail this+0x2C
+	AsciiString m_unreconstructed_30;					///< retail this+0x30
+	AsciiString m_unreconstructed_34;					///< retail this+0x34
+	unsigned char m_unreconstructed_38[0x18];
+	_STL::vector<Gen_p12pod> m_vector;					///< retail this+0x50
 };
 
 // ??1ActiveBodyModuleData@@UAE@XZ
-__declspec(naked) ActiveBodyModuleData::~ActiveBodyModuleData()
+ActiveBodyModuleData::~ActiveBodyModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x79
-		__emit 0x1d
-		__emit 0x00
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x57
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x50
-		__emit 0x85
-		__emit 0xff
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x03
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x74
-		__emit 0x37
-		__emit 0x8b
-		__emit 0x4e
-		__emit 0x58
-		__emit 0x2b
-		__emit 0xcf
-		__emit 0xb8
-		__emit 0xab
-		__emit 0xaa
-		__emit 0xaa
-		__emit 0x2a
-		__emit 0xf7
-		__emit 0xe9
-		__emit 0xd1
-		__emit 0xfa
-		__emit 0x8b
-		__emit 0xc2
-		__emit 0xc1
-		__emit 0xe8
-		__emit 0x1f
-		__emit 0x03
-		__emit 0xc2
-		__emit 0x8d
-		__emit 0x04
-		__emit 0x40
-		__emit 0xc1
-		__emit 0xe0
-		__emit 0x02
-		__emit 0x3d
-		__emit 0x80
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x76
-		__emit 0x0b
-		__emit 0x57
-		__emit 0xe8
-		__emit 0x0b
-		__emit 0x92
-		__emit 0x75
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0xeb
-		__emit 0x0a
-		__emit 0x50
-		__emit 0x57
-		__emit 0xe8
-		__emit 0x3f
-		__emit 0x59
-		__emit 0x70
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x08
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x34
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x02
-		__emit 0xe8
-		__emit 0x7f
-		__emit 0xec
-		__emit 0x75
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x30
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x72
-		__emit 0xec
-		__emit 0x75
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x2c
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x65
-		__emit 0xec
-		__emit 0x75
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x44
-		__emit 0x37
-		__emit 0x07
-		__emit 0x01
-		__emit 0x5f
-		__emit 0x5e
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3
-	}
 }
