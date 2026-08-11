@@ -2993,3 +2993,18 @@ uw_00c3b860	0x00C3B860	11	refuted	Phase 2 gate repair: no symbol in a freshly co
 ?parse@?$BitFlags@$0BB@@@QAEXPAVINI@@PAVAsciiString@@@Z	0x001EB490	166	blocked	Canonical BitFlagsIO.h explicit BitFlags<17> instantiation expands the full ZH token-state machine inline, while BFME retail is 166 bytes and delegates token mutation through a compact helper call. Source-version divergence; requires recovering BFME helper identity/contract.
 ?_Invalidate_Textures@WW3D@@SAXXZ	0x008FD790	174	blocked	Canonical WW3D source against current headers emits direct hash-index traversal, while retail uses a reference-counted legacy HashTemplateIterator object plus virtual TextureClass::Invalidate. Requires reconstructing the legacy iterator/container ABI.
 ??0RTS2DScene@@QAE@XZ	0x00712590	209	blocked	Retail layout fully recovered: SimpleScene 0x108, Subsystem name at 0x10C, status at 0x110, camera at 0x114, W3DStatusCircle allocation 0xEC. Three clean C++ variants differ only in scheduling around setName: retail emits lea temp; lea member; push temp, compiler fixes lea temp; push temp; lea member.
+
+??0AnimalAIUpdateModuleData@@QAE@XZ		283	converted	cloned from WanderAIUpdateModuleData; ICF-folded body so a name substitution suffices
+??0AssaultTransportAIUpdateModuleData@@QAE@XZ		283	converted	cloned from WanderAIUpdateModuleData; ICF-folded body so a name substitution suffices
+??0CollideModuleModuleData@@QAE@XZ		283	converted	cloned from WanderAIUpdateModuleData; ICF-folded body so a name substitution suffices
+??0DamageModuleModuleData@@QAE@XZ		283	converted	cloned from WanderAIUpdateModuleData; ICF-folded body so a name substitution suffices
+??0DeployStyleAIUpdateModuleData@@QAE@XZ		283	converted	cloned from WanderAIUpdateModuleData; ICF-folded body so a name substitution suffices
+??0HordeAIUpdateModuleData@@QAE@XZ		283	converted	cloned from WanderAIUpdateModuleData; ICF-folded body so a name substitution suffices
+??0TransportAIUpdateModuleData@@QAE@XZ		283	converted	cloned from WanderAIUpdateModuleData; ICF-folded body so a name substitution suffices
+??0UpdateModuleModuleData@@QAE@XZ		283	converted	cloned from WanderAIUpdateModuleData; ICF-folded body so a name substitution suffices
+?setCampaignDifficulty@OptionPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key CampaignDifficulty read out of the binary
+?setMaxDisconnects@QuickMatchPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key MaxDisconnects read out of the binary
+?setMaxPoints@QuickMatchPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key MaxPoints read out of the binary
+?setMinPoints@QuickMatchPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key MinPoints read out of the binary
+?setNumPlayers@QuickMatchPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key NumPlayers read out of the binary
+?setWaitTime@QuickMatchPreferences@@QAEXH@Z		169	converted	cloned from CustomMatchPreferences::setPreferredFaction; map key WaitTime read out of the binary

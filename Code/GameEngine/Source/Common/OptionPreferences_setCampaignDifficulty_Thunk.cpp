@@ -1,183 +1,74 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// Open-BFME5: preserve retail's out-of-line preference/string call boundaries.
 
-class OptionPreferences {
+class AsciiString;
+
+template <typename T>
+class StringBase
+{
+    T *m_text;
+
+    friend class AsciiString;
+    StringBase(const T *text);
+
 public:
-	void setCampaignDifficulty(int);
+    void set(const StringBase<T> &that);
 };
 
-// ?setCampaignDifficulty@OptionPreferences@@QAEXH@Z
-__declspec(naked) void OptionPreferences::setCampaignDifficulty(int)
+class AsciiString
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xa0
-		__emit 0x5a
-		__emit 0xff
-		__emit 0x00
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x04
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x18
-		__emit 0x50
-		__emit 0x51
-		__emit 0x89
-		__emit 0x64
-		__emit 0x24
-		__emit 0x20
-		__emit 0x8b
-		__emit 0xcc
-		__emit 0x68
-		__emit 0xb4
-		__emit 0xc7
-		__emit 0x07
-		__emit 0x01
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x1c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xe8
-		__emit 0x91
-		__emit 0x6a
-		__emit 0x7f
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x51
-		__emit 0xe8
-		__emit 0xb7
-		__emit 0x6e
-		__emit 0x7f
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x0c
-		__emit 0x68
-		__emit 0xf4
-		__emit 0xf9
-		__emit 0x07
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x1c
-		__emit 0xe8
-		__emit 0x76
-		__emit 0x6a
-		__emit 0x7f
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x54
-		__emit 0x24
-		__emit 0x18
-		__emit 0x52
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x04
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x14
-		__emit 0x01
-		__emit 0xe8
-		__emit 0x7e
-		__emit 0xc5
-		__emit 0xfa
-		__emit 0xff
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x04
-		__emit 0x51
-		__emit 0x8b
-		__emit 0xc8
-		__emit 0xe8
-		__emit 0x28
-		__emit 0x5b
-		__emit 0x7f
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x18
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x00
-		__emit 0xe8
-		__emit 0xca
-		__emit 0x57
-		__emit 0x7f
-		__emit 0x00
-		__emit 0x8d
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x04
-		__emit 0xc7
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xff
-		__emit 0xe8
-		__emit 0xb9
-		__emit 0x57
-		__emit 0x7f
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x08
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x5e
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc2
-		__emit 0x04
-		__emit 0x00
-	}
+    char *m_text;
+
+public:
+    AsciiString() { m_text = 0; }
+    AsciiString(const char *text)
+    {
+        ((StringBase<char> *)this)->StringBase<char>::StringBase(text);
+    }
+    ~AsciiString();
+    AsciiString &operator=(const AsciiString &that)
+    {
+        ((StringBase<char> *)this)->set(*(const StringBase<char> *)&that);
+        return *this;
+    }
+    void __cdecl format(AsciiString format, ...);
+};
+
+namespace _STL
+{
+template <typename T> struct less;
+template <typename T> class allocator;
+template <typename First, typename Second> struct pair;
+
+template <typename Key, typename Value, typename Compare,
+          typename Allocator>
+class map
+{
+public:
+    Value &operator[](const Key &key);
+};
+}
+
+typedef _STL::map<AsciiString, AsciiString, _STL::less<AsciiString>,
+                  _STL::allocator<_STL::pair<const AsciiString, AsciiString> > >
+    PreferenceMap;
+
+class UserPreferences : public PreferenceMap
+{
+public:
+    virtual ~UserPreferences();
+};
+
+class OptionPreferences : public UserPreferences
+{
+public:
+    virtual ~OptionPreferences();
+    void setCampaignDifficulty(int value);
+};
+
+void OptionPreferences::setCampaignDifficulty(int value)
+{
+    AsciiString text;
+    text.format("%d", value);
+    (*this)["CampaignDifficulty"] = text;
 }

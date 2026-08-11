@@ -6704,3 +6704,43 @@ symptom is one `ValueError` naming one label, and the actual population is
 whatever a full sweep finds. Before concluding a red gate is a single bad row,
 sweep every row and count: `compile_function` over the whole ledger reports the
 unresolvable and the mismatching separately, and they have different causes.
+
+
+## Widening the clone screen's size window found three more clusters
+
+The first run of the normalised-body screen capped candidates at 600 bytes and
+found 20 twins. Raising the cap to 900 found 22 -- and the additions were not
+stragglers, they were two whole clusters the window had cut in half: nine 283-byte
+ModuleData constructors and six 169-byte preference setters.
+
+An arbitrary bound chosen for speed hid more work than it saved. When a screen
+is cheap, run it wide.
+
+## A cloned body can still need per-instance data read from the binary
+
+The six preference setters share one body: format an int into an AsciiString and
+store it into the preferences map under a literal key. Only the key differs, and
+because a string literal is a DIR32 whose address is copied from the target, the
+byte gate passes whatever text you write. The string-ref verifier is what
+catches a wrong key.
+
+So the clone was not a pure substitution: each key had to be read out of the
+binary first, by disassembling the target and following its pushed addresses
+into the data section. All six came back cleanly -- CampaignDifficulty,
+MaxDisconnects, MaxPoints, MinPoints, NumPlayers, WaitTime -- and all twenty
+literals across the batch verify.
+
+Worth remembering as the general shape: identical code plus differing data is
+still clonable, but the data has to come from the target rather than the model.
+
+## Worktree isolation needs the session cwd to be the repo
+
+A thirteen-agent fan-out died instantly with "not in a git repository". The
+session's working directory is D:\BFME1 while the repo is D:\Open-BFME-1, and
+worktree isolation resolves against the former.
+
+Without worktrees the agents share one checkout, which is safe only because each
+one edits a distinct file and the one genuinely shared mutable artifact -- the
+deps cache -- is untracked and self-healing. The protection that matters is
+re-verifying every claimed match centrally before committing, since a stale
+cache could in principle hand an agent a false OK.

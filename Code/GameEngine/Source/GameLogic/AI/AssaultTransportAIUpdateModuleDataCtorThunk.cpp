@@ -1,296 +1,143 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class AssaultTransportAIUpdateModuleData
+#include <vector>
+
+void *__cdecl operator new(unsigned int);
+
+class AsciiString
 {
+	void *m_data;
 public:
-    AssaultTransportAIUpdateModuleData();
+	AsciiString() : m_data(0) {}
+	~AsciiString();
+	AsciiString &operator=(const AsciiString &source);
+	void set(const char *text, int length);
 };
 
-__declspec(naked) AssaultTransportAIUpdateModuleData::AssaultTransportAIUpdateModuleData()
+struct AsciiStringVectorLayout
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 074h
-        _emit 006h
-        _emit 001h
-        _emit 001h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0ECh
-        _emit 008h
-        _emit 053h
-        _emit 055h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 057h
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 014h
-        _emit 033h
-        _emit 0DBh
-        _emit 0C7h
-        _emit 006h
-        _emit 080h
-        _emit 0A6h
-        _emit 00Bh
-        _emit 001h
-        _emit 06Ah
-        _emit 020h
-        _emit 089h
-        _emit 05Ch
-        _emit 024h
-        _emit 024h
-        _emit 089h
-        _emit 05Eh
-        _emit 008h
-        _emit 0E8h
-        _emit 028h
-        _emit 0FAh
-        _emit 05Ah
-        _emit 000h
-        _emit 089h
-        _emit 046h
-        _emit 008h
-        _emit 089h
-        _emit 05Eh
-        _emit 00Ch
-        _emit 088h
-        _emit 018h
-        _emit 08Bh
-        _emit 046h
-        _emit 008h
-        _emit 089h
-        _emit 058h
-        _emit 004h
-        _emit 08Bh
-        _emit 046h
-        _emit 008h
-        _emit 089h
-        _emit 040h
-        _emit 008h
-        _emit 08Bh
-        _emit 046h
-        _emit 008h
-        _emit 083h
-        _emit 0C4h
-        _emit 004h
-        _emit 089h
-        _emit 040h
-        _emit 00Ch
-        _emit 089h
-        _emit 05Eh
-        _emit 030h
-        _emit 089h
-        _emit 05Eh
-        _emit 044h
-        _emit 089h
-        _emit 05Eh
-        _emit 050h
-        _emit 089h
-        _emit 05Eh
-        _emit 058h
-        _emit 089h
-        _emit 05Eh
-        _emit 05Ch
-        _emit 089h
-        _emit 05Eh
-        _emit 060h
-        _emit 033h
-        _emit 0C9h
-        _emit 089h
-        _emit 04Eh
-        _emit 014h
-        _emit 089h
-        _emit 04Eh
-        _emit 018h
-        _emit 089h
-        _emit 05Eh
-        _emit 020h
-        _emit 0C7h
-        _emit 046h
-        _emit 024h
-        _emit 000h
-        _emit 000h
-        _emit 0FAh
-        _emit 043h
-        _emit 088h
-        _emit 05Eh
-        _emit 028h
-        _emit 0C7h
-        _emit 046h
-        _emit 01Ch
-        _emit 00Ah
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 088h
-        _emit 05Eh
-        _emit 029h
-        _emit 089h
-        _emit 05Eh
-        _emit 02Ch
-        _emit 089h
-        _emit 05Eh
-        _emit 038h
-        _emit 089h
-        _emit 05Eh
-        _emit 034h
-        _emit 089h
-        _emit 05Eh
-        _emit 03Ch
-        _emit 088h
-        _emit 05Eh
-        _emit 040h
-        _emit 089h
-        _emit 05Eh
-        _emit 048h
-        _emit 08Bh
-        _emit 07Eh
-        _emit 05Ch
-        _emit 08Bh
-        _emit 06Eh
-        _emit 058h
-        _emit 08Bh
-        _emit 0C7h
-        _emit 02Bh
-        _emit 0C7h
-        _emit 0C1h
-        _emit 0F8h
-        _emit 002h
-        _emit 03Bh
-        _emit 0C3h
-        _emit 0C6h
-        _emit 044h
-        _emit 024h
-        _emit 020h
-        _emit 004h
-        _emit 07Eh
-        _emit 01Dh
-        _emit 089h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 057h
-        _emit 08Bh
-        _emit 0CDh
-        _emit 0E8h
-        _emit 0F6h
-        _emit 090h
-        _emit 060h
-        _emit 000h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 083h
-        _emit 0C7h
-        _emit 004h
-        _emit 083h
-        _emit 0C5h
-        _emit 004h
-        _emit 048h
-        _emit 089h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 075h
-        _emit 0E7h
-        _emit 08Bh
-        _emit 046h
-        _emit 05Ch
-        _emit 03Bh
-        _emit 0E8h
-        _emit 089h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 08Bh
-        _emit 0FDh
-        _emit 074h
-        _emit 012h
-        _emit 08Bh
-        _emit 0CFh
-        _emit 0E8h
-        _emit 081h
-        _emit 08Dh
-        _emit 060h
-        _emit 000h
-        _emit 08Bh
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 083h
-        _emit 0C7h
-        _emit 004h
-        _emit 03Bh
-        _emit 0F8h
-        _emit 075h
-        _emit 0EEh
-        _emit 06Ah
-        _emit 015h
-        _emit 089h
-        _emit 06Eh
-        _emit 05Ch
-        _emit 068h
-        _emit 0DCh
-        _emit 091h
-        _emit 00Bh
-        _emit 001h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 044h
-        _emit 088h
-        _emit 05Eh
-        _emit 054h
-        _emit 0C7h
-        _emit 046h
-        _emit 04Ch
-        _emit 000h
-        _emit 000h
-        _emit 0A0h
-        _emit 042h
-        _emit 0E8h
-        _emit 03Ah
-        _emit 091h
-        _emit 060h
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 018h
-        _emit 05Fh
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 05Dh
-        _emit 05Bh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 014h
-        _emit 0C3h
-    }
+	AsciiString *m_begin;
+	AsciiString *m_finish;
+	AsciiString *m_capacity;
+};
+
+class ZeroInt
+{
+	int m_value;
+public:
+	ZeroInt() : m_value(0) {}
+};
+
+static __forceinline void eraseAsciiStringRange(
+	AsciiStringVectorLayout &vector,
+	AsciiString *first,
+	AsciiString *last)
+{
+	AsciiString *source = last;
+	AsciiString *destination = first;
+	int count = vector.m_finish - last;
+	while (count > 0)
+	{
+		*destination = *source;
+		++source;
+		++destination;
+		--count;
+	}
+
+	AsciiString *oldFinish = vector.m_finish;
+	for (AsciiString *current = destination; current != oldFinish; ++current)
+		current->~AsciiString();
+	vector.m_finish = destination;
+}
+
+class ModuleDataListStandIn
+{
+	struct Node
+	{
+		unsigned char m_flag;
+		unsigned char m_pad[3];
+		unsigned int m_value;
+		Node *m_next;
+		Node *m_prev;
+		unsigned char m_unused[0x10];
+	};
+
+	Node *m_node;
+	unsigned int m_count;
+	unsigned int m_reserved;
+public:
+	ModuleDataListStandIn()
+	{
+		m_node = 0;
+		m_node = (Node *)operator new(sizeof(Node));
+		m_count = 0;
+		m_node->m_flag = 0;
+		m_node->m_value = 0;
+		m_node->m_next = m_node;
+		m_node->m_prev = m_node;
+	}
+	~ModuleDataListStandIn();
+};
+
+class ModuleData
+{
+public:
+	virtual ~ModuleData() {}
+	unsigned int m_04;
+};
+
+class AssaultTransportAIUpdateModuleData : public ModuleData
+{
+public:
+	AssaultTransportAIUpdateModuleData();
+	virtual ~AssaultTransportAIUpdateModuleData();
+
+private:
+	ModuleDataListStandIn m_list;
+	int *m_owned[2];
+	int m_delay;
+	int m_unknown20;
+	float m_distance;
+	bool m_flag28;
+	bool m_flag29;
+	unsigned char m_pad2a[2];
+	int m_unknown2c;
+	AsciiString m_name30;
+	int m_unknown34;
+	int m_unknown38;
+	int m_unknown3c;
+	bool m_flag40;
+	unsigned char m_pad41[3];
+	AsciiString m_machineName;
+	int m_unknown48;
+	float m_angle;
+	ZeroInt m_unknown50;
+	bool m_flag54;
+	unsigned char m_pad55[3];
+	std::vector<AsciiString> m_strings;
+};
+
+// ??0AssaultTransportAIUpdateModuleData@@QAE@XZ
+AssaultTransportAIUpdateModuleData::AssaultTransportAIUpdateModuleData()
+{
+	for (int i = 0; i < 2; ++i)
+		m_owned[i] = 0;
+	m_unknown20 = 0;
+	m_distance = 500.0f;
+	m_flag28 = false;
+	m_delay = 10;
+	m_flag29 = false;
+	m_unknown2c = 0;
+	m_unknown38 = 0;
+	m_unknown34 = 0;
+	m_unknown3c = 0;
+	m_flag40 = false;
+	m_unknown48 = 0;
+
+	AsciiStringVectorLayout &strings = *(AsciiStringVectorLayout *)&m_strings;
+	eraseAsciiStringRange(strings, strings.m_begin, strings.m_finish);
+	m_flag54 = false;
+	m_angle = 80.0f;
+	m_machineName.set("DefaultAttackPriority", 21);
 }

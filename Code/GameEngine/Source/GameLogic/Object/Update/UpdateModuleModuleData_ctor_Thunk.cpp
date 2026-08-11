@@ -1,297 +1,143 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB
+// stlport
 
-class UpdateModuleModuleData {
+#include <vector>
+
+void *__cdecl operator new(unsigned int);
+
+class AsciiString
+{
+	void *m_data;
+public:
+	AsciiString() : m_data(0) {}
+	~AsciiString();
+	AsciiString &operator=(const AsciiString &source);
+	void set(const char *text, int length);
+};
+
+struct AsciiStringVectorLayout
+{
+	AsciiString *m_begin;
+	AsciiString *m_finish;
+	AsciiString *m_capacity;
+};
+
+class ZeroInt
+{
+	int m_value;
+public:
+	ZeroInt() : m_value(0) {}
+};
+
+static __forceinline void eraseAsciiStringRange(
+	AsciiStringVectorLayout &vector,
+	AsciiString *first,
+	AsciiString *last)
+{
+	AsciiString *source = last;
+	AsciiString *destination = first;
+	int count = vector.m_finish - last;
+	while (count > 0)
+	{
+		*destination = *source;
+		++source;
+		++destination;
+		--count;
+	}
+
+	AsciiString *oldFinish = vector.m_finish;
+	for (AsciiString *current = destination; current != oldFinish; ++current)
+		current->~AsciiString();
+	vector.m_finish = destination;
+}
+
+class ModuleDataListStandIn
+{
+	struct Node
+	{
+		unsigned char m_flag;
+		unsigned char m_pad[3];
+		unsigned int m_value;
+		Node *m_next;
+		Node *m_prev;
+		unsigned char m_unused[0x10];
+	};
+
+	Node *m_node;
+	unsigned int m_count;
+	unsigned int m_reserved;
+public:
+	ModuleDataListStandIn()
+	{
+		m_node = 0;
+		m_node = (Node *)operator new(sizeof(Node));
+		m_count = 0;
+		m_node->m_flag = 0;
+		m_node->m_value = 0;
+		m_node->m_next = m_node;
+		m_node->m_prev = m_node;
+	}
+	~ModuleDataListStandIn();
+};
+
+class ModuleData
+{
+public:
+	virtual ~ModuleData() {}
+	unsigned int m_04;
+};
+
+class UpdateModuleModuleData : public ModuleData
+{
 public:
 	UpdateModuleModuleData();
+	virtual ~UpdateModuleModuleData();
+
+private:
+	ModuleDataListStandIn m_list;
+	int *m_owned[2];
+	int m_delay;
+	int m_unknown20;
+	float m_distance;
+	bool m_flag28;
+	bool m_flag29;
+	unsigned char m_pad2a[2];
+	int m_unknown2c;
+	AsciiString m_name30;
+	int m_unknown34;
+	int m_unknown38;
+	int m_unknown3c;
+	bool m_flag40;
+	unsigned char m_pad41[3];
+	AsciiString m_machineName;
+	int m_unknown48;
+	float m_angle;
+	ZeroInt m_unknown50;
+	bool m_flag54;
+	unsigned char m_pad55[3];
+	std::vector<AsciiString> m_strings;
 };
 
 // ??0UpdateModuleModuleData@@QAE@XZ
-__declspec(naked) UpdateModuleModuleData::UpdateModuleModuleData()
+UpdateModuleModuleData::UpdateModuleModuleData()
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0x74
-		__emit 0x06
-		__emit 0x01
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xec
-		__emit 0x08
-		__emit 0x53
-		__emit 0x55
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x57
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x14
-		__emit 0x33
-		__emit 0xdb
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x80
-		__emit 0xa6
-		__emit 0x0b
-		__emit 0x01
-		__emit 0x6a
-		__emit 0x20
-		__emit 0x89
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x24
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x08
-		__emit 0xe8
-		__emit 0x28
-		__emit 0xfa
-		__emit 0x5a
-		__emit 0x00
-		__emit 0x89
-		__emit 0x46
-		__emit 0x08
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x0c
-		__emit 0x88
-		__emit 0x18
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x08
-		__emit 0x89
-		__emit 0x58
-		__emit 0x04
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x08
-		__emit 0x89
-		__emit 0x40
-		__emit 0x08
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x08
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x04
-		__emit 0x89
-		__emit 0x40
-		__emit 0x0c
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x30
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x44
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x50
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x58
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x5c
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x60
-		__emit 0x33
-		__emit 0xc9
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x14
-		__emit 0x89
-		__emit 0x4e
-		__emit 0x18
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x20
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x24
-		__emit 0x00
-		__emit 0x00
-		__emit 0xfa
-		__emit 0x43
-		__emit 0x88
-		__emit 0x5e
-		__emit 0x28
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x1c
-		__emit 0x0a
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x88
-		__emit 0x5e
-		__emit 0x29
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x2c
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x38
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x34
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x3c
-		__emit 0x88
-		__emit 0x5e
-		__emit 0x40
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x48
-		__emit 0x8b
-		__emit 0x7e
-		__emit 0x5c
-		__emit 0x8b
-		__emit 0x6e
-		__emit 0x58
-		__emit 0x8b
-		__emit 0xc7
-		__emit 0x2b
-		__emit 0xc7
-		__emit 0xc1
-		__emit 0xf8
-		__emit 0x02
-		__emit 0x3b
-		__emit 0xc3
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x20
-		__emit 0x04
-		__emit 0x7e
-		__emit 0x1d
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x57
-		__emit 0x8b
-		__emit 0xcd
-		__emit 0xe8
-		__emit 0xf6
-		__emit 0x90
-		__emit 0x60
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x83
-		__emit 0xc7
-		__emit 0x04
-		__emit 0x83
-		__emit 0xc5
-		__emit 0x04
-		__emit 0x48
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x75
-		__emit 0xe7
-		__emit 0x8b
-		__emit 0x46
-		__emit 0x5c
-		__emit 0x3b
-		__emit 0xe8
-		__emit 0x89
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x8b
-		__emit 0xfd
-		__emit 0x74
-		__emit 0x12
-		__emit 0x8b
-		__emit 0xcf
-		__emit 0xe8
-		__emit 0x81
-		__emit 0x8d
-		__emit 0x60
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x44
-		__emit 0x24
-		__emit 0x10
-		__emit 0x83
-		__emit 0xc7
-		__emit 0x04
-		__emit 0x3b
-		__emit 0xf8
-		__emit 0x75
-		__emit 0xee
-		__emit 0x6a
-		__emit 0x15
-		__emit 0x89
-		__emit 0x6e
-		__emit 0x5c
-		__emit 0x68
-		__emit 0xdc
-		__emit 0x91
-		__emit 0x0b
-		__emit 0x01
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x44
-		__emit 0x88
-		__emit 0x5e
-		__emit 0x54
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x4c
-		__emit 0x00
-		__emit 0x00
-		__emit 0xa0
-		__emit 0x42
-		__emit 0xe8
-		__emit 0x3a
-		__emit 0x91
-		__emit 0x60
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x18
-		__emit 0x5f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x5d
-		__emit 0x5b
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x14
-		__emit 0xc3
-	}
+	for (int i = 0; i < 2; ++i)
+		m_owned[i] = 0;
+	m_unknown20 = 0;
+	m_distance = 500.0f;
+	m_flag28 = false;
+	m_delay = 10;
+	m_flag29 = false;
+	m_unknown2c = 0;
+	m_unknown38 = 0;
+	m_unknown34 = 0;
+	m_unknown3c = 0;
+	m_flag40 = false;
+	m_unknown48 = 0;
+
+	AsciiStringVectorLayout &strings = *(AsciiStringVectorLayout *)&m_strings;
+	eraseAsciiStringRange(strings, strings.m_begin, strings.m_finish);
+	m_flag54 = false;
+	m_angle = 80.0f;
+	m_machineName.set("DefaultAttackPriority", 21);
 }
