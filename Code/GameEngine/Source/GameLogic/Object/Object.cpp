@@ -6156,7 +6156,117 @@ Bool Object::canProduceUpgrade( const UpgradeTemplate *upgrade )
 //=============================================================================
 // Object::defect, and related methods                                        =
 //=============================================================================
-// Object::defect is defined in ObjectDefectThunk.cpp.
+// ?defect@Object@@QAEXPAVTeam@@I@Z present-unmatched
+void Object::defect( Team* newTeam, UnsignedInt detectionTime )
+{
+	if ( isContained() ) //@todo (KRIS?) make contained units unselectable, until then... lorenzen 
+	{
+		return;
+	}
+
+	Player *player = getControllingPlayer();
+	if ( !player )
+		return;
+
+	Team* myTeam = player->getDefaultTeam();
+	if ( myTeam == newTeam ) // can't defect from my own team, that would be silly
+		return;
+	
+	// things that are under construction, or sold, cannot defect.
+	if (testStatus(OBJECT_STATUS_UNDER_CONSTRUCTION) ||
+			testStatus(OBJECT_STATUS_SOLD))
+	{
+		return;
+	}	
+
+	// Before switch ////////////////////////////////////////
+
+	//Design says: 
+	ProductionUpdateInterface *production = getProductionUpdateInterface();
+	if ( production )
+	{
+		production->cancelAndRefundAllProduction();
+	}
+
+	// pop it up on the radar, so as to warn those who care
+	// do this first, since after setTeam() the infiltrator
+	// becomes the controllingplayer, not me 
+
+	// But don't do this is if the new team is not a real team.  "'Enemy' infiltration" wouldn't make
+	// sense, and we are probably just reverting a cave or something.
+	if( friend_getRadarData() && newTeam->getControllingPlayer()->isPlayableSide() && myTeam->getControllingPlayer()->isPlayableSide())
+	{
+		TheRadar->tryInfiltrationEvent( this );
+	}
+
+	friend_setUndetectedDefector( detectionTime > 0 );
+
+	if (m_defectionHelper)
+		m_defectionHelper->startDefectionTimer(detectionTime);
+
+	// Switch ////////////////////////////////////////
+	setTeam( newTeam );
+
+	// After switch ////////////////////////////////////////
+	
+	AIUpdateInterface *ai = getAI();
+
+	handlePartitionCellMaintenance();// to clear the shoud for my new master
+
+	if ( ai )
+	{
+		ai->aiIdle( CMD_FROM_AI );
+	}
+
+	// Play our sound indicating we've been defected. (weird verbage, but true.)
+	AudioEventRTS voiceDefect = *getTemplate()->getVoiceDefect();
+	voiceDefect.setObjectID(getID());
+	TheAudio->addAudioEvent(&voiceDefect);
+
+	//make the new recruit the only selected thing, awaiting new command to move, attack, etc...
+	Drawable *dr = getDrawable();
+	if (dr)
+	{
+		dr->flashAsSelected(); //This is the first of several flashes which get cue'd by doDefectorUpdateStuff()
+		AudioEventRTS defectorTimerSound = TheAudio->getMiscAudio()->m_defectorTimerTickSound;
+		defectorTimerSound.setObjectID( getID() );
+		TheAudio->addAudioEvent(&defectorTimerSound);
+	}
+	
+	ContainModuleInterface *ct = getContain();
+	if( ct  &&  ct->isKickOutOnCapture() )
+	{
+		// Caves really really don't want to do this.
+		ct->removeAllContained( TRUE );
+	}
+
+	// if it has parking places, defect anything parked there.
+	for (BehaviorModule** i = getBehaviorModules(); *i; ++i)
+	{
+		ParkingPlaceBehaviorInterface* pp = (*i)->getParkingPlaceBehaviorInterface();
+		if (pp)
+		{
+			pp->defectAllParkedUnits(newTeam, detectionTime);
+			break;
+		}
+	}
+
+	// defect any mines that are owned by this structure, right now.
+	// unfortunately, structures don't keep list of mines they own, so we must do
+	// this the hard way :-( [fortunately, this doens't happen very often, so this
+	// is probably an acceptable, if icky, solution.] (srj)
+	for (Object* mine = TheGameLogic->getFirstObject(); mine; mine = mine->getNextObject())
+	{
+		if (mine->isKindOf(KINDOF_MINE))
+		{
+			if (mine->getProducerID() == this->getID())
+			{
+				mine->setTeam(newTeam);
+			}
+		}
+	}
+
+}
 
 //=============================================================================
 // Object::goInvulnerable

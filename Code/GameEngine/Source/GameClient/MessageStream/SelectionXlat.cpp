@@ -304,7 +304,40 @@ SelectionTranslator::~SelectionTranslator()
 /** 
  * If this drawable is a 'friend' of mine, select it.
  */
-// SelectionTranslator::selectFriends is defined in SelectionTranslatorSelectFriendsThunk.cpp.
+// ?selectFriends@SelectionTranslator@@AAE_NPAVDrawable@@PAVGameMessage@@_N@Z present-unmatched
+Bool SelectionTranslator::selectFriends( Drawable *draw, GameMessage *createTeamMsg, 
+																				 Bool dragSelecting )
+{
+	if (CanSelectDrawable( draw, dragSelecting ))
+	{
+		// enforce an optional selection size limit
+		if (TheInGameUI->getMaxSelectCount() > 0 && TheInGameUI->getSelectCount() >= TheInGameUI->getMaxSelectCount())
+		{
+			if (!m_displayedMaxWarning)
+			{
+				m_displayedMaxWarning = TRUE;
+				UnicodeString msg;
+				msg.format(TheGameText->fetch("GUI:MaxSelectionSize").str(), TheInGameUI->getMaxSelectCount());
+				TheInGameUI->message(msg);
+			}
+			return false;
+		}
+
+		TheInGameUI->selectDrawable( draw );
+
+		m_selectCountMap[draw->getTemplate()]++;
+
+		// add to message's argument list if an object is present
+		if( draw->getObject() && createTeamMsg )
+			createTeamMsg->appendObjectIDArgument( draw->getObject()->getID() );
+
+		return true;  // selected
+
+	}  // end if
+
+	return false;  // not selected
+
+}  // end selectFriends
 
 
 //-----------------------------------------------------------------------------

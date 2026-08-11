@@ -156,7 +156,52 @@ static AsciiString obfuscate( AsciiString in )
 	return out;
 }
 
-// GameSpyLoginPreferences::load is defined in GameSpyLoginPreferencesLoadThunk.cpp.
+// ?load@GameSpyLoginPreferences@@UAE_NVAsciiString@@@Z present-unmatched
+Bool GameSpyLoginPreferences::load( AsciiString fname )
+{
+	if (!UserPreferences::load(fname))
+		return false;
+
+	UserPreferences::iterator upIt = begin();
+	while (upIt != end())
+	{
+		AsciiString key = upIt->first;
+		if (key.startsWith("pass_"))
+		{
+			AsciiString email, pass;
+			email = key.str() + 5;
+			pass = upIt->second;
+
+			AsciiString quoPass = QuotedPrintableToAsciiString(pass);
+			pass = obfuscate(quoPass);
+
+			m_emailPasswordMap[email] = pass;
+		}
+		if (key.startsWith("date_"))
+		{
+			AsciiString email, date;
+			email = key.str() + 5;
+			date = upIt->second;
+
+			date = QuotedPrintableToAsciiString(date);
+
+			m_emailDateMap[email] = date;
+		}
+		else if (key.startsWith("nick_"))
+		{
+			AsciiString email, nick, nicks;
+			email = key.str() + 5;
+			nicks = upIt->second;
+			while (nicks.nextToken(&nick, ","))
+			{
+				m_emailNickMap[email].push_back(nick);
+			}
+		}
+		++upIt;
+	}
+
+	return true;
+}
 
 // ?write@GameSpyLoginPreferences@@UAE_NXZ present-unmatched
 Bool GameSpyLoginPreferences::write( void )

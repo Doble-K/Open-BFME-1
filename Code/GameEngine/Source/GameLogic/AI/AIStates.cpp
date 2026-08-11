@@ -5291,7 +5291,129 @@ StateReturnType AIAttackFireWeaponState::onEnter()
  * Fire the owner's weapon once and exit.
  */
 
-// AIAttackFireWeaponState::update is defined in AIAttackFireWeaponStateUpdateThunk.cpp.
+StateReturnType AIAttackFireWeaponState::update()
+{
+	// contained by AIAttackState, so no separate timer
+
+	Object *obj = getMachineOwner();
+	Object* victim = getMachineGoalObject();
+
+	if (m_att->isAttackingObject())
+	{
+		// if our target is dead, go ahead and stop.
+		if (!victim || victim->isEffectivelyDead())
+			return STATE_FAILURE;
+	}
+	WeaponSlotType wslot;
+	Weapon* weapon = obj->getCurrentWeapon(&wslot);
+	if (!weapon)
+	{
+		return STATE_FAILURE;
+	}
+	
+	WeaponStatus status = weapon->getStatus();
+	if (status == PRE_ATTACK)
+	{
+		return STATE_CONTINUE;
+	} 
+	else if (status != READY_TO_FIRE)
+	{
+		return STATE_FAILURE;
+	}
+
+	/**
+		this is the weird case where we have multi turrets, and turret 'a' wants
+		to fire, but someone has changed the current weapon to be one not on him.
+		rather than addressing the situation, we just punt and wait for it to clear
+		up on its own.
+	*/
+	if (m_att && !m_att->isWeaponSlotOkToFire(wslot))
+	{
+		return STATE_FAILURE;
+	}
+
+	// must adjust the state BEFORE calling fireWeapon, for FX to work correctly...
+	obj->setFiringConditionForCurrentWeapon();
+
+	if (m_att->isAttackingObject())
+	{
+    // Since it is very late in the project, and there is no call for such code...
+    // there is currently no support here for linked turrets, as regards Attacking Objects (victims)
+    // If the concept of linked turrets is further developed then God help you, and put more code right here
+    // that lookl like the //LINKED TURRETS// block, below
+
+
+		obj->fireCurrentWeapon(victim);
+
+		//Kris: October 21, 2003 - Patch 1.01
+		//Fixes cases where some units couldn't transfer their attack to a different object. One example was Colonel Burton attacking
+		//any GLA structure. When the structure was destroyed becoming a hole, Burton would stop attacking. Even though there is code
+		//to transfer attackers (AIUpdateInterface::transferAttack), it is unable to modify our current victim in our attack state
+		//machine. When we move immediately to the aim state in the same frame as the transfer (after this call in fact), the victim
+		//was still pointing to the building and not the hole we transferred to. This code fixes that.
+		if( victim != obj->getAI()->getCurrentVictim() )
+		{
+			getMachine()->setGoalObject( obj->getAI()->getCurrentVictim() );
+		}
+
+		// clear this, just in case.
+		obj->clearStatus( MAKE_OBJECT_STATUS_MASK( OBJECT_STATUS_IGNORING_STEALTH ) );
+		Real continueRange = weapon->getContinueAttackRange();
+		if (
+			continueRange > 0.0f &&
+			victim && 
+			(victim->isDestroyed() || victim->isEffectivelyDead() || (victim->isKindOf(KINDOF_MINE) && victim->testStatus(OBJECT_STATUS_MASKED)))
+		)
+		{
+			const Coord3D* originalVictimPos = m_att ? m_att->getOriginalVictimPos() : NULL;
+			if (originalVictimPos)
+			{
+				// note that it is important to use getLastCommandSource here; this allows
+				// dozers that were ordered to clear mines by the human to continue to autoacquire,
+				// but not if they were ordered by ai.
+				AIUpdateInterface* ai = obj->getAI();
+				CommandSourceType lastCmdSource = ai ? ai->getLastCommandSource() : CMD_FROM_AI;
+				PartitionFilterSamePlayer filterPlayer( victim->getControllingPlayer() );
+				PartitionFilterSameMapStatus filterMapStatus(obj);
+				PartitionFilterPossibleToAttack filterAttack(ATTACK_NEW_TARGET, obj, lastCmdSource);
+				PartitionFilter *filters[] = { &filterAttack, &filterPlayer, &filterMapStatus, NULL };
+				// note that we look around originalVictimPos, *not* the current victim's pos.
+				victim = ThePartitionManager->getClosestObject( originalVictimPos, continueRange, FROM_CENTER_2D, filters );// could be null. this is ok.
+				if (victim)
+				{
+					getMachine()->setGoalObject(victim);
+					m_att->notifyNewVictimChosen(victim);
+				}
+			}
+		}
+	}
+	else
+	{
+    
+    if( getMachineOwner()->getAI()->areTurretsLinked() ) //LINKED TURRETS
+    {// it doesn;t matter which weapon slot is locked, current or whatever
+      for ( Int slot = PRIMARY_WEAPON; slot < WEAPONSLOT_COUNT ; slot++ )
+      {// were firing with all barrels
+        Weapon *weapon = obj->getWeaponInWeaponSlot( (WeaponSlotType)slot );
+        if ( weapon )
+        {
+          if ( weapon->fireWeapon(obj, getMachineGoalPosition()) ) //fire() returns 'reloaded'
+            obj->releaseWeaponLock(LOCKED_TEMPORARILY);// unlock, 'cause we're loaded
+
+	  	    obj->notifyFiringTrackerShotFired(weapon, INVALID_ID);
+        }
+      }
+    }
+    else
+		obj->fireCurrentWeapon(getMachineGoalPosition());
+		// clear this, just in case.
+		obj->clearStatus( MAKE_OBJECT_STATUS_MASK( OBJECT_STATUS_IGNORING_STEALTH ) );
+	}
+		
+	m_att->notifyFired();
+
+	return STATE_SUCCESS;
+}
 
 //----------------------------------------------------------------------------------------------------------
 /** 
@@ -5479,7 +5601,85 @@ void AIAttackState::notifyNewVictimChosen(Object* victim)
  * the attack state.
  */
 DECLARE_PERF_TIMER(AIAttackState)
-// AIAttackState::onEnter is defined in AIAttackStateOnEnterThunk.cpp.
+// ?onEnter@AIAttackState@@UAE?AW4StateReturnType@@XZ present-unmatched
+StateReturnType AIAttackState::onEnter()
+{
+	USE_PERF_TIMER(AIAttackState)
+	//CRCDEBUG_LOG(("AIAttackState::onEnter() - start for object %d\n", getMachineOwner()->getID()));
+	Object* source = getMachineOwner();
+	AIUpdateInterface *ai = source->getAI();
+	// if we are in sleep mode, we will not attack
+	if ((ai->getMoodMatrixActionAdjustment(MM_Action_Attack) & MAA_Action_Ok) == 0)
+		return STATE_SUCCESS;
+
+	// if we've met the conditions specified by m_attackParameters, we consider ourselves "successful."
+	if (m_attackParameters && m_attackParameters->shouldExit(getMachine())) 
+		return STATE_SUCCESS;
+
+	//Kris: Jan 12, 2005
+	//Don't allow units under construction to attack! The selection/action manager system was responsible for preventing this
+	//from ever happening, but failed in two cases which I fixed. This is an extra check to mitigate cheats.
+	if( source->testStatus( OBJECT_STATUS_UNDER_CONSTRUCTION ) )
+	{
+		return STATE_FAILURE;
+	}
+
+	// if all of our weapons are out of ammo, can't attack.
+	// (this can happen for units which never auto-reload, like the Raptor)
+	if (source->isOutOfAmmo() && !source->isKindOf(KINDOF_PROJECTILE))
+		return STATE_FAILURE;
+
+	// create new state machine for attack behavior
+	//CRCDEBUG_LOG(("AIAttackState::onEnter() - constructing state machine for object %d\n", getMachineOwner()->getID()));
+	m_attackMachine = newInstance(AttackStateMachine)(source, this, "AIAttackMachine", m_follow, m_isAttackingObject, m_isForceAttacking  );
+
+#ifdef STATE_MACHINE_DEBUG
+	m_attackMachine->setDebugOutput(getMachine()->getWantsDebugOutput());
+#endif
+	// tell the attack machine who the victim of the attack is
+	if (m_isAttackingObject)
+	{
+		Object* victim = getMachineGoalObject();
+		if (victim == NULL || victim->isEffectivelyDead())	
+		{
+			ai->notifyVictimIsDead();
+			return STATE_FAILURE;	// we have nothing to attack!
+		}
+		m_victimTeam = victim->getTeam();
+		m_attackMachine->setGoalObject( victim );
+		m_originalVictimPos = *victim->getPosition();
+	}
+	else
+	{
+		m_attackMachine->setGoalPosition(getMachineGoalPosition());		
+		m_originalVictimPos = *getMachineGoalPosition();
+	}
+
+	// Something can happen to make none of our weapons work.  Return failure, or we will start shooting
+	// our Primary (default pick) regardless of legality.
+	Bool weaponPicked = chooseWeapon();
+	if( !weaponPicked )
+		return STATE_FAILURE;
+
+	Weapon* curWeapon = source->getCurrentWeapon();
+	if (curWeapon)
+	{
+		curWeapon->setMaxShotCount(NO_MAX_SHOTS_LIMIT);
+		// icky special case for ignoring stealth units we might be targeting, that are currently stealthed. (srj)
+		if (curWeapon->getContinueAttackRange() > 0.0f)
+			source->setStatus( MAKE_OBJECT_STATUS_MASK( OBJECT_STATUS_IGNORING_STEALTH ) );
+	}
+
+	m_lockedWeaponOnEnter = source->isCurWeaponLocked() ? curWeapon : NULL;
+
+	StateReturnType retType = m_attackMachine->initDefaultState();
+	if( retType == STATE_CONTINUE )
+	{
+		source->setStatus( MAKE_OBJECT_STATUS_MASK( OBJECT_STATUS_IS_ATTACKING ) );
+		source->setModelConditionState( MODELCONDITION_ATTACKING );
+	}
+	return retType;
+}
 
 //----------------------------------------------------------------------------------------------------------
 /**

@@ -210,7 +210,37 @@ bool Debug::SkipNext(void)
   return e->status==Skip;
 }
 
-// Debug::AssertBegin is defined in DebugAssertBeginThunk.cpp.
+// ?AssertBegin@Debug@@SAAAV1@PBDH0@Z present-unmatched
+Debug& Debug::AssertBegin(const char *file, int line, const char *expr)
+{
+  // avoid infinite recursion...
+  ++Instance.disableAssertsEtc;
+
+  // anything to flush first?
+  if (Instance.curType!=DebugIOInterface::StringType::MAX)
+    Instance.FlushOutput();
+
+  // set new output
+  __ASSERT(Instance.curFrameEntry==NULL);
+  Instance.curFrameEntry=Instance.GetFrameEntry(curStackFrame,FrameTypeAssert,file,line);
+  if (Instance.curFrameEntry->status==NoSkip)
+  {
+    Instance.StartOutput(DebugIOInterface::StringType::Assert,"%s(%i)",
+                  Instance.curFrameEntry->fileOrGroup,
+                  Instance.curFrameEntry->line);
+    ++Instance.curFrameEntry->hits;
+
+    // if there is a \code\ section in the filename truncate
+    // everything before that (including \code\)
+    const char *p=strstr(file,"\\code\\");
+    p=p?p+6:file;
+
+    Instance << "\n" << RepeatChar('=',80) << "\nAssertion failed in " << p << ", line " << line 
+             << ",\nexpression " << expr;
+  }
+
+  return Instance;
+}
 
 // ?AssertDone@Debug@@QAE_NXZ present-unmatched
 bool Debug::AssertDone(void)

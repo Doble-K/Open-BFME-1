@@ -2343,7 +2343,125 @@ Real TerrainLogic::getWaterHeight( const WaterHandle *water )
 /** Set the water height.  If the water rises, then any objects that now find themselves
 	* underwater will be damaged by the amount provided in the parameter 'damageAmount' */
 // ------------------------------------------------------------------------------------------------
-// TerrainLogic::setWaterHeight is defined in TerrainLogicSetWaterHeightThunk.cpp.
+// ?setWaterHeight@TerrainLogic@@UAEXPBVWaterHandle@@MM_N@Z present-unmatched
+void TerrainLogic::setWaterHeight( const WaterHandle *water, Real height, Real damageAmount,
+																	 Bool forcePathfindUpdate )
+{
+
+	// sanity
+	if( water == NULL )
+		return;
+
+	//
+	// if this is a handle to gridded water simple change the transform to raise/lower the whole
+	// water table.  Note: The other meaning this *could* have if we want it to is to leave
+	// the water table transform where it is and actually change the height of the water at
+	// every grid point
+	//
+	Real previousHeight = 0.0f;
+	if( water == &m_gridWaterHandle )
+	{
+
+		// get transform information
+		Matrix3D transform;
+		TheTerrainVisual->getWaterTransform( water, &transform );
+
+		// save the old height
+		previousHeight = transform.Get_Z_Translation();
+
+		// set the new height
+		transform.Set_Z_Translation( height );
+		TheTerrainVisual->setWaterTransform( &transform );
+
+	}  // end if
+	else
+	{
+
+		// save the previous height
+		previousHeight = getWaterHeight( water );
+
+		// set the new height at all the points in the polygon trigger
+		const ICoord3D *p;
+		ICoord3D newPoint;
+		Int numPoints = water->m_polygon->getNumPoints();
+		for( Int i = 0; i < numPoints; ++i )
+		{
+
+			p = water->m_polygon->getPoint( i );
+			newPoint.x = p->x;
+			newPoint.y = p->y;
+			newPoint.z = height;
+			water->m_polygon->setPoint( newPoint, i );
+
+		}  // end for
+		height = getWaterHeight(water);
+
+	}  // end else
+
+	// find the bounding rectangle of this water area
+	Region3D affectedRegion;
+	affectedRegion.zero();
+	findAxisAlignedBoundingRect( water, &affectedRegion );
+
+	// changes in the water level force us to recalculate the pathfinding map
+	if( forcePathfindUpdate || previousHeight != height )
+	{
+
+		// do the pathfind remapping
+		TheAI->pathfinder()->forceMapRecalculation(); 
+
+	}  // end if
+
+	//
+	// if the water height has risen, we need apply water damage to things that are now
+	// under the water
+	//
+	if( damageAmount > 0.0f && height > previousHeight )
+	{
+
+		// find the center of the water "area" given the bounding region
+		Coord3D center;
+		center.x = affectedRegion.lo.x + affectedRegion.width() / 2.0f;
+		center.y = affectedRegion.lo.y + affectedRegion.height() / 2.0f;
+		center.z = 0.0f;  // irrelavant
+
+		// the max radius to scan around us is the diagonal of the bounding region
+		Real maxDist = sqrt( affectedRegion.width() * affectedRegion.width() + 
+												 affectedRegion.height() * affectedRegion.height() );
+
+		// scan the objects in the area of the water affected
+		ObjectIterator *iter = ThePartitionManager->iterateObjectsInRange( &center,
+																																			 maxDist,
+																																			 FROM_CENTER_2D, 
+																																			 NULL );
+		MemoryPoolObjectHolder hold( iter );
+		Object *obj;
+		const Coord3D *objPos;
+		for( obj = iter->first(); obj; obj = iter->next() )
+		{
+
+			// get other object position
+			objPos = obj->getPosition();
+
+			// if this object is underwater, do some damage
+			if( isUnderwater( objPos->x, objPos->y ) )
+			{
+
+				// do a lot of water damage
+				DamageInfo damageInfo;
+				damageInfo.in.m_damageType = DAMAGE_WATER;
+				damageInfo.in.m_deathType = DEATH_NORMAL;
+				damageInfo.in.m_sourceID = INVALID_ID;
+				damageInfo.in.m_amount = damageAmount;
+				obj->attemptDamage( &damageInfo );
+
+			}  // end if
+
+		}  // end for obj
+
+	}  // end if, water has risen
+
+}  // end setWaterHeight
 
 // ------------------------------------------------------------------------------------------------
 /** Change the height of a water table over time */
@@ -2972,3 +3090,4 @@ void TerrainLogic::loadPostProcess( void )
 	}
 
 }  // end loadPostProcess
+

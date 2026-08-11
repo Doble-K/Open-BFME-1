@@ -2057,7 +2057,69 @@ void DozerAIUpdate::privateResumeConstruction( Object *obj, CommandSourceType cm
 //-------------------------------------------------------------------------------------------------
 /** Issue and order to the dozer */
 //-------------------------------------------------------------------------------------------------
-// DozerAIUpdate::newTask is defined in DozerAIUpdateNewTaskThunk.cpp.
+// ?newTask@DozerAIUpdate@@UAEXW4DozerTask@@PAVObject@@@Z present-unmatched
+void DozerAIUpdate::newTask( DozerTask task, Object *target )
+{
+
+	// sanity
+	DEBUG_ASSERTCRASH( task >= 0 && task < DOZER_NUM_TASKS, ("Illegal dozer task '%d'\n", task) );
+
+	// sanity
+	if( target == NULL )
+		return;
+
+	//
+	// special check for the build task, we should never be given more than one of them ...
+	// for the other tasks we just forget what we were doing and the new target takes
+	// precedence for the task
+	//
+	if( task == DOZER_TASK_BUILD || task == DOZER_TASK_REPAIR )
+	{
+
+		// handle getting two tasks
+		if( isTaskPending( task ) == TRUE )
+			cancelTask( task );
+
+		// get our object
+		Object *me = getObject();
+
+		Coord3D position;
+		target = findGoodBuildOrRepairPositionAndTarget(me, target, position);
+		if (target == NULL)
+			return;	// could happen for some bridges
+
+		//
+		// for building, we say that even "thinking" about building or rebuilding an object
+		// sets us as the current builder of that object.  this allows any dozers that are 
+		// ordered later to resume construction on something to see that somebody is already taking
+		// care of it and then they won't be even try to resume a build since we don't allow
+		// multiple dozers/workers to double up on construction efforts
+		//
+		if( task == DOZER_TASK_BUILD )
+			target->setBuilder( me );
+
+		m_dockPoint[ task ][ DOZER_DOCK_POINT_START ].valid			= TRUE;
+		m_dockPoint[ task ][ DOZER_DOCK_POINT_START ].location	= position;
+		m_dockPoint[ task ][ DOZER_DOCK_POINT_ACTION ].valid		= TRUE;
+		m_dockPoint[ task ][ DOZER_DOCK_POINT_ACTION ].location = position;
+		Coord3D offset;
+		offset.set(position.x-target->getPosition()->x, position.y-target->getPosition()->y, 0);
+		offset.normalize();
+		offset.scale(5*PATHFIND_CELL_SIZE_F);
+		position.add(&offset); // move away from the dock point at the end of build.
+		m_dockPoint[ task ][ DOZER_DOCK_POINT_END ].valid				= TRUE;
+		m_dockPoint[ task ][ DOZER_DOCK_POINT_END ].location		= position;
+
+	}  // end if
+
+	// set the new task target and the frame in which we got this order
+	m_task[ task ].m_targetObjectID = target->getID();
+	m_task[ task ].m_taskOrderFrame = TheGameLogic->getFrame();
+
+	// reset the dozer behavior so that it can re-evluate which task to continue working on
+	m_dozerMachine->resetToDefaultState();
+
+}  // end newTask
 
 //-------------------------------------------------------------------------------------------------
 /** Cancel a task and reset the dozer behavior state machine so that it can 

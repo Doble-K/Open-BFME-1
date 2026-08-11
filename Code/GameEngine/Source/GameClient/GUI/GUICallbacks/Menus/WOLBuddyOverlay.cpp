@@ -606,7 +606,44 @@ void HandleBuddyResponses( void )
 	}
 }
 
-// showNotificationBox is defined in ShowNotificationBoxThunk.cpp.
+void showNotificationBox( AsciiString nick, UnicodeString message)
+{
+//	if(!GameSpyIsOverlayOpen(GSOVERLAY_BUDDY))
+//		return;
+	if( !noticeLayout )
+		noticeLayout = TheWindowManager->winCreateLayout( "Menus/PopupBuddyListNotification.wnd" );
+	noticeLayout->hide( FALSE );
+	if (buttonNotificationID == NAMEKEY_INVALID)
+	{
+		buttonNotificationID = TheNameKeyGenerator->nameToKey("PopupBuddyListNotification.wnd:ButtonNotification");
+	}
+	GameWindow *win = TheWindowManager->winGetWindowFromId(NULL,buttonNotificationID);
+	if(!win)
+	{
+		deleteNotificationBox();
+		return;
+	}
+
+	if (lastNotificationWasStatus && numOnlineInNotification > 1)
+	{
+		message = TheGameText->fetch("Buddy:MultipleOnlineNotification");
+	}
+
+	if (nick.isNotEmpty())
+		message.format(message, nick.str());
+	GadgetButtonSetText(win, message);
+	//GadgetStaticTextSetText(win, message);
+	noticeExpires = timeGetTime() + NOTIFICATION_EXPIRES;
+	noticeLayout->bringForward();
+
+	AudioEventRTS buttonClick("GUICommunicatorIncoming");
+
+	if( TheAudio )
+	{
+		TheAudio->addAudioEvent( &buttonClick );
+	}  // end if
+
+}
 
 void deleteNotificationBox( void )
 {

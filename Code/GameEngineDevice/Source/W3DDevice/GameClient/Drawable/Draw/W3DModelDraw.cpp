@@ -1461,7 +1461,297 @@ static Bool doesStateExist(const ModelConditionVector& v, const ModelConditionFl
 }
 
 //-------------------------------------------------------------------------------------------------
-// W3DModelDrawModuleData::parseConditionState is defined in W3DModelDrawParseConditionStateThunk.cpp.
+// ?parseConditionState@W3DModelDrawModuleData@@ present-unmatched
+void W3DModelDrawModuleData::parseConditionState(INI* ini, void *instance, void * /*store*/, const void* userData)
+{
+	static const FieldParse myFieldParse[] = 
+	{
+		{ "Model",	parseAsciiStringLC, NULL, offsetof(ModelConditionInfo, m_modelName) },
+		{ "Turret",	parseBoneNameKey, NULL, offsetof(ModelConditionInfo, m_turrets[0].m_turretAngleNameKey) },
+		{ "TurretArtAngle", INI::parseAngleReal, NULL, offsetof(ModelConditionInfo, m_turrets[0].m_turretArtAngle) },
+		{ "TurretPitch",	parseBoneNameKey, NULL, offsetof(ModelConditionInfo, m_turrets[0].m_turretPitchNameKey) },
+		{ "TurretArtPitch", INI::parseAngleReal, NULL, offsetof(ModelConditionInfo, m_turrets[0].m_turretArtPitch) },
+		{ "AltTurret",	parseBoneNameKey, NULL, offsetof(ModelConditionInfo, m_turrets[1].m_turretAngleNameKey) },
+		{ "AltTurretArtAngle", INI::parseAngleReal, NULL, offsetof(ModelConditionInfo, m_turrets[1].m_turretArtAngle) },
+		{ "AltTurretPitch",	parseBoneNameKey, NULL, offsetof(ModelConditionInfo, m_turrets[1].m_turretPitchNameKey) },
+		{ "AltTurretArtPitch", INI::parseAngleReal, NULL, offsetof(ModelConditionInfo, m_turrets[1].m_turretArtPitch) },
+		{ "ShowSubObject", parseShowHideSubObject, (void*)0, offsetof(ModelConditionInfo, m_hideShowVec) },
+		{ "HideSubObject", parseShowHideSubObject, (void*)1, offsetof(ModelConditionInfo, m_hideShowVec) },
+		{ "WeaponFireFXBone", parseWeaponBoneName, NULL, offsetof(ModelConditionInfo, m_weaponFireFXBoneName[0]) },
+		{ "WeaponRecoilBone", parseWeaponBoneName, NULL, offsetof(ModelConditionInfo, m_weaponRecoilBoneName[0]) },
+		{ "WeaponMuzzleFlash", parseWeaponBoneName, NULL, offsetof(ModelConditionInfo, m_weaponMuzzleFlashName[0]) },
+		{ "WeaponLaunchBone", parseWeaponBoneName, NULL, offsetof(ModelConditionInfo, m_weaponProjectileLaunchBoneName[0]) },
+		{ "WeaponHideShowBone", parseWeaponBoneName, NULL, offsetof(ModelConditionInfo, m_weaponProjectileHideShowName[0]) },
+		{ "Animation", parseAnimation, (void*)ANIM_NORMAL, offsetof(ModelConditionInfo, m_animations) },
+		{ "IdleAnimation", parseAnimation, (void*)ANIM_IDLE, offsetof(ModelConditionInfo, m_animations) },
+		{ "AnimationMode", INI::parseIndexList, TheAnimModeNames, offsetof(ModelConditionInfo, m_mode) },
+		{ "TransitionKey", parseLowercaseNameKey, NULL, offsetof(ModelConditionInfo, m_transitionKey) },
+		{ "WaitForStateToFinishIfPossible", parseLowercaseNameKey, NULL, offsetof(ModelConditionInfo, m_allowToFinishKey) },
+		{ "Flags", INI::parseBitString32, ACBitsNames, offsetof(ModelConditionInfo, m_flags) },
+		{ "ParticleSysBone", parseParticleSysBone, NULL, 0 },
+		{ "AnimationSpeedFactorRange", parseRealRange, NULL, 0 },
+		{ 0, 0, 0, 0 }
+	};
+
+	ModelConditionInfo info;
+	W3DModelDrawModuleData* self = (W3DModelDrawModuleData*)instance;
+	ParseCondStateType cst = (ParseCondStateType)(UnsignedInt)userData;
+	switch (cst)
+	{
+		case PARSE_DEFAULT:
+		{
+			if (self->m_defaultState >= 0)
+			{
+				DEBUG_CRASH(("*** ASSET ERROR: you may have only one default state!\n"));
+				throw INI_INVALID_DATA;
+			}
+			else if (ini->getNextTokenOrNull())
+			{
+				DEBUG_CRASH(("*** ASSET ERROR: unknown keyword\n"));
+				throw INI_INVALID_DATA;
+			}
+			else
+			{
+				if (!self->m_conditionStates.empty())
+				{
+					DEBUG_CRASH(("*** ASSET ERROR: when using DefaultConditionState, it must be the first state listed (%s)\n",TheThingTemplateBeingParsedName.str()));
+					throw INI_INVALID_DATA;
+				}
+
+				// note, this is size(), not size()-1, since we haven't actually modified the list yet
+				self->m_defaultState = self->m_conditionStates.size();
+				//DEBUG_LOG(("set default state to %d\n",self->m_defaultState));
+
+				// add an empty conditionstateflag set
+				ModelConditionFlags blankConditions;
+				info.m_conditionsYesVec.clear();
+				info.m_conditionsYesVec.push_back(blankConditions);
+
+	#if defined(_DEBUG) || defined(_INTERNAL)
+				info.m_description.clear();
+				info.m_description.concat(TheThingTemplateBeingParsedName);
+				info.m_description.concat(" DEFAULT");
+	#endif
+			}
+		}
+		break;
+
+		case PARSE_TRANSITION:
+		{
+		  AsciiString firstNm = ini->getNextToken(); firstNm.toLower();
+		  AsciiString secondNm = ini->getNextToken(); secondNm.toLower();
+			NameKeyType firstKey = NAMEKEY(firstNm);
+			NameKeyType secondKey = NAMEKEY(secondNm);
+
+			if (firstKey == secondKey)
+			{
+				DEBUG_CRASH(("*** ASSET ERROR: You may not declare a transition between two identical states\n"));
+				throw INI_INVALID_DATA;
+			}
+
+			if (self->m_defaultState >= 0)
+			{
+				info = self->m_conditionStates.at(self->m_defaultState);
+				info.m_iniReadFlags |= (1<<ANIMS_COPIED_FROM_DEFAULT_STATE);
+				info.m_transitionKey = NAMEKEY_INVALID;
+				info.m_allowToFinishKey = NAMEKEY_INVALID;
+			}
+
+			info.m_transitionSig = buildTransitionSig(firstKey, secondKey);
+	#if defined(_DEBUG) || defined(_INTERNAL)
+			info.m_description.clear();
+			info.m_description.concat(TheThingTemplateBeingParsedName);
+			info.m_description.concat(" TRANSITION: ");
+			info.m_description.concat(firstNm);
+			info.m_description.concat(" ");
+			info.m_description.concat(secondNm);
+	#endif
+
+		}
+		break;
+
+		case PARSE_ALIAS:
+		{
+			if (self->m_conditionStates.empty())
+			{
+				DEBUG_CRASH(("*** ASSET ERROR: AliasConditionState must refer to the previous state!\n"));
+				throw INI_INVALID_DATA;
+			}
+			
+			ModelConditionInfo& prevState = self->m_conditionStates.at(self->m_conditionStates.size()-1);
+			
+			ModelConditionFlags conditionsYes;
+
+	#if defined(_DEBUG) || defined(_INTERNAL)
+			AsciiString description;
+			conditionsYes.parse(ini, &description);
+
+			prevState.m_description.concat("\nAKA: ");
+			prevState.m_description.concat(description);
+	#else
+			conditionsYes.parse(ini, NULL);
+	#endif
+			
+			if (conditionsYes.anyIntersectionWith(self->m_ignoreConditionStates))
+			{
+				DEBUG_CRASH(("You should not specify bits in a state once they are used in IgnoreConditionStates (%s)\n", TheThingTemplateBeingParsedName.str()));
+				throw INI_INVALID_DATA;
+			}
+
+			if (doesStateExist(self->m_conditionStates, conditionsYes))
+			{
+				DEBUG_CRASH(("*** ASSET ERROR: duplicate condition states are not currently allowed"));
+				throw INI_INVALID_DATA;
+			}
+
+
+			if (!conditionsYes.any() && self->m_defaultState >= 0)
+			{
+				DEBUG_CRASH(("*** ASSET ERROR: you may not specify both a Default state and a Conditions=None state"));
+				throw INI_INVALID_DATA;
+			}
+
+			prevState.m_conditionsYesVec.push_back(conditionsYes);
+			
+			// yes, return, NOT break!
+			return;
+		}
+
+		case PARSE_NORMAL:
+		{
+			if (self->m_defaultState >= 0 && cst != PARSE_ALIAS)
+			{
+				info = self->m_conditionStates.at(self->m_defaultState);
+				info.m_iniReadFlags |= (1<<ANIMS_COPIED_FROM_DEFAULT_STATE);
+				info.m_conditionsYesVec.clear();
+			}
+	// no, we do not currently require a default state, cuz it would break the exiting INI
+	// files too badly. maybe someday.
+	//	else
+	//	{
+	//		DEBUG_CRASH(("*** ASSET ERROR: you must specify a default state\n"));
+	//		throw INI_INVALID_DATA;
+	//	}
+			
+			ModelConditionFlags conditionsYes;
+	#if defined(_DEBUG) || defined(_INTERNAL)
+			AsciiString description;
+			conditionsYes.parse(ini, &description);
+
+			info.m_description.clear();
+			info.m_description.concat(TheThingTemplateBeingParsedName);
+			info.m_description.concat("\n         ");
+			info.m_description.concat(description);
+	#else
+			conditionsYes.parse(ini, NULL);
+	#endif
+
+			if (conditionsYes.anyIntersectionWith(self->m_ignoreConditionStates))
+			{
+				DEBUG_CRASH(("You should not specify bits in a state once they are used in IgnoreConditionStates (%s)\n", TheThingTemplateBeingParsedName.str()));
+				throw INI_INVALID_DATA;
+			}
+
+			if (self->m_defaultState < 0 && self->m_conditionStates.empty() && conditionsYes.any())
+			{
+				// it doesn't actually NEED to be first, but it does need to be present, and this is the simplest way to enforce...
+				DEBUG_CRASH(("*** ASSET ERROR: when not using DefaultConditionState, the first ConditionState must be for NONE (%s)\n",TheThingTemplateBeingParsedName.str()));
+				throw INI_INVALID_DATA;
+			}
+
+			if (!conditionsYes.any() && self->m_defaultState >= 0)
+			{
+				DEBUG_CRASH(("*** ASSET ERROR: you may not specify both a Default state and a Conditions=None state"));
+				throw INI_INVALID_DATA;
+			}
+
+			if (doesStateExist(self->m_conditionStates, conditionsYes))
+			{
+				DEBUG_CRASH(("*** ASSET ERROR: duplicate condition states are not currently allowed (%s)",info.m_description.str()));
+				throw INI_INVALID_DATA;
+			}
+			
+			DEBUG_ASSERTCRASH(info.m_conditionsYesVec.size() == 0, ("*** ASSET ERROR: nonempty m_conditionsYesVec.size(), see srj"));
+			info.m_conditionsYesVec.clear();
+			info.m_conditionsYesVec.push_back(conditionsYes);
+		}
+		break;
+	}
+
+	ini->initFromINI(&info, myFieldParse);
+
+	if (info.m_modelName.isEmpty())
+	{
+		DEBUG_CRASH(("*** ASSET ERROR: you must specify a model name"));
+		throw INI_INVALID_DATA;
+	}
+	else if (info.m_modelName.isNone())
+	{
+		info.m_modelName.clear();
+	}
+
+	if ((info.m_iniReadFlags & (1<<GOT_IDLE_ANIMS)) && (info.m_iniReadFlags & (1<<GOT_NONIDLE_ANIMS)))
+	{
+		DEBUG_CRASH(("*** ASSET ERROR: you should not specify both Animations and IdleAnimations for the same state"));
+		throw INI_INVALID_DATA;
+	}
+
+	if ((info.m_iniReadFlags & (1<<GOT_IDLE_ANIMS)) && (info.m_mode != RenderObjClass::ANIM_MODE_ONCE && info.m_mode != RenderObjClass::ANIM_MODE_ONCE_BACKWARDS))
+	{
+		DEBUG_CRASH(("*** ASSET ERROR: Idle Anims should always use ONCE or ONCE_BACKWARDS (%s)\n",TheThingTemplateBeingParsedName.str()));
+		throw INI_INVALID_DATA;
+	}
+
+	info.m_validStuff &= ~ModelConditionInfo::HAS_PROJECTILE_BONES;
+	for (int wslot = 0; wslot < WEAPONSLOT_COUNT; ++wslot)
+	{
+		if (info.m_weaponProjectileLaunchBoneName[wslot].isNotEmpty())
+		{
+			info.m_validStuff |= ModelConditionInfo::HAS_PROJECTILE_BONES;
+			break;
+		}
+	}
+
+	if (cst == PARSE_TRANSITION)
+	{
+		if (info.m_iniReadFlags & (1<<GOT_IDLE_ANIMS))
+		{
+			DEBUG_CRASH(("*** ASSET ERROR: Transition States should not specify Idle anims"));
+			throw INI_INVALID_DATA;
+		}
+
+		if (info.m_mode != RenderObjClass::ANIM_MODE_ONCE && info.m_mode != RenderObjClass::ANIM_MODE_ONCE_BACKWARDS)
+		{
+			DEBUG_CRASH(("*** ASSET ERROR: Transition States should always use ONCE or ONCE_BACKWARDS"));
+			throw INI_INVALID_DATA;
+		}
+
+		if (info.m_transitionKey != NAMEKEY_INVALID || info.m_allowToFinishKey != NAMEKEY_INVALID)
+		{
+			DEBUG_CRASH(("*** ASSET ERROR: Transition States must not have transition keys or m_allowToFinishKey"));
+			throw INI_INVALID_DATA;
+		}
+
+		self->m_transitionMap[info.m_transitionSig] = info;
+	}
+	else
+	{
+		self->m_conditionStates.push_back(info);
+	}
+}
+
+//-------------------------------------------------------------------------------------------------
+static Int countOnBits(UnsignedInt val)
+{
+	Int count = 0;
+	for (Int i = 0; i < 32; ++i)
+	{
+		if (val & 1) 
+			++count;
+		val >>= 1;
+	}
+	return count;
+}
 
 //-------------------------------------------------------------------------------------------------
 // ?findBestInfo@W3DModelDrawModuleData@@QBEPBUModelConditionInfo@@ABV?$BitFlags@$0HF@@@@Z present-unmatched
