@@ -29,6 +29,10 @@ EMIT_RE = re.compile(
     r"\b_{1,2}emit\s+(?:0x([0-9a-fA-F]{1,2})|([0-9a-fA-F]{1,3})h)\b",
     re.IGNORECASE,
 )
+ASM_BLOCK_RE = re.compile(r"^\s*__asm\b")
+# Prefilter for sources worth scanning: naked bodies or emitted bytes. Plain
+# "_emit" also hits "__emit"; a false hit only costs reading one extra file.
+ASM_MARKER_GREP = r"__declspec[[:space:]]*\([[:space:]]*naked|_emit"
 
 
 def matched_at(ref):
@@ -115,17 +119,30 @@ def _signature_identity(name):
 
 @lru_cache(maxsize=None)
 def scan_naked_bodies(text):
-    """Return proven naked implementation evidence without treating a file as a unit."""
+    """Return proven asm implementation evidence without treating a file as a unit.
+
+    Triggers on __declspec(naked) bodies and on bare __asm blocks. A bare
+    __asm block is evidence only when it emits raw bytes: mnemonic-only inline
+    asm inside real C++ (the period cpuid idiom) stays C++, and 18 fleet lifts
+    proved plain functions can smuggle a full __emit spray past a naked-only
+    scan and inflate the C++ figure."""
     lines = text.splitlines()
     bodies = []
+    last_end = -1
     for index, line in enumerate(lines):
-        if not NAKED_RE.search(line) or _is_naked_declaration(lines, index):
+        if index <= last_end:
+            continue
+        naked = bool(NAKED_RE.search(line)) and not _is_naked_declaration(lines, index)
+        if not naked and not ASM_BLOCK_RE.match(line):
             continue
         _, end = block_bytes(lines, index)
         emitted = []
         for body_line in lines[index:end + 1]:
             for match in EMIT_RE.finditer(body_line):
                 emitted.append(int(match.group(1) or match.group(2), 16))
+        if not naked and not emitted:
+            continue
+        last_end = end
         declaration = []
         for declaration_line in lines[index:end + 1]:
             before_brace, brace, _ = declaration_line.partition("{")
@@ -136,6 +153,7 @@ def scan_naked_bodies(text):
             "symbol": symbol_comment(lines, index),
             "signature": " ".join(" ".join(declaration).split()),
             "emitted": bytes(emitted),
+            "naked": naked,
         })
     return tuple(bodies)
 
@@ -154,9 +172,17 @@ def naked_cpp_rows(matched, source_texts, target_reader=build.read_target_bytes)
         bodies = scan_naked_bodies(text)
         if not rows or not bodies:
             continue
-        symbols = {body["symbol"] for body in bodies if body["symbol"]}
+        # Name and signature evidence is only trusted from naked bodies: a
+        # bare __asm spray sits inside an ordinary function whose declaration
+        # matches its row by construction. Sprays interleave __emit bytes with
+        # real mnemonics at relocated call sites, so full byte equality cannot
+        # prove them either; the discriminator is emitted mass. The period
+        # _emit idiom (cpuid) is a few bytes of a body, a lift is most of it.
+        naked_bodies = [body for body in bodies if body["naked"]]
+        symbols = {body["symbol"] for body in naked_bodies if body["symbol"]}
         emitted = {body["emitted"] for body in bodies if body["emitted"]}
-        signatures = [body["signature"] for body in bodies]
+        signatures = [body["signature"] for body in naked_bodies]
+        spray_mass = sum(len(body["emitted"]) for body in bodies if not body["naked"])
         for key, (size, _) in rows:
             name, target_rva = key
             identity = _signature_identity(name)
@@ -169,7 +195,8 @@ def naked_cpp_rows(matched, source_texts, target_reader=build.read_target_bytes)
                 if target_key not in target_cache:
                     target_cache[target_key] = target_reader(*target_key)
                 proven = target_cache[target_key] in emitted
-            if proven or (len(rows) == 1 and len(bodies) == 1):
+            if proven or (len(rows) == 1 and len(naked_bodies) == 1) or \
+                    (len(rows) == 1 and spray_mass * 2 >= size):
                 naked.add(key)
     return naked
 
@@ -210,8 +237,7 @@ def naked_source_texts(matched, ref):
     }
     if ref is None:
         grep = subprocess.run(
-            ["git", "grep", "-l", "-E",
-             r"__declspec[[:space:]]*\([[:space:]]*naked", "--", "Code"],
+            ["git", "grep", "-l", "-E", ASM_MARKER_GREP, "--", "Code"],
             cwd=ROOT, capture_output=True, text=True,
         )
         if grep.returncode not in (0, 1):
@@ -232,15 +258,14 @@ def naked_source_texts(matched, ref):
         texts = _batch_git_texts("HEAD", sorted(paths - disk_paths))
         for source in sources - tracked:
             text = (ROOT / source).read_bytes().decode("utf-8", errors="replace")
-            if NAKED_RE.search(text):
+            if NAKED_RE.search(text) or EMIT_RE.search(text):
                 disk_paths.add(source)
         for source in disk_paths:
             texts[source] = (ROOT / source).read_bytes().decode("utf-8", errors="replace")
         return texts
 
     proc = subprocess.run(
-        ["git", "grep", "-l", "-E",
-         r"__declspec[[:space:]]*\([[:space:]]*naked", ref, "--", "Code"],
+        ["git", "grep", "-l", "-E", ASM_MARKER_GREP, ref, "--", "Code"],
         cwd=ROOT, capture_output=True, text=True,
     )
     if proc.returncode not in (0, 1):

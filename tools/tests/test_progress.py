@@ -81,6 +81,48 @@ __declspec(naked) void Widget::convert()
     print("PASS naked .cpp -> clean C++ shifts category but not exact coverage")
 
 
+def test_bare_asm_emit_spray_is_asm_but_partial_emit_is_cpp():
+    """A plain function whose __asm block emits the row's full retail bytes is
+    a lift, not C++ (18 fleet commits smuggled these past the naked-only scan);
+    a real body using the period _emit idiom for a few opcodes stays C++."""
+    spray = row("?showBox@@YAXXZ", 0x1000, 8, "Code/spray.cpp")
+    spray_text = """\
+void showBox()
+{
+    __asm {
+        __emit 0x8b;
+        __emit 0xc1;
+        call helper
+        __emit 0x59;
+        __emit 0xc3;
+    }
+}
+"""
+    found = progress.naked_cpp_rows(
+        spray, {"Code/spray.cpp": spray_text},
+        target_reader=lambda rva, size: bytes.fromhex("8bc1e800000000" + "59c3")[:size])
+    assert found == set(spray), found
+
+    idiom = row("?Init_CPU@@YAXXZ", 0x2000, 200, "Code/cpu.cpp")
+    idiom_text = """\
+void Init_CPU()
+{
+    int regs;
+    __asm {
+        mov eax, 1
+        _emit 0x0f
+        _emit 0xa2
+        mov regs, eax
+    }
+}
+"""
+    found = progress.naked_cpp_rows(
+        idiom, {"Code/cpu.cpp": idiom_text},
+        target_reader=lambda rva, size: b"\x0f\xa2" + bytes(size - 2))
+    assert found == set(), found
+    print("PASS bare __asm emit spray is ASM; partial _emit idiom stays C++")
+
+
 def test_mixed_file_marks_only_proven_naked_row():
     matched = {}
     matched.update(row("?raw@Widget@@QAEXXZ", 0x1000, 1, "Code/mixed.cpp"))
@@ -155,8 +197,10 @@ def test_live_naked_and_clean_rows_are_distinguished():
     texts = progress.naked_source_texts(matched, "HEAD")
     for key in naked:
         source = matched[key][1]
-        assert source in texts and progress.NAKED_RE.search(texts[source]), (
-            f"{key} classified naked but {source} carries no naked marker")
+        assert source in texts and (
+            progress.NAKED_RE.search(texts[source])
+            or progress.EMIT_RE.search(texts[source])), (
+            f"{key} classified asm but {source} carries no naked or emit marker")
     clean = {key for key, (_, src) in matched.items()
              if src.endswith(".cpp")} - set(naked)
     assert len(clean) > len(naked), (len(clean), len(naked))
@@ -200,6 +244,7 @@ def main():
     test_text_clipping()
     test_unknown_source_suffix_fails()
     test_naked_cpp_to_clean_cpp_shifts_category_only()
+    test_bare_asm_emit_spray_is_asm_but_partial_emit_is_cpp()
     test_mixed_file_marks_only_proven_naked_row()
     test_naked_body_callee_is_not_signature_evidence()
     test_naked_declaration_is_not_a_body()
