@@ -11430,7 +11430,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?WOLLoginMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004FF910,78,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?WOLLoginMenuShutdown@@YAXPAVWindowLayout@@PAX@Z,,0x004FFB10,90,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenuShutdownThunk.cpp,matched,Open-BFME5 exact clean C++ conversion of MASM shutdown callback
 ?WOLLoginMenuSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x00501B90,7078,Code/masm_dumps/_depth_WOLLoginMenuSystem_501B90.asm,matched,WOLLoginMenuSystem exact MASM (was mislabeled forgetLogin) Open-BFME4+Grok
-?WOLLoginMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x005001D0,1693,Code/masm_dumps/WOLLoginMenuUpdate_5001D0.asm,matched,Certified callback registry thunk and sealed retail SHA-256 recovery
+?WOLLoginMenuUpdate@@YAXPAVWindowLayout@@PAX@Z,,0x005001D0,1693,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp,matched,Certified callback registry thunk and sealed retail SHA-256 recovery
 ?WOLMessageWindowInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp,matched,
 ?WOLMessageWindowSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004F0470,141,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp,matched,
 ?WOLQMScoreScreenInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp,matched,
