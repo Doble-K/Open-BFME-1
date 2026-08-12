@@ -7607,3 +7607,36 @@ That is a cheaper pattern than the ICF case, where several names share one
 address. Here the addresses genuinely differ, so each needs its own file and its
 own row, but the reconstruction work is done once. Worth scanning a family for
 equal sizes and diffing two bodies before treating them as separate problems.
+
+
+## Cluster naked bodies against each other, not just against converted ones
+
+The clone screen has always compared naked rows to already-converted ones.
+Clustering naked rows against *each other* by normalised body finds work the
+clone screen cannot: 15 clusters covering 42 rows between 40 and 200 bytes,
+where solving one member solves the rest.
+
+The clusters are worth listing by kind, because they fail for different reasons:
+four crate-collide ModuleData constructors share a single address, so a rename
+would do -- except the body has the sub-object folding problem. Five
+Register_*_Prototype functions share a shape but each calls a per-type prototype
+constructor that has neither a ledger row nor a pin, so they cannot be written
+without inventing names. Two AI State constructors differ only in vtable and get
+within one instruction of matching.
+
+## The vptr sink stops at the end of the leading same-valued run
+
+AIPanicState reached one difference. Retail emits every member store and then the
+vtable store last, including a trailing byte set to 1 after a long run of zeros.
+MSVC sinks the vptr only to the end of the leading zero run, so the vptr lands
+before that trailing byte.
+
+That is a sharper statement of the sinking rule than the one recorded earlier.
+The sink does not go "past the member stores" -- it goes to the end of the first
+group of stores sharing one value, and a store with a different value ends the
+run. Where retail's vptr sits after such a store, the source needs that store to
+belong to the same group or to come from member construction rather than the
+constructor body, and neither is expressible when the value genuinely differs.
+
+Recording it as a distinct residual: same-value-run-ends-the-sink, separate from
+the register-carrier and addressing-mode residuals already on file.
