@@ -3,27 +3,24 @@
 
 enum TimeOfDay { TIME_OF_DAY_INVALID = 0 };
 
+class ControlBarSchemeManager
+{
+public:
+	void bfme_preloadAssets_impl();
+};
+
 class ControlBar
 {
 public:
-    void preloadAssets(TimeOfDay timeOfDay);
+    void bfme_preloadAssets_wrapper();
+
+private:
+	char m_pad000[0x30];
+	ControlBarSchemeManager *m_controlBarSchemeManager;
 };
 
-__declspec(naked) void ControlBar::preloadAssets(TimeOfDay)
+void ControlBar::bfme_preloadAssets_wrapper()
 {
-    __asm {
-        _emit 08Bh
-        _emit 049h
-        _emit 030h
-        _emit 085h
-        _emit 0C9h
-        _emit 074h
-        _emit 005h
-        _emit 0E9h
-        _emit 00Ah
-        _emit 078h
-        _emit 0DBh
-        _emit 0FFh
-        _emit 0C3h
-    }
+	if (m_controlBarSchemeManager)
+		m_controlBarSchemeManager->bfme_preloadAssets_impl();
 }
