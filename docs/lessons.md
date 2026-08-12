@@ -7252,3 +7252,28 @@ vtable pointer. The DIR32 patcher masks the site with the original bytes, so
 the body still byte-verifies - this is precisely the latent error the check
 exists to catch, and it wants a real fix in the constructor, not a whitelist
 line.
+
+
+## Screen the module-ctor family by where the last vptr store sits
+
+The family splits cleanly on one cheap test: decode the body and compare the
+address of the last vtable store against the address of the last member store.
+
+Bodies where the vtable stores come last convert with plain members on the first
+build -- the vptr stores simply sink past the whole run of member stores, which
+is what MSVC does by default. DemoTrapUpdate and RadarUpdate both landed that
+way, the second straight from the first as a template.
+
+Bodies with a member store after the vtables need the sub-object treatment, and
+if that trailing member holds the same zero as one before the vtables, they hit
+the register residual recorded last tick. Of fifteen family members in the 60 to
+200 byte range, only one was vtable-last, so the residual shape is the common
+one -- which is worth knowing before picking a candidate.
+
+Two details that generalise. Retail's member stores are grouped by value, not by
+offset: RadarUpdate writes 0x14, 0x25, 0x20, 0x24 as one zero group and then
+0x18, 0x1c as the -1 group, so the source order within a group has to be read off
+the body rather than assumed from the declaration order. And the base call is
+ObjectModule's constructor, pinned at 0x000170E4 under about ten ICF-folded
+aliases; naming the class ObjectModule emits the right symbol without inventing
+anything.

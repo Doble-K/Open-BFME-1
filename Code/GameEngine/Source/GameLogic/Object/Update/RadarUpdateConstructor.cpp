@@ -1,105 +1,80 @@
 // cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
 
-class Thing
-{
-};
+// Module-constructor family shape: an out-of-line ObjectModule base call
+// (pinned at 0x000170E4), then UpdateModule's constructor inlined -- its two
+// vtables at 0x0c and 0x10 then its three members -- then this class's own
+// three vtables.
+//
+// Here every member store precedes the vtable stores, so the members are plain
+// and the vptr stores sink past the whole run. MSVC groups by value: the zeros
+// at 0x14, 0x25, 0x20 and 0x24 first, then the two -1s at 0x18 and 0x1c. The
+// derived stores are written in retail's order, which is not offset order.
 
-class ModuleData
-{
-};
+class Thing;
+class ModuleData;
 
-class RadarUpdate
+class ObjectModule
 {
 public:
-	RadarUpdate( Thing *, const ModuleData * );
+	ObjectModule(Thing *, const ModuleData *);
+
+	virtual void objectModuleAnchor();		///< vptr at 0x00
+
+	void *m_04;
+	void *m_08;								///< ends at 0x0c
 };
 
-__declspec(naked) RadarUpdate::RadarUpdate( Thing *, const ModuleData * )
+class BehaviorInterface
 {
-	__asm {
-		_emit 08Bh
-		_emit 044h
-		_emit 024h
-		_emit 008h
-		_emit 056h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 050h
-		_emit 051h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 0F0h
-		_emit 06Eh
-		_emit 0D7h
-		_emit 0FFh
-		_emit 0C7h
-		_emit 046h
-		_emit 00Ch
-		_emit 0D0h
-		_emit 0C9h
-		_emit 009h
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 010h
-		_emit 0A0h
-		_emit 0CBh
-		_emit 009h
-		_emit 001h
-		_emit 033h
-		_emit 0C0h
-		_emit 083h
-		_emit 0C9h
-		_emit 0FFh
-		_emit 089h
-		_emit 046h
-		_emit 014h
-		_emit 088h
-		_emit 046h
-		_emit 025h
-		_emit 089h
-		_emit 046h
-		_emit 020h
-		_emit 088h
-		_emit 046h
-		_emit 024h
-		_emit 089h
-		_emit 04Eh
-		_emit 018h
-		_emit 089h
-		_emit 04Eh
-		_emit 01Ch
-		_emit 0C7h
-		_emit 006h
-		_emit 04Ch
-		_emit 015h
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 00Ch
-		_emit 088h
-		_emit 014h
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 010h
-		_emit 07Ch
-		_emit 014h
-		_emit 00Ch
-		_emit 001h
-		_emit 08Bh
-		_emit 0C6h
-		_emit 05Eh
-		_emit 0C2h
-		_emit 008h
-		_emit 000h
-	}
-}
+public:
+	virtual void behaviorAnchor() = 0;		///< vptr at 0x0c
+};
 
+class UpdateInterface
+{
+public:
+	virtual void updateAnchor() = 0;		///< vptr at 0x10
+};
+
+class UpdateModule : public ObjectModule,
+	public BehaviorInterface, public UpdateInterface
+{
+public:
+	UpdateModule(Thing *thing, const ModuleData *moduleData)
+		: ObjectModule(thing, moduleData)
+	{
+		m_nextCallFrameAndPhase = 0;
+		m_indexInLogic = -1;
+		m_updateState = -1;
+	}
+
+	virtual void behaviorAnchor();
+	virtual void updateAnchor();
+
+	int m_nextCallFrameAndPhase;			///< 0x14
+	int m_indexInLogic;						///< 0x18
+	int m_updateState;						///< 0x1c
+};
+
+class RadarUpdate : public UpdateModule
+{
+public:
+	RadarUpdate(Thing *, const ModuleData *);
+
+	virtual void objectModuleAnchor();
+	virtual void behaviorAnchor();
+	virtual void updateAnchor();
+
+	int m_value20;							///< 0x20
+	bool m_flag24;							///< 0x24
+	bool m_flag25;							///< 0x25
+};
+
+// ??0RadarUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+RadarUpdate::RadarUpdate( Thing *thing, const ModuleData *moduleData )
+	: UpdateModule( thing, moduleData )
+{
+	m_flag25 = false;
+	m_value20 = 0;
+	m_flag24 = false;
+}
