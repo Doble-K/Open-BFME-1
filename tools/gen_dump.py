@@ -194,9 +194,15 @@ def asm_wave(args):
     claimed_starts = set(starts)
 
     picked, rejected_end, rejected_tiny = [], [], 0
-    with GHIDRA.open(newline="") as handle:
-        rows = sorted(((int(r["rva"], 16), int(r["size"]), r["name"])
-                       for r in csv.DictReader(handle)), key=lambda c: c[:2])
+    with (Path(args.source_csv) if args.source_csv else GHIDRA).open(newline="") as handle:
+        rows = sorted(((int(r["rva"], 16), int(r["size"]),
+                        r.get("name") or f"bounds-{r.get('confidence', '?')}")
+                       for r in csv.DictReader(handle)
+                       if args.tier in (None, r.get("confidence"))),
+                      key=lambda c: c[:2])
+    if not rows:
+        raise SystemExit(f"{args.source_csv}: no rows"
+                         + (f" at confidence={args.tier}" if args.tier else ""))
     prev_end = 0
     for rva, size, ghidra_name in rows:
         if not args.min_size <= size <= args.max_size:
@@ -249,8 +255,13 @@ def asm_wave(args):
         path.write_text(ASM_FILE.format(procs=procs), newline="\n")
         files.append(rel)
         for rva, size, ghidra_name, _ in batch:
+            # Provenance is in the notes because retraction needs it: a
+            # derived boundary is retracted as a batch when its tier turns out
+            # to be worse than measured, an inventory boundary never is.
+            origin = ("bounds=%s" % args.tier if args.source_csv
+                      else "ghidra=%s" % ghidra_name)
             rows_out.append(f"?d_{rva:08x}@@YAXXZ,,0x{rva:08X},{size},{rel},"
-                            f"matched,gen-dump;ghidra={ghidra_name}\r\n")
+                            f"matched,gen-dump;{origin}\r\n")
 
     with FUNCTIONS.open("ab") as handle:   # binary append: never rewrite
         handle.write("".join(rows_out).encode("ascii"))
@@ -313,6 +324,12 @@ def main():
                         help="MASM dumps into Code/gen_asm/ (the scaled pass)")
     parser.add_argument("--budget", type=int, default=16384,
                         help="--asm: retail bytes per generated file")
+    parser.add_argument("--from", dest="source_csv", metavar="CSV",
+                        help="boundary source instead of reverse/ghidra_functions.csv "
+                             "(columns rva,size[,name][,confidence]) — for code the "
+                             "inventory never covered, where the boundary is DERIVED "
+                             "and its tier is the only thing standing behind it")
+    parser.add_argument("--tier", help="--from: keep only this confidence value")
     parser.add_argument("--limit", type=int, default=400)
     parser.add_argument("--min-size", type=int)
     parser.add_argument("--max-size", type=int)
