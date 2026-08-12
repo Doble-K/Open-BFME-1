@@ -33,7 +33,14 @@ public:
 	virtual ~BehaviorModule() {}
 };
 
-class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+// Deliberately not called UpdateModule. Every other Update-module destructor
+// tears its base down as [+0x10]=0x109CBAC, [+0]=0x109CB5C, [+0xC]=0x109CA98;
+// this one writes 0x10B1DC4 at +0x10 and the other two unchanged, so the class
+// it derives from is not the same one they derive from - there is an
+// intermediate here that nothing has named yet. Modelling it as UpdateModule
+// made this TU resolve ??_7UpdateModule@@6B@ to a second address and fail the
+// DIR32 consistency check.
+class TensileFormationUpdateBase : public BehaviorModule, public UpdateModuleInterface
 {
 private:
 	unsigned int m_nextCallFrameAndPhase;
@@ -41,7 +48,7 @@ private:
 	unsigned int m_updateState;
 
 public:
-	virtual ~UpdateModule() {}
+	virtual ~TensileFormationUpdateBase() {}
 };
 
 class TensileFormationUpdateMember
@@ -55,7 +62,7 @@ private:
 	void *m_capacity;
 };
 
-class TensileFormationUpdate : public UpdateModule
+class TensileFormationUpdate : public TensileFormationUpdateBase
 {
 public:
 	virtual ~TensileFormationUpdate();
