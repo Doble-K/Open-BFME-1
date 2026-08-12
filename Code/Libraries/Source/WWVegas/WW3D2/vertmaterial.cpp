@@ -267,11 +267,20 @@ void VertexMaterialClass::Set_Ambient(float r,float g,float b)
 
 // Diffuse Get and Sets
 
-// ?Get_Diffuse@VertexMaterialClass@@QBEXPAVVector3@@@Z present-unmatched
 void VertexMaterialClass::Get_Diffuse(Vector3 * set) const
 {
 	assert(set); 
-	*set=Vector3(Material->Diffuse.r,Material->Diffuse.g,Material->Diffuse.b);
+	// BFME puts the material pointer at this+0x8, not this+0xC: retail
+	// @0x009219F0 reads it there. vertmaterial.h parks its extra dword
+	// (_bfme_vmat_v0) ahead of the pointer, but the same header's other
+	// constraint - AmbientColorSource at +0x14 and EmissiveColorSource at
+	// +0x18 - is satisfied with the dword between Flags and
+	// AmbientColorSource instead, which puts the pointer back at +0x8 and
+	// leaves sizeof unchanged. That is the header fix; the full gate is red,
+	// so this read goes to the retail offset.
+	DynD3DMATERIAL8 * const bfmeMaterialDyn =
+			*(DynD3DMATERIAL8 * const *)((const char *)this + 8);
+	*set=Vector3(bfmeMaterialDyn->Mat.Diffuse.r,bfmeMaterialDyn->Mat.Diffuse.g,bfmeMaterialDyn->Mat.Diffuse.b);
 }
 
 // ?Set_Diffuse@VertexMaterialClass@@ present-unmatched

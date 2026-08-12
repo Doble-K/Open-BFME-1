@@ -9422,7 +9422,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Get_Device_Name@RenderDeviceDescClass@@QBEPBDXZ,,0x0010BDB0,3,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,icf-owner=?getDistributionType@GameClientRandomVariable@@QBE?AW4DistributionType@1@XZ
 ?Get_Device_Resolution@DX8Wrapper@@KAXAAH00AA_N@Z,,0x00902170,48,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,
 ?Get_Diffuse@LightClass@@QBEXPAVVector3@@@Z,,0x006C5520,37,Code/Libraries/Source/WWVegas/WW3D2/lightenvironment.cpp,matched,exact after camera shim (RenderObjClass +0x34)
-?Get_Diffuse@VertexMaterialClass@@QBEXPAVVector3@@@Z,,0x009219F0,28,Code/Libraries/Source/WWVegas/WW3D2/VertexMaterialDiffuse.cpp,matched,Exact retail VertexMaterialClass::Get_Diffuse emitted in dedicated C++ TU.
 ?Get_Draw_Call_Count@MeshClass@@QBEHXZ,,0x0092D470,62,Code/Libraries/Source/WWVegas/WW3D2/mesh.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Get_Dst_Blend_Func@ShaderClass@@QBE?AW4DstBlendFuncType@1@XZ,,0x0090F2A0,9,Code/Libraries/Source/WWVegas/WW3D2/w3d_util.cpp,matched,
 ?Get_Element@?$ShareBufferClass@VShaderClass@@@@QAEAAVShaderClass@@H@Z,,0x00929040,13,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
@@ -157908,3 +157907,4 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,clean C++ replaces the naked dump; BFME ErrorCode rebases at 1
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAMK0@Z,,0x00977EB0,305,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,clean C++ replaces the naked dump; retail multiplies by the member at this+0x14
 ?Cast_Ray_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVRayCollisionTestClass@@@Z,,0x0096ADC0,283,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,clean C++ replaces the naked dump; Mesh members read at retail offsets
+?Get_Diffuse@VertexMaterialClass@@QBEXPAVVector3@@@Z,,0x009219F0,28,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,clean C++ replaces the naked dump; material pointer read at this+8
