@@ -391,12 +391,51 @@ def stlport_include_dir():
     return None
 
 
+# The vendored Zero Hour tree. Its whole value is being unmodified upstream, so
+# its files carry neither the `// stlport` marker nor a `// cl:` line that a
+# Code/ source uses to declare its build settings; a row sourced from here gets
+# its flags from the path instead. Both settings below are what the 420-TU sweep
+# compiled and matched with.
+ZH_REFERENCE_ROOT = ROOT / "reference" / "CnC_Generals_Zero_Hour" / "GeneralsMD" / "Code"
+_ZH_REL = ZH_REFERENCE_ROOT.relative_to(ROOT).as_posix()
+_ZH_FLAGS = ["-DNDEBUG", "-DWIN32", "-D_WINDOWS", "-MD", "-EHsc"] + [
+    "-I" + directory
+    for directory in ["reference/shims/sweep"] + [
+        f"{_ZH_REL}/{part}"
+        for part in (
+            "GameEngine/Include", "GameEngine/Source", "Libraries/Include",
+            "Libraries/Source", "Libraries/Source/Compression",
+            "Libraries/Source/WWVegas", "Libraries/Source/WWVegas/WWLib",
+            "GameEngineDevice/Include", "Libraries/Source/WWVegas/WW3D2",
+            "Libraries/Source/WWVegas/WWMath", "Libraries/Source/WWVegas/WWDebug",
+            "Libraries/Source/WWVegas/WWSaveLoad", "Main",
+        )
+    ]
+]
+
+
+def zh_reference_source(source):
+    """`source` as a path relative to the vendored Zero Hour tree, or None."""
+    if source is None:
+        return None
+    try:
+        return Path(source).resolve().relative_to(ZH_REFERENCE_ROOT).as_posix()
+    except ValueError:
+        return None
+
+
 def source_needs_stlport(source):
     """A source declares it needs STLport with a `// stlport` line near the top.
     STLport shadows standard headers (<cmath>, <cstring>, ...), so it must be
     opt-in per file — never on the global include path for STL-free matched files."""
     if source is None:
         return False
+    relative = zh_reference_source(source)
+    if relative is not None:
+        # The sweep's split over 420 vendored TUs, with no exceptions either way:
+        # the WWVegas libraries match against MSVC's own STL, and every GameEngine
+        # TU needs STLport (which took their compile rate from 29% to 94.6%).
+        return not relative.startswith("Libraries/Source/WWVegas/")
     try:
         with Path(source).open("r", encoding="utf-8", errors="replace") as handle:
             head = handle.read(2048)
@@ -447,6 +486,8 @@ def source_extra_flags(source):
     # directive -- and it costs whole sessions to spot, so strip it here rather
     # than relying on every editor to write BOM-free files. Windows PowerShell's
     # `Set-Content -Encoding UTF8` writes one by default.
+    if zh_reference_source(source) is not None:
+        return _ZH_FLAGS
     with source.open("r", encoding="utf-8-sig", errors="replace") as handle:
         for line in handle.read(2048).splitlines():
             if line.startswith("// cl:"):

@@ -40,6 +40,11 @@ def run(*argv):
 def added_lift_lines(old, new):
     diff_cmd = ["git", "diff", "--unified=0"]
     diff_cmd += ["--cached", old] if new == ":" else [old, new]
+    # Authored code only. A ledger row may name a file in the vendored
+    # reference/ tree, and those rows sit outside this scan on purpose: nobody
+    # authors that tree, nine of its files already contain __emit upstream, and
+    # scanning it would fire on the next re-vendor rather than on a regression.
+    # Rule B below reads whatever path a row names, so it covers them.
     diff_cmd += ["--", "Code/", ":(exclude)Code/gen_small/"]
     bad, path = {}, None
     for line in run(*diff_cmd).splitlines():

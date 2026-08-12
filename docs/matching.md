@@ -64,3 +64,20 @@ Reconcile against the binary (the source of truth).
 
 For exact function sizes, the full function inventory, and the bulk-port pipeline, see
 `tools/ghidra/README.md`.
+
+### Rows sourced from the vendored tree
+
+A ledger row may name a `reference/` file directly, and `./build.sh <that file>` builds it.
+The tree stays pristine — being unmodified upstream is its whole value — so its files carry
+neither the `// stlport` marker nor the `// cl:` line a `Code/` source uses to declare its
+build settings. `build.py` derives both from the path instead: the ZH include set, and
+STLport for everything outside `Libraries/Source/WWVegas/`. `tools/zh_sweep.py` measured
+that split over 420 translation units, with no exceptions either way.
+
+`tools/conversion_gate.py` scans added lines under `Code/` only, so these rows fall outside
+its Rule A, and that is deliberate. Rule A stops a contributor deleting authored C++ and
+committing an `__emit` byte dump in its place; nobody authors the vendored tree, and nine of
+its files legitimately contain `__emit` already, so scanning it would fire on the next
+re-vendor rather than on any real regression. Rule B — a matched RVA that had a clean C++
+source must still have one — reads whatever path a row names, so a `reference/` row can
+never be swapped out from under a live clean claim.
