@@ -618,7 +618,6 @@ void LANAPI::update( void )
 }
 
 // Request functions generate network traffic
-// ?RequestLocations@LANAPI@@UAEXXZ present-unmatched
 void LANAPI::RequestLocations( void )
 {
 	LANMessage msg;

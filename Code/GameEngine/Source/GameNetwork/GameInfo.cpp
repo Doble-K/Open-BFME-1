@@ -818,7 +818,6 @@ Bool GameInfo::isStartPositionTaken(Int positionIdx, Int slotToIgnore ) const
 	return false;
 }
 
-// ?resetAccepted@GameInfo@@UAEXXZ present-unmatched
 void GameInfo::resetAccepted( void )
 {
 	GameSlot *slot = getSlot(0);
@@ -832,7 +831,6 @@ void GameInfo::resetAccepted( void )
 	}
 }
 
-// ?resetStartSpots@GameInfo@@UAEXXZ present-unmatched
 void GameInfo::resetStartSpots()
 {
 	GameSlot *slot = NULL;
@@ -952,7 +950,6 @@ Bool GameInfo::isSkirmish(void)
 	return sawAI;
 }
 
-// ?isMultiPlayer@GameInfo@@QAE_NXZ present-unmatched
 Bool GameInfo::isMultiPlayer(void)
 {
 	for (Int i=0; i<MAX_SLOTS; ++i)

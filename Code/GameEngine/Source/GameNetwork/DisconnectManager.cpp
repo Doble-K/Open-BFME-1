@@ -264,7 +264,6 @@ void DisconnectManager::processDisconnectCommand(NetCommandRef *ref, ConnectionM
 	}
 }
 
-// ?processDisconnectKeepAlive@DisconnectManager@@IAEXPAVNetCommandMsg@@PAVConnectionManager@@@Z present-unmatched
 void DisconnectManager::processDisconnectKeepAlive(NetCommandMsg *msg, ConnectionManager *conMgr) {
 	NetDisconnectKeepAliveCommandMsg *cmdMsg = (NetDisconnectKeepAliveCommandMsg *)msg;
 	Int slot = translatedSlotPosition(cmdMsg->getPlayerID(), conMgr->getLocalPlayerID());
@@ -762,7 +761,6 @@ Bool DisconnectManager::isPlayerInGame(Int slot, ConnectionManager *conMgr) {
 	return TRUE;
 }
 
-// ?playerHasAdvancedAFrame@DisconnectManager@@QAEXHI@Z present-unmatched
 void DisconnectManager::playerHasAdvancedAFrame(Int slot, UnsignedInt frame) {
 	// if they have advanced beyond the frame they had been previously disconnecting on.
 	if (frame >= m_disconnectFrames[slot]) {

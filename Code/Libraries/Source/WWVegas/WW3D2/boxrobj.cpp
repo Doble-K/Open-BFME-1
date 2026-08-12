@@ -1394,7 +1394,6 @@ void OBBoxRenderObjClass::Get_Obj_Space_Bounding_Box(AABoxClass & box) const
  * HISTORY:                                                                                    *
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
-// ?Get_Box@OBBoxRenderObjClass@@QAEAAVOBBoxClass@@XZ present-unmatched
 OBBoxClass & OBBoxRenderObjClass::Get_Box(void)
 {
 	Validate_Transform();

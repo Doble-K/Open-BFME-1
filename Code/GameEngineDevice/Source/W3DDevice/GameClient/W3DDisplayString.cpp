@@ -263,7 +263,6 @@ void W3DDisplayString::draw( Int x, Int y, Color color, Color dropColor, Int xDr
 /** Get the render size width and height of the string in this instance
 	* with the font associated with it */
 //=============================================================================
-// ?getSize@W3DDisplayString@@UAEXPAH0@Z present-unmatched
 void W3DDisplayString::getSize( Int *width, Int *height )
 {
 
@@ -338,7 +337,6 @@ void W3DDisplayString::setFont( GameFont *font )
 // W3DDisplayString::setClipRegion ============================================
 /** Set the clipping region for the text */
 //=============================================================================
-// ?setClipRegion@W3DDisplayString@@UAEXPAUIRegion2D@@@Z present-unmatched
 void W3DDisplayString::setClipRegion( IRegion2D *region )
 {
 
@@ -397,7 +395,6 @@ void W3DDisplayString::computeExtents( void )
 // W3DDisplayString::setWordWrap ===========================================
 /** Set the wordwrap of the m_textRenderer */
 //=============================================================================
-// ?setWordWrap@W3DDisplayString@@UAEXH@Z present-unmatched
 void W3DDisplayString::setWordWrap( Int wordWrap )
 {
 	// set the Word Wrap
@@ -417,7 +414,6 @@ void W3DDisplayString::setUseHotkey( Bool useHotkey, Color hotKeyColor )
 // W3DDisplayString::setWordWrapCentered ======================================
 /** Set the whether or not we want to center each new line in a text string */
 //=============================================================================
-// ?setWordWrapCentered@W3DDisplayString@@UAEX_N@Z present-unmatched
 void W3DDisplayString::setWordWrapCentered( Bool isCentered )
 {
 	// set the Word Wrap
