@@ -64,6 +64,16 @@
 #include "GameLogic/ScriptEngine.h"
 #include "GameLogic/Weapon.h"
 
+// BFME rebases the ErrorCode enum at 1, not Zero Hour's distinctive
+// 0xDEAD0001: MultiIniFieldParse::add @0x00850953 builds its thrown object
+// with `mov [esp+0xc],1` where ERROR_BUG makes it 0xDEAD0001. The throw type
+// is unchanged - the _CxxThrowException type descriptor at 0x12454C0 already
+// matches - so only the value moves, and the cast keeps it an ErrorCode.
+// Scoped here rather than in Common/Errors.h because a header edit runs the
+// full gate and that is red (docs/lessons.md).
+#undef ERROR_BUG
+#define ERROR_BUG ((ErrorCode)1)
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -1495,7 +1505,6 @@ void INI::parseLookupList( INI* ini, void * /*instance*/, void *store, const voi
 
 	
 //-------------------------------------------------------------------------------------------------
-// ?add@MultiIniFieldParse@@ present-unmatched
 void MultiIniFieldParse::add(const FieldParse* f, UnsignedInt e)
 {
 	if (m_count < MAX_MULTI_FIELDS)

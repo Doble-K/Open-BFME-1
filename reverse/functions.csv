@@ -11886,7 +11886,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?add@Coord3D@@QAEXPBU1@@Z,,0x007AF300,31,Code/GameEngine/Source/Common/bezier_segment.cpp,matched,
 ?add@Coord3D@@QAEXPBUCoord3DBase@@@Z,0x00022688,0x000B6570,31,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,adds Coord3DBase pointer
 ?add@LList@@QAEXPAVLListNode@@@Z,,0x00105A90,180,Code/GameEngine/Source/Common/System/List.cpp,matched,
-?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
 ?addArgType@GameMessageParser@@QAEXW4GameMessageArgumentDataType@@H@Z,,0x006235E0,152,Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp,matched,thunk-dump converted to clean C++
 ?addAudioEvent@AudioManager@@UAEIPBVAudioEventRTS@@@Z,,0x006B9A40,19,Code/Libraries/Source/WWVegas/WWAudio/AudioManagerAddAudioEventThunk.cpp,matched,Open-BFME5 clean C++ addAudioEvent wrapper defaults 0/1/1
 ?addBib@W3DBibBuffer@@QAEXQAVVector3@@W4ObjectID@@_N@Z,,0x006D7090,223,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
@@ -157908,3 +157907,4 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ??$?MW4NameKeyType@@W40@@_STL@@YA_NABU?$pair@W4NameKeyType@@W41@@0@0@Z,,0x009242A0,38,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,
 ?Initialize@HLodDefClass@@QAEXAAVHLodClass@@@Z,,0x0097CA80,485,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,clean C++ replaces the naked dump
 ?Validate_Transform@RenderObjClass@@UBEXXZ,,0x00920270,80,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,clean C++ replaces the naked dump
+?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,clean C++ replaces the naked dump; BFME ErrorCode rebases at 1
