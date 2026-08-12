@@ -2462,17 +2462,41 @@ void ControlBar::setHiddenControlBar( void )
 //	}
 //}
 //
-// ?updateCommandMarkerImage@ControlBar@@QAEXPBVImage@@@Z present-unmatched
+class BFMERetailAsciiString
+{
+public:
+	BFMERetailAsciiString( const char *string );
+	~BFMERetailAsciiString() { releaseBuffer(); }
+private:
+	void releaseBuffer();
+	char *m_data;
+};
+
+class BFMERetailCommandButton
+{
+public:
+	void setButtonImage( const Image *image );
+};
+
 void ControlBar::updateCommandMarkerImage( const Image *image )
 {
-	// removed from multiplayer branch
+	if(!image)
+		return;
 
-//	// we don't mind if the image is null, that way we can not draw anything
-	//	for(Int i =0; i < MAX_COMMANDS_PER_SET; ++i)
-	//	{
-	//		m_commandMarkers[i]->winSetEnabledImage(0, image);
-	//	}
-	
+	CommandButton *cmdButton;
+	{
+		BFMERetailAsciiString commandName( "Command_StructureExit" );
+		cmdButton = findNonConstCommandButton( *(const AsciiString*)&commandName );
+	}
+	if(cmdButton)
+		((BFMERetailCommandButton*)cmdButton)->setButtonImage(image);
+
+	{
+		BFMERetailAsciiString commandName( "Command_TransportExit" );
+		cmdButton = findNonConstCommandButton( *(const AsciiString*)&commandName );
+	}
+	if(cmdButton)
+		((BFMERetailCommandButton*)cmdButton)->setButtonImage(image);
 }
 // ?updateSlotExitImage@ControlBar@@QAEXPBVImage@@@Z present-unmatched
 void ControlBar::updateSlotExitImage( const Image *image )
