@@ -8083,7 +8083,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_GSupplyTruckWantsToPickUpOrDeliverBoxesState@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSupplyWarehouseDockUpdate@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GSupplyWarehouseDockUpdateModuleData@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
-??_GTeamFactory@@UAEPAXI@Z,,0x009F2900,30,Code/GameEngine/Source/Common/RTS/Team.cpp,matched,
 ??_GTechBuildingBehavior@@MAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_GTechBuildingBehaviorModuleData@@UAEPAXI@Z,,0x0008AD20,30,Code/GameEngine/Source/GameLogic/Object/Behavior/TechBuildingBehavior.cpp,matched,
 ??_GTerrainCollisionModuleInfo@FXParticleSystem@@UAEPAXI@Z,,0x005DE740,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system_bulk.cpp,matched,
