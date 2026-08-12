@@ -105254,3 +105254,6 @@ _str_checkname,,0x0099AC90,107,Code/Libraries/Source/Lua/lparser.c,matched,reloc
 ?getUiStrings@Condition@@QAEHQAVAsciiString@@@Z,,0x00351240,24,Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp,matched,
 ??0?$vector@PAXV?$allocator@PAX@_STL@@@_STL@@QAE@IABQAXABV?$allocator@PAX@1@@Z,,0x0036E870,52,Code/GameEngine/Source/GameClient/System/ParticleSys.cpp,matched,
 ?push_back@?$vector@PAVWeaponTemplate@@V?$allocator@PAVWeaponTemplate@@@_STL@@@_STL@@QAEXABQAVWeaponTemplate@@@Z,,0x001E7100,50,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,
+??1GameResultsThreadAuxHolder@@QAE@XZ,,0x0010B930,25,Code/GameEngine/Source/Common/GameResultsQueueDestructorThunk.cpp,matched,byte-scan placement; unique
+?Release_Ref@RefCountedThing@@QAEXXZ,,0x000874B0,31,Code/GameEngine/Source/Common/GateOpenAndCloseBehaviorModuleDataDestructorThunk.cpp,matched,byte-scan placement; unique
+??1GiantBirdNested@@UAE@XZ,,0x002C23A0,73,Code/GameEngine/Source/Common/GiantBirdAIUpdateDestructorThunk.cpp,matched,byte-scan placement; unique
