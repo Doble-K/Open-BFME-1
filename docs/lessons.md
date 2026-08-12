@@ -8095,3 +8095,43 @@ would actually move them:
 Do not re-run the sweep over these files. If you want to spend a sweep, spend it on
 sources nobody has swept yet - the count of markers is not a predictor, coverage
 history is.
+
+## Name dumps from the call graph, not from their bytes (tools/callers_of.py)
+
+Byte-scanning is finished as a lane, and 5.0 MB of the binary is still sitting in
+115,086 anonymous `?d_xxxxxxxx@@YAXXZ` dumps. Those two facts are the same fact:
+`locate.py` can only place a function whose compiled bytes still agree with retail,
+so everything that drifted is exactly what stays anonymous, and no amount of
+re-scanning will move it.
+
+The call graph is immune to that. A dump reached from one named function is pinned
+by that function - open its Zero Hour source, read what it calls at that point, and
+the dump has a name. Drift in the callee's body is irrelevant, because the evidence
+is the caller's `E8` displacement.
+
+`tools/callers_of.py` does this both ways:
+
+    python3 tools/callers_of.py 0x000efe10     # who calls this address
+    python3 tools/callers_of.py --report 40    # best naming candidates
+
+It follows one level of link thunk and only counts a target that is a known
+function start, which is what keeps stray `E8` bytes inside instruction operands
+out of the results. Checked against the one answer already known independently:
+0x000EFE10 comes back with `TeamFactory::initTeam` and
+`TeamFactory::createInactiveTeam`, the two callers found by hand, and nothing else.
+
+**There are 3,910 anonymous dumps with exactly one named caller.** Each is one
+source read from a name. The largest:
+
+    4572  0x004A4240  <- ControlBar::updateSpecialPowerShortcut
+    3775  0x0072B580  <- W3DTerrainBackground::doTesselatedUpdate
+    3124  0x007B14A0  <- W3DProjectedShadowManager::renderShadows
+    3002  0x0042A270  <- ParticleSystemFXNugget::doFXObj
+    2924  0x00997C80  <- _luaD_call
+    2669  0x0027C250  <- AnimalAIUpdate::~AnimalAIUpdate
+    2445  0x003006B0  <- ScriptActions::executeAction
+
+Two cautions. A sole caller pins *an* address, not a *name* - the caller may reach
+several helpers, so confirm with arity (`ret imm16`), the callee's own string
+literals, or a second caller before writing the name down. And a name is not a
+conversion: it makes the body attackable, which is the step that has been missing.
