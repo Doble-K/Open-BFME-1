@@ -139,9 +139,22 @@ C++ body when available.
 
 Lifting a MASM dump into a `__declspec(naked)`/`__emit` .cpp is **not** a
 conversion: it scores +0 on `progress.py` and deletes the C++ body the next
-converter needed. The commit gate (`tools/conversion_gate.py`) refuses new
+converter needed. The gate (`tools/conversion_gate.py`) refuses new
 naked/`__emit` bodies outside `Code/gen_small/` and refuses repointing a
-clean-C++ row back at assembly.
+clean-C++ row back at assembly. It runs in **both** the commit hook and the
+push hook: the push hook scans your whole outgoing range, so `--no-verify` and
+a clone that never ran `tools/setup_hooks.sh` no longer get a free pass. The
+byte-verify cannot substitute for it — an `__emit` spray of retail bytes
+byte-matches by construction.
+
+The push gate scans the range, not just your own commits, and a large residue
+of historical lifts is still in the tree (~1,300 `_emit` and ~1,250 `naked`
+.cpp files outside `Code/gen_small/`). If your outgoing range reaches back
+across one of those commits the push is blocked and the message names *its*
+file, not yours. That is the gate working, not a bug: rebase so the range
+starts after the lift, or revert the lift (`git revert <sha>`, restore the
+real C++ body and the MASM dump it deleted, then full gate) and push the
+revert first. Never silence it with `--no-verify`.
 
 Ghidra boundaries, xrefs, callees, vtables, and the retail executable are
 identity evidence; decompiled C is not byte-match proof. Resolve REL32 pins only

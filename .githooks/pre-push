@@ -32,6 +32,14 @@ while read -r _local_ref local_sha _remote_ref remote_sha; do
         continue
     fi
 
+    # Direction gate over the OUTGOING range, same call verify_pr.sh makes on a
+    # PR. pre-commit runs it too, but --no-verify and clones that never ran
+    # tools/setup_hooks.sh skip that entirely, and the byte-verify below cannot
+    # see a backward conversion: an __emit spray of retail bytes byte-matches BY
+    # CONSTRUCTION. 89 lift commits reached origin through exactly this gap.
+    # Runs before the build because it costs a second and the build costs minutes.
+    python3 tools/conversion_gate.py "$base" "$local_sha" || fail "conversion direction (see above)"
+
     mapfile -t delta < <(python3 tools/delta_sources.py --range "$base" "$local_sha")
     verify=()
     for s in "${delta[@]}"; do
