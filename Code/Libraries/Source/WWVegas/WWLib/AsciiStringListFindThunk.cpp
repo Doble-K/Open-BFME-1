@@ -15,15 +15,12 @@ namespace _STL
     struct input_iterator_tag;
 
     template <class Iterator, class T>
-    __declspec(naked) Iterator __find(Iterator, Iterator, const T &, const input_iterator_tag &)
+    Iterator __bfme_find_impl(Iterator, Iterator, const T &, const input_iterator_tag &);
+
+    template <class Iterator, class T>
+    Iterator __find(Iterator first, Iterator last, const T &value, const input_iterator_tag &tag)
     {
-        __asm {
-            _emit 0E9h
-            _emit 080h
-            _emit 0C9h
-            _emit 049h
-            _emit 000h
-        }
+		return __bfme_find_impl(first, last, value, tag);
     }
 
     template _List_iterator<AsciiString, _Nonconst_traits<AsciiString> > __find<_List_iterator<AsciiString, _Nonconst_traits<AsciiString> >, AsciiString>(_List_iterator<AsciiString, _Nonconst_traits<AsciiString> >, _List_iterator<AsciiString, _Nonconst_traits<AsciiString> >, const AsciiString &, const input_iterator_tag &);
