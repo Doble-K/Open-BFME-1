@@ -15300,7 +15300,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?initSkirmish@@YAXXZ,,0x004E8830,135,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,matched,
 ?initSpecialPowershortcutBar@ControlBar@@QAEXPAVPlayer@@@Z,,0x0049F1C0,766,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarInitSpecialPowershortcutBarThunk.cpp,matched,Exact 766B MASM conversion Open-BFME5
 ?initSubsystem@SubsystemInterfaceList@@QAEXPAVSubsystemInterface@@PAXPBD22PAVXfer@@VAsciiString@@@Z,,0x009A20B0,271,Code/GameEngine/Source/Common/System/subsystem_interface.cpp,matched,registers a subsystem; legend takes precedence over the hard-coded paths
-?initTeam@TeamFactory@@QAEXABVAsciiString@@0_NPAVDict@@@Z,,0x000F8170,220,Code/GameEngine/Source/GameLogic/TeamFactory_initTeam_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?initTimes@BoneFXUpdate@@IAEXXZ,,0x0002F775,5,Code/Libraries/Source/WWVegas/WWLib/UpdateInitializationThunks.cpp,matched,Focused C++ thunk for BoneFXUpdate::initTimes
 ?initW3DAssets@W3DMouse@@AAEXXZ,,0x007015F0,44,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DMouse.cpp,matched,
 ?init_volume@GridCullSystemClass@@IAEXABVAABoxClass@@PAUVolumeStruct@1@@Z,,0x008DD170,463,Code/Libraries/Source/WWVegas/WWMath/gridcull.cpp,matched,
@@ -157933,3 +157932,4 @@ _pushupvalue,,0x0099B000,121,Code/Libraries/Source/Lua/lparser.c,matched,vendore
 _pushclosure,,0x0099B1B0,142,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1; EA-patched TK_TRUE/TK_FALSE+OP_PUSHBOOL; reloc-named
 _chunk,,0x0099D2D0,128,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1; EA-patched TK_TRUE/TK_FALSE+OP_PUSHBOOL; reloc-named
 _luaK_adjuststack,,0x0099F010,441,Code/Libraries/Source/Lua/lcode.c,matched,vendored=lua-4.0.1; EA-patched TK_TRUE/TK_FALSE+OP_PUSHBOOL; reloc-named
+?initTeam@TeamFactory@@QAEXABVAsciiString@@0_NPAVDict@@@Z,,0x000F8170,220,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,clean C++; findTeamPrototype and createInactiveTeam both take owner then name

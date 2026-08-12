@@ -69278,3 +69278,6 @@ _gpiSetInfod,0x008F1DD0,tail jmp displacement in gpSetInfod @0x008EA13C
 ??$_M_find@U?$pair@HH@_STL@@@?$_Rb_tree@U?$pair@HH@_STL@@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@2@U?$_Select1st@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@U?$less@U?$pair@HH@_STL@@@2@V?$allocator@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@1@ABU?$pair@HH@1@@Z,0x000EE500,call displacement in addTeamPrototypeToList @0x000F3DFA
 ??A?$map@U?$pair@HH@_STL@@PAVTeamPrototype@@U?$less@U?$pair@HH@_STL@@@2@V?$allocator@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@@_STL@@QAEAAPAVTeamPrototype@@ABU?$pair@HH@1@@Z,0x000F3A20,call displacement in addTeamPrototypeToList @0x000F3E0A
 _stat,0x0099D0C0,pin _stat from _chunk call site @0x99D2FC (retail target 0x99D0C0)
+?findTeamPrototype@TeamFactory@@QAEPAVTeamPrototype@@ABVAsciiString@@0@Z,0x000EFE10,call displacement in initTeam @0x000F8195
+??0TeamPrototype@@QAE@PAVTeamFactory@@ABVAsciiString@@1PAVPlayer@@_NPAVDict@@H@Z,0x000F3E40,call displacement in initTeam @0x000F8213
+?createInactiveTeam@TeamFactory@@QAEPAVTeam@@ABVAsciiString@@0@Z,0x000F7AB0,call displacement in initTeam @0x000F8232 (via thunk 0xD15C)

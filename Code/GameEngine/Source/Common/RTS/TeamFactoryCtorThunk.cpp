@@ -81,7 +81,7 @@ public:
 // way - only a body that uses the key can tell them apart.
 // Enough of AsciiString to reproduce str(): retail inlines it as
 // `p ? p + 8 : ""` at 0x000F3DAA and 0x000F3DCA.
-class BfmeAsciiString
+class AsciiString
 {
 public:
 	const char *str(void) const { return m_data ? ((const char *)m_data + 8) : ""; }
@@ -89,21 +89,42 @@ private:
 	void *m_data;
 };
 
+enum NameKeyType { NAMEKEY_INVALID = 0 };
 class NameKeyGenerator
 {
 public:
-	int nameToKey(const char *name);
+	NameKeyType nameToKey(const char *name);
 };
 extern NameKeyGenerator *TheNameKeyGenerator;
+
+class Dict;
+class Player;
+class Team;
+class TeamFactory;
+
+// getNeutralPlayer is inlined at 0x000F81D3 as a read of this+0x14.
+class PlayerList
+{
+public:
+	Player *findPlayerWithNameKey(NameKeyType nk);
+	Player *m_pad[5];
+	Player *m_neutral;	// +0x14
+};
+extern PlayerList *ThePlayerList;
 
 // The two AsciiStrings the key is built from sit at +0x10 and +0x14.
 class TeamPrototype
 {
 public:
 	virtual ~TeamPrototype();
+	// Seven parameters: 0x000F81FB-0x000F8210 pushes owner and name as two
+	// separate strings, in that order, exactly like findTeamPrototype.
+	TeamPrototype(TeamFactory *tf, const AsciiString &owner, const AsciiString &name,
+				Player *pOwner, bool isSingleton, Dict *d, int id);
 	char m_pad[0xc];
-	BfmeAsciiString m_first;
-	BfmeAsciiString m_second;
+	AsciiString m_first;
+	AsciiString m_second;
+	char m_tail[0x278 - 0x18];
 };
 typedef std::pair<int, int> BfmeTeamPrototypeKey;
 
@@ -119,6 +140,11 @@ public:
 
 	void clear(void);
 	void addTeamPrototypeToList(TeamPrototype *team);
+	// Two parameters, not one: 0x000F8191 pushes both `name` and `owner`
+	// before the call, matching the pair-keyed m_prototypes map.
+	TeamPrototype *findTeamPrototype(const AsciiString &owner, const AsciiString &name);
+	Team *createInactiveTeam(const AsciiString &owner, const AsciiString &name);
+	void initTeam(const AsciiString &name, const AsciiString &owner, bool isSingleton, Dict *d);
 
 protected:
 	virtual void crc(void);
@@ -176,4 +202,25 @@ void TeamFactory::addTeamPrototypeToList(TeamPrototype *team)
 		return;
 
 	m_prototypes[nk] = team;
+}
+
+// ?initTeam@TeamFactory@@QAEXABVAsciiString@@0_NPAVDict@@@Z
+void TeamFactory::initTeam(const AsciiString &name, const AsciiString &owner, bool isSingleton, Dict *d)
+{
+	// BFME returns early instead of asserting: 0x000F8195 calls
+	// findTeamPrototype and jumps to the epilogue when it is non-null.
+	if (findTeamPrototype(owner, name) != 0)
+		return;
+
+	Player *pOwner = ThePlayerList->findPlayerWithNameKey(TheNameKeyGenerator->nameToKey(owner.str()));
+	if (!pOwner)
+		pOwner = ThePlayerList->m_neutral;
+
+	TeamPrototype *proto = new TeamPrototype(this, owner, name, pOwner, isSingleton, d,
+												++m_uniqueTeamPrototypeID);
+
+	// Retail re-reads the two strings off the prototype it just built
+	// (proto+0x10 and proto+0x14) rather than reusing the parameters.
+	if (isSingleton)
+		createInactiveTeam(proto->m_first, proto->m_second);
 }
