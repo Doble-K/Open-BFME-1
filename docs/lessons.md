@@ -7890,9 +7890,11 @@ each immediate points at in .rdata.
   claimed elsewhere with two parameters, so this is a third recruiting function
   taking three.
 
-**Right identity, wrong boundary** - the strings fit the name perfectly and only
-the arity is off, which means the claimed range runs past the real function and
-catches a later `ret imm16`:
+**Right class and method, wrong signature** - the strings fit the name perfectly
+and only the parameter list is off. I first assumed these were boundary errors;
+they are not. Measuring the INT3 boundary at each of the three addresses returns
+exactly the claimed size, so the ranges are right and the bodies genuinely take
+arguments the mangled name does not declare:
 
 - `?handleQMMatch@PeerThreadClass@@QAEXXZ` @0x00649180, 653B, `ret 0x24` -
   pushes "We're matched!".
@@ -7901,6 +7903,12 @@ catches a later `ret imm16`:
 - `?validate@ThingTemplate@@QAEXXZ` @0x00139B40, 350B, `ret 4` - pushes
   "DefaultThingTemplate".
 
-Do not retract the second kind; re-measure the INT3 boundary instead. And note
+Do not retract the second kind - the coverage is byte-true and the class and
+method are right. What they need is the parameter list, and the body shows it:
+read how the argument at [esp+4] is used before writing a type into the
+mangling. `?setWrappedCommandID@NetWrapperCommandMsg@@QAEGXZ` was the same
+species and was easy only because the correctly mangled name already existed at
+the same address; these three have no such twin, so guessing the type would be
+inventing identity. And note
 that three of the ten push no literals at all - `BuddyThreadClass::Thread_Function`,
 both `BFMEConnectionManager` updaters - so those need a different handle.
