@@ -15,18 +15,27 @@ Goal: source code that rebuilds BFME 1's executable byte-for-byte.
 
 We currently have C++ functions in `Code/` and a patcher which can patch same-size custom functions into `lotrbfme.exe`. This is useful for modding.
 
-The number that matters is **byte-exact code**: **37.16% of the game's real code** now
-rebuilds bit-for-bit — **19.43%** rewritten as C++, and **17.72%** still as byte-exact
-assembly waiting to be converted. (A quarter of `.text` is linker padding that needs no
-source and is left out of that denominator; against the raw section the C++ figure is
-**14.45%**.) Every row in `reverse/functions.csv` compiles or assembles to bytes identical
-to retail; `python3 tools/progress.py` prints the current split. The pipeline: scripts claim
-unidentified functions as byte-true ASM dumps, and agents convert ASM to exact C++ —
-conversion is the contribution.
+The number that matters is **recovered source**: **19.56% of the game's real code** is
+rebuilt from C++ we wrote, plus **8.77%** from assembly a human wrote where the compiler
+cannot be made to emit the retail bytes. (A quarter of `.text` is linker padding that needs
+no source and is left out of that denominator; against the raw section the C++ figure is
+**14.54%**.)
+
+`python3 tools/progress.py` also prints **84.53%** as *Total exact*, and that number is not
+recovery. **56.20%** of it is scaffolding: byte-true dumps of the retail image, machine
+generated, which pin a function's address and extent so the boundary stops being a guess
+and the body becomes a target. Those bytes prove nothing about what the code *is* — the
+tool labels them `of which scaffold` and prints `recovered from source` underneath for
+exactly that reason. Quote the second number, not the first.
+
+Every row in `reverse/functions.csv` compiles or assembles to bytes identical to retail.
+The pipeline: scripts claim unidentified functions as byte-true ASM dumps, and agents
+convert ASM to exact C++ — conversion is the contribution, and it is the only step that
+moves the number above.
 
 ## Roadmap
 
-* [ ] BFME 1 Source Code (37.16% byte-exact)
+* [ ] BFME 1 Source Code (19.56% recovered as source; 84.53% byte-exact including scaffolding)
 * [ ] Network delay fix
 * [ ] Memory fix
 * [ ] Better crash logs
