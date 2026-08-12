@@ -1,4 +1,5 @@
 name,address,notes
+?aiMoveToPosition@AICommandInterface@@QAEXPBUCoord3D@@W4CommandSourceType@@@Z,0x0003436A,Open-BFME5 AI movement thunk alias
 ?construct@AsciiStringCopyCtorShim@@QAEXPBVAsciiString@@@Z,0x00887B60,ParticleSystemTemplate name copy constructor pin
 ??0ParticleSystemTemplateTail@FXParticleSystem@@QAE@ABV01@@Z,0x0003E6A3,ParticleSystemTemplate tail copy constructor pin
 ?clear@?$_List_base@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@QAEXXZ,0x0001900B,LadderInfo AsciiString list clear helper pin
@@ -67251,6 +67252,7 @@ name,address,notes
 ?hideScreen@DisconnectMenu@@QAEXXZ,0x00024D6B,ILT thunk; real body 0x50E5A0 (from DisconnectManager::turnOffScreen)
 ?hideSpecialPowerShortcut@ControlBar@@QAEXXZ,0x00041367
 ?ignoreObstacle@AIUpdateInterface@@QAEXPAVObject@@@Z,0x0000315C,ILT thunk to AIUpdateInterface::ignoreObstacle
+?ignoreObstacle@AIUpdateInterface@@QAEXPBVObject@@@Z,0x0000315C,Open-BFME5 const-qualified BFME thunk alias
 ?incorporate@PSPlayerStats@@QAEXABV1@@Z,0x0002B0E4,REL32 pin from PSPlayerStats' copy ctor @0x6577D0 (thunk to 0x656D60)
 ?init@CustomAsciiStringShim@@QAEXPBD@Z,0x00888BC0,CustomMatchPreferences getter key constructor shim
 ?init@FrameData@@QAEXXZ,0x0003BB6F,ILT thunk retail's call sites encode; double hop via 0x00670220 to the body at 0x00670170, which build_call_thunks only follows one level of
@@ -67921,6 +67923,7 @@ name,address,notes
 ?setPlayerIndex@NetDestroyPlayerCommandMsg@@QAEXI@Z,0x00029505,pinharvest x1 (thunk)
 ?setPlayerIndex@NetDestroyPlayerCommandMsg@@QAEXI@Z,0x000306D9,pinharvest x1 (thunk)
 ?setPosition@Drawable@@QAEXPBUCoord3D@@@Z,0x0001742C
+?setPosition@BfmeThingPositionSetter@@QAEXPBUCoord3D@@@Z,0x0003A1A7,Open-BFME5 Thing setPosition thunk alias
 ?setPosition@Mouse@@UAEXHH@Z,0x000418EE,pinharvest x2 (thunk)
 ?setPrep@Dict@@AAEPAUDictPair@1@W4NameKeyType@@W4DataType@1@@Z,0x00042749
 ?setProgress@NetFileProgressCommandMsg@@QAEXH@Z,0x000153B6,ILT thunk; real body 0xA740B0
