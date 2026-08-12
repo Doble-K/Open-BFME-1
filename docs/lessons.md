@@ -8024,3 +8024,31 @@ What blocks it is not the gate, which is green - it is blast radius.
 from many byte-verified translation units, so widening both signatures at once
 re-codegens all of them. Do it as its own change with the full gate run before and
 after, not as a rider on a conversion.
+
+### initFromSides is not a pairing case: SidesList itself drifted
+
+`Team.cpp` also already defines `initFromSides`, so it looks like the same easy
+job as `createInactiveTeam`. It is not. Ours compiles to 344 bytes against a
+260-byte target - *larger* - and the reason is that BFME's `SidesList` is a
+different container, not that the loop body differs.
+
+Our iteration reads an `Int` count at `sides+0x194` and a pointer array at
+`sides+0x19C`, stepping with `lea esi, [eax + edi*4]`. Retail at 0x000F83E5 does
+this instead:
+
+    mov   eax, [eax + 0x63c]     ; sides -> record block
+    movsx ecx, word ptr [eax]    ; count is a short at the head of the block
+    shl   ecx, 4                 ; records are 16 bytes wide
+    cmp   word ptr [edi+eax+6], bx   ; a short at record+6 gated against zero
+    lea   esi, [edi+eax+0xc]     ; the per-side object lives at record+0xC
+
+So: a block pointer at `SidesList+0x63C`, a `short` count at its head, 16-byte
+records, a `short` filter field at `record+6`, and the object the loop actually
+works on at `record+0xC`. The two `Dict` reads that follow are unchanged - both
+call the same getter at 0x0002FF6D with two different `NameKey` globals
+(0x012A75B8 and 0x012A75C0), which is the `TheKey_teamName` / `TheKey_teamOwner`
+pair.
+
+Doing this one means modelling `SidesList` TU-locally first. Worth it, because
+`SidesList+0x63C` will explain every other unmatched body that walks sides, but it
+is a class model rather than a body conversion - budget it as such.
