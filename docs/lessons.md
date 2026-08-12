@@ -7640,3 +7640,37 @@ constructor body, and neither is expressible when the value genuinely differs.
 
 Recording it as a distinct residual: same-value-run-ends-the-sink, separate from
 the register-carrier and addressing-mode residuals already on file.
+
+
+## Writing assignments in retail's emitted order is worth doing first
+
+PhysicsBehaviorModuleData is all constants and no calls, and written in plain
+offset order it came out badly scrambled. Rewriting the constructor body so the
+assignments appear in the order the retail bytes show them -- the four 1.3f
+stores, then the eight zeros, then the remaining groups -- made the entire
+leading half byte-identical, including where the vtable store lands.
+
+That is cheap and should be the first move on any all-constant constructor
+rather than a later correction. MSVC preserves source order within a value group
+and hoists whole groups, so source order in retail's own sequence is the closest
+starting point available.
+
+What it does not fix is which constants get a register. Retail keeps 0.33f as an
+immediate at each of its three uses and holds 0.66f in edx interleaved with
+them; MSVC registerises both and hoists the three 0.66f stores into a single
+group ahead of the vptr. That is the constant-materialisation choice, and it
+belongs with the register-carrier residual rather than with anything source can
+express.
+
+## The easily-reachable pool at 40-200 bytes is essentially exhausted
+
+Screening every naked single-row body in that range against all recorded
+residuals at once -- no rep or x87, no unnamed callees, no global references, no
+sub-object lea bases, no duplicate stores to one offset -- leaves three
+candidates, and two of those are already on file as blocked.
+
+The lea-base exclusion is probably over-broad, so the true number is higher than
+three. But the direction is real: what remains at this size is dominated by the
+handful of residual classes now on record rather than by unexplored shapes.
+Further progress here likely needs either larger functions, multi-row files, or
+solving one of the residuals outright rather than screening around them.
