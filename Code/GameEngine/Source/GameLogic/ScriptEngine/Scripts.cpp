@@ -1652,7 +1652,6 @@ Condition::~Condition(void)
 
 
 
-// ?getUiStrings@Condition@@QAEHQAVAsciiString@@@Z present-unmatched
 Int Condition::getUiStrings(AsciiString strings[MAX_PARMS])
 {
 	const ConditionTemplate *pTemplate = TheScriptEngine->getConditionTemplate(m_conditionType);
@@ -1820,7 +1819,6 @@ Int Template::getUiStrings(AsciiString strings[MAX_PARMS]) const
 //-------------------------------------------------------------------------------------------------
 // ******************************** class Parameter ***********************************************
 //-------------------------------------------------------------------------------------------------
-// ?getParameterType@Template@@QBE?AW4ParameterType@Parameter@@H@Z present-unmatched
 enum Parameter::ParameterType Template::getParameterType(Int ndx) const 
 {
 	if (ndx >= 0 && ndx < m_numParameters) {
@@ -2290,7 +2288,6 @@ ScriptAction::~ScriptAction(void)
 
 
 
-// ?getUiStrings@ScriptAction@@QAEHQAVAsciiString@@@Z present-unmatched
 Int ScriptAction::getUiStrings(AsciiString strings[MAX_PARMS])
 {
 	const ActionTemplate *pTemplate = TheScriptEngine->getActionTemplate(m_actionType);

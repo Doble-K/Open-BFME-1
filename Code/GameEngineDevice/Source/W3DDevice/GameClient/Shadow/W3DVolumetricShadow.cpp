@@ -3627,7 +3627,6 @@ void W3DVolumetricShadow::addNeighborlessEdges(Int meshIndex, PolyNeighbor *us )
 // addSilhouetteIndices =======================================================
 // Add these two indices to the silhouette data
 // ============================================================================
-// ?addSilhouetteIndices@W3DVolumetricShadow@@IAEXHFF@Z present-unmatched
 void W3DVolumetricShadow::addSilhouetteIndices(Int meshIndex, Short edgeStart, Short edgeEnd )
 {
 
@@ -4561,7 +4560,6 @@ void W3DVolumetricShadow::resetShadowVolume( Int volumeIndex, Int meshIndex )
 // accomodate that as a series of disjoint edge pairs, otherwise known
 // as numVertices * 2
 // ============================================================================
-// ?allocateSilhouette@W3DVolumetricShadow@@IAE_NHH@Z present-unmatched
 Bool W3DVolumetricShadow::allocateSilhouette(Int meshIndex, Int numVertices )
 {
 	Int numEntries = numVertices * 5;	///@todo: HACK, HACK... Should be 2!
@@ -4595,7 +4593,6 @@ Bool W3DVolumetricShadow::allocateSilhouette(Int meshIndex, Int numVertices )
 // deleteSilhouette ===========================================================
 // Delete all silhouette data and memory allocated
 // ============================================================================
-// ?deleteSilhouette@W3DVolumetricShadow@@IAEXH@Z present-unmatched
 void W3DVolumetricShadow::deleteSilhouette( Int meshIndex )
 {
 
