@@ -105160,3 +105160,4 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ?_com_dispatch_raw_method@@YAJPAUIDispatch@@JGGPAXPBGZZ,,0x00AFE170,74,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\invkprxy.obj
 ?_com_dispatch_raw_propput@@YAJPAUIDispatch@@JGZZ,,0x00AFE1F0,105,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\invkprxy.obj
 ?WCodeToHRESULT@_com_error@@SAJG@Z,,0x00AFE260,26,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\invkerr.obj
+?setFont@W3DDisplayString@@UAEXPAVGameFont@@@Z,,0x006F5580,87,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,Open-BFME5 BFME FontLibrary ABI recovery

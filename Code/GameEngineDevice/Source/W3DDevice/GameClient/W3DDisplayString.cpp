@@ -73,6 +73,12 @@
 
 // PRIVATE TYPES //////////////////////////////////////////////////////////////
 
+class FontLibraryBFMERetail
+{
+public:
+	GameFont *getFont(AsciiString *name, Real pointSize, UnsignedByte bold);
+};
+
 // PRIVATE DATA ///////////////////////////////////////////////////////////////
 
 // PUBLIC DATA ////////////////////////////////////////////////////////////////
@@ -303,7 +309,6 @@ Int W3DDisplayString::getWidth( Int charPos )
 // W3DDisplayString::setFont ==================================================
 /** Set the font for this particular display string */
 //=============================================================================
-// ?setFont@W3DDisplayString@@UAEXPAVGameFont@@@Z present-unmatched
 void W3DDisplayString::setFont( GameFont *font )
 {
 
@@ -321,7 +326,7 @@ void W3DDisplayString::setFont( GameFont *font )
 	// set the font in our renderer
 	m_textRenderer.Set_Font( static_cast<FontCharsClass *>(m_font->fontData) );
 	
-	m_textRendererHotKey.Set_Font( static_cast<FontCharsClass *>(TheFontLibrary->getFont(font->nameString,font->pointSize, TRUE)->fontData) );
+	m_textRendererHotKey.Set_Font( static_cast<FontCharsClass *>(reinterpret_cast<FontLibraryBFMERetail *>(TheFontLibrary)->getFont(&font->nameString, *reinterpret_cast<Real *>(&font->pointSize), TRUE)->fontData) );
 	// recompute extents for text with new font
 	computeExtents();
 

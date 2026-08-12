@@ -67143,6 +67143,7 @@ name,address,notes
 ?getFinalOverride@Overridable@@QBEPBV1@XZ,0x000022BB
 ?getFirstObject@GameLogic@@QAEPAVObject@@XZ,0x000358BE,doEnableOrDisableObjectDifficultyBonuses call target (incremental-link thunk)
 ?getFont@FontLibrary@@QAEPAVGameFont@@PAVAsciiString@@ME@Z,0x0000ABC3,ILT thunk to FontLibrary::getFont from HeaderTemplateManager::populateGameFonts
+?getFont@FontLibraryBFMERetail@@QAEPAVGameFont@@PAVAsciiString@@ME@Z,0x0000ABC3,Open-BFME5 BFME retail FontLibrary ABI alias
 ?getGoalObject@StateMachine@@QAEPAVObject@@XZ,0x0000E570,retail AIEnterState::update call target
 ?getGridResolution@WaterRenderObjClass@@QAEXPAM00@Z,0x0001125C,pinharvest x1 (thunk)
 ?getGridResolution@WaterRenderObjClass@@QAEXPAM00@Z,0x000255FE,pinharvest x1 (thunk)
