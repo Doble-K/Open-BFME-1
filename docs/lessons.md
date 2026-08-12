@@ -7892,14 +7892,20 @@ each immediate points at in .rdata.
 
 **Right class and method, wrong signature** - the strings fit the name perfectly
 and only the parameter list is off. I first assumed these were boundary errors;
-they are not. Measuring the INT3 boundary at each of the three addresses returns
-exactly the claimed size, so the ranges are right and the bodies genuinely take
-arguments the mangled name does not declare:
+they are not, but neither are they all one thing. Check two things at each
+address before deciding: that the byte before it is 0xCC and the first bytes are
+a prologue, and that the INT3 boundary returns the claimed size. Seven of the
+ten pass both, so their ranges are right and the bodies genuinely take arguments
+the mangled name does not declare. One does not:
 
 - `?handleQMMatch@PeerThreadClass@@QAEXXZ` @0x00649180, 653B, `ret 0x24` -
   pushes "We're matched!".
 - `?joinBestGroupRoom@GameSpyInfo@@UAEXXZ` @0x00634EF2, 433B, `ret 4` - pushes
-  "GUI:GSGroupRoomJoinFail" and "GUI:Error".
+  "GUI:GSGroupRoomJoinFail" and "GUI:Error". This one is a **bad start address**,
+  not a signature error: 0x00634EF2 is not INT3-preceded, is not aligned, and
+  begins `test eax,eax` - it is 0x634EF2 sitting inside a larger function whose
+  real entry is earlier. Check the prologue before concluding anything about the
+  parameter list.
 - `?validate@ThingTemplate@@QAEXXZ` @0x00139B40, 350B, `ret 4` - pushes
   "DefaultThingTemplate".
 
