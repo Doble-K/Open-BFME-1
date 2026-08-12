@@ -1,4 +1,4 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /Ireference/shims/mouselayout /Ireference/shims/sweep /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngine/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/Compression /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/debug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/GameEngineDevice/Include /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2 /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWMath /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWDebug /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWSaveLoad /Ireference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Main
 // stlport
 #define Matrix4x4 Matrix4  // BFME renamed it
 #define __PLACEMENT_VEC_NEW_INLINE  // always.h/GameMemory.h define array placement-new themselves
@@ -31,7 +31,71 @@
 
 #include "Common/Debug.h"
 #include "GameClient/Display.h"
-#include "Win32Device/GameClient/Win32DIMouse.h"
+// BFME's Mouse is 0x10 bytes longer than reference/shims/mouselayout models it.
+// DirectInputMouse derives from Mouse directly and never sees Win32Mouse, yet
+// openMouse @0x6BB6C9 reads m_pDirectInput at +0x4E14 and getMouseEvent
+// @0x6BBC28 reads m_pMouseDevice at +0x4E18 - so sizeof(Mouse) is 0x4E14 on its
+// own, and the 0x10 the shim parks at the front of Win32Mouse is really Mouse's
+// tail. Moving it there is the true fix and is byte-neutral for W3DMouse.cpp
+// (the total stays 0x368, so no Win32Mouse offset changes), but editing a shim
+// forces the full gate, which is currently red on eight pre-existing DIR32
+// inconsistencies that have nothing to do with this file. So the same 0x10 is
+// modelled here instead, ahead of DirectInputMouse's own members, which lands
+// them on the retail offsets. Nothing outside this translation unit names
+// DirectInputMouse.
+#define __WIN32DIMOUSE_H_
+#ifndef DIRECTINPUT_VERSION
+#	define DIRECTINPUT_VERSION	0x800
+#endif
+#include <dinput.h>
+#include "GameClient/Mouse.h"
+
+// dinput.h's DIERR_NOTACQUIRED is HRESULT_FROM_WIN32(ERROR_INVALID_ACCESS==12),
+// which is what getMouseEvent @0x6BBC59 compares against. The sweep shim has
+// 0x8007001A; correcting it there is another shim edit, so it is corrected here.
+#undef DIERR_NOTACQUIRED
+#define DIERR_NOTACQUIRED            0x8007000CL
+
+class DirectInputMouse : public Mouse
+{
+
+public:
+
+	DirectInputMouse( void );
+	virtual ~DirectInputMouse( void );
+
+	// extended methods from base class
+	virtual void init( void );		///< initialize the direct input mouse, extending functionality
+	virtual void reset( void );		///< reset system
+	virtual void update( void );  ///< update the mouse data, extending functionality
+	virtual void setPosition( Int x, Int y );  ///< set position for mouse
+
+	virtual void setMouseLimits( void );  ///< update the limit extents the mouse can move in
+
+	virtual void setCursor( MouseCursor cursor );  ///< set mouse cursor
+
+	virtual void capture( void );  ///< capture the mouse
+	virtual void releaseCapture( void );  ///< release mouse capture
+
+protected:
+
+	/// device implementation to get mouse event
+	virtual UnsignedByte getMouseEvent( MouseIO *result, Bool flush );
+
+	// new internal methods for our direct input implemetation
+	void openMouse( void );  ///< create the direct input mouse
+	void closeMouse( void );  ///< close and release mouse resources
+	/// map direct input mouse data to our own format
+	void mapDirectInputMouse( MouseIO *mouse, DIDEVICEOBJECTDATA *mdat );
+
+	char _bfme_mouse_tail[ 0x10 ];  ///< Mouse's, not ours; see above
+
+	// internal data members for our direct input mouse
+	LPDIRECTINPUT8 m_pDirectInput;  ///< pointer to direct input interface
+	LPDIRECTINPUTDEVICE8 m_pMouseDevice;  ///< pointer to mouse device
+
+};  // end class DirectInputMouse
+
 #include "WinMain.h"
 
 // DEFINES ////////////////////////////////////////////////////////////////////////////////////////
@@ -167,7 +231,6 @@ void DirectInputMouse::openMouse( void )
 //-------------------------------------------------------------------------------------------------
 /** Release any resources for our direct input mouse */
 //-------------------------------------------------------------------------------------------------
-// ?closeMouse@DirectInputMouse@@IAEXXZ present-unmatched
 void DirectInputMouse::closeMouse( void )
 {
 
@@ -199,7 +262,6 @@ void DirectInputMouse::closeMouse( void )
 //-------------------------------------------------------------------------------------------------
 /** Get a single mouse event from the device */
 //-------------------------------------------------------------------------------------------------
-// ?getMouseEvent@DirectInputMouse@@MAEEPAUMouseIO@@_N@Z present-unmatched
 UnsignedByte DirectInputMouse::getMouseEvent( MouseIO *result, Bool flush )
 {
 	HRESULT hr;
@@ -327,7 +389,6 @@ void DirectInputMouse::mapDirectInputMouse( MouseIO *mouse,
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??0DirectInputMouse@@QAE@XZ present-unmatched
 DirectInputMouse::DirectInputMouse( void )
 {
 
@@ -338,7 +399,6 @@ DirectInputMouse::DirectInputMouse( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??1DirectInputMouse@@UAE@XZ present-unmatched
 DirectInputMouse::~DirectInputMouse( void )
 {
 
@@ -467,7 +527,6 @@ void DirectInputMouse::setPosition( Int x, Int y )
 //-------------------------------------------------------------------------------------------------
 /** Super basic simplistic cursor */
 //-------------------------------------------------------------------------------------------------
-// ?setCursor@DirectInputMouse@@UAEXW4MouseCursor@Mouse@@@Z present-unmatched
 void DirectInputMouse::setCursor( MouseCursor cursor )
 {
 

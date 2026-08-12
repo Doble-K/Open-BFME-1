@@ -69241,3 +69241,6 @@ _ghiSendBuffer,0x0087DA50,GameSpy ghttp send buffer retail callee
 ?clearFlag@ScriptEngine@@QAEXABVAsciiString@@@Z,0x0001B6F3,ScriptEngine clearTeamFlags retail ILT thunk
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAM@Z,0x00977DB0,AdaptiveDeltaMotionChannelClass getframe retail two-argument decompress
 ?clear@?$_List_base@UcrateCreationEntry@@V?$allocator@UcrateCreationEntry@@@_STL@@@_STL@@QAEXXZ,0x000331AE
+??0Mouse@@QAE@XZ,0x0004A8BD
+??1Mouse@@UAE@XZ,0x000437F2
+?setCursor@Mouse@@UAEXW4MouseCursor@1@@Z,0x0000E520
