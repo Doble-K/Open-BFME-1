@@ -157906,3 +157906,5 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00c706a0@@YAXXZ,,0x00C706A0,10,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_00c706b0@@YAXXZ,,0x00C706B0,10,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_00c706e0@@YAXXZ,,0x00C706E0,10,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
+?deallocate@?$allocator@U?$_Rb_tree_node@U?$pair@$$CBU?$pair@W4NameKeyType@@W41@@_STL@@PAVTeamPrototype@@@_STL@@@_STL@@@_STL@@QBEXPAU?$_Rb_tree_node@U?$pair@$$CBU?$pair@W4NameKeyType@@W41@@_STL@@PAVTeamPrototype@@@_STL@@@2@I@Z,,0x0081C670,47,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,
+??$?MW4NameKeyType@@W40@@_STL@@YA_NABU?$pair@W4NameKeyType@@W41@@0@0@Z,,0x009242A0,38,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,
