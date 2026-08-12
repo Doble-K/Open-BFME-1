@@ -7226,6 +7226,17 @@ so one C++ name legitimately resolved to two addresses. Giving each window its
 own name (`_terrainBase`, `_flatTerrainBase`) says what the code actually
 models and leaves both bodies byte-identical. A full gate confirms 8 -> 6.
 
+Cleared next, by retraction rather than renaming:
+`??0FireWeaponNugget@@QAE@XZ` and `??0ObjectCreationNugget@@QAE@XZ`. Retail at
+0x5C6C0 is `mov eax,ecx; [eax]=0; [eax+4]=0; ret` and at 0x61D90 is
+`mov eax,ecx; [eax]=0; ret`. A constructor of a polymorphic class stores its
+vftable at that site, not a literal zero, so neither body can be the
+constructor claimed on it - the patcher masking the relocation site is the
+only reason they "byte-matched". Both came from the same bulk ICF-alias commit
+that produced the already-retracted `??0UpdateModuleInterface` row at that very
+same 0x61D90, and no unique coverage is lost because both addresses stay
+claimed by their alias groups. 6 -> 4.
+
 Of the remaining six, four look like the ctor-vs-dtor vtable family this
 whitelist already documents, where a destructor inlines the base-chain
 destructor and its final vptr store names a different vtable than the class's
