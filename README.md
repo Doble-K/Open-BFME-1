@@ -15,19 +15,21 @@ Goal: source code that rebuilds BFME 1's executable byte-for-byte.
 
 We currently have C++ functions in `Code/` and a patcher which can patch same-size custom functions into `lotrbfme.exe`. This is useful for modding.
 
-The number that matters is **byte-exact C++**: about **13.5% of `.text`**, which is
-**~18% of the game's real code** (a quarter of `.text` is linker `int3` padding that
-needs no source and is excluded from the honest denominator). A further ~6% is
-byte-verified assembly awaiting conversion. Every row in `reverse/functions.csv`
-compiles or assembles to bytes identical to retail; `python3 tools/progress.py <ref>`
-prints both denominators and the split, so the real-code figure above is a number
-you can check rather than one you have to take on trust. The pipeline: scripts claim unidentified functions as
+The number that matters is **byte-exact C++**: **19.43% of the game's real code**
+(a quarter of `.text` is linker `int3` padding that needs no source and is excluded from
+the honest denominator — against raw `.text` the same bytes are 14.45%). A further
+**17.72%** is byte-verified assembly awaiting conversion, so **37.16%** of the real code
+is byte-exact today. Every row in `reverse/functions.csv` compiles or assembles to bytes
+identical to retail; `python3 tools/progress.py <ref>` prints every figure above, with both
+denominators and the split, so these are numbers you can check rather than ones you have to
+take on trust — and a test fails if this section ever claims more than the tool reports.
+The pipeline: scripts claim unidentified functions as
 byte-true ASM dumps, and agents convert ASM to exact C++ — conversion is the
 contribution.
 
 ## Roadmap
 
-* [ ] BFME 1 Source Code (~8% done)
+* [ ] BFME 1 Source Code (37.16% of real code byte-exact, 19.43% of it as C++)
 * [ ] Network delay fix
 * [ ] Memory fix
 * [ ] Better crash logs

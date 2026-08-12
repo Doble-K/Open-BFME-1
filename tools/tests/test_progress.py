@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Focused tests for tools/progress.py; stdlib only."""
 import importlib.util
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -243,6 +244,41 @@ def test_details_are_opt_in():
     print("PASS ledger diagnostics require --details")
 
 
+def test_readme_never_overstates_coverage():
+    """The README quotes three real-code percentages. Each must be a figure the
+    tool actually reports, and none may exceed it.
+
+    Equality is deliberately not asserted. Contributors land functions
+    continuously, so a pinned number goes stale within the hour and would fail
+    on master for everyone — the same decay that got the funclet-adjacency
+    warning unpinned. Overstating is the failure that matters: a README may
+    lag reality, it may never flatter it.
+    """
+    printed = subprocess.run([sys.executable, str(TOOL)],
+                             cwd=ROOT, capture_output=True, text=True, check=True).stdout
+    # Only the real-code half: both halves print a "Total exact" line, and the
+    # .text-relative one is the smaller, more flattering-to-beat number.
+    real_code = printed.split("real-code view", 1)[1]
+    tool = {}
+    for label, key in (("Total exact", "total"), ("code: C++", "cpp"),
+                       ("code: assembly", "assembly")):
+        line = next(l for l in real_code.splitlines()
+                    if l.strip().startswith(label) and "delta" in l)
+        tool[key] = float(line.split("(")[1].split("%")[0])
+
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    quoted = sorted(float(v) for v in re.findall(r"(\d+\.\d+)%", readme))
+    assert len(quoted) >= 4, f"README quotes only {len(quoted)} coverage figures"
+    for value in quoted:
+        assert value <= tool["total"] + 0.005, (
+            f"README claims {value}% where progress.py's whole byte-exact figure "
+            f"is {tool['total']}%")
+    assert max(quoted) >= tool["cpp"] - 0.005, (
+        f"README's largest claim is {max(quoted)}%, below the C++ lane's "
+        f"{tool['cpp']}% — the section has stopped describing the project")
+    print("PASS README coverage claims do not exceed progress.py")
+
+
 def main():
     test_union_and_cpp_precedence()
     test_text_clipping()
@@ -257,6 +293,7 @@ def main():
     test_live_naked_and_clean_rows_are_distinguished()
     test_b08_is_zero_byte_progress()
     test_details_are_opt_in()
+    test_readme_never_overstates_coverage()
     print("ALL TESTS PASSED")
 
 

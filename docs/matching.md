@@ -74,6 +74,13 @@ build settings. `build.py` derives both from the path instead: the ZH include se
 STLport for everything outside `Libraries/Source/WWVegas/`. `tools/zh_sweep.py` measured
 that split over 420 translation units, with no exceptions either way.
 
+Do not spend another pass trying to string-anchor the sweep's ICF-ambiguous exact matches.
+It was measured: of 2,908 bodies that place at more than one address, only 268 reference a
+string literal at all, and following each candidate's DIR32 to the string it points at
+leaves 252 with no consistent copy and 16 with exactly one — every one of which is already
+claimed. The anchor lands nothing, because the functions distinctive enough to anchor are
+the ones earlier passes already identified.
+
 `tools/conversion_gate.py` scans added lines under `Code/` only, so these rows fall outside
 its Rule A, and that is deliberate. Rule A stops a contributor deleting authored C++ and
 committing an `__emit` byte dump in its place; nobody authors the vendored tree, and nine of
