@@ -1,96 +1,42 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class SpecialEnemySenseUpdateModuleData
+// vptr, then the RS_Member at 0x08 built out of line, then two plain members.
+// ModuleData carries a declared destructor so the EH frame appears.
+
+class ModuleData
 {
 public:
-    SpecialEnemySenseUpdateModuleData();
+	virtual void moduleDataAnchor();
+	~ModuleData();
+
+	int m_04;
 };
 
-__declspec(naked) SpecialEnemySenseUpdateModuleData::SpecialEnemySenseUpdateModuleData()
+class RS_Member
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xa8;
-        __emit 0x14;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x38;
-        __emit 0xcd;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x47;
-        __emit 0x37;
-        __emit 0xf1;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x01;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+public:
+	RS_Member();
+	~RS_Member();
+
+private:
+	void *m_p;
+};
+
+class SpecialEnemySenseUpdateModuleData : public ModuleData
+{
+public:
+	SpecialEnemySenseUpdateModuleData();
+
+	virtual void moduleDataAnchor();
+
+	RS_Member m_08;
+	int m_0c;
+	int m_10;
+};
+
+// ??0SpecialEnemySenseUpdateModuleData@@QAE@XZ
+SpecialEnemySenseUpdateModuleData::SpecialEnemySenseUpdateModuleData()
+{
+	m_0c = 0;
+	m_10 = 1;
 }

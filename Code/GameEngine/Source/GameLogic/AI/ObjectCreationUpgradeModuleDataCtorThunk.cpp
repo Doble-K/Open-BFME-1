@@ -1,108 +1,64 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class ObjectCreationUpgradeModuleData
+// No EH frame here, so nothing in this object is destructible -- neither the
+// base nor the UpgradeModuleDataSub member gets a declared destructor.
+//
+// Trailing members are written in retail's store order, which is not offset
+// order: 0xa0 lands before 0x98 and 0x9c, and the -1 at 0x94 comes last.
+
+class ModuleData
 {
 public:
-    ObjectCreationUpgradeModuleData();
+	virtual void moduleDataAnchor();
+
+	int m_04;
 };
 
-__declspec(naked) ObjectCreationUpgradeModuleData::ObjectCreationUpgradeModuleData()
+class UpgradeModuleDataSub
 {
-    __asm {
-        _emit 53h
-        _emit 56h
-        _emit 8Bh
-        _emit 0F1h
-        _emit 33h
-        _emit 0DBh
-        _emit 8Dh
-        _emit 4Eh
-        _emit 10h
-        _emit 0C7h
-        _emit 06h
-        _emit 80h
-        _emit 0D7h
-        _emit 0Ch
-        _emit 01h
-        _emit 89h
-        _emit 5Eh
-        _emit 08h
-        _emit 89h
-        _emit 5Eh
-        _emit 0Ch
-        _emit 0E8h
-        _emit 0DCh
-        _emit 7Ah
-        _emit 0D3h
-        _emit 0FFh
-        _emit 89h
-        _emit 5Eh
-        _emit 78h
-        _emit 89h
-        _emit 5Eh
-        _emit 7Ch
-        _emit 89h
-        _emit 9Eh
-        _emit 80h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 9Eh
-        _emit 84h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 9Eh
-        _emit 88h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 9Eh
-        _emit 8Ch
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 88h
-        _emit 9Eh
-        _emit 90h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 9Eh
-        _emit 0A0h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 9Eh
-        _emit 98h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 89h
-        _emit 9Eh
-        _emit 9Ch
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 0C7h
-        _emit 86h
-        _emit 94h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 8Bh
-        _emit 0C6h
-        _emit 5Eh
-        _emit 5Bh
-        _emit 0C3h
-    }
+public:
+	UpgradeModuleDataSub();
+
+private:
+	unsigned char m_body[0x78 - 0x10];
+};
+
+class ObjectCreationUpgradeModuleData : public ModuleData
+{
+public:
+	ObjectCreationUpgradeModuleData();
+
+	virtual void moduleDataAnchor();
+
+	int m_08;
+	int m_0c;
+	UpgradeModuleDataSub m_10;
+	int m_78;
+	int m_7c;
+	int m_80;
+	int m_84;
+	int m_88;
+	int m_8c;
+	bool m_90;
+	int m_94;
+	int m_98;
+	int m_9c;
+	int m_a0;
+};
+
+// ??0ObjectCreationUpgradeModuleData@@QAE@XZ
+ObjectCreationUpgradeModuleData::ObjectCreationUpgradeModuleData()
+	: m_08( 0 ), m_0c( 0 )
+{
+	m_78 = 0;
+	m_7c = 0;
+	m_80 = 0;
+	m_84 = 0;
+	m_88 = 0;
+	m_8c = 0;
+	m_90 = false;
+	m_a0 = 0;
+	m_98 = 0;
+	m_9c = 0;
+	m_94 = -1;
 }

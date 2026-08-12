@@ -7720,3 +7720,25 @@ So the count of vtable stores in a constructor is the count of polymorphic
 classes at or above it that get constructed, and it should be read off the body
 before choosing a hierarchy. Two stores means an intermediate; one store means
 the class sits directly on its base.
+
+
+## Group a family by call count and vtable-store count before writing anything
+
+Twenty-five naked ModuleData constructors call one of three now-proven base pins.
+Grouping them by two numbers read straight off the body -- how many calls, and
+how many vtable stores -- sorts them into shapes that each convert the same way,
+and three from the single-vtable group landed on the first build.
+
+The two counts answer the two structural questions. Vtable stores give the
+number of polymorphic layers being constructed: one means the class sits
+directly on its base, two means there is an intermediate. Call count separates
+how many sub-objects have out-of-line constructors, which is what the EH frame
+and the member ordering hang off.
+
+The presence or absence of the EH frame then settles destructibility, in the
+direction recorded earlier: ObjectCreationUpgradeModuleData has no frame at all,
+so neither its base nor its member may carry a declared destructor, while the
+two that do have frames need one on the base.
+
+Reading all three signals before writing turns what used to be three or four
+builds into one.

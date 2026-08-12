@@ -1,99 +1,44 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class AutoDepositUpdateModuleData
+// vptr, then five init-list members, then the RS_Member at 0x1c built out of
+// line. ModuleData carries a declared destructor so the EH frame appears.
+
+class ModuleData
 {
 public:
-    AutoDepositUpdateModuleData();
+	virtual void moduleDataAnchor();
+	~ModuleData();
+
+	int m_04;
 };
 
-__declspec(naked) AutoDepositUpdateModuleData::AutoDepositUpdateModuleData()
+class RS_Member
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 0E8h
-        _emit 014h
-        _emit 000h
-        _emit 001h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 004h
-        _emit 033h
-        _emit 0C0h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 01Ch
-        _emit 089h
-        _emit 044h
-        _emit 024h
-        _emit 010h
-        _emit 0C7h
-        _emit 006h
-        _emit 078h
-        _emit 0CEh
-        _emit 008h
-        _emit 001h
-        _emit 089h
-        _emit 046h
-        _emit 008h
-        _emit 089h
-        _emit 046h
-        _emit 00Ch
-        _emit 089h
-        _emit 046h
-        _emit 010h
-        _emit 089h
-        _emit 046h
-        _emit 014h
-        _emit 0C7h
-        _emit 046h
-        _emit 018h
-        _emit 000h
-        _emit 000h
-        _emit 080h
-        _emit 03Fh
-        _emit 0E8h
-        _emit 0A6h
-        _emit 035h
-        _emit 0F1h
-        _emit 0FFh
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 008h
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
+public:
+	RS_Member();
+	~RS_Member();
+
+private:
+	void *m_p;
+};
+
+class AutoDepositUpdateModuleData : public ModuleData
+{
+public:
+	AutoDepositUpdateModuleData();
+
+	virtual void moduleDataAnchor();
+
+	int m_08;
+	int m_0c;
+	int m_10;
+	int m_14;
+	float m_18;
+	RS_Member m_1c;
+};
+
+// ??0AutoDepositUpdateModuleData@@QAE@XZ
+AutoDepositUpdateModuleData::AutoDepositUpdateModuleData()
+	: m_08( 0 ), m_0c( 0 ), m_10( 0 ), m_14( 0 ), m_18( 1.0f )
+{
 }
