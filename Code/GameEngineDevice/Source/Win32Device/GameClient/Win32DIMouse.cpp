@@ -437,9 +437,19 @@ void DirectInputMouse::init( void )
 	// open the mouse and create the direct input interfaces we need
 	openMouse();
 
-	// move the window mouse to the location we have initialized in our system
-	p.x = m_currMouse.pos.x;
-	p.y = m_currMouse.pos.y;
+	// move the window mouse to the location we have initialized in our system.
+	// BFME's Mouse puts m_currMouse eight bytes further along than
+	// reference/shims/mouselayout models it: retail @0x006BBD32 reads
+	// this+0x4D10 and this+0x4D14 where the shim gives +0x4D08 and +0x4D0C.
+	// The real fix is eight bytes moved from _bfme_hole_beforeCurrentCursor to
+	// just ahead of m_mouseEvents, which is byte-neutral for W3DMouse.cpp, but
+	// that is a shim edit and the full gate is red (docs/lessons.md). So this
+	// reads the retail offsets directly, the way CrateSystem.cpp reads INI's
+	// m_loadType.
+	const ICoord2D *retailCurrMousePos =
+			(const ICoord2D *)( (const char *)this + 0x4D10 );
+	p.x = retailCurrMousePos->x;
+	p.y = retailCurrMousePos->y;
 	ClientToScreen( ApplicationHWnd, &p );
 	SetCursorPos( p.x, p.y );
 //	ShowCursor( FALSE );
