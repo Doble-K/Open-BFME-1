@@ -105145,3 +105145,18 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ?Put_Wide_String@INIClass@@QAE_NPBD0PBG@Z,,0x009E53B0,300,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,zh-sweep exact-unique placement in unclaimed .text
 ?Put_PKey@INIClass@@QAE_NABVPKey@@@Z,,0x009E5B10,90,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,zh-sweep exact-unique placement in unclaimed .text
 ?Get_PKey@INIClass@@QBE?AVPKey@@_N@Z,,0x009E5B70,237,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,zh-sweep exact-unique placement in unclaimed .text
+?_com_issue_errorex@@YGXJPAUIUnknown@@ABU_GUID@@@Z,,0x00AFD550,110,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comsupp.obj
+?_com_dispatch_method@@YAJPAUIDispatch@@JGGPAXPBGZZ,,0x00AFD5C0,73,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comsupp.obj
+?_com_dispatch_propput@@YAJPAUIDispatch@@JGZZ,,0x00AFD640,104,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comsupp.obj
+??0_variant_t@@QAE@JG@Z,,0x00AFD6C0,111,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comutil.obj
+?ConvertStringToBSTR@_com_util@@YGPAGPBD@Z,,0x00AFD750,352,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comutil.obj
+?ConvertBSTRToString@_com_util@@YGPADPAG@Z,,0x00AFD8B0,343,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comutil.obj
+??0_com_error@@QAE@JPAUIErrorInfo@@_N@Z,,0x00AFDA10,54,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comraise.obj
+?_com_raise_error@@YGXJPAUIErrorInfo@@@Z,,0x00AFDA50,51,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comraise.obj
+??0_com_error@@QAE@ABV0@@Z,,0x00AFDA90,50,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comraise.obj
+??1_com_error@@UAE@XZ,,0x00AFDAD0,38,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comraise.obj
+??_G_com_error@@UAEPAXI@Z,,0x00AFDB00,58,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\comraise.obj
+?_com_invoke_helper@@YAJPAUIDispatch@@JGGPAXPBGPADPAPAUIErrorInfo@@@Z,,0x00AFDB40,1571,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\invkprxy.obj
+?_com_dispatch_raw_method@@YAJPAUIDispatch@@JGGPAXPBGZZ,,0x00AFE170,74,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\invkprxy.obj
+?_com_dispatch_raw_propput@@YAJPAUIDispatch@@JGZZ,,0x00AFE1F0,105,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\invkprxy.obj
+?WCodeToHRESULT@_com_error@@SAJG@Z,,0x00AFE260,26,vendor/comsupp/comsupp.lib,matched,vendored=msvc71-comsupp;member=Release\invkerr.obj
