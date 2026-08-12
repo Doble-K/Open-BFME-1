@@ -424,12 +424,16 @@ __TI1?AW4ErrorCode@@
 # inflate tables are byte-identical at both addresses for at least 256 bytes
 #   _fixed_bl 0x12C5E68 / 0x12E4EC0    _fixed_bd 0x12C5E6C / 0x12E4EC4
 #   _fixed_tl 0x12C5E70 / 0x12E4EC8    _fixed_td 0x12C6E70 / 0x12E5EC8
-# and png_IEND ("IEND ") is identical at 0x115120C and 0x1159370.
+# and the png chunk names are identical at both copies: png_IHDR 0x11511FC /
+# 0x1159360, png_IEND 0x115120C / 0x1159370, png_PLTE 0x1151214 / 0x1159378 -
+# the same +0x8164 delta throughout, which is the second libpng link site.
 _fixed_bl
 _fixed_bd
 _fixed_tl
 _fixed_td
 _png_IEND
+_png_IHDR
+_png_PLTE
 
 # Tenth member of the FX ctor-vs-dtor family the header above describes: the
 # destructor in fx_particle_system.cpp resolves this to 0x1073744, which that
