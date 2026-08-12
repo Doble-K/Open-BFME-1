@@ -1966,7 +1966,6 @@ void Drawable::calcPhysicsXformTreads( const Locomotor *locomotor, PhysicsXformI
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?calcPhysicsXformWheels@Drawable@@IAEXPBVLocomotor@@AAUPhysicsXformInfo@1@@Z present-unmatched
 __declspec(naked) void Drawable::calcPhysicsXformWheels( const Locomotor *locomotor, PhysicsXformInfo& info )
 {
 	__asm {

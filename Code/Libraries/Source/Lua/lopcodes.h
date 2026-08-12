@@ -96,6 +96,8 @@ OP_PUSHSTRING,/* K	-		KSTR[k]				*/
 OP_PUSHNUM,/*	N	-		KNUM[n]				*/
 OP_PUSHNEGNUM,/* N	-		-KNUM[n]			*/
 
+OP_PUSHBOOL,/* U	-		(nil/boolean)u		*/
+
 OP_PUSHUPVALUE,/* U	-		Closure[u]			*/
 
 OP_GETLOCAL,/*	L	-		LOC[l]				*/

@@ -202,7 +202,6 @@ void W3DBridge::init(Vector3 fromLoc, Vector3 toLoc, AsciiString bridgeTemplateN
 /** Loads a bridge model(if not already loaded) and gets meshes for use at 
 specified location.  */
 //=============================================================================
-// ?load@W3DBridge@@QAE_NW4BodyDamageType@@@Z present-unmatched
 __declspec(naked) Bool W3DBridge::load(enum BodyDamageType curDamageState)
 {
 	__asm {

@@ -653,7 +653,6 @@ void SidesList::removeTeam(Int i)
 	m_teamrec.removeTeam(i);
 }
 
-// ?validateAllyEnemyList@SidesList@@IAE_NABVAsciiString@@AAV2@@Z present-unmatched
 __declspec(naked) Bool SidesList::validateAllyEnemyList(const AsciiString& tname, AsciiString& allies)
 {
 	__asm {

@@ -69247,3 +69247,4 @@ _ghiSendBuffer,0x0087DA50,GameSpy ghttp send buffer retail callee
 ?setMouseLimits@Mouse@@UAEXXZ,0x00002A63
 _DirectInput8Create@20,0x009F9AF0
 ?_M_insert@?$hashtable@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@W4NameKeyType@@U?$hash@W4NameKeyType@@@rts@@U?$_Select1st@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@@2@U?$equal_to@W4NameKeyType@@@5@V?$allocator@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@@2@@_STL@@QAEAAU?$pair@$$CBW4NameKeyType@@VDamageFX@@@2@ABU32@@Z,0x0001545B
+_stat,0x0099D0C0,pin _stat from _chunk call site @0x99D2FC (retail target 0x99D0C0)

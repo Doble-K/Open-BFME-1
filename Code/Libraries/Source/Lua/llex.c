@@ -37,7 +37,8 @@
 static const char *const token2string [] = {
     "and", "break", "do", "else", "elseif", "end", "for",
     "function", "if", "local", "nil", "not", "or", "repeat", "return", "then",
-    "until", "while", "", "..", "...", "==", ">=", "<=", "~=", "", "", "<eof>"};
+    "until", "while", "true", "false", "", "..", "...", "==", ">=", "<=",
+    "~=", "", "", "<eof>"};
 
 
 void luaX_init (lua_State *L) {

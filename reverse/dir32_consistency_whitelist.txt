@@ -408,3 +408,7 @@ _static_ltree
 _x_rgcbTypeSizes
 _x_rgdwTexCoordSize
 _x_rgszSemanticString
+??_7RenderObjectUpdateModuleInfo@FXParticleSystem@@6B@
+??_7TeamFactory@@6BSnapshot@@@
+??_7TeamFactory@@6BSubsystemInterface@@@
+??_7UpdateModule@@6B@
