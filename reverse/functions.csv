@@ -9225,7 +9225,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GameSpyToggleOverlay@@YAXW4GSOverlayType@@@Z,,0x00628240,29,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,
 ?GameWinDefaultInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
 ?GameWinDefaultSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x006CF680,3,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,icf-owner=?Get_Sort_Level@RenderObjClass@@UBEHXZ
-?GeneralsExpPointsInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C48C0,67,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/GeneralsExpPointsInputBodyThunk.cpp,matched,Open-BFME5 exact C++ body;object-symbol=?GeneralsExpPointsInputBodyThunk@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z
 ?GeneralsExpPointsSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C4920,207,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/GeneralsExpPoints.cpp,matched,
 ?Generate@PKey@@SAXAAVStraw@@HAAV1@1@Z,,0x009EB290,715,Code/Libraries/Source/WWVegas/WWLib/pk.cpp,matched,
 ?GenerateNextCommandID@@YAGXZ,,0x00682D10,13,Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp,matched,
@@ -157917,3 +157916,4 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?allocate@?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@UHotKey@@@_STL@@@_STL@@@_STL@@QBEPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@UHotKey@@@_STL@@@2@IPBX@Z,,0x0081C640,46,Code/GameEngine/Source/GameClient/MessageStream/HotKeyManagerCtorThunk.cpp,matched,byte-scan placement; unique
 ??1ThingRef@@QAE@XZ,,0x0039B060,35,Code/GameEngine/Source/GameLogic/AI/GettingBuiltBehaviorModuleDataCtorThunk.cpp,matched,byte-scan placement; unique
 ??0QueueProductionExitUpdateModuleData@@QAE@XZ,,0x00124150,47,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/QueueProductionExitUpdateFriendNewModuleDataThunk.cpp,matched,byte-scan placement; unique
+?GeneralsExpPointsInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C48C0,67,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/GeneralsExpPoints.cpp,matched,clean C++ replaces the naked dump; mouselayout InGameUI slots
