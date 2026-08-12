@@ -368,7 +368,6 @@ DEBUG_LOG(( "%d: GetGameAudioRandomValueReal = %f, %s line %d\n",
 /**
 	define the range of random values, and the distribution of values
 */
-// ?setRange@GameClientRandomVariable@@ present-unmatched
 void GameClientRandomVariable::setRange( Real low, Real high, DistributionType type )
 {
 	DEBUG_ASSERTCRASH(!(m_type == CONSTANT && m_low != m_high), ("CONSTANT GameClientRandomVariables should have low == high"));

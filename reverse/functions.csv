@@ -80042,10 +80042,8 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?saveTracks@WaterTracksRenderSystem@@QAEXXZ,,0x007AC680,251,Code/GameEngineDevice/Source/W3DDevice/GameClient/Water/WaterTracksRenderSystem_saveTracks_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?sawFullGameList@GameSpyInfo@@UAEXXZ,,0x00637180,5,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,Vtable-bound GameSpyInfo mutator
 ?scale@Coord3D@@QAEXM@Z,0x000236AF,0x000B6CD0,31,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,scales x/y/z in place
-?scanBool@@YAHPBDAA_N@Z,,0x00484470,44,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?scanBool@INI@@SA_NPBD@Z,,0x00852550,108,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
 ?scanIndexList@INI@@SAHPBDPBQBD@Z,,0x008509E0,137,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
-?scanInt@INI@@SAHPBD@Z,,0x00852620,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
 ?scanInt@MemoryReadFile@@UAE_NAAH@Z,,0x009CB140,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?scanInt@MemoryWriteFile@@UAE_NAAH@Z,,0x009CB320,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?scanLookupList@INI@@SAHPBDPBULookupListRec@@@Z,,0x00850A70,136,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
@@ -80054,7 +80052,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?scanReal@MemoryReadFile@@UAE_NAAM@Z,,0x009CB150,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?scanReal@MemoryWriteFile@@UAE_NAAM@Z,,0x009CB330,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?scanScience@INI@@SA?AW4ScienceType@@PBD@Z,,0x000B8F40,17,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
-?scanShort@@YAHPBDAAF@Z,,0x004844B0,41,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?scanString@MemoryReadFile@@UAE_NAAVAsciiString@@@Z,,0x009CB160,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryReadFile vtable 0x01143A38 - class named by its ctor string
 ?scanString@MemoryWriteFile@@UAE_NAAVAsciiString@@@Z,,0x009CB340,5,Code/GameEngine/Source/Common/System/File.cpp,matched,MemoryWriteFile vtable 0x01143AA8 - class named by its ctor string
 ?scanUnsignedInt@INI@@SAIPBD@Z,,0x00852680,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,macro-substitutes the token then sscanf; INIException on failure
@@ -80404,7 +80401,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setRadiusCursor@InGameUI@@UAEXW4RadiusCursorType@@PBVSpecialPowerTemplate@@W4WeaponSlotType@@@Z,,0x0043DBE0,461,Code/GameEngine/Source/Common/InGameUI_setRadiusCursor_Thunk.cpp,matched,Certified packet 55 exact retail db body sha256 b01185b9c4282c9236b9aa68f638568552ba76c7685ffa8fee60e9a214938c7d
 ?setRallyPoint@DefaultProductionExitUpdate@@UAEXPBUCoord3D@@@Z,,0x002CFCA0,32,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/DefaultProductionExitUpdate.cpp,matched,
 ?setRallyPoint@SupplyCenterProductionExitUpdate@@UAEXPBUCoord3D@@@Z,,0x002CFCA0,32,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SupplyCenterProductionExitUpdate.cpp,matched,
-?setRange@GameClientRandomVariable@@QAEXMMW4DistributionType@1@@Z,0x00006C58,0x00096F40,23,Code/GameEngine/Source/Common/System/game_client_random_variable.cpp,matched,sets distribution/minimum/maximum
 ?setRange@GameLogicRandomVariable@@QAEXMMW4DistributionType@1@@Z,,0x00097000,23,Code/GameEngine/Source/Common/System/random_value.cpp,matched,
 ?setRankLevel@Player@@QAE_NH@Z,,0x000D93AC,487,Code/GameEngine/Source/Common/Player_setRankLevel_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?setRawTextureData@Image@@QAEXPAX@Z,,0x0029BC50,10,Code/GameEngineDevice/Source/W3DDevice/Common/System/W3DRadar.cpp,matched,
@@ -80618,7 +80614,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?startsWithNoCase@?$StringBase@G@@QBE_NPBGH@Z,0x00887120,0x887120,69,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,
 ?staticInitModules@FXParticleSystem@@YAXXZ,0x0000261C,0x005EB400,125,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,initializes all module category static data
 ?statusCallback@BuddyThreadClass@@QAEXPAVGPConnection@@PAUGPRecvBuddyStatusArg@@@Z,,0x0003BD8B,5,Code/GameEngine/Source/Common/RTS/BuddyThreadClassStatusCallbackThunk.cpp,matched,5-byte incremental-link BuddyThreadClass status callback thunk converted to focused C++ source
-?stdAngleDiff@@YAMMM@Z,,0x0016A310,19,Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp,matched,
 ?stopAllBoneFX@BoneFXUpdate@@QAEXXZ,,0x00288F40,131,Code/GameEngine/Source/GameLogic/Object/Update/BoneFXUpdate.cpp,matched,thunk-dump converted to clean C++; killRunningParticleSystems() inlined by compiler
 ?stopAndRemoveMovie@WindowVideoManager@@QAEXPAVGameWindow@@@Z,,0x00498D10,107,Code/GameEngine/Source/GameClient/window_video_manager.cpp,matched,
 ?stopBurningSound@FlammableUpdate@@IAEXXZ,,0x00293010,31,Code/GameEngine/Source/GameLogic/Object/Update/FlammableUpdate.cpp,matched,reloc-needle Open-BFME4+Grok asm->cpp depth Open-BFME4+Grok
@@ -157908,3 +157903,8 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?atan2@@YAMMM@Z,,0x001486F0,11,Code/GameEngine/Source/Common/System/Geometry.cpp,matched,clean C++ replaces the naked dump
 ?findFieldParse@@YAP6AXPAVINI@@PAX1PBX@ZPBUFieldParse@@PBDAAHAAPBX@Z,,0x00850880,128,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,clean C++ replaces the naked dump
 ?grabHexInt@@YAHPBD@Z,,0x0050B030,54,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,clean C++ replaces the naked dump
+?scanBool@@YAHPBDAA_N@Z,,0x00484470,44,Code/GameEngine/Source/GameClient/GUI/parseComboBoxData_Thunk.cpp,matched,clean C++ replaces the naked dump
+?scanInt@INI@@SAHPBD@Z,,0x00852620,86,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,clean C++ replaces the naked dump
+?scanShort@@YAHPBDAAF@Z,,0x004844B0,41,Code/GameEngine/Source/GameClient/GUI/parseTextEntryData_Thunk.cpp,matched,clean C++ replaces the naked dump
+?setRange@GameClientRandomVariable@@QAEXMMW4DistributionType@1@@Z,0x00006C58,0x00096F40,23,Code/GameEngine/Source/Common/RandomValue.cpp,matched,clean C++ replaces the naked dump
+?stdAngleDiff@@YAMMM@Z,,0x0016A310,19,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,clean C++ replaces the naked dump
