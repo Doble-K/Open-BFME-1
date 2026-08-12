@@ -48,7 +48,17 @@
 #ifndef DIRECTINPUT_VERSION
 #	define DIRECTINPUT_VERSION	0x800
 #endif
+// Retail reaches DirectInput8Create with a direct `call rel32` at 0x6BBAC0, so
+// it links dinput8.lib's stub rather than going through the import table; the
+// sweep shim declares it __declspec(dllimport), which costs a `call [import]`
+// one byte longer. Renaming the shim's declaration out of the way and giving
+// the real one ordinary external linkage restores the retail call shape without
+// touching the shim (a shim edit forces the full gate, which is red).
+#define DirectInput8Create _bfme_dinput8create_dllimport_unused
 #include <dinput.h>
+#undef DirectInput8Create
+extern "C" HRESULT WINAPI DirectInput8Create( HINSTANCE, DWORD, REFIID, void **, IUnknown * );
+
 #include "GameClient/Mouse.h"
 
 // dinput.h's DIERR_NOTACQUIRED is HRESULT_FROM_WIN32(ERROR_INVALID_ACCESS==12),
@@ -56,6 +66,11 @@
 // 0x8007001A; correcting it there is another shim edit, so it is corrected here.
 #undef DIERR_NOTACQUIRED
 #define DIERR_NOTACQUIRED            0x8007000CL
+
+// Same story for DIDC_FORCEFEEDBACK: dinput.h has it at 0x100, and openMouse
+// @0x6BBB91 shifts dwFlags right by 8 before masking bit 0. The shim has 1.
+#undef DIDC_FORCEFEEDBACK
+#define DIDC_FORCEFEEDBACK           0x00000100
 
 class DirectInputMouse : public Mouse
 {
@@ -110,7 +125,6 @@ enum { MOUSE_BUFFER_SIZE = 256, };
 /** Create our direct input object, mouse device, and initialize it to the
 	* data formats we want */
 //-------------------------------------------------------------------------------------------------
-// ?openMouse@DirectInputMouse@@IAEXXZ present-unmatched
 void DirectInputMouse::openMouse( void )
 {
 	HRESULT hr;

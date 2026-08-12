@@ -69245,3 +69245,4 @@ _ghiSendBuffer,0x0087DA50,GameSpy ghttp send buffer retail callee
 ??1Mouse@@UAE@XZ,0x000437F2
 ?setCursor@Mouse@@UAEXW4MouseCursor@1@@Z,0x0000E520
 ?setMouseLimits@Mouse@@UAEXXZ,0x00002A63
+_DirectInput8Create@20,0x009F9AF0
