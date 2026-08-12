@@ -32,6 +32,27 @@
 
 #define __PLACEMENT_VEC_NEW_INLINE
 #include <vector>	// before PreRTS.h so node_alloc freelist is used (not NEWALLOC)
+// BFME's KindOf list is longer than Zero Hour's, so KindOfMaskType is wider.
+// Retail CrateTemplate zeroes six dwords for m_killedByTypeKindof (this+0x18
+// through this+0x2F) where ZH's 121-bit mask needs four, which puts BFME's
+// KINDOF_COUNT in (160,192]: std::bitset rounds to whole 32-bit words, so any
+// count in that range gives the same six. Only the width is provable from
+// these bytes - the names past ZH's list are not - so this substitutes a
+// width-only KindOfMaskType rather than inventing enumerators. Scoped to this
+// translation unit: reference/shims/bfmekindof/Common/KindOf.h carries the two
+// extra names TunnelTracker proves, but it is still four dwords wide.
+#define __KINDOF_H_
+#include "Common/BitFlags.h"
+enum KindOfType
+{
+	KINDOF_INVALID = -1,
+	KINDOF_FIRST = 0,
+	KINDOF_COUNT = 192						///< width pin only; see above
+};
+typedef BitFlags<KINDOF_COUNT>	KindOfMaskType;
+#define MAKE_KINDOF_MASK(k) KindOfMaskType(KindOfMaskType::kInit, (k))
+#define CLEAR_KINDOFMASK(m) ((m).clear())
+
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #define DEFINE_VETERANCY_NAMES				// for TheVeterancyNames[]
@@ -230,7 +251,6 @@ const FieldParse CrateTemplate::TheCrateTemplateFieldParseTable[] =
 	{ NULL,								NULL,																		NULL,									NULL },		// keep this last!
 };
 
-// ??0CrateTemplate@@QAE@XZ present-unmatched
 CrateTemplate::CrateTemplate()
 {
 	m_name = "";
