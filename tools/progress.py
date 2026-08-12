@@ -41,6 +41,10 @@ VENDORED_ROOTS = (
     "Code/Libraries/Source/LibPNG/",
     "Code/Libraries/Source/Lua/",
     "vendor/",
+    # Microsoft's static CRT, read straight out of the tracked MSVC 7.1
+    # toolchain rather than copied under vendor/. Same lane as vendor/d3dx9:
+    # Microsoft compiled it, so it is not this game's identity.
+    "build/toolchains/",
 )
 GEN_NOTE_RE = re.compile(r"(?:^|;)\s*gen-[a-z]")
 EMIT_RE = re.compile(

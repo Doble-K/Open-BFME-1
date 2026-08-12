@@ -105324,3 +105324,38 @@ _a_fabs,,0x00AC1120,32,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;
 _d3dx_inflate_trees_fixed@20,,0x00AD4FFD,49,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\inftrees.obj
 _d3dx_inflate_flush@12,,0x00AD502E,273,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\infutil.obj
 _d3dx_inflate_fast@24,,0x00AD513F,706,vendor/d3dx9/d3dx9.lib,matched,vendored=d3dx9-summer2003;member=obj\i386\inffast.obj
+??_Etype_info@@UAEPAXI@Z,,0x009F6CAF,75,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/msvcrt.lib,matched,vendored=msvc71-crt;member=build\intel\dll_obj\ti_inst.obj
+?ArrayUnwindFilter@@YAHPAU_EXCEPTION_POINTERS@@@Z,,0x009F6D06,18,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\ehvecdtr.obj
+?__ArrayUnwind@@YGXPAXIHP6EX0@Z@Z,,0x009F6D18,47,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\ehvecdtr.obj
+??__C@YGXPAX0IHP6EX00@ZP6EX0@Z@Z,,0x009F7036,78,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\ehvccctr.obj
+__alldiv,,0x009F70E0,170,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\lldiv.obj
+__allmul,,0x009F7210,52,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\llmul.obj
+$esperror$18513,,0x009F7505,32,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\stack.obj
+@_RTC_CheckStackVars@8,,0x009F7525,90,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\stack.obj
+__RTC_InitBase,,0x009F757F,38,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\init.obj
+__RTC_Shutdown,,0x009F75A5,18,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\init.obj
+?DebuggerProbe@@YAHK@Z,,0x009F75DC,70,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?DebuggerRuntime@@YAHKHPAXPB_W@Z,,0x009F7629,88,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?IntToString@@YAPADH@Z,,0x009F7688,58,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?Win95IsDebuggerPresent@@YGHXZ,,0x009F76D3,17,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?Initialize@@YAHXZ,,0x009F76E4,104,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?_IsDebuggerPresent@@YAHXZ,,0x009F774C,48,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?failwithmessage@@YAXPAXHHPBD@Z,,0x009F777C,269,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?_RTC_Failure@@YAXPAXH@Z,,0x009F7889,62,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?_RTC_MemFailure@@YAXPAXHPBX@Z,,0x009F78C7,404,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+?_RTC_StackFailure@@YAXPAXPBD@Z,,0x009F7A5B,140,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+__RTC_UninitUse,,0x009F7AE7,166,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\error.obj
+__aulldiv,,0x009F7BC0,104,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\ulldiv.obj
+__aulldvrm,,0x009F7C30,149,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\ulldvrm.obj
+__allshl,,0x009F7CE0,31,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\llshl.obj
+__aullshr,,0x009F7D00,31,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\ullshr.obj
+__SEH_prolog,,0x009F7E88,59,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\sehprolg.obj
+__SEH_epilog,,0x009F7EC3,17,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\sehprolg.obj
+__setdefaultprecision,,0x009F7F98,18,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\fp8.obj
+___security_init_cookie,,0x009F7FC8,102,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=build\intel\st_obj\seccinit.obj
+__RTC_GetErrDesc,,0x009F8038,24,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\userapi.obj
+__RTC_SetErrorType,,0x009F8050,33,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\userapi.obj
+?GetImageInfo@@YAPAUImageInfo@@K@Z,,0x009F808E,771,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\pdblkup.obj
+$CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\pdblkup.obj
+?GetPdbDll@@YAPAUHINSTANCE__@@XZ,,0x009F83DF,312,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\pdblkup.obj
+?_RTC_GetSrcLine@@YAHKPADHPAHPAPAD@Z,,0x009F8517,790,build/toolchains/vs2003/Program Files/Microsoft Visual Studio .NET 2003/Vc7/lib/libc.lib,matched,vendored=msvc71-crt;member=..\build\intel\st_obj\pdblkup.obj
