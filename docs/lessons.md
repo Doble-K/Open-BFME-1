@@ -7467,7 +7467,7 @@ thirty of them; follow the `E9` at each slot, most are ILT thunks.
      36  0x090  0x43AA60   InGameUI::setSuperweaponDisplayEnabledByScript
      46  0x0B8  0x43ADE0   InGameUI::setGUICommand
      48  0x0C0  0x43AF60   InGameUI::placeBuildAvailable
-     50  0x0C8  0x43B140   InGameUI::disregardDrawable
+     50  0x0C8  0x43B140   (unnamed - what disregardDrawable forwards to)
      59  0x0EC  0x446550   InGameUI::selectAllUnitsByTypeAcrossMap
      65  0x104  0x43E180   InGameUI::getFirstSelectedDrawable
      67  0x10C  0x43E1A0   InGameUI::isDrawableSelected
@@ -7481,7 +7481,8 @@ Slot 1 is `createReplayControl`, which Zero Hour's InGameUI does not declare as
 a virtual at all, and slot 2 is the SubsystemInterface addition - so the extra
 virtuals start at the very top of the table, not down at `isScrolling` where
 `reference/shims/mouselayout` puts nine of them. That model moves slot 50 to
-0xEC and breaks `disregardDrawable`, which retail tail-jumps through 0xC8 (see
-the previous section). Rebuild the header from these anchors instead of
+0xEC and so breaks `disregardDrawable`, which is an 8-byte body at 0x00537A1A
+that does nothing but `jmp [eax+0xC8]` - it forwards to slot 50, whose target
+0x43B140 is still unnamed, and that forwarding is what pins the slot. Rebuild the header from these anchors instead of
 inserting a block: the gaps between consecutive anchors give the exact number
 of unnamed virtuals in each stretch.
