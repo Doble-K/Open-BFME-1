@@ -374,13 +374,14 @@ private:
 	
 	uint32	NumFrames;			// Number of frames
 
-	float		Scale;				// Scale Filter, this much
-
-	// BFME has one more dword here: ~AdaptiveDeltaMotionChannelClass (0x009783C0)
-	// frees [esi+0x18] and [esi+0x20], four past ours, and with this member in
-	// place getframe's reads of +0xc, +0x1c and +0x20 become NumFrames,
-	// CacheFrame and CacheData instead of running off the end of the class.
+	// BFME has one more dword here, and Scale is the second of the two, not the
+	// first: decompress @0x00977F53 multiplies the filter by this+0x14.
+	// The destructor and getframe evidence that put a hole here in the first
+	// place is unaffected - ~AdaptiveDeltaMotionChannelClass (0x009783C0) frees
+	// [esi+0x18] and [esi+0x20], and getframe reads +0xc, +0x1c and +0x20 - since
+	// only the order of these two dwords changes, not the size.
 	float		_bfme_adm_scale2;
+	float		Scale;				// Scale Filter, this much
 
 	uint32  *Data;				 	// pointer to packet data
 
