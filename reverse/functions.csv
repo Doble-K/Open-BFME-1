@@ -10021,7 +10021,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Init_Rise_Processor_Type@CPUDetectClass@@CAXXZ,,0x009DE300,110,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,
 ?Init_VIA_Processor_Type@CPUDetectClass@@CAXXZ,,0x009DE2A0,81,Code/Libraries/Source/WWVegas/WWLib/cpudetect.cpp,matched,
 ?Initialize@AggregateDefClass@@QAEXAAVRenderObjClass@@@Z,,0x00980A60,163,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,MASM dump converted to clean C++; SUBOBJS_MATCH_LOD is bit 20 in BFME and two AggregateDefClass methods are not virtual
-?Initialize@HLodDefClass@@QAEXAAVHLodClass@@@Z,,0x0097CA80,485,Code/GameEngine/Source/Common/HLodDefClass_Initialize_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM
 ?Initialize@INIClass@@AAEXXZ,,0x009E3640,98,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ?Initialize_Particle@ParticleEmitterClass@@AAEXPAUNewParticleStruct@@IABVQuaternion@@ABVVector3@@@Z,,0x0097F1F0,850,Code/Libraries/Source/WWVegas/WW3D2/part_emt.cpp,matched,
 ?Initialize_Randomizer_Struct@ParticleEmitterDefClass@@MAEXABVVector3Randomizer@@AAUW3dVolumeRandomizerStruct@@@Z,,0x0098DAF0,164,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,true size 164B; row claimed 49B (switch dispatch + case bodies)
@@ -11357,7 +11356,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Valid_File@FilePipe@@AAE_NXZ,,0x009E1B80,11,Code/Libraries/Source/WWVegas/WWLib/xpipe.cpp,matched,
 ?Valid_File@FileStraw@@AAE_NXZ,,0x009E7D40,11,Code/Libraries/Source/WWVegas/WWLib/xstraw.cpp,matched,
 ?Validate_Cached_Bounding_Volumes@RenderObjClass@@IBEXXZ,,0x0091FD90,8,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,
-?Validate_Transform@RenderObjClass@@UBEXXZ,,0x00920270,80,Code/GameEngine/Source/Common/RenderObjClass_Validate_Transform_Thunk.cpp,matched,clean C++ conversion; verbatim ZH rendobj.cpp body; Bits this+0x10 with SUBOBJ_TRANSFORMS_DIRTY bit 21; Transform this+0x18; IsTransformIdentity this+0x7C; Container this+0x84; Check_Is_Transform_Identity takes the matrix in ecx
 ?Value@CRCEngine@@IBEJXZ,,0x009E8020,17,Code/Libraries/Source/WWVegas/WWLib/crc.cpp,matched,
 ?Version1@Xfer@@QAEXXZ,0x000429C9,0x000C7E90,21,Code/GameEngine/Source/Common/System/Xfer.cpp,matched,xfer version 1 marker
 ?Visibility_Check@RTS3DScene@@UAEXPAVCameraClass@@@Z,,0x009446F0,1075,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene_Visibility_Check.asm,matched,exact 1075B via MASM
@@ -157908,3 +157906,5 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00c706e0@@YAXXZ,,0x00C706E0,10,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?deallocate@?$allocator@U?$_Rb_tree_node@U?$pair@$$CBU?$pair@W4NameKeyType@@W41@@_STL@@PAVTeamPrototype@@@_STL@@@_STL@@@_STL@@QBEXPAU?$_Rb_tree_node@U?$pair@$$CBU?$pair@W4NameKeyType@@W41@@_STL@@PAVTeamPrototype@@@_STL@@@2@I@Z,,0x0081C670,47,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,
 ??$?MW4NameKeyType@@W40@@_STL@@YA_NABU?$pair@W4NameKeyType@@W41@@0@0@Z,,0x009242A0,38,Code/GameEngine/Source/Common/RTS/TeamFactoryList.cpp,matched,
+?Initialize@HLodDefClass@@QAEXAAVHLodClass@@@Z,,0x0097CA80,485,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,clean C++ replaces the naked dump
+?Validate_Transform@RenderObjClass@@UBEXXZ,,0x00920270,80,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,clean C++ replaces the naked dump
