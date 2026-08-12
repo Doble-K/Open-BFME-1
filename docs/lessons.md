@@ -7138,3 +7138,41 @@ Both files held two ledger rows at one address, ICF-folded. Writing the class
 shape twice, once per name, converts both rows in a single build, which is what
 makes multi-row files worth targeting despite build.py verifying a source as a
 whole. Four rows landed here from two builds' worth of real work.
+## Two drifts sit under every Overridable-derived destructor
+
+CrateTemplate cost two separate BFME/ZH divergences, and both generalise.
+
+The first is `KindOfMaskType`. Retail `CrateTemplate::CrateTemplate`
+@0x00379DC0 zeroes six dwords at this+0x18 where Zero Hour's 121-bit mask needs
+four, so BFME's `KINDOF_COUNT` is in (160,192] and every member past the mask
+sits eight bytes higher. `std::bitset` rounds to whole 32-bit words, so any
+count in that range gives the same layout: the width is provable, the extra
+enumerator names are not. A `typedef BitFlags<192> KindOfMaskType` scoped to
+the one translation unit -- guard-suppress `__KINDOF_H_` before `PreRTS.h`,
+which reaches `Common/KindOf.h` at its line 61 -- turned a 187-byte body into
+the exact 199. `reference/shims/bfmekindof` carries the two extra names
+TunnelTracker proves but is still four dwords wide, so it does not fix layout.
+Suspect this whenever a class holding a KindOf mask is off by eight per member.
+
+The second stopped the destructor. BFME's `~Overridable` is
+`if (m_nextOverride) delete m_nextOverride; m_nextOverride = NULL;` -- a
+`vtbl[0]` call with the deleting flag, the same polymorphic delete the rest of
+this file uses -- where Zero Hour calls `m_nextOverride->deleteInstance()` and
+never clears the field. It is inlined into every derived destructor, so it
+cannot be pinned as a call; a TU-local `Overridable` plus `__forceinline`
+(plain `__inline` is not enough, MSVC leaves it out of line) reproduces every
+instruction of retail's 147-byte `~CrateTemplate` @0x00379EC0 except six bytes:
+our object emits two vptr stores, `Overridable`'s then `MemoryPoolObject`'s,
+and unwind state 3 before the delete, while retail emits one store hoisted
+between the `test` and the `je` and unwind state -1. Retail therefore gets
+nothing at all out of `~MemoryPoolObject` -- no vptr reset, no cleanup state --
+which is a `GameMemory.h`-level drift, not a CrateTemplate one, and it will
+block the last few bytes of every other `MemoryPoolObject` destructor the same
+way. Worth solving once, centrally, rather than per file.
+
+Finding the body at all needed the vtable, not the drift report: slot 0 of
+0x10EA378 is the deleting destructor behind ILT 0x2647C, which reaches
+`??_GCrateTemplate` @0x37A2F0 and from there `~CrateTemplate` @0x379EC0. The
+drift report had guessed 0x0081DC99, which is not a function start, and
+`locate.py` reported the symbol unlocated because the compiled body was still
+128 bytes with an out-of-line `~Overridable` call.
