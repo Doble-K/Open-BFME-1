@@ -7011,3 +7011,43 @@ immediates.
 
 Deriving the layout from the header is the fallback. Reading it from the body is
 the primary source, and it also cross-checks the header rather than trusting it.
+
+
+## The AsciiString shims model getLength wrongly for BFME
+
+Every AsciiString shim in reference/shims defines
+
+    inline int AsciiString::getLength() const { return m_data ? strlen(peek()) : 0; }
+
+but BFME's does not call strlen. obfuscate() at 0x7FBF0 inlines it as a null
+guard followed by `movzx eax, word ptr [eax+4]` -- reading the stored 16-bit
+length straight out of the string header.
+
+The asciistring8 shim already knows this. Its isEmpty() reads m_data->m_len and
+carries a comment citing two other retail bodies that prove the 8-byte header
+and the 16-bit length field. getLength was simply never brought into line with
+its own sibling.
+
+Fixing it is `return m_data ? m_data->m_len : 0;` and is zero-risk right now:
+only three sources include that shim and none of them call getLength. It was not
+landed here because it is a header edit, which forces the full gate, and the
+conversion it was meant to unlock did not finish anyway -- but it is the correct
+change and should ride along with whichever conversion needs it first.
+
+Also worth knowing: asciistring8 is not self-contained the way
+campaignmanagerascii is. It includes Lib/BaseType.h, so it needs the GeneralsMD
+reference include paths on the cl line; copy them from
+Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp.
+
+## Choosing between shims is part of the reconstruction, not setup
+
+obfuscate's first build failed only because campaignmanagerascii forwards
+getLength and str() to out-of-line StringBase calls, where retail inlines both.
+Nothing about the body was wrong. The shim determines whether an accessor
+inlines, and that is as much a codegen decision as any source-level choice.
+
+So when a body matches structurally but has a call where retail has inline code
+(or vice versa), suspect the shim before rewriting the logic. There are several
+AsciiString shims precisely because different retail translation units inlined
+different amounts, and picking the wrong one produces a plausible-looking near
+miss.
