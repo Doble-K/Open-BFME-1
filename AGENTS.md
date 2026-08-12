@@ -205,6 +205,28 @@ function, repoint the row with
 the generated source by hand. check_csv rejects a gen-* row sharing an exact
 range with a real-name row — the placeholder yields (tombstone it).
 
+`Code/gen_asm/d_<rva>.asm` is the scaled version of the same idea and is now
+where most of the convert queue comes from: 52,547 MASM `db` bodies, 4.57 MB,
+`gen-dump;` notes, every one of them anonymous `?d_<rva>@@YAXXZ`. They are
+**scaffolding, not progress** — the bytes are copied out of the retail image, so
+they prove an address and an extent and nothing else, and `progress.py` counts
+them on its `of which scaffold` line rather than in `recovered from source`.
+What they buy you is a fixed boundary and a body you can read.
+
+Converting one is the whole point, and it is a different command from the
+`gen_small` flow above: the name changes, so `--replace-existing` cannot find
+the row it must retire. Write the clean C++ in its proper `Code/…` source, then
+
+    python3 tools/add_match.py <real-name> <rva> <size> <source> --replace-rva <rva>
+
+**Never edit a file under `Code/gen_asm/`.** Leave the orphaned `PROC` behind —
+`build.py` only compares ledger rows, so it is dead weight and nothing more, and
+not touching those files is what makes two converters unable to conflict there.
+`conversion_gate` Rule C enforces this: C1 refuses any line in that directory
+that is not generator output, C2 refuses any row pointing there that carries a
+name or drops the `gen-dump` notes, C3 refuses a wave commit that also edits
+other `Code/` files.
+
 A `gen-funclet;` row lands in one of two places, and which one is not a matter
 of taste. When the funclet's parent has been reconstructed, the funclet falls
 out of that parent's own object as a `$L` label: the row lives on the parent's
