@@ -7051,3 +7051,51 @@ So when a body matches structurally but has a call where retail has inline code
 AsciiString shims precisely because different retail translation units inlined
 different amounts, and picking the wrong one produces a plausible-looking near
 miss.
+
+
+## MSVC will not inline a recursive walk twice, so write the two steps out
+
+SpecialPowerTemplate's two accessors both walk an override chain and then read a
+member of whatever the walk lands on. Retail expands the walk exactly two levels
+-- two null tests -- before falling back to an out-of-line call.
+
+A recursive inline function does not reproduce that. Written the obvious way
+(`if (m_nextOverride) return m_nextOverride->friend_getFinalOverride(); return
+this;`) MSVC expands one level and calls. `__forceinline` changes nothing,
+because it does not apply recursively. `#pragma inline_recursion(on)` makes it
+worse: MSVC then declines to inline at all and emits a bare call.
+
+Writing the first two steps explicitly, and leaving friend_getFinalOverride
+merely declared so the tail resolves to its existing pin, produced the right
+shape. One further fix was needed: retail places the "no override, use this"
+exit LAST, so the source has to be `if (o) { ...; return o; } return this;`
+rather than an early `if (!o) return this;`. With both, getViewObjectDuration
+came out byte-exact.
+
+getName, in the same file, still differs by one thing: retail carries the walk
+result in eax (`mov ecx,eax` then `add ecx,0xc`) where the identical source
+yields ecx (`mov eax,ecx` then `add eax,0xc`). That is the register-allocation
+class, so the file is reverted -- build.py verifies a source as a whole, and a
+file with two rows cannot land with one of them matching.
+
+Two things worth carrying forward: the explicit-unroll technique for inline
+depth, and the branch-ordering rule that an early-return guard and a trailing
+fallback are not interchangeable even though they compute the same thing.
+
+## Multi-row naked files are a large untouched pool, with a catch
+
+Every screen so far skipped files carrying more than one ledger row, which is
+where roughly four thousand of the five thousand remaining naked rows live.
+Screening for small ones -- two to four rows, under about 320 bytes total --
+turns up 22 files.
+
+The catch is that build.py verifies a source file as a whole, so every row in
+the file has to convert before any of it lands. SpecialPowerTemplate shows the
+failure mode directly: one accessor byte-exact, the other blocked, and nothing
+committable. Prefer files whose rows share a shape, so one insight closes all of
+them, and expect all-or-nothing outcomes.
+
+Also seen while screening: MeshGeometryMeshModelLeafThunks.cpp looks like a
+candidate but is already finished. Its one real function is converted and the
+other three rows are deliberate ICF aliases keeping the folded body, which is
+correct -- a void function cannot compile to a value-returning body.
