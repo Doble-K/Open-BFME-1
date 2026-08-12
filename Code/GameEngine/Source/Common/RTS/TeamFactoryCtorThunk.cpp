@@ -74,15 +74,17 @@ public:
 // The map's value is anonymous in retail; the ledger already carries its
 // _Rb_tree instantiation under the generated payload name gen_dump.py minted
 // for it, so use that name and the destructor resolves to the matched row.
-// The eight-byte map value: clear() @0x000F6D07 reads the node at +0x18, which
-// is the value's second dword, null-checks it and deletes it through vtbl[0]
-// with the deleting flag. So the prototype pointer is the second member.
+// The map is keyed by a two-word key with a plain pointer value, not by an int
+// with an eight-byte value: addTeamPrototypeToList @0x000F3DA0 builds the key
+// from two NAMEKEY calls before looking it up. Both shapes give the same 0x1C
+// node, which is why the constructor, destructor and clear all match either
+// way - only a body that uses the key can tell them apart.
 class BfmeTeamPrototype
 {
 public:
 	virtual ~BfmeTeamPrototype();
 };
-struct Gen_t_000ef540_p8cd { int a; BfmeTeamPrototype *proto; };
+typedef std::pair<int, int> BfmeTeamPrototypeKey;
 
 class TeamFactory : public SubsystemInterface, public Snapshot
 {
@@ -107,7 +109,7 @@ private:
 	// _Rb_tree<H, pair<$$CBH, <8 bytes>>>::~_Rb_tree, which names the key type
 	// directly. The node is 0x1C either way - 0x10 of links plus a 0xC value -
 	// so the constructor's bytes are unchanged.
-	std::map<int, Gen_t_000ef540_p8cd, std::less<int> > m_prototypes;
+	std::map<BfmeTeamPrototypeKey, BfmeTeamPrototype *, std::less<BfmeTeamPrototypeKey> > m_prototypes;
 	int m_uniqueTeamPrototypeID;
 	int m_uniqueTeamID;
 };
@@ -134,10 +136,10 @@ void TeamFactory::clear()
 {
 	// must remove it from the map before deleting the TeamProto, since
 	// the TeamProto will try to remove itself from the list when it goes away
-	std::map<int, Gen_t_000ef540_p8cd, std::less<int> > tmp = m_prototypes;
+	std::map<BfmeTeamPrototypeKey, BfmeTeamPrototype *, std::less<BfmeTeamPrototypeKey> > tmp = m_prototypes;
 	m_prototypes.clear();
-	for (std::map<int, Gen_t_000ef540_p8cd, std::less<int> >::iterator it = tmp.begin(); it != tmp.end(); ++it)
+	for (std::map<BfmeTeamPrototypeKey, BfmeTeamPrototype *, std::less<BfmeTeamPrototypeKey> >::iterator it = tmp.begin(); it != tmp.end(); ++it)
 	{
-		delete it->second.proto;
+		delete it->second;
 	}
 }
