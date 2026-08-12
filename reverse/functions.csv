@@ -105169,3 +105169,4 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ?setCursor@DirectInputMouse@@UAEXW4MouseCursor@Mouse@@@Z,,0x006BB9E0,98,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?getMouseEvent@DirectInputMouse@@MAEEPAUMouseIO@@_N@Z,,0x006BBC00,180,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?setRedrawMode@Mouse@@UAEXW4RedrawMode@1@@Z,,0x005A5630,13,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
+?setMouseLimits@DirectInputMouse@@UAEXXZ,,0x006BB930,58,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
