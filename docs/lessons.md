@@ -7867,3 +7867,40 @@ uses. So our toolchain can produce both orders and it is neither a flag nor a
 compiler-version difference. It is context - which is the puzzling part, because
 in PopupReplayInit every other byte of the 386 already matches, so whatever the
 scheduler is reacting to is not visible in the emitted code around it.
+
+## Arity-contradicted rows split into two kinds, and the strings tell you which
+
+`tools/audit_ret_arity.py` reports 245 rows whose retail stack cleanup
+contradicts their decorated name, and ten of them are large naked dumps
+(10.4 KB). Those all byte-match by construction, so the gate cannot see them -
+but pulling the string literals a body pushes separates the two failure modes in
+about a minute each. Scan the claimed range for `68 <imm32>` and read whatever
+each immediate points at in .rdata.
+
+**Wrong identity** - the strings name a different class entirely:
+
+- `?init@GameTextManager@@UAEXXZ` @0x0051F3A0, 3411B, `ret 4`. Pushes eighteen
+  literals and every one is an AptMainMenu callback name. Retracted: while it
+  stood, the real GameTextManager::init could never be claimed, because one name
+  gets one address.
+- `?updateBridgeRepair@AIPlayer@@IAEXXZ` @0x00167930, 1077B, `ret 0xC`. Every
+  string is about team recruiting - "Unable to recruit singleton team ",
+  " recruits ", " from team " - and nothing about bridges. Left in place with the
+  evidence logged, since I could not name it; the real `recruitSpecificAITeam` is
+  claimed elsewhere with two parameters, so this is a third recruiting function
+  taking three.
+
+**Right identity, wrong boundary** - the strings fit the name perfectly and only
+the arity is off, which means the claimed range runs past the real function and
+catches a later `ret imm16`:
+
+- `?handleQMMatch@PeerThreadClass@@QAEXXZ` @0x00649180, 653B, `ret 0x24` -
+  pushes "We're matched!".
+- `?joinBestGroupRoom@GameSpyInfo@@UAEXXZ` @0x00634EF2, 433B, `ret 4` - pushes
+  "GUI:GSGroupRoomJoinFail" and "GUI:Error".
+- `?validate@ThingTemplate@@QAEXXZ` @0x00139B40, 350B, `ret 4` - pushes
+  "DefaultThingTemplate".
+
+Do not retract the second kind; re-measure the INT3 boundary instead. And note
+that three of the ten push no literals at all - `BuddyThreadClass::Thread_Function`,
+both `BFMEConnectionManager` updaters - so those need a different handle.
