@@ -7742,3 +7742,52 @@ two that do have frames need one on the base.
 
 Reading all three signals before writing turns what used to be three or four
 builds into one.
+
+## Pair every asm dump with the real source; a lot of them already compile
+
+`tools/list_naked_candidates.py` hands you one naked body at a time and leaves
+you to write the C++. Often you do not have to: the real Zero Hour source is
+already in the tree, and for a useful fraction of these rows it already emits
+the retail bytes exactly. Find them mechanically rather than one at a time.
+
+Take every `matched` row whose source file contains `__declspec(naked)` or
+`__emit` - about 4,970 of them - demangle-lite the symbol to `Class::method(`
+(or ` freefunc(` for `?name@@Y...`), grep Code/ for other sources containing
+that text, and run `tools/explain_mismatch.py <symbol> --rva --size --source
+<candidate>`. Requiring exactly one candidate gives 308 pairs; allowing several
+and testing each gives 794. Sort the results by how many `!=` lines came back.
+
+What that produced in one session, all of it assembly retired for C++ rather
+than new coverage: `HLodDefClass::Initialize` (485B) and
+`RenderObjClass::Validate_Transform` (80B) needed nothing at all - the rows just
+moved onto hlod.cpp and rendobj.cpp and the thunk TUs were deleted. Four more
+were one to three instructions away and each of those instructions turned out to
+name a real BFME drift:
+
+- `MultiIniFieldParse::add` - retail throws with `mov [esp+0xc],1` where Zero
+  Hour's `ERROR_BUG` is 0xDEAD0001. **BFME rebases the whole ErrorCode enum at
+  1.** The `_CxxThrowException` type descriptor is unchanged, so only the value
+  moved. That constant is thrown all over the engine.
+- `AdaptiveDeltaMotionChannelClass::decompress` - `fmul [eax+0x14]` where the
+  source's `Scale` is at +0x10. motchan.h already carries a `_bfme_adm_scale2`
+  hole at +0x14, so the two are simply the other way round.
+- `AABTreeClass::Cast_Ray_To_Polys` - **MeshGeometryClass** has `Poly` at +0x2C
+  and `Vertex` at +0x30, four lower than the header, and `PolySurfaceType` at
+  +0x60, 0x1C higher: BFME drops one dword ahead of Poly and adds seven pointer
+  members between Vertex and PolySurfaceType. `ShareBufferClass::Get_Array` is
+  at +0xC in both.
+- `VertexMaterialClass::Get_Diffuse` - the material pointer is at this+0x8, not
+  +0xC. vertmaterial.h parks its BFME dword ahead of the pointer; putting it
+  between `Flags` and `AmbientColorSource` instead satisfies that header's own
+  +0x14/+0x18 constraint and puts the pointer back at +0x8.
+
+Each of the last four is a header fix that is byte-neutral or better for its
+whole library, and each is blocked only by the red full gate. Until that clears,
+read the member at the retail offset in the body and write the evidence next to
+it - `CrateSystem.cpp`'s `retailLoadType` is the precedent.
+
+Two mechanical notes. `explain_mismatch` caches its own
+`build/match/<name>.harvest.obj`, separate from the build's object, so delete
+both when a source edit looks like it had no effect. And check the mangled name
+against the right overload - `decompress` has a two-argument and a
+four-argument form, and only one of them is the dump.
