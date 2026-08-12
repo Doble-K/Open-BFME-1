@@ -15,27 +15,30 @@ Goal: source code that rebuilds BFME 1's executable byte-for-byte.
 
 We currently have C++ functions in `Code/` and a patcher which can patch same-size custom functions into `lotrbfme.exe`. This is useful for modding.
 
-The number that matters is **recovered source**: **19.56% of the game's real code** is
-rebuilt from C++ we wrote, plus **8.77%** from assembly a human wrote where the compiler
-cannot be made to emit the retail bytes. (A quarter of `.text` is linker padding that needs
-no source and is left out of that denominator; against the raw section the C++ figure is
-**14.54%**.)
+The number that matters is how much of the game we hold as source. **11.38% of the game's
+real code** rebuilds from source we have and can edit: C++ we wrote from the disassembly,
+plus vendored library source we compile. (A quarter of `.text` is linker padding nobody has
+to write, and it is left out of that denominator.)
 
-`python3 tools/progress.py` also prints **84.53%** as *Total exact*, and that number is not
-recovery. **56.20%** of it is scaffolding: byte-true dumps of the retail image, machine
-generated, which pin a function's address and extent so the boundary stops being a guess
-and the body becomes a target. Those bytes prove nothing about what the code *is* — the
-tool labels them `of which scaffold` and prints `recovered from source` underneath for
-exactly that reason. Quote the second number, not the first.
+`reverse/functions.csv` claims a lot more than that, and the rest is not recovered source:
+
+* **8.17%** is C++ a generator wrote — exception funclets, small thunks, template grids. It
+  compiles and the bytes are exact, but a script produced it, so it is not recovery.
+* **8.53%** is prebuilt libraries we attach, like `d3dx9.lib`. They link, so we never have
+  to write them, but their source is not in the tree.
+* **56.44%** is byte-true dumps of retail. A dump pins where a function starts and ends,
+  and that is all it does. Turning one into C++ is the work.
+
+Add those up and `python3 tools/progress.py` prints **84.53%** as *Total exact*. That is how
+much of the image has a fixed boundary, not how much we recovered. Quote the first number.
 
 Every row in `reverse/functions.csv` compiles or assembles to bytes identical to retail.
-The pipeline: scripts claim unidentified functions as byte-true ASM dumps, and agents
-convert ASM to exact C++ — conversion is the contribution, and it is the only step that
-moves the number above.
+Converting a dump into real C++ is the contribution, and it is the only thing that moves
+the first number.
 
 ## Roadmap
 
-* [ ] BFME 1 Source Code (19.56% recovered as source; 84.53% byte-exact including scaffolding)
+* [ ] BFME 1 Source Code (11.38% held as source; 84.53% byte-exact counting dumps and libraries)
 * [ ] Network delay fix
 * [ ] Memory fix
 * [ ] Better crash logs

@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Report exact-match coverage of the retail executable's .text section.
+"""Report how much of the retail .text we hold as source, and what else we claim.
+
+The headline is RECOVERED AS SOURCE: bytes we could rebuild from text a human
+can read and edit, which is authored C++ plus the vendored library sources we
+compile. Everything else the ledger claims is reported beside it and never
+folded into it -- byte-true dumps of retail, prebuilt .lib files we attach, and
+machine-written C++. Total exact stays in the report as the target-definition
+number: it says which bytes have a fixed boundary, not which bytes we recovered.
 
 Every retail byte is counted once. Clean C++ ownership wins when it overlaps an
 assembly-backed row (including ICF aliases), leaving "ASM-only" as actionable
@@ -46,7 +53,14 @@ VENDORED_ROOTS = (
     # Microsoft compiled it, so it is not this game's identity.
     "build/toolchains/",
 )
-GEN_NOTE_RE = re.compile(r"(?:^|;)\s*gen-[a-z]")
+# Files a generator writes: one body per retail funclet, thunk or template
+# instance, with a synthetic name. Path and note are both checked so a
+# generator cannot move the recovered figure by omitting its own marker.
+GENERATED_ROOTS = ("Code/gen_small/", "Code/gen_asm/")
+GEN_NOTE_RE = re.compile(r"(?:^|;)\s*gen-[a-z]|identity=generated\b")
+# Provenance lanes, best evidence first. Overlapping claims on one byte resolve
+# to the earliest lane, so the lanes partition Total exact with no double count.
+SOURCE_LANES = ("authored", "vendored", "generated", "library", "dump")
 EMIT_RE = re.compile(
     r"\b_{1,2}emit\s+(?:0x([0-9a-fA-F]{1,2})|([0-9a-fA-F]{1,3})h)\b",
     re.IGNORECASE,
@@ -346,64 +360,70 @@ def coverage(matched, text_start, text_size, naked_rows=()):
     }
 
 
-def scaffold_bytes(matched, notes, text_start, text_size, naked_rows=()):
-    """Assembly-lane bytes that are a byte-true dump of retail, not source.
+def source_lane(source, notes, naked):
+    """Return the provenance lane for a matched row.
 
-    The dump pass pins ~4.5 MB of machine bodies so their boundaries are fixed
-    and the convert lane has targets. Those bytes are real coverage of the image
-    and they are NOT recovered source, so "Total exact" alone stops meaning what
-    the README says it means. Counted the way the code axis counts: clean C++
-    wins an overlap, so a range someone has since converted stops being
-    scaffolding here the moment it stops being assembly there.
+    Provenance asks who wrote the thing the bytes come out of. It is a
+    different question from the code axis (which language) and it is the one
+    the project is graded on, because only two of these five lanes are source
+    anybody recovered.
+
+      authored   C++ we wrote from the disassembly.
+      vendored   upstream library source we compile (zlib, JPEG, Lua, STLport,
+                 the MSVC CRT sources). Having zlib's source is having it.
+      generated  C++ a generator wrote (Code/gen_small/): EH funclets,
+                 small thunks, template grids.
+      library    a prebuilt .lib we attach (d3dx9, CRT). It links, so it is a
+                 real way to reach 1:1, but there is no source in the tree.
+      dump       retail re-encoded: MASM `db` bodies and __emit sprays. These
+                 fix an address and an extent and say nothing else.
+
+    `generated` is the one arguable lane and it is deliberately NOT recovered.
+    Those bodies compile from real constructs -- a tail call is a tail call,
+    and the funclets fall out of MSVC's codegen rather than out of a hex dump
+    -- so they are not scaffolding either, which is why they get a line of
+    their own instead of being buried. They are excluded because a script
+    writes them: 85,000 of the ledger's rows came from running tools/gen_uw.py
+    once, and a headline a script can move is the exact failure this metric
+    exists to prevent. The rule is the authorship of the source, not the
+    provenance of the bytes: a human wrote it, or a program did. Flipping this
+    means putting the generators under human review first, and `code: C++`
+    below already reports authored and generated together for anyone who wants
+    the everything-that-compiles number.
     """
-    text_end = text_start + text_size
-    cpp, gen = [], []
-    naked_rows = set(naked_rows)
-    for key, (size, source) in matched.items():
-        start = max(int(key[1], 16), text_start)
-        end = min(int(key[1], 16) + size, text_end)
-        if start >= end:
-            continue
-        if GEN_NOTE_RE.search(notes[key]):
-            gen.append((start, end))
-        elif source_kind(source) == "cpp" and key not in naked_rows:
-            cpp.append((start, end))
-    return interval_bytes(cpp + gen) - interval_bytes(cpp)
-
-
-def identity_lane(source, notes):
-    """Return the identity-axis lane for a matched row.
-
-    This axis is independent of the code axis on purpose. A gen-* funclet is
-    compiled C++ on the code axis and a placeholder on this one, and both
-    statements are true at once, so neither axis can contradict the other.
-    """
-    if GEN_NOTE_RE.search(notes):
+    if Path(source).suffix.lower() in LIB_SUFFIXES:
+        return "library"
+    if naked or source_kind(source) == "asm":
+        return "dump"
+    if source.startswith(GENERATED_ROOTS) or GEN_NOTE_RE.search(notes):
         return "generated"
-    if source.startswith(VENDORED_ROOTS):
-        return "vendored"
-    return "real"
+    return "vendored" if source.startswith(VENDORED_ROOTS) else "authored"
 
 
-def identity_split(matched, notes, text_start, text_size):
-    """Return per-lane .text bytes on the identity axis.
+def source_split(matched, notes, text_start, text_size, naked_rows=()):
+    """Return .text bytes per provenance lane; the lanes sum to Total exact.
 
-    Real identity wins an overlap the way clean C++ does on the code axis: an
-    ICF alias shared with a generated placeholder is still a named function.
+    An ICF alias claimed twice resolves to the earlier lane, the way clean C++
+    wins an overlap on the code axis: the byte is credited to whichever claim
+    says the most about it.
     """
     text_end = text_start + text_size
-    lanes = {"real": [], "vendored": [], "generated": []}
+    naked_rows = set(naked_rows)
+    lanes = {name: [] for name in SOURCE_LANES}
     for key, (size, source) in matched.items():
         start = max(int(key[1], 16), text_start)
         end = min(int(key[1], 16) + size, text_end)
         if start >= end:
             continue
-        lanes[identity_lane(source, notes[key])].append((start, end))
-    real = interval_bytes(lanes["real"])
-    vendored = interval_bytes(lanes["real"] + lanes["vendored"]) - real
-    total = interval_bytes(lanes["real"] + lanes["vendored"] + lanes["generated"])
-    return {"real": real, "vendored": vendored,
-            "generated": total - real - vendored}
+        lane = source_lane(source, notes[key], key in naked_rows)
+        lanes[lane].append((start, end))
+    split, claimed = {}, []
+    for name in SOURCE_LANES:
+        before = interval_bytes(claimed)
+        claimed += lanes[name]
+        split[name] = interval_bytes(claimed) - before
+    split["recovered"] = split["authored"] + split["vendored"]
+    return split
 
 
 def real_code_denominator(text_start, text_size):
@@ -443,29 +463,31 @@ def print_scorecard(ref1, label2, old_stats, new_stats):
               f"  delta {delta}")
 
 
-def print_real_code(padding, denominator, old_stats, new_stats,
-                    old_identity, new_identity, old_scaffold=0, new_scaffold=0):
+def print_real_code(padding, denominator, old_stats, new_stats, old_split, new_split):
     print(f"\nreal-code view (.text minus {padding:,} bytes of 0xCC padding "
           f"= {denominator:,} bytes)")
     rows = (
-        ("Total exact", new_stats["exact"], old_stats["exact"]),
-        ("code: C++", new_stats["cpp"], old_stats["cpp"]),
-        ("code: assembly", new_stats["asm_only"], old_stats["asm_only"]),
-        ("  of which scaffold", new_scaffold, old_scaffold),
-        ("identity: real", new_identity["real"], old_identity["real"]),
-        ("identity: generated", new_identity["generated"], old_identity["generated"]),
-        ("identity: vendored", new_identity["vendored"], old_identity["vendored"]),
+        ("RECOVERED as source", "recovered", "authored C++ + vendored library source"),
+        ("  authored C++", "authored", ""),
+        ("  vendored source", "vendored", ""),
+        ("generated C++", "generated", "compiles, but a generator wrote it"),
+        ("linked libraries", "library", "prebuilt .lib attached, no source in tree"),
+        ("byte-true dumps", "dump", "retail re-encoded: scaffolding, not source"),
     )
-    for label, value, previous in rows:
-        print(f"  {label:<20} {value:>10,} bytes ({percent(value, denominator):6.2f}%)"
-              f"  delta {format_delta(value, previous, denominator)}")
-    # The honest headline. "Total exact" counts byte-true dumps of retail, which
-    # are scaffolding: they fix a boundary and give the convert lane a target,
-    # but nobody recovered a line of source for them.
-    print(f"  {'recovered from source':<20} {new_stats['cpp']:>10,} bytes "
-          f"({percent(new_stats['cpp'], denominator):6.2f}%)"
-          f"  delta {format_delta(new_stats['cpp'], old_stats['cpp'], denominator)}"
-          f"  <- source we control")
+    for label, key, note in rows:
+        value, previous = new_split[key], old_split[key]
+        print(f"  {label:<21} {value:>10,} bytes ({percent(value, denominator):6.2f}%)"
+              f"  delta {format_delta(value, previous, denominator)}"
+              + (f"  <- {note}" if note else ""))
+    for label, key, note in (
+        ("Total exact", "exact", "every claim, scaffolding included: NOT recovery"),
+        ("code: C++", "cpp", "authored + vendored + generated"),
+        ("code: assembly", "asm_only", ""),
+    ):
+        value, previous = new_stats[key], old_stats[key]
+        print(f"  {label:<21} {value:>10,} bytes ({percent(value, denominator):6.2f}%)"
+              f"  delta {format_delta(value, previous, denominator)}"
+              + (f"  <- {note}" if note else ""))
 
 
 def marker_delta(ref1, ref2):
@@ -564,10 +586,8 @@ def main():
     old_notes, new_notes = notes_at(ref1), notes_at(ref2)
     print_real_code(
         padding, denominator, old_stats, new_stats,
-        identity_split(old, old_notes, text_start, text_size),
-        identity_split(new, new_notes, text_start, text_size),
-        scaffold_bytes(old, old_notes, text_start, text_size, old_naked),
-        scaffold_bytes(new, new_notes, text_start, text_size, new_naked))
+        source_split(old, old_notes, text_start, text_size, old_naked),
+        source_split(new, new_notes, text_start, text_size, new_naked))
     if args.details:
         print_details(ref1, ref2, old, new, old_naked, new_naked)
     print("\nledger-derived; a clean build.sh run is the byte-match proof.")

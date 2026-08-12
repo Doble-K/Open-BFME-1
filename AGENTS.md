@@ -199,7 +199,10 @@ shim methods (`gen-shim;`), `eh_<rva>` EH-handler stubs bound to eh_anchor.cpp
 (`gen-ehstub;`), `Gen_dtor*_<rva>` deleting destructors (`gen-dtor;`),
 `tg_<rva>`/per-site STLport instantiations (`gen-tgrid;`), and `uw_<rva>` SEH
 unwind funclets (`gen-funclet;`). All are placeholder
-identities — byte-true, semantically anonymous. When you identify one's real
+identities — byte-true, semantically anonymous. `progress.py` reports them on
+its `generated C++` line, never in `RECOVERED as source`: they compile from
+real constructs, but a script wrote them, so running a generator harder must
+not move the headline. When you identify one's real
 function, repoint the row with
 `python3 tools/add_match.py <real-name> ... --replace-existing`; do not edit
 the generated source by hand. check_csv rejects a gen-* row sharing an exact
@@ -210,7 +213,7 @@ where most of the convert queue comes from: 52,547 MASM `db` bodies, 4.57 MB,
 `gen-dump;` notes, every one of them anonymous `?d_<rva>@@YAXXZ`. They are
 **scaffolding, not progress** — the bytes are copied out of the retail image, so
 they prove an address and an extent and nothing else, and `progress.py` counts
-them on its `of which scaffold` line rather than in `recovered from source`.
+them on its `byte-true dumps` line rather than in `RECOVERED as source`.
 What they buy you is a fixed boundary and a body you can read.
 
 Converting one is the whole point, and it is a different command from the

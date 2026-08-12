@@ -244,9 +244,79 @@ def test_details_are_opt_in():
     print("PASS ledger diagnostics require --details")
 
 
+def test_source_lanes_partition_claims_and_exclude_dumps():
+    """Provenance lanes must cover every claimed byte exactly once, and only
+    human-written source may land in the recovered lane."""
+    matched, notes = {}, {}
+    for name, rva, size, source, note in (
+        ("authored", 0x1000, 10, "Code/GameEngine/Source/a.cpp", ""),
+        ("vendored", 0x1010, 10, "Code/Libraries/Source/Lua/l.c", ""),
+        ("gen-noted", 0x1020, 10, "Code/GameEngine/Source/b.cpp", "gen-thunk;"),
+        ("gen-path", 0x1030, 10, "Code/gen_small/uw_gen_001.cpp", ""),
+        ("lib", 0x1040, 10, "vendor/d3dx9/d3dx9.lib", ""),
+        ("dump", 0x1050, 10, "Code/gen_asm/d_001050.asm", "gen-dump;"),
+        ("emit", 0x1060, 10, "Code/GameEngine/Source/c.cpp", ""),
+        # An ICF alias of the authored row, claimed again as a dump: the byte
+        # is credited once, to the claim that says the most about it.
+        ("alias", 0x1000, 10, "Code/gen_asm/d_001000.asm", "gen-dump;"),
+    ):
+        matched.update(row(name, rva, size, source))
+        notes[(name, f"0x{rva:X}")] = note
+
+    split = progress.source_split(matched, notes, 0x1000, 200,
+                                  naked_rows={("emit", "0x1060")})
+    assert split == {"authored": 10, "vendored": 10, "generated": 20,
+                     "library": 10, "dump": 20, "recovered": 20}, split
+    stats = progress.coverage(matched, 0x1000, 200, {("emit", "0x1060")})
+    assert sum(split[lane] for lane in progress.SOURCE_LANES) == stats["exact"]
+    print("PASS provenance lanes partition claimed bytes; dumps excluded")
+
+
+def test_dump_pass_moved_zero_recovered_bytes():
+    """The metric must not be movable by a script.
+
+    The stage 1-4 dump pass claimed 4.57 MB of retail as MASM `db` bodies. If
+    that can raise the recovered figure by one byte, the figure is worthless,
+    so the whole pass is pinned here as a zero.
+    """
+    start, size = progress.retail_text()
+    before_ref, after_ref = "03b2ecc83", "6fe7ee982"
+    figures = []
+    for ref in (before_ref, after_ref):
+        rows = progress.matched_at(ref)
+        figures.append(progress.source_split(
+            rows, progress.notes_at(ref), start, size,
+            progress.naked_cpp_rows_at(rows, ref)))
+    before, after = figures
+    assert before["recovered"] == after["recovered"], (before, after)
+    assert after["dump"] - before["dump"] > 4_000_000, (before, after)
+    print(f"PASS dump pass added {after['dump'] - before['dump']:,} scaffold bytes "
+          f"and 0 recovered bytes")
+
+
+def test_readme_headline_is_a_recovered_figure():
+    """The first percentage the README's Status section quotes is its headline
+    claim, and it may never exceed what the tool calls recovered source.
+
+    Upper bound only, for the same reason as the test below: contributors land
+    functions continuously, so a README that lags is fine and a README that
+    flatters is not.
+    """
+    printed = subprocess.run([sys.executable, str(TOOL)],
+                             cwd=ROOT, capture_output=True, text=True, check=True).stdout
+    line = next(l for l in printed.splitlines() if l.strip().startswith("RECOVERED"))
+    recovered = float(line.split("(")[1].split("%")[0])
+
+    status = (ROOT / "README.md").read_text(encoding="utf-8").split("## Status", 1)[1]
+    headline = float(re.search(r"(\d+\.\d+)%", status).group(1))
+    assert headline <= recovered + 0.005, (
+        f"README headlines {headline}% where progress.py recovers {recovered}%")
+    print(f"PASS README headlines {headline}% against {recovered}% recovered")
+
+
 def test_readme_never_overstates_coverage():
-    """The README quotes three real-code percentages. Each must be a figure the
-    tool actually reports, and none may exceed it.
+    """The README quotes several real-code percentages. Each must be a figure
+    the tool actually reports, and none may exceed it.
 
     Equality is deliberately not asserted. Contributors land functions
     continuously, so a pinned number goes stale within the hour and would fail
@@ -293,6 +363,9 @@ def main():
     test_live_naked_and_clean_rows_are_distinguished()
     test_b08_is_zero_byte_progress()
     test_details_are_opt_in()
+    test_source_lanes_partition_claims_and_exclude_dumps()
+    test_dump_pass_moved_zero_recovered_bytes()
+    test_readme_headline_is_a_recovered_figure()
     test_readme_never_overstates_coverage()
     print("ALL TESTS PASSED")
 
