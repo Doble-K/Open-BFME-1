@@ -154,6 +154,37 @@ def block_bytes(lines, start):
     return bytes(data), end
 
 
+DB_RE = re.compile(r"^\s*db\s+(.*)$")
+PROC_RE = re.compile(r"^(\S+)\s+PROC\b")
+
+
+def asm_proc_blocks(lines):
+    """(symbol, body bytes, start index, end index) per PROC in a MASM dump.
+
+    Code/gen_asm/ holds the scaled dump pass: 4.5 MB of machine bodies in `db`
+    rows, which no __declspec(naked) scan can see. Without this reader the
+    convert lane goes empty the moment dumping replaces the .cpp wave form.
+    """
+    blocks = []
+    start, symbol, data = None, None, []
+    for index, line in enumerate(lines):
+        match = PROC_RE.match(line)
+        if match:
+            start, symbol, data = index, match.group(1), []
+            continue
+        if start is None:
+            continue
+        if line.startswith(symbol) and " ENDP" in line:
+            blocks.append((symbol, bytes(data), start, index))
+            start = None
+            continue
+        db = DB_RE.match(line)
+        if db:
+            data.extend(int(token.strip().rstrip("hH"), 16)
+                        for token in db.group(1).split(","))
+    return blocks
+
+
 def _has_x87(data):
     """True only if an x87 escape opcode starts an instruction.
 
@@ -349,6 +380,10 @@ def main():
         path = build.ROOT / raw
         if path.is_dir():
             files.extend(sorted(path.rglob("*.cpp")))
+            files.extend(sorted((path / "gen_asm").rglob("*.asm"))
+                         if (path / "gen_asm").is_dir()
+                         else (sorted(path.rglob("*.asm"))
+                               if path.name == "gen_asm" else []))
         elif path.exists():
             files.append(path)
 
@@ -358,6 +393,28 @@ def main():
     for path in files:
         rel = path.relative_to(build.ROOT).as_posix()
         text = path.read_text(encoding="utf-8", errors="replace")
+        if path.suffix.lower() == ".asm":
+            lines = text.splitlines()
+            source_rows = row_by_source.get(rel, [])
+            unmatched = sum(1 for row in source_rows if row["status"] != "matched")
+            for symbol, data, start, end in asm_proc_blocks(lines):
+                if not data or len(data) > args.max_bytes:
+                    continue
+                own = [row for row in rows_by_name.get(symbol, [])
+                       if row["source"] == rel]
+                if not own and not args.all:
+                    continue
+                score, reasons = score_candidate(data, "")
+                candidates.append({
+                    "score": score, "path": rel, "line": start + 1,
+                    "end": end + 1, "size": len(data),
+                    "rva": own[0]["target_rva"] if own else None,
+                    "bytes": data, "symbol": symbol, "tracked": bool(own),
+                    "status": own[0]["status"] if own else "untracked",
+                    "signature": "", "reasons": reasons,
+                    "unmatched_count": unmatched,
+                })
+            continue
         if "__declspec(naked)" not in text:
             continue
         lines = text.splitlines()

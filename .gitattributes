@@ -10,6 +10,11 @@ build/toolchains/vs2003/** -text
 # shared COMDAT address).
 reverse/functions.csv merge=union
 reverse/symbols.csv merge=union
+# The counterweight to functions.csv being union-merged: a deletion there is
+# invisible to a merge, and this file is the only record of one. It has to
+# union-merge too, or retracting a batch of rows conflicts with every branch in
+# flight at exactly the moment the escape hatch is needed.
+reverse/deleted_rows.csv merge=union
 reverse/re_attempts.log merge=union
 # Append-only like the log above: two sessions adding sections at the end is
 # not a conflict, it is both of them being right.

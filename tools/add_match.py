@@ -13,7 +13,11 @@ Usage:
       [--notes TEXT] [--replace-existing] [--no-verify] [--root DIR]
 
 `--replace-existing` safely repoints the symbol's one existing ledger row before
-verification.  This is the supported path for replacing a 5-byte MASM thunk
+verification.  `--replace-rva` does the same keyed on the ADDRESS instead of the
+name, which is the only way to convert a machine byte-dump: a real conversion
+changes the name (`?d_000a8940@@YAXXZ` -> `?addr@SpikeAccessor@@QAEPADXZ`), so
+--replace-existing cannot find the row it needs to retire and add_match refuses
+the address as already claimed.  It accepts scaffold rows only.  This is the supported path for replacing a 5-byte MASM thunk
 claim with the clean C++ body it jumps to; the original row is restored if the
 new claim does not byte-verify.
 """
@@ -25,6 +29,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+import ledger_io
 from portable_lock import lock
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
@@ -49,7 +54,7 @@ def parse_ledger(raw):
         if len(r) != 7:
             fail(f"functions.csv line {i} has {len(r)} fields, expected 7: {r[:3]}...",
                  "the ledger is corrupt — fix it first: python3 tools/check_csv.py")
-        name, _export, target_rva, target_size, source, status, _notes = r
+        name, _export, target_rva, target_size, source, status, notes = r
         try:
             rva = int(target_rva, 16)
         except ValueError:
@@ -61,7 +66,7 @@ def parse_ledger(raw):
             fail(f"functions.csv line {i} ({name}): unparseable target_size '{target_size}'",
                  "the ledger is corrupt — fix it first: python3 tools/check_csv.py")
         rows.append({"line": i, "name": name, "rva": rva, "size": size,
-                     "source": source, "status": status})
+                     "source": source, "status": status, "notes": notes})
     return rows
 
 
@@ -117,6 +122,10 @@ def main():
                         "allows a verified identical-code-folding alias")
     parser.add_argument("--replace-existing", action="store_true",
                         help="replace the symbol's one existing row instead of rejecting it; "
+                             "the old row is restored if verification fails")
+    parser.add_argument("--replace-rva", metavar="RVA",
+                        help="retire the SCAFFOLD row at this address and claim it "
+                             "under the new name (the dump -> C++ conversion path); "
                              "the old row is restored if verification fails")
     parser.add_argument("--no-verify", action="store_true",
                         help="skip ./build.sh verification (row lands UNVERIFIED — "
@@ -178,6 +187,24 @@ def main():
     rows = parse_ledger(raw)
     claims = [row for row in rows if row["name"] == name]
     replaced = None
+    if args.replace_rva:
+        if args.replace_existing:
+            fail("--replace-rva and --replace-existing are alternatives: one keys "
+                 "on the address, the other on the name")
+        try:
+            old_rva = int(args.replace_rva, 16)
+        except ValueError:
+            fail(f"--replace-rva '{args.replace_rva}' is not hex")
+        at_rva = [row for row in rows if row["rva"] == old_rva]
+        if len(at_rva) != 1:
+            fail(f"--replace-rva 0x{old_rva:08X} matches {len(at_rva)} rows; "
+                 "it retires exactly one")
+        if not at_rva[0]["notes"].lstrip().startswith("gen-dump"):
+            fail(f"--replace-rva 0x{old_rva:08X} is {at_rva[0]['name']} "
+                 f"({at_rva[0]['source']}), not a gen-dump scaffold row",
+                 "only scaffolding may be taken over by name; retract a real claim "
+                 "in its own commit so the retraction is reviewable")
+        replaced = at_rva[0]
     if args.replace_existing:
         if len(claims) != 1:
             fail(f"--replace-existing requires exactly one existing row for {name}; "
@@ -232,14 +259,15 @@ def main():
         # written with \r\r\n): indexing physical lines with a record number
         # deletes an unrelated row and silently glues its neighbours together.
         # parse_ledger already guaranteed exactly one row for this name.
-        chunks = raw.split(b"\r\n")
-        prefix = (replaced["name"] + ",").encode("utf-8")
-        hits = [i for i, chunk in enumerate(chunks) if chunk.startswith(prefix)]
-        if len(hits) != 1:
-            fail(f"internal error: {len(hits)} ledger lines start with "
-                 f"{replaced['name']}, — expected exactly one")
-        del chunks[hits[0]]
-        new_raw = b"\r\n".join(chunks)
+        # Drop it through ledger_io, which keeps each record's own terminator:
+        # the ledger mixes \r\r\n, \r\n and bare \n, so splitting on \r\n glues a
+        # bare-\n row onto its neighbour and deletes both.
+        key = (replaced["name"], f"0x{replaced['rva']:08X}")
+        new_raw, dropped = ledger_io.rewrite(
+            raw, lambda f: len(f) < 3 or (f[0], f[2]) != key)
+        if dropped != 1:
+            fail(f"internal error: {dropped} ledger rows match {key} — "
+                 "expected exactly one")
         functions_csv.write_bytes(new_raw + ledger_row.encode("utf-8") + b"\r\n")
         print(f"add_match: replaced row {replaced['line']}: "
               f"0x{replaced['rva']:08X}/{replaced['size']}B {replaced['source']}")

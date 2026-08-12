@@ -16,8 +16,23 @@ Rule B: a matched RVA that had at least one clean-C++ source in OLD must
         still have one in NEW. Retracting a wrong claim (row deleted or
         status changed) is legal and must be its own commit; repointing a
         live clean claim at a dump is never legal.
+
+Rule C: Code/gen_asm/ is machine output and stays that way. C1 every added
+        line there must match the generator's grammar, so a lift of a NAMED
+        function cannot be expressed in the directory at all; C2 every added
+        ledger row pointing there is anonymous (?d_<rva>@@YAXXZ, notes
+        gen-dump), so a dump can never squat an identity byte-verification
+        cannot falsify; C3 a wave commit may not touch any other file under
+        Code/, so a deleted C++ body cannot ride inside a diff of 33,000
+        unreadable `db` lines. Rule A needs no exemption here and gets none:
+        a `db` dump matches neither NAKED_RE nor LIFT_RE, and source_kind
+        scores a .asm file as assembly unconditionally, so the offence Rule A
+        polices -- inflating the C++ lane with re-encoded binary -- is not
+        expressible in this directory.
 """
 
+import csv
+import io
 import re
 import subprocess
 import sys
@@ -57,6 +72,66 @@ def added_lift_lines(old, new):
     return [(p, "%s  (%d such lines)" % (first, count)) for p, (first, count) in bad.items()]
 
 
+GEN_ASM = "Code/gen_asm/"
+# The generator's whole vocabulary. Anything else in a dump file is a hand edit.
+GEN_ASM_LINE_RE = re.compile(
+    r"^(?:\.386|\.model flat|_TEXT SEGMENT|_TEXT ENDS|END|;.*|"
+    r"public \?d_[0-9a-f]{8}@@YAXXZ|"
+    r"\?d_[0-9a-f]{8}@@YAXXZ (?:PROC|ENDP)|"
+    r"    db (?:0?[0-9A-F]{2}h)(?:, 0?[0-9A-F]{2}h)*|)$")
+
+
+def diff_lines(old, new, *paths):
+    cmd = ["git", "diff", "--unified=0"]
+    cmd += ["--cached", old] if new == ":" else [old, new]
+    return run(*cmd, "--", *paths).splitlines()
+
+
+def gen_asm_offences(old, new):
+    """Rule C. Returns a list of human-readable offences, empty when clean."""
+    offences = []
+    path = None
+    dump_rows, other_code_edits = [], set()
+    for line in diff_lines(old, new, "Code/", LEDGER):
+        if line.startswith("+++ b/"):
+            path = line[6:]
+            continue
+        if path is None or line.startswith("---") or line.startswith("+++"):
+            continue
+        added = line.startswith("+")
+        if not added and not line.startswith("-"):
+            continue
+        body = line[1:]
+        if path.startswith(GEN_ASM):
+            if added and not GEN_ASM_LINE_RE.match(body):
+                offences.append("C1 %s: not generator output: %s"
+                                % (path, body.strip()[:80]))
+        elif path == LEDGER:
+            if not added:
+                continue
+            fields = next(csv.reader([body]), [])
+            if len(fields) >= 5 and fields[4].startswith(GEN_ASM):
+                dump_rows.append(fields)
+        elif path.startswith("Code/"):
+            other_code_edits.add(path)
+
+    for fields in dump_rows:
+        name, rva, notes = fields[0], fields[2], fields[6] if len(fields) > 6 else ""
+        expected = "?d_%08x@@YAXXZ" % int(rva, 16)
+        if name != expected:
+            offences.append("C2 %s claims identity %s; a dump proves bytes and "
+                            "an extent, never what the function is (expected %s)"
+                            % (rva, name, expected))
+        if not notes.lstrip().startswith("gen-dump"):
+            offences.append("C2 %s: a Code/gen_asm/ row must carry gen-dump "
+                            "notes, or is_scaffold_row cannot see it" % rva)
+    if dump_rows and other_code_edits:
+        offences.append("C3 wave commit also edits %s — dumps-and-ledger only, "
+                        "so a deleted C++ body cannot ride inside an unreadable "
+                        "diff" % ", ".join(sorted(other_code_edits)))
+    return offences
+
+
 def show(rev, path):
     spec = (":%s" if rev == ":" else rev + ":%s") % path
     proc = subprocess.run(["git", "show", spec], capture_output=True, text=True)
@@ -67,8 +142,6 @@ def show(rev, path):
 
 
 def matched_by_rva(rev):
-    import csv
-    import io
     rows = {}
     for row in csv.DictReader(io.StringIO(show(rev, LEDGER))):
         if row.get("status") == "matched":
@@ -133,6 +206,9 @@ def main():
               "produce and moves progress.py C++ exact by +0. Convert to real C++, or\n"
               "leave the .asm dump alone (codegen blockers: Code/masm_dumps/*.asm).",
               file=sys.stderr)
+    for offence in gen_asm_offences(old, new):
+        failed = True
+        print("conversion gate: " + offence, file=sys.stderr)
     for rva, name, old_src, new_src in clean_coverage_lost(old, new):
         failed = True
         print("conversion gate: %s (%s) was clean C++ at %s, repointed to %s.\n"

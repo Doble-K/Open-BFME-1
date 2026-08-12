@@ -20,6 +20,15 @@ Each wave writes Code/gen_small/dumps_<NNN>.cpp plus its ledger rows
 
   python3 tools/gen_dump.py --wave 0 --limit 400
   ./build.sh Code/gen_small/dumps_000.cpp
+
+--asm is the scaled form of the same idea and the one to use now: MASM
+`Code/gen_asm/d_<rva>.asm`, batched by a retail-byte budget, boundary-filtered.
+It is scored as assembly by progress.py's source_kind with no heuristic in the
+loop, so 4.5 MB of it cannot leak into the C++ figure the way an __emit body
+could if naked_cpp_rows ever regressed:
+
+  python3 tools/gen_dump.py --asm --limit 500
+  BUILD_POOL=8 ./build.sh Code/gen_asm/*.asm
 """
 import argparse
 import bisect
@@ -111,14 +120,224 @@ def candidates(args):
     return out
 
 
+ASM_FILE = """\
+.386
+.model flat
+_TEXT SEGMENT
+{procs}_TEXT ENDS
+END
+"""
+ASM_PROC = """
+; ghidra: {ghidra}  retail @ 0x{rva:08X} size {size}
+public ?d_{rva:08x}@@YAXXZ
+?d_{rva:08x}@@YAXXZ PROC
+{db}
+?d_{rva:08x}@@YAXXZ ENDP
+"""
+
+
+def asm_db(body, per_line=16):
+    """MASM `db` rows. A hex literal must not start with a letter, hence 0xxh."""
+    out = []
+    for start in range(0, len(body), per_line):
+        chunk = body[start:start + per_line]
+        out.append("    db " + ", ".join(
+            ("0%02Xh" % byte) if byte > 0x9F else ("%02Xh" % byte)
+            for byte in chunk))
+    return "\n".join(out)
+
+
+def defensible_end(body, rva, size, claimed_starts, byte_at):
+    """True when the END of [rva, rva+size) is corroborated by positive evidence.
+
+    A dump byte-verifies by construction -- the bytes are copied out of the
+    image, so ANY extent passes. That makes dumping the one operation here that
+    can pin a WRONG boundary permanently, after which check_csv's overlap rule
+    blocks the correct claim forever. boundary_validator declines to judge end
+    boundaries (right for a queue address that only suggests a start, wrong for
+    a dump that pins an end), so the filter lives here and rejects on positive
+    evidence only: the body must end on something that ends a function, or the
+    next byte must be somebody else's start / padding / an alignment boundary.
+    Measured: 1,178 of 33,000 Ghidra candidates (807,400 B) fail this, and
+    0x0005B6E0 -- truncated four bytes into an `FF 15 <disp32>` -- byte-verified
+    green as a dump before the filter existed.
+    """
+    end = rva + size
+    ends_ok = bool(body) and (
+        body[-1] in (0xC3, 0xE9, 0xEB)                  # ret / jmp rel
+        or (size >= 3 and body[-3] == 0xC2)             # ret imm16
+        or (size >= 5 and body[-5] == 0xE8)             # call rel32
+        or (size >= 6 and body[-6] == 0xFF))            # call/jmp mem
+    next_ok = end in claimed_starts or byte_at(end) == 0xCC or end % 16 == 0
+    return ends_ok or next_ok
+
+
+def asm_wave(args):
+    """Emit MASM byte-dumps into Code/gen_asm/, batched by a retail-byte budget.
+
+    Batching is by BYTES, not by function count: count batching makes a file
+    holding one 20 KB function cost the same as a file holding 115 accessors.
+    Files are named for the RVA of their first function and never renumbered,
+    so a later wave inserts instead of forcing a rename across every file.
+    """
+    exe = build.EXE.read_bytes()
+    text = next(s for s in build.pe_sections(exe) if s["name"] == ".text")
+    text_lo, text_hi = text["rva"], text["rva"] + text["size"]
+
+    def byte_at(rva):
+        if not text_lo <= rva < text_hi:
+            return None
+        return exe[text["raw_pointer"] + (rva - text["rva"])]
+
+    ranges = ledger_ranges()
+    starts = [start for start, _ in ranges]
+    claimed_starts = set(starts)
+
+    picked, rejected_end, rejected_tiny = [], [], 0
+    with GHIDRA.open(newline="") as handle:
+        rows = sorted(((int(r["rva"], 16), int(r["size"]), r["name"])
+                       for r in csv.DictReader(handle)), key=lambda c: c[:2])
+    prev_end = 0
+    for rva, size, ghidra_name in rows:
+        if not args.min_size <= size <= args.max_size:
+            rejected_tiny += 1
+            continue
+        if rva < text_lo or rva + size > text_hi:
+            continue
+        if overlaps(ranges, starts, rva, rva + size):
+            continue
+        # Ghidra's own boundaries are not mutually consistent (16 pairs overlap).
+        # De-overlap the wave against ITSELF too, or check_csv rejects it.
+        if rva < prev_end:
+            continue
+        offset = text["raw_pointer"] + (rva - text["rva"])
+        body = exe[offset:offset + size]
+        if not defensible_end(body, rva, size, claimed_starts, byte_at):
+            rejected_end.append((rva, size))
+            continue
+        prev_end = rva + size
+        picked.append((rva, size, ghidra_name, body))
+        if len(picked) >= args.limit:
+            break
+
+    if not picked:
+        raise SystemExit("no eligible unclaimed functions survive the filters")
+
+    batches, current, accumulated = [], [], 0
+    for candidate in picked:
+        if current and accumulated + candidate[1] > args.budget:
+            batches.append(current)
+            current, accumulated = [], 0
+        current.append(candidate)
+        accumulated += candidate[1]
+    if current:
+        batches.append(current)
+
+    rows_out, files = [], []
+    for batch in batches:
+        rel = f"Code/gen_asm/d_{batch[0][0]:08x}.asm"
+        path = ROOT / rel
+        if path.exists():
+            raise SystemExit(f"{rel} already exists — dump files are never "
+                             f"rewritten; the ledger moved under this wave, "
+                             f"rebase and regenerate")
+        procs = "".join(
+            ASM_PROC.format(ghidra=ghidra_name, rva=rva, size=size,
+                            db=asm_db(body))
+            for rva, size, ghidra_name, body in batch)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(ASM_FILE.format(procs=procs), newline="\n")
+        files.append(rel)
+        for rva, size, ghidra_name, _ in batch:
+            rows_out.append(f"?d_{rva:08x}@@YAXXZ,,0x{rva:08X},{size},{rel},"
+                            f"matched,gen-dump;ghidra={ghidra_name}\r\n")
+
+    with FUNCTIONS.open("ab") as handle:   # binary append: never rewrite
+        handle.write("".join(rows_out).encode("ascii"))
+
+    total = sum(size for _, size, _, _ in picked)
+    print(f"asm wave: {len(rows_out)} dumps, {total:,} retail bytes, "
+          f"{len(files)} file(s) in Code/gen_asm/")
+    print(f"rejected: {len(rejected_end)} on end boundary "
+          f"({sum(s for _, s in rejected_end):,} B), {rejected_tiny} under "
+          f"{args.min_size} bytes")
+    print("verify: BUILD_POOL=8 ./build.sh " + " ".join(files[:3])
+          + (" ..." if len(files) > 3 else ""))
+
+
+def retract(sha):
+    """Undo a wave: drop its rows from the ledger and tombstone every one.
+
+    The tombstones are not optional. functions.csv uses git's union merge
+    driver, which has no concept of a deletion, so any contributor branch that
+    forked after the wave re-adds every row on merge with no conflict.
+    check_csv's tombstone check is the only thing that can see that.
+    """
+    import subprocess
+
+    import ledger_io
+
+    added = subprocess.run(
+        ["git", "show", "--unified=0", "--format=", "--", "reverse/functions.csv", sha],
+        cwd=ROOT, capture_output=True, text=True, check=True).stdout
+    wave = {}
+    for line in added.splitlines():
+        if not line.startswith("+") or line.startswith("+++"):
+            continue
+        fields = next(csv.reader([line[1:]]), [])
+        if len(fields) >= 5 and fields[4].startswith("Code/gen_asm/"):
+            wave[(fields[0], fields[2])] = fields
+    if not wave:
+        raise SystemExit(f"{sha} adds no Code/gen_asm/ rows — nothing to retract")
+
+    raw = FUNCTIONS.read_bytes()
+    kept, dropped = ledger_io.rewrite(
+        raw, lambda f: len(f) < 3 or (f[0], f[2]) not in wave)
+    if dropped != len(wave):
+        raise SystemExit(f"{sha} added {len(wave)} rows but {dropped} are live — "
+                         f"refusing a partial retraction; reconcile by hand")
+    FUNCTIONS.write_bytes(kept)
+    with (ROOT / "reverse" / "deleted_rows.csv").open("a", encoding="utf-8",
+                                                      newline="") as handle:
+        for name, rva in sorted(wave):
+            handle.write(f"{name},{rva},retracted gen-dump wave {sha}\n")
+    print(f"retracted {dropped} dump row(s) from the ledger and tombstoned them; "
+          f"now `git revert {sha}` for the sources")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--wave", type=int, required=True)
+    parser.add_argument("--wave", type=int)
+    parser.add_argument("--asm", action="store_true",
+                        help="MASM dumps into Code/gen_asm/ (the scaled pass)")
+    parser.add_argument("--budget", type=int, default=16384,
+                        help="--asm: retail bytes per generated file")
     parser.add_argument("--limit", type=int, default=400)
-    parser.add_argument("--min-size", type=int, default=96)
-    parser.add_argument("--max-size", type=int, default=511)
+    parser.add_argument("--min-size", type=int)
+    parser.add_argument("--max-size", type=int)
+    parser.add_argument("--retract", metavar="SHA",
+                        help="drop the gen_asm rows a wave commit added and "
+                             "tombstone them (functions.csv is merge=union, so "
+                             "a revert alone lets any fork re-add them)")
     args = parser.parse_args()
+
+    if args.retract:
+        return retract(args.retract)
+    if args.asm:
+        # Small bodies are the bulk of the uninventoried tail and are exactly
+        # what the convert lane can land quickly, so the asm pass has no upper
+        # bound and only the fragment floor below.
+        args.min_size = 5 if args.min_size is None else args.min_size
+        args.max_size = args.max_size or (1 << 30)
+        if args.min_size < 5:
+            raise SystemExit("--min-size below 5 admits fragments Ghidra calls "
+                             "functions (there is a lone 0xE9 at 0x00014C45)")
+        return asm_wave(args)
+    args.min_size = 96 if args.min_size is None else args.min_size
+    args.max_size = 511 if args.max_size is None else args.max_size
+    if args.wave is None:
+        parser.error("--wave is required without --asm")
 
     source = ROOT / "Code" / "gen_small" / f"dumps_{args.wave:03d}.cpp"
     if source.exists():

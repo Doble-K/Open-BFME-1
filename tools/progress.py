@@ -346,6 +346,31 @@ def coverage(matched, text_start, text_size, naked_rows=()):
     }
 
 
+def scaffold_bytes(matched, notes, text_start, text_size, naked_rows=()):
+    """Assembly-lane bytes that are a byte-true dump of retail, not source.
+
+    The dump pass pins ~4.5 MB of machine bodies so their boundaries are fixed
+    and the convert lane has targets. Those bytes are real coverage of the image
+    and they are NOT recovered source, so "Total exact" alone stops meaning what
+    the README says it means. Counted the way the code axis counts: clean C++
+    wins an overlap, so a range someone has since converted stops being
+    scaffolding here the moment it stops being assembly there.
+    """
+    text_end = text_start + text_size
+    cpp, gen = [], []
+    naked_rows = set(naked_rows)
+    for key, (size, source) in matched.items():
+        start = max(int(key[1], 16), text_start)
+        end = min(int(key[1], 16) + size, text_end)
+        if start >= end:
+            continue
+        if GEN_NOTE_RE.search(notes[key]):
+            gen.append((start, end))
+        elif source_kind(source) == "cpp" and key not in naked_rows:
+            cpp.append((start, end))
+    return interval_bytes(cpp + gen) - interval_bytes(cpp)
+
+
 def identity_lane(source, notes):
     """Return the identity-axis lane for a matched row.
 
@@ -419,13 +444,14 @@ def print_scorecard(ref1, label2, old_stats, new_stats):
 
 
 def print_real_code(padding, denominator, old_stats, new_stats,
-                    old_identity, new_identity):
+                    old_identity, new_identity, old_scaffold=0, new_scaffold=0):
     print(f"\nreal-code view (.text minus {padding:,} bytes of 0xCC padding "
           f"= {denominator:,} bytes)")
     rows = (
         ("Total exact", new_stats["exact"], old_stats["exact"]),
         ("code: C++", new_stats["cpp"], old_stats["cpp"]),
         ("code: assembly", new_stats["asm_only"], old_stats["asm_only"]),
+        ("  of which scaffold", new_scaffold, old_scaffold),
         ("identity: real", new_identity["real"], old_identity["real"]),
         ("identity: generated", new_identity["generated"], old_identity["generated"]),
         ("identity: vendored", new_identity["vendored"], old_identity["vendored"]),
@@ -433,6 +459,13 @@ def print_real_code(padding, denominator, old_stats, new_stats,
     for label, value, previous in rows:
         print(f"  {label:<20} {value:>10,} bytes ({percent(value, denominator):6.2f}%)"
               f"  delta {format_delta(value, previous, denominator)}")
+    # The honest headline. "Total exact" counts byte-true dumps of retail, which
+    # are scaffolding: they fix a boundary and give the convert lane a target,
+    # but nobody recovered a line of source for them.
+    print(f"  {'recovered from source':<20} {new_stats['cpp']:>10,} bytes "
+          f"({percent(new_stats['cpp'], denominator):6.2f}%)"
+          f"  delta {format_delta(new_stats['cpp'], old_stats['cpp'], denominator)}"
+          f"  <- source we control")
 
 
 def marker_delta(ref1, ref2):
@@ -528,10 +561,13 @@ def main():
 
     print_scorecard(ref1, label2, old_stats, new_stats)
     padding, denominator = real_code_denominator(text_start, text_size)
+    old_notes, new_notes = notes_at(ref1), notes_at(ref2)
     print_real_code(
         padding, denominator, old_stats, new_stats,
-        identity_split(old, notes_at(ref1), text_start, text_size),
-        identity_split(new, notes_at(ref2), text_start, text_size))
+        identity_split(old, old_notes, text_start, text_size),
+        identity_split(new, new_notes, text_start, text_size),
+        scaffold_bytes(old, old_notes, text_start, text_size, old_naked),
+        scaffold_bytes(new, new_notes, text_start, text_size, new_naked))
     if args.details:
         print_details(ref1, ref2, old, new, old_naked, new_naked)
     print("\nledger-derived; a clean build.sh run is the byte-match proof.")
