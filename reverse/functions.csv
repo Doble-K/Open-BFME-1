@@ -157908,3 +157908,4 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?scanShort@@YAHPBDAAF@Z,,0x004844B0,41,Code/GameEngine/Source/GameClient/GUI/parseTextEntryData_Thunk.cpp,matched,clean C++ replaces the naked dump
 ?setRange@GameClientRandomVariable@@QAEXMMW4DistributionType@1@@Z,0x00006C58,0x00096F40,23,Code/GameEngine/Source/Common/RandomValue.cpp,matched,clean C++ replaces the naked dump
 ?stdAngleDiff@@YAMMM@Z,,0x0016A310,19,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,clean C++ replaces the naked dump
+?size@?$vector@UHorzLine@@V?$allocator@UHorzLine@@@_STL@@@_STL@@QBEIXZ,,0x00191B00,24,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,byte-scan placement; unique
