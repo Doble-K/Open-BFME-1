@@ -426,7 +426,6 @@ DirectInputMouse::~DirectInputMouse( void )
 //-------------------------------------------------------------------------------------------------
 /** Initialize the direct input mouse device */
 //-------------------------------------------------------------------------------------------------
-// ?init@DirectInputMouse@@UAEXXZ present-unmatched
 void DirectInputMouse::init( void )
 {
 	POINT p;
