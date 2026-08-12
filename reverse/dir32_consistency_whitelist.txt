@@ -430,3 +430,11 @@ _fixed_bd
 _fixed_tl
 _fixed_td
 _png_IEND
+
+# Tenth member of the FX ctor-vs-dtor family the header above describes: the
+# destructor in fx_particle_system.cpp resolves this to 0x1073744, which that
+# header identifies as the real ??_7MemoryPoolObject@@6B@, while a newly landed
+# copy-constructor thunk resolves it to the class's own 0x1110D78. Nine of its
+# FXParticleSystem siblings are already listed; this one only became visible when
+# that thunk landed.
+??_7RenderObjectUpdateModuleInfo@FXParticleSystem@@6B@
