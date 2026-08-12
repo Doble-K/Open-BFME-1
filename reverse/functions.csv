@@ -157916,3 +157916,4 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ??Rvalue_compare@?$map@HVBuddyInfo@@U?$less@H@_STL@@V?$allocator@U?$pair@$$CBHVBuddyInfo@@@_STL@@@3@@_STL@@QBE_NABU?$pair@$$CBHVBuddyInfo@@@2@0@Z,,0x009F46C0,24,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlayInsertUnique.cpp,matched,byte-scan placement; unique
 ??$fill@PAPAXPAX@_STL@@YAXPAPAX0ABQAX@Z,,0x0083EA80,30,Code/GameEngine/Source/GameClient/GUI/WindowVideoManagerCtor.cpp,matched,byte-scan placement; unique
 ?allocate@?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@UHotKey@@@_STL@@@_STL@@@_STL@@QBEPAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@UHotKey@@@_STL@@@2@IPBX@Z,,0x0081C640,46,Code/GameEngine/Source/GameClient/MessageStream/HotKeyManagerCtorThunk.cpp,matched,byte-scan placement; unique
+??1ThingRef@@QAE@XZ,,0x0039B060,35,Code/GameEngine/Source/GameLogic/AI/GettingBuiltBehaviorModuleDataCtorThunk.cpp,matched,byte-scan placement; unique
