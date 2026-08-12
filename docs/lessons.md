@@ -7438,3 +7438,50 @@ together, and `??1ControlBar@@UAE@XZ` is meanwhile claimed at 0x004A9980 on a
 Whoever untangles this should start from the constructor, since constructors
 name their class unambiguously, and expect to retract two rows. TeamFactory's
 is already known wrong from the other direction.
+
+## The retail InGameUI vtable, anchored
+
+InGameUI.cpp is the biggest single-file prize in the tree - 108 unmatched
+markers against 59 matched rows - and the thing standing in front of it is the
+vtable, not the class layout. The retail table is at RVA **0xCF5B38** and has
+**110 slots** (0x000-0x1B4). Matching each entry against the ledger anchors
+thirty of them; follow the `E9` at each slot, most are ILT thunks.
+
+    slot  off    target     identity
+      1  0x004  0x440B40   InGameUI::createReplayControl   (BFME-only)
+      2  0x008  0x9A1A50   SubsystemInterface::loadIniFilesFromLegend
+      5  0x014  0x4410C0   InGameUI::update
+      9  0x024  0x442040   InGameUI::popupMessage
+     11  0x02C  0x43DEF0   InGameUI::messageColor
+     12  0x030  0x43DED0   InGameUI::message(AsciiString, ...)
+     13  0x034  0x43DEE0   InGameUI::message(UnicodeString, ...)
+     19  0x04C  0x441D30   InGameUI::militarySubtitle
+     21  0x054  0x4431B0   InGameUI::removeMilitarySubtitle
+     25  0x064  0x43AC30   InGameUI::beginAreaSelectHint
+     26  0x068  0x43AC70   InGameUI::endAreaSelectHint
+     28  0x070  0x43AC80   InGameUI::createMoveHint
+     30  0x078  0x4445C0   InGameUI::createMouseoverHint
+     32  0x080  0x43ACA0   InGameUI::createGarrisonHint
+     33  0x084  0x44C970   InGameUI::addSuperweapon
+     35  0x08C  0x449FC0   InGameUI::objectChangedTeam
+     36  0x090  0x43AA60   InGameUI::setSuperweaponDisplayEnabledByScript
+     46  0x0B8  0x43ADE0   InGameUI::setGUICommand
+     48  0x0C0  0x43AF60   InGameUI::placeBuildAvailable
+     50  0x0C8  0x43B140   InGameUI::disregardDrawable
+     59  0x0EC  0x446550   InGameUI::selectAllUnitsByTypeAcrossMap
+     65  0x104  0x43E180   InGameUI::getFirstSelectedDrawable
+     67  0x10C  0x43E1A0   InGameUI::isDrawableSelected
+     70  0x118  0x43DBE0   InGameUI::setRadiusCursor
+     75  0x12C  0x4469F0   InGameUI::postDraw
+     80  0x140  0x441AF0   InGameUI::playCameoMovie
+     81  0x144  0x441C50   InGameUI::stopCameoMovie
+     88  0x160  0x43EF70   InGameUI::selectMatchingAcrossScreen
+
+Slot 1 is `createReplayControl`, which Zero Hour's InGameUI does not declare as
+a virtual at all, and slot 2 is the SubsystemInterface addition - so the extra
+virtuals start at the very top of the table, not down at `isScrolling` where
+`reference/shims/mouselayout` puts nine of them. That model moves slot 50 to
+0xEC and breaks `disregardDrawable`, which retail tail-jumps through 0xC8 (see
+the previous section). Rebuild the header from these anchors instead of
+inserting a block: the gaps between consecutive anchors give the exact number
+of unnamed virtuals in each stretch.
