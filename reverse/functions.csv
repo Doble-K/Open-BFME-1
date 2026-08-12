@@ -157933,3 +157933,8 @@ _str_lower,,0x00991A40,154,Code/Libraries/Source/Lua/lstrlib.c,matched,byte-scan
 _localstat,,0x0099BA20,264,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; explist1 pinned from the call displacement
 _gpSetInfod,,0x008EA100,65,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; gpiSetInfod pinned from the tail jmp
 _SBServerGetTeamStringValueA,,0x00859D60,98,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_server.c,matched,byte-scan placed the Player variant here; the format literal is %s_t%d so it is the Team one
+?_Unchecked_test@?$bitset@$0N@@_STL@@QBE_NI@Z,,0x000C4710,27,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior.cpp,matched,byte-scan placement; unique
+??0crateCreationEntry@@QAE@ABU0@@Z,,0x00134330,27,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,byte-scan placement; unique
+?erase@?$vector@PAVCrateTemplate@@V?$allocator@PAVCrateTemplate@@@_STL@@@_STL@@QAEPAPAVCrateTemplate@@PAPAV3@@Z,,0x0042F1F0,43,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,byte-scan placement; unique
+?allocate@?$allocator@U?$_List_node@UcrateCreationEntry@@@_STL@@@_STL@@QBEPAU?$_List_node@UcrateCreationEntry@@@2@IPBX@Z,,0x009241E0,46,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,byte-scan placement; unique
+?deallocate@?$allocator@U?$_List_node@UcrateCreationEntry@@@_STL@@@_STL@@QBEXPAU?$_List_node@UcrateCreationEntry@@@2@I@Z,,0x00924210,47,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,byte-scan placement; unique
