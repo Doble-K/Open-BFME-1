@@ -41,9 +41,42 @@ while read -r _local_ref local_sha _remote_ref remote_sha; do
     python3 tools/conversion_gate.py "$base" "$local_sha" || fail "conversion direction (see above)"
 
     mapfile -t delta < <(python3 tools/delta_sources.py --range "$base" "$local_sha")
+
+    # Sources the range EDITS while leaving their ledger rows alone are absent
+    # from that delta, so nothing byte-verifies them — yet one such edit can
+    # break every other row in the same translation unit. Disabling a body
+    # (#if 0, or just deleting it) removes the inlines and template
+    # instantiations only that body referenced, and sibling rows stop resolving
+    # with "symbol not found in object": one assignDefaultGadgetLook orphaned 67
+    # rows in GameWindowManager.cpp. pre-commit already byte-verifies every
+    # staged Code/*.cpp for exactly this reason; --no-verify skips pre-commit
+    # entirely, so the push gate has to repeat it.
+    mapfile -t edited < <(python3 - "$base" "$local_sha" <<'PY'
+import csv, io, subprocess, sys
+base, rev = sys.argv[1], sys.argv[2]
+
+
+def git(*argv):
+    return subprocess.run(("git",) + argv, capture_output=True, text=True,
+                          check=True).stdout
+
+
+claimed = {r["source"] for r in csv.DictReader(io.StringIO(
+    git("show", "%s:reverse/functions.csv" % rev))) if r.get("status") == "matched"}
+touched = git("diff", "--name-only", "--diff-filter=ACMRT", base, rev,
+              "--", "Code/*.cpp", "Code/*.c").splitlines()
+sys.stdout.reconfigure(newline="\n")
+for path in sorted(set(touched) & claimed):
+    print(path)
+PY
+    )
+
     verify=()
-    for s in "${delta[@]}"; do
+    declare -A seen=()
+    for s in "${delta[@]}" "${edited[@]}"; do
         [ -z "$s" ] && continue
+        [ -n "${seen[$s]:-}" ] && continue
+        seen["$s"]=1
         [ -f "$s" ] || fail "outgoing rows reference missing source $s"
         git diff --quiet HEAD -- "$s" || fail "$s differs from HEAD; commit or stash before pushing"
         verify+=("$s")
