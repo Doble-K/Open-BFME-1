@@ -105172,3 +105172,4 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ?setMouseLimits@DirectInputMouse@@UAEXXZ,,0x006BB930,58,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?openMouse@DirectInputMouse@@IAEXXZ,,0x006BBAA0,271,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?capture@DirectInputMouse@@UAEXXZ,,0x006BBA80,13,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,13B leaf; SetCapture through the IAT
+?Load_W3D@TimeCodedMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,,0x00977A00,174,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,

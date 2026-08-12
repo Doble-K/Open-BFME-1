@@ -388,7 +388,6 @@ void TimeCodedMotionChannelClass::Free(void)
  * HISTORY:                                                                                    * 
  *   08/11/1997 GH  : Created.                                                                 * 
  *=============================================================================================*/
-// ?TimeCodedMotionChannelClass::Load_W3D present-unmatched
 bool TimeCodedMotionChannelClass::Load_W3D(ChunkLoadClass & cload)
 {
 	int size = cload.Cur_Chunk_Length();
@@ -405,7 +404,14 @@ bool TimeCodedMotionChannelClass::Load_W3D(ChunkLoadClass & cload)
 	Type 		    = chan.Flags;
 	PivotIdx     = chan.Pivot;
 	PacketSize   = VectorLen+1;
-	CachedIdx	 = 0;
+	// The member motchan.h still calls CachedIdx is BFME's LastTimeCodeIdx.
+	// Retail @0x00977A40 does `dec ecx; imul ecx, eax` and stores the result
+	// here - (NumTimeCodes-1)*PacketSize, which is Zero Hour's definition of
+	// LastTimeCodeIdx exactly, not a zeroed cache. Correcting the name means
+	// editing motchan.h, and a header edit runs the full gate, which is red
+	// on six DIR32 inconsistencies (docs/lessons.md). So the value is made
+	// right here and the name is left for whoever finds the gate green.
+	CachedIdx	 = (NumTimeCodes - 1) * PacketSize;
 
 	Data = MSGW3DNEWARRAY("TimeCodedMotionChannelClass::Data") uint32[numInts];
 	Data[0] = chan.Data[0];
