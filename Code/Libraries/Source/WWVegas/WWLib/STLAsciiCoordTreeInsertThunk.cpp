@@ -19,18 +19,13 @@ template<class Key, class Value, class Select, class Less, class Alloc>
 class _Rb_tree
 {
     _Rb_tree_iterator<Value, _Nonconst_traits<Value> > _M_insert(_Rb_tree_node_base<Value> *, _Rb_tree_node_base<Value> *, Value const &, _Rb_tree_node_base<Value> *);
+    _Rb_tree_iterator<Value, _Nonconst_traits<Value> > _bfme_insert_impl(_Rb_tree_node_base<Value> *, _Rb_tree_node_base<Value> *, Value const &, _Rb_tree_node_base<Value> *);
 };
 
 template<class Key, class Value, class Select, class Less, class Alloc>
-__declspec(naked) _Rb_tree_iterator<Value, _Nonconst_traits<Value> > _Rb_tree<Key, Value, Select, Less, Alloc>::_M_insert(_Rb_tree_node_base<Value> *, _Rb_tree_node_base<Value> *, Value const &, _Rb_tree_node_base<Value> *)
+_Rb_tree_iterator<Value, _Nonconst_traits<Value> > _Rb_tree<Key, Value, Select, Less, Alloc>::_M_insert(_Rb_tree_node_base<Value> *parent, _Rb_tree_node_base<Value> *child, Value const &value, _Rb_tree_node_base<Value> *root)
 {
-    __asm {
-        _emit 0E9h
-        _emit 029h
-        _emit 03Dh
-        _emit 064h
-        _emit 000h
-    }
+	return _bfme_insert_impl(parent, child, value, root);
 }
 }
 
