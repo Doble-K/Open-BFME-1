@@ -7305,3 +7305,30 @@ isScrolling, or it also drops nine somewhere between isScrolling and
 disregardDrawable. Either way slot 0xC8 for disregardDrawable is a hard
 anchor, and the shim as written cannot be adopted by any TU that calls a
 virtual past isScrolling. W3DMouse.cpp only survives it because it does not.
+
+## TeamFactory's destructor is at 0x000F74C0, not 0x009F2800
+
+Two of the four remaining DIR32 failures are `??_7TeamFactory@@6BSnapshot@@@`
+and `??_7TeamFactory@@6BSubsystemInterface@@@`, and the constructor and
+destructor rows disagree about which vtables those names mean. The
+constructor settles it. `??0TeamFactory@@QAE@XZ` @0x000F2250 writes
+`[esi+8]=0x1073744` (the MemoryPoolObject base), then `[esi]=0x1085F1C` and
+`[esi+8]=0x1085F08`, so TeamFactory's own tables are 0x1085F1C primary and
+0x1085F08 at +8. The row claimed as its destructor, @0x009F2800, writes
+`[esi]=0x11457F8` and `[esi+8]=0x11457E8` instead - a different class
+entirely - even though its note says the vtables prove ownership.
+
+Exactly two functions in the whole image write 0x1085F1C: the constructor at
+0x000F2282 and one at 0x000F74E1. That second one is an INT3-delimited
+118-byte body starting at **0x000F74C0**, and it reads as the destructor: it
+installs both TeamFactory tables, destroys the member at this+0xC, nulls the
+singleton at 0x12ED810, then puts `[esi+8]` back to the MemoryPoolObject
+vtable 0x1073744 - the inlined base destructor - and returns. Its neighbours
+line up too: 0x1085F1C slot 0 reaches 0xF7760 and slot 1 reaches 0xF7560.
+
+So `??1TeamFactory@@UAE@XZ,0x009F2800` is a misplaced claim, not a vtable
+mystery, and repointing it to 0x000F74C0 both fixes the identity and clears
+two DIR32 failures. Whoever takes it should land 0x000F74C0 as clean C++
+rather than repointing the existing `__emit` thunk, and should work out what
+class really owns 0x009F2800 before retracting it, since that address is
+carrying 115 bytes of coverage today.
