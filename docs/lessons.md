@@ -6972,3 +6972,42 @@ grounds that a lift is not a conversion. So a rename cannot be landed ahead of
 the conversion it belongs to, and forcing one would leave the ledger naming a
 symbol the object does not emit. The identification is recorded here instead,
 and the rename belongs in whatever commit finally converts it.
+
+
+## Unwind-state indices off by a constant means one extra destructible sub-object
+
+TerrainRoadType's constructor compiled with every offset, every call target and
+every eh-vector-constructor-iterator argument already correct, and still failed:
+each unwind-state store held a value exactly one higher than retail's
+(0x0b where retail had 0x0a, and so on all the way down).
+
+A uniform offset like that is not a scheduling artifact, it is a count. MSVC
+numbers unwind states by how many destructible sub-objects are live, so being
+consistently +1 means the class had one more of them than retail's does. The
+culprit was the base: modelling MemoryPoolObject with a virtual DESTRUCTOR
+makes the base sub-object destructible and consumes a state. Replacing it with a
+plain virtual function keeps the vptr at offset 0 -- which the body needs -- and
+removes the state. Byte-exact immediately.
+
+So when a constructor is otherwise perfect and the EH state numbers are off by a
+constant, count destructible members rather than looking for a codegen quirk.
+A base only needs a destructor if retail actually destroys it, and giving one
+where retail has none is invisible in the layout but not in the unwind states.
+
+Worth pairing with the earlier destructor lesson: there, the presence or absence
+of a vptr store distinguished virtual from non-virtual. Here it is the reverse
+direction -- the class genuinely needs a vptr, but must not have a destructor to
+go with it.
+
+## Reading layout off the body beats deriving it from the reference header
+
+The reference header for TerrainRoadType declares roughly seventy AsciiStrings
+across several two-dimensional arrays, and working out each offset from
+declaration order and enum sizes would have been slow and error-prone. The
+retail body hands the same information over directly: the inline zero stores
+land on exactly the scalar-string offsets, and each array shows up as an
+eh-vector-constructor-iterator call whose element count and size are pushed as
+immediates.
+
+Deriving the layout from the header is the fallback. Reading it from the body is
+the primary source, and it also cross-checks the header rather than trusting it.

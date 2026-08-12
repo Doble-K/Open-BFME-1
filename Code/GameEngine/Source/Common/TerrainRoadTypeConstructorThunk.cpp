@@ -1,363 +1,96 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift the retail TerrainRoadType ctor to a standalone C++ thunk.
-// MSVC 7.1 assigns the first AsciiString member a cleanup state (maxState 0x12)
-// that the retail build omitted (maxState 0x11, m_name at unwind state -1), so
-// clean C++ cannot reproduce the SEH scope bytes; the destructor for this class
-// is already matched the same way (TerrainRoadTypeDestructorThunk.cpp).
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /ICode/Libraries/Source/WWVegas/WWLib
+// TerrainRoadType's constructor, body verbatim from the reference TerrainRoads.cpp.
+//
+// Layout read straight off the retail body: vptr at 0, m_name at 4, the three
+// Reals at 0x14/0x18/0x1c, the two scaffold strings at 0x20/0x24, RGBColor at
+// 0x28, and the five model/texture string pairs at 0x34..0x50 -- each zeroed
+// inline by AsciiString's default ctor. The string arrays that follow are built
+// with the eh-vector-constructor-iterator, which is the push of the element ctor
+// at 0x40d828 right after the 0x50 store.
+#include "Common/AsciiString.h"
 
-class __declspec(novtable) TerrainRoadType
+typedef int Int;
+typedef unsigned int UnsignedInt;
+typedef float Real;
+typedef bool Bool;
+
+enum { BRIDGE_MAX_TOWERS = 4, MAX_BRIDGE_BODY_FX = 3, BODYDAMAGETYPE_COUNT = 4 };
+
+struct RGBColor
+{
+	Real red;
+	Real green;
+	Real blue;
+};
+
+class MemoryPoolObject
+{
+public:
+	// A vptr but no destructor: giving this base a virtual destructor makes it a
+	// destructible sub-object and shifts every unwind state index up by one.
+	virtual void anchor();
+};
+
+class TerrainRoadType : public MemoryPoolObject
 {
 public:
 	TerrainRoadType();
+	virtual ~TerrainRoadType() {}
+
+protected:
+	AsciiString m_name;
+	Bool m_isBridge;
+	UnsignedInt m_id;
+	TerrainRoadType *m_next;
+
+	Real m_roadWidth;
+	Real m_roadWidthInTexture;
+
+	Real m_bridgeScale;
+
+	AsciiString m_scaffoldObjectName;
+	AsciiString m_scaffoldSupportObjectName;
+
+	RGBColor m_radarColor;
+
+	AsciiString m_bridgeModelName;
+	AsciiString m_texture;
+
+	AsciiString m_bridgeModelNameDamaged;
+	AsciiString m_textureDamaged;
+
+	AsciiString m_bridgeModelNameReallyDamaged;
+	AsciiString m_textureReallyDamaged;
+
+	AsciiString m_bridgeModelNameBroken;
+	AsciiString m_textureBroken;
+
+	AsciiString m_towerObjectName[ BRIDGE_MAX_TOWERS ];
+
+	AsciiString m_damageToSoundString[ BODYDAMAGETYPE_COUNT ];
+	AsciiString m_damageToOCLString[ BODYDAMAGETYPE_COUNT ][ MAX_BRIDGE_BODY_FX ];
+	AsciiString m_damageToFXString[ BODYDAMAGETYPE_COUNT ][ MAX_BRIDGE_BODY_FX ];
+	AsciiString m_repairedToSoundString[ BODYDAMAGETYPE_COUNT ];
+	AsciiString m_repairedToOCLString[ BODYDAMAGETYPE_COUNT ][ MAX_BRIDGE_BODY_FX ];
+	AsciiString m_repairedToFXString[ BODYDAMAGETYPE_COUNT ][ MAX_BRIDGE_BODY_FX ];
+	Real m_transitionEffectsHeight;
+	Int m_numFXPerType;
 };
 
 // ??0TerrainRoadType@@QAE@XZ
-__declspec(naked) TerrainRoadType::TerrainRoadType()
+TerrainRoadType::TerrainRoadType( void )
 {
-	__asm {
-		__emit 0x6a
-		__emit 0xff
-		__emit 0x68
-		__emit 0xb3
-		__emit 0xd0
-		__emit 0x03
-		__emit 0x01
-		__emit 0x64
-		__emit 0xa1
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0x64
-		__emit 0x89
-		__emit 0x25
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0x53
-		__emit 0x56
-		__emit 0x8b
-		__emit 0xf1
-		__emit 0x33
-		__emit 0xdb
-		__emit 0xc7
-		__emit 0x06
-		__emit 0x90
-		__emit 0x50
-		__emit 0x11
-		__emit 0x01
-		__emit 0x89
-		__emit 0x74
-		__emit 0x24
-		__emit 0x08
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x04
-		__emit 0x89
-		__emit 0x5c
-		__emit 0x24
-		__emit 0x14
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x20
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x24
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x34
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x38
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x3c
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x40
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x44
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x48
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x4c
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x50
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x46
-		__emit 0x54
-		__emit 0x50
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x28
-		__emit 0x0a
-		__emit 0xe8
-		__emit 0x9d
-		__emit 0x4e
-		__emit 0x3f
-		__emit 0x00
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x4e
-		__emit 0x64
-		__emit 0x51
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x28
-		__emit 0x0b
-		__emit 0xe8
-		__emit 0x81
-		__emit 0x4e
-		__emit 0x3f
-		__emit 0x00
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x56
-		__emit 0x74
-		__emit 0x52
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x28
-		__emit 0x0c
-		__emit 0xe8
-		__emit 0x65
-		__emit 0x4e
-		__emit 0x3f
-		__emit 0x00
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x86
-		__emit 0xa4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x28
-		__emit 0x0d
-		__emit 0xe8
-		__emit 0x46
-		__emit 0x4e
-		__emit 0x3f
-		__emit 0x00
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x8e
-		__emit 0xd4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x51
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x28
-		__emit 0x0e
-		__emit 0xe8
-		__emit 0x27
-		__emit 0x4e
-		__emit 0x3f
-		__emit 0x00
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x96
-		__emit 0xe4
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x24
-		__emit 0x0f
-		__emit 0x52
-		__emit 0xe8
-		__emit 0x08
-		__emit 0x4e
-		__emit 0x3f
-		__emit 0x00
-		__emit 0x68
-		__emit 0x28
-		__emit 0xd8
-		__emit 0x40
-		__emit 0x00
-		__emit 0x68
-		__emit 0xd9
-		__emit 0x7b
-		__emit 0x41
-		__emit 0x00
-		__emit 0x6a
-		__emit 0x0c
-		__emit 0x6a
-		__emit 0x04
-		__emit 0x8d
-		__emit 0x86
-		__emit 0x14
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x50
-		__emit 0xc6
-		__emit 0x44
-		__emit 0x24
-		__emit 0x28
-		__emit 0x10
-		__emit 0xe8
-		__emit 0xe9
-		__emit 0x4d
-		__emit 0x3f
-		__emit 0x00
-		__emit 0x8b
-		__emit 0x4c
-		__emit 0x24
-		__emit 0x0c
-		__emit 0x88
-		__emit 0x5e
-		__emit 0x08
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x0c
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x10
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x14
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x18
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x28
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x2c
-		__emit 0x89
-		__emit 0x5e
-		__emit 0x30
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x44
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0x89
-		__emit 0x9e
-		__emit 0x48
-		__emit 0x01
-		__emit 0x00
-		__emit 0x00
-		__emit 0xc7
-		__emit 0x46
-		__emit 0x1c
-		__emit 0x00
-		__emit 0x00
-		__emit 0x80
-		__emit 0x3f
-		__emit 0x8b
-		__emit 0xc6
-		__emit 0x5e
-		__emit 0x5b
-		__emit 0x64
-		__emit 0x89
-		__emit 0x0d
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x00
-		__emit 0x83
-		__emit 0xc4
-		__emit 0x10
-		__emit 0xc3	}
+
+	m_isBridge = false;
+	m_id = 0;
+	m_next = 0;
+	m_roadWidth = 0.0f;
+	m_roadWidthInTexture = 0.0f;
+	m_bridgeScale = 1.0f;
+	m_radarColor.red = 0.0f;
+	m_radarColor.green = 0.0f;
+	m_radarColor.blue = 0.0f;
+	m_transitionEffectsHeight = 0.0f;
+	m_numFXPerType = 0;
+
 }
