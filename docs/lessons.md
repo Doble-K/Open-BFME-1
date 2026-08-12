@@ -6886,3 +6886,27 @@ here is only pinned under generated names (??1Gen_uw_00013156 and a Gen_dtor
 sibling), and declaring a member typed to that existing pin is the same convention
 the model file itself already uses for Gen_dtor_00113d40. That is reusing a pin,
 not inventing a signature for an unnamed callee.
+
+
+## When cloning, rename the target class and nothing else
+
+DynamicPortalBehaviour was on record as a clone that did not reproduce from
+QueueProductionExitUpdate despite matching its normalised body. That diagnosis
+was wrong, and the real cause is worth more than the conversion.
+
+They are ICF-folded onto one address, so the bytes are identical and a rename
+should have been the whole job. The failure came from doing the rename with a
+blind token substitution, which also renamed the helper class
+QueueProductionExitUpdateBase -- whose construct() the constructor calls. That
+changed the helper's mangled name, so it no longer resolved to the pinned
+symbol, and the call's rel32 came out different.
+
+Renaming only the target class, leaving every helper name untouched, matched on
+the first build.
+
+So the clone rule has two halves that pull in opposite directions. Same address
+means every call target must stay exactly as it is -- rename the one class the
+row names and nothing else. Different address means the shared structure is only
+a starting point and call targets are independent questions to re-derive. Getting
+these backwards produces exactly the failure logged here, and it looks like an
+unfixable codegen difference rather than a self-inflicted one.
