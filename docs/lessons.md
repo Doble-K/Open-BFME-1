@@ -7332,3 +7332,24 @@ two DIR32 failures. Whoever takes it should land 0x000F74C0 as clean C++
 rather than repointing the existing `__emit` thunk, and should work out what
 class really owns 0x009F2800 before retracting it, since that address is
 carrying 115 bytes of coverage today.
+
+## What UpdateModule's three vtable stores look like, and where TensileFormationUpdate differs
+
+Useful for reading any Update-module destructor. `~AutoAbilityBehavior`
+@0x001ED6E0 is the canonical shape: three stores for the class's own tables
+(`[+0]=0x10A1BC4`, `[+0xC]=0x10A1B00`, `[+0x10]=0x10A1AF4`), then the inlined
+UpdateModule base teardown, which is always `[+0x10]=0x109CBAC`,
+`[+0]=0x109CB5C`, `[+0xC]=0x109CA98` - three adjacent tables, in that order.
+Dozens of rows agree on it, constructors included.
+
+`~TensileFormationUpdate` @0x00253090 is the one dissenter and it is a strange
+one: its base teardown writes `[+0]=0x109CB5C` and `[+0xC]=0x109CA98`, exactly
+UpdateModule's, but `[+0x10]=0x10B1DC4` instead of 0x109CBAC. Two thirds of
+one class's triple with the third slot from somewhere else, so it is not simply
+another class's tables and it is not the ctor-vs-dtor family either. Either
+BFME has an intermediate class between TensileFormationUpdate and UpdateModule
+that overrides only the UpdateModuleInterface branch - and the local class
+model in TensileFormationUpdateDestructorThunk.cpp is missing it, which would
+make this a modelling artifact fixable in that one TU - or 0x10B1DC4 is a
+second copy of the same table. Deciding which is what the last DIR32 failure
+in this family needs.
