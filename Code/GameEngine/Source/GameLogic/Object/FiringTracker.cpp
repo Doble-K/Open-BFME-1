@@ -270,7 +270,6 @@ UpdateSleepTime FiringTracker::calcTimeToSleep()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?speedUp@FiringTracker@@AAEXXZ present-unmatched
 __declspec(naked) void FiringTracker::speedUp()
 {
 	__asm {

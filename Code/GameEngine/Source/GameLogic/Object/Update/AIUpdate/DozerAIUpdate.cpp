@@ -483,7 +483,6 @@ StateReturnType DozerActionDoActionState::onEnter( void )
 //-------------------------------------------------------------------------------------------------
 /** Do the action */
 //-------------------------------------------------------------------------------------------------
-// ?update@DozerActionDoActionState@@UAE?AW4StateReturnType@@XZ present-unmatched
 __declspec(naked) StateReturnType DozerActionDoActionState::update( void )
 {
 	__asm {

@@ -428,7 +428,6 @@ ControlBarScheme::ControlBarScheme(void)
 }
 
 
-// ?init@ControlBarScheme@@QAEXXZ present-unmatched
 __declspec(naked) void ControlBarScheme::init(void)
 {
 	__asm {

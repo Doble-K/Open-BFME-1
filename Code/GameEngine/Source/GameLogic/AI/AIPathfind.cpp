@@ -8549,7 +8549,6 @@ Int Pathfinder::checkPathCost(Object *obj, const LocomotorSet& locomotorSet, con
  * Find a short, valid path between the FROM location and a location NEAR the to location.
  * Uses A* algorithm.
  */
-// ?findClosestPath@Pathfinder@@EAEPAVPath@@PAVObject@@ABVLocomotorSet@@PBUCoord3D@@PAU5@_NM4@Z present-unmatched
 __declspec(naked) Path *Pathfinder::findClosestPath( Object *obj, const LocomotorSet& locomotorSet, const Coord3D *from,
 																	Coord3D *rawTo, Bool blocked, Real pathCostMultiplier, Bool moveAllies)
 {
@@ -12724,7 +12723,6 @@ void Pathfinder::removeUnitFromPathfindMap(  Object *obj )
 	removeGoal(obj);
 }
 
-// ?moveAllies@Pathfinder@@QAE_NPAVObject@@PAVPath@@@Z present-unmatched
 __declspec(naked) Bool Pathfinder::moveAllies(Object *obj, Path *path)
 {
 	__asm {
