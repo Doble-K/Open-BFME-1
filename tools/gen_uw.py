@@ -152,14 +152,15 @@ class Ledger:
 
 
 Funclet = collections.namedtuple("Funclet", "kind rva size disp target")
+Unit = collections.namedtuple("Unit", "kind target rows shape")
 
 
 def read_funclets(ledger):
     """Every unclaimed named EH funclet, classified, with the ladder split out.
 
-    Returns (on_ladder, tally) where tally counts rows and bytes per class for
-    the classify report.  A funclet is on the ladder when its displacement is a
-    slot this generator can actually place in a compiled frame.
+    Returns (on_ladder, off_ladder, tally, tally_bytes); the tallies count the
+    whole population per class for the classify report.  A funclet is on the
+    ladder when its displacement is a slot this generator can place in a frame.
     """
     data = build.EXE.read_bytes()
     on_ladder, off_ladder = [], []
@@ -214,6 +215,8 @@ def plan(on_ladder):
 
     A unit is one destructor target's locals and parameters, or the whole
     template-C population, which shares one set of new-expression frames.
+    `shape` is what the emitter needs: (locals, parameters) for a type, the
+    slots to reach for the new-expression unit.
     """
     locals_of = collections.defaultdict(set)
     params_of = collections.defaultdict(set)
@@ -229,20 +232,20 @@ def plan(on_ladder):
     units = []
     for target in sorted(set(locals_of) | set(params_of)):
         rows = sum(1 for f in on_ladder if f.kind in "AB" and f.target == target)
-        units.append(("type", target, rows,
-                      (max(locals_of[target]) + 1 if target in locals_of else 0,
-                       max(params_of[target]) + 1 if target in params_of else 0)))
+        units.append(Unit("type", target, rows,
+                          (max(locals_of[target]) + 1 if target in locals_of else 0,
+                           max(params_of[target]) + 1 if target in params_of else 0)))
     if new_slots:
         rows = sum(1 for f in on_ladder if f.kind == "C")
-        units.append(("new", None, rows, tuple(sorted(new_slots))))
+        units.append(Unit("new", None, rows, tuple(sorted(new_slots))))
     files = [[]]
     count = 0
     for unit in units:
-        if files[-1] and count + unit[2] > ROWS_PER_FILE:
+        if files[-1] and count + unit.rows > ROWS_PER_FILE:
             files.append([])
             count = 0
         files[-1].append(unit)
-        count += unit[2]
+        count += unit.rows
     return files
 
 
@@ -265,11 +268,11 @@ void gen_uw_sink(void *);
 
 def emit_source(units):
     out = [HEADER]
-    types = [unit for unit in units if unit[0] == "type"]
+    types = [unit for unit in units if unit.kind == "type"]
     if types:
-        out.append("\n".join("struct Gen_uw_%08x { int m; ~Gen_uw_%08x(); };" % (t, t)
-                             for _, t, _, _ in types) + "\n")
-    for _, target, _, (locals_needed, params_needed) in types:
+        out.append("\n".join("struct Gen_uw_%08x { int m; ~Gen_uw_%08x(); };" % (u.target, u.target)
+                             for u in types) + "\n")
+    for target, (locals_needed, params_needed) in ((u.target, u.shape) for u in types):
         if locals_needed:
             body = "\n".join("\tGen_uw_%08x v%d; gen_uw_ext();" % (target, i)
                              for i in range(locals_needed))
@@ -279,7 +282,7 @@ def emit_source(units):
             out.append("void gen_uw_p%d_%08x(%s) { gen_uw_ext(); }\n"
                        % (params_needed, target, args))
     for unit in units:
-        if unit[0] != "new":
+        if unit.kind != "new":
             continue
         out.append("// A throwing new-expression leaves its block to be freed from a frame\n"
                    "// slot, and padding ahead of it walks that slot down the ladder. Slot 1\n"
@@ -288,7 +291,7 @@ def emit_source(units):
                    "// new-expression that is live at the same time reaches it.\n"
                    "struct Gen_uw_new { int m; Gen_uw_new(int); ~Gen_uw_new(); };\n"
                    "struct Gen_uw_new2 { int m; Gen_uw_new2(Gen_uw_new *); ~Gen_uw_new2(); };\n")
-        for slot in unit[3]:
+        for slot in unit.shape:
             if slot == 0:
                 out.append("Gen_uw_new *gen_uw_c0() { return new Gen_uw_new(0); }\n")
             elif slot == 1:
@@ -382,11 +385,11 @@ def land():
         path = ROOT / source_name(index)
         path.write_text(emit_source(units), encoding="utf-8", newline="\n")
         slots = compiled_slots(path)
-        owned = {t for kind, t, _, _ in units if kind == "type"}
-        targets |= owned
-        wanted = sorted(k for k in by_key
-                        if (k[0] == "AB" and k[2] in owned)
-                        or (k[0] == "C" and any(u[0] == "new" for u in units)))
+        unit_targets = {u.target for u in units if u.kind == "type"}
+        targets |= unit_targets
+        emits_new = any(u.kind == "new" for u in units)
+        wanted = sorted(k for k in by_key if (k[0] == "AB" and k[2] in unit_targets)
+                        or (k[0] == "C" and emits_new))
         missing = [k for k in wanted if k not in slots]
         if missing:
             raise SystemExit(
