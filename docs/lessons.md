@@ -7844,10 +7844,11 @@ The eight, with what each is worth once it is fixed:
     270B  GadgetRadioButtonSystem            GadgetRadioButton.cpp
     250B  PopulateRemoteIPComboBox           NetworkDirectConnect.cpp
     179B  getSlotNum@LANGameInfo             LANGameInfo.cpp
+    171B  GadgetCheckBoxSystem               GadgetCheckBox.cpp
 
 For `PopupReplayInit` and `GadgetRadioButtonSystem` this swap is the *only*
 difference left; the others carry one or two member offsets alongside it. So a
-single codegen answer is worth a little over three kilobytes of assembly
+single codegen answer is worth about 3,240 bytes of assembly
 retired, and probably more once the pairing sweep is finished.
 
 Source shaping does not move it. Tried on `PopupReplayInit`: wrapping the
