@@ -408,3 +408,12 @@ _static_ltree
 _x_rgcbTypeSizes
 _x_rgdwTexCoordSize
 _x_rgszSemanticString
+
+# ErrorCode's throw-info is emitted per TU as a COMDAT and retail kept two of
+# them: ini.cpp's three parse* bodies resolve __TI1?AW4ErrorCode@@ to 0x11E0004
+# and INI_stl.cpp's MultiIniFieldParse::add resolves it to 0x12454C0. Both
+# objects are byte-identical in shape - twelve zero bytes then a pointer to
+# their own CatchableTypeArray at 0x11DFFFC and 0x12454B8 - so this is the same
+# doubly-linked-TU case as ?_Table@CRC@@0PAKA above, not a bad claim. It became
+# visible when MultiIniFieldParse::add moved off its naked dump onto INI_stl.cpp.
+__TI1?AW4ErrorCode@@
