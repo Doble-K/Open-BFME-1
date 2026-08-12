@@ -8033,21 +8033,35 @@ job as `createInactiveTeam`. It is not. Ours compiles to 344 bytes against a
 different container, not that the loop body differs.
 
 Our iteration reads an `Int` count at `sides+0x194` and a pointer array at
-`sides+0x19C`, stepping with `lea esi, [eax + edi*4]`. Retail at 0x000F83E5 does
-this instead:
+`sides+0x19C`, stepping with `lea esi, [eax + edi*4]`. Retail does not count at
+all - it walks a chain threaded through 16-byte records by index. The loop bottom
+at 0x000F8499 is what gives it away:
 
-    mov   eax, [eax + 0x63c]     ; sides -> record block
-    movsx ecx, word ptr [eax]    ; count is a short at the head of the block
-    shl   ecx, 4                 ; records are 16 bytes wide
-    cmp   word ptr [edi+eax+6], bx   ; a short at record+6 gated against zero
-    lea   esi, [edi+eax+0xc]     ; the per-side object lives at record+0xC
+    mov   eax, [esp+0x2c]            ; sides
+    mov   eax, [eax + 0x63c]         ; -> record block
+    movsx ecx, word ptr [edi+eax]    ; short at the CURRENT record is the next index
+    cmp   ecx, ebx                   ; zero terminates
+    jne   0xf8400
+    ...
+    f8400: shl ecx, 4                ; index * 16 -> byte offset of the next record
+           mov edi, ecx
+           cmp word ptr [edi+eax+6], bx   ; skip this record unless the short at +6 is 0
+           lea esi, [edi+eax+0xc]         ; the Dict lives at record+0xC
 
-So: a block pointer at `SidesList+0x63C`, a `short` count at its head, 16-byte
-records, a `short` filter field at `record+6`, and the object the loop actually
-works on at `record+0xC`. The two `Dict` reads that follow are unchanged - both
-call the same getter at 0x0002FF6D with two different `NameKey` globals
-(0x012A75B8 and 0x012A75C0), which is the `TheKey_teamName` / `TheKey_teamOwner`
-pair.
+So: a block pointer at `SidesList+0x63C`; 16-byte records addressed by index, not
+by pointer; the `short` at `record+0` is the *next* index with 0 as the terminator,
+which makes record 0 the head sentinel; a `short` filter at `record+6` that must be
+zero for the record to be processed; and a `Dict` embedded at `record+0xC` - one
+pointer wide, which is why the record is only 16 bytes.
+
+The entry read at 0x000F83EB is the same field with `edi` still zero, so the
+function starts by following record 0's link rather than by loading a length.
+
+The `Dict` reads themselves are unchanged. Three `NameKey` globals feed the getter
+at 0x0002FF6D and the `Bool` getter at 0x00043A1D: 0x012A75B8, 0x012A75C0 and
+0x012A75C8, which are `TheKey_teamName`, `TheKey_teamOwner` and
+`TheKey_teamIsSingleton`. `initTeam` is then called through ILT 0x00039E0F with
+those four arguments, exactly as Zero Hour has it.
 
 Doing this one means modelling `SidesList` TU-locally first. Worth it, because
 `SidesList+0x63C` will explain every other unmatched body that walks sides, but it
