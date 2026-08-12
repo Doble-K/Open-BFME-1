@@ -7540,6 +7540,11 @@ drifts, and no byte-scan sees past that. InGameUI.cpp placed nothing at all out
 of 196 candidates. Spend scan time on files that are mostly done and vtable
 archaeology on the ones that are not.
 
+And it is not a one-off. Other contributors' layout and shim fixes open placements
+that were not there an hour ago, so re-scan the changed set after every pull:
+`git diff --name-only <last-base>..HEAD -- 'Code/**/*.cpp'` fed into locate.py.
+Fifty changed files gave five more placements in one pass.
+
 Two mechanical notes. Prefer `locate.py <source> --emit` over `add_match.py` per
 row: add_match writes only the ledger row, and a body whose callees are still
 unpinned also needs the `reverse/symbols.csv` additions locate reads out of the
