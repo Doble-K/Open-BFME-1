@@ -7277,3 +7277,20 @@ the body rather than assumed from the declaration order. And the base call is
 ObjectModule's constructor, pinned at 0x000170E4 under about ten ICF-folded
 aliases; naming the class ObjectModule emits the right symbol without inventing
 anything.
+
+## The mouselayout InGameUI model is wrong, and disregardDrawable proves it
+
+InGameUI.cpp is tempting: 108 unmatched markers against 59 matched rows, and
+it is on the sweep shim alone while `reference/shims/mouselayout` ships an
+InGameUI.h that claims BFME has nine more virtuals ahead of `isScrolling`.
+Wiring that shim into the TU does not unlock it - it breaks a row that
+already matched. `?disregardDrawable@InGameUI@@UAEXPAVDrawable@@@Z` tail-jumps
+through slot 0xC8 in retail and the shim moves it to 0xEC, because
+disregardDrawable is declared thirty-four virtuals after isScrolling and any
+insertion ahead of isScrolling carries it along.
+
+So one of two things is true: BFME does not put nine extra virtuals ahead of
+isScrolling, or it also drops nine somewhere between isScrolling and
+disregardDrawable. Either way slot 0xC8 for disregardDrawable is a hard
+anchor, and the shim as written cannot be adopted by any TU that calls a
+virtual past isScrolling. W3DMouse.cpp only survives it because it does not.
