@@ -105184,3 +105184,22 @@ _check_match,,0x0099AB20,181,Code/Libraries/Source/Lua/lparser.c,matched,reloc-n
 _next,,0x0099A9A0,76,Code/Libraries/Source/Lua/lparser.c,matched,reloc-named from a byte-true call site; already byte-exact
 _str_checkname,,0x0099AC90,107,Code/Libraries/Source/Lua/lparser.c,matched,reloc-named from a byte-true call site; already byte-exact
 ?setDefaultControlBarConfig@ControlBar@@IAEXXZ,,0x0049E090,114,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,exact C++ body; the 5-byte ILT thunk at 0x43E73 pointed here
+?Set_Float@RegistryClass@@QAEXPBDM@Z,,0x009DC420,37,Code/Libraries/Source/WWVegas/WWLib/registry.cpp,matched,byte-scan placement; unique
+??_GNetPacket@@UAEPAXI@Z,,0x006796D0,69,Code/GameEngine/Source/GameNetwork/NetPacket_init.cpp,matched,byte-scan placement; unique
+?decryptBuf@@YAXPAEH@Z,,0x00683310,58,Code/GameEngine/Source/GameNetwork/Transport.cpp,matched,byte-scan placement; unique
+?destroyGameMessages@FrameDataManager@@QAEXXZ,,0x00670810,45,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,byte-scan placement; unique
+?_M_deallocate_block@?$_String_base@DV?$allocator@D@_STL@@@_STL@@QAEXXZ,,0x0074CD10,39,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,byte-scan placement; unique
+?_M_reserve_map_at_back@?$deque@VGameResultsResponse@@V?$allocator@VGameResultsResponse@@@_STL@@@_STL@@IAEXI@Z,,0x009EEA20,38,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp,matched,byte-scan placement; unique
+??1SegLineRendererClass@@QAE@XZ,,0x00960030,28,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,byte-scan placement; unique
+??4QueuedDownload@@QAEAAV0@ABV0@@Z,,0x006269F0,87,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,byte-scan placement; unique
+??1QueuedDownload@@QAE@XZ,,0x00626C90,128,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,byte-scan placement; unique
+?getLastLocalFile@DownloadManager@@QAE?AVAsciiString@@XZ,,0x00626D30,83,Code/GameEngine/Source/GameNetwork/DownloadManager.cpp,matched,byte-scan placement; unique
+??0?$deque@VPingRequest@@V?$allocator@VPingRequest@@@_STL@@@_STL@@QAE@ABV?$allocator@VPingRequest@@@1@@Z,,0x0065F890,46,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,byte-scan placement; unique
+??0?$deque@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@QAE@ABV?$allocator@VPingResponse@@@1@@Z,,0x0065F8D0,46,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,byte-scan placement; unique
+??0PingResponse@@QAE@ABV0@@Z,,0x00660080,33,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,byte-scan placement; unique
+??4PingResponse@@QAEAAV0@ABV0@@Z,,0x00660B10,50,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,byte-scan placement; unique
+??0?$queue@VPingRequest@@V?$deque@VPingRequest@@V?$allocator@VPingRequest@@@_STL@@@_STL@@@_STL@@QAE@XZ,,0x00660EB0,44,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,byte-scan placement; unique
+??0?$queue@VPingResponse@@V?$deque@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@@_STL@@QAE@XZ,,0x00660EF0,44,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,byte-scan placement; unique
+??$_Construct@U?$pair@$$CBV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@H@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBV?$basic_string@DV?$char_traits@D@_STL@@V?$allocator@D@2@@_STL@@H@0@ABU10@@Z,,0x009D8190,79,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp,matched,byte-scan placement; unique
+?push_back@?$vector@PBVModuleData@@V?$allocator@PBVModuleData@@@_STL@@@_STL@@QAEXABQBVModuleData@@@Z,,0x00129170,50,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,byte-scan placement; unique
+?push_back@?$vector@PAVTunnelTracker@@V?$allocator@PAVTunnelTracker@@@_STL@@@_STL@@QAEXABQAVTunnelTracker@@@Z,,0x00378930,50,Code/GameEngine/Source/GameLogic/System/CaveSystem.cpp,matched,byte-scan placement; unique

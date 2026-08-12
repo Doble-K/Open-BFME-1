@@ -136,7 +136,6 @@ HRESULT DownloadManager::downloadNextQueuedFile( void )
 	}
 }
 
-// ?getLastLocalFile@DownloadManager@@QAE?AVAsciiString@@XZ present-unmatched
 AsciiString DownloadManager::getLastLocalFile( void )
 {
 	char buf[256] = "";

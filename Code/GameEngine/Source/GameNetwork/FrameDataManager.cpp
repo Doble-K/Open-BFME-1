@@ -251,7 +251,6 @@ void FrameDataManager::zeroFrames(UnsignedInt startingFrame, UnsignedInt numFram
 /**
  * Destroy all the commands held by this object.
  */
-// ?destroyGameMessages@FrameDataManager@@ present-unmatched
 void FrameDataManager::destroyGameMessages() {
 	for (Int i = 0; i < FRAME_DATA_LENGTH; ++i) {
 		m_frameData[i].destroyGameMessages();

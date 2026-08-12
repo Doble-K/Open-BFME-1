@@ -145,7 +145,6 @@ float	RegistryClass::Get_Float( const char * name, float def_value )
 	return data;
 }
 
-// ?Set_Float@RegistryClass@@QAEXPBDM@Z present-unmatched
 void	RegistryClass::Set_Float( const char * name, float value )
 {
 	assert( IsValid );
