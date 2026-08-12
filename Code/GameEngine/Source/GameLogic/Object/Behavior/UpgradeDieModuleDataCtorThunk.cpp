@@ -1,95 +1,54 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class UpgradeDieModuleData
+// An intermediate DieModuleData base whose constructor is inlined -- it stores
+// its own vptr at 0x00 and constructs the member at 0x08 through an out-of-line
+// call, resolved by the existing pin for ??0InstantDeathDieMuxData@@QAE@XZ at
+// 0x000071E4. This class then overwrites the vptr with its own and zeroes 0x34.
+//
+// ModuleData needs a declared destructor: without one MSVC emits no EH frame,
+// because a throw out of the member's constructor would have nothing to unwind.
+
+class ModuleData
 {
 public:
-    UpgradeDieModuleData();
+	virtual void moduleDataAnchor();		///< vptr at 0x00
+	~ModuleData();
+
+	int m_04;
 };
 
-__declspec(naked) UpgradeDieModuleData::UpgradeDieModuleData()
+class InstantDeathDieMuxData
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x08;
-        __emit 0x17;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x04;
-        __emit 0x8d;
-        __emit 0x4e;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x78;
-        __emit 0xaf;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0x11;
-        __emit 0x1b;
-        __emit 0xee;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xd8;
-        __emit 0xe6;
-        __emit 0x08;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x34;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc3;
-    }
+public:
+	InstantDeathDieMuxData();
+	~InstantDeathDieMuxData();
+
+private:
+	unsigned char m_body[0x2c];				///< 0x08 .. 0x34
+};
+
+class DieModuleData : public ModuleData
+{
+public:
+	DieModuleData() {}
+
+	virtual void moduleDataAnchor();
+
+	InstantDeathDieMuxData m_mux;			///< 0x08
+};
+
+class UpgradeDieModuleData : public DieModuleData
+{
+public:
+	UpgradeDieModuleData();
+
+	virtual void moduleDataAnchor();
+
+	int m_34;								///< 0x34
+};
+
+// ??0UpgradeDieModuleData@@QAE@XZ
+UpgradeDieModuleData::UpgradeDieModuleData()
+	: m_34( 0 )
+{
 }

@@ -1,82 +1,42 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class CivilianSpawnCollideModuleData
+// A ModuleData base supplying the vptr, then a member whose constructor is out
+// of line -- the call resolves to the existing pin for ??0RS_Member@@QAE@XZ at
+// 0x0003747A. That member is what gives this constructor its EH frame.
+
+class ModuleData
 {
 public:
-    CivilianSpawnCollideModuleData();
+	virtual void moduleDataAnchor();		///< vptr at 0x00
+
+	// Declared so the base is destructible: without it MSVC emits no EH frame,
+	// because a throw from the member's constructor would have nothing to unwind.
+	~ModuleData();
+
+	int m_04;
 };
 
-__declspec(naked) CivilianSpawnCollideModuleData::CivilianSpawnCollideModuleData()
+class RS_Member
 {
-    __asm {
-        _emit 6Ah
-        _emit 0FFh
-        _emit 68h
-        _emit 0F8h
-        _emit 0CAh
-        _emit 00h
-        _emit 01h
-        _emit 64h
-        _emit 0A1h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 50h
-        _emit 64h
-        _emit 89h
-        _emit 25h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 51h
-        _emit 56h
-        _emit 8Bh
-        _emit 0F1h
-        _emit 89h
-        _emit 74h
-        _emit 24h
-        _emit 04h
-        _emit 8Dh
-        _emit 4Eh
-        _emit 08h
-        _emit 0C7h
-        _emit 44h
-        _emit 24h
-        _emit 10h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 0C7h
-        _emit 06h
-        _emit 0A8h
-        _emit 0A0h
-        _emit 0Ah
-        _emit 01h
-        _emit 0E8h
-        _emit 0E7h
-        _emit 00h
-        _emit 0E2h
-        _emit 0FFh
-        _emit 8Bh
-        _emit 4Ch
-        _emit 24h
-        _emit 08h
-        _emit 8Bh
-        _emit 0C6h
-        _emit 5Eh
-        _emit 64h
-        _emit 89h
-        _emit 0Dh
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 00h
-        _emit 83h
-        _emit 0C4h
-        _emit 10h
-        _emit 0C3h
-    }
+public:
+	RS_Member();
+	~RS_Member();
+
+private:
+	unsigned char m_body[0x18];
+};
+
+class CivilianSpawnCollideModuleData : public ModuleData
+{
+public:
+	CivilianSpawnCollideModuleData();
+
+	virtual void moduleDataAnchor();
+
+	RS_Member m_member;						///< 0x08
+};
+
+// ??0CivilianSpawnCollideModuleData@@QAE@XZ
+CivilianSpawnCollideModuleData::CivilianSpawnCollideModuleData()
+{
 }

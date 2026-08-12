@@ -7575,3 +7575,35 @@ stores, which source can control. Here it is only *how* the same stores are
 addressed, which it cannot. When the residual is a lea plus short displacements
 against direct displacements, and the instruction count matches, stop -- it is
 the same class as a register-allocation difference.
+
+
+## A base needs a declared destructor before an EH frame appears
+
+Two ModuleData constructors came out with no EH frame at all where retail has
+one. The bodies were otherwise right: vptr store, then a member constructed
+through an out-of-line call.
+
+The frame exists to unwind if that member's constructor throws -- but only if
+there is something to unwind. With a base that has no destructor and no
+previously-constructed members, MSVC correctly concludes there is nothing to
+clean up and omits the frame entirely. Declaring `~ModuleData();` on the base,
+without defining it, makes the base destructible, and the frame and its state
+store appear exactly as retail has them.
+
+This is the mirror of the TerrainRoadType lesson. There, giving a base a virtual
+destructor added an unwind state that retail did not have and shifted every
+index by one. Here, withholding a destructor removed the only state retail did
+have. The destructibility of a base is a load-bearing modelling decision in both
+directions, and the unwind states are how you read which way it should go.
+
+## Constructors that differ only in vtable address convert as a batch
+
+The three 82-byte ModuleData constructors -- HeroDie, UpgradeDie and
+WeaponBonusUpdate -- are instruction-for-instruction identical apart from the
+vtable addresses their classes store. One class shape written three times
+converted all three in a single build.
+
+That is a cheaper pattern than the ICF case, where several names share one
+address. Here the addresses genuinely differ, so each needs its own file and its
+own row, but the reconstruction work is done once. Worth scanning a family for
+equal sizes and diffing two bodies before treating them as separate problems.
