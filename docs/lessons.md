@@ -7791,3 +7791,32 @@ Two mechanical notes. `explain_mismatch` caches its own
 both when a source edit looks like it had no effect. And check the mangled name
 against the right overload - `decompress` has a two-argument and a
 four-argument form, and only one of them is the dump.
+
+### correction: the TeamFactory destructor claim above is not settled
+
+The section "TeamFactory's destructor is at 0x000F74C0, not 0x009F2800" is
+overstated and should not be acted on as written. It reasoned from one side of
+the contradiction only. The other side:
+`??_GTeamFactory@@UAEPAXI@Z` is claimed at **0x009F2900**, and 0x009F2900 is
+slot 0 of vtable **0x11457F8** - which is the table the 0x009F2800 body installs.
+A class's deleting destructor sits in slot 0 of its own primary vtable, so if
+that `??_G` row is right then 0x009F2800 *is* `~TeamFactory` and the existing
+claim is correct.
+
+So the two rows disagree about which class owns which table pair:
+
+    ??0TeamFactory@@QAE@XZ  @0x000F2250  writes 0x1085F1C / 0x1085F08
+    ??_GTeamFactory@@UAEPAXI@Z @0x009F2900  lives in 0x11457F8
+
+and that disagreement is exactly what the DIR32 check is reporting. One of the
+two is a bad claim; nothing found so far decides which. The
+`??$initSubsystem@VTeamFactory@@` instantiation @0x00074F90 does not settle it
+either - it makes only four calls, none of them a TeamFactory constructor, and
+the one vtable it writes (0x1075E40) belongs to an eight-byte helper it
+allocates.
+
+What does still stand from that section: 0x000F74C0 is a real 118-byte
+destructor-shaped body that installs 0x1085F1C and 0x1085F08 and is unclaimed,
+and 0x009F2800 carries three names at once, so at least two of those three are
+wrong regardless of how the TeamFactory question resolves. Start from whichever
+of the two rows can be independently disproved, not from the vtables alone.
