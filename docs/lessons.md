@@ -7950,3 +7950,25 @@ other function in the image that writes 0x1085F1C.
 The general lesson: when two vtables contradict each other, do not try to settle
 it from the tables. Find who calls the constructor. A subsystem singleton is
 constructed in exactly one place and that place names it.
+
+### the Mouse layout correction does not survive W3DMouse's unwind funclets
+
+With the gate green I tried the header fix the DirectInputMouse work had been
+waiting for: move the 0x10 out of Win32Mouse into Mouse's tail (DirectInputMouse
+derives from Mouse directly and reads m_pDirectInput at this+0x4E14, so
+sizeof(Mouse) is 0x4E14 on its own) and put eight bytes ahead of m_mouseEvents,
+taking them back out of _bfme_hole_beforeCurrentCursor so m_currentCursor stays
+at +0x4DA8. Both are byte-neutral for sizeof and both are what the retail reads
+say.
+
+Win32DIMouse.cpp then verifies with its two TU-local hacks removed, which is the
+result I wanted. But W3DMouse.cpp loses `uw_00c4c358`, one of two unwind funclets
+belonging to `initW3DAssets`, and it is not a label-renumbering: `gen_uw.py land`
+does not touch parent-owned rows, and trying $L57591 through $L57596 by hand all
+fail. The funclet's *contents* change, so the eight bytes ahead of m_mouseEvents
+move something `initW3DAssets` holds inside a try-scope.
+
+Reverted. The DirectInputMouse reads stay TU-local. Whoever picks this up should
+work out what initW3DAssets has in scope at that point first - the +8 is probably
+right but in the wrong place among the members between m_isTooltipEmpty and
+m_mouseEvents.
