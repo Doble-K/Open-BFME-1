@@ -105234,3 +105234,14 @@ _str_checkname,,0x0099AC90,107,Code/Libraries/Source/Lua/lparser.c,matched,reloc
 ?resetAccepted@GameInfo@@UAEXXZ,,0x0061EFB0,72,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,byte-scan placement; unique
 ?RequestLocations@LANAPI@@UAEXXZ,,0x00684E20,54,Code/GameEngine/Source/GameNetwork/lanapi.cpp,matched,byte-scan placement; unique
 ?Get_Box@OBBoxRenderObjClass@@QAEAAVOBBoxClass@@XZ,,0x00956BF0,26,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,byte-scan placement; unique
+?insert@?$set@HU?$less@H@_STL@@V?$allocator@H@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@HU?$_Const_traits@H@_STL@@@_STL@@_N@2@ABH@Z,,0x00236040,40,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?insert@?$set@VAsciiString@@U?$less@VAsciiString@@@_STL@@V?$allocator@VAsciiString@@@3@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@VAsciiString@@U?$_Const_traits@VAsciiString@@@_STL@@@_STL@@_N@2@ABVAsciiString@@@Z,,0x00453DB0,40,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?didPlayerPreorder@GameSpyInfo@@UBE_NH@Z,,0x00632770,43,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?isSavedIgnored@GameSpyInfo@@UAE_NH@Z,,0x00632D20,43,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?markPlayerAsPreorder@GameSpyInfo@@UAEXH@Z,,0x00633360,30,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?erase@?$_Rb_tree@HU?$pair@$$CBHVAsciiString@@@_STL@@U?$_Select1st@U?$pair@$$CBHVAsciiString@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@_STL@@QAEXU?$_Rb_tree_iterator@U?$pair@$$CBHVAsciiString@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHVAsciiString@@@_STL@@@2@@2@0@Z,,0x00633830,153,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?addToIgnoreList@GameSpyInfo@@UAEXVAsciiString@@@Z,,0x00635590,87,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?isIgnored@GameSpyInfo@@UAE_NVAsciiString@@@Z,,0x00635600,45,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?returnIgnoreList@GameSpyInfo@@UAE?AV?$set@VAsciiString@@U?$less@VAsciiString@@@_STL@@V?$allocator@VAsciiString@@@3@@_STL@@XZ,,0x00635640,35,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+??1GameSpyInfo@@UAE@XZ,,0x00637590,366,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,
+?removeFromIgnoreList@GameSpyInfo@@UAEXVAsciiString@@@Z,,0x00637B60,78,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,

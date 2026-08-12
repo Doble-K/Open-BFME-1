@@ -77,7 +77,6 @@ GameSpyInfo::GameSpyInfo()
 	m_isDisconAfterGameStart = FALSE;
 }
 
-// ??1GameSpyInfo@@UAE@XZ present-unmatched
 GameSpyInfo::~GameSpyInfo()
 {
 	TheGameSpyGame = NULL;
@@ -128,14 +127,12 @@ void GameSpyInfo::reset( void )
 	m_additionalDisconnects = -1;
 }
 
-// ?didPlayerPreorder@GameSpyInfo@@UBE_NH@Z present-unmatched
 Bool GameSpyInfo::didPlayerPreorder( Int profileID ) const
 {
 	std::set<Int>::const_iterator it = m_preorderPlayers.find(profileID);
 	return (it != m_preorderPlayers.end());
 }
 
-// ?markPlayerAsPreorder@GameSpyInfo@@UAEXH@Z present-unmatched
 void GameSpyInfo::markPlayerAsPreorder( Int profileID )
 {
 	m_preorderPlayers.insert(profileID);
@@ -490,25 +487,21 @@ const AsciiString& GameSpyInfo::getConfig( void )
 // frame size (sub esp 0x1e8 vs 0x1c0).
 
 
-// ?addToIgnoreList@GameSpyInfo@@UAEXVAsciiString@@@Z present-unmatched
 void GameSpyInfo::addToIgnoreList( AsciiString nick )
 {
 	m_ignoreList.insert(nick);
 }
 
-// ?removeFromIgnoreList@GameSpyInfo@@UAEXVAsciiString@@@Z present-unmatched
 void GameSpyInfo::removeFromIgnoreList( AsciiString nick )
 {
 	m_ignoreList.erase(nick);
 }
 
-// ?isIgnored@GameSpyInfo@@UAE_NVAsciiString@@@Z present-unmatched
 Bool GameSpyInfo::isIgnored( AsciiString nick )
 {
 	return m_ignoreList.find(nick) != m_ignoreList.end();
 }
 
-// ?returnIgnoreList@GameSpyInfo@@UAE?AV?$set@VAsciiString@@U?$less@VAsciiString@@@_STL@@V?$allocator@VAsciiString@@@3@@_STL@@XZ present-unmatched
 IgnoreList GameSpyInfo::returnIgnoreList( void )
 {
  return m_ignoreList;
@@ -533,7 +526,6 @@ void GameSpyInfo::removeFromSavedIgnoreList( Int profileID )
 	pref.write();
 }
 
-// ?isSavedIgnored@GameSpyInfo@@UAE_NH@Z present-unmatched
 Bool GameSpyInfo::isSavedIgnored( Int profileID )
 {
 	return m_savedIgnoreMap.find(profileID) != m_savedIgnoreMap.end();
