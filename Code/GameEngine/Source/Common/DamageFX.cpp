@@ -33,6 +33,17 @@
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file in the GameEngine
 
+#include "GameLogic/Damage.h"
+// BFME has 16 damage types where Zero Hour has 38. DamageFX::clear
+// @0x00065EB0 fully unrolls the four veterancy levels into one 0x40-byte
+// iteration and then runs `mov edx,0x10; ... dec edx; jne`, so the outer bound
+// is 16; the ZH enum makes it 0x26. Only the count is provable from these
+// bytes - which sixteen of the names survive is not - so the enum keeps every
+// name and only the array bound is pinned. Scoped to this translation unit:
+// narrowing it in GameLogic/Damage.h is a header edit and the full gate is red
+// (docs/lessons.md).
+#define DAMAGE_NUM_TYPES 16
+
 #include "Common/INI.h"
 #include "Common/ThingFactory.h"
 #include "Common/ThingTemplate.h"
@@ -65,7 +76,6 @@ DamageFXStore *TheDamageFXStore = NULL;					///< the DamageFX store definition
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 //-------------------------------------------------------------------------------------------------
-// ??0DamageFX@@ present-unmatched
 DamageFX::DamageFX()
 {
 	// not necessary.
@@ -73,7 +83,6 @@ DamageFX::DamageFX()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?clear@DamageFX@@ present-unmatched
 void DamageFX::clear()
 {
 	for (Int dt = 0; dt < DAMAGE_NUM_TYPES; ++dt)

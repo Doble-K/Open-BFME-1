@@ -105171,3 +105171,9 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ?openMouse@DirectInputMouse@@IAEXXZ,,0x006BBAA0,271,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?capture@DirectInputMouse@@UAEXXZ,,0x006BBA80,13,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,13B leaf; SetCapture through the IAT
 ?Load_W3D@TimeCodedMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,,0x00977A00,174,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
+?clear@DamageFX@@QAEXXZ,,0x00065EB0,70,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
+??0?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@QAE@ABW4NameKeyType@@ABVDamageFX@@@Z,,0x00066360,31,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
+??0?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@QAE@ABU01@@Z,,0x000665D0,30,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
+??0DamageFX@@QAE@XZ,,0x00066750,36,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
+??$_Construct@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@VDamageFX@@@0@ABU10@@Z,,0x00066A40,34,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
+??A?$hash_map@W4NameKeyType@@VDamageFX@@U?$hash@W4NameKeyType@@@rts@@U?$equal_to@W4NameKeyType@@@4@V?$allocator@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@@_STL@@@_STL@@QAEAAVDamageFX@@ABW4NameKeyType@@@Z,,0x00067950,157,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
