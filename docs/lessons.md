@@ -7857,5 +7857,12 @@ nor qualifying the call helped. Every one of these is a by-value
 `UnicodeString` argument copy-constructed from an lvalue, so if it is a source
 difference it is one shared by all eight; more likely it is a compiler switch.
 Worth someone comparing the flag set against a body that *does* emit the retail
-order - `git grep` for a matched function containing `89 64 24` immediately
-before `8b cc` would find one.
+order.
+
+That search has now been done, and it rules the easy answers out: **504 matched
+sources already emit the retail order**, `Code/GameEngine/Source/Common/GameLOD.cpp`
+among them, and its flag set is the same `/MD /EHsc` stlport line PopupReplay.cpp
+uses. So our toolchain can produce both orders and it is neither a flag nor a
+compiler-version difference. It is context - which is the puzzling part, because
+in PopupReplayInit every other byte of the 386 already matches, so whatever the
+scheduler is reacting to is not visible in the emitted code around it.
