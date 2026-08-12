@@ -11925,7 +11925,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?addSuperweapon@InGameUI@@UAEXHABVAsciiString@@W4ObjectID@@PBVSpecialPowerTemplate@@@Z,,0x0044C970,338,Code/GameEngine/Source/Common/InGameUI_addSuperweapon_Thunk.cpp,matched,reloc-needle Open-BFME4+Grok
 ?addTeam@SidesList@@QAEXPBVDict@@@Z,,0x00C2787D,11,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,
 ?addTeam@TeamsInfoRec@@QAEXPBVDict@@@Z,,0x0000D828,5,Code/Libraries/Source/WWVegas/WWLib/TeamsInfoRecAddTeamThunk.cpp,matched,ICF-group owner converted to focused C++ thunk TU; remaining aliases retain shared target
-?addTeamPrototypeToList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000F3DA0,122,Code/GameEngine/Source/Common/TeamFactory_addTeamPrototypeToList_Thunk.cpp,matched,clean C++ conversion; ZH Team.cpp body but BFME keys the prototype map on a pair of name keys from the strings at prototype+0x10 and +0x14; map at this+0x0C
+?addTeamPrototypeToList@TeamFactory@@QAEXPAVTeamPrototype@@@Z,,0x000F3DA0,122,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,clean C++ replaces the naked dump
 ?addTexture@W3DShadowTextureManager@@QAE_NPAVW3DShadowTexture@@@Z,,0x007AEFA0,23,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
 ?addToBuildList@SidesInfo@@QAEXPAVBuildListInfo@@H@Z,,0x00191510,74,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?addToEndOfGroup@LList@@QAEX_N@Z,,0x00105A10,10,Code/GameEngine/Source/Common/System/List.cpp,matched,

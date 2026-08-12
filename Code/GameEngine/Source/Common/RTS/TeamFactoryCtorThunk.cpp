@@ -79,10 +79,31 @@ public:
 // from two NAMEKEY calls before looking it up. Both shapes give the same 0x1C
 // node, which is why the constructor, destructor and clear all match either
 // way - only a body that uses the key can tell them apart.
-class BfmeTeamPrototype
+// Enough of AsciiString to reproduce str(): retail inlines it as
+// `p ? p + 8 : ""` at 0x000F3DAA and 0x000F3DCA.
+class BfmeAsciiString
 {
 public:
-	virtual ~BfmeTeamPrototype();
+	const char *str(void) const { return m_data ? ((const char *)m_data + 8) : ""; }
+private:
+	void *m_data;
+};
+
+class NameKeyGenerator
+{
+public:
+	int nameToKey(const char *name);
+};
+extern NameKeyGenerator *TheNameKeyGenerator;
+
+// The two AsciiStrings the key is built from sit at +0x10 and +0x14.
+class TeamPrototype
+{
+public:
+	virtual ~TeamPrototype();
+	char m_pad[0xc];
+	BfmeAsciiString m_first;
+	BfmeAsciiString m_second;
 };
 typedef std::pair<int, int> BfmeTeamPrototypeKey;
 
@@ -97,6 +118,7 @@ public:
 	virtual void update(void);
 
 	void clear(void);
+	void addTeamPrototypeToList(TeamPrototype *team);
 
 protected:
 	virtual void crc(void);
@@ -109,7 +131,7 @@ private:
 	// _Rb_tree<H, pair<$$CBH, <8 bytes>>>::~_Rb_tree, which names the key type
 	// directly. The node is 0x1C either way - 0x10 of links plus a 0xC value -
 	// so the constructor's bytes are unchanged.
-	std::map<BfmeTeamPrototypeKey, BfmeTeamPrototype *, std::less<BfmeTeamPrototypeKey> > m_prototypes;
+	std::map<BfmeTeamPrototypeKey, TeamPrototype *, std::less<BfmeTeamPrototypeKey> > m_prototypes;
 	int m_uniqueTeamPrototypeID;
 	int m_uniqueTeamID;
 };
@@ -136,10 +158,22 @@ void TeamFactory::clear()
 {
 	// must remove it from the map before deleting the TeamProto, since
 	// the TeamProto will try to remove itself from the list when it goes away
-	std::map<BfmeTeamPrototypeKey, BfmeTeamPrototype *, std::less<BfmeTeamPrototypeKey> > tmp = m_prototypes;
+	std::map<BfmeTeamPrototypeKey, TeamPrototype *, std::less<BfmeTeamPrototypeKey> > tmp = m_prototypes;
 	m_prototypes.clear();
-	for (std::map<BfmeTeamPrototypeKey, BfmeTeamPrototype *, std::less<BfmeTeamPrototypeKey> >::iterator it = tmp.begin(); it != tmp.end(); ++it)
+	for (std::map<BfmeTeamPrototypeKey, TeamPrototype *, std::less<BfmeTeamPrototypeKey> >::iterator it = tmp.begin(); it != tmp.end(); ++it)
 	{
 		delete it->second;
 	}
+}
+
+// ?addTeamPrototypeToList@TeamFactory@@QAEXPAVTeamPrototype@@@Z
+void TeamFactory::addTeamPrototypeToList(TeamPrototype *team)
+{
+	BfmeTeamPrototypeKey nk(TheNameKeyGenerator->nameToKey(team->m_first.str()),
+									TheNameKeyGenerator->nameToKey(team->m_second.str()));
+	std::map<BfmeTeamPrototypeKey, TeamPrototype *, std::less<BfmeTeamPrototypeKey> >::iterator it = m_prototypes.find(nk);
+	if (it != m_prototypes.end())
+		return;
+
+	m_prototypes[nk] = team;
 }
