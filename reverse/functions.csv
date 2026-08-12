@@ -94171,7 +94171,7 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?d_0077ea70@@YAXXZ,,0x0077EA70,133,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00b7ea70
 ?d_000aff40@@YAXXZ,,0x000AFF40,128,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_004aff40
 ?d_000cfe80@@YAXXZ,,0x000CFE80,126,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_004cfe80
-?d_00696150@@YAXXZ,,0x00696150,123,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00a96150
+?initDelayFilter@MilesAudioManager@@AAEXXZ,,0x00696150,123,Code/GameEngineDevice/Source/MilesAudioDevice/MilesAudioManager.cpp,matched,Open-BFME5 Miles delay filter C++ lift
 ?d_00485ab0@@YAXXZ,,0x00485AB0,121,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00885ab0
 ?d_0033da70@@YAXXZ,,0x0033DA70,110,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0073da70
 ?d_00336fb0@@YAXXZ,,0x00336FB0,109,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00736fb0
