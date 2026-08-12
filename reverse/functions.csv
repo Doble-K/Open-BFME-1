@@ -105177,3 +105177,5 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ??0DamageFX@@QAE@XZ,,0x00066750,36,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ??$_Construct@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@U12@@_STL@@YAXPAU?$pair@$$CBW4NameKeyType@@VDamageFX@@@0@ABU10@@Z,,0x00066A40,34,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 ??A?$hash_map@W4NameKeyType@@VDamageFX@@U?$hash@W4NameKeyType@@@rts@@U?$equal_to@W4NameKeyType@@@4@V?$allocator@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@@_STL@@@_STL@@QAEAAVDamageFX@@ABW4NameKeyType@@@Z,,0x00067950,157,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
+_setnodevector,,0x00999580,129,Code/Libraries/Source/Lua/ltable.c,matched,vendored=lua-4.0.1;reloc-named from a byte-true call site
+_test_then_block,,0x0099CEA0,154,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1;reloc-named from a byte-true call site
