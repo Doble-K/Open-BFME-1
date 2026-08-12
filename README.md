@@ -15,21 +15,18 @@ Goal: source code that rebuilds BFME 1's executable byte-for-byte.
 
 We currently have C++ functions in `Code/` and a patcher which can patch same-size custom functions into `lotrbfme.exe`. This is useful for modding.
 
-The number that matters is **byte-exact C++**: **19.43% of the game's real code**
-(a quarter of `.text` is linker `int3` padding that needs no source and is excluded from
-the honest denominator — against raw `.text` the same bytes are 14.45%). A further
-**17.72%** is byte-verified assembly awaiting conversion, so **37.16%** of the real code
-is byte-exact today. Every row in `reverse/functions.csv` compiles or assembles to bytes
-identical to retail; `python3 tools/progress.py <ref>` prints every figure above, with both
-denominators and the split, so these are numbers you can check rather than ones you have to
-take on trust — and a test fails if this section ever claims more than the tool reports.
-The pipeline: scripts claim unidentified functions as
-byte-true ASM dumps, and agents convert ASM to exact C++ — conversion is the
-contribution.
+The number that matters is **byte-exact code**: **37.16% of the game's real code** now
+rebuilds bit-for-bit — **19.43%** rewritten as C++, and **17.72%** still as byte-exact
+assembly waiting to be converted. (A quarter of `.text` is linker padding that needs no
+source and is left out of that denominator; against the raw section the C++ figure is
+**14.45%**.) Every row in `reverse/functions.csv` compiles or assembles to bytes identical
+to retail; `python3 tools/progress.py` prints the current split. The pipeline: scripts claim
+unidentified functions as byte-true ASM dumps, and agents convert ASM to exact C++ —
+conversion is the contribution.
 
 ## Roadmap
 
-* [ ] BFME 1 Source Code (37.16% of real code byte-exact, 19.43% of it as C++)
+* [ ] BFME 1 Source Code (37.16% byte-exact)
 * [ ] Network delay fix
 * [ ] Memory fix
 * [ ] Better crash logs
@@ -57,24 +54,15 @@ Each commit in the PR is one verified function, and I will be able to merge it.
 
 ## Build
 
-Baseline executables and the MSVC 7.1 toolchain are committed directly in the repo (plain git, no LFS) — a normal `git clone` gets everything. After cloning, run:
+The MSVC 7.1 toolchain and baseline executables are committed directly (plain git, no LFS), so a normal `git clone` gets everything. Then:
 
 ```bash
-./tools/setup_hooks.sh
+./tools/setup_hooks.sh   # enable the pre-commit byte-check (git won't do this from a clone)
+./build.sh               # verify every tracked function against retail   (.\build.ps1 on Windows)
 ```
 
-Git does not auto-enable versioned hooks from a clone. `setup_hooks.sh` points this checkout at the
-tracked pre-commit hook, which rejects new source functions unless they are listed in
-`reverse/functions.csv` and pass the byte comparison.
+To check a single function while iterating, pass its file or name — a few seconds instead of the full run:
 
 ```bash
-./build.sh
-# (or on Windows)
-# .\build.ps1
-```
-
-The build verifies the baseline, byte-compares tracked source against the original executable, and checks that a no-op patched copy hashes identically. While iterating on one function, verify just its source in a few seconds by passing in the path:
-
-```bash
-./build.sh Code/Libraries/Source/WWVegas/WWMath/color.cpp   # or a function name
+./build.sh Code/Libraries/Source/WWVegas/WWMath/color.cpp
 ```
