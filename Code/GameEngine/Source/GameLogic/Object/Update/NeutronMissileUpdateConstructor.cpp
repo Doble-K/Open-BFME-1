@@ -1,182 +1,114 @@
 // cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS /ICode/GameEngine/Source/Common/System /ICode/GameEngine/Include /ICode/GameEngine/Include/Precompiled /ICode/Libraries/Source/WWVegas/WWLib
 
-class Thing
-{
-};
+class Thing;
+class ModuleData;
 
-class ModuleData
-{
-};
+// Four vptrs land at 0x00, 0x0c, 0x10 and 0x20, which is the UpdateModule
+// chain (object module, behavior interface, update interface) plus one further
+// interface at 0x20. The base constructor is declared only, so the call
+// resolves to the existing pin for
+// ??0SupplyCenterDockUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z at 0x00048EA5.
 
-class NeutronMissileUpdate
-{
-public:
-	NeutronMissileUpdate( Thing *, const ModuleData * );
-};
-
-__declspec(naked) NeutronMissileUpdate::NeutronMissileUpdate( Thing *, const ModuleData * )
-{
-	__asm {
-		_emit 08Bh
-		_emit 044h
-		_emit 024h
-		_emit 008h
-		_emit 056h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 050h
-		_emit 051h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 061h
-		_emit 0B4h
-		_emit 0D7h
-		_emit 0FFh
-		_emit 033h
-		_emit 0C0h
-		_emit 088h
-		_emit 086h
-		_emit 089h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 086h
-		_emit 08Ch
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 0C7h
-		_emit 006h
-		_emit 024h
-		_emit 0ABh
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 00Ch
-		_emit 060h
-		_emit 0AAh
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 010h
-		_emit 050h
-		_emit 0AAh
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 020h
-		_emit 0F0h
-		_emit 0A9h
-		_emit 00Ch
-		_emit 001h
-		_emit 0C6h
-		_emit 086h
-		_emit 088h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 001h
-		_emit 08Bh
-		_emit 0C6h
-		_emit 05Eh
-		_emit 0C2h
-		_emit 008h
-		_emit 000h
-	}
-}
-
-class MonsterDockUpdate
+class ObjectModuleBase
 {
 public:
-	MonsterDockUpdate( Thing *, const ModuleData * );
+	virtual void objectModuleAnchor();
+
+	const void *m_moduleData;				///< 0x04
 };
 
-__declspec(naked) MonsterDockUpdate::MonsterDockUpdate( Thing *, const ModuleData * )
+class ObjectModule : public ObjectModuleBase
 {
-	__asm {
-		_emit 08Bh
-		_emit 044h
-		_emit 024h
-		_emit 008h
-		_emit 056h
-		_emit 08Bh
-		_emit 0F1h
-		_emit 08Bh
-		_emit 04Ch
-		_emit 024h
-		_emit 008h
-		_emit 050h
-		_emit 051h
-		_emit 08Bh
-		_emit 0CEh
-		_emit 0E8h
-		_emit 061h
-		_emit 0B4h
-		_emit 0D7h
-		_emit 0FFh
-		_emit 033h
-		_emit 0C0h
-		_emit 088h
-		_emit 086h
-		_emit 089h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 089h
-		_emit 086h
-		_emit 08Ch
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 0C7h
-		_emit 006h
-		_emit 024h
-		_emit 0ABh
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 00Ch
-		_emit 060h
-		_emit 0AAh
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 010h
-		_emit 050h
-		_emit 0AAh
-		_emit 00Ch
-		_emit 001h
-		_emit 0C7h
-		_emit 046h
-		_emit 020h
-		_emit 0F0h
-		_emit 0A9h
-		_emit 00Ch
-		_emit 001h
-		_emit 0C6h
-		_emit 086h
-		_emit 088h
-		_emit 000h
-		_emit 000h
-		_emit 000h
-		_emit 001h
-		_emit 08Bh
-		_emit 0C6h
-		_emit 05Eh
-		_emit 0C2h
-		_emit 008h
-		_emit 000h
-	}
+public:
+	void *m_object;							///< 0x08
+};
+
+class BehaviorModuleInterface
+{
+public:
+	virtual void behaviorAnchor() = 0;
+};
+
+class BehaviorModule : public ObjectModule, public BehaviorModuleInterface
+{
+};
+
+class UpdateModuleInterface
+{
+public:
+	virtual void updateAnchor() = 0;
+};
+
+class UpdateModule : public BehaviorModule, public UpdateModuleInterface
+{
+public:
+	unsigned int m_nextCallFrameAndPhase;	///< 0x14
+	int m_indexInLogic;						///< 0x18
+	unsigned int m_updateState;				///< 0x1c -- UpdateModule ends at 0x20
+};
+
+class DockInterface
+{
+public:
+	virtual void dockAnchor() = 0;
+};
+
+class SupplyCenterDockUpdateBase : public UpdateModule, public DockInterface
+{
+public:
+	SupplyCenterDockUpdateBase(Thing *, const ModuleData *);
+
+	unsigned char m_gap24[0x88 - 0x24];
+};
+
+class MonsterDockUpdate : public SupplyCenterDockUpdateBase
+{
+public:
+	MonsterDockUpdate(Thing *, const ModuleData *);
+
+	// One override per polymorphic sub-object, so this class gets its own
+	// vtable for each and the constructor stores all four.
+	virtual void objectModuleAnchor();
+	virtual void behaviorAnchor();
+	virtual void updateAnchor();
+	virtual void dockAnchor();
+
+	bool m_flag88;							///< 0x88
+	bool m_flag89;							///< 0x89
+	int m_value8c;							///< 0x8c
+};
+
+// ??0MonsterDockUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+MonsterDockUpdate::MonsterDockUpdate( Thing *thing, const ModuleData *moduleData )
+	: SupplyCenterDockUpdateBase( thing, moduleData )
+{
+	m_flag89 = false;
+	m_value8c = 0;
+	m_flag88 = true;
 }
 
+class NeutronMissileUpdate : public SupplyCenterDockUpdateBase
+{
+public:
+	NeutronMissileUpdate(Thing *, const ModuleData *);
+
+	// One override per polymorphic sub-object, so this class gets its own
+	// vtable for each and the constructor stores all four.
+	virtual void objectModuleAnchor();
+	virtual void behaviorAnchor();
+	virtual void updateAnchor();
+	virtual void dockAnchor();
+
+	bool m_flag88;							///< 0x88
+	bool m_flag89;							///< 0x89
+	int m_value8c;							///< 0x8c
+};
+
+// ??0NeutronMissileUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+NeutronMissileUpdate::NeutronMissileUpdate( Thing *thing, const ModuleData *moduleData )
+	: SupplyCenterDockUpdateBase( thing, moduleData )
+{
+	m_flag89 = false;
+	m_value8c = 0;
+	m_flag88 = true;
+}

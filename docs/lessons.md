@@ -7099,3 +7099,42 @@ Also seen while screening: MeshGeometryMeshModelLeafThunks.cpp looks like a
 candidate but is already finished. Its one real function is converted and the
 other three rows are deliberate ICF aliases keeping the folded body, which is
 correct -- a void function cannot compile to a value-returning body.
+
+
+## Where the vptr stores land tells you which members are sub-objects
+
+Two module constructors this tick shared a shape: an external base constructor
+call, some zero stores, several vptr stores, and more stores. The first
+(74 bytes, four vptrs) came out on the first build with plain int and bool
+members. The second (77 bytes, five vptrs) did not, and the difference was
+entirely about where the vptr stores sat.
+
+Retail put one zero store at 0x38, then all five vptr stores, then four more
+zero stores at 0x3c through 0x48. Writing five plain members put every zero
+store first and all the vptrs after; chaining the assignments only reversed the
+order of the group.
+
+What reproduces it is modelling 0x3c..0x4c as a member sub-object with its own
+inline constructor, and 0x38 as an init-list member. Member initialisers run
+after the vptr stores, so the sub-object's four stores stay a group behind them,
+while the single init-list store at 0x38 is the one thing the vptr stores sink
+past.
+
+So the position of the vptr stores is a layout signal, not just a scheduling
+quirk. Stores that appear *after* the vptrs are member construction; a store
+appearing *before* them is one the sink moved past, and there will be exactly
+one leading group of those. When plain members give the wrong split, look for a
+sub-object boundary at the point where the vptrs actually sit.
+
+This also refines the earlier sinking note. The rule was recorded as needing a
+run of two or more stores to move the vptr; here it moved past exactly one. The
+run length is not the trigger -- what matters is that the leading group belongs
+to the constructor's own initialisation while the trailing group belongs to a
+sub-object's constructor.
+
+## Same-address rows in one file convert together for free
+
+Both files held two ledger rows at one address, ICF-folded. Writing the class
+shape twice, once per name, converts both rows in a single build, which is what
+makes multi-row files worth targeting despite build.py verifying a source as a
+whole. Four rows landed here from two builds' worth of real work.
