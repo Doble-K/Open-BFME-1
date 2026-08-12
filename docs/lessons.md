@@ -6936,3 +6936,39 @@ as a clone.
 Mangling note worth keeping, confirmed against an already-converted sibling:
 MSVC encodes a non-negative integer template argument N as $0(N-1), so $06 is
 <7> and $0A@ is <0>.
+
+
+## Neighbouring addresses are strong evidence for a row's real identity
+
+A row named ?setEaseTimes@ParabolicEase@@QAEXMM@Z turned out to be
+FVFInfoClass's constructor. Four independent things agreed: the body calls
+D3DXGetFVFVertexSize, it does FVF bit arithmetic on the exact constants
+(0x002 XYZ, 0x00c XYZB4, 0x1000 LASTBETA_UBYTE4, 0x010 NORMAL, 0x040 DIFFUSE),
+it is thiscall with two arguments, and its member stores land on FVFInfoClass's
+layout.
+
+The clincher was cheaper than any of those: it sits at 0x964150, and
+FVFInfoClass::Get_FVF_Name -- an already-matched row -- starts at 0x964290,
+274 bytes and a little padding later. Functions from one translation unit land
+adjacently, so when a suspect row abuts a correctly-named row of some class,
+that class is where to look first. Worth checking before disassembling anything.
+
+Two further findings from the attempt, kept because they will save the next one:
+
+- Retail reaches D3DXGetFVFVertexSize through a direct call, so the declaration
+  must not be __declspec(dllimport) -- dllimport emits an indirect call through
+  the IAT (ff 15) where retail has e8.
+- BFME's FVFInfoClass is NOT the Generals one. dx8fvf.cpp's constructor written
+  verbatim reproduces the first ~60% byte-for-byte, through texcoord_offset[0]
+  at +0x14, and then diverges: retail writes a member at +0x3c, past
+  specular_offset, chosen by comparing FVF against a lookup table at 0x0113E0BC.
+  The reference header has no such member. Identifying it and the table is the
+  whole remaining job.
+
+The row is NOT renamed, and that is the gate working as intended. The
+pre-commit conversion check rejects any edit that adds naked lines -- including
+merely rewriting the declaration of a file that was already naked -- on the
+grounds that a lift is not a conversion. So a rename cannot be landed ahead of
+the conversion it belongs to, and forcing one would leave the ledger naming a
+symbol the object does not emit. The identification is recorded here instead,
+and the rename belongs in whatever commit finally converts it.
