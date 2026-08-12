@@ -80528,7 +80528,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setWindowText@@YAXPAVGameWindow@@VAsciiString@@@Z,,0x004864E0,416,Code/GameEngine/Source/Common/setWindowText_Thunk.cpp,matched,Exact 416B MASM; true body 0x4864E0 (queue 0x4864C7 int3 pad); BFME AsciiString isEmpty/str blocks ZH C++
 ?setWindowed@Display@@UAEX_N@Z,,0x00336610,10,Code/GameEngine/Source/GameClient/Display.cpp,matched,
 ?setWins@GameSpyGameSlot@@QAEXH@Z,,0x0016A420,10,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp,matched,
-?setWrappedCommandID@NetWrapperCommandMsg@@QAEGXZ,,0x00673F70,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,object-symbol=?setWrappedCommandID@NetWrapperCommandMsg@@QAEXG@Z;NetWrapperCommandMsg trivial accessor thunk
 ?setWrappedCommandID@NetWrapperCommandMsg@@QAEXG@Z,,0x00673F70,12,Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp,matched,NetWrapperCommandMsg trivial accessor (icf alias of GameSlot::setPort)
 ?setZone@PathfindLayer@@QAEXH@Z,,0x001F5AE0,10,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,
 ?setZoomLimited@View@@UAEX_N@Z,,0x00912040,10,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,
