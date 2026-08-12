@@ -581,7 +581,6 @@ void DirectInputMouse::setCursor( MouseCursor cursor )
 //-------------------------------------------------------------------------------------------------
 /** Capture the mouse to our application */
 //-------------------------------------------------------------------------------------------------
-// ?capture@DirectInputMouse@@UAEXXZ present-unmatched
 void DirectInputMouse::capture( void )
 {
 

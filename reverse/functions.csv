@@ -105171,3 +105171,4 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ?setRedrawMode@Mouse@@UAEXW4RedrawMode@1@@Z,,0x005A5630,13,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?setMouseLimits@DirectInputMouse@@UAEXXZ,,0x006BB930,58,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
 ?openMouse@DirectInputMouse@@IAEXXZ,,0x006BBAA0,271,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,
+?capture@DirectInputMouse@@UAEXXZ,,0x006BBA80,13,Code/GameEngineDevice/Source/Win32Device/GameClient/Win32DIMouse.cpp,matched,13B leaf; SetCapture through the IAT
