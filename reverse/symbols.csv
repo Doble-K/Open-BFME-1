@@ -68443,6 +68443,7 @@ _next,0x0099A9A0,vendored=lua-4.0.1
 _ntohl@4,0x0081BDDE,vendored=gamespy-2004
 _ntohs@4,0x0081BE3E,vendored=gamespy-2004
 _parlist,0x0099BD30,vendored=lua-4.0.1
+_luaX_lex,0x009A0B60,Open-BFME5 BFME Lua lexer body
 _png_build_gamma_table@4,0x00A66007,vendored=libpng-1.0.5
 _png_chunk_error@8,0x00A62C73,vendored=libpng-1.0.5
 _png_error@8,0x00A62C3E,vendored=libpng-1.0.5

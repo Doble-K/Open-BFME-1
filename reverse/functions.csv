@@ -94213,7 +94213,7 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?d_00816160@@YAXXZ,,0x00816160,254,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c16160
 ?d_00818500@@YAXXZ,,0x00818500,254,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c18500
 ?d_008cd2f0@@YAXXZ,,0x008CD2F0,254,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00ccd2f0
-?d_0099bd30@@YAXXZ,,0x0099BD30,254,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d9bd30
+_parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 Lua 4.0.1 parlist C lift
 ?d_009c6800@@YAXXZ,,0x009C6800,254,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00dc6800
 ?d_00a19ceb@@YAXXZ,,0x00A19CEB,254,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00e19ceb
 ?d_00a1a5e3@@YAXXZ,,0x00A1A5E3,254,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00e1a5e3
