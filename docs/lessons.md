@@ -7972,3 +7972,55 @@ Reverted. The DirectInputMouse reads stay TU-local. Whoever picks this up should
 work out what initW3DAssets has in scope at that point first - the +8 is probably
 right but in the wrong place among the members between m_isTooltipEmpty and
 m_mouseEvents.
+
+## TeamFactory takes two strings everywhere Zero Hour takes one
+
+Converting `?initTeam@TeamFactory@@QAEXABVAsciiString@@0_NPAVDict@@@Z` (220B at
+0x000F8170) produced a single finding that repeats across the whole class: where
+Zero Hour identifies a team prototype by one `AsciiString`, BFME identifies it by
+two. Three signatures fall out of one body:
+
+- `findTeamPrototype(owner, name)`. At 0x000F8191 retail pushes both strings
+  before the call. Two independent call sites now agree - `initTeam` and
+  `createInactiveTeam` at 0x000F7AC1 - and both reach it through ILT 0x00040A39,
+  which lands on the gen-dump at 0x000EFE10. That dump is `findTeamPrototype`.
+- The `TeamPrototype` constructor at 0x000F3E40 takes seven parameters, passing
+  owner and name as two separate strings, then the `Player*`, the singleton flag,
+  the `Dict*` and the id.
+- `createInactiveTeam(owner, name)`. Its body at 0x000F7AB0 ends `ret 8`, so the
+  ledger name claiming one parameter is wrong-arity.
+
+This is the same shape as the pair-keyed `m_prototypes` map derived earlier from
+`addTeamPrototypeToList`, and it is confirmed from the other direction: at
+0x000F822B `initTeam` re-reads the two strings off the prototype it has just
+built, at `proto+0x10` and `proto+0x14`, rather than reusing its own parameters.
+Those are exactly the `m_first`/`m_second` offsets the map key was built from.
+
+Two smaller facts, both cheap to reuse:
+
+- BFME's `initTeam` early-returns when the prototype already exists. Zero Hour
+  only asserts, so the guard compiles out under NDEBUG and the retail branch at
+  0x000F819C looks like an invention until you notice it.
+- `createInactiveTeam` throws where Zero Hour returns NULL: `push 0x011E0004`
+  (`__TI1?AW4ErrorCode@@`) with `0xDEAD0003` written into the exception object,
+  which is `throw ERROR_BAD_ARG` under the ErrorCode rebase at 1.
+
+`TeamPrototype` is 0x278 bytes - `initTeam` allocates exactly that, and
+`createInactiveTeam` reads `[esi+0x274]` as its last dword. Confirmed members:
+`m_first` +0x10, `m_second` +0x14, singleton flag bit 0 of the byte at +0x18,
+`getFirstItemIn_TeamInstanceList()` +0x274, `m_executeActions` +0x1EC.
+
+### The lead worth taking next
+
+`Code/GameEngine/Source/Common/RTS/Team.cpp` **already contains the real C++ for
+`createInactiveTeam`** - `throw ERROR_BAD_ARG`, `getIsSingleton()`,
+`getFirstItemIn_TeamInstanceList()` and `m_executeActions` all sit where the bytes
+want them. It compiles to 287 of 390 bytes and the very first difference is
+`mov eax, [esp+0x14]` against our `[esp+0x10]`: the missing second parameter and
+nothing else. So this is a pairing job, not a reconstruction.
+
+What blocks it is not the gate, which is green - it is blast radius.
+`findTeamPrototype` and `createInactiveTeam` are declared in `Team.h` and called
+from many byte-verified translation units, so widening both signatures at once
+re-codegens all of them. Do it as its own change with the full gate run before and
+after, not as a rider on a conversion.
