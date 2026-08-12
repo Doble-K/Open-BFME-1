@@ -79417,7 +79417,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseMultiplayerSettingsDefinition@INI@@SAXPAV1@@Z,,0x000C2600,113,Code/GameEngine/Source/Common/INI/INIMultiplayer.cpp,matched,MultiplayerSettings block; push 0x88 to operator new pins sizeof at 136 where ZH compiles 0x90 - BFME layout in reference/shims/multiplayer from the retail field table
 ?parseName@@YA_NPADPAVWinInstanceData@@0PAX@Z,,0x004866F0,139,Code/GameEngine/Source/Common/parseName_Thunk.cpp,matched,clean C++; sibling of parseInputCallback writing to the instance member at +0x18C
 ?parseNumImages@Anim2DTemplate@@KAXPAVINI@@PAX1PBX@Z,,0x005BAE50,158,Code/GameEngine/Source/GameClient/System/Anim2DTemplate_parse.cpp,matched,clean C++ lifted from Anim2DTemplate_parse_walls.asm; BFME message-carrying INIException; asciistring8outofline
-?parseOCL@@YAXPAVINI@@PAX1PBX@Z,,0x002097E0,155,Code/GameEngine/Source/Common/parseOCL_Thunk.cpp,matched,Certified packet 259 exact retail db recovery SHA256 36f9e8eab167bd253f6ceef21260045565964fd9067b79658c0cc81dc81725db
 ?parseOCLUpgradePair@@YAXPAVINI@@PAX1PBX@Z,,0x00263250,120,Code/GameEngine/Source/GameLogic/Object/SpecialPower/OCLSpecialPower.cpp,matched,
 ?parseObjectCreationList@BoneFXUpdateModuleData@@SAXPAVINI@@PAX1PBX@Z,,0x00003625,5,Code/GameEngine/Source/Common/RTS/BoneFXUpdateModuleDataParseObjectCreationListThunk.cpp,matched,5-byte incremental-link static BoneFXUpdateModuleData parser thunk converted to focused C++ source
 ?parseObjectCreationList@INI@@SAXPAV1@PAX1PBX@Z,,0x0007C370,14,Code/GameEngine/Source/Common/GameLOD.cpp,matched,object-symbol=?getStaticGameLODLevelName@GameLODManager@@QAEPBDW4StaticGameLODLevel@@@Z;C++ alias
@@ -157909,3 +157908,4 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?setRange@GameClientRandomVariable@@QAEXMMW4DistributionType@1@@Z,0x00006C58,0x00096F40,23,Code/GameEngine/Source/Common/RandomValue.cpp,matched,clean C++ replaces the naked dump
 ?stdAngleDiff@@YAMMM@Z,,0x0016A310,19,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,clean C++ replaces the naked dump
 ?size@?$vector@UHorzLine@@V?$allocator@UHorzLine@@@_STL@@@_STL@@QBEIXZ,,0x00191B00,24,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,byte-scan placement; unique
+?parseOCL@@YAXPAVINI@@PAX1PBX@Z,,0x002097E0,155,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior.cpp,matched,clean C++ replaces the naked dump; m_ocls at +0x88 and the mask at +0x1A4

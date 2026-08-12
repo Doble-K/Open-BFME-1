@@ -107,9 +107,17 @@ static void parseOCL( INI* ini, void *instance, void * /*store*/, const void* /*
 	for (const char* token = ini->getNextToken(); token != NULL; token = ini->getNextTokenOrNull())
 	{
 		const ObjectCreationList *ocl = TheObjectCreationListStore->findObjectCreationList(token);	// could be null! this is OK!
-		self->m_ocls[sdphase].push_back(ocl);
+		// BFME's SlowDeathBehaviorModuleData puts m_ocls at this+0x88, not the
+		// +0x64 the header gives it: retail @0x00209815 does
+		// lea esi,[ebx+ecx*4+0x88]. Correcting the header is the real fix and
+		// the full gate is red (docs/lessons.md), so the array base is taken at
+		// the retail offset here.
+		OCLVec * const bfmeOcls = (OCLVec *)((char *)self + 0x88);
+		bfmeOcls[sdphase].push_back(ocl);
 		if (ocl)
-			self->m_maskOfLoadedEffects |= SlowDeathBehaviorModuleData::HAS_OCL;
+			// and m_maskOfLoadedEffects at this+0x1A4, not +0xBC: retail
+			// @0x00209862 does or byte ptr [ebx+0x1A4],2.
+			*((Byte *)self + 0x1A4) |= SlowDeathBehaviorModuleData::HAS_OCL;
 	}
 }
 
