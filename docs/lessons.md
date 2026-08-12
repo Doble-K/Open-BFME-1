@@ -7420,3 +7420,21 @@ the pattern created a new untracked file next to the real one and left the
 original naked. The gate caught it immediately -- "ZERO matched rows, source
 presence is not progress" -- which is a good check to have, but the cheaper habit
 is to read the source column out of functions.csv rather than infer the path.
+### and 0x009F2800 is one destructor wearing three names
+
+Following the same vtable evidence out from TeamFactory: 0x009F2800 currently
+carries **three** matched destructor rows - `??1FXListStore@@UAE@XZ`,
+`??1PartitionManager@@UAE@XZ` and `??1TeamFactory@@UAE@XZ` - all 115 bytes.
+Retail demonstrably does not fold identical COMDATs, so at most one can be
+right, and the vtables say none of them are obviously it: the body writes
+`[+0]=0x11457F8`, `[+8]=0x11457E8`, then `[+8]=0x1073744`, which is the exact
+mirror of the constructor at **0x009F2730** (`[+8]=0x1073744`, `[+0]=0x11457F8`,
+`[+8]=0x11457E8`) - and that constructor is claimed as `??0ControlBar@@QAE@XZ`.
+A constructor and a destructor 0xD0 apart writing the same two tables in
+opposite order are the same class, so 0x009F2730 and 0x009F2800 stand or fall
+together, and `??1ControlBar@@UAE@XZ` is meanwhile claimed at 0x004A9980 on a
+679-byte body.
+
+Whoever untangles this should start from the constructor, since constructors
+name their class unambiguously, and expect to retract two rows. TeamFactory's
+is already known wrong from the other direction.
