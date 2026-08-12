@@ -7507,3 +7507,42 @@ header therefore cannot be done by inserting a block of unnamed slots; each
 stretch between two anchors has to be balanced individually, and some ZH
 declarations have to come out. The anchors give the exact slot count in each
 stretch, which is the constraint to solve against.
+
+## Sweep in batch; the queue is the slow path
+
+Three hours of drawing candidates from `next_work.py` one at a time produced
+about 1,600 bytes. One hour of batch sweeping produced 5,400. The queue is
+still right for hard, layout-bound work, but it should not be the first thing
+you do in a session. Two sweeps, both safe to run in the background:
+
+**Exact matches in `reverse/reloc_names.csv`.** The `identity=real` rows are
+unclaimed functions whose name, RVA and size all came out of a byte-true call
+site, and a fraction of them already compile byte-exact from source that is
+already in the tree. Emit name/rva/size/source for them, sort by source so the
+object cache is reused, run each through `tools/explain_mismatch.py`, and keep
+whatever prints `classification: exact match`. Measured hit rate 10 in 741.
+Skip `vendor/` sources and `?j_` names. One of the ten turned out to be a real
+body sitting unclaimed while its symbol was pinned to a 5-byte ILT thunk, which
+is +109 bytes and a deleted file for no work at all.
+
+**`tools/locate.py` over every source.** It byte-scans .text with relocation
+sites masked and accepts only unique placements, so unlike the structural tier
+it needs no candidate address and never guesses. Measured, by how unmatched the
+file already is:
+
+    1-8 markers    178 files -> 23 placements
+    9-40 markers   216 files -> 45 placements
+    41+ markers    216 files -> 11 placements
+
+The shape is the point. Small-drift files pay; the enormous ones do not, because
+a file with two hundred unmatched bodies is unmatched *because* its class layout
+drifts, and no byte-scan sees past that. InGameUI.cpp placed nothing at all out
+of 196 candidates. Spend scan time on files that are mostly done and vtable
+archaeology on the ones that are not.
+
+Two mechanical notes. Prefer `locate.py <source> --emit` over `add_match.py` per
+row: add_match writes only the ledger row, and a body whose callees are still
+unpinned also needs the `reverse/symbols.csv` additions locate reads out of the
+call displacements - PeerDefs.cpp refused eleven rows through add_match and took
+all eleven through `--emit`. And `--emit` writes backslash source paths that
+`check_csv` rejects, so normalise them before committing.
