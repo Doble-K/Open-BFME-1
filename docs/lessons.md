@@ -7176,3 +7176,36 @@ Finding the body at all needed the vtable, not the drift report: slot 0 of
 drift report had guessed 0x0081DC99, which is not a function start, and
 `locate.py` reported the symbol unlocated because the compiled body was still
 128 bytes with an out-of-line `~Overridable` call.
+
+
+## The module-constructor family is 97 rows with one shared shape
+
+Screening for naked rows named ??0X@@QAE@PAVThing@@PBVModuleData@@@Z turns up 97
+of them. Four are converted. They share a shape worth writing down, because
+getting it right is most of the work:
+
+- an out-of-line base constructor call, which is the ObjectModule constructor.
+  It is pinned at 0x000170E4 under about ten ICF-folded names; use
+  ??0ObjectModule@@QAE@PAVThing@@PBVModuleData@@@Z, which is the semantically
+  correct one, rather than whichever alias a neighbouring row happened to pick.
+- UpdateModule's own constructor inlined next: its two vtables at 0x0c and 0x10,
+  then its three members as 0x18 = -1, 0x1c = -1, 0x14 = 0 in that order.
+- then the derived class's own three vtables at 0x00, 0x0c and 0x10, and last
+  its own members.
+
+The sub-object trick from the previous tick is needed again here. A derived
+member that is a plain int holding zero merges into UpdateModule's zero group
+and the vptr stores sink past both; declaring it as a small struct with an
+inline constructor keeps its store after the vptrs, where retail has it.
+
+ProneUpdate and AutoFindHealingUpdate come out of that recipe byte-identical
+except for one thing: retail materialises the zero into ecx up front (`or eax,-1`
+then `xor ecx,ecx`) and uses ecx for both 0x14 and 0x20, while the same source
+reuses eax once it is done with -1. Same instructions, same count, same length --
+only the register differs, which is the allocation class. Both reverted.
+
+That is worth knowing before spending builds on the rest of the family: this
+particular sub-shape, where the same zero feeds a member on each side of the
+vptr stores, currently ends in a register residual. Family members whose derived
+part uses non-zero constants, or only one zero, do not have that problem -- the
+four already converted are exactly those.
