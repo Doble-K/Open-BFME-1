@@ -44,6 +44,31 @@
 
 #include "WWMath/Matrix3D.h"		///< @todo Replace with our own matrix library
 
+class BfmeSpawnPointCreationObject
+{
+public:
+	PathfindLayerEnum getLayer(void) const;
+};
+
+class BfmeSpawnPointTerrainLogic
+{
+public:
+	virtual void slot0(void);
+	virtual void slot1(void);
+	virtual void slot2(void);
+	virtual void slot3(void);
+	virtual void slot4(void);
+	virtual void slot5(void);
+	virtual void slot6(void);
+	virtual Real getLayerHeight(Real x, Real y, PathfindLayerEnum layer, Bool clip, Bool useBuildings);
+};
+
+class BfmeSpawnPointPathfinder
+{
+public:
+	void addObjectToPathfindMap(Object *object);
+};
+
 //-------------------------------------------------------------------------------------------------
 // ??0SpawnPointProductionExitUpdate@@QAE@PAVThing@@PBVModuleData@@@Z present-unmatched
 SpawnPointProductionExitUpdate::SpawnPointProductionExitUpdate( Thing *thing, const ModuleData* moduleData ) : UpdateModule( thing, moduleData )
@@ -66,7 +91,6 @@ SpawnPointProductionExitUpdate::~SpawnPointProductionExitUpdate()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?exitObjectViaDoor@SpawnPointProductionExitUpdate@@UAEXPAVObject@@W4ExitDoorType@@@Z present-unmatched
 void SpawnPointProductionExitUpdate::exitObjectViaDoor( Object *newObj, ExitDoorType exitDoor )
 {
 	DEBUG_ASSERTCRASH(exitDoor == DOOR_1, ("multiple exit doors not supported here"));
@@ -74,7 +98,8 @@ void SpawnPointProductionExitUpdate::exitObjectViaDoor( Object *newObj, ExitDoor
 	if( !m_bonesInitialized )
 		initializeBonePositions();
 
-	Object *creationObject = getObject();
+	// BFME's UpdateModule carries one additional dword before m_object.
+	Object *creationObject = *(Object **)((char *)this + 8);
 	if (creationObject)
 	{
 		for( Int positionIndex = 0; positionIndex < m_spawnPointCount; positionIndex++ )
@@ -95,7 +120,8 @@ void SpawnPointProductionExitUpdate::exitObjectViaDoor( Object *newObj, ExitDoor
 		createPoint = m_worldCoordSpawnPoints[positionIndex];
 
 		// make sure the point is on the terrain
-		createPoint.z = TheTerrainLogic ? TheTerrainLogic->getLayerHeight( createPoint.x, createPoint.y, creationObject->getLayer()) : 0.0f;
+		createPoint.z = TheTerrainLogic ? ((BfmeSpawnPointTerrainLogic *)TheTerrainLogic)->getLayerHeight( createPoint.x, createPoint.y,
+			((BfmeSpawnPointCreationObject *)creationObject)->getLayer(), FALSE, TRUE) : 0.0f;
 
 		// get the angle
 		createAngle = m_worldAngleSpawnPoints[positionIndex];
@@ -106,12 +132,12 @@ void SpawnPointProductionExitUpdate::exitObjectViaDoor( Object *newObj, ExitDoor
 		// put him there
 		newObj->setPosition( &createPoint );
 		newObj->setOrientation( createAngle );
-		newObj->setLayer(creationObject->getLayer());
+		newObj->setLayer(((BfmeSpawnPointCreationObject *)creationObject)->getLayer());
 
 		/** @todo This really should be automatically wrapped up in an actication sequence
 		for objects in general */
 		// tell the AI about it
-		TheAI->pathfinder()->addObjectToPathfindMap( newObj );
+		((BfmeSpawnPointPathfinder *)TheAI->pathfinder())->addObjectToPathfindMap( newObj );
 
 		// You are stuck here, little man.
 		newObj->setDisabled( DISABLED_HELD );

@@ -69231,5 +69231,8 @@ _ghiSendBuffer,0x0087DA50,GameSpy ghttp send buffer retail callee
 ??1Gen_uw_009e24b0@@QAE@XZ,0x009E24B0,gen-uw-pin dtor target read from the retail funclet bytes
 ??1Gen_uw_009e45f0@@QAE@XZ,0x009E45F0,gen-uw-pin dtor target read from the retail funclet bytes
 ??1Gen_uw_009f5690@@QAE@XZ,0x009F5690,gen-uw-pin dtor target read from the retail funclet bytes
+?getLayer@BfmeSpawnPointCreationObject@@QBE?AW4PathfindLayerEnum@@XZ,0x0003A391,SpawnPoint exit BFME object layer accessor
+?setLayer@Object@@QAEXW4PathfindLayerEnum@@@Z,0x00035E0E,SpawnPoint exit BFME object layer setter
+?addObjectToPathfindMap@BfmeSpawnPointPathfinder@@QAEXPAVObject@@@Z,0x0000B81B,SpawnPoint exit BFME one-argument pathfinder insertion
 ?clearFlag@ScriptEngine@@QAEXABVAsciiString@@@Z,0x0001B6F3,ScriptEngine clearTeamFlags retail ILT thunk
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAM@Z,0x00977DB0,AdaptiveDeltaMotionChannelClass getframe retail two-argument decompress
