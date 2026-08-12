@@ -6910,3 +6910,29 @@ row names and nothing else. Different address means the shared structure is only
 a starting point and call targets are independent questions to re-derive. Getting
 these backwards produces exactly the failure logged here, and it looks like an
 unfixable codegen difference rather than a self-inflicted one.
+
+
+## A normalised-body match across different addresses can still be a false lead
+
+The clone screen reported six FXParticleSystem ModuleTemplate constructors as
+matching LightningDrawModuleTemplate's body. All six sit at unique addresses --
+no ICF folding -- and the first one attempted turned out not to be a clone at
+all.
+
+CategoryModuleTemplate<7> writes vptrs at offsets 0, 4 and 8 and calls an
+out-of-line constructor for the subobject at +8, so it has three polymorphic
+subobjects. Its own 23-byte siblings <1> through <6> have none of that: writing
+the obvious uniform template reproduces the 23-byte shape exactly, which is
+strong evidence the template is not uniform across its instantiations and the
+106-byte ones carry an extra base the others lack.
+
+So normalised-body equality is a much weaker signal at the same size when the
+addresses differ. Same address stays reliable -- the bytes are literally shared.
+Different address means only that two functions have the same instruction
+skeleton, which for constructors of similar-shaped class hierarchies is common
+enough to mislead. Confirm the address relationship before treating a screen hit
+as a clone.
+
+Mangling note worth keeping, confirmed against an already-converted sibling:
+MSVC encodes a non-negative integer template argument N as $0(N-1), so $06 is
+<7> and $0A@ is <0>.
