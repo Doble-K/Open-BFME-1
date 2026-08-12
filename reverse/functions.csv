@@ -157931,3 +157931,4 @@ _ServerBrowserGetServerByIPA,,0x0085BB70,65,Code/GameEngine/Source/GameNetwork/G
 _read_string,,0x009A06B0,481,Code/Libraries/Source/Lua/llex.c,matched,byte-scan placement; unique
 _block_follow,,0x0099B620,71,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; unique
 _str_lower,,0x00991A40,154,Code/Libraries/Source/Lua/lstrlib.c,matched,byte-scan placement; unique
+_localstat,,0x0099BA20,264,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; explist1 pinned from the call displacement
