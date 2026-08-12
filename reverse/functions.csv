@@ -12025,7 +12025,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?asyncGethostbynameThreadFunc@@YGKPAX@Z,,0x0062E6D0,34,Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp,matched,
 ?atEndOfChunk@DataChunkInput@@QAE_NXZ,,0x00102760,19,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?atEndOfFile@DataChunkInput@@QAE_NXZ,,0x00102320,13,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
-?atan2@@YAMMM@Z,,0x001486F0,11,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?atan@@YAMM@Z,,0x0045B6F0,9,Code/Libraries/Source/WWVegas/WW3D2/texproject.cpp,matched,icf-owner=_atanf
 ?attach@NetCommandMsg@@QAEXXZ,,0x00673600,4,Code/GameEngine/Source/GameNetwork/NetCommandMsg_ctors.cpp,matched,
 ?attachFile@ArchiveFile@@QAEXPAVFile@@@Z,,0x009CE560,44,Code/GameEngine/Source/Common/System/ArchiveFile.cpp,matched,closes any previous file through File slot 2 then stores the new one
@@ -13441,7 +13440,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?findEntry@RayEffectSystem@@IAEPAURayEffectData@@PBVDrawable@@@Z,,0x005D34C0,49,Code/GameEngine/Source/GameClient/ray_effect.cpp,matched,
 ?findEntry@SubsystemLegend@@QAEPAUSubsystemLegendEntry@@VAsciiString@@@Z,,0x009A11A0,264,Code/GameEngine/Source/Common/System/SubsystemLegend.cpp,matched,the legend lookup; inlines the AsciiString compare
 ?findFXList@FXListStore@@QBEPBVFXList@@PBD@Z,,0x0042B660,96,Code/GameEngine/Source/GameClient/FXList.cpp,matched,
-?findFieldParse@@YAP6AXPAVINI@@PAX1PBX@ZPBUFieldParse@@PBDAAHAAPBX@Z,,0x00850880,128,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,moved with initFromINIMulti to the parser TU
 ?findFunction@FunctionLexicon@@IAEPAXW4NameKeyType@@W4TableIndex@1@@Z,,0x00105280,94,Code/GameEngine/Source/Common/System/FunctionLexicon.cpp,matched,thunk-dump converted to clean C++ lookup; retail table count is 12
 ?findGameMessageMetaType@MetaMap@@IAE?AW4Type@GameMessage@@PBD@Z,,0x005B6AD0,72,Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp,matched,
 ?findGoodBuildOrRepairPosition@DozerAIUpdate@@SA_NPBVObject@@0AAUCoord3D@@@Z,,0x002B6C40,445,Code/GameEngine/Source/Common/DozerAIUpdate_findGoodBuildOrRepairPosition_Thunk.cpp,matched,Exact 445B @ 0x2B6C40; queue 0x2B6C20 was prior-fn tail; BFME thiscall; callers in AndTarget@0x2B8890
@@ -15156,7 +15154,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?gogoMessageBox@GameWindowManager@@UAEPAVGameWindow@@HHHHGVUnicodeString@@0P6AXXZ111_N@Z,,0x0047EF70,1518,Code/GameEngine/Source/GameClient/GUI/GameWindowManager_gogoMessageBox.cpp,matched,real C++ lifted to its own TU because GameWindowManager.cpp builds against Zero Hour's AsciiString; button bits are YES=1 NO=2 CANCEL=4 OK=8
 ?gotInternalAddress@NAT@@IAEXHI@Z,,0x00670D70,59,Code/GameEngine/Source/GameNetwork/nat.cpp,matched,
 ?gotoNextMission@CampaignManager@@QAEPAVMission@@XZ,,0x005BC5A0,32,Code/GameEngine/Source/GameClient/System/CampaignManager.cpp,matched,
-?grabHexInt@@YAHPBD@Z,,0x0050B030,54,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,
 ?grantScience@Player@@QAE_NW4ScienceType@@@Z,,0x000D5600,42,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
 ?greater_than@@YA_NU?$pair@W4ObjectID@@I@_STL@@0@Z,,0x00094BE0,13,Code/GameEngine/Source/GameLogic/AI/partition_solver.cpp,matched,
 ?groupAttackObject@AIGroup@@QAEXPAVObject@@HW4CommandSourceType@@@Z,,0x002ED2A0,25,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,
@@ -157908,3 +157905,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?NAMEKEY@@YA?AW4NameKeyType@@PBD@Z,,0x000B9810,17,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,clean C++ replaces the naked dump
 ?Scale@RenderObjClass@@UAEXM@Z,,0x006CF650,3,Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp,matched,clean C++ replaces the naked dump
 ?Set_Shader@DX8Wrapper@@SAXABVShaderClass@@@Z,,0x006C5AC0,93,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,clean C++ replaces the naked dump
+?atan2@@YAMMM@Z,,0x001486F0,11,Code/GameEngine/Source/Common/System/Geometry.cpp,matched,clean C++ replaces the naked dump
+?findFieldParse@@YAP6AXPAVINI@@PAX1PBX@ZPBUFieldParse@@PBDAAHAAPBX@Z,,0x00850880,128,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,clean C++ replaces the naked dump
+?grabHexInt@@YAHPBD@Z,,0x0050B030,54,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,clean C++ replaces the naked dump
