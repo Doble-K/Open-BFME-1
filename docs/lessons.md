@@ -7209,3 +7209,46 @@ particular sub-shape, where the same zero feeds a member on each side of the
 vptr stores, currently ends in a register residual. Family members whose derived
 part uses non-zero constants, or only one zero, do not have that problem -- the
 four already converted are exactly those.
+## The red DIR32 gate, and two of its eight cases cleared
+
+Every header or shim edit runs the full gate, and the full gate has been
+failing on `DIR32 consistency: FAIL 8 NEW inconsistent symbol(s)`, so no
+header or shim change can be committed at all. That cost three conversions in
+one session before it was worth stopping to look at. Two of the eight are now
+gone; here is what the other six are, so nobody has to re-derive them.
+`python3 tools/dir32.py <symbol>` prints the disagreeing rows.
+
+Cleared: `?OpenBFME5_W3DShaders@@3PAPAVW3DShaderInterface@@A` and
+`?OpenBFME5_W3DShadersPassCount@@3PAKA`. Two thunk TUs each declared
+`extern ... OpenBFME5_W3DShaders[4]`, but they are windows onto *different*
+slices of the same retail array - the bases sit 0x2C apart, eleven elements -
+so one C++ name legitimately resolved to two addresses. Giving each window its
+own name (`_terrainBase`, `_flatTerrainBase`) says what the code actually
+models and leaves both bodies byte-identical. A full gate confirms 8 -> 6.
+
+Of the remaining six, four look like the ctor-vs-dtor vtable family this
+whitelist already documents, where a destructor inlines the base-chain
+destructor and its final vptr store names a different vtable than the class's
+own:
+
+- `??_7RenderObjectUpdateModuleInfo@FXParticleSystem@@6B@` is the clearest:
+  the destructor in fx_particle_system.cpp resolves to 0x1073744, which the
+  whitelist header already identifies as the real `??_7MemoryPoolObject@@6B@`,
+  while a newly landed copy-ctor thunk resolves to the class's own 0x1110D78.
+  Nine of its FXParticleSystem siblings are already whitelisted for exactly
+  this.
+- `??_7TeamFactory@@6BSnapshot@@@` and `??_7TeamFactory@@6BSubsystemInterface@@@`
+  split the same way, TeamFactoryCtorThunk.cpp against
+  TeamFactoryDestructorThunk.cpp.
+- `??_7UpdateModule@@6B@` has one dissenter, `~TensileFormationUpdate` in
+  TensileFormationUpdateDestructorThunk.cpp at 0x10B1DC4, against a long list
+  of agreeing rows at 0x109CBAC.
+
+The last two are a different shape and should not be whitelisted with the
+rest. `??_7FireWeaponNugget@@6B@` and `??_7ObjectCreationNugget@@6B@` each
+resolve to base **0x0** from their constructor in ObjectCreationList.cpp,
+which means retail stores a zero dword where our reconstruction stores a
+vtable pointer. The DIR32 patcher masks the site with the original bytes, so
+the body still byte-verifies - this is precisely the latent error the check
+exists to catch, and it wants a real fix in the constructor, not a whitelist
+line.

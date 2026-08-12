@@ -44,8 +44,8 @@ public:
 };
 
 extern TerrainShader2Stage OpenBFME5_terrainShader2Stage;
-extern W3DShaderInterface *OpenBFME5_W3DShaders[4];
-extern DWORD OpenBFME5_W3DShadersPassCount[4];
+extern W3DShaderInterface *OpenBFME5_W3DShaders_terrainBase[4];
+extern DWORD OpenBFME5_W3DShadersPassCount_terrainBase[4];
 extern TerrainShaderPixelShader OpenBFME5_terrainShaderPixelShader;
 
 int TerrainShaderPixelShader::init()
@@ -61,14 +61,14 @@ int TerrainShaderPixelShader::init()
 			hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\terrainnoise2.pso", &m_dwBaseNoise2PixelShader);
 			if (hr < 0) return 0;
 
-			OpenBFME5_W3DShaders[0] = &OpenBFME5_terrainShaderPixelShader;
-			OpenBFME5_W3DShaders[1] = &OpenBFME5_terrainShaderPixelShader;
-			OpenBFME5_W3DShaders[2] = &OpenBFME5_terrainShaderPixelShader;
-			OpenBFME5_W3DShaders[3] = &OpenBFME5_terrainShaderPixelShader;
-			OpenBFME5_W3DShadersPassCount[0] = 1;
-			OpenBFME5_W3DShadersPassCount[1] = 1;
-			OpenBFME5_W3DShadersPassCount[2] = 1;
-			OpenBFME5_W3DShadersPassCount[3] = 1;
+			OpenBFME5_W3DShaders_terrainBase[0] = &OpenBFME5_terrainShaderPixelShader;
+			OpenBFME5_W3DShaders_terrainBase[1] = &OpenBFME5_terrainShaderPixelShader;
+			OpenBFME5_W3DShaders_terrainBase[2] = &OpenBFME5_terrainShaderPixelShader;
+			OpenBFME5_W3DShaders_terrainBase[3] = &OpenBFME5_terrainShaderPixelShader;
+			OpenBFME5_W3DShadersPassCount_terrainBase[0] = 1;
+			OpenBFME5_W3DShadersPassCount_terrainBase[1] = 1;
+			OpenBFME5_W3DShadersPassCount_terrainBase[2] = 1;
+			OpenBFME5_W3DShadersPassCount_terrainBase[3] = 1;
 			return 1;
 		}
 	}

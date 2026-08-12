@@ -40,8 +40,8 @@ public:
 	static HRESULT LoadAndCreateD3DShader(const char *filename, DWORD *shader);
 };
 
-extern W3DShaderInterface *OpenBFME5_W3DShaders[4];
-extern DWORD OpenBFME5_W3DShadersPassCount[4];
+extern W3DShaderInterface *OpenBFME5_W3DShaders_flatTerrainBase[4];
+extern DWORD OpenBFME5_W3DShadersPassCount_flatTerrainBase[4];
 extern FlatTerrainShaderPixelShader OpenBFME5_flatTerrainShaderPixelShader;
 
 int FlatTerrainShaderPixelShader::init()
@@ -62,14 +62,14 @@ int FlatTerrainShaderPixelShader::init()
 			hr = W3DShaderManager::LoadAndCreateD3DShader("shaders\\fterrainnoise2.pso", &m_dwBaseNoise2PixelShader);
 			if (hr < 0) return 0;
 
-			OpenBFME5_W3DShaders[0] = &OpenBFME5_flatTerrainShaderPixelShader;
-			OpenBFME5_W3DShaders[1] = &OpenBFME5_flatTerrainShaderPixelShader;
-			OpenBFME5_W3DShaders[2] = &OpenBFME5_flatTerrainShaderPixelShader;
-			OpenBFME5_W3DShaders[3] = &OpenBFME5_flatTerrainShaderPixelShader;
-			OpenBFME5_W3DShadersPassCount[0] = 2;
-			OpenBFME5_W3DShadersPassCount[1] = 2;
-			OpenBFME5_W3DShadersPassCount[2] = 2;
-			OpenBFME5_W3DShadersPassCount[3] = 2;
+			OpenBFME5_W3DShaders_flatTerrainBase[0] = &OpenBFME5_flatTerrainShaderPixelShader;
+			OpenBFME5_W3DShaders_flatTerrainBase[1] = &OpenBFME5_flatTerrainShaderPixelShader;
+			OpenBFME5_W3DShaders_flatTerrainBase[2] = &OpenBFME5_flatTerrainShaderPixelShader;
+			OpenBFME5_W3DShaders_flatTerrainBase[3] = &OpenBFME5_flatTerrainShaderPixelShader;
+			OpenBFME5_W3DShadersPassCount_flatTerrainBase[0] = 2;
+			OpenBFME5_W3DShadersPassCount_flatTerrainBase[1] = 2;
+			OpenBFME5_W3DShadersPassCount_flatTerrainBase[2] = 2;
+			OpenBFME5_W3DShadersPassCount_flatTerrainBase[3] = 2;
 			return 1;
 		}
 	}
