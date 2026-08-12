@@ -442,3 +442,6 @@ _png_PLTE
 # FXParticleSystem siblings are already listed; this one only became visible when
 # that thunk landed.
 ??_7RenderObjectUpdateModuleInfo@FXParticleSystem@@6B@
+??_7TeamFactory@@6BSnapshot@@@
+??_7TeamFactory@@6BSubsystemInterface@@@
+??_7UpdateModule@@6B@

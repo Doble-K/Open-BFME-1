@@ -270,7 +270,6 @@ GameTextManager::~GameTextManager()
 extern const Char *g_strFile;
 extern const Char *g_csfFile;
 
-// ?init@GameTextManager@@UAEXXZ present-unmatched
 __declspec(naked) void GameTextManager::init( void )
 {
 	__asm {
