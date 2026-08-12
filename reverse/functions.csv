@@ -12945,7 +12945,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?debugIgnoreLeaks@?$StringBase@D@@QAEXXZ,0x00887080,0x00887080,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op leak ignore
 ?debugIgnoreLeaks@?$StringBase@G@@QAEXXZ,0x00887230,0x00887230,1,Code/Libraries/Source/WWVegas/WWLib/string_base.cpp,matched,no-op leak ignore
 ?decideCommandRelay@BFMEConnectionManager@@QAEXPAX@Z,,0x006693C0,151,Code/GameEngine/Source/GameNetwork/native_connection_timing.cpp,matched,
-?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAMK0@Z,,0x00977EB0,305,Code/Libraries/Source/WWVegas/WW3D2/AdaptiveDeltaMotionChannelClass_decompress_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?decrementDataLeft@DataChunkInput@@IAEXH@Z,,0x00102780,29,Code/GameEngine/Source/Common/System/DataChunk.cpp,matched,
 ?decrementDelay@AudioEventRTS@@QAEXM@Z,,0x000B21E0,13,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,BFME audio layout
 ?defect@Object@@QAEXPAVTeam@@I@Z,,0x001D22C0,556,Code/GameEngine/Source/GameLogic/Object/Object_defect_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from certified packet 281;object-symbol=_bfme_ObjectDefect_1D22C0
@@ -157908,3 +157907,4 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?Initialize@HLodDefClass@@QAEXAAVHLodClass@@@Z,,0x0097CA80,485,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,clean C++ replaces the naked dump
 ?Validate_Transform@RenderObjClass@@UBEXXZ,,0x00920270,80,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,clean C++ replaces the naked dump
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,clean C++ replaces the naked dump; BFME ErrorCode rebases at 1
+?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAMK0@Z,,0x00977EB0,305,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,clean C++ replaces the naked dump; retail multiplies by the member at this+0x14

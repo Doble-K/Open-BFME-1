@@ -1024,7 +1024,14 @@ void AdaptiveDeltaMotionChannelClass::decompress(uint32 src_idx, float *srcdata,
 
 			pPacket++;								// skip to nybble compressed data
 
-			float filter = filtertable[filter_index] * Scale;	// decompression filter
+			// The member at this+0x14 is BFME's Scale. motchan.h calls +0x10 Scale
+			// and +0x14 _bfme_adm_scale2, but retail's decompress @0x00977F53
+			// multiplies by +0x14, so the two are simply the other way round.
+			// Swapping the names in the header keeps sizeof and every later offset
+			// identical - the destructor and getframe evidence that placed the hole
+			// is untouched - but a header edit runs the full gate and that is red
+			// (docs/lessons.md), so this reads the retail member by its current name.
+			float filter = filtertable[filter_index] * _bfme_adm_scale2;	// decompression filter
 
 			// data is grouped in sets of 16 nybbles
 			for (fi; fi < 16; fi++) {
