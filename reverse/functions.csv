@@ -8805,7 +8805,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?First@HashTableIteratorClass@@QAEXXZ,,0x009E01F0,93,Code/Libraries/Source/WWVegas/WWLib/hash.cpp,matched,
 ?First@SimpleSceneIterator@@UAEXXZ,,0x009431B0,10,Code/Libraries/Source/WWVegas/WW3D2/scene.cpp,matched,
 ?Float_To_Int_Floor@WWMath@@SAHABM@Z,,0x007239D0,103,Code/Libraries/Source/WWVegas/WWMath/wwmath.cpp,matched,
-?Float_To_Long@WWMath@@SAJM@Z,,0x009523C0,13,Code/Libraries/Source/WWVegas/WW3D2/htree.cpp,matched,
 ?Floor@WWMath@@SAMM@Z,,0x00069750,20,Code/Libraries/Source/WWVegas/WW3D2/ddsfile.cpp,matched,
 ?Flush@Base64Pipe@@UAEHXZ,,0x009E7B20,87,Code/Libraries/Source/WWVegas/WWLib/b64pipe.cpp,matched,
 ?Flush@OutputStream@DebugIOFlat@@QAEXXZ,,0x0088FFE0,183,Code/Libraries/Source/WWVegas/WWDebug/debug_io_flat.cpp,matched,
@@ -9073,8 +9072,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GadgetRadioSetGroup@@YAXPAVGameWindow@@HH@Z,,0x004BD250,23,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetRadioButton.cpp,matched,
 ?GadgetRadioSetSelection@@YAXPAVGameWindow@@_N@Z,0x00034536,0x004BD270,38,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetRadioButton.cpp,matched,Native body replaces thunk-only MASM ownership
 ?GadgetRadioSetText@@YAXPAVGameWindow@@VUnicodeString@@@Z,,0x004BC6E0,98,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetRadioButton.cpp,matched,
-?GadgetSliderGetDisabledBorderColor@@YAHPAVGameWindow@@@Z,,0x004B67F0,11,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
-?GadgetSliderGetDisabledColor@@YAHPAVGameWindow@@@Z,,0x00790BE0,11,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
 ?GadgetSliderGetDisabledImageBottom@@YAPBVImage@@PAVGameWindow@@@Z,,0x0047B4D0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp,matched,
 ?GadgetSliderGetDisabledImageCenter@@YAPBVImage@@PAVGameWindow@@@Z,,0x004B68E0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp,matched,
 ?GadgetSliderGetDisabledImageLeft@@YAPBVImage@@PAVGameWindow@@@Z,,0x007971B0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp,matched,
@@ -9084,8 +9081,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GadgetSliderGetDisabledSelectedThumbBorderColor@@YAHPAVGameWindow@@@Z,,0x004B6950,26,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
 ?GadgetSliderGetEnabledColor@@YAHPAVGameWindow@@@Z,,0x00857200,8,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,tiny-locate
 ?GadgetSliderGetEnabledSelectedThumbBorderColor@@YAHPAVGameWindow@@@Z,,0x004B6910,23,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
-?GadgetSliderGetHiliteBorderColor@@YAHPAVGameWindow@@@Z,,0x004B6890,11,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
-?GadgetSliderGetHiliteColor@@YAHPAVGameWindow@@@Z,,0x00790C00,11,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
 ?GadgetSliderGetHiliteImageBottom@@YAPBVImage@@PAVGameWindow@@@Z,,0x0047B5F0,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp,matched,
 ?GadgetSliderGetHiliteImageCenter@@YAPBVImage@@PAVGameWindow@@@Z,,0x004B6900,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp,matched,
 ?GadgetSliderGetHiliteImageLeft@@YAPBVImage@@PAVGameWindow@@@Z,,0x00797330,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DHorizontalSlider.cpp,matched,
@@ -9094,7 +9089,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GadgetSliderGetHiliteImageTop@@YAPBVImage@@PAVGameWindow@@@Z,,0x00797330,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/Gadget/W3DVerticalSlider.cpp,matched,
 ?GadgetSliderGetHiliteSelectedThumbBorderColor@@YAHPAVGameWindow@@@Z,,0x004B6990,26,Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp,matched,
 ?GadgetSliderGetMinMax@@YAXPAVGameWindow@@PAH1@Z,,0x0055DAF0,27,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,matched,
-?GadgetSliderGetPosition@@YAHPAVGameWindow@@@Z,,0x0055DB50,21,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp,matched,
 ?GadgetSliderSetDisabledImageSmallCenter@@YAXPAVGameWindow@@PBVImage@@@Z,,0x0047A440,17,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?GadgetSliderSetDisabledSelectedThumbBorderColor@@YAXPAVGameWindow@@H@Z,,0x0047B860,28,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
 ?GadgetSliderSetDisabledSelectedThumbColor@@YAXPAVGameWindow@@H@Z,,0x0047B700,28,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,
@@ -9222,7 +9216,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?GameGetColorComponentsReal@@YAXHPAM000@Z,,0x0040BD60,127,Code/GameEngine/Source/Common/System/color_ops.cpp,matched,
 ?GameInfoWindowInit@@YAXPAVWindowLayout@@PAX@Z,,0x004C8910,446,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindowInit_Thunk.cpp,matched,Open-BFME5 lift 446B retail MASM to standalone C++ thunk
 ?GameInfoWindowSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C87C0,44,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow.cpp,matched,
-?GameMakeColor@@YAHEEEE@Z,,0x00083400,31,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?GameSpyCloseAllOverlays@@YAXXZ,,0x00627B90,98,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,true body 0x627B90/98; queue 0x53E263 INSIDE unrelated; retail inlines CloseOverlay (BFME WindowLayout vtbl close path) + tail deleteNotificationBox
 ?GameSpyCloseOverlay@@YAXW4GSOverlayType@@@Z,,0x00040E94,5,Code/GameEngine/Source/GameNetwork/GameSpyOpenOverlayThunk.cpp,matched,5-byte incremental-link global thunk converted alongside paired overlay thunk
 ?GameSpyIsOverlayOpen@@YA_NW4GSOverlayType@@@Z,,0x00627B40,19,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,
@@ -10257,7 +10250,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Multiply@Matrix4@@SAXABVMatrix3D@@ABV1@PAV1@@Z,,0x00B01C90,425,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,
 ?Multiply@Matrix4D@@QAEAAV1@ABV1@0@Z,0x00019bfa,0x007e6950,534,Code/Libraries/Source/WWVegas/WWMath/matrix4d.cpp,matched,
 ?NAMEKEY@@YA?AW4NameKeyType@@ABVAsciiString@@@Z,,0x000A3AB0,44,Code/GameEngine/Source/Common/NameKeyHelperThunk.cpp,matched,Open-BFME5 clean C++ NAMEKEY AsciiString helper
-?NAMEKEY@@YA?AW4NameKeyType@@PBD@Z,,0x000B9810,17,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,
 ?Needs_Vertex_Normals@MeshModelClass@@QAE_NXZ,,0x0094E0B0,22,Code/Libraries/Source/WWVegas/WW3D2/meshmdl.cpp,matched,
 ?Negate@Coord2D@@QAEAAV1@XZ,0x0000848B,0x007E5B20,17,Code/Libraries/Source/WWVegas/WWMath/coord2d.cpp,matched,negates x/y
 ?Negate@Coord3D@@QAEAAV1@XZ,0x0002C3CC,0x007E5DA0,25,Code/Libraries/Source/WWVegas/WWMath/coord3d.cpp,matched,negates x/y/z
@@ -10814,7 +10806,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Scale@ParticleEmitterClass@@UAEXM@Z,,0x0097EE50,124,Code/GameEngine/Source/Common/ParticleEmitterClass_ScaleMethodThunk.cpp,matched,clean C++ conversion; ZH part_emt.cpp body; PosRand at this+0xD8 BaseVel Vector3 at 0xDC VelRand at 0xE8 OutwardVel at 0xEC Buffer at 0x130; randomizer Scale at vtable+0x10 and buffer Scale at vtable+0x16C
 ?Scale@Quaternion@@QAEXM@Z,,0x008DB510,41,Code/Libraries/Source/WWVegas/WWMath/quat.cpp,matched,
 ?Scale@RectClass@@QAEAAV1@M@Z,,0x007220D0,43,Code/Libraries/Source/WWVegas/WW3D2/render2dsentence.cpp,matched,
-?Scale@RenderObjClass@@UAEXM@Z,,0x006CF650,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,vtable slot 91
 ?Scale@RenderObjClass@@UAEXMMM@Z,,0x006CF660,3,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,vtable slot 90
 ?Scale@SegLineRendererClass@@QAEXM@Z,,0x0095FF30,33,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,Exact C++ scales BFME unknown member in retail order; MASM dump removed
 ?Scale@Vector3@@QAEXABV1@@Z,,0x00410710,31,Code/Libraries/Source/WWVegas/WWMath/vector3.cpp,matched,
@@ -11099,7 +11090,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Set_Rotation_Keyframes@ParticleEmitterDefClass@@UAEXAAU?$ParticlePropertyStruct@M@@M@Z,,0x0098E480,95,Code/Libraries/Source/WWVegas/WW3D2/part_ldr.cpp,matched,
 ?Set_Scale_Channel@SphereRenderObjClass@@QAEXABV?$LERPAnimationChannelClass@VVector3@@@@@Z,,0x00BF6F3E,11,Code/Libraries/Source/WWVegas/WW3D2/sphereobj.cpp,matched,
 ?Set_Secondary_Gradient@ShaderClass@@QAEXW4SecGradientType@1@@Z,,0x006C5390,21,Code/Libraries/Source/WWVegas/WW3D2/line3d.cpp,matched,
-?Set_Shader@DX8Wrapper@@SAXABVShaderClass@@@Z,,0x006C5AC0,93,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBridgeBuffer.cpp,matched,
 ?Set_Shader@LineGroupClass@@QAEXABVShaderClass@@@Z,,0x0098E940,12,Code/Libraries/Source/WWVegas/WW3D2/linegrp.cpp,matched,
 ?Set_Shader@MaterialPassClass@@QAEXVShaderClass@@@Z,,0x00933370,22,Code/Libraries/Source/WWVegas/WW3D2/matpass.cpp,matched,
 ?Set_Shader@MeshMatDescClass@@QAEXHVShaderClass@@H@Z,,0x0092C200,26,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
@@ -157908,3 +157898,13 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAMK0@Z,,0x00977EB0,305,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,clean C++ replaces the naked dump; retail multiplies by the member at this+0x14
 ?Cast_Ray_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVRayCollisionTestClass@@@Z,,0x0096ADC0,283,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,clean C++ replaces the naked dump; Mesh members read at retail offsets
 ?Get_Diffuse@VertexMaterialClass@@QBEXPAVVector3@@@Z,,0x009219F0,28,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,clean C++ replaces the naked dump; material pointer read at this+8
+?Float_To_Long@WWMath@@SAJM@Z,,0x009523C0,13,Code/Libraries/Source/WWVegas/WW3D2/hrawanim.cpp,matched,clean C++ replaces the naked dump
+?GadgetSliderGetDisabledBorderColor@@YAHPAVGameWindow@@@Z,,0x004B67F0,11,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,clean C++ replaces the naked dump
+?GadgetSliderGetDisabledColor@@YAHPAVGameWindow@@@Z,,0x00790BE0,11,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,clean C++ replaces the naked dump
+?GadgetSliderGetHiliteBorderColor@@YAHPAVGameWindow@@@Z,,0x004B6890,11,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,clean C++ replaces the naked dump
+?GadgetSliderGetHiliteColor@@YAHPAVGameWindow@@@Z,,0x00790C00,11,Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp,matched,clean C++ replaces the naked dump
+?GadgetSliderGetPosition@@YAHPAVGameWindow@@@Z,,0x0055DB50,21,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp,matched,clean C++ replaces the naked dump
+?GameMakeColor@@YAHEEEE@Z,,0x00083400,31,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,clean C++ replaces the naked dump
+?NAMEKEY@@YA?AW4NameKeyType@@PBD@Z,,0x000B9810,17,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,clean C++ replaces the naked dump
+?Scale@RenderObjClass@@UAEXM@Z,,0x006CF650,3,Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp,matched,clean C++ replaces the naked dump
+?Set_Shader@DX8Wrapper@@SAXABVShaderClass@@@Z,,0x006C5AC0,93,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,clean C++ replaces the naked dump
