@@ -2271,7 +2271,6 @@ _gpiProcessOperation,0x008F7280,129,Code/GameEngine/Source/GameNetwork/GameSpy/g
 ?Free_Object_Memory@?$ObjectPoolClass@VHAnimComboDataClass@@$0BAA@@@QAEXPAVHAnimComboDataClass@@@Z,0x00973E90,38,Code/GameEngine/Source/Common/promoted__Reset_HAnimComboClass_QAEXXZ_00974DC0.cpp,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_009746f0@@UAE@XZ,0x00973F10,45,Code/gen_small/dtors_010.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_00974710@@UAE@XZ,0x00973F90,45,Code/gen_small/dtors_010.cpp,reloc-derived;call-sites=1;identity=generated
-?Load_W3D@TimeCodedMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977A00,174,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,reloc-derived;call-sites=1;identity=real
 ??0TimeCodedBitChannelClass@@QAE@XZ,0x00977AF0,22,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,reloc-derived;call-sites=1;identity=real
 ?Load_W3D@AdaptiveDeltaMotionChannelClass@@QAE_NAAVChunkLoadClass@@@Z,0x00977CC0,217,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,reloc-derived;call-sites=1;identity=real
 ?Get_Vector@TimeCodedMotionChannelClass@@QAEXMPAM@Z,0x009781A0,379,Code/Libraries/Source/WWVegas/WW3D2/hcanim.cpp,reloc-derived;call-sites=3;identity=real

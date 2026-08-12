@@ -1929,7 +1929,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0FireSpreadUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0004B510,5,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdateCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
 ??0FireSpreadUpdateModuleData@@QAE@XZ,,0x00292680,23,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdateModuleData.cpp,matched,incremental thunk @0x104B5; standalone codegen-blocked C++ emits exact 23B retail constructor body
 ??0FireWeaponCollideModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
-??0FireWeaponNugget@@QAE@XZ,,0x0005C6C0,16,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
 ??0FireWeaponUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00292CF0,168,Code/GameEngine/Source/GameLogic/Object/Update/FireWeaponUpdateCtorThunk.cpp,matched,Open-BFME5 exact 168B retail module constructor
 ??0FireWeaponUpdateModuleData@@QAE@XZ,,0x00292CB0,23,Code/GameEngine/Source/GameLogic/Object/Update/FireWeaponUpdate.cpp,matched,Exact retail ModuleData constructor emitted as C++.
 ??0FireWeaponWhenDamagedBehavior@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0002A379,5,Code/GameEngine/Source/GameLogic/Object/Behavior/FireWeaponWhenDamagedBehaviorCtorThunk.cpp,matched,5-byte incremental-link constructor thunk converted to focused C++ source
@@ -2300,7 +2299,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0ObjectCreationList@@QAE@ABV0@@Z,,0x001D7680,76,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
 ??0ObjectCreationList@@QAE@XZ,,0x0005C5D0,13,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
 ??0ObjectCreationListStore@@QAE@XZ,,0x001DAD50,114,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,
-??0ObjectCreationNugget@@QAE@XZ,,0x00061D90,9,Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp,matched,ICF alias of existing matched body
 ??0ObjectCreationUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D6D90,116,Code/GameEngine/Source/GameLogic/AI/ObjectCreationUpgradeCtorThunk.cpp,matched,Open-BFME5 clean C++ conversion of __emit ctor thunk
 ??0ObjectCreationUpgradeModuleData@@QAE@XZ,,0x002D75B0,95,Code/GameEngine/Source/GameLogic/AI/ObjectCreationUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0ObjectDrawInterface@@QAE@XZ,,0x00061D90,9,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,ICF alias of existing matched body
