@@ -7923,3 +7923,30 @@ the same address; these three have no such twin, so guessing the type would be
 inventing identity. And note
 that three of the ten push no literals at all - `BuddyThreadClass::Thread_Function`,
 both `BFMEConnectionManager` updaters - so those need a different handle.
+
+### resolved: the 0x009F2800 cluster is PartitionManager, and TeamFactory's destructor is at 0x000F74C0
+
+The correction two sections up said the TeamFactory question was unsettled. It is
+settled now, and the original reading was right. What decides it is the
+constructors' **call sites**, which are independent of any vtable reasoning:
+
+    ??0TeamFactory@@QAE@XZ  @0x000F2250  installs 0x1085F1C / 0x1085F08
+                                         called from ?init@GameEngine@@
+    (0x009F2730)            installs 0x11457F8 / 0x11457E8
+                                         called from ?init@GameLogic@@
+
+GameEngine::init is where TheTeamFactory is made, so the first is TeamFactory and
+its tables are 0x1085F1C / 0x1085F08. The 0x009F27xx cluster is a GameLogic
+subsystem instead - and `??1PartitionManager@@UAE@XZ`, one of the three names
+claiming 0x009F2800, is exactly that. So 0x009F2730 is PartitionManager's
+constructor (not ControlBar's, as claimed) and 0x009F2800 is ~PartitionManager.
+
+That makes `??1TeamFactory@@UAE@XZ` and `??1FXListStore@@UAE@XZ` wrong on that
+address, and `??_GTeamFactory@@UAEPAXI@Z` @0x009F2900 wrong too - it is slot 0 of
+0x11457F8, which is PartitionManager's table. The TeamFactory destructor row is
+retracted; the real body is the unclaimed 118 bytes at **0x000F74C0**, the only
+other function in the image that writes 0x1085F1C.
+
+The general lesson: when two vtables contradict each other, do not try to settle
+it from the tables. Find who calls the constructor. A subsystem singleton is
+constructed in exactly one place and that place names it.
