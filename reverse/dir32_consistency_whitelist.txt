@@ -417,3 +417,16 @@ _x_rgszSemanticString
 # doubly-linked-TU case as ?_Table@CRC@@0PAKA above, not a bad claim. It became
 # visible when MultiIniFieldParse::add moved off its naked dump onto INI_stl.cpp.
 __TI1?AW4ErrorCode@@
+
+# zlib and libpng are each linked twice in retail, so their file-static tables
+# exist at two addresses and DIR32 references legitimately resolve to either.
+# Same case as ?_Table@CRC@@0PAKA above. Checked rather than assumed: the four
+# inflate tables are byte-identical at both addresses for at least 256 bytes
+#   _fixed_bl 0x12C5E68 / 0x12E4EC0    _fixed_bd 0x12C5E6C / 0x12E4EC4
+#   _fixed_tl 0x12C5E70 / 0x12E4EC8    _fixed_td 0x12C6E70 / 0x12E5EC8
+# and png_IEND ("IEND ") is identical at 0x115120C and 0x1159370.
+_fixed_bl
+_fixed_bd
+_fixed_tl
+_fixed_td
+_png_IEND
