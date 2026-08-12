@@ -771,8 +771,19 @@ bool AABTreeClass::Cast_Ray_To_Polys(CullNodeStruct * node,RayCollisionTestClass
 		*/
 		TriClass tri;
 
-		const Vector3 * loc = Mesh->Get_Vertex_Array();
-		const TriIndex * polyverts = Mesh->Get_Polygon_Array();
+		// BFME's MeshGeometryClass is laid out differently from meshgeometry.h.
+		// Retail @0x0096ADDF reads Poly at this+0x2C and Vertex at this+0x30 -
+		// four lower than the header puts them - and @0x0096AEB0 reads
+		// PolySurfaceType at this+0x60, 0x1C higher. So BFME drops one dword
+		// ahead of Poly and carries seven more pointer members between Vertex
+		// and PolySurfaceType. Correcting the header is the real fix, but it is
+		// a header and the full gate is red (docs/lessons.md), so these three
+		// reads go straight to the retail offsets. ShareBufferClass::Get_Array
+		// is itself at +0xC in both, which is why only the bases move.
+		const Vector3 * loc =
+				(*(ShareBufferClass<Vector3> * const *)((const char *)Mesh + 0x30))->Get_Array();
+		const TriIndex * polyverts =
+				(*(ShareBufferClass<TriIndex> * const *)((const char *)Mesh + 0x2C))->Get_Array();
 #if (!OPTIMIZE_PLANEEQ_RAM)
 		const Vector4 * norms = Mesh->Get_Plane_Array();
 #endif
@@ -804,7 +815,8 @@ bool AABTreeClass::Cast_Ray_To_Polys(CullNodeStruct * node,RayCollisionTestClass
 			}
 		}
 		if (polyhit != -1) {
-			raytest.Result->SurfaceType = Mesh->Get_Poly_Surface_Type (polyhit);
+			raytest.Result->SurfaceType =
+					(*(ShareBufferClass<uint8> * const *)((const char *)Mesh + 0x60))->Get_Array()[polyhit];
 			return true;
 		}
 	}

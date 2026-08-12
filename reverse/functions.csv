@@ -8370,7 +8370,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?Cast_Ray@OBBoxRenderObjClass@@UAE_NAAVRayCollisionTestClass@@@Z,,0x00956B90,83,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,"callee-pinned: calls Collide(LineSeg,OBBox)@0x8DAD70"
 ?Cast_Ray@SegmentedLineClass@@UAE_NAAVRayCollisionTestClass@@@Z,,0x00950DD0,494,Code/Libraries/Source/WWVegas/WW3D2/segline.cpp,matched,exact-ambiguous COMDAT pinned by string anchor
 ?Cast_Ray_Recursive@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVRayCollisionTestClass@@@Z,,0x0096B080,118,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,
-?Cast_Ray_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVRayCollisionTestClass@@@Z,,0x0096ADC0,283,Code/Libraries/Source/WWVegas/WW3D2/AABTreeClass_Cast_Ray_To_Polys_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
 ?Ceil@WWMath@@SAMM@Z,,0x00069750,20,Code/Libraries/Source/WWVegas/WW3D2/visrasterizer.cpp,matched,
 ?ChallengeMenuInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004D3C40,69,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ChallengeMenu.cpp,matched,
 ?CheckReOpenPlayerInfo@@YAXXZ,,0x00628270,27,Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp,matched,
@@ -157908,3 +157907,4 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?Validate_Transform@RenderObjClass@@UBEXXZ,,0x00920270,80,Code/Libraries/Source/WWVegas/WW3D2/rendobj.cpp,matched,clean C++ replaces the naked dump
 ?add@MultiIniFieldParse@@QAEXPBUFieldParse@@I@Z,,0x00850920,64,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,clean C++ replaces the naked dump; BFME ErrorCode rebases at 1
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAMK0@Z,,0x00977EB0,305,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,clean C++ replaces the naked dump; retail multiplies by the member at this+0x14
+?Cast_Ray_To_Polys@AABTreeClass@@AAE_NPAUCullNodeStruct@1@AAVRayCollisionTestClass@@@Z,,0x0096ADC0,283,Code/Libraries/Source/WWVegas/WW3D2/aabtree.cpp,matched,clean C++ replaces the naked dump; Mesh members read at retail offsets
