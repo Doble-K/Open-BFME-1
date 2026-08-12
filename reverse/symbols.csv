@@ -69272,3 +69272,4 @@ _DirectInput8Create@20,0x009F9AF0
 _explist1,0x0099B370,call displacement in localstat @0x0099BB0B
 _gpiSetInfod,0x008F1DD0,tail jmp displacement in gpSetInfod @0x008EA13C
 ?isUser@LANGameSlot@@QAE_NVUnicodeString@@@Z,0x0068E8D0,byte-scan placement of the LANGameSlot user compare
+??0?$_Rb_tree@HU?$pair@$$CBHUGen_t_000ef540_p8cd@@@_STL@@U?$_Select1st@U?$pair@$$CBHUGen_t_000ef540_p8cd@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHUGen_t_000ef540_p8cd@@@_STL@@@2@@_STL@@QAE@ABV01@@Z,0x000F3AA0,call displacement in TeamFactory::clear @0x000F6CC1; retail names this instantiation with a different generated payload

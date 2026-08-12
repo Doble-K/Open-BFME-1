@@ -12540,7 +12540,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?clear@ModuleInfo@@QAEXXZ,,0x0077AE90,13,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,icf-owner=?clear@?$vector@UNugget@ModuleInfo@@V?$allocator@UNugget@ModuleInfo@@@_STL@@@_STL@@QAEXXZ
 ?clear@SidesInfo@@QAEXXZ,,0x0019AED0,66,Code/GameEngine/Source/Common/promoted__clear_SidesInfo_QAEXXZ_0019AED0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 66B
 ?clear@SpecialPowerReadyTimerType@@QAEXXZ,,0x000C8BF0,14,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,
-?clear@TeamFactory@@QAEXXZ,,0x000284A7,5,Code/Libraries/Source/WWVegas/WWLib/TeamFactoryClearThunk.cpp,matched,Focused C++ thunk for TeamFactory::clear
 ?clear@TeamsInfoRec@@QAEXXZ,,0x001991F0,115,Code/GameEngine/Source/Common/promoted__clear_TeamsInfoRec_QAEXXZ_001991F0.cpp,matched,Grok promote masm dump to Code/ naked C++ exact 115B
 ?clear@TurretInfo@ModelConditionInfo@@QAEXXZ,,0x000C43F0,20,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
 ?clear@WeaponBarrelInfo@ModelConditionInfo@@QAEXXZ,,0x0075B230,52,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DModelDraw.cpp,matched,
@@ -106634,7 +106633,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000f67b0@@YAXXZ,,0x000F67B0,403,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f67b0
 ?d_000f6b50@@YAXXZ,,0x000F6B50,154,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f6b50
 ?d_000f6c10@@YAXXZ,,0x000F6C10,114,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f6c10
-?d_000f6ca0@@YAXXZ,,0x000F6CA0,168,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f6ca0
 ?d_000f6d80@@YAXXZ,,0x000F6D80,110,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f6d80
 ?d_000f6e10@@YAXXZ,,0x000F6E10,31,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f6e10
 ?d_000f6e40@@YAXXZ,,0x000F6E40,257,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f6e40
@@ -157934,3 +157932,4 @@ _SBServerGetTeamStringValueA,,0x00859D60,98,Code/GameEngine/Source/GameNetwork/G
 ??8@YAHABVMatrix4x4@@0@Z,,0x00B01950,248,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,object-symbol=??8@YAHABVMatrix4@@0@Z;the TU renames Matrix4x4 to Matrix4
 ?Apply@ScaleTextureMapperClass@@UAEXH@Z,,0x00966490,863,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,Zero Hour body added to the Code copy which was missing it
 ??1TeamFactory@@UAE@XZ,,0x000F74C0,118,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,clean C++; the real destructor - the 0x009F2800 row was PartitionManager's
+?clear@TeamFactory@@QAEXXZ,,0x000F6CA0,168,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,clean C++ replaces the 5-byte ILT thunk claim; call sites reach it via 0x000284A7

@@ -74,7 +74,15 @@ public:
 // The map's value is anonymous in retail; the ledger already carries its
 // _Rb_tree instantiation under the generated payload name gen_dump.py minted
 // for it, so use that name and the destructor resolves to the matched row.
-struct Gen_t_000ef540_p8cd { int a[2]; };
+// The eight-byte map value: clear() @0x000F6D07 reads the node at +0x18, which
+// is the value's second dword, null-checks it and deletes it through vtbl[0]
+// with the deleting flag. So the prototype pointer is the second member.
+class BfmeTeamPrototype
+{
+public:
+	virtual ~BfmeTeamPrototype();
+};
+struct Gen_t_000ef540_p8cd { int a; BfmeTeamPrototype *proto; };
 
 class TeamFactory : public SubsystemInterface, public Snapshot
 {
@@ -119,4 +127,17 @@ TeamFactory::~TeamFactory()
 {
 	clear();
 	TheTeamFactory = NULL;
+}
+
+// ?clear@TeamFactory@@QAEXXZ
+void TeamFactory::clear()
+{
+	// must remove it from the map before deleting the TeamProto, since
+	// the TeamProto will try to remove itself from the list when it goes away
+	std::map<int, Gen_t_000ef540_p8cd, std::less<int> > tmp = m_prototypes;
+	m_prototypes.clear();
+	for (std::map<int, Gen_t_000ef540_p8cd, std::less<int> >::iterator it = tmp.begin(); it != tmp.end(); ++it)
+	{
+		delete it->second.proto;
+	}
 }
