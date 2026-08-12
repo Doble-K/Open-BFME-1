@@ -157917,3 +157917,17 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ??1ThingRef@@QAE@XZ,,0x0039B060,35,Code/GameEngine/Source/GameLogic/AI/GettingBuiltBehaviorModuleDataCtorThunk.cpp,matched,byte-scan placement; unique
 ??0QueueProductionExitUpdateModuleData@@QAE@XZ,,0x00124150,47,Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/QueueProductionExitUpdateFriendNewModuleDataThunk.cpp,matched,byte-scan placement; unique
 ?GeneralsExpPointsInput@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C48C0,67,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/GeneralsExpPoints.cpp,matched,clean C++ replaces the naked dump; mouselayout InGameUI slots
+??0Parameter@@QAE@W4ParameterType@0@H@Z,,0x00352510,44,Code/GameEngine/Source/GameLogic/ScriptEngine/Condition_setConditionType_Thunk.cpp,matched,byte-scan placement; unique
+_ghiParseURL,,0x0087B6B0,222,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,byte-scan placement; unique
+_ghiParseChunkSize,,0x0087BEA0,41,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,byte-scan placement; unique
+_gpEnable,,0x008E93E0,28,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; unique
+_gpDisable,,0x008E9400,28,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; unique
+_gpSetInfoi,,0x008EA060,65,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; unique
+_gpSetInfosA,,0x008EA0B0,65,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; unique
+_gpiAppendUIntToBuffer,,0x008F2AF0,68,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiBuffer.c,matched,byte-scan placement; unique
+_gpiWriteVersion,,0x008EFDC0,25,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiProfile.c,matched,byte-scan placement; unique
+_ServerBrowserSendNatNegotiateCookieToServerA,,0x0085B9A0,44,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_serverbrowsing.c,matched,byte-scan placement; unique
+_ServerBrowserGetServerByIPA,,0x0085BB70,65,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_serverbrowsing.c,matched,byte-scan placement; unique
+_read_string,,0x009A06B0,481,Code/Libraries/Source/Lua/llex.c,matched,byte-scan placement; unique
+_block_follow,,0x0099B620,71,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; unique
+_str_lower,,0x00991A40,154,Code/Libraries/Source/Lua/lstrlib.c,matched,byte-scan placement; unique
