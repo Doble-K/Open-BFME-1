@@ -5,6 +5,7 @@
 #include "ini.h"
 #include "ww3d.h"
 #include "meshmatdesc.h"
+#include "dx8wrapper.h"
 #include "wwmath.h"
 #include "random.h"
 #include <stdlib.h>
@@ -34,6 +35,21 @@ ScaleTextureMapperClass::ScaleTextureMapperClass(const ScaleTextureMapperClass &
 	TextureMapperClass(src),
 	Scale(src.Scale)
 {
+}
+
+// ?Apply@ScaleTextureMapperClass@@UAEXH@Z
+void ScaleTextureMapperClass::Apply(int uv_array_index)
+{
+	// Set up the texture matrix
+	Matrix4x4 m;
+	Calculate_Texture_Matrix(m);
+	DX8Wrapper::Set_Transform((D3DTRANSFORMSTATETYPE) (D3DTS_TEXTURE0+Stage),m);
+
+	// Disable Texgen
+	DX8Wrapper::Set_DX8_Texture_Stage_State(Stage,D3DTSS_TEXCOORDINDEX,D3DTSS_TCI_PASSTHRU | uv_array_index);	
+
+	// Tell rasterizer to expect 2D texture coordinates
+	DX8Wrapper::Set_DX8_Texture_Stage_State(Stage,D3DTSS_TEXTURETRANSFORMFLAGS,D3DTTFF_COUNT2);
 }
 
 LinearOffsetTextureMapperClass::LinearOffsetTextureMapperClass(const Vector2 &offset_per_sec,
