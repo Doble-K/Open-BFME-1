@@ -429,16 +429,29 @@ def do_packets(args):
     if still_claimed:
         raise SystemExit(f"zh_sweep: {len(still_claimed)} near match(es) sit on claimed "
                          "retail bytes; a packet for solved code is a wasted work slot")
+    # One packet per retail address, not per candidate body. Retail folds
+    # identical code, so one address routinely answers to a dozen Zero Hour
+    # template instantiations; they are one function to convert, and a file per
+    # candidate would hand the same work out a dozen times.
+    by_rva = {}
+    for record in near:
+        by_rva.setdefault(record["rva"], []).append(record)
     reloc_index = packet_relocs({r["obj"] for r in near})
+    names = {row["name"] for row in build.load_all_function_rows()}
     PACKET_DIR.mkdir(parents=True, exist_ok=True)
     for stale in PACKET_DIR.glob("*.md"):
         stale.unlink()
-    for record in sorted(near, key=lambda r: r["rva"]):
-        body = text[record["rva"] - text_rva : record["rva"] - text_rva + record["size"]]
-        path = PACKET_DIR / f"{record['rva']:08x}.md"
-        path.write_text(packet_text(record, body, reloc_index[(record["obj"], record["sym"])]))
-    print(f"packets: {len(near)} written to {PACKET_DIR.relative_to(ROOT)} "
-          f"({sum(r['size'] for r in near):,} bytes of unclaimed .text)")
+    covered = 0
+    for rva, group in sorted(by_rva.items()):
+        group.sort(key=lambda r: (-r["align"], r["sym"]))
+        size = max(r["size"] for r in group)
+        body = text[rva - text_rva : rva - text_rva + size]
+        relocs = reloc_index[(group[0]["obj"], group[0]["sym"])]
+        (PACKET_DIR / f"{rva:08x}.md").write_text(
+            packet_text(rva, size, group, body, relocs, names))
+        covered += size
+    print(f"packets: {len(by_rva)} written to {PACKET_DIR.relative_to(ROOT)}, covering "
+          f"{len(near)} candidate body/bodies over {covered:,} bytes of unclaimed .text")
 
 
 def packet_relocs(objects):
@@ -464,57 +477,65 @@ def disassemble(body, rva):
     return "\n".join(lines[body_start:])
 
 
-def callee_pins(record, body, relocs, names):
+def callee_pins(rva, body, relocs, names):
     """Each REL32 callee with the address THIS call site encodes in retail.
 
     The displacement is read out of the retail bytes, so the address is the
-    binary's answer rather than a guess: callee = site + 4 + displacement.
+    binary's own answer rather than a guess: callee = site + 4 + displacement.
     """
     lines = []
     for offset, kind, callee in relocs:
         if kind != REL32 or offset + 4 > len(body):
             continue
         displacement = struct.unpack_from("<i", body, offset)[0]
-        address = record["rva"] + offset + 4 + displacement
         known = " (already in the ledger)" if callee in names else ""
-        lines.append(f"{callee},0x{address:08X}{known}")
+        lines.append(f"{callee},0x{rva + offset + 4 + displacement:08X}{known}")
     return "\n".join(lines) or "(no relative calls in this body)"
 
 
-def packet_text(record, body, relocs):
-    names = {row["name"] for row in build.load_all_function_rows()}
+def packet_text(rva, size, group, body, relocs, names):
+    best = group[0]
+    candidates = [f"- `{r['sym']}`\n  in `{r['source']}` ({r['align'] * 100:.1f}% aligned)"
+                  for r in group]
+    folded = ("" if len(group) == 1 else
+              f"\nRetail folded {len(group)} identical bodies onto this address, so the "
+              "candidates\nbelow are the same code under different names. Any of them "
+              "reproduces the\nbytes; which name belongs here needs separate evidence.\n")
     return "\n".join([
-        f"# Work packet: `{record['sym']}`",
+        f"# Work packet: retail `0x{rva:08X}`",
         "",
-        f"- retail address: `0x{record['rva']:08X}`, {record['size']} bytes, unclaimed",
-        f"- the Zero Hour twin of this body agrees on {record['align'] * 100:.1f}% of its "
-        "bytes outside relocation sites",
-        f"- reference source: `{record['source']}`",
+        f"- {size} bytes, unclaimed by any ledger row",
+        f"- best Zero Hour candidate agrees on {best['align'] * 100:.1f}% of the bytes "
+        "outside relocation sites",
         "",
+        "## Reference source leads",
+        "",
+        "\n".join(candidates),
+        folded,
         "## What this is",
         "",
-        "The vendored Zero Hour tree contains the same function. Compiled with this",
-        "repo's toolchain it lands *near* these retail bytes but not on them, so the",
-        "two versions differ by something real: a changed constant, an extra member,",
-        "a different inlining decision. Port the reference body into a `Code/` source,",
+        "The vendored Zero Hour tree contains this function. Compiled with this repo's",
+        "toolchain it lands *near* these retail bytes but not on them, so the two",
+        "versions differ by something real: a changed constant, an extra member, a",
+        "different inlining decision. Port the reference body into a `Code/` source,",
         "then close the remaining gap against the disassembly below.",
         "",
         "## Retail disassembly (the exact target)",
         "",
         "```",
-        disassemble(body, record["rva"]),
+        disassemble(body, rva),
         "```",
         "",
         "## Callee pins (paste unresolved ones into reverse/symbols.csv)",
         "",
         "```",
-        callee_pins(record, body, relocs, names),
+        callee_pins(rva, body, relocs, names),
         "```",
         "",
         "## Landing it",
         "",
-        f"Add a row to `reverse/functions.csv` naming your source, then run",
-        f"`./build.sh '{record['sym']}'`. It passes only when every byte outside a",
+        "Add a row to `reverse/functions.csv` naming your source and this address, then",
+        f"run `./build.sh '<your symbol>'`. It passes only when every byte outside a",
         "relocation site is identical to the address above.",
         "",
     ])
