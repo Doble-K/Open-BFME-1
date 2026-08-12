@@ -199,7 +199,7 @@ source and carries `parent=<mangled parent>;object-symbol=$L…`. When it has no
 the parent is structurally unknowable — an `Unwind@`/`Catch@` name encodes the
 funclet's *own* virtual address, never its parent's — so the row lives on a
 `Code/gen_small/uw_gen_NNN.cpp` and carries **no** `parent=` field. Never infer
-one from adjacency: a third of these sit within 16 bytes of a matched region
+one from adjacency: most of these sit within a few bytes of a matched region
 they have nothing to do with, and a guessed parent is invented identity in the
 ledger. Those files are owned end to end by `python3 tools/gen_uw.py land`,
 which rewrites every one of them and re-derives every label on each run. Do not
