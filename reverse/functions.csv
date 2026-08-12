@@ -14904,7 +14904,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?getPerformanceCounter@@YA_JXZ,,0x006E7BC0,24,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,
 ?getPerformanceCounterFrequency@@YA_JXZ,,0x006E7BE0,24,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplay.cpp,matched,
 ?getPhysics@Object@@QAEPAVPhysicsBehavior@@XZ,,0x00478770,7,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,Ghidra-bound Object accessor
-?getPickRay@W3DView@@AAEXPBUICoord2D@@PAVVector3@@1@Z,,0x007406B0,308,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView_getPickRay_Thunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+?getPickRay@W3DView@@AAEXPBUICoord2D@@PAVVector3@@1@Z,,0x007406B0,308,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DView.cpp,matched,Open-BFME5 retail W3D pick ray C++ lift
 ?getPitchDamping@Locomotor@@QBEMXZ,,0x00413150,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?getPitchShift@AudioEventRTS@@QBEMXZ,,0x000B21C0,4,Code/GameEngine/Source/Common/Audio/AudioEventRTS.cpp,matched,Ghidra-bound BFME pitch-shift offset
 ?getPitchStiffness@Locomotor@@QBEMXZ,,0x004130F0,33,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search

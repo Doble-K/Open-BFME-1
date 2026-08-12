@@ -550,19 +550,43 @@ void W3DView::calcCameraConstraints()
 	and ending at the far clip plane for current camera.  Screen coordinates
 	assumed in absolute values relative to full display resolution.*/
 //-------------------------------------------------------------------------------------------------
-// ?getPickRay@W3DView@@ present-unmatched
+class BFMERetailW3DViewInterface
+{
+public:
+	virtual void unused00(void) = 0;
+	virtual void unused04(void) = 0;
+	virtual void unused08(void) = 0;
+	virtual void unused0C(void) = 0;
+	virtual void unused10(void) = 0;
+	virtual void unused14(void) = 0;
+	virtual void unused18(void) = 0;
+	virtual void unused1C(void) = 0;
+	virtual void unused20(void) = 0;
+	virtual void unused24(void) = 0;
+	virtual void unused28(void) = 0;
+	virtual void unused2C(void) = 0;
+	virtual void unused30(void) = 0;
+	virtual void unused34(void) = 0;
+	virtual void unused38(void) = 0;
+	virtual Int getWidth(void) = 0;
+	virtual void unused40(void) = 0;
+	virtual Int getHeight(void) = 0;
+};
+
 void W3DView::getPickRay(const ICoord2D *screen, Vector3 *rayStart, Vector3 *rayEnd)
 {
 	Real logX,logY;
 
 	//W3D Screen coordinates are -1 to 1, so we need to do some conversion:
-	PixelScreenToW3DLogicalScreen(screen->x - m_originX,screen->y - m_originY, &logX, &logY,getWidth(),getHeight());
+	PixelScreenToW3DLogicalScreen(screen->x - m_originX,screen->y - m_originY, &logX, &logY,
+		reinterpret_cast<BFMERetailW3DViewInterface *>(this)->getWidth(),
+		reinterpret_cast<BFMERetailW3DViewInterface *>(this)->getHeight());
 
-	*rayStart = m_3DCamera->Get_Position();	//get camera location
-	m_3DCamera->Un_Project(*rayEnd,Vector2(logX,logY));	//get world space point
+	*rayStart = (*reinterpret_cast<CameraClass **>(reinterpret_cast<unsigned char *>(this) + 0x104))->Get_Position();	//get camera location
+	(*reinterpret_cast<CameraClass **>(reinterpret_cast<unsigned char *>(this) + 0x104))->Un_Project(*rayEnd,Vector2(logX,logY));	//get world space point
 	*rayEnd -= *rayStart;	//vector camera to world space point
 	rayEnd->Normalize();	//make unit vector
-	*rayEnd *= m_3DCamera->Get_Depth();	//adjust length to reach far clip plane
+	*rayEnd *= (*reinterpret_cast<CameraClass **>(reinterpret_cast<unsigned char *>(this) + 0x104))->Get_Depth();	//adjust length to reach far clip plane
 	*rayEnd += *rayStart;	//get point on far clip plane along ray from camera.
 }
 
