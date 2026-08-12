@@ -1,105 +1,35 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /Ireference/shims/sweep /Ireference/shims/campaignmanagerascii /ICode/Libraries/Source/WWVegas/WWLib
+
+// Two guards then one assignment. The EH frame exists for the by-value
+// AsciiString parameter, which the callee destroys on the way out -- that is the
+// releaseBuffer at the end, and the state store going to -1 just before it.
+//
+// The user-data pointer is fetched once and its member at +0x1c assigned, so
+// the accessor call stays inside the guard rather than being hoisted.
+#include "Common/AsciiString.h"
 
 class GameWindow
 {
+public:
+	void *winGetUserData(void);
 };
 
-class AsciiString
+class ButtonData
 {
+public:
+	unsigned char m_head[0x1c];
+	AsciiString m_altSound;					///< 0x1c
 };
 
-__declspec(naked) void GadgetButtonSetAltSound(GameWindow *, AsciiString)
+// ?GadgetButtonSetAltSound@@YAXPAVGameWindow@@VAsciiString@@@Z
+void GadgetButtonSetAltSound( GameWindow *window, AsciiString sound )
 {
-    __asm {
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0xd8;
-        __emit 0x8d;
-        __emit 0x02;
-        __emit 0x01;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0x85;
-        __emit 0xc9;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x74;
-        __emit 0x16;
-        __emit 0xe8;
-        __emit 0x9e;
-        __emit 0x9d;
-        __emit 0xb8;
-        __emit 0xff;
-        __emit 0x85;
-        __emit 0xc0;
-        __emit 0x74;
-        __emit 0x0d;
-        __emit 0x8d;
-        __emit 0x48;
-        __emit 0x1c;
-        __emit 0x8d;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x50;
-        __emit 0xe8;
-        __emit 0xe5;
-        __emit 0xb4;
-        __emit 0x3c;
-        __emit 0x00;
-        __emit 0x8d;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xe8;
-        __emit 0x84;
-        __emit 0xb1;
-        __emit 0x3c;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x0c;
-        __emit 0x24;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x0c;
-        __emit 0xc3;
-    }
+	if (!window)
+		return;
+
+	ButtonData *data = (ButtonData *)window->winGetUserData();
+	if (!data)
+		return;
+
+	data->m_altSound = sound;
 }

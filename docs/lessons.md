@@ -7674,3 +7674,29 @@ three. But the direction is real: what remains at this size is dominated by the
 handful of residual classes now on record rather than by unexplored shapes.
 Further progress here likely needs either larger functions, multi-row files, or
 solving one of the residuals outright rather than screening around them.
+
+
+## Disassembling at address zero silently breaks every call-target lookup
+
+Last tick's conclusion that the clean pool was exhausted was wrong, and the
+reason is a bug in the screen rather than anything about the binary.
+
+The screen decoded each body with capstone starting at address 0 instead of at
+target_rva + 0x400000. Relative call targets are computed from the instruction
+address, so every call resolved to a meaningless address, every name lookup
+failed, and the "all callees named" filter rejected every candidate. The screen
+reported zero and looked like a finding.
+
+The same screen also only consulted functions.csv for callee names. Many
+legitimate callees are named only by a pin in symbols.csv -- ObjectModule,
+RS_Member and AIInternalMoveToState were all found that way earlier this session
+-- so that omission rejected more candidates on top.
+
+Fixing both turned zero candidates into 49. This is the second time a wrong
+disassembly base has produced a confident wrong answer; the first was reading a
+function's body at a guessed RVA and getting plausible instructions with silently
+wrong call annotations. Both failures look like results rather than errors, which
+is what makes them expensive.
+
+Worth a standing habit: when a screen returns zero or near-zero, instrument the
+stages and check the counts before believing it.
