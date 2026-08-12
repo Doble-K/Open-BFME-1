@@ -61,12 +61,20 @@ class Snapshot
 {
 public:
 	Snapshot() {}
-	virtual ~Snapshot();
+	// Defined inline for the same reason the constructor is: retail's
+	// ~TeamFactory @0x000F7512 restores this subobject's vtable and then calls
+	// only ~SubsystemInterface, so Snapshot's destructor is folded away too.
+	virtual ~Snapshot() {}
 
 	virtual void crc(void);
 	virtual void xfer(void);
 	virtual void loadPostProcess(void);
 };
+
+// The map's value is anonymous in retail; the ledger already carries its
+// _Rb_tree instantiation under the generated payload name gen_dump.py minted
+// for it, so use that name and the destructor resolves to the matched row.
+struct Gen_t_000ef540_p8cd { int a[2]; };
 
 class TeamFactory : public SubsystemInterface, public Snapshot
 {
@@ -78,14 +86,20 @@ public:
 	virtual void reset(void);
 	virtual void update(void);
 
+	void clear(void);
+
 protected:
 	virtual void crc(void);
 	virtual void xfer(void);
 	virtual void loadPostProcess(void);
 
 private:
-	typedef std::pair<int, int> BfmeTeamPrototypeKey;
-	std::map<BfmeTeamPrototypeKey, void *, std::less<BfmeTeamPrototypeKey> > m_prototypes;
+	// Keyed by int with an eight-byte value, not by a two-word key: the
+	// destructor at 0x000F750B calls
+	// _Rb_tree<H, pair<$$CBH, <8 bytes>>>::~_Rb_tree, which names the key type
+	// directly. The node is 0x1C either way - 0x10 of links plus a 0xC value -
+	// so the constructor's bytes are unchanged.
+	std::map<int, Gen_t_000ef540_p8cd, std::less<int> > m_prototypes;
 	int m_uniqueTeamPrototypeID;
 	int m_uniqueTeamID;
 };
@@ -94,4 +108,15 @@ private:
 TeamFactory::TeamFactory()
 	: m_uniqueTeamPrototypeID(0), m_uniqueTeamID(0)
 {
+}
+
+// BFME nulls its singleton in the destructor; the store lands between clear()
+// and the map teardown at 0x000F7500.
+extern TeamFactory *TheTeamFactory;
+
+// ??1TeamFactory@@UAE@XZ
+TeamFactory::~TeamFactory()
+{
+	clear();
+	TheTeamFactory = NULL;
 }

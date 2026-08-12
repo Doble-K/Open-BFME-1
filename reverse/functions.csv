@@ -106647,7 +106647,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000f72b0@@YAXXZ,,0x000F72B0,21,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f72b0
 ?d_000f72d0@@YAXXZ,,0x000F72D0,42,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f72d0
 ?d_000f7310@@YAXXZ,,0x000F7310,142,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f7310
-?d_000f74c0@@YAXXZ,,0x000F74C0,118,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f74c0
 ?d_000f75b0@@YAXXZ,,0x000F75B0,86,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f75b0
 ?d_000f76e0@@YAXXZ,,0x000F76E0,92,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f76e0
 ?d_000f7ca0@@YAXXZ,,0x000F7CA0,33,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f7ca0
@@ -157934,3 +157933,4 @@ _SBServerGetTeamStringValueA,,0x00859D60,98,Code/GameEngine/Source/GameNetwork/G
 ?deallocate@?$allocator@U?$_List_node@UcrateCreationEntry@@@_STL@@@_STL@@QBEXPAU?$_List_node@UcrateCreationEntry@@@2@I@Z,,0x00924210,47,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,byte-scan placement; unique
 ??8@YAHABVMatrix4x4@@0@Z,,0x00B01950,248,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,object-symbol=??8@YAHABVMatrix4@@0@Z;the TU renames Matrix4x4 to Matrix4
 ?Apply@ScaleTextureMapperClass@@UAEXH@Z,,0x00966490,863,Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,Zero Hour body added to the Code copy which was missing it
+??1TeamFactory@@UAE@XZ,,0x000F74C0,118,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,clean C++; the real destructor - the 0x009F2800 row was PartitionManager's
