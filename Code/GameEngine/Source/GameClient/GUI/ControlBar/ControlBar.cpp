@@ -2395,7 +2395,6 @@ void ControlBar::switchControlBarStage( ControlBarStages stage )
 	}
 	
 }
-// ?setDefaultControlBarConfig@ControlBar@@IAEXXZ present-unmatched
 void ControlBar::setDefaultControlBarConfig( void )
 {
 //	if(m_currentControlBarStage == CONTROL_BAR_STAGE_SQUISHED)

@@ -80217,7 +80217,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?setDeathTypeFlag@@YAIIW4DeathType@@@Z,,0x000B8DF0,17,Code/GameEngine/Source/Common/INI/ini.cpp,matched,
 ?setDebugPathPosition@Pathfinder@@QAEXPBUCoord3D@@@Z,,0x0079E400,26,Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp,matched,ICF alias of existing matched body
 ?setDecalUVAxis@W3DShadowTexture@@QAEXAAVVector3@@0@Z,,0x007AE7E0,63,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DProjectedShadow.cpp,matched,
-?setDefaultControlBarConfig@ControlBar@@IAEXXZ,,0x00043E73,5,Code/GameEngine/Source/Common/RTS/ControlBarSetDefaultConfigThunk.cpp,matched,5-byte incremental-link ControlBar protected member thunk converted to focused C++ source
 ?setDefaultView@View@@UAEXMMM@Z,,0x006CF660,3,Code/GameEngine/Source/GameClient/View.cpp,matched,icf-owner=?Scale@RenderObjClass@@UAEXMMM@Z
 ?setDesiredGatherers@BuildListInfo@@QAEXH@Z,,0x00160B00,13,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,
 ?setDesiredSpeed@AIUpdateInterface@@QAEXM@Z,,0x001BD780,10,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,
@@ -105179,3 +105178,9 @@ uw_00c61f90,,0x00C61F90,8,Code/gen_small/uw_gen_002.cpp,matched,gen-funclet;obje
 ??A?$hash_map@W4NameKeyType@@VDamageFX@@U?$hash@W4NameKeyType@@@rts@@U?$equal_to@W4NameKeyType@@@4@V?$allocator@U?$pair@$$CBW4NameKeyType@@VDamageFX@@@_STL@@@_STL@@@_STL@@QAEAAVDamageFX@@ABW4NameKeyType@@@Z,,0x00067950,157,Code/GameEngine/Source/Common/DamageFX.cpp,matched,
 _setnodevector,,0x00999580,129,Code/Libraries/Source/Lua/ltable.c,matched,vendored=lua-4.0.1;reloc-named from a byte-true call site
 _test_then_block,,0x0099CEA0,154,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1;reloc-named from a byte-true call site
+_ghiParseStatus,,0x0087BC30,192,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpProcess.c,matched,reloc-named from a byte-true call site; already byte-exact
+_check,,0x0099AA50,135,Code/Libraries/Source/Lua/lparser.c,matched,reloc-named from a byte-true call site; already byte-exact
+_check_match,,0x0099AB20,181,Code/Libraries/Source/Lua/lparser.c,matched,reloc-named from a byte-true call site; already byte-exact
+_next,,0x0099A9A0,76,Code/Libraries/Source/Lua/lparser.c,matched,reloc-named from a byte-true call site; already byte-exact
+_str_checkname,,0x0099AC90,107,Code/Libraries/Source/Lua/lparser.c,matched,reloc-named from a byte-true call site; already byte-exact
+?setDefaultControlBarConfig@ControlBar@@IAEXXZ,,0x0049E090,114,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,exact C++ body; the 5-byte ILT thunk at 0x43E73 pointed here
