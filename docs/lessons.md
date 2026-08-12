@@ -7700,3 +7700,23 @@ is what makes them expensive.
 
 Worth a standing habit: when a screen returns zero or near-zero, instrument the
 stages and check the counts before believing it.
+
+
+## Count the vtable stores to count the polymorphic layers
+
+Three ModuleData constructors this tick shared one base-constructor pin, and the
+two 82-byte ones cloned straight from an already-converted sibling. The 69-byte
+one did not, and the reason is visible without any building.
+
+The 82-byte bodies store two vtables: the intermediate class's, then the derived
+class's overwriting it. The 69-byte body stores exactly one. That means there is
+no intermediate -- the class whose constructor this is owns that single vtable
+directly. Keeping the intermediate layer from the sibling produced a second
+store that retail does not have, and removing the derived override instead did
+not help, because MSVC emits a vtable for every polymorphic class whether or not
+it introduces new virtuals.
+
+So the count of vtable stores in a constructor is the count of polymorphic
+classes at or above it that get constructed, and it should be read off the body
+before choosing a hierarchy. Two stores means an intermediate; one store means
+the class sits directly on its base.

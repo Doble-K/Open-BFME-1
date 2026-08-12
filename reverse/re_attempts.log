@@ -3249,3 +3249,6 @@ residual-screen		3	tooling	screening all naked single-row 40-200B bodies against
 ??0CashHackSpecialPowerModuleData@@QAE@XZ	0x00258D70	98	suspect-blocker	not attempted. Contains mov edx,eax followed by sub edx,eax so the shift and compare work on a provable zero and the copy loop can never run -- dead-code-retail-keeps family
 ??0OCLSpecialPowerModuleData@@QAE@XZ	0x002631B0	120	suspect-blocker	not attempted. Same provably-zero trip count as CashHackSpecialPowerModuleData
 callee-screen-base-bug		49	tooling	the residual screen disassembled bodies at address 0 rather than at target_rva+0x400000 so every call target was a bogus address and the named-callee check rejected everything. It also only consulted functions.csv when many legitimate callees are named only by a symbols.csv pin. Fixing both turned 0 candidates into 49
+??0PointDefenseLaserUpdateModuleData@@QAE@XZ		82	converted	cloned from HeroDieModuleData; identical shape
+??0SpecialPowerCompletionDieModuleData@@QAE@XZ		82	converted	cloned from HeroDieModuleData; identical shape
+??0KeepObjectDieModuleData@@QAE@XZ		69	converted	3 builds. Same base ctor pin but only ONE vtable store, so there is no intermediate class -- this class is the one that owns that vtable and the DieModuleData layer from the 82-byte siblings must be dropped
