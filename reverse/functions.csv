@@ -157909,3 +157909,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?stdAngleDiff@@YAMMM@Z,,0x0016A310,19,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp,matched,clean C++ replaces the naked dump
 ?size@?$vector@UHorzLine@@V?$allocator@UHorzLine@@@_STL@@@_STL@@QBEIXZ,,0x00191B00,24,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,byte-scan placement; unique
 ?parseOCL@@YAXPAVINI@@PAX1PBX@Z,,0x002097E0,155,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior.cpp,matched,clean C++ replaces the naked dump; m_ocls at +0x88 and the mask at +0x1A4
+?size@EvaCheckInfoVec@@QBEHXZ,,0x0081C470,29,Code/GameEngine/Source/GameClient/EvaReset.cpp,matched,byte-scan placement; unique
+?size@EvaCheckVec@@QBEHXZ,,0x009F44E0,25,Code/GameEngine/Source/GameClient/EvaUpdate.cpp,matched,byte-scan placement; unique
+?erase@?$list@PAVAnimateWindow@@V?$allocator@PAVAnimateWindow@@@_STL@@@_STL@@QAE?AU?$_List_iterator@PAVAnimateWindow@@U?$_Nonconst_traits@PAVAnimateWindow@@@_STL@@@2@U32@@Z,,0x0040C470,36,Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp,matched,byte-scan placement; unique
+?_M_create_node@?$_Rb_tree@PBVLadderInfo@@PBV1@U?$_Identity@PBVLadderInfo@@@_STL@@U?$less@PBVLadderInfo@@@3@V?$allocator@PBVLadderInfo@@@3@@_STL@@IAEPAU?$_Rb_tree_node@PBVLadderInfo@@@2@ABQBVLadderInfo@@@Z,,0x00538B50,28,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp,matched,byte-scan placement; unique
