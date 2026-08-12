@@ -1,175 +1,108 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class HordeUpdateModuleData
+// Open-BFME5: lift MASM dump to standalone C++ thunk.
+//
+// Shape: `class HordeUpdateModuleData : public Snapshot`. Snapshot supplies
+// the single vptr store (root polymorphic, own vtable stored directly -- a
+// constructor never elides its vptr store the way a derived destructor can).
+// Three ThingRef members at +0x08/+0x0C/+0x10 default-construct to a zeroed
+// pointer with no call (their non-trivial destructors are what gives this
+// ctor its EH unwind frame, matching retail's SEH prologue). Two AsciiString
+// sub-objects at +0x14/+0x18 default-construct their internal pointer to
+// zero, then the body explicitly calls set() on each -- retail's
+// `?set@AsciiString@@QAEXPBDH@Z` (see reverse/symbols.csv). +0x04 is a gap
+// retail never stores to, so it is declared but left uninitialised. The body
+// statement order below is not declaration order: it is deliberately the
+// order retail's scheduler places the stores in (m_width1/m_count0 land
+// before the two set() calls; the rest land after), reproduced here by
+// writing the assignments in that literal sequence.
+
+extern "C" __declspec(dllimport) long __stdcall InterlockedDecrement(long volatile *lpAddend);
+
+class RefCountedThing
 {
 public:
-    HordeUpdateModuleData();
+	virtual ~RefCountedThing();
+
+	void Release_Ref(void)
+	{
+		if (InterlockedDecrement(&m_refCount) <= 0) {
+			delete this;
+		}
+	}
+
+	long m_refCount;
 };
 
-__declspec(naked) HordeUpdateModuleData::HordeUpdateModuleData()
+class ThingRef
 {
-    __asm {
-        _emit 06Ah
-        _emit 0FFh
-        _emit 068h
-        _emit 01Fh
-        _emit 0B6h
-        _emit 000h
-        _emit 001h
-        _emit 064h
-        _emit 0A1h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 050h
-        _emit 064h
-        _emit 089h
-        _emit 025h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 051h
-        _emit 053h
-        _emit 056h
-        _emit 08Bh
-        _emit 0F1h
-        _emit 057h
-        _emit 089h
-        _emit 074h
-        _emit 024h
-        _emit 00Ch
-        _emit 033h
-        _emit 0DBh
-        _emit 0C7h
-        _emit 006h
-        _emit 0E0h
-        _emit 042h
-        _emit 00Ah
-        _emit 001h
-        _emit 089h
-        _emit 05Ch
-        _emit 024h
-        _emit 018h
-        _emit 089h
-        _emit 05Eh
-        _emit 008h
-        _emit 089h
-        _emit 05Eh
-        _emit 00Ch
-        _emit 089h
-        _emit 05Eh
-        _emit 010h
-        _emit 08Dh
-        _emit 04Eh
-        _emit 014h
-        _emit 089h
-        _emit 019h
-        _emit 08Dh
-        _emit 07Eh
-        _emit 018h
-        _emit 089h
-        _emit 01Fh
-        _emit 053h
-        _emit 068h
-        _emit 01Ch
-        _emit 030h
-        _emit 007h
-        _emit 001h
-        _emit 0C6h
-        _emit 044h
-        _emit 024h
-        _emit 020h
-        _emit 005h
-        _emit 0C7h
-        _emit 046h
-        _emit 024h
-        _emit 000h
-        _emit 000h
-        _emit 070h
-        _emit 042h
-        _emit 089h
-        _emit 05Eh
-        _emit 028h
-        _emit 0E8h
-        _emit 038h
-        _emit 09Bh
-        _emit 068h
-        _emit 000h
-        _emit 053h
-        _emit 068h
-        _emit 01Ch
-        _emit 030h
-        _emit 007h
-        _emit 001h
-        _emit 08Bh
-        _emit 0CFh
-        _emit 0E8h
-        _emit 02Bh
-        _emit 09Bh
-        _emit 068h
-        _emit 000h
-        _emit 08Bh
-        _emit 04Ch
-        _emit 024h
-        _emit 010h
-        _emit 088h
-        _emit 05Eh
-        _emit 02Ch
-        _emit 088h
-        _emit 05Eh
-        _emit 01Ch
-        _emit 05Fh
-        _emit 0C7h
-        _emit 046h
-        _emit 020h
-        _emit 000h
-        _emit 000h
-        _emit 0F0h
-        _emit 041h
-        _emit 0C7h
-        _emit 046h
-        _emit 030h
-        _emit 000h
-        _emit 000h
-        _emit 080h
-        _emit 03Eh
-        _emit 0C7h
-        _emit 046h
-        _emit 034h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 03Fh
-        _emit 0C7h
-        _emit 046h
-        _emit 038h
-        _emit 000h
-        _emit 000h
-        _emit 040h
-        _emit 03Fh
-        _emit 0C7h
-        _emit 046h
-        _emit 03Ch
-        _emit 000h
-        _emit 000h
-        _emit 080h
-        _emit 03Fh
-        _emit 08Bh
-        _emit 0C6h
-        _emit 05Eh
-        _emit 05Bh
-        _emit 064h
-        _emit 089h
-        _emit 00Dh
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 000h
-        _emit 083h
-        _emit 0C4h
-        _emit 010h
-        _emit 0C3h
-    }
+public:
+	ThingRef() : m_ptr(0) {}
+	~ThingRef()
+	{
+		if (m_ptr) {
+			m_ptr->Release_Ref();
+		}
+	}
+
+private:
+	RefCountedThing *m_ptr;
+};
+
+class AsciiString
+{
+public:
+	AsciiString() : m_data(0) {}
+	~AsciiString();
+
+	void set(const char *s, int len);
+
+private:
+	char *m_data;
+};
+
+class Snapshot
+{
+public:
+	virtual ~Snapshot() {}
+};
+
+class HordeUpdateModuleData : public Snapshot
+{
+public:
+	HordeUpdateModuleData();
+	virtual ~HordeUpdateModuleData();
+
+private:
+	unsigned char m_gap0[4];
+	ThingRef m_ref0;
+	ThingRef m_ref1;
+	ThingRef m_ref2;
+	AsciiString m_name0;
+	AsciiString m_name1;
+	bool m_flag0;
+	float m_width0;
+	float m_width1;
+	unsigned int m_count0;
+	bool m_flag1;
+	float m_f0;
+	float m_f1;
+	float m_f2;
+	float m_f3;
+};
+
+// ??0HordeUpdateModuleData@@QAE@XZ
+HordeUpdateModuleData::HordeUpdateModuleData()
+{
+	m_width1 = 60.0f;
+	m_count0 = 0;
+	m_name0.set("", 0);
+	m_name1.set("", 0);
+	m_flag1 = false;
+	m_flag0 = false;
+	m_width0 = 30.0f;
+	m_f0 = 0.25f;
+	m_f1 = 0.5f;
+	m_f2 = 0.75f;
+	m_f3 = 1.0f;
 }

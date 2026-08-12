@@ -6862,3 +6862,27 @@ toward known-hard categories rather than easy wins. Future candidate selection
 should either widen further (larger functions, more calls) or specifically hunt
 for instances of the already-named blocker classes, since those are at least
 diagnosable even when not fixable from a single file.
+
+
+## Same target address means a clone is a pure rename; a different one means check the calls
+
+Three clones this tick split cleanly along that line. GettingBuiltBehaviorModuleData
+and HordeUpdateModuleData share W3DLaserDrawModuleData's exact target address --
+ICF folded them onto one body -- so substituting the class name was the whole job
+and both matched first build.
+
+DelayedLuaEventUpdate matched the normalised body of PassiveAreaEffectBehavior's
+destructor but sits at a different address, and there the clone was not free: the
+sole differing byte region in the whole 116 bytes was one call's rel32. Its member
+at 0x24 is not the model's list<int>; its destructor is a different instantiation
+entirely.
+
+So the address relationship tells you in advance which kind of clone you have.
+Same address, rename and go. Different address, the structure is shared but every
+call target is an independent question -- diff first and expect to retarget.
+
+The fix also shows when a synthetic name is legitimate to use. The real destructor
+here is only pinned under generated names (??1Gen_uw_00013156 and a Gen_dtor
+sibling), and declaring a member typed to that existing pin is the same convention
+the model file itself already uses for Gen_dtor_00113d40. That is reusing a pin,
+not inventing a signature for an unnamed callee.
