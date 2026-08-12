@@ -7385,3 +7385,38 @@ calls it there - against 0x78 in our build, and the local IP it passes comes
 from a virtual at slot 55 (0x0DC, target 0x685630) rather than the this+0x40
 member the Zero Hour source reads. Any LANAPICallbacks.cpp body that calls an
 On* method needs both fixed.
+
+
+## A member sourced from the module data avoids the register residual entirely
+
+FloatUpdate converted on the first build where ProneUpdate could not, and the
+difference is where the trailing member's value comes from. ProneUpdate stores a
+zero at 0x20 after the vtables, and that zero is the same one already stored at
+0x14 before them, so retail keeps it live in ecx while the same source reuses
+eax -- the residual. FloatUpdate reads its trailing member out of the module
+data at +8, so no constant has to survive the vtable stores at all, only one
+zero is live, and 0x14 comes out as an immediate rather than a register.
+
+That makes the useful screen for this family: not just whether a member store
+follows the vtable stores, but whether its value is one that was already
+materialised before them. Members fed from a parameter, from the module data, or
+from a distinct constant are fine. Members repeating an earlier constant are the
+blocked shape.
+
+Two corrections to my own screening. The vptr-last sub-shape is exhausted --
+after DemoTrapUpdate and RadarUpdate there are no candidates left up to 400
+bytes, so that easy tier is done. And a screen comparing "the trailing value" to
+earlier ones has to compare register *families*, not spellings: Oathbreakers
+stores cl at 0x20 where ecx fed 0x14, which is the same value, and a naive
+string comparison sorted it as tractable. It is not; it fails exactly like
+ProneUpdate, and the trailing non-zero float at 0x24 does not change the
+allocation.
+
+## Write to the path the ledger names, not the one that looks right
+
+Oathbreakers' row lives under GameLogic/AI, not GameLogic/Object/Update where
+every other module constructor in this family sits. Assuming the directory from
+the pattern created a new untracked file next to the real one and left the
+original naked. The gate caught it immediately -- "ZERO matched rows, source
+presence is not progress" -- which is a good check to have, but the cheaper habit
+is to read the source column out of functions.csv rather than infer the path.
