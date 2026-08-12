@@ -1,4 +1,5 @@
 name,address,notes
+?set@BFMEWeatherAsciiString@@QAEXPBDH@Z,0x00887D20,Open-BFME5 WeatherSetting two-argument string setter
 ?setButtonImage@BFMERetailCommandButton@@QAEXPBVImage@@@Z,0x0002A7ED,Open-BFME5 ControlBar retail out-of-line button image setter thunk
 ?aiMoveToPosition@AICommandInterface@@QAEXPBUCoord3D@@W4CommandSourceType@@@Z,0x0003436A,Open-BFME5 AI movement thunk alias
 ?construct@AsciiStringCopyCtorShim@@QAEXPBVAsciiString@@@Z,0x00887B60,ParticleSystemTemplate name copy constructor pin

@@ -32,60 +32,92 @@
 #include "WWMATH/Vector3.h"
 #include "WWMATH/Vector4.h"
 
+extern "C" void _ReadWriteBarrier(void);
+#pragma intrinsic(_ReadWriteBarrier)
+
 //-------------------------------------------------------------------------------------------------
 /** This structure keeps the transparency and vertex settings, which are the same regardless of the
 		time of day. They can be overridden on a per-map basis. */
 //-------------------------------------------------------------------------------------------------
+class BFMELightningRandomVariable
+{
+public:
+	BFMELightningRandomVariable() : m_low(0.0f), m_high(0.0f), m_distribution(0) {}
+	Real m_low;
+	Real m_high;
+	Int m_distribution;
+};
+
+class BFMEWeatherAsciiString
+{
+public:
+	void set(const char *text, Int length);
+};
+
 class WeatherSetting : public Overridable
 {
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE( WeatherSetting, "WeatherSetting"  )
 
 	public:
 		AsciiString m_snowTexture;
-		Real	m_snowFrequencyScaleX;	///<used to adjust snow position.
-		Real	m_snowFrequencyScaleY;	///<used to adjust snow position.
-		Real	m_snowAmplitude;		///<used to adjust amount of of snow movement. (in world units)
-		Real	m_snowPointSize;		///<used to control hardware point-sprite size. (in arbitrary units - see DX SDK Docs).
-		Real	m_snowMaxPointSize;		///<used to control maximum size (in pixels) of point sprite.
-		Real	m_snowMinPointSize;		///<used to control the minimum size (in piexels) of point sprite.
-		Real	m_snowQuadSize;			///<used to control quad size when no hardware point sprites. (world width/height of quad)
-		Real	m_snowBoxDimensions;	///<used to set dimensions of box surrounding camera. (world units)
-		Real	m_snowBoxDensity;		///<used to control how many emitters are present per world unit
-		Real	m_snowVelocity;			///<used to set speed at which snow falls (world units/sec).
-		Bool    m_usePointSprites;		///<used to disable hardware point-sprite support.
-		Bool	m_snowEnabled;
+		volatile Real m_snowFrequencyScaleX;
+		volatile Real m_snowFrequencyScaleY;
+		volatile Real m_snowAmplitude;
+		volatile Real m_snowPointSize;
+		volatile Real m_snowMaxPointSize;
+		volatile Real m_snowMinPointSize;
+		volatile Real m_snowQuadSize;
+		volatile Real m_snowBoxDimensions;
+		volatile Real m_snowBoxDensity;
+		volatile Real m_snowVelocity;
+		volatile Bool m_usePointSprites;
+		volatile Bool m_snowEnabled;
 		// BFME extends the setting from 0x3C to 0x78 -- parseWeatherDefinition
 		// allocates a literal 0x78 -- with lightning, a spell effect and three ramp
 		// controls. Every offset below is what retail's field table at 0x010F6540
 		// carries; the Coord2D members are what take it out to 0x78.
-		Bool	m_isSnowing;			// 0x3a
-		Int		m_numberTiles;			// 0x3c
-		Bool	m_lightningEnabled;		// 0x40
-		Real	m_lightningFactor[3];	// 0x44 -- GameClientRandomVariable
-		Int		m_lightningDuration;	// 0x50
-		Real	m_lightningChance;		// 0x54
-		Bool	m_spellEnabled;			// 0x58
-		Int		m_spellDuration;		// 0x5c
-		Real	m_rampControl[2];		// 0x60 -- Coord2D
-		Real	m_rampSpeed[2];			// 0x68 -- Coord2D
-		Real	m_rampSpacing[2];		// 0x70 -- Coord2D			///<enable/disable snow on the map.
+		volatile Bool m_isSnowing;			// 0x3a
+		volatile Int m_numberTiles;			// 0x3c
+		volatile Bool m_lightningEnabled;		// 0x40
+		BFMELightningRandomVariable m_lightningFactor;	// 0x44 -- GameClientRandomVariable
+		volatile Int m_lightningDuration;	// 0x50
+		volatile Real m_lightningChance;		// 0x54
+		volatile Bool m_spellEnabled;			// 0x58
+		volatile Int m_spellDuration;		// 0x5c
+		volatile Real m_rampControl[2];		// 0x60 -- Coord2D
+		volatile Real m_rampSpeed[2];			// 0x68 -- Coord2D
+		volatile Real m_rampSpacing[2];		// 0x70 -- Coord2D
 
 	public:
 		WeatherSetting()
 		{
-			m_snowTexture = "EXSnowFlake.tga";
+			reinterpret_cast<BFMEWeatherAsciiString *>(&m_snowTexture)->set("EXSnowFlake.tga", 15);
+			m_snowEnabled=FALSE;
+			m_snowMinPointSize=0.0f;
+			m_isSnowing=FALSE;
+			m_lightningEnabled=FALSE;
 			m_snowFrequencyScaleX=0.0533f;
 			m_snowFrequencyScaleY=0.0275f;
 			m_snowAmplitude=5.0f;
 			m_snowPointSize=1.0f;
 			m_snowQuadSize=0.5f;
 			m_snowBoxDimensions=200;
-			m_snowBoxDensity=1;
-			m_snowVelocity=4;
 			m_usePointSprites=TRUE;
-			m_snowEnabled=FALSE;
 			m_snowMaxPointSize=64.0f;
-			m_snowMinPointSize=0.0f;
+			m_numberTiles=4;
+			m_lightningDuration=30;
+			m_lightningChance=0.01f;
+			m_spellEnabled=TRUE;
+			m_spellDuration=200;
+			_ReadWriteBarrier();
+			m_snowBoxDensity=50;
+			m_snowVelocity=100;
+			m_rampControl[0]=0.3f;
+			m_rampControl[1]=0.7f;
+			m_rampSpeed[0]=0.0f;
+			m_rampSpeed[1]=100.0f;
+			m_rampSpacing[0]=50.0f;
+			m_rampSpacing[1]=20.0f;
 		}
 
 		static const FieldParse m_weatherSettingFieldParseTable[];		///< the parse table for INI definition

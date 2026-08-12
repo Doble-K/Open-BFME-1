@@ -94098,7 +94098,7 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?d_00506230@@YAXXZ,,0x00506230,244,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00906230
 ?d_0050aa52@@YAXXZ,,0x0050AA52,489,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0090aa52
 ?d_0050eb00@@YAXXZ,,0x0050EB00,488,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0090eb00
-?d_0045ab10@@YAXXZ,,0x0045AB10,241,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0085ab10
+?d_0045ab10@@YAXXZ,,0x0045AB10,241,Code/GameEngine/Source/GameClient/Snow.cpp,matched,object-symbol=??0WeatherSetting@@QAE@XZ;Open-BFME5 retail weather setting C++ lift
 ?d_00517220@@YAXXZ,,0x00517220,241,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00917220
 ?d_001bd0d0@@YAXXZ,,0x001BD0D0,240,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_005bd0d0
 ?d_000d6cf0@@YAXXZ,,0x000D6CF0,476,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_004d6cf0
