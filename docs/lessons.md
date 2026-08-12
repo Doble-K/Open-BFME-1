@@ -7820,3 +7820,42 @@ destructor-shaped body that installs 0x1085F1C and 0x1085F08 and is unclaimed,
 and 0x009F2800 carries three names at once, so at least two of those three are
 wrong regardless of how the TeamFactory question resolves. Start from whichever
 of the two rows can be independently disproved, not from the vtables alone.
+
+## One scheduling swap is holding back 3 KB of asm-to-C++, in eight bodies
+
+Eight naked dumps whose real source is already in the tree compile to the right
+size and differ from retail only - or almost only - by the same two adjacent
+instructions, in that order:
+
+    retail:  push ecx / mov [esp+N], esp / mov ecx, esp / push arg / call copyctor
+    ours:    push ecx / mov ecx, esp / mov [esp+N], esp / push arg / call copyctor
+
+`mov [esp+N], esp` is the unwinder's slot for a by-value `UnicodeString`
+temporary and `mov ecx, esp` is its `this`; the two are independent and the
+scheduler simply picks a different order. Same bytes, swapped.
+
+The eight, with what each is worth once it is fixed:
+
+    737B  PopupReplaySystem                  PopupReplay.cpp
+    446B  GameInfoWindowInit                 GameInfoWindow.cpp
+    435B  PopupJoinGameSystem                PopupJoinGame.cpp
+    386B  PopupReplayInit                    PopupReplay.cpp
+    363B  DownloadMenuUpdate                 DownloadMenu.cpp
+    270B  GadgetRadioButtonSystem            GadgetRadioButton.cpp
+    250B  PopulateRemoteIPComboBox           NetworkDirectConnect.cpp
+    179B  getSlotNum@LANGameInfo             LANGameInfo.cpp
+
+For `PopupReplayInit` and `GadgetRadioButtonSystem` this swap is the *only*
+difference left; the others carry one or two member offsets alongside it. So a
+single codegen answer is worth a little over three kilobytes of assembly
+retired, and probably more once the pairing sweep is finished.
+
+Source shaping does not move it. Tried on `PopupReplayInit`: wrapping the
+argument in an explicit `UnicodeString(...)` temporary changes nothing, and on
+`GadgetRadioButtonSystem` neither binding the argument to a local pointer first
+nor qualifying the call helped. Every one of these is a by-value
+`UnicodeString` argument copy-constructed from an lvalue, so if it is a source
+difference it is one shared by all eight; more likely it is a compiler switch.
+Worth someone comparing the flag set against a body that *does* emit the retail
+order - `git grep` for a matched function containing `89 64 24` immediately
+before `8b cc` would find one.
