@@ -69261,3 +69261,10 @@ _DirectInput8Create@20,0x009F9AF0
 ?insert_unique@?$_Rb_tree@VAsciiString@@V1@U?$_Identity@VAsciiString@@@_STL@@U?$less@VAsciiString@@@3@V?$allocator@VAsciiString@@@3@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@VAsciiString@@U?$_Nonconst_traits@VAsciiString@@@_STL@@@_STL@@_N@2@ABVAsciiString@@@Z,0x0001BC02
 ?getUiStrings@Template@@QBEHQAVAsciiString@@@Z,0x0002BAE9
 ??0?$_Vector_base@PAXV?$allocator@PAX@_STL@@@_STL@@QAE@IABV?$allocator@PAX@1@@Z,0x000212D3
+??8@YAHABVMatrix4x4@@0@Z,0x00B01950,zh-sweep callee pin derived from retail REL32 displacement
+?Apply@ScaleTextureMapperClass@@UAEXH@Z,0x00966490,zh-sweep callee pin derived from retail REL32 displacement
+?Make_Unique@VertexMaterialClass@@QAEXXZ,0x00920ED0,zh-sweep callee pin derived from retail REL32 displacement
+?Re_Hash@?$HashTemplateClass@UTriangleSide@@USideIndexInfo@@@@AAEXXZ,0x0094F120,zh-sweep callee pin derived from retail REL32 displacement
+?Set_UV_Source@VertexMaterialClass@@QAEXHH@Z,0x00921250,zh-sweep callee pin derived from retail REL32 displacement
+?updatePlayback@RecorderClass@@QAEXXZ,0x00099110,zh-sweep callee pin derived from retail REL32 displacement
+?updateRecord@RecorderClass@@QAEXXZ,0x0009BFE0,zh-sweep callee pin derived from retail REL32 displacement
