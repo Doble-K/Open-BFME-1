@@ -94373,7 +94373,6 @@ _parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 
 ?d_009a85f0@@YAXXZ,,0x009A85F0,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00da85f0
 ?d_00a6424b@@YAXXZ,,0x00A6424B,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00e6424b
 ?d_00afe280@@YAXXZ,,0x00AFE280,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=_com_handle_excepinfo
-?d_00b01950@@YAXXZ,,0x00B01950,248,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00f01950
 ?d_004f44e0@@YAXXZ,,0x004F44E0,497,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_008f44e0
 ?d_005a3460@@YAXXZ,,0x005A3460,497,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_009a3460
 ?d_00713510@@YAXXZ,,0x00713510,497,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00b13510
@@ -157938,3 +157937,4 @@ _SBServerGetTeamStringValueA,,0x00859D60,98,Code/GameEngine/Source/GameNetwork/G
 ?erase@?$vector@PAVCrateTemplate@@V?$allocator@PAVCrateTemplate@@@_STL@@@_STL@@QAEPAPAVCrateTemplate@@PAPAV3@@Z,,0x0042F1F0,43,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,byte-scan placement; unique
 ?allocate@?$allocator@U?$_List_node@UcrateCreationEntry@@@_STL@@@_STL@@QBEPAU?$_List_node@UcrateCreationEntry@@@2@IPBX@Z,,0x009241E0,46,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,byte-scan placement; unique
 ?deallocate@?$allocator@U?$_List_node@UcrateCreationEntry@@@_STL@@@_STL@@QBEXPAU?$_List_node@UcrateCreationEntry@@@2@I@Z,,0x00924210,47,Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp,matched,byte-scan placement; unique
+??8@YAHABVMatrix4x4@@0@Z,,0x00B01950,248,Code/Libraries/Source/WWVegas/WWMath/matrix4.cpp,matched,object-symbol=??8@YAHABVMatrix4@@0@Z;the TU renames Matrix4x4 to Matrix4

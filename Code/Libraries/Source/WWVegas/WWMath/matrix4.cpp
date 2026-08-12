@@ -173,3 +173,18 @@ void Matrix4::Multiply(const Matrix4 & a,const Matrix3D & b,Matrix4 * res)
 	#undef ROWCOL
 	#undef ROWCOL4
 }
+
+// ??8@YAHABVMatrix4x4@@0@Z
+int operator == (const Matrix4x4 & a, const Matrix4x4 & b)
+{
+	unsigned* m1=(unsigned*)&a;
+	unsigned* m2=(unsigned*)&b;
+	unsigned res=0;
+	for (int i=0;i<4;++i) {
+		res|=*m1++^*m2++;
+		res|=*m1++^*m2++;
+		res|=*m1++^*m2++;
+		res|=*m1++^*m2++;
+	}
+	return !res;
+}
