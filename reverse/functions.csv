@@ -105177,7 +105177,6 @@ _str_checkname,,0x0099AC90,107,Code/Libraries/Source/Lua/lparser.c,matched,reloc
 ?setClipRegion@W3DDisplayString@@UAEXPAUIRegion2D@@@Z,,0x006F49E0,228,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,byte-scan placement; unique
 ?setWordWrap@W3DDisplayString@@UAEXH@Z,,0x006F4B00,40,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,byte-scan placement; unique
 ?setWordWrapCentered@W3DDisplayString@@UAEX_N@Z,,0x006F4B90,26,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDisplayString.cpp,matched,byte-scan placement; unique
-??1FileSystem@@UAE@XZ,,0x0040B200,82,Code/GameEngine/Source/Common/System/FileSystem.cpp,matched,byte-scan placement; unique
 ??$_Construct@VBuddyRequest@@V1@@_STL@@YAXPAVBuddyRequest@@ABV1@@Z,,0x0063AD00,24,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,byte-scan placement; unique
 ??$_Construct@VBuddyResponse@@V1@@_STL@@YAXPAVBuddyResponse@@ABV1@@Z,,0x0063AD50,24,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,byte-scan placement; unique
 ?_M_increment@?$_Deque_iterator_base@VBuddyRequest@@@_STL@@QAEXXZ,,0x0063AE20,44,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp,matched,byte-scan placement; unique
