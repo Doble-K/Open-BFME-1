@@ -7546,3 +7546,32 @@ unpinned also needs the `reverse/symbols.csv` additions locate reads out of the
 call displacements - PeerDefs.cpp refused eleven rows through add_match and took
 all eleven through `--emit`. And `--emit` writes backslash source paths that
 `check_csv` rejects, so normalise them before committing.
+
+
+## Interleaved stores across two offset ranges are one loop, not separate members
+
+ClickReactionBehaviorModuleData writes 0x08, then 0x14, then 0x0c, then 0x18,
+then 0x10, then 0x1c. Read as six independent members that ordering looks
+arbitrary. It is one unrolled loop over two parallel three-element arrays --
+each iteration writes one element of each -- and writing it that way matched on
+the first build.
+
+Worth checking whenever a constructor's store offsets alternate between two
+ranges with a constant stride: the alternation is the loop body, and the stride
+is the element size.
+
+## The base-register-versus-direct-offset choice is not source-expressible
+
+DemoTrapUpdateModuleData came out byte-identical except for six dwords at 0x0c.
+Retail leas their base into edx and stores through [edx], [edx+4] and so on;
+MSVC instead folds them to [eax+0x0c], [eax+0x10] and so on, which is one byte
+shorter per store. Both a sub-object with an inline constructor and a plain
+array zeroed by a loop produced exactly the same folded output, so the two
+obvious spellings are indistinguishable here.
+
+This is worth separating from the sub-object lesson recorded earlier. There, the
+sub-object boundary determined *where* stores landed relative to the vptr
+stores, which source can control. Here it is only *how* the same stores are
+addressed, which it cannot. When the residual is a lea plus short displacements
+against direct displacements, and the instruction count matches, stop -- it is
+the same class as a register-allocation difference.

@@ -1,53 +1,40 @@
 // cl: /DNDEBUG /MD /EHsc
 
-class ClickReactionBehaviorModuleData
+// The interleaved stores at 8/0x14, 0xc/0x18 and 0x10/0x1c are one unrolled
+// loop over two parallel three-element float arrays, not six separate members:
+// retail alternates between them, which is what a single loop body produces.
+// 0x7f7fffff is FLT_MAX.
+
+class ModuleData
 {
 public:
-    ClickReactionBehaviorModuleData();
+	virtual void moduleDataAnchor();		///< vptr at 0x00
+
+	int m_04;
 };
 
-__declspec(naked) ClickReactionBehaviorModuleData::ClickReactionBehaviorModuleData()
+class ClickReactionBehaviorModuleData : public ModuleData
 {
-    __asm {
-        _emit 08Bh
-        _emit 0C1h
-        _emit 033h
-        _emit 0C9h
-        _emit 0C7h
-        _emit 000h
-        _emit 010h
-        _emit 04Ah
-        _emit 00Ah
-        _emit 001h
-        _emit 088h
-        _emit 048h
-        _emit 020h
-        _emit 088h
-        _emit 048h
-        _emit 021h
-        _emit 0BAh
-        _emit 0FFh
-        _emit 0FFh
-        _emit 07Fh
-        _emit 07Fh
-        _emit 089h
-        _emit 048h
-        _emit 008h
-        _emit 089h
-        _emit 050h
-        _emit 014h
-        _emit 089h
-        _emit 048h
-        _emit 00Ch
-        _emit 089h
-        _emit 050h
-        _emit 018h
-        _emit 089h
-        _emit 048h
-        _emit 010h
-        _emit 089h
-        _emit 050h
-        _emit 01Ch
-        _emit 0C3h
-    }
+public:
+	ClickReactionBehaviorModuleData();
+
+	virtual void moduleDataAnchor();
+
+	float m_min[3];							///< 0x08
+	float m_max[3];							///< 0x14
+	bool m_flag20;							///< 0x20
+	bool m_flag21;							///< 0x21
+};
+
+// ??0ClickReactionBehaviorModuleData@@QAE@XZ
+ClickReactionBehaviorModuleData::ClickReactionBehaviorModuleData()
+{
+	m_flag20 = false;
+	m_flag21 = false;
+
+	for (int i = 0; i < 3; i++)
+	{
+		m_min[i] = 0.0f;
+		m_max[i] = 3.402823466e+38F;
+	}
 }
