@@ -8066,3 +8066,32 @@ those four arguments, exactly as Zero Hour has it.
 Doing this one means modelling `SidesList` TU-locally first. Worth it, because
 `SidesList+0x63C` will explain every other unmatched body that walks sides, but it
 is a class model rather than a body conversion - budget it as such.
+
+## The locate.py byte-scan lane is exhausted on the big sources
+
+Earlier in the day a masked byte-scan sweep was the cheapest coverage there was -
+`tools/locate.py` placed 23 bodies out of 178 markers on one pass and 45 out of 216
+on another. That lane has since closed. Ten of the highest-marker sources in the
+tree, better than a thousand `present-unmatched` markers between them, now yield
+nothing at all:
+
+    AIStates(261) Object(174) Player(139) parameter(117) W3DShaderManager(114)
+    hlod(89) textureloader(80) GameWindowTransitionsStyles(75) ParticleSys(72)
+    INI_stl(66)                                    -> 0 placements, all ten
+
+What comes back instead is the three failure kinds, and each names the work that
+would actually move them:
+
+- `unlocated (drifted or not in this binary)` - the overwhelming majority, and the
+  real remaining pile. These have C++ in `Code/` that does not byte-match, so they
+  need a drift found, not a placement. `Object::xfer` at 2485B,
+  `Player::xfer` at 3476B and `Player::init` at 1742B are the biggest.
+- `AMBIGUOUS` - STL template bodies that ICF-fold to four or six identical copies.
+  A byte-scan can never break these ties; they need a caller pin.
+- `SELF-CONFIRMING` - `??_G` deleting destructors whose only distinguishing operand
+  is a callee derived from the placement itself. All of them land on 0x009F2900.
+  Pin the class destructor from a vtable or a caller first.
+
+Do not re-run the sweep over these files. If you want to spend a sweep, spend it on
+sources nobody has swept yet - the count of markers is not a predictor, coverage
+history is.
