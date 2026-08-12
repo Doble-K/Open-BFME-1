@@ -8135,3 +8135,28 @@ Two cautions. A sole caller pins *an* address, not a *name* - the caller may rea
 several helpers, so confirm with arity (`ret imm16`), the callee's own string
 literals, or a second caller before writing the name down. And a name is not a
 conversion: it makes the body attackable, which is the step that has been missing.
+
+### ...and let the dump name its own file (`--files`)
+
+Retail keeps the `__FILE__` strings its asserts push, so a body that asserts names
+the translation unit it was compiled in - and that survives drift, which is exactly
+the property needed here. `callers_of.py --files` crosses that with the sole-caller
+edge. Thirteen dumps currently name their own source, and in nine of them the
+caller lives in the same file, so they are same-TU helpers and the search for a
+name is one file wide:
+
+    3002  0x0042A270  FXList.cpp        <- ParticleSystemFXNugget::doFXObj
+    2445  0x003006B0  ScriptActions.cpp <- ScriptActions::executeAction
+    1071  0x00390A50  GameLogic.cpp     <- GameLogic::startNewGame
+     825  0x001CDE30  Object.cpp        <- Object::attemptDamage
+     587  0x0075A990  W3DRopeDraw.cpp   <- W3DRopeDraw::doDrawModule
+     107  0x001E1680  Weapon.cpp        <- Weapon::reloadWithBonus
+
+The four where the two files disagree are the more interesting ones, because the
+disagreement is the finding: `0x00097020` asserts in `RandomValue.cpp` but is called
+from `BoneFXUpdate::update`, which is what an inlined `GameLogicRandomValue` helper
+looks like, and `0x00416820` asserts in `Drawable.cpp` under
+`StealthUpdate::changeVisualDisguise`.
+
+Only thirteen of 3,910 assert at all, so this is a narrow filter rather than a
+general answer - but it is the cheapest thirteen in the queue.

@@ -13,6 +13,7 @@ identified as `TeamFactory::findTeamPrototype` - two named callers agreed.
 Usage:
     python3 tools/callers_of.py 0x000efe10        # who calls this address
     python3 tools/callers_of.py --report [N]      # best N naming candidates
+    python3 tools/callers_of.py --files [N]       # ...plus the source file each names
 
 `--report` lists anonymous dumps that have exactly one distinct named caller,
 largest first, which are the ones a single source read can settle.
@@ -29,6 +30,7 @@ import collections
 
 EXE = 'baselines/bfme1/workshop-vanilla-1.03/files/lotrbfme.exe'
 ANON = re.compile(r'^\?[dj]i?_[0-9a-f]{8}@@YAXXZ$')
+IMAGE_BASE = 0x400000
 
 
 def load_image():
@@ -115,6 +117,31 @@ def build_edges(data, off, starts, sized, named):
     return edges
 
 
+def file_literal(data, off, rva, size):
+    """The basename of any __FILE__ path a body pushes.
+
+    Retail keeps the assert paths, so a body that asserts names the translation
+    unit it was compiled in. That survives drift, which is the point.
+    """
+    o = off(rva)
+    if o is None:
+        return None
+    body = data[o:o + size]
+    i = 0
+    while i < len(body) - 4:
+        if body[i] == 0x68:
+            va = struct.unpack_from('<I', body, i + 1)[0]
+            fo = off(va - IMAGE_BASE) if va > IMAGE_BASE else None
+            if fo is not None:
+                s = data[fo:fo + 160].split(b'\0')[0]
+                if s[:3].lower() in (b'f:\\', b'c:\\') and (b'.cpp' in s or b'.h' in s):
+                    return s.decode('latin1').replace('\\', '/').split('/')[-1]
+            i += 5
+            continue
+        i += 1
+    return None
+
+
 def main():
     data, secs = load_image()
     off = make_off(secs)
@@ -124,6 +151,27 @@ def main():
     if not args:
         print(__doc__)
         return 2
+
+    if args[0] == '--files':
+        limit = int(args[1]) if len(args) > 1 else 60
+        edges = build_edges(data, off, starts, sized, named)
+        callers = collections.defaultdict(set)
+        for src, tgts in edges.items():
+            for t in tgts:
+                if t in anon:
+                    callers[t].add(src)
+        rows = []
+        for t, cs in callers.items():
+            if len(cs) != 1:
+                continue
+            src_file = file_literal(data, off, t, anon[t][0])
+            if src_file:
+                rows.append((anon[t][0], t, next(iter(cs)), src_file))
+        rows.sort(reverse=True)
+        print('single-caller dumps that name their own source file: %d' % len(rows))
+        for size, t, c, f in rows[:limit]:
+            print('%7d  0x%08x  %-34s  <- %s' % (size, t, f, named[c][:60]))
+        return 0
 
     if args[0] == '--report':
         limit = int(args[1]) if len(args) > 1 else 40
