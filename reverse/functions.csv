@@ -157932,3 +157932,5 @@ _read_string,,0x009A06B0,481,Code/Libraries/Source/Lua/llex.c,matched,byte-scan 
 _block_follow,,0x0099B620,71,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; unique
 _str_lower,,0x00991A40,154,Code/Libraries/Source/Lua/lstrlib.c,matched,byte-scan placement; unique
 _localstat,,0x0099BA20,264,Code/Libraries/Source/Lua/lparser.c,matched,byte-scan placement; explist1 pinned from the call displacement
+_gpSetInfod,,0x008EA100,65,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gp.c,matched,byte-scan placement; gpiSetInfod pinned from the tail jmp
+_SBServerGetTeamStringValueA,,0x00859D60,98,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_server.c,matched,byte-scan placed the Player variant here; the format literal is %s_t%d so it is the Team one

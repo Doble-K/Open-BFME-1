@@ -69270,3 +69270,4 @@ _DirectInput8Create@20,0x009F9AF0
 ?updateRecord@RecorderClass@@QAEXXZ,0x0009BFE0,zh-sweep callee pin derived from retail REL32 displacement
 ?_M_insert_overflow@?$vector@PBVObjectCreationList@@V?$allocator@PBVObjectCreationList@@@_STL@@@_STL@@IAEXPAPBVObjectCreationList@@ABQBV3@ABU__true_type@2@I_N@Z,0x00044FC1,call displacement in parseOCL @0x00209859
 _explist1,0x0099B370,call displacement in localstat @0x0099BB0B
+_gpiSetInfod,0x008F1DD0,tail jmp displacement in gpSetInfod @0x008EA13C
