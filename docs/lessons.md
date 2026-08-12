@@ -7486,3 +7486,24 @@ that does nothing but `jmp [eax+0xC8]` - it forwards to slot 50, whose target
 0x43B140 is still unnamed, and that forwarding is what pins the slot. Rebuild the header from these anchors instead of
 inserting a block: the gaps between consecutive anchors give the exact number
 of unnamed virtuals in each stretch.
+
+### the InGameUI deltas are not monotonic, so it is not pure insertion
+
+Lining the anchors up against Zero Hour's declaration order (the dtor is slot 0
+and each subsequent `virtual` is the next slot) gives these ZH-slot to
+retail-slot deltas, in table order:
+
+    update +3; messageColor/message/message +5; militarySubtitle +8;
+    removeMilitarySubtitle +9; beginAreaSelectHint/endAreaSelectHint +11;
+    createMoveHint +12; createMouseoverHint through placeBuildAvailable +11;
+    getFirstSelectedDrawable/isDrawableSelected/setRadiusCursor +10;
+    postDraw +8
+
+The delta rises to +12, drops back to +11, then to +10, then to +8. A class
+that only *added* virtuals would give a non-decreasing delta, so BFME removes
+some of Zero Hour's as well - which fits, since several of them sit behind
+`ALLOW_SURRENDER` and similar Generals-only features. Reconstructing this
+header therefore cannot be done by inserting a block of unnamed slots; each
+stretch between two anchors has to be balanced individually, and some ZH
+declarations have to come out. The anchors give the exact slot count in each
+stretch, which is the constraint to solve against.
