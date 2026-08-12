@@ -7353,3 +7353,35 @@ model in TensileFormationUpdateDestructorThunk.cpp is missing it, which would
 make this a modelling artifact fixable in that one TU - or 0x10B1DC4 is a
 second copy of the same table. Deciding which is what the last DIR32 failure
 in this family needs.
+
+## The retail LANAPI vtable, slot by slot
+
+`reference/shims/lanapi` models six extra virtuals and puts them after
+GetMyGame, which moves nothing that matters; the real table is at RVA
+**0xD1AF50** and has 56 slots (0x000-0x0DC). Dumping it and matching each
+target against the ledger anchors enough of it to rebuild the header
+mechanically. Follow the `E9` at each slot - most entries are ILT thunks.
+
+    slot  off    target     identity
+     2   0x008  0x9A1A50   SubsystemInterface::loadIniFilesFromLegend
+     5   0x014  0x6870F0   LANAPI::update
+    16   0x040  0x6865C0   LANAPI::RequestChat
+    22   0x058  0x687E90   LANAPI::RequestGameCreate
+    25   0x064  0x6850F0   LANAPI::RequestLobbyLeave
+    26   0x068  0x684F20   LANAPI::ResetGameStartTimer
+    37   0x094  0x689050   LANAPI::OnGameStartTimer
+    41   0x0A4  0x689B70   LANAPI::OnNameChange
+    43   0x0AC  0x685150   LANAPI::LookupGameByListOffset
+    47   0x0BC  0x685660   LANAPI::GetMyName
+
+Two things fall out. Slot 2 being `loadIniFilesFromLegend` - a virtual Zero
+Hour's SubsystemInterface does not have - means the first two of BFME's extra
+slots are contributed by **SubsystemInterface**, not by LANAPIInterface: that
+is why `update` sits at 5 where Zero Hour puts it at 3. From RequestChat
+onward the delta is a flat +5 until GetMyName, where it becomes +8.
+
+Second, `OnChat` is slot 35 (0x8C) - retail `OnGameStartTimer` @0x006890FE
+calls it there - against 0x78 in our build, and the local IP it passes comes
+from a virtual at slot 55 (0x0DC, target 0x685630) rather than the this+0x40
+member the Zero Hour source reads. Any LANAPICallbacks.cpp body that calls an
+On* method needs both fixed.
