@@ -1,7 +1,10 @@
-// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
+// cl: /DNDEBUG /DWIN32 /D_WINDOWS /MD /EHsc /D_STLP_USE_STATIC_LIB
 // stlport
 
 #include <list>
+
+class Thing;
+class ModuleData;
 
 class Gen_dtor_00113f20
 {
@@ -64,6 +67,7 @@ class Gen_dtor_002aaec0 : public SpecialAbilityUpdateUpdateModule,
     public SpecialAbilityUpdateInterface
 {
 public:
+	Gen_dtor_002aaec0(Thing *, const ModuleData *);
     virtual ~Gen_dtor_002aaec0();
 
 private:
@@ -76,6 +80,7 @@ private:
 class RousingSpeechUpdate : public Gen_dtor_002aaec0
 {
 public:
+	RousingSpeechUpdate(Thing *, const ModuleData *);
     virtual ~RousingSpeechUpdate();
 
 private:
@@ -85,6 +90,12 @@ private:
     unsigned int m_c;
     unsigned int m_d;
 };
+
+RousingSpeechUpdate::RousingSpeechUpdate(Thing *thing, const ModuleData *data)
+	: Gen_dtor_002aaec0(thing, data), m_a(0), m_b(0), m_c(0), m_d(0)
+{
+	m_speechObjectIDList.clear();
+}
 
 // ??1RousingSpeechUpdate@@UAE@XZ
 RousingSpeechUpdate::~RousingSpeechUpdate()
