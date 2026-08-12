@@ -13,21 +13,9 @@ Goal: source code that rebuilds BFME 1's executable byte-for-byte.
 
 ## Status
 
-We currently have C++ functions in `Code/` and a patcher which can patch same-size custom functions into `lotrbfme.exe`. This is useful for modding.
-
-**28.09% of the game rebuilds from what we hold.** That is the number. It counts every byte
-we can produce without the retail exe in the room: C++ written from the disassembly, library
-source we compile, generators we own, and prebuilt libraries we link. (A quarter of `.text`
-is linker padding nobody writes, and it is left out of the denominator.)
-
-The rest is code we cannot produce yet. Most of it — 56.44% — sits in
-`reverse/functions.csv` as byte-true dumps of retail. A dump pins where a function starts
-and ends and does nothing else; the file holds retail's own bytes, so it is a placeholder,
-not source. The remaining 15.47% has no proven boundary yet.
-
-Every row in `reverse/functions.csv` compiles or assembles to bytes identical to retail.
-Turning a dump into real C++ is the contribution, and it is what moves the number.
-`python3 tools/progress.py` prints it.
+**28.09% of the game rebuilds from what we hold** — C++ we wrote, library source, generators,
+libs we link. The rest is byte-true dumps of retail: a boundary, not source. Converting them
+is the work.
 
 ## Roadmap
 

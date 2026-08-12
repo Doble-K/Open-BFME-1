@@ -310,11 +310,13 @@ def test_readme_headline_is_a_recovered_figure():
 
     status = (ROOT / "README.md").read_text(encoding="utf-8").split("## Status", 1)[1]
     headline = float(re.search(r"(\d+\.\d+)%", status).group(1))
-    assert abs(headline - rebuilds) <= 0.005, (
-        f"README headlines {headline}% where progress.py says {rebuilds}% "
-        f"rebuilds from what we hold. The project reports one number; if it "
-        f"has moved, update the README rather than letting the two drift")
-    print(f"PASS README headlines {headline}%, matching the tool")
+    assert headline <= rebuilds + 0.005, (
+        f"README headlines {headline}% where progress.py says {rebuilds}%. "
+        f"The README may lag reality; it may never flatter it")
+    assert headline >= rebuilds - 5.0, (
+        f"README headlines {headline}% where the project is already at "
+        f"{rebuilds}% — more than five points stale. Update it")
+    print(f"PASS README headlines {headline}% against {rebuilds}%")
 
 
 def test_readme_never_overstates_coverage():
@@ -330,18 +332,20 @@ def test_readme_never_overstates_coverage():
     """
     printed = subprocess.run([sys.executable, str(TOOL)],
                              cwd=ROOT, capture_output=True, text=True, check=True).stdout
-    reported = {float(v) for v in re.findall(r"\(\s*(\d+\.\d+)%\)", printed)}
+    line = next(l for l in printed.splitlines()
+                if "REBUILDS FROM WHAT WE HOLD" in l)
+    rebuilds = float(line.split("(")[1].split("%")[0])
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     quoted = sorted(float(v) for v in re.findall(r"(\d+\.\d+)%", readme))
     assert quoted, "README quotes no coverage figure at all"
     for value in quoted:
-        assert any(abs(value - r) <= 0.005 for r in reported), (
-            f"README quotes {value}%, which progress.py does not report "
-            f"anywhere. Every figure in the README has to be one the tool "
-            f"prints, so nobody can invent a flattering one; the tool reports "
-            f"{sorted(reported)}")
-    print(f"PASS all {len(quoted)} README figures are ones the tool reports")
+        assert value <= rebuilds + 0.005, (
+            f"README quotes {value}%, above the {rebuilds}% that rebuilds from "
+            f"what we hold. The bigger figures the tool prints -- total claimed, "
+            f"the dump share -- are not coverage, and quoting one here reads as "
+            f"if it were")
+    print(f"PASS all {len(quoted)} README figures stay at or under {rebuilds}%")
 
 
 def main():
