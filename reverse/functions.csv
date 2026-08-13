@@ -136107,7 +136107,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000a21e0@@YAXXZ,,0x000A21E0,7,Code/GameEngine/Source/Common/RvaA21E0Offset840AddressGetter.cpp,matched,object-symbol=?get_value@RvaA21E0Offset840AddressGetter@@QAEPAEXZ;Open-BFME5 clean C++ RVA A21E0 offset 840 address getter
 ?d_000a22f0@@YAXXZ,,0x000A22F0,63,Code/GameEngine/Source/Common/RvaA22F0FieldReset.cpp,matched,object-symbol=?reset@RvaA22F0FieldReset@@QAEXXZ;Open-BFME5 clean C++ RVA A22F0 ordered field reset
 ?d_000a2340@@YAXXZ,,0x000A2340,8,Code/GameEngine/Source/Common/RvaA2340ShiftRight5.cpp,matched,object-symbol=?rva_a2340_shift_right_5@@YAII@Z;Open-BFME5 clean C++ RVA A2340 logical shift right 5
-?d_000a2350@@YAXXZ,,0x000A2350,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_000a2350@@YAXXZ,,0x000A2350,8,Code/GameEngine/Source/Common/RvaA2350LowFiveBits.cpp,matched,object-symbol=?rva_a2350_low_five_bits@@YAII@Z;Open-BFME5 clean C++ RVA A2350 low five bit mask
 ?d_000a3020@@YAXXZ,,0x000A3020,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a3150@@YAXXZ,,0x000A3150,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a3160@@YAXXZ,,0x000A3160,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
