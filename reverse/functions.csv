@@ -135027,7 +135027,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0005bdb0@@YAXXZ,,0x0005BDB0,10,Code/GameEngine/Source/Common/ConditionalPointerStoreThunk.cpp,matched,object-symbol=?assignSecond@ConditionalPointerStoreThunk@@QAEXPAX@Z;Open-BFME5 clean C++ second pointer assignment
 ?d_0005beb0@@YAXXZ,,0x0005BEB0,49,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005bef0@@YAXXZ,,0x0005BEF0,34,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0005bf20@@YAXXZ,,0x0005BF20,25,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0005bf20@@YAXXZ,,0x0005BF20,25,Code/GameEngine/Source/Common/RoundedProductStrideThunk.cpp,matched,object-symbol=?roundedProductStride@@YAJJJ@Z;Open-BFME5 clean C++ rounded product stride
 ?d_0005c020@@YAXXZ,,0x0005C020,65,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c110@@YAXXZ,,0x0005C110,90,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c190@@YAXXZ,,0x0005C190,37,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
