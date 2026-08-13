@@ -135473,7 +135473,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0006e170@@YAXXZ,,0x0006E170,7,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e190@@YAXXZ,,0x0006E190,50,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e200@@YAXXZ,,0x0006E200,25,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0006e3b0@@YAXXZ,,0x0006E3B0,11,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0006e3b0@@YAXXZ,,0x0006E3B0,11,Code/GameEngine/Source/Common/Rva6E3B0ValueCopy.cpp,matched,object-symbol=?copy@Rva6E3B0ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
 ?d_0006e3c0@@YAXXZ,,0x0006E3C0,11,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e3d0@@YAXXZ,,0x0006E3D0,11,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e440@@YAXXZ,,0x0006E440,25,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
