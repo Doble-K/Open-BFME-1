@@ -135136,7 +135136,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000615e0@@YAXXZ,,0x000615E0,11,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_000615f0@@YAXXZ,,0x000615F0,18,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00061610@@YAXXZ,,0x00061610,6,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_00061620@@YAXXZ,,0x00061620,8,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_00061620@@YAXXZ,,0x00061620,8,Code/GameEngine/Source/Common/AdvanceHeaderPointerThunk.cpp,matched,object-symbol=?advanceHeaderPointer@@YAPAEPAE@Z;Open-BFME5 clean C++ header pointer advance
 ?d_00061680@@YAXXZ,,0x00061680,9,Code/GameEngine/Source/Common/LongPointerRangeThunk.cpp,matched,object-symbol=?size@LongPointerRangeThunk@@QBEJXZ;Open-BFME5 clean C++ long pointer range size
 ?d_00061690@@YAXXZ,,0x00061690,23,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00061ae0@@YAXXZ,,0x00061AE0,18,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
