@@ -1208,12 +1208,6 @@ public ?d_00191fd0@@YAXXZ
     db 8Bh, 0C1h, 0C2h, 04h, 00h
 ?d_00191fd0@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x00191FE0 size 5
-public ?d_00191fe0@@YAXXZ
-?d_00191fe0@@YAXXZ PROC
-    db 8Bh, 0C1h, 0C2h, 04h, 00h
-?d_00191fe0@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x00191FF0 size 7
 public ?d_00191ff0@@YAXXZ
 ?d_00191ff0@@YAXXZ PROC
