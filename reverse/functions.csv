@@ -147556,7 +147556,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045de80@@YAXXZ,,0x0045DE80,26,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?releaseAlternate@ReferencePointerReleaseThunk@@QAEXXZ;Open-BFME5 clean C++ alternate reference pointer release
 ?d_0045dea0@@YAXXZ,,0x0045DEA0,57,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?assign@ReferencePointerAssignmentThunk@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ retained reference pointer assignment
 ?d_0045def0@@YAXXZ,,0x0045DEF0,26,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?releaseThird@ReferencePointerReleaseThunk@@QAEXXZ;Open-BFME5 clean C++ third reference pointer release
-?d_0045dff0@@YAXXZ,,0x0045DFF0,13,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045dff0@@YAXXZ,,0x0045DFF0,13,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyFromAlternate@OffsetZeroIntegerCopyReturningThisThunk@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ alternate offset zero integer copy returning this
 ?d_0045e010@@YAXXZ,,0x0045E010,6,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e020@@YAXXZ,,0x0045E020,6,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e030@@YAXXZ,,0x0045E030,6,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high

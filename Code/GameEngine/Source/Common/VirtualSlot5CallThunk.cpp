@@ -909,9 +909,16 @@ struct OffsetZeroIntegerCopyReturningThisThunk
     int value;
 
     OffsetZeroIntegerCopyReturningThisThunk *copyFrom(const OffsetZeroIntegerCopyReturningThisThunk *other);
+    OffsetZeroIntegerCopyReturningThisThunk *copyFromAlternate(const OffsetZeroIntegerCopyReturningThisThunk *other);
 };
 
 OffsetZeroIntegerCopyReturningThisThunk *OffsetZeroIntegerCopyReturningThisThunk::copyFrom(const OffsetZeroIntegerCopyReturningThisThunk *other)
+{
+    value = other->value;
+    return this;
+}
+
+OffsetZeroIntegerCopyReturningThisThunk *OffsetZeroIntegerCopyReturningThisThunk::copyFromAlternate(const OffsetZeroIntegerCopyReturningThisThunk *other)
 {
     value = other->value;
     return this;
