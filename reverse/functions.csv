@@ -137113,7 +137113,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000e0db0@@YAXXZ,,0x000E0DB0,8,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000e0dc0@@YAXXZ,,0x000E0DC0,8,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000e0e60@@YAXXZ,,0x000E0E60,5,Code/GameEngine/Source/Common/RvaE0E60IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaE0E60IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA E0E60 identity with one argument
-?d_000e0e70@@YAXXZ,,0x000E0E70,5,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
+?d_000e0e70@@YAXXZ,,0x000E0E70,5,Code/GameEngine/Source/Common/RvaE0E70IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaE0E70IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA E0E70 identity with one argument
 ?d_000e0e80@@YAXXZ,,0x000E0E80,5,Code/GameEngine/Source/Common/RvaE0E80IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaE0E80IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA E0E80 identity with one argument
 ?d_000e0e90@@YAXXZ,,0x000E0E90,8,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000e0ea0@@YAXXZ,,0x000E0EA0,14,Code/GameEngine/Source/Common/VtableSlot2StoreThunk.cpp,matched,object-symbol=?getThirtySecond@VtableSlot2StoreThunk@@QBE?AUVtableSlot2Result@@XZ;Open-BFME5 clean C++ vtable slot 2 value return
