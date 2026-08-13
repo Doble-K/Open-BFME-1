@@ -634,3 +634,16 @@ void Offset116BooleanSetterThunk::setValue(bool newValue)
 {
     value = newValue;
 }
+
+struct Offset112IntegerSetterThunk
+{
+    unsigned char padding[0x70];
+    int value;
+
+    void setValue(int newValue);
+};
+
+void Offset112IntegerSetterThunk::setValue(int newValue)
+{
+    value = newValue;
+}
