@@ -139041,7 +139041,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00192120@@YAXXZ,,0x00192120,11,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?rva_192130_swap_unsigned_int@@YAXPAI0@Z,,0x00192130,19,Code/GameEngine/Source/Common/Rva192130SwapUnsignedInt.cpp,matched,hand-reconciled C++
 ?rva_192150_copy_three_words_if_present@@YAXPAI0@Z,,0x00192150,29,Code/GameEngine/Source/Common/Rva192150CopyThreeWordsIfPresent.cpp,matched,hand-reconciled C++
-?d_00192240@@YAXXZ,,0x00192240,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00192250@@YAXXZ,,0x00192250,5,Code/GameEngine/Source/Common/Rva192250IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva192250IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 192250 identity with one argument
 ?d_00192260@@YAXXZ,,0x00192260,5,Code/GameEngine/Source/Common/Rva192260IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva192260IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 192260 identity with one argument
 ?d_001922b0@@YAXXZ,,0x001922B0,13,Code/GameEngine/Source/Common/Rva1922B0WordCopyThunk.cpp,matched,object-symbol=?copy@Rva1922B0WordCopyThunk@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ RVA 1922B0 one-word copy
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?returnThis@AddressObject00191F80@@QAEPAV1@PAX@Z,,0x00191F80,5,Code/GameEngine/Source/Common/ReturnThis00191F80.cpp,matched,Open-BFME5 clean C++ return-this member at 0x00191F80
 ?returnThis@AddressObject00191FD0@@QAEPAV1@PAX@Z,,0x00191FD0,5,Code/GameEngine/Source/Common/ReturnThis00191FD0.cpp,matched,Open-BFME5 clean C++ return-this member at 0x00191FD0
 ?returnThis@AddressObject00192230@@QAEPAV1@PAX@Z,,0x00192230,5,Code/GameEngine/Source/Common/ReturnThis00192230.cpp,matched,Open-BFME5 clean C++ return-this member at 0x00192230
+?returnThis@AddressObject00192240@@QAEPAV1@PAX@Z,,0x00192240,5,Code/GameEngine/Source/Common/ReturnThis00192240.cpp,matched,Open-BFME5 clean C++ return-this member at 0x00192240
