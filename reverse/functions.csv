@@ -136682,7 +136682,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000c8cc0@@YAXXZ,,0x000C8CC0,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8cd0@@YAXXZ,,0x000C8CD0,22,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8d30@@YAXXZ,,0x000C8D30,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000c8d40@@YAXXZ,,0x000C8D40,5,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
+?d_000c8d40@@YAXXZ,,0x000C8D40,5,Code/GameEngine/Source/Common/RvaC8D40FlagSetter.cpp,matched,object-symbol=?set_enabled@RvaC8D40FlagSetter@@QAEXXZ;Open-BFME5 clean C++ RVA C8D40 offset-36 flag setter
 ?d_000c8d70@@YAXXZ,,0x000C8D70,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8d80@@YAXXZ,,0x000C8D80,31,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8dc0@@YAXXZ,,0x000C8DC0,10,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
