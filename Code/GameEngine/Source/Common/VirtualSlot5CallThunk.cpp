@@ -381,9 +381,15 @@ struct VirtualSlot11SecondArgumentCallThunk
     virtual void invoke(int value);
 
     void invokeSecond(int unused, int value);
+    void invokeSecondAlternate(int unused, int value);
 };
 
 void VirtualSlot11SecondArgumentCallThunk::invokeSecond(int, int value)
+{
+    invoke(value);
+}
+
+void VirtualSlot11SecondArgumentCallThunk::invokeSecondAlternate(int, int value)
 {
     invoke(value);
 }
