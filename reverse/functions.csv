@@ -135767,7 +135767,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00087320@@YAXXZ,,0x00087320,16,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00087350@@YAXXZ,,0x00087350,10,Code/GameEngine/Source/Common/Rva87350Offset4Setter.cpp,matched,object-symbol=?set_value@Rva87350Offset4Setter@@QAEXI@Z;Open-BFME5 clean C++ RVA 87350 offset 4 setter
 ?d_00087370@@YAXXZ,,0x00087370,31,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_00087430@@YAXXZ,,0x00087430,10,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_00087430@@YAXXZ,,0x00087430,10,Code/GameEngine/Source/Common/Rva87430Bit4Getter.cpp,matched,object-symbol=?get_value@Rva87430Bit4Getter@@QAEIXZ;Open-BFME5 clean C++ RVA 87430 offset 44 bit 4 getter
 ?d_00087440@@YAXXZ,,0x00087440,5,Code/GameEngine/Source/Common/Offset44BitOneSetterThunk.cpp,matched,object-symbol=?set_bit_one@Offset44BitOneSetterThunk@@QAEXXZ;Open-BFME5 clean C++ offset 44 bit one setter
 ?d_00087450@@YAXXZ,,0x00087450,5,Code/GameEngine/Source/Common/Offset44BitTwoSetterThunk.cpp,matched,object-symbol=?set_bit_two@Offset44BitTwoSetterThunk@@QAEXXZ;Open-BFME5 clean C++ offset 44 bit two setter
 ?d_00087460@@YAXXZ,,0x00087460,5,Code/GameEngine/Source/Common/Offset44BitThreeSetterThunk.cpp,matched,object-symbol=?set_bit_three@Offset44BitThreeSetterThunk@@QAEXXZ;Open-BFME5 clean C++ offset 44 bit three setter
