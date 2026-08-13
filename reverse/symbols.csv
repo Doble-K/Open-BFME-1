@@ -69414,3 +69414,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?Set_Position_Retail@RetailAABoxRenderObjBase@@QAEXABVVector3@@@Z,0x009201A0,Open-BFME5 retail AABox base position call
 ??0Bitmap2DObjClass@@QAE@ABV0@@Z,0x00956140,Open-BFME5 retail bitmap copy constructor pin
 ??1PartitionCell@@QAE@XZ,0x00032C95,Open-BFME5 retail PartitionCell destructor
+?PopulateInGameDiplomacyPopup@@YAXXZ,0x00008F4E,Diplomacy popup refresh

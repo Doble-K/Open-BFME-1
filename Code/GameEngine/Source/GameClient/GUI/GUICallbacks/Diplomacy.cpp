@@ -312,7 +312,7 @@ void HideDiplomacy( Bool immediate )
 	releaseWindowPointers();
 	if (theWindow)
 	{
-		if (immediate || !TheGlobalData->m_animateWindows)
+		if (immediate || !reinterpret_cast<const unsigned char *>(TheGlobalData)[0xbc4])
 		{
 			theWindow->winHide(TRUE);
 			theWindow->winEnable(FALSE);
