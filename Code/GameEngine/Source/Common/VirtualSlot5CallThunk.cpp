@@ -1111,6 +1111,23 @@ RetainedReferenceCopyConstructorThunk::RetainedReferenceCopyConstructorThunk(con
     }
 }
 
+struct RetainedReferenceSetterThunk
+{
+    ReferenceCountedReleaseValue *value;
+
+    RetainedReferenceSetterThunk *setValue(ReferenceCountedReleaseValue *newValue);
+};
+
+RetainedReferenceSetterThunk *RetainedReferenceSetterThunk::setValue(ReferenceCountedReleaseValue *newValue)
+{
+    value = newValue;
+    if (newValue != 0)
+    {
+        ++newValue->referenceCount;
+    }
+    return this;
+}
+
 struct PointerPayloadGetterThunk
 {
     unsigned char *base;
