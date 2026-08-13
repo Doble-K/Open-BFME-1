@@ -34,12 +34,22 @@ LIB_SUFFIX = ".lib"
 MIN_LIB_CONCRETE = 8
 
 
+def resolved(path):
+    # Path.resolve() can hand back a Windows extended-length \\?\ path once the
+    # tree gets deep enough (Code/gen_small/*.cpp under a long checkout dir on
+    # Python 3.14). ROOT never carries that prefix, so relative_to() rejects the
+    # result and the gate dies in its last phase. Strip it back off.
+    out = Path(path).resolve()
+    text = str(out)
+    return Path(text[4:]) if text.startswith("\\\\?\\") else out
+
+
 def obj_path(source, member=None):
     # Namespace objs by the source's repo-relative path, not its bare stem:
     # same-basename sources in different tree dirs must not collide.
     # Encode uppercase as ^x because wine resolves paths case-insensitively:
     # INI.cpp and ini.cpp would otherwise overwrite each other's obj.
-    rel = Path(source).resolve().relative_to(ROOT)
+    rel = resolved(source).relative_to(ROOT)
     stem = "_".join(rel.with_suffix("").parts)
     if member is not None:
         # One .lib holds hundreds of members and a row names exactly one, so the
@@ -419,7 +429,7 @@ def zh_reference_source(source):
     if source is None:
         return None
     try:
-        return Path(source).resolve().relative_to(ZH_REFERENCE_ROOT).as_posix()
+        return resolved(source).relative_to(ZH_REFERENCE_ROOT).as_posix()
     except ValueError:
         return None
 
