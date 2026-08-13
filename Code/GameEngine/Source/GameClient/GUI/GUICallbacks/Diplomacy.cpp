@@ -152,10 +152,25 @@ static void releaseWindowPointers( void )
 
 static void updateFunc( WindowLayout *layout, void *param )
 {
-	if (theAnimateWindowManager && TheGlobalData->m_animateWindows)
+	// BFME: GlobalData's m_animateWindows has drifted off the vendored ZH
+	// offset (retail reads it at +0xBC4), and SubsystemInterface carries
+	// extra stub virtuals in this build (see
+	// reference/shims/sweep/Common/SubsystemInterface.h) that push
+	// AnimateWindowManager::update() to vtable slot 5 instead of ZH's slot 4.
+	// Read/dispatch both by hand instead of touching the shared headers that
+	// other matched rows compile against.
+	if (theAnimateWindowManager && *reinterpret_cast<const Bool*>(reinterpret_cast<const char*>(TheGlobalData) + 0xBC4))
 	{
 		Bool wasFinished = theAnimateWindowManager->isFinished();
-		theAnimateWindowManager->update();
+		// Call vtable slot 5 with the correct __thiscall convention without
+		// naming the (nonstandard-extension) __thiscall keyword: route the
+		// raw slot through a pointer-to-member-function cast instead.
+		struct AnimUpdateThunk { void Call(); };
+		typedef void (AnimUpdateThunk::*AnimUpdateFn)();
+		void **vtbl = *reinterpret_cast<void ***>(theAnimateWindowManager);
+		union { void *asVoid; AnimUpdateFn asMember; } fnCast;
+		fnCast.asVoid = vtbl[5];
+		(reinterpret_cast<AnimUpdateThunk *>(theAnimateWindowManager)->*fnCast.asMember)();
 		if (theAnimateWindowManager->isFinished() && !wasFinished && theAnimateWindowManager->isReversed())
 			theWindow->winHide( TRUE );
 	}
