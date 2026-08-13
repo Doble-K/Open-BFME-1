@@ -114976,7 +114976,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0055d030@@YAXXZ,,0x0055D030,225,Code/gen_asm/d_00557c00.asm,matched,gen-dump;ghidra=FUN_0095d030
 ?d_0055d150@@YAXXZ,,0x0055D150,1060,Code/gen_asm/d_00557c00.asm,matched,gen-dump;ghidra=FUN_0095d150
 ?d_0055d7f0@@YAXXZ,,0x0055D7F0,597,Code/gen_asm/d_00557c00.asm,matched,gen-dump;ghidra=FUN_0095d7f0
-?d_0055db20@@YAXXZ,,0x0055DB20,32,Code/gen_asm/d_00557c00.asm,matched,gen-dump;ghidra=FUN_0095db20
 ?d_0055dba0@@YAXXZ,,0x0055DBA0,49,Code/gen_asm/d_00557c00.asm,matched,gen-dump;ghidra=FUN_0095dba0
 ?d_0055dc00@@YAXXZ,,0x0055DC00,123,Code/gen_asm/d_00557c00.asm,matched,gen-dump;ghidra=FUN_0095dc00
 ?d_0055dcb0@@YAXXZ,,0x0055DCB0,756,Code/gen_asm/d_00557c00.asm,matched,gen-dump;ghidra=FUN_0095dcb0
@@ -142118,7 +142117,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0028c270@@YAXXZ,,0x0028C270,5,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_0028c350@@YAXXZ,,0x0028C350,104,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_0028c410@@YAXXZ,,0x0028C410,45,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
-?d_0028c4b0@@YAXXZ,,0x0028C4B0,56,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_0028c610@@YAXXZ,,0x0028C610,6,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_0028c740@@YAXXZ,,0x0028C740,21,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_0028c980@@YAXXZ,,0x0028C980,70,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
@@ -157942,3 +157940,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?registerDrawable@GameClient@@UAEXPAVDrawable@@@Z,,0x0042E530,41,Code/GameEngine/Source/GameClient/GameClient.cpp,matched,Open-BFME5 m_drawableList at +0x10 and m_nextDrawableID at +0x28
 ?parseXRes@@YAHQAPADH@Z,,0x00060BC0,53,Code/GameEngine/Source/Common/CommandLine.cpp,matched,Open-BFME5 m_xResolution at GlobalData+0x2c
 ?parseNetMinPlayers@@YAHQAPADH@Z,,0x00060C60,51,Code/GameEngine/Source/Common/CommandLine.cpp,matched,Open-BFME5 m_netMinPlayers at GlobalData+0xecc
+?calcSleepDelay@DeletionUpdate@@IAEIII@Z,,0x0028C4B0,56,Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdate.cpp,matched,Open-BFME5 m_dieFrame at +0x20; retail file and line via existing #line 55
+?GadgetSliderSetPosition@@YAXPAVGameWindow@@H@Z,,0x0055DB20,32,Code/GameEngine/Source/GameClient/GUI/GadgetSliderSetPositionThunk.cpp,matched,Open-BFME5 GSM_SET_SLIDER 0x400d; winSendSystemMsg vtable slot 53
