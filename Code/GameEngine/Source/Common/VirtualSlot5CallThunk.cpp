@@ -1977,6 +1977,18 @@ SingleIntegerZeroConstructorEighthThunk::SingleIntegerZeroConstructorEighthThunk
 {
 }
 
+struct SingleIntegerZeroConstructorNinthThunk
+{
+    int value;
+
+    SingleIntegerZeroConstructorNinthThunk();
+};
+
+SingleIntegerZeroConstructorNinthThunk::SingleIntegerZeroConstructorNinthThunk() :
+    value(0)
+{
+}
+
 struct FluentNoOpThunk
 {
     FluentNoOpThunk *ignore(int unused);
