@@ -107644,7 +107644,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00179a90@@YAXXZ,,0x00179A90,94,Code/gen_asm/d_00177320.asm,matched,gen-dump;ghidra=FUN_00579a90
 ?d_00179b10@@YAXXZ,,0x00179B10,1517,Code/gen_asm/d_00177320.asm,matched,gen-dump;ghidra=FUN_00579b10
 ?d_0017a280@@YAXXZ,,0x0017A280,151,Code/gen_asm/d_00177320.asm,matched,gen-dump;ghidra=FUN_0057a280
-?d_0017a340@@YAXXZ,,0x0017A340,38,Code/gen_asm/d_00177320.asm,matched,gen-dump;ghidra=FUN_0057a340
 ?d_0017a370@@YAXXZ,,0x0017A370,109,Code/gen_asm/d_00177320.asm,matched,gen-dump;ghidra=FUN_0057a370
 ?d_0017a600@@YAXXZ,,0x0017A600,586,Code/gen_asm/d_00177320.asm,matched,gen-dump;ghidra=FUN_0057a600
 ?d_0017abf0@@YAXXZ,,0x0017ABF0,47,Code/gen_asm/d_00177320.asm,matched,gen-dump;ghidra=FUN_0057abf0
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?isSupplySourceSafe@AIPlayer@@QAE_NH@Z,,0x00166A10,80,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,Open-BFME5 retail inlines the OVERRIDE<ThingTemplate> walk; m_template at Thing+0x4
 ?isShortcutPower@SpecialPowerTemplate@@QBE_NXZ,,0x00268920,33,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 inlined override walk; m_nextOverride at +0x4 and the flag at +0x115
 ??1DynamicIBAccessClass@@QAE@XZ,,0x0091D350,71,Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp,matched,Open-BFME5 REF_PTR_RELEASE nulls inside the null check
+?onExit@AIMoveAndEvacuateState@@UAEXW4StateExitType@@@Z,,0x0017A340,38,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,Open-BFME5 State m_machine at +0x1c and the machine lock flag at +0x40

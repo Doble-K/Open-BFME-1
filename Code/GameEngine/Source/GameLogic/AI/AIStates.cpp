@@ -4965,11 +4965,15 @@ StateReturnType AIMoveAndEvacuateState::update()
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?onExit@AIMoveAndEvacuateState@@UAEXW4StateExitType@@@Z present-unmatched
 void AIMoveAndEvacuateState::onExit( StateExitType status )
 {
-	getMachine()->unlock();
-	getMachine()->setGoalPosition(&m_origin); // In case we follow with a AIMoveAndDeleteState.
+	// Two offsets here are BFME's, not this tree's: State::m_machine sits at
+	// +0x1c where this tree puts it at +0x20, and the machine's lock flag that
+	// unlock() clears is at +0x40 against +0x34. m_origin at +0x50 is already
+	// right. Retail reloads the machine pointer for each statement, so the two
+	// reads are kept separate.
+	*(char *)(*(char **)((char *)this + 0x1c) + 0x40) = 0;	// unlock()
+	(*(StateMachine **)((char *)this + 0x1c))->setGoalPosition(&m_origin); // In case we follow with a AIMoveAndDeleteState.
 	AIInternalMoveToState::onExit( status );
 }
 
