@@ -135034,9 +135034,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00060b00@@YAXXZ,,0x00060B00,22,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00060b20@@YAXXZ,,0x00060B20,19,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00060b90@@YAXXZ,,0x00060B90,28,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_00060bc0@@YAXXZ,,0x00060BC0,53,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00060c10@@YAXXZ,,0x00060C10,53,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_00060c60@@YAXXZ,,0x00060C60,51,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00060ca0@@YAXXZ,,0x00060CA0,34,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00060cd0@@YAXXZ,,0x00060CD0,39,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00060d00@@YAXXZ,,0x00060D00,44,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
@@ -157942,3 +157940,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?getFiringLineOfSightOrigin@Weapon@@IBEXPBVObject@@AAUCoord3D@@@Z,,0x001E1A30,30,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,Open-BFME5 Object m_geometryInfo at +0xac
 ?findDynamicLODLevel@GameLODManager@@QAE?AW4DynamicGameLODLevel@@M@Z,,0x0007C440,50,Code/GameEngine/Source/Common/GameLODManager_findDynamicLODLevel_Thunk.cpp,matched,Open-BFME5 LOD enum bases LOW at 0 with five levels; info entry 0x10 bytes; array at +0x120
 ?registerDrawable@GameClient@@UAEXPAVDrawable@@@Z,,0x0042E530,41,Code/GameEngine/Source/GameClient/GameClient.cpp,matched,Open-BFME5 m_drawableList at +0x10 and m_nextDrawableID at +0x28
+?parseXRes@@YAHQAPADH@Z,,0x00060BC0,53,Code/GameEngine/Source/Common/CommandLine.cpp,matched,Open-BFME5 m_xResolution at GlobalData+0x2c
+?parseNetMinPlayers@@YAHQAPADH@Z,,0x00060C60,51,Code/GameEngine/Source/Common/CommandLine.cpp,matched,Open-BFME5 m_netMinPlayers at GlobalData+0xecc

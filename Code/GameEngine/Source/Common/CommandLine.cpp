@@ -400,7 +400,11 @@ Int parseXRes(char *args[], int num)
 {
 	if (TheWritableGlobalData && num > 1)
 	{
-		TheWritableGlobalData->m_xResolution = atoi(args[1]);
+		// BFME's GlobalData is not this tree's: m_xResolution is at +0x2c here,
+		// +0x24 there. The divergence is not a uniform shift -- see
+		// parseNetMinPlayers, whose field is 0x744 further out, not 8 -- so the
+		// offsets are pinned one at a time as retail bodies name them.
+		*(Int *)((char *)TheWritableGlobalData + 0x2c) = atoi(args[1]);
 		return 2;
 	}
 	return 1;
@@ -929,7 +933,8 @@ Int parseNetMinPlayers(char *args[], int num)
 {
 	if (TheWritableGlobalData && num > 1)
 	{
-		TheWritableGlobalData->m_netMinPlayers = atoi(args[1]);
+		// retail m_netMinPlayers at GlobalData+0xecc; this tree lands it at +0x788
+		*(Int *)((char *)TheWritableGlobalData + 0xecc) = atoi(args[1]);
 	}
 	return 2;
 }
