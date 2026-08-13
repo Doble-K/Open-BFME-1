@@ -48,6 +48,14 @@
 #include "thread.h"
 #include "wwmemlog.h"
 
+// BFME nulls the pointer INSIDE the null check; the reference tree's ZH
+// refcount.h nulls it unconditionally, which costs one byte in every body that
+// uses the macro. Same correction vertmaterial.cpp carries, and this repo's own
+// Code/Libraries/Source/WWVegas/WWLib/refcount.h already has the right form --
+// this TU just compiles against the reference copy.
+#undef REF_PTR_RELEASE
+#define REF_PTR_RELEASE(x)		{ if (x) { x->Release_Ref(); x = NULL; } }
+
 #define DEFAULT_IB_SIZE 5000
 
 static bool _DynamicSortingIndexArrayInUse=false;
@@ -405,7 +413,6 @@ DynamicIBAccessClass::DynamicIBAccessClass(unsigned short type_, unsigned short 
 	}
 }
 
-// ??1DynamicIBAccessClass@@QAE@XZ present-unmatched
 DynamicIBAccessClass::~DynamicIBAccessClass()
 {
 	REF_PTR_RELEASE(IndexBuffer);
