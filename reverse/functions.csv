@@ -135759,7 +135759,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00084000@@YAXXZ,,0x00084000,15,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00084020@@YAXXZ,,0x00084020,10,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00085c20@@YAXXZ,,0x00085C20,1171,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_00086310@@YAXXZ,,0x00086310,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_00086310@@YAXXZ,,0x00086310,7,Code/GameEngine/Source/Common/Rva86310Offset189ByteGetter.cpp,matched,object-symbol=?get_value@Rva86310Offset189ByteGetter@@QAEEXZ;Open-BFME5 clean C++ RVA 86310 offset 189 byte getter
 ?d_00086360@@YAXXZ,,0x00086360,13,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00086380@@YAXXZ,,0x00086380,6,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00086450@@YAXXZ,,0x00086450,6,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
