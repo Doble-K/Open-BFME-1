@@ -1270,6 +1270,7 @@ struct FluentIntegerPairSetterThunk
     FluentIntegerPairSetterThunk *setValuesAlternate(int firstValue, int secondValue);
     FluentIntegerPairSetterThunk *setValuesThird(int firstValue, int secondValue);
     FluentIntegerPairSetterThunk *copyFrom(const FluentIntegerPairSetterThunk *other);
+    FluentIntegerPairSetterThunk *copyFromAlternate(const FluentIntegerPairSetterThunk *other);
 };
 
 FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::setValues(int firstValue, int secondValue)
@@ -1294,6 +1295,13 @@ FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::setValuesThird(int f
 }
 
 FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::copyFrom(const FluentIntegerPairSetterThunk *other)
+{
+    first = other->first;
+    second = other->second;
+    return this;
+}
+
+FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::copyFromAlternate(const FluentIntegerPairSetterThunk *other)
 {
     first = other->first;
     second = other->second;
