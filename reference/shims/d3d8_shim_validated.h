@@ -368,6 +368,18 @@ struct IDirect3DDevice8 {
 	virtual HRESULT __stdcall DrawPrimitiveUP(D3DPRIMITIVETYPE, UINT, const void*, UINT) = 0;
 	virtual HRESULT __stdcall DrawIndexedPrimitiveUP(D3DPRIMITIVETYPE, UINT, UINT, UINT, const void*, D3DFORMAT, const void*, UINT) = 0;
 	virtual HRESULT __stdcall ProcessVertices(UINT, UINT, UINT, IDirect3DVertexBuffer8*, DWORD) = 0;
+	// BFME's device interface has eight additional slots before the shader API.
+	// Retail calls SetVertexShaderConstant at +0x178 and SetPixelShaderConstant
+	// at +0x1b4; preserving these slots leaves the earlier render-state layout
+	// unchanged while aligning the shader methods.
+	virtual HRESULT __stdcall DevReservedShader0(DWORD) = 0;
+	virtual HRESULT __stdcall DevReservedShader1(DWORD) = 0;
+	virtual HRESULT __stdcall DevReservedShader2(DWORD) = 0;
+	virtual HRESULT __stdcall DevReservedShader3(DWORD) = 0;
+	virtual HRESULT __stdcall DevReservedShader4(DWORD) = 0;
+	virtual HRESULT __stdcall DevReservedShader5(DWORD) = 0;
+	virtual HRESULT __stdcall DevReservedShader6(DWORD) = 0;
+	virtual HRESULT __stdcall DevReservedShader7(DWORD) = 0;
 	virtual HRESULT __stdcall CreateVertexShader(const DWORD*, const DWORD*, DWORD*, DWORD) = 0;
 	virtual HRESULT __stdcall SetVertexShader(DWORD) = 0;
 	virtual HRESULT __stdcall GetVertexShader(DWORD*) = 0;

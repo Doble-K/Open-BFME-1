@@ -155296,7 +155296,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0071b1f0@@YAXXZ,,0x0071B1F0,384,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_0071b540@@YAXXZ,,0x0071B540,56,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_0071be90@@YAXXZ,,0x0071BE90,26,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
-?d_0071beb0@@YAXXZ,,0x0071BEB0,94,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
+?d_0071beb0@@YAXXZ,,0x0071BEB0,94,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,object-symbol=?Set_Vertex_Shader_Constant@DX8Wrapper@@SAXHPBXH@Z;Open-BFME5 clean C++ vertex shader constants
 ?d_0071bf30@@YAXXZ,,0x0071BF30,94,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_0071bfb0@@YAXXZ,,0x0071BFB0,7,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_0071c9c0@@YAXXZ,,0x0071C9C0,397,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
