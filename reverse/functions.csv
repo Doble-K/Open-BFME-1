@@ -106529,7 +106529,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000ec770@@YAXXZ,,0x000EC770,39,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec770
 ?d_000ec8a0@@YAXXZ,,0x000EC8A0,21,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec8a0
 ?d_000ec8c0@@YAXXZ,,0x000EC8C0,21,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec8c0
-?d_000ec8f0@@YAXXZ,,0x000EC8F0,12,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec8f0
+?getControllingPlayer@Team@@QBEPAVPlayer@@XZ,,0x000EC8F0,12,Code/GameEngine/Source/Common/RTS/TeamGetControllingPlayerThunk.cpp,matched,Open-BFME5 Team controlling-player accessor C++ recovery
 ?d_000ec900@@YAXXZ,,0x000EC900,75,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec900
 ?d_000ec960@@YAXXZ,,0x000EC960,24,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec960
 ?d_000ec980@@YAXXZ,,0x000EC980,18,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec980
