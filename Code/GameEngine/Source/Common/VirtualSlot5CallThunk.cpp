@@ -238,3 +238,29 @@ void VirtualSlot10IncrementedMemberCallThunk::invokeNext()
 {
     invoke(value + 1);
 }
+
+struct EmbeddedVirtualSlot1Thunk
+{
+    virtual void slot0();
+    virtual void invoke();
+
+    unsigned long padding[2];
+};
+
+struct EmbeddedVirtualSlot1CallFacet
+{
+    unsigned long value;
+
+    void invokeIgnoringArgument(int unused);
+};
+
+struct EmbeddedVirtualSlot1CallOwner : EmbeddedVirtualSlot1Thunk, EmbeddedVirtualSlot1CallFacet
+{
+};
+
+void EmbeddedVirtualSlot1CallFacet::invokeIgnoringArgument(int)
+{
+    EmbeddedVirtualSlot1Thunk *owner = reinterpret_cast<EmbeddedVirtualSlot1Thunk *>(
+        reinterpret_cast<unsigned char *>(this) - sizeof(EmbeddedVirtualSlot1Thunk));
+    owner->invoke();
+}

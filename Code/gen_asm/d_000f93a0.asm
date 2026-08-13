@@ -2014,11 +2014,6 @@ public ?d_00119e70@@YAXXZ
 ?d_00119e70@@YAXXZ ENDP
 
 ; ghidra: bounds-high  retail @ 0x0011A180 size 12
-public ?d_0011a180@@YAXXZ
-?d_0011a180@@YAXXZ PROC
-    db 8Bh, 41h, 0F4h, 83h, 0C1h, 0F4h, 0FFh, 50h, 04h, 0C2h, 04h, 00h
-?d_0011a180@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x0011A1D0 size 104
 public ?d_0011a1d0@@YAXXZ
 ?d_0011a1d0@@YAXXZ PROC
