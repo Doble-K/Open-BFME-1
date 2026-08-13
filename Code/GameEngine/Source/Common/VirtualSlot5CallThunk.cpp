@@ -1323,6 +1323,21 @@ bool pointedIntegersEqualThird(const int *left, const int *right)
     return *left == *right;
 }
 
+struct FluentIntegerBooleanCopyThunk
+{
+    int integerValue;
+    bool booleanValue;
+
+    FluentIntegerBooleanCopyThunk *copyFrom(const int *integerSource, const bool *booleanSource);
+};
+
+FluentIntegerBooleanCopyThunk *FluentIntegerBooleanCopyThunk::copyFrom(const int *integerSource, const bool *booleanSource)
+{
+    integerValue = *integerSource;
+    booleanValue = *booleanSource;
+    return this;
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
