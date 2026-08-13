@@ -1,117 +1,75 @@
 // cl: /DNDEBUG /MD /EHsc
 
+// Open-BFME5: PartTheHeavensUpdate constructor.
+
 class Thing;
 class ModuleData;
+class Object;
 
-class PartTheHeavensUpdate
+class GameLogic
 {
 public:
-    PartTheHeavensUpdate(Thing *, const ModuleData *);
+	unsigned char m_pad[0x3c];
+	unsigned int m_frame;
 };
 
-__declspec(naked) PartTheHeavensUpdate::PartTheHeavensUpdate(Thing *, const ModuleData *)
+extern GameLogic *TheGameLogic;
+
+class PB_DeepBase
 {
-    __asm {
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x56;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x08;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x00;
-        __emit 0xd7;
-        __emit 0xd7;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x83;
-        __emit 0xc8;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xc9;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x1c;
-        __emit 0x39;
-        __emit 0x4e;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x14;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0xec;
-        __emit 0x07;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x28;
-        __emit 0x07;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x18;
-        __emit 0x07;
-        __emit 0x0c;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0xff;
-        __emit 0x3f;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x24;
-        __emit 0x74;
-        __emit 0x0c;
-        __emit 0x8b;
-        __emit 0x15;
-        __emit 0x98;
-        __emit 0x08;
-        __emit 0x2f;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0x42;
-        __emit 0x3c;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+public:
+	PB_DeepBase(Thing *, const ModuleData *);
+	virtual ~PB_DeepBase();
+
+protected:
+	Object *m_object;
+	const ModuleData *m_moduleData;
+};
+
+class PartTheHeavensUpdateIface1
+{
+public:
+	virtual void slot();
+};
+
+class PartTheHeavensUpdateIface2
+{
+public:
+	virtual void slot();
+};
+
+class UpdateModule : public PB_DeepBase,
+	public PartTheHeavensUpdateIface1,
+	public PartTheHeavensUpdateIface2
+{
+public:
+	UpdateModule(Thing *thing, const ModuleData *moduleData)
+		: PB_DeepBase(thing, moduleData), m_f14(0), m_f18(-1), m_f1c(-1) {}
+
+protected:
+	Object *getObject() const { return m_object; }
+
+private:
+	unsigned int m_f14;
+	int m_f18;
+	int m_f1c;
+};
+
+class PartTheHeavensUpdate : public UpdateModule
+{
+public:
+	PartTheHeavensUpdate(Thing *, const ModuleData *);
+	virtual ~PartTheHeavensUpdate();
+
+private:
+	unsigned int m_nextUpdateFrame;
+	void *m_pointee;
+};
+
+// ??0PartTheHeavensUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
+PartTheHeavensUpdate::PartTheHeavensUpdate(Thing *thing, const ModuleData *moduleData)
+	: UpdateModule(thing, moduleData), m_nextUpdateFrame(0x3fffffff), m_pointee(0)
+{
+	if (getObject())
+		m_nextUpdateFrame = TheGameLogic->m_frame;
 }
