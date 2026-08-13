@@ -245,16 +245,10 @@ void PlayerList::init()
 }
 
 //-----------------------------------------------------------------------------
-// ?update@PlayerList@@ present-unmatched
-void PlayerList::update()
-{
-	// update all players
-	for( Int i = 0; i < MAX_PLAYER_COUNT; i++ )
-	{
-		m_players[i]->update();
-	}  // end for i
-
-}
+// ?update@PlayerList@@UAEXXZ — exact retail body in PlayerListUpdate.cpp.
+// Split out because it needs MAX_PLAYER_COUNT=32 (BFME's count, see the note
+// there); raising the constant for this whole TU moves the stack frames behind
+// the constructor's and newGame's already-matched EH funclets.
 
 //-----------------------------------------------------------------------------
 // ?newMap@PlayerList@@ present-unmatched

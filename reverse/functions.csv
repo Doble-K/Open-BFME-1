@@ -137069,7 +137069,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000df1e0@@YAXXZ,,0x000DF1E0,13,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000df200@@YAXXZ,,0x000DF200,7,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000df220@@YAXXZ,,0x000DF220,7,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
-?d_000df2d0@@YAXXZ,,0x000DF2D0,32,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000df300@@YAXXZ,,0x000DF300,32,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000df920@@YAXXZ,,0x000DF920,35,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000df950@@YAXXZ,,0x000DF950,18,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
@@ -157941,3 +157940,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?refreshGameList@@YAX_N@Z,,0x004F9620,70,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenuRefreshGameListThunk.cpp,matched,isolated thunk; local vtable-slot-43 stand-in reproduces BFME GameSpyInfoInterface; timeGetTime declared dllimport for indirect IAT call
 ?Add@?$DynamicVectorClass@U_ArcInfoStruct@VehicleCurveClass@@@@QAE_NABU_ArcInfoStruct@VehicleCurveClass@@@Z,,0x009347C0,84,Code/Libraries/Source/WWVegas/WWMath/VehicleCurveArc_Add_Thunk.cpp,matched,
 ??1DamageInfo@@QAE@XZ,,0x000C3410,89,Code/GameEngine/Source/Common/DamageInfoDestructorThunk.cpp,matched,
+?update@PlayerList@@UAEXXZ,,0x000DF2D0,32,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 BFME MAX_PLAYER_COUNT=32 loop; callee thunk 0x4771C to ?update@Player@@QAEXXZ 0xD9A80 separates it from newMap/updateTeamStates
