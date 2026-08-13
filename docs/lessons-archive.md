@@ -8160,3 +8160,43 @@ looks like, and `0x00416820` asserts in `Drawable.cpp` under
 
 Only thirteen of 3,910 assert at all, so this is a narrow filter rather than a
 general answer - but it is the cheapest thirteen in the queue.
+
+## Converting a naked row is not coverage; claiming an unclaimed body is
+
+Worth stating plainly because I spent a long stretch optimising the wrong
+number. A `__declspec(naked)` row is already `matched`, so rewriting it as real
+C++ moves progress.py's clean-C++/ASM split and leaves Total exact untouched.
+An unclaimed retail body has no row at all, so claiming it is what grows
+coverage.
+
+Both are real work and the pre-commit gate exists precisely to stop lifts
+travelling the other way, but they are different metrics and the repo tracks
+them separately. `tools/next_work.py` selects for the second kind.
+
+## Use the tools the repo ships before building screens
+
+`tools/next_work.py` names a candidate, weights the draw by measured land rate,
+and hides the candidates already recorded in re_attempts.log -- which is the
+dedup I had been maintaining by hand as a SKIP set. `tools/decode_calls.py`
+compiles a source the way build.py does, finds every unresolved REL32, decodes
+the displacement out of the target bytes and prints a ready-to-paste
+symbols.csv pin: exactly the grep-for-j_, follow target=FUN_, grep symbols.csv
+loop I ran manually dozens of times. `tools/add_match.py` appends a claim and
+reverts itself if verification fails.
+
+One doc drift found while adopting them: next_work.py prints
+`decode_calls.py --rva <a> --size <n>` as the start command, but decode_calls
+takes no --size and is a post-build-failure tool, not a starting disassembler.
+
+## An explicit template instantiation does not guarantee a claimable body
+
+Code/gen_small/tgrid_107.cpp already contains
+`template class _STL::vector<Gen_t_001fa830_p12cd >;`, so the vector's
+_M_insert_overflow is emitted by that TU and the unclaimed retail body at
+0x001FA5B0 looks like a free claim. It is not.
+
+The emitted body carries a full EH frame where retail's has none, because the
+generated file's own cl line adds /EHsc and retail built that instantiation
+without unwind. Four callees also need pins. The pins are routine; the exception
+model is not, because the file carries forty other verified rows and changing
+its flags needs the full gate rather than a scoped build.
