@@ -122470,7 +122470,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0090ab60@@YAXXZ,,0x0090AB60,594,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d0ab60
 ?d_0090adc0@@YAXXZ,,0x0090ADC0,157,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d0adc0
 ?d_0090ae60@@YAXXZ,,0x0090AE60,436,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d0ae60
-?d_0090b490@@YAXXZ,,0x0090B490,70,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d0b490
+?d_0090b490@@YAXXZ,,0x0090B490,70,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,object-symbol=??1?$DynamicVectorClass@VRenderDeviceDescClass@@@@UAE@XZ;Open-BFME5 clean C++ render device vector destruction
 ?d_0090b4e0@@YAXXZ,,0x0090B4E0,46,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d0b4e0
 ?d_0090b5f0@@YAXXZ,,0x0090B5F0,70,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d0b5f0
 ?d_0090bbc0@@YAXXZ,,0x0090BBC0,90,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d0bbc0
