@@ -138976,7 +138976,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00191110@@YAXXZ,,0x00191110,495,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001913b0@@YAXXZ,,0x001913B0,17,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001913d0@@YAXXZ,,0x001913D0,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_00191450@@YAXXZ,,0x00191450,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001914b0@@YAXXZ,,0x001914B0,10,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001914c0@@YAXXZ,,0x001914C0,10,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001916f0@@YAXXZ,,0x001916F0,170,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?getFlag@AddressState0016A300@@QBEIXZ,,0x0016A300,5,Code/GameEngine/Source/Common/FlagAccessor0016A300.cpp,matched,Open-BFME5 clean C++ zero-extended byte accessor
 ?forwardSlot9@AddressThunk0016F670@@QAEXXZ,,0x0016F670,5,Code/GameEngine/Source/Common/VirtualDispatchSlot9_0016F670.cpp,matched,Open-BFME5 clean C++ adjacent virtual slot 9 tail dispatch
 ?evaluate@AddressPredicate0017C9D0@@QAE_NPAX@Z,,0x0017C9D0,5,Code/GameEngine/Source/Common/TruePredicate0017C9D0.cpp,matched,Open-BFME5 clean C++ one-argument true predicate
+?getValue@AddressState00191450@@QBEHXZ,,0x00191450,5,Code/GameEngine/Source/Common/SignedFieldAccessor00191450.cpp,matched,Open-BFME5 clean C++ signed short accessor
