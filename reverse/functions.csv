@@ -122884,7 +122884,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00943970@@YAXXZ,,0x00943970,8,Code/gen_asm/d_00939520.asm,matched,gen-dump;ghidra=FUN_00d43970
 ?d_00943ad0@@YAXXZ,,0x00943AD0,388,Code/gen_asm/d_00939520.asm,matched,gen-dump;ghidra=FUN_00d43ad0
 ?d_00943cf0@@YAXXZ,,0x00943CF0,82,Code/gen_asm/d_00939520.asm,matched,gen-dump;ghidra=FUN_00d43cf0
-?d_00943e10@@YAXXZ,,0x00943E10,39,Code/gen_asm/d_00939520.asm,matched,gen-dump;ghidra=FUN_00d43e10
+?d_00943e10@@YAXXZ,,0x00943E10,39,Code/Libraries/Source/WWVegas/WW3D2/Rva943E10CompressedAnimFree.cpp,matched,object-symbol=?free@Rva943E10CompressedAnim@@QAEXXZ;hand-reconciled C++
 ?d_00943f70@@YAXXZ,,0x00943F70,124,Code/gen_asm/d_00939520.asm,matched,gen-dump;ghidra=FUN_00d43f70
 ?d_00943ff0@@YAXXZ,,0x00943FF0,201,Code/gen_asm/d_00939520.asm,matched,gen-dump;ghidra=FUN_00d43ff0
 ?d_009440c0@@YAXXZ,,0x009440C0,262,Code/gen_asm/d_00939520.asm,matched,gen-dump;ghidra=FUN_00d440c0
