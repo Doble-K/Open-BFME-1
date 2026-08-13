@@ -2001,6 +2001,18 @@ SingleIntegerZeroConstructorTenthThunk::SingleIntegerZeroConstructorTenthThunk()
 {
 }
 
+struct SingleIntegerZeroConstructorEleventhThunk
+{
+    int value;
+
+    SingleIntegerZeroConstructorEleventhThunk();
+};
+
+SingleIntegerZeroConstructorEleventhThunk::SingleIntegerZeroConstructorEleventhThunk() :
+    value(0)
+{
+}
+
 struct FluentNoOpThunk
 {
     FluentNoOpThunk *ignore(int unused);
