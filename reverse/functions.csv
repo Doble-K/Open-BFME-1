@@ -1620,7 +1620,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??0Base64Pipe@@QAE@W4CodeControl@0@@Z,,0x009E1EE0,29,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling (vtable ptr copied from target)
 ??0Base64Straw@@QAE@W4CodeControl@0@@Z,,0x009E1F20,29,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,sibling
 ??0BaseHeightMapRenderObjClass@@QAE@XZ,,0x006CFAE0,1304,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMapConstructorThunk.cpp,matched,object-symbol=_bfme_BaseHeightMapRenderObj_ctor_6CFAE0;Exact 1304B C++ thunk at true SEH entry with BaseHeightMap ownership evidence; Open-BFME5
-??0BaseRegenerateUpdateModuleData@@QAE@XZ,,0x00852130,79,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,object-symbol=?initFromINIMultiProc@INI@@QAEXPAXP6AXAAVMultiIniFieldParse@@@Z@Z;ICF alias converted to existing clean C++ body
 ??0BaseUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,,0x002D3800,53,Code/GameEngine/Source/GameLogic/Object/Upgrade/BaseUpgrade.cpp,matched,Luna Open-BFME5.0 clean C++ empty UpgradeModule derivative
 ??0BaseUpgradeModuleData@@QAE@XZ,,0x002D3C50,127,Code/GameEngine/Source/GameLogic/AI/BaseUpgradeModuleDataCtorThunk.cpp,matched,Open-BFME5 exact C++ raw module-data constructor
 ??0BattlePlanUpdate@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00286260,383,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdateCtorThunk.cpp,matched,Open-BFME5 MASM lift
@@ -109976,7 +109975,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0028bdf0@@YAXXZ,,0x0028BDF0,87,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068bdf0
 ?d_0028bff0@@YAXXZ,,0x0028BFF0,73,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068bff0
 ?d_0028c230@@YAXXZ,,0x0028C230,32,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c230
-?d_0028c2a0@@YAXXZ,,0x0028C2A0,9,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c2a0
+??0BaseRegenerateUpdateModuleData@@QAE@XZ,,0x0028C2A0,9,Code/GameEngine/Source/GameLogic/Object/Update/BaseRegenerateUpdateModuleDataCtorThunk.cpp,matched,Open-BFME5 BaseRegenerateUpdate module-data constructor C++ recovery
 ?d_0028c2b0@@YAXXZ,,0x0028C2B0,17,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c2b0
 ?d_0028c2d0@@YAXXZ,,0x0028C2D0,90,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c2d0
 ?d_0028c490@@YAXXZ,,0x0028C490,25,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c490
