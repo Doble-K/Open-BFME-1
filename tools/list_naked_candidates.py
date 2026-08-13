@@ -292,18 +292,50 @@ def candidate_weights(candidates):
     return [yield_model.weight(item["size"]) for item in candidates]
 
 
+PACKET_DIR = build.ROOT / "reverse" / "zh_sweep" / "packets"
+
+
+def packet_rvas():
+    """Retail addresses tools/zh_sweep.py wrote a work packet for.
+
+    A packet is Zero Hour's own source for that body, named and 85%+ aligned
+    with the retail bytes. Converting from one is a different job from reading
+    a nameless dump out of a disassembly, so the queue spends them first."""
+    if not PACKET_DIR.is_dir():
+        return {}
+    out = {}
+    for path in PACKET_DIR.glob("*.md"):
+        try:
+            out[int(path.stem, 16)] = path
+        except ValueError:
+            continue
+    return out
+
+
+def candidate_packet(item, packets):
+    try:
+        return packets.get(int(item["rva"], 16)) if item.get("rva") else None
+    except ValueError:
+        return None
+
+
 def select_candidate(candidates):
     """Draw one candidate weighted by expected yield. Still random, so
     concurrent contributors rarely collide; no longer worth the pool average."""
     rank_candidates(candidates)
     if not candidates:
         return None, {"pool": 0}
+    packets = packet_rvas()
+    led = [item for item in candidates if candidate_packet(item, packets)]
+    if led:
+        candidates = led
     weights = candidate_weights(candidates)
     cutoff = secrets.randbelow(sum(weights))
     for item, weight in zip(candidates, weights):
         cutoff -= weight
         if cutoff < 0:
-            return item, {"pool": len(candidates)}
+            return item, {"pool": len(candidates),
+                          "packet": candidate_packet(item, packets)}
     raise AssertionError("select_candidate fell through its cumulative walk")
 
 
@@ -497,6 +529,10 @@ def main():
         print(f"== selected naked-asm conversion (drawn from {meta['pool']}) ==")
         print(f"  {selected['symbol'] or selected['signature'] or '(unnamed)'}")
         print(f"  {selected['size']} bytes  {selected['path']}:{selected['line']}")
+        if meta.get("packet"):
+            print(f"  START HERE: {meta['packet'].relative_to(build.ROOT)} — Zero Hour's "
+                  "own source for this body, named and nearly aligned. Port it, then "
+                  "close the gap against the disassembly the packet quotes.")
         if selected["tracked"]:
             print(f"  verify: ./build.sh '{selected['symbol']}'")
         # The queue now serves gen_dump waves, whose bodies byte-verify by
