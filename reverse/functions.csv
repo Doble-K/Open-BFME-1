@@ -106810,7 +106810,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00108e80@@YAXXZ,,0x00108E80,336,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00508e80
 ?d_00109eb0@@YAXXZ,,0x00109EB0,136,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00509eb0
 ?d_0010a680@@YAXXZ,,0x0010A680,17,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_0050a680
-?d_0010a7a0@@YAXXZ,,0x0010A7A0,29,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_0050a7a0
 ?d_0010a850@@YAXXZ,,0x0010A850,89,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_0050a850
 ?d_0010a9e0@@YAXXZ,,0x0010A9E0,219,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_0050a9e0
 ?d_0010abd0@@YAXXZ,,0x0010ABD0,175,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_0050abd0
@@ -146870,7 +146869,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00434570@@YAXXZ,,0x00434570,17,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_00434590@@YAXXZ,,0x00434590,41,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_004345e0@@YAXXZ,,0x004345E0,27,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
-?d_00434660@@YAXXZ,,0x00434660,26,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_004349a0@@YAXXZ,,0x004349A0,28,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_004349d0@@YAXXZ,,0x004349D0,153,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_00434b90@@YAXXZ,,0x00434B90,43,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157934,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?PointerIdentity00191F00@@YAPAXPAX@Z,,0x00191F00,5,Code/GameEngine/Source/Common/PointerIdentity00191F00.cpp,matched,Open-BFME5 clean C++ pointer identity
 ?PointerIdentity00191F50@@YAPAXPAX@Z,,0x00191F50,5,Code/GameEngine/Source/Common/PointerIdentity00191F50.cpp,matched,Open-BFME5 clean C++ adjacent pointer identity
 ?PointerIdentity00191F60@@YAPAXPAX@Z,,0x00191F60,5,Code/GameEngine/Source/Common/PointerIdentity00191F60.cpp,matched,Open-BFME5 clean C++ third pointer identity
+??0AABTreeLinkClass@@QAE@PAVAABTreeCullSystemClass@@@Z,,0x0010A7A0,26,Code/Libraries/Source/WWVegas/WWMath/AABTreeLinkClass_Constructor_Thunk.cpp,matched,
+??0OBBoxAPTContextStruct@AABTreeClass@@QAE@ABVOBBoxClass@@AAV?$SimpleDynVecClass@K@@@Z,,0x00434660,26,Code/Libraries/Source/WWVegas/WW3D2/AABTreeClass_OBBoxAPTContextStruct_Ctor_Thunk.cpp,matched,
