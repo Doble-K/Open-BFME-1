@@ -157938,3 +157938,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?Get_Char_Width@FontCharsClass@@QAEHG@Z,,0x00941480,26,Code/Libraries/Source/WWVegas/WW3D2/FontCharsClassGetCharWidthThunk.cpp,matched,
 ?_M_create_node@?$_Rb_tree@HHU?$_Identity@H@_STL@@U?$less@H@2@V?$allocator@H@2@@_STL@@IAEPAU?$_Rb_tree_node@H@2@ABH@Z,,0x0043D890,28,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenuIntSetCreateNodeThunk.cpp,matched,
 ??0LoaderThreadClass@@QAE@PBD@Z,,0x008B38D0,27,Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp,matched,
+?open@StreamingArchiveFile@@UAE_NPBDH@Z,,0x009D2190,52,Code/GameEngine/Source/Common/System/StreamingArchiveFile_openThunk.cpp,matched,
+?getVertexBuffer@StreakRendererClass@@AAEPAUVertexFormatXYZUV1@@I@Z,,0x0095C510,57,Code/Libraries/Source/WWVegas/WW3D2/StreakRendererClass_getVertexBuffer_Thunk.cpp,matched,

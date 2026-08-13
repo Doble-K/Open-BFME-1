@@ -69423,3 +69423,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 
 ?Get_Char_Data@FontCharsClass@@QAEPBUFontCharsClassCharDataStruct@@G@Z,0x00941290,body
 ??0ThreadClass@@QAE@PBDP6AHHPAU_EXCEPTION_POINTERS@@@Z@Z,0x008B2EF0,pin for LoaderThreadClass ctor callee
+?Render@WW3D@@SA?AW4WW3DErrorType@@PAVSceneClass@@PAVCameraClass@@_N2ABVVector3@@@Z,0x008FE3C0,pin from packet 008fe7d0 callee
