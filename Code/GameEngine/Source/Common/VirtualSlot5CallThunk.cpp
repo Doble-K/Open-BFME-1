@@ -702,3 +702,24 @@ bool Offset140IntegerPairValidityThunk::isValid() const
 {
     return first != -1 && second != -1;
 }
+
+struct IntegerTripleCopyValue
+{
+    int first;
+    int second;
+    int third;
+};
+
+struct Offset140IntegerTripleCopyThunk
+{
+    unsigned char padding[0x8c];
+    IntegerTripleCopyValue value;
+
+    int *copyTo(int *destination);
+};
+
+int *Offset140IntegerTripleCopyThunk::copyTo(int *destination)
+{
+    *reinterpret_cast<IntegerTripleCopyValue *>(destination) = value;
+    return destination;
+}
