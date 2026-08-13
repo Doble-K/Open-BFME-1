@@ -6,6 +6,7 @@ struct ConditionalPointerStoreThunk
 
     void *storeIfNotNull(void *value);
     void *storeSecondIfNotNull(void *value);
+    void *takeStored();
 };
 
 void *ConditionalPointerStoreThunk::storeIfNotNull(void *value)
@@ -17,6 +18,13 @@ void *ConditionalPointerStoreThunk::storeIfNotNull(void *value)
     }
 
     return 0;
+}
+
+void *ConditionalPointerStoreThunk::takeStored()
+{
+    void *result = stored;
+    stored = 0;
+    return result;
 }
 
 void *ConditionalPointerStoreThunk::storeSecondIfNotNull(void *value)
