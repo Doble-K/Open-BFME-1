@@ -138087,7 +138087,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00138af0@@YAXXZ,,0x00138AF0,32,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00138c20@@YAXXZ,,0x00138C20,19,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00138d40@@YAXXZ,,0x00138D40,32,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_00139fc0@@YAXXZ,,0x00139FC0,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013a310@@YAXXZ,,0x0013A310,13,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013a360@@YAXXZ,,0x0013A360,29,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013a430@@YAXXZ,,0x0013A430,8,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_009080a0@@YAXXZ,,0x009080A0,201,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 clean C++ render device descriptor vector constructor;object-symbol=??0?$VectorClass@VRenderDeviceDescClass@@@@QAE@HPBVRenderDeviceDescClass@@@Z
 ?d_00924600@@YAXXZ,,0x00924600,174,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,object-symbol=?get_shade_indices@MeshGeometryClass@@IAEPAK_N@Z;Open-BFME5 clean C++ shade-index buffer access
 ?forwardSlot1@AddressThunk00105360@@QAEXXZ,,0x00105360,5,Code/GameEngine/Source/Common/VirtualDispatchSlot1.cpp,matched,Open-BFME5 clean C++ virtual slot 1 tail dispatch
+?BoundsHigh00139FC0@@YAPAXPAX0@Z,,0x00139FC0,5,Code/GameEngine/Source/Common/BoundsHigh00139FC0.cpp,matched,Open-BFME5 clean C++ upper bound selector
