@@ -154,3 +154,20 @@ void VirtualSlot11CallThunk::invokeZeroOne()
 {
     invoke(0, 1);
 }
+
+struct VirtualSlot2MemberCallThunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void invoke(int value);
+
+    unsigned long padding[4];
+    int value;
+
+    void invokeMember();
+};
+
+void VirtualSlot2MemberCallThunk::invokeMember()
+{
+    invoke(value);
+}
