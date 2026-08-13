@@ -1385,6 +1385,11 @@ unsigned char *pointerPlusSixteenAlternate(unsigned char *value)
     return value + 16;
 }
 
+unsigned char *__stdcall pointerIdentityStdcall(unsigned char *value)
+{
+    return value;
+}
+
 bool pointedIntegersDiffer(const int *left, const int *right)
 {
     return *left != *right;
