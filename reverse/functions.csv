@@ -135030,7 +135030,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0005bf20@@YAXXZ,,0x0005BF20,25,Code/GameEngine/Source/Common/RoundedProductStrideThunk.cpp,matched,object-symbol=?roundedProductStride@@YAJJJ@Z;Open-BFME5 clean C++ rounded product stride
 ?d_0005c020@@YAXXZ,,0x0005C020,65,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c110@@YAXXZ,,0x0005C110,90,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0005c190@@YAXXZ,,0x0005C190,37,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0005c190@@YAXXZ,,0x0005C190,37,Code/GameEngine/Source/Common/ScalarStateResetThunk.cpp,matched,object-symbol=?reset@ScalarStateResetThunk@@QAEKXZ;Open-BFME5 clean C++ scalar state reset
 ?d_0005c450@@YAXXZ,,0x0005C450,10,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c460@@YAXXZ,,0x0005C460,7,Code/GameEngine/Source/Common/Offset4DA8WordGetterThunk.cpp,matched,object-symbol=?getValue@Offset4DA8WordGetterThunk@@QBEKXZ;Open-BFME5 clean C++ offset 4DA8 word getter
 ?d_0005c470@@YAXXZ,,0x0005C470,13,Code/GameEngine/Source/Common/Offset5E24ByteSetterThunk.cpp,matched,object-symbol=?setValue@Offset5E24ByteSetterThunk@@QAEXE@Z;Open-BFME5 clean C++ offset 5E24 byte setter
