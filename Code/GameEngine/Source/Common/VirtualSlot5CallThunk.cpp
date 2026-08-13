@@ -1185,6 +1185,11 @@ unsigned char *pointerPlusEight(unsigned char *value)
     return value + 8;
 }
 
+unsigned char *pointerPlusTwelve(unsigned char *value)
+{
+    return value + 12;
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
