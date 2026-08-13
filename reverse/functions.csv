@@ -136711,7 +136711,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000c9d70@@YAXXZ,,0x000C9D70,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c9d80@@YAXXZ,,0x000C9D80,12,Code/GameEngine/Source/Common/Stride4TableLookupThunk.cpp,matched,object-symbol=?lookup@Stride4Table@@QBEPAUStride4TableEntry@@I@Z;Open-BFME5 clean C++ four-byte table lookup
 ?d_000c9db0@@YAXXZ,,0x000C9DB0,9,Code/GameEngine/Source/Common/PointerRangeCountThunk.cpp,matched,object-symbol=?size@PointerRangeCount@@QBEIXZ;Open-BFME5 clean C++ pointer-range count
-?d_000c9e00@@YAXXZ,,0x000C9E00,12,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
+?d_000c9e00@@YAXXZ,,0x000C9E00,12,Code/GameEngine/Source/Common/Stride4TableLookupThunk.cpp,matched,object-symbol=?alternateLookup@Stride4Table@@QBEPAUStride4TableEntry@@I@Z;Open-BFME5 clean C++ alternate four-byte table lookup
 ?d_000c9e40@@YAXXZ,,0x000C9E40,9,Code/GameEngine/Source/Common/PointerRangeCountThunk.cpp,matched,object-symbol=?alternateSize@PointerRangeCount@@QBEIXZ;Open-BFME5 clean C++ alternate pointer-range count
 ?d_000c9e50@@YAXXZ,,0x000C9E50,34,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c9ed0@@YAXXZ,,0x000C9ED0,18,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
