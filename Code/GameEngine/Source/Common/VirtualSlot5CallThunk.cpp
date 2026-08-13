@@ -213,3 +213,28 @@ void VirtualSlot2MemberCallThunk::invokeMemberEighth()
 {
     invoke(value);
 }
+
+struct VirtualSlot10IncrementedMemberCallThunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void slot2();
+    virtual void slot3();
+    virtual void slot4();
+    virtual void slot5();
+    virtual void slot6();
+    virtual void slot7();
+    virtual void slot8();
+    virtual void slot9();
+    virtual void invoke(int value);
+
+    unsigned long padding[17];
+    int value;
+
+    void invokeNext();
+};
+
+void VirtualSlot10IncrementedMemberCallThunk::invokeNext()
+{
+    invoke(value + 1);
+}

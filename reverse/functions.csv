@@ -119305,7 +119305,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_007e3b40@@YAXXZ,,0x007E3B40,144,Code/gen_asm/d_007df1f0.asm,matched,gen-dump;ghidra=FUN_00be3b40
 ?d_007e3c20@@YAXXZ,,0x007E3C20,217,Code/gen_asm/d_007df1f0.asm,matched,gen-dump;ghidra=FUN_00be3c20
 ?d_007e3d30@@YAXXZ,,0x007E3D30,243,Code/gen_asm/d_007df1f0.asm,matched,gen-dump;ghidra=FUN_00be3d30
-?d_007e4730@@YAXXZ,,0x007E4730,11,Code/gen_asm/d_007df1f0.asm,matched,gen-dump;ghidra=FUN_00be4730
+?d_007e4730@@YAXXZ,,0x007E4730,11,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?invokeNext@VirtualSlot10IncrementedMemberCallThunk@@QAEXXZ;Open-BFME5 clean C++ virtual slot 10 incremented member call
 ?d_007e4790@@YAXXZ,,0x007E4790,13,Code/gen_asm/d_007df1f0.asm,matched,gen-dump;ghidra=FUN_00be4790
 ?d_007e47a0@@YAXXZ,,0x007E47A0,87,Code/gen_asm/d_007df1f0.asm,matched,gen-dump;ghidra=FUN_00be47a0
 ?d_007e4820@@YAXXZ,,0x007E4820,230,Code/gen_asm/d_007df1f0.asm,matched,gen-dump;ghidra=FUN_00be4820

@@ -1036,11 +1036,6 @@ public ?d_007e3d30@@YAXXZ
 ?d_007e3d30@@YAXXZ ENDP
 
 ; ghidra: FUN_00be4730  retail @ 0x007E4730 size 11
-public ?d_007e4730@@YAXXZ
-?d_007e4730@@YAXXZ PROC
-    db 8Bh, 51h, 48h, 8Bh, 01h, 42h, 52h, 0FFh, 50h, 28h, 0C3h
-?d_007e4730@@YAXXZ ENDP
-
 ; ghidra: FUN_00be4790  retail @ 0x007E4790 size 13
 public ?d_007e4790@@YAXXZ
 ?d_007e4790@@YAXXZ PROC
