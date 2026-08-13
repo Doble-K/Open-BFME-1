@@ -69416,3 +69416,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ??1PartitionCell@@QAE@XZ,0x00032C95,Open-BFME5 retail PartitionCell destructor
 ?PopulateInGameDiplomacyPopup@@YAXXZ,0x00008F4E,Diplomacy popup refresh
 ??0OBBoxClass@@QAE@ABV0@@Z,0x00888400,Open-BFME5 OBBoxAPTContextStruct Box copy-ctor (ICF twin of 0x00931420)
+??0DistLODClass@@QAE@ABV0@@Z,0x00030EE0,DistLOD copy constructor

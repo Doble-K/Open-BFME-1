@@ -116261,7 +116261,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_005ec160@@YAXXZ,,0x005EC160,46,Code/gen_asm/d_005e6700.asm,matched,gen-dump;ghidra=FUN_009ec160
 ?d_005ec1a0@@YAXXZ,,0x005EC1A0,101,Code/gen_asm/d_005e6700.asm,matched,gen-dump;ghidra=FUN_009ec1a0
 ?d_005ec230@@YAXXZ,,0x005EC230,73,Code/gen_asm/d_005e6700.asm,matched,gen-dump;ghidra=FUN_009ec230
-?d_005ec320@@YAXXZ,,0x005EC320,96,Code/gen_asm/d_005e6700.asm,matched,gen-dump;ghidra=FUN_009ec320
+?d_005ec320@@YAXXZ,,0x005EC320,96,Code/Libraries/Source/WWVegas/WW3D2/Rva5EC320DistLODClone.cpp,matched,object-symbol=?Clone@DistLODClass@@UBEPAVRenderObjClass@@XZ;hand-reconciled C++
 ?d_005ec3a0@@YAXXZ,,0x005EC3A0,46,Code/gen_asm/d_005e6700.asm,matched,gen-dump;ghidra=FUN_009ec3a0
 ?d_005ec3e0@@YAXXZ,,0x005EC3E0,128,Code/gen_asm/d_005e6700.asm,matched,gen-dump;ghidra=FUN_009ec3e0
 ?d_005ec4c0@@YAXXZ,,0x005EC4C0,73,Code/gen_asm/d_005e6700.asm,matched,gen-dump;ghidra=FUN_009ec4c0
