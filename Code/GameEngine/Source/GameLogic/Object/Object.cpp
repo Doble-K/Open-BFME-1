@@ -5988,15 +5988,39 @@ SpecialPowerUpdateInterface* Object::findSpecialPowerWithOverridableDestination(
 // ------------------------------------------------------------------------------------------------
 // Search our special ability updates for a specific one.
 // ------------------------------------------------------------------------------------------------
+class BFMESpecialPowerUpdateInterface
+{
+public:
+	virtual void slot00();
+	virtual Bool isSpecialAbility();
+};
+
+class BFMEBehaviorSpecialPowerInterface
+{
+public:
+	virtual void slot00(); virtual void slot04(); virtual void slot08(); virtual void slot0C();
+	virtual void slot10(); virtual void slot14(); virtual void slot18(); virtual void slot1C();
+	virtual void slot20(); virtual void slot24(); virtual void slot28(); virtual void slot2C();
+	virtual void slot30(); virtual void slot34(); virtual void slot38(); virtual void slot3C();
+	virtual void slot40(); virtual void slot44(); virtual void slot48(); virtual void slot4C();
+	virtual void slot50(); virtual void slot54(); virtual void slot58(); virtual void slot5C();
+	virtual BFMESpecialPowerUpdateInterface *getSpecialPowerUpdateInterface();
+};
+
 // ?findSpecialAbilityUpdate@Object@@QBEPAVSpecialAbilityUpdate@@W4SpecialPowerType@@@Z present-unmatched
 SpecialAbilityUpdate* Object::findSpecialAbilityUpdate( SpecialPowerType type ) const
 {
-	for( BehaviorModule** u = m_behaviors; *u; ++u )
+	BehaviorModule **behaviors = *reinterpret_cast<BehaviorModule ***>(
+		reinterpret_cast<char *>(const_cast<Object *>(this)) + 0x1f0);
+	for( BehaviorModule** u = behaviors; *u; ++u )
 	{
-		SpecialPowerUpdateInterface *spInterface = (*u)->getSpecialPowerUpdateInterface();
+		BFMEBehaviorSpecialPowerInterface *behavior =
+			reinterpret_cast<BFMEBehaviorSpecialPowerInterface *>(reinterpret_cast<char *>(*u) + 0x0c);
+		BFMESpecialPowerUpdateInterface *spInterface = behavior->getSpecialPowerUpdateInterface();
 		if( spInterface && spInterface->isSpecialAbility() )
 		{
-			SpecialAbilityUpdate *spUpdate = (SpecialAbilityUpdate*)spInterface;
+			SpecialAbilityUpdate *spUpdate = reinterpret_cast<SpecialAbilityUpdate *>(
+				reinterpret_cast<char *>(spInterface) - 0x20);
 			if( spUpdate->getSpecialPowerType() == type )
 			{
 				return spUpdate;

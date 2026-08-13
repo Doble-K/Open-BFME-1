@@ -69418,3 +69418,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ??0OBBoxClass@@QAE@ABV0@@Z,0x00888400,Open-BFME5 OBBoxAPTContextStruct Box copy-ctor (ICF twin of 0x00931420)
 ??0DistLODClass@@QAE@ABV0@@Z,0x00030EE0,DistLOD copy constructor
 ?get_shade_indices@MeshGeometryClass@@IAEPAK_N@Z,0x00924600,Open-BFME5 retail MeshGeometryClass shade-index accessor pin
+?getSpecialPowerType@SpecialAbilityUpdate@@QBE?AW4SpecialPowerType@@XZ,0x00042956,Special ability power type

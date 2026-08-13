@@ -108219,7 +108219,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001bf4d0@@YAXXZ,,0x001BF4D0,18,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005bf4d0
 ?d_001bf4f0@@YAXXZ,,0x001BF4F0,18,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005bf4f0
 ?d_001bf560@@YAXXZ,,0x001BF560,11,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005bf560
-?d_001bf750@@YAXXZ,,0x001BF750,84,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005bf750
+?d_001bf750@@YAXXZ,,0x001BF750,84,Code/GameEngine/Source/GameLogic/Object/Object.cpp,matched,object-symbol=?findSpecialAbilityUpdate@Object@@QBEPAVSpecialAbilityUpdate@@W4SpecialPowerType@@@Z;hand-reconciled C++
 ?d_001bf7c0@@YAXXZ,,0x001BF7C0,79,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005bf7c0
 ?d_001bf830@@YAXXZ,,0x001BF830,111,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005bf830
 ?d_001bf950@@YAXXZ,,0x001BF950,20,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005bf950
