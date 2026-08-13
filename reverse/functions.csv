@@ -107449,7 +107449,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0015e730@@YAXXZ,,0x0015E730,11,Code/gen_asm/d_00153d10.asm,matched,gen-dump;ghidra=FUN_0055e730
 ?d_0015e770@@YAXXZ,,0x0015E770,78,Code/gen_asm/d_00153d10.asm,matched,gen-dump;ghidra=FUN_0055e770
 ?d_0015e9e0@@YAXXZ,,0x0015E9E0,75,Code/gen_asm/d_00153d10.asm,matched,gen-dump;ghidra=FUN_0055e9e0
-?d_0015ea70@@YAXXZ,,0x0015EA70,5,Code/gen_asm/d_00153d10.asm,matched,gen-dump;ghidra=FUN_0055ea70
 ?d_0015eab0@@YAXXZ,,0x0015EAB0,194,Code/gen_asm/d_00153d10.asm,matched,gen-dump;ghidra=FUN_0055eab0
 ?d_0015ebe0@@YAXXZ,,0x0015EBE0,72,Code/gen_asm/d_00153d10.asm,matched,gen-dump;ghidra=FUN_0055ebe0
 ?d_0015ece0@@YAXXZ,,0x0015ECE0,491,Code/gen_asm/d_00153d10.asm,matched,gen-dump;ghidra=FUN_0055ece0
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?forwardSlot9@AddressThunk0015C0B0@@QAEXXZ,,0x0015C0B0,5,Code/GameEngine/Source/Common/VirtualDispatchSlot9.cpp,matched,Open-BFME5 clean C++ virtual slot 9 tail dispatch
 ?evaluate@AddressPredicate00160E20@@QAE_NPAX0@Z,,0x00160E20,5,Code/GameEngine/Source/Common/FalsePredicate00160E20.cpp,matched,Open-BFME5 clean C++ two-argument false predicate
 ?setFlag@AddressState0015BDC0@@QAEXXZ,,0x0015BDC0,5,Code/GameEngine/Source/Common/FlagSet0015BDC0.cpp,matched,Open-BFME5 clean C++ third flag set at offset 0x44
+?forwardSlot4@AddressThunk0015EA70@@QAEXXZ,,0x0015EA70,5,Code/GameEngine/Source/Common/VirtualDispatchSlot4.cpp,matched,Open-BFME5 clean C++ virtual slot 4 tail dispatch
