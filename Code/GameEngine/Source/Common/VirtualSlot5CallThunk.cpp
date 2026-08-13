@@ -916,3 +916,16 @@ OffsetZeroIntegerCopyReturningThisThunk *OffsetZeroIntegerCopyReturningThisThunk
     value = other->value;
     return this;
 }
+
+struct OffsetZeroSecondIntegerSetterReturningThisThunk
+{
+    int value;
+
+    OffsetZeroSecondIntegerSetterReturningThisThunk *setSecond(int unused, int newValue);
+};
+
+OffsetZeroSecondIntegerSetterReturningThisThunk *OffsetZeroSecondIntegerSetterReturningThisThunk::setSecond(int, int newValue)
+{
+    value = newValue;
+    return this;
+}
