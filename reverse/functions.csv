@@ -113997,7 +113997,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00494da0@@YAXXZ,,0x00494DA0,111,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_00894da0
 ?d_00494e40@@YAXXZ,,0x00494E40,99,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_00894e40
 ?d_00494fa0@@YAXXZ,,0x00494FA0,447,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_00894fa0
-?d_00495590@@YAXXZ,,0x00495590,84,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_00895590
+?d_00495590@@YAXXZ,,0x00495590,84,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,object-symbol=??0ProcessAnimateWindowSpiral@@QAE@XZ;hand-reconciled C++
 ?d_004956a0@@YAXXZ,,0x004956A0,104,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_008956a0
 ?d_00495850@@YAXXZ,,0x00495850,230,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_00895850
 ?d_00495970@@YAXXZ,,0x00495970,260,Code/gen_asm/d_0048a320.asm,matched,gen-dump;ghidra=FUN_00895970

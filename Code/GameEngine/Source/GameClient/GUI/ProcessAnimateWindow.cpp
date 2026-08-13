@@ -65,6 +65,23 @@
 // most other TUs. Alias the symbol after the headers so cl emits e8.
 extern "C" DWORD WINAPI bfme_timeGetTime( void );
 #define timeGetTime bfme_timeGetTime
+
+class BFMEDisplayWidthSlot
+{
+public:
+	virtual void slot00();
+	virtual void slot04();
+	virtual void slot08();
+	virtual void slot0c();
+	virtual void slot10();
+	virtual void slot14();
+	virtual void slot18();
+	virtual void slot1c();
+	virtual void slot20();
+	virtual void slot24();
+	virtual void slot28();
+	virtual UnsignedInt getWidth();
+};
 //-----------------------------------------------------------------------------
 // DEFINES ////////////////////////////////////////////////////////////////////
 //-----------------------------------------------------------------------------
@@ -1057,7 +1074,7 @@ Bool ProcessAnimateWindowSlideFromBottomTimed::reverseAnimateWindow( AnimateWind
 // ??0ProcessAnimateWindowSpiral@@QAE@XZ present-unmatched
 ProcessAnimateWindowSpiral::ProcessAnimateWindowSpiral( void )
 {
-	m_maxR = TheDisplay->getWidth() / 2;
+	m_maxR = reinterpret_cast<BFMEDisplayWidthSlot *>(TheDisplay)->getWidth() / 2;
 	m_deltaTheta = .33f;	
 }
 
