@@ -2019,12 +2019,6 @@ public ?d_0011c860@@YAXXZ
     db 68h, 68h, 0A8h, 08h, 01h, 8Bh, 0CEh, 0E8h, 0A4h, 40h, 73h, 00h, 5Eh, 0C3h
 ?d_0011c860@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x0011C9A0 size 6
-public ?d_0011c9a0@@YAXXZ
-?d_0011c9a0@@YAXXZ PROC
-    db 0B8h, 09h, 00h, 00h, 00h, 0C3h
-?d_0011c9a0@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x0011C9B0 size 30
 public ?d_0011c9b0@@YAXXZ
 ?d_0011c9b0@@YAXXZ PROC
