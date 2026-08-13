@@ -139026,7 +139026,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00191f30@@YAXXZ,,0x00191F30,5,Code/GameEngine/Source/Common/Rva191F30PointerIdentity.cpp,matched,object-symbol=?rva_191f30_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ RVA 191F30 cdecl pointer identity
 ?d_00191f40@@YAXXZ,,0x00191F40,5,Code/GameEngine/Source/Common/Rva191F40IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva191F40IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 191F40 identity with one argument
 ?d_00191f70@@YAXXZ,,0x00191F70,5,Code/GameEngine/Source/Common/Rva191F70IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva191F70IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 191F70 identity with one argument
-?d_00191f80@@YAXXZ,,0x00191F80,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00191f90@@YAXXZ,,0x00191F90,5,Code/GameEngine/Source/Common/Rva191F90IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva191F90IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 191F90 identity with one argument
 ?d_00191fa0@@YAXXZ,,0x00191FA0,5,Code/GameEngine/Source/Common/Rva191FA0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva191FA0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 191FA0 identity with one argument
 ?d_00191fb0@@YAXXZ,,0x00191FB0,8,Code/GameEngine/Source/Common/Rva191FB0PointerOffsetThunk.cpp,matched,object-symbol=?rva_191fb0_pointer_offset@@YAPADPAD@Z;Open-BFME5 clean C++ RVA 191FB0 pointer offset
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?PointerIdentity00191F60@@YAPAXPAX@Z,,0x00191F60,5,Code/GameEngine/Source/Common/PointerIdentity00191F60.cpp,matched,Open-BFME5 clean C++ third pointer identity
 ??0AABTreeLinkClass@@QAE@PAVAABTreeCullSystemClass@@@Z,,0x0010A7A0,26,Code/Libraries/Source/WWVegas/WWMath/AABTreeLinkClass_Constructor_Thunk.cpp,matched,
 ??0OBBoxAPTContextStruct@AABTreeClass@@QAE@ABVOBBoxClass@@AAV?$SimpleDynVecClass@K@@@Z,,0x00434660,26,Code/Libraries/Source/WWVegas/WW3D2/AABTreeClass_OBBoxAPTContextStruct_Ctor_Thunk.cpp,matched,
+?returnThis@AddressObject00191F80@@QAEPAV1@PAX@Z,,0x00191F80,5,Code/GameEngine/Source/Common/ReturnThis00191F80.cpp,matched,Open-BFME5 clean C++ return-this member at 0x00191F80
