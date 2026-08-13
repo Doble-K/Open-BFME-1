@@ -1081,3 +1081,15 @@ ReferencePointerAssignmentThunk *ReferencePointerAssignmentThunk::assign(const R
 
     return this;
 }
+
+struct PointerPayloadGetterThunk
+{
+    unsigned char *base;
+
+    unsigned char *getPayload() const;
+};
+
+unsigned char *PointerPayloadGetterThunk::getPayload() const
+{
+    return base + 4;
+}
