@@ -136792,7 +136792,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000cac90@@YAXXZ,,0x000CAC90,5,Code/GameEngine/Source/Common/RvaCAC90IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaCAC90IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA CAC90 identity with one argument
 ?d_000caca0@@YAXXZ,,0x000CACA0,5,Code/GameEngine/Source/Common/RvaCACA0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaCACA0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA CACA0 identity with one argument
 ?d_000cacb0@@YAXXZ,,0x000CACB0,5,Code/GameEngine/Source/Common/RvaCACB0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaCACB0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA CACB0 identity with one argument
-?d_000cacc0@@YAXXZ,,0x000CACC0,5,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
+?d_000cacc0@@YAXXZ,,0x000CACC0,5,Code/GameEngine/Source/Common/RvaCACC0PointerIdentity.cpp,matched,object-symbol=?rva_cacc0_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ RVA CACC0 cdecl pointer identity
 ?d_000cacd0@@YAXXZ,,0x000CACD0,49,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cad10@@YAXXZ,,0x000CAD10,5,Code/GameEngine/Source/Common/RvaCAD10IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaCAD10IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA CAD10 identity with one argument
 ?d_000cad20@@YAXXZ,,0x000CAD20,5,Code/GameEngine/Source/Common/RvaCAD20PointerIdentity.cpp,matched,object-symbol=?rva_cad20_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ RVA CAD20 cdecl pointer identity
