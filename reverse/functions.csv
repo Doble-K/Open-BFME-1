@@ -120103,7 +120103,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_008140d0@@YAXXZ,,0x008140D0,475,Code/gen_asm/d_00811e20.asm,matched,gen-dump;ghidra=FUN_00c140d0
 ?d_008142b0@@YAXXZ,,0x008142B0,23,Code/gen_asm/d_00811e20.asm,matched,gen-dump;ghidra=FUN_00c142b0
 ?d_008142d0@@YAXXZ,,0x008142D0,139,Code/gen_asm/d_00811e20.asm,matched,gen-dump;ghidra=FUN_00c142d0
-?d_00814360@@YAXXZ,,0x00814360,49,Code/gen_asm/d_00811e20.asm,matched,gen-dump;ghidra=FUN_00c14360
+_CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matched,Open-BFME5 DirtySock TCP unlisten C++ recovery
 ?d_008143a0@@YAXXZ,,0x008143A0,38,Code/gen_asm/d_00811e20.asm,matched,gen-dump;ghidra=FUN_00c143a0
 ?d_008143f0@@YAXXZ,,0x008143F0,5,Code/gen_asm/d_00811e20.asm,matched,gen-dump;ghidra=FUN_00c143f0
 ?d_00814400@@YAXXZ,,0x00814400,91,Code/gen_asm/d_00811e20.asm,matched,gen-dump;ghidra=FUN_00c14400
