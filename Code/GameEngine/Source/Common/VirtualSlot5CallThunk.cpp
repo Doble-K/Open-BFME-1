@@ -2284,6 +2284,7 @@ struct FluentNoOpThunk
     FluentNoOpThunk *ignoreTwentyEighth(int unused);
     FluentNoOpThunk *ignoreTwentyNinth(int unused);
     FluentNoOpThunk *ignoreThirtieth(int unused);
+    FluentNoOpThunk *ignoreThirtyFirst(int unused);
 };
 
 FluentNoOpThunk *FluentNoOpThunk::ignore(int)
@@ -2432,6 +2433,11 @@ FluentNoOpThunk *FluentNoOpThunk::ignoreTwentyNinth(int)
 }
 
 FluentNoOpThunk *FluentNoOpThunk::ignoreThirtieth(int)
+{
+    return this;
+}
+
+FluentNoOpThunk *FluentNoOpThunk::ignoreThirtyFirst(int)
 {
     return this;
 }
