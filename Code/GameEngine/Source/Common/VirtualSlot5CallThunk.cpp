@@ -1556,6 +1556,7 @@ struct FluentIntegerPairSetterThunk
     FluentIntegerPairSetterThunk *setValuesThird(int firstValue, int secondValue);
     FluentIntegerPairSetterThunk *setValuesFourth(int firstValue, int secondValue);
     FluentIntegerPairSetterThunk *setValuesFifth(int firstValue, int secondValue);
+    FluentIntegerPairSetterThunk *setValuesSixth(int firstValue, int secondValue);
     FluentIntegerPairSetterThunk *copyFrom(const FluentIntegerPairSetterThunk *other);
     FluentIntegerPairSetterThunk *copyFromAlternate(const FluentIntegerPairSetterThunk *other);
     FluentIntegerPairSetterThunk *copyFromThird(const FluentIntegerPairSetterThunk *other);
@@ -1591,6 +1592,13 @@ FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::setValuesFourth(int 
 }
 
 FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::setValuesFifth(int firstValue, int secondValue)
+{
+    first = firstValue;
+    second = secondValue;
+    return this;
+}
+
+FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::setValuesSixth(int firstValue, int secondValue)
 {
     first = firstValue;
     second = secondValue;
