@@ -138198,7 +138198,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013d960@@YAXXZ,,0x0013D960,11,Code/GameEngine/Source/Common/Rva13D960ValueStore.cpp,matched,object-symbol=?store@Rva13D960ValueStore@@QAEPAV1@I@Z;hand-reconciled C++
 ?d_0013d970@@YAXXZ,,0x0013D970,23,Code/GameEngine/Source/Common/Rva13D970TripleStore.cpp,matched,object-symbol=?store@Rva13D970TripleStore@@QAEXIII@Z;hand-reconciled C++
 ?d_0013d9b0@@YAXXZ,,0x0013D9B0,24,Code/GameEngine/Source/Common/Rva13D9B0GreaterPointer.cpp,matched,object-symbol=?rva_13d9b0_greater_pointer@@YAPAMPAM0@Z;hand-reconciled C++
-?d_0013d9d0@@YAXXZ,,0x0013D9D0,17,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
+?d_0013d9d0@@YAXXZ,,0x0013D9D0,17,Code/GameEngine/Source/Common/Rva13D9D0ConditionalCopy.cpp,matched,object-symbol=?rva_13d9d0_conditional_copy@@YAXPAIPBI@Z;hand-reconciled C++
 ?d_0013da40@@YAXXZ,,0x0013DA40,48,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013db20@@YAXXZ,,0x0013DB20,17,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013db40@@YAXXZ,,0x0013DB40,29,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
