@@ -135390,7 +135390,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0006c600@@YAXXZ,,0x0006C600,7,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006c610@@YAXXZ,,0x0006C610,7,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006c620@@YAXXZ,,0x0006C620,7,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0006c650@@YAXXZ,,0x0006C650,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0006c650@@YAXXZ,,0x0006C650,5,Code/GameEngine/Source/Common/UndenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@UndenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ undenary identity with one argument
 ?d_0006c660@@YAXXZ,,0x0006C660,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006c670@@YAXXZ,,0x0006C670,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006c6e0@@YAXXZ,,0x0006C6E0,13,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
