@@ -1187,6 +1187,20 @@ int IntegerArgumentIdentityThunk::identityThird(int value) const
     return value;
 }
 
+struct Offset4IntegerPointerRangeThunk
+{
+    unsigned char padding[4];
+    int *begin;
+    int *end;
+
+    int size() const;
+};
+
+int Offset4IntegerPointerRangeThunk::size() const
+{
+    return end - begin;
+}
+
 int integerIdentity(int value)
 {
     return value;

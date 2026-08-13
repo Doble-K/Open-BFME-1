@@ -147595,7 +147595,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045e340@@YAXXZ,,0x0045E340,5,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?ignoreTenth@FluentNoOpThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ tenth fluent no-op
 ?d_0045e350@@YAXXZ,,0x0045E350,5,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?ignoreEleventh@FluentNoOpThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ eleventh fluent no-op
 ?d_0045e360@@YAXXZ,,0x0045E360,7,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?identityThird@IntegerArgumentIdentityThunk@@QBEHH@Z;Open-BFME5 clean C++ third integer argument identity
-?d_0045e370@@YAXXZ,,0x0045E370,10,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045e370@@YAXXZ,,0x0045E370,10,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?size@Offset4IntegerPointerRangeThunk@@QBEHXZ;Open-BFME5 clean C++ offset four integer pointer range size
 ?d_0045e380@@YAXXZ,,0x0045E380,8,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e390@@YAXXZ,,0x0045E390,8,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e3d0@@YAXXZ,,0x0045E3D0,19,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
