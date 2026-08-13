@@ -144118,7 +144118,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00360720@@YAXXZ,,0x00360720,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00360730@@YAXXZ,,0x00360730,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00360780@@YAXXZ,,0x00360780,10,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
-?d_00360790@@YAXXZ,,0x00360790,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
+?d_00360790@@YAXXZ,,0x00360790,7,Code/GameEngine/Source/Common/Rva360790OffsetA0GetterThunk.cpp,matched,object-symbol=?getValue@Rva360790OffsetA0GetterThunk@@QBEIXZ;Open-BFME5 clean C++ offset A0 getter
 ?d_003607f0@@YAXXZ,,0x003607F0,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00360800@@YAXXZ,,0x00360800,13,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00360820@@YAXXZ,,0x00360820,50,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
