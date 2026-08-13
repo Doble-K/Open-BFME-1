@@ -93,6 +93,7 @@ typedef std::map<AsciiString, AsciiString> ArchivedFileLocationMap; // first str
 class ArchivedDirectoryInfo 
 {
 public:
+	ArchivedDirectoryInfo(const ArchivedDirectoryInfo &);
 	AsciiString								m_directoryName;
 	ArchivedDirectoryInfoMap	m_directories;
 	ArchivedFileLocationMap		m_files;

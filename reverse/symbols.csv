@@ -69347,3 +69347,5 @@ _SiegeDeploySpecialPower_vtbl0C,0x00CB74A0,Open-BFME5 SiegeDeploySpecialPower in
 _SiegeDeploySpecialPower_vtbl10,0x00CB7494,Open-BFME5 SiegeDeploySpecialPower interface vtable
 _SiegeDeploySpecialPower_vtbl20,0x00CB7468,Open-BFME5 SiegeDeploySpecialPower interface vtable
 _SiegeDeploySpecialPower_vtbl24,0x00CB73F0,Open-BFME5 SiegeDeploySpecialPower interface vtable
+??0?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@V1@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@V1@@_STL@@@3@@_STL@@QAE@ABV01@@Z,0x000304E5,Open-BFME5 ArchivedFileLocationMap copy constructor thunk pin
+??0?$_Rb_tree@VAsciiString@@U?$pair@$$CBVAsciiString@@VArchivedDirectoryInfo@@@_STL@@U?$_Select1st@U?$pair@$$CBVAsciiString@@VArchivedDirectoryInfo@@@_STL@@@3@U?$less@VAsciiString@@@3@V?$allocator@U?$pair@$$CBVAsciiString@@VArchivedDirectoryInfo@@@_STL@@@3@@_STL@@QAE@ABV01@@Z,0x009C97D0,Open-BFME5 ArchivedDirectoryInfoMap copy constructor pin
