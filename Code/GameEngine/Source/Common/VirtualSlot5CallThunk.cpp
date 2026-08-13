@@ -1180,6 +1180,11 @@ int integerIdentity(int value)
     return value;
 }
 
+unsigned char *pointerPlusEight(unsigned char *value)
+{
+    return value + 8;
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
