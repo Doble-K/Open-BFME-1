@@ -136958,7 +136958,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000cd3e0@@YAXXZ,,0x000CD3E0,8,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cd3f0@@YAXXZ,,0x000CD3F0,8,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cd400@@YAXXZ,,0x000CD400,41,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
-?d_000cd440@@YAXXZ,,0x000CD440,5,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
+?d_000cd440@@YAXXZ,,0x000CD440,5,Code/GameEngine/Source/Common/RvaCD440VirtualDispatchThunk.cpp,matched,object-symbol=?dispatch@RvaCD440VirtualDispatchThunk@@QAEXXZ;Open-BFME5 clean C++ RVA CD440 virtual slot 9 dispatch
 ?d_000cd680@@YAXXZ,,0x000CD680,7,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cd690@@YAXXZ,,0x000CD690,17,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cd6b0@@YAXXZ,,0x000CD6B0,17,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
