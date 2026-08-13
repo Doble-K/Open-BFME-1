@@ -2,207 +2,89 @@
 
 class Thing;
 class ModuleData;
+class Object;
+struct LargeGroupBonusModuleData
+{
+    unsigned char m_pad08[8];
+    int m_maximumDelay;
+};
 
-class LargeGroupBonusUpdate
+enum UpdateSleepTime
+{
+    UPDATE_SLEEP_DUMMY
+};
+
+class LargeGroupBonusDeepBase
+{
+public:
+    LargeGroupBonusDeepBase(Thing *, const ModuleData *);
+    virtual ~LargeGroupBonusDeepBase();
+
+protected:
+    const LargeGroupBonusModuleData *m_moduleData;
+    Object *m_object;
+};
+
+class LargeGroupBonusIface1 { public: virtual void slot(); };
+class LargeGroupBonusIface2 { public: virtual void slot(); };
+
+class UpdateModule : public LargeGroupBonusDeepBase,
+                     public LargeGroupBonusIface1,
+                     public LargeGroupBonusIface2
+{
+public:
+    UpdateModule(Thing *thing, const ModuleData *moduleData)
+        : LargeGroupBonusDeepBase(thing, moduleData),
+          m_nextCallFrameAndPhase(0), m_indexInLogic(-1), m_updateState(-1)
+    {
+    }
+
+protected:
+    void setWakeFrameViaThunk(Object *, UpdateSleepTime);
+    Object *getObject() const { return m_object; }
+
+private:
+    unsigned int m_nextCallFrameAndPhase;
+    int m_indexInLogic;
+    int m_updateState;
+};
+
+class LargeGroupBonusInterface { public: virtual void slot(); };
+
+struct GameLogicState
+{
+    unsigned char m_pad3c[0x3c];
+    unsigned int m_frame;
+};
+
+extern GameLogicState *g_theGameLogic;
+extern int __cdecl largeGroupRandom(int minimum, int maximum,
+                                    const char *file, int line);
+extern const char g_largeGroupSourceFile;
+
+class LargeGroupBonusUpdate : public UpdateModule,
+                              public LargeGroupBonusInterface
 {
 public:
     LargeGroupBonusUpdate(Thing *, const ModuleData *);
+
+private:
+    unsigned int m_frame;
+    bool m_f28;
+    bool m_f29;
+    bool m_f2a;
 };
 
 // ??0LargeGroupBonusUpdate@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) LargeGroupBonusUpdate::LargeGroupBonusUpdate(Thing *, const ModuleData *)
+LargeGroupBonusUpdate::LargeGroupBonusUpdate(Thing *thing, const ModuleData *moduleData)
+    : UpdateModule(thing, moduleData)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x88;
-        __emit 0x1e;
-        __emit 0x01;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0xe8;
-        __emit 0x75;
-        __emit 0xfa;
-        __emit 0xd7;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x83;
-        __emit 0xc9;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xc0;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x1c;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0xc8;
-        __emit 0xfa;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0x7e;
-        __emit 0x08;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x2c;
-        __emit 0xfd;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x68;
-        __emit 0xfc;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x5c;
-        __emit 0xfc;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x20;
-        __emit 0xd8;
-        __emit 0xfa;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x88;
-        __emit 0x46;
-        __emit 0x28;
-        __emit 0x88;
-        __emit 0x46;
-        __emit 0x2a;
-        __emit 0x8b;
-        __emit 0x15;
-        __emit 0x98;
-        __emit 0x08;
-        __emit 0x2f;
-        __emit 0x01;
-        __emit 0x8b;
-        __emit 0x4a;
-        __emit 0x3c;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x04;
-        __emit 0x6a;
-        __emit 0x6b;
-        __emit 0x89;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x4e;
-        __emit 0x24;
-        __emit 0x88;
-        __emit 0x46;
-        __emit 0x29;
-        __emit 0x8b;
-        __emit 0x42;
-        __emit 0x08;
-        __emit 0x68;
-        __emit 0xf8;
-        __emit 0xfb;
-        __emit 0x0b;
-        __emit 0x01;
-        __emit 0x50;
-        __emit 0x6a;
-        __emit 0x01;
-        __emit 0xe8;
-        __emit 0xd0;
-        __emit 0xa4;
-        __emit 0xd6;
-        __emit 0xff;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0x50;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0xf0;
-        __emit 0xe0;
-        __emit 0xd7;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+    Object *owner = getObject();
+    m_f28 = false;
+    m_f2a = false;
+    m_frame = g_theGameLogic->m_frame;
+    m_f29 = false;
+    int delay = largeGroupRandom(1, m_moduleData->m_maximumDelay,
+                                 &g_largeGroupSourceFile, 107);
+    setWakeFrameViaThunk(owner, (UpdateSleepTime)delay);
 }

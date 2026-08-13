@@ -69300,6 +69300,17 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?setPolicies@RespawnPolicyMember@@QAEXURespawnPolicy@@0@Z,0x0000D3E1,RespawnBody policy assignment ILT
 ?g_defaultRespawnPolicy@@3URespawnPolicy@@A,0x012ED8B8,RespawnBody default six-dword policy
 ??_7RespawnBodyModuleData@@6B@,0x010A92C8,RespawnBodyModuleData retail vtable
+??0LargeGroupBonusDeepBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,LargeGroupBonus base constructor ILT
+?largeGroupRandom@@YAHHHPBDH@Z,0x00001BAE,LargeGroupBonus random-delay ILT
+?g_theGameLogic@@3PAUGameLogicState@@A,0x012F0898,LargeGroupBonus game-logic global
+?g_largeGroupSourceFile@@3DB,0x010BFBF8,LargeGroupBonus source-file literal
+??_7LargeGroupBonusIface1@@6B@,0x0109C9D0,LargeGroupBonus first update interface vtable
+??_7LargeGroupBonusIface2@@6B@,0x0109CBA0,LargeGroupBonus second update interface vtable
+??_7LargeGroupBonusInterface@@6B@,0x010BFAC8,LargeGroupBonus interface construction vtable
+??_7LargeGroupBonusUpdate@@6BLargeGroupBonusDeepBase@@@,0x010BFD2C,LargeGroupBonus primary retail vtable
+??_7LargeGroupBonusUpdate@@6BLargeGroupBonusIface1@@@,0x010BFC68,LargeGroupBonus first interface retail vtable
+??_7LargeGroupBonusUpdate@@6BLargeGroupBonusIface2@@@,0x010BFC5C,LargeGroupBonus second interface retail vtable
+??_7LargeGroupBonusUpdate@@6B@,0x010BFAD8,LargeGroupBonus extra interface retail vtable
 ??0W3DQuadrupedDrawModuleDataBase@@QAE@XZ,0x0000289C,Open-BFME5 W3DQuadruped module data base constructor pin
 ??0W3DQuadrupedElement@@QAE@XZ,0x00017BD9,Open-BFME5 W3DQuadruped array element constructor pin
 ??1W3DQuadrupedElement@@QAE@XZ,0x0000D828,Open-BFME5 W3DQuadruped array element destructor pin
