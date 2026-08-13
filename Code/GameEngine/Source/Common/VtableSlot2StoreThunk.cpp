@@ -104,6 +104,7 @@ struct VtableSlot2StoreThunk
     VtableSlot2Result getNinetyFifth() const;
     VtableSlot2Result getNinetySixth() const;
     VtableSlot2Result getNinetySeventh() const;
+    VtableSlot2Result getNinetyEighth() const;
 };
 
 VtableSlot2Result VtableSlot2StoreThunk::get() const
@@ -683,6 +684,12 @@ VtableSlot2Result VtableSlot2StoreThunk::getNinetySixth() const
 }
 
 VtableSlot2Result VtableSlot2StoreThunk::getNinetySeventh() const
+{
+    VtableSlot2Result result = { vtable[2] };
+    return result;
+}
+
+VtableSlot2Result VtableSlot2StoreThunk::getNinetyEighth() const
 {
     VtableSlot2Result result = { vtable[2] };
     return result;
