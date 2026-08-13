@@ -69293,3 +69293,13 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ?g_D3DXMatrixInverseImport@@3P6GPAXPAXPAMPBX@ZA,0x012DBE40,retail D3DXMatrixInverse import slot
 ??0RadiusDecalTemplate@@QAE@XZ,0x00029C71,Open-BFME5 DynamicShroud decal member constructor pin
 ?GetStringFromRegistry@@YA_NVAsciiString@@0AAV1@@Z,0x00109640,registry string read body via thunk 0x249B
+??0SlaughterHordeContainBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x00037FAB,Open-BFME5 SlaughterHordeContain base constructor pin
+_SlaughterHordeContain_vtbl0,0x00CB11C0,Open-BFME5 SlaughterHordeContain primary vtable
+_SlaughterHordeContain_vtbl0C,0x00CB10F8,Open-BFME5 SlaughterHordeContain interface vtable
+_SlaughterHordeContain_vtbl10,0x00CB10E8,Open-BFME5 SlaughterHordeContain interface vtable
+_SlaughterHordeContain_vtbl20,0x00CB0F40,Open-BFME5 SlaughterHordeContain interface vtable
+_SlaughterHordeContain_vtbl24,0x00CB0F20,Open-BFME5 SlaughterHordeContain interface vtable
+_SlaughterHordeContain_vtbl28,0x00CB0F1C,Open-BFME5 SlaughterHordeContain interface vtable
+_SlaughterHordeContain_vtbl2C,0x00CB0F0C,Open-BFME5 SlaughterHordeContain interface vtable
+_SlaughterHordeContain_vtbl30,0x00CB0ED0,Open-BFME5 SlaughterHordeContain interface vtable
+_SlaughterHordeContain_vtbl34,0x00CB0EC0,Open-BFME5 SlaughterHordeContain interface vtable
