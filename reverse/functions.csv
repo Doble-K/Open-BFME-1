@@ -135761,7 +135761,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00085c20@@YAXXZ,,0x00085C20,1171,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00086310@@YAXXZ,,0x00086310,7,Code/GameEngine/Source/Common/Rva86310Offset189ByteGetter.cpp,matched,object-symbol=?get_value@Rva86310Offset189ByteGetter@@QAEEXZ;Open-BFME5 clean C++ RVA 86310 offset 189 byte getter
 ?d_00086360@@YAXXZ,,0x00086360,13,Code/GameEngine/Source/Common/Rva86360ValueCopy.cpp,matched,object-symbol=?copy@Rva86360ValueCopy@@QAEPAIPAI@Z;Open-BFME5 clean C++ RVA 86360 copy value into self
-?d_00086380@@YAXXZ,,0x00086380,6,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_00086380@@YAXXZ,,0x00086380,6,Code/GameEngine/Source/Common/Rva86380PointerPlus16.cpp,matched,object-symbol=?get_value@Rva86380PointerPlus16@@QAEPAEXZ;Open-BFME5 clean C++ RVA 86380 pointer plus 16 getter
 ?d_00086450@@YAXXZ,,0x00086450,6,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000872c0@@YAXXZ,,0x000872C0,46,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00087320@@YAXXZ,,0x00087320,16,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
