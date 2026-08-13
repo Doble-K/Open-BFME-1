@@ -105815,7 +105815,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00098210@@YAXXZ,,0x00098210,361,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498210
 ?d_000983e0@@YAXXZ,,0x000983E0,57,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_004983e0
 ?d_00098450@@YAXXZ,,0x00098450,116,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498450
-?d_00098bd0@@YAXXZ,,0x00098BD0,11,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498bd0
+?d_00098bd0@@YAXXZ,,0x00098BD0,11,Code/GameEngine/Source/Common/Rva98BD0SecondArgumentStore.cpp,matched,object-symbol=?store@Rva98BD0SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
 ?d_0006bbe0@@YAXXZ,,0x0006BBE0,94,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_0046bbe0
 ?d_00098c80@@YAXXZ,,0x00098C80,216,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_00498c80
 ?d_00098e70@@YAXXZ,,0x00098E70,32,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_00498e70
