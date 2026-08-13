@@ -764,3 +764,16 @@ float Offset156FloatGetterThunk::get() const
 {
     return value;
 }
+
+struct Offset164FloatGetterThunk
+{
+    unsigned char padding[0xa4];
+    float value;
+
+    float get() const;
+};
+
+float Offset164FloatGetterThunk::get() const
+{
+    return value;
+}
