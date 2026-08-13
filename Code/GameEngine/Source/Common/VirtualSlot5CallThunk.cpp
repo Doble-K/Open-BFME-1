@@ -1020,6 +1020,7 @@ struct OwnerPairInitializerThunk
     OwnerPairValue *initializeAlternate(OwnerPairValue *destination);
     OwnerPairValue *initializeThird(OwnerPairValue *destination);
     OwnerPairValue *initializeFourth(OwnerPairValue *destination);
+    OwnerPairValue *initializeFifth(OwnerPairValue *destination);
 };
 
 OwnerPairValue *OwnerPairInitializerThunk::initialize(OwnerPairValue *destination)
@@ -1044,6 +1045,13 @@ OwnerPairValue *OwnerPairInitializerThunk::initializeThird(OwnerPairValue *desti
 }
 
 OwnerPairValue *OwnerPairInitializerThunk::initializeFourth(OwnerPairValue *destination)
+{
+    destination->value = 0;
+    destination->owner = this;
+    return destination;
+}
+
+OwnerPairValue *OwnerPairInitializerThunk::initializeFifth(OwnerPairValue *destination)
 {
     destination->value = 0;
     destination->owner = this;
