@@ -510,3 +510,16 @@ void VirtualSlot25EmbeddedArgumentsThunk::invokeEmbedded()
 {
     invoke(reinterpret_cast<unsigned char *>(this) + 0x38, &second);
 }
+
+struct Offset24IntegerSetterThunk
+{
+    unsigned char padding[0x18];
+    int value;
+
+    void setValue(int newValue);
+};
+
+void Offset24IntegerSetterThunk::setValue(int newValue)
+{
+    value = newValue;
+}
