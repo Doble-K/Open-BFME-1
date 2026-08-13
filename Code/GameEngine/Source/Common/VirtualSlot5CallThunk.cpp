@@ -1479,6 +1479,11 @@ unsigned char *pointerPlusSixteenAlternate(unsigned char *value)
     return value + 16;
 }
 
+unsigned char *pointerPlusSixteenThird(unsigned char *value)
+{
+    return value + 16;
+}
+
 unsigned char *__stdcall pointerIdentityStdcall(unsigned char *value)
 {
     return value;
