@@ -146587,7 +146587,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00415b70@@YAXXZ,,0x00415B70,22,Code/GameEngine/Source/Common/PointerValueNotEqualThunk.cpp,matched,object-symbol=?pointerValuesDiffer@@YA_NPBK0@Z;Open-BFME5 clean C++ pointer value inequality
 ?d_00415b90@@YAXXZ,,0x00415B90,5,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
 ?d_00415ba0@@YAXXZ,,0x00415BA0,5,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
-?d_00416420@@YAXXZ,,0x00416420,10,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
+?d_00416420@@YAXXZ,,0x00416420,10,Code/GameEngine/Source/Common/SecondWordClearThunk.cpp,matched,object-symbol=?clearSecond@SecondWordClearThunk@@QAEPAU1@XZ;Open-BFME5 clean C++ second word clear
 ?d_004164e0@@YAXXZ,,0x004164E0,87,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
 ?d_00416b90@@YAXXZ,,0x00416B90,50,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
 ?d_004170e0@@YAXXZ,,0x004170E0,37,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
