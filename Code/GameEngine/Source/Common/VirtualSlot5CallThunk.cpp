@@ -252,6 +252,7 @@ struct EmbeddedVirtualSlot1CallFacet
     unsigned long value;
 
     void invokeIgnoringArgument(int unused);
+    void invokeIgnoringArgumentAlternate(int unused);
 };
 
 struct EmbeddedVirtualSlot1CallOwner : EmbeddedVirtualSlot1Thunk, EmbeddedVirtualSlot1CallFacet
@@ -259,6 +260,13 @@ struct EmbeddedVirtualSlot1CallOwner : EmbeddedVirtualSlot1Thunk, EmbeddedVirtua
 };
 
 void EmbeddedVirtualSlot1CallFacet::invokeIgnoringArgument(int)
+{
+    EmbeddedVirtualSlot1Thunk *owner = reinterpret_cast<EmbeddedVirtualSlot1Thunk *>(
+        reinterpret_cast<unsigned char *>(this) - sizeof(EmbeddedVirtualSlot1Thunk));
+    owner->invoke();
+}
+
+void EmbeddedVirtualSlot1CallFacet::invokeIgnoringArgumentAlternate(int)
 {
     EmbeddedVirtualSlot1Thunk *owner = reinterpret_cast<EmbeddedVirtualSlot1Thunk *>(
         reinterpret_cast<unsigned char *>(this) - sizeof(EmbeddedVirtualSlot1Thunk));
