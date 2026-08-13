@@ -148048,7 +148048,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004728b0@@YAXXZ,,0x004728B0,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_004728c0@@YAXXZ,,0x004728C0,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_004728d0@@YAXXZ,,0x004728D0,7,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
-?d_004728f0@@YAXXZ,,0x004728F0,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
+?d_004728f0@@YAXXZ,,0x004728F0,6,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?getPayloadTwentyEighth@PointerPayloadGetterThunk@@QBEPAEXZ;Open-BFME5 clean C++ twenty-eighth pointer payload getter
 ?d_00472900@@YAXXZ,,0x00472900,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00472910@@YAXXZ,,0x00472910,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00472920@@YAXXZ,,0x00472920,7,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
