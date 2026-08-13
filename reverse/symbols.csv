@@ -1,4 +1,7 @@
 name,address,notes
+?vectorLargeAllocate@_STL@@YAPAXI@Z,0x00881F30,Open-BFME5 Coord3D vector large allocator
+?vectorSmallAllocate@_STL@@YAPAXI@Z,0x0082E540,Open-BFME5 Coord3D vector small allocator
+?coord3DUninitializedCopy@_STL@@YAPAUCoord3D@@PBU2@0PAU2@ABU__false_type@1@@Z,0x0000C61C,Open-BFME5 Coord3D uninitialized-copy ILT
 ??4ScienceInfoBase@@QAEAAV0@ABV0@@Z,0x00048725,Open-BFME5 ScienceInfo overridable-base assignment
 ??4UnicodeString@@QAEAAV0@ABV0@@Z,0x00888530,Open-BFME5 ScienceInfo UnicodeString assignment body
 ??4ScienceVecStorage@@QAEAAV0@ABV0@@Z,0x0002A185,Open-BFME5 ScienceInfo prerequisite-vector assignment ILT
