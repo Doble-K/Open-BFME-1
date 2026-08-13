@@ -264,13 +264,10 @@ void PlayerList::newMap()
 
 // ------------------------------------------------------------------------
 // ?teamAboutToBeDeleted@PlayerList@@ present-unmatched
-void PlayerList::teamAboutToBeDeleted(Team* team)
-{
-	for( Int i = 0; i < MAX_PLAYER_COUNT; i++ )
-	{
-		m_players[i]->removeTeamRelationship(team);
-	}
-}
+// ?teamAboutToBeDeleted@PlayerList@@QAEXPAVTeam@@@Z — exact retail body in
+// PlayerListUpdate.cpp, with ::update and ::updateTeamStates; all three need
+// MAX_PLAYER_COUNT=32, which this TU cannot have without moving the stack
+// frames behind its already-matched EH funclets.
 
 //=============================================================================
 // ?updateTeamStates@PlayerList@@QAEXXZ — exact retail body in

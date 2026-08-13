@@ -106432,7 +106432,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000deec0@@YAXXZ,,0x000DEEC0,578,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004deec0
 ?d_000df240@@YAXXZ,,0x000DF240,25,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df240
 ?d_000df330@@YAXXZ,,0x000DF330,32,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df330
-?d_000df360@@YAXXZ,,0x000DF360,36,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df360
 ?d_000df3c0@@YAXXZ,,0x000DF3C0,97,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df3c0
 ?d_000df440@@YAXXZ,,0x000DF440,71,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df440
 ?d_000df4a0@@YAXXZ,,0x000DF4A0,89,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df4a0
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?Set_Render_Target@DX8Wrapper@@SAXPAUIDirect3DSwapChain8@@@Z,,0x00906FA0,64,Code/Libraries/Source/WWVegas/WW3D2/DX8Wrapper_Set_Render_Target_SwapChain_Thunk.cpp,matched,
 ?calcNextSpreadDelay@FireSpreadUpdate@@IAEIXZ,,0x00292840,40,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,Open-BFME5 retail file/line via #line 152; BFME Module has m_moduleData at +4 (BFME_MODULE_NO_MPO)
 ?calculateHeightAboveTerrain@Thing@@MBEMXZ,,0x00132470,29,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,Open-BFME5 TheTerrainLogic getGroundHeight at vtable slot 6 (0x18) not ZH slot 5; m_cachedPos at Thing+0x38
+?teamAboutToBeDeleted@PlayerList@@QAEXPAVTeam@@@Z,,0x000DF360,36,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 callee 0xD4200 = Player::removeTeamRelationship (m_teamRelations at +0x290)

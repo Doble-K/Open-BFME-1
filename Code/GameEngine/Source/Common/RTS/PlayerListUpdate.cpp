@@ -66,11 +66,14 @@ public:
 	virtual void loadPostProcess() = 0;
 };
 
+class Team;
+
 class Player
 {
 public:
 	void update();
 	void updateTeamStates();
+	bool removeTeamRelationship(const Team *that);
 };
 
 class PlayerList : public SubsystemInterface, public Snapshot
@@ -78,6 +81,7 @@ class PlayerList : public SubsystemInterface, public Snapshot
 public:
 	virtual void update();
 	void updateTeamStates();
+	void teamAboutToBeDeleted(Team *team);
 
 private:
 	Player *m_local;
@@ -111,4 +115,19 @@ void PlayerList::updateTeamStates(void)
 	{
 		m_players[i]->updateTeamStates();
 	}  // end for i
+}
+
+// ------------------------------------------------------------------------
+// ?teamAboutToBeDeleted@PlayerList@@QAEXPAVTeam@@@Z
+//
+// 0x000DF360, the same loop carrying one pointer argument through.  Its
+// callee 0x000D4200 reads m_teamRelations at Player+0x290, bails when the
+// map is empty, clears it for a null argument and otherwise erases the entry
+// found by that->getID() -- Player::removeTeamRelationship line for line.
+void PlayerList::teamAboutToBeDeleted(Team *team)
+{
+	for( int i = 0; i < 32; i++ )
+	{
+		m_players[i]->removeTeamRelationship(team);
+	}
 }
