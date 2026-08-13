@@ -147525,7 +147525,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045c150@@YAXXZ,,0x0045C150,7,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?get@Offset164FloatGetterThunk@@QBEMXZ;Open-BFME5 clean C++ offset one hundred sixty-four float getter
 ?d_0045c190@@YAXXZ,,0x0045C190,6,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c410@@YAXXZ,,0x0045C410,5,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
-?d_0045c420@@YAXXZ,,0x0045C420,16,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045c420@@YAXXZ,,0x0045C420,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0TwoIntegerClearThunk@@QAE@XZ;Open-BFME5 clean C++ two integer clear constructor
 ?d_0045ca80@@YAXXZ,,0x0045CA80,183,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045cb90@@YAXXZ,,0x0045CB90,11,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045cd70@@YAXXZ,,0x0045CD70,10,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high

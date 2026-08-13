@@ -777,3 +777,17 @@ float Offset164FloatGetterThunk::get() const
 {
     return value;
 }
+
+struct TwoIntegerClearThunk
+{
+    int first;
+    int second;
+
+    TwoIntegerClearThunk();
+};
+
+TwoIntegerClearThunk::TwoIntegerClearThunk() :
+    first(0),
+    second(0)
+{
+}
