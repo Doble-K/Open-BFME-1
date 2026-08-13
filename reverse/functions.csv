@@ -139384,7 +139384,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001a4620@@YAXXZ,,0x001A4620,7,Code/GameEngine/Source/Common/Rva1A4620ArgumentIdentityThunk.cpp,matched,object-symbol=?identity@Rva1A4620ArgumentIdentityThunk@@QAEHH@Z;Open-BFME5 clean C++ RVA 1A4620 argument identity
 ?d_001a59d0@@YAXXZ,,0x001A59D0,5,Code/GameEngine/Source/Common/Rva1A59D0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva1A59D0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 1A59D0 identity with one argument
 ?d_001a59e0@@YAXXZ,,0x001A59E0,5,Code/GameEngine/Source/Common/Rva1A59E0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva1A59E0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 1A59E0 identity with one argument
-?d_001a5ae0@@YAXXZ,,0x001A5AE0,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?rva_1a5ae0_pointer_offset@@YAPAEPAE@Z,,0x001A5AE0,8,Code/GameEngine/Source/Common/Rva1A5AE0PointerOffset.cpp,matched,hand-reconciled C++;Open-BFME5 clean C++ RVA 1A5AE0 pointer offset
 ?d_001a5af0@@YAXXZ,,0x001A5AF0,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a5b10@@YAXXZ,,0x001A5B10,25,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a5b70@@YAXXZ,,0x001A5B70,20,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
