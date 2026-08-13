@@ -147600,7 +147600,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045e390@@YAXXZ,,0x0045E390,8,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?pointerPlusSixteenAlternate@@YAPAEPAE@Z;Open-BFME5 clean C++ alternate pointer plus sixteen
 ?d_0045e3d0@@YAXXZ,,0x0045E3D0,19,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyFrom@FluentIntegerPairSetterThunk@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ fluent integer pair copy
 ?d_0045e3f0@@YAXXZ,,0x0045E3F0,19,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyFromAlternate@FluentIntegerPairSetterThunk@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ alternate fluent integer pair copy
-?d_0045e410@@YAXXZ,,0x0045E410,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045e410@@YAXXZ,,0x0045E410,7,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?identityFourth@IntegerArgumentIdentityThunk@@QBEHH@Z;Open-BFME5 clean C++ fourth integer argument identity
 ?d_0045e420@@YAXXZ,,0x0045E420,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e430@@YAXXZ,,0x0045E430,19,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e450@@YAXXZ,,0x0045E450,19,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
