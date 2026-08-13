@@ -69387,3 +69387,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?accepts@Rva2225E0Filter@@QAE_NPAVObject@@PAVPlayer@@@Z,0x0001DA34,Open-BFME5 filter predicate call pin
 ?rva220840Callback@@YAXXZ,0x006207F0,Open-BFME5 dispatch callback pin
 ?getBounds@Rva8BB1A0BoundsSource@@QAEXPAURva8BB1A0Bounds@@@Z,0x008AE2E0,Open-BFME5 bounds getter pin
+?setState@Rva505C80WindowVisibilityThunk@@QAEX_N@Z,0x000459B2,Open-BFME5 visibility state call pin

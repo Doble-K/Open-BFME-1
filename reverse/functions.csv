@@ -114408,7 +114408,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_005057c0@@YAXXZ,,0x005057C0,90,Code/gen_asm/d_004f49e0.asm,matched,gen-dump;ghidra=FUN_009057c0
 ?d_00505830@@YAXXZ,,0x00505830,573,Code/gen_asm/d_004f49e0.asm,matched,gen-dump;ghidra=FUN_00905830
 ?d_00505c00@@YAXXZ,,0x00505C00,92,Code/gen_asm/d_004f49e0.asm,matched,gen-dump;ghidra=FUN_00905c00
-?d_00505c80@@YAXXZ,,0x00505C80,79,Code/gen_asm/d_004f49e0.asm,matched,gen-dump;ghidra=FUN_00905c80
+?d_00505c80@@YAXXZ,,0x00505C80,79,Code/GameEngine/Source/Common/Rva505C80WindowVisibilityThunk.cpp,matched,object-symbol=?updateVisibility@Rva505C80WindowVisibilityThunk@@QAEXXZ;Open-BFME5 clean C++ window visibility
 ?d_00505d40@@YAXXZ,,0x00505D40,75,Code/gen_asm/d_004f49e0.asm,matched,gen-dump;ghidra=FUN_00905d40
 ?d_00506040@@YAXXZ,,0x00506040,126,Code/gen_asm/d_004f49e0.asm,matched,gen-dump;ghidra=FUN_00906040
 ?d_005063e0@@YAXXZ,,0x005063E0,34,Code/gen_asm/d_004f49e0.asm,matched,gen-dump;ghidra=FUN_009063e0
