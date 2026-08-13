@@ -147519,7 +147519,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045c020@@YAXXZ,,0x0045C020,33,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyTo@Offset140IntegerTripleCopyThunk@@QAEPAHPAH@Z;Open-BFME5 clean C++ offset one hundred forty integer triple copy
 ?d_0045c070@@YAXXZ,,0x0045C070,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c080@@YAXXZ,,0x0045C080,42,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
-?d_0045c0c0@@YAXXZ,,0x0045C0C0,11,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045c0c0@@YAXXZ,,0x0045C0C0,11,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?reset@Offset152IntegerResetThunk@@QAEXXZ;Open-BFME5 clean C++ offset one hundred fifty-two integer reset
 ?d_0045c100@@YAXXZ,,0x0045C100,23,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c140@@YAXXZ,,0x0045C140,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c150@@YAXXZ,,0x0045C150,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high

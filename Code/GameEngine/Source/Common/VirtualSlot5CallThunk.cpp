@@ -723,3 +723,16 @@ int *Offset140IntegerTripleCopyThunk::copyTo(int *destination)
     *reinterpret_cast<IntegerTripleCopyValue *>(destination) = value;
     return destination;
 }
+
+struct Offset152IntegerResetThunk
+{
+    unsigned char padding[0x98];
+    int value;
+
+    void reset();
+};
+
+void Offset152IntegerResetThunk::reset()
+{
+    value = 0;
+}
