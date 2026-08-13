@@ -157623,7 +157623,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00978da0@@YAXXZ,,0x00978DA0,7,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_00978fb0@@YAXXZ,,0x00978FB0,67,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_00979000@@YAXXZ,,0x00979000,86,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
-?d_009794b0@@YAXXZ,,0x009794B0,50,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
+?d_009794b0@@YAXXZ,,0x009794B0,50,Code/Libraries/Source/WWVegas/WW3D2/hlod.cpp,matched,object-symbol=?Save_Aggregate_Array@HLodDefClass@@IAE_NAAVChunkSaveClass@@@Z;Open-BFME5 clean C++ aggregate-array save
 ?d_0097b850@@YAXXZ,,0x0097B850,68,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_0097bbe0@@YAXXZ,,0x0097BBE0,8,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high
 ?d_0097c8e0@@YAXXZ,,0x0097C8E0,47,Code/gen_asm/d_00968910.asm,matched,gen-dump;bounds=high

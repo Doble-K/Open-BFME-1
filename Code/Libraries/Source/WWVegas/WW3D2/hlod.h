@@ -333,7 +333,7 @@ protected:
 	*/
 	WW3DErrorType				Save_Header (ChunkSaveClass &csave);
 	WW3DErrorType				Save_Lod_Array (ChunkSaveClass &csave);
-	WW3DErrorType				Save_Aggregate_Array(ChunkSaveClass & csave);
+	bool						Save_Aggregate_Array(ChunkSaveClass & csave);
 
 private:
 

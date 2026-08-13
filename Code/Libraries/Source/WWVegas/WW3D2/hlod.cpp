@@ -569,14 +569,14 @@ WW3DErrorType HLodDefClass::Save_Lod_Array(ChunkSaveClass &csave)
  *   10/25/2000 gth : Created.                                                                 *
  *=============================================================================================*/
 // ?HLodDefClass::Save_Aggregate_Array present-unmatched
-WW3DErrorType HLodDefClass::Save_Aggregate_Array(ChunkSaveClass & csave)
+bool HLodDefClass::Save_Aggregate_Array(ChunkSaveClass & csave)
 {
 	if (Aggregates.ModelCount > 0) {
 		csave.Begin_Chunk(W3D_CHUNK_HLOD_AGGREGATE_ARRAY);
 		Aggregates.Save_W3D(csave);
 		csave.End_Chunk();
 	}
-	return WW3D_ERROR_OK;
+	return true;
 }
 
 
