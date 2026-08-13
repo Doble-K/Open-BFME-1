@@ -138430,7 +138430,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014a920@@YAXXZ,,0x0014A920,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014a9a0@@YAXXZ,,0x0014A9A0,27,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014a9d0@@YAXXZ,,0x0014A9D0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014a9e0@@YAXXZ,,0x0014A9E0,13,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014aa00@@YAXXZ,,0x0014AA00,15,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014aa20@@YAXXZ,,0x0014AA20,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014aa30@@YAXXZ,,0x0014AA30,15,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0014a960@@YAXXZ,,0x0014A960,5,Code/GameEngine/Source/Common/Rva14A960IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva14A960IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 14A960 identity with one argument
 ?d_0014a970@@YAXXZ,,0x0014A970,5,Code/GameEngine/Source/Common/Rva14A970IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva14A970IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 14A970 identity with one argument
 ?d_0014a980@@YAXXZ,,0x0014A980,17,Code/GameEngine/Source/Common/Rva14A980CopyIfNotNull.cpp,matched,object-symbol=_Rva14A980CopyIfNotNull;Open-BFME5 clean C++ RVA 14A980 conditional 32-bit copy
+?d_0014a9e0@@YAXXZ,,0x0014A9E0,13,Code/GameEngine/Source/Common/Rva14A9E0ValueAssignment.cpp,matched,object-symbol=?assign@Rva14A9E0ValueAssignment@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ RVA 14A9E0 value assignment
