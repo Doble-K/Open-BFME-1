@@ -1,4 +1,5 @@
 name,address,notes
+??_7VirtualZeroDerivedThirdThunk@@6B@,0x010F6F74,Open-BFME5 third virtual zero derived vftable
 ??_7VirtualZeroDerivedAlternateThunk@@6B@,0x010F6F68,Open-BFME5 alternate virtual zero derived vftable
 ??_7VirtualZeroDerivedThunk@@6B@,0x010F6F5C,Open-BFME5 virtual zero derived vftable
 ??_7VirtualMinusOneConstructorThunk@@6B@,0x010F6F58,Open-BFME5 virtual minus one constructor vftable

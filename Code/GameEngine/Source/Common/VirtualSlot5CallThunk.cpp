@@ -1367,6 +1367,17 @@ VirtualZeroDerivedAlternateThunk::VirtualZeroDerivedAlternateThunk()
 {
 }
 
+struct VirtualZeroDerivedThirdThunk : ZeroValueBaseThunk
+{
+    virtual ~VirtualZeroDerivedThirdThunk();
+
+    VirtualZeroDerivedThirdThunk();
+};
+
+VirtualZeroDerivedThirdThunk::VirtualZeroDerivedThirdThunk()
+{
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
