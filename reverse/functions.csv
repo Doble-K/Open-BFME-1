@@ -138430,7 +138430,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014a920@@YAXXZ,,0x0014A920,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014a9a0@@YAXXZ,,0x0014A9A0,27,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014a9d0@@YAXXZ,,0x0014A9D0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014aa50@@YAXXZ,,0x0014AA50,20,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014aa70@@YAXXZ,,0x0014AA70,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014aab0@@YAXXZ,,0x0014AAB0,9,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014aac0@@YAXXZ,,0x0014AAC0,9,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0014aa00@@YAXXZ,,0x0014AA00,15,Code/GameEngine/Source/Common/Rva14AA00ListHeadExtraction.cpp,matched,object-symbol=?extract@Rva14AA00ListHead@@QAEPAPAURva14AA00ListNode@@PAPAU2@H@Z;Open-BFME5 clean C++ RVA 14AA00 list head extraction
 ?d_0014aa20@@YAXXZ,,0x0014AA20,6,Code/GameEngine/Source/Common/Rva14AA20OffsetView.cpp,matched,object-symbol=?payload@Rva14AA20OffsetView@@QAEPADXZ;Open-BFME5 clean C++ RVA 14AA20 payload offset accessor
 ?d_0014aa30@@YAXXZ,,0x0014AA30,15,Code/GameEngine/Source/Common/Rva14AA30ListHeadExtraction.cpp,matched,object-symbol=?extract@Rva14AA30ListHead@@QAEPAPAURva14AA30ListNode@@PAPAU2@H@Z;Open-BFME5 clean C++ RVA 14AA30 list head extraction
+?d_0014aa50@@YAXXZ,,0x0014AA50,20,Code/GameEngine/Source/Common/Rva14AA50VirtualDispatch.cpp,matched,object-symbol=_Rva14AA50VirtualDispatch;Open-BFME5 clean C++ RVA 14AA50 virtual slot 24 forwarding wrapper
