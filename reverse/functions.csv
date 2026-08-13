@@ -121986,7 +121986,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_008b5af0@@YAXXZ,,0x008B5AF0,1463,Code/gen_asm/d_008af650.asm,matched,gen-dump;ghidra=FUN_00cb5af0
 ?d_008b60b0@@YAXXZ,,0x008B60B0,273,Code/gen_asm/d_008af650.asm,matched,gen-dump;ghidra=FUN_00cb60b0
 ?d_008b61d0@@YAXXZ,,0x008B61D0,782,Code/gen_asm/d_008af650.asm,matched,gen-dump;ghidra=FUN_00cb61d0
-?d_008b64e0@@YAXXZ,,0x008B64E0,65,Code/gen_asm/d_008af650.asm,matched,gen-dump;ghidra=FUN_00cb64e0
+?d_008b64e0@@YAXXZ,,0x008B64E0,65,Code/GameEngine/Source/Common/LeapYearPredicateThunk.cpp,matched,object-symbol=?isLeapYear@@YG_NH@Z;Open-BFME5 clean C++ Gregorian leap-year predicate
 ?d_008b6580@@YAXXZ,,0x008B6580,66,Code/gen_asm/d_008af650.asm,matched,gen-dump;ghidra=FUN_00cb6580
 ?d_008b65e0@@YAXXZ,,0x008B65E0,207,Code/gen_asm/d_008af650.asm,matched,gen-dump;ghidra=FUN_00cb65e0
 ?d_008b66b0@@YAXXZ,,0x008B66B0,450,Code/gen_asm/d_008af650.asm,matched,gen-dump;ghidra=FUN_00cb66b0
