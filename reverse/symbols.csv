@@ -69432,3 +69432,5 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?_M_fill_insert@?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXPAUCoord3D@@IABU3@@Z,0x00006B45,Open-BFME5 ILT; sole callee of vector<Coord3D>::resize insert branch at 0x000B7C90
 ?Set_Render_Target@DX8Wrapper@@SAXPAUIDirect3DSurface8@@_N@Z,0x009052B0,packet 00906fa0 -- Set_Render_Target(IDirect3DSwapChain8*) calling Set_Render_Target(IDirect3DSurface8*,bool)
 ?removeTeamRelationship@Player@@QAE_NPBVTeam@@@Z,0x000D4200,body Player::removeTeamRelationship; m_teamRelations at Player+0x290 (next to m_playerTeamPrototypes at +0x288); empty-check then NULL->clear else find(that->getID())/erase; pinned by ?teamAboutToBeDeleted@PlayerList@@QAEXPAVTeam@@@Z at 0x000DF360 via ILT 0x00012F1C
+?calcBoundingStuff@GeometryInfo@@AAEXXZ,0x0087EE60,Open-BFME5 tail-call target of parseGeometryIsSmall at 0x0087F160
+??4DamageInfoInput@@QAEAAV0@ABV0@@Z,0x0000617C,Open-BFME5 ILT; called by ??4DamageInfo@@QAEAAV0@ABV0@@Z at 0x00150620 with this+4

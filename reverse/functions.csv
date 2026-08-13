@@ -107315,7 +107315,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00150100@@YAXXZ,,0x00150100,160,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00550100
 ?d_00150420@@YAXXZ,,0x00150420,45,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00550420
 ?d_00150510@@YAXXZ,,0x00150510,214,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00550510
-?d_00150620@@YAXXZ,,0x00150620,45,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00550620
 ?d_001506e0@@YAXXZ,,0x001506E0,15,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_005506e0
 ?d_00150700@@YAXXZ,,0x00150700,59,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00550700
 ?d_001507e0@@YAXXZ,,0x001507E0,11,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_005507e0
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?killGridDecals@DynamicShroudClearingRangeUpdate@@QAEXXZ,,0x0028E3A0,32,Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdate.cpp,matched,Open-BFME5 m_gridDecal[30] at +0x50 with stride 0x10 = sizeof(RadiusDecal)
 ?Shutdown@VertexMaterialClass@@SAXXZ,,0x00921290,40,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,Open-BFME5 REF_PTR_RELEASE nulls inside the null check in BFME
 ?isBuildTimeExpired@TeamInQueue@@QAE_NXZ,,0x00160FC0,38,Code/GameEngine/Source/GameLogic/AI/TeamInQueue_isBuildTimeExpired_Thunk.cpp,matched,Open-BFME5 m_team@+0x1c m_frameStarted@+0x24 Team::m_proto@+4 idleFrames@+0x1a4
+??4DamageInfo@@QAEAAV0@ABV0@@Z,,0x00150620,45,Code/GameEngine/Source/Common/DamageInfoAssignThunk.cpp,matched,Open-BFME5 in@+0x4 out@+0x50; this+0 untouched
