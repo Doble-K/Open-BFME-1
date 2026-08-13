@@ -140125,7 +140125,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001e3f90@@YAXXZ,,0x001E3F90,132,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001e4040@@YAXXZ,,0x001E4040,53,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001e4350@@YAXXZ,,0x001E4350,101,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
-?d_001e4c60@@YAXXZ,,0x001E4C60,12,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
+?d_001e4c60@@YAXXZ,,0x001E4C60,12,Code/GameEngine/Source/Common/Stride8TableLookupThunk.cpp,matched,object-symbol=?lookup@Stride8Table@@QBEPAUStride8TableEntry@@I@Z;Open-BFME5 clean C++ eight-byte table lookup
 ?d_001e4c70@@YAXXZ,,0x001E4C70,37,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001e4ca0@@YAXXZ,,0x001E4CA0,37,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001e4cd0@@YAXXZ,,0x001E4CD0,53,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
