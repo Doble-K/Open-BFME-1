@@ -309,3 +309,40 @@ the W slot (0x0135914C). The body byte-matches either way because relocation sit
 are masked, so no other check in the gate could ever have seen it. **When a symbol
 reports two bases four bytes apart in the IAT, suspect A-versus-W before you
 suspect a duplicate import.**
+
+## The EH-temporary transposition: one phenomenon, many near-miss bodies
+
+Several bodies in the pairing queue come back at **exactly the right size** with only
+four to six differing instructions, and every one of them is the same two
+instructions swapped:
+
+    target: 89 64 24 08   mov [esp+8], esp      ours: 8b cc         mov ecx, esp
+            8b cc         mov ecx, esp                89 64 24 08   mov [esp+8], esp
+
+Confirmed instances so far, all `--source`-paired against real C++ that is
+otherwise byte-identical:
+
+    435B  0x004D7740  PopupJoinGameSystem     (2 sites, 4 diffs)
+    446B  0x004C8910  GameInfoWindowInit      (2 sites, 4 diffs)
+    737B  0x004DEB70  PopupReplaySystem       (3 sites, 6 diffs)
+
+The construct is always a `UnicodeString` passed **by value** -
+`GadgetStaticTextSetText(GameWindow *, UnicodeString)` - so MSVC copy-constructs the
+argument on the stack, sets `ecx` to its address, and records that address in a
+frame slot so the unwind funclet can destroy it if the call throws. Retail records
+first and loads `ecx` second; we do it the other way round. Both orderings are
+correct, the byte count is identical, and the rest of the body matches exactly.
+
+Levers already tried, none of which move it:
+
+- `UnicodeString.TheEmptyString` versus `UnicodeString::TheEmptyString`. Note that
+  MSVC 7.1 accepts the dot form on a type name and generates identical code, so
+  that spelling in the tree is not a drift even though it looks like one.
+- The callee signature: ZH declares the parameter by value and so do we, so this is
+  not a by-value-versus-const-reference mismatch.
+
+Do not spend a session picking at one of these bodies. They are worth attacking as
+a family, and the way in is a TU whose flags differ, not a source rewrite - a
+matched body containing the *same* construct would prove which flag flips the
+order. Until then, treat "right size, four diffs, `89 64 24` against `8b cc`" as a
+known-unfixed classification and move to the next candidate.
