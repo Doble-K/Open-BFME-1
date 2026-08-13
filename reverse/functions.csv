@@ -123133,7 +123133,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00981030@@YAXXZ,,0x00981030,72,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d81030
 ?d_00981120@@YAXXZ,,0x00981120,45,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d81120
 ?d_009812e0@@YAXXZ,,0x009812E0,45,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d812e0
-?d_009815e0@@YAXXZ,,0x009815E0,105,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d815e0
 ?d_009817d0@@YAXXZ,,0x009817D0,1038,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d817d0
 ?d_00981d80@@YAXXZ,,0x00981D80,73,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d81d80
 ?d_009823f0@@YAXXZ,,0x009823F0,74,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d823f0
@@ -139840,7 +139839,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001dd890@@YAXXZ,,0x001DD890,31,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001dd8c0@@YAXXZ,,0x001DD8C0,28,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001dda40@@YAXXZ,,0x001DDA40,166,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
-?d_001ddb10@@YAXXZ,,0x001DDB10,96,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001ddb90@@YAXXZ,,0x001DDB90,55,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001ddbe0@@YAXXZ,,0x001DDBE0,62,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001ddc70@@YAXXZ,,0x001DDC70,20,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
@@ -140502,7 +140500,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0020e290@@YAXXZ,,0x0020E290,29,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_0020e360@@YAXXZ,,0x0020E360,24,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_0020e490@@YAXXZ,,0x0020E490,9,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
-?d_0020e4a0@@YAXXZ,,0x0020E4A0,67,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_0020e530@@YAXXZ,,0x0020E530,6,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_0020e820@@YAXXZ,,0x0020E820,35,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_0020e860@@YAXXZ,,0x0020E860,7,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
@@ -157944,3 +157941,7 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?onExit@AIMoveAndEvacuateState@@UAEXW4StateExitType@@@Z,,0x0017A340,38,Code/GameEngine/Source/GameLogic/AI/AIStates.cpp,matched,Open-BFME5 State m_machine at +0x1c and the machine lock flag at +0x40
 ?Delete_Point@StreakLineClass@@QAEXI@Z,,0x0091A500,104,Code/GameEngine/Source/Common/StreakLineClass_Delete_Point_Thunk.cpp,matched,
 ?updateFunc@@YAXPAVWindowLayout@@PAX@Z,,0x004C32E0,77,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,
+?Render_Delayed_Procedural_Material_Passes@DX8RigidFVFCategoryContainer@@UAEXXZ,,0x00946910,156,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,
+??0DamageModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x0020E4A0,67,Code/GameEngine/Source/GameLogic/Object/Damage/DamageModuleConstructor.cpp,matched,DamageModule ctor; 3-base minimal model (ObjectModule+BehaviorModuleInterface+DamageModuleInterface) plus hidden +0x14 float=1.0 BFME member; sibling DieModule proven to lack this store via CreateObjectDieConstructor.cpp
+??0AggregateDefClass@@QAE@XZ,,0x009815E0,105,Code/Libraries/Source/WWVegas/WW3D2/agg_def.cpp,matched,default ctor; BFME zero-inits m_Version too (ZH header omits it); m_SubobjectList vtable+fields inlined from DynamicVectorClass ctor
+?allow@PartitionFilterRepulsor@@MAE_NPAVObject@@@Z,,0x001DDB10,96,Code/GameEngine/Source/Common/PartitionFilterRepulsor_allow_Thunk.cpp,matched,

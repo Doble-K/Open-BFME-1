@@ -68,7 +68,8 @@ AggregateLoaderClass	_AggregateLoader;
 //	AggregateDefClass
 //
 AggregateDefClass::AggregateDefClass (void)
-	: m_pName (NULL)
+	: m_Version (0),
+	  m_pName (NULL)
 {
 	// Set our member data to default settings
 	::memset (&m_Info, 0, sizeof (m_Info));

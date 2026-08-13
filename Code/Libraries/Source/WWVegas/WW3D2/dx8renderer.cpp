@@ -348,22 +348,24 @@ void DX8RigidFVFCategoryContainer::Add_Delayed_Visible_Material_Pass(MaterialPas
 	AnyDelayedPassesToRender=true;
 }
 
-// ?Render_Delayed_Procedural_Material_Passes@DX8RigidFVFCategoryContainer@@UAEXXZ present-unmatched
 void DX8RigidFVFCategoryContainer::Render_Delayed_Procedural_Material_Passes(void)
 {
 	if (!Any_Delayed_Passes_To_Render()) return;
 	AnyDelayedPassesToRender=false;
 
 	DX8Wrapper::Set_Vertex_Buffer(vertex_buffer);
-	DX8Wrapper::Set_Index_Buffer(index_buffer,0);
+	// This build's index_buffer member (+0xD0) is not what this function reads;
+	// the refcounted buffer at +0xD8 (unknown_D8, per the DX8FVFCategoryContainer
+	// layout-drift comment in dx8renderer.h) is the one used here, matching retail.
+	DX8Wrapper::Set_Index_Buffer(unknown_D8,0);
 
 	SNAPSHOT_SAY(("DX8RigidFVFCategoryContainer::Render_Delayed_Procedural_Material_Passes()\n"));
 
 	// additional passes
 	MatPassTaskClass * mpr = delayed_matpass_head;
 	while (mpr != NULL) {
-	
-		mpr->Peek_Mesh()->Render_Material_Pass(mpr->Peek_Material_Pass(),index_buffer);
+
+		mpr->Peek_Mesh()->Render_Material_Pass(mpr->Peek_Material_Pass(),unknown_D8);
 		MatPassTaskClass * next_mpr = mpr->Get_Next_Visible();
 		
 		delete mpr;
