@@ -11,12 +11,6 @@ public ?d_001adb10@@YAXXZ
     db 04h, 00h
 ?d_001adb10@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x001ADD10 size 5
-public ?d_001add10@@YAXXZ
-?d_001add10@@YAXXZ PROC
-    db 32h, 0C0h, 0C2h, 08h, 00h
-?d_001add10@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x001ADD40 size 6
 public ?d_001add40@@YAXXZ
 ?d_001add40@@YAXXZ PROC
