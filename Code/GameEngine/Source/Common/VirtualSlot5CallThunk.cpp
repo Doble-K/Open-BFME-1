@@ -264,3 +264,23 @@ void EmbeddedVirtualSlot1CallFacet::invokeIgnoringArgument(int)
         reinterpret_cast<unsigned char *>(this) - sizeof(EmbeddedVirtualSlot1Thunk));
     owner->invoke();
 }
+
+struct EmbeddedVirtualSlot2Thunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void invoke();
+};
+
+struct EmbeddedVirtualSlot2CallOwner
+{
+    unsigned long padding[5];
+    EmbeddedVirtualSlot2Thunk embedded;
+
+    void invokeIgnoringArgument(int unused);
+};
+
+void EmbeddedVirtualSlot2CallOwner::invokeIgnoringArgument(int)
+{
+    embedded.invoke();
+}

@@ -140385,7 +140385,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001fe050@@YAXXZ,,0x001FE050,216,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001fe360@@YAXXZ,,0x001FE360,17,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001fe470@@YAXXZ,,0x001FE470,6,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
-?d_001fe4d0@@YAXXZ,,0x001FE4D0,12,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
+?d_001fe4d0@@YAXXZ,,0x001FE4D0,12,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?invokeIgnoringArgument@EmbeddedVirtualSlot2CallOwner@@QAEXH@Z;Open-BFME5 clean C++ embedded virtual slot 2 call
 ?d_001fe500@@YAXXZ,,0x001FE500,8,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001fe510@@YAXXZ,,0x001FE510,104,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001fe630@@YAXXZ,,0x001FE630,47,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
