@@ -116967,7 +116967,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00642ae0@@YAXXZ,,0x00642AE0,28,Code/gen_asm/d_00630d60.asm,matched,gen-dump;ghidra=FUN_00a42ae0
 ?d_00642c80@@YAXXZ,,0x00642C80,14,Code/gen_asm/d_00630d60.asm,matched,gen-dump;ghidra=FUN_00a42c80
 ?d_00643bc0@@YAXXZ,,0x00643BC0,64,Code/gen_asm/d_00630d60.asm,matched,gen-dump;ghidra=FUN_00a43bc0
-?d_00643c10@@YAXXZ,,0x00643C10,64,Code/gen_asm/d_00630d60.asm,matched,gen-dump;ghidra=FUN_00a43c10
+?d_00643c10@@YAXXZ,,0x00643C10,64,Code/GameEngine/Source/Common/DualIndexedDispatchThunk.cpp,matched,object-symbol=?dispatch@DualIndexedDispatchThunk@@QAEXPAX@Z;Open-BFME5 clean C++ dual indexed dispatch
 ?d_006440a0@@YAXXZ,,0x006440A0,83,Code/gen_asm/d_00630d60.asm,matched,gen-dump;ghidra=FUN_00a440a0
 ?d_00644950@@YAXXZ,,0x00644950,68,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a44950
 ?d_006449b0@@YAXXZ,,0x006449B0,90,Code/gen_asm/d_00644950.asm,matched,gen-dump;ghidra=FUN_00a449b0

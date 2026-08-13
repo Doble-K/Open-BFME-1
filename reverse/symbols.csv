@@ -69371,3 +69371,6 @@ _SiegeDeploySpecialPower_vtbl24,0x00CB73F0,Open-BFME5 SiegeDeploySpecialPower in
 ?get@ObjectDefectionHelperPoolShim@@SAPAVMemoryPool@@XZ,0x006731A0,Open-BFME5 ObjectDefectionHelper pool implementation target
 ?bfme_preloadAssets_impl@ControlBarSchemeManager@@QAEXXZ,0x00027566,Open-BFME5 ControlBar scheme preload tail-call target
 ?produceStoredValue@@YGHH@Z,0x0000C7FC,Open-BFME5 produced value implementation thunk
+?DualIndexedDispatchFirst@@3HA,0x00EB9688,Open-BFME5 dual indexed dispatch first global
+?DualIndexedDispatchSecond@@3HA,0x00EB96A8,Open-BFME5 dual indexed dispatch second global
+?dispatchIndexedValue@@YAXPAXH0HPAH1@Z,0x00858070,Open-BFME5 dual indexed dispatch implementation target
