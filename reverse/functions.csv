@@ -146583,7 +146583,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00415680@@YAXXZ,,0x00415680,55,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
 ?d_00415a10@@YAXXZ,,0x00415A10,53,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
 ?d_00415b20@@YAXXZ,,0x00415B20,45,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
-?d_00415b60@@YAXXZ,,0x00415B60,11,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
+?d_00415b60@@YAXXZ,,0x00415B60,11,Code/GameEngine/Source/Common/SecondArgumentStoreThunk.cpp,matched,object-symbol=?setFromSecondArgument@SecondArgumentStoreThunk@@QAEPAU1@KK@Z;Open-BFME5 clean C++ second argument store
 ?d_00415b70@@YAXXZ,,0x00415B70,22,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
 ?d_00415b90@@YAXXZ,,0x00415B90,5,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
 ?d_00415ba0@@YAXXZ,,0x00415BA0,5,Code/gen_asm/d_003d5070.asm,matched,gen-dump;bounds=high
