@@ -2291,6 +2291,7 @@ name,address,notes
 ??1CritterEmitterUpdateModuleDataUnknownB4@@QAE@XZ,0x00038055,CritterEmitterUpdateModuleData 0xB4 member destructor call target
 ??1CullSystemClass@@UAE@XZ,0x008E2150
 ??1CustomMatchPreferences@@UAE@XZ,0x00041F6A
+??1DX8Caps@@QAE@XZ,0x00903E00,DX8Wrapper::Compute_Caps retail destructor
 ??1DX8FVFCategoryContainer@@UAE@XZ,0x00946B20,REL32 pin for scalar deleting dtor ??_GDX8FVFCategoryContainer
 ??1DebugCmdInterfaceDebug@@UAE@XZ,0x00889620,pinharvest x1 (body)
 ??1DebugCmdInterfaceDebug@@UAE@XZ,0x0088A6E0,pinharvest x1 (body)

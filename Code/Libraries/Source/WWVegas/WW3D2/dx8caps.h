@@ -316,6 +316,9 @@ private:
 	IDirect3D8* Direct3D; // warning XDK name conflict KJM
 	StringClass CapsLog;
 	StringClass CompactLog;
+	// BFME retail allocates 0x2ac bytes for DX8Caps. The recovered public
+	// fields account for 0x154 bytes; preserve the unrecovered trailing state.
+	char _bfme_caps_tail[0x158];
 };
 
 

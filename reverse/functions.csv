@@ -122462,7 +122462,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00906df0@@YAXXZ,,0x00906DF0,33,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d06df0
 ?d_00906e20@@YAXXZ,,0x00906E20,29,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d06e20
 ?d_00906e40@@YAXXZ,,0x00906E40,33,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d06e40
-?d_00906e70@@YAXXZ,,0x00906E70,152,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d06e70
+?d_00906e70@@YAXXZ,,0x00906E70,152,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,object-symbol=?Compute_Caps@DX8Wrapper@@KAXW4WW3DFormat@@@Z;Open-BFME5 clean C++ capability reconstruction
 ?d_00906f10@@YAXXZ,,0x00906F10,132,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d06f10
 ?d_009077b0@@YAXXZ,,0x009077B0,225,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d077b0
 ?d_00907960@@YAXXZ,,0x00907960,401,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d07960
