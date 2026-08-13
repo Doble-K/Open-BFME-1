@@ -1283,9 +1283,15 @@ struct PointerPresenceThunk
     void *value;
 
     bool hasValue() const;
+    bool hasValueAlternate() const;
 };
 
 bool PointerPresenceThunk::hasValue() const
+{
+    return value != 0;
+}
+
+bool PointerPresenceThunk::hasValueAlternate() const
 {
     return value != 0;
 }
