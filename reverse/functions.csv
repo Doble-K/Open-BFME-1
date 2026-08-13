@@ -147515,7 +147515,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045bf60@@YAXXZ,,0x0045BF60,7,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?get@Offset132BooleanGetterThunk@@QBE_NXZ;Open-BFME5 clean C++ offset one hundred thirty-two boolean getter
 ?d_0045bf80@@YAXXZ,,0x0045BF80,7,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?get@Offset136IntegerGetterThunk@@QBEHXZ;Open-BFME5 clean C++ offset one hundred thirty-six integer getter
 ?d_0045bfb0@@YAXXZ,,0x0045BFB0,23,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setValues@Offset140IntegerPairSetterThunk@@QAEXHH@Z;Open-BFME5 clean C++ offset one hundred forty integer pair setter
-?d_0045bff0@@YAXXZ,,0x0045BFF0,30,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045bff0@@YAXXZ,,0x0045BFF0,30,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?isValid@Offset140IntegerPairValidityThunk@@QBE_NXZ;Open-BFME5 clean C++ offset one hundred forty integer pair validity predicate
 ?d_0045c020@@YAXXZ,,0x0045C020,33,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c070@@YAXXZ,,0x0045C070,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c080@@YAXXZ,,0x0045C080,42,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high

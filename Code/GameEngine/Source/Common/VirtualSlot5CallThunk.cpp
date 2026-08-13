@@ -688,3 +688,17 @@ void Offset140IntegerPairSetterThunk::setValues(int firstValue, int secondValue)
     first = firstValue;
     second = secondValue;
 }
+
+struct Offset140IntegerPairValidityThunk
+{
+    unsigned char padding[0x8c];
+    int first;
+    int second;
+
+    bool isValid() const;
+};
+
+bool Offset140IntegerPairValidityThunk::isValid() const
+{
+    return first != -1 && second != -1;
+}
