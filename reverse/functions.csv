@@ -135373,7 +135373,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0006b820@@YAXXZ,,0x0006B820,5,Code/GameEngine/Source/Common/FourthCdeclPointerIdentityThunk.cpp,matched,object-symbol=?fourth_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ fourth cdecl pointer identity
 ?d_0006b8e0@@YAXXZ,,0x0006B8E0,5,Code/GameEngine/Source/Common/OctonaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@OctonaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ octonary identity with one argument
 ?d_0006b8f0@@YAXXZ,,0x0006B8F0,5,Code/GameEngine/Source/Common/NonaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@NonaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ nonary identity with one argument
-?d_0006b900@@YAXXZ,,0x0006B900,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0006b900@@YAXXZ,,0x0006B900,5,Code/GameEngine/Source/Common/DenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@DenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ denary identity with one argument
 ?d_0006bae0@@YAXXZ,,0x0006BAE0,190,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006bbd0@@YAXXZ,,0x0006BBD0,8,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006c170@@YAXXZ,,0x0006C170,11,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
