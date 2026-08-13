@@ -135894,7 +135894,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000929e0@@YAXXZ,,0x000929E0,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000929f0@@YAXXZ,,0x000929F0,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00092a00@@YAXXZ,,0x00092A00,5,Code/GameEngine/Source/Common/Rva92A00IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva92A00IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 92A00 identity with one argument
-?d_00092a10@@YAXXZ,,0x00092A10,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_00092a10@@YAXXZ,,0x00092A10,8,Code/GameEngine/Source/Common/Rva92A10PointerOffsetThunk.cpp,matched,object-symbol=?rva_92a10_pointer_offset@@YAPADPAD@Z;Open-BFME5 clean C++ RVA 92A10 pointer offset
 ?d_00092a20@@YAXXZ,,0x00092A20,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00092a40@@YAXXZ,,0x00092A40,5,Code/GameEngine/Source/Common/Rva92A40IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva92A40IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 92A40 identity with one argument
 ?d_00092a50@@YAXXZ,,0x00092A50,5,Code/GameEngine/Source/Common/Rva92A50IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva92A50IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 92A50 identity with one argument
