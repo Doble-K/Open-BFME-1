@@ -123041,7 +123041,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0096df10@@YAXXZ,,0x0096DF10,62,Code/gen_asm/d_00960a30.asm,matched,gen-dump;ghidra=FUN_00d6df10
 ?d_0096df80@@YAXXZ,,0x0096DF80,45,Code/gen_asm/d_00960a30.asm,matched,gen-dump;ghidra=FUN_00d6df80
 ?d_0096e280@@YAXXZ,,0x0096E280,72,Code/gen_asm/d_00960a30.asm,matched,gen-dump;ghidra=FUN_00d6e280
-?d_0096e330@@YAXXZ,,0x0096E330,170,Code/gen_asm/d_00960a30.asm,matched,gen-dump;ghidra=FUN_00d6e330
+?d_0096e330@@YAXXZ,,0x0096E330,170,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,object-symbol=?read_texcoords@MeshModelClass@@IAE_NAAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z;Open-BFME5 clean C++ texture-coordinate loading
 ?d_0096e3e0@@YAXXZ,,0x0096E3E0,674,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d6e3e0
 ?d_0096e750@@YAXXZ,,0x0096E750,106,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d6e750
 ?d_0096e7c0@@YAXXZ,,0x0096E7C0,316,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d6e7c0

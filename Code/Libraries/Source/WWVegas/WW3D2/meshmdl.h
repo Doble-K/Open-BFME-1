@@ -284,7 +284,7 @@ protected:
 
 	// loading
 	WW3DErrorType read_chunks(ChunkLoadClass & cload,MeshLoadContextClass * context);
-	WW3DErrorType read_texcoords(ChunkLoadClass & cload,MeshLoadContextClass * context);
+	bool read_texcoords(ChunkLoadClass & cload,MeshLoadContextClass * context);
 	WW3DErrorType read_materials(ChunkLoadClass & cload,MeshLoadContextClass * context);
 	WW3DErrorType read_v2_materials(ChunkLoadClass & cload,MeshLoadContextClass * context);
 	WW3DErrorType read_v3_materials(ChunkLoadClass & cload,MeshLoadContextClass * context);
@@ -354,4 +354,3 @@ protected:
 
 
 #endif
-

@@ -473,7 +473,7 @@ WW3DErrorType MeshModelClass::read_chunks(ChunkLoadClass & cload,MeshLoadContext
 					break;
 
 			case W3D_CHUNK_TEXCOORDS:
-					error = read_texcoords(cload,context);
+					error = static_cast<WW3DErrorType>(read_texcoords(cload,context));
 					break;
 
 			case O_W3D_CHUNK_MATERIALS:
@@ -589,7 +589,7 @@ WW3DErrorType MeshModelClass::read_chunks(ChunkLoadClass & cload,MeshLoadContext
  *   2/16/99    GTH : Moved into MeshModel                                                     *
  *=============================================================================================*/
 // ?read_texcoords@MeshModelClass@@IAE?AW4WW3DErrorType@@AAVChunkLoadClass@@PAVMeshLoadContextClass@@@Z present-unmatched
-WW3DErrorType MeshModelClass::read_texcoords(ChunkLoadClass & cload,MeshLoadContextClass * context)
+bool MeshModelClass::read_texcoords(ChunkLoadClass & cload,MeshLoadContextClass * context)
 {
 	W3dTexCoordStruct texcoord;
 	Vector2 * uvarray = 0;
@@ -603,9 +603,9 @@ WW3DErrorType MeshModelClass::read_texcoords(ChunkLoadClass & cload,MeshLoadCont
 		** NOTE: this is an obsolete function.  Texture coordinates are now
 		** loaded in the pass chunks
 		*/
-		for (int i=0; i<VertexCount; i++) {
+		for (int i=0; i<*reinterpret_cast<int *>(reinterpret_cast<char *>(this) + 0x28); i++) {
 			if (cload.Read(&(texcoord),sizeof(W3dTexCoordStruct)) != sizeof(W3dTexCoordStruct)) {
-				return WW3D_ERROR_LOAD_FAILED;
+				return false;
 			}
 			uvarray[i].Set(texcoord.U,1.0f - texcoord.V);
 		}
@@ -613,7 +613,7 @@ WW3DErrorType MeshModelClass::read_texcoords(ChunkLoadClass & cload,MeshLoadCont
 		DefMatDesc->Install_UV_Array(context->CurPass,context->CurTexStage,uvarray,elementcount);
 	}
 
-	return WW3D_ERROR_OK;	
+	return true;
 }
 
 /***********************************************************************************************
