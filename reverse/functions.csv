@@ -144384,7 +144384,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0036cb30@@YAXXZ,,0x0036CB30,13,Code/GameEngine/Source/Common/TripleZeroCtorThunk.cpp,matched,object-symbol=??0TripleZeroCtorThunk@@QAE@XZ;Open-BFME5 clean C++ three-word zero constructor
 ?d_0036cb60@@YAXXZ,,0x0036CB60,104,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036cbf0@@YAXXZ,,0x0036CBF0,9,Code/GameEngine/Source/Common/SingleZeroCtorThunk.cpp,matched,object-symbol=??0SingleZeroCtorThunk@@QAE@XZ;Open-BFME5 clean C++ one-word zero constructor
-?d_0036cc10@@YAXXZ,,0x0036CC10,16,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
+?d_0036cc10@@YAXXZ,,0x0036CC10,16,Code/GameEngine/Source/Common/DoubleZeroCtorThunk.cpp,matched,object-symbol=??0DoubleZeroCtorThunk@@QAE@XZ;Open-BFME5 clean C++ two-word zero constructor
 ?d_0036cd80@@YAXXZ,,0x0036CD80,27,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036cdb0@@YAXXZ,,0x0036CDB0,17,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036cf40@@YAXXZ,,0x0036CF40,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
