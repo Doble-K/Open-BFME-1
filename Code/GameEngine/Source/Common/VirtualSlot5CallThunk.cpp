@@ -812,3 +812,16 @@ void VirtualSlot9NoArgumentCallThunk::call()
 {
     invoke();
 }
+
+struct OffsetZeroIntegerSetterReturningThisThunk
+{
+    int value;
+
+    OffsetZeroIntegerSetterReturningThisThunk *setValue(int newValue);
+};
+
+OffsetZeroIntegerSetterReturningThisThunk *OffsetZeroIntegerSetterReturningThisThunk::setValue(int newValue)
+{
+    value = newValue;
+    return this;
+}
