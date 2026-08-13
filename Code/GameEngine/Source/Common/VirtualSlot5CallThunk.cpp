@@ -1006,6 +1006,26 @@ int *DirectIntegerCopyThunk::copyTo(int *destination) const
     return destination;
 }
 
+struct OwnerPairInitializerThunk;
+
+struct OwnerPairValue
+{
+    int value;
+    OwnerPairInitializerThunk *owner;
+};
+
+struct OwnerPairInitializerThunk
+{
+    OwnerPairValue *initialize(OwnerPairValue *destination);
+};
+
+OwnerPairValue *OwnerPairInitializerThunk::initialize(OwnerPairValue *destination)
+{
+    destination->value = 0;
+    destination->owner = this;
+    return destination;
+}
+
 struct SelfLinkedResetValue
 {
     bool active;

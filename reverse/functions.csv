@@ -147663,7 +147663,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045f1b0@@YAXXZ,,0x0045F1B0,57,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_0045f250@@YAXXZ,,0x0045F250,14,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_0045f270@@YAXXZ,,0x0045F270,11,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
-?d_0045f3c0@@YAXXZ,,0x0045F3C0,16,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
+?d_0045f3c0@@YAXXZ,,0x0045F3C0,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?initialize@OwnerPairInitializerThunk@@QAEPAUOwnerPairValue@@PAU2@@Z;Open-BFME5 clean C++ owner pair output initializer
 ?d_0045f3e0@@YAXXZ,,0x0045F3E0,9,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0SingleIntegerZeroConstructorThirdThunk@@QAE@XZ;Open-BFME5 clean C++ third single integer zero constructor
 ?d_0045f3f0@@YAXXZ,,0x0045F3F0,16,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_0045f480@@YAXXZ,,0x0045F480,16,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
