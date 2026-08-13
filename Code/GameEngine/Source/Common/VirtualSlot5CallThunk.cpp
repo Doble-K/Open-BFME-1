@@ -1216,6 +1216,11 @@ unsigned char *pointerPlusTwelve(unsigned char *value)
     return value + 12;
 }
 
+unsigned char *pointerPlusTwelveAlternate(unsigned char *value)
+{
+    return value + 12;
+}
+
 unsigned char *pointerPlusSixteen(unsigned char *value)
 {
     return value + 16;
