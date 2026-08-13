@@ -1,4 +1,5 @@
 name,address,notes
+??_7VirtualMinusOneConstructorThunk@@6B@,0x010F6F58,Open-BFME5 virtual minus one constructor vftable
 ??$_Construct@UParkingPlaceInfo@ParkingPlaceBehavior@@U12@@_STL@@YAXPAUParkingPlaceInfo@ParkingPlaceBehavior@@ABU12@@Z,0x0003E4BE,Open-BFME5 ParkingPlaceInfo construction ILT
 ?vectorLargeAllocate@_STL@@YAPAXI@Z,0x00881F30,Open-BFME5 Coord3D vector large allocator
 ?vectorSmallAllocate@_STL@@YAPAXI@Z,0x0082E540,Open-BFME5 Coord3D vector small allocator

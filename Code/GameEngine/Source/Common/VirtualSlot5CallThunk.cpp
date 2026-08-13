@@ -970,3 +970,17 @@ LinkedNodePopValue **LinkedNodePopThunk::popTo(LinkedNodePopValue **destination,
     *destination = oldHead;
     return destination;
 }
+
+struct VirtualMinusOneConstructorThunk
+{
+    virtual ~VirtualMinusOneConstructorThunk();
+
+    int value;
+
+    VirtualMinusOneConstructorThunk();
+};
+
+VirtualMinusOneConstructorThunk::VirtualMinusOneConstructorThunk() :
+    value(-1)
+{
+}
