@@ -135003,7 +135003,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0005b790@@YAXXZ,,0x0005B790,6,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005b880@@YAXXZ,,0x0005B880,6,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005b890@@YAXXZ,,0x0005B890,60,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0005ba30@@YAXXZ,,0x0005BA30,11,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0005ba30@@YAXXZ,,0x0005BA30,11,Code/GameEngine/Source/Common/FirstWordSetterThunk.cpp,matched,object-symbol=?set@FirstWordSetterThunk@@QAEPAU1@K@Z;Open-BFME5 clean C++ first word setter
 ?d_0005bac0@@YAXXZ,,0x0005BAC0,32,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005baf0@@YAXXZ,,0x0005BAF0,11,Code/GameEngine/Source/Common/PackedByteExtractThunk.cpp,matched,object-symbol=?extractSecondByte@@YAKK@Z;Open-BFME5 clean C++ packed second byte extraction
 ?d_0005bb00@@YAXXZ,,0x0005BB00,11,Code/GameEngine/Source/Common/PackedByteExtractThunk.cpp,matched,object-symbol=?extractBit16@@YAKK@Z;Open-BFME5 clean C++ packed bit 16 extraction
