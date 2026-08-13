@@ -93,9 +93,10 @@ static void parseFX( INI* ini, void *instance, void * /*store*/, const void* /*u
 	for (const char* token = ini->getNextToken(); token != NULL; token = ini->getNextTokenOrNull())
 	{
 		const FXList *fxl = TheFXListStore->findFXList((token));	// could be null! this is OK!
-		self->m_fx[sdphase].push_back(fxl);
+		FXListVec * const bfmeFx = (FXListVec *)((char *)self + 0x58);
+		bfmeFx[sdphase].push_back(fxl);
 		if (fxl)
-			self->m_maskOfLoadedEffects |= SlowDeathBehaviorModuleData::HAS_FX;
+			*((Byte *)self + 0x1A4) |= SlowDeathBehaviorModuleData::HAS_FX;
 	}
 }
 

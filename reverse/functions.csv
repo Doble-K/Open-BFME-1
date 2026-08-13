@@ -140459,7 +140459,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_002085e0@@YAXXZ,,0x002085E0,13,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_00209130@@YAXXZ,,0x00209130,165,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_00209200@@YAXXZ,,0x00209200,50,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
-?d_00209710@@YAXXZ,,0x00209710,155,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
+?d_00209710@@YAXXZ,,0x00209710,155,Code/GameEngine/Source/GameLogic/Object/Behavior/SlowDeathBehavior.cpp,matched,object-symbol=?parseFX@@YAXPAVINI@@PAX1PBX@Z;Open-BFME5 clean C++ slow-death FX parser
 ?d_002098b0@@YAXXZ,,0x002098B0,167,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_0020a5a0@@YAXXZ,,0x0020A5A0,310,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_0020a760@@YAXXZ,,0x0020A760,29,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
