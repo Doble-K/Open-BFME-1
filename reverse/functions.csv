@@ -144363,7 +144363,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0036c840@@YAXXZ,,0x0036C840,8,Code/GameEngine/Source/Common/PointerOffset8Thunk.cpp,matched,object-symbol=?pointerOffset8Third@@YAPAXPAX@Z;Open-BFME5 clean C++ pointer offset helper
 ?d_0036c850@@YAXXZ,,0x0036C850,8,Code/GameEngine/Source/Common/PointerOffset12Thunk.cpp,matched,object-symbol=?pointerOffset12Third@@YAPAXPAX@Z;Open-BFME5 clean C++ pointer offset helper
 ?d_0036c860@@YAXXZ,,0x0036C860,19,Code/GameEngine/Source/Common/PointerValueLessThunk.cpp,matched,object-symbol=?pointerValueLess@@YG_NPBK0@Z;Open-BFME5 clean C++ pointed-value comparison helper
-?d_0036c880@@YAXXZ,,0x0036C880,11,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
+?d_0036c880@@YAXXZ,,0x0036C880,11,Code/GameEngine/Source/Common/ScalarAssignThunk.cpp,matched,object-symbol=?assignAlternate@ScalarAssignThunk@@QAEAAU1@K@Z;Open-BFME5 clean C++ scalar assignment helper
 ?d_0036c8b0@@YAXXZ,,0x0036C8B0,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036c8c0@@YAXXZ,,0x0036C8C0,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036c8d0@@YAXXZ,,0x0036C8D0,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
