@@ -494,9 +494,11 @@ def main():
         if selected is None:
             print("No validated naked-asm candidates remain in the requested paths.")
             return
-        print("== selected naked-asm conversion ==")
-        print(f"  drawn from {meta['pool']} candidate(s), weighted by measured land rate")
-        print_candidate(selected)
+        print(f"== selected naked-asm conversion (drawn from {meta['pool']}) ==")
+        print(f"  {selected['symbol'] or selected['signature'] or '(unnamed)'}")
+        print(f"  {selected['size']} bytes  {selected['path']}:{selected['line']}")
+        if selected["tracked"]:
+            print(f"  verify: ./build.sh '{selected['symbol']}'")
         # The queue now serves gen_dump waves, whose bodies byte-verify by
         # construction. Without this, a green build.sh reads as a landed
         # conversion: 56 __emit lifts were reverted across 10 commits, and one

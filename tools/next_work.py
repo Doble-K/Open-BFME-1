@@ -808,10 +808,9 @@ def print_cluster(candidate, candidates):
     total = sum(c.get("size") or c.get("target_size") or 0 for c in siblings)
     print(f"\n  == the rest of {candidate['source']} ({len(siblings)} queued, "
           f"{total:,}B) ==")
-    print("  Take the file, not just the row above. Recover the layout once and "
-          "the siblings")
-    print("  follow; verify them together with a single "
-          f"`./build.sh {candidate['source']}`.")
+    print("  Take the whole file, not just the row above: recover the layout once, "
+          f"verify siblings together with one `./build.sh {candidate['source']}`, "
+          "commit each body separately.")
     for sibling in siblings[:12]:
         size = sibling.get("size") or sibling.get("target_size") or 0
         marker = "->" if sibling is candidate else "  "
@@ -820,22 +819,16 @@ def print_cluster(candidate, candidates):
               f"{sibling['function'][:88]}")
     if len(siblings) > 12:
         print(f"      ... and {len(siblings) - 12} more in this file")
-    print("  Bank each body as its own commit, but do not stop at one: the gate "
-          "and the")
-    print("  layout work are already paid for. If a shared header is involved, "
-          "edit every")
-    print("  dependent body first and pay the full gate once (docs/lessons.md).")
+    print("  If a shared header is involved, edit every dependent body first and "
+          "pay the full gate once (docs/lessons.md).")
 
 
 def print_candidate(label, candidate, meta, candidates=()):
-    print(f"== selected work: {label} ==")
-    print(f"  drawn from {meta['pool']} candidate(s), weighted by measured land rate")
+    print(f"== selected work: {label} (drawn from {meta['pool']}) ==")
     if label == "reloc-named unclaimed function":
         print(f"  {candidate['size']:>5}B  {candidate['function']}")
-        print(f"       {candidate['target_rva']} — name recovered from a byte-true "
-              f"call site ({candidate['notes']})")
-        print(f"       named by a call in {candidate['source']}; the body is "
-              f"unclaimed and anonymous in Ghidra")
+        print(f"       {candidate['target_rva']} ({candidate['notes']}) — named by a "
+              f"byte-true call in {candidate['source']}")
         print(f"       start: {candidate['command']}")
         # No file cluster here: the whole point of this tier is that the body
         # has no source file yet, so there is no translation unit to drain and
@@ -843,8 +836,8 @@ def print_candidate(label, candidate, meta, candidates=()):
         # hint, not the work.
         siblings = [c for c in candidates if c["source"] == candidate["source"]]
         if len(siblings) > 1:
-            print(f"       {len(siblings) - 1} other unclaimed function(s) were "
-                  f"named by calls in that same file")
+            print(f"       {len(siblings) - 1} other unclaimed function(s) named "
+                  f"by calls in that same file")
         return
     if label == "drift quick win":
         print(f"  {candidate['aligned_pct']:>3}% {candidate['class']:<14} "
@@ -1055,24 +1048,20 @@ def main():
         print(json.dumps({"ledger": ledger, "tier": label,
                           "selection": candidate, "selection_meta": meta}, indent=2))
         return
-    print("== ledger health ==")
-    print(f"  {ledger}")
+    print(ledger)
     if suppressed:
-        print(f"  re_attempts: {suppressed} candidate(s) hidden as already "
+        print(f"re_attempts: {suppressed} candidate(s) hidden as already "
               f"investigated (--include-logged to show)")
     if validator_note(structural_meta):
-        print(f"  {validator_note(structural_meta)}")
+        print(validator_note(structural_meta))
     if candidate is None:
         print(f"\nNo {label} candidates remain.")
-        print("\nThe convert lane always has work: Code/gen_asm/ holds ~51,000 "
-              "byte-true dumps waiting to become real C++.")
-        print("  python3 tools/list_naked_candidates.py Code")
+        print("Convert lane always has work: python3 tools/list_naked_candidates.py Code")
         return
     print()
     print_candidate(label, candidate, meta, candidates)
-    print("\nAlso: the convert lane holds ~51,000 byte-true dumps in Code/gen_asm/ "
-          "waiting to become real C++ — the largest queue in the project.")
-    print("  python3 tools/list_naked_candidates.py Code")
+    print("\nConvert lane (byte-true dumps in Code/gen_asm/, the largest queue): "
+          "python3 tools/list_naked_candidates.py Code")
 
 
 if __name__ == "__main__":
