@@ -8,9 +8,16 @@ struct VtableSlot2StoreThunk
     unsigned long *vtable;
 
     VtableSlot2Result get() const;
+    VtableSlot2Result getAlternate() const;
 };
 
 VtableSlot2Result VtableSlot2StoreThunk::get() const
+{
+    VtableSlot2Result result = { vtable[2] };
+    return result;
+}
+
+VtableSlot2Result VtableSlot2StoreThunk::getAlternate() const
 {
     VtableSlot2Result result = { vtable[2] };
     return result;
