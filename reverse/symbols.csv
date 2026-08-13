@@ -69306,3 +69306,9 @@ _SlaughterHordeContain_vtbl34,0x00CB0EC0,Open-BFME5 SlaughterHordeContain interf
 ?getUnsignedIntFromRegistry@@YA_NPAXVAsciiString@@1AAI@Z,0x001091E0,registry DWORD primitive via thunk 0x1D21E
 ?getStringFromRegistry@@YA_NPAXVAsciiString@@1AAV1@@Z,0x00108E80,registry string primitive via thunk 0x288D
 ?getStringFromRegistry@@YA_NPAXVUnicodeString@@1AAV1@@Z,0x00109030,Unicode registry primitive via thunk 0x45345
+??0SiegeDeploySpecialPowerBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001DD40,Open-BFME5 SiegeDeploySpecialPower base constructor pin
+_SiegeDeploySpecialPower_vtbl0,0x00CB7564,Open-BFME5 SiegeDeploySpecialPower primary vtable
+_SiegeDeploySpecialPower_vtbl0C,0x00CB74A0,Open-BFME5 SiegeDeploySpecialPower interface vtable
+_SiegeDeploySpecialPower_vtbl10,0x00CB7494,Open-BFME5 SiegeDeploySpecialPower interface vtable
+_SiegeDeploySpecialPower_vtbl20,0x00CB7468,Open-BFME5 SiegeDeploySpecialPower interface vtable
+_SiegeDeploySpecialPower_vtbl24,0x00CB73F0,Open-BFME5 SiegeDeploySpecialPower interface vtable
