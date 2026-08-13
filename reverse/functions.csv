@@ -79305,7 +79305,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?parseBitFlag@@YA_NPBDPAIPAPBD@Z,,0x004842E0,81,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseBitInInt32@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E60,115,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseBitString32@INI@@SAXPAV1@PAX1PBX@Z,,0x00850E70,472,Code/GameEngine/Source/Common/INI_parseBitString32_Thunk.cpp,matched,true size is 472B; the previous row claimed only 297B of it
-?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU
 ?parseBitString@@YAXPBDPAIPAPBD@Z,,0x00484350,113,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,
 ?parseBool@INI@@SAXPAV1@PAX1PBX@Z,,0x00852E00,86,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
 ?parseByteSizedIndexList@INI@@SAXPAV1@PAX1PBX@Z,,0x008510B0,125,Code/GameEngine/Source/Common/INI/ini_parsers.cpp,matched,retail INI parser TU: getNextToken inlined
@@ -79869,7 +79868,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?removeDuplicates@DiscreteCircle@@IAEXXZ,,0x00068E40,117,Code/GameEngine/Source/Common/discrete_circle.cpp,matched,
 ?removeFromBuildList@SidesInfo@@QAEHPAVBuildListInfo@@@Z,,0x00191570,78,Code/GameEngine/Source/GameLogic/Map/SidesList.cpp,matched,pristine Lua 4.0.1 upstream source; located by masked-body search
 ?removeFromList@Drawable@@QAEXPAPAV1@@Z,,0x00411C80,62,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,cached-obj2 Open-BFME4+Grok asm->cpp Open-BFME4+Grok
-?removeFromList@NetCommandWrapperList@@IAEXPAVNetCommandWrapperListNode@@@Z,,0x006766D0,85,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp,matched,
 ?removeFromSavedIgnoreList@GameSpyInfo@@UAEXH@Z,,0x00635730,118,Code/GameEngine/Source/GameNetwork/GameSpy/GameSpyInfoRemoveFromSavedIgnoreListThunk.cpp,matched,Open-BFME5 exact C++ __emit port of MASM method
 ?removeGoal@Pathfinder@@QAEXPAVObject@@@Z,,0x0002248F,5,Code/Libraries/Source/WWVegas/WWLib/W3DRadarBuildTerrainTextureThunk.cpp,matched,object-symbol=?buildTerrainTexture@W3DRadar@@IAEXPAVTerrainLogic@@@Z;ICF alias converted to focused C++ thunk TU
 ?removeHighlighting@W3DBibBuffer@@QAEXXZ,,0x006D6AF0,35,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DBibBuffer.cpp,matched,
@@ -157929,3 +157927,5 @@ _luaK_adjuststack,,0x0099F010,441,Code/Libraries/Source/Lua/lcode.c,matched,vend
 ?setUnsignedIntInRegistry@@YA_NPAXVAsciiString@@1I@Z,,0x00109460,195,Code/GameEngine/Source/Common/System/RegistrySetUnsignedInt.cpp,matched,Open-BFME5 clean C++ conversion of registry DWORD write primitive
 ?GetRegistryMapPackVersion@@YAIXZ,,0x00109FF0,110,Code/GameEngine/Source/Common/System/RegistryMapPackVersion.cpp,matched,Open-BFME5 clean C++ conversion from original SAGE registry source
 ?pop_front@?$deque@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@QAEXXZ,,0x006601F0,75,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread_dequePop.cpp,matched,Open-BFME5 clean C++ conversion of generated asm dump
+?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,clean C++ replaces the naked dump
+?removeFromList@NetCommandWrapperList@@IAEXPAVNetCommandWrapperListNode@@@Z,,0x006766D0,85,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList_getReadyCommands.cpp,matched,clean C++ replaces the naked dump

@@ -93,7 +93,6 @@ protected:
 
 // Matched from NetCommandWrapperList.cpp; defined here because retail inlines
 // it into getReadyCommands.
-// ?removeFromList@NetCommandWrapperList@@IAEXPAVNetCommandWrapperListNode@@@Z present-unmatched
 void NetCommandWrapperList::removeFromList(NetCommandWrapperListNode *node) {
 	if (node == NULL) {
 		return;

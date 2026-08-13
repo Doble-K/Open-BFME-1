@@ -926,7 +926,6 @@ void INI::parsePercentToReal( INI* ini, void * /*instance*/, void *store, const 
 	* in the buffer, if the token is in the userData table of strings, we will set the
 	* according bit flag for it */
 //-------------------------------------------------------------------------------------------------
-// ?parseBitString8@INI@@ present-unmatched
 void INI::parseBitString8( INI* ini, void * /*instance*/, void *store, const void* userData )
 {
 	UnsignedInt tmp;
