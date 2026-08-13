@@ -136162,7 +136162,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000a7340@@YAXXZ,,0x000A7340,23,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a7360@@YAXXZ,,0x000A7360,5,Code/GameEngine/Source/Common/RvaA7360IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaA7360IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA A7360 identity with one argument
 ?d_000a7370@@YAXXZ,,0x000A7370,5,Code/GameEngine/Source/Common/RvaA7370IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaA7370IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA A7370 identity with one argument
-?d_000a7380@@YAXXZ,,0x000A7380,9,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_000a7380@@YAXXZ,,0x000A7380,9,Code/GameEngine/Source/Common/RvaA7380PointerRangeSizeThunk.cpp,matched,object-symbol=?size@RvaA7380PointerRangeSizeThunk@@QBEHXZ;Open-BFME5 clean C++ RVA A7380 pointer range size
 ?d_000a7390@@YAXXZ,,0x000A7390,9,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a7420@@YAXXZ,,0x000A7420,46,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a7460@@YAXXZ,,0x000A7460,47,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
