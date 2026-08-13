@@ -122426,7 +122426,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00903e00@@YAXXZ,,0x00903E00,99,Code/gen_asm/d_008fa4b0.asm,matched,gen-dump;ghidra=FUN_00d03e00
 ?d_00904230@@YAXXZ,,0x00904230,30,Code/gen_asm/d_008fa4b0.asm,matched,gen-dump;ghidra=FUN_00d04230
 ?d_00904250@@YAXXZ,,0x00904250,337,Code/gen_asm/d_008fa4b0.asm,matched,gen-dump;ghidra=FUN_00d04250
-?d_00904510@@YAXXZ,,0x00904510,201,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d04510
+?d_00904510@@YAXXZ,,0x00904510,201,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,object-symbol=?Set_Vertex_Buffer@DX8Wrapper@@SAXABVDynamicVBAccessClass@@@Z;hand-reconciled C++
 ?d_00904660@@YAXXZ,,0x00904660,550,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d04660
 ?d_00904890@@YAXXZ,,0x00904890,774,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d04890
 ?d_00904ba0@@YAXXZ,,0x00904BA0,58,Code/gen_asm/d_00904510.asm,matched,gen-dump;ghidra=FUN_00d04ba0

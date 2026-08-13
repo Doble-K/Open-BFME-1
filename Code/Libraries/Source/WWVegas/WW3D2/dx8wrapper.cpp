@@ -1998,9 +1998,10 @@ void DX8Wrapper::Set_Vertex_Buffer(const DynamicVBAccessClass& vba_)
 	if (render_state.vertex_buffers[0]) render_state.vertex_buffers[0]->Release_Engine_Ref();
 	DynamicVBAccessClass& vba=const_cast<DynamicVBAccessClass&>(vba_);
 	render_state.vertex_buffer_types[0]=vba.Get_Type();
-	render_state.vba_offset=vba.VertexBufferOffset;
-	render_state.vba_count=vba.Get_Vertex_Count();
-	REF_PTR_SET(render_state.vertex_buffers[0],vba.VertexBuffer);
+	const char *retail_vba = reinterpret_cast<const char *>(&vba);
+	render_state.vba_offset=*reinterpret_cast<const unsigned short *>(retail_vba + 0x12);
+	render_state.vba_count=*reinterpret_cast<const unsigned short *>(retail_vba + 0x10);
+	REF_PTR_SET(render_state.vertex_buffers[0],*reinterpret_cast<VertexBufferClass * const *>(retail_vba + 0x14));
 	render_state.vertex_buffers[0]->Add_Engine_Ref();
 	render_state_changed|=VERTEX_BUFFER_CHANGED;
 	render_state_changed|=INDEX_BUFFER_CHANGED;		// vba_offset changes so index buffer needs to be reset as well.

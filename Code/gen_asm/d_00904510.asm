@@ -2,24 +2,6 @@
 .model flat
 _TEXT SEGMENT
 
-; ghidra: FUN_00d04510  retail @ 0x00904510 size 201
-public ?d_00904510@@YAXXZ
-?d_00904510@@YAXXZ PROC
-    db 8Bh, 0Dh, 24h, 11h, 34h, 01h, 85h, 0C9h, 66h, 0C7h, 05h, 18h, 11h, 34h, 01h, 00h
-    db 00h, 66h, 0C7h, 05h, 1Ah, 11h, 34h, 01h, 00h, 00h, 74h, 18h, 0E8h, 9Fh, 94h, 01h
-    db 00h, 8Bh, 0Dh, 24h, 11h, 34h, 01h, 85h, 0C9h, 74h, 09h, 0FFh, 49h, 04h, 75h, 04h
-    db 8Bh, 01h, 0FFh, 10h, 81h, 0Dh, 9Ch, 0F4h, 33h, 01h, 00h, 00h, 01h, 00h, 8Bh, 0Dh
-    db 20h, 11h, 34h, 01h, 85h, 0C9h, 0C7h, 05h, 24h, 11h, 34h, 01h, 00h, 00h, 00h, 00h
-    db 0C7h, 05h, 10h, 11h, 34h, 01h, 04h, 00h, 00h, 00h, 74h, 0Bh, 0E8h, 5Fh, 94h, 01h
-    db 00h, 8Bh, 0Dh, 20h, 11h, 34h, 01h, 56h, 8Bh, 74h, 24h, 08h, 8Bh, 56h, 04h, 89h
-    db 15h, 0Ch, 11h, 34h, 01h, 66h, 8Bh, 46h, 12h, 66h, 0A3h, 18h, 11h, 34h, 01h, 66h
-    db 8Bh, 56h, 10h, 66h, 89h, 15h, 1Ah, 11h, 34h, 01h, 8Bh, 46h, 14h, 85h, 0C0h, 74h
-    db 09h, 0FFh, 40h, 04h, 8Bh, 0Dh, 20h, 11h, 34h, 01h, 85h, 0C9h, 74h, 11h, 8Bh, 51h
-    db 04h, 8Dh, 41h, 04h, 4Ah, 85h, 0D2h, 89h, 10h, 75h, 04h, 8Bh, 01h, 0FFh, 10h, 8Bh
-    db 4Eh, 14h, 89h, 0Dh, 20h, 11h, 34h, 01h, 0E8h, 0F3h, 93h, 01h, 00h, 81h, 0Dh, 9Ch
-    db 0F4h, 33h, 01h, 00h, 00h, 03h, 00h, 5Eh, 0C3h
-?d_00904510@@YAXXZ ENDP
-
 ; ghidra: FUN_00d04660  retail @ 0x00904660 size 550
 public ?d_00904660@@YAXXZ
 ?d_00904660@@YAXXZ PROC
