@@ -139022,7 +139022,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00191ec0@@YAXXZ,,0x00191EC0,11,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00191ed0@@YAXXZ,,0x00191ED0,11,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00191ee0@@YAXXZ,,0x00191EE0,23,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_00191f00@@YAXXZ,,0x00191F00,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00191f10@@YAXXZ,,0x00191F10,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00191f20@@YAXXZ,,0x00191F20,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00191f30@@YAXXZ,,0x00191F30,5,Code/GameEngine/Source/Common/Rva191F30PointerIdentity.cpp,matched,object-symbol=?rva_191f30_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ RVA 191F30 cdecl pointer identity
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?evaluate@AddressPredicate0017C9D0@@QAE_NPAX@Z,,0x0017C9D0,5,Code/GameEngine/Source/Common/TruePredicate0017C9D0.cpp,matched,Open-BFME5 clean C++ one-argument true predicate
 ?getValue@AddressState00191450@@QBEHXZ,,0x00191450,5,Code/GameEngine/Source/Common/SignedFieldAccessor00191450.cpp,matched,Open-BFME5 clean C++ signed short accessor
 ?returnThis@AddressObject00191D90@@QAEPAV1@PAX@Z,,0x00191D90,5,Code/GameEngine/Source/Common/ReturnThis00191D90.cpp,matched,Open-BFME5 clean C++ return-this member at 0x00191D90
+?PointerIdentity00191F00@@YAPAXPAX@Z,,0x00191F00,5,Code/GameEngine/Source/Common/PointerIdentity00191F00.cpp,matched,Open-BFME5 clean C++ pointer identity
