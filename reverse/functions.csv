@@ -137361,7 +137361,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000ecd20@@YAXXZ,,0x000ECD20,6,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ecd30@@YAXXZ,,0x000ECD30,6,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ecd40@@YAXXZ,,0x000ECD40,6,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
-?d_000ecd50@@YAXXZ,,0x000ECD50,5,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
+?d_000ecd50@@YAXXZ,,0x000ECD50,5,Code/GameEngine/Source/Common/RvaECD50PointerIdentity.cpp,matched,object-symbol=?rva_ecd50_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ RVA ECD50 cdecl pointer identity
 ?d_000ecda0@@YAXXZ,,0x000ECDA0,25,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ecdc0@@YAXXZ,,0x000ECDC0,7,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ecde0@@YAXXZ,,0x000ECDE0,47,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
