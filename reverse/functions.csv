@@ -105616,7 +105616,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0007beb0@@YAXXZ,,0x0007BEB0,536,Code/gen_asm/d_0006bc3e.asm,matched,gen-dump;ghidra=FUN_0047beb0
 ?d_0007c1d0@@YAXXZ,,0x0007C1D0,302,Code/gen_asm/d_0006bc3e.asm,matched,gen-dump;ghidra=FUN_0047c1d0
 ?d_0007c350@@YAXXZ,,0x0007C350,24,Code/gen_asm/d_0006bc3e.asm,matched,gen-dump;ghidra=FUN_0047c350
-?d_0007c440@@YAXXZ,,0x0007C440,50,Code/gen_asm/d_0006bc3e.asm,matched,gen-dump;ghidra=FUN_0047c440
 ?d_0007c4d0@@YAXXZ,,0x0007C4D0,41,Code/gen_asm/d_0006bc3e.asm,matched,gen-dump;ghidra=FUN_0047c4d0
 ?d_0007c510@@YAXXZ,,0x0007C510,24,Code/gen_asm/d_0006bc3e.asm,matched,gen-dump;ghidra=FUN_0047c510
 ?d_0007c570@@YAXXZ,,0x0007C570,7,Code/gen_asm/d_0006bc3e.asm,matched,gen-dump;ghidra=FUN_0047c570
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?isBuildTimeExpired@TeamInQueue@@QAE_NXZ,,0x00160FC0,38,Code/GameEngine/Source/GameLogic/AI/TeamInQueue_isBuildTimeExpired_Thunk.cpp,matched,Open-BFME5 m_team@+0x1c m_frameStarted@+0x24 Team::m_proto@+4 idleFrames@+0x1a4
 ??4DamageInfo@@QAEAAV0@ABV0@@Z,,0x00150620,45,Code/GameEngine/Source/Common/DamageInfoAssignThunk.cpp,matched,Open-BFME5 in@+0x4 out@+0x50; this+0 untouched
 ?getFiringLineOfSightOrigin@Weapon@@IBEXPBVObject@@AAUCoord3D@@@Z,,0x001E1A30,30,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,Open-BFME5 Object m_geometryInfo at +0xac
+?findDynamicLODLevel@GameLODManager@@QAE?AW4DynamicGameLODLevel@@M@Z,,0x0007C440,50,Code/GameEngine/Source/Common/GameLODManager_findDynamicLODLevel_Thunk.cpp,matched,Open-BFME5 LOD enum bases LOW at 0 with five levels; info entry 0x10 bytes; array at +0x120

@@ -651,7 +651,7 @@ const char *GameLODManager::getDynamicGameLODLevelName(DynamicGameLODLevel level
 }
 
 /**Given an average fps, return the optimal dynamic LOD level that matches this fps.*/
-// ?findDynamicLODLevel@GameLODManager@@QAE?AW4DynamicGameLODLevel@@M@Z present-unmatched
+// ?findDynamicLODLevel@GameLODManager@@QAE?AW4DynamicGameLODLevel@@M@Z present-unmatched here — matched copy lives in Common/GameLODManager_findDynamicLODLevel_Thunk.cpp with BFME's enum base and entry size
 DynamicGameLODLevel GameLODManager::findDynamicLODLevel(Real averageFPS)
 {
 	Int ifps=(Int)(averageFPS);	//convert to integer.
