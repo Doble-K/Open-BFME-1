@@ -106434,7 +106434,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000df240@@YAXXZ,,0x000DF240,25,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df240
 ?d_000df330@@YAXXZ,,0x000DF330,32,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df330
 ?d_000df360@@YAXXZ,,0x000DF360,36,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df360
-?d_000df390@@YAXXZ,,0x000DF390,32,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df390
 ?d_000df3c0@@YAXXZ,,0x000DF3C0,97,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df3c0
 ?d_000df440@@YAXXZ,,0x000DF440,71,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df440
 ?d_000df4a0@@YAXXZ,,0x000DF4A0,89,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df4a0
@@ -157941,3 +157940,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?Add@?$DynamicVectorClass@U_ArcInfoStruct@VehicleCurveClass@@@@QAE_NABU_ArcInfoStruct@VehicleCurveClass@@@Z,,0x009347C0,84,Code/Libraries/Source/WWVegas/WWMath/VehicleCurveArc_Add_Thunk.cpp,matched,
 ??1DamageInfo@@QAE@XZ,,0x000C3410,89,Code/GameEngine/Source/Common/DamageInfoDestructorThunk.cpp,matched,
 ?update@PlayerList@@UAEXXZ,,0x000DF2D0,32,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 BFME MAX_PLAYER_COUNT=32 loop; callee thunk 0x4771C to ?update@Player@@QAEXXZ 0xD9A80 separates it from newMap/updateTeamStates
+?updateTeamStates@PlayerList@@QAEXXZ,,0x000DF390,32,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 callee 0xCE140 iterates Player+0x288 m_playerTeamPrototypes = ?updateTeamStates@Player@@QAEXXZ

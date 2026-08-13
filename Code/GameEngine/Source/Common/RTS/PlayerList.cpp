@@ -273,15 +273,10 @@ void PlayerList::teamAboutToBeDeleted(Team* team)
 }
 
 //=============================================================================
-// ?updateTeamStates@PlayerList@@ present-unmatched
-void PlayerList::updateTeamStates(void) 
-{
-	// Clear team flags for all players.
-	for( Int i = 0; i < MAX_PLAYER_COUNT; i++ )
-	{
-		m_players[i]->updateTeamStates();
-	}  // end for i
-}
+// ?updateTeamStates@PlayerList@@QAEXXZ — exact retail body in
+// PlayerListUpdate.cpp, alongside ::update and for the same reason: it needs
+// MAX_PLAYER_COUNT=32, which this TU cannot have without moving the stack
+// frames behind its already-matched EH funclets.
 
 //-----------------------------------------------------------------------------
 // ?validateTeam@PlayerList@@ present-unmatched

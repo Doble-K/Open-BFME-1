@@ -70,12 +70,14 @@ class Player
 {
 public:
 	void update();
+	void updateTeamStates();
 };
 
 class PlayerList : public SubsystemInterface, public Snapshot
 {
 public:
 	virtual void update();
+	void updateTeamStates();
 
 private:
 	Player *m_local;
@@ -93,4 +95,20 @@ void PlayerList::update()
 		m_players[i]->update();
 	}  // end for i
 
+}
+
+//=============================================================================
+// ?updateTeamStates@PlayerList@@QAEXXZ
+//
+// Third of the look-alikes, at 0x000DF390.  Its callee is 0x000CE140, which
+// iterates the std::list at Player+0x288 (m_playerTeamPrototypes) calling one
+// method per node -- Player::updateTeamStates and nothing else in Player has
+// that shape.
+void PlayerList::updateTeamStates(void)
+{
+	// Clear team flags for all players.
+	for( int i = 0; i < 32; i++ )
+	{
+		m_players[i]->updateTeamStates();
+	}  // end for i
 }

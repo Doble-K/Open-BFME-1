@@ -69428,3 +69428,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?_M_fill_insert@?$vector@PAVDrawable@@V?$allocator@PAVDrawable@@@_STL@@@_STL@@QAEXPAPAVDrawable@@IABQAV3@@Z,0x000395CC,pin for vector<Drawable*>::resize callee (packet 001dc360)
 ??4_ArcInfoStruct@VehicleCurveClass@@QAEAAU01@ABU01@@Z,0x00933C60,additive pin -- second copy of the assignment op compiled against a 116-byte _ArcInfoStruct (packet 009347c0)
 ??1Snapshot@@QAE@XZ,0x00887940,DamageInfo destructor subobject calls (packet 000c3410) -- additive pin alongside existing 0x009A1A40 row
+?updateTeamStates@Player@@QAEXXZ,0x000CE140,body Player::updateTeamStates; iterates std::list at Player+0x288 (m_playerTeamPrototypes) calling one method per node; pinned by ?updateTeamStates@PlayerList@@QAEXXZ at 0x000DF390 via ILT 0x00022548
