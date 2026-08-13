@@ -122602,7 +122602,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00919f40@@YAXXZ,,0x00919F40,331,Code/gen_asm/d_0090e910.asm,matched,gen-dump;ghidra=FUN_00d19f40
 ?d_0091a0d0@@YAXXZ,,0x0091A0D0,327,Code/gen_asm/d_0090e910.asm,matched,gen-dump;ghidra=FUN_00d1a0d0
 ?d_0091a300@@YAXXZ,,0x0091A300,111,Code/gen_asm/d_0090e910.asm,matched,gen-dump;ghidra=FUN_00d1a300
-?d_0091a420@@YAXXZ,,0x0091A420,90,Code/gen_asm/d_0090e910.asm,matched,gen-dump;ghidra=FUN_00d1a420
+?Set_Colors@StreakLineClass@@IAEXIPAVVector4@@@Z,,0x0091A420,90,Code/Libraries/Source/WWVegas/WW3D2/streak.cpp,matched,Open-BFME5 StreakLine colors C++ recovery
 ?d_0091a480@@YAXXZ,,0x0091A480,81,Code/gen_asm/d_0090e910.asm,matched,gen-dump;ghidra=FUN_00d1a480
 ?d_0091a5a0@@YAXXZ,,0x0091A5A0,96,Code/gen_asm/d_0090e910.asm,matched,gen-dump;ghidra=FUN_00d1a5a0
 ?d_0091a730@@YAXXZ,,0x0091A730,207,Code/gen_asm/d_0090e910.asm,matched,gen-dump;ghidra=FUN_00d1a730

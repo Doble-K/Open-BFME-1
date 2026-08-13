@@ -157,7 +157,6 @@ void StreakLineClass::Set_Widths( unsigned int num_points, float *widths )
 
 }
 
-// ?Set_Colors@StreakLineClass@@ present-unmatched
 void StreakLineClass::Set_Colors( unsigned int num_points, Vector4 *colors )
 {
 	if (num_points < 2 || !colors) {
@@ -165,9 +164,11 @@ void StreakLineClass::Set_Colors( unsigned int num_points, Vector4 *colors )
 		return;
 	}
 
-	PointColors.Delete_All();
+	SimpleDynVecClass<Vector4> &point_colors =
+		*reinterpret_cast<SimpleDynVecClass<Vector4> *>(reinterpret_cast<char *>(this) + 0xE4);
+	point_colors.Delete_All();
 	for (unsigned int i=0; i<num_points; i++) {
-		PointColors.Add(colors[i],num_points);
+		point_colors.Add(colors[i],num_points);
 	}
 
 }
