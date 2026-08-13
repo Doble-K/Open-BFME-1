@@ -1159,6 +1159,11 @@ int IntegerArgumentIdentityThunk::identity(int value) const
     return value;
 }
 
+int integerIdentity(int value)
+{
+    return value;
+}
+
 struct SingleIntegerZeroConstructorThunk
 {
     int value;
