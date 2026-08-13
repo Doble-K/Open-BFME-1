@@ -138281,7 +138281,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013e9c0@@YAXXZ,,0x0013E9C0,8,Code/GameEngine/Source/Common/Rva13E9C0AdvanceSixteen.cpp,matched,object-symbol=?rva_13e9c0_advance_sixteen@@YAPAEPAE@Z;hand-reconciled C++
 ?d_0013e9d0@@YAXXZ,,0x0013E9D0,8,Code/GameEngine/Source/Common/Rva13E9D0AdvanceSixteen.cpp,matched,object-symbol=?rva_13e9d0_advance_sixteen@@YAPAEPAE@Z;hand-reconciled C++
 ?d_0013e9e0@@YAXXZ,,0x0013E9E0,7,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0013e9f0@@YAXXZ,,0x0013E9F0,8,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
+?d_0013e9f0@@YAXXZ,,0x0013E9F0,8,Code/GameEngine/Source/Common/Rva13E9F0AdvanceSixteen.cpp,matched,object-symbol=?rva_13e9f0_advance_sixteen@@YAPAEPAE@Z;hand-reconciled C++
 ?d_0013ea00@@YAXXZ,,0x0013EA00,8,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013ea10@@YAXXZ,,0x0013EA10,14,Code/GameEngine/Source/Common/VtableSlot2StoreThunk.cpp,matched,object-symbol=?getFortyEighth@VtableSlot2StoreThunk@@QBE?AUVtableSlot2Result@@XZ;Open-BFME5 clean C++ vtable slot 2 value return
 ?d_0013ea30@@YAXXZ,,0x0013EA30,11,Code/GameEngine/Source/Common/Rva13EA30ValueCopy.cpp,matched,object-symbol=?copy@Rva13EA30ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
