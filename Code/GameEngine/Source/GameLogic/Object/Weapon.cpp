@@ -3585,10 +3585,13 @@ void Weapon::loadPostProcess( void )
 // ?appendBonuses@WeaponBonus@@QBEXAAV1@@Z present-unmatched
 void WeaponBonus::appendBonuses(WeaponBonus& bonus) const
 {
-	for (int f = 0; f < WeaponBonus::FIELD_COUNT; ++f)
-	{
-		bonus.m_field[f] += this->m_field[f] - 1.0f;
-	}
+	Real *destination = bonus.m_field;
+	destination[0] += m_field[0] - 1.0f;
+	destination[1] += m_field[1] - 1.0f;
+	destination[2] += m_field[2] - 1.0f;
+	destination[3] += m_field[3] - 1.0f;
+	destination[4] += m_field[4] - 1.0f;
+	destination[5] += m_field[5] - 1.0f;
 }
 
 //-------------------------------------------------------------------------------------------------
