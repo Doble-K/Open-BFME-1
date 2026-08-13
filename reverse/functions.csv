@@ -107478,7 +107478,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00165780@@YAXXZ,,0x00165780,69,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_00565780
 ?d_00165a50@@YAXXZ,,0x00165A50,379,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_00565a50
 ?d_00165c30@@YAXXZ,,0x00165C30,220,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_00565c30
-?d_00166a10@@YAXXZ,,0x00166A10,80,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_00566a10
 ?d_001676a0@@YAXXZ,,0x001676A0,521,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_005676a0
 ?d_00168270@@YAXXZ,,0x00168270,91,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_00568270
 ?d_001682f0@@YAXXZ,,0x001682F0,37,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_005682f0
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ??0PartitionFilterPossibleToAttack@@QAE@W4AbleToAttackType@@PBVObject@@W4CommandSourceType@@@Z,,0x004C12B0,32,Code/GameEngine/Source/Common/PartitionFilters_allow_Thunk.cpp,matched,Open-BFME5 members at +0x4 +0x8 +0xc so the shared filter base is a bare vptr
 ??0ClientUpdateModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00602ED0,39,Code/GameEngine/Source/GameClient/Drawable/ClientUpdateModuleConstructorThunk.cpp,matched,Open-BFME5 DrawableModule is 12 bytes; own member at +0xc zeroed
 ?Clear@?$VectorClass@UFileInfoStruct@MixFileCreator@@@@UAEXXZ,,0x00934780,61,Code/Libraries/Source/WWVegas/WWLib/MixFileCreatorFileInfoVectorClearThunk.cpp,matched,Open-BFME5 element 0x74 bytes so BFME StringClass is 104 bytes not 4
+?isSupplySourceSafe@AIPlayer@@QAE_NH@Z,,0x00166A10,80,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,Open-BFME5 retail inlines the OVERRIDE<ThingTemplate> walk; m_template at Thing+0x4

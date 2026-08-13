@@ -69441,3 +69441,5 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?playerFromParam@ScriptConditions@@IAEPAVPlayer@@PAVParameter@@@Z,0x00025347,Open-BFME5 ILT; called by ?evaluateSkirmishSupplySourceAttacked@ScriptConditions@@IAE_NPAVParameter@@@Z at 0x000F9700
 ?getNthPlayer@PlayerList@@QAEPAVPlayer@@H@Z,0x00044F30,pinned by SupplyWarehouseCreate::onCreate packet 002505a0
 ?addSupplyWarehouse@ResourceGatheringManager@@QAEXPAVObject@@@Z,0x00028646,pinned by SupplyWarehouseCreate::onCreate packet 002505a0
+?findSupplyCenter@AIPlayer@@IAEPAVObject@@H@Z,0x0001E0FB,Open-BFME5 ILT; called by ?isSupplySourceSafe@AIPlayer@@QAE_NH@Z at 0x00166A10
+?isLocationSafe@AIPlayer@@QAE_NPBUCoord3D@@PBVThingTemplate@@@Z,0x0003E504,Open-BFME5 ILT; called by ?isSupplySourceSafe@AIPlayer@@QAE_NH@Z at 0x00166A10

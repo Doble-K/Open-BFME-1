@@ -998,12 +998,17 @@ Bool AIPlayer::isSupplySourceAttacked( void )
 //-------------------------------------------------------------------------------------------------
 /** Is the nearest supply source safe? */
 //-------------------------------------------------------------------------------------------------
-// ?isSupplySourceSafe@AIPlayer@@QAE_NH@Z present-unmatched
 Bool AIPlayer::isSupplySourceSafe( Int minSupplies )
 {
 	Object *warehouse = findSupplyCenter(minSupplies);
 	if (warehouse==NULL) return true; // it's safe cause it doesn't exist.
-	return (isLocationSafe(warehouse->getPosition(), warehouse->getTemplate()));
+	// Retail inlines the OVERRIDE<ThingTemplate> walk here -- read m_overridable
+	// at Thing+0x04, and where it is set, follow the override chain. This tree's
+	// Thing::getTemplate() is out of line, so calling it emits a call where
+	// retail has the walk, so the member is reached directly.
+	const OVERRIDE<ThingTemplate> &tmpl =
+		*(const OVERRIDE<ThingTemplate> *)((const char *)warehouse + 0x04);
+	return (isLocationSafe(warehouse->getPosition(), tmpl));
 }
 
 //-------------------------------------------------------------------------------------------------
