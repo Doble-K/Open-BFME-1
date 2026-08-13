@@ -818,9 +818,16 @@ struct OffsetZeroIntegerSetterReturningThisThunk
     int value;
 
     OffsetZeroIntegerSetterReturningThisThunk *setValue(int newValue);
+    OffsetZeroIntegerSetterReturningThisThunk *setValueAlternate(int newValue);
 };
 
 OffsetZeroIntegerSetterReturningThisThunk *OffsetZeroIntegerSetterReturningThisThunk::setValue(int newValue)
+{
+    value = newValue;
+    return this;
+}
+
+OffsetZeroIntegerSetterReturningThisThunk *OffsetZeroIntegerSetterReturningThisThunk::setValueAlternate(int newValue)
 {
     value = newValue;
     return this;
