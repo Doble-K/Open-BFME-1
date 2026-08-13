@@ -140615,7 +140615,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00213cc0@@YAXXZ,,0x00213CC0,7,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_00213d50@@YAXXZ,,0x00213D50,7,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_00213df0@@YAXXZ,,0x00213DF0,19,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
-?d_00213e40@@YAXXZ,,0x00213E40,73,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
+?d_00213e40@@YAXXZ,,0x00213E40,73,Code/GameEngine/Source/GameLogic/Object/Body/InactiveBody.cpp,matched,object-symbol=?attemptDamage@InactiveBody@@UAEXPAVDamageInfo@@@Z;Open-BFME5 clean C++ inactive-body damage handling
 ?d_00213ea0@@YAXXZ,,0x00213EA0,59,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_00213ef0@@YAXXZ,,0x00213EF0,33,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
 ?d_00213f20@@YAXXZ,,0x00213F20,13,Code/gen_asm/d_001fecd0.asm,matched,gen-dump;bounds=high
