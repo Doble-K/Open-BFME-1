@@ -147521,7 +147521,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045c080@@YAXXZ,,0x0045C080,42,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c0c0@@YAXXZ,,0x0045C0C0,11,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?reset@Offset152IntegerResetThunk@@QAEXXZ;Open-BFME5 clean C++ offset one hundred fifty-two integer reset
 ?d_0045c100@@YAXXZ,,0x0045C100,23,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setValues@Offset172IntegerPairSetterThunk@@QAEXHH@Z;Open-BFME5 clean C++ offset one hundred seventy-two integer pair setter
-?d_0045c140@@YAXXZ,,0x0045C140,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045c140@@YAXXZ,,0x0045C140,7,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?get@Offset156FloatGetterThunk@@QBEMXZ;Open-BFME5 clean C++ offset one hundred fifty-six float getter
 ?d_0045c150@@YAXXZ,,0x0045C150,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c190@@YAXXZ,,0x0045C190,6,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045c410@@YAXXZ,,0x0045C410,5,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high

@@ -751,3 +751,16 @@ void Offset172IntegerPairSetterThunk::setValues(int firstValue, int secondValue)
     first = firstValue;
     second = secondValue;
 }
+
+struct Offset156FloatGetterThunk
+{
+    unsigned char padding[0x9c];
+    float value;
+
+    float get() const;
+};
+
+float Offset156FloatGetterThunk::get() const
+{
+    return value;
+}
