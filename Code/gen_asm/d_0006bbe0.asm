@@ -1550,10 +1550,5 @@ public ?d_0009ff60@@YAXXZ
     db 0C3h
 ?d_0009ff60@@YAXXZ ENDP
 
-; ghidra: FUN_0049ffb0  retail @ 0x0009FFB0 size 5
-public ?d_0009ffb0@@YAXXZ
-?d_0009ffb0@@YAXXZ PROC
-    db 8Bh, 01h, 0FFh, 08h, 0C3h
-?d_0009ffb0@@YAXXZ ENDP
 _TEXT ENDS
 END
