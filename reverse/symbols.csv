@@ -1080,6 +1080,7 @@ name,address,notes
 ??0CommandSetUpgrade@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003BB65,module ctor (friend_newModuleInstance retail call target)
 ??0ContestableContainModuleDataBase@@QAE@XZ,0x00014565,ContestableContainModuleData ctor base
 ??0ControlBarSchemeImage@@QAE@XZ,0x00028489,parseAnimatingPartImage callee ILT thunk to 0x4ACD00
+??0ShellMenuSchemeImage@@QAE@XZ,0x0001DA7F,ShellMenuSchemeImage constructor via ILT thunk
 ??0ConvertToCarBombCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001D3AE,pinharvest x1 (thunk)
 ??0ConvertToCarBombCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0001F5C3,pinharvest x1 (thunk)
 ??0ConvertToCarBombCrateCollide@@QAE@PAVThing@@PBVModuleData@@@Z,0x0002070C,pinharvest x1 (thunk)
