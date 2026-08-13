@@ -138005,7 +138005,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00133940@@YAXXZ,,0x00133940,19,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00133960@@YAXXZ,,0x00133960,19,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00133980@@YAXXZ,,0x00133980,9,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
-?d_001339a0@@YAXXZ,,0x001339A0,5,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_001339e0@@YAXXZ,,0x001339E0,9,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00133a10@@YAXXZ,,0x00133A10,11,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00133a40@@YAXXZ,,0x00133A40,41,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceA@20,,0x00AFD388,374,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
 ?StringCchCopyW@@YGJPAGIPBG@Z,,0x00AFD1AA,23,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
 ?parseInit@@YA_NPAD0IPAVWindowLayoutInfo@@@Z,,0x00487630,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Retail layout StringBase ABI
+?d_001339a0@@YAXXZ,,0x001339A0,5,Code/GameEngine/Source/Common/Rva1339A0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva1339A0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 1339A0 identity with one argument
