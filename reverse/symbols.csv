@@ -69291,6 +69291,8 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??0DelayedLuaEventUpdateBase@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,DelayedLuaEventUpdate base constructor ILT
 ??0DelayedLuaEventList@@QAE@XZ,0x00019CF9,DelayedLuaEventUpdate list member constructor ILT
 ?setWakeFrameViaThunk@UpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,DelayedLuaEventUpdate wake-frame setter ILT
+?setRange@GameClientRandomVariable@FXParticleSystem@@QAEXMMW4DistributionType@12@@Z,0x00006C58,DefaultUpdateModuleInfo random-range setter ILT
+??_7DefaultUpdateModuleInfo@FXParticleSystem@@6B@,0x01110C38,DefaultUpdateModuleInfo retail vtable
 ??0W3DQuadrupedDrawModuleDataBase@@QAE@XZ,0x0000289C,Open-BFME5 W3DQuadruped module data base constructor pin
 ??0W3DQuadrupedElement@@QAE@XZ,0x00017BD9,Open-BFME5 W3DQuadruped array element constructor pin
 ??1W3DQuadrupedElement@@QAE@XZ,0x0000D828,Open-BFME5 W3DQuadruped array element destructor pin
