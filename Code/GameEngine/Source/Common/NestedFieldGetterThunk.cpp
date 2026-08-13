@@ -12,9 +12,15 @@ struct NestedFieldGetterThunk
     NestedFieldValues *values;
 
     unsigned long getFirst() const;
+    unsigned long getSecond() const;
 };
 
 unsigned long NestedFieldGetterThunk::getFirst() const
 {
     return values->first;
+}
+
+unsigned long NestedFieldGetterThunk::getSecond() const
+{
+    return values->second;
 }
