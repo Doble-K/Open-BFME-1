@@ -603,3 +603,21 @@ void Offset96IntegerPairSetterThunk::setValues(int firstValue, int secondValue)
     first = firstValue;
     second = secondValue;
 }
+
+struct SparseIntegerResetThunk
+{
+    unsigned char padding[0x58];
+    int first;
+    int second;
+    unsigned char gap[8];
+    int third;
+
+    void reset();
+};
+
+void SparseIntegerResetThunk::reset()
+{
+    first = 0;
+    second = 0;
+    third = 0;
+}
