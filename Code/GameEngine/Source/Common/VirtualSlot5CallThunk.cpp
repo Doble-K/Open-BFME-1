@@ -1111,3 +1111,15 @@ unsigned char *PointerPayloadGetterThunk::getPayloadThird() const
 {
     return base + 4;
 }
+
+struct PointerPresenceThunk
+{
+    void *value;
+
+    bool hasValue() const;
+};
+
+bool PointerPresenceThunk::hasValue() const
+{
+    return value != 0;
+}
