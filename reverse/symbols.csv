@@ -5354,6 +5354,7 @@ name,address,notes
 ??1PrereqUnitRec@ProductionPrerequisite@@QAE@XZ,0x000195FB,retail target of _Destroy<PrereqUnitRec> call; PrereqUnitRec dtor not yet in ledger
 ??1PrereqUnitRec@ProductionPrerequisite@@QAE@XZ,0x0002F99B,retail target of vector<PrereqUnitRec>::erase call to PrereqUnitRec dtor (separate weak instance from _Destroy call site)
 ??1ProductionPrerequisite@@QAE@XZ,0x0003ECC0,resweep callee back-solved
+??1ProductionPrerequisite@@QAE@XZ,0x0003B8FE,parsePrerequisiteScience TU-local weak destructor instance
 ??1ProductionSpeedBonusModuleDataBase@@UAE@XZ,0x0001D7B4,Open-BFME5 base pin
 ??1ProductionSpeedBonusModuleDataMember@@QAE@XZ,0x00026AB2,Open-BFME5 pin
 ??1ProductionUpdateModuleDataBase@@UAE@XZ,0x0003BD59,Open-BFME5 base dtor pin
@@ -7318,6 +7319,7 @@ name,address,notes
 ?_M_insert_overflow@?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@IAEXPAVAsciiString@@ABV3@ABU__false_type@2@I_N@Z,0x0003827B,per-site incremental-link thunk used by INI::parseAsciiStringVectorAppend
 ?_M_insert_overflow@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@IAEXPAVPlayerTemplate@@ABV3@ABU__false_type@2@I_N@Z,0x0003059E
 ?_M_insert_overflow@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@IAEXPAVProductionPrerequisite@@ABV3@ABU__false_type@2@I_N@Z,0x00041F1F,resweep callee back-solved
+?_M_insert_overflow@?$vector@VProductionPrerequisite@@V?$allocator@VProductionPrerequisite@@@_STL@@@_STL@@IAEXPAVProductionPrerequisite@@ABV3@ABU__false_type@2@I_N@Z,0x0001AEB0,parsePrerequisiteScience TU-local weak vector helper
 ?_M_insert_overflow@?$vector@VUnicodeString@@V?$allocator@VUnicodeString@@@_STL@@@_STL@@IAEXPAVUnicodeString@@ABV3@ABU__false_type@2@I_N@Z,0x00016A63
 ?_M_insert_overflow@?$vector@VW3DAnimationInfo@@V?$allocator@VW3DAnimationInfo@@@_STL@@@_STL@@IAEXPAVW3DAnimationInfo@@ABV3@ABU__false_type@2@I_N@Z,0x00037024,ILT thunk used by call site
 ?_M_insert_overflow@?$vector@VWeaponTemplateSet@@V?$allocator@VWeaponTemplateSet@@@_STL@@@_STL@@IAEXPAVWeaponTemplateSet@@ABV3@ABU__false_type@2@I_N@Z,0x0001636F
@@ -67918,6 +67920,8 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?getNextMission@Campaign@@QAEPAVMission@@PAV2@@Z,0x0003236C
 ?getNextSubToken@INI@@QAEPBDPBD@Z,0x00850B00,INI parser
 ?getNextToken@INI@@QAEPBDPBD@Z,0x00850970
+?getNextToken@INI@@QAEPBDH@Z,0x00850970,INI getNextToken with retail zero argument
+??0ProductionPrerequisite@@QAE@ABV0@@Z,0x00031B06,ProductionPrerequisite copy constructor via ILT thunk
 ?getNextTokenOrNull@INI@@QAEPBDPBD@Z,0x008509C0
 ?getNthPlayerTemplate@PlayerTemplateStore@@QAEPBVPlayerTemplate@@H@Z,0x00037BD2,ILT thunk to the indexed PlayerTemplate lookup
 ?getNumChunks@NetWrapperCommandMsg@@QAEIXZ,0x00018BEC,ILT thunk; real body 0xA73F20 (mov eax,[ecx+0x30];ret)

@@ -1,231 +1,51 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
+// stlport
 
-class INI {};
-void __cdecl parsePrerequisiteScience(INI *, void *, void *, void const *);
-// ?parsePrerequisiteScience@@YAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void __cdecl parsePrerequisiteScience(INI *, void *, void *, void const *)
+#include <vector>
+
+enum ScienceType
 {
-    __asm {
-        __emit 0x6a
-        __emit 0xff
-        __emit 0x68
-        __emit 0xc9
-        __emit 0x3f
-        __emit 0x00
-        __emit 0x01
-        __emit 0x64
-        __emit 0xa1
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x50
-        __emit 0x64
-        __emit 0x89
-        __emit 0x25
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xec
-        __emit 0x28
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0xe8
-        __emit 0x9f
-        __emit 0x48
-        __emit 0xec
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x38
-        __emit 0x6a
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xe8
-        __emit 0x1c
-        __emit 0x96
-        __emit 0x70
-        __emit 0x00
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x20
-        __emit 0xe0
-        __emit 0xec
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x3b
-        __emit 0xca
-        __emit 0x89
-        __emit 0x04
-        __emit 0x24
-        __emit 0x74
-        __emit 0x13
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x06
-        __emit 0x89
-        __emit 0x01
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x83
-        __emit 0xc1
-        __emit 0x04
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x14
-        __emit 0xeb
-        __emit 0x18
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x44
-        __emit 0x50
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x52
-        __emit 0x51
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x24
-        __emit 0xe8
-        __emit 0xf1
-        __emit 0xc1
-        __emit 0xed
-        __emit 0xff
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x40
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x04
-        __emit 0x3b
-        __emit 0x4e
-        __emit 0x08
-        __emit 0x74
-        __emit 0x21
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x40
-        __emit 0x89
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0xc6
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0x01
-        __emit 0x74
-        __emit 0x0a
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x08
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x47
-        __emit 0xa7
-        __emit 0xee
-        __emit 0xff
-        __emit 0x83
-        __emit 0x46
-        __emit 0x04
-        __emit 0x24
-        __emit 0xeb
-        __emit 0x16
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x48
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x14
-        __emit 0x50
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xd5
-        __emit 0x3a
-        __emit 0xed
-        __emit 0xff
-        __emit 0x8d
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x08
-        __emit 0xc7
-        __emit 0x44
-        __emit 0x24
-        __emit 0x34
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0xe8
-        __emit 0x12
-        __emit 0x45
-        __emit 0xef
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x2c
-        __emit 0x5e
-        __emit 0x64
-        __emit 0x89
-        __emit 0x0d
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x34
-        __emit 0xc3
-    }
+	SCIENCE_INVALID = 0
+};
+
+class INI
+{
+public:
+	const char *getNextToken(int);
+	static ScienceType scanScience(const char *);
+};
+
+class ProductionPrerequisite
+{
+public:
+	struct PrereqUnitRec
+	{
+		unsigned int m_data[3];
+		~PrereqUnitRec();
+	};
+
+	ProductionPrerequisite();
+	~ProductionPrerequisite();
+
+	void addSciencePrereq(ScienceType science)
+	{
+		m_prereqSciences.push_back(science);
+	}
+
+private:
+	_STL::vector<PrereqUnitRec> m_prereqUnits;
+	_STL::vector<ScienceType> m_prereqSciences;
+	_STL::vector<ScienceType> m_unused;
+};
+
+// ?parsePrerequisiteScience@@YAXPAVINI@@PAX1PBX@Z
+void __cdecl parsePrerequisiteScience(INI *ini, void *instance, void *,
+	const void *)
+{
+	_STL::vector<ProductionPrerequisite> *prerequisites =
+		static_cast<_STL::vector<ProductionPrerequisite> *>(instance);
+
+	ProductionPrerequisite prerequisite;
+	prerequisite.addSciencePrereq(INI::scanScience(ini->getNextToken(0)));
+	prerequisites->push_back(prerequisite);
 }
