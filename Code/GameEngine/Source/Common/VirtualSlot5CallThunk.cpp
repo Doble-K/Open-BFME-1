@@ -575,3 +575,16 @@ void Offset108IntegerSetterThunk::setValue(int newValue)
 {
     value = newValue;
 }
+
+struct Offset118FlagSetterThunk
+{
+    unsigned char padding[0x76];
+    bool value;
+
+    void set();
+};
+
+void Offset118FlagSetterThunk::set()
+{
+    value = true;
+}
