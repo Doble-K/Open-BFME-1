@@ -1245,9 +1245,15 @@ struct Offset4IntegerPointerRangeThunk
     int *end;
 
     int size() const;
+    int sizeAlternate() const;
 };
 
 int Offset4IntegerPointerRangeThunk::size() const
+{
+    return end - begin;
+}
+
+int Offset4IntegerPointerRangeThunk::sizeAlternate() const
 {
     return end - begin;
 }
