@@ -999,6 +999,30 @@ int *DirectIntegerCopyThunk::copyTo(int *destination) const
     return destination;
 }
 
+struct SelfLinkedResetValue
+{
+    bool active;
+    unsigned char padding[3];
+    int value;
+    SelfLinkedResetValue *first;
+    SelfLinkedResetValue *second;
+};
+
+struct IndirectSelfLinkedResetThunk
+{
+    SelfLinkedResetValue *state;
+
+    void reset();
+};
+
+void IndirectSelfLinkedResetThunk::reset()
+{
+    state->active = false;
+    state->value = 0;
+    state->first = state;
+    state->second = state;
+}
+
 struct OffsetEightIndirectIntegerCopyThunk
 {
     const unsigned char *source;
