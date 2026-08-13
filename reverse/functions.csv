@@ -107074,7 +107074,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00131b70@@YAXXZ,,0x00131B70,68,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00531b70
 ?d_00132200@@YAXXZ,,0x00132200,257,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00532200
 ?d_00132350@@YAXXZ,,0x00132350,220,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00532350
-?d_00132470@@YAXXZ,,0x00132470,29,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00532470
 ?d_00132a20@@YAXXZ,,0x00132A20,109,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00532a20
 ?d_00132b60@@YAXXZ,,0x00132B60,298,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00532b60
 ?d_00132e40@@YAXXZ,,0x00132E40,441,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00532e40
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?IMECandidateWindowSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C4A40,81,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/IMECandidate.cpp,matched,
 ?Set_Render_Target@DX8Wrapper@@SAXPAUIDirect3DSwapChain8@@@Z,,0x00906FA0,64,Code/Libraries/Source/WWVegas/WW3D2/DX8Wrapper_Set_Render_Target_SwapChain_Thunk.cpp,matched,
 ?calcNextSpreadDelay@FireSpreadUpdate@@IAEIXZ,,0x00292840,40,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,Open-BFME5 retail file/line via #line 152; BFME Module has m_moduleData at +4 (BFME_MODULE_NO_MPO)
+?calculateHeightAboveTerrain@Thing@@MBEMXZ,,0x00132470,29,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,Open-BFME5 TheTerrainLogic getGroundHeight at vtable slot 6 (0x18) not ZH slot 5; m_cachedPos at Thing+0x38

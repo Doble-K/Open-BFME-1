@@ -68,7 +68,9 @@ public:
 	virtual void slot3() = 0;
 	virtual void slot4() = 0;
 	virtual void slot5() = 0;
-	virtual void slot6() = 0;
+	// ZH's TerrainLogic.h puts getGroundHeight at slot 5; retail calls
+	// [vtable+0x18], one slot further out.
+	virtual Real getGroundHeight(Real x, Real y, Coord3D *normal = NULL) const = 0;
 	virtual void slot7() = 0;
 	virtual void slot8() = 0;
 	virtual void slot9() = 0;
@@ -339,12 +341,11 @@ Bool Thing::isAnyKindOf( const KindOfMaskType& anyKindOf ) const
 }
 
 // ------------------------------------------------------------------------------------------------
-// ?calculateHeightAboveTerrain@Thing@@MBEMXZ present-unmatched
 Real Thing::calculateHeightAboveTerrain() const 
 {
 	//USE_PERF_TIMER(ThingMatrixStuff)
 	const Coord3D* pos = getPosition();
-	Real terrainZ = TheTerrainLogic->getGroundHeight( pos->x, pos->y );
+	Real terrainZ = reinterpret_cast<const BFMERetailTerrainLogicVTable *>(TheTerrainLogic)->getGroundHeight( pos->x, pos->y );
 	Real myZ = pos->z;
 	return myZ - terrainZ;
 }
