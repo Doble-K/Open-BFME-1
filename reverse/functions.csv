@@ -123126,7 +123126,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00977cc0@@YAXXZ,,0x00977CC0,217,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d77cc0
 ?d_00977da0@@YAXXZ,,0x00977DA0,11,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d77da0
 ?d_009781a0@@YAXXZ,,0x009781A0,379,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d781a0
-?d_00978340@@YAXXZ,,0x00978340,121,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d78340
+?d_00978340@@YAXXZ,,0x00978340,121,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,object-symbol=??0AdaptiveDeltaMotionChannelClass@@QAE@XZ;Open-BFME5 clean C++ adaptive delta initialization
 ?d_00978940@@YAXXZ,,0x00978940,163,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d78940
 ?d_009790c0@@YAXXZ,,0x009790C0,39,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d790c0
 ?d_00979170@@YAXXZ,,0x00979170,39,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d79170

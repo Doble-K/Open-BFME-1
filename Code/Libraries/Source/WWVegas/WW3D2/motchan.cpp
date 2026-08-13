@@ -793,8 +793,10 @@ AdaptiveDeltaMotionChannelClass::AdaptiveDeltaMotionChannelClass(void) :
 	PivotIdx(0),
 	Type(0),
 	VectorLen(0),
+	_bfme_adm_scale2(0.0f),
 	Data(NULL),
 	NumFrames(0),
+	CacheFrame(0),
 	CacheData(NULL),
 	Scale(0.0f)	
 {
@@ -1218,4 +1220,3 @@ Quaternion AdaptiveDeltaMotionChannelClass::Get_QuatVector(float32 frame)
 
 
 // EOF - motchan.cpp
-
