@@ -105380,7 +105380,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0005fac0@@YAXXZ,,0x0005FAC0,757,Code/gen_asm/d_0001466e.asm,matched,gen-dump;ghidra=FUN_0045fac0
 ?d_00060010@@YAXXZ,,0x00060010,168,Code/gen_asm/d_0001466e.asm,matched,gen-dump;ghidra=FUN_00460010
 ?d_0006063c@@YAXXZ,,0x0006063C,6,Code/gen_asm/d_0001466e.asm,matched,gen-dump;ghidra=Catch@0046063c
-?d_000607e0@@YAXXZ,,0x000607E0,5,Code/gen_asm/d_0001466e.asm,matched,gen-dump;ghidra=FUN_004607e0
+?d_000607e0@@YAXXZ,,0x000607E0,5,Code/gen_small/openbfme5_clean_leaves.cpp,matched,object-symbol=?OpenBFME5_ReturnSecondPointer@@YAPAXPAX0@Z;C++ clean leaf;ghidra=FUN_004607e0
 ?d_00060880@@YAXXZ,,0x00060880,40,Code/gen_asm/d_0001466e.asm,matched,gen-dump;ghidra=FUN_00460880
 ?d_00060970@@YAXXZ,,0x00060970,11,Code/gen_asm/d_0001466e.asm,matched,gen-dump;ghidra=FUN_00460970
 ?d_000609c0@@YAXXZ,,0x000609C0,19,Code/gen_asm/d_0001466e.asm,matched,gen-dump;ghidra=FUN_004609c0
