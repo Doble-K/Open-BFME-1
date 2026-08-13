@@ -1975,12 +1975,6 @@ public ?d_001512e0@@YAXXZ
     db 01h, 5Dh, 0C3h, 5Fh, 5Eh, 32h, 0C0h, 5Dh, 0C3h
 ?d_001512e0@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x001516B0 size 5
-public ?d_001516b0@@YAXXZ
-?d_001516b0@@YAXXZ PROC
-    db 83h, 41h, 04h, 0F4h, 0C3h
-?d_001516b0@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x001516C0 size 45
 public ?d_001516c0@@YAXXZ
 ?d_001516c0@@YAXXZ PROC
