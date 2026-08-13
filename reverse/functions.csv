@@ -136715,7 +136715,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000c9e40@@YAXXZ,,0x000C9E40,9,Code/GameEngine/Source/Common/PointerRangeCountThunk.cpp,matched,object-symbol=?alternateSize@PointerRangeCount@@QBEIXZ;Open-BFME5 clean C++ alternate pointer-range count
 ?d_000c9e50@@YAXXZ,,0x000C9E50,34,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c9ed0@@YAXXZ,,0x000C9ED0,18,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000c9f10@@YAXXZ,,0x000C9F10,10,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
+?d_000c9f10@@YAXXZ,,0x000C9F10,10,Code/GameEngine/Source/Common/PointerPresencePredicateThunk.cpp,matched,object-symbol=?empty@PointerPresencePredicate@@QBE_NXZ;Open-BFME5 clean C++ pointer emptiness predicate
 ?d_000c9f70@@YAXXZ,,0x000C9F70,9,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c9f80@@YAXXZ,,0x000C9F80,12,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c9f90@@YAXXZ,,0x000C9F90,12,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
