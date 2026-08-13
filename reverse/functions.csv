@@ -144373,7 +144373,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0036c920@@YAXXZ,,0x0036C920,13,Code/GameEngine/Source/Common/ScalarCopyAssignThunk.cpp,matched,object-symbol=?assign@ScalarCopyAssignThunk@@QAEAAU1@ABU1@@Z;Open-BFME5 clean C++ scalar copy assignment helper
 ?d_0036c940@@YAXXZ,,0x0036C940,9,Code/GameEngine/Source/Common/PointerRangeSizeThunk.cpp,matched,object-symbol=?size@PointerRangeSizeThunk@@QBEHXZ;Open-BFME5 clean C++ pointer range size helper
 ?d_0036c950@@YAXXZ,,0x0036C950,13,Code/GameEngine/Source/Common/ScalarCopyAssignThunk.cpp,matched,object-symbol=?assignAlternate@ScalarCopyAssignThunk@@QAEAAU1@ABU1@@Z;Open-BFME5 clean C++ scalar copy assignment helper
-?d_0036c970@@YAXXZ,,0x0036C970,13,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
+?d_0036c970@@YAXXZ,,0x0036C970,13,Code/GameEngine/Source/Common/ScalarCopyAssignThunk.cpp,matched,object-symbol=?assignThird@ScalarCopyAssignThunk@@QAEAAU1@ABU1@@Z;Open-BFME5 clean C++ scalar copy assignment helper
 ?d_0036c9d0@@YAXXZ,,0x0036C9D0,27,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036ca00@@YAXXZ,,0x0036CA00,39,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036ca30@@YAXXZ,,0x0036CA30,8,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
