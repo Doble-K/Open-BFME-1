@@ -138430,7 +138430,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014a9a0@@YAXXZ,,0x0014A9A0,27,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014a9d0@@YAXXZ,,0x0014A9D0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014ad80@@YAXXZ,,0x0014AD80,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014b610@@YAXXZ,,0x0014B610,13,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014b630@@YAXXZ,,0x0014B630,27,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014b660@@YAXXZ,,0x0014B660,26,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014ba40@@YAXXZ,,0x0014BA40,36,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0014b540@@YAXXZ,,0x0014B540,11,Code/GameEngine/Source/Common/Rva14B540SecondArgumentSetter.cpp,matched,object-symbol=?set@Rva14B540SecondArgumentSetter@@QAEPAU1@HH@Z;Open-BFME5 clean C++ RVA 14B540 second-argument setter
 ?d_0014b550@@YAXXZ,,0x0014B550,49,Code/GameEngine/Source/Common/Rva14B550SizedBufferAllocate.cpp,matched,object-symbol=_Rva14B550SizedBufferAllocate@8;Open-BFME5 clean C++ RVA 14B550 size-aware 12-byte buffer allocator
 ?d_0014b600@@YAXXZ,,0x0014B600,5,Code/GameEngine/Source/Common/Rva14B600VirtualForward.cpp,matched,object-symbol=?forward@Rva14B600Interface@@QAEXXZ;Open-BFME5 clean C++ RVA 14B600 virtual slot 24 tail forward
+?d_0014b610@@YAXXZ,,0x0014B610,13,Code/GameEngine/Source/Common/Rva14B610IndirectValueCopy.cpp,matched,object-symbol=?copyTo@Rva14B610IndirectValue@@QAEPAURva14B610Value@@PAU2@@Z;Open-BFME5 clean C++ RVA 14B610 indirect value copy
