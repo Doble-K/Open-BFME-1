@@ -69380,3 +69380,4 @@ _SiegeDeploySpecialPower_vtbl24,0x00CB73F0,Open-BFME5 SiegeDeploySpecialPower in
 _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?DualIndexedDispatchSixFirst@@3HA,0x00EB9670,Open-BFME5 six-value dual indexed dispatch first global
 ?DualIndexedDispatchSixSecond@@3HA,0x00EB9690,Open-BFME5 six-value dual indexed dispatch second global
+?destroyBody@Rva89A110DeletingDestructorThunk@@QAEXXZ,0x0089A140,Open-BFME5 destructor-body call pin

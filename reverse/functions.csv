@@ -121735,7 +121735,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00899fe0@@YAXXZ,,0x00899FE0,42,Code/gen_asm/d_00894a90.asm,matched,gen-dump;ghidra=FUN_00c99fe0
 ?d_0089a010@@YAXXZ,,0x0089A010,94,Code/gen_asm/d_00894a90.asm,matched,gen-dump;ghidra=FUN_00c9a010
 ?d_0089a070@@YAXXZ,,0x0089A070,93,Code/gen_asm/d_00894a90.asm,matched,gen-dump;ghidra=FUN_00c9a070
-?d_0089a110@@YAXXZ,,0x0089A110,33,Code/gen_asm/d_00894a90.asm,matched,gen-dump;ghidra=FUN_00c9a110
+?d_0089a110@@YAXXZ,,0x0089A110,33,Code/GameEngine/Source/Common/Rva89A110DeletingDestructorThunk.cpp,matched,object-symbol=?destroyAndMaybeDelete@Rva89A110DeletingDestructorThunk@@QAEPAXI@Z;Open-BFME5 clean C++ scalar deleting destructor
 ?d_0089a150@@YAXXZ,,0x0089A150,87,Code/gen_asm/d_00894a90.asm,matched,gen-dump;ghidra=FUN_00c9a150
 ?d_0089a1f0@@YAXXZ,,0x0089A1F0,136,Code/gen_asm/d_00894a90.asm,matched,gen-dump;ghidra=FUN_00c9a1f0
 ?d_0089a280@@YAXXZ,,0x0089A280,33,Code/gen_asm/d_00894a90.asm,matched,gen-dump;ghidra=FUN_00c9a280
