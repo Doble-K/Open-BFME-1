@@ -1685,6 +1685,18 @@ SingleIntegerZeroConstructorAlternateThunk::SingleIntegerZeroConstructorAlternat
 {
 }
 
+struct SingleIntegerZeroConstructorThirdThunk
+{
+    int value;
+
+    SingleIntegerZeroConstructorThirdThunk();
+};
+
+SingleIntegerZeroConstructorThirdThunk::SingleIntegerZeroConstructorThirdThunk() :
+    value(0)
+{
+}
+
 struct FluentNoOpThunk
 {
     FluentNoOpThunk *ignore(int unused);
