@@ -6,6 +6,7 @@ class PointerRangeCount
 public:
 	unsigned int size() const;
 	unsigned int alternateSize() const;
+	unsigned int thirdSize() const;
 
 private:
 	void **m_begin;
@@ -18,6 +19,11 @@ unsigned int PointerRangeCount::size() const
 }
 
 unsigned int PointerRangeCount::alternateSize() const
+{
+	return m_end - m_begin;
+}
+
+unsigned int PointerRangeCount::thirdSize() const
 {
 	return m_end - m_begin;
 }
