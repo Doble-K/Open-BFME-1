@@ -138138,7 +138138,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013cdc0@@YAXXZ,,0x0013CDC0,7,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013d030@@YAXXZ,,0x0013D030,11,Code/GameEngine/Source/Common/Rva13D030ValueStore.cpp,matched,object-symbol=?store@Rva13D030ValueStore@@QAEPAV1@I@Z;hand-reconciled C++
 ?d_0013d060@@YAXXZ,,0x0013D060,7,Code/GameEngine/Source/Common/Rva13D060Identity.cpp,matched,object-symbol=?identity@Rva13D060Identity@@QAEII@Z;hand-reconciled C++
-?d_0013d070@@YAXXZ,,0x0013D070,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
+?d_0013d070@@YAXXZ,,0x0013D070,6,Code/GameEngine/Source/Common/Rva13D070MemberAdvanceSixteen.cpp,matched,object-symbol=?advanced@Rva13D070MemberAdvanceSixteen@@QBEPAEXZ;hand-reconciled C++
 ?d_0013d080@@YAXXZ,,0x0013D080,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013d090@@YAXXZ,,0x0013D090,8,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013d100@@YAXXZ,,0x0013D100,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
