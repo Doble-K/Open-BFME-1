@@ -147712,7 +147712,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004631e0@@YAXXZ,,0x004631E0,31,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00463210@@YAXXZ,,0x00463210,21,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_004647f0@@YAXXZ,,0x004647F0,7,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?get@Offset432IntegerGetterThunk@@QBEHXZ;Open-BFME5 clean C++ offset-432 integer getter
-?d_00464820@@YAXXZ,,0x00464820,5,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
+?d_00464820@@YAXXZ,,0x00464820,5,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?IgnoreThreeArgumentsReturnZeroThunk@@YGHHHH@Z;Open-BFME5 clean C++ three-argument stdcall zero return
 ?d_00464840@@YAXXZ,,0x00464840,8,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00464850@@YAXXZ,,0x00464850,26,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00464870@@YAXXZ,,0x00464870,20,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high

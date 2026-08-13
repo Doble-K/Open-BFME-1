@@ -1,3 +1,8 @@
+int __stdcall IgnoreThreeArgumentsReturnZeroThunk(int, int, int)
+{
+    return 0;
+}
+
 struct VirtualSlot5CallThunk
 {
     virtual void slot0();
