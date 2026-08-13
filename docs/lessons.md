@@ -204,3 +204,43 @@ protected temporaries; an untouched gap between stored offsets is still a
 member (declare it, do not initialise it). A raw address literal is honest
 where a name would be invented: `(void (*)(MultiIniFieldParse &))0x0043ABC0`
 emits the same push as an unattested name without asserting one.
+
+## W3DRopeDraw::buildSegments: two real drifts, then the shim's STL stops it
+
+Worked as the first test of the `callers_of.py --files` queue: the 587-byte dump at
+0x0075A990 asserts in `W3DRopeDraw.cpp` and its sole caller
+`W3DRopeDraw::doDrawModule` lives there too, so the name had to be one of that
+file's eight unmatched functions. `buildSegments` compiled to 602 bytes against the
+587 wanted, which is close enough to work. Two drifts came out of it:
+
+- **`NEW Line3DClass(...)` should be `::new Line3DClass(...)`.** Retail calls the
+  global `??2@YAPAXI@Z` at both allocation sites. Our `NEW` routes through the W3D
+  memory pool, which is what leaves `?allocateFromW3DMemPool@@YAPAXPAXH@Z` and
+  `?getClassMemoryPool@Line3DClass@@CAPAXXZ` unresolved. Fixing it took the body
+  from 602 bytes to exactly 587.
+- **The leading `m_segments.clear()` is an `erase(begin(), end())`.** With `clear()`
+  the helper call takes four pushed arguments; retail pushes five. Switching to
+  `erase` matched the argument count and the `push edi`, and moved the first
+  difference from +0x1A to +0x21.
+
+It still does not land, and the reason is worth writing down because it is not this
+function's fault. What is left is a single CSE decision:
+
+    target: mov eax,[esi+0x14]                 push edx / push ecx / push eax / push eax
+    ours:   mov edx,[esi+0x14] / mov eax,...   push edi / push ecx / push edx / push eax
+
+Same five values in the same order. Retail reads `_M_finish` once and pushes the
+register twice; we read it twice into two registers. That is `vector::erase` doing
+`copy(last, _M_finish, first)` where `last` and `_M_finish` are the same read - and
+whether they get folded is decided inside the STL header, not here. Hoisting `end()`
+into a local changes nothing and `resize(0)` is worse (567 bytes).
+
+So the finding is that **the shim's `vector` differs from BFME's**: our `clear()`
+lowers to a four-argument helper where theirs takes five. The three-byte offset from
+that one extra `mov` never re-syncs, so 172 of 184 instructions read as different
+even though the total size is exactly right. Do not chase the tail of this diff -
+size agreement plus a cascade from instruction one means look at the container.
+
+Reverted rather than committed: both edits are almost certainly correct, but the
+body does not byte-verify, and changing unverified C++ on inference alone puts a
+wrong guess where the next agent will read it as fact.
