@@ -1,228 +1,79 @@
-// cl: /DNDEBUG /MD /EHsc
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
+// stlport
+
+#include <list>
 
 class Thing;
 class ModuleData;
+class Object;
 
-class PassiveAreaEffectBehavior
+enum UpdateSleepTime
+{
+	UPDATE_SLEEP_NONE = 1
+};
+
+class PassiveAreaEffectBehaviorRoot
 {
 public:
-    PassiveAreaEffectBehavior(Thing *, const ModuleData *);
+	PassiveAreaEffectBehaviorRoot(Thing *, const ModuleData *);
+	virtual ~PassiveAreaEffectBehaviorRoot();
+
+protected:
+	const ModuleData *m_moduleData;
+	Object *m_object;
+};
+
+class PassiveAreaEffectBehaviorInterface
+{
+public:
+	virtual void slot();
+};
+
+class PassiveAreaEffectUpdateInterface
+{
+public:
+	virtual void slot();
+};
+
+class PassiveAreaEffectUpdateModule : public PassiveAreaEffectBehaviorRoot,
+	public PassiveAreaEffectBehaviorInterface,
+	public PassiveAreaEffectUpdateInterface
+{
+public:
+	PassiveAreaEffectUpdateModule(Thing *thing, const ModuleData *moduleData)
+		: PassiveAreaEffectBehaviorRoot(thing, moduleData),
+		  m_nextCallFrameAndPhase(0),
+		  m_indexInLogic(-1),
+		  m_updateState(-1)
+	{
+	}
+
+protected:
+	void setWakeFrame(Object *, UpdateSleepTime);
+	Object *getObject() const { return m_object; }
+
+private:
+	unsigned int m_nextCallFrameAndPhase;
+	int m_indexInLogic;
+	unsigned int m_updateState;
+};
+
+class PassiveAreaEffectBehavior : public PassiveAreaEffectUpdateModule
+{
+public:
+	PassiveAreaEffectBehavior(Thing *, const ModuleData *);
+
+private:
+	unsigned int m_unknown20;
+	_STL::list<int> m_affectedObjects;
 };
 
 // ??0PassiveAreaEffectBehavior@@QAE@PAVThing@@PBVModuleData@@@Z
-__declspec(naked) PassiveAreaEffectBehavior::PassiveAreaEffectBehavior(Thing *, const ModuleData *)
+PassiveAreaEffectBehavior::PassiveAreaEffectBehavior(Thing *thing,
+	const ModuleData *moduleData)
+	: PassiveAreaEffectUpdateModule(thing, moduleData)
 {
-    __asm {
-        __emit 0x6a;
-        __emit 0xff;
-        __emit 0x68;
-        __emit 0x03;
-        __emit 0xb9;
-        __emit 0x00;
-        __emit 0x01;
-        __emit 0x64;
-        __emit 0xa1;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x50;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x25;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x56;
-        __emit 0x57;
-        __emit 0x8b;
-        __emit 0xf1;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x1c;
-        __emit 0x50;
-        __emit 0x51;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0x89;
-        __emit 0x74;
-        __emit 0x24;
-        __emit 0x10;
-        __emit 0xe8;
-        __emit 0xb5;
-        __emit 0x4f;
-        __emit 0xe1;
-        __emit 0xff;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0xd0;
-        __emit 0xc9;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0xa0;
-        __emit 0xcb;
-        __emit 0x09;
-        __emit 0x01;
-        __emit 0x83;
-        __emit 0xc8;
-        __emit 0xff;
-        __emit 0x33;
-        __emit 0xff;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x14;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x1c;
-        __emit 0xc7;
-        __emit 0x06;
-        __emit 0x04;
-        __emit 0x53;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x0c;
-        __emit 0x40;
-        __emit 0x52;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0xc7;
-        __emit 0x46;
-        __emit 0x10;
-        __emit 0x34;
-        __emit 0x52;
-        __emit 0x0a;
-        __emit 0x01;
-        __emit 0x6a;
-        __emit 0x0c;
-        __emit 0x89;
-        __emit 0x7c;
-        __emit 0x24;
-        __emit 0x18;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x24;
-        __emit 0xe8;
-        __emit 0xd3;
-        __emit 0xc3;
-        __emit 0x62;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x00;
-        __emit 0x89;
-        __emit 0x40;
-        __emit 0x04;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x04;
-        __emit 0x89;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x89;
-        __emit 0x7e;
-        __emit 0x20;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x8b;
-        __emit 0x38;
-        __emit 0x3b;
-        __emit 0xf8;
-        __emit 0xc6;
-        __emit 0x44;
-        __emit 0x24;
-        __emit 0x14;
-        __emit 0x01;
-        __emit 0x74;
-        __emit 0x1d;
-        __emit 0x8d;
-        __emit 0xa4;
-        __emit 0x24;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0xc7;
-        __emit 0x8b;
-        __emit 0x3f;
-        __emit 0x6a;
-        __emit 0x0c;
-        __emit 0x50;
-        __emit 0xe8;
-        __emit 0x54;
-        __emit 0xc4;
-        __emit 0x62;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x08;
-        __emit 0x3b;
-        __emit 0xf8;
-        __emit 0x75;
-        __emit 0xea;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x89;
-        __emit 0x00;
-        __emit 0x8b;
-        __emit 0x46;
-        __emit 0x24;
-        __emit 0x89;
-        __emit 0x40;
-        __emit 0x04;
-        __emit 0x8b;
-        __emit 0x56;
-        __emit 0x08;
-        __emit 0x6a;
-        __emit 0x01;
-        __emit 0x52;
-        __emit 0x8b;
-        __emit 0xce;
-        __emit 0xe8;
-        __emit 0x1c;
-        __emit 0x36;
-        __emit 0xe1;
-        __emit 0xff;
-        __emit 0x8b;
-        __emit 0x4c;
-        __emit 0x24;
-        __emit 0x0c;
-        __emit 0x5f;
-        __emit 0x8b;
-        __emit 0xc6;
-        __emit 0x5e;
-        __emit 0x64;
-        __emit 0x89;
-        __emit 0x0d;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x00;
-        __emit 0x83;
-        __emit 0xc4;
-        __emit 0x10;
-        __emit 0xc2;
-        __emit 0x08;
-        __emit 0x00;
-    }
+	m_unknown20 = 0;
+	m_affectedObjects.clear();
+	setWakeFrame(getObject(), UPDATE_SLEEP_NONE);
 }

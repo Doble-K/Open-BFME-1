@@ -68743,6 +68743,8 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?setWakeFrame@ObjectWeaponStatusHelperBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ?setWakeFrame@UpdateModule@@QAEXPAVObject@@I@Z,0x000157DA
 ?setWakeFrame@WeaponModeSpecialPowerUpdateBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
+??0PassiveAreaEffectBehaviorRoot@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,ObjectModule constructor via ILT thunk
+?setWakeFrame@PassiveAreaEffectUpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ?setWrappedCommandID@NetWrapperCommandMsg@@QAEXG@Z,0x00037083,ILT thunk; real body 0xA73F70
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,0x00017503,pinharvest x1 (thunk)
 ?showBuildTooltipLayout@ControlBar@@QAEXPAVGameWindow@@@Z,0x0001DF43,pinharvest x1 (thunk)
