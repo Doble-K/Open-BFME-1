@@ -1,7 +1,44 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
+// stlport
 
-class INI;
+#include <list>
+
+class INI
+{
+public:
+	void initFromINI(void *, const void *);
+};
+
+class ShellMenuSchemeLine
+{
+public:
+	ShellMenuSchemeLine()
+	{
+		m_startPos[0] = m_startPos[1] = 0;
+		m_endPos[0] = m_endPos[1] = 0;
+		m_color = 0x00ffffff;
+		m_width = 1;
+	}
+
+private:
+	int m_startPos[2];
+	int m_endPos[2];
+	int m_width;
+	unsigned int m_color;
+};
+
+class ShellMenuScheme
+{
+private:
+	unsigned char m_pad00[4];
+	_STL::list<void *> m_imageList;
+	_STL::list<ShellMenuSchemeLine *> m_lineList;
+
+	friend class ShellMenuSchemeManager;
+};
+
+extern const unsigned char g_shellMenuSchemeLineFieldParse[];
+
 class ShellMenuSchemeManager
 {
 public:
@@ -9,132 +46,15 @@ public:
 };
 
 // ?parseLinePart@ShellMenuSchemeManager@@SAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void __cdecl ShellMenuSchemeManager::parseLinePart(INI *, void *, void *, const void *)
+void __cdecl ShellMenuSchemeManager::parseLinePart(INI *ini, void *instance,
+	void *, const void *)
 {
-	__asm {
-        __emit 0x56
-        __emit 0x57
-        __emit 0x6a
-        __emit 0x18
-        __emit 0xe8
-        __emit 0xe7
-        __emit 0x09
-        __emit 0x30
-        __emit 0x00
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc0
-        __emit 0x74
-        __emit 0x2d
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x04
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x0c
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x08
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x14
-        __emit 0xff
-        __emit 0xff
-        __emit 0xff
-        __emit 0x00
-        __emit 0xc7
-        __emit 0x40
-        __emit 0x10
-        __emit 0x01
-        __emit 0x00
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0xf8
-        __emit 0xeb
-        __emit 0x02
-        __emit 0x33
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x68
-        __emit 0xa0
-        __emit 0xb6
-        __emit 0x10
-        __emit 0x01
-        __emit 0x57
-        __emit 0xe8
-        __emit 0x12
-        __emit 0x0b
-        __emit 0x2d
-        __emit 0x00
-        __emit 0x85
-        __emit 0xff
-        __emit 0x74
-        __emit 0x27
-        __emit 0x8b
-        __emit 0x44
-        __emit 0x24
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x70
-        __emit 0x08
-        __emit 0x6a
-        __emit 0x0c
-        __emit 0xe8
-        __emit 0xa0
-        __emit 0xcf
-        __emit 0x2a
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x48
-        __emit 0x08
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x04
-        __emit 0x85
-        __emit 0xc9
-        __emit 0x74
-        __emit 0x02
-        __emit 0x89
-        __emit 0x39
-        __emit 0x8b
-        __emit 0x4e
-        __emit 0x04
-        __emit 0x89
-        __emit 0x30
-        __emit 0x89
-        __emit 0x48
-        __emit 0x04
-        __emit 0x89
-        __emit 0x01
-        __emit 0x89
-        __emit 0x46
-        __emit 0x04
-        __emit 0x5f
-        __emit 0x5e
-        __emit 0xc3
+	ShellMenuSchemeLine *schemeLine = new ShellMenuSchemeLine;
+	ini->initFromINI(schemeLine, g_shellMenuSchemeLineFieldParse);
+
+	if (schemeLine != 0)
+	{
+		ShellMenuScheme *scheme = static_cast<ShellMenuScheme *>(instance);
+		scheme->m_lineList.push_back(schemeLine);
 	}
 }
