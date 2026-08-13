@@ -135034,7 +135034,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0005c450@@YAXXZ,,0x0005C450,10,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c460@@YAXXZ,,0x0005C460,7,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c470@@YAXXZ,,0x0005C470,13,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0005c5c0@@YAXXZ,,0x0005C5C0,7,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0005c5c0@@YAXXZ,,0x0005C5C0,7,Code/GameEngine/Source/Common/Offset94ByteGetterThunk.cpp,matched,object-symbol=?getValue@Offset94ByteGetterThunk@@QBEEXZ;Open-BFME5 clean C++ offset 94 byte getter
 ?d_0005c650@@YAXXZ,,0x0005C650,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c690@@YAXXZ,,0x0005C690,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c800@@YAXXZ,,0x0005C800,31,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
