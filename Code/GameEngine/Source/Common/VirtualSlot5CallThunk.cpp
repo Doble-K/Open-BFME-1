@@ -985,10 +985,16 @@ struct VirtualMinusOneConstructorThunk
     int value;
 
     VirtualMinusOneConstructorThunk();
+    VirtualMinusOneConstructorThunk(const VirtualMinusOneConstructorThunk &other);
 };
 
 VirtualMinusOneConstructorThunk::VirtualMinusOneConstructorThunk() :
     value(-1)
+{
+}
+
+VirtualMinusOneConstructorThunk::VirtualMinusOneConstructorThunk(const VirtualMinusOneConstructorThunk &other) :
+    value(other.value)
 {
 }
 
