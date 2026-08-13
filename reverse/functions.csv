@@ -138993,7 +138993,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?rva_18adb0_constant_return@@YAIXZ,,0x0018ADB0,6,Code/GameEngine/Source/Common/Rva18ADB0ConstantReturn.cpp,matched,hand-reconciled C++;Open-BFME5 clean C++ RVA 18ADB0 constant return
 ?d_0018ae00@@YAXXZ,,0x0018AE00,53,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018ae90@@YAXXZ,,0x0018AE90,61,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_0018aee0@@YAXXZ,,0x0018AEE0,6,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?rva_18aee0_constant_return@@YAIXZ,,0x0018AEE0,6,Code/GameEngine/Source/Common/Rva18AEE0ConstantReturn.cpp,matched,hand-reconciled C++;Open-BFME5 clean C++ RVA 18AEE0 constant return
 ?d_0018b3e0@@YAXXZ,,0x0018B3E0,23,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018b400@@YAXXZ,,0x0018B400,41,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018b440@@YAXXZ,,0x0018B440,29,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
