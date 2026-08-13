@@ -449,7 +449,7 @@ def format_delta(current, previous, total):
 
 def print_scorecard(ref1, label2, old_stats, new_stats):
     total = new_stats["text"]
-    print(f"retail .text exact coverage {ref1} -> {label2} ({total:,} bytes)")
+    print(f"\nretail .text exact coverage {ref1} -> {label2} ({total:,} bytes)")
     rows = (
         ("C++ exact", "cpp"),
         ("ASM-only exact", "asm_only"),
@@ -481,12 +481,15 @@ def rebuildable(split):
 
 
 def print_real_code(padding, denominator, old_stats, new_stats, old_split, new_split):
-    print(f"\nreal code = .text minus {padding:,} bytes of 0xCC padding "
-          f"= {denominator:,} bytes")
+    # The headline goes first and alone: it is the one number the project is
+    # graded on, and everything below it is either its decomposition or a
+    # different question entirely.
     now, before = rebuildable(new_split), rebuildable(old_split)
-    print(f"\n  REBUILDS FROM WHAT WE HOLD  {now:>10,} bytes "
+    print(f"REBUILDS FROM WHAT WE HOLD  {now:>10,} bytes "
           f"({percent(now, denominator):6.2f}%)  delta "
           f"{format_delta(now, before, denominator)}")
+    print(f"\nreal code = .text minus {padding:,} bytes of 0xCC padding "
+          f"= {denominator:,} bytes")
     print(f"  {'still only retail bytes':<26} {new_split['dump']:>10,} bytes "
           f"({percent(new_split['dump'], denominator):6.2f}%)  <- dumps: a boundary, nothing more")
     # new_stats["unmatched"] is padding-inclusive; the real-code view must not be.
@@ -597,13 +600,13 @@ def main():
     new_stats = coverage(new, text_start, text_size, new_naked)
     label2 = ref2 or "worktree"
 
-    print_scorecard(ref1, label2, old_stats, new_stats)
     padding, denominator = real_code_denominator(text_start, text_size)
     old_notes, new_notes = notes_at(ref1), notes_at(ref2)
     print_real_code(
         padding, denominator, old_stats, new_stats,
         source_split(old, old_notes, text_start, text_size, old_naked),
         source_split(new, new_notes, text_start, text_size, new_naked))
+    print_scorecard(ref1, label2, old_stats, new_stats)
     if args.details:
         print_details(ref1, ref2, old, new, old_naked, new_naked)
     print("\nledger-derived; a clean build.sh run is the byte-match proof.")
