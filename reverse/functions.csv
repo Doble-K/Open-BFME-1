@@ -138547,7 +138547,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0015cf40@@YAXXZ,,0x0015CF40,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015cf50@@YAXXZ,,0x0015CF50,53,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015d000@@YAXXZ,,0x0015D000,53,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0015e4c0@@YAXXZ,,0x0015E4C0,60,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015e510@@YAXXZ,,0x0015E510,290,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015e740@@YAXXZ,,0x0015E740,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015e750@@YAXXZ,,0x0015E750,20,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?tryToSetCaveIndex@CaveContain@@UAEXH@Z,,0x00219D70,130,Code/GameEngine/Source/GameLogic/Object/Contain/CaveContainTryToSetCaveIndex.cpp,matched,Open-BFME5 clean C++ with BFME retail owner offset
 ?d_00946740@@YAXXZ,,0x00946740,109,Code/Libraries/Source/WWVegas/WW3D2/DX8RigidDelayedMaterialPass.cpp,matched,object-symbol=?Add_Delayed_Visible_Material_Pass@DX8RigidFVFCategoryContainer@@UAEXPAVMaterialPassClass@@PAVMeshClass@@@Z;Open-BFME5 clean C++ delayed material pass
 ?logPlayerDisconnect@RecorderClass@@QAEXVUnicodeString@@H@Z,,0x00097F80,156,Code/GameEngine/Source/Common/RecorderLogPlayerDisconnect.cpp,matched,Open-BFME5 clean C++ with BFME disconnect offset
+?d_0015e4c0@@YAXXZ,,0x0015E4C0,60,Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp,matched,object-symbol=?update@AIGuardReturnState@@UAE?AW4StateReturnType@@XZ;Open-BFME5 clean C++ guard return update

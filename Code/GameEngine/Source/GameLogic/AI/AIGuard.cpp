@@ -675,7 +675,8 @@ StateReturnType AIGuardReturnState::update( void )
 	if (now >= m_nextReturnScanTime)
 	{
 		m_nextReturnScanTime = now + TheAI->getAiData()->m_guardEnemyReturnScanRate;
-		if (getGuardMachine()->lookForInnerTarget()) 
+		AIGuardMachine *retailGuardMachine = *reinterpret_cast<AIGuardMachine **>(reinterpret_cast<char *>(this) + 0x1c);
+		if (retailGuardMachine->lookForInnerTarget())
 			return STATE_FAILURE; // early termination because we found a target.
 	}
 
