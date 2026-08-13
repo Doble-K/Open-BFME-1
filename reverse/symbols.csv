@@ -69305,3 +69305,4 @@ _SlaughterHordeContain_vtbl30,0x00CB0ED0,Open-BFME5 SlaughterHordeContain interf
 _SlaughterHordeContain_vtbl34,0x00CB0EC0,Open-BFME5 SlaughterHordeContain interface vtable
 ?getUnsignedIntFromRegistry@@YA_NPAXVAsciiString@@1AAI@Z,0x001091E0,registry DWORD primitive via thunk 0x1D21E
 ?getStringFromRegistry@@YA_NPAXVAsciiString@@1AAV1@@Z,0x00108E80,registry string primitive via thunk 0x288D
+?getStringFromRegistry@@YA_NPAXVUnicodeString@@1AAV1@@Z,0x00109030,Unicode registry primitive via thunk 0x45345
