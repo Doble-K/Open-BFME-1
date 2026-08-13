@@ -147634,7 +147634,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045e980@@YAXXZ,,0x0045E980,11,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setSecondFourth@OffsetZeroSecondIntegerSetterReturningThisThunk@@QAEPAU1@HH@Z;Open-BFME5 clean C++ fourth second argument integer setter
 ?d_0045e990@@YAXXZ,,0x0045E990,25,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?reset@IndirectSelfLinkedResetThunk@@QAEXXZ;Open-BFME5 clean C++ indirect self linked state reset
 ?d_0045e9b0@@YAXXZ,,0x0045E9B0,50,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
-?d_0045e9f0@@YAXXZ,,0x0045E9F0,18,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045e9f0@@YAXXZ,,0x0045E9F0,18,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setValuesFourth@FluentIntegerPairSetterThunk@@QAEPAU1@HH@Z;Open-BFME5 clean C++ fourth fluent integer pair setter
 ?d_0045ea10@@YAXXZ,,0x0045EA10,18,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045ea30@@YAXXZ,,0x0045EA30,18,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045ea50@@YAXXZ,,0x0045EA50,20,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
