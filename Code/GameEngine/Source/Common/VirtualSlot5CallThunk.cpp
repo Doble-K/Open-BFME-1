@@ -1201,6 +1201,11 @@ unsigned char *pointerPlusSixteen(unsigned char *value)
     return value + 16;
 }
 
+bool pointedIntegersDiffer(const int *left, const int *right)
+{
+    return *left != *right;
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
