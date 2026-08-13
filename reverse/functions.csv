@@ -135774,7 +135774,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00087480@@YAXXZ,,0x00087480,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00087490@@YAXXZ,,0x00087490,9,Code/GameEngine/Source/Common/Rva87490AtLeastFive.cpp,matched,object-symbol=?rva_87490_at_least_five@@YAII@Z;Open-BFME5 clean C++ RVA 87490 unsigned at least five test
 ?d_000874a0@@YAXXZ,,0x000874A0,11,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_00087710@@YAXXZ,,0x00087710,9,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_00087710@@YAXXZ,,0x00087710,9,Code/GameEngine/Source/Common/Rva87710ValueReset.cpp,matched,object-symbol=?reset@Rva87710ValueReset@@QAEPAIXZ;Open-BFME5 clean C++ RVA 87710 reset value and return self
 ?d_00087820@@YAXXZ,,0x00087820,10,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00087850@@YAXXZ,,0x00087850,9,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00087930@@YAXXZ,,0x00087930,10,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
