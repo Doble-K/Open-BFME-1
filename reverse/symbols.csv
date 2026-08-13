@@ -2328,6 +2328,7 @@ name,address,notes
 ??1ElvenWoodSpecialPowerModuleDataMemberA@@QAE@XZ,0x00013C00,Open-BFME5 pin
 ??1ElvenWoodSpecialPowerModuleDataMemberB@@QAE@XZ,0x00887940,Open-BFME5 pin
 ??1EmotionTrackerUpdateEntry@@QAE@XZ,0x00028FCE,Open-BFME5 retail emotion-tracker entry destructor body
+??1SupplyCenterProductionExitEntry@@QAE@XZ,0x00028FCE,Open-BFME5 SupplyCenter production-exit entry destructor thunk pin
 ??1EmotionTrackerUpdateName@@QAE@XZ,0x0001A401,Open-BFME5 retail emotion-tracker string destructor thunk
 ??1EnragedBehaviorModuleDataMember@@QAE@XZ,0x00026AB2,EnragedBehaviorModuleData dtor member +0x8
 ??1Entry@?$HashTemplateClass@VStringClass@@H@@QAE@XZ,0x00013101,pinharvest x1 (thunk)
