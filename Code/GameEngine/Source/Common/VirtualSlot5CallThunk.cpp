@@ -28,9 +28,15 @@ struct VirtualSlot8CallThunk
     virtual void invoke(int value);
 
     void invokeZero();
+    void invokeZeroAlternate();
 };
 
 void VirtualSlot8CallThunk::invokeZero()
+{
+    invoke(0);
+}
+
+void VirtualSlot8CallThunk::invokeZeroAlternate()
 {
     invoke(0);
 }
