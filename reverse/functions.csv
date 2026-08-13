@@ -135353,7 +135353,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0006b450@@YAXXZ,,0x0006B450,31,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006b480@@YAXXZ,,0x0006B480,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006b490@@YAXXZ,,0x0006B490,8,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0006b4c0@@YAXXZ,,0x0006B4C0,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0006b4c0@@YAXXZ,,0x0006B4C0,5,Code/GameEngine/Source/Common/SeptenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@SeptenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ septenary identity with one argument
 ?d_0006b5b0@@YAXXZ,,0x0006B5B0,6,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006b5c0@@YAXXZ,,0x0006B5C0,22,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006b710@@YAXXZ,,0x0006B710,6,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
