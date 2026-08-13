@@ -27,3 +27,8 @@ void *pointerOffset16Sixth(void *value)
 {
     return static_cast<char *>(value) + 16;
 }
+
+void *pointerOffset16Seventh(void *value)
+{
+    return static_cast<char *>(value) + 16;
+}
