@@ -139148,7 +139148,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?rva_192310_pointer_offset@@YAPAEPAE@Z,,0x00192310,8,Code/GameEngine/Source/Common/Rva192310PointerOffset.cpp,matched,hand-reconciled C++
 ?rva_192320_pointer_offset@@YAPAEPAE@Z,,0x00192320,8,Code/GameEngine/Source/Common/Rva192320PointerOffset.cpp,matched,hand-reconciled C++
 ?rva_192360_pointer_offset@@YAPAEPAE@Z,,0x00192360,8,Code/GameEngine/Source/Common/Rva192360PointerOffset.cpp,matched,hand-reconciled C++
-?d_00192370@@YAXXZ,,0x00192370,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?rva_192370_pointer_offset@@YAPAEPAE@Z,,0x00192370,8,Code/GameEngine/Source/Common/Rva192370PointerOffset.cpp,matched,hand-reconciled C++
 ?d_00192380@@YAXXZ,,0x00192380,14,Code/GameEngine/Source/Common/VtableSlot2StoreThunk.cpp,matched,object-symbol=?getFiftySecond@VtableSlot2StoreThunk@@QBE?AUVtableSlot2Result@@XZ;Open-BFME5 clean C++ vtable slot 2 value return
 ?d_001923a0@@YAXXZ,,0x001923A0,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001923b0@@YAXXZ,,0x001923B0,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
