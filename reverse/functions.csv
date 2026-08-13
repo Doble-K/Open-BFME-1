@@ -147605,7 +147605,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045e430@@YAXXZ,,0x0045E430,19,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyFromThird@FluentIntegerPairSetterThunk@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ third fluent integer pair copy
 ?d_0045e450@@YAXXZ,,0x0045E450,19,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyFromFourth@FluentIntegerPairSetterThunk@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ fourth fluent integer pair copy
 ?d_0045e480@@YAXXZ,,0x0045E480,18,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setValue@RetainedReferenceSetterThunk@@QAEPAU1@PAUReferenceCountedReleaseValue@@@Z;Open-BFME5 clean C++ retained reference setter
-?d_0045e4a0@@YAXXZ,,0x0045E4A0,18,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045e4a0@@YAXXZ,,0x0045E4A0,18,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setValueAlternate@RetainedReferenceSetterThunk@@QAEPAU1@PAUReferenceCountedReleaseValue@@@Z;Open-BFME5 clean C++ alternate retained reference setter
 ?d_0045e4c0@@YAXXZ,,0x0045E4C0,18,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e4e0@@YAXXZ,,0x0045E4E0,10,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e4f0@@YAXXZ,,0x0045E4F0,8,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
