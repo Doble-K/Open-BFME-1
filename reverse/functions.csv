@@ -144354,7 +144354,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0036c760@@YAXXZ,,0x0036C760,5,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036c770@@YAXXZ,,0x0036C770,5,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036c780@@YAXXZ,,0x0036C780,5,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
-?d_0036c790@@YAXXZ,,0x0036C790,8,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
+?d_0036c790@@YAXXZ,,0x0036C790,8,Code/GameEngine/Source/Common/PointerOffset8Thunk.cpp,matched,object-symbol=?pointerOffset8@@YAPAXPAX@Z;Open-BFME5 clean C++ pointer offset helper
 ?d_0036c7a0@@YAXXZ,,0x0036C7A0,8,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036c7b0@@YAXXZ,,0x0036C7B0,14,Code/GameEngine/Source/Common/VtableSlot2StoreThunk.cpp,matched,object-symbol=?get@VtableSlot2StoreThunk@@QBE?AUVtableSlot2Result@@XZ;Open-BFME5 clean C++ vtable slot 2 value return
 ?d_0036c7d0@@YAXXZ,,0x0036C7D0,8,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
