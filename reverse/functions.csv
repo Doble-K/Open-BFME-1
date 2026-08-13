@@ -137619,7 +137619,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00105790@@YAXXZ,,0x00105790,38,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_001057c0@@YAXXZ,,0x001057C0,65,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00105860@@YAXXZ,,0x00105860,10,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
-?d_00105870@@YAXXZ,,0x00105870,5,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
+?d_00105870@@YAXXZ,,0x00105870,5,Code/GameEngine/Source/Common/Rva105870Offset16ByteOneSetterThunk.cpp,matched,object-symbol=?enable@Rva105870Offset16ByteOneSetterThunk@@QAEXXZ;Open-BFME5 clean C++ RVA 105870 offset 16 byte one setter
 ?d_00106630@@YAXXZ,,0x00106630,10,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00106640@@YAXXZ,,0x00106640,10,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00106660@@YAXXZ,,0x00106660,10,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
