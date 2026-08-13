@@ -58,3 +58,17 @@ void VirtualSlot8CallThunk::invokeZeroFourth()
 {
     invoke(0);
 }
+
+struct VirtualSlot2CallThunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void invoke();
+
+    void invokeIgnoringArgument(int unused);
+};
+
+void VirtualSlot2CallThunk::invokeIgnoringArgument(int)
+{
+    invoke();
+}
