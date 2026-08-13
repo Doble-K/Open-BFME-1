@@ -1168,9 +1168,15 @@ bool PointerPresenceThunk::hasValue() const
 struct IntegerArgumentIdentityThunk
 {
     int identity(int value) const;
+    int identityAlternate(int value) const;
 };
 
 int IntegerArgumentIdentityThunk::identity(int value) const
+{
+    return value;
+}
+
+int IntegerArgumentIdentityThunk::identityAlternate(int value) const
 {
     return value;
 }
