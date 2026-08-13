@@ -950,3 +950,23 @@ int *IndirectIntegerCopyThunk::copyTo(int *destination) const
     *destination = *source;
     return destination;
 }
+
+struct LinkedNodePopValue
+{
+    LinkedNodePopValue *next;
+};
+
+struct LinkedNodePopThunk
+{
+    LinkedNodePopValue *head;
+
+    LinkedNodePopValue **popTo(LinkedNodePopValue **destination, int unused);
+};
+
+LinkedNodePopValue **LinkedNodePopThunk::popTo(LinkedNodePopValue **destination, int)
+{
+    LinkedNodePopValue *oldHead = head;
+    head = oldHead->next;
+    *destination = oldHead;
+    return destination;
+}
