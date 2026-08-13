@@ -57,6 +57,7 @@ struct VtableSlot2StoreThunk
     VtableSlot2Result getFortyEighth() const;
     VtableSlot2Result getFortyNinth() const;
     VtableSlot2Result getFiftieth() const;
+    VtableSlot2Result getFiftyFirst() const;
 };
 
 VtableSlot2Result VtableSlot2StoreThunk::get() const
@@ -354,6 +355,12 @@ VtableSlot2Result VtableSlot2StoreThunk::getFortyNinth() const
 }
 
 VtableSlot2Result VtableSlot2StoreThunk::getFiftieth() const
+{
+    VtableSlot2Result result = { vtable[2] };
+    return result;
+}
+
+VtableSlot2Result VtableSlot2StoreThunk::getFiftyFirst() const
 {
     VtableSlot2Result result = { vtable[2] };
     return result;
