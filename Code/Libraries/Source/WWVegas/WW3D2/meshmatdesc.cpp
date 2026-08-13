@@ -60,9 +60,13 @@ MatBufferClass::MatBufferClass(const MatBufferClass & that) :
 	ShareBufferClass<VertexMaterialClass *>(that)
 {
 	// add a reference for each pointer that was copied...
+	// BFME: retail reads through RawBuffer here rather than Array; both hold the
+	// same freshly-allocated pointer right after the base copy ctor runs (Alignment
+	// is always 0 for this instantiation, so Array == RawBuffer), but the compiler
+	// chose the RawBuffer member for this loop specifically.
 	for (int i=0; i<Count; i++) {
-		if (Array[i]) {
-			Array[i]->Add_Ref();
+		if (RawBuffer[i]) {
+			RawBuffer[i]->Add_Ref();
 		}
 	}
 }
@@ -128,6 +132,7 @@ void TexBufferClass::Set_Element(int index,TextureClass * tex)
 	REF_PTR_SET(Array[index],tex);
 }
 
+// ?Get_Element@TexBufferClass@@QAEPAVTextureClass@@H@Z present-unmatched
 TextureClass * TexBufferClass::Get_Element(int index)
 {
 	if (Array[index]) {

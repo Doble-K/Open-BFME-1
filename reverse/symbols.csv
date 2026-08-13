@@ -69450,3 +69450,5 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?TheRadar@@3PAVRadar@@A,0x012EF0E4,Radar* global; identified by engine-init constructor-tag string "TheRadar" at RVA 0x0761dc pushed immediately before ctor call that stores to this address (WinMain-style subsystem construction block at 0x47a08b-0x47a09a, alongside TheRecorder@0x12ed62c and TheVictoryConditions@0x12f079c constructed the same way)
 ?scanClosestTarget@AutoFindHealingUpdate@@QAEPAVObject@@XZ,0x00036787,packet 002817b0 pin
 ?aiGetHealed@AICommandInterface@@QAEXPAVObject@@W4CommandSourceType@@@Z,0x0003CF10,packet 002817b0 pin
+??0?$ShareBufferClass@PAVVertexMaterialClass@@@@QAE@ABV0@@Z,0x00929D40,packet 0092a1e0 pin
+?onContaining@OpenContain@@UAEXPAVObject@@_N@Z,0x000476F9,packet 00219850 pin

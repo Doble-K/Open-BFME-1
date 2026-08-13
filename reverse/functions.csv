@@ -108996,7 +108996,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00218e70@@YAXXZ,,0x00218E70,86,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00618e70
 ?d_00219290@@YAXXZ,,0x00219290,77,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619290
 ?d_002196d0@@YAXXZ,,0x002196D0,6,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_006196d0
-?d_00219850@@YAXXZ,,0x00219850,40,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619850
 ?d_00219960@@YAXXZ,,0x00219960,208,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619960
 ?d_00219ac0@@YAXXZ,,0x00219AC0,7,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619ac0
 ?d_00219d10@@YAXXZ,,0x00219D10,68,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619d10
@@ -136715,7 +136714,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000ca7e0@@YAXXZ,,0x000CA7E0,5,Code/GameEngine/Source/Common/RvaCA7E0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@RvaCA7E0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA CA7E0 identity with one argument
 ?d_000ca7f0@@YAXXZ,,0x000CA7F0,46,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ca830@@YAXXZ,,0x000CA830,47,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
-?d_000ca880@@YAXXZ,,0x000CA880,35,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ca8f0@@YAXXZ,,0x000CA8F0,50,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ca930@@YAXXZ,,0x000CA930,6,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ca940@@YAXXZ,,0x000CA940,6,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
@@ -157945,3 +157943,7 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?allow@PartitionFilterRepulsor@@MAE_NPAVObject@@@Z,,0x001DDB10,96,Code/GameEngine/Source/Common/PartitionFilterRepulsor_allow_Thunk.cpp,matched,
 ?onEnter@AIMoveAndDeleteState@@UAE?AW4StateReturnType@@XZ,,0x0017EF50,134,Code/GameEngine/Source/Common/AIMoveAndDeleteState_onEnter_Thunk.cpp,matched,
 ?update@AutoFindHealingUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002817B0,154,Code/GameEngine/Source/GameLogic/Object/Update/AutoFindHealingUpdate.cpp,matched,
+??0MatBufferClass@@QAE@ABV0@@Z,,0x0092A1E0,59,Code/Libraries/Source/WWVegas/WW3D2/meshmatdesc.cpp,matched,
+?isIntersectedByLineSegment@GeometryInfo@@QBE_NABUCoord3D@@00@Z,,0x0087DFC0,59,Code/GameEngine/Source/Common/System/Geometry.cpp,matched,
+?onContaining@CaveContain@@UAEXPAVObject@@_N@Z,,0x00219850,40,Code/GameEngine/Source/GameLogic/Object/Contain/CaveContainOnContaining.cpp,matched,Open-BFME5 ContainModuleInterface slice; BFME retail vtbl has one extra virtual ahead of recalcApparentControllingPlayer vs ZH header
+?_M_do_count@?$_Base_bitset@$05@_STL@@QBEIXZ,,0x000CA880,35,Code/GameEngine/Source/Common/KindOfMaskCountThunk.cpp,matched,width-only KindOfType (KINDOF_COUNT=192 per CrateSystem.cpp precedent); Nw=6 _M_do_count body

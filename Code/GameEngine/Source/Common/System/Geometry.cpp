@@ -166,14 +166,18 @@ static Real calcPointToLineDistSquared(const Coord3D& pt, const Coord3D& lineSta
 }
 
 //=============================================================================
-// ?GeometryInfo::isIntersectedByLineSegment present-unmatched
 Bool GeometryInfo::isIntersectedByLineSegment(const Coord3D& loc, const Coord3D& from, const Coord3D& to) const
 {
 	DEBUG_CRASH(("this call does not work properly for nonspheres yet. use with caution."));
 
 	/// @todo srj -- treats everything as a sphere for now. fix.
+	// retail layout note: m_boundingSphereRadius sits at this+0x14 (ahead of
+	// m_boundingCircleRadius, verified at this+0x18 via getBoundingCircleRadius),
+	// not where the vendored header's field order/vptr assumption would put it --
+	// read the raw offset instead of routing through getBoundingSphereRadius().
+	Real boundingSphereRadius = *(const Real*)((const char*)this + 0x14);
 	Real distSquared = calcPointToLineDistSquared(loc, from, to);
-	return distSquared <= sqr(getBoundingSphereRadius());
+	return distSquared <= sqr(boundingSphereRadius);
 }
 
 //=============================================================================
