@@ -138430,7 +138430,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014a9a0@@YAXXZ,,0x0014A9A0,27,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014a9d0@@YAXXZ,,0x0014A9D0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014ad80@@YAXXZ,,0x0014AD80,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014b420@@YAXXZ,,0x0014B420,13,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014b450@@YAXXZ,,0x0014B450,50,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014b4c0@@YAXXZ,,0x0014B4C0,46,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014b500@@YAXXZ,,0x0014B500,47,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?allow@PartitionFilterRejectByKindOf@@UAE_NPAVObject@@@Z,,0x001DCD10,25,Code/GameEngine/Source/GameLogic/Object/PartitionFilterRejectByKindOf.cpp,matched,Open-BFME5 clean C++ with BFME retail mask offsets
 ?d_0014b3f0@@YAXXZ,,0x0014B3F0,8,Code/GameEngine/Source/Common/Rva14B3F0IndirectOffsetView.cpp,matched,object-symbol=?payload@Rva14B3F0IndirectView@@QAEPADXZ;Open-BFME5 clean C++ RVA 14B3F0 indirect payload offset accessor
 ?d_0014b400@@YAXXZ,,0x0014B400,16,Code/GameEngine/Source/Common/Rva14B400PairReset.cpp,matched,object-symbol=?reset@Rva14B400Pair@@QAEPAU1@XZ;Open-BFME5 clean C++ RVA 14B400 pair reset
+?d_0014b420@@YAXXZ,,0x0014B420,13,Code/GameEngine/Source/Common/Rva14B420IndirectValueCopy.cpp,matched,object-symbol=?copyTo@Rva14B420IndirectValue@@QAEPAURva14B420Value@@PAU2@@Z;Open-BFME5 clean C++ RVA 14B420 indirect value copy
