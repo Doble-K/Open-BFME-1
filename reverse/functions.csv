@@ -138970,7 +138970,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00189660@@YAXXZ,,0x00189660,198,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00189a40@@YAXXZ,,0x00189A40,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00189b20@@YAXXZ,,0x00189B20,6,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_00189b50@@YAXXZ,,0x00189B50,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?d_00189b50@@YAXXZ,,0x00189B50,5,Code/GameEngine/Source/Common/VirtualSlotFourDispatchThunk.cpp,matched,object-symbol=?dispatch@VirtualSlotFourDispatchThunk@@QAEXXZ;Open-BFME5 clean C++ virtual slot four tail dispatch
 ?d_00189ba0@@YAXXZ,,0x00189BA0,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00189dc0@@YAXXZ,,0x00189DC0,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00189dd0@@YAXXZ,,0x00189DD0,15,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
