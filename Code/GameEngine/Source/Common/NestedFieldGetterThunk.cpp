@@ -13,6 +13,7 @@ struct NestedFieldGetterThunk
 
     unsigned long getFirst() const;
     unsigned long getSecond() const;
+    unsigned long getThird() const;
 };
 
 unsigned long NestedFieldGetterThunk::getFirst() const
@@ -23,4 +24,9 @@ unsigned long NestedFieldGetterThunk::getFirst() const
 unsigned long NestedFieldGetterThunk::getSecond() const
 {
     return values->second;
+}
+
+unsigned long NestedFieldGetterThunk::getThird() const
+{
+    return values->third;
 }
