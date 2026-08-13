@@ -284,3 +284,40 @@ void EmbeddedVirtualSlot2CallOwner::invokeIgnoringArgument(int)
 {
     embedded.invoke();
 }
+
+struct SecondaryBaseVirtualSlot11Primary
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void slot2();
+    virtual void slot3();
+    virtual void slot4();
+    virtual void slot5();
+    virtual void slot6();
+    virtual void slot7();
+    virtual void slot8();
+    virtual void slot9();
+    virtual void slot10();
+    virtual void invoke();
+
+    unsigned long padding[7];
+};
+
+struct SecondaryBaseVirtualSlot11Facet
+{
+    unsigned long value;
+
+    void invokeIgnoringArgument(int unused);
+};
+
+struct SecondaryBaseVirtualSlot11Owner : SecondaryBaseVirtualSlot11Primary,
+                                         SecondaryBaseVirtualSlot11Facet
+{
+};
+
+void SecondaryBaseVirtualSlot11Facet::invokeIgnoringArgument(int)
+{
+    SecondaryBaseVirtualSlot11Primary *owner = reinterpret_cast<SecondaryBaseVirtualSlot11Primary *>(
+        reinterpret_cast<unsigned char *>(this) - sizeof(SecondaryBaseVirtualSlot11Primary));
+    owner->invoke();
+}
