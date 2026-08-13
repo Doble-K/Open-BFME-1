@@ -147744,7 +147744,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00465f20@@YAXXZ,,0x00465F20,10,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00465fa0@@YAXXZ,,0x00465FA0,10,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00466080@@YAXXZ,,0x00466080,10,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
-?d_004660b0@@YAXXZ,,0x004660B0,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
+?d_004660b0@@YAXXZ,,0x004660B0,6,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?getPayloadEighth@PointerPayloadGetterThunk@@QBEPAEXZ;Open-BFME5 clean C++ eighth pointer payload getter
 ?d_004660c0@@YAXXZ,,0x004660C0,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_004660d0@@YAXXZ,,0x004660D0,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_004660e0@@YAXXZ,,0x004660E0,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
