@@ -123112,7 +123112,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00973e90@@YAXXZ,,0x00973E90,38,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d73e90
 ?d_00973f10@@YAXXZ,,0x00973F10,45,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d73f10
 ?d_00973f90@@YAXXZ,,0x00973F90,45,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d73f90
-?d_00974900@@YAXXZ,,0x00974900,61,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d74900
+?d_00974900@@YAXXZ,,0x00974900,61,Code/Libraries/Source/WWVegas/WW3D2/hanim.cpp,matched,object-symbol=??_GHAnimComboDataClass@@QAEPAXI@Z;Open-BFME5 clean C++ pooled deleting destructor
 ?d_00974f80@@YAXXZ,,0x00974F80,42,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d74f80
 ?d_00974fb0@@YAXXZ,,0x00974FB0,92,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d74fb0
 ?d_00975010@@YAXXZ,,0x00975010,12,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d75010

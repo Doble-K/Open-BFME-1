@@ -84,7 +84,7 @@ public:
 	void		Free_Object(T * obj);
 
 	T *		Allocate_Object_Memory(void);
-	void		Free_Object_Memory(T * obj);
+	__declspec(noinline) void Free_Object_Memory(T * obj);
 
 protected:
 
@@ -313,7 +313,7 @@ T * ObjectPoolClass<T,BLOCK_SIZE>::Allocate_Object_Memory(void)
  *   7/29/99    GTH : Created.                                                                 *
  *=============================================================================================*/
 template<class T,int BLOCK_SIZE> 
-void ObjectPoolClass<T,BLOCK_SIZE>::Free_Object_Memory(T * obj)
+__declspec(noinline) void ObjectPoolClass<T,BLOCK_SIZE>::Free_Object_Memory(T * obj)
 {
 	WWASSERT(obj != NULL);
 	*(T**)(obj) = FreeListHead;		// Link to the Head
