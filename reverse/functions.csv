@@ -138999,7 +138999,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0018b440@@YAXXZ,,0x0018B440,29,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018b510@@YAXXZ,,0x0018B510,10,Code/GameEngine/Source/Common/Rva18B510PointerRangeSize.cpp,matched,object-symbol=?size@Rva18B510PointerRangeSize@@QAEHXZ;Open-BFME5 clean C++ RVA 18B510 pointer range size
 ?d_0018c0e0@@YAXXZ,,0x0018C0E0,7,Code/GameEngine/Source/Common/Rva18C0E0Offset204Getter.cpp,matched,object-symbol=?get_value@Rva18C0E0Offset204Getter@@QAEIXZ;Open-BFME5 clean C++ RVA 18C0E0 offset 204 getter
-?d_0018c0f0@@YAXXZ,,0x0018C0F0,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?d_0018c0f0@@YAXXZ,,0x0018C0F0,7,Code/GameEngine/Source/Common/Rva18C0F0Offset1F0Getter.cpp,matched,object-symbol=?get_value@Rva18C0F0Offset1F0Getter@@QAEIXZ;Open-BFME5 clean C++ RVA 18C0F0 offset 1F0 getter
 ?d_0018c100@@YAXXZ,,0x0018C100,13,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c120@@YAXXZ,,0x0018C120,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c150@@YAXXZ,,0x0018C150,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
