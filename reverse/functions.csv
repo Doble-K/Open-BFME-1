@@ -122017,7 +122017,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_008bad90@@YAXXZ,,0x008BAD90,272,Code/gen_asm/d_008b9460.asm,matched,gen-dump;ghidra=FUN_00cbad90
 ?d_008baea0@@YAXXZ,,0x008BAEA0,520,Code/gen_asm/d_008b9460.asm,matched,gen-dump;ghidra=FUN_00cbaea0
 ?d_008bb0b0@@YAXXZ,,0x008BB0B0,230,Code/gen_asm/d_008b9460.asm,matched,gen-dump;ghidra=FUN_00cbb0b0
-?d_008bb1a0@@YAXXZ,,0x008BB1A0,96,Code/gen_asm/d_008b9460.asm,matched,gen-dump;ghidra=FUN_00cbb1a0
+?d_008bb1a0@@YAXXZ,,0x008BB1A0,96,Code/GameEngine/Source/Common/Rva8BB1A0BoundsCheckThunk.cpp,matched,object-symbol=?contains@Rva8BB1A0BoundsCheckThunk@@QAE_NPAURva8BB1A0BoundsSource@@PAX@Z;Open-BFME5 clean C++ bounds check
 ?d_008bb200@@YAXXZ,,0x008BB200,468,Code/gen_asm/d_008b9460.asm,matched,gen-dump;ghidra=FUN_00cbb200
 ?d_008bb3f0@@YAXXZ,,0x008BB3F0,381,Code/gen_asm/d_008b9460.asm,matched,gen-dump;ghidra=FUN_00cbb3f0
 ?d_008bb570@@YAXXZ,,0x008BB570,420,Code/gen_asm/d_008b9460.asm,matched,gen-dump;ghidra=FUN_00cbb570
