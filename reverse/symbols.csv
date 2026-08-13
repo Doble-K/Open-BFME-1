@@ -67615,6 +67615,7 @@ name,address,notes
 ?enableWaterGrid@WaterRenderObjClassEnableWaterGridShim@@QAEX_N@Z,0x007A1410,WaterRenderObjClass::enableWaterGrid incremental-link thunk target through a TU-local forwarding shim
 ?ensureUnique@Dict@@AAEPAUDictPair@1@H_NPAU21@@Z,0x0002BF21
 ?entEnragedInitialValue@@YAHHIPBXH@Z,0x00001BAE,Open-BFME5 EntEnragedUpdate initialization helper ILT pin
+_EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initialization descriptor
 ?equal@AsciiStringEqualityShim@@SA_NABVAsciiString@@0@Z,0x005A8140,AsciiString equality incremental-link thunk target through a TU-local forwarding shim
 ?equal_range@?$_Rb_tree@GU?$pair@$$CBGE@_STL@@U?$_Select1st@U?$pair@$$CBGE@_STL@@@2@U?$less@G@2@V?$allocator@U?$pair@$$CBGE@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBGE@_STL@@U?$_Nonconst_traits@U?$pair@$$CBGE@_STL@@@2@@_STL@@U12@@2@ABG@Z,0x009EC410,REL32 call via ILT thunk
 ?equal_range@?$_Rb_tree@HU?$pair@$$CBHUGen_t_0021c9d0_p12cd@@@_STL@@U?$_Select1st@U?$pair@$$CBHUGen_t_0021c9d0_p12cd@@@_STL@@@2@U?$less@H@2@V?$allocator@U?$pair@$$CBHUGen_t_0021c9d0_p12cd@@@_STL@@@2@@_STL@@QAE?AU?$pair@U?$_Rb_tree_iterator@U?$pair@$$CBHUGen_t_0021c9d0_p12cd@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHUGen_t_0021c9d0_p12cd@@@_STL@@@2@@_STL@@U12@@2@ABH@Z,0x0021BDB0,gen-tgrid payload member
