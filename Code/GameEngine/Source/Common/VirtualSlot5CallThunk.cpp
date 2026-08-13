@@ -736,3 +736,18 @@ void Offset152IntegerResetThunk::reset()
 {
     value = 0;
 }
+
+struct Offset172IntegerPairSetterThunk
+{
+    unsigned char padding[0xac];
+    int first;
+    int second;
+
+    void setValues(int firstValue, int secondValue);
+};
+
+void Offset172IntegerPairSetterThunk::setValues(int firstValue, int secondValue)
+{
+    first = firstValue;
+    second = secondValue;
+}
