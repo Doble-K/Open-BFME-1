@@ -1285,6 +1285,7 @@ struct FluentNoOpThunk
     FluentNoOpThunk *ignoreSeventh(int unused);
     FluentNoOpThunk *ignoreEighth(int unused);
     FluentNoOpThunk *ignoreNinth(int unused);
+    FluentNoOpThunk *ignoreTenth(int unused);
 };
 
 FluentNoOpThunk *FluentNoOpThunk::ignore(int)
@@ -1328,6 +1329,11 @@ FluentNoOpThunk *FluentNoOpThunk::ignoreEighth(int)
 }
 
 FluentNoOpThunk *FluentNoOpThunk::ignoreNinth(int)
+{
+    return this;
+}
+
+FluentNoOpThunk *FluentNoOpThunk::ignoreTenth(int)
 {
     return this;
 }
