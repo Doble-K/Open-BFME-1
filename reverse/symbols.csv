@@ -69430,3 +69430,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ??1Snapshot@@QAE@XZ,0x00887940,DamageInfo destructor subobject calls (packet 000c3410) -- additive pin alongside existing 0x009A1A40 row
 ?updateTeamStates@Player@@QAEXXZ,0x000CE140,body Player::updateTeamStates; iterates std::list at Player+0x288 (m_playerTeamPrototypes) calling one method per node; pinned by ?updateTeamStates@PlayerList@@QAEXXZ at 0x000DF390 via ILT 0x00022548
 ?_M_fill_insert@?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXPAUCoord3D@@IABU3@@Z,0x00006B45,Open-BFME5 ILT; sole callee of vector<Coord3D>::resize insert branch at 0x000B7C90
+?Set_Render_Target@DX8Wrapper@@SAXPAUIDirect3DSurface8@@_N@Z,0x009052B0,packet 00906fa0 -- Set_Render_Target(IDirect3DSwapChain8*) calling Set_Render_Target(IDirect3DSurface8*,bool)

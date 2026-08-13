@@ -148922,7 +148922,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004c42d0@@YAXXZ,,0x004C42D0,438,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,object-symbol=?DiplomacySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z;hand-reconciled C++
 ?d_004c45f0@@YAXXZ,,0x004C45F0,46,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c4a30@@YAXXZ,,0x004C4A30,6,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
-?d_004c4a40@@YAXXZ,,0x004C4A40,81,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c4ff0@@YAXXZ,,0x004C4FF0,7,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c5060@@YAXXZ,,0x004C5060,115,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c54a0@@YAXXZ,,0x004C54A0,26,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
@@ -157941,3 +157940,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?update@PlayerList@@UAEXXZ,,0x000DF2D0,32,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 BFME MAX_PLAYER_COUNT=32 loop; callee thunk 0x4771C to ?update@Player@@QAEXXZ 0xD9A80 separates it from newMap/updateTeamStates
 ?updateTeamStates@PlayerList@@QAEXXZ,,0x000DF390,32,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 callee 0xCE140 iterates Player+0x288 m_playerTeamPrototypes = ?updateTeamStates@Player@@QAEXXZ
 ?resize@?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXIUCoord3D@@@Z,,0x000B7C90,93,Code/Libraries/Source/WWVegas/WWLib/Coord3DVectorResizeThunk.cpp,matched,Open-BFME5 fill value by value (ret 0x10)
+?IMECandidateWindowSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C4A40,81,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/IMECandidate.cpp,matched,
+?Set_Render_Target@DX8Wrapper@@SAXPAUIDirect3DSwapChain8@@@Z,,0x00906FA0,64,Code/Libraries/Source/WWVegas/WW3D2/DX8Wrapper_Set_Render_Target_SwapChain_Thunk.cpp,matched,
