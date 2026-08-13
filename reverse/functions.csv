@@ -135303,7 +135303,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00069410@@YAXXZ,,0x00069410,35,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00069480@@YAXXZ,,0x00069480,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00069490@@YAXXZ,,0x00069490,11,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_000694c0@@YAXXZ,,0x000694C0,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_000694c0@@YAXXZ,,0x000694C0,5,Code/GameEngine/Source/Common/SenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@SenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ senary identity with one argument
 ?d_000694e0@@YAXXZ,,0x000694E0,19,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00069500@@YAXXZ,,0x00069500,19,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00069520@@YAXXZ,,0x00069520,17,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
