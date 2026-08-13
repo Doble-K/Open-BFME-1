@@ -138271,7 +138271,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013e860@@YAXXZ,,0x0013E860,6,Code/GameEngine/Source/Common/Rva13E860ConstantEleven.cpp,matched,object-symbol=?rva_13e860_constant_eleven@@YAIXZ;hand-reconciled C++
 ?d_0013e8b0@@YAXXZ,,0x0013E8B0,6,Code/GameEngine/Source/Common/Rva13E8B0ConstantTwentyNine.cpp,matched,object-symbol=?rva_13e8b0_constant_twenty_nine@@YAIXZ;hand-reconciled C++
 ?d_0013e900@@YAXXZ,,0x0013E900,11,Code/GameEngine/Source/Common/Rva13E900SecondArgumentStore.cpp,matched,object-symbol=?store@Rva13E900SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
-?d_0013e910@@YAXXZ,,0x0013E910,9,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
+?d_0013e910@@YAXXZ,,0x0013E910,9,Code/GameEngine/Source/Common/Rva13E910ResetValue.cpp,matched,object-symbol=?reset@Rva13E910ResetValue@@QAEPAV1@XZ;hand-reconciled C++
 ?d_0013e920@@YAXXZ,,0x0013E920,7,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013e930@@YAXXZ,,0x0013E930,11,Code/GameEngine/Source/Common/Rva13E930SecondArgumentStore.cpp,matched,object-symbol=?store@Rva13E930SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
 ?d_0013e960@@YAXXZ,,0x0013E960,11,Code/GameEngine/Source/Common/Rva13E960SecondArgumentStore.cpp,matched,object-symbol=?store@Rva13E960SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
