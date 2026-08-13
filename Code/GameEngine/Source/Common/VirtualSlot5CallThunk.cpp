@@ -1226,6 +1226,11 @@ bool pointedIntegersEqualAlternate(const int *left, const int *right)
     return *left == *right;
 }
 
+bool pointedIntegersEqualThird(const int *left, const int *right)
+{
+    return *left == *right;
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
