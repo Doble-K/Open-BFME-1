@@ -135690,7 +135690,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0007f700@@YAXXZ,,0x0007F700,5,Code/GameEngine/Source/Common/ShardSevenCdeclPointerIdentityThunk.cpp,matched,object-symbol=?shard_seven_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ shard seven cdecl pointer identity
 ?d_0007f710@@YAXXZ,,0x0007F710,5,Code/GameEngine/Source/Common/SecondShardSevenCdeclPointerIdentityThunk.cpp,matched,object-symbol=?second_shard_seven_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ second shard seven cdecl pointer identity
 ?d_0007f750@@YAXXZ,,0x0007F750,22,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_0007f770@@YAXXZ,,0x0007F770,5,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_0007f770@@YAXXZ,,0x0007F770,5,Code/GameEngine/Source/Common/SecondShardSevenIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@SecondShardSevenIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ second shard seven identity with one argument
 ?d_0007f780@@YAXXZ,,0x0007F780,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0007f790@@YAXXZ,,0x0007F790,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0007f7a0@@YAXXZ,,0x0007F7A0,5,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
