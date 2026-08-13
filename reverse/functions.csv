@@ -154870,7 +154870,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_006c5720@@YAXXZ,,0x006C5720,7,Code/gen_asm/d_0069c4f0.asm,matched,gen-dump;bounds=high
 ?d_006c5730@@YAXXZ,,0x006C5730,10,Code/gen_asm/d_0069c4f0.asm,matched,gen-dump;bounds=high
 ?d_006c5980@@YAXXZ,,0x006C5980,54,Code/gen_asm/d_0069c4f0.asm,matched,gen-dump;bounds=high
-?d_006c59d0@@YAXXZ,,0x006C59D0,124,Code/gen_asm/d_0069c4f0.asm,matched,gen-dump;bounds=high
 ?d_006c5bb0@@YAXXZ,,0x006C5BB0,13,Code/gen_asm/d_0069c4f0.asm,matched,gen-dump;bounds=high
 ?d_006c5be0@@YAXXZ,,0x006C5BE0,57,Code/gen_asm/d_0069c4f0.asm,matched,gen-dump;bounds=high
 ?d_006c5da0@@YAXXZ,,0x006C5DA0,9,Code/gen_asm/d_0069c4f0.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0014ba70@@YAXXZ,,0x0014BA70,26,Code/GameEngine/Source/Common/Rva14BA70StoredIteratorErase.cpp,matched,object-symbol=?eraseCurrent@Rva14BA70StoredIterator@@QAEXXZ;Open-BFME5 clean C++ RVA 14BA70 stored-iterator node erase
 ?d_0014bad0@@YAXXZ,,0x0014BAD0,40,Code/GameEngine/Source/Common/Rva14BAD0ListConstructor.cpp,matched,object-symbol=??0Rva14BAD0List@@QAE@H@Z;Open-BFME5 clean C++ RVA 14BAD0 sentinel list constructor
 ?d_009373a0@@YAXXZ,,0x009373A0,91,Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp,matched,object-symbol=?Record_DX8_Polys_And_Vertices@Debug_Statistics@@YAXHHABVShaderClass@1@@Z;Open-BFME5 clean C++ DX8 statistics
+?Set_DX8_Texture@DX8Wrapper@@SAXIPAUIDirect3DBaseTexture8@@@Z,,0x006C59D0,124,Code/Libraries/Source/WWVegas/WW3D2/DX8WrapperSetDX8Texture.cpp,matched,Open-BFME5 clean C++ with retail Direct3D SetTexture slot

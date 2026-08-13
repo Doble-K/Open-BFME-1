@@ -925,8 +925,13 @@ WWINLINE void DX8Wrapper::Set_DX8_Texture_Stage_State(unsigned stage, D3DTEXTURE
 
 WWINLINE void DX8Wrapper::Set_DX8_Texture(unsigned int stage, IDirect3DBaseTexture8* texture)
 {
+	typedef HRESULT (__stdcall *BFMESetTexture)(IDirect3DDevice8 *, DWORD, IDirect3DBaseTexture8 *);
+
   	if (stage >= MAX_TEXTURE_STAGES)
-  	{	DX8CALL(SetTexture(stage, texture));
+	{
+		IDirect3DDevice8 *device = _Get_D3D_Device8();
+		(*(BFMESetTexture **)device)[65](device, stage, texture);
+		number_of_DX8_calls++;
   		return;
   	}
 
@@ -937,7 +942,9 @@ WWINLINE void DX8Wrapper::Set_DX8_Texture(unsigned int stage, IDirect3DBaseTextu
 	if (Textures[stage]) Textures[stage]->Release();
 	Textures[stage] = texture;
 	if (Textures[stage]) Textures[stage]->AddRef();
-	DX8CALL(SetTexture(stage, texture));
+	IDirect3DDevice8 *device = _Get_D3D_Device8();
+	(*(BFMESetTexture **)device)[65](device, stage, texture);
+	number_of_DX8_calls++;
 	DX8_RECORD_TEXTURE_CHANGE();
 }
 
