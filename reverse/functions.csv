@@ -146711,7 +146711,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00423600@@YAXXZ,,0x00423600,16,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_00423620@@YAXXZ,,0x00423620,16,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_00423640@@YAXXZ,,0x00423640,37,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
-?d_00423670@@YAXXZ,,0x00423670,65,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
+?d_00423670@@YAXXZ,,0x00423670,65,Code/Libraries/Source/WWVegas/WWLib/Rva423670RecordDeallocatorThunk.cpp,matched,object-symbol=?deallocate@Rva423670RecordStorage@@QAEXXZ;Open-BFME5 clean C++ record deallocator
 ?d_004236d0@@YAXXZ,,0x004236D0,35,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_00423760@@YAXXZ,,0x00423760,27,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
 ?d_00423790@@YAXXZ,,0x00423790,41,Code/gen_asm/d_004171c0.asm,matched,gen-dump;bounds=high
