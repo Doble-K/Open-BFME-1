@@ -138568,7 +138568,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00160c70@@YAXXZ,,0x00160C70,16,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00160ca0@@YAXXZ,,0x00160CA0,32,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00160f80@@YAXXZ,,0x00160F80,41,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_00160fc0@@YAXXZ,,0x00160FC0,38,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00160ff0@@YAXXZ,,0x00160FF0,43,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00161030@@YAXXZ,,0x00161030,27,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00161060@@YAXXZ,,0x00161060,7,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?killRadiusDecal@RadiusDecalUpdate@@QAEXXZ,,0x002A07B0,29,Code/GameEngine/Source/GameLogic/Object/Update/RadiusDecalUpdate.cpp,matched,Open-BFME5 m_deliveryDecal at +0x20; UPDATE_SLEEP_FOREVER 0x3fffffff
 ?killGridDecals@DynamicShroudClearingRangeUpdate@@QAEXXZ,,0x0028E3A0,32,Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdate.cpp,matched,Open-BFME5 m_gridDecal[30] at +0x50 with stride 0x10 = sizeof(RadiusDecal)
 ?Shutdown@VertexMaterialClass@@SAXXZ,,0x00921290,40,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,Open-BFME5 REF_PTR_RELEASE nulls inside the null check in BFME
+?isBuildTimeExpired@TeamInQueue@@QAE_NXZ,,0x00160FC0,38,Code/GameEngine/Source/GameLogic/AI/TeamInQueue_isBuildTimeExpired_Thunk.cpp,matched,Open-BFME5 m_team@+0x1c m_frameStarted@+0x24 Team::m_proto@+4 idleFrames@+0x1a4

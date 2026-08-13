@@ -3220,7 +3220,7 @@ Bool TeamInQueue::isAllBuilt()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?isBuildTimeExpired@TeamInQueue@@QAE_NXZ present-unmatched
+// ?isBuildTimeExpired@TeamInQueue@@QAE_NXZ present-unmatched here — matched copy lives in TeamInQueue_isBuildTimeExpired_Thunk.cpp with BFME's offsets
 Bool TeamInQueue::isBuildTimeExpired()
 {
 	if (m_team->getPrototype()->getTemplateInfo()->m_initialIdleFrames<1) {
