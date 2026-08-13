@@ -660,3 +660,16 @@ bool Offset132BooleanGetterThunk::get() const
 {
     return value;
 }
+
+struct Offset136IntegerGetterThunk
+{
+    unsigned char padding[0x88];
+    int value;
+
+    int get() const;
+};
+
+int Offset136IntegerGetterThunk::get() const
+{
+    return value;
+}
