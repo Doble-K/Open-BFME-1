@@ -116468,7 +116468,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00602d30@@YAXXZ,,0x00602D30,98,Code/gen_asm/d_00601890.asm,matched,gen-dump;ghidra=FUN_00a02d30
 ?d_00602db0@@YAXXZ,,0x00602DB0,127,Code/gen_asm/d_00601890.asm,matched,gen-dump;ghidra=FUN_00a02db0
 ?d_00602ec0@@YAXXZ,,0x00602EC0,11,Code/gen_asm/d_00601890.asm,matched,gen-dump;ghidra=FUN_00a02ec0
-?d_00602ed0@@YAXXZ,,0x00602ED0,39,Code/gen_asm/d_00601890.asm,matched,gen-dump;ghidra=FUN_00a02ed0
 ?d_00602f10@@YAXXZ,,0x00602F10,11,Code/gen_asm/d_00601890.asm,matched,gen-dump;ghidra=FUN_00a02f10
 ?d_00603020@@YAXXZ,,0x00603020,61,Code/gen_asm/d_00601890.asm,matched,gen-dump;ghidra=FUN_00a03020
 ?d_00603070@@YAXXZ,,0x00603070,45,Code/gen_asm/d_00601890.asm,matched,gen-dump;ghidra=FUN_00a03070
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?onCreate@SupplyWarehouseCreate@@UAEXXZ,,0x002505A0,69,Code/GameEngine/Source/GameLogic/Object/Create/SupplyWarehouseCreate.cpp,matched,SupplyWarehouseCreate::onCreate; retail Player+0x228 is m_resourceGatheringManager (BFME layout drift vs vendored header natural offset)
 ?getGameName@GameSpyStagingRoom@@QBE?AVUnicodeString@@XZ,,0x004CE820,35,Code/GameEngine/Source/GameNetwork/GameSpyStagingRoom_getGameName_Thunk.cpp,matched,Open-BFME5 m_gameName at +0x3a0
 ??0PartitionFilterPossibleToAttack@@QAE@W4AbleToAttackType@@PBVObject@@W4CommandSourceType@@@Z,,0x004C12B0,32,Code/GameEngine/Source/Common/PartitionFilters_allow_Thunk.cpp,matched,Open-BFME5 members at +0x4 +0x8 +0xc so the shared filter base is a bare vptr
+??0ClientUpdateModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00602ED0,39,Code/GameEngine/Source/GameClient/Drawable/ClientUpdateModuleConstructorThunk.cpp,matched,Open-BFME5 DrawableModule is 12 bytes; own member at +0xc zeroed
