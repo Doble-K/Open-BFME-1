@@ -1991,12 +1991,6 @@ public ?d_0011a280@@YAXXZ
     db 0B8h, 0FFh, 0FFh, 0FFh, 3Fh, 0C3h
 ?d_0011a280@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x0011A2A0 size 5
-public ?d_0011a2a0@@YAXXZ
-?d_0011a2a0@@YAXXZ PROC
-    db 32h, 0C0h, 0C2h, 04h, 00h
-?d_0011a2a0@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x0011A4F0 size 6
 public ?d_0011a4f0@@YAXXZ
 ?d_0011a4f0@@YAXXZ PROC
