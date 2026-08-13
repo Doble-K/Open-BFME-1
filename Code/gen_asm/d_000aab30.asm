@@ -1942,12 +1942,6 @@ public ?d_000be910@@YAXXZ
     db 0Ah, 5Eh, 0C3h
 ?d_000be910@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x000BE970 size 5
-public ?d_000be970@@YAXXZ
-?d_000be970@@YAXXZ PROC
-    db 8Bh, 0C1h, 0C2h, 04h, 00h
-?d_000be970@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x000BE980 size 5
 public ?d_000be980@@YAXXZ
 ?d_000be980@@YAXXZ PROC
