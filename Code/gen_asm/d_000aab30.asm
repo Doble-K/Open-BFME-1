@@ -48,12 +48,6 @@ public ?d_000af7c0@@YAXXZ
     db 8Bh, 0C1h, 0C7h, 00h, 0ACh, 17h, 08h, 01h, 0C7h, 40h, 04h, 00h, 00h, 00h, 00h, 0C3h
 ?d_000af7c0@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x000AF7F0 size 5
-public ?d_000af7f0@@YAXXZ
-?d_000af7f0@@YAXXZ PROC
-    db 8Bh, 0C1h, 0C2h, 04h, 00h
-?d_000af7f0@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x000AF810 size 16
 public ?d_000af810@@YAXXZ
 ?d_000af810@@YAXXZ PROC
