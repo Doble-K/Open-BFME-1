@@ -142220,7 +142220,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00292420@@YAXXZ,,0x00292420,23,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_00292520@@YAXXZ,,0x00292520,16,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_002926a0@@YAXXZ,,0x002926A0,17,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
-?d_00292840@@YAXXZ,,0x00292840,40,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_00292880@@YAXXZ,,0x00292880,45,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_00292bf0@@YAXXZ,,0x00292BF0,6,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
 ?d_00292cd0@@YAXXZ,,0x00292CD0,17,Code/gen_asm/d_00280010.asm,matched,gen-dump;bounds=high
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?resize@?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXIUCoord3D@@@Z,,0x000B7C90,93,Code/Libraries/Source/WWVegas/WWLib/Coord3DVectorResizeThunk.cpp,matched,Open-BFME5 fill value by value (ret 0x10)
 ?IMECandidateWindowSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C4A40,81,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/IMECandidate.cpp,matched,
 ?Set_Render_Target@DX8Wrapper@@SAXPAUIDirect3DSwapChain8@@@Z,,0x00906FA0,64,Code/Libraries/Source/WWVegas/WW3D2/DX8Wrapper_Set_Render_Target_SwapChain_Thunk.cpp,matched,
+?calcNextSpreadDelay@FireSpreadUpdate@@IAEIXZ,,0x00292840,40,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,Open-BFME5 retail file/line via #line 152; BFME Module has m_moduleData at +4 (BFME_MODULE_NO_MPO)
