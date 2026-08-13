@@ -135433,7 +135433,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0006cd20@@YAXXZ,,0x0006CD20,5,Code/GameEngine/Source/Common/SixthCdeclPointerIdentityThunk.cpp,matched,object-symbol=?sixth_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ sixth cdecl pointer identity
 ?d_0006cd30@@YAXXZ,,0x0006CD30,5,Code/GameEngine/Source/Common/SeventhCdeclPointerIdentityThunk.cpp,matched,object-symbol=?seventh_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ seventh cdecl pointer identity
 ?d_0006cd40@@YAXXZ,,0x0006CD40,49,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0006cda0@@YAXXZ,,0x0006CDA0,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0006cda0@@YAXXZ,,0x0006CDA0,5,Code/GameEngine/Source/Common/VigenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@VigenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ vigenary identity with one argument
 ?d_0006cdb0@@YAXXZ,,0x0006CDB0,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006cdc0@@YAXXZ,,0x0006CDC0,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006d1c0@@YAXXZ,,0x0006D1C0,7,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
