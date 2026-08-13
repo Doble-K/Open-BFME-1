@@ -244,3 +244,68 @@ size agreement plus a cascade from instruction one means look at the container.
 Reverted rather than committed: both edits are almost certainly correct, but the
 body does not byte-verify, and changing unverified C++ on inference alone puts a
 wrong guess where the next agent will read it as fact.
+
+## A shared shim header is not the place for a member declaration
+
+`ArchiveFileSystem.cpp` did not compile for twelve hours, and the cause is worth
+generalising because the change that broke it looked completely innocuous: two
+copy constructors were converted to real C++, and their declarations were added
+to `reference/shims/archivefilesystem_nosubsystem/Common/ArchiveFileSystem.h`.
+
+Declaring a copy constructor suppresses the **implicit default constructor**, and
+`ArchivedDirectoryInfoMap` default-constructs its values. So a TU that merely
+*included* the header stopped compiling:
+
+    ArchiveFileSystem.cpp(204) : error C2512: 'ArchivedDirectoryInfo' :
+        no appropriate default constructor available
+
+There is a second effect that is easy to miss and does not go away by adding a
+default constructor back. With the copy constructor visible in the shared header,
+MSVC stops inlining `pair`'s copy constructor in the including TU: retail's
+`_Construct` copies the two members individually (`AsciiString` copy ctor, then
+`ArchivedDirectoryInfo` copy ctor at `+4`), while ours emits one out-of-line
+`pair` copy constructor call. Restoring the default constructor got the TU
+compiling and still left that row failing.
+
+**Both effects disappear if the declaration lives in the TU that needs it.**
+Guard-suppress the shim and spell the class locally:
+
+    #define __ARCHIVEFILESYSTEM_H_
+    #include "Common/AsciiString.h"
+    ...
+    class ArchivedDirectoryInfo
+    {
+    public:
+        ArchivedDirectoryInfo(const ArchivedDirectoryInfo &);
+        ...
+    };
+
+The conversions are then kept exactly as they were and the including TU is
+untouched. All three verify 18/18.
+
+The general rule: a shim header is compiled into every TU that includes it, so any
+change to a class in one is a change to all of them. Prefer TU-local modelling for
+anything that only one translation unit actually needs - which is the same advice
+that already applies to member offsets and enum widths.
+
+### Two failure modes that hide everything else
+
+A red gate is not always a DIR32 problem, and both of these silence it completely:
+
+- **A TU that will not compile** stops the gate at the compile phase, so DIR32
+  never runs. Twelve hours of commits landed behind that wall. When the compile is
+  fixed, the DIR32 failures that appear are usually *not* new - check which objects
+  emit the symbol (`grep -rl '_$E2' build/match/*.obj`) before assuming you caused
+  it.
+- **A Windows extended-length path.** `Path.resolve()` returns a `\?\` prefix for
+  deep paths on Python 3.14 and `ROOT` never has one, so `relative_to` threw in
+  `verify_string_refs` - *after* 157,929 functions had already verified. Fixed by
+  `tools/build.py`'s `resolved()` helper.
+
+And the payoff for having the gate back: it immediately caught
+`RegistryGetUnicodeString.cpp` calling `RegOpenKeyExA` where retail calls
+`RegOpenKeyExW`, seen as one symbol resolving to both the A slot (0x01359148) and
+the W slot (0x0135914C). The body byte-matches either way because relocation sites
+are masked, so no other check in the gate could ever have seen it. **When a symbol
+reports two bases four bytes apart in the IAT, suspect A-versus-W before you
+suspect a duplicate import.**
