@@ -109641,7 +109641,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00268340@@YAXXZ,,0x00268340,111,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_00668340
 ?d_002683d0@@YAXXZ,,0x002683D0,745,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_006683d0
 ?d_002687f0@@YAXXZ,,0x002687F0,89,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_006687f0
-?d_00268920@@YAXXZ,,0x00268920,33,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_00668920
 ?d_002689b0@@YAXXZ,,0x002689B0,55,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_006689b0
 ?d_00268ba0@@YAXXZ,,0x00268BA0,214,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_00668ba0
 ?d_00268e90@@YAXXZ,,0x00268E90,126,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_00668e90
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ??0ClientUpdateModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00602ED0,39,Code/GameEngine/Source/GameClient/Drawable/ClientUpdateModuleConstructorThunk.cpp,matched,Open-BFME5 DrawableModule is 12 bytes; own member at +0xc zeroed
 ?Clear@?$VectorClass@UFileInfoStruct@MixFileCreator@@@@UAEXXZ,,0x00934780,61,Code/Libraries/Source/WWVegas/WWLib/MixFileCreatorFileInfoVectorClearThunk.cpp,matched,Open-BFME5 element 0x74 bytes so BFME StringClass is 104 bytes not 4
 ?isSupplySourceSafe@AIPlayer@@QAE_NH@Z,,0x00166A10,80,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,Open-BFME5 retail inlines the OVERRIDE<ThingTemplate> walk; m_template at Thing+0x4
+?isShortcutPower@SpecialPowerTemplate@@QBE_NXZ,,0x00268920,33,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 inlined override walk; m_nextOverride at +0x4 and the flag at +0x115
