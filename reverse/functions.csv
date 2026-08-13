@@ -109961,7 +109961,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0028c2d0@@YAXXZ,,0x0028C2D0,90,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c2d0
 ?d_0028c490@@YAXXZ,,0x0028C490,25,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c490
 ?d_0028c520@@YAXXZ,,0x0028C520,183,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c520
-?d_0028c6e0@@YAXXZ,,0x0028C6E0,68,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c6e0
+?d_0028c6e0@@YAXXZ,,0x0028C6E0,68,Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdate.cpp,matched,object-symbol=?setLifetimeRange@DeletionUpdate@@QAEXII@Z;Open-BFME5 clean C++ deletion lifetime scheduling
 ?d_0028c760@@YAXXZ,,0x0028C760,56,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c760
 ?d_0028c7b0@@YAXXZ,,0x0028C7B0,25,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c7b0
 ?d_0028c930@@YAXXZ,,0x0028C930,56,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068c930
