@@ -138473,7 +138473,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00150280@@YAXXZ,,0x00150280,9,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_001502a0@@YAXXZ,,0x001502A0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_001502b0@@YAXXZ,,0x001502B0,23,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_00150320@@YAXXZ,,0x00150320,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00150330@@YAXXZ,,0x00150330,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_001503d0@@YAXXZ,,0x001503D0,23,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_001503f0@@YAXXZ,,0x001503F0,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?forwardSlot1@AddressThunk00105360@@QAEXXZ,,0x00105360,5,Code/GameEngine/Source/Common/VirtualDispatchSlot1.cpp,matched,Open-BFME5 clean C++ virtual slot 1 tail dispatch
 ?BoundsHigh00139FC0@@YAPAXPAX0@Z,,0x00139FC0,5,Code/GameEngine/Source/Common/BoundsHigh00139FC0.cpp,matched,Open-BFME5 clean C++ upper bound selector
 ?clearFlag@AddressState0014E5F0@@QAEXXZ,,0x0014E5F0,5,Code/GameEngine/Source/Common/FlagClear0014E5F0.cpp,matched,Open-BFME5 clean C++ flag clear at offset 0x40
+?returnThis@AddressObject00150320@@QAEPAV1@PAX@Z,,0x00150320,5,Code/GameEngine/Source/Common/ReturnThis00150320.cpp,matched,Open-BFME5 clean C++ return-this member
