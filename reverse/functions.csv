@@ -107525,7 +107525,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0016bd60@@YAXXZ,,0x0016BD60,475,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_0056bd60
 ?d_0016c0a0@@YAXXZ,,0x0016C0A0,96,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_0056c0a0
 ?d_0016c480@@YAXXZ,,0x0016C480,75,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_0056c480
-?d_0016c500@@YAXXZ,,0x0016C500,68,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_0056c500
 ?d_0016c560@@YAXXZ,,0x0016C560,241,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_0056c560
 ?d_0016c790@@YAXXZ,,0x0016C790,67,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_0056c790
 ?d_0016c8c0@@YAXXZ,,0x0016C8C0,79,Code/gen_asm/d_0015f070.asm,matched,gen-dump;ghidra=FUN_0056c8c0
@@ -141422,7 +141421,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_002502a0@@YAXXZ,,0x002502A0,6,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_002503b0@@YAXXZ,,0x002503B0,85,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00250420@@YAXXZ,,0x00250420,45,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
-?d_002505a0@@YAXXZ,,0x002505A0,69,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00250600@@YAXXZ,,0x00250600,45,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00250690@@YAXXZ,,0x00250690,60,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_002506e0@@YAXXZ,,0x002506E0,6,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
@@ -148895,7 +148893,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004c1590@@YAXXZ,,0x004C1590,45,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c1c30@@YAXXZ,,0x004C1C30,4289,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c3350@@YAXXZ,,0x004C3350,98,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
-?d_004c33d0@@YAXXZ,,0x004C33D0,77,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c42a0@@YAXXZ,,0x004C42A0,34,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c42d0@@YAXXZ,,0x004C42D0,438,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,object-symbol=?DiplomacySystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z;hand-reconciled C++
 ?d_004c45f0@@YAXXZ,,0x004C45F0,46,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
@@ -157942,3 +157939,6 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?calcSleepDelay@DeletionUpdate@@IAEIII@Z,,0x0028C4B0,56,Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdate.cpp,matched,Open-BFME5 m_dieFrame at +0x20; retail file and line via existing #line 55
 ?GadgetSliderSetPosition@@YAXPAVGameWindow@@H@Z,,0x0055DB20,32,Code/GameEngine/Source/GameClient/GUI/GadgetSliderSetPositionThunk.cpp,matched,Open-BFME5 GSM_SET_SLIDER 0x400d; winSendSystemMsg vtable slot 53
 ??0Energy@@QAE@XZ,,0x00808880,32,Code/GameEngine/Source/Common/RTS/EnergyConstructorThunk.cpp,matched,Open-BFME5 m_owner declared first at +0x4; counters at +0x8 and +0xc
+?HideDiplomacy@@YAX_N@Z,,0x004C33D0,77,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,
+?calcExtraPathDistance@AIFollowWaypointPathState@@IAEMXZ,,0x0016C500,68,Code/GameEngine/Source/GameLogic/AI/AIFollowWaypointPathState_calcExtraPathDistance_Thunk.cpp,matched,
+?onCreate@SupplyWarehouseCreate@@UAEXXZ,,0x002505A0,69,Code/GameEngine/Source/GameLogic/Object/Create/SupplyWarehouseCreate.cpp,matched,SupplyWarehouseCreate::onCreate; retail Player+0x228 is m_resourceGatheringManager (BFME layout drift vs vendored header natural offset)

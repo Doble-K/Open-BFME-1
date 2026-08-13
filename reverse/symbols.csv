@@ -69439,3 +69439,5 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?prependToList@Drawable@@QAEXPAPAV1@@Z,0x00025C84,Open-BFME5 ILT; called by ?registerDrawable@GameClient@@UAEXPAVDrawable@@@Z at 0x0042E530
 ??0Snapshot@@QAE@XZ,0x007E86B0,per-TU copy (Energy TU); called by ??0Energy@@QAE@XZ at 0x00808880
 ?playerFromParam@ScriptConditions@@IAEPAVPlayer@@PAVParameter@@@Z,0x00025347,Open-BFME5 ILT; called by ?evaluateSkirmishSupplySourceAttacked@ScriptConditions@@IAE_NPAVParameter@@@Z at 0x000F9700
+?getNthPlayer@PlayerList@@QAEPAVPlayer@@H@Z,0x00044F30,pinned by SupplyWarehouseCreate::onCreate packet 002505a0
+?addSupplyWarehouse@ResourceGatheringManager@@QAEXPAVObject@@@Z,0x00028646,pinned by SupplyWarehouseCreate::onCreate packet 002505a0
