@@ -124241,11 +124241,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00ac8000@@YAXXZ,,0x00AC8000,24,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ec8000
 ?d_00acc800@@YAXXZ,,0x00ACC800,93,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ecc800
 ?d_00acc860@@YAXXZ,,0x00ACC860,93,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ecc860
-?d_00ad5401@@YAXXZ,,0x00AD5401,66,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=_StringCopyWorkerW@12
-?d_00ad5443@@YAXXZ,,0x00AD5443,75,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ed5443
-?d_00afd1c1@@YAXXZ,,0x00AFD1C1,39,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00efd1c1
-?d_00afd1e8@@YAXXZ,,0x00AFD1E8,39,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00efd1e8
-?d_00afd20f@@YAXXZ,,0x00AFD20F,377,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00efd20f
 ?d_00afe7a0@@YAXXZ,,0x00AFE7A0,39,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00efe7a0
 ?d_00afe940@@YAXXZ,,0x00AFE940,13,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00efe940
 ?d_00afe950@@YAXXZ,,0x00AFE950,6,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00efe950
@@ -157929,3 +157924,14 @@ _luaK_adjuststack,,0x0099F010,441,Code/Libraries/Source/Lua/lcode.c,matched,vend
 ?pop_front@?$deque@VPingResponse@@V?$allocator@VPingResponse@@@_STL@@@_STL@@QAEXXZ,,0x006601F0,75,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread_dequePop.cpp,matched,Open-BFME5 clean C++ conversion of generated asm dump
 ?parseBitString8@INI@@SAXPAV1@PAX1PBX@Z,,0x00851870,68,Code/GameEngine/Source/Common/INI/INI_stl.cpp,matched,clean C++ replaces the naked dump
 ?removeFromList@NetCommandWrapperList@@IAEXPAVNetCommandWrapperListNode@@@Z,,0x006766D0,85,Code/GameEngine/Source/GameNetwork/NetCommandWrapperList_getReadyCommands.cpp,matched,clean C++ replaces the naked dump
+?StringCchCopyA@@YGJPADIPBD@Z,,0x00AFD193,23,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+_DXGetErrorString9A@4,,0x00AD548E,70599,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+_DXGetErrorString9W@4,,0x00AE6855,70612,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+_DXGetErrorDescription9A@4,,0x00AF7C29,10933,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+_DXGetErrorDescription9W@4,,0x00AFA6DE,10933,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+_DXTraceA@20,,0x00AFD388,374,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+?StringCopyWorkerW@@YGJPAGIPBG@Z,,0x00AD5401,66,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+?StringVPrintfWorkerW@@YGJPAGIPBGPAD@Z,,0x00AD5443,75,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+?StringCchPrintfA@@YAJPADIPBDZZ,,0x00AFD1C1,39,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+?StringCchPrintfW@@YAJPAGIPBGZZ,,0x00AFD1E8,39,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+_DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
