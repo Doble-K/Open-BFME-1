@@ -135039,7 +135039,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0005c830@@YAXXZ,,0x0005C830,83,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005d6d0@@YAXXZ,,0x0005D6D0,47,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005d7e0@@YAXXZ,,0x0005D7E0,18,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0005db90@@YAXXZ,,0x0005DB90,20,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0005db90@@YAXXZ,,0x0005DB90,20,Code/GameEngine/Source/Common/AlignUpThunk.cpp,matched,object-symbol=?alignUp@@YGKKK@Z;Open-BFME5 clean C++ stdcall alignment helper
 ?d_0005dc30@@YAXXZ,,0x0005DC30,50,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005dcd0@@YAXXZ,,0x0005DCD0,64,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005de20@@YAXXZ,,0x0005DE20,71,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
