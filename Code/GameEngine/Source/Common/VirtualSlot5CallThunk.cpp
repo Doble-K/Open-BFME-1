@@ -929,3 +929,11 @@ OffsetZeroSecondIntegerSetterReturningThisThunk *OffsetZeroSecondIntegerSetterRe
     value = newValue;
     return this;
 }
+
+void copyIntegerIfDestinationNotNull(int *destination, const int *source)
+{
+    if (destination != 0)
+    {
+        *destination = *source;
+    }
+}
