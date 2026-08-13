@@ -838,3 +838,16 @@ void Offset40IntegerSetterThunk::setValue(int newValue)
 {
     value = newValue;
 }
+
+struct Offset60IntegerSetterThunk
+{
+    unsigned char padding[0x3c];
+    int value;
+
+    void setValue(int newValue);
+};
+
+void Offset60IntegerSetterThunk::setValue(int newValue)
+{
+    value = newValue;
+}
