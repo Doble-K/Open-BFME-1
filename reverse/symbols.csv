@@ -178,6 +178,7 @@ name,address,notes
 ??$_Construct@UGen_t_008fbc70_p8cd@@U1@@_STL@@YAXPAUGen_t_008fbc70_p8cd@@ABU1@@Z,0x008F9C70,gen-tgrid payload member
 ??$_Construct@UHideShowSubObjInfo@ModelConditionInfo@@U12@@_STL@@YAXPAUHideShowSubObjInfo@ModelConditionInfo@@ABU12@@Z,0x0004A818,rel32 pin for exact-ambiguous landing
 ??$_Construct@UModelConditionInfo@@U1@@_STL@@YAXPAUModelConditionInfo@@ABU1@@Z,0x000375CE,Open-BFME5 ModelConditionInfo construction thunk
+??$_Construct@VPlayerTemplate@@V1@@_STL@@YAXPAVPlayerTemplate@@ABV1@@Z,0x00024321,Open-BFME5 PlayerTemplate construction ILT
 ??$_Construct@UNugget@ModuleInfo@@U12@@_STL@@YAXPAUNugget@ModuleInfo@@ABU12@@Z,0x00006FD2,resweep callee back-solved
 ??$_Construct@UParticleSysBoneInfo@@U1@@_STL@@YAXPAUParticleSysBoneInfo@@ABU1@@Z,0x00039F18,retail REL32 pin for W3DModelDraw particle-system-bone vector push_back
 ??$_Construct@UPayload@DeliverPayloadNugget@@U12@@_STL@@YAXPAUPayload@DeliverPayloadNugget@@ABU12@@Z,0x00039F18,resweep callee back-solved
