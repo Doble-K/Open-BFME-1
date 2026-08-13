@@ -136022,7 +136022,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0009ec80@@YAXXZ,,0x0009EC80,5,Code/GameEngine/Source/Common/Rva9EC80IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva9EC80IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 9EC80 identity with one argument
 ?d_0009ec90@@YAXXZ,,0x0009EC90,6,Code/GameEngine/Source/Common/Rva9EC90StoredPointerOffsetThunk.cpp,matched,object-symbol=?offsetValue@Rva9EC90StoredPointerOffsetThunk@@QBEPADXZ;Open-BFME5 clean C++ RVA 9EC90 stored pointer offset
 ?d_0009ed30@@YAXXZ,,0x0009ED30,9,Code/GameEngine/Source/Common/Rva9ED30LinkAdvanceThunk.cpp,matched,object-symbol=?advanceLink@Rva9ED30LinkAdvanceThunk@@QAEPAU1@XZ;Open-BFME5 clean C++ RVA 9ED30 link advance
-?d_0009ed40@@YAXXZ,,0x0009ED40,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_0009ed40@@YAXXZ,,0x0009ED40,7,Code/GameEngine/Source/Common/Rva9ED40StdcallPointerIdentityThunk.cpp,matched,object-symbol=?rva_9ed40_pointer_identity@@YGPAXPAX@Z;Open-BFME5 clean C++ RVA 9ED40 stdcall pointer identity
 ?d_0009ed50@@YAXXZ,,0x0009ED50,11,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0009ed60@@YAXXZ,,0x0009ED60,13,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0009ed90@@YAXXZ,,0x0009ED90,49,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
