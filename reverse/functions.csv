@@ -139134,7 +139134,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?rva_192040_swap_unsigned_int@@YAXPAI0@Z,,0x00192040,19,Code/GameEngine/Source/Common/Rva192040SwapUnsignedInt.cpp,matched,hand-reconciled C++
 ?rva_192060_swap_unsigned_int@@YAXPAI0@Z,,0x00192060,19,Code/GameEngine/Source/Common/Rva192060SwapUnsignedInt.cpp,matched,hand-reconciled C++
 ?rva_192080_swap_unsigned_int@@YAXPAI0@Z,,0x00192080,19,Code/GameEngine/Source/Common/Rva192080SwapUnsignedInt.cpp,matched,hand-reconciled C++
-?d_001920a0@@YAXXZ,,0x001920A0,19,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?rva_1920a0_swap_unsigned_char@@YAXPAE0@Z,,0x001920A0,19,Code/GameEngine/Source/Common/Rva1920A0SwapUnsignedChar.cpp,matched,hand-reconciled C++
 ?d_00192120@@YAXXZ,,0x00192120,11,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00192130@@YAXXZ,,0x00192130,19,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00192150@@YAXXZ,,0x00192150,29,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
