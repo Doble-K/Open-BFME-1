@@ -139006,7 +139006,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0018c160@@YAXXZ,,0x0018C160,7,Code/GameEngine/Source/Common/Rva18C160NestedOffset56ByteGetter.cpp,matched,object-symbol=?get_value@Rva18C160NestedOffset56ByteGetter@@QAEEXZ;Open-BFME5 clean C++ RVA 18C160 nested offset 56 byte getter
 ?d_0018c170@@YAXXZ,,0x0018C170,6,Code/GameEngine/Source/Common/Rva18C170NestedFloatGetter.cpp,matched,object-symbol=?get_value@Rva18C170NestedFloatGetter@@QAEMXZ;Open-BFME5 clean C++ RVA 18C170 nested float getter
 ?d_0018c180@@YAXXZ,,0x0018C180,7,Code/GameEngine/Source/Common/Rva18C180NestedOffset8FloatGetter.cpp,matched,object-symbol=?get_value@Rva18C180NestedOffset8FloatGetter@@QAEMXZ;Open-BFME5 clean C++ RVA 18C180 nested offset 8 float getter
-?d_0018c190@@YAXXZ,,0x0018C190,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?d_0018c190@@YAXXZ,,0x0018C190,7,Code/GameEngine/Source/Common/Rva18C190NestedOffset4FloatGetter.cpp,matched,object-symbol=?get_value@Rva18C190NestedOffset4FloatGetter@@QAEMXZ;Open-BFME5 clean C++ RVA 18C190 nested offset 4 float getter
 ?d_0018c1a0@@YAXXZ,,0x0018C1A0,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c1b0@@YAXXZ,,0x0018C1B0,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c1c0@@YAXXZ,,0x0018C1C0,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
