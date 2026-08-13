@@ -69374,3 +69374,4 @@ _SiegeDeploySpecialPower_vtbl24,0x00CB73F0,Open-BFME5 SiegeDeploySpecialPower in
 ?DualIndexedDispatchFirst@@3HA,0x00EB9688,Open-BFME5 dual indexed dispatch first global
 ?DualIndexedDispatchSecond@@3HA,0x00EB96A8,Open-BFME5 dual indexed dispatch second global
 ?dispatchIndexedValue@@YAXPAXH0HPAH1@Z,0x00858070,Open-BFME5 dual indexed dispatch implementation target
+_bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot

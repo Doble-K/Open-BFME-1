@@ -144722,7 +144722,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0037f720@@YAXXZ,,0x0037F720,17,Code/gen_asm/d_0036dcc0.asm,matched,gen-dump;bounds=high
 ?d_0037f740@@YAXXZ,,0x0037F740,59,Code/gen_asm/d_0036dcc0.asm,matched,gen-dump;bounds=high
 ?d_0037f790@@YAXXZ,,0x0037F790,42,Code/gen_asm/d_0036dcc0.asm,matched,gen-dump;bounds=high
-?d_0037f7d0@@YAXXZ,,0x0037F7D0,265,Code/gen_asm/d_0036dcc0.asm,matched,gen-dump;bounds=high
+?d_0037f7d0@@YAXXZ,,0x0037F7D0,265,Code/GameEngine/Source/Common/VectorIntegerInsertOverflowThunk.cpp,matched,object-symbol=?_M_insert_overflow@?$vector@HV?$allocator@H@_STL@@@_STL@@IAEXPAHABHABU__true_type@2@I_N@Z;Open-BFME5 clean C++ STLport vector integer insert overflow
 ?d_0037fb50@@YAXXZ,,0x0037FB50,9,Code/gen_asm/d_0036dcc0.asm,matched,gen-dump;bounds=high
 ?d_0037fb60@@YAXXZ,,0x0037FB60,33,Code/gen_asm/d_0036dcc0.asm,matched,gen-dump;bounds=high
 ?d_0037fcd0@@YAXXZ,,0x0037FCD0,50,Code/gen_asm/d_0036dcc0.asm,matched,gen-dump;bounds=high
