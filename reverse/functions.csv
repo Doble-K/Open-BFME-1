@@ -156293,7 +156293,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00784ba0@@YAXXZ,,0x00784BA0,50,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_00784be0@@YAXXZ,,0x00784BE0,11,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_00784bf0@@YAXXZ,,0x00784BF0,46,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
-?d_00784c30@@YAXXZ,,0x00784C30,47,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
+?d_00784c30@@YAXXZ,,0x00784C30,47,Code/Libraries/Source/WWVegas/WWLib/Rva784C30DeallocateThunk.cpp,matched,object-symbol=?rva784C30Deallocate@@YGXPAXI@Z;Open-BFME5 clean C++ threshold deallocator
 ?d_00784c70@@YAXXZ,,0x00784C70,11,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_00784c80@@YAXXZ,,0x00784C80,11,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_00784c90@@YAXXZ,,0x00784C90,11,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
