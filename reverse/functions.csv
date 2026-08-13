@@ -147543,7 +147543,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045d000@@YAXXZ,,0x0045D000,49,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045d040@@YAXXZ,,0x0045D040,50,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045d0c0@@YAXXZ,,0x0045D0C0,17,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyIntegerIfDestinationNotNull@@YAXPAHPBH@Z;Open-BFME5 clean C++ nullable destination integer copy
-?d_0045d110@@YAXXZ,,0x0045D110,13,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045d110@@YAXXZ,,0x0045D110,13,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyTo@IndirectIntegerCopyThunk@@QBEPAHPAH@Z;Open-BFME5 clean C++ indirect integer copy returning destination
 ?d_0045d130@@YAXXZ,,0x0045D130,15,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045d150@@YAXXZ,,0x0045D150,36,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045d180@@YAXXZ,,0x0045D180,40,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high

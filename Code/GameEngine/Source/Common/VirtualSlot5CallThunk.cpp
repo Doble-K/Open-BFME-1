@@ -937,3 +937,16 @@ void copyIntegerIfDestinationNotNull(int *destination, const int *source)
         *destination = *source;
     }
 }
+
+struct IndirectIntegerCopyThunk
+{
+    const int *source;
+
+    int *copyTo(int *destination) const;
+};
+
+int *IndirectIntegerCopyThunk::copyTo(int *destination) const
+{
+    *destination = *source;
+    return destination;
+}
