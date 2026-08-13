@@ -965,6 +965,19 @@ int *IndirectIntegerCopyThunk::copyTo(int *destination) const
     return destination;
 }
 
+struct DirectIntegerCopyThunk
+{
+    int value;
+
+    int *copyTo(int *destination) const;
+};
+
+int *DirectIntegerCopyThunk::copyTo(int *destination) const
+{
+    *destination = value;
+    return destination;
+}
+
 struct OffsetEightIndirectIntegerCopyThunk
 {
     const unsigned char *source;
