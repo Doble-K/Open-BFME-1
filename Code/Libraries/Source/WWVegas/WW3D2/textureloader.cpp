@@ -255,7 +255,7 @@ public:
 #ifdef Exception_Handler
 	LoaderThreadClass(const char *thread_name = "Texture loader thread") : ThreadClass(thread_name, &Exception_Handler) {}
 #else
-	LoaderThreadClass(const char *thread_name = "Texture loader thread") : ThreadClass(thread_name) {}
+	LoaderThreadClass(const char *thread_name = "Texture loader thread") : ThreadClass((const char *)0x21, (ExceptionHandlerType)thread_name) {}
 #endif
 
 	void Thread_Function();

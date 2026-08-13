@@ -147142,7 +147142,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0043d830@@YAXXZ,,0x0043D830,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0043d850@@YAXXZ,,0x0043D850,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0043d870@@YAXXZ,,0x0043D870,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
-?d_0043d890@@YAXXZ,,0x0043D890,28,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0043dae0@@YAXXZ,,0x0043DAE0,17,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0043dba0@@YAXXZ,,0x0043DBA0,9,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0043dbc0@@YAXXZ,,0x0043DBC0,9,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,6 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?returnArgument@AddressObject001AFE40@@QAEPAXPAX@Z,,0x001AFE40,7,Code/GameEngine/Source/Common/ReturnArgument001AFE40.cpp,matched,Open-BFME5 clean C++ argument-identity member at 0x001AFE40
 ?returnThis@AddressObject001B4B70@@QAEPAV1@PAX@Z,,0x001B4B70,5,Code/GameEngine/Source/Common/ReturnThis001B4B70.cpp,matched,Open-BFME5 clean C++ return-this member at 0x001B4B70
 ?returnThis@AddressObject001B4DE0@@QAEPAV1@PAX@Z,,0x001B4DE0,5,Code/GameEngine/Source/Common/ReturnThis001B4DE0.cpp,matched,Open-BFME5 clean C++ return-this member at 0x001B4DE0
+?Get_Char_Width@FontCharsClass@@QAEHG@Z,,0x00941480,26,Code/Libraries/Source/WWVegas/WW3D2/FontCharsClassGetCharWidthThunk.cpp,matched,
+?_M_create_node@?$_Rb_tree@HHU?$_Identity@H@_STL@@U?$less@H@2@V?$allocator@H@2@@_STL@@IAEPAU?$_Rb_tree_node@H@2@ABH@Z,,0x0043D890,28,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenuIntSetCreateNodeThunk.cpp,matched,
+??0LoaderThreadClass@@QAE@PBD@Z,,0x008B38D0,27,Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp,matched,
