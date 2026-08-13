@@ -26,6 +26,11 @@
 namespace Debug_Statistics
 {
 	void Record_Sorting_Polys_And_Vertices(int pcount, int vcount);
+	class ShaderClass;
+	void Record_DX8_Polys_And_Vertices(int pcount, int vcount, const ShaderClass &shader);
+	extern int dx8_polygons;
+	extern int dx8_vertices;
+	extern int dx8_renders;
 }
 
 static int sorting_polygons;
@@ -37,4 +42,24 @@ void Debug_Statistics::Record_Sorting_Polys_And_Vertices(int pcount,int vcount)
 	sorting_polygons+=pcount;
 	sorting_vertices+=vcount;
 	draw_calls++;
+}
+
+class Debug_Statistics::ShaderClass
+{
+public:
+	unsigned bits;
+};
+
+// Retail BFME stores these counters and N-patch state in engine globals.
+void Debug_Statistics::Record_DX8_Polys_And_Vertices(int pcount, int vcount, const ShaderClass &shader)
+{
+	if ((shader.bits & 0x20000) != 0
+		&& *reinterpret_cast<bool *>(*reinterpret_cast<unsigned char **>(0x01340578) + 0x13b)) {
+		unsigned level = *reinterpret_cast<unsigned *>(0x012d6d8c);
+		level *= level;
+		pcount *= level;
+	}
+	dx8_polygons += pcount;
+	dx8_vertices += vcount;
+	dx8_renders++;
 }

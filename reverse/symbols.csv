@@ -69391,3 +69391,6 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?rva784C30SmallDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 small-block deallocator pin
 ?rva423670SmallDeallocate@@YAXPAXI@Z,0x0082E5F0,Open-BFME5 record small-block deallocator pin
 ?initialize@Rva14BAD0List@@QAEPAU1@PADH@Z,0x00021C42,Open-BFME5 RVA 14BAD0 list head initializer thunk pin
+?dx8_polygons@Debug_Statistics@@3HA,0x01346E64,Open-BFME5 retail DX8 polygon counter
+?dx8_vertices@Debug_Statistics@@3HA,0x01346DF0,Open-BFME5 retail DX8 vertex counter
+?dx8_renders@Debug_Statistics@@3HA,0x01346E68,Open-BFME5 retail DX8 render counter
