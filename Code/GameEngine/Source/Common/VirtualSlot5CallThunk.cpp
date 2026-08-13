@@ -1032,3 +1032,32 @@ void ReferencePointerReleaseThunk::releaseAlternate()
         }
     }
 }
+
+struct ReferencePointerAssignmentThunk
+{
+    ReferenceCountedReleaseValue *value;
+
+    ReferencePointerAssignmentThunk *assign(const ReferencePointerAssignmentThunk *other);
+};
+
+ReferencePointerAssignmentThunk *ReferencePointerAssignmentThunk::assign(const ReferencePointerAssignmentThunk *other)
+{
+    if (this != other)
+    {
+        ReferenceCountedReleaseValue *newValue = other->value;
+        if (newValue != 0)
+        {
+            ++newValue->referenceCount;
+        }
+
+        ReferenceCountedReleaseValue *oldValue = value;
+        if (oldValue != 0 && oldValue->decrementReferenceCount() <= 0)
+        {
+            oldValue->release(1);
+        }
+
+        value = other->value;
+    }
+
+    return this;
+}
