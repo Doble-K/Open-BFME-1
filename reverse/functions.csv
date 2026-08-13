@@ -122655,7 +122655,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00925060@@YAXXZ,,0x00925060,166,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d25060
 ?d_00925110@@YAXXZ,,0x00925110,227,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d25110
 ?d_009252c0@@YAXXZ,,0x009252C0,188,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d252c0
-?d_009255b0@@YAXXZ,,0x009255B0,86,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d255b0
+?d_009255b0@@YAXXZ,,0x009255B0,86,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,object-symbol=?read_vertex_shade_indices@MeshGeometryClass@@IAE_NAAVChunkLoadClass@@@Z;ghidra=FUN_00d255b0;Open-BFME5 clean C++ vertex shade index loading
 ?d_00925860@@YAXXZ,,0x00925860,1190,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d25860
 ?d_00926630@@YAXXZ,,0x00926630,29,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d26630
 ?d_009267e0@@YAXXZ,,0x009267E0,221,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d267e0

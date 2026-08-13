@@ -1791,7 +1791,7 @@ WW3DErrorType MeshGeometryClass::read_chunks(ChunkLoadClass & cload)
 					break;
 
 			case W3D_CHUNK_VERTEX_SHADE_INDICES:
-					error = read_vertex_shade_indices(cload);
+					error = static_cast<WW3DErrorType>(read_vertex_shade_indices(cload));
 					break;
 
 			case W3D_CHUNK_AABTREE:
@@ -2013,19 +2013,18 @@ WW3DErrorType MeshGeometryClass::read_vertex_influences(ChunkLoadClass & cload)
  * HISTORY:                                                                                    *
  *   11/9/2000  gth : Created.                                                                 *
  *=============================================================================================*/
-// ?MeshGeometryClass::read_vertex_shade_indices present-unmatched
-WW3DErrorType MeshGeometryClass::read_vertex_shade_indices(ChunkLoadClass & cload)
+bool MeshGeometryClass::read_vertex_shade_indices(ChunkLoadClass & cload)
 {
 	uint32 * shade_index = get_shade_indices(true);
 	uint32 si;
 
-	for (int i=0; i<Get_Vertex_Count(); i++) {
+	for (int i=0; i<*reinterpret_cast<int *>(reinterpret_cast<char *>(this) + 0x28); i++) {
 		if (cload.Read(&si,sizeof(uint32)) != sizeof(uint32)) {
-			return WW3D_ERROR_LOAD_FAILED;
+			return false;
 		}
 		shade_index[i] = si;
 	}
-	return WW3D_ERROR_OK;
+	return true;
 }
 
 

@@ -220,7 +220,7 @@ protected:
 	WW3DErrorType				read_triangles(ChunkLoadClass & cload);
 	WW3DErrorType				read_user_text(ChunkLoadClass & cload);
 	WW3DErrorType				read_vertex_influences(ChunkLoadClass & cload);
-	WW3DErrorType				read_vertex_shade_indices(ChunkLoadClass & cload);
+	bool						read_vertex_shade_indices(ChunkLoadClass & cload);
 	WW3DErrorType				read_aabtree(ChunkLoadClass &cload);
 
 	// functions to compute the deformed vertices of skins.
