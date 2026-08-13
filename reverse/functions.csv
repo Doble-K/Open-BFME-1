@@ -135423,7 +135423,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0006cc20@@YAXXZ,,0x0006CC20,11,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006cc30@@YAXXZ,,0x0006CC30,5,Code/GameEngine/Source/Common/TetradenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@TetradenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ tetradenary identity with one argument
 ?d_0006cc40@@YAXXZ,,0x0006CC40,49,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0006cc80@@YAXXZ,,0x0006CC80,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0006cc80@@YAXXZ,,0x0006CC80,5,Code/GameEngine/Source/Common/PentadenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@PentadenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ pentadenary identity with one argument
 ?d_0006cc90@@YAXXZ,,0x0006CC90,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006cca0@@YAXXZ,,0x0006CCA0,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006ccb0@@YAXXZ,,0x0006CCB0,5,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
