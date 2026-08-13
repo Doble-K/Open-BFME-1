@@ -418,3 +418,22 @@ ProducedValue &__stdcall storeProducedValue(ProducedValue &result, int value)
     result.value = produceStoredValue(value);
     return result;
 }
+
+struct VirtualSlot3FlagThunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void slot2();
+    virtual void invoke();
+
+    unsigned char padding[0x46];
+    bool invoked;
+
+    void invokeAndSet();
+};
+
+void VirtualSlot3FlagThunk::invokeAndSet()
+{
+    invoke();
+    invoked = true;
+}

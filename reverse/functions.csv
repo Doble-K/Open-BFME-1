@@ -118372,7 +118372,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00739c70@@YAXXZ,,0x00739C70,23,Code/gen_asm/d_00734180.asm,matched,gen-dump;ghidra=FUN_00b39c70
 ?d_00739c90@@YAXXZ,,0x00739C90,32,Code/gen_asm/d_00734180.asm,matched,gen-dump;ghidra=FUN_00b39c90
 ?d_00739d20@@YAXXZ,,0x00739D20,60,Code/gen_asm/d_00734180.asm,matched,gen-dump;ghidra=FUN_00b39d20
-?d_00739d90@@YAXXZ,,0x00739D90,14,Code/gen_asm/d_00734180.asm,matched,gen-dump;ghidra=FUN_00b39d90
+?d_00739d90@@YAXXZ,,0x00739D90,14,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?invokeAndSet@VirtualSlot3FlagThunk@@QAEXXZ;Open-BFME5 clean C++ virtual slot three invoke and flag
 ?d_00739db0@@YAXXZ,,0x00739DB0,37,Code/gen_asm/d_00734180.asm,matched,gen-dump;ghidra=FUN_00b39db0
 ?d_00739e00@@YAXXZ,,0x00739E00,62,Code/gen_asm/d_00734180.asm,matched,gen-dump;ghidra=FUN_00b39e00
 ?d_00739e70@@YAXXZ,,0x00739E70,109,Code/gen_asm/d_00734180.asm,matched,gen-dump;ghidra=FUN_00b39e70
