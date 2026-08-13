@@ -305,7 +305,8 @@ SortingVertexBufferClass::SortingVertexBufferClass(unsigned short VertexCount)
 	VertexBufferClass(BUFFER_TYPE_SORTING, dynamic_fvf_type, VertexCount)
 {
 	WWMEMLOG(MEM_RENDERER);
-	VertexBuffer=W3DNEWARRAY VertexFormatXYZNDUV2[VertexCount];
+	*reinterpret_cast<VertexFormatXYZNDUV2 **>(reinterpret_cast<char *>(this) + 0x1c) =
+		W3DNEWARRAY VertexFormatXYZNDUV2[VertexCount];
 }
 
 // ----------------------------------------------------------------------------
