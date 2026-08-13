@@ -92,12 +92,11 @@ Read it as: where Ghidra has a boundary it is nearly always right, so
 `harvest.py` taking its sizes is safe, and the third of real-source rows it
 misses are simply absent rather than wrong. The `masm_dumps` row is the outlier
 and it is not a Ghidra defect — 19% of dump rows disagree with it because dumps
-byte-verify at any length, which is what `tools/audit_internal_padding.py`
-exists to find.
+byte-verify at any length.
 
 ## Without the inventory
 
-`locate.py`, `harvest.py`, `explain_mismatch.py`, `audit_claim_boundaries.py`,
+`locate.py`, `harvest.py`, `explain_mismatch.py`,
 `decode_calls.py` and `drift_classify.py` all raise `FileNotFoundError` on a
 fresh clone, because `reverse/ghidra_functions.csv` is gitignored. That is the
 whole function-finding pipeline, and the failure is loud but easy to
