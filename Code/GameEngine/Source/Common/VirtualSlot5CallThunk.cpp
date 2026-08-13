@@ -1095,6 +1095,22 @@ ReferencePointerAssignmentThunk *ReferencePointerAssignmentThunk::assign(const R
     return this;
 }
 
+struct RetainedReferenceCopyConstructorThunk
+{
+    ReferenceCountedReleaseValue *value;
+
+    RetainedReferenceCopyConstructorThunk(const RetainedReferenceCopyConstructorThunk &other);
+};
+
+RetainedReferenceCopyConstructorThunk::RetainedReferenceCopyConstructorThunk(const RetainedReferenceCopyConstructorThunk &other) :
+    value(other.value)
+{
+    if (value != 0)
+    {
+        ++value->referenceCount;
+    }
+}
+
 struct PointerPayloadGetterThunk
 {
     unsigned char *base;
