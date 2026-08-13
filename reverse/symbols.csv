@@ -69447,3 +69447,6 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?Render_Material_Pass@MeshClass@@QAEXPAVMaterialPassClass@@PAVIndexBufferClass@@@Z,0x0092E890,pinned by DX8RigidFVFCategoryContainer::Render_Delayed_Procedural_Material_Passes packet 00946910
 ?isAbleToAttack@Object@@QBE_NXZ,0x00001FD7,ILT thunk pin from PartitionFilterRepulsor::allow packet 001ddb10 (target body 0x001C9C10)
 ?init@Player@@QAEXPBVPlayerTemplate@@@Z,0x00020AEA,
+?TheRadar@@3PAVRadar@@A,0x012EF0E4,Radar* global; identified by engine-init constructor-tag string "TheRadar" at RVA 0x0761dc pushed immediately before ctor call that stores to this address (WinMain-style subsystem construction block at 0x47a08b-0x47a09a, alongside TheRecorder@0x12ed62c and TheVictoryConditions@0x12f079c constructed the same way)
+?scanClosestTarget@AutoFindHealingUpdate@@QAEPAVObject@@XZ,0x00036787,packet 002817b0 pin
+?aiGetHealed@AICommandInterface@@QAEXPAVObject@@W4CommandSourceType@@@Z,0x0003CF10,packet 002817b0 pin
