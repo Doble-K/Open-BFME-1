@@ -1170,3 +1170,13 @@ SingleIntegerZeroConstructorThunk::SingleIntegerZeroConstructorThunk() :
     value(0)
 {
 }
+
+struct FluentNoOpThunk
+{
+    FluentNoOpThunk *ignore(int unused);
+};
+
+FluentNoOpThunk *FluentNoOpThunk::ignore(int)
+{
+    return this;
+}
