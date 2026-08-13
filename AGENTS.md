@@ -11,12 +11,16 @@ task names a file, symbol, tier, or audit, stay in that lane. Otherwise:
 
 1. `git pull --rebase origin master`
 2. `python3 tools/check_csv.py`; repair ledger errors before other work
-3. `python3 tools/next_work.py`; it returns one randomized candidate
+3. `python3 tools/list_naked_candidates.py Code`; it serves a byte-true dump
+   from `Code/gen_asm/` — the exact retail bytes your C++ must compile to,
+   boundary already proven. Converting dumps is the default work: ~51,000 of
+   them hold most of the game, and each conversion moves the README number.
+4. `python3 tools/next_work.py` when you want identity work instead — it
+   serves functions whose real mangled name is already recovered, plus the
+   structural/anchored RE tiers.
 
-Use `python3 tools/next_work.py --tier named`, `--tier ghidra`, `--tier structural`
-or `--tier anchored` when assigned. Use `python3 tools/list_naked_candidates.py Code`
-for inline assembly. Do not keep speculative edits open: finish or revert each
-body before the next.
+Do not keep speculative edits open: finish or revert each body before the
+next.
 
 **If a tier reports zero candidates, it is exhausted, not broken.** The
 ZH-derived tiers all feed off finite artifacts and the fleet drains them: at
