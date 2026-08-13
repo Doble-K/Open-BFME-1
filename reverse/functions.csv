@@ -138968,7 +138968,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00188cd0@@YAXXZ,,0x00188CD0,342,Code/gen_asm/d_00168d40.asm,matched,gen-dump;bounds=high
 ?d_00188e80@@YAXXZ,,0x00188E80,757,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00189660@@YAXXZ,,0x00189660,198,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_00189a40@@YAXXZ,,0x00189A40,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?d_00189a40@@YAXXZ,,0x00189A40,7,Code/GameEngine/Source/Common/Rva189A40Offset22CGetter.cpp,matched,object-symbol=?get_value@Rva189A40Offset22CGetter@@QAEIXZ;Open-BFME5 clean C++ RVA 189A40 offset 22C getter
 ?rva_189b20_constant_return@@YAIXZ,,0x00189B20,6,Code/GameEngine/Source/Common/Rva189B20ConstantReturn.cpp,matched,hand-reconciled C++;Open-BFME5 clean C++ RVA 189B20 constant return
 ?d_00189b50@@YAXXZ,,0x00189B50,5,Code/GameEngine/Source/Common/VirtualSlotFourDispatchThunk.cpp,matched,object-symbol=?dispatch@VirtualSlotFourDispatchThunk@@QAEXXZ;Open-BFME5 clean C++ virtual slot four tail dispatch
 ?d_00189ba0@@YAXXZ,,0x00189BA0,5,Code/GameEngine/Source/Common/Rva189BA0VirtualSlotFourDispatchThunk.cpp,matched,object-symbol=?dispatch@Rva189BA0VirtualSlotFourDispatchThunk@@QAEXXZ;Open-BFME5 clean C++ RVA 189BA0 virtual slot four tail dispatch
