@@ -138183,7 +138183,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013d6f0@@YAXXZ,,0x0013D6F0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013d730@@YAXXZ,,0x0013D730,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013d780@@YAXXZ,,0x0013D780,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0013d7a0@@YAXXZ,,0x0013D7A0,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013d7b0@@YAXXZ,,0x0013D7B0,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013d7c0@@YAXXZ,,0x0013D7C0,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013d7d0@@YAXXZ,,0x0013D7D0,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0013d6a0@@YAXXZ,,0x0013D6A0,5,Code/GameEngine/Source/Common/Rva13D6A0FirstArgumentIdentity.cpp,matched,object-symbol=?Rva13D6A0FirstArgumentIdentity@@YAHH@Z;Open-BFME5 clean C++ RVA 13D6A0 first argument identity
 ?d_0013d6b0@@YAXXZ,,0x0013D6B0,5,Code/GameEngine/Source/Common/Rva13D6B0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva13D6B0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 13D6B0 identity with one argument
 ?d_0013d790@@YAXXZ,,0x0013D790,5,Code/GameEngine/Source/Common/Rva13D790IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva13D790IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 13D790 identity with one argument
+?d_0013d7a0@@YAXXZ,,0x0013D7A0,5,Code/GameEngine/Source/Common/Rva13D7A0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva13D7A0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 13D7A0 identity with one argument
