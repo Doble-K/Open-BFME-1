@@ -148040,7 +148040,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00472800@@YAXXZ,,0x00472800,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00472810@@YAXXZ,,0x00472810,9,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0SingleIntegerZeroConstructorSeventeenthThunk@@QAE@XZ;Open-BFME5 clean C++ seventeenth single integer zero constructor
 ?d_00472820@@YAXXZ,,0x00472820,13,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
-?d_00472850@@YAXXZ,,0x00472850,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
+?d_00472850@@YAXXZ,,0x00472850,6,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?getPayloadTwentySixth@PointerPayloadGetterThunk@@QBEPAEXZ;Open-BFME5 clean C++ twenty-sixth pointer payload getter
 ?d_00472860@@YAXXZ,,0x00472860,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00472870@@YAXXZ,,0x00472870,6,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00472880@@YAXXZ,,0x00472880,7,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
