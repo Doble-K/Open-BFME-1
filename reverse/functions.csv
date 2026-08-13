@@ -106098,7 +106098,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000b77d0@@YAXXZ,,0x000B77D0,45,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b77d0
 ?d_000b7810@@YAXXZ,,0x000B7810,41,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b7810
 ?d_000b7af0@@YAXXZ,,0x000B7AF0,310,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b7af0
-?d_000b7c90@@YAXXZ,,0x000B7C90,93,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b7c90
 ?d_000b7d10@@YAXXZ,,0x000B7D10,22,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b7d10
 ?d_000b7e70@@YAXXZ,,0x000B7E70,173,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b7e70
 ?d_000b84d0@@YAXXZ,,0x000B84D0,122,Code/gen_asm/d_000ae0a0.asm,matched,gen-dump;ghidra=FUN_004b84d0
@@ -157941,3 +157940,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ??1DamageInfo@@QAE@XZ,,0x000C3410,89,Code/GameEngine/Source/Common/DamageInfoDestructorThunk.cpp,matched,
 ?update@PlayerList@@UAEXXZ,,0x000DF2D0,32,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 BFME MAX_PLAYER_COUNT=32 loop; callee thunk 0x4771C to ?update@Player@@QAEXXZ 0xD9A80 separates it from newMap/updateTeamStates
 ?updateTeamStates@PlayerList@@QAEXXZ,,0x000DF390,32,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 callee 0xCE140 iterates Player+0x288 m_playerTeamPrototypes = ?updateTeamStates@Player@@QAEXXZ
+?resize@?$vector@UCoord3D@@V?$allocator@UCoord3D@@@_STL@@@_STL@@QAEXIUCoord3D@@@Z,,0x000B7C90,93,Code/Libraries/Source/WWVegas/WWLib/Coord3DVectorResizeThunk.cpp,matched,Open-BFME5 fill value by value (ret 0x10)
