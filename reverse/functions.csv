@@ -110106,7 +110106,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002a0120@@YAXXZ,,0x002A0120,76,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0120
 ?d_002a0180@@YAXXZ,,0x002A0180,25,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0180
 ?d_002a03e0@@YAXXZ,,0x002A03E0,79,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a03e0
-?d_002a0750@@YAXXZ,,0x002A0750,74,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0750
+?d_002a0750@@YAXXZ,,0x002A0750,74,Code/GameEngine/Source/GameLogic/Object/Update/RadiusDecalUpdate.cpp,matched,object-symbol=?createRadiusDecal@RadiusDecalUpdate@@QAEXABVRadiusDecalTemplate@@MABUCoord3D@@@Z;Open-BFME5 clean C++ radius decal creation
 ?d_002a07b0@@YAXXZ,,0x002A07B0,29,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a07b0
 ?d_002a0920@@YAXXZ,,0x002A0920,172,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0920
 ?d_002a0ad0@@YAXXZ,,0x002A0AD0,78,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0ad0

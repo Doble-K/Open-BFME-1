@@ -8255,6 +8255,7 @@ name,address,notes
 ?b_0004a60b@@YAXXZ,0x0004A60B,gen-thunk body
 ?b_0004a741@@YAXXZ,0x0004A741,gen-thunk body
 ?b_0004a8a9@@YAXXZ,0x0004A8A9,gen-thunk body
+?clear@RadiusDecal@@QAEXXZ,0x0004A8A9,RadiusDecalUpdate::createRadiusDecal retail callee
 ?b_0004a9f3@@YAXXZ,0x0004A9F3,gen-thunk body
 ?b_0004aaf7@@YAXXZ,0x0004AAF7,gen-thunk body
 ?b_0004ab47@@YAXXZ,0x0004AB47,gen-thunk body
@@ -67866,6 +67867,7 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?getCommandSetString@Object@@QBEABVAsciiString@@XZ,0x00029DC0,Object::getCommandSetString via ILT thunk
 ?getCommandTypeAsAsciiString@GameMessage@@SA?AVAsciiString@@W4Type@1@@Z,0x00040A1B
 ?getControllingPlayer@Object@@QBEPAVPlayer@@XZ,0x00020824
+?createRadiusDecal@RadiusDecalTemplate@@QBEXABUCoord3D@@MPBVPlayer@@AAVRadiusDecal@@@Z,0x00037826,RadiusDecalUpdate::createRadiusDecal retail callee
 ?getControllingPlayer@Team@@QBEPAVPlayer@@XZ,0x0002369B
 ?getControllingPlayer@TeamPrototype@@QBEPAVPlayer@@XZ,0x0000F2DB,TeamInQueue disband call pin
 ?getCurNemesis@TunnelTracker@@QAEPAVObject@@XZ,0x00025766,REL32 pin from TunnelTracker::updateNemesis @0xF90D0
@@ -68763,6 +68765,7 @@ _EntEnragedInitialValueData,0x00CBE788,Open-BFME5 EntEnragedUpdate initializatio
 ?setWakeFrame@HordeAIUpdateBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ?setWakeFrame@ObjectWeaponStatusHelperBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ?setWakeFrame@UpdateModule@@QAEXPAVObject@@I@Z,0x000157DA
+?setWakeFrame@UpdateModule@@IAEXPAVObject@@I@Z,0x000157DA,RadiusDecalUpdate protected retail callee
 ?setWakeFrame@WeaponModeSpecialPowerUpdateBase@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
 ??0PassiveAreaEffectBehaviorRoot@@QAE@PAVThing@@PBVModuleData@@@Z,0x000170E4,ObjectModule constructor via ILT thunk
 ?setWakeFrame@PassiveAreaEffectUpdateModule@@IAEXPAVObject@@W4UpdateSleepTime@@@Z,0x000157DA,UpdateModule::setWakeFrame via ILT thunk
