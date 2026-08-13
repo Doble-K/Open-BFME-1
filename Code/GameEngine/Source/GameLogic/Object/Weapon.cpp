@@ -3147,7 +3147,6 @@ public:
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?getFiringLineOfSightOrigin@Weapon@@IBEXPBVObject@@AAUCoord3D@@@Z present-unmatched
 void Weapon::getFiringLineOfSightOrigin(const Object* source, Coord3D& origin) const
 {
 	//GS 1-6-03
@@ -3155,7 +3154,14 @@ void Weapon::getFiringLineOfSightOrigin(const Object* source, Coord3D& origin) c
 	// that point can change. Take a Ranger with his gun on his shoulder.  His point is very high so 
 	// he clears this check and transitions to attacking.  This puts his gun at waist level and
 	// now he fails this check so he transitions back.  Our height won't change.
-	origin.z += source->getGeometryInfo().getMaxHeightAbovePosition();
+	// Retail takes &m_geometryInfo as source+0xac; this tree's Object lands it
+	// at +0xa8. The four bytes are GeometryInfo's own: BFME's is not a
+	// Snapshot, so m_type/m_isSmall/m_height/m_majorRadius/m_minorRadius run
+	// 0x00/0x04/0x08/0x0c/0x10 with no vtable pointer -- which is also why
+	// parseGeometryIsSmall writes m_isSmall at +0x4, and it puts m_minorRadius
+	// at 0xac+0x10 = 0xbc, the offset reference/shims/bfmeobjectlayout pads
+	// sixteen bytes to reach.
+	origin.z += ((const GeometryInfo *)((const char *)source + 0xac))->getMaxHeightAbovePosition();
 
 /*
 	if (m_template->getProjectileTemplate() == NULL)

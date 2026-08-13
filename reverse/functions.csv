@@ -139930,7 +139930,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001e1740@@YAXXZ,,0x001E1740,14,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001e17c0@@YAXXZ,,0x001E17C0,150,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001e19e0@@YAXXZ,,0x001E19E0,13,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
-?d_001e1a30@@YAXXZ,,0x001E1A30,30,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001e1ba0@@YAXXZ,,0x001E1BA0,94,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,object-symbol=?appendBonuses@WeaponBonus@@QBEXAAV1@@Z;Open-BFME5 clean C++ six-field weapon bonus accumulation
 ?d_001e1d50@@YAXXZ,,0x001E1D50,9,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001e1d80@@YAXXZ,,0x001E1D80,7,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?Shutdown@VertexMaterialClass@@SAXXZ,,0x00921290,40,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,Open-BFME5 REF_PTR_RELEASE nulls inside the null check in BFME
 ?isBuildTimeExpired@TeamInQueue@@QAE_NXZ,,0x00160FC0,38,Code/GameEngine/Source/GameLogic/AI/TeamInQueue_isBuildTimeExpired_Thunk.cpp,matched,Open-BFME5 m_team@+0x1c m_frameStarted@+0x24 Team::m_proto@+4 idleFrames@+0x1a4
 ??4DamageInfo@@QAEAAV0@ABV0@@Z,,0x00150620,45,Code/GameEngine/Source/Common/DamageInfoAssignThunk.cpp,matched,Open-BFME5 in@+0x4 out@+0x50; this+0 untouched
+?getFiringLineOfSightOrigin@Weapon@@IBEXPBVObject@@AAUCoord3D@@@Z,,0x001E1A30,30,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,Open-BFME5 Object m_geometryInfo at +0xac
