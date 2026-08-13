@@ -69401,3 +69401,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?MatPassTaskPool@@3VMatPassTaskPoolClass@@A,0x0134B13C,Open-BFME5 retail material pass task pool
 ?Allocate_Object_Memory@MatPassTaskPoolClass@@QAEPAUMatPassTaskClass@@XZ,0x009452D0,Open-BFME5 retail material pass task allocator
 ?lookForInnerTarget@AIGuardMachine@@QAE_NXZ,0x000317A5,Open-BFME5 retail guard inner-target scan
+??0RecorderClass@@QAE@XZ,0x00033F9B,Open-BFME5 retail recorder constructor pin

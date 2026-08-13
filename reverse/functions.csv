@@ -105825,7 +105825,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00099490@@YAXXZ,,0x00099490,1006,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_00499490
 ?d_00099a40@@YAXXZ,,0x00099A40,771,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_00499a40
 ?d_00099e10@@YAXXZ,,0x00099E10,927,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_00499e10
-?d_0009a2a0@@YAXXZ,,0x0009A2A0,89,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_0049a2a0
 ?d_0009a3e0@@YAXXZ,,0x0009A3E0,53,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_0049a3e0
 ?d_0009a430@@YAXXZ,,0x0009A430,173,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_0049a430
 ?d_0009a510@@YAXXZ,,0x0009A510,82,Code/gen_asm/d_0006bbe0.asm,matched,gen-dump;ghidra=FUN_0049a510
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0015e4c0@@YAXXZ,,0x0015E4C0,60,Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp,matched,object-symbol=?update@AIGuardReturnState@@UAE?AW4StateReturnType@@XZ;Open-BFME5 clean C++ guard return update
 ?d_00097280@@YAXXZ,,0x00097280,158,Code/GameEngine/Source/Common/RecorderLogGameEnd.cpp,matched,object-symbol=?logGameEnd@RecorderClass@@IAEXXZ;Open-BFME5 clean C++ recorder game end
 ?d_0092bdf0@@YAXXZ,,0x0092BDF0,87,Code/Libraries/Source/WWVegas/WW3D2/MeshMatDescSetMaterial.cpp,matched,object-symbol=?Set_Material@MeshMatDescClass@@QAEXHPAVVertexMaterialClass@@H@Z;Open-BFME5 clean C++ mesh material assignment
+?createRecorder@@YAPAVRecorderClass@@XZ,,0x0009A2A0,89,Code/GameEngine/Source/Common/RecorderCreate.cpp,matched,Open-BFME5 clean C++ recorder factory
