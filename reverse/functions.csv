@@ -106777,7 +106777,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00105140@@YAXXZ,,0x00105140,98,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00505140
 ?d_001051c0@@YAXXZ,,0x001051C0,98,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_005051c0
 ?d_00105350@@YAXXZ,,0x00105350,11,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00505350
-?d_00105360@@YAXXZ,,0x00105360,5,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00505360
 ?d_00105480@@YAXXZ,,0x00105480,76,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00505480
 ?d_00105640@@YAXXZ,,0x00105640,135,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00505640
 ?d_00105750@@YAXXZ,,0x00105750,49,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00505750
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_005db010@@YAXXZ,,0x005DB010,87,Code/GameEngine/Source/GameLogic/Object/PartitionCellDeletingDestructor.cpp,matched,object-symbol=??_EPartitionCell@@QAEPAXI@Z;Open-BFME5 clean C++ PartitionCell deleting destructor
 ?d_009080a0@@YAXXZ,,0x009080A0,201,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 clean C++ render device descriptor vector constructor;object-symbol=??0?$VectorClass@VRenderDeviceDescClass@@@@QAE@HPBVRenderDeviceDescClass@@@Z
 ?d_00924600@@YAXXZ,,0x00924600,174,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,object-symbol=?get_shade_indices@MeshGeometryClass@@IAEPAK_N@Z;Open-BFME5 clean C++ shade-index buffer access
+?forwardSlot1@AddressThunk00105360@@QAEXXZ,,0x00105360,5,Code/GameEngine/Source/Common/VirtualDispatchSlot1.cpp,matched,Open-BFME5 clean C++ virtual slot 1 tail dispatch
