@@ -147614,7 +147614,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045e570@@YAXXZ,,0x0045E570,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0VirtualZeroDerivedAlternateThunk@@QAE@XZ;Open-BFME5 clean C++ alternate virtual zero derived constructor
 ?d_0045e5c0@@YAXXZ,,0x0045E5C0,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0VirtualZeroDerivedThirdThunk@@QAE@XZ;Open-BFME5 clean C++ third virtual zero derived constructor
 ?d_0045e610@@YAXXZ,,0x0045E610,26,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?releaseFourth@ReferencePointerReleaseThunk@@QAEXXZ;Open-BFME5 clean C++ fourth reference pointer release
-?d_0045e630@@YAXXZ,,0x0045E630,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045e630@@YAXXZ,,0x0045E630,26,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?releaseFifth@ReferencePointerReleaseThunk@@QAEXXZ;Open-BFME5 clean C++ fifth reference pointer release
 ?d_0045e650@@YAXXZ,,0x0045E650,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e670@@YAXXZ,,0x0045E670,57,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e6e0@@YAXXZ,,0x0045E6E0,6,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
