@@ -147844,7 +147844,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00466bc0@@YAXXZ,,0x00466BC0,11,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00466bd0@@YAXXZ,,0x00466BD0,11,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00466be0@@YAXXZ,,0x00466BE0,11,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
-?d_00466bf0@@YAXXZ,,0x00466BF0,9,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
+?d_00466bf0@@YAXXZ,,0x00466BF0,9,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0SingleIntegerZeroConstructorTwelfthThunk@@QAE@XZ;Open-BFME5 clean C++ twelfth single integer zero constructor
 ?d_00466c00@@YAXXZ,,0x00466C00,11,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00466c10@@YAXXZ,,0x00466C10,18,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00466c30@@YAXXZ,,0x00466C30,18,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high

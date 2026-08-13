@@ -2013,6 +2013,18 @@ SingleIntegerZeroConstructorEleventhThunk::SingleIntegerZeroConstructorEleventhT
 {
 }
 
+struct SingleIntegerZeroConstructorTwelfthThunk
+{
+    int value;
+
+    SingleIntegerZeroConstructorTwelfthThunk();
+};
+
+SingleIntegerZeroConstructorTwelfthThunk::SingleIntegerZeroConstructorTwelfthThunk() :
+    value(0)
+{
+}
+
 struct FluentNoOpThunk
 {
     FluentNoOpThunk *ignore(int unused);
