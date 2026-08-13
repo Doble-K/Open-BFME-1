@@ -122615,7 +122615,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00921140@@YAXXZ,,0x00921140,17,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21140
 ?d_00921250@@YAXXZ,,0x00921250,19,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21250
 ?d_00921270@@YAXXZ,,0x00921270,11,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21270
-?d_00921290@@YAXXZ,,0x00921290,40,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21290
 ?d_009212e0@@YAXXZ,,0x009212E0,98,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d212e0
 ?d_00921820@@YAXXZ,,0x00921820,279,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21820
 ?d_00921940@@YAXXZ,,0x00921940,129,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21940
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?getMinimumAttackRange@WeaponTemplate@@QBEMXZ,,0x001E15D0,31,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,Open-BFME5 m_minimumAttackRange at WeaponTemplate+0x18 in BFME
 ?killRadiusDecal@RadiusDecalUpdate@@QAEXXZ,,0x002A07B0,29,Code/GameEngine/Source/GameLogic/Object/Update/RadiusDecalUpdate.cpp,matched,Open-BFME5 m_deliveryDecal at +0x20; UPDATE_SLEEP_FOREVER 0x3fffffff
 ?killGridDecals@DynamicShroudClearingRangeUpdate@@QAEXXZ,,0x0028E3A0,32,Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdate.cpp,matched,Open-BFME5 m_gridDecal[30] at +0x50 with stride 0x10 = sizeof(RadiusDecal)
+?Shutdown@VertexMaterialClass@@SAXXZ,,0x00921290,40,Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,Open-BFME5 REF_PTR_RELEASE nulls inside the null check in BFME

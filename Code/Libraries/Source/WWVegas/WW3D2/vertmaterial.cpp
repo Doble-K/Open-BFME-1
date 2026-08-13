@@ -53,6 +53,15 @@
 #include <stdio.h>
 #include <string.h>
 
+// BFME nulls the pointer INSIDE the null check. The reference tree's ZH
+// refcount.h nulls it unconditionally, which costs one byte in every body that
+// uses the macro -- the je in Shutdown clears the store at retail and lands on
+// it here. This repo's own Code/Libraries/Source/WWVegas/WWLib/refcount.h
+// already carries the corrected form; this TU compiles against the reference
+// copy, so restore it here rather than reorder the include path.
+#undef REF_PTR_RELEASE
+#define REF_PTR_RELEASE(x)		{ if (x) { x->Release_Ref(); x = NULL; } }
+
 static unsigned int unique=1;
 
 VertexMaterialClass* VertexMaterialClass::Presets[VertexMaterialClass::PRESET_COUNT];
@@ -1088,7 +1097,6 @@ void VertexMaterialClass::Init()
  * HISTORY:                                                                                    *
  *   2/14/2001  hy : Created.                                                                  *
  *=============================================================================================*/
-// ?Shutdown@VertexMaterialClass@@SAXXZ present-unmatched
 void VertexMaterialClass::Shutdown()
 {
 	int i;
