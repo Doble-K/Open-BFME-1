@@ -113235,7 +113235,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0042e020@@YAXXZ,,0x0042E020,97,Code/gen_asm/d_0042c460.asm,matched,gen-dump;ghidra=FUN_0082e020
 ?d_0042e130@@YAXXZ,,0x0042E130,319,Code/gen_asm/d_0042c460.asm,matched,gen-dump;ghidra=FUN_0082e130
 ?d_0042e520@@YAXXZ,,0x0042E520,10,Code/gen_asm/d_0042c460.asm,matched,gen-dump;ghidra=FUN_0082e520
-?d_0042e530@@YAXXZ,,0x0042E530,41,Code/gen_asm/d_0042c460.asm,matched,gen-dump;ghidra=FUN_0082e530
 ?d_0042e570@@YAXXZ,,0x0042E570,186,Code/gen_asm/d_0042c460.asm,matched,gen-dump;ghidra=FUN_0082e570
 ?d_0042e6c0@@YAXXZ,,0x0042E6C0,40,Code/gen_asm/d_0042c460.asm,matched,gen-dump;ghidra=FUN_0082e6c0
 ?d_0042e740@@YAXXZ,,0x0042E740,35,Code/gen_asm/d_0042c460.asm,matched,gen-dump;ghidra=FUN_0082e740
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ??4DamageInfo@@QAEAAV0@ABV0@@Z,,0x00150620,45,Code/GameEngine/Source/Common/DamageInfoAssignThunk.cpp,matched,Open-BFME5 in@+0x4 out@+0x50; this+0 untouched
 ?getFiringLineOfSightOrigin@Weapon@@IBEXPBVObject@@AAUCoord3D@@@Z,,0x001E1A30,30,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,Open-BFME5 Object m_geometryInfo at +0xac
 ?findDynamicLODLevel@GameLODManager@@QAE?AW4DynamicGameLODLevel@@M@Z,,0x0007C440,50,Code/GameEngine/Source/Common/GameLODManager_findDynamicLODLevel_Thunk.cpp,matched,Open-BFME5 LOD enum bases LOW at 0 with five levels; info entry 0x10 bytes; array at +0x120
+?registerDrawable@GameClient@@UAEXPAVDrawable@@@Z,,0x0042E530,41,Code/GameEngine/Source/GameClient/GameClient.cpp,matched,Open-BFME5 m_drawableList at +0x10 and m_nextDrawableID at +0x28

@@ -496,15 +496,18 @@ void GameClient::reset( void )
 DrawableID GameClient::allocDrawableID( void )
 {
 	/// @todo Find unused value in current set
-	DrawableID ret = m_nextDrawableID;
-	m_nextDrawableID = (DrawableID)((UnsignedInt)m_nextDrawableID + 1);
+	// Retail keeps m_nextDrawableID at this+0x28; this tree's GameClient lands
+	// it at +0x20. m_drawableList at +0x10 is already right, so the eight bytes
+	// are somewhere between the two.
+	DrawableID *nextDrawableID = (DrawableID *)((char *)this + 0x28);
+	DrawableID ret = *nextDrawableID;
+	*nextDrawableID = (DrawableID)((UnsignedInt)*nextDrawableID + 1);
 	return ret;
 }
 
 /** -----------------------------------------------------------------------------------------------
  * Given a drawable, register it with the GameClient and give it a unique ID.
  */
-// ?registerDrawable@GameClient@@ present-unmatched
 void GameClient::registerDrawable( Drawable *draw ) 
 {
 

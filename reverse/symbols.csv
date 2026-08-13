@@ -69435,3 +69435,5 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?calcBoundingStuff@GeometryInfo@@AAEXXZ,0x0087EE60,Open-BFME5 tail-call target of parseGeometryIsSmall at 0x0087F160
 ??4DamageInfoInput@@QAEAAV0@ABV0@@Z,0x0000617C,Open-BFME5 ILT; called by ??4DamageInfo@@QAEAAV0@ABV0@@Z at 0x00150620 with this+4
 ?getMaxHeightAbovePosition@GeometryInfo@@QBEMXZ,0x0087E000,Open-BFME5 called by ?getFiringLineOfSightOrigin@Weapon@@IBEXPBVObject@@AAUCoord3D@@@Z at 0x001E1A30
+?setID@Drawable@@QAEXW4DrawableID@@@Z,0x00005A7E,Open-BFME5 ILT; called by ?registerDrawable@GameClient@@UAEXPAVDrawable@@@Z at 0x0042E530
+?prependToList@Drawable@@QAEXPAPAV1@@Z,0x00025C84,Open-BFME5 ILT; called by ?registerDrawable@GameClient@@UAEXPAVDrawable@@@Z at 0x0042E530
