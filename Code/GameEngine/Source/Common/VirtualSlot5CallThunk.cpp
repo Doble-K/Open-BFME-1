@@ -1169,6 +1169,7 @@ struct IntegerArgumentIdentityThunk
 {
     int identity(int value) const;
     int identityAlternate(int value) const;
+    int identityThird(int value) const;
 };
 
 int IntegerArgumentIdentityThunk::identity(int value) const
@@ -1177,6 +1178,11 @@ int IntegerArgumentIdentityThunk::identity(int value) const
 }
 
 int IntegerArgumentIdentityThunk::identityAlternate(int value) const
+{
+    return value;
+}
+
+int IntegerArgumentIdentityThunk::identityThird(int value) const
 {
     return value;
 }
