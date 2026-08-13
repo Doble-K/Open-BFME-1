@@ -136071,7 +136071,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000a0300@@YAXXZ,,0x000A0300,7,Code/GameEngine/Source/Common/RvaA0300StdcallPointerIdentityThunk.cpp,matched,object-symbol=?rva_a0300_pointer_identity@@YGPAXPAX@Z;Open-BFME5 clean C++ RVA A0300 stdcall pointer identity
 ?d_000a0310@@YAXXZ,,0x000A0310,8,Code/GameEngine/Source/Common/RvaA0310PointerOffsetThunk.cpp,matched,object-symbol=?rva_a0310_pointer_offset@@YAPADPAD@Z;Open-BFME5 clean C++ RVA A0310 pointer offset
 ?d_000a0320@@YAXXZ,,0x000A0320,13,Code/GameEngine/Source/Common/RvaA0320SingleValueCopyThunk.cpp,matched,object-symbol=?copy@RvaA0320SingleValueCopyThunk@@QAEPAU1@PBU1@@Z;Open-BFME5 clean C++ RVA A0320 single-value member copy
-?d_000a0340@@YAXXZ,,0x000A0340,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_000a0340@@YAXXZ,,0x000A0340,8,Code/GameEngine/Source/Common/RvaA0340PointerOffsetThunk.cpp,matched,object-symbol=?rva_a0340_pointer_offset@@YAPADPAD@Z;Open-BFME5 clean C++ RVA A0340 pointer offset
 ?d_000a0350@@YAXXZ,,0x000A0350,19,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a0380@@YAXXZ,,0x000A0380,20,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a0800@@YAXXZ,,0x000A0800,51,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
