@@ -988,3 +988,34 @@ VirtualMinusOneConstructorThunk::VirtualMinusOneConstructorThunk() :
 VirtualMinusOneConstructorThunk::~VirtualMinusOneConstructorThunk()
 {
 }
+
+struct ReferenceCountedReleaseValue
+{
+    virtual void release(int deletingFlag);
+
+    int referenceCount;
+
+    int decrementReferenceCount()
+    {
+        return --referenceCount;
+    }
+};
+
+struct ReferencePointerReleaseThunk
+{
+    ReferenceCountedReleaseValue *value;
+
+    void release();
+};
+
+void ReferencePointerReleaseThunk::release()
+{
+    ReferenceCountedReleaseValue *current = value;
+    if (current != 0)
+    {
+        if (current->decrementReferenceCount() <= 0)
+        {
+            current->release(1);
+        }
+    }
+}

@@ -147552,7 +147552,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045d610@@YAXXZ,,0x0045D610,53,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045dcf0@@YAXXZ,,0x0045DCF0,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0VirtualMinusOneConstructorThunk@@QAE@XZ;Open-BFME5 clean C++ virtual minus one constructor
 ?d_0045dd20@@YAXXZ,,0x0045DD20,31,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??_GVirtualMinusOneConstructorThunk@@UAEPAXI@Z;Open-BFME5 clean C++ virtual scalar deleting destructor
-?d_0045de60@@YAXXZ,,0x0045DE60,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045de60@@YAXXZ,,0x0045DE60,26,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?release@ReferencePointerReleaseThunk@@QAEXXZ;Open-BFME5 clean C++ reference pointer release
 ?d_0045de80@@YAXXZ,,0x0045DE80,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045dea0@@YAXXZ,,0x0045DEA0,57,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045def0@@YAXXZ,,0x0045DEF0,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
