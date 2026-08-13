@@ -135777,7 +135777,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00087710@@YAXXZ,,0x00087710,9,Code/GameEngine/Source/Common/Rva87710ValueReset.cpp,matched,object-symbol=?reset@Rva87710ValueReset@@QAEPAIXZ;Open-BFME5 clean C++ RVA 87710 reset value and return self
 ?d_00087820@@YAXXZ,,0x00087820,10,Code/GameEngine/Source/Common/Rva87820PointerPresent.cpp,matched,object-symbol=?has_value@Rva87820PointerPresent@@QAEIXZ;Open-BFME5 clean C++ RVA 87820 first pointer non-null test
 ?d_00087850@@YAXXZ,,0x00087850,9,Code/GameEngine/Source/Common/Rva87850ValueReset.cpp,matched,object-symbol=?reset@Rva87850ValueReset@@QAEPAIXZ;Open-BFME5 clean C++ RVA 87850 reset value and return self
-?d_00087930@@YAXXZ,,0x00087930,10,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_00087930@@YAXXZ,,0x00087930,10,Code/GameEngine/Source/Common/Rva87930PointerPresent.cpp,matched,object-symbol=?has_value@Rva87930PointerPresent@@QAEIXZ;Open-BFME5 clean C++ RVA 87930 first pointer non-null test
 ?d_000879f0@@YAXXZ,,0x000879F0,5,Code/GameEngine/Source/Common/Rva879F0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva879F0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 879F0 identity with one argument
 ?d_00087a00@@YAXXZ,,0x00087A00,16,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00087a40@@YAXXZ,,0x00087A40,5,Code/GameEngine/Source/Common/Rva87A40IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva87A40IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 87A40 identity with one argument
