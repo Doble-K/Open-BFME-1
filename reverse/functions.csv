@@ -147611,7 +147611,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045e4f0@@YAXXZ,,0x0045E4F0,8,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?pointerPlusFour@@YAPAEPAE@Z;Open-BFME5 clean C++ pointer plus four
 ?d_0045e500@@YAXXZ,,0x0045E500,22,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?copyFrom@FluentIntegerBooleanCopyThunk@@QAEPAU1@PBHPB_N@Z;Open-BFME5 clean C++ fluent integer boolean copy
 ?d_0045e520@@YAXXZ,,0x0045E520,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0VirtualZeroDerivedThunk@@QAE@XZ;Open-BFME5 clean C++ virtual zero derived constructor
-?d_0045e570@@YAXXZ,,0x0045E570,16,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045e570@@YAXXZ,,0x0045E570,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0VirtualZeroDerivedAlternateThunk@@QAE@XZ;Open-BFME5 clean C++ alternate virtual zero derived constructor
 ?d_0045e5c0@@YAXXZ,,0x0045E5C0,16,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e610@@YAXXZ,,0x0045E610,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e630@@YAXXZ,,0x0045E630,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
