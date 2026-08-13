@@ -1,5 +1,7 @@
 extern int DualIndexedDispatchFirst;
 extern int DualIndexedDispatchSecond;
+extern int DualIndexedDispatchSixFirst;
+extern int DualIndexedDispatchSixSecond;
 
 extern void __cdecl dispatchIndexedValue(
     void *target,
@@ -15,10 +17,17 @@ struct DualIndexedDispatchThunk
     void *value;
 
     void dispatch(void *target);
+    void dispatchSix(void *target);
 };
 
 void DualIndexedDispatchThunk::dispatch(void *target)
 {
     dispatchIndexedValue(target, 1, value, 2, &DualIndexedDispatchFirst, &DualIndexedDispatchSecond);
     dispatchIndexedValue(target, 2, value, 2, &DualIndexedDispatchFirst, &DualIndexedDispatchSecond);
+}
+
+void DualIndexedDispatchThunk::dispatchSix(void *target)
+{
+    dispatchIndexedValue(target, 1, value, 6, &DualIndexedDispatchSixFirst, &DualIndexedDispatchSixSecond);
+    dispatchIndexedValue(target, 2, value, 6, &DualIndexedDispatchSixFirst, &DualIndexedDispatchSixSecond);
 }
