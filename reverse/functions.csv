@@ -135915,7 +135915,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00092cc0@@YAXXZ,,0x00092CC0,49,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00092d00@@YAXXZ,,0x00092D00,8,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00092d50@@YAXXZ,,0x00092D50,17,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_00092e30@@YAXXZ,,0x00092E30,11,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_00092e30@@YAXXZ,,0x00092E30,11,Code/GameEngine/Source/Common/Rva92E30ValueCopy.cpp,matched,object-symbol=?copy@Rva92E30ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
 ?d_00092e40@@YAXXZ,,0x00092E40,13,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00092e90@@YAXXZ,,0x00092E90,36,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00092f60@@YAXXZ,,0x00092F60,28,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
