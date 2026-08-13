@@ -1338,6 +1338,24 @@ FluentIntegerBooleanCopyThunk *FluentIntegerBooleanCopyThunk::copyFrom(const int
     return this;
 }
 
+struct ZeroValueBaseThunk
+{
+    int value;
+
+    ZeroValueBaseThunk() : value(0) {}
+};
+
+struct VirtualZeroDerivedThunk : ZeroValueBaseThunk
+{
+    virtual ~VirtualZeroDerivedThunk();
+
+    VirtualZeroDerivedThunk();
+};
+
+VirtualZeroDerivedThunk::VirtualZeroDerivedThunk()
+{
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
