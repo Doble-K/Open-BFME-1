@@ -135009,7 +135009,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0005bb00@@YAXXZ,,0x0005BB00,11,Code/GameEngine/Source/Common/PackedByteExtractThunk.cpp,matched,object-symbol=?extractBit16@@YAKK@Z;Open-BFME5 clean C++ packed bit 16 extraction
 ?d_0005bb10@@YAXXZ,,0x0005BB10,11,Code/GameEngine/Source/Common/PackedByteExtractThunk.cpp,matched,object-symbol=?extractBit18@@YAKK@Z;Open-BFME5 clean C++ packed bit 18 extraction
 ?d_0005bb20@@YAXXZ,,0x0005BB20,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0005bb30@@YAXXZ,,0x0005BB30,19,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0005bb30@@YAXXZ,,0x0005BB30,19,Code/GameEngine/Source/Common/ConditionalPointerStoreThunk.cpp,matched,object-symbol=?storeIfNotNull@ConditionalPointerStoreThunk@@QAEPAXPAX@Z;Open-BFME5 clean C++ conditional pointer store
 ?d_0005bb50@@YAXXZ,,0x0005BB50,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005bb60@@YAXXZ,,0x0005BB60,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005bb70@@YAXXZ,,0x0005BB70,19,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
