@@ -56,6 +56,13 @@ SUBTREES = [
     "GameEngine/Source/GameLogic",
     "GameEngine/Source/Common",
     "GameEngine/Source/GameClient",
+    # BFME links all four of these too, so their bodies are in retail .text the
+    # same way GameLogic's are; leaving them out was costing the sweep a quarter
+    # of its reach for nothing.
+    "GameEngineDevice/Source",
+    "GameEngine/Source/GameNetwork",
+    "Libraries/Source/WWVegas/wwshade",
+    "Libraries/Source/WWVegas/WWAudio",
 ]
 
 
