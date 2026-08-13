@@ -157935,3 +157935,4 @@ _DXTraceA@20,,0x00AFD388,374,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?StringCchPrintfW@@YAJPAGIPBGZZ,,0x00AFD1E8,39,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
 _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
 ?StringCchCopyW@@YGJPAGIPBG@Z,,0x00AFD1AA,23,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+?parseInit@@YA_NPAD0IPAVWindowLayoutInfo@@@Z,,0x00487630,111,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp,matched,Retail layout StringBase ABI

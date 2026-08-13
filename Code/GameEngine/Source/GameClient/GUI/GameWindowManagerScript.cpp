@@ -6253,6 +6253,16 @@ __declspec(naked) static GameWindow *parseWindow(File *, char *)
 //=================================================================================================
 //=================================================================================================
 
+class RetailLayoutString
+{
+public:
+	void set( const char *text, Int length );
+	const char *str() const { return m_data ? reinterpret_cast<const char *>(m_data) + 8 : ""; }
+
+private:
+	void *m_data;
+};
+
 //-------------------------------------------------------------------------------------------------
 /** Parse init for layout file */
 //-------------------------------------------------------------------------------------------------
@@ -6265,8 +6275,9 @@ Bool parseInit( char *token, char *buffer, UnsignedInt version, WindowLayoutInfo
 	c = strtok( buffer, seps );
 
 	// translate string to function address
-	info->initNameString = c;
-	info->init = TheFunctionLexicon->winLayoutInitFunc( TheNameKeyGenerator->nameToKey( info->initNameString ) );
+	RetailLayoutString *initName = reinterpret_cast<RetailLayoutString *>(reinterpret_cast<char *>(info) + 0x14);
+	initName->set( c, c ? strlen(c) : 0 );
+	info->init = TheFunctionLexicon->winLayoutInitFunc( TheNameKeyGenerator->nameToKey( initName->str() ) );
 
 	return TRUE;  // success
 
@@ -6275,16 +6286,6 @@ Bool parseInit( char *token, char *buffer, UnsignedInt version, WindowLayoutInfo
 //-------------------------------------------------------------------------------------------------
 /** Parse update for layout file */
 //-------------------------------------------------------------------------------------------------
-class RetailLayoutString
-{
-public:
-	void set( const char *text, Int length );
-	const char *str() const { return m_data ? reinterpret_cast<const char *>(m_data) + 8 : ""; }
-
-private:
-	void *m_data;
-};
-
 Bool parseUpdate( char *token, char *buffer, UnsignedInt version, WindowLayoutInfo *info )
 {
 	char *c;
