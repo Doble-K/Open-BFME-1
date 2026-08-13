@@ -588,3 +588,18 @@ void Offset118FlagSetterThunk::set()
 {
     value = true;
 }
+
+struct Offset96IntegerPairSetterThunk
+{
+    unsigned char padding[0x60];
+    int first;
+    int second;
+
+    void setValues(int firstValue, int secondValue);
+};
+
+void Offset96IntegerPairSetterThunk::setValues(int firstValue, int secondValue)
+{
+    first = firstValue;
+    second = secondValue;
+}
