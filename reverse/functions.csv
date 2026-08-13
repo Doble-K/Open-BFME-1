@@ -139418,7 +139418,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001a86b0@@YAXXZ,,0x001A86B0,35,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a8780@@YAXXZ,,0x001A8780,33,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a9400@@YAXXZ,,0x001A9400,22,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_001a94c0@@YAXXZ,,0x001A94C0,15,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?d_001a94c0@@YAXXZ,,0x001A94C0,15,Code/GameEngine/Source/Common/Rva1A94C0TripleZeroThunk.cpp,matched,object-symbol=?reset@Rva1A94C0TripleZeroThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 1A94C0 triple zero reset
 ?d_001aa3e0@@YAXXZ,,0x001AA3E0,29,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001aaa70@@YAXXZ,,0x001AAA70,58,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001aafd0@@YAXXZ,,0x001AAFD0,297,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
