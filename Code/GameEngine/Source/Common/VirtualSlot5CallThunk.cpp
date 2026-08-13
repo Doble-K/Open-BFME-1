@@ -1117,6 +1117,7 @@ struct RetainedReferenceSetterThunk
 
     RetainedReferenceSetterThunk *setValue(ReferenceCountedReleaseValue *newValue);
     RetainedReferenceSetterThunk *setValueAlternate(ReferenceCountedReleaseValue *newValue);
+    RetainedReferenceSetterThunk *setValueThird(ReferenceCountedReleaseValue *newValue);
 };
 
 RetainedReferenceSetterThunk *RetainedReferenceSetterThunk::setValue(ReferenceCountedReleaseValue *newValue)
@@ -1130,6 +1131,16 @@ RetainedReferenceSetterThunk *RetainedReferenceSetterThunk::setValue(ReferenceCo
 }
 
 RetainedReferenceSetterThunk *RetainedReferenceSetterThunk::setValueAlternate(ReferenceCountedReleaseValue *newValue)
+{
+    value = newValue;
+    if (newValue != 0)
+    {
+        ++newValue->referenceCount;
+    }
+    return this;
+}
+
+RetainedReferenceSetterThunk *RetainedReferenceSetterThunk::setValueThird(ReferenceCountedReleaseValue *newValue)
 {
     value = newValue;
     if (newValue != 0)
