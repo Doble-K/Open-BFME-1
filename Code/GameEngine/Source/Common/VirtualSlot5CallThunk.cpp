@@ -90,3 +90,17 @@ void VirtualSlot2CallThunk::invokeIgnoringArgument(int)
 {
     invoke();
 }
+
+struct VirtualSlot2IntCallThunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void invoke(int value);
+
+    void invokeSix();
+};
+
+void VirtualSlot2IntCallThunk::invokeSix()
+{
+    invoke(6);
+}
