@@ -94114,7 +94114,6 @@ uw_00c62058,,0x00C62058,11,Code/Libraries/Source/WWVegas/WWDebug/wwmemlog.cpp,ma
 ?d_004e08d0@@YAXXZ,,0x004E08D0,323,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_008e08d0
 ?d_009c4b70@@YAXXZ,,0x009C4B70,160,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00dc4b70
 ?d_007ff100@@YAXXZ,,0x007FF100,320,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00bff100
-?d_00109d10@@YAXXZ,,0x00109D10,156,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00509d10
 ?d_00109de0@@YAXXZ,,0x00109DE0,156,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00509de0
 ?d_000921d0@@YAXXZ,,0x000921D0,302,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_004921d0
 ?d_0054da10@@YAXXZ,,0x0054DA10,148,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0094da10
@@ -157933,3 +157932,4 @@ _luaK_adjuststack,,0x0099F010,441,Code/Libraries/Source/Lua/lcode.c,matched,vend
 ?initTeam@TeamFactory@@QAEXABVAsciiString@@0_NPAVDict@@@Z,,0x000F8170,220,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,clean C++; findTeamPrototype and createInactiveTeam both take owner then name
 ?GetRegistryVersion@@YAIXZ,,0x00109F60,110,Code/GameEngine/Source/Common/System/RegistryVersion.cpp,matched,Open-BFME5 clean C++ conversion from original SAGE registry source
 ?GetRegistryMapPackVersion@@YAIXZ,,0x00109FF0,110,Code/GameEngine/Source/Common/System/RegistryMapPackVersion.cpp,matched,Open-BFME5 clean C++ conversion from original SAGE registry source
+?GetRegistryUserDataLeafName@@YA?AVAsciiString@@XZ,,0x00109D10,156,Code/GameEngine/Source/Common/System/RegistryUserDataLeafName.cpp,matched,Open-BFME5 clean C++ conversion of UserDataLeafName registry accessor

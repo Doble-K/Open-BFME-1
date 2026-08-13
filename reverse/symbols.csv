@@ -69292,3 +69292,4 @@ g_windGlobalB,0x012B8E00,WindModuleInfo ctor global
 ??1W3DQuadrupedElement@@QAE@XZ,0x0000D828,Open-BFME5 W3DQuadruped array element destructor pin
 ?g_D3DXMatrixInverseImport@@3P6GPAXPAXPAMPBX@ZA,0x012DBE40,retail D3DXMatrixInverse import slot
 ??0RadiusDecalTemplate@@QAE@XZ,0x00029C71,Open-BFME5 DynamicShroud decal member constructor pin
+?GetStringFromRegistry@@YA_NVAsciiString@@0AAV1@@Z,0x00109640,registry string read body via thunk 0x249B
