@@ -138430,7 +138430,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014a920@@YAXXZ,,0x0014A920,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014a9a0@@YAXXZ,,0x0014A9A0,27,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014a9d0@@YAXXZ,,0x0014A9D0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014aac0@@YAXXZ,,0x0014AAC0,9,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014aad0@@YAXXZ,,0x0014AAD0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014ad80@@YAXXZ,,0x0014AD80,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014b3d0@@YAXXZ,,0x0014B3D0,13,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0014aa50@@YAXXZ,,0x0014AA50,20,Code/GameEngine/Source/Common/Rva14AA50VirtualDispatch.cpp,matched,object-symbol=_Rva14AA50VirtualDispatch;Open-BFME5 clean C++ RVA 14AA50 virtual slot 24 forwarding wrapper
 ?d_0014aa70@@YAXXZ,,0x0014AA70,11,Code/GameEngine/Source/Common/Rva14AA70ValueSetter.cpp,matched,object-symbol=?set@Rva14AA70ValueSetter@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 14AA70 value setter
 ?d_0014aab0@@YAXXZ,,0x0014AAB0,9,Code/GameEngine/Source/Common/Rva14AAB0ListHeadAdvance.cpp,matched,object-symbol=?advance@Rva14AAB0ListHead@@QAEPAU1@XZ;Open-BFME5 clean C++ RVA 14AAB0 list head advance
+?d_0014aac0@@YAXXZ,,0x0014AAC0,9,Code/GameEngine/Source/Common/Rva14AAC0ListHeadAdvance.cpp,matched,object-symbol=?advance@Rva14AAC0ListHead@@QAEPAU1@XZ;Open-BFME5 clean C++ RVA 14AAC0 list head advance
