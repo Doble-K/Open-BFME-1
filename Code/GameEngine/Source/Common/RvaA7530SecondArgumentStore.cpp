@@ -1,0 +1,13 @@
+class RvaA7530SecondArgumentStore {
+public:
+    RvaA7530SecondArgumentStore *store(unsigned int ignored, unsigned int value);
+
+private:
+    unsigned int m_value;
+};
+
+RvaA7530SecondArgumentStore *RvaA7530SecondArgumentStore::store(unsigned int, unsigned int value)
+{
+    m_value = value;
+    return this;
+}
