@@ -11,6 +11,7 @@ struct ScalarValueReturnThunk
     ScalarValueResult getAlternate() const;
     ScalarValueResult getThird() const;
     ScalarValueResult getFourth() const;
+    ScalarValueResult getFifth() const;
 };
 
 ScalarValueResult ScalarValueReturnThunk::get() const
@@ -32,6 +33,12 @@ ScalarValueResult ScalarValueReturnThunk::getThird() const
 }
 
 ScalarValueResult ScalarValueReturnThunk::getFourth() const
+{
+    ScalarValueResult result = { value };
+    return result;
+}
+
+ScalarValueResult ScalarValueReturnThunk::getFifth() const
 {
     ScalarValueResult result = { value };
     return result;
