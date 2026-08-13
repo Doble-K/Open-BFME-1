@@ -483,14 +483,17 @@ Real WeaponTemplate::getAttackRange(const WeaponBonus& bonus) const
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getMinimumAttackRange@WeaponTemplate@@QBEMXZ present-unmatched
 Real WeaponTemplate::getMinimumAttackRange() const 
 { 
 #ifdef RATIONALIZE_ATTACK_RANGE
 	// Note - undersize by 1/4 of a pathfind cell, so that the goal is not teetering on the edge
 	// of firing range.  jba.
 	const Real UNDERSIZE = PATHFIND_CELL_SIZE_F*0.25f;
-	Real r = m_minimumAttackRange - UNDERSIZE; 
+	// BFME's WeaponTemplate is laid out differently from ZH's: retail reads
+	// m_minimumAttackRange at this+0x18, where this reconstruction's field order
+	// puts it at +0x3c. Pin the one offset rather than reshuffle a layout the
+	// other 53 matched rows in this file depend on.
+	Real r = *(const Real *)((const char *)this + 0x18) - UNDERSIZE; 
 	if (r < 0.0f) r = 0.0f;
 	return r;
 #else

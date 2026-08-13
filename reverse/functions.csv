@@ -108499,7 +108499,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001e04b0@@YAXXZ,,0x001E04B0,244,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005e04b0
 ?d_001e0a80@@YAXXZ,,0x001E0A80,49,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005e0a80
 ?d_001e1220@@YAXXZ,,0x001E1220,234,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005e1220
-?d_001e15d0@@YAXXZ,,0x001E15D0,31,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005e15d0
 ?d_001e1610@@YAXXZ,,0x001E1610,88,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005e1610
 ?d_001e1680@@YAXXZ,,0x001E1680,107,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005e1680
 ?d_001e1770@@YAXXZ,,0x001E1770,7,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005e1770
@@ -109971,7 +109970,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0028dc60@@YAXXZ,,0x0028DC60,38,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068dc60
 ?d_0028ddc0@@YAXXZ,,0x0028DDC0,446,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068ddc0
 ?d_0028dff0@@YAXXZ,,0x0028DFF0,720,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068dff0
-?d_0028e3a0@@YAXXZ,,0x0028E3A0,32,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068e3a0
 ?d_0028eeb0@@YAXXZ,,0x0028EEB0,53,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068eeb0
 ?d_0028ef00@@YAXXZ,,0x0028EF00,12,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068ef00
 ?d_0028efd0@@YAXXZ,,0x0028EFD0,39,Code/gen_asm/d_0027db50.asm,matched,gen-dump;ghidra=FUN_0068efd0
@@ -110097,7 +110095,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002a0180@@YAXXZ,,0x002A0180,25,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0180
 ?d_002a03e0@@YAXXZ,,0x002A03E0,79,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a03e0
 ?d_002a0750@@YAXXZ,,0x002A0750,74,Code/GameEngine/Source/GameLogic/Object/Update/RadiusDecalUpdate.cpp,matched,object-symbol=?createRadiusDecal@RadiusDecalUpdate@@QAEXABVRadiusDecalTemplate@@MABUCoord3D@@@Z;Open-BFME5 clean C++ radius decal creation
-?d_002a07b0@@YAXXZ,,0x002A07B0,29,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a07b0
 ?d_002a0920@@YAXXZ,,0x002A0920,172,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0920
 ?d_002a0ad0@@YAXXZ,,0x002A0AD0,78,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0ad0
 ?d_002a0bd0@@YAXXZ,,0x002A0BD0,95,Code/gen_asm/d_0029c7b0.asm,matched,gen-dump;ghidra=FUN_006a0bd0
@@ -157942,3 +157939,6 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?estimateDamage@InactiveBody@@UBEMAAVDamageInfoInput@@@Z,,0x00213B90,24,Code/GameEngine/Source/GameLogic/Object/Body/InactiveBody.cpp,matched,Open-BFME5 DAMAGE_UNRESISTABLE=8; DamageInfoInput m_damageType@0xc m_amount@0x18
 ?allow@PartitionFilterIrregularArea@@MAE_NPAVObject@@@Z,,0x001DD460,27,Code/GameEngine/Source/Common/PartitionFilters_allow_Thunk.cpp,matched,Open-BFME5 m_area@+0x8 m_numPointsInArea@+0xc; BFME PartitionFilter base is 4 bytes wider than ZH
 ?allow@PartitionFilterPlayer@@MAE_NPAVObject@@@Z,,0x001DD060,39,Code/GameEngine/Source/Common/PartitionFilters_allow_Thunk.cpp,matched,Open-BFME5 m_player@+0x8 m_match@+0xc; getControllingPlayer pinned at 0x20824
+?getMinimumAttackRange@WeaponTemplate@@QBEMXZ,,0x001E15D0,31,Code/GameEngine/Source/GameLogic/Object/Weapon.cpp,matched,Open-BFME5 m_minimumAttackRange at WeaponTemplate+0x18 in BFME
+?killRadiusDecal@RadiusDecalUpdate@@QAEXXZ,,0x002A07B0,29,Code/GameEngine/Source/GameLogic/Object/Update/RadiusDecalUpdate.cpp,matched,Open-BFME5 m_deliveryDecal at +0x20; UPDATE_SLEEP_FOREVER 0x3fffffff
+?killGridDecals@DynamicShroudClearingRangeUpdate@@QAEXXZ,,0x0028E3A0,32,Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdate.cpp,matched,Open-BFME5 m_gridDecal[30] at +0x50 with stride 0x10 = sizeof(RadiusDecal)
