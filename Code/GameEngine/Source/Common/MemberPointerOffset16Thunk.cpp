@@ -5,6 +5,7 @@ struct MemberPointerOffset16Thunk
     void *get() const;
     void *getAlternate() const;
     void *getThird() const;
+    void *getFourth() const;
 };
 
 void *MemberPointerOffset16Thunk::get() const
@@ -18,6 +19,11 @@ void *MemberPointerOffset16Thunk::getAlternate() const
 }
 
 void *MemberPointerOffset16Thunk::getThird() const
+{
+    return value + 16;
+}
+
+void *MemberPointerOffset16Thunk::getFourth() const
 {
     return value + 16;
 }
