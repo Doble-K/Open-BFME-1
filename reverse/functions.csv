@@ -147510,7 +147510,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045be60@@YAXXZ,,0x0045BE60,5,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?set@Offset118FlagSetterThunk@@QAEXXZ;Open-BFME5 clean C++ offset one hundred eighteen flag setter
 ?d_0045be70@@YAXXZ,,0x0045BE70,17,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setValues@Offset96IntegerPairSetterThunk@@QAEXHH@Z;Open-BFME5 clean C++ offset ninety-six integer pair setter
 ?d_0045bed0@@YAXXZ,,0x0045BED0,12,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?reset@SparseIntegerResetThunk@@QAEXXZ;Open-BFME5 clean C++ sparse integer reset
-?d_0045bee0@@YAXXZ,,0x0045BEE0,10,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045bee0@@YAXXZ,,0x0045BEE0,10,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setValue@Offset116BooleanSetterThunk@@QAEX_N@Z;Open-BFME5 clean C++ offset one hundred sixteen boolean setter
 ?d_0045bf20@@YAXXZ,,0x0045BF20,10,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045bf60@@YAXXZ,,0x0045BF60,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045bf80@@YAXXZ,,0x0045BF80,7,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high

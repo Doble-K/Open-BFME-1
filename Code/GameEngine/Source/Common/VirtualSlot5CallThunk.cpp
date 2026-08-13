@@ -621,3 +621,16 @@ void SparseIntegerResetThunk::reset()
     second = 0;
     third = 0;
 }
+
+struct Offset116BooleanSetterThunk
+{
+    unsigned char padding[0x74];
+    bool value;
+
+    void setValue(bool newValue);
+};
+
+void Offset116BooleanSetterThunk::setValue(bool newValue)
+{
+    value = newValue;
+}
