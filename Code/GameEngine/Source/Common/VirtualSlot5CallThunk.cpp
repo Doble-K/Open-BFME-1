@@ -890,3 +890,16 @@ void Offset64BooleanSetterThunk::setValue(bool newValue)
 {
     value = newValue;
 }
+
+struct OffsetZeroIntegerSetterReturningThisAlternateThunk
+{
+    int value;
+
+    OffsetZeroIntegerSetterReturningThisAlternateThunk *setValue(int newValue);
+};
+
+OffsetZeroIntegerSetterReturningThisAlternateThunk *OffsetZeroIntegerSetterReturningThisAlternateThunk::setValue(int newValue)
+{
+    value = newValue;
+    return this;
+}
