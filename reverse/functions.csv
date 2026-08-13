@@ -105807,7 +105807,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00097970@@YAXXZ,,0x00097970,8,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00497970
 ?d_00097b50@@YAXXZ,,0x00097B50,8,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00497b50
 ?d_00097ec0@@YAXXZ,,0x00097EC0,150,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00497ec0
-?d_00097f80@@YAXXZ,,0x00097F80,156,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00497f80
 ?d_00098050@@YAXXZ,,0x00098050,174,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498050
 ?d_00098130@@YAXXZ,,0x00098130,43,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498130
 ?d_00098170@@YAXXZ,,0x00098170,60,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498170
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?Set_DX8_Texture@DX8Wrapper@@SAXIPAUIDirect3DBaseTexture8@@@Z,,0x006C59D0,124,Code/Libraries/Source/WWVegas/WW3D2/DX8WrapperSetDX8Texture.cpp,matched,Open-BFME5 clean C++ with retail Direct3D SetTexture slot
 ?tryToSetCaveIndex@CaveContain@@UAEXH@Z,,0x00219D70,130,Code/GameEngine/Source/GameLogic/Object/Contain/CaveContainTryToSetCaveIndex.cpp,matched,Open-BFME5 clean C++ with BFME retail owner offset
 ?d_00946740@@YAXXZ,,0x00946740,109,Code/Libraries/Source/WWVegas/WW3D2/DX8RigidDelayedMaterialPass.cpp,matched,object-symbol=?Add_Delayed_Visible_Material_Pass@DX8RigidFVFCategoryContainer@@UAEXPAVMaterialPassClass@@PAVMeshClass@@@Z;Open-BFME5 clean C++ delayed material pass
+?logPlayerDisconnect@RecorderClass@@QAEXVUnicodeString@@H@Z,,0x00097F80,156,Code/GameEngine/Source/Common/RecorderLogPlayerDisconnect.cpp,matched,Open-BFME5 clean C++ with BFME disconnect offset
