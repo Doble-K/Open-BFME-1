@@ -364,3 +364,26 @@ void VirtualSlot4GlobalCallThunk::invokeTerrainLogic()
 {
     invoke(TheTerrainLogic);
 }
+
+struct VirtualSlot11SecondArgumentCallThunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void slot2();
+    virtual void slot3();
+    virtual void slot4();
+    virtual void slot5();
+    virtual void slot6();
+    virtual void slot7();
+    virtual void slot8();
+    virtual void slot9();
+    virtual void slot10();
+    virtual void invoke(int value);
+
+    void invokeSecond(int unused, int value);
+};
+
+void VirtualSlot11SecondArgumentCallThunk::invokeSecond(int, int value)
+{
+    invoke(value);
+}
