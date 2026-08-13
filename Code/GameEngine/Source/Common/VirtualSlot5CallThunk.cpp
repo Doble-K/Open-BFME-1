@@ -984,3 +984,7 @@ VirtualMinusOneConstructorThunk::VirtualMinusOneConstructorThunk() :
     value(-1)
 {
 }
+
+VirtualMinusOneConstructorThunk::~VirtualMinusOneConstructorThunk()
+{
+}
