@@ -771,10 +771,12 @@ DX8RigidFVFCategoryContainer::DX8RigidFVFCategoryContainer(unsigned FVF,bool sor
 
 // ----------------------------------------------------------------------------
 
-// ??1DX8RigidFVFCategoryContainer@@UAE@XZ present-unmatched
 DX8RigidFVFCategoryContainer::~DX8RigidFVFCategoryContainer()
 {
-	REF_PTR_RELEASE(vertex_buffer);
+	if (vertex_buffer) {
+		vertex_buffer->Release_Ref();
+		vertex_buffer = NULL;
+	}
 }
 
 // ----------------------------------------------------------------------------

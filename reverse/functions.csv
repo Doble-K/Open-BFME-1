@@ -122922,7 +122922,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_009467f0@@YAXXZ,,0x009467F0,163,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d467f0
 ?d_00946c00@@YAXXZ,,0x00946C00,431,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46c00
 ?d_00946db0@@YAXXZ,,0x00946DB0,384,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46db0
-?d_00946f70@@YAXXZ,,0x00946F70,103,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46f70
 ?d_00946fe0@@YAXXZ,,0x00946FE0,132,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d46fe0
 ?d_009470e0@@YAXXZ,,0x009470E0,136,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d470e0
 ?d_009471e0@@YAXXZ,,0x009471E0,11,Code/gen_asm/d_00945e00.asm,matched,gen-dump;ghidra=FUN_00d471e0
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0014aab0@@YAXXZ,,0x0014AAB0,9,Code/GameEngine/Source/Common/Rva14AAB0ListHeadAdvance.cpp,matched,object-symbol=?advance@Rva14AAB0ListHead@@QAEPAU1@XZ;Open-BFME5 clean C++ RVA 14AAB0 list head advance
 ?d_0014aac0@@YAXXZ,,0x0014AAC0,9,Code/GameEngine/Source/Common/Rva14AAC0ListHeadAdvance.cpp,matched,object-symbol=?advance@Rva14AAC0ListHead@@QAEPAU1@XZ;Open-BFME5 clean C++ RVA 14AAC0 list head advance
 ?d_0014aad0@@YAXXZ,,0x0014AAD0,11,Code/GameEngine/Source/Common/Rva14AAD0RangeCount.cpp,matched,object-symbol=?count@Rva14AAD0RangeView@@QAEHXZ;Open-BFME5 clean C++ RVA 14AAD0 eight-byte range count
+??1DX8RigidFVFCategoryContainer@@UAE@XZ,,0x00946F70,103,Code/Libraries/Source/WWVegas/WW3D2/dx8renderer.cpp,matched,Open-BFME5 clean C++ destructor with conditional reference clear
