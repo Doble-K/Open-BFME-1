@@ -141846,7 +141846,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_002612e0@@YAXXZ,,0x002612E0,15,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_00261310@@YAXXZ,,0x00261310,28,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_00261390@@YAXXZ,,0x00261390,57,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
-?d_002613e0@@YAXXZ,,0x002613E0,14,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
+?d_002613e0@@YAXXZ,,0x002613E0,14,Code/GameEngine/Source/Common/Rva2613E0TripleResetThunk.cpp,matched,object-symbol=?reset@Rva2613E0TripleResetThunk@@QAEPAU1@XZ;Open-BFME5 clean C++ triple reset
 ?d_002614f0@@YAXXZ,,0x002614F0,45,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_00261590@@YAXXZ,,0x00261590,45,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_002615d0@@YAXXZ,,0x002615D0,41,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
