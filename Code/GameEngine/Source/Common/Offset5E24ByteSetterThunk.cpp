@@ -1,0 +1,12 @@
+struct Offset5E24ByteSetterThunk
+{
+    unsigned char padding[0x5E24];
+    unsigned char value;
+
+    void setValue(unsigned char newValue);
+};
+
+void Offset5E24ByteSetterThunk::setValue(unsigned char newValue)
+{
+    value = newValue;
+}
