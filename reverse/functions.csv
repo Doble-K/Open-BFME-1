@@ -138984,7 +138984,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0018a870@@YAXXZ,,0x0018A870,123,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018a910@@YAXXZ,,0x0018A910,274,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018ac40@@YAXXZ,,0x0018AC40,60,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_0018ac90@@YAXXZ,,0x0018AC90,6,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?rva_18ac90_constant_return@@YAIXZ,,0x0018AC90,6,Code/GameEngine/Source/Common/Rva18AC90ConstantReturn.cpp,matched,hand-reconciled C++;Open-BFME5 clean C++ RVA 18AC90 constant return
 ?d_0018aca0@@YAXXZ,,0x0018ACA0,46,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018acf0@@YAXXZ,,0x0018ACF0,6,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018ad00@@YAXXZ,,0x0018AD00,61,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
