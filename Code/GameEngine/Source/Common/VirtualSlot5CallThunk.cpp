@@ -1268,6 +1268,11 @@ unsigned char *pointerPlusEight(unsigned char *value)
     return value + 8;
 }
 
+unsigned char *pointerPlusFour(unsigned char *value)
+{
+    return value + 4;
+}
+
 unsigned char *pointerPlusTwelve(unsigned char *value)
 {
     return value + 12;
