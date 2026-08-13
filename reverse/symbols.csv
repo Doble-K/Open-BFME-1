@@ -7315,6 +7315,8 @@ name,address,notes
 ?_M_insert_overflow@?$vector@VArmorTemplateSet@@V?$allocator@VArmorTemplateSet@@@_STL@@@_STL@@IAEXPAVArmorTemplateSet@@ABV3@ABU__false_type@2@I_N@Z,0x00026AAD,pinharvest x1 (thunk)
 ?_M_insert_overflow@?$vector@VArmorTemplateSet@@V?$allocator@VArmorTemplateSet@@@_STL@@@_STL@@IAEXPAVArmorTemplateSet@@ABV3@ABU__false_type@2@I_N@Z,0x00033B9A,pinharvest x1 (thunk)
 ?_M_insert_overflow@?$vector@VArmorTemplateSet@@V?$allocator@VArmorTemplateSet@@@_STL@@@_STL@@IAEXPAVArmorTemplateSet@@ABV3@ABU__false_type@2@I_N@Z,0x000405FC,pinharvest x1 (thunk)
+??$__copy@PAVArmorTemplateSet@@PAV1@H@_STL@@YAPAVArmorTemplateSet@@PAV1@00ABUrandom_access_iterator_tag@0@PAH@Z,0x00007A04,ThingTemplate armor vector clear via ILT thunk
+?_M_erase@?$_Rb_tree@$$CBV?$BitFlags@$0L@@@U?$pair@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@@_STL@@U?$_Select1st@U?$pair@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@@_STL@@@3@UMapHelper@?$SparseMatchFinder@VArmorTemplateSet@@V?$BitFlags@$0L@@@@@V?$allocator@U?$pair@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@@_STL@@@3@@_STL@@AAEXPAU?$_Rb_tree_node@U?$pair@$$CBV?$BitFlags@$0L@@@PBVArmorTemplateSet@@@_STL@@@2@@Z,0x000493BE,ThingTemplate armor finder erase via ILT thunk
 ?_M_insert_overflow@?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@IAEXPAVAsciiString@@ABV3@ABU__false_type@2@I_N@Z,0x000112C0,resweep callee back-solved
 ?_M_insert_overflow@?$vector@VAsciiString@@V?$allocator@VAsciiString@@@_STL@@@_STL@@IAEXPAVAsciiString@@ABV3@ABU__false_type@2@I_N@Z,0x0003827B,per-site incremental-link thunk used by INI::parseAsciiStringVectorAppend
 ?_M_insert_overflow@?$vector@VPlayerTemplate@@V?$allocator@VPlayerTemplate@@@_STL@@@_STL@@IAEXPAVPlayerTemplate@@ABV3@ABU__false_type@2@I_N@Z,0x0003059E

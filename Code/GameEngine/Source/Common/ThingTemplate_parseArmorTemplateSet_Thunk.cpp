@@ -1,234 +1,81 @@
-// cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: lift MASM dump to standalone C++ thunk.
+// cl: /DNDEBUG /MD /EHsc /D_STLP_USE_STATIC_LIB /D_STLP_NO_EXCEPTIONS
+// stlport
 
-class INI;
+#include <map>
+#include <vector>
+
+class INI
+{
+public:
+	void initFromINI(void *, const void *);
+};
+
+extern const unsigned char g_armorTemplateSetFieldParse[];
+
+class ArmorTemplateSet
+{
+public:
+	ArmorTemplateSet() : m_types(0), m_template(0), m_fx(0) {}
+
+	void parseArmorTemplateSet(INI *ini)
+	{
+		ini->initFromINI(this, g_armorTemplateSetFieldParse);
+	}
+
+private:
+	void *m_types;
+	void *m_template;
+	void *m_fx;
+};
+
+template <int Count>
+class BitFlags
+{
+private:
+	unsigned int m_bits[(Count + 31) / 32];
+};
+
+template <class Value, class Key>
+class SparseMatchFinder
+{
+public:
+	void clear() { m_map.clear(); }
+
+private:
+	struct MapHelper
+	{
+		bool operator()(const Key &, const Key &) const;
+	};
+
+	_STL::map<const Key, const Value *, MapHelper> m_map;
+};
+
 class ThingTemplate
 {
 protected:
 	static void __cdecl parseArmorTemplateSet(INI *, void *, void *, const void *);
+
+private:
+	unsigned char m_pad000[0x310];
+	_STL::vector<ArmorTemplateSet> m_armorTemplateSets;
+	SparseMatchFinder<ArmorTemplateSet, BitFlags<11> > m_armorTemplateSetFinder;
+	unsigned char m_padAfterFinder[0x161];
+	unsigned char m_armorCopiedFromDefault;
 };
 
 // ?parseArmorTemplateSet@ThingTemplate@@KAXPAVINI@@PAX1PBX@Z
-__declspec(naked) void __cdecl ThingTemplate::parseArmorTemplateSet(INI *, void *, void *, const void *)
+void __cdecl ThingTemplate::parseArmorTemplateSet(INI *ini, void *instance,
+	void *, const void *)
 {
-	__asm {
-        __emit 0x83
-        __emit 0xec
-        __emit 0x0c
-        __emit 0x53
-        __emit 0x56
-        __emit 0x8b
-        __emit 0x74
-        __emit 0x24
-        __emit 0x1c
-        __emit 0x8a
-        __emit 0x86
-        __emit 0x89
-        __emit 0x04
-        __emit 0x00
-        __emit 0x00
-        __emit 0x33
-        __emit 0xdb
-        __emit 0x3c
-        __emit 0x01
-        __emit 0x75
-        __emit 0x29
-        __emit 0x53
-        __emit 0x88
-        __emit 0x9e
-        __emit 0x89
-        __emit 0x04
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x8e
-        __emit 0x10
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x86
-        __emit 0x14
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x20
-        __emit 0x52
-        __emit 0x51
-        __emit 0x50
-        __emit 0x50
-        __emit 0xe8
-        __emit 0xaf
-        __emit 0x19
-        __emit 0xec
-        __emit 0xff
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x14
-        __emit 0x89
-        __emit 0x86
-        __emit 0x14
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x4c
-        __emit 0x24
-        __emit 0x18
-        __emit 0x68
-        __emit 0xa0
-        __emit 0x41
-        __emit 0x09
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x44
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x50
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x10
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x14
-        __emit 0x89
-        __emit 0x5c
-        __emit 0x24
-        __emit 0x18
-        __emit 0xe8
-        __emit 0x23
-        __emit 0xc0
-        __emit 0x70
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x86
-        __emit 0x14
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x8b
-        __emit 0x96
-        __emit 0x18
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xc2
-        __emit 0x8d
-        __emit 0x8e
-        __emit 0x10
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x74
-        __emit 0x1e
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x74
-        __emit 0x14
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x08
-        __emit 0x89
-        __emit 0x10
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x50
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x54
-        __emit 0x24
-        __emit 0x10
-        __emit 0x89
-        __emit 0x50
-        __emit 0x08
-        __emit 0x83
-        __emit 0x41
-        __emit 0x04
-        __emit 0x0c
-        __emit 0xeb
-        __emit 0x14
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x6a
-        __emit 0x01
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x24
-        __emit 0x52
-        __emit 0x8d
-        __emit 0x54
-        __emit 0x24
-        __emit 0x14
-        __emit 0x52
-        __emit 0x50
-        __emit 0xe8
-        __emit 0x37
-        __emit 0xa5
-        __emit 0xef
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x86
-        __emit 0x20
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x81
-        __emit 0xc6
-        __emit 0x1c
-        __emit 0x03
-        __emit 0x00
-        __emit 0x00
-        __emit 0x3b
-        __emit 0xc3
-        __emit 0x74
-        __emit 0x1f
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x8b
-        __emit 0x48
-        __emit 0x04
-        __emit 0x51
-        __emit 0x8b
-        __emit 0xce
-        __emit 0xe8
-        __emit 0xdc
-        __emit 0x32
-        __emit 0xf0
-        __emit 0xff
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x89
-        __emit 0x40
-        __emit 0x08
-        __emit 0x8b
-        __emit 0x16
-        __emit 0x89
-        __emit 0x5a
-        __emit 0x04
-        __emit 0x8b
-        __emit 0x06
-        __emit 0x89
-        __emit 0x40
-        __emit 0x0c
-        __emit 0x89
-        __emit 0x5e
-        __emit 0x04
-        __emit 0x5e
-        __emit 0x5b
-        __emit 0x83
-        __emit 0xc4
-        __emit 0x0c
-        __emit 0xc3
+	ThingTemplate *self = static_cast<ThingTemplate *>(instance);
+	if (self->m_armorCopiedFromDefault == 1)
+	{
+		self->m_armorCopiedFromDefault = false;
+		self->m_armorTemplateSets.clear();
 	}
+
+	ArmorTemplateSet armorSet;
+	armorSet.parseArmorTemplateSet(ini);
+	self->m_armorTemplateSets.push_back(armorSet);
+	self->m_armorTemplateSetFinder.clear();
 }
