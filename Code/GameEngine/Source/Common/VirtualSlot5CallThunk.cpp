@@ -329,3 +329,20 @@ void SecondaryBaseVirtualSlot11Facet::invokeIgnoringArgument(int)
         reinterpret_cast<unsigned char *>(this) - sizeof(SecondaryBaseVirtualSlot11Primary));
     owner->invoke();
 }
+
+struct VirtualSlot2ArgumentThunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void invoke();
+};
+
+struct VirtualSlot2ArgumentCallOwner
+{
+    void invokeArgument(VirtualSlot2ArgumentThunk *target);
+};
+
+void VirtualSlot2ArgumentCallOwner::invokeArgument(VirtualSlot2ArgumentThunk *target)
+{
+    target->invoke();
+}
