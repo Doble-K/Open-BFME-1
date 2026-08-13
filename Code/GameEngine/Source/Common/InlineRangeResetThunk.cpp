@@ -13,6 +13,7 @@ struct InlineRangeResetThunk
 
     void reset();
     void resetAlternate();
+    void resetThird();
 };
 
 void InlineRangeResetThunk::reset()
@@ -24,6 +25,14 @@ void InlineRangeResetThunk::reset()
 }
 
 void InlineRangeResetThunk::resetAlternate()
+{
+    state->flag = false;
+    state->size = 0;
+    state->begin = state;
+    state->end = state;
+}
+
+void InlineRangeResetThunk::resetThird()
 {
     state->flag = false;
     state->size = 0;
