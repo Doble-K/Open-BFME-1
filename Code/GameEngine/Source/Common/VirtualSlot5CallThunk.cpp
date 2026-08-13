@@ -34,6 +34,7 @@ struct VirtualSlot8CallThunk
     void invokeZeroFourth();
     void invokeZeroFifth();
     void invokeZeroSixth();
+    void invokeZeroSeventh();
 };
 
 void VirtualSlot8CallThunk::invokeZero()
@@ -67,6 +68,11 @@ void VirtualSlot8CallThunk::invokeZeroFifth()
 }
 
 void VirtualSlot8CallThunk::invokeZeroSixth()
+{
+    invoke(0);
+}
+
+void VirtualSlot8CallThunk::invokeZeroSeventh()
 {
     invoke(0);
 }
