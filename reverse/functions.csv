@@ -81221,7 +81221,7 @@ _CommUdpListen,,0x00818D90,503,Code/Libraries/Source/DirtySock/commudp.cpp,match
 _CommUdpPoke,,0x00818A20,146,Code/Libraries/Source/DirtySock/commudp.cpp,matched,
 _CommUdpProcess,,0x00817B30,2207,Code/Libraries/Source/DirtySock/commudp.cpp,matched,
 _CommUdpSetup,,0x00818400,253,Code/Libraries/Source/DirtySock/commudp.cpp,matched,
-_D3DXMatrixInverse@12,,0x009FB321,979,Code/Libraries/Source/WWVegas/WWMath/D3DXMatrixInverseThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump
+_D3DXMatrixInverse@12,,0x009FB321,6,Code/GameEngineDevice/Source/W3DDevice/D3DXMatrixInverseImportThunk.cpp,matched,Open-BFME5 C++ import-slot tail dispatch
 _D3DXVec4Transform@12,,0x009FAA48,600,Code/Libraries/Source/WWVegas/WW3D2/D3DXVec4TransformThunk.cpp,matched,Open-BFME5 exact C++ __emit thunk converted from MASM dump;object-symbol=_bfme_D3DXVec4Transform_9FAA48
 _DisableNagle,,0x00854420,42,Code/GameEngine/Source/GameNetwork/GameSpy/nonport.c,matched,vendored=gamespy-2004
 _DiskWrite,,0x009D3DE0,170,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gstats.c,matched,vendored=gamespy-2004
