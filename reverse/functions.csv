@@ -138233,7 +138233,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013e5b0@@YAXXZ,,0x0013E5B0,6,Code/GameEngine/Source/Common/Rva13E5B0MemberAdvanceSixteen.cpp,matched,object-symbol=?advanced@Rva13E5B0MemberAdvanceSixteen@@QBEPAEXZ;hand-reconciled C++
 ?d_0013e5c0@@YAXXZ,,0x0013E5C0,11,Code/GameEngine/Source/Common/Rva13E5C0ValueCopy.cpp,matched,object-symbol=?copy@Rva13E5C0ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
 ?d_0013e660@@YAXXZ,,0x0013E660,11,Code/GameEngine/Source/Common/Rva13E660ValueCopy.cpp,matched,object-symbol=?copy@Rva13E660ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
-?d_0013e670@@YAXXZ,,0x0013E670,7,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
+?d_0013e670@@YAXXZ,,0x0013E670,7,Code/GameEngine/Source/Common/Rva13E670Identity.cpp,matched,object-symbol=?identity@Rva13E670Identity@@QAEII@Z;hand-reconciled C++
 ?d_0013e680@@YAXXZ,,0x0013E680,11,Code/GameEngine/Source/Common/Rva13E680ValueCopy.cpp,matched,object-symbol=?copy@Rva13E680ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
 ?d_0013e690@@YAXXZ,,0x0013E690,7,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013e6a0@@YAXXZ,,0x0013E6A0,11,Code/GameEngine/Source/Common/Rva13E6A0ValueCopy.cpp,matched,object-symbol=?copy@Rva13E6A0ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
