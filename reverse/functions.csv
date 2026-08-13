@@ -139185,7 +139185,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00192f30@@YAXXZ,,0x00192F30,11,Code/GameEngine/Source/Common/Rva192F30ValueOwner.cpp,matched,object-symbol=?copy_value@Rva192F30ValueOwner@@QAEPAIPAI@Z;hand-reconciled C++
 ?d_00192f40@@YAXXZ,,0x00192F40,11,Code/GameEngine/Source/Common/Rva192F40ValueOwner.cpp,matched,object-symbol=?copy_value@Rva192F40ValueOwner@@QAEPAIPAI@Z;hand-reconciled C++
 ?d_00192f90@@YAXXZ,,0x00192F90,25,Code/GameEngine/Source/Common/Rva192F90ResetRecord.cpp,matched,object-symbol=?reset@Rva192F90RecordOwner@@QAEXXZ;hand-reconciled C++
-?d_00192fb0@@YAXXZ,,0x00192FB0,25,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?d_00192fb0@@YAXXZ,,0x00192FB0,25,Code/GameEngine/Source/Common/Rva192FB0ResetRecord.cpp,matched,object-symbol=?reset@Rva192FB0RecordOwner@@QAEXXZ;hand-reconciled C++
 ?d_00192fd0@@YAXXZ,,0x00192FD0,47,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00193010@@YAXXZ,,0x00193010,46,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00193050@@YAXXZ,,0x00193050,47,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
