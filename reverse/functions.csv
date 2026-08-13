@@ -135143,7 +135143,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00061b00@@YAXXZ,,0x00061B00,16,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00061b20@@YAXXZ,,0x00061B20,16,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00061b40@@YAXXZ,,0x00061B40,21,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_00061b90@@YAXXZ,,0x00061B90,6,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_00061b90@@YAXXZ,,0x00061B90,6,Code/GameEngine/Source/Common/StoredEightByteHeaderPointerThunk.cpp,matched,object-symbol=?payload@StoredEightByteHeaderPointerThunk@@QBEPAEXZ;Open-BFME5 clean C++ stored eight byte header payload pointer
 ?d_00061ba0@@YAXXZ,,0x00061BA0,8,Code/GameEngine/Source/Common/AdvanceWordPointerThunk.cpp,matched,object-symbol=?advanceWordPointer@@YAPAEPAE@Z;Open-BFME5 clean C++ word pointer advance
 ?d_00061bb0@@YAXXZ,,0x00061BB0,25,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00061bd0@@YAXXZ,,0x00061BD0,10,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
