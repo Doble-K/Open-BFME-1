@@ -2025,6 +2025,18 @@ SingleIntegerZeroConstructorTwelfthThunk::SingleIntegerZeroConstructorTwelfthThu
 {
 }
 
+struct SingleIntegerZeroConstructorThirteenthThunk
+{
+    int value;
+
+    SingleIntegerZeroConstructorThirteenthThunk();
+};
+
+SingleIntegerZeroConstructorThirteenthThunk::SingleIntegerZeroConstructorThirteenthThunk() :
+    value(0)
+{
+}
+
 struct FluentNoOpThunk
 {
     FluentNoOpThunk *ignore(int unused);
