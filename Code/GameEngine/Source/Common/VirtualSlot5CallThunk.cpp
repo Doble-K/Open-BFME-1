@@ -98,9 +98,15 @@ struct VirtualSlot2IntCallThunk
     virtual void invoke(int value);
 
     void invokeSix();
+    void invokeSixAlternate();
 };
 
 void VirtualSlot2IntCallThunk::invokeSix()
+{
+    invoke(6);
+}
+
+void VirtualSlot2IntCallThunk::invokeSixAlternate()
 {
     invoke(6);
 }
