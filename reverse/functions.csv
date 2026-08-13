@@ -138260,7 +138260,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013e930@@YAXXZ,,0x0013E930,11,Code/GameEngine/Source/Common/Rva13E930SecondArgumentStore.cpp,matched,object-symbol=?store@Rva13E930SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
 ?d_0013e960@@YAXXZ,,0x0013E960,11,Code/GameEngine/Source/Common/Rva13E960SecondArgumentStore.cpp,matched,object-symbol=?store@Rva13E960SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
 ?d_0013e970@@YAXXZ,,0x0013E970,11,Code/GameEngine/Source/Common/Rva13E970SecondArgumentStore.cpp,matched,object-symbol=?store@Rva13E970SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
-?d_0013e990@@YAXXZ,,0x0013E990,27,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
+?d_0013e990@@YAXXZ,,0x0013E990,27,Code/GameEngine/Source/Common/Rva13E990BitTest.cpp,matched,object-symbol=?test@Rva13E990BitTest@@QBE_NI@Z;hand-reconciled C++
 ?d_0013e9c0@@YAXXZ,,0x0013E9C0,8,Code/GameEngine/Source/Common/Rva13E9C0AdvanceSixteen.cpp,matched,object-symbol=?rva_13e9c0_advance_sixteen@@YAPAEPAE@Z;hand-reconciled C++
 ?d_0013e9d0@@YAXXZ,,0x0013E9D0,8,Code/GameEngine/Source/Common/Rva13E9D0AdvanceSixteen.cpp,matched,object-symbol=?rva_13e9d0_advance_sixteen@@YAPAEPAE@Z;hand-reconciled C++
 ?d_0013e9e0@@YAXXZ,,0x0013E9E0,7,Code/GameEngine/Source/Common/Rva13E9E0MaskLowTwentyNine.cpp,matched,object-symbol=?mask@Rva13E9E0MaskLowTwentyNine@@QAEXXZ;hand-reconciled C++
