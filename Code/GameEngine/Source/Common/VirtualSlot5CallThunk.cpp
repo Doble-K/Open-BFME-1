@@ -903,3 +903,16 @@ OffsetZeroIntegerSetterReturningThisAlternateThunk *OffsetZeroIntegerSetterRetur
     value = newValue;
     return this;
 }
+
+struct OffsetZeroIntegerCopyReturningThisThunk
+{
+    int value;
+
+    OffsetZeroIntegerCopyReturningThisThunk *copyFrom(const OffsetZeroIntegerCopyReturningThisThunk *other);
+};
+
+OffsetZeroIntegerCopyReturningThisThunk *OffsetZeroIntegerCopyReturningThisThunk::copyFrom(const OffsetZeroIntegerCopyReturningThisThunk *other)
+{
+    value = other->value;
+    return this;
+}
