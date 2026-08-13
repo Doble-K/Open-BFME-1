@@ -1006,9 +1006,22 @@ struct ReferencePointerReleaseThunk
     ReferenceCountedReleaseValue *value;
 
     void release();
+    void releaseAlternate();
 };
 
 void ReferencePointerReleaseThunk::release()
+{
+    ReferenceCountedReleaseValue *current = value;
+    if (current != 0)
+    {
+        if (current->decrementReferenceCount() <= 0)
+        {
+            current->release(1);
+        }
+    }
+}
+
+void ReferencePointerReleaseThunk::releaseAlternate()
 {
     ReferenceCountedReleaseValue *current = value;
     if (current != 0)
