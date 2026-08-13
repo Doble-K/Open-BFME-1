@@ -4,7 +4,32 @@
 #define Matrix4x4 Matrix4
 #define __PLACEMENT_VEC_NEW_INLINE
 
-#include "Common/ArchiveFileSystem.h"
+// SHIM: the copy constructor is declared here rather than in
+// reference/shims/archivefilesystem_nosubsystem/Common/ArchiveFileSystem.h on
+// purpose. Declaring it in the shared header suppresses the implicit default
+// constructor that the directory maps need, which stops ArchiveFileSystem.cpp
+// compiling at all, and it also stops MSVC inlining pair's copy constructor
+// there, which breaks that TU's _Construct row. Spelling the class locally
+// keeps both effects inside this translation unit.
+#define __ARCHIVEFILESYSTEM_H_
+#include "Common/SubsystemInterface.h"
+#include "Common/AsciiString.h"
+#include "Common/FileSystem.h"
+#include "Common/STLTypedefs.h"
+
+class ArchivedDirectoryInfo;
+typedef std::map<AsciiString, ArchivedDirectoryInfo> ArchivedDirectoryInfoMap;
+typedef std::map<AsciiString, AsciiString> ArchivedFileLocationMap;
+
+class ArchivedDirectoryInfo
+{
+public:
+	ArchivedDirectoryInfo(const ArchivedDirectoryInfo &);
+	AsciiString								m_directoryName;
+	ArchivedDirectoryInfoMap	m_directories;
+	ArchivedFileLocationMap		m_files;
+};
+
 
 ArchivedDirectoryInfo::ArchivedDirectoryInfo(const ArchivedDirectoryInfo &that) :
 	m_directoryName(that.m_directoryName),

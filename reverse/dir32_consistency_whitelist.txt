@@ -250,6 +250,14 @@ _staticTextStatus
 ?CompactLog@CPUDetectClass@@0VStringClass@@A
 _$E10
 _$E8
+# _$E2 is the same compiler-generated EH-label family as the two above: 96
+# objects emit it, and retail resolves it to a .text base (0x0403A2B) in one
+# and a .rdata base (0x0106FD20) in another. It is not new work - it was
+# unreachable while ArchiveFileSystem.cpp failed to compile, because the gate
+# dies before the DIR32 phase. None of the three TUs using the
+# archivefilesystem_nosubsystem shim emit it, so restoring that compile did
+# not cause it; it only made it visible again.
+_$E2
 
 # DX8Caps is linked at two retail sites; its file-scope CapsWorkString and
 # static initializer resolve to the corresponding duplicate globals.

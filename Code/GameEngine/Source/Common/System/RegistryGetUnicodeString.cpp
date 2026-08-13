@@ -13,6 +13,16 @@
 #include <windows.h>
 #include <wchar.h>
 
+// reference/shims/sweep/windows.h only declares the ANSI registry entry
+// points. Retail calls the wide ones here -- the DIR32 check saw this site
+// resolve to the RegOpenKeyExW slot at 0x0135914C, not RegOpenKeyExA at
+// 0x01359148 -- so declare them rather than casting wchar_t* down to char*.
+extern "C" __declspec(dllimport) long __stdcall RegOpenKeyExW(
+		HKEY hKey, const wchar_t *lpSubKey, unsigned long ulOptions, unsigned long samDesired, HKEY *phkResult);
+extern "C" __declspec(dllimport) long __stdcall RegQueryValueExW(
+		HKEY hKey, const wchar_t *lpValueName, unsigned long *lpReserved, unsigned long *lpType,
+		unsigned char *lpData, unsigned long *lpcbData);
+
 #include "Common/AsciiString.h"
 
 class UnicodeString
@@ -39,9 +49,9 @@ bool getStringFromRegistry(HKEY root, UnicodeString path, UnicodeString key, Uni
 	unsigned long type;
 	int returnValue;
 
-	if ((returnValue = RegOpenKeyEx(root, (const char *)registryString(path), 0, KEY_READ, &handle)) == ERROR_SUCCESS)
+	if ((returnValue = RegOpenKeyExW(root, registryString(path), 0, KEY_READ, &handle)) == ERROR_SUCCESS)
 	{
-		returnValue = RegQueryValueEx(handle, (const char *)registryString(key), NULL, &type,
+		returnValue = RegQueryValueExW(handle, registryString(key), NULL, &type,
 		                              (unsigned char *)buffer, &size);
 		RegCloseKey(handle);
 	}
