@@ -1158,3 +1158,15 @@ int IntegerArgumentIdentityThunk::identity(int value) const
 {
     return value;
 }
+
+struct SingleIntegerZeroConstructorThunk
+{
+    int value;
+
+    SingleIntegerZeroConstructorThunk();
+};
+
+SingleIntegerZeroConstructorThunk::SingleIntegerZeroConstructorThunk() :
+    value(0)
+{
+}
