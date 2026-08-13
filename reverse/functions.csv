@@ -137682,7 +137682,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0010d4f0@@YAXXZ,,0x0010D4F0,49,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_0010d530@@YAXXZ,,0x0010D530,50,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_0010d580@@YAXXZ,,0x0010D580,46,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
-?d_0010d5c0@@YAXXZ,,0x0010D5C0,5,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
+?d_0010d5c0@@YAXXZ,,0x0010D5C0,5,Code/GameEngine/Source/Common/Rva10D5C0IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva10D5C0IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 10D5C0 identity with one argument
 ?d_0010d5d0@@YAXXZ,,0x0010D5D0,5,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_0010d5e0@@YAXXZ,,0x0010D5E0,5,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_0010d600@@YAXXZ,,0x0010D600,5,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
