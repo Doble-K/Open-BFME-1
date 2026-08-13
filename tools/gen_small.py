@@ -78,6 +78,8 @@ GHIDRA = ROOT / "reverse" / "ghidra_functions.csv"
 BLACKLIST = ROOT / "reverse" / "ghidra_artifacts_blacklist.txt"
 GEN_DIR = ROOT / "Code" / "gen_small"
 PENDING_DIR = ROOT / "build" / "gen_small"
+# Byte dumps of retail, not source. See load_claims(skip_dumps=).
+DUMP_DIR_PREFIX = "Code/gen_asm/"
 LOCK_FILE = ROOT / "reverse" / ".add_match.lock"
 
 # The inventory this generator works over. Bigger ghidra functions carry real
@@ -382,11 +384,19 @@ def render_batch(picked, command, header):
     return "\n".join(lines) + "\n"
 
 
-def load_claims():
-    """{rva: source}, {name: rva} and an overlap index over every ledger row."""
+def load_claims(skip_dumps=False):
+    """{rva: source}, {name: rva} and an overlap index over every ledger row.
+
+    skip_dumps drops Code/gen_asm/ rows. A dump is retail's own bytes under a
+    synthetic name: it fixes a boundary and holds no source, so for the census
+    it is a body still to be cracked, not a claim. Every other caller wants the
+    dump counted, or it would generate a second body over the same range.
+    """
     by_rva, by_name, ranges = {}, {}, []
     for row in B.load_all_function_rows():
         rva = int(row["target_rva"], 16)
+        if skip_dumps and row["source"].startswith(DUMP_DIR_PREFIX):
+            continue
         by_rva[rva] = row["source"]
         by_name[row["name"]] = rva
         ranges.append({"rva": rva, "size": int(row["target_size"]),
@@ -3618,7 +3628,7 @@ def census(entries=None, read=None):
     """[Census] for every unclaimed skeleton, ranked by unclaimed bytes."""
     entries = load_ghidra() if entries is None else entries
     read = exe_reader() if read is None else read
-    claimed, _, index = load_claims()
+    claimed, _, index = load_claims(skip_dumps=True)
     bodies = census_bodies(entries, read, load_blacklist(), claimed, index)
     twins = census_twins(read)
     groups = collections.defaultdict(list)
