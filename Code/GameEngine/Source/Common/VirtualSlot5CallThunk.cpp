@@ -3,6 +3,11 @@ int __stdcall IgnoreThreeArgumentsReturnZeroThunk(int, int, int)
     return 0;
 }
 
+int __stdcall IgnoreThreeArgumentsReturnZeroAlternateThunk(int, int, int)
+{
+    return 0;
+}
+
 int __stdcall IgnoreTwoArgumentsReturnOneThunk(int, int)
 {
     return 1;
