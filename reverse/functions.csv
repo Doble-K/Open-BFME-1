@@ -135036,7 +135036,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0005c470@@YAXXZ,,0x0005C470,13,Code/GameEngine/Source/Common/Offset5E24ByteSetterThunk.cpp,matched,object-symbol=?setValue@Offset5E24ByteSetterThunk@@QAEXE@Z;Open-BFME5 clean C++ offset 5E24 byte setter
 ?d_0005c5c0@@YAXXZ,,0x0005C5C0,7,Code/GameEngine/Source/Common/Offset94ByteGetterThunk.cpp,matched,object-symbol=?getValue@Offset94ByteGetterThunk@@QBEEXZ;Open-BFME5 clean C++ offset 94 byte getter
 ?d_0005c650@@YAXXZ,,0x0005C650,9,Code/GameEngine/Source/Common/FirstWordZeroInitializerThunk.cpp,matched,object-symbol=?initialize@FirstWordZeroInitializerThunk@@QAEPAU1@XZ;Open-BFME5 clean C++ first word zero initializer
-?d_0005c690@@YAXXZ,,0x0005C690,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_0005c690@@YAXXZ,,0x0005C690,9,Code/GameEngine/Source/Common/FirstWordZeroInitializerThunk.cpp,matched,object-symbol=?initializeAlternate@FirstWordZeroInitializerThunk@@QAEPAU1@XZ;Open-BFME5 clean C++ alternate first word zero initializer
 ?d_0005c800@@YAXXZ,,0x0005C800,31,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005c830@@YAXXZ,,0x0005C830,83,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0005d6d0@@YAXXZ,,0x0005D6D0,47,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
