@@ -1218,12 +1218,6 @@ public ?d_0028b910@@YAXXZ
     db 0FFh, 5Fh, 0C6h, 43h, 04h, 01h, 5Eh, 5Bh, 0C2h, 0Ch, 00h
 ?d_0028b910@@YAXXZ ENDP
 
-; ghidra: FUN_0068bbf0  retail @ 0x0028BBF0 size 9
-public ?d_0028bbf0@@YAXXZ
-?d_0028bbf0@@YAXXZ PROC
-    db 8Bh, 0C1h, 0C7h, 00h, 78h, 0D2h, 0Bh, 01h, 0C3h
-?d_0028bbf0@@YAXXZ ENDP
-
 ; ghidra: FUN_0068bd60  retail @ 0x0028BD60 size 104
 public ?d_0028bd60@@YAXXZ
 ?d_0028bd60@@YAXXZ PROC
