@@ -405,3 +405,16 @@ void VirtualSlot11SecondArgumentCallThunk::invokeSecondFourth(int, int value)
 {
     invoke(value);
 }
+
+struct ProducedValue
+{
+    int value;
+};
+
+extern int __stdcall produceStoredValue(int value);
+
+ProducedValue &__stdcall storeProducedValue(ProducedValue &result, int value)
+{
+    result.value = produceStoredValue(value);
+    return result;
+}
