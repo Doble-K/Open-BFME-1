@@ -1226,6 +1226,11 @@ unsigned char *pointerPlusSixteen(unsigned char *value)
     return value + 16;
 }
 
+unsigned char *pointerPlusSixteenAlternate(unsigned char *value)
+{
+    return value + 16;
+}
+
 bool pointedIntegersDiffer(const int *left, const int *right)
 {
     return *left != *right;
