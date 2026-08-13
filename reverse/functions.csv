@@ -77564,7 +77564,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?j_00a62da5@@YAXXZ,,0x00A62DA5,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=FUN_00eabf0f
 ?j_00a8e853@@YAXXZ,,0x00A8E853,5,Code/gen_small/gthunks_086.cpp,matched,gen-thunk;gap;target=0x00A89B69
 ?j_00aa7f7c@@YAXXZ,,0x00AA7F7C,5,Code/gen_small/thunks_037.cpp,matched,gen-thunk;target=FUN_00ea7d2a
-?j_00afd1bc@@YAXXZ,,0x00AFD1BC,5,Code/gen_small/gthunks_086.cpp,matched,gen-thunk;gap;target=0x00AD5401
 ?ji_0007b670@@YAXXZ,,0x0007B670,6,Code/gen_small/imports_000.cpp,matched,gen-import;slot=0x01359218;target=~exception
 ?ji_00336760@@YAXXZ,,0x00336760,6,Code/gen_small/imports_000.cpp,matched,gen-import;slot=0x01359218;target=~exception
 ?ji_00339090@@YAXXZ,,0x00339090,6,Code/gen_small/imports_000.cpp,matched,gen-import;slot=0x01359218;target=~exception
@@ -157935,3 +157934,4 @@ _DXTraceA@20,,0x00AFD388,374,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?StringCchPrintfA@@YAJPADIPBDZZ,,0x00AFD1C1,39,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
 ?StringCchPrintfW@@YAJPAGIPBGZZ,,0x00AFD1E8,39,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
 _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj
+?StringCchCopyW@@YGJPAGIPBG@Z,,0x00AFD1AA,23,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-summer2003;member=obj\i386\dxerr9.obj

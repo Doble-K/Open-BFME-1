@@ -54,7 +54,6 @@ void b_00a0942c();
 void b_00a2a893();
 void b_00a89b69();
 void b_00aaa9c0();
-void b_00ad5401();
 
 void j_008fd340() { b_00902130(); }
 void j_008fd360() { b_00956a80(); }
@@ -116,4 +115,3 @@ void j_00a2a985() { b_00a2a893(); }
 void j_00a5f7a0() { b_00aaa9c0(); }
 void j_00a619c0() { b_00aaa9c0(); }
 void j_00a8e853() { b_00a89b69(); }
-void j_00afd1bc() { b_00ad5401(); }
