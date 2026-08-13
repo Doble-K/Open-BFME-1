@@ -152640,7 +152640,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0060a780@@YAXXZ,,0x0060A780,17,Code/gen_asm/d_005e97b0.asm,matched,gen-dump;bounds=high
 ?d_0060a7a0@@YAXXZ,,0x0060A7A0,17,Code/gen_asm/d_005e97b0.asm,matched,gen-dump;bounds=high
 ?d_0060a7c0@@YAXXZ,,0x0060A7C0,29,Code/gen_asm/d_005e97b0.asm,matched,gen-dump;bounds=high
-?d_0060a7f0@@YAXXZ,,0x0060A7F0,29,Code/gen_asm/d_005e97b0.asm,matched,gen-dump;bounds=high
+?d_0060a7f0@@YAXXZ,,0x0060A7F0,29,Code/Libraries/Source/WWVegas/WWLib/Rva60A7F0FillWordsThunk.cpp,matched,object-symbol=_rva60A7F0FillWords;Open-BFME5 clean C++ word fill
 ?d_0060a820@@YAXXZ,,0x0060A820,41,Code/gen_asm/d_005e97b0.asm,matched,gen-dump;bounds=high
 ?d_0060a920@@YAXXZ,,0x0060A920,12,Code/gen_asm/d_005e97b0.asm,matched,gen-dump;bounds=high
 ?d_0060a930@@YAXXZ,,0x0060A930,46,Code/gen_asm/d_005e97b0.asm,matched,gen-dump;bounds=high
