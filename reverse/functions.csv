@@ -137629,7 +137629,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00106b40@@YAXXZ,,0x00106B40,24,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00106b70@@YAXXZ,,0x00106B70,6,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00106dc0@@YAXXZ,,0x00106DC0,132,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
-?d_00107270@@YAXXZ,,0x00107270,13,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
+?d_00107270@@YAXXZ,,0x00107270,13,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?invokeTerrainLogic@VirtualSlot4GlobalCallThunk@@QAEXXZ;Open-BFME5 clean C++ virtual slot 4 global call
 ?d_001072a0@@YAXXZ,,0x001072A0,58,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_001072f0@@YAXXZ,,0x001072F0,58,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00107540@@YAXXZ,,0x00107540,9,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high

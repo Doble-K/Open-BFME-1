@@ -6361,6 +6361,7 @@ name,address,notes
 ?TheAssaultTransportAIUpdatePool@?1??getClassMemoryPool@AssaultTransportAIUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EF0244,pool-glue cascade static (back-solved)
 ?TheAssistedTargetingUpdatePool@?1??getClassMemoryPool@AssistedTargetingUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFE38,pool-glue cascade static (back-solved)
 ?TheAudio@@3PAVAudioManager@@A,0x00EED668,AudioManager* global read by the OptionPreferences volume getters
+?TheTerrainLogic@@3PAXA,0x012EF4CC,Open-BFME5 TerrainLogic global pointer used by virtual slot 4 wrapper
 ?TheAutoDepositUpdatePool@?1??getClassMemoryPool@AutoDepositUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFE50,pool-glue cascade static (back-solved)
 ?TheAutoFindHealingUpdatePool@?1??getClassMemoryPool@AutoFindHealingUpdate@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEFE58,pool-glue cascade static (back-solved)
 ?TheAutoHealBehaviorPool@?1??getClassMemoryPool@AutoHealBehavior@@CAPAVMemoryPool@@XZ@4PAV3@A,0x00EEF764,pool-glue cascade static (back-solved)
