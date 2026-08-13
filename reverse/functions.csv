@@ -105801,7 +105801,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00097020@@YAXXZ,,0x00097020,63,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00497020
 ?d_000970a0@@YAXXZ,,0x000970A0,33,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_004970a0
 ?d_000971b0@@YAXXZ,,0x000971B0,158,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_004971b0
-?d_00097280@@YAXXZ,,0x00097280,158,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00497280
 ?d_000973a0@@YAXXZ,,0x000973A0,265,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_004973a0
 ?d_00097800@@YAXXZ,,0x00097800,103,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00497800
 ?d_00097970@@YAXXZ,,0x00097970,8,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00497970
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_00946740@@YAXXZ,,0x00946740,109,Code/Libraries/Source/WWVegas/WW3D2/DX8RigidDelayedMaterialPass.cpp,matched,object-symbol=?Add_Delayed_Visible_Material_Pass@DX8RigidFVFCategoryContainer@@UAEXPAVMaterialPassClass@@PAVMeshClass@@@Z;Open-BFME5 clean C++ delayed material pass
 ?logPlayerDisconnect@RecorderClass@@QAEXVUnicodeString@@H@Z,,0x00097F80,156,Code/GameEngine/Source/Common/RecorderLogPlayerDisconnect.cpp,matched,Open-BFME5 clean C++ with BFME disconnect offset
 ?d_0015e4c0@@YAXXZ,,0x0015E4C0,60,Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp,matched,object-symbol=?update@AIGuardReturnState@@UAE?AW4StateReturnType@@XZ;Open-BFME5 clean C++ guard return update
+?d_00097280@@YAXXZ,,0x00097280,158,Code/GameEngine/Source/Common/RecorderLogGameEnd.cpp,matched,object-symbol=?logGameEnd@RecorderClass@@IAEXXZ;Open-BFME5 clean C++ recorder game end
