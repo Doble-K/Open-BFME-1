@@ -112921,8 +112921,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0040d900@@YAXXZ,,0x0040D900,70,Code/gen_asm/d_00405e80.asm,matched,gen-dump;ghidra=FUN_0080d900
 ?d_0040d9c0@@YAXXZ,,0x0040D9C0,26,Code/gen_asm/d_00405e80.asm,matched,gen-dump;ghidra=FUN_0080d9c0
 ?d_0040da70@@YAXXZ,,0x0040DA70,5,Code/gen_asm/d_00405e80.asm,matched,gen-dump;ghidra=FUN_0080da70
-?d_0040dc10@@YAXXZ,,0x0040DC10,25,Code/gen_asm/d_00405e80.asm,matched,gen-dump;ghidra=FUN_0080dc10
-?d_0040dc30@@YAXXZ,,0x0040DC30,25,Code/gen_asm/d_00405e80.asm,matched,gen-dump;ghidra=FUN_0080dc30
 ?d_0040dc50@@YAXXZ,,0x0040DC50,213,Code/gen_asm/d_00405e80.asm,matched,gen-dump;ghidra=FUN_0080dc50
 ?d_0040dd60@@YAXXZ,,0x0040DD60,58,Code/gen_asm/d_00405e80.asm,matched,gen-dump;ghidra=FUN_0080dd60
 ?d_0040e090@@YAXXZ,,0x0040E090,37,Code/gen_asm/d_00405e80.asm,matched,gen-dump;ghidra=FUN_0080e090
@@ -157942,3 +157940,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?calcNextSpreadDelay@FireSpreadUpdate@@IAEIXZ,,0x00292840,40,Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp,matched,Open-BFME5 retail file/line via #line 152; BFME Module has m_moduleData at +4 (BFME_MODULE_NO_MPO)
 ?calculateHeightAboveTerrain@Thing@@MBEMXZ,,0x00132470,29,Code/GameEngine/Source/Common/Thing/Thing.cpp,matched,Open-BFME5 TheTerrainLogic getGroundHeight at vtable slot 6 (0x18) not ZH slot 5; m_cachedPos at Thing+0x38
 ?teamAboutToBeDeleted@PlayerList@@QAEXPAVTeam@@@Z,,0x000DF360,36,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 callee 0xD4200 = Player::removeTeamRelationship (m_teamRelations at +0x290)
+?setWidth@Display@@UAEXI@Z,,0x0040DC10,25,Code/GameEngine/Source/GameClient/Display.cpp,matched,Open-BFME5 m_width at Display+0x8; setMouseLimits vtable slot 17
+?setHeight@Display@@UAEXI@Z,,0x0040DC30,25,Code/GameEngine/Source/GameClient/Display.cpp,matched,Open-BFME5 m_height at Display+0xc; setMouseLimits vtable slot 17

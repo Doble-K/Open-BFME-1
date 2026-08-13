@@ -40,6 +40,33 @@
 //#include "GameLogic/ScriptEngine.h"
 //#include "GameLogic/GameLogic.h"
 
+// BFME's Mouse vtable is four slots wider ahead of setMouseLimits than ZH's
+// Mouse.h: setWidth and setHeight both call [vtable+0x44], where the ZH header
+// puts it at [vtable+0x34]. Only the one slot is pinned; the rest stay
+// anonymous because nothing here needs them.
+class BFMERetailMouseVTable
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot1() = 0;
+	virtual void slot2() = 0;
+	virtual void slot3() = 0;
+	virtual void slot4() = 0;
+	virtual void slot5() = 0;
+	virtual void slot6() = 0;
+	virtual void slot7() = 0;
+	virtual void slot8() = 0;
+	virtual void slot9() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual void slot12() = 0;
+	virtual void slot13() = 0;
+	virtual void slot14() = 0;
+	virtual void slot15() = 0;
+	virtual void slot16() = 0;
+	virtual void setMouseLimits() = 0;
+};
+
 /// The Display singleton instance.
 Display *TheDisplay = NULL;
 
@@ -176,7 +203,6 @@ Bool Display::setDisplayMode( UnsignedInt xres, UnsignedInt yres, UnsignedInt bi
 // Display::setWidth ==========================================================
 /** Set the width of the display */
 //=============================================================================
-// ?setWidth@Display@@UAEXI@Z present-unmatched
 void Display::setWidth( UnsignedInt width )
 {
 
@@ -185,14 +211,13 @@ void Display::setWidth( UnsignedInt width )
 
 	// set the new mouse limits
 	if( TheMouse )
-		TheMouse->setMouseLimits();
+		reinterpret_cast<BFMERetailMouseVTable *>(TheMouse)->setMouseLimits();
 
 }  // end setWidth
 
 // Display::setHeight =========================================================
 /** Set the height of the display */
 //=============================================================================
-// ?setHeight@Display@@UAEXI@Z present-unmatched
 void Display::setHeight( UnsignedInt height )
 {
 
@@ -201,7 +226,7 @@ void Display::setHeight( UnsignedInt height )
 
 	// set the new mouse limits
 	if( TheMouse )
-		TheMouse->setMouseLimits();
+		reinterpret_cast<BFMERetailMouseVTable *>(TheMouse)->setMouseLimits();
 
 }  // end setHeight
 
