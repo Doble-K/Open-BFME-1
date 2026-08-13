@@ -5,6 +5,7 @@ struct SecondScalarAssignThunk
     SecondScalarAssignThunk &assign(unsigned long ignored, unsigned long newValue);
     SecondScalarAssignThunk &assignAlternate(unsigned long ignored, unsigned long newValue);
     SecondScalarAssignThunk &assignThird(unsigned long ignored, unsigned long newValue);
+    SecondScalarAssignThunk &assignFourth(unsigned long ignored, unsigned long newValue);
 };
 
 SecondScalarAssignThunk &SecondScalarAssignThunk::assign(unsigned long, unsigned long newValue)
@@ -20,6 +21,12 @@ SecondScalarAssignThunk &SecondScalarAssignThunk::assignAlternate(unsigned long,
 }
 
 SecondScalarAssignThunk &SecondScalarAssignThunk::assignThird(unsigned long, unsigned long newValue)
+{
+    value = newValue;
+    return *this;
+}
+
+SecondScalarAssignThunk &SecondScalarAssignThunk::assignFourth(unsigned long, unsigned long newValue)
 {
     value = newValue;
     return *this;
