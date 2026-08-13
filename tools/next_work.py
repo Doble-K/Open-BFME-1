@@ -26,6 +26,7 @@ import bisect
 import csv
 import hashlib
 import json
+import re
 import secrets
 import subprocess
 import sys
@@ -38,9 +39,12 @@ import re_log
 import yield_model
 
 ROOT = Path(__file__).resolve().parents[1]
-# drift_report.csv is the shared drift classification (general RE infra, not the
-# retired ZH source-porting sweep) — it feeds the drift/structural/ghidra tiers.
+# drift_report.csv is the shared drift classification — it feeds the
+# drift/structural/ghidra tiers. The ZH source-porting sweep beside it is not
+# retired: tools/zh_sweep.py still writes work packets, and the `packet` tier
+# below spends them.
 DRIFT = ROOT / "reverse" / "zh_sweep" / "drift_report.csv"
+PACKETS = ROOT / "reverse" / "zh_sweep" / "packets"
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
 GHIDRA_FUNCTIONS = ROOT / "reverse" / "ghidra_functions.csv"
 STRING_XREFS = ROOT / "reverse" / "string_xrefs.tsv"
@@ -764,8 +768,44 @@ def reloc_named_candidates(claimed, claimed_ranges):
     return out, note
 
 
-def selected_queue(tier, drifts, structural, ghidra_absent, anchored, named):
+def packet_candidates(claimed):
+    """Unclaimed bodies tools/zh_sweep.py wrote a Zero Hour work packet for.
+
+    A packet carries EA's own source for the body, its name, and how closely it
+    already aligns with the retail bytes -- the strongest start any tier here
+    offers. They sit at addresses no other tier reaches, so without this they
+    are served by nothing: 148 of the first 150 written were never worked.
+    """
+    if not PACKETS.is_dir():
+        return []
+    out = []
+    for path in sorted(PACKETS.glob("*.md")):
+        try:
+            rva = int(path.stem, 16)
+        except ValueError:
+            continue
+        if rva in claimed:
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        size = re.search(r"- (\d+) bytes", text)
+        aligned = re.search(r"agrees on ([\d.]+)%", text)
+        lead = re.search(r"- `([^`]+)`\n\s+in `([^`]+)`", text)
+        out.append({
+            "target_rva": f"0x{rva:08X}",
+            "size": int(size.group(1)) if size else 0,
+            "aligned_pct": aligned.group(1) if aligned else "?",
+            "function": lead.group(1) if lead else "(see packet)",
+            "source": lead.group(2) if lead else str(path.relative_to(ROOT)),
+            "packet": str(path.relative_to(ROOT)),
+        })
+    out.sort(key=lambda c: -c["size"])
+    return out
+
+
+def selected_queue(tier, drifts, structural, ghidra_absent, anchored, named,
+                   packets=()):
     queues = {
+        "packet": ("Zero Hour work packet", packets),
         "named": ("reloc-named unclaimed function", named),
         "harvest": ("drift quick win", drifts),
         "structural": ("structural reconciliation", structural),
@@ -774,7 +814,7 @@ def selected_queue(tier, drifts, structural, ghidra_absent, anchored, named):
     }
     if tier:
         return queues[tier]
-    for name in ("named", "harvest", "structural", "ghidra", "anchored"):
+    for name in ("packet", "named", "harvest", "structural", "ghidra", "anchored"):
         label, candidates = queues[name]
         if candidates:
             return label, candidates
@@ -825,6 +865,13 @@ def print_cluster(candidate, candidates):
 
 def print_candidate(label, candidate, meta, candidates=()):
     print(f"== selected work: {label} (drawn from {meta['pool']}) ==")
+    if label == "Zero Hour work packet":
+        print(f"  {candidate['size']:>5}B  {candidate['function']}")
+        print(f"       {candidate['target_rva']} — Zero Hour's own body for this "
+              f"address already agrees on {candidate['aligned_pct']}% of the "
+              f"non-relocation bytes")
+        print(f"       start: read {candidate['packet']}, port {candidate['source']}")
+        return
     if label == "reloc-named unclaimed function":
         print(f"  {candidate['size']:>5}B  {candidate['function']}")
         print(f"       {candidate['target_rva']} ({candidate['notes']}) — named by a "
@@ -950,7 +997,7 @@ def main():
     ap.add_argument("--ranked", action="store_true",
                     help="show complete ranked queues for humans/debugging")
     ap.add_argument("--tier",
-                    choices=("named", "harvest", "structural", "ghidra", "anchored"),
+                    choices=("packet", "named", "harvest", "structural", "ghidra", "anchored"),
                     help="choose from only this task lane")
     ap.add_argument("--shard", type=parse_shard, metavar="INDEX/COUNT",
                     help="stable zero-based partition for concurrent workers")
@@ -1036,8 +1083,10 @@ def main():
                      ghidra_absent, suppressed, named, named_note, structural_meta)
         return
 
+    packets = (packet_candidates(claimed)
+               if args.tier in (None, "packet") else [])
     label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent,
-                                       anchored, named)
+                                       anchored, named, packets)
     candidate = weighted_choice(candidates) if candidates else None
     meta = {"pool": len(candidates), "suppressed_logged": suppressed,
             "shard": shard_meta}
