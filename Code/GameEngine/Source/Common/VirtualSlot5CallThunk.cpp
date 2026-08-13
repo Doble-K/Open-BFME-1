@@ -1584,6 +1584,7 @@ struct PointerPayloadGetterThunk
     unsigned char *getPayloadEleventh() const;
     unsigned char *getPayloadTwelfth() const;
     unsigned char *getPayloadThirteenth() const;
+    unsigned char *getPayloadFourteenth() const;
     unsigned char *getSecondPayload() const;
     unsigned char *getThirdPayload() const;
     unsigned char *getFourthPayload() const;
@@ -1650,6 +1651,11 @@ unsigned char *PointerPayloadGetterThunk::getPayloadTwelfth() const
 }
 
 unsigned char *PointerPayloadGetterThunk::getPayloadThirteenth() const
+{
+    return base + 4;
+}
+
+unsigned char *PointerPayloadGetterThunk::getPayloadFourteenth() const
 {
     return base + 4;
 }
