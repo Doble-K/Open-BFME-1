@@ -122650,7 +122650,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00924760@@YAXXZ,,0x00924760,174,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24760
 ?d_00924880@@YAXXZ,,0x00924880,154,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24880
 ?d_00924930@@YAXXZ,,0x00924930,760,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24930
-?d_00924c40@@YAXXZ,,0x00924C40,178,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24c40
+?d_00924c40@@YAXXZ,,0x00924C40,178,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,object-symbol=?Set_User_Text@MeshGeometryClass@@QAEXPAD@Z;ghidra=FUN_00d24c40;Open-BFME5 clean C++ mesh user text setter
 ?d_00924fa0@@YAXXZ,,0x00924FA0,138,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24fa0
 ?d_00925060@@YAXXZ,,0x00925060,166,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d25060
 ?d_00925110@@YAXXZ,,0x00925110,227,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d25110

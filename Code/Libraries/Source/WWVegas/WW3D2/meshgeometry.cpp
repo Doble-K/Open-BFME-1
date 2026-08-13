@@ -353,15 +353,15 @@ const char * MeshGeometryClass::Get_User_Text(void)
  * HISTORY:                                                                                    *
  *   11/9/2000  gth : Created.                                                                 *
  *=============================================================================================*/
-// ?MeshGeometryClass::Set_User_Text present-unmatched
 void MeshGeometryClass::Set_User_Text(char * usertext)
 {
-	if (UserText) {
-		UserText->Release_Ref();
+	ShareBufferClass<char> *& user_text = *reinterpret_cast<ShareBufferClass<char> **>(reinterpret_cast<char *>(this) + 0x10);
+	if (user_text) {
+		user_text->Release_Ref();
 	}
 	if (usertext) {
-		UserText = NEW_REF(ShareBufferClass<char>,(strlen(usertext)+1, "MeshGeometryClass::UserText"));
-		strcpy(UserText->Get_Array(),usertext);
+		user_text = NEW_REF(ShareBufferClass<char>,(strlen(usertext)+1, "MeshGeometryClass::UserText"));
+		strcpy(user_text->Get_Array(),usertext);
 	}
 }
 
