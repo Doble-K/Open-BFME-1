@@ -108464,7 +108464,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001dccc0@@YAXXZ,,0x001DCCC0,52,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dccc0
 ?d_001dce00@@YAXXZ,,0x001DCE00,126,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dce00
 ?d_001dcf50@@YAXXZ,,0x001DCF50,166,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dcf50
-?d_001dd060@@YAXXZ,,0x001DD060,39,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dd060
 ?d_001dd0b0@@YAXXZ,,0x001DD0B0,57,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dd0b0
 ?d_001dd100@@YAXXZ,,0x001DD100,44,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dd100
 ?d_001dd1f0@@YAXXZ,,0x001DD1F0,39,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dd1f0
@@ -108917,7 +108916,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002139e0@@YAXXZ,,0x002139E0,25,Code/gen_asm/d_0020eb40.asm,matched,gen-dump;ghidra=FUN_006139e0
 ?d_00213b30@@YAXXZ,,0x00213B30,45,Code/gen_asm/d_0020eb40.asm,matched,gen-dump;ghidra=FUN_00613b30
 ?d_00213b70@@YAXXZ,,0x00213B70,25,Code/gen_asm/d_0020eb40.asm,matched,gen-dump;ghidra=FUN_00613b70
-?d_00213b90@@YAXXZ,,0x00213B90,24,Code/gen_asm/d_0020eb40.asm,matched,gen-dump;ghidra=FUN_00613b90
 ?d_00213f30@@YAXXZ,,0x00213F30,46,Code/gen_asm/d_0020eb40.asm,matched,gen-dump;ghidra=FUN_00613f30
 ?d_00213f80@@YAXXZ,,0x00213F80,25,Code/gen_asm/d_0020eb40.asm,matched,gen-dump;ghidra=FUN_00613f80
 ?d_002141c0@@YAXXZ,,0x002141C0,25,Code/gen_asm/d_0020eb40.asm,matched,gen-dump;ghidra=FUN_006141c0
@@ -139857,7 +139855,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001dd1b0@@YAXXZ,,0x001DD1B0,48,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001dd250@@YAXXZ,,0x001DD250,13,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001dd2e0@@YAXXZ,,0x001DD2E0,55,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
-?d_001dd460@@YAXXZ,,0x001DD460,27,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001dd770@@YAXXZ,,0x001DD770,47,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001dd870@@YAXXZ,,0x001DD870,26,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
 ?d_001dd890@@YAXXZ,,0x001DD890,31,Code/gen_asm/d_001db160.asm,matched,gen-dump;bounds=high
@@ -157942,3 +157939,6 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?teamAboutToBeDeleted@PlayerList@@QAEXPAVTeam@@@Z,,0x000DF360,36,Code/GameEngine/Source/Common/RTS/PlayerListUpdate.cpp,matched,Open-BFME5 callee 0xD4200 = Player::removeTeamRelationship (m_teamRelations at +0x290)
 ?setWidth@Display@@UAEXI@Z,,0x0040DC10,25,Code/GameEngine/Source/GameClient/Display.cpp,matched,Open-BFME5 m_width at Display+0x8; setMouseLimits vtable slot 17
 ?setHeight@Display@@UAEXI@Z,,0x0040DC30,25,Code/GameEngine/Source/GameClient/Display.cpp,matched,Open-BFME5 m_height at Display+0xc; setMouseLimits vtable slot 17
+?estimateDamage@InactiveBody@@UBEMAAVDamageInfoInput@@@Z,,0x00213B90,24,Code/GameEngine/Source/GameLogic/Object/Body/InactiveBody.cpp,matched,Open-BFME5 DAMAGE_UNRESISTABLE=8; DamageInfoInput m_damageType@0xc m_amount@0x18
+?allow@PartitionFilterIrregularArea@@MAE_NPAVObject@@@Z,,0x001DD460,27,Code/GameEngine/Source/Common/PartitionFilters_allow_Thunk.cpp,matched,Open-BFME5 m_area@+0x8 m_numPointsInArea@+0xc; BFME PartitionFilter base is 4 bytes wider than ZH
+?allow@PartitionFilterPlayer@@MAE_NPAVObject@@@Z,,0x001DD060,39,Code/GameEngine/Source/Common/PartitionFilters_allow_Thunk.cpp,matched,Open-BFME5 m_player@+0x8 m_match@+0xc; getControllingPlayer pinned at 0x20824

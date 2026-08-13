@@ -5197,7 +5197,7 @@ Bool PartitionFilterRepulsor::allow( Object *other )
 
 //-----------------------------------------------------------------------------
 
-// ?allow@PartitionFilterIrregularArea@@MAE_NPAVObject@@@Z present-unmatched
+// ?allow@PartitionFilterIrregularArea@@MAE_NPAVObject@@@Z present-unmatched here — matched copy lives in Common/PartitionFilters_allow_Thunk.cpp
 Bool PartitionFilterIrregularArea::allow( Object *other )
 {
 
@@ -5217,14 +5217,14 @@ Bool PartitionFilterPolygonTrigger::allow( Object *other )
 
 //-----------------------------------------------------------------------------
 
-// ?allow@PartitionFilterPlayer@@MAE_NPAVObject@@@Z present-unmatched
+// ?allow@PartitionFilterPlayer@@MAE_NPAVObject@@@Z present-unmatched here — matched copy lives in Common/PartitionFilters_allow_Thunk.cpp
 Bool PartitionFilterPlayer::allow( Object *other )
 {
 	return ((m_player == other->getControllingPlayer()) == m_match);
 }
 
 //-----------------------------------------------------------------------------
-// ?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z present-unmatched
+// ?allow@PartitionFilterPlayerAffiliation@@MAE_NPAVObject@@@Z present-unmatched here — matched copy lives in Common/PartitionFilterPlayerAffiliation_allow_Thunk.cpp
 Bool PartitionFilterPlayerAffiliation::allow( Object *other )
 {
 	Relationship rel = m_player->getRelationship(other->getTeam());

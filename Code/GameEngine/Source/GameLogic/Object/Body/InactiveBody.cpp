@@ -2,6 +2,19 @@
 
 class DamageInfo;
 
+// Retail's estimateDamage reads the damage type at +0xc and the amount at
+// +0x18 of its DamageInfoInput argument.  DamageInfo below spells the same
+// two fields four bytes further out, so BFME's DamageInfo carries a four-byte
+// prefix ahead of the embedded input block; nothing here needs the rest.
+class DamageInfoInput
+{
+public:
+	char m_pad[0xc];
+	int m_damageType;
+	char m_padAfterType[8];
+	float m_amount;
+};
+
 class Object
 {
 public:
@@ -24,6 +37,7 @@ class BodyModuleInterface
 public:
 	virtual void attemptDamage(DamageInfo *) = 0;
 	virtual void attemptHealing(DamageInfo *) = 0;
+	virtual float estimateDamage(DamageInfoInput &) const = 0;
 };
 
 class DamageInfo
@@ -42,12 +56,14 @@ class InactiveBody : public BehaviorModule, public BodyModuleInterface
 public:
 	virtual void attemptDamage(DamageInfo *);
 	virtual void attemptHealing(DamageInfo *);
+	virtual float estimateDamage(DamageInfoInput &) const;
 
 private:
 	float m_health;
 	bool m_dieCalled;
 };
 
+// ?attemptDamage@InactiveBody@@UAEXPAVDamageInfo@@@Z present-unmatched under that name — the body is claimed at 0x00213E40, but by a gen-named row that carries the real symbol only in its object-symbol field; repointing it is a retraction and belongs in its own commit
 void InactiveBody::attemptDamage(DamageInfo *damageInfo)
 {
 	if (!damageInfo) {
@@ -70,4 +86,19 @@ void InactiveBody::attemptDamage(DamageInfo *damageInfo)
 			m_dieCalled = true;
 		}
 	}
+}
+
+// ?estimateDamage@InactiveBody@@UBEMAAVDamageInfoInput@@@Z
+float InactiveBody::estimateDamage(DamageInfoInput &damageInfo) const
+{
+	// Inactive bodies have no health so no damage can really be done
+	float amount = 0.0f;
+
+	// exception!
+	if (damageInfo.m_damageType == 8)	// DAMAGE_UNRESISTABLE
+	{
+		amount = damageInfo.m_amount;
+	}
+
+	return amount;
 }
