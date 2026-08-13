@@ -807,10 +807,16 @@ void AABoxRenderObjClass::Set_Transform(const Matrix3D &m)
  * HISTORY:                                                                                    *
  *   1/19/00    gth : Created.                                                                 *
  *=============================================================================================*/
-// ?Set_Position@AABoxRenderObjClass@@UAEXABVVector3@@@Z present-unmatched
+class RetailAABoxRenderObjBase
+{
+public:
+	void Set_Position_Retail(const Vector3 &position);
+};
+
+// ?Set_Position@AABoxRenderObjClass@@UAEXABVVector3@@@Z matched 27 bytes (Open-BFME5)
 void AABoxRenderObjClass::Set_Position(const Vector3 &v)
 {
-	RenderObjClass::Set_Position(v);
+	reinterpret_cast<RetailAABoxRenderObjBase *>(this)->Set_Position_Retail(v);
 	update_cached_box();
 }
 
@@ -1451,4 +1457,3 @@ RenderObjClass * BoxPrototypeClass::Create(void)
 ** Global instance of the box loader
 */
 BoxLoaderClass _BoxLoader;
-

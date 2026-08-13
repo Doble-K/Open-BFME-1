@@ -157555,7 +157555,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00956970@@YAXXZ,,0x00956970,7,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00956a80@@YAXXZ,,0x00956A80,6,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00956a90@@YAXXZ,,0x00956A90,6,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
-?d_00956aa0@@YAXXZ,,0x00956AA0,27,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00956ac0@@YAXXZ,,0x00956AC0,27,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00956b40@@YAXXZ,,0x00956B40,6,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00956b50@@YAXXZ,,0x00956B50,27,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?createRecorder@@YAPAVRecorderClass@@XZ,,0x0009A2A0,89,Code/GameEngine/Source/Common/RecorderCreate.cpp,matched,Open-BFME5 clean C++ recorder factory
 ?d_00919ac0@@YAXXZ,,0x00919AC0,129,Code/Libraries/Source/WWVegas/WW3D2/StreakLineRender.cpp,matched,object-symbol=?Render_Streak_Line@StreakLineClass@@IAEXAAVRenderInfoClass@@@Z;Open-BFME5 clean C++ streak rendering
 ?push_back@?$vector@VMoney@@V?$allocator@VMoney@@@_STL@@@_STL@@QAEXABVMoney@@@Z,,0x0087FF10,59,Code/GameEngine/Source/Common/MoneyVectorPushBack.cpp,matched,Open-BFME5 clean C++ BFME Money vector push_back
+?d_00956aa0@@YAXXZ,,0x00956AA0,27,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,matched,object-symbol=?Set_Position@AABoxRenderObjClass@@UAEXABVVector3@@@Z;Open-BFME5 clean C++ AABox position update

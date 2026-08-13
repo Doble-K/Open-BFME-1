@@ -69405,3 +69405,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?RenderStreak@StreakRendererClass@@QAEXAAVRenderInfoClass@@ABVMatrix3D@@IPAVVector3@@PAVVector4@@PAMABVSphereClass@@PAI@Z,0x0095CE80,Open-BFME5 retail streak renderer
 ??0Money@@QAE@ABV0@@Z,0x00013476,Open-BFME5 retail Money copy constructor pin
 ?_M_insert_overflow@?$vector@VMoney@@V?$allocator@VMoney@@@_STL@@@_STL@@IAEXPAVMoney@@ABV3@ABU__false_type@2@I_N@Z,0x0087FBE0,Open-BFME5 retail Money vector overflow pin
+?Set_Position_Retail@RetailAABoxRenderObjBase@@QAEXABVVector3@@@Z,0x009201A0,Open-BFME5 retail AABox base position call
