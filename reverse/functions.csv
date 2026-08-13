@@ -139157,7 +139157,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00192440@@YAXXZ,,0x00192440,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00192450@@YAXXZ,,0x00192450,7,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?rva_192460_pointer_offset@@YAPAEPAE@Z,,0x00192460,8,Code/GameEngine/Source/Common/Rva192460PointerOffset.cpp,matched,hand-reconciled C++
-?d_00192480@@YAXXZ,,0x00192480,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?rva_192480_pointer_offset@@YAPAEPAE@Z,,0x00192480,8,Code/GameEngine/Source/Common/Rva192480PointerOffset.cpp,matched,hand-reconciled C++
 ?d_00192490@@YAXXZ,,0x00192490,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001924b0@@YAXXZ,,0x001924B0,13,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00192530@@YAXXZ,,0x00192530,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
