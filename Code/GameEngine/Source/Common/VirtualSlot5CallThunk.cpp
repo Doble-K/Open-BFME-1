@@ -1206,6 +1206,11 @@ bool pointedIntegersDiffer(const int *left, const int *right)
     return *left != *right;
 }
 
+bool pointedIntegersDifferAlternate(const int *left, const int *right)
+{
+    return *left != *right;
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
