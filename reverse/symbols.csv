@@ -69385,3 +69385,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?resolve@RvaC4390Second@@QAEPAURvaC4390First@@H@Z,0x00035995,Open-BFME5 relation resolver call pin
 ?getInterface@RvaC4390First@@QAEPAURvaC4390Interface@@XZ,0x0000B3E3,Open-BFME5 relation interface call pin
 ?accepts@Rva2225E0Filter@@QAE_NPAVObject@@PAVPlayer@@@Z,0x0001DA34,Open-BFME5 filter predicate call pin
+?rva220840Callback@@YAXXZ,0x006207F0,Open-BFME5 dispatch callback pin

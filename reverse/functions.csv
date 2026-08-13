@@ -109089,7 +109089,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00220720@@YAXXZ,,0x00220720,74,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00620720
 ?d_00220780@@YAXXZ,,0x00220780,35,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00620780
 ?d_002207f0@@YAXXZ,,0x002207F0,37,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_006207f0
-?d_00220840@@YAXXZ,,0x00220840,60,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00620840
+?d_00220840@@YAXXZ,,0x00220840,60,Code/GameEngine/Source/Common/Rva220840DispatchThunk.cpp,matched,object-symbol=?invoke@Rva220840DispatchThunk@@QAE_NII@Z;Open-BFME5 clean C++ virtual dispatch wrapper
 ?d_00220890@@YAXXZ,,0x00220890,46,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00620890
 ?d_00221540@@YAXXZ,,0x00221540,32,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00621540
 ?d_00221720@@YAXXZ,,0x00221720,154,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00621720
