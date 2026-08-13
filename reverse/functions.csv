@@ -110749,7 +110749,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002ecf40@@YAXXZ,,0x002ECF40,454,Code/gen_asm/d_002e5390.asm,matched,gen-dump;ghidra=FUN_006ecf40
 ?d_002ed2e0@@YAXXZ,,0x002ED2E0,147,Code/gen_asm/d_002e5390.asm,matched,gen-dump;ghidra=FUN_006ed2e0
 ?d_002ed430@@YAXXZ,,0x002ED430,11,Code/gen_asm/d_002e5390.asm,matched,gen-dump;ghidra=FUN_006ed430
-?d_002ed6c0@@YAXXZ,,0x002ED6C0,106,Code/gen_asm/d_002e5390.asm,matched,gen-dump;ghidra=FUN_006ed6c0
 ?d_002ed760@@YAXXZ,,0x002ED760,101,Code/gen_asm/d_002e5390.asm,matched,gen-dump;ghidra=FUN_006ed760
 ?d_002ed840@@YAXXZ,,0x002ED840,18,Code/gen_asm/d_002e5390.asm,matched,gen-dump;ghidra=FUN_006ed840
 ?d_002ed870@@YAXXZ,,0x002ED870,24,Code/gen_asm/d_002e5390.asm,matched,gen-dump;ghidra=FUN_006ed870
@@ -157940,3 +157939,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ??0LoaderThreadClass@@QAE@PBD@Z,,0x008B38D0,27,Code/Libraries/Source/WWVegas/WW3D2/textureloader.cpp,matched,
 ?open@StreamingArchiveFile@@UAE_NPBDH@Z,,0x009D2190,52,Code/GameEngine/Source/Common/System/StreamingArchiveFile_openThunk.cpp,matched,
 ?getVertexBuffer@StreakRendererClass@@AAEPAUVertexFormatXYZUV1@@I@Z,,0x0095C510,57,Code/Libraries/Source/WWVegas/WW3D2/StreakRendererClass_getVertexBuffer_Thunk.cpp,matched,
+??0ObjectTypesTemp@@QAE@XZ,,0x002ED6C0,106,Code/GameEngine/Source/GameLogic/ScriptEngine/ObjectTypesTemp_ctor_Thunk.cpp,matched,
