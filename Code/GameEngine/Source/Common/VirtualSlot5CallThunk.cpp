@@ -1170,9 +1170,17 @@ struct FluentIntegerPairSetterThunk
     int second;
 
     FluentIntegerPairSetterThunk *setValues(int firstValue, int secondValue);
+    FluentIntegerPairSetterThunk *setValuesAlternate(int firstValue, int secondValue);
 };
 
 FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::setValues(int firstValue, int secondValue)
+{
+    first = firstValue;
+    second = secondValue;
+    return this;
+}
+
+FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::setValuesAlternate(int firstValue, int secondValue)
 {
     first = firstValue;
     second = secondValue;
