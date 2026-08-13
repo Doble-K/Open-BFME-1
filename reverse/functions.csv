@@ -119557,7 +119557,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_007f4900@@YAXXZ,,0x007F4900,36,Code/gen_asm/d_007f2a50.asm,matched,gen-dump;ghidra=FUN_00bf4900
 ?d_007f49e0@@YAXXZ,,0x007F49E0,372,Code/gen_asm/d_007f2a50.asm,matched,gen-dump;ghidra=FUN_00bf49e0
 ?d_007f4bb0@@YAXXZ,,0x007F4BB0,269,Code/gen_asm/d_007f2a50.asm,matched,gen-dump;ghidra=FUN_00bf4bb0
-?d_007f4cc0@@YAXXZ,,0x007F4CC0,52,Code/gen_asm/d_007f2a50.asm,matched,gen-dump;ghidra=FUN_00bf4cc0
+?d_007f4cc0@@YAXXZ,,0x007F4CC0,52,Code/GameEngine/Source/Common/Rva7F4CC0ConstructorThunk.cpp,matched,object-symbol=??0Rva7F4CC0ConstructorThunk@@QAE@XZ;Open-BFME5 clean C++ constructor
 ?d_007f4d00@@YAXXZ,,0x007F4D00,32,Code/gen_asm/d_007f2a50.asm,matched,gen-dump;ghidra=FUN_00bf4d00
 ?d_007f4d20@@YAXXZ,,0x007F4D20,39,Code/gen_asm/d_007f2a50.asm,matched,gen-dump;ghidra=FUN_00bf4d20
 ?d_007f4d50@@YAXXZ,,0x007F4D50,52,Code/gen_asm/d_007f2a50.asm,matched,gen-dump;ghidra=FUN_00bf4d50
