@@ -1941,12 +1941,6 @@ public ?d_000be8d0@@YAXXZ
     db 8Bh, 0C1h, 8Bh, 4Ch, 24h, 04h, 89h, 08h, 0C2h, 04h, 00h
 ?d_000be8d0@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x000BE8E0 size 5
-public ?d_000be8e0@@YAXXZ
-?d_000be8e0@@YAXXZ PROC
-    db 8Bh, 0C1h, 0C2h, 04h, 00h
-?d_000be8e0@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x000BE8F0 size 8
 public ?d_000be8f0@@YAXXZ
 ?d_000be8f0@@YAXXZ PROC
