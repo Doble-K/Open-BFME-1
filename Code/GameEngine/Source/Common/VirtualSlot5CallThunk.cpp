@@ -965,6 +965,19 @@ int *IndirectIntegerCopyThunk::copyTo(int *destination) const
     return destination;
 }
 
+struct OffsetEightIndirectIntegerCopyThunk
+{
+    const unsigned char *source;
+
+    int *copyTo(int *destination) const;
+};
+
+int *OffsetEightIndirectIntegerCopyThunk::copyTo(int *destination) const
+{
+    *destination = *reinterpret_cast<const int *>(source + 8);
+    return destination;
+}
+
 struct LinkedNodePopValue
 {
     LinkedNodePopValue *next;
