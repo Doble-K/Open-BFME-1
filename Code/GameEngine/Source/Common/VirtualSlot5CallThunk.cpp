@@ -2037,6 +2037,18 @@ SingleIntegerZeroConstructorThirteenthThunk::SingleIntegerZeroConstructorThirtee
 {
 }
 
+struct SingleIntegerZeroConstructorFourteenthThunk
+{
+    int value;
+
+    SingleIntegerZeroConstructorFourteenthThunk();
+};
+
+SingleIntegerZeroConstructorFourteenthThunk::SingleIntegerZeroConstructorFourteenthThunk() :
+    value(0)
+{
+}
+
 struct FluentNoOpThunk
 {
     FluentNoOpThunk *ignore(int unused);

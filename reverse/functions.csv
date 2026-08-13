@@ -147883,7 +147883,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00467410@@YAXXZ,,0x00467410,57,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00467700@@YAXXZ,,0x00467700,9,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0SingleIntegerZeroConstructorThirteenthThunk@@QAE@XZ;Open-BFME5 clean C++ thirteenth single integer zero constructor
 ?d_004677f0@@YAXXZ,,0x004677F0,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?initializeSeventh@OwnerPairInitializerThunk@@QAEPAUOwnerPairValue@@PAU2@@Z;Open-BFME5 clean C++ seventh owner pair output initializer
-?d_00467810@@YAXXZ,,0x00467810,9,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
+?d_00467810@@YAXXZ,,0x00467810,9,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=??0SingleIntegerZeroConstructorFourteenthThunk@@QAE@XZ;Open-BFME5 clean C++ fourteenth single integer zero constructor
 ?d_00467820@@YAXXZ,,0x00467820,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?initializeEighth@OwnerPairInitializerThunk@@QAEPAUOwnerPairValue@@PAU2@@Z;Open-BFME5 clean C++ eighth owner pair output initializer
 ?d_00467840@@YAXXZ,,0x00467840,16,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?initializeNinth@OwnerPairInitializerThunk@@QAEPAUOwnerPairValue@@PAU2@@Z;Open-BFME5 clean C++ ninth owner pair output initializer
 ?d_00467860@@YAXXZ,,0x00467860,9,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
