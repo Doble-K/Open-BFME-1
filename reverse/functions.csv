@@ -122650,7 +122650,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00924090@@YAXXZ,,0x00924090,29,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24090
 ?d_00924110@@YAXXZ,,0x00924110,29,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24110
 ?d_00924150@@YAXXZ,,0x00924150,29,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24150
-?d_00924600@@YAXXZ,,0x00924600,174,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24600
 ?d_009246b0@@YAXXZ,,0x009246B0,176,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d246b0
 ?d_00924760@@YAXXZ,,0x00924760,174,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24760
 ?d_00924880@@YAXXZ,,0x00924880,154,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24880
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?Clone@Bitmap2DObjClass@@UBEPAVRenderObjClass@@XZ,,0x00956610,96,Code/Libraries/Source/WWVegas/WW3D2/Bitmap2DObjClone.cpp,matched,Open-BFME5 clean C++ BFME bitmap clone
 ?d_005db010@@YAXXZ,,0x005DB010,87,Code/GameEngine/Source/GameLogic/Object/PartitionCellDeletingDestructor.cpp,matched,object-symbol=??_EPartitionCell@@QAEPAXI@Z;Open-BFME5 clean C++ PartitionCell deleting destructor
 ?d_009080a0@@YAXXZ,,0x009080A0,201,Code/Libraries/Source/WWVegas/WW3D2/dx8wrapper.cpp,matched,Open-BFME5 clean C++ render device descriptor vector constructor;object-symbol=??0?$VectorClass@VRenderDeviceDescClass@@@@QAE@HPBVRenderDeviceDescClass@@@Z
+?d_00924600@@YAXXZ,,0x00924600,174,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,object-symbol=?get_shade_indices@MeshGeometryClass@@IAEPAK_N@Z;Open-BFME5 clean C++ shade-index buffer access

@@ -276,11 +276,11 @@ inline TriIndex * MeshGeometryClass::get_polys(void)
 
 inline uint32 * MeshGeometryClass::get_shade_indices(bool create)
 {
-	if (create && !VertexShadeIdx) {
-		VertexShadeIdx = NEW_REF(ShareBufferClass<uint32>,(VertexCount, "MeshGeometryClass::VertexShadeIdx"));
+	if (create && !*reinterpret_cast<ShareBufferClass<uint32> **>(reinterpret_cast<char *>(this) + 0x54)) {
+		*reinterpret_cast<ShareBufferClass<uint32> **>(reinterpret_cast<char *>(this) + 0x54) = NEW_REF(ShareBufferClass<uint32>,(*reinterpret_cast<int *>(reinterpret_cast<char *>(this) + 0x28), "MeshGeometryClass::VertexShadeIdx"));
 	}
-	if (VertexShadeIdx) {
-		return VertexShadeIdx->Get_Array();
+	if (*reinterpret_cast<ShareBufferClass<uint32> **>(reinterpret_cast<char *>(this) + 0x54)) {
+		return (*reinterpret_cast<ShareBufferClass<uint32> **>(reinterpret_cast<char *>(this) + 0x54))->Get_Array();
 	}
 	return NULL;
 }
@@ -305,4 +305,3 @@ inline uint8 MeshGeometryClass::Get_Poly_Surface_Type(int poly_index) const
 }
 
 #endif //MESHGEOMETRY_H
-
