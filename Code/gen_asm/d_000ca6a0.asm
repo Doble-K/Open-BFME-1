@@ -251,12 +251,6 @@ public ?d_000cacd0@@YAXXZ
     db 00h
 ?d_000cacd0@@YAXXZ ENDP
 
-; ghidra: bounds-high  retail @ 0x000CAD10 size 5
-public ?d_000cad10@@YAXXZ
-?d_000cad10@@YAXXZ PROC
-    db 8Bh, 0C1h, 0C2h, 04h, 00h
-?d_000cad10@@YAXXZ ENDP
-
 ; ghidra: bounds-high  retail @ 0x000CAD20 size 5
 public ?d_000cad20@@YAXXZ
 ?d_000cad20@@YAXXZ PROC
