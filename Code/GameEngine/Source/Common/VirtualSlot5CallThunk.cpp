@@ -1471,6 +1471,22 @@ RetainedReferenceCopyConstructorThirdThunk::RetainedReferenceCopyConstructorThir
     }
 }
 
+struct RetainedReferenceCopyConstructorFourthThunk
+{
+    ReferenceCountedReleaseValue *value;
+
+    RetainedReferenceCopyConstructorFourthThunk(const RetainedReferenceCopyConstructorFourthThunk &other);
+};
+
+RetainedReferenceCopyConstructorFourthThunk::RetainedReferenceCopyConstructorFourthThunk(const RetainedReferenceCopyConstructorFourthThunk &other) :
+    value(other.value)
+{
+    if (value != 0)
+    {
+        ++value->referenceCount;
+    }
+}
+
 struct RetainedReferenceSetterThunk
 {
     ReferenceCountedReleaseValue *value;
