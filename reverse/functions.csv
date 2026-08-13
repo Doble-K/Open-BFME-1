@@ -138431,7 +138431,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014a9d0@@YAXXZ,,0x0014A9D0,11,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014ad80@@YAXXZ,,0x0014AD80,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014b660@@YAXXZ,,0x0014B660,26,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014bad0@@YAXXZ,,0x0014BAD0,40,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014bb70@@YAXXZ,,0x0014BB70,28,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014bba0@@YAXXZ,,0x0014BBA0,26,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014bc30@@YAXXZ,,0x0014BC30,9,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0014b630@@YAXXZ,,0x0014B630,27,Code/GameEngine/Source/Common/Rva14B630StringRecordCopy.cpp,matched,object-symbol=??0Rva14B630StringRecord@@QAE@ABU0@@Z;Open-BFME5 clean C++ RVA 14B630 AsciiString record copy constructor
 ?d_0014ba40@@YAXXZ,,0x0014BA40,36,Code/GameEngine/Source/Common/Rva14BA40ListNodeErase.cpp,matched,object-symbol=?erase@Rva14BA40List@@QAEPAURva14BA40ListIterator@@PAU2@PAURva14BA40ListNode@@@Z;Open-BFME5 clean C++ RVA 14BA40 doubly-linked node erase
 ?d_0014ba70@@YAXXZ,,0x0014BA70,26,Code/GameEngine/Source/Common/Rva14BA70StoredIteratorErase.cpp,matched,object-symbol=?eraseCurrent@Rva14BA70StoredIterator@@QAEXXZ;Open-BFME5 clean C++ RVA 14BA70 stored-iterator node erase
+?d_0014bad0@@YAXXZ,,0x0014BAD0,40,Code/GameEngine/Source/Common/Rva14BAD0ListConstructor.cpp,matched,object-symbol=??0Rva14BAD0List@@QAE@H@Z;Open-BFME5 clean C++ RVA 14BAD0 sentinel list constructor
