@@ -137712,7 +137712,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00112960@@YAXXZ,,0x00112960,13,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00112990@@YAXXZ,,0x00112990,20,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00112a30@@YAXXZ,,0x00112A30,8,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
-?d_00112a40@@YAXXZ,,0x00112A40,5,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
+?d_00112a40@@YAXXZ,,0x00112A40,5,Code/GameEngine/Source/Common/Rva112A40VirtualDispatchThunk.cpp,matched,object-symbol=?dispatch@Rva112A40VirtualDispatchThunk@@QAEXXZ;Open-BFME5 clean C++ RVA 112A40 virtual slot 9 dispatch
 ?d_00113280@@YAXXZ,,0x00113280,1396,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_001139e0@@YAXXZ,,0x001139E0,9,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00113ac0@@YAXXZ,,0x00113AC0,6,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
