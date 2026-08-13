@@ -106742,7 +106742,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00100580@@YAXXZ,,0x00100580,170,Code/gen_asm/d_000fb610.asm,matched,gen-dump;ghidra=FUN_00500580
 ?d_00100690@@YAXXZ,,0x00100690,2483,Code/gen_asm/d_000fb610.asm,matched,gen-dump;ghidra=FUN_00500690
 ?d_001012b0@@YAXXZ,,0x001012B0,1109,Code/gen_asm/d_000fb610.asm,matched,gen-dump;ghidra=FUN_005012b0
-?d_00101ba0@@YAXXZ,,0x00101BA0,11,Code/gen_asm/d_000fb610.asm,matched,gen-dump;ghidra=FUN_00501ba0
+??1CDManagerInterface@@UAE@XZ,,0x00101BA0,11,Code/GameEngine/Source/Common/System/CDManager.cpp,matched,Open-BFME5 CDManagerInterface destructor C++ recovery
 ?d_00101c10@@YAXXZ,,0x00101C10,18,Code/gen_asm/d_000fb610.asm,matched,gen-dump;ghidra=FUN_00501c10
 ?d_00102470@@YAXXZ,,0x00102470,31,Code/gen_asm/d_000fb610.asm,matched,gen-dump;ghidra=FUN_00502470
 ?d_001025f0@@YAXXZ,,0x001025F0,24,Code/gen_asm/d_000fb610.asm,matched,gen-dump;ghidra=FUN_005025f0
