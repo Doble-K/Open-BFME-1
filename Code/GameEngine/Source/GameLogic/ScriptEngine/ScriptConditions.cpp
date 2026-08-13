@@ -2691,6 +2691,10 @@ Bool ScriptConditions::evaluateSkirmishSupplySourceAttacked(Parameter *pSkirmish
 	if (!player) {
 		return FALSE;
 	}
+	// BFME's Player::isSupplySourceAttacked is not ZH's: ZH forwards to m_ai,
+	// retail inlines `cmp DWORD PTR [eax+0x30],0xffffffff` / `sete al`. Left as
+	// the call because the inlined form does not reproduce -- see the
+	// investigation log for 0x000F9700.
 	return player->isSupplySourceAttacked( );
 }	
 
