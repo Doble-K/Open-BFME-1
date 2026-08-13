@@ -5697,14 +5697,6 @@ Bool PartitionFilterAcceptByKindOf::allow(Object *objOther)
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-// ?allow@PartitionFilterRejectByKindOf@@UAE_NPAVObject@@@Z present-unmatched
-Bool PartitionFilterRejectByKindOf::allow(Object *objOther)
-{
-	return !objOther->isKindOfMulti(m_mustBeSet, m_mustBeClear); 
-}
-
-
-//-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
@@ -6068,4 +6060,3 @@ SightingInfo::~SightingInfo()
 {
 
 }  // end loadPostProcess
-
