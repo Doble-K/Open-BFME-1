@@ -168,6 +168,7 @@ struct VirtualSlot2MemberCallThunk
     void invokeMemberAlternate();
     void invokeMemberThird();
     void invokeMemberFourth();
+    void invokeMemberFifth();
 };
 
 void VirtualSlot2MemberCallThunk::invokeMember()
@@ -186,6 +187,11 @@ void VirtualSlot2MemberCallThunk::invokeMemberThird()
 }
 
 void VirtualSlot2MemberCallThunk::invokeMemberFourth()
+{
+    invoke(value);
+}
+
+void VirtualSlot2MemberCallThunk::invokeMemberFifth()
 {
     invoke(value);
 }
