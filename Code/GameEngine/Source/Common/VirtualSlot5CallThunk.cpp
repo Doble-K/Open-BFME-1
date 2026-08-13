@@ -1243,6 +1243,7 @@ struct FluentNoOpThunk
     FluentNoOpThunk *ignore(int unused);
     FluentNoOpThunk *ignoreAlternate(int unused);
     FluentNoOpThunk *ignoreThird(int unused);
+    FluentNoOpThunk *ignoreFourth(int unused);
 };
 
 FluentNoOpThunk *FluentNoOpThunk::ignore(int)
@@ -1256,6 +1257,11 @@ FluentNoOpThunk *FluentNoOpThunk::ignoreAlternate(int)
 }
 
 FluentNoOpThunk *FluentNoOpThunk::ignoreThird(int)
+{
+    return this;
+}
+
+FluentNoOpThunk *FluentNoOpThunk::ignoreFourth(int)
 {
     return this;
 }
