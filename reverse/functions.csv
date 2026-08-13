@@ -138974,7 +138974,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00189ba0@@YAXXZ,,0x00189BA0,5,Code/GameEngine/Source/Common/Rva189BA0VirtualSlotFourDispatchThunk.cpp,matched,object-symbol=?dispatch@Rva189BA0VirtualSlotFourDispatchThunk@@QAEXXZ;Open-BFME5 clean C++ RVA 189BA0 virtual slot four tail dispatch
 ?d_00189dc0@@YAXXZ,,0x00189DC0,5,Code/GameEngine/Source/Common/Rva189DC0VirtualSlotFourDispatchThunk.cpp,matched,object-symbol=?dispatch@Rva189DC0VirtualSlotFourDispatchThunk@@QAEXXZ;Open-BFME5 clean C++ RVA 189DC0 virtual slot four tail dispatch
 ?d_00189dd0@@YAXXZ,,0x00189DD0,15,Code/GameEngine/Source/Common/Rva189DD0HeadPopThunk.cpp,matched,object-symbol=?pop@Rva189DD0HeadPopThunk@@QAEPAPAURva189DD0Node@@PAPAU2@H@Z;Open-BFME5 clean C++ RVA 189DD0 intrusive head pop
-?d_00189df0@@YAXXZ,,0x00189DF0,16,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?d_00189df0@@YAXXZ,,0x00189DF0,16,Code/GameEngine/Source/Common/Rva189DF0PairInitializer.cpp,matched,object-symbol=?initialize@Rva189DF0PairInitializer@@QAEPAU1@XZ;Open-BFME5 clean C++ RVA 189DF0 pair initializer
 ?d_00189e40@@YAXXZ,,0x00189E40,51,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00189f70@@YAXXZ,,0x00189F70,27,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00189fa0@@YAXXZ,,0x00189FA0,63,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
