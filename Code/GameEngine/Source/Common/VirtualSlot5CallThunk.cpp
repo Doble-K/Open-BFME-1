@@ -673,3 +673,18 @@ int Offset136IntegerGetterThunk::get() const
 {
     return value;
 }
+
+struct Offset140IntegerPairSetterThunk
+{
+    unsigned char padding[0x8c];
+    int first;
+    int second;
+
+    void setValues(int firstValue, int secondValue);
+};
+
+void Offset140IntegerPairSetterThunk::setValues(int firstValue, int secondValue)
+{
+    first = firstValue;
+    second = secondValue;
+}
