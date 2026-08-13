@@ -1,4 +1,7 @@
 name,address,notes
+??4ScienceInfoBase@@QAEAAV0@ABV0@@Z,0x00048725,Open-BFME5 ScienceInfo overridable-base assignment
+??4UnicodeString@@QAEAAV0@ABV0@@Z,0x00888530,Open-BFME5 ScienceInfo UnicodeString assignment body
+??4ScienceVecStorage@@QAEAAV0@ABV0@@Z,0x0002A185,Open-BFME5 ScienceInfo prerequisite-vector assignment ILT
 ??1Node@?$SList@VTagBlockIndex@@@@QAE@XZ,0x009ED2F0,Open-BFME5 SList TagBlockIndex node destructor
 ?$S103@?1??getClassMemoryPool@AIUpdateInterface@@CAPAVMemoryPool@@XZ@4IA,0x00EEFE34,pool-glue cascade static (back-solved)
 ?$S105@?1??getClassMemoryPool@PoisonedBehavior@@CAPAVMemoryPool@@XZ@4IA,0x00EEF830,pool-glue cascade static (back-solved)
