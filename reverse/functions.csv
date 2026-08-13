@@ -144379,7 +144379,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0036ca30@@YAXXZ,,0x0036CA30,8,Code/GameEngine/Source/Common/PointerOffset4Thunk.cpp,matched,object-symbol=?pointerOffset4@@YAPAXPAX@Z;Open-BFME5 clean C++ pointer offset helper
 ?d_0036ca40@@YAXXZ,,0x0036CA40,8,Code/GameEngine/Source/Common/PointerOffset4Thunk.cpp,matched,object-symbol=?pointerOffset4Alternate@@YAPAXPAX@Z;Open-BFME5 clean C++ pointer offset helper
 ?d_0036ca50@@YAXXZ,,0x0036CA50,8,Code/GameEngine/Source/Common/PointerOffset4Thunk.cpp,matched,object-symbol=?pointerOffset4Third@@YAPAXPAX@Z;Open-BFME5 clean C++ pointer offset helper
-?d_0036cae0@@YAXXZ,,0x0036CAE0,17,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
+?d_0036cae0@@YAXXZ,,0x0036CAE0,17,Code/GameEngine/Source/Common/ConditionalScalarCopyThunk.cpp,matched,object-symbol=?conditionalScalarCopy@@YAXPAKPBK@Z;Open-BFME5 clean C++ null-guarded scalar copy
 ?d_0036cb00@@YAXXZ,,0x0036CB00,17,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036cb30@@YAXXZ,,0x0036CB30,13,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036cb60@@YAXXZ,,0x0036CB60,104,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
