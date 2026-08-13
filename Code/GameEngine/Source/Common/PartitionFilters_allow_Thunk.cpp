@@ -1,17 +1,34 @@
 // cl: /DNDEBUG /MD /EHsc
-// Open-BFME5: PartitionFilterIrregularArea::allow and PartitionFilterPlayer::allow.
+// Open-BFME5: partition filter bodies whose member offsets PartitionManager.cpp
+// cannot reproduce -- PartitionFilterIrregularArea::allow,
+// PartitionFilterPlayer::allow, and PartitionFilterPossibleToAttack's
+// constructor.
 //
-// Both bodies are the Zero Hour source unchanged; what PartitionManager.cpp
-// cannot reproduce is where the members sit. ZH's PartitionFilter contributes
-// only a vtable pointer, so the first member of every filter lands at +0x04.
-// Retail reads them from +0x08: BFME's base carries four more bytes ahead of
-// the derived members. That shift is not this file's to fix -- correcting the
-// base inside PartitionManager.cpp would move every one of its 74 matched rows
-// -- so the filters are spelled locally with the gap made explicit, the same
-// way PartitionFilterPlayerAffiliation_allow_Thunk.cpp already does.
+// All three are the Zero Hour source unchanged; only the layout differs, and
+// the three of them together say the layout differs PER FILTER, not once in the
+// shared base:
+//
+//   PartitionFilterPossibleToAttack  ctor writes +0x04, +0x08, +0x0c
+//   PartitionFilterPlayer            allow reads  +0x08, +0x0c
+//   PartitionFilterPlayerAffiliation allow reads  +0x08, +0x0c, +0x10
+//
+// ZH's PartitionFilter contributes only a vtable pointer, so the first member
+// should land at +0x04 -- which is exactly what PossibleToAttack does. So the
+// base is NOT four bytes wider in BFME; the two that start at +0x08 each carry
+// something of their own ahead of the members ZH declares. Widening
+// PartitionFilter to explain them would break this constructor.
+//
+// Spelled locally rather than fixed in PartitionManager.cpp, which would move
+// every one of its 74 matched rows, the same way
+// PartitionFilterPlayerAffiliation_allow_Thunk.cpp already does.
 
 struct Coord3D;
 class Player;
+
+// Only needed so the constructor below mangles as retail does; no value in
+// either is read by any body here.
+enum AbleToAttackType { ATTACK_TYPE_UNRECONSTRUCTED };
+enum CommandSourceType { COMMAND_SOURCE_UNRECONSTRUCTED };
 
 bool PointInsideArea2D(const Coord3D *pt, const Coord3D *area, int numPoints);
 
@@ -42,6 +59,23 @@ private:
 	int m_numPointsInArea;								///< retail this+0x0C
 };
 
+// Members land at +0x04 with nothing between them and the vtable pointer --
+// this is the filter that shows the shared base is a bare vptr.
+class PartitionFilterPossibleToAttack
+{
+public:
+	PartitionFilterPossibleToAttack(AbleToAttackType attackType, const Object *source,
+		CommandSourceType commandSource);
+
+protected:
+	virtual bool allow(Object *);
+
+private:
+	AbleToAttackType m_attackType;						///< retail this+0x04
+	const Object *m_source;								///< retail this+0x08
+	CommandSourceType m_commandSource;					///< retail this+0x0c
+};
+
 class PartitionFilterPlayer
 {
 protected:
@@ -64,4 +98,13 @@ bool PartitionFilterIrregularArea::allow(Object *other)
 bool PartitionFilterPlayer::allow(Object *other)
 {
 	return ((m_player == other->getControllingPlayer()) == m_match);
+}
+
+// ??0PartitionFilterPossibleToAttack@@QAE@W4AbleToAttackType@@PBVObject@@W4CommandSourceType@@@Z
+PartitionFilterPossibleToAttack::PartitionFilterPossibleToAttack(
+	AbleToAttackType attackType, const Object *source, CommandSourceType commandSource) :
+	m_attackType(attackType),
+	m_source(source),
+	m_commandSource(commandSource)
+{
 }

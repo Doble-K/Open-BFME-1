@@ -114260,7 +114260,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_004cd6c0@@YAXXZ,,0x004CD6C0,139,Code/gen_asm/d_004c3de0.asm,matched,gen-dump;ghidra=FUN_008cd6c0
 ?d_004cd780@@YAXXZ,,0x004CD780,125,Code/gen_asm/d_004c3de0.asm,matched,gen-dump;ghidra=FUN_008cd780
 ?d_004cd820@@YAXXZ,,0x004CD820,437,Code/gen_asm/d_004c3de0.asm,matched,gen-dump;ghidra=FUN_008cd820
-?d_004ce820@@YAXXZ,,0x004CE820,35,Code/gen_asm/d_004c3de0.asm,matched,gen-dump;ghidra=FUN_008ce820
 ?d_004ce910@@YAXXZ,,0x004CE910,88,Code/gen_asm/d_004c3de0.asm,matched,gen-dump;ghidra=FUN_008ce910
 ?d_004d0230@@YAXXZ,,0x004D0230,1010,Code/gen_asm/d_004c3de0.asm,matched,gen-dump;ghidra=FUN_008d0230
 ?d_004d1370@@YAXXZ,,0x004D1370,868,Code/gen_asm/d_004c3de0.asm,matched,gen-dump;ghidra=FUN_008d1370
@@ -148886,7 +148885,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004c1240@@YAXXZ,,0x004C1240,48,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c1280@@YAXXZ,,0x004C1280,12,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c1290@@YAXXZ,,0x004C1290,18,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
-?d_004c12b0@@YAXXZ,,0x004C12B0,32,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c1310@@YAXXZ,,0x004C1310,11,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c14d0@@YAXXZ,,0x004C14D0,21,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c14f0@@YAXXZ,,0x004C14F0,14,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
@@ -157942,3 +157940,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?HideDiplomacy@@YAX_N@Z,,0x004C33D0,77,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp,matched,
 ?calcExtraPathDistance@AIFollowWaypointPathState@@IAEMXZ,,0x0016C500,68,Code/GameEngine/Source/GameLogic/AI/AIFollowWaypointPathState_calcExtraPathDistance_Thunk.cpp,matched,
 ?onCreate@SupplyWarehouseCreate@@UAEXXZ,,0x002505A0,69,Code/GameEngine/Source/GameLogic/Object/Create/SupplyWarehouseCreate.cpp,matched,SupplyWarehouseCreate::onCreate; retail Player+0x228 is m_resourceGatheringManager (BFME layout drift vs vendored header natural offset)
+?getGameName@GameSpyStagingRoom@@QBE?AVUnicodeString@@XZ,,0x004CE820,35,Code/GameEngine/Source/GameNetwork/GameSpyStagingRoom_getGameName_Thunk.cpp,matched,Open-BFME5 m_gameName at +0x3a0
+??0PartitionFilterPossibleToAttack@@QAE@W4AbleToAttackType@@PBVObject@@W4CommandSourceType@@@Z,,0x004C12B0,32,Code/GameEngine/Source/Common/PartitionFilters_allow_Thunk.cpp,matched,Open-BFME5 members at +0x4 +0x8 +0xc so the shared filter base is a bare vptr
