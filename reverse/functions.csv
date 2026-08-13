@@ -138516,7 +138516,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0015bbd0@@YAXXZ,,0x0015BBD0,59,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015bc30@@YAXXZ,,0x0015BC30,84,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015bdd0@@YAXXZ,,0x0015BDD0,20,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0015c0b0@@YAXXZ,,0x0015C0B0,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015c260@@YAXXZ,,0x0015C260,16,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015c490@@YAXXZ,,0x0015C490,23,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015c7a0@@YAXXZ,,0x0015C7A0,476,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?rewindField@AddressState001516B0@@QAEXXZ,,0x001516B0,5,Code/GameEngine/Source/Common/FieldRewind001516B0.cpp,matched,Open-BFME5 clean C++ offset-4 field rewind
 ?setFlag@AddressState0015BA70@@QAEXXZ,,0x0015BA70,5,Code/GameEngine/Source/Common/FlagSet0015BA70.cpp,matched,Open-BFME5 clean C++ flag set at offset 0x44
 ?setFlag@AddressState0015BB30@@QAEXXZ,,0x0015BB30,5,Code/GameEngine/Source/Common/FlagSet0015BB30.cpp,matched,Open-BFME5 clean C++ adjacent flag set at offset 0x44
+?forwardSlot9@AddressThunk0015C0B0@@QAEXXZ,,0x0015C0B0,5,Code/GameEngine/Source/Common/VirtualDispatchSlot9.cpp,matched,Open-BFME5 clean C++ virtual slot 9 tail dispatch
