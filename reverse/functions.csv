@@ -136523,7 +136523,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000bed00@@YAXXZ,,0x000BED00,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000bed10@@YAXXZ,,0x000BED10,11,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000bed20@@YAXXZ,,0x000BED20,13,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000bed50@@YAXXZ,,0x000BED50,11,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
+?d_000bed50@@YAXXZ,,0x000BED50,11,Code/GameEngine/Source/Common/RvaBED50ValueCopy.cpp,matched,object-symbol=?copy@RvaBED50ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
 ?d_000bed70@@YAXXZ,,0x000BED70,49,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000bee00@@YAXXZ,,0x000BEE00,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000bee10@@YAXXZ,,0x000BEE10,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
