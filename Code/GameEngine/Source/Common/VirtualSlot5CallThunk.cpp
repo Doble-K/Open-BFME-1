@@ -791,3 +791,24 @@ TwoIntegerClearThunk::TwoIntegerClearThunk() :
     second(0)
 {
 }
+
+struct VirtualSlot9NoArgumentCallThunk
+{
+    virtual void slot0();
+    virtual void slot1();
+    virtual void slot2();
+    virtual void slot3();
+    virtual void slot4();
+    virtual void slot5();
+    virtual void slot6();
+    virtual void slot7();
+    virtual void slot8();
+    virtual void invoke();
+
+    void call();
+};
+
+void VirtualSlot9NoArgumentCallThunk::call()
+{
+    invoke();
+}
