@@ -1141,3 +1141,13 @@ bool PointerPresenceThunk::hasValue() const
 {
     return value != 0;
 }
+
+struct IntegerArgumentIdentityThunk
+{
+    int identity(int value) const;
+};
+
+int IntegerArgumentIdentityThunk::identity(int value) const
+{
+    return value;
+}
