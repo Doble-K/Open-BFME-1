@@ -139160,7 +139160,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?rva_192480_pointer_offset@@YAPAEPAE@Z,,0x00192480,8,Code/GameEngine/Source/Common/Rva192480PointerOffset.cpp,matched,hand-reconciled C++
 ?rva_192490_pointer_offset@@YAPAEPAE@Z,,0x00192490,8,Code/GameEngine/Source/Common/Rva192490PointerOffset.cpp,matched,hand-reconciled C++
 ?d_001924b0@@YAXXZ,,0x001924B0,13,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_00192530@@YAXXZ,,0x00192530,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?rva_192530_pointer_offset@@YAPAEPAE@Z,,0x00192530,8,Code/GameEngine/Source/Common/Rva192530PointerOffset.cpp,matched,hand-reconciled C++
 ?d_00192540@@YAXXZ,,0x00192540,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00192550@@YAXXZ,,0x00192550,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00192560@@YAXXZ,,0x00192560,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
