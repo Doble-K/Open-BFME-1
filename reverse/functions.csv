@@ -111221,7 +111221,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00336c20@@YAXXZ,,0x00336C20,7,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00736c20
 ?d_00336c60@@YAXXZ,,0x00336C60,30,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00736c60
 ?d_00336c90@@YAXXZ,,0x00336C90,87,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00736c90
-?d_00336d10@@YAXXZ,,0x00336D10,15,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00736d10
+?notifyOfObjectCreationOrDestruction@ScriptEngine@@QAEXXZ,,0x00336D10,15,Code/GameEngine/Source/Common/Player_onStructureConstructionComplete_Thunk.cpp,matched,Open-BFME5 ScriptEngine object-change notification C++ recovery
 ?d_00336d30@@YAXXZ,,0x00336D30,15,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00736d30
 ?d_00336d90@@YAXXZ,,0x00336D90,277,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00736d90
 ?d_00336ef0@@YAXXZ,,0x00336EF0,7,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00736ef0

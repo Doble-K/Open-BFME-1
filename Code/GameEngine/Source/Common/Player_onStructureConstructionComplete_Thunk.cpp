@@ -6,7 +6,20 @@ class Object;
 class ScriptEngine
 {
 public:
-	void notifyOfObjectCreationOrDestruction();
+	__declspec(noinline) void notifyOfObjectCreationOrDestruction();
+
+private:
+	char Pad[0x170D8];
+	unsigned int FrameObjectCountChanged;
+};
+
+class GameLogic
+{
+private:
+	char Pad[0x3C];
+
+public:
+	unsigned int Frame;
 };
 
 class Pathfinder
@@ -75,8 +88,14 @@ private:
 };
 
 extern ScriptEngine *TheScriptEngine;
+extern GameLogic *TheGameLogic;
 extern AI *TheAI;
 extern ControlBar *TheControlBar;
+
+__declspec(noinline) void ScriptEngine::notifyOfObjectCreationOrDestruction()
+{
+	FrameObjectCountChanged = TheGameLogic->Frame;
+}
 
 void Player::onStructureConstructionComplete(Object *builder, Object *structure, bool)
 {
