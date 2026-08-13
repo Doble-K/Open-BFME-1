@@ -138586,7 +138586,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00160bb0@@YAXXZ,,0x00160BB0,32,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00160c70@@YAXXZ,,0x00160C70,16,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00160ca0@@YAXXZ,,0x00160CA0,32,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_00160e20@@YAXXZ,,0x00160E20,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00160f80@@YAXXZ,,0x00160F80,41,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00160fc0@@YAXXZ,,0x00160FC0,38,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_00160ff0@@YAXXZ,,0x00160FF0,43,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?setFlag@AddressState0015BA70@@QAEXXZ,,0x0015BA70,5,Code/GameEngine/Source/Common/FlagSet0015BA70.cpp,matched,Open-BFME5 clean C++ flag set at offset 0x44
 ?setFlag@AddressState0015BB30@@QAEXXZ,,0x0015BB30,5,Code/GameEngine/Source/Common/FlagSet0015BB30.cpp,matched,Open-BFME5 clean C++ adjacent flag set at offset 0x44
 ?forwardSlot9@AddressThunk0015C0B0@@QAEXXZ,,0x0015C0B0,5,Code/GameEngine/Source/Common/VirtualDispatchSlot9.cpp,matched,Open-BFME5 clean C++ virtual slot 9 tail dispatch
+?evaluate@AddressPredicate00160E20@@QAE_NPAX0@Z,,0x00160E20,5,Code/GameEngine/Source/Common/FalsePredicate00160E20.cpp,matched,Open-BFME5 clean C++ two-argument false predicate
