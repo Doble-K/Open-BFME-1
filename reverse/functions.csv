@@ -139374,7 +139374,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001a4550@@YAXXZ,,0x001A4550,11,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a4560@@YAXXZ,,0x001A4560,5,Code/GameEngine/Source/Common/Rva1A4560IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva1A4560IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 1A4560 identity with one argument
 ?d_001a4570@@YAXXZ,,0x001A4570,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_001a4580@@YAXXZ,,0x001A4580,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
+?d_001a4580@@YAXXZ,,0x001A4580,5,Code/GameEngine/Source/Common/Rva1A4580PointerIdentity.cpp,matched,object-symbol=?rva_1a4580_pointer_identity@@YAPAXPAX@Z;Open-BFME5 clean C++ RVA 1A4580 cdecl pointer identity
 ?d_001a4590@@YAXXZ,,0x001A4590,49,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a45d0@@YAXXZ,,0x001A45D0,5,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a45e0@@YAXXZ,,0x001A45E0,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
