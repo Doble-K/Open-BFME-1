@@ -936,9 +936,16 @@ struct OffsetZeroSecondIntegerSetterReturningThisThunk
     int value;
 
     OffsetZeroSecondIntegerSetterReturningThisThunk *setSecond(int unused, int newValue);
+    OffsetZeroSecondIntegerSetterReturningThisThunk *setSecondAlternate(int unused, int newValue);
 };
 
 OffsetZeroSecondIntegerSetterReturningThisThunk *OffsetZeroSecondIntegerSetterReturningThisThunk::setSecond(int, int newValue)
+{
+    value = newValue;
+    return this;
+}
+
+OffsetZeroSecondIntegerSetterReturningThisThunk *OffsetZeroSecondIntegerSetterReturningThisThunk::setSecondAlternate(int, int newValue)
 {
     value = newValue;
     return this;
