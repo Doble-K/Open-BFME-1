@@ -106165,7 +106165,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000c2a30@@YAXXZ,,0x000C2A30,107,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c2a30
 ?d_000c2bc0@@YAXXZ,,0x000C2BC0,281,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c2bc0
 ?d_000c3060@@YAXXZ,,0x000C3060,261,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c3060
-?d_000c3410@@YAXXZ,,0x000C3410,89,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c3410
 ?d_000c3480@@YAXXZ,,0x000C3480,292,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c3480
 ?d_000c3660@@YAXXZ,,0x000C3660,113,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c3660
 ?d_000c3980@@YAXXZ,,0x000C3980,95,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c3980
@@ -122774,7 +122773,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00933d30@@YAXXZ,,0x00933D30,192,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33d30
 ?d_00934630@@YAXXZ,,0x00934630,324,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d34630
 ?d_00934780@@YAXXZ,,0x00934780,61,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d34780
-?d_009347c0@@YAXXZ,,0x009347C0,84,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d347c0
 ?d_00934820@@YAXXZ,,0x00934820,276,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d34820
 ?d_00934940@@YAXXZ,,0x00934940,8277,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d34940
 ?d_009369a0@@YAXXZ,,0x009369A0,773,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d369a0
@@ -157940,3 +157938,6 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?open@StreamingArchiveFile@@UAE_NPBDH@Z,,0x009D2190,52,Code/GameEngine/Source/Common/System/StreamingArchiveFile_openThunk.cpp,matched,
 ?getVertexBuffer@StreakRendererClass@@AAEPAUVertexFormatXYZUV1@@I@Z,,0x0095C510,57,Code/Libraries/Source/WWVegas/WW3D2/StreakRendererClass_getVertexBuffer_Thunk.cpp,matched,
 ??0ObjectTypesTemp@@QAE@XZ,,0x002ED6C0,106,Code/GameEngine/Source/GameLogic/ScriptEngine/ObjectTypesTemp_ctor_Thunk.cpp,matched,
+?refreshGameList@@YAX_N@Z,,0x004F9620,70,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenuRefreshGameListThunk.cpp,matched,isolated thunk; local vtable-slot-43 stand-in reproduces BFME GameSpyInfoInterface; timeGetTime declared dllimport for indirect IAT call
+?Add@?$DynamicVectorClass@U_ArcInfoStruct@VehicleCurveClass@@@@QAE_NABU_ArcInfoStruct@VehicleCurveClass@@@Z,,0x009347C0,84,Code/Libraries/Source/WWVegas/WWMath/VehicleCurveArc_Add_Thunk.cpp,matched,
+??1DamageInfo@@QAE@XZ,,0x000C3410,89,Code/GameEngine/Source/Common/DamageInfoDestructorThunk.cpp,matched,
