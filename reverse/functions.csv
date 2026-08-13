@@ -138511,7 +138511,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0015b940@@YAXXZ,,0x0015B940,32,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015b9f0@@YAXXZ,,0x0015B9F0,6,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015ba00@@YAXXZ,,0x0015BA00,81,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0015ba70@@YAXXZ,,0x0015BA70,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015bae0@@YAXXZ,,0x0015BAE0,63,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015bb30@@YAXXZ,,0x0015BB30,5,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0015bb80@@YAXXZ,,0x0015BB80,48,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?returnThis@AddressObject00150330@@QAEPAV1@PAX@Z,,0x00150330,5,Code/GameEngine/Source/Common/ReturnThis00150330.cpp,matched,Open-BFME5 clean C++ adjacent return-this member
 ?returnThis@AddressObject001503F0@@QAEPAV1@PAX@Z,,0x001503F0,5,Code/GameEngine/Source/Common/ReturnThis001503F0.cpp,matched,Open-BFME5 clean C++ return-this member at 0x001503F0
 ?rewindField@AddressState001516B0@@QAEXXZ,,0x001516B0,5,Code/GameEngine/Source/Common/FieldRewind001516B0.cpp,matched,Open-BFME5 clean C++ offset-4 field rewind
+?setFlag@AddressState0015BA70@@QAEXXZ,,0x0015BA70,5,Code/GameEngine/Source/Common/FlagSet0015BA70.cpp,matched,Open-BFME5 clean C++ flag set at offset 0x44
