@@ -1929,6 +1929,18 @@ SingleIntegerZeroConstructorFourthThunk::SingleIntegerZeroConstructorFourthThunk
 {
 }
 
+struct SingleIntegerZeroConstructorFifthThunk
+{
+    int value;
+
+    SingleIntegerZeroConstructorFifthThunk();
+};
+
+SingleIntegerZeroConstructorFifthThunk::SingleIntegerZeroConstructorFifthThunk() :
+    value(0)
+{
+}
+
 struct FluentNoOpThunk
 {
     FluentNoOpThunk *ignore(int unused);
