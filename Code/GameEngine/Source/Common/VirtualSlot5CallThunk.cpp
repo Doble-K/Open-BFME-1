@@ -687,6 +687,19 @@ int Offset432IntegerGetterThunk::get() const
     return value;
 }
 
+struct Offset592IntegerGetterThunk
+{
+    unsigned char padding[0x250];
+    int value;
+
+    int get() const;
+};
+
+int Offset592IntegerGetterThunk::get() const
+{
+    return value;
+}
+
 struct Offset140IntegerPairSetterThunk
 {
     unsigned char padding[0x8c];
