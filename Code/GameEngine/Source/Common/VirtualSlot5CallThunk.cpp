@@ -165,9 +165,15 @@ struct VirtualSlot2MemberCallThunk
     int value;
 
     void invokeMember();
+    void invokeMemberAlternate();
 };
 
 void VirtualSlot2MemberCallThunk::invokeMember()
+{
+    invoke(value);
+}
+
+void VirtualSlot2MemberCallThunk::invokeMemberAlternate()
 {
     invoke(value);
 }
