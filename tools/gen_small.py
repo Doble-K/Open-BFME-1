@@ -61,6 +61,7 @@ import bisect
 import collections
 import csv
 import hashlib
+import io
 import json
 import re
 import struct
@@ -70,6 +71,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build as B
+import ledger_io
 from add_match import parse_ledger
 from portable_lock import lock
 
@@ -80,6 +82,8 @@ GEN_DIR = ROOT / "Code" / "gen_small"
 PENDING_DIR = ROOT / "build" / "gen_small"
 # Byte dumps of retail, not source. See load_claims(skip_dumps=).
 DUMP_DIR_PREFIX = "Code/gen_asm/"
+# The only record of a functions.csv deletion; see retract_dump_rows().
+DELETED = ROOT / "reverse" / "deleted_rows.csv"
 LOCK_FILE = ROOT / "reverse" / ".add_match.lock"
 
 # The inventory this generator works over. Bigger ghidra functions carry real
@@ -4016,27 +4020,34 @@ def overlap_index(ledger_rows):
     return [r[0] for r in ranges], ranges, max((r[1] - r[0] for r in ranges), default=0)
 
 
-def find_overlap(index, rva, size):
+def find_overlap(index, rva, size, skip=None):
     starts, ranges, widest = index
     lo = bisect.bisect_left(starts, rva - widest)
     hi = bisect.bisect_left(starts, rva + size)
     for start, end, name in ranges[lo:hi]:
-        if start < rva + size and rva < end:
+        if start < rva + size and rva < end and name != skip:
             return name, start, end
     return None
 
 
 def validate_rows(rows, ledger_rows):
-    """Split generated rows into (to_append, already_landed), refusing anything
-    that would double-claim. Mirrors add_match.py's per-row checks, run once over
-    the whole batch instead of once per row."""
+    """Split generated rows into (to_append, already_landed, to_retract), refusing
+    anything that would double-claim. Mirrors add_match.py's per-row checks, run once
+    over the whole batch instead of once per row.
+
+    A Code/gen_asm/ row over the EXACT same range is not a double claim: a dump is
+    retail's own bytes under a synthetic name, holding a boundary until a real body
+    arrives. That body supersedes it, and land_batch retracts and tombstones the dump
+    in the same transaction. Any other extent means the boundary itself is in dispute
+    — a real conflict, which still raises.
+    """
     by_name = {}
     for row in ledger_rows:
         by_name.setdefault(row["name"], []).append(row)
     by_rva = {row["rva"]: row for row in ledger_rows}
     index = overlap_index(ledger_rows)
 
-    to_append, landed = [], 0
+    to_append, landed, to_retract = [], 0, []
     seen_names, seen_rvas = set(), set()
     for row in rows:
         name, _, target_rva, target_size, source, status, _ = row.split(",")
@@ -4054,15 +4065,57 @@ def validate_rows(rows, ledger_rows):
             where = ", ".join(f"0x{c['rva']:08X} ({c['source']}, {c['status']})" for c in claims)
             raise FormatError(f"{name} is already in the ledger at {where}")
         owner = by_rva.get(rva)
+        superseded = None
         if owner is not None:
-            raise FormatError(f"target_rva 0x{rva:08X} is already claimed by {owner['name']} "
-                              f"({owner['source']}, {owner['status']}, line {owner['line']})")
-        hit = find_overlap(index, rva, size)
+            if owner["source"].startswith(DUMP_DIR_PREFIX) and owner["size"] == size:
+                superseded = owner
+            else:
+                raise FormatError(f"{name} [0x{rva:08X}, 0x{rva + size:08X}): target_rva is "
+                                  f"already claimed by {owner['name']} [0x{owner['rva']:08X}, "
+                                  f"0x{owner['rva'] + owner['size']:08X}) ({owner['source']}, "
+                                  f"{owner['status']}, line {owner['line']})")
+        hit = find_overlap(index, rva, size,
+                           skip=superseded["name"] if superseded is not None else None)
         if hit is not None:
             raise FormatError(f"{name} [0x{rva:08X}, 0x{rva + size:08X}) overlaps matched row "
                               f"{hit[0]} [0x{hit[1]:08X}, 0x{hit[2]:08X})")
+        if superseded is not None:
+            to_retract.append((superseded, name, source))
         to_append.append(row)
-    return to_append, landed
+    return to_append, landed, to_retract
+
+
+def retract_dump_rows(functions_raw, to_retract):
+    """Drop each superseded Code/gen_asm/ row and tombstone it, in one rewrite.
+
+    The tombstone is not bookkeeping: functions.csv merges with git's union
+    driver, which cannot express a deletion, so without a row in
+    deleted_rows.csv the next rebase from a branch that forked earlier silently
+    puts the dump back on top of the real body. Drop by CONTENT through
+    ledger_io — the ledger mixes \\r\\r\\n, \\r\\n and bare \\n terminators, and
+    every rewrite that split on one of them has lost or duplicated rows.
+    """
+    keys = {(owner["name"], f"0x{owner['rva']:08X}") for owner, _, _ in to_retract}
+    kept, dropped = ledger_io.rewrite(
+        functions_raw, lambda f: len(f) < 3 or (f[0], f[2]) not in keys)
+    if dropped != len(keys):
+        raise SystemExit(f"land: {len(keys)} dump row(s) to retract but {dropped} matched in "
+                         "functions.csv — refusing a partial retraction; reconcile by hand")
+    B.FUNCTIONS.write_bytes(kept)
+    lines = []
+    for owner, name, source in to_retract:
+        buf = io.StringIO()
+        csv.writer(buf, lineterminator="\n").writerow([
+            owner["name"], f"0x{owner['rva']:08X}",
+            f"gen-dump placeholder superseded by the real identity of these bytes: {name}, "
+            f"byte-verified from {source} over the same {owner['size']}-byte range. The "
+            f"{owner['source']} dump reproduces those bytes but carries no identity."])
+        lines.append(buf.getvalue())
+        print(f"land: superseded dump row {owner['name']} @ 0x{owner['rva']:08X}/"
+              f"{owner['size']}B ({owner['source']}) with {name} ({source}) — "
+              "retracted and tombstoned")
+    with DELETED.open("ab") as handle:
+        handle.write("".join(lines).encode("utf-8"))
 
 
 def line_terminator(raw, label):
@@ -4143,8 +4196,9 @@ def land_batch(rows, pins, selectors, stage=None):
         raise SystemExit("functions.csv does not end with a newline (truncated last row?)")
     symbols_raw = B.SYMBOLS.read_bytes()
     symbols_eol = line_terminator(symbols_raw, "symbols.csv")
+    deleted_raw = DELETED.read_bytes()
 
-    to_append, landed = validate_rows(rows, parse_ledger(functions_raw))
+    to_append, landed, to_retract = validate_rows(rows, parse_ledger(functions_raw))
     pinned = load_pins()
     new_pins = []
     for pin in pins:
@@ -4160,6 +4214,8 @@ def land_batch(rows, pins, selectors, stage=None):
         print(f"land: 0 new rows, 0 new pins ({landed} already landed) — nothing to verify")
         return
 
+    if to_retract:
+        retract_dump_rows(functions_raw, to_retract)
     with B.FUNCTIONS.open("ab") as handle:
         handle.write(b"".join(row.encode("utf-8") + b"\r\n" for row in to_append))
     if new_pins:
@@ -4175,16 +4231,18 @@ def land_batch(rows, pins, selectors, stage=None):
             git("add", "--", source_rel, check=True)
             staged = True
     print(f"land: appended {len(to_append)} row(s) and {len(new_pins)} pin(s) "
-          f"({landed} already landed)")
+          f"({landed} already landed, {len(to_retract)} dump row(s) superseded)")
 
     def revert(reason):
         B.FUNCTIONS.write_bytes(functions_raw)
         B.SYMBOLS.write_bytes(symbols_raw)
+        DELETED.write_bytes(deleted_raw)
         if staged:
             git("rm", "--cached", "--quiet", "--", source_rel)
             source_path.unlink()
             pending_path.unlink()
-        print(f"land: {reason} — {len(to_append)} row(s), {len(new_pins)} pin(s)"
+        print(f"land: {reason} — {len(to_append)} row(s), {len(new_pins)} pin(s), "
+              f"{len(to_retract)} retraction(s)"
               + (f" and {source_rel}" if staged else "") + " REVERTED", file=sys.stderr)
 
     verify = ([sys.executable, str(ROOT / "tools" / "build.py"), *selectors]
