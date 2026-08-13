@@ -137123,7 +137123,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000e0f10@@YAXXZ,,0x000E0F10,22,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000e1470@@YAXXZ,,0x000E1470,7,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000e1480@@YAXXZ,,0x000E1480,7,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
-?d_000e1490@@YAXXZ,,0x000E1490,11,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
+?d_000e1490@@YAXXZ,,0x000E1490,11,Code/GameEngine/Source/Common/RvaE1490ValueCopy.cpp,matched,object-symbol=?copy@RvaE1490ValueCopy@@QAEPAIPAI@Z;hand-reconciled C++
 ?d_000e14a0@@YAXXZ,,0x000E14A0,11,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000e14b0@@YAXXZ,,0x000E14B0,49,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000e14f0@@YAXXZ,,0x000E14F0,50,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
