@@ -106816,7 +106816,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00108a60@@YAXXZ,,0x00108A60,37,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00508a60
 ?d_00108bf0@@YAXXZ,,0x00108BF0,516,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00508bf0
 ?d_00108e80@@YAXXZ,,0x00108E80,336,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00508e80
-?d_001091e0@@YAXXZ,,0x001091E0,257,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_005091e0
 ?d_00109330@@YAXXZ,,0x00109330,235,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00509330
 ?d_00109460@@YAXXZ,,0x00109460,195,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00509460
 ?d_00109eb0@@YAXXZ,,0x00109EB0,136,Code/gen_asm/d_00104e40.asm,matched,gen-dump;ghidra=FUN_00509eb0
@@ -157930,3 +157929,4 @@ _luaK_adjuststack,,0x0099F010,441,Code/Libraries/Source/Lua/lcode.c,matched,vend
 ?GetStringFromRegistry@@YA_NVAsciiString@@0AAV1@@Z,,0x00109640,397,Code/GameEngine/Source/Common/System/RegistryGetStringPublic.cpp,matched,Open-BFME5 clean C++ conversion from original SAGE registry source
 ?GetStringFromRegistry@@YA_NVUnicodeString@@0AAV1@@Z,,0x00109830,397,Code/GameEngine/Source/Common/System/RegistryGetUnicodeStringPublic.cpp,matched,Open-BFME5 clean C++ conversion of public Unicode registry reader
 ?getStringFromRegistry@@YA_NPAXVUnicodeString@@1AAV1@@Z,,0x00109030,334,Code/GameEngine/Source/Common/System/RegistryGetUnicodeString.cpp,matched,Open-BFME5 clean C++ conversion of Unicode registry primitive
+?getUnsignedIntFromRegistry@@YA_NPAXVAsciiString@@1AAI@Z,,0x001091E0,257,Code/GameEngine/Source/Common/System/RegistryGetUnsignedInt.cpp,matched,Open-BFME5 clean C++ conversion of registry DWORD primitive
