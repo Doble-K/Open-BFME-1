@@ -805,7 +805,7 @@ Int parseShellMap(char *args[], int num)
 {
 	if (TheWritableGlobalData && num > 1)
 	{
-		TheWritableGlobalData->m_shellMapName = args[1];
+		*reinterpret_cast<AsciiString *>(reinterpret_cast<char *>(TheWritableGlobalData) + 0xbb0) = args[1];
 	}
 	return 2;
 }
