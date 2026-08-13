@@ -69437,3 +69437,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?getMaxHeightAbovePosition@GeometryInfo@@QBEMXZ,0x0087E000,Open-BFME5 called by ?getFiringLineOfSightOrigin@Weapon@@IBEXPBVObject@@AAUCoord3D@@@Z at 0x001E1A30
 ?setID@Drawable@@QAEXW4DrawableID@@@Z,0x00005A7E,Open-BFME5 ILT; called by ?registerDrawable@GameClient@@UAEXPAVDrawable@@@Z at 0x0042E530
 ?prependToList@Drawable@@QAEXPAPAV1@@Z,0x00025C84,Open-BFME5 ILT; called by ?registerDrawable@GameClient@@UAEXPAVDrawable@@@Z at 0x0042E530
+??0Snapshot@@QAE@XZ,0x007E86B0,per-TU copy (Energy TU); called by ??0Energy@@QAE@XZ at 0x00808880

@@ -119923,7 +119923,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00808660@@YAXXZ,,0x00808660,365,Code/gen_asm/d_00804920.asm,matched,gen-dump;ghidra=FUN_00c08660
 ?d_008087d0@@YAXXZ,,0x008087D0,41,Code/gen_asm/d_00804920.asm,matched,gen-dump;ghidra=FUN_00c087d0
 ?d_00808800@@YAXXZ,,0x00808800,50,Code/gen_asm/d_00804920.asm,matched,gen-dump;ghidra=FUN_00c08800
-?d_00808880@@YAXXZ,,0x00808880,32,Code/gen_asm/d_00804920.asm,matched,gen-dump;ghidra=FUN_00c08880
 ?d_00808b30@@YAXXZ,,0x00808B30,73,Code/gen_asm/d_00804920.asm,matched,gen-dump;ghidra=FUN_00c08b30
 ?d_00808b80@@YAXXZ,,0x00808B80,101,Code/gen_asm/d_00804920.asm,matched,gen-dump;ghidra=FUN_00c08b80
 ?d_00808bf0@@YAXXZ,,0x00808BF0,25,Code/gen_asm/d_00804920.asm,matched,gen-dump;ghidra=FUN_00c08bf0
@@ -157942,3 +157941,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?parseNetMinPlayers@@YAHQAPADH@Z,,0x00060C60,51,Code/GameEngine/Source/Common/CommandLine.cpp,matched,Open-BFME5 m_netMinPlayers at GlobalData+0xecc
 ?calcSleepDelay@DeletionUpdate@@IAEIII@Z,,0x0028C4B0,56,Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdate.cpp,matched,Open-BFME5 m_dieFrame at +0x20; retail file and line via existing #line 55
 ?GadgetSliderSetPosition@@YAXPAVGameWindow@@H@Z,,0x0055DB20,32,Code/GameEngine/Source/GameClient/GUI/GadgetSliderSetPositionThunk.cpp,matched,Open-BFME5 GSM_SET_SLIDER 0x400d; winSendSystemMsg vtable slot 53
+??0Energy@@QAE@XZ,,0x00808880,32,Code/GameEngine/Source/Common/RTS/EnergyConstructorThunk.cpp,matched,Open-BFME5 m_owner declared first at +0x4; counters at +0x8 and +0xc
