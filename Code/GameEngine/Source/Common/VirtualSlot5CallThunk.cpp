@@ -877,3 +877,16 @@ void Offset65BooleanSetterThunk::setValue(bool newValue)
 {
     value = newValue;
 }
+
+struct Offset64BooleanSetterThunk
+{
+    unsigned char padding[0x40];
+    bool value;
+
+    void setValue(bool newValue);
+};
+
+void Offset64BooleanSetterThunk::setValue(bool newValue)
+{
+    value = newValue;
+}
