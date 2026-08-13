@@ -69382,3 +69382,5 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?DualIndexedDispatchSixSecond@@3HA,0x00EB9690,Open-BFME5 six-value dual indexed dispatch second global
 ?destroyBody@Rva89A110DeletingDestructorThunk@@QAEXXZ,0x0089A140,Open-BFME5 destructor-body call pin
 ??0Rva7F4CC0Child@@QAE@XZ,0x007E86B0,Open-BFME5 child-constructor call pin
+?resolve@RvaC4390Second@@QAEPAURvaC4390First@@H@Z,0x00035995,Open-BFME5 relation resolver call pin
+?getInterface@RvaC4390First@@QAEPAURvaC4390Interface@@XZ,0x0000B3E3,Open-BFME5 relation interface call pin

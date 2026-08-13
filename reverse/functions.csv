@@ -106182,7 +106182,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000c41c0@@YAXXZ,,0x000C41C0,70,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c41c0
 ?d_000c4240@@YAXXZ,,0x000C4240,45,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c4240
 ?d_000c4280@@YAXXZ,,0x000C4280,96,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c4280
-?d_000c4390@@YAXXZ,,0x000C4390,67,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c4390
+?d_000c4390@@YAXXZ,,0x000C4390,67,Code/GameEngine/Source/Common/RvaC4390RelationCheckThunk.cpp,matched,object-symbol=?rvaC4390RelationCheck@@YGEPAURvaC4390First@@PAURvaC4390Second@@PAX@Z;Open-BFME5 clean C++ relation check
 ?d_000c44d0@@YAXXZ,,0x000C44D0,25,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c44d0
 ?d_000c4670@@YAXXZ,,0x000C4670,33,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c4670
 ?d_000c46a0@@YAXXZ,,0x000C46A0,84,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c46a0
