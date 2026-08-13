@@ -144412,7 +144412,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0036d350@@YAXXZ,,0x0036D350,11,Code/GameEngine/Source/Common/SecondScalarAssignThunk.cpp,matched,object-symbol=?assign@SecondScalarAssignThunk@@QAEAAU1@KK@Z;Open-BFME5 clean C++ second-argument scalar assignment
 ?d_0036d360@@YAXXZ,,0x0036D360,11,Code/GameEngine/Source/Common/SecondScalarAssignThunk.cpp,matched,object-symbol=?assignAlternate@SecondScalarAssignThunk@@QAEAAU1@KK@Z;Open-BFME5 clean C++ second-argument scalar assignment
 ?d_0036d370@@YAXXZ,,0x0036D370,25,Code/GameEngine/Source/Common/InlineRangeResetThunk.cpp,matched,object-symbol=?resetAlternate@InlineRangeResetThunk@@QAEXXZ;Open-BFME5 clean C++ inline range reset helper
-?d_0036d390@@YAXXZ,,0x0036D390,11,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
+?d_0036d390@@YAXXZ,,0x0036D390,11,Code/GameEngine/Source/Common/SecondScalarAssignThunk.cpp,matched,object-symbol=?assignThird@SecondScalarAssignThunk@@QAEAAU1@KK@Z;Open-BFME5 clean C++ second-argument scalar assignment
 ?d_0036d3a0@@YAXXZ,,0x0036D3A0,25,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036d3d0@@YAXXZ,,0x0036D3D0,25,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0036d410@@YAXXZ,,0x0036D410,11,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
