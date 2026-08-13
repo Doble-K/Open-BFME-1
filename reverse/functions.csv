@@ -136110,7 +136110,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000a2350@@YAXXZ,,0x000A2350,8,Code/GameEngine/Source/Common/RvaA2350LowFiveBits.cpp,matched,object-symbol=?rva_a2350_low_five_bits@@YAII@Z;Open-BFME5 clean C++ RVA A2350 low five bit mask
 ?d_000a3020@@YAXXZ,,0x000A3020,7,Code/GameEngine/Source/Common/RvaA3020Offset656Getter.cpp,matched,object-symbol=?get_value@RvaA3020Offset656Getter@@QAEIXZ;Open-BFME5 clean C++ RVA A3020 offset 656 getter
 ?d_000a3150@@YAXXZ,,0x000A3150,7,Code/GameEngine/Source/Common/RvaA3150Offset1084ByteGetter.cpp,matched,object-symbol=?get_value@RvaA3150Offset1084ByteGetter@@QAEEXZ;Open-BFME5 clean C++ RVA A3150 offset 1084 byte getter
-?d_000a3160@@YAXXZ,,0x000A3160,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
+?d_000a3160@@YAXXZ,,0x000A3160,7,Code/GameEngine/Source/Common/RvaA3160Offset1088Getter.cpp,matched,object-symbol=?get_value@RvaA3160Offset1088Getter@@QAEIXZ;Open-BFME5 clean C++ RVA A3160 offset 1088 getter
 ?d_000a3170@@YAXXZ,,0x000A3170,61,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a31d0@@YAXXZ,,0x000A31D0,13,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a31f0@@YAXXZ,,0x000A31F0,22,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
