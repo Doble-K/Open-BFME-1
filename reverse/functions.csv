@@ -147572,7 +147572,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045e130@@YAXXZ,,0x0045E130,5,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?ignoreAlternate@FluentNoOpThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ alternate fluent no-op
 ?d_0045e140@@YAXXZ,,0x0045E140,5,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?ignoreThird@FluentNoOpThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ third fluent no-op
 ?d_0045e150@@YAXXZ,,0x0045E150,5,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?integerIdentity@@YAHH@Z;Open-BFME5 clean C++ free integer identity
-?d_0045e160@@YAXXZ,,0x0045E160,18,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
+?d_0045e160@@YAXXZ,,0x0045E160,18,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?setValues@FluentIntegerPairSetterThunk@@QAEPAU1@HH@Z;Open-BFME5 clean C++ fluent integer pair setter
 ?d_0045e180@@YAXXZ,,0x0045E180,18,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e1a0@@YAXXZ,,0x0045E1A0,18,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045e1c0@@YAXXZ,,0x0045E1C0,20,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high

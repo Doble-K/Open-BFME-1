@@ -1164,6 +1164,21 @@ int integerIdentity(int value)
     return value;
 }
 
+struct FluentIntegerPairSetterThunk
+{
+    int first;
+    int second;
+
+    FluentIntegerPairSetterThunk *setValues(int firstValue, int secondValue);
+};
+
+FluentIntegerPairSetterThunk *FluentIntegerPairSetterThunk::setValues(int firstValue, int secondValue)
+{
+    first = firstValue;
+    second = secondValue;
+    return this;
+}
+
 struct SingleIntegerZeroConstructorThunk
 {
     int value;
