@@ -1535,10 +1535,5 @@ public ?d_0008adf0@@YAXXZ
     db 0C3h
 ?d_0008adf0@@YAXXZ ENDP
 
-; ghidra: FUN_0048e220  retail @ 0x0008E220 size 11
-public ?d_0008e220@@YAXXZ
-?d_0008e220@@YAXXZ PROC
-    db 8Bh, 0C1h, 8Bh, 4Ch, 24h, 08h, 89h, 08h, 0C2h, 08h, 00h
-?d_0008e220@@YAXXZ ENDP
 _TEXT ENDS
 END
