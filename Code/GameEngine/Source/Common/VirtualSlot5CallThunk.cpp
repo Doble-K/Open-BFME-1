@@ -1190,6 +1190,11 @@ unsigned char *pointerPlusTwelve(unsigned char *value)
     return value + 12;
 }
 
+unsigned char *pointerPlusSixteen(unsigned char *value)
+{
+    return value + 16;
+}
+
 struct FluentIntegerPairSetterThunk
 {
     int first;
