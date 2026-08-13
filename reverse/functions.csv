@@ -115632,7 +115632,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_005ad9c0@@YAXXZ,,0x005AD9C0,162,Code/gen_asm/d_005a42e0.asm,matched,gen-dump;ghidra=FUN_009ad9c0
 ?d_005ada90@@YAXXZ,,0x005ADA90,149,Code/gen_asm/d_005a42e0.asm,matched,gen-dump;ghidra=FUN_009ada90
 ?d_005adb50@@YAXXZ,,0x005ADB50,149,Code/gen_asm/d_005a42e0.asm,matched,gen-dump;ghidra=FUN_009adb50
-?d_005b15a0@@YAXXZ,,0x005B15A0,78,Code/gen_asm/d_005a42e0.asm,matched,gen-dump;ghidra=FUN_009b15a0
+?d_005b15a0@@YAXXZ,,0x005B15A0,78,Code/GameEngine/Source/GameClient/MessageStream/GUICommandTranslator.cpp,matched,object-symbol=?validUnderCursor@@YAPAVObject@@PBUICoord2D@@PBVCommandButton@@W4PickType@@@Z;Open-BFME5 clean C++ cursor target validation
 ?d_005b1610@@YAXXZ,,0x005B1610,371,Code/gen_asm/d_005a42e0.asm,matched,gen-dump;ghidra=FUN_009b1610
 ?d_005b17e0@@YAXXZ,,0x005B17E0,170,Code/gen_asm/d_005a42e0.asm,matched,gen-dump;ghidra=FUN_009b17e0
 ?d_005b18c0@@YAXXZ,,0x005B18C0,179,Code/gen_asm/d_005a42e0.asm,matched,gen-dump;ghidra=FUN_009b18c0
