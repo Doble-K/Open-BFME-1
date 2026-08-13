@@ -110,6 +110,7 @@ public:
 class DetailedArchivedDirectoryInfo 
 {
 public:
+	DetailedArchivedDirectoryInfo(const DetailedArchivedDirectoryInfo &);
 	AsciiString												m_directoryName;
 	DetailedArchivedDirectoryInfoMap	m_directories;
 	ArchivedFileInfoMap								m_files;
