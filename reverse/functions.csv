@@ -138266,7 +138266,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013e040@@YAXXZ,,0x0013E040,8,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013e050@@YAXXZ,,0x0013E050,14,Code/GameEngine/Source/Common/VtableSlot2StoreThunk.cpp,matched,object-symbol=?getFortyFifth@VtableSlot2StoreThunk@@QBE?AUVtableSlot2Result@@XZ;Open-BFME5 clean C++ vtable slot 2 value return
 ?d_0013e070@@YAXXZ,,0x0013E070,8,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0013e080@@YAXXZ,,0x0013E080,14,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
+?d_0013e080@@YAXXZ,,0x0013E080,14,Code/GameEngine/Source/Common/VtableSlot2StoreThunk.cpp,matched,object-symbol=?getFortySixth@VtableSlot2StoreThunk@@QBE?AUVtableSlot2Result@@XZ;Open-BFME5 clean C++ vtable slot 2 value return
 ?d_0013e0a0@@YAXXZ,,0x0013E0A0,22,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013e0c0@@YAXXZ,,0x0013E0C0,22,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013e0e0@@YAXXZ,,0x0013E0E0,22,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
