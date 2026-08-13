@@ -12,6 +12,7 @@ public:
 	Stride4TableEntry *lookup(unsigned int index) const;
 	Stride4TableEntry *alternateLookup(unsigned int index) const;
 	Stride4TableEntry *thirdLookup(unsigned int index) const;
+	Stride4TableEntry *fourthLookup(unsigned int index) const;
 
 private:
 	Stride4TableEntry *m_entries;
@@ -28,6 +29,11 @@ Stride4TableEntry *Stride4Table::alternateLookup(unsigned int index) const
 }
 
 Stride4TableEntry *Stride4Table::thirdLookup(unsigned int index) const
+{
+	return &m_entries[index];
+}
+
+Stride4TableEntry *Stride4Table::fourthLookup(unsigned int index) const
 {
 	return &m_entries[index];
 }

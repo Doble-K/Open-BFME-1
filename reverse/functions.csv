@@ -136718,7 +136718,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000c9f10@@YAXXZ,,0x000C9F10,10,Code/GameEngine/Source/Common/PointerPresencePredicateThunk.cpp,matched,object-symbol=?empty@PointerPresencePredicate@@QBE_NXZ;Open-BFME5 clean C++ pointer emptiness predicate
 ?d_000c9f70@@YAXXZ,,0x000C9F70,9,Code/GameEngine/Source/Common/PointerRangeCountThunk.cpp,matched,object-symbol=?thirdSize@PointerRangeCount@@QBEIXZ;Open-BFME5 clean C++ third pointer-range count
 ?d_000c9f80@@YAXXZ,,0x000C9F80,12,Code/GameEngine/Source/Common/Stride4TableLookupThunk.cpp,matched,object-symbol=?thirdLookup@Stride4Table@@QBEPAUStride4TableEntry@@I@Z;Open-BFME5 clean C++ third four-byte table lookup
-?d_000c9f90@@YAXXZ,,0x000C9F90,12,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
+?d_000c9f90@@YAXXZ,,0x000C9F90,12,Code/GameEngine/Source/Common/Stride4TableLookupThunk.cpp,matched,object-symbol=?fourthLookup@Stride4Table@@QBEPAUStride4TableEntry@@I@Z;Open-BFME5 clean C++ fourth four-byte table lookup
 ?d_000ca020@@YAXXZ,,0x000CA020,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca040@@YAXXZ,,0x000CA040,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca050@@YAXXZ,,0x000CA050,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
