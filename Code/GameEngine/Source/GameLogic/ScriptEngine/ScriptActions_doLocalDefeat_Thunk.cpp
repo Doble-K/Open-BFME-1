@@ -26,7 +26,10 @@ public:
 	virtual void slot09(); virtual void slot10(); virtual void slot11();
 	virtual void slot12(); virtual void slot13();
 	virtual void startCloseWindowTimer();
-	void markMPLocalDefeatWindowShown();
+	__declspec(noinline) void markMPLocalDefeatWindowShown();
+private:
+	unsigned char m_pad[0x17632];
+	Bool m_mpLocalDefeatWindowShown;
 };
 extern ScriptEngine *TheScriptEngine;
 
@@ -66,6 +69,11 @@ public:
 };
 extern BfmeGameClient *TheGameClient;
 extern unsigned char BfmeDefeatScreenTable[];
+
+__declspec(noinline) void ScriptEngine::markMPLocalDefeatWindowShown()
+{
+	m_mpLocalDefeatWindowShown = true;
+}
 
 class CampaignManager
 {

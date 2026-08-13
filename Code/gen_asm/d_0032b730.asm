@@ -459,12 +459,6 @@ public ?d_00337180@@YAXXZ
     db 8Ah, 81h, 36h, 76h, 01h, 00h, 0C3h
 ?d_00337180@@YAXXZ ENDP
 
-; ghidra: FUN_00737190  retail @ 0x00337190 size 8
-public ?d_00337190@@YAXXZ
-?d_00337190@@YAXXZ PROC
-    db 0C6h, 81h, 36h, 76h, 01h, 00h, 01h, 0C3h
-?d_00337190@@YAXXZ ENDP
-
 ; ghidra: FUN_007371a0  retail @ 0x003371A0 size 69
 public ?d_003371a0@@YAXXZ
 ?d_003371a0@@YAXXZ PROC

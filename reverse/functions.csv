@@ -111241,7 +111241,7 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00337080@@YAXXZ,,0x00337080,95,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00737080
 ?d_00337100@@YAXXZ,,0x00337100,95,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00737100
 ?d_00337180@@YAXXZ,,0x00337180,7,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00737180
-?d_00337190@@YAXXZ,,0x00337190,8,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00737190
+?markMPLocalDefeatWindowShown@ScriptEngine@@QAEXXZ,,0x00337190,8,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doLocalDefeat_Thunk.cpp,matched,Open-BFME5 ScriptEngine local defeat flag C++ recovery
 ?d_003371a0@@YAXXZ,,0x003371A0,69,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_007371a0
 ?d_00337200@@YAXXZ,,0x00337200,98,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00737200
 ?d_00337670@@YAXXZ,,0x00337670,15,Code/gen_asm/d_0032b730.asm,matched,gen-dump;ghidra=FUN_00737670
