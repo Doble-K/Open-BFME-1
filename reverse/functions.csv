@@ -135122,7 +135122,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000614f0@@YAXXZ,,0x000614F0,25,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00061510@@YAXXZ,,0x00061510,25,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00061530@@YAXXZ,,0x00061530,25,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_00061550@@YAXXZ,,0x00061550,6,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
+?d_00061550@@YAXXZ,,0x00061550,6,Code/GameEngine/Source/Common/Rva61550ConstantOne.cpp,matched,object-symbol=?rva_61550_constant_one@@YAIXZ;Open-BFME5 clean C++ RVA 61550 constant one return
 ?d_00061560@@YAXXZ,,0x00061560,22,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_00061580@@YAXXZ,,0x00061580,18,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_000615a0@@YAXXZ,,0x000615A0,18,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
