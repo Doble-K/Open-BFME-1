@@ -69394,3 +69394,7 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?dx8_polygons@Debug_Statistics@@3HA,0x01346E64,Open-BFME5 retail DX8 polygon counter
 ?dx8_vertices@Debug_Statistics@@3HA,0x01346DF0,Open-BFME5 retail DX8 vertex counter
 ?dx8_renders@Debug_Statistics@@3HA,0x01346E68,Open-BFME5 retail DX8 render counter
+?canSwitchIndexToIndex@CaveSystem@@QAE_NHH@Z,0x00003E7C,Open-BFME5 retail cave index switch pin
+?unregisterCave@CaveSystem@@QAEXH@Z,0x0001BC5C,Open-BFME5 retail cave unregister pin
+?onTunnelDestroyed@TunnelTracker@@QAEXPBVObject@@@Z,0x000304E0,Open-BFME5 retail tunnel destroyed pin
+?onTunnelCreated@TunnelTracker@@QAEXPBVObject@@@Z,0x00038938,Open-BFME5 retail tunnel created pin

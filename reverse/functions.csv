@@ -109021,7 +109021,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00219960@@YAXXZ,,0x00219960,208,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619960
 ?d_00219ac0@@YAXXZ,,0x00219AC0,7,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619ac0
 ?d_00219d10@@YAXXZ,,0x00219D10,68,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619d10
-?d_00219d70@@YAXXZ,,0x00219D70,130,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619d70
 ?d_00219e20@@YAXXZ,,0x00219E20,76,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619e20
 ?d_00219e80@@YAXXZ,,0x00219E80,222,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619e80
 ?d_00219fa0@@YAXXZ,,0x00219FA0,170,Code/gen_asm/d_00218670.asm,matched,gen-dump;ghidra=FUN_00619fa0
@@ -157936,3 +157935,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?d_0014bad0@@YAXXZ,,0x0014BAD0,40,Code/GameEngine/Source/Common/Rva14BAD0ListConstructor.cpp,matched,object-symbol=??0Rva14BAD0List@@QAE@H@Z;Open-BFME5 clean C++ RVA 14BAD0 sentinel list constructor
 ?d_009373a0@@YAXXZ,,0x009373A0,91,Code/Libraries/Source/WWVegas/WW3D2/statistics.cpp,matched,object-symbol=?Record_DX8_Polys_And_Vertices@Debug_Statistics@@YAXHHABVShaderClass@1@@Z;Open-BFME5 clean C++ DX8 statistics
 ?Set_DX8_Texture@DX8Wrapper@@SAXIPAUIDirect3DBaseTexture8@@@Z,,0x006C59D0,124,Code/Libraries/Source/WWVegas/WW3D2/DX8WrapperSetDX8Texture.cpp,matched,Open-BFME5 clean C++ with retail Direct3D SetTexture slot
+?tryToSetCaveIndex@CaveContain@@UAEXH@Z,,0x00219D70,130,Code/GameEngine/Source/GameLogic/Object/Contain/CaveContainTryToSetCaveIndex.cpp,matched,Open-BFME5 clean C++ with BFME retail owner offset
