@@ -825,3 +825,16 @@ OffsetZeroIntegerSetterReturningThisThunk *OffsetZeroIntegerSetterReturningThisT
     value = newValue;
     return this;
 }
+
+struct Offset40IntegerSetterThunk
+{
+    unsigned char padding[0x28];
+    int value;
+
+    void setValue(int newValue);
+};
+
+void Offset40IntegerSetterThunk::setValue(int newValue)
+{
+    value = newValue;
+}
