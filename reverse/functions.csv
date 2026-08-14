@@ -138995,7 +138995,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00197120@@YAXXZ,,0x00197120,80,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00197220@@YAXXZ,,0x00197220,64,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001973d0@@YAXXZ,,0x001973D0,29,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_00197400@@YAXXZ,,0x00197400,33,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001975f0@@YAXXZ,,0x001975F0,30,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00197620@@YAXXZ,,0x00197620,21,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_00197640@@YAXXZ,,0x00197640,33,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
@@ -142461,7 +142460,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_002bcfe0@@YAXXZ,,0x002BCFE0,9,Code/gen_asm/d_002bbb80.asm,matched,gen-dump;bounds=high
 ?d_002bcff0@@YAXXZ,,0x002BCFF0,36,Code/gen_asm/d_002bbb80.asm,matched,gen-dump;bounds=high
 ?d_002bd8b0@@YAXXZ,,0x002BD8B0,106,Code/gen_asm/d_002bbb80.asm,matched,gen-dump;bounds=high
-?d_002bdb00@@YAXXZ,,0x002BDB00,36,Code/gen_asm/d_002bbb80.asm,matched,gen-dump;bounds=high
 ?d_002bdb30@@YAXXZ,,0x002BDB30,53,Code/gen_asm/d_002bbb80.asm,matched,gen-dump;bounds=high
 ?d_002bdb80@@YAXXZ,,0x002BDB80,78,Code/gen_asm/d_002bbb80.asm,matched,gen-dump;bounds=high
 ?d_002be000@@YAXXZ,,0x002BE000,53,Code/gen_asm/d_002bbb80.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?processProgress@MultiPlayerLoadScreen@@UAEXHH@Z,,0x00490A00,33,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,Open-BFME5 m_progressBars at +0x10 and m_playerLookup at +0x70
 ?processProgress@GameSpyLoadScreen@@UAEXHH@Z,,0x00490CC0,36,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,Open-BFME5 m_progressBars at +0x10 and m_playerLookup at +0x154
 ??$_Destroy@PAUModelConditionInfo@@@_STL@@YAXPAUModelConditionInfo@@0@Z,,0x0013C610,36,Code/GameEngine/Source/Common/ModelConditionInfoDestroyRangeThunk.cpp,matched,Open-BFME5 sizeof ModelConditionInfo is 0x128
+??$_Destroy@PAURunwayInfo@FlightDeckBehavior@@@_STL@@YAXPAURunwayInfo@FlightDeckBehavior@@0@Z,,0x002BDB00,36,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehaviorRunwayInfoDestroyRangeThunk.cpp,matched,Open-BFME5 sizeof RunwayInfo is 0xb8
+??$_Destroy@PAURopeInfo@ChinookCombatDropState@@@_STL@@YAXPAURopeInfo@ChinookCombatDropState@@0@Z,,0x00197400,33,Code/GameEngine/Source/GameLogic/AI/ChinookCombatDropStateRopeInfoDestroyRangeThunk.cpp,matched,Open-BFME5 sizeof RopeInfo is 0x10
