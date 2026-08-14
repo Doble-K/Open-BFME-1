@@ -157948,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?EstablishConnectionsControlSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C8570,44,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/EstablishConnectionsWindow.cpp,matched,zh_sweep packet 004c8570
 ?onBuildComplete@SupplyCenterCreate@@UAEXXZ,,0x002503B0,85,Code/GameEngine/Source/GameLogic/Object/Create/SupplyCenterCreate.cpp,matched,zh_sweep packet 002503b0
 ?onDamage@SupplyWarehouseCripplingBehavior@@UAEXPAVDamageInfo@@@Z,,0x0020D770,47,Code/GameEngine/Source/GameLogic/Object/Behavior/SupplyWarehouseCripplingBehavior_onDamage_Thunk.cpp,matched,zh_sweep packet 0020d770
+?Set_Texture_Tile_Factor@SegLineTileFactorAltClass@@QAEXM@Z,,0x0095C4C0,64,Code/Libraries/Source/WWVegas/WW3D2/SegLineTileFactorAltClass.cpp,matched,second Set_Texture_Tile_Factor: 8.0f cap and +0x28 store; a different class from SegLineRendererClass; identity unrecovered
