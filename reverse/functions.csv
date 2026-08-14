@@ -157949,4 +157949,3 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?removeObject@Squad@@QAEXPAVObject@@@Z,,0x0018B620,62,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,Open-BFME5 m_objectIDs at Squad+0x4
 ?removeDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z,,0x00712090,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,Open-BFME5 m_dynamicLightList at RTS3DScene+0x110
 ?reset@GlobalData@@UAEXXZ,,0x00083110,46,Code/GameEngine/Source/Common/GlobalData_reset_Thunk.cpp,matched,probe
-?doNamedDelete@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002EFAF0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 getUnitNamed at ScriptEngine vtable slot 26

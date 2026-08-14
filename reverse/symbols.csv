@@ -69494,4 +69494,3 @@ _gpiSetPeerSocketSizes,0x008F6680,additive pin for _gpiPeerStartConnect call res
 _luaH_new,0x00999610,additive pin for _luaV_pack call resolution
 _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??$__find@PAW4ObjectID@@W41@@_STL@@YAPAW4ObjectID@@PAW41@0ABW41@ABUrandom_access_iterator_tag@0@@Z,0x0001BFC7,Open-BFME5 ILT; called by ?removeObject@Squad@@QAEXPAVObject@@@Z at 0x0018B620
-?destroyObject@GameLogic@@QAEXPAVObject@@@Z,0x0003B26E,Open-BFME5 second ILT for the same body; tail-jumped by ?doNamedDelete@ScriptActions@@IAEXABVAsciiString@@@Z at 0x002EFAF0

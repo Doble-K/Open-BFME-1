@@ -2636,9 +2636,10 @@ void ScriptActions::doNamedDamage(const AsciiString& unitName, Int damageAmt)
 //-------------------------------------------------------------------------------------------------
 /** doNamedDelete */
 //-------------------------------------------------------------------------------------------------
+// ?doNamedDelete@ScriptActions@@IAEXABVAsciiString@@@Z present-unmatched
 void ScriptActions::doNamedDelete(const AsciiString& unitName)
 {
-	Object *theUnit = reinterpret_cast<BFMERetailScriptEngineVTable *>(TheScriptEngine)->getUnitNamed( unitName );
+	Object *theUnit = TheScriptEngine->getUnitNamed( unitName );
 	if (!theUnit) {
 		return;
 	}
