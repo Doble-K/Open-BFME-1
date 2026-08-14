@@ -6673,10 +6673,13 @@ Bool Drawable::isSelectable( void ) const
 //-------------------------------------------------------------------------------------------------
 /** Return whether or not this Drawable is selectable as part of a group. */
 //-------------------------------------------------------------------------------------------------
-// ?isMassSelectable@Drawable@@QBE_NXZ present-unmatched
 Bool Drawable::isMassSelectable( void ) const
 {
-	return getObject() && getObject()->isMassSelectable();
+	// Retail reads m_object at Drawable+0xfc; this tree lands it at +0x88, so
+	// BFME's Drawable carries 0x74 more bytes ahead of it. Pinned here rather
+	// than moved in the class, which the file's 80 matched rows depend on.
+	Object *obj = *(Object **)((const char *)this + 0xfc);
+	return obj && obj->isMassSelectable();
 }
 
 //-------------------------------------------------------------------------------------------------

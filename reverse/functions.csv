@@ -105949,7 +105949,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000a2cf0@@YAXXZ,,0x000A2CF0,64,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a2cf0
 ?d_000a2e60@@YAXXZ,,0x000A2E60,195,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a2e60
 ?d_000a2f60@@YAXXZ,,0x000A2F60,143,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a2f60
-?d_000a3080@@YAXXZ,,0x000A3080,30,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a3080
 ?d_000a3d70@@YAXXZ,,0x000A3D70,176,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a3d70
 ?d_000a3e50@@YAXXZ,,0x000A3E50,171,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a3e50
 ?d_000a3f30@@YAXXZ,,0x000A3F30,145,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a3f30
@@ -112936,7 +112935,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00411ea0@@YAXXZ,,0x00411EA0,53,Code/gen_asm/d_00411110.asm,matched,gen-dump;ghidra=FUN_00811ea0
 ?d_00411ef0@@YAXXZ,,0x00411EF0,47,Code/gen_asm/d_00411110.asm,matched,gen-dump;ghidra=FUN_00811ef0
 ?d_00411f30@@YAXXZ,,0x00411F30,53,Code/gen_asm/d_00411110.asm,matched,gen-dump;ghidra=FUN_00811f30
-?d_00411fe0@@YAXXZ,,0x00411FE0,28,Code/gen_asm/d_00411110.asm,matched,gen-dump;ghidra=FUN_00811fe0
 ?d_00412040@@YAXXZ,,0x00412040,70,Code/gen_asm/d_00411110.asm,matched,gen-dump;ghidra=FUN_00812040
 ?d_00412140@@YAXXZ,,0x00412140,71,Code/gen_asm/d_00411110.asm,matched,gen-dump;ghidra=FUN_00812140
 ?d_004121c0@@YAXXZ,,0x004121C0,129,Code/gen_asm/d_00411110.asm,matched,gen-dump;ghidra=FUN_008121c0
@@ -157947,3 +157945,5 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?getInitiateSound@SpecialPowerTemplate@@QBEPBVAudioEventRTS@@XZ,,0x00268890,27,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 m_initiateSound at +0x24
 ?getInitiateAtTargetSound@SpecialPowerTemplate@@QBEPBVAudioEventRTS@@XZ,,0x002688C0,32,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 m_initiateAtTargetSound at +0x94
 ?getRadiusCursorRadius@SpecialPowerTemplate@@QBEMXZ,,0x00268980,33,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 m_radiusCursorRadius at +0x10c
+?isMassSelectable@Drawable@@QBE_NXZ,,0x00411FE0,28,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,Open-BFME5 m_object at Drawable+0xfc
+?disconnected@GameSlot@@QBE_NXZ,,0x000A3080,30,Code/GameEngine/Source/GameNetwork/GameSlot_disconnected_Thunk.cpp,matched,Open-BFME5 m_disconnected at +0x40; isHuman via ILT 0x279CB
