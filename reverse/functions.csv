@@ -107958,7 +107958,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001aa860@@YAXXZ,,0x001AA860,123,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aa860
 ?d_001aa900@@YAXXZ,,0x001AA900,294,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aa900
 ?d_001aaac0@@YAXXZ,,0x001AAAC0,293,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aaac0
-?d_001aad70@@YAXXZ,,0x001AAD70,39,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aad70
 ?d_001aaf00@@YAXXZ,,0x001AAF00,163,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aaf00
 ?d_001ab150@@YAXXZ,,0x001AB150,135,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005ab150
 ?d_001ab600@@YAXXZ,,0x001AB600,550,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005ab600
@@ -157947,3 +157946,4 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?winGetText@GameWindow@@QAE?AVUnicodeString@@XZ,,0x005CB9F0,30,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,Open-BFME5 m_instData at GameWindow+0x4
 ?setBuildableStatusOverride@GameLogic@@QAEXPBVThingTemplate@@W4BuildableStatus@@@Z,,0x003919E0,29,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,Open-BFME5 ThingTemplate m_name at +0x20
 ?ownerDocking@SupplyTruckStateMachine@@SA_NPAVState@@PAX@Z,,0x002C5BB0,35,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,Open-BFME5 State m_machine +0x1c StateMachine m_owner +0x10 Object m_ai +0x204
+?updateBridgeDamageStates@TerrainLogic@@UAEXXZ,,0x001AAD70,39,Code/GameEngine/Source/GameLogic/Map/TerrainLogic_updateBridgeDamageStates_Thunk.cpp,matched,Open-BFME5 m_bridgeDamageStatesChanged at TerrainLogic+0x38

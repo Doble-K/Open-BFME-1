@@ -1903,7 +1903,7 @@ Bool TerrainLogic::objectInteractsWithBridgeEnd(Object *obj, Int layer) const
 //-------------------------------------------------------------------------------------------------
 /** Updates the damage state of the bridge from the logic. */
 //-------------------------------------------------------------------------------------------------
-// ?updateBridgeDamageStates@TerrainLogic@@UAEXXZ present-unmatched
+// ?updateBridgeDamageStates@TerrainLogic@@UAEXXZ present-unmatched here - matched copy lives in TerrainLogic_updateBridgeDamageStates_Thunk.cpp with the flag at +0x38
 void TerrainLogic::updateBridgeDamageStates( void )
 {
 	Bridge *pBridge = getFirstBridge();
