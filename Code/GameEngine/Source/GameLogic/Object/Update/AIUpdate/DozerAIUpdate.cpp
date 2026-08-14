@@ -59,6 +59,31 @@
 #include "GameLogic/Module/DozerAIUpdate.h"
 #include "GameClient/InGameUI.h"
 
+// BFME's AudioManager vtable puts addAudioEvent at slot 17; the ZH header lands
+// it at 12, so the call comes out [edx+0x30] instead of [edx+0x44].
+class BFMERetailAudioManagerVTable
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot1() = 0;
+	virtual void slot2() = 0;
+	virtual void slot3() = 0;
+	virtual void slot4() = 0;
+	virtual void slot5() = 0;
+	virtual void slot6() = 0;
+	virtual void slot7() = 0;
+	virtual void slot8() = 0;
+	virtual void slot9() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual void slot12() = 0;
+	virtual void slot13() = 0;
+	virtual void slot14() = 0;
+	virtual void slot15() = 0;
+	virtual void slot16() = 0;
+	virtual AudioHandle addAudioEvent(const AudioEventRTS *event) = 0;
+};
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -4463,12 +4488,12 @@ void DozerAIUpdate::aiDoCommand(const AICommandParms* parms)
 }  // end aiDoCommand
 
 //------------------------------------------------------------------------------------------------
-// ?startBuildingSound@DozerAIUpdate@@UAEXPBVAudioEventRTS@@W4ObjectID@@@Z present-unmatched
 void DozerAIUpdate::startBuildingSound( const AudioEventRTS *sound, ObjectID constructionSiteID )
 {
 	m_buildingSound = *sound;
 	m_buildingSound.setObjectID( constructionSiteID );
-	m_buildingSound.setPlayingHandle( TheAudio->addAudioEvent( &m_buildingSound ) );
+	m_buildingSound.setPlayingHandle(
+		reinterpret_cast<BFMERetailAudioManagerVTable *>(TheAudio)->addAudioEvent( &m_buildingSound ) );
 }
 
 //------------------------------------------------------------------------------------------------
