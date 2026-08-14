@@ -108438,7 +108438,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001dbab0@@YAXXZ,,0x001DBAB0,282,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dbab0
 ?d_001dbc10@@YAXXZ,,0x001DBC10,547,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dbc10
 ?d_001dbec0@@YAXXZ,,0x001DBEC0,547,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dbec0
-?d_001dc220@@YAXXZ,,0x001DC220,23,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc220
 ?d_001dc260@@YAXXZ,,0x001DC260,85,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc260
 ?d_001dc2d0@@YAXXZ,,0x001DC2D0,40,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc2d0
 ?d_001dc310@@YAXXZ,,0x001DC310,52,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc310
@@ -157947,3 +157946,4 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?ConvertVelocityInSecsToFrames@@YAMM@Z,,0x000B94C0,11,Code/GameEngine/Source/Common/GameCommonConvertThunk.cpp,matched,velocity conv; volatile-read forces global-first fld order
 ?ConvertAccelerationInSecsToFrames@@YAMM@Z,,0x000B94D0,17,Code/GameEngine/Source/Common/GameCommonConvertThunk.cpp,matched,acceleration conv; two volatile-read locals force two separate global loads
 ?evaluateSkirmishSupplySourceAttacked@ScriptConditions@@IAE_NPAVParameter@@@Z,,0x000F9700,29,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp,matched,
+??0ObjectTypes@@QAE@XZ,,0x001DC220,23,Code/GameEngine/Source/GameLogic/Object/ObjectTypes_ctor_Thunk.cpp,matched,pin=symbols.csv 0x0003D415 (ObjectTypesTemp ctor callee); ZH ObjectTypes.h default ctor; local minimal replica (vptr+4 zeroed words=20B matches push 0x14)
