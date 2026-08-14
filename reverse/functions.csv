@@ -135551,7 +135551,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00080f10@@YAXXZ,,0x00080F10,33,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00082a80@@YAXXZ,,0x00082A80,23,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00082c20@@YAXXZ,,0x00082C20,997,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_00083110@@YAXXZ,,0x00083110,46,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000831a0@@YAXXZ,,0x000831A0,22,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000831c0@@YAXXZ,,0x000831C0,26,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000831e0@@YAXXZ,,0x000831E0,26,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
@@ -157950,3 +157949,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?onExit@AIDockMoveToDockState@@UAEXW4StateExitType@@@Z,,0x0014EDC0,101,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and m_owner +0x10 and lock flag +0x40
 ?removeObject@Squad@@QAEXPAVObject@@@Z,,0x0018B620,62,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,Open-BFME5 m_objectIDs at Squad+0x4
 ?removeDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z,,0x00712090,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,Open-BFME5 m_dynamicLightList at RTS3DScene+0x110
+?reset@GlobalData@@UAEXXZ,,0x00083110,46,Code/GameEngine/Source/Common/GlobalData_reset_Thunk.cpp,matched,probe
