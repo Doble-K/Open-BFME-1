@@ -105809,7 +105809,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00098130@@YAXXZ,,0x00098130,43,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498130
 ?d_00098170@@YAXXZ,,0x00098170,60,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498170
 ?d_000981c0@@YAXXZ,,0x000981C0,60,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_004981c0
-?d_00098210@@YAXXZ,,0x00098210,361,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498210
 ?d_000983e0@@YAXXZ,,0x000983E0,57,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_004983e0
 ?d_00098450@@YAXXZ,,0x00098450,116,Code/gen_asm/d_0008e2c0.asm,matched,gen-dump;ghidra=FUN_00498450
 ?d_00098bd0@@YAXXZ,,0x00098BD0,11,Code/GameEngine/Source/Common/Rva98BD0SecondArgumentStore.cpp,matched,object-symbol=?store@Rva98BD0SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
@@ -139603,7 +139602,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001c0d80@@YAXXZ,,0x001C0D80,26,Code/gen_asm/d_001adb10.asm,matched,gen-dump;bounds=high
 ?d_001c0da0@@YAXXZ,,0x001C0DA0,7,Code/gen_asm/d_001adb10.asm,matched,gen-dump;bounds=high
 ?d_001c0e60@@YAXXZ,,0x001C0E60,6,Code/gen_asm/d_001adb10.asm,matched,gen-dump;bounds=high
-?d_001c0ea0@@YAXXZ,,0x001C0EA0,60,Code/gen_asm/d_001adb10.asm,matched,gen-dump;bounds=high
 ?d_001c0f80@@YAXXZ,,0x001C0F80,6,Code/gen_asm/d_001adb10.asm,matched,gen-dump;bounds=high
 ?d_001c1160@@YAXXZ,,0x001C1160,6,Code/gen_asm/d_001adb10.asm,matched,gen-dump;bounds=high
 ?d_001c11d0@@YAXXZ,,0x001C11D0,46,Code/gen_asm/d_001adb10.asm,matched,gen-dump;bounds=high
@@ -157947,3 +157945,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x005F84E0,53,Code/GameEngine/Source/GameLogic/Object/Behavior/BehaviorModuleConstructorThunk.cpp,matched,Open-BFME5 clean C++ BehaviorModule ctor: ObjectModule(0xC)+2 pad dwords+BehaviorModuleInterface+Snapshot
 ?skipWhitespace@@YAPADPAD@Z,,0x00887260,42,Code/GameEngine/Source/Common/System/AsciiString.cpp,matched,
 ?read_user_text@MeshGeometryClass@@IAE_NAAVChunkLoadClass@@@Z,,0x009252C0,188,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryClass_read_user_text_Thunk.cpp,matched,zh-sweep: dispatch-table sibling of read_vertex_shade_indices (0x9255B0) returns bool not WW3DErrorType; stores through the MeshName slot at this+0x14 not the this+0x10 slot Get_User_Text/Set_User_Text use; local ABI-slice replica; real header untouched
+??0ObjectDefectionHelper@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001C0EA0,60,Code/GameEngine/Source/Common/ObjectDefectionHelper_ctor_Thunk.cpp,matched,packet 001c0ea0 - ctor forwards to ObjectHelper base then restamps 3 vtbl slots
+?writeToFile@RecorderClass@@IAEXPAVGameMessage@@@Z,,0x00098210,361,Code/GameEngine/Source/Common/Recorder.cpp,matched,zh-sweep exact match; BFME plain delete vs ZH deleteInstance drift
