@@ -69472,3 +69472,4 @@ _luaK_testgo,0x0099F5C0,vendored=lua-4.0.1;additive pin for luaK_goiftrue call r
 ?removeObject@Squad@@QAEXPAVObject@@@Z,0x000292EE,Open-BFME5 ILT; called by ?removeObjectFromHotkeySquad@Player@@QAEXPAVObject@@@Z at 0x000C9BE0
 ??A?$hash_map@HW4Relationship@@U?$hash@H@_STL@@U?$equal_to@H@3@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@3@@_STL@@QAEAAW4Relationship@@ABH@Z,0x0001219D,Open-BFME5 ILT; called by ?setPlayerRelationship@Player@@QAEXPBV1@W4Relationship@@@Z at 0x000D7600
 ??$__find@PBVAsciiString@@V1@@_STL@@YAPBVAsciiString@@PBV1@0ABV1@ABUrandom_access_iterator_tag@0@@Z,0x0004B29A,Open-BFME5 ILT; called by ?isInSet@ObjectTypes@@QBE_NABVAsciiString@@@Z at 0x001DC2D0
+??$_Construct@VAsciiString@@V1@@_STL@@YAXPAVAsciiString@@ABV1@@Z,0x00007554,Open-BFME5 ILT; called by ?addObjectType@ObjectTypes@@QAEXABVAsciiString@@@Z at 0x001DC520

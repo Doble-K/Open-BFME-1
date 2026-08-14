@@ -56,14 +56,15 @@ ObjectTypes::ObjectTypes(const AsciiString& listName) : m_listName(listName)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?addObjectType@ObjectTypes@@ present-unmatched
 void ObjectTypes::addObjectType(const AsciiString &objectType)
 {
 	if (isInSet(objectType)) {
 		return;
 	}
 
-	m_objectTypes.push_back(objectType);
+	// same +0x08 overlay as isInSet below
+	struct BFMEObjectTypes { char pad[0x08]; AsciiStringVec m_objectTypes; };
+	((BFMEObjectTypes *)this)->m_objectTypes.push_back(objectType);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -99,7 +100,8 @@ Bool ObjectTypes::isInSet(const AsciiString& objectType) const
 {
 	// m_objectTypes starts at ObjectTypes+0x08 in BFME; this tree lands it at
 	// +0x0c -- one base vtable pointer fewer, the same pattern PlayerRelationMap
-	// and Module show.
+	// and Module show. The overlay has to be function-local: AsciiStringVec is a
+	// nested typedef and does not name at file scope.
 	struct BFMEObjectTypes { char pad[0x08]; AsciiStringVec m_objectTypes; };
 	const BFMEObjectTypes *self = (const BFMEObjectTypes *)this;
 	return (std::find(self->m_objectTypes.begin(), self->m_objectTypes.end(), objectType) != self->m_objectTypes.end());

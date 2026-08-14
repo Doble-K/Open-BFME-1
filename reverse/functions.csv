@@ -108422,7 +108422,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001dc260@@YAXXZ,,0x001DC260,85,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc260
 ?d_001dc400@@YAXXZ,,0x001DC400,80,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc400
 ?d_001dc470@@YAXXZ,,0x001DC470,104,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc470
-?d_001dc520@@YAXXZ,,0x001DC520,92,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc520
 ?d_001dc5a0@@YAXXZ,,0x001DC5A0,191,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc5a0
 ?d_001dc690@@YAXXZ,,0x001DC690,379,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dc690
 ?d_001dc8b0@@YAXXZ,,0x001DC8B0,28,Code/gen_asm/d_001dc690.asm,matched,gen-dump;ghidra=FUN_005dc8b0
@@ -157947,3 +157946,4 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?setPlayerRelationship@Player@@QAEXPBV1@W4Relationship@@@Z,,0x000D7600,43,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 m_playerRelations at +0x28c and its m_map at +0x4
 ?isInSet@ObjectTypes@@QBE_NABVAsciiString@@@Z,,0x001DC2D0,40,Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp,matched,Open-BFME5 m_objectTypes at ObjectTypes+0x8
 ?isInSet@ObjectTypes@@QBE_NPBVThingTemplate@@@Z,,0x001DC310,52,Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp,matched,Open-BFME5 ThingTemplate m_name at +0x20
+?addObjectType@ObjectTypes@@QAEXABVAsciiString@@@Z,,0x001DC520,92,Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp,matched,Open-BFME5 m_objectTypes overlay at +0x8
