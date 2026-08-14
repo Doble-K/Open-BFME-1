@@ -379,10 +379,11 @@ StateReturnType AIDockAdvancePositionState::onEnter( void )
 }
 
 //----------------------------------------------------------------------------------------------
-// ?update@AIDockAdvancePositionState@@ present-unmatched
 StateReturnType AIDockAdvancePositionState::update( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	// State::m_machine is at +0x1c in BFME; this tree lands it at +0x20. Same
+	// offset AIMoveAndEvacuateState::onExit and ownerDocking pin.
+	Object *goalObject = (*(StateMachine **)((char *)this + 0x1c))->getGoalObject();
 
 	// if we have nothing to dock with, fail
 	if (goalObject == NULL)
