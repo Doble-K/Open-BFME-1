@@ -69512,3 +69512,4 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?changeObjectPanelFlagForSingleObject@ScriptActions@@IAEXPAVObject@@ABVAsciiString@@_N@Z,0x0002DD85,Open-BFME5 ILT thunk from zh_sweep packet 002fc480
 ?isDieApplicable@DieMuxData@@QBE_NPBVObject@@PBVDamageInfo@@@Z,0x000357D8,Open-BFME5 ILT from zh_sweep packet 00256070
 ?notifyScriptEngine@SpecialPowerCompletionDie@@QAEXXZ,0x00017981,Open-BFME5 ILT from zh_sweep packet 00256070
+?addSupplyCenter@ResourceGatheringManager@@QAEXPAVObject@@@Z,0x0001E23B,Open-BFME5 ILT from zh_sweep packet 002503b0

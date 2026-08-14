@@ -108809,7 +108809,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0020d260@@YAXXZ,,0x0020D260,17,Code/gen_asm/d_00200420.asm,matched,gen-dump;ghidra=FUN_0060d260
 ?d_0020d310@@YAXXZ,,0x0020D310,361,Code/gen_asm/d_00200420.asm,matched,gen-dump;ghidra=FUN_0060d310
 ?d_0020d4e0@@YAXXZ,,0x0020D4E0,32,Code/gen_asm/d_00200420.asm,matched,gen-dump;ghidra=FUN_0060d4e0
-?d_0020d770@@YAXXZ,,0x0020D770,47,Code/gen_asm/d_00200420.asm,matched,gen-dump;ghidra=FUN_0060d770
 ?d_0020d870@@YAXXZ,,0x0020D870,18,Code/gen_asm/d_00200420.asm,matched,gen-dump;ghidra=FUN_0060d870
 ?d_0020d890@@YAXXZ,,0x0020D890,74,Code/gen_asm/d_00200420.asm,matched,gen-dump;ghidra=FUN_0060d890
 ?d_0020d930@@YAXXZ,,0x0020D930,18,Code/gen_asm/d_00200420.asm,matched,gen-dump;ghidra=FUN_0060d930
@@ -141244,7 +141243,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00250210@@YAXXZ,,0x00250210,45,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00250250@@YAXXZ,,0x00250250,7,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_002502a0@@YAXXZ,,0x002502A0,6,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
-?d_002503b0@@YAXXZ,,0x002503B0,85,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00250420@@YAXXZ,,0x00250420,45,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00250600@@YAXXZ,,0x00250600,45,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00250690@@YAXXZ,,0x00250690,60,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?canFireWeaponAtLocation@ActionManager@@QAE_NPBVObject@@PBUCoord3D@@W4CommandSourceType@@W4WeaponSlotType@@0@Z,,0x000C4240,45,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,zh_sweep packet 000c4240
 ?onDie@SpecialPowerCompletionDie@@UAEXPBVDamageInfo@@@Z,,0x00256070,39,Code/GameEngine/Source/GameLogic/Object/Die/SpecialPowerCompletionDie.cpp,matched,zh_sweep packet 00256070
 ?EstablishConnectionsControlSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C8570,44,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/EstablishConnectionsWindow.cpp,matched,zh_sweep packet 004c8570
+?onBuildComplete@SupplyCenterCreate@@UAEXXZ,,0x002503B0,85,Code/GameEngine/Source/GameLogic/Object/Create/SupplyCenterCreate.cpp,matched,zh_sweep packet 002503b0
+?onDamage@SupplyWarehouseCripplingBehavior@@UAEXPAVDamageInfo@@@Z,,0x0020D770,47,Code/GameEngine/Source/GameLogic/Object/Behavior/SupplyWarehouseCripplingBehavior_onDamage_Thunk.cpp,matched,zh_sweep packet 0020d770
