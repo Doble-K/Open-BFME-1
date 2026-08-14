@@ -884,13 +884,16 @@ Bool TurretAI::friend_isSweepEnabled() const
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?friend_getNextIdleMoodTargetFrame@TurretAI@@QBEIXZ present-unmatched
 UnsignedInt TurretAI::friend_getNextIdleMoodTargetFrame() const
 {
 	const Object* obj = getOwner();
-	const AIUpdateInterface *ai = obj->getAIUpdateInterface();
+	// Two offsets are BFME's: Object::m_ai at +0x204, which is exactly what
+	// reference/shims/bfmeobject records for it, and
+	// AIUpdateInterface::m_nextMoodCheckTime at +0x1fc. This tree lands them at
+	// +0x19c and +0x1e0.
+	const void *ai = *(const void * const *)((const char *)obj + 0x204);
 	// ai can be null during object construction. 
-	return ai ? ai->getNextMoodCheckTime() : TheGameLogic->getFrame();
+	return ai ? *(const UnsignedInt *)((const char *)ai + 0x1fc) : TheGameLogic->getFrame();
 }
 
 //----------------------------------------------------------------------------------------------------------

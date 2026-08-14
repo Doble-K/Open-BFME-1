@@ -138826,7 +138826,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0018c790@@YAXXZ,,0x0018C790,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c880@@YAXXZ,,0x0018C880,61,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c910@@YAXXZ,,0x0018C910,15,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_0018ca20@@YAXXZ,,0x0018CA20,30,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018cab0@@YAXXZ,,0x0018CAB0,48,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018caf0@@YAXXZ,,0x0018CAF0,55,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018cc20@@YAXXZ,,0x0018CC20,48,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
@@ -157947,3 +157946,4 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?disconnected@GameSlot@@QBE_NXZ,,0x000A3080,30,Code/GameEngine/Source/GameNetwork/GameSlot_disconnected_Thunk.cpp,matched,Open-BFME5 m_disconnected at +0x40; isHuman via ILT 0x279CB
 ?getName@Weapon@@QBE?AVAsciiString@@XZ,,0x001C2DC0,30,Code/GameEngine/Source/GameLogic/Object/Weapon_getName_Thunk.cpp,matched,Open-BFME5 m_template at Weapon+0x30
 ?isAnimReversed@Shell@@QAE_NXZ,,0x0057F440,30,Code/GameEngine/Source/GameClient/GUI/Shell/Shell_isAnimReversed_Thunk.cpp,matched,Open-BFME5 m_animateWindows at GlobalData+0xbc4
+?friend_getNextIdleMoodTargetFrame@TurretAI@@QBEIXZ,,0x0018CA20,30,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,Open-BFME5 Object m_ai at +0x204 and m_nextMoodCheckTime at +0x1fc
