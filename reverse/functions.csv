@@ -110731,7 +110731,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002eed00@@YAXXZ,,0x002EED00,14,Code/gen_asm/d_002ee290.asm,matched,gen-dump;ghidra=FUN_006eed00
 ?d_002eed20@@YAXXZ,,0x002EED20,86,Code/gen_asm/d_002ee290.asm,matched,gen-dump;ghidra=FUN_006eed20
 ?d_002ef010@@YAXXZ,,0x002EF010,99,Code/gen_asm/d_002ee290.asm,matched,gen-dump;ghidra=FUN_006ef010
-?d_002ef0c0@@YAXXZ,,0x002EF0C0,56,Code/gen_asm/d_002ee290.asm,matched,gen-dump;ghidra=FUN_006ef0c0
 ?d_001107b0@@YAXXZ,,0x001107B0,463,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_005107b0
 ?d_00110992@@YAXXZ,,0x00110992,45,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_00510992
 ?d_002e4470@@YAXXZ,,0x002E4470,230,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006e4470
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?friend_notifyStateMachineChanged@AIUpdateInterface@@UAEXXZ,,0x0026ED10,38,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,Open-BFME5 wakeUpNow guarded by a flag at +0x330
 ?startBuildingSound@DozerAIUpdate@@UAEXPBVAudioEventRTS@@W4ObjectID@@@Z,,0x002B6A10,52,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,Open-BFME5 addAudioEvent at AudioManager vtable slot 17
 ?privateRepair@DozerAIUpdate@@MAEXPAVObject@@W4CommandSourceType@@@Z,,0x002B6B80,86,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,Open-BFME5 DozerAIInterface base at +0x340
+?doSetBorderShroud@ScriptActions@@IAEX_N@Z,,0x002EF0C0,56,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 setBorderShroudLevel at Display vtable slot 69; GlobalData alphas at 0xc84 and 0xc86

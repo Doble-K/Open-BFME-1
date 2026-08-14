@@ -89,6 +89,83 @@
 #include "GameLogic/VictoryConditions.h"
 #include "GameLogic/AIPathfind.h"
 
+// BFME's Display vtable puts setBorderShroudLevel at slot 69; the ZH header
+// lands it at 47, so the tail jump comes out [eax+0xbc] instead of [eax+0x114].
+class BFMERetailDisplayVTable
+{
+public:
+	virtual void dslot0() = 0;
+	virtual void dslot1() = 0;
+	virtual void dslot2() = 0;
+	virtual void dslot3() = 0;
+	virtual void dslot4() = 0;
+	virtual void dslot5() = 0;
+	virtual void dslot6() = 0;
+	virtual void dslot7() = 0;
+	virtual void dslot8() = 0;
+	virtual void dslot9() = 0;
+	virtual void dslot10() = 0;
+	virtual void dslot11() = 0;
+	virtual void dslot12() = 0;
+	virtual void dslot13() = 0;
+	virtual void dslot14() = 0;
+	virtual void dslot15() = 0;
+	virtual void dslot16() = 0;
+	virtual void dslot17() = 0;
+	virtual void dslot18() = 0;
+	virtual void dslot19() = 0;
+	virtual void dslot20() = 0;
+	virtual void dslot21() = 0;
+	virtual void dslot22() = 0;
+	virtual void dslot23() = 0;
+	virtual void dslot24() = 0;
+	virtual void dslot25() = 0;
+	virtual void dslot26() = 0;
+	virtual void dslot27() = 0;
+	virtual void dslot28() = 0;
+	virtual void dslot29() = 0;
+	virtual void dslot30() = 0;
+	virtual void dslot31() = 0;
+	virtual void dslot32() = 0;
+	virtual void dslot33() = 0;
+	virtual void dslot34() = 0;
+	virtual void dslot35() = 0;
+	virtual void dslot36() = 0;
+	virtual void dslot37() = 0;
+	virtual void dslot38() = 0;
+	virtual void dslot39() = 0;
+	virtual void dslot40() = 0;
+	virtual void dslot41() = 0;
+	virtual void dslot42() = 0;
+	virtual void dslot43() = 0;
+	virtual void dslot44() = 0;
+	virtual void dslot45() = 0;
+	virtual void dslot46() = 0;
+	virtual void dslot47() = 0;
+	virtual void dslot48() = 0;
+	virtual void dslot49() = 0;
+	virtual void dslot50() = 0;
+	virtual void dslot51() = 0;
+	virtual void dslot52() = 0;
+	virtual void dslot53() = 0;
+	virtual void dslot54() = 0;
+	virtual void dslot55() = 0;
+	virtual void dslot56() = 0;
+	virtual void dslot57() = 0;
+	virtual void dslot58() = 0;
+	virtual void dslot59() = 0;
+	virtual void dslot60() = 0;
+	virtual void dslot61() = 0;
+	virtual void dslot62() = 0;
+	virtual void dslot63() = 0;
+	virtual void dslot64() = 0;
+	virtual void dslot65() = 0;
+	virtual void dslot66() = 0;
+	virtual void dslot67() = 0;
+	virtual void dslot68() = 0;
+	virtual void setBorderShroudLevel(UnsignedByte level) = 0;
+};
+
 // BFME's ScriptEngine vtable puts getUnitNamed at slot 26; the ZH header lands
 // it at 23, so the call comes out [eax+0x5c] instead of [eax+0x68]. Only the
 // one slot is named. There are a dozen getUnitNamed call sites in this file;
@@ -3570,13 +3647,16 @@ void ScriptActions::doEnableInput()
 //-------------------------------------------------------------------------------------------------
 /** doSetBorderShroud */
 //-------------------------------------------------------------------------------------------------
-// ?doSetBorderShroud@ScriptActions@@IAEX_N@Z present-unmatched
 void ScriptActions::doSetBorderShroud( Bool setting )
 {
+	// Two more GlobalData offsets: m_shroudAlpha at +0xc86 and m_clearAlpha at
+	// +0xc84, where this tree lands them at +0x8f6 and +0x8f4.
 	if( setting )
-		TheDisplay->setBorderShroudLevel(TheGlobalData->m_shroudAlpha);
+		reinterpret_cast<BFMERetailDisplayVTable *>(TheDisplay)->setBorderShroudLevel(
+			*(const UnsignedByte *)((const char *)TheGlobalData + 0xc86) );
 	else
-		TheDisplay->setBorderShroudLevel(TheGlobalData->m_clearAlpha);
+		reinterpret_cast<BFMERetailDisplayVTable *>(TheDisplay)->setBorderShroudLevel(
+			*(const UnsignedByte *)((const char *)TheGlobalData + 0xc84) );
 }
 
 //-------------------------------------------------------------------------------------------------
