@@ -137931,7 +137931,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0013c5a0@@YAXXZ,,0x0013C5A0,9,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013c5b0@@YAXXZ,,0x0013C5B0,36,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013c5e0@@YAXXZ,,0x0013C5E0,36,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0013c610@@YAXXZ,,0x0013C610,36,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0013cdc0@@YAXXZ,,0x0013CDC0,7,Code/GameEngine/Source/Common/Rva13CDC0MemberAddress.cpp,matched,object-symbol=?member@Rva13CDC0MemberAddress@@QAEPAEXZ;hand-reconciled C++
 ?d_0013d030@@YAXXZ,,0x0013D030,11,Code/GameEngine/Source/Common/Rva13D030ValueStore.cpp,matched,object-symbol=?store@Rva13D030ValueStore@@QAEPAV1@I@Z;hand-reconciled C++
 ?d_0013d060@@YAXXZ,,0x0013D060,7,Code/GameEngine/Source/Common/Rva13D060Identity.cpp,matched,object-symbol=?identity@Rva13D060Identity@@QAEII@Z;hand-reconciled C++
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?reset@W3DTerrainLogic@@UAEXXZ,,0x006BE110,38,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DTerrainLogic_initReset_Thunk.cpp,matched,Open-BFME5 same four members as init plus the freeListOfMapObjects tail call
 ?processProgress@MultiPlayerLoadScreen@@UAEXHH@Z,,0x00490A00,33,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,Open-BFME5 m_progressBars at +0x10 and m_playerLookup at +0x70
 ?processProgress@GameSpyLoadScreen@@UAEXHH@Z,,0x00490CC0,36,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,Open-BFME5 m_progressBars at +0x10 and m_playerLookup at +0x154
+??$_Destroy@PAUModelConditionInfo@@@_STL@@YAXPAUModelConditionInfo@@0@Z,,0x0013C610,36,Code/GameEngine/Source/Common/ModelConditionInfoDestroyRangeThunk.cpp,matched,Open-BFME5 sizeof ModelConditionInfo is 0x128
