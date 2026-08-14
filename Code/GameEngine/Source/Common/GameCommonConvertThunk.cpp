@@ -31,18 +31,31 @@ typedef float Real;
 
 #define SECONDS_PER_LOGICFRAME_REAL (*reinterpret_cast<const Real *>(0x012A86A8))
 #define RADS_PER_DEGREE (*reinterpret_cast<const Real *>(0x01082C40))
+
+// Reading the SAME global through a `volatile`-qualified pointer forces the
+// compiler to treat each read as an observable side effect: it can neither
+// reorder the load after the parameter fetch (Velocity) nor fold two reads
+// of the identical address into one FPU-stack duplicate (Acceleration) --
+// both of which the non-volatile macro above lets the optimizer do. The
+// read itself is the only volatile-qualified step; the value it produces is
+// then used as an ordinary float, so the rest of each expression is untouched.
+#define SECONDS_PER_LOGICFRAME_REAL_VOL (*reinterpret_cast<const volatile Real *>(0x012A86A8))
+
 Real ConvertVelocityInSecsToFrames(Real distPerMsec)
 {
-	return (SECONDS_PER_LOGICFRAME_REAL * distPerMsec);
+	return (SECONDS_PER_LOGICFRAME_REAL_VOL * distPerMsec);
 }
 
 // retail loads SECONDS_PER_LOGICFRAME_REAL's address twice rather than
-// reusing the FPU-stack copy (fld st(0)) the optimizer prefers; /Op
-// (improve floating-point consistency) turns off that FP-load reuse without
-// disabling straight-line codegen, reproducing the two direct loads.
+// reusing the FPU-stack copy (fld st(0)) the optimizer prefers; reading it
+// through two independent local `const Real` variables, each initialized
+// from the volatile-qualified macro, forces two genuinely separate loads
+// that cannot be merged, reproducing the two direct loads.
 Real ConvertAccelerationInSecsToFrames(Real distPerSec2)
 {
-	const Real SEC_PER_LOGICFRAME_SQR = (SECONDS_PER_LOGICFRAME_REAL * SECONDS_PER_LOGICFRAME_REAL);
+	const Real a = SECONDS_PER_LOGICFRAME_REAL_VOL;
+	const Real b = SECONDS_PER_LOGICFRAME_REAL_VOL;
+	const Real SEC_PER_LOGICFRAME_SQR = (a * b);
 	return (distPerSec2 * SEC_PER_LOGICFRAME_SQR);
 }
 
