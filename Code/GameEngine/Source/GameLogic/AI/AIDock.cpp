@@ -304,10 +304,11 @@ StateReturnType AIDockWaitForClearanceState::update( void )
 }
 
 //----------------------------------------------------------------------------------------------
-// ?onExit@AIDockWaitForClearanceState@@ present-unmatched
 void AIDockWaitForClearanceState::onExit( StateExitType status )
 {
-	Object *goalObject = getMachineGoalObject();
+	// State::m_machine at +0x1c and StateMachine::m_owner at +0x10, the same
+	// two every other state in this file needs.
+	Object *goalObject = (*(StateMachine **)((char *)this + 0x1c))->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -315,7 +316,7 @@ void AIDockWaitForClearanceState::onExit( StateExitType status )
 
 	// if we were interrupted, let the dock know we're not coming
 	if (dock && (dock->isDockOpen() == FALSE || status == EXIT_RESET))
-		dock->cancelDock( getMachineOwner() );
+		dock->cancelDock( *(Object **)((char *)(*(StateMachine **)((char *)this + 0x1c)) + 0x10) );
 }
 
 //----------------------------------------------------------------------------------------------
@@ -564,10 +565,11 @@ StateReturnType AIDockMoveToDockState::update( void )
 }
 
 //----------------------------------------------------------------------------------------------
-// ?onExit@AIDockMoveToDockState@@ present-unmatched
 void AIDockMoveToDockState::onExit( StateExitType status )
 {
-	Object *goalObject = getMachineGoalObject();
+	// State::m_machine +0x1c, StateMachine::m_owner +0x10, lock flag +0x40 --
+	// the three this file's states all need.
+	Object *goalObject = (*(StateMachine **)((char *)this + 0x1c))->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -579,14 +581,14 @@ void AIDockMoveToDockState::onExit( StateExitType status )
 
 		// if we were interrupted, let the dock know we're not coming
 		if (status == EXIT_RESET || dock->isDockOpen() == FALSE )
-			dock->cancelDock( getMachineOwner() );
+			dock->cancelDock( *(Object **)((char *)(*(StateMachine **)((char *)this + 0x1c)) + 0x10) );
 		else
-			dock->onDockReached( getMachineOwner() );
+			dock->onDockReached( *(Object **)((char *)(*(StateMachine **)((char *)this + 0x1c)) + 0x10) );
 
 	}
 
 	// unlock the machine
-	getMachine()->unlock();
+	*((char *)(*(StateMachine **)((char *)this + 0x1c)) + 0x40) = 0;
 
 	// this behavior is an extention of basic MoveTo
 	AIInternalMoveToState::onExit( status );

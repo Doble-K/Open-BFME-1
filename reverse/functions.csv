@@ -138261,10 +138261,8 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0014e6b0@@YAXXZ,,0x0014E6B0,63,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014e7d0@@YAXXZ,,0x0014E7D0,106,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014e880@@YAXXZ,,0x0014E880,120,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014e920@@YAXXZ,,0x0014E920,66,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014e980@@YAXXZ,,0x0014E980,119,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014ea50@@YAXXZ,,0x0014EA50,106,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
-?d_0014edc0@@YAXXZ,,0x0014EDC0,101,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014eef0@@YAXXZ,,0x0014EEF0,10,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014f150@@YAXXZ,,0x0014F150,52,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
 ?d_0014f1e0@@YAXXZ,,0x0014F1E0,48,Code/gen_asm/d_00138250.asm,matched,gen-dump;bounds=high
@@ -157950,3 +157948,5 @@ _NewBucketSet,,0x009D5BB0,50,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/g
 _DumpBucketSet,,0x009D5BF0,82,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbucket.c,matched,
 _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbucket.c,matched,
 ?onExit@AIDockMoveToExitState@@UAEXW4StateExitType@@@Z,,0x0014F010,63,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and m_owner +0x10 and lock flag +0x40
+?onExit@AIDockWaitForClearanceState@@UAEXW4StateExitType@@@Z,,0x0014E920,66,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and StateMachine m_owner +0x10
+?onExit@AIDockMoveToDockState@@UAEXW4StateExitType@@@Z,,0x0014EDC0,101,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and m_owner +0x10 and lock flag +0x40
