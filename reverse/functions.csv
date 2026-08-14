@@ -148746,7 +148746,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004c7470@@YAXXZ,,0x004C7470,17,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c7740@@YAXXZ,,0x004C7740,14,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c78c0@@YAXXZ,,0x004C78C0,94,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
-?d_004c8570@@YAXXZ,,0x004C8570,44,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c8830@@YAXXZ,,0x004C8830,176,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c9060@@YAXXZ,,0x004C9060,30,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c9290@@YAXXZ,,0x004C9290,199,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?doAffectObjectPanelFlagsUnit@ScriptActions@@IAEXABVAsciiString@@0_N@Z,,0x002FC480,45,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,zh_sweep packet 002fc480
 ?canFireWeaponAtLocation@ActionManager@@QAE_NPBVObject@@PBUCoord3D@@W4CommandSourceType@@W4WeaponSlotType@@0@Z,,0x000C4240,45,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,zh_sweep packet 000c4240
 ?onDie@SpecialPowerCompletionDie@@UAEXPBVDamageInfo@@@Z,,0x00256070,39,Code/GameEngine/Source/GameLogic/Object/Die/SpecialPowerCompletionDie.cpp,matched,zh_sweep packet 00256070
+?EstablishConnectionsControlSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C8570,44,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/EstablishConnectionsWindow.cpp,matched,zh_sweep packet 004c8570
