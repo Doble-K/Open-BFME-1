@@ -1559,7 +1559,6 @@ void MultiPlayerLoadScreen::update( Int percent )
 	LoadScreen::update( percent );
 }
 
-// ?processProgress@MultiPlayerLoadScreen@@ present-unmatched
 void MultiPlayerLoadScreen::processProgress(Int playerId, Int percentage)
 {
 	
@@ -1568,8 +1567,20 @@ void MultiPlayerLoadScreen::processProgress(Int playerId, Int percentage)
 		DEBUG_ASSERTCRASH(FALSE, ("Percentage %d was passed in for Player %d\n", percentage, playerId));
 	}
 	//DEBUG_LOG(("Percentage %d was passed in for Player %d (in loadscreen position %d)\n", percentage, playerId, m_playerLookup[playerId]));
-	if(m_progressBars[m_playerLookup[playerId]])
-		GadgetProgressBarSetProgress(m_progressBars[m_playerLookup[playerId]], percentage );	
+	// Both arrays sit 8 bytes further out in BFME: m_progressBars at +0x10
+	// (this tree +0x08) and m_playerLookup at +0x70 (+0x68).
+	// A uniform +8 for both members of both load screens, so the shared
+	// LoadScreen base is eight bytes wider than the ZH header makes it.
+	struct BFMEMultiPlayerLoadScreen
+	{
+		char m_unreconstructed_00[0x10];
+		GameWindow *m_progressBars[MAX_SLOTS];
+		char m_unreconstructed_gap[0x70 - 0x10 - 4 * MAX_SLOTS];
+		Int m_playerLookup[MAX_SLOTS];
+	};
+	BFMEMultiPlayerLoadScreen *self = (BFMEMultiPlayerLoadScreen *)this;
+	if(self->m_progressBars[self->m_playerLookup[playerId]])
+		GadgetProgressBarSetProgress(self->m_progressBars[self->m_playerLookup[playerId]], percentage );	
 }
 
 // GameSpyLoadScreen Class //////////////////////////////////////////////////
@@ -1926,7 +1937,6 @@ void GameSpyLoadScreen::update( Int percent )
 	LoadScreen::update( percent );
 }
 
-// ?processProgress@GameSpyLoadScreen@@ present-unmatched
 void GameSpyLoadScreen::processProgress(Int playerId, Int percentage)
 {
 	
@@ -1935,8 +1945,20 @@ void GameSpyLoadScreen::processProgress(Int playerId, Int percentage)
 		DEBUG_ASSERTCRASH(FALSE, ("Percentage %d was passed in for Player %d\n", percentage, playerId));
 	}
 	//DEBUG_LOG(("Percentage %d was passed in for Player %d (in loadscreen position %d)\n", percentage, playerId, m_playerLookup[playerId]));
-	if(m_progressBars[m_playerLookup[playerId]])
-		GadgetProgressBarSetProgress(m_progressBars[m_playerLookup[playerId]], percentage );	
+	// Both arrays sit 8 bytes further out in BFME: m_progressBars at +0x10
+	// (this tree +0x08) and m_playerLookup at +0x154 (+0x14c).
+	// A uniform +8 for both members of both load screens, so the shared
+	// LoadScreen base is eight bytes wider than the ZH header makes it.
+	struct BFMEGameSpyLoadScreen
+	{
+		char m_unreconstructed_00[0x10];
+		GameWindow *m_progressBars[MAX_SLOTS];
+		char m_unreconstructed_gap[0x154 - 0x10 - 4 * MAX_SLOTS];
+		Int m_playerLookup[MAX_SLOTS];
+	};
+	BFMEGameSpyLoadScreen *self = (BFMEGameSpyLoadScreen *)this;
+	if(self->m_progressBars[self->m_playerLookup[playerId]])
+		GadgetProgressBarSetProgress(self->m_progressBars[self->m_playerLookup[playerId]], percentage );	
 }
 
 // MapTransferLoadScreen Class //////////////////////////////////////////////////

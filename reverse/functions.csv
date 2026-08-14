@@ -148307,9 +148307,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004906b0@@YAXXZ,,0x004906B0,52,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00490700@@YAXXZ,,0x00490700,46,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00490990@@YAXXZ,,0x00490990,78,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
-?d_00490a00@@YAXXZ,,0x00490A00,33,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00490c50@@YAXXZ,,0x00490C50,78,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
-?d_00490cc0@@YAXXZ,,0x00490CC0,36,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00490cf0@@YAXXZ,,0x00490CF0,215,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00490f00@@YAXXZ,,0x00490F00,177,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00490fe0@@YAXXZ,,0x00490FE0,9,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?deleteAllUnmanned@ScriptActions@@IAEXXZ,,0x002FC7C0,51,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 Object disabled mask at +0x1a4
 ?init@W3DTerrainLogic@@UAEXXZ,,0x006BE0E0,34,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DTerrainLogic_initReset_Thunk.cpp,matched,Open-BFME5 m_mapDX +0xc m_mapDY +0x10 m_mapMinZ +0x18f8 m_mapMaxZ +0x18fc
 ?reset@W3DTerrainLogic@@UAEXXZ,,0x006BE110,38,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DTerrainLogic_initReset_Thunk.cpp,matched,Open-BFME5 same four members as init plus the freeListOfMapObjects tail call
+?processProgress@MultiPlayerLoadScreen@@UAEXHH@Z,,0x00490A00,33,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,Open-BFME5 m_progressBars at +0x10 and m_playerLookup at +0x70
+?processProgress@GameSpyLoadScreen@@UAEXHH@Z,,0x00490CC0,36,Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp,matched,Open-BFME5 m_progressBars at +0x10 and m_playerLookup at +0x154
