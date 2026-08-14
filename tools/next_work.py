@@ -1085,6 +1085,12 @@ def main():
 
     packets = (packet_candidates(claimed)
                if args.tier in (None, "packet") else [])
+    # The packet tier carries its own boundary, so a logged verdict retires it
+    # exactly as it does for every other lane. Without this the recommender
+    # keeps serving packets already recorded not-convertible or no-boundary.
+    if not args.include_logged:
+        packets, dropped_packets = drop_logged(packets)
+        suppressed += dropped_packets
     label, candidates = selected_queue(args.tier, drifts, structural, ghidra_absent,
                                        anchored, named, packets)
     candidate = weighted_choice(candidates) if candidates else None
