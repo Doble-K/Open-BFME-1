@@ -107154,7 +107154,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0013c640@@YAXXZ,,0x0013C640,171,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0053c640
 ?d_0013ce20@@YAXXZ,,0x0013CE20,90,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0053ce20
 ?d_0013ce90@@YAXXZ,,0x0013CE90,63,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0053ce90
-?d_0013cee0@@YAXXZ,,0x0013CEE0,43,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0053cee0
 ?d_0013cf30@@YAXXZ,,0x0013CF30,34,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0053cf30
 ?d_0013d9f0@@YAXXZ,,0x0013D9F0,53,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0053d9f0
 ?d_0013def0@@YAXXZ,,0x0013DEF0,77,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0053def0
@@ -157947,3 +157946,4 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?isInSet@ObjectTypes@@QBE_NPBVThingTemplate@@@Z,,0x001DC310,52,Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp,matched,Open-BFME5 ThingTemplate m_name at +0x20
 ?addObjectType@ObjectTypes@@QAEXABVAsciiString@@@Z,,0x001DC520,92,Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp,matched,Open-BFME5 m_objectTypes overlay at +0x8
 ?onDrawableSelected@ControlBar@@QAEXPAVDrawable@@@Z,,0x0049CB90,26,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp,matched,Open-BFME5 setGUICommand at InGameUI vtable slot 46
+?getBuildable@ThingTemplate@@QBE?AW4BuildableStatus@@XZ,,0x0013CEE0,43,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,Open-BFME5 m_buildable at ThingTemplate+0x492

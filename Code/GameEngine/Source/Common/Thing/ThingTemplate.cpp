@@ -1340,14 +1340,15 @@ const ThingTemplate *ThingTemplate::getBuildFacilityTemplate( const Player *play
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?getBuildable@ThingTemplate@@QBE?AW4BuildableStatus@@XZ present-unmatched
 BuildableStatus ThingTemplate::getBuildable() const 
 { 
 	BuildableStatus bs;
 	if (TheGameLogic && TheGameLogic->findBuildableStatusOverride(this, bs))
 		return bs;
 
-	return (BuildableStatus)m_buildable; 
+	// m_buildable is at ThingTemplate+0x492 in BFME; this tree lands it at
+	// +0x232. Read as a signed byte, which is what retail's movsx does.
+	return (BuildableStatus)*(const signed char *)((const char *)this + 0x492);
 }
 
 //-------------------------------------------------------------------------------------------------
