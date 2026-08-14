@@ -111071,7 +111071,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00322810@@YAXXZ,,0x00322810,83,Code/gen_asm/d_002fd9d0.asm,matched,gen-dump;ghidra=FUN_00722810
 ?d_00322880@@YAXXZ,,0x00322880,89,Code/gen_asm/d_002fd9d0.asm,matched,gen-dump;ghidra=FUN_00722880
 ?d_003228f0@@YAXXZ,,0x003228F0,27,Code/gen_asm/d_002fd9d0.asm,matched,gen-dump;ghidra=FUN_007228f0
-?d_00322920@@YAXXZ,,0x00322920,27,Code/gen_asm/d_002fd9d0.asm,matched,gen-dump;ghidra=FUN_00722920
 ?d_00322950@@YAXXZ,,0x00322950,27,Code/gen_asm/d_002fd9d0.asm,matched,gen-dump;ghidra=FUN_00722950
 ?d_00322980@@YAXXZ,,0x00322980,27,Code/gen_asm/d_002fd9d0.asm,matched,gen-dump;ghidra=FUN_00722980
 ?d_003229b0@@YAXXZ,,0x003229B0,140,Code/gen_asm/d_002fd9d0.asm,matched,gen-dump;ghidra=FUN_007229b0
@@ -116357,7 +116356,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_005f7f30@@YAXXZ,,0x005F7F30,16,Code/gen_asm/d_005f0120.asm,matched,gen-dump;ghidra=FUN_009f7f30
 ?d_005f7f50@@YAXXZ,,0x005F7F50,55,Code/gen_asm/d_005f0120.asm,matched,gen-dump;ghidra=FUN_009f7f50
 ?d_005f7fa0@@YAXXZ,,0x005F7FA0,39,Code/gen_asm/d_005f0120.asm,matched,gen-dump;ghidra=FUN_009f7fa0
-?d_005f84e0@@YAXXZ,,0x005F84E0,53,Code/gen_asm/d_005f0120.asm,matched,gen-dump;ghidra=FUN_009f84e0
 ?d_005f8530@@YAXXZ,,0x005F8530,12,Code/gen_asm/d_005f0120.asm,matched,gen-dump;ghidra=FUN_009f8530
 ?d_005f8540@@YAXXZ,,0x005F8540,98,Code/gen_asm/d_005f0120.asm,matched,gen-dump;ghidra=FUN_009f8540
 ?d_005f8670@@YAXXZ,,0x005F8670,62,Code/gen_asm/d_005f0120.asm,matched,gen-dump;ghidra=FUN_009f8670
@@ -157947,3 +157945,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?Compute_Plane_Equations@MeshGeometryClass@@MAEXPAVVector4@@@Z,,0x00926DA0,350,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
 ?parseGeometryIsSmall@GeometryInfo@@SAXPAVINI@@PAX1PBX@Z,,0x0087F160,32,Code/GameEngine/Source/Common/System/GeometryIsSmall_Thunk.cpp,matched,clean C++ thunk; retail scanBool returns bool not int (shared ini.h header disagrees) and GeometryInfo has no vptr (shared geometry.h wrongly derives from Snapshot); local replica sidesteps both
 ?Resize@?$VectorClass@VProxyClass@@@@UAE_NHPBVProxyClass@@@Z,,0x00934630,324,Code/Libraries/Source/WWVegas/WW3D2/VectorClassProxyResizeThunk.cpp,matched,
+?evaluateAudioHasCompleted@ScriptConditions@@IAE_NPAVParameter@@@Z,,0x00322920,27,Code/GameEngine/Source/Common/ScriptConditions_evaluateAudioHasCompleted_Thunk.cpp,matched,retail folds evaluateVideoHasCompleted/evaluateSpeechHasCompleted/evaluateAudioHasCompleted onto one body; Parameter string at +0x10 per matched WriteParameter row; vtable slot 0xa8 modeled via 42 pad slots; callee identity unresolved
+??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x005F84E0,53,Code/GameEngine/Source/GameLogic/Object/Behavior/BehaviorModuleConstructorThunk.cpp,matched,Open-BFME5 clean C++ BehaviorModule ctor: ObjectModule(0xC)+2 pad dwords+BehaviorModuleInterface+Snapshot

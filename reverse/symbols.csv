@@ -69453,3 +69453,6 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ??0?$ShareBufferClass@PAVVertexMaterialClass@@@@QAE@ABV0@@Z,0x00929D40,packet 0092a1e0 pin
 ?onContaining@OpenContain@@UAEXPAVObject@@_N@Z,0x000476F9,packet 00219850 pin
 ??4ProxyClass@@QAEAAV0@ABV0@@Z,0x00933C60,packet 00934630 pin
+
+??0MultiplayerColorDefinition@@QAE@XZ,0x0004048A,packet 00844520 pin
+??0ObjectModule@@QAE@PAVThing@@PBVModuleData@@@Z,0x00041CBD,packet 005f84e0 pin
