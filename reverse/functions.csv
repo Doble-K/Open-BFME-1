@@ -122844,7 +122844,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0095b070@@YAXXZ,,0x0095B070,156,Code/gen_asm/d_009531a0.asm,matched,gen-dump;ghidra=FUN_00d5b070
 ?d_0095b500@@YAXXZ,,0x0095B500,374,Code/gen_asm/d_009531a0.asm,matched,gen-dump;ghidra=FUN_00d5b500
 ?d_0095bcb0@@YAXXZ,,0x0095BCB0,1063,Code/gen_asm/d_009531a0.asm,matched,gen-dump;ghidra=FUN_00d5bcb0
-?d_0095c4c0@@YAXXZ,,0x0095C4C0,64,Code/Libraries/Source/WWVegas/WW3D2/seglinerenderer.cpp,matched,object-symbol=?Set_Texture_Tile_Factor@SegLineRendererClass@@QAEXM@Z;Open-BFME5 clean C++ BFME texture tiling clamp
 ?d_0095c720@@YAXXZ,,0x0095C720,86,Code/gen_asm/d_009531a0.asm,matched,gen-dump;ghidra=FUN_00d5c720
 ?d_0095c780@@YAXXZ,,0x0095C780,28,Code/gen_asm/d_009531a0.asm,matched,gen-dump;ghidra=FUN_00d5c780
 ?d_0095c7a0@@YAXXZ,,0x0095C7A0,47,Code/gen_asm/d_009531a0.asm,matched,gen-dump;ghidra=FUN_00d5c7a0
