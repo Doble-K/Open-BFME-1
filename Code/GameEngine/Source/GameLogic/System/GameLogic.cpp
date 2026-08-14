@@ -7568,12 +7568,13 @@ TerrainLogic *GameLogic::createTerrainLogic( void )
 }
 
 // ------------------------------------------------------------------------------------------------
-// ?setBuildableStatusOverride@GameLogic@@QAEXPBVThingTemplate@@W4BuildableStatus@@@Z present-unmatched
 void GameLogic::setBuildableStatusOverride(const ThingTemplate* tt, BuildableStatus bs)
 {
 	if (tt)
 	{
-		m_thingTemplateBuildableOverrides[tt->getName()] = bs;
+		// ThingTemplate::m_name is at +0x20 in BFME; this tree lands it at +0x10.
+		// Same offset ObjectTypes::isInSet(const ThingTemplate*) pins.
+		m_thingTemplateBuildableOverrides[*(const AsciiString *)((const char *)tt + 0x20)] = bs;
 	}
 }
 
