@@ -86,6 +86,61 @@
 
 #include "GameNetwork/GameInfo.h"
 
+// BFME's InGameUI vtable puts setGUICommand at slot 46; the ZH header lands it
+// at 37, so the tail call comes out [eax+0x94] instead of [eax+0xb8]. Only the
+// one slot is named; the rest stay anonymous because nothing here needs them.
+class BFMERetailInGameUIVTable
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot1() = 0;
+	virtual void slot2() = 0;
+	virtual void slot3() = 0;
+	virtual void slot4() = 0;
+	virtual void slot5() = 0;
+	virtual void slot6() = 0;
+	virtual void slot7() = 0;
+	virtual void slot8() = 0;
+	virtual void slot9() = 0;
+	virtual void slot10() = 0;
+	virtual void slot11() = 0;
+	virtual void slot12() = 0;
+	virtual void slot13() = 0;
+	virtual void slot14() = 0;
+	virtual void slot15() = 0;
+	virtual void slot16() = 0;
+	virtual void slot17() = 0;
+	virtual void slot18() = 0;
+	virtual void slot19() = 0;
+	virtual void slot20() = 0;
+	virtual void slot21() = 0;
+	virtual void slot22() = 0;
+	virtual void slot23() = 0;
+	virtual void slot24() = 0;
+	virtual void slot25() = 0;
+	virtual void slot26() = 0;
+	virtual void slot27() = 0;
+	virtual void slot28() = 0;
+	virtual void slot29() = 0;
+	virtual void slot30() = 0;
+	virtual void slot31() = 0;
+	virtual void slot32() = 0;
+	virtual void slot33() = 0;
+	virtual void slot34() = 0;
+	virtual void slot35() = 0;
+	virtual void slot36() = 0;
+	virtual void slot37() = 0;
+	virtual void slot38() = 0;
+	virtual void slot39() = 0;
+	virtual void slot40() = 0;
+	virtual void slot41() = 0;
+	virtual void slot42() = 0;
+	virtual void slot43() = 0;
+	virtual void slot44() = 0;
+	virtual void slot45() = 0;
+	virtual void setGUICommand(const void *cmd) = 0;
+};
+
 #ifdef _INTERNAL
 // for occasional debugging...
 //#pragma optimize("", off)
@@ -1322,7 +1377,6 @@ void ControlBar::update( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?onDrawableSelected@ControlBar@@QAEXPAVDrawable@@@Z present-unmatched
 void ControlBar::onDrawableSelected( Drawable *draw )
 {
 
@@ -1330,7 +1384,7 @@ void ControlBar::onDrawableSelected( Drawable *draw )
 	markUIDirty();
 
 	// cancel any pending GUI commands
-	TheInGameUI->setGUICommand( NULL );
+	reinterpret_cast<BFMERetailInGameUIVTable *>(TheInGameUI)->setGUICommand( NULL );
 
 
 }  // end onDrawableSelected
