@@ -1490,10 +1490,14 @@ static void doFindExistingObjectWithThingTemplate( Object *obj, void *userData )
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?findNaturalCommandCenter@Player@@QAEPAVObject@@XZ present-unmatched
 Object* Player::findNaturalCommandCenter()
 {
-	PlayerObjectFindInfo info;
+	// BFME allocates only eight bytes here -- retail opens with `sub esp,8` --
+	// so this finder pairs with a two-field block, not the seven-field
+	// PlayerObjectFindInfo the other finders in this file share.
+	// doFindCommandCenter reads only .player and .obj, which are the two
+	// that overlay.
+	struct { Player* player; Object* obj; } info;
 	info.player = this;
 	info.obj = NULL;
 	iterateObjects(doFindCommandCenter, &info);
