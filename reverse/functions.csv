@@ -110752,7 +110752,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002ef7f0@@YAXXZ,,0x002EF7F0,41,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006ef7f0
 ?d_002efa10@@YAXXZ,,0x002EFA10,124,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006efa10
 ?d_002efad0@@YAXXZ,,0x002EFAD0,14,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006efad0
-?d_002efaf0@@YAXXZ,,0x002EFAF0,38,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006efaf0
 ?d_002efbe0@@YAXXZ,,0x002EFBE0,37,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006efbe0
 ?d_002efc30@@YAXXZ,,0x002EFC30,22,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006efc30
 ?d_002efcf0@@YAXXZ,,0x002EFCF0,70,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006efcf0
@@ -157950,3 +157949,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?removeObject@Squad@@QAEXPAVObject@@@Z,,0x0018B620,62,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,Open-BFME5 m_objectIDs at Squad+0x4
 ?removeDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z,,0x00712090,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,Open-BFME5 m_dynamicLightList at RTS3DScene+0x110
 ?reset@GlobalData@@UAEXXZ,,0x00083110,46,Code/GameEngine/Source/Common/GlobalData_reset_Thunk.cpp,matched,probe
+?doNamedDelete@ScriptActions@@IAEXABVAsciiString@@@Z,,0x002EFAF0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 getUnitNamed at ScriptEngine vtable slot 26
