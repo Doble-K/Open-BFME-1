@@ -69507,3 +69507,5 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?isWithinTargetPitch@Weapon@@QBE_NPBVObject@@0@Z,0x00005533,Open-BFME5 ILT thunk fronting body 0x001E2C50
 ?loadAmmoNow@Weapon@@QAEXPBVObject@@@Z,0x0000FED4,Open-BFME5 ILT thunk fronting body 0x001E9D60 (pushes 1 to reloadWithBonus)
 ?reloadAmmo@Weapon@@QAEXPBVObject@@@Z,0x00033C03,Open-BFME5 ILT thunk fronting body 0x001E9DE0 (pushes 0 to reloadWithBonus)
+?canGetHealedAt@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,0x0001B090,Open-BFME5 ILT thunk fronting body 0x000C5140
+?aiEnter@AICommandInterface@@QAEXPAVObject@@W4CommandSourceType@@@Z,0x000442A1,Open-BFME5 ILT thunk fronting body 0x000D89C0

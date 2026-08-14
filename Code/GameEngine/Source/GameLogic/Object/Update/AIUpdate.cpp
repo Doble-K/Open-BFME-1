@@ -1126,7 +1126,7 @@ void AIUpdateInterface::doSurrenderUpdateStuff()
 #endif
 
 //-------------------------------------------------------------------------------------------------
-// ?setQueueForPathTime@AIUpdateInterface@@ present-unmatched
+// ?setQueueForPathTime@AIUpdateInterface@@ present-unmatched here - matched copy lives in GameLogic/AI/AIUpdateInterface_setQueueForPathTime_Thunk.cpp; this one compiles to within two operands of retail and both are shim offsets (m_isInUpdate 0x216 vs 0x330, m_obj 0xc vs 0x8)
 void AIUpdateInterface::setQueueForPathTime(Int frames)
 {
 #ifdef SLEEPY_AI
@@ -3976,7 +3976,7 @@ void AIUpdateInterface::privateResumeConstruction( Object *obj, CommandSourceTyp
 /**
  * Get healed at the heal depot
  */
-// ?privateGetHealed@AIUpdateInterface@@ present-unmatched
+// ?privateGetHealed@AIUpdateInterface@@ present-unmatched here - matched copy lives in GameLogic/AI/AIUpdateInterface_privateGetHealed_Thunk.cpp where m_obj is at +0x08
 void AIUpdateInterface::privateGetHealed( Object *healDepot, CommandSourceType cmdSource )
 {
 

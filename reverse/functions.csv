@@ -141696,7 +141696,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0026e7c0@@YAXXZ,,0x0026E7C0,7,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026e7d0@@YAXXZ,,0x0026E7D0,146,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026e890@@YAXXZ,,0x0026E890,9,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
-?d_0026eca0@@YAXXZ,,0x0026ECA0,83,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026ede0@@YAXXZ,,0x0026EDE0,56,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026f1e0@@YAXXZ,,0x0026F1E0,24,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026f280@@YAXXZ,,0x0026F280,45,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
@@ -141735,7 +141734,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0027a380@@YAXXZ,,0x0027A380,486,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0027ae40@@YAXXZ,,0x0027AE40,9,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0027c220@@YAXXZ,,0x0027C220,33,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
-?d_0027de10@@YAXXZ,,0x0027DE10,50,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0027de50@@YAXXZ,,0x0027DE50,50,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0027e040@@YAXXZ,,0x0027E040,33,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0027e200@@YAXXZ,,0x0027E200,545,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?readEntireAndClose@LocalFile@@UAEPADXZ,,0x009D2690,45,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,LocalFile vtable 0x01143D38 slot 13
 ?isAnyWithinTargetPitch@WeaponSet@@ABE_NPBVObject@@0@Z,,0x001EADC0,76,Code/GameEngine/Source/GameLogic/Object/WeaponSet_pitchAndReload_Thunk.cpp,matched,zh_sweep packet 001eadc0
 ?reloadAllAmmo@WeaponSet@@QAEXPBVObject@@_N@Z,,0x001EAE20,56,Code/GameEngine/Source/GameLogic/Object/WeaponSet_pitchAndReload_Thunk.cpp,matched,zh_sweep packet 001eae20
+?privateGetHealed@AIUpdateInterface@@MAEXPAVObject@@W4CommandSourceType@@@Z,,0x0027DE10,50,Code/GameEngine/Source/GameLogic/AI/AIUpdateInterface_privateGetHealed_Thunk.cpp,matched,zh_sweep packet 0027de10
+?setQueueForPathTime@AIUpdateInterface@@QAEXH@Z,,0x0026ECA0,83,Code/GameEngine/Source/GameLogic/AI/AIUpdateInterface_setQueueForPathTime_Thunk.cpp,matched,zh_sweep packet 0026eca0
