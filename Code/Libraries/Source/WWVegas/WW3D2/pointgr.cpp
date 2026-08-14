@@ -591,6 +591,7 @@ int PointGroupClass::Get_Flag(FlagsType flag)
  *   02/08/2001 HY  : Upgraded to DX8                                     *
  *========================================================================*/
 // ?PointGroupClass::Set_Texture body in PointGroupClassSetTextureThunk.cpp (exact 50B retail)
+// ?PointGroupClass::Set_Texture present-unmatched
 void PointGroupClass::Set_Texture(TextureClass* texture)
 {
 	REF_PTR_SET(Texture,texture);

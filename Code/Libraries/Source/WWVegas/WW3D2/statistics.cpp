@@ -51,6 +51,7 @@ public:
 };
 
 // Retail BFME stores these counters and N-patch state in engine globals.
+// ?Debug_Statistics::Record_DX8_Polys_And_Vertices present-unmatched
 void Debug_Statistics::Record_DX8_Polys_And_Vertices(int pcount, int vcount, const ShaderClass &shader)
 {
 	if ((shader.bits & 0x20000) != 0

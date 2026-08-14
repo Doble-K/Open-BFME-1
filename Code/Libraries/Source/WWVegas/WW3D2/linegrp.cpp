@@ -204,6 +204,7 @@ int LineGroupClass::Get_Flag(FlagsType flag)
 }
 
 // ?LineGroupClass::Set_Texture body in LineGroupClassSetTextureThunk.cpp (exact 50B retail)
+// ?LineGroupClass::Set_Texture present-unmatched
 void LineGroupClass::Set_Texture(TextureClass* texture)
 {
 	REF_PTR_SET(Texture,texture);
