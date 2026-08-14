@@ -757,11 +757,12 @@ Int GameWindow::winSetText( UnicodeString newText )
 /** Get text from a window ... this works for static text windows and 
 	* edit boxes */
 //=============================================================================
-// ?winGetText@GameWindow@@QAE?AVUnicodeString@@XZ present-unmatched
 UnicodeString GameWindow::winGetText( void )
 {
 	// return the contents of our text field
-	return m_instData.getText();
+	// m_instData is at GameWindow+0x04 in BFME; this tree lands it at +0x2c.
+	struct BFMEGameWindow { char pad[0x04]; WinInstanceData m_instData; };
+	return ((BFMEGameWindow *)this)->m_instData.getText();
 
 }  // end WinGetText
 
