@@ -108557,8 +108557,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001eaa40@@YAXXZ,,0x001EAA40,105,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eaa40
 ?d_001eac50@@YAXXZ,,0x001EAC50,25,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eac50
 ?d_001eacf0@@YAXXZ,,0x001EACF0,60,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eacf0
-?d_001eadc0@@YAXXZ,,0x001EADC0,76,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eadc0
-?d_001eae20@@YAXXZ,,0x001EAE20,56,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eae20
 ?d_001eaeb0@@YAXXZ,,0x001EAEB0,40,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eaeb0
 ?d_001eafa0@@YAXXZ,,0x001EAFA0,38,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eafa0
 ?d_001eb140@@YAXXZ,,0x001EB140,17,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eb140
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?read@LocalFile@@UAEHPAXH@Z,,0x009D2550,72,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep LocalFile family
 ??1LocalFile@@UAE@XZ,,0x009D2400,117,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep LocalFile family
 ?readEntireAndClose@LocalFile@@UAEPADXZ,,0x009D2690,45,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,LocalFile vtable 0x01143D38 slot 13
+?isAnyWithinTargetPitch@WeaponSet@@ABE_NPBVObject@@0@Z,,0x001EADC0,76,Code/GameEngine/Source/GameLogic/Object/WeaponSet_pitchAndReload_Thunk.cpp,matched,zh_sweep packet 001eadc0
+?reloadAllAmmo@WeaponSet@@QAEXPBVObject@@_N@Z,,0x001EAE20,56,Code/GameEngine/Source/GameLogic/Object/WeaponSet_pitchAndReload_Thunk.cpp,matched,zh_sweep packet 001eae20

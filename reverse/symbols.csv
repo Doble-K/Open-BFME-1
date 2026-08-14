@@ -69504,3 +69504,6 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??1ModelConditionInfo@@QAE@XZ,0x0002306F,Open-BFME5 ILT; it enters at 0x0013C3F0 which is 14 bytes BEFORE the claimed body row at 0x0013C3FE - boundary worth rechecking
 ??1RunwayInfo@FlightDeckBehavior@@QAE@XZ,0x00036241,Open-BFME5 ILT fronts unclaimed 90-byte body 0x002BC7A0; called by the _Destroy range loop over that element type
 ??1RopeInfo@ChinookCombatDropState@@QAE@XZ,0x0003D041,Open-BFME5 ILT fronts unclaimed 8-byte body 0x00191910; called by the _Destroy range loop over that element type
+?isWithinTargetPitch@Weapon@@QBE_NPBVObject@@0@Z,0x00005533,Open-BFME5 ILT thunk fronting body 0x001E2C50
+?loadAmmoNow@Weapon@@QAEXPBVObject@@@Z,0x0000FED4,Open-BFME5 ILT thunk fronting body 0x001E9D60 (pushes 1 to reloadWithBonus)
+?reloadAmmo@Weapon@@QAEXPBVObject@@@Z,0x00033C03,Open-BFME5 ILT thunk fronting body 0x001E9DE0 (pushes 0 to reloadWithBonus)

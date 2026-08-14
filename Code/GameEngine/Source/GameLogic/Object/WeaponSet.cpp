@@ -437,7 +437,7 @@ void WeaponSet::weaponSetOnWeaponBonusChange(const Object *source)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?isAnyWithinTargetPitch@WeaponSet@@ABE_NPBVObject@@0@Z present-unmatched
+// ?isAnyWithinTargetPitch@WeaponSet@@ABE_NPBVObject@@0@Z present-unmatched here - matched copy lives in WeaponSet_pitchAndReload_Thunk.cpp where WEAPONSLOT_COUNT is BFME's 4
 Bool WeaponSet::isAnyWithinTargetPitch(const Object* obj, const Object* victim) const
 {
 	if (!m_hasPitchLimit)
@@ -987,7 +987,7 @@ Bool WeaponSet::chooseBestWeaponForTarget(const Object* obj, const Object* victi
 
 
 //-------------------------------------------------------------------------------------------------
-// ?reloadAllAmmo@WeaponSet@@QAEXPBVObject@@_N@Z present-unmatched
+// ?reloadAllAmmo@WeaponSet@@QAEXPBVObject@@_N@Z present-unmatched here - matched copy lives in WeaponSet_pitchAndReload_Thunk.cpp where WEAPONSLOT_COUNT is BFME's 4
 void WeaponSet::reloadAllAmmo(const Object *obj, Bool now)
 {
 	for( Int i = 0; i < WEAPONSLOT_COUNT;	i++ )
