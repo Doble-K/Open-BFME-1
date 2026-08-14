@@ -95,22 +95,26 @@ void ObjectTypes::setListName(const AsciiString& listName)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?isInSet@ObjectTypes@@ present-unmatched
 Bool ObjectTypes::isInSet(const AsciiString& objectType) const
 {
-	return (std::find(m_objectTypes.begin(), m_objectTypes.end(), objectType) != m_objectTypes.end());
+	// m_objectTypes starts at ObjectTypes+0x08 in BFME; this tree lands it at
+	// +0x0c -- one base vtable pointer fewer, the same pattern PlayerRelationMap
+	// and Module show.
+	struct BFMEObjectTypes { char pad[0x08]; AsciiStringVec m_objectTypes; };
+	const BFMEObjectTypes *self = (const BFMEObjectTypes *)this;
+	return (std::find(self->m_objectTypes.begin(), self->m_objectTypes.end(), objectType) != self->m_objectTypes.end());
 
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?isInSet@ObjectTypes@@ present-unmatched
 Bool ObjectTypes::isInSet(const ThingTemplate* objectType) const
 {
 	if (!objectType) {
 		return FALSE;
 	}
 
-	return isInSet(objectType->getName());
+	// ThingTemplate::m_name is at +0x20 in BFME; this tree lands it at +0x10.
+	return isInSet(*(const AsciiString *)((const char *)objectType + 0x20));
 }
 
 //-------------------------------------------------------------------------------------------------

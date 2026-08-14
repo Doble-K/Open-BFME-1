@@ -108420,8 +108420,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001dbc10@@YAXXZ,,0x001DBC10,547,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dbc10
 ?d_001dbec0@@YAXXZ,,0x001DBEC0,547,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dbec0
 ?d_001dc260@@YAXXZ,,0x001DC260,85,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc260
-?d_001dc2d0@@YAXXZ,,0x001DC2D0,40,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc2d0
-?d_001dc310@@YAXXZ,,0x001DC310,52,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc310
 ?d_001dc400@@YAXXZ,,0x001DC400,80,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc400
 ?d_001dc470@@YAXXZ,,0x001DC470,104,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc470
 ?d_001dc520@@YAXXZ,,0x001DC520,92,Code/gen_asm/d_001d1020.asm,matched,gen-dump;ghidra=FUN_005dc520
@@ -157947,3 +157945,5 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?findNaturalCommandCenter@Player@@QAEPAVObject@@XZ,,0x000D4400,37,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 two-field find block; retail sub esp 8
 ?removeObjectFromHotkeySquad@Player@@QAEXPAVObject@@@Z,,0x000C9BE0,42,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 m_squads at Player+0x654
 ?setPlayerRelationship@Player@@QAEXPBV1@W4Relationship@@@Z,,0x000D7600,43,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 m_playerRelations at +0x28c and its m_map at +0x4
+?isInSet@ObjectTypes@@QBE_NABVAsciiString@@@Z,,0x001DC2D0,40,Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp,matched,Open-BFME5 m_objectTypes at ObjectTypes+0x8
+?isInSet@ObjectTypes@@QBE_NPBVThingTemplate@@@Z,,0x001DC310,52,Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp,matched,Open-BFME5 ThingTemplate m_name at +0x20
