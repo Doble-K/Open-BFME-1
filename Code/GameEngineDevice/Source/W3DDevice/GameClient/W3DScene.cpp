@@ -1143,10 +1143,13 @@ W3DDynamicLight * RTS3DScene::getADynamicLight(void)
 //=============================================================================
 /** Removes a dynamic light. */
 //=============================================================================
-// ?removeDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z present-unmatched
 void RTS3DScene::removeDynamicLight(W3DDynamicLight * obj)
 {
-	m_dynamicLightList.Remove(obj);
+	// m_dynamicLightList is at RTS3DScene+0x110 in BFME; this tree lands it at
+	// +0xa0. Everything else here already matched, including the ref release
+	// RefRenderObjListClass::Remove does on success.
+	struct BFMEScene { char pad[0x110]; RefRenderObjListClass m_dynamicLightList; };
+	((BFMEScene *)this)->m_dynamicLightList.Remove(obj);
 }
 
 //=============================================================================

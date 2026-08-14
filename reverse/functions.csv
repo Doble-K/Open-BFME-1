@@ -155033,7 +155033,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00711e20@@YAXXZ,,0x00711E20,41,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00711e60@@YAXXZ,,0x00711E60,5,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00711e70@@YAXXZ,,0x00711E70,47,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
-?d_00712090@@YAXXZ,,0x00712090,47,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00712270@@YAXXZ,,0x00712270,11,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00712280@@YAXXZ,,0x00712280,13,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_007122e0@@YAXXZ,,0x007122E0,11,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
@@ -157950,3 +157949,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?onExit@AIDockWaitForClearanceState@@UAEXW4StateExitType@@@Z,,0x0014E920,66,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and StateMachine m_owner +0x10
 ?onExit@AIDockMoveToDockState@@UAEXW4StateExitType@@@Z,,0x0014EDC0,101,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and m_owner +0x10 and lock flag +0x40
 ?removeObject@Squad@@QAEXPAVObject@@@Z,,0x0018B620,62,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,Open-BFME5 m_objectIDs at Squad+0x4
+?removeDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z,,0x00712090,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,Open-BFME5 m_dynamicLightList at RTS3DScene+0x110
