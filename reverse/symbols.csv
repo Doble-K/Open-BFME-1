@@ -69464,3 +69464,5 @@ ObjectDefectionHelper_vtbl10,0x0109E4A0,packet 001c0ea0 ctor vtbl at +0x10
 ?getClassMemoryPool@VertexMaterialClass@@CAPAXXZ,0x6B22FA14,packet 00921eba callee pin
 ?allocateFromW3DMemPool@@YAPAXPAXH@Z,0x00881F30,packet 00921eba callee pin
 ??0VertexMaterialClass@@QAE@XZ,0x00921820,packet 00921eba callee pin
+??0GODupBase@@QAE@XZ,0x0001901A,local helper name for shared Snapshot+SubsystemInterface combined base ctor (retail body 0x001B0D20/thunk 0x0001901A); real retail identity unknown, additive pin for dup_6bc530 call resolution
+_luaK_testgo,0x0099F5C0,vendored=lua-4.0.1;additive pin for luaK_goiftrue call resolution

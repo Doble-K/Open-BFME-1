@@ -621,11 +621,11 @@ void TimeCodedMotionChannelClass::set_identity(float * setvec)
  *                                                                                             *
  * HISTORY:                                                                                    *
  *=============================================================================================*/
-// ?TimeCodedBitChannelClass::TimeCodedBitChannelClass present-unmatched
 TimeCodedBitChannelClass::TimeCodedBitChannelClass(void) :
 	PivotIdx(0),
 	Type(0),
 	DefaultVal(0),
+	NumTimeCodes(0),
 	Bits(NULL),
 	CachedIdx(0)
 {

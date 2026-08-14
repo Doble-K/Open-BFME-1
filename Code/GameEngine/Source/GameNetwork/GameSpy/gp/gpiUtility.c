@@ -1,4 +1,4 @@
-// cl: /MD -Ireference/shims/gamespy
+// cl: /DNDEBUG /MD -Ireference/shims/gamespy
 /* GameSpy SDK, 2004 vintage -- pristine upstream C source.
    Sourced from the Area 51 (Inevitable Entertainment / Midway) source release,
    github.com/bisc67/Area51, Support/NetworkMgr/GameSpy -- the only public
@@ -416,7 +416,7 @@ gpiCheckSocketConnect(
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = *(unsigned int *)host->h_addr_list[0];
     assert(address.sin_addr.s_addr != 0);
-    address.sin_port = htons(GPI_CONNECTION_MANAGER_PORT);
+    address.sin_port = htons(GPI_CONNECTION_MANAGER_PORT);
     rcode = connect(sock, (struct sockaddr*)&address,sizeof(struct sockaddr_in));
     if( rcode!=SOCKET_ERROR )
     {

@@ -112044,7 +112044,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_003a8f70@@YAXXZ,,0x003A8F70,34,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007a8f70
 ?d_003a8fa0@@YAXXZ,,0x003A8FA0,45,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007a8fa0
 ?d_003a8fe0@@YAXXZ,,0x003A8FE0,34,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007a8fe0
-?d_003a9010@@YAXXZ,,0x003A9010,34,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007a9010
 ?d_003a9040@@YAXXZ,,0x003A9040,34,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007a9040
 ?d_003a9070@@YAXXZ,,0x003A9070,45,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007a9070
 ?d_003a90b0@@YAXXZ,,0x003A90B0,34,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007a90b0
@@ -117620,7 +117619,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006bc220@@YAXXZ,,0x006BC220,70,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abc220
 ?d_006bc280@@YAXXZ,,0x006BC280,102,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abc280
 ?d_006bc360@@YAXXZ,,0x006BC360,367,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abc360
-?d_006bc530@@YAXXZ,,0x006BC530,25,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abc530
 ?d_006bc560@@YAXXZ,,0x006BC560,18,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abc560
 ?d_006bc5c0@@YAXXZ,,0x006BC5C0,8,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abc5c0
 ?d_006bc6e0@@YAXXZ,,0x006BC6E0,48,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abc6e0
@@ -119244,7 +119242,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_007e85a0@@YAXXZ,,0x007E85A0,69,Code/gen_asm/d_007e5080.asm,matched,gen-dump;ghidra=FUN_00be85a0
 ?d_007e8600@@YAXXZ,,0x007E8600,47,Code/gen_asm/d_007e5080.asm,matched,gen-dump;ghidra=FUN_00be8600
 ?d_007e8640@@YAXXZ,,0x007E8640,98,Code/gen_asm/d_007e5080.asm,matched,gen-dump;ghidra=FUN_00be8640
-?d_007e86b0@@YAXXZ,,0x007E86B0,16,Code/gen_asm/d_007e5080.asm,matched,gen-dump;ghidra=FUN_00be86b0
 ?d_007e86d0@@YAXXZ,,0x007E86D0,92,Code/gen_asm/d_007e5080.asm,matched,gen-dump;ghidra=FUN_00be86d0
 ?d_007e8730@@YAXXZ,,0x007E8730,33,Code/gen_asm/d_007e5080.asm,matched,gen-dump;ghidra=FUN_00be8730
 ?d_007e8760@@YAXXZ,,0x007E8760,85,Code/gen_asm/d_007e5080.asm,matched,gen-dump;ghidra=FUN_00be8760
@@ -121268,14 +121265,11 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0087c530@@YAXXZ,,0x0087C530,220,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c530
 ?d_0087c670@@YAXXZ,,0x0087C670,40,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c670
 ?d_0087c6a0@@YAXXZ,,0x0087C6A0,41,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c6a0
-?d_0087c6d0@@YAXXZ,,0x0087C6D0,17,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c6d0
-?d_0087c6f0@@YAXXZ,,0x0087C6F0,17,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c6f0
 ?d_0087c710@@YAXXZ,,0x0087C710,190,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c710
 ?d_0087c7d0@@YAXXZ,,0x0087C7D0,100,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c7d0
 ?d_0087c8a0@@YAXXZ,,0x0087C8A0,85,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c8a0
 ?d_0087c900@@YAXXZ,,0x0087C900,77,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c900
 ?d_0087cab0@@YAXXZ,,0x0087CAB0,8,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7cab0
-?d_0087cd80@@YAXXZ,,0x0087CD80,38,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7cd80
 ?d_0087cdb0@@YAXXZ,,0x0087CDB0,108,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7cdb0
 ?d_0087ce20@@YAXXZ,,0x0087CE20,383,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7ce20
 ?d_0087cfd0@@YAXXZ,,0x0087CFD0,117,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7cfd0
@@ -121290,7 +121284,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0087d7f0@@YAXXZ,,0x0087D7F0,60,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d7f0
 ?d_0087d830@@YAXXZ,,0x0087D830,231,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d830
 ?d_0087d980@@YAXXZ,,0x0087D980,120,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d980
-?d_0087da30@@YAXXZ,,0x0087DA30,18,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7da30
 ?d_0087da50@@YAXXZ,,0x0087DA50,135,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7da50
 ?d_0087db10@@YAXXZ,,0x0087DB10,134,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7db10
 ?d_0087dc00@@YAXXZ,,0x0087DC00,26,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7dc00
@@ -122182,10 +122175,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_008ea2c0@@YAXXZ,,0x008EA2C0,65,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cea2c0
 ?d_008ea5b0@@YAXXZ,,0x008EA5B0,65,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cea5b0
 ?d_008ec430@@YAXXZ,,0x008EC430,289,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cec430
-?d_008ec880@@YAXXZ,,0x008EC880,34,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cec880
 ?d_008ec930@@YAXXZ,,0x008EC930,102,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cec930
-?d_008eca20@@YAXXZ,,0x008ECA20,46,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00ceca20
-?d_008eca50@@YAXXZ,,0x008ECA50,36,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00ceca50
 ?d_008ecb40@@YAXXZ,,0x008ECB40,181,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cecb40
 ?d_008ecc00@@YAXXZ,,0x008ECC00,189,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cecc00
 ?d_008ecd00@@YAXXZ,,0x008ECD00,474,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cecd00
@@ -123039,7 +123029,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00977870@@YAXXZ,,0x00977870,19,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d77870
 ?d_009779a0@@YAXXZ,,0x009779A0,24,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d779a0
 ?d_00977ab0@@YAXXZ,,0x00977AB0,15,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d77ab0
-?d_00977af0@@YAXXZ,,0x00977AF0,22,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d77af0
 ?d_00977c00@@YAXXZ,,0x00977C00,11,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d77c00
 ?d_00977cc0@@YAXXZ,,0x00977CC0,217,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d77cc0
 ?d_00977da0@@YAXXZ,,0x00977DA0,11,Code/gen_asm/d_0096e3e0.asm,matched,gen-dump;ghidra=FUN_00d77da0
@@ -123169,7 +123158,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0099ee10@@YAXXZ,,0x0099EE10,349,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9ee10
 ?d_0099ef70@@YAXXZ,,0x0099EF70,151,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9ef70
 ?d_0099f410@@YAXXZ,,0x0099F410,421,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9f410
-?d_0099f6c0@@YAXXZ,,0x0099F6C0,37,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9f6c0
 ?d_0099f760@@YAXXZ,,0x0099F760,889,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9f760
 ?d_0099fae0@@YAXXZ,,0x0099FAE0,479,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9fae0
 ?d_0099fcc0@@YAXXZ,,0x0099FCC0,70,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9fcc0
@@ -124057,7 +124045,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00a57bfd@@YAXXZ,,0x00A57BFD,28,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e57bfd
 ?d_00a589bd@@YAXXZ,,0x00A589BD,28,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e589bd
 ?d_00a622b0@@YAXXZ,,0x00A622B0,79,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e622b0
-?d_00a62c73@@YAXXZ,,0x00A62C73,36,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e62c73
 ?d_00a62e20@@YAXXZ,,0x00A62E20,10,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e62e20
 ?d_00a64718@@YAXXZ,,0x00A64718,11,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e64718
 ?d_00a64fde@@YAXXZ,,0x00A64FDE,11,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e64fde
@@ -124132,7 +124119,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00abef0c@@YAXXZ,,0x00ABEF0C,8,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ebef0c
 ?d_00abef14@@YAXXZ,,0x00ABEF14,8,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ebef14
 ?d_00ac7f80@@YAXXZ,,0x00AC7F80,41,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ec7f80
-?d_00ac7fb0@@YAXXZ,,0x00AC7FB0,24,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ec7fb0
 ?d_00ac7fd0@@YAXXZ,,0x00AC7FD0,41,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ec7fd0
 ?d_00ac8000@@YAXXZ,,0x00AC8000,24,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ec8000
 ?d_00acc800@@YAXXZ,,0x00ACC800,93,Code/gen_asm/d_00aa0d0d.asm,matched,gen-dump;ghidra=FUN_00ecc800
@@ -157947,3 +157933,17 @@ dup_753160,,0x00753160,11,Code/gen_small/zhstl_003.cpp,matched,vendored=cnc-zh;z
 ??0?$_STLP_alloc_proxy@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@U12@V?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@1@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@1@@Z,,0x006310D0,11,Code/gen_small/zhstl_003.cpp,matched,alloc-proxy;vendored=cnc-zh;zhstl
 dup_9c9300,,0x009C9300,11,Code/gen_small/zhstl_003.cpp,matched,vendored=cnc-zh;zhstl;alloc-proxy;dup-of=??0?$_STLP_alloc_proxy@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@U12@V?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@1@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@1@@Z;object-symbol=??0?$_STLP_alloc_proxy@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@U12@V?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@1@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@1@@Z
 dup_9ceca0,,0x009CECA0,11,Code/gen_small/zhstl_003.cpp,matched,vendored=cnc-zh;zhstl;alloc-proxy;dup-of=??0?$_STLP_alloc_proxy@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@U12@V?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@1@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@1@@Z;object-symbol=??0?$_STLP_alloc_proxy@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@U12@V?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@2@@_STL@@QAE@ABV?$allocator@U?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@_STL@@@1@PAU?$_Rb_tree_node@U?$pair@$$CBVAsciiString@@VDetailedArchivedDirectoryInfo@@@_STL@@@1@@Z
+_ghiLock,,0x0087C6D0,17,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpCommon.c,matched,vendored=gamespy-2004
+_ghiUnlock,,0x0087C6F0,17,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpCommon.c,matched,vendored=gamespy-2004
+_ghiResetBuffer,,0x0087DA30,18,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpBuffer.c,matched,vendored=gamespy-2004
+_ghiPostGetContentType,,0x0087CD80,38,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpPost.c,matched,GameSpy ghttp post content type retail callee
+_strzcpy,,0x008EC880,34,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiUtility.c,matched,vendored=gamespy-2004
+?destroy@ProductionPrerequisiteDestroyShim@_STL@@SAXPAVProductionPrerequisite@@0@Z,,0x003A9010,34,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteDestroyShimImpl.cpp,matched,
+_gpiSetErrorString,,0x008ECA50,36,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiUtility.c,matched,vendored=gamespy-2004
+_gpiSetError,,0x008ECA20,46,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiUtility.c,matched,vendored=gamespy-2004
+dup_7e86b0,,0x007E86B0,16,Code/GameEngine/Source/Common/System/SnapshotEnergyDupThunk.cpp,matched,dup-of=??0Snapshot@@QAE@XZ;object-symbol=??0SnapshotDupReplica@@QAE@XZ
+??0TimeCodedBitChannelClass@@QAE@XZ,,0x00977AF0,22,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,missing NumTimeCodes(0) in ctor init list restored
+_jpeg_free_small@12,,0x00AC7FB0,24,Code/Libraries/Source/JPEG/jmemwin32.cpp,matched,vendored=jpeg-6b;16-byte-aligned custom jmemsys backend
+dup_6bc530,,0x006BC530,25,Code/GameEngine/Source/Common/System/GhostObjectManagerDupThunk.cpp,matched,dup-of=??0GhostObjectManager@@QAE@XZ;object-symbol=??0GhostObjectManagerDup@@QAE@XZ
+_png_chunk_error@8,,0x00A62C73,36,Code/Libraries/Source/LibPNG/pngerror_ChunkError_Thunk.cpp,matched,vendored=libpng-1.0.5
+_luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored=lua-4.0.1
