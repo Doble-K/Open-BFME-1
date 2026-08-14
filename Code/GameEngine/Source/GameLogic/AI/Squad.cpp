@@ -71,15 +71,19 @@ void Squad::addObjectID(ObjectID objectID) {
 }
 
 // removeObject ///////////////////////////////////////////////////////////////////////////////////
-// ?removeObject@Squad@@QAEXPAVObject@@@Z present-unmatched
 void Squad::removeObject(Object *objectToRemove)
 {
 	if (objectToRemove) {
 		ObjectID objID;
 		objID = objectToRemove->getID();
-		VecObjectIDIt it = std::find(m_objectIDs.begin(), m_objectIDs.end(), objID);
-		if (it != m_objectIDs.end()) {
-			m_objectIDs.erase(it);
+		// m_objectIDs starts at Squad+0x04 in BFME; this tree lands it at +0x08 --
+		// one base vtable pointer fewer, the pattern ObjectTypes and
+		// PlayerRelationMap also show. Object::m_id at +0x74 was already right.
+		struct BFMESquad { char pad[0x04]; VecObjectID m_objectIDs; };
+		BFMESquad *self = (BFMESquad *)this;
+		VecObjectIDIt it = std::find(self->m_objectIDs.begin(), self->m_objectIDs.end(), objID);
+		if (it != self->m_objectIDs.end()) {
+			self->m_objectIDs.erase(it);
 		}
 	}
 }

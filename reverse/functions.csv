@@ -107725,7 +107725,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0018aa70@@YAXXZ,,0x0018AA70,279,Code/gen_asm/d_00180810.asm,matched,gen-dump;ghidra=FUN_0058aa70
 ?d_0018abd0@@YAXXZ,,0x0018ABD0,85,Code/gen_asm/d_00180810.asm,matched,gen-dump;ghidra=FUN_0058abd0
 ?d_0018b520@@YAXXZ,,0x0018B520,38,Code/gen_asm/d_00180810.asm,matched,gen-dump;ghidra=FUN_0058b520
-?d_0018b620@@YAXXZ,,0x0018B620,62,Code/gen_asm/d_00180810.asm,matched,gen-dump;ghidra=FUN_0058b620
 ?d_0018b850@@YAXXZ,,0x0018B850,77,Code/gen_asm/d_00180810.asm,matched,gen-dump;ghidra=FUN_0058b850
 ?d_0018b8b0@@YAXXZ,,0x0018B8B0,74,Code/gen_asm/d_00180810.asm,matched,gen-dump;ghidra=FUN_0058b8b0
 ?d_0018b950@@YAXXZ,,0x0018B950,62,Code/gen_asm/d_00180810.asm,matched,gen-dump;ghidra=FUN_0058b950
@@ -157950,3 +157949,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?onExit@AIDockMoveToExitState@@UAEXW4StateExitType@@@Z,,0x0014F010,63,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and m_owner +0x10 and lock flag +0x40
 ?onExit@AIDockWaitForClearanceState@@UAEXW4StateExitType@@@Z,,0x0014E920,66,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and StateMachine m_owner +0x10
 ?onExit@AIDockMoveToDockState@@UAEXW4StateExitType@@@Z,,0x0014EDC0,101,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and m_owner +0x10 and lock flag +0x40
+?removeObject@Squad@@QAEXPAVObject@@@Z,,0x0018B620,62,Code/GameEngine/Source/GameLogic/AI/Squad.cpp,matched,Open-BFME5 m_objectIDs at Squad+0x4
