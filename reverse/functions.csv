@@ -106172,7 +106172,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000c4080@@YAXXZ,,0x000C4080,113,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c4080
 ?d_000c4110@@YAXXZ,,0x000C4110,135,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c4110
 ?d_000c41c0@@YAXXZ,,0x000C41C0,70,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c41c0
-?d_000c4240@@YAXXZ,,0x000C4240,45,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c4240
 ?d_000c4280@@YAXXZ,,0x000C4280,96,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c4280
 ?d_000c4390@@YAXXZ,,0x000C4390,67,Code/GameEngine/Source/Common/RvaC4390RelationCheckThunk.cpp,matched,object-symbol=?rvaC4390RelationCheck@@YGEPAURvaC4390First@@PAURvaC4390Second@@PAX@Z;Open-BFME5 clean C++ relation check
 ?d_000c44d0@@YAXXZ,,0x000C44D0,25,Code/gen_asm/d_000bb0e0.asm,matched,gen-dump;ghidra=FUN_004c44d0
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?setQueueForPathTime@AIUpdateInterface@@QAEXH@Z,,0x0026ECA0,83,Code/GameEngine/Source/GameLogic/AI/AIUpdateInterface_setQueueForPathTime_Thunk.cpp,matched,zh_sweep packet 0026eca0
 ?testKillerScience@CreateCrateDie@@AAE_NPBVCrateTemplate@@PAVObject@@@Z,,0x00253DB0,45,Code/GameEngine/Source/GameLogic/Object/Die/CreateCrateDie.cpp,matched,zh_sweep packet 00253db0
 ?doAffectObjectPanelFlagsUnit@ScriptActions@@IAEXABVAsciiString@@0_N@Z,,0x002FC480,45,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,zh_sweep packet 002fc480
+?canFireWeaponAtLocation@ActionManager@@QAE_NPBVObject@@PBUCoord3D@@W4CommandSourceType@@W4WeaponSlotType@@0@Z,,0x000C4240,45,Code/GameEngine/Source/Common/RTS/ActionManager.cpp,matched,zh_sweep packet 000c4240

@@ -5030,7 +5030,13 @@ Bool ActionManager::canDoSpecialPower( const Object *obj, const SpecialPowerTemp
 }
 
 //------------------------------------------------------------------------------------------------
-// ?canFireWeaponAtLocation@ActionManager@@QAE_NPBVObject@@PBUCoord3D@@W4CommandSourceType@@W4WeaponSlotType@@0@Z present-unmatched
+struct ActionManager_BFME_Object_WeaponSetField
+{
+	unsigned char pad[0x264];
+	WeaponSet weaponSet;
+};
+
+//------------------------------------------------------------------------------------------------
 Bool ActionManager::canFireWeaponAtLocation( const Object *obj, const Coord3D *loc, CommandSourceType commandSource, const WeaponSlotType slot, const Object *objectInWay )
 {
 	//Sanity check
@@ -5040,7 +5046,10 @@ Bool ActionManager::canFireWeaponAtLocation( const Object *obj, const Coord3D *l
 	}
 
 	//Make sure we have the right weapon.
-	Weapon *weapon = obj->getWeaponInWeaponSlot( slot );
+	// Through the BFME field offset, the same way canFireWeapon does: retail
+	// reaches the weapon set at Object+0x264 directly rather than through a
+	// getter.
+	Weapon *weapon = reinterpret_cast<const ActionManager_BFME_Object_WeaponSetField *>(obj)->weaponSet.getWeaponInWeaponSlot( slot );
 	if( !weapon )
 	{
 		return false;
@@ -5089,12 +5098,6 @@ Bool ActionManager::canFireWeaponAtObject( const Object *obj, const Object *targ
 	return FALSE;
 }
 
-//------------------------------------------------------------------------------------------------
-struct ActionManager_BFME_Object_WeaponSetField
-{
-	unsigned char pad[0x264];
-	WeaponSet weaponSet;
-};
 
 // ?canFireWeapon@ActionManager@@QAE_NPBVObject@@W4WeaponSlotType@@W4CommandSourceType@@@Z
 Bool ActionManager::canFireWeapon( const Object *obj, const WeaponSlotType slot, CommandSourceType commandSource )
