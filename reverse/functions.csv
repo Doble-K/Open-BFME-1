@@ -142389,7 +142389,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_002b69c0@@YAXXZ,,0x002B69C0,60,Code/gen_asm/d_00299d30.asm,matched,gen-dump;bounds=high
 ?d_002b6a90@@YAXXZ,,0x002B6A90,20,Code/gen_asm/d_00299d30.asm,matched,gen-dump;bounds=high
 ?d_002b6ab0@@YAXXZ,,0x002B6AB0,20,Code/gen_asm/d_00299d30.asm,matched,gen-dump;bounds=high
-?d_002b6b80@@YAXXZ,,0x002B6B80,86,Code/gen_asm/d_00299d30.asm,matched,gen-dump;bounds=high
 ?d_002b6bf0@@YAXXZ,,0x002B6BF0,60,Code/gen_asm/d_00299d30.asm,matched,gen-dump;bounds=high
 ?d_002b6ef0@@YAXXZ,,0x002B6EF0,5,Code/gen_asm/d_00299d30.asm,matched,gen-dump;bounds=high
 ?d_002b6f00@@YAXXZ,,0x002B6F00,5,Code/gen_asm/d_00299d30.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?getWaterHeight@TerrainLogic@@UAEMPBVWaterHandle@@@Z,,0x001A3B90,51,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,Open-BFME5 PolygonTrigger m_points at +0x10 and m_numPoints at +0x14
 ?friend_notifyStateMachineChanged@AIUpdateInterface@@UAEXXZ,,0x0026ED10,38,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,Open-BFME5 wakeUpNow guarded by a flag at +0x330
 ?startBuildingSound@DozerAIUpdate@@UAEXPBVAudioEventRTS@@W4ObjectID@@@Z,,0x002B6A10,52,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,Open-BFME5 addAudioEvent at AudioManager vtable slot 17
+?privateRepair@DozerAIUpdate@@MAEXPAVObject@@W4CommandSourceType@@@Z,,0x002B6B80,86,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,Open-BFME5 DozerAIInterface base at +0x340

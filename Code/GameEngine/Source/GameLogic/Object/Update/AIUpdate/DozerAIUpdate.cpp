@@ -3853,13 +3853,16 @@ Bool DozerAIUpdate::canAcceptNewRepair( Object *obj )
 // ------------------------------------------------------------------------------------------------
 /** Issue an order for the Dozer to go repair the target 'obj' */
 // ------------------------------------------------------------------------------------------------
-// ?privateRepair@DozerAIUpdate@@MAEXPAVObject@@W4CommandSourceType@@@Z present-unmatched
 void DozerAIUpdate::privateRepair( Object *obj, CommandSourceType cmdSource )
 {
-	Object *dozer = getObject();
+	// Two offsets are BFME's: m_object at module+0x08 (the BFME_MODULE_NO_MPO
+	// layout) and the DozerAIInterface base at this+0x340, where this tree
+	// lands it at +0x200. canAcceptNewRepair is slot 20 of that base.
+	Object *dozer = *(Object **)((char *)this + 0x08);
+	DozerAIInterface *self = (DozerAIInterface *)((char *)this + 0x340);
 
 	// if we are already repairing this target do nothing
-	if( canAcceptNewRepair( obj ) == FALSE )
+	if( self->canAcceptNewRepair( obj ) == FALSE )
 		return;
 
 	// sanity, if we can't repair the object then get out of there
@@ -3902,7 +3905,7 @@ void DozerAIUpdate::privateRepair( Object *obj, CommandSourceType cmdSource )
 	//}  // end if
 
 	// start the new task
-	newTask( DOZER_TASK_REPAIR, obj );
+	self->newTask( DOZER_TASK_REPAIR, obj );
 
 }  // end repair
 
