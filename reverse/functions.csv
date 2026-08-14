@@ -106258,7 +106258,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000c9b10@@YAXXZ,,0x000C9B10,36,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9b10
 ?d_000c9b40@@YAXXZ,,0x000C9B40,18,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9b40
 ?d_000c9b60@@YAXXZ,,0x000C9B60,28,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9b60
-?d_000c9be0@@YAXXZ,,0x000C9BE0,42,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9be0
 ?d_000c9c20@@YAXXZ,,0x000C9C20,7,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9c20
 ?d_000c9c40@@YAXXZ,,0x000C9C40,7,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9c40
 ?d_000c9c50@@YAXXZ,,0x000C9C50,7,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9c50
@@ -157947,3 +157946,4 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?loadPostProcess@TurretAI@@MAEXXZ,,0x0018C630,29,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,Open-BFME5 Object m_team at +0x23c
 ?recenterTurret@BattlePlanUpdate@@IAEXXZ,,0x002858B0,36,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate_recenterTurret_Thunk.cpp,matched,Open-BFME5 retail object +0x08 and AI +0x204
 ?findNaturalCommandCenter@Player@@QAEPAVObject@@XZ,,0x000D4400,37,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 two-field find block; retail sub esp 8
+?removeObjectFromHotkeySquad@Player@@QAEXPAVObject@@@Z,,0x000C9BE0,42,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 m_squads at Player+0x654
