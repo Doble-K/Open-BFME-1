@@ -383,12 +383,13 @@ void TurretAI::xfer( Xfer *xfer )
 // ------------------------------------------------------------------------------------------------
 /** Load post process */
 // ------------------------------------------------------------------------------------------------
-// ?loadPostProcess@TurretAI@@MAEXXZ present-unmatched
 void TurretAI::loadPostProcess( void )
 {
 	Object *victim = m_turretStateMachine->getGoalObject();
 	if (victim) {
-		m_victimInitialTeam = victim->getTeam();
+		// Object::m_team is at +0x23c in BFME, +0x1d0 here. Same offset the
+		// PartitionFilterPlayerAffiliation thunk spells.
+		m_victimInitialTeam = *(Team **)((char *)victim + 0x23c);
 	}
 }  // end loadPostProcess
 
