@@ -74,7 +74,6 @@ AIDockMachine::~AIDockMachine()
 }
 
 //-----------------------------------------------------------------------------
-// ?halt@AIDockMachine@@ present-unmatched
 void AIDockMachine::halt() 
 { 
 	Object *goalObject = getGoalObject();
@@ -87,7 +86,9 @@ void AIDockMachine::halt()
 
 		// We need to say goodbye, or we will leave our spot taken forever.
 		if( dock != NULL )
-			dock->cancelDock( getOwner() );
+			// StateMachine::m_owner is at +0x10 in BFME; this tree lands it at
+			// +0x14. Same offset ownerDocking pins.
+			dock->cancelDock( *(Object **)((char *)this + 0x10) );
 	}
 
 	StateMachine::halt();
