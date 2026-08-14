@@ -57,6 +57,22 @@
 #include "GameClient/InGameUI.h"
 #include "GameClient/View.h"
 
+// BFME's body-module vtable puts getDamageState at slot 8; the ZH header lands
+// it at 11, so the call comes out [edx+0x2c] instead of [edx+0x20].
+class BFMERetailBodyVTable
+{
+public:
+	virtual void slot0() = 0;
+	virtual void slot1() = 0;
+	virtual void slot2() = 0;
+	virtual void slot3() = 0;
+	virtual void slot4() = 0;
+	virtual void slot5() = 0;
+	virtual void slot6() = 0;
+	virtual void slot7() = 0;
+	virtual BodyDamageType getDamageState(void) const = 0;
+};
+
 #ifdef _INTERNAL
 //#pragma optimize("", off)
 //#pragma MESSAGE("************************************** WARNING, optimization disabled for debugging purposes")
@@ -239,11 +255,14 @@ TheInGameUI->message( msg );
 /** Given the current state of the structure, return the condition index we are to use
 	* from the garrison point position arrays */
 // ------------------------------------------------------------------------------------------------
-// ?findConditionIndex@GarrisonContain@@IAEHXZ present-unmatched
 Int GarrisonContain::findConditionIndex( void )
 {
-	BodyModuleInterface *body = getObject()->getBodyModule();
-	BodyDamageType bodyDamage = body->getDamageState();
+	// Two offsets are BFME's as well: m_object at module+0x08 -- the
+	// BFME_MODULE_NO_MPO layout, Module without its MemoryPoolObject base --
+	// and Object::m_body at +0x200 where this tree lands it at +0x194.
+	Object *obj = *(Object **)((char *)this + 0x08);
+	BodyModuleInterface *body = *(BodyModuleInterface **)((char *)obj + 0x200);
+	BodyDamageType bodyDamage = reinterpret_cast<BFMERetailBodyVTable *>(body)->getDamageState();
 	Int index = GARRISON_INDEX_INVALID;
 
 	switch( bodyDamage )
