@@ -91,6 +91,26 @@
 
 // BFME's Display vtable puts setBorderShroudLevel at slot 69; the ZH header
 // lands it at 47, so the tail jump comes out [eax+0xbc] instead of [eax+0x114].
+// BFME's InGameUI vtable puts popupMessage at slot 10; the ZH header lands it
+// at 7, so the call comes out [eax+0x1c] instead of [eax+0x28]. ControlBar.cpp
+// carries an equivalent spelling for setGUICommand at slot 46.
+class BFMERetailInGameUIVTable
+{
+public:
+	virtual void uslot0() = 0;
+	virtual void uslot1() = 0;
+	virtual void uslot2() = 0;
+	virtual void uslot3() = 0;
+	virtual void uslot4() = 0;
+	virtual void uslot5() = 0;
+	virtual void uslot6() = 0;
+	virtual void uslot7() = 0;
+	virtual void uslot8() = 0;
+	virtual void uslot9() = 0;
+	virtual void popupMessage(const AsciiString &message, Int x, Int y, Int width,
+		Bool pause, Bool pauseMusic) = 0;
+};
+
 class BFMERetailDisplayVTable
 {
 public:
@@ -2925,10 +2945,10 @@ void ScriptActions::doDisplayText(const AsciiString& displayText)
 //-------------------------------------------------------------------------------------------------
 /** doInGamePopupMessage */
 //-------------------------------------------------------------------------------------------------
-// ?doInGamePopupMessage@ScriptActions@@IAEXABVAsciiString@@HHH_N@Z present-unmatched
 void ScriptActions::doInGamePopupMessage( const AsciiString& message, Int x, Int y, Int width, Bool pause )
 {
-	TheInGameUI->popupMessage(message, x,y,width, pause, FALSE);
+	reinterpret_cast<BFMERetailInGameUIVTable *>(TheInGameUI)->popupMessage(
+		message, x,y,width, pause, FALSE);
 }
 
 //-------------------------------------------------------------------------------------------------
