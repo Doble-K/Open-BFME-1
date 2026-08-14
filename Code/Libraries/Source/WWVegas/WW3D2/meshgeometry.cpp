@@ -353,6 +353,7 @@ const char * MeshGeometryClass::Get_User_Text(void)
  * HISTORY:                                                                                    *
  *   11/9/2000  gth : Created.                                                                 *
  *=============================================================================================*/
+// ?MeshGeometryClass::Set_User_Text present-unmatched
 void MeshGeometryClass::Set_User_Text(char * usertext)
 {
 	ShareBufferClass<char> *& user_text = *reinterpret_cast<ShareBufferClass<char> **>(reinterpret_cast<char *>(this) + 0x10);
@@ -1290,14 +1291,22 @@ bool MeshGeometryClass::cast_obbox_brute_force(OBBoxCollisionTestClass & boxtest
  *   11/9/2000  gth : Created.                                                                 *
  *=============================================================================================*/
 // ?MeshGeometryClass::Compute_Plane_Equations present-unmatched
+// BFME: PolyCount/Poly/Vertex sit four bytes earlier than this header's
+// declared layout (this+0x24/0x2c/0x30, not +0x28/0x30/0x34 - see
+// docs/lessons-archive.md's "MeshGeometryClass has Poly at +0x2C" note), so
+// read them through the retail offsets directly rather than the named
+// members, same technique as get_shade_indices' this+0x54 access above.
 void MeshGeometryClass::Compute_Plane_Equations(Vector4 * peq)
 {
 	WWASSERT(peq!=NULL);
 
-	TriIndex * poly	= Poly->Get_Array();
-	Vector3 * vert		= Vertex->Get_Array();
+	char * const retail_this = reinterpret_cast<char *>(this);
+	TriIndex * poly	= (*reinterpret_cast<ShareBufferClass<TriIndex> **>(retail_this + 0x2c))->Get_Array();
+	Vector3 * vert		= (*reinterpret_cast<ShareBufferClass<Vector3> **>(retail_this + 0x30))->Get_Array();
 
-	for(int pidx = 0; pidx < PolyCount; pidx++)
+	// re-read PolyCount from the retail offset each iteration - matches
+	// retail's re-fetch through ecx after the calls below.
+	for(int pidx = 0; pidx < *reinterpret_cast<int *>(retail_this + 0x24); pidx++)
 	{
 		Vector3 a,b,normal;
 		const Vector3 & p0= vert[poly[pidx][0]];
@@ -2013,6 +2022,7 @@ WW3DErrorType MeshGeometryClass::read_vertex_influences(ChunkLoadClass & cload)
  * HISTORY:                                                                                    *
  *   11/9/2000  gth : Created.                                                                 *
  *=============================================================================================*/
+// ?MeshGeometryClass::read_vertex_shade_indices present-unmatched
 bool MeshGeometryClass::read_vertex_shade_indices(ChunkLoadClass & cload)
 {
 	uint32 * shade_index = get_shade_indices(true);

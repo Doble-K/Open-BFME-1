@@ -69452,3 +69452,4 @@ _bfme_memmove_ptr,0x00F5945C,Open-BFME5 STLport memmove import address slot
 ?aiGetHealed@AICommandInterface@@QAEXPAVObject@@W4CommandSourceType@@@Z,0x0003CF10,packet 002817b0 pin
 ??0?$ShareBufferClass@PAVVertexMaterialClass@@@@QAE@ABV0@@Z,0x00929D40,packet 0092a1e0 pin
 ?onContaining@OpenContain@@UAEXPAVObject@@_N@Z,0x000476F9,packet 00219850 pin
+??4ProxyClass@@QAEAAV0@ABV0@@Z,0x00933C60,packet 00934630 pin

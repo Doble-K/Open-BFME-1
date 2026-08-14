@@ -122632,7 +122632,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_009267e0@@YAXXZ,,0x009267E0,221,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d267e0
 ?d_00926be0@@YAXXZ,,0x00926BE0,193,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d26be0
 ?d_00926cb0@@YAXXZ,,0x00926CB0,226,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d26cb0
-?d_00926da0@@YAXXZ,,0x00926DA0,350,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d26da0
 ?d_00926f00@@YAXXZ,,0x00926F00,806,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d26f00
 ?d_009272e0@@YAXXZ,,0x009272E0,44,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d272e0
 ?d_009274c0@@YAXXZ,,0x009274C0,203,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d274c0
@@ -122744,7 +122743,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00933bf0@@YAXXZ,,0x00933BF0,103,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33bf0
 ?d_00933c60@@YAXXZ,,0x00933C60,208,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33c60
 ?d_00933d30@@YAXXZ,,0x00933D30,192,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33d30
-?d_00934630@@YAXXZ,,0x00934630,324,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d34630
 ?d_00934820@@YAXXZ,,0x00934820,276,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d34820
 ?d_00934940@@YAXXZ,,0x00934940,8277,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d34940
 ?d_009369a0@@YAXXZ,,0x009369A0,773,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d369a0
@@ -157229,7 +157227,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0087d7a0@@YAXXZ,,0x0087D7A0,75,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_0087dae0@@YAXXZ,,0x0087DAE0,16,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_0087ddd0@@YAXXZ,,0x0087DDD0,61,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
-?d_0087f160@@YAXXZ,,0x0087F160,32,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_0087f220@@YAXXZ,,0x0087F220,68,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_00880480@@YAXXZ,,0x00880480,95,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_00880e00@@YAXXZ,,0x00880E00,8,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
@@ -157947,3 +157944,6 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?isIntersectedByLineSegment@GeometryInfo@@QBE_NABUCoord3D@@00@Z,,0x0087DFC0,59,Code/GameEngine/Source/Common/System/Geometry.cpp,matched,
 ?onContaining@CaveContain@@UAEXPAVObject@@_N@Z,,0x00219850,40,Code/GameEngine/Source/GameLogic/Object/Contain/CaveContainOnContaining.cpp,matched,Open-BFME5 ContainModuleInterface slice; BFME retail vtbl has one extra virtual ahead of recalcApparentControllingPlayer vs ZH header
 ?_M_do_count@?$_Base_bitset@$05@_STL@@QBEIXZ,,0x000CA880,35,Code/GameEngine/Source/Common/KindOfMaskCountThunk.cpp,matched,width-only KindOfType (KINDOF_COUNT=192 per CrateSystem.cpp precedent); Nw=6 _M_do_count body
+?Compute_Plane_Equations@MeshGeometryClass@@MAEXPAVVector4@@@Z,,0x00926DA0,350,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,
+?parseGeometryIsSmall@GeometryInfo@@SAXPAVINI@@PAX1PBX@Z,,0x0087F160,32,Code/GameEngine/Source/Common/System/GeometryIsSmall_Thunk.cpp,matched,clean C++ thunk; retail scanBool returns bool not int (shared ini.h header disagrees) and GeometryInfo has no vptr (shared geometry.h wrongly derives from Snapshot); local replica sidesteps both
+?Resize@?$VectorClass@VProxyClass@@@@UAE_NHPBVProxyClass@@@Z,,0x00934630,324,Code/Libraries/Source/WWVegas/WW3D2/VectorClassProxyResizeThunk.cpp,matched,
