@@ -69470,3 +69470,4 @@ _luaK_testgo,0x0099F5C0,vendored=lua-4.0.1;additive pin for luaK_goiftrue call r
 ?getName@WeaponTemplate@@QBE?AVAsciiString@@XZ,0x0002D70E,Open-BFME5 ILT; called by ?getName@Weapon@@QBE?AVAsciiString@@XZ at 0x001C2DC0
 ?getStatus@Weapon@@QBE?AW4WeaponStatus@@XZ,0x0000978C,Open-BFME5 ILT; called by ?isOutOfAmmo@WeaponSet@@QBE_NXZ at 0x001EAE70
 ?removeObject@Squad@@QAEXPAVObject@@@Z,0x000292EE,Open-BFME5 ILT; called by ?removeObjectFromHotkeySquad@Player@@QAEXPAVObject@@@Z at 0x000C9BE0
+??A?$hash_map@HW4Relationship@@U?$hash@H@_STL@@U?$equal_to@H@3@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@3@@_STL@@QAEAAW4Relationship@@ABH@Z,0x0001219D,Open-BFME5 ILT; called by ?setPlayerRelationship@Player@@QAEXPBV1@W4Relationship@@@Z at 0x000D7600

@@ -106384,7 +106384,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000d7330@@YAXXZ,,0x000D7330,65,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004d7330
 ?d_000d7390@@YAXXZ,,0x000D7390,186,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004d7390
 ?d_000d74b0@@YAXXZ,,0x000D74B0,269,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004d74b0
-?d_000d7600@@YAXXZ,,0x000D7600,43,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004d7600
 ?d_000d7640@@YAXXZ,,0x000D7640,43,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004d7640
 ?d_000d7e30@@YAXXZ,,0x000D7E30,464,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004d7e30
 ?d_000d8080@@YAXXZ,,0x000D8080,232,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004d8080
@@ -157947,3 +157946,4 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?recenterTurret@BattlePlanUpdate@@IAEXXZ,,0x002858B0,36,Code/GameEngine/Source/GameLogic/Object/Update/BattlePlanUpdate_recenterTurret_Thunk.cpp,matched,Open-BFME5 retail object +0x08 and AI +0x204
 ?findNaturalCommandCenter@Player@@QAEPAVObject@@XZ,,0x000D4400,37,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 two-field find block; retail sub esp 8
 ?removeObjectFromHotkeySquad@Player@@QAEXPAVObject@@@Z,,0x000C9BE0,42,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 m_squads at Player+0x654
+?setPlayerRelationship@Player@@QAEXPBV1@W4Relationship@@@Z,,0x000D7600,43,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,Open-BFME5 m_playerRelations at +0x28c and its m_map at +0x4

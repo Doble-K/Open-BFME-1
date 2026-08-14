@@ -616,13 +616,17 @@ Relationship Player::getRelationship(const Team *that) const
 }
 
 //=============================================================================
-// ?setPlayerRelationship@Player@@QAEXPBV1@W4Relationship@@@Z present-unmatched
 void Player::setPlayerRelationship(const Player *that, Relationship r)
 {
 	if (that != NULL)
 	{
 		// note that this creates the entry if it doesn't exist.
-		m_playerRelations->m_map[that->getPlayerIndex()] = r;
+		// Two offsets are BFME's: m_playerRelations at Player+0x28c (this tree
+		// +0x1a4), and m_map at +0x04 of it rather than +0x08 -- BFME's
+		// PlayerRelationMap carries one base vtable pointer where
+		// MemoryPoolObject plus Snapshot give it two here.
+		(*(PlayerRelationMapType *)(*(char **)((char *)this + 0x28c) + 0x04))
+			[that->getPlayerIndex()] = r;
 	}
 }
 
