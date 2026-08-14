@@ -141707,10 +141707,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_002687c0@@YAXXZ,,0x002687C0,7,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_002687d0@@YAXXZ,,0x002687D0,22,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_00268860@@YAXXZ,,0x00268860,27,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
-?d_00268890@@YAXXZ,,0x00268890,27,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
-?d_002688c0@@YAXXZ,,0x002688C0,32,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_002688f0@@YAXXZ,,0x002688F0,33,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
-?d_00268980@@YAXXZ,,0x00268980,33,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_00269060@@YAXXZ,,0x00269060,6,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026a190@@YAXXZ,,0x0026A190,8,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026a700@@YAXXZ,,0x0026A700,9,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
@@ -157947,3 +157944,6 @@ _jpeg_free_small@12,,0x00AC7FB0,24,Code/Libraries/Source/JPEG/jmemwin32.cpp,matc
 dup_6bc530,,0x006BC530,25,Code/GameEngine/Source/Common/System/GhostObjectManagerDupThunk.cpp,matched,dup-of=??0GhostObjectManager@@QAE@XZ;object-symbol=??0GhostObjectManagerDup@@QAE@XZ
 _png_chunk_error@8,,0x00A62C73,36,Code/Libraries/Source/LibPNG/pngerror_ChunkError_Thunk.cpp,matched,vendored=libpng-1.0.5
 _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored=lua-4.0.1
+?getInitiateSound@SpecialPowerTemplate@@QBEPBVAudioEventRTS@@XZ,,0x00268890,27,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 m_initiateSound at +0x24
+?getInitiateAtTargetSound@SpecialPowerTemplate@@QBEPBVAudioEventRTS@@XZ,,0x002688C0,32,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 m_initiateAtTargetSound at +0x94
+?getRadiusCursorRadius@SpecialPowerTemplate@@QBEMXZ,,0x00268980,33,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 m_radiusCursorRadius at +0x10c
