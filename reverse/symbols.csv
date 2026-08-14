@@ -69498,3 +69498,6 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??4LocomotorTemplate@@QAEAAV0@ABV0@@Z,0x00038FAA,Open-BFME5 operator=; ILT fronts unclaimed 849-byte body 0x001B4250; called by ?newOverride@LocomotorStore@@QAEPAVLocomotorTemplate@@PAV2@@Z at 0x001B55D0
 ?getWakeFrame@UpdateModule@@IBE?AW4UpdateSleepTime@@XZ,0x000176C5,Open-BFME5 ILT fronts unclaimed 24-byte body 0x002B2020; called by ?friend_notifyStateMachineChanged@AIUpdateInterface@@UAEXXZ at 0x0026ED10
 ?getSoleHealingBenefactor@Object@@QBE?AW4ObjectID@@XZ,0x000029D7,Open-BFME5 ILT fronts unclaimed 26-byte body 0x001BE770; called by ?privateRepair@DozerAIUpdate@@MAEXPAVObject@@W4CommandSourceType@@@Z at 0x002B6B80
+?init@TerrainLogic@@UAEXXZ,0x00027994,Open-BFME5 ILT fronts 1-byte body 0x001A2BD0, consistent with an empty base init; called by W3DTerrainLogic init/reset
+?reset@TerrainLogic@@UAEXXZ,0x0001B707,Open-BFME5 ILT fronts unclaimed 183-byte body 0x001ACF90; called by W3DTerrainLogic init/reset
+?freeListOfMapObjects@WorldHeightMap@@SAXXZ,0x00047127,Open-BFME5 ILT fronts unclaimed 38-byte body 0x00746E90; called by W3DTerrainLogic init/reset

@@ -117613,8 +117613,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006be030@@YAXXZ,,0x006BE030,39,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe030
 ?d_006be070@@YAXXZ,,0x006BE070,46,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe070
 ?d_006be0c0@@YAXXZ,,0x006BE0C0,18,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe0c0
-?d_006be0e0@@YAXXZ,,0x006BE0E0,34,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe0e0
-?d_006be110@@YAXXZ,,0x006BE110,38,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe110
 ?d_006be210@@YAXXZ,,0x006BE210,20,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe210
 ?d_006be2a0@@YAXXZ,,0x006BE2A0,267,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe2a0
 ?d_006be400@@YAXXZ,,0x006BE400,11,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abe400
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?doSetBorderShroud@ScriptActions@@IAEX_N@Z,,0x002EF0C0,56,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 setBorderShroudLevel at Display vtable slot 69; GlobalData alphas at 0xc84 and 0xc86
 ?doInGamePopupMessage@ScriptActions@@IAEXABVAsciiString@@HHH_N@Z,,0x002EE6E0,41,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 popupMessage at InGameUI vtable slot 10
 ?deleteAllUnmanned@ScriptActions@@IAEXXZ,,0x002FC7C0,51,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 Object disabled mask at +0x1a4
+?init@W3DTerrainLogic@@UAEXXZ,,0x006BE0E0,34,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DTerrainLogic_initReset_Thunk.cpp,matched,Open-BFME5 m_mapDX +0xc m_mapDY +0x10 m_mapMinZ +0x18f8 m_mapMaxZ +0x18fc
+?reset@W3DTerrainLogic@@UAEXXZ,,0x006BE110,38,Code/GameEngineDevice/Source/W3DDevice/GameLogic/W3DTerrainLogic_initReset_Thunk.cpp,matched,Open-BFME5 same four members as init plus the freeListOfMapObjects tail call
