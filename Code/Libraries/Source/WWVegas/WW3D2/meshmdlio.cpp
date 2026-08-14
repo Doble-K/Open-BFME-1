@@ -516,7 +516,7 @@ WW3DErrorType MeshModelClass::read_chunks(ChunkLoadClass & cload,MeshLoadContext
 
 			case W3D_CHUNK_VERTEX_SHADE_INDICES:
 					// call up to MeshGeometryClass
-					error = read_vertex_shade_indices(cload);
+					error = read_vertex_shade_indices(cload) ? WW3D_ERROR_OK : WW3D_ERROR_LOAD_FAILED;
 					break;
 
 			case W3D_CHUNK_MATERIAL_INFO:
@@ -2038,6 +2038,7 @@ __declspec(naked) WW3DErrorType MeshModelClass::read_dcg(ChunkLoadClass &, MeshL
  *   9/1/2000   gth : Added alternate material desc support                                    *
  *   2/9/2001   gth : converted to handle dx8 limitations                                      *
  *=============================================================================================*/
+// ?MeshModelClass::read_dig present-unmatched
 WW3DErrorType MeshModelClass::read_dig(ChunkLoadClass & cload,MeshLoadContextClass * context)
 {
 	/*

@@ -1,4 +1,4 @@
-// cl: /MD -Ireference/shims/gamespy
+// cl: /DNDEBUG /MD -Ireference/shims/gamespy
 /* GameSpy SDK, 2004 vintage -- pristine upstream C source.
    Sourced from the Area 51 (Inevitable Entertainment / Midway) source release,
    github.com/bisc67/Area51, Support/NetworkMgr/GameSpy -- the only public
@@ -818,15 +818,11 @@ gpiPeerStartConnect(
 	rcode = connect(peer->sock, (struct sockaddr *)&address, sizeof(struct sockaddr_in));
 	if(rcode == SOCKET_ERROR)
 	{
-#if 0
 		int error = GOAGetLastError(peer->sock);
 		if((error != WSAEWOULDBLOCK) && (error != WSAEINPROGRESS) && (error != WSAETIMEDOUT) )
 		{
 			CallbackFatalError(connection, GP_NETWORK_ERROR, GP_NETWORK, "There was an error connecting a socket.");
 		}
-#else
-        assert(FALSE);
-#endif
 	}
 
 	// We're waiting for the connect to complete.

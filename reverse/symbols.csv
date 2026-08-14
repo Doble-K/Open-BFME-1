@@ -69478,3 +69478,18 @@ _luaK_testgo,0x0099F5C0,vendored=lua-4.0.1;additive pin for luaK_goiftrue call r
 ?getAIStateType@AIUpdateInterface@@QBE?AW4AIStateType@@XZ,0x0001E33A,Open-BFME5 ILT; called by ?ownerDocking@SupplyTruckStateMachine@@SA_NPAVState@@PAX@Z at 0x002C5BB0
 ?updateDamageState@Bridge@@QAEXXZ,0x000232D6,Open-BFME5 ILT; called by ?updateBridgeDamageStates@TerrainLogic@@UAEXXZ at 0x001AAD70
 ?halt@StateMachine@@UAEXXZ,0x00025676,Open-BFME5 ILT; tail-called by ?halt@AIDockMachine@@UAEXXZ at 0x0014E660
+_ArraySearch,0x0086A2E0,additive pin for _gpiFreeTransfer call resolution
+_gpiAppendCharToBuffer,0x008F2950,additive pin for _gpiPeerAddMessage call resolution
+_gpiSendOrBufferChar,0x008F2BF0,additive pin for _gpiPeerFinishTransferMessage call resolution
+_gpiSendData,0x008F2B40,additive pin for _gpiSendOrBufferStringLen call resolution
+_ArrayInsertAt,0x0086A160,additive pin for _ArrayAppend call resolution
+_gpiProcessGetInfo,0x008F2220,additive pin for _gpiProcessOperation call resolution
+_gpiCheckConnect,0x008ED910,additive pin for _gpiProcess call resolution
+_gpiProcessPeers,0x008F6E10,additive pin for _gpiProcess call resolution
+_gpiProcessSearches,0x008EF8E0,additive pin for _gpiProcess call resolution
+_gpiProcessCallbacks,0x008F5E90,additive pin for _gpiProcess call resolution
+_ArrayMap,0x00869EC0,additive pin for _TableMap call resolution
+_ArrayMapBackwards2,0x00869F80,additive pin for _TableMapSafe2 call resolution
+_gpiSetPeerSocketSizes,0x008F6680,additive pin for _gpiPeerStartConnect call resolution
+_luaH_new,0x00999610,additive pin for _luaV_pack call resolution
+_luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution

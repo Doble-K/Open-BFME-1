@@ -160,15 +160,11 @@ gpiStartConnect(
 	rcode = connect(iconnection->cmSocket, (struct sockaddr *)&address, sizeof(struct sockaddr_in));
 	if(rcode == SOCKET_ERROR)
 	{
-#if 0
 		int error = GOAGetLastError(iconnection->cmSocket);
 		if((error != WSAEWOULDBLOCK) && (error != WSAEINPROGRESS) && (error != WSAETIMEDOUT))
 		{
 			CallbackFatalError(connection, GP_NETWORK_ERROR, GP_NETWORK, "There was an error connecting a socket.");
 		}
-#else
-        //assert(FALSE);
-#endif
 	}
 
 	// We're waiting for the connect to complete.
