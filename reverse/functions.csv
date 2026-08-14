@@ -157469,11 +157469,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_009d2110@@YAXXZ,,0x009D2110,5,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d21d0@@YAXXZ,,0x009D21D0,5,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d2260@@YAXXZ,,0x009D2260,70,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
-?d_009d2480@@YAXXZ,,0x009D2480,183,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d2550@@YAXXZ,,0x009D2550,72,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
-?d_009d25a0@@YAXXZ,,0x009D25A0,43,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
-?d_009d25d0@@YAXXZ,,0x009D25D0,59,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
-?d_009d2610@@YAXXZ,,0x009D2610,124,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d2cb0@@YAXXZ,,0x009D2CB0,78,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d2dd0@@YAXXZ,,0x009D2DD0,78,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d6290@@YAXXZ,,0x009D6290,106,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157945,7 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ??$_Destroy@PAUModelConditionInfo@@@_STL@@YAXPAUModelConditionInfo@@0@Z,,0x0013C610,36,Code/GameEngine/Source/Common/ModelConditionInfoDestroyRangeThunk.cpp,matched,Open-BFME5 sizeof ModelConditionInfo is 0x128
 ??$_Destroy@PAURunwayInfo@FlightDeckBehavior@@@_STL@@YAXPAURunwayInfo@FlightDeckBehavior@@0@Z,,0x002BDB00,36,Code/GameEngine/Source/GameLogic/Object/Behavior/FlightDeckBehaviorRunwayInfoDestroyRangeThunk.cpp,matched,Open-BFME5 sizeof RunwayInfo is 0xb8
 ??$_Destroy@PAURopeInfo@ChinookCombatDropState@@@_STL@@YAXPAURopeInfo@ChinookCombatDropState@@0@Z,,0x00197400,33,Code/GameEngine/Source/GameLogic/AI/ChinookCombatDropStateRopeInfoDestroyRangeThunk.cpp,matched,Open-BFME5 sizeof RopeInfo is 0x10
+?write@LocalFile@@UAEHPBXH@Z,,0x009D25A0,43,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep packet 009d25a0
+?seek@LocalFile@@UAEHHW4seekMode@File@@@Z,,0x009D25D0,59,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep packet 009d25d0
+?nextLine@LocalFile@@UAEXPADH@Z,,0x009D2610,124,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep packet 009d2610
+?open@LocalFile@@UAE_NPBDH@Z,,0x009D2480,183,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep packet 009d2480
