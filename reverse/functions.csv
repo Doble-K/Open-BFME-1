@@ -108572,7 +108572,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001eacf0@@YAXXZ,,0x001EACF0,60,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eacf0
 ?d_001eadc0@@YAXXZ,,0x001EADC0,76,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eadc0
 ?d_001eae20@@YAXXZ,,0x001EAE20,56,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eae20
-?d_001eae70@@YAXXZ,,0x001EAE70,42,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eae70
 ?d_001eaeb0@@YAXXZ,,0x001EAEB0,40,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eaeb0
 ?d_001eafa0@@YAXXZ,,0x001EAFA0,38,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eafa0
 ?d_001eb140@@YAXXZ,,0x001EB140,17,Code/gen_asm/d_001e7c30.asm,matched,gen-dump;ghidra=FUN_005eb140
@@ -157947,3 +157946,4 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?getName@Weapon@@QBE?AVAsciiString@@XZ,,0x001C2DC0,30,Code/GameEngine/Source/GameLogic/Object/Weapon_getName_Thunk.cpp,matched,Open-BFME5 m_template at Weapon+0x30
 ?isAnimReversed@Shell@@QAE_NXZ,,0x0057F440,30,Code/GameEngine/Source/GameClient/GUI/Shell/Shell_isAnimReversed_Thunk.cpp,matched,Open-BFME5 m_animateWindows at GlobalData+0xbc4
 ?friend_getNextIdleMoodTargetFrame@TurretAI@@QBEIXZ,,0x0018CA20,30,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,Open-BFME5 Object m_ai at +0x204 and m_nextMoodCheckTime at +0x1fc
+?isOutOfAmmo@WeaponSet@@QBE_NXZ,,0x001EAE70,42,Code/GameEngine/Source/GameLogic/Object/WeaponSet_isOutOfAmmo_Thunk.cpp,matched,Open-BFME5 WEAPONSLOT_COUNT is 4 in BFME not ZH's 3

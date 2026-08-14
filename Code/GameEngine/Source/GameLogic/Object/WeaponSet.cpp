@@ -1004,7 +1004,7 @@ void WeaponSet::reloadAllAmmo(const Object *obj, Bool now)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?isOutOfAmmo@WeaponSet@@QBE_NXZ present-unmatched
+// ?isOutOfAmmo@WeaponSet@@QBE_NXZ present-unmatched here - matched copy lives in WeaponSet_isOutOfAmmo_Thunk.cpp where WEAPONSLOT_COUNT is BFME's 4
 Bool WeaponSet::isOutOfAmmo() const
 {
 	for( Int i = 0; i < WEAPONSLOT_COUNT;	i++ )
