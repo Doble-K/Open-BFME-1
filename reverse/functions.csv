@@ -107288,7 +107288,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0014ee40@@YAXXZ,,0x0014EE40,81,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ee40
 ?d_0014ef00@@YAXXZ,,0x0014EF00,145,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054ef00
 ?d_0014efc0@@YAXXZ,,0x0014EFC0,59,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054efc0
-?d_0014f010@@YAXXZ,,0x0014F010,63,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054f010
 ?d_0014f060@@YAXXZ,,0x0014F060,125,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054f060
 ?d_0014f1a0@@YAXXZ,,0x0014F1A0,45,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054f1a0
 ?d_0014f280@@YAXXZ,,0x0014F280,149,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054f280
@@ -157950,3 +157949,4 @@ _AllKeysPresent,,0x00867CB0,145,Code/GameEngine/Source/GameNetwork/GameSpy/serve
 _NewBucketSet,,0x009D5BB0,50,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbucket.c,matched,
 _DumpBucketSet,,0x009D5BF0,82,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbucket.c,matched,
 _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbucket.c,matched,
+?onExit@AIDockMoveToExitState@@UAEXW4StateExitType@@@Z,,0x0014F010,63,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,Open-BFME5 State m_machine +0x1c and m_owner +0x10 and lock flag +0x40

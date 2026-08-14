@@ -812,10 +812,14 @@ StateReturnType AIDockMoveToExitState::update( void )
 }
 
 //----------------------------------------------------------------------------------------------
-// ?onExit@AIDockMoveToExitState@@ present-unmatched
 void AIDockMoveToExitState::onExit( StateExitType status )
 {
-	Object *goalObject = getMachineGoalObject();
+	// Three offsets are BFME's, all already pinned elsewhere in this file and
+	// in SupplyTruckAIUpdate.cpp: State::m_machine at +0x1c (this tree +0x20),
+	// StateMachine::m_owner at +0x10 (+0x14), and the machine's lock flag that
+	// unlock() clears at +0x40 (+0x34).
+	StateMachine *machine = *(StateMachine **)((char *)this + 0x1c);
+	Object *goalObject = machine->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -823,10 +827,10 @@ void AIDockMoveToExitState::onExit( StateExitType status )
 
 	// tell the dock we have exited
 	if (dock)
-		dock->onExitReached( getMachineOwner() );
+		dock->onExitReached( *(Object **)((char *)(*(StateMachine **)((char *)this + 0x1c)) + 0x10) );
 
 	// unlock the machine
-	getMachine()->unlock();
+	*((char *)(*(StateMachine **)((char *)this + 0x1c)) + 0x40) = 0;
 
 	// this behavior is an extention of basic MoveTo
 	AIInternalMoveToState::onExit( status );
