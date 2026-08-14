@@ -110934,7 +110934,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002fc050@@YAXXZ,,0x002FC050,849,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc050
 ?d_002fc480@@YAXXZ,,0x002FC480,45,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc480
 ?d_002fc4c0@@YAXXZ,,0x002FC4C0,138,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc4c0
-?d_002fc7c0@@YAXXZ,,0x002FC7C0,51,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc7c0
 ?d_002fc800@@YAXXZ,,0x002FC800,443,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc800
 ?d_002fca30@@YAXXZ,,0x002FCA30,478,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fca30
 ?d_002fcc90@@YAXXZ,,0x002FCC90,419,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fcc90
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?privateRepair@DozerAIUpdate@@MAEXPAVObject@@W4CommandSourceType@@@Z,,0x002B6B80,86,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp,matched,Open-BFME5 DozerAIInterface base at +0x340
 ?doSetBorderShroud@ScriptActions@@IAEX_N@Z,,0x002EF0C0,56,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 setBorderShroudLevel at Display vtable slot 69; GlobalData alphas at 0xc84 and 0xc86
 ?doInGamePopupMessage@ScriptActions@@IAEXABVAsciiString@@HHH_N@Z,,0x002EE6E0,41,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 popupMessage at InGameUI vtable slot 10
+?deleteAllUnmanned@ScriptActions@@IAEXXZ,,0x002FC7C0,51,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,Open-BFME5 Object disabled mask at +0x1a4

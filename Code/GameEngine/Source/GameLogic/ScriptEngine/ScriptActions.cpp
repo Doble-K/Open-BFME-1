@@ -7147,12 +7147,14 @@ void ScriptActions::doResizeViewGuardband(const Real gbx, const Real gby)
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?deleteAllUnmanned@ScriptActions@@IAEXXZ present-unmatched
 void ScriptActions::deleteAllUnmanned()
 {
 	Object *obj = TheGameLogic->getFirstObject();
 	while (obj) {
-		if (obj->isDisabledByType(DISABLED_UNMANNED))
+		// isDisabledByType inlines to one bit test. The mask is at Object+0x1a4,
+		// which is exactly where reference/shims/bfmeobject records m_disabledMask;
+		// this tree lands it at +0x130. DISABLED_UNMANNED is bit 5.
+		if (*(const UnsignedByte *)((const char *)obj + 0x1a4) & 0x20)
 			TheGameLogic->destroyObject(obj);
 		obj = obj->getNextObject();
 	}
