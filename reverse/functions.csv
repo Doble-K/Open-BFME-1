@@ -122602,7 +122602,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00921940@@YAXXZ,,0x00921940,129,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21940
 ?d_00921a50@@YAXXZ,,0x00921A50,558,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21a50
 ?d_00921c80@@YAXXZ,,0x00921C80,421,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21c80
-?d_00921ec0@@YAXXZ,,0x00921EC0,141,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d21ec0
 ?d_00922760@@YAXXZ,,0x00922760,286,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d22760
 ?d_00923690@@YAXXZ,,0x00923690,107,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d23690
 ?d_00923770@@YAXXZ,,0x00923770,31,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d23770
@@ -153868,7 +153867,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0067d310@@YAXXZ,,0x0067D310,75,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_0067edb0@@YAXXZ,,0x0067EDB0,13,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_0067edd0@@YAXXZ,,0x0067EDD0,40,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
-?d_0067ee10@@YAXXZ,,0x0067EE10,28,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_0067f600@@YAXXZ,,0x0067F600,668,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_0067f950@@YAXXZ,,0x0067F950,651,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_0067fc80@@YAXXZ,,0x0067FC80,532,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
@@ -157947,3 +157945,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?read_user_text@MeshGeometryClass@@IAE_NAAVChunkLoadClass@@@Z,,0x009252C0,188,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryClass_read_user_text_Thunk.cpp,matched,zh-sweep: dispatch-table sibling of read_vertex_shade_indices (0x9255B0) returns bool not WW3DErrorType; stores through the MeshName slot at this+0x14 not the this+0x10 slot Get_User_Text/Set_User_Text use; local ABI-slice replica; real header untouched
 ??0ObjectDefectionHelper@@QAE@PAVThing@@PBVModuleData@@@Z,,0x001C0EA0,60,Code/GameEngine/Source/Common/ObjectDefectionHelper_ctor_Thunk.cpp,matched,packet 001c0ea0 - ctor forwards to ObjectHelper base then restamps 3 vtbl slots
 ?writeToFile@RecorderClass@@IAEXPAVGameMessage@@@Z,,0x00098210,361,Code/GameEngine/Source/Common/Recorder.cpp,matched,zh-sweep exact match; BFME plain delete vs ZH deleteInstance drift
+?_M_create_node@?$list@HV?$allocator@H@_STL@@@_STL@@IAEPAU?$_List_node@H@2@ABH@Z,,0x0067EE10,28,Code/gen_small/tgrid_001.cpp,matched,vendored=cnc-zh;gen-tgrid;explicit-instantiation-of-list<int>
+?Init@VertexMaterialClass@@SAXXZ,,0x00921EC0,141,Code/Libraries/Source/WWVegas/WW3D2/VertexMaterialClass_Init_Thunk.cpp,matched,local-replica thunk; header sizeof/pooling drift

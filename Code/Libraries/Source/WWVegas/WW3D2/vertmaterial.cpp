@@ -1068,18 +1068,8 @@ void VertexMaterialClass::Apply_Null(void)
  * HISTORY:                                                                                    *
  *   2/14/2001  hy : Created.                                                                  *
  *=============================================================================================*/
-// ?Init@VertexMaterialClass@@SAXXZ present-unmatched
-void VertexMaterialClass::Init()
-{
-	int i;
-	for (i=0; i<PRESET_COUNT;i++)
-		Presets[i]=NEW_REF(VertexMaterialClass,());
-
-	// Set up presets
-	Presets[PRELIT_DIFFUSE]->Set_Diffuse_Color_Source(VertexMaterialClass::COLOR1);
-	Presets[PRELIT_DIFFUSE]->Set_Lighting(false);
-	Presets[PRELIT_NODIFFUSE]->Set_Lighting(false);
-}
+// ?Init@VertexMaterialClass@@SAXXZ moved to VertexMaterialClass_Init_Thunk.cpp
+// (retail layout/allocation drift vs this header; see that file for detail)
 
 
 /***********************************************************************************************
@@ -1097,6 +1087,7 @@ void VertexMaterialClass::Init()
  * HISTORY:                                                                                    *
  *   2/14/2001  hy : Created.                                                                  *
  *=============================================================================================*/
+// ?VertexMaterialClass::Shutdown present-unmatched
 void VertexMaterialClass::Shutdown()
 {
 	int i;
