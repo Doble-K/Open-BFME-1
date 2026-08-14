@@ -123376,8 +123376,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_009d1cf0@@YAXXZ,,0x009D1CF0,228,Code/gen_asm/d_009cf9a0.asm,matched,gen-dump;ghidra=FUN_00dd1cf0
 ?d_009d1ef0@@YAXXZ,,0x009D1EF0,296,Code/gen_asm/d_009cf9a0.asm,matched,gen-dump;ghidra=FUN_00dd1ef0
 ?d_009d21f0@@YAXXZ,,0x009D21F0,96,Code/gen_asm/d_009cf9a0.asm,matched,gen-dump;ghidra=FUN_00dd21f0
-?d_009d2400@@YAXXZ,,0x009D2400,117,Code/gen_asm/d_009cf9a0.asm,matched,gen-dump;ghidra=FUN_00dd2400
-?d_009d2690@@YAXXZ,,0x009D2690,45,Code/gen_asm/d_009cf9a0.asm,matched,gen-dump;ghidra=FUN_00dd2690
 ?d_009d2790@@YAXXZ,,0x009D2790,188,Code/gen_asm/d_009cf9a0.asm,matched,gen-dump;ghidra=FUN_00dd2790
 ?d_009d2850@@YAXXZ,,0x009D2850,278,Code/gen_asm/d_009cf9a0.asm,matched,gen-dump;ghidra=FUN_00dd2850
 ?d_009d2970@@YAXXZ,,0x009D2970,304,Code/gen_asm/d_009cf9a0.asm,matched,gen-dump;ghidra=FUN_00dd2970
@@ -157469,7 +157467,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_009d2110@@YAXXZ,,0x009D2110,5,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d21d0@@YAXXZ,,0x009D21D0,5,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d2260@@YAXXZ,,0x009D2260,70,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
-?d_009d2550@@YAXXZ,,0x009D2550,72,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d2cb0@@YAXXZ,,0x009D2CB0,78,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d2dd0@@YAXXZ,,0x009D2DD0,78,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
 ?d_009d6290@@YAXXZ,,0x009D6290,106,Code/gen_asm/d_009b9700.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157946,6 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?seek@LocalFile@@UAEHHW4seekMode@File@@@Z,,0x009D25D0,59,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep packet 009d25d0
 ?nextLine@LocalFile@@UAEXPADH@Z,,0x009D2610,124,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep packet 009d2610
 ?open@LocalFile@@UAE_NPBDH@Z,,0x009D2480,183,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep packet 009d2480
+?read@LocalFile@@UAEHPAXH@Z,,0x009D2550,72,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep LocalFile family
+??1LocalFile@@UAE@XZ,,0x009D2400,117,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,zh_sweep LocalFile family
+?readEntireAndClose@LocalFile@@UAEPADXZ,,0x009D2690,45,Code/GameEngine/Source/Common/System/LocalFile.cpp,matched,LocalFile vtable 0x01143D38 slot 13
