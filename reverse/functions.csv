@@ -109662,7 +109662,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0026ea30@@YAXXZ,,0x0026EA30,29,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066ea30
 ?d_0026eb40@@YAXXZ,,0x0026EB40,37,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066eb40
 ?d_0026ec30@@YAXXZ,,0x0026EC30,29,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066ec30
-?d_0026ed10@@YAXXZ,,0x0026ED10,38,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066ed10
 ?d_0026ed40@@YAXXZ,,0x0026ED40,38,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066ed40
 ?d_0026ed80@@YAXXZ,,0x0026ED80,22,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066ed80
 ?d_0026edd0@@YAXXZ,,0x0026EDD0,11,Code/gen_asm/d_00266ef0.asm,matched,gen-dump;ghidra=FUN_0066edd0
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?reset@GlobalData@@UAEXXZ,,0x00083110,46,Code/GameEngine/Source/Common/GlobalData_reset_Thunk.cpp,matched,probe
 ?findConditionIndex@GarrisonContain@@IAEHXZ,,0x0021E0D0,54,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,Open-BFME5 m_object at module+0x8 and Object m_body at +0x200 and getDamageState slot 8
 ?getWaterHeight@TerrainLogic@@UAEMPBVWaterHandle@@@Z,,0x001A3B90,51,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,Open-BFME5 PolygonTrigger m_points at +0x10 and m_numPoints at +0x14
+?friend_notifyStateMachineChanged@AIUpdateInterface@@UAEXXZ,,0x0026ED10,38,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp,matched,Open-BFME5 wakeUpNow guarded by a flag at +0x330

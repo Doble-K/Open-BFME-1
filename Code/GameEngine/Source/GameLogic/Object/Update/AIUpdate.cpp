@@ -1167,10 +1167,13 @@ void AIUpdateInterface::wakeUpNow()
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?friend_notifyStateMachineChanged@AIUpdateInterface@@ present-unmatched
 void AIUpdateInterface::friend_notifyStateMachineChanged()
 {
-	wakeUpNow();
+	// wakeUpNow() spelled out: BFME guards it with a flag at +0x330 that ZH's
+	// inline does not have, and tests the wake frame with > rather than !=.
+	// m_object at +0x08 is the BFME_MODULE_NO_MPO layout.
+	if( getWakeFrame() > UPDATE_SLEEP_NONE && !*((const char *)this + 0x330) )
+		setWakeFrame( *(Object **)((char *)this + 0x08), UPDATE_SLEEP_NONE );
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -5269,7 +5272,6 @@ void AIUpdateInterface::privateCommandButtonObject( const CommandButton *command
 }
 
 // ------------------------------------------------------------------------------------------------
-// ?getGroup@AIUpdateInterface@@ present-unmatched
 AIGroup *AIUpdateInterface::getGroup(void)
 {
 	return getObject()->getGroup();

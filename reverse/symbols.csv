@@ -69496,3 +69496,4 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??$__find@PAW4ObjectID@@W41@@_STL@@YAPAW4ObjectID@@PAW41@0ABW41@ABUrandom_access_iterator_tag@0@@Z,0x0001BFC7,Open-BFME5 ILT; called by ?removeObject@Squad@@QAEXPAVObject@@@Z at 0x0018B620
 ??0LocomotorTemplate@@QAE@XZ,0x0000D049,Open-BFME5 ctor; ILT fronts unclaimed 41-byte body 0x001B52C0; called by ?newOverride@LocomotorStore@@QAEPAVLocomotorTemplate@@PAV2@@Z at 0x001B55D0
 ??4LocomotorTemplate@@QAEAAV0@ABV0@@Z,0x00038FAA,Open-BFME5 operator=; ILT fronts unclaimed 849-byte body 0x001B4250; called by ?newOverride@LocomotorStore@@QAEPAVLocomotorTemplate@@PAV2@@Z at 0x001B55D0
+?getWakeFrame@UpdateModule@@IBE?AW4UpdateSleepTime@@XZ,0x000176C5,Open-BFME5 ILT fronts unclaimed 24-byte body 0x002B2020; called by ?friend_notifyStateMachineChanged@AIUpdateInterface@@UAEXXZ at 0x0026ED10
