@@ -122623,7 +122623,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00924fa0@@YAXXZ,,0x00924FA0,138,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d24fa0
 ?d_00925060@@YAXXZ,,0x00925060,166,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d25060
 ?d_00925110@@YAXXZ,,0x00925110,227,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d25110
-?d_009252c0@@YAXXZ,,0x009252C0,188,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d252c0
 ?d_009255b0@@YAXXZ,,0x009255B0,86,Code/Libraries/Source/WWVegas/WW3D2/meshgeometry.cpp,matched,object-symbol=?read_vertex_shade_indices@MeshGeometryClass@@IAE_NAAVChunkLoadClass@@@Z;ghidra=FUN_00d255b0;Open-BFME5 clean C++ vertex shade index loading
 ?d_00925860@@YAXXZ,,0x00925860,1190,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d25860
 ?d_00926630@@YAXXZ,,0x00926630,29,Code/gen_asm/d_0091cbf0.asm,matched,gen-dump;ghidra=FUN_00d26630
@@ -157238,7 +157237,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_008838f0@@YAXXZ,,0x008838F0,181,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_00883c60@@YAXXZ,,0x00883C60,59,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_00884ec0@@YAXXZ,,0x00884EC0,1065,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
-?d_00887260@@YAXXZ,,0x00887260,42,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_00889250@@YAXXZ,,0x00889250,31,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_00889290@@YAXXZ,,0x00889290,50,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
 ?d_008896e0@@YAXXZ,,0x008896E0,27,Code/gen_asm/d_008592e0.asm,matched,gen-dump;bounds=high
@@ -157947,3 +157945,5 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?Resize@?$VectorClass@VProxyClass@@@@UAE_NHPBVProxyClass@@@Z,,0x00934630,324,Code/Libraries/Source/WWVegas/WW3D2/VectorClassProxyResizeThunk.cpp,matched,
 ?evaluateAudioHasCompleted@ScriptConditions@@IAE_NPAVParameter@@@Z,,0x00322920,27,Code/GameEngine/Source/Common/ScriptConditions_evaluateAudioHasCompleted_Thunk.cpp,matched,retail folds evaluateVideoHasCompleted/evaluateSpeechHasCompleted/evaluateAudioHasCompleted onto one body; Parameter string at +0x10 per matched WriteParameter row; vtable slot 0xa8 modeled via 42 pad slots; callee identity unresolved
 ??0BehaviorModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x005F84E0,53,Code/GameEngine/Source/GameLogic/Object/Behavior/BehaviorModuleConstructorThunk.cpp,matched,Open-BFME5 clean C++ BehaviorModule ctor: ObjectModule(0xC)+2 pad dwords+BehaviorModuleInterface+Snapshot
+?skipWhitespace@@YAPADPAD@Z,,0x00887260,42,Code/GameEngine/Source/Common/System/AsciiString.cpp,matched,
+?read_user_text@MeshGeometryClass@@IAE_NAAVChunkLoadClass@@@Z,,0x009252C0,188,Code/Libraries/Source/WWVegas/WW3D2/MeshGeometryClass_read_user_text_Thunk.cpp,matched,zh-sweep: dispatch-table sibling of read_vertex_shade_indices (0x9255B0) returns bool not WW3DErrorType; stores through the MeshName slot at this+0x14 not the this+0x10 slot Get_User_Text/Set_User_Text use; local ABI-slice replica; real header untouched

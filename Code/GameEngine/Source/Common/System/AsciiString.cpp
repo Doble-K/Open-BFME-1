@@ -73,7 +73,7 @@ inline char* skipNonSeps(char* p, const char* seps)
 }
 
 //-----------------------------------------------------------------------------
-inline char* skipWhitespace(char* p)
+static inline char* skipWhitespace(char* p)
 {
 	while (*p && isspace(*p))
 		++p;
