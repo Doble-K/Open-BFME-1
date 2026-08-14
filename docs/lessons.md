@@ -125,6 +125,25 @@ source does control.)
 - A discarded return value becomes a tail jump: retail's real call where you
   emit `jmp` means the function returns something the reference discards.
 
+## A this-adjustment hoists only if the source goes through the owning base
+
+An override of a virtual declared in a *secondary* base is entered with that
+subobject's `this`. Reading a member off it directly gives negative
+displacements from the entry register:
+
+    ours:   mov esi,ecx / mov eax,[esi-8] / mov ecx,[esi-0xc]
+    target: mov eax,[ecx-8] / lea esi,[ecx-0x10] / mov ecx,[esi+4]
+
+Retail materialises the *primary* base once (`lea esi,[ecx-0x10]`) and indexes
+forward off it. That is not a scheduling tie-break: it happens because the
+reference source calls a helper declared on the primary base, so the adjustment
+is a real subexpression with two uses. Spelling the helper's body inline at the
+call site removes it, and no permutation of the inlined form gets it back.
+Write the wrapper as an inline member of the base that declares it
+(`DieModule::isDieApplicable` calling `getDieModuleData()` and `getObject()`),
+then call it unqualified. Same instruction count either way, so the size is no
+clue -- look at whether displacements off the entry register are negative.
+
 ## `delete p` shape reads the type's completeness
 
 Null check + `push 1` + call through vtable slot 0 = complete polymorphic
