@@ -69509,3 +69509,4 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?reloadAmmo@Weapon@@QAEXPBVObject@@@Z,0x00033C03,Open-BFME5 ILT thunk fronting body 0x001E9DE0 (pushes 0 to reloadWithBonus)
 ?canGetHealedAt@ActionManager@@QAE_NPBVObject@@0W4CommandSourceType@@@Z,0x0001B090,Open-BFME5 ILT thunk fronting body 0x000C5140
 ?aiEnter@AICommandInterface@@QAEXPAVObject@@W4CommandSourceType@@@Z,0x000442A1,Open-BFME5 ILT thunk fronting body 0x000D89C0
+?changeObjectPanelFlagForSingleObject@ScriptActions@@IAEXPAVObject@@ABVAsciiString@@_N@Z,0x0002DD85,Open-BFME5 ILT thunk from zh_sweep packet 002fc480

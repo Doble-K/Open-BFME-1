@@ -6900,10 +6900,11 @@ void ScriptActions::doTeamFaceWaypoint( const AsciiString &teamName, const Ascii
 }
 
 //-------------------------------------------------------------------------------------------------
-// ?doAffectObjectPanelFlagsUnit@ScriptActions@@IAEXABVAsciiString@@0_N@Z present-unmatched
 void ScriptActions::doAffectObjectPanelFlagsUnit(const AsciiString& unitName, const AsciiString& flagName, Bool enable)
 {
-	Object *obj = TheScriptEngine->getUnitNamed( unitName );
+	// Through the retail slot numbering -- see BFMERetailScriptEngineVTable above.
+	// The ZH header puts getUnitNamed at slot 23 and retail calls slot 26.
+	Object *obj = ((BFMERetailScriptEngineVTable *)TheScriptEngine)->getUnitNamed( unitName );
 	if (!obj) {
 		return;
 	}

@@ -110930,7 +110930,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002fb8d0@@YAXXZ,,0x002FB8D0,766,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fb8d0
 ?d_002fbc90@@YAXXZ,,0x002FBC90,760,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fbc90
 ?d_002fc050@@YAXXZ,,0x002FC050,849,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc050
-?d_002fc480@@YAXXZ,,0x002FC480,45,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc480
 ?d_002fc4c0@@YAXXZ,,0x002FC4C0,138,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc4c0
 ?d_002fc800@@YAXXZ,,0x002FC800,443,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fc800
 ?d_002fca30@@YAXXZ,,0x002FCA30,478,Code/gen_asm/d_002f6330.asm,matched,gen-dump;ghidra=FUN_006fca30
@@ -141307,7 +141306,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00253ce0@@YAXXZ,,0x00253CE0,45,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00253d50@@YAXXZ,,0x00253D50,57,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00253da0@@YAXXZ,,0x00253DA0,5,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
-?d_00253db0@@YAXXZ,,0x00253DB0,45,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00253e00@@YAXXZ,,0x00253E00,15,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00253e20@@YAXXZ,,0x00253E20,6,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
 ?d_00253e30@@YAXXZ,,0x00253E30,15,Code/gen_asm/d_00234360.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?reloadAllAmmo@WeaponSet@@QAEXPBVObject@@_N@Z,,0x001EAE20,56,Code/GameEngine/Source/GameLogic/Object/WeaponSet_pitchAndReload_Thunk.cpp,matched,zh_sweep packet 001eae20
 ?privateGetHealed@AIUpdateInterface@@MAEXPAVObject@@W4CommandSourceType@@@Z,,0x0027DE10,50,Code/GameEngine/Source/GameLogic/AI/AIUpdateInterface_privateGetHealed_Thunk.cpp,matched,zh_sweep packet 0027de10
 ?setQueueForPathTime@AIUpdateInterface@@QAEXH@Z,,0x0026ECA0,83,Code/GameEngine/Source/GameLogic/AI/AIUpdateInterface_setQueueForPathTime_Thunk.cpp,matched,zh_sweep packet 0026eca0
+?testKillerScience@CreateCrateDie@@AAE_NPBVCrateTemplate@@PAVObject@@@Z,,0x00253DB0,45,Code/GameEngine/Source/GameLogic/Object/Die/CreateCrateDie.cpp,matched,zh_sweep packet 00253db0
+?doAffectObjectPanelFlagsUnit@ScriptActions@@IAEXABVAsciiString@@0_N@Z,,0x002FC480,45,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp,matched,zh_sweep packet 002fc480
