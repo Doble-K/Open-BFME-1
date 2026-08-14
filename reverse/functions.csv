@@ -139068,7 +139068,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_001a3440@@YAXXZ,,0x001A3440,11,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a3450@@YAXXZ,,0x001A3450,34,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a3730@@YAXXZ,,0x001A3730,46,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_001a3b90@@YAXXZ,,0x001A3B90,51,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a41b0@@YAXXZ,,0x001A41B0,14,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a41f0@@YAXXZ,,0x001A41F0,9,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_001a4220@@YAXXZ,,0x001A4220,25,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?removeDynamicLight@RTS3DScene@@QAEXPAVW3DDynamicLight@@@Z,,0x00712090,47,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,Open-BFME5 m_dynamicLightList at RTS3DScene+0x110
 ?reset@GlobalData@@UAEXXZ,,0x00083110,46,Code/GameEngine/Source/Common/GlobalData_reset_Thunk.cpp,matched,probe
 ?findConditionIndex@GarrisonContain@@IAEHXZ,,0x0021E0D0,54,Code/GameEngine/Source/GameLogic/Object/Contain/GarrisonContain.cpp,matched,Open-BFME5 m_object at module+0x8 and Object m_body at +0x200 and getDamageState slot 8
+?getWaterHeight@TerrainLogic@@UAEMPBVWaterHandle@@@Z,,0x001A3B90,51,Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp,matched,Open-BFME5 PolygonTrigger m_points at +0x10 and m_numPoints at +0x14

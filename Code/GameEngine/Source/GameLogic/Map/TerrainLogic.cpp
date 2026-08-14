@@ -2311,7 +2311,6 @@ const WaterHandle* TerrainLogic::getWaterHandleByName( AsciiString name )
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?getWaterHeight@TerrainLogic@@UAEMPBVWaterHandle@@@Z present-unmatched
 Real TerrainLogic::getWaterHeight( const WaterHandle *water )
 {
 
@@ -2335,7 +2334,22 @@ Real TerrainLogic::getWaterHeight( const WaterHandle *water )
 	DEBUG_ASSERTCRASH( water->m_polygon != NULL, ("getWaterHeight: polygon trigger in water handle is NULL\n") );
 
 	// return the height of the water using the polygon trigger
-	return water->m_polygon->getPoint( 0 )->z;
+	// PolygonTrigger's m_points and m_numPoints sit 8 bytes earlier in BFME --
+	// +0x10 and +0x14 against +0x18 and +0x1c here. Spelled as an overlay with
+	// getPoint's clamp inline, which is how retail has it: index 0 unless the
+	// count is non-positive, then count-1. The fild says the coordinate is an
+	// Int and the stride of 12 with z at +8 says ICoord3D.
+	struct BFMEPolygonTrigger
+	{
+		char pad[0x10];
+		const ICoord3D *m_points;
+		Int m_numPoints;
+	};
+	const BFMEPolygonTrigger *poly = (const BFMEPolygonTrigger *)water->m_polygon;
+	Int i = 0;
+	if( poly->m_numPoints <= 0 )
+		i = poly->m_numPoints - 1;
+	return poly->m_points[ i ].z;
 
 }  // end getWaterHeight
 
