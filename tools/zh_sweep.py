@@ -219,9 +219,18 @@ def merged_claims():
 
     Matched rows only, matching check_csv's overlap rule: an unmatched row is a
     hypothesis about an address, not proof that the ground is spoken for.
+
+    A Code/gen_asm/ row is not a claim for this purpose. It holds retail's own
+    bytes under a synthetic name -- a boundary and no source -- which is exactly
+    the code a Zero Hour packet is worth writing for. Counting dumps as claims
+    made do_packets blind to 112 of its own best leads and, because it wipes the
+    directory before rewriting, silently deleted the packets already written for
+    them.
     """
     spans = []
     for row in build.load_function_rows():
+        if row["source"].startswith("Code/gen_asm/"):
+            continue
         start = int(row["target_rva"], 16)
         spans.append((start, start + int(row["target_size"])))
     spans.sort()
@@ -446,8 +455,18 @@ def do_packets(args):
     reloc_index = packet_relocs({r["obj"] for r in near})
     names = {row["name"] for row in build.load_all_function_rows()}
     PACKET_DIR.mkdir(parents=True, exist_ok=True)
+    # The directory is derived, so it is rebuilt from scratch -- but it is also
+    # tracked, and a regression upstream turns that into silent deletion of
+    # leads nobody can regenerate. Say what goes, so a drop is visible in the
+    # run that causes it rather than in a diff nobody reads.
+    dropped = [p.stem for p in PACKET_DIR.glob("*.md")
+               if int(p.stem, 16) not in by_rva]
     for stale in PACKET_DIR.glob("*.md"):
         stale.unlink()
+    if dropped:
+        print(f"packets: dropping {len(dropped)} packet(s) this run does not "
+              f"reproduce: {' '.join(sorted(dropped)[:8])}"
+              + (" ..." if len(dropped) > 8 else ""))
     covered = 0
     for rva, group in sorted(by_rva.items()):
         group.sort(key=lambda r: (-r["align"], r["sym"]))
