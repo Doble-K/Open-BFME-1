@@ -110315,7 +110315,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002c5780@@YAXXZ,,0x002C5780,35,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006c5780
 ?d_002c59e0@@YAXXZ,,0x002C59E0,11,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006c59e0
 ?d_002c5a70@@YAXXZ,,0x002C5A70,42,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006c5a70
-?d_002c5bb0@@YAXXZ,,0x002C5BB0,35,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006c5bb0
 ?d_002c5e60@@YAXXZ,,0x002C5E60,58,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006c5e60
 ?d_002c5eb0@@YAXXZ,,0x002C5EB0,76,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006c5eb0
 ?d_002c6050@@YAXXZ,,0x002C6050,44,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006c6050
@@ -157947,3 +157946,4 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?getBuildable@ThingTemplate@@QBE?AW4BuildableStatus@@XZ,,0x0013CEE0,43,Code/GameEngine/Source/Common/Thing/ThingTemplate.cpp,matched,Open-BFME5 m_buildable at ThingTemplate+0x492
 ?winGetText@GameWindow@@QAE?AVUnicodeString@@XZ,,0x005CB9F0,30,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,Open-BFME5 m_instData at GameWindow+0x4
 ?setBuildableStatusOverride@GameLogic@@QAEXPBVThingTemplate@@W4BuildableStatus@@@Z,,0x003919E0,29,Code/GameEngine/Source/GameLogic/System/GameLogic.cpp,matched,Open-BFME5 ThingTemplate m_name at +0x20
+?ownerDocking@SupplyTruckStateMachine@@SA_NPAVState@@PAX@Z,,0x002C5BB0,35,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp,matched,Open-BFME5 State m_machine +0x1c StateMachine m_owner +0x10 Object m_ai +0x204

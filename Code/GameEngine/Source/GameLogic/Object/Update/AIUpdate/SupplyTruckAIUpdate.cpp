@@ -801,8 +801,13 @@ TheInGameUI->DEBUG_addFloatingText(tmp, owner->getPosition(), GameMakeColor(255,
 //-------------------------------------------------------------------------------------------------
 /* static */ Bool SupplyTruckStateMachine::ownerDocking( State *thisState, void* userData )
 {
-	Object *owner = thisState->getMachineOwner();
-	AIUpdateInterface *ai = owner->getAIUpdateInterface();
+	// Three offsets are BFME's: State::m_machine at +0x1c (this tree +0x20),
+	// StateMachine::m_owner at +0x10 (+0x14), and Object::m_ai at +0x204
+	// (+0x19c). The first and last are the same two
+	// AIMoveAndEvacuateState::onExit and TurretAI::loadPostProcess pin.
+	char *machine = *(char **)((char *)thisState + 0x1c);
+	Object *owner = *(Object **)(machine + 0x10);
+	AIUpdateInterface *ai = *(AIUpdateInterface **)((char *)owner + 0x204);
 	if( !ai )
 		return false;
 
