@@ -819,7 +819,7 @@ void Shell::reverseAnimatewindow( void )
 		m_animateWindowManager->reverseAnimateWindow();
 }
 
-// ?isAnimReversed@Shell@@QAE_NXZ present-unmatched
+// ?isAnimReversed@Shell@@QAE_NXZ present-unmatched here - matched copy lives in Shell_isAnimReversed_Thunk.cpp with BFME's GlobalData offset
 Bool Shell::isAnimReversed( void )
 {
 	if(!m_animateWindowManager)

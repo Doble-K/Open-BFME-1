@@ -69467,3 +69467,4 @@ ObjectDefectionHelper_vtbl10,0x0109E4A0,packet 001c0ea0 ctor vtbl at +0x10
 ??0GODupBase@@QAE@XZ,0x0001901A,local helper name for shared Snapshot+SubsystemInterface combined base ctor (retail body 0x001B0D20/thunk 0x0001901A); real retail identity unknown, additive pin for dup_6bc530 call resolution
 _luaK_testgo,0x0099F5C0,vendored=lua-4.0.1;additive pin for luaK_goiftrue call resolution
 ?isMassSelectable@Object@@QBE_NXZ,0x00001C03,Open-BFME5 ILT; called by ?isMassSelectable@Drawable@@QBE_NXZ at 0x00411FE0
+?getName@WeaponTemplate@@QBE?AVAsciiString@@XZ,0x0002D70E,Open-BFME5 ILT; called by ?getName@Weapon@@QBE?AVAsciiString@@XZ at 0x001C2DC0

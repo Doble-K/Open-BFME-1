@@ -108237,7 +108237,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001c2c60@@YAXXZ,,0x001C2C60,104,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005c2c60
 ?d_001c2cf0@@YAXXZ,,0x001C2CF0,81,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005c2cf0
 ?d_001c2d90@@YAXXZ,,0x001C2D90,33,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005c2d90
-?d_001c2dc0@@YAXXZ,,0x001C2DC0,30,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005c2dc0
 ?d_001c2e50@@YAXXZ,,0x001C2E50,25,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005c2e50
 ?d_001c2e70@@YAXXZ,,0x001C2E70,223,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005c2e70
 ?d_001c2f90@@YAXXZ,,0x001C2F90,107,Code/gen_asm/d_001bd560.asm,matched,gen-dump;ghidra=FUN_005c2f90
@@ -150439,7 +150438,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0057d0a0@@YAXXZ,,0x0057D0A0,19,Code/gen_asm/d_00572210.asm,matched,gen-dump;bounds=high
 ?d_0057e910@@YAXXZ,,0x0057E910,114,Code/gen_asm/d_00572210.asm,matched,gen-dump;bounds=high
 ?d_0057e9a0@@YAXXZ,,0x0057E9A0,674,Code/gen_asm/d_00572210.asm,matched,gen-dump;bounds=high
-?d_0057f440@@YAXXZ,,0x0057F440,30,Code/gen_asm/d_00572210.asm,matched,gen-dump;bounds=high
 ?d_0057f980@@YAXXZ,,0x0057F980,351,Code/gen_asm/d_00572210.asm,matched,gen-dump;bounds=high
 ?d_00580240@@YAXXZ,,0x00580240,6,Code/gen_asm/d_00572210.asm,matched,gen-dump;bounds=high
 ?d_00580270@@YAXXZ,,0x00580270,25,Code/gen_asm/d_00572210.asm,matched,gen-dump;bounds=high
@@ -157947,3 +157945,5 @@ _luaK_goiftrue,,0x0099F6C0,37,Code/Libraries/Source/Lua/lcode.c,matched,vendored
 ?getRadiusCursorRadius@SpecialPowerTemplate@@QBEMXZ,,0x00268980,33,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 m_radiusCursorRadius at +0x10c
 ?isMassSelectable@Drawable@@QBE_NXZ,,0x00411FE0,28,Code/GameEngine/Source/GameClient/Drawable.cpp,matched,Open-BFME5 m_object at Drawable+0xfc
 ?disconnected@GameSlot@@QBE_NXZ,,0x000A3080,30,Code/GameEngine/Source/GameNetwork/GameSlot_disconnected_Thunk.cpp,matched,Open-BFME5 m_disconnected at +0x40; isHuman via ILT 0x279CB
+?getName@Weapon@@QBE?AVAsciiString@@XZ,,0x001C2DC0,30,Code/GameEngine/Source/GameLogic/Object/Weapon_getName_Thunk.cpp,matched,Open-BFME5 m_template at Weapon+0x30
+?isAnimReversed@Shell@@QAE_NXZ,,0x0057F440,30,Code/GameEngine/Source/GameClient/GUI/Shell/Shell_isAnimReversed_Thunk.cpp,matched,Open-BFME5 m_animateWindows at GlobalData+0xbc4
