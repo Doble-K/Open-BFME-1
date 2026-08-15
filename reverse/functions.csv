@@ -138722,7 +138722,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0018c880@@YAXXZ,,0x0018C880,61,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c910@@YAXXZ,,0x0018C910,15,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018cab0@@YAXXZ,,0x0018CAB0,48,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_0018caf0@@YAXXZ,,0x0018CAF0,55,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018cc20@@YAXXZ,,0x0018CC20,48,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018cc60@@YAXXZ,,0x0018CC60,140,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018cd60@@YAXXZ,,0x0018CD60,92,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?doesObjectQualifyForBattlePlan@Player@@QBE_NPAVObject@@@Z,,0x000C9AB0,66,Code/GameEngine/Source/Common/RTS/Player_doesObjectQualifyForBattlePlan_Thunk.cpp,matched,zh_sweep packet 000c9ab0
 ?setFullyObscuredByShroud@W3DTankTruckDraw@@UAEX_N@Z,,0x007815E0,53,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw_setFullyObscuredByShroud_Thunk.cpp,matched,zh_sweep packet 007815e0
 ?doTeamSpinForFramecount@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002F11E0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamSpinForFramecount_Thunk.cpp,matched,zh_sweep packet 002f11e0
+?resetIdleScan@TurretAIIdleState@@AAEXXZ,,0x0018CAF0,55,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleState_resetIdleScan_Thunk.cpp,matched,zh_sweep packet 0018caf0
