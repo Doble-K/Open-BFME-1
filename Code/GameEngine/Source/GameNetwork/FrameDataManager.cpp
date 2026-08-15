@@ -170,15 +170,16 @@ NetCommandRef *FrameDataManager::addNetCommandMsg(NetCommandMsg *msg) {
 /**
  * Returns true if all the commands for the given frame are ready.
  */
-// ?allCommandsReady@FrameDataManager@@ present-unmatched
-// Real body 0x00670A30, 448 bytes, and it is not this. The reference delegates
-// straight to FrameData::allCommandsReady; BFME's is a body of its own that
-// walks the ring from a base it keeps in ebx and consults TheGlobalData+0xB1C.
-// That is the same offset the firewall shim currently attributes to
-// m_firewallPortOverride, on the strength of detectionBeginUpdate alone -- and
-// detectionBeginUpdate is still unmatched, so that attribution is unverified.
-// A frame-readiness predicate reading a firewall port would be odd; one of the
-// two readings is wrong and neither is settled here.
+// Landed at 0x00670670, 34 bytes, which reproduces this body exactly. An
+// earlier note here placed it at 0x00670A30 instead -- a 448-byte body that
+// walks the ring from a base in ebx and reads TheGlobalData+0xB1C -- and
+// doubted the delegation on that basis. 0x00670670 settles it: it divides the
+// frame by the FRAME_DATA_LENGTH global at 0x012BA088, indexes [this+4] by the
+// remainder at a 20-byte stride, which is sizeof(FrameData) in this shim, and
+// calls FrameData::allCommandsReady at 0x00670240 with debugSpewage. That is
+// this function statement for statement, so BFME did not rewrite it. Whatever
+// 0x00670A30 is, it is something else, and the TheGlobalData+0xB1C question it
+// raised belongs with that body, not this one.
 FrameDataReturnType FrameDataManager::allCommandsReady(UnsignedInt frame, Bool debugSpewage) {
 	UnsignedInt frameindex = frame % FRAME_DATA_LENGTH;
 	//DEBUG_ASSERTCRASH(m_frameData[frameindex].getFrame() == frame || frame == 256, ("Looking at old commands!"));
