@@ -106516,7 +106516,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000ec900@@YAXXZ,,0x000EC900,75,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec900
 ?d_000ec960@@YAXXZ,,0x000EC960,24,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec960
 ?d_000ec980@@YAXXZ,,0x000EC980,18,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec980
-?d_000ec9b0@@YAXXZ,,0x000EC9B0,36,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ec9b0
 ?d_000ed2d0@@YAXXZ,,0x000ED2D0,79,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ed2d0
 ?d_000ed340@@YAXXZ,,0x000ED340,81,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ed340
 ?d_000ed3b0@@YAXXZ,,0x000ED3B0,75,Code/gen_asm/d_000e5b30.asm,matched,gen-dump;ghidra=FUN_004ed3b0
@@ -137309,7 +137308,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000fbfc0@@YAXXZ,,0x000FBFC0,8,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fbfd0@@YAXXZ,,0x000FBFD0,7,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fbfe0@@YAXXZ,,0x000FBFE0,7,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
-?d_000fc2e0@@YAXXZ,,0x000FC2E0,32,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fc340@@YAXXZ,,0x000FC340,25,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fc3d0@@YAXXZ,,0x000FC3D0,13,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fc3f0@@YAXXZ,,0x000FC3F0,9,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
@@ -153613,10 +153611,8 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0066bb60@@YAXXZ,,0x0066BB60,71,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_0066ce50@@YAXXZ,,0x0066CE50,6,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_00670130@@YAXXZ,,0x00670130,23,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
-?d_00670240@@YAXXZ,,0x00670240,93,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_00670390@@YAXXZ,,0x00670390,40,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_006703d0@@YAXXZ,,0x006703D0,47,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
-?d_00670670@@YAXXZ,,0x00670670,34,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_00670890@@YAXXZ,,0x00670890,34,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_006708c0@@YAXXZ,,0x006708C0,29,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
 ?d_006709e0@@YAXXZ,,0x006709E0,7,Code/gen_asm/d_006675c0.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157945,7 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?allocateNeighbors@W3DShadowGeometryMesh@@IAE_NH@Z,,0x007B81D0,46,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadowGeometryMesh_allocateNeighbors_Thunk.cpp,matched,zh_sweep packet 007b81d0
 ?newOverride@LocomotorStore@@QAEPAVLocomotorTemplate@@PAV2@@Z,,0x001B55D0,68,Code/GameEngine/Source/GameLogic/Object/LocomotorStore_newOverride_Thunk.cpp,matched,zh_sweep packet 001b55d0
 ?createMouse@W3DGameClient@@MAEPAVMouse@@XZ,,0x006FBA50,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient_createMouse_Thunk.cpp,matched,zh_sweep packet 006fba50
+?allCommandsReady@FrameData@@QAE?AW4FrameDataReturnType@@_N@Z,,0x00670240,93,Code/GameEngine/Source/GameNetwork/FrameData.cpp,matched,zh_sweep packet 00670670 callee
+?allCommandsReady@FrameDataManager@@QAE?AW4FrameDataReturnType@@I_N@Z,,0x00670670,34,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,zh_sweep packet 00670670
+??0DecalMeshClass@@QAE@PAVMeshClass@@PAVDecalSystemClass@@@Z,,0x000FC2E0,32,Code/Libraries/Source/WWVegas/WW3D2/DecalMeshClass_ctor_Thunk.cpp,matched,zh_sweep packet 000fc2e0
+?transferUnitsTo@Team@@QAEXPAV1@@Z,,0x000EC9B0,36,Code/GameEngine/Source/Common/RTS/Team_transferUnitsTo_Thunk.cpp,matched,zh_sweep packet 000ec9b0

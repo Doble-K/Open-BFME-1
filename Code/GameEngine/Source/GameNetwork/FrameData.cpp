@@ -113,3 +113,47 @@ void FrameData::destroyGameMessages() {
 	m_commandList->reset();
 	m_commandCount = 0;
 }
+
+/**
+ * Are all the commands for this frame accounted for?  Appended at the end of
+ * the file rather than in the reference's position so the compiland's $L
+ * numbering ahead of it -- which the init funclet row is keyed on -- does not
+ * move.  Under NDEBUG every DEBUG_LOG in the reference body is a no-op, which
+ * is why the resend arm is just reset().
+ */
+// ?allCommandsReady@FrameData@@QAE?AW4FrameDataReturnType@@_N@Z
+FrameDataReturnType FrameData::allCommandsReady(Bool debugSpewage) {
+	if (m_frameCommandCount == m_commandCount) {
+		m_lastFailedFrameCC = -2;
+		m_lastFailedCC = -2;
+		return FRAMEDATA_READY;
+	}
+
+	if (debugSpewage) {
+		if ((m_lastFailedFrameCC != m_frameCommandCount) || (m_lastFailedCC != m_commandCount)) {
+			m_lastFailedFrameCC = m_frameCommandCount;
+			m_lastFailedCC = m_commandCount;
+		}
+	}
+
+	// Signed: retail compares with jle, so BFME's two counts are Int.
+	if ((Int)m_commandCount > (Int)m_frameCommandCount) {
+		// The reference walks the command list here logging every entry. Under
+		// NDEBUG the log is a no-op but the walk survives, because each step is a
+		// load the compiler cannot drop -- retail still has the loop. BFME also
+		// inlines NetCommandList::getFirstMessage(), reading the head straight
+		// out of [m_commandList+4]; the shim only declares it, so spell the load.
+		NetCommandRef *ref = *(NetCommandRef **)((char *)m_commandList + 4);
+		while (ref != NULL) {
+			// m_next is at [ref+4] in BFME; the vendored NetCommandRef puts it
+			// at +8. Only the walk needs it, so spell it here.
+			ref = *(NetCommandRef **)((char *)ref + 4);
+		}
+		// Retail calls the init body at 0x00670170 here (ILT 0x00022340), not
+		// the separate reset body at 0x00670220. BFME's reset() forwards to
+		// init() and is inline, so the reference's reset() lands on init.
+		init();
+		return FRAMEDATA_RESEND;
+	}
+	return FRAMEDATA_NOTREADY;
+}
