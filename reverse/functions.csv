@@ -113527,7 +113527,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00465550@@YAXXZ,,0x00465550,35,Code/gen_asm/d_00460f80.asm,matched,gen-dump;ghidra=FUN_00865550
 ?d_00465580@@YAXXZ,,0x00465580,35,Code/gen_asm/d_00460f80.asm,matched,gen-dump;ghidra=FUN_00865580
 ?d_004655b0@@YAXXZ,,0x004655B0,39,Code/gen_asm/d_00460f80.asm,matched,gen-dump;ghidra=FUN_008655b0
-?d_004655f0@@YAXXZ,,0x004655F0,85,Code/gen_asm/d_00460f80.asm,matched,gen-dump;ghidra=FUN_008655f0
 ?d_004659d0@@YAXXZ,,0x004659D0,114,Code/gen_asm/d_00460f80.asm,matched,gen-dump;ghidra=FUN_008659d0
 ?d_00465ab0@@YAXXZ,,0x00465AB0,95,Code/gen_asm/d_00460f80.asm,matched,gen-dump;ghidra=FUN_00865ab0
 ?d_00465b30@@YAXXZ,,0x00465B30,41,Code/gen_asm/d_00460f80.asm,matched,gen-dump;ghidra=FUN_00865b30
@@ -117823,7 +117822,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006e2540@@YAXXZ,,0x006E2540,1126,Code/gen_asm/d_006e0580.asm,matched,gen-dump;ghidra=FUN_00ae2540
 ?d_006e6a80@@YAXXZ,,0x006E6A80,309,Code/gen_asm/d_006e0580.asm,matched,gen-dump;ghidra=FUN_00ae6a80
 ?d_006e6c10@@YAXXZ,,0x006E6C10,40,Code/gen_asm/d_006e0580.asm,matched,gen-dump;ghidra=FUN_00ae6c10
-?d_006e6c50@@YAXXZ,,0x006E6C50,84,Code/gen_asm/d_006e0580.asm,matched,gen-dump;ghidra=FUN_00ae6c50
 ?d_006e6cc0@@YAXXZ,,0x006E6CC0,19,Code/gen_asm/d_006e0580.asm,matched,gen-dump;ghidra=FUN_00ae6cc0
 ?d_006e6ce0@@YAXXZ,,0x006E6CE0,26,Code/gen_asm/d_006e0580.asm,matched,gen-dump;ghidra=FUN_00ae6ce0
 ?d_006e7210@@YAXXZ,,0x006E7210,335,Code/gen_asm/d_006e0580.asm,matched,gen-dump;ghidra=FUN_00ae7210
@@ -117905,7 +117903,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006f5c50@@YAXXZ,,0x006F5C50,169,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af5c50
 ?d_006f5f10@@YAXXZ,,0x006F5F10,119,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af5f10
 ?d_006f6250@@YAXXZ,,0x006F6250,24,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af6250
-?d_006f62c0@@YAXXZ,,0x006F62C0,84,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af62c0
 ?d_006f6330@@YAXXZ,,0x006F6330,14,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af6330
 ?d_006f6ab0@@YAXXZ,,0x006F6AB0,188,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af6ab0
 ?d_006f6e90@@YAXXZ,,0x006F6E90,72,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af6e90
@@ -157949,3 +157946,6 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?updateChallengeMedals@@YAXAAH@Z,,0x004E27E0,320,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreenChallengeMedals_Thunk.cpp,matched,zh_sweep packet 004e27e0
 ?removeTerrainBibDrawable@BaseHeightMapRenderObjClass@@QAEXW4DrawableID@@@Z,,0x006C8D90,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,zh_sweep packet 00730c90 callee; tail-calls W3DBibBuffer::removeBibDrawable
 ?removeFactionBibDrawable@W3DTerrainVisual@@UAEXPAVDrawable@@@Z,,0x00730C90,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,zh_sweep packet 00730c90
+??1GameFileClass@@UAE@XZ,,0x006F62C0,84,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,zh_sweep packet 006f62c0
+??1W3DDebugDisplay@@UAE@XZ,,0x006E6C50,84,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDebugDisplay.cpp,matched,zh_sweep packet 006e6c50
+??1W3DGameWindow@@MAE@XZ,,0x004655F0,85,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp,matched,zh_sweep packet 004655f0; base dtor reached via ILT 0x00013AF7 -> 0x00494090

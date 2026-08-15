@@ -98,7 +98,6 @@ GameFileClass::GameFileClass( void )
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ??1GameFileClass@@UAE@XZ present-unmatched
 GameFileClass::~GameFileClass()
 {
 
@@ -447,7 +446,18 @@ int GameFileClass::Write(void const *buffer, Int len)
 void GameFileClass::Close(void) 
 {
 	if (m_theFile) {
-		m_theFile->close();
+		// BFME's File declares one virtual fewer ahead of close(): retail
+		// dispatches it through [vtbl+8], where the vendored header puts
+		// close() at [vtbl+0xC]. Route the raw slot through a
+		// pointer-to-member cast -- that keeps __thiscall without naming the
+		// nonstandard keyword, and without touching Common/file.h, which
+		// every other matched row in the tree compiles against.
+		struct FileCloseThunk { void Call(); };
+		typedef void (FileCloseThunk::*FileCloseFn)();
+		void **vtbl = *reinterpret_cast<void ***>(m_theFile);
+		union { void *asVoid; FileCloseFn asMember; } fnCast;
+		fnCast.asVoid = vtbl[2];
+		(reinterpret_cast<FileCloseThunk *>(m_theFile)->*fnCast.asMember)();
 		m_theFile = NULL;
 	}
 }

@@ -69515,3 +69515,5 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?addSupplyCenter@ResourceGatheringManager@@QAEXPAVObject@@@Z,0x0001E23B,Open-BFME5 ILT from zh_sweep packet 002503b0
 ?update@AIUpdateInterface@@UAE?AW4UpdateSleepTime@@XZ,0x00028772,Open-BFME5 ILT from zh_sweep packet 002c5740
 ?privateDock@AIUpdateInterface@@MAEXPAVObject@@W4CommandSourceType@@@Z,0x0004872F,Open-BFME5 ILT from zh_sweep packet 002c5820
+??1Render2DSentenceClass@@QAE@XZ,0x00887940,per-TU copy called by W3DGameWindow dtor
+??1GameWindow@@MAE@XZ,0x00013AF7,ILT fronting 0x00494090 -- the base dtor W3DGameWindow chains to; conflicts with the naked-lift row claiming 0x00479CD0
