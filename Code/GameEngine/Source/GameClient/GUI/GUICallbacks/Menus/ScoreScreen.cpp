@@ -1106,9 +1106,29 @@ void initReplayMultiPlayer(void)
 }
 
 
+// BFME makes GameInfo::getLocalSlotNum virtual: retail dispatches it through
+// [vtbl+0x14], slot 5, where the vendored header declares it a plain inline
+// member -- the same fact the updateChallengeMedals conversion pinned. Spelled
+// as a TU-local facade with the slot in the right place rather than editing
+// GameNetwork/GameInfo.h, which the whole tree compiles against. A
+// pointer-to-member cast does not work here: it yields `mov eax,[eax+0x14]` and
+// an indirect call through the register, where retail calls straight out of
+// memory.
+class GameInfoVirtualSlots
+{
+public:
+	virtual void unused0( void ) = 0;
+	virtual void unused1( void ) = 0;
+	virtual void unused2( void ) = 0;
+	virtual void unused3( void ) = 0;
+	virtual void unused4( void ) = 0;
+	virtual Int getLocalSlotNum( void ) = 0;			///< slot 5, [vtbl+0x14]
+};
+
 static Bool isSlotLocalAlly(GameInfo *game, const GameSlot *slot)
 {
-	const GameSlot *localSlot = game->getConstSlot(game->getLocalSlotNum());
+	const GameSlot *localSlot = game->getConstSlot(
+			reinterpret_cast<GameInfoVirtualSlots *>(game)->getLocalSlotNum());
 	if (!localSlot)
 		return TRUE;
 
