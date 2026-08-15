@@ -106252,7 +106252,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000c9960@@YAXXZ,,0x000C9960,82,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9960
 ?d_000c99d0@@YAXXZ,,0x000C99D0,26,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c99d0
 ?d_000c9a20@@YAXXZ,,0x000C9A20,75,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9a20
-?d_000c9ab0@@YAXXZ,,0x000C9AB0,66,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9ab0
 ?d_000c9b10@@YAXXZ,,0x000C9B10,36,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9b10
 ?d_000c9b40@@YAXXZ,,0x000C9B40,18,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9b40
 ?d_000c9b60@@YAXXZ,,0x000C9B60,28,Code/gen_asm/d_000c81e0.asm,matched,gen-dump;ghidra=FUN_004c9b60
@@ -110778,7 +110777,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002f1120@@YAXXZ,,0x002F1120,28,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f1120
 ?d_002f1150@@YAXXZ,,0x002F1150,42,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f1150
 ?d_002f1190@@YAXXZ,,0x002F1190,53,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f1190
-?d_002f11e0@@YAXXZ,,0x002F11E0,38,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f11e0
 ?d_002f1210@@YAXXZ,,0x002F1210,26,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f1210
 ?d_002f1230@@YAXXZ,,0x002F1230,26,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f1230
 ?d_002f1250@@YAXXZ,,0x002F1250,26,Code/gen_asm/d_001107b0.asm,matched,gen-dump;ghidra=FUN_006f1250
@@ -155867,7 +155865,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0077f760@@YAXXZ,,0x0077F760,30,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_0077fd70@@YAXXZ,,0x0077FD70,6,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_00781390@@YAXXZ,,0x00781390,131,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
-?d_007815e0@@YAXXZ,,0x007815E0,53,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_00782c20@@YAXXZ,,0x00782C20,18,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_00782c40@@YAXXZ,,0x00782C40,31,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
 ?d_00782c80@@YAXXZ,,0x00782C80,31,Code/gen_asm/d_00770ed0.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157946,6 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?isSlotLocalAlly@@YA_NPAVGameInfo@@PBVGameSlot@@@Z,,0x004E2790,55,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp,matched,zh_sweep packet 004e2790
 ??0ApplyRandomForceNugget@@QAE@XZ,,0x003B7610,32,Code/GameEngine/Source/GameLogic/Object/ApplyRandomForceNugget_ctor_Thunk.cpp,matched,zh_sweep packet 003b7610
 ??0AttackNugget@@QAE@XZ,,0x001D6CD0,90,Code/GameEngine/Source/GameLogic/Object/AttackNugget_ctor_Thunk.cpp,matched,zh_sweep packet 001d6cd0
+?doesObjectQualifyForBattlePlan@Player@@QBE_NPAVObject@@@Z,,0x000C9AB0,66,Code/GameEngine/Source/Common/RTS/Player_doesObjectQualifyForBattlePlan_Thunk.cpp,matched,zh_sweep packet 000c9ab0
+?setFullyObscuredByShroud@W3DTankTruckDraw@@UAEX_N@Z,,0x007815E0,53,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw_setFullyObscuredByShroud_Thunk.cpp,matched,zh_sweep packet 007815e0
+?doTeamSpinForFramecount@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002F11E0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamSpinForFramecount_Thunk.cpp,matched,zh_sweep packet 002f11e0

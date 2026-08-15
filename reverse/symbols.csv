@@ -69524,3 +69524,7 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?addBridge@Pathfinder@@QAE?AW4PathfindLayerEnum@@PAVBridge@@@Z,0x0003C966,ILT fronting the 87-byte body at 0x003D5850; from TerrainLogic::addLandmarkBridgeToLogic
 ?goProne@ProneUpdate@@QAEXPBVDamageInfo@@@Z,0x00015456,ILT fronting the 76-byte body at 0x002A0120; from AIUpdateInterface::privateGoProne
 ?internalSetState@StateMachine@@QAE?AW4StateReturnType@@I@Z,0x000294E7,ILT fronting 0x000A1360; from State::friend_checkForSleepTransitions
+?tossEmitters@W3DTankTruckDraw@@IAEXXZ,0x00034A59,ILT; from W3DTankTruckDraw::setFullyObscuredByShroud
+?createEmitters@W3DTankTruckDraw@@IAEXXZ,0x0001ECCC,ILT; from W3DTankTruckDraw::setFullyObscuredByShroud
+?setFullyObscuredByShroud@W3DModelDraw@@UAEX_N@Z,0x0003EF77,ILT; base call from W3DTankTruckDraw::setFullyObscuredByShroud
+?setSequentialTimer@ScriptEngine@@QAEXPAVTeam@@H@Z,0x00027237,ILT; tail call from ScriptActions::doTeamSpinForFramecount
