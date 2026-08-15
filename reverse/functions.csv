@@ -114215,7 +114215,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_004e0740@@YAXXZ,,0x004E0740,319,Code/gen_asm/d_004d3970.asm,matched,gen-dump;ghidra=FUN_008e0740
 ?d_004e1450@@YAXXZ,,0x004E1450,1774,Code/gen_asm/d_004d3970.asm,matched,gen-dump;ghidra=FUN_008e1450
 ?d_004e1d00@@YAXXZ,,0x004E1D00,808,Code/gen_asm/d_004d3970.asm,matched,gen-dump;ghidra=FUN_008e1d00
-?d_004e27e0@@YAXXZ,,0x004E27E0,289,Code/gen_asm/d_004d3970.asm,matched,gen-dump;ghidra=FUN_008e27e0
 ?d_004e2c60@@YAXXZ,,0x004E2C60,189,Code/gen_asm/d_004d3970.asm,matched,gen-dump;ghidra=FUN_008e2c60
 ?d_004e3150@@YAXXZ,,0x004E3150,1186,Code/gen_asm/d_004d3970.asm,matched,gen-dump;ghidra=FUN_008e3150
 ?d_004e3720@@YAXXZ,,0x004E3720,1251,Code/gen_asm/d_004d3970.asm,matched,gen-dump;ghidra=FUN_008e3720
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?update@SupplyTruckAIUpdate@@UAE?AW4UpdateSleepTime@@XZ,,0x002C5740,42,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5740
 ?privateDock@SupplyTruckAIUpdate@@MAEXPAVObject@@W4CommandSourceType@@@Z,,0x002C5820,43,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5820
 ?isCurrentlyFerryingSupplies@SupplyTruckAIUpdate@@UBE_NXZ,,0x002C5780,56,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5780
+?updateChallengeMedals@@YAXAAH@Z,,0x004E27E0,320,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreenChallengeMedals_Thunk.cpp,matched,zh_sweep packet 004e27e0
