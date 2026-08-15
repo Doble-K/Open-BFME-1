@@ -69523,3 +69523,4 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??0Bridge@@QAE@PAVObject@@@Z,0x00047C0D,ILT fronting the 1412-byte body at 0x001A9CE0; from TerrainLogic::addLandmarkBridgeToLogic
 ?addBridge@Pathfinder@@QAE?AW4PathfindLayerEnum@@PAVBridge@@@Z,0x0003C966,ILT fronting the 87-byte body at 0x003D5850; from TerrainLogic::addLandmarkBridgeToLogic
 ?goProne@ProneUpdate@@QAEXPBVDamageInfo@@@Z,0x00015456,ILT fronting the 76-byte body at 0x002A0120; from AIUpdateInterface::privateGoProne
+?internalSetState@StateMachine@@QAE?AW4StateReturnType@@I@Z,0x000294E7,ILT fronting 0x000A1360; from State::friend_checkForSleepTransitions

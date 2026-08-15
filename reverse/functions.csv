@@ -105913,7 +105913,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000a0060@@YAXXZ,,0x000A0060,18,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a0060
 ?d_000a00a0@@YAXXZ,,0x000A00A0,12,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a00a0
 ?d_000a03b0@@YAXXZ,,0x000A03B0,427,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a03b0
-?d_000a05d0@@YAXXZ,,0x000A05D0,312,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a05d0
 ?d_000a0760@@YAXXZ,,0x000A0760,124,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a0760
 ?d_000a0880@@YAXXZ,,0x000A0880,37,Code/gen_asm/d_0009fff0.asm,matched,gen-dump;ghidra=FUN_004a0880
 ?d_000a0a10@@YAXXZ,,0x000A0A10,11,Code/GameEngine/Source/Common/RvaA0A10SecondArgumentStore.cpp,matched,object-symbol=?store@RvaA0A10SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
@@ -157949,3 +157948,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?InGamePopupMessageSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C5060,115,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/InGamePopupMessage.cpp,matched,zh_sweep packet 004c5060
 ?addLandmarkBridgeToLogic@TerrainLogic@@UAEXPAVObject@@@Z,,0x001AA860,123,Code/GameEngine/Source/GameLogic/Map/TerrainLogic_addLandmarkBridgeToLogic_Thunk.cpp,matched,zh_sweep packet 001aa860
 ?privateGoProne@AIUpdateInterface@@MAEXPBVDamageInfo@@W4CommandSourceType@@@Z,,0x0026F840,130,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdateInterface_privateGoProne_Thunk.cpp,matched,zh_sweep packet 0026f840
+?friend_checkForSleepTransitions@State@@QAE?AW4StateReturnType@@W42@@Z,,0x000A05D0,312,Code/GameEngine/Source/Common/State_friend_checkForSleepTransitions_Thunk.cpp,matched,zh_sweep packet 000a05d0
