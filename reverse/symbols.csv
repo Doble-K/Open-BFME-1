@@ -69519,3 +69519,7 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??1GameWindow@@MAE@XZ,0x00013AF7,ILT fronting 0x00494090 -- the base dtor W3DGameWindow chains to; conflicts with the naked-lift row claiming 0x00479CD0
 ?set@UnicodeString@@QAEXABV1@@Z,0x008891F0,additive; per-TU copy called by User::setName
 ??0W3DMouse@@QAE@XZ,0x0002B7B0,ILT fronting the 233-byte body at 0x007003E0; from W3DGameClient::createMouse
+?clearPopupMessageData@InGameUI@@QAEXXZ,0x0000F5F6,ILT fronting the 125-byte body at 0x0043B890; from InGamePopupMessageSystem
+??0Bridge@@QAE@PAVObject@@@Z,0x00047C0D,ILT fronting the 1412-byte body at 0x001A9CE0; from TerrainLogic::addLandmarkBridgeToLogic
+?addBridge@Pathfinder@@QAE?AW4PathfindLayerEnum@@PAVBridge@@@Z,0x0003C966,ILT fronting the 87-byte body at 0x003D5850; from TerrainLogic::addLandmarkBridgeToLogic
+?goProne@ProneUpdate@@QAEXPBVDamageInfo@@@Z,0x00015456,ILT fronting the 76-byte body at 0x002A0120; from AIUpdateInterface::privateGoProne

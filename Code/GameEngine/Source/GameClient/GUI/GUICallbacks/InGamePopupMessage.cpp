@@ -234,7 +234,19 @@ WindowMsgHandledType InGamePopupMessageSystem( GameWindow *window, UnsignedInt m
       if( controlID == buttonOkID )
 			{
 				if(!pause)
-					TheMessageStream->appendMessage( GameMessage::MSG_CLEAR_INGAME_POPUP_MESSAGE );
+				{
+					// Two BFME drifts on one line, both spelled here rather than in
+					// the shared headers. MSG_CLEAR_INGAME_POPUP_MESSAGE is 0x442,
+					// not the vendored enum's 0x440 -- BFME added two messages
+					// ahead of it. And appendMessage is vtable slot 13, [vtbl+0x34],
+					// where the vendored MessageStream puts it at slot 10.
+					struct AppendThunk { void Call(int); };
+					typedef void (AppendThunk::*AppendFn)(int);
+					void **vtbl = *reinterpret_cast<void ***>(TheMessageStream);
+					union { void *asVoid; AppendFn asMember; } fnCast;
+					fnCast.asVoid = vtbl[13];
+					(reinterpret_cast<AppendThunk *>(TheMessageStream)->*fnCast.asMember)(0x442);
+				}
 				else
 					TheInGameUI->clearPopupMessageData();
 			}

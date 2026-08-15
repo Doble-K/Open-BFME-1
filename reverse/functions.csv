@@ -107949,7 +107949,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001aa410@@YAXXZ,,0x001AA410,317,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aa410
 ?d_001aa5b0@@YAXXZ,,0x001AA5B0,367,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aa5b0
 ?d_001aa780@@YAXXZ,,0x001AA780,176,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aa780
-?d_001aa860@@YAXXZ,,0x001AA860,123,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aa860
 ?d_001aa900@@YAXXZ,,0x001AA900,294,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aa900
 ?d_001aaac0@@YAXXZ,,0x001AAAC0,293,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aaac0
 ?d_001aaf00@@YAXXZ,,0x001AAF00,163,Code/gen_asm/d_001a38b0.asm,matched,gen-dump;ghidra=FUN_005aaf00
@@ -115283,7 +115282,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0058c2b0@@YAXXZ,,0x0058C2B0,170,Code/gen_asm/d_0058b1f0.asm,matched,gen-dump;ghidra=FUN_0098c2b0
 ?d_0058c440@@YAXXZ,,0x0058C440,34,Code/gen_asm/d_0058b1f0.asm,matched,gen-dump;ghidra=FUN_0098c440
 ?d_0058c470@@YAXXZ,,0x0058C470,26,Code/gen_asm/d_0058b1f0.asm,matched,gen-dump;ghidra=FUN_0098c470
-?d_0058c4c0@@YAXXZ,,0x0058C4C0,102,Code/gen_asm/d_0058b1f0.asm,matched,gen-dump;ghidra=FUN_0098c4c0
 ?d_0058c6c0@@YAXXZ,,0x0058C6C0,215,Code/gen_asm/d_0058b1f0.asm,matched,gen-dump;ghidra=FUN_0098c6c0
 ?d_0058c7f0@@YAXXZ,,0x0058C7F0,216,Code/gen_asm/d_0058b1f0.asm,matched,gen-dump;ghidra=FUN_0098c7f0
 ?d_0058c920@@YAXXZ,,0x0058C920,216,Code/gen_asm/d_0058b1f0.asm,matched,gen-dump;ghidra=FUN_0098c920
@@ -141687,7 +141685,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0026f610@@YAXXZ,,0x0026F610,18,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026f670@@YAXXZ,,0x0026F670,225,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026f7d0@@YAXXZ,,0x0026F7D0,26,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
-?d_0026f840@@YAXXZ,,0x0026F840,130,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026f950@@YAXXZ,,0x0026F950,82,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026fa60@@YAXXZ,,0x0026FA60,25,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_0026fd00@@YAXXZ,,0x0026FD00,23,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
@@ -148692,7 +148689,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004c45f0@@YAXXZ,,0x004C45F0,46,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c4a30@@YAXXZ,,0x004C4A30,6,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c4ff0@@YAXXZ,,0x004C4FF0,7,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
-?d_004c5060@@YAXXZ,,0x004C5060,115,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c54a0@@YAXXZ,,0x004C54A0,26,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c54c0@@YAXXZ,,0x004C54C0,26,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
 ?d_004c5500@@YAXXZ,,0x004C5500,20,Code/gen_asm/d_004ad980.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157945,7 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?allCommandsReady@FrameDataManager@@QAE?AW4FrameDataReturnType@@I_N@Z,,0x00670670,34,Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp,matched,zh_sweep packet 00670670
 ??0DecalMeshClass@@QAE@PAVMeshClass@@PAVDecalSystemClass@@@Z,,0x000FC2E0,32,Code/Libraries/Source/WWVegas/WW3D2/DecalMeshClass_ctor_Thunk.cpp,matched,zh_sweep packet 000fc2e0
 ?transferUnitsTo@Team@@QAEXPAV1@@Z,,0x000EC9B0,36,Code/GameEngine/Source/Common/RTS/Team_transferUnitsTo_Thunk.cpp,matched,zh_sweep packet 000ec9b0
+??1UpgradeMuxData@@QAE@XZ,,0x0058C4C0,102,Code/GameEngine/Source/Common/Thing/UpgradeMuxData_dtor_Thunk.cpp,matched,zh_sweep packet 0058c4c0
+?InGamePopupMessageSystem@@YA?AW4WindowMsgHandledType@@PAVGameWindow@@III@Z,,0x004C5060,115,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/InGamePopupMessage.cpp,matched,zh_sweep packet 004c5060
+?addLandmarkBridgeToLogic@TerrainLogic@@UAEXPAVObject@@@Z,,0x001AA860,123,Code/GameEngine/Source/GameLogic/Map/TerrainLogic_addLandmarkBridgeToLogic_Thunk.cpp,matched,zh_sweep packet 001aa860
+?privateGoProne@AIUpdateInterface@@MAEXPBVDamageInfo@@W4CommandSourceType@@@Z,,0x0026F840,130,Code/GameEngine/Source/GameLogic/Object/Update/AIUpdateInterface_privateGoProne_Thunk.cpp,matched,zh_sweep packet 0026f840
