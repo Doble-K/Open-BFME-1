@@ -3441,7 +3441,6 @@ void BaseHeightMapRenderObjClass::removeTerrainBib(ObjectID id)
 //=============================================================================
 /** Removes a terrainBib from the bib buffer.*/
 //=============================================================================
-// ?removeTerrainBibDrawable@BaseHeightMapRenderObjClass@@QAEXW4DrawableID@@@Z present-unmatched
 void BaseHeightMapRenderObjClass::removeTerrainBibDrawable(DrawableID id)
 {
 	m_bibBuffer->removeBibDrawable( id ); 

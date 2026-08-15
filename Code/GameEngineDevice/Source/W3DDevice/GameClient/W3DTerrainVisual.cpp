@@ -1079,10 +1079,14 @@ void W3DTerrainVisual::addFactionBib(Object *factionBuilding, Bool highlight, Re
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?removeFactionBibDrawable@W3DTerrainVisual@@ present-unmatched
 void W3DTerrainVisual::removeFactionBibDrawable(Drawable *factionBuilding)
 {
-	if (m_terrainRenderObject) {
+	// BFME guards on the height map, not the render object: retail tests
+	// [this+0x18] (m_logicHeightMap) and then calls through [this+0x10]
+	// (m_terrainRenderObject). That is the same guard addFactionBibDrawable
+	// uses -- the adder and the remover agree, where Zero Hour's remover
+	// guards on the render object it is about to call.
+	if (m_logicHeightMap) {
 		m_terrainRenderObject->removeTerrainBibDrawable(factionBuilding->getID());
 	}
 }

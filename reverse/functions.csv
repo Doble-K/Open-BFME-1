@@ -117704,7 +117704,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006c8d60@@YAXXZ,,0x006C8D60,11,Code/gen_asm/d_006c0fa0.asm,matched,gen-dump;ghidra=FUN_00ac8d60
 ?d_006c8d70@@YAXXZ,,0x006C8D70,11,Code/gen_asm/d_006c0fa0.asm,matched,gen-dump;ghidra=FUN_00ac8d70
 ?d_006c8d80@@YAXXZ,,0x006C8D80,11,Code/gen_asm/d_006c0fa0.asm,matched,gen-dump;ghidra=FUN_00ac8d80
-?d_006c8d90@@YAXXZ,,0x006C8D90,11,Code/gen_asm/d_006c0fa0.asm,matched,gen-dump;ghidra=FUN_00ac8d90
 ?d_006c8da0@@YAXXZ,,0x006C8DA0,71,Code/gen_asm/d_006c0fa0.asm,matched,gen-dump;ghidra=FUN_00ac8da0
 ?d_006c8e00@@YAXXZ,,0x006C8E00,16,Code/gen_asm/d_006c0fa0.asm,matched,gen-dump;ghidra=FUN_00ac8e00
 ?d_006c8ff0@@YAXXZ,,0x006C8FF0,141,Code/gen_asm/d_006c0fa0.asm,matched,gen-dump;ghidra=FUN_00ac8ff0
@@ -118204,7 +118203,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00730960@@YAXXZ,,0x00730960,37,Code/gen_asm/d_0072b580.asm,matched,gen-dump;ghidra=FUN_00b30960
 ?d_00730a80@@YAXXZ,,0x00730A80,15,Code/gen_asm/d_0072b580.asm,matched,gen-dump;ghidra=FUN_00b30a80
 ?d_00730c70@@YAXXZ,,0x00730C70,18,Code/gen_asm/d_0072b580.asm,matched,gen-dump;ghidra=FUN_00b30c70
-?d_00730c90@@YAXXZ,,0x00730C90,32,Code/gen_asm/d_0072b580.asm,matched,gen-dump;ghidra=FUN_00b30c90
 ?d_00730e20@@YAXXZ,,0x00730E20,48,Code/gen_asm/d_0072b580.asm,matched,gen-dump;ghidra=FUN_00b30e20
 ?d_00730e60@@YAXXZ,,0x00730E60,17,Code/gen_asm/d_0072b580.asm,matched,gen-dump;ghidra=FUN_00b30e60
 ?d_00730f70@@YAXXZ,,0x00730F70,87,Code/gen_asm/d_0072b580.asm,matched,gen-dump;ghidra=FUN_00b30f70
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?privateDock@SupplyTruckAIUpdate@@MAEXPAVObject@@W4CommandSourceType@@@Z,,0x002C5820,43,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5820
 ?isCurrentlyFerryingSupplies@SupplyTruckAIUpdate@@UBE_NXZ,,0x002C5780,56,Code/GameEngine/Source/GameLogic/AI/SupplyTruckAIUpdate_updateAndPrivateDock_Thunk.cpp,matched,zh_sweep packet 002c5780
 ?updateChallengeMedals@@YAXAAH@Z,,0x004E27E0,320,Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreenChallengeMedals_Thunk.cpp,matched,zh_sweep packet 004e27e0
+?removeTerrainBibDrawable@BaseHeightMapRenderObjClass@@QAEXW4DrawableID@@@Z,,0x006C8D90,11,Code/GameEngineDevice/Source/W3DDevice/GameClient/BaseHeightMap.cpp,matched,zh_sweep packet 00730c90 callee; tail-calls W3DBibBuffer::removeBibDrawable
+?removeFactionBibDrawable@W3DTerrainVisual@@UAEXPAVDrawable@@@Z,,0x00730C90,32,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DTerrainVisual.cpp,matched,zh_sweep packet 00730c90
