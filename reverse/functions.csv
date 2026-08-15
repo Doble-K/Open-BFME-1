@@ -108049,7 +108049,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_001b5260@@YAXXZ,,0x001B5260,63,Code/gen_asm/d_001aba80.asm,matched,gen-dump;ghidra=FUN_005b5260
 ?d_001b52c0@@YAXXZ,,0x001B52C0,41,Code/gen_asm/d_001aba80.asm,matched,gen-dump;ghidra=FUN_005b52c0
 ?d_001b5550@@YAXXZ,,0x001B5550,101,Code/gen_asm/d_001aba80.asm,matched,gen-dump;ghidra=FUN_005b5550
-?d_001b55d0@@YAXXZ,,0x001B55D0,68,Code/gen_asm/d_001aba80.asm,matched,gen-dump;ghidra=FUN_005b55d0
 ?d_001b57e0@@YAXXZ,,0x001B57E0,94,Code/gen_asm/d_001aba80.asm,matched,gen-dump;ghidra=FUN_005b57e0
 ?d_001b5860@@YAXXZ,,0x001B5860,133,Code/gen_asm/d_001aba80.asm,matched,gen-dump;ghidra=FUN_005b5860
 ?d_001b5910@@YAXXZ,,0x001B5910,71,Code/gen_asm/d_001aba80.asm,matched,gen-dump;ghidra=FUN_005b5910
@@ -117949,7 +117948,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006fb780@@YAXXZ,,0x006FB780,101,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00afb780
 ?d_006fb8e0@@YAXXZ,,0x006FB8E0,89,Code/gen_asm/d_006fb8e0.asm,matched,gen-dump;ghidra=FUN_00afb8e0
 ?d_006fb950@@YAXXZ,,0x006FB950,86,Code/gen_asm/d_006fb8e0.asm,matched,gen-dump;ghidra=FUN_00afb950
-?d_006fba50@@YAXXZ,,0x006FBA50,99,Code/gen_asm/d_006fb8e0.asm,matched,gen-dump;ghidra=FUN_00afba50
 ?d_006fbad0@@YAXXZ,,0x006FBAD0,18,Code/gen_asm/d_006fb8e0.asm,matched,gen-dump;ghidra=FUN_00afbad0
 ?d_006fbb20@@YAXXZ,,0x006FBB20,115,Code/gen_asm/d_006fb8e0.asm,matched,gen-dump;ghidra=FUN_00afbb20
 ?d_006fbdb0@@YAXXZ,,0x006FBDB0,70,Code/gen_asm/d_006fb8e0.asm,matched,gen-dump;ghidra=FUN_00afbdb0
@@ -156426,7 +156424,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_007b8160@@YAXXZ,,0x007B8160,7,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b8170@@YAXXZ,,0x007B8170,14,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b8190@@YAXXZ,,0x007B8190,47,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
-?d_007b81d0@@YAXXZ,,0x007B81D0,46,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b9260@@YAXXZ,,0x007B9260,17,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b9980@@YAXXZ,,0x007B9980,41,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b9ec0@@YAXXZ,,0x007B9EC0,16,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157946,6 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ??1W3DGameWindow@@MAE@XZ,,0x004655F0,85,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp,matched,zh_sweep packet 004655f0; base dtor reached via ILT 0x00013AF7 -> 0x00494090
 ?setControlCommand@ControlBar@@IAEXABVAsciiString@@PAVGameWindow@@PBVCommandButton@@@Z,,0x0049F0E0,76,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setControlCommand_Thunk.cpp,matched,zh_sweep packet 0049f0e0
 ?setName@User@@QAEXVUnicodeString@@@Z,,0x00685420,75,Code/GameEngine/Source/GameNetwork/User_setName_Thunk.cpp,matched,zh_sweep packet 00685420
+?allocateNeighbors@W3DShadowGeometryMesh@@IAE_NH@Z,,0x007B81D0,46,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadowGeometryMesh_allocateNeighbors_Thunk.cpp,matched,zh_sweep packet 007b81d0
+?newOverride@LocomotorStore@@QAEPAVLocomotorTemplate@@PAV2@@Z,,0x001B55D0,68,Code/GameEngine/Source/GameLogic/Object/LocomotorStore_newOverride_Thunk.cpp,matched,zh_sweep packet 001b55d0
+?createMouse@W3DGameClient@@MAEPAVMouse@@XZ,,0x006FBA50,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DGameClient_createMouse_Thunk.cpp,matched,zh_sweep packet 006fba50

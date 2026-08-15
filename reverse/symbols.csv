@@ -69518,3 +69518,4 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??1Render2DSentenceClass@@QAE@XZ,0x00887940,per-TU copy called by W3DGameWindow dtor
 ??1GameWindow@@MAE@XZ,0x00013AF7,ILT fronting 0x00494090 -- the base dtor W3DGameWindow chains to; conflicts with the naked-lift row claiming 0x00479CD0
 ?set@UnicodeString@@QAEXABV1@@Z,0x008891F0,additive; per-TU copy called by User::setName
+??0W3DMouse@@QAE@XZ,0x0002B7B0,ILT fronting the 233-byte body at 0x007003E0; from W3DGameClient::createMouse
