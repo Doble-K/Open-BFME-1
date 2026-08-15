@@ -117154,7 +117154,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00685200@@YAXXZ,,0x00685200,40,Code/gen_asm/d_00679730.asm,matched,gen-dump;ghidra=FUN_00a85200
 ?d_006852e0@@YAXXZ,,0x006852E0,50,Code/gen_asm/d_00679730.asm,matched,gen-dump;ghidra=FUN_00a852e0
 ?d_006853c0@@YAXXZ,,0x006853C0,75,Code/gen_asm/d_00679730.asm,matched,gen-dump;ghidra=FUN_00a853c0
-?d_00685420@@YAXXZ,,0x00685420,75,Code/gen_asm/d_00679730.asm,matched,gen-dump;ghidra=FUN_00a85420
 ?d_006854f0@@YAXXZ,,0x006854F0,242,Code/gen_asm/d_00679730.asm,matched,gen-dump;ghidra=FUN_00a854f0
 ?d_006858a0@@YAXXZ,,0x006858A0,89,Code/gen_asm/d_00679730.asm,matched,gen-dump;ghidra=FUN_00a858a0
 ?d_00685fc0@@YAXXZ,,0x00685FC0,260,Code/gen_asm/d_00679730.asm,matched,gen-dump;ghidra=FUN_00a85fc0
@@ -148423,7 +148422,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0049d650@@YAXXZ,,0x0049D650,8,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_0049e6a0@@YAXXZ,,0x0049E6A0,32,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_0049e710@@YAXXZ,,0x0049E710,41,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
-?d_0049f0e0@@YAXXZ,,0x0049F0E0,76,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_0049f600@@YAXXZ,,0x0049F600,41,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_004a37e0@@YAXXZ,,0x004A37E0,62,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_004a3a40@@YAXXZ,,0x004A3A40,7,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
@@ -157949,3 +157947,5 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ??1GameFileClass@@UAE@XZ,,0x006F62C0,84,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,zh_sweep packet 006f62c0
 ??1W3DDebugDisplay@@UAE@XZ,,0x006E6C50,84,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DDebugDisplay.cpp,matched,zh_sweep packet 006e6c50
 ??1W3DGameWindow@@MAE@XZ,,0x004655F0,85,Code/GameEngineDevice/Source/W3DDevice/GameClient/GUI/W3DGameWindow.cpp,matched,zh_sweep packet 004655f0; base dtor reached via ILT 0x00013AF7 -> 0x00494090
+?setControlCommand@ControlBar@@IAEXABVAsciiString@@PAVGameWindow@@PBVCommandButton@@@Z,,0x0049F0E0,76,Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar_setControlCommand_Thunk.cpp,matched,zh_sweep packet 0049f0e0
+?setName@User@@QAEXVUnicodeString@@@Z,,0x00685420,75,Code/GameEngine/Source/GameNetwork/User_setName_Thunk.cpp,matched,zh_sweep packet 00685420
