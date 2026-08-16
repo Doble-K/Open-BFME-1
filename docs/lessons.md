@@ -510,3 +510,31 @@ should unlock rather than break — the tree already carries BFME overrides in
 an `AsciiString.h` / `UnicodeString.h` override is the same shape of change.
 Budget a full gate per attempt, and expect the fallout to be in *unmatched*
 bodies that suddenly compile differently rather than in matched ones.
+
+### What it costs, measured
+
+Restoring the eight bytes is a two-file shim in
+`reference/shims/sweep/Common/` and it works: `ScriptActions.cpp`,
+`GameInfo.cpp` and `MapUtil.cpp` all move from `+4` to `+8` with their 164
+matched rows still verifying, and `LANAPI::RequestAccept` loses the string
+offset from its diff list. Two things bite anyway, and the second is why it is
+not landed yet.
+
+**The define must not reach `Common/Debug.h`.** It reads `_INTERNAL` too, and
+letting it see the define turns `DEBUG_ASSERTCRASH` back on — which grew
+`LANAPI::removePlayer` past its matched extent. Hoist the vendored header's own
+includes above the `#define` and it goes away.
+
+**The dependency cache will tell you the tree is fine when it is not.** Adding a
+header *earlier on the search path* does not change any recorded header list, so
+`./build.sh` reuses objects built against the old one — 324 of them, still dated
+13 August. The full gate passed on those. Delete the affected objects and rebuild
+before believing any include-path change.
+
+Once they really do rebuild, the bill arrives: **403 ledger rows in those 135
+sources are `uw_*` funclets anchored on compiler-local `$L` labels**
+(`object-symbol=$L78143` and friends). Recompiling renumbers those labels and
+every one of them stops resolving with `symbol not found in object`. So this
+change is not a header edit — it is a header edit plus a 403-row re-anchoring,
+and it wants to be one piece of work rather than a surprise inside somebody
+else's build.
