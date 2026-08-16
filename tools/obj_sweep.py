@@ -64,6 +64,7 @@ import progress
 ROOT = B.ROOT
 HELD_LANES = ("authored", "vendored", "generated", "library")
 DIR32, REL32 = 0x0006, 0x0014
+IMAGE_BASE = 0x400000
 # A DIR32-only span whose unmasked remainder is this short is not evidence: the
 # gate would copy most of it out of retail and "verify" a handful of bytes.
 MIN_CONCRETE = 8
@@ -253,16 +254,6 @@ def masked_equal(span, target, holes):
     return left == right
 
 
-def dir32_whitelist():
-    """Symbols the full gate already accepts at more than one base."""
-    path = ROOT / "reverse" / "dir32_consistency_whitelist.txt"
-    if not path.exists():
-        raise SystemExit(f"obj_sweep: {path} is missing — a DIR32 claim cannot be pre-checked "
-                         "against the bases the full gate already accepts. Run ./build.sh once.")
-    return {line.strip() for line in path.read_text().splitlines()
-            if line.strip() and not line.startswith("#")}
-
-
 # A TU-local label or per-TU EH stub legitimately sits at many addresses; the
 # full gate's own dir32 check skips exactly these, so this one must too.
 LOCAL_SYMBOL_RE = re.compile(r"\$[A-Za-z]+\d+\Z")
@@ -408,30 +399,29 @@ def sweep(uni, image, objects, exclude_circular=True, stats=None):
                 sites = dir32_sites(body, inside, image, rva, size) if cls == "dir32" else []
                 record["owners"].append(Owner(source, name, cls, len(holes), tuple(sites)))
 
-    # Two filters, both about the same number. First: an owner whose implied base
-    # contradicts one the ledger's held rows already prove. Then, greedily in
-    # address order, an accepted claim's own bases join the map — two aliases of
-    # one span at two addresses whose DIR32 sites point at DIFFERENT globals are
-    # not the same function, and exactly one of the two claims is wrong.
-    whitelist = dir32_whitelist()
-
-    def agrees(symbol, base):
-        return (symbol in whitelist or not known_base.get(symbol)
-                or base in known_base[symbol])
-
+    # A DIR32 site is a hole in the comparison: the gate copies those four bytes
+    # out of retail, so a 17-byte boilerplate constructor "matches" every other
+    # class's boilerplate constructor and the only byte that told them apart is
+    # the one nobody looked at. So the hole has to be closed instead of masked —
+    # `verify_dir32_consistency` reads it as base = retail_dword - addend, and an
+    # owner is kept ONLY when every one of its sites resolves to a base the
+    # ledger's held rows already prove for that symbol. The property that buys is
+    # exact: this class can introduce no base the tree did not already contain,
+    # so it cannot make the full gate's dir32 check say anything new. Bases below
+    # the image base are refused outright — a vtable pointer is never 0 or 2, and
+    # both of those turned up as "agreement" the first time this ran.
     for key in sorted(matches):
         record = matches[key]
         keep = [owner for owner in record["owners"]
-                if all(agrees(symbol, base) for symbol, base in owner.sites)]
-        stats["skip_dir32_inconsistent"] += len(record["owners"]) - len(keep)
+                if all(base >= IMAGE_BASE and base in known_base.get(symbol, ())
+                       for symbol, base in owner.sites)]
+        stats["skip_dir32_unproven_base"] += len(record["owners"]) - len(keep)
         if not keep:
             del matches[key]
             continue
         keep.sort(key=lambda owner: rank(owner.cls, owner.source) + (owner.symbol,))
         record["owners"] = keep
         record["cls"], record["holes"] = keep[0].cls, keep[0].holes
-        for symbol, base in keep[0].sites:
-            known_base[symbol].add(base)
     return matches, stats
 
 
@@ -562,6 +552,14 @@ def wave_name(uni, record, rva, folds, taken, skipped):
 
 def cmd_wave(args):
     uni, image, objects, stats = load()
+    if args.klass == "dir32" and (stats["obj_missing"] or stats["obj_stale"]):
+        # Not fatal — the base rule below only ever ACCEPTS on proven agreement,
+        # so an unreadable source costs candidates, never correctness. It is worth
+        # saying out loud because it is the whole difference in this class's yield.
+        print(f"obj_sweep: {stats['obj_missing']} ledger source(s) have no object and "
+              f"{stats['obj_stale']} are older than their source; the symbol bases they "
+              "prove are invisible here, so DIR32 candidates that depend on them are "
+              "dropped. ./build.sh (no arguments) recovers them.", file=sys.stderr)
     matches, stats = sweep(uni, image, objects, stats=stats)
     verify_no_circularity(uni, matches)
 
