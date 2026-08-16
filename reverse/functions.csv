@@ -117569,27 +117569,17 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006beb90@@YAXXZ,,0x006BEB90,607,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abeb90
 ?d_006bee90@@YAXXZ,,0x006BEE90,63,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abee90
 ?d_006befc0@@YAXXZ,,0x006BEFC0,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abefc0
-?d_006bf040@@YAXXZ,,0x006BF040,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf040
 ?d_006bf0c0@@YAXXZ,,0x006BF0C0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf0c0
-?d_006bf150@@YAXXZ,,0x006BF150,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf150
-?d_006bf260@@YAXXZ,,0x006BF260,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf260
 ?d_006bf360@@YAXXZ,,0x006BF360,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf360
 ?d_006bf3e0@@YAXXZ,,0x006BF3E0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf3e0
-?d_006bf470@@YAXXZ,,0x006BF470,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf470
 ?d_006bf4f0@@YAXXZ,,0x006BF4F0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf4f0
 ?d_006bf580@@YAXXZ,,0x006BF580,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf580
 ?d_006bf600@@YAXXZ,,0x006BF600,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf600
-?d_006bf690@@YAXXZ,,0x006BF690,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf690
-?d_006bf7a0@@YAXXZ,,0x006BF7A0,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf7a0
 ?d_006bf820@@YAXXZ,,0x006BF820,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf820
-?d_006bf8b0@@YAXXZ,,0x006BF8B0,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf8b0
 ?d_006bf930@@YAXXZ,,0x006BF930,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf930
-?d_006bf9c0@@YAXXZ,,0x006BF9C0,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf9c0
 ?d_006bfa40@@YAXXZ,,0x006BFA40,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfa40
 ?d_006bfb50@@YAXXZ,,0x006BFB50,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfb50
-?d_006bfbe0@@YAXXZ,,0x006BFBE0,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfbe0
 ?d_006bfc60@@YAXXZ,,0x006BFC60,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfc60
-?d_006bfcf0@@YAXXZ,,0x006BFCF0,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfcf0
 ?d_006bfd70@@YAXXZ,,0x006BFD70,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfd70
 ?d_006bffe0@@YAXXZ,,0x006BFFE0,1136,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abffe0
 ?d_006c0570@@YAXXZ,,0x006C0570,18,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00ac0570
@@ -157957,3 +157947,13 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?friend_newModuleInstance@SupplyCenterCreate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E3E0,96,Code/GameEngine/Source/Common/Thing/SupplyCenterCreateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
 ?friend_newModuleInstance@SupplyWarehouseCreate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E460,96,Code/GameEngine/Source/Common/Thing/SupplyWarehouseCreateFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
 ?friend_newModuleInstance@TaintSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00120700,96,Code/GameEngine/Source/Common/Thing/TaintSpecialPowerFriendNewModuleInstanceThunk.cpp,matched,named from the ModuleFactory registration string
+?friend_newModuleInstance@W3DBuffDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF7A0,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DBuffDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DFloorDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF9C0,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DFloorDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DHordeModelDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BFBE0,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DHordeModelDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DLaserDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF150,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DLaserDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DPropDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF8B0,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DPropDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DQuadrupedDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF260,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DQuadrupedDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DScriptedModelDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF040,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DScriptedModelDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DStreakDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BFCF0,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DStreakDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DTreeDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF690,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTreeDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleInstance@W3DTruckDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF470,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string

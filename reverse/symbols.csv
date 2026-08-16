@@ -69567,3 +69567,13 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??0SupplyCenterCreate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003CF56,link thunk to the SupplyCenterCreate constructor; named from the ModuleFactory registration that pairs "SupplyCenterCreate" with factory 0x0011E3E0
 ??0SupplyWarehouseCreate@@QAE@PAVThing@@PBVModuleData@@@Z,0x0003ECA7,link thunk to the SupplyWarehouseCreate constructor; named from the ModuleFactory registration that pairs "SupplyWarehouseCreate" with factory 0x0011E460
 ??0TaintSpecialPower@@QAE@PAVThing@@PBVModuleData@@@Z,0x00006014,link thunk to the TaintSpecialPower constructor; named from the ModuleFactory registration that pairs "TaintSpecialPower" with factory 0x00120700
+??0W3DBuffDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x000144D9,link thunk to the W3DBuffDraw constructor; named from the draw-module registration that pairs "W3DBuffDraw" with factory 0x006BF7A0
+??0W3DFloorDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000A9D9,link thunk to the W3DFloorDraw constructor; named from the draw-module registration that pairs "W3DFloorDraw" with factory 0x006BF9C0
+??0W3DHordeModelDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00008378,link thunk to the W3DHordeModelDraw constructor; named from the draw-module registration that pairs "W3DHordeModelDraw" with factory 0x006BFBE0
+??0W3DLaserDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000E61A,link thunk to the W3DLaserDraw constructor; named from the draw-module registration that pairs "W3DLaserDraw" with factory 0x006BF150
+??0W3DPropDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00039770,link thunk to the W3DPropDraw constructor; named from the draw-module registration that pairs "W3DPropDraw" with factory 0x006BF8B0
+??0W3DQuadrupedDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x0000B339,link thunk to the W3DQuadrupedDraw constructor; named from the draw-module registration that pairs "W3DQuadrupedDraw" with factory 0x006BF260
+??0W3DScriptedModelDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x000285EC,link thunk to the W3DScriptedModelDraw constructor; named from the draw-module registration that pairs "W3DScriptedModelDraw" with factory 0x006BF040
+??0W3DStreakDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00031804,link thunk to the W3DStreakDraw constructor; named from the draw-module registration that pairs "W3DStreakDraw" with factory 0x006BFCF0
+??0W3DTreeDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00034C25,link thunk to the W3DTreeDraw constructor; named from the draw-module registration that pairs "W3DTreeDraw" with factory 0x006BF690
+??0W3DTruckDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00036AED,link thunk to the W3DTruckDraw constructor; named from the draw-module registration that pairs "W3DTruckDraw" with factory 0x006BF470
