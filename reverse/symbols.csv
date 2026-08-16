@@ -70956,3 +70956,4 @@ _ghiPostFileMemoryStateDoPosting,0x0087D450,decode_calls pin for _ghiPostStateDo
 ?isRoomForPlayerLeaveMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x006780E0,decode_calls: first call site inside addPlayerLeaveCommand (0x0067C410); idiom-verified
 ?addAckCommand@NetPacket@@IAE_NPAVNetCommandRef@@GE@Z,0x0067DEC0,decode_calls: shared third-call target of addAckBothCommand/addAckStage1Command/addAckStage2Command (0x680290/0x6802D0/0x680310); chased through thunk 0x004060BE
 _ghiInitBuffer,0x0087D740,decode_calls pin for _ghiNewConnection callee
+?freeAllSlots@W3DBufferManager@@QAEXXZ,0x00018188,link thunk; the address freeAllBuffers at 0x007ADAD0 encodes

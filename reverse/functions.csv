@@ -118706,7 +118706,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_007ac7e0@@YAXXZ,,0x007AC7E0,805,Code/gen_asm/d_007a4d40.asm,matched,gen-dump;ghidra=FUN_00bac7e0
 ?d_007ad820@@YAXXZ,,0x007AD820,12,Code/gen_asm/d_007a4d40.asm,matched,gen-dump;ghidra=FUN_00bad820
 ?d_007ad9d0@@YAXXZ,,0x007AD9D0,195,Code/gen_asm/d_007a4d40.asm,matched,gen-dump;ghidra=FUN_00bad9d0
-?d_007adad0@@YAXXZ,,0x007ADAD0,140,Code/gen_asm/d_007a4d40.asm,matched,gen-dump;ghidra=FUN_00badad0
 ?d_007adb80@@YAXXZ,,0x007ADB80,112,Code/gen_asm/d_007a4d40.asm,matched,gen-dump;ghidra=FUN_00badb80
 ?d_007adc10@@YAXXZ,,0x007ADC10,262,Code/gen_asm/d_007a4d40.asm,matched,gen-dump;ghidra=FUN_00badc10
 ?d_007addc0@@YAXXZ,,0x007ADDC0,410,Code/gen_asm/d_007a4d40.asm,matched,gen-dump;ghidra=FUN_00baddc0
@@ -158153,3 +158152,4 @@ _ghiDoReceivingFile,,0x0087C530,220,Code/GameEngine/Source/GameNetwork/GameSpy/g
 _gpiProcessPeerInitiatingConnection,,0x008F6B40,647,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiPeer.c,matched,
 _gpiProcessPeerAcceptingConnection,,0x008F6000,483,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiPeer.c,matched,
 _gpiRemovePeer,,0x008F65C0,182,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiPeer.c,matched,
+?freeAllBuffers@W3DBufferManager@@QAEXXZ,,0x007ADAD0,140,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DBufferManagerFreeAllBuffersThunk.cpp,matched,
