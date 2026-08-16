@@ -11859,3 +11859,4 @@ uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to Worker
 ?d_0011e560@@YAXXZ,0x0011E560,gen-dump placeholder superseded by GrantUpgradeCreate factory converted to C++
 ?d_006bf3e0@@YAXXZ,0x006BF3E0,gen-dump placeholder superseded by W3DSupplyDraw factory converted to C++
 ?d_006bf4f0@@YAXXZ,0x006BF4F0,gen-dump placeholder superseded by W3DTruckDraw factory converted to C++
+?d_007b7620@@YAXXZ,0x007B7620,gen-dump placeholder superseded by W3DShadowManager::ReAcquireResources converted to C++

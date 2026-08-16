@@ -118769,7 +118769,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_007b4f80@@YAXXZ,,0x007B4F80,27,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb4f80
 ?d_007b7580@@YAXXZ,,0x007B7580,46,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb7580
 ?d_007b7600@@YAXXZ,,0x007B7600,16,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb7600
-?d_007b7620@@YAXXZ,,0x007B7620,70,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb7620
 ?d_007b7680@@YAXXZ,,0x007B7680,46,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb7680
 ?d_007b76c0@@YAXXZ,,0x007B76C0,147,Code/gen_asm/d_007b14a0.asm,matched,gen-dump;ghidra=FUN_00bb76c0
 ?d_007b77e0@@YAXXZ,,0x007B77E0,12,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?invokeArgument@VirtualSlot2ArgumentCallOwner@@QAEXPAUVirtualSlot2ArgumentThunk@@@Z;Open-BFME5 clean C++ virtual slot 2 argument call
@@ -157959,3 +157958,4 @@ _luaV_strconc,,0x009979D0,401,Code/Libraries/Source/Lua/lvm.c,matched,
 ?friend_newModuleData@GrantUpgradeCreate@@SAPAVModuleData@@PAVINI@@@Z,,0x0011E560,107,Code/GameEngine/Source/Common/Thing/GrantUpgradeCreateFriendNewModuleDataThunk.cpp,matched,repointed; registration string and allocation size agree
 ?friend_newModuleData@W3DSupplyDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF3E0,110,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDrawFriendNewModuleDataThunk.cpp,matched,repointed; registration string and allocation size agree
 ?friend_newModuleData@W3DTruckDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF4F0,110,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDrawFriendNewModuleDataThunk.cpp,matched,repointed; registration string and allocation size agree
+?ReAcquireResources@W3DShadowManager@@QAE_NXZ,,0x007B7620,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadowManagerReAcquireThunk.cpp,matched,
