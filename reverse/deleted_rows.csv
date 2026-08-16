@@ -9138,3 +9138,4 @@ uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to Worker
 ?d_009db560@@YAXXZ,0x009DB560,"gen-dump placeholder superseded by the real identity of these bytes: ?dup_009db560@@YAXXZ, byte-verified from Code/GameEngine/Source/GameNetwork/GameSpy/nonport.c over the same 12-byte range. The Code/gen_asm/d_009d9a30.asm dump reproduces those bytes but carries no identity."
 ?d_00728770@@YAXXZ,0x00728770,gen-dump placeholder superseded by W3DTerrainBackground::allocateTerrainBuffers converted to C++
 ?d_004e94f0@@YAXXZ,0x004E94F0,gen-dump placeholder superseded by SinglePlayerMenuShutdown converted to C++
+?d_0014fce0@@YAXXZ,0x0014FCE0,gen-dump placeholder superseded by AIDockProcessDockState::update converted to C++

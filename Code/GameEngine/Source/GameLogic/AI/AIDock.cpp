@@ -676,10 +676,24 @@ StateReturnType AIDockProcessDockState::onEnter( void )
 /**
  * We are now docked. Invoke the dock's action() method until it returns false.
  */
-// ?update@AIDockProcessDockState@@ present-unmatched
+// Retail keeps State::m_machine at +0x1C where this tree puts it at +0x20, the
+// same four bytes TurretAIIdleState::resetIdleScan already found. State.h is
+// shared, so the offset is corrected here through a cast rather than in the
+// class -- the other twenty-two rows this file lands keep their shape.
+static StateMachine *bfmeRetailMachine( const State *state )
+{
+	return *(StateMachine **)((char *)state + 0x1C);
+}
+
+// And the machine keeps its owner at +0x10, not +0x14.
+static Object *bfmeRetailMachineOwner( const State *state )
+{
+	return *(Object **)((char *)bfmeRetailMachine( state ) + 0x10);
+}
+
 StateReturnType AIDockProcessDockState::update( void )
 {
-	Object *goalObject = getMachineGoalObject();
+	Object *goalObject = bfmeRetailMachine( this )->getGoalObject();
 
 	DockUpdateInterface *dock = NULL;
 	if( goalObject )
@@ -697,7 +711,7 @@ StateReturnType AIDockProcessDockState::update( void )
 	Object *drone = findMyDrone();
 
 	// invoke the dock's action until it tells us it is done or the dock becomes closed
-	if( dock->isDockOpen() == false || dock->action( getMachineOwner(), drone ) == false )
+	if( dock->isDockOpen() == false || dock->action( bfmeRetailMachineOwner( this ), drone ) == false )
 		return STATE_SUCCESS;
 
 	return STATE_CONTINUE;

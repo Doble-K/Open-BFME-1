@@ -69595,3 +69595,5 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??0W3DStreakDrawModuleData@@QAE@XZ,0x000302EC,module-data constructor called by W3DStreakDraw::friend_newModuleData at 0x006BFD70
 ?freeTerrainBuffers@W3DTerrainBackground@@IAEXXZ,0x00044AA3,link thunk; called by allocateTerrainBuffers at 0x00728770
 ?shutdownComplete@Shell@@QAEXPAVWindowLayout@@_N@Z,0x00002F1D,link thunk; reached from SinglePlayerMenuShutdown 0x004E94F0
+?setNextDockActionFrame@AIDockProcessDockState@@QAEXXZ,0x00011F13,link thunk; called by AIDockProcessDockState::update at 0x0014FCE0
+?findMyDrone@AIDockProcessDockState@@QAEPAVObject@@XZ,0x00044EDB,link thunk; called by AIDockProcessDockState::update at 0x0014FCE0

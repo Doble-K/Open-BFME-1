@@ -107217,7 +107217,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0014f280@@YAXXZ,,0x0014F280,149,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054f280
 ?d_0014fc10@@YAXXZ,,0x0014FC10,67,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054fc10
 ?d_0014fc70@@YAXXZ,,0x0014FC70,90,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054fc70
-?d_0014fce0@@YAXXZ,,0x0014FCE0,115,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054fce0
 ?d_0014fdc0@@YAXXZ,,0x0014FDC0,127,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_0054fdc0
 ?d_00150100@@YAXXZ,,0x00150100,160,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00550100
 ?d_00150420@@YAXXZ,,0x00150420,45,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00550420
@@ -157968,3 +157967,4 @@ _ghiParseURL,,0x0087B6B0,225,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/gh
 ?Add_Shader@MaterialCollectorClass@@QAEXVShaderClass@@@Z,,0x009300D0,92,Code/Libraries/Source/WWVegas/WW3D2/matinfo.cpp,matched,
 ??0AABTreeLinkClass@@QAE@PAVAABTreeCullSystemClass@@@Z,,0x0010A7A0,29,Code/Libraries/Source/WWVegas/WWMath/AABTreeLinkClass_Constructor_Thunk.cpp,matched,
 ?Register_Missing@HAnimManagerClass@@QAEXPBD@Z,,0x007BB850,102,Code/Libraries/Source/WWVegas/WW3D2/hanimmgr.cpp,matched,
+?update@AIDockProcessDockState@@UAE?AW4StateReturnType@@XZ,,0x0014FCE0,115,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
