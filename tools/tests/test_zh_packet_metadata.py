@@ -57,7 +57,7 @@ def near(rva, size, sym="?candidate@Thing@@QAEXXZ", align=0.9, relocs=3):
             "rva": rva, "bucket": "near", "align": align, "claimed": False}
 
 
-def run_packets(tmp_path, monkeypatch, records, ledger_rows=()):
+def run_packets(tmp_path, monkeypatch, records, ledger_rows=(), relocs=()):
     """do_packets over a synthetic image; returns {rva: packet text}."""
     text = image()
     ledger = tmp_path / "functions.csv"
@@ -74,8 +74,8 @@ def run_packets(tmp_path, monkeypatch, records, ledger_rows=()):
     monkeypatch.setattr(zh_sweep, "OUT_DIR", tmp_path)
     monkeypatch.setattr(zh_sweep, "ROOT", tmp_path)
     monkeypatch.setattr(zh_sweep, "retail_text", lambda: (TEXT_RVA, text))
-    monkeypatch.setattr(zh_sweep, "packet_relocs", lambda objects: {("T.obj", r["sym"]): []
-                                                                   for r in records})
+    monkeypatch.setattr(zh_sweep, "packet_relocs",
+                        lambda objects: {("T.obj", r["sym"]): list(relocs) for r in records})
     monkeypatch.setattr(build, "FUNCTIONS", ledger)
     monkeypatch.setattr(build, "GHIDRA_FUNCTIONS", inventory)
     monkeypatch.setattr(build, "read_target_bytes",
@@ -136,6 +136,21 @@ def test_an_unmeasurable_extent_is_labelled_unverified_not_guessed(tmp_path, mon
     assert served_size(packet) == 24
     assert "an UNVERIFIED size" in flat(packet)
     assert "no inventory row confirms a function starts at this address" in flat(packet)
+
+
+def test_agreement_is_measured_over_compared_bytes_not_blanked_ones(tmp_path, monkeypatch):
+    """match.json's `align` scores a blanked relocation byte as agreeing, so the
+    sentence "outside relocation sites" was never the number it printed. Here 8
+    of 24 bytes are relocation slots: 0.9 over the whole body is 22 matching, of
+    which 8 were never compared, so 14 of 16 -- 87.5%, not 90.0%."""
+    written = run_packets(tmp_path, monkeypatch, [near(0x3000, 24, align=0.9)],
+                          relocs=[(4, zh_sweep.DIR32, "?g@@3HA"),
+                                  (12, zh_sweep.REL32, "?callee@@YAXXZ")])
+
+    packet = flat(written[0x3000])
+    assert "agrees on 87.5% of the bytes outside relocation sites: 14 of 16" in packet
+    assert "the other 8 byte(s) of its 24-byte body are relocation slots" in packet
+    assert "the sweep's own 90.0% counts every blanked byte as agreeing" in packet
 
 
 def test_tied_candidates_are_not_offered_as_an_identity(tmp_path, monkeypatch):

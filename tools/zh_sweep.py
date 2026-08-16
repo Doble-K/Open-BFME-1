@@ -526,10 +526,16 @@ def do_packets(args):
     # and the leads people had hand-annotated into those files went with it.
     validator = ghidra_validator()
     rendered = {}
-    covered = solved = bodies = 0
+    covered = solved = bodies = inflated = 0
     verdicts, extents, conflicts = Counter(), Counter(), 0
     for rva, group in sorted(by_rva.items()):
-        group.sort(key=lambda r: (-r["align"], r["sym"]))
+        # Ranked on what the packet prints, which is agreement over the bytes
+        # actually compared. Ranking on match.json's `align` puts a candidate
+        # that is two thirds relocation slots above one with none.
+        for record in group:
+            record["compared"] = compared_bytes(record, reloc_index[(record["obj"],
+                                                                     record["sym"])])
+        group.sort(key=lambda r: (-(r["compared"]["agree"] or 0), r["sym"]))
         bounds = packet_bounds(rva, max(r["size"] for r in group), validator, text, text_rva)
         # "unclaimed" is a metadata claim like any other, and match.json's is a
         # snapshot of the ledger as it stood when the match ran. Re-asked here
@@ -547,6 +553,7 @@ def do_packets(args):
                   None: "start unconfirmed"}[bounds["start"]]] += 1
         extents[bounds["extent_kind"]] += 1
         conflicts += bounds["extent"] not in (None, bounds["zh_size"])
+        inflated += (group[0]["compared"]["agree"] or 0) < NEAR_ALIGN
     # The directory is derived, so it is rebuilt from scratch -- but it is also
     # tracked, and a regression upstream turns that into silent deletion of
     # leads nobody can regenerate. Say what goes, so a drop is visible in the
@@ -568,6 +575,8 @@ def do_packets(args):
     for source, count in sorted(extents.items()):
         print(f"  extent from {source:20s} {count:4d}")
     print(f"  {conflicts} packet(s) quote a retail extent the Zero Hour candidate does not have")
+    print(f"  {inflated} packet(s) agree on less than {NEAR_ALIGN:.0%} of their COMPARED bytes; "
+          f"the threshold is applied upstream to a figure that scores blanked bytes as agreeing")
 
 
 def packet_relocs(objects):
@@ -665,6 +674,29 @@ def address_banner(rva, bounds):
                  "it."), ""]
 
 
+def percent(agreement):
+    return "nothing comparable" if agreement is None else f"{agreement * 100:.1f}%"
+
+
+def compared_bytes(record, relocs):
+    """{agree, compared, masked} for one candidate, over the bytes it could compare.
+
+    `align` in match.json is not the number the packet's own sentence claims.
+    alignment() scores a blanked byte as agreeing (`holes[index] or ...`), so a
+    body that is 65% relocation slots reads 86.8% while agreeing on 66.1% of
+    what was actually compared -- and the queue banner says "85%+ aligned" over
+    a pool where 25 of 144 do not reach 85% on the measure the words describe.
+    The inflated figure stays in the packet, named as the sweep's own, because
+    it is what NEAR_ALIGN selected on.
+    """
+    masked = len({index for offset, _, _ in relocs
+                  for index in range(offset, min(offset + 4, record["size"]))})
+    compared = record["size"] - masked
+    agree = None if not compared else \
+        (round(record["align"] * record["size"]) - masked) / compared
+    return {"agree": agree, "compared": compared, "masked": masked}
+
+
 def header_lines(rva, bounds, best):
     """The packet's claims about its own address, extent, and evidence.
 
@@ -682,14 +714,19 @@ def header_lines(rva, bounds, best):
                    " start as unverified",
              False: f"address is NOT a function start ({bounds['start_why']}) — see above"
              }[bounds["start"]]
-    differ = round((1 - best["align"]) * bounds["zh_size"])
+    seen = best["compared"]
+    agreement = ("- no byte of the best candidate lies outside a relocation site, so nothing "
+                 "about it was compared at all" if seen["agree"] is None else
+                 f"- best Zero Hour candidate agrees on {seen['agree'] * 100:.1f}% of the "
+                 f"bytes outside relocation sites: {round(seen['agree'] * seen['compared'])} "
+                 f"of {seen['compared']} compared byte(s) match")
     lines = [f"- {bounds['served']} bytes, unclaimed by any ledger row{extent}",
              f"- {start}",
-             f"- best Zero Hour candidate agrees on {best['align'] * 100:.1f}% of the bytes "
-             "outside relocation sites",
-             f"- that figure hides {best['relocs']} blanked relocation slot(s): {differ} of "
-             f"{bounds['zh_size']} compared byte(s) differ, and which global and which "
-             "callee this body uses was never compared at all"]
+             agreement,
+             f"- the other {seen['masked']} byte(s) of its {bounds['zh_size']}-byte body are "
+             f"relocation slots, blanked before comparing, so which global and which callee "
+             f"this body uses never entered that figure — the sweep's own "
+             f"{best['align'] * 100:.1f}% counts every blanked byte as agreeing"]
     if bounds["extent"] and bounds["extent"] != bounds["zh_size"]:
         lines.append(f"- the candidate body is {bounds['zh_size']} bytes long, so it does not "
                      "have retail's extent here; the bytes quoted below are retail's")
@@ -701,9 +738,10 @@ def header_lines(rva, bounds, best):
 
 def packet_text(rva, bounds, group, body, relocs, names):
     best = group[0]
-    candidates = [f"- `{r['sym']}`\n  in `{r['source']}` ({r['align'] * 100:.1f}% aligned)"
-                  for r in group]
-    tied = sum(1 for r in group if r["align"] == best["align"])
+    candidates = [f"- `{r['sym']}`\n  in `{r['source']}` "
+                  f"({percent(r['compared']['agree'])} of {r['compared']['compared']} "
+                  "compared bytes)" for r in group]
+    tied = sum(1 for r in group if r["compared"]["agree"] == best["compared"]["agree"])
     ambiguous = [] if tied == 1 else [wrap(
         f"{tied} of the candidates below align equally well, so the sweep cannot tell them "
         "apart: masking the relocation sites hides exactly the bytes that differ between "
