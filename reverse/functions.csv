@@ -106903,7 +106903,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00113c30@@YAXXZ,,0x00113C30,27,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00513c30
 ?d_00113d50@@YAXXZ,,0x00113D50,55,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00513d50
 ?d_00113e70@@YAXXZ,,0x00113E70,55,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00513e70
-?d_00114030@@YAXXZ,,0x00114030,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00514030
 ?d_001142a0@@YAXXZ,,0x001142A0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005142a0
 ?d_001146f0@@YAXXZ,,0x001146F0,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005146f0
 ?d_00115ef0@@YAXXZ,,0x00115EF0,18,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00515ef0
@@ -106931,26 +106930,18 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0011cd10@@YAXXZ,,0x0011CD10,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051cd10
 ?d_0011e560@@YAXXZ,,0x0011E560,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e560
 ?d_0011e800@@YAXXZ,,0x0011E800,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e800
-?d_0011e980@@YAXXZ,,0x0011E980,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e980
-?d_0011ea90@@YAXXZ,,0x0011EA90,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051ea90
 ?d_0011eba0@@YAXXZ,,0x0011EBA0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eba0
-?d_0011eca0@@YAXXZ,,0x0011ECA0,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eca0
 ?d_0011eed0@@YAXXZ,,0x0011EED0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eed0
 ?d_0011f0b0@@YAXXZ,,0x0011F0B0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f0b0
-?d_00120560@@YAXXZ,,0x00120560,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00520560
-?d_00120670@@YAXXZ,,0x00120670,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00520670
-?d_00120780@@YAXXZ,,0x00120780,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00520780
 ?d_001210a0@@YAXXZ,,0x001210A0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005210a0
 ?d_00121b70@@YAXXZ,,0x00121B70,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00521b70
 ?d_00121d10@@YAXXZ,,0x00121D10,11,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00521d10
-?d_001221c0@@YAXXZ,,0x001221C0,110,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005221c0
 ?d_00122f40@@YAXXZ,,0x00122F40,50,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00522f40
 ?d_00123810@@YAXXZ,,0x00123810,17,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00523810
 ?d_00123b40@@YAXXZ,,0x00123B40,138,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00523b40
 ?d_00124330@@YAXXZ,,0x00124330,17,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00524330
 ?d_00124510@@YAXXZ,,0x00124510,79,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00524510
 ?d_00124590@@YAXXZ,,0x00124590,17,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00524590
-?d_00124890@@YAXXZ,,0x00124890,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00524890
 ?d_00124b20@@YAXXZ,,0x00124B20,11,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00524b20
 ?d_00124bf0@@YAXXZ,,0x00124BF0,11,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00524bf0
 ?d_00124fc0@@YAXXZ,,0x00124FC0,53,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00524fc0
@@ -107019,7 +107010,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0012ba10@@YAXXZ,,0x0012BA10,83,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0052ba10
 ?d_0012bcc0@@YAXXZ,,0x0012BCC0,169,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0052bcc0
 ?d_0012bdd0@@YAXXZ,,0x0012BDD0,107,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0052bdd0
-?d_0012be60@@YAXXZ,,0x0012BE60,110,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_0052be60
 ?d_00131b20@@YAXXZ,,0x00131B20,58,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00531b20
 ?d_00131b70@@YAXXZ,,0x00131B70,68,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00531b70
 ?d_00132200@@YAXXZ,,0x00132200,257,Code/gen_asm/d_0012bdd0.asm,matched,gen-dump;ghidra=FUN_00532200
@@ -117569,18 +117559,12 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006beb90@@YAXXZ,,0x006BEB90,607,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abeb90
 ?d_006bee90@@YAXXZ,,0x006BEE90,63,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abee90
 ?d_006befc0@@YAXXZ,,0x006BEFC0,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abefc0
-?d_006bf0c0@@YAXXZ,,0x006BF0C0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf0c0
 ?d_006bf360@@YAXXZ,,0x006BF360,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf360
 ?d_006bf3e0@@YAXXZ,,0x006BF3E0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf3e0
 ?d_006bf4f0@@YAXXZ,,0x006BF4F0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf4f0
 ?d_006bf580@@YAXXZ,,0x006BF580,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf580
 ?d_006bf600@@YAXXZ,,0x006BF600,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf600
-?d_006bf820@@YAXXZ,,0x006BF820,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf820
 ?d_006bf930@@YAXXZ,,0x006BF930,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf930
-?d_006bfa40@@YAXXZ,,0x006BFA40,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfa40
-?d_006bfb50@@YAXXZ,,0x006BFB50,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfb50
-?d_006bfc60@@YAXXZ,,0x006BFC60,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfc60
-?d_006bfd70@@YAXXZ,,0x006BFD70,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abfd70
 ?d_006bffe0@@YAXXZ,,0x006BFFE0,1136,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abffe0
 ?d_006c0570@@YAXXZ,,0x006C0570,18,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00ac0570
 ?d_006c0590@@YAXXZ,,0x006C0590,11,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00ac0590
@@ -157957,3 +157941,19 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?friend_newModuleInstance@W3DStreakDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BFCF0,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DStreakDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
 ?friend_newModuleInstance@W3DTreeDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF690,96,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTreeDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
 ?friend_newModuleInstance@W3DTruckDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF470,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDrawFriendNewModuleInstanceThunk.cpp,matched,named from the draw-module registration string
+?friend_newModuleData@AODCrushCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x0011ECA0,107,Code/GameEngine/Source/Common/Thing/AODCrushCollideFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@BloodthirstyUpdate@@SAPAVModuleData@@PAVINI@@@Z,,0x00114030,110,Code/GameEngine/Source/Common/Thing/BloodthirstyUpdateFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@CloudBreakSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120670,110,Code/GameEngine/Source/Common/Thing/CloudBreakSpecialPowerFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@DominateEnemySpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x001221C0,110,Code/GameEngine/Source/Common/Thing/DominateEnemySpecialPowerFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@EvacuateDamage@@SAPAVModuleData@@PAVINI@@@Z,,0x0011EA90,107,Code/GameEngine/Source/Common/Thing/EvacuateDamageFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@HordeMemberCollide@@SAPAVModuleData@@PAVINI@@@Z,,0x00124890,107,Code/GameEngine/Source/Common/Thing/HordeMemberCollideFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@RandomSoundSelectorClientBehavior@@SAPAVModuleData@@PAVINI@@@Z,,0x0012BE60,110,Code/GameEngine/Source/Common/Thing/RandomSoundSelectorClientBehaviorFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@ReflectDamage@@SAPAVModuleData@@PAVINI@@@Z,,0x0011E980,107,Code/GameEngine/Source/Common/Thing/ReflectDamageFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@ScavengerSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120560,110,Code/GameEngine/Source/Common/Thing/ScavengerSpecialPowerFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@TaintSpecialPower@@SAPAVModuleData@@PAVINI@@@Z,,0x00120780,110,Code/GameEngine/Source/Common/Thing/TaintSpecialPowerFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@W3DBuffDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF820,107,Code/GameEngine/Source/Common/Thing/W3DBuffDrawFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@W3DFloorDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFA40,107,Code/GameEngine/Source/Common/Thing/W3DFloorDrawFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@W3DHordeModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFC60,110,Code/GameEngine/Source/Common/Thing/W3DHordeModelDrawFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@W3DLightDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFB50,107,Code/GameEngine/Source/Common/Thing/W3DLightDrawFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@W3DScriptedModelDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF0C0,110,Code/GameEngine/Source/Common/Thing/W3DScriptedModelDrawFriendNewModuleDataThunk.cpp,matched,named from the module registration string
+?friend_newModuleData@W3DStreakDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BFD70,107,Code/GameEngine/Source/Common/Thing/W3DStreakDrawFriendNewModuleDataThunk.cpp,matched,named from the module registration string

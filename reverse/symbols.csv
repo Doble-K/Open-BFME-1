@@ -69577,3 +69577,19 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ??0W3DStreakDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00031804,link thunk to the W3DStreakDraw constructor; named from the draw-module registration that pairs "W3DStreakDraw" with factory 0x006BFCF0
 ??0W3DTreeDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00034C25,link thunk to the W3DTreeDraw constructor; named from the draw-module registration that pairs "W3DTreeDraw" with factory 0x006BF690
 ??0W3DTruckDraw@@QAE@PAVThing@@PBVModuleData@@@Z,0x00036AED,link thunk to the W3DTruckDraw constructor; named from the draw-module registration that pairs "W3DTruckDraw" with factory 0x006BF470
+??0AODCrushCollideModuleData@@QAE@XZ,0x000103E8,module-data constructor called by AODCrushCollide::friend_newModuleData at 0x0011ECA0
+??0BloodthirstyUpdateModuleData@@QAE@XZ,0x0001C684,module-data constructor called by BloodthirstyUpdate::friend_newModuleData at 0x00114030
+??0CloudBreakSpecialPowerModuleData@@QAE@XZ,0x0002DF3D,module-data constructor called by CloudBreakSpecialPower::friend_newModuleData at 0x00120670
+??0DominateEnemySpecialPowerModuleData@@QAE@XZ,0x00018985,module-data constructor called by DominateEnemySpecialPower::friend_newModuleData at 0x001221C0
+??0EvacuateDamageModuleData@@QAE@XZ,0x00018BC9,module-data constructor called by EvacuateDamage::friend_newModuleData at 0x0011EA90
+??0HordeMemberCollideModuleData@@QAE@XZ,0x000317C8,module-data constructor called by HordeMemberCollide::friend_newModuleData at 0x00124890
+??0RandomSoundSelectorClientBehaviorModuleData@@QAE@XZ,0x0001F528,module-data constructor called by RandomSoundSelectorClientBehavior::friend_newModuleData at 0x0012BE60
+??0ReflectDamageModuleData@@QAE@XZ,0x0003E4A5,module-data constructor called by ReflectDamage::friend_newModuleData at 0x0011E980
+??0ScavengerSpecialPowerModuleData@@QAE@XZ,0x00019461,module-data constructor called by ScavengerSpecialPower::friend_newModuleData at 0x00120560
+??0TaintSpecialPowerModuleData@@QAE@XZ,0x00021012,module-data constructor called by TaintSpecialPower::friend_newModuleData at 0x00120780
+??0W3DBuffDrawModuleData@@QAE@XZ,0x0001F7FD,module-data constructor called by W3DBuffDraw::friend_newModuleData at 0x006BF820
+??0W3DFloorDrawModuleData@@QAE@XZ,0x0003B0A7,module-data constructor called by W3DFloorDraw::friend_newModuleData at 0x006BFA40
+??0W3DHordeModelDrawModuleData@@QAE@XZ,0x00037187,module-data constructor called by W3DHordeModelDraw::friend_newModuleData at 0x006BFC60
+??0W3DLightDrawModuleData@@QAE@XZ,0x00028D9E,module-data constructor called by W3DLightDraw::friend_newModuleData at 0x006BFB50
+??0W3DScriptedModelDrawModuleData@@QAE@XZ,0x0000289C,module-data constructor called by W3DScriptedModelDraw::friend_newModuleData at 0x006BF0C0
+??0W3DStreakDrawModuleData@@QAE@XZ,0x000302EC,module-data constructor called by W3DStreakDraw::friend_newModuleData at 0x006BFD70
