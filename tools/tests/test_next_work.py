@@ -32,6 +32,20 @@ def get_selection_json(extra=(), env=None):
     return json.loads(proc.stdout)
 
 
+def sourced_rows():
+    """Live ledger rows a work finder must respect: every one but the dumps.
+
+    A gen-dump row pins retail's bytes under a synthetic name and holds no
+    identity, so the ground under it is exactly what the queue should be serving.
+    Asserting over the raw ledger here would demand that bug back — and it is the
+    canonical predicate that decides, never the source path.
+    """
+    import build
+
+    with (ROOT / "reverse" / "functions.csv").open(newline="") as fh:
+        return [row for row in csv.DictReader(fh) if not build.is_scaffold_row(row)]
+
+
 # Six tests below take `ranked`/`data`, but the fixtures were never defined, so
 # pytest errored them out at setup and they have not run. Each ranked run is a
 # subprocess that re-reads the whole ledger, so it is built once per module.
@@ -155,13 +169,12 @@ def test_anchored_candidates_are_real_and_unclaimed(data):
     the fleet lands rows — the tier has to re-check every candidate against the
     live ledger rather than trusting the cache."""
     ranges, claimed_rvas = [], set()
-    with (ROOT / "reverse" / "functions.csv").open(newline="") as fh:
-        for row in csv.DictReader(fh):
-            if row["target_rva"]:
-                start = int(row["target_rva"], 16)
-                claimed_rvas.add(start)
-                if row["target_size"]:
-                    ranges.append((start, start + int(row["target_size"])))
+    for row in sourced_rows():
+        if row["target_rva"]:
+            start = int(row["target_rva"], 16)
+            claimed_rvas.add(start)
+            if row["target_size"]:
+                ranges.append((start, start + int(row["target_size"])))
     for candidate in data["anchored"]:
         rva = int(candidate["target_rva"], 16)
         assert rva not in claimed_rvas, candidate
@@ -209,11 +222,10 @@ def test_ranked_json_shape(data):
 
 def test_ghidra_candidates_validated(data):
     claimed_names, claimed_rvas = set(), set()
-    with (ROOT / "reverse" / "functions.csv").open(newline="") as fh:
-        for row in csv.DictReader(fh):
-            claimed_names.add(row["name"])
-            if row["target_rva"]:
-                claimed_rvas.add(int(row["target_rva"], 16))
+    for row in sourced_rows():
+        claimed_names.add(row["name"])
+        if row["target_rva"]:
+            claimed_rvas.add(int(row["target_rva"], 16))
     for candidate in data["ghidra_absent"]:
         assert candidate["function"] not in claimed_names, candidate
         assert int(candidate["target_rva"], 16) not in claimed_rvas, candidate
@@ -226,11 +238,10 @@ def test_ghidra_candidates_validated(data):
 
 def test_structural_candidates_do_not_start_inside_claimed_ranges(data):
     ranges = []
-    with (ROOT / "reverse" / "functions.csv").open(newline="") as fh:
-        for row in csv.DictReader(fh):
-            if row["target_rva"] and row["target_size"]:
-                start = int(row["target_rva"], 16)
-                ranges.append((start, start + int(row["target_size"]), row["name"]))
+    for row in sourced_rows():
+        if row["target_rva"] and row["target_size"]:
+            start = int(row["target_rva"], 16)
+            ranges.append((start, start + int(row["target_size"]), row["name"]))
     for candidate in data["structural"]:
         rva = int(candidate["candidate_rva"], 16)
         overlaps = [name for start, end, name in ranges if start < rva < end]

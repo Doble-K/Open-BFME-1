@@ -80,7 +80,9 @@ GHIDRA = ROOT / "reverse" / "ghidra_functions.csv"
 BLACKLIST = ROOT / "reverse" / "ghidra_artifacts_blacklist.txt"
 GEN_DIR = ROOT / "Code" / "gen_small"
 PENDING_DIR = ROOT / "build" / "gen_small"
-# Byte dumps of retail, not source. See load_claims(skip_dumps=).
+# WHERE a dump was written, never WHETHER a row is one -- 349 gen-dump rows live
+# outside this directory. build.is_scaffold_row answers "is this a dump?"; this
+# only tells wave_accounting's genasm lane from its naked one.
 DUMP_DIR_PREFIX = "Code/gen_asm/"
 # The only record of a functions.csv deletion; see retract_dump_rows().
 DELETED = ROOT / "reverse" / "deleted_rows.csv"
@@ -391,16 +393,14 @@ def render_batch(picked, command, header):
 def load_claims(skip_dumps=False):
     """{rva: source}, {name: rva} and an overlap index over every ledger row.
 
-    skip_dumps drops Code/gen_asm/ rows. A dump is retail's own bytes under a
+    skip_dumps drops gen-dump rows. A dump is retail's own bytes under a
     synthetic name: it fixes a boundary and holds no source, so for the census
     it is a body still to be cracked, not a claim. Every other caller wants the
     dump counted, or it would generate a second body over the same range.
     """
     by_rva, by_name, ranges = {}, {}, []
-    for row in B.load_all_function_rows():
+    for row in B.load_claim_rows(counting_dumps=not skip_dumps, matched_only=False):
         rva = int(row["target_rva"], 16)
-        if skip_dumps and row["source"].startswith(DUMP_DIR_PREFIX):
-            continue
         by_rva[rva] = row["source"]
         by_name[row["name"]] = rva
         ranges.append({"rva": rva, "size": int(row["target_size"]),
@@ -4035,11 +4035,12 @@ def validate_rows(rows, ledger_rows):
     anything that would double-claim. Mirrors add_match.py's per-row checks, run once
     over the whole batch instead of once per row.
 
-    A Code/gen_asm/ row over the EXACT same range is not a double claim: a dump is
+    A gen-dump row over the EXACT same range is not a double claim: a dump is
     retail's own bytes under a synthetic name, holding a boundary until a real body
     arrives. That body supersedes it, and land_batch retracts and tombstones the dump
     in the same transaction. Any other extent means the boundary itself is in dispute
-    — a real conflict, which still raises.
+    — a real conflict, which still raises. Read the note, not the directory: 349
+    dumps live in Code/gen_small/, and the path check refused every one of them.
     """
     by_name = {}
     for row in ledger_rows:
@@ -4067,7 +4068,7 @@ def validate_rows(rows, ledger_rows):
         owner = by_rva.get(rva)
         superseded = None
         if owner is not None:
-            if owner["source"].startswith(DUMP_DIR_PREFIX) and owner["size"] == size:
+            if B.is_scaffold_row(owner) and owner["size"] == size:
                 superseded = owner
             else:
                 raise FormatError(f"{name} [0x{rva:08X}, 0x{rva + size:08X}): target_rva is "
@@ -4086,7 +4087,7 @@ def validate_rows(rows, ledger_rows):
 
 
 def retract_dump_rows(functions_raw, to_retract):
-    """Drop each superseded Code/gen_asm/ row and tombstone it, in one rewrite.
+    """Drop each superseded gen-dump row and tombstone it, in one rewrite.
 
     The tombstone is not bookkeeping: functions.csv merges with git's union
     driver, which cannot express a deletion, so without a row in

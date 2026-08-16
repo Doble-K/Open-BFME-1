@@ -131,7 +131,13 @@ def main():
     text_low, text_high = text["rva"], text["rva"] + text["size"]
 
     inventory = load_inventory()
-    rows = build.load_function_rows()
+    # The over-claim answer, deliberately, and the one place in the tree that is
+    # true: this tool only ever asks "does anything already record a boundary
+    # here?", both to skip known starts and to bound derive_size below. A
+    # gen-dump row records exactly that and nothing else, so it counts. Asking
+    # the work-finder question instead proposes 522 inventory rows (31,769 B)
+    # that the dumps already pin, which test_inventory.py rejects outright.
+    rows = build.load_claim_rows(counting_dumps=True, matched_only=True)
     claimed = {int(row["target_rva"], 16) for row in rows}
     in_claimed_body = interval_lookup(
         (int(row["target_rva"], 16),

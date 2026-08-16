@@ -32,6 +32,9 @@ def _load(name):
 gen_small = _load("gen_small")
 
 DUMP = "?d_00abcd00@@YAXXZ,,0x00ABCD00,32,Code/gen_asm/d_00abcd00.asm,matched,gen-dump;ghidra=FUN_00eacd00"
+# The gen-dump note is what makes a row a dump, not the directory: 349 of them
+# live in Code/gen_small/dumps_000.cpp.
+GEN_SMALL_DUMP = DUMP.replace("Code/gen_asm/d_00abcd00.asm", "Code/gen_small/dumps_000.cpp")
 REAL = "?realBody@Thing@@QAEXXZ,,0x00ABCD00,32,Code/GameEngine/Source/Common/Thing.cpp,matched,"
 
 
@@ -101,12 +104,15 @@ def test_partial_overlap_with_a_dump_is_a_loud_conflict(tmp_path, monkeypatch):
     assert led.snapshot() == before
 
 
-@pytest.mark.parametrize("source", ["Code/GameEngine/Source/Common/Other.cpp",
-                                    "Code/gen_small/thunks_037.cpp"])
-def test_only_a_dump_may_be_superseded(tmp_path, monkeypatch, source):
-    """Real sources and gen_small placeholders both stay untouchable: only a
-    gen_asm dump is bytes-without-identity."""
-    incumbent = DUMP.replace("Code/gen_asm/d_00abcd00.asm", source)
+@pytest.mark.parametrize("source,notes", [
+    ("Code/GameEngine/Source/Common/Other.cpp", ""),
+    ("Code/gen_small/thunks_037.cpp", "gen-thunk;target=FUN_00eacd00"),
+])
+def test_only_a_dump_may_be_superseded(tmp_path, monkeypatch, source, notes):
+    """Real sources and gen_small thunk placeholders both stay untouchable: only
+    a row whose notes say gen-dump is bytes-without-identity."""
+    incumbent = DUMP.replace("Code/gen_asm/d_00abcd00.asm", source).replace(
+        "gen-dump;ghidra=FUN_00eacd00", notes)
     led = Ledgers(tmp_path, monkeypatch, ledger_rows=[incumbent])
     before = led.snapshot()
 
@@ -114,6 +120,21 @@ def test_only_a_dump_may_be_superseded(tmp_path, monkeypatch, source):
         gen_small.land_batch([REAL], [], ["Code/GameEngine/Source/Common/Thing.cpp"])
 
     assert led.snapshot() == before
+
+
+def test_a_dump_outside_gen_asm_is_superseded_the_same_way(tmp_path, monkeypatch):
+    """The 349-row case the old path check refused: notes say dump, path does not.
+
+    Keying the supersede on Code/gen_asm/ left every one of those addresses
+    unconvertible — the real body could not take a range no real body owned.
+    """
+    led = Ledgers(tmp_path, monkeypatch, ledger_rows=[GEN_SMALL_DUMP])
+
+    gen_small.land_batch([REAL], [], ["Code/GameEngine/Source/Common/Thing.cpp"])
+
+    assert "?d_00abcd00@@YAXXZ" not in led.rows, "the dump row must be retracted"
+    assert REAL in led.rows
+    assert "?d_00abcd00@@YAXXZ,0x00ABCD00," in led.deleted.read_text(encoding="utf-8")
 
 
 def test_failed_gate_restores_the_dump_row_and_the_tombstone(tmp_path, monkeypatch):

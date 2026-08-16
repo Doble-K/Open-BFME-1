@@ -45,7 +45,6 @@ ROOT = Path(__file__).resolve().parents[1]
 # below spends them.
 DRIFT = ROOT / "reverse" / "zh_sweep" / "drift_report.csv"
 PACKETS = ROOT / "reverse" / "zh_sweep" / "packets"
-FUNCTIONS = ROOT / "reverse" / "functions.csv"
 GHIDRA_FUNCTIONS = ROOT / "reverse" / "ghidra_functions.csv"
 STRING_XREFS = ROOT / "reverse" / "string_xrefs.tsv"
 ANCHORED = ROOT / "reverse" / "anchored_candidates.csv"
@@ -103,12 +102,11 @@ def to_int(value, base, what):
 
 
 def drift_quick_wins():
+    import build
     _, rows = read_csv(DRIFT, "python3 tools/drift_classify.py")
-    claimed = set()
-    with FUNCTIONS.open(newline="") as fh:
-        for row in csv.DictReader(fh):
-            if row["target_rva"]:
-                claimed.add(int(row["target_rva"], 16))  # check_csv validated these
+    claimed = {int(row["target_rva"], 16)  # check_csv validated these
+               for row in build.load_claim_rows(counting_dumps=False, matched_only=False)
+               if row["target_rva"]}
     last = {}
     for row in rows:
         if row["class"] in ("immediate-only", "imm+reg"):
@@ -988,6 +986,7 @@ def print_ranked(args, ledger, drifts, structural, ghidra_meta, ghidra_absent,
 
 
 def main():
+    import build
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--limit", type=int, default=10,
@@ -1011,15 +1010,18 @@ def main():
     ledger = check_ledger()  # exit 2 happens in there; nothing below matters if red
     drifts = (drift_quick_wins()
               if args.tier not in ("named", "structural", "ghidra") else [])
+    # Every tier below asks "is this address still open work?", and a gen-dump
+    # row answers yes: it pins retail's bytes and holds no source. That rule
+    # lives in build.load_claim_rows and nowhere else -- deriving it here a
+    # second time is how the queue went blind across the whole dump pass.
     claimed, claimed_names, claimed_ranges = set(), set(), []
-    with FUNCTIONS.open(newline="") as fh:
-        for row in csv.DictReader(fh):
-            if row["target_rva"]:
-                start = int(row["target_rva"], 16)
-                claimed.add(start)
-                claimed_names.add(row["name"])
-                if row.get("target_size"):
-                    claimed_ranges.append((start, start + int(row["target_size"])))
+    for row in build.load_claim_rows(counting_dumps=False, matched_only=False):
+        if row["target_rva"]:
+            start = int(row["target_rva"], 16)
+            claimed.add(start)
+            claimed_names.add(row["name"])
+            if row.get("target_size"):
+                claimed_ranges.append((start, start + int(row["target_size"])))
     structural = (structural_candidates(claimed, claimed_names, claimed_ranges,
                                         big=args.big)
                   if args.tier not in ("named", "harvest", "ghidra", "anchored")

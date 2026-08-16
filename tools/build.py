@@ -725,6 +725,30 @@ def is_scaffold_row(row):
     return row.get("notes", "").lstrip().startswith("gen-dump")
 
 
+def load_claim_rows(*, counting_dumps, matched_only):
+    """Ledger rows for a claim question; `counting_dumps` says WHICH question.
+
+    Two questions get conflated, and the conflation is a bug that has landed
+    four separate times. "Is this ground spoken for?" is an over-claim guard and
+    a dump does count: counting_dumps=True. "Do we have source for this?" is a
+    work finder and a dump does not: counting_dumps=False, which is
+    is_scaffold_row's rule and the only correct one. Answering by source path
+    instead hides the 349 gen-dump rows that live outside Code/gen_asm/.
+
+    matched_only mirrors check_csv's overlap rule: an unmatched row is a
+    hypothesis about an address, not proof the ground is spoken for.
+
+    Neither argument is defaulted, and both are keyword-only, because a default
+    is exactly how the wrong answer reached tool number four in silence.
+    """
+    rows = load_all_function_rows()
+    if matched_only:
+        rows = [row for row in rows if row["status"] == "matched"]
+    if not counting_dumps:
+        rows = [row for row in rows if not is_scaffold_row(row)]
+    return rows
+
+
 def follow_thunk(data, sections, rva, low, high):
     """The body an incremental-link thunk stands for, or rva when it is not one.
 

@@ -220,17 +220,16 @@ def merged_claims():
     Matched rows only, matching check_csv's overlap rule: an unmatched row is a
     hypothesis about an address, not proof that the ground is spoken for.
 
-    A Code/gen_asm/ row is not a claim for this purpose. It holds retail's own
-    bytes under a synthetic name -- a boundary and no source -- which is exactly
-    the code a Zero Hour packet is worth writing for. Counting dumps as claims
-    made do_packets blind to 112 of its own best leads and, because it wipes the
+    A gen-dump row is not a claim for this purpose. It holds retail's own bytes
+    under a synthetic name -- a boundary and no source -- which is exactly the
+    code a Zero Hour packet is worth writing for. Counting dumps as claims made
+    do_packets blind to 112 of its own best leads and, because it wipes the
     directory before rewriting, silently deleted the packets already written for
-    them.
+    them. build.load_claim_rows owns that rule: filtering on the Code/gen_asm/
+    path instead, as this did, still hid the 349 dumps outside that directory.
     """
     spans = []
-    for row in build.load_function_rows():
-        if row["source"].startswith("Code/gen_asm/"):
-            continue
+    for row in build.load_claim_rows(counting_dumps=False, matched_only=True):
         start = int(row["target_rva"], 16)
         spans.append((start, start + int(row["target_size"])))
     spans.sort()
