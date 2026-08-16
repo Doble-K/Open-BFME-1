@@ -106931,8 +106931,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_005bcbf0@@YAXXZ,,0x005BCBF0,340,Code/gen_asm/d_005b3e30.asm,matched,gen-dump;ghidra=FUN_009bcbf0
 ?d_005bcda0@@YAXXZ,,0x005BCDA0,297,Code/gen_asm/d_005b3e30.asm,matched,gen-dump;ghidra=FUN_009bcda0
 ?d_005bd010@@YAXXZ,,0x005BD010,31,Code/gen_asm/d_005b3e30.asm,matched,gen-dump;ghidra=FUN_009bd010
-?d_005bd050@@YAXXZ,,0x005BD050,47,Code/gen_asm/d_005b3e30.asm,matched,gen-dump;ghidra=FUN_009bd050
-?d_005bd1c0@@YAXXZ,,0x005BD1C0,104,Code/gen_asm/d_005b3e30.asm,matched,gen-dump;ghidra=FUN_009bd1c0
 ?d_005bd380@@YAXXZ,,0x005BD380,49,Code/gen_asm/d_005b3e30.asm,matched,gen-dump;ghidra=FUN_009bd380
 ?d_005bdc70@@YAXXZ,,0x005BDC70,115,Code/gen_asm/d_005b3e30.asm,matched,gen-dump;ghidra=FUN_009bdc70
 ?d_005bdd90@@YAXXZ,,0x005BDD90,8,Code/gen_asm/d_005b3e30.asm,matched,gen-dump;ghidra=FUN_009bdd90
@@ -160101,3 +160099,5 @@ _luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,matched,
 ?File_Open_Write@Targa@@AAE_NPBD@Z,,0x009E0590,50,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/TARGA.CPP,matched,
 ?EncodeImage@Targa@@AAEJXZ,,0x009E0A30,441,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WWLib/TARGA.CPP,matched,
 ?RequestAccept@LANAPI@@UAEXXZ,,0x00686110,135,Code/GameEngine/Source/GameNetwork/LANAPI_RequestAccept_Thunk.cpp,matched,
+??0DebugDisplay@@QAE@XZ,,0x005BD1C0,104,Code/GameEngine/Source/GameClient/System/DebugDisplayCtorThunk.cpp,matched,
+?reset@DebugDisplay@@UAEXXZ,,0x005BD050,47,Code/GameEngine/Source/GameClient/System/DebugDisplayCtorThunk.cpp,matched,
