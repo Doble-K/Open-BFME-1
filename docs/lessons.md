@@ -434,3 +434,37 @@ so a body under the wrong name matches at every reference site. And because
 `.githooks/pre-commit` forces the full gate on any staged `*.h` or
 `reference/shims/*`, a red DIR32 blocks **every** header and shim change in the
 tree, not just the guilty file -- fixing one of these rows unblocks a category.
+
+
+## A `pinharvest` row in symbols.csv is a candidate, not an address
+
+`reverse/symbols.csv` is additive by design: each pinned address becomes one more
+candidate for the resolver, which tries them in order and keeps the first that
+reproduces retail's bytes. That is what makes incremental-link thunks work, and
+it is also why a pin cannot be read as *the* address of anything.
+
+Measured on 2026-08-16: of the 1,361 pins whose notes say `pinharvest` and whose
+name also has a matched body in `functions.csv`, **1,193 do not reach that body**
+— they resolve through their thunk to some entirely different function. Most are
+STL template instantiations, where one mangled name genuinely fits code at
+dozens of addresses and the harvest picked all of them.
+
+That is harmless for byte-matching, because a wrong candidate simply fails to
+reproduce the target and the next one is tried. It is not harmless for
+*reasoning*. `BoneFXDamage::friend_newModuleInstance` at `0x0011E800` is the
+case that costs an afternoon:
+
+- The ModuleFactory registration block pairs the literal `"BoneFXDamage"` with
+  `0x0011E800`, which is byte-true evidence.
+- The name currently sits on `0x0011E2D0` as one of three aliases, and the same
+  block registers `0x0011E2D0` as `LockWeaponCreate`.
+- The factory calls its constructor through ILT `0x00005B19`, which reaches
+  `0x00250740`.
+- `functions.csv` puts `??0BoneFXDamage@@…` at `0x0024FC20`.
+- `symbols.csv` pins six more thunks for that same constructor, one of which
+  reaches `0x0024F860`.
+
+Three mutually inconsistent answers for one constructor, and the factory cannot
+land until one of them is proven. **Before spending a name on the strength of a
+callee, resolve the thunk and check it against the ledger's own body** — and if
+they disagree, say so rather than picking the convenient one.
