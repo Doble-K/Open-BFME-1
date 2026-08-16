@@ -703,3 +703,42 @@ is only as strong as the claim that the group is closed, and the slot that
 looked like their `Clone` holds a 44-byte dump when every other `Grid*` `Clone`
 in the family is 85 — so the window was misaligned and the "obvious" reading was
 wrong. Anything whose only argument is *what else could it be* is a guess.
+
+## The unwind-record transposition: a two-byte wall this toolchain cannot cross
+
+Two unrelated functions, in unrelated subsystems, converted hours apart, came
+out the correct size with every offset right and stopped on the identical
+difference:
+
+```
+retail   lea eax,[esp+0x1c]   mov [esp+0x18],esp   mov ecx,esp
+ours     lea eax,[esp+0x1c]   mov ecx,esp          mov [esp+0x18],esp
+```
+
+`mov [esp+N], esp` is MSVC recording the address of a **by-value class argument**
+so the unwind funclet can destroy it. Retail writes that record *before* setting
+up the constructor's `this`; this toolchain writes it *after*. Same two
+instructions, same slots, opposite order.
+
+- `?parseOCL@@YAXPAVINI@@PAX1PBX@Z` at `0x00201770` — 116 of 118 bytes.
+- `?setPlayerName@EstablishConnectionsMenu@@QAEXHVUnicodeString@@@Z` at
+  `0x004B2D10` — 135 of 137.
+
+Between them it survived `/G5`, `/G6`, `/O1`, `/O2 /Oi`, `/Ox`, `-Os`, `-Ot`,
+`-Oy-`, `-Gy`, `/EHa`, `/EHs`, `/EHac`, an inline versus declared-only
+destructor, and replacing the implicit conversion with an explicit temporary.
+
+**Recognise it and stop.** The signature is: correct compiled size, every
+member offset and vtable slot already proven right, and the only diff a pair of
+adjacent `esp` moves around a class argument passed by value. This is a compiler
+*build* difference, not a port error — there is one cl.exe in
+`build/toolchains/vs2003` and no second one to try. Any body that passes a class
+by value to a function, where that class has a non-trivial destructor, is
+currently two bytes out of reach.
+
+Log it with everything the attempt did prove. `setPlayerName` established that
+`m_playerNameControlNames` is a file-scope array and not a member — retail
+indexes it as `mov ecx,[eax*4 + 0x012B66F8]` and never touches `this` — and that
+`winGetWindowFromId` is `GameWindowManager` vtable slot `+0xDC`. Both of those
+had to be right before the transposition was the only thing left standing, and
+both are worth as much as the landing would have been.
