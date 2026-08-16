@@ -142,7 +142,9 @@ typedef struct GHIConnection
 	GHIPostingState postingState; // If posting, the state of the upload.
 	
 	gsi_time maxRecvTime;         // Max time spent receiving per call to "Think" - Prevents blocking on ultrafast connections
-	
+
+	char * proxyAddress;          // BFME addition: per-connection proxy override. If set (or ghiProxyAddress is
+	                              // set), requests send the full URL in the request line instead of just the path.
 } GHIConnection;
 
 // Create a new connection object.

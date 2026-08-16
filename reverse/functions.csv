@@ -120527,7 +120527,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0085b090@@YAXXZ,,0x0085B090,904,Code/gen_asm/d_00858250.asm,matched,gen-dump;ghidra=FUN_00c5b090
 ?d_0085b420@@YAXXZ,,0x0085B420,578,Code/gen_asm/d_00858250.asm,matched,gen-dump;ghidra=FUN_00c5b420
 ?d_0085b670@@YAXXZ,,0x0085B670,36,Code/gen_asm/d_00858250.asm,matched,gen-dump;ghidra=FUN_00c5b670
-?d_0085c010@@YAXXZ,,0x0085C010,66,Code/gen_asm/d_00858250.asm,matched,gen-dump;ghidra=FUN_00c5c010
 ?d_0085df30@@YAXXZ,,0x0085DF30,41,Code/gen_asm/d_00858250.asm,matched,gen-dump;ghidra=FUN_00c5df30
 ?d_0085df60@@YAXXZ,,0x0085DF60,37,Code/gen_asm/d_00858250.asm,matched,gen-dump;ghidra=FUN_00c5df60
 ?d_0085df90@@YAXXZ,,0x0085DF90,69,Code/gen_asm/d_00858250.asm,matched,gen-dump;ghidra=FUN_00c5df90
@@ -120890,12 +120889,10 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00879f60@@YAXXZ,,0x00879F60,736,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c79f60
 ?d_0087a300@@YAXXZ,,0x0087A300,170,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7a300
 ?d_0087a540@@YAXXZ,,0x0087A540,244,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7a540
-?d_0087a640@@YAXXZ,,0x0087A640,52,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7a640
 ?d_0087a680@@YAXXZ,,0x0087A680,62,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7a680
 ?d_0087ac40@@YAXXZ,,0x0087AC40,33,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7ac40
 ?d_0087af30@@YAXXZ,,0x0087AF30,215,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7af30
 ?d_0087b0d0@@YAXXZ,,0x0087B0D0,172,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7b0d0
-?d_0087b180@@YAXXZ,,0x0087B180,262,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7b180
 ?d_0087b320@@YAXXZ,,0x0087B320,162,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7b320
 ?d_0087b450@@YAXXZ,,0x0087B450,348,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7b450
 ?d_0087b5b0@@YAXXZ,,0x0087B5B0,89,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7b5b0
@@ -120905,8 +120902,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0087bb70@@YAXXZ,,0x0087BB70,95,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7bb70
 ?d_0087bbd0@@YAXXZ,,0x0087BBD0,90,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7bbd0
 ?d_0087c530@@YAXXZ,,0x0087C530,220,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c530
-?d_0087c670@@YAXXZ,,0x0087C670,40,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c670
-?d_0087c710@@YAXXZ,,0x0087C710,190,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c710
 ?d_0087c8a0@@YAXXZ,,0x0087C8A0,85,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c8a0
 ?d_0087c900@@YAXXZ,,0x0087C900,77,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7c900
 ?d_0087cdb0@@YAXXZ,,0x0087CDB0,108,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7cdb0
@@ -121808,12 +121803,8 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_008ea5b0@@YAXXZ,,0x008EA5B0,65,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cea5b0
 ?d_008ecb40@@YAXXZ,,0x008ECB40,181,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cecb40
 ?d_008ecc00@@YAXXZ,,0x008ECC00,189,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cecc00
-?d_008ed910@@YAXXZ,,0x008ED910,98,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00ced910
 ?d_008ef8e0@@YAXXZ,,0x008EF8E0,239,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cef8e0
 ?d_008f1090@@YAXXZ,,0x008F1090,81,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf1090
-?d_008f2950@@YAXXZ,,0x008F2950,100,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf2950
-?d_008f2b40@@YAXXZ,,0x008F2B40,162,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf2b40
-?d_008f2bf0@@YAXXZ,,0x008F2BF0,114,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf2bf0
 ?d_008f3460@@YAXXZ,,0x008F3460,325,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf3460
 ?d_008f3ef0@@YAXXZ,,0x008F3EF0,98,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf3ef0
 ?d_008f4430@@YAXXZ,,0x008F4430,854,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf4430
@@ -121821,7 +121812,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_008f4d40@@YAXXZ,,0x008F4D40,420,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf4d40
 ?d_008f6000@@YAXXZ,,0x008F6000,483,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf6000
 ?d_008f65c0@@YAXXZ,,0x008F65C0,182,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf65c0
-?d_008f6680@@YAXXZ,,0x008F6680,107,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf6680
 ?d_008f6b40@@YAXXZ,,0x008F6B40,647,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf6b40
 ?d_008f6e10@@YAXXZ,,0x008F6E10,224,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf6e10
 ?d_008f7480@@YAXXZ,,0x008F7480,44,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf7480
@@ -157959,3 +157949,13 @@ _luaV_strconc,,0x009979D0,401,Code/Libraries/Source/Lua/lvm.c,matched,
 ?friend_newModuleData@W3DSupplyDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF3E0,110,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDrawFriendNewModuleDataThunk.cpp,matched,repointed; registration string and allocation size agree
 ?friend_newModuleData@W3DTruckDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF4F0,110,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTruckDrawFriendNewModuleDataThunk.cpp,matched,repointed; registration string and allocation size agree
 ?ReAcquireResources@W3DShadowManager@@QAE_NXZ,,0x007B7620,70,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DShadowManagerReAcquireThunk.cpp,matched,
+_ghttpStartup,,0x0087A640,52,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpMain.c,matched,vendored=gamespy-2004
+_ghiFreeConnection,,0x0087B180,262,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpConnection.c,matched,ghttp remainder batch: retail frees an extra per-connection proxy override char* (proxyAddress) appended at struct offset 0x12c past the vendored SDK's maxRecvTime; ghttpProcess.c's raw-offset hack promoted to a named field
+_qr2_internal_key_list_append,,0x0085C010,66,Code/GameEngine/Source/GameNetwork/GameSpy/qr2/qr2regkeys.c,matched,vendored=gamespy-2004
+_ghiDoReceive,,0x0087C710,190,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpCommon.c,matched,ghttp remainder batch: register-alloc-only diff closed by hoisting a shared trueFlag local before both GHTTPTrue stores and writing connection->completed before connection->socketError; matches retail scheduling (ecx reused for both bool stores instead of eax)
+_gpiCheckConnect,,0x008ED910,98,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiConnect.c,matched,vendored=gamespy-2004
+_gpiSetPeerSocketSizes,,0x008F6680,107,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiPeer.c,matched,vendored=gamespy-2004
+_gpiAppendCharToBuffer,,0x008F2950,100,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiBuffer.c,matched,vendored=gamespy-2004
+_gpiSendData,,0x008F2B40,162,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiBuffer.c,matched,vendored=gamespy-2004
+_gpiSendOrBufferChar,,0x008F2BF0,114,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiBuffer.c,matched,vendored=gamespy-2004
+_ghiCreateLock,,0x0087C670,40,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpCommon.c,matched,vendored=gamespy-2004

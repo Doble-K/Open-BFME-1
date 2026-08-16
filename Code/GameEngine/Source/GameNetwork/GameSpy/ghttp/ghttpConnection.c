@@ -207,6 +207,7 @@ GHTTPBool ghiFreeConnection
 	gsifree(connection->requestPath);
 	gsifree(connection->sendHeaders);
 	gsifree(connection->redirectURL);
+	gsifree(connection->proxyAddress);
 #ifndef NOFILE
 	if(connection->saveFile)
 		fclose(connection->saveFile);

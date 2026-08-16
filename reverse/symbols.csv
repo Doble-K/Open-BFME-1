@@ -70885,3 +70885,7 @@ _listen@8,0x0081BE68,additive pin for _gpiStartConnect call resolution
 ?ReAcquireResources@Gen_01306DF0@@QAE_NXZ,0x00026D1E,link thunk to 0x007AE890; the third manager, whose global 0x01306DF0 and body are both still anonymous
 ?ReAcquireResources@Gen_01306F18@@QAE_NXZ,0x000443A0,link thunk to 0x007B9810; the first manager W3DShadowManager::ReAcquireResources asks, whose global is 0x01306F18
 ?ReAcquireResources@Gen_01307178@@QAE_NXZ,0x0000F9B6,link thunk to 0x007C1180; the second manager, whose global is 0x01307178
+_ghiCreateLock,0x0087C670,additive pin for _ghttpStartup call resolution
+_ghiPostCleanupState,0x0087D200,decode_calls pin for _ghiFreeConnection callee (ghttpPost.c cleanup helper)
+_ghiFreePost,0x0087CAC0,decode_calls pin for _ghiFreeConnection callee (ghttpPost.c post free)
+_gpiCheckSocketConnect,0x008ECB40,additive pin for _gpiCheckConnect call resolution
