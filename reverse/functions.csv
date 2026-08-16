@@ -106391,7 +106391,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000debe0@@YAXXZ,,0x000DEBE0,313,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004debe0
 ?d_000dedd0@@YAXXZ,,0x000DEDD0,142,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004dedd0
 ?d_000deec0@@YAXXZ,,0x000DEEC0,578,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004deec0
-?d_000df240@@YAXXZ,,0x000DF240,25,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df240
 ?d_000df330@@YAXXZ,,0x000DF330,32,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df330
 ?d_000df440@@YAXXZ,,0x000DF440,71,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df440
 ?d_000df4a0@@YAXXZ,,0x000DF4A0,89,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df4a0
@@ -157966,3 +157965,4 @@ _ghiSendBuffer,,0x0087DA50,135,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/
 ?onExit@AIDockAdvancePositionState@@UAEXW4StateExitType@@@Z,,0x0014EA50,106,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,adjacent to AIDockAdvancePositionState::onEnter at 0x0014E980
 ?Set_Coordinate_Range@Render2DClass@@QAEXABVRectClass@@@Z,,0x00933A50,157,Code/Libraries/Source/WWVegas/WW3D2/Render2DSetCoordinateRangeThunk.cpp,matched,
 ?init@PlayerList@@UAEXXZ,,0x000DFA80,128,Code/GameEngine/Source/Common/RTS/PlayerListSetLocalPlayer.cpp,matched,
+?getNthPlayer@PlayerList@@QAEPAVPlayer@@H@Z,,0x000DF240,25,Code/GameEngine/Source/Common/RTS/PlayerListSetLocalPlayer.cpp,matched,

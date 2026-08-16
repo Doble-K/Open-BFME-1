@@ -11848,3 +11848,4 @@ uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to Worker
 ?d_0014ea50@@YAXXZ,0x0014EA50,gen-dump placeholder superseded by AIDockAdvancePositionState::onExit converted to C++
 ?d_00933a50@@YAXXZ,0x00933A50,gen-dump placeholder superseded by Render2DClass::Set_Coordinate_Range converted to C++
 ?d_000dfa80@@YAXXZ,0x000DFA80,gen-dump placeholder superseded by PlayerList::init converted to C++
+?d_000df240@@YAXXZ,0x000DF240,gen-dump placeholder superseded by PlayerList::getNthPlayer converted to C++

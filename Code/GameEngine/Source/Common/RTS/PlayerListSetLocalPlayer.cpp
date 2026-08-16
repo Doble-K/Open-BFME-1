@@ -60,6 +60,8 @@ public:
 
 class PlayerTemplate;
 
+typedef unsigned short PlayerMaskType;
+
 class Player
 {
 public:
@@ -100,6 +102,7 @@ class PlayerList : public SubsystemInterface, public Snapshot
 public:
 	virtual void init( void );
 	void setLocalPlayer( Player *player );
+	Player *getNthPlayer( Int i );
 	Player *getNeutralPlayer( void ) { return m_players[0]; }
 
 private:
@@ -149,3 +152,20 @@ void PlayerList::init()
 	setLocalPlayer(m_players[0]);
 
 }
+
+//-----------------------------------------------------------------------------
+// ?getNthPlayer@PlayerList@@QAEPAVPlayer@@H@Z
+//
+// The bound is 32, and that one byte is why this body is here and not in
+// PlayerList.cpp: retail compares against 0x20 where the vendored
+// MAX_PLAYER_COUNT gives 0x10. The same byte splits getEachPlayerFromMask
+// below, twice.
+Player *PlayerList::getNthPlayer(Int i)
+{
+	if( i < 0 || i >= 32 )
+	{
+		return 0;
+	}
+	return m_players[i];
+}
+
