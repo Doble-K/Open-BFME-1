@@ -69537,6 +69537,6 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?erase@?$list@PAVObject@@V?$allocator@PAVObject@@@_STL@@@_STL@@QAE?AU?$_List_iterator@PAVObject@@U?$_Nonconst_traits@PAVObject@@@_STL@@@2@U32@@Z,0x000280CE,ILT thunk; pin from zh_sweep packet 0043f8e0
 ?Render@WW3D@@SA_NPAVSceneClass@@PAVCameraClass@@_N2ABVVector3@@@Z,0x008FE3C0,bool-returning reading of the scene/camera Render; same body the enum-named pin at this address points at
 ?qr2_keybuffer_add@@YAXPAXH@Z,0x00855330,Open-BFME5 zh_sweep packet 00642cf0 callee pin
-?m_008F7380@ShroudManager@@QAEXHP6AXXZ@Z,0x008F7380,forwarder mov ecx [ecx+0x0C] jmp 0x008F8C30 which stores both arguments at +0x64 and +0x6C; reached from PlayerList::setLocalPlayer 0x000DF3C0
+?m_008F7380@ShroudManager@@QAEXHP6AXHHH@Z@Z,0x008F7380,forwarder mov ecx [ecx+0x0C] jmp 0x008F8C30 which stores both arguments at +0x64 and +0x6C; reached from PlayerList::setLocalPlayer 0x000DF3C0
 ?m_00880E10@Gen_012ED5C0@@QAEXP6AXXZ@Z,0x00880E10,forwarder mov ecx [ecx+0x0C] jmp 0x008811B0; reached as the tail call of PlayerList::setLocalPlayer 0x000DF3C0
 ?TheShroudManager@@3PAVShroudManager@@A,0x012ED5BC,ShroudManager* global; named by the engine-init constructor tag "TheShroudManager" set at RVA 0x0038A2BB immediately after the store at 0x0038A2AC

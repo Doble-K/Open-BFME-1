@@ -137352,7 +137352,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00106b70@@YAXXZ,,0x00106B70,6,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00106dc0@@YAXXZ,,0x00106DC0,132,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00107270@@YAXXZ,,0x00107270,13,Code/GameEngine/Source/Common/VirtualSlot5CallThunk.cpp,matched,object-symbol=?invokeTerrainLogic@VirtualSlot4GlobalCallThunk@@QAEXXZ;Open-BFME5 clean C++ virtual slot 4 global call
-?d_001072a0@@YAXXZ,,0x001072A0,58,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_001072f0@@YAXXZ,,0x001072F0,58,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_00107540@@YAXXZ,,0x00107540,9,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_001075a0@@YAXXZ,,0x001075A0,10,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
@@ -157957,3 +157956,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?a_00133940@@YAXXZ,,0x00133940,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,gen-alias;object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
 ?QRKeyListCallback@@YAXPAXW4qr2_key_type@@00@Z,,0x00642CF0,214,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,zh_sweep packet 00642cf0
 ?setLocalPlayer@PlayerList@@QAEXPAVPlayer@@@Z,,0x000DF3C0,97,Code/GameEngine/Source/Common/RTS/PlayerListSetLocalPlayer.cpp,matched,zh_sweep packet 000df3c0; ZH body plus 52 BFME-only bytes notifying two subsystems
+?d_001072a0@@YAXHHH@Z,,0x001072A0,58,Code/GameEngine/Source/GameClient/SubsystemRefreshCallbacks.cpp,matched,

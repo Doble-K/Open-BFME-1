@@ -67,16 +67,20 @@ public:
 	Int m_playerRefreshTag;									///< +0x24, handed to the shroud manager
 };
 
-// The ledger's names for the two callbacks; see the header comment.
-void d_001072a0( void );
+// The ledger's names for the two callbacks; see the header comment. The first
+// is now real C++ in SubsystemRefreshCallbacks.cpp and takes its three
+// arguments, so its decoration moved with it; the second is still a byte dump
+// under the no-argument name.
+void d_001072a0( Int a1, Int a2, Int a3 );
 void d_001072f0( void );
 
+typedef void (*SubsystemRefreshProc3)( Int, Int, Int );
 typedef void (*SubsystemRefreshProc)( void );
 
 class ShroudManager
 {
 public:
-	void m_008F7380( Int tag, SubsystemRefreshProc refresh );
+	void m_008F7380( Int tag, SubsystemRefreshProc3 refresh );
 };
 
 class Gen_012ED5C0
