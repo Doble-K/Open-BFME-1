@@ -733,7 +733,7 @@ def sweep(report, ledger_ref=None):
                 if dir32_verdict(rva, size, candidate, image, anchors)[1]:
                     continue
                 names.add(candidate.symbol)
-            feasible[rva] = sorted(names)
+            feasible[rva] = witnessed_candidates(rva, sorted(names))
 
         for rva, instance in pairs:
             if (source, instance.member, instance.symbol) in ledger.consumed:
@@ -750,6 +750,40 @@ def sweep(report, ledger_ref=None):
                 row["candidates"] = feasible[rva] or [instance.symbol]
                 results.append(row)
     return refuse_dir32_conflicts(results, anchors, report), ledger, tracked
+
+
+GHIDRA_FUNCTIONS = ROOT / "reverse" / "ghidra_functions.csv"
+
+
+@functools.lru_cache(maxsize=1)
+def ghidra_names():
+    """{rva: name} for the addresses Ghidra names from its own signatures.
+
+    Ghidra has never seen these archives, so a name it recovers independently is
+    the one witness that can settle a twin without reading a relocation: it
+    names ONE of the candidates, and the rest of the class is not it. Only an
+    exact match counts -- a near-miss is a guess, and a guessed identity is
+    exactly what this whole file exists to refuse.
+    """
+    if not GHIDRA_FUNCTIONS.exists():
+        return {}
+    out = {}
+    with GHIDRA_FUNCTIONS.open(newline="", encoding="utf-8") as handle:
+        for record in csv.DictReader(handle):
+            name = record.get("name") or ""
+            if not name or name.startswith("FUN_"):
+                continue
+            try:
+                out[int(record["rva"], 16)] = name
+            except ValueError:
+                continue
+    return out
+
+
+def witnessed_candidates(rva, candidates, names=None):
+    """`candidates` cut down to the one an independent Ghidra name picks out."""
+    name = (ghidra_names() if names is None else names).get(rva)
+    return [name] if name in candidates else candidates
 
 
 DIR32_WHITELIST = ROOT / "reverse" / "dir32_consistency_whitelist.txt"

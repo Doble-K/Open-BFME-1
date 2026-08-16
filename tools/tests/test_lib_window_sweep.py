@@ -204,6 +204,28 @@ class Dir32Bases(unittest.TestCase):
         self.assertEqual((ok, bad), (0, []))
 
 
+class GhidraWitness(unittest.TestCase):
+    """Ghidra has never seen these archives, so a name it recovers is independent."""
+
+    PAIR = ["__RTC_Initialize", "__RTC_Terminate"]
+
+    def test_a_ghidra_name_matching_one_candidate_settles_the_class(self):
+        self.assertEqual(
+            S.witnessed_candidates(0x9F7F0A, self.PAIR, {0x9F7F0A: "__RTC_Initialize"}),
+            ["__RTC_Initialize"])
+
+    def test_a_ghidra_name_matching_none_of_them_decides_nothing(self):
+        self.assertEqual(
+            S.witnessed_candidates(0x9F7F0A, self.PAIR, {0x9F7F0A: "_something_else"}),
+            self.PAIR)
+
+    def test_an_unnamed_address_decides_nothing(self):
+        self.assertEqual(S.witnessed_candidates(0x9F7F0A, self.PAIR, {}), self.PAIR)
+
+    def test_the_real_table_never_offers_a_FUN_placeholder_as_a_witness(self):
+        self.assertFalse([n for n in S.ghidra_names().values() if n.startswith("FUN_")])
+
+
 class GateAgreement(unittest.TestCase):
     """The sweep must refuse what verify_dir32_consistency will refuse.
 
@@ -213,18 +235,23 @@ class GateAgreement(unittest.TestCase):
     never runs, would then fail for everyone.
     """
 
+    # A name of this shape is deliberately not in the real whitelist: the point
+    # is the rule, and pinning the test to a listed symbol makes it pass for the
+    # wrong reason the moment somebody lists or unlists it.
+    STATIC = "__test_only_tu_local_"
+
     def test_a_static_two_members_define_is_blamed_because_the_gate_blames_it(self):
-        bases = {("d3dxmathsse.obj", "__NEG_"): {0x12E4350},
-                 ("d3dxmathsse2.obj", "__NEG_"): {0x12E4580}}
+        bases = {("d3dxmathsse.obj", self.STATIC): {0x12E4350},
+                 ("d3dxmathsse2.obj", self.STATIC): {0x12E4580}}
         self.assertEqual(S.gate_disagreements(bases, {}), set(bases))
 
     def test_one_member_resolving_one_static_once_is_left_alone(self):
-        bases = {("d3dxmathsse.obj", "__NEG_"): {0x12E4350}}
+        bases = {("d3dxmathsse.obj", self.STATIC): {0x12E4350}}
         self.assertEqual(S.gate_disagreements(bases, {}), set())
 
     def test_an_anchor_counts_toward_the_gate_view_too(self):
-        bases = {("d3dxmathsse2.obj", "__NEG_"): {0x12E4580}}
-        anchors = {("d3dxmathsse.obj", "__NEG_"): {0x12E4350}}
+        bases = {("d3dxmathsse2.obj", self.STATIC): {0x12E4580}}
+        anchors = {("d3dxmathsse.obj", self.STATIC): {0x12E4350}}
         self.assertEqual(S.gate_disagreements(bases, anchors), set(bases))
 
     def test_a_symbol_already_on_the_gate_whitelist_is_not_blamed_twice(self):
