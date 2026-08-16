@@ -649,3 +649,57 @@ while the ledger's `target_rva` is an **RVA**, so a data pointer needs
 `- 0x400000` before it maps to a file offset; and the check that proves your
 mapping is right is to resolve a string you already know, such as
 `parseScreenRect`'s `" ,:=\n\r\t"` at VA `0x010F943C`.
+
+## Two ways to finish a reference TU that locate.py gives up on
+
+`reference/` sources that already own ledger rows are the cheapest lane in the
+tree: the source is known-good, the compile flags are known-good, and anything
+still unmatched in them is a body somebody has already proved this toolchain can
+produce. `vertmaterial.cpp` went from 19 rows to 21 and `mapper.cpp` from 23 to
+30 in one sitting, without a line of new C++.
+
+### Find them by size, not by bytes
+
+`locate.py` places a function by masked byte-scan, and it needs a
+relocation-free run long enough to be unique. A body dense with pointer stores —
+a constructor, a mapper `Apply` — has none, so it comes back **unlocated** even
+though the function is right there in the image.
+
+What it prints for those is the compiled **size**. Take the address span the TU
+already owns from its landed rows, list every unclaimed dump in that span, and
+match on size:
+
+- `??0VertexMaterialClass@@QAE@XZ` compiled to 279 bytes; exactly one unclaimed
+  279-byte dump in the span; exact on the first `explain_mismatch`.
+- `??1VertexMaterialClass@@UAE@XZ`, 129 bytes, likewise.
+- `?Apply@GridTextureMapperClass@@UAEXH@Z`, 863 bytes, likewise.
+
+A size match is a *candidate*, not a result — the 274-byte candidate for
+`Parse_W3dVertexMaterialStruct` disagreed at its first byte. It costs one
+`explain_mismatch` call to find out.
+
+### When several names match one address, ask the vtable
+
+The same pass over `mapper.cpp` produced 32 more "exact" pairs that are worth
+nothing on their own: **four** mapper classes compile `Apply` to the same 860
+bytes, so four names matched each of eight addresses. Bytes cannot break that
+tie — the bodies are identical, that is what folding means.
+
+One slot away, the tie breaks completely:
+
+1. Scan `.rdata` for the target address **as a VA** (`rva + 0x400000`). Each of
+   the eight appeared in exactly **one** vtable slot.
+2. Read the rest of that vtable and look every entry up in the ledger. Six of
+   the eight held an already-named `Clone@X` — and `Clone` is class-specific
+   because it constructs its own class, so the vtable holding `Clone@X` holds
+   `Apply@X`.
+
+That named six bodies, 5,160 bytes, on evidence that has nothing to do with the
+matching bytes.
+
+**Do not finish the job by elimination.** The last two were the last of four in
+each group and elimination would have named them. It was not taken: elimination
+is only as strong as the claim that the group is closed, and the slot that
+looked like their `Clone` holds a 44-byte dump when every other `Grid*` `Clone`
+in the family is 85 — so the window was misaligned and the "obvious" reading was
+wrong. Anything whose only argument is *what else could it be* is a guess.
