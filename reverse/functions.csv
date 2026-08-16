@@ -14037,7 +14037,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@W3DDefaultDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@W3DProjectileStreamDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001194C0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@W3DRopeDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF2E0,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleInstance@W3DTankDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011F690,99,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@W3DTracerDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00114200,96,Code/GameEngineDevice/Source/W3DDevice/Common/Thing/W3DModuleFactory.cpp,matched,
 ?friend_newModuleInstance@WallUpgradeUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011C170,96,Code/GameEngine/Source/GameLogic/Object/Update/WallUpgradeUpdateFriendNewModuleInstanceThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleInstance factory
 ?friend_newModuleInstance@WanderAIUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011BE60,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
@@ -117408,8 +117407,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006bf360@@YAXXZ,,0x006BF360,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf360
 ?d_006bf3e0@@YAXXZ,,0x006BF3E0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf3e0
 ?d_006bf4f0@@YAXXZ,,0x006BF4F0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf4f0
-?d_006bf580@@YAXXZ,,0x006BF580,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf580
-?d_006bf600@@YAXXZ,,0x006BF600,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf600
 ?d_006bf930@@YAXXZ,,0x006BF930,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf930
 ?d_006bffe0@@YAXXZ,,0x006BFFE0,1136,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abffe0
 ?d_006c0570@@YAXXZ,,0x006C0570,18,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00ac0570
@@ -157967,3 +157964,5 @@ _luaV_tostring,,0x00997200,164,Code/Libraries/Source/Lua/lvm.c,matched,
 _luaV_lessthan,,0x009978E0,233,Code/Libraries/Source/Lua/lvm.c,matched,
 _luaV_pack,,0x00997B70,186,Code/Libraries/Source/Lua/lvm.c,matched,
 _luaV_strconc,,0x009979D0,401,Code/Libraries/Source/Lua/lvm.c,matched,
+?friend_newModuleData@W3DTankDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF600,110,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDrawFriendNewModuleDataThunk.cpp,matched,
+?friend_newModuleInstance@W3DTankDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF580,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDrawFriendNewModuleInstanceThunk.cpp,matched,repointed off 0x0011F690; the registration string and the 0x2F8 allocation both put it here
