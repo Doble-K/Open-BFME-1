@@ -555,3 +555,57 @@ every one of them stops resolving with `symbol not found in object`. So this
 change is not a header edit — it is a header edit plus a 403-row re-anchoring,
 and it wants to be one piece of work rather than a surprise inside somebody
 else's build.
+
+## MSVC has a private calling convention, and it decides which functions share a file
+
+`drawStaticTextText` at `0x00796BA0` is entered with its first argument in
+**EAX**. The callee opens
+
+```
+sub esp,0x2c / push esi / push edi / mov edi,eax
+```
+
+and its caller at `0x00796FAF` sets up
+
+```
+push outline / push color / mov eax,esi / call ... / add esp,8
+```
+
+Two stack arguments, one register argument, and an `add esp,8` that does not
+account for the third. This is not `__fastcall`, which would use ECX and EDX,
+and it is not anything that can be written on a declaration. It is MSVC's own
+convention for a `static` function whose every call site the compiler can see,
+and **this toolchain reproduces it exactly** — `mov edi,eax` appeared in the
+first compile, unprompted.
+
+The consequence is a rule about file layout, not about bytes: **a file-static
+that retail called this way and its callers must be converted in the same
+translation unit.** Split them and the caller compiles to `push esi` with
+`add esp,0xc`, and the caller is wrong in its last dozen bytes for a reason
+nothing inside the caller's own file can fix. Before drawing a work packet for
+a body whose calls do not account for all their arguments, find the callee and
+check whether it takes one in a register.
+
+### What that does not buy you
+
+Both of these bodies then stalled on differences below the source level, and
+they are worth recognising on sight because no amount of rewriting moves them.
+
+**A SIB base/index inversion.** `W3DGadgetStaticTextImageDraw` came out 237 of
+238 bytes. The one difference: retail computes `end.x` as `8d 1c 08`
+(`lea ebx,[eax+ecx]`, base EAX, index ECX) and this toolchain emits `8d 1c 01`
+(base ECX, index EAX). Identical operation, identical registers, inverted
+encoding. It survived `start.x + size.x`, `size.x + start.x`, a compound `+=`,
+inlining the expression into the call argument, swapping the `end.x`/`end.y`
+statements, and reordering the `ICoord2D` declarations. `/G6` changed nothing;
+`/G7` rewrote the body to 234 bytes.
+
+**An allocator split.** `drawStaticTextText` came out 344 of 346. Retail spills
+`tData` to `[esp+0xc]` and defers `push ebx / push ebp` past the early return,
+which leaves a register free later; this toolchain keeps `tData` in EBX and
+pays four bytes spilling a temp instead. Same immunity to declaration order.
+
+When the last difference is which register got picked or how an equivalent
+encoding was spelled, stop rewriting the source. Log it, and note that the
+body, the layout and the convention were all correct — that is the part worth
+keeping.
