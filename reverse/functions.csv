@@ -148902,7 +148902,6 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ??0AttackNugget@@QAE@XZ,,0x001D6CD0,90,Code/GameEngine/Source/GameLogic/Object/AttackNugget_ctor_Thunk.cpp,matched,zh_sweep packet 001d6cd0
 ?doesObjectQualifyForBattlePlan@Player@@QBE_NPAVObject@@@Z,,0x000C9AB0,66,Code/GameEngine/Source/Common/RTS/Player_doesObjectQualifyForBattlePlan_Thunk.cpp,matched,zh_sweep packet 000c9ab0
 ?setFullyObscuredByShroud@W3DTankTruckDraw@@UAEX_N@Z,,0x007815E0,53,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankTruckDraw_setFullyObscuredByShroud_Thunk.cpp,matched,zh_sweep packet 007815e0
-?doTeamSpinForFramecount@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002F11E0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamSpinForFramecount_Thunk.cpp,matched,zh_sweep packet 002f11e0
 ?resetIdleScan@TurretAIIdleState@@AAEXXZ,,0x0018CAF0,55,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleState_resetIdleScan_Thunk.cpp,matched,zh_sweep packet 0018caf0
 ?friend_onCondition@State@@QAEXP6A_NPAV1@PAX@ZI1PBD@Z,,0x000A1FB0,102,Code/GameEngine/Source/Common/State_friend_onCondition_Thunk.cpp,matched,zh_sweep packet 000a1fb0
 ?newOverride@GlobalData@@AAEPAV1@XZ,,0x00085BA0,93,Code/GameEngine/Source/Common/GlobalData_newOverride_Thunk.cpp,matched,zh_sweep packet 00085ba0
