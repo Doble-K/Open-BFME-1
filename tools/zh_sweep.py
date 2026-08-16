@@ -22,14 +22,17 @@ ambiguous match as a unique one.
 """
 import argparse
 import bisect
+import csv
 import json
 import struct
 import subprocess
 import sys
+import textwrap
 from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import boundary_validator
 import build
 
 ROOT = build.ROOT
@@ -43,6 +46,7 @@ MIN_FUNC = 24           # under this, a body is a stub that places all over .tex
 SEARCHABLE = 10         # a body whose longest reloc-free run is shorter has no needle
 MIN_NEEDLE = 4          # under this a run matches so much of .text it is pure noise
 NEAR_ALIGN = 0.85       # near miss worth a work packet
+PAD_SCAN = 0x2000       # how far past an address to look for the int3 run that ends it
 DIR32, REL32 = 0x0006, 0x0014
 CODE_SECTION = 0x00000020       # IMAGE_SCN_CNT_CODE
 
@@ -434,16 +438,78 @@ def write_rows(records):
     build.FUNCTIONS.write_bytes(b"".join(kept + rows))
 
 
+def ghidra_validator():
+    """A boundary validator over the Ghidra inventory.
+
+    Missing inventory is fatal rather than empty. An empty one answers "no
+    opinion" to every question, which a packet would faithfully print as "the
+    inventory does not cover this address" — a different and worse lie than the
+    one this validation exists to stop.
+    """
+    if not build.GHIDRA_FUNCTIONS.exists():
+        raise SystemExit(f"zh_sweep: {build.GHIDRA_FUNCTIONS.relative_to(ROOT)} is missing; "
+                         "without it no packet's address or extent can be checked")
+    with build.GHIDRA_FUNCTIONS.open(newline="") as handle:
+        sizes = {int(row["rva"], 16): int(row["size"]) for row in csv.DictReader(handle)}
+    return boundary_validator.BoundaryValidator(build.read_target_bytes, sizes)
+
+
+def retail_extent(rva, validator, text, text_rva):
+    """(bytes, kind, where it came from) for the body at `rva`, or (None, ...).
+
+    The Ghidra inventory answers directly where it covers the address. Where it
+    does not, the image still bounds the body: MSVC pads between functions with
+    int3, so the first run of them after `rva` ends it — unless a known function
+    starts before the run, which makes the run that later body's padding and
+    leaves this body's end unknown rather than guessable.
+    """
+    if rva in validator.sizes:
+        return validator.sizes[rva], "the Ghidra inventory", "reverse/ghidra_functions.csv"
+    offset = rva - text_rva
+    run = text.find(b"\xcc" * boundary_validator.MIN_PAD_RUN, offset, offset + PAD_SCAN)
+    if run <= offset:
+        return None, "unverified", None
+    if validator.starts_inside(rva, text_rva + run):
+        return None, "unverified", None
+    return run - offset, "int3 padding", f"the int3 padding at 0x{text_rva + run:08X}"
+
+
+def packet_bounds(rva, zh_size, validator, text, text_rva):
+    """What this repo can prove about the body at `rva`, for one packet header.
+
+    The old packet asserted both halves of that header: that the address is a
+    function start, and that the Zero Hour candidate's own length is retail's
+    extent at it. Neither was ever checked. 25 of 335 addresses are provably not
+    a start — one of them four bytes inside a 106-byte body, quoting 164 — and
+    35 of the 191 with a known extent disagree with the candidate's size. Both
+    errors put a contributor to work reproducing bytes the function they were
+    handed does not own, and the byte gate cannot catch the resulting row
+    because build.py copies relocation bytes from retail rather than proving
+    them.
+
+    `served` is the range the packet quotes: retail's extent where it is known,
+    and only otherwise the candidate's length, which the packet then labels
+    unverified instead of stating as fact.
+    """
+    start, why = validator.check_start(rva)
+    extent, kind, extent_from = retail_extent(rva, validator, text, text_rva)
+    served = extent or zh_size
+    enclosing = validator.containing(rva)
+    return {"start": start, "start_why": why, "enclosing": enclosing,
+            "enclosing_size": validator.sizes.get(enclosing), "extent": extent,
+            "extent_kind": kind, "extent_from": extent_from, "zh_size": zh_size,
+            "served": served, "spans": validator.check_end(rva, served)}
+
+
 def do_packets(args):
     records = json.loads(MATCH_JSON.read_text())
-    near = [r for r in records if r["bucket"] == "near"
-            and r["align"] >= NEAR_ALIGN and not r["claimed"]]
+    # `claimed` in a record is the ledger as it stood when the match ran, and the
+    # ledger moves under it in both directions -- rows land, rows are retracted.
+    # It is re-asked live below, so honouring the snapshot here too would only
+    # hide leads whose claim has since been withdrawn.
+    near = [r for r in records if r["bucket"] == "near" and r["align"] >= NEAR_ALIGN]
     text_rva, text = retail_text()
     overlaps = merged_claims()
-    still_claimed = [r for r in near if overlaps(r["rva"], r["size"])]
-    if still_claimed:
-        raise SystemExit(f"zh_sweep: {len(still_claimed)} near match(es) sit on claimed "
-                         "retail bytes; a packet for solved code is a wasted work slot")
     # One packet per retail address, not per candidate body. Retail folds
     # identical code, so one address routinely answers to a dozen Zero Hour
     # template instantiations; they are one function to convert, and a file per
@@ -454,25 +520,38 @@ def do_packets(args):
     reloc_index = packet_relocs({r["obj"] for r in near})
     names = {row["name"] for row in build.load_all_function_rows()}
     PACKET_DIR.mkdir(parents=True, exist_ok=True)
-    # The directory is derived, so it is rebuilt from scratch -- but it is also
-    # tracked, and a regression upstream turns that into silent deletion of
-    # leads nobody can regenerate. Say what goes, so a drop is visible in the
-    # run that causes it rather than in a diff nobody reads.
-    dropped = [p.stem for p in PACKET_DIR.glob("*.md")
-               if int(p.stem, 16) not in by_rva]
     # Render every packet BEFORE unlinking anything. The old order deleted the
     # directory first and wrote as it went, so any failure part-way -- a missing
     # objdump was enough -- left the queue empty with nothing to fall back on,
     # and the leads people had hand-annotated into those files went with it.
+    validator = ghidra_validator()
     rendered = {}
-    covered = 0
+    covered = solved = bodies = 0
+    verdicts, extents, conflicts = Counter(), Counter(), 0
     for rva, group in sorted(by_rva.items()):
         group.sort(key=lambda r: (-r["align"], r["sym"]))
-        size = max(r["size"] for r in group)
-        body = text[rva - text_rva : rva - text_rva + size]
+        bounds = packet_bounds(rva, max(r["size"] for r in group), validator, text, text_rva)
+        # "unclaimed" is a metadata claim like any other, and match.json's is a
+        # snapshot of the ledger as it stood when the match ran. Re-asked here
+        # against the live ledger, and against the extent the packet will
+        # actually quote rather than the candidate's length.
+        if overlaps(rva, bounds["served"]):
+            solved += 1
+            continue
+        body = text[rva - text_rva : rva - text_rva + bounds["served"]]
         relocs = reloc_index[(group[0]["obj"], group[0]["sym"])]
-        rendered[rva] = packet_text(rva, size, group, body, relocs, names)
-        covered += size
+        rendered[rva] = packet_text(rva, bounds, group, body, relocs, names)
+        covered += bounds["served"]
+        bodies += len(group)
+        verdicts[{True: "function start", False: bounds["start_why"],
+                  None: "start unconfirmed"}[bounds["start"]]] += 1
+        extents[bounds["extent_kind"]] += 1
+        conflicts += bounds["extent"] not in (None, bounds["zh_size"])
+    # The directory is derived, so it is rebuilt from scratch -- but it is also
+    # tracked, and a regression upstream turns that into silent deletion of
+    # leads nobody can regenerate. Say what goes, so a drop is visible in the
+    # run that causes it rather than in a diff nobody reads.
+    dropped = [p.stem for p in PACKET_DIR.glob("*.md") if int(p.stem, 16) not in rendered]
     for stale in PACKET_DIR.glob("*.md"):
         stale.unlink()
     if dropped:
@@ -481,8 +560,14 @@ def do_packets(args):
               + (" ..." if len(dropped) > 8 else ""))
     for rva, packet in rendered.items():
         (PACKET_DIR / f"{rva:08x}.md").write_text(packet)
-    print(f"packets: {len(by_rva)} written to {PACKET_DIR.relative_to(ROOT)}, covering "
-          f"{len(near)} candidate body/bodies over {covered:,} bytes of unclaimed .text")
+    print(f"packets: {len(rendered)} written to {PACKET_DIR.relative_to(ROOT)}, covering "
+          f"{bodies} candidate body/bodies over {covered:,} bytes of unclaimed .text")
+    print(f"  {solved} address(es) the ledger has claimed since the match ran: no packet")
+    for verdict, count in sorted(verdicts.items()):
+        print(f"  address {verdict:24s} {count:4d}")
+    for source, count in sorted(extents.items()):
+        print(f"  extent from {source:20s} {count:4d}")
+    print(f"  {conflicts} packet(s) quote a retail extent the Zero Hour candidate does not have")
 
 
 def packet_relocs(objects):
@@ -543,34 +628,109 @@ def callee_pins(rva, body, relocs, names):
     return "\n".join(lines) or "(no relative calls in this body)"
 
 
-def packet_text(rva, size, group, body, relocs, names):
+def wrap(paragraph, indent=""):
+    """One paragraph at the width the rest of these files are written to."""
+    return textwrap.fill(paragraph, width=88, subsequent_indent=indent,
+                         break_long_words=False, break_on_hyphens=False)
+
+
+NOT_A_START = {
+    "in-int3-padding": "the retail byte at this address is int3, which is what MSVC puts "
+                       "*between* function bodies, so the placement straddles a boundary",
+    "outside-.text": "the address is not in .text at all",
+}
+
+
+def address_banner(rva, bounds):
+    """The warning that has to lead a packet whose address is refuted.
+
+    A contributor who trusts the address writes a ledger row at it, and that row
+    byte-matches: build.py copies DIR32 relocation bytes out of retail instead
+    of proving them, so a claim on bytes the named function does not own still
+    goes green. That is how a wrong claim reaches the ledger looking right, and
+    the packet is the only place it can be stopped.
+    """
+    if bounds["start"] is not False:
+        return []
+    if bounds["enclosing"] is None:
+        why = NOT_A_START[bounds["start_why"]] + ", and no known function encloses it"
+    else:
+        why = (f"the address is {rva - bounds['enclosing']} byte(s) inside the function at "
+               f"0x{bounds['enclosing']:08X}, which is {bounds['enclosing_size']} bytes long "
+               "and is the body worth converting here")
+    return [wrap("**This address is not a function start.** The sweep placed a Zero Hour "
+                 f"body here by byte alignment alone, and this repo's own evidence refutes "
+                 f"it: {why}. Do not add a ledger row at this address; the bytes below say "
+                 "what is here, but the address in this packet's name is not the start of "
+                 "it."), ""]
+
+
+def header_lines(rva, bounds, best):
+    """The packet's claims about its own address, extent, and evidence.
+
+    Each is stated with where it came from, or stated unverified. They fail
+    independently: an address can be a confirmed start whose extent nothing
+    measures, and an unconfirmed address can still have its end read off the
+    image. `tools/next_work.py` parses the first of these lines for the size it
+    serves, so the extent has to lead.
+    """
+    extent = (f", an extent measured from {bounds['extent_from']}" if bounds["extent"] else
+              ", an UNVERIFIED size — the Zero Hour candidate's own length, which nothing"
+              " here measures against retail")
+    start = {True: "address is a confirmed function start (reverse/ghidra_functions.csv)",
+             None: "no inventory row confirms a function starts at this address; treat the"
+                   " start as unverified",
+             False: f"address is NOT a function start ({bounds['start_why']}) — see above"
+             }[bounds["start"]]
+    differ = round((1 - best["align"]) * bounds["zh_size"])
+    lines = [f"- {bounds['served']} bytes, unclaimed by any ledger row{extent}",
+             f"- {start}",
+             f"- best Zero Hour candidate agrees on {best['align'] * 100:.1f}% of the bytes "
+             "outside relocation sites",
+             f"- that figure hides {best['relocs']} blanked relocation slot(s): {differ} of "
+             f"{bounds['zh_size']} compared byte(s) differ, and which global and which "
+             "callee this body uses was never compared at all"]
+    if bounds["extent"] and bounds["extent"] != bounds["zh_size"]:
+        lines.append(f"- the candidate body is {bounds['zh_size']} bytes long, so it does not "
+                     "have retail's extent here; the bytes quoted below are retail's")
+    if bounds["spans"]:
+        lines.append(f"- the quoted range still crosses a boundary ({bounds['spans']}), so "
+                     "its end is in dispute")
+    return [wrap(line, indent="  ") for line in lines]
+
+
+def packet_text(rva, bounds, group, body, relocs, names):
     best = group[0]
     candidates = [f"- `{r['sym']}`\n  in `{r['source']}` ({r['align'] * 100:.1f}% aligned)"
                   for r in group]
-    folded = ("" if len(group) == 1 else
-              f"\nRetail folded {len(group)} identical bodies onto this address, so the "
-              "candidates\nbelow are the same code under different names. Any of them "
-              "reproduces the\nbytes; which name belongs here needs separate evidence.\n")
+    tied = sum(1 for r in group if r["align"] == best["align"])
+    ambiguous = [] if tied == 1 else [wrap(
+        f"{tied} of the candidates below align equally well, so the sweep cannot tell them "
+        "apart: masking the relocation sites hides exactly the bytes that differ between "
+        "them — which global the body loads, which callee it tail-jumps to. The first is "
+        "not the answer. 0x002EFAF0 was landed under the wrong one of three such ties, and "
+        "the call targets below are what separated them."), ""]
     return "\n".join([
         f"# Work packet: retail `0x{rva:08X}`",
         "",
-        f"- {size} bytes, unclaimed by any ledger row",
-        f"- best Zero Hour candidate agrees on {best['align'] * 100:.1f}% of the bytes "
-        "outside relocation sites",
+        *address_banner(rva, bounds),
+        *header_lines(rva, bounds, best),
         "",
         "## Reference source leads",
         "",
+        *ambiguous,
         "\n".join(candidates),
-        folded,
+        "",
         "## What this is",
         "",
-        "The vendored Zero Hour tree contains this function. Compiled with this repo's",
-        "toolchain it lands *near* these retail bytes but not on them, so the two",
-        "versions differ by something real: a changed constant, an extra member, a",
-        "different inlining decision. Port the reference body into a `Code/` source,",
-        "then close the remaining gap against the disassembly below.",
+        "The vendored Zero Hour tree contains a body that nearly reproduces these retail",
+        "bytes. Near is not identical, so the names above are leads and not identity: the",
+        "two versions differ by something real — a changed constant, an extra member, a",
+        "different inlining decision — or they are different functions that share a shape.",
+        "Port the reference body into a `Code/` source, then close the remaining gap",
+        "against the disassembly below.",
         "",
-        "## Retail disassembly (the exact target)",
+        f"## Retail disassembly ({bounds['served']} bytes from this address)",
         "",
         "```",
         disassemble(body, rva),
@@ -585,8 +745,11 @@ def packet_text(rva, size, group, body, relocs, names):
         "## Landing it",
         "",
         "Add a row to `reverse/functions.csv` naming your source and this address, then",
-        f"run `./build.sh '<your symbol>'`. It passes only when every byte outside a",
-        "relocation site is identical to the address above.",
+        "run `./build.sh '<your symbol>'`. It passes only when every byte outside a",
+        "relocation site is identical to the address above — which is exactly why the",
+        "name and the extent above still need checking by hand. The gate copies",
+        "relocation bytes from retail rather than proving them, so a row at the wrong",
+        "address, the wrong size, or under a tied candidate's name goes green anyway.",
         "",
     ])
 
