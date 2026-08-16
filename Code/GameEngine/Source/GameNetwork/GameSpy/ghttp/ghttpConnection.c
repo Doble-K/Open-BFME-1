@@ -44,6 +44,7 @@ static int ghiNextUniqueID;
 // Finds a gsifree slot in the ghiConnections array.
 // If there are no gsifree slots, the array size will be increased.
 ////////////////////////////////////////////////////////////////
+// ghiFindFreeSlot present-unmatched
 static int ghiFindFreeSlot
 (
 	void
@@ -94,6 +95,7 @@ static int ghiFindFreeSlot
 	return oldLen;
 }
 
+// ghiNewConnection present-unmatched
 GHIConnection * ghiNewConnection
 (
 	void
@@ -156,6 +158,8 @@ GHIConnection * ghiNewConnection
 	connection->lastThrottleRecv = 0;
 	connection->post = NULL;
 	connection->maxRecvTime = 500; // Prevent blocking in async mode with systems that never generate WSAEWOULDBLOCK
+	connection->proxyPort = GHI_DEFAULT_PORT;
+	connection->proxyAddress = NULL;
 
 	bResult = ghiInitBuffer(connection, &connection->sendBuffer, SEND_BUFFER_INITIAL_SIZE, SEND_BUFFER_INCREMENT_SIZE);
 	if(bResult)
@@ -295,6 +299,7 @@ void ghiEnumConnections
 	ghiUnlock();
 }
 
+// ghiRedirectConnection present-unmatched
 void ghiRedirectConnection
 (
 	GHIConnection * connection

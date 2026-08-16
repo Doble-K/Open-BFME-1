@@ -145,6 +145,7 @@ typedef struct GHIConnection
 
 	char * proxyAddress;          // BFME addition: per-connection proxy override. If set (or ghiProxyAddress is
 	                              // set), requests send the full URL in the request line instead of just the path.
+	unsigned short proxyPort;     // BFME addition: per-connection proxy port override, paired with proxyAddress.
 } GHIConnection;
 
 // Create a new connection object.

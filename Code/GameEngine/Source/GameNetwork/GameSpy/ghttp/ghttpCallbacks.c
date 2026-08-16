@@ -16,11 +16,23 @@
    This TU (ghttpCallbacks.c) is not present in the Area51 carrier tree -- the
    three ghiCall*Callback() trampolines are declared in ghttpCallbacks.h but
    were never checked in as a standalone .c anywhere upstream that has been
-   found. Only ghiCallProgressCallback is reconstructed here, from the retail
+   found. ghiCallProgressCallback is reconstructed from the retail
    disassembly at 0x0087B610 (connection->progressCallback dispatch, matching
-   the ghttpProgressCallback typedef in ghttp.h field-for-field). The other
-   two declared trampolines are absent-from-retail in this TU: they are not
-   part of this lane's target pool and are left undefined here. */
+   the ghttpProgressCallback typedef in ghttp.h field-for-field).
+   ghiCallCompletedCallback is reconstructed from the retail disassembly at
+   0x0087B5B0: only for GHIGET requests does it pass the getFileBuffer.data
+   pointer and fileBytesReceived through to the callback (all other request
+   types pass NULL/0, matching the ghttp.h contract that buffer is "only
+   valid if ghttpGetFile[Ex] was used"); if a buffer was passed and the
+   callback returns GHTTPFalse, getFileBuffer.dontFree is set per the
+   documented "return false if the app will free the buffer" contract.
+   ghiCallPostCallback is reconstructed from the retail disassembly at
+   0x0087B660: it calls postingState.callback with (request, bytesPosted,
+   totalBytes, index, ArrayLength(states), connection->callbackParam) --
+   matching the ghttpPostCallback typedef's (request, bytesPosted,
+   totalBytes, objectsPosted, totalObjects, param) field-for-field, with
+   postingState.index doing double duty as "objects posted so far" and
+   ArrayLength(postingState.states) as "total objects". */
 /*
 GameSpy GHTTP SDK
 Dan "Mr. Pants" Schoenblum
@@ -52,5 +64,57 @@ void ghiCallProgressCallback
 		connection->progressCallback(connection->request, connection->state,
 			buffer, bufferLen, connection->fileBytesReceived,
 			connection->totalSize, connection->callbackParam);
+	}
+}
+
+// ghiCallCompletedCallback present-unmatched
+// Call the completed callback for this connection.
+///////////////////////////////////////////////////
+void ghiCallCompletedCallback
+(
+	GHIConnection * connection
+)
+{
+	if(connection->completedCallback)
+	{
+		char * buffer;
+		GHTTPByteCount bufferLen;
+		GHTTPBool result;
+
+		if(connection->type != GHIGET)
+		{
+			buffer = NULL;
+			bufferLen = 0;
+		}
+		else
+		{
+			buffer = connection->getFileBuffer.data;
+			bufferLen = connection->fileBytesReceived;
+		}
+
+		result = connection->completedCallback(connection->request, connection->result,
+			buffer, bufferLen, connection->callbackParam);
+
+		if(buffer && !result)
+			connection->getFileBuffer.dontFree = GHTTPTrue;
+	}
+}
+
+// ghiCallPostCallback present-unmatched
+// Call the post callback for this connection.
+//////////////////////////////////////////////
+void ghiCallPostCallback
+(
+	GHIConnection * connection
+)
+{
+	if(connection->postingState.callback)
+	{
+		connection->postingState.callback(connection->request,
+			connection->postingState.bytesPosted,
+			connection->postingState.totalBytes,
+			connection->postingState.index,
+			ArrayLength(connection->postingState.states),
+			connection->callbackParam);
 	}
 }

@@ -67,6 +67,7 @@ static GHTTPBool ghiResizeBuffer
 	return GHTTPTrue;
 }
 
+// ghiInitBuffer present-unmatched
 GHTTPBool ghiInitBuffer
 (
 	struct GHIConnection * connection,

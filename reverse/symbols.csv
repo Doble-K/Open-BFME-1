@@ -70923,3 +70923,36 @@ _read_long_string,0x009A0420,decode_calls pin for _luaX_lex callee
 ?_M_lower_bound@?$_Rb_tree@U?$pair@HH@_STL@@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@2@U?$_Select1st@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@U?$less@U?$pair@HH@_STL@@@2@V?$allocator@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@@_STL@@ABEPAU?$_Rb_tree_node@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@ABU?$pair@HH@2@@Z,0x0001A5F5,link thunk; the address the body at 0x000F3A20 encodes
 ?insert_unique@?$_Rb_tree@U?$pair@HH@_STL@@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@2@U?$_Select1st@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@U?$less@U?$pair@HH@_STL@@@2@V?$allocator@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@@_STL@@QAE?AU?$_Rb_tree_iterator@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@@2@U32@ABU?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@2@@Z,0x000135E8,link thunk; the address the body at 0x000F3A20 encodes
 ?sendDisconnectChat@ConnectionManager@@QAEXVUnicodeString@@@Z,0x00001B54,link thunk; the address Network::sendDisconnectChat at 0x006824C0 encodes
+_constructor,0x0099C2D0,decode_calls pin for _funcargs callee
+_whilestat,0x0099CC60,decode_calls pin for _stat callee
+_forstat,0x0099B940,decode_calls pin for _stat callee
+_repeatstat,0x0099CD90,decode_calls pin for _stat callee
+_funcstat,0x0099C390,decode_calls pin for _stat callee
+_retstat,0x0099BBD0,decode_calls pin for _stat callee
+_breakstat,0x0099BC90,decode_calls pin for _stat callee
+_fornum,0x0099B750,decode_calls pin for _forstat callee
+_forlist,0x0099B850,decode_calls pin for _forstat callee
+_ghiPostDoPosting,0x0087D610,decode_calls pin for _ghiDoPosting callee
+_ghiCallPostCallback,0x0087B660,decode_calls pin for _ghiDoPosting callee
+_luaK_number,0x0099EE10,decode_calls pin for _simpleexp callee
+_ghiPostStateDoPosting,0x0087D4B0,decode_calls pin for _ghiPostDoPosting callee
+_ghiPostStringStateDoPosting,0x0087D2B0,decode_calls pin for _ghiPostStateDoPosting callee
+_ghiPostFileDiskStateDoPosting,0x0087D3C0,decode_calls pin for _ghiPostStateDoPosting callee
+_ghiPostFileMemoryStateDoPosting,0x0087D450,decode_calls pin for _ghiPostStateDoPosting callee
+?isRoomForDisconnectScreenOffMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677810,decode_calls: first call site inside addDisconnectScreenOffCommand (0x00679810); idiom-verified (len calc, cmp 0x1DC, setle)
+?isRoomForDisconnectFrameMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677A90,decode_calls: first call site inside addDisconnectFrameCommand (0x0067A410); idiom-verified
+?isRoomForFileMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067DBB0,decode_calls: first call site inside addFileCommand (0x0067F600); idiom-verified
+?isRoomForFileAnnounceMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067DC80,decode_calls: first call site inside addFileAnnounceCommand (0x0067F950); idiom-verified
+?isRoomForFileProgressMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677B30,decode_calls: first call site inside addFileProgressCommand (0x0067A700); idiom-verified
+?isRoomForLoadCompleteMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677CD0,decode_calls: first call site inside addLoadCompleteMessage (0x0067AFD0) AND addTimeOutGameStartMessage (0x0067AD50) -- source calls isRoomForLoadCompleteMessage from both; idiom-verified
+?isRoomForProgressMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677D40,decode_calls: first call site inside addProgressMessage (0x0067B250); idiom-verified
+?isRoomForDisconnectVoteMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677DB0,decode_calls: first call site inside addDisconnectVoteCommand (0x0067B480); idiom-verified
+?isRoomForDisconnectChatMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067DD40,decode_calls: first call site inside addDisconnectChatCommand (0x0067FC80); idiom-verified
+?isRoomForChatMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x0067DDE0,decode_calls: first call site inside addChatCommand (0x0067FF20); idiom-verified
+?isRoomForDisconnectPlayerMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677E40,decode_calls: first call site inside addDisconnectPlayerCommand (0x0067B750); idiom-verified
+?isRoomForDisconnectKeepAliveMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677ED0,decode_calls: first call site inside addDisconnectKeepAliveCommand (0x0067BA20); idiom-verified
+?isRoomForKeepAliveMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677F40,decode_calls: first call site inside addKeepAliveCommand (0x0067BC40); idiom-verified
+?isRoomForDestroyPlayerMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00677FB0,decode_calls: first call site inside addDestroyPlayerCommand (0x0067BE60); idiom-verified
+?isRoomForPlayerLeaveMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x006780E0,decode_calls: first call site inside addPlayerLeaveCommand (0x0067C410); idiom-verified
+?addAckCommand@NetPacket@@IAE_NPAVNetCommandRef@@GE@Z,0x0067DEC0,decode_calls: shared third-call target of addAckBothCommand/addAckStage1Command/addAckStage2Command (0x680290/0x6802D0/0x680310); chased through thunk 0x004060BE
+_ghiInitBuffer,0x0087D740,decode_calls pin for _ghiNewConnection callee

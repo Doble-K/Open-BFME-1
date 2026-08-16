@@ -110,6 +110,7 @@ static GHTTPBool ghiParseURL
 /****************
 ** HOST LOOKUP **
 ****************/
+// ghiDoHostLookup present-unmatched
 void ghiDoHostLookup
 (
 	GHIConnection * connection
@@ -136,10 +137,13 @@ void ghiDoHostLookup
 	}
 
 	// Check for using a proxy.
+	// BFME adds a per-connection proxy override (connection->proxyAddress),
+	// checked before the vendored SDK's global ghiProxyAddress.
 	///////////////////////////
-	if(ghiProxyAddress)
+	server = connection->proxyAddress;
+	if(!server)
 		server = ghiProxyAddress;
-	else
+	if(!server)
 		server = connection->serverAddress;
 
 	// Try resolving the address as an IP a.b.c.d number.
@@ -171,6 +175,7 @@ void ghiDoHostLookup
 /***************
 ** CONNECTING **
 ***************/
+// ghiDoConnecting present-unmatched
 void ghiDoConnecting
 (
 	GHIConnection * connection
@@ -216,7 +221,11 @@ void ghiDoConnecting
 		////////////////////////////
 		memset(&address, 0, sizeof(SOCKADDR_IN));
 		address.sin_family = AF_INET;
-		if(ghiProxyAddress)
+		// BFME adds a per-connection proxy override, checked before the
+		// vendored SDK's global proxy.
+		if(connection->proxyAddress)
+			address.sin_port = htons(connection->proxyPort);
+		else if(ghiProxyAddress)
 			address.sin_port = htons(ghiProxyPort);
 		else
 			address.sin_port = htons(connection->serverPort);
@@ -229,7 +238,7 @@ void ghiDoConnecting
 		{
             //**INEV*BW - Just need to mark as an error. Connection failed somehow.
             int socketError = GOAGetLastError(connection->socket);
-            if((socketError != WSAEWOULDBLOCK) && (socketError != WSAEINPROGRESS))
+            if((socketError != WSAEWOULDBLOCK) && (socketError != WSAEINPROGRESS) && (socketError != WSAETIMEDOUT))
 			{
 				connection->completed = GHTTPTrue;
 				connection->result = GHTTPConnectFailed;
@@ -242,11 +251,11 @@ void ghiDoConnecting
 	// Check if the connect has completed.
 	//////////////////////////////////////
 	bResult = ghiSocketSelect(connection->socket, NULL, &writeFlag, &exceptFlag);
-	if(!bResult || exceptFlag)
+	if(bResult == SOCKET_ERROR || exceptFlag)
 	{
 		connection->completed = GHTTPTrue;
 		connection->result = GHTTPConnectFailed;
-		if(!bResult)
+		if(bResult == SOCKET_ERROR)
 			connection->socketError = GOAGetLastError(connection->socket);
 		return;
 	}
@@ -380,6 +389,7 @@ void ghiDoSendingRequest
 /************
 ** POSTING **
 ************/
+// ghiDoPosting present-unmatched
 void ghiDoPosting
 (
 	GHIConnection * connection
@@ -436,6 +446,7 @@ void ghiDoPosting
 /************
 ** WAITING **
 ************/
+// ghiDoWaiting present-unmatched
 void ghiDoWaiting
 (
 	GHIConnection * connection
@@ -445,7 +456,7 @@ void ghiDoWaiting
 
 	// We're waiting to receive something.
 	//////////////////////////////////////
-	if(!ghiSocketSelect(connection->socket, &readFlag, NULL, NULL))
+	if(ghiSocketSelect(connection->socket, &readFlag, NULL, NULL) == SOCKET_ERROR)
 	{
 		connection->completed = GHTTPTrue;
 		connection->result = GHTTPSocketFailed;
@@ -1155,14 +1166,13 @@ void ghiDoReceivingHeaders
 /*******************
 ** RECEIVING FILE **
 *******************/
+// ghiDoReceivingFile present-unmatched
 void ghiDoReceivingFile
 (
 	GHIConnection * connection
 )
 {
-    //*INEV*BW was 8192, but that's a tad excessive as it uses even
-    // more stack space.
-	char buffer[4096];
+	char buffer[8192];
 	int bufferLen;
 	GHIRecvResult result;
 	gsi_time start_time   = current_time();

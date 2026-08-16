@@ -152,6 +152,7 @@ void qr2_buffer_addW(qr2_buffer_t outbuf, const unsigned short *value);
 
 /* qr2_init: Initializes the sockets, etc. Returns an error value
 if an error occured, or 0 otherwise */
+// qr2_init_socketA present-unmatched
 qr2_error_t qr2_init_socketA(/*[out]*/qr2_t *qrec, SOCKET s, int boundport, const char *gamename, const char *secret_key,
 					 int ispublic, int natnegotiate,
 					 qr2_serverkeycallback_t server_key_callback,
@@ -168,8 +169,7 @@ qr2_error_t qr2_init_socketA(/*[out]*/qr2_t *qrec, SOCKET s, int boundport, cons
 	qr2_t cr;
 	if (qrec == NULL)
 	{
-		cr = &static_qr2_rec;		
-        cr->hbsock = INVALID_SOCKET;
+		cr = &static_qr2_rec;
 	}
 	else
 	{
