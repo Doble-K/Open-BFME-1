@@ -366,6 +366,23 @@ matched body containing the *same* construct would prove which flag flips the
 order. Until then, treat "right size, four diffs, `89 64 24` against `8b cc`" as a
 known-unfixed classification and move to the next candidate.
 
+**A 93-byte specimen of the same family**, found 2026-08-16 and worth starting
+from because everything else about it is settled:
+`?sendDisconnectChat@Network@@UAEXVUnicodeString@@@Z` at `0x006824C0`. The whole
+body is `m_conMgr->sendDisconnectChat(text)` with `m_conMgr` at `[this+0x08]`,
+and it reproduces byte for byte except the same two adjacent instructions:
+
+    retail    89 64 24 08   mov [esp+8], esp
+              8b cc         mov ecx, esp
+    compiled  8b cc         mov ecx, esp
+              89 64 24 08   mov [esp+8], esp
+
+Same construct as the bigger ones — a class passed **by value** into a call
+inside an unwind frame — but with nothing else in the function to look past. The
+reconstruction is not in the tree, because a source with no matched row cannot
+live under `Code/`; rebuild it from this paragraph and the packet at
+`reverse/zh_sweep/packets/006824c0.md`.
+
 
 ## The baseline exe is not entirely compiler output
 
