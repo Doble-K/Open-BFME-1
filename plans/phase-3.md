@@ -182,3 +182,45 @@ Three corrections to this file's own instructions, for whoever writes phase 4:
 3. Packet boundaries are not trustworthy either — two of the ten were interior
    addresses. Disassemble from the covering dump row's start before believing
    the packet.
+### Addendum: pre-emption audit, and a correction to the size figure above
+
+**Pre-emption: zero.** Fleet clones landed six ledger commits during this run,
+four of them packet work (`a0002bb8e`, `8fade6f35`, `b936fd1d2`, `a62b691b7`),
+so the race was real. None touched a pinned address. Re-checked against the
+ledger at `0ef2cebda`: the five landed rows all name this session's own
+sources, and the five misses are all still `gen-dump` or unclaimed
+(`0x000CF211`→dump at 0x000CF200, `0x000DF3C0`→dump, `0x001020D0`→unclaimed,
+`0x004DF13A`→dump at 0x004DF130, `0x004DF520`→dump). So the denominator is the
+full **10**, no exclusions, and the 5/10 verdict stands as reported.
+
+**Correction: 5 of 10 packet sizes are wrong, not 3.** The list above missed
+`004df13a` (759 vs 803) and did not count `000cf211`, whose 38 follows from its
+bad boundary — the body at 0x000CF200 is 55. Full breakdown:
+
+| packet | packet size | true size | |
+|---|---|---|---|
+| `000CF211` | 38 | 55 | boundary interior |
+| `000DF3C0` | 50 | 97 | 50 is the *Zero Hour* body's size |
+| `001062C0` | 374 | 349 | counts trailing `int3` |
+| `004DF13A` | 759 | 803 | boundary interior |
+| `004DF520` | 804 | 837 | |
+
+The five that landed all had correct sizes. That is not a coincidence to lean
+on at n=5, but it is worth a look: a wrong size may be a cheap *predictor* of a
+packet that will not convert, and unlike alignment it costs nothing to compute.
+
+**Packet quality, in the genre of Open-BFME5's `0x002EFAF0` finding** (where a
+packet named `doNamedDelete` for what is really `doUnitStopSequentialScript`):
+one of the ten is wrong the same way. `000CF211` lists 55 ICF-folded
+`list<T>::insert` candidates and **every one of them has a 4-byte element**,
+while the body copies two bytes (`mov dx,WORD PTR [edx]` / `mov WORD PTR
+[ecx],dx`). No candidate on that list can be this body. The other four misses
+named the right function — `SaveLoadMenuInit`, `SaveLoadMenuFullScreenInit`,
+`setLocalPlayer`, `notifyLauncher` all check out — so a packet naming the wrong
+function and a packet whose body simply will not match are distinct failures,
+and only `000CF211` is the former.
+
+One near-miss of the same kind, in a *callee* pin rather than the subject:
+`004DF520`'s pin list names `populateSaveGameListbox` for ILT `0x0004209B`,
+which jumps to `0x00111DB0`, while the ledger puts that name on `0x001121A0`.
+Left unadjudicated — a live tracked row wins a contested RVA.
