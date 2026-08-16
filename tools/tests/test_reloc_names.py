@@ -114,6 +114,34 @@ def test_a_generated_placeholder_name_is_marked_not_passed_off_as_identity():
     print("PASS a gen_dump-minted name is published marked, not as identity")
 
 
+def test_every_generator_prefix_is_marked_generated():
+    """One prefix per generator-minted class, and the marker has to know all of
+    them.
+
+    The pattern was written for gen_dump's three prefixes and never widened when
+    tools/gen_uw.py added six more, so a full gate published 15 Gen_uws pins as
+    `identity=real` -- the exact confusion the marker exists to prevent. A name
+    this project invented is not identity whichever tool invented it.
+    """
+    body = a_publishable_function()
+    minted = ["??1Gen_dtor_0093e860@@UAE@XZ", "??1Gen_dtorv_0093e860@@UAE@XZ",
+              "??1Gen_t_00093990_mc4@@QAE@XZ",
+              "??1Gen_uw_008bd020@@QAE@XZ", "??1Gen_uwm_008bd020@@QAE@XZ",
+              "??0Gen_uwh4_008bd020@@QAE@XZ", "??3Gen_uws100_00891650@@SAXPAXI@Z",
+              "??3@YAXPAXPAUGen_uwt_0002aaa9@@@Z", "??1Gen_uw_new@@QAE@XZ"]
+    for name in minted:
+        rows = build.select_reloc_names(build.harvest_reloc_names(
+            [call_row(0x1000, body, symbol=name)]))
+        assert [row["notes"].endswith("identity=generated") for row in rows] == [True], (
+            f"{name} is a generator-minted placeholder and must not be published "
+            f"as recovered identity")
+    # A retail class whose name merely starts the same way is still identity.
+    rows = build.select_reloc_names(build.harvest_reloc_names(
+        [call_row(0x1000, body, symbol="?update@GeneratorObject@@QAEXXZ")]))
+    assert [row["notes"].endswith("identity=real") for row in rows] == [True]
+    print("PASS all %d generator prefixes publish as identity=generated" % len(minted))
+
+
 def published_rows():
     with RELOC_NAMES.open(newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
