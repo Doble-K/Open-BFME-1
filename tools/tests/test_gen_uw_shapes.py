@@ -63,7 +63,18 @@ TEMPLATES = [
     ("8b 4d f0 81 c1 98 00 00 00 e9 00000000", 10, ("M", -0x10, 0x98)),
     ("8b 8d f0 fd ff ff 83 c1 04 e9 00000000", 10, ("M", -0x210, 4)),
     ("8b 8d f0 fd ff ff 81 c1 08 06 00 00 e9 00000000", 13, ("M", -0x210, 0x608)),
+    ("6a 24 8b 45 f0 50 e8 00000000 83 c4 08 c3", 7, ("S", -0x10, 36)),
+    ("68 2c 01 00 00 8b 45 f0 50 e8 00000000 83 c4 08 c3", 10, ("S", -0x10, 300)),
+    ("6a 10 8b 85 f0 fe ff ff 50 e8 00000000 83 c4 08 c3", 10, ("S", -0x110, 16)),
+    ("68 2c 01 00 00 8b 85 f0 fe ff ff 50 e8 00000000 83 c4 08 c3", 13,
+     ("S", -0x110, 300)),
+    ("8b 45 04 50 8b 4d f0 51 e8 00000000 83 c4 08 c3", 9, ("P", -0x10, 4)),
+    ("8b 45 0c 50 8b 4d b0 51 e8 00000000 83 c4 08 c3", 9, ("P", -0x50, 12)),
 ]
+SIZED_DELETE = {36: "??3Gen_uws36_0000d828@@SAXPAXI@Z",
+                300: "??3Gen_uws300_0000d828@@SAXPAXI@Z",
+                16: "??3Gen_uws16_0000d828@@SAXPAXI@Z"}
+PLACEMENT_DELETE = "??3@YAXPAXPAUGen_uwt_0000d828@@@Z"
 
 
 @pytest.mark.parametrize("hexed,call_at,expected", TEMPLATES)
@@ -79,8 +90,8 @@ def test_emitted_bytes_decode_back_to_the_key_the_row_is_anchored_to(
         hexed, call_at, expected):
     kind, disp, offset = expected
     raw = bytes.fromhex(hexed.replace(" ", ""))
-    callee = gen_uw.DELETE_NAME if kind == "C" else (
-        MEMBER_DTOR if kind == "M" else DTOR)
+    callee = {"C": gen_uw.DELETE_NAME, "M": MEMBER_DTOR, "P": PLACEMENT_DELETE,
+              "S": SIZED_DELETE.get(offset)}.get(kind, DTOR)
 
     key = gen_uw.emitted_key(raw, {call_at: callee})
 
@@ -159,6 +170,8 @@ def test_a_four_byte_pad_cannot_move_a_local_so_the_ladder_does():
     (gen_uw.Unit("param", TARGET, 2, (2,)), [("B", 4, 0), ("B", 8, 0)]),
     (gen_uw.Unit("new", None, 1, (8,)), [("C", -0x18, 0)]),
     (gen_uw.Unit("member", TARGET, 2, (12, (0, 0x98))), [("M", -0x1C, 0), ("M", -0x1C, 0x98)]),
+    (gen_uw.Unit("sized", TARGET, 1, (8, 36)), [("S", -0x18, 36)]),
+    (gen_uw.Unit("place", TARGET, 1, (64, 8)), [("P", -0x50, 8)]),
 ])
 def test_a_unit_claims_exactly_the_keys_its_funclets_ask_for(unit, funclets):
     """`missing` stops the run on a key claimed here that the compiler did not
@@ -170,14 +183,41 @@ def test_a_unit_claims_exactly_the_keys_its_funclets_ask_for(unit, funclets):
     assert sorted(gen_uw.unit_keys(unit)) == sorted(expected)
 
 
-@pytest.mark.parametrize("disp,offset,why", [
-    (-0x10 + 2, 0, "a slot 2 bytes below EBP-0x10 is not on the 4-byte ladder"),
-    (-0x0C, 0, "above EBP-0x10 there is no pad that reaches it"),
-    (-0x10, 6, "a 6-byte member offset is not a field a struct layout produces"),
-    (-0x10, -4, "a negative member offset is not a field at all"),
+@pytest.mark.parametrize("kind,disp,offset,why", [
+    ("M", -0x10 + 2, 0, "a slot 2 bytes below EBP-0x10 is not on the 4-byte ladder"),
+    ("M", -0x0C, 0, "above EBP-0x10 there is no pad that reaches it"),
+    ("M", -0x10, 6, "a 6-byte member offset is not a field a struct layout produces"),
+    ("M", -0x10, -4, "a negative member offset is not a field at all"),
+    ("P", -0x10, -32, "a placement argument in a local slot is not a parameter"),
+    ("P", -0x14, 4, "EBP-0x14 is the spare slot no pad moves the block into"),
+    ("S", -0x14, 36, "same spare slot, and a sized delete has no second-new escape"),
+    ("S", -0x10, 0, "a zero-byte class is not a size retail can have pushed"),
 ])
-def test_an_unplaceable_slot_is_declined_with_the_reason_recorded(disp, offset, why):
-    funclet = gen_uw.Funclet("M", RVA, 11, disp, TARGET, offset)
+def test_an_unplaceable_slot_is_declined_with_the_reason_recorded(
+        kind, disp, offset, why):
+    funclet = gen_uw.Funclet(kind, RVA, 11, disp, TARGET, offset)
 
     assert not gen_uw.on_the_ladder(funclet), why
     assert gen_uw.unreachable(funclet), "the reason becomes a tombstone's reason column"
+
+
+def test_the_sized_delete_class_is_declared_once_per_target_and_size():
+    """The same (target, size) reaches several frame slots; a struct definition
+    per slot is a redefinition the compiler refuses, and it did."""
+    units = [gen_uw.Unit("sized", TARGET, 1, (pad, 16)) for pad in (0, 8, 16)]
+
+    text = gen_uw.emit_source(units)
+
+    assert text.count("struct Gen_uws16_0000d828 {") == 1
+    assert text.count("*gen_uw_s") == 3
+    assert "char q[16];" in text, "sizeof is what retail's pushed immediate is"
+
+
+def test_the_placement_tag_type_is_what_separates_one_target_from_another():
+    """The two-argument operator delete is a free function, so its mangled name
+    carries only the tag type -- that is the whole identity of the callee."""
+    text = gen_uw.emit_source([gen_uw.Unit("place", TARGET, 1, (0, 8))])
+
+    assert "void operator delete(void *, Gen_uwt_0000d828 *);" in text
+    assert "gen_uw_d0_8_0000d828(Gen_uwt_0000d828 *a0, Gen_uwt_0000d828 *a1)" in text
+    assert "new (a1) Gen_uwp_0000d828(0)" in text, "the LAST parameter is the tag"

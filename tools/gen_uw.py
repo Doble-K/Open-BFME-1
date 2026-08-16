@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Byte-true C++ for the MSVC unwind funclets retail left unclaimed.
 
-Four funclet templates carry both a frame reference and a callee that can be
+Six funclet templates carry both a frame reference and a callee that can be
 read straight out of the retail bytes, so an anonymous C++ body reproduces them
 exactly:
 
@@ -12,11 +12,18 @@ exactly:
   M  mov ecx,[ebp-D]; add ecx,K; jmp <dtor>            a member subobject at
                                                        offset K of the object
                                                        being constructed
+  S  push N; mov eax,[ebp-D]; push eax;                the same block, freed
+     call <op delete>; add esp,8; ret                  through a class-scoped
+                                                       SIZED operator delete
+  P  mov eax,[ebp+A]; push eax; mov ecx,[ebp-D];       the block a throwing
+     push ecx; call <op delete>; add esp,8; ret        PLACEMENT new-expression
+                                                       allocated, with the
+                                                       placement argument from A
 
 Each takes an int8 displacement while the slot is within 128 bytes of EBP and an
 int32 one past that; the C++ is identical either way, so one emitter covers both
-encodings of all four. Every frame slot is reached the same way: the object
-starts at EBP-0x10 and a leading `char pad[N]` walks it down.
+encodings. Every frame slot is reached the same way: the object starts at
+EBP-0x10 and a leading `char pad[N]` walks it down.
 
 The payloads are anonymous by design: they reproduce a frame slot and a call,
 never a class identity, and every callee address comes from the retail bytes.
@@ -84,7 +91,7 @@ ROWS_PER_FILE = 1200
 # displacements and member offsets the pool actually asks for, and the commit
 # that adds one lands nothing else -- so a full gate that goes red names the
 # shape that did it.
-LANDING = ("A", "B", "C", "M")
+LANDING = ("A", "B", "C", "M", "S", "P")
 
 
 def source_name(index):
@@ -188,7 +195,9 @@ class Ledger:
         return (name, address) in self.named
 
 
-Funclet = collections.namedtuple("Funclet", "kind rva size disp target imm")
+# `extra` is the template's second dimension: the member offset for M, the
+# block size for S, the placement argument's frame slot for P, 0 for A/B/C.
+Funclet = collections.namedtuple("Funclet", "kind rva size disp target extra")
 Unit = collections.namedtuple("Unit", "kind target rows shape")
 
 
@@ -196,8 +205,11 @@ def disp32(body, offset):
     return struct.unpack_from("<i", body, offset)[0]
 
 
+ADD8_RET = b"\x83\xc4\x08\xc3"
+
+
 def classify(rva, body):
-    """(kind, disp, target, member-offset) for the shapes this generator emits.
+    """(kind, disp, target, extra) for the shapes this generator emits.
 
     Each row is one MSVC unwind template and both encodings of its frame
     reference: an int8 displacement while the slot is within 128 bytes of EBP,
@@ -212,6 +224,16 @@ def classify(rva, body):
                                  a member subobject at offset K of the object
                                  whose `this` the parent spilled at D; K==0 folds
                                  the add away, K<128 takes 83 C1, else 81 C1.
+      S    6a N / 68 N32         push sizeof; mov eax,[ebp+D]; push eax;
+                                 call op-delete; add esp,8; ret -- the same block
+                                 as C, freed through a class-scoped SIZED
+                                 operator delete, so the size is in the bytes
+      P    8b 45 A ... 8b 4d D   mov eax,[ebp+A]; push eax; mov ecx,[ebp+D];
+                                 push ecx; call op-delete; add esp,8; ret -- the
+                                 block a throwing PLACEMENT new-expression
+                                 allocated, freed through the two-argument
+                                 operator delete with the placement argument
+                                 from slot A
     """
     size = len(body)
     if size == 8 and body[0] == 0x8D and body[1] == 0x4D and body[3] == 0xE9:
@@ -242,6 +264,25 @@ def classify(rva, body):
     if (size == 17 and body[0] == 0x8B and body[1] == 0x8D and body[6] == 0x81
             and body[7] == 0xC1 and body[12] == 0xE9):
         return "M", disp32(body, 2), rel32(body, 12, rva), disp32(body, 8)
+    # The sized and placement deletes both end `add esp,8; ret` because both push
+    # two arguments; what differs is whether the second one is an immediate size
+    # or a second frame slot.
+    if (size == 15 and body[0] == 0x6A and body[2] == 0x8B and body[3] == 0x45
+            and body[5] == 0x50 and body[6] == 0xE8 and body[11:15] == ADD8_RET):
+        return "S", disp8(body[4]), rel32(body, 6, rva), body[1]
+    if (size == 18 and body[0] == 0x68 and body[5] == 0x8B and body[6] == 0x45
+            and body[8] == 0x50 and body[9] == 0xE8 and body[14:18] == ADD8_RET):
+        return "S", disp8(body[7]), rel32(body, 9, rva), disp32(body, 1)
+    if (size == 18 and body[0] == 0x6A and body[2] == 0x8B and body[3] == 0x85
+            and body[8] == 0x50 and body[9] == 0xE8 and body[14:18] == ADD8_RET):
+        return "S", disp32(body, 4), rel32(body, 9, rva), body[1]
+    if (size == 21 and body[0] == 0x68 and body[5] == 0x8B and body[6] == 0x85
+            and body[11] == 0x50 and body[12] == 0xE8 and body[17:21] == ADD8_RET):
+        return "S", disp32(body, 7), rel32(body, 12, rva), disp32(body, 1)
+    if (size == 17 and body[0] == 0x8B and body[1] == 0x45 and body[3] == 0x50
+            and body[4] == 0x8B and body[5] == 0x4D and body[7] == 0x51
+            and body[8] == 0xE8 and body[13:17] == ADD8_RET):
+        return "P", disp8(body[6]), rel32(body, 8, rva), disp8(body[2])
     return None, None, None, None
 
 
@@ -277,7 +318,7 @@ def read_funclets(ledger):
                     "funclet %d -- the boundary itself is in dispute" % (rva, dump, size))
                 continue
             body = data[rva:rva + size]
-            kind, disp, target, imm = classify(rva, body)
+            kind, disp, target, extra = classify(rva, body)
             if kind is None:
                 tally["D other"] += 1
                 tally_bytes["D other"] += size
@@ -293,7 +334,7 @@ def read_funclets(ledger):
                     "the destructor target 0x%08X this funclet jumps to is not a proven "
                     "boundary, so no pin can name it" % target)
                 continue
-            funclet = Funclet(kind, rva, size, disp, target, imm)
+            funclet = Funclet(kind, rva, size, disp, target, extra)
             if on_the_ladder(funclet):
                 on_ladder.append(funclet)
             else:
@@ -327,9 +368,26 @@ def unreachable(funclet):
     if funclet.disp > -0x10 or (-funclet.disp - 0x10) % 4:
         return ("frame displacement %d is not a local slot: they start at EBP-0x10 "
                 "and step down by 4" % funclet.disp)
-    if funclet.imm < 0 or funclet.imm % 4:
-        return ("member offset %d is not a 4-byte-aligned field offset a struct "
-                "layout can produce" % funclet.imm)
+    if funclet.kind == "M":
+        if funclet.extra < 0 or funclet.extra % 4:
+            return ("member offset %d is not a 4-byte-aligned field offset a struct "
+                    "layout can produce" % funclet.extra)
+        return None
+    if funclet.kind == "S":
+        if funclet.extra < 1:
+            return "a sized delete of %d bytes is not a class size" % funclet.extra
+    if funclet.kind == "P":
+        if funclet.extra < 4 or funclet.extra % 4:
+            return ("the placement argument at %d is not a parameter slot: this "
+                    "generator can only pass it as a parameter, and those start at "
+                    "EBP+4 and step by 4" % funclet.extra)
+    if funclet.kind in ("S", "P") and pad_of(funclet) == 4:
+        # The one slot no pad reaches: `char pad[4]` fills a gap the frame
+        # already had. C escapes it with a second new-expression live at the same
+        # time (emit_new), but that second expression is what supplies the
+        # callee, and neither delete template survives being given another one.
+        return ("EBP-0x14 is the spare slot the frame already has, so no pad "
+                "moves the block there")
     return None
 
 
@@ -351,6 +409,10 @@ def plan(on_ladder):
       member (target, pad, offsets) one host struct whose out-of-line constructor
                                     spills `this` at that slot and holds a
                                     Gen_uwm_<t> at each offset
+      sized  (target, pad, size)    one new-expression for a class of exactly
+                                    that size with a sized operator delete
+      place  (target, pad, slot)    one placement new-expression whose tag
+                                    argument arrives in that parameter slot
 
     Earlier revisions gave each destructor target ONE function and walked its
     locals down a ladder, which is the same layout arithmetic seen from the other
@@ -362,6 +424,7 @@ def plan(on_ladder):
     params_of = collections.defaultdict(set)     # target -> {slot index}
     new_pads = set()
     members_of = collections.defaultdict(set)    # (target, pad) -> {member offset}
+    sized, placed = set(), set()                 # (target, pad, size / arg slot)
     rows = collections.Counter()
     for funclet in on_ladder:
         if funclet.kind == "A":
@@ -373,9 +436,15 @@ def plan(on_ladder):
         elif funclet.kind == "C":
             unit = ("new", None, pad_of(funclet))
             new_pads.add(pad_of(funclet))
-        else:
+        elif funclet.kind == "M":
             unit = ("member", funclet.target, pad_of(funclet))
-            members_of[(funclet.target, pad_of(funclet))].add(funclet.imm)
+            members_of[(funclet.target, pad_of(funclet))].add(funclet.extra)
+        elif funclet.kind == "S":
+            unit = ("sized", funclet.target, (pad_of(funclet), funclet.extra))
+            sized.add((funclet.target, pad_of(funclet), funclet.extra))
+        else:
+            unit = ("place", funclet.target, (pad_of(funclet), funclet.extra))
+            placed.add((funclet.target, pad_of(funclet), funclet.extra))
         rows[unit] += 1
 
     units = []
@@ -390,6 +459,12 @@ def plan(on_ladder):
     for target, pad in sorted(members_of):
         units.append(Unit("member", target, rows[("member", target, pad)],
                           (pad, tuple(sorted(members_of[(target, pad)])))))
+    for target, pad, size in sorted(sized):
+        units.append(Unit("sized", target, rows[("sized", target, (pad, size))],
+                          (pad, size)))
+    for target, pad, slot in sorted(placed):
+        units.append(Unit("place", target, rows[("place", target, (pad, slot))],
+                          (pad, slot)))
 
     files = [[]]
     count = 0
@@ -432,6 +507,12 @@ def unit_keys(unit):
         return [("AB", 4 * (slot + 1), unit.target, 0) for slot in range(unit.shape[0])]
     if unit.kind == "new":
         return [("C", -(0x10 + unit.shape[0]), None, 0)]
+    if unit.kind == "sized":
+        pad, size = unit.shape
+        return [("S", -(0x10 + pad), unit.target, size)]
+    if unit.kind == "place":
+        pad, slot = unit.shape
+        return [("P", -(0x10 + pad), unit.target, slot)]
     pad, offsets = unit.shape
     return [("M", -(0x10 + pad), unit.target, offset) for offset in offsets]
 
@@ -493,6 +574,39 @@ def emit_member(target, pad, offsets):
             % (name, " ".join(fields), name, name, name, name, initialisers, body))
 
 
+def emit_sized(target, pad, size):
+    """One new-expression for a class of exactly `size` bytes whose operator
+    delete takes the size, so retail's `push sizeof` is `sizeof` and nothing else.
+
+    The class is declared once per (target, size) by emit_source, not here: the
+    same pair reaches several frame slots, and a struct definition per slot is a
+    redefinition the compiler refuses.
+    """
+    body = "char p[%d]; gen_uw_sink(p); " % pad if pad else ""
+    name = "Gen_uws%d_%08x" % (size, target)
+    return ("%s *gen_uw_s%d_%d_%08x() { %sreturn new %s(0); }\n"
+            % (name, pad, size, target, body, name))
+
+
+def emit_place(target, pad, slot):
+    """One placement new-expression whose tag argument arrives in parameter
+    `slot`, which is what retail's first `mov eax,[ebp+A]` reads.
+
+    The tag type is per target, because the two-argument operator delete is a
+    free function and its mangled name is the only thing that distinguishes one
+    site's callee from another's.  Earlier parameters exist only to push the tag
+    into the right slot; they are handed to gen_uw_sink so nothing folds them
+    away.
+    """
+    count = slot // 4
+    args = ", ".join("Gen_uwt_%08x *a%d" % (target, index) for index in range(count))
+    unused = "".join("gen_uw_sink(a%d); " % index for index in range(count - 1))
+    body = "char p[%d]; gen_uw_sink(p); " % pad if pad else ""
+    return ("Gen_uwp_%08x *gen_uw_d%d_%d_%08x(%s)"
+            " { %s%sreturn new (a%d) Gen_uwp_%08x(0); }\n"
+            % (target, pad, slot, target, args, unused, body, count - 1, target))
+
+
 def emit_new(pad):
     if pad == 0:
         return "Gen_uw_new *gen_uw_c0() { return new Gen_uw_new(0); }\n"
@@ -520,6 +634,24 @@ def emit_source(units):
             % (t, t, t) for t in m_targets) + "\n")
     if any(u.kind == "new" for u in units):
         out.append(NEW_EXPR_TYPES)
+    # A sized delete's callee is the class's OWN operator delete, so its mangled
+    # name carries the class name and two targets at the same size need two
+    # classes to keep their pins apart. One class per (target, size), however
+    # many frame slots reach it.
+    for target, size in sorted({(u.target, u.shape[1]) for u in units
+                                if u.kind == "sized"}):
+        out.append("struct Gen_uws%d_%08x { char q[%d]; Gen_uws%d_%08x(int);"
+                   " static void operator delete(void *, unsigned int); };\n"
+                   % (size, target, size, size, target))
+    # A placement site's callee is a FREE two-argument operator delete, so the
+    # only thing separating one target's from another's is the tag type in its
+    # signature. One tag, one payload and one overload pair per target.
+    for target in sorted({u.target for u in units if u.kind == "place"}):
+        out.append("struct Gen_uwt_%08x;\n"
+                   "void *operator new(unsigned int, Gen_uwt_%08x *);\n"
+                   "void operator delete(void *, Gen_uwt_%08x *);\n"
+                   "struct Gen_uwp_%08x { int m; Gen_uwp_%08x(int); };\n"
+                   % (target, target, target, target, target))
     for unit in units:
         if unit.kind == "local":
             out.append(emit_local(unit.target, unit.shape[0]))
@@ -530,6 +662,10 @@ def emit_source(units):
                        % (count, unit.target, args))
         elif unit.kind == "new":
             out.append(emit_new(unit.shape[0]))
+        elif unit.kind == "sized":
+            out.append(emit_sized(unit.target, unit.shape[0], unit.shape[1]))
+        elif unit.kind == "place":
+            out.append(emit_place(unit.target, unit.shape[0], unit.shape[1]))
         else:
             out.append(emit_member(unit.target, unit.shape[0], unit.shape[1]))
     return "\n".join(out)
@@ -571,6 +707,8 @@ EMITTED_SHAPES = (
     (b"\x8b\x8d", 6, 0x81, "M",  "??1Gen_uwm_", 13, ("imm32", 8)),
 )
 TARGET_IN_NAME = re.compile(r"^\?\?1Gen_uwm?_([0-9a-f]{8})@@QAE@XZ$")
+SIZED_DELETE_NAME = re.compile(r"^\?\?3Gen_uws\d+_([0-9a-f]{8})@@SAXPAXI@Z$")
+PLACEMENT_DELETE_NAME = re.compile(r"^\?\?3@YAXPAXPAUGen_uwt_([0-9a-f]{8})@@@Z$")
 
 
 def emitted_target(name, prefix):
@@ -587,7 +725,7 @@ def emitted_target(name, prefix):
 
 
 def emitted_key(body, calls):
-    """The (family, disp, target, member-offset) key one emitted funclet covers."""
+    """The (family, disp, target, extra) key one emitted funclet covers."""
     if (len(body) >= 11 and body[0] == 0x8B and body[1] == 0x45 and body[3] == 0x50
             and body[4] == 0xE8 and body[9] == 0x59 and body[10] == 0xC3
             and calls.get(5) == DELETE_NAME):
@@ -596,6 +734,32 @@ def emitted_key(body, calls):
             and body[7] == 0xE8 and body[12] == 0x59 and body[13] == 0xC3
             and calls.get(8) == DELETE_NAME):
         return ("C", disp32(body, 2), None, 0)
+    if (len(body) >= 15 and body[0] == 0x6A and body[2] == 0x8B and body[3] == 0x45
+            and body[5] == 0x50 and body[6] == 0xE8 and body[11:15] == ADD8_RET):
+        match = SIZED_DELETE_NAME.match(calls.get(7, ""))
+        if match:
+            return ("S", disp8(body[4]), int(match.group(1), 16), body[1])
+    if (len(body) >= 18 and body[0] == 0x68 and body[5] == 0x8B and body[6] == 0x45
+            and body[8] == 0x50 and body[9] == 0xE8 and body[14:18] == ADD8_RET):
+        match = SIZED_DELETE_NAME.match(calls.get(10, ""))
+        if match:
+            return ("S", disp8(body[7]), int(match.group(1), 16), disp32(body, 1))
+    if (len(body) >= 18 and body[0] == 0x6A and body[2] == 0x8B and body[3] == 0x85
+            and body[8] == 0x50 and body[9] == 0xE8 and body[14:18] == ADD8_RET):
+        match = SIZED_DELETE_NAME.match(calls.get(10, ""))
+        if match:
+            return ("S", disp32(body, 4), int(match.group(1), 16), body[1])
+    if (len(body) >= 21 and body[0] == 0x68 and body[5] == 0x8B and body[6] == 0x85
+            and body[11] == 0x50 and body[12] == 0xE8 and body[17:21] == ADD8_RET):
+        match = SIZED_DELETE_NAME.match(calls.get(13, ""))
+        if match:
+            return ("S", disp32(body, 7), int(match.group(1), 16), disp32(body, 1))
+    if (len(body) >= 17 and body[0] == 0x8B and body[1] == 0x45 and body[3] == 0x50
+            and body[4] == 0x8B and body[5] == 0x4D and body[7] == 0x51
+            and body[8] == 0xE8 and body[13:17] == ADD8_RET):
+        match = PLACEMENT_DELETE_NAME.match(calls.get(9, ""))
+        if match:
+            return ("P", disp8(body[6]), int(match.group(1), 16), disp8(body[2]))
     for prefix, at, opcode, family, callee, call_at, imm in EMITTED_SHAPES:
         if len(body) <= at or body[:2] != prefix or body[at] != opcode:
             continue
@@ -617,8 +781,8 @@ def key_of(funclet):
         # tries the candidates and keeps whichever reproduces retail, so one
         # emitted body serves every target at that slot.
         return ("C", funclet.disp, None, 0)
-    if funclet.kind == "M":
-        return ("M", funclet.disp, funclet.target, funclet.imm)
+    if funclet.kind in ("M", "S", "P"):
+        return (funclet.kind, funclet.disp, funclet.target, funclet.extra)
     return ("AB", funclet.disp, funclet.target, 0)
 
 
@@ -782,12 +946,16 @@ def emit_and_write(ledger, on_ladder, snapshot):
 
     rows, written = [], []
     dtor_targets, member_targets = set(), set()
+    sized_deletes, placement_targets = set(), set()
     for index, units in enumerate(files):
         path = ROOT / source_name(index)
         path.write_text(emit_source(units), encoding="utf-8", newline="\n")
         slots = compiled_slots(path)
         dtor_targets |= {u.target for u in units if u.kind in ("local", "param")}
         member_targets |= {u.target for u in units if u.kind == "member"}
+        sized_deletes |= {(u.target, u.shape[1]) for u in units
+                          if u.kind == "sized"}
+        placement_targets |= {u.target for u in units if u.kind == "place"}
         wanted = sorted(set(k for unit in units for k in unit_keys(unit)) & set(by_key))
         missing = [k for k in wanted if k not in slots]
         if missing:
@@ -826,6 +994,9 @@ def emit_and_write(ledger, on_ladder, snapshot):
     pins += [("??1Gen_uwm_%08x@@QAE@XZ" % t, t) for t in sorted(member_targets)]
     pins += [(DELETE_NAME, f.target) for f in on_ladder
              if f.kind == "C" and not ledger.resolves(DELETE_NAME, f.target)]
+    pins += [("??3Gen_uws%d_%08x@@SAXPAXI@Z" % (size, target), target)
+             for target, size in sorted(sized_deletes)]
+    pins += [("??3@YAXPAXPAUGen_uwt_%08x@@@Z" % t, t) for t in sorted(placement_targets)]
     pins = sorted(set(pins), key=lambda pin: (pin[1], pin[0]))
     redundant = [pin for pin in pins if ledger.resolves(*pin)]
     if redundant:
