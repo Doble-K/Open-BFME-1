@@ -72164,3 +72164,4 @@ _ghiInitBuffer,0x0087D740,decode_calls pin for _ghiNewConnection callee
 ??1Gen_uw_009f5690@@QAE@XZ,0x009F5690,gen-uw-pin dtor target read from the retail funclet bytes
 ??1Gen_uw_00afe7a0@@QAE@XZ,0x00AFE7A0,gen-uw-pin dtor target read from the retail funclet bytes
 ??0ProductionPrerequisite@@QAE@ABV0@@Z,0x00783D50,pin for ProductionPrerequisiteConstructShim::construct() copy-ctor callee
+?getName@LANGameInfo@@QAE?AVUnicodeString@@XZ,0x00041FC9,Open-BFME5 ILT target read from the RequestAccept call displacement at 0x0068614B
