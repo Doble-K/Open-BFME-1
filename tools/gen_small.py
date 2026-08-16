@@ -408,6 +408,39 @@ def load_claims(skip_dumps=False):
     return by_rva, by_name, overlap_index(ranges)
 
 
+def dump_boundaries():
+    """{rva: (size, name)} for every dump row a generated body may supersede.
+
+    A dump is retail's own bytes under a synthetic name: it fixes a boundary and
+    holds no identity, and `validate_rows` already accepts a real body over the
+    EXACT same range, retracting and tombstoning the dump in the same
+    transaction. Nothing ever reached that path from a recipe engine, because
+    the dump row hid its own range from the scan -- and 12,816 of these ranges
+    have no ghidra entry at all, so they were never candidates to begin with.
+    Restricted to `Code/gen_asm/` on purpose: those rows leave an orphaned MASM
+    PROC nobody edits, while the 349 dumps inside `Code/gen_small/` sit in TUs
+    their own generator owns end to end.
+    """
+    return {int(row["target_rva"], 16): (int(row["target_size"]), row["name"])
+            for row in B.load_claim_rows(counting_dumps=True, matched_only=True)
+            if B.is_scaffold_row(row) and row["source"].startswith(DUMP_DIR_PREFIX)}
+
+
+def scan_population(entries, boundaries):
+    """`entries` with every dump boundary merged in, the dump's extent winning.
+
+    A dump row's extent is proven -- the bytes it emits ARE the retail bytes over
+    that range -- so where ghidra also has an entry at that RVA the two agree
+    today (29,482 of 29,482). If one ever disagrees the dump wins, because a
+    candidate scanned at any other extent is one `validate_rows` would refuse at
+    land time, killing the whole batch instead of this one site.
+    """
+    merged = {rva: (rva, size, name) for rva, (size, name) in boundaries.items()}
+    for rva, size, name in entries:
+        merged.setdefault(rva, (rva, size, name))
+    return sorted(merged.values())
+
+
 def load_pins():
     """{name: address} already pinned in reverse/symbols.csv."""
     with B.SYMBOLS.open(encoding="utf-8", newline="") as handle:
@@ -3101,11 +3134,16 @@ def tg_fixed_offsets(pattern):
     return tuple(position for position in range(pattern.size) if position not in masked)
 
 
-def tg_scan(patterns, entries, blacklist, owned, index):
+def tg_scan(patterns, entries, blacklist, owned, index, transparent):
     """{rva: (body, [patterns])} over unclaimed inventory space only.
 
-    Start-exact and size-exact against ghidra's boundaries: a template body that
-    happens to appear inside a larger function is not that function.
+    Start-exact and size-exact against the boundaries in `entries`: a template
+    body that happens to appear inside a larger function is not that function.
+
+    `transparent` is dump_boundaries(): a supersedable dump row hides its own
+    range from `owned` and from the overlap index, so a candidate over exactly
+    that range sees open ground -- and only over exactly that range, which is
+    the one shape `validate_rows` accepts at land time.
 
     A site can match several patterns, and which one it is matters: masking the
     rel32 slots makes `_Rb_tree_iterator::operator++` and `operator--` the same
@@ -3115,9 +3153,14 @@ def tg_scan(patterns, entries, blacklist, owned, index):
     sizes = {pattern.size for pattern in patterns.values()}
     by_size = collections.defaultdict(list)
     for rva, size, name in entries:
-        if size not in sizes or rva in blacklist or rva in owned:
+        if size not in sizes or rva in blacklist:
             continue
-        if find_overlap(index, rva, size) is not None:
+        dump = transparent.get(rva)
+        supersedable = dump is not None and dump[0] == size
+        if rva in owned and not supersedable:
+            continue
+        if find_overlap(index, rva, size,
+                        skip=dump[1] if supersedable else None) is not None:
             continue
         by_size[size].append((rva, B.read_target_bytes(rva, size), name))
 
@@ -3398,7 +3441,10 @@ def cmd_gen_tgrid(args):
     # which pattern explains a site, and re-selecting a landed one would rewrite
     # the committed TU that already claims it under a different instantiation.
     claimed, claimed_names, index = load_claims()
-    hits = tg_scan(patterns, entries, blacklist, claimed, index)
+    # Dump-transparent scanning lands here in its own step: a grid TU's rows are
+    # appended at pinned offsets, so widening its population is a separate,
+    # separately gated change ({} keeps this run's population exactly as it was).
+    hits = tg_scan(patterns, entries, blacklist, claimed, index, {})
 
     resolution = tg_resolve(hits, TGRID_NOTE)
     claimable, chosen, callees = resolution.claimable, resolution.chosen, resolution.callees
@@ -3941,7 +3987,9 @@ def cmd_family_emit(args):
     # Like the grid: a landed site is off the table for good, so this hides
     # nothing from itself and a rerun over a landed batch reports 0 new.
     claimed, claimed_names, index = load_claims()
-    hits = tg_scan(patterns, entries, load_blacklist(), claimed, index)
+    boundaries = dump_boundaries()
+    hits = tg_scan(patterns, scan_population(entries, boundaries), load_blacklist(),
+                   claimed, index, boundaries)
     resolution = tg_resolve(hits, FAMILY_LABEL)
 
     yields = collections.defaultdict(lambda: [0, 0])
