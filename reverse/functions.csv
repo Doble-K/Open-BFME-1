@@ -122309,7 +122309,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00933880@@YAXXZ,,0x00933880,11,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33880
 ?d_009338b0@@YAXXZ,,0x009338B0,105,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d338b0
 ?d_00933960@@YAXXZ,,0x00933960,11,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33960
-?d_00933a50@@YAXXZ,,0x00933A50,157,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33a50
 ?d_00933af0@@YAXXZ,,0x00933AF0,139,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33af0
 ?d_00933b80@@YAXXZ,,0x00933B80,102,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33b80
 ?d_00933bf0@@YAXXZ,,0x00933BF0,103,Code/gen_asm/d_00930e00.asm,matched,gen-dump;ghidra=FUN_00d33bf0
@@ -157966,3 +157965,4 @@ _ghiSendBuffer,,0x0087DA50,135,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/
 ?onExit@AIDockMoveToEntryState@@UAEXW4StateExitType@@@Z,,0x0014EBF0,106,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
 ?onExit@AIDockApproachState@@UAEXW4StateExitType@@@Z,,0x0014E7D0,106,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,adjacent to AIDockApproachState::onEnter at 0x0014E700; its sibling body is byte-identical under masked relocations
 ?onExit@AIDockAdvancePositionState@@UAEXW4StateExitType@@@Z,,0x0014EA50,106,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,adjacent to AIDockAdvancePositionState::onEnter at 0x0014E980
+?Set_Coordinate_Range@Render2DClass@@QAEXABVRectClass@@@Z,,0x00933A50,157,Code/Libraries/Source/WWVegas/WW3D2/Render2DSetCoordinateRangeThunk.cpp,matched,
