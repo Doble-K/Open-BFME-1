@@ -453,3 +453,16 @@ _png_PLTE
 ??_7TeamFactory@@6BSnapshot@@@
 ??_7TeamFactory@@6BSubsystemInterface@@@
 ??_7UpdateModule@@6B@
+
+# `static Bool isShuttingDown` is declared independently by every shell-menu TU
+# (SinglePlayerMenu.cpp line 61, WOLLoginMenu.cpp line 84, and the ZH reference
+# has both), so internal linkage gives each its own retail storage. Both
+# referencing bodies are byte-matched and each writes exactly one byte:
+# SinglePlayerMenuShutdown (0x004E94F0) does `mov byte [0x12F41AC],1` and
+# WOLLoginMenuShutdown (0x004FFB10) does `mov byte [0x12F4680],1` right beside
+# `mov byte [0x12F4720],0`. 0x12F46xx/0x12F47xx is the same WOLLoginMenu.cpp
+# static block the _buttonBack/_buttonPushed entries above already document.
+# Same class as _parentID and _staticTextStatus: a name-based check cannot tell
+# file statics apart across TUs. Surfaced when SinglePlayerMenuShutdown landed
+# in b94028866; before that only the WOL TU referenced the name.
+_isShuttingDown
