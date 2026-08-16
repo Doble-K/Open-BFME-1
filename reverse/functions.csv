@@ -105661,7 +105661,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00083da0@@YAXXZ,,0x00083DA0,35,Code/gen_asm/d_0007cab0.asm,matched,gen-dump;ghidra=FUN_00483da0
 ?d_00083dd0@@YAXXZ,,0x00083DD0,401,Code/gen_asm/d_0007cab0.asm,matched,gen-dump;ghidra=FUN_00483dd0
 ?d_00084030@@YAXXZ,,0x00084030,939,Code/gen_asm/d_0007cab0.asm,matched,gen-dump;ghidra=FUN_00484030
-?d_00085ba0@@YAXXZ,,0x00085BA0,93,Code/gen_asm/d_0007cab0.asm,matched,gen-dump;ghidra=FUN_00485ba0
 ?d_000861e0@@YAXXZ,,0x000861E0,235,Code/gen_asm/d_0007cab0.asm,matched,gen-dump;ghidra=FUN_004861e0
 ?d_00086320@@YAXXZ,,0x00086320,11,Code/gen_asm/d_0007cab0.asm,matched,gen-dump;ghidra=FUN_00486320
 ?d_00086460@@YAXXZ,,0x00086460,17,Code/gen_asm/d_0007cab0.asm,matched,gen-dump;ghidra=FUN_00486460
@@ -157948,3 +157947,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?doTeamSpinForFramecount@ScriptActions@@IAEXABVAsciiString@@H@Z,,0x002F11E0,38,Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions_doTeamSpinForFramecount_Thunk.cpp,matched,zh_sweep packet 002f11e0
 ?resetIdleScan@TurretAIIdleState@@AAEXXZ,,0x0018CAF0,55,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleState_resetIdleScan_Thunk.cpp,matched,zh_sweep packet 0018caf0
 ?friend_onCondition@State@@QAEXP6A_NPAV1@PAX@ZI1PBD@Z,,0x000A1FB0,102,Code/GameEngine/Source/Common/State_friend_onCondition_Thunk.cpp,matched,zh_sweep packet 000a1fb0
+?newOverride@GlobalData@@AAEPAV1@XZ,,0x00085BA0,93,Code/GameEngine/Source/Common/GlobalData_newOverride_Thunk.cpp,matched,zh_sweep packet 00085ba0

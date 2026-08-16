@@ -69528,3 +69528,4 @@ _luaX_setinput,0x0099FEF0,additive pin for _luaY_parser call resolution
 ?createEmitters@W3DTankTruckDraw@@IAEXXZ,0x0001ECCC,ILT; from W3DTankTruckDraw::setFullyObscuredByShroud
 ?setFullyObscuredByShroud@W3DModelDraw@@UAEX_N@Z,0x0003EF77,ILT; base call from W3DTankTruckDraw::setFullyObscuredByShroud
 ?setSequentialTimer@ScriptEngine@@QAEXPAVTeam@@H@Z,0x00027237,ILT; tail call from ScriptActions::doTeamSpinForFramecount
+??0GlobalData@@QAE@XZ,0x00001807,ILT; ctor call site in GlobalData::newOverride 0x00085BA0
