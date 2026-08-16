@@ -11851,3 +11851,7 @@ uw_00c0aff0,0x00C0AFF0,pre-existing generated funclet parent was moved to Worker
 ?d_000df240@@YAXXZ,0x000DF240,gen-dump placeholder superseded by PlayerList::getNthPlayer converted to C++
 ?d_006bf580@@YAXXZ,0x006BF580,gen-dump placeholder superseded by W3DTankDraw::friend_newModuleInstance converted to C++
 ?d_006bf600@@YAXXZ,0x006BF600,gen-dump placeholder superseded by W3DTankDraw::friend_newModuleData converted to C++
+?d_00121b70@@YAXXZ,0x00121B70,gen-dump placeholder superseded by BeaconClientUpdate::friend_newModuleInstance converted to C++
+?d_0011e800@@YAXXZ,0x0011E800,gen-dump placeholder superseded by BoneFXDamage::friend_newModuleInstance converted to C++
+?d_0011eba0@@YAXXZ,0x0011EBA0,gen-dump placeholder superseded by SquishCollide::friend_newModuleInstance converted to C++
+?d_006bf360@@YAXXZ,0x006BF360,gen-dump placeholder superseded by W3DSupplyDraw::friend_newModuleInstance converted to C++

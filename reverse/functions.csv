@@ -13825,9 +13825,7 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@BannerCarrierUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00119BC0,96,Code/GameEngine/Source/GameLogic/AI/BannerCarrierUpdateFriendNewModuleInstanceThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleInstance factory
 ?friend_newModuleInstance@BaseUpgrade@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D110,96,Code/GameEngine/Source/GameLogic/Object/Upgrade/BaseUpgradeFriendNewModuleInstanceThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleInstance factory
 ?friend_newModuleInstance@BattlePlanUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00119CD0,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
-?friend_newModuleInstance@BeaconClientUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleInstance@BezierProjectileBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00115240,99,Code/GameEngine/Source/GameLogic/AI/BezierProjectileBehaviorFriendNewModuleInstanceThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleInstance factory
-?friend_newModuleInstance@BoneFXDamage@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleInstance@BoneFXUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00117CC0,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
 ?friend_newModuleInstance@BridgeBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00114790,99,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@BridgeScaffoldBehavior@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x001148B0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,friend_newModuleInstance: retail uses global operator new (shim Module.h ::new) + ModuleFactory::init locator
@@ -14003,7 +14001,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ?friend_newModuleInstance@SpecialPowerCompletionDie@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00117AA0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
 ?friend_newModuleInstance@SplitHordeSpecialPower@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00121620,96,Code/GameEngine/Source/GameLogic/Object/Upgrade/SplitHordeSpecialPowerFriendNewModuleInstanceThunk.cpp,matched,Open-BFME5 clean C++ friend_newModuleInstance factory
 ?friend_newModuleInstance@SpyVisionUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00114200,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
-?friend_newModuleInstance@SquishCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E2D0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,
 ?friend_newModuleInstance@StatusBitsUpgrade@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011D5C0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,module-glue exact match (ctor pinned)
 ?friend_newModuleInstance@StealthDetectorUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011B2F0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,friend_newModuleInstance: retail uses global operator new (shim Module.h ::new) + ModuleFactory::init locator
 ?friend_newModuleInstance@StealthUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011B3F0,96,Code/GameEngine/Source/Common/Thing/ModuleFactory.cpp,matched,BFME retail allocation-size facade
@@ -106893,12 +106890,9 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0011c030@@YAXXZ,,0x0011C030,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051c030
 ?d_0011cd10@@YAXXZ,,0x0011CD10,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051cd10
 ?d_0011e560@@YAXXZ,,0x0011E560,107,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e560
-?d_0011e800@@YAXXZ,,0x0011E800,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051e800
-?d_0011eba0@@YAXXZ,,0x0011EBA0,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eba0
 ?d_0011eed0@@YAXXZ,,0x0011EED0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051eed0
 ?d_0011f0b0@@YAXXZ,,0x0011F0B0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_0051f0b0
 ?d_001210a0@@YAXXZ,,0x001210A0,30,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_005210a0
-?d_00121b70@@YAXXZ,,0x00121B70,96,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00521b70
 ?d_00121d10@@YAXXZ,,0x00121D10,11,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00521d10
 ?d_00122f40@@YAXXZ,,0x00122F40,50,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00522f40
 ?d_00123810@@YAXXZ,,0x00123810,17,Code/gen_asm/d_0010e580.asm,matched,gen-dump;ghidra=FUN_00523810
@@ -117404,7 +117398,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006beb90@@YAXXZ,,0x006BEB90,607,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abeb90
 ?d_006bee90@@YAXXZ,,0x006BEE90,63,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abee90
 ?d_006befc0@@YAXXZ,,0x006BEFC0,96,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abefc0
-?d_006bf360@@YAXXZ,,0x006BF360,99,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf360
 ?d_006bf3e0@@YAXXZ,,0x006BF3E0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf3e0
 ?d_006bf4f0@@YAXXZ,,0x006BF4F0,110,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf4f0
 ?d_006bf930@@YAXXZ,,0x006BF930,107,Code/gen_asm/d_006b9500.asm,matched,gen-dump;ghidra=FUN_00abf930
@@ -157966,3 +157959,7 @@ _luaV_pack,,0x00997B70,186,Code/Libraries/Source/Lua/lvm.c,matched,
 _luaV_strconc,,0x009979D0,401,Code/Libraries/Source/Lua/lvm.c,matched,
 ?friend_newModuleData@W3DTankDraw@@SAPAVModuleData@@PAVINI@@@Z,,0x006BF600,110,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDrawFriendNewModuleDataThunk.cpp,matched,
 ?friend_newModuleInstance@W3DTankDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF580,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DTankDrawFriendNewModuleInstanceThunk.cpp,matched,repointed off 0x0011F690; the registration string and the 0x2F8 allocation both put it here
+?friend_newModuleInstance@BeaconClientUpdate@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x00121B70,96,Code/GameEngine/Source/Common/Thing/BeaconClientUpdateFriendNewModuleInstanceThunk.cpp,matched,repointed; the registration string and the allocation size both put it here
+?friend_newModuleInstance@BoneFXDamage@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011E800,96,Code/GameEngine/Source/Common/Thing/BoneFXDamageFriendNewModuleInstanceThunk.cpp,matched,repointed; the registration string and the allocation size both put it here
+?friend_newModuleInstance@SquishCollide@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x0011EBA0,96,Code/GameEngine/Source/Common/Thing/SquishCollideFriendNewModuleInstanceThunk.cpp,matched,repointed; the registration string and the allocation size both put it here
+?friend_newModuleInstance@W3DSupplyDraw@@SAPAVModule@@PAVThing@@PBVModuleData@@@Z,,0x006BF360,99,Code/GameEngineDevice/Source/W3DDevice/GameClient/Drawable/Draw/W3DSupplyDrawFriendNewModuleInstanceThunk.cpp,matched,
