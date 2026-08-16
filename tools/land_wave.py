@@ -263,7 +263,6 @@ def attempt(rows, pins):
     """Append, prove, and either keep or byte-restore every ledger this touched."""
     snap = snapshot()
     functions_raw, symbols_raw, _ = snap
-    symbols_eol = G.line_terminator(symbols_raw, "symbols.csv")
 
     ledger_rows = parse_ledger(functions_raw)
     check_against_ledger(rows, ledger_rows)
@@ -335,6 +334,16 @@ def attempt(rows, pins):
         with B.FUNCTIONS.open("ab") as handle:
             handle.write(b"".join(row.encode("utf-8") + b"\r\n" for row in to_append))
         if new_pins:
+            # Asked for HERE, not at the top of the transaction: line_terminator
+            # refuses a symbols.csv that mixes CRLF and LF, and the shared ledger
+            # does mix them — agents append pins with whichever their tool wrote.
+            # A wave carrying no pins never writes that file, so demanding the
+            # file be uniform before it could matter blocked every pinless wave
+            # on damage none of them would have touched. Repairing it is not the
+            # alternative: symbols.csv is merge=union, so rewriting a line that
+            # another clone still holds in the old spelling gives the next rebase
+            # BOTH spellings of the same pin.
+            symbols_eol = G.line_terminator(symbols_raw, "symbols.csv")
             with B.SYMBOLS.open("ab") as handle:
                 handle.write(b"".join(pin.encode("utf-8") + symbols_eol for pin in new_pins))
         stage_sources(selectors, staged)
