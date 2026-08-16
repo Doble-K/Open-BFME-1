@@ -30,7 +30,9 @@ sweep with them off so the ratio is a printed number rather than a claim:
      `object-symbol=` alias);
   2. `?d_<rva>@...` — the synthetic name a byte-dump row carries;
   3. the span's bytes sit inside a naked body's emitted mass in that source,
-     which catches naked bodies that carry no ledger row at all.
+     which catches naked bodies that carry no ledger row at all. Reloc-free
+     spans only — an `__emit` blob is literal constants, so a span carrying a
+     relocation is not a body it could have produced.
 
 Targets
   dump  a not-held ledger row at exactly (rva, size). Only a lone
@@ -147,10 +149,19 @@ class Universe:
         # validate_rows refuses a name or an address that ANY ledger row already
         # holds, matched or not, and one such row aborts the whole wave — so the
         # collision sets have to be the full ledger, not just its matched half.
+        #
+        # `placements` answers the different question of IDENTITY: a row records
+        # which compiled symbol is the body at its address in the
+        # `object-symbol=` note, not in its name, so a symbol already proven at
+        # some address is invisible to `all_names` and its real name gets awarded
+        # to a second address. 17 rows shipped that way before this counted the
+        # alias spelling too.
         self.all_names, self.all_rvas = set(), set()
+        self.placements = collections.Counter()
         for row in B.load_all_function_rows():
             self.all_names.add(row["name"])
             self.all_rvas.add(int(row["target_rva"], 16))
+            self.placements[B.ledger_object_symbol(row)] += 1
 
     @staticmethod
     def best_lane(lanes):
@@ -287,6 +298,12 @@ class NakedBytes:
 
     The (source, symbol) exclusion misses a naked body that carries no ledger
     row at all, and those are the ones that inflate the measurement worst.
+
+    Only reloc-free spans are asked, and that is the complete case, not a
+    narrowing: `__emit` takes literal constants, so the mass a blob contains
+    carries no relocation. A span holding even one DIR32 has four bytes the
+    emitted mass cannot have produced, so `span in blob` could not match it
+    anyway.
     """
 
     def __init__(self):
@@ -494,17 +511,23 @@ def cmd_report(args):
                              f"total ({inflated:,d} B vs {grand:,d} B). Either the ledger has "
                              "no naked bodies left or the exclusions never fired — the "
                              "measurement cannot be trusted either way.")
+        # No ratio: `grand` is what is LEFT to claim, so it shrinks toward nothing
+        # as the waves land and inflated/grand climbs without the exclusions doing
+        # one thing more. Quoted as a ratio at the end of a phase this printed
+        # 429.6x for a run whose real inflation was 6.7x. The excluded mass is the
+        # figure that means the same thing on every run.
         print(f"\ncircularity check: with the naked exclusions OFF this sweep would report "
-              f"{inflated:,d} B ({inflated / grand:.1f}x). {stats['skip_naked_symbol']} span(s) "
-              f"excluded by ledger identity, {stats['skip_naked_bytes']} by emitted bytes.")
+              f"{inflated:,d} B against {grand:,d} B still claimable — {inflated - grand:,d} B "
+              f"of circular claim excluded, by {stats['skip_naked_symbol']} span(s) on ledger "
+              f"identity and {stats['skip_naked_bytes']} on emitted bytes.")
 
 
 # --------------------------------------------------------------------------
 # wave emission
 # --------------------------------------------------------------------------
 
-def landable(uni, key, record, args, skipped):
-    """The reason this match cannot be landed as a plain row, or None."""
+def blocked(uni, key, record, args, skipped):
+    """True when this match cannot be landed as a plain row; why goes to `skipped`."""
     kind, rva, size = key
     if size < args.min_size:
         skipped[f"smaller than --min-size {args.min_size}"] += 1
@@ -531,16 +554,19 @@ def wave_name(uni, record, rva, folds, taken, skipped):
     matches forty is the representative of an ICF class forty members wide, and
     picking one of them to name an address after is invented identity — those
     land under `?dup_<rva>` with the note still aiming the byte comparison at
-    the real COFF symbol. Names the ledger already holds go the same way
-    (check_csv refuses one name at two addresses), as do tombstoned names (a
-    retracted row must not come back) and `?A0x`-hashed anonymous-namespace
+    the real COFF symbol. A symbol the ledger already places goes the same way,
+    and "places" has to mean BOTH spellings: its own `name` column (check_csv
+    refuses one name at two addresses) and any other row's `object-symbol=`
+    note, which is where a row that carries a synthetic name records the real
+    compiled symbol it is the body of. Tombstoned names go the same way (a
+    retracted row must not come back), as do `?A0x`-hashed anonymous-namespace
     names (the hash is this clone's source path, so the name would churn).
     """
     symbol = record["owners"][0].symbol
     if folds[symbol] > 1:
         skipped["ICF class wider than one address — landed as ?dup_<rva>"] += 1
-    elif symbol in uni.all_names or symbol in taken:
-        skipped["name already in the ledger — landed as ?dup_<rva>"] += 1
+    elif uni.placements[symbol] or symbol in taken:
+        skipped["symbol already placed in the ledger — landed as ?dup_<rva>"] += 1
     elif symbol in uni.tombstoned:
         skipped["name was tombstoned — landed as ?dup_<rva>"] += 1
     elif A0X_RE.search(symbol):
@@ -566,8 +592,13 @@ def cmd_wave(args):
     wanted = {"dump"} | ({"uncl"} if args.include_unclaimed else set())
     # How many retail addresses each compiled span turned out to be. Counted over
     # EVERY match, not just this class's, so the width of an ICF class does not
-    # change with the filters a wave happens to run under.
+    # change with the filters a wave happens to run under — and over the ledger's
+    # existing placements too, because a wave that lands three of a four-address
+    # class leaves the fourth looking unique to the NEXT wave, which re-derives
+    # folds from the not-held population alone. Splitting a wave must not erode
+    # the guard that keeps an ICF representative from naming an address.
     folds = collections.Counter(record["owners"][0].symbol for record in matches.values())
+    folds.update(uni.placements)
     skipped = collections.Counter()
     picked, taken, claimed = [], set(), []
     for key in sorted(matches):
@@ -579,7 +610,7 @@ def cmd_wave(args):
         if record["cls"] != args.klass:
             skipped[f"class {record['cls']} not requested"] += 1
             continue
-        if landable(uni, key, record, args, skipped):
+        if blocked(uni, key, record, args, skipped):
             continue
         if kind == "uncl" and claimed and rva < claimed[-1]:
             # Two ghidra starts in one gap: the second span would overlap the
@@ -684,8 +715,17 @@ def cmd_extend(args):
                 continue
             entry = spans.get(symbol)
             if entry is None:
+                # build.py:read_object_symbol_bytes resolves an anonymous-namespace
+                # name the same way (the ?A0x token is this clone's source path),
+                # so the gate would size the row off the same span. Counted, not
+                # silent: the extended size then comes from a symbol the ledger
+                # does NOT name, and a self-consistent wrong size is the one
+                # failure this whole subcommand could produce.
                 candidates = normalized.get(A0X_RE.sub("?A0xHASH", symbol), [])
-                entry = spans[candidates[0]] if len(candidates) == 1 else None
+                if len(candidates) == 1:
+                    entry = spans[candidates[0]]
+                    symbol = candidates[0]
+                    stats["symbol_rehashed"] += 1
             if entry is None:
                 stats["symbol_missing"] += 1
                 continue
@@ -724,12 +764,17 @@ def cmd_extend(args):
                              "symbol": symbol, "notes": row["notes"]})
 
     print(f"obj_sweep extend: {dict(stats)}")
+    if not out_rows:
+        raise SystemExit("obj_sweep extend: no held row's object symbol runs past its "
+                         f"target_size with a matching retail tail ({stats['longer']} ran "
+                         f"long, {stats['tail_mismatch']} tails differed, "
+                         f"{stats['tail_already_claimed']} were already claimed). Writing a "
+                         "one-column CSV here would look like a wave with nothing in it.")
     out_rows.sort(key=lambda r: -r["tail"])
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.DictWriter(handle, list(out_rows[0]) if out_rows else ["name"],
-                                lineterminator="\n")
+        writer = csv.DictWriter(handle, list(out_rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(out_rows)
     print(f"obj_sweep extend: {len(out_rows)} row(s), "
