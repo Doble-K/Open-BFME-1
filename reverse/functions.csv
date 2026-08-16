@@ -106517,7 +106517,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000f3250@@YAXXZ,,0x000F3250,326,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f3250
 ?d_000f33f0@@YAXXZ,,0x000F33F0,159,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f33f0
 ?d_000f3500@@YAXXZ,,0x000F3500,59,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f3500
-?d_000f3a20@@YAXXZ,,0x000F3A20,98,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f3a20
 ?d_000f3c50@@YAXXZ,,0x000F3C50,269,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f3c50
 ?d_000f3e40@@YAXXZ,,0x000F3E40,367,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f3e40
 ?d_000f4030@@YAXXZ,,0x000F4030,76,Code/gen_asm/d_000f2fb0.asm,matched,gen-dump;ghidra=FUN_004f4030
@@ -158152,3 +158151,4 @@ _getobjname,,0x00996950,222,Code/Libraries/Source/Lua/ldebug.c,matched,
 ?d_00a9c5f1@@YAXXZ,,0x00A9C5F1,246,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e9c5f1
 ?d_00a9ff56@@YAXXZ,,0x00A9FF56,158,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00e9ff56
 ?d_00aa0756@@YAXXZ,,0x00AA0756,246,Code/gen_asm/d_00a15acc.asm,matched,gen-dump;ghidra=FUN_00ea0756
+??A?$map@U?$pair@HH@_STL@@PAVTeamPrototype@@U?$less@U?$pair@HH@_STL@@@2@V?$allocator@U?$pair@$$CBU?$pair@HH@_STL@@PAVTeamPrototype@@@_STL@@@2@@_STL@@QAEAAPAVTeamPrototype@@ABU?$pair@HH@1@@Z,,0x000F3A20,98,Code/GameEngine/Source/Common/RTS/TeamFactoryCtorThunk.cpp,matched,reloc-named: name address and size all from a byte-true call site
