@@ -2098,8 +2098,6 @@ _bfme_timeGetTime@0,0x00105750,49,Code/GameEngine/Source/Common/ProcessAnimateWi
 ?decompressData@CompressionManager@@SAHPBXHPAXH@Z,0x0081E890,240,Code/GameEngine/Source/Common/CachedFileInputStream_open_Thunk.cpp,reloc-derived;call-sites=1;identity=real
 _ggetm,0x00822030,82,Code/Libraries/Source/Compression/EAC/refdecode.cpp,reloc-derived;call-sites=2;identity=real
 _ggetm,0x00822D90,82,Code/Libraries/Source/Compression/EAC/huffdecode.cpp,reloc-derived;call-sites=2;identity=real
-??1Gen_dtor_00823150@@UAE@XZ,0x00825550,97,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
-??1Gen_dtor_008231d0@@UAE@XZ,0x008267E0,82,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0082c040@@UAE@XZ,0x0082AE60,28,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0082c060@@UAE@XZ,0x0082AE80,28,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_0082c080@@UAE@XZ,0x0082AEA0,28,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
