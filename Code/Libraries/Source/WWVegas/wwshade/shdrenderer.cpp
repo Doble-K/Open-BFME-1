@@ -111,11 +111,11 @@ void ShdRendererClass::Init_Shaders()
 // Release the renderer system. At this point, all the meshes must have been
 // unregistered.
 /////////////////////////////////////////////////////////////////////////////////////
-// ?Shutdown@ShdRendererClass@@ present-unmatched
 void ShdRendererClass::Shutdown()
 {
-	Shutdown_Shaders();
-
+	// BFME's Shutdown does not call Shutdown_Shaders. Zero Hour's does, and the
+	// call is the only thing separating the two bodies: retail goes straight to
+	// the delete, so the shader teardown either moved or never ran here.
 	WWASSERT(ShdRenderer);
 
 	delete ShdRenderer;
