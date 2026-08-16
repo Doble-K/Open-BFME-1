@@ -609,3 +609,43 @@ When the last difference is which register got picked or how an equivalent
 encoding was spelled, stop rewriting the source. Log it, and note that the
 body, the layout and the convention were all correct — that is the part worth
 keeping.
+
+## A work packet's callee pins are matched by name, not followed
+
+`reverse/zh_sweep/packets/0059eb90.md` proposes `AttackNugget::parse` at 98.6%
+and lists, under "Callee pins (paste unresolved ones into
+reverse/symbols.csv)":
+
+```
+??0AttackNugget@@QAE@XZ,0x000047A5 (already in the ledger)
+```
+
+`0x000047A5` is an incremental-link thunk. It jumps to `0x0059EB00`. The
+ledger's `??0AttackNugget@@QAE@XZ` is at `0x001D6CD0`, reached through a
+*different* thunk at `0x00022B42`. The sweep took the name from its Zero Hour
+candidate, found that name already in the ledger, and marked the pin resolved
+without ever following the thunk it had just printed.
+
+Pasting that pin and building would have produced a byte-exact body under a
+name whose constructor it does not call. **Disassemble the ILT target before
+trusting a pin that arrives with a name attached**, especially for a body whose
+whole shape is generic.
+
+The second check is cheaper and would have caught it alone: look at what the
+ledger already claims either side of the address. `0x0059EB90` is bracketed by
+`MainMenuSmallScaleDownTransition::update`, `::skip` and `::init` — it is in
+`GameWindowTransitionsStyles.cpp`, nowhere near `ObjectCreationList.cpp`.
+
+### Read the data the body points at
+
+The decisive evidence was the field-parse table. The body pushes one address
+into `INI::initFromINI`, and at that address are **sixteen zero bytes** — an
+empty table. Both reference candidates parse fields: `AttackNugget` has four,
+`GameWindowTransitionsHandler::parseWindow` three. A candidate that parses
+fields cannot be a body whose table is empty.
+
+Two things make this readable. Absolute operands in the disassembly are **VAs**
+while the ledger's `target_rva` is an **RVA**, so a data pointer needs
+`- 0x400000` before it maps to a file offset; and the check that proves your
+mapping is right is to resolve a string you already know, such as
+`parseScreenRect`'s `" ,:=\n\r\t"` at VA `0x010F943C`.
