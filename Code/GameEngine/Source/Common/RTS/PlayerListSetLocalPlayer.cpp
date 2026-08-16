@@ -58,10 +58,13 @@ public:
 	virtual void loadPostProcess() = 0;
 };
 
+class PlayerTemplate;
+
 class Player
 {
 public:
 	void becomingLocalPlayer( bool becoming );
+	void init( const PlayerTemplate *pt );
 
 	unsigned char m_unreconstructed_00[0x24];
 	Int m_playerRefreshTag;									///< +0x24, handed to the shroud manager
@@ -95,6 +98,7 @@ extern Gen_012ED5C0 *g_012ED5C0;
 class PlayerList : public SubsystemInterface, public Snapshot
 {
 public:
+	virtual void init( void );
 	void setLocalPlayer( Player *player );
 	Player *getNeutralPlayer( void ) { return m_players[0]; }
 
@@ -124,4 +128,24 @@ void PlayerList::setLocalPlayer( Player *player )
 
 	if (g_012ED5C0)
 		g_012ED5C0->m_00880E10(d_001072f0);
+}
+
+//-----------------------------------------------------------------------------
+// ?init@PlayerList@@UAEXXZ
+//
+// 128 bytes at 0x000DFA80, and its tail is setLocalPlayer inlined -- the same
+// two subsystem notifications, reached the same way. That is what says the two
+// bodies belong together: the standalone copy above is still emitted, and this
+// one carries an inlined duplicate of it.
+void PlayerList::init()
+{
+	m_playerCount = 1;
+	m_players[0]->init(0);
+
+	for (int i = 1; i < 32; i++)
+		m_players[i]->init(0);
+
+	// call setLocalPlayer so that becomingLocalPlayer() gets called appropriately
+	setLocalPlayer(m_players[0]);
+
 }
