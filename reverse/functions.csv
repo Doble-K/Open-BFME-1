@@ -5579,7 +5579,6 @@ name,export_rva,target_rva,target_size,source,status,notes
 ??_G?$Node@PAUINISection@@@@UAEPAXI@Z,,0x009E3120,30,Code/Libraries/Source/WWVegas/WWLib/ini.cpp,matched,
 ??_G?$RefMultiListClass@VLookupTableClass@@@@UAEPAXI@Z,,0x007123C0,30,Code/Libraries/Source/WWVegas/WWMath/lookuptable.cpp,matched,
 ??_G?$RefMultiListClass@VRenderObjClass@@@@UAEPAXI@Z,,0x007123C0,30,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DScene.cpp,matched,icf-owner=??_G?$RefMultiListClass@VLookupTableClass@@@@UAEPAXI@Z
-??_G?$SList@VTagBlockIndex@@@@UAEPAXI@Z,,0x00415D20,36,Code/Libraries/Source/WWVegas/WWLib/tagblock.cpp,matched,
 ??_G?$ShareBufferClass@G@@UAEPAXI@Z,,0x009240B0,30,Code/Libraries/Source/WWVegas/WW3D2/meshmdlio.cpp,matched,
 ??_G?$ShareBufferClass@I@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
 ??_G?$ShareBufferClass@PAVTextureClass@@@@UAEPAXI@Z,,0x005BF290,30,Code/GameEngine/Source/GameClient/System/FXParticleSystem/fx_particle_system.cpp,matched,object-symbol=??_G?$CategoryModuleTemplate@$00@FXParticleSystem@@UAEPAXI@Z;C++ alias
