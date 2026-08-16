@@ -110031,7 +110031,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00784090@@YAXXZ,,0x00784090,801,Code/gen_asm/d_00781660.asm,matched,gen-dump;ghidra=FUN_00b84090
 ?d_00784480@@YAXXZ,,0x00784480,153,Code/gen_asm/d_00781660.asm,matched,gen-dump;ghidra=FUN_00b84480
 ?d_00784560@@YAXXZ,,0x00784560,82,Code/gen_asm/d_00781660.asm,matched,gen-dump;ghidra=FUN_00b84560
-?d_00784db0@@YAXXZ,,0x00784DB0,19,Code/gen_asm/d_00781660.asm,matched,gen-dump;ghidra=FUN_00b84db0
 ?d_00785230@@YAXXZ,,0x00785230,43,Code/gen_asm/d_00781660.asm,matched,gen-dump;ghidra=FUN_00b85230
 ?d_00785270@@YAXXZ,,0x00785270,81,Code/gen_asm/d_00781660.asm,matched,gen-dump;ghidra=FUN_00b85270
 ?d_00785300@@YAXXZ,,0x00785300,1264,Code/gen_asm/d_00781660.asm,matched,gen-dump;ghidra=FUN_00b85300
@@ -160099,3 +160098,4 @@ _constructor,,0x0099C2D0,181,Code/Libraries/Source/Lua/lparser.c,matched,
 ?decompress@AdaptiveDeltaMotionChannelClass@@AAEXKPAM@Z,,0x00977DB0,248,Code/Libraries/Source/WWVegas/WW3D2/motchan.cpp,matched,
 _luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,matched,
 ?parseScreenRect@@YA_NPAH000@Z,,0x004854F0,453,Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScriptParseScreenRectThunk.cpp,matched,
+?construct@ProductionPrerequisiteConstructShim@_STL@@SAXPAVProductionPrerequisite@@ABV3@@Z,,0x00784DB0,19,Code/GameEngine/Source/Common/RTS/ProductionPrerequisiteConstructShimImpl.cpp,matched,STL _Construct ProductionPrerequisite; null-checked placement-new copy ctor; copy ctor callee pinned in symbols.csv
