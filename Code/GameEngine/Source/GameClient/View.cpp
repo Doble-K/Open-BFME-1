@@ -115,7 +115,6 @@ void View::init( void )
 	m_defaultPitchAngle = 0.0f;
 }
 
-// ?reset@View@@UAEXXZ present-unmatched
 void View::reset( void )
 {
 	// Only fixing the reported bug.  Who knows what side effects resetting the rest could have.

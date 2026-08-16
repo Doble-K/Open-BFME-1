@@ -109062,7 +109062,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002302e0@@YAXXZ,,0x002302E0,89,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_006302e0
 ?d_00230790@@YAXXZ,,0x00230790,13,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00630790
 ?d_002307d0@@YAXXZ,,0x002307D0,7,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_006307d0
-?d_00230820@@YAXXZ,,0x00230820,5,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00630820
 ?d_00230830@@YAXXZ,,0x00230830,7,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00630830
 ?d_00230840@@YAXXZ,,0x00230840,13,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00630840
 ?d_00230ae0@@YAXXZ,,0x00230AE0,212,Code/gen_asm/d_0022f960.asm,matched,gen-dump;ghidra=FUN_00630ae0
@@ -110248,7 +110247,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_002ca130@@YAXXZ,,0x002CA130,791,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006ca130
 ?d_002ca580@@YAXXZ,,0x002CA580,397,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006ca580
 ?d_002cab10@@YAXXZ,,0x002CAB10,17,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006cab10
-?d_002cab30@@YAXXZ,,0x002CAB30,7,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006cab30
 ?d_002cb240@@YAXXZ,,0x002CB240,23,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006cb240
 ?d_002cb740@@YAXXZ,,0x002CB740,453,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006cb740
 ?d_002cba40@@YAXXZ,,0x002CBA40,45,Code/gen_asm/d_002c38b0.asm,matched,gen-dump;ghidra=FUN_006cba40
@@ -111975,7 +111973,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_003abf80@@YAXXZ,,0x003ABF80,51,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007abf80
 ?d_003ac000@@YAXXZ,,0x003AC000,287,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007ac000
 ?d_003ac170@@YAXXZ,,0x003AC170,64,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007ac170
-?d_003ac9f0@@YAXXZ,,0x003AC9F0,18,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007ac9f0
 ?d_003acd80@@YAXXZ,,0x003ACD80,353,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007acd80
 ?d_003acf60@@YAXXZ,,0x003ACF60,129,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007acf60
 ?d_003ad1a0@@YAXXZ,,0x003AD1A0,32,Code/gen_asm/d_003a04a0.asm,matched,gen-dump;ghidra=FUN_007ad1a0
@@ -116565,9 +116562,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_0061e080@@YAXXZ,,0x0061E080,344,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1e080
 ?d_0061e230@@YAXXZ,,0x0061E230,344,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1e230
 ?d_0061e3e0@@YAXXZ,,0x0061E3E0,221,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1e3e0
-?d_0061e850@@YAXXZ,,0x0061E850,18,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1e850
-?d_0061e880@@YAXXZ,,0x0061E880,23,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1e880
-?d_0061e8e0@@YAXXZ,,0x0061E8E0,25,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1e8e0
 ?d_0061e920@@YAXXZ,,0x0061E920,74,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1e920
 ?d_0061eb40@@YAXXZ,,0x0061EB40,174,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1eb40
 ?d_0061ec20@@YAXXZ,,0x0061EC20,63,Code/gen_asm/d_0061e080.asm,matched,gen-dump;ghidra=FUN_00a1ec20
@@ -117751,7 +117745,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_006f5be0@@YAXXZ,,0x006F5BE0,18,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af5be0
 ?d_006f5c50@@YAXXZ,,0x006F5C50,169,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af5c50
 ?d_006f5f10@@YAXXZ,,0x006F5F10,119,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af5f10
-?d_006f6250@@YAXXZ,,0x006F6250,24,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af6250
 ?d_006f6330@@YAXXZ,,0x006F6330,14,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af6330
 ?d_006f6ab0@@YAXXZ,,0x006F6AB0,188,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af6ab0
 ?d_006f6e90@@YAXXZ,,0x006F6E90,72,Code/gen_asm/d_006f2cc0.asm,matched,gen-dump;ghidra=FUN_00af6e90
@@ -136046,7 +136039,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000eb990@@YAXXZ,,0x000EB990,45,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ebe50@@YAXXZ,,0x000EBE50,50,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ec1e0@@YAXXZ,,0x000EC1E0,20,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
-?d_000ec200@@YAXXZ,,0x000EC200,7,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ec210@@YAXXZ,,0x000EC210,7,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ec220@@YAXXZ,,0x000EC220,41,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000ec270@@YAXXZ,,0x000EC270,42,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
@@ -136156,7 +136148,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000fa9a0@@YAXXZ,,0x000FA9A0,59,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fa9f0@@YAXXZ,,0x000FA9F0,45,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fb070@@YAXXZ,,0x000FB070,13,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
-?d_000fb870@@YAXXZ,,0x000FB870,7,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fb880@@YAXXZ,,0x000FB880,19,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fb8a0@@YAXXZ,,0x000FB8A0,13,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
 ?d_000fb8c0@@YAXXZ,,0x000FB8C0,7,Code/gen_asm/d_000f93a0.asm,matched,gen-dump;bounds=high
@@ -137300,7 +137291,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0018c300@@YAXXZ,,0x0018C300,98,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c460@@YAXXZ,,0x0018C460,17,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c480@@YAXXZ,,0x0018C480,343,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
-?d_0018c790@@YAXXZ,,0x0018C790,8,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c880@@YAXXZ,,0x0018C880,61,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018c910@@YAXXZ,,0x0018C910,15,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
 ?d_0018cab0@@YAXXZ,,0x0018CAB0,48,Code/gen_asm/d_00188e80.asm,matched,gen-dump;bounds=high
@@ -139195,7 +139185,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00268790@@YAXXZ,,0x00268790,9,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_002687a0@@YAXXZ,,0x002687A0,9,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_002687b0@@YAXXZ,,0x002687B0,9,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
-?d_002687c0@@YAXXZ,,0x002687C0,7,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_002687d0@@YAXXZ,,0x002687D0,22,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_00268860@@YAXXZ,,0x00268860,27,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
 ?d_002688f0@@YAXXZ,,0x002688F0,33,Code/gen_asm/d_00259090.asm,matched,gen-dump;bounds=high
@@ -140124,7 +140113,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_002e1590@@YAXXZ,,0x002E1590,45,Code/gen_asm/d_002d3970.asm,matched,gen-dump;bounds=high
 ?d_002e15d0@@YAXXZ,,0x002E15D0,41,Code/gen_asm/d_002d3970.asm,matched,gen-dump;bounds=high
 ?d_002e1990@@YAXXZ,,0x002E1990,31,Code/gen_asm/d_002d3970.asm,matched,gen-dump;bounds=high
-?d_002e26b0@@YAXXZ,,0x002E26B0,5,Code/gen_asm/d_002d3970.asm,matched,gen-dump;bounds=high
 ?d_002e2750@@YAXXZ,,0x002E2750,7,Code/gen_asm/d_002d3970.asm,matched,gen-dump;bounds=high
 ?d_002e27f0@@YAXXZ,,0x002E27F0,30,Code/gen_asm/d_002d3970.asm,matched,gen-dump;bounds=high
 ?d_002e2830@@YAXXZ,,0x002E2830,34,Code/gen_asm/d_002d3970.asm,matched,gen-dump;bounds=high
@@ -140660,7 +140648,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0035f600@@YAXXZ,,0x0035F600,295,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_0035ff30@@YAXXZ,,0x0035FF30,31,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_003605d0@@YAXXZ,,0x003605D0,23,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
-?d_00360600@@YAXXZ,,0x00360600,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00360610@@YAXXZ,,0x00360610,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00360630@@YAXXZ,,0x00360630,7,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
 ?d_00360650@@YAXXZ,,0x00360650,8,Code/gen_asm/d_003519c0.asm,matched,gen-dump;bounds=high
@@ -141270,7 +141257,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_003a3cd0@@YAXXZ,,0x003A3CD0,10,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a3ce0@@YAXXZ,,0x003A3CE0,16,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a3d70@@YAXXZ,,0x003A3D70,7,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
-?d_003a3d80@@YAXXZ,,0x003A3D80,7,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a3e00@@YAXXZ,,0x003A3E00,56,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a3e50@@YAXXZ,,0x003A3E50,27,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
 ?d_003a3ed0@@YAXXZ,,0x003A3ED0,25,Code/gen_asm/d_0039d230.asm,matched,gen-dump;bounds=high
@@ -142583,7 +142569,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0045aad0@@YAXXZ,,0x0045AAD0,19,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045aaf0@@YAXXZ,,0x0045AAF0,19,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045af90@@YAXXZ,,0x0045AF90,19,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
-?d_0045b4d0@@YAXXZ,,0x0045B4D0,12,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045b540@@YAXXZ,,0x0045B540,26,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045b7b0@@YAXXZ,,0x0045B7B0,21,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
 ?d_0045b7d0@@YAXXZ,,0x0045B7D0,25,Code/gen_asm/d_00436850.asm,matched,gen-dump;bounds=high
@@ -142988,7 +142973,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0046fb20@@YAXXZ,,0x0046FB20,58,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_0046fcf0@@YAXXZ,,0x0046FCF0,56,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00470340@@YAXXZ,,0x00470340,7,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
-?d_00470350@@YAXXZ,,0x00470350,13,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00470820@@YAXXZ,,0x00470820,9,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00470870@@YAXXZ,,0x00470870,51,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_004708b0@@YAXXZ,,0x004708B0,31,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
@@ -143091,7 +143075,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004784a0@@YAXXZ,,0x004784A0,29,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_004784d0@@YAXXZ,,0x004784D0,23,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_004784f0@@YAXXZ,,0x004784F0,37,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
-?d_00478db0@@YAXXZ,,0x00478DB0,13,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00478e50@@YAXXZ,,0x00478E50,19,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00478e90@@YAXXZ,,0x00478E90,19,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
 ?d_00478f40@@YAXXZ,,0x00478F40,18,Code/gen_asm/d_0045eb10.asm,matched,gen-dump;bounds=high
@@ -143416,7 +143399,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00494ec0@@YAXXZ,,0x00494EC0,62,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00495290@@YAXXZ,,0x00495290,9,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_004952c0@@YAXXZ,,0x004952C0,31,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
-?d_00495330@@YAXXZ,,0x00495330,18,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00497d80@@YAXXZ,,0x00497D80,84,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00497df0@@YAXXZ,,0x00497DF0,17,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_00498010@@YAXXZ,,0x00498010,49,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
@@ -143449,7 +143431,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0049b7a0@@YAXXZ,,0x0049B7A0,37,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_0049b840@@YAXXZ,,0x0049B840,59,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_0049b970@@YAXXZ,,0x0049B970,42,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
-?d_0049c920@@YAXXZ,,0x0049C920,7,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_0049c930@@YAXXZ,,0x0049C930,7,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_0049c990@@YAXXZ,,0x0049C990,6,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
 ?d_0049c9b0@@YAXXZ,,0x0049C9B0,13,Code/gen_asm/d_0047ab00.asm,matched,gen-dump;bounds=high
@@ -143647,7 +143628,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_004d01b0@@YAXXZ,,0x004D01B0,86,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004d0720@@YAXXZ,,0x004D0720,199,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004d0820@@YAXXZ,,0x004D0820,1588,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
-?d_004d0ff0@@YAXXZ,,0x004D0FF0,5,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004d1020@@YAXXZ,,0x004D1020,66,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004d1080@@YAXXZ,,0x004D1080,117,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
 ?d_004d1b00@@YAXXZ,,0x004D1B00,164,Code/gen_asm/d_004ce980.asm,matched,gen-dump;bounds=high
@@ -144054,7 +144034,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00524670@@YAXXZ,,0x00524670,16,Code/gen_asm/d_0050fec0.asm,matched,gen-dump;bounds=high
 ?d_00524690@@YAXXZ,,0x00524690,21,Code/gen_asm/d_0050fec0.asm,matched,gen-dump;bounds=high
 ?d_00525430@@YAXXZ,,0x00525430,15,Code/gen_asm/d_0050fec0.asm,matched,gen-dump;bounds=high
-?d_00525580@@YAXXZ,,0x00525580,12,Code/gen_asm/d_0050fec0.asm,matched,gen-dump;bounds=high
 ?d_00525940@@YAXXZ,,0x00525940,16,Code/gen_asm/d_0050fec0.asm,matched,gen-dump;bounds=high
 ?d_00525960@@YAXXZ,,0x00525960,16,Code/gen_asm/d_0050fec0.asm,matched,gen-dump;bounds=high
 ?d_00525a30@@YAXXZ,,0x00525A30,33,Code/gen_asm/d_0050fec0.asm,matched,gen-dump;bounds=high
@@ -144334,7 +144313,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0054bad0@@YAXXZ,,0x0054BAD0,55,Code/gen_asm/d_0052bd50.asm,matched,gen-dump;bounds=high
 ?d_0054bbc0@@YAXXZ,,0x0054BBC0,15,Code/gen_asm/d_0052bd50.asm,matched,gen-dump;bounds=high
 ?d_0054bc00@@YAXXZ,,0x0054BC00,50,Code/gen_asm/d_0052bd50.asm,matched,gen-dump;bounds=high
-?d_0054bc40@@YAXXZ,,0x0054BC40,12,Code/gen_asm/d_0052bd50.asm,matched,gen-dump;bounds=high
 ?d_0054bc60@@YAXXZ,,0x0054BC60,49,Code/gen_asm/d_0052bd50.asm,matched,gen-dump;bounds=high
 ?d_0054c8b0@@YAXXZ,,0x0054C8B0,18,Code/gen_asm/d_0052bd50.asm,matched,gen-dump;bounds=high
 ?d_0054c8d0@@YAXXZ,,0x0054C8D0,16,Code/gen_asm/d_0052bd50.asm,matched,gen-dump;bounds=high
@@ -144579,7 +144557,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0056c350@@YAXXZ,,0x0056C350,46,Code/gen_asm/d_0054f920.asm,matched,gen-dump;bounds=high
 ?d_0056c390@@YAXXZ,,0x0056C390,47,Code/gen_asm/d_0054f920.asm,matched,gen-dump;bounds=high
 ?d_0056c3d0@@YAXXZ,,0x0056C3D0,15,Code/gen_asm/d_0054f920.asm,matched,gen-dump;bounds=high
-?d_0056c520@@YAXXZ,,0x0056C520,12,Code/gen_asm/d_0054f920.asm,matched,gen-dump;bounds=high
 ?d_0056c8e0@@YAXXZ,,0x0056C8E0,16,Code/gen_asm/d_0054f920.asm,matched,gen-dump;bounds=high
 ?d_0056c900@@YAXXZ,,0x0056C900,18,Code/gen_asm/d_0054f920.asm,matched,gen-dump;bounds=high
 ?d_0056c920@@YAXXZ,,0x0056C920,25,Code/gen_asm/d_0054f920.asm,matched,gen-dump;bounds=high
@@ -145355,7 +145332,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_005c2650@@YAXXZ,,0x005C2650,12,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c2710@@YAXXZ,,0x005C2710,12,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c27a0@@YAXXZ,,0x005C27A0,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
-?d_005c27b0@@YAXXZ,,0x005C27B0,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c27c0@@YAXXZ,,0x005C27C0,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c27e0@@YAXXZ,,0x005C27E0,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c2800@@YAXXZ,,0x005C2800,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
@@ -145371,7 +145347,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_005c2a90@@YAXXZ,,0x005C2A90,28,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c2ac0@@YAXXZ,,0x005C2AC0,28,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c2af0@@YAXXZ,,0x005C2AF0,28,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
-?d_005c2c10@@YAXXZ,,0x005C2C10,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c2c20@@YAXXZ,,0x005C2C20,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c2c30@@YAXXZ,,0x005C2C30,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
 ?d_005c2c40@@YAXXZ,,0x005C2C40,7,Code/gen_asm/d_005bf0a0.asm,matched,gen-dump;bounds=high
@@ -146272,7 +146247,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_006305c0@@YAXXZ,,0x006305C0,5,Code/gen_asm/d_0060e0d0.asm,matched,gen-dump;bounds=high
 ?d_006305f0@@YAXXZ,,0x006305F0,31,Code/gen_asm/d_0060e0d0.asm,matched,gen-dump;bounds=high
 ?d_00630620@@YAXXZ,,0x00630620,9,Code/gen_asm/d_0060e0d0.asm,matched,gen-dump;bounds=high
-?d_00630630@@YAXXZ,,0x00630630,23,Code/gen_asm/d_0060e0d0.asm,matched,gen-dump;bounds=high
 ?d_00630700@@YAXXZ,,0x00630700,7,Code/gen_asm/d_0060e0d0.asm,matched,gen-dump;bounds=high
 ?d_00630d00@@YAXXZ,,0x00630D00,69,Code/gen_asm/d_0060e0d0.asm,matched,gen-dump;bounds=high
 ?d_00630f10@@YAXXZ,,0x00630F10,47,Code/gen_asm/d_0060e0d0.asm,matched,gen-dump;bounds=high
@@ -146834,7 +146808,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_006959d0@@YAXXZ,,0x006959D0,12,Code/gen_asm/d_00686110.asm,matched,gen-dump;bounds=high
 ?d_00695a30@@YAXXZ,,0x00695A30,5,Code/gen_asm/d_00686110.asm,matched,gen-dump;bounds=high
 ?d_00695a50@@YAXXZ,,0x00695A50,8,Code/gen_asm/d_00686110.asm,matched,gen-dump;bounds=high
-?d_00695a60@@YAXXZ,,0x00695A60,5,Code/gen_asm/d_00686110.asm,matched,gen-dump;bounds=high
 ?d_00695a70@@YAXXZ,,0x00695A70,5,Code/gen_asm/d_00686110.asm,matched,gen-dump;bounds=high
 ?d_00695a80@@YAXXZ,,0x00695A80,5,Code/gen_asm/d_00686110.asm,matched,gen-dump;bounds=high
 ?d_00695da0@@YAXXZ,,0x00695DA0,7,Code/gen_asm/d_00686110.asm,matched,gen-dump;bounds=high
@@ -147317,7 +147290,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_006f6000@@YAXXZ,,0x006F6000,31,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f6040@@YAXXZ,,0x006F6040,31,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f6080@@YAXXZ,,0x006F6080,9,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
-?d_006f6110@@YAXXZ,,0x006F6110,6,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f61b0@@YAXXZ,,0x006F61B0,19,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f61d0@@YAXXZ,,0x006F61D0,54,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_006f6220@@YAXXZ,,0x006F6220,18,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
@@ -147369,7 +147341,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00702fb0@@YAXXZ,,0x00702FB0,6,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00703b60@@YAXXZ,,0x00703B60,10,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00703b70@@YAXXZ,,0x00703B70,10,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
-?d_00703b80@@YAXXZ,,0x00703B80,7,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00703c90@@YAXXZ,,0x00703C90,10,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00703ef0@@YAXXZ,,0x00703EF0,13,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
 ?d_00704980@@YAXXZ,,0x00704980,37,Code/gen_asm/d_006e7d70.asm,matched,gen-dump;bounds=high
@@ -148221,9 +148192,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_007b80d0@@YAXXZ,,0x007B80D0,16,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b8100@@YAXXZ,,0x007B8100,17,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b8160@@YAXXZ,,0x007B8160,7,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
-?d_007b8170@@YAXXZ,,0x007B8170,14,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b8190@@YAXXZ,,0x007B8190,47,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
-?d_007b9260@@YAXXZ,,0x007B9260,17,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b9980@@YAXXZ,,0x007B9980,41,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007b9ec0@@YAXXZ,,0x007B9EC0,16,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
 ?d_007ba110@@YAXXZ,,0x007BA110,32,Code/gen_asm/d_007afaa0.asm,matched,gen-dump;bounds=high
@@ -157968,3 +157937,34 @@ _ghiIsPostAutoFree,,0x0087CAB0,8,Code/GameEngine/Source/GameNetwork/GameSpy/ghtt
 ?Set_Dirty@TextureBaseClass@@QAEXXZ,,0x0020A7D0,5,Code/Libraries/Source/WWVegas/WW3D2/dx8texman.cpp,matched,gen-alias;object-symbol=?Set_Dirty@TextureBaseClass@@QAEXXZ;C++ alias
 ?Update_Tangents@HermiteSpline1DClass@@MAEXXZ,,0x002ED630,5,Code/Libraries/Source/WWVegas/WWMath/cardinalspline.cpp,matched,gen-alias;object-symbol=?Update_Tangents@HermiteSpline1DClass@@MAEXXZ;C++ alias
 ?dup_0083fbe0@@YAXXZ,,0x0083FBE0,5,Code/Libraries/Source/WWVegas/WWMath/obbox.cpp,matched,gen-alias;object-symbol=??0OBBoxClass@@QAE@PBVVector3@@H@Z;C++ alias
+?enterGame@GameInfo@@QAEXXZ,,0x0061E850,18,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,gen-alias;object-symbol=?enterGame@GameInfo@@QAEXXZ;C++ alias
+?startGame@GameInfo@@UAEXH@Z,,0x0061E880,23,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,gen-alias;object-symbol=?startGame@GameInfo@@UAEXH@Z;C++ alias
+?dup_0061e8e0@@YAXXZ,,0x0061E8E0,25,Code/GameEngine/Source/GameNetwork/GameInfo.cpp,matched,gen-alias;object-symbol=?getConstSlot@GameInfo@@QBEPBVGameSlot@@H@Z;C++ alias
+?dup_000ec200@@YAXXZ,,0x000EC200,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,gen-alias;object-symbol=?getBounds@RoadSegment@@QAEABVSphereClass@@XZ;C++ alias
+?dup_000fb870@@YAXXZ,,0x000FB870,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,gen-alias;object-symbol=?getBounds@RoadSegment@@QAEABVSphereClass@@XZ;C++ alias
+?dup_00360600@@YAXXZ,,0x00360600,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,gen-alias;object-symbol=?getBounds@RoadSegment@@QAEABVSphereClass@@XZ;C++ alias
+?dup_003a3d80@@YAXXZ,,0x003A3D80,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,gen-alias;object-symbol=?getBounds@RoadSegment@@QAEABVSphereClass@@XZ;C++ alias
+?dup_0049c920@@YAXXZ,,0x0049C920,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,gen-alias;object-symbol=?getBounds@RoadSegment@@QAEABVSphereClass@@XZ;C++ alias
+?updateCenter@W3DRoadBuffer@@QAEXXZ,,0x004D0FF0,5,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,gen-alias;object-symbol=?updateCenter@W3DRoadBuffer@@QAEXXZ;C++ alias
+?dup_005c2c10@@YAXXZ,,0x005C2C10,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,gen-alias;object-symbol=?getBounds@RoadSegment@@QAEABVSphereClass@@XZ;C++ alias
+?dup_00703b80@@YAXXZ,,0x00703B80,7,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DRoadBuffer.cpp,matched,gen-alias;object-symbol=?getBounds@RoadSegment@@QAEABVSphereClass@@XZ;C++ alias
+?dup_0045b4d0@@YAXXZ,,0x0045B4D0,12,Code/GameEngine/Source/GameClient/View.cpp,matched,gen-alias;object-symbol=?prependViewToList@View@@MAEPAV1@PAV1@@Z;C++ alias
+?dup_00525580@@YAXXZ,,0x00525580,12,Code/GameEngine/Source/GameClient/View.cpp,matched,gen-alias;object-symbol=?prependViewToList@View@@MAEPAV1@PAV1@@Z;C++ alias
+?dup_0054bc40@@YAXXZ,,0x0054BC40,12,Code/GameEngine/Source/GameClient/View.cpp,matched,gen-alias;object-symbol=?prependViewToList@View@@MAEPAV1@PAV1@@Z;C++ alias
+?dup_0056c520@@YAXXZ,,0x0056C520,12,Code/GameEngine/Source/GameClient/View.cpp,matched,gen-alias;object-symbol=?prependViewToList@View@@MAEPAV1@PAV1@@Z;C++ alias
+?reset@View@@UAEXXZ,,0x00695A60,5,Code/GameEngine/Source/GameClient/View.cpp,matched,gen-alias;object-symbol=?reset@View@@UAEXXZ;C++ alias
+?dup_00230820@@YAXXZ,,0x00230820,5,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,gen-alias;object-symbol=?sawFullGameList@GameSpyInfo@@UAEXXZ;C++ alias
+?dup_002e26b0@@YAXXZ,,0x002E26B0,5,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,gen-alias;object-symbol=?sawFullGameList@GameSpyInfo@@UAEXXZ;C++ alias
+?dup_00470350@@YAXXZ,,0x00470350,13,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,gen-alias;object-symbol=?setMaxMessagesPerUpdate@GameSpyInfo@@UAEXH@Z;C++ alias
+?setLocalIPs@GameSpyInfo@@UAEXII@Z,,0x00630630,23,Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp,matched,gen-alias;object-symbol=?setLocalIPs@GameSpyInfo@@UAEXII@Z;C++ alias
+?dup_003ac9f0@@YAXXZ,,0x003AC9F0,18,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,gen-alias;object-symbol=?getEndPos@AnimateWindow@@QAE?AUICoord2D@@XZ;C++ alias
+?dup_00495330@@YAXXZ,,0x00495330,18,Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp,matched,gen-alias;object-symbol=?getEndPos@AnimateWindow@@QAE?AUICoord2D@@XZ;C++ alias
+?getMesh@BFMEConstructVolumeGeometry@?L@??constructVolume@W3DVolumetricShadow@@IAEXPAVVector3@@MHH@Z@QAEPAUBFMEConstructVolumeMesh@3@H@Z,,0x007B8170,14,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,gen-alias;object-symbol=?getMesh@BFMEConstructVolumeGeometry@?L@??constructVolume@W3DVolumetricShadow@@IAEXPAVVector3@@MHH@Z@QAEPAUBFMEConstructVolumeMesh@3@H@Z;C++ alias
+?resetSilhouette@W3DVolumetricShadow@@IAEXH@Z,,0x007B9260,17,Code/GameEngineDevice/Source/W3DDevice/GameClient/Shadow/W3DVolumetricShadow.cpp,matched,gen-alias;object-symbol=?resetSilhouette@W3DVolumetricShadow@@IAEXH@Z;C++ alias
+?Is_Available@GameFileClass@@UAE_NH@Z,,0x006F6110,6,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,gen-alias;object-symbol=?Is_Available@GameFileClass@@UAE_NH@Z;C++ alias
+?Close@GameFileClass@@UAEXXZ,,0x006F6250,24,Code/GameEngineDevice/Source/W3DDevice/GameClient/W3DFileSystem.cpp,matched,gen-alias;object-symbol=?Close@GameFileClass@@UAEXXZ;C++ alias
+?dup_00478db0@@YAXXZ,,0x00478DB0,13,Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp,matched,gen-alias;object-symbol=?winSetNextInLayout@GameWindow@@QAEXPAV1@@Z;C++ alias
+?notifyFired@TurretAI@@UAEXXZ,,0x0018C790,8,Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp,matched,gen-alias;object-symbol=?notifyFired@TurretAI@@UAEXXZ;C++ alias
+?getSpecialPowerTemplate@SpecialPowerModule@@UBEPBVSpecialPowerTemplate@@XZ,,0x002687C0,7,Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule.cpp,matched,gen-alias;object-symbol=?getSpecialPowerTemplate@SpecialPowerModule@@UBEPBVSpecialPowerTemplate@@XZ;C++ alias
+?isAllowPassthroughType@DockUpdate@@UAE_NXZ,,0x002CAB30,7,Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp,matched,gen-alias;object-symbol=?isAllowPassthroughType@DockUpdate@@UAE_NXZ;C++ alias
+?Get_Inner_Extent@RingRenderObjClass@@QBEABVVector2@@XZ,,0x005C27B0,7,Code/Libraries/Source/WWVegas/WW3D2/ringobj.cpp,matched,gen-alias;object-symbol=?Get_Inner_Extent@RingRenderObjClass@@QBEABVVector2@@XZ;C++ alias

@@ -4607,7 +4607,6 @@ void W3DVolumetricShadow::deleteSilhouette( Int meshIndex )
 // Resets the silhouette to empty, it does NOT free any of the memory
 // allocated for silhouette data
 // ============================================================================
-// ?resetSilhouette@W3DVolumetricShadow@@IAEXH@Z present-unmatched
 void W3DVolumetricShadow::resetSilhouette( Int meshIndex )
 {
 

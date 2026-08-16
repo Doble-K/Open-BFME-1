@@ -339,7 +339,6 @@ char const * GameFileClass::Set_Name( char const *filename )
 //-------------------------------------------------------------------------------------------------
 /** If we found a gdi asset, the file is available. */
 //-------------------------------------------------------------------------------------------------
-// ?Is_Available@GameFileClass@@UAE_NH@Z present-unmatched
 bool GameFileClass::Is_Available( int forced ) 
 {
 
@@ -442,7 +441,6 @@ int GameFileClass::Write(void const *buffer, Int len)
 //-------------------------------------------------------------------------------------------------
 /** Close. */
 //-------------------------------------------------------------------------------------------------
-// ?Close@GameFileClass@@UAEXXZ present-unmatched
 void GameFileClass::Close(void) 
 {
 	if (m_theFile) {

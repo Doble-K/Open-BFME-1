@@ -138,7 +138,6 @@ void GameSpyInfo::markPlayerAsPreorder( Int profileID )
 	m_preorderPlayers.insert(profileID);
 }
 
-// ?setLocalIPs@GameSpyInfo@@UAEXII@Z present-unmatched
 void GameSpyInfo::setLocalIPs(UnsignedInt internalIP, UnsignedInt externalIP)
 {
 	m_internalIP = internalIP;

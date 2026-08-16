@@ -490,7 +490,6 @@ Real TurretAI::getTurretSweepSpeedModifierForWeaponSlot( WeaponSlotType slot ) c
 }
 
 //----------------------------------------------------------------------------------------------------------
-// ?notifyFired@TurretAI@@UAEXXZ present-unmatched
 void TurretAI::notifyFired()
 {
 	m_didFire = true;

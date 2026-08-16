@@ -255,7 +255,6 @@ ScienceType SpecialPowerModule::getRequiredScience( void ) const
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-// ?getSpecialPowerTemplate@SpecialPowerModule@@UBEPBVSpecialPowerTemplate@@XZ present-unmatched
 const SpecialPowerTemplate * SpecialPowerModule::getSpecialPowerTemplate( void ) const
 {
 

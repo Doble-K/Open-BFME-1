@@ -458,7 +458,6 @@ Int GameInfo::getMaxPlayers( void ) const
 	return data.m_numPlayers;
 }
 
-// ?enterGame@GameInfo@@QAEXXZ present-unmatched
 void GameInfo::enterGame( void )
 {
 	DEBUG_ASSERTCRASH(!m_inGame && !m_inProgress, ("Entering game at a bad time!"));
@@ -474,7 +473,6 @@ void GameInfo::leaveGame( void )
 	reset();
 }
 
-// ?startGame@GameInfo@@UAEXH@Z present-unmatched
 void GameInfo::startGame( Int gameID )
 {
 	DEBUG_ASSERTCRASH(m_inGame && !m_inProgress, ("Starting game at a bad time!"));

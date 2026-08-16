@@ -559,7 +559,6 @@ void DockUpdate::loadDockPositions()
 
 // ------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------
-// ?isAllowPassthroughType@DockUpdate@@UAE_NXZ present-unmatched
 Bool DockUpdate::isAllowPassthroughType()
 {
 	return getDockUpdateModuleData()->m_isAllowPassthrough;
