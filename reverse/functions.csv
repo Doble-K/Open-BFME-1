@@ -135242,8 +135242,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0006e0c0@@YAXXZ,,0x0006E0C0,9,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e0d0@@YAXXZ,,0x0006E0D0,19,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e100@@YAXXZ,,0x0006E100,17,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0006e120@@YAXXZ,,0x0006E120,19,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
-?d_0006e140@@YAXXZ,,0x0006E140,19,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e160@@YAXXZ,,0x0006E160,8,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e170@@YAXXZ,,0x0006E170,7,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
 ?d_0006e190@@YAXXZ,,0x0006E190,50,Code/gen_asm/d_0005b6c0.asm,matched,gen-dump;bounds=high
@@ -135619,18 +135617,14 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0008e6f0@@YAXXZ,,0x0008E6F0,9,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008e950@@YAXXZ,,0x0008E950,33,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008ef50@@YAXXZ,,0x0008EF50,31,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_0008f400@@YAXXZ,,0x0008F400,19,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008f450@@YAXXZ,,0x0008F450,6,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008f460@@YAXXZ,,0x0008F460,5,Code/GameEngine/Source/Common/NovemvigenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@NovemvigenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ novemvigenary identity with one argument
 ?d_0008f470@@YAXXZ,,0x0008F470,18,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008f490@@YAXXZ,,0x0008F490,18,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_0008f4b0@@YAXXZ,,0x0008F4B0,19,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008f4d0@@YAXXZ,,0x0008F4D0,5,Code/GameEngine/Source/Common/TricenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@TricenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ tricenary identity with one argument
 ?d_0008f4e0@@YAXXZ,,0x0008F4E0,5,Code/GameEngine/Source/Common/UntricenaryIdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@UntricenaryIdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ untricenary identity with one argument
 ?d_0008f510@@YAXXZ,,0x0008F510,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008f520@@YAXXZ,,0x0008F520,22,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_0008f540@@YAXXZ,,0x0008F540,19,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_0008f570@@YAXXZ,,0x0008F570,19,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008f590@@YAXXZ,,0x0008F590,6,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_0008f5b0@@YAXXZ,,0x0008F5B0,11,Code/GameEngine/Source/Common/Rva8F5B0SecondArgumentStore.cpp,matched,object-symbol=?store@Rva8F5B0SecondArgumentStore@@QAEPAV1@II@Z;hand-reconciled C++
 ?d_0008f5c0@@YAXXZ,,0x0008F5C0,18,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
@@ -135722,8 +135716,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00094d10@@YAXXZ,,0x00094D10,5,Code/GameEngine/Source/Common/Rva94D10IdentityWithArgumentThunk.cpp,matched,object-symbol=?identity@Rva94D10IdentityWithArgumentThunk@@QAEPAU1@H@Z;Open-BFME5 clean C++ RVA 94D10 identity with one argument
 ?d_00094d20@@YAXXZ,,0x00094D20,9,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00094d30@@YAXXZ,,0x00094D30,22,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_00094d50@@YAXXZ,,0x00094D50,19,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_00094dd0@@YAXXZ,,0x00094DD0,19,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_00095170@@YAXXZ,,0x00095170,46,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000951b0@@YAXXZ,,0x000951B0,47,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000951f0@@YAXXZ,,0x000951F0,46,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
@@ -135906,7 +135898,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000a3450@@YAXXZ,,0x000A3450,14,Code/GameEngine/Source/Common/VtableSlot2StoreThunk.cpp,matched,object-symbol=?getTwentyThird@VtableSlot2StoreThunk@@QBE?AUVtableSlot2Result@@XZ;Open-BFME5 clean C++ vtable slot 2 value return
 ?d_000a3470@@YAXXZ,,0x000A3470,22,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a3490@@YAXXZ,,0x000A3490,7,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
-?d_000a34a0@@YAXXZ,,0x000A34A0,19,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a34c0@@YAXXZ,,0x000A34C0,10,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a34d0@@YAXXZ,,0x000A34D0,6,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
 ?d_000a34f0@@YAXXZ,,0x000A34F0,13,Code/gen_asm/d_0007f6b0.asm,matched,gen-dump;bounds=high
@@ -136416,7 +136407,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000c8920@@YAXXZ,,0x000C8920,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8930@@YAXXZ,,0x000C8930,22,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8990@@YAXXZ,,0x000C8990,18,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000c89b0@@YAXXZ,,0x000C89B0,8,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c89c0@@YAXXZ,,0x000C89C0,10,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c89d0@@YAXXZ,,0x000C89D0,15,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c89f0@@YAXXZ,,0x000C89F0,15,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
@@ -136436,7 +136426,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000c8b90@@YAXXZ,,0x000C8B90,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8ba0@@YAXXZ,,0x000C8BA0,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8bc0@@YAXXZ,,0x000C8BC0,24,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000c8be0@@YAXXZ,,0x000C8BE0,8,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8c30@@YAXXZ,,0x000C8C30,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8c40@@YAXXZ,,0x000C8C40,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000c8c60@@YAXXZ,,0x000C8C60,7,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
@@ -136482,24 +136471,18 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000c9f70@@YAXXZ,,0x000C9F70,9,Code/GameEngine/Source/Common/PointerRangeCountThunk.cpp,matched,object-symbol=?thirdSize@PointerRangeCount@@QBEIXZ;Open-BFME5 clean C++ third pointer-range count
 ?d_000c9f80@@YAXXZ,,0x000C9F80,12,Code/GameEngine/Source/Common/Stride4TableLookupThunk.cpp,matched,object-symbol=?thirdLookup@Stride4Table@@QBEPAUStride4TableEntry@@I@Z;Open-BFME5 clean C++ third four-byte table lookup
 ?d_000c9f90@@YAXXZ,,0x000C9F90,12,Code/GameEngine/Source/Common/Stride4TableLookupThunk.cpp,matched,object-symbol=?fourthLookup@Stride4Table@@QBEPAUStride4TableEntry@@I@Z;Open-BFME5 clean C++ fourth four-byte table lookup
-?d_000ca020@@YAXXZ,,0x000CA020,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca040@@YAXXZ,,0x000CA040,6,Code/GameEngine/Source/Common/SecondFieldPointerThunk.cpp,matched,object-symbol=?get@SecondFieldPointer@@QBEPAIXZ;Open-BFME5 clean C++ second-field pointer helper
-?d_000ca050@@YAXXZ,,0x000CA050,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca080@@YAXXZ,,0x000CA080,13,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca0a0@@YAXXZ,,0x000CA0A0,9,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca0b0@@YAXXZ,,0x000CA0B0,13,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca0d0@@YAXXZ,,0x000CA0D0,9,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca0f0@@YAXXZ,,0x000CA0F0,13,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca110@@YAXXZ,,0x000CA110,9,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000ca120@@YAXXZ,,0x000CA120,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca140@@YAXXZ,,0x000CA140,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000ca150@@YAXXZ,,0x000CA150,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000ca170@@YAXXZ,,0x000CA170,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca190@@YAXXZ,,0x000CA190,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca1a0@@YAXXZ,,0x000CA1A0,13,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca1c0@@YAXXZ,,0x000CA1C0,9,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca1d0@@YAXXZ,,0x000CA1D0,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000ca1e0@@YAXXZ,,0x000CA1E0,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca200@@YAXXZ,,0x000CA200,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca210@@YAXXZ,,0x000CA210,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca220@@YAXXZ,,0x000CA220,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
@@ -136509,7 +136492,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000ca270@@YAXXZ,,0x000CA270,9,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca280@@YAXXZ,,0x000CA280,6,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca290@@YAXXZ,,0x000CA290,9,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
-?d_000ca2a0@@YAXXZ,,0x000CA2A0,19,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca2e0@@YAXXZ,,0x000CA2E0,55,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca330@@YAXXZ,,0x000CA330,24,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
 ?d_000ca350@@YAXXZ,,0x000CA350,20,Code/gen_asm/d_000aab30.asm,matched,gen-dump;bounds=high
@@ -136641,9 +136623,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_000cb7b0@@YAXXZ,,0x000CB7B0,26,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cb7d0@@YAXXZ,,0x000CB7D0,26,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cb830@@YAXXZ,,0x000CB830,17,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
-?d_000cb850@@YAXXZ,,0x000CB850,19,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cb870@@YAXXZ,,0x000CB870,17,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
-?d_000cb8b0@@YAXXZ,,0x000CB8B0,19,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cb8d0@@YAXXZ,,0x000CB8D0,9,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cb8f0@@YAXXZ,,0x000CB8F0,8,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
 ?d_000cb900@@YAXXZ,,0x000CB900,8,Code/gen_asm/d_000ca6a0.asm,matched,gen-dump;bounds=high
@@ -157948,3 +157928,23 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?resetIdleScan@TurretAIIdleState@@AAEXXZ,,0x0018CAF0,55,Code/GameEngine/Source/GameLogic/AI/TurretAIIdleState_resetIdleScan_Thunk.cpp,matched,zh_sweep packet 0018caf0
 ?friend_onCondition@State@@QAEXP6A_NPAV1@PAX@ZI1PBD@Z,,0x000A1FB0,102,Code/GameEngine/Source/Common/State_friend_onCondition_Thunk.cpp,matched,zh_sweep packet 000a1fb0
 ?newOverride@GlobalData@@AAEPAV1@XZ,,0x00085BA0,93,Code/GameEngine/Source/Common/GlobalData_newOverride_Thunk.cpp,matched,zh_sweep packet 00085ba0
+?a_0006e120@@YAXXZ,,0x0006E120,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_0006e140@@YAXXZ,,0x0006E140,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_0008f400@@YAXXZ,,0x0008F400,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_0008f4b0@@YAXXZ,,0x0008F4B0,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_0008f540@@YAXXZ,,0x0008F540,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_0008f570@@YAXXZ,,0x0008F570,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_00094d50@@YAXXZ,,0x00094D50,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_00094dd0@@YAXXZ,,0x00094DD0,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000a34a0@@YAXXZ,,0x000A34A0,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000c89b0@@YAXXZ,,0x000C89B0,8,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=?init@Money@@QAEXXZ;C++ alias
+?a_000c8be0@@YAXXZ,,0x000C8BE0,8,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=?init@Money@@QAEXXZ;C++ alias
+?a_000ca020@@YAXXZ,,0x000CA020,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000ca050@@YAXXZ,,0x000CA050,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000ca120@@YAXXZ,,0x000CA120,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000ca150@@YAXXZ,,0x000CA150,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000ca170@@YAXXZ,,0x000CA170,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000ca1e0@@YAXXZ,,0x000CA1E0,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000ca2a0@@YAXXZ,,0x000CA2A0,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000cb850@@YAXXZ,,0x000CB850,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
+?a_000cb8b0@@YAXXZ,,0x000CB8B0,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
