@@ -20826,3 +20826,4 @@ _AMDSSE_D3DXVec4TransformArray@24,0x00AA1140,"the wave named this address from a
 ?d_00922760@@YAXXZ,0x00922760,replaced by ??0VertexMaterialClass@@QAE@ABV0@@Z
 ?d_00921820@@YAXXZ,0x00921820,replaced by ??0VertexMaterialClass@@QAE@XZ
 ?d_00921940@@YAXXZ,0x00921940,replaced by ??1VertexMaterialClass@@UAE@XZ
+?d_00966c00@@YAXXZ,0x00966C00,replaced by ?Apply@GridTextureMapperClass@@UAEXH@Z

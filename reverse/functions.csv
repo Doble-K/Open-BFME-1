@@ -128381,7 +128381,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0095b410@@YAXXZ,,0x0095B410,52,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_0095c6f0@@YAXXZ,,0x0095C6F0,31,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00965fb0@@YAXXZ,,0x00965FB0,165,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
-?d_00966c00@@YAXXZ,,0x00966C00,863,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00967120@@YAXXZ,,0x00967120,860,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00967480@@YAXXZ,,0x00967480,860,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
 ?d_00967ef0@@YAXXZ,,0x00967EF0,860,Code/gen_asm/d_008c3e70.asm,matched,gen-dump;bounds=high
@@ -160099,3 +160098,4 @@ _luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,matched,
 ??0VertexMaterialClass@@QAE@ABV0@@Z,,0x00922760,286,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??0VertexMaterialClass@@QAE@XZ,,0x00921820,279,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
 ??1VertexMaterialClass@@UAE@XZ,,0x00921940,129,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/vertmaterial.cpp,matched,
+?Apply@GridTextureMapperClass@@UAEXH@Z,,0x00966C00,863,reference/CnC_Generals_Zero_Hour/GeneralsMD/Code/Libraries/Source/WWVegas/WW3D2/mapper.cpp,matched,
