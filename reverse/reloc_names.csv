@@ -2205,7 +2205,6 @@ _gpiProcessSearch,0x008EE4D0,5121,Code/GameEngine/Source/GameNetwork/GameSpy/gp/
 _gpiProcessGetInfo,0x008F2220,1831,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiOperation.c,reloc-derived;call-sites=1;identity=real
 _gpiHandleTransferMessage,0x008F5510,226,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiPeer.c,reloc-derived;call-sites=1;identity=real
 ??1Gen_dtor_008f7890@@UAE@XZ,0x008F75D0,115,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
-?makeDirty@PartitionData@@QAEXXZ,0x008F7B30,27,Code/GameEngine/Source/GameLogic/Object/ObjectFields.cpp,reloc-derived;call-sites=4;identity=real
 ??1Gen_dtor_008f8500@@UAE@XZ,0x008F8340,170,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??$__destroy@U?$_Deque_iterator@UGen_t_008fb350_p12pod@@U?$_Nonconst_traits@UGen_t_008fb350_p12pod@@@_STL@@@_STL@@UGen_t_008fb350_p12pod@@@_STL@@YAXU?$_Deque_iterator@UGen_t_008fb350_p12pod@@U?$_Nonconst_traits@UGen_t_008fb350_p12pod@@@_STL@@@0@0PAUGen_t_008fb350_p12pod@@@Z,0x008FAD20,81,Code/gen_small/tgrid_126.cpp,reloc-derived;call-sites=1;identity=generated
 ?_M_push_back_aux_v@?$deque@UGen_t_008fbc70_p8cd@@V?$allocator@UGen_t_008fbc70_p8cd@@@_STL@@@_STL@@IAEXABUGen_t_008fbc70_p8cd@@@Z,0x008FB570,121,Code/gen_small/tgrid_126.cpp,reloc-derived;call-sites=1;identity=generated

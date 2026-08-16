@@ -64,7 +64,10 @@ const FrustumClass *shadowCameraFrustum;
 // BFME: retail ~W3DShadowManager (@0x007B7AF0) deletes a third manager before
 // the volumetric one — a small helper with two refcounted members (dtor body
 // @0x007C19A0, non-virtual). Its name is not preserved, so a stand-in carries
-// the byte evidence; the dtor is pinned in symbols.csv.
+// the byte evidence; the dtor is pinned in symbols.csv. Definition lives in
+// the sibling W3DShadowHelperManagerDtor.cpp -- defining it here got MSVC to
+// inline it into this file's own ~W3DShadowManager delete-call site and broke
+// that already-matched row (rule: never define in the same TU as a caller).
 class W3DShadowHelperManager
 {
 public:

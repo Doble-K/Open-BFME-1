@@ -119,12 +119,49 @@ class BehaviorModule : public _BFMEObjectModule, public BehaviorModuleInterface
 };
 
 //-------------------------------------------------------------------------------------------------
+class PartitionData;
+
+/// BFME-only container for PartitionData's dirty-modules list; see the
+/// definition of prependDirtyModule (PartitionDataDirtyList.cpp) for why the
+/// name is descriptive rather than a recovered identity. Declared here with no
+/// data members: makeDirty only calls through the pointer, never touches its
+/// fields, so the layout doesn't need to be repeated in this TU.
+class PartitionDirtyListOwner
+{
+public:
+	void prependDirtyModule( PartitionData* node );		///< retail 0x008F8C50
+};
+
+//-------------------------------------------------------------------------------------------------
 /// PartitionData stand-in: BFME makeDirty() takes no argument (ZH: makeDirty(Bool)).
 class PartitionData
 {
 public:
 	void makeDirty( void );														///< retail 0x008F7B30
+
+private:
+	PartitionDirtyListOwner*	m_owner;								///< +0x00, interior unrecovered
+	unsigned char							_bfme_unknown04[ 0x14 - 0x04 ];
+	PartitionData**						m_prevDirty;						///< +0x14
+	PartitionData*						m_nextDirty;						///< +0x18
+	unsigned char							_bfme_unknown1c[ 0xDC - 0x1C ];
+	unsigned char							m_isDirty;							///< +0xDC
 };
+
+//-------------------------------------------------------------------------------------------------
+// ?makeDirty@PartitionData@@QAEXXZ
+// noinline: setScriptStatus (below, same TU) calls this twice and MSVC will
+// otherwise inline it into both call sites, corrupting setScriptStatus's own
+// matched bytes (and internal_classifyObjectFootprint's, further down the
+// same TU) -- same class of bug as the wrapper/jmp-thunk inlining rule.
+__declspec(noinline) void PartitionData::makeDirty( void )
+{
+	if( m_prevDirty == NULL )
+	{
+		m_owner->prependDirtyModule( this );
+	}
+	m_isDirty = 1;
+}
 
 //-------------------------------------------------------------------------------------------------
 // ?setScriptStatus@Object@@QAEXW4ObjectScriptStatusBit@@_N@Z
