@@ -171,11 +171,20 @@ def test_the_queue_drops_published_rows_the_ledger_has_claimed():
     as available work is the real defect, and it lives here, not in the file --
     so it is tested here, against claim sets this test states outright rather
     than whatever the ledger happens to hold this minute.
+
+    The universe is the RECOVERED half of the file, not all of it: 74ac64e06
+    stopped serving `identity=generated` rows, because a name this project
+    minted for a machine funclet tells a worker nothing and the weighted draw
+    landed on them half the time. Their bytes go out through the convert lane.
     """
-    rva = int(published_rows()[0]["target_rva"], 16)
+    recovered = [row for row in published_rows()
+                 if not row["notes"].endswith("identity=generated")]
+    rva = int(recovered[0]["target_rva"], 16)
 
     served, note = next_work.reloc_named_candidates(set(), [])
-    assert len(served) == len(published_rows()), note
+    assert len(served) == len(recovered), note
+    assert not [c for c in served if c["notes"].endswith("identity=generated")], (
+        "a minted name is evidence about nothing; the convert lane owns those bytes")
     assert "already landed" not in note, note
 
     claimed, note = next_work.reloc_named_candidates({rva}, [])
