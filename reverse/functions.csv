@@ -94185,7 +94185,6 @@ _parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 
 ?d_00812cd0@@YAXXZ,,0x00812CD0,253,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c12cd0
 ?d_00924ea0@@YAXXZ,,0x00924EA0,253,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d24ea0
 ?d_0094d250@@YAXXZ,,0x0094D250,253,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d4d250
-?d_0099ca60@@YAXXZ,,0x0099CA60,253,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d9ca60
 ?d_0023f1a0@@YAXXZ,,0x0023F1A0,507,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_0063f1a0
 ?d_00878ce0@@YAXXZ,,0x00878CE0,507,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c78ce0
 ?d_00566ec0@@YAXXZ,,0x00566EC0,506,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00966ec0
@@ -94216,7 +94215,6 @@ _parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 
 ?d_008348d0@@YAXXZ,,0x008348D0,252,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c348d0
 ?d_00834e50@@YAXXZ,,0x00834E50,252,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c34e50
 ?d_0084d990@@YAXXZ,,0x0084D990,252,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c4d990
-?d_008f5e90@@YAXXZ,,0x008F5E90,252,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00cf5e90
 ?d_009a2420@@YAXXZ,,0x009A2420,252,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00da2420
 ?d_00198f00@@YAXXZ,,0x00198F00,505,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00598f00
 ?d_00199ec0@@YAXXZ,,0x00199EC0,505,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00599ec0
@@ -94244,7 +94242,6 @@ _parlist,,0x0099BD30,254,Code/Libraries/Source/Lua/lparser.c,matched,Open-BFME5 
 ?d_00834b90@@YAXXZ,,0x00834B90,251,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c34b90
 ?d_00859790@@YAXXZ,,0x00859790,251,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c59790
 ?d_00929310@@YAXXZ,,0x00929310,251,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d29310
-?d_0099f5c0@@YAXXZ,,0x0099F5C0,251,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00d9f5c0
 ?d_00162190@@YAXXZ,,0x00162190,503,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00562190
 ?d_0089e2b0@@YAXXZ,,0x0089E2B0,503,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00c9e2b0
 ?d_009b3800@@YAXXZ,,0x009B3800,503,Code/gen_small/dumps_000.cpp,matched,gen-dump;ghidra=FUN_00db3800
@@ -120719,10 +120716,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00866d60@@YAXXZ,,0x00866D60,32,Code/gen_asm/d_00861370.asm,matched,gen-dump;ghidra=FUN_00c66d60
 ?d_00866fd0@@YAXXZ,,0x00866FD0,61,Code/gen_asm/d_00861370.asm,matched,gen-dump;ghidra=FUN_00c66fd0
 ?d_00867010@@YAXXZ,,0x00867010,67,Code/gen_asm/d_00861370.asm,matched,gen-dump;ghidra=FUN_00c67010
-?d_008680d0@@YAXXZ,,0x008680D0,861,Code/gen_asm/d_00861370.asm,matched,gen-dump;ghidra=FUN_00c680d0
-?d_00868970@@YAXXZ,,0x00868970,236,Code/gen_asm/d_00868970.asm,matched,gen-dump;ghidra=FUN_00c68970
-?d_00868b00@@YAXXZ,,0x00868B00,482,Code/gen_asm/d_00868970.asm,matched,gen-dump;ghidra=FUN_00c68b00
-?d_00868e40@@YAXXZ,,0x00868E40,318,Code/gen_asm/d_00868970.asm,matched,gen-dump;ghidra=FUN_00c68e40
 ?d_008693f0@@YAXXZ,,0x008693F0,341,Code/gen_asm/d_00868970.asm,matched,gen-dump;ghidra=FUN_00c693f0
 ?d_00869550@@YAXXZ,,0x00869550,203,Code/gen_asm/d_00868970.asm,matched,gen-dump;ghidra=FUN_00c69550
 ?d_00869620@@YAXXZ,,0x00869620,52,Code/gen_asm/d_00868970.asm,matched,gen-dump;ghidra=FUN_00c69620
@@ -120876,7 +120869,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00879870@@YAXXZ,,0x00879870,131,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c79870
 ?d_00879f60@@YAXXZ,,0x00879F60,736,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c79f60
 ?d_0087a300@@YAXXZ,,0x0087A300,170,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7a300
-?d_0087a540@@YAXXZ,,0x0087A540,244,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7a540
 ?d_0087a680@@YAXXZ,,0x0087A680,62,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7a680
 ?d_0087ac40@@YAXXZ,,0x0087AC40,33,Code/gen_asm/d_00873370.asm,matched,gen-dump;ghidra=FUN_00c7ac40
 ?d_0087af30@@YAXXZ,,0x0087AF30,215,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7af30
@@ -120895,7 +120887,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0087cdb0@@YAXXZ,,0x0087CDB0,108,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7cdb0
 ?d_0087ce20@@YAXXZ,,0x0087CE20,383,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7ce20
 ?d_0087cfd0@@YAXXZ,,0x0087CFD0,117,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7cfd0
-?d_0087d080@@YAXXZ,,0x0087D080,378,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d080
 ?d_0087d2b0@@YAXXZ,,0x0087D2B0,264,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d2b0
 ?d_0087d3c0@@YAXXZ,,0x0087D3C0,142,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d3c0
 ?d_0087d450@@YAXXZ,,0x0087D450,96,Code/gen_asm/d_0087af30.asm,matched,gen-dump;ghidra=FUN_00c7d450
@@ -121790,7 +121781,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_008ea5b0@@YAXXZ,,0x008EA5B0,65,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cea5b0
 ?d_008ecb40@@YAXXZ,,0x008ECB40,181,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cecb40
 ?d_008ecc00@@YAXXZ,,0x008ECC00,189,Code/gen_asm/d_008d1540.asm,matched,gen-dump;ghidra=FUN_00cecc00
-?d_008ef8e0@@YAXXZ,,0x008EF8E0,239,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cef8e0
 ?d_008f1090@@YAXXZ,,0x008F1090,81,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf1090
 ?d_008f3460@@YAXXZ,,0x008F3460,325,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf3460
 ?d_008f3ef0@@YAXXZ,,0x008F3EF0,98,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf3ef0
@@ -121800,7 +121790,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_008f6000@@YAXXZ,,0x008F6000,483,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf6000
 ?d_008f65c0@@YAXXZ,,0x008F65C0,182,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf65c0
 ?d_008f6b40@@YAXXZ,,0x008F6B40,647,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf6b40
-?d_008f6e10@@YAXXZ,,0x008F6E10,224,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf6e10
 ?d_008f7480@@YAXXZ,,0x008F7480,44,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf7480
 ?d_008f74b0@@YAXXZ,,0x008F74B0,44,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf74b0
 ?d_008f7510@@YAXXZ,,0x008F7510,143,Code/gen_asm/d_008ecd00.asm,matched,gen-dump;ghidra=FUN_00cf7510
@@ -122691,9 +122680,7 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_00993e10@@YAXXZ,,0x00993E10,109,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d93e10
 ?d_00994e40@@YAXXZ,,0x00994E40,75,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d94e40
 ?d_00996790@@YAXXZ,,0x00996790,342,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d96790
-?d_00996950@@YAXXZ,,0x00996950,222,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d96950
 ?d_00997c80@@YAXXZ,,0x00997C80,2924,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d97c80
-?d_0099a170@@YAXXZ,,0x0099A170,276,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9a170
 ?d_0099b480@@YAXXZ,,0x0099B480,111,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9b480
 ?d_0099b750@@YAXXZ,,0x0099B750,241,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9b750
 ?d_0099b850@@YAXXZ,,0x0099B850,238,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9b850
@@ -122707,7 +122694,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0099c2d0@@YAXXZ,,0x0099C2D0,181,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c2d0
 ?d_0099c390@@YAXXZ,,0x0099C390,117,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c390
 ?d_0099c410@@YAXXZ,,0x0099C410,152,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c410
-?d_0099c4b0@@YAXXZ,,0x0099C4B0,446,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c4b0
 ?d_0099c810@@YAXXZ,,0x0099C810,292,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9c810
 ?d_0099cc60@@YAXXZ,,0x0099CC60,301,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9cc60
 ?d_0099cd90@@YAXXZ,,0x0099CD90,265,Code/gen_asm/d_009817d0.asm,matched,gen-dump;ghidra=FUN_00d9cd90
@@ -122715,7 +122701,6 @@ _CommTCPUnlisten,,0x00814360,49,Code/Libraries/Source/DirtySock/commtcp.cpp,matc
 ?d_0099e580@@YAXXZ,,0x0099E580,66,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9e580
 ?d_0099ee10@@YAXXZ,,0x0099EE10,349,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9ee10
 ?d_0099ef70@@YAXXZ,,0x0099EF70,151,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9ef70
-?d_0099f410@@YAXXZ,,0x0099F410,421,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9f410
 ?d_0099fae0@@YAXXZ,,0x0099FAE0,479,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9fae0
 ?d_0099fcc0@@YAXXZ,,0x0099FCC0,70,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9fcc0
 ?d_0099fde0@@YAXXZ,,0x0099FDE0,53,Code/gen_asm/d_0099d0c0.asm,matched,gen-dump;ghidra=FUN_00d9fde0
@@ -158157,3 +158142,18 @@ _invalidaterefs,,0x00999C40,106,Code/Libraries/Source/Lua/lgc.c,matched,vendored
 _explist1,,0x0099B370,177,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1
 _assignment,,0x0099CB80,192,Code/Libraries/Source/Lua/lparser.c,matched,vendored=lua-4.0.1
 _ghiPostCleanupState,,0x0087D200,164,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpPost.c,matched,vendored=gamespy-2004
+_SBServerListConnectAndQuery,,0x00868B00,482,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_serverlist.c,matched,
+_gpiProcessCallbacks,,0x008F5E90,252,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiCallback.c,matched,
+_luaK_storevar,,0x0099F410,421,Code/Libraries/Source/Lua/lcode.c,matched,
+_ProcessMainListData,,0x008680D0,861,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_serverlist.c,matched,
+_markall,,0x0099A170,276,Code/Libraries/Source/Lua/lgc.c,matched,
+_ProcessAdHocData,,0x00868E40,318,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_serverlist.c,matched,
+_SBServerListInit,,0x00868970,236,Code/GameEngine/Source/GameNetwork/GameSpy/serverbrowsing/sb_serverlist.c,matched,
+_gpiProcessPeers,,0x008F6E10,224,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiPeer.c,matched,
+_gpiProcessSearches,,0x008EF8E0,239,Code/GameEngine/Source/GameNetwork/GameSpy/gp/gpiSearch.c,matched,
+_ghiPostInitState,,0x0087D080,378,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpPost.c,matched,
+_ghiProcessConnection,,0x0087A540,244,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/ghttpMain.c,matched,
+_luaK_testgo,,0x0099F5C0,251,Code/Libraries/Source/Lua/lcode.c,matched,
+_subexpr,,0x0099CA60,253,Code/Libraries/Source/Lua/lparser.c,matched,
+_var_or_func_tail,,0x0099C4B0,446,Code/Libraries/Source/Lua/lparser.c,matched,
+_getobjname,,0x00996950,222,Code/Libraries/Source/Lua/ldebug.c,matched,

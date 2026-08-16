@@ -70890,3 +70890,29 @@ _ghiPostCleanupState,0x0087D200,decode_calls pin for _ghiFreeConnection callee (
 _ghiFreePost,0x0087CAC0,decode_calls pin for _ghiFreeConnection callee (ghttpPost.c post free)
 _gpiCheckSocketConnect,0x008ECB40,additive pin for _gpiCheckConnect call resolution
 _luaK_storevar,0x0099F410,vendored=lua-4.0.1
+_accept@12,0x0081BE6E,decode_calls pin for _gpiProcessPeers callee (accept)
+_gpiProcessPeerInitiatingConnection,0x008F6B40,decode_calls pin for _gpiProcessPeers callee
+_gpiProcessPeerAcceptingConnection,0x008F6000,decode_calls pin for _gpiProcessPeers callee
+_gpiRemovePeer,0x008F65C0,decode_calls pin for _gpiProcessPeers callee
+_gpiProcessSearch,0x008EE4D0,decode_calls pin for _gpiProcessSearches callee
+_ghiFindFreeSlot,0x0087B0D0,decode_calls pin for _ghiNewConnection callee
+_ghiPostStateInit,0x0087CFD0,decode_calls pin for _ghiPostInitState callee
+_ghiPostGetHasFilesContentLength,0x0087CE20,decode_calls pin for _ghiPostInitState callee
+_ghiPostGetNoFilesContentLength,0x0087CDB0,decode_calls pin for _ghiPostInitState callee
+_ghiDoHostLookup,0x0087B7A0,decode_calls pin for _ghiProcessConnection callee
+_ghiDoConnecting,0x0087B840,decode_calls pin for _ghiProcessConnection callee
+_ghiDoPosting,0x0087BB70,decode_calls pin for _ghiProcessConnection callee
+_ghiDoWaiting,0x0087BBD0,decode_calls pin for _ghiProcessConnection callee
+_ghiDoReceivingHeaders,0x0087C140,decode_calls pin for _ghiProcessConnection callee
+_ghiDoReceivingFile,0x0087C530,decode_calls pin for _ghiProcessConnection callee
+_ghiRedirectConnection,0x0087B320,decode_calls pin for _ghiProcessConnection callee
+_ghiCallCompletedCallback,0x0087B5B0,decode_calls pin for _ghiProcessConnection callee
+_invertjump,0x0099E580,decode_calls pin for _luaK_testgo callee
+_luaK_prefix,0x0099FAE0,decode_calls pin for _subexpr callee
+_simpleexp,0x0099C810,decode_calls pin for _subexpr callee
+_getbinopr,0x0099B480,decode_calls pin for _subexpr callee
+_luaK_infix,0x0099FCC0,decode_calls pin for _subexpr callee
+_funcargs,0x0099C410,decode_calls pin for _var_or_func_tail callee
+_luaG_symbexec,0x00996790,decode_calls pin for _getobjname callee
+_read_long_string,0x009A0420,decode_calls pin for _luaX_lex callee
+?isRoomForWrapperMessage@NetPacket@@IAE_NPAVNetCommandRef@@@Z,0x00044FEE,decode_calls pin for addWrapperCommand callee (ILT thunk -> body 0x00677BC0)
