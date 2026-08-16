@@ -148671,7 +148671,6 @@ _DXTraceW@20,,0x00AFD20F,377,vendor/dxerr9/dxerr9.lib,matched,vendored=dxerr9-su
 ?getGameName@GameSpyStagingRoom@@QBE?AVUnicodeString@@XZ,,0x004CE820,35,Code/GameEngine/Source/GameNetwork/GameSpyStagingRoom_getGameName_Thunk.cpp,matched,Open-BFME5 m_gameName at +0x3a0
 ??0PartitionFilterPossibleToAttack@@QAE@W4AbleToAttackType@@PBVObject@@W4CommandSourceType@@@Z,,0x004C12B0,32,Code/GameEngine/Source/Common/PartitionFilters_allow_Thunk.cpp,matched,Open-BFME5 members at +0x4 +0x8 +0xc so the shared filter base is a bare vptr
 ??0ClientUpdateModule@@QAE@PAVThing@@PBVModuleData@@@Z,,0x00602ED0,39,Code/GameEngine/Source/GameClient/Drawable/ClientUpdateModuleConstructorThunk.cpp,matched,Open-BFME5 DrawableModule is 12 bytes; own member at +0xc zeroed
-?Clear@?$VectorClass@UFileInfoStruct@MixFileCreator@@@@UAEXXZ,,0x00934780,61,Code/Libraries/Source/WWVegas/WWLib/MixFileCreatorFileInfoVectorClearThunk.cpp,matched,Open-BFME5 element 0x74 bytes so BFME StringClass is 104 bytes not 4
 ?isSupplySourceSafe@AIPlayer@@QAE_NH@Z,,0x00166A10,80,Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp,matched,Open-BFME5 retail inlines the OVERRIDE<ThingTemplate> walk; m_template at Thing+0x4
 ?isShortcutPower@SpecialPowerTemplate@@QBE_NXZ,,0x00268920,33,Code/GameEngine/Source/GameLogic/Object/SpecialPowerTemplate_isShortcutPower_Thunk.cpp,matched,Open-BFME5 inlined override walk; m_nextOverride at +0x4 and the flag at +0x115
 ??1DynamicIBAccessClass@@QAE@XZ,,0x0091D350,71,Code/Libraries/Source/WWVegas/WW3D2/dx8indexbuffer.cpp,matched,Open-BFME5 REF_PTR_RELEASE nulls inside the null check
@@ -157965,3 +157964,4 @@ _ghiParseURL,,0x0087B6B0,225,Code/GameEngine/Source/GameNetwork/GameSpy/ghttp/gh
 ?update@AIDockProcessDockState@@UAE?AW4StateReturnType@@XZ,,0x0014FCE0,115,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
 ?onEnter@AIDockApproachState@@UAE?AW4StateReturnType@@XZ,,0x0014E700,119,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
 ?onEnter@AIDockAdvancePositionState@@UAE?AW4StateReturnType@@XZ,,0x0014E980,119,Code/GameEngine/Source/GameLogic/AI/AIDock.cpp,matched,
+?Clear@?$VectorClass@VProxyClass@@@@UAEXXZ,,0x00934780,61,Code/Libraries/Source/WWVegas/WW3D2/VectorClassProxyClearThunk.cpp,matched,same instantiation as Resize at 0x00934630 - element 0x74 and element dtor ILT 0x0041AAD2 shared
