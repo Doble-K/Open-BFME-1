@@ -466,28 +466,3 @@ _png_PLTE
 # file statics apart across TUs. Surfaced when SinglePlayerMenuShutdown landed
 # in b94028866; before that only the WOL TU referenced the name.
 _isShuttingDown
-
-# D3DXShader statics and the x87 constant pool: retail links both twice, and the
-# two copies sit a fixed distance apart -- 0x230 for the constants at 0x012E4350
-# against 0x012E4580, 0x270 for the D3DXShader vtables. A row that references one
-# copy and a row that references the other are both right; nothing here is a
-# second definition of one symbol, it is one symbol linked into the image twice.
-# Same phenomenon as CRC32_Table and _COLLISION_EPSILON above.
-??_7CFXLProgram@D3DXShader@@6B@
-??_7CPSProgram@D3DXShader@@6B@
-??_7CVSProgram@D3DXShader@@6B@
-?s_pAlloc@CArgument@D3DXShader@@0PAVCAlloc@D3DXCore@@A
-?s_pAlloc@CInstruction@D3DXShader@@0PAVCAlloc@D3DXCore@@A
-?s_pFree@CArgument@D3DXShader@@0PAV12@A
-?s_pFree@CInstruction@D3DXShader@@0PAV12@A
-_IID_ID3DXBuffer
-__CLEAR_D_
-__MINUS_2_
-__NEG_
-__ONE_1_
-__ONE_2_
-__ONE_3_
-__ONE_4_
-__flt_epsilon_pow_2_
-__half_
-__three_
