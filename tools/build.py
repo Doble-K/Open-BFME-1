@@ -249,6 +249,13 @@ def coff_name(data, symbol_offset, string_table):
     return short_name.rstrip(b"\0").decode("ascii", errors="replace")
 
 
+# A COFF symbol's SectionNumber is int16, so a symbol living in section 0x8000
+# or beyond reads back negative and every `section > 0` test below rejects it as
+# undefined. A 250-instantiation generated TU needed 44,768 COMDATs and lost 56
+# rows to exactly that, diagnosed only as "symbol not found in object".
+COFF_SECTION_CEILING = 0x7FFF
+
+
 def read_object_symbols(data):
     symbol_table = u32(data, 8)
     symbol_count = u32(data, 12)
@@ -351,6 +358,13 @@ def read_object_symbol_bytes(path, symbol_name, expected_size=None):
 
         index += 1
 
+    if len(sections) > COFF_SECTION_CEILING:
+        raise ValueError(
+            f"symbol not found in object: {symbol_name} — {path.name} carries "
+            f"{len(sections)} sections and a COFF section number is int16, so every symbol "
+            f"past section {COFF_SECTION_CEILING} reads negative and is invisible to any "
+            "reader. Split the batch that produced this TU: its limit is a section budget, "
+            "not a row count.")
     raise ValueError(f"symbol not found in object: {symbol_name}")
 
 
