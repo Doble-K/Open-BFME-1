@@ -27,6 +27,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build
 import harvest
+import ledger_io
 
 MIN_SIZE_DEFAULT = 24
 MIN_NEEDLE = 8
@@ -497,9 +498,14 @@ of the ladder (python3 tools/next_work.py).""")
             for row in rows:
                 handle.write(row + "\n")
         if new_symbols:
-            with build.SYMBOLS.open("a", encoding="utf-8", newline="") as handle:
+            # symbols.csv is union-merged and must stay on ONE terminator: a pin
+            # written with a bare \n into the CRLF file is a new line to the merge
+            # driver, so it duplicates on the next rebase and gen_small refuses to
+            # append to the file at all. Ask the file, do not assume.
+            eol = ledger_io.uniform_terminator(build.SYMBOLS.read_bytes(), "symbols.csv")
+            with build.SYMBOLS.open("ab") as handle:
                 for sym, addr in new_symbols:
-                    handle.write(f"{sym},0x{addr:08X}\n")
+                    handle.write(f"{sym},0x{addr:08X}".encode("utf-8") + eol)
         print(f"emitted {len(rows)} row(s) to functions.csv"
               + (f", {len(new_symbols)} to symbols.csv" if new_symbols else ""))
 

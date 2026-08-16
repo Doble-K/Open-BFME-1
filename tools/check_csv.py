@@ -15,6 +15,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ledger_io  # noqa: E402  (after the path insert that makes it importable)
+
 ROOT = Path(__file__).resolve().parents[1]
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
 SYMBOLS = ROOT / "reverse" / "symbols.csv"
@@ -210,11 +213,30 @@ def check_functions(raw, problems, sources_ok):
 
 
 def check_symbols(raw, problems):
-    # symbols.csv is LF-native. Rows may be 2-field (name,address — the form
-    # docs/matching.md tells agents to append) or 3-field with notes. A name
-    # may legitimately appear at several addresses: build.py's load_symbol_map
-    # treats them all as REL32 resolution candidates. Only exact duplicates
-    # and malformed rows are errors.
+    # Rows may be 2-field (name,address — the form docs/matching.md tells agents
+    # to append) or 3-field with notes. A name may legitimately appear at several
+    # addresses: build.py's load_symbol_map treats them all as REL32 resolution
+    # candidates. Only exact duplicates and malformed rows are errors.
+    #
+    # The file must carry ONE terminator, and this is where that is caught. It is
+    # merge=union, so a pin differing from its twin by a single \r is a distinct
+    # line to the merge driver and lands twice; a duplicate pin is legal, so
+    # nothing downstream notices, while the same mixing in functions.csv trips
+    # the duplicate-name rule above. gen_small.line_terminator refuses to append
+    # to a mixed file — that stops a whole wave, in a session that did not cause
+    # it. 66 LF pins reached master this way and blocked landing until they were
+    # repaired by hand.
+    census = ledger_io.terminator_census(raw)
+    if len(census) > 1:
+        spelling = {b"\n": "LF", b"\r\n": "CRLF", b"\r\r\n": "CRCRLF"}
+        odd = min(census.items(), key=lambda item: len(item[1]))
+        problems.append(
+            f"symbols.csv mixes line terminators: {len(odd[1])} "
+            f"{spelling.get(odd[0], repr(odd[0]))} line(s) in a file that is otherwise "
+            f"{spelling.get(max(census, key=lambda t: len(census[t])), '?')} "
+            f"(line {odd[1][0]}{', ...' if len(odd[1]) > 1 else ''}). It is union-merged, "
+            "so the odd lines duplicate every pin they carry on the next rebase. "
+            "Fix: python3 tools/dedup_csv.py")
     text = raw.decode("utf-8", errors="replace")
     rows = list(csv.reader(io.StringIO(text)))
     if not rows or ",".join(rows[0]) != SYMBOLS_HEADER:

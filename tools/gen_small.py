@@ -4196,20 +4196,11 @@ def retract_dump_rows(functions_raw, to_retract):
         handle.write("".join(lines).encode("utf-8"))
 
 
-def line_terminator(raw, label):
-    """The line ending `raw` already uses; a file mixing both is not appendable.
-
-    reverse/symbols.csv is `merge=union`. Appending LF lines to a CRLF file makes
-    the merge driver see a distinct line for every identical pin, so the next
-    rebase concatenates the whole ledger onto itself — that is how 4,172 pins
-    became 8,784. Matching the file keeps each batch a pure append.
-    """
-    lines = raw.split(b"\n")[:-1]
-    crlf = sum(1 for line in lines if line.endswith(b"\r"))
-    if crlf not in (0, len(lines)):
-        raise SystemExit(f"{label} mixes CRLF and LF line endings ({crlf} of {len(lines)} "
-                         "lines are CRLF) — repair it before appending")
-    return b"\r\n" if crlf else b"\n"
+# land_wave reaches for this as G.line_terminator, and check_csv now refuses the
+# commit that mixes symbols.csv in the first place; all three have to be asking
+# ledger_io the one question, or the scan/land drift this file already documents
+# repeats itself one layer down.
+line_terminator = ledger_io.uniform_terminator
 
 
 def run(command, label):

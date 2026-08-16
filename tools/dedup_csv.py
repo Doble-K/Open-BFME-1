@@ -25,6 +25,9 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ledger_io  # noqa: E402  (after the path insert that makes it importable)
+
 ROOT = Path(__file__).resolve().parents[1]
 FIELDS = ["name", "export_rva", "target_rva", "target_size", "source", "status", "notes"]
 
@@ -75,7 +78,19 @@ def dedup_functions(path):
 def dedup_symbols(path):
     if not path.exists():
         return 0, 0
-    lines = path.read_text(encoding="utf-8").splitlines()
+    raw = path.read_bytes()
+    # This rewrites every line, so it decides the file's terminator -- and it used
+    # to decide LF unconditionally, which flipped all 70,871 CRLF pins at once and
+    # handed the union merge driver a brand-new line for each. Keep what the file
+    # already uses; being the tool that rewrites everything also makes this the
+    # right place to repair a merged-in stray, out loud.
+    census = ledger_io.terminator_census(raw)
+    eol = max(census, key=lambda term: len(census[term]), default=b"\r\n").decode("latin1")
+    for term, lines in census.items():
+        if term != eol.encode("latin1"):
+            print(f"symbols.csv:   {len(lines)} line(s) rewritten to the file's own "
+                  f"terminator (first line {lines[0]})")
+    lines = raw.decode("utf-8").splitlines()
     header, body = lines[0], lines[1:]
     # Key on (name,address): union merges can land the same pin twice with
     # different notes text, which exact-line dedup keeps. Prefer the longer
@@ -90,7 +105,7 @@ def dedup_symbols(path):
         if key not in best or (-len(line), line) < (-len(best[key]), best[key]):
             best[key] = line
     unique = sorted(best.values())
-    path.write_text(header + "\n" + "\n".join(unique) + "\n", encoding="utf-8")
+    path.write_bytes((eol.join([header, *unique]) + eol).encode("utf-8"))
     return len(body), len(unique)
 
 

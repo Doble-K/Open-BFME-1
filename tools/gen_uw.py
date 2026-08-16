@@ -44,6 +44,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 import build      # noqa: E402
 import harvest    # noqa: E402
+import ledger_io  # noqa: E402
 
 FUNCTIONS = ROOT / "reverse" / "functions.csv"
 SYMBOLS = ROOT / "reverse" / "symbols.csv"
@@ -426,8 +427,15 @@ def land():
     rows.sort(key=lambda row: row[2])
     rewrite_lines(FUNCTIONS, OWNED_ROW_RE.search,
                   [",".join(row) for row in rows], b"\r")
+    # rewrite_lines rejoins on b"\n", so `newline` is whatever precedes it -- b"\r"
+    # for the CRLF file symbols.csv actually is. Hardcoding b"" wrote LF pins into
+    # it, which is a NEW line to the union merge driver for a pin that already
+    # existed, and gen_small then refuses to append to a mixed file at all.
+    # functions.csv below keeps its own b"\r": it legitimately mixes all three
+    # terminators, so there is nothing uniform to ask it for.
     rewrite_lines(SYMBOLS, lambda line: line.startswith(b"?") and line.endswith(PIN_NOTE_BYTES),
-                  ["%s,0x%08X,%s" % (name, address, PIN_NOTE) for name, address in pins], b"")
+                  ["%s,0x%08X,%s" % (name, address, PIN_NOTE) for name, address in pins],
+                  ledger_io.uniform_terminator(SYMBOLS.read_bytes(), "symbols.csv")[:-1])
     print("landed %d rows across %d file(s); %d pins, %d of them at an address "
           "symbols.csv already names differently"
           % (len(rows), len(written), len(pins),
