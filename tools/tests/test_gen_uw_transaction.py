@@ -16,8 +16,10 @@ Four guarantees are asserted here, each one absent before this file existed:
     functions.csv it was written against;
   * a superseded gen-dump row retracted AND tombstoned, through
     gen_small.retract_dump_rows rather than a second implementation;
-  * a scoped ./build.sh + check_csv before land() returns, with every ledger and
-    every owned source reverted on anything short of green.
+  * a FULL ./build.sh + check_csv before land() returns, with every ledger and
+    every owned source reverted on anything short of green;
+  * the rewritten block put back where it was, so a row another session appended
+    after the last land is not relocated into a union-merge duplicate.
 """
 import importlib.util
 import subprocess
@@ -169,6 +171,70 @@ def test_landing_twice_rewrites_the_same_pins_instead_of_appending(tmp_path, mon
 
     assert world.snapshot() == once, "a second land must be a byte-for-byte no-op"
     assert world.symbols.read_bytes().count(gen_uw.PIN_NOTE_BYTES) == 1
+
+
+CONCURRENT = ("_luaK_number,,0x0099EE10,349,Code/Libraries/Source/Lua/lcode.c,"
+              "matched,")
+# Two funclets, because one is not enough to show the damage: git's union driver
+# resolves a single relocated line cleanly and only starts keeping both copies
+# once the block it moved across is two lines or more. The repo's block is 18,689.
+TWO = ((RVA, 8, -16, TARGET), (RVA + 0x100, 8, -24, TARGET))
+
+
+def test_a_row_appended_after_the_landed_block_keeps_its_position(tmp_path, monkeypatch):
+    """The rewrite must put the fresh block back where the old one was.
+
+    The no-op test above passed while this was broken, because its fixture puts
+    the owned rows last -- exactly where an append-at-end rewrite would leave
+    them. In the repo they are not last: nine rows other sessions appended after
+    the previous land sat behind 18,689 owned rows, and re-landing hoisted every
+    one of them to the top of the block.
+    """
+    world = World(tmp_path, monkeypatch, funclets=TWO)
+    gen_uw.land()
+    with world.functions.open("ab") as handle:      # a concurrent single-row append
+        handle.write(CONCURRENT.encode() + b"\r\n")
+    once = world.snapshot()
+
+    gen_uw.land()
+
+    assert world.rows.splitlines()[-1] == CONCURRENT, (
+        "a row this generator does not own must not be relocated by the rewrite")
+    assert world.snapshot() == once, "a re-land of an unchanged population is a no-op"
+
+
+def test_a_relocated_row_is_duplicated_by_the_union_merge_driver(tmp_path, monkeypatch):
+    """Why the position matters, through the driver that actually runs.
+
+    reverse/functions.csv is `merge=union` in .gitattributes. A rewrite that
+    relocates a line is, to that driver, a deletion on one side with no
+    corresponding change on the other -- so it keeps both copies and check_csv
+    reports an exact duplicate row on somebody else's rebase.
+    """
+    world = World(tmp_path, monkeypatch, funclets=TWO)
+    gen_uw.land()
+    with world.functions.open("ab") as handle:
+        handle.write(CONCURRENT.encode() + b"\r\n")
+    base = world.functions.read_bytes()
+
+    gen_uw.land()                                   # "ours": a fresh land on top
+    ours = world.functions.read_bytes()
+    theirs = base + b"?other@@YAXXZ,,0x00AB0000,16,Code/other.cpp,matched,\r\n"
+
+    paths = {}
+    for name, raw in (("base", base), ("ours", ours), ("theirs", theirs)):
+        paths[name] = tmp_path / f"merge_{name}.csv"
+        paths[name].write_bytes(raw)
+    merged = subprocess.run(
+        ["git", "merge-file", "--union", "-p",
+         str(paths["ours"]), str(paths["base"]), str(paths["theirs"])],
+        capture_output=True, check=True).stdout.decode()
+    lines = [line for line in merged.splitlines() if line.strip()]
+    duplicates = {line for line in lines if lines.count(line) > 1}
+
+    assert not duplicates, (
+        "the union driver kept two copies of %d row(s) the rewrite relocated: %s"
+        % (len(duplicates), sorted(duplicates)[:3]))
 
 
 def test_a_tombstoned_name_is_renamed_around_never_resurrected(tmp_path, monkeypatch):

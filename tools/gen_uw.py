@@ -787,7 +787,8 @@ def key_of(funclet):
 
 
 def rewrite_lines(path, owned, fresh, newline):
-    """Replace the lines this generator owns, leaving every other byte alone.
+    """Replace the lines this generator owns IN PLACE, leaving every other byte
+    alone.
 
     Splitting on b"\\n" and rejoining reproduces the file exactly, which matters:
     functions.csv carries three shapes of historical line-ending damage that a
@@ -799,12 +800,30 @@ def rewrite_lines(path, owned, fresh, newline):
     real CRLF terminator stopped every one of them being recognised, so each run
     appended 511 pins it believed it had removed.  Nothing caught it because
     land() had no gate -- check_csv says `exact duplicate row` the moment it does.
+
+    The fresh block goes back at the index the old block started at, never at the
+    end of the file.  Appending instead relocates every row another session
+    appended after the previous land -- 18,689 lines upward, in one hunk that
+    changes nothing -- and functions.csv merges with git's UNION driver, which
+    keeps both sides' copy of every line that moved.  One re-land plus one
+    concurrent append is enough to duplicate those rows on somebody's next
+    rebase, and the duplicate reads as a double claim nobody made.  Splicing
+    makes a re-land of an unchanged population a byte no-op, which is what makes
+    the two-run idempotence check a real regression test.
     """
     lines = path.read_bytes().split(b"\n")
-    kept = [line for line in lines if not owned(line.rstrip(b"\r"))]
-    if kept and kept[-1] == b"":
-        kept.pop()
-    kept += [text.encode("utf-8") + newline for text in fresh]
+    if lines and lines[-1] == b"":
+        lines.pop()
+    kept, at = [], None
+    for line in lines:
+        if owned(line.rstrip(b"\r")):
+            if at is None:
+                at = len(kept)
+            continue
+        kept.append(line)
+    if at is None:      # first land into this file: the block starts at the end
+        at = len(kept)
+    kept[at:at] = [text.encode("utf-8") + newline for text in fresh]
     path.write_bytes(b"\n".join(kept) + b"\n")
 
 
@@ -865,10 +884,23 @@ def run(command, label):
 
 
 def verify(selectors):
-    """The scoped gate, then check_csv. Returns the first non-zero exit code."""
-    gate = ([sys.executable, str(ROOT / "tools" / "build.py"), *selectors]
-            if sys.platform == "win32" else [str(ROOT / "build.sh"), *selectors])
-    code = run(gate, "./build.sh " + " ".join(selectors))
+    """The FULL gate, then check_csv. Returns the first non-zero exit code.
+
+    Scoped is not enough here and no argument about runtime changes that.
+    build.py's `only` path returns before verify_dir32_consistency and
+    verify_noop_patch, and one land() run rewrites 18,689 rows and retracts
+    thousands of gen-dump rows -- it changes which sources contribute a DIR32
+    placement, which is exactly the question the scoped gate does not ask.  A
+    ledger wave proved only by a scoped gate is how origin/master was left red
+    with `DIR32 consistency: FAIL 18` and nobody noticed: both hooks run
+    './build.sh <sources>' too, so nothing else in the loop asks it either.
+
+    `selectors` is still taken and still names every source this run wrote: a
+    red full gate has to be blamed to a file, and that list is the suspect set.
+    """
+    gate = ([sys.executable, str(ROOT / "tools" / "build.py")]
+            if sys.platform == "win32" else [str(ROOT / "build.sh")])
+    code = run(gate, "./build.sh (FULL gate; %d owned source(s) written)" % len(selectors))
     if code == 0:
         code = run([sys.executable, str(ROOT / "tools" / "check_csv.py")],
                    "python3 tools/check_csv.py")
