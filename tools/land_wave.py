@@ -23,8 +23,9 @@ Per attempt the transaction is exactly gen_small.land_batch's:
                             concurrent single-row append cannot slip between a
                             failed gate and its revert)
   byte snapshot of functions.csv, symbols.csv, deleted_rows.csv
-  validate_rows            refuses a double claim; only an exact-range
-                           Code/gen_asm/ dump row may be superseded
+  validate_rows            refuses a double claim; only a lone gen-dump row of
+                           the exact range may be superseded, and dumpness is
+                           that NOTE, never a directory
   retract_dump_rows        drops each superseded dump and tombstones it
   binary append            CRLF rows, symbols.csv's own terminator for pins
   git add                  a row's source must be in git or check_csv rejects it

@@ -417,24 +417,47 @@ def dump_boundaries():
     transaction. Nothing ever reached that path from a recipe engine, because
     the dump row hid its own range from the scan -- and 12,816 of these ranges
     have no ghidra entry at all, so they were never candidates to begin with.
-    Restricted to `Code/gen_asm/` on purpose: those rows leave an orphaned MASM
-    PROC nobody edits, while the 349 dumps inside `Code/gen_small/` sit in TUs
-    their own generator owns end to end.
+
+    This set is `validate_rows`' set, spelled the same way: a dump is a gen-dump
+    NOTE, never a directory. Keying it on `Code/gen_asm/` withheld the 349 dumps
+    in `Code/gen_small/dumps_000.cpp` that land_batch has always superseded
+    (tools/tests/test_land_supersede.py), so the scan refused ground the landing
+    transaction accepts.
+
+    A boundary is offered only where the dump is the ONLY row at its address.
+    `tg_scan` hides a supersedable dump from `owned`, and the overlap index it
+    falls back on holds matched ranges only -- so a co-located UNMATCHED row
+    would be invisible to both, and validate_rows aborts the whole wave on it.
     """
-    return {int(row["target_rva"], 16): (int(row["target_size"]), row["name"])
-            for row in B.load_claim_rows(counting_dumps=True, matched_only=True)
-            if B.is_scaffold_row(row) and row["source"].startswith(DUMP_DIR_PREFIX)}
+    at_rva = collections.defaultdict(list)
+    for row in B.load_claim_rows(counting_dumps=True, matched_only=False):
+        at_rva[int(row["target_rva"], 16)].append(row)
+    return {rva: (int(rows[0]["target_size"]), rows[0]["name"])
+            for rva, rows in at_rva.items()
+            if len(rows) == 1 and rows[0]["status"] == "matched"
+            and B.is_scaffold_row(rows[0])}
 
 
 def scan_population(entries, boundaries):
-    """`entries` with every dump boundary merged in, the dump's extent winning.
+    """`entries` with every dump boundary merged in; the two must agree.
 
     A dump row's extent is proven -- the bytes it emits ARE the retail bytes over
-    that range -- so where ghidra also has an entry at that RVA the two agree
-    today (29,482 of 29,482). If one ever disagrees the dump wins, because a
-    candidate scanned at any other extent is one `validate_rows` would refuse at
-    land time, killing the whole batch instead of this one site.
+    that range -- while a ghidra entry is an inference, so where both describe
+    one RVA they have to say the same thing, and today they do (29,463 of
+    29,463). A disagreement is not a case to route around: it means a range
+    whose bytes are already verified is booked at two different widths, and
+    picking either silently leaves the loser wrong in every other tool that
+    reads it. Reconcile the inventory instead.
     """
+    disputed = sorted((rva, size, boundaries[rva][0]) for rva, size, _ in entries
+                      if rva in boundaries and boundaries[rva][0] != size)
+    if disputed:
+        detail = ", ".join(f"0x{rva:08X} ghidra={size}B dump={dumped}B"
+                           for rva, size, dumped in disputed[:5])
+        raise FormatError(
+            f"{len(disputed)} address(es) where the ghidra inventory and a proven dump "
+            f"boundary disagree on the extent: {detail}. The dump's bytes are verified "
+            "over its range, so the inventory is what needs reconciling.")
     merged = {rva: (rva, size, name) for rva, (size, name) in boundaries.items()}
     for rva, size, name in entries:
         merged.setdefault(rva, (rva, size, name))

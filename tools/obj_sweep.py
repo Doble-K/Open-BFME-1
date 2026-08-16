@@ -35,10 +35,10 @@ sweep with them off so the ratio is a printed number rather than a claim:
      relocation is not a body it could have produced.
 
 Targets
-  dump  a not-held ledger row at exactly (rva, size). Only a lone
-        `Code/gen_asm/` row is landable: `gen_small.validate_rows` supersedes
-        that and nothing else, and any other extent at the address is a
-        boundary dispute that would abort a whole wave.
+  dump  a not-held ledger row at exactly (rva, size). Only a lone gen-dump row
+        is landable: `gen_small.validate_rows` supersedes that and nothing else,
+        and any other row or extent at the address is a boundary dispute that
+        would abort a whole wave. Dumpness is the note, not the directory.
   uncl  a ghidra start overlapping no matched row; the span has to fit inside
         the unclaimed gap that follows it.
 
@@ -156,11 +156,14 @@ class Universe:
         # some address is invisible to `all_names` and its real name gets awarded
         # to a second address. 17 rows shipped that way before this counted the
         # alias spelling too.
-        self.all_names, self.all_rvas = set(), set()
+        # all_rvas counts rather than collects: `rva in all_rvas` is the same
+        # question it always answered, and the count is what tells a dump target
+        # its address carries nothing BUT the dump.
+        self.all_names, self.all_rvas = set(), collections.Counter()
         self.placements = collections.Counter()
         for row in B.load_all_function_rows():
             self.all_names.add(row["name"])
-            self.all_rvas.add(int(row["target_rva"], 16))
+            self.all_rvas[int(row["target_rva"], 16)] += 1
             self.placements[B.ledger_object_symbol(row)] += 1
 
     @staticmethod
@@ -534,9 +537,14 @@ def blocked(uni, key, record, args, skipped):
         return True
     here = uni.rows.get((rva, size), [])
     if kind == "dump":
-        # validate_rows supersedes exactly one Code/gen_asm/ row of this extent.
-        if len(here) != 1 or not here[0]["source"].startswith(G.DUMP_DIR_PREFIX):
-            skipped["address does not carry a lone Code/gen_asm/ dump row"] += 1
+        # validate_rows supersedes a lone gen-dump row of this extent, and a dump
+        # is that NOTE, never a directory -- 349 of them live in
+        # Code/gen_small/dumps_000.cpp. `here` is the matched rows at this exact
+        # extent, so all_rvas is asked too: an unmatched row at the address is
+        # invisible to the matched-range index and still aborts the whole wave.
+        if (len(here) != 1 or not B.is_scaffold_row(here[0])
+                or uni.all_rvas[rva] != 1):
+            skipped["address does not carry a lone gen-dump row"] += 1
             return True
     elif rva in uni.all_rvas:
         # An unmatched row at this address is invisible to the matched-range
