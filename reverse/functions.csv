@@ -107325,7 +107325,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_00151960@@YAXXZ,,0x00151960,91,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00551960
 ?d_00151bf0@@YAXXZ,,0x00151BF0,197,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00551bf0
 ?d_00151e50@@YAXXZ,,0x00151E50,222,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00551e50
-?d_00151f70@@YAXXZ,,0x00151F70,326,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00551f70
 ?d_00152110@@YAXXZ,,0x00152110,520,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_00552110
 ?d_001523d0@@YAXXZ,,0x001523D0,282,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_005523d0
 ?d_001526c0@@YAXXZ,,0x001526C0,150,Code/gen_asm/d_0014af50.asm,matched,gen-dump;ghidra=FUN_005526c0
@@ -157948,3 +157947,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?a_000cb850@@YAXXZ,,0x000CB850,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
 ?a_000cb8b0@@YAXXZ,,0x000CB8B0,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
 ?getRelationship@Player@@QBE?AW4Relationship@@PBVTeam@@@Z,,0x000D19C0,162,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,zh_sweep packet 000d19c0
+?getMinMaxAndCenter@AIGroup@@QAE_NPAUCoord2D@@0PAUCoord3D@@@Z,,0x00151F70,326,Code/GameEngine/Source/GameLogic/AI/AIGroup_getMinMaxAndCenter_Thunk.cpp,matched,zh_sweep packet 00151f70
