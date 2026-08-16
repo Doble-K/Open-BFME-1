@@ -2242,8 +2242,6 @@ _gpiHandleTransferMessage,0x008F5510,226,Code/GameEngine/Source/GameNetwork/Game
 ??0WriteLockClass@BoxDynamicVBAccessClass@@QAE@PAV1@@Z,0x0091F160,221,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,reloc-derived;call-sites=1;identity=real
 ??1WriteLockClass@BoxDynamicVBAccessClass@@QAE@XZ,0x0091F240,108,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,reloc-derived;call-sites=1;identity=real
 ??0BoxDynamicVBAccessClass@@QAE@IIGI@Z,0x0091F730,82,Code/Libraries/Source/WWVegas/WW3D2/boxrobj.cpp,reloc-derived;call-sites=1;identity=real
-??0VertexMaterialClass@@QAE@XZ,0x00921820,279,Code/Libraries/Source/WWVegas/WW3D2/VertexMaterialClass_Init_Thunk.cpp,reloc-derived;call-sites=1;identity=real
-??1Gen_dtor_00922220@@UAE@XZ,0x00921940,129,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_00924070@@UAE@XZ,0x00924090,29,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_009240f0@@UAE@XZ,0x00924110,29,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
 ??1Gen_dtor_00924130@@UAE@XZ,0x00924150,29,Code/gen_small/dtors_009.cpp,reloc-derived;call-sites=1;identity=generated
