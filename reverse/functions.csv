@@ -106419,7 +106419,6 @@ $CHOKE$18875,,0x009F8391,78,build/toolchains/vs2003/Program Files/Microsoft Visu
 ?d_000deec0@@YAXXZ,,0x000DEEC0,578,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004deec0
 ?d_000df240@@YAXXZ,,0x000DF240,25,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df240
 ?d_000df330@@YAXXZ,,0x000DF330,32,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df330
-?d_000df3c0@@YAXXZ,,0x000DF3C0,97,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df3c0
 ?d_000df440@@YAXXZ,,0x000DF440,71,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df440
 ?d_000df4a0@@YAXXZ,,0x000DF4A0,89,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df4a0
 ?d_000df5a0@@YAXXZ,,0x000DF5A0,268,Code/gen_asm/d_000d6fb0.asm,matched,gen-dump;ghidra=FUN_004df5a0
@@ -157957,3 +157956,4 @@ _BucketNew,,0x009D5D10,135,Code/GameEngine/Source/GameNetwork/GameSpy/gstats/gbu
 ?a_00133920@@YAXXZ,,0x00133920,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,gen-alias;object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
 ?a_00133940@@YAXXZ,,0x00133940,19,Code/GameEngine/Source/Common/RTS/Player.cpp,matched,gen-alias;object-symbol=??0?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Const_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@_STL@@QAE@ABU?$_Ht_iterator@U?$pair@$$CBHW4Relationship@@@_STL@@U?$_Nonconst_traits@U?$pair@$$CBHW4Relationship@@@_STL@@@2@HU?$hash@H@2@U?$_Select1st@U?$pair@$$CBHW4Relationship@@@_STL@@@2@U?$equal_to@H@2@V?$allocator@U?$pair@$$CBHW4Relationship@@@_STL@@@2@@1@@Z;C++ alias
 ?QRKeyListCallback@@YAXPAXW4qr2_key_type@@00@Z,,0x00642CF0,214,Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp,matched,zh_sweep packet 00642cf0
+?setLocalPlayer@PlayerList@@QAEXPAVPlayer@@@Z,,0x000DF3C0,97,Code/GameEngine/Source/Common/RTS/PlayerListSetLocalPlayer.cpp,matched,zh_sweep packet 000df3c0; ZH body plus 52 BFME-only bytes notifying two subsystems

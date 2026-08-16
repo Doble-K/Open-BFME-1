@@ -10,11 +10,15 @@
 // sibling overload at 0x008FE810 tests this function's result with `cmp al,1`.
 //
 // A byte-wide value whose success case is 1 and which a caller compares with
-// `!= 1` is a bool returning true. So BFME narrowed the result: where Zero Hour
-// writes `return WW3D_ERROR_OK`, retail returns true. Whether the header does
-// that by changing the function or by making WW3DErrorType a typedef for bool
-// with WW3D_ERROR_OK spelled true, the mangled name is the same either way,
-// which is why the name can be spent on this reading.
+// `!= 1` is a bool returning true. So these two overloads answer a bool where
+// Zero Hour writes `return WW3D_ERROR_OK`. The mangled name is `_N` either way
+// -- whether the header changed the functions or made WW3DErrorType a typedef
+// for bool -- which is why the name can be spent on this reading.
+//
+// This is NOT a claim about WW3DErrorType generally. Nineteen ledger rows
+// return it as a four-byte enum and byte-match doing so, from
+// ?End_Render@WW3D@@ through the MeshModelClass read_* family. It is these two
+// overloads that are narrow, and the evidence for that is local to them.
 //
 // Its own TU because ww3d.cpp declares the enum-returning overload and lands 25
 // rows against it.
