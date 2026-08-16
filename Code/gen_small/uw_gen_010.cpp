@@ -12,6 +12,18 @@
 void gen_uw_ext();
 void gen_uw_sink(void *);
 
+struct Gen_uwm_000012f8 { int m; Gen_uwm_000012f8(int); ~Gen_uwm_000012f8(); };
+struct Gen_uwm_00001307 { int m; Gen_uwm_00001307(int); ~Gen_uwm_00001307(); };
+struct Gen_uwm_000013f2 { int m; Gen_uwm_000013f2(int); ~Gen_uwm_000013f2(); };
+struct Gen_uwm_00001433 { int m; Gen_uwm_00001433(int); ~Gen_uwm_00001433(); };
+struct Gen_uwm_00001465 { int m; Gen_uwm_00001465(int); ~Gen_uwm_00001465(); };
+struct Gen_uwm_000015d7 { int m; Gen_uwm_000015d7(int); ~Gen_uwm_000015d7(); };
+struct Gen_uwm_000016cc { int m; Gen_uwm_000016cc(int); ~Gen_uwm_000016cc(); };
+struct Gen_uwm_0000184d { int m; Gen_uwm_0000184d(int); ~Gen_uwm_0000184d(); };
+struct Gen_uwm_000018a7 { int m; Gen_uwm_000018a7(int); ~Gen_uwm_000018a7(); };
+struct Gen_uwm_00001c12 { int m; Gen_uwm_00001c12(int); ~Gen_uwm_00001c12(); };
+struct Gen_uwm_00001c6c { int m; Gen_uwm_00001c6c(int); ~Gen_uwm_00001c6c(); };
+
 // A throwing new-expression leaves its block to be freed from a frame slot,
 // and padding ahead of it walks that slot down. A 4-byte pad is the
 // exception: it lands in the spare slot the frame already has and does not
@@ -149,3 +161,63 @@ Gen_uw_new *gen_uw_c4164() { char p[4164]; gen_uw_sink(p); return new Gen_uw_new
 Gen_uw_new *gen_uw_c4240() { char p[4240]; gen_uw_sink(p); return new Gen_uw_new(0); }
 
 Gen_uw_new *gen_uw_c5416() { char p[5416]; gen_uw_sink(p); return new Gen_uw_new(0); }
+
+struct Gen_uwh0_000012f8 { Gen_uwm_000012f8 a0; char q1[16]; Gen_uwm_000012f8 a1; Gen_uwm_000012f8 z; Gen_uwh0_000012f8(); };
+// ??0Gen_uwh0_000012f8@@QAE@XZ absent-from-retail
+Gen_uwh0_000012f8::Gen_uwh0_000012f8() : a0(0), a1(1), z(0) {  }
+
+struct Gen_uwh0_00001307 { char q0[608]; Gen_uwm_00001307 a0; Gen_uwm_00001307 z; Gen_uwh0_00001307(); };
+// ??0Gen_uwh0_00001307@@QAE@XZ absent-from-retail
+Gen_uwh0_00001307::Gen_uwh0_00001307() : a0(0), z(0) {  }
+
+struct Gen_uwh16_00001307 { char q0[608]; Gen_uwm_00001307 a0; Gen_uwm_00001307 z; Gen_uwh16_00001307(); };
+// ??0Gen_uwh16_00001307@@QAE@XZ absent-from-retail
+Gen_uwh16_00001307::Gen_uwh16_00001307() : a0(0), z(0) { char pad[16]; gen_uw_sink(pad); }
+
+struct Gen_uwh0_000013f2 { Gen_uwm_000013f2 a0; Gen_uwm_000013f2 z; Gen_uwh0_000013f2(); };
+// ??0Gen_uwh0_000013f2@@QAE@XZ absent-from-retail
+Gen_uwh0_000013f2::Gen_uwh0_000013f2() : a0(0), z(0) {  }
+
+struct Gen_uwh0_00001433 { char q0[32932]; Gen_uwm_00001433 a0; Gen_uwm_00001433 z; Gen_uwh0_00001433(); };
+// ??0Gen_uwh0_00001433@@QAE@XZ absent-from-retail
+Gen_uwh0_00001433::Gen_uwh0_00001433() : a0(0), z(0) {  }
+
+struct Gen_uwh40_00001433 { char q0[32932]; Gen_uwm_00001433 a0; Gen_uwm_00001433 z; Gen_uwh40_00001433(); };
+// ??0Gen_uwh40_00001433@@QAE@XZ absent-from-retail
+Gen_uwh40_00001433::Gen_uwh40_00001433() : a0(0), z(0) { char pad[40]; gen_uw_sink(pad); }
+
+struct Gen_uwh0_00001465 { Gen_uwm_00001465 a0; Gen_uwm_00001465 z; Gen_uwh0_00001465(); };
+// ??0Gen_uwh0_00001465@@QAE@XZ absent-from-retail
+Gen_uwh0_00001465::Gen_uwh0_00001465() : a0(0), z(0) {  }
+
+struct Gen_uwh0_000015d7 { char q0[12]; Gen_uwm_000015d7 a0; Gen_uwm_000015d7 z; Gen_uwh0_000015d7(); };
+// ??0Gen_uwh0_000015d7@@QAE@XZ absent-from-retail
+Gen_uwh0_000015d7::Gen_uwh0_000015d7() : a0(0), z(0) {  }
+
+struct Gen_uwh12_000015d7 { char q0[12]; Gen_uwm_000015d7 a0; Gen_uwm_000015d7 z; Gen_uwh12_000015d7(); };
+// ??0Gen_uwh12_000015d7@@QAE@XZ absent-from-retail
+Gen_uwh12_000015d7::Gen_uwh12_000015d7() : a0(0), z(0) { char pad[12]; gen_uw_sink(pad); }
+
+struct Gen_uwh68_000016cc { char q0[644]; Gen_uwm_000016cc a0; Gen_uwm_000016cc z; Gen_uwh68_000016cc(); };
+// ??0Gen_uwh68_000016cc@@QAE@XZ absent-from-retail
+Gen_uwh68_000016cc::Gen_uwh68_000016cc() : a0(0), z(0) { char pad[68]; gen_uw_sink(pad); }
+
+struct Gen_uwh0_0000184d { char q0[784]; Gen_uwm_0000184d a0; Gen_uwm_0000184d z; Gen_uwh0_0000184d(); };
+// ??0Gen_uwh0_0000184d@@QAE@XZ absent-from-retail
+Gen_uwh0_0000184d::Gen_uwh0_0000184d() : a0(0), z(0) {  }
+
+struct Gen_uwh4_0000184d { char q0[784]; Gen_uwm_0000184d a0; Gen_uwm_0000184d z; Gen_uwh4_0000184d(); };
+// ??0Gen_uwh4_0000184d@@QAE@XZ absent-from-retail
+Gen_uwh4_0000184d::Gen_uwh4_0000184d() : a0(0), z(0) { char pad[4]; gen_uw_sink(pad); }
+
+struct Gen_uwh0_000018a7 { Gen_uwm_000018a7 a0; Gen_uwm_000018a7 z; Gen_uwh0_000018a7(); };
+// ??0Gen_uwh0_000018a7@@QAE@XZ absent-from-retail
+Gen_uwh0_000018a7::Gen_uwh0_000018a7() : a0(0), z(0) {  }
+
+struct Gen_uwh0_00001c12 { Gen_uwm_00001c12 a0; Gen_uwm_00001c12 z; Gen_uwh0_00001c12(); };
+// ??0Gen_uwh0_00001c12@@QAE@XZ absent-from-retail
+Gen_uwh0_00001c12::Gen_uwh0_00001c12() : a0(0), z(0) {  }
+
+struct Gen_uwh0_00001c6c { Gen_uwm_00001c6c a0; Gen_uwm_00001c6c z; Gen_uwh0_00001c6c(); };
+// ??0Gen_uwh0_00001c6c@@QAE@XZ absent-from-retail
+Gen_uwh0_00001c6c::Gen_uwh0_00001c6c() : a0(0), z(0) {  }

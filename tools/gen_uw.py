@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Byte-true C++ for the MSVC unwind funclets retail left unclaimed.
 
-Three funclet shapes carry both a frame displacement and a callee that can be
+Four funclet templates carry both a frame reference and a callee that can be
 read straight out of the retail bytes, so an anonymous C++ body reproduces them
 exactly:
 
@@ -9,6 +9,14 @@ exactly:
   B  lea ecx,[ebp+D]; jmp <dtor>                       a by-value class parameter
   C  mov eax,[ebp-D]; push eax; call <op delete>;      the block a throwing
      pop ecx; ret                                      new-expression allocated
+  M  mov ecx,[ebp-D]; add ecx,K; jmp <dtor>            a member subobject at
+                                                       offset K of the object
+                                                       being constructed
+
+Each takes an int8 displacement while the slot is within 128 bytes of EBP and an
+int32 one past that; the C++ is identical either way, so one emitter covers both
+encodings of all four. Every frame slot is reached the same way: the object
+starts at EBP-0x10 and a leading `char pad[N]` walks it down.
 
 The payloads are anonymous by design: they reproduce a frame slot and a call,
 never a class identity, and every callee address comes from the retail bytes.
@@ -76,7 +84,7 @@ ROWS_PER_FILE = 1200
 # displacements and member offsets the pool actually asks for, and the commit
 # that adds one lands nothing else -- so a full gate that goes red names the
 # shape that did it.
-LANDING = ("A", "B", "C")
+LANDING = ("A", "B", "C", "M")
 
 
 def source_name(index):
@@ -462,6 +470,13 @@ def emit_member(target, pad, offsets):
     throw past, so the host carries one more Gen_uwm_ after the last offset --
     without it the last offset emits nothing.  `char q[]` fillers put each member
     exactly where retail's `add ecx,K` says it is.
+
+    The constructor is out of line because that is what gives it a frame of its
+    own to spill `this` into, and it is the only definition this generator writes
+    that no ledger row claims: retail has no such constructor, only the funclets
+    it makes MSVC emit.  So it carries the `absent-from-retail` marker
+    find_declared_unmatched.py reads -- the honest label, since there is no
+    address for a row to point at.
     """
     fields, position = [], 0
     for index, offset in enumerate(offsets):
@@ -473,8 +488,9 @@ def emit_member(target, pad, offsets):
     initialisers = ", ".join("a%d(%d)" % (index, index) for index in range(len(offsets)))
     body = "char pad[%d]; gen_uw_sink(pad);" % pad if pad else ""
     name = "Gen_uwh%d_%08x" % (pad, target)
-    return ("struct %s { %s %s(); };\n%s::%s() : %s, z(0) { %s }\n"
-            % (name, " ".join(fields), name, name, name, initialisers, body))
+    return ("struct %s { %s %s(); };\n// ??0%s@@QAE@XZ absent-from-retail\n"
+            "%s::%s() : %s, z(0) { %s }\n"
+            % (name, " ".join(fields), name, name, name, name, initialisers, body))
 
 
 def emit_new(pad):
