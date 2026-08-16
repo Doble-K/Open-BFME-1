@@ -32,7 +32,7 @@ This is deliberately WEAKER than global uniqueness, which is why the standard
 is written down here and in vendor/d3dx9/PROVENANCE.txt rather than left
 implicit in a matcher. Its corroborations and its limits are recorded there.
 
-Two tests keep the ordering premise honest, because ordering is the part of the
+Four tests keep the ordering premise honest, because ordering is the part of the
 standard that can be wrong while every byte still matches:
 
   ledger anchors   a class containing a body the ledger ALREADY attaches is a
@@ -49,6 +49,22 @@ standard that can be wrong while every byte still matches:
                    caught this way; they are refused, not repaired, because
                    repairing them means choosing among members that define the
                    same COMDAT and that is a second standard, not this one.
+  DIR32 bases      the same idea one step out: a DIR32 slot says where a named
+                   global went, and a symbol has one address. A placement that
+                   puts an anchored symbol somewhere an already-attached row
+                   does not is refused, and so is a pair of this wave's own rows
+                   that resolve one symbol two ways. build.py runs the same
+                   arithmetic over the whole ledger, but only in the FULL gate —
+                   a ledger-only commit gets a SCOPED build from both hooks, and
+                   the scoped path skips it. Applying it here is what stops a
+                   wave landing rows that check will blame after the push.
+  twin naming      the tests above refute; this one measures what is left. For
+                   each address, every instance of the class that survives all
+                   of them is a candidate. When more than one SYMBOL survives,
+                   ascending order was a coin flip, and the row is named
+                   `?<lib>_twin_<rva>@@YAXXZ` with `object-symbol=` carrying the
+                   COMDAT. The bytes are still proved; only the name stops
+                   claiming what the image does not witness.
 
 LEGALITY
 --------
@@ -74,7 +90,10 @@ Usage
 import argparse
 import bisect
 import csv
+import functools
+import io
 import re
+import struct
 import subprocess
 import sys
 from collections import Counter, defaultdict
@@ -185,9 +204,18 @@ def tracked_sources():
 class Ledger:
     """The matched rows, indexed the three ways this sweep asks about them."""
 
-    def __init__(self):
+    def __init__(self, ref=None):
         self.rows = []
-        with (ROOT / "reverse" / "functions.csv").open(newline="", encoding="utf-8") as handle:
+        if ref is None:
+            text = (ROOT / "reverse" / "functions.csv").read_text(encoding="utf-8")
+        else:
+            # Re-deriving a wave that has already landed needs the ledger as it
+            # was BEFORE it: read against today's rows, every class the wave
+            # claimed is `consumed` and the sweep correctly reports nothing.
+            text = subprocess.run(
+                ["git", "-C", str(ROOT), "show", f"{ref}:reverse/functions.csv"],
+                capture_output=True, check=True).stdout.decode("utf-8")
+        with io.StringIO(text, newline="") as handle:
             for record in csv.DictReader(handle):
                 if record["status"] != "matched":
                     continue
@@ -442,6 +470,127 @@ def callee_verdict(rva, size, instance, callees, image, text_range, follow=True)
     return corroborated, contradicted
 
 
+DIR32 = 0x0006
+COMPILER_LOCAL_RE = re.compile(r"\$[A-Za-z]+\d+\Z")
+
+
+@functools.lru_cache(maxsize=None)
+def static_definitions(path_str):
+    """Names this object DEFINES with IMAGE_SYM_CLASS_STATIC.
+
+    A static's name is TU-scoped, so its base is only comparable inside the same
+    member. `__NEG_` is static in BOTH d3dxmathsse.obj and d3dxmathsse2.obj: one
+    name, two objects, two legitimate addresses. Keyed by name alone that reads
+    as a contradiction, and ten byte-verified placements come out for it.
+    """
+    data = Path(path_str).read_bytes()
+    table, count = B.u32(data, 8), B.u32(data, 12)
+    strings = data[table + count * 18:]
+    out, index = set(), 0
+    while index < count:
+        offset = table + index * 18
+        section = struct.unpack_from("<h", data, offset + 12)[0]
+        storage, aux = data[offset + 16], data[offset + 17]
+        if section > 0 and storage == 3:
+            name = B.coff_name(data, offset, strings)
+            if name:
+                out.add(name)
+        index += 1 + aux
+    return frozenset(out)
+
+
+def statics_of(instance, statics):
+    """The static names `instance`'s member defines, however they were supplied.
+
+    `statics` lets a caller inject the map (the tests do); left out, the member
+    is read from the sweep's own cache, which is written before any placement.
+    """
+    key = (instance.tag, instance.member)
+    if statics is not None:
+        return statics.get(key, frozenset())
+    cached = MEMBER_CACHE / (instance.tag + "_" + re.sub(r"[\\/]", "_", instance.member))
+    return static_definitions(str(cached)) if cached.exists() else frozenset()
+
+
+def dir32_assertions(rva, size, instance, image, statics=None):
+    """[(key, base, offset, symbol)] this placement asserts through its DIR32s.
+
+    Retail holds the RESOLVED address; the archive holds the addend. Their
+    difference is where the named symbol went, so a placement is a statement
+    about every global it touches. Same arithmetic as build.py's
+    verify_dir32_consistency, and the same exclusions: a string literal is
+    per-TU, and `$L1234`/`__ehhandler$` are compiler-local labels an
+    object-symbol= row deliberately aliases onto many retail instances.
+    """
+    local = statics_of(instance, statics)
+    limit = min(size, len(instance.span))
+    out = []
+    for offset, rtype, name in instance.relocs:
+        if rtype != DIR32 or offset + 4 > limit:
+            continue
+        if name.startswith("??_C@") or name.startswith("__ehhandler$"):
+            continue
+        if COMPILER_LOCAL_RE.fullmatch(name):
+            continue
+        final = image(rva + offset, 4)
+        if len(final) < 4:
+            continue
+        addend = struct.unpack_from("<I", instance.span, offset)[0]
+        base = (struct.unpack("<I", final)[0] - addend) & 0xFFFFFFFF
+        out.append(((instance.member, name) if name in local else name,
+                    base, offset, name))
+    return out
+
+
+def dir32_verdict(rva, size, instance, image, anchors, statics=None):
+    """(corroborated, contradicted) over the globals this placement resolves.
+
+    `anchors` is {key: {base}} witnessed by rows the ledger ALREADY holds. A
+    symbol has one address, so a placement whose arithmetic puts an anchored
+    symbol somewhere else is a placement archive order got wrong. This is what
+    separates ??_GCVSProgram from ??_GCFXLProgram: 34 identical bytes, but one
+    loads the vtable base an attached CVSProgram constructor already pins.
+
+    A key with no anchor, or one the ledger itself shows at several bases,
+    decides nothing and is silent rather than guessed at.
+    """
+    corroborated, contradicted = 0, []
+    for key, base, offset, name in dir32_assertions(rva, size, instance, image, statics):
+        known = anchors.get(key)
+        if not known or len(known) != 1:
+            continue
+        if base == next(iter(known)):
+            corroborated += 1
+        else:
+            contradicted.append((offset, name, base))
+    return corroborated, contradicted
+
+
+def anchor_bases(ledger, classes, callees, image):
+    """{key: {base}} from the lib rows attached BEFORE this run.
+
+    Those rows are the trusted baseline: the same rows the ordering test uses
+    as anchors, read for what they say about data instead of about order.
+    """
+    index = {}
+    for pool in (classes, callees):
+        for instances in pool.values():
+            for instance in instances:
+                entry = LEDGER_SOURCE.get(instance.tag)
+                if entry:
+                    index.setdefault((entry[0], instance.member, instance.symbol), instance)
+    bases = defaultdict(set)
+    for key, rows in ledger.consumed.items():
+        instance = index.get(key)
+        if instance is None:
+            continue
+        for row in rows:
+            for slot, base, _offset, _name in dir32_assertions(
+                    row["rva"], row["size"], instance, image):
+                bases[slot].add(base)
+    return bases
+
+
 HIT_CEILING = 64
 
 
@@ -476,8 +625,8 @@ def placements(window, instance):
 LEGAL_ORDER = ["dump-exact", "dump-padded", "pure-unclaimed", "dump-mismatch", "held-overlap"]
 
 
-def sweep(report):
-    ledger = Ledger()
+def sweep(report, ledger_ref=None):
+    ledger = Ledger(ledger_ref)
     libs = archive_paths()
     tracked = tracked_sources()
     data, sections = B.exe_image()
@@ -492,6 +641,8 @@ def sweep(report):
     classes, callees = collect_instances(libs, report.warn)
     report.note(f"release spans: {sum(len(v) for v in classes.values()):,} in "
                 f"{len(classes):,} masked-identity classes over {len(libs)} archives")
+    anchors = anchor_bases(ledger, classes, callees, image)
+    report.note(f"DIR32 bases pinned by already-attached rows: {len(anchors):,}")
 
     # A byte the ledger already holds under a real row can never be re-claimed;
     # a byte a gen-dump holds can be superseded. Tracked as a lane so a class
@@ -549,12 +700,12 @@ def sweep(report):
         # retail keeps both in their defining object's run and again in the
         # shared inline pool 200 KB later, which ascending-RVA order pairs the
         # wrong way round.
-        anchors = 0
+        anchor_hits = 0
         contradicted = False
         for rva, instance in pairs:
             for row in ledger.consumed.get((source, instance.member, instance.symbol), ()):
                 if row["rva"] == rva:
-                    anchors += 1
+                    anchor_hits += 1
                 else:
                     contradicted = True
                     report.disagreement(source, instance.member, instance.symbol,
@@ -562,7 +713,27 @@ def sweep(report):
         if contradicted:
             report.count("assignment-contradicts-ledger", size * len(pairs))
             continue
-        report.witness(len(in_window), anchors)
+        report.witness(len(in_window), anchor_hits)
+
+        # What else could be here. Every instance in a class is masked-identical
+        # to every other by construction, so an alternative that survives the
+        # same three tests is not distinguishable from the one ascending order
+        # picked. A row whose survivor set names more than one SYMBOL must not
+        # carry any of them: the name column is what every other tool resolves
+        # an identity through, and phase 2 put 17 real names on wrong addresses
+        # exactly this way.
+        feasible = {}
+        for rva, _assigned in pairs:
+            names = set()
+            for candidate in ordered:
+                if not masked_eq(image(rva, size), candidate.span, candidate.relocs):
+                    continue
+                if callee_verdict(rva, size, candidate, callees, image, text_range)[1]:
+                    continue
+                if dir32_verdict(rva, size, candidate, image, anchors)[1]:
+                    continue
+                names.add(candidate.symbol)
+            feasible[rva] = sorted(names)
 
         for rva, instance in pairs:
             if (source, instance.member, instance.symbol) in ledger.consumed:
@@ -570,18 +741,80 @@ def sweep(report):
             if rva in ledger.attached_rvas:
                 report.count("rva-held-by-another-member", size)
                 continue
-            row = classify(rva, size, instance, ledger, lane, claimed,
-                           image, source, owner, report, callees, text_range)
+            row = classify(rva, size, instance, ledger, lane, claimed, image, source,
+                           owner, report, callees, text_range, anchors)
             if row is not None:
                 row["placements"] = len(in_window)
                 row["instances"] = len(ordered)
-                row["anchors"] = anchors
+                row["anchors"] = anchor_hits
+                row["candidates"] = feasible[rva] or [instance.symbol]
                 results.append(row)
-    return results, ledger, tracked
+    return refuse_dir32_conflicts(results, anchors, report), ledger, tracked
+
+
+DIR32_WHITELIST = ROOT / "reverse" / "dir32_consistency_whitelist.txt"
+
+
+def gate_disagreements(bases, anchors):
+    """Keys build.py's verify_dir32_consistency will blame even though we won't.
+
+    That check keys a base by symbol NAME alone, so `__NEG_` -- static in both
+    d3dxmathsse.obj and d3dxmathsse2.obj, one name, two objects, two legitimate
+    addresses -- reads to it as one symbol at two addresses. Scoping statics by
+    member (what dir32_assertions does) is the sharper rule, but the check is
+    the gate, and a wave that emits rows the gate blames turns master red for
+    everyone. So the sweep refuses what the gate refuses and says why here; the
+    fix is a storage-class exclusion in verify_dir32_consistency, not a
+    whitelist entry and not a softer sweep.
+    """
+    whitelist = set()
+    if DIR32_WHITELIST.exists():
+        whitelist = {line.strip() for line in DIR32_WHITELIST.read_text().splitlines()
+                     if line.strip() and not line.startswith("#")}
+    by_name = defaultdict(set)
+    for source in (bases, anchors):
+        for key, seen in source.items():
+            by_name[key[1] if isinstance(key, tuple) else key] |= seen
+    blamed = {name for name, seen in by_name.items()
+              if len(seen) > 1 and name not in whitelist}
+    return {key for key in bases
+            if (key[1] if isinstance(key, tuple) else key) in blamed}
+
+
+def refuse_dir32_conflicts(results, anchors, report):
+    """Drop every row party to a base two placements disagree about.
+
+    The per-row test above only sees keys the LEDGER anchors. Two rows of the
+    same wave can still resolve one symbol two ways with nothing attached to
+    say which is right -- `_IID_ID3DXBuffer` landed at 0x0114DA98 through one
+    QueryInterface placement and 0x0114DBC8 through the other. One external
+    GUID has one address, so at least one is wrong; refusing both is the same
+    class-wide rule the ordering test already applies.
+
+    Refusal here leaves the `claimed` lane marked, so a refused row's ground
+    stays unclaimed for this run and is re-derived by the next one.
+    """
+    bases = defaultdict(set)
+    for row in results:
+        for key, base, _offset, _name in row["dir32"]:
+            bases[key].add(base)
+    conflicted = {key for key, seen in bases.items()
+                  if len(seen) > 1 or (len(anchors.get(key, ())) == 1 and seen != anchors[key])}
+    conflicted |= gate_disagreements(bases, anchors)
+    if not conflicted:
+        return results
+    kept = []
+    for row in results:
+        blamed = sorted({key for key, _b, _o, _n in row["dir32"] if key in conflicted})
+        if blamed:
+            report.dir32_conflict(row, blamed)
+        else:
+            kept.append(row)
+    return kept
 
 
 def classify(rva, size, instance, ledger, lane, claimed, image, source, owner, report,
-             callees, text_range):
+             callees, text_range, anchors):
     offset = rva - WIN_LO
     # The class was placed with its FIRST instance's relocation layout. Two
     # instances can canonicalise the same and still hole differently, so the
@@ -594,6 +827,11 @@ def classify(rva, size, instance, ledger, lane, claimed, image, source, owner, r
     if contradicted:
         report.callee_miss(rva, instance, contradicted)
         report.count("callee-target-contradicts", size)
+        return None
+    based, disputed = dir32_verdict(rva, size, instance, image, anchors)
+    if disputed:
+        report.dir32_miss(rva, instance, disputed)
+        report.count("dir32-base-contradicts", size)
         return None
     overlaps = ledger.overlapping(rva, size)
     dump = ledger.dump_at.get(rva)
@@ -640,7 +878,8 @@ def classify(rva, size, instance, ledger, lane, claimed, image, source, owner, r
             "source": source, "legal": legal, "symbol": instance.symbol,
             "member": instance.member, "tag": instance.tag,
             "dump_row": dump["name"] if dump else "", "concrete": concrete,
-            "callees_ok": corroborated}
+            "callees_ok": corroborated, "bases_ok": based,
+            "dir32": dir32_assertions(rva, claim_size, instance, image)}
 
 
 # --------------------------------------------------------------------------
@@ -658,6 +897,7 @@ class Report:
         # premise at all, and a class an attached row anchors has had it tested.
         self.classes = Counter()
         self.callee_misses = []
+        self.dir32_misses, self.dir32_conflicts = [], []
 
     def warn(self, text):
         self.warnings.append(text)
@@ -685,6 +925,13 @@ class Report:
 
     def callee_miss(self, rva, instance, contradicted):
         self.callee_misses.append((rva, instance.member, instance.symbol, contradicted))
+
+    def dir32_miss(self, rva, instance, disputed):
+        self.dir32_misses.append((rva, instance.member, instance.symbol, disputed))
+
+    def dir32_conflict(self, row, blamed):
+        self.dir32_conflicts.append((row["rva"], row["member"], row["symbol"], blamed))
+        self.count("dir32-base-conflicts-within-wave", row["size"])
 
     def disagreement(self, source, member, symbol, held_rva, assigned_rva):
         self.disagreements.append((source, member, symbol, held_rva, assigned_rva))
@@ -723,6 +970,12 @@ def print_report(rows, report):
     calls = [r for r in rows if r["callees_ok"]]
     print(f"  rows whose own calls land on the callee the archive names: {len(calls):,}, "
           f"{sum(r['new'] for r in calls):,}B")
+    based = [r for r in rows if r.get("bases_ok")]
+    print(f"  rows resolving a global to the base an attached row pins: {len(based):,}, "
+          f"{sum(r['new'] for r in based):,}B")
+    twins = [r for r in rows if len(r.get("candidates", ())) > 1]
+    print(f"  rows whose SYMBOL another identical body could equally own "
+          f"(named ?<lib>_twin_<rva>): {len(twins):,}, {sum(r['new'] for r in twins):,}B")
     if report.classes:
         print("\n=== how much each accepted class leans on archive order ===")
         for label, count in sorted(report.classes.items()):
@@ -753,6 +1006,18 @@ def print_report(rows, report):
             where = f"0x{destination:08X}" if destination is not None else "(truncated)"
             print(f"  0x{rva:08X} {member} {symbol[:46]}: +{offset} calls {where}, "
                   f"which is not {name[:46]}")
+    if report.dir32_misses:
+        print(f"\n=== {len(report.dir32_misses)} placement(s) refused: a global resolves "
+              "somewhere an attached row says it is not ===")
+        for rva, member, symbol, disputed in report.dir32_misses[:15]:
+            offset, name, base = disputed[0]
+            print(f"  0x{rva:08X} {member} {symbol[:46]}: +{offset} puts {name[:46]} "
+                  f"at 0x{base:08X}")
+    if report.dir32_conflicts:
+        print(f"\n=== {len(report.dir32_conflicts)} placement(s) refused: this wave's own "
+              "rows resolve one symbol two ways ===")
+        for rva, member, symbol, blamed in report.dir32_conflicts[:15]:
+            print(f"  0x{rva:08X} {member} {symbol[:46]}: {blamed[0]}")
     if report.thins:
         print(f"\n{len(report.thins)} placement(s) dropped: fewer than "
               f"{B.MIN_LIB_CONCRETE} bytes outside a relocation slot")
@@ -769,7 +1034,16 @@ def row_names(rows, ledger, tracked, report):
     d3dx9 links twice, the SSE float16 pair). The ledger cannot hold one name at
     two RVAs, so a twin gets `<symbol>$<member stem>` and an `object-symbol=`
     note pointing the gate back at the real COFF symbol — the shape the eight
-    twins already in the ledger use.
+    twins already in the ledger use. That name still says something true: both
+    candidates ARE that function, compiled into two objects.
+
+    A row whose `candidates` name more than one SYMBOL is the other case, and it
+    gets no mangled name at all. Ascending order chose among masked-identical
+    bodies that survive every test the standard applies, so a real name here
+    asserts an identity the image does not witness — the phase-2 failure mode,
+    where a name index built off the name column resolved 17 symbols to wrong
+    addresses. `object-symbol=` still names the COMDAT whose bytes these are, so
+    the gate verifies exactly as before and the byte claim is untouched.
     """
     occurrences = Counter(row["symbol"] for row in rows)
     used, named, refused = set(ledger.names), [], []
@@ -778,16 +1052,20 @@ def row_names(rows, ledger, tracked, report):
             refused.append((row, f"no tracked ledger source for archive tag {row['tag']}"))
             continue
         symbol = row["symbol"]
-        alias = occurrences[symbol] > 1 or symbol in used
-        name = symbol
-        if alias:
-            stem = re.sub(r"\.obj$", "", row["member"], flags=re.I)
-            name = f"{symbol}${stem}"
-        suffix = 1
-        while name in used:
-            suffix += 1
-            stem = re.sub(r"\.obj$", "", row["member"], flags=re.I)
-            name = f"{symbol}${stem}#{suffix}"
+        candidates = row.get("candidates") or [symbol]
+        if len(candidates) > 1:
+            name = twin_name(row)
+        else:
+            alias = occurrences[symbol] > 1 or symbol in used
+            name = symbol
+            if alias:
+                stem = re.sub(r"\.obj$", "", row["member"], flags=re.I)
+                name = f"{symbol}${stem}"
+            suffix = 1
+            while name in used:
+                suffix += 1
+                stem = re.sub(r"\.obj$", "", row["member"], flags=re.I)
+                name = f"{symbol}${stem}#{suffix}"
         if any(char in name for char in ',"\r\n'):
             refused.append((row, f"symbol carries a CSV-hostile character: {symbol!r}"))
             continue
@@ -795,10 +1073,26 @@ def row_names(rows, ledger, tracked, report):
         notes = f"vendored={vendor_tag(row['source'])};member={row['member']}"
         if name != symbol:
             notes += f";object-symbol={symbol}"
+        if len(candidates) > 1:
+            notes += (f";lib-twin={len(candidates)} masked-identical archive bodies could sit "
+                      "at this address and nothing in the image separates them, so this name "
+                      "asserts none of them")
         named.append(dict(row, name=name, notes=notes))
     for row, reason in refused:
         report.warn(f"0x{row['rva']:08X} {row['symbol'][:60]}: {reason}")
     return named, refused
+
+
+def twin_name(row):
+    """A ledger name for bytes whose SYMBOL the evidence does not pin.
+
+    Mangled-looking so it reads as a symbol and sorts with them, address-keyed
+    so it is unique by construction, and carrying no `gen-` marker: these rows
+    are real library bodies byte-verified against a real archive member, not
+    generated placeholders, and progress.py routes anything with a `gen-` note
+    into the generated lane.
+    """
+    return f"?{row['owner']}_twin_{row['rva']:08x}@@YAXXZ"
 
 
 def vendor_tag(source):
@@ -821,19 +1115,22 @@ def write_wave(path, rows):
 
 def write_detail(path, rows):
     columns = ["rva", "size", "new", "owner", "legal", "tag", "member", "symbol",
-               "dump_row", "concrete", "callees_ok", "placements", "instances", "anchors",
-               "name", "notes", "source"]
+               "dump_row", "concrete", "callees_ok", "bases_ok", "placements", "instances",
+               "anchors", "candidates", "name", "notes", "source"]
     with Path(path).open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, columns, lineterminator="\n", extrasaction="ignore")
         writer.writeheader()
         for row in rows:
-            writer.writerow(dict(row, rva=f"0x{row['rva']:08X}"))
+            writer.writerow(dict(row, rva=f"0x{row['rva']:08X}",
+                                 candidates="|".join(row.get("candidates", ()))))
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--report", action="store_true", help="print the score table")
+    parser.add_argument("--ledger-ref", help="read functions.csv from this git ref instead of "
+                        "the worktree, to re-derive a wave that has already landed")
     parser.add_argument("--emit", help="write a land_wave CSV here")
     parser.add_argument("--detail", help="write the full per-placement CSV here")
     parser.add_argument("--legal", default="dump-exact,dump-padded,pure-unclaimed",
@@ -845,7 +1142,7 @@ def main(argv=None):
 
     report = Report()
     try:
-        rows, ledger, tracked = sweep(report)
+        rows, ledger, tracked = sweep(report, args.ledger_ref)
     except SweepError as exc:
         raise SystemExit(f"lib_window_sweep: {exc}")
     rows.sort(key=lambda row: row["rva"])
